@@ -11,7 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
 
-    <!-- EXTERNE DATENQUELLEN EINBINDEN -->
+    <!-- EXTERNEN SPEICHER EINLESEN -->
     <script src="questions.js"></script>
     <script src="vocabulary.js"></script>
 
@@ -80,7 +80,7 @@
                     <div class="space-y-3">
                         <input type="text" id="username-input" placeholder="Name..."
                             class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                        <input type="number" id="age-input" placeholder="Klasse/Alter..."
+                        <input type="number" id="age-input" placeholder="Klasse / Alter..."
                             class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
                         <button
                             class="w-full p-3.5 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl font-bold text-white shadow-lg"
@@ -91,14 +91,16 @@
 
             <!-- VIEW: MAIN MENU -->
             <div id="view-menu" class="view hidden space-y-4">
-                <!-- HOME PAGE -->
+                <!-- HOME SUBVIEW -->
                 <div id="subview-home" class="subview space-y-4">
                     <div
                         class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-center shadow-xl">
                         <div>
                             <h2 id="welcome-text" class="text-xl font-bold text-white">Hallo!</h2>
-                            <span class="text-yellow-400 font-bold text-sm">🪙 <span id="menu-coins">0</span>
-                                Coins</span>
+                            <div class="flex gap-4 mt-1 text-xs font-semibold">
+                                <span class="text-yellow-400">🪙 <span id="menu-coins">0</span> Coins</span>
+                                <span class="text-blue-400">🎒 Klasse/Alter: <span id="menu-age">-</span></span>
+                            </div>
                         </div>
                     </div>
 
@@ -133,7 +135,7 @@
 
                     <div class="text-center mt-6">
                         <span
-                            class="bg-gray-800 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">v2.2.2
+                            class="bg-gray-800 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">v2.3.0
                             Stable (Modular)</span>
                     </div>
                 </div>
@@ -149,25 +151,23 @@
                 <!-- SUBVIEW: WORKSHOP -->
                 <div id="subview-workshop" class="subview hidden space-y-4">
                     <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-3">
-                        <h3 class="text-lg font-bold text-emerald-400">🔧 Tech-Lab: Assistent</h3>
-                        <p class="text-xs text-gray-400">Formelberechnungen für das Kfz-Gewerbe.</p>
+                        <h3 class="text-lg font-bold text-emerald-400">🔧 Tech-Lab</h3>
+                        <p class="text-xs text-gray-400">Formelstudios für elektrotechnische Systeme.</p>
                     </div>
                 </div>
 
-                <!-- SUBVIEW: ELTERNBEREICH (KOMPLETT REPARIERT) -->
+                <!-- SUBVIEW: ELTERNBEREICH -->
                 <div id="subview-parent" class="subview hidden space-y-4">
                     <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
                         <h3 class="text-lg font-bold text-rose-400 mb-2">👨‍👩‍👦 Verwaltung & Elternbereich</h3>
-                        <p class="text-xs text-gray-400 mb-4">Verwalte Profile, Coins und kontrolliere die Lernzeiten:
-                        </p>
-                        <div id="parent-stats-container" class="space-y-3"></div>
+                        <div id="parent-stats-container" class="space-y-3 mt-4"></div>
                     </div>
                 </div>
             </div>
 
             <!-- VIEW: QUIZ SETUP -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
+                <button class="bg-gray-770 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
                     Zurück</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
                     <h2 class="text-2xl font-black text-center text-pink-400" id="quiz-setup-title">Quiz-Arena</h2>
@@ -189,7 +189,7 @@
                         <label class="text-xs text-gray-400 font-bold block mb-1">Lektion:</label>
                         <select id="sub-category" onchange="showQuestionCount()"
                             class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold"></select>
-                        <!-- HIER IST DIE FRAGENANZAHL IN KLEIN DARUNTER -->
+                        <!-- FRAGENANZAHL SCHÖN KLEIN DARUNTER -->
                         <div id="question-count-display" class="text-xs text-gray-400 mt-1 font-semibold pl-1"></div>
                     </div>
 
@@ -215,7 +215,7 @@
 
             <!-- VIEW: VOKABEL-TRAINER -->
             <div id="view-vokabeln" class="view hidden space-y-4">
-                <button class="bg-gray-770 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
                     Zurück</button>
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
                     <h2 class="text-2xl font-black text-indigo-400">📖 Vokabel-Trainer</h2>
@@ -248,13 +248,21 @@
     </div>
 
     <script>
-        // Lokale Fallback-Datenbank, falls Firebase offline ist
+        const firebaseConfig = {
+            apiKey: "AIzaSyAy5YkfW99nY3t1CxxrFI5dlqe4w2NZfj4",
+            authDomain: "family-quizzz-80c40.firebaseapp.com",
+            databaseURL: "https://family-quizzz-80c40-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "family-quizzz-80c40",
+            storageBucket: "family-quizzz-80c40.firebasestorage.app",
+            messagingSenderId: "30751445599",
+            appId: "1:30751445599:web:28636f46555f5df49881ea"
+        };
+
         let ALL_PLAYERS = {};
-        let currentPlayer = { name: "Gast", coins: 0, rankPoints: 0, learningProgress: 0 };
+        let currentPlayer = { name: "Gast", age: "-", coins: 0, rankPoints: 0, learningProgress: 0 };
         let activePlayerName = "";
         let activeLang = 'en', activeCategory = 'numbers', vIndex = 0, currentQuestions = [], qIndex = 0;
 
-        // Firebase Initialisierung
         let useFirebase = false;
         let db = null;
         try {
@@ -312,15 +320,19 @@
 
         function handleLogin() {
             const name = document.getElementById("username-input").value.trim();
+            const age = document.getElementById("age-input").value.trim();
             if (!name) return showToast("Bitte Namen eingeben!");
 
             activePlayerName = name;
             const key = name.toLowerCase();
 
             if (!ALL_PLAYERS[key]) {
-                ALL_PLAYERS[key] = { name: name, coins: 0, rankPoints: 0, learningProgress: 0 };
+                ALL_PLAYERS[key] = { name: name, age: age || "-", coins: 0, rankPoints: 0, learningProgress: 0 };
                 if (useFirebase) db.ref("players/" + key).set(ALL_PLAYERS[key]);
                 else localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS));
+            } else if (age) {
+                ALL_PLAYERS[key].age = age;
+                if (useFirebase) db.ref("players/" + key + "/age").set(age);
             }
 
             currentPlayer = ALL_PLAYERS[key];
@@ -371,7 +383,6 @@
             showQuestionCount();
         }
 
-        // RENDERED DIE FRAGENANZAHL IN KLEIN DARUNTER
         function showQuestionCount() {
             const cat = document.getElementById("sub-category").value;
             const count = QUESTIONS_DATABASE.filter(q => q.category === cat).length;
@@ -419,7 +430,6 @@
             }
         }
 
-        // ELTERNBEREICH LOGIK (KOMPLETT AKTIV)
         function renderParentDashboard() {
             const container = document.getElementById("parent-stats-container");
             container.innerHTML = "";
@@ -429,7 +439,7 @@
                 row.className = "bg-gray-900 border border-gray-700 p-4 rounded-xl flex flex-col gap-2";
                 row.innerHTML = `
                 <div class="flex justify-between font-bold">
-                    <span class="text-blue-400">👤 ${p.name}</span>
+                    <span class="text-blue-400">👤 ${p.name} (Klasse/Alter: ${p.age || "-"})</span>
                     <span class="text-yellow-400">🪙 ${p.coins || 0} Coins</span>
                 </div>
                 <div class="flex gap-2 mt-2">
@@ -463,9 +473,11 @@
         }
 
         function leaveQuiz() { switchView('menu'); switchSubpage('home'); }
+
         function updateDashboardUI() {
             document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
             document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
+            document.getElementById("menu-age").innerText = currentPlayer.age || "-";
             document.getElementById("vokabel-coins").innerText = currentPlayer.coins || 0;
         }
 
@@ -478,7 +490,14 @@
             if (!currentLangData[activeCategory]) activeCategory = Object.keys(currentLangData)[0];
             dropdown.value = activeCategory; showVocabQuestion();
         }
-        function setLanguage(lang) { activeLang = lang; vIndex = 0; document.getElementById("lang-btn-en").className = `flex-1 py-2 rounded-lg font-bold ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-gray-400'}`; document.getElementById("lang-btn-tr").className = `flex-1 py-2 rounded-lg font-bold ${lang === 'tr' ? 'bg-blue-600 text-white' : 'text-gray-400'}`; loadVocabSystem(); }
+
+        function setLanguage(lang) {
+            activeLang = lang; vIndex = 0;
+            document.getElementById("lang-btn-en").className = `flex-1 py-2 rounded-lg font-bold ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`;
+            document.getElementById("lang-btn-tr").className = `flex-1 py-2 rounded-lg font-bold ${lang === 'tr' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`;
+            loadVocabSystem();
+        }
+
         function selectCategory(cat) { activeCategory = cat; vIndex = 0; showVocabQuestion(); }
 
         function showVocabQuestion() {

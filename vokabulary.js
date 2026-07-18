@@ -113,12 +113,12 @@ const VOCABULARY_DATABASE = {
             ]
         },
         food: {
-            label: "🥪 Essen & Mahlzeiten (Food)",
+            label: "🥪 Essen (Food)",
             words: [
                 { de: "Brot", foreign: "bread" }, { de: "Käse", foreign: "cheese" }, { de: "Ei", foreign: "egg" },
                 { de: "Butter", foreign: "butter" }, { de: "Müsli", foreign: "cereals" }, { de: "Schokoladenkuchen", foreign: "chocolate cake" },
                 { de: "Schinken", foreign: "ham" }, { de: "Honig", foreign: "honey" }, { de: "Marmelade", foreign: "jam" },
-                { de: "Pizza", foreign: "pizza" }, { text: "sandwich", foreign: "sandwich" }, { de: "Toast", foreign: "toast" }
+                { de: "Pizza", foreign: "pizza" }, { de: "Sandwich", foreign: "sandwich" }, { de: "Toast", foreign: "toast" }
             ]
         },
         drinks: {
@@ -151,8 +151,147 @@ const VOCABULARY_DATABASE = {
         numbers: {
             label: "🔢 Sayılar (Zahlen)",
             words: [
-                { de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" },
-                { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }
+                { de: "Null", foreign: "sıfır" }, { de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, 
+                { de: "Drei", foreign: "üç" }, { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }, 
+                { de: "Sechs", foreign: "altı" }, { de: "Sieben", foreign: "yedi" }, { de: "Acht", foreign: "sekiz" }, 
+                { de: "Neun", foreign: "dokuz" }, { de: "Zehn", foreign: "on" }, { de: "Elf", foreign: "on bir" }, 
+                { de: "Zwölf", foreign: "on iki" }, { de: "Dreizehn", foreign: "on üç" }, { de: "Vierzehn", foreign: "on dört" },
+                { de: "Fünfzehn", foreign: "on beş" }, { de: "Sechzehn", foreign: "on altı" }, { de: "Siebzehn", foreign: "on yedi" },
+                { de: "Achtzehn", foreign: "on sekiz" }, { de: "Neunzehn", foreign: "on dokuz" }, { de: "Zwanzig", foreign: "yirmi" },
+                { de: "Dreißig", foreign: "otuz" }, { de: "Vierzig", foreign: "kırk" }, { de: "Fünfzig", foreign: "elli" }, 
+                { de: "Sechzig", foreign: "altmış" }, { de: "Siebzig", foreign: "yetmiş" }, { de: "Achtzig", foreign: "seksen" },
+                { de: "Neunzig", foreign: "doksan" }, { de: "Einhundert", foreign: "yüz" }, { de: "Eintausend", foreign: "bin" }
+            ]
+        },
+        colours: {
+            label: "🎨 Renkler (Farben)",
+            words: [
+                { de: "Schwarz", foreign: "siyah" }, { de: "Blau", foreign: "mavi" }, { de: "Braun", foreign: "kahverengi" },
+                { de: "Grün", foreign: "yeşil" }, { de: "Grau", foreign: "gri" }, { de: "Rot", foreign: "kırmızı" },
+                { de: "Gelb", foreign: "sarı" }, { de: "Weiß", foreign: "beyaz" }, { de: "Rosa", foreign: "pembe" },
+                { de: "Lila", foreign: "mor" }, { de: "Orange", foreign: "turuncu" }
+            ]
+        },
+        school: {
+            label: "🎒 Okul (Schule)",
+            words: [
+                { de: "Buch", foreign: "kitap" }, { de: "Tisch", foreign: "masa" }, { de: "Stuhl", foreign: "sandalye" },
+                { de: "Tafel", foreign: "tahta" }, { de: "Schultasche", foreign: "okul çantası" }, { de: "Lineal", foreign: "cetvel" },
+                { de: "Schere", foreign: "makas" }, { de: "Bücherregal", foreign: "kitaplık" }, { de: "Buntstift", foreign: "boya kalemi" },
+                { de: "Computer", foreign: "bilgisayar" }, { de: "Schrank", foreign: "dolap" }, { de: "Tür", foreign: "kapı" },
+                { de: "Übungsheft", foreign: "yazı defteri" }, { de: "Kleber", foreign: "yapıştırıcı" }, { de: "Füller", foreign: "dolma kalem" },
+                { de: "Federmäppchen", foreign: "kalem kutusu" }, { de: "Anspitzer", foreign: "kalemtıraş" }, { de: "Radiergummi", foreign: "silgi" },
+                { de: "Waschbecken", foreign: "lavabo" }, { de: "Fenster", foreign: "pencere" }
+            ]
+        },
+        zoo_animals: {
+            label: "🦁 Hayvanat Bahçesi Hayvanları (Zootiere)",
+            words: [
+                { de: "Bär", foreign: "ayı" }, { de: "Elefant", foreign: "fil" }, { de: "Giraffe", foreign: "zürafa" },
+                { de: "Löwe", foreign: "aslan" }, { de: "Affe", foreign: "maymun" }, { de: "Schlange", foreign: "yılan" },
+                { de: "Krokodil", foreign: "timsah" }, { de: "Nilpferd", foreign: "su aygırı" }, { de: "Seehund", foreign: "fok" },
+                { de: "Tiger", foreign: "kaplan" }, { de: "Schildkröte", foreign: "kaplumbağa" }, { de: "Zebra", foreign: "zebra" }
+            ]
+        },
+        farm_animals: {
+            label: "🐄 Çiftlik Hayvanları (Bauernhoftiere)",
+            words: [
+                { de: "Katze", foreign: "kedi" }, { de: "Hahn", foreign: "horoz" }, { de: "Kuh", foreign: "inek" },
+                { de: "Hund", foreign: "köpek" }, { de: "Esel", foreign: "eşek" }, { de: "Ziege", foreign: "keçi" },
+                { de: "Gans", foreign: "kaz" }, { de: "Henne", foreign: "tavuk" }, { de: "Pferd", foreign: "at" },
+                { de: "Schwein", foreign: "domuz" }, { de: "Schaf", foreign: "koyun" }
+            ]
+        },
+        pets: {
+            label: "🐶 Evcil Hayvanlar (Haustiere)",
+            words: [
+                { de: "Hund", foreign: "köpek" }, { de: "Katze", foreign: "kedi" }, { de: "Maus", foreign: "fare" },
+                { de: "Vogel", foreign: "kuş" }, { de: "Fisch", foreign: "balık" }, { de: "Kaninchen", foreign: "tavşan" },
+                { de: "Wellensittich", foreign: "muhabbet kuşu" }, { de: "Meerschweinchen", foreign: "र्में domuzcuğu (guinea pig)" }, { de: "Hamster", foreign: "hamster" },
+                { de: "Papagei", foreign: "papağan" }, { de: "Ratte", foreign: "sıçan" }, { de: "Spinne", foreign: "örümcek" }
+            ]
+        },
+        body: {
+            label: "🧍 Vücudumuz (Körper)",
+            words: [
+                { de: "Kopf", foreign: "baş / kafa" }, { de: "Hals", foreign: "boyun" }, { de: "Hand", foreign: "el" },
+                { de: "Finger", foreign: "parmak" }, { de: "Knie", foreign: "diz" }, { de: "Zeh", foreign: "ayak parmağı" },
+                { de: "Schulter", foreign: "omuz" }, { de: "Arm", foreign: "kol" }, { de: "Bauch", foreign: "karın" },
+                { de: "Bein", foreign: "bacak" }, { de: "Fuß", foreign: "ayak" }, { de: "Haare", foreign: "saç" },
+                { de: "Gesicht", foreign: "yüz" }, { de: "Ohr", foreign: "kulak" }, { de: "Nase", foreign: "burun" },
+                { de: "Mund", foreign: "ağız" }, { de: "Auge", foreign: "göz" }, { de: "Zahn", foreign: "diş" }
+            ]
+        },
+        clothes: {
+            label: "👕 Giysiler (Kleidung)",
+            words: [
+                { de: "T-Shirt", foreign: "tişört" }, { de: "Hose", foreign: "pantolon" }, { de: "Schuhe", foreign: "ayakkabı" },
+                { de: "Pullover", foreign: "kazak" }, { de: "Kleid", foreign: "elbise" }, { de: "kurze Hose", foreign: "şort" },
+                { de: "Kappe", foreign: "şapka / kep" }, { de: "Jacke", foreign: "ceket / mont" }, { de: "Regenmantel", foreign: "yağmurluk" },
+                { de: "Regenhut", foreign: "yağmur şapkası" }, { de: "Schal", foreign: "atkı" }, { de: "Rock", foreign: "etek" },
+                { de: "Handschuhe", foreign: "eldiven" }, { de: "Jeans", foreign: "kot pantolon" }, { de: "Sandalen", foreign: "sandalet" },
+                { de: "Schneestiefel", foreign: "kar botu" }, { de: "Socken", foreign: "çorap" }, { de: "Sonnenbrille", foreign: "güneş gözlüğü" },
+                { de: "Gummistiefel", foreign: "çizme" }
+            ]
+        },
+        family: {
+            label: "👨‍👩‍👦 Aile (Familie)",
+            words: [
+                { de: "Mutter", foreign: "anne" }, { de: "Vater", foreign: "baba" }, { de: "Bruder", foreign: "erkek kardeş" },
+                { de: "Schwester", foreign: "kız kardeş" }, { de: "Oma", foreign: "büyükanne / anneanne / babaanne" }, { de: "Opa", foreign: "büyükbaba / dede" },
+                { de: "Eltern", foreign: "ebeveyn" }, { de: "Großeltern", foreign: "büyükanne ve büyükbaba" }, { de: "Kind", foreign: "çocuk" }
+            ]
+        },
+        fruit: {
+            label: "🍎 Meyveler (Obst)",
+            words: [
+                { de: "Apfel", foreign: "elma" }, { de: "Banane", foreign: "muz" }, { de: "Kirsche", foreign: "kiraz" },
+                { de: "Weintrauben", foreign: "üzüm" }, { de: "Zitrone", foreign: "limon" }, { de: "Orange", foreign: "portakal" },
+                { de: "Pfirsich", foreign: "şeftali" }, { de: "Birne", foreign: "armut" }, { de: "Ananas", foreign: "ananas" },
+                { de: "Pflaume", foreign: "erik" }, { de: "Erdbeere", foreign: "çilek" }, { de: "Wassermelone", foreign: "karpuz" }
+            ]
+        },
+        vegetables: {
+            label: "🥦 Sebzeler (Gemüse)",
+            words: [
+                { de: "Aubergine", foreign: "patlıcan" }, { de: "Bohnen", foreign: "fasulye" }, { de: "Karotte", foreign: "havuç" },
+                { de: "Gurke", foreign: "salatalık" }, { de: "Lauch", foreign: "pırasa" }, { de: "Kopfsalat", foreign: "marul" },
+                { de: "Zwiebel", foreign: "soğan" }, { de: "Erbsen", foreign: "bezelye" }, { de: "Kartoffel", foreign: "patates" },
+                { de: "Kürbis", foreign: "kabak" }, { de: "Radieschen", foreign: "turp" }, { de: "Tomate", foreign: "domates" }
+            ]
+        },
+        food: {
+            label: "🥪 Yiyecekler (Esen)",
+            words: [
+                { de: "Brot", foreign: "ekmek" }, { de: "Käse", foreign: "peynir" }, { de: "Ei", foreign: "yumurta" },
+                { de: "Butter", foreign: "tereyağı" }, { de: "Müsli", foreign: "müsli" }, { de: "Schokoladenkuchen", foreign: "çikolatalı pasta" },
+                { de: "Schinken", foreign: "jambon" }, { de: "Honig", foreign: "bal" }, { de: "Marmelade", foreign: "reçel" },
+                { de: "Pizza", foreign: "pizzza" }, { de: "Sandwich", foreign: "sandviç" }, { de: "Toast", foreign: "tost" }
+            ]
+        },
+        drinks: {
+            label: "🧃 İçecekler (Getränke)",
+            words: [
+                { de: "Kaffee", foreign: "kahve" }, { de: "heiße Schokolade", foreign: "sıcak çikolata" }, 
+                { de: "Milch", foreign: "süt" }, { de: "Mineralwasser", foreign: "maden suyu" }, 
+                { de: "Orangensaft", foreign: "portakal suyu" }, { de: "Tee", foreign: "çay" }, { de: "Wasser", foreign: "su" }
+            ]
+        },
+        weather: {
+            label: "⛅ Hava Durumu (Wetter)",
+            words: [
+                { de: "wolkig", foreign: "bulutlu" }, { de: "kalt", foreign: "soğuk" }, { de: "Hagel", foreign: "dolu" },
+                { de: "heiß", foreign: "sıcak" }, { de: "Regenbogen", foreign: "gökkuşağı" }, { de: "regnerisch", foreign: "yağmurluk / yağmurlu" },
+                { de: "verschneit", foreign: "karlı" }, { de: "stürmisch", foreign: "fırtınalı" }, { de: "sonnig", foreign: "güneşli" },
+                { de: "Gewitter", foreign: "gök gürültülü fırtına" }, { de: "windig", foreign: "rüzgarlı" }, { de: "Regenschirm", foreign: "şemsiye" }
+            ]
+        },
+        christmas: {
+            label: "🎄 Noel (Weihnachten)",
+            words: [
+                { de: "Glocke", foreign: "çan" }, { de: "Kerze", foreign: "mum" }, { de: "Weihnachtsbaum", foreign: "noel ağacı" },
+                { de: "Kekse", foreign: "kurabiye" }, { de: "Lichter", foreign: "ışıklar" }, { de: "Geschenk", foreign: "hediye" },
+                { de: "Rentier", foreign: "ren geyiği" }, { de: "Weihnachtsmann", foreign: "noel baba" }, { de: "Schlitten", foreign: "kızak" }
             ]
         }
     }

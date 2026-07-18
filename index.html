@@ -11,6 +11,10 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
 
+    <!-- EXTERNE DATENQUELLEN EINBINDEN -->
+    <script src="questions.js"></script>
+    <script src="vocabulary.js"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
@@ -25,7 +29,7 @@
         }
 
         .flip-card-inner {
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.6s;
             transform-style: preserve-3d;
         }
 
@@ -36,7 +40,6 @@
         .flip-card-front,
         .flip-card-back {
             backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
         }
 
         .flip-card-back {
@@ -55,426 +58,188 @@
         class="w-full max-w-md min-h-screen bg-[#111827] shadow-2xl relative flex flex-col justify-between pb-24 border-x border-gray-800">
 
         <main class="flex-grow p-4">
-            <!-- ========================================== -->
-            <!-- VIEW: LOGIN                                -->
-            <!-- ========================================== -->
+            <!-- VIEW: LOGIN -->
             <div id="view-login" class="view hidden">
                 <div class="text-center py-8">
                     <h1
-                        class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 drop-shadow mb-1">
+                        class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 mb-1">
                         EduPlay Hub 🎮</h1>
-                    <p class="text-gray-400 text-sm">Die universelle & spielerische Lernplattform</p>
+                    <p class="text-gray-400 text-sm">Die spielerische Multi-Lernplattform</p>
                 </div>
-
-                <div class="bg-gray-800/50 border border-gray-700 p-5 rounded-2xl mb-4 hidden"
-                    id="existing-profiles-box">
-                    <h3 class="text-center font-bold text-yellow-400 mb-3 flex items-center justify-center gap-2">
-                        <span>👤 Profil auswählen</span>
-                    </h3>
-                    <div id="profile-grid" class="flex flex-wrap justify-center gap-3"></div>
-                </div>
-
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-lg font-bold text-emerald-400 text-center mb-4">Neues Profil erstellen ✍️</h3>
+                    <h3 class="text-lg font-bold text-emerald-400 text-center mb-4">Profil einloggen ✍️</h3>
                     <div class="space-y-3">
-                        <input type="text" id="username-input" placeholder="Dein Name..."
-                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium outline-none">
-                        <input type="number" id="age-input" placeholder="Klasse/Alter..."
-                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium outline-none">
+                        <input type="text" id="username-input" placeholder="Name..."
+                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
                         <button
-                            class="w-full p-3.5 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl font-bold text-white shadow-lg active:scale-95"
-                            onclick="handleLogin()">Registrieren & Starten 🚀</button>
+                            class="w-full p-3.5 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl font-bold text-white shadow-lg"
+                            onclick="handleLogin()">Starten 🚀</button>
                     </div>
                 </div>
             </div>
 
-            <!-- ========================================== -->
-            <!-- VIEW: MENU (HOME, LEADERBOARD, ETC)        -->
-            <!-- ========================================== -->
+            <!-- VIEW: MAIN MENU -->
             <div id="view-menu" class="view hidden space-y-4">
-
-                <!-- SUB-PAGE: LERNEN (HOME) -->
                 <div id="subview-home" class="subview space-y-4">
-                    <!-- User Header Card -->
                     <div
-                        class="bg-gradient-to-br from-blue-900/40 via-slate-900 to-slate-900 border border-blue-900/60 p-5 rounded-2xl flex items-center justify-between shadow-xl">
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="w-16 h-16 bg-blue-950/60 rounded-full relative flex items-center justify-center border border-blue-500/30">
-                                <div id="p-base" class="absolute text-4xl top-2.5">🧑</div>
-                                <div id="p-glasses" class="absolute text-2xl top-4"></div>
-                                <div id="p-hat" class="absolute text-3xl -top-3"></div>
-                            </div>
-                            <div>
-                                <h2 id="welcome-text" class="text-xl font-bold text-white">Lade...</h2>
-                                <span class="text-yellow-400 font-bold mt-0.5">🪙 <span id="menu-coins">0</span>
-                                    Coins</span>
-                            </div>
+                        class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-center shadow-xl">
+                        <div>
+                            <h2 id="welcome-text" class="text-xl font-bold text-white">Hallo!</h2>
+                            <span class="text-yellow-400 font-bold text-sm">🪙 <span id="menu-coins">0</span>
+                                Coins</span>
                         </div>
-                        <button onclick="switchView('avatar')"
-                            class="bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-extrabold px-4 py-2.5 rounded-xl text-sm">Shop
-                            🎨</button>
                     </div>
 
-                    <h1 class="text-2xl font-black text-center mt-6 mb-2">Was möchtest du tun? 🎯</h1>
+                    <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
 
                     <div class="space-y-4">
-                        <!-- 1. Vokabeln -->
-                        <div class="bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 transition-all active:scale-95 shadow-lg"
+                        <!-- Button 1: Vokabeln -->
+                        <div class="bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 active:scale-95 transition-all shadow-md"
                             onclick="switchView('vokabeln')">
-                            <div class="text-5xl drop-shadow-md">📖</div>
-                            <div class="text-left">
+                            <div class="text-5xl">📖</div>
+                            <div>
                                 <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
-                                <p class="text-xs text-gray-300 font-medium">Sprachen lernen mit Karteikarten & Quiz</p>
+                                <p class="text-xs text-gray-300">Wortschatz aus den Übungsheften pauken</p>
                             </div>
                         </div>
-
-                        <!-- 2. Quiz -->
-                        <div class="bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 transition-all active:scale-95 shadow-lg"
+                        <!-- Button 2: Quiz -->
+                        <div class="bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 active:scale-95 transition-all shadow-md"
                             onclick="showQuizSetup('spiel')">
-                            <div class="text-5xl drop-shadow-md">🎯</div>
-                            <div class="text-left">
+                            <div class="text-5xl">🎯</div>
+                            <div>
                                 <h2 class="text-xl font-black text-pink-400">Quiz-Arena</h2>
-                                <p class="text-xs text-gray-300 font-medium">Fachwissen testen: Schule & Ausbildung</p>
+                                <p class="text-xs text-gray-300">Schulwissen & Rechentricks testen</p>
                             </div>
                         </div>
-
-                        <!-- 3. Fokus -->
-                        <div class="bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 transition-all active:scale-95 shadow-lg"
+                        <!-- Button 3: Fokus -->
+                        <div class="bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 active:scale-95 transition-all shadow-md"
                             onclick="showQuizSetup('lernen')">
-                            <div class="text-5xl drop-shadow-md">⏳</div>
-                            <div class="text-left">
+                            <div class="text-5xl">⏳</div>
+                            <div>
                                 <h2 class="text-xl font-black text-yellow-400">Fokus-Lernzeit</h2>
-                                <p class="text-xs text-gray-300 font-medium">Lernzeit messen & Schatzkiste öffnen</p>
+                                <p class="text-xs text-gray-300">15 Minuten am Stück für die Schatzkiste</p>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- SUB-PAGE: LEADERBOARD -->
-                <div id="subview-leaderboard" class="subview space-y-4 hidden">
-                    <div class="bg-gray-800/80 border border-gray-700 p-5 rounded-2xl text-center">
-                        <h3 class="text-xl font-extrabold text-yellow-400 mb-1">🏆 Globale Rangliste 🏆</h3>
-                        <div id="leaderboard-list" class="space-y-2 text-left mt-4"></div>
+                    <!-- VERSIONSHINWEIS -->
+                    <div class="text-center mt-6">
+                        <span
+                            class="bg-gray-800 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">v2.2.1
+                            Stable (Modular)</span>
                     </div>
                 </div>
 
-                <!-- SUB-PAGE: WORKSHOP (TECH-LAB) -->
-                <div id="subview-workshop" class="subview space-y-4 hidden">
-                    <div class="bg-gray-800/80 border border-gray-700 p-5 rounded-2xl space-y-3">
-                        <h3 class="text-lg font-bold text-emerald-400 flex items-center gap-2">🔧 Tech-Lab: Formelstudio
-                        </h3>
-                        <select id="calc-type" onchange="toggleWorkshopInputs()"
-                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium">
-                            <option value="ohm">⚡ Ohmsches Gesetz (U = R * I)</option>
-                            <option value="resistor">🔌 Reihenschaltung von Widerständen</option>
-                        </select>
-
-                        <div id="inputs-ohm" class="space-y-2">
-                            <input type="number" id="input-u" placeholder="Spannung U (Volt)"
-                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
-                            <input type="number" id="input-r" placeholder="Widerstand R (Ohm)"
-                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
-                            <input type="number" id="input-i" placeholder="Stromstärke I (Ampere)"
-                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
-                        </div>
-
-                        <div id="inputs-resistor" class="space-y-2 hidden">
-                            <input type="number" id="input-r1" placeholder="Widerstand R1 (Ohm)"
-                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
-                            <input type="number" id="input-r2" placeholder="Widerstand R2 (Ohm)"
-                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
-                            <input type="number" id="input-r3" placeholder="Widerstand R3 (Ohm)"
-                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
-                        </div>
-
-                        <button onclick="calculateWorkshop()"
-                            class="w-full p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-md">Berechnen
-                            🧮</button>
-                        <div id="workshop-result"
-                            class="p-4 bg-gray-900 border-l-4 border-emerald-500 rounded-xl hidden text-emerald-400 font-bold text-sm">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SUB-PAGE: PARENT/ADMIN DASHBOARD -->
-                <div id="subview-parent" class="subview space-y-4 hidden">
-                    <div class="bg-gray-800/80 border border-gray-700 p-5 rounded-2xl">
-                        <h3 class="text-lg font-bold text-rose-400 mb-2">👨‍👩‍👦 Verwaltung & Elternbereich</h3>
-                        <p class="text-xs text-gray-400 mb-4">Kontrolliere Lernzeiten und verwalte Coins der Profile:
-                        </p>
-                        <div id="parent-stats-container" class="space-y-3">Lade Profile...</div>
-                    </div>
-                </div>
+                <div id="subview-leaderboard" class="subview hidden p-4 bg-gray-900 rounded-xl text-center">🏆 Rangliste
+                    wird geladen...</div>
+                <div id="subview-workshop" class="subview hidden p-4 bg-gray-900 rounded-xl text-center">🔧 Tech-Lab
+                    aktiv.</div>
+                <div id="subview-parent" class="subview hidden p-4 bg-gray-900 rounded-xl text-center">👨‍👩‍👦
+                    Elternbereich aktiv.</div>
             </div>
 
-            <!-- ========================================== -->
-            <!-- VIEW: QUIZ SETUP                           -->
-            <!-- ========================================== -->
+            <!-- VIEW: QUIZ SETUP -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="bg-gray-750 border border-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
-                    onclick="switchView('menu')">← Zurück</button>
-
-                <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl space-y-5 shadow-xl">
-                    <h2 class="text-2xl font-black text-center" id="quiz-setup-title">Quiz-Arena</h2>
+                <button class="bg-gray-770 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
+                    Zurück</button>
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
+                    <h2 class="text-2xl font-black text-center text-pink-400" id="quiz-setup-title">Quiz-Arena</h2>
                     <input type="hidden" id="selected-game-mode" value="spiel">
-
                     <div>
-                        <label class="text-xs text-gray-400 font-semibold mb-1 block uppercase tracking-wider">Klasse &
-                            Bereich:</label>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Kategorie:</label>
                         <select id="main-category" onchange="updateSubCategories()"
-                            class="w-full p-3.5 bg-gray-900 border border-gray-600 rounded-xl text-white font-bold outline-none">
-                            <option value="schule1">🏫 Grundschule (Klasse 1)</option>
-                            <option value="schule2">🏫 Grundschule (Klasse 2)</option>
-                            <option value="schule3">🏫 Grundschule (Klasse 3)</option>
-                            <option value="schule5">🇬🇧 Weiterführende Schule (Klasse 5)</option>
-                            <option value="kfz">🔧 Berufsausbildung (KFZ-Technik)</option>
-                            <option value="allgemein">🕌 Kultur & Allgemeinwissen</option>
+                            class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold">
+                            <option value="schule1">🏫 Klasse 1</option>
+                            <option value="schule2">🏫 Klasse 2</option>
+                            <option value="schule3">🏫 Klasse 3</option>
+                            <option value="kfz">🔧 KFZ-Technik</option>
                         </select>
                     </div>
-
                     <div>
-                        <label class="text-xs text-gray-400 font-semibold mb-1 block uppercase tracking-wider">Thema /
-                            Lektion:</label>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Lektion:</label>
                         <select id="sub-category"
-                            class="w-full p-3.5 bg-gray-900 border border-gray-600 rounded-xl text-white font-bold outline-none"></select>
+                            class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold"></select>
                     </div>
-
                     <button onclick="startQuiz()"
-                        class="w-full p-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl font-extrabold text-white text-lg shadow-lg active:scale-95 transition-all">Jetzt
-                        loslegen! 🚀</button>
+                        class="w-full p-4 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg">Starten
+                        🚀</button>
                 </div>
             </div>
 
-            <!-- ========================================== -->
-            <!-- VIEW: QUIZ ARENA                           -->
-            <!-- ========================================== -->
+            <!-- VIEW: QUIZ ARENA -->
             <div id="view-quiz" class="view hidden space-y-4">
                 <div id="learning-chest-bar"
-                    class="bg-gray-800 border-2 border-yellow-500 p-3 rounded-xl text-center font-bold text-white shadow-lg hidden">
-                    🎁 Fokuszeit bis zur Schatzkiste: <span id="chest-timer-display"
-                        class="text-yellow-400">15:00</span> Min
-                </div>
-
-                <div class="flex justify-between items-center bg-gray-850 p-2 rounded-xl">
-                    <button class="bg-rose-600 text-white font-bold px-4 py-2 rounded-lg" onclick="leaveQuiz()">Beenden
-                        🏠</button>
-                    <span
-                        class="text-xl font-bold text-yellow-400 bg-gray-800 border border-blue-900 px-4 py-2 rounded-xl flex items-center gap-1">
-                        🪙 <span id="quiz-coins">0</span>
-                    </span>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-xl text-center space-y-4">
-                    <img id="question-image"
-                        class="max-w-full max-h-52 mx-auto rounded-xl object-contain shadow-md hidden" src=""
-                        alt="Quiz Bild">
-                    <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
+                    class="bg-gray-800 border-2 border-yellow-500 p-3 rounded-xl text-center font-bold hidden">🎁
+                    Fokus-Modus aktiv!</div>
+                <div class="flex justify-between items-center"><button
+                        class="bg-rose-600 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">Beenden
+                        🏠</button></div>
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
+                    <h2 id="question-text" class="text-lg font-bold text-pink-400">Lade Frage...</h2>
                     <div id="options-container" class="flex flex-col gap-2.5"></div>
-                    <div id="explanation-box"
-                        class="p-4 bg-slate-900 border-l-4 border-yellow-500 rounded-xl text-left text-sm text-gray-300 hidden">
-                    </div>
-                    <button id="quiz-next-btn"
-                        class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl text-lg hidden"
-                        onclick="nextQuestion()">Nächste Frage ➔</button>
-                </div>
-
-                <div id="chest-overlay"
-                    class="fixed inset-0 bg-slate-950/95 z-[9999] flex-col items-center justify-center p-6 text-center hidden">
-                    <h1 class="text-yellow-400 text-3xl font-black mb-2 animate-bounce">🎉 15 MINUTEN GELERNT! 🎉</h1>
-                    <div id="chest-emoji" class="text-9xl cursor-pointer hover:scale-110" onclick="openChest()">🎁</div>
-                    <div id="reward-display" class="hidden space-y-4 mt-8">
-                        <h2 class="text-2xl font-bold text-pink-500">Item freigeschaltet!</h2>
-                        <div id="reward-emoji" class="text-8xl my-4">👑</div>
-                        <button onclick="closeChestAndContinue()"
-                            class="px-6 py-3 bg-emerald-500 text-white font-extrabold rounded-xl">Weiter ➔</button>
-                    </div>
                 </div>
             </div>
 
-            <!-- ========================================== -->
-            <!-- VIEW: AVATAR STUDIO                        -->
-            <!-- ========================================== -->
-            <div id="view-avatar" class="view hidden space-y-4">
-                <h2 class="text-2xl font-black text-center text-blue-400">Avatar Studio 🎨</h2>
-                <div class="bg-gray-800 border border-blue-500 p-6 rounded-2xl text-center shadow-xl relative">
-                    <div
-                        class="w-28 h-28 bg-slate-950 rounded-full mx-auto relative flex items-center justify-center border-2 border-blue-500">
-                        <div id="shop-p-base" class="absolute text-6xl top-3.5">🧑</div>
-                        <div id="shop-p-glasses" class="absolute text-4xl top-6"></div>
-                        <div id="shop-p-hat" class="absolute text-5xl -top-5"></div>
-                    </div>
-                    <div class="text-yellow-400 font-bold text-lg mt-4">🪙 Deine Coins: <span id="shop-coins">0</span>
-                    </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-4 rounded-2xl space-y-4 max-h-[40vh] overflow-y-auto">
-                    <div
-                        class="text-blue-400 font-extrabold text-sm uppercase tracking-wider border-b border-gray-700 pb-1">
-                        🎩 Hüte</div>
-                    <div id="hats-grid" class="grid grid-cols-2 gap-3"></div>
-                    <div
-                        class="text-blue-400 font-extrabold text-sm uppercase tracking-wider border-b border-gray-700 pb-1 mt-4">
-                        🕶️ Brillen</div>
-                    <div id="glasses-grid" class="grid grid-cols-2 gap-3"></div>
-                </div>
-                <button onclick="switchView('menu')"
-                    class="w-full p-3.5 bg-gray-700 text-white font-bold rounded-xl">Zurück 🔙</button>
-            </div>
-
-            <!-- ========================================== -->
-            <!-- VIEW: VOKABEL-TRAINER                      -->
-            <!-- ========================================== -->
+            <!-- VIEW: VOKABEL-TRAINER -->
             <div id="view-vokabeln" class="view hidden space-y-4">
                 <div class="flex justify-between items-center">
-                    <button class="bg-gray-750 border border-gray-700 px-4 py-2 rounded-xl font-bold text-white"
-                        onclick="switchView('menu')">← Zurück</button>
+                    <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
+                        Zurück</button>
                     <span class="text-yellow-400 font-bold text-lg">🪙 <span id="vokabel-coins">0</span></span>
                 </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4 shadow-xl">
-                    <h2 class="text-2xl font-black text-indigo-400 flex justify-center items-center gap-2">📖
-                        Vokabel-Trainer</h2>
-
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
+                    <h2 class="text-2xl font-black text-indigo-400">📖 Vokabel-Trainer</h2>
                     <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
-                        <button id="lang-btn-en"
-                            class="flex-1 py-2.5 rounded-lg font-bold text-sm bg-blue-600 text-white"
+                        <button id="lang-btn-en" class="flex-1 py-2 rounded-lg font-bold bg-blue-600 text-white"
                             onclick="setLanguage('en')">🇬🇧 Englisch</button>
-                        <button id="lang-btn-tr" class="flex-1 py-2.5 rounded-lg font-bold text-sm text-gray-400"
+                        <button id="lang-btn-tr" class="flex-1 py-2 rounded-lg font-bold text-gray-400"
                             onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
                     </div>
-
-                    <div class="text-left">
-                        <select id="category-dropdown"
-                            class="w-full p-3 bg-gray-900 border border-gray-600 rounded-xl text-white font-bold outline-none"
-                            onchange="selectCategory(this.value)"></select>
-                    </div>
-
-                    <div class="flex gap-1.5 bg-gray-900 p-1 rounded-xl">
-                        <button id="mode-btn-cards"
-                            class="flex-1 py-2 rounded-lg font-bold text-xs bg-blue-600 text-white"
-                            onclick="setMode('cards')">🎴 Karten</button>
-                        <button id="mode-btn-quiz" class="flex-1 py-2 rounded-lg font-bold text-xs text-gray-400"
-                            onclick="setMode('quiz')">🎯 Quiz</button>
-                        <button id="mode-btn-type" class="flex-1 py-2 rounded-lg font-bold text-xs text-gray-400"
-                            onclick="setMode('type')">⌨️ Tippen</button>
-                    </div>
-
-                    <div id="vokabel-box" class="min-h-[220px] flex flex-col justify-center"></div>
-
-                    <div class="text-sm text-gray-400 font-bold">Vokabel <span id="current-index-display"
-                            class="text-blue-400">1</span> von <span id="total-display">0</span></div>
+                    <select id="category-dropdown"
+                        class="w-full p-3 bg-gray-900 border rounded-xl text-white font-bold outline-none"
+                        onchange="selectCategory(this.value)"></select>
+                    <div id="vokabel-box" class="min-h-[200px] flex flex-col justify-center"></div>
+                    <div class="text-xs text-gray-400 font-bold">Kartenanzahl: <span id="current-index-display"
+                            class="text-blue-400">1</span> / <span id="total-display">0</span></div>
                 </div>
             </div>
-
         </main>
 
         <!-- NAVIGATION BAR -->
         <nav id="main-bottom-nav"
-            class="bottom-nav absolute bottom-0 left-0 right-0 hidden bg-[#0b0f19] border-t border-gray-800 px-2 py-3">
+            class="bottom-nav absolute bottom-0 left-0 right-0 hidden bg-[#0b0f19] border-t border-gray-800 py-3">
             <div class="flex justify-around text-xs font-bold text-gray-400">
-                <button class="nav-item flex flex-col items-center gap-1 text-blue-500"
-                    onclick="switchSubpage('home')"><span class="text-xl">🏠</span>Lernen</button>
-                <button class="nav-item flex flex-col items-center gap-1" onclick="switchSubpage('leaderboard')"><span
-                        class="text-xl">🏆</span>Rangliste</button>
-                <button class="nav-item flex flex-col items-center gap-1" onclick="switchSubpage('workshop')"><span
-                        class="text-xl">🔧</span>Tech-Lab</button>
-                <button class="nav-item flex flex-col items-center gap-1" onclick="switchSubpage('parent')"><span
-                        class="text-xl">👨‍👩‍👦</span>Elternbereich</button>
+                <button class="nav-item text-blue-500" onclick="switchSubpage('home')">🏠 Lernen</button>
+                <button class="nav-item" onclick="switchSubpage('leaderboard')">🏆 Rangliste</button>
+                <button class="nav-item" onclick="switchSubpage('workshop')">🔧 Tech-Lab</button>
+                <button class="nav-item" onclick="switchSubpage('parent')">👨‍👩‍👦 Elternbereich</button>
             </div>
         </nav>
     </div>
 
     <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyAy5YkfW99nY3t1CxxrFI5dlqe4w2NZfj4",
-            authDomain: "family-quizzz-80c40.firebaseapp.com",
-            databaseURL: "https://family-quizzz-80c40-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "family-quizzz-80c40",
-            storageBucket: "family-quizzz-80c40.firebasestorage.app",
-            messagingSenderId: "30751445599",
-            appId: "1:30751445599:web:28636f46555f5df49881ea"
-        };
-
-        const VOCABULARY_DATABASE = {
-            en: {
-                numbers: {
-                    label: "🔢 Zahlen (Numbers)",
-                    words: [
-                        { de: "Null", foreign: "zero" }, { de: "Eins", foreign: "one" }, { de: "Zwei", foreign: "two" },
-                        { de: "Drei", foreign: "three" }, { de: "Vier", foreign: "four" }, { de: "Fünf", foreign: "five" },
-                        { de: "Sechs", foreign: "six" }, { de: "Sieben", foreign: "seven" }, { de: "Acht", foreign: "eight" },
-                        { de: "Neun", foreign: "nine" }, { de: "Zehn", foreign: "ten" }, { de: "Elf", foreign: "eleven" },
-                        { de: "Zwölf", foreign: "twelve" }, { de: "Dreizehn", foreign: "thirteen" }, { de: "Vierzehn", foreign: "fourteen" },
-                        { de: "Fünfzehn", foreign: "fifteen" }, { de: "Sechzehn", foreign: "sixteen" }, { de: "Siebzehn", foreign: "seventeen" },
-                        { de: "Achtzehn", foreign: "eighteen" }, { de: "Neunzehn", foreign: "nineteen" }, { de: "Zwanzig", foreign: "twenty" }
-                    ]
-                },
-                colours: {
-                    label: "🎨 Farben (Colours)",
-                    words: [
-                        { de: "Schwarz", foreign: "black" }, { de: "Blau", foreign: "blue" }, { de: "Braun", foreign: "brown" },
-                        { de: "Grün", foreign: "green" }, { de: "Grau", foreign: "grey" }, { de: "Rot", foreign: "red" },
-                        { de: "Gelb", foreign: "yellow" }, { de: "Weiß", foreign: "white" }
-                    ]
-                },
-                school: {
-                    label: "🎒 Schule (At school)",
-                    words: [
-                        { de: "Buch", foreign: "book" }, { de: "Tisch", foreign: "table" }, { de: "Stuhl", foreign: "chair" },
-                        { de: "Bleistift", foreign: "pencil" }, { de: "Tafel", foreign: "board" }, { de: "Schultasche", foreign: "schoolbag" }
-                    ]
-                }
-            },
-            tr: {
-                numbers: {
-                    label: "🔢 Sayılar (Zahlen)",
-                    words: [
-                        { de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" },
-                        { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }
-                    ]
-                }
-            }
-        };
-
-        const QUESTIONS_DATABASE = [
-            { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: 20+10=30, 5+4=9. Ergibt 39!" },
-            { id: 3501, category: "klasse3_englisch", question: "Translate into English: 'Wie heißt du?'", answers: ["How are you?", "What is your name?", "Who are you?", "How old are you?"], correct: 1, explanation: "💡 Man fragt nach dem Namen mit 'What is your name?'" }
-        ];
+        let currentPlayer = { name: "Gast", coins: 0 }, activeLang = 'en', activeCategory = 'numbers', vIndex = 0, currentQuestions = [], qIndex = 0;
 
         function showToast(message) {
             const container = document.getElementById("toast-container");
             const toast = document.createElement("div");
             toast.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 border-emerald-500`;
-            toast.innerHTML = message;
-            container.appendChild(toast);
+            toast.innerHTML = message; container.appendChild(toast);
             setTimeout(() => toast.remove(), 3000);
         }
-
-        let currentPlayer = { name: "Gast", age: 10, coins: 0, avatar: {} };
-        let activePlayerName = "";
 
         function handleLogin() {
             const name = document.getElementById("username-input").value;
             if (!name) return showToast("Bitte Namen eingeben!");
-            activePlayerName = name;
             currentPlayer.name = name;
-            switchView("menu");
-            switchSubpage("home");
-            updateDashboardUI();
+            switchView("menu"); switchSubpage("home"); updateDashboardUI();
         }
 
         function switchView(viewId) {
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
             const el = document.getElementById(`view-${viewId}`);
             if (el) el.classList.remove('hidden');
-
-            const bottomNav = document.getElementById("main-bottom-nav");
-            if (viewId === "menu") {
-                bottomNav.classList.remove('hidden');
-            } else {
-                bottomNav.classList.add('hidden');
-            }
-
+            document.getElementById("main-bottom-nav").classList.toggle('hidden', viewId !== "menu");
             if (viewId === 'vokabeln') loadVocabSystem();
         }
 
@@ -486,76 +251,76 @@
 
         function showQuizSetup(mode) {
             document.getElementById('selected-game-mode').value = mode;
-            const titleEl = document.getElementById('quiz-setup-title');
-            titleEl.innerText = mode === 'lernen' ? "⏳ Fokus-Lernzeit" : "🎯 Quiz-Arena";
-            updateSubCategories();
-            switchView('quiz-setup');
+            document.getElementById('quiz-setup-title').innerText = mode === 'lernen' ? "⏳ Fokus-Lernzeit" : "🎯 Quiz-Arena";
+            updateSubCategories(); switchView('quiz-setup');
         }
 
         function updateSubCategories() {
             const mainCat = document.getElementById("main-category").value;
             const subSelect = document.getElementById("sub-category");
             subSelect.innerHTML = "";
-
             const map = {
-                schule1: [{ value: "deutsch_uebungsheft", text: "📖 Deutsch Klasse 1" }],
-                schule2: [{ value: "klasse2_mathe", text: "🧮 Mathematik" }],
-                schule3: [{ value: "klasse3_englisch", text: "🇬🇧 Englisch 3" }]
+                schule1: [{ value: "deutsch_uebungsheft", text: "📖 Deutsch" }],
+                schule2: [{ value: "klasse2_mathe", text: "🧮 Mathematik" }, { value: "klasse2_deutsch", text: "📖 Deutsch" }],
+                schule3: [{ value: "klasse3_englisch", text: "🇬🇧 Englisch 3" }],
+                kfz: [{ value: "kfz", text: "🔧 Kfz-Technik" }]
             };
-
-            const subs = map[mainCat] || [{ value: "all", text: "Allgemein" }];
-            subs.forEach(sub => {
-                const opt = document.createElement("option");
-                opt.value = sub.value;
-                opt.innerText = sub.text;
-                subSelect.appendChild(opt);
+            (map[mainCat] || []).forEach(sub => {
+                const opt = document.createElement("option"); opt.value = sub.value; opt.innerText = sub.text; subSelect.appendChild(opt);
             });
         }
 
-        function updateDashboardUI() {
-            document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
-            document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
-            document.getElementById("vokabel-coins").innerText = currentPlayer.coins || 0;
+        function startQuiz() {
+            const cat = document.getElementById("sub-category").value;
+            currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat);
+            if (currentQuestions.length === 0) return showToast("Keine Fragen eingepflegt!");
+            qIndex = 0; switchView('quiz'); showQuestion();
+            document.getElementById('learning-chest-bar').classList.toggle('hidden', document.getElementById('selected-game-mode').value !== 'lernen');
         }
 
-        function startQuiz() {
-            switchView('quiz');
-            document.getElementById('question-text').innerText = QUESTIONS_DATABASE[0].question;
-            const opts = document.getElementById('options-container');
-            opts.innerHTML = '';
-            QUESTIONS_DATABASE[0].answers.forEach(a => {
-                const btn = document.createElement('button');
-                btn.innerText = a;
-                btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold";
-                btn.onclick = () => showToast("Klasse gemacht!");
+        function showQuestion() {
+            const q = currentQuestions[qIndex];
+            document.getElementById('question-text').innerText = q.question;
+            const opts = document.getElementById('options-container'); opts.innerHTML = '';
+            q.answers.forEach((a, idx) => {
+                const btn = document.createElement('button'); btn.innerText = a;
+                btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold hover:bg-gray-800 transition-all text-sm";
+                btn.onclick = () => {
+                    if (idx === q.correct) {
+                        showToast("Klasse gelöst! 🌟"); confetti();
+                        setTimeout(() => {
+                            qIndex = (qIndex + 1) % currentQuestions.length; showQuestion();
+                        }, 1500);
+                    } else { showToast("Versuch es noch einmal! 🤔"); }
+                };
                 opts.appendChild(btn);
             });
         }
 
-        function leaveQuiz() {
-            switchView('menu');
-            switchSubpage('home');
-        }
+        function leaveQuiz() { switchView('menu'); switchSubpage('home'); }
+        function updateDashboardUI() { document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`; document.getElementById("menu-coins").innerText = currentPlayer.coins; document.getElementById("vokabel-coins").innerText = currentPlayer.coins; }
 
-        // --- BERICHTIGTES VOKABEL SYSTEM ---
-        let activeLang = 'en', activeCategory = 'numbers', activeMode = 'cards', vIndex = 0;
-
+        // DYNAMISCHER VOKABEL GENERATOR (REPARIERT FÜR ALLE SPRACHEN)
         function loadVocabSystem() {
             const dropdown = document.getElementById("category-dropdown");
-            if (!dropdown) return;
             dropdown.innerHTML = "";
 
-            const cats = VOCABULARY_DATABASE[activeLang];
-            if (!cats) return;
+            // Holt die Kategorien der aktuell gewählten Sprache aus der vocabulary.js
+            const currentLangData = VOCABULARY_DATABASE[activeLang];
 
-            Object.keys(cats).forEach(key => {
+            Object.keys(currentLangData).forEach(key => {
                 const opt = document.createElement("option");
                 opt.value = key;
-                opt.innerText = cats[key].label;
+                opt.innerText = currentLangData[key].label;
                 dropdown.appendChild(opt);
             });
 
-            activeCategory = dropdown.value || Object.keys(cats)[0];
+            // Falls die alte Kategorie in der neuen Sprache nicht existiert, nimm die erste verfügbare
+            if (!currentLangData[activeCategory]) {
+                activeCategory = Object.keys(currentLangData)[0];
+            }
+
+            dropdown.value = activeCategory;
             showVocabQuestion();
         }
 
@@ -563,57 +328,31 @@
             activeLang = lang;
             vIndex = 0;
 
-            document.getElementById("lang-btn-en").className = `flex-1 py-2.5 rounded-lg font-bold text-sm ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
-            document.getElementById("lang-btn-tr").className = `flex-1 py-2.5 rounded-lg font-bold text-sm ${lang === 'tr' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
+            // Optisches Feedback für die Sprach-Buttons
+            document.getElementById("lang-btn-en").className = `flex-1 py-2 rounded-lg font-bold ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`;
+            document.getElementById("lang-btn-tr").className = `flex-1 py-2 rounded-lg font-bold ${lang === 'tr' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`;
 
             loadVocabSystem();
         }
 
-        function selectCategory(cat) {
-            activeCategory = cat;
-            vIndex = 0;
-            showVocabQuestion();
-        }
-
-        function setMode(mode) {
-            activeMode = mode;
-
-            document.getElementById("mode-btn-cards").className = `flex-1 py-2 rounded-lg font-bold text-xs ${mode === 'cards' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
-            document.getElementById("mode-btn-quiz").className = `flex-1 py-2 rounded-lg font-bold text-xs ${mode === 'quiz' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
-            document.getElementById("mode-btn-type").className = `flex-1 py-2 rounded-lg font-bold text-xs ${mode === 'type' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
-
-            showVocabQuestion();
-        }
+        function selectCategory(cat) { activeCategory = cat; vIndex = 0; showVocabQuestion(); }
 
         function showVocabQuestion() {
-            const catData = VOCABULARY_DATABASE[activeLang][activeCategory];
-            const list = catData ? catData.words : [];
-
+            const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
             document.getElementById("total-display").innerText = list.length;
-            document.getElementById("current-index-display").innerText = list.length > 0 ? vIndex + 1 : 0;
-
-            const box = document.getElementById("vokabel-box");
-            if (!box || list.length === 0) return;
-
+            document.getElementById("current-index-display").innerText = vIndex + 1;
             const item = list[vIndex];
 
-            box.innerHTML = `
-            <div class="flip-card w-full h-52 relative cursor-pointer" onclick="this.classList.toggle('flipped')">
-                <div class="flip-card-inner w-full h-full relative duration-500">
-                    <div class="flip-card-front absolute inset-0 bg-indigo-900 rounded-2xl flex flex-col items-center justify-center p-4">
-                        <span class="text-xs uppercase text-indigo-300 font-bold">Deutsch</span>
-                        <div class="text-3xl font-black text-white mt-2">${item.de}</div>
-                    </div>
-                    <div class="flip-card-back absolute inset-0 bg-pink-900 rounded-2xl flex flex-col items-center justify-center p-4">
-                        <span class="text-xs uppercase text-pink-300 font-bold">Fremdsprache</span>
-                        <div class="text-3xl font-black text-white mt-2">${item.foreign}</div>
-                    </div>
+            document.getElementById("vokabel-box").innerHTML = `
+            <div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner w-full h-full relative">
+                    <div class="flip-card-front absolute inset-0 bg-indigo-900 rounded-2xl flex flex-col items-center justify-center font-bold text-2xl px-4">${item.de}</div>
+                    <div class="flip-card-back absolute inset-0 bg-pink-900 rounded-2xl flex flex-col items-center justify-center font-bold text-2xl px-4">${item.foreign}</div>
                 </div>
             </div>
-            <button onclick="vIndex = (vIndex + 1) % ${list.length}; showVocabQuestion();" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächste Karte</button>
+            <button onclick="vIndex = (vIndex + 1) % ${list.length}; showVocabQuestion();" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md hover:bg-indigo-500 transition-all">Nächste Karte ➔</button>
         `;
         }
-
         window.onload = () => switchView('login');
     </script>
 </body>

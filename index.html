@@ -450,7 +450,12 @@
                         { de: "Eins", foreign: "one" }, { de: "Zwei", foreign: "two" }, { de: "Drei", foreign: "three" },
                         { de: "Vier", foreign: "four" }, { de: "Fünf", foreign: "five" }, { de: "Sechs", foreign: "six" },
                         { de: "Sieben", foreign: "seven" }, { de: "Acht", foreign: "eight" }, { de: "Neun", foreign: "nine" },
-                        { de: "Zehn", foreign: "ten" }, { de: "Elf", foreign: "eleven" }, { de: "Zwölf", foreign: "twelve" }
+                        { de: "Zehn", foreign: "ten" }, { de: "Elf", foreign: "eleven" }, { de: "Zwölf", foreign: "twelve" },
+                        { de: "Dreizehn", foreign: "thirteen" }, { de: "Vierzehn", foreign: "fourteen" },
+                        { de: "Fünfzehn", foreign: "fifteen" }, { de: "Zwanzig", foreign: "twenty" },
+                        { de: "Dreißig", foreign: "thirty" }, { de: "Vierzig", foreign: "forty" },
+                        { de: "Fünfzig", foreign: "fifty" }, { de: "Einhundert", foreign: "one hundred" },
+                        { de: "Eintausend", foreign: "one thousand" }
                     ]
                 },
                 colours: {
@@ -458,14 +463,32 @@
                     words: [
                         { de: "Schwarz", foreign: "black" }, { de: "Blau", foreign: "blue" }, { de: "Braun", foreign: "brown" },
                         { de: "Grün", foreign: "green" }, { de: "Grau", foreign: "grey" }, { de: "Rot", foreign: "red" },
-                        { de: "Gelb", foreign: "yellow" }, { de: "Weiß", foreign: "white" }
+                        { de: "Gelb", foreign: "yellow" }, { de: "Weiß", foreign: "white" }, { de: "Rosa", foreign: "pink" },
+                        { de: "Lila", foreign: "purple" }, { de: "Orange", foreign: "orange" }
                     ]
                 },
                 school: {
                     label: "🎒 Schule (School)",
                     words: [
                         { de: "Buch", foreign: "book" }, { de: "Tisch", foreign: "table" }, { de: "Stuhl", foreign: "chair" },
-                        { de: "Heft", foreign: "notebook" }, { de: "Bleistift", foreign: "pencil" }, { de: "Tafel", foreign: "board" }
+                        { de: "Heft", foreign: "notebook" }, { de: "Bleistift", foreign: "pencil" }, { de: "Tafel", foreign: "board" },
+                        { de: "Schultasche", foreign: "schoolbag" }, { de: "Lineal", foreign: "ruler" }, { de: "Schere", foreign: "scissors" }
+                    ]
+                },
+                animals: {
+                    label: "🦁 Tiere (Animals)",
+                    words: [
+                        { de: "Bär", foreign: "bear" }, { de: "Elefant", foreign: "elephant" }, { de: "Giraffe", foreign: "giraffe" },
+                        { de: "Löwe", foreign: "lion" }, { de: "Affe", foreign: "monkey" }, { de: "Schlange", foreign: "snake" },
+                        { de: "Hund", foreign: "dog" }, { de: "Katze", foreign: "cat" }, { de: "Maus", foreign: "mouse" }
+                    ]
+                },
+                food: {
+                    label: "🍎 Essen & Trinken (Food)",
+                    words: [
+                        { de: "Apfel", foreign: "apple" }, { de: "Banane", foreign: "banana" }, { de: "Brot", foreign: "bread" },
+                        { de: "Käse", foreign: "cheese" }, { de: "Milch", foreign: "milk" }, { de: "Wasser", foreign: "water" },
+                        { de: "Ei", foreign: "egg" }, { de: "Tomate", foreign: "tomato" }
                     ]
                 }
             },
@@ -474,14 +497,24 @@
                     label: "🔢 Sayılar (Zahlen)",
                     words: [
                         { de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" },
-                        { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }, { de: "Sechs", foreign: "altı" }
+                        { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }, { de: "Sechs", foreign: "altı" },
+                        { de: "Sieben", foreign: "yedi" }, { de: "Acht", foreign: "sekiz" }, { de: "Neun", foreign: "dokuz" },
+                        { de: "Zehn", foreign: "on" }
                     ]
                 },
                 colours: {
                     label: "🎨 Renkler (Farben)",
                     words: [
                         { de: "Schwarz", foreign: "siyah" }, { de: "Blau", foreign: "mavi" }, { de: "Grün", foreign: "yeşil" },
-                        { de: "Rot", foreign: "kırmızı" }, { de: "Gelb", foreign: "sarı" }, { de: "Weiß", foreign: "beyaz" }
+                        { de: "Rot", foreign: "kırmızı" }, { de: "Gelb", foreign: "sarı" }, { de: "Weiß", foreign: "beyaz" },
+                        { de: "Braun", foreign: "kahverengi" }, { de: "Rosa", foreign: "pembe" }
+                    ]
+                },
+                school: {
+                    label: "🎒 Okulda (In der Schule)",
+                    words: [
+                        { de: "Buch", foreign: "kitap" }, { de: "Tisch", foreign: "masa" }, { de: "Stuhl", foreign: "sandalye" },
+                        { de: "Tafel", foreign: "tahta" }, { de: "Bleistift", foreign: "kalem" }, { de: "Radiergummi", foreign: "silgi" }
                     ]
                 }
             }
@@ -489,31 +522,61 @@
 
         // 3. FRAGEN- & QUIZ DATENBANK
         const QUESTIONS_DATABASE = [
-            // Klasse 2 Mathe
-            { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: Rechne erst 20 + 10 = 30, dann 5 + 4 = 9. Zusammen ergibt das 39!" },
-            { id: 2002, category: "klasse2_mathe", question: "Rechne aus: Was ist 45 - 20?", answers: ["15", "25", "35", "45"], correct: 1, explanation: "💡 Ziehe 2 Zehner von den 4 Zehnern ab. Es bleibt 25!" },
-            { id: 2003, category: "klasse2_mathe", question: "Was ergibt die Malaufgabe 2 * 5?", answers: ["7", "8", "10", "12"], correct: 2, explanation: "💡 2 * 5 ist dasselbe wie 5 + 5 = 10." },
-            { id: 2004, category: "klasse2_mathe", question: "Was ist die Hälfte von 20?", answers: ["5", "10", "15", "20"], correct: 1, explanation: "💡 Wenn du 20 Murmeln an zwei Freunde verteilst, bekommt jeder 10!" },
+            // ==========================================
+            // KATEGORIE: KLASSE 2 - MATHE
+            // ==========================================
+            { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: Rechne erst die Zehner zusammen (20 + 10 = 30) und dann die Einer (5 + 4 = 9). Zusammen ergibt das 39!" },
+            { id: 2002, category: "klasse2_mathe", question: "Rechne aus: Was ist 45 - 20?", answers: ["15", "25", "35", "45"], correct: 1, explanation: "💡 Ziehe einfach 2 Zehner von den 4 Zehnern ab. Aus 40 wird 20, also bleibt 25!" },
+            { id: 2003, category: "klasse2_mathe", question: "Was ergibt die Malaufgabe 2 * 5?", answers: ["7", "8", "10", "12"], correct: 2, explanation: "💡 2 * 5 ist das Gleiche wie 5 + 5. Das ergibt genau 10!" },
+            { id: 2004, category: "klasse2_mathe", question: "Was ist die Hälfte von 20?", answers: ["5", "10", "15", "20"], correct: 1, explanation: "💡 Wenn du 20 Murmeln an zwei Freunde verteilst, bekommt jeder genau 10!" },
+            { id: 2005, category: "klasse2_mathe", question: "Rechne aus: 3 * 3 = ?", answers: ["6", "8", "9", "12"], correct: 2, explanation: "💡 3 * 3 bedeutet 3 + 3 + 3. Das macht zusammen 9!" },
+            { id: 2006, category: "klasse2_mathe", question: "Welche Zahl fehlt hier: 10, 20, 30, __, 50?", answers: ["35", "40", "45", "60"], correct: 1, explanation: "💡 Das ist die Zehner-Reihe. Nach der 30 kommt beim Vorwärtszählen immer die 40!" },
+            { id: 2007, category: "klasse2_mathe", question: "Wie viele Minuten hat eine ganze Stunde?", answers: ["30 Minuten", "50 Minuten", "60 Minuten", "100 Minuten"], correct: 2, explanation: "💡 Eine Stunde hat genau 60 Minuten. Eine halbe Stunde hat 30 Minuten!" },
+            { id: 2008, category: "klasse2_mathe", question: "Welche Nachbarzahlen hat die Zahl 49?", answers: ["47 und 48", "48 und 50", "50 und 51", "40 und 50"], correct: 1, explanation: "💡 Die Nachbarzahlen sind direkt davor (48) und direkt danach (50)." },
 
-            // Klasse 2 Deutsch
+            // ==========================================
+            // KATEGORIE: KLASSE 2 - DEUTSCH & MÄRCHEN
+            // ==========================================
             { id: 2101, category: "klasse2_deutsch", question: "Welches Wort schreibt man mit 'ä' (Mehrzahl von Hand)?", answers: ["Hende", "Hände", "Hande", "Hähne"], correct: 1, explanation: "💡 Wenn das Wort in Einzahl ein 'a' hat (Hand), schreibt man die Mehrzahl fast immer mit 'ä'!" },
-            { id: 2102, category: "klasse2_deutsch", question: "Welches Wort ist ein Nomen (Namenwort)?", answers: ["laufen", "schön", "Das Haus", "schnell"], correct: 2, explanation: "💡 'Das Haus' ist ein Nomen. Nomen schreibt man groß!" },
+            { id: 2102, category: "klasse2_deutsch", question: "Welches Wort ist ein Nomen (Namenwort)?", answers: ["laufen", "schön", "Das Haus", "schnell"], correct: 2, explanation: "💡 'Das Haus' ist ein Nomen. Nomen schreibt man immer groß!" },
+            { id: 2103, category: "klasse2_deutsch", question: "In welchem Märchen schläft ein ganzes Schloss für 100 Jahre?", answers: ["Dornröschen", "Schneewittchen", "Aschenputtel", "Rapunzel"], correct: 0, explanation: "💡 Dornröschen sticht sich an einer Spindel und fällt mit dem ganzen Schloss in einen tiefen Schlaf." },
+            { id: 2104, category: "klasse2_deutsch", question: "Wie viele Silben hat das Wort 'Schmet-ter-ling'?", answers: ["1 Silbe", "2 Silben", "3 Silben", "4 Silben"], correct: 2, explanation: "💡 Wenn du das Wort klatschst (Schmet-ter-ling), klatschst du genau 3 Mal!" },
 
-            // Klasse 5 Englisch
+            // ==========================================
+            // KATEGORIE: KLASSE 5 - ENGLISCH
+            // ==========================================
             { id: 5001, category: "klasse5_englisch", question: "What is the correct answer to: 'Hello, what is your name?'", answers: ["I am ten years old.", "My name is Sarah.", "I am a boy.", "Fine, thanks."], correct: 1, explanation: "💡 Auf die Frage 'What is your name?' antwortet man mit 'My name is...'" },
             { id: 5002, category: "klasse5_englisch", question: "Which number is 'fifteen'?", answers: ["5", "15", "50", "115"], correct: 1, explanation: "💡 'Fifteen' ist die 15. Verwechsle es nicht mit 50 ('fifty')!" },
+            { id: 5003, category: "klasse5_englisch", question: "What colour do you get when you mix blue and yellow?", answers: ["red", "purple", "green", "orange"], correct: 2, explanation: "💡 Blau und Gelb gemischt ergibt die Farbe Grün!" },
 
-            // KFZ-Technik
+            // ==========================================
+            // KATEGORIE: BERUFSAUSBILDUNG (KFZ-TECHNIK)
+            // ==========================================
             { id: 8101, category: "kfz_lf1", question: "LF 1: Welche Flüssigkeit muss regelmäßig auf Frostschutz geprüft werden?", answers: ["Motoröl", "Kühlflüssigkeit", "Bremsflüssigkeit", "Getriebeöl"], correct: 1, explanation: "💡 Die Kühlflüssigkeit schützt den Motor vor dem Einfrieren und muss vor dem Winter geprüft werden." },
             { id: 8102, category: "kfz_lf1", question: "LF 1: Wo liest man den korrekten Reifenfülldruck des Fahrzeugs ab?", answers: ["Auf der Reifenflanke", "Im Serviceheft", "An der B-Säule oder Tankklappe", "Gibt es nicht"], correct: 2, explanation: "💡 Der Reifenfülldruck steht auf einem Aufkleber im Einstieg (B-Säule) oder der Tankklappe." },
+            { id: 8103, category: "kfz_lf1", question: "LF 1: Wie hoch ist die gesetzliche Mindestprofiltiefe für Sommerreifen in Deutschland?", answers: ["1,0 mm", "1,6 mm", "3,0 mm", "4,0 mm"], correct: 1, explanation: "💡 Gesetzlich vorgeschrieben sind mindestens 1,6 mm." },
 
-            // Kultur & Sprachen
+            { id: 8201, category: "kfz_lf2", question: "LF 2: Welches Prüfmittel misst das Ventilspiel am Verbrennungsmotor?", answers: ["Fühlerlehre", "Messschieber", "Bügelmessschraube", "Messuhr"], correct: 0, explanation: "💡 Mit den feinen Blechstreifen einer Fühlerlehre misst man das Spiel zwischen Nockenwelle und Ventil." },
+            { id: 8202, category: "kfz_lf2", question: "LF 2: Welches Werkzeug wird zum festen Anziehen von Zylinderkopfschrauben benötigt?", answers: ["Schlagschrauber", "Drehmomentschlüssel", "Ratsche", "Schraubendreher"], correct: 1, explanation: "💡 Zylinderkopfschrauben müssen exakt mit dem Drehmomentschlüssel angezogen werden." },
+
+            { id: 8301, category: "kfz_lf3", question: "LF 3: Welches Messgerät misst die Spannung der Autobatterie?", answers: ["Amperemeter", "Multimeter (Spannungsmessung)", "Ohmmeter", "Oszilloskop"], correct: 1, explanation: "💡 Mit einem Multimeter misst man die Spannung parallel in Volt." },
+            { id: 8302, category: "kfz_lf3", question: "LF 3: Wie verhält sich der Gesamtwiderstand in einer Reihenschaltung von Widerständen?", answers: ["Er wird kleiner", "Er bleibt gleich", "Er ist die Summe der Einzelwiderstände", "Er halbiert sich"], correct: 2, explanation: "💡 In der Reihenschaltung addieren sich alle Einzelwiderstände auf." },
+
+            { id: 8401, category: "kfz_lf4", question: "LF 4: Was regelt das ABS-System bei einer Vollbremsung?", answers: ["Die Motorleistung", "Den Schlupf und das Blockieren der Räder", "Die Scheinwerferhöhe", "Die Klimaanlage"], correct: 1, explanation: "💡 Das Antiblockiersystem (ABS) verhindert das Blockieren der Räder, damit das Auto lenkbar bleibt." },
+
+            // ==========================================
+            // KATEGORIE: KULTUR & FREMDSPRACHEN
+            // ==========================================
             { id: 101, category: "sprachen", question: "Was bedeutet 'Seni seviyorum' auf Deutsch?", answers: ["Guten Appetit", "Ich liebe dich", "Gute Nacht", "Tschüss"], correct: 1, explanation: "💡 Das ist Türkisch für 'Ich liebe dich'!" },
             { id: 102, category: "sprachen", question: "Was bedeutet 'Baba' auf Türkisch?", answers: ["Opa", "Onkel", "Vater", "Bruder"], correct: 2, explanation: "💡 'Baba' bedeutet 'Vater'." },
+            { id: 103, category: "sprachen", question: "Wie heißt 'Guten Morgen' auf Türkisch?", answers: ["Merhaba", "Günaydın", "İyi geceler", "Lütfen"], correct: 1, explanation: "💡 'Günaydın' bedeutet Guten Morgen!" },
 
-            // Religion / Islam
-            { id: 201, category: "islam", question: "Wer ist der letzte Gesandte im Islam?", answers: ["Ibrahim", "Isa", "Musa", "Muhammad"], correct: 3, explanation: "💡 Prophet Muhammad (s.a.w.) gilt als der letzte Gesandte." },
-            { id: 202, category: "islam", question: "Wie viele Säulen hat der Islam?", answers: ["3 Säulen", "4 Säulen", "5 Säulen", "6 Säulen"], correct: 2, explanation: "💡 Der Islam basiert auf genau 5 Säulen." }
+            // ==========================================
+            // KATEGORIE: RELIGION (ISLAM-WISSEN)
+            // ==========================================
+            { id: 201, category: "islam", question: "Wer ist der letzte Gesandte im Islam?", answers: ["Ibrahim", "Isa", "Musa", "Muhammad"], correct: 3, explanation: "💡 Prophet Muhammad (s.a.w.) gilt als das Siegel der Gesandten." },
+            { id: 202, category: "islam", question: "Wie viele Säulen hat der Islam?", answers: ["3 Säulen", "4 Säulen", "5 Säulen", "6 Säulen"], correct: 2, explanation: "💡 Der Islam basiert auf genau 5 Säulen." },
+            { id: 203, category: "islam", question: "Wie heißt der heilige Fastenmonat im Islam?", answers: ["Muharram", "Ramadan", "Schawwal", "Rajab"], correct: 1, explanation: "💡 Im Fastenmonat Ramadan verzichten Muslime von der Morgendämmerung bis zum Sonnenuntergang auf Essen und Trinken." }
         ];
 
         // ==========================================
@@ -743,7 +806,10 @@
                     { value: "klasse5_englisch", text: "🇬🇧 Englisch-Training" }
                 ],
                 kfz: [
-                    { value: "kfz_lf1", text: "🔧 LF 1: Wartung & Pflege" }
+                    { value: "kfz_lf1", text: "🔧 LF 1: Wartung & Pflege" },
+                    { value: "kfz_lf2", text: "⚙️ LF 2: Motor-Baugruppen" },
+                    { value: "kfz_lf3", text: "⚡ LF 3: Elektrische Systeme" },
+                    { value: "kfz_lf4", text: "💻 LF 4: Steuerungs-Systeme" }
                 ],
                 allgemein: [
                     { value: "sprachen", text: "🗣️ Sprachen lernen" },
@@ -1404,3 +1470,14 @@
 </body>
 
 </html>
+```
+eof
+
+### Zusammenfassung der Architekturvorteile (v2.1.0):
+1. 📦 **Ein-Datei-Mandat gewahrt:** Die App läuft nun flüssig und barrierefrei direkt im Live-Preview-Iframe der
+Webseite.
+2. 📂 **Strikte Trennung der Daten:** Die Datenbanken `AVATAR_DATABASE`, `VOCABULARY_DATABASE` und `QUESTIONS_DATABASE`
+liegen vollkommen separiert ganz oben im JavaScript-Script-Tag. Dadurch kannst du neue Vokabeln oder Fragen
+sekundenschnell eintragen, ohne das UI-Design oder die Anwendungslogik zu stören!
+3. 📱 **Beste Usability:** Vollständig responsive und touch-optimierte Schaltflächen, die gleichermaßen per Mausklick
+und Fingertipp reagieren.

@@ -152,7 +152,7 @@
                             <label class="text-xs text-gray-400 font-semibold mb-1 block">LERNBEREICH:</label>
                             <select id="main-category" onchange="updateSubCategories()"
                                 class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium focus:border-blue-500 focus:outline-none transition-all">
-                                <option value="schule2">🏫 Grundschule (Klasse 2)</option>
+                                <option value="schule2">🏫 Grundschule (Klasse 1 & 2)</option>
                                 <option value="schule5">🇬🇧 Weiterführende Schule (Klasse 5)</option>
                                 <option value="kfz">🔧 Berufsausbildung (KFZ-Technik)</option>
                                 <option value="allgemein">🕌 Kultur & Fremdsprachen</option>
@@ -533,6 +533,30 @@
             { id: 2006, category: "klasse2_mathe", question: "Welche Zahl fehlt hier: 10, 20, 30, __, 50?", answers: ["35", "40", "45", "60"], correct: 1, explanation: "💡 Das ist die Zehner-Reihe. Nach der 30 kommt beim Vorwärtszählen immer die 40!" },
             { id: 2007, category: "klasse2_mathe", question: "Wie viele Minuten hat eine ganze Stunde?", answers: ["30 Minuten", "50 Minuten", "60 Minuten", "100 Minuten"], correct: 2, explanation: "💡 Eine Stunde hat genau 60 Minuten. Eine halbe Stunde hat 30 Minuten!" },
             { id: 2008, category: "klasse2_mathe", question: "Welche Nachbarzahlen hat die Zahl 49?", answers: ["47 und 48", "48 und 50", "50 und 51", "40 und 50"], correct: 1, explanation: "💡 Die Nachbarzahlen sind direkt davor (48) und direkt danach (50)." },
+            { id: 2011, category: "klasse2_mathe", question: "Emma rechnet eine Tauschaufgabe: 15 + 4 = 19. Welcher Trick hilft ihr, um 4 + 15 einfacher im Kopf zu lösen?", answers: ["Tauschaufgabe: 15 + 4 hat dasselbe Ergebnis!", "Umkehraufgabe: 19 - 4 = 15", "Nachbaraufgabe: 15 + 5 = 20", "Verdoppeln: 15 + 15 = 30"], correct: 0, explanation: "💡 Emmas Rechentrick: Bei Plusaufgaben darfst du die Zahlen vertauschen (Tauschaufgabe). Das Ergebnis bleibt immer gleich!" },
+            { id: 2012, category: "klasse2_mathe", question: "Max nutzt eine einfache Nachbaraufgabe für 15 + 16. Er weiß, dass 15 + 15 = 30 ist. Was ist dann 15 + 16?", answers: ["29", "30", "31", "32"], correct: 2, explanation: "💡 Max' Rechentrick: Da 16 genau um 1 größer ist als 15, rechnet Max einfach 15 + 15 = 30 und zählt 1 dazu. Das macht 31!" },
+            { id: 2013, category: "klasse2_mathe", question: "Hanna rechnet die Umkehraufgabe zur Kontrolle für 42 - 5 = 37. Wie kontrolliert sie ihre Rechnung?", answers: ["37 + 5 = 42", "42 + 5 = 47", "37 - 5 = 32", "5 + 5 = 10"], correct: 0, explanation: "💡 Hannas Rechentrick: Die Umkehraufgabe macht das Minusrechnen wieder rückgängig. Aus Minus wird Plus!" },
+            { id: 2014, category: "klasse2_mathe", question: "Tim rechnet die große Aufgabe 53 + 5. Er nutzt die kleine Aufgabe zur Hilfe. Welche kleine Aufgabe hilft ihm?", answers: ["3 + 5 = 8", "50 + 5 = 55", "5 + 5 = 10", "13 + 5 = 18"], correct: 0, explanation: "💡 Tims Rechentrick: Er lässt die Zehner kurz weg und rechnet nur die Einer: 3 + 5 = 8. Dann packt er die 50 Zehner wieder dazu: 58!" },
+            { id: 2015, category: "klasse2_mathe", question: "Mira rechnet Schritt für Schritt über den Zehner: 38 + 7. Sie rechnet erst bis zur 40. Wie teilt sie die 7 auf?", answers: ["In 2 und 5", "In 3 und 4", "In 1 und 6", "In 5 und 2"], correct: 0, explanation: "💡 Miras Rechentrick: Von 38 fehlen noch 2 bis zur 40. Sie teilt die 7 in 2 und 5 auf. 38 + 2 = 40, und dann 40 + 5 = 45!" },
+            { id: 2016, category: "klasse2_mathe", question: "Mira rechnet rückwärts über den Zehner: 54 - 6. Sie rechnet erst bis zur 50. Wie teilt sie die 6 auf?", answers: ["In 4 und 2", "In 3 und 3", "In 5 und 1", "In 2 und 4"], correct: 0, explanation: "💡 Miras Rechentrick: Von 54 zieht sie erst 4 ab, um zur glatten 50 zu kommen. Die restlichen 2 zieht sie dann von der 50 ab: 50 - 2 = 48!" },
+
+            // ==========================================
+            // KATEGORIE: DEUTSCH-ÜBUNGSHEFT (deutsch_uebungsheft)
+            // Basierend auf den Fotos aus Mildenberger: Das Übungsheft Deutsch 1
+            // ==========================================
+            { id: 3001, category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD", "hunD"], correct: 1, explanation: "💡 Regel aus Mildenberger S. 37/124037.jpg: Menschen, Dinge und Tiere schreibt man immer groß! 'Hund' ist ein Tier und somit ein Nomen." },
+            { id: 3002, category: "deutsch_uebungsheft", question: "Wie trennt man das Wort 'Schmetterling' richtig in Silben?", answers: ["Schme-tter-ling", "Schmet-ter-ling", "Schmett-er-ling", "Schme-tte-rling"], correct: 1, explanation: "💡 Tipp aus 124037.jpg: Silbenklatschen hilft dir beim Schreiben! Klatsche mit: Schmet - ter - ling. Das sind genau 3 Silben." },
+            { id: 3003, category: "deutsch_uebungsheft", question: "Wie schreibt man das Krabbeltier 'Spinne' richtig?", answers: ["Spine", "Schpine", "Spinne", "Schpinne"], correct: 2, explanation: "💡 Regel aus 124037.jpg: Klatsche mit: Spin - ne. Weil wir das 'i' ganz schnell sprechen und in der Silbenmitte trennen, schreiben wir Doppel-n (nn) und am Anfang 'Sp'!" },
+            { id: 3004, category: "deutsch_uebungsheft", question: "Was ist die richtige Mehrzahl (viele) von 'Haus'?", answers: ["Hauser", "Häuser", "Heuser", "Hoiser"], correct: 1, explanation: "💡 Tipp aus 124037.jpg: Denk an die Einzahl! Da 'Haus' mit 'au' geschrieben wird, schreiben wir die Mehrzahl 'Häuser' mit dem Umlaut 'äu'." },
+            { id: 3005, category: "deutsch_uebungsheft", question: "Was ist die richtige Mehrzahl von 'Gans'?", answers: ["Ganse", "Gänse", "Gense", "Gähnse"], correct: 1, explanation: "💡 Tipp aus 124037.jpg: Die Einzahl 'Gans' hat ein 'a', deshalb schreiben wir die Mehrzahl 'Gänse' mit einem Umlaut 'ä'." },
+            { id: 3006, category: "deutsch_uebungsheft", question: "Manchmal hörst du ein F, musst aber ein V schreiben. Welches Wort schreibt man mit V?", answers: ["Fisch", "Fahrrad", "Vogel", "Flasche"], correct: 2, explanation: "💡 Regel aus 124037.jpg: Der 'Vogel' ist ein wichtiges Merkwort. Man hört ein 'F', schreibt aber ein 'V'." },
+            { id: 3007, category: "deutsch_uebungsheft", question: "In manchen Wörtern hörst du ein ks, musst aber x schreiben. Wie schreibt man die Zauberin?", answers: ["Hekse", "Hexe", "Häckse", "Hegse"], correct: 1, explanation: "💡 Regel aus 124037.jpg: Du hörst zwar das Geräusch 'ks' am Ende, aber du schreibst ein 'x' wie in 'Hexe'!" },
+            { id: 3008, category: "deutsch_uebungsheft", question: "Wie schreibt man das Wort 'schpielen' richtig?", answers: ["schpielen", "spielen", "stielen", "schielen"], correct: 1, explanation: "💡 Regel aus S. 40/41 (124048.jpg): Am Wortanfang schreiben wir immer 'Sp' oder 'St', auch wenn wir ein 'Sch' hören! Z.B. spielen, Stein, Spinne." },
+            { id: 3009, category: "deutsch_uebungsheft", question: "Welches Wort fehlt hier: 'Der Junge schläft [___] Zelt.'?", answers: ["am", "im", "ist", "sind"], correct: 1, explanation: "💡 Übung aus S. 10 (124046.jpg): Das Zelt umgibt den Jungen (in dem Zelt), deshalb sagen wir kurz 'im Zelt'." },
+            { id: 3010, category: "deutsch_uebungsheft", question: "Welches Wort fehlt hier: 'Die Löwen [___] sehr laut.'?", answers: ["ist", "sind", "am", "im"], correct: 1, explanation: "💡 Übung aus S. 11 (124046.jpg): Weil es mehrere Löwen (Mehrzahl) sind, benutzen wir das Wort 'sind'. Bei einem Löwen hieße es: 'Der Löwe ist laut.'" },
+            { id: 3011, category: "deutsch_uebungsheft", question: "Welches Wort wird mit 'nk' geschrieben?", answers: ["Ring", "Geschenk", "König", "singen"], correct: 1, explanation: "💡 Übung aus S. 49 (124048.jpg): Bei 'Geschenk' hören und schreiben wir ein 'nk'. Bei 'Ring' oder 'singen' schreiben wir dagegen ein 'ng'." },
+            { id: 3012, category: "deutsch_uebungsheft", question: "Was ist die richtige Verkleinerungsform (Verniedlichung) von 'Katze'?", answers: ["Katzchen", "Kätzchen", "Katzerl", "Katzi"], correct: 1, explanation: "💡 Übung aus S. 57 (124048.jpg): Aus dem 'a' in Katze wird bei der Verkleinerungsform mit '-chen' ein Umlaut 'ä': Kätzchen!" },
+            { id: 3013, category: "deutsch_uebungsheft", question: "Welches Wort beginnt mit der Silbe 'hu'?", answers: ["Hase", "Hose", "Hund", "Hexe"], correct: 2, explanation: "💡 Silbentraining S. 36 (124048.jpg): Wenn du 'Hund' deutlich sprichst, hörst du am Anfang ganz klar die Silbe 'Hu'!" },
 
             // ==========================================
             // KATEGORIE: KLASSE 2 - DEUTSCH & MÄRCHEN
@@ -800,7 +824,8 @@
             const map = {
                 schule2: [
                     { value: "klasse2_mathe", text: "🧮 Mathematik" },
-                    { value: "klasse2_deutsch", text: "📖 Deutsch & Märchen" }
+                    { value: "klasse2_deutsch", text: "📖 Deutsch & Märchen" },
+                    { value: "deutsch_uebungsheft", text: "📖 Das Übungsheft (Deutsch 1)" }
                 ],
                 schule5: [
                     { value: "klasse5_englisch", text: "🇬🇧 Englisch-Training" }

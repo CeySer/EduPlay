@@ -115,7 +115,6 @@
                             🎨</button>
                     </div>
 
-                    <!-- DIE 3 NEUEN HAUPT-BUTTONS -->
                     <h1 class="text-2xl font-black text-center mt-6 mb-2">Was möchtest du tun? 🎯</h1>
 
                     <div class="space-y-4">
@@ -209,14 +208,14 @@
             </div>
 
             <!-- ========================================== -->
-            <!-- VIEW: QUIZ SETUP (NEU!)                    -->
+            <!-- VIEW: QUIZ SETUP                           -->
             <!-- ========================================== -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
                 <button class="bg-gray-750 border border-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
                     onclick="switchView('menu')">← Zurück</button>
 
                 <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl space-y-5 shadow-xl">
-                    <h2 class="text-2xl font-black text-center" id="quiz-setup-title">Lade...</h2>
+                    <h2 class="text-2xl font-black text-center" id="quiz-setup-title">Quiz-Arena</h2>
                     <input type="hidden" id="selected-game-mode" value="spiel">
 
                     <div>
@@ -372,7 +371,7 @@
         <nav id="main-bottom-nav"
             class="bottom-nav absolute bottom-0 left-0 right-0 hidden bg-[#0b0f19] border-t border-gray-800 px-2 py-3">
             <div class="flex justify-around text-xs font-bold text-gray-400">
-                <button class="nav-item flex flex-col items-center gap-1 active text-blue-500"
+                <button class="nav-item flex flex-col items-center gap-1 text-blue-500"
                     onclick="switchSubpage('home')"><span class="text-xl">🏠</span>Lernen</button>
                 <button class="nav-item flex flex-col items-center gap-1" onclick="switchSubpage('leaderboard')"><span
                         class="text-xl">🏆</span>Rangliste</button>
@@ -385,7 +384,16 @@
     </div>
 
     <script>
-        // --- DATENBANKEN ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyAy5YkfW99nY3t1CxxrFI5dlqe4w2NZfj4",
+            authDomain: "family-quizzz-80c40.firebaseapp.com",
+            databaseURL: "https://family-quizzz-80c40-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "family-quizzz-80c40",
+            storageBucket: "family-quizzz-80c40.firebasestorage.app",
+            messagingSenderId: "30751445599",
+            appId: "1:30751445599:web:28636f46555f5df49881ea"
+        };
+
         const VOCABULARY_DATABASE = {
             en: {
                 numbers: {
@@ -397,10 +405,7 @@
                         { de: "Neun", foreign: "nine" }, { de: "Zehn", foreign: "ten" }, { de: "Elf", foreign: "eleven" },
                         { de: "Zwölf", foreign: "twelve" }, { de: "Dreizehn", foreign: "thirteen" }, { de: "Vierzehn", foreign: "fourteen" },
                         { de: "Fünfzehn", foreign: "fifteen" }, { de: "Sechzehn", foreign: "sixteen" }, { de: "Siebzehn", foreign: "seventeen" },
-                        { de: "Achtzehn", foreign: "eighteen" }, { de: "Neunzehn", foreign: "nineteen" }, { de: "Zwanzig", foreign: "twenty" },
-                        { de: "Dreißig", foreign: "thirty" }, { de: "Vierzig", foreign: "forty" }, { de: "Fünfzig", foreign: "fifty" },
-                        { de: "Sechzig", foreign: "sixty" }, { de: "Siebzig", foreign: "seventy" }, { de: "Achtzig", foreign: "eighty" },
-                        { de: "Neunzig", foreign: "ninety" }, { de: "Einhundert", foreign: "one hundred" }, { de: "Eintausend", foreign: "one thousand" }
+                        { de: "Achtzehn", foreign: "eighteen" }, { de: "Neunzehn", foreign: "nineteen" }, { de: "Zwanzig", foreign: "twenty" }
                     ]
                 },
                 colours: {
@@ -408,136 +413,14 @@
                     words: [
                         { de: "Schwarz", foreign: "black" }, { de: "Blau", foreign: "blue" }, { de: "Braun", foreign: "brown" },
                         { de: "Grün", foreign: "green" }, { de: "Grau", foreign: "grey" }, { de: "Rot", foreign: "red" },
-                        { de: "Gelb", foreign: "yellow" }, { de: "Weiß", foreign: "white" }, { de: "Rosa", foreign: "pink" },
-                        { de: "Lila", foreign: "purple" }, { de: "Orange", foreign: "orange" }
+                        { de: "Gelb", foreign: "yellow" }, { de: "Weiß", foreign: "white" }
                     ]
                 },
                 school: {
                     label: "🎒 Schule (At school)",
                     words: [
                         { de: "Buch", foreign: "book" }, { de: "Tisch", foreign: "table" }, { de: "Stuhl", foreign: "chair" },
-                        { de: "Heft", foreign: "notebook" }, { de: "Bleistift", foreign: "pencil" }, { de: "Tafel", foreign: "board" },
-                        { de: "Schultasche", foreign: "schoolbag" }, { de: "Lineal", foreign: "ruler" }, { de: "Schere", foreign: "scissors" },
-                        { de: "Bücherregal", foreign: "bookshelf" }, { de: "Buntstift", foreign: "coloured pencil" }, { de: "Computer", foreign: "computer" },
-                        { de: "Schrank", foreign: "cupboard" }, { de: "Tür", foreign: "door" }, { de: "Übungsheft", foreign: "exercise book" },
-                        { de: "Kleber", foreign: "glue" }, { de: "Füller/Stift", foreign: "pen" }, { de: "Federmäppchen", foreign: "pencil case" },
-                        { de: "Anspitzer", foreign: "pencil sharpener" }, { de: "Radiergummi", foreign: "rubber" }, { de: "Waschbecken", foreign: "washbasin" },
-                        { de: "Fenster", foreign: "window" }
-                    ]
-                },
-                zoo_animals: {
-                    label: "🦁 Zootiere (Animals at the zoo)",
-                    words: [
-                        { de: "Bär", foreign: "bear" }, { de: "Elefant", foreign: "elephant" }, { de: "Giraffe", foreign: "giraffe" },
-                        { de: "Löwe", foreign: "lion" }, { de: "Affe", foreign: "monkey" }, { de: "Schlange", foreign: "snake" },
-                        { de: "Krokodil", foreign: "crocodile" }, { de: "Nilpferd", foreign: "hippo" }, { de: "Seehund", foreign: "seal" },
-                        { de: "Tiger", foreign: "tiger" }, { de: "Schildkröte", foreign: "tortoise" }, { de: "Zebra", foreign: "zebra" }
-                    ]
-                },
-                farm_animals: {
-                    label: "🐄 Bauernhoftiere (Farm animals)",
-                    words: [
-                        { de: "Katze", foreign: "cat" }, { de: "Hahn", foreign: "cock" }, { de: "Kuh", foreign: "cow" },
-                        { de: "Hund", foreign: "dog" }, { de: "Esel", foreign: "donkey" }, { de: "Ziege", foreign: "goat" },
-                        { de: "Gans", foreign: "goose" }, { de: "Henne", foreign: "hen" }, { de: "Pferd", foreign: "horse" },
-                        { de: "Schwein", foreign: "pig" }, { de: "Schaf", foreign: "sheep" }
-                    ]
-                },
-                pets: {
-                    label: "🐶 Haustiere (Pets)",
-                    words: [
-                        { de: "Hund", foreign: "dog" }, { de: "Katze", foreign: "cat" }, { de: "Maus", foreign: "mouse" },
-                        { de: "Vogel", foreign: "bird" }, { de: "Fisch", foreign: "fish" }, { de: "Kaninchen", foreign: "rabbit" },
-                        { de: "Wellensittich", foreign: "budgie" }, { de: "Meerschweinchen", foreign: "guinea pig" }, { de: "Hamster", foreign: "hamster" },
-                        { de: "Papagei", foreign: "parrot" }, { de: "Ratte", foreign: "rat" }, { de: "Spinne", foreign: "spider" },
-                        { de: "Schildkröte", foreign: "tortoise" }
-                    ]
-                },
-                body: {
-                    label: "🧍 Mein Körper (My body)",
-                    words: [
-                        { de: "Kopf", foreign: "head" }, { de: "Hals", foreign: "neck" }, { de: "Hand", foreign: "hand" },
-                        { de: "Finger", foreign: "finger" }, { de: "Knie", foreign: "knee" }, { de: "Zeh", foreign: "toe" },
-                        { de: "Schulter", foreign: "shoulder" }, { de: "Arm", foreign: "arm" }, { de: "Bauch", foreign: "belly" },
-                        { de: "Körper", foreign: "body" }, { de: "Bein", foreign: "leg" }, { de: "Fuß", foreign: "foot" },
-                        { de: "Haare", foreign: "hair" }, { de: "Gesicht", foreign: "face" }, { de: "Ohr", foreign: "ear" },
-                        { de: "Nase", foreign: "nose" }, { de: "Mund", foreign: "mouth" }, { de: "Auge", foreign: "eye" },
-                        { de: "Zahn", foreign: "tooth" }, { de: "Lippe", foreign: "lip" }, { de: "Kinn", foreign: "chin" }
-                    ]
-                },
-                clothes: {
-                    label: "👕 Kleidung (Clothes)",
-                    words: [
-                        { de: "T-Shirt", foreign: "T-shirt" }, { de: "Hose", foreign: "trousers" }, { de: "Schuhe", foreign: "shoes" },
-                        { de: "Pullover", foreign: "pullover" }, { de: "Kleid", foreign: "dress" }, { de: "kurze Hose", foreign: "shorts" },
-                        { de: "Kappe", foreign: "cap" }, { de: "Jacke", foreign: "jacket" }, { de: "Regenmantel", foreign: "raincoat" },
-                        { de: "Regenhut", foreign: "rainhat" }, { de: "Schal", foreign: "scarf" }, { de: "Rock", foreign: "skirt" },
-                        { de: "Badeanzug", foreign: "swimming costume" }, { de: "Wollmütze", foreign: "woolly hat" }, { de: "Handschuhe", foreign: "gloves" },
-                        { de: "Jeans", foreign: "jeans" }, { de: "Sandalen", foreign: "sandals" }, { de: "Schneestiefel", foreign: "snowboots" },
-                        { de: "Socken", foreign: "socks" }, { de: "Sonnenbrille", foreign: "sunglasses" }, { de: "Gummistiefel", foreign: "wellies" }
-                    ]
-                },
-                family: {
-                    label: "👨‍👩‍👦 Familie (My family)",
-                    words: [
-                        { de: "Mutter", foreign: "mother" }, { de: "Vater", foreign: "father" }, { de: "Bruder", foreign: "brother" },
-                        { de: "Schwester", foreign: "sister" }, { de: "Oma", foreign: "grandmother" }, { de: "Opa", foreign: "grandfather" },
-                        { de: "Eltern", foreign: "parents" }, { de: "Großeltern", foreign: "grandparents" }, { de: "Kind", foreign: "child" }
-                    ]
-                },
-                fruit: {
-                    label: "🍎 Obst (Fruit)",
-                    words: [
-                        { de: "Apfel", foreign: "apple" }, { de: "Banane", foreign: "banana" }, { de: "Kirsche", foreign: "cherry" },
-                        { de: "Weintrauben", foreign: "grapes" }, { de: "Zitrone", foreign: "lemon" }, { de: "Orange", foreign: "orange" },
-                        { de: "Pfirsich", foreign: "peach" }, { de: "Birne", foreign: "pear" }, { de: "Ananas", foreign: "pineapple" },
-                        { de: "Pflaume", foreign: "plum" }, { de: "Erdbeere", foreign: "strawberry" }, { de: "Wassermelone", foreign: "watermelon" }
-                    ]
-                },
-                vegetables: {
-                    label: "🥦 Gemüse (Vegetables)",
-                    words: [
-                        { de: "Aubergine", foreign: "aubergine" }, { de: "Bohnen", foreign: "beans" }, { de: "Karotte", foreign: "carrot" },
-                        { de: "Blumenkohl", foreign: "cauliflower" }, { de: "Gurke", foreign: "cucumber" }, { de: "Lauch", foreign: "leek" },
-                        { de: "Kopfsalat", foreign: "lettuce" }, { de: "Zwiebel", foreign: "onion" }, { de: "Erbsen", foreign: "peas" },
-                        { de: "Kartoffel", foreign: "potato" }, { de: "Kürbis", foreign: "pumpkin" }, { de: "Radieschen", foreign: "radish" },
-                        { de: "Tomate", foreign: "tomato" }
-                    ]
-                },
-                food: {
-                    label: "🥪 Essen (Food & Meals)",
-                    words: [
-                        { de: "Brot", foreign: "bread" }, { de: "Käse", foreign: "cheese" }, { de: "Ei", foreign: "egg" },
-                        { de: "Butter", foreign: "butter" }, { de: "Müsli", foreign: "cereals" }, { de: "Schokoladenkuchen", foreign: "chocolate cake" },
-                        { de: "Cornflakes", foreign: "cornflakes" }, { de: "Schinken", foreign: "ham" }, { de: "Honig", foreign: "honey" },
-                        { de: "Marmelade", foreign: "jam" }, { de: "Pizza", foreign: "pizza" }, { de: "Sandwich", foreign: "sandwich" },
-                        { de: "Zucker", foreign: "sugar" }, { de: "Toast", foreign: "toast" }
-                    ]
-                },
-                drinks: {
-                    label: "🧃 Getränke (Drinks)",
-                    words: [
-                        { de: "Kaffee", foreign: "coffee" }, { de: "heiße Schokolade", foreign: "hot chocolate" }, { de: "Eistee", foreign: "ice tea" },
-                        { de: "Limonade", foreign: "lemonade" }, { de: "Milch", foreign: "milk" }, { de: "Mineralwasser", foreign: "mineral water" },
-                        { de: "Orangensaft", foreign: "orange juice" }, { de: "Tee", foreign: "tea" }, { de: "Wasser", foreign: "water" }
-                    ]
-                },
-                weather: {
-                    label: "⛅ Wetter (Weather)",
-                    words: [
-                        { de: "wolkig", foreign: "cloudy" }, { de: "kalt", foreign: "cold" }, { de: "Hagel", foreign: "hail" },
-                        { de: "heiß", foreign: "hot" }, { de: "Regenbogen", foreign: "rainbow" }, { de: "regnerisch", foreign: "rainy" },
-                        { de: "verschneit", foreign: "snowy" }, { de: "stürmisch", foreign: "stormy" }, { de: "sonnig", foreign: "sunny" },
-                        { de: "Gewitter", foreign: "thunder and lightning" }, { de: "windig", foreign: "windy" }, { de: "Regenschirm", foreign: "umbrella" }
-                    ]
-                },
-                christmas: {
-                    label: "🎄 Weihnachten (Christmas)",
-                    words: [
-                        { de: "Glocke", foreign: "bell" }, { de: "Kerze", foreign: "candle" }, { de: "Weihnachtsbaum", foreign: "Christmas tree" },
-                        { de: "Weihnachtskugeln", foreign: "Christmas tree balls" }, { de: "Kekse", foreign: "cookies" }, { de: "Lichter", foreign: "lights" },
-                        { de: "Geschenk", foreign: "present" }, { de: "Rentier", foreign: "reindeer" }, { de: "Sack", foreign: "sack" },
-                        { de: "Weihnachtsmann", foreign: "Santa Claus" }, { de: "Schlitten", foreign: "sleigh" }, { de: "Strumpf", foreign: "stocking" }
+                        { de: "Bleistift", foreign: "pencil" }, { de: "Tafel", foreign: "board" }, { de: "Schultasche", foreign: "schoolbag" }
                     ]
                 }
             },
@@ -546,52 +429,17 @@
                     label: "🔢 Sayılar (Zahlen)",
                     words: [
                         { de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" },
-                        { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }, { de: "Sechs", foreign: "altı" },
-                        { de: "Sieben", foreign: "yedi" }, { de: "Acht", foreign: "sekiz" }, { de: "Neun", foreign: "dokuz" },
-                        { de: "Zehn", foreign: "on" }
-                    ]
-                },
-                colours: {
-                    label: "🎨 Renkler (Farben)",
-                    words: [
-                        { de: "Schwarz", foreign: "siyah" }, { de: "Blau", foreign: "mavi" }, { de: "Grün", foreign: "yeşil" },
-                        { de: "Rot", foreign: "kırmızı" }, { de: "Gelb", foreign: "sarı" }, { de: "Weiß", foreign: "beyaz" },
-                        { de: "Braun", foreign: "kahverengi" }, { de: "Rosa", foreign: "pembe" }
-                    ]
-                },
-                school: {
-                    label: "🎒 Okulda (In der Schule)",
-                    words: [
-                        { de: "Buch", foreign: "kitap" }, { de: "Tisch", foreign: "masa" }, { de: "Stuhl", foreign: "sandalye" },
-                        { de: "Tafel", foreign: "tahta" }, { de: "Bleistift", foreign: "kalem" }, { de: "Radiergummi", foreign: "silgi" }
+                        { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }
                     ]
                 }
             }
         };
 
-        const AVATAR_DATABASE = {
-            hats: [
-                { id: "none_hat", label: "Kein Hut", price: 0, emoji: "" },
-                { id: "cap", label: "Basecap", price: 25, emoji: "🧢" },
-                { id: "cowboy", label: "Cowboyhut", price: 60, emoji: "🤠" },
-                { id: "chef", label: "Kochmütze", price: 75, emoji: "👨‍🍳" },
-                { id: "crown", label: "Goldene Krone", price: 200, emoji: "👑" }
-            ],
-            glasses: [
-                { id: "none_glasses", label: "Keine Brille", price: 0, emoji: "" },
-                { id: "nerd", label: "Nerdbrille", price: 20, emoji: "🤓" },
-                { id: "sun", label: "Sonnenbrille", price: 45, emoji: "😎" },
-                { id: "heart", label: "Herzbrille", price: 90, emoji: "❤️" }
-            ]
-        };
-
         const QUESTIONS_DATABASE = [
             { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: 20+10=30, 5+4=9. Ergibt 39!" },
-            { id: 3501, category: "klasse3_englisch", question: "Translate into English: 'Wie heißt du?'", answers: ["How are you?", "What is your name?", "Who are you?", "How old are you?"], correct: 1, explanation: "💡 Man fragt nach dem Namen mit 'What is your name?'" },
-            { id: 8101, category: "kfz", question: "Welche Flüssigkeit muss regelmäßig auf Frostschutz geprüft werden?", answers: ["Motoröl", "Kühlflüssigkeit", "Bremsflüssigkeit", "Getriebeöl"], correct: 1, explanation: "💡 Die Kühlflüssigkeit schützt vor dem Einfrieren." }
+            { id: 3501, category: "klasse3_englisch", question: "Translate into English: 'Wie heißt du?'", answers: ["How are you?", "What is your name?", "Who are you?", "How old are you?"], correct: 1, explanation: "💡 Man fragt nach dem Namen mit 'What is your name?'" }
         ];
 
-        // --- LOGIK ---
         function showToast(message) {
             const container = document.getElementById("toast-container");
             const toast = document.createElement("div");
@@ -616,9 +464,9 @@
 
         function switchView(viewId) {
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
-            document.getElementById(`view-${viewId}`).classList.remove('hidden');
+            const el = document.getElementById(`view-${viewId}`);
+            if (el) el.classList.remove('hidden');
 
-            // Show/Hide bottom navigation based on view
             const bottomNav = document.getElementById("main-bottom-nav");
             if (viewId === "menu") {
                 bottomNav.classList.remove('hidden');
@@ -627,36 +475,18 @@
             }
 
             if (viewId === 'vokabeln') loadVocabSystem();
-            if (viewId === 'avatar') loadShopUI();
         }
 
         function switchSubpage(subId) {
             document.querySelectorAll('.subview').forEach(s => s.classList.add('hidden'));
-            document.getElementById(`subview-${subId}`).classList.remove('hidden');
-
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active', 'text-blue-500');
-                item.classList.add('text-gray-400');
-                if (item.innerText.toLowerCase().includes(subId.replace('parent', 'eltern').replace('home', 'lernen'))) {
-                    item.classList.add('text-blue-500');
-                    item.classList.remove('text-gray-400');
-                }
-            });
+            const sub = document.getElementById(`subview-${subId}`);
+            if (sub) sub.classList.remove('hidden');
         }
 
-        // --- NEUE QUIZ-ROUTER LOGIK ---
         function showQuizSetup(mode) {
             document.getElementById('selected-game-mode').value = mode;
             const titleEl = document.getElementById('quiz-setup-title');
-
-            if (mode === 'lernen') {
-                titleEl.innerText = "⏳ Fokus-Lernzeit";
-                titleEl.className = "text-2xl font-black text-center text-yellow-400";
-            } else {
-                titleEl.innerText = "🎯 Quiz-Arena";
-                titleEl.className = "text-2xl font-black text-center text-pink-400";
-            }
-
+            titleEl.innerText = mode === 'lernen' ? "⏳ Fokus-Lernzeit" : "🎯 Quiz-Arena";
             updateSubCategories();
             switchView('quiz-setup');
         }
@@ -669,8 +499,7 @@
             const map = {
                 schule1: [{ value: "deutsch_uebungsheft", text: "📖 Deutsch Klasse 1" }],
                 schule2: [{ value: "klasse2_mathe", text: "🧮 Mathematik" }],
-                schule3: [{ value: "klasse3_englisch", text: "🇬🇧 Englisch 3" }],
-                kfz: [{ value: "kfz", text: "🔧 Ausbildung KFZ" }]
+                schule3: [{ value: "klasse3_englisch", text: "🇬🇧 Englisch 3" }]
             };
 
             const subs = map[mainCat] || [{ value: "all", text: "Allgemein" }];
@@ -690,7 +519,6 @@
 
         function startQuiz() {
             switchView('quiz');
-            showToast("Quiz gestartet!");
             document.getElementById('question-text').innerText = QUESTIONS_DATABASE[0].question;
             const opts = document.getElementById('options-container');
             opts.innerHTML = '';
@@ -698,15 +526,9 @@
                 const btn = document.createElement('button');
                 btn.innerText = a;
                 btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold";
-                btn.onclick = () => showToast("Antwort registriert!");
+                btn.onclick = () => showToast("Klasse gemacht!");
                 opts.appendChild(btn);
             });
-
-            if (document.getElementById('selected-game-mode').value === 'lernen') {
-                document.getElementById('learning-chest-bar').classList.remove('hidden');
-            } else {
-                document.getElementById('learning-chest-bar').classList.add('hidden');
-            }
         }
 
         function leaveQuiz() {
@@ -714,24 +536,35 @@
             switchSubpage('home');
         }
 
-        // --- VOKABEL LOGIK (Kurzfassung fürs Menü-Fixing) ---
+        // --- BERICHTIGTES VOKABEL SYSTEM ---
         let activeLang = 'en', activeCategory = 'numbers', activeMode = 'cards', vIndex = 0;
 
         function loadVocabSystem() {
             const dropdown = document.getElementById("category-dropdown");
+            if (!dropdown) return;
             dropdown.innerHTML = "";
-            Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(key => {
+
+            const cats = VOCABULARY_DATABASE[activeLang];
+            if (!cats) return;
+
+            Object.keys(cats).forEach(key => {
                 const opt = document.createElement("option");
                 opt.value = key;
-                opt.innerText = VOCABULARY_DATABASE[activeLang][key].label;
+                opt.innerText = cats[key].label;
                 dropdown.appendChild(opt);
             });
-            activeCategory = dropdown.value;
+
+            activeCategory = dropdown.value || Object.keys(cats)[0];
             showVocabQuestion();
         }
 
         function setLanguage(lang) {
             activeLang = lang;
+            vIndex = 0;
+
+            document.getElementById("lang-btn-en").className = `flex-1 py-2.5 rounded-lg font-bold text-sm ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
+            document.getElementById("lang-btn-tr").className = `flex-1 py-2.5 rounded-lg font-bold text-sm ${lang === 'tr' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
+
             loadVocabSystem();
         }
 
@@ -743,31 +576,40 @@
 
         function setMode(mode) {
             activeMode = mode;
+
+            document.getElementById("mode-btn-cards").className = `flex-1 py-2 rounded-lg font-bold text-xs ${mode === 'cards' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
+            document.getElementById("mode-btn-quiz").className = `flex-1 py-2 rounded-lg font-bold text-xs ${mode === 'quiz' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
+            document.getElementById("mode-btn-type").className = `flex-1 py-2 rounded-lg font-bold text-xs ${mode === 'type' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
+
             showVocabQuestion();
         }
 
         function showVocabQuestion() {
-            const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
+            const catData = VOCABULARY_DATABASE[activeLang][activeCategory];
+            const list = catData ? catData.words : [];
+
             document.getElementById("total-display").innerText = list.length;
-            document.getElementById("current-index-display").innerText = vIndex + 1;
+            document.getElementById("current-index-display").innerText = list.length > 0 ? vIndex + 1 : 0;
+
+            const box = document.getElementById("vokabel-box");
+            if (!box || list.length === 0) return;
 
             const item = list[vIndex];
-            const box = document.getElementById("vokabel-box");
 
             box.innerHTML = `
             <div class="flip-card w-full h-52 relative cursor-pointer" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner w-full h-full relative duration-500">
                     <div class="flip-card-front absolute inset-0 bg-indigo-900 rounded-2xl flex flex-col items-center justify-center p-4">
-                        <span class="text-xs uppercase text-indigo-300">Deutsch</span>
+                        <span class="text-xs uppercase text-indigo-300 font-bold">Deutsch</span>
                         <div class="text-3xl font-black text-white mt-2">${item.de}</div>
                     </div>
                     <div class="flip-card-back absolute inset-0 bg-pink-900 rounded-2xl flex flex-col items-center justify-center p-4">
-                        <span class="text-xs uppercase text-pink-300">Fremdsprache</span>
+                        <span class="text-xs uppercase text-pink-300 font-bold">Fremdsprache</span>
                         <div class="text-3xl font-black text-white mt-2">${item.foreign}</div>
                     </div>
                 </div>
             </div>
-            <button onclick="vIndex = (vIndex + 1) % ${list.length}; showVocabQuestion();" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold">Nächste Karte</button>
+            <button onclick="vIndex = (vIndex + 1) % ${list.length}; showVocabQuestion();" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächste Karte</button>
         `;
         }
 

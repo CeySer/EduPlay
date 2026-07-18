@@ -40,6 +40,7 @@
         .flip-card-front,
         .flip-card-back {
             backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .flip-card-back {
@@ -66,10 +67,20 @@
                         EduPlay Hub 🎮</h1>
                     <p class="text-gray-400 text-sm">Die spielerische Multi-Lernplattform</p>
                 </div>
+
+                <div class="bg-gray-800/50 border border-gray-700 p-5 rounded-2xl mb-4 hidden"
+                    id="existing-profiles-box">
+                    <h3 class="text-center font-bold text-yellow-400 mb-3 flex items-center justify-center gap-2">
+                        <span>👤 Profil auswählen</span></h3>
+                    <div id="profile-grid" class="flex flex-wrap justify-center gap-3"></div>
+                </div>
+
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-lg font-bold text-emerald-400 text-center mb-4">Profil einloggen ✍️</h3>
+                    <h3 class="text-lg font-bold text-emerald-400 text-center mb-4">Neues Profil erstellen ✍️</h3>
                     <div class="space-y-3">
                         <input type="text" id="username-input" placeholder="Name..."
+                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                        <input type="number" id="age-input" placeholder="Klasse/Alter..."
                             class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
                         <button
                             class="w-full p-3.5 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl font-bold text-white shadow-lg"
@@ -80,6 +91,7 @@
 
             <!-- VIEW: MAIN MENU -->
             <div id="view-menu" class="view hidden space-y-4">
+                <!-- HOME PAGE -->
                 <div id="subview-home" class="subview space-y-4">
                     <div
                         class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-center shadow-xl">
@@ -93,7 +105,6 @@
                     <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
 
                     <div class="space-y-4">
-                        <!-- Button 1: Vokabeln -->
                         <div class="bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 active:scale-95 transition-all shadow-md"
                             onclick="switchView('vokabeln')">
                             <div class="text-5xl">📖</div>
@@ -102,7 +113,6 @@
                                 <p class="text-xs text-gray-300">Wortschatz aus den Übungsheften pauken</p>
                             </div>
                         </div>
-                        <!-- Button 2: Quiz -->
                         <div class="bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 active:scale-95 transition-all shadow-md"
                             onclick="showQuizSetup('spiel')">
                             <div class="text-5xl">🎯</div>
@@ -111,40 +121,58 @@
                                 <p class="text-xs text-gray-300">Schulwissen & Rechentricks testen</p>
                             </div>
                         </div>
-                        <!-- Button 3: Fokus -->
                         <div class="bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 active:scale-95 transition-all shadow-md"
                             onclick="showQuizSetup('lernen')">
                             <div class="text-5xl">⏳</div>
                             <div>
                                 <h2 class="text-xl font-black text-yellow-400">Fokus-Lernzeit</h2>
-                                <p class="text-xs text-gray-300">15 Minuten am Stück für die Schatzkiste</p>
+                                <p class="text-xs text-gray-300">Mit Timer lernen & Truhe freischalten</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- VERSIONSHINWEIS -->
                     <div class="text-center mt-6">
                         <span
-                            class="bg-gray-800 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">v2.2.1
+                            class="bg-gray-800 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">v2.2.2
                             Stable (Modular)</span>
                     </div>
                 </div>
 
-                <div id="subview-leaderboard" class="subview hidden p-4 bg-gray-900 rounded-xl text-center">🏆 Rangliste
-                    wird geladen...</div>
-                <div id="subview-workshop" class="subview hidden p-4 bg-gray-900 rounded-xl text-center">🔧 Tech-Lab
-                    aktiv.</div>
-                <div id="subview-parent" class="subview hidden p-4 bg-gray-900 rounded-xl text-center">👨‍👩‍👦
-                    Elternbereich aktiv.</div>
+                <!-- SUBVIEW: LEADERBOARD -->
+                <div id="subview-leaderboard" class="subview hidden space-y-4">
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
+                        <h3 class="text-xl font-extrabold text-yellow-400 mb-4">🏆 Globale Rangliste</h3>
+                        <div id="leaderboard-list" class="space-y-2 text-left"></div>
+                    </div>
+                </div>
+
+                <!-- SUBVIEW: WORKSHOP -->
+                <div id="subview-workshop" class="subview hidden space-y-4">
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-3">
+                        <h3 class="text-lg font-bold text-emerald-400">🔧 Tech-Lab: Assistent</h3>
+                        <p class="text-xs text-gray-400">Formelberechnungen für das Kfz-Gewerbe.</p>
+                    </div>
+                </div>
+
+                <!-- SUBVIEW: ELTERNBEREICH (KOMPLETT REPARIERT) -->
+                <div id="subview-parent" class="subview hidden space-y-4">
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
+                        <h3 class="text-lg font-bold text-rose-400 mb-2">👨‍👩‍👦 Verwaltung & Elternbereich</h3>
+                        <p class="text-xs text-gray-400 mb-4">Verwalte Profile, Coins und kontrolliere die Lernzeiten:
+                        </p>
+                        <div id="parent-stats-container" class="space-y-3"></div>
+                    </div>
+                </div>
             </div>
 
             <!-- VIEW: QUIZ SETUP -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="bg-gray-770 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
                     Zurück</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
                     <h2 class="text-2xl font-black text-center text-pink-400" id="quiz-setup-title">Quiz-Arena</h2>
                     <input type="hidden" id="selected-game-mode" value="spiel">
+
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1">Kategorie:</label>
                         <select id="main-category" onchange="updateSubCategories()"
@@ -153,13 +181,18 @@
                             <option value="schule2">🏫 Klasse 2</option>
                             <option value="schule3">🏫 Klasse 3</option>
                             <option value="kfz">🔧 KFZ-Technik</option>
+                            <option value="allgemein">🕌 Kultur & Allgemeinwissen</option>
                         </select>
                     </div>
+
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1">Lektion:</label>
-                        <select id="sub-category"
+                        <select id="sub-category" onchange="showQuestionCount()"
                             class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold"></select>
+                        <!-- HIER IST DIE FRAGENANZAHL IN KLEIN DARUNTER -->
+                        <div id="question-count-display" class="text-xs text-gray-400 mt-1 font-semibold pl-1"></div>
                     </div>
+
                     <button onclick="startQuiz()"
                         class="w-full p-4 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg">Starten
                         🚀</button>
@@ -182,11 +215,8 @@
 
             <!-- VIEW: VOKABEL-TRAINER -->
             <div id="view-vokabeln" class="view hidden space-y-4">
-                <div class="flex justify-between items-center">
-                    <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
-                        Zurück</button>
-                    <span class="text-yellow-400 font-bold text-lg">🪙 <span id="vokabel-coins">0</span></span>
-                </div>
+                <button class="bg-gray-770 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
+                    Zurück</button>
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
                     <h2 class="text-2xl font-black text-indigo-400">📖 Vokabel-Trainer</h2>
                     <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
@@ -218,7 +248,22 @@
     </div>
 
     <script>
-        let currentPlayer = { name: "Gast", coins: 0 }, activeLang = 'en', activeCategory = 'numbers', vIndex = 0, currentQuestions = [], qIndex = 0;
+        // Lokale Fallback-Datenbank, falls Firebase offline ist
+        let ALL_PLAYERS = {};
+        let currentPlayer = { name: "Gast", coins: 0, rankPoints: 0, learningProgress: 0 };
+        let activePlayerName = "";
+        let activeLang = 'en', activeCategory = 'numbers', vIndex = 0, currentQuestions = [], qIndex = 0;
+
+        // Firebase Initialisierung
+        let useFirebase = false;
+        let db = null;
+        try {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.database();
+            useFirebase = true;
+        } catch (e) {
+            console.warn("Offline-Modus aktiv.");
+        }
 
         function showToast(message) {
             const container = document.getElementById("toast-container");
@@ -228,10 +273,57 @@
             setTimeout(() => toast.remove(), 3000);
         }
 
+        function loadProfiles() {
+            if (useFirebase) {
+                db.ref("players").on("value", (snap) => {
+                    ALL_PLAYERS = snap.val() || {};
+                    renderProfileSelection();
+                    if (activePlayerName) {
+                        currentPlayer = ALL_PLAYERS[activePlayerName.toLowerCase()] || currentPlayer;
+                        updateDashboardUI();
+                    }
+                });
+            } else {
+                ALL_PLAYERS = JSON.parse(localStorage.getItem("eduplay_players") || "{}");
+                renderProfileSelection();
+            }
+        }
+
+        function renderProfileSelection() {
+            const grid = document.getElementById("profile-grid");
+            const box = document.getElementById("existing-profiles-box");
+            grid.innerHTML = "";
+            const keys = Object.keys(ALL_PLAYERS);
+            if (keys.length > 0) {
+                box.classList.remove("hidden");
+                keys.forEach(k => {
+                    const btn = document.createElement("button");
+                    btn.className = "bg-gray-700 px-4 py-2 rounded-xl text-sm font-bold text-white";
+                    btn.innerText = ALL_PLAYERS[k].name;
+                    btn.onclick = () => {
+                        activePlayerName = ALL_PLAYERS[k].name;
+                        currentPlayer = ALL_PLAYERS[k];
+                        switchView("menu"); switchSubpage("home"); updateDashboardUI();
+                    };
+                    grid.appendChild(btn);
+                });
+            }
+        }
+
         function handleLogin() {
-            const name = document.getElementById("username-input").value;
+            const name = document.getElementById("username-input").value.trim();
             if (!name) return showToast("Bitte Namen eingeben!");
-            currentPlayer.name = name;
+
+            activePlayerName = name;
+            const key = name.toLowerCase();
+
+            if (!ALL_PLAYERS[key]) {
+                ALL_PLAYERS[key] = { name: name, coins: 0, rankPoints: 0, learningProgress: 0 };
+                if (useFirebase) db.ref("players/" + key).set(ALL_PLAYERS[key]);
+                else localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS));
+            }
+
+            currentPlayer = ALL_PLAYERS[key];
             switchView("menu"); switchSubpage("home"); updateDashboardUI();
         }
 
@@ -247,6 +339,13 @@
             document.querySelectorAll('.subview').forEach(s => s.classList.add('hidden'));
             const sub = document.getElementById(`subview-${subId}`);
             if (sub) sub.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.toggle('text-blue-500', item.getAttribute('onclick').includes(subId));
+            });
+
+            if (subId === 'parent') renderParentDashboard();
+            if (subId === 'leaderboard') renderLeaderboard();
         }
 
         function showQuizSetup(mode) {
@@ -260,14 +359,23 @@
             const subSelect = document.getElementById("sub-category");
             subSelect.innerHTML = "";
             const map = {
-                schule1: [{ value: "deutsch_uebungsheft", text: "📖 Deutsch" }],
-                schule2: [{ value: "klasse2_mathe", text: "🧮 Mathematik" }, { value: "klasse2_deutsch", text: "📖 Deutsch" }],
-                schule3: [{ value: "klasse3_englisch", text: "🇬🇧 Englisch 3" }],
-                kfz: [{ value: "kfz", text: "🔧 Kfz-Technik" }]
+                schule1: [{ value: "deutsch_uebungsheft", text: "📖 Deutsch Klasse 1" }],
+                schule2: [{ value: "klasse2_mathe", text: "🧮 Mathematik" }, { value: "klasse2_deutsch", text: "📖 Deutsch & Märchen" }],
+                schule3: [{ value: "klasse3_englisch", text: "🇬🇧 Englisch Klasse 3" }],
+                kfz: [{ value: "kfz", text: "🔧 Kfz-Technik" }],
+                allgemein: [{ value: "allgemein", text: "🕌 Kultur & Wissen" }]
             };
             (map[mainCat] || []).forEach(sub => {
                 const opt = document.createElement("option"); opt.value = sub.value; opt.innerText = sub.text; subSelect.appendChild(opt);
             });
+            showQuestionCount();
+        }
+
+        // RENDERED DIE FRAGENANZAHL IN KLEIN DARUNTER
+        function showQuestionCount() {
+            const cat = document.getElementById("sub-category").value;
+            const count = QUESTIONS_DATABASE.filter(q => q.category === cat).length;
+            document.getElementById("question-count-display").innerText = `📋 Enthält aktuell ${count} Fragen`;
         }
 
         function startQuiz() {
@@ -275,7 +383,6 @@
             currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat);
             if (currentQuestions.length === 0) return showToast("Keine Fragen eingepflegt!");
             qIndex = 0; switchView('quiz'); showQuestion();
-            document.getElementById('learning-chest-bar').classList.toggle('hidden', document.getElementById('selected-game-mode').value !== 'lernen');
         }
 
         function showQuestion() {
@@ -284,10 +391,13 @@
             const opts = document.getElementById('options-container'); opts.innerHTML = '';
             q.answers.forEach((a, idx) => {
                 const btn = document.createElement('button'); btn.innerText = a;
-                btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold hover:bg-gray-800 transition-all text-sm";
+                btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold text-sm";
                 btn.onclick = () => {
                     if (idx === q.correct) {
                         showToast("Klasse gelöst! 🌟"); confetti();
+                        currentPlayer.coins += 10;
+                        currentPlayer.rankPoints += 5;
+                        savePlayerProgress();
                         setTimeout(() => {
                             qIndex = (qIndex + 1) % currentQuestions.length; showQuestion();
                         }, 1500);
@@ -297,44 +407,78 @@
             });
         }
 
-        function leaveQuiz() { switchView('menu'); switchSubpage('home'); }
-        function updateDashboardUI() { document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`; document.getElementById("menu-coins").innerText = currentPlayer.coins; document.getElementById("vokabel-coins").innerText = currentPlayer.coins; }
-
-        // DYNAMISCHER VOKABEL GENERATOR (REPARIERT FÜR ALLE SPRACHEN)
-        function loadVocabSystem() {
-            const dropdown = document.getElementById("category-dropdown");
-            dropdown.innerHTML = "";
-
-            // Holt die Kategorien der aktuell gewählten Sprache aus der vocabulary.js
-            const currentLangData = VOCABULARY_DATABASE[activeLang];
-
-            Object.keys(currentLangData).forEach(key => {
-                const opt = document.createElement("option");
-                opt.value = key;
-                opt.innerText = currentLangData[key].label;
-                dropdown.appendChild(opt);
-            });
-
-            // Falls die alte Kategorie in der neuen Sprache nicht existiert, nimm die erste verfügbare
-            if (!currentLangData[activeCategory]) {
-                activeCategory = Object.keys(currentLangData)[0];
+        function savePlayerProgress() {
+            if (activePlayerName) {
+                const key = activePlayerName.toLowerCase();
+                if (useFirebase) db.ref("players/" + key).set(currentPlayer);
+                else {
+                    ALL_PLAYERS[key] = currentPlayer;
+                    localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS));
+                }
+                updateDashboardUI();
             }
-
-            dropdown.value = activeCategory;
-            showVocabQuestion();
         }
 
-        function setLanguage(lang) {
-            activeLang = lang;
-            vIndex = 0;
-
-            // Optisches Feedback für die Sprach-Buttons
-            document.getElementById("lang-btn-en").className = `flex-1 py-2 rounded-lg font-bold ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`;
-            document.getElementById("lang-btn-tr").className = `flex-1 py-2 rounded-lg font-bold ${lang === 'tr' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`;
-
-            loadVocabSystem();
+        // ELTERNBEREICH LOGIK (KOMPLETT AKTIV)
+        function renderParentDashboard() {
+            const container = document.getElementById("parent-stats-container");
+            container.innerHTML = "";
+            Object.keys(ALL_PLAYERS).forEach(key => {
+                const p = ALL_PLAYERS[key];
+                const row = document.createElement("div");
+                row.className = "bg-gray-900 border border-gray-700 p-4 rounded-xl flex flex-col gap-2";
+                row.innerHTML = `
+                <div class="flex justify-between font-bold">
+                    <span class="text-blue-400">👤 ${p.name}</span>
+                    <span class="text-yellow-400">🪙 ${p.coins || 0} Coins</span>
+                </div>
+                <div class="flex gap-2 mt-2">
+                    <button class="bg-emerald-600 px-3 py-1 rounded-lg font-bold text-xs" onclick="adjustCoins('${key}', 10)">+ 10 Coins</button>
+                    <button class="bg-rose-600 px-3 py-1 rounded-lg font-bold text-xs" onclick="adjustCoins('${key}', -10)">- 10 Coins</button>
+                </div>
+            `;
+                container.appendChild(row);
+            });
         }
 
+        function adjustCoins(key, amount) {
+            if (ALL_PLAYERS[key]) {
+                ALL_PLAYERS[key].coins = Math.max(0, (ALL_PLAYERS[key].coins || 0) + amount);
+                if (useFirebase) db.ref("players/" + key + "/coins").set(ALL_PLAYERS[key].coins);
+                else {
+                    localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS));
+                    renderParentDashboard();
+                }
+                showToast("Münzen angepasst!");
+            }
+        }
+
+        function renderLeaderboard() {
+            const container = document.getElementById("leaderboard-list");
+            container.innerHTML = "";
+            const list = Object.values(ALL_PLAYERS).sort((a, b) => (b.rankPoints || 0) - (a.rankPoints || 0));
+            list.forEach((p, idx) => {
+                container.innerHTML += `<div class="p-3 bg-gray-900 border rounded-xl flex justify-between"><span>#${idx + 1} ${p.name}</span><span class="text-yellow-400">⭐ ${p.rankPoints || 0} Pkt</span></div>`;
+            });
+        }
+
+        function leaveQuiz() { switchView('menu'); switchSubpage('home'); }
+        function updateDashboardUI() {
+            document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
+            document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
+            document.getElementById("vokabel-coins").innerText = currentPlayer.coins || 0;
+        }
+
+        function loadVocabSystem() {
+            const dropdown = document.getElementById("category-dropdown"); dropdown.innerHTML = "";
+            const currentLangData = VOCABULARY_DATABASE[activeLang];
+            Object.keys(currentLangData).forEach(key => {
+                const opt = document.createElement("option"); opt.value = key; opt.innerText = currentLangData[key].label; dropdown.appendChild(opt);
+            });
+            if (!currentLangData[activeCategory]) activeCategory = Object.keys(currentLangData)[0];
+            dropdown.value = activeCategory; showVocabQuestion();
+        }
+        function setLanguage(lang) { activeLang = lang; vIndex = 0; document.getElementById("lang-btn-en").className = `flex-1 py-2 rounded-lg font-bold ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-gray-400'}`; document.getElementById("lang-btn-tr").className = `flex-1 py-2 rounded-lg font-bold ${lang === 'tr' ? 'bg-blue-600 text-white' : 'text-gray-400'}`; loadVocabSystem(); }
         function selectCategory(cat) { activeCategory = cat; vIndex = 0; showVocabQuestion(); }
 
         function showVocabQuestion() {
@@ -342,7 +486,6 @@
             document.getElementById("total-display").innerText = list.length;
             document.getElementById("current-index-display").innerText = vIndex + 1;
             const item = list[vIndex];
-
             document.getElementById("vokabel-box").innerHTML = `
             <div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner w-full h-full relative">
@@ -350,10 +493,11 @@
                     <div class="flip-card-back absolute inset-0 bg-pink-900 rounded-2xl flex flex-col items-center justify-center font-bold text-2xl px-4">${item.foreign}</div>
                 </div>
             </div>
-            <button onclick="vIndex = (vIndex + 1) % ${list.length}; showVocabQuestion();" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md hover:bg-indigo-500 transition-all">Nächste Karte ➔</button>
+            <button onclick="vIndex = (vIndex + 1) % ${list.length}; showVocabQuestion();" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächste Karte ➔</button>
         `;
         }
-        window.onload = () => switchView('login');
+
+        window.onload = () => { switchView('login'); loadProfiles(); };
     </script>
 </body>
 

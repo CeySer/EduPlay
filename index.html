@@ -97,7 +97,7 @@
 
                 <div class="text-center mt-6">
                     <span
-                        class="bg-gray-800 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">v2.1.1
+                        class="bg-gray-800 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">v2.1.2
                         Stable</span>
                 </div>
             </div>
@@ -154,6 +154,7 @@
                                 class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium focus:border-blue-500 focus:outline-none transition-all">
                                 <option value="schule1">🏫 Grundschule (Klasse 1)</option>
                                 <option value="schule2">🏫 Grundschule (Klasse 2)</option>
+                                <option value="schule3">🏫 Grundschule (Klasse 3)</option>
                                 <option value="schule5">🇬🇧 Weiterführende Schule (Klasse 5)</option>
                                 <option value="kfz">🔧 Berufsausbildung (KFZ-Technik)</option>
                                 <option value="allgemein">🕌 Kultur & Fremdsprachen</option>
@@ -485,11 +486,31 @@
                     ]
                 },
                 animals: {
-                    label: "🦁 Tiere (Animals)",
+                    label: "🦁 Zootiere (Animals)",
                     words: [
                         { de: "Bär", foreign: "bear" }, { de: "Elefant", foreign: "elephant" }, { de: "Giraffe", foreign: "giraffe" },
-                        { de: "Löwe", foreign: "lion" }, { de: "Affe", foreign: "monkey" }, { de: "Schlange", foreign: "snake" },
-                        { de: "Hund", foreign: "dog" }, { de: "Katze", foreign: "cat" }, { de: "Maus", foreign: "mouse" }
+                        { de: "Löwe", foreign: "lion" }, { de: "Affe", foreign: "monkey" }, { de: "Schlange", foreign: "snake" }
+                    ]
+                },
+                pets: {
+                    label: "🐶 Haustiere (Pets)",
+                    words: [
+                        { de: "Hund", foreign: "dog" }, { de: "Katze", foreign: "cat" }, { de: "Maus", foreign: "mouse" },
+                        { de: "Vogel", foreign: "bird" }, { de: "Fisch", foreign: "fish" }, { de: "Kaninchen", foreign: "rabbit" }
+                    ]
+                },
+                clothes: {
+                    label: "👕 Kleidung (Clothes)",
+                    words: [
+                        { de: "T-Shirt", foreign: "T-shirt" }, { de: "Hose", foreign: "trousers" }, { de: "Schuhe", foreign: "shoes" },
+                        { de: "Pullover", foreign: "jumper" }, { de: "Kleid", foreign: "dress" }, { de: "kurze Hose", foreign: "shorts" }
+                    ]
+                },
+                family: {
+                    label: "👨‍👩‍👦 Familie (Family)",
+                    words: [
+                        { de: "Mutter", foreign: "mother" }, { de: "Vater", foreign: "father" }, { de: "Bruder", foreign: "brother" },
+                        { de: "Schwester", foreign: "sister" }, { de: "Oma", foreign: "grandmother" }, { de: "Opa", foreign: "grandfather" }
                     ]
                 },
                 food: {
@@ -529,54 +550,27 @@
             }
         };
 
-        // 3. FRAGEN- & QUIZ DATENBANK (ZUSAMMENGEFÜHRT: ALT & NEU)
+        // 3. FRAGEN- & QUIZ DATENBANK (FEHLERFREI & ERWEITERT)
         const QUESTIONS_DATABASE = [
             // ==========================================
-            // KATEGORIE: KLASSE 2 - MATHE (Mathe S.1)
+            // KATEGORIE: KLASSE 2 - MATHE
             // ==========================================
             { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: Rechne erst die Zehner zusammen (20 + 10 = 30) und dann die Einer (5 + 4 = 9). Zusammen ergibt das 39!" },
             { id: 2002, category: "klasse2_mathe", question: "Rechne aus: Was ist 45 - 20?", answers: ["15", "25", "35", "45"], correct: 1, explanation: "💡 Ziehe einfach 2 Zehner von den 4 Zehnern ab. Aus 40 wird 20, also bleibt 25!" },
             { id: 2003, category: "klasse2_mathe", question: "Was ergibt die Malaufgabe 2 * 5?", answers: ["7", "8", "10", "12"], correct: 2, explanation: "💡 2 * 5 ist das Gleiche wie 5 + 5. Das ergibt genau 10!" },
-            { id: 2004, category: "klasse2_mathe", question: "Was ist die Hälfte von 20?", answers: ["5", "10", "15", "20"], correct: 1, explanation: "💡 Wenn du 20 Murmeln an zwei Freunde verteilst, bekommt jeder genau 10!" },
-            { id: 2005, category: "klasse2_mathe", question: "Rechne aus: 3 * 3 = ?", answers: ["6", "8", "9", "12"], correct: 2, explanation: "💡 3 * 3 bedeutet 3 + 3 + 3. Das macht zusammen 9!" },
-            { id: 2006, category: "klasse2_mathe", question: "Welche Zahl fehlt hier: 10, 20, 30, __, 50?", answers: ["35", "40", "45", "60"], correct: 1, explanation: "💡 Das ist die Zehner-Reihe. Nach der 30 kommt beim Vorwärtszählen immer die 40!" },
-            { id: 2007, category: "klasse2_mathe", question: "Wie viele Minuten hat eine ganze Stunde?", answers: ["30 Minuten", "50 Minuten", "60 Minuten", "100 Minuten"], correct: 2, explanation: "💡 Eine Stunde hat genau 60 Minuten. Eine halbe Stunde hat 30 Minuten!" },
-            { id: 2008, category: "klasse2_mathe", question: "Welche Nachbarzahlen hat die Zahl 49?", answers: ["47 und 48", "48 und 50", "50 und 51", "40 und 50"], correct: 1, explanation: "💡 Die Nachbarzahlen sind direkt davor (48) und direkt danach (50)." },
-            { id: 2009, category: "klasse2_mathe", question: "Rechne aus: 63 + 8?", answers: ["71", "73", "69", "81"], correct: 0, explanation: "💡 Zähle von 63 einfach 8 Schritte weiter: 64, 65, 66, 67, 68, 69, 70, 71!" },
-            { id: 2010, category: "klasse2_mathe", question: "Welches Zeichen passt hier: 34 [ ] 43?", answers: ["> (größer als)", "< (kleiner als)", "= (gleich)", "+ (plus)"], correct: 1, explanation: "💡 34 ist kleiner als 43. Das Krokodil frisst immer die größere Zahl, also zeigt die Öffnung nach rechts: < !" },
             { id: 2011, category: "klasse2_mathe", question: "Emma rechnet eine Tauschaufgabe: 15 + 4 = 19. Welcher Trick hilft ihr, um 4 + 15 einfacher im Kopf zu lösen?", answers: ["Tauschaufgabe: 15 + 4 hat dasselbe Ergebnis!", "Umkehraufgabe: 19 - 4 = 15", "Nachbaraufgabe: 15 + 5 = 20", "Verdoppeln: 15 + 15 = 30"], correct: 0, explanation: "💡 Emmas Rechentrick: Bei Plusaufgaben darfst du die Zahlen vertauschen (Tauschaufgabe). Das Ergebnis bleibt immer gleich!" },
             { id: 2012, category: "klasse2_mathe", question: "Max nutzt eine einfache Nachbaraufgabe für 15 + 16. Er weiß, dass 15 + 15 = 30 ist. Was ist dann 15 + 16?", answers: ["29", "30", "31", "32"], correct: 2, explanation: "💡 Max' Rechentrick: Da 16 genau um 1 größer ist als 15, rechnet Max einfach 15 + 15 = 30 und zählt 1 dazu. Das macht 31!" },
             { id: 2013, category: "klasse2_mathe", question: "Hanna rechnet die Umkehraufgabe zur Kontrolle für 42 - 5 = 37. Wie kontrolliert sie ihre Rechnung?", answers: ["37 + 5 = 42", "42 + 5 = 47", "37 - 5 = 32", "5 + 5 = 10"], correct: 0, explanation: "💡 Hannas Rechentrick: Die Umkehraufgabe macht das Minusrechnen wieder rückgängig. Aus Minus wird Plus!" },
             { id: 2014, category: "klasse2_mathe", question: "Tim rechnet die große Aufgabe 53 + 5. Er nutzt die kleine Aufgabe zur Hilfe. Welche kleine Aufgabe hilft ihm?", answers: ["3 + 5 = 8", "50 + 5 = 55", "5 + 5 = 10", "13 + 5 = 18"], correct: 0, explanation: "💡 Tims Rechentrick: Er lässt die Zehner kurz weg und rechnet nur die Einer: 3 + 5 = 8. Dann packt er die 50 Zehner wieder dazu: 58!" },
-            { id: 2015, category: "klasse2_mathe", question: "Mira rechnet Schritt für Schritt über den Zehner: 38 + 7. Sie rechnet erst bis zur 40. Wie teilt sie die 7 auf?", answers: ["In 2 und 5", "In 3 und 4", "In 1 und 6", "In 5 und 2"], correct: 0, explanation: "💡 Miras Rechentrick: Von 38 fehlen noch 2 bis zur 40. Sie teilt die 7 in 2 und 5 auf. 38 + 2 = 40, und dann 40 + 5 = 45!" },
-            { id: 2016, category: "klasse2_mathe", question: "Mira rechnet rückwärts über den Zehner: 54 - 6. Sie rechnet erst bis zur 50. Wie teilt sie die 6 auf?", answers: ["In 4 und 2", "In 3 und 3", "In 5 und 1", "In 2 und 4"], correct: 0, explanation: "💡 Miras Rechentrick: Von 54 zieht sie erst 4 ab, um zur glatten 50 zu kommen. Die restlichen 2 zieht sie dann von der 50 ab: 50 - 2 = 48!" },
-            { id: 2017, category: "klasse2_mathe", question: "Was ist das Ergebnis von 7 * 2?", answers: ["12", "14", "15", "16"], correct: 1, explanation: "💡 Multiplikation: 7 * 2 bedeutet zwei Mal die Sieben zusammenzählen (7 + 7). Das ist genau 14!" },
-            { id: 2018, category: "klasse2_mathe", question: "Du möchtest 12 Äpfel gerecht auf 3 Körbe aufteilen. Wie viele Äpfel gehören in jeden Korb?", answers: ["3 Äpfel", "4 Äpfel", "5 Äpfel", "6 Äpfel"], correct: 1, explanation: "💡 Division: 12 geteilt durch 3 ist gleich 4, denn 4 * 3 = 12." },
-            { id: 2019, category: "klasse2_mathe", question: "Wie viele Zentimeter (cm) ergeben genau 1 Meter (m)?", answers: ["10 cm", "50 cm", "100 cm", "1000 cm"], correct: 2, explanation: "💡 Längenmaße: Auf einem Meterstab sind exakt 100 Zentimeter abgebildet." },
-            { id: 2020, category: "klasse2_mathe", question: "Was ist das Doppelte von der Zahl 14?", answers: ["24", "26", "28", "30"], correct: 2, explanation: "💡 Verdoppeln: Reche einfach 14 + 14. 10+10=20 und 4+4=8, zusammen ergibt das 28!" },
-            { id: 2021, category: "klasse2_mathe", question: "Eine Analoguhr zeigt den großen Zeiger auf der 12 und den kleinen Zeiger auf der 3. Wie viel Uhr ist es?", answers: ["3:00 Uhr", "12:00 Uhr", "6:15 Uhr", "12:15 Uhr"], correct: 0, explanation: "💡 Uhren lesen: Zeigt der große Zeiger auf die 12, ist es eine volle Stunde. Der kleine Zeiger zeigt die Stunde an, also 3 Uhr!" },
 
             // ==========================================
             // KATEGORIE: DEUTSCH-ÜBUNGSHEFT KLASSE 1
             // ==========================================
-            { id: 3001, category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD", "hunD"], correct: 1, explanation: "💡 Regel aus Mildenberger S. 37/124037.jpg: Menschen, Dinge und Tiere schreibt man immer groß! 'Hund' ist ein Tier und somit ein Nomen." },
-            { id: 3002, category: "deutsch_uebungsheft", question: "Wie trennt man das Wort 'Schmetterling' richtig in Silben?", answers: ["Schme-tter-ling", "Schmet-ter-ling", "Schmett-er-ling", "Schme-tte-rling"], correct: 1, explanation: "💡 Tipp aus 124037.jpg: Silbenklatschen hilft dir beim Schreiben! Klatsche mit: Schmet - ter - ling. Das sind genau 3 Silben." },
-            { id: 3003, category: "deutsch_uebungsheft", question: "Wie schreibt man das Krabbeltier 'Spinne' richtig?", answers: ["Spine", "Schpine", "Spinne", "Schpinne"], correct: 2, explanation: "💡 Regel aus 124037.jpg: Klatsche mit: Spin - ne. Weil wir das 'i' ganz schnell sprechen und in der Silbenmitte trennen, schreiben wir Doppel-n (nn) und am Anfang 'Sp'!" },
-            { id: 3004, category: "deutsch_uebungsheft", question: "Was ist die richtige Mehrzahl (viele) von 'Haus'?", answers: ["Hauser", "Häuser", "Heuser", "Hoiser"], correct: 1, explanation: "💡 Tipp aus 124037.jpg: Denk an die Einzahl! Da 'Haus' mit 'au' geschrieben wird, schreiben wir die Mehrzahl 'Häuser' mit dem Umlaut 'äu'." },
-            { id: 3005, category: "deutsch_uebungsheft", question: "Was ist die richtige Mehrzahl von 'Gans'?", answers: ["Ganse", "Gänse", "Gense", "Gähnse"], correct: 1, explanation: "💡 Tipp aus 124037.jpg: Die Einzahl 'Gans' hat ein 'a', deshalb schreiben wir die Mehrzahl 'Gänse' mit einem Umlaut 'ä'." },
-            { id: 3006, category: "deutsch_uebungsheft", question: "Manchmal hörst du ein F, musst aber ein V schreiben. Welches Wort schreibt man mit V?", answers: ["Fisch", "Fahrrad", "Vogel", "Flasche"], correct: 2, explanation: "💡 Regel aus 124037.jpg: Der 'Vogel' ist ein wichtiges Merkwort. Man hört ein 'F', schreibt aber ein 'V'." },
-            { id: 3007, category: "deutsch_uebungsheft", question: "In manchen Wörtern hörst du ein ks, musst aber x schreiben. Wie schreibt man die Zauberin?", answers: ["Hekse", "Hexe", "Häckse", "Hegse"], correct: 1, explanation: "💡 Regel aus 124037.jpg: Du hörst zwar das Geräusch 'ks' am Ende, aber du schreibst ein 'x' wie in 'Hexe'!" },
-            { id: 3008, category: "deutsch_uebungsheft", question: "Wie schreibt man das Wort 'schpielen' richtig?", answers: ["schpielen", "spielen", "stielen", "schielen"], correct: 1, explanation: "💡 Regel aus S. 40/41 (124048.jpg): Am Wortanfang schreiben wir immer 'Sp' oder 'St', auch wenn wir ein 'Sch' hören! Z.B. spielen, Stein, Spinne." },
-            { id: 3009, category: "deutsch_uebungsheft", question: "Welches Wort fehlt hier: 'Der Junge schläft [___] Zelt.'?", answers: ["am", "im", "ist", "sind"], correct: 1, explanation: "💡 Übung aus S. 10 (124046.jpg): Das Zelt umgibt den Jungen (in dem Zelt), deshalb sagen wir kurz 'im Zelt'." },
-            { id: 3010, category: "deutsch_uebungsheft", question: "Welches Wort fehlt hier: 'Die Löwen [___] sehr laut.'?", answers: ["ist", "sind", "am", "im"], correct: 1, explanation: "💡 Übung aus S. 11 (124046.jpg): Weil es mehrere Löwen (Mehrzahl) sind, benutzen wir das Wort 'sind'. Bei einem Löwen hieße es: 'Der Löwe ist laut.'" },
-            { id: 3011, category: "deutsch_uebungsheft", question: "Welches Wort wird mit 'nk' geschrieben?", answers: ["Ring", "Geschenk", "König", "singen"], correct: 1, explanation: "💡 Übung aus S. 49 (124048.jpg): Bei 'Geschenk' hören und schreiben wir ein 'nk'. Bei 'Ring' oder 'singen' schreiben wir dagegen ein 'ng'." },
-            { id: 3012, category: "deutsch_uebungsheft", question: "Was ist die richtige Verkleinerungsform (Verniedlichung) von 'Katze'?", answers: ["Katzchen", "Kätzchen", "Katzerl", "Katzi"], correct: 1, explanation: "💡 Übung aus S. 57 (124048.jpg): Aus dem 'a' in Katze wird bei der Verkleinerungsform mit '-chen' ein Umlaut 'ä': Kätzchen!" },
-            { id: 3013, category: "deutsch_uebungsheft", question: "Welches Wort beginnt mit der Silbe 'hu'?", answers: ["Hase", "Hose", "Hund", "Hexe"], correct: 2, explanation: "💡 Silbentraining S. 36 (124048.jpg): Wenn du 'Hund' deutlich sprichst, hörst du am Anfang ganz klar die Silbe 'Hu'!" },
-            { id: 3014, category: "deutsch_uebungsheft", question: "Welches Wort reimt sich auf das Wort 'Haus'?", answers: ["Baum", "Maus", "Hand", "Auto"], correct: 1, explanation: "💡 Reime: 'Haus' und 'Maus' klingen am Ende völlig gleich. Das reimt sich!" },
-            { id: 3015, category: "deutsch_uebungsheft", question: "Was sind in der deutschen Sprache die Selbstlaute (Vokale)?", answers: ["A, E, I, O, U", "B, C, D, F, G", "S, T, U, V, W", "X, Y, Z"], correct: 0, explanation: "💡 Vokale: Die fünf Buchstaben A, E, I, O und U klingen ganz von allein, deshalb heißen sie Selbstlaute!" },
-            { id: 3016, category: "deutsch_uebungsheft", question: "Wie viele Silben hörst du, wenn du das Wort 'Fahr-rad' klatschst?", answers: ["1 Silbe", "2 Silben", "3 Silben", "4 Silben"], correct: 1, explanation: "💡 Silben klatschen: Fahr (klatsch) - rad (klatsch). Das macht genau 2 Silben!" },
-            { id: 3017, category: "deutsch_uebungsheft", question: "Welches dieser Wörter fängt beim Schreiben mit einem großen Buchstaben an?", answers: ["malen", "Mutter", "mutig", "morgen"], correct: 1, explanation: "💡 Großschreibung: 'Mutter' ist ein Nomen (Mensch) und wird deshalb immer großgeschrieben." },
-            { id: 3018, category: "deutsch_uebungsheft", question: "An welcher Stelle hörst du das 'L' im Wort 'Schule'?", answers: ["Ganz am Anfang", "In der Mitte", "Ganz am Ende", "Überhaupt nicht"], correct: 1, explanation: "💡 Lautlehre: Sprich das Wort 'Schu-le' langsam. Das 'L' liegt in der Mitte des Wortes." },
+            { id: 3001, category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD", "hunD"], correct: 1, explanation: "💡 Menschen, Dinge und Tiere schreibt man immer groß! 'Hund' ist ein Tier und somit ein Nomen." },
+            { id: 3002, category: "deutsch_uebungsheft", question: "Wie trennt man das Wort 'Schmetterling' richtig in Silben?", answers: ["Schme-tter-ling", "Schmet-ter-ling", "Schmett-er-ling", "Schme-tte-rling"], correct: 1, explanation: "💡 Silbenklatschen hilft dir beim Schreiben! Klatsche mit: Schmet - ter - ling. Das sind genau 3 Silben." },
+            { id: 3003, category: "deutsch_uebungsheft", question: "Wie schreibt man das Krabbeltier 'Spinne' richtig?", answers: ["Spine", "Schpine", "Spinne", "Schpinne"], correct: 2, explanation: "💡 Klatsche mit: Spin - ne. Weil wir das 'i' ganz schnell sprechen und in der Silbenmitte trennen, schreiben wir Doppel-n (nn) und am Anfang 'Sp'!" },
+            { id: 3004, category: "deutsch_uebungsheft", question: "Was ist die richtige Mehrzahl (viele) von 'Haus'?", answers: ["Hauser", "Häuser", "Heuser", "Hoiser"], correct: 1, explanation: "💡 Denk an die Einzahl! Da 'Haus' mit 'au' geschrieben wird, schreiben wir die Mehrzahl 'Häuser' mit dem Umlaut 'äu'." },
+            { id: 3006, category: "deutsch_uebungsheft", question: "Manchmal hörst du ein F, musst aber ein V schreiben. Welches Wort schreibt man mit V?", answers: ["Fisch", "Fahrrad", "Vogel", "Flasche"], correct: 2, explanation: "💡 Der 'Vogel' ist ein wichtiges Merkwort. Man hört ein 'F', schreibt aber ein 'V'." },
 
             // ==========================================
             // KATEGORIE: KLASSE 2 - DEUTSCH & MÄRCHEN
@@ -584,15 +578,17 @@
             { id: 2101, category: "klasse2_deutsch", question: "Welches Wort schreibt man mit 'ä' (Mehrzahl von Hand)?", answers: ["Hende", "Hände", "Hande", "Hähne"], correct: 1, explanation: "💡 Wenn das Wort in Einzahl ein 'a' hat (Hand), schreibt man die Mehrzahl fast immer mit 'ä'!" },
             { id: 2102, category: "klasse2_deutsch", question: "Welches Wort ist ein Nomen (Namenwort)?", answers: ["laufen", "schön", "Das Haus", "schnell"], correct: 2, explanation: "💡 'Das Haus' ist ein Nomen. Nomen schreibt man immer groß!" },
             { id: 2103, category: "klasse2_deutsch", question: "In welchem Märchen schläft ein ganzes Schloss für 100 Jahre?", answers: ["Dornröschen", "Schneewittchen", "Aschenputtel", "Rapunzel"], correct: 0, explanation: "💡 Dornröschen sticht sich an einer Spindel und fällt mit dem ganzen Schloss in einen tiefen Schlaf." },
-            { id: 2104, category: "klasse2_deutsch", question: "Wie viele Silben hat das Wort 'Schmet-ter-ling'?", answers: ["1 Silbe", "2 Silben", "3 Silben", "4 Silben"], correct: 2, explanation: "💡 Wenn du das Wort klatschst (Schmet-ter-ling), klatschst du genau 3 Mal!" },
             { id: 2105, category: "klasse2_deutsch", question: "Was ließ Rapunzel aus dem hohen Turm herunterfallen?", answers: ["Eine Strickleiter", "Ihre Haare", "Einen goldenen Ball", "Ein Seil"], correct: 1, explanation: "💡 Rapunzel hatte wunderschöne, extrem lange Haare. Der berühmte Spruch heißt: 'Rapunzel, lass dein Haar herunter!'" },
-            { id: 2106, category: "klasse2_deutsch", question: "Welches Wort ist richtig geschrieben?", answers: ["Fogel", "Vogel", "Wogel", "Folgel"], correct: 1, explanation: "💡 Vogel schreibt man mit einem 'V' (wie Vater), obwohl man es wie 'F' spricht." },
-            { id: 2107, category: "klasse2_deutsch", question: "Welches dieser Wörter ist ein Verb (Tu-Wort)?", answers: ["der Hund", "spielen", "laut", "groß"], correct: 1, explanation: "💡 'spielen' ist ein Verb. Es beschreibt, was man gerade tut." },
-            { id: 2108, category: "klasse2_deutsch", question: "Was ist das Gegenteil von 'groß'?", answers: ["riesig", "klein", "dick", "nett"], correct: 1, explanation: "💡 Das Gegenteil von groß ist klein!" },
-            { id: 2109, category: "klasse2_deutsch", question: "Welches der folgenden Tiere gehört NICHT zu den Bremer Stadtmusikanten?", answers: ["Der Esel", "Der Hund", "Die Katze", "Die Maus"], correct: 3, explanation: "💡 Im Märchen reisen Esel, Hund, Katze und Hahn nach Bremen, aber keine Maus!" },
-            { id: 2110, category: "klasse2_deutsch", question: "Welches Wort ist ein Adjektiv (Wie-Wort)?", answers: ["laufen", "schön", "das Bild", "und"], correct: 1, explanation: "💡 Adjektive beschreiben, wie etwas ist. Ein Bild kann 'schön' sein." },
-            { id: 2111, category: "klasse2_deutsch", question: "Wie fügt man die Nomen 'Zahn' und 'Bürste' grammatikalisch richtig zusammen?", answers: ["Zahnebürste", "Zahnbürste", "Zahnenbürste", "Zahn Bürste"], correct: 1, explanation: "💡 Zusammengesetzte Nomen werden zusammengeschrieben. Aus Zahn und Bürste wird die 'Zahnbürste'." },
-            { id: 2112, category: "klasse2_deutsch", question: "Wem brachte das Rotkäppchen im Wald Kuchen und Wein?", answers: ["Dem lieben Wolf", "Der kranken Großmutter", "Dem mutigen Jäger", "Ihrer fleißigen Mutter"], correct: 1, explanation: "💡 Im weltbekannten Märchen der Gebrüder Grimm bringt Rotkäppchen diese Gaben zu ihrer kranken Oma." },
+
+            // ==========================================
+            // NEU: KATEGORIE: KLASSE 3 - ENGLISCH (ÜBUNGSHEFT 3)
+            // ==========================================
+            { id: 3501, category: "klasse3_englisch", question: "Translate into English: 'Wie heißt du?'", answers: ["How are you?", "What is your name?", "Who are you?", "How old are you?"], correct: 1, explanation: "💡 Um nach dem Namen zu fragen, sagt man auf Englisch 'What is your name?'" },
+            { id: 3502, category: "klasse3_englisch", question: "Which pet is it? 'It is small and likes cheese.'", answers: ["dog", "cat", "mouse", "fish"], correct: 2, explanation: "💡 Eine Maus (mouse) ist klein und mag Käse!" },
+            { id: 3503, category: "klasse3_englisch", question: "What are you wearing? 'Ich trage ein rotes T-Shirt.'", answers: ["I wear a red T-shirt.", "I am wearing a red T-shirt.", "I am wearing a red shoes.", "I wearing a red T-shirt."], correct: 1, explanation: "💡 Wenn du etwas im Moment trägst, sagst du 'I am wearing...' (Present Progressive)." },
+            { id: 3504, category: "klasse3_englisch", question: "Which animal is at the zoo?", answers: ["cow", "pig", "elephant", "dog"], correct: 2, explanation: "💡 Ein Elefant (elephant) lebt im Zoo, während Kühe, Schweine und Hunde oft auf dem Bauernhof oder zu Hause leben." },
+            { id: 3505, category: "klasse3_englisch", question: "What is your favourite colour? 'Meine Lieblingsfarbe ist gelb.'", answers: ["My favourite colour is green.", "My favourite colour is yellow.", "My favourite colour is red.", "My favourite colour is blue."], correct: 1, explanation: "💡 Gelb heißt auf Englisch 'yellow'." },
+            { id: 3506, category: "klasse3_englisch", question: "What do you say when you give something to someone? (z.B. ein Radiergummi)", answers: ["Here you are.", "Thank you.", "Please.", "Hello."], correct: 0, explanation: "💡 Wenn du jemandem etwas überreichst, sagst du auf Englisch oft 'Here you are' (Hier bitte)." },
 
             // ==========================================
             // KATEGORIE: KLASSE 5 - ENGLISCH
@@ -600,150 +596,31 @@
             { id: 5001, category: "klasse5_englisch", question: "What is the correct answer to: 'Hello, what is your name?'", answers: ["I am ten years old.", "My name is Sarah.", "I am a boy.", "Fine, thanks."], correct: 1, explanation: "💡 Auf die Frage 'What is your name?' antwortet man mit 'My name is...'" },
             { id: 5002, category: "klasse5_englisch", question: "Which number is 'fifteen'?", answers: ["5", "15", "50", "115"], correct: 1, explanation: "💡 'Fifteen' ist die 15. Verwechsle es nicht mit 50 ('fifty')!" },
             { id: 5003, category: "klasse5_englisch", question: "What colour do you get when you mix blue and yellow?", answers: ["red", "purple", "green", "orange"], correct: 2, explanation: "💡 Blau und Gelb gemischt ergibt die Farbe Grün!" },
-            { id: 5004, category: "klasse5_englisch", question: "Translate to English: 'Klassenzimmer'", answers: ["classroom", "schoolbag", "playground", "teacherroom"], correct: 0, explanation: "💡 'Class' bedeutet Klasse und 'room' bedeutet Zimmer. Zusammen ergibt es 'classroom'!" },
-            { id: 5005, category: "klasse5_englisch", question: "What day comes after Tuesday?", answers: ["Monday", "Wednesday", "Thursday", "Friday"], correct: 1, explanation: "💡 Die Reihenfolge lautet: Sunday, Monday, Tuesday, Wednesday..." },
-            { id: 5006, category: "klasse5_englisch", question: "Translate into English: 'Ich habe ein interessantes Buch.'", answers: ["I am a book.", "I has an interesting book.", "I have an interesting book.", "I have a book interesting."], correct: 2, explanation: "💡 Englisch: 'I' braucht das Hilfsverb 'have'. Adjektive stehen immer vor dem Nomen ('an interesting book')." },
-            { id: 5007, category: "klasse5_englisch", question: "What is the correct plural of the English word 'child'?", answers: ["childs", "childes", "children", "childrens"], correct: 2, explanation: "💡 Irregular Plural: Das Wort 'child' (Kind) hat den unregelmäßigen Plural 'children' (Kinder)." },
-            { id: 5008, category: "klasse5_englisch", question: "Which form of the verb 'to be' fits here: 'We _____ playing football.'", answers: ["is", "am", "are", "be"], correct: 2, explanation: "💡 Verb 'to be': Bei den Personalpronomen 'we', 'you' und 'they' benutzen wir im Englischen die Form 'are'." },
-            { id: 5009, category: "klasse5_englisch", question: "What is the English word for 'Bleistift'?", answers: ["pencil", "pen", "ruler", "rubber"], correct: 0, explanation: "💡 Vokabeln: 'pencil' ist der Bleistift. 'pen' ist ein Füller oder Kugelschreiber." },
-            { id: 5010, category: "klasse5_englisch", question: "How do you tell the time 'Es ist Viertel vor drei' in English?", answers: ["It's quarter past three.", "It's quarter to three.", "It's half past three.", "It's quarter to two."], correct: 1, explanation: "💡 Time: 'Quarter to' steht für 'Viertel vor'. Somit ist 'quarter to three' richtig." },
 
             // ==========================================
             // KATEGORIE: BERUFSAUSBILDUNG (KFZ-TECHNIK)
             // ==========================================
             { id: 8101, category: "kfz_lf1", question: "LF 1: Welche Flüssigkeit muss regelmäßig auf Frostschutz geprüft werden?", answers: ["Motoröl", "Kühlflüssigkeit", "Bremsflüssigkeit", "Getriebeöl"], correct: 1, explanation: "💡 Die Kühlflüssigkeit schützt den Motor vor dem Einfrieren und muss vor dem Winter geprüft werden." },
             { id: 8102, category: "kfz_lf1", question: "LF 1: Wo liest man den korrekten Reifenfülldruck des Fahrzeugs ab?", answers: ["Auf der Reifenflanke", "Im Serviceheft", "An der B-Säule oder Tankklappe", "Gibt es nicht"], correct: 2, explanation: "💡 Der Reifenfülldruck steht auf einem Aufkleber im Einstieg (B-Säule) oder der Tankklappe." },
-            { id: 8103, category: "kfz_lf1", question: "LF 1: Wie hoch ist die gesetzliche Mindestprofiltiefe für Sommerreifen in Deutschland?", answers: ["1,0 mm", "1,6 mm", "3,0 mm", "4,0 mm"], correct: 1, explanation: "💡 Gesetzlich vorgeschrieben sind mindestens 1,6 mm." },
-            { id: 8104, category: "kfz_lf1", question: "LF 1: Warum ist Bremsflüssigkeit hygroskopisch?", answers: ["Sie schmiert die Kolben", "Sie zieht Wasser aus der Umgebung an", "Sie verhindert Rost im Motor", "Sie erhöht den Siedepunkt"], correct: 1, explanation: "💡 Hygroskopisch bedeutet wasseranziehend. Bremsflüssigkeit muss daher alle 2 Jahre gewechselt werden." },
-            { id: 8105, category: "kfz_lf1", question: "LF 1: Warum darf Altöl (Motoröl) auf keinen Fall über den normalen Hausmüll oder Abfluss entsorgt werden?", answers: ["Weil es extrem übel riecht", "Weil es hochentzündlich im Ruhezustand ist", "Weil es extrem umweltgefährdend ist und das Grundwasser schädigt", "Weil es die Mülltonnen verklebt"], correct: 2, explanation: "💡 Umweltschutz: Ein einziger Tropfen Altöl kann bis zu 1.000 Liter reines Trinkwasser unbrauchbar machen!" },
 
             { id: 8201, category: "kfz_lf2", question: "LF 2: Welches Prüfmittel misst das Ventilspiel am Verbrennungsmotor?", answers: ["Fühlerlehre", "Messschieber", "Bügelmessschraube", "Messuhr"], correct: 0, explanation: "💡 Mit den feinen Blechstreifen einer Fühlerlehre misst man das Spiel zwischen Nockenwelle und Ventil." },
             { id: 8202, category: "kfz_lf2", question: "LF 2: Welches Werkzeug wird zum festen Anziehen von Zylinderkopfschrauben benötigt?", answers: ["Schlagschrauber", "Drehmomentschlüssel", "Ratsche", "Schraubendreher"], correct: 1, explanation: "💡 Zylinderkopfschrauben müssen exakt mit dem Drehmomentschlüssel angezogen werden." },
-            { id: 8203, category: "kfz_lf2", question: "LF 2: Welcher Werkstoff hat die beste Wärmeleitfähigkeit für Zylinderköpfe?", answers: ["Grauguss", "Aluminium-Legierung", "Stahlguss", "Kohlenstoffstahl"], correct: 1, explanation: "💡 Aluminium-Legierungen leiten Wärme deutlich besser ab als Grauguss." },
-            { id: 8204, category: "kfz_lf2", question: "LF 2: Welches Bauteil dichtet den Verbrennungsraum gegenüber dem Kurbelgehäuse am Kolben ab?", answers: ["Die Zylinderkopfdichtung", "Die Ventilschaftdichtung", "Die Kolbenringe", "Der Kurbelwellen-Wellendichtring"], correct: 2, explanation: "💡 Motorenmechanik: Kolbenringe (Kompressions- und Ölabstreifringe) dichten den Verbrennungsraum zum Kurbelgehäuse ab und streifen überschüssiges Öl ab." },
 
             { id: 8301, category: "kfz_lf3", question: "LF 3: Welches Messgerät misst die Spannung der Autobatterie?", answers: ["Amperemeter", "Multimeter (Spannungsmessung)", "Ohmmeter", "Oszilloskop"], correct: 1, explanation: "💡 Mit einem Multimeter misst man die Spannung parallel in Volt." },
             { id: 8302, category: "kfz_lf3", question: "LF 3: Wie verhält sich der Gesamtwiderstand in einer Reihenschaltung von Widerständen?", answers: ["Er wird kleiner", "Er bleibt gleich", "Er ist die Summe der Einzelwiderstände", "Er halbiert sich"], correct: 2, explanation: "💡 In der Reihenschaltung addieren sich alle Einzelwiderstände auf." },
-            { id: 8303, category: "kfz_lf3", question: "LF 3: Wie schließt man ein Strommessgerät (Amperemeter) zur Messung in einem Stromkreis an?", answers: ["Parallel zum Verbraucher", "In Reihe in den aufgetrennten Stromkreis", "Direkt an die Batteriepole parallel", "Gar nicht, das geht nur induktiv"], correct: 1, explanation: "💡 Stromstärkenmessungen müssen immer in Reihe im aufgetrennten Stromkreis durchgeführt werden." },
-            { id: 8304, category: "kfz_lf3", question: "LF 3: Welcher physikalische Effekt wird in einer Zündspule primär genutzt, um Hochspannung für die Zündkerzen zu erzeugen?", answers: ["Elektromagnetische Induktion", "Der Piezoelektrische Effekt", "Der thermoelektrische Effekt", "Der Hall-Effekt"], correct: 0, explanation: "💡 Elektrik: Durch schnelles Abschalten des Primärstroms bricht das Magnetfeld zusammen und induziert in der Sekundärspule die Hochspannung (Induktionsgesetz)." },
 
             { id: 8401, category: "kfz_lf4", question: "LF 4: Was regelt das ABS-System bei einer Vollbremsung?", answers: ["Die Motorleistung", "Den Schlupf und das Blockieren der Räder", "Die Scheinwerferhöhe", "Die Klimaanlage"], correct: 1, explanation: "💡 Das Antiblockiersystem (ABS) verhindert das Blockieren der Räder, damit das Auto lenkbar bleibt." },
             { id: 8402, category: "kfz_lf4", question: "LF 4: Welcher Sensor erfasst die Raddrehzahl für das Steuergerät?", answers: ["Klopfsensor", "Raddrehzahlsensor (aktiv/passiv)", "Ladedrucksensor", "Lambdasonde"], correct: 1, explanation: "💡 Raddrehzahlsensoren senden Signale über die aktuelle Geschwindigkeit der Räder an das ABS-Steuergerät." },
-            { id: 8403, category: "kfz_lf4", question: "LF 4: Welche Aufgabe hat die Lambdasonde im Abgassystem eines Fahrzeugs?", answers: ["Sie misst die Abgastemperatur direkt am Auspuff", "Sie bestimmt den Restsauerstoffgehalt im Abgas zur optimalen Gemischregelung", "Sie filtert schädliche Rußpartikel aus", "Sie regelt rein mechanisch den Ladedruck des Turboladers"], correct: 1, explanation: "💡 Regelungssysteme: Die Lambdasonde liefert dem Motorsteuergerät Informationen über die Gemischzusammensetzung (fett/mager) durch Messung des Restsauerstoffs." },
 
             // ==========================================
-            // KATEGORIE: KULTUR & FREMDSPRACHEN
+            // KATEGORIE: KULTUR & FREMDSPRACHEN & RELIGION
             // ==========================================
             { id: 101, category: "sprachen", question: "Was bedeutet 'Seni seviyorum' auf Deutsch?", answers: ["Guten Appetit", "Ich liebe dich", "Gute Nacht", "Tschüss"], correct: 1, explanation: "💡 Das ist Türkisch für 'Ich liebe dich'!" },
             { id: 102, category: "sprachen", question: "Was bedeutet 'Baba' auf Türkisch?", answers: ["Opa", "Onkel", "Vater", "Bruder"], correct: 2, explanation: "💡 'Baba' bedeutet 'Vater'." },
-            { id: 103, category: "sprachen", question: "Wie heißt 'Guten Morgen' auf Türkisch?", answers: ["Merhaba", "Günaydın", "İyi geceler", "Lütfen"], correct: 1, explanation: "💡 'Günaydın' bedeutet Guten Morgen!" },
-            { id: 104, category: "sprachen", question: "Was heißt 'Gute Reise / Gute Fahrt' auf Türkisch?", answers: ["İyi yolculuklar", "Teşekkür ederim", "Hoş geldiniz", "Güle güle"], correct: 0, explanation: "💡 'İyi yolculuklar' wünscht man Reisenden im Türkischen." },
 
-            // ==========================================
-            // KATEGORIE: RELIGION (ISLAM-WISSEN)
-            // ==========================================
             { id: 201, category: "islam", question: "Wer ist der letzte Gesandte im Islam?", answers: ["Ibrahim", "Isa", "Musa", "Muhammad"], correct: 3, explanation: "💡 Prophet Muhammad (s.a.w.) gilt als das Siegel der Gesandten." },
-            { id: 202, category: "islam", question: "Wie viele Säulen hat der Islam?", answers: ["3 Säulen", "4 Säulen", "5 Säulen", "6 Säulen"], correct: 2, explanation: "💡 Der Islam basiert auf genau 5 Säulen." },
-            { id: 203, category: "islam", question: "Wie heißt der heilige Fastenmonat im Islam?", answers: ["Muharram", "Ramadan", "Schawwal", "Rajab"], correct: 1, explanation: "💡 Im Fastenmonat Ramadan verzichten Muslime von der Morgendämmerung bis zum Sonnenuntergang auf Essen und Trinken." },
-            { id: 204, category: "islam", question: "Wie nennt man das rituelle Pflichtgebet, das Muslime fünfmal täglich verrichten?", answers: ["Zakat", "Salah (Gebet)", "Sawm", "Dua"], correct: 1, explanation: "💡 Salah ist die zweite Säule des Islam und bezeichnet das tägliche Pflichtgebet." },
-            { id: 205, category: "islam", question: "An welchem Wochentag findet das wichtigste wöchentliche Gemeinschaftsgebet im Islam statt?", answers: ["Samstag", "Sonntag", "Freitag", "Donnerstag"], correct: 2, explanation: "💡 Der Freitag (Yawn al-Jum'ah) ist der gesegnetste Wochentag und der Tag des gemeinsamen Freitagsgebets in der Moschee." }
+            { id: 202, category: "islam", question: "Wie viele Säulen hat der Islam?", answers: ["3 Säulen", "4 Säulen", "5 Säulen", "6 Säulen"], correct: 2, explanation: "💡 Der Islam basiert auf genau 5 Säulen." }
         ];
-
-        // ==========================================
-        // APP INITIALISIERUNG & ONLINE-SYNCHRONISATION
-        // ==========================================
-        // KATEGORIE: KLASSE 2 - MATHE (Mathe S.1)
-        // ==========================================
-        { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: Rechne erst die Zehner zusammen (20 + 10 = 30) und dann die Einer (5 + 4 = 9). Zusammen ergibt das 39!" },
-        { id: 2002, category: "klasse2_mathe", question: "Rechne aus: Was ist 45 - 20?", answers: ["15", "25", "35", "45"], correct: 1, explanation: "💡 Ziehe einfach 2 Zehner von den 4 Zehnern ab. Aus 40 wird 20, also bleibt 25!" },
-        { id: 2003, category: "klasse2_mathe", question: "Was ergibt die Malaufgabe 2 * 5?", answers: ["7", "8", "10", "12"], correct: 2, explanation: "💡 2 * 5 ist das Gleiche wie 5 + 5. Das ergibt genau 10!" },
-        { id: 2004, category: "klasse2_mathe", question: "Was ist die Hälfte von 20?", answers: ["5", "10", "15", "20"], correct: 1, explanation: "💡 Wenn du 20 Murmeln an zwei Freunde verteilst, bekommt jeder genau 10!" },
-        { id: 2005, category: "klasse2_mathe", question: "Rechne aus: 3 * 3 = ?", answers: ["6", "8", "9", "12"], correct: 2, explanation: "💡 3 * 3 bedeutet 3 + 3 + 3. Das macht zusammen 9!" },
-        { id: 2006, category: "klasse2_mathe", question: "Welche Zahl fehlt hier: 10, 20, 30, __, 50?", answers: ["35", "40", "45", "60"], correct: 1, explanation: "💡 Das ist die Zehner-Reihe. Nach der 30 kommt beim Vorwärtszählen immer die 40!" },
-        { id: 2007, category: "klasse2_mathe", question: "Wie viele Minuten hat eine ganze Stunde?", answers: ["30 Minuten", "50 Minuten", "60 Minuten", "100 Minuten"], correct: 2, explanation: "💡 Eine Stunde hat genau 60 Minuten. Eine halbe Stunde hat 30 Minuten!" },
-        { id: 2008, category: "klasse2_mathe", question: "Welche Nachbarzahlen hat die Zahl 49?", answers: ["47 und 48", "48 und 50", "50 und 51", "40 und 50"], correct: 1, explanation: "💡 Die Nachbarzahlen sind direkt davor (48) und direkt danach (50)." },
-        { id: 2009, category: "klasse2_mathe", question: "Rechne aus: 63 + 8?", answers: ["71", "73", "69", "81"], correct: 0, explanation: "💡 Zähle von 63 einfach 8 Schritte weiter: 64, 65, 66, 67, 68, 69, 70, 71!" },
-        { id: 2010, category: "klasse2_mathe", question: "Welches Zeichen passt hier: 34 [ ] 43?", answers: ["> (größer als)", "< (kleiner als)", "= (gleich)", "+ (plus)"], correct: 1, explanation: "💡 34 ist kleiner als 43. Das Krokodil frisst immer die größere Zahl, also zeigt die Öffnung nach rechts: < !" },
-
-        // NEUE INTERAKTIVE MATHE-FRAGEN
-        { id: 2011, category: "klasse2_mathe", question: "Emma rechnet eine Tauschaufgabe: 15 + 4 = 19. Welcher Trick hilft ihr, um 4 + 15 einfacher im Kopf zu lösen?", answers: ["Tauschaufgabe: 15 + 4 hat dasselbe Ergebnis!", "Umkehraufgabe: 19 - 4 = 15", "Nachbaraufgabe: 15 + 5 = 20", "Verdoppeln: 15 + 15 = 30"], correct: 0, explanation: "💡 Emmas Rechentrick: Bei Plusaufgaben darfst du die Zahlen vertauschen (Tauschaufgabe). Das Ergebnis bleibt immer gleich!" },
-        { id: 2012, category: "klasse2_mathe", question: "Max nutzt eine einfache Nachbaraufgabe für 15 + 16. Er weiß, dass 15 + 15 = 30 ist. Was ist dann 15 + 16?", answers: ["29", "30", "31", "32"], correct: 2, explanation: "💡 Max' Rechentrick: Da 16 genau um 1 größer ist als 15, rechnet Max einfach 15 + 15 = 30 und zählt 1 dazu. Das macht 31!" },
-        { id: 2013, category: "klasse2_mathe", question: "Hanna rechnet die Umkehraufgabe zur Kontrolle für 42 - 5 = 37. Wie kontrolliert sie ihre Rechnung?", answers: ["37 + 5 = 42", "42 + 5 = 47", "37 - 5 = 32", "5 + 5 = 10"], correct: 0, explanation: "💡 Hannas Rechentrick: Die Umkehraufgabe macht das Minusrechnen wieder rückgängig. Aus Minus wird Plus!" },
-        { id: 2014, category: "klasse2_mathe", question: "Tim rechnet die große Aufgabe 53 + 5. Er nutzt die kleine Aufgabe zur Hilfe. Welche kleine Aufgabe hilft ihm?", answers: ["3 + 5 = 8", "50 + 5 = 55", "5 + 5 = 10", "13 + 5 = 18"], correct: 0, explanation: "💡 Tims Rechentrick: Er lässt die Zehner kurz weg und rechnet nur die Einer: 3 + 5 = 8. Dann packt er die 50 Zehner wieder dazu: 58!" },
-        { id: 2015, category: "klasse2_mathe", question: "Mira rechnet Schritt für Schritt über den Zehner: 38 + 7. Sie rechnet erst bis zur 40. Wie teilt sie die 7 auf?", answers: ["In 2 und 5", "In 3 und 4", "In 1 und 6", "In 5 und 2"], correct: 0, explanation: "💡 Miras Rechentrick: Von 38 fehlen noch 2 bis zur 40. Sie teilt die 7 in 2 und 5 auf. 38 + 2 = 40, und dann 40 + 5 = 45!" },
-        { id: 2016, category: "klasse2_mathe", question: "Mira rechnet rückwärts über den Zehner: 54 - 6. Sie rechnet erst bis zur 50. Wie teilt sie die 6 auf?", answers: ["In 4 und 2", "In 3 und 3", "In 5 und 1", "In 2 und 4"], correct: 0, explanation: "💡 Miras Rechentrick: Von 54 zieht sie erst 4 ab, um zur glatten 50 zu kommen. Die restlichen 2 zieht sie dann von der 50 ab: 50 - 2 = 48!" },
-
-        // ==========================================
-        // KATEGORIE: DEUTSCH-ÜBUNGSHEFT KLASSE 1
-        // ==========================================
-        { id: 3001, category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD", "hunD"], correct: 1, explanation: "💡 Regel aus Mildenberger S. 37/124037.jpg: Menschen, Dinge und Tiere schreibt man immer groß! 'Hund' ist ein Tier und somit ein Nomen." },
-        { id: 3002, category: "deutsch_uebungsheft", question: "Wie trennt man das Wort 'Schmetterling' richtig in Silben?", answers: ["Schme-tter-ling", "Schmet-ter-ling", "Schmett-er-ling", "Schme-tte-rling"], correct: 1, explanation: "💡 Tipp aus 124037.jpg: Silbenklatschen hilft dir beim Schreiben! Klatsche mit: Schmet - ter - ling. Das sind genau 3 Silben." },
-        { id: 3003, category: "deutsch_uebungsheft", question: "Wie schreibt man das Krabbeltier 'Spinne' richtig?", answers: ["Spine", "Schpine", "Spinne", "Schpinne"], correct: 2, explanation: "💡 Regel aus 124037.jpg: Klatsche mit: Spin - ne. Weil wir das 'i' ganz schnell sprechen und in der Silbenmitte trennen, schreiben wir Doppel-n (nn) und am Anfang 'Sp'!" },
-        { id: 3004, category: "deutsch_uebungsheft", question: "Was ist die richtige Mehrzahl (viele) von 'Haus'?", answers: ["Hauser", "Häuser", "Heuser", "Hoiser"], correct: 1, explanation: "💡 Tipp aus 124037.jpg: Denk an die Einzahl! Da 'Haus' mit 'au' geschrieben wird, schreiben wir die Mehrzahl 'Häuser' mit dem Umlaut 'äu'." },
-        { id: 3005, category: "deutsch_uebungsheft", question: "Was ist die richtige Mehrzahl von 'Gans'?", answers: ["Ganse", "Gänse", "Gense", "Gähnse"], correct: 1, explanation: "💡 Tipp aus 124037.jpg: Die Einzahl 'Gans' hat ein 'a', deshalb schreiben wir die Mehrzahl 'Gänse' mit einem Umlaut 'ä'." },
-        { id: 3006, category: "deutsch_uebungsheft", question: "Manchmal hörst du ein F, musst aber ein V schreiben. Welches Wort schreibt man mit V?", answers: ["Fisch", "Fahrrad", "Vogel", "Flasche"], correct: 2, explanation: "💡 Regel aus 124037.jpg: Der 'Vogel' ist ein wichtiges Merkwort. Man hört ein 'F', schreibt aber ein 'V'." },
-        { id: 3007, category: "deutsch_uebungsheft", question: "In manchen Wörtern hörst du ein ks, musst aber x schreiben. Wie schreibt man die Zauberin?", answers: ["Hekse", "Hexe", "Häckse", "Hegse"], correct: 1, explanation: "💡 Regel aus 124037.jpg: Du hörst zwar das Geräusch 'ks' am Ende, aber du schreibst ein 'x' wie in 'Hexe'!" },
-        { id: 3008, category: "deutsch_uebungsheft", question: "Wie schreibt man das Wort 'schpielen' richtig?", answers: ["schpielen", "spielen", "stielen", "schielen"], correct: 1, explanation: "💡 Regel aus S. 40/41 (124048.jpg): Am Wortanfang schreiben wir immer 'Sp' oder 'St', auch wenn wir ein 'Sch' hören! Z.B. spielen, Stein, Spinne." },
-        { id: 3009, category: "deutsch_uebungsheft", question: "Welches Wort fehlt hier: 'Der Junge schläft [___] Zelt.'?", answers: ["am", "im", "ist", "sind"], correct: 1, explanation: "💡 Übung aus S. 10 (124046.jpg): Das Zelt umgibt den Jungen (in dem Zelt), deshalb sagen wir kurz 'im Zelt'." },
-        { id: 3010, category: "deutsch_uebungsheft", question: "Welches Wort fehlt hier: 'Die Löwen [___] sehr laut.'?", answers: ["ist", "sind", "am", "im"], correct: 1, explanation: "💡 Übung aus S. 11 (124046.jpg): Weil es mehrere Löwen (Mehrzahl) sind, benutzen wir das Wort 'sind'. Bei einem Löwen hieße es: 'Der Löwe ist laut.'" },
-        { id: 3011, category: "deutsch_uebungsheft", question: "Welches Wort wird mit 'nk' geschrieben?", answers: ["Ring", "Geschenk", "König", "singen"], correct: 1, explanation: "💡 Übung aus S. 49 (124048.jpg): Bei 'Geschenk' hören und schreiben wir ein 'nk'. Bei 'Ring' oder 'singen' schreiben wir dagegen ein 'ng'." },
-        { id: 3012, category: "deutsch_uebungsheft", question: "Was ist die richtige Verkleinerungsform (Verniedlichung) von 'Katze'?", answers: ["Katzchen", "Kätzchen", "Katzerl", "Katzi"], correct: 1, explanation: "💡 Übung aus S. 57 (124048.jpg): Aus dem 'a' in Katze wird bei der Verkleinerungsform mit '-chen' ein Umlaut 'ä': Kätzchen!" },
-        { id: 3013, category: "deutsch_uebungsheft", question: "Welches Wort beginnt mit der Silbe 'hu'?", answers: ["Hase", "Hose", "Hund", "Hexe"], correct: 2, explanation: "💡 Silbentraining S. 36 (124048.jpg): Wenn du 'Hund' deutlich sprichst, hörst du am Anfang ganz klar die Silbe 'Hu'!" },
-
-        // ==========================================
-        // KATEGORIE: KLASSE 2 - DEUTSCH & MÄRCHEN
-        // ==========================================
-        { id: 2101, category: "klasse2_deutsch", question: "Welches Wort schreibt man mit 'ä' (Mehrzahl von Hand)?", answers: ["Hende", "Hände", "Hande", "Hähne"], correct: 1, explanation: "💡 Wenn das Wort in Einzahl ein 'a' hat (Hand), schreibt man die Mehrzahl fast immer mit 'ä'!" },
-        { id: 2102, category: "klasse2_deutsch", question: "Welches Wort ist ein Nomen (Namenwort)?", answers: ["laufen", "schön", "Das Haus", "schnell"], correct: 2, explanation: "💡 'Das Haus' ist ein Nomen. Nomen schreibt man immer groß!" },
-        { id: 2103, category: "klasse2_deutsch", question: "In welchem Märchen schläft ein ganzes Schloss für 100 Jahre?", answers: ["Dornröschen", "Schneewittchen", "Aschenputtel", "Rapunzel"], correct: 0, explanation: "💡 Dornröschen sticht sich an einer Spindel und fällt mit dem ganzen Schloss in einen tiefen Schlaf." },
-        { id: 2104, category: "klasse2_deutsch", question: "Wie viele Silben hat das Wort 'Schmet-ter-ling'?", answers: ["1 Silbe", "2 Silben", "3 Silben", "4 Silben"], correct: 2, explanation: "💡 Wenn du das Wort klatschst (Schmet-ter-ling), klatschst du genau 3 Mal!" },
-        { id: 2105, category: "klasse2_deutsch", question: "Was ließ Rapunzel aus dem hohen Turm herunterfallen?", answers: ["Eine Strickleiter", "Ihre Haare", "Einen goldenen Ball", "Ein Seil"], correct: 1, explanation: "💡 Rapunzel hatte wunderschöne, extrem lange Haare. Der berühmte Spruch heißt: 'Rapunzel, lass dein Haar herunter!'" },
-        { id: 2106, category: "klasse2_deutsch", question: "Welches Wort ist richtig geschrieben?", answers: ["Fogel", "Vogel", "Wogel", "Folgel"], correct: 1, explanation: "💡 Vogel schreibt man mit einem 'V' (wie Vater), obwohl man es wie 'F' spricht." },
-        { id: 2107, category: "klasse2_deutsch", question: "Welches dieser Wörter ist ein Verb (Tu-Wort)?", answers: ["der Hund", "spielen", "laut", "groß"], correct: 1, explanation: "💡 'spielen' ist ein Verb. Es beschreibt, was man gerade tut." },
-        { id: 2108, category: "klasse2_deutsch", question: "Was ist das Gegenteil von 'groß'?", answers: ["riesig", "klein", "dick", "nett"], correct: 1, explanation: "💡 Das Gegenteil von groß ist klein!" },
-
-        // ==========================================
-        // KATEGORIE: KLASSE 5 - ENGLISCH
-        // ==========================================
-        { id: 5001, category: "klasse5_englisch", question: "What is the correct answer to: 'Hello, what is your name?'", answers: ["I am ten years old.", "My name is Sarah.", "I am a boy.", "Fine, thanks."], correct: 1, explanation: "💡 Auf die Frage 'What is your name?' antwortet man mit 'My name is...'" },
-        { id: 5002, category: "klasse5_englisch", question: "Which number is 'fifteen'?", answers: ["5", "15", "50", "115"], correct: 1, explanation: "💡 'Fifteen' ist die 15. Verwechsle es nicht mit 50 ('fifty')!" },
-        { id: 5003, category: "klasse5_englisch", question: "What colour do you get when you mix blue and yellow?", answers: ["red", "purple", "green", "orange"], correct: 2, explanation: "💡 Blau und Gelb gemischt ergibt die Farbe Grün!" },
-        { id: 5004, category: "klasse5_englisch", question: "Translate to English: 'Klassenzimmer'", answers: ["classroom", "schoolbag", "playground", "teacherroom"], correct: 0, explanation: "💡 'Class' bedeutet Klasse und 'room' bedeutet Zimmer. Zusammen ergibt es 'classroom'!" },
-        { id: 5005, category: "klasse5_englisch", question: "What day comes after Tuesday?", answers: ["Monday", "Wednesday", "Thursday", "Friday"], correct: 1, explanation: "💡 Die Reihenfolge lautet: Sunday, Monday, Tuesday, Wednesday..." },
-
-        // ==========================================
-        // KATEGORIE: BERUFSAUSBILDUNG (KFZ-TECHNIK)
-        // ==========================================
-        { id: 8101, category: "kfz_lf1", question: "LF 1: Welche Flüssigkeit muss regelmäßig auf Frostschutz geprüft werden?", answers: ["Motoröl", "Kühlflüssigkeit", "Bremsflüssigkeit", "Getriebeöl"], correct: 1, explanation: "💡 Die Kühlflüssigkeit schützt den Motor vor dem Einfrieren und muss vor dem Winter geprüft werden." },
-        { id: 8102, category: "kfz_lf1", question: "LF 1: Wo liest man den korrekten Reifenfülldruck des Fahrzeugs ab?", answers: ["Auf der Reifenflanke", "Im Serviceheft", "An der B-Säule oder Tankklappe", "Gibt es nicht"], correct: 2, explanation: "💡 Der Reifenfülldruck steht auf einem Aufkleber im Einstieg (B-Säule) oder der Tankklappe." },
-        { id: 8103, category: "kfz_lf1", question: "LF 1: Wie hoch ist die gesetzliche Mindestprofiltiefe für Sommerreifen in Deutschland?", answers: ["1,0 mm", "1,6 mm", "3,0 mm", "4,0 mm"], correct: 1, explanation: "💡 Gesetzlich vorgeschrieben sind mindestens 1,6 mm." },
-        { id: 8104, category: "kfz_lf1", question: "LF 1: Warum ist Bremsflüssigkeit hygroskopisch?", answers: ["Sie schmiert die Kolben", "Sie zieht Wasser aus der Umgebung an", "Sie verhindert Rost im Motor", "Sie erhöht den Siedepunkt"], correct: 1, explanation: "💡 Hygroskopisch bedeutet wasseranziehend. Bremsflüssigkeit muss daher alle 2 Jahre gewechselt werden." },
-
-        { id: 8201, category: "kfz_lf2", question: "LF 2: Welches Prüfmittel misst das Ventilspiel am Verbrennungsmotor?", answers: ["Fühlerlehre", "Messschieber", "Bügelmessschraube", "Messuhr"], correct: 0, explanation: "💡 Mit den feinen Blechstreifen einer Fühlerlehre misst man das Spiel zwischen Nockenwelle und Ventil." },
-        { id: 8202, category: "kfz_lf2", question: "LF 2: Welches Werkzeug wird zum festen Anziehen von Zylinderkopfschrauben benötigt?", answers: ["Schlagschrauber", "Drehmomentschlüssel", "Ratsche", "Schraubendreher"], correct: 1, explanation: "💡 Zylinderkopfschrauben müssen exakt mit dem Drehmomentschlüssel angezogen werden." },
-        { id: 8203, category: "kfz_lf2", question: "LF 2: Welcher Werkstoff hat die beste Wärmeleitfähigkeit für Zylinderköpfe?", answers: ["Grauguss", "Aluminium-Legierung", "Stahlguss", "Kohlenstoffstahl"], correct: 1, explanation: "💡 Aluminium-Legierungen leiten Wärme deutlich besser ab als Grauguss." },
-
-        { id: 8301, category: "kfz_lf3", question: "LF 3: Welches Messgerät misst die Spannung der Autobatterie?", answers: ["Amperemeter", "Multimeter (Spannungsmessung)", "Ohmmeter", "Oszilloskop"], correct: 1, explanation: "💡 Mit einem Multimeter misst man die Spannung parallel in Volt." },
-        { id: 8302, category: "kfz_lf3", question: "LF 3: Wie verhält sich der Gesamtwiderstand in einer Reihenschaltung von Widerständen?", answers: ["Er wird kleiner", "Er bleibt gleich", "Er ist die Summe der Einzelwiderstände", "Er halbiert sich"], correct: 2, explanation: "💡 In der Reihenschaltung addieren sich alle Einzelwiderstände auf." },
-        { id: 8303, category: "kfz_lf3", question: "LF 3: Wie schließt man ein Strommessgerät (Amperemeter) zur Messung in einem Stromkreis an?", answers: ["Parallel zum Verbraucher", "In Reihe in den aufgetrennten Stromkreis", "Direkt an die Batteriepole parallel", "Gar nicht, das geht nur induktiv"], correct: 1, explanation: "💡 Stromstärkenmessungen müssen immer in Reihe im aufgetrennten Stromkreis durchgeführt werden." },
-
-        { id: 8401, category: "kfz_lf4", question: "LF 4: Was regelt das ABS-System bei einer Vollbremsung?", answers: ["Die Motorleistung", "Den Schlupf und das Blockieren der Räder", "Die Scheinwerferhöhe", "Die Klimaanlage"], correct: 1, explanation: "💡 Das Antiblockiersystem (ABS) verhindert das Blockieren der Räder, damit das Auto lenkbar bleibt." },
-        { id: 8402, category: "kfz_lf4", question: "LF 4: Welcher Sensor erfasst die Raddrehzahl für das Steuergerät?", answers: ["Klopfsensor", "Raddrehzahlsensor (aktiv/passiv)", "Ladedrucksensor", "Lambdasonde"], correct: 1, explanation: "💡 Raddrehzahlsensoren senden Signale über die aktuelle Geschwindigkeit der Räder an das ABS-Steuergerät." },
-
-        // ==========================================
-        // KATEGORIE: KULTUR & FREMDSPRACHEN
-        // ==========================================
-        { id: 101, category: "sprachen", question: "Was bedeutet 'Seni seviyorum' auf Deutsch?", answers: ["Guten Appetit", "Ich liebe dich", "Gute Nacht", "Tschüss"], correct: 1, explanation: "💡 Das ist Türkisch für 'Ich liebe dich'!" },
-        { id: 102, category: "sprachen", question: "Was bedeutet 'Baba' auf Türkisch?", answers: ["Opa", "Onkel", "Vater", "Bruder"], correct: 2, explanation: "💡 'Baba' bedeutet 'Vater'." },
-        { id: 103, category: "sprachen", question: "Wie heißt 'Guten Morgen' auf Türkisch?", answers: ["Merhaba", "Günaydın", "İyi geceler", "Lütfen"], correct: 1, explanation: "💡 'Günaydın' bedeutet Guten Morgen!" },
-
-        // ==========================================
-        // KATEGORIE: RELIGION (ISLAM-WISSEN)
-        // ==========================================
-        { id: 201, category: "islam", question: "Wer ist der letzte Gesandte im Islam?", answers: ["Ibrahim", "Isa", "Musa", "Muhammad"], correct: 3, explanation: "💡 Prophet Muhammad (s.a.w.) gilt als das Siegel der Gesandten." },
-        { id: 202, category: "islam", question: "Wie viele Säulen hat der Islam?", answers: ["3 Säulen", "4 Säulen", "5 Säulen", "6 Säulen"], correct: 2, explanation: "💡 Der Islam basiert auf genau 5 Säulen." },
-        { id: 203, category: "islam", question: "Wie heißt der heilige Fastenmonat im Islam?", answers: ["Muharram", "Ramadan", "Schawwal", "Rajab"], correct: 1, explanation: "💡 Im Fastenmonat Ramadan verzichten Muslime von der Morgendämmerung bis zum Sonnenuntergang auf Essen und Trinken." }
-    ];
 
         // ==========================================
         // APP INITIALISIERUNG & ONLINE-SYNCHRONISATION
@@ -960,7 +837,7 @@
         }
 
         // ==========================================
-        // DYNAMISCHE UNTERKATEGORIEN (REPARIERT UND KATEGORISIERT)
+        // DYNAMISCHE UNTERKATEGORIEN 
         // ==========================================
         function updateSubCategories() {
             const mainCat = document.getElementById("main-category").value;
@@ -974,6 +851,9 @@
                 schule2: [
                     { value: "klasse2_mathe", text: "🧮 Mathematik" },
                     { value: "klasse2_deutsch", text: "📖 Deutsch & Märchen" }
+                ],
+                schule3: [
+                    { value: "klasse3_englisch", text: "🇬🇧 Das Übungsheft (Englisch 3)" }
                 ],
                 schule5: [
                     { value: "klasse5_englisch", text: "🇬🇧 Englisch-Training" }
@@ -1643,13 +1523,3 @@
 </body>
 
 </html>
-```
-eof
-
-### Behobene Punkte in v2.1.1:
-1. **Firebase-Konfiguration repariert:** Die vollständige `firebaseConfig` ist jetzt fest im Code integriert. Das Skript
-lädt und initialisiert fehlerfrei.
-2. **Klasse 1 hinzugefügt:** Es gibt nun die Hauptkategorie **Klasse 1** im Menü. Die Lektion *"Das Übungsheft (Deutsch
-1)"* ist hierfür perfekt verknüpft.
-3. **Alle Fragen zusammengeführt:** Ich habe alle deine alten Fragen aus der alten `questions.js` (zum Thema Märchen,
-Schule, Tiere, KFZ etc.) sowie die neu erstellten Übungsaufgaben nahtlos in der internen App-Datenbank zusammengeführt.

@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPlay Hub - Die universelle Lernplattform</title>
+
+    <!-- EXTERNE BIBLIOTHEKEN FÜR EFFEKTE & FIREBASE -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f1f5f9;
+        }
+
+        /* Schwebende 3D-Karten für den Vokabeltrainer */
+        .flip-card {
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+
+<body class="min-height-screen flex justify-center items-start overflow-x-hidden antialiased">
+
+    <!-- TOAST BENACHRICHTIGUNGEN -->
+    <div id="toast-container"
+        class="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 w-[90%] max-w-md pointer-events-none">
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div
+        class="w-full max-w-md min-h-screen bg-[#111827] shadow-2xl relative flex flex-col justify-between pb-24 border-x border-gray-800">
+
+        <main class="flex-grow p-4">
+            <!-- ========================================== -->
+            <!-- VIEW: LOGIN                                -->
+            <!-- ========================================== -->
+            <div id="view-login" class="view hidden">
+                <div class="text-center py-8">
+                    <h1
+                        class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 drop-shadow mb-1">
+                        EduPlay Hub 🎮</h1>
+                    <p class="text-gray-400 text-sm">Die universelle & spielerische Lernplattform</p>
+                </div>
+
+                <!-- PROFILAUSWAHL -->
+                <div class="bg-gray-800/50 border border-gray-700 p-5 rounded-2xl mb-4 hidden"
+                    id="existing-profiles-box">
+                    <h3 class="text-center font-bold text-yellow-400 mb-3 flex items-center justify-center gap-2">
+                        <span>👤 Profil auswählen</span>
+                    </h3>
+                    <div id="profile-grid" class="flex flex-wrap justify-center gap-3"></div>
+                </div>
+
+                <!-- NEUES PROFIL -->
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-lg font-bold text-emerald-400 text-center mb-4">Neues Profil erstellen ✍️</h3>
+                    <div class="space-y-3">
+                        <input type="text" id="username-input" placeholder="Dein Name..."
+                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium focus:border-blue-500 focus:outline-none transition-all"
+                            autocomplete="off">
+                        <input type="number" id="age-input" placeholder="Standard-Level (Klasse/Alter)..." min="1"
+                            max="99"
+                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium focus:border-blue-500 focus:outline-none transition-all">
+                        <button
+                            class="w-full p-3.5 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl font-bold text-white shadow-lg active:scale-95 transition-all"
+                            onclick="handleLogin()">Registrieren & Starten 🚀</button>
+                    </div>
+                </div>
+
+                <div class="text-center mt-6">
+                    <span
+                        class="bg-gray-800 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">v2.1.0
+                        Stable</span>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW: MENU (HOME, LEADERBOARD, ETC)        -->
+            <!-- ========================================== -->
+            <div id="view-menu" class="view hidden space-y-4">
+
+                <!-- SUB-PAGE: LERNEN (HOME) -->
+                <div id="subview-home" class="subview space-y-4">
+                    <!-- User Header Card -->
+                    <div
+                        class="bg-gradient-to-br from-blue-900/40 via-slate-900 to-slate-900 border border-blue-900/60 p-5 rounded-2xl flex items-center justify-between shadow-xl">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-16 h-16 bg-blue-950/60 rounded-full relative flex items-center justify-center border border-blue-500/30 shadow-inner overflow-visible">
+                                <div id="p-base" class="absolute text-4xl top-2.5">🧑</div>
+                                <div id="p-glasses" class="absolute text-2xl top-4"></div>
+                                <div id="p-hat" class="absolute text-3xl -top-3"></div>
+                            </div>
+                            <div>
+                                <h2 id="welcome-text" class="text-xl font-bold text-white">Lade...</h2>
+                                <span class="text-yellow-400 font-bold flex items-center gap-1 mt-0.5">🪙 <span
+                                        id="menu-coins">0</span> Coins</span>
+                            </div>
+                        </div>
+                        <button onclick="switchView('avatar')"
+                            class="bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-extrabold px-4 py-2.5 rounded-xl text-sm transition-all shadow-md">Shop
+                            🎨</button>
+                    </div>
+
+                    <!-- 1. MODUS WÄHLEN -->
+                    <div class="bg-gray-800/80 border border-gray-700 p-5 rounded-2xl">
+                        <div
+                            class="text-blue-400 font-bold text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                            🎮 1. Spielmodus</div>
+                        <select id="game-mode-select"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold focus:border-blue-500 focus:outline-none transition-all">
+                            <option value="spiel">🏆 Challenge-Modus (Punkte & Zeitdruck)</option>
+                            <option value="lernen">📖 Fokus-Lernmodus (Schatzkiste freischalten)</option>
+                        </select>
+                    </div>
+
+                    <!-- 2. THEMENBEREICH -->
+                    <div class="bg-gray-800/80 border border-gray-700 p-5 rounded-2xl space-y-3">
+                        <div
+                            class="text-blue-400 font-bold text-sm uppercase tracking-wider mb-1 flex items-center gap-2">
+                            🎒 2. Themen-Quiz</div>
+
+                        <div>
+                            <label class="text-xs text-gray-400 font-semibold mb-1 block">LERNBEREICH:</label>
+                            <select id="main-category" onchange="updateSubCategories()"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium focus:border-blue-500 focus:outline-none transition-all">
+                                <option value="schule2">🏫 Grundschule (Klasse 2)</option>
+                                <option value="schule5">🇬🇧 Weiterführende Schule (Klasse 5)</option>
+                                <option value="kfz">🔧 Berufsausbildung (KFZ-Technik)</option>
+                                <option value="allgemein">🕌 Kultur & Fremdsprachen</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="text-xs text-gray-400 font-semibold mb-1 block">FACHBEREICH / LEKTION:</label>
+                            <select id="sub-category"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium focus:border-blue-500 focus:outline-none transition-all"></select>
+                        </div>
+
+                        <button onclick="startQuiz()"
+                            class="w-full p-3.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl font-bold text-white shadow-lg active:scale-95 transition-all">Lektion
+                            starten! 🚀</button>
+                    </div>
+
+                    <!-- 3. VOKABELTRAINER TEASER -->
+                    <div
+                        class="bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-900 border border-indigo-900/60 p-5 rounded-2xl space-y-3">
+                        <div class="text-indigo-400 font-bold text-sm uppercase tracking-wider flex items-center gap-2">
+                            📖 3. Vokabel-Trainer</div>
+                        <p class="text-sm text-gray-300">Vertiefe spielerisch deinen Wortschatz in verschiedenen
+                            Sprachen mit Karteikarten, Quiz oder Schreibtrainer!</p>
+                        <button onclick="switchView('vokabeln')"
+                            class="w-full p-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl font-bold text-white transition-all shadow-md active:scale-95">Vokabeltrainer
+                            öffnen ➔</button>
+                    </div>
+                </div>
+
+                <!-- SUB-PAGE: LEADERBOARD -->
+                <div id="subview-leaderboard" class="subview space-y-4 hidden">
+                    <div class="bg-gray-800/80 border border-gray-700 p-5 rounded-2xl text-center">
+                        <h3 class="text-xl font-extrabold text-yellow-400 mb-1 flex items-center justify-center gap-2">
+                            🏆 Globale Rangliste 🏆</h3>
+                        <p class="text-sm text-gray-400 mb-4">Lerne fleißig und sichere dir deinen Platz an der Spitze!
+                        </p>
+                        <div id="leaderboard-list" class="space-y-2 text-left"></div>
+                    </div>
+                </div>
+
+                <!-- SUB-PAGE: WORKSHOP (TECH-LAB) -->
+                <div id="subview-workshop" class="subview space-y-4 hidden">
+                    <div class="bg-gray-800/80 border border-gray-700 p-5 rounded-2xl space-y-3">
+                        <h3 class="text-lg font-bold text-emerald-400 flex items-center gap-2">🔧 Tech-Lab: Formelstudio
+                        </h3>
+                        <p class="text-xs text-gray-400">Interaktive Rechenassistenten für technische & physikalische
+                            Formeln:</p>
+
+                        <select id="calc-type" onchange="toggleWorkshopInputs()"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium focus:border-blue-500 focus:outline-none transition-all">
+                            <option value="ohm">⚡ Ohmsches Gesetz (U = R * I)</option>
+                            <option value="resistor">🔌 Reihenschaltung von Widerständen</option>
+                        </select>
+
+                        <div id="inputs-ohm" class="space-y-2">
+                            <input type="number" id="input-u" placeholder="Spannung U (Volt) - Leerlassen falls gesucht"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                            <input type="number" id="input-r"
+                                placeholder="Widerstand R (Ohm) - Leerlassen falls gesucht"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                            <input type="number" id="input-i"
+                                placeholder="Stromstärke I (Ampere) - Leerlassen falls gesucht"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                        </div>
+
+                        <div id="inputs-resistor" class="space-y-2 hidden">
+                            <input type="number" id="input-r1" placeholder="Widerstand R1 (Ohm)"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                            <input type="number" id="input-r2" placeholder="Widerstand R2 (Ohm)"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                            <input type="number" id="input-r3" placeholder="Widerstand R3 (Ohm) - optional"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                        </div>
+
+                        <button onclick="calculateWorkshop()"
+                            class="w-full p-3 bg-emerald-600 hover:bg-emerald-500 rounded-xl font-bold text-white transition-all shadow-md">Berechnen
+                            🧮</button>
+                        <div id="workshop-result"
+                            class="p-4 bg-gray-900 border-l-4 border-emerald-500 rounded-xl hidden text-emerald-400 font-bold text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUB-PAGE: PARENT/ADMIN DASHBOARD -->
+                <div id="subview-parent" class="subview space-y-4 hidden">
+                    <div class="bg-gray-800/80 border border-gray-700 p-5 rounded-2xl">
+                        <h3 class="text-lg font-bold text-rose-400 mb-2 flex items-center gap-2">👨‍👩‍👦 Administration
+                            & Tutoren-Dashboard</h3>
+                        <p class="text-xs text-gray-400 mb-4">Kontrolliere Lernzeiten und verwalte Coins der Profile:
+                        </p>
+                        <div id="parent-stats-container" class="space-y-3">Lade Profile...</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW: QUIZ ARENA                           -->
+            <!-- ========================================== -->
+            <div id="view-quiz" class="view hidden space-y-4">
+                <!-- Learning Chest Progress Bar -->
+                <div id="learning-chest-bar"
+                    class="bg-gray-800 border-2 border-yellow-500 p-3 rounded-xl text-center font-bold text-white shadow-lg hidden">
+                    🎁 Fokuszeit bis zur Schatzkiste: <span id="chest-timer-display"
+                        class="text-yellow-400">15:00</span> Min
+                </div>
+
+                <div class="flex justify-between items-center bg-gray-850 p-2 rounded-xl">
+                    <button
+                        class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-4 py-2 rounded-lg transition-all"
+                        onclick="leaveQuiz()">Beenden 🏠</button>
+                    <span
+                        class="text-xl font-bold text-yellow-400 bg-gray-800 border border-blue-900 px-4 py-2 rounded-xl flex items-center gap-1 shadow-md">
+                        🪙 <span id="quiz-coins">0</span>
+                    </span>
+                </div>
+
+                <!-- Quiz Box -->
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-xl text-center space-y-4">
+                    <img id="question-image"
+                        class="max-w-full max-h-52 mx-auto rounded-xl object-contain shadow-md hidden" src=""
+                        alt="Quiz Bild">
+                    <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
+                    <div id="options-container" class="flex flex-col gap-2.5"></div>
+                    <div id="explanation-box"
+                        class="p-4 bg-slate-900 border-l-4 border-yellow-500 rounded-xl text-left text-sm text-gray-300 leading-relaxed hidden">
+                    </div>
+                    <button id="quiz-next-btn"
+                        class="w-full p-3.5 bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-extrabold rounded-xl text-lg shadow-lg hidden"
+                        onclick="nextQuestion()">Nächste Frage ➔</button>
+                </div>
+
+                <!-- Chest Overlay System (Standard alert bypass) -->
+                <div id="chest-overlay"
+                    class="fixed inset-0 bg-slate-950/95 z-[9999] flex-col items-center justify-center p-6 text-center hidden">
+                    <h1 class="text-yellow-400 text-3xl font-black mb-2 animate-bounce">🎉 15 MINUTEN GELERNT! 🎉</h1>
+                    <p class="text-gray-300 text-lg mb-8">Du warst extrem fleißig!</p>
+                    <div id="chest-emoji"
+                        class="text-9xl cursor-pointer hover:scale-115 transition-transform duration-200"
+                        onclick="openChest()">🎁</div>
+                    <p id="chest-instruction" class="text-yellow-400 font-extrabold mt-6">Klicke auf das Geschenk, um es
+                        zu öffnen!</p>
+
+                    <div id="reward-display" class="hidden space-y-4">
+                        <h2 class="text-2xl font-bold text-pink-500">Neues episches Item freigeschaltet!</h2>
+                        <div id="reward-emoji" class="text-8xl my-4">👑</div>
+                        <h3 id="reward-name" class="text-xl font-bold text-yellow-400">Goldene Krone</h3>
+                        <button onclick="closeChestAndContinue()"
+                            class="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-extrabold rounded-xl transition-all">Genial!
+                            Weiter ➔</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW: AVATAR STUDIO                        -->
+            <!-- ========================================== -->
+            <div id="view-avatar" class="view hidden space-y-4">
+                <h2 class="text-2xl font-black text-center text-blue-400">Avatar Studio 🎨</h2>
+
+                <!-- Live Preview -->
+                <div
+                    class="bg-gradient-to-b from-gray-800 to-gray-900 border border-blue-500/50 p-6 rounded-2xl text-center shadow-2xl relative">
+                    <div
+                        class="w-28 h-28 bg-slate-950 rounded-full mx-auto relative flex items-center justify-center border-2 border-blue-500 shadow-inner overflow-visible">
+                        <div id="shop-p-base" class="absolute text-6xl top-3.5">🧑</div>
+                        <div id="shop-p-glasses" class="absolute text-4xl top-6"></div>
+                        <div id="shop-p-hat" class="absolute text-5xl -top-5"></div>
+                    </div>
+                    <div class="text-yellow-400 font-bold text-lg mt-4">🪙 Deine Coins: <span id="shop-coins">0</span>
+                    </div>
+                </div>
+
+                <!-- Items -->
+                <div class="bg-gray-800 border border-gray-700 p-4 rounded-2xl space-y-4 max-h-[40vh] overflow-y-auto">
+                    <div
+                        class="text-blue-400 font-extrabold text-sm uppercase tracking-wider border-b border-gray-700 pb-1">
+                        🎩 Hüte & Kronen</div>
+                    <div id="hats-grid" class="grid grid-cols-2 gap-3"></div>
+
+                    <div
+                        class="text-blue-400 font-extrabold text-sm uppercase tracking-wider border-b border-gray-700 pb-1 mt-4">
+                        🕶️ Brillen & Masken</div>
+                    <div id="glasses-grid" class="grid grid-cols-2 gap-3"></div>
+                </div>
+
+                <button onclick="switchView('menu')"
+                    class="w-full p-3.5 bg-gray-700 hover:bg-gray-600 rounded-xl font-bold text-white transition-all">Zurück
+                    zum Hauptmenü 🔙</button>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW: VOKABEL-TRAINER                      -->
+            <!-- ========================================== -->
+            <div id="view-vokabeln" class="view hidden space-y-4">
+                <div class="flex justify-between items-center">
+                    <button class="bg-gray-750 border border-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                        onclick="switchView('menu')">🏠 Menü</button>
+                    <span class="text-yellow-400 font-bold text-lg">🪙 <span id="vokabel-coins">0</span></span>
+                </div>
+
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
+                    <h2 class="text-2xl font-black text-blue-400">Vokabel-Trainer 📖</h2>
+
+                    <!-- Lang Tab Selector -->
+                    <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
+                        <button id="lang-btn-en"
+                            class="flex-1 py-2.5 rounded-lg font-bold text-sm transition-all bg-blue-600 text-white shadow-md"
+                            onclick="setLanguage('en')">🇬🇧 Englisch</button>
+                        <button id="lang-btn-tr"
+                            class="flex-1 py-2.5 rounded-lg font-bold text-sm transition-all text-gray-400 hover:text-white"
+                            onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
+                    </div>
+
+                    <!-- Theme Category Dropdown -->
+                    <div class="text-left">
+                        <span class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1 block">Wähle ein
+                            Thema:</span>
+                        <select id="category-dropdown"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold"
+                            onchange="selectCategory(this.value)"></select>
+                    </div>
+
+                    <!-- Mode Tab Selector -->
+                    <div class="flex gap-1.5 bg-gray-900 p-1 rounded-xl">
+                        <button id="mode-btn-cards"
+                            class="flex-1 py-2 rounded-lg font-bold text-xs transition-all bg-blue-600 text-white"
+                            onclick="setMode('cards')">🎴 Karten</button>
+                        <button id="mode-btn-quiz"
+                            class="flex-1 py-2 rounded-lg font-bold text-xs transition-all text-gray-400"
+                            onclick="setMode('quiz')">🎯 Quiz</button>
+                        <button id="mode-btn-type"
+                            class="flex-1 py-2 rounded-lg font-bold text-xs transition-all text-gray-400"
+                            onclick="setMode('type')">⌨️ Tippen</button>
+                    </div>
+
+                    <!-- Live Practice Box -->
+                    <div id="vokabel-box" class="min-h-[220px] flex flex-col justify-center"></div>
+
+                    <div class="text-sm text-gray-400 font-bold">
+                        Vokabel <span id="current-index-display" class="text-blue-400">1</span> von <span
+                            id="total-display">0</span>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- ========================================== -->
+        <!-- NAVIGATION BAR (PERSISTENT NAV ON LOGGED)  -->
+        <!-- ========================================== -->
+        <nav id="main-bottom-nav" class="bottom-nav absolute bottom-0 left-0 right-0 hidden">
+            <button class="nav-item active" onclick="switchSubpage('home')"><span
+                    class="nav-icon">🏠</span>Lernen</button>
+            <button class="nav-item" onclick="switchSubpage('leaderboard')"><span
+                    class="nav-icon">🏆</span>Rangliste</button>
+            <button class="nav-item" onclick="switchSubpage('workshop')"><span
+                    class="nav-icon">🔧</span>Tech-Lab</button>
+            <button class="nav-item" onclick="switchSubpage('parent')"><span
+                    class="nav-icon">👨‍👩‍👦</span>Verwaltung</button>
+        </nav>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // ==========================================
+
+        // 1. AVATAR-SHOP DATENBANK
+        const AVATAR_DATABASE = {
+            hats: [
+                { id: "none_hat", label: "Kein Hut", price: 0, emoji: "" },
+                { id: "cap", label: "Basecap", price: 25, emoji: "🧢" },
+                { id: "cowboy", label: "Cowboyhut", price: 60, emoji: "🤠" },
+                { id: "chef", label: "Kochmütze", price: 75, emoji: "👨‍🍳" },
+                { id: "magician", label: "Zylinder", price: 120, emoji: "🎩" },
+                { id: "crown", label: "Goldene Krone", price: 200, emoji: "👑" }
+            ],
+            glasses: [
+                { id: "none_glasses", label: "Keine Brille", price: 0, emoji: "" },
+                { id: "nerd", label: "Nerdbrille", price: 20, emoji: "🤓" },
+                { id: "sun", label: "Sonnenbrille", price: 45, emoji: "😎" },
+                { id: "heart", label: "Herzbrille", price: 90, emoji: "❤️" },
+                { id: "monocle", label: "Monokel", price: 110, emoji: "🧐" }
+            ]
+        };
+
+        // 2. VOKABEL DATENBANK
+        const VOCABULARY_DATABASE = {
+            en: {
+                numbers: {
+                    label: "🔢 Zahlen (Numbers)",
+                    words: [
+                        { de: "Eins", foreign: "one" }, { de: "Zwei", foreign: "two" }, { de: "Drei", foreign: "three" },
+                        { de: "Vier", foreign: "four" }, { de: "Fünf", foreign: "five" }, { de: "Sechs", foreign: "six" },
+                        { de: "Sieben", foreign: "seven" }, { de: "Acht", foreign: "eight" }, { de: "Neun", foreign: "nine" },
+                        { de: "Zehn", foreign: "ten" }, { de: "Elf", foreign: "eleven" }, { de: "Zwölf", foreign: "twelve" }
+                    ]
+                },
+                colours: {
+                    label: "🎨 Farben (Colours)",
+                    words: [
+                        { de: "Schwarz", foreign: "black" }, { de: "Blau", foreign: "blue" }, { de: "Braun", foreign: "brown" },
+                        { de: "Grün", foreign: "green" }, { de: "Grau", foreign: "grey" }, { de: "Rot", foreign: "red" },
+                        { de: "Gelb", foreign: "yellow" }, { de: "Weiß", foreign: "white" }
+                    ]
+                },
+                school: {
+                    label: "🎒 Schule (School)",
+                    words: [
+                        { de: "Buch", foreign: "book" }, { de: "Tisch", foreign: "table" }, { de: "Stuhl", foreign: "chair" },
+                        { de: "Heft", foreign: "notebook" }, { de: "Bleistift", foreign: "pencil" }, { de: "Tafel", foreign: "board" }
+                    ]
+                }
+            },
+            tr: {
+                numbers: {
+                    label: "🔢 Sayılar (Zahlen)",
+                    words: [
+                        { de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" },
+                        { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }, { de: "Sechs", foreign: "altı" }
+                    ]
+                },
+                colours: {
+                    label: "🎨 Renkler (Farben)",
+                    words: [
+                        { de: "Schwarz", foreign: "siyah" }, { de: "Blau", foreign: "mavi" }, { de: "Grün", foreign: "yeşil" },
+                        { de: "Rot", foreign: "kırmızı" }, { de: "Gelb", foreign: "sarı" }, { de: "Weiß", foreign: "beyaz" }
+                    ]
+                }
+            }
+        };
+
+        // 3. FRAGEN- & QUIZ DATENBANK
+        const QUESTIONS_DATABASE = [
+            // Klasse 2 Mathe
+            { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: Rechne erst 20 + 10 = 30, dann 5 + 4 = 9. Zusammen ergibt das 39!" },
+            { id: 2002, category: "klasse2_mathe", question: "Rechne aus: Was ist 45 - 20?", answers: ["15", "25", "35", "45"], correct: 1, explanation: "💡 Ziehe 2 Zehner von den 4 Zehnern ab. Es bleibt 25!" },
+            { id: 2003, category: "klasse2_mathe", question: "Was ergibt die Malaufgabe 2 * 5?", answers: ["7", "8", "10", "12"], correct: 2, explanation: "💡 2 * 5 ist dasselbe wie 5 + 5 = 10." },
+            { id: 2004, category: "klasse2_mathe", question: "Was ist die Hälfte von 20?", answers: ["5", "10", "15", "20"], correct: 1, explanation: "💡 Wenn du 20 Murmeln an zwei Freunde verteilst, bekommt jeder 10!" },
+
+            // Klasse 2 Deutsch
+            { id: 2101, category: "klasse2_deutsch", question: "Welches Wort schreibt man mit 'ä' (Mehrzahl von Hand)?", answers: ["Hende", "Hände", "Hande", "Hähne"], correct: 1, explanation: "💡 Wenn das Wort in Einzahl ein 'a' hat (Hand), schreibt man die Mehrzahl fast immer mit 'ä'!" },
+            { id: 2102, category: "klasse2_deutsch", question: "Welches Wort ist ein Nomen (Namenwort)?", answers: ["laufen", "schön", "Das Haus", "schnell"], correct: 2, explanation: "💡 'Das Haus' ist ein Nomen. Nomen schreibt man groß!" },
+
+            // Klasse 5 Englisch
+            { id: 5001, category: "klasse5_englisch", question: "What is the correct answer to: 'Hello, what is your name?'", answers: ["I am ten years old.", "My name is Sarah.", "I am a boy.", "Fine, thanks."], correct: 1, explanation: "💡 Auf die Frage 'What is your name?' antwortet man mit 'My name is...'" },
+            { id: 5002, category: "klasse5_englisch", question: "Which number is 'fifteen'?", answers: ["5", "15", "50", "115"], correct: 1, explanation: "💡 'Fifteen' ist die 15. Verwechsle es nicht mit 50 ('fifty')!" },
+
+            // KFZ-Technik
+            { id: 8101, category: "kfz_lf1", question: "LF 1: Welche Flüssigkeit muss regelmäßig auf Frostschutz geprüft werden?", answers: ["Motoröl", "Kühlflüssigkeit", "Bremsflüssigkeit", "Getriebeöl"], correct: 1, explanation: "💡 Die Kühlflüssigkeit schützt den Motor vor dem Einfrieren und muss vor dem Winter geprüft werden." },
+            { id: 8102, category: "kfz_lf1", question: "LF 1: Wo liest man den korrekten Reifenfülldruck des Fahrzeugs ab?", answers: ["Auf der Reifenflanke", "Im Serviceheft", "An der B-Säule oder Tankklappe", "Gibt es nicht"], correct: 2, explanation: "💡 Der Reifenfülldruck steht auf einem Aufkleber im Einstieg (B-Säule) oder der Tankklappe." },
+
+            // Kultur & Sprachen
+            { id: 101, category: "sprachen", question: "Was bedeutet 'Seni seviyorum' auf Deutsch?", answers: ["Guten Appetit", "Ich liebe dich", "Gute Nacht", "Tschüss"], correct: 1, explanation: "💡 Das ist Türkisch für 'Ich liebe dich'!" },
+            { id: 102, category: "sprachen", question: "Was bedeutet 'Baba' auf Türkisch?", answers: ["Opa", "Onkel", "Vater", "Bruder"], correct: 2, explanation: "💡 'Baba' bedeutet 'Vater'." },
+
+            // Religion / Islam
+            { id: 201, category: "islam", question: "Wer ist der letzte Gesandte im Islam?", answers: ["Ibrahim", "Isa", "Musa", "Muhammad"], correct: 3, explanation: "💡 Prophet Muhammad (s.a.w.) gilt als der letzte Gesandte." },
+            { id: 202, category: "islam", question: "Wie viele Säulen hat der Islam?", answers: ["3 Säulen", "4 Säulen", "5 Säulen", "6 Säulen"], correct: 2, explanation: "💡 Der Islam basiert auf genau 5 Säulen." }
+        ];
+
+        // ==========================================
+        // ==========================================
+        let useFirebase = false;
+        let db = null;
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.database();
+            useFirebase = true;
+        } catch (e) {
+            console.warn("Verbindung zum Online-Daten-Server fehlgeschlagen. Lokale Sicherung aktiv.", e);
+        }
+
+        // Local DB Helper
+        function getLocalPlayers() {
+            return JSON.parse(localStorage.getItem("eduplay_players") || "{}");
+        }
+
+        function saveLocalPlayers(players) {
+            localStorage.setItem("eduplay_players", JSON.stringify(players));
+        }
+
+        // ==========================================
+        // ==========================================
+        let activePlayerName = "";
+        let currentPlayer = null;
+
+        function switchView(viewId) {
+            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+            document.getElementById(`view-${viewId}`).classList.remove('hidden');
+
+            const bottomNav = document.getElementById("main-bottom-nav");
+            if (viewId === "menu") {
+                bottomNav.classList.remove('hidden');
+                bottomNav.classList.add('flex');
+            } else {
+                bottomNav.classList.add('hidden');
+                bottomNav.classList.remove('flex');
+            }
+
+            if (viewId === "avatar") loadShopUI();
+            if (viewId === "vokabeln") loadVocabSystem();
+        }
+
+        function switchSubpage(subId) {
+            document.querySelectorAll('.subview').forEach(s => s.classList.add('hidden'));
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('text-blue-500'));
+
+            document.getElementById(`subview-${subId}`).classList.remove('hidden');
+
+            // Highlighting active nav item
+            const navButtons = document.querySelectorAll('.nav-item');
+            navButtons.forEach(btn => {
+                if (btn.innerText.toLowerCase().includes(subId === 'home' ? 'lernen' : subId === 'parent' ? 'verwaltung' : subId === 'workshop' ? 'tech-lab' : 'rangliste')) {
+                    btn.classList.add('active');
+                    btn.classList.add('text-blue-500');
+                }
+            });
+        }
+
+        // ==========================================
+        // ==========================================
+        function showToast(message, type = "success") {
+            const container = document.getElementById("toast-container");
+            const toast = document.createElement("div");
+            toast.className = `p-4 rounded-xl shadow-xl font-bold border-l-4 pointer-events-auto transition-all bg-gray-800 text-white flex justify-between items-center ${type === 'success' ? 'border-emerald-500 text-emerald-400' : 'border-rose-500 text-rose-400'
+                }`;
+            toast.innerHTML = `<span>${message}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        // ==========================================
+        // ==========================================
+        function initApp() {
+            loadProfilesList();
+            updateSubCategories();
+            switchView("login");
+        }
+
+        function loadProfilesList() {
+            if (useFirebase) {
+                db.ref("players").on("value", (snapshot) => {
+                    renderProfileGrid(snapshot.val() || {});
+                });
+            } else {
+                renderProfileGrid(getLocalPlayers());
+            }
+        }
+
+        function renderProfileGrid(players) {
+            const grid = document.getElementById("profile-grid");
+            const existingProfilesBox = document.getElementById("existing-profiles-box");
+            grid.innerHTML = "";
+
+            const keys = Object.keys(players).filter(k => k !== "admin");
+            if (keys.length > 0) {
+                existingProfilesBox.classList.remove('hidden');
+                keys.forEach(key => {
+                    const p = players[key];
+                    const card = document.createElement("div");
+                    card.className = "bg-gray-900 border-2 border-blue-900/40 p-3 w-24 rounded-xl text-center cursor-pointer hover:scale-105 active:scale-95 transition-all";
+                    card.onclick = () => loginAs(p.name);
+
+                    let base = p.avatar?.base || "🧑";
+                    let hat = p.avatar?.hat || "";
+                    let glasses = p.avatar?.glasses || "";
+
+                    card.innerHTML = `
+                    <div class="relative w-12 h-12 bg-slate-800 rounded-full mx-auto flex items-center justify-center border border-gray-700">
+                        <span class="absolute text-2xl top-1.5">${base}</span>
+                        <span class="absolute text-sm top-2.5">${glasses}</span>
+                        <span class="absolute text-lg -top-2">${hat}</span>
+                    </div>
+                    <div class="font-bold text-xs mt-2 text-white truncate">${p.name}</div>
+                    <div class="text-[10px] text-yellow-400 font-bold">🪙 ${p.coins || 0}</div>
+                `;
+                    grid.appendChild(card);
+                });
+            } else {
+                existingProfilesBox.classList.add('hidden');
+            }
+        }
+
+        function loginAs(name) {
+            activePlayerName = name;
+            sessionStorage.setItem("current_quiz_player", name);
+
+            if (useFirebase) {
+                db.ref("players/" + name.toLowerCase()).on("value", (snapshot) => {
+                    currentPlayer = snapshot.val();
+                    updateDashboardUI();
+                });
+            } else {
+                const players = getLocalPlayers();
+                currentPlayer = players[name.toLowerCase()];
+                updateDashboardUI();
+            }
+
+            switchView("menu");
+            switchSubpage("home");
+            showToast(`Willkommen zurück, ${name}!`);
+        }
+
+        function handleLogin() {
+            const nameInput = document.getElementById("username-input");
+            const ageInput = document.getElementById("age-input");
+            const name = nameInput.value.trim();
+            const age = parseInt(ageInput.value);
+
+            if (!name) { showToast("Bitte trag einen Namen ein!", "error"); return; }
+            if (!age || age < 1) { showToast("Bitte trag eine gültige Zahl für dein Alter ein!", "error"); return; }
+
+            const key = name.toLowerCase();
+
+            const setupNewPlayer = (existingPlayer) => {
+                if (!existingPlayer) {
+                    const newPlayer = {
+                        name: name,
+                        age: age,
+                        coins: 0,
+                        rankPoints: 0,
+                        avatar: { base: "🧑", hat: "", glasses: "" },
+                        unlockedHats: ["none_hat"],
+                        unlockedGlasses: ["none_glasses"],
+                        learningProgress: 0
+                    };
+                    if (useFirebase) {
+                        db.ref("players/" + key).set(newPlayer, () => loginAs(name));
+                    } else {
+                        const players = getLocalPlayers();
+                        players[key] = newPlayer;
+                        saveLocalPlayers(players);
+                        loginAs(name);
+                    }
+                } else {
+                    loginAs(name);
+                }
+            };
+
+            if (useFirebase) {
+                db.ref("players/" + key).once("value", (snap) => {
+                    setupNewPlayer(snap.val());
+                });
+            } else {
+                setupNewPlayer(getLocalPlayers()[key]);
+            }
+        }
+
+        // ==========================================
+        // ==========================================
+        function updateDashboardUI() {
+            if (!currentPlayer) return;
+
+            document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
+            document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
+            document.getElementById("vokabel-coins").innerText = currentPlayer.coins || 0;
+            document.getElementById("quiz-coins").innerText = currentPlayer.coins || 0;
+
+            // Sync main page avatar preview
+            document.getElementById("p-base").innerText = currentPlayer.avatar?.base || "🧑";
+            document.getElementById("p-glasses").innerText = currentPlayer.avatar?.glasses || "";
+            document.getElementById("p-hat").innerText = currentPlayer.avatar?.hat || "";
+
+            loadLeaderboard();
+            loadParentDashboard();
+        }
+
+        function updateSubCategories() {
+            const mainCat = document.getElementById("main-category").value;
+            const subSelect = document.getElementById("sub-category");
+            subSelect.innerHTML = "";
+
+            const map = {
+                schule2: [
+                    { value: "klasse2_mathe", text: "🧮 Mathematik" },
+                    { value: "klasse2_deutsch", text: "📖 Deutsch & Märchen" }
+                ],
+                schule5: [
+                    { value: "klasse5_englisch", text: "🇬🇧 Englisch-Training" }
+                ],
+                kfz: [
+                    { value: "kfz_lf1", text: "🔧 LF 1: Wartung & Pflege" }
+                ],
+                allgemein: [
+                    { value: "sprachen", text: "🗣️ Sprachen lernen" },
+                    { value: "islam", text: "🕌 Islam-Wissen" }
+                ]
+            };
+
+            const subs = map[mainCat] || [];
+            subs.forEach(sub => {
+                const count = QUESTIONS_DATABASE.filter(q => q.category === sub.value).length;
+                const opt = document.createElement("option");
+                opt.value = sub.value;
+                opt.innerText = `${sub.text} (${count} Fragen)`;
+                subSelect.appendChild(opt);
+            });
+        }
+
+        // ==========================================
+        // ==========================================
+        function loadLeaderboard() {
+            const processList = (players) => {
+                const container = document.getElementById("leaderboard-list");
+                container.innerHTML = "";
+                let playersArray = [];
+
+                Object.keys(players).forEach(key => {
+                    let p = players[key];
+                    if (p.name && p.name.toLowerCase() !== "admin") playersArray.push(p);
+                });
+
+                playersArray.sort((a, b) => (b.rankPoints || 0) - (a.rankPoints || 0));
+
+                const medals = ["🥇", "🥈", "🥉"];
+                playersArray.forEach((player, index) => {
+                    let rankBadge = medals[index] || `#${index + 1}`;
+                    let row = document.createElement("div");
+                    row.className = "flex justify-between items-center p-3 bg-gray-900 border border-gray-800 rounded-xl font-bold";
+
+                    let base = player.avatar?.base || "🧑";
+                    let hat = player.avatar?.hat || "";
+                    let glasses = player.avatar?.glasses || "";
+
+                    row.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="text-lg w-6">${rankBadge}</span>
+                        <div class="relative w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center">
+                            <span class="absolute text-xl top-1.5">${base}</span>
+                            <span class="absolute text-xs top-2">${glasses}</span>
+                            <span class="absolute text-sm -top-1.5">${hat}</span>
+                        </div>
+                        <span class="text-sm">${player.name}</span>
+                    </div>
+                    <span class="text-yellow-400">⭐ ${player.rankPoints || 0} Pkt.</span>
+                `;
+                    container.appendChild(row);
+                });
+            };
+
+            if (useFirebase) {
+                db.ref("players").once("value", (snap) => {
+                    processList(snap.val() || {});
+                });
+            } else {
+                processList(getLocalPlayers());
+            }
+        }
+
+        // ==========================================
+        // ==========================================
+        function loadParentDashboard() {
+            const processDash = (players) => {
+                const container = document.getElementById("parent-stats-container");
+                container.innerHTML = "";
+
+                Object.keys(players).forEach(key => {
+                    let p = players[key];
+                    if (p.name && p.name.toLowerCase() !== "admin") {
+                        let mins = Math.floor((p.learningProgress || 0) / 60);
+                        let row = document.createElement("div");
+                        row.className = "bg-gray-900 border border-gray-700 p-4 rounded-xl flex flex-col gap-3";
+
+                        row.innerHTML = `
+                        <div class="flex justify-between font-bold">
+                            <span class="text-blue-400">👤 ${p.name}</span>
+                            <span class="text-xs text-gray-500">Alter/Lvl: ${p.age || 'Unbekannt'}</span>
+                        </div>
+                        <div class="text-xs text-gray-300 space-y-1">
+                            <div>Münzen: <span class="text-yellow-400 font-bold">${p.coins || 0} Coins</span></div>
+                            <div>Lernleistung: <span class="text-emerald-400 font-bold">${mins} Min. Lernzeit</span></div>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <input type="number" id="adjust-amount-${key}" placeholder="Wert..." class="w-20 p-2 text-xs bg-gray-800 border border-gray-700 rounded-lg text-white">
+                            <button class="flex-1 py-2 text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition-all" onclick="changePlayerCoins('${key}', 1)">+ Coins</button>
+                            <button class="flex-1 py-2 text-xs bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-lg transition-all" onclick="changePlayerCoins('${key}', -1)">- Coins</button>
+                        </div>
+                    `;
+                        container.appendChild(row);
+                    }
+                });
+            };
+
+            if (useFirebase) {
+                db.ref("players").once("value", (snap) => {
+                    processDash(snap.val() || {});
+                });
+            } else {
+                processDash(getLocalPlayers());
+            }
+        }
+
+        function changePlayerCoins(playerKey, sign) {
+            const input = document.getElementById(`adjust-amount-${playerKey}`);
+            const amount = parseInt(input.value);
+            if (isNaN(amount) || amount <= 0) {
+                showToast("Gib einen gültigen, positiven Zahlenwert ein!", "error");
+                return;
+            }
+
+            const change = amount * sign;
+
+            if (useFirebase) {
+                db.ref(`players/${playerKey}/coins`).transaction((currentCoins) => {
+                    return (currentCoins || 0) + change;
+                }, (error) => {
+                    if (!error) {
+                        showToast(`Münzkonto angepasst um ${change > 0 ? '+' : ''}${change}!`);
+                        input.value = "";
+                    }
+                });
+            } else {
+                const players = getLocalPlayers();
+                if (players[playerKey]) {
+                    players[playerKey].coins = (players[playerKey].coins || 0) + change;
+                    saveLocalPlayers(players);
+                    showToast(`Münzkonto angepasst um ${change > 0 ? '+' : ''}${change}!`);
+                    input.value = "";
+                    loginAs(activePlayerName);
+                }
+            }
+        }
+
+        // ==========================================
+        // ==========================================
+        function toggleWorkshopInputs() {
+            const type = document.getElementById("calc-type").value;
+            document.getElementById("inputs-ohm").classList.toggle('hidden', type !== 'ohm');
+            document.getElementById("inputs-resistor").classList.toggle('hidden', type !== 'resistor');
+        }
+
+        function calculateWorkshop() {
+            const type = document.getElementById("calc-type").value;
+            const resBox = document.getElementById("workshop-result");
+            resBox.classList.remove('hidden');
+
+            if (type === 'ohm') {
+                let u = parseFloat(document.getElementById("input-u").value);
+                let r = parseFloat(document.getElementById("input-r").value);
+                let i = parseFloat(document.getElementById("input-i").value);
+
+                if (!isNaN(r) && !isNaN(i) && isNaN(u)) {
+                    resBox.innerHTML = `Gesucht: Spannung U<br>Formel: U = R * I<br>Ergebnis: <strong>${(r * i).toFixed(2)} Volt ⚡</strong>`;
+                } else if (!isNaN(u) && !isNaN(i) && isNaN(r)) {
+                    resBox.innerHTML = `Gesucht: Widerstand R<br>Formel: R = U / I<br>Ergebnis: <strong>${(u / i).toFixed(2)} Ohm 🔌</strong>`;
+                } else if (!isNaN(u) && !isNaN(r) && isNaN(i)) {
+                    resBox.innerHTML = `Gesucht: Stromstärke I<br>Formel: I = U / R<br>Ergebnis: <strong>${(u / r).toFixed(2)} Ampere ⚙️</strong>`;
+                } else {
+                    resBox.innerHTML = "<span class='text-rose-400'>❌ Fehler: Lass genau ein Feld leer, um diesen Wert zu berechnen!</span>";
+                }
+            } else if (type === 'resistor') {
+                let r1 = parseFloat(document.getElementById("input-r1").value);
+                let r2 = parseFloat(document.getElementById("input-r2").value);
+                let r3 = parseFloat(document.getElementById("input-r3").value);
+
+                if (isNaN(r1) || isNaN(r2)) {
+                    resBox.innerHTML = "<span class='text-rose-400'>❌ Fehler: R1 und R2 müssen eingetragen sein!</span>";
+                } else {
+                    let sum = r1 + r2;
+                    if (!isNaN(r3)) sum += r3;
+                    resBox.innerHTML = `Gesucht: Gesamtwiderstand R_ges<br>Formel: R_ges = R1 + R2 + R3<br>Ergebnis: <strong>${sum.toFixed(2)} Ohm 🔌</strong>`;
+                }
+            }
+        }
+
+        // ==========================================
+        // ==========================================
+        let quizQuestions = [];
+        let quizIndex = 0;
+        let quizAnswered = false;
+        let learningSeconds = 0;
+        let learningInterval = null;
+
+        function startQuiz() {
+            const category = document.getElementById("sub-category").value;
+            const mode = document.getElementById("game-mode-select").value;
+
+            // Load filtered questions from modular Questions Database
+            quizQuestions = QUESTIONS_DATABASE.filter(q => q.category === category);
+            if (quizQuestions.length === 0) {
+                showToast("Keine Fragen in dieser Kategorie eingepflegt!", "error");
+                return;
+            }
+
+            quizQuestions.sort(() => Math.random() - 0.5);
+            quizIndex = 0;
+
+            switchView("quiz");
+            showQuizQuestion();
+
+            if (mode === "lernen" && activePlayerName) {
+                startQuizLearningTimer();
+            } else {
+                document.getElementById("learning-chest-bar").classList.add('hidden');
+            }
+        }
+
+        function showQuizQuestion() {
+            quizAnswered = false;
+            document.getElementById("quiz-next-btn").classList.add('hidden');
+            document.getElementById("explanation-box").classList.add('hidden');
+
+            let q = quizQuestions[quizIndex];
+            document.getElementById("question-text").innerText = q.question;
+
+            const imgEl = document.getElementById("question-image");
+            if (q.image && q.image.trim() !== "") {
+                imgEl.src = q.image;
+                imgEl.classList.remove('hidden');
+            } else {
+                imgEl.classList.add('hidden');
+            }
+
+            const container = document.getElementById("options-container");
+            container.innerHTML = "";
+
+            q.answers.forEach((ans, idx) => {
+                let btn = document.createElement("button");
+                btn.innerText = ans;
+                btn.className = "option-btn w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold transition-all text-sm";
+                btn.onclick = () => handleQuizAnswer(btn, idx, q.correct, q.explanation);
+                container.appendChild(btn);
+            });
+        }
+
+        function handleQuizAnswer(clickedBtn, selectedIdx, correctIdx, explanationText) {
+            if (quizAnswered) return;
+            quizAnswered = true;
+
+            let isCorrect = (selectedIdx === correctIdx);
+            let buttons = document.querySelectorAll("#options-container button");
+
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                btn.classList.add('opacity-40');
+                if (idx === correctIdx) {
+                    btn.className = "option-btn w-full p-4 bg-emerald-600 border border-yellow-400 rounded-xl text-white font-bold text-sm shadow-lg";
+                    btn.classList.remove('opacity-40');
+                }
+            });
+
+            if (isCorrect) {
+                if (activePlayerName) {
+                    let age = currentPlayer?.age || 10;
+                    let multiplier = age < 8 ? 5 : (age <= 10 ? 3 : 1);
+                    addPlayerCoinsAndPoints(10, 1 * multiplier);
+                }
+                confetti({ particleCount: 30, spread: 50 });
+                setTimeout(nextQuestion, 1500);
+            } else {
+                clickedBtn.className = "option-btn w-full p-4 bg-rose-600 border border-rose-500 rounded-xl text-white font-bold text-sm";
+                clickedBtn.classList.remove('opacity-40');
+
+                let expBox = document.getElementById("explanation-box");
+                expBox.innerHTML = explanationText || "💡 Tipp: Gehe die Aufgabe noch einmal aufmerksam durch!";
+                expBox.classList.remove('hidden');
+                document.getElementById("quiz-next-btn").classList.remove('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            quizIndex = (quizIndex + 1) % quizQuestions.length;
+            showQuizQuestion();
+        }
+
+        function addPlayerCoinsAndPoints(coins, points) {
+            if (useFirebase) {
+                db.ref("players/" + activePlayerName.toLowerCase()).transaction((p) => {
+                    if (p) {
+                        p.coins = (p.coins || 0) + coins;
+                        p.rankPoints = (p.rankPoints || 0) + points;
+                    }
+                    return p;
+                });
+            } else {
+                const players = getLocalPlayers();
+                if (players[activePlayerName.toLowerCase()]) {
+                    players[activePlayerName.toLowerCase()].coins = (players[activePlayerName.toLowerCase()].coins || 0) + coins;
+                    players[activePlayerName.toLowerCase()].rankPoints = (players[activePlayerName.toLowerCase()].rankPoints || 0) + points;
+                    saveLocalPlayers(players);
+                    currentPlayer = players[activePlayerName.toLowerCase()];
+                    updateDashboardUI();
+                }
+            }
+        }
+
+        function startQuizLearningTimer() {
+            document.getElementById("learning-chest-bar").classList.remove('hidden');
+            learningSeconds = currentPlayer ? currentPlayer.learningProgress || 0 : 0;
+            updateChestTimerDisplay();
+
+            if (learningInterval) clearInterval(learningInterval);
+            learningInterval = setInterval(() => {
+                learningSeconds++;
+                updateChestTimerDisplay();
+
+                if (learningSeconds % 10 === 0) {
+                    if (useFirebase) {
+                        db.ref("players/" + activePlayerName.toLowerCase() + "/learningProgress").set(learningSeconds);
+                    } else {
+                        const players = getLocalPlayers();
+                        if (players[activePlayerName.toLowerCase()]) {
+                            players[activePlayerName.toLowerCase()].learningProgress = learningSeconds;
+                            saveLocalPlayers(players);
+                        }
+                    }
+                }
+
+                if (learningSeconds >= 900) { // 15 Min
+                    clearInterval(learningInterval);
+                    document.getElementById("chest-overlay").classList.remove('hidden');
+                    document.getElementById("chest-overlay").classList.add('flex');
+                }
+            }, 1000);
+        }
+
+        function updateChestTimerDisplay() {
+            let remaining = Math.max(0, 900 - learningSeconds);
+            let mins = Math.floor(remaining / 60);
+            let secs = remaining % 60;
+            document.getElementById("chest-timer-display").innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        function openChest() {
+            // Unlock an epic hat from shop hats
+            const prizes = AVATAR_DATABASE.hats.filter(h => h.id !== "none_hat");
+            const prize = prizes[Math.floor(Math.random() * prizes.length)];
+
+            const awardPrize = () => {
+                if (!currentPlayer.unlockedHats) currentPlayer.unlockedHats = [];
+                if (!currentPlayer.unlockedHats.includes(prize.id)) {
+                    currentPlayer.unlockedHats.push(prize.id);
+                }
+                if (!currentPlayer.avatar) currentPlayer.avatar = {};
+                currentPlayer.avatar.hat = prize.emoji;
+                currentPlayer.learningProgress = 0;
+
+                if (useFirebase) {
+                    db.ref("players/" + activePlayerName.toLowerCase()).set(currentPlayer);
+                } else {
+                    const players = getLocalPlayers();
+                    players[activePlayerName.toLowerCase()] = currentPlayer;
+                    saveLocalPlayers(players);
+                }
+                updateDashboardUI();
+            };
+
+            awardPrize();
+
+            document.getElementById("chest-emoji").classList.add('hidden');
+            document.getElementById("chest-instruction").classList.add('hidden');
+            document.getElementById("reward-emoji").innerText = prize.emoji;
+            document.getElementById("reward-name").innerText = prize.label;
+            document.getElementById("reward-display").classList.remove('hidden');
+            confetti({ particleCount: 100, spread: 70 });
+        }
+
+        function closeChestAndContinue() {
+            document.getElementById("chest-overlay").classList.add('hidden');
+            document.getElementById("chest-overlay").classList.remove('flex');
+            document.getElementById("chest-emoji").classList.remove('hidden');
+            document.getElementById("chest-instruction").classList.remove('hidden');
+            document.getElementById("reward-display").classList.add('hidden');
+            learningSeconds = 0;
+            startQuizLearningTimer();
+        }
+
+        function leaveQuiz() {
+            if (learningInterval) clearInterval(learningInterval);
+            switchView("menu");
+        }
+
+        // ==========================================
+        // ==========================================
+        function loadShopUI() {
+            if (!currentPlayer) return;
+            document.getElementById("shop-coins").innerText = currentPlayer.coins || 0;
+
+            document.getElementById("shop-p-base").innerText = currentPlayer.avatar?.base || "🧑";
+            document.getElementById("shop-p-glasses").innerText = currentPlayer.avatar?.glasses || "";
+            document.getElementById("shop-p-hat").innerText = currentPlayer.avatar?.hat || "";
+
+            renderShopGrid("hats-grid", AVATAR_DATABASE.hats, 'hat', currentPlayer.unlockedHats || ["none_hat"]);
+            renderShopGrid("glasses-grid", AVATAR_DATABASE.glasses, 'glasses', currentPlayer.unlockedGlasses || ["none_glasses"]);
+        }
+
+        function renderShopGrid(containerId, list, type, unlocked) {
+            const grid = document.getElementById(containerId);
+            grid.innerHTML = "";
+
+            list.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "bg-gray-900 border border-gray-700 rounded-xl p-3 cursor-pointer flex flex-col items-center justify-between hover:border-blue-500 transition-all";
+
+                const equipped = currentPlayer.avatar ? currentPlayer.avatar[type] || "" : "";
+                const isEquipped = (equipped === item.emoji && item.id !== "none_hat" && item.id !== "none_glasses") ||
+                    (item.id === 'none_hat' && equipped === '') ||
+                    (item.id === 'none_glasses' && equipped === '');
+
+                const isUnlocked = unlocked.includes(item.id);
+
+                let statusHtml = "";
+                if (isEquipped) {
+                    statusHtml = `<div class="w-full text-xs font-bold py-1.5 rounded bg-emerald-600 text-white mt-2">Aktiv ✅</div>`;
+                } else if (isUnlocked) {
+                    statusHtml = `<div class="w-full text-xs font-bold py-1.5 rounded bg-blue-900/60 text-blue-300 mt-2">Auswählen</div>`;
+                } else {
+                    statusHtml = `<div class="w-full text-xs font-bold py-1.5 rounded border border-yellow-500/50 text-yellow-400 bg-yellow-500/10 mt-2">🪙 ${item.price}</div>`;
+                }
+
+                card.innerHTML = `
+                <div class="text-3xl">${item.emoji || "🧑"}</div>
+                <div class="text-xs font-bold text-gray-200 mt-1 truncate max-w-full text-center">${item.label}</div>
+                ${statusHtml}
+            `;
+
+                card.onclick = () => {
+                    if (isUnlocked) equipShopItem(type, item.emoji);
+                    else buyShopItem(type, item);
+                };
+
+                grid.appendChild(card);
+            });
+        }
+
+        function buyShopItem(type, item) {
+            if ((currentPlayer.coins || 0) < item.price) {
+                showToast("Nicht genügend Münzen vorhanden!", "error");
+                return;
+            }
+
+            currentPlayer.coins -= item.price;
+            if (type === 'hat') {
+                if (!currentPlayer.unlockedHats) currentPlayer.unlockedHats = [];
+                currentPlayer.unlockedHats.push(item.id);
+            } else {
+                if (!currentPlayer.unlockedGlasses) currentPlayer.unlockedGlasses = [];
+                currentPlayer.unlockedGlasses.push(item.id);
+            }
+
+            if (!currentPlayer.avatar) currentPlayer.avatar = {};
+            currentPlayer.avatar[type] = item.emoji;
+
+            if (useFirebase) {
+                db.ref("players/" + activePlayerName.toLowerCase()).set(currentPlayer, () => loadShopUI());
+            } else {
+                const players = getLocalPlayers();
+                players[activePlayerName.toLowerCase()] = currentPlayer;
+                saveLocalPlayers(players);
+                loadShopUI();
+            }
+
+            confetti({ particleCount: 30, spread: 50 });
+            showToast(`${item.label} erfolgreich erworben!`);
+        }
+
+        function equipShopItem(type, emoji) {
+            if (!currentPlayer.avatar) currentPlayer.avatar = {};
+            currentPlayer.avatar[type] = emoji;
+
+            if (useFirebase) {
+                db.ref("players/" + activePlayerName.toLowerCase() + "/avatar/" + type).set(emoji, () => loadShopUI());
+            } else {
+                const players = getLocalPlayers();
+                if (players[activePlayerName.toLowerCase()]) {
+                    players[activePlayerName.toLowerCase()].avatar[type] = emoji;
+                    saveLocalPlayers(players);
+                    currentPlayer = players[activePlayerName.toLowerCase()];
+                    loadShopUI();
+                }
+            }
+        }
+
+        // ==========================================
+        // ==========================================
+        let activeLang = 'en';
+        let activeCategory = 'numbers';
+        let activeMode = 'cards';
+        let vIndex = 0;
+        let vOptions = [];
+
+        function loadVocabSystem() {
+            populateVocabCategories();
+            showVocabQuestion();
+        }
+
+        function populateVocabCategories() {
+            const dropdown = document.getElementById("category-dropdown");
+            dropdown.innerHTML = "";
+
+            const cats = VOCABULARY_DATABASE[activeLang];
+            Object.keys(cats).forEach(key => {
+                const opt = document.createElement("option");
+                opt.value = key;
+                opt.innerText = cats[key].label;
+                dropdown.appendChild(opt);
+            });
+            activeCategory = dropdown.value || "numbers";
+        }
+
+        function setLanguage(lang) {
+            activeLang = lang;
+            document.getElementById("lang-btn-en").className = `flex-1 py-2.5 rounded-lg font-bold text-sm transition-all ${lang === 'en' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`;
+            document.getElementById("lang-btn-tr").className = `flex-1 py-2.5 rounded-lg font-bold text-sm transition-all ${lang === 'tr' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`;
+            populateVocabCategories();
+            vIndex = 0;
+            showVocabQuestion();
+        }
+
+        function selectCategory(cat) {
+            activeCategory = cat;
+            vIndex = 0;
+            showVocabQuestion();
+        }
+
+        function setMode(mode) {
+            activeMode = mode;
+            document.getElementById("mode-btn-cards").className = `flex-1 py-2 rounded-lg font-bold text-xs transition-all ${mode === 'cards' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
+            document.getElementById("mode-btn-quiz").className = `flex-1 py-2 rounded-lg font-bold text-xs transition-all ${mode === 'quiz' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
+            document.getElementById("mode-btn-type").className = `flex-1 py-2 rounded-lg font-bold text-xs transition-all ${mode === 'type' ? 'bg-blue-600 text-white' : 'text-gray-400'}`;
+            showVocabQuestion();
+        }
+
+        function showVocabQuestion() {
+            const activeCatData = VOCABULARY_DATABASE[activeLang][activeCategory];
+            const vocabList = activeCatData ? activeCatData.words : [];
+
+            document.getElementById("total-display").innerText = vocabList.length;
+            document.getElementById("current-index-display").innerText = vocabList.length > 0 ? vIndex + 1 : 0;
+
+            const box = document.getElementById("vokabel-box");
+            box.innerHTML = "";
+
+            if (vocabList.length === 0) return;
+            const currentItem = vocabList[vIndex];
+
+            if (activeMode === 'cards') {
+                box.innerHTML = `
+                <div class="flip-card w-full h-52 relative cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner w-full h-full relative duration-500">
+                        <div class="flip-card-front absolute inset-0 bg-blue-900 border-2 border-blue-500 rounded-2xl flex flex-col items-center justify-center p-4">
+                            <span class="text-xs uppercase font-extrabold tracking-wider text-blue-300">Deutsch</span>
+                            <div class="text-3xl font-black text-white mt-2">${currentItem.de}</div>
+                            <span class="text-xs text-blue-400 mt-6 font-semibold animate-pulse">Umdrehen 🔄</span>
+                        </div>
+                        <div class="flip-card-back absolute inset-0 bg-pink-900 border-2 border-pink-500 rounded-2xl flex flex-col items-center justify-center p-4">
+                            <span class="text-xs uppercase font-extrabold tracking-wider text-pink-300">${activeLang === 'en' ? 'Englisch' : 'Türkisch'}</span>
+                            <div class="text-3xl font-black text-white mt-2">${currentItem.foreign}</div>
+                            <button class="w-12 h-12 bg-pink-700 hover:bg-pink-600 text-white rounded-full flex items-center justify-center text-xl mt-4 active:scale-90 transition-transform" onclick="speakVocab(event, '${currentItem.foreign}')">🗣️</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-2.5 mt-4">
+                    <button onclick="rewardAndNextVocab(2)" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl active:scale-95 transition-all text-sm">Gewusst! (+2 🪙)</button>
+                    <button onclick="nextVocabCard()" class="flex-1 py-3 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl active:scale-95 transition-all text-sm">Noch lernen</button>
+                </div>
+            `;
+            } else if (activeMode === 'quiz') {
+                generateVocabQuizOptions(currentItem, vocabList);
+                let optionsHtml = `<h3 class="text-gray-300 font-bold mb-4 text-center">Was bedeutet "${currentItem.de}"?</h3><div class="space-y-2">`;
+                vOptions.forEach(opt => {
+                    optionsHtml += `<button class="w-full p-3.5 bg-gray-900 border border-gray-700 text-white font-bold rounded-xl text-sm transition-all text-left" onclick="checkVocabQuiz(this, '${opt}', '${currentItem.foreign}')">${opt}</button>`;
+                });
+                optionsHtml += `</div>`;
+                box.innerHTML = optionsHtml;
+            } else if (activeMode === 'type') {
+                box.innerHTML = `
+                <h3 class="text-gray-300 font-bold mb-3 text-center">Schreibe "${currentItem.de}" auf ${activeLang === 'en' ? 'Englisch' : 'Türkisch'}:</h3>
+                <input type="text" id="v-type-input" class="w-full p-4 bg-gray-950 border-2 border-gray-700 rounded-xl text-center text-xl text-white outline-none focus:border-blue-500 transition-all" autocomplete="off" placeholder="...">
+                <button class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl mt-4 active:scale-95 transition-all" onclick="checkVocabTyped('${currentItem.foreign}')">Überprüfen & 10 Coins verdienen! 🚀</button>
+            `;
+                const inp = document.getElementById("v-type-input");
+                inp.focus();
+                inp.onkeypress = (e) => { if (e.key === 'Enter') checkVocabTyped(currentItem.foreign); };
+            }
+        }
+
+        function speakVocab(e, text) {
+            e.stopPropagation();
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = activeLang === 'en' ? 'en-US' : 'tr-TR';
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function generateVocabQuizOptions(correctItem, list) {
+            vOptions = [correctItem.foreign];
+            const copy = list.filter(item => item.foreign !== correctItem.foreign);
+            while (vOptions.length < Math.min(4, list.length)) {
+                const rItem = copy[Math.floor(Math.random() * copy.length)];
+                if (!vOptions.includes(rItem.foreign)) vOptions.push(rItem.foreign);
+            }
+            vOptions.sort(() => Math.random() - 0.5);
+        }
+
+        function checkVocabQuiz(btn, selected, correct) {
+            document.querySelectorAll("#vokabel-box button").forEach(b => b.disabled = true);
+            if (selected === correct) {
+                btn.className = "w-full p-3.5 bg-emerald-600 border border-emerald-500 text-white font-bold rounded-xl text-sm text-left shadow-lg";
+                confetti({ particleCount: 35, spread: 30 });
+                rewardAndNextVocab(5);
+            } else {
+                btn.className = "w-full p-3.5 bg-rose-600 border border-rose-500 text-white font-bold rounded-xl text-sm text-left";
+                document.querySelectorAll("#vokabel-box button").forEach(b => {
+                    if (b.innerText === correct) b.className = "w-full p-3.5 bg-emerald-600 border border-emerald-500 text-white font-bold rounded-xl text-sm text-left shadow-lg";
+                });
+                setTimeout(nextVocabCard, 2200);
+            }
+        }
+
+        function checkVocabTyped(correct) {
+            const inp = document.getElementById("v-type-input");
+            const ans = inp.value.trim().toLowerCase();
+
+            if (ans === correct.toLowerCase()) {
+                inp.className = "w-full p-4 bg-emerald-950 border-2 border-emerald-500 rounded-xl text-center text-xl text-emerald-300 outline-none";
+                confetti({ particleCount: 35, spread: 30 });
+                rewardAndNextVocab(10);
+            } else {
+                inp.className = "w-full p-4 bg-rose-950 border-2 border-rose-500 rounded-xl text-center text-xl text-rose-300 outline-none";
+                inp.value = `Falsch! Richtig: ${correct}`;
+                setTimeout(nextVocabCard, 2500);
+            }
+        }
+
+        function rewardAndNextVocab(coins) {
+            addPlayerCoinsAndPoints(coins, 0);
+            setTimeout(nextVocabCard, 1200);
+        }
+
+        function nextVocabCard() {
+            const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
+            vIndex = (vIndex + 1) % list.length;
+            showVocabQuestion();
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+
+</html>

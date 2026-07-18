@@ -1,61 +1,778 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Trennung der Lernbereiche</title>
+    <title>EduPlay Hub - Die universelle Lernplattform</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- ... (Behalte den Rest deiner bestehenden Header-Struktur & Firebase bei) ... -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f1f5f9;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-[#0b0f19] text-white">
 
-<!-- VIEW: NEUES HAUPTMENÜ -->
-<div id="view-menu" class="p-6 max-w-md mx-auto space-y-6">
-    <h1 class="text-3xl font-black text-center mb-8">Was möchtest du tun? 🎯</h1>
-    
-    <!-- 1. Vokabeln -->
-    <div class="bg-blue-900/30 border border-blue-500/50 p-6 rounded-2xl text-center space-y-3">
-        <div class="text-4xl">📖</div>
-        <h2 class="text-xl font-bold">Vokabeln üben</h2>
-        <p class="text-sm text-gray-400">Wortschatz aufbauen mit Karten & Tippen</p>
-        <button onclick="switchView('vokabeln')" class="w-full py-3 bg-blue-600 rounded-xl font-bold">Trainer starten</button>
+<body class="min-h-screen flex justify-center items-start overflow-x-hidden antialiased">
+
+    <div id="toast-container"
+        class="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 w-[90%] max-w-md pointer-events-none">
     </div>
 
-    <!-- 2. Quiz -->
-    <div class="bg-pink-900/30 border border-pink-500/50 p-6 rounded-2xl text-center space-y-3">
-        <div class="text-4xl">🎯</div>
-        <h2 class="text-xl font-bold">Quiz-Arena</h2>
-        <p class="text-sm text-gray-400">Wissen testen in Mathe, Deutsch & KFZ</p>
-        <button onclick="switchView('quiz_selection')" class="w-full py-3 bg-pink-600 rounded-xl font-bold">Quiz wählen</button>
+    <div
+        class="w-full max-w-md min-h-screen bg-[#111827] shadow-2xl relative flex flex-col justify-between pb-24 border-x border-gray-800">
+
+        <main class="flex-grow p-4">
+            <!-- ========================================== -->
+            <!-- VIEW: LOGIN                                -->
+            <!-- ========================================== -->
+            <div id="view-login" class="view hidden">
+                <div class="text-center py-8">
+                    <h1
+                        class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 drop-shadow mb-1">
+                        EduPlay Hub 🎮</h1>
+                    <p class="text-gray-400 text-sm">Die universelle & spielerische Lernplattform</p>
+                </div>
+
+                <div class="bg-gray-800/50 border border-gray-700 p-5 rounded-2xl mb-4 hidden"
+                    id="existing-profiles-box">
+                    <h3 class="text-center font-bold text-yellow-400 mb-3 flex items-center justify-center gap-2">
+                        <span>👤 Profil auswählen</span></h3>
+                    <div id="profile-grid" class="flex flex-wrap justify-center gap-3"></div>
+                </div>
+
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-lg font-bold text-emerald-400 text-center mb-4">Neues Profil erstellen ✍️</h3>
+                    <div class="space-y-3">
+                        <input type="text" id="username-input" placeholder="Dein Name..."
+                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium outline-none">
+                        <input type="number" id="age-input" placeholder="Klasse/Alter..."
+                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium outline-none">
+                        <button
+                            class="w-full p-3.5 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl font-bold text-white shadow-lg active:scale-95"
+                            onclick="handleLogin()">Registrieren & Starten 🚀</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW: MENU (HOME, LEADERBOARD, ETC)        -->
+            <!-- ========================================== -->
+            <div id="view-menu" class="view hidden space-y-4">
+
+                <!-- SUB-PAGE: LERNEN (HOME) -->
+                <div id="subview-home" class="subview space-y-4">
+                    <!-- User Header Card -->
+                    <div
+                        class="bg-gradient-to-br from-blue-900/40 via-slate-900 to-slate-900 border border-blue-900/60 p-5 rounded-2xl flex items-center justify-between shadow-xl">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-16 h-16 bg-blue-950/60 rounded-full relative flex items-center justify-center border border-blue-500/30">
+                                <div id="p-base" class="absolute text-4xl top-2.5">🧑</div>
+                                <div id="p-glasses" class="absolute text-2xl top-4"></div>
+                                <div id="p-hat" class="absolute text-3xl -top-3"></div>
+                            </div>
+                            <div>
+                                <h2 id="welcome-text" class="text-xl font-bold text-white">Lade...</h2>
+                                <span class="text-yellow-400 font-bold mt-0.5">🪙 <span id="menu-coins">0</span>
+                                    Coins</span>
+                            </div>
+                        </div>
+                        <button onclick="switchView('avatar')"
+                            class="bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-extrabold px-4 py-2.5 rounded-xl text-sm">Shop
+                            🎨</button>
+                    </div>
+
+                    <!-- DIE 3 NEUEN HAUPT-BUTTONS -->
+                    <h1 class="text-2xl font-black text-center mt-6 mb-2">Was möchtest du tun? 🎯</h1>
+
+                    <div class="space-y-4">
+                        <!-- 1. Vokabeln -->
+                        <div class="bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 transition-all active:scale-95 shadow-lg"
+                            onclick="switchView('vokabeln')">
+                            <div class="text-5xl drop-shadow-md">📖</div>
+                            <div class="text-left">
+                                <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
+                                <p class="text-xs text-gray-300 font-medium">Sprachen lernen mit Karteikarten & Quiz</p>
+                            </div>
+                        </div>
+
+                        <!-- 2. Quiz -->
+                        <div class="bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 transition-all active:scale-95 shadow-lg"
+                            onclick="showQuizSetup('spiel')">
+                            <div class="text-5xl drop-shadow-md">🎯</div>
+                            <div class="text-left">
+                                <h2 class="text-xl font-black text-pink-400">Quiz-Arena</h2>
+                                <p class="text-xs text-gray-300 font-medium">Fachwissen testen: Schule & Ausbildung</p>
+                            </div>
+                        </div>
+
+                        <!-- 3. Fokus -->
+                        <div class="bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 transition-all active:scale-95 shadow-lg"
+                            onclick="showQuizSetup('lernen')">
+                            <div class="text-5xl drop-shadow-md">⏳</div>
+                            <div class="text-left">
+                                <h2 class="text-xl font-black text-yellow-400">Fokus-Lernzeit</h2>
+                                <p class="text-xs text-gray-300 font-medium">Lernzeit messen & Schatzkiste öffnen</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUB-PAGE: LEADERBOARD -->
+                <div id="subview-leaderboard" class="subview space-y-4 hidden">
+                    <div class="bg-gray-800/80 border border-gray-700 p-5 rounded-2xl text-center">
+                        <h3 class="text-xl font-extrabold text-yellow-400 mb-1">🏆 Globale Rangliste 🏆</h3>
+                        <div id="leaderboard-list" class="space-y-2 text-left mt-4"></div>
+                    </div>
+                </div>
+
+                <!-- SUB-PAGE: WORKSHOP (TECH-LAB) -->
+                <div id="subview-workshop" class="subview space-y-4 hidden">
+                    <div class="bg-gray-800/80 border border-gray-700 p-5 rounded-2xl space-y-3">
+                        <h3 class="text-lg font-bold text-emerald-400 flex items-center gap-2">🔧 Tech-Lab: Formelstudio
+                        </h3>
+                        <select id="calc-type" onchange="toggleWorkshopInputs()"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white font-medium">
+                            <option value="ohm">⚡ Ohmsches Gesetz (U = R * I)</option>
+                            <option value="resistor">🔌 Reihenschaltung von Widerständen</option>
+                        </select>
+
+                        <div id="inputs-ohm" class="space-y-2">
+                            <input type="number" id="input-u" placeholder="Spannung U (Volt)"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                            <input type="number" id="input-r" placeholder="Widerstand R (Ohm)"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                            <input type="number" id="input-i" placeholder="Stromstärke I (Ampere)"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                        </div>
+
+                        <div id="inputs-resistor" class="space-y-2 hidden">
+                            <input type="number" id="input-r1" placeholder="Widerstand R1 (Ohm)"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                            <input type="number" id="input-r2" placeholder="Widerstand R2 (Ohm)"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                            <input type="number" id="input-r3" placeholder="Widerstand R3 (Ohm)"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white">
+                        </div>
+
+                        <button onclick="calculateWorkshop()"
+                            class="w-full p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-md">Berechnen
+                            🧮</button>
+                        <div id="workshop-result"
+                            class="p-4 bg-gray-900 border-l-4 border-emerald-500 rounded-xl hidden text-emerald-400 font-bold text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUB-PAGE: PARENT/ADMIN DASHBOARD -->
+                <div id="subview-parent" class="subview space-y-4 hidden">
+                    <div class="bg-gray-800/80 border border-gray-700 p-5 rounded-2xl">
+                        <h3 class="text-lg font-bold text-rose-400 mb-2">👨‍👩‍👦 Verwaltung & Elternbereich</h3>
+                        <p class="text-xs text-gray-400 mb-4">Kontrolliere Lernzeiten und verwalte Coins der Profile:
+                        </p>
+                        <div id="parent-stats-container" class="space-y-3">Lade Profile...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW: QUIZ SETUP (NEU!)                    -->
+            <!-- ========================================== -->
+            <div id="view-quiz-setup" class="view hidden space-y-4">
+                <button class="bg-gray-750 border border-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
+                    onclick="switchView('menu')">← Zurück</button>
+
+                <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl space-y-5 shadow-xl">
+                    <h2 class="text-2xl font-black text-center" id="quiz-setup-title">Lade...</h2>
+                    <input type="hidden" id="selected-game-mode" value="spiel">
+
+                    <div>
+                        <label class="text-xs text-gray-400 font-semibold mb-1 block uppercase tracking-wider">Klasse &
+                            Bereich:</label>
+                        <select id="main-category" onchange="updateSubCategories()"
+                            class="w-full p-3.5 bg-gray-900 border border-gray-600 rounded-xl text-white font-bold outline-none">
+                            <option value="schule1">🏫 Grundschule (Klasse 1)</option>
+                            <option value="schule2">🏫 Grundschule (Klasse 2)</option>
+                            <option value="schule3">🏫 Grundschule (Klasse 3)</option>
+                            <option value="schule5">🇬🇧 Weiterführende Schule (Klasse 5)</option>
+                            <option value="kfz">🔧 Berufsausbildung (KFZ-Technik)</option>
+                            <option value="allgemein">🕌 Kultur & Allgemeinwissen</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="text-xs text-gray-400 font-semibold mb-1 block uppercase tracking-wider">Thema /
+                            Lektion:</label>
+                        <select id="sub-category"
+                            class="w-full p-3.5 bg-gray-900 border border-gray-600 rounded-xl text-white font-bold outline-none"></select>
+                    </div>
+
+                    <button onclick="startQuiz()"
+                        class="w-full p-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl font-extrabold text-white text-lg shadow-lg active:scale-95 transition-all">Jetzt
+                        loslegen! 🚀</button>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW: QUIZ ARENA                           -->
+            <!-- ========================================== -->
+            <div id="view-quiz" class="view hidden space-y-4">
+                <div id="learning-chest-bar"
+                    class="bg-gray-800 border-2 border-yellow-500 p-3 rounded-xl text-center font-bold text-white shadow-lg hidden">
+                    🎁 Fokuszeit bis zur Schatzkiste: <span id="chest-timer-display"
+                        class="text-yellow-400">15:00</span> Min
+                </div>
+
+                <div class="flex justify-between items-center bg-gray-850 p-2 rounded-xl">
+                    <button class="bg-rose-600 text-white font-bold px-4 py-2 rounded-lg" onclick="leaveQuiz()">Beenden
+                        🏠</button>
+                    <span
+                        class="text-xl font-bold text-yellow-400 bg-gray-800 border border-blue-900 px-4 py-2 rounded-xl flex items-center gap-1">
+                        🪙 <span id="quiz-coins">0</span>
+                    </span>
+                </div>
+
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-xl text-center space-y-4">
+                    <img id="question-image"
+                        class="max-w-full max-h-52 mx-auto rounded-xl object-contain shadow-md hidden" src=""
+                        alt="Quiz Bild">
+                    <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
+                    <div id="options-container" class="flex flex-col gap-2.5"></div>
+                    <div id="explanation-box"
+                        class="p-4 bg-slate-900 border-l-4 border-yellow-500 rounded-xl text-left text-sm text-gray-300 hidden">
+                    </div>
+                    <button id="quiz-next-btn"
+                        class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl text-lg hidden"
+                        onclick="nextQuestion()">Nächste Frage ➔</button>
+                </div>
+
+                <div id="chest-overlay"
+                    class="fixed inset-0 bg-slate-950/95 z-[9999] flex-col items-center justify-center p-6 text-center hidden">
+                    <h1 class="text-yellow-400 text-3xl font-black mb-2 animate-bounce">🎉 15 MINUTEN GELERNT! 🎉</h1>
+                    <div id="chest-emoji" class="text-9xl cursor-pointer hover:scale-110" onclick="openChest()">🎁</div>
+                    <div id="reward-display" class="hidden space-y-4 mt-8">
+                        <h2 class="text-2xl font-bold text-pink-500">Item freigeschaltet!</h2>
+                        <div id="reward-emoji" class="text-8xl my-4">👑</div>
+                        <button onclick="closeChestAndContinue()"
+                            class="px-6 py-3 bg-emerald-500 text-white font-extrabold rounded-xl">Weiter ➔</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW: AVATAR STUDIO                        -->
+            <!-- ========================================== -->
+            <div id="view-avatar" class="view hidden space-y-4">
+                <h2 class="text-2xl font-black text-center text-blue-400">Avatar Studio 🎨</h2>
+                <div class="bg-gray-800 border border-blue-500 p-6 rounded-2xl text-center shadow-xl relative">
+                    <div
+                        class="w-28 h-28 bg-slate-950 rounded-full mx-auto relative flex items-center justify-center border-2 border-blue-500">
+                        <div id="shop-p-base" class="absolute text-6xl top-3.5">🧑</div>
+                        <div id="shop-p-glasses" class="absolute text-4xl top-6"></div>
+                        <div id="shop-p-hat" class="absolute text-5xl -top-5"></div>
+                    </div>
+                    <div class="text-yellow-400 font-bold text-lg mt-4">🪙 Deine Coins: <span id="shop-coins">0</span>
+                    </div>
+                </div>
+                <div class="bg-gray-800 border border-gray-700 p-4 rounded-2xl space-y-4 max-h-[40vh] overflow-y-auto">
+                    <div
+                        class="text-blue-400 font-extrabold text-sm uppercase tracking-wider border-b border-gray-700 pb-1">
+                        🎩 Hüte</div>
+                    <div id="hats-grid" class="grid grid-cols-2 gap-3"></div>
+                    <div
+                        class="text-blue-400 font-extrabold text-sm uppercase tracking-wider border-b border-gray-700 pb-1 mt-4">
+                        🕶️ Brillen</div>
+                    <div id="glasses-grid" class="grid grid-cols-2 gap-3"></div>
+                </div>
+                <button onclick="switchView('menu')"
+                    class="w-full p-3.5 bg-gray-700 text-white font-bold rounded-xl">Zurück 🔙</button>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW: VOKABEL-TRAINER                      -->
+            <!-- ========================================== -->
+            <div id="view-vokabeln" class="view hidden space-y-4">
+                <div class="flex justify-between items-center">
+                    <button class="bg-gray-750 border border-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                        onclick="switchView('menu')">← Zurück</button>
+                    <span class="text-yellow-400 font-bold text-lg">🪙 <span id="vokabel-coins">0</span></span>
+                </div>
+
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4 shadow-xl">
+                    <h2 class="text-2xl font-black text-indigo-400 flex justify-center items-center gap-2">📖
+                        Vokabel-Trainer</h2>
+
+                    <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
+                        <button id="lang-btn-en"
+                            class="flex-1 py-2.5 rounded-lg font-bold text-sm bg-blue-600 text-white"
+                            onclick="setLanguage('en')">🇬🇧 Englisch</button>
+                        <button id="lang-btn-tr" class="flex-1 py-2.5 rounded-lg font-bold text-sm text-gray-400"
+                            onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
+                    </div>
+
+                    <div class="text-left">
+                        <select id="category-dropdown"
+                            class="w-full p-3 bg-gray-900 border border-gray-600 rounded-xl text-white font-bold outline-none"
+                            onchange="selectCategory(this.value)"></select>
+                    </div>
+
+                    <div class="flex gap-1.5 bg-gray-900 p-1 rounded-xl">
+                        <button id="mode-btn-cards"
+                            class="flex-1 py-2 rounded-lg font-bold text-xs bg-blue-600 text-white"
+                            onclick="setMode('cards')">🎴 Karten</button>
+                        <button id="mode-btn-quiz" class="flex-1 py-2 rounded-lg font-bold text-xs text-gray-400"
+                            onclick="setMode('quiz')">🎯 Quiz</button>
+                        <button id="mode-btn-type" class="flex-1 py-2 rounded-lg font-bold text-xs text-gray-400"
+                            onclick="setMode('type')">⌨️ Tippen</button>
+                    </div>
+
+                    <div id="vokabel-box" class="min-h-[220px] flex flex-col justify-center"></div>
+
+                    <div class="text-sm text-gray-400 font-bold">Vokabel <span id="current-index-display"
+                            class="text-blue-400">1</span> von <span id="total-display">0</span></div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- NAVIGATION BAR -->
+        <nav id="main-bottom-nav"
+            class="bottom-nav absolute bottom-0 left-0 right-0 hidden bg-[#0b0f19] border-t border-gray-800 px-2 py-3">
+            <div class="flex justify-around text-xs font-bold text-gray-400">
+                <button class="nav-item flex flex-col items-center gap-1 active text-blue-500"
+                    onclick="switchSubpage('home')"><span class="text-xl">🏠</span>Lernen</button>
+                <button class="nav-item flex flex-col items-center gap-1" onclick="switchSubpage('leaderboard')"><span
+                        class="text-xl">🏆</span>Rangliste</button>
+                <button class="nav-item flex flex-col items-center gap-1" onclick="switchSubpage('workshop')"><span
+                        class="text-xl">🔧</span>Tech-Lab</button>
+                <button class="nav-item flex flex-col items-center gap-1" onclick="switchSubpage('parent')"><span
+                        class="text-xl">👨‍👩‍👦</span>Elternbereich</button>
+            </div>
+        </nav>
     </div>
 
-    <!-- 3. Fokus-Lernen -->
-    <div class="bg-yellow-900/30 border border-yellow-500/50 p-6 rounded-2xl text-center space-y-3">
-        <div class="text-4xl">⏳</div>
-        <h2 class="text-xl font-bold">Fokus-Lernzeit</h2>
-        <p class="text-sm text-gray-400">Zeit tracken & Schatzkiste freischalten</p>
-        <button onclick="startFocusMode()" class="w-full py-3 bg-yellow-600 rounded-xl font-bold">Fokus starten</button>
-    </div>
-</div>
+    <script>
+        // --- DATENBANKEN ---
+        const VOCABULARY_DATABASE = {
+            en: {
+                numbers: {
+                    label: "🔢 Zahlen (Numbers)",
+                    words: [
+                        { de: "Null", foreign: "zero" }, { de: "Eins", foreign: "one" }, { de: "Zwei", foreign: "two" },
+                        { de: "Drei", foreign: "three" }, { de: "Vier", foreign: "four" }, { de: "Fünf", foreign: "five" },
+                        { de: "Sechs", foreign: "six" }, { de: "Sieben", foreign: "seven" }, { de: "Acht", foreign: "eight" },
+                        { de: "Neun", foreign: "nine" }, { de: "Zehn", foreign: "ten" }, { de: "Elf", foreign: "eleven" },
+                        { de: "Zwölf", foreign: "twelve" }, { de: "Dreizehn", foreign: "thirteen" }, { de: "Vierzehn", foreign: "fourteen" },
+                        { de: "Fünfzehn", foreign: "fifteen" }, { de: "Sechzehn", foreign: "sixteen" }, { de: "Siebzehn", foreign: "seventeen" },
+                        { de: "Achtzehn", foreign: "eighteen" }, { de: "Neunzehn", foreign: "nineteen" }, { de: "Zwanzig", foreign: "twenty" },
+                        { de: "Dreißig", foreign: "thirty" }, { de: "Vierzig", foreign: "forty" }, { de: "Fünfzig", foreign: "fifty" },
+                        { de: "Sechzig", foreign: "sixty" }, { de: "Siebzig", foreign: "seventy" }, { de: "Achtzig", foreign: "eighty" },
+                        { de: "Neunzig", foreign: "ninety" }, { de: "Einhundert", foreign: "one hundred" }, { de: "Eintausend", foreign: "one thousand" }
+                    ]
+                },
+                colours: {
+                    label: "🎨 Farben (Colours)",
+                    words: [
+                        { de: "Schwarz", foreign: "black" }, { de: "Blau", foreign: "blue" }, { de: "Braun", foreign: "brown" },
+                        { de: "Grün", foreign: "green" }, { de: "Grau", foreign: "grey" }, { de: "Rot", foreign: "red" },
+                        { de: "Gelb", foreign: "yellow" }, { de: "Weiß", foreign: "white" }, { de: "Rosa", foreign: "pink" },
+                        { de: "Lila", foreign: "purple" }, { de: "Orange", foreign: "orange" }
+                    ]
+                },
+                school: {
+                    label: "🎒 Schule (At school)",
+                    words: [
+                        { de: "Buch", foreign: "book" }, { de: "Tisch", foreign: "table" }, { de: "Stuhl", foreign: "chair" },
+                        { de: "Heft", foreign: "notebook" }, { de: "Bleistift", foreign: "pencil" }, { de: "Tafel", foreign: "board" },
+                        { de: "Schultasche", foreign: "schoolbag" }, { de: "Lineal", foreign: "ruler" }, { de: "Schere", foreign: "scissors" },
+                        { de: "Bücherregal", foreign: "bookshelf" }, { de: "Buntstift", foreign: "coloured pencil" }, { de: "Computer", foreign: "computer" },
+                        { de: "Schrank", foreign: "cupboard" }, { de: "Tür", foreign: "door" }, { de: "Übungsheft", foreign: "exercise book" },
+                        { de: "Kleber", foreign: "glue" }, { de: "Füller/Stift", foreign: "pen" }, { de: "Federmäppchen", foreign: "pencil case" },
+                        { de: "Anspitzer", foreign: "pencil sharpener" }, { de: "Radiergummi", foreign: "rubber" }, { de: "Waschbecken", foreign: "washbasin" },
+                        { de: "Fenster", foreign: "window" }
+                    ]
+                },
+                zoo_animals: {
+                    label: "🦁 Zootiere (Animals at the zoo)",
+                    words: [
+                        { de: "Bär", foreign: "bear" }, { de: "Elefant", foreign: "elephant" }, { de: "Giraffe", foreign: "giraffe" },
+                        { de: "Löwe", foreign: "lion" }, { de: "Affe", foreign: "monkey" }, { de: "Schlange", foreign: "snake" },
+                        { de: "Krokodil", foreign: "crocodile" }, { de: "Nilpferd", foreign: "hippo" }, { de: "Seehund", foreign: "seal" },
+                        { de: "Tiger", foreign: "tiger" }, { de: "Schildkröte", foreign: "tortoise" }, { de: "Zebra", foreign: "zebra" }
+                    ]
+                },
+                farm_animals: {
+                    label: "🐄 Bauernhoftiere (Farm animals)",
+                    words: [
+                        { de: "Katze", foreign: "cat" }, { de: "Hahn", foreign: "cock" }, { de: "Kuh", foreign: "cow" },
+                        { de: "Hund", foreign: "dog" }, { de: "Esel", foreign: "donkey" }, { de: "Ziege", foreign: "goat" },
+                        { de: "Gans", foreign: "goose" }, { de: "Henne", foreign: "hen" }, { de: "Pferd", foreign: "horse" },
+                        { de: "Schwein", foreign: "pig" }, { de: "Schaf", foreign: "sheep" }
+                    ]
+                },
+                pets: {
+                    label: "🐶 Haustiere (Pets)",
+                    words: [
+                        { de: "Hund", foreign: "dog" }, { de: "Katze", foreign: "cat" }, { de: "Maus", foreign: "mouse" },
+                        { de: "Vogel", foreign: "bird" }, { de: "Fisch", foreign: "fish" }, { de: "Kaninchen", foreign: "rabbit" },
+                        { de: "Wellensittich", foreign: "budgie" }, { de: "Meerschweinchen", foreign: "guinea pig" }, { de: "Hamster", foreign: "hamster" },
+                        { de: "Papagei", foreign: "parrot" }, { de: "Ratte", foreign: "rat" }, { de: "Spinne", foreign: "spider" },
+                        { de: "Schildkröte", foreign: "tortoise" }
+                    ]
+                },
+                body: {
+                    label: "🧍 Mein Körper (My body)",
+                    words: [
+                        { de: "Kopf", foreign: "head" }, { de: "Hals", foreign: "neck" }, { de: "Hand", foreign: "hand" },
+                        { de: "Finger", foreign: "finger" }, { de: "Knie", foreign: "knee" }, { de: "Zeh", foreign: "toe" },
+                        { de: "Schulter", foreign: "shoulder" }, { de: "Arm", foreign: "arm" }, { de: "Bauch", foreign: "belly" },
+                        { de: "Körper", foreign: "body" }, { de: "Bein", foreign: "leg" }, { de: "Fuß", foreign: "foot" },
+                        { de: "Haare", foreign: "hair" }, { de: "Gesicht", foreign: "face" }, { de: "Ohr", foreign: "ear" },
+                        { de: "Nase", foreign: "nose" }, { de: "Mund", foreign: "mouth" }, { de: "Auge", foreign: "eye" },
+                        { de: "Zahn", foreign: "tooth" }, { de: "Lippe", foreign: "lip" }, { de: "Kinn", foreign: "chin" }
+                    ]
+                },
+                clothes: {
+                    label: "👕 Kleidung (Clothes)",
+                    words: [
+                        { de: "T-Shirt", foreign: "T-shirt" }, { de: "Hose", foreign: "trousers" }, { de: "Schuhe", foreign: "shoes" },
+                        { de: "Pullover", foreign: "pullover" }, { de: "Kleid", foreign: "dress" }, { de: "kurze Hose", foreign: "shorts" },
+                        { de: "Kappe", foreign: "cap" }, { de: "Jacke", foreign: "jacket" }, { de: "Regenmantel", foreign: "raincoat" },
+                        { de: "Regenhut", foreign: "rainhat" }, { de: "Schal", foreign: "scarf" }, { de: "Rock", foreign: "skirt" },
+                        { de: "Badeanzug", foreign: "swimming costume" }, { de: "Wollmütze", foreign: "woolly hat" }, { de: "Handschuhe", foreign: "gloves" },
+                        { de: "Jeans", foreign: "jeans" }, { de: "Sandalen", foreign: "sandals" }, { de: "Schneestiefel", foreign: "snowboots" },
+                        { de: "Socken", foreign: "socks" }, { de: "Sonnenbrille", foreign: "sunglasses" }, { de: "Gummistiefel", foreign: "wellies" }
+                    ]
+                },
+                family: {
+                    label: "👨‍👩‍👦 Familie (My family)",
+                    words: [
+                        { de: "Mutter", foreign: "mother" }, { de: "Vater", foreign: "father" }, { de: "Bruder", foreign: "brother" },
+                        { de: "Schwester", foreign: "sister" }, { de: "Oma", foreign: "grandmother" }, { de: "Opa", foreign: "grandfather" },
+                        { de: "Eltern", foreign: "parents" }, { de: "Großeltern", foreign: "grandparents" }, { de: "Kind", foreign: "child" }
+                    ]
+                },
+                fruit: {
+                    label: "🍎 Obst (Fruit)",
+                    words: [
+                        { de: "Apfel", foreign: "apple" }, { de: "Banane", foreign: "banana" }, { de: "Kirsche", foreign: "cherry" },
+                        { de: "Weintrauben", foreign: "grapes" }, { de: "Zitrone", foreign: "lemon" }, { de: "Orange", foreign: "orange" },
+                        { de: "Pfirsich", foreign: "peach" }, { de: "Birne", foreign: "pear" }, { de: "Ananas", foreign: "pineapple" },
+                        { de: "Pflaume", foreign: "plum" }, { de: "Erdbeere", foreign: "strawberry" }, { de: "Wassermelone", foreign: "watermelon" }
+                    ]
+                },
+                vegetables: {
+                    label: "🥦 Gemüse (Vegetables)",
+                    words: [
+                        { de: "Aubergine", foreign: "aubergine" }, { de: "Bohnen", foreign: "beans" }, { de: "Karotte", foreign: "carrot" },
+                        { de: "Blumenkohl", foreign: "cauliflower" }, { de: "Gurke", foreign: "cucumber" }, { de: "Lauch", foreign: "leek" },
+                        { de: "Kopfsalat", foreign: "lettuce" }, { de: "Zwiebel", foreign: "onion" }, { de: "Erbsen", foreign: "peas" },
+                        { de: "Kartoffel", foreign: "potato" }, { de: "Kürbis", foreign: "pumpkin" }, { de: "Radieschen", foreign: "radish" },
+                        { de: "Tomate", foreign: "tomato" }
+                    ]
+                },
+                food: {
+                    label: "🥪 Essen (Food & Meals)",
+                    words: [
+                        { de: "Brot", foreign: "bread" }, { de: "Käse", foreign: "cheese" }, { de: "Ei", foreign: "egg" },
+                        { de: "Butter", foreign: "butter" }, { de: "Müsli", foreign: "cereals" }, { de: "Schokoladenkuchen", foreign: "chocolate cake" },
+                        { de: "Cornflakes", foreign: "cornflakes" }, { de: "Schinken", foreign: "ham" }, { de: "Honig", foreign: "honey" },
+                        { de: "Marmelade", foreign: "jam" }, { de: "Pizza", foreign: "pizza" }, { de: "Sandwich", foreign: "sandwich" },
+                        { de: "Zucker", foreign: "sugar" }, { de: "Toast", foreign: "toast" }
+                    ]
+                },
+                drinks: {
+                    label: "🧃 Getränke (Drinks)",
+                    words: [
+                        { de: "Kaffee", foreign: "coffee" }, { de: "heiße Schokolade", foreign: "hot chocolate" }, { de: "Eistee", foreign: "ice tea" },
+                        { de: "Limonade", foreign: "lemonade" }, { de: "Milch", foreign: "milk" }, { de: "Mineralwasser", foreign: "mineral water" },
+                        { de: "Orangensaft", foreign: "orange juice" }, { de: "Tee", foreign: "tea" }, { de: "Wasser", foreign: "water" }
+                    ]
+                },
+                weather: {
+                    label: "⛅ Wetter (Weather)",
+                    words: [
+                        { de: "wolkig", foreign: "cloudy" }, { de: "kalt", foreign: "cold" }, { de: "Hagel", foreign: "hail" },
+                        { de: "heiß", foreign: "hot" }, { de: "Regenbogen", foreign: "rainbow" }, { de: "regnerisch", foreign: "rainy" },
+                        { de: "verschneit", foreign: "snowy" }, { de: "stürmisch", foreign: "stormy" }, { de: "sonnig", foreign: "sunny" },
+                        { de: "Gewitter", foreign: "thunder and lightning" }, { de: "windig", foreign: "windy" }, { de: "Regenschirm", foreign: "umbrella" }
+                    ]
+                },
+                christmas: {
+                    label: "🎄 Weihnachten (Christmas)",
+                    words: [
+                        { de: "Glocke", foreign: "bell" }, { de: "Kerze", foreign: "candle" }, { de: "Weihnachtsbaum", foreign: "Christmas tree" },
+                        { de: "Weihnachtskugeln", foreign: "Christmas tree balls" }, { de: "Kekse", foreign: "cookies" }, { de: "Lichter", foreign: "lights" },
+                        { de: "Geschenk", foreign: "present" }, { de: "Rentier", foreign: "reindeer" }, { de: "Sack", foreign: "sack" },
+                        { de: "Weihnachtsmann", foreign: "Santa Claus" }, { de: "Schlitten", foreign: "sleigh" }, { de: "Strumpf", foreign: "stocking" }
+                    ]
+                }
+            },
+            tr: {
+                numbers: {
+                    label: "🔢 Sayılar (Zahlen)",
+                    words: [
+                        { de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" },
+                        { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }, { de: "Sechs", foreign: "altı" },
+                        { de: "Sieben", foreign: "yedi" }, { de: "Acht", foreign: "sekiz" }, { de: "Neun", foreign: "dokuz" },
+                        { de: "Zehn", foreign: "on" }
+                    ]
+                },
+                colours: {
+                    label: "🎨 Renkler (Farben)",
+                    words: [
+                        { de: "Schwarz", foreign: "siyah" }, { de: "Blau", foreign: "mavi" }, { de: "Grün", foreign: "yeşil" },
+                        { de: "Rot", foreign: "kırmızı" }, { de: "Gelb", foreign: "sarı" }, { de: "Weiß", foreign: "beyaz" },
+                        { de: "Braun", foreign: "kahverengi" }, { de: "Rosa", foreign: "pembe" }
+                    ]
+                },
+                school: {
+                    label: "🎒 Okulda (In der Schule)",
+                    words: [
+                        { de: "Buch", foreign: "kitap" }, { de: "Tisch", foreign: "masa" }, { de: "Stuhl", foreign: "sandalye" },
+                        { de: "Tafel", foreign: "tahta" }, { de: "Bleistift", foreign: "kalem" }, { de: "Radiergummi", foreign: "silgi" }
+                    ]
+                }
+            }
+        };
 
-<!-- Hilfs-View für Quiz-Auswahl -->
-<div id="view-quiz_selection" class="view hidden p-6 max-w-md mx-auto space-y-4">
-    <button onclick="switchView('menu')" class="text-gray-400">← Zurück</button>
-    <h2 class="text-2xl font-bold">Quiz wählen</h2>
-    <!-- Hier kommen deine Dropdowns für die Kategorien hin -->
-</div>
+        const AVATAR_DATABASE = {
+            hats: [
+                { id: "none_hat", label: "Kein Hut", price: 0, emoji: "" },
+                { id: "cap", label: "Basecap", price: 25, emoji: "🧢" },
+                { id: "cowboy", label: "Cowboyhut", price: 60, emoji: "🤠" },
+                { id: "chef", label: "Kochmütze", price: 75, emoji: "👨‍🍳" },
+                { id: "crown", label: "Goldene Krone", price: 200, emoji: "👑" }
+            ],
+            glasses: [
+                { id: "none_glasses", label: "Keine Brille", price: 0, emoji: "" },
+                { id: "nerd", label: "Nerdbrille", price: 20, emoji: "🤓" },
+                { id: "sun", label: "Sonnenbrille", price: 45, emoji: "😎" },
+                { id: "heart", label: "Herzbrille", price: 90, emoji: "❤️" }
+            ]
+        };
 
-<!-- ... (Rest des Codes wie Login, Quiz-Arena, Vokabeln, Footer) ... -->
+        const QUESTIONS_DATABASE = [
+            { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: 20+10=30, 5+4=9. Ergibt 39!" },
+            { id: 3501, category: "klasse3_englisch", question: "Translate into English: 'Wie heißt du?'", answers: ["How are you?", "What is your name?", "Who are you?", "How old are you?"], correct: 1, explanation: "💡 Man fragt nach dem Namen mit 'What is your name?'" },
+            { id: 8101, category: "kfz", question: "Welche Flüssigkeit muss regelmäßig auf Frostschutz geprüft werden?", answers: ["Motoröl", "Kühlflüssigkeit", "Bremsflüssigkeit", "Getriebeöl"], correct: 1, explanation: "💡 Die Kühlflüssigkeit schützt vor dem Einfrieren." }
+        ];
 
-<script>
-    // Beispiel für die neue Trennung der Funktionen:
-    function startFocusMode() {
-        // Leitet direkt in die Quiz-Arena mit aktiviertem Timer
-        switchView('quiz_selection');
-        showToast("Fokus-Modus aktiv: Sammle Münzen durch Lernen!");
-    }
-    
-    // ... (Behalte deine restlichen Funktionen bei)
-</script>
+        // --- LOGIK ---
+        function showToast(message) {
+            const container = document.getElementById("toast-container");
+            const toast = document.createElement("div");
+            toast.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 border-emerald-500`;
+            toast.innerHTML = message;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        let currentPlayer = { name: "Gast", age: 10, coins: 0, avatar: {} };
+        let activePlayerName = "";
+
+        function handleLogin() {
+            const name = document.getElementById("username-input").value;
+            if (!name) return showToast("Bitte Namen eingeben!");
+            activePlayerName = name;
+            currentPlayer.name = name;
+            switchView("menu");
+            switchSubpage("home");
+            updateDashboardUI();
+        }
+
+        function switchView(viewId) {
+            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+            document.getElementById(`view-${viewId}`).classList.remove('hidden');
+
+            // Show/Hide bottom navigation based on view
+            const bottomNav = document.getElementById("main-bottom-nav");
+            if (viewId === "menu") {
+                bottomNav.classList.remove('hidden');
+            } else {
+                bottomNav.classList.add('hidden');
+            }
+
+            if (viewId === 'vokabeln') loadVocabSystem();
+            if (viewId === 'avatar') loadShopUI();
+        }
+
+        function switchSubpage(subId) {
+            document.querySelectorAll('.subview').forEach(s => s.classList.add('hidden'));
+            document.getElementById(`subview-${subId}`).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active', 'text-blue-500');
+                item.classList.add('text-gray-400');
+                if (item.innerText.toLowerCase().includes(subId.replace('parent', 'eltern').replace('home', 'lernen'))) {
+                    item.classList.add('text-blue-500');
+                    item.classList.remove('text-gray-400');
+                }
+            });
+        }
+
+        // --- NEUE QUIZ-ROUTER LOGIK ---
+        function showQuizSetup(mode) {
+            document.getElementById('selected-game-mode').value = mode;
+            const titleEl = document.getElementById('quiz-setup-title');
+
+            if (mode === 'lernen') {
+                titleEl.innerText = "⏳ Fokus-Lernzeit";
+                titleEl.className = "text-2xl font-black text-center text-yellow-400";
+            } else {
+                titleEl.innerText = "🎯 Quiz-Arena";
+                titleEl.className = "text-2xl font-black text-center text-pink-400";
+            }
+
+            updateSubCategories();
+            switchView('quiz-setup');
+        }
+
+        function updateSubCategories() {
+            const mainCat = document.getElementById("main-category").value;
+            const subSelect = document.getElementById("sub-category");
+            subSelect.innerHTML = "";
+
+            const map = {
+                schule1: [{ value: "deutsch_uebungsheft", text: "📖 Deutsch Klasse 1" }],
+                schule2: [{ value: "klasse2_mathe", text: "🧮 Mathematik" }],
+                schule3: [{ value: "klasse3_englisch", text: "🇬🇧 Englisch 3" }],
+                kfz: [{ value: "kfz", text: "🔧 Ausbildung KFZ" }]
+            };
+
+            const subs = map[mainCat] || [{ value: "all", text: "Allgemein" }];
+            subs.forEach(sub => {
+                const opt = document.createElement("option");
+                opt.value = sub.value;
+                opt.innerText = sub.text;
+                subSelect.appendChild(opt);
+            });
+        }
+
+        function updateDashboardUI() {
+            document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
+            document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
+            document.getElementById("vokabel-coins").innerText = currentPlayer.coins || 0;
+        }
+
+        function startQuiz() {
+            switchView('quiz');
+            showToast("Quiz gestartet!");
+            document.getElementById('question-text').innerText = QUESTIONS_DATABASE[0].question;
+            const opts = document.getElementById('options-container');
+            opts.innerHTML = '';
+            QUESTIONS_DATABASE[0].answers.forEach(a => {
+                const btn = document.createElement('button');
+                btn.innerText = a;
+                btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold";
+                btn.onclick = () => showToast("Antwort registriert!");
+                opts.appendChild(btn);
+            });
+
+            if (document.getElementById('selected-game-mode').value === 'lernen') {
+                document.getElementById('learning-chest-bar').classList.remove('hidden');
+            } else {
+                document.getElementById('learning-chest-bar').classList.add('hidden');
+            }
+        }
+
+        function leaveQuiz() {
+            switchView('menu');
+            switchSubpage('home');
+        }
+
+        // --- VOKABEL LOGIK (Kurzfassung fürs Menü-Fixing) ---
+        let activeLang = 'en', activeCategory = 'numbers', activeMode = 'cards', vIndex = 0;
+
+        function loadVocabSystem() {
+            const dropdown = document.getElementById("category-dropdown");
+            dropdown.innerHTML = "";
+            Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(key => {
+                const opt = document.createElement("option");
+                opt.value = key;
+                opt.innerText = VOCABULARY_DATABASE[activeLang][key].label;
+                dropdown.appendChild(opt);
+            });
+            activeCategory = dropdown.value;
+            showVocabQuestion();
+        }
+
+        function setLanguage(lang) {
+            activeLang = lang;
+            loadVocabSystem();
+        }
+
+        function selectCategory(cat) {
+            activeCategory = cat;
+            vIndex = 0;
+            showVocabQuestion();
+        }
+
+        function setMode(mode) {
+            activeMode = mode;
+            showVocabQuestion();
+        }
+
+        function showVocabQuestion() {
+            const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
+            document.getElementById("total-display").innerText = list.length;
+            document.getElementById("current-index-display").innerText = vIndex + 1;
+
+            const item = list[vIndex];
+            const box = document.getElementById("vokabel-box");
+
+            box.innerHTML = `
+            <div class="flip-card w-full h-52 relative cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner w-full h-full relative duration-500">
+                    <div class="flip-card-front absolute inset-0 bg-indigo-900 rounded-2xl flex flex-col items-center justify-center p-4">
+                        <span class="text-xs uppercase text-indigo-300">Deutsch</span>
+                        <div class="text-3xl font-black text-white mt-2">${item.de}</div>
+                    </div>
+                    <div class="flip-card-back absolute inset-0 bg-pink-900 rounded-2xl flex flex-col items-center justify-center p-4">
+                        <span class="text-xs uppercase text-pink-300">Fremdsprache</span>
+                        <div class="text-3xl font-black text-white mt-2">${item.foreign}</div>
+                    </div>
+                </div>
+            </div>
+            <button onclick="vIndex = (vIndex + 1) % ${list.length}; showVocabQuestion();" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold">Nächste Karte</button>
+        `;
+        }
+
+        window.onload = () => switchView('login');
+    </script>
 </body>
+
 </html>

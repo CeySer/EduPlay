@@ -207,7 +207,7 @@ const VOCABULARY_DATABASE = {
             words: [
                 { de: "Hund", foreign: "köpek" }, { de: "Katze", foreign: "kedi" }, { de: "Maus", foreign: "fare" },
                 { de: "Vogel", foreign: "kuş" }, { de: "Fisch", foreign: "balık" }, { de: "Kaninchen", foreign: "tavşan" },
-                { de: "Wellensittich", foreign: "muhabbet kuşu" }, { de: "Meerschweinchen", foreign: "र्में domuzcuğu (guinea pig)" }, { de: "Hamster", foreign: "hamster" },
+                { de: "Wellensittich", foreign: "muhabbet kuşu" }, { de: "Meerschweinchen", foreign: "ginea domuzu" }, { de: "Hamster", foreign: "hamster" },
                 { de: "Papagei", foreign: "papağan" }, { de: "Ratte", foreign: "sıçan" }, { de: "Spinne", foreign: "örümcek" }
             ]
         },
@@ -261,12 +261,12 @@ const VOCABULARY_DATABASE = {
             ]
         },
         food: {
-            label: "🥪 Yiyecekler (Esen)",
+            label: "🥪 Yiyecekler (Essen)",
             words: [
                 { de: "Brot", foreign: "ekmek" }, { de: "Käse", foreign: "peynir" }, { de: "Ei", foreign: "yumurta" },
                 { de: "Butter", foreign: "tereyağı" }, { de: "Müsli", foreign: "müsli" }, { de: "Schokoladenkuchen", foreign: "çikolatalı pasta" },
                 { de: "Schinken", foreign: "jambon" }, { de: "Honig", foreign: "bal" }, { de: "Marmelade", foreign: "reçel" },
-                { de: "Pizza", foreign: "pizzza" }, { de: "Sandwich", foreign: "sandviç" }, { de: "Toast", foreign: "tost" }
+                { de: "Pizza", foreign: "pizza" }, { de: "Sandwich", foreign: "sandviç" }, { de: "Toast", foreign: "tost" }
             ]
         },
         drinks: {
@@ -281,7 +281,7 @@ const VOCABULARY_DATABASE = {
             label: "⛅ Hava Durumu (Wetter)",
             words: [
                 { de: "wolkig", foreign: "bulutlu" }, { de: "kalt", foreign: "soğuk" }, { de: "Hagel", foreign: "dolu" },
-                { de: "heiß", foreign: "sıcak" }, { de: "Regenbogen", foreign: "gökkuşağı" }, { de: "regnerisch", foreign: "yağmurluk / yağmurlu" },
+                { de: "heiß", foreign: "sıcak" }, { de: "Regenbogen", foreign: "gökkuşağı" }, { de: "regnerisch", foreign: "yağmurlu" },
                 { de: "verschneit", foreign: "karlı" }, { de: "stürmisch", foreign: "fırtınalı" }, { de: "sonnig", foreign: "güneşli" },
                 { de: "Gewitter", foreign: "gök gürültülü fırtına" }, { de: "windig", foreign: "rüzgarlı" }, { de: "Regenschirm", foreign: "şemsiye" }
             ]

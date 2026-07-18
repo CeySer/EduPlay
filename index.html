@@ -11,12 +11,12 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
 
-    <!-- EXTERNEN SPEICHER EINLESEN -->
+    <!-- EXTERNE DATENQUELLEN EINBINDEN -->
     <script src="questions.js"></script>
     <script src="vocabulary.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&display=swap');
 
         body {
             font-family: 'Inter', sans-serif;
@@ -135,7 +135,7 @@
 
                     <div class="text-center mt-6">
                         <span
-                            class="bg-gray-800 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">v2.3.0
+                            class="bg-gray-800 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">v2.3.1
                             Stable (Modular)</span>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
 
             <!-- VIEW: QUIZ SETUP -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="bg-gray-770 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
                     Zurück</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
                     <h2 class="text-2xl font-black text-center text-pink-400" id="quiz-setup-title">Quiz-Arena</h2>
@@ -189,7 +189,6 @@
                         <label class="text-xs text-gray-400 font-bold block mb-1">Lektion:</label>
                         <select id="sub-category" onchange="showQuestionCount()"
                             class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold"></select>
-                        <!-- FRAGENANZAHL SCHÖN KLEIN DARUNTER -->
                         <div id="question-count-display" class="text-xs text-gray-400 mt-1 font-semibold pl-1"></div>
                     </div>
 
@@ -210,12 +209,21 @@
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
                     <h2 id="question-text" class="text-lg font-bold text-pink-400">Lade Frage...</h2>
                     <div id="options-container" class="flex flex-col gap-2.5"></div>
+
+                    <!-- REPARIERTE ERKLÄRUNGSBOX -->
+                    <div id="explanation-box"
+                        class="p-4 bg-slate-900 border-l-4 border-yellow-500 rounded-xl text-left text-sm text-gray-300 hidden">
+                    </div>
+
+                    <button id="next-question-btn"
+                        class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden"
+                        onclick="triggerNextQuestion()">Nächste Frage ➔</button>
                 </div>
             </div>
 
             <!-- VIEW: VOKABEL-TRAINER -->
             <div id="view-vokabeln" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
+                <button class="bg-gray-770 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
                     Zurück</button>
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
                     <h2 class="text-2xl font-black text-indigo-400">📖 Vokabel-Trainer</h2>
@@ -263,15 +271,10 @@
         let activePlayerName = "";
         let activeLang = 'en', activeCategory = 'numbers', vIndex = 0, currentQuestions = [], qIndex = 0;
 
-        let useFirebase = false;
-        let db = null;
+        let useFirebase = false; let db = null;
         try {
-            firebase.initializeApp(firebaseConfig);
-            db = firebase.database();
-            useFirebase = true;
-        } catch (e) {
-            console.warn("Offline-Modus aktiv.");
-        }
+            firebase.initializeApp(firebaseConfig); db = firebase.database(); useFirebase = true;
+        } catch (e) { console.warn("Offline-Modus aktiv."); }
 
         function showToast(message) {
             const container = document.getElementById("toast-container");
@@ -284,24 +287,20 @@
         function loadProfiles() {
             if (useFirebase) {
                 db.ref("players").on("value", (snap) => {
-                    ALL_PLAYERS = snap.val() || {};
-                    renderProfileSelection();
+                    ALL_PLAYERS = snap.val() || {}; renderProfileSelection();
                     if (activePlayerName) {
-                        currentPlayer = ALL_PLAYERS[activePlayerName.toLowerCase()] || currentPlayer;
-                        updateDashboardUI();
+                        currentPlayer = ALL_PLAYERS[activePlayerName.toLowerCase()] || currentPlayer; updateDashboardUI();
                     }
                 });
             } else {
-                ALL_PLAYERS = JSON.parse(localStorage.getItem("eduplay_players") || "{}");
-                renderProfileSelection();
+                ALL_PLAYERS = JSON.parse(localStorage.getItem("eduplay_players") || "{}"); renderProfileSelection();
             }
         }
 
         function renderProfileSelection() {
             const grid = document.getElementById("profile-grid");
             const box = document.getElementById("existing-profiles-box");
-            grid.innerHTML = "";
-            const keys = Object.keys(ALL_PLAYERS);
+            grid.innerHTML = ""; const keys = Object.keys(ALL_PLAYERS);
             if (keys.length > 0) {
                 box.classList.remove("hidden");
                 keys.forEach(k => {
@@ -309,8 +308,7 @@
                     btn.className = "bg-gray-700 px-4 py-2 rounded-xl text-sm font-bold text-white";
                     btn.innerText = ALL_PLAYERS[k].name;
                     btn.onclick = () => {
-                        activePlayerName = ALL_PLAYERS[k].name;
-                        currentPlayer = ALL_PLAYERS[k];
+                        activePlayerName = ALL_PLAYERS[k].name; currentPlayer = ALL_PLAYERS[k];
                         switchView("menu"); switchSubpage("home"); updateDashboardUI();
                     };
                     grid.appendChild(btn);
@@ -323,8 +321,7 @@
             const age = document.getElementById("age-input").value.trim();
             if (!name) return showToast("Bitte Namen eingeben!");
 
-            activePlayerName = name;
-            const key = name.toLowerCase();
+            activePlayerName = name; const key = name.toLowerCase();
 
             if (!ALL_PLAYERS[key]) {
                 ALL_PLAYERS[key] = { name: name, age: age || "-", coins: 0, rankPoints: 0, learningProgress: 0 };
@@ -334,28 +331,23 @@
                 ALL_PLAYERS[key].age = age;
                 if (useFirebase) db.ref("players/" + key + "/age").set(age);
             }
-
             currentPlayer = ALL_PLAYERS[key];
             switchView("menu"); switchSubpage("home"); updateDashboardUI();
         }
 
         function switchView(viewId) {
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
-            const el = document.getElementById(`view-${viewId}`);
-            if (el) el.classList.remove('hidden');
+            const el = document.getElementById(`view-${viewId}`); if (el) el.classList.remove('hidden');
             document.getElementById("main-bottom-nav").classList.toggle('hidden', viewId !== "menu");
             if (viewId === 'vokabeln') loadVocabSystem();
         }
 
         function switchSubpage(subId) {
             document.querySelectorAll('.subview').forEach(s => s.classList.add('hidden'));
-            const sub = document.getElementById(`subview-${subId}`);
-            if (sub) sub.classList.remove('hidden');
-
+            const sub = document.getElementById(`subview-${subId}`); if (sub) sub.classList.remove('hidden');
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.toggle('text-blue-500', item.getAttribute('onclick').includes(subId));
             });
-
             if (subId === 'parent') renderParentDashboard();
             if (subId === 'leaderboard') renderLeaderboard();
         }
@@ -368,8 +360,7 @@
 
         function updateSubCategories() {
             const mainCat = document.getElementById("main-category").value;
-            const subSelect = document.getElementById("sub-category");
-            subSelect.innerHTML = "";
+            const subSelect = document.getElementById("sub-category"); subSelect.innerHTML = "";
             const map = {
                 schule1: [{ value: "deutsch_uebungsheft", text: "📖 Deutsch Klasse 1" }],
                 schule2: [{ value: "klasse2_mathe", text: "🧮 Mathematik" }, { value: "klasse2_deutsch", text: "📖 Deutsch & Märchen" }],
@@ -396,26 +387,50 @@
             qIndex = 0; switchView('quiz'); showQuestion();
         }
 
+        // LOGIK FÜR FRAGEN, FEHLER-CHECK UND ERKLÄRUNGSBOX
         function showQuestion() {
             const q = currentQuestions[qIndex];
             document.getElementById('question-text').innerText = q.question;
+
+            // Verstecke die Erklärungsbox und den Weiter-Button für die neue Frage
+            document.getElementById('explanation-box').classList.add('hidden');
+            document.getElementById('next-question-btn').classList.add('hidden');
+
             const opts = document.getElementById('options-container'); opts.innerHTML = '';
             q.answers.forEach((a, idx) => {
                 const btn = document.createElement('button'); btn.innerText = a;
-                btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold text-sm";
+                btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold text-sm transition-all";
+
                 btn.onclick = () => {
+                    // Deaktiviere alle anderen Knöpfe, sobald geklickt wurde
+                    Array.from(opts.children).forEach(b => b.disabled = true);
+
                     if (idx === q.correct) {
+                        btn.className = "w-full p-4 bg-emerald-600 border border-emerald-500 rounded-xl text-white font-bold text-sm";
                         showToast("Klasse gelöst! 🌟"); confetti();
-                        currentPlayer.coins += 10;
-                        currentPlayer.rankPoints += 5;
-                        savePlayerProgress();
+                        currentPlayer.coins += 10; currentPlayer.rankPoints += 5; savePlayerProgress();
+
                         setTimeout(() => {
-                            qIndex = (qIndex + 1) % currentQuestions.length; showQuestion();
-                        }, 1500);
-                    } else { showToast("Versuch es noch einmal! 🤔"); }
+                            triggerNextQuestion();
+                        }, 1800);
+                    } else {
+                        btn.className = "w-full p-4 bg-rose-600 border border-rose-500 rounded-xl text-white font-bold text-sm";
+                        showToast("Das war leider falsch! 🤔");
+
+                        // Zeige Erklärung & Weiter-Button an
+                        const expBox = document.getElementById('explanation-box');
+                        expBox.innerText = q.explanation || "💡 Überlege noch einmal genau.";
+                        expBox.classList.remove('hidden');
+                        document.getElementById('next-question-btn').classList.remove('hidden');
+                    }
                 };
                 opts.appendChild(btn);
             });
+        }
+
+        function triggerNextQuestion() {
+            qIndex = (qIndex + 1) % currentQuestions.length;
+            showQuestion();
         }
 
         function savePlayerProgress() {
@@ -423,23 +438,20 @@
                 const key = activePlayerName.toLowerCase();
                 if (useFirebase) db.ref("players/" + key).set(currentPlayer);
                 else {
-                    ALL_PLAYERS[key] = currentPlayer;
-                    localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS));
+                    ALL_PLAYERS[key] = currentPlayer; localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS));
                 }
                 updateDashboardUI();
             }
         }
 
         function renderParentDashboard() {
-            const container = document.getElementById("parent-stats-container");
-            container.innerHTML = "";
+            const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
             Object.keys(ALL_PLAYERS).forEach(key => {
-                const p = ALL_PLAYERS[key];
-                const row = document.createElement("div");
+                const p = ALL_PLAYERS[key]; const row = document.createElement("div");
                 row.className = "bg-gray-900 border border-gray-700 p-4 rounded-xl flex flex-col gap-2";
                 row.innerHTML = `
                 <div class="flex justify-between font-bold">
-                    <span class="text-blue-400">👤 ${p.name} (Klasse/Alter: ${p.age || "-"})</span>
+                    <span class="text-blue-400">👤 ${p.name} (Klasse: ${p.age || "-"})</span>
                     <span class="text-yellow-400">🪙 ${p.coins || 0} Coins</span>
                 </div>
                 <div class="flex gap-2 mt-2">
@@ -456,16 +468,14 @@
                 ALL_PLAYERS[key].coins = Math.max(0, (ALL_PLAYERS[key].coins || 0) + amount);
                 if (useFirebase) db.ref("players/" + key + "/coins").set(ALL_PLAYERS[key].coins);
                 else {
-                    localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS));
-                    renderParentDashboard();
+                    localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS)); renderParentDashboard();
                 }
                 showToast("Münzen angepasst!");
             }
         }
 
         function renderLeaderboard() {
-            const container = document.getElementById("leaderboard-list");
-            container.innerHTML = "";
+            const container = document.getElementById("leaderboard-list"); container.innerHTML = "";
             const list = Object.values(ALL_PLAYERS).sort((a, b) => (b.rankPoints || 0) - (a.rankPoints || 0));
             list.forEach((p, idx) => {
                 container.innerHTML += `<div class="p-3 bg-gray-900 border rounded-xl flex justify-between"><span>#${idx + 1} ${p.name}</span><span class="text-yellow-400">⭐ ${p.rankPoints || 0} Pkt</span></div>`;
@@ -473,7 +483,6 @@
         }
 
         function leaveQuiz() { switchView('menu'); switchSubpage('home'); }
-
         function updateDashboardUI() {
             document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
             document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
@@ -497,7 +506,6 @@
             document.getElementById("lang-btn-tr").className = `flex-1 py-2 rounded-lg font-bold ${lang === 'tr' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`;
             loadVocabSystem();
         }
-
         function selectCategory(cat) { activeCategory = cat; vIndex = 0; showVocabQuestion(); }
 
         function showVocabQuestion() {

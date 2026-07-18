@@ -37,7 +37,7 @@ const VOCABULARY_DATABASE = {
             ]
         },
         zoo_animals: {
-            label: "🦁 Zootiere (Animals at the zoo)",
+            label: "🦁 Zootiere (At the zoo)",
             words: [
                 { de: "Bär", foreign: "bear" }, { de: "Elefant", foreign: "elephant" }, { de: "Giraffe", foreign: "giraffe" },
                 { de: "Löwe", foreign: "lion" }, { de: "Affe", foreign: "monkey" }, { de: "Schlange", foreign: "snake" },
@@ -46,7 +46,7 @@ const VOCABULARY_DATABASE = {
             ]
         },
         farm_animals: {
-            label: "🐄 Bauernhoftiere (Farm animals)",
+            label: "🐄 Bauernhof (Farm animals)",
             words: [
                 { de: "Katze", foreign: "cat" }, { de: "Hahn", foreign: "cock" }, { de: "Kuh", foreign: "cow" },
                 { de: "Hund", foreign: "dog" }, { de: "Esel", foreign: "donkey" }, { de: "Ziege", foreign: "goat" },
@@ -138,12 +138,13 @@ const VOCABULARY_DATABASE = {
                 { de: "Gewitter", foreign: "thunder and lightning" }, { de: "windig", foreign: "windy" }, { de: "Regenschirm", foreign: "umbrella" }
             ]
         },
-        christmas: {
-            label: "🎄 Weihnachten (Christmas)",
+        vehicles: {
+            label: "🚗 Fahrzeuge (Vehicles)",
             words: [
-                { de: "Glocke", foreign: "bell" }, { de: "Kerze", foreign: "candle" }, { de: "Weihnachtsbaum", foreign: "Christmas tree" },
-                { de: "Kekse", foreign: "cookies" }, { de: "Lichter", foreign: "lights" }, { de: "Geschenk", foreign: "present" },
-                { de: "Rentier", foreign: "reindeer" }, { de: "Weihnachtsmann", foreign: "Santa Claus" }, { de: "Schlitten", foreign: "sleigh" }
+                { de: "Auto", foreign: "car" }, { de: "Fahrrad", foreign: "bike" }, { de: "Bus", foreign: "bus" },
+                { de: "Zug", foreign: "train" }, { de: "Flugzeug", foreign: "plane" }, { de: "Schiff", foreign: "ship" },
+                { de: "Motorrad", foreign: "motorbike" }, { de: "LKW", foreign: "lorry" }, { de: "Hubschrauber", foreign: "helicopter" },
+                { de: "Krankenwagen", foreign: "ambulance" }, { de: "Feuerwehrauto", foreign: "fire engine" }, { de: "Traktor", foreign: "tractor" }
             ]
         }
     },
@@ -185,7 +186,7 @@ const VOCABULARY_DATABASE = {
             ]
         },
         zoo_animals: {
-            label: "🦁 Hayvanat Bahçesi Hayvanları (Zootiere)",
+            label: "🦁 Hayvanat Bahçesi (Zootiere)",
             words: [
                 { de: "Bär", foreign: "ayı" }, { de: "Elefant", foreign: "fil" }, { de: "Giraffe", foreign: "zürafa" },
                 { de: "Löwe", foreign: "aslan" }, { de: "Affe", foreign: "maymun" }, { de: "Schlange", foreign: "yılan" },
@@ -194,7 +195,7 @@ const VOCABULARY_DATABASE = {
             ]
         },
         farm_animals: {
-            label: "🐄 Çiftlik Hayvanları (Bauernhoftiere)",
+            label: "🐄 Çiftlik (Bauernhoftiere)",
             words: [
                 { de: "Katze", foreign: "kedi" }, { de: "Hahn", foreign: "horoz" }, { de: "Kuh", foreign: "inek" },
                 { de: "Hund", foreign: "köpek" }, { de: "Esel", foreign: "eşek" }, { de: "Ziege", foreign: "keçi" },
@@ -207,7 +208,7 @@ const VOCABULARY_DATABASE = {
             words: [
                 { de: "Hund", foreign: "köpek" }, { de: "Katze", foreign: "kedi" }, { de: "Maus", foreign: "fare" },
                 { de: "Vogel", foreign: "kuş" }, { de: "Fisch", foreign: "balık" }, { de: "Kaninchen", foreign: "tavşan" },
-                { de: "Wellensittich", foreign: "muhabbet kuşu" }, { de: "Meerschweinchen", foreign: "ginea domuzu" }, { de: "Hamster", foreign: "hamster" },
+                { de: "Wellensittich", foreign: "muhabbet kuşu" }, { de: "Meerschweinchen", foreign: "gine domuzu" }, { de: "Hamster", foreign: "hamster" },
                 { de: "Papagei", foreign: "papağan" }, { de: "Ratte", foreign: "sıçan" }, { de: "Spinne", foreign: "örümcek" }
             ]
         },
@@ -238,7 +239,7 @@ const VOCABULARY_DATABASE = {
             label: "👨‍👩‍👦 Aile (Familie)",
             words: [
                 { de: "Mutter", foreign: "anne" }, { de: "Vater", foreign: "baba" }, { de: "Bruder", foreign: "erkek kardeş" },
-                { de: "Schwester", foreign: "kız kardeş" }, { de: "Oma", foreign: "büyükanne / anneanne / babaanne" }, { de: "Opa", foreign: "büyükbaba / dede" },
+                { de: "Schwester", foreign: "kız kardeş" }, { de: "Oma", foreign: "büyükanne / anneanne" }, { de: "Opa", foreign: "büyükbaba / dede" },
                 { de: "Eltern", foreign: "ebeveyn" }, { de: "Großeltern", foreign: "büyükanne ve büyükbaba" }, { de: "Kind", foreign: "çocuk" }
             ]
         },
@@ -286,12 +287,13 @@ const VOCABULARY_DATABASE = {
                 { de: "Gewitter", foreign: "gök gürültülü fırtına" }, { de: "windig", foreign: "rüzgarlı" }, { de: "Regenschirm", foreign: "şemsiye" }
             ]
         },
-        christmas: {
-            label: "🎄 Noel (Weihnachten)",
+        vehicles: {
+            label: "🚗 Araçlar (Fahrzeuge)",
             words: [
-                { de: "Glocke", foreign: "çan" }, { de: "Kerze", foreign: "mum" }, { de: "Weihnachtsbaum", foreign: "noel ağacı" },
-                { de: "Kekse", foreign: "kurabiye" }, { de: "Lichter", foreign: "ışıklar" }, { de: "Geschenk", foreign: "hediye" },
-                { de: "Rentier", foreign: "ren geyiği" }, { de: "Weihnachtsmann", foreign: "noel baba" }, { de: "Schlitten", foreign: "kızak" }
+                { de: "Auto", foreign: "araba" }, { de: "Fahrrad", foreign: "bisiklet" }, { de: "Bus", foreign: "otobüs" },
+                { de: "Zug", foreign: "tren" }, { de: "Flugzeug", foreign: "uçak" }, { de: "Schiff", foreign: "gemi" },
+                { de: "Motorrad", foreign: "motosiklet" }, { de: "LKW", foreign: "kamyon" }, { de: "Hubschrauber", foreign: "helikopter" },
+                { de: "Krankenwagen", foreign: "ambulans" }, { de: "Feuerwehrauto", foreign: "itfaiye aracı" }, { de: "Traktor", foreign: "traktör" }
             ]
         }
     }

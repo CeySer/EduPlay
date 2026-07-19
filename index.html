@@ -16,8 +16,6 @@
         .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
         .flip-card-front, .flip-card-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; position: absolute; inset: 0; }
         .flip-card-back { transform: rotateY(180deg); }
-        .toggle-checkbox:checked { right: 0; border-color: #10B981; }
-        .toggle-checkbox:checked + .toggle-label { background-color: #10B981; }
         .progress-bar-fill { transition: width 0.5s ease-in-out; }
     </style>
 </head>
@@ -73,11 +71,30 @@
                 <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
                 
                 <div class="space-y-4">
+                    <!-- VOKABELN -->
                     <div class="bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 transition-all shadow-md" onclick="switchView('vokabeln')">
                         <div class="text-5xl">📖</div>
                         <div>
                             <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
                             <p class="text-xs text-gray-300">Karteikarten, Quiz & Tippen</p>
+                        </div>
+                    </div>
+                    
+                    <!-- QUIZ-ARENA (Wiederhergestellt) -->
+                    <div class="bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 transition-all shadow-md" onclick="showQuizSetup('spiel')">
+                        <div class="text-5xl">🎯</div>
+                        <div>
+                            <h2 class="text-xl font-black text-pink-400">Quiz-Arena</h2>
+                            <p class="text-xs text-gray-300">Schulwissen & Technik testen</p>
+                        </div>
+                    </div>
+
+                    <!-- FOKUS-LERNZEIT (Wiederhergestellt) -->
+                    <div class="bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 transition-all shadow-md" onclick="showQuizSetup('lernen')">
+                        <div class="text-5xl">⏳</div>
+                        <div>
+                            <h2 class="text-xl font-black text-yellow-400">Fokus-Lernzeit</h2>
+                            <p class="text-xs text-gray-300">Mit Timer lernen & Truhe freischalten</p>
                         </div>
                     </div>
                 </div>
@@ -93,9 +110,46 @@
             </div>
         </div>
 
+        <!-- VIEW: QUIZ SETUP (Wiederhergestellt) -->
+        <div id="view-quiz-setup" class="view hidden space-y-4">
+            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum Hauptmenü</button>
+            <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
+                <h2 class="text-2xl font-black text-center text-pink-400" id="quiz-setup-title">Quiz-Arena</h2>
+                <input type="hidden" id="selected-game-mode" value="spiel">
+                
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1">Lektion auswählen:</label>
+                    <select id="sub-category" onchange="showQuestionCount()" class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold">
+                        <option value="klasse2_mathe">🧮 Mathe (Kl. 2)</option>
+                        <option value="deutsch_uebungsheft">✍️ Deutsch</option>
+                        <option value="kfz">🔧 KFZ-Technik</option>
+                    </select>
+                    <div id="question-count-display" class="text-xs text-gray-400 mt-1 font-semibold pl-1"></div>
+                </div>
+                
+                <button onclick="startQuiz()" class="w-full p-4 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg">Starten 🚀</button>
+            </div>
+        </div>
+
+        <!-- VIEW: QUIZ ARENA (Wiederhergestellt) -->
+        <div id="view-quiz" class="view hidden space-y-4">
+            <div class="flex justify-between items-center">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">← Beenden</button>
+            </div>
+            <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4 shadow-lg">
+                <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
+                <div id="options-container" class="flex flex-col gap-2.5"></div>
+                
+                <div id="explanation-box" class="p-4 bg-slate-900 border-l-4 border-yellow-500 rounded-xl text-left text-sm text-gray-300 hidden shadow-inner"></div>
+                <button id="next-question-btn" class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden shadow-md" onclick="triggerNextQuestion()">Nächste Frage ➔</button>
+            </div>
+        </div>
+
         <!-- VIEW: VOKABEL-TRAINER -->
         <div id="view-vokabeln" class="view hidden space-y-4">
-            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zurück</button>
+            <!-- Dynamischer Zurück Button -->
+            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveVocab()">← Zurück</button>
+            
             <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
                 <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
                 
@@ -123,41 +177,49 @@
     <!-- NAVIGATION BAR -->
     <nav id="main-bottom-nav" class="bottom-nav absolute bottom-0 left-0 right-0 hidden bg-[#0b0f19] border-t border-gray-800 py-3">
         <div class="flex justify-around text-xs font-bold text-gray-400">
-            <button class="nav-item text-blue-500" onclick="switchSubpage('home')">🏠 Lernen</button>
-            <button class="nav-item" onclick="switchView('login')">🚪 Logout</button>
+            <button class="nav-item text-blue-500" onclick="switchView('menu')">🏠 Hauptmenü</button>
+            <button class="nav-item" onclick="switchView('login')">🚪 Profil wechseln</button>
         </div>
     </nav>
 </div>
 
 <script>
-    // === 01. VOLLSTÄNDIGE DATENBANK (Schule jetzt mit 50 Wörtern) ===
-    let CATEGORY_SETTINGS = JSON.parse(localStorage.getItem('eduplay_categories')) || { numbers: true, school: true, hobbies: true, environment: true };
+    // === 01. DATENBANKEN (VOLLSTÄNDIG) ===
+    
+    // Quiz Datenbank
+    const QUESTIONS_DATABASE = [
+        { id: 3001, category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD", "hunD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere schreibt man immer groß!" },
+        { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: 20+10=30, 5+4=9. Ergibt 39!" },
+        { id: 8302, category: "kfz", question: "Zahnriemenwechsel: Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug angebracht ist?", answers: ["Die Wasserpumpe lösen", "Den Motor an der Kurbelwelle durchdrehen", "Die Spannrolle entspannen", "Den alten Keilrippenriemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" }
+    ];
 
+    // Vokabel Datenbank (Ungekürzt)
     const VOCABULARY_DATABASE = {
         en: {
             numbers: { label: "🔢 Zahlen (Kl. 1-4)", words: [{de:"Null",foreign:"zero"},{de:"Eins",foreign:"one"},{de:"Zwei",foreign:"two"},{de:"Drei",foreign:"three"},{de:"Vier",foreign:"four"},{de:"Fünf",foreign:"five"},{de:"Sechs",foreign:"six"},{de:"Sieben",foreign:"seven"},{de:"Acht",foreign:"eight"},{de:"Neun",foreign:"nine"},{de:"Zehn",foreign:"ten"}] },
-            school: { 
-                label: "🎒 Schule (Kl. 1-4)", 
-                words: [{de:"Buch",foreign:"book"},{de:"Tisch",foreign:"desk"},{de:"Stuhl",foreign:"chair"},{de:"Tafel",foreign:"board"},{de:"Schultasche",foreign:"schoolbag"},{de:"Lineal",foreign:"ruler"},{de:"Schere",foreign:"scissors"},{de:"Bleistift",foreign:"pencil"},{de:"Lehrer",foreign:"teacher"},{de:"Hausaufgabe",foreign:"homework"},{de:"Kugelschreiber",foreign:"pen"},{de:"Radiergummi",foreign:"eraser"},{de:"Heft",foreign:"notebook"},{de:"Klassenzimmer",foreign:"classroom"},{de:"Schüler",foreign:"student"},{de:"Unterricht",foreign:"lesson"},{de:"Pause",foreign:"break"},{de:"Schulhof",foreign:"playground"},{de:"Mathe",foreign:"math"},{de:"Englisch",foreign:"english"},{de:"Kunst",foreign:"art"},{de:"Musik",foreign:"music"},{de:"Wissenschaft",foreign:"science"},{de:"Geschichte",foreign:"history"},{de:"Geografie",foreign:"geography"},{de:"Sport",foreign:"physical education"},{de:"Mittagessen",foreign:"lunch"},{de:"Taschenrechner",foreign:"calculator"},{de:"Kleber",foreign:"glue"},{de:"Textmarker",foreign:"highlighter"},{de:"Papier",foreign:"paper"},{de:"Ordner",foreign:"folder"},{de:"Rucksack",foreign:"backpack"},{de:"Bus",foreign:"bus"},{de:"Kreidetafel",foreign:"chalkboard"},{de:"Whiteboard",foreign:"whiteboard"},{de:"Computer",foreign:"computer"},{de:"Landkarte",foreign:"map"},{de:"Globus",foreign:"globe"},{de:"Bibliothek",foreign:"library"},{de:"Schulleiter",foreign:"principal"},{de:"Test",foreign:"test"},{de:"Prüfung",foreign:"exam"},{de:"Note",foreign:"grade"},{de:"Frage",foreign:"question"},{de:"Antwort",foreign:"answer"},{de:"lesen",foreign:"read"},{de:"schreiben",foreign:"write"},{de:"zeichnen",foreign:"draw"},{de:"lernen",foreign:"learn"}]
-            },
-            hobbies: { label: "⚽ Hobbys (Kl. 5-6)", words: [{de:"Fußball",foreign:"football"},{de:"Schwimmen",foreign:"swimming"},{de:"Lesen",foreign:"reading"}] } // Gekürzt für Übersicht
+            school: { label: "🎒 Schule (Kl. 1-4)", words: [{de:"Buch",foreign:"book"},{de:"Tisch",foreign:"desk"},{de:"Stuhl",foreign:"chair"},{de:"Tafel",foreign:"board"},{de:"Schultasche",foreign:"schoolbag"},{de:"Lineal",foreign:"ruler"},{de:"Schere",foreign:"scissors"},{de:"Bleistift",foreign:"pencil"},{de:"Lehrer",foreign:"teacher"},{de:"Hausaufgabe",foreign:"homework"},{de:"Kugelschreiber",foreign:"pen"},{de:"Radiergummi",foreign:"eraser"},{de:"Heft",foreign:"notebook"},{de:"Klassenzimmer",foreign:"classroom"},{de:"Schüler",foreign:"student"},{de:"Unterricht",foreign:"lesson"},{de:"Pause",foreign:"break"},{de:"Schulhof",foreign:"playground"},{de:"Mathe",foreign:"math"},{de:"Englisch",foreign:"english"},{de:"Kunst",foreign:"art"},{de:"Musik",foreign:"music"},{de:"Wissenschaft",foreign:"science"},{de:"Geschichte",foreign:"history"},{de:"Geografie",foreign:"geography"},{de:"Sport",foreign:"physical education"},{de:"Mittagessen",foreign:"lunch"},{de:"Taschenrechner",foreign:"calculator"},{de:"Kleber",foreign:"glue"},{de:"Textmarker",foreign:"highlighter"},{de:"Papier",foreign:"paper"},{de:"Ordner",foreign:"folder"},{de:"Rucksack",foreign:"backpack"},{de:"Bus",foreign:"bus"},{de:"Kreidetafel",foreign:"chalkboard"},{de:"Whiteboard",foreign:"whiteboard"},{de:"Computer",foreign:"computer"},{de:"Landkarte",foreign:"map"},{de:"Globus",foreign:"globe"},{de:"Bibliothek",foreign:"library"},{de:"Schulleiter",foreign:"principal"},{de:"Test",foreign:"test"},{de:"Prüfung",foreign:"exam"},{de:"Note",foreign:"grade"},{de:"Frage",foreign:"question"},{de:"Antwort",foreign:"answer"},{de:"lesen",foreign:"read"},{de:"schreiben",foreign:"write"},{de:"zeichnen",foreign:"draw"},{de:"lernen",foreign:"learn"}] },
+            hobbies: { label: "⚽ Hobbys (Kl. 5-6)", words: [{de:"Fußball",foreign:"football"},{de:"Schwimmen",foreign:"swimming"},{de:"Lesen",foreign:"reading"},{de:"Tanzen",foreign:"dancing"},{de:"Singen",foreign:"singing"},{de:"Kino",foreign:"cinema"},{de:"Konzert",foreign:"concert"},{de:"Freundschaft",foreign:"friendship"},{de:"lustig",foreign:"funny"},{de:"spannend",foreign:"exciting"},{de:"langweilig",foreign:"boring"},{de:"beliebt",foreign:"popular"},{de:"besuchen",foreign:"visit"},{de:"treffen",foreign:"meet"},{de:"verabreden",foreign:"arrange"},{de:"Hausaufgabe",foreign:"homework"},{de:"Schule",foreign:"school"},{de:"Ferien",foreign:"holidays"},{de:"Reisen",foreign:"travel"},{de:"Strand",foreign:"beach"},{de:"Wandern",foreign:"hiking"},{de:"Camping",foreign:"camping"},{de:"Fahrrad",foreign:"bicycle"},{de:"Auto",foreign:"car"},{de:"Zug",foreign:"train"},{de:"Flug",foreign:"flight"},{de:"Hotel",foreign:"hotel"},{de:"Souvenir",foreign:"souvenir"},{de:"Karte",foreign:"map"},{de:"Kamera",foreign:"camera"},{de:"telefonieren",foreign:"call"},{de:"schreiben",foreign:"write"},{de:"Nachrichten",foreign:"messages"},{de:"Internet",foreign:"internet"},{de:"Computer",foreign:"computer"},{de:"Spiele",foreign:"games"},{de:"Musik",foreign:"music"},{de:"Film",foreign:"movie"},{de:"Buch",foreign:"book"},{de:"Zeitung",foreign:"newspaper"},{de:"Sport",foreign:"sport"},{de:"Mannschaft",foreign:"team"},{de:"Gewinn",foreign:"win"},{de:"Verlust",foreign:"loss"},{de:"Schiedsrichter",foreign:"referee"},{de:"Training",foreign:"training"},{de:"Fitness",foreign:"fitness"},{de:"gesund",foreign:"healthy"},{de:"aktiv",foreign:"active"},{de:"Hobby",foreign:"hobby"}] },
+            environment: { label: "🌍 Umwelt (Kl. 7-8)", words: [{de:"Klimawandel",foreign:"climate change"},{de:"Umwelt",foreign:"environment"},{de:"Schutz",foreign:"protection"},{de:"Verschmutzung",foreign:"pollution"},{de:"Müll",foreign:"rubbish"},{de:"Recycling",foreign:"recycling"},{de:"nachhaltig",foreign:"sustainable"},{de:"Energie",foreign:"energy"},{de:"erneuerbar",foreign:"renewable"},{de:"Sonne",foreign:"sun"},{de:"Wind",foreign:"wind"},{de:"Wasser",foreign:"water"},{de:"Luft",foreign:"air"},{de:"Wald",foreign:"forest"},{de:"Baum",foreign:"tree"},{de:"Blume",foreign:"flower"},{de:"Tier",foreign:"animal"},{de:"Art",foreign:"species"},{de:"bedroht",foreign:"endangered"},{de:"Aussterben",foreign:"extinction"},{de:"Natur",foreign:"nature"},{de:"Wetter",foreign:"weather"},{de:"Sturm",foreign:"storm"},{de:"Flut",foreign:"flood"},{de:"Dürre",foreign:"drought"},{de:"Temperatur",foreign:"temperature"},{de:"global",foreign:"global"},{de:"Zukunft",foreign:"future"},{de:"Verantwortung",foreign:"responsibility"},{de:"handeln",foreign:"act"},{de:"sparen",foreign:"save"},{de:"nutzen",foreign:"use"},{de:"vermeiden",foreign:"avoid"},{de:"Plastik",foreign:"plastic"},{de:"Verpackung",foreign:"packaging"},{de:"Kohlendioxid",foreign:"carbon dioxide"},{de:"Auto",foreign:"car"},{de:"Transport",foreign:"transport"},{de:"Zug",foreign:"train"},{de:"Fahrrad",foreign:"bicycle"},{de:"zu Fuß",foreign:"on foot"},{de:"lokal",foreign:"local"},{de:"Garten",foreign:"garden"},{de:"Park",foreign:"park"},{de:"Ozean",foreign:"ocean"},{de:"Berg",foreign:"mountain"},{de:"Fluss",foreign:"river"},{de:"Land",foreign:"country"},{de:"Welt",foreign:"world"},{de:"Planet",foreign:"planet"}] },
+            technology: { label: "💻 Technik (Kl. 8-9)", words: [{de:"Technik",foreign:"technology"},{de:"Internet",foreign:"internet"},{de:"Computer",foreign:"computer"},{de:"Smartphone",foreign:"smartphone"},{de:"App",foreign:"app"},{de:"Social Media",foreign:"social media"},{de:"Netzwerk",foreign:"network"},{de:"Profil",foreign:"profile"},{de:"Chat",foreign:"chat"},{de:"Nachrichten",foreign:"messages"},{de:"Blog",foreign:"blog"},{de:"Video",foreign:"video"},{de:"Foto",foreign:"photo"},{de:"E-Mail",foreign:"email"},{de:"Website",foreign:"website"},{de:"Passwort",foreign:"password"},{de:"Sicherheit",foreign:"security"},{de:"Daten",foreign:"data"},{de:"privat",foreign:"private"},{de:"öffentlich",foreign:"public"},{de:"künstlich",foreign:"artificial"},{de:"Intelligenz",foreign:"intelligence"},{de:"Roboter",foreign:"robot"},{de:"Spiel",foreign:"game"},{de:"online",foreign:"online"},{de:"offline",foreign:"offline"},{de:"verbinden",foreign:"connect"},{de:"hochladen",foreign:"upload"},{de:"herunterladen",foreign:"download"},{de:"suchen",foreign:"search"},{de:"finden",foreign:"find"},{de:"klicken",foreign:"click"},{de:"Tastatur",foreign:"keyboard"},{de:"Bildschirm",foreign:"screen"},{de:"drucken",foreign:"print"},{de:"speichern",foreign:"save"},{de:"löschen",foreign:"delete"},{de:"Update",foreign:"update"},{de:"Fehler",foreign:"error"},{de:"Vorteil",foreign:"advantage"},{de:"Nachteil",foreign:"disadvantage"},{de:"wichtig",foreign:"important"},{de:"schnell",foreign:"fast"},{de:"modern",foreign:"modern"},{de:"neu",foreign:"new"},{de:"alt",foreign:"old"},{de:"nützlich",foreign:"useful"},{de:"Spaß",foreign:"fun"},{de:"Zeit",foreign:"time"},{de:"Medium",foreign:"medium"}] },
+            society: { label: "👥 Politik (Kl. 9-10)", words: [{de:"Gesellschaft",foreign:"society"},{de:"Politik",foreign:"politics"},{de:"Demokratie",foreign:"democracy"},{de:"Wahl",foreign:"election"},{de:"Recht",foreign:"law"},{de:"Freiheit",foreign:"freedom"},{de:"Menschenrechte",foreign:"human rights"},{de:"Gerechtigkeit",foreign:"justice"},{de:"Vielfalt",foreign:"diversity"},{de:"Gleichheit",foreign:"equality"},{de:"Frieden",foreign:"peace"},{de:"Krieg",foreign:"war"},{de:"Regierung",foreign:"government"},{de:"Land",foreign:"country"},{de:"Bürger",foreign:"citizen"},{de:"Mitmensch",foreign:"fellow human"},{de:"Helfer",foreign:"helper"},{de:"Zusammenarbeit",foreign:"cooperation"},{de:"Zukunft",foreign:"future"},{de:"Geschichte",foreign:"history"},{de:"Kultur",foreign:"culture"},{de:"Tradition",foreign:"tradition"},{de:"Diskussion",foreign:"discussion"},{de:"Meinung",foreign:"opinion"},{de:"Entscheidung",foreign:"decision"},{de:"Pflicht",foreign:"duty"},{de:"Respekt",foreign:"respect"},{de:"Toleranz",foreign:"tolerance"},{de:"Hilfe",foreign:"help"},{de:"Spende",foreign:"donation"},{de:"Projekt",foreign:"project"},{de:"Arbeit",foreign:"work"},{de:"Schule",foreign:"school"},{de:"Bildung",foreign:"education"},{de:"Lehre",foreign:"apprenticeship"},{de:"Beruf",foreign:"job"},{de:"Ziel",foreign:"goal"},{de:"Chance",foreign:"chance"},{de:"Erfolg",foreign:"success"},{de:"Problem",foreign:"problem"},{de:"Lösung",foreign:"solution"},{de:"Änderung",foreign:"change"},{de:"Aktion",foreign:"action"},{de:"Partei",foreign:"party"},{de:"Europa",foreign:"Europe"},{de:"Welt",foreign:"world"},{de:"Wirtschaft",foreign:"economy"},{de:"Finanzen",foreign:"finances"},{de:"Geld",foreign:"money"},{de:"Gesetz",foreign:"legislation"}] }
         },
         tr: {
             numbers: { label: "🔢 Sayılar (Kl. 1-4)", words: [{de:"Null",foreign:"sıfır"},{de:"Eins",foreign:"bir"},{de:"Zwei",foreign:"iki"},{de:"Drei",foreign:"üç"},{de:"Vier",foreign:"dört"},{de:"Fünf",foreign:"beş"},{de:"Sechs",foreign:"altı"},{de:"Sieben",foreign:"yedi"},{de:"Acht",foreign:"sekiz"},{de:"Neun",foreign:"dokuz"},{de:"Zehn",foreign:"on"}] },
-            school: { 
-                label: "🎒 Okul (Kl. 1-4)", 
-                words: [{de:"Buch",foreign:"kitap"},{de:"Tisch",foreign:"masa"},{de:"Stuhl",foreign:"sandalye"},{de:"Tafel",foreign:"tahta"},{de:"Schultasche",foreign:"okul çantası"},{de:"Lineal",foreign:"cetvel"},{de:"Schere",foreign:"makas"},{de:"Bleistift",foreign:"kurşun kalem"},{de:"Lehrer",foreign:"öğretmen"},{de:"Hausaufgabe",foreign:"ödev"},{de:"Kugelschreiber",foreign:"tükenmez kalem"},{de:"Radiergummi",foreign:"silgi"},{de:"Heft",foreign:"defter"},{de:"Klassenzimmer",foreign:"sınıf"},{de:"Schüler",foreign:"öğrenci"},{de:"Unterricht",foreign:"ders"},{de:"Pause",foreign:"teneffüs"},{de:"Schulhof",foreign:"okul bahçesi"},{de:"Mathe",foreign:"matematik"},{de:"Englisch",foreign:"ingilizce"},{de:"Kunst",foreign:"resim"},{de:"Musik",foreign:"müzik"},{de:"Wissenschaft",foreign:"fen bilimleri"},{de:"Geschichte",foreign:"tarih"},{de:"Geografie",foreign:"coğrafya"},{de:"Sport",foreign:"beden eğitimi"},{de:"Mittagessen",foreign:"öğle yemeği"},{de:"Taschenrechner",foreign:"hesap makinesi"},{de:"Kleber",foreign:"yapıştırıcı"},{de:"Textmarker",foreign:"fosforlu kalem"},{de:"Papier",foreign:"kağıt"},{de:"Ordner",foreign:"dosya"},{de:"Rucksack",foreign:"sırt çantası"},{de:"Bus",foreign:"otobüs"},{de:"Kreidetafel",foreign:"kara tahta"},{de:"Whiteboard",foreign:"beyaz tahta"},{de:"Computer",foreign:"bilgisayar"},{de:"Landkarte",foreign:"harita"},{de:"Globus",foreign:"küre"},{de:"Bibliothek",foreign:"kütüphane"},{de:"Schulleiter",foreign:"müdür"},{de:"Test",foreign:"test"},{de:"Prüfung",foreign:"sınav"},{de:"Note",foreign:"not"},{de:"Frage",foreign:"soru"},{de:"Antwort",foreign:"cevap"},{de:"lesen",foreign:"okumak"},{de:"schreiben",foreign:"yazmak"},{de:"zeichnen",foreign:"çizmek"},{de:"lernen",foreign:"öğrenmek"}]
-            },
-            hobbies: { label: "⚽ Hobiler (Kl. 5-6)", words: [{de:"Fußball",foreign:"futbol"},{de:"Schwimmen",foreign:"yüzme"},{de:"Lesen",foreign:"okuma"}] } // Gekürzt für Übersicht
+            school: { label: "🎒 Okul (Kl. 1-4)", words: [{de:"Buch",foreign:"kitap"},{de:"Tisch",foreign:"masa"},{de:"Stuhl",foreign:"sandalye"},{de:"Tafel",foreign:"tahta"},{de:"Schultasche",foreign:"okul çantası"},{de:"Lineal",foreign:"cetvel"},{de:"Schere",foreign:"makas"},{de:"Bleistift",foreign:"kurşun kalem"},{de:"Lehrer",foreign:"öğretmen"},{de:"Hausaufgabe",foreign:"ödev"},{de:"Kugelschreiber",foreign:"tükenmez kalem"},{de:"Radiergummi",foreign:"silgi"},{de:"Heft",foreign:"defter"},{de:"Klassenzimmer",foreign:"sınıf"},{de:"Schüler",foreign:"öğrenci"},{de:"Unterricht",foreign:"ders"},{de:"Pause",foreign:"teneffüs"},{de:"Schulhof",foreign:"okul bahçesi"},{de:"Mathe",foreign:"matematik"},{de:"Englisch",foreign:"ingilizce"},{de:"Kunst",foreign:"resim"},{de:"Musik",foreign:"müzik"},{de:"Wissenschaft",foreign:"fen bilimleri"},{de:"Geschichte",foreign:"tarih"},{de:"Geografie",foreign:"coğrafya"},{de:"Sport",foreign:"beden eğitimi"},{de:"Mittagessen",foreign:"öğle yemeği"},{de:"Taschenrechner",foreign:"hesap makinesi"},{de:"Kleber",foreign:"yapıştırıcı"},{de:"Textmarker",foreign:"fosforlu kalem"},{de:"Papier",foreign:"kağıt"},{de:"Ordner",foreign:"dosya"},{de:"Rucksack",foreign:"sırt çantası"},{de:"Bus",foreign:"otobüs"},{de:"Kreidetafel",foreign:"kara tahta"},{de:"Whiteboard",foreign:"beyaz tahta"},{de:"Computer",foreign:"bilgisayar"},{de:"Landkarte",foreign:"harita"},{de:"Globus",foreign:"küre"},{de:"Bibliothek",foreign:"kütüphane"},{de:"Schulleiter",foreign:"müdür"},{de:"Test",foreign:"test"},{de:"Prüfung",foreign:"sınav"},{de:"Note",foreign:"not"},{de:"Frage",foreign:"soru"},{de:"Antwort",foreign:"cevap"},{de:"lesen",foreign:"okumak"},{de:"schreiben",foreign:"yazmak"},{de:"zeichnen",foreign:"çizmek"},{de:"lernen",foreign:"öğrenmek"}] },
+            hobbies: { label: "⚽ Hobiler (Kl. 5-6)", words: [{de:"Fußball",foreign:"futbol"},{de:"Schwimmen",foreign:"yüzme"},{de:"Lesen",foreign:"okuma"},{de:"Tanzen",foreign:"dans"},{de:"Singen",foreign:"şarkı söyleme"},{de:"Kino",foreign:"sinema"},{de:"Konzert",foreign:"konser"},{de:"Freundschaft",foreign:"arkadaşlık"},{de:"lustig",foreign:"komik"},{de:"spannend",foreign:"heyecan verici"},{de:"langweilig",foreign:"sıkıcı"},{de:"beliebt",foreign:"popüler"},{de:"besuchen",foreign:"ziyaret etmek"},{de:"treffen",foreign:"buluşmak"},{de:"verabreden",foreign:"sözleşmek"},{de:"Hausaufgabe",foreign:"ödev"},{de:"Schule",foreign:"okul"},{de:"Ferien",foreign:"tatil"},{de:"Reisen",foreign:"seyahat"},{de:"Strand",foreign:"plaj"},{de:"Wandern",foreign:"doğa yürüyüşü"},{de:"Camping",foreign:"kamp"},{de:"Fahrrad",foreign:"bisiklet"},{de:"Auto",foreign:"araba"},{de:"Zug",foreign:"tren"},{de:"Flug",foreign:"uçuş"},{de:"Hotel",foreign:"otel"},{de:"Souvenir",foreign:"hediyelik eşya"},{de:"Karte",foreign:"harita"},{de:"Kamera",foreign:"kamera"},{de:"telefonieren",foreign:"telefon etmek"},{de:"schreiben",foreign:"yazmak"},{de:"Nachrichten",foreign:"mesajlar"},{de:"Internet",foreign:"internet"},{de:"Computer",foreign:"bilgisayar"},{de:"Spiele",foreign:"oyunlar"},{de:"Musik",foreign:"müzik"},{de:"Film",foreign:"film"},{de:"Buch",foreign:"kitap"},{de:"Zeitung",foreign:"gazete"},{de:"Sport",foreign:"spor"},{de:"Mannschaft",foreign:"takım"},{de:"Gewinn",foreign:"kazanç"},{de:"Verlust",foreign:"kayıp"},{de:"Schiedsrichter",foreign:"hakem"},{de:"Training",foreign:"antrenman"},{de:"Fitness",foreign:"fitness"},{de:"gesund",foreign:"sağlıklı"},{de:"aktiv",foreign:"aktif"},{de:"Hobby",foreign:"hobi"}] },
+            environment: { label: "🌍 Çevre (Kl. 7-8)", words: [{de:"Klimawandel",foreign:"iklim değişikliği"},{de:"Umwelt",foreign:"çevre"},{de:"Schutz",foreign:"koruma"},{de:"Verschmutzung",foreign:"kirlilik"},{de:"Müll",foreign:"çöp"},{de:"Recycling",foreign:"geri dönüşüm"},{de:"nachhaltig",foreign:"sürdürülebilir"},{de:"Energie",foreign:"enerji"},{de:"erneuerbar",foreign:"yenilenebilir"},{de:"Sonne",foreign:"güneş"},{de:"Wind",foreign:"rüzgar"},{de:"Wasser",foreign:"su"},{de:"Luft",foreign:"hava"},{de:"Wald",foreign:"orman"},{de:"Baum",foreign:"ağaç"},{de:"Blume",foreign:"çiçek"},{de:"Tier",foreign:"hayvan"},{de:"Art",foreign:"tür"},{de:"bedroht",foreign:"nesli tükenmekte olan"},{de:"Aussterben",foreign:"yok olma"},{de:"Natur",foreign:"doğa"},{de:"Wetter",foreign:"hava durumu"},{de:"Sturm",foreign:"fırtına"},{de:"Flut",foreign:"sel"},{de:"Dürre",foreign:"kuraklık"},{de:"Temperatur",foreign:"sıcaklık"},{de:"global",foreign:"küresel"},{de:"Zukunft",foreign:"gelecek"},{de:"Verantwortung",foreign:"sorumluluk"},{de:"handeln",foreign:"harekete geçmek"},{de:"sparen",foreign:"tasarruf etmek"},{de:"nutzen",foreign:"kullanmak"},{de:"vermeiden",foreign:"kaçınmak"},{de:"Plastik",foreign:"plastik"},{de:"Verpackung",foreign:"ambalaj"},{de:"Kohlendioxid",foreign:"karbondioksit"},{de:"Auto",foreign:"araba"},{de:"Transport",foreign:"ulaşım"},{de:"Zug",foreign:"tren"},{de:"Fahrrad",foreign:"bisiklet"},{de:"zu Fuß",foreign:"yaya"},{de:"lokal",foreign:"yerel"},{de:"Garten",foreign:"bahçe"},{de:"Park",foreign:"park"},{de:"Ozean",foreign:"okyanus"},{de:"Berg",foreign:"dağ"},{de:"Fluss",foreign:"nehir"},{de:"Land",foreign:"ülke"},{de:"Welt",foreign:"dünya"},{de:"Planet",foreign:"gezegen"}] },
+            technology: { label: "💻 Teknoloji (Kl. 8-9)", words: [{de:"Technik",foreign:"teknoloji"},{de:"Internet",foreign:"internet"},{de:"Computer",foreign:"bilgisayar"},{de:"Smartphone",foreign:"akıllı telefon"},{de:"App",foreign:"uygulama"},{de:"Social Media",foreign:"sosyal medya"},{de:"Netzwerk",foreign:"ağ"},{de:"Profil",foreign:"profil"},{de:"Chat",foreign:"sohbet"},{de:"Nachrichten",foreign:"mesajlar"},{de:"Blog",foreign:"blog"},{de:"Video",foreign:"video"},{de:"Foto",foreign:"fotoğraf"},{de:"E-Mail",foreign:"e-posta"},{de:"Website",foreign:"web sitesi"},{de:"Passwort",foreign:"şifre"},{de:"Sicherheit",foreign:"güvenlik"},{de:"Daten",foreign:"veriler"},{de:"privat",foreign:"özel"},{de:"öffentlich",foreign:"halka açık"},{de:"künstlich",foreign:"yapay"},{de:"Intelligenz",foreign:"zeka"},{de:"Roboter",foreign:"robot"},{de:"Spiel",foreign:"oyun"},{de:"online",foreign:"çevrimiçi"},{de:"offline",foreign:"çevrimdışı"},{de:"verbinden",foreign:"bağlanmak"},{de:"hochladen",foreign:"yüklemek"},{de:"herunterladen",foreign:"indirmek"},{de:"suchen",foreign:"aramak"},{de:"finden",foreign:"bulmak"},{de:"klicken",foreign:"tıklamak"},{de:"Tastatur",foreign:"klavye"},{de:"Bildschirm",foreign:"ekran"},{de:"drucken",foreign:"yazdırmak"},{de:"speichern",foreign:"kaydetmek"},{de:"löschen",foreign:"silmek"},{de:"Update",foreign:"güncelleme"},{de:"Fehler",foreign:"hata"},{de:"Vorteil",foreign:"avantaj"},{de:"Nachteil",foreign:"dezavantaj"},{de:"wichtig",foreign:"önemli"},{de:"schnell",foreign:"hızlı"},{de:"modern",foreign:"modern"},{de:"neu",foreign:"yeni"},{de:"alt",foreign:"eski"},{de:"nützlich",foreign:"yararlı"},{de:"Spaß",foreign:"eğlence"},{de:"Zeit",foreign:"zaman"},{de:"Medium",foreign:"medya"}] },
+            society: { label: "👥 Toplum (Kl. 9-10)", words: [{de:"Gesellschaft",foreign:"toplum"},{de:"Politik",foreign:"politika"},{de:"Demokratie",foreign:"demokrasi"},{de:"Wahl",foreign:"seçim"},{de:"Recht",foreign:"hukuk"},{de:"Freiheit",foreign:"özgürlük"},{de:"Menschenrechte",foreign:"insan hakları"},{de:"Gerechtigkeit",foreign:"adalet"},{de:"Vielfalt",foreign:"çeşitlilik"},{de:"Gleichheit",foreign:"eşitlik"},{de:"Frieden",foreign:"barış"},{de:"Krieg",foreign:"savaş"},{de:"Regierung",foreign:"hükümet"},{de:"Land",foreign:"ülke"},{de:"Bürger",foreign:"vatandaş"},{de:"Mitmensch",foreign:"hemcins"},{de:"Helfer",foreign:"yardımcı"},{de:"Zusammenarbeit",foreign:"işbirliği"},{de:"Zukunft",foreign:"gelecek"},{de:"Geschichte",foreign:"tarih"},{de:"Kultur",foreign:"kültür"},{de:"Tradition",foreign:"gelenek"},{de:"Diskussion",foreign:"tartışma"},{de:"Meinung",foreign:"fikir"},{de:"Entscheidung",foreign:"karar"},{de:"Pflicht",foreign:"görev"},{de:"Respekt",foreign:"saygı"},{de:"Toleranz",foreign:"hoşgörü"},{de:"Hilfe",foreign:"yardım"},{de:"Spende",foreign:"bağış"},{de:"Projekt",foreign:"proje"},{de:"Arbeit",foreign:"iş"},{de:"Schule",foreign:"okul"},{de:"Bildung",foreign:"eğitim"},{de:"Lehre",foreign:"çıraklık"},{de:"Beruf",foreign:"meslek"},{de:"Ziel",foreign:"hedef"},{de:"Chance",foreign:"fırsat"},{de:"Erfolg",foreign:"başarı"},{de:"Problem",foreign:"sorun"},{de:"Lösung",foreign:"çözüm"},{de:"Änderung",foreign:"değişim"},{de:"Aktion",foreign:"eylem"},{de:"Partei",foreign:"parti"},{de:"Europa",foreign:"Avrupa"},{de:"Welt",foreign:"dünya"},{de:"Wirtschaft",foreign:"ekonomi"},{de:"Finanzen",foreign:"finans"},{de:"Geld",foreign:"para"},{de:"Gesetz",foreign:"yasa"}] }
         }
     };
 
     let ALL_PLAYERS = {}; let currentPlayer = null; let activePlayerName = "";
     let activeLang = 'en', activeCategory = 'school', vIndex = 0, vocabMode = 'flashcards'; 
     let isExamMode = false;
-    
-    // ZENTRALE ÄNDERUNG: Die gelernten Wörter gehören jetzt zum jeweiligen Profil!
     let sessionLearnedWords = new Set(); 
+    
+    // Quiz Variablen
+    let currentQuestions = [], qIndex = 0;
 
     // === UI HILFSFUNKTIONEN ===
     function showToast(message, type = "success") {
@@ -175,7 +237,18 @@
         if(viewId === 'login') { currentPlayer = null; activePlayerName = ""; isExamMode = false; loadProfiles(); }
     }
 
-    // === ELTERNBEREICH & FORTSCHRITT (Fahrschul-Feature) ===
+    // === NEUE ZURÜCK-LOGIK (VOKABELN) ===
+    function leaveVocab() {
+        if (isExamMode) {
+            isExamMode = false; // Beende Prüfung
+            switchView('parent'); // Gehe zum Elternbereich zurück
+            renderParentDashboard(); // Balken aktualisieren
+        } else {
+            switchView('menu'); // Normaler Lernmodus geht ins Hauptmenü
+        }
+    }
+
+    // === ELTERNBEREICH & FORTSCHRITT ===
     function openParentArea() {
         const pin = prompt("Bitte Eltern-PIN eingeben (Standard: 1234):");
         if (pin === "1234") { switchView('parent'); renderParentDashboard(); } 
@@ -206,9 +279,8 @@
                         <span class="text-yellow-400 font-bold">🪙 ${p.coins || 0}</span>
                     </div>
                     
-                    <!-- Fahrschul-Prozentbalken -->
                     <div class="text-xs text-gray-400 mb-1 font-bold flex justify-between">
-                        <span>Gesamtfortschritt</span>
+                        <span>Gesamtfortschritt (Alle Wörter)</span>
                         <span>${learnedCount} / ${totalPossibleWords} (${percentage}%)</span>
                     </div>
                     <div class="w-full bg-gray-800 rounded-full h-3 mb-4 overflow-hidden border border-gray-700">
@@ -216,7 +288,7 @@
                     </div>
                     
                     <div class="flex gap-2">
-                        <button class="flex-1 bg-rose-600 py-2 rounded-lg font-bold text-xs text-white hover:bg-rose-500 transition" onclick="startExamFor('${key}')">⚔️ Test starten</button>
+                        <button class="flex-1 bg-rose-600 py-2 rounded-lg font-bold text-xs text-white hover:bg-rose-500 transition" onclick="startExamFor('${key}')">⚔️ Prüfung starten</button>
                     </div>
                 </div>`;
             container.appendChild(document.createRange().createContextualFragment(html));
@@ -231,7 +303,7 @@
         isExamMode = true;
         
         switchView("vokabeln");
-        setVocabMode('typing'); // Zwingt zum Tippen
+        setVocabMode('typing'); 
         
         document.getElementById("vocab-title").innerText = `Prüfung: ${currentPlayer.name}`;
         document.getElementById("exam-banner").classList.remove("hidden");
@@ -257,7 +329,7 @@
                 btn.onclick = () => { 
                     activePlayerName = ALL_PLAYERS[k].name; 
                     currentPlayer = ALL_PLAYERS[k]; 
-                    sessionLearnedWords = new Set(currentPlayer.learnedWords || []); // Lade spezifische Wörter
+                    sessionLearnedWords = new Set(currentPlayer.learnedWords || []); 
                     isExamMode = false;
                     document.getElementById("exam-banner").classList.add("hidden");
                     document.getElementById("vocab-title").innerText = `📖 Vokabel-Trainer`;
@@ -315,7 +387,7 @@
     }
 
     function setVocabMode(mode) {
-        if(isExamMode) return; // Im Prüfungsmodus darf nicht gewechselt werden
+        if(isExamMode) return; 
         vocabMode = mode; vIndex = 0;
         document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'flashcards' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`;
         document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'mc' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`;
@@ -336,7 +408,7 @@
         if (isKnown) {
             const wordKey = activeLang + "_" + activeCategory + "_" + list[vIndex].foreign;
             sessionLearnedWords.add(wordKey); 
-            savePlayerProgress(); // Speichert direkt ins Profil
+            savePlayerProgress(); 
             showToast("Gemerkt! 🧠", "success");
         }
         vIndex = (vIndex + 1) % list.length; showVocabQuestion();
@@ -346,17 +418,15 @@
         let list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
         const box = document.getElementById("vokabel-box");
         
-        // Wenn Prüfung: Nur Wörter laden, die NICHT in den learnedWords sind (oder einfach zufällig abfragen)
         if (isExamMode) {
             list = list.filter(item => !sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + item.foreign));
             if(list.length === 0) {
-                box.innerHTML = `<div class="p-8 bg-emerald-600 text-white font-bold rounded-xl shadow-lg">Perfekt! Du hast alle Wörter dieser Kategorie bereits gemeistert! 🏆</div>`;
+                box.innerHTML = `<div class="p-8 bg-emerald-600 text-white font-bold rounded-xl shadow-lg">Perfekt! Du hast alle Wörter dieser Kategorie gemeistert! 🏆</div>`;
                 return;
             }
-            list = shuffleArray(list); // Prüfung wird immer gemischt
+            list = shuffleArray(list); 
             vIndex = 0;
         } else {
-            // Normaler Modus: Gelernte überspringen
             let learnedCount = 0; list.forEach(item => { if(sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + item.foreign)) learnedCount++; });
             if (learnedCount >= list.length && list.length > 0) {
                 showToast("Kategorie resettet!", "success");
@@ -391,7 +461,7 @@
             html += `</div><div id="mc-feedback" class="mt-4 hidden"><button onclick="nextVocab(false)" class="w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white">Nächstes Wort ➔</button></div>`;
             box.innerHTML = html;
         }
-        else { // TYPING oder PRÜFUNGSMODUS
+        else { 
             box.innerHTML = `
                 <div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 shadow-inner">${item.de}</div>
                 <input type="text" id="vocab-typing-input" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-center mb-4 text-lg shadow-inner" placeholder="Übersetzung tippen..." autocomplete="off" onkeypress="if(event.key === 'Enter') checkVocabTyping('${item.foreign}')">
@@ -425,14 +495,100 @@
             fb.innerHTML = `<span class="text-emerald-400">Perfekt! ${isExamMode ? '+10' : '+5'} Coins</span>`; showToast("Super!", "success"); confetti(); 
             currentPlayer.coins += (isExamMode ? 10 : 5); 
             
-            // Wort direkt als gelernt markieren im Prüfungsmodus, wenn es richtig war
             const wordKey = activeLang + "_" + activeCategory + "_" + correct;
             sessionLearnedWords.add(wordKey);
             savePlayerProgress();
-            
         } else {
             input.className = "w-full p-4 bg-rose-900/30 text-rose-400 font-bold text-center mb-4 text-lg border border-rose-500 rounded-xl line-through";
             fb.innerHTML = `<span class="text-rose-400">Falsch. Richtig ist: <br><span class="text-white text-xl">${correct}</span></span>`; showToast("Nicht ganz!", "error");
+        }
+    }
+
+    // === QUIZ LOGIK (Wiederhergestellt) ===
+    function showQuizSetup(mode) { 
+        document.getElementById('selected-game-mode').value = mode; 
+        updateSubCategories(); 
+        switchView('quiz-setup'); 
+    }
+    
+    function updateSubCategories() { 
+        showQuestionCount(); 
+    }
+    
+    function showQuestionCount() { 
+        document.getElementById("question-count-display").innerText = `📋 Fragen verfügbar`; 
+    }
+    
+    function startQuiz() { 
+        const cat = document.getElementById("sub-category").value; 
+        currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat); 
+        if(currentQuestions.length === 0) {
+            showToast("Keine Fragen für diese Lektion gefunden!", "error");
+            return;
+        }
+        qIndex = 0; 
+        switchView('quiz'); 
+        showQuestion(); 
+    }
+    
+    function leaveQuiz() { 
+        switchView('menu'); 
+    }
+    
+    function showQuestion() { 
+        const q = currentQuestions[qIndex];
+        document.getElementById('question-text').innerText = q.question; 
+        document.getElementById('explanation-box').classList.add('hidden');
+        document.getElementById('next-question-btn').classList.add('hidden');
+        
+        const optsContainer = document.getElementById('options-container');
+        optsContainer.innerHTML = '';
+        
+        q.answers.forEach((ans, index) => {
+            const btn = document.createElement('button');
+            btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-white text-left hover:bg-gray-700 transition";
+            btn.innerText = ans;
+            btn.onclick = () => checkQuizAnswer(index, q.correct, q.explanation, btn);
+            optsContainer.appendChild(btn);
+        });
+    }
+
+    function checkQuizAnswer(selectedIndex, correctIndex, explanation, btn) {
+        const buttons = document.getElementById('options-container').children;
+        for(let i=0; i<buttons.length; i++) {
+            buttons[i].disabled = true;
+            if(i === correctIndex) {
+                buttons[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white text-left";
+            } else if(i === selectedIndex) {
+                buttons[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white text-left opacity-50";
+            } else {
+                buttons[i].classList.add('opacity-50');
+            }
+        }
+        
+        const expBox = document.getElementById('explanation-box');
+        expBox.innerHTML = explanation;
+        expBox.classList.remove('hidden');
+        
+        if(selectedIndex === correctIndex) {
+            showToast("Korrekt! +10 Coins", "success");
+            confetti();
+            currentPlayer.coins += 10;
+            savePlayerProgress();
+        } else {
+            showToast("Leider falsch!", "error");
+        }
+        
+        document.getElementById('next-question-btn').classList.remove('hidden');
+    }
+
+    function triggerNextQuestion() {
+        qIndex++;
+        if(qIndex < currentQuestions.length) {
+            showQuestion();
+        } else {
+            showToast("Quiz beendet! Gut gemacht.", "success");
+            leaveQuiz();
         }
     }
 

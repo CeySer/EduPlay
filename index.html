@@ -82,7 +82,6 @@
                 </div>
             </div>
             
-            <!-- SUBVIEWS WIE GEHABT (Leaderboard, Workshop, Parent) -->
             <div id="subview-leaderboard" class="subview hidden space-y-4">
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
                     <h3 class="text-xl font-extrabold text-yellow-400 mb-4">🏆 Globale Rangliste</h3>
@@ -180,29 +179,88 @@
 </div>
 
 <script>
-    // === 01. QUIZ DATENBANK ===
+    // === 01. KOMPLETTE QUIZ DATENBANK ===
     const QUESTIONS_DATABASE = [
         { id: 3001, category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD", "hunD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere schreibt man immer groß! 'Hund' ist ein Tier und somit ein Nomen." },
+        { id: 3002, category: "deutsch_uebungsheft", question: "Wie trennt man das Wort 'Schmetterling' richtig in Silben?", answers: ["Schme-tter-ling", "Schmet-ter-ling", "Schmett-er-ling", "Schme-tte-rling"], correct: 1, explanation: "💡 Silbenklatschen hilft dir beim Schreiben! Klatsche mit: Schmet - ter - ling. Das sind genau 3 Silben." },
+        { id: 3003, category: "deutsch_uebungsheft", question: "Wie schreibt man das Krabbeltier 'Spinne' richtig?", answers: ["Spine", "Schpine", "Spinne", "Schpinne"], correct: 2, explanation: "💡 Klatsche mit: Spin - ne. Weil wir das 'i' ganz schnell sprechen und in der Silbenmitte trennen, schreiben wir Doppel-n (nn)!" },
+        { id: 3004, category: "deutsch_uebungsheft", question: "Was ist die richtige Mehrzahl (viele) von 'Haus'?", answers: ["Hauser", "Häuser", "Heuser", "Hoiser"], correct: 1, explanation: "💡 Denk an die Einzahl! Da 'Haus' mit 'au' geschrieben wird, schreiben wir die Mehrzahl 'Häuser' mit dem Umlaut 'äu'." },
+        { id: 3005, category: "deutsch_uebungsheft", question: "Was ist die richtige Mehrzahl von 'Gans'?", answers: ["Ganse", "Gänse", "Gense", "Gähnse"], correct: 1, explanation: "💡 Die Einzahl 'Gans' hat ein 'a', deshalb schreiben wir die Mehrzahl 'Gänse' mit einem Umlaut 'ä'." },
+        { id: 3006, category: "deutsch_uebungsheft", question: "Manchmal hörst du ein F, musst aber ein V schreiben. Welches Wort schreibt man mit V?", answers: ["Fisch", "Fahrrad", "Vogel", "Flasche"], correct: 2, explanation: "💡 Der 'Vogel' ist ein wichtiges Merkwort. Man hört ein 'F', schreibt aber ein 'V'." },
+        { id: 3007, category: "deutsch_uebungsheft", question: "In manchen Wörtern hörst du ein ks, musst aber x schreiben. Wie schreibt man die Zauberin?", answers: ["Hekse", "Hexe", "Häckse", "Hegse"], correct: 1, explanation: "💡 Du hörst zwar das Geräusch 'ks' am Ende, aber du schreibst ein 'x' wie in 'Hexe'!" },
+        { id: 3008, category: "deutsch_uebungsheft", question: "Wie schreibt man das Wort 'spielen' richtig?", answers: ["schpielen", "spielen", "stielen", "schielen"], correct: 1, explanation: "💡 Am Wortanfang schreiben wir immer 'Sp' oder 'St', auch wenn wir ein 'Sch' hören! Z.B. spielen, Stein, Spinne." },
+        { id: 3009, category: "deutsch_uebungsheft", question: "Welches Wort reimt sich auf 'Maus'?", answers: ["Katze", "Haus", "Baum", "Hund"], correct: 1, explanation: "💡 Maus und Haus klingen am Ende gleich. Sie reimen sich!" },
+        { id: 3010, category: "deutsch_uebungsheft", question: "Welcher Satz ist ein Fragesatz?", answers: ["Ich gehe nach Hause.", "Der Hund bellt laut.", "Kommst du heute spielen?", "Das Eis ist lecker!"], correct: 2, explanation: "💡 Eine Frage erkennst du an dem Fragezeichen (?) am Ende des Satzes." },
+
         { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: Rechne erst die Zehner zusammen (20 + 10 = 30) und dann die Einer (5 + 4 = 9). Zusammen ergibt das 39!" },
+        { id: 2002, category: "klasse2_mathe", question: "Rechne aus: Was ist 45 - 20?", answers: ["15", "25", "35", "45"], correct: 1, explanation: "💡 Ziehe einfach 2 Zehner von den 4 Zehnern ab. Aus 40 wird 20, also bleibt 25!" },
+        { id: 2003, category: "klasse2_mathe", question: "Was ergibt die Malaufgabe 2 * 5?", answers: ["7", "8", "10", "12"], correct: 2, explanation: "💡 2 * 5 ist das Gleiche wie 5 + 5. Das ergibt genau 10!" },
+        { id: 2005, category: "klasse2_mathe", question: "Rechne aus: 3 * 3 = ?", answers: ["6", "8", "9", "12"], correct: 2, explanation: "💡 3 * 3 bedeutet 3 + 3 + 3. Das macht zusammen 9!" },
+        { id: 2010, category: "klasse2_mathe", question: "Welches Zeichen passt hier: 34 [ ] 43?", answers: [">", "<", "=", "+"], correct: 1, explanation: "💡 34 ist kleiner als 43. Das Krokodil frisst immer die größere Zahl: < !" },
+        { id: 2011, category: "klasse2_mathe", question: "Emma rechnet eine Tauschaufgabe: 15 + 4 = 19. Welcher Trick hilft ihr, um 4 + 15 einfacher im Kopf zu lösen?", answers: ["Tauschaufgabe: 15 + 4 hat dasselbe Ergebnis!", "Umkehraufgabe: 19 - 4 = 15", "Nachbaraufgabe: 15 + 5 = 20", "Verdoppeln: 15 + 15 = 30"], correct: 0, explanation: "💡 Emmas Rechentrick: Bei Plusaufgaben darfst du die Zahlen vertauschen. Das Ergebnis bleibt gleich!" },
+        { id: 2012, category: "klasse2_mathe", question: "Max nutzt eine einfache Nachbaraufgabe für 15 + 16. Er weiß, dass 15 + 15 = 30 ist. Was ist dann 15 + 16?", answers: ["29", "30", "31", "32"], correct: 2, explanation: "💡 Max' Rechentrick: Da 16 genau um 1 größer ist als 15, rechnet Max einfach 15 + 15 = 30 und zählt 1 dazu. Das macht 31!" },
+        { id: 2013, category: "klasse2_mathe", question: "Verdopple die Zahl 12!", answers: ["20", "22", "24", "26"], correct: 2, explanation: "💡 Verdoppeln heißt: Die Zahl plus sich selbst. 12 + 12 = 24." },
+        { id: 2014, category: "klasse2_mathe", question: "Halbiere die Zahl 18!", answers: ["7", "8", "9", "10"], correct: 2, explanation: "💡 Halbieren heißt: In zwei gleich große Teile teilen. 9 + 9 = 18." },
+
         { id: 3501, category: "klasse3_englisch", question: "Translate into English: 'Wie heißt du?'", answers: ["How are you?", "What is your name?", "Who are you?", "How old are you?"], correct: 1, explanation: "💡 Um nach dem Namen zu fragen, sagt man auf Englisch 'What is your name?'" },
+        { id: 3502, category: "klasse3_englisch", question: "Which pet is it? 'It is small and likes cheese.'", answers: ["dog", "cat", "mouse", "fish"], correct: 2, explanation: "💡 Eine Maus (mouse) ist klein und mag Käse!" },
+        { id: 3503, category: "klasse3_englisch", question: "What are you wearing? 'Ich trage ein rotes T-Shirt.'", answers: ["I wear a red T-shirt.", "I am wearing a red T-shirt.", "I am wearing a red shoes.", "I wearing a red T-shirt."], correct: 1, explanation: "💡 Wenn du etwas im Moment trägst, sagst du 'I am wearing...'" },
+        { id: 3507, category: "klasse3_englisch", question: "Which number is 'twelve'?", answers: ["2", "11", "12", "20"], correct: 2, explanation: "💡 'Twelve' ist die Zahl 12." },
+        { id: 3511, category: "klasse3_englisch", question: "What part of the body is 'Auge'?", answers: ["ear", "nose", "mouth", "eye"], correct: 3, explanation: "💡 Das Auge heißt 'eye'." },
+        { id: 3512, category: "klasse3_englisch", question: "How do you say 'Guten Morgen' in English?", answers: ["Good evening", "Good afternoon", "Good night", "Good morning"], correct: 3, explanation: "💡 Am Morgen begrüßt man sich auf Englisch mit 'Good morning'." },
+        { id: 3513, category: "klasse3_englisch", question: "Which colour is a banana?", answers: ["red", "blue", "yellow", "green"], correct: 2, explanation: "💡 Eine Banane ist gelb. Gelb heißt auf Englisch 'yellow'." },
+
         { id: 8101, category: "kfz", question: "Welche Flüssigkeit muss regelmäßig auf Frostschutz geprüft werden?", answers: ["Motoröl", "Kühlflüssigkeit", "Bremsflüssigkeit", "Getriebeöl"], correct: 1, explanation: "💡 Die Kühlflüssigkeit schützt den Motor vor dem Einfrieren und muss vor dem Winter gespindelt werden." },
+        { id: 8301, category: "kfz", question: "Welches Messgerät misst die Spannung der Autobatterie?", answers: ["Amperemeter", "Multimeter (Spannungsmessung)", "Ohmmeter", "Oszilloskop"], correct: 1, explanation: "💡 Mit einem Multimeter misst man die elektrische Spannung parallel, die Einheit ist Volt (V)." },
         { id: 8302, category: "kfz", question: "Zahnriemenwechsel: Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug angebracht ist?", answers: ["Die Wasserpumpe lösen", "Den Motor an der Kurbelwelle durchdrehen", "Die Spannrolle entspannen", "Den alten Keilrippenriemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" },
-        { id: 9001, category: "allgemein", question: "Wie viele Bundesländer hat Deutschland?", answers: ["12", "14", "16", "18"], correct: 2, explanation: "💡 Deutschland besteht aus 16 Bundesländern, zum Beispiel Nordrhein-Westfalen oder Bayern." }
+        { id: 8303, category: "kfz", question: "Fahrwerktechnik: Wie nennt man eine Felge, deren Felgenbett nach innen vertieft ist, um die Reifenmontage zu ermöglichen?", answers: ["Flachbettfelge", "Steilschulterfelge", "Tiefbettfelge", "Sprengringfelge"], correct: 2, explanation: "💡 Durch das vertiefte Bett (Tiefbettfelge) kann der Reifen bei der Montage über das Hornflansch gehebelt werden." },
+        { id: 8304, category: "kfz", question: "Werkzeugkunde: Welche bekannte Marke wird in vielen Profi-Werkstätten oft für Mini-Knarrenkästen verwendet?", answers: ["Bender", "Berner", "Baumann", "Biller"], correct: 1, explanation: "💡 Die Marke heißt Berner. Sie ist ein sehr bekannter Zulieferer für Werkstattbedarf und Handwerkzeuge." },
+
+        { id: 9001, category: "allgemein", question: "Wie viele Bundesländer hat Deutschland?", answers: ["12", "14", "16", "18"], correct: 2, explanation: "💡 Deutschland besteht aus 16 Bundesländern, zum Beispiel Nordrhein-Westfalen oder Bayern." },
+        { id: 9002, category: "allgemein", question: "Welcher Planet ist der Sonne am nächsten?", answers: ["Venus", "Mars", "Merkur", "Erde"], correct: 2, explanation: "💡 Merkur ist der kleinste und der sonnennächste Planet in unserem Sonnensystem." },
+        { id: 9003, category: "allgemein", question: "Wie viele Kontinente gibt es auf der Erde?", answers: ["5", "6", "7", "8"], correct: 2, explanation: "💡 Es gibt 7 Kontinente: Asien, Afrika, Nordamerika, Südamerika, Antarktika, Europa und Australien." },
+        { id: 9004, category: "allgemein", question: "Aus wie vielen Spielern besteht eine Fußballmannschaft auf dem Feld?", answers: ["9", "10", "11", "12"], correct: 2, explanation: "💡 Eine Mannschaft spielt mit 11 Spielern: Einem Torwart und 10 Feldspielern." }
     ];
 
-    // === 02. VOKABEL DATENBANK (inkl. Klassen 4-10) ===
+    // === 02. KOMPLETTE VOKABEL DATENBANK ===
     const VOCABULARY_DATABASE = {
         en: {
-            numbers: { label: "🔢 Zahlen (Kl. 1-4)", words: [{ de: "Eins", foreign: "one" }, { de: "Zwei", foreign: "two" }, { de: "Drei", foreign: "three" }, { de: "Vier", foreign: "four" }, { de: "Fünf", foreign: "five" }] },
-            school: { label: "🎒 Schule (Kl. 4-5)", words: [{ de: "Buch", foreign: "book" }, { de: "Tisch", foreign: "table" }, { de: "Stuhl", foreign: "chair" }, { de: "Tafel", foreign: "board" }, { de: "Schere", foreign: "scissors" }, { de: "Fenster", foreign: "window" }] },
+            numbers: { label: "🔢 Zahlen (Kl. 1-4)", words: [{ de: "Null", foreign: "zero" }, { de: "Eins", foreign: "one" }, { de: "Zwei", foreign: "two" }, { de: "Drei", foreign: "three" }, { de: "Vier", foreign: "four" }, { de: "Fünf", foreign: "five" }, { de: "Sechs", foreign: "six" }, { de: "Sieben", foreign: "seven" }, { de: "Acht", foreign: "eight" }, { de: "Neun", foreign: "nine" }, { de: "Zehn", foreign: "ten" }, { de: "Zwanzig", foreign: "twenty" }, { de: "Einhundert", foreign: "one hundred" }, { de: "Eintausend", foreign: "one thousand" }] },
+            colours: { label: "🎨 Farben", words: [{ de: "Schwarz", foreign: "black" }, { de: "Blau", foreign: "blue" }, { de: "Braun", foreign: "brown" }, { de: "Grün", foreign: "green" }, { de: "Grau", foreign: "grey" }, { de: "Rot", foreign: "red" }, { de: "Gelb", foreign: "yellow" }, { de: "Weiß", foreign: "white" }, { de: "Rosa", foreign: "pink" }, { de: "Lila", foreign: "purple" }, { de: "Orange", foreign: "orange" }] },
+            school: { label: "🎒 Schule (Kl. 4-5)", words: [{ de: "Buch", foreign: "book" }, { de: "Tisch", foreign: "table" }, { de: "Stuhl", foreign: "chair" }, { de: "Tafel", foreign: "board" }, { de: "Schultasche", foreign: "schoolbag" }, { de: "Lineal", foreign: "ruler" }, { de: "Schere", foreign: "scissors" }, { de: "Computer", foreign: "computer" }, { de: "Tür", foreign: "door" }, { de: "Übungsheft", foreign: "exercise book" }, { de: "Fenster", foreign: "window" }] },
+            zoo_animals: { label: "🦁 Zootiere", words: [{ de: "Bär", foreign: "bear" }, { de: "Elefant", foreign: "elephant" }, { de: "Giraffe", foreign: "giraffe" }, { de: "Löwe", foreign: "lion" }, { de: "Affe", foreign: "monkey" }, { de: "Schlange", foreign: "snake" }, { de: "Krokodil", foreign: "crocodile" }, { de: "Nilpferd", foreign: "hippo" }, { de: "Tiger", foreign: "tiger" }, { de: "Zebra", foreign: "zebra" }] },
+            farm_animals: { label: "🐄 Bauernhoftiere", words: [{ de: "Katze", foreign: "cat" }, { de: "Hahn", foreign: "cock" }, { de: "Kuh", foreign: "cow" }, { de: "Hund", foreign: "dog" }, { de: "Esel", foreign: "donkey" }, { de: "Ziege", foreign: "goat" }, { de: "Gans", foreign: "goose" }, { de: "Henne", foreign: "hen" }, { de: "Pferd", foreign: "horse" }, { de: "Schwein", foreign: "pig" }, { de: "Schaf", foreign: "sheep" }] },
+            pets: { label: "🐶 Haustiere", words: [{ de: "Hund", foreign: "dog" }, { de: "Katze", foreign: "cat" }, { de: "Maus", foreign: "mouse" }, { de: "Vogel", foreign: "bird" }, { de: "Fisch", foreign: "fish" }, { de: "Kaninchen", foreign: "rabbit" }, { de: "Meerschweinchen", foreign: "guinea pig" }, { de: "Hamster", foreign: "hamster" }, { de: "Spinne", foreign: "spider" }] },
+            body: { label: "🧍 Körper", words: [{ de: "Kopf", foreign: "head" }, { de: "Hals", foreign: "neck" }, { de: "Hand", foreign: "hand" }, { de: "Finger", foreign: "finger" }, { de: "Knie", foreign: "knee" }, { de: "Schulter", foreign: "shoulder" }, { de: "Arm", foreign: "arm" }, { de: "Bauch", foreign: "belly" }, { de: "Bein", foreign: "leg" }, { de: "Fuß", foreign: "foot" }, { de: "Haare", foreign: "hair" }, { de: "Gesicht", foreign: "face" }, { de: "Ohr", foreign: "ear" }, { de: "Nase", foreign: "nose" }, { de: "Mund", foreign: "mouth" }, { de: "Auge", foreign: "eye" }, { de: "Zahn", foreign: "tooth" }] },
+            clothes: { label: "👕 Kleidung", words: [{ de: "T-Shirt", foreign: "T-shirt" }, { de: "Hose", foreign: "trousers" }, { de: "Schuhe", foreign: "shoes" }, { de: "Pullover", foreign: "pullover" }, { de: "Kleid", foreign: "dress" }, { de: "kurze Hose", foreign: "shorts" }, { de: "Jacke", foreign: "jacket" }, { de: "Schal", foreign: "scarf" }, { de: "Socken", foreign: "socks" }, { de: "Jeans", foreign: "jeans" }] },
+            family: { label: "👨‍👩‍👦 Familie", words: [{ de: "Mutter", foreign: "mother" }, { de: "Vater", foreign: "father" }, { de: "Bruder", foreign: "brother" }, { de: "Schwester", foreign: "sister" }, { de: "Oma", foreign: "grandmother" }, { de: "Opa", foreign: "grandfather" }, { de: "Eltern", foreign: "parents" }, { de: "Großeltern", foreign: "grandparents" }, { de: "Kind", foreign: "child" }] },
+            fruit: { label: "🍎 Obst", words: [{ de: "Apfel", foreign: "apple" }, { de: "Banane", foreign: "banana" }, { de: "Kirsche", foreign: "cherry" }, { de: "Weintrauben", foreign: "grapes" }, { de: "Zitrone", foreign: "lemon" }, { de: "Orange", foreign: "orange" }, { de: "Pfirsich", foreign: "peach" }, { de: "Birne", foreign: "pear" }, { de: "Ananas", foreign: "pineapple" }, { de: "Erdbeere", foreign: "strawberry" }, { de: "Wassermelone", foreign: "watermelon" }] },
+            vegetables: { label: "🥦 Gemüse", words: [{ de: "Aubergine", foreign: "aubergine" }, { de: "Bohnen", foreign: "beans" }, { de: "Karotte", foreign: "carrot" }, { de: "Gurke", foreign: "cucumber" }, { de: "Kopfsalat", foreign: "lettuce" }, { de: "Zwiebel", foreign: "onion" }, { de: "Erbsen", foreign: "peas" }, { de: "Kartoffel", foreign: "potato" }, { de: "Tomate", foreign: "tomato" }] },
+            food: { label: "🥪 Essen", words: [{ de: "Brot", foreign: "bread" }, { de: "Käse", foreign: "cheese" }, { de: "Ei", foreign: "egg" }, { de: "Butter", foreign: "butter" }, { de: "Schinken", foreign: "ham" }, { de: "Honig", foreign: "honey" }, { de: "Marmelade", foreign: "jam" }, { de: "Pizza", foreign: "pizza" }, { de: "Sandwich", foreign: "sandwich" }] },
+            drinks: { label: "🧃 Getränke", words: [{ de: "Kaffee", foreign: "coffee" }, { de: "Milch", foreign: "milk" }, { de: "Mineralwasser", foreign: "mineral water" }, { de: "Orangensaft", foreign: "orange juice" }, { de: "Tee", foreign: "tea" }, { de: "Wasser", foreign: "water" }] },
+            weather: { label: "⛅ Wetter", words: [{ de: "wolkig", foreign: "cloudy" }, { de: "kalt", foreign: "cold" }, { de: "heiß", foreign: "hot" }, { de: "Regenbogen", foreign: "rainbow" }, { de: "regnerisch", foreign: "rainy" }, { de: "verschneit", foreign: "snowy" }, { de: "sonnig", foreign: "sunny" }, { de: "windig", foreign: "windy" }] },
+            vehicles: { label: "🚗 Fahrzeuge", words: [{ de: "Auto", foreign: "car" }, { de: "Fahrrad", foreign: "bike" }, { de: "Bus", foreign: "bus" }, { de: "Zug", foreign: "train" }, { de: "Flugzeug", foreign: "plane" }, { de: "Schiff", foreign: "ship" }, { de: "Motorrad", foreign: "motorbike" }] },
             hobbies: { label: "⚽ Hobbys (Kl. 5-6)", words: [{ de: "Fußball spielen", foreign: "playing football" }, { de: "Schwimmen", foreign: "swimming" }, { de: "Lesen", foreign: "reading" }, { de: "Tanzen", foreign: "dancing" }, { de: "Singen", foreign: "singing" }] },
             environment: { label: "🌍 Umwelt (Kl. 7-8)", words: [{ de: "Klimawandel", foreign: "climate change" }, { de: "Umweltschutz", foreign: "environmental protection" }, { de: "Verschmutzung", foreign: "pollution" }, { de: "Mülltrennung", foreign: "waste separation" }, { de: "Nachhaltigkeit", foreign: "sustainability" }] },
             technology: { label: "💻 Technik (Kl. 8-9)", words: [{ de: "Künstliche Intelligenz", foreign: "artificial intelligence" }, { de: "Soziale Netzwerke", foreign: "social media" }, { de: "Herunterladen", foreign: "download" }, { de: "Passwort", foreign: "password" }, { de: "Bildschirm", foreign: "screen" }] },
             society: { label: "👥 Gesellschaft (Kl. 9-10)", words: [{ de: "Menschenrechte", foreign: "human rights" }, { de: "Demokratie", foreign: "democracy" }, { de: "Gerechtigkeit", foreign: "justice" }, { de: "Vielfalt", foreign: "diversity" }, { de: "Wahl", foreign: "election" }] }
         },
         tr: {
-            numbers: { label: "🔢 Sayılar (Kl. 1-4)", words: [{ de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" }, { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }] },
-            school: { label: "🎒 Okul (Kl. 4-5)", words: [{ de: "Buch", foreign: "kitap" }, { de: "Tisch", foreign: "masa" }, { de: "Stuhl", foreign: "sandalye" }, { de: "Tafel", foreign: "tahta" }, { de: "Schere", foreign: "makas" }, { de: "Fenster", foreign: "pencere" }] },
+            numbers: { label: "🔢 Sayılar (Kl. 1-4)", words: [{ de: "Null", foreign: "sıfır" }, { de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" }, { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }, { de: "Sechs", foreign: "altı" }, { de: "Sieben", foreign: "yedi" }, { de: "Acht", foreign: "sekiz" }, { de: "Neun", foreign: "dokuz" }, { de: "Zehn", foreign: "on" }, { de: "Zwanzig", foreign: "yirmi" }, { de: "Einhundert", foreign: "yüz" }, { de: "Eintausend", foreign: "bin" }] },
+            colours: { label: "🎨 Renkler", words: [{ de: "Schwarz", foreign: "siyah" }, { de: "Blau", foreign: "mavi" }, { de: "Braun", foreign: "kahverengi" }, { de: "Grün", foreign: "yeşil" }, { de: "Grau", foreign: "gri" }, { de: "Rot", foreign: "kırmızı" }, { de: "Gelb", foreign: "sarı" }, { de: "Weiß", foreign: "beyaz" }, { de: "Rosa", foreign: "pembe" }, { de: "Lila", foreign: "mor" }, { de: "Orange", foreign: "turuncu" }] },
+            school: { label: "🎒 Okul (Kl. 4-5)", words: [{ de: "Buch", foreign: "kitap" }, { de: "Tisch", foreign: "masa" }, { de: "Stuhl", foreign: "sandalye" }, { de: "Tafel", foreign: "tahta" }, { de: "Schultasche", foreign: "okul çantası" }, { de: "Lineal", foreign: "cetvel" }, { de: "Schere", foreign: "makas" }, { de: "Computer", foreign: "bilgisayar" }, { de: "Tür", foreign: "kapı" }, { de: "Übungsheft", foreign: "yazı defteri" }, { de: "Fenster", foreign: "pencere" }] },
+            zoo_animals: { label: "🦁 Hayvanat Bahçesi", words: [{ de: "Bär", foreign: "ayı" }, { de: "Elefant", foreign: "fil" }, { de: "Giraffe", foreign: "zürafa" }, { de: "Löwe", foreign: "aslan" }, { de: "Affe", foreign: "maymun" }, { de: "Schlange", foreign: "yılan" }, { de: "Krokodil", foreign: "timsah" }, { de: "Nilpferd", foreign: "su aygırı" }, { de: "Tiger", foreign: "kaplan" }, { de: "Zebra", foreign: "zebra" }] },
+            farm_animals: { label: "🐄 Çiftlik Hayvanları", words: [{ de: "Katze", foreign: "kedi" }, { de: "Hahn", foreign: "horoz" }, { de: "Kuh", foreign: "inek" }, { de: "Hund", foreign: "köpek" }, { de: "Esel", foreign: "eşek" }, { de: "Ziege", foreign: "keçi" }, { de: "Gans", foreign: "kaz" }, { de: "Henne", foreign: "tavuk" }, { de: "Pferd", foreign: "at" }, { de: "Schwein", foreign: "domuz" }, { de: "Schaf", foreign: "koyun" }] },
+            pets: { label: "🐶 Evcil Hayvanlar", words: [{ de: "Hund", foreign: "köpek" }, { de: "Katze", foreign: "kedi" }, { de: "Maus", foreign: "fare" }, { de: "Vogel", foreign: "kuş" }, { de: "Fisch", foreign: "balık" }, { de: "Kaninchen", foreign: "tavşan" }, { de: "Meerschweinchen", foreign: "gine domuzu" }, { de: "Hamster", foreign: "hamster" }, { de: "Spinne", foreign: "örümcek" }] },
+            body: { label: "🧍 Vücudumuz", words: [{ de: "Kopf", foreign: "baş" }, { de: "Hals", foreign: "boyun" }, { de: "Hand", foreign: "el" }, { de: "Finger", foreign: "parmak" }, { de: "Knie", foreign: "diz" }, { de: "Schulter", foreign: "omuz" }, { de: "Arm", foreign: "kol" }, { de: "Bauch", foreign: "karın" }, { de: "Bein", foreign: "bacak" }, { de: "Fuß", foreign: "ayak" }, { de: "Haare", foreign: "saç" }, { de: "Gesicht", foreign: "yüz" }, { de: "Ohr", foreign: "kulak" }, { de: "Nase", foreign: "burun" }, { de: "Mund", foreign: "ağız" }, { de: "Auge", foreign: "göz" }, { de: "Zahn", foreign: "diş" }] },
+            clothes: { label: "👕 Giysiler", words: [{ de: "T-Shirt", foreign: "tişört" }, { de: "Hose", foreign: "pantolon" }, { de: "Schuhe", foreign: "ayakkabı" }, { de: "Pullover", foreign: "kazak" }, { de: "Kleid", foreign: "elbise" }, { de: "kurze Hose", foreign: "şort" }, { de: "Jacke", foreign: "ceket" }, { de: "Schal", foreign: "atkı" }, { de: "Socken", foreign: "çorap" }, { de: "Jeans", foreign: "kot pantolon" }] },
+            family: { label: "👨‍👩‍👦 Aile", words: [{ de: "Mutter", foreign: "anne" }, { de: "Vater", foreign: "baba" }, { de: "Bruder", foreign: "erkek kardeş" }, { de: "Schwester", foreign: "kız kardeş" }, { de: "Oma", foreign: "büyükanne" }, { de: "Opa", foreign: "büyükbaba" }, { de: "Eltern", foreign: "ebeveyn" }, { de: "Großeltern", foreign: "büyükanne ve büyükbaba" }, { de: "Kind", foreign: "çocuk" }] },
+            fruit: { label: "🍎 Meyveler", words: [{ de: "Apfel", foreign: "elma" }, { de: "Banane", foreign: "muz" }, { de: "Kirsche", foreign: "kiraz" }, { de: "Weintrauben", foreign: "üzüm" }, { de: "Zitrone", foreign: "limon" }, { de: "Orange", foreign: "portakal" }, { de: "Pfirsich", foreign: "şeftali" }, { de: "Birne", foreign: "armut" }, { de: "Ananas", foreign: "ananas" }, { de: "Erdbeere", foreign: "çilek" }, { de: "Wassermelone", foreign: "karpuz" }] },
+            vegetables: { label: "🥦 Sebzeler", words: [{ de: "Aubergine", foreign: "patlıcan" }, { de: "Bohnen", foreign: "fasulye" }, { de: "Karotte", foreign: "havuç" }, { de: "Gurke", foreign: "salatalık" }, { de: "Kopfsalat", foreign: "marul" }, { de: "Zwiebel", foreign: "soğan" }, { de: "Erbsen", foreign: "bezelye" }, { de: "Kartoffel", foreign: "patates" }, { de: "Tomate", foreign: "domates" }] },
+            food: { label: "🥪 Yiyecekler", words: [{ de: "Brot", foreign: "ekmek" }, { de: "Käse", foreign: "peynir" }, { de: "Ei", foreign: "yumurta" }, { de: "Butter", foreign: "tereyağı" }, { de: "Schinken", foreign: "jambon" }, { de: "Honig", foreign: "bal" }, { de: "Marmelade", foreign: "reçel" }, { de: "Pizza", foreign: "pizza" }, { de: "Sandwich", foreign: "sandviç" }] },
+            drinks: { label: "🧃 İçecekler", words: [{ de: "Kaffee", foreign: "kahve" }, { de: "Milch", foreign: "süt" }, { de: "Mineralwasser", foreign: "maden suyu" }, { de: "Orangensaft", foreign: "portakal suyu" }, { de: "Tee", foreign: "çay" }, { de: "Wasser", foreign: "su" }] },
+            weather: { label: "⛅ Hava Durumu", words: [{ de: "wolkig", foreign: "bulutlu" }, { de: "kalt", foreign: "soğuk" }, { de: "heiß", foreign: "sıcak" }, { de: "Regenbogen", foreign: "gökkuşağı" }, { de: "regnerisch", foreign: "yağmurlu" }, { de: "verschneit", foreign: "karlı" }, { de: "sonnig", foreign: "güneşli" }, { de: "windig", foreign: "rüzgarlı" }] },
+            vehicles: { label: "🚗 Araçlar", words: [{ de: "Auto", foreign: "araba" }, { de: "Fahrrad", foreign: "bisiklet" }, { de: "Bus", foreign: "otobüs" }, { de: "Zug", foreign: "tren" }, { de: "Flugzeug", foreign: "uçak" }, { de: "Schiff", foreign: "gemi" }, { de: "Motorrad", foreign: "motosiklet" }] },
             hobbies: { label: "⚽ Hobiler (Kl. 5-6)", words: [{ de: "Fußball spielen", foreign: "futbol oynamak" }, { de: "Schwimmen", foreign: "yüzmek" }, { de: "Lesen", foreign: "okumak" }, { de: "Tanzen", foreign: "dans etmek" }, { de: "Singen", foreign: "şarkı söylemek" }] },
             environment: { label: "🌍 Çevre (Kl. 7-8)", words: [{ de: "Klimawandel", foreign: "iklim değişikliği" }, { de: "Umweltschutz", foreign: "çevreyi koruma" }, { de: "Verschmutzung", foreign: "kirlilik" }, { de: "Mülltrennung", foreign: "çöp ayırma" }, { de: "Nachhaltigkeit", foreign: "sürdürülebilirlik" }] },
             technology: { label: "💻 Teknoloji (Kl. 8-9)", words: [{ de: "Künstliche Intelligenz", foreign: "yapay zeka" }, { de: "Soziale Netzwerke", foreign: "sosyal medya" }, { de: "Herunterladen", foreign: "indirmek" }, { de: "Passwort", foreign: "şifre" }, { de: "Bildschirm", foreign: "ekran" }] },
@@ -223,7 +281,6 @@
     
     let activeLang = 'en', activeCategory = 'numbers', vIndex = 0;
     let vocabMode = 'flashcards'; 
-    // NEU: Lade "Gelernte Wörter" aus dem Browser-Speicher
     let learnedWords = new Set(JSON.parse(localStorage.getItem('learnedWords') || '[]'));
     
     let currentQuestions = [], qIndex = 0;
@@ -375,9 +432,9 @@
 
     function setVocabMode(mode) {
         vocabMode = mode; vIndex = 0;
-        document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold text-xs transition-all ${mode === 'flashcards' ? 'bg-indigo-600 text-white' : 'text-gray-400 bg-gray-900'}`;
-        document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold text-xs transition-all ${mode === 'mc' ? 'bg-indigo-600 text-white' : 'text-gray-400 bg-gray-900'}`;
-        document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold text-xs transition-all ${mode === 'typing' ? 'bg-indigo-600 text-white' : 'text-gray-400 bg-gray-900'}`;
+        document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'flashcards' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`;
+        document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'mc' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`;
+        document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'typing' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`;
         showVocabQuestion();
     }
 
@@ -399,13 +456,12 @@
         return arr;
     }
 
-    // NEU: NextVocab steuert das "Gemerkt" und speichert ab
     function nextVocab(isKnown) {
         const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
-        const currentForeign = list[vIndex].foreign;
-        const wordKey = activeLang + "_" + activeCategory + "_" + currentForeign;
-
+        
         if (isKnown) {
+            const currentForeign = list[vIndex].foreign;
+            const wordKey = activeLang + "_" + activeCategory + "_" + currentForeign;
             learnedWords.add(wordKey);
             localStorage.setItem('learnedWords', JSON.stringify([...learnedWords]));
             showToast("Gemerkt! Wird ausgeblendet 🧠", "success");
@@ -419,21 +475,22 @@
         const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
         const box = document.getElementById("vokabel-box");
         
-        // Prüfen, ob alle Wörter in der aktuellen Kategorie gelernt wurden
+        // Prüfen, ob alle Wörter gelernt wurden
         let allLearned = list.every(item => learnedWords.has(activeLang + "_" + activeCategory + "_" + item.foreign));
-        if (allLearned) {
+        if (allLearned && list.length > 0) {
             showToast("Alle Vokabeln in dieser Kategorie gelernt! Fange von vorne an...", "success");
             list.forEach(item => learnedWords.delete(activeLang + "_" + activeCategory + "_" + item.foreign));
             localStorage.setItem('learnedWords', JSON.stringify([...learnedWords]));
         }
 
-        // Überspringe automatisch die bereits gelernten Wörter
-        while(learnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign)) {
+        // Automatisch bereits gelernte Wörter überspringen
+        let safetyCounter = 0;
+        while(learnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && safetyCounter < list.length) {
             vIndex = (vIndex + 1) % list.length;
+            safetyCounter++;
         }
 
         const item = list[vIndex];
-        
         document.getElementById("total-display").innerText = list.length;
         document.getElementById("current-index-display").innerText = vIndex + 1;
 

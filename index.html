@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduPlay Hub - Die universelle Lernplattform</title>
-
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -13,626 +12,500 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0b0f19;
-            color: #f1f5f9;
-        }
-
-        .flip-card {
-            perspective: 1000px;
-        }
-
-        .flip-card-inner {
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .flip-card.flipped .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .flip-card-front,
-        .flip-card-back {
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            position: absolute;
-            inset: 0;
-        }
-
-        .flip-card-back {
-            transform: rotateY(180deg);
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f1f5f9; }
+        .flip-card { perspective: 1000px; }
+        .flip-card-inner { transition: transform 0.6s; transform-style: preserve-3d; position: relative; width: 100%; height: 100%; }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; position: absolute; inset: 0; }
+        .flip-card-back { transform: rotateY(180deg); }
     </style>
 </head>
-
 <body class="min-h-screen flex justify-center items-start overflow-x-hidden antialiased">
 
-    <div id="toast-container"
-        class="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 w-[90%] max-w-md pointer-events-none">
-    </div>
+<div id="toast-container" class="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 w-[90%] max-w-md pointer-events-none"></div>
 
-    <div
-        class="w-full max-w-md min-h-screen bg-[#111827] shadow-2xl relative flex flex-col justify-between pb-24 border-x border-gray-800">
-
-        <main class="flex-grow p-4">
-            <!-- VIEW: LOGIN -->
-            <div id="view-login" class="view hidden">
-                <div class="text-center py-8">
-                    <h1
-                        class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 mb-1">
-                        EduPlay Hub 🎮</h1>
-                    <p class="text-gray-400 text-sm">Die spielerische Multi-Lernplattform</p>
-                </div>
-
-                <div class="bg-gray-800/50 border border-gray-700 p-5 rounded-2xl mb-4 hidden"
-                    id="existing-profiles-box">
-                    <h3 class="text-center font-bold text-yellow-400 mb-3 flex items-center justify-center gap-2">
-                        <span>👤 Profil auswählen</span>
-                    </h3>
-                    <div id="profile-grid" class="flex flex-wrap justify-center gap-3"></div>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-lg font-bold text-emerald-400 text-center mb-4">Neues Profil erstellen ✍️</h3>
-                    <div class="space-y-3">
-                        <input type="text" id="username-input" placeholder="Name..."
-                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                        <input type="number" id="age-input" placeholder="Klasse / Alter..."
-                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                        <button
-                            class="w-full p-3.5 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl font-bold text-white shadow-lg"
-                            onclick="handleLogin()">Starten 🚀</button>
-                    </div>
-                </div>
+<div class="w-full max-w-md min-h-screen bg-[#111827] shadow-2xl relative flex flex-col justify-between pb-24 border-x border-gray-800">
+    
+    <main class="flex-grow p-4">
+        <!-- VIEW: LOGIN -->
+        <div id="view-login" class="view hidden">
+            <div class="text-center py-8">
+                <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 mb-1">EduPlay Hub 🎮</h1>
+                <p class="text-gray-400 text-sm">Die spielerische Multi-Lernplattform</p>
+            </div>
+            
+            <div class="bg-gray-800/50 border border-gray-700 p-5 rounded-2xl mb-4 hidden" id="existing-profiles-box">
+                <h3 class="text-center font-bold text-yellow-400 mb-3 flex items-center justify-center gap-2"><span>👤 Profil auswählen</span></h3>
+                <div id="profile-grid" class="flex flex-wrap justify-center gap-3"></div>
             </div>
 
-            <!-- VIEW: MAIN MENU -->
-            <div id="view-menu" class="view hidden space-y-4">
-                <div id="subview-home" class="subview space-y-4">
-                    <div
-                        class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-center shadow-xl">
+            <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg">
+                <h3 class="text-lg font-bold text-emerald-400 text-center mb-4">Neues Profil erstellen ✍️</h3>
+                <div class="space-y-3">
+                    <input type="text" id="username-input" placeholder="Name..." class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                    <input type="number" id="age-input" placeholder="Klasse / Alter..." class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                    <button class="w-full p-3.5 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl font-bold text-white shadow-lg" onclick="handleLogin()">Starten 🚀</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: MAIN MENU -->
+        <div id="view-menu" class="view hidden space-y-4">
+            <div id="subview-home" class="subview space-y-4">
+                <div class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-center shadow-xl">
+                    <div>
+                        <h2 id="welcome-text" class="text-xl font-bold text-white">Hallo!</h2>
+                        <div class="flex gap-4 mt-1 text-xs font-semibold">
+                            <span class="text-yellow-400">🪙 <span id="menu-coins">0</span> Coins</span>
+                            <span class="text-blue-400">🎒 Klasse: <span id="menu-age">-</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
+                
+                <div class="space-y-4">
+                    <div class="bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 active:scale-95 transition-all shadow-md" onclick="switchView('vokabeln')">
+                        <div class="text-5xl">📖</div>
                         <div>
-                            <h2 id="welcome-text" class="text-xl font-bold text-white">Hallo!</h2>
-                            <div class="flex gap-4 mt-1 text-xs font-semibold">
-                                <span class="text-yellow-400">🪙 <span id="menu-coins">0</span> Coins</span>
-                                <span class="text-blue-400">🎒 Klasse: <span id="menu-age">-</span></span>
-                            </div>
+                            <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
+                            <p class="text-xs text-gray-300">Karteikarten, Quiz & Tippen</p>
                         </div>
                     </div>
-
-                    <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
-
-                    <div class="space-y-4">
-                        <div class="bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 active:scale-95 transition-all shadow-md"
-                            onclick="switchView('vokabeln')">
-                            <div class="text-5xl">📖</div>
-                            <div>
-                                <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
-                                <p class="text-xs text-gray-300">Karteikarten, Quiz & Tippen</p>
-                            </div>
-                        </div>
-                        <div class="bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 active:scale-95 transition-all shadow-md"
-                            onclick="showQuizSetup('spiel')">
-                            <div class="text-5xl">🎯</div>
-                            <div>
-                                <h2 class="text-xl font-black text-pink-400">Quiz-Arena</h2>
-                                <p class="text-xs text-gray-300">Schulwissen & Kfz-Technik testen</p>
-                            </div>
-                        </div>
-                        <div class="bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 active:scale-95 transition-all shadow-md"
-                            onclick="showQuizSetup('lernen')">
-                            <div class="text-5xl">⏳</div>
-                            <div>
-                                <h2 class="text-xl font-black text-yellow-400">Fokus-Lernzeit</h2>
-                                <p class="text-xs text-gray-300">Mit Timer lernen & Truhe freischalten</p>
-                            </div>
+                    <div class="bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 active:scale-95 transition-all shadow-md" onclick="showQuizSetup('spiel')">
+                        <div class="text-5xl">🎯</div>
+                        <div>
+                            <h2 class="text-xl font-black text-pink-400">Quiz-Arena</h2>
+                            <p class="text-xs text-gray-300">Schulwissen & Kfz-Technik testen</p>
                         </div>
                     </div>
                 </div>
-
-                <div id="subview-leaderboard" class="subview hidden space-y-4">
-                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
-                        <h3 class="text-xl font-extrabold text-yellow-400 mb-4">🏆 Globale Rangliste</h3>
-                        <div id="leaderboard-list" class="space-y-2 text-left"></div>
-                    </div>
-                </div>
-
-                <div id="subview-workshop" class="subview hidden space-y-4">
-                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
-                        <h3 class="text-lg font-bold text-emerald-400">🔧 Tech-Lab</h3>
-                        <p class="text-xs text-gray-400 mt-2">Formelstudios und Berechnungen aktiv.</p>
-                    </div>
-                </div>
-
-                <div id="subview-parent" class="subview hidden space-y-4">
-                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
-                        <h3 class="text-lg font-bold text-rose-400 mb-2">👨‍👩‍👦 Verwaltung & Elternbereich</h3>
-                        <div id="parent-stats-container" class="space-y-3 mt-4"></div>
-                    </div>
+            </div>
+            
+            <!-- SUBVIEWS WIE GEHABT (Leaderboard, Workshop, Parent) -->
+            <div id="subview-leaderboard" class="subview hidden space-y-4">
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
+                    <h3 class="text-xl font-extrabold text-yellow-400 mb-4">🏆 Globale Rangliste</h3>
+                    <div id="leaderboard-list" class="space-y-2 text-left"></div>
                 </div>
             </div>
-
-            <!-- VIEW: QUIZ SETUP -->
-            <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
-                    Zurück</button>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
-                    <h2 class="text-2xl font-black text-center text-pink-400" id="quiz-setup-title">Quiz-Arena</h2>
-                    <input type="hidden" id="selected-game-mode" value="spiel">
-
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1">Kategorie:</label>
-                        <select id="main-category" onchange="updateSubCategories()"
-                            class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold">
-                            <option value="schule1">🏫 Klasse 1</option>
-                            <option value="schule2">🏫 Klasse 2</option>
-                            <option value="schule3">🏫 Klasse 3</option>
-                            <option value="kfz">🔧 KFZ-Technik</option>
-                            <option value="allgemein">🕌 Kultur & Allgemeinwissen</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1">Lektion:</label>
-                        <select id="sub-category" onchange="showQuestionCount()"
-                            class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold"></select>
-                        <div id="question-count-display" class="text-xs text-gray-400 mt-1 font-semibold pl-1"></div>
-                    </div>
-
-                    <button onclick="startQuiz()"
-                        class="w-full p-4 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg">Starten
-                        🚀</button>
+            <div id="subview-workshop" class="subview hidden space-y-4">
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
+                    <h3 class="text-lg font-bold text-emerald-400">🔧 Tech-Lab</h3>
+                    <p class="text-xs text-gray-400 mt-2">Formelstudios und Berechnungen aktiv.</p>
                 </div>
             </div>
-
-            <!-- VIEW: QUIZ ARENA -->
-            <div id="view-quiz" class="view hidden space-y-4">
-                <div id="learning-chest-bar"
-                    class="bg-gray-800 border-2 border-yellow-500 p-3 rounded-xl text-center font-bold hidden">🎁
-                    Fokus-Modus aktiv!</div>
-                <div class="flex justify-between items-center"><button
-                        class="bg-rose-600 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">Beenden
-                        🏠</button></div>
-                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
-                    <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
-                    <div id="options-container" class="flex flex-col gap-2.5"></div>
-
-                    <div id="explanation-box"
-                        class="p-4 bg-slate-900 border-l-4 border-yellow-500 rounded-xl text-left text-sm text-gray-300 hidden shadow-inner">
-                    </div>
-
-                    <button id="next-question-btn"
-                        class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden shadow-md"
-                        onclick="triggerNextQuestion()">Nächste Frage ➔</button>
+            <div id="subview-parent" class="subview hidden space-y-4">
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
+                    <h3 class="text-lg font-bold text-rose-400 mb-2">👨‍👩‍👦 Verwaltung & Elternbereich</h3>
+                    <div id="parent-stats-container" class="space-y-3 mt-4"></div>
                 </div>
             </div>
+        </div>
 
-            <!-- VIEW: VOKABEL-TRAINER (MIT MODUS-AUSWAHL) -->
-            <div id="view-vokabeln" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
-                    Zurück</button>
-                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
-                    <h2 class="text-2xl font-black text-indigo-400">📖 Vokabel-Trainer</h2>
-
-                    <!-- SPRACHENAUSWAHL -->
-                    <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
-                        <button id="lang-btn-en"
-                            class="flex-1 py-2 rounded-lg font-bold bg-blue-600 text-white transition-all"
-                            onclick="setLanguage('en')">🇬🇧 Englisch</button>
-                        <button id="lang-btn-tr" class="flex-1 py-2 rounded-lg font-bold text-gray-400 transition-all"
-                            onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
-                    </div>
-
-                    <!-- MODUS-AUSWAHL -->
-                    <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
-                        <button id="vmode-flashcards"
-                            class="flex-1 py-2 px-1 rounded-lg font-bold text-white bg-indigo-600 text-xs transition-all"
-                            onclick="setVocabMode('flashcards')">🃏 Kärtchen</button>
-                        <button id="vmode-mc"
-                            class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 text-xs transition-all"
-                            onclick="setVocabMode('mc')">🎯 Auswahl</button>
-                        <button id="vmode-typing"
-                            class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 text-xs transition-all"
-                            onclick="setVocabMode('typing')">✍️ Tippen</button>
-                    </div>
-
-                    <select id="category-dropdown"
-                        class="w-full p-3 bg-gray-900 border rounded-xl text-white font-bold outline-none"
-                        onchange="selectCategory(this.value)"></select>
-
-                    <!-- HIER WIRD DIE ÜBUNG GENERIERT -->
-                    <div id="vokabel-box" class="min-h-[200px] flex flex-col justify-center"></div>
-
-                    <div class="text-xs text-gray-400 font-bold">Wort: <span id="current-index-display"
-                            class="text-blue-400">1</span> / <span id="total-display">0</span></div>
+        <!-- VIEW: QUIZ SETUP -->
+        <div id="view-quiz-setup" class="view hidden space-y-4">
+            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zurück</button>
+            <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
+                <h2 class="text-2xl font-black text-center text-pink-400" id="quiz-setup-title">Quiz-Arena</h2>
+                <input type="hidden" id="selected-game-mode" value="spiel">
+                
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1">Kategorie:</label>
+                    <select id="main-category" onchange="updateSubCategories()" class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold">
+                        <option value="schule1">🏫 Klasse 1</option>
+                        <option value="schule2">🏫 Klasse 2</option>
+                        <option value="schule3">🏫 Klasse 3</option>
+                        <option value="kfz">🔧 KFZ-Technik</option>
+                        <option value="allgemein">🕌 Kultur & Allgemeinwissen</option>
+                    </select>
                 </div>
+                
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1">Lektion:</label>
+                    <select id="sub-category" onchange="showQuestionCount()" class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold"></select>
+                    <div id="question-count-display" class="text-xs text-gray-400 mt-1 font-semibold pl-1"></div>
+                </div>
+                
+                <button onclick="startQuiz()" class="w-full p-4 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg">Starten 🚀</button>
             </div>
-        </main>
+        </div>
 
-        <!-- NAVIGATION BAR -->
-        <nav id="main-bottom-nav"
-            class="bottom-nav absolute bottom-0 left-0 right-0 hidden bg-[#0b0f19] border-t border-gray-800 py-3">
-            <div class="flex justify-around text-xs font-bold text-gray-400">
-                <button class="nav-item text-blue-500" onclick="switchSubpage('home')">🏠 Lernen</button>
-                <button class="nav-item" onclick="switchSubpage('leaderboard')">🏆 Rangliste</button>
-                <button class="nav-item" onclick="switchSubpage('workshop')">🔧 Tech-Lab</button>
-                <button class="nav-item" onclick="switchSubpage('parent')">👨‍👩‍👦 Elternbereich</button>
+        <!-- VIEW: QUIZ ARENA -->
+        <div id="view-quiz" class="view hidden space-y-4">
+            <div class="flex justify-between items-center"><button class="bg-rose-600 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">Beenden 🏠</button></div>
+            <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
+                <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
+                <div id="options-container" class="flex flex-col gap-2.5"></div>
+                
+                <div id="explanation-box" class="p-4 bg-slate-900 border-l-4 border-yellow-500 rounded-xl text-left text-sm text-gray-300 hidden shadow-inner"></div>
+                <button id="next-question-btn" class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden shadow-md" onclick="triggerNextQuestion()">Nächste Frage ➔</button>
             </div>
-        </nav>
-    </div>
+        </div>
 
-    <script>
-        // ==========================================
-        // DATENBANKEN
-        // ==========================================
-        const QUESTIONS_DATABASE = [
-            { id: 3001, category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD", "hunD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere schreibt man immer groß! 'Hund' ist ein Tier und somit ein Nomen." },
-            { id: 3002, category: "deutsch_uebungsheft", question: "Wie trennt man das Wort 'Schmetterling' richtig in Silben?", answers: ["Schme-tter-ling", "Schmet-ter-ling", "Schmett-er-ling", "Schme-tte-rling"], correct: 1, explanation: "💡 Silbenklatschen hilft dir beim Schreiben! Klatsche mit: Schmet - ter - ling. Das sind genau 3 Silben." },
-            { id: 3003, category: "deutsch_uebungsheft", question: "Wie schreibt man das Krabbeltier 'Spinne' richtig?", answers: ["Spine", "Schpine", "Spinne", "Schpinne"], correct: 2, explanation: "💡 Klatsche mit: Spin - ne. Weil wir das 'i' ganz schnell sprechen und in der Silbenmitte trennen, schreiben wir Doppel-n (nn)!" },
-            { id: 3008, category: "deutsch_uebungsheft", question: "Wie schreibt man das Wort 'spielen' richtig?", answers: ["schpielen", "spielen", "stielen", "schielen"], correct: 1, explanation: "💡 Am Wortanfang schreiben wir immer 'Sp' oder 'St', auch wenn wir ein 'Sch' hören! Z.B. spielen, Stein, Spinne." },
-            { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: Rechne erst die Zehner zusammen (20 + 10 = 30) und dann die Einer (5 + 4 = 9). Zusammen ergibt das 39!" },
-            { id: 2012, category: "klasse2_mathe", question: "Max nutzt eine einfache Nachbaraufgabe für 15 + 16. Er weiß, dass 15 + 15 = 30 ist. Was ist dann 15 + 16?", answers: ["29", "30", "31", "32"], correct: 2, explanation: "💡 Max' Rechentrick: Da 16 genau um 1 größer ist als 15, rechnet Max einfach 15 + 15 = 30 und zählt 1 dazu. Das macht 31!" },
-            { id: 3501, category: "klasse3_englisch", question: "Translate into English: 'Wie heißt du?'", answers: ["How are you?", "What is your name?", "Who are you?", "How old are you?"], correct: 1, explanation: "💡 Um nach dem Namen zu fragen, sagt man auf Englisch 'What is your name?'" },
-            { id: 8101, category: "kfz", question: "Welche Flüssigkeit muss regelmäßig auf Frostschutz geprüft werden?", answers: ["Motoröl", "Kühlflüssigkeit", "Bremsflüssigkeit", "Getriebeöl"], correct: 1, explanation: "💡 Die Kühlflüssigkeit schützt den Motor vor dem Einfrieren und muss vor dem Winter gespindelt werden." },
-            { id: 8302, category: "kfz", question: "Zahnriemenwechsel: Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug angebracht ist?", answers: ["Die Wasserpumpe lösen", "Den Motor an der Kurbelwelle durchdrehen", "Die Spannrolle entspannen", "Den alten Keilrippenriemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" },
-            { id: 9001, category: "allgemein", question: "Wie viele Bundesländer hat Deutschland?", answers: ["12", "14", "16", "18"], correct: 2, explanation: "💡 Deutschland besteht aus 16 Bundesländern, zum Beispiel Nordrhein-Westfalen oder Bayern." }
-        ];
+        <!-- VIEW: VOKABEL-TRAINER (MIT MODUS-AUSWAHL) -->
+        <div id="view-vokabeln" class="view hidden space-y-4">
+            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zurück</button>
+            <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
+                <h2 class="text-2xl font-black text-indigo-400">📖 Vokabel-Trainer</h2>
+                
+                <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
+                    <button id="lang-btn-en" class="flex-1 py-2 rounded-lg font-bold bg-blue-600 text-white transition-all" onclick="setLanguage('en')">🇬🇧 Englisch</button>
+                    <button id="lang-btn-tr" class="flex-1 py-2 rounded-lg font-bold text-gray-400 transition-all" onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
+                </div>
+                
+                <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
+                    <button id="vmode-flashcards" class="flex-1 py-2 px-1 rounded-lg font-bold text-white bg-indigo-600 text-xs transition-all" onclick="setVocabMode('flashcards')">🃏 Kärtchen</button>
+                    <button id="vmode-mc" class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 text-xs transition-all" onclick="setVocabMode('mc')">🎯 Auswahl</button>
+                    <button id="vmode-typing" class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 text-xs transition-all" onclick="setVocabMode('typing')">✍️ Tippen</button>
+                </div>
 
-        const VOCABULARY_DATABASE = {
-            en: {
-                numbers: { label: "🔢 Zahlen", words: [{ de: "Null", foreign: "zero" }, { de: "Eins", foreign: "one" }, { de: "Zwei", foreign: "two" }, { de: "Drei", foreign: "three" }, { de: "Vier", foreign: "four" }, { de: "Fünf", foreign: "five" }] },
-                colours: { label: "🎨 Farben", words: [{ de: "Schwarz", foreign: "black" }, { de: "Blau", foreign: "blue" }, { de: "Braun", foreign: "brown" }, { de: "Grün", foreign: "green" }, { de: "Rot", foreign: "red" }, { de: "Gelb", foreign: "yellow" }] },
-                school: { label: "🎒 Schule", words: [{ de: "Buch", foreign: "book" }, { de: "Tisch", foreign: "table" }, { de: "Stuhl", foreign: "chair" }, { de: "Tafel", foreign: "board" }, { de: "Schere", foreign: "scissors" }, { de: "Fenster", foreign: "window" }] },
-                zoo_animals: { label: "🦁 Zootiere", words: [{ de: "Bär", foreign: "bear" }, { de: "Elefant", foreign: "elephant" }, { de: "Löwe", foreign: "lion" }, { de: "Affe", foreign: "monkey" }, { de: "Schlange", foreign: "snake" }] },
-                pets: { label: "🐶 Haustiere", words: [{ de: "Hund", foreign: "dog" }, { de: "Katze", foreign: "cat" }, { de: "Maus", foreign: "mouse" }, { de: "Vogel", foreign: "bird" }, { de: "Fisch", foreign: "fish" }] },
-                vehicles: { label: "🚗 Fahrzeuge", words: [{ de: "Auto", foreign: "car" }, { de: "Fahrrad", foreign: "bike" }, { de: "Bus", foreign: "bus" }, { de: "Zug", foreign: "train" }, { de: "Flugzeug", foreign: "plane" }] }
-            },
-            tr: {
-                numbers: { label: "🔢 Sayılar", words: [{ de: "Null", foreign: "sıfır" }, { de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" }, { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }] },
-                colours: { label: "🎨 Renkler", words: [{ de: "Schwarz", foreign: "siyah" }, { de: "Blau", foreign: "mavi" }, { de: "Braun", foreign: "kahverengi" }, { de: "Grün", foreign: "yeşil" }, { de: "Rot", foreign: "kırmızı" }, { de: "Gelb", foreign: "sarı" }] },
-                school: { label: "🎒 Okul", words: [{ de: "Buch", foreign: "kitap" }, { de: "Tisch", foreign: "masa" }, { de: "Stuhl", foreign: "sandalye" }, { de: "Tafel", foreign: "tahta" }, { de: "Schere", foreign: "makas" }, { de: "Fenster", foreign: "pencere" }] },
-                zoo_animals: { label: "🦁 Hayvanat Bahçesi", words: [{ de: "Bär", foreign: "ayı" }, { de: "Elefant", foreign: "fil" }, { de: "Löwe", foreign: "aslan" }, { de: "Affe", foreign: "maymun" }, { de: "Schlange", foreign: "yılan" }] },
-                pets: { label: "🐶 Evcil Hayvanlar", words: [{ de: "Hund", foreign: "köpek" }, { de: "Katze", foreign: "kedi" }, { de: "Maus", foreign: "fare" }, { de: "Vogel", foreign: "kuş" }, { de: "Fisch", foreign: "balık" }] },
-                vehicles: { label: "🚗 Araçlar", words: [{ de: "Auto", foreign: "araba" }, { de: "Fahrrad", foreign: "bisiklet" }, { de: "Bus", foreign: "otobüs" }, { de: "Zug", foreign: "tren" }, { de: "Flugzeug", foreign: "uçak" }] }
-            }
-        };
+                <select id="category-dropdown" class="w-full p-3 bg-gray-900 border rounded-xl text-white font-bold outline-none" onchange="selectCategory(this.value)"></select>
+                
+                <div id="vokabel-box" class="min-h-[200px] flex flex-col justify-center"></div>
+                <div class="text-xs text-gray-400 font-bold">Wort: <span id="current-index-display" class="text-blue-400">1</span> / <span id="total-display">0</span></div>
+            </div>
+        </div>
+    </main>
 
-        // ==========================================
-        // SPIELLOGIK
-        // ==========================================
-        const firebaseConfig = {
-            apiKey: "AIzaSyAy5YkfW99nY3t1CxxrFI5dlqe4w2NZfj4",
-            authDomain: "family-quizzz-80c40.firebaseapp.com",
-            databaseURL: "https://family-quizzz-80c40-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "family-quizzz-80c40",
-            storageBucket: "family-quizzz-80c40.firebasestorage.app",
-            messagingSenderId: "30751445599",
-            appId: "1:30751445599:web:28636f46555f5df49881ea"
-        };
+    <!-- NAVIGATION BAR -->
+    <nav id="main-bottom-nav" class="bottom-nav absolute bottom-0 left-0 right-0 hidden bg-[#0b0f19] border-t border-gray-800 py-3">
+        <div class="flex justify-around text-xs font-bold text-gray-400">
+            <button class="nav-item text-blue-500" onclick="switchSubpage('home')">🏠 Lernen</button>
+            <button class="nav-item" onclick="switchSubpage('leaderboard')">🏆 Rangliste</button>
+            <button class="nav-item" onclick="switchSubpage('workshop')">🔧 Tech-Lab</button>
+            <button class="nav-item" onclick="switchSubpage('parent')">👨‍👩‍👦 Elternbereich</button>
+        </div>
+    </nav>
+</div>
 
-        let ALL_PLAYERS = {};
-        let currentPlayer = { name: "Gast", age: "-", coins: 0, rankPoints: 0, learningProgress: 0 };
-        let activePlayerName = "";
+<script>
+    // === 01. QUIZ DATENBANK ===
+    const QUESTIONS_DATABASE = [
+        { id: 3001, category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD", "hunD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere schreibt man immer groß! 'Hund' ist ein Tier und somit ein Nomen." },
+        { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: Rechne erst die Zehner zusammen (20 + 10 = 30) und dann die Einer (5 + 4 = 9). Zusammen ergibt das 39!" },
+        { id: 3501, category: "klasse3_englisch", question: "Translate into English: 'Wie heißt du?'", answers: ["How are you?", "What is your name?", "Who are you?", "How old are you?"], correct: 1, explanation: "💡 Um nach dem Namen zu fragen, sagt man auf Englisch 'What is your name?'" },
+        { id: 8101, category: "kfz", question: "Welche Flüssigkeit muss regelmäßig auf Frostschutz geprüft werden?", answers: ["Motoröl", "Kühlflüssigkeit", "Bremsflüssigkeit", "Getriebeöl"], correct: 1, explanation: "💡 Die Kühlflüssigkeit schützt den Motor vor dem Einfrieren und muss vor dem Winter gespindelt werden." },
+        { id: 8302, category: "kfz", question: "Zahnriemenwechsel: Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug angebracht ist?", answers: ["Die Wasserpumpe lösen", "Den Motor an der Kurbelwelle durchdrehen", "Die Spannrolle entspannen", "Den alten Keilrippenriemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" },
+        { id: 9001, category: "allgemein", question: "Wie viele Bundesländer hat Deutschland?", answers: ["12", "14", "16", "18"], correct: 2, explanation: "💡 Deutschland besteht aus 16 Bundesländern, zum Beispiel Nordrhein-Westfalen oder Bayern." }
+    ];
 
-        // Vokabel State
-        let activeLang = 'en', activeCategory = 'numbers', vIndex = 0;
-        let vocabMode = 'flashcards'; // Kann sein: 'flashcards', 'mc', 'typing'
-
-        let currentQuestions = [], qIndex = 0;
-
-        let useFirebase = false; let db = null;
-        try { firebase.initializeApp(firebaseConfig); db = firebase.database(); useFirebase = true; }
-        catch (e) { console.warn("Offline-Modus aktiv."); }
-
-        function showToast(message, type = "success") {
-            const container = document.getElementById("toast-container");
-            const toast = document.createElement("div");
-            const borderColor = type === "success" ? "border-emerald-500" : "border-rose-500";
-            toast.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 ${borderColor}`;
-            toast.innerHTML = message; container.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+    // === 02. VOKABEL DATENBANK (inkl. Klassen 4-10) ===
+    const VOCABULARY_DATABASE = {
+        en: {
+            numbers: { label: "🔢 Zahlen (Kl. 1-4)", words: [{ de: "Eins", foreign: "one" }, { de: "Zwei", foreign: "two" }, { de: "Drei", foreign: "three" }, { de: "Vier", foreign: "four" }, { de: "Fünf", foreign: "five" }] },
+            school: { label: "🎒 Schule (Kl. 4-5)", words: [{ de: "Buch", foreign: "book" }, { de: "Tisch", foreign: "table" }, { de: "Stuhl", foreign: "chair" }, { de: "Tafel", foreign: "board" }, { de: "Schere", foreign: "scissors" }, { de: "Fenster", foreign: "window" }] },
+            hobbies: { label: "⚽ Hobbys (Kl. 5-6)", words: [{ de: "Fußball spielen", foreign: "playing football" }, { de: "Schwimmen", foreign: "swimming" }, { de: "Lesen", foreign: "reading" }, { de: "Tanzen", foreign: "dancing" }, { de: "Singen", foreign: "singing" }] },
+            environment: { label: "🌍 Umwelt (Kl. 7-8)", words: [{ de: "Klimawandel", foreign: "climate change" }, { de: "Umweltschutz", foreign: "environmental protection" }, { de: "Verschmutzung", foreign: "pollution" }, { de: "Mülltrennung", foreign: "waste separation" }, { de: "Nachhaltigkeit", foreign: "sustainability" }] },
+            technology: { label: "💻 Technik (Kl. 8-9)", words: [{ de: "Künstliche Intelligenz", foreign: "artificial intelligence" }, { de: "Soziale Netzwerke", foreign: "social media" }, { de: "Herunterladen", foreign: "download" }, { de: "Passwort", foreign: "password" }, { de: "Bildschirm", foreign: "screen" }] },
+            society: { label: "👥 Gesellschaft (Kl. 9-10)", words: [{ de: "Menschenrechte", foreign: "human rights" }, { de: "Demokratie", foreign: "democracy" }, { de: "Gerechtigkeit", foreign: "justice" }, { de: "Vielfalt", foreign: "diversity" }, { de: "Wahl", foreign: "election" }] }
+        },
+        tr: {
+            numbers: { label: "🔢 Sayılar (Kl. 1-4)", words: [{ de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" }, { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }] },
+            school: { label: "🎒 Okul (Kl. 4-5)", words: [{ de: "Buch", foreign: "kitap" }, { de: "Tisch", foreign: "masa" }, { de: "Stuhl", foreign: "sandalye" }, { de: "Tafel", foreign: "tahta" }, { de: "Schere", foreign: "makas" }, { de: "Fenster", foreign: "pencere" }] },
+            hobbies: { label: "⚽ Hobiler (Kl. 5-6)", words: [{ de: "Fußball spielen", foreign: "futbol oynamak" }, { de: "Schwimmen", foreign: "yüzmek" }, { de: "Lesen", foreign: "okumak" }, { de: "Tanzen", foreign: "dans etmek" }, { de: "Singen", foreign: "şarkı söylemek" }] },
+            environment: { label: "🌍 Çevre (Kl. 7-8)", words: [{ de: "Klimawandel", foreign: "iklim değişikliği" }, { de: "Umweltschutz", foreign: "çevreyi koruma" }, { de: "Verschmutzung", foreign: "kirlilik" }, { de: "Mülltrennung", foreign: "çöp ayırma" }, { de: "Nachhaltigkeit", foreign: "sürdürülebilirlik" }] },
+            technology: { label: "💻 Teknoloji (Kl. 8-9)", words: [{ de: "Künstliche Intelligenz", foreign: "yapay zeka" }, { de: "Soziale Netzwerke", foreign: "sosyal medya" }, { de: "Herunterladen", foreign: "indirmek" }, { de: "Passwort", foreign: "şifre" }, { de: "Bildschirm", foreign: "ekran" }] },
+            society: { label: "👥 Toplum (Kl. 9-10)", words: [{ de: "Menschenrechte", foreign: "insan hakları" }, { de: "Demokratie", foreign: "demokrasi" }, { de: "Gerechtigkeit", foreign: "adalet" }, { de: "Vielfalt", foreign: "çeşitlilik" }, { de: "Wahl", foreign: "seçim" }] }
         }
+    };
 
-        function loadProfiles() {
-            if (useFirebase) {
-                db.ref("players").on("value", (snap) => {
-                    ALL_PLAYERS = snap.val() || {}; renderProfileSelection();
-                    if (activePlayerName) { currentPlayer = ALL_PLAYERS[activePlayerName.toLowerCase()] || currentPlayer; updateDashboardUI(); }
-                });
-            } else {
-                ALL_PLAYERS = JSON.parse(localStorage.getItem("eduplay_players") || "{}"); renderProfileSelection();
-            }
+    // === 03. SPIELER & FIREBASE LOGIK ===
+    const firebaseConfig = {
+        apiKey: "AIzaSyAy5YkfW99nY3t1CxxrFI5dlqe4w2NZfj4", authDomain: "family-quizzz-80c40.firebaseapp.com",
+        databaseURL: "https://family-quizzz-80c40-default-rtdb.europe-west1.firebasedatabase.app", projectId: "family-quizzz-80c40",
+        storageBucket: "family-quizzz-80c40.firebasestorage.app", messagingSenderId: "30751445599", appId: "1:30751445599:web:28636f46555f5df49881ea"
+    };
+
+    let ALL_PLAYERS = {};
+    let currentPlayer = { name: "Gast", age: "-", coins: 0, rankPoints: 0 };
+    let activePlayerName = "";
+    
+    let activeLang = 'en', activeCategory = 'numbers', vIndex = 0;
+    let vocabMode = 'flashcards'; 
+    // NEU: Lade "Gelernte Wörter" aus dem Browser-Speicher
+    let learnedWords = new Set(JSON.parse(localStorage.getItem('learnedWords') || '[]'));
+    
+    let currentQuestions = [], qIndex = 0;
+
+    let useFirebase = false; let db = null;
+    try { firebase.initializeApp(firebaseConfig); db = firebase.database(); useFirebase = true; } 
+    catch(e) { console.warn("Offline-Modus aktiv."); }
+
+    function showToast(message, type = "success") {
+        const container = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        const borderColor = type === "success" ? "border-emerald-500" : "border-rose-500";
+        toast.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 ${borderColor}`;
+        toast.innerHTML = message; container.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    function loadProfiles() {
+        if(useFirebase) {
+            db.ref("players").on("value", (snap) => {
+                ALL_PLAYERS = snap.val() || {}; renderProfileSelection();
+                if(activePlayerName) { currentPlayer = ALL_PLAYERS[activePlayerName.toLowerCase()] || currentPlayer; updateDashboardUI(); }
+            });
+        } else {
+            ALL_PLAYERS = JSON.parse(localStorage.getItem("eduplay_players") || "{}"); renderProfileSelection();
         }
+    }
 
-        function renderProfileSelection() {
-            const grid = document.getElementById("profile-grid");
-            const box = document.getElementById("existing-profiles-box");
-            grid.innerHTML = ""; const keys = Object.keys(ALL_PLAYERS);
-            if (keys.length > 0) {
-                box.classList.remove("hidden");
-                keys.forEach(k => {
-                    const btn = document.createElement("button");
-                    btn.className = "bg-gray-700 px-4 py-2 rounded-xl text-sm font-bold text-white";
-                    btn.innerText = ALL_PLAYERS[k].name;
-                    btn.onclick = () => {
-                        activePlayerName = ALL_PLAYERS[k].name; currentPlayer = ALL_PLAYERS[k];
-                        switchView("menu"); switchSubpage("home"); updateDashboardUI();
-                    };
-                    grid.appendChild(btn);
-                });
-            }
+    function renderProfileSelection() {
+        const grid = document.getElementById("profile-grid"); const box = document.getElementById("existing-profiles-box");
+        grid.innerHTML = ""; const keys = Object.keys(ALL_PLAYERS);
+        if(keys.length > 0) {
+            box.classList.remove("hidden");
+            keys.forEach(k => {
+                const btn = document.createElement("button"); btn.className = "bg-gray-700 px-4 py-2 rounded-xl text-sm font-bold text-white";
+                btn.innerText = ALL_PLAYERS[k].name;
+                btn.onclick = () => { activePlayerName = ALL_PLAYERS[k].name; currentPlayer = ALL_PLAYERS[k]; switchView("menu"); switchSubpage("home"); updateDashboardUI(); };
+                grid.appendChild(btn);
+            });
         }
+    }
 
-        function handleLogin() {
-            const name = document.getElementById("username-input").value.trim();
-            const age = document.getElementById("age-input").value.trim();
-            if (!name) return showToast("Bitte Namen eingeben!", "error");
-
-            activePlayerName = name; const key = name.toLowerCase();
-
-            if (!ALL_PLAYERS[key]) {
-                ALL_PLAYERS[key] = { name: name, age: age || "-", coins: 0, rankPoints: 0, learningProgress: 0 };
-                if (useFirebase) db.ref("players/" + key).set(ALL_PLAYERS[key]);
-                else localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS));
-            } else if (age) {
-                ALL_PLAYERS[key].age = age;
-                if (useFirebase) db.ref("players/" + key + "/age").set(age);
-            }
-            currentPlayer = ALL_PLAYERS[key];
-            switchView("menu"); switchSubpage("home"); updateDashboardUI();
+    function handleLogin() {
+        const name = document.getElementById("username-input").value.trim(); const age = document.getElementById("age-input").value.trim();
+        if(!name) return showToast("Bitte Namen eingeben!", "error");
+        activePlayerName = name; const key = name.toLowerCase();
+        if(!ALL_PLAYERS[key]) {
+            ALL_PLAYERS[key] = { name: name, age: age || "-", coins: 0, rankPoints: 0 };
+            if(useFirebase) db.ref("players/" + key).set(ALL_PLAYERS[key]); else localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS));
+        } else if (age) {
+            ALL_PLAYERS[key].age = age; if(useFirebase) db.ref("players/" + key + "/age").set(age);
         }
+        currentPlayer = ALL_PLAYERS[key]; switchView("menu"); switchSubpage("home"); updateDashboardUI();
+    }
 
-        function switchView(viewId) {
-            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
-            const el = document.getElementById(`view-${viewId}`); if (el) el.classList.remove('hidden');
-            document.getElementById("main-bottom-nav").classList.toggle('hidden', viewId !== "menu");
-            if (viewId === 'vokabeln') loadVocabSystem();
+    function switchView(viewId) {
+        document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+        const el = document.getElementById(`view-${viewId}`); if(el) el.classList.remove('hidden');
+        document.getElementById("main-bottom-nav").classList.toggle('hidden', viewId !== "menu");
+        if(viewId === 'vokabeln') loadVocabSystem();
+    }
+
+    function switchSubpage(subId) {
+        document.querySelectorAll('.subview').forEach(s => s.classList.add('hidden'));
+        const sub = document.getElementById(`subview-${subId}`); if(sub) sub.classList.remove('hidden');
+        document.querySelectorAll('.nav-item').forEach(item => { item.classList.toggle('text-blue-500', item.getAttribute('onclick').includes(subId)); });
+        if(subId === 'parent') renderParentDashboard(); if(subId === 'leaderboard') renderLeaderboard();
+    }
+
+    function savePlayerProgress() {
+        if(activePlayerName) {
+            const key = activePlayerName.toLowerCase();
+            if(useFirebase) db.ref("players/" + key).set(currentPlayer);
+            else { ALL_PLAYERS[key] = currentPlayer; localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS)); }
+            updateDashboardUI();
         }
+    }
 
-        function switchSubpage(subId) {
-            document.querySelectorAll('.subview').forEach(s => s.classList.add('hidden'));
-            const sub = document.getElementById(`subview-${subId}`); if (sub) sub.classList.remove('hidden');
-            document.querySelectorAll('.nav-item').forEach(item => { item.classList.toggle('text-blue-500', item.getAttribute('onclick').includes(subId)); });
-            if (subId === 'parent') renderParentDashboard();
-            if (subId === 'leaderboard') renderLeaderboard();
-        }
+    function updateDashboardUI() { 
+        document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`; 
+        document.getElementById("menu-coins").innerText = currentPlayer.coins || 0; 
+        document.getElementById("menu-age").innerText = currentPlayer.age || "-"; 
+    }
 
-        function savePlayerProgress() {
-            if (activePlayerName) {
-                const key = activePlayerName.toLowerCase();
-                if (useFirebase) db.ref("players/" + key).set(currentPlayer);
-                else { ALL_PLAYERS[key] = currentPlayer; localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS)); }
-                updateDashboardUI();
-            }
-        }
+    // === 04. QUIZ LOGIK ===
+    function showQuizSetup(mode) {
+        document.getElementById('selected-game-mode').value = mode;
+        document.getElementById('quiz-setup-title').innerText = mode === 'lernen' ? "⏳ Fokus-Lernzeit" : "🎯 Quiz-Arena";
+        updateSubCategories(); switchView('quiz-setup');
+    }
 
-        function updateDashboardUI() {
-            document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
-            document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
-            document.getElementById("menu-age").innerText = currentPlayer.age || "-";
-        }
+    function updateSubCategories() {
+        const mainCat = document.getElementById("main-category").value;
+        const subSelect = document.getElementById("sub-category"); subSelect.innerHTML = "";
+        const map = { schule1: [{ value: "deutsch_uebungsheft", text: "📖 Deutsch Klasse 1" }], schule2: [{ value: "klasse2_mathe", text: "🧮 Mathematik" }], schule3: [{ value: "klasse3_englisch", text: "🇬🇧 Englisch Klasse 3" }], kfz: [{ value: "kfz", text: "🔧 Kfz-Technik" }], allgemein: [{ value: "allgemein", text: "🕌 Kultur & Wissen" }] };
+        (map[mainCat] || []).forEach(sub => { const opt = document.createElement("option"); opt.value = sub.value; opt.innerText = sub.text; subSelect.appendChild(opt); });
+        showQuestionCount();
+    }
 
-        // ==========================================
-        // QUIZ LOGIK
-        // ==========================================
-        function showQuizSetup(mode) {
-            document.getElementById('selected-game-mode').value = mode;
-            document.getElementById('quiz-setup-title').innerText = mode === 'lernen' ? "⏳ Fokus-Lernzeit" : "🎯 Quiz-Arena";
-            updateSubCategories(); switchView('quiz-setup');
-        }
+    function showQuestionCount() {
+        const cat = document.getElementById("sub-category").value;
+        document.getElementById("question-count-display").innerText = `📋 Enthält aktuell ${QUESTIONS_DATABASE.filter(q => q.category === cat).length} Fragen`;
+    }
 
-        function updateSubCategories() {
-            const mainCat = document.getElementById("main-category").value;
-            const subSelect = document.getElementById("sub-category"); subSelect.innerHTML = "";
-            const map = {
-                schule1: [{ value: "deutsch_uebungsheft", text: "📖 Deutsch Klasse 1" }],
-                schule2: [{ value: "klasse2_mathe", text: "🧮 Mathematik" }],
-                schule3: [{ value: "klasse3_englisch", text: "🇬🇧 Englisch Klasse 3" }],
-                kfz: [{ value: "kfz", text: "🔧 Kfz-Technik" }],
-                allgemein: [{ value: "allgemein", text: "🕌 Kultur & Wissen" }]
+    function startQuiz() {
+        const cat = document.getElementById("sub-category").value;
+        currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat);
+        if(currentQuestions.length === 0) return showToast("Keine Fragen eingepflegt!", "error");
+        qIndex = 0; switchView('quiz'); showQuestion();
+    }
+
+    function showQuestion() {
+        const q = currentQuestions[qIndex]; document.getElementById('question-text').innerText = q.question;
+        document.getElementById('explanation-box').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
+        const opts = document.getElementById('options-container'); opts.innerHTML = '';
+        let questionAnswered = false;
+
+        q.answers.forEach((a, idx) => {
+            const btn = document.createElement('button'); btn.innerText = a;
+            btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold text-sm transition-all";
+            btn.onclick = () => {
+                if(questionAnswered) return; questionAnswered = true;
+                Array.from(opts.children).forEach(b => { b.disabled = true; b.classList.add("opacity-60", "cursor-not-allowed"); });
+                if(idx === q.correct) {
+                    btn.className = "w-full p-4 bg-emerald-600 border border-emerald-500 rounded-xl text-white font-bold text-sm";
+                    showToast("Klasse gelöst! 🌟", "success"); confetti(); currentPlayer.coins += 10; currentPlayer.rankPoints += 5; savePlayerProgress();
+                    setTimeout(() => { triggerNextQuestion(); }, 1600);
+                } else {
+                    btn.className = "w-full p-4 bg-rose-600 border border-rose-500 rounded-xl text-white font-bold text-sm";
+                    const expBox = document.getElementById('explanation-box');
+                    expBox.innerHTML = `<strong>Falsch!</strong><br><br>${q.explanation || "💡 Überlege noch einmal in Ruhe."}`;
+                    expBox.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                }
             };
-            (map[mainCat] || []).forEach(sub => {
-                const opt = document.createElement("option"); opt.value = sub.value; opt.innerText = sub.text; subSelect.appendChild(opt);
-            });
-            showQuestionCount();
+            opts.appendChild(btn);
+        });
+    }
+
+    function triggerNextQuestion() { qIndex = (qIndex + 1) % currentQuestions.length; showQuestion(); }
+    function leaveQuiz() { switchView('menu'); switchSubpage('home'); }
+
+    // === 05. VOKABEL LOGIK (INKL. ICH-KANN-DAS) ===
+    function setLanguage(lang) { 
+        activeLang = lang; vIndex = 0; 
+        document.getElementById("lang-btn-en").className = `flex-1 py-2 rounded-lg font-bold transition-all ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`; 
+        document.getElementById("lang-btn-tr").className = `flex-1 py-2 rounded-lg font-bold transition-all ${lang === 'tr' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`; 
+        loadVocabSystem(); 
+    }
+
+    function setVocabMode(mode) {
+        vocabMode = mode; vIndex = 0;
+        document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold text-xs transition-all ${mode === 'flashcards' ? 'bg-indigo-600 text-white' : 'text-gray-400 bg-gray-900'}`;
+        document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold text-xs transition-all ${mode === 'mc' ? 'bg-indigo-600 text-white' : 'text-gray-400 bg-gray-900'}`;
+        document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold text-xs transition-all ${mode === 'typing' ? 'bg-indigo-600 text-white' : 'text-gray-400 bg-gray-900'}`;
+        showVocabQuestion();
+    }
+
+    function loadVocabSystem() {
+        const dropdown = document.getElementById("category-dropdown"); dropdown.innerHTML = "";
+        const currentLangData = VOCABULARY_DATABASE[activeLang];
+        Object.keys(currentLangData).forEach(key => {
+            const opt = document.createElement("option"); opt.value = key; opt.innerText = currentLangData[key].label; dropdown.appendChild(opt);
+        });
+        if (!currentLangData[activeCategory]) activeCategory = Object.keys(currentLangData)[0];
+        dropdown.value = activeCategory; showVocabQuestion();
+    }
+
+    function selectCategory(cat) { activeCategory = cat; vIndex = 0; showVocabQuestion(); }
+    
+    function shuffleArray(array) {
+        let arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; }
+        return arr;
+    }
+
+    // NEU: NextVocab steuert das "Gemerkt" und speichert ab
+    function nextVocab(isKnown) {
+        const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
+        const currentForeign = list[vIndex].foreign;
+        const wordKey = activeLang + "_" + activeCategory + "_" + currentForeign;
+
+        if (isKnown) {
+            learnedWords.add(wordKey);
+            localStorage.setItem('learnedWords', JSON.stringify([...learnedWords]));
+            showToast("Gemerkt! Wird ausgeblendet 🧠", "success");
+        }
+        
+        vIndex = (vIndex + 1) % list.length;
+        showVocabQuestion();
+    }
+
+    function showVocabQuestion() {
+        const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
+        const box = document.getElementById("vokabel-box");
+        
+        // Prüfen, ob alle Wörter in der aktuellen Kategorie gelernt wurden
+        let allLearned = list.every(item => learnedWords.has(activeLang + "_" + activeCategory + "_" + item.foreign));
+        if (allLearned) {
+            showToast("Alle Vokabeln in dieser Kategorie gelernt! Fange von vorne an...", "success");
+            list.forEach(item => learnedWords.delete(activeLang + "_" + activeCategory + "_" + item.foreign));
+            localStorage.setItem('learnedWords', JSON.stringify([...learnedWords]));
         }
 
-        function showQuestionCount() {
-            const cat = document.getElementById("sub-category").value;
-            const count = QUESTIONS_DATABASE.filter(q => q.category === cat).length;
-            document.getElementById("question-count-display").innerText = `📋 Enthält aktuell ${count} Fragen`;
+        // Überspringe automatisch die bereits gelernten Wörter
+        while(learnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign)) {
+            vIndex = (vIndex + 1) % list.length;
         }
 
-        function startQuiz() {
-            const cat = document.getElementById("sub-category").value;
-            currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat);
-            if (currentQuestions.length === 0) return showToast("Keine Fragen eingepflegt!", "error");
-            qIndex = 0; switchView('quiz'); showQuestion();
-        }
+        const item = list[vIndex];
+        
+        document.getElementById("total-display").innerText = list.length;
+        document.getElementById("current-index-display").innerText = vIndex + 1;
 
-        function showQuestion() {
-            const q = currentQuestions[qIndex];
-            document.getElementById('question-text').innerText = q.question;
-            document.getElementById('explanation-box').classList.add('hidden');
-            document.getElementById('next-question-btn').classList.add('hidden');
-            const opts = document.getElementById('options-container'); opts.innerHTML = '';
-            let questionAnswered = false;
-
-            q.answers.forEach((a, idx) => {
-                const btn = document.createElement('button'); btn.innerText = a;
-                btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold text-sm transition-all";
-                btn.onclick = () => {
-                    if (questionAnswered) return;
-                    questionAnswered = true;
-                    Array.from(opts.children).forEach(b => { b.disabled = true; b.classList.add("opacity-60", "cursor-not-allowed"); });
-
-                    if (idx === q.correct) {
-                        btn.className = "w-full p-4 bg-emerald-600 border border-emerald-500 rounded-xl text-white font-bold text-sm";
-                        showToast("Klasse gelöst! 🌟", "success"); confetti();
-                        currentPlayer.coins += 10; currentPlayer.rankPoints += 5; savePlayerProgress();
-                        setTimeout(() => { triggerNextQuestion(); }, 1600);
-                    } else {
-                        btn.className = "w-full p-4 bg-rose-600 border border-rose-500 rounded-xl text-white font-bold text-sm";
-                        const expBox = document.getElementById('explanation-box');
-                        expBox.innerHTML = `<strong>Falsch!</strong><br><br>${q.explanation || "💡 Überlege noch einmal in Ruhe."}`;
-                        expBox.classList.remove('hidden');
-                        document.getElementById('next-question-btn').classList.remove('hidden');
-                    }
-                };
-                opts.appendChild(btn);
-            });
-        }
-
-        function triggerNextQuestion() { qIndex = (qIndex + 1) % currentQuestions.length; showQuestion(); }
-        function leaveQuiz() { switchView('menu'); switchSubpage('home'); }
-
-        // ==========================================
-        // VOKABEL-SYSTEM (3 MODI)
-        // ==========================================
-        function setLanguage(lang) {
-            activeLang = lang; vIndex = 0;
-            document.getElementById("lang-btn-en").className = `flex-1 py-2 rounded-lg font-bold transition-all ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`;
-            document.getElementById("lang-btn-tr").className = `flex-1 py-2 rounded-lg font-bold transition-all ${lang === 'tr' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`;
-            loadVocabSystem();
-        }
-
-        function setVocabMode(mode) {
-            vocabMode = mode; vIndex = 0;
-            document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold text-xs transition-all ${mode === 'flashcards' ? 'bg-indigo-600 text-white' : 'text-gray-400 bg-gray-900'}`;
-            document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold text-xs transition-all ${mode === 'mc' ? 'bg-indigo-600 text-white' : 'text-gray-400 bg-gray-900'}`;
-            document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold text-xs transition-all ${mode === 'typing' ? 'bg-indigo-600 text-white' : 'text-gray-400 bg-gray-900'}`;
-            showVocabQuestion();
-        }
-
-        function loadVocabSystem() {
-            const dropdown = document.getElementById("category-dropdown"); dropdown.innerHTML = "";
-            const currentLangData = VOCABULARY_DATABASE[activeLang];
-            Object.keys(currentLangData).forEach(key => {
-                const opt = document.createElement("option"); opt.value = key; opt.innerText = currentLangData[key].label; dropdown.appendChild(opt);
-            });
-            if (!currentLangData[activeCategory]) activeCategory = Object.keys(currentLangData)[0];
-            dropdown.value = activeCategory; showVocabQuestion();
-        }
-
-        function selectCategory(cat) { activeCategory = cat; vIndex = 0; showVocabQuestion(); }
-
-        // Array mischen für Multiple Choice
-        function shuffleArray(array) {
-            let arr = [...array];
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
-        }
-
-        function showVocabQuestion() {
-            const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
-            document.getElementById("total-display").innerText = list.length;
-            document.getElementById("current-index-display").innerText = vIndex + 1;
-            const item = list[vIndex];
-            const box = document.getElementById("vokabel-box");
-
-            // 1. MODUS: KÄRTCHEN
-            if (vocabMode === 'flashcards') {
-                box.innerHTML = `
+        if(vocabMode === 'flashcards') {
+            box.innerHTML = `
                 <div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-indigo-900 rounded-2xl flex flex-col items-center justify-center font-bold text-2xl px-4 text-center border border-indigo-500/30">${item.de}</div>
                         <div class="flip-card-back bg-pink-900 rounded-2xl flex flex-col items-center justify-center font-bold text-2xl px-4 text-center border border-pink-500/30">${item.foreign}</div>
                     </div>
                 </div>
-                <button onclick="nextVocab()" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md hover:bg-indigo-500 transition-all">Nächstes Wort ➔</button>
+                <button onclick="nextVocab(false)" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md hover:bg-indigo-500 transition-all">Nächstes Wort ➔</button>
+                <button onclick="nextVocab(true)" class="mt-2 w-full p-2 bg-emerald-600/80 rounded-xl font-bold text-white shadow-md hover:bg-emerald-500 transition-all text-sm border border-emerald-500">✅ Ich kann das (Ausblenden)</button>
             `;
-            }
+        } 
+        else if(vocabMode === 'mc') {
+            let options = [item.foreign];
+            let otherWords = shuffleArray(list.filter(w => w.foreign !== item.foreign));
+            for(let i=0; i<3 && i<otherWords.length; i++) { options.push(otherWords[i].foreign); }
+            options = shuffleArray(options);
 
-            // 2. MODUS: MULTIPLE CHOICE
-            else if (vocabMode === 'mc') {
-                let options = [item.foreign];
-                let otherWords = shuffleArray(list.filter(w => w.foreign !== item.foreign));
-                for (let i = 0; i < 3 && i < otherWords.length; i++) { options.push(otherWords[i].foreign); }
-                options = shuffleArray(options);
-
-                let html = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 border border-indigo-500/30 shadow-inner">${item.de}</div><div class="grid grid-cols-2 gap-2" id="mc-options">`;
-
-                options.forEach(opt => {
-                    html += `<button class="p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold hover:bg-gray-800 transition-all text-sm shadow-md" onclick="checkVocabMC(this, '${opt}', '${item.foreign}')">${opt}</button>`;
-                });
-                html += `</div><div id="mc-feedback" class="mt-4 hidden"><button onclick="nextVocab()" class="w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button></div>`;
-                box.innerHTML = html;
-            }
-
-            // 3. MODUS: TIPPEN
-            else if (vocabMode === 'typing') {
-                box.innerHTML = `
+            let html = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 border border-indigo-500/30 shadow-inner">${item.de}</div><div class="grid grid-cols-2 gap-2" id="mc-options">`;
+            options.forEach(opt => {
+                html += `<button class="p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold hover:bg-gray-800 transition-all text-sm shadow-md" onclick="checkVocabMC(this, '${opt}', '${item.foreign}')">${opt}</button>`;
+            });
+            html += `</div><div id="mc-feedback" class="mt-4 hidden"><button onclick="nextVocab(false)" class="w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button></div>`;
+            box.innerHTML = html;
+        }
+        else if(vocabMode === 'typing') {
+            box.innerHTML = `
                 <div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 border border-indigo-500/30 shadow-inner">${item.de}</div>
                 <input type="text" id="vocab-typing-input" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-center mb-4 text-lg shadow-inner" placeholder="Übersetzung tippen..." autocomplete="off" onkeypress="if(event.key === 'Enter') checkVocabTyping('${item.foreign}')">
                 <button id="typing-check-btn" onclick="checkVocabTyping('${item.foreign}')" class="w-full p-3.5 bg-emerald-600 rounded-xl font-bold text-white shadow-md">Prüfen</button>
                 <div id="typing-feedback" class="mt-3 font-bold text-center"></div>
-                <button id="typing-next-btn" onclick="nextVocab()" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden shadow-md">Nächstes Wort ➔</button>
+                <button id="typing-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden shadow-md">Nächstes Wort ➔</button>
             `;
-                setTimeout(() => document.getElementById("vocab-typing-input").focus(), 100);
-            }
+            setTimeout(() => document.getElementById("vocab-typing-input").focus(), 100);
         }
+    }
 
-        function nextVocab() {
-            const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
-            vIndex = (vIndex + 1) % list.length; showVocabQuestion();
+    function checkVocabMC(btn, selected, correct) {
+        const parent = document.getElementById("mc-options"); let alreadyAnswered = false;
+        Array.from(parent.children).forEach(b => { 
+            if(b.disabled) alreadyAnswered = true; b.disabled = true; 
+            if(b.innerText === correct) { b.className = "p-4 bg-emerald-600 border border-emerald-500 rounded-xl font-bold text-white text-sm shadow-md"; } 
+            else if (b.innerText === selected && selected !== correct) { b.className = "p-4 bg-rose-600 border border-rose-500 rounded-xl font-bold text-white text-sm opacity-50"; } 
+            else { b.classList.add("opacity-50"); }
+        });
+        if(alreadyAnswered) return;
+        document.getElementById("mc-feedback").classList.remove("hidden");
+        if(selected === correct) { showToast("Richtig! +2 Coins", "success"); confetti(); currentPlayer.coins += 2; savePlayerProgress(); } 
+        else { showToast("Leider falsch!", "error"); }
+    }
+
+    function checkVocabTyping(correct) {
+        const input = document.getElementById("vocab-typing-input"); const val = input.value.trim().toLowerCase();
+        if(!val) return; const correctLower = correct.toLowerCase();
+        
+        input.disabled = true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden");
+        const feedback = document.getElementById("typing-feedback");
+        if(val === correctLower) {
+            input.className = "w-full p-4 bg-emerald-900/30 border border-emerald-500 rounded-xl text-emerald-400 outline-none font-bold text-center mb-4 text-lg";
+            feedback.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`;
+            showToast("Super getippt!", "success"); confetti(); currentPlayer.coins += 5; savePlayerProgress();
+        } else {
+            input.className = "w-full p-4 bg-rose-900/30 border border-rose-500 rounded-xl text-rose-400 outline-none font-bold text-center mb-4 text-lg line-through";
+            feedback.innerHTML = `<span class="text-rose-400">Falsch. Richtig ist: <br><span class="text-white text-xl">${correct}</span></span>`;
+            showToast("Nicht ganz!", "error");
         }
+    }
 
-        function checkVocabMC(btn, selected, correct) {
-            const parent = document.getElementById("mc-options");
-            let alreadyAnswered = false;
-            Array.from(parent.children).forEach(b => {
-                if (b.disabled) alreadyAnswered = true;
-                b.disabled = true;
-                if (b.innerText === correct) {
-                    b.className = "p-4 bg-emerald-600 border border-emerald-500 rounded-xl font-bold text-white text-sm shadow-md";
-                } else if (b.innerText === selected && selected !== correct) {
-                    b.className = "p-4 bg-rose-600 border border-rose-500 rounded-xl font-bold text-white text-sm opacity-50";
-                } else {
-                    b.classList.add("opacity-50");
-                }
-            });
-            if (alreadyAnswered) return;
-
-            document.getElementById("mc-feedback").classList.remove("hidden");
-            if (selected === correct) {
-                showToast("Richtig! +2 Coins", "success"); confetti();
-                currentPlayer.coins += 2; savePlayerProgress();
-            } else { showToast("Leider falsch!", "error"); }
-        }
-
-        function checkVocabTyping(correct) {
-            const input = document.getElementById("vocab-typing-input");
-            const val = input.value.trim().toLowerCase();
-            if (!val) return;
-            const correctLower = correct.toLowerCase();
-
-            input.disabled = true;
-            document.getElementById("typing-check-btn").classList.add("hidden");
-            document.getElementById("typing-next-btn").classList.remove("hidden");
-
-            const feedback = document.getElementById("typing-feedback");
-            if (val === correctLower) {
-                input.className = "w-full p-4 bg-emerald-900/30 border border-emerald-500 rounded-xl text-emerald-400 outline-none font-bold text-center mb-4 text-lg";
-                feedback.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`;
-                showToast("Super getippt!", "success"); confetti();
-                currentPlayer.coins += 5; savePlayerProgress();
-            } else {
-                input.className = "w-full p-4 bg-rose-900/30 border border-rose-500 rounded-xl text-rose-400 outline-none font-bold text-center mb-4 text-lg line-through";
-                feedback.innerHTML = `<span class="text-rose-400">Falsch. Richtig ist: <br><span class="text-white text-xl">${correct}</span></span>`;
-                showToast("Nicht ganz!", "error");
-            }
-        }
-
-        window.onload = () => { switchView('login'); loadProfiles(); };
-    </script>
+    window.onload = () => { switchView('login'); loadProfiles(); };
+</script>
 </body>
-
 </html>

@@ -50,42 +50,70 @@
             <!-- Eltern-Button unten mittig -->
             <div class="flex justify-center pb-8">
                 <button onclick="openParentArea()" class="bg-gray-800 text-gray-400 px-6 py-3 rounded-full text-sm font-bold border border-gray-700 hover:text-white hover:bg-gray-700 transition-all shadow-md flex items-center gap-2">
-                    🔒 Elternbereich
+                    🔒 Admin-Bereich
                 </button>
             </div>
         </div>
 
         <!-- VIEW: MAIN MENU -->
         <div id="view-menu" class="view hidden space-y-4">
-            <div id="subview-home" class="subview space-y-4">
-                <div class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-center shadow-xl">
-                    <div>
-                        <h2 id="welcome-text" class="text-xl font-bold text-white">Hallo!</h2>
-                        <div class="flex gap-4 mt-1 text-xs font-semibold">
-                            <span class="text-yellow-400">🪙 <span id="menu-coins">0</span> Coins</span>
-                            <span class="text-blue-400">🎒 Klasse: <span id="menu-age">-</span></span>
-                        </div>
+            <div class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-center shadow-xl">
+                <div>
+                    <h2 id="welcome-text" class="text-xl font-bold text-white">Hallo!</h2>
+                    <div class="flex gap-4 mt-1 text-xs font-semibold">
+                        <span class="text-yellow-400">🪙 <span id="menu-coins">0</span> Coins</span>
+                        <span class="text-blue-400">🎒 Klasse: <span id="menu-age">-</span></span>
                     </div>
                 </div>
+            </div>
 
-                <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
+            <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
+            
+            <div class="space-y-4">
+                <!-- VOKABELN -->
+                <button class="w-full text-left bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 transition-all shadow-md" onclick="switchView('vokabeln')">
+                    <div class="text-5xl">📖</div>
+                    <div>
+                        <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
+                        <p class="text-xs text-gray-300 mb-1">Karteikarten, Quiz & Tippen</p>
+                        <span class="text-[10px] bg-indigo-600 px-2 py-1 rounded-md text-white font-bold tracking-wider">DATENBANK: <span id="count-vocab">0</span> WÖRTER</span>
+                    </div>
+                </button>
                 
-                <div class="space-y-4">
-                    <div class="bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 transition-all shadow-md" onclick="switchView('vokabeln')">
-                        <div class="text-5xl">📖</div>
-                        <div>
-                            <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
-                            <p class="text-xs text-gray-300">Karteikarten, Quiz & Tippen</p>
-                        </div>
+                <!-- QUIZ ARENA -->
+                <button class="w-full text-left bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 transition-all shadow-md" onclick="showQuizSetup('spiel')">
+                    <div class="text-5xl">🎯</div>
+                    <div>
+                        <h2 class="text-xl font-black text-pink-400">Quiz-Arena</h2>
+                        <p class="text-xs text-gray-300 mb-1">Schulwissen & Technik testen</p>
+                        <span class="text-[10px] bg-pink-600 px-2 py-1 rounded-md text-white font-bold tracking-wider">DATENBANK: <span id="count-quiz">0</span> FRAGEN</span>
                     </div>
-                    
-                    <div class="bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 transition-all shadow-md" onclick="showQuizSetup('spiel')">
-                        <div class="text-5xl">🎯</div>
-                        <div>
-                            <h2 class="text-xl font-black text-pink-400">Quiz-Arena</h2>
-                            <p class="text-xs text-gray-300">Schulwissen & Technik testen</p>
-                        </div>
+                </button>
+
+                <!-- FOKUS LERNZEIT -->
+                <button class="w-full text-left bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 transition-all shadow-md" onclick="switchView('fokus')">
+                    <div class="text-5xl">⏳</div>
+                    <div>
+                        <h2 class="text-xl font-black text-yellow-400">Fokus-Lernzeit</h2>
+                        <p class="text-xs text-gray-300">Mit Timer ungestört lernen</p>
                     </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- VIEW: FOKUS LERNZEIT -->
+        <div id="view-fokus" class="view hidden space-y-4">
+            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zurück</button>
+            <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center space-y-6 shadow-lg">
+                <div class="text-6xl">⏱️</div>
+                <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
+                <p class="text-sm text-gray-400">Lege dein Handy zur Seite und lerne für die Schule. Wenn die Zeit abgelaufen ist, erhältst du 20 Coins!</p>
+                
+                <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
+                
+                <div class="flex gap-2 justify-center" id="timer-controls">
+                    <button class="bg-emerald-600 px-6 py-3 rounded-xl font-bold text-white shadow-md hover:bg-emerald-500" onclick="startFocusTimer()">Start</button>
+                    <button class="bg-rose-600 px-6 py-3 rounded-xl font-bold text-white shadow-md hover:bg-rose-500" onclick="resetFocusTimer()">Reset</button>
                 </div>
             </div>
         </div>
@@ -114,7 +142,6 @@
                         <option value="deutsch_uebungsheft">✍️ Deutsch</option>
                         <option value="kfz">🔧 KFZ-Technik</option>
                     </select>
-                    <div id="question-count-display" class="text-xs text-gray-400 mt-1 font-semibold pl-1"></div>
                 </div>
                 
                 <button onclick="startQuiz()" class="w-full p-4 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg">Starten 🚀</button>
@@ -204,8 +231,18 @@
     let isExamMode = false;
     let sessionLearnedWords = new Set(); 
     let currentQuestions = [], qIndex = 0;
+    let focusTimerInterval = null; let focusTimeRemaining = 15 * 60; // 15 Minuten
 
-    // === 02. UI HILFSFUNKTIONEN ===
+    // === 02. ZÄHLER UPDATE BEIM START ===
+    function initCounters() {
+        let vocabCount = 0;
+        // Zähle Wörter in Englisch (da Türkisch die gleichen Kategorien/Anzahl hat, nehmen wir das als Basis-Zahl der Paare)
+        for(let cat in VOCABULARY_DATABASE.en) { vocabCount += VOCABULARY_DATABASE.en[cat].words.length; }
+        document.getElementById('count-vocab').innerText = vocabCount; // Zeigt 261 Wörter
+        document.getElementById('count-quiz').innerText = QUESTIONS_DATABASE.length;
+    }
+
+    // === 03. UI HILFSFUNKTIONEN ===
     function showToast(message, type = "success") {
         const container = document.getElementById("toast-container");
         const toast = document.createElement("div");
@@ -221,9 +258,35 @@
         if(viewId === 'login') { currentPlayer = null; activePlayerName = ""; isExamMode = false; loadProfiles(); }
     }
 
-    // === 03. ELTERNBEREICH & ADMIN DASHBOARD ===
+    // === 04. FOKUS TIMER LOGIK ===
+    function updateTimerDisplay() {
+        let m = Math.floor(focusTimeRemaining / 60); let s = focusTimeRemaining % 60;
+        document.getElementById("timer-display").innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function startFocusTimer() {
+        if(focusTimerInterval) return; // Läuft schon
+        showToast("Lernzeit gestartet! Handy weglegen!", "success");
+        focusTimerInterval = setInterval(() => {
+            if(focusTimeRemaining > 0) {
+                focusTimeRemaining--; updateTimerDisplay();
+            } else {
+                clearInterval(focusTimerInterval); focusTimerInterval = null;
+                showToast("Zeit abgelaufen! +20 Coins 🎉", "success");
+                confetti(); currentPlayer.coins += 20; savePlayerProgress();
+                focusTimeRemaining = 15 * 60; updateTimerDisplay();
+            }
+        }, 1000);
+    }
+
+    function resetFocusTimer() {
+        clearInterval(focusTimerInterval); focusTimerInterval = null;
+        focusTimeRemaining = 15 * 60; updateTimerDisplay();
+    }
+
+    // === 05. ELTERNBEREICH & ADMIN DASHBOARD ===
     function openParentArea() {
-        const pin = prompt("Bitte Eltern-PIN eingeben (Standard: 1234):");
+        const pin = prompt("Bitte Admin-PIN eingeben (Standard: 1234):");
         if (pin === "1234") { switchView('parent'); renderParentDashboard(); } 
         else if (pin !== null) { showToast("Falscher PIN!", "error"); }
     }
@@ -231,10 +294,8 @@
     function closeParentArea() { switchView('login'); }
 
     function renderParentDashboard() {
-        const container = document.getElementById("parent-stats-container"); 
-        container.innerHTML = "";
-        
-        const categories = VOCABULARY_DATABASE['en']; // Vorlage für die Kategorien-Struktur
+        const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
+        const categories = VOCABULARY_DATABASE['en'];
 
         Object.keys(ALL_PLAYERS).forEach(key => {
             const p = ALL_PLAYERS[key];
@@ -244,23 +305,16 @@
                 <div class="bg-gray-900 border border-gray-700 p-5 rounded-2xl shadow-xl">
                     <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
                         <span class="text-blue-400 font-bold text-lg">👤 ${p.name} <span class="text-sm text-gray-500">(Kl. ${p.age})</span></span>
-                        <span class="text-yellow-400 font-bold">🪙 ${p.coins || 0} Coins</span>
+                        <span class="text-yellow-400 font-bold">🪙 ${p.coins || 0}</span>
                     </div>
                     <div class="space-y-4">`;
 
             for (let catKey in categories) {
-                // Gesamtanzahl Wörter in dieser Kategorie (Englisch + Türkisch)
                 const totalInCat = VOCABULARY_DATABASE['en'][catKey].words.length + VOCABULARY_DATABASE['tr'][catKey].words.length;
                 let learnedInCat = 0;
                 
-                // Zähle gelernte englische Wörter in dieser Kategorie
-                VOCABULARY_DATABASE['en'][catKey].words.forEach(w => {
-                    if(learnedSet.has("en_" + catKey + "_" + w.foreign)) learnedInCat++;
-                });
-                // Zähle gelernte türkische Wörter in dieser Kategorie
-                VOCABULARY_DATABASE['tr'][catKey].words.forEach(w => {
-                    if(learnedSet.has("tr_" + catKey + "_" + w.foreign)) learnedInCat++;
-                });
+                VOCABULARY_DATABASE['en'][catKey].words.forEach(w => { if(learnedSet.has("en_" + catKey + "_" + w.foreign)) learnedInCat++; });
+                VOCABULARY_DATABASE['tr'][catKey].words.forEach(w => { if(learnedSet.has("tr_" + catKey + "_" + w.foreign)) learnedInCat++; });
 
                 const percent = totalInCat > 0 ? Math.round((learnedInCat / totalInCat) * 100) : 0;
                 
@@ -275,9 +329,8 @@
                         </div>
                     </div>`;
             }
-
             playerHtml += `
-                        <button class="w-full mt-4 bg-rose-600 py-3 rounded-lg font-bold text-sm text-white hover:bg-rose-500 transition shadow-md" onclick="startExamFor('${key}')">⚔️ Prüfung starten (Tippen)</button>
+                        <button class="w-full mt-4 bg-rose-600 py-3 rounded-lg font-bold text-sm text-white hover:bg-rose-500 transition shadow-md" onclick="startExamFor('${key}')">⚔️ Prüfung starten</button>
                     </div>
                 </div>`;
             container.appendChild(document.createRange().createContextualFragment(playerHtml));
@@ -285,26 +338,19 @@
     }
 
     function startExamFor(playerKey) {
-        currentPlayer = ALL_PLAYERS[playerKey];
-        activePlayerName = currentPlayer.name;
-        sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
-        isExamMode = true;
-        
-        switchView("vokabeln");
-        setVocabMode('typing'); 
-        
+        currentPlayer = ALL_PLAYERS[playerKey]; activePlayerName = currentPlayer.name;
+        sessionLearnedWords = new Set(currentPlayer.learnedWords || []); isExamMode = true;
+        switchView("vokabeln"); setVocabMode('typing'); 
         document.getElementById("vocab-title").innerText = `Prüfung: ${currentPlayer.name}`;
         document.getElementById("exam-banner").classList.remove("hidden");
         document.getElementById("lang-selector").classList.add("hidden");
         document.getElementById("mode-selector").classList.add("hidden");
-        
         showToast(`Prüfung für ${currentPlayer.name} gestartet!`, "success");
     }
 
-    // === 04. SPIELER & LOGIN LOGIK ===
+    // === 06. SPIELER LOGIK ===
     function loadProfiles() { 
-        ALL_PLAYERS = JSON.parse(localStorage.getItem("eduplay_players") || "{}"); 
-        renderProfileSelection(); 
+        ALL_PLAYERS = JSON.parse(localStorage.getItem("eduplay_players") || "{}"); renderProfileSelection(); 
     }
     
     function renderProfileSelection() {
@@ -315,10 +361,8 @@
             keys.forEach(k => {
                 const btn = document.createElement("button"); btn.className = "bg-gray-700 px-4 py-2 rounded-xl text-sm font-bold text-white hover:bg-blue-600 transition shadow-md"; btn.innerText = ALL_PLAYERS[k].name;
                 btn.onclick = () => { 
-                    activePlayerName = ALL_PLAYERS[k].name; 
-                    currentPlayer = ALL_PLAYERS[k]; 
-                    sessionLearnedWords = new Set(currentPlayer.learnedWords || []); 
-                    isExamMode = false;
+                    activePlayerName = ALL_PLAYERS[k].name; currentPlayer = ALL_PLAYERS[k]; 
+                    sessionLearnedWords = new Set(currentPlayer.learnedWords || []); isExamMode = false;
                     document.getElementById("exam-banner").classList.add("hidden");
                     document.getElementById("vocab-title").innerText = `📖 Vokabel-Trainer`;
                     document.getElementById("lang-selector").classList.remove("hidden");
@@ -334,15 +378,11 @@
         const name = document.getElementById("username-input").value.trim(); const age = document.getElementById("age-input").value.trim();
         if(!name) return showToast("Bitte Namen eingeben!", "error");
         activePlayerName = name; const key = name.toLowerCase();
-        
         if(!ALL_PLAYERS[key]) { 
             ALL_PLAYERS[key] = { name: name, age: age || "-", coins: 0, learnedWords: [] }; 
             localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS)); 
-        } 
-        else if (age) { ALL_PLAYERS[key].age = age; }
-        
-        currentPlayer = ALL_PLAYERS[key]; 
-        sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
+        } else if (age) { ALL_PLAYERS[key].age = age; }
+        currentPlayer = ALL_PLAYERS[key]; sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
         switchView("menu"); updateDashboardUI();
     }
 
@@ -361,54 +401,28 @@
         }
     }
 
-    // === 05. VOKABEL LOGIK ===
-    function leaveVocab() {
-        if (isExamMode) {
-            isExamMode = false;
-            switchView('parent');
-            renderParentDashboard();
-        } else {
-            switchView('menu');
-        }
-    }
-
+    // === 07. VOKABEL LOGIK ===
+    function leaveVocab() { if (isExamMode) { isExamMode = false; switchView('parent'); renderParentDashboard(); } else { switchView('menu'); } }
     function setLanguage(lang) { activeLang = lang; vIndex = 0; loadVocabSystem(); }
-
     function loadVocabSystem() {
         const dropdown = document.getElementById("category-dropdown"); dropdown.innerHTML = "";
         const currentLangData = VOCABULARY_DATABASE[activeLang];
-        Object.keys(currentLangData).forEach(key => {
-            const opt = document.createElement("option"); opt.value = key; opt.innerText = currentLangData[key].label; dropdown.appendChild(opt);
-        });
-        dropdown.value = activeCategory; 
-        showVocabQuestion();
+        Object.keys(currentLangData).forEach(key => { const opt = document.createElement("option"); opt.value = key; opt.innerText = currentLangData[key].label; dropdown.appendChild(opt); });
+        dropdown.value = activeCategory; showVocabQuestion();
     }
-
     function setVocabMode(mode) {
-        if(isExamMode) return; 
-        vocabMode = mode; vIndex = 0;
+        if(isExamMode) return; vocabMode = mode; vIndex = 0;
         document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'flashcards' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`;
         document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'mc' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`;
         document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'typing' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`;
         showVocabQuestion();
     }
-
     function selectCategory(cat) { activeCategory = cat; vIndex = 0; showVocabQuestion(); }
+    function shuffleArray(array) { let arr = [...array]; for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
     
-    function shuffleArray(array) {
-        let arr = [...array];
-        for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; }
-        return arr;
-    }
-
     function nextVocab(isKnown) {
         const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
-        if (isKnown) {
-            const wordKey = activeLang + "_" + activeCategory + "_" + list[vIndex].foreign;
-            sessionLearnedWords.add(wordKey); 
-            savePlayerProgress(); 
-            showToast("Gemerkt! 🧠", "success");
-        }
+        if (isKnown) { sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign); savePlayerProgress(); showToast("Gemerkt! 🧠", "success"); }
         vIndex = (vIndex + 1) % list.length; showVocabQuestion();
     }
 
@@ -418,21 +432,12 @@
         
         if (isExamMode) {
             list = list.filter(item => !sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + item.foreign));
-            if(list.length === 0) {
-                box.innerHTML = `<div class="p-8 bg-emerald-600 text-white font-bold rounded-xl shadow-lg">Perfekt! Alle Wörter in dieser Kategorie wurden bereits gelernt! 🏆</div>`;
-                return;
-            }
-            list = shuffleArray(list); 
-            vIndex = 0;
+            if(list.length === 0) { box.innerHTML = `<div class="p-8 bg-emerald-600 text-white font-bold rounded-xl shadow-lg">Perfekt! Alle Wörter gelernt! 🏆</div>`; return; }
+            list = shuffleArray(list); vIndex = 0;
         } else {
             let learnedCount = 0; list.forEach(item => { if(sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + item.foreign)) learnedCount++; });
-            if (learnedCount >= list.length && list.length > 0) {
-                showToast("Kategorie resettet!", "success");
-                list.forEach(item => sessionLearnedWords.delete(activeLang + "_" + activeCategory + "_" + item.foreign));
-                savePlayerProgress();
-            }
-            let safetyCounter = 0;
-            while(sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && safetyCounter < list.length) { vIndex = (vIndex + 1) % list.length; safetyCounter++; }
+            if (learnedCount >= list.length && list.length > 0) { showToast("Kategorie resettet!", "success"); list.forEach(item => sessionLearnedWords.delete(activeLang + "_" + activeCategory + "_" + item.foreign)); savePlayerProgress(); }
+            let safetyCounter = 0; while(sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && safetyCounter < list.length) { vIndex = (vIndex + 1) % list.length; safetyCounter++; }
         }
 
         const item = list[vIndex];
@@ -449,17 +454,14 @@
                 </div>
                 <button onclick="nextVocab(false)" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button>
                 <button onclick="nextVocab(true)" class="mt-2 w-full p-2 bg-emerald-600/80 rounded-xl font-bold text-white shadow-md text-sm">✅ Ich kann das (Ausblenden)</button>`;
-        } 
-        else if(vocabMode === 'mc' && !isExamMode) {
+        } else if(vocabMode === 'mc' && !isExamMode) {
             let options = [item.foreign]; let otherWords = shuffleArray(VOCABULARY_DATABASE[activeLang][activeCategory].words.filter(w => w.foreign !== item.foreign));
             for(let i=0; i<3 && i<otherWords.length; i++) { options.push(otherWords[i].foreign); } options = shuffleArray(options);
-
             let html = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 border border-indigo-500/30">${item.de}</div><div class="grid grid-cols-2 gap-2" id="mc-options">`;
             options.forEach(opt => { html += `<button class="p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-sm shadow-md" onclick="checkVocabMC(this, '${opt}', '${item.foreign}')">${opt}</button>`; });
             html += `</div><div id="mc-feedback" class="mt-4 hidden"><button onclick="nextVocab(false)" class="w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white">Nächstes Wort ➔</button></div>`;
             box.innerHTML = html;
-        }
-        else { 
+        } else { 
             box.innerHTML = `
                 <div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 shadow-inner">${item.de}</div>
                 <input type="text" id="vocab-typing-input" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-center mb-4 text-lg shadow-inner" placeholder="Übersetzung tippen..." autocomplete="off" onkeypress="if(event.key === 'Enter') checkVocabTyping('${item.foreign}')">
@@ -474,80 +476,42 @@
         const parent = document.getElementById("mc-options"); let answered = false;
         Array.from(parent.children).forEach(b => { 
             if(b.disabled) answered = true; b.disabled = true; 
-            if(b.innerText === correct) { b.className = "p-4 bg-emerald-600 rounded-xl font-bold text-white text-sm"; } 
-            else if (b.innerText === selected) { b.className = "p-4 bg-rose-600 rounded-xl font-bold text-white text-sm opacity-50"; } 
-            else { b.classList.add("opacity-50"); }
+            if(b.innerText === correct) { b.className = "p-4 bg-emerald-600 rounded-xl font-bold text-white text-sm"; } else if (b.innerText === selected) { b.className = "p-4 bg-rose-600 rounded-xl font-bold text-white text-sm opacity-50"; } else { b.classList.add("opacity-50"); }
         });
         if(answered) return; document.getElementById("mc-feedback").classList.remove("hidden");
         if(selected === correct) { showToast("Richtig! +2 Coins", "success"); confetti(); currentPlayer.coins += 2; savePlayerProgress(); } else { showToast("Leider falsch!", "error"); }
     }
 
     function checkVocabTyping(correct) {
-        const input = document.getElementById("vocab-typing-input"); const val = input.value.trim().toLowerCase();
-        if(!val) return;
+        const input = document.getElementById("vocab-typing-input"); const val = input.value.trim().toLowerCase(); if(!val) return;
         input.disabled = true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden");
         const fb = document.getElementById("typing-feedback");
-        
         if(val === correct.toLowerCase()) {
             input.className = "w-full p-4 bg-emerald-900/30 text-emerald-400 font-bold text-center mb-4 text-lg border border-emerald-500 rounded-xl";
             fb.innerHTML = `<span class="text-emerald-400">Perfekt! ${isExamMode ? '+10' : '+5'} Coins</span>`; showToast("Super!", "success"); confetti(); 
-            currentPlayer.coins += (isExamMode ? 10 : 5); 
-            
-            const wordKey = activeLang + "_" + activeCategory + "_" + correct;
-            sessionLearnedWords.add(wordKey);
-            savePlayerProgress();
+            currentPlayer.coins += (isExamMode ? 10 : 5); sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + correct); savePlayerProgress();
         } else {
             input.className = "w-full p-4 bg-rose-900/30 text-rose-400 font-bold text-center mb-4 text-lg border border-rose-500 rounded-xl line-through";
             fb.innerHTML = `<span class="text-rose-400">Falsch. Richtig ist: <br><span class="text-white text-xl">${correct}</span></span>`; showToast("Nicht ganz!", "error");
         }
     }
 
-    // === 06. QUIZ LOGIK ===
-    function showQuizSetup(mode) { 
-        document.getElementById('selected-game-mode').value = mode; 
-        updateSubCategories(); 
-        switchView('quiz-setup'); 
-    }
-    
-    function updateSubCategories() { 
-        showQuestionCount(); 
-    }
-    
-    function showQuestionCount() { 
-        document.getElementById("question-count-display").innerText = `📋 Fragen verfügbar`; 
-    }
-    
+    // === 08. QUIZ LOGIK ===
+    function showQuizSetup(mode) { document.getElementById('selected-game-mode').value = mode; switchView('quiz-setup'); }
     function startQuiz() { 
-        const cat = document.getElementById("sub-category").value; 
-        currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat); 
-        if(currentQuestions.length === 0) {
-            showToast("Keine Fragen für diese Lektion gefunden!", "error");
-            return;
-        }
-        qIndex = 0; 
-        switchView('quiz'); 
-        showQuestion(); 
+        const cat = document.getElementById("sub-category").value; currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat); 
+        if(currentQuestions.length === 0) { showToast("Keine Fragen für diese Lektion gefunden!", "error"); return; }
+        qIndex = 0; switchView('quiz'); showQuestion(); 
     }
-    
-    function leaveQuiz() { 
-        switchView('menu'); 
-    }
+    function leaveQuiz() { switchView('menu'); }
     
     function showQuestion() { 
         const q = currentQuestions[qIndex];
-        document.getElementById('question-text').innerText = q.question; 
-        document.getElementById('explanation-box').classList.add('hidden');
-        document.getElementById('next-question-btn').classList.add('hidden');
-        
-        const optsContainer = document.getElementById('options-container');
-        optsContainer.innerHTML = '';
-        
+        document.getElementById('question-text').innerText = q.question; document.getElementById('explanation-box').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
+        const optsContainer = document.getElementById('options-container'); optsContainer.innerHTML = '';
         q.answers.forEach((ans, index) => {
-            const btn = document.createElement('button');
-            btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-white text-left hover:bg-gray-700 transition";
-            btn.innerText = ans;
-            btn.onclick = () => checkQuizAnswer(index, q.correct, q.explanation, btn);
-            optsContainer.appendChild(btn);
+            const btn = document.createElement('button'); btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-white text-left hover:bg-gray-700 transition"; btn.innerText = ans;
+            btn.onclick = () => checkQuizAnswer(index, q.correct, q.explanation, btn); optsContainer.appendChild(btn);
         });
     }
 
@@ -555,42 +519,16 @@
         const buttons = document.getElementById('options-container').children;
         for(let i=0; i<buttons.length; i++) {
             buttons[i].disabled = true;
-            if(i === correctIndex) {
-                buttons[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white text-left";
-            } else if(i === selectedIndex) {
-                buttons[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white text-left opacity-50";
-            } else {
-                buttons[i].classList.add('opacity-50');
-            }
+            if(i === correctIndex) { buttons[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white text-left"; } else if(i === selectedIndex) { buttons[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white text-left opacity-50"; } else { buttons[i].classList.add('opacity-50'); }
         }
-        
-        const expBox = document.getElementById('explanation-box');
-        expBox.innerHTML = explanation;
-        expBox.classList.remove('hidden');
-        
-        if(selectedIndex === correctIndex) {
-            showToast("Korrekt! +10 Coins", "success");
-            confetti();
-            currentPlayer.coins += 10;
-            savePlayerProgress();
-        } else {
-            showToast("Leider falsch!", "error");
-        }
-        
+        const expBox = document.getElementById('explanation-box'); expBox.innerHTML = explanation; expBox.classList.remove('hidden');
+        if(selectedIndex === correctIndex) { showToast("Korrekt! +10 Coins", "success"); confetti(); currentPlayer.coins += 10; savePlayerProgress(); } else { showToast("Leider falsch!", "error"); }
         document.getElementById('next-question-btn').classList.remove('hidden');
     }
 
-    function triggerNextQuestion() {
-        qIndex++;
-        if(qIndex < currentQuestions.length) {
-            showQuestion();
-        } else {
-            showToast("Quiz beendet! Gut gemacht.", "success");
-            leaveQuiz();
-        }
-    }
+    function triggerNextQuestion() { qIndex++; if(qIndex < currentQuestions.length) { showQuestion(); } else { showToast("Quiz beendet! Gut gemacht.", "success"); leaveQuiz(); } }
 
-    window.onload = () => { switchView('login'); loadProfiles(); };
+    window.onload = () => { initCounters(); switchView('login'); loadProfiles(); };
 </script>
 </body>
 </html>

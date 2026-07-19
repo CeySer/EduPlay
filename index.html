@@ -209,4 +209,358 @@
             animals: { label: "🦁 Hayvanlar (Kl. 1-4)", words: [{de:"Hund",foreign:"köpek"},{de:"Katze",foreign:"kedi"},{de:"Maus",foreign:"fare"},{de:"Vogel",foreign:"kuş"},{de:"Fisch",foreign:"balık"},{de:"Kuh",foreign:"inek"},{de:"Schwein",foreign:"domuz"},{de:"Pferd",foreign:"at"},{de:"Löwe",foreign:"aslan"},{de:"Elefant",foreign:"fil"}] },
             food: { label: "🥪 Yiyecek (Kl. 1-4)", words: [{de:"Apfel",foreign:"elma"},{de:"Banane",foreign:"muz"},{de:"Orange",foreign:"portakal"},{de:"Tomate",foreign:"domates"},{de:"Brot",foreign:"ekmek"},{de:"Käse",foreign:"peynir"},{de:"Ei",foreign:"yumurta"},{de:"Wasser",foreign:"su"},{de:"Milch",foreign:"süt"},{de:"Fleisch",foreign:"et"}] },
             home: { label: "🏠 Ev & Giysiler", words: [{de:"Haus",foreign:"ev"},{de:"Zimmer",foreign:"oda"},{de:"Küche",foreign:"mutfak"},{de:"Bett",foreign:"yatak"},{de:"Tür",foreign:"kapı"},{de:"T-Shirt",foreign:"tişört"},{de:"Hose",foreign:"pantolon"},{de:"Schuhe",foreign:"ayakkabı"},{de:"Jacke",foreign:"ceket"},{de:"Socken",foreign:"çorap"}] },
-            hobbies: { label: "⚽ Hobiler (Kl. 5-6)", words: [{de:"
+            hobbies: { label: "⚽ Hobiler (Kl. 5-6)", words: [{de:"Fußball spielen",foreign:"futbol oynamak"},{de:"Schwimmen",foreign:"yüzmek"},{de:"Lesen",foreign:"okumak"},{de:"Tanzen",foreign:"dans etmek"},{de:"Singen",foreign:"şarkı söylemek"},{de:"Musik hören",foreign:"müzik dinlemek"},{de:"Fahrrad fahren",foreign:"bisiklete binmek"},{de:"Freunde treffen",foreign:"arkadaşlarla buluşmak"},{de:"Kino",foreign:"sinema"},{de:"Spielen",foreign:"oynamak"}] },
+            environment: { label: "🌍 Çevre (Kl. 7-8)", words: [{de:"Klimawandel",foreign:"iklim değişikliği"},{de:"Umweltschutz",foreign:"çevreyi koruma"},{de:"Verschmutzung",foreign:"kirlilik"},{de:"Müll",foreign:"çöp"},{de:"Nachhaltigkeit",foreign:"sürdürülebilirlik"},{de:"Natur",foreign:"doğa"},{de:"Wald",foreign:"orman"},{de:"Meer",foreign:"okyanus"},{de:"Energie",foreign:"enerji"},{de:"Erneuerbar",foreign:"yenilenebilir"}] },
+            technology: { label: "💻 Teknoloji (Kl. 8-9)", words: [{de:"Computer",foreign:"bilgisayar"},{de:"Internet",foreign:"internet"},{de:"Herunterladen",foreign:"indirmek"},{de:"Passwort",foreign:"şifre"},{de:"Bildschirm",foreign:"ekran"},{de:"Tastatur",foreign:"klavye"},{de:"Netzwerk",foreign:"ağ"},{de:"Daten",foreign:"veri"},{de:"Sicherheit",foreign:"güvenlik"},{de:"Nachricht",foreign:"mesaj"}] },
+            society: { label: "👥 Toplum (Kl. 9-10)", words: [{de:"Menschenrechte",foreign:"insan hakları"},{de:"Demokratie",foreign:"demokrasi"},{de:"Gerechtigkeit",foreign:"adalet"},{de:"Vielfalt",foreign:"çeşitlilik"},{de:"Wahl",foreign:"seçim"},{de:"Politik",foreign:"politika"},{de:"Regierung",foreign:"hükümet"},{de:"Gesetz",foreign:"yasa"},{de:"Bürger",foreign:"vatandaş"},{de:"Freiheit",foreign:"özgürlük"}] }
+        }
+    };
+
+    // === 03. SPIELER & FIREBASE LOGIK ===
+    const firebaseConfig = {
+        apiKey: "AIzaSyAy5YkfW99nY3t1CxxrFI5dlqe4w2NZfj4", authDomain: "family-quizzz-80c40.firebaseapp.com",
+        databaseURL: "https://family-quizzz-80c40-default-rtdb.europe-west1.firebasedatabase.app", projectId: "family-quizzz-80c40"
+    };
+
+    let ALL_PLAYERS = {};
+    let currentPlayer = { name: "Gast", age: "-", coins: 0, rankPoints: 0 };
+    let activePlayerName = "";
+    
+    let activeLang = 'en', activeCategory = 'numbers', vIndex = 0;
+    let vocabMode = 'flashcards'; 
+    let learnedWords = new Set(JSON.parse(localStorage.getItem('learnedWords') || '[]'));
+    
+    let currentQuestions = [], qIndex = 0;
+
+    let useFirebase = false; let db = null;
+    try { firebase.initializeApp(firebaseConfig); db = firebase.database(); useFirebase = true; } 
+    catch(e) { console.warn("Offline-Modus aktiv."); }
+
+    function showToast(message, type = "success") {
+        const container = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        const borderColor = type === "success" ? "border-emerald-500" : "border-rose-500";
+        toast.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 ${borderColor}`;
+        toast.innerHTML = message; container.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    function loadProfiles() {
+        if(useFirebase) {
+            db.ref("players").on("value", (snap) => {
+                ALL_PLAYERS = snap.val() || {}; renderProfileSelection();
+                if(activePlayerName) { currentPlayer = ALL_PLAYERS[activePlayerName.toLowerCase()] || currentPlayer; updateDashboardUI(); }
+            });
+        } else {
+            ALL_PLAYERS = JSON.parse(localStorage.getItem("eduplay_players") || "{}"); renderProfileSelection();
+        }
+    }
+
+    function renderProfileSelection() {
+        const grid = document.getElementById("profile-grid"); const box = document.getElementById("existing-profiles-box");
+        grid.innerHTML = ""; const keys = Object.keys(ALL_PLAYERS);
+        if(keys.length > 0) {
+            box.classList.remove("hidden");
+            keys.forEach(k => {
+                const btn = document.createElement("button"); btn.className = "bg-gray-700 px-4 py-2 rounded-xl text-sm font-bold text-white";
+                btn.innerText = ALL_PLAYERS[k].name;
+                btn.onclick = () => { activePlayerName = ALL_PLAYERS[k].name; currentPlayer = ALL_PLAYERS[k]; switchView("menu"); switchSubpage("home"); updateDashboardUI(); };
+                grid.appendChild(btn);
+            });
+        }
+    }
+
+    function handleLogin() {
+        const name = document.getElementById("username-input").value.trim(); const age = document.getElementById("age-input").value.trim();
+        if(!name) return showToast("Bitte Namen eingeben!", "error");
+        activePlayerName = name; const key = name.toLowerCase();
+        if(!ALL_PLAYERS[key]) {
+            ALL_PLAYERS[key] = { name: name, age: age || "-", coins: 0, rankPoints: 0 };
+            if(useFirebase) db.ref("players/" + key).set(ALL_PLAYERS[key]); else localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS));
+        } else if (age) {
+            ALL_PLAYERS[key].age = age; if(useFirebase) db.ref("players/" + key + "/age").set(age);
+        }
+        currentPlayer = ALL_PLAYERS[key]; switchView("menu"); switchSubpage("home"); updateDashboardUI();
+    }
+
+    function switchView(viewId) {
+        document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+        const el = document.getElementById(`view-${viewId}`); if(el) el.classList.remove('hidden');
+        document.getElementById("main-bottom-nav").classList.toggle('hidden', viewId !== "menu");
+        if(viewId === 'vokabeln') loadVocabSystem();
+    }
+
+    function switchSubpage(subId) {
+        document.querySelectorAll('.subview').forEach(s => s.classList.add('hidden'));
+        const sub = document.getElementById(`subview-${subId}`); if(sub) sub.classList.remove('hidden');
+        document.querySelectorAll('.nav-item').forEach(item => { item.classList.toggle('text-blue-500', item.getAttribute('onclick').includes(subId)); });
+        if(subId === 'parent') renderParentDashboard(); if(subId === 'leaderboard') renderLeaderboard();
+    }
+
+    function savePlayerProgress() {
+        if(activePlayerName) {
+            const key = activePlayerName.toLowerCase();
+            if(useFirebase) db.ref("players/" + key).set(currentPlayer);
+            else { ALL_PLAYERS[key] = currentPlayer; localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS)); }
+            updateDashboardUI();
+        }
+    }
+
+    function updateDashboardUI() { 
+        document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`; 
+        document.getElementById("menu-coins").innerText = currentPlayer.coins || 0; 
+        document.getElementById("menu-age").innerText = currentPlayer.age || "-"; 
+    }
+
+    function renderParentDashboard() {
+        const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
+        Object.keys(ALL_PLAYERS).forEach(key => {
+            const p = ALL_PLAYERS[key]; const row = document.createElement("div");
+            row.className = "bg-gray-900 border border-gray-700 p-4 rounded-xl flex flex-col gap-2";
+            row.innerHTML = `
+                <div class="flex justify-between font-bold">
+                    <span class="text-blue-400">👤 ${p.name}</span>
+                    <span class="text-yellow-400">🪙 ${p.coins || 0}</span>
+                </div>
+                <div class="flex gap-2 mt-2">
+                    <button class="bg-emerald-600 px-3 py-1 rounded-lg font-bold text-xs text-white" onclick="adjustCoins('${key}', 10)">+ 10</button>
+                    <button class="bg-rose-600 px-3 py-1 rounded-lg font-bold text-xs text-white" onclick="adjustCoins('${key}', -10)">- 10</button>
+                </div>
+            `;
+            container.appendChild(row);
+        });
+    }
+
+    function adjustCoins(key, amount) {
+        if(ALL_PLAYERS[key]) {
+            ALL_PLAYERS[key].coins = Math.max(0, (ALL_PLAYERS[key].coins || 0) + amount);
+            if(useFirebase) db.ref("players/" + key + "/coins").set(ALL_PLAYERS[key].coins);
+            else { localStorage.setItem("eduplay_players", JSON.stringify(ALL_PLAYERS)); }
+            renderParentDashboard();
+            if (currentPlayer.name === ALL_PLAYERS[key].name) { currentPlayer.coins = ALL_PLAYERS[key].coins; updateDashboardUI(); }
+        }
+    }
+
+    function renderLeaderboard() {
+        const container = document.getElementById("leaderboard-list"); container.innerHTML = "";
+        const list = Object.values(ALL_PLAYERS).sort((a,b) => (b.rankPoints || 0) - (a.rankPoints || 0));
+        list.forEach((p, idx) => {
+            container.innerHTML += `<div class="p-3 bg-gray-900 border border-gray-700 rounded-xl flex justify-between text-white font-bold"><span>#${idx+1} ${p.name}</span><span class="text-yellow-400">⭐ ${p.rankPoints || 0}</span></div>`;
+        });
+    }
+
+    // === 04. QUIZ LOGIK ===
+    function showQuizSetup(mode) {
+        document.getElementById('selected-game-mode').value = mode;
+        document.getElementById('quiz-setup-title').innerText = mode === 'lernen' ? "⏳ Fokus-Lernzeit" : "🎯 Quiz-Arena";
+        updateSubCategories(); switchView('quiz-setup');
+    }
+
+    function updateSubCategories() {
+        const mainCat = document.getElementById("main-category").value;
+        const subSelect = document.getElementById("sub-category"); subSelect.innerHTML = "";
+        const map = { schule1: [{ value: "deutsch_uebungsheft", text: "📖 Deutsch Klasse 1" }], schule2: [{ value: "klasse2_mathe", text: "🧮 Mathematik" }], schule3: [{ value: "klasse3_englisch", text: "🇬🇧 Englisch Klasse 3" }], kfz: [{ value: "kfz", text: "🔧 Kfz-Technik" }], allgemein: [{ value: "allgemein", text: "🕌 Kultur & Wissen" }] };
+        (map[mainCat] || []).forEach(sub => { const opt = document.createElement("option"); opt.value = sub.value; opt.innerText = sub.text; subSelect.appendChild(opt); });
+        showQuestionCount();
+    }
+
+    function showQuestionCount() {
+        const cat = document.getElementById("sub-category").value;
+        document.getElementById("question-count-display").innerText = `📋 Enthält aktuell ${QUESTIONS_DATABASE.filter(q => q.category === cat).length} Fragen`;
+    }
+
+    function startQuiz() {
+        const cat = document.getElementById("sub-category").value;
+        currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat);
+        if(currentQuestions.length === 0) return showToast("Keine Fragen eingepflegt!", "error");
+        qIndex = 0; switchView('quiz'); showQuestion();
+    }
+
+    function showQuestion() {
+        const q = currentQuestions[qIndex]; document.getElementById('question-text').innerText = q.question;
+        document.getElementById('explanation-box').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
+        const opts = document.getElementById('options-container'); opts.innerHTML = '';
+        let questionAnswered = false;
+
+        q.answers.forEach((a, idx) => {
+            const btn = document.createElement('button'); btn.innerText = a;
+            btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold text-sm transition-all";
+            btn.onclick = () => {
+                if(questionAnswered) return; questionAnswered = true;
+                Array.from(opts.children).forEach(b => { b.disabled = true; b.classList.add("opacity-60", "cursor-not-allowed"); });
+                if(idx === q.correct) {
+                    btn.className = "w-full p-4 bg-emerald-600 border border-emerald-500 rounded-xl text-white font-bold text-sm";
+                    showToast("Klasse gelöst! 🌟", "success"); confetti(); currentPlayer.coins += 10; currentPlayer.rankPoints += 5; savePlayerProgress();
+                    setTimeout(() => { triggerNextQuestion(); }, 1600);
+                } else {
+                    btn.className = "w-full p-4 bg-rose-600 border border-rose-500 rounded-xl text-white font-bold text-sm";
+                    const expBox = document.getElementById('explanation-box');
+                    expBox.innerHTML = `<strong>Falsch!</strong><br><br>${q.explanation || "💡 Überlege noch einmal in Ruhe."}`;
+                    expBox.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                }
+            };
+            opts.appendChild(btn);
+        });
+    }
+
+    function triggerNextQuestion() { qIndex = (qIndex + 1) % currentQuestions.length; showQuestion(); }
+    function leaveQuiz() { switchView('menu'); switchSubpage('home'); }
+
+    // === 05. VOKABEL LOGIK ===
+    function setLanguage(lang) { 
+        activeLang = lang; vIndex = 0; 
+        document.getElementById("lang-btn-en").className = `flex-1 py-2 rounded-lg font-bold transition-all ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`; 
+        document.getElementById("lang-btn-tr").className = `flex-1 py-2 rounded-lg font-bold transition-all ${lang === 'tr' ? 'bg-blue-600 text-white' : 'text-gray-400 bg-gray-900'}`; 
+        loadVocabSystem(); 
+    }
+
+    function setVocabMode(mode) {
+        vocabMode = mode; vIndex = 0;
+        document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'flashcards' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`;
+        document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'mc' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`;
+        document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'typing' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`;
+        showVocabQuestion();
+    }
+
+    function loadVocabSystem() {
+        try {
+            const dropdown = document.getElementById("category-dropdown"); dropdown.innerHTML = "";
+            const currentLangData = VOCABULARY_DATABASE[activeLang];
+            Object.keys(currentLangData).forEach(key => {
+                const opt = document.createElement("option"); opt.value = key; opt.innerText = currentLangData[key].label; dropdown.appendChild(opt);
+            });
+            if (!currentLangData[activeCategory]) activeCategory = Object.keys(currentLangData)[0];
+            dropdown.value = activeCategory; 
+            showVocabQuestion();
+        } catch (error) {
+            console.error("Fehler beim Laden der Vokabeln:", error);
+            showToast("Fehler beim Laden der Kategorien.", "error");
+        }
+    }
+
+    function selectCategory(cat) { activeCategory = cat; vIndex = 0; showVocabQuestion(); }
+    
+    function shuffleArray(array) {
+        let arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; }
+        return arr;
+    }
+
+    function nextVocab(isKnown) {
+        try {
+            const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
+            if (isKnown) {
+                const currentForeign = list[vIndex].foreign;
+                const wordKey = activeLang + "_" + activeCategory + "_" + currentForeign;
+                learnedWords.add(wordKey);
+                localStorage.setItem('learnedWords', JSON.stringify([...learnedWords]));
+                showToast("Gemerkt! Wird ausgeblendet 🧠", "success");
+            }
+            vIndex = (vIndex + 1) % list.length;
+            showVocabQuestion();
+        } catch (error) {
+            console.error("Fehler beim Weiterschalten:", error);
+        }
+    }
+
+    function showVocabQuestion() {
+        try {
+            const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
+            const box = document.getElementById("vokabel-box");
+            
+            let learnedCount = 0;
+            list.forEach(item => {
+                if(learnedWords.has(activeLang + "_" + activeCategory + "_" + item.foreign)) learnedCount++;
+            });
+
+            if (learnedCount >= list.length && list.length > 0) {
+                showToast("Alle Vokabeln gelernt! Reset...", "success");
+                list.forEach(item => learnedWords.delete(activeLang + "_" + activeCategory + "_" + item.foreign));
+                localStorage.setItem('learnedWords', JSON.stringify([...learnedWords]));
+            }
+
+            let safetyCounter = 0;
+            while(learnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && safetyCounter < list.length) {
+                vIndex = (vIndex + 1) % list.length;
+                safetyCounter++;
+            }
+
+            const item = list[vIndex];
+            document.getElementById("total-display").innerText = list.length;
+            document.getElementById("current-index-display").innerText = vIndex + 1;
+
+            if(vocabMode === 'flashcards') {
+                box.innerHTML = `
+                    <div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-indigo-900 rounded-2xl flex flex-col items-center justify-center font-bold text-2xl px-4 text-center border border-indigo-500/30">${item.de}</div>
+                            <div class="flip-card-back bg-pink-900 rounded-2xl flex flex-col items-center justify-center font-bold text-2xl px-4 text-center border border-pink-500/30">${item.foreign}</div>
+                        </div>
+                    </div>
+                    <button onclick="nextVocab(false)" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md hover:bg-indigo-500 transition-all">Nächstes Wort ➔</button>
+                    <button onclick="nextVocab(true)" class="mt-2 w-full p-2 bg-emerald-600/80 rounded-xl font-bold text-white shadow-md hover:bg-emerald-500 transition-all text-sm border border-emerald-500">✅ Ich kann das (Ausblenden)</button>
+                `;
+            } 
+            else if(vocabMode === 'mc') {
+                let options = [item.foreign];
+                let otherWords = shuffleArray(list.filter(w => w.foreign !== item.foreign));
+                for(let i=0; i<3 && i<otherWords.length; i++) { options.push(otherWords[i].foreign); }
+                options = shuffleArray(options);
+
+                let html = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 border border-indigo-500/30 shadow-inner">${item.de}</div><div class="grid grid-cols-2 gap-2" id="mc-options">`;
+                options.forEach(opt => {
+                    html += `<button class="p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold hover:bg-gray-800 transition-all text-sm shadow-md" onclick="checkVocabMC(this, '${opt}', '${item.foreign}')">${opt}</button>`;
+                });
+                html += `</div><div id="mc-feedback" class="mt-4 hidden"><button onclick="nextVocab(false)" class="w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button></div>`;
+                box.innerHTML = html;
+            }
+            else if(vocabMode === 'typing') {
+                box.innerHTML = `
+                    <div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 border border-indigo-500/30 shadow-inner">${item.de}</div>
+                    <input type="text" id="vocab-typing-input" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-center mb-4 text-lg shadow-inner" placeholder="Übersetzung tippen..." autocomplete="off" onkeypress="if(event.key === 'Enter') checkVocabTyping('${item.foreign}')">
+                    <button id="typing-check-btn" onclick="checkVocabTyping('${item.foreign}')" class="w-full p-3.5 bg-emerald-600 rounded-xl font-bold text-white shadow-md">Prüfen</button>
+                    <div id="typing-feedback" class="mt-3 font-bold text-center"></div>
+                    <button id="typing-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden shadow-md">Nächstes Wort ➔</button>
+                `;
+                setTimeout(() => document.getElementById("vocab-typing-input").focus(), 100);
+            }
+        } catch (error) {
+            console.error("Fehler beim Anzeigen der Vokabel:", error);
+        }
+    }
+
+    function checkVocabMC(btn, selected, correct) {
+        const parent = document.getElementById("mc-options"); let alreadyAnswered = false;
+        Array.from(parent.children).forEach(b => { 
+            if(b.disabled) alreadyAnswered = true; b.disabled = true; 
+            if(b.innerText === correct) { b.className = "p-4 bg-emerald-600 border border-emerald-500 rounded-xl font-bold text-white text-sm shadow-md"; } 
+            else if (b.innerText === selected && selected !== correct) { b.className = "p-4 bg-rose-600 border border-rose-500 rounded-xl font-bold text-white text-sm opacity-50"; } 
+            else { b.classList.add("opacity-50"); }
+        });
+        if(alreadyAnswered) return;
+        document.getElementById("mc-feedback").classList.remove("hidden");
+        if(selected === correct) { showToast("Richtig! +2 Coins", "success"); confetti(); currentPlayer.coins += 2; savePlayerProgress(); } 
+        else { showToast("Leider falsch!", "error"); }
+    }
+
+    function checkVocabTyping(correct) {
+        const input = document.getElementById("vocab-typing-input"); const val = input.value.trim().toLowerCase();
+        if(!val) return; const correctLower = correct.toLowerCase();
+        
+        input.disabled = true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden");
+        const feedback = document.getElementById("typing-feedback");
+        if(val === correctLower) {
+            input.className = "w-full p-4 bg-emerald-900/30 border border-emerald-500 rounded-xl text-emerald-400 outline-none font-bold text-center mb-4 text-lg";
+            feedback.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`;
+            showToast("Super getippt!", "success"); confetti(); currentPlayer.coins += 5; savePlayerProgress();
+        } else {
+            input.className = "w-full p-4 bg-rose-900/30 border border-rose-500 rounded-xl text-rose-400 outline-none font-bold text-center mb-4 text-lg line-through";
+            feedback.innerHTML = `<span class="text-rose-400">Falsch. Richtig ist: <br><span class="text-white text-xl">${correct}</span></span>`;
+            showToast("Nicht ganz!", "error");
+        }
+    }
+
+    window.onload = () => { switchView('login'); loadProfiles(); };
+</script>
+</body>
+</html>

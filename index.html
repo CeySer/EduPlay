@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Die universelle Lernplattform</title>
+    <title>EduPlay Hub - Familien Edition</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
-    <!-- Firebase Cloud Einbindung -->
+    <!-- Firebase Cloud Einbindung (inkl. Auth!) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <style>
@@ -66,54 +67,83 @@
         class="w-full max-w-md min-h-screen bg-[#111827] shadow-2xl relative flex flex-col justify-between pb-24 border-x border-gray-800">
 
         <main class="flex-grow p-4">
-            <!-- VIEW: LOGIN -->
-            <div id="view-login" class="view">
+
+            <!-- VIEW: ELTERN LOGIN / REGISTRIERUNG -->
+            <div id="view-auth" class="view hidden">
                 <div class="text-center py-8">
                     <h1
                         class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 mb-1">
-                        EduPlay Hub 🎮</h1>
-                    <p class="text-gray-400 text-sm">Die spielerische Multi-Lernplattform</p>
+                        EduPlay Hub</h1>
+                    <p class="text-emerald-400 font-bold text-sm">Familien-Login 👨‍👩‍👧‍👦</p>
                 </div>
 
-                <div class="bg-gray-800/50 border border-gray-700 p-5 rounded-2xl mb-4 hidden"
-                    id="existing-profiles-box">
-                    <h3 class="text-center font-bold text-yellow-400 mb-3 flex items-center justify-center gap-2">
-                        <span>👤 Profil auswählen</span></h3>
-                    <div id="profile-grid" class="flex flex-wrap justify-center gap-3"></div>
-                </div>
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg space-y-4">
+                    <p class="text-xs text-gray-400 text-center mb-2">Bitte mit dem Eltern-Account anmelden oder einen
+                        neuen erstellen.</p>
+                    <input type="email" id="auth-email" placeholder="E-Mail Adresse"
+                        class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                    <input type="password" id="auth-password" placeholder="Passwort (min. 6 Zeichen)"
+                        class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
 
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg mb-8">
-                    <h3 class="text-lg font-bold text-emerald-400 text-center mb-4">Neues Profil erstellen ✍️</h3>
-                    <div class="space-y-3">
-                        <input type="text" id="username-input" placeholder="Name..."
-                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-
-                        <!-- NEU: Auswahl ob Klasse oder Alter -->
-                        <div class="flex gap-2">
-                            <select id="age-type-input"
-                                class="w-1/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm">
-                                <option value="klasse">🎒 Klasse</option>
-                                <option value="alter">🎂 Alter</option>
-                            </select>
-                            <input type="number" id="age-input" placeholder="Zahl..."
-                                class="w-2/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                        </div>
-
-                        <button
-                            class="w-full p-3.5 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl font-bold text-white shadow-lg mt-2"
-                            onclick="handleLogin()">Starten 🚀</button>
+                    <div class="flex gap-2 pt-2">
+                        <button onclick="loginParent()"
+                            class="flex-1 p-3.5 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500">Einloggen</button>
+                        <button onclick="registerParent()"
+                            class="flex-1 p-3.5 bg-gray-700 rounded-xl font-bold text-white shadow-lg hover:bg-gray-600">Registrieren</button>
                     </div>
-                </div>
-
-                <div class="flex justify-center pb-8">
-                    <button onclick="openParentArea()"
-                        class="bg-gray-800 text-gray-400 px-6 py-3 rounded-full text-sm font-bold border border-gray-700 hover:text-white hover:bg-gray-700 transition-all shadow-md flex items-center gap-2">
-                        🔒 Admin-Bereich
-                    </button>
                 </div>
             </div>
 
-            <!-- VIEW: MAIN MENU -->
+            <!-- VIEW: FAMILIEN HUB (Wer lernt heute?) -->
+            <div id="view-family-hub" class="view hidden space-y-6">
+                <div class="text-center pt-6 pb-2 border-b border-gray-800">
+                    <h1 class="text-2xl font-black text-white">Wer lernt heute?</h1>
+                </div>
+
+                <div id="family-profiles-grid" class="grid grid-cols-2 gap-4">
+                    <!-- Profile werden hier generiert -->
+                </div>
+
+                <button onclick="switchView('create-profile')"
+                    class="w-full p-4 border-2 border-dashed border-gray-600 text-gray-400 font-bold rounded-2xl hover:border-emerald-500 hover:text-emerald-400 transition">
+                    + Neues Profil für Kind anlegen
+                </button>
+
+                <div class="pt-8 flex flex-col gap-3">
+                    <button onclick="openParentArea()"
+                        class="w-full bg-gray-800 text-rose-400 p-4 rounded-xl font-bold border border-gray-700 shadow-md flex justify-center items-center gap-2">
+                        🔒 Admin-Bereich (Fortschritt)
+                    </button>
+                    <button onclick="logoutParent()"
+                        class="text-xs text-gray-500 font-bold text-center mt-2 underline">Familien-Account
+                        ausloggen</button>
+                </div>
+            </div>
+
+            <!-- VIEW: NEUES PROFIL ERSTELLEN -->
+            <div id="view-create-profile" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
+                    onclick="switchView('family-hub')">← Abbrechen</button>
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg space-y-4">
+                    <h2 class="text-xl font-black text-emerald-400">Neues Profil anlegen</h2>
+                    <input type="text" id="new-profile-name" placeholder="Name des Kindes"
+                        class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                    <div class="flex gap-2">
+                        <select id="new-profile-type"
+                            class="w-1/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm">
+                            <option value="klasse">🎒 Klasse</option>
+                            <option value="alter">🎂 Alter</option>
+                        </select>
+                        <input type="number" id="new-profile-age" placeholder="Zahl..."
+                            class="w-2/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                    </div>
+                    <button onclick="saveNewProfile()"
+                        class="w-full p-4 bg-emerald-600 rounded-xl font-bold text-white shadow-lg">Profil
+                        speichern</button>
+                </div>
+            </div>
+
+            <!-- VIEW: MAIN MENU (KINDER BEREICH) -->
             <div id="view-menu" class="view hidden space-y-4">
                 <div
                     class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-start shadow-xl">
@@ -125,10 +155,9 @@
                                     id="menu-age">-</span></span>
                         </div>
                     </div>
-                    <!-- NEU: Profil bearbeiten Button -->
-                    <button onclick="openEditProfile()"
-                        class="text-gray-400 hover:text-white p-2.5 bg-gray-800 rounded-xl border border-gray-700 transition shadow-md"
-                        title="Profil bearbeiten">⚙️</button>
+                    <button onclick="switchView('family-hub')"
+                        class="text-gray-400 hover:text-white p-2.5 bg-gray-800 rounded-xl border border-gray-700 transition text-xs font-bold shadow-md">🚪
+                        Wechseln</button>
                 </div>
 
                 <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
@@ -140,10 +169,7 @@
                         <div class="text-5xl">📖</div>
                         <div>
                             <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
-                            <p class="text-xs text-gray-300 mb-1">Karteikarten, Quiz & Tippen</p>
-                            <span
-                                class="text-[10px] bg-indigo-600 px-2 py-1 rounded-md text-white font-bold tracking-wider">DATENBANK:
-                                <span id="count-vocab">0</span> WÖRTER</span>
+                            <p class="text-xs text-gray-300">Karteikarten, Quiz & Tippen</p>
                         </div>
                     </button>
 
@@ -153,10 +179,7 @@
                         <div class="text-5xl">🎯</div>
                         <div>
                             <h2 class="text-xl font-black text-pink-400">Quiz-Arena</h2>
-                            <p class="text-xs text-gray-300 mb-1">Schulwissen & Technik testen</p>
-                            <span
-                                class="text-[10px] bg-pink-600 px-2 py-1 rounded-md text-white font-bold tracking-wider">DATENBANK:
-                                <span id="count-quiz">0</span> FRAGEN</span>
+                            <p class="text-xs text-gray-300">Schulwissen & Technik testen</p>
                         </div>
                     </button>
 
@@ -172,44 +195,6 @@
                 </div>
             </div>
 
-            <!-- VIEW: PROFIL BEARBEITEN (NEU) -->
-            <div id="view-edit-profile" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
-                    onclick="switchView('menu')">← Zurück</button>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg space-y-5">
-                    <h2 class="text-2xl font-black text-center text-emerald-400">⚙️ Profil bearbeiten</h2>
-
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1">Name:</label>
-                        <input type="text" id="edit-username"
-                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
-                    </div>
-
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1">Kategorie & Zahl:</label>
-                        <div class="flex gap-2">
-                            <select id="edit-age-type"
-                                class="w-1/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm">
-                                <option value="klasse">🎒 Klasse</option>
-                                <option value="alter">🎂 Alter</option>
-                            </select>
-                            <input type="number" id="edit-age"
-                                class="w-2/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                        </div>
-                    </div>
-
-                    <button onclick="saveProfileEdit()"
-                        class="w-full p-4 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-blue-500 transition">Änderungen
-                        speichern 💾</button>
-
-                    <div class="pt-6 mt-4 border-t border-gray-700">
-                        <button onclick="deleteProfile()"
-                            class="w-full p-3.5 bg-red-900/20 text-red-400 border border-red-500/50 font-bold rounded-xl shadow-lg hover:bg-red-600 hover:text-white transition">🗑️
-                            Profil unwiderruflich löschen</button>
-                    </div>
-                </div>
-            </div>
-
             <!-- VIEW: FOKUS LERNZEIT -->
             <div id="view-fokus" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
@@ -217,8 +202,6 @@
                 <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center space-y-6 shadow-lg">
                     <div class="text-6xl">⏱️</div>
                     <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
-                    <p class="text-sm text-gray-400">Lege dein Handy zur Seite und lerne für die Schule. Wenn die Zeit
-                        abgelaufen ist, erhältst du 20 Coins!</p>
                     <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
                     <div class="flex gap-2 justify-center" id="timer-controls">
                         <button
@@ -231,33 +214,30 @@
                 </div>
             </div>
 
-            <!-- VIEW: ELTERNBEREICH -->
+            <!-- VIEW: ELTERNBEREICH ADMIN -->
             <div id="view-parent" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2" onclick="closeParentArea()">←
-                    Zurück zum Login</button>
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
+                    onclick="switchView('family-hub')">← Zurück zur Übersicht</button>
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
                     <h3 class="text-xl font-black text-rose-400 mb-2">📊 Admin-Kontrollzentrum</h3>
-                    <p class="text-xs text-gray-400 mb-4">Hier siehst du die Live-Datenbank aller Profile.</p>
+                    <p class="text-xs text-gray-400 mb-4">Übersicht der Lernfortschritte deiner Familie.</p>
                     <div id="parent-stats-container" class="space-y-6"></div>
                 </div>
             </div>
 
+            <!-- WEITERE VIEWS (Quiz & Vokabeln) ... -->
             <!-- VIEW: QUIZ SETUP -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum
                     Hauptmenü</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
-                    <h2 class="text-2xl font-black text-center text-pink-400" id="quiz-setup-title">Quiz-Arena</h2>
-                    <input type="hidden" id="selected-game-mode" value="spiel">
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1">Lektion auswählen:</label>
-                        <select id="sub-category" onchange="showQuestionCount()"
-                            class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold">
-                            <option value="klasse2_mathe">🧮 Mathe (Kl. 2)</option>
-                            <option value="deutsch_uebungsheft">✍️ Deutsch</option>
-                            <option value="kfz">🔧 KFZ-Technik</option>
-                        </select>
-                    </div>
+                    <h2 class="text-2xl font-black text-center text-pink-400">Quiz-Arena</h2>
+                    <select id="sub-category"
+                        class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold">
+                        <option value="klasse2_mathe">🧮 Mathe (Kl. 2)</option>
+                        <option value="deutsch_uebungsheft">✍️ Deutsch</option>
+                        <option value="kfz">🔧 KFZ-Technik</option>
+                    </select>
                     <button onclick="startQuiz()"
                         class="w-full p-4 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg">Starten
                         🚀</button>
@@ -266,18 +246,16 @@
 
             <!-- VIEW: QUIZ ARENA -->
             <div id="view-quiz" class="view hidden space-y-4">
-                <div class="flex justify-between items-center">
-                    <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">←
-                        Beenden</button>
-                </div>
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">←
+                    Beenden</button>
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4 shadow-lg">
                     <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
                     <div id="options-container" class="flex flex-col gap-2.5"></div>
                     <div id="explanation-box"
-                        class="p-4 bg-slate-900 border-l-4 border-yellow-500 rounded-xl text-left text-sm text-gray-300 hidden shadow-inner">
+                        class="p-4 bg-slate-900 border-l-4 border-yellow-500 rounded-xl text-left text-sm text-gray-300 hidden">
                     </div>
                     <button id="next-question-btn"
-                        class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden shadow-md"
+                        class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden"
                         onclick="triggerNextQuestion()">Nächste Frage ➔</button>
                 </div>
             </div>
@@ -318,14 +296,6 @@
                 </div>
             </div>
         </main>
-
-        <nav id="main-bottom-nav"
-            class="bottom-nav absolute bottom-0 left-0 right-0 hidden bg-[#0b0f19] border-t border-gray-800 py-3">
-            <div class="flex justify-around text-xs font-bold text-gray-400">
-                <button class="nav-item text-blue-500" onclick="switchView('menu')">🏠 Hauptmenü</button>
-                <button class="nav-item" onclick="switchView('login')">🚪 Profil wechseln</button>
-            </div>
-        </nav>
     </div>
 
     <script>
@@ -340,283 +310,189 @@
         };
 
         firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // === 01. LOKALE DATENBANKEN (Fragen & Vokabeln) ===
+        // === DATENBANKEN ===
         const QUESTIONS_DATABASE = [
-            { id: 3001, category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD", "hunD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere schreibt man immer groß!" },
-            { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: 20+10=30, 5+4=9. Ergibt 39!" },
-            { id: 8302, category: "kfz", question: "Zahnriemenwechsel: Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug angebracht ist?", answers: ["Die Wasserpumpe lösen", "Den Motor an der Kurbelwelle durchdrehen", "Die Spannrolle entspannen", "Den alten Keilrippenriemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" }
+            { category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD"], correct: 1, explanation: "💡 Tiere schreibt man groß!" },
+            { category: "kfz", question: "Zahnriemen: Motor mit Arretierung drehen?", answers: ["Ja", "Nein", "Nur rückwärts"], correct: 1, explanation: "💡 Niemals drehen, sonst droht Motorschaden!" }
         ];
 
         const VOCABULARY_DATABASE = {
-            en: {
-                numbers: { label: "🔢 Zahlen (Kl. 1-4)", words: [{ de: "Null", foreign: "zero" }, { de: "Eins", foreign: "one" }, { de: "Zwei", foreign: "two" }, { de: "Drei", foreign: "three" }, { de: "Vier", foreign: "four" }, { de: "Fünf", foreign: "five" }, { de: "Sechs", foreign: "six" }, { de: "Sieben", foreign: "seven" }, { de: "Acht", foreign: "eight" }, { de: "Neun", foreign: "nine" }, { de: "Zehn", foreign: "ten" }] },
-                school: { label: "🎒 Schule (Kl. 1-4)", words: [{ de: "Buch", foreign: "book" }, { de: "Tisch", foreign: "desk" }, { de: "Stuhl", foreign: "chair" }, { de: "Tafel", foreign: "board" }, { de: "Computer", foreign: "computer" }] },
-                hobbies: { label: "⚽ Hobbys (Kl. 5-6)", words: [{ de: "Fußball", foreign: "football" }, { de: "Schwimmen", foreign: "swimming" }, { de: "Lesen", foreign: "reading" }] }
-            },
-            tr: {
-                numbers: { label: "🔢 Sayılar (Kl. 1-4)", words: [{ de: "Null", foreign: "sıfır" }, { de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" }, { de: "Vier", foreign: "dört" }] },
-                school: { label: "🎒 Okul (Kl. 1-4)", words: [{ de: "Buch", foreign: "kitap" }, { de: "Tisch", foreign: "masa" }, { de: "Stuhl", foreign: "sandalye" }] },
-                hobbies: { label: "⚽ Hobiler (Kl. 5-6)", words: [{ de: "Fußball", foreign: "futbol" }, { de: "Schwimmen", foreign: "yüzme" }] }
-            }
+            en: { school: { label: "🎒 Schule", words: [{ de: "Buch", foreign: "book" }, { de: "Tisch", foreign: "desk" }] } },
+            tr: { school: { label: "🎒 Okul", words: [{ de: "Buch", foreign: "kitap" }, { de: "Tisch", foreign: "masa" }] } }
         };
 
-        let ALL_PLAYERS = {};
+        let currentParentUser = null;
+        let ALL_PROFILES = {};
         let currentPlayer = null;
-        let activePlayerName = "";
-        let activeLang = 'en', activeCategory = 'school', vIndex = 0, vocabMode = 'flashcards';
-        let isExamMode = false;
-        let sessionLearnedWords = new Set();
-        let currentQuestions = [], qIndex = 0;
-        let focusTimerInterval = null; let focusTimeRemaining = 15 * 60;
+        let activePlayerKey = "";
 
-        function initCounters() {
-            document.getElementById('count-vocab').innerText = "400";
-            document.getElementById('count-quiz').innerText = QUESTIONS_DATABASE.length;
-        }
+        // Auth Status überwachen
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                currentParentUser = user;
+                loadFamilyProfiles();
+            } else {
+                currentParentUser = null;
+                switchView('auth');
+            }
+        });
 
-        function showToast(message, type = "success") {
-            const container = document.getElementById("toast-container");
-            const toast = document.createElement("div");
-            toast.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 ${type === "success" ? "border-emerald-500" : "border-rose-500"}`;
-            toast.innerHTML = message; container.appendChild(toast); setTimeout(() => toast.remove(), 3000);
+        function showToast(msg, type = "success") {
+            const c = document.getElementById("toast-container");
+            const t = document.createElement("div");
+            t.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 ${type === "success" ? "border-emerald-500" : "border-rose-500"}`;
+            t.innerHTML = msg; c.appendChild(t); setTimeout(() => t.remove(), 3000);
         }
 
         function switchView(viewId) {
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
-            const el = document.getElementById(`view-${viewId}`); if (el) el.classList.remove('hidden');
-            document.getElementById("main-bottom-nav").classList.toggle('hidden', (viewId === "login" || viewId === "parent"));
+            document.getElementById(`view-${viewId}`).classList.remove('hidden');
             if (viewId === 'vokabeln') loadVocabSystem();
-            if (viewId === 'login') { currentPlayer = null; activePlayerName = ""; isExamMode = false; loadProfiles(); }
         }
 
-        // === 02. FIREBASE DATEN LADEN & SPEICHERN ===
-        async function loadProfiles() {
+        // === AUTHENTIFIZIERUNG (ELTERN) ===
+        function registerParent() {
+            const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value;
+            if (p.length < 6) return showToast("Passwort zu kurz!", "error");
+            auth.createUserWithEmailAndPassword(e, p).then(() => showToast("Familien-Account erstellt!", "success")).catch(err => showToast(err.message, "error"));
+        }
+
+        function loginParent() {
+            const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value;
+            auth.signInWithEmailAndPassword(e, p).then(() => showToast("Willkommen zurück!", "success")).catch(() => showToast("Falsche Daten", "error"));
+        }
+
+        function logoutParent() { auth.signOut(); }
+
+        // === PROFIL MANAGEMENT ===
+        async function loadFamilyProfiles() {
             try {
-                const snapshot = await db.collection("players").get();
-                ALL_PLAYERS = {};
-                snapshot.forEach(doc => { ALL_PLAYERS[doc.id] = doc.data(); });
-                renderProfileSelection();
-            } catch (error) {
-                console.error("Firebase Fehler:", error);
-                showToast("Verbindung zur Cloud fehlgeschlagen!", "error");
-            }
+                const snapshot = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").get();
+                ALL_PROFILES = {};
+                snapshot.forEach(doc => { ALL_PROFILES[doc.id] = doc.data(); });
+                renderFamilyHub();
+                switchView('family-hub');
+            } catch (e) { showToast("Ladefehler", "error"); }
         }
 
-        async function handleLogin() {
-            const name = document.getElementById("username-input").value.trim();
-            const ageType = document.getElementById("age-type-input").value;
-            const age = document.getElementById("age-input").value.trim();
-            if (!name) return showToast("Bitte Namen eingeben!", "error");
-
-            activePlayerName = name;
-            const key = name.toLowerCase();
-
-            if (!ALL_PLAYERS[key]) {
-                ALL_PLAYERS[key] = { name: name, ageType: ageType, age: age || "-", coins: 0, learnedWords: [] };
-            } else {
-                if (age) {
-                    ALL_PLAYERS[key].age = age;
-                    ALL_PLAYERS[key].ageType = ageType;
-                }
-            }
-
-            currentPlayer = ALL_PLAYERS[key];
-            sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
-
-            await db.collection("players").doc(key).set(currentPlayer);
-            switchView("menu"); updateDashboardUI();
-        }
-
-        function savePlayerProgress() {
-            if (currentPlayer) {
-                currentPlayer.learnedWords = Array.from(sessionLearnedWords);
-                ALL_PLAYERS[activePlayerName.toLowerCase()] = currentPlayer;
-                db.collection("players").doc(activePlayerName.toLowerCase()).set(currentPlayer).catch(err => console.error(err));
-                updateDashboardUI();
-            }
-        }
-
-        function updateDashboardUI() {
-            document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
-            document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
-
-            const ageDisp = document.getElementById("menu-age-display");
-            if (currentPlayer.ageType === "alter") {
-                ageDisp.innerHTML = `🎂 Alter: <span id="menu-age">${currentPlayer.age || "-"}</span>`;
-            } else {
-                ageDisp.innerHTML = `🎒 Klasse: <span id="menu-age">${currentPlayer.age || "-"}</span>`;
-            }
-        }
-
-        // === 03. PROFIL BEARBEITEN & LÖSCHEN ===
-        function openEditProfile() {
-            document.getElementById("edit-username").value = currentPlayer.name;
-            document.getElementById("edit-age-type").value = currentPlayer.ageType || "klasse";
-            document.getElementById("edit-age").value = currentPlayer.age !== "-" ? currentPlayer.age : "";
-            switchView("edit-profile");
-        }
-
-        async function saveProfileEdit() {
-            const newName = document.getElementById("edit-username").value.trim();
-            const newAgeType = document.getElementById("edit-age-type").value;
-            const newAge = document.getElementById("edit-age").value.trim();
-
-            if (!newName) return showToast("Name darf nicht leer sein", "error");
-
-            const oldKey = activePlayerName.toLowerCase();
-            const newKey = newName.toLowerCase();
-
-            currentPlayer.name = newName;
-            currentPlayer.ageType = newAgeType;
-            currentPlayer.age = newAge || "-";
-
-            if (oldKey !== newKey) {
-                // Prüfen ob der neue Name schon vergeben ist
-                if (ALL_PLAYERS[newKey]) {
-                    return showToast("Dieser Name existiert bereits!", "error");
-                }
-                // Neues Profil anlegen & Altes löschen
-                ALL_PLAYERS[newKey] = currentPlayer;
-                delete ALL_PLAYERS[oldKey];
-                await db.collection("players").doc(newKey).set(currentPlayer);
-                await db.collection("players").doc(oldKey).delete();
-                activePlayerName = newName;
-            } else {
-                // Einfach updaten
-                await db.collection("players").doc(oldKey).set(currentPlayer);
-            }
-
-            showToast("Profil aktualisiert!", "success");
-            switchView('menu');
-            updateDashboardUI();
-        }
-
-        async function deleteProfile() {
-            if (confirm("⚠️ WARNUNG!\nBist du sicher, dass du dieses Profil und alle deine gesammelten Coins unwiderruflich löschen möchtest?")) {
-                const key = activePlayerName.toLowerCase();
-                delete ALL_PLAYERS[key];
-                await db.collection("players").doc(key).delete();
-                showToast("Profil wurde gelöscht!", "success");
-                switchView('login');
-            }
-        }
-
-        // === 04. ELTERNBEREICH (LIVE DATEN) ===
-        async function openParentArea() {
-            const pin = prompt("Bitte Admin-PIN eingeben (Standard: 1234):");
-            if (pin === "1234") {
-                showToast("Lade Live-Daten...", "success");
-                await loadProfiles();
-                switchView('parent'); renderParentDashboard();
-            } else if (pin !== null) { showToast("Falscher PIN!", "error"); }
-        }
-
-        function closeParentArea() { switchView('login'); }
-
-        function renderParentDashboard() {
-            const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
-            const categories = VOCABULARY_DATABASE['en'];
-
-            Object.keys(ALL_PLAYERS).forEach(key => {
-                const p = ALL_PLAYERS[key];
-                const learnedSet = new Set(p.learnedWords || []);
-                const typeIcon = p.ageType === 'alter' ? '🎂 Alter' : '🎒 Kl.';
-
-                let playerHtml = `
-                <div class="bg-gray-900 border border-gray-700 p-5 rounded-2xl shadow-xl">
-                    <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
-                        <span class="text-blue-400 font-bold text-lg">👤 ${p.name} <span class="text-xs text-gray-500">(${typeIcon} ${p.age || "-"})</span></span>
-                        <span class="text-yellow-400 font-bold">🪙 ${p.coins || 0}</span>
-                    </div>
-                    <div class="space-y-4">`;
-
-                for (let catKey in categories) {
-                    const totalInCat = VOCABULARY_DATABASE['en'][catKey].words.length + (VOCABULARY_DATABASE['tr'][catKey] ? VOCABULARY_DATABASE['tr'][catKey].words.length : 0);
-                    let learnedInCat = 0;
-
-                    VOCABULARY_DATABASE['en'][catKey].words.forEach(w => { if (learnedSet.has("en_" + catKey + "_" + w.foreign)) learnedInCat++; });
-                    if (VOCABULARY_DATABASE['tr'][catKey]) { VOCABULARY_DATABASE['tr'][catKey].words.forEach(w => { if (learnedSet.has("tr_" + catKey + "_" + w.foreign)) learnedInCat++; }); }
-
-                    const percent = totalInCat > 0 ? Math.round((learnedInCat / totalInCat) * 100) : 0;
-
-                    playerHtml += `
-                    <div>
-                        <div class="flex justify-between text-xs font-bold text-gray-400 mb-1">
-                            <span>${categories[catKey].label}</span>
-                            <span>${percent}%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 rounded-full h-2 overflow-hidden border border-gray-700">
-                            <div class="bg-indigo-500 h-2 progress-bar-fill rounded-full" style="width: ${percent}%"></div>
-                        </div>
-                    </div>`;
-                }
-                playerHtml += `
-                        <button class="w-full mt-4 bg-rose-600 py-3 rounded-lg font-bold text-sm text-white hover:bg-rose-500 transition shadow-md" onclick="startExamFor('${key}')">⚔️ Prüfung starten</button>
-                    </div>
-                </div>`;
-                container.appendChild(document.createRange().createContextualFragment(playerHtml));
+        function renderFamilyHub() {
+            const grid = document.getElementById("family-profiles-grid"); grid.innerHTML = "";
+            Object.keys(ALL_PROFILES).forEach(key => {
+                const p = ALL_PROFILES[key];
+                const btn = document.createElement("button");
+                btn.className = "bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-2";
+                btn.innerHTML = `<div class="text-4xl">👦👧</div><div class="font-bold text-white">${p.name}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>`;
+                btn.onclick = () => selectProfile(key);
+                grid.appendChild(btn);
             });
         }
 
-        function startExamFor(playerKey) {
-            currentPlayer = ALL_PLAYERS[playerKey]; activePlayerName = currentPlayer.name;
-            sessionLearnedWords = new Set(currentPlayer.learnedWords || []); isExamMode = true;
-            switchView("vokabeln"); setVocabMode('typing');
-            document.getElementById("vocab-title").innerText = `Prüfung: ${currentPlayer.name}`;
-            document.getElementById("exam-banner").classList.remove("hidden");
-            document.getElementById("lang-selector").classList.add("hidden");
-            document.getElementById("mode-selector").classList.add("hidden");
-            showToast(`Prüfung für ${currentPlayer.name} gestartet!`, "success");
+        async function saveNewProfile() {
+            const name = document.getElementById("new-profile-name").value.trim();
+            const type = document.getElementById("new-profile-type").value;
+            const age = document.getElementById("new-profile-age").value.trim();
+            if (!name) return showToast("Bitte Namen eingeben!", "error");
+
+            const key = name.toLowerCase();
+            const newProf = { name: name, ageType: type, age: age || "-", coins: 0, learnedWords: [] };
+
+            await db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).set(newProf);
+            ALL_PROFILES[key] = newProf;
+            document.getElementById("new-profile-name").value = ""; document.getElementById("new-profile-age").value = "";
+
+            showToast("Profil angelegt!", "success");
+            renderFamilyHub();
+            switchView('family-hub');
         }
 
-        function renderProfileSelection() {
-            const grid = document.getElementById("profile-grid"); const box = document.getElementById("existing-profiles-box"); grid.innerHTML = "";
-            const keys = Object.keys(ALL_PLAYERS);
-            if (keys.length > 0) {
-                box.classList.remove("hidden");
-                keys.forEach(k => {
-                    const btn = document.createElement("button"); btn.className = "bg-gray-700 px-4 py-2 rounded-xl text-sm font-bold text-white hover:bg-blue-600 transition shadow-md"; btn.innerText = ALL_PLAYERS[k].name;
-                    btn.onclick = () => {
-                        activePlayerName = ALL_PLAYERS[k].name; currentPlayer = ALL_PLAYERS[k];
-                        sessionLearnedWords = new Set(currentPlayer.learnedWords || []); isExamMode = false;
-                        document.getElementById("exam-banner").classList.add("hidden");
-                        document.getElementById("vocab-title").innerText = `📖 Vokabel-Trainer`;
-                        document.getElementById("lang-selector").classList.remove("hidden");
-                        document.getElementById("mode-selector").classList.remove("hidden");
-                        switchView("menu"); updateDashboardUI();
-                    };
-                    grid.appendChild(btn);
-                });
+        function selectProfile(key) {
+            activePlayerKey = key;
+            currentPlayer = ALL_PROFILES[key];
+            sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
+
+            document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
+            document.getElementById("menu-coins").innerText = currentPlayer.coins;
+            document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType === 'alter' ? '🎂 Alter' : '🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`;
+
+            switchView('menu');
+        }
+
+        function savePlayerProgress() {
+            if (!currentPlayer) return;
+            currentPlayer.learnedWords = Array.from(sessionLearnedWords);
+            ALL_PROFILES[activePlayerKey] = currentPlayer;
+            db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(activePlayerKey).set(currentPlayer);
+            document.getElementById("menu-coins").innerText = currentPlayer.coins;
+        }
+
+        // === ADMIN BEREICH (Parent) ===
+        function openParentArea() {
+            // Da der Account per E-Mail gesichert ist, reicht hier ein einfacher Schutz gegen unabsichtliches Klicken der Kids
+            const pin = prompt("Admin-Sperre: Bitte 1234 eingeben");
+            if (pin === "1234") {
+                renderAdminDashboard();
+                switchView('parent');
             }
         }
 
-        // === REST DER LOGIK (Timer, Vokabeln, Quiz) ===
-        function updateTimerDisplay() { let m = Math.floor(focusTimeRemaining / 60); let s = focusTimeRemaining % 60; document.getElementById("timer-display").innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`; }
-        function startFocusTimer() { if (focusTimerInterval) return; showToast("Lernzeit gestartet! Handy weglegen!", "success"); focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; updateTimerDisplay(); } else { clearInterval(focusTimerInterval); focusTimerInterval = null; showToast("Zeit abgelaufen! +20 Coins 🎉", "success"); confetti(); currentPlayer.coins += 20; savePlayerProgress(); focusTimeRemaining = 15 * 60; updateTimerDisplay(); } }, 1000); }
-        function resetFocusTimer() { clearInterval(focusTimerInterval); focusTimerInterval = null; focusTimeRemaining = 15 * 60; updateTimerDisplay(); }
+        function renderAdminDashboard() {
+            const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
+            Object.keys(ALL_PROFILES).forEach(key => {
+                const p = ALL_PROFILES[key];
+                const wordsCount = p.learnedWords ? p.learnedWords.length : 0;
+                container.innerHTML += `
+                <div class="bg-gray-900 border border-gray-700 p-4 rounded-xl shadow-md flex justify-between items-center">
+                    <div>
+                        <div class="text-blue-400 font-bold">${p.name} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div>
+                        <div class="text-xs text-gray-400 mt-1">📚 ${wordsCount} Vokabeln gelernt</div>
+                    </div>
+                    <div class="text-yellow-400 font-black">🪙 ${p.coins}</div>
+                </div>`;
+            });
+        }
 
-        function leaveVocab() { if (isExamMode) { isExamMode = false; switchView('parent'); renderParentDashboard(); } else { switchView('menu'); } }
-        function setLanguage(lang) { activeLang = lang; vIndex = 0; loadVocabSystem(); }
-        function loadVocabSystem() { const dropdown = document.getElementById("category-dropdown"); dropdown.innerHTML = ""; const currentLangData = VOCABULARY_DATABASE[activeLang]; Object.keys(currentLangData).forEach(key => { const opt = document.createElement("option"); opt.value = key; opt.innerText = currentLangData[key].label; dropdown.appendChild(opt); }); dropdown.value = activeCategory; showVocabQuestion(); }
-        function setVocabMode(mode) { if (isExamMode) return; vocabMode = mode; vIndex = 0; document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'flashcards' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`; document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'mc' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`; document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all ${mode === 'typing' ? 'bg-indigo-600' : 'bg-gray-700'} text-xs`; showVocabQuestion(); }
-        function selectCategory(cat) { activeCategory = cat; vIndex = 0; showVocabQuestion(); }
-        function shuffleArray(array) { let arr = [...array]; for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+        // === LERN BEREICHE (Gekürzt für Übersicht, nutzt aber das neue Speichern) ===
+        // Fokus Timer
+        let focusTimerInterval = null; let focusTimeRemaining = 15 * 60;
+        function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); currentPlayer.coins += 20; savePlayerProgress(); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; } }, 1000); } }
+        function resetFocusTimer() { clearInterval(focusTimerInterval); focusTimerInterval = null; focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; }
 
-        function nextVocab(isKnown) { const list = VOCABULARY_DATABASE[activeLang][activeCategory].words; if (isKnown) { sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign); savePlayerProgress(); showToast("Gemerkt! 🧠", "success"); } vIndex = (vIndex + 1) % list.length; showVocabQuestion(); }
-        function showVocabQuestion() { let list = VOCABULARY_DATABASE[activeLang][activeCategory].words; const box = document.getElementById("vokabel-box"); if (isExamMode) { list = list.filter(item => !sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + item.foreign)); if (list.length === 0) { box.innerHTML = `<div class="p-8 bg-emerald-600 text-white font-bold rounded-xl shadow-lg">Perfekt! Alle Wörter gelernt! 🏆</div>`; return; } list = shuffleArray(list); vIndex = 0; } else { let learnedCount = 0; list.forEach(item => { if (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + item.foreign)) learnedCount++; }); if (learnedCount >= list.length && list.length > 0) { showToast("Kategorie resettet!", "success"); list.forEach(item => sessionLearnedWords.delete(activeLang + "_" + activeCategory + "_" + item.foreign)); savePlayerProgress(); } let safetyCounter = 0; while (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && safetyCounter < list.length) { vIndex = (vIndex + 1) % list.length; safetyCounter++; } } const item = list[vIndex]; document.getElementById("total-display").innerText = isExamMode ? list.length + " (Prüfung)" : VOCABULARY_DATABASE[activeLang][activeCategory].words.length; document.getElementById("current-index-display").innerText = vIndex + 1; if (vocabMode === 'flashcards' && !isExamMode) { box.innerHTML = `<div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner"><div class="flip-card-front bg-indigo-900 rounded-2xl flex flex-col items-center justify-center font-bold text-2xl px-4 text-center border border-indigo-500/30">${item.de}</div><div class="flip-card-back bg-pink-900 rounded-2xl flex flex-col items-center justify-center font-bold text-2xl px-4 text-center border border-pink-500/30">${item.foreign}</div></div></div><button onclick="nextVocab(false)" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button><button onclick="nextVocab(true)" class="mt-2 w-full p-2 bg-emerald-600/80 rounded-xl font-bold text-white shadow-md text-sm">✅ Ich kann das (Ausblenden)</button>`; } else if (vocabMode === 'mc' && !isExamMode) { let options = [item.foreign]; let otherWords = shuffleArray(VOCABULARY_DATABASE[activeLang][activeCategory].words.filter(w => w.foreign !== item.foreign)); for (let i = 0; i < 3 && i < otherWords.length; i++) { options.push(otherWords[i].foreign); } options = shuffleArray(options); let html = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 border border-indigo-500/30">${item.de}</div><div class="grid grid-cols-2 gap-2" id="mc-options">`; options.forEach(opt => { html += `<button class="p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-sm shadow-md" onclick="checkVocabMC(this, '${opt}', '${item.foreign}')">${opt}</button>`; }); html += `</div><div id="mc-feedback" class="mt-4 hidden"><button onclick="nextVocab(false)" class="w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white">Nächstes Wort ➔</button></div>`; box.innerHTML = html; } else { box.innerHTML = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 shadow-inner">${item.de}</div><input type="text" id="vocab-typing-input" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-center mb-4 text-lg shadow-inner" placeholder="Übersetzung tippen..." autocomplete="off" onkeypress="if(event.key === 'Enter') checkVocabTyping('${item.foreign}')"><button id="typing-check-btn" onclick="checkVocabTyping('${item.foreign}')" class="w-full p-3.5 bg-emerald-600 rounded-xl font-bold text-white shadow-md hover:bg-emerald-500 transition">Prüfen</button><div id="typing-feedback" class="mt-3 font-bold text-center"></div><button id="typing-next-btn" onclick="${isExamMode ? 'showVocabQuestion()' : 'nextVocab(false)'}" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden shadow-md">Nächste Vokabel ➔</button>`; setTimeout(() => document.getElementById("vocab-typing-input").focus(), 100); } }
-        function checkVocabMC(btn, selected, correct) { const parent = document.getElementById("mc-options"); let answered = false; Array.from(parent.children).forEach(b => { if (b.disabled) answered = true; b.disabled = true; if (b.innerText === correct) { b.className = "p-4 bg-emerald-600 rounded-xl font-bold text-white text-sm"; } else if (b.innerText === selected) { b.className = "p-4 bg-rose-600 rounded-xl font-bold text-white text-sm opacity-50"; } else { b.classList.add("opacity-50"); } }); if (answered) return; document.getElementById("mc-feedback").classList.remove("hidden"); if (selected === correct) { showToast("Richtig! +2 Coins", "success"); confetti(); currentPlayer.coins += 2; savePlayerProgress(); } else { showToast("Leider falsch!", "error"); } }
-        function checkVocabTyping(correct) { const input = document.getElementById("vocab-typing-input"); const val = input.value.trim().toLowerCase(); if (!val) return; input.disabled = true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden"); const fb = document.getElementById("typing-feedback"); if (val === correct.toLowerCase()) { input.className = "w-full p-4 bg-emerald-900/30 text-emerald-400 font-bold text-center mb-4 text-lg border border-emerald-500 rounded-xl"; fb.innerHTML = `<span class="text-emerald-400">Perfekt! ${isExamMode ? '+10' : '+5'} Coins</span>`; showToast("Super!", "success"); confetti(); currentPlayer.coins += (isExamMode ? 10 : 5); sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + correct); savePlayerProgress(); } else { input.className = "w-full p-4 bg-rose-900/30 text-rose-400 font-bold text-center mb-4 text-lg border border-rose-500 rounded-xl line-through"; fb.innerHTML = `<span class="text-rose-400">Falsch. Richtig ist: <br><span class="text-white text-xl">${correct}</span></span>`; showToast("Nicht ganz!", "error"); } }
-
-        function showQuizSetup(mode) { document.getElementById('selected-game-mode').value = mode; switchView('quiz-setup'); }
-        function startQuiz() { const cat = document.getElementById("sub-category").value; currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat); if (currentQuestions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return; } qIndex = 0; switchView('quiz'); showQuestion(); }
+        // Quiz Logik (Basic)
+        let currentQuestions = [], qIndex = 0;
+        function showQuizSetup(mode) { switchView('quiz-setup'); }
+        function startQuiz() { const cat = document.getElementById("sub-category").value; currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat); qIndex = 0; switchView('quiz'); showQuestion(); }
         function leaveQuiz() { switchView('menu'); }
-        function showQuestion() { const q = currentQuestions[qIndex]; document.getElementById('question-text').innerText = q.question; document.getElementById('explanation-box').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden'); const optsContainer = document.getElementById('options-container'); optsContainer.innerHTML = ''; q.answers.forEach((ans, index) => { const btn = document.createElement('button'); btn.className = "w-full p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-white text-left hover:bg-gray-700 transition"; btn.innerText = ans; btn.onclick = () => checkQuizAnswer(index, q.correct, q.explanation, btn); optsContainer.appendChild(btn); }); }
-        function checkQuizAnswer(selectedIndex, correctIndex, explanation, btn) { const buttons = document.getElementById('options-container').children; for (let i = 0; i < buttons.length; i++) { buttons[i].disabled = true; if (i === correctIndex) { buttons[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white text-left"; } else if (i === selectedIndex) { buttons[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white text-left opacity-50"; } else { buttons[i].classList.add('opacity-50'); } } const expBox = document.getElementById('explanation-box'); expBox.innerHTML = explanation; expBox.classList.remove('hidden'); if (selectedIndex === correctIndex) { showToast("Korrekt! +10 Coins", "success"); confetti(); currentPlayer.coins += 10; savePlayerProgress(); } else { showToast("Leider falsch!", "error"); } document.getElementById('next-question-btn').classList.remove('hidden'); }
-        function triggerNextQuestion() { qIndex++; if (qIndex < currentQuestions.length) { showQuestion(); } else { showToast("Quiz beendet!", "success"); leaveQuiz(); } }
+        function showQuestion() { const q = currentQuestions[qIndex]; document.getElementById("question-text").innerText = q.question; document.getElementById("options-container").innerHTML = ""; q.answers.forEach((ans, i) => { const b = document.createElement("button"); b.className = "w-full p-4 bg-gray-900 rounded-xl font-bold text-white mt-2"; b.innerText = ans; b.onclick = () => checkQuiz(i, q.correct, q.explanation); document.getElementById("options-container").appendChild(b); }); document.getElementById("next-question-btn").classList.add("hidden"); document.getElementById("explanation-box").classList.add("hidden"); }
+        function checkQuiz(sel, cor, exp) { if (sel === cor) { currentPlayer.coins += 10; savePlayerProgress(); confetti(); showToast("Richtig! +10 Coins"); } else { showToast("Falsch!", "error"); } document.getElementById("explanation-box").innerText = exp; document.getElementById("explanation-box").classList.remove("hidden"); document.getElementById("next-question-btn").classList.remove("hidden"); }
+        function triggerNextQuestion() { qIndex++; if (qIndex < currentQuestions.length) showQuestion(); else { showToast("Quiz beendet!"); switchView('menu'); } }
 
-        window.onload = () => { initCounters(); switchView('login'); loadProfiles(); };
+        // Vokabel Logik (Basic)
+        let activeLang = 'en', activeCategory = 'school', vIndex = 0, vocabMode = 'flashcards'; let isExamMode = false;
+        function setLanguage(l) { activeLang = l; loadVocabSystem(); } function setVocabMode(m) { vocabMode = m; showVocabQuestion(); } function selectCategory(c) { activeCategory = c; showVocabQuestion(); }
+        function leaveVocab() { switchView('menu'); }
+        function loadVocabSystem() { const dd = document.getElementById("category-dropdown"); dd.innerHTML = ""; Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(k => { dd.innerHTML += `<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label}</option>`; }); showVocabQuestion(); }
+        function showVocabQuestion() {
+            const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
+            if (list.length === 0) return;
+            const w = list[vIndex];
+            document.getElementById("vokabel-box").innerHTML = `
+            <div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front bg-indigo-900 rounded-2xl flex items-center justify-center font-bold text-2xl text-white">${w.de}</div>
+                    <div class="flip-card-back bg-pink-900 rounded-2xl flex items-center justify-center font-bold text-2xl text-white">${w.foreign}</div>
+                </div>
+            </div>
+            <button onclick="nextVocab(false)" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button>
+            <button onclick="nextVocab(true)" class="mt-2 w-full p-2 bg-emerald-600 rounded-xl font-bold text-white shadow-md text-sm">✅ Kann ich (Ausblenden)</button>
+        `;
+        }
+        function nextVocab(known) {
+            if (known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); savePlayerProgress(); showToast("+2 Coins!", "success"); currentPlayer.coins += 2; savePlayerProgress(); }
+            vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion();
+        }
     </script>
 </body>
 

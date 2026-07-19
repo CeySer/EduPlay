@@ -3,205 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Die universelle Lernplattform</title>
-    
+    <title>EduPlay Hub - Stabil</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f1f5f9; }
-        .flip-card { perspective: 1000px; }
+        body { font-family: sans-serif; background-color: #0b0f19; color: #f1f5f9; }
+        .view { display: none; }
+        .view.active { display: block; }
+        .flip-card { perspective: 1000px; height: 200px; cursor: pointer; }
         .flip-card-inner { transition: transform 0.6s; transform-style: preserve-3d; position: relative; width: 100%; height: 100%; }
         .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-        .flip-card-front, .flip-card-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; position: absolute; inset: 0; }
+        .flip-card-front, .flip-card-back { backface-visibility: hidden; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; border-radius: 1rem; border: 1px solid #374151; font-weight: bold; font-size: 1.25rem; padding: 10px; text-align: center; }
         .flip-card-back { transform: rotateY(180deg); }
     </style>
 </head>
-<body class="min-h-screen flex justify-center items-start overflow-x-hidden antialiased">
-
-<div id="toast-container" class="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 w-[90%] max-w-md pointer-events-none"></div>
-
-<div class="w-full max-w-md min-h-screen bg-[#111827] shadow-2xl relative flex flex-col justify-between pb-24 border-x border-gray-800">
-    
-    <main class="flex-grow p-4">
-        <!-- VIEW: LOGIN -->
-        <div id="view-login" class="view hidden">
-            <div class="text-center py-8">
-                <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 mb-1">EduPlay Hub 🎮</h1>
-                <p class="text-gray-400 text-sm">Die spielerische Multi-Lernplattform</p>
-            </div>
-            
-            <div class="bg-gray-800/50 border border-gray-700 p-5 rounded-2xl mb-4 hidden" id="existing-profiles-box">
-                <h3 class="text-center font-bold text-yellow-400 mb-3 flex items-center justify-center gap-2"><span>👤 Profil auswählen</span></h3>
-                <div id="profile-grid" class="flex flex-wrap justify-center gap-3"></div>
-            </div>
-
-            <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg">
-                <h3 class="text-lg font-bold text-emerald-400 text-center mb-4">Neues Profil erstellen ✍️</h3>
-                <div class="space-y-3">
-                    <input type="text" id="username-input" placeholder="Name..." class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                    <input type="number" id="age-input" placeholder="Klasse / Alter..." class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                    <button class="w-full p-3.5 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl font-bold text-white shadow-lg" onclick="handleLogin()">Starten 🚀</button>
-                </div>
-            </div>
+<body>
+    <div id="app" class="max-w-md mx-auto p-4 min-h-screen bg-[#111827]">
+        <!-- Nur Vokabel-View zur Fehlersuche -->
+        <div id="view-vokabeln" class="view active">
+            <h2 class="text-xl font-bold text-indigo-400 mb-4">Vokabel-Trainer (Stabil)</h2>
+            <select id="category-dropdown" class="w-full p-3 bg-gray-900 rounded-xl text-white mb-4" onchange="selectCategory(this.value)"></select>
+            <div id="vokabel-box" class="space-y-4"></div>
         </div>
+    </div>
 
-        <!-- VIEW: MAIN MENU -->
-        <div id="view-menu" class="view hidden space-y-4">
-            <div id="subview-home" class="subview space-y-4">
-                <div class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-center shadow-xl">
-                    <div>
-                        <h2 id="welcome-text" class="text-xl font-bold text-white">Hallo!</h2>
-                        <div class="flex gap-4 mt-1 text-xs font-semibold">
-                            <span class="text-yellow-400">🪙 <span id="menu-coins">0</span> Coins</span>
-                            <span class="text-blue-400">🎒 Klasse: <span id="menu-age">-</span></span>
-                        </div>
+    <script>
+        // Datenbank gekürzt auf ein gesundes Maß für den ersten Test
+        const VOCABULARY_DATABASE = {
+            en: {
+                numbers: { label: "Zahlen", words: [{de:"Eins",foreign:"one"},{de:"Zwei",foreign:"two"}] },
+                environment: { label: "Umwelt", words: [{de:"Klimawandel",foreign:"climate change"},{de:"Nachhaltigkeit",foreign:"sustainability"}] }
+            }
+        };
+
+        let activeLang = 'en', activeCategory = 'numbers', vIndex = 0;
+        let learnedWords = new Set(JSON.parse(localStorage.getItem('learnedWords') || '[]'));
+
+        function loadVocabSystem() {
+            const dropdown = document.getElementById("category-dropdown");
+            dropdown.innerHTML = "";
+            Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(key => {
+                const opt = document.createElement("option");
+                opt.value = key; opt.innerText = VOCABULARY_DATABASE[activeLang][key].label;
+                dropdown.appendChild(opt);
+            });
+            showVocabQuestion();
+        }
+
+        function selectCategory(cat) { activeCategory = cat; vIndex = 0; showVocabQuestion(); }
+
+        function showVocabQuestion() {
+            const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
+            if(vIndex >= list.length) vIndex = 0;
+            const item = list[vIndex];
+
+            // Crash-Schutz: Falls Wort gelernt, nächstes suchen
+            if(learnedWords.has(activeCategory + "_" + item.foreign)) {
+                vIndex++; showVocabQuestion(); return;
+            }
+
+            document.getElementById("vokabel-box").innerHTML = `
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-indigo-900">${item.de}</div>
+                        <div class="flip-card-back bg-pink-900">${item.foreign}</div>
                     </div>
                 </div>
+                <button onclick="nextVocab(true)" class="w-full p-3 bg-emerald-600 rounded-xl font-bold">✅ Gelernt</button>
+            `;
+        }
 
-                <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
-                
-                <div class="space-y-4">
-                    <div class="bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 active:scale-95 transition-all shadow-md" onclick="switchView('vokabeln')">
-                        <div class="text-5xl">📖</div>
-                        <div>
-                            <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
-                            <p class="text-xs text-gray-300">Karteikarten, Quiz & Tippen</p>
-                        </div>
-                    </div>
-                    <div class="bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 active:scale-95 transition-all shadow-md" onclick="showQuizSetup('spiel')">
-                        <div class="text-5xl">🎯</div>
-                        <div>
-                            <h2 class="text-xl font-black text-pink-400">Quiz-Arena</h2>
-                            <p class="text-xs text-gray-300">Schulwissen & Kfz-Technik testen</p>
-                        </div>
-                    </div>
-                    <div class="bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 active:scale-95 transition-all shadow-md" onclick="showQuizSetup('lernen')">
-                        <div class="text-5xl">⏳</div>
-                        <div>
-                            <h2 class="text-xl font-black text-yellow-400">Fokus-Lernzeit</h2>
-                            <p class="text-xs text-gray-300">Mit Timer lernen & Truhe freischalten</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="subview-leaderboard" class="subview hidden space-y-4">
-                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
-                    <h3 class="text-xl font-extrabold text-yellow-400 mb-4">🏆 Globale Rangliste</h3>
-                    <div id="leaderboard-list" class="space-y-2 text-left"></div>
-                </div>
-            </div>
-            <div id="subview-workshop" class="subview hidden space-y-4">
-                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
-                    <h3 class="text-lg font-bold text-emerald-400">🔧 Tech-Lab</h3>
-                    <p class="text-xs text-gray-400 mt-2">Formelstudios und Berechnungen aktiv.</p>
-                </div>
-            </div>
-            <div id="subview-parent" class="subview hidden space-y-4">
-                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
-                    <h3 class="text-lg font-bold text-rose-400 mb-2">👨‍👩‍👦 Verwaltung & Elternbereich</h3>
-                    <div id="parent-stats-container" class="space-y-3 mt-4"></div>
-                </div>
-            </div>
-        </div>
+        function nextVocab(isKnown) {
+            if(isKnown) {
+                learnedWords.add(activeCategory + "_" + VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign);
+                localStorage.setItem('learnedWords', JSON.stringify([...learnedWords]));
+            }
+            vIndex++;
+            showVocabQuestion();
+        }
 
-        <!-- VIEW: QUIZ SETUP -->
-        <div id="view-quiz-setup" class="view hidden space-y-4">
-            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zurück</button>
-            <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
-                <h2 class="text-2xl font-black text-center text-pink-400" id="quiz-setup-title">Quiz-Arena</h2>
-                <input type="hidden" id="selected-game-mode" value="spiel">
-                
-                <div>
-                    <label class="text-xs text-gray-400 font-bold block mb-1">Kategorie:</label>
-                    <select id="main-category" onchange="updateSubCategories()" class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold">
-                        <option value="schule1">🏫 Klasse 1</option>
-                        <option value="schule2">🏫 Klasse 2</option>
-                        <option value="schule3">🏫 Klasse 3</option>
-                        <option value="kfz">🔧 KFZ-Technik</option>
-                        <option value="allgemein">🕌 Kultur & Allgemeinwissen</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label class="text-xs text-gray-400 font-bold block mb-1">Lektion:</label>
-                    <select id="sub-category" onchange="showQuestionCount()" class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold"></select>
-                    <div id="question-count-display" class="text-xs text-gray-400 mt-1 font-semibold pl-1"></div>
-                </div>
-                
-                <button onclick="startQuiz()" class="w-full p-4 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg">Starten 🚀</button>
-            </div>
-        </div>
-
-        <!-- VIEW: QUIZ ARENA -->
-        <div id="view-quiz" class="view hidden space-y-4">
-            <div id="learning-chest-bar" class="bg-gray-800 border-2 border-yellow-500 p-3 rounded-xl text-center font-bold hidden">🎁 Fokus-Modus aktiv!</div>
-            <div class="flex justify-between items-center"><button class="bg-rose-600 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">Beenden 🏠</button></div>
-            <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
-                <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
-                <div id="options-container" class="flex flex-col gap-2.5"></div>
-                
-                <div id="explanation-box" class="p-4 bg-slate-900 border-l-4 border-yellow-500 rounded-xl text-left text-sm text-gray-300 hidden shadow-inner"></div>
-                <button id="next-question-btn" class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden shadow-md" onclick="triggerNextQuestion()">Nächste Frage ➔</button>
-            </div>
-        </div>
-
-        <!-- VIEW: VOKABEL-TRAINER -->
-        <div id="view-vokabeln" class="view hidden space-y-4">
-            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zurück</button>
-            <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
-                <h2 class="text-2xl font-black text-indigo-400">📖 Vokabel-Trainer</h2>
-                
-                <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
-                    <button id="lang-btn-en" class="flex-1 py-2 rounded-lg font-bold bg-blue-600 text-white transition-all" onclick="setLanguage('en')">🇬🇧 Englisch</button>
-                    <button id="lang-btn-tr" class="flex-1 py-2 rounded-lg font-bold text-gray-400 transition-all" onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
-                </div>
-                
-                <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
-                    <button id="vmode-flashcards" class="flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all bg-indigo-600 text-xs" onclick="setVocabMode('flashcards')">🃏 Kärtchen</button>
-                    <button id="vmode-mc" class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 transition-all bg-gray-900 text-xs" onclick="setVocabMode('mc')">🎯 Auswahl</button>
-                    <button id="vmode-typing" class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 transition-all bg-gray-900 text-xs" onclick="setVocabMode('typing')">✍️ Tippen</button>
-                </div>
-
-                <select id="category-dropdown" class="w-full p-3 bg-gray-900 border rounded-xl text-white font-bold outline-none text-sm" onchange="selectCategory(this.value)"></select>
-                
-                <div id="vokabel-box" class="min-h-[200px] flex flex-col justify-center"></div>
-                <div class="text-xs text-gray-400 font-bold">Wort: <span id="current-index-display" class="text-blue-400">1</span> / <span id="total-display">0</span></div>
-            </div>
-        </div>
-    </main>
-
-    <!-- NAVIGATION BAR -->
-    <nav id="main-bottom-nav" class="bottom-nav absolute bottom-0 left-0 right-0 hidden bg-[#0b0f19] border-t border-gray-800 py-3">
-        <div class="flex justify-around text-xs font-bold text-gray-400">
-            <button class="nav-item text-blue-500" onclick="switchSubpage('home')">🏠 Lernen</button>
-            <button class="nav-item" onclick="switchSubpage('leaderboard')">🏆 Rangliste</button>
-            <button class="nav-item" onclick="switchSubpage('workshop')">🔧 Tech-Lab</button>
-            <button class="nav-item" onclick="switchSubpage('parent')">👨‍👩‍👦 Elternbereich</button>
-        </div>
-    </nav>
-</div>
-
-<script>
-    // === 01. QUIZ DATENBANK (Wie vorher) ===
-    const QUESTIONS_DATABASE = [
-        { id: 3001, category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD", "hunD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere schreibt man immer groß! 'Hund' ist ein Tier und somit ein Nomen." },
-        { id: 3002, category: "deutsch_uebungsheft", question: "Wie trennt man das Wort 'Schmetterling' richtig in Silben?", answers: ["Schme-tter-ling", "Schmet-ter-ling", "Schmett-er-ling", "Schme-tte-rling"], correct: 1, explanation: "💡 Silbenklatschen hilft dir beim Schreiben! Klatsche mit: Schmet - ter - ling. Das sind genau 3 Silben." },
-        { id: 3003, category: "deutsch_uebungsheft", question: "Wie schreibt man das Krabbeltier 'Spinne' richtig?", answers: ["Spine", "Schpine", "Spinne", "Schpinne"], correct: 2, explanation: "💡 Klatsche mit: Spin - ne. Weil wir das 'i' ganz schnell sprechen und in der Silbenmitte trennen, schreiben wir Doppel-n (nn)!" },
-        { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: Rechne erst die Zehner zusammen (20 + 10 = 30) und dann die Einer (5 + 4 = 9). Zusammen ergibt das 39!" },
-        { id: 3501, category: "klasse3_englisch", question: "Translate into English: 'Wie heißt du?'", answers: ["How are you?", "What is your name?", "Who are you?", "How old are you?"], correct: 1, explanation: "💡 Um nach dem Namen zu fragen, sagt man auf Englisch 'What is your name?'" },
-        { id: 8302, category: "kfz", question: "Zahnriemenwechsel: Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug angebracht ist?", answers: ["Die Wasserpumpe lösen", "Den Motor an der Kurbelwelle durchdrehen", "Die Spannrolle entspannen", "Den alten Keilrippenriemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" },
-        { id: 9001, category: "allgemein", question: "Wie viele Bundesländer hat Deutschland?", answers: ["12", "14", "16", "18"], correct: 2, explanation: "💡 Deutschland besteht aus 16 Bundesländern, zum Beispiel Nordrhein-Westfalen oder Bayern." }
-    ];
-
-    // === 02. MEGA VOKABEL DATENBANK (NRW LEHRPLAN 50+ WÖRTER PRO THEMA) ===
-    const VOCABULARY_DATABASE = {
-        en: {
-            numbers: { label: "🔢 Zahlen (Kl. 1-4)", words: [{de:"Null",foreign:"zero"},{de:"Eins",foreign:"one"},{de:"Zwei",foreign:"two"},{de:"Drei",foreign:"three"},{de:"Vier",foreign:"four"},{de:"Fünf",foreign:"five"},{de:"Sechs",foreign:"six"},{de:"Sieben",foreign:"seven"},{de:"Acht",foreign:"eight"},{de:"Neun",foreign:"nine"},{de:"Zehn",foreign:"ten"},{de:"Elf",foreign:"eleven"},{de:"Zwölf",foreign:"twelve"},{de:"Dreizehn",foreign:"thirteen"},{de:"Vierzehn",foreign:"fourteen"},{de:"Fünfzehn",foreign:"fifteen"},{de:"Sechzehn",foreign:"sixteen"},{de:"Siebzehn",foreign:"seventeen"},{de:"Achtzehn",foreign:"eighteen"},{de:"Neunzehn",foreign:"nineteen"},{de:"Zwanzig",foreign:"twenty"},{de:"Dreißig",foreign:"thirty"},{de:"Vierzig",foreign:"forty"},{de:"Fünfzig",foreign:"fifty"},{de:"Sechzig",foreign:"sixty"},{de:"Siebzig",foreign:"seventy"},{de:"Achtzig",foreign:"eighty"},{de:"Neunzig",foreign:"ninety"},{de:"Einhundert",foreign:"one hundred"},{de:"Eintausend",foreign:"one thousand"}] },
-            school: { label: "🎒 Schule & Lernen (Kl. 1-4)", words: [{de:"Buch",foreign:"book"},{de:"Tisch",foreign:"desk"},{de:"Stuhl",foreign:"chair"},{de:"Tafel",foreign:"board"},{de:"Schultasche",foreign:"schoolbag"},{de:"Lineal",foreign:"ruler"},{de:"Schere",foreign:"scissors"},{de:"Computer",foreign:"computer"},{de:"Tür",foreign:"door"},{de:"Fenster",foreign:"window"},{de:"Heft",foreign:"exercise book"},{de:"Stift",foreign:"pen"},{de:"Bleistift",foreign:"pencil"},{de:"Radiergummi",foreign:"rubber"},{de:"Kleber",foreign:"glue"},{de:"Mäppchen",foreign:"pencil case"},{de:"Anspitzer",foreign:"sharpener"},{de:"Lehrer",foreign:"teacher"},{de:"Schüler",foreign:"pupil"},{de:"Klassenzimmer",foreign:"classroom"},{de:"Hausaufgabe",foreign:"homework"},{de:"Bild",foreign:"picture"},{de:"Pause",foreign:"break"},{de:"Schulhof",foreign:"playground"},{de:"Turnhalle",foreign:"sports hall"},{de:"Mathe",foreign:"maths"},{de:"Englisch",foreign:"English"},{de:"Deutsch",foreign:"German"},{de:"Kunst",foreign:"art"},{de:"Musik",foreign:"music"},{de:"Sport",foreign:"sports"},{de:"Religion",foreign:"religion"},{de:"Mittagessen",foreign:"lunch"},{de:"Schulbus",foreign:"school bus"},{de:"Freund",foreign:"friend"},{de:"Frage",foreign:"question"},{de:"Antwort",foreign:"answer"},{de:"lesen",foreign:"read"},{de:"schreiben",foreign:"write"},{de:"hören",foreign:"listen"},{de:"sprechen",foreign:"speak"},{de:"singen",foreign:"sing"},{de:"spielen",foreign:"play"},{de:"zeichnen",foreign:"draw"},{de:"malen",foreign:"paint"},{de:"rechnen",foreign:"calculate"},{de:"lernen",foreign:"learn"},{de:"Test",foreign:"test"},{de:"Note",foreign:"grade"},{de:"Schulglocke",foreign:"bell"}] },
-            animals: { label: "🦁 Tierwelt komplett (Kl. 1-4)", words: [{de:"Hund",foreign:"dog"},{de:"Katze",foreign:"cat"},{de:"Maus",foreign:"mouse"},{de:"Vogel",foreign:"bird"},{de:"Fisch",foreign:"fish"},{de:"Kaninchen",foreign:"rabbit"},{de:"Meerschweinchen",foreign:"guinea pig"},{de:"Hamster",foreign:"hamster"},{de:"Spinne",foreign:"spider"},{de:"Kuh",foreign:"cow"},{de:"Schwein",foreign:"pig"},{de:"Pferd",foreign:"horse"},{de:"Schaf",foreign:"sheep"},{de:"Ziege",foreign:"goat"},{de:"Huhn",foreign:"chicken"},{de:"Hahn",foreign:"rooster"},{de:"Ente",foreign:"duck"},{de:"Gans",foreign:"goose"},{de:"Esel",foreign:"donkey"},{de:"Pony",foreign:"pony"},{de:"Biene",foreign:"bee"},{de:"Fliege",foreign:"fly"},{de:"Mücke",foreign:"mosquito"},{de:"Schmetterling",foreign:"butterfly"},{de:"Frosch",foreign:"frog"},{de:"Schnecke",foreign:"snail"},{de:"Wurm",foreign:"worm"},{de:"Käfer",foreign:"beetle"},{de:"Löwe",foreign:"lion"},{de:"Tiger",foreign:"tiger"},{de:"Elefant",foreign:"elephant"},{de:"Giraffe",foreign:"giraffe"},{de:"Affe",foreign:"monkey"},{de:"Bär",foreign:"bear"},{de:"Schlange",foreign:"snake"},{de:"Krokodil",foreign:"crocodile"},{de:"Nilpferd",foreign:"hippo"},{de:"Nashorn",foreign:"rhino"},{de:"Zebra",foreign:"zebra"},{de:"Känguru",foreign:"kangaroo"},{de:"Pinguin",foreign:"penguin"},{de:"Kamel",foreign:"camel"},{de:"Wolf",foreign:"wolf"},{de:"Fuchs",foreign:"fox"},{de:"Hirsch",foreign:"deer"},{de:"Eule",foreign:"owl"},{de:"Adler",foreign:"eagle"},{de:"Fledermaus",foreign:"bat"},{de:"Hai",foreign:"shark"},{de:"Wal",foreign:"whale"},{de:"Delfin",foreign:"dolphin"},{de:"Seehund",foreign:"seal"},{de:"Krebs",foreign:"crab"},{de:"Oktopus",foreign:"octopus"}] },
-            body: { label: "🧍 Körper & Gesundheit (Kl. 1-4)", words: [{de:"Kopf",foreign:"head"},{de:"Hals",foreign:"neck"},{de:"Schulter",foreign:"shoulder"},{de:"Arm",foreign:"arm"},{de:"Hand",foreign:"hand"},{de:"Finger",foreign:"finger"},{de:"Daumen",foreign:"thumb"},{de:"Brust",foreign:"chest"},{de:"Rücken",foreign:"back"},{de:"Bauch"
+        window.onload = loadVocabSystem;
+    </script>
+</body>
+</html>

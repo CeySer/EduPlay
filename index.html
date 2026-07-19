@@ -2,87 +2,20 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Stabil</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <title>Minimaler Test</title>
     <style>
-        body { font-family: sans-serif; background-color: #0b0f19; color: #f1f5f9; }
-        .view { display: none; }
-        .view.active { display: block; }
-        .flip-card { perspective: 1000px; height: 200px; cursor: pointer; }
-        .flip-card-inner { transition: transform 0.6s; transform-style: preserve-3d; position: relative; width: 100%; height: 100%; }
-        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-        .flip-card-front, .flip-card-back { backface-visibility: hidden; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; border-radius: 1rem; border: 1px solid #374151; font-weight: bold; font-size: 1.25rem; padding: 10px; text-align: center; }
-        .flip-card-back { transform: rotateY(180deg); }
+        body { background-color: purple; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { padding: 20px; border: 2px solid white; border-radius: 10px; }
     </style>
 </head>
 <body>
-    <div id="app" class="max-w-md mx-auto p-4 min-h-screen bg-[#111827]">
-        <!-- Nur Vokabel-View zur Fehlersuche -->
-        <div id="view-vokabeln" class="view active">
-            <h2 class="text-xl font-bold text-indigo-400 mb-4">Vokabel-Trainer (Stabil)</h2>
-            <select id="category-dropdown" class="w-full p-3 bg-gray-900 rounded-xl text-white mb-4" onchange="selectCategory(this.value)"></select>
-            <div id="vokabel-box" class="space-y-4"></div>
-        </div>
+    <div class="box">
+        <h1>Funktioniert es?</h1>
+        <div id="inhalt"></div>
     </div>
 
     <script>
-        // Datenbank gekürzt auf ein gesundes Maß für den ersten Test
-        const VOCABULARY_DATABASE = {
-            en: {
-                numbers: { label: "Zahlen", words: [{de:"Eins",foreign:"one"},{de:"Zwei",foreign:"two"}] },
-                environment: { label: "Umwelt", words: [{de:"Klimawandel",foreign:"climate change"},{de:"Nachhaltigkeit",foreign:"sustainability"}] }
-            }
-        };
-
-        let activeLang = 'en', activeCategory = 'numbers', vIndex = 0;
-        let learnedWords = new Set(JSON.parse(localStorage.getItem('learnedWords') || '[]'));
-
-        function loadVocabSystem() {
-            const dropdown = document.getElementById("category-dropdown");
-            dropdown.innerHTML = "";
-            Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(key => {
-                const opt = document.createElement("option");
-                opt.value = key; opt.innerText = VOCABULARY_DATABASE[activeLang][key].label;
-                dropdown.appendChild(opt);
-            });
-            showVocabQuestion();
-        }
-
-        function selectCategory(cat) { activeCategory = cat; vIndex = 0; showVocabQuestion(); }
-
-        function showVocabQuestion() {
-            const list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
-            if(vIndex >= list.length) vIndex = 0;
-            const item = list[vIndex];
-
-            // Crash-Schutz: Falls Wort gelernt, nächstes suchen
-            if(learnedWords.has(activeCategory + "_" + item.foreign)) {
-                vIndex++; showVocabQuestion(); return;
-            }
-
-            document.getElementById("vokabel-box").innerHTML = `
-                <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front bg-indigo-900">${item.de}</div>
-                        <div class="flip-card-back bg-pink-900">${item.foreign}</div>
-                    </div>
-                </div>
-                <button onclick="nextVocab(true)" class="w-full p-3 bg-emerald-600 rounded-xl font-bold">✅ Gelernt</button>
-            `;
-        }
-
-        function nextVocab(isKnown) {
-            if(isKnown) {
-                learnedWords.add(activeCategory + "_" + VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign);
-                localStorage.setItem('learnedWords', JSON.stringify([...learnedWords]));
-            }
-            vIndex++;
-            showVocabQuestion();
-        }
-
-        window.onload = loadVocabSystem;
+        document.getElementById("inhalt").innerText = "Der JavaScript-Teil läuft!";
     </script>
 </body>
 </html>

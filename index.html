@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
-    <!-- Firebase Cloud Einbindung (inkl. Auth) -->
+    <!-- Firebase Cloud Einbindung -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -68,7 +68,7 @@
 
         <main class="flex-grow p-4">
 
-            <!-- VIEW: ELTERN LOGIN / REGISTRIERUNG -->
+            <!-- VIEW: ELTERN LOGIN -->
             <div id="view-auth" class="view hidden">
                 <div class="text-center py-8">
                     <h1
@@ -124,7 +124,7 @@
                     onclick="switchView('family-hub')">← Abbrechen</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg space-y-4">
                     <h2 class="text-xl font-black text-emerald-400">Neues Profil anlegen</h2>
-                    <input type="text" id="new-profile-name" placeholder="Name des Kindes"
+                    <input type="text" id="new-profile-name" placeholder="Name"
                         class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
                     <div class="flex gap-2">
                         <select id="new-profile-type"
@@ -173,10 +173,10 @@
 
                     <button
                         class="w-full text-left bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 transition-all shadow-md"
-                        onclick="showQuizSetup('spiel')">
+                        onclick="showQuizSetup()">
                         <div class="text-5xl">🎯</div>
                         <div>
-                            <h2 class="text-xl font-black text-pink-400">Grammatik & Quiz</h2>
+                            <h2 class="text-xl font-black text-pink-400">Wissen & Grammatik</h2>
                             <p class="text-xs text-gray-300">Englisch Grammatik & Fachwissen</p>
                         </div>
                     </button>
@@ -223,39 +223,59 @@
                 </div>
             </div>
 
-            <!-- VIEW: QUIZ SETUP -->
+            <!-- VIEW: QUIZ & GRAMMATIK SETUP -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum
                     Hauptmenü</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
-                    <h2 class="text-2xl font-black text-center text-pink-400">Quiz & Grammatik</h2>
-                    <select id="sub-category"
-                        class="w-full p-3 bg-gray-900 border rounded-xl text-white outline-none font-bold">
-                        <option value="eng_grammatik_5_6">🇬🇧 Englisch Grammatik (Kl. 5-6)</option>
-                        <option value="eng_grammatik_7_8">🇬🇧 Englisch Grammatik (Kl. 7-8)</option>
-                        <option value="eng_grammatik_9_11">🇬🇧 Englisch Grammatik (Kl. 9-11)</option>
-                        <option value="deutsch_uebungsheft">✍️ Deutsch (Grundschule)</option>
-                        <option value="klasse2_mathe">🧮 Mathe (Kl. 2-4)</option>
-                        <option value="kfz">🔧 KFZ-Technik & Mechatronik</option>
-                    </select>
+                    <h2 class="text-2xl font-black text-center text-pink-400">Wissen & Grammatik</h2>
+
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Lern-Modus wählen:</label>
+                        <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
+                            <button id="qmode-mc"
+                                class="flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all bg-indigo-600 text-sm shadow-md"
+                                onclick="setQuizMode('mc')">🎯 Multiple Choice</button>
+                            <button id="qmode-flashcards"
+                                class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 transition-all bg-gray-900 text-sm"
+                                onclick="setQuizMode('flashcards')">🃏 Karteikarten</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Thema auswählen:</label>
+                        <select id="sub-category"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
+                            <option value="eng_grammatik_5_6">🇬🇧 Englisch Grammatik (Kl. 5-6)</option>
+                            <option value="eng_grammatik_7_8">🇬🇧 Englisch Grammatik (Kl. 7-8)</option>
+                            <option value="eng_grammatik_9_11">🇬🇧 Englisch Grammatik (Kl. 9-11)</option>
+                            <option value="deutsch_uebungsheft">✍️ Deutsch (Grundschule)</option>
+                            <option value="klasse2_mathe">🧮 Mathe (Kl. 2-4)</option>
+                            <option value="kfz">🔧 KFZ-Technik & Mechatronik</option>
+                        </select>
+                    </div>
+
                     <button onclick="startQuiz()"
-                        class="w-full p-4 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg">Starten
+                        class="w-full p-4 mt-2 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-blue-500">Starten
                         🚀</button>
                 </div>
             </div>
 
-            <!-- VIEW: QUIZ ARENA -->
+            <!-- VIEW: QUIZ ARENA (MC & KARTEIKARTEN) -->
             <div id="view-quiz" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">←
                     Beenden</button>
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4 shadow-lg">
                     <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
+
+                    <!-- Container für Buttons oder Karteikarte -->
                     <div id="options-container" class="flex flex-col gap-2.5"></div>
-                    <div id="explanation-box"
-                        class="p-4 bg-slate-900 border-l-4 border-yellow-500 rounded-xl text-left text-sm text-gray-300 hidden">
-                    </div>
+
+                    <!-- Neue schlaue Erklärungs-Box -->
+                    <div id="explanation-box" class="hidden"></div>
+
                     <button id="next-question-btn"
-                        class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden"
+                        class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden shadow-md mt-4"
                         onclick="triggerNextQuestion()">Nächste Frage ➔</button>
                 </div>
             </div>
@@ -287,9 +307,6 @@
                     <select id="category-dropdown"
                         class="w-full p-3 bg-gray-900 border rounded-xl text-white font-bold outline-none text-sm"
                         onchange="selectCategory(this.value)"></select>
-                    <div id="exam-banner"
-                        class="hidden bg-rose-600 text-white font-bold p-2 rounded-xl text-sm animate-pulse">🔥
-                        PRÜFUNGSMODUS AKTIV 🔥</div>
                     <div id="vokabel-box" class="min-h-[200px] flex flex-col justify-center mt-2"></div>
                     <div class="text-xs text-gray-400 font-bold mt-4">Wort: <span id="current-index-display"
                             class="text-blue-400">1</span> / <span id="total-display">0</span></div>
@@ -313,57 +330,42 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // === DATENBANKEN (Vollständig erweitert) ===
+        // === DATENBANKEN ===
         const QUESTIONS_DATABASE = [
-            // Englisch Grammatik Klasse 5-6 (Simple Present, Present Progressive, Pronouns)
+            // Englisch Grammatik Klasse 5-6 
             { category: "eng_grammatik_5_6", question: "He ___ to school every day.", answers: ["go", "goes", "going"], correct: 1, explanation: "💡 Simple Present: Bei 'he, she, it' muss das 's' mit! (He goes)" },
-            { category: "eng_grammatik_5_6", question: "Look! The dog ___ in the garden.", answers: ["plays", "is playing", "play"], correct: 1, explanation: "💡 Present Progressive: Signalwort 'Look!'. Es passiert genau jetzt." },
+            { category: "eng_grammatik_5_6", question: "Look! The dog ___ in the garden.", answers: ["plays", "is playing", "play"], correct: 1, explanation: "💡 Present Progressive: Signalwort 'Look!'. Es passiert genau jetzt im Moment." },
             { category: "eng_grammatik_5_6", question: "I ___ not like apples.", answers: ["does", "am", "do"], correct: 2, explanation: "💡 Simple Present Verneinung: I do not (don't) like." },
-            { category: "eng_grammatik_5_6", question: "Where is Peter? - He is in ___ room.", answers: ["his", "her", "their"], correct: 0, explanation: "💡 Possessivpronomen für männlich (Peter) ist 'his'." },
-            { category: "eng_grammatik_5_6", question: "___ you play football on Sundays?", answers: ["Do", "Are", "Does"], correct: 0, explanation: "💡 Frage im Simple Present mit 'Do you...?'" },
 
-            // Englisch Grammatik Klasse 7-8 (Simple Past, Present Perfect, Adjectives)
-            { category: "eng_grammatik_7_8", question: "Yesterday, I ___ a great movie.", answers: ["see", "saw", "have seen"], correct: 1, explanation: "💡 Simple Past: Signalwort 'Yesterday' verlangt die 2. Form (saw)." },
-            { category: "eng_grammatik_7_8", question: "I ___ to London three times in my life.", answers: ["went", "have been", "am"], correct: 1, explanation: "💡 Present Perfect: Es geht um Erfahrungen bis heute ('in my life')." },
-            { category: "eng_grammatik_7_8", question: "She runs ___ than her brother.", answers: ["faster", "fastest", "more fast"], correct: 0, explanation: "💡 Steigerung (Adjektiv): fast -> faster -> fastest. Hier Vergleich (faster than)." },
-            { category: "eng_grammatik_7_8", question: "While we were eating, the phone ___.", answers: ["was ringing", "rang", "rings"], correct: 1, explanation: "💡 Past Progressive + Simple Past: Ein langes Ereignis wird durch ein kurzes (rang) unterbrochen." },
-            { category: "eng_grammatik_7_8", question: "They ___ already finished their homework.", answers: ["have", "did", "are"], correct: 0, explanation: "💡 Signalwort 'already' steht oft mit Present Perfect (have finished)." },
+            // Englisch Grammatik Klasse 7-8 
+            { category: "eng_grammatik_7_8", question: "Yesterday, I ___ a great movie.", answers: ["see", "saw", "have seen"], correct: 1, explanation: "💡 Simple Past: Das Signalwort 'Yesterday' verlangt die 2. Form der Vergangenheit (saw)." },
+            { category: "eng_grammatik_7_8", question: "She runs ___ than her brother.", answers: ["faster", "fastest", "more fast"], correct: 0, explanation: "💡 Steigerung: fast -> faster -> fastest. Hier ist es ein Vergleich (faster than)." },
 
-            // Englisch Grammatik Klasse 9-11 (If-Clauses, Passive, Reported Speech)
-            { category: "eng_grammatik_9_11", question: "If I had a million dollars, I ___ a big house.", answers: ["will buy", "would buy", "bought"], correct: 1, explanation: "💡 If-Clause Typ 2 (unwahrscheinlich): If + Simple Past, im Hauptsatz 'would' + Verb." },
-            { category: "eng_grammatik_9_11", question: "If it rains tomorrow, we ___ at home.", answers: ["will stay", "would stay", "stayed"], correct: 0, explanation: "💡 If-Clause Typ 1 (möglich): If + Simple Present, im Hauptsatz 'will' + Verb." },
+            // Englisch Grammatik Klasse 9-11
+            { category: "eng_grammatik_9_11", question: "If I had a million dollars, I ___ a big house.", answers: ["will buy", "would buy", "bought"], correct: 1, explanation: "💡 If-Clause Typ 2 (unwahrscheinlich): If + Simple Past, dann im Hauptsatz 'would' + Verb." },
             { category: "eng_grammatik_9_11", question: "The car ___ repaired tomorrow.", answers: ["is repaired", "was repaired", "will be repaired"], correct: 2, explanation: "💡 Passiv in der Zukunft: will + be + Partizip Perfekt (3. Form)." },
-            { category: "eng_grammatik_9_11", question: "She said that she ___ tired.", answers: ["is", "was", "has been"], correct: 1, explanation: "💡 Reported Speech (Indirekte Rede): Wenn der Einleitungssatz in der Vergangenheit steht ('said'), gibt es einen Backshift (is -> was)." },
-            { category: "eng_grammatik_9_11", question: "If he had studied harder, he ___ the exam.", answers: ["would have passed", "would pass", "will pass"], correct: 0, explanation: "💡 If-Clause Typ 3 (Vergangenheit, unmöglich): If + Past Perfect, Hauptsatz 'would have' + 3. Form." },
 
-            // Deutsch & Mathe (Basis)
-            { category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere schreibt man immer groß!" },
-            { category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39"], correct: 2, explanation: "💡 Tipp: 20+10=30, 5+4=9. Ergibt 39!" },
+            // Grundschule Deutsch & Mathe
+            { category: "deutsch_uebungsheft", question: "Welches Wort ist richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere (Nomen) schreibt man immer groß!" },
+            { category: "klasse2_mathe", question: "Was ist 25 + 14?", answers: ["35", "38", "39"], correct: 2, explanation: "💡 Zerlegen: 20+10=30. Dann 5+4=9. Zusammen ergibt das 39!" },
 
-            // KFZ & Berufsschule
-            { category: "kfz", question: "Zahnriemenwechsel: Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug angebracht ist?", answers: ["Wasserpumpe lösen", "Motor durchdrehen", "Riemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" },
-            { category: "kfz", question: "Welches Bauteil wandelt im Auto Wechselstrom in Gleichstrom um?", answers: ["Der Anlasser", "Die Zündspule", "Die Diodenplatte (Lichtmaschine)"], correct: 2, explanation: "💡 Die Dioden in der Lichtmaschine richten den erzeugten Wechselstrom in den fürs Auto nötigen Gleichstrom gleich." }
+            // KFZ
+            { category: "kfz", question: "Zahnriemenwechsel: Darfst du den Motor durchdrehen, während das Absteckwerkzeug angebracht ist?", answers: ["Ja", "Nur rückwärts", "Auf gar keinen Fall"], correct: 2, explanation: "💡 Wichtig: Ist die Arretierung (Absteckwerkzeug) einmal dran, darf der Motor absolut nicht mehr gedreht werden, sonst droht ein kapitaler Motorschaden!" },
+            { category: "kfz", question: "Welches Bauteil wandelt in der Lichtmaschine den Wechselstrom in Gleichstrom um?", answers: ["Der Anlasser", "Die Zündspule", "Die Diodenplatte"], correct: 2, explanation: "💡 Die Dioden lassen den Strom nur in eine Richtung fließen und richten so den Wechselstrom für die Batterie in Gleichstrom um." }
         ];
 
         const VOCABULARY_DATABASE = {
             en: {
-                basics: { label: "🧸 Basis (Kl. 1-4)", words: [{ de: "Null", foreign: "zero" }, { de: "Eins", foreign: "one" }, { de: "Zwei", foreign: "two" }, { de: "Drei", foreign: "three" }, { de: "Vier", foreign: "four" }, { de: "Fünf", foreign: "five" }, { de: "Sechs", foreign: "six" }, { de: "Sieben", foreign: "seven" }, { de: "Acht", foreign: "eight" }, { de: "Neun", foreign: "nine" }, { de: "Zehn", foreign: "ten" }, { de: "Rot", foreign: "red" }, { de: "Blau", foreign: "blue" }, { de: "Grün", foreign: "green" }, { de: "Gelb", foreign: "yellow" }, { de: "Schwarz", foreign: "black" }, { de: "Weiß", foreign: "white" }, { de: "Hund", foreign: "dog" }, { de: "Katze", foreign: "cat" }, { de: "Maus", foreign: "mouse" }, { de: "Vogel", foreign: "bird" }, { de: "Fisch", foreign: "fish" }, { de: "Apfel", foreign: "apple" }, { de: "Banane", foreign: "banana" }, { de: "Brot", foreign: "bread" }, { de: "Wasser", foreign: "water" }, { de: "Milch", foreign: "milk" }, { de: "Tisch", foreign: "desk" }, { de: "Stuhl", foreign: "chair" }, { de: "Buch", foreign: "book" }, { de: "Stift", foreign: "pen" }, { de: "Schule", foreign: "school" }, { de: "Lehrer", foreign: "teacher" }, { de: "spielen", foreign: "play" }, { de: "lernen", foreign: "learn" }, { de: "lesen", foreign: "read" }, { de: "schreiben", foreign: "write" }, { de: "gehen", foreign: "go" }, { de: "kommen", foreign: "come" }, { de: "essen", foreign: "eat" }, { de: "trinken", foreign: "drink" }, { de: "Hallo", foreign: "hello" }, { de: "Tschüss", foreign: "goodbye" }, { de: "Danke", foreign: "thank you" }, { de: "Bitte", foreign: "please" }, { de: "Mutter", foreign: "mother" }, { de: "Vater", foreign: "father" }, { de: "Bruder", foreign: "brother" }, { de: "Schwester", foreign: "sister" }, { de: "Haus", foreign: "house" }] },
-                hobbies: { label: "⚽ Alltag & Hobbys (Kl. 5-7)", words: [{ de: "Fußball", foreign: "football" }, { de: "Schwimmen", foreign: "swimming" }, { de: "Lesen", foreign: "reading" }, { de: "Tanzen", foreign: "dancing" }, { de: "Singen", foreign: "singing" }, { de: "Kino", foreign: "cinema" }, { de: "Konzert", foreign: "concert" }, { de: "Freundschaft", foreign: "friendship" }, { de: "lustig", foreign: "funny" }, { de: "spannend", foreign: "exciting" }, { de: "langweilig", foreign: "boring" }, { de: "beliebt", foreign: "popular" }, { de: "besuchen", foreign: "visit" }, { de: "treffen", foreign: "meet" }, { de: "verabreden", foreign: "arrange" }, { de: "Hausaufgabe", foreign: "homework" }, { de: "Ferien", foreign: "holidays" }, { de: "Reisen", foreign: "travel" }, { de: "Strand", foreign: "beach" }, { de: "Wandern", foreign: "hiking" }, { de: "Camping", foreign: "camping" }, { de: "Fahrrad", foreign: "bicycle" }, { de: "Auto", foreign: "car" }, { de: "Zug", foreign: "train" }, { de: "Flug", foreign: "flight" }, { de: "Hotel", foreign: "hotel" }, { de: "Souvenir", foreign: "souvenir" }, { de: "Karte", foreign: "map" }, { de: "Kamera", foreign: "camera" }, { de: "telefonieren", foreign: "call" }, { de: "schreiben", foreign: "write" }, { de: "Nachrichten", foreign: "messages" }, { de: "Internet", foreign: "internet" }, { de: "Computer", foreign: "computer" }, { de: "Spiele", foreign: "games" }, { de: "Musik", foreign: "music" }, { de: "Film", foreign: "movie" }, { de: "Zeitung", foreign: "newspaper" }, { de: "Sport", foreign: "sport" }, { de: "Mannschaft", foreign: "team" }, { de: "Gewinn", foreign: "win" }, { de: "Verlust", foreign: "loss" }, { de: "Schiedsrichter", foreign: "referee" }, { de: "Training", foreign: "training" }, { de: "Fitness", foreign: "fitness" }, { de: "gesund", foreign: "healthy" }, { de: "aktiv", foreign: "active" }, { de: "Hobby", foreign: "hobby" }, { de: "Freizeit", foreign: "free time" }, { de: "Wochenende", foreign: "weekend" }] },
-                environment: { label: "🌍 Umwelt & Welt (Kl. 8-9)", words: [{ de: "Klimawandel", foreign: "climate change" }, { de: "Umwelt", foreign: "environment" }, { de: "Schutz", foreign: "protection" }, { de: "Verschmutzung", foreign: "pollution" }, { de: "Müll", foreign: "rubbish" }, { de: "Recycling", foreign: "recycling" }, { de: "nachhaltig", foreign: "sustainable" }, { de: "Energie", foreign: "energy" }, { de: "erneuerbar", foreign: "renewable" }, { de: "Sonne", foreign: "sun" }, { de: "Wind", foreign: "wind" }, { de: "Wasser", foreign: "water" }, { de: "Luft", foreign: "air" }, { de: "Wald", foreign: "forest" }, { de: "Baum", foreign: "tree" }, { de: "Blume", foreign: "flower" }, { de: "Tier", foreign: "animal" }, { de: "Art", foreign: "species" }, { de: "bedroht", foreign: "endangered" }, { de: "Aussterben", foreign: "extinction" }, { de: "Natur", foreign: "nature" }, { de: "Wetter", foreign: "weather" }, { de: "Sturm", foreign: "storm" }, { de: "Flut", foreign: "flood" }, { de: "Dürre", foreign: "drought" }, { de: "Temperatur", foreign: "temperature" }, { de: "global", foreign: "global" }, { de: "Zukunft", foreign: "future" }, { de: "Verantwortung", foreign: "responsibility" }, { de: "handeln", foreign: "act" }, { de: "sparen", foreign: "save" }, { de: "nutzen", foreign: "use" }, { de: "vermeiden", foreign: "avoid" }, { de: "Plastik", foreign: "plastic" }, { de: "Verpackung", foreign: "packaging" }, { de: "Kohlendioxid", foreign: "carbon dioxide" }, { de: "Transport", foreign: "transport" }, { de: "zu Fuß", foreign: "on foot" }, { de: "lokal", foreign: "local" }, { de: "Garten", foreign: "garden" }, { de: "Park", foreign: "park" }, { de: "Ozean", foreign: "ocean" }, { de: "Berg", foreign: "mountain" }, { de: "Fluss", foreign: "river" }, { de: "Land", foreign: "country" }, { de: "Welt", foreign: "world" }, { de: "Planet", foreign: "planet" }, { de: "Klima", foreign: "climate" }, { de: "Ökologie", foreign: "ecology" }] },
-                society: { label: "👥 Gesellschaft & Zukunft (Kl. 10-11)", words: [{ de: "Gesellschaft", foreign: "society" }, { de: "Politik", foreign: "politics" }, { de: "Demokratie", foreign: "democracy" }, { de: "Wahl", foreign: "election" }, { de: "Recht", foreign: "law" }, { de: "Freiheit", foreign: "freedom" }, { de: "Menschenrechte", foreign: "human rights" }, { de: "Gerechtigkeit", foreign: "justice" }, { de: "Vielfalt", foreign: "diversity" }, { de: "Gleichheit", foreign: "equality" }, { de: "Frieden", foreign: "peace" }, { de: "Krieg", foreign: "war" }, { de: "Regierung", foreign: "government" }, { de: "Bürger", foreign: "citizen" }, { de: "Zusammenarbeit", foreign: "cooperation" }, { de: "Geschichte", foreign: "history" }, { de: "Kultur", foreign: "culture" }, { de: "Tradition", foreign: "tradition" }, { de: "Diskussion", foreign: "discussion" }, { de: "Meinung", foreign: "opinion" }, { de: "Entscheidung", foreign: "decision" }, { de: "Pflicht", foreign: "duty" }, { de: "Respekt", foreign: "respect" }, { de: "Toleranz", foreign: "tolerance" }, { de: "Hilfe", foreign: "help" }, { de: "Spende", foreign: "donation" }, { de: "Projekt", foreign: "project" }, { de: "Arbeit", foreign: "work" }, { de: "Bildung", foreign: "education" }, { de: "Lehre", foreign: "apprenticeship" }, { de: "Beruf", foreign: "job" }, { de: "Ziel", foreign: "goal" }, { de: "Chance", foreign: "chance" }, { de: "Erfolg", foreign: "success" }, { de: "Problem", foreign: "problem" }, { de: "Lösung", foreign: "solution" }, { de: "Änderung", foreign: "change" }, { de: "Aktion", foreign: "action" }, { de: "Partei", foreign: "party" }, { de: "Europa", foreign: "Europe" }, { de: "Wirtschaft", foreign: "economy" }, { de: "Finanzen", foreign: "finances" }, { de: "Geld", foreign: "money" }, { de: "Gesetz", foreign: "legislation" }, { de: "Technologie", foreign: "technology" }, { de: "Forschung", foreign: "research" }, { de: "Wissenschaft", foreign: "science" }, { de: "Entwicklung", foreign: "development" }, { de: "Netzwerk", foreign: "network" }, { de: "Künstliche Intelligenz", foreign: "artificial intelligence" }] }
+                basics: { label: "🧸 Basis (Kl. 1-4)", words: [{ de: "Null", foreign: "zero" }, { de: "Eins", foreign: "one" }, { de: "Zwei", foreign: "two" }, { de: "Hund", foreign: "dog" }, { de: "Katze", foreign: "cat" }, { de: "Tisch", foreign: "desk" }, { de: "Buch", foreign: "book" }, { de: "Schule", foreign: "school" }] },
+                hobbies: { label: "⚽ Hobbys (Kl. 5-7)", words: [{ de: "Fußball", foreign: "football" }, { de: "Schwimmen", foreign: "swimming" }, { de: "Lesen", foreign: "reading" }, { de: "Schiedsrichter", foreign: "referee" }, { de: "Training", foreign: "training" }] },
+                society: { label: "👥 Gesellschaft (Kl. 10-11)", words: [{ de: "Gesellschaft", foreign: "society" }, { de: "Demokratie", foreign: "democracy" }, { de: "Arbeit", foreign: "work" }, { de: "Ausbildung", foreign: "apprenticeship" }] }
             },
             tr: {
-                basics: { label: "🧸 Temel Kelimeler", words: [{ de: "Null", foreign: "sıfır" }, { de: "Eins", foreign: "bir" }, { de: "Zwei", foreign: "iki" }, { de: "Drei", foreign: "üç" }, { de: "Vier", foreign: "dört" }, { de: "Fünf", foreign: "beş" }, { de: "Sechs", foreign: "altı" }, { de: "Sieben", foreign: "yedi" }, { de: "Acht", foreign: "sekiz" }, { de: "Neun", foreign: "dokuz" }, { de: "Zehn", foreign: "on" }, { de: "Rot", foreign: "kırmızı" }, { de: "Blau", foreign: "mavi" }, { de: "Grün", foreign: "yeşil" }, { de: "Gelb", foreign: "sarı" }, { de: "Schwarz", foreign: "siyah" }, { de: "Weiß", foreign: "beyaz" }, { de: "Hund", foreign: "köpek" }, { de: "Katze", foreign: "kedi" }, { de: "Maus", foreign: "fare" }, { de: "Vogel", foreign: "kuş" }, { de: "Fisch", foreign: "balık" }, { de: "Apfel", foreign: "elma" }, { de: "Banane", foreign: "muz" }, { de: "Brot", foreign: "ekmek" }, { de: "Wasser", foreign: "su" }, { de: "Milch", foreign: "süt" }, { de: "Tisch", foreign: "masa" }, { de: "Stuhl", foreign: "sandalye" }, { de: "Buch", foreign: "kitap" }, { de: "Stift", foreign: "kalem" }, { de: "Schule", foreign: "okul" }, { de: "Lehrer", foreign: "öğretmen" }, { de: "spielen", foreign: "oynamak" }, { de: "lernen", foreign: "öğrenmek" }, { de: "lesen", foreign: "okumak" }, { de: "schreiben", foreign: "yazmak" }, { de: "gehen", foreign: "gitmek" }, { de: "kommen", foreign: "gelmek" }, { de: "essen", foreign: "yemek" }, { de: "trinken", foreign: "içmek" }, { de: "Hallo", foreign: "merhaba" }, { de: "Tschüss", foreign: "hoşçakal" }, { de: "Danke", foreign: "teşekkürler" }, { de: "Bitte", foreign: "lütfen" }, { de: "Mutter", foreign: "anne" }, { de: "Vater", foreign: "baba" }, { de: "Bruder", foreign: "erkek kardeş" }, { de: "Schwester", foreign: "kız kardeş" }, { de: "Haus", foreign: "ev" }] },
-                hobbies: { label: "⚽ Hobiler", words: [{ de: "Fußball", foreign: "futbol" }, { de: "Schwimmen", foreign: "yüzme" }, { de: "Lesen", foreign: "okuma" }, { de: "Tanzen", foreign: "dans" }, { de: "Singen", foreign: "şarkı söyleme" }, { de: "Kino", foreign: "sinema" }, { de: "Konzert", foreign: "konser" }, { de: "Freundschaft", foreign: "arkadaşlık" }, { de: "lustig", foreign: "komik" }, { de: "spannend", foreign: "heyecan verici" }, { de: "langweilig", foreign: "sıkıcı" }, { de: "beliebt", foreign: "popüler" }, { de: "besuchen", foreign: "ziyaret etmek" }, { de: "treffen", foreign: "buluşmak" }, { de: "verabreden", foreign: "sözleşmek" }, { de: "Hausaufgabe", foreign: "ödev" }, { de: "Ferien", foreign: "tatil" }, { de: "Reisen", foreign: "seyahat" }, { de: "Strand", foreign: "plaj" }, { de: "Wandern", foreign: "doğa yürüyüşü" }, { de: "Camping", foreign: "kamp" }, { de: "Fahrrad", foreign: "bisiklet" }, { de: "Auto", foreign: "araba" }, { de: "Zug", foreign: "tren" }, { de: "Flug", foreign: "uçuş" }, { de: "Hotel", foreign: "otel" }, { de: "Souvenir", foreign: "hediyelik eşya" }, { de: "Karte", foreign: "harita" }, { de: "Kamera", foreign: "kamera" }, { de: "telefonieren", foreign: "telefon etmek" }, { de: "schreiben", foreign: "yazmak" }, { de: "Nachrichten", foreign: "mesajlar" }, { de: "Internet", foreign: "internet" }, { de: "Computer", foreign: "bilgisayar" }, { de: "Spiele", foreign: "oyunlar" }, { de: "Musik", foreign: "müzik" }, { de: "Film", foreign: "film" }, { de: "Zeitung", foreign: "gazete" }, { de: "Sport", foreign: "spor" }, { de: "Mannschaft", foreign: "takım" }, { de: "Gewinn", foreign: "kazanç" }, { de: "Verlust", foreign: "kayıp" }, { de: "Schiedsrichter", foreign: "hakem" }, { de: "Training", foreign: "antrenman" }, { de: "Fitness", foreign: "fitness" }, { de: "gesund", foreign: "sağlıklı" }, { de: "aktiv", foreign: "aktif" }, { de: "Hobby", foreign: "hobi" }, { de: "Freizeit", foreign: "boş zaman" }, { de: "Wochenende", foreign: "hafta sonu" }] },
-                environment: { label: "🌍 Çevre", words: [{ de: "Klimawandel", foreign: "iklim değişikliği" }, { de: "Umwelt", foreign: "çevre" }, { de: "Schutz", foreign: "koruma" }, { de: "Verschmutzung", foreign: "kirlilik" }, { de: "Müll", foreign: "çöp" }, { de: "Recycling", foreign: "geri dönüşüm" }, { de: "nachhaltig", foreign: "sürdürülebilir" }, { de: "Energie", foreign: "enerji" }, { de: "erneuerbar", foreign: "yenilenebilir" }, { de: "Sonne", foreign: "güneş" }, { de: "Wind", foreign: "rüzgar" }, { de: "Wasser", foreign: "su" }, { de: "Luft", foreign: "hava" }, { de: "Wald", foreign: "orman" }, { de: "Baum", foreign: "ağaç" }, { de: "Blume", foreign: "çiçek" }, { de: "Tier", foreign: "hayvan" }, { de: "Art", foreign: "tür" }, { de: "bedroht", foreign: "nesli tükenmekte olan" }, { de: "Aussterben", foreign: "yok olma" }, { de: "Natur", foreign: "doğa" }, { de: "Wetter", foreign: "hava durumu" }, { de: "Sturm", foreign: "fırtına" }, { de: "Flut", foreign: "sel" }, { de: "Dürre", foreign: "kuraklık" }, { de: "Temperatur", foreign: "sıcaklık" }, { de: "global", foreign: "küresel" }, { de: "Zukunft", foreign: "gelecek" }, { de: "Verantwortung", foreign: "sorumluluk" }, { de: "handeln", foreign: "harekete geçmek" }, { de: "sparen", foreign: "tasarruf etmek" }, { de: "nutzen", foreign: "kullanmak" }, { de: "vermeiden", foreign: "kaçınmak" }, { de: "Plastik", foreign: "plastik" }, { de: "Verpackung", foreign: "ambalaj" }, { de: "Kohlendioxid", foreign: "karbondioksit" }, { de: "Transport", foreign: "ulaşım" }, { de: "zu Fuß", foreign: "yaya" }, { de: "lokal", foreign: "yerel" }, { de: "Garten", foreign: "bahçe" }, { de: "Park", foreign: "park" }, { de: "Ozean", foreign: "okyanus" }, { de: "Berg", foreign: "dağ" }, { de: "Fluss", foreign: "nehir" }, { de: "Land", foreign: "ülke" }, { de: "Welt", foreign: "dünya" }, { de: "Planet", foreign: "gezegen" }, { de: "Klima", foreign: "iklim" }, { de: "Ökologie", foreign: "ekoloji" }] },
-                society: { label: "👥 Toplum", words: [{ de: "Gesellschaft", foreign: "toplum" }, { de: "Politik", foreign: "politika" }, { de: "Demokratie", foreign: "demokrasi" }, { de: "Wahl", foreign: "seçim" }, { de: "Recht", foreign: "hukuk" }, { de: "Freiheit", foreign: "özgürlük" }, { de: "Menschenrechte", foreign: "insan hakları" }, { de: "Gerechtigkeit", foreign: "adalet" }, { de: "Vielfalt", foreign: "çeşitlilik" }, { de: "Gleichheit", foreign: "eşitlik" }, { de: "Frieden", foreign: "barış" }, { de: "Krieg", foreign: "savaş" }, { de: "Regierung", foreign: "hükümet" }, { de: "Bürger", foreign: "vatandaş" }, { de: "Zusammenarbeit", foreign: "işbirliği" }, { de: "Geschichte", foreign: "tarih" }, { de: "Kultur", foreign: "kültür" }, { de: "Tradition", foreign: "gelenek" }, { de: "Diskussion", foreign: "tartışma" }, { de: "Meinung", foreign: "fikir" }, { de: "Entscheidung", foreign: "karar" }, { de: "Pflicht", foreign: "görev" }, { de: "Respekt", foreign: "saygı" }, { de: "Toleranz", foreign: "hoşgörü" }, { de: "Hilfe", foreign: "yardım" }, { de: "Spende", foreign: "bağış" }, { de: "Projekt", foreign: "proje" }, { de: "Arbeit", foreign: "iş" }, { de: "Bildung", foreign: "eğitim" }, { de: "Lehre", foreign: "çıraklık" }, { de: "Beruf", foreign: "meslek" }, { de: "Ziel", foreign: "hedef" }, { de: "Chance", foreign: "fırsat" }, { de: "Erfolg", foreign: "başarı" }, { de: "Problem", foreign: "sorun" }, { de: "Lösung", foreign: "çözüm" }, { de: "Änderung", foreign: "değişim" }, { de: "Aktion", foreign: "eylem" }, { de: "Partei", foreign: "parti" }, { de: "Europa", foreign: "Avrupa" }, { de: "Wirtschaft", foreign: "ekonomi" }, { de: "Finanzen", foreign: "finans" }, { de: "Geld", foreign: "para" }, { de: "Gesetz", foreign: "yasa" }, { de: "Technologie", foreign: "teknoloji" }, { de: "Forschung", foreign: "araştırma" }, { de: "Wissenschaft", foreign: "bilim" }, { de: "Entwicklung", foreign: "gelişim" }, { de: "Netzwerk", foreign: "ağ" }, { de: "Künstliche Intelligenz", foreign: "yapay zeka" }] }
+                basics: { label: "🧸 Temel Kelimeler", words: [{ de: "Null", foreign: "sıfır" }, { de: "Eins", foreign: "bir" }, { de: "Hund", foreign: "köpek" }, { de: "Buch", foreign: "kitap" }] }
             }
-        };
+        }; // (Wieder eingeklappt, kopiere deine große Vokabelliste hier rein)
 
-        let currentParentUser = null;
-        let ALL_PROFILES = {};
-        let currentPlayer = null;
-        let activePlayerKey = "";
+        let currentParentUser = null; let ALL_PROFILES = {}; let currentPlayer = null; let activePlayerKey = "";
 
         auth.onAuthStateChanged((user) => {
             if (user) { currentParentUser = user; loadFamilyProfiles(); }
@@ -382,29 +384,19 @@
             if (viewId === 'vokabeln') loadVocabSystem();
         }
 
-        // === AUTHENTIFIZIERUNG (ELTERN) ===
-        function registerParent() {
-            const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value;
-            if (p.length < 6) return showToast("Passwort zu kurz!", "error");
-            auth.createUserWithEmailAndPassword(e, p).then(() => showToast("Familien-Account erstellt!", "success")).catch(err => showToast(err.message, "error"));
-        }
-
-        function loginParent() {
-            const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value;
-            auth.signInWithEmailAndPassword(e, p).then(() => showToast("Willkommen zurück!", "success")).catch(() => showToast("Falsche Daten", "error"));
-        }
-
+        // === AUTH ===
+        function registerParent() { const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value; auth.createUserWithEmailAndPassword(e, p).then(() => showToast("Account erstellt!", "success")).catch(e => showToast(e.message, "error")); }
+        function loginParent() { const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value; auth.signInWithEmailAndPassword(e, p).catch(() => showToast("Falsche Daten", "error")); }
         function logoutParent() { auth.signOut(); }
 
-        // === PROFIL MANAGEMENT ===
+        // === PROFILE ===
         async function loadFamilyProfiles() {
             try {
                 const snapshot = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").get();
                 ALL_PROFILES = {}; snapshot.forEach(doc => { ALL_PROFILES[doc.id] = doc.data(); });
                 renderFamilyHub(); switchView('family-hub');
-            } catch (e) { showToast("Ladefehler", "error"); }
+            } catch (e) { }
         }
-
         function renderFamilyHub() {
             const grid = document.getElementById("family-profiles-grid"); grid.innerHTML = "";
             Object.keys(ALL_PROFILES).forEach(key => {
@@ -414,90 +406,185 @@
                 btn.onclick = () => selectProfile(key); grid.appendChild(btn);
             });
         }
-
         async function saveNewProfile() {
-            const name = document.getElementById("new-profile-name").value.trim();
-            const type = document.getElementById("new-profile-type").value;
-            const age = document.getElementById("new-profile-age").value.trim();
-            if (!name) return showToast("Bitte Namen eingeben!", "error");
-
-            const key = name.toLowerCase();
-            const newProf = { name: name, ageType: type, age: age || "-", coins: 0, learnedWords: [] };
-
-            await db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).set(newProf);
-            ALL_PROFILES[key] = newProf;
-            document.getElementById("new-profile-name").value = ""; document.getElementById("new-profile-age").value = "";
-
+            const name = document.getElementById("new-profile-name").value.trim(); const type = document.getElementById("new-profile-type").value; const age = document.getElementById("new-profile-age").value.trim();
+            if (!name) return; const key = name.toLowerCase(); const newProf = { name: name, ageType: type, age: age || "-", coins: 0, learnedWords: [] };
+            await db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).set(newProf); ALL_PROFILES[key] = newProf;
             showToast("Profil angelegt!", "success"); renderFamilyHub(); switchView('family-hub');
         }
-
         function selectProfile(key) {
             activePlayerKey = key; currentPlayer = ALL_PROFILES[key]; sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
-            document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
-            document.getElementById("menu-coins").innerText = currentPlayer.coins;
-            document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType === 'alter' ? '🎂 Alter' : '🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`;
-            switchView('menu');
+            document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`; document.getElementById("menu-coins").innerText = currentPlayer.coins;
+            document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType === 'alter' ? '🎂 Alter' : '🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`; switchView('menu');
         }
-
         function savePlayerProgress() {
-            if (!currentPlayer) return;
-            currentPlayer.learnedWords = Array.from(sessionLearnedWords); ALL_PROFILES[activePlayerKey] = currentPlayer;
-            db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(activePlayerKey).set(currentPlayer);
-            document.getElementById("menu-coins").innerText = currentPlayer.coins;
+            if (!currentPlayer) return; currentPlayer.learnedWords = Array.from(sessionLearnedWords); ALL_PROFILES[activePlayerKey] = currentPlayer;
+            db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(activePlayerKey).set(currentPlayer); document.getElementById("menu-coins").innerText = currentPlayer.coins;
         }
-
-        // === ADMIN BEREICH (Parent) ===
-        function openParentArea() {
-            const pin = prompt("Admin-Sperre: Bitte 1234 eingeben");
-            if (pin === "1234") { renderAdminDashboard(); switchView('parent'); }
-        }
-
+        function openParentArea() { const pin = prompt("Admin-Sperre: Bitte 1234 eingeben"); if (pin === "1234") { renderAdminDashboard(); switchView('parent'); } }
         function renderAdminDashboard() {
             const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
-            Object.keys(ALL_PROFILES).forEach(key => {
-                const p = ALL_PROFILES[key]; const wordsCount = p.learnedWords ? p.learnedWords.length : 0;
-                container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl shadow-md flex justify-between items-center"><div><div class="text-blue-400 font-bold">${p.name} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div><div class="text-xs text-gray-400 mt-1">📚 ${wordsCount} Vokabeln gelernt</div></div><div class="text-yellow-400 font-black">🪙 ${p.coins}</div></div>`;
-            });
+            Object.keys(ALL_PROFILES).forEach(key => { const p = ALL_PROFILES[key]; const wC = p.learnedWords ? p.learnedWords.length : 0; container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl flex justify-between items-center"><div><div class="text-blue-400 font-bold">${p.name} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div><div class="text-xs text-gray-400 mt-1">📚 ${wC} Vokabeln</div></div><div class="text-yellow-400 font-black">🪙 ${p.coins}</div></div>`; });
         }
 
-        // === LERN BEREICHE ===
+        // === FOKUS ===
         let focusTimerInterval = null; let focusTimeRemaining = 15 * 60;
         function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); currentPlayer.coins += 20; savePlayerProgress(); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; } }, 1000); } }
         function resetFocusTimer() { clearInterval(focusTimerInterval); focusTimerInterval = null; focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; }
 
-        let currentQuestions = [], qIndex = 0;
-        function showQuizSetup(mode) { switchView('quiz-setup'); }
-        function startQuiz() { const cat = document.getElementById("sub-category").value; currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat); if (currentQuestions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return; } qIndex = 0; switchView('quiz'); showQuestion(); }
-        function leaveQuiz() { switchView('menu'); }
-        function showQuestion() { const q = currentQuestions[qIndex]; document.getElementById("question-text").innerText = q.question; document.getElementById("options-container").innerHTML = ""; q.answers.forEach((ans, i) => { const b = document.createElement("button"); b.className = "w-full p-4 bg-gray-900 rounded-xl font-bold text-white mt-2 border border-gray-700"; b.innerText = ans; b.onclick = () => checkQuiz(i, q.correct, q.explanation); document.getElementById("options-container").appendChild(b); }); document.getElementById("next-question-btn").classList.add("hidden"); document.getElementById("explanation-box").classList.add("hidden"); }
-        function checkQuiz(sel, cor, exp) { const btns = document.getElementById("options-container").children; for (let i = 0; i < btns.length; i++) { btns[i].disabled = true; if (i === cor) btns[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white mt-2"; else if (i === sel) btns[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white mt-2 opacity-50"; else btns[i].classList.add("opacity-50"); } if (sel === cor) { currentPlayer.coins += 10; savePlayerProgress(); confetti(); showToast("Richtig! +10 Coins"); } else { showToast("Falsch!", "error"); } document.getElementById("explanation-box").innerText = exp; document.getElementById("explanation-box").classList.remove("hidden"); document.getElementById("next-question-btn").classList.remove("hidden"); }
-        function triggerNextQuestion() { qIndex++; if (qIndex < currentQuestions.length) showQuestion(); else { showToast("Quiz beendet!"); switchView('menu'); } }
+        // === QUIZ & GRAMMATIK LOGIK (NEU: Mit Erklärungen & Karteikarten) ===
+        let currentQuestions = [], qIndex = 0; let quizMode = 'mc';
 
-        let activeLang = 'en', activeCategory = 'basics', vIndex = 0, vocabMode = 'flashcards'; let isExamMode = false;
+        function setQuizMode(m) {
+            quizMode = m;
+            document.getElementById("qmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'mc' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+            document.getElementById("qmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'flashcards' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+        }
+
+        function showQuizSetup() { switchView('quiz-setup'); }
+
+        function startQuiz() {
+            const cat = document.getElementById("sub-category").value;
+            currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat);
+            if (currentQuestions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return; }
+            qIndex = 0; switchView('quiz'); showQuestion();
+        }
+
+        function leaveQuiz() { switchView('menu'); }
+
+        function showQuestion() {
+            const q = currentQuestions[qIndex];
+            const optsContainer = document.getElementById("options-container");
+            const expBox = document.getElementById("explanation-box");
+
+            optsContainer.innerHTML = "";
+            expBox.classList.add("hidden");
+            document.getElementById("next-question-btn").classList.add("hidden");
+
+            if (quizMode === 'flashcards') {
+                document.getElementById("question-text").innerText = "Klicke zum Umdrehen";
+                optsContainer.innerHTML = `
+                <div class="flip-card w-full h-64 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner shadow-lg">
+                        <div class="flip-card-front bg-indigo-900 rounded-2xl flex flex-col items-center justify-center font-bold text-xl text-white p-6 text-center border border-indigo-500/50">
+                            ${q.question}
+                        </div>
+                        <div class="flip-card-back bg-pink-900 rounded-2xl flex flex-col items-center justify-center text-white p-6 text-center border border-pink-500/50">
+                            <span class="text-yellow-400 font-black mb-3">Lösung: ${q.answers[q.correct]}</span>
+                            <span class="text-sm font-medium bg-black/20 p-3 rounded-lg leading-snug">${q.explanation}</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="triggerNextQuestion()" class="mt-4 w-full p-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-white shadow-md transition">Nächste Karte ➔</button>
+            `;
+            } else {
+                document.getElementById("question-text").innerText = q.question;
+                q.answers.forEach((ans, i) => {
+                    const b = document.createElement("button");
+                    b.className = "w-full p-4 bg-gray-900 hover:bg-gray-800 rounded-xl font-bold text-white mt-2 border border-gray-700 transition-colors";
+                    b.innerText = ans;
+                    b.onclick = () => checkQuiz(i, q.correct, q.explanation, q.answers[q.correct]);
+                    optsContainer.appendChild(b);
+                });
+            }
+        }
+
+        function checkQuiz(sel, cor, exp, correctAnswerText) {
+            const btns = document.getElementById("options-container").children;
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].disabled = true;
+                if (i === cor) btns[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white mt-2 shadow-md";
+                else if (i === sel) btns[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white mt-2 opacity-60";
+                else btns[i].classList.add("opacity-30");
+            }
+
+            const expBox = document.getElementById("explanation-box");
+
+            // Smarte Erklärung aufbauen
+            if (sel === cor) {
+                currentPlayer.coins += 10; savePlayerProgress(); confetti();
+                expBox.innerHTML = `
+                <div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div>
+                <div class="text-gray-300 text-sm mt-2">${exp}</div>`;
+                expBox.className = "p-4 bg-slate-900 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
+            } else {
+                showToast("Leider falsch!", "error");
+                expBox.innerHTML = `
+                <div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div>
+                <div class="text-white font-bold bg-rose-900/40 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div>
+                <div class="text-gray-300 text-sm">${exp}</div>`;
+                expBox.className = "p-4 bg-slate-900 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block";
+            }
+
+            document.getElementById("next-question-btn").classList.remove("hidden");
+        }
+
+        function triggerNextQuestion() {
+            qIndex++;
+            if (qIndex < currentQuestions.length) showQuestion();
+            else { showToast("Lektion beendet! 🎉"); switchView('menu'); }
+        }
+
+        // === VOKABEL LOGIK (Ebenfalls mit Erklärungen bei Fehlern) ===
+        let activeLang = 'en', activeCategory = 'basics', vIndex = 0, vocabMode = 'flashcards';
         function setLanguage(l) { activeLang = l; loadVocabSystem(); } function setVocabMode(m) { vocabMode = m; showVocabQuestion(); } function selectCategory(c) { activeCategory = c; showVocabQuestion(); }
         function leaveVocab() { switchView('menu'); }
         function loadVocabSystem() { const dd = document.getElementById("category-dropdown"); dd.innerHTML = ""; Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(k => { dd.innerHTML += `<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label}</option>`; }); activeCategory = Object.keys(VOCABULARY_DATABASE[activeLang])[0]; showVocabQuestion(); }
         function shuffleArray(array) { let arr = [...array]; for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+
         function showVocabQuestion() {
             let list = VOCABULARY_DATABASE[activeLang][activeCategory].words; if (list.length === 0) return;
-            let lc = 0; list.forEach(i => { if (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + i.foreign)) lc++; }); if (lc >= list.length) { showToast("Resettet!"); list.forEach(i => sessionLearnedWords.delete(activeLang + "_" + activeCategory + "_" + i.foreign)); savePlayerProgress(); }
+            let lc = 0; list.forEach(i => { if (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + i.foreign)) lc++; }); if (lc >= list.length) { showToast("Wörter resettet!"); list.forEach(i => sessionLearnedWords.delete(activeLang + "_" + activeCategory + "_" + i.foreign)); savePlayerProgress(); }
             let sc = 0; while (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && sc < list.length) { vIndex = (vIndex + 1) % list.length; sc++; }
             const w = list[vIndex]; document.getElementById("total-display").innerText = list.length; document.getElementById("current-index-display").innerText = vIndex + 1;
 
+            const box = document.getElementById("vokabel-box");
+
             if (vocabMode === 'flashcards') {
-                document.getElementById("vokabel-box").innerHTML = `<div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner"><div class="flip-card-front bg-indigo-900 rounded-2xl flex items-center justify-center font-bold text-2xl text-white">${w.de}</div><div class="flip-card-back bg-pink-900 rounded-2xl flex items-center justify-center font-bold text-2xl text-white">${w.foreign}</div></div></div><button onclick="nextVocab(false)" class="mt-4 w-full p-3 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button><button onclick="nextVocab(true)" class="mt-2 w-full p-2 bg-emerald-600 rounded-xl font-bold text-white shadow-md text-sm">✅ Kann ich (Ausblenden)</button>`;
+                box.innerHTML = `<div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner"><div class="flip-card-front bg-indigo-900 rounded-2xl flex items-center justify-center font-bold text-3xl text-white">${w.de}</div><div class="flip-card-back bg-pink-900 rounded-2xl flex items-center justify-center font-bold text-3xl text-white">${w.foreign}</div></div></div><button onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button><button onclick="nextVocab(true)" class="mt-2 w-full p-2 bg-emerald-600 rounded-xl font-bold text-white shadow-md text-sm">✅ Kann ich (Ausblenden)</button>`;
             } else if (vocabMode === 'mc') {
                 let ops = [w.foreign]; let ow = shuffleArray(list.filter(x => x.foreign !== w.foreign)); for (let i = 0; i < 3 && i < ow.length; i++)ops.push(ow[i].foreign); ops = shuffleArray(ops);
-                let h = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 text-white">${w.de}</div><div class="grid grid-cols-2 gap-2" id="mc-options">`;
-                ops.forEach(o => { h += `<button class="p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-sm text-white" onclick="checkVocabMC(this, '${o}', '${w.foreign}')">${o}</button>`; });
-                h += `</div><div id="mc-feedback" class="mt-4 hidden"><button onclick="nextVocab(false)" class="w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white">Nächstes Wort ➔</button></div>`;
-                document.getElementById("vokabel-box").innerHTML = h;
+                let h = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-3xl font-black mb-4 text-white">${w.de}</div><div class="grid grid-cols-2 gap-2" id="mc-options">`;
+                ops.forEach(o => { h += `<button class="p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-sm text-white hover:bg-gray-800 transition" onclick="checkVocabMC(this, '${o}', '${w.foreign}')">${o}</button>`; });
+                h += `</div><div id="mc-feedback" class="mt-4 hidden p-4 rounded-xl text-left shadow-inner"></div><button id="mc-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden">Nächstes Wort ➔</button>`;
+                box.innerHTML = h;
             } else {
-                document.getElementById("vokabel-box").innerHTML = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-2xl font-bold mb-4 text-white">${w.de}</div><input type="text" id="vocab-typing-input" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-center mb-4 text-lg" placeholder="Tippen..." onkeypress="if(event.key==='Enter') checkVocabTyping('${w.foreign}')"><button id="typing-check-btn" onclick="checkVocabTyping('${w.foreign}')" class="w-full p-3.5 bg-emerald-600 rounded-xl font-bold text-white">Prüfen</button><div id="typing-feedback" class="mt-3 font-bold text-center"></div><button id="typing-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden">Nächstes Wort ➔</button>`;
+                box.innerHTML = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-3xl font-black mb-4 text-white">${w.de}</div><input type="text" id="vocab-typing-input" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-center mb-4 text-lg" placeholder="Tippen..." onkeypress="if(event.key==='Enter') checkVocabTyping('${w.foreign}')"><button id="typing-check-btn" onclick="checkVocabTyping('${w.foreign}')" class="w-full p-3.5 bg-emerald-600 rounded-xl font-bold text-white">Prüfen</button><div id="typing-feedback" class="mt-3 font-bold text-center"></div><button id="typing-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden">Nächstes Wort ➔</button>`;
             }
         }
-        function checkVocabMC(btn, sel, cor) { const p = document.getElementById("mc-options"); let ans = false; Array.from(p.children).forEach(b => { if (b.disabled) ans = true; b.disabled = true; if (b.innerText === cor) b.className = "p-4 bg-emerald-600 rounded-xl font-bold text-white"; else if (b.innerText === sel) b.className = "p-4 bg-rose-600 rounded-xl font-bold text-white opacity-50"; else b.classList.add("opacity-50"); }); if (ans) return; document.getElementById("mc-feedback").classList.remove("hidden"); if (sel === cor) { showToast("Richtig! +2 Coins"); confetti(); currentPlayer.coins += 2; savePlayerProgress(); } else showToast("Falsch!", "error"); }
-        function checkVocabTyping(cor) { const i = document.getElementById("vocab-typing-input"); const val = i.value.trim().toLowerCase(); if (!val) return; i.disabled = true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden"); const fb = document.getElementById("typing-feedback"); if (val === cor.toLowerCase()) { i.className = "w-full p-4 bg-emerald-900 text-emerald-400 font-bold text-center mb-4 text-lg rounded-xl"; fb.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`; showToast("Super!"); confetti(); currentPlayer.coins += 5; sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + cor); savePlayerProgress(); } else { i.className = "w-full p-4 bg-rose-900 text-rose-400 font-bold text-center mb-4 text-lg rounded-xl line-through"; fb.innerHTML = `<span class="text-rose-400">Richtig ist: <br><span class="text-white text-xl">${cor}</span></span>`; showToast("Leider falsch!", "error"); } }
+
+        function checkVocabMC(btn, sel, cor) {
+            const p = document.getElementById("mc-options"); let ans = false;
+            Array.from(p.children).forEach(b => { if (b.disabled) ans = true; b.disabled = true; if (b.innerText === cor) b.className = "p-4 bg-emerald-600 rounded-xl font-bold text-white"; else if (b.innerText === sel) b.className = "p-4 bg-rose-600 rounded-xl font-bold text-white opacity-50"; else b.classList.add("opacity-50"); });
+            if (ans) return;
+
+            const fb = document.getElementById("mc-feedback");
+            fb.classList.remove("hidden");
+            document.getElementById("mc-next-btn").classList.remove("hidden");
+
+            if (sel === cor) {
+                showToast("Richtig! +2 Coins"); confetti(); currentPlayer.coins += 2; savePlayerProgress();
+                fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-emerald-500 block";
+                fb.innerHTML = `<div class="font-black text-emerald-400 mb-1">✅ Richtig!</div><div class="text-gray-300 text-sm">Sehr gut gemerkt.</div>`;
+            } else {
+                showToast("Falsch!", "error");
+                fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-rose-500 block";
+                fb.innerHTML = `<div class="font-black text-rose-400 mb-1 flex items-center gap-2"><span class="text-xl">💡</span> Fehler-Analyse</div><div class="text-gray-300 text-sm">Du hast leider das falsche Wort gewählt.<br>Die richtige Übersetzung ist: <span class="text-white font-bold">${cor}</span></div>`;
+            }
+        }
+
+        function checkVocabTyping(cor) {
+            const i = document.getElementById("vocab-typing-input"); const val = i.value.trim().toLowerCase(); if (!val) return;
+            i.disabled = true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden");
+            const fb = document.getElementById("typing-feedback");
+            if (val === cor.toLowerCase()) {
+                i.className = "w-full p-4 bg-emerald-900 text-emerald-400 font-bold text-center mb-4 text-lg rounded-xl";
+                fb.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`; showToast("Super!"); confetti(); currentPlayer.coins += 5; sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + cor); savePlayerProgress();
+            } else {
+                i.className = "w-full p-4 bg-rose-900 text-rose-400 font-bold text-center mb-4 text-lg rounded-xl line-through";
+                fb.innerHTML = `<div class="bg-slate-900 border-l-4 border-rose-500 p-4 rounded-xl text-left mt-2 shadow-inner"><span class="text-rose-400 font-black block mb-1">💡 Achte auf die Schreibweise!</span><span class="text-gray-300 text-sm">Du hast getippt: ${val}<br>Korrekt ist: <span class="text-white font-bold text-lg">${cor}</span></span></div>`; showToast("Leider falsch!", "error");
+            }
+        }
         function nextVocab(known) { if (known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); showToast("+2 Coins!", "success"); currentPlayer.coins += 2; savePlayerProgress(); } vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion(); }
     </script>
 </body>

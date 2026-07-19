@@ -71,7 +71,6 @@
                 <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
                 
                 <div class="space-y-4">
-                    <!-- VOKABELN -->
                     <div class="bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 transition-all shadow-md" onclick="switchView('vokabeln')">
                         <div class="text-5xl">📖</div>
                         <div>
@@ -80,21 +79,11 @@
                         </div>
                     </div>
                     
-                    <!-- QUIZ-ARENA (Wiederhergestellt) -->
                     <div class="bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 transition-all shadow-md" onclick="showQuizSetup('spiel')">
                         <div class="text-5xl">🎯</div>
                         <div>
                             <h2 class="text-xl font-black text-pink-400">Quiz-Arena</h2>
                             <p class="text-xs text-gray-300">Schulwissen & Technik testen</p>
-                        </div>
-                    </div>
-
-                    <!-- FOKUS-LERNZEIT (Wiederhergestellt) -->
-                    <div class="bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 transition-all shadow-md" onclick="showQuizSetup('lernen')">
-                        <div class="text-5xl">⏳</div>
-                        <div>
-                            <h2 class="text-xl font-black text-yellow-400">Fokus-Lernzeit</h2>
-                            <p class="text-xs text-gray-300">Mit Timer lernen & Truhe freischalten</p>
                         </div>
                     </div>
                 </div>
@@ -105,12 +94,13 @@
         <div id="view-parent" class="view hidden space-y-4">
             <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2" onclick="closeParentArea()">← Zurück zum Login</button>
             <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
-                <h3 class="text-xl font-black text-rose-400 mb-2">👨‍👩‍👦 Verwaltung & Fortschritt</h3>
-                <div id="parent-stats-container" class="space-y-4 mt-4"></div>
+                <h3 class="text-xl font-black text-rose-400 mb-2">📊 Admin-Kontrollzentrum</h3>
+                <p class="text-xs text-gray-400 mb-4">Hier siehst du den Themen-Fortschritt jedes Profils.</p>
+                <div id="parent-stats-container" class="space-y-6"></div>
             </div>
         </div>
 
-        <!-- VIEW: QUIZ SETUP (Wiederhergestellt) -->
+        <!-- VIEW: QUIZ SETUP -->
         <div id="view-quiz-setup" class="view hidden space-y-4">
             <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum Hauptmenü</button>
             <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
@@ -131,7 +121,7 @@
             </div>
         </div>
 
-        <!-- VIEW: QUIZ ARENA (Wiederhergestellt) -->
+        <!-- VIEW: QUIZ ARENA -->
         <div id="view-quiz" class="view hidden space-y-4">
             <div class="flex justify-between items-center">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">← Beenden</button>
@@ -147,7 +137,6 @@
 
         <!-- VIEW: VOKABEL-TRAINER -->
         <div id="view-vokabeln" class="view hidden space-y-4">
-            <!-- Dynamischer Zurück Button -->
             <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveVocab()">← Zurück</button>
             
             <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
@@ -184,16 +173,13 @@
 </div>
 
 <script>
-    // === 01. DATENBANKEN (VOLLSTÄNDIG) ===
-    
-    // Quiz Datenbank
+    // === 01. KOMPLETTE DATENBANKEN ===
     const QUESTIONS_DATABASE = [
         { id: 3001, category: "deutsch_uebungsheft", question: "Welches Tier-Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD", "hunD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere schreibt man immer groß!" },
         { id: 2001, category: "klasse2_mathe", question: "Rechne aus: Was ist 25 + 14?", answers: ["35", "38", "39", "40"], correct: 2, explanation: "💡 Tipp: 20+10=30, 5+4=9. Ergibt 39!" },
         { id: 8302, category: "kfz", question: "Zahnriemenwechsel: Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug angebracht ist?", answers: ["Die Wasserpumpe lösen", "Den Motor an der Kurbelwelle durchdrehen", "Die Spannrolle entspannen", "Den alten Keilrippenriemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" }
     ];
 
-    // Vokabel Datenbank (Ungekürzt)
     const VOCABULARY_DATABASE = {
         en: {
             numbers: { label: "🔢 Zahlen (Kl. 1-4)", words: [{de:"Null",foreign:"zero"},{de:"Eins",foreign:"one"},{de:"Zwei",foreign:"two"},{de:"Drei",foreign:"three"},{de:"Vier",foreign:"four"},{de:"Fünf",foreign:"five"},{de:"Sechs",foreign:"six"},{de:"Sieben",foreign:"seven"},{de:"Acht",foreign:"eight"},{de:"Neun",foreign:"nine"},{de:"Zehn",foreign:"ten"}] },
@@ -217,11 +203,9 @@
     let activeLang = 'en', activeCategory = 'school', vIndex = 0, vocabMode = 'flashcards'; 
     let isExamMode = false;
     let sessionLearnedWords = new Set(); 
-    
-    // Quiz Variablen
     let currentQuestions = [], qIndex = 0;
 
-    // === UI HILFSFUNKTIONEN ===
+    // === 02. UI HILFSFUNKTIONEN ===
     function showToast(message, type = "success") {
         const container = document.getElementById("toast-container");
         const toast = document.createElement("div");
@@ -237,65 +221,69 @@
         if(viewId === 'login') { currentPlayer = null; activePlayerName = ""; isExamMode = false; loadProfiles(); }
     }
 
-    // === NEUE ZURÜCK-LOGIK (VOKABELN) ===
-    function leaveVocab() {
-        if (isExamMode) {
-            isExamMode = false; // Beende Prüfung
-            switchView('parent'); // Gehe zum Elternbereich zurück
-            renderParentDashboard(); // Balken aktualisieren
-        } else {
-            switchView('menu'); // Normaler Lernmodus geht ins Hauptmenü
-        }
-    }
-
-    // === ELTERNBEREICH & FORTSCHRITT ===
+    // === 03. ELTERNBEREICH & ADMIN DASHBOARD ===
     function openParentArea() {
         const pin = prompt("Bitte Eltern-PIN eingeben (Standard: 1234):");
         if (pin === "1234") { switchView('parent'); renderParentDashboard(); } 
         else if (pin !== null) { showToast("Falscher PIN!", "error"); }
     }
+    
     function closeParentArea() { switchView('login'); }
 
-    function getTotalDatabaseWords() {
-        let total = 0;
-        for (let lang in VOCABULARY_DATABASE) { for (let cat in VOCABULARY_DATABASE[lang]) { total += VOCABULARY_DATABASE[lang][cat].words.length; } }
-        return total;
-    }
-
     function renderParentDashboard() {
-        const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
-        const totalPossibleWords = getTotalDatabaseWords();
+        const container = document.getElementById("parent-stats-container"); 
+        container.innerHTML = "";
+        
+        const categories = VOCABULARY_DATABASE['en']; // Vorlage für die Kategorien-Struktur
 
         Object.keys(ALL_PLAYERS).forEach(key => {
             const p = ALL_PLAYERS[key];
-            const learnedArr = p.learnedWords || [];
-            const learnedCount = learnedArr.length;
-            const percentage = totalPossibleWords > 0 ? Math.round((learnedCount / totalPossibleWords) * 100) : 0;
-
-            let html = `
-                <div class="bg-gray-900 border border-gray-700 p-4 rounded-xl mb-3 shadow-md">
-                    <div class="flex justify-between items-center mb-2">
+            const learnedSet = new Set(p.learnedWords || []);
+            
+            let playerHtml = `
+                <div class="bg-gray-900 border border-gray-700 p-5 rounded-2xl shadow-xl">
+                    <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
                         <span class="text-blue-400 font-bold text-lg">👤 ${p.name} <span class="text-sm text-gray-500">(Kl. ${p.age})</span></span>
-                        <span class="text-yellow-400 font-bold">🪙 ${p.coins || 0}</span>
+                        <span class="text-yellow-400 font-bold">🪙 ${p.coins || 0} Coins</span>
                     </div>
-                    
-                    <div class="text-xs text-gray-400 mb-1 font-bold flex justify-between">
-                        <span>Gesamtfortschritt (Alle Wörter)</span>
-                        <span>${learnedCount} / ${totalPossibleWords} (${percentage}%)</span>
-                    </div>
-                    <div class="w-full bg-gray-800 rounded-full h-3 mb-4 overflow-hidden border border-gray-700">
-                        <div class="bg-gradient-to-r from-emerald-500 to-green-400 h-3 rounded-full progress-bar-fill" style="width: ${percentage}%"></div>
-                    </div>
-                    
-                    <div class="flex gap-2">
-                        <button class="flex-1 bg-rose-600 py-2 rounded-lg font-bold text-xs text-white hover:bg-rose-500 transition" onclick="startExamFor('${key}')">⚔️ Prüfung starten</button>
+                    <div class="space-y-4">`;
+
+            for (let catKey in categories) {
+                // Gesamtanzahl Wörter in dieser Kategorie (Englisch + Türkisch)
+                const totalInCat = VOCABULARY_DATABASE['en'][catKey].words.length + VOCABULARY_DATABASE['tr'][catKey].words.length;
+                let learnedInCat = 0;
+                
+                // Zähle gelernte englische Wörter in dieser Kategorie
+                VOCABULARY_DATABASE['en'][catKey].words.forEach(w => {
+                    if(learnedSet.has("en_" + catKey + "_" + w.foreign)) learnedInCat++;
+                });
+                // Zähle gelernte türkische Wörter in dieser Kategorie
+                VOCABULARY_DATABASE['tr'][catKey].words.forEach(w => {
+                    if(learnedSet.has("tr_" + catKey + "_" + w.foreign)) learnedInCat++;
+                });
+
+                const percent = totalInCat > 0 ? Math.round((learnedInCat / totalInCat) * 100) : 0;
+                
+                playerHtml += `
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-gray-400 mb-1">
+                            <span>${categories[catKey].label}</span>
+                            <span>${percent}%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-2 overflow-hidden border border-gray-700">
+                            <div class="bg-indigo-500 h-2 progress-bar-fill rounded-full" style="width: ${percent}%"></div>
+                        </div>
+                    </div>`;
+            }
+
+            playerHtml += `
+                        <button class="w-full mt-4 bg-rose-600 py-3 rounded-lg font-bold text-sm text-white hover:bg-rose-500 transition shadow-md" onclick="startExamFor('${key}')">⚔️ Prüfung starten (Tippen)</button>
                     </div>
                 </div>`;
-            container.appendChild(document.createRange().createContextualFragment(html));
+            container.appendChild(document.createRange().createContextualFragment(playerHtml));
         });
     }
 
-    // === PRÜFUNGSMODUS ===
     function startExamFor(playerKey) {
         currentPlayer = ALL_PLAYERS[playerKey];
         activePlayerName = currentPlayer.name;
@@ -310,10 +298,10 @@
         document.getElementById("lang-selector").classList.add("hidden");
         document.getElementById("mode-selector").classList.add("hidden");
         
-        showToast(`Prüfungsmodus für ${currentPlayer.name} gestartet!`, "success");
+        showToast(`Prüfung für ${currentPlayer.name} gestartet!`, "success");
     }
 
-    // === SPIELER LOGIK ===
+    // === 04. SPIELER & LOGIN LOGIK ===
     function loadProfiles() { 
         ALL_PLAYERS = JSON.parse(localStorage.getItem("eduplay_players") || "{}"); 
         renderProfileSelection(); 
@@ -325,7 +313,7 @@
         if(keys.length > 0) {
             box.classList.remove("hidden");
             keys.forEach(k => {
-                const btn = document.createElement("button"); btn.className = "bg-gray-700 px-4 py-2 rounded-xl text-sm font-bold text-white hover:bg-blue-600 transition"; btn.innerText = ALL_PLAYERS[k].name;
+                const btn = document.createElement("button"); btn.className = "bg-gray-700 px-4 py-2 rounded-xl text-sm font-bold text-white hover:bg-blue-600 transition shadow-md"; btn.innerText = ALL_PLAYERS[k].name;
                 btn.onclick = () => { 
                     activePlayerName = ALL_PLAYERS[k].name; 
                     currentPlayer = ALL_PLAYERS[k]; 
@@ -373,7 +361,17 @@
         }
     }
 
-    // === VOKABEL LOGIK ===
+    // === 05. VOKABEL LOGIK ===
+    function leaveVocab() {
+        if (isExamMode) {
+            isExamMode = false;
+            switchView('parent');
+            renderParentDashboard();
+        } else {
+            switchView('menu');
+        }
+    }
+
     function setLanguage(lang) { activeLang = lang; vIndex = 0; loadVocabSystem(); }
 
     function loadVocabSystem() {
@@ -421,7 +419,7 @@
         if (isExamMode) {
             list = list.filter(item => !sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + item.foreign));
             if(list.length === 0) {
-                box.innerHTML = `<div class="p-8 bg-emerald-600 text-white font-bold rounded-xl shadow-lg">Perfekt! Du hast alle Wörter dieser Kategorie gemeistert! 🏆</div>`;
+                box.innerHTML = `<div class="p-8 bg-emerald-600 text-white font-bold rounded-xl shadow-lg">Perfekt! Alle Wörter in dieser Kategorie wurden bereits gelernt! 🏆</div>`;
                 return;
             }
             list = shuffleArray(list); 
@@ -504,7 +502,7 @@
         }
     }
 
-    // === QUIZ LOGIK (Wiederhergestellt) ===
+    // === 06. QUIZ LOGIK ===
     function showQuizSetup(mode) { 
         document.getElementById('selected-game-mode').value = mode; 
         updateSubCategories(); 

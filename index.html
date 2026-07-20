@@ -666,6 +666,7 @@
             }
             function nextVocab(known) { if (known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); showToast("+2 Coins!", "success"); currentPlayer.coins += 2; savePlayerProgress(); } vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion(); }
 
+
             // ==========================================
             // TV-QUIZ (KAHOOT-MODUS) LOGIK - GAMESHOW EDITION 📺
             // ==========================================

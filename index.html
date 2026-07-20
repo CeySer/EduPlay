@@ -163,6 +163,11 @@
                     <button onclick="switchView('family-hub')"
                         class="text-gray-400 hover:text-white p-2.5 bg-gray-800 rounded-xl border border-gray-700 transition text-xs font-bold shadow-md">🚪
                         Wechseln</button>
+                    <button onclick="switchView('tv-quiz-setup')"
+                        class="bg-yellow-600 p-4 rounded-xl font-bold text-white shadow-md hover:bg-yellow-500 flex flex-col items-center justify-center gap-2">
+                        <span class="text-3xl">📺</span>
+                        Familien TV-Quiz
+                    </button>
                 </div>
 
                 <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
@@ -320,6 +325,75 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- VIEW: TV-QUIZ (KAHOOT-MODUS) SETUP -->
+    <div id="view-tv-quiz-setup" class="view hidden space-y-4">
+        <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum
+            Hauptmenü</button>
+
+        <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-6 text-center">
+            <h2 class="text-3xl font-black text-yellow-400">📺 Familien TV-Quiz</h2>
+            <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die anderen sind
+                die Handys der Spieler.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <!-- HOST BUTTON -->
+                <button onclick="switchView('tv-quiz-host')"
+                    class="bg-indigo-600 hover:bg-indigo-500 p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition">
+                    <span class="text-5xl">🖥️</span>
+                    <span class="font-black text-white text-lg">Ich bin der Fernseher</span>
+                    <span class="text-xs text-indigo-200">Spiel erstellen & Fragen anzeigen</span>
+                </button>
+
+                <!-- SPIELER BUTTON -->
+                <button onclick="switchView('tv-quiz-player')"
+                    class="bg-emerald-600 hover:bg-emerald-500 p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition">
+                    <span class="text-5xl">📱</span>
+                    <span class="font-black text-white text-lg">Ich spiele mit!</span>
+                    <span class="text-xs text-emerald-200">Am Handy antworten</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW: TV-QUIZ HOST (Fernseher) -->
+    <div id="view-tv-quiz-host" class="view hidden space-y-4">
+        <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('tv-quiz-setup')">←
+            Zurück</button>
+        <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl text-center">
+            <h2 class="text-2xl font-black text-white mb-4">Quiz erstellen</h2>
+            <p class="text-gray-400 text-sm mb-4">Wähle ein Thema für die Familie:</p>
+            <!-- Hier nutzen wir die gleichen Klassenstufen wie vorhin -->
+            <select id="tv-quiz-category"
+                class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-lg mb-6">
+                <option value="klasse_1_2">🧸 Klasse 1-2 (Mathe & Deutsch)</option>
+                <option value="klasse_3_4">🎒 Klasse 3-4 (Sachkunde & Deutsch)</option>
+                <option value="klasse_5_6">⚽ Klasse 5-6 (Englisch, Biologie)</option>
+                <option value="klasse_7_8">🌍 Klasse 7-8 (Englisch, Physik)</option>
+                <option value="klasse_9_11">👥 Klasse 9-11 (Englisch, Politik)</option>
+                <option value="kfz">🔧 Berufsschule: KFZ-Mechatronik</option>
+                <option value="allgemeinwissen">🏆 Allgemeinwissen (Sport & Filme)</option>
+            </select>
+            <button onclick="startTVHostLobby()"
+                class="w-full p-4 bg-indigo-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-indigo-500 text-xl">Lobby
+                eröffnen 🚀</button>
+        </div>
+    </div>
+
+    <!-- VIEW: TV-QUIZ PLAYER (Handy) -->
+    <div id="view-tv-quiz-player" class="view hidden space-y-4">
+        <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('tv-quiz-setup')">←
+            Zurück</button>
+        <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl text-center">
+            <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
+            <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
+            <div id="player-waiting-area">
+                <button onclick="joinTVGame()"
+                    class="w-full p-6 bg-emerald-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-emerald-500 text-2xl animate-pulse">Jetzt
+                    beitreten! 🎮</button>
+            </div>
+        </div>
     </div>
 
     <script>

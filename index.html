@@ -93,36 +93,120 @@
                 </div>
             </div>
 
-            <!-- VIEW: FAMILIEN HUB -->
+            <!-- VIEW: FAMILY HUB (ELTERN BEREICH) -->
             <div id="view-family-hub" class="view hidden space-y-6">
-                <div class="text-center pt-6 pb-2 border-b border-gray-800">
-                    <h1 class="text-2xl font-black text-white">Wer lernt heute?</h1>
+                <div
+                    class="flex justify-between items-center bg-gray-800 p-4 rounded-2xl border border-gray-700 shadow-md">
+                    <h2 class="text-2xl font-black text-white">👨‍👩‍👧‍👦 Eltern-Dashboard</h2>
+                    <button onclick="logout()" class="text-rose-400 font-bold hover:text-rose-300">Abmelden</button>
                 </div>
 
-                <div id="family-profiles-grid" class="grid grid-cols-2 gap-4"></div>
+                <!-- TAB-NAVIGATION -->
+                <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
+                    <button id="tab-progress"
+                        class="flex-1 py-2 px-1 rounded-lg font-bold text-white bg-blue-600 transition-all text-sm shadow-md"
+                        onclick="switchParentTab('progress')">📊 Fortschritt</button>
+                    <button id="tab-test"
+                        class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
+                        onclick="switchParentTab('test')">📝 Test starten</button>
+                    <button id="tab-manage"
+                        class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
+                        onclick="switchParentTab('manage')">⚙️ Profile</button>
+                </div>
 
-                <button onclick="switchView('create-profile')"
-                    class="w-full p-4 border-2 border-dashed border-gray-600 text-gray-400 font-bold rounded-2xl hover:border-emerald-500 hover:text-emerald-400 transition">
-                    + Neues Profil für Kind anlegen
-                </button>
+                <!-- BEREICH 1: FORTSCHRITT (FAHRSCHUL-STYLE) -->
+                <div id="parent-section-progress" class="space-y-4">
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
+                        <h3 class="text-lg font-bold text-blue-400 mb-4">Lernstand & Lücken</h3>
+                        <select id="progress-child-select"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold mb-4">
+                            <!-- Wird per JS gefüllt, z.B. Sohn (17), Tochter (9) etc. -->
+                            <option>Lade Profile...</option>
+                        </select>
 
-                <!-- RANGLISTE -->
-                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg mt-6">
-                    <h2 class="text-xl font-black text-yellow-400 mb-4 text-center">🏆 Familien-Rangliste</h2>
-                    <div id="leaderboard-container" class="space-y-2">
-                        <!-- Wird per JS befüllt -->
+                        <div id="progress-bars-container" class="space-y-4">
+                            <!-- Beispiel-Balken (wird später dynamisch gefüllt) -->
+                            <div>
+                                <div class="flex justify-between text-sm font-bold text-gray-300 mb-1">
+                                    <span>Englisch Vokabeln (Klasse 5-6)</span>
+                                    <span class="text-emerald-400">80%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-3">
+                                    <div class="bg-emerald-500 h-3 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-bold text-gray-300 mb-1">
+                                    <span>Mathe & Deutsch (Klasse 3-4)</span>
+                                    <span class="text-yellow-400">45%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-3">
+                                    <div class="bg-yellow-400 h-3 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="pt-4 flex flex-col gap-3">
-                    <button onclick="openParentArea()"
-                        class="w-full bg-gray-800 text-rose-400 p-4 rounded-xl font-bold border border-gray-700 shadow-md flex justify-center items-center gap-2">
-                        🔒 Admin-Bereich (Fortschritt)
-                    </button>
-                    <button onclick="logoutParent()"
-                        class="text-xs text-gray-500 font-bold text-center mt-2 underline">Familien-Account
-                        ausloggen</button>
+                <!-- BEREICH 2: TEST ZUWEISEN -->
+                <div id="parent-section-test" class="space-y-4 hidden">
+                    <div class="bg-gray-800 border border-rose-900/50 p-5 rounded-2xl shadow-lg">
+                        <h3 class="text-lg font-black text-rose-400 mb-2">⚠️ Klausur-Modus aktivieren</h3>
+                        <p class="text-xs text-gray-400 mb-4">Erstelle einen Test. Beim nächsten Login des gewählten
+                            Profils muss dieser Test zwingend absolviert werden.</p>
+
+                        <div class="space-y-3">
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold">Wer schreibt den Test?</label>
+                                <select id="test-child-select"
+                                    class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold mt-1">
+                                    <option value="">Profil auswählen...</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold">Thema:</label>
+                                <select id="test-category"
+                                    class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold mt-1">
+                                    <option value="eng_vocab">Englisch Vokabeln (Aktuelle Stufe)</option>
+                                    <option value="math_quiz">Mathe Quiz</option>
+                                    <option value="kfz_test">KFZ-Mechatronik (Abschluss-Simulation)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold">Zeitlimit (Stoppuhr):</label>
+                                <select id="test-time"
+                                    class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold mt-1">
+                                    <option value="5">5 Minuten (Kurztest)</option>
+                                    <option value="10">10 Minuten</option>
+                                    <option value="20">20 Minuten (Klausur)</option>
+                                </select>
+                            </div>
+                            <button
+                                class="w-full p-4 mt-2 bg-rose-600 font-black text-white rounded-xl shadow-lg hover:bg-rose-500">Test
+                                scharfstellen 🚀</button>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- BEREICH 3: PROFILE VERWALTEN (Dein alter Bereich) -->
+                <div id="parent-section-manage" class="space-y-4 hidden">
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
+                        <h3 class="text-lg font-bold text-white mb-4">Neues Profil anlegen</h3>
+                        <input type="text" id="new-player-name" placeholder="Name eingeben..."
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none mb-3">
+                        <input type="number" id="new-player-age" placeholder="Alter (z.B. 7 oder 15)"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none mb-3">
+                        <button onclick="addPlayer()"
+                            class="w-full bg-blue-600 py-3 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">Hinzufügen</button>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-white mt-6">Aktuelle Profile</h3>
+                    <div id="players-list" class="space-y-3"></div>
+                </div>
+
+                <button onclick="switchView('menu')"
+                    class="w-full p-4 bg-gray-700 font-bold text-white rounded-xl shadow-lg hover:bg-gray-600">Zurück
+                    zum Kinder-Menü</button>
             </div>
 
             <!-- VIEW: NEUES PROFIL ERSTELLEN -->

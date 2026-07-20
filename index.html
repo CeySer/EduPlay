@@ -923,32 +923,4 @@
     </div>
 </body>
 
-</html>                playersData[activePlayerKey].hasAnswered = true; playersData[activePlayerKey].lastAnswer = ansIndex;
-                await tvGameRef.update({ players: playersData });
-            }
-
-            // ==========================================
-            // ELTERN-DASHBOARD TABS
-            // ==========================================
-            function switchParentTab(tabName) {
-                // 1. Alle Bereiche verstecken
-                document.getElementById('parent-section-manage').classList.add('hidden');
-                document.getElementById('parent-section-progress').classList.add('hidden');
-                document.getElementById('parent-section-test').classList.add('hidden');
-
-                // 2. Alle Buttons auf "Grau" (inaktiv) setzen
-                const tabs = ['manage', 'progress', 'test'];
-                tabs.forEach(t => {
-                    document.getElementById('tab-' + t).className = "flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm";
-                });
-
-                // 3. Den gewählten Bereich anzeigen und den Button Blau machen
-                document.getElementById('parent-section-' + tabName).classList.remove('hidden');
-                document.getElementById('tab-' + tabName).className = "flex-1 py-2 px-1 rounded-lg font-bold text-white bg-blue-600 shadow-md transition-all text-sm";
-            }
-
-
-        </script>
-</body>
-
 </html>

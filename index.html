@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduPlay Hub - Familien Edition</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
@@ -18,463 +19,565 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f1f5f9; }
-        .flip-card { perspective: 1000px; }
-        .flip-card-inner { transition: transform 0.6s; transform-style: preserve-3d; position: relative; width: 100%; height: 100%; }
-        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-        .flip-card-front, .flip-card-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; position: absolute; inset: 0; }
-        .flip-card-back { transform: rotateY(180deg); }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f1f5f9;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            position: absolute;
+            inset: 0;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
     </style>
 </head>
+
 <body class="min-h-screen flex justify-center items-start overflow-x-hidden antialiased">
 
-<div id="toast-container" class="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 w-[90%] max-w-md pointer-events-none"></div>
+    <div id="toast-container"
+        class="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 w-[90%] max-w-md pointer-events-none">
+    </div>
 
-<div class="w-full max-w-md min-h-screen bg-[#111827] shadow-2xl relative flex flex-col justify-between pb-24 border-x border-gray-800">
-    
-    <main class="flex-grow p-4">
-        
-        <!-- VIEW: ELTERN LOGIN -->
-        <div id="view-auth" class="view hidden">
-            <div class="text-center py-8">
-                <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 mb-1">EduPlay Hub</h1>
-                <p class="text-emerald-400 font-bold text-sm">Familien-Login 👨‍👩‍👧‍👦</p>
-            </div>
-            
-            <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg space-y-4">
-                <p class="text-xs text-gray-400 text-center mb-2">Bitte mit dem Eltern-Account anmelden oder einen neuen erstellen.</p>
-                <input type="email" id="auth-email" placeholder="E-Mail Adresse" class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                <input type="password" id="auth-password" placeholder="Passwort (min. 6 Zeichen)" class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                
-                <div class="flex gap-2 pt-2">
-                    <button onclick="loginParent()" class="flex-1 p-3.5 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500">Einloggen</button>
-                    <button onclick="registerParent()" class="flex-1 p-3.5 bg-gray-700 rounded-xl font-bold text-white shadow-lg hover:bg-gray-600">Registrieren</button>
+    <div
+        class="w-full max-w-md min-h-screen bg-[#111827] shadow-2xl relative flex flex-col justify-between pb-24 border-x border-gray-800">
+
+        <main class="flex-grow p-4">
+
+            <!-- VIEW: ELTERN LOGIN -->
+            <div id="view-auth" class="view hidden">
+                <div class="text-center py-8">
+                    <h1
+                        class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 mb-1">
+                        EduPlay Hub</h1>
+                    <p class="text-emerald-400 font-bold text-sm">Familien-Login 👨‍👩‍👧‍👦</p>
                 </div>
-            </div>
-        </div>
 
-        <!-- VIEW: FAMILIEN HUB -->
-        <div id="view-family-hub" class="view hidden space-y-6">
-            <div class="text-center pt-6 pb-2 border-b border-gray-800">
-                <h1 class="text-2xl font-black text-white">Wer lernt heute?</h1>
-            </div>
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg space-y-4">
+                    <p class="text-xs text-gray-400 text-center mb-2">Bitte mit dem Eltern-Account anmelden oder einen
+                        neuen erstellen.</p>
+                    <input type="email" id="auth-email" placeholder="E-Mail Adresse"
+                        class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                    <input type="password" id="auth-password" placeholder="Passwort (min. 6 Zeichen)"
+                        class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
 
-            <div id="family-profiles-grid" class="grid grid-cols-2 gap-4"></div>
-
-            <button onclick="switchView('create-profile')" class="w-full p-4 border-2 border-dashed border-gray-600 text-gray-400 font-bold rounded-2xl hover:border-emerald-500 hover:text-emerald-400 transition">
-                + Neues Profil für Kind anlegen
-            </button>
-
-            <!-- RANGLISTE -->
-            <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg mt-6">
-                <h2 class="text-xl font-black text-yellow-400 mb-4 text-center">🏆 Familien-Rangliste</h2>
-                <div id="leaderboard-container" class="space-y-2">
-                    <!-- Wird per JS befüllt -->
-                </div>
-            </div>
-
-            <div class="pt-4 flex flex-col gap-3">
-                <button onclick="openParentArea()" class="w-full bg-gray-800 text-rose-400 p-4 rounded-xl font-bold border border-gray-700 shadow-md flex justify-center items-center gap-2">
-                    🔒 Admin-Bereich (Fortschritt)
-                </button>
-                <button onclick="logoutParent()" class="text-xs text-gray-500 font-bold text-center mt-2 underline">Familien-Account ausloggen</button>
-            </div>
-        </div>
-
-        <!-- VIEW: NEUES PROFIL ERSTELLEN -->
-        <div id="view-create-profile" class="view hidden space-y-4">
-            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2" onclick="switchView('family-hub')">← Abbrechen</button>
-            <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg space-y-4">
-                <h2 class="text-xl font-black text-emerald-400">Neues Profil anlegen</h2>
-                <input type="text" id="new-profile-name" placeholder="Name" class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                <div class="flex gap-2">
-                    <select id="new-profile-type" class="w-1/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm">
-                        <option value="klasse">🎒 Klasse</option>
-                        <option value="alter">🎂 Alter</option>
-                    </select>
-                    <input type="number" id="new-profile-age" placeholder="Zahl..." class="w-2/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                </div>
-                <button onclick="saveNewProfile()" class="w-full p-4 bg-emerald-600 rounded-xl font-bold text-white shadow-lg">Profil speichern</button>
-            </div>
-        </div>
-
-        <!-- VIEW: MAIN MENU (KINDER BEREICH) -->
-        <div id="view-menu" class="view hidden space-y-4">
-            <div class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-start shadow-xl">
-                <div>
-                    <h2 id="welcome-text" class="text-xl font-bold text-white">Hallo!</h2>
-                    <div class="flex gap-4 mt-1 text-xs font-semibold">
-                        <span class="text-yellow-400">🪙 <span id="menu-coins">0</span> Coins</span>
-                        <span class="text-blue-400" id="menu-age-display">🎒 Klasse: <span id="menu-age">-</span></span>
+                    <div class="flex gap-2 pt-2">
+                        <button onclick="loginParent()"
+                            class="flex-1 p-3.5 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500">Einloggen</button>
+                        <button onclick="registerParent()"
+                            class="flex-1 p-3.5 bg-gray-700 rounded-xl font-bold text-white shadow-lg hover:bg-gray-600">Registrieren</button>
                     </div>
                 </div>
-                <button onclick="switchView('family-hub')" class="text-gray-400 hover:text-white p-2.5 bg-gray-800 rounded-xl border border-gray-700 transition text-xs font-bold shadow-md">🚪 Wechseln</button>
             </div>
 
-            <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
-            
-            <div class="space-y-4">
-                <button class="w-full text-left bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 transition-all shadow-md" onclick="switchView('vokabeln')">
-                    <div class="text-5xl">📖</div>
+            <!-- VIEW: FAMILIEN HUB -->
+            <div id="view-family-hub" class="view hidden space-y-6">
+                <div class="text-center pt-6 pb-2 border-b border-gray-800">
+                    <h1 class="text-2xl font-black text-white">Wer lernt heute?</h1>
+                </div>
+
+                <div id="family-profiles-grid" class="grid grid-cols-2 gap-4"></div>
+
+                <button onclick="switchView('create-profile')"
+                    class="w-full p-4 border-2 border-dashed border-gray-600 text-gray-400 font-bold rounded-2xl hover:border-emerald-500 hover:text-emerald-400 transition">
+                    + Neues Profil für Kind anlegen
+                </button>
+
+                <!-- RANGLISTE -->
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg mt-6">
+                    <h2 class="text-xl font-black text-yellow-400 mb-4 text-center">🏆 Familien-Rangliste</h2>
+                    <div id="leaderboard-container" class="space-y-2">
+                        <!-- Wird per JS befüllt -->
+                    </div>
+                </div>
+
+                <div class="pt-4 flex flex-col gap-3">
+                    <button onclick="openParentArea()"
+                        class="w-full bg-gray-800 text-rose-400 p-4 rounded-xl font-bold border border-gray-700 shadow-md flex justify-center items-center gap-2">
+                        🔒 Admin-Bereich (Fortschritt)
+                    </button>
+                    <button onclick="logoutParent()"
+                        class="text-xs text-gray-500 font-bold text-center mt-2 underline">Familien-Account
+                        ausloggen</button>
+                </div>
+            </div>
+
+            <!-- VIEW: NEUES PROFIL ERSTELLEN -->
+            <div id="view-create-profile" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
+                    onclick="switchView('family-hub')">← Abbrechen</button>
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg space-y-4">
+                    <h2 class="text-xl font-black text-emerald-400">Neues Profil anlegen</h2>
+                    <input type="text" id="new-profile-name" placeholder="Name"
+                        class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                    <div class="flex gap-2">
+                        <select id="new-profile-type"
+                            class="w-1/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm">
+                            <option value="klasse">🎒 Klasse</option>
+                            <option value="alter">🎂 Alter</option>
+                        </select>
+                        <input type="number" id="new-profile-age" placeholder="Zahl..."
+                            class="w-2/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                    </div>
+                    <button onclick="saveNewProfile()"
+                        class="w-full p-4 bg-emerald-600 rounded-xl font-bold text-white shadow-lg">Profil
+                        speichern</button>
+                </div>
+            </div>
+
+            <!-- VIEW: MAIN MENU (KINDER BEREICH) -->
+            <div id="view-menu" class="view hidden space-y-4">
+                <div
+                    class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-start shadow-xl">
                     <div>
-                        <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
-                        <p class="text-xs text-gray-300">Schule, Alltag, Hobbys, Umwelt</p>
+                        <h2 id="welcome-text" class="text-xl font-bold text-white">Hallo!</h2>
+                        <div class="flex gap-4 mt-1 text-xs font-semibold">
+                            <span class="text-yellow-400">🪙 <span id="menu-coins">0</span> Coins</span>
+                            <span class="text-blue-400" id="menu-age-display">🎒 Klasse: <span
+                                    id="menu-age">-</span></span>
+                        </div>
                     </div>
-                </button>
-                
-                <button class="w-full text-left bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 transition-all shadow-md" onclick="showQuizSetup()">
-                    <div class="text-5xl">🎯</div>
+                    <button onclick="switchView('family-hub')"
+                        class="text-gray-400 hover:text-white p-2.5 bg-gray-800 rounded-xl border border-gray-700 transition text-xs font-bold shadow-md">🚪
+                        Wechseln</button>
+                </div>
+
+                <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
+
+                <div class="space-y-4">
+                    <button
+                        class="w-full text-left bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 transition-all shadow-md"
+                        onclick="switchView('vokabeln')">
+                        <div class="text-5xl">📖</div>
+                        <div>
+                            <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
+                            <p class="text-xs text-gray-300">Schule, Alltag, Hobbys, Umwelt</p>
+                        </div>
+                    </button>
+
+                    <button
+                        class="w-full text-left bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 transition-all shadow-md"
+                        onclick="showQuizSetup()">
+                        <div class="text-5xl">🎯</div>
+                        <div>
+                            <h2 class="text-xl font-black text-pink-400">Wissen & Grammatik</h2>
+                            <p class="text-xs text-gray-300">Englisch Grammatik & Fachwissen</p>
+                        </div>
+                    </button>
+
+                    <button
+                        class="w-full text-left bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 transition-all shadow-md"
+                        onclick="switchView('fokus')">
+                        <div class="text-5xl">⏳</div>
+                        <div>
+                            <h2 class="text-xl font-black text-yellow-400">Fokus-Lernzeit</h2>
+                            <p class="text-xs text-gray-300">Mit Timer ungestört lernen</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- VIEW: FOKUS LERNZEIT -->
+            <div id="view-fokus" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
+                    Zurück</button>
+                <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center space-y-6 shadow-lg">
+                    <div class="text-6xl">⏱️</div>
+                    <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
+                    <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
+                    <div class="flex gap-2 justify-center" id="timer-controls">
+                        <button
+                            class="bg-emerald-600 px-6 py-3 rounded-xl font-bold text-white shadow-md hover:bg-emerald-500"
+                            onclick="startFocusTimer()">Start</button>
+                        <button
+                            class="bg-rose-600 px-6 py-3 rounded-xl font-bold text-white shadow-md hover:bg-rose-500"
+                            onclick="resetFocusTimer()">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: ELTERNBEREICH ADMIN -->
+            <div id="view-parent" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
+                    onclick="switchView('family-hub')">← Zurück zur Übersicht</button>
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
+                    <h3 class="text-xl font-black text-rose-400 mb-2">📊 Admin-Kontrollzentrum</h3>
+                    <p class="text-xs text-gray-400 mb-4">Übersicht der Lernfortschritte deiner Familie.</p>
+                    <div id="parent-stats-container" class="space-y-6"></div>
+                </div>
+            </div>
+
+            <!-- VIEW: QUIZ & GRAMMATIK SETUP -->
+            <div id="view-quiz-setup" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum
+                    Hauptmenü</button>
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
+                    <h2 class="text-2xl font-black text-center text-pink-400">Wissen & Grammatik</h2>
                     <div>
-                        <h2 class="text-xl font-black text-pink-400">Wissen & Grammatik</h2>
-                        <p class="text-xs text-gray-300">Englisch Grammatik & Fachwissen</p>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Lern-Modus wählen:</label>
+                        <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
+                            <button id="qmode-mc"
+                                class="flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all bg-indigo-600 text-sm shadow-md"
+                                onclick="setQuizMode('mc')">🎯 Multiple Choice</button>
+                            <button id="qmode-flashcards"
+                                class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 transition-all bg-gray-900 text-sm"
+                                onclick="setQuizMode('flashcards')">🃏 Karteikarten</button>
+                        </div>
                     </div>
-                </button>
-
-                <button class="w-full text-left bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 transition-all shadow-md" onclick="switchView('fokus')">
-                    <div class="text-5xl">⏳</div>
                     <div>
-                        <h2 class="text-xl font-black text-yellow-400">Fokus-Lernzeit</h2>
-                        <p class="text-xs text-gray-300">Mit Timer ungestört lernen</p>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Thema auswählen:</label>
+                        <select id="sub-category"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
+                            <option value="eng_grammatik_5_6">🇬🇧 Englisch Grammatik (Kl. 5-6)</option>
+                            <option value="eng_grammatik_7_8">🇬🇧 Englisch Grammatik (Kl. 7-8)</option>
+                            <option value="eng_grammatik_9_11">🇬🇧 Englisch Grammatik (Kl. 9-11)</option>
+                            <option value="deutsch_uebungsheft">✍️ Deutsch (Grundschule)</option>
+                            <option value="klasse2_mathe">🧮 Mathe (Kl. 2-4)</option>
+                            <option value="kfz">🔧 KFZ-Technik & Mechatronik</option>
+                        </select>
                     </div>
-                </button>
-            </div>
-        </div>
-
-        <!-- VIEW: FOKUS LERNZEIT -->
-        <div id="view-fokus" class="view hidden space-y-4">
-            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zurück</button>
-            <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center space-y-6 shadow-lg">
-                <div class="text-6xl">⏱️</div>
-                <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
-                <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
-                <div class="flex gap-2 justify-center" id="timer-controls">
-                    <button class="bg-emerald-600 px-6 py-3 rounded-xl font-bold text-white shadow-md hover:bg-emerald-500" onclick="startFocusTimer()">Start</button>
-                    <button class="bg-rose-600 px-6 py-3 rounded-xl font-bold text-white shadow-md hover:bg-rose-500" onclick="resetFocusTimer()">Reset</button>
+                    <button onclick="startQuiz()"
+                        class="w-full p-4 mt-2 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-blue-500">Starten
+                        🚀</button>
                 </div>
             </div>
-        </div>
 
-        <!-- VIEW: ELTERNBEREICH ADMIN -->
-        <div id="view-parent" class="view hidden space-y-4">
-            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2" onclick="switchView('family-hub')">← Zurück zur Übersicht</button>
-            <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
-                <h3 class="text-xl font-black text-rose-400 mb-2">📊 Admin-Kontrollzentrum</h3>
-                <p class="text-xs text-gray-400 mb-4">Übersicht der Lernfortschritte deiner Familie.</p>
-                <div id="parent-stats-container" class="space-y-6"></div>
+            <!-- VIEW: QUIZ ARENA (MC & KARTEIKARTEN) -->
+            <div id="view-quiz" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">←
+                    Beenden</button>
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4 shadow-lg">
+                    <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
+                    <div id="options-container" class="flex flex-col gap-2.5"></div>
+                    <div id="explanation-box" class="hidden"></div>
+                    <button id="next-question-btn"
+                        class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden shadow-md mt-4"
+                        onclick="triggerNextQuestion()">Nächste Frage ➔</button>
+                </div>
             </div>
-        </div>
 
-        <!-- VIEW: QUIZ & GRAMMATIK SETUP -->
-        <div id="view-quiz-setup" class="view hidden space-y-4">
-            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum Hauptmenü</button>
-            <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
-                <h2 class="text-2xl font-black text-center text-pink-400">Wissen & Grammatik</h2>
-                <div>
-                    <label class="text-xs text-gray-400 font-bold block mb-1">Lern-Modus wählen:</label>
-                    <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
-                        <button id="qmode-mc" class="flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all bg-indigo-600 text-sm shadow-md" onclick="setQuizMode('mc')">🎯 Multiple Choice</button>
-                        <button id="qmode-flashcards" class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 transition-all bg-gray-900 text-sm" onclick="setQuizMode('flashcards')">🃏 Karteikarten</button>
+            <!-- VIEW: VOKABEL-TRAINER -->
+            <div id="view-vokabeln" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveVocab()">←
+                    Zurück</button>
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
+                    <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
+                    <div id="lang-selector" class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
+                        <button id="lang-btn-en"
+                            class="flex-1 py-2 rounded-lg font-bold bg-blue-600 text-white transition-all"
+                            onclick="setLanguage('en')">🇬🇧 Englisch</button>
+                        <button id="lang-btn-tr" class="flex-1 py-2 rounded-lg font-bold text-gray-400 transition-all"
+                            onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
                     </div>
+                    <div id="mode-selector" class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
+                        <button id="vmode-flashcards"
+                            class="flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all bg-indigo-600 text-xs"
+                            onclick="setVocabMode('flashcards')">🃏 Kärtchen</button>
+                        <button id="vmode-mc"
+                            class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 transition-all bg-gray-900 text-xs"
+                            onclick="setVocabMode('mc')">🎯 Auswahl</button>
+                        <button id="vmode-typing"
+                            class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 transition-all bg-gray-900 text-xs"
+                            onclick="setVocabMode('typing')">✍️ Tippen</button>
+                    </div>
+                    <select id="category-dropdown"
+                        class="w-full p-3 bg-gray-900 border rounded-xl text-white font-bold outline-none text-sm"
+                        onchange="selectCategory(this.value)"></select>
+                    <div id="vokabel-box" class="min-h-[200px] flex flex-col justify-center mt-2"></div>
+                    <div class="text-xs text-gray-400 font-bold mt-4">Wort: <span id="current-index-display"
+                            class="text-blue-400">1</span> / <span id="total-display">0</span></div>
                 </div>
-                <div>
-                    <label class="text-xs text-gray-400 font-bold block mb-1">Thema auswählen:</label>
-                    <select id="sub-category" class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
-                        <option value="eng_grammatik_5_6">🇬🇧 Englisch Grammatik (Kl. 5-6)</option>
-                        <option value="eng_grammatik_7_8">🇬🇧 Englisch Grammatik (Kl. 7-8)</option>
-                        <option value="eng_grammatik_9_11">🇬🇧 Englisch Grammatik (Kl. 9-11)</option>
-                        <option value="deutsch_uebungsheft">✍️ Deutsch (Grundschule)</option>
-                        <option value="klasse2_mathe">🧮 Mathe (Kl. 2-4)</option>
-                        <option value="kfz">🔧 KFZ-Technik & Mechatronik</option>
-                    </select>
-                </div>
-                <button onclick="startQuiz()" class="w-full p-4 mt-2 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-blue-500">Starten 🚀</button>
             </div>
-        </div>
+        </main>
+    </div>
 
-        <!-- VIEW: QUIZ ARENA (MC & KARTEIKARTEN) -->
-        <div id="view-quiz" class="view hidden space-y-4">
-            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">← Beenden</button>
-            <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4 shadow-lg">
-                <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
-                <div id="options-container" class="flex flex-col gap-2.5"></div>
-                <div id="explanation-box" class="hidden"></div>
-                <button id="next-question-btn" class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden shadow-md mt-4" onclick="triggerNextQuestion()">Nächste Frage ➔</button>
-            </div>
-        </div>
+    <script>
 
-        <!-- VIEW: VOKABEL-TRAINER -->
-        <div id="view-vokabeln" class="view hidden space-y-4">
-            <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveVocab()">← Zurück</button>
-            <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4">
-                <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
-                <div id="lang-selector" class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
-                    <button id="lang-btn-en" class="flex-1 py-2 rounded-lg font-bold bg-blue-600 text-white transition-all" onclick="setLanguage('en')">🇬🇧 Englisch</button>
-                    <button id="lang-btn-tr" class="flex-1 py-2 rounded-lg font-bold text-gray-400 transition-all" onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
-                </div>
-                <div id="mode-selector" class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
-                    <button id="vmode-flashcards" class="flex-1 py-2 px-1 rounded-lg font-bold text-white transition-all bg-indigo-600 text-xs" onclick="setVocabMode('flashcards')">🃏 Kärtchen</button>
-                    <button id="vmode-mc" class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 transition-all bg-gray-900 text-xs" onclick="setVocabMode('mc')">🎯 Auswahl</button>
-                    <button id="vmode-typing" class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 transition-all bg-gray-900 text-xs" onclick="setVocabMode('typing')">✍️ Tippen</button>
-                </div>
-                <select id="category-dropdown" class="w-full p-3 bg-gray-900 border rounded-xl text-white font-bold outline-none text-sm" onchange="selectCategory(this.value)"></select>
-                <div id="vokabel-box" class="min-h-[200px] flex flex-col justify-center mt-2"></div>
-                <div class="text-xs text-gray-400 font-bold mt-4">Wort: <span id="current-index-display" class="text-blue-400">1</span> / <span id="total-display">0</span></div>
-            </div>
-        </div>
-    </main>
-</div>
+        // === 00. FIREBASE INITIALISIERUNG ===
+        const firebaseConfig = {
+            apiKey: "AIzaSyDh8uyjrB_hJlT5a5oJSQd6YhBjLaUZIyM",
+            authDomain: "eduplay-hub-70d1a.firebaseapp.com",
+            projectId: "eduplay-hub-70d1a",
+            storageBucket: "eduplay-hub-70d1a.firebasestorage.app",
+            messagingSenderId: "705290582264",
+            appId: "1:705290582264:web:6655d999a5564ecb7b230d"
+        };
 
-<script>
-    // === 00. FIREBASE INITIALISIERUNG ===
-    const firebaseConfig = {
-      apiKey: "AIzaSyDh8uyjrB_hJlT5a5oJSQd6YhBjLaUZIyM",
-      authDomain: "eduplay-hub-70d1a.firebaseapp.com",
-      projectId: "eduplay-hub-70d1a",
-      storageBucket: "eduplay-hub-70d1a.firebasestorage.app",
-      messagingSenderId: "705290582264",
-      appId: "1:705290582264:web:6655d999a5564ecb7b230d"
-    };
-    
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
 
-    // BEACHTE: Die Konstanten QUESTIONS_DATABASE und VOCABULARY_DATABASE 
-    // fehlen hier absichtlich, weil sie jetzt bequem über die data.js Datei geladen werden!
+        // === SICHERHEITS-CHECK & VARIABLEN ===
+        let currentParentUser = null;
+        let ALL_PROFILES = {};
+        let currentPlayer = null;
+        let activePlayerKey = "";
+        let sessionLearnedWords = new Set();
 
-// === SICHERHEITS-CHECK & VARIABLEN ===
-if (typeof QUESTIONS_DATABASE === 'undefined' || typeof VOCABULARY_DATABASE === 'undefined') {
-    alert("FEHLER: Die Datei data.js wurde nicht geladen! Bitte drücke auf der Tastatur Strg + F5, um den Browser-Cache zu leeren.");
-}
+        window.onload = function () {
+            if (typeof QUESTIONS_DATABASE === 'undefined' || typeof VOCABULARY_DATABASE === 'undefined') {
+                alert("ACHTUNG: Die Datei 'data.js' wird vom Browser nicht gefunden!\n\n1. Liegt sie im exakt gleichen Ordner wie die index.html?\n2. Heißt sie vielleicht versehentlich 'data.js.txt'? (Windows versteckt oft Dateiendungen)");
+            }
+        };
 
-let currentParentUser = null; 
-let ALL_PROFILES = {}; 
-let currentPlayer = null; 
-let activePlayerKey = "";
-let sessionLearnedWords = new Set(); // FIX: Variable offiziell deklariert, um Abstürze zu vermeiden
-
-    
-    auth.onAuthStateChanged((user) => {
-        if (user) { currentParentUser = user; loadFamilyProfiles(); } 
-        else { currentParentUser = null; switchView('auth'); }
-    });
-
-    function showToast(msg, type="success") {
-        const c = document.getElementById("toast-container"); const t = document.createElement("div");
-        t.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 ${type==="success"?"border-emerald-500":"border-rose-500"}`;
-        t.innerHTML = msg; c.appendChild(t); setTimeout(() => t.remove(), 3000);
-    }
-
-    function switchView(viewId) {
-        document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
-        document.getElementById(`view-${viewId}`).classList.remove('hidden');
-        if(viewId === 'vokabeln') loadVocabSystem();
-    }
-
-    // === AUTH ===
-    function registerParent() { const e=document.getElementById("auth-email").value; const p=document.getElementById("auth-password").value; auth.createUserWithEmailAndPassword(e, p).then(()=>showToast("Account erstellt!","success")).catch(e=>showToast(e.message,"error")); }
-    function loginParent() { const e=document.getElementById("auth-email").value; const p=document.getElementById("auth-password").value; auth.signInWithEmailAndPassword(e, p).catch(()=>showToast("Falsche Daten","error")); }
-    function logoutParent() { auth.signOut(); }
-
-    // === PROFILE & RANGLISTE ===
-    async function loadFamilyProfiles() {
-        try {
-            const snapshot = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").get();
-            ALL_PROFILES = {}; snapshot.forEach(doc => { ALL_PROFILES[doc.id] = doc.data(); });
-            renderFamilyHub(); switchView('family-hub');
-        } catch (e) { showToast("Ladefehler", "error"); }
-    }
-
-    function renderFamilyHub() {
-        const grid = document.getElementById("family-profiles-grid"); grid.innerHTML = "";
-        
-        Object.keys(ALL_PROFILES).forEach(key => {
-            const p = ALL_PROFILES[key]; const btn = document.createElement("button");
-            btn.className = "bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-2";
-            btn.innerHTML = `<div class="text-4xl">👦👧</div><div class="font-bold text-white">${p.name}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>`;
-            btn.onclick = () => selectProfile(key); grid.appendChild(btn);
+        auth.onAuthStateChanged((user) => {
+            if (user) { currentParentUser = user; loadFamilyProfiles(); }
+            else { currentParentUser = null; switchView('auth'); }
         });
 
-        const lbContainer = document.getElementById("leaderboard-container");
-        const sortedProfiles = Object.values(ALL_PROFILES).sort((a, b) => b.coins - a.coins);
-        
-        if(sortedProfiles.length === 0) {
-            lbContainer.innerHTML = "<p class='text-xs text-gray-500 text-center'>Noch keine Profile vorhanden.</p>";
-            return;
+        function showToast(msg, type = "success") {
+            const c = document.getElementById("toast-container"); const t = document.createElement("div");
+            t.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 ${type === "success" ? "border-emerald-500" : "border-rose-500"}`;
+            t.innerHTML = msg; c.appendChild(t); setTimeout(() => t.remove(), 3000);
         }
 
-        let lbHTML = "";
-        const medals = ["🥇", "🥈", "🥉"];
-        sortedProfiles.forEach((p, index) => {
-            const medal = index < 3 ? medals[index] : `<span class="text-gray-500 font-bold w-6 inline-block text-center">${index + 1}.</span>`;
-            lbHTML += `
-            <div class="flex items-center justify-between bg-slate-900 border border-slate-700 p-3 rounded-xl shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="text-xl">${medal}</div>
-                    <div class="font-bold text-white">${p.name}</div>
-                </div>
-                <div class="text-yellow-400 font-black">🪙 ${p.coins}</div>
-            </div>`;
-        });
-        lbContainer.innerHTML = lbHTML;
-    }
-
-    async function saveNewProfile() {
-        const name = document.getElementById("new-profile-name").value.trim(); 
-        const type = document.getElementById("new-profile-type").value; 
-        const age = document.getElementById("new-profile-age").value.trim();
-        if(!name) return showToast("Bitte Namen eingeben!", "error");
-        
-        const newProf = { name: name, ageType: type, age: age || "-", coins: 0, learnedWords: [] };
-        
-        try {
-            const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(newProf); 
-            ALL_PROFILES[docRef.id] = newProf;
-            
-            document.getElementById("new-profile-name").value = "";
-            document.getElementById("new-profile-age").value = "";
-            
-            showToast("Profil angelegt!", "success"); 
-            renderFamilyHub(); 
-            switchView('family-hub');
-        } catch(e) {
-            showToast("Fehler beim Erstellen", "error");
+        function switchView(viewId) {
+            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+            document.getElementById(`view-${viewId}`).classList.remove('hidden');
+            if (viewId === 'vokabeln') loadVocabSystem();
         }
-    }
 
-    function selectProfile(key) {
-        activePlayerKey = key; 
-        currentPlayer = ALL_PROFILES[key]; 
-        sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
-        document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`; 
-        document.getElementById("menu-coins").innerText = currentPlayer.coins;
-        document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType==='alter'?'🎂 Alter':'🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`; 
-        switchView('menu');
-    }
+        // === AUTH ===
+        function registerParent() { const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value; auth.createUserWithEmailAndPassword(e, p).then(() => showToast("Account erstellt!", "success")).catch(e => showToast(e.message, "error")); }
+        function loginParent() { const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value; auth.signInWithEmailAndPassword(e, p).catch(() => showToast("Falsche Daten", "error")); }
+        function logoutParent() { auth.signOut(); }
 
-    function savePlayerProgress() {
-        if(!currentPlayer) return; 
-        currentPlayer.learnedWords = Array.from(sessionLearnedWords); 
-        ALL_PROFILES[activePlayerKey] = currentPlayer;
-        db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(activePlayerKey).set(currentPlayer); 
-        document.getElementById("menu-coins").innerText = currentPlayer.coins;
-    }
-
-    function openParentArea() { const pin = prompt("Admin-Sperre: Bitte 1234 eingeben"); if(pin === "1234") { renderAdminDashboard(); switchView('parent'); } }
-    function renderAdminDashboard() {
-        const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
-        Object.keys(ALL_PROFILES).forEach(key => { const p = ALL_PROFILES[key]; const wC = p.learnedWords ? p.learnedWords.length : 0; container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl flex justify-between items-center"><div><div class="text-blue-400 font-bold">${p.name} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div><div class="text-xs text-gray-400 mt-1">📚 ${wC} Vokabeln</div></div><div class="text-yellow-400 font-black">🪙 ${p.coins}</div></div>`; });
-    }
-
-    // === FOKUS LERNZEIT ===
-    let focusTimerInterval = null; let focusTimeRemaining = 15 * 60;
-    function startFocusTimer() { if(!focusTimerInterval) { focusTimerInterval = setInterval(() => { if(focusTimeRemaining>0){focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining/60)+":"+(focusTimeRemaining%60).toString().padStart(2,'0'); }else{ clearInterval(focusTimerInterval); currentPlayer.coins+=20; savePlayerProgress(); showToast("Zeit um! +20 Coins"); focusTimeRemaining=15*60;} }, 1000); } }
-    function resetFocusTimer() { clearInterval(focusTimerInterval); focusTimerInterval = null; focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; }
-
-    // === QUIZ LOGIK ===
-    let currentQuestions = [], qIndex = 0; let quizMode = 'mc';
-    function setQuizMode(m) {
-        quizMode = m;
-        document.getElementById("qmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'mc' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
-        document.getElementById("qmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'flashcards' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
-    }
-    function showQuizSetup() { switchView('quiz-setup'); }
-    function startQuiz() { const cat = document.getElementById("sub-category").value; currentQuestions = QUESTIONS_DATABASE.filter(q=>q.category===cat); if(currentQuestions.length===0){ showToast("Keine Fragen gefunden!","error"); return; } qIndex=0; switchView('quiz'); showQuestion(); }
-    function leaveQuiz() { switchView('menu'); }
-    function showQuestion() { 
-        const q = currentQuestions[qIndex]; const optsContainer = document.getElementById("options-container"); const expBox = document.getElementById("explanation-box");
-        optsContainer.innerHTML = ""; expBox.classList.add("hidden"); document.getElementById("next-question-btn").classList.add("hidden");
-        if (quizMode === 'flashcards') {
-            document.getElementById("question-text").innerText = "Klicke zum Umdrehen";
-            optsContainer.innerHTML = `<div class="flip-card w-full h-64 cursor-pointer" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner shadow-lg"><div class="flip-card-front bg-indigo-900 rounded-2xl flex flex-col items-center justify-center font-bold text-xl text-white p-6 text-center border border-indigo-500/50">${q.question}</div><div class="flip-card-back bg-pink-900 rounded-2xl flex flex-col items-center justify-center text-white p-6 text-center border border-pink-500/50"><span class="text-yellow-400 font-black mb-3">Lösung: ${q.answers[q.correct]}</span><span class="text-sm font-medium bg-black/20 p-3 rounded-lg leading-snug">${q.explanation}</span></div></div></div><button onclick="triggerNextQuestion()" class="mt-4 w-full p-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-white shadow-md transition">Nächste Karte ➔</button>`;
-        } else {
-            document.getElementById("question-text").innerText = q.question;
-            q.answers.forEach((ans, i) => { const b = document.createElement("button"); b.className = "w-full p-4 bg-gray-900 hover:bg-gray-800 rounded-xl font-bold text-white mt-2 border border-gray-700 transition-colors"; b.innerText = ans; b.onclick = () => checkQuiz(i, q.correct, q.explanation, q.answers[q.correct]); optsContainer.appendChild(b); }); 
+        // === PROFILE & RANGLISTE ===
+        async function loadFamilyProfiles() {
+            try {
+                const snapshot = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").get();
+                ALL_PROFILES = {}; snapshot.forEach(doc => { ALL_PROFILES[doc.id] = doc.data(); });
+                renderFamilyHub(); switchView('family-hub');
+            } catch (e) { showToast("Ladefehler", "error"); }
         }
-    }
-    function checkQuiz(sel, cor, exp, correctAnswerText) { 
-        const btns = document.getElementById("options-container").children; 
-        for(let i=0; i<btns.length; i++) { btns[i].disabled = true; if(i===cor) btns[i].className="w-full p-4 bg-emerald-600 rounded-xl font-bold text-white mt-2 shadow-md"; else if(i===sel) btns[i].className="w-full p-4 bg-rose-600 rounded-xl font-bold text-white mt-2 opacity-60"; else btns[i].classList.add("opacity-30"); } 
-        const expBox = document.getElementById("explanation-box");
-        if(sel === cor) { currentPlayer.coins += 10; savePlayerProgress(); confetti(); expBox.innerHTML = `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
-        } else { showToast("Leider falsch!", "error"); expBox.innerHTML = `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/40 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block"; } 
-        document.getElementById("next-question-btn").classList.remove("hidden"); 
-    }
-    function triggerNextQuestion() { qIndex++; if(qIndex < currentQuestions.length) showQuestion(); else { showToast("Lektion beendet! 🎉"); switchView('menu'); } }
 
-      // === VOKABEL LOGIK ===
-    let activeLang='en', activeCategory='basics', vIndex=0, vocabMode='flashcards';
-    
-    function setLanguage(l){ 
-        activeLang=l; 
-        vIndex=0; // FIX: Zähler auf 0 setzen beim Sprachwechsel
-        loadVocabSystem(); 
-    } 
-    
-    function setVocabMode(m){
-        vocabMode=m; 
-        // FIX: Buttons farblich aktualisieren, damit der aktive Modus leuchtet!
-        document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'flashcards' ? 'bg-indigo-600 text-white' : 'bg-gray-900 text-gray-400'}`;
-        document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'mc' ? 'bg-indigo-600 text-white' : 'bg-gray-900 text-gray-400'}`;
-        document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'typing' ? 'bg-indigo-600 text-white' : 'bg-gray-900 text-gray-400'}`;
-        showVocabQuestion();
-    } 
-    
-    function selectCategory(c){ 
-        activeCategory=c; 
-        vIndex=0; // FIX: Zähler auf 0 setzen beim Kategorie-Wechsel
-        showVocabQuestion(); 
-    }
-    
-    function leaveVocab() { switchView('menu'); }
-    
-    function loadVocabSystem() { 
-        const dd = document.getElementById("category-dropdown"); 
-        dd.innerHTML=""; 
-        Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(k => { 
-            dd.innerHTML+=`<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label}</option>`; 
-        }); 
-        activeCategory = Object.keys(VOCABULARY_DATABASE[activeLang])[0]; 
-        vIndex=0; // FIX: Zähler auf 0 setzen
-        showVocabQuestion(); 
-    }
+        function renderFamilyHub() {
+            const grid = document.getElementById("family-profiles-grid"); grid.innerHTML = "";
 
+            Object.keys(ALL_PROFILES).forEach(key => {
+                const p = ALL_PROFILES[key]; const btn = document.createElement("button");
+                btn.className = "bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-2";
+                btn.innerHTML = `<div class="text-4xl">👦👧</div><div class="font-bold text-white">${p.name}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>`;
+                btn.onclick = () => selectProfile(key); grid.appendChild(btn);
+            });
 
-    function showVocabQuestion() { 
-        let list = VOCABULARY_DATABASE[activeLang][activeCategory].words; if(list.length===0) return;
-        let lc=0; list.forEach(i=>{if(sessionLearnedWords.has(activeLang+"_"+activeCategory+"_"+i.foreign))lc++;}); if(lc>=list.length){showToast("Wörter resettet!"); list.forEach(i=>sessionLearnedWords.delete(activeLang+"_"+activeCategory+"_"+i.foreign)); savePlayerProgress();}
-        let sc=0; while(sessionLearnedWords.has(activeLang+"_"+activeCategory+"_"+list[vIndex].foreign) && sc<list.length){vIndex=(vIndex+1)%list.length; sc++;}
-        const w = list[vIndex]; document.getElementById("total-display").innerText = list.length; document.getElementById("current-index-display").innerText = vIndex+1;
-        const box = document.getElementById("vokabel-box");
-        
-        if(vocabMode === 'flashcards') {
-            box.innerHTML = `<div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner"><div class="flip-card-front bg-indigo-900 rounded-2xl flex items-center justify-center font-bold text-3xl text-white">${w.de}</div><div class="flip-card-back bg-pink-900 rounded-2xl flex items-center justify-center font-bold text-3xl text-white">${w.foreign}</div></div></div><button onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button><button onclick="nextVocab(true)" class="mt-2 w-full p-2 bg-emerald-600 rounded-xl font-bold text-white shadow-md text-sm">✅ Kann ich (Ausblenden)</button>`;
-        } else if(vocabMode === 'mc') {
-            let ops = [w.foreign]; let ow = shuffleArray(list.filter(x=>x.foreign!==w.foreign)); for(let i=0;i<3&&i<ow.length;i++)ops.push(ow[i].foreign); ops=shuffleArray(ops);
-            let h = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-3xl font-black mb-4 text-white">${w.de}</div><div class="grid grid-cols-2 gap-2" id="mc-options">`;
-            ops.forEach(o => { h += `<button class="p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-sm text-white hover:bg-gray-800 transition" onclick="checkVocabMC(this, '${o}', '${w.foreign}')">${o}</button>`; });
-            h += `</div><div id="mc-feedback" class="mt-4 hidden p-4 rounded-xl text-left shadow-inner"></div><button id="mc-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden">Nächstes Wort ➔</button>`;
-            box.innerHTML = h;
-        } else {
-            box.innerHTML = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-3xl font-black mb-4 text-white">${w.de}</div><input type="text" id="vocab-typing-input" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-center mb-4 text-lg" placeholder="Tippen..." onkeypress="if(event.key==='Enter') checkVocabTyping('${w.foreign}')"><button id="typing-check-btn" onclick="checkVocabTyping('${w.foreign}')" class="w-full p-3.5 bg-emerald-600 rounded-xl font-bold text-white">Prüfen</button><div id="typing-feedback" class="mt-3 font-bold text-center"></div><button id="typing-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden">Nächstes Wort ➔</button>`;
+            const lbContainer = document.getElementById("leaderboard-container");
+            const sortedProfiles = Object.values(ALL_PROFILES).sort((a, b) => b.coins - a.coins);
+
+            if (sortedProfiles.length === 0) {
+                lbContainer.innerHTML = "<p class='text-xs text-gray-500 text-center'>Noch keine Profile vorhanden.</p>";
+                return;
+            }
+
+            let lbHTML = "";
+            const medals = ["🥇", "🥈", "🥉"];
+            sortedProfiles.forEach((p, index) => {
+                const medal = index < 3 ? medals[index] : `<span class="text-gray-500 font-bold w-6 inline-block text-center">${index + 1}.</span>`;
+                lbHTML += `
+        <div class="flex items-center justify-between bg-slate-900 border border-slate-700 p-3 rounded-xl shadow-sm">
+            <div class="flex items-center gap-3">
+                <div class="text-xl">${medal}</div>
+                <div class="font-bold text-white">${p.name}</div>
+            </div>
+            <div class="text-yellow-400 font-black">🪙 ${p.coins}</div>
+        </div>`;
+            });
+            lbContainer.innerHTML = lbHTML;
         }
-    }
-    
-    function checkVocabMC(btn, sel, cor) { 
-        const p = document.getElementById("mc-options"); let ans=false; 
-        Array.from(p.children).forEach(b=>{ if(b.disabled)ans=true; b.disabled=true; if(b.innerText===cor)b.className="p-4 bg-emerald-600 rounded-xl font-bold text-white"; else if(b.innerText===sel)b.className="p-4 bg-rose-600 rounded-xl font-bold text-white opacity-50"; else b.classList.add("opacity-50"); }); 
-        if(ans) return; 
-        const fb = document.getElementById("mc-feedback"); fb.classList.remove("hidden"); document.getElementById("mc-next-btn").classList.remove("hidden");
-        if(sel===cor){ showToast("Richtig! +2 Coins"); confetti(); currentPlayer.coins+=2; savePlayerProgress(); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-emerald-500 block"; fb.innerHTML = `<div class="font-black text-emerald-400 mb-1">✅ Richtig!</div><div class="text-gray-300 text-sm">Sehr gut gemerkt.</div>`;
-        } else { showToast("Falsch!", "error"); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-rose-500 block"; fb.innerHTML = `<div class="font-black text-rose-400 mb-1 flex items-center gap-2"><span class="text-xl">💡</span> Fehler-Analyse</div><div class="text-gray-300 text-sm">Du hast leider das falsche Wort gewählt.<br>Die richtige Übersetzung ist: <span class="text-white font-bold">${cor}</span></div>`; } 
-    }
-    
-    function checkVocabTyping(cor) { 
-        const i=document.getElementById("vocab-typing-input"); const val=i.value.trim().toLowerCase(); if(!val)return; i.disabled=true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden"); const fb=document.getElementById("typing-feedback"); 
-        if(val===cor.toLowerCase()){ i.className="w-full p-4 bg-emerald-900 text-emerald-400 font-bold text-center mb-4 text-lg rounded-xl"; fb.innerHTML=`<span class="text-emerald-400">Perfekt! +5 Coins</span>`; showToast("Super!"); confetti(); currentPlayer.coins+=5; sessionLearnedWords.add(activeLang+"_"+activeCategory+"_"+cor); savePlayerProgress();
-        } else { i.className="w-full p-4 bg-rose-900 text-rose-400 font-bold text-center mb-4 text-lg rounded-xl line-through"; fb.innerHTML=`<div class="bg-slate-900 border-l-4 border-rose-500 p-4 rounded-xl text-left mt-2 shadow-inner"><span class="text-rose-400 font-black block mb-1">💡 Achte auf die Schreibweise!</span><span class="text-gray-300 text-sm">Du hast getippt: ${val}<br>Korrekt ist: <span class="text-white font-bold text-lg">${cor}</span></span></div>`; showToast("Leider falsch!", "error"); } 
-    }
-    function nextVocab(known) { if(known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); showToast("+2 Coins!", "success"); currentPlayer.coins+=2; savePlayerProgress(); } vIndex = (vIndex+1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion(); }
-</script>
+
+        async function saveNewProfile() {
+            const name = document.getElementById("new-profile-name").value.trim();
+            const type = document.getElementById("new-profile-type").value;
+            const age = document.getElementById("new-profile-age").value.trim();
+            if (!name) return showToast("Bitte Namen eingeben!", "error");
+
+            const newProf = { name: name, ageType: type, age: age || "-", coins: 0, learnedWords: [] };
+
+            try {
+                const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(newProf);
+                ALL_PROFILES[docRef.id] = newProf;
+
+                document.getElementById("new-profile-name").value = "";
+                document.getElementById("new-profile-age").value = "";
+
+                showToast("Profil angelegt!", "success");
+                renderFamilyHub();
+                switchView('family-hub');
+            } catch (e) {
+                showToast("Fehler beim Erstellen", "error");
+            }
+        }
+
+        function selectProfile(key) {
+            activePlayerKey = key;
+            currentPlayer = ALL_PROFILES[key];
+            sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
+            document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
+            document.getElementById("menu-coins").innerText = currentPlayer.coins;
+            document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType === 'alter' ? '🎂 Alter' : '🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`;
+            switchView('menu');
+        }
+
+        function savePlayerProgress() {
+            if (!currentPlayer) return;
+            currentPlayer.learnedWords = Array.from(sessionLearnedWords);
+            ALL_PROFILES[activePlayerKey] = currentPlayer;
+            db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(activePlayerKey).set(currentPlayer);
+            document.getElementById("menu-coins").innerText = currentPlayer.coins;
+        }
+
+        function openParentArea() { const pin = prompt("Admin-Sperre: Bitte 1234 eingeben"); if (pin === "1234") { renderAdminDashboard(); switchView('parent'); } }
+        function renderAdminDashboard() {
+            const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
+            Object.keys(ALL_PROFILES).forEach(key => { const p = ALL_PROFILES[key]; const wC = p.learnedWords ? p.learnedWords.length : 0; container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl flex justify-between items-center"><div><div class="text-blue-400 font-bold">${p.name} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div><div class="text-xs text-gray-400 mt-1">📚 ${wC} Vokabeln</div></div><div class="text-yellow-400 font-black">🪙 ${p.coins}</div></div>`; });
+        }
+
+        // === FOKUS LERNZEIT ===
+        let focusTimerInterval = null; let focusTimeRemaining = 15 * 60;
+        function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); currentPlayer.coins += 20; savePlayerProgress(); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; } }, 1000); } }
+        function resetFocusTimer() { clearInterval(focusTimerInterval); focusTimerInterval = null; focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; }
+
+        // === QUIZ LOGIK ===
+        let currentQuestions = [], qIndex = 0; let quizMode = 'mc';
+        function setQuizMode(m) {
+            quizMode = m;
+            document.getElementById("qmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'mc' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+            document.getElementById("qmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'flashcards' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+        }
+        function showQuizSetup() { switchView('quiz-setup'); }
+        function startQuiz() {
+            if (typeof QUESTIONS_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
+            const cat = document.getElementById("sub-category").value;
+            currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat);
+            if (currentQuestions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return; }
+            qIndex = 0; switchView('quiz'); showQuestion();
+        }
+        function leaveQuiz() { switchView('menu'); }
+        function showQuestion() {
+            const q = currentQuestions[qIndex]; const optsContainer = document.getElementById("options-container"); const expBox = document.getElementById("explanation-box");
+            optsContainer.innerHTML = ""; expBox.classList.add("hidden"); document.getElementById("next-question-btn").classList.add("hidden");
+            if (quizMode === 'flashcards') {
+                document.getElementById("question-text").innerText = "Klicke zum Umdrehen";
+                optsContainer.innerHTML = `<div class="flip-card w-full h-64 cursor-pointer" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner shadow-lg"><div class="flip-card-front bg-indigo-900 rounded-2xl flex flex-col items-center justify-center font-bold text-xl text-white p-6 text-center border border-indigo-500/50">${q.question}</div><div class="flip-card-back bg-pink-900 rounded-2xl flex flex-col items-center justify-center text-white p-6 text-center border border-pink-500/50"><span class="text-yellow-400 font-black mb-3">Lösung: ${q.answers[q.correct]}</span><span class="text-sm font-medium bg-black/20 p-3 rounded-lg leading-snug">${q.explanation}</span></div></div></div><button onclick="triggerNextQuestion()" class="mt-4 w-full p-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-white shadow-md transition">Nächste Karte ➔</button>`;
+            } else {
+                document.getElementById("question-text").innerText = q.question;
+                q.answers.forEach((ans, i) => { const b = document.createElement("button"); b.className = "w-full p-4 bg-gray-900 hover:bg-gray-800 rounded-xl font-bold text-white mt-2 border border-gray-700 transition-colors"; b.innerText = ans; b.onclick = () => checkQuiz(i, q.correct, q.explanation, q.answers[q.correct]); optsContainer.appendChild(b); });
+            }
+        }
+        function checkQuiz(sel, cor, exp, correctAnswerText) {
+            const btns = document.getElementById("options-container").children;
+            for (let i = 0; i < btns.length; i++) { btns[i].disabled = true; if (i === cor) btns[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white mt-2 shadow-md"; else if (i === sel) btns[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white mt-2 opacity-60"; else btns[i].classList.add("opacity-30"); }
+            const expBox = document.getElementById("explanation-box");
+            if (sel === cor) {
+                currentPlayer.coins += 10; savePlayerProgress(); confetti(); expBox.innerHTML = `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
+            } else { showToast("Leider falsch!", "error"); expBox.innerHTML = `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/40 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block"; }
+            document.getElementById("next-question-btn").classList.remove("hidden");
+        }
+        function triggerNextQuestion() { qIndex++; if (qIndex < currentQuestions.length) showQuestion(); else { showToast("Lektion beendet! 🎉"); switchView('menu'); } }
+
+        // === VOKABEL LOGIK ===
+        let activeLang = 'en', activeCategory = 'basics', vIndex = 0, vocabMode = 'flashcards';
+
+        function setLanguage(l) {
+            activeLang = l;
+            vIndex = 0;
+            loadVocabSystem();
+        }
+
+        function setVocabMode(m) {
+            vocabMode = m;
+            document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'flashcards' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+            document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'mc' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+            document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'typing' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+            showVocabQuestion();
+        }
+
+        function selectCategory(c) {
+            activeCategory = c;
+            vIndex = 0;
+            showVocabQuestion();
+        }
+
+        function leaveVocab() { switchView('menu'); }
+
+        function loadVocabSystem() {
+            if (typeof VOCABULARY_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
+            const dd = document.getElementById("category-dropdown");
+            dd.innerHTML = "";
+            Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(k => {
+                dd.innerHTML += `<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label}</option>`;
+            });
+            activeCategory = Object.keys(VOCABULARY_DATABASE[activeLang])[0];
+            vIndex = 0;
+            showVocabQuestion();
+        }
+
+        function shuffleArray(array) { let arr = [...array]; for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+
+        function showVocabQuestion() {
+            let list = VOCABULARY_DATABASE[activeLang][activeCategory].words; if (list.length === 0) return;
+            let lc = 0; list.forEach(i => { if (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + i.foreign)) lc++; }); if (lc >= list.length) { showToast("Wörter resettet!"); list.forEach(i => sessionLearnedWords.delete(activeLang + "_" + activeCategory + "_" + i.foreign)); savePlayerProgress(); }
+            let sc = 0; while (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && sc < list.length) { vIndex = (vIndex + 1) % list.length; sc++; }
+            const w = list[vIndex]; document.getElementById("total-display").innerText = list.length; document.getElementById("current-index-display").innerText = vIndex + 1;
+            const box = document.getElementById("vokabel-box");
+
+            if (vocabMode === 'flashcards') {
+                box.innerHTML = `<div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner"><div class="flip-card-front bg-indigo-900 rounded-2xl flex items-center justify-center font-bold text-3xl text-white">${w.de}</div><div class="flip-card-back bg-pink-900 rounded-2xl flex items-center justify-center font-bold text-3xl text-white">${w.foreign}</div></div></div><button onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button><button onclick="nextVocab(true)" class="mt-2 w-full p-2 bg-emerald-600 rounded-xl font-bold text-white shadow-md text-sm">✅ Kann ich (Ausblenden)</button>`;
+            } else if (vocabMode === 'mc') {
+                let ops = [w.foreign]; let ow = shuffleArray(list.filter(x => x.foreign !== w.foreign)); for (let i = 0; i < 3 && i < ow.length; i++)ops.push(ow[i].foreign); ops = shuffleArray(ops);
+                let h = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-3xl font-black mb-4 text-white">${w.de}</div><div class="grid grid-cols-2 gap-2" id="mc-options">`;
+                ops.forEach(o => { h += `<button class="p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-sm text-white hover:bg-gray-800 transition" onclick="checkVocabMC(this, '${o}', '${w.foreign}')">${o}</button>`; });
+                h += `</div><div id="mc-feedback" class="mt-4 hidden p-4 rounded-xl text-left shadow-inner"></div><button id="mc-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden">Nächstes Wort ➔</button>`;
+                box.innerHTML = h;
+            } else {
+                box.innerHTML = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-3xl font-black mb-4 text-white">${w.de}</div><input type="text" id="vocab-typing-input" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-center mb-4 text-lg" placeholder="Tippen..." onkeypress="if(event.key==='Enter') checkVocabTyping('${w.foreign}')"><button id="typing-check-btn" onclick="checkVocabTyping('${w.foreign}')" class="w-full p-3.5 bg-emerald-600 rounded-xl font-bold text-white">Prüfen</button><div id="typing-feedback" class="mt-3 font-bold text-center"></div><button id="typing-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden">Nächstes Wort ➔</button>`;
+            }
+        }
+
+        function checkVocabMC(btn, sel, cor) {
+            const p = document.getElementById("mc-options"); let ans = false;
+            Array.from(p.children).forEach(b => { if (b.disabled) ans = true; b.disabled = true; if (b.innerText === cor) b.className = "p-4 bg-emerald-600 rounded-xl font-bold text-white"; else if (b.innerText === sel) b.className = "p-4 bg-rose-600 rounded-xl font-bold text-white opacity-50"; else b.classList.add("opacity-50"); });
+            if (ans) return;
+            const fb = document.getElementById("mc-feedback"); fb.classList.remove("hidden"); document.getElementById("mc-next-btn").classList.remove("hidden");
+            if (sel === cor) {
+                showToast("Richtig! +2 Coins"); confetti(); currentPlayer.coins += 2; savePlayerProgress(); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-emerald-500 block"; fb.innerHTML = `<div class="font-black text-emerald-400 mb-1">✅ Richtig!</div><div class="text-gray-300 text-sm">Sehr gut gemerkt.</div>`;
+            } else { showToast("Falsch!", "error"); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-rose-500 block"; fb.innerHTML = `<div class="font-black text-rose-400 mb-1 flex items-center gap-2"><span class="text-xl">💡</span> Fehler-Analyse</div><div class="text-gray-300 text-sm">Du hast leider das falsche Wort gewählt.<br>Die richtige Übersetzung ist: <span class="text-white font-bold">${cor}</span></div>`; }
+        }
+
+        function checkVocabTyping(cor) {
+            const i = document.getElementById("vocab-typing-input"); const val = i.value.trim().toLowerCase(); if (!val) return; i.disabled = true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden"); const fb = document.getElementById("typing-feedback");
+            if (val === cor.toLowerCase()) {
+                i.className = "w-full p-4 bg-emerald-900 text-emerald-400 font-bold text-center mb-4 text-lg rounded-xl"; fb.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`; showToast("Super!"); confetti(); currentPlayer.coins += 5; sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + cor); savePlayerProgress();
+            } else { i.className = "w-full p-4 bg-rose-900 text-rose-400 font-bold text-center mb-4 text-lg rounded-xl line-through"; fb.innerHTML = `<div class="bg-slate-900 border-l-4 border-rose-500 p-4 rounded-xl text-left mt-2 shadow-inner"><span class="text-rose-400 font-black block mb-1">💡 Achte auf die Schreibweise!</span><span class="text-gray-300 text-sm">Du hast getippt: ${val}<br>Korrekt ist: <span class="text-white font-bold text-lg">${cor}</span></span></div>`; showToast("Leider falsch!", "error"); }
+        }
+        function nextVocab(known) { if (known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); showToast("+2 Coins!", "success"); currentPlayer.coins += 2; savePlayerProgress(); } vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion(); }
+
+
+
+    </script>
 </body>
+
 </html>

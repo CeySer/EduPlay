@@ -330,161 +330,164 @@
                             class="text-blue-400">1</span> / <span id="total-display">0</span></div>
                 </div>
             </div>
+
+            <!-- ========================================== -->
+            <!-- AB HIER: DIE NEUEN TV-QUIZ BEREICHE        -->
+            <!-- ========================================== -->
+
+            <!-- VIEW: TV-QUIZ (KAHOOT-MODUS) SETUP -->
+            <div id="view-tv-quiz-setup" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum
+                    Hauptmenü</button>
+
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-6 text-center">
+                    <h2 class="text-3xl font-black text-yellow-400">📺 Familien TV-Quiz</h2>
+                    <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die
+                        anderen sind die Handys der Spieler.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <!-- HOST BUTTON -->
+                        <button onclick="switchView('tv-quiz-host')"
+                            class="bg-indigo-600 hover:bg-indigo-500 p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition">
+                            <span class="text-5xl">🖥️</span>
+                            <span class="font-black text-white text-lg">Ich bin der Fernseher</span>
+                            <span class="text-xs text-indigo-200">Spiel erstellen & Fragen anzeigen</span>
+                        </button>
+
+                        <!-- SPIELER BUTTON -->
+                        <button onclick="switchView('tv-quiz-player')"
+                            class="bg-emerald-600 hover:bg-emerald-500 p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition">
+                            <span class="text-5xl">📱</span>
+                            <span class="font-black text-white text-lg">Ich spiele mit!</span>
+                            <span class="text-xs text-emerald-200">Am Handy antworten</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: TV-QUIZ HOST (Fernseher) -->
+            <div id="view-tv-quiz-host" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                    onclick="switchView('tv-quiz-setup')">← Zurück</button>
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl text-center">
+                    <h2 class="text-2xl font-black text-white mb-4">Quiz erstellen</h2>
+                    <p class="text-gray-400 text-sm mb-4">Wähle ein Thema für die Familie:</p>
+                    <!-- Klassenstufen Auswahl -->
+                    <select id="tv-quiz-category"
+                        class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-lg mb-6">
+                        <option value="klasse_1_2">🧸 Klasse 1-2 (Mathe & Deutsch)</option>
+                        <option value="klasse_3_4">🎒 Klasse 3-4 (Sachkunde & Deutsch)</option>
+                        <option value="klasse_5_6">⚽ Klasse 5-6 (Englisch, Biologie)</option>
+                        <option value="klasse_7_8">🌍 Klasse 7-8 (Englisch, Physik)</option>
+                        <option value="klasse_9_11">👥 Klasse 9-11 (Englisch, Politik)</option>
+                        <option value="kfz">🔧 Berufsschule: KFZ-Mechatronik</option>
+                        <option value="allgemeinwissen">🏆 Allgemeinwissen (Sport & Filme)</option>
+                    </select>
+                    <button onclick="startTVHostLobby()"
+                        class="w-full p-4 bg-indigo-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-indigo-500 text-xl">Lobby
+                        eröffnen 🚀</button>
+                </div>
+            </div>
+
+            <!-- VIEW: TV-QUIZ PLAYER (Handy) -->
+            <div id="view-tv-quiz-player" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                    onclick="switchView('tv-quiz-setup')">← Zurück</button>
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl text-center">
+                    <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
+                    <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
+                    <div id="player-waiting-area">
+                        <button onclick="joinTVGame()"
+                            class="w-full p-6 bg-emerald-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-emerald-500 text-2xl animate-pulse">Jetzt
+                            beitreten! 🎮</button>
+                    </div>
+                </div>
+            </div>
+
         </main>
-    </div>
+        <script>
 
-    <!-- VIEW: TV-QUIZ (KAHOOT-MODUS) SETUP -->
-    <div id="view-tv-quiz-setup" class="view hidden space-y-4">
-        <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum
-            Hauptmenü</button>
+            // === 00. FIREBASE INITIALISIERUNG ===
+            const firebaseConfig = {
+                apiKey: "AIzaSyDh8uyjrB_hJlT5a5oJSQd6YhBjLaUZIyM",
+                authDomain: "eduplay-hub-70d1a.firebaseapp.com",
+                projectId: "eduplay-hub-70d1a",
+                storageBucket: "eduplay-hub-70d1a.firebasestorage.app",
+                messagingSenderId: "705290582264",
+                appId: "1:705290582264:web:6655d999a5564ecb7b230d"
+            };
 
-        <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-6 text-center">
-            <h2 class="text-3xl font-black text-yellow-400">📺 Familien TV-Quiz</h2>
-            <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die anderen sind
-                die Handys der Spieler.</p>
+            firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
+            const db = firebase.firestore();
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                <!-- HOST BUTTON -->
-                <button onclick="switchView('tv-quiz-host')"
-                    class="bg-indigo-600 hover:bg-indigo-500 p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition">
-                    <span class="text-5xl">🖥️</span>
-                    <span class="font-black text-white text-lg">Ich bin der Fernseher</span>
-                    <span class="text-xs text-indigo-200">Spiel erstellen & Fragen anzeigen</span>
-                </button>
+            // === SICHERHEITS-CHECK & VARIABLEN ===
+            let currentParentUser = null;
+            let ALL_PROFILES = {};
+            let currentPlayer = null;
+            let activePlayerKey = "";
+            let sessionLearnedWords = new Set();
 
-                <!-- SPIELER BUTTON -->
-                <button onclick="switchView('tv-quiz-player')"
-                    class="bg-emerald-600 hover:bg-emerald-500 p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition">
-                    <span class="text-5xl">📱</span>
-                    <span class="font-black text-white text-lg">Ich spiele mit!</span>
-                    <span class="text-xs text-emerald-200">Am Handy antworten</span>
-                </button>
-            </div>
-        </div>
-    </div>
+            window.onload = function () {
+                if (typeof QUESTIONS_DATABASE === 'undefined' || typeof VOCABULARY_DATABASE === 'undefined') {
+                    alert("ACHTUNG: Die Datei 'data.js' wird vom Browser nicht gefunden!\n\n1. Liegt sie im exakt gleichen Ordner wie die index.html?\n2. Heißt sie vielleicht versehentlich 'data.js.txt'? (Windows versteckt oft Dateiendungen)");
+                }
+            };
 
-    <!-- VIEW: TV-QUIZ HOST (Fernseher) -->
-    <div id="view-tv-quiz-host" class="view hidden space-y-4">
-        <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('tv-quiz-setup')">←
-            Zurück</button>
-        <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl text-center">
-            <h2 class="text-2xl font-black text-white mb-4">Quiz erstellen</h2>
-            <p class="text-gray-400 text-sm mb-4">Wähle ein Thema für die Familie:</p>
-            <!-- Hier nutzen wir die gleichen Klassenstufen wie vorhin -->
-            <select id="tv-quiz-category"
-                class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-lg mb-6">
-                <option value="klasse_1_2">🧸 Klasse 1-2 (Mathe & Deutsch)</option>
-                <option value="klasse_3_4">🎒 Klasse 3-4 (Sachkunde & Deutsch)</option>
-                <option value="klasse_5_6">⚽ Klasse 5-6 (Englisch, Biologie)</option>
-                <option value="klasse_7_8">🌍 Klasse 7-8 (Englisch, Physik)</option>
-                <option value="klasse_9_11">👥 Klasse 9-11 (Englisch, Politik)</option>
-                <option value="kfz">🔧 Berufsschule: KFZ-Mechatronik</option>
-                <option value="allgemeinwissen">🏆 Allgemeinwissen (Sport & Filme)</option>
-            </select>
-            <button onclick="startTVHostLobby()"
-                class="w-full p-4 bg-indigo-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-indigo-500 text-xl">Lobby
-                eröffnen 🚀</button>
-        </div>
-    </div>
-
-    <!-- VIEW: TV-QUIZ PLAYER (Handy) -->
-    <div id="view-tv-quiz-player" class="view hidden space-y-4">
-        <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('tv-quiz-setup')">←
-            Zurück</button>
-        <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl text-center">
-            <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
-            <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
-            <div id="player-waiting-area">
-                <button onclick="joinTVGame()"
-                    class="w-full p-6 bg-emerald-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-emerald-500 text-2xl animate-pulse">Jetzt
-                    beitreten! 🎮</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-
-        // === 00. FIREBASE INITIALISIERUNG ===
-        const firebaseConfig = {
-            apiKey: "AIzaSyDh8uyjrB_hJlT5a5oJSQd6YhBjLaUZIyM",
-            authDomain: "eduplay-hub-70d1a.firebaseapp.com",
-            projectId: "eduplay-hub-70d1a",
-            storageBucket: "eduplay-hub-70d1a.firebasestorage.app",
-            messagingSenderId: "705290582264",
-            appId: "1:705290582264:web:6655d999a5564ecb7b230d"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        // === SICHERHEITS-CHECK & VARIABLEN ===
-        let currentParentUser = null;
-        let ALL_PROFILES = {};
-        let currentPlayer = null;
-        let activePlayerKey = "";
-        let sessionLearnedWords = new Set();
-
-        window.onload = function () {
-            if (typeof QUESTIONS_DATABASE === 'undefined' || typeof VOCABULARY_DATABASE === 'undefined') {
-                alert("ACHTUNG: Die Datei 'data.js' wird vom Browser nicht gefunden!\n\n1. Liegt sie im exakt gleichen Ordner wie die index.html?\n2. Heißt sie vielleicht versehentlich 'data.js.txt'? (Windows versteckt oft Dateiendungen)");
-            }
-        };
-
-        auth.onAuthStateChanged((user) => {
-            if (user) { currentParentUser = user; loadFamilyProfiles(); }
-            else { currentParentUser = null; switchView('auth'); }
-        });
-
-        function showToast(msg, type = "success") {
-            const c = document.getElementById("toast-container"); const t = document.createElement("div");
-            t.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 ${type === "success" ? "border-emerald-500" : "border-rose-500"}`;
-            t.innerHTML = msg; c.appendChild(t); setTimeout(() => t.remove(), 3000);
-        }
-
-        function switchView(viewId) {
-            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
-            document.getElementById(`view-${viewId}`).classList.remove('hidden');
-            if (viewId === 'vokabeln') loadVocabSystem();
-        }
-
-        // === AUTH ===
-        function registerParent() { const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value; auth.createUserWithEmailAndPassword(e, p).then(() => showToast("Account erstellt!", "success")).catch(e => showToast(e.message, "error")); }
-        function loginParent() { const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value; auth.signInWithEmailAndPassword(e, p).catch(() => showToast("Falsche Daten", "error")); }
-        function logoutParent() { auth.signOut(); }
-
-        // === PROFILE & RANGLISTE ===
-        async function loadFamilyProfiles() {
-            try {
-                const snapshot = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").get();
-                ALL_PROFILES = {}; snapshot.forEach(doc => { ALL_PROFILES[doc.id] = doc.data(); });
-                renderFamilyHub(); switchView('family-hub');
-            } catch (e) { showToast("Ladefehler", "error"); }
-        }
-
-        function renderFamilyHub() {
-            const grid = document.getElementById("family-profiles-grid"); grid.innerHTML = "";
-
-            Object.keys(ALL_PROFILES).forEach(key => {
-                const p = ALL_PROFILES[key]; const btn = document.createElement("button");
-                btn.className = "bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-2";
-                btn.innerHTML = `<div class="text-4xl">👦👧</div><div class="font-bold text-white">${p.name}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>`;
-                btn.onclick = () => selectProfile(key); grid.appendChild(btn);
+            auth.onAuthStateChanged((user) => {
+                if (user) { currentParentUser = user; loadFamilyProfiles(); }
+                else { currentParentUser = null; switchView('auth'); }
             });
 
-            const lbContainer = document.getElementById("leaderboard-container");
-            const sortedProfiles = Object.values(ALL_PROFILES).sort((a, b) => b.coins - a.coins);
-
-            if (sortedProfiles.length === 0) {
-                lbContainer.innerHTML = "<p class='text-xs text-gray-500 text-center'>Noch keine Profile vorhanden.</p>";
-                return;
+            function showToast(msg, type = "success") {
+                const c = document.getElementById("toast-container"); const t = document.createElement("div");
+                t.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 ${type === "success" ? "border-emerald-500" : "border-rose-500"}`;
+                t.innerHTML = msg; c.appendChild(t); setTimeout(() => t.remove(), 3000);
             }
 
-            let lbHTML = "";
-            const medals = ["🥇", "🥈", "🥉"];
-            sortedProfiles.forEach((p, index) => {
-                const medal = index < 3 ? medals[index] : `<span class="text-gray-500 font-bold w-6 inline-block text-center">${index + 1}.</span>`;
-                lbHTML += `
+            function switchView(viewId) {
+                document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+                document.getElementById(`view-${viewId}`).classList.remove('hidden');
+                if (viewId === 'vokabeln') loadVocabSystem();
+            }
+
+            // === AUTH ===
+            function registerParent() { const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value; auth.createUserWithEmailAndPassword(e, p).then(() => showToast("Account erstellt!", "success")).catch(e => showToast(e.message, "error")); }
+            function loginParent() { const e = document.getElementById("auth-email").value; const p = document.getElementById("auth-password").value; auth.signInWithEmailAndPassword(e, p).catch(() => showToast("Falsche Daten", "error")); }
+            function logoutParent() { auth.signOut(); }
+
+            // === PROFILE & RANGLISTE ===
+            async function loadFamilyProfiles() {
+                try {
+                    const snapshot = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").get();
+                    ALL_PROFILES = {}; snapshot.forEach(doc => { ALL_PROFILES[doc.id] = doc.data(); });
+                    renderFamilyHub(); switchView('family-hub');
+                } catch (e) { showToast("Ladefehler", "error"); }
+            }
+
+            function renderFamilyHub() {
+                const grid = document.getElementById("family-profiles-grid"); grid.innerHTML = "";
+
+                Object.keys(ALL_PROFILES).forEach(key => {
+                    const p = ALL_PROFILES[key]; const btn = document.createElement("button");
+                    btn.className = "bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-2";
+                    btn.innerHTML = `<div class="text-4xl">👦👧</div><div class="font-bold text-white">${p.name}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>`;
+                    btn.onclick = () => selectProfile(key); grid.appendChild(btn);
+                });
+
+                const lbContainer = document.getElementById("leaderboard-container");
+                const sortedProfiles = Object.values(ALL_PROFILES).sort((a, b) => b.coins - a.coins);
+
+                if (sortedProfiles.length === 0) {
+                    lbContainer.innerHTML = "<p class='text-xs text-gray-500 text-center'>Noch keine Profile vorhanden.</p>";
+                    return;
+                }
+
+                let lbHTML = "";
+                const medals = ["🥇", "🥈", "🥉"];
+                sortedProfiles.forEach((p, index) => {
+                    const medal = index < 3 ? medals[index] : `<span class="text-gray-500 font-bold w-6 inline-block text-center">${index + 1}.</span>`;
+                    lbHTML += `
         <div class="flex items-center justify-between bg-slate-900 border border-slate-700 p-3 rounded-xl shadow-sm">
             <div class="flex items-center gap-3">
                 <div class="text-xl">${medal}</div>
@@ -492,180 +495,180 @@
             </div>
             <div class="text-yellow-400 font-black">🪙 ${p.coins}</div>
         </div>`;
-            });
-            lbContainer.innerHTML = lbHTML;
-        }
-
-        async function saveNewProfile() {
-            const name = document.getElementById("new-profile-name").value.trim();
-            const type = document.getElementById("new-profile-type").value;
-            const age = document.getElementById("new-profile-age").value.trim();
-            if (!name) return showToast("Bitte Namen eingeben!", "error");
-
-            const newProf = { name: name, ageType: type, age: age || "-", coins: 0, learnedWords: [] };
-
-            try {
-                const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(newProf);
-                ALL_PROFILES[docRef.id] = newProf;
-
-                document.getElementById("new-profile-name").value = "";
-                document.getElementById("new-profile-age").value = "";
-
-                showToast("Profil angelegt!", "success");
-                renderFamilyHub();
-                switchView('family-hub');
-            } catch (e) {
-                showToast("Fehler beim Erstellen", "error");
+                });
+                lbContainer.innerHTML = lbHTML;
             }
-        }
 
-        function selectProfile(key) {
-            activePlayerKey = key;
-            currentPlayer = ALL_PROFILES[key];
-            sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
-            document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
-            document.getElementById("menu-coins").innerText = currentPlayer.coins;
-            document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType === 'alter' ? '🎂 Alter' : '🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`;
-            switchView('menu');
-        }
+            async function saveNewProfile() {
+                const name = document.getElementById("new-profile-name").value.trim();
+                const type = document.getElementById("new-profile-type").value;
+                const age = document.getElementById("new-profile-age").value.trim();
+                if (!name) return showToast("Bitte Namen eingeben!", "error");
 
-        function savePlayerProgress() {
-            if (!currentPlayer) return;
-            currentPlayer.learnedWords = Array.from(sessionLearnedWords);
-            ALL_PROFILES[activePlayerKey] = currentPlayer;
-            db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(activePlayerKey).set(currentPlayer);
-            document.getElementById("menu-coins").innerText = currentPlayer.coins;
-        }
+                const newProf = { name: name, ageType: type, age: age || "-", coins: 0, learnedWords: [] };
 
-        function openParentArea() { const pin = prompt("Admin-Sperre: Bitte 1234 eingeben"); if (pin === "1234") { renderAdminDashboard(); switchView('parent'); } }
-        function renderAdminDashboard() {
-            const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
-            Object.keys(ALL_PROFILES).forEach(key => { const p = ALL_PROFILES[key]; const wC = p.learnedWords ? p.learnedWords.length : 0; container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl flex justify-between items-center"><div><div class="text-blue-400 font-bold">${p.name} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div><div class="text-xs text-gray-400 mt-1">📚 ${wC} Vokabeln</div></div><div class="text-yellow-400 font-black">🪙 ${p.coins}</div></div>`; });
-        }
+                try {
+                    const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(newProf);
+                    ALL_PROFILES[docRef.id] = newProf;
 
-        // === FOKUS LERNZEIT ===
-        let focusTimerInterval = null; let focusTimeRemaining = 15 * 60;
-        function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); currentPlayer.coins += 20; savePlayerProgress(); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; } }, 1000); } }
-        function resetFocusTimer() { clearInterval(focusTimerInterval); focusTimerInterval = null; focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; }
+                    document.getElementById("new-profile-name").value = "";
+                    document.getElementById("new-profile-age").value = "";
 
-        // === QUIZ LOGIK ===
-        let currentQuestions = [], qIndex = 0; let quizMode = 'mc';
-        function setQuizMode(m) {
-            quizMode = m;
-            document.getElementById("qmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'mc' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
-            document.getElementById("qmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'flashcards' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
-        }
-        function showQuizSetup() { switchView('quiz-setup'); }
-        function startQuiz() {
-            if (typeof QUESTIONS_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
-            const cat = document.getElementById("sub-category").value;
-            currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat);
-            if (currentQuestions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return; }
-            qIndex = 0; switchView('quiz'); showQuestion();
-        }
-        function leaveQuiz() { switchView('menu'); }
-        function showQuestion() {
-            const q = currentQuestions[qIndex]; const optsContainer = document.getElementById("options-container"); const expBox = document.getElementById("explanation-box");
-            optsContainer.innerHTML = ""; expBox.classList.add("hidden"); document.getElementById("next-question-btn").classList.add("hidden");
-            if (quizMode === 'flashcards') {
-                document.getElementById("question-text").innerText = "Klicke zum Umdrehen";
-                optsContainer.innerHTML = `<div class="flip-card w-full h-64 cursor-pointer" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner shadow-lg"><div class="flip-card-front bg-indigo-900 rounded-2xl flex flex-col items-center justify-center font-bold text-xl text-white p-6 text-center border border-indigo-500/50">${q.question}</div><div class="flip-card-back bg-pink-900 rounded-2xl flex flex-col items-center justify-center text-white p-6 text-center border border-pink-500/50"><span class="text-yellow-400 font-black mb-3">Lösung: ${q.answers[q.correct]}</span><span class="text-sm font-medium bg-black/20 p-3 rounded-lg leading-snug">${q.explanation}</span></div></div></div><button onclick="triggerNextQuestion()" class="mt-4 w-full p-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-white shadow-md transition">Nächste Karte ➔</button>`;
-            } else {
-                document.getElementById("question-text").innerText = q.question;
-                q.answers.forEach((ans, i) => { const b = document.createElement("button"); b.className = "w-full p-4 bg-gray-900 hover:bg-gray-800 rounded-xl font-bold text-white mt-2 border border-gray-700 transition-colors"; b.innerText = ans; b.onclick = () => checkQuiz(i, q.correct, q.explanation, q.answers[q.correct]); optsContainer.appendChild(b); });
+                    showToast("Profil angelegt!", "success");
+                    renderFamilyHub();
+                    switchView('family-hub');
+                } catch (e) {
+                    showToast("Fehler beim Erstellen", "error");
+                }
             }
-        }
-        function checkQuiz(sel, cor, exp, correctAnswerText) {
-            const btns = document.getElementById("options-container").children;
-            for (let i = 0; i < btns.length; i++) { btns[i].disabled = true; if (i === cor) btns[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white mt-2 shadow-md"; else if (i === sel) btns[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white mt-2 opacity-60"; else btns[i].classList.add("opacity-30"); }
-            const expBox = document.getElementById("explanation-box");
-            if (sel === cor) {
-                currentPlayer.coins += 10; savePlayerProgress(); confetti(); expBox.innerHTML = `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
-            } else { showToast("Leider falsch!", "error"); expBox.innerHTML = `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/40 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block"; }
-            document.getElementById("next-question-btn").classList.remove("hidden");
-        }
-        function triggerNextQuestion() { qIndex++; if (qIndex < currentQuestions.length) showQuestion(); else { showToast("Lektion beendet! 🎉"); switchView('menu'); } }
 
-        // === VOKABEL LOGIK ===
-        let activeLang = 'en', activeCategory = 'basics', vIndex = 0, vocabMode = 'flashcards';
-
-        function setLanguage(l) {
-            activeLang = l;
-            vIndex = 0;
-            loadVocabSystem();
-        }
-
-        function setVocabMode(m) {
-            vocabMode = m;
-            document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'flashcards' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
-            document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'mc' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
-            document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'typing' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
-            showVocabQuestion();
-        }
-
-        function selectCategory(c) {
-            activeCategory = c;
-            vIndex = 0;
-            showVocabQuestion();
-        }
-
-        function leaveVocab() { switchView('menu'); }
-
-        function loadVocabSystem() {
-            if (typeof VOCABULARY_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
-            const dd = document.getElementById("category-dropdown");
-            dd.innerHTML = "";
-            Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(k => {
-                dd.innerHTML += `<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label}</option>`;
-            });
-            activeCategory = Object.keys(VOCABULARY_DATABASE[activeLang])[0];
-            vIndex = 0;
-            showVocabQuestion();
-        }
-
-        function shuffleArray(array) { let arr = [...array]; for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
-
-        function showVocabQuestion() {
-            let list = VOCABULARY_DATABASE[activeLang][activeCategory].words; if (list.length === 0) return;
-            let lc = 0; list.forEach(i => { if (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + i.foreign)) lc++; }); if (lc >= list.length) { showToast("Wörter resettet!"); list.forEach(i => sessionLearnedWords.delete(activeLang + "_" + activeCategory + "_" + i.foreign)); savePlayerProgress(); }
-            let sc = 0; while (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && sc < list.length) { vIndex = (vIndex + 1) % list.length; sc++; }
-            const w = list[vIndex]; document.getElementById("total-display").innerText = list.length; document.getElementById("current-index-display").innerText = vIndex + 1;
-            const box = document.getElementById("vokabel-box");
-
-            if (vocabMode === 'flashcards') {
-                box.innerHTML = `<div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner"><div class="flip-card-front bg-indigo-900 rounded-2xl flex items-center justify-center font-bold text-3xl text-white">${w.de}</div><div class="flip-card-back bg-pink-900 rounded-2xl flex items-center justify-center font-bold text-3xl text-white">${w.foreign}</div></div></div><button onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button><button onclick="nextVocab(true)" class="mt-2 w-full p-2 bg-emerald-600 rounded-xl font-bold text-white shadow-md text-sm">✅ Kann ich (Ausblenden)</button>`;
-            } else if (vocabMode === 'mc') {
-                let ops = [w.foreign]; let ow = shuffleArray(list.filter(x => x.foreign !== w.foreign)); for (let i = 0; i < 3 && i < ow.length; i++)ops.push(ow[i].foreign); ops = shuffleArray(ops);
-                let h = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-3xl font-black mb-4 text-white">${w.de}</div><div class="grid grid-cols-2 gap-2" id="mc-options">`;
-                ops.forEach(o => { h += `<button class="p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-sm text-white hover:bg-gray-800 transition" onclick="checkVocabMC(this, '${o}', '${w.foreign}')">${o}</button>`; });
-                h += `</div><div id="mc-feedback" class="mt-4 hidden p-4 rounded-xl text-left shadow-inner"></div><button id="mc-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden">Nächstes Wort ➔</button>`;
-                box.innerHTML = h;
-            } else {
-                box.innerHTML = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-3xl font-black mb-4 text-white">${w.de}</div><input type="text" id="vocab-typing-input" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-center mb-4 text-lg" placeholder="Tippen..." onkeypress="if(event.key==='Enter') checkVocabTyping('${w.foreign}')"><button id="typing-check-btn" onclick="checkVocabTyping('${w.foreign}')" class="w-full p-3.5 bg-emerald-600 rounded-xl font-bold text-white">Prüfen</button><div id="typing-feedback" class="mt-3 font-bold text-center"></div><button id="typing-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden">Nächstes Wort ➔</button>`;
+            function selectProfile(key) {
+                activePlayerKey = key;
+                currentPlayer = ALL_PROFILES[key];
+                sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
+                document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
+                document.getElementById("menu-coins").innerText = currentPlayer.coins;
+                document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType === 'alter' ? '🎂 Alter' : '🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`;
+                switchView('menu');
             }
-        }
 
-        function checkVocabMC(btn, sel, cor) {
-            const p = document.getElementById("mc-options"); let ans = false;
-            Array.from(p.children).forEach(b => { if (b.disabled) ans = true; b.disabled = true; if (b.innerText === cor) b.className = "p-4 bg-emerald-600 rounded-xl font-bold text-white"; else if (b.innerText === sel) b.className = "p-4 bg-rose-600 rounded-xl font-bold text-white opacity-50"; else b.classList.add("opacity-50"); });
-            if (ans) return;
-            const fb = document.getElementById("mc-feedback"); fb.classList.remove("hidden"); document.getElementById("mc-next-btn").classList.remove("hidden");
-            if (sel === cor) {
-                showToast("Richtig! +2 Coins"); confetti(); currentPlayer.coins += 2; savePlayerProgress(); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-emerald-500 block"; fb.innerHTML = `<div class="font-black text-emerald-400 mb-1">✅ Richtig!</div><div class="text-gray-300 text-sm">Sehr gut gemerkt.</div>`;
-            } else { showToast("Falsch!", "error"); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-rose-500 block"; fb.innerHTML = `<div class="font-black text-rose-400 mb-1 flex items-center gap-2"><span class="text-xl">💡</span> Fehler-Analyse</div><div class="text-gray-300 text-sm">Du hast leider das falsche Wort gewählt.<br>Die richtige Übersetzung ist: <span class="text-white font-bold">${cor}</span></div>`; }
-        }
+            function savePlayerProgress() {
+                if (!currentPlayer) return;
+                currentPlayer.learnedWords = Array.from(sessionLearnedWords);
+                ALL_PROFILES[activePlayerKey] = currentPlayer;
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(activePlayerKey).set(currentPlayer);
+                document.getElementById("menu-coins").innerText = currentPlayer.coins;
+            }
 
-        function checkVocabTyping(cor) {
-            const i = document.getElementById("vocab-typing-input"); const val = i.value.trim().toLowerCase(); if (!val) return; i.disabled = true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden"); const fb = document.getElementById("typing-feedback");
-            if (val === cor.toLowerCase()) {
-                i.className = "w-full p-4 bg-emerald-900 text-emerald-400 font-bold text-center mb-4 text-lg rounded-xl"; fb.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`; showToast("Super!"); confetti(); currentPlayer.coins += 5; sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + cor); savePlayerProgress();
-            } else { i.className = "w-full p-4 bg-rose-900 text-rose-400 font-bold text-center mb-4 text-lg rounded-xl line-through"; fb.innerHTML = `<div class="bg-slate-900 border-l-4 border-rose-500 p-4 rounded-xl text-left mt-2 shadow-inner"><span class="text-rose-400 font-black block mb-1">💡 Achte auf die Schreibweise!</span><span class="text-gray-300 text-sm">Du hast getippt: ${val}<br>Korrekt ist: <span class="text-white font-bold text-lg">${cor}</span></span></div>`; showToast("Leider falsch!", "error"); }
-        }
-        function nextVocab(known) { if (known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); showToast("+2 Coins!", "success"); currentPlayer.coins += 2; savePlayerProgress(); } vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion(); }
+            function openParentArea() { const pin = prompt("Admin-Sperre: Bitte 1234 eingeben"); if (pin === "1234") { renderAdminDashboard(); switchView('parent'); } }
+            function renderAdminDashboard() {
+                const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
+                Object.keys(ALL_PROFILES).forEach(key => { const p = ALL_PROFILES[key]; const wC = p.learnedWords ? p.learnedWords.length : 0; container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl flex justify-between items-center"><div><div class="text-blue-400 font-bold">${p.name} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div><div class="text-xs text-gray-400 mt-1">📚 ${wC} Vokabeln</div></div><div class="text-yellow-400 font-black">🪙 ${p.coins}</div></div>`; });
+            }
+
+            // === FOKUS LERNZEIT ===
+            let focusTimerInterval = null; let focusTimeRemaining = 15 * 60;
+            function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); currentPlayer.coins += 20; savePlayerProgress(); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; } }, 1000); } }
+            function resetFocusTimer() { clearInterval(focusTimerInterval); focusTimerInterval = null; focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; }
+
+            // === QUIZ LOGIK ===
+            let currentQuestions = [], qIndex = 0; let quizMode = 'mc';
+            function setQuizMode(m) {
+                quizMode = m;
+                document.getElementById("qmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'mc' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+                document.getElementById("qmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'flashcards' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+            }
+            function showQuizSetup() { switchView('quiz-setup'); }
+            function startQuiz() {
+                if (typeof QUESTIONS_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
+                const cat = document.getElementById("sub-category").value;
+                currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat);
+                if (currentQuestions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return; }
+                qIndex = 0; switchView('quiz'); showQuestion();
+            }
+            function leaveQuiz() { switchView('menu'); }
+            function showQuestion() {
+                const q = currentQuestions[qIndex]; const optsContainer = document.getElementById("options-container"); const expBox = document.getElementById("explanation-box");
+                optsContainer.innerHTML = ""; expBox.classList.add("hidden"); document.getElementById("next-question-btn").classList.add("hidden");
+                if (quizMode === 'flashcards') {
+                    document.getElementById("question-text").innerText = "Klicke zum Umdrehen";
+                    optsContainer.innerHTML = `<div class="flip-card w-full h-64 cursor-pointer" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner shadow-lg"><div class="flip-card-front bg-indigo-900 rounded-2xl flex flex-col items-center justify-center font-bold text-xl text-white p-6 text-center border border-indigo-500/50">${q.question}</div><div class="flip-card-back bg-pink-900 rounded-2xl flex flex-col items-center justify-center text-white p-6 text-center border border-pink-500/50"><span class="text-yellow-400 font-black mb-3">Lösung: ${q.answers[q.correct]}</span><span class="text-sm font-medium bg-black/20 p-3 rounded-lg leading-snug">${q.explanation}</span></div></div></div><button onclick="triggerNextQuestion()" class="mt-4 w-full p-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-white shadow-md transition">Nächste Karte ➔</button>`;
+                } else {
+                    document.getElementById("question-text").innerText = q.question;
+                    q.answers.forEach((ans, i) => { const b = document.createElement("button"); b.className = "w-full p-4 bg-gray-900 hover:bg-gray-800 rounded-xl font-bold text-white mt-2 border border-gray-700 transition-colors"; b.innerText = ans; b.onclick = () => checkQuiz(i, q.correct, q.explanation, q.answers[q.correct]); optsContainer.appendChild(b); });
+                }
+            }
+            function checkQuiz(sel, cor, exp, correctAnswerText) {
+                const btns = document.getElementById("options-container").children;
+                for (let i = 0; i < btns.length; i++) { btns[i].disabled = true; if (i === cor) btns[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white mt-2 shadow-md"; else if (i === sel) btns[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white mt-2 opacity-60"; else btns[i].classList.add("opacity-30"); }
+                const expBox = document.getElementById("explanation-box");
+                if (sel === cor) {
+                    currentPlayer.coins += 10; savePlayerProgress(); confetti(); expBox.innerHTML = `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
+                } else { showToast("Leider falsch!", "error"); expBox.innerHTML = `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/40 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block"; }
+                document.getElementById("next-question-btn").classList.remove("hidden");
+            }
+            function triggerNextQuestion() { qIndex++; if (qIndex < currentQuestions.length) showQuestion(); else { showToast("Lektion beendet! 🎉"); switchView('menu'); } }
+
+            // === VOKABEL LOGIK ===
+            let activeLang = 'en', activeCategory = 'basics', vIndex = 0, vocabMode = 'flashcards';
+
+            function setLanguage(l) {
+                activeLang = l;
+                vIndex = 0;
+                loadVocabSystem();
+            }
+
+            function setVocabMode(m) {
+                vocabMode = m;
+                document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'flashcards' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+                document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'mc' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+                document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'typing' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
+                showVocabQuestion();
+            }
+
+            function selectCategory(c) {
+                activeCategory = c;
+                vIndex = 0;
+                showVocabQuestion();
+            }
+
+            function leaveVocab() { switchView('menu'); }
+
+            function loadVocabSystem() {
+                if (typeof VOCABULARY_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
+                const dd = document.getElementById("category-dropdown");
+                dd.innerHTML = "";
+                Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(k => {
+                    dd.innerHTML += `<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label}</option>`;
+                });
+                activeCategory = Object.keys(VOCABULARY_DATABASE[activeLang])[0];
+                vIndex = 0;
+                showVocabQuestion();
+            }
+
+            function shuffleArray(array) { let arr = [...array]; for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+
+            function showVocabQuestion() {
+                let list = VOCABULARY_DATABASE[activeLang][activeCategory].words; if (list.length === 0) return;
+                let lc = 0; list.forEach(i => { if (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + i.foreign)) lc++; }); if (lc >= list.length) { showToast("Wörter resettet!"); list.forEach(i => sessionLearnedWords.delete(activeLang + "_" + activeCategory + "_" + i.foreign)); savePlayerProgress(); }
+                let sc = 0; while (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && sc < list.length) { vIndex = (vIndex + 1) % list.length; sc++; }
+                const w = list[vIndex]; document.getElementById("total-display").innerText = list.length; document.getElementById("current-index-display").innerText = vIndex + 1;
+                const box = document.getElementById("vokabel-box");
+
+                if (vocabMode === 'flashcards') {
+                    box.innerHTML = `<div class="flip-card w-full h-48 cursor-pointer" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner"><div class="flip-card-front bg-indigo-900 rounded-2xl flex items-center justify-center font-bold text-3xl text-white">${w.de}</div><div class="flip-card-back bg-pink-900 rounded-2xl flex items-center justify-center font-bold text-3xl text-white">${w.foreign}</div></div></div><button onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white shadow-md">Nächstes Wort ➔</button><button onclick="nextVocab(true)" class="mt-2 w-full p-2 bg-emerald-600 rounded-xl font-bold text-white shadow-md text-sm">✅ Kann ich (Ausblenden)</button>`;
+                } else if (vocabMode === 'mc') {
+                    let ops = [w.foreign]; let ow = shuffleArray(list.filter(x => x.foreign !== w.foreign)); for (let i = 0; i < 3 && i < ow.length; i++)ops.push(ow[i].foreign); ops = shuffleArray(ops);
+                    let h = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-3xl font-black mb-4 text-white">${w.de}</div><div class="grid grid-cols-2 gap-2" id="mc-options">`;
+                    ops.forEach(o => { h += `<button class="p-4 bg-gray-900 border border-gray-700 rounded-xl font-bold text-sm text-white hover:bg-gray-800 transition" onclick="checkVocabMC(this, '${o}', '${w.foreign}')">${o}</button>`; });
+                    h += `</div><div id="mc-feedback" class="mt-4 hidden p-4 rounded-xl text-left shadow-inner"></div><button id="mc-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden">Nächstes Wort ➔</button>`;
+                    box.innerHTML = h;
+                } else {
+                    box.innerHTML = `<div class="bg-indigo-900 py-8 px-4 rounded-2xl text-3xl font-black mb-4 text-white">${w.de}</div><input type="text" id="vocab-typing-input" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-center mb-4 text-lg" placeholder="Tippen..." onkeypress="if(event.key==='Enter') checkVocabTyping('${w.foreign}')"><button id="typing-check-btn" onclick="checkVocabTyping('${w.foreign}')" class="w-full p-3.5 bg-emerald-600 rounded-xl font-bold text-white">Prüfen</button><div id="typing-feedback" class="mt-3 font-bold text-center"></div><button id="typing-next-btn" onclick="nextVocab(false)" class="mt-4 w-full p-3.5 bg-indigo-600 rounded-xl font-bold text-white hidden">Nächstes Wort ➔</button>`;
+                }
+            }
+
+            function checkVocabMC(btn, sel, cor) {
+                const p = document.getElementById("mc-options"); let ans = false;
+                Array.from(p.children).forEach(b => { if (b.disabled) ans = true; b.disabled = true; if (b.innerText === cor) b.className = "p-4 bg-emerald-600 rounded-xl font-bold text-white"; else if (b.innerText === sel) b.className = "p-4 bg-rose-600 rounded-xl font-bold text-white opacity-50"; else b.classList.add("opacity-50"); });
+                if (ans) return;
+                const fb = document.getElementById("mc-feedback"); fb.classList.remove("hidden"); document.getElementById("mc-next-btn").classList.remove("hidden");
+                if (sel === cor) {
+                    showToast("Richtig! +2 Coins"); confetti(); currentPlayer.coins += 2; savePlayerProgress(); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-emerald-500 block"; fb.innerHTML = `<div class="font-black text-emerald-400 mb-1">✅ Richtig!</div><div class="text-gray-300 text-sm">Sehr gut gemerkt.</div>`;
+                } else { showToast("Falsch!", "error"); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-rose-500 block"; fb.innerHTML = `<div class="font-black text-rose-400 mb-1 flex items-center gap-2"><span class="text-xl">💡</span> Fehler-Analyse</div><div class="text-gray-300 text-sm">Du hast leider das falsche Wort gewählt.<br>Die richtige Übersetzung ist: <span class="text-white font-bold">${cor}</span></div>`; }
+            }
+
+            function checkVocabTyping(cor) {
+                const i = document.getElementById("vocab-typing-input"); const val = i.value.trim().toLowerCase(); if (!val) return; i.disabled = true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden"); const fb = document.getElementById("typing-feedback");
+                if (val === cor.toLowerCase()) {
+                    i.className = "w-full p-4 bg-emerald-900 text-emerald-400 font-bold text-center mb-4 text-lg rounded-xl"; fb.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`; showToast("Super!"); confetti(); currentPlayer.coins += 5; sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + cor); savePlayerProgress();
+                } else { i.className = "w-full p-4 bg-rose-900 text-rose-400 font-bold text-center mb-4 text-lg rounded-xl line-through"; fb.innerHTML = `<div class="bg-slate-900 border-l-4 border-rose-500 p-4 rounded-xl text-left mt-2 shadow-inner"><span class="text-rose-400 font-black block mb-1">💡 Achte auf die Schreibweise!</span><span class="text-gray-300 text-sm">Du hast getippt: ${val}<br>Korrekt ist: <span class="text-white font-bold text-lg">${cor}</span></span></div>`; showToast("Leider falsch!", "error"); }
+            }
+            function nextVocab(known) { if (known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); showToast("+2 Coins!", "success"); currentPlayer.coins += 2; savePlayerProgress(); } vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion(); }
 
 
 
-    </script>
+        </script>
 </body>
 
 </html>

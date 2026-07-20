@@ -125,6 +125,39 @@
                 </div>
             </div>
 
+            <!-- VIEW: HAUPTMENÜ (nach Profilauswahl) -->
+            <div id="view-menu" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                    onclick="switchView('family-hub')">← Profil wechseln</button>
+
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg text-center">
+                    <h1 id="welcome-text" class="text-2xl font-black text-white mb-2">Hallo!</h1>
+                    <div class="flex justify-center gap-4 text-sm font-bold">
+                        <span class="text-yellow-400">🪙 <span id="menu-coins">0</span> Coins</span>
+                        <span id="menu-age-display" class="text-gray-400">🎒 Klasse: <span id="menu-age">-</span></span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <button onclick="showQuizSetup()"
+                        class="bg-pink-600 p-5 rounded-2xl font-black text-white shadow-lg hover:bg-pink-500 flex flex-col items-center gap-2">
+                        <span class="text-3xl">🧠</span> Wissen & Grammatik
+                    </button>
+                    <button onclick="switchView('vokabeln')"
+                        class="bg-emerald-600 p-5 rounded-2xl font-black text-white shadow-lg hover:bg-emerald-500 flex flex-col items-center gap-2">
+                        <span class="text-3xl">🃏</span> Vokabeln lernen
+                    </button>
+                    <button onclick="switchView('tv-quiz-setup')"
+                        class="bg-indigo-600 p-5 rounded-2xl font-black text-white shadow-lg hover:bg-indigo-500 flex flex-col items-center gap-2">
+                        <span class="text-3xl">📺</span> TV-Familienquiz
+                    </button>
+                    <button onclick="switchView('fokus')"
+                        class="bg-yellow-500 p-5 rounded-2xl font-black text-slate-950 shadow-lg hover:bg-yellow-400 flex flex-col items-center gap-2">
+                        <span class="text-3xl">⏱️</span> Fokus-Timer
+                    </button>
+                </div>
+            </div>
+
             <!-- VIEW: NEUES PROFIL ERSTELLEN -->
             <div id="view-create-profile" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
@@ -147,68 +180,6 @@
                         speichern</button>
                 </div>
             </div>
-
-
-            <!-- VIEW: FAMILY HUB (ELTERN BEREICH) -->
-            <div id="view-family-hub" class="view hidden space-y-6">
-                <div
-                    class="flex justify-between items-center bg-gray-800 p-4 rounded-2xl border border-gray-700 shadow-md">
-                    <h2 class="text-2xl font-black text-white">👨‍👩‍👧‍👦 Eltern-Dashboard</h2>
-                    <button onclick="logout()" class="text-rose-400 font-bold hover:text-rose-300">Abmelden</button>
-                </div>
-
-                <!-- DIE NEUEN TABS -->
-                <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
-                    <button id="tab-manage"
-                        class="flex-1 py-2 px-1 rounded-lg font-bold text-white bg-blue-600 shadow-md transition-all text-sm"
-                        onclick="switchParentTab('manage')">⚙️ Profile</button>
-                    <button id="tab-progress"
-                        class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
-                        onclick="switchParentTab('progress')">📊 Fortschritt</button>
-                    <button id="tab-test"
-                        class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
-                        onclick="switchParentTab('test')">📝 Test</button>
-                </div>
-
-                <!-- BEREICH 1: PROFILE VERWALTEN (Dein funktionierender Code) -->
-                <div id="parent-section-manage" class="space-y-4">
-                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
-                        <h3 class="text-lg font-bold text-white mb-4">Neues Profil anlegen</h3>
-                        <input type="text" id="new-player-name" placeholder="Name eingeben..."
-                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none mb-3">
-                        <input type="number" id="new-player-age" placeholder="Alter (z.B. 7 oder 15)"
-                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none mb-3">
-                        <button onclick="addPlayer()"
-                            class="w-full bg-blue-600 py-3 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">Hinzufügen</button>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mt-6">Aktuelle Profile</h3>
-                    <div id="players-list" class="space-y-3"></div>
-                </div>
-
-                <!-- BEREICH 2: FORTSCHRITT (Platzhalter) -->
-                <div id="parent-section-progress" class="space-y-4 hidden">
-                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
-                        <p class="text-gray-400 font-bold text-lg mt-4">Hier kommt gleich die Fahrschul-Statistik hin!
-                        </p>
-                    </div>
-                </div>
-
-                <!-- BEREICH 3: TEST (Platzhalter) -->
-                <div id="parent-section-test" class="space-y-4 hidden">
-                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
-                        <p class="text-gray-400 font-bold text-lg mt-4">Hier bauen wir gleich den Klausur-Modus ein!</p>
-                    </div>
-                </div>
-
-                <button onclick="switchView('menu')"
-                    class="w-full p-4 bg-gray-700 font-bold text-white rounded-xl shadow-lg hover:bg-gray-600">Zurück
-                    zum Kinder-Menü</button>
-            </div>
-
-
-
-
-
 
 
             <!-- VIEW: FOKUS LERNZEIT -->
@@ -924,6 +895,35 @@
                 const docSnap = await tvGameRef.get(); const data = docSnap.data();
                 let playersData = data.players;
                 playersData[activePlayerKey].hasAnswered = true; playersData[activePlayerKey].lastAnswer = ansIndex;
+                await tvGameRef.update({ players: playersData });
+            }
+
+            // ==========================================
+            // ELTERN-DASHBOARD TABS
+            // ==========================================
+            function switchParentTab(tabName) {
+                // 1. Alle Bereiche verstecken
+                document.getElementById('parent-section-manage').classList.add('hidden');
+                document.getElementById('parent-section-progress').classList.add('hidden');
+                document.getElementById('parent-section-test').classList.add('hidden');
+
+                // 2. Alle Buttons auf "Grau" (inaktiv) setzen
+                const tabs = ['manage', 'progress', 'test'];
+                tabs.forEach(t => {
+                    document.getElementById('tab-' + t).className = "flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm";
+                });
+
+                // 3. Den gewählten Bereich anzeigen und den Button Blau machen
+                document.getElementById('parent-section-' + tabName).classList.remove('hidden');
+                document.getElementById('tab-' + tabName).className = "flex-1 py-2 px-1 rounded-lg font-bold text-white bg-blue-600 shadow-md transition-all text-sm";
+            }
+
+
+        </script>
+    </div>
+</body>
+
+</html>                playersData[activePlayerKey].hasAnswered = true; playersData[activePlayerKey].lastAnswer = ansIndex;
                 await tvGameRef.update({ players: playersData });
             }
 

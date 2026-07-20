@@ -148,68 +148,68 @@
                 </div>
             </div>
 
-            <!-- VIEW: MAIN MENU (KINDER BEREICH) -->
-            <div id="view-menu" class="view hidden space-y-4">
+
+            <!-- VIEW: FAMILY HUB (ELTERN BEREICH) -->
+            <div id="view-family-hub" class="view hidden space-y-6">
                 <div
-                    class="bg-slate-900 border border-blue-900/60 p-5 rounded-2xl flex justify-between items-start shadow-xl">
-                    <div>
-                        <h2 id="welcome-text" class="text-xl font-bold text-white">Hallo!</h2>
-                        <div class="flex gap-4 mt-1 text-xs font-semibold">
-                            <span class="text-yellow-400">🪙 <span id="menu-coins">0</span> Coins</span>
-                            <span class="text-blue-400" id="menu-age-display">🎒 Klasse: <span
-                                    id="menu-age">-</span></span>
-                        </div>
+                    class="flex justify-between items-center bg-gray-800 p-4 rounded-2xl border border-gray-700 shadow-md">
+                    <h2 class="text-2xl font-black text-white">👨‍👩‍👧‍👦 Eltern-Dashboard</h2>
+                    <button onclick="logout()" class="text-rose-400 font-bold hover:text-rose-300">Abmelden</button>
+                </div>
+
+                <!-- DIE NEUEN TABS -->
+                <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
+                    <button id="tab-manage"
+                        class="flex-1 py-2 px-1 rounded-lg font-bold text-white bg-blue-600 shadow-md transition-all text-sm"
+                        onclick="switchParentTab('manage')">⚙️ Profile</button>
+                    <button id="tab-progress"
+                        class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
+                        onclick="switchParentTab('progress')">📊 Fortschritt</button>
+                    <button id="tab-test"
+                        class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
+                        onclick="switchParentTab('test')">📝 Test</button>
+                </div>
+
+                <!-- BEREICH 1: PROFILE VERWALTEN (Dein funktionierender Code) -->
+                <div id="parent-section-manage" class="space-y-4">
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
+                        <h3 class="text-lg font-bold text-white mb-4">Neues Profil anlegen</h3>
+                        <input type="text" id="new-player-name" placeholder="Name eingeben..."
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none mb-3">
+                        <input type="number" id="new-player-age" placeholder="Alter (z.B. 7 oder 15)"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none mb-3">
+                        <button onclick="addPlayer()"
+                            class="w-full bg-blue-600 py-3 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">Hinzufügen</button>
                     </div>
-                    <button onclick="switchView('family-hub')"
-                        class="text-gray-400 hover:text-white p-2.5 bg-gray-800 rounded-xl border border-gray-700 transition text-xs font-bold shadow-md">🚪
-                        Wechseln</button>
+                    <h3 class="text-lg font-bold text-white mt-6">Aktuelle Profile</h3>
+                    <div id="players-list" class="space-y-3"></div>
                 </div>
 
-                <h1 class="text-2xl font-black text-center mt-4">Wähle deinen Lernbereich:</h1>
-
-                <div class="space-y-4">
-                    <button
-                        class="w-full text-left bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-indigo-900/60 transition-all shadow-md"
-                        onclick="switchView('vokabeln')">
-                        <div class="text-5xl">📖</div>
-                        <div>
-                            <h2 class="text-xl font-black text-indigo-400">Vokabeln üben</h2>
-                            <p class="text-xs text-gray-300">Schule, Alltag, Hobbys, Umwelt</p>
-                        </div>
-                    </button>
-
-                    <button
-                        class="w-full text-left bg-pink-900/40 border border-pink-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-pink-900/60 transition-all shadow-md"
-                        onclick="showQuizSetup()">
-                        <div class="text-5xl">🎯</div>
-                        <div>
-                            <h2 class="text-xl font-black text-pink-400">Wissen & Grammatik</h2>
-                            <p class="text-xs text-gray-300">Englisch Grammatik & Fachwissen</p>
-                        </div>
-                    </button>
-
-                    <button
-                        class="w-full text-left bg-yellow-900/40 border border-yellow-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-900/60 transition-all shadow-md"
-                        onclick="switchView('fokus')">
-                        <div class="text-5xl">⏳</div>
-                        <div>
-                            <h2 class="text-xl font-black text-yellow-400">Fokus-Lernzeit</h2>
-                            <p class="text-xs text-gray-300">Mit Timer ungestört lernen</p>
-                        </div>
-                    </button>
-
-                    <!-- NEUER KAHOOT BUTTON -->
-                    <button
-                        class="w-full text-left bg-emerald-900/40 border border-emerald-500/50 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-emerald-900/60 transition-all shadow-md"
-                        onclick="switchView('tv-quiz-setup')">
-                        <div class="text-5xl">📺</div>
-                        <div>
-                            <h2 class="text-xl font-black text-emerald-400">Familien TV-Quiz</h2>
-                            <p class="text-xs text-gray-300">Kahoot-Modus für alle zusammen</p>
-                        </div>
-                    </button>
+                <!-- BEREICH 2: FORTSCHRITT (Platzhalter) -->
+                <div id="parent-section-progress" class="space-y-4 hidden">
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
+                        <p class="text-gray-400 font-bold text-lg mt-4">Hier kommt gleich die Fahrschul-Statistik hin!
+                        </p>
+                    </div>
                 </div>
+
+                <!-- BEREICH 3: TEST (Platzhalter) -->
+                <div id="parent-section-test" class="space-y-4 hidden">
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center">
+                        <p class="text-gray-400 font-bold text-lg mt-4">Hier bauen wir gleich den Klausur-Modus ein!</p>
+                    </div>
+                </div>
+
+                <button onclick="switchView('menu')"
+                    class="w-full p-4 bg-gray-700 font-bold text-white rounded-xl shadow-lg hover:bg-gray-600">Zurück
+                    zum Kinder-Menü</button>
             </div>
+
+
+
+
+
+
 
             <!-- VIEW: FOKUS LERNZEIT -->
             <div id="view-fokus" class="view hidden space-y-4">
@@ -912,6 +912,27 @@
                 playersData[activePlayerKey].hasAnswered = true; playersData[activePlayerKey].lastAnswer = ansIndex;
                 await tvGameRef.update({ players: playersData });
             }
+
+            // ==========================================
+            // ELTERN-DASHBOARD TABS
+            // ==========================================
+            function switchParentTab(tabName) {
+                // 1. Alle Bereiche verstecken
+                document.getElementById('parent-section-manage').classList.add('hidden');
+                document.getElementById('parent-section-progress').classList.add('hidden');
+                document.getElementById('parent-section-test').classList.add('hidden');
+
+                // 2. Alle Buttons auf "Grau" (inaktiv) setzen
+                const tabs = ['manage', 'progress', 'test'];
+                tabs.forEach(t => {
+                    document.getElementById('tab-' + t).className = "flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm";
+                });
+
+                // 3. Den gewählten Bereich anzeigen und den Button Blau machen
+                document.getElementById('parent-section-' + tabName).classList.remove('hidden');
+                document.getElementById('tab-' + tabName).className = "flex-1 py-2 px-1 rounded-lg font-bold text-white bg-blue-600 shadow-md transition-all text-sm";
+            }
+
 
         </script>
 </body>

@@ -669,11 +669,19 @@
             // ==========================================
             // TV-QUIZ (KAHOOT-MODUS) LOGIK
             // ==========================================
+
+
+
+            // ==========================================
+            // TV-QUIZ (KAHOOT-MODUS) LOGIK - DAS FINALE 🏆
+            // ==========================================
             let tvGameRef = null;
             let tvUnsubscribe = null;
             let isTVHost = false;
+            let tvQuestions = [];
+            let tvCurrentQ = null;
 
-            // --- LOGIK FÜR DEN FERNSEHER (HOST) ---
+            // --- 1. LOGIK FÜR DEN FERNSEHER (HOST) ---
             async function startTVHostLobby() {
                 if (!currentParentUser) return showToast("Fehler: Eltern-Account muss eingeloggt sein!", "error");
 
@@ -681,112 +689,202 @@
                 const hostRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
 
                 try {
-                    // Lobby in Firebase erstellen/zurücksetzen
-                    await hostRef.set({
-                        status: "waiting", // waiting = Warten auf Spieler, playing = Spiel läuft
-                        category: category,
-                        currentQuestionIndex: 0,
-                        players: {} // Hier tragen sich die Handys ein
-                    });
+                    await hostRef.set({ status: "waiting", category: category, currentQuestionIndex: 0, players: {} });
+                    isTVHost = true; tvGameRef = hostRef;
 
-                    isTVHost = true;
-                    tvGameRef = hostRef;
-
-                    // Ansicht auf TV ändern
                     document.getElementById("view-tv-quiz-host").innerHTML = `
-                <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center shadow-2xl">
-                    <h2 class="text-4xl font-black text-indigo-400 mb-6">Warte auf Spieler...</h2>
-                    <p class="text-xl text-white mb-8">Drückt auf euren Handys auf <span class="text-emerald-400 font-bold">'Jetzt beitreten!'</span></p>
-                    <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-                        <!-- Hier tauchen die Spieler auf -->
-                    </div>
-                    <button onclick="startTVGameLoop()" class="w-full p-6 bg-yellow-500 font-extrabold text-slate-900 rounded-xl shadow-lg hover:bg-yellow-400 text-2xl">Spiel starten! 🚀</button>
-                    <button onclick="switchView('menu')" class="mt-4 text-gray-500 text-sm font-bold underline">Lobby abbrechen</button>
+                <div class="h-[80vh] flex flex-col items-center justify-center bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center shadow-2xl">
+                    <h2 class="text-5xl font-black text-indigo-400 mb-6 animate-pulse">Warte auf Spieler...</h2>
+                    <p class="text-2xl text-white mb-12">Drückt auf euren Handys auf <br><span class="text-emerald-400 font-bold text-4xl">'Jetzt beitreten!'</span></p>
+                    <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>
+                    <button onclick="startTVGameLoop()" class="p-6 px-12 bg-yellow-500 font-extrabold text-slate-900 rounded-xl shadow-lg hover:bg-yellow-400 text-3xl transition-transform hover:scale-105">Spiel starten! 🚀</button>
+                    <button onclick="window.location.reload()" class="mt-8 text-gray-500 text-lg font-bold underline">Lobby abbrechen</button>
                 </div>
             `;
 
-                    // Dem Fernseher sagen, er soll live auf neue Spieler achten
                     tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
-                        if (doc.exists) {
-                            const data = doc.data();
-                            renderTVPlayerList(data.players);
+                        if (!doc.exists) return;
+                        const data = doc.data();
+                        if (data.status === "waiting") renderTVPlayerList(data.players);
+
+                        // Live-Zähler der Antworten aktualisieren, wenn Spiel läuft
+                        if (data.status === "playing" && !data.showAnswer) {
+                            const ansCount = Object.values(data.players).filter(p => p.hasAnswered).length;
+                            const totalCount = Object.keys(data.players).length;
+                            const cDiv = document.getElementById("tv-answer-count");
+                            if (cDiv) cDiv.innerText = `Antworten abgegeben: ${ansCount} / ${totalCount}`;
                         }
                     });
-
-                } catch (error) {
-                    showToast("Fehler beim Erstellen der Lobby", "error");
-                    console.error(error);
-                }
+                } catch (e) { showToast("Fehler beim Erstellen", "error"); }
             }
 
             function renderTVPlayerList(playersObj) {
                 const listDiv = document.getElementById("tv-player-list");
-                if (!listDiv) return;
-
-                listDiv.innerHTML = "";
+                if (!listDiv) return; listDiv.innerHTML = "";
                 const playerNames = Object.values(playersObj || {});
-
-                if (playerNames.length === 0) {
-                    listDiv.innerHTML = "<p class='text-gray-500 col-span-full'>Noch niemand hier...</p>";
-                    return;
-                }
+                if (playerNames.length === 0) { listDiv.innerHTML = "<p class='text-gray-500 col-span-full'>Noch niemand hier...</p>"; return; }
 
                 playerNames.forEach(player => {
-                    listDiv.innerHTML += `
-                <div class="bg-indigo-900/50 border border-indigo-500/30 p-4 rounded-xl text-white font-bold text-xl animate-bounce">
-                    👦👧 ${player.name}
-                </div>
-            `;
+                    listDiv.innerHTML += `<div class="bg-indigo-900 border-2 border-indigo-500 p-4 rounded-xl text-white font-black text-2xl shadow-lg animate-bounce">👦👧 ${player.name}</div>`;
                 });
             }
 
-            // --- LOGIK FÜR DIE HANDYS (SPIELER) ---
+            async function startTVGameLoop() {
+                const docSnap = await tvGameRef.get(); const data = docSnap.data();
+                tvQuestions = QUESTIONS_DATABASE.filter(q => q.category === data.category);
+                if (tvQuestions.length === 0) return alert("Keine Fragen für diese Klasse gefunden!");
+
+                let playersData = data.players || {};
+                Object.keys(playersData).forEach(k => { playersData[k].hasAnswered = false; playersData[k].lastAnswer = null; playersData[k].score = 0; });
+
+                await tvGameRef.update({ status: "playing", currentQuestionIndex: 0, players: playersData, showAnswer: false });
+                renderTVHostQuestion(0);
+            }
+
+            function renderTVHostQuestion(index) {
+                tvCurrentQ = tvQuestions[index];
+                const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
+                const shapes = ["▲", "♦", "●", "◼"];
+
+                let answersHtml = "";
+                tvCurrentQ.answers.forEach((ans, i) => {
+                    answersHtml += `<div class="${colors[i]} p-8 rounded-2xl text-white font-black text-4xl flex items-center gap-6 shadow-xl"><span class="text-5xl opacity-80">${shapes[i]}</span> ${ans}</div>`;
+                });
+
+                document.getElementById("view-tv-quiz-host").innerHTML = `
+            <div class="h-[90vh] flex flex-col justify-between p-6">
+                <div class="text-center bg-gray-800 p-8 rounded-3xl border border-gray-700 shadow-xl mb-8">
+                    <span class="text-gray-400 font-bold text-xl uppercase tracking-widest">Frage ${index + 1} von ${tvQuestions.length}</span>
+                    <h1 class="text-5xl md:text-6xl font-black text-white mt-4 leading-tight">${tvCurrentQ.question}</h1>
+                </div>
+                <div class="grid grid-cols-2 gap-6 flex-1">
+                    ${answersHtml}
+                </div>
+                <div class="flex justify-between items-center mt-8 bg-gray-900 p-6 rounded-2xl border border-gray-800">
+                    <div id="tv-answer-count" class="text-3xl font-black text-emerald-400">Antworten abgegeben: 0</div>
+                    <button onclick="resolveTVQuestion()" class="p-5 px-10 bg-white text-slate-900 font-black rounded-xl text-2xl hover:bg-gray-200 shadow-lg">Auflösen / Weiter ➔</button>
+                </div>
+            </div>
+        `;
+            }
+
+            async function resolveTVQuestion() {
+                const docSnap = await tvGameRef.get(); const data = docSnap.data();
+                const correctIndex = tvQuestions[data.currentQuestionIndex].correct;
+
+                let playersData = data.players;
+                Object.keys(playersData).forEach(k => { if (playersData[k].lastAnswer === correctIndex) playersData[k].score += 10; });
+
+                await tvGameRef.update({ showAnswer: true, correctAnswer: correctIndex, players: playersData });
+
+                // Richtige Antwort hervorheben
+                const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
+                const shapes = ["▲", "♦", "●", "◼"];
+                let answersHtml = "";
+                tvCurrentQ.answers.forEach((ans, i) => {
+                    const opacity = i === correctIndex ? "opacity-100 ring-8 ring-white scale-105" : "opacity-20 grayscale";
+                    answersHtml += `<div class="${colors[i]} p-8 rounded-2xl text-white font-black text-4xl flex items-center gap-6 shadow-xl transition-all duration-500 ${opacity}"><span class="text-5xl opacity-80">${shapes[i]}</span> ${ans}</div>`;
+                });
+
+                document.getElementById("view-tv-quiz-host").innerHTML = `
+            <div class="h-[90vh] flex flex-col justify-between p-6">
+                <div class="text-center bg-gray-800 p-8 rounded-3xl border border-emerald-500 shadow-xl mb-8">
+                    <h1 class="text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
+                    <p class="text-emerald-400 font-black mt-6 text-3xl">💡 ${tvCurrentQ.explanation}</p>
+                </div>
+                <div class="grid grid-cols-2 gap-6 flex-1">${answersHtml}</div>
+                <div class="mt-8 text-center"><button onclick="nextTVQuestion()" class="p-6 px-16 bg-indigo-600 text-white font-black rounded-xl text-3xl hover:bg-indigo-500 shadow-xl w-1/2">Nächste Frage ➔</button></div>
+            </div>
+        `;
+            }
+
+            async function nextTVQuestion() {
+                const docSnap = await tvGameRef.get(); const data = docSnap.data();
+                let nextIndex = data.currentQuestionIndex + 1;
+                if (nextIndex >= tvQuestions.length) {
+                    await tvGameRef.update({ status: "finished" }); showTVHostPodium(data.players);
+                } else {
+                    let playersData = data.players;
+                    Object.keys(playersData).forEach(k => { playersData[k].hasAnswered = false; playersData[k].lastAnswer = null; });
+                    await tvGameRef.update({ currentQuestionIndex: nextIndex, showAnswer: false, players: playersData });
+                    renderTVHostQuestion(nextIndex);
+                }
+            }
+
+            function showTVHostPodium(playersData) {
+                const sorted = Object.values(playersData).sort((a, b) => b.score - a.score);
+                let html = `<h1 class="text-7xl font-black text-yellow-400 mb-10">🏆 Siegerehrung 🏆</h1><div class="space-y-6 max-w-3xl mx-auto w-full">`;
+                const medals = ["🥇", "🥈", "🥉"];
+                sorted.forEach((p, i) => {
+                    const medal = i < 3 ? medals[i] : `<span class="w-12 inline-block text-gray-500">${i + 1}.</span>`;
+                    html += `<div class="flex items-center justify-between bg-gray-800 p-8 rounded-2xl border-2 ${i === 0 ? 'border-yellow-400 bg-gray-800/80' : 'border-gray-700'} shadow-xl"><div class="text-4xl font-bold text-white flex items-center gap-6"><span class="text-5xl">${medal}</span> ${p.name}</div><div class="text-4xl font-black text-emerald-400">${p.score} <span class="text-2xl text-emerald-600">Coins</span></div></div>`;
+                });
+                html += `</div><button onclick="window.location.reload()" class="mt-16 p-6 px-12 bg-gray-700 text-white font-bold rounded-xl text-2xl hover:bg-gray-600 shadow-md">Beenden & Zurück zum Menü</button>`;
+                document.getElementById("view-tv-quiz-host").innerHTML = `<div class="h-screen flex flex-col items-center justify-center p-6 bg-gray-900">${html}</div>`;
+                try { confetti(); confetti(); } catch (e) { }
+            }
+
+            // --- 2. LOGIK FÜR DIE HANDYS (SPIELER) ---
             async function joinTVGame() {
                 if (!currentParentUser || !currentPlayer) return showToast("Fehler: Du musst als Kind eingeloggt sein!", "error");
-
                 const lobbyRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
 
                 try {
                     const docSnap = await lobbyRef.get();
+                    if (!docSnap.exists || docSnap.data().status !== "waiting") return showToast("Aktuell ist keine Lobby offen!", "error");
 
-                    if (!docSnap.exists || docSnap.data().status !== "waiting") {
-                        showToast("Es gibt gerade kein offenes Spiel!", "error");
-                        return;
-                    }
-
-                    // Kind in die Firebase-Lobby eintragen
-                    const playersData = docSnap.data().players || {};
-                    playersData[activePlayerKey] = {
-                        name: currentPlayer.name,
-                        score: 0,
-                        hasAnswered: false
-                    };
-
+                    let playersData = docSnap.data().players || {};
+                    playersData[activePlayerKey] = { name: currentPlayer.name, score: 0, hasAnswered: false, coinsClaimed: false };
                     await lobbyRef.update({ players: playersData });
-                    tvGameRef = lobbyRef;
+                    tvGameRef = lobbyRef; isTVHost = false;
 
-                    // Handy-Ansicht auf Warten ändern
-                    document.getElementById("view-tv-quiz-player").innerHTML = `
-                <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center shadow-lg">
-                    <div class="text-6xl mb-4">🙌</div>
-                    <h2 class="text-2xl font-black text-emerald-400 mb-2">Du bist drin!</h2>
-                    <p class="text-white">Schau auf den Fernseher. Das Spiel geht gleich los!</p>
-                </div>
-            `;
+                    document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 p-12 rounded-2xl text-center shadow-2xl mt-12"><div class="text-8xl mb-6 animate-bounce">🙌</div><h2 class="text-4xl font-black text-emerald-400 mb-4">Du bist drin!</h2><p class="text-xl text-white font-bold">Gleich geht's los. Schau auf den Fernseher!</p></div>`;
 
-                    // Auch das Handy horcht ab jetzt auf Änderungen (z.B. wenn das Spiel startet)
+                    // Ab hier hört das Handy zu, was der Fernseher macht!
                     tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
-                        if (doc.exists && doc.data().status === "playing") {
-                            // Hier kommt später der Code, der die 4 Knöpfe auf dem Handy einblendet
-                            console.log("Das Spiel hat gestartet!");
+                        if (!doc.exists || isTVHost) return;
+                        const data = doc.data(); const myData = data.players[activePlayerKey];
+                        if (!myData) return;
+
+                        if (data.status === "playing") {
+                            if (data.showAnswer) {
+                                // Der Fernseher hat aufgelöst -> Ergebnis anzeigen
+                                const isCorrect = myData.lastAnswer === data.correctAnswer;
+                                const bg = isCorrect ? "bg-emerald-500" : "bg-rose-600";
+                                const icon = isCorrect ? "✅" : "❌";
+                                const text = isCorrect ? "Richtig!" : "Leider falsch!";
+                                document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-9xl mb-8">${icon}</div><h2 class="text-5xl font-black mb-4">${text}</h2><p class="text-2xl font-bold opacity-80">Dein Punktestand: ${myData.score}</p></div>`;
+                                if (isCorrect) try { confetti(); } catch (e) { }
+                            } else if (!myData.hasAnswered) {
+                                // Neue Frage -> 4 Knöpfe anzeigen!
+                                const q = QUESTIONS_DATABASE.filter(x => x.category === data.category)[data.currentQuestionIndex];
+                                const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
+                                const shapes = ["▲", "♦", "●", "◼"];
+                                let btnHtml = `<div class="grid grid-cols-2 gap-4 h-[75vh]">`;
+                                q.answers.forEach((ans, i) => { btnHtml += `<button onclick="submitTVAnswer(${i})" class="${colors[i]} rounded-3xl shadow-xl flex items-center justify-center text-8xl text-white/90 active:scale-95 transition-transform">${shapes[i]}</button>`; });
+                                document.getElementById("view-tv-quiz-player").innerHTML = btnHtml + `</div>`;
+                            }
+                        } else if (data.status === "finished") {
+                            // Spiel vorbei -> Coins gutschreiben (nur einmal!)
+                            if (!myData.coinsClaimed) {
+                                currentPlayer.coins += myData.score; savePlayerProgress();
+                                tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true });
+                            }
+                            document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 p-12 rounded-3xl text-center shadow-2xl mt-12"><div class="text-8xl mb-6">🏆</div><h2 class="text-4xl font-black text-yellow-400 mb-4">Spiel beendet!</h2><p class="text-2xl text-white font-bold bg-gray-900 p-4 rounded-xl inline-block">+ ${myData.score} Coins verdient!</p><button onclick="window.location.reload()" class="mt-12 w-full p-6 bg-indigo-600 font-black text-white rounded-xl shadow-lg text-2xl">Zurück ins Menü</button></div>`;
                         }
                     });
-
-                } catch (error) {
-                    showToast("Verbindungsfehler", "error");
-                    console.error(error);
-                }
+                } catch (error) { showToast("Verbindungsfehler", "error"); }
             }
+
+            async function submitTVAnswer(ansIndex) {
+                // Handy sofort auf Warten schalten
+                document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-4xl font-black text-indigo-400 mb-4">Eingeloggt!</h2><p class="text-xl font-bold text-gray-400">Schau auf den Fernseher...</p></div>`;
+                const docSnap = await tvGameRef.get(); const data = docSnap.data();
+                let playersData = data.players;
+                playersData[activePlayerKey].hasAnswered = true; playersData[activePlayerKey].lastAnswer = ansIndex;
+                await tvGameRef.update({ players: playersData });
+            }
+
 
         </script>
 </body>

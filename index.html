@@ -13,6 +13,9 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
+    <!-- HIER WERDEN DEINE DATEN GELADEN -->
+    <script src="data.js"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f1f5f9; }
@@ -62,7 +65,7 @@
                 + Neues Profil für Kind anlegen
             </button>
 
-            <!-- NEU: RANGLISTE -->
+            <!-- RANGLISTE -->
             <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg mt-6">
                 <h2 class="text-xl font-black text-yellow-400 mb-4 text-center">🏆 Familien-Rangliste</h2>
                 <div id="leaderboard-container" class="space-y-2">
@@ -137,7 +140,6 @@
             </div>
         </div>
 
-        <!-- Restliche Views (Fokus, Quiz, Vokabeln, Admin) bleiben vorerst unverändert -->
         <!-- VIEW: FOKUS LERNZEIT -->
         <div id="view-fokus" class="view hidden space-y-4">
             <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zurück</button>
@@ -237,31 +239,8 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // === DATENBANKEN ===
-    const QUESTIONS_DATABASE = [
-        { category: "eng_grammatik_5_6", question: "He ___ to school every day.", answers: ["go", "goes", "going"], correct: 1, explanation: "💡 Simple Present: Bei 'he, she, it' muss das 's' mit! (He goes)" },
-        { category: "eng_grammatik_5_6", question: "Look! The dog ___ in the garden.", answers: ["plays", "is playing", "play"], correct: 1, explanation: "💡 Present Progressive: Signalwort 'Look!'. Es passiert genau jetzt im Moment." },
-        { category: "eng_grammatik_5_6", question: "I ___ not like apples.", answers: ["does", "am", "do"], correct: 2, explanation: "💡 Simple Present Verneinung: I do not (don't) like." },
-        { category: "eng_grammatik_7_8", question: "Yesterday, I ___ a great movie.", answers: ["see", "saw", "have seen"], correct: 1, explanation: "💡 Simple Past: Das Signalwort 'Yesterday' verlangt die 2. Form der Vergangenheit (saw)." },
-        { category: "eng_grammatik_7_8", question: "She runs ___ than her brother.", answers: ["faster", "fastest", "more fast"], correct: 0, explanation: "💡 Steigerung: fast -> faster -> fastest. Hier ist es ein Vergleich (faster than)." },
-        { category: "eng_grammatik_9_11", question: "If I had a million dollars, I ___ a big house.", answers: ["will buy", "would buy", "bought"], correct: 1, explanation: "💡 If-Clause Typ 2 (unwahrscheinlich): If + Simple Past, dann im Hauptsatz 'would' + Verb." },
-        { category: "eng_grammatik_9_11", question: "The car ___ repaired tomorrow.", answers: ["is repaired", "was repaired", "will be repaired"], correct: 2, explanation: "💡 Passiv in der Zukunft: will + be + Partizip Perfekt (3. Form)." },
-        { category: "deutsch_uebungsheft", question: "Welches Wort ist richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere (Nomen) schreibt man immer groß!" },
-        { category: "klasse2_mathe", question: "Was ist 25 + 14?", answers: ["35", "38", "39"], correct: 2, explanation: "💡 Zerlegen: 20+10=30. Dann 5+4=9. Zusammen ergibt das 39!" },
-        { category: "kfz", question: "Zahnriemenwechsel: Darfst du den Motor durchdrehen, während das Absteckwerkzeug angebracht ist?", answers: ["Ja", "Nur rückwärts", "Auf gar keinen Fall"], correct: 2, explanation: "💡 Wichtig: Ist die Arretierung (Absteckwerkzeug) einmal dran, darf der Motor absolut nicht mehr gedreht werden, sonst droht ein kapitaler Motorschaden!" },
-        { category: "kfz", question: "Welches Bauteil wandelt in der Lichtmaschine den Wechselstrom in Gleichstrom um?", answers: ["Der Anlasser", "Die Zündspule", "Die Diodenplatte"], correct: 2, explanation: "💡 Die Dioden lassen den Strom nur in eine Richtung fließen und richten so den Wechselstrom für die Batterie in Gleichstrom um." }
-    ];
-
-    const VOCABULARY_DATABASE = {
-        en: {
-            basics: { label: "🧸 Basis (Kl. 1-4)", words: [{de:"Null",foreign:"zero"},{de:"Eins",foreign:"one"},{de:"Zwei",foreign:"two"},{de:"Hund",foreign:"dog"},{de:"Katze",foreign:"cat"},{de:"Tisch",foreign:"desk"},{de:"Buch",foreign:"book"},{de:"Schule",foreign:"school"}] },
-            hobbies: { label: "⚽ Hobbys (Kl. 5-7)", words: [{de:"Fußball",foreign:"football"},{de:"Schwimmen",foreign:"swimming"},{de:"Lesen",foreign:"reading"},{de:"Schiedsrichter",foreign:"referee"},{de:"Training",foreign:"training"}] },
-            society: { label: "👥 Gesellschaft (Kl. 10-11)", words: [{de:"Gesellschaft",foreign:"society"},{de:"Demokratie",foreign:"democracy"},{de:"Arbeit",foreign:"work"},{de:"Ausbildung",foreign:"apprenticeship"}] }
-        },
-        tr: {
-            basics: { label: "🧸 Temel Kelimeler", words: [{de:"Null",foreign:"sıfır"},{de:"Eins",foreign:"bir"},{de:"Hund",foreign:"köpek"},{de:"Buch",foreign:"kitap"}] }
-        }
-    }; 
+    // BEACHTE: Die Konstanten QUESTIONS_DATABASE und VOCABULARY_DATABASE 
+    // fehlen hier absichtlich, weil sie jetzt bequem über die data.js Datei geladen werden!
 
     let currentParentUser = null; let ALL_PROFILES = {}; let currentPlayer = null; let activePlayerKey = "";
     
@@ -306,7 +285,6 @@
             btn.onclick = () => selectProfile(key); grid.appendChild(btn);
         });
 
-        // Rangliste rendern
         const lbContainer = document.getElementById("leaderboard-container");
         const sortedProfiles = Object.values(ALL_PROFILES).sort((a, b) => b.coins - a.coins);
         
@@ -340,7 +318,6 @@
         const newProf = { name: name, ageType: type, age: age || "-", coins: 0, learnedWords: [] };
         
         try {
-            // FIREBASE AUTO-ID ERLAUBT GLEICHE NAMEN
             const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(newProf); 
             ALL_PROFILES[docRef.id] = newProf;
             

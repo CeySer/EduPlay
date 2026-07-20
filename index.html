@@ -667,19 +667,15 @@
             function nextVocab(known) { if (known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); showToast("+2 Coins!", "success"); currentPlayer.coins += 2; savePlayerProgress(); } vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion(); }
 
             // ==========================================
-            // TV-QUIZ (KAHOOT-MODUS) LOGIK
-            // ==========================================
-
-
-
-            // ==========================================
-            // TV-QUIZ (KAHOOT-MODUS) LOGIK - DAS FINALE 🏆
+            // TV-QUIZ (KAHOOT-MODUS) LOGIK - GAMESHOW EDITION 📺
             // ==========================================
             let tvGameRef = null;
             let tvUnsubscribe = null;
             let isTVHost = false;
             let tvQuestions = [];
             let tvCurrentQ = null;
+            let tvCountdownInterval = null;
+            let isResolving = false; // Verhindert doppeltes Auflösen
 
             // --- 1. LOGIK FÜR DEN FERNSEHER (HOST) ---
             async function startTVHostLobby() {
@@ -707,12 +703,18 @@
                         const data = doc.data();
                         if (data.status === "waiting") renderTVPlayerList(data.players);
 
-                        // Live-Zähler der Antworten aktualisieren, wenn Spiel läuft
+                        // Live-Zähler & Auto-Auflösung
                         if (data.status === "playing" && !data.showAnswer) {
                             const ansCount = Object.values(data.players).filter(p => p.hasAnswered).length;
                             const totalCount = Object.keys(data.players).length;
                             const cDiv = document.getElementById("tv-answer-count");
                             if (cDiv) cDiv.innerText = `Antworten abgegeben: ${ansCount} / ${totalCount}`;
+
+                            // AUTO-AUFLÖSEN, wenn alle getippt haben
+                            if (ansCount === totalCount && totalCount > 0 && !isResolving) {
+                                isResolving = true;
+                                setTimeout(() => resolveTVQuestion(), 800); // Kurze Pause für den Dramatik-Effekt
+                            }
                         }
                     });
                 } catch (e) { showToast("Fehler beim Erstellen", "error"); }
@@ -742,18 +744,28 @@
             }
 
             function renderTVHostQuestion(index) {
+                isResolving = false;
                 tvCurrentQ = tvQuestions[index];
                 const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
                 const shapes = ["▲", "♦", "●", "◼"];
 
                 let answersHtml = "";
                 tvCurrentQ.answers.forEach((ans, i) => {
-                    answersHtml += `<div class="${colors[i]} p-8 rounded-2xl text-white font-black text-4xl flex items-center gap-6 shadow-xl"><span class="text-5xl opacity-80">${shapes[i]}</span> ${ans}</div>`;
+                    // SCHÖNERES DESIGN: Form links transparent, Text zentriert
+                    answersHtml += `
+            <div class="${colors[i]} p-4 rounded-2xl text-white shadow-xl flex items-center relative overflow-hidden min-h-[120px]">
+                <span class="text-8xl opacity-20 absolute left-4">${shapes[i]}</span> 
+                <span class="text-3xl md:text-4xl font-black w-full text-center relative z-10 px-6 break-words">${ans}</span>
+            </div>`;
                 });
 
                 document.getElementById("view-tv-quiz-host").innerHTML = `
             <div class="h-[90vh] flex flex-col justify-between p-6">
-                <div class="text-center bg-gray-800 p-8 rounded-3xl border border-gray-700 shadow-xl mb-8">
+                <div class="text-center bg-gray-800 p-8 rounded-3xl border border-gray-700 shadow-xl mb-8 relative">
+                    <!-- TIMER KREIS -->
+                    <div class="absolute -top-6 -left-6 bg-purple-600 w-24 h-24 rounded-full flex items-center justify-center border-4 border-gray-900 shadow-xl">
+                        <span id="tv-timer" class="text-4xl font-black text-white">20</span>
+                    </div>
                     <span class="text-gray-400 font-bold text-xl uppercase tracking-widest">Frage ${index + 1} von ${tvQuestions.length}</span>
                     <h1 class="text-5xl md:text-6xl font-black text-white mt-4 leading-tight">${tvCurrentQ.question}</h1>
                 </div>
@@ -762,33 +774,53 @@
                 </div>
                 <div class="flex justify-between items-center mt-8 bg-gray-900 p-6 rounded-2xl border border-gray-800">
                     <div id="tv-answer-count" class="text-3xl font-black text-emerald-400">Antworten abgegeben: 0</div>
-                    <button onclick="resolveTVQuestion()" class="p-5 px-10 bg-white text-slate-900 font-black rounded-xl text-2xl hover:bg-gray-200 shadow-lg">Auflösen / Weiter ➔</button>
+                    <button onclick="resolveTVQuestion()" class="p-5 px-10 bg-gray-700 text-white font-black rounded-xl text-xl hover:bg-gray-600 shadow-lg">Zeit abbrechen ➔</button>
                 </div>
             </div>
         `;
+
+                // COUNTDOWN STARTEN
+                let timeLeft = 20;
+                clearInterval(tvCountdownInterval);
+                tvCountdownInterval = setInterval(() => {
+                    timeLeft--;
+                    const timerEl = document.getElementById("tv-timer");
+                    if (timerEl) timerEl.innerText = timeLeft;
+                    if (timeLeft <= 0) {
+                        clearInterval(tvCountdownInterval);
+                        if (!isResolving) { isResolving = true; resolveTVQuestion(); }
+                    }
+                }, 1000);
             }
 
             async function resolveTVQuestion() {
-                const docSnap = await tvGameRef.get(); const data = docSnap.data();
-                const correctIndex = tvQuestions[data.currentQuestionIndex].correct;
+                clearInterval(tvCountdownInterval); // Timer stoppen
+                isResolving = true;
 
+                const docSnap = await tvGameRef.get(); const data = docSnap.data();
+                if (data.showAnswer) return; // Sichergehen, dass nicht doppelt aufgelöst wird
+
+                const correctIndex = tvQuestions[data.currentQuestionIndex].correct;
                 let playersData = data.players;
                 Object.keys(playersData).forEach(k => { if (playersData[k].lastAnswer === correctIndex) playersData[k].score += 10; });
 
                 await tvGameRef.update({ showAnswer: true, correctAnswer: correctIndex, players: playersData });
 
-                // Richtige Antwort hervorheben
                 const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
                 const shapes = ["▲", "♦", "●", "◼"];
                 let answersHtml = "";
                 tvCurrentQ.answers.forEach((ans, i) => {
                     const opacity = i === correctIndex ? "opacity-100 ring-8 ring-white scale-105" : "opacity-20 grayscale";
-                    answersHtml += `<div class="${colors[i]} p-8 rounded-2xl text-white font-black text-4xl flex items-center gap-6 shadow-xl transition-all duration-500 ${opacity}"><span class="text-5xl opacity-80">${shapes[i]}</span> ${ans}</div>`;
+                    answersHtml += `
+            <div class="${colors[i]} p-4 rounded-2xl text-white shadow-xl flex items-center relative overflow-hidden min-h-[120px] transition-all duration-500 ${opacity}">
+                <span class="text-8xl opacity-20 absolute left-4">${shapes[i]}</span> 
+                <span class="text-3xl md:text-4xl font-black w-full text-center relative z-10 px-6 break-words">${ans}</span>
+            </div>`;
                 });
 
                 document.getElementById("view-tv-quiz-host").innerHTML = `
             <div class="h-[90vh] flex flex-col justify-between p-6">
-                <div class="text-center bg-gray-800 p-8 rounded-3xl border border-emerald-500 shadow-xl mb-8">
+                <div class="text-center bg-gray-800 p-8 rounded-3xl border-4 border-emerald-500 shadow-xl mb-8">
                     <h1 class="text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
                     <p class="text-emerald-400 font-black mt-6 text-3xl">💡 ${tvCurrentQ.explanation}</p>
                 </div>
@@ -840,7 +872,6 @@
 
                     document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 p-12 rounded-2xl text-center shadow-2xl mt-12"><div class="text-8xl mb-6 animate-bounce">🙌</div><h2 class="text-4xl font-black text-emerald-400 mb-4">Du bist drin!</h2><p class="text-xl text-white font-bold">Gleich geht's los. Schau auf den Fernseher!</p></div>`;
 
-                    // Ab hier hört das Handy zu, was der Fernseher macht!
                     tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
                         if (!doc.exists || isTVHost) return;
                         const data = doc.data(); const myData = data.players[activePlayerKey];
@@ -848,7 +879,6 @@
 
                         if (data.status === "playing") {
                             if (data.showAnswer) {
-                                // Der Fernseher hat aufgelöst -> Ergebnis anzeigen
                                 const isCorrect = myData.lastAnswer === data.correctAnswer;
                                 const bg = isCorrect ? "bg-emerald-500" : "bg-rose-600";
                                 const icon = isCorrect ? "✅" : "❌";
@@ -856,7 +886,6 @@
                                 document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-9xl mb-8">${icon}</div><h2 class="text-5xl font-black mb-4">${text}</h2><p class="text-2xl font-bold opacity-80">Dein Punktestand: ${myData.score}</p></div>`;
                                 if (isCorrect) try { confetti(); } catch (e) { }
                             } else if (!myData.hasAnswered) {
-                                // Neue Frage -> 4 Knöpfe anzeigen!
                                 const q = QUESTIONS_DATABASE.filter(x => x.category === data.category)[data.currentQuestionIndex];
                                 const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
                                 const shapes = ["▲", "♦", "●", "◼"];
@@ -865,7 +894,6 @@
                                 document.getElementById("view-tv-quiz-player").innerHTML = btnHtml + `</div>`;
                             }
                         } else if (data.status === "finished") {
-                            // Spiel vorbei -> Coins gutschreiben (nur einmal!)
                             if (!myData.coinsClaimed) {
                                 currentPlayer.coins += myData.score; savePlayerProgress();
                                 tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true });
@@ -877,14 +905,12 @@
             }
 
             async function submitTVAnswer(ansIndex) {
-                // Handy sofort auf Warten schalten
                 document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-4xl font-black text-indigo-400 mb-4">Eingeloggt!</h2><p class="text-xl font-bold text-gray-400">Schau auf den Fernseher...</p></div>`;
                 const docSnap = await tvGameRef.get(); const data = docSnap.data();
                 let playersData = data.players;
                 playersData[activePlayerKey].hasAnswered = true; playersData[activePlayerKey].lastAnswer = ansIndex;
                 await tvGameRef.update({ players: playersData });
             }
-
 
         </script>
 </body>

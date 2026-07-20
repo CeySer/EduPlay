@@ -242,7 +242,17 @@
     // BEACHTE: Die Konstanten QUESTIONS_DATABASE und VOCABULARY_DATABASE 
     // fehlen hier absichtlich, weil sie jetzt bequem über die data.js Datei geladen werden!
 
-    let currentParentUser = null; let ALL_PROFILES = {}; let currentPlayer = null; let activePlayerKey = "";
+// === SICHERHEITS-CHECK & VARIABLEN ===
+if (typeof QUESTIONS_DATABASE === 'undefined' || typeof VOCABULARY_DATABASE === 'undefined') {
+    alert("FEHLER: Die Datei data.js wurde nicht geladen! Bitte drücke auf der Tastatur Strg + F5, um den Browser-Cache zu leeren.");
+}
+
+let currentParentUser = null; 
+let ALL_PROFILES = {}; 
+let currentPlayer = null; 
+let activePlayerKey = "";
+let sessionLearnedWords = new Set(); // FIX: Variable offiziell deklariert, um Abstürze zu vermeiden
+
     
     auth.onAuthStateChanged((user) => {
         if (user) { currentParentUser = user; loadFamilyProfiles(); } 
@@ -392,13 +402,44 @@
     }
     function triggerNextQuestion() { qIndex++; if(qIndex < currentQuestions.length) showQuestion(); else { showToast("Lektion beendet! 🎉"); switchView('menu'); } }
 
-    // === VOKABEL LOGIK ===
+      // === VOKABEL LOGIK ===
     let activeLang='en', activeCategory='basics', vIndex=0, vocabMode='flashcards';
-    function setLanguage(l){activeLang=l; loadVocabSystem();} function setVocabMode(m){vocabMode=m; showVocabQuestion();} function selectCategory(c){activeCategory=c; showVocabQuestion();}
-    function leaveVocab() { switchView('menu'); }
-    function loadVocabSystem() { const dd = document.getElementById("category-dropdown"); dd.innerHTML=""; Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(k => { dd.innerHTML+=`<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label}</option>`; }); activeCategory = Object.keys(VOCABULARY_DATABASE[activeLang])[0]; showVocabQuestion(); }
-    function shuffleArray(array) { let arr = [...array]; for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
     
+    function setLanguage(l){ 
+        activeLang=l; 
+        vIndex=0; // FIX: Zähler auf 0 setzen beim Sprachwechsel
+        loadVocabSystem(); 
+    } 
+    
+    function setVocabMode(m){
+        vocabMode=m; 
+        // FIX: Buttons farblich aktualisieren, damit der aktive Modus leuchtet!
+        document.getElementById("vmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'flashcards' ? 'bg-indigo-600 text-white' : 'bg-gray-900 text-gray-400'}`;
+        document.getElementById("vmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'mc' ? 'bg-indigo-600 text-white' : 'bg-gray-900 text-gray-400'}`;
+        document.getElementById("vmode-typing").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-xs ${m === 'typing' ? 'bg-indigo-600 text-white' : 'bg-gray-900 text-gray-400'}`;
+        showVocabQuestion();
+    } 
+    
+    function selectCategory(c){ 
+        activeCategory=c; 
+        vIndex=0; // FIX: Zähler auf 0 setzen beim Kategorie-Wechsel
+        showVocabQuestion(); 
+    }
+    
+    function leaveVocab() { switchView('menu'); }
+    
+    function loadVocabSystem() { 
+        const dd = document.getElementById("category-dropdown"); 
+        dd.innerHTML=""; 
+        Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(k => { 
+            dd.innerHTML+=`<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label}</option>`; 
+        }); 
+        activeCategory = Object.keys(VOCABULARY_DATABASE[activeLang])[0]; 
+        vIndex=0; // FIX: Zähler auf 0 setzen
+        showVocabQuestion(); 
+    }
+
+
     function showVocabQuestion() { 
         let list = VOCABULARY_DATABASE[activeLang][activeCategory].words; if(list.length===0) return;
         let lc=0; list.forEach(i=>{if(sessionLearnedWords.has(activeLang+"_"+activeCategory+"_"+i.foreign))lc++;}); if(lc>=list.length){showToast("Wörter resettet!"); list.forEach(i=>sessionLearnedWords.delete(activeLang+"_"+activeCategory+"_"+i.foreign)); savePlayerProgress();}

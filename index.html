@@ -666,7 +666,127 @@
             }
             function nextVocab(known) { if (known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); showToast("+2 Coins!", "success"); currentPlayer.coins += 2; savePlayerProgress(); } vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion(); }
 
+            // ==========================================
+            // TV-QUIZ (KAHOOT-MODUS) LOGIK
+            // ==========================================
+            let tvGameRef = null;
+            let tvUnsubscribe = null;
+            let isTVHost = false;
 
+            // --- LOGIK FÜR DEN FERNSEHER (HOST) ---
+            async function startTVHostLobby() {
+                if (!currentParentUser) return showToast("Fehler: Eltern-Account muss eingeloggt sein!", "error");
+
+                const category = document.getElementById("tv-quiz-category").value;
+                const hostRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
+
+                try {
+                    // Lobby in Firebase erstellen/zurücksetzen
+                    await hostRef.set({
+                        status: "waiting", // waiting = Warten auf Spieler, playing = Spiel läuft
+                        category: category,
+                        currentQuestionIndex: 0,
+                        players: {} // Hier tragen sich die Handys ein
+                    });
+
+                    isTVHost = true;
+                    tvGameRef = hostRef;
+
+                    // Ansicht auf TV ändern
+                    document.getElementById("view-tv-quiz-host").innerHTML = `
+                <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center shadow-2xl">
+                    <h2 class="text-4xl font-black text-indigo-400 mb-6">Warte auf Spieler...</h2>
+                    <p class="text-xl text-white mb-8">Drückt auf euren Handys auf <span class="text-emerald-400 font-bold">'Jetzt beitreten!'</span></p>
+                    <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                        <!-- Hier tauchen die Spieler auf -->
+                    </div>
+                    <button onclick="startTVGameLoop()" class="w-full p-6 bg-yellow-500 font-extrabold text-slate-900 rounded-xl shadow-lg hover:bg-yellow-400 text-2xl">Spiel starten! 🚀</button>
+                    <button onclick="switchView('menu')" class="mt-4 text-gray-500 text-sm font-bold underline">Lobby abbrechen</button>
+                </div>
+            `;
+
+                    // Dem Fernseher sagen, er soll live auf neue Spieler achten
+                    tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            renderTVPlayerList(data.players);
+                        }
+                    });
+
+                } catch (error) {
+                    showToast("Fehler beim Erstellen der Lobby", "error");
+                    console.error(error);
+                }
+            }
+
+            function renderTVPlayerList(playersObj) {
+                const listDiv = document.getElementById("tv-player-list");
+                if (!listDiv) return;
+
+                listDiv.innerHTML = "";
+                const playerNames = Object.values(playersObj || {});
+
+                if (playerNames.length === 0) {
+                    listDiv.innerHTML = "<p class='text-gray-500 col-span-full'>Noch niemand hier...</p>";
+                    return;
+                }
+
+                playerNames.forEach(player => {
+                    listDiv.innerHTML += `
+                <div class="bg-indigo-900/50 border border-indigo-500/30 p-4 rounded-xl text-white font-bold text-xl animate-bounce">
+                    👦👧 ${player.name}
+                </div>
+            `;
+                });
+            }
+
+            // --- LOGIK FÜR DIE HANDYS (SPIELER) ---
+            async function joinTVGame() {
+                if (!currentParentUser || !currentPlayer) return showToast("Fehler: Du musst als Kind eingeloggt sein!", "error");
+
+                const lobbyRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
+
+                try {
+                    const docSnap = await lobbyRef.get();
+
+                    if (!docSnap.exists || docSnap.data().status !== "waiting") {
+                        showToast("Es gibt gerade kein offenes Spiel!", "error");
+                        return;
+                    }
+
+                    // Kind in die Firebase-Lobby eintragen
+                    const playersData = docSnap.data().players || {};
+                    playersData[activePlayerKey] = {
+                        name: currentPlayer.name,
+                        score: 0,
+                        hasAnswered: false
+                    };
+
+                    await lobbyRef.update({ players: playersData });
+                    tvGameRef = lobbyRef;
+
+                    // Handy-Ansicht auf Warten ändern
+                    document.getElementById("view-tv-quiz-player").innerHTML = `
+                <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center shadow-lg">
+                    <div class="text-6xl mb-4">🙌</div>
+                    <h2 class="text-2xl font-black text-emerald-400 mb-2">Du bist drin!</h2>
+                    <p class="text-white">Schau auf den Fernseher. Das Spiel geht gleich los!</p>
+                </div>
+            `;
+
+                    // Auch das Handy horcht ab jetzt auf Änderungen (z.B. wenn das Spiel startet)
+                    tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
+                        if (doc.exists && doc.data().status === "playing") {
+                            // Hier kommt später der Code, der die 4 Knöpfe auf dem Handy einblendet
+                            console.log("Das Spiel hat gestartet!");
+                        }
+                    });
+
+                } catch (error) {
+                    showToast("Verbindungsfehler", "error");
+                    console.error(error);
+                }
+            }
 
         </script>
 </body>

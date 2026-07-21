@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=9"></script>
+    <script src="data.js?v=10"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -80,8 +80,8 @@
         class="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 w-[90%] max-w-md pointer-events-none">
     </div>
 
-    <div
-        class="w-full max-w-md min-h-screen bg-[#111827] shadow-2xl relative flex flex-col justify-between pb-24 border-x border-gray-800">
+    <div id="app-shell"
+        class="w-full max-w-md min-h-screen bg-[#111827] shadow-2xl relative flex flex-col justify-between pb-8 border-x border-gray-800 transition-all">
 
         <main class="flex-grow p-4">
 
@@ -124,20 +124,37 @@
                     + Neues Profil für Kind anlegen
                 </button>
 
-                <button onclick="openLiveDuelSetup('quiz')"
-                    class="w-full p-4 bg-gradient-to-r from-rose-600 to-orange-600 text-white font-black rounded-2xl shadow-lg flex justify-center items-center gap-2">
-                    ⚔️ Geschwister-Duell starten
-                </button>
+                <div class="space-y-3">
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">📶 Jeder am eigenen Handy
+                    </p>
+                    <button onclick="openLiveDuelSetup('quiz')"
+                        class="w-full p-4 bg-gradient-to-r from-rose-600 to-orange-600 text-white font-black rounded-2xl shadow-lg flex justify-center items-center gap-2">
+                        ⚔️ Geschwister-Duell starten
+                    </button>
+                    <button onclick="openLiveDuelSetup('scrabble')"
+                        class="w-full p-4 bg-gradient-to-r from-amber-600 to-yellow-500 text-slate-950 font-black rounded-2xl shadow-lg flex justify-center items-center gap-2">
+                        🔤 Wort-Duell (Scrabble)
+                    </button>
+                    <button onclick="joinLiveDuel()"
+                        class="w-full p-3.5 bg-gray-800 border border-gray-700 text-indigo-300 font-bold rounded-2xl shadow-md flex justify-center items-center gap-2 text-sm">
+                        🔗 Einem laufenden Duell beitreten
+                    </button>
+                </div>
 
-                <button onclick="openLiveDuelSetup('scrabble')"
-                    class="w-full p-4 bg-gradient-to-r from-amber-600 to-yellow-500 text-slate-950 font-black rounded-2xl shadow-lg flex justify-center items-center gap-2">
-                    🔤 Wort-Duell (Scrabble)
-                </button>
-
-                <button onclick="joinLiveDuel()"
-                    class="w-full p-3.5 bg-gray-800 border border-gray-700 text-indigo-300 font-bold rounded-2xl shadow-md flex justify-center items-center gap-2 text-sm">
-                    🔗 Einem laufenden Duell beitreten
-                </button>
+                <div class="space-y-3 pt-2">
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">🚗 Ein Gerät · gut bei
+                        schlechtem Empfang</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="openDuelSetup()"
+                            class="p-3.5 bg-gray-800 border border-gray-700 text-rose-300 font-bold rounded-2xl shadow-md text-sm">
+                            ⚔️ Quiz-Duell
+                        </button>
+                        <button onclick="openScrabbleSetup()"
+                            class="p-3.5 bg-gray-800 border border-gray-700 text-amber-300 font-bold rounded-2xl shadow-md text-sm">
+                            🔤 Wort-Duell
+                        </button>
+                    </div>
+                </div>
 
                 <!-- RANGLISTE -->
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg mt-6">
@@ -163,9 +180,10 @@
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
                     onclick="switchView('family-hub')">← Zurück</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
-                    <h2 class="text-2xl font-black text-center text-rose-400">⚔️ Geschwister-Duell</h2>
-                    <p class="text-xs text-gray-400 text-center -mt-2">Zwei Profile treten nacheinander (Handy
-                        weitergeben) im selben Quiz gegeneinander an.</p>
+                    <h2 class="text-2xl font-black text-center text-rose-400">⚔️ Quiz-Duell · ein Gerät</h2>
+                    <p class="text-xs text-gray-400 text-center -mt-2">Zwei Profile treten nacheinander im selben Quiz
+                        gegeneinander an – <span class="text-rose-300 font-bold">ein Handy wird weitergegeben</span>.
+                        Gut geeignet bei schlechtem Empfang.</p>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1">Spieler 1</label>
                         <select id="duel-player-a"
@@ -215,9 +233,10 @@
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
                     onclick="switchView('family-hub')">← Zurück</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
-                    <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell</h2>
-                    <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben 7 Buchstaben und
-                        bilden das beste Wort daraus (Handy weitergeben). Die Wörter werden automatisch geprüft
+                    <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell · ein Gerät</h2>
+                    <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben Buchstaben und bilden
+                        reihum das beste Wort daraus – <span class="text-amber-300 font-bold">ein Handy wird
+                            weitergegeben</span>. Gut geeignet bei schlechtem Empfang. Wörter werden geprüft
                         (Rechtschreibprüfung von <a href="https://languagetool.org" target="_blank" class="underline text-indigo-400">LanguageTool.org</a>).</p>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-2">Wer spielt mit? (mind. 1)</label>
@@ -545,7 +564,6 @@
 
 
             <!-- VIEW: QUIZ & GRAMMATIK SETUP -->
-            <!-- VIEW: QUIZ & GRAMMATIK SETUP -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum
                     Hauptmenü</button>
@@ -804,6 +822,13 @@
             let activePlayerKey = "";
             let sessionLearnedWords = new Set();
 
+            // Timer-Zustände bewusst weit oben deklariert, weil switchView() sie beim
+            // Verlassen einer Ansicht stoppt und sonst auf noch nicht initialisierte
+            // Variablen zugreifen würde.
+            let focusTimerInterval = null;
+            let focusTimeRemaining = 15 * 60;
+            let scrabbleTimerInterval = null;
+
             // Anzeige-Namen für die Fragen-Kategorien (Fortschrittsanzeige & Testauswahl)
             const CATEGORY_LABELS = {
                 klasse_1_2: "🧸 Klasse 1-2",
@@ -1020,8 +1045,26 @@
             }
 
             function switchView(viewId) {
+                // Laufende Timer stoppen, damit sie nicht im Hintergrund weiterlaufen
+                if (viewId !== 'fokus' && typeof focusTimerInterval !== 'undefined' && focusTimerInterval) {
+                    clearInterval(focusTimerInterval); focusTimerInterval = null;
+                }
+                if (viewId !== 'scrabble-play' && scrabbleTimerInterval) {
+                    clearInterval(scrabbleTimerInterval); scrabbleTimerInterval = null;
+                }
+
                 document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
                 document.getElementById(`view-${viewId}`).classList.remove('hidden');
+
+                // Der Fernseher-Modus soll den ganzen Bildschirm nutzen, alles andere
+                // bleibt in der schmalen Handy-Ansicht.
+                const shell = document.getElementById("app-shell");
+                if (shell) {
+                    const wide = (viewId === 'tv-quiz-host');
+                    shell.classList.toggle('max-w-md', !wide);
+                    shell.classList.toggle('max-w-none', wide);
+                }
+
                 if (viewId === 'vokabeln') loadVocabSystem();
                 if (viewId === 'rewards') renderRewardsShop();
             }
@@ -1212,7 +1255,6 @@
             }
 
             let scrabbleState = null;
-            let scrabbleTimerInterval = null;
 
             function drawScrabbleLetters(count) {
                 count = count || 7;
@@ -1894,8 +1936,7 @@
             }
 
             // === FOKUS LERNZEIT ===
-            let focusTimerInterval = null; let focusTimeRemaining = 15 * 60;
-            function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); addXP(20); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; } }, 1000); } }
+            function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); focusTimerInterval = null; addXP(20); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; } }, 1000); } }
             function resetFocusTimer() { clearInterval(focusTimerInterval); focusTimerInterval = null; focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; }
 
             // === QUIZ LOGIK ===

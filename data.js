@@ -23,6 +23,27 @@ const QUESTIONS_DATABASE = [
     { category: "klasse_3_4", question: "Deutsch: Wie lautet die Mehrzahl (Plural) von 'Kind'?", answers: ["Kinde", "Kinder", "Kindern"], correct: 1, explanation: "💡 Die Mehrzahl von 'Kind' ist 'Kinder'." },
     { category: "klasse_3_4", question: "Sachkunde: Welches Organ pumpt das Blut durch den Körper?", answers: ["Lunge", "Herz", "Magen"], correct: 1, explanation: "💡 Das Herz ist ein Muskel, der das Blut durch die Adern pumpt." },
 
+    { category: "klasse_1_2", question: "Mathe: Was ist 5 + 6?", answers: ["10", "11", "12"], correct: 1, explanation: "💡 5 + 5 = 10, und noch 1 dazu ergibt 11." },
+    { category: "klasse_1_2", question: "Deutsch: Mit welchem Buchstaben beginnt das Wort 'Elefant'?", answers: ["A", "E", "I"], correct: 1, explanation: "💡 Elefant beginnt mit dem Buchstaben E." },
+    { category: "klasse_1_2", question: "Sachkunde: Wie viele Beine hat ein Hund?", answers: ["2", "4", "6"], correct: 1, explanation: "💡 Hunde sind Vierbeiner – sie haben 4 Beine." },
+    { category: "klasse_1_2", question: "Mathe: Welche Zahl kommt nach der 19?", answers: ["18", "20", "21"], correct: 1, explanation: "💡 Nach 19 kommt die 20." },
+    { category: "klasse_1_2", question: "Sachkunde: Welche Farbe hat eine reife Banane?", answers: ["Blau", "Gelb", "Rot"], correct: 1, explanation: "💡 Reife Bananen sind gelb." },
+    { category: "klasse_1_2", question: "Deutsch: Was ist das Gegenteil von 'kalt'?", answers: ["warm", "nass", "leise"], correct: 0, explanation: "💡 Das Gegenteil von kalt ist warm." },
+    { category: "klasse_1_2", question: "Mathe: Wie viele Finger hat man an einer Hand?", answers: ["4", "5", "6"], correct: 1, explanation: "💡 An einer Hand hat man 5 Finger." },
+    { category: "klasse_1_2", question: "Sachkunde: Wo leben Fische?", answers: ["In der Luft", "Im Wasser", "Unter der Erde"], correct: 1, explanation: "💡 Fische leben im Wasser und atmen mit Kiemen." },
+    { category: "klasse_1_2", question: "Deutsch: Wie viele Buchstaben hat das Wort 'Hund'?", answers: ["3", "4", "5"], correct: 1, explanation: "💡 H-U-N-D sind 4 Buchstaben." },
+    { category: "klasse_1_2", question: "Mathe: Was ist größer: 7 oder 9?", answers: ["7", "9", "Beide gleich"], correct: 1, explanation: "💡 9 ist größer als 7." },
+    { category: "klasse_3_4", question: "Mathe: Was ist 7 mal 8?", answers: ["54", "56", "58"], correct: 1, explanation: "💡 7 × 8 = 56." },
+    { category: "klasse_3_4", question: "Sachkunde: Wie viele Jahreszeiten gibt es?", answers: ["2", "3", "4"], correct: 2, explanation: "💡 Frühling, Sommer, Herbst und Winter – das sind 4 Jahreszeiten." },
+    { category: "klasse_3_4", question: "Deutsch: Welches Wort ist ein Nomen (Hauptwort)?", answers: ["laufen", "Tisch", "schnell"], correct: 1, explanation: "💡 'Tisch' ist ein Nomen – man kann 'der Tisch' sagen und schreibt es groß." },
+    { category: "klasse_3_4", question: "Mathe: Wie viele Minuten hat eine halbe Stunde?", answers: ["15", "30", "45"], correct: 1, explanation: "💡 Eine ganze Stunde hat 60 Minuten, die Hälfte davon sind 30." },
+    { category: "klasse_3_4", question: "Sachkunde: Welches Tier ist ein Säugetier?", answers: ["Forelle", "Delfin", "Adler"], correct: 1, explanation: "💡 Delfine leben im Wasser, sind aber Säugetiere – sie atmen Luft und säugen ihre Jungen." },
+    { category: "klasse_3_4", question: "Deutsch: Wie schreibt man das Wort richtig?", answers: ["Fahrrad", "Farrad", "Fahrat"], correct: 0, explanation: "💡 Richtig ist 'Fahrrad' – von 'fahren' und 'Rad', daher mit doppeltem r." },
+    { category: "klasse_3_4", question: "Mathe: Wie viel ist die Hälfte von 48?", answers: ["22", "24", "26"], correct: 1, explanation: "💡 48 : 2 = 24." },
+    { category: "klasse_3_4", question: "Sachkunde: Welcher Planet ist unser Heimatplanet?", answers: ["Mars", "Erde", "Venus"], correct: 1, explanation: "💡 Wir leben auf der Erde, dem dritten Planeten von der Sonne." },
+    { category: "klasse_3_4", question: "Deutsch: Was ist ein Verb?", answers: ["Ein Tuwort (z.B. laufen)", "Ein Namenwort", "Ein Wiewort"], correct: 0, explanation: "💡 Verben sind Tuwörter und beschreiben, was jemand macht: laufen, essen, lesen." },
+    { category: "klasse_3_4", question: "Mathe: Wie viele Seiten hat ein Würfel?", answers: ["4", "6", "8"], correct: 1, explanation: "💡 Ein Würfel hat 6 quadratische Flächen." },
+
     // --- UNTERSTUFE (Klasse 5 - 6) ---
     { category: "klasse_5_6", question: "Englisch: He ___ to school every day.", answers: ["go", "goes", "going"], correct: 1, explanation: "💡 Simple Present: Bei 'he, she, it' muss das 's' mit! (He goes)" },
     { category: "klasse_5_6", question: "Englisch: Look! The dog ___ in the garden.", answers: ["plays", "is playing", "play"], correct: 1, explanation: "💡 Present Progressive: Signalwort 'Look!'. Es passiert genau jetzt." },
@@ -40,6 +61,11 @@ const QUESTIONS_DATABASE = [
     { category: "klasse_5_6", question: "Mathe: Was ist 3/4 als Dezimalzahl?", answers: ["0,34", "0,75", "0,43"], correct: 1, explanation: "💡 3 geteilt durch 4 ergibt 0,75." },
     { category: "klasse_5_6", question: "Englisch: Can you ___ me the salt, please?", answers: ["pass", "passes", "passing"], correct: 0, explanation: "💡 Nach 'can' folgt immer die Grundform des Verbs (pass, nicht passes)." },
     { category: "klasse_5_6", question: "Biologie: Wozu dienen die Wurzeln einer Pflanze?", answers: ["Nur zur Deko", "Aufnahme von Wasser und Nährstoffen", "Fotosynthese"], correct: 1, explanation: "💡 Wurzeln verankern die Pflanze im Boden und nehmen Wasser sowie Nährstoffe auf." },
+
+    { category: "klasse_5_6", question: "Englisch: She ___ to school every day.", answers: ["go", "goes", "going"], correct: 1, explanation: "💡 Bei he/she/it kommt im Simple Present ein 's' ans Verb: she goes." },
+    { category: "klasse_5_6", question: "Mathe: Was ist der Umfang eines Quadrats mit 5 cm Seitenlänge?", answers: ["10 cm", "20 cm", "25 cm"], correct: 1, explanation: "💡 Ein Quadrat hat 4 gleiche Seiten: 4 × 5 cm = 20 cm." },
+    { category: "klasse_5_6", question: "Biologie: Welches Tier ist ein Wirbeltier?", answers: ["Regenwurm", "Frosch", "Schnecke"], correct: 1, explanation: "💡 Frösche haben eine Wirbelsäule und gehören zu den Wirbeltieren (Amphibien)." },
+    { category: "klasse_5_6", question: "Geografie: An welches Meer grenzt Deutschland im Norden?", answers: ["Mittelmeer", "Nord- und Ostsee", "Schwarzes Meer"], correct: 1, explanation: "💡 Deutschland grenzt im Norden an die Nordsee und die Ostsee." },
 
     // --- MITTELSTUFE (Klasse 7 - 8) ---
     { category: "klasse_7_8", question: "Englisch: Yesterday, I ___ a great movie.", answers: ["see", "saw", "have seen"], correct: 1, explanation: "💡 Simple Past: Signalwort 'Yesterday' verlangt die 2. Form (saw)." },
@@ -59,6 +85,11 @@ const QUESTIONS_DATABASE = [
     { category: "klasse_7_8", question: "Geschichte: Wer war Otto von Bismarck?", answers: ["Ein Komponist", "Der erste Reichskanzler Deutschlands", "Ein Erfinder"], correct: 1, explanation: "💡 Bismarck war maßgeblich an der Reichsgründung 1871 beteiligt und wurde erster Reichskanzler." },
     { category: "klasse_7_8", question: "Englisch: They ___ been living here for ten years.", answers: ["has", "have", "had"], correct: 1, explanation: "💡 Present Perfect mit 'they' (Plural): have been living." },
 
+    { category: "klasse_7_8", question: "Englisch: If it rains tomorrow, we ___ at home.", answers: ["stay", "will stay", "stayed"], correct: 1, explanation: "💡 If-Clause Typ 1: If + Present, im Hauptsatz 'will' + Grundform." },
+    { category: "klasse_7_8", question: "Mathe: Was ist der Kehrwert von 3/5?", answers: ["5/3", "3/5", "-3/5"], correct: 0, explanation: "💡 Beim Kehrwert vertauscht man Zähler und Nenner: 5/3." },
+    { category: "klasse_7_8", question: "Geschichte: Was war die Reformation?", answers: ["Eine Kirchenerneuerung ab 1517 durch Martin Luther", "Ein Krieg im Mittelalter", "Eine Erfindung"], correct: 0, explanation: "💡 Martin Luther löste 1517 mit seinen Thesen die Reformation aus, aus der die evangelische Kirche hervorging." },
+    { category: "klasse_7_8", question: "Physik: Was ist eine Kraft in der Physik?", answers: ["Ein Maß für Wärme", "Etwas, das Körper verformt oder ihre Bewegung ändert", "Eine Energieform"], correct: 1, explanation: "💡 Kräfte können Körper beschleunigen, abbremsen oder verformen." },
+
     // --- OBERSTUFE (Klasse 9 - 11) ---
     { category: "klasse_9_11", question: "Englisch: If I had a million dollars, I ___ a big house.", answers: ["will buy", "would buy", "bought"], correct: 1, explanation: "💡 If-Clause Typ 2 (unwahrscheinlich): If + Simple Past, im Hauptsatz 'would' + Verb." },
     { category: "klasse_9_11", question: "Englisch: The car ___ repaired tomorrow.", answers: ["is repaired", "was repaired", "will be repaired"], correct: 2, explanation: "💡 Passiv in der Zukunft: will + be + Partizip Perfekt (3. Form)." },
@@ -76,6 +107,11 @@ const QUESTIONS_DATABASE = [
     { category: "klasse_9_11", question: "Wirtschaft: Was beschreibt das Gesetz von Angebot und Nachfrage?", answers: ["Der Staat legt Preise fest", "Preise entstehen durch das Verhältnis von Angebot und Nachfrage", "Preise sind immer konstant"], correct: 1, explanation: "💡 Steigt die Nachfrage bei gleichem Angebot, steigen meist die Preise – und umgekehrt." },
     { category: "klasse_9_11", question: "Englisch: It's high time we ___ a decision.", answers: ["make", "made", "will make"], correct: 1, explanation: "💡 Nach 'it's (high) time' folgt das Simple Past für einen unrealen Wunsch in der Gegenwart." },
     { category: "klasse_9_11", question: "Biologie: Was ist Mitose?", answers: ["Zellteilung zur Vermehrung", "Ein Zellorganell", "Ein Hormon"], correct: 0, explanation: "💡 Mitose ist die Zellteilung, bei der zwei genetisch identische Tochterzellen entstehen." },
+
+    { category: "klasse_9_11", question: "Englisch: I look forward to ___ from you.", answers: ["hear", "hearing", "heard"], correct: 1, explanation: "💡 Nach 'look forward to' folgt die -ing-Form: hearing." },
+    { category: "klasse_9_11", question: "Deutsch: Was ist eine These in einer Erörterung?", answers: ["Eine Behauptung, die begründet wird", "Ein Beispiel", "Die Zusammenfassung"], correct: 0, explanation: "💡 Eine These ist die zentrale Behauptung, die mit Argumenten gestützt wird." },
+    { category: "klasse_9_11", question: "Mathe: Was ist die Ableitung von f(x) = x²?", answers: ["2x", "x", "x³"], correct: 0, explanation: "💡 Nach der Potenzregel: f'(x) = 2x." },
+    { category: "klasse_9_11", question: "Politik: Was ist das Grundgesetz?", answers: ["Die Verfassung Deutschlands", "Ein einfaches Gesetz", "Ein EU-Vertrag"], correct: 0, explanation: "💡 Das Grundgesetz ist seit 1949 die Verfassung der Bundesrepublik Deutschland." },
 
     // --- KFZ-TECHNIK (Berufsschule) ---
     { category: "kfz", question: "Werkstatt: Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug beim Zahnriemenwechsel angebracht ist?", answers: ["Wasserpumpe lösen", "Motor durchdrehen", "Riemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" },
@@ -95,6 +131,11 @@ const QUESTIONS_DATABASE = [
     { category: "kfz", question: "Sicherheit: Wofür steht die Abkürzung ESP?", answers: ["Elektronisches Stabilitätsprogramm", "Extra Sicherheits-Paket", "Elektro-Servo-Pumpe"], correct: 0, explanation: "💡 ESP greift gezielt in die Bremsen ein, um das Fahrzeug bei drohendem Schleudern zu stabilisieren." },
     { category: "kfz", question: "Motor: Was passiert beim 'Verdichtungstakt' im Viertaktmotor?", answers: ["Das Gemisch wird angesaugt", "Das Gemisch wird komprimiert", "Die Abgase werden ausgestoßen"], correct: 1, explanation: "💡 Im zweiten Takt wird das angesaugte Luft-Kraftstoff-Gemisch vom Kolben verdichtet." },
 
+    { category: "kfz", question: "Motor: Wozu dient der Ölfilter?", answers: ["Er reinigt das Motoröl von Partikeln", "Er kühlt den Motor", "Er filtert die Ansaugluft"], correct: 0, explanation: "💡 Der Ölfilter hält Abrieb und Schmutzpartikel aus dem Motoröl zurück." },
+    { category: "kfz", question: "Elektrik: Was passiert, wenn die Batterie leer ist?", answers: ["Der Anlasser dreht nicht oder nur langsam", "Der Motor läuft schneller", "Die Bremsen versagen"], correct: 0, explanation: "💡 Ohne ausreichende Batteriespannung bekommt der Anlasser zu wenig Strom." },
+    { category: "kfz", question: "Bremsen: Woran erkennt man verschlissene Bremsbeläge?", answers: ["Quietschen und längerer Bremsweg", "Der Motor ruckelt", "Die Klimaanlage kühlt schlechter"], correct: 0, explanation: "💡 Verschleißanzeiger erzeugen Quietschgeräusche, außerdem verlängert sich der Bremsweg." },
+    { category: "kfz", question: "Abgas: Welche Aufgabe hat der Katalysator?", answers: ["Schadstoffe im Abgas umwandeln", "Kraftstoff filtern", "Öl reinigen"], correct: 0, explanation: "💡 Der Katalysator wandelt schädliche Abgase (CO, HC, NOx) in weniger schädliche Stoffe um." },
+
     // --- ALLGEMEINWISSEN, SPORT & FILM ---
     { category: "allgemeinwissen", question: "Kino: Wer ist der Hauptdarsteller, der den Detective in der 'Crime City' Reihe spielt?", answers: ["Jackie Chan", "Don Lee", "Tony Jaa"], correct: 1, explanation: "💡 Don Lee (Ma Dong-seok) spielt den schlagkräftigen Detective." },
     { category: "allgemeinwissen", question: "Geschichte: Wer war Miyamoto Musashi?", answers: ["Ein berühmter japanischer Samurai", "Ein südkoreanischer Kampfkünstler", "Ein Charakter aus Star Wars"], correct: 0, explanation: "💡 Er war einer der legendärsten Samurai der Geschichte und kämpfte mit zwei Schwertern." },
@@ -111,6 +152,11 @@ const QUESTIONS_DATABASE = [
     { category: "allgemeinwissen", question: "Geografie: Welcher Ozean ist der größte der Erde?", answers: ["Atlantik", "Pazifik", "Indischer Ozean"], correct: 1, explanation: "💡 Der Pazifische Ozean ist mit Abstand der größte und tiefste Ozean der Welt." },
     { category: "allgemeinwissen", question: "Sport: Wie viele Ringe hat das olympische Symbol?", answers: ["4", "5", "6"], correct: 1, explanation: "💡 Die fünf Ringe stehen für die fünf bewohnten Kontinente." },
 
+    { category: "allgemeinwissen", question: "Sport: Wie viele Runden hat ein Profi-Boxkampf maximal?", answers: ["8", "12", "15"], correct: 1, explanation: "💡 WM-Kämpfe gehen heute über maximal 12 Runden." },
+    { category: "allgemeinwissen", question: "Geografie: Welches ist das größte Land der Welt nach Fläche?", answers: ["China", "Russland", "Kanada"], correct: 1, explanation: "💡 Russland ist mit rund 17 Millionen km² das flächengrößte Land der Erde." },
+    { category: "allgemeinwissen", question: "Sport: In welcher Sportart gibt es einen 'Slam Dunk'?", answers: ["Basketball", "Volleyball", "Handball"], correct: 0, explanation: "💡 Beim Slam Dunk stopft ein Basketballspieler den Ball direkt in den Korb." },
+    { category: "allgemeinwissen", question: "Musik: Wie viele Saiten hat eine klassische Gitarre normalerweise?", answers: ["4", "6", "8"], correct: 1, explanation: "💡 Eine klassische Gitarre hat 6 Saiten." },
+
     // --- FACH: MATHEMATIK (Sek I, nach Lehrplan) ---
     { category: "mathematik", question: "Bruchrechnung: Was ist 1/2 + 1/4?", answers: ["2/6", "3/4", "1/6"], correct: 1, explanation: "💡 Gleichnamig machen: 2/4 + 1/4 = 3/4." },
     { category: "mathematik", question: "Prozentrechnung: Wie viel sind 20% von 150?", answers: ["20", "30", "40"], correct: 1, explanation: "💡 150 × 0,20 = 30." },
@@ -123,7 +169,6 @@ const QUESTIONS_DATABASE = [
     { category: "mathematik", question: "Geometrie: Wie viele Seiten hat ein Hexagon (Sechseck)?", answers: ["5", "6", "7"], correct: 1, explanation: "💡 'Hexa' kommt aus dem Griechischen für sechs." },
     { category: "mathematik", question: "Algebra: Was ist die binomische Formel für (a+b)²?", answers: ["a² + b²", "a² + 2ab + b²", "a² - b²"], correct: 1, explanation: "💡 Erste binomische Formel: (a+b)² = a² + 2ab + b²." },
 
-    { category: "mathematik", question: "Algebra: Was ist die binomische Formel für (a+b)²?", answers: ["a² + b²", "a² + 2ab + b²", "a² - b²"], correct: 1, explanation: "💡 Erste binomische Formel: (a+b)² = a² + 2ab + b²." },
     { category: "mathematik", question: "Geometrie: Wie berechnet man die Fläche eines Dreiecks?", answers: ["a × b", "(Grundseite × Höhe) : 2", "a + b + c"], correct: 1, explanation: "💡 Dreiecksfläche = (Grundseite × Höhe) : 2." },
     { category: "mathematik", question: "Bruchrechnung: Was ist 2/3 × 3/4?", answers: ["1/2", "6/12", "5/7"], correct: 0, explanation: "💡 2×3=6, 3×4=12, also 6/12, gekürzt = 1/2." },
     { category: "mathematik", question: "Negative Zahlen: Was ist -5 + 8?", answers: ["-13", "3", "13"], correct: 1, explanation: "💡 Von -5 aus 8 nach rechts (aufwärts) zählen ergibt 3." },
@@ -146,7 +191,6 @@ const QUESTIONS_DATABASE = [
     { category: "deutsch", question: "Satzarten: Was ist ein Konjunktiv?", answers: ["Eine Zeitform", "Der Möglichkeitsform / Wunschform", "Ein Satzzeichen"], correct: 1, explanation: "💡 Der Konjunktiv drückt Wünsche, Möglichkeiten oder indirekte Rede aus (z.B. 'er sagte, er käme')." },
     { category: "deutsch", question: "Wortarten: Zu welcher Wortart gehört 'und', 'aber', 'weil'?", answers: ["Präposition", "Konjunktion", "Pronomen"], correct: 1, explanation: "💡 Konjunktionen verbinden Wörter oder Sätze miteinander." },
 
-    { category: "deutsch", question: "Wortarten: Zu welcher Wortart gehört 'und', 'aber', 'weil'?", answers: ["Präposition", "Konjunktion", "Pronomen"], correct: 1, explanation: "💡 Konjunktionen verbinden Wörter oder Sätze miteinander." },
     { category: "deutsch", question: "Grammatik: Wie lautet der Genitiv von 'der Hund'?", answers: ["des Hundes", "dem Hund", "den Hund"], correct: 0, explanation: "💡 Der Genitiv (2. Fall) von 'der Hund' ist 'des Hundes'." },
     { category: "deutsch", question: "Satzglieder: Was ist ein Attribut?", answers: ["Ein zusätzliches Wort, das ein Satzglied näher beschreibt", "Ein eigenständiger Satz", "Ein Satzzeichen"], correct: 0, explanation: "💡 Attribute nähern ein Satzglied näher, z.B. 'der GROSSE Hund'." },
     { category: "deutsch", question: "Rechtschreibung: Groß oder klein: 'Ich gehe heute (a)bend spazieren.'?", answers: ["klein: abend", "groß: Abend", "beides möglich"], correct: 1, explanation: "💡 'Abend' ist ein Nomen und wird großgeschrieben." },
@@ -169,7 +213,6 @@ const QUESTIONS_DATABASE = [
     { category: "biologie", question: "Botanik: Wie nennt man die Bestäubung durch Insekten?", answers: ["Zoogamie", "Entomophilie", "Anemophilie"], correct: 1, explanation: "💡 Entomophilie bezeichnet die Bestäubung von Pflanzen durch Insekten." },
     { category: "biologie", question: "Immunsystem: Welche Blutzellen bekämpfen hauptsächlich Krankheitserreger?", answers: ["Rote Blutkörperchen", "Weiße Blutkörperchen (Leukozyten)", "Blutplättchen"], correct: 1, explanation: "💡 Weiße Blutkörperchen sind Teil des Immunsystems und bekämpfen Erreger." },
 
-    { category: "biologie", question: "Immunsystem: Welche Blutzellen bekämpfen hauptsächlich Krankheitserreger?", answers: ["Rote Blutkörperchen", "Weiße Blutkörperchen (Leukozyten)", "Blutplättchen"], correct: 1, explanation: "💡 Weiße Blutkörperchen sind Teil des Immunsystems und bekämpfen Erreger." },
     { category: "biologie", question: "Anatomie: Wie viele Kammern hat das menschliche Herz?", answers: ["2", "4", "6"], correct: 1, explanation: "💡 Das Herz hat 4 Kammern: linker/rechter Vorhof und linke/rechte Herzkammer." },
     { category: "biologie", question: "Ökologie: Was ist ein Produzent in einem Ökosystem?", answers: ["Ein Tier, das andere Tiere frisst", "Eine Pflanze, die durch Fotosynthese Energie herstellt", "Ein Zersetzer"], correct: 1, explanation: "💡 Pflanzen sind Produzenten, da sie mit Fotosynthese ihre eigene Energie herstellen." },
     { category: "biologie", question: "Genetik: Was ist DNA?", answers: ["Ein Protein", "Der Träger der Erbinformation", "Ein Hormon"], correct: 1, explanation: "💡 DNA (Desoxyribonukleinsäure) speichert die Erbinformationen eines Lebewesens." },
@@ -192,7 +235,6 @@ const QUESTIONS_DATABASE = [
     { category: "chemie", question: "Reaktionen: Was ist ein Katalysator?", answers: ["Ein Stoff, der die Reaktion beschleunigt, ohne verbraucht zu werden", "Ein Endprodukt", "Ein Messgerät"], correct: 0, explanation: "💡 Katalysatoren senken die Aktivierungsenergie, ohne selbst verbraucht zu werden." },
     { category: "chemie", question: "Aggregatzustände: Wie nennt man den Übergang von fest direkt zu gasförmig?", answers: ["Kondensation", "Sublimation", "Schmelzen"], correct: 1, explanation: "💡 Sublimation ist der direkte Übergang von fest zu gasförmig, z.B. bei Trockeneis." },
 
-    { category: "chemie", question: "Aggregatzustände: Wie nennt man den Übergang von fest direkt zu gasförmig?", answers: ["Kondensation", "Sublimation", "Schmelzen"], correct: 1, explanation: "💡 Sublimation ist der direkte Übergang von fest zu gasförmig, z.B. bei Trockeneis." },
     { category: "chemie", question: "Periodensystem: Wie sind die Elemente im Periodensystem grundsätzlich sortiert?", answers: ["Alphabetisch", "Nach steigender Ordnungszahl (Protonenzahl)", "Nach Entdeckungsjahr"], correct: 1, explanation: "💡 Die Elemente sind nach aufsteigender Ordnungszahl (Anzahl der Protonen) angeordnet." },
     { category: "chemie", question: "Bindungen: Was ist eine Ionenbindung?", answers: ["Elektronen werden gemeinsam genutzt", "Elektronen werden komplett übertragen (Anziehung von + und -)", "Es gibt keine Elektronenbewegung"], correct: 1, explanation: "💡 Bei Ionenbindungen werden Elektronen von einem Atom zum anderen übertragen, z.B. bei Kochsalz (NaCl)." },
     { category: "chemie", question: "Stoffe: Was ist ein Molekül?", answers: ["Ein einzelnes Atom", "Eine Verbindung aus mindestens zwei Atomen", "Ein chemisches Element"], correct: 1, explanation: "💡 Ein Molekül besteht aus zwei oder mehr chemisch verbundenen Atomen, z.B. H₂O." },
@@ -215,7 +257,6 @@ const QUESTIONS_DATABASE = [
     { category: "physik", question: "Akustik: Wovon hängt die Tonhöhe eines Schalls ab?", answers: ["Von der Lautstärke", "Von der Frequenz", "Von der Temperatur"], correct: 1, explanation: "💡 Je höher die Frequenz (Hz), desto höher klingt der Ton." },
     { category: "physik", question: "Optik: Wie nennt man eine Linse, die Licht bündelt?", answers: ["Konkavlinse (Zerstreuungslinse)", "Konvexlinse (Sammellinse)", "Prisma"], correct: 1, explanation: "💡 Eine Konvexlinse (Sammellinse) bündelt einfallendes Licht in einem Brennpunkt." },
 
-    { category: "physik", question: "Optik: Wie nennt man eine Linse, die Licht bündelt?", answers: ["Konkavlinse (Zerstreuungslinse)", "Konvexlinse (Sammellinse)", "Prisma"], correct: 1, explanation: "💡 Eine Konvexlinse (Sammellinse) bündelt einfallendes Licht in einem Brennpunkt." },
     { category: "physik", question: "Mechanik: Was besagt das dritte Newtonsche Gesetz (Actio = Reactio)?", answers: ["Jede Kraft erzeugt eine gleich große Gegenkraft", "Kraft = Masse × Beschleunigung", "Energie bleibt erhalten"], correct: 0, explanation: "💡 Zu jeder Kraft (Actio) gibt es eine gleich große, entgegengesetzte Gegenkraft (Reactio)." },
     { category: "physik", question: "Elektrizität: Was ist ein Stromkreis?", answers: ["Ein geschlossener Weg, den der elektrische Strom fließen kann", "Nur eine Batterie", "Ein Widerstand"], correct: 0, explanation: "💡 Ein Stromkreis braucht eine geschlossene Leiterschleife, damit Strom fließen kann." },
     { category: "physik", question: "Wärmelehre: Wie breitet sich Wärme in Metallen hauptsächlich aus?", answers: ["Durch Strahlung", "Durch Wärmeleitung", "Gar nicht"], correct: 1, explanation: "💡 In festen Stoffen wie Metall wird Wärme hauptsächlich durch Leitung übertragen." },
@@ -260,17 +301,33 @@ const QUESTIONS_DATABASE = [
     { category: "informatik", question: "Internet: Was ist ein 'Browser'?", answers: ["Ein Programm zum Anzeigen von Webseiten", "Ein Betriebssystem", "Ein Passwort-Speicher"], correct: 0, explanation: "💡 Browser wie Chrome, Firefox oder Safari zeigen Webseiten im Internet an." },
     { category: "informatik", question: "Programmierung: Was macht eine 'Schleife' (Loop) in einem Programm?", answers: ["Sie beendet das Programm sofort", "Sie wiederholt einen Codeblock mehrfach", "Sie löscht Daten"], correct: 1, explanation: "💡 Schleifen wiederholen einen Programmteil, solange eine Bedingung erfüllt ist." },
 
+    { category: "informatik", question: "Hardware: Was ist der Unterschied zwischen RAM und Festplatte?", answers: ["Kein Unterschied", "RAM ist schneller, verliert aber Daten beim Ausschalten", "RAM speichert dauerhaft"], correct: 1, explanation: "💡 RAM ist der schnelle Arbeitsspeicher und wird beim Ausschalten geleert, die Festplatte speichert dauerhaft." },
+    { category: "informatik", question: "Sicherheit: Was ist 'Phishing'?", answers: ["Ein Computerspiel", "Betrugsversuch, um an Passwörter oder Daten zu kommen", "Eine Datensicherung"], correct: 1, explanation: "💡 Beim Phishing täuschen Betrüger echte Nachrichten vor, um an Zugangsdaten zu gelangen." },
+    { category: "informatik", question: "Internet: Was bedeutet das 'https' in einer Webadresse?", answers: ["Die Verbindung ist verschlüsselt", "Die Seite ist besonders schnell", "Die Seite ist kostenlos"], correct: 0, explanation: "💡 Das 's' steht für 'secure' – die Daten werden verschlüsselt übertragen." },
+    { category: "informatik", question: "Programmierung: Was ist eine 'Bedingung' (if-Abfrage)?", answers: ["Code wird nur ausgeführt, wenn etwas zutrifft", "Der Code läuft immer", "Ein Programmfehler"], correct: 0, explanation: "💡 Mit einer if-Abfrage entscheidet ein Programm, ob ein Codeteil ausgeführt wird." },
+    { category: "informatik", question: "Medien: Was sollte man vor dem Teilen eines Fotos von anderen beachten?", answers: ["Man braucht deren Einverständnis", "Nichts, Fotos darf man immer teilen", "Nur die Dateigröße"], correct: 0, explanation: "💡 Fotos von anderen Personen darf man nur mit deren Einverständnis veröffentlichen (Recht am eigenen Bild)." },
+    { category: "informatik", question: "Dateien: Wofür steht die Endung '.jpg'?", answers: ["Ein Bildformat", "Ein Textdokument", "Ein Programm"], correct: 0, explanation: "💡 .jpg (JPEG) ist ein weit verbreitetes Format für Fotos." },
+    { category: "informatik", question: "Grundlagen: Was ist ein Betriebssystem?", answers: ["Software, die den Computer steuert (z.B. Windows, Android)", "Ein Bauteil im Gehäuse", "Ein Internetdienst"], correct: 0, explanation: "💡 Betriebssysteme wie Windows, macOS, Android oder Linux verwalten die Hardware und starten Programme." },
+    { category: "informatik", question: "Zahlensysteme: Welche Dezimalzahl entspricht der Binärzahl 1010?", answers: ["8", "10", "12"], correct: 1, explanation: "💡 1010 = 8 + 0 + 2 + 0 = 10." },
+    { category: "informatik", question: "Sicherheit: Warum sollte man Software-Updates installieren?", answers: ["Sie schließen Sicherheitslücken", "Sie machen den Akku voller", "Nur wegen neuer Farben"], correct: 0, explanation: "💡 Updates beheben oft Sicherheitslücken, über die Angreifer sonst eindringen könnten." },
+    { category: "informatik", question: "Daten: Was ist ein Backup?", answers: ["Eine Sicherheitskopie von Daten", "Ein gelöschter Ordner", "Ein Virus"], correct: 0, explanation: "💡 Ein Backup ist eine Kopie wichtiger Daten, falls das Original verloren geht." },
+
     // --- SPASS: WÜRDEST DU EHER...? ---
-    { category: "wuerdest_du_eher", question: "Würdest du eher... einen Popel essen ODER aus dem Flugzeug springen (mit Fallschirm)?", answers: ["Popel essen 🤢", "Fallschirmspringen 🪂", "Beides auf keinen Fall!"], correct: 1, explanation: "😄 Kein richtig oder falsch – aber die meisten würden wohl eher springen als naschen!" },
-    { category: "wuerdest_du_eher", question: "Würdest du eher... für immer nur Ketchup ODER nur Senf essen dürfen?", answers: ["Nur Ketchup 🍅", "Nur Senf 🌭", "Dann lieber gar nichts mehr essen"], correct: 0, explanation: "😄 Reine Geschmackssache – die meisten Menschen wählen laut Umfragen Ketchup." },
-    { category: "wuerdest_du_eher", question: "Würdest du eher... fliegen können ODER unsichtbar werden können?", answers: ["Fliegen ✈️", "Unsichtbar werden 👻", "Ich brauch keine Superkräfte"], correct: 0, explanation: "😄 Fliegen gewinnt bei den meisten Umfragen knapp gegen Unsichtbarkeit!" },
-    { category: "wuerdest_du_eher", question: "Würdest du eher... nie wieder Schokolade essen dürfen ODER nie wieder Chips?", answers: ["Nie wieder Schokolade 🍫", "Nie wieder Chips 🍟", "Unmöglich zu entscheiden!"], correct: 2, explanation: "😄 Ehrlich gesagt: die schwerste Frage des ganzen Quiz." },
-    { category: "wuerdest_du_eher", question: "Würdest du eher... für einen Tag ein Vogel ODER ein Fisch sein?", answers: ["Ein Vogel 🐦", "Ein Fisch 🐠", "Lieber Mensch bleiben"], correct: 0, explanation: "😄 Fliegen können vs. tauchen können – die Vögel gewinnen meist knapp." },
-    { category: "wuerdest_du_eher", question: "Würdest du eher... jeden Tag Hausaufgaben in Mathe ODER in Deutsch machen müssen?", answers: ["Nur Mathe 📐", "Nur Deutsch 📚", "Gar keine Hausaufgaben bitte!"], correct: 2, explanation: "😄 Das wär wohl die Lieblingsantwort der meisten Kids." },
-    { category: "wuerdest_du_eher", question: "Würdest du eher... riesige Hände ODER riesige Füße haben?", answers: ["Riesige Hände 🖐️", "Riesige Füße 🦶", "Weder noch, bitte!"], correct: 2, explanation: "😄 Eine schön unangenehme Wahl – beides klingt nach Problemen beim Schuhe kaufen." },
-    { category: "wuerdest_du_eher", question: "Würdest du eher... für immer im Sommer ODER für immer im Winter leben?", answers: ["Immer Sommer ☀️", "Immer Winter ❄️", "Ich brauch alle vier Jahreszeiten"], correct: 0, explanation: "😄 Weltweit sagen die meisten Menschen: Sommer gewinnt!" },
-    { category: "wuerdest_du_eher", question: "Würdest du eher... die Zukunft sehen können ODER die Vergangenheit noch mal erleben können?", answers: ["Die Zukunft sehen 🔮", "Die Vergangenheit erleben ⏳", "Lieber überrascht werden"], correct: 0, explanation: "😄 Neugier auf das, was kommt, gewinnt bei den meisten." },
-    { category: "wuerdest_du_eher", question: "Würdest du eher... eine Woche ohne Handy ODER eine Woche ohne Süßigkeiten auskommen?", answers: ["Ohne Handy 📵", "Ohne Süßigkeiten 🍭", "Beides geht gar nicht!"], correct: 1, explanation: "😄 Für die meisten ist das Handy schwerer wegzudenken als Süßes." },
+    { category: "wuerdest_du_eher", question: "Schätzfrage: Was würden die meisten Menschen eher tun – einen Popel essen oder mit Fallschirm springen?", answers: ["Popel essen 🤢", "Fallschirmspringen 🪂", "Beides auf keinen Fall!"], correct: 1, explanation: "😄 Die meisten würden wohl eher springen als naschen!" },
+    { category: "wuerdest_du_eher", question: "Schätzfrage: Was wählen die meisten, wenn sie sich für immer entscheiden müssten – Ketchup oder Senf?", answers: ["Nur Ketchup 🍅", "Nur Senf 🌭", "Dann lieber gar nichts mehr essen"], correct: 0, explanation: "😄 Reine Geschmackssache – die meisten Menschen wählen laut Umfragen Ketchup." },
+    { category: "wuerdest_du_eher", question: "Schätzfrage: Welche Superkraft wünschen sich die meisten Menschen – Fliegen oder Unsichtbarkeit?", answers: ["Fliegen ✈️", "Unsichtbar werden 👻", "Ich brauch keine Superkräfte"], correct: 0, explanation: "😄 Fliegen gewinnt bei den meisten Umfragen knapp gegen Unsichtbarkeit!" },
+    { category: "wuerdest_du_eher", question: "Scherzfrage: Nie wieder Schokolade oder nie wieder Chips – was ist die ehrlichste Antwort?", answers: ["Nie wieder Schokolade 🍫", "Nie wieder Chips 🍟", "Unmöglich zu entscheiden!"], correct: 2, explanation: "😄 Ehrlich gesagt: die schwerste Frage des ganzen Quiz." },
+    { category: "wuerdest_du_eher", question: "Schätzfrage: Was wären die meisten lieber für einen Tag – ein Vogel oder ein Fisch?", answers: ["Ein Vogel 🐦", "Ein Fisch 🐠", "Lieber Mensch bleiben"], correct: 0, explanation: "😄 Fliegen können vs. tauchen können – die Vögel gewinnen meist knapp." },
+    { category: "wuerdest_du_eher", question: "Scherzfrage: Jeden Tag Hausaufgaben in Mathe oder in Deutsch – was ist die ehrlichste Antwort?", answers: ["Nur Mathe 📐", "Nur Deutsch 📚", "Gar keine Hausaufgaben bitte!"], correct: 2, explanation: "😄 Das wär wohl die Lieblingsantwort der meisten Kids." },
+    { category: "wuerdest_du_eher", question: "Scherzfrage: Riesige Hände oder riesige Füße – was ist die ehrlichste Antwort?", answers: ["Riesige Hände 🖐️", "Riesige Füße 🦶", "Weder noch, bitte!"], correct: 2, explanation: "😄 Eine schön unangenehme Wahl – beides klingt nach Problemen beim Schuhe kaufen." },
+    { category: "wuerdest_du_eher", question: "Schätzfrage: Wo würden die meisten Menschen lieber für immer leben – im Sommer oder im Winter?", answers: ["Immer Sommer ☀️", "Immer Winter ❄️", "Ich brauch alle vier Jahreszeiten"], correct: 0, explanation: "😄 Weltweit sagen die meisten Menschen: Sommer gewinnt!" },
+    { category: "wuerdest_du_eher", question: "Schätzfrage: Was würden die meisten lieber können – in die Zukunft sehen oder die Vergangenheit noch mal erleben?", answers: ["Die Zukunft sehen 🔮", "Die Vergangenheit erleben ⏳", "Lieber überrascht werden"], correct: 0, explanation: "😄 Neugier auf das, was kommt, gewinnt bei den meisten." },
+    { category: "wuerdest_du_eher", question: "Schätzfrage: Worauf würden die meisten eher eine Woche verzichten – auf das Handy oder auf Süßigkeiten?", answers: ["Ohne Handy 📵", "Ohne Süßigkeiten 🍭", "Beides geht gar nicht!"], correct: 1, explanation: "😄 Für die meisten ist das Handy schwerer wegzudenken als Süßes." },
+
+    { category: "wuerdest_du_eher", question: "Schätzfrage: Was mögen die meisten Menschen weltweit lieber – Hunde oder Katzen?", answers: ["Hunde 🐕", "Katzen 🐈", "Beide gleich gern"], correct: 0, explanation: "😄 In den meisten Umfragen liegen Hunde als Lieblingshaustier knapp vorn." },
+    { category: "wuerdest_du_eher", question: "Schätzfrage: Was ist bei Kindern beliebter – Pizza oder Pommes?", answers: ["Pizza 🍕", "Pommes 🍟", "Beides zusammen!"], correct: 0, explanation: "😄 Pizza landet in Umfragen fast immer auf Platz 1 der Lieblingsgerichte." },
+    { category: "wuerdest_du_eher", question: "Scherzfrage: Zähne putzen oder Zimmer aufräumen – was ist die ehrlichste Antwort?", answers: ["Zähne putzen 🪥", "Zimmer aufräumen 🧹", "Am liebsten keins von beidem!"], correct: 2, explanation: "😄 Zähne putzen muss trotzdem sein – Zimmer aufräumen leider auch." },
+    { category: "wuerdest_du_eher", question: "Schätzfrage: Was würden die meisten lieber machen – eine Weltreise oder ins Weltall fliegen?", answers: ["Weltreise 🌍", "Ins Weltall 🚀", "Lieber zu Hause bleiben"], correct: 0, explanation: "😄 Die Weltreise gewinnt in Umfragen meist deutlich – das Weltall ist vielen zu weit weg." },
 
     // --- SPASS: NICE TO KNOW (kuriose Fakten) ---
     { category: "nice_to_know", question: "Nice to know: Wie viele Herzen hat ein Oktopus?", answers: ["1", "3", "8"], correct: 1, explanation: "💡 Oktopusse haben drei Herzen – zwei pumpen Blut zu den Kiemen, eins durch den restlichen Körper." },
@@ -284,17 +341,31 @@ const QUESTIONS_DATABASE = [
     { category: "nice_to_know", question: "Nice to know: Was passiert, wenn man einen Stern (den Fisch, nicht das Weltall) in zwei Hälften teilt?", answers: ["Er stirbt sofort", "Ein Seestern kann sich aus einem Armstück komplett neu bilden", "Nichts Besonderes"], correct: 1, explanation: "💡 Seesterne können aus einem einzigen Arm mit einem Stück Zentralscheibe einen komplett neuen Körper regenerieren." },
     { category: "nice_to_know", question: "Nice to know: Wie viele Sprachen gibt es schätzungsweise auf der Welt?", answers: ["Etwa 700", "Etwa 3.000", "Etwa 7.000"], correct: 2, explanation: "💡 Weltweit werden schätzungsweise über 7.000 Sprachen gesprochen, viele davon sind vom Aussterben bedroht." },
 
+    { category: "nice_to_know", question: "Nice to know: Welches Körperteil wächst beim Menschen ein Leben lang weiter?", answers: ["Die Nase und die Ohren", "Die Füße", "Die Zähne"], correct: 0, explanation: "💡 Nase und Ohren bestehen aus Knorpel und verändern sich das ganze Leben lang." },
+    { category: "nice_to_know", question: "Nice to know: Wie viele Muskeln braucht man ungefähr zum Lächeln?", answers: ["Etwa 5", "Etwa 17", "Etwa 60"], correct: 1, explanation: "💡 Zum Lächeln braucht man ungefähr 17 Muskeln – zum Stirnrunzeln deutlich mehr." },
+    { category: "nice_to_know", question: "Nice to know: Können Enten wirklich nicht 'echoen'?", answers: ["Stimmt, ihr Quaken erzeugt kein Echo", "Falsch, es ist ein Mythos", "Nur bei Regen"], correct: 1, explanation: "💡 Das ist ein bekannter Mythos – Entenquaken erzeugt sehr wohl ein Echo, es ist nur schwer zu hören." },
+    { category: "nice_to_know", question: "Nice to know: Wie schnell wächst menschliches Kopfhaar ungefähr pro Monat?", answers: ["Etwa 1 cm", "Etwa 5 cm", "Etwa 10 cm"], correct: 0, explanation: "💡 Haare wachsen im Schnitt rund 1 bis 1,5 cm pro Monat." },
+    { category: "nice_to_know", question: "Nice to know: Welches Tier hat den größten Augapfel der Welt?", answers: ["Elefant", "Riesenkalmar", "Blauwal"], correct: 1, explanation: "💡 Riesenkalmare haben Augen von bis zu 27 cm Durchmesser – so groß wie ein Fußball." },
+    { category: "nice_to_know", question: "Nice to know: Wie viel Prozent der Erdoberfläche sind von Wasser bedeckt?", answers: ["Etwa 50%", "Etwa 71%", "Etwa 90%"], correct: 1, explanation: "💡 Rund 71% der Erdoberfläche sind mit Wasser bedeckt." },
+
     // --- SPASS: UNGEWÖHNLICHES AUS DER WELT ---
     { category: "ungewoehnliches", question: "Ungewöhnliches: In welchem Land ist es gesetzlich verboten, Kaugummi zu verkaufen?", answers: ["Japan", "Singapur", "Norwegen"], correct: 1, explanation: "💡 In Singapur ist der Verkauf von Kaugummi seit 1992 aus Gründen der Sauberkeit weitgehend verboten." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Welche Stadt hat mehr Kanäle als Venedig?", answers: ["Amsterdam", "Hamburg", "Stockholm"], correct: 1, explanation: "💡 Hamburg hat mit rund 2.500 Brücken sogar mehr als Amsterdam, London und Venedig zusammen." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Wie heißt das kürzeste Kriegsende der Geschichte (Anglo-Sansibar-Krieg)?", answers: ["Ca. 38 Minuten", "Ca. 3 Tage", "Ca. 3 Wochen"], correct: 0, explanation: "💡 Der Krieg zwischen Großbritannien und Sansibar 1896 dauerte nur etwa 38 Minuten – der kürzeste Krieg der Geschichte." },
+    { category: "ungewoehnliches", question: "Ungewöhnliches: Welche deutsche Stadt hat mehr Brücken als Venedig, Amsterdam und London zusammen?", answers: ["Berlin", "Hamburg", "Köln"], correct: 1, explanation: "💡 Hamburg hat rund 2.500 Brücken – mehr als Venedig, Amsterdam und London zusammen." },
+    { category: "ungewoehnliches", question: "Ungewöhnliches: Wie lange dauerte der kürzeste Krieg der Geschichte?", answers: ["Ca. 38 Minuten", "Ca. 3 Tage", "Ca. 3 Wochen"], correct: 0, explanation: "💡 Der Anglo-Sansibar-Krieg von 1896 dauerte nur etwa 38 Minuten." },
     { category: "ungewoehnliches", question: "Ungewöhnliches: In welchem Land gibt es mehr Schafe als Menschen?", answers: ["Neuseeland", "Irland", "Schottland"], correct: 0, explanation: "💡 In Neuseeland leben etwa 5x mehr Schafe als Menschen." },
     { category: "ungewoehnliches", question: "Ungewöhnliches: Welches Land besteht aus über 17.000 Inseln?", answers: ["Philippinen", "Indonesien", "Japan"], correct: 1, explanation: "💡 Indonesien besteht aus über 17.000 Inseln, von denen nur etwa 6.000 bewohnt sind." },
     { category: "ungewoehnliches", question: "Ungewöhnliches: Wie heißt die einzige Zahl, die auf Deutsch genauso viele Buchstaben hat wie ihr Wert?", answers: ["Vier", "Fünf", "Sechs"], correct: 0, explanation: "💡 'Vier' hat genau 4 Buchstaben – ein kleines Sprachkuriosum." },
     { category: "ungewoehnliches", question: "Ungewöhnliches: Welche Farbe hatten die ersten Karotten, bevor sie orange gezüchtet wurden?", answers: ["Lila/violett", "Weiß", "Grün"], correct: 0, explanation: "💡 Ursprüngliche Karotten waren meist violett oder gelb – orange Karotten wurden erst im 17. Jahrhundert in den Niederlanden gezüchtet." },
     { category: "ungewoehnliches", question: "Ungewöhnliches: Wie viele Zeitzonen hat Russland?", answers: ["5", "8", "11"], correct: 2, explanation: "💡 Russland erstreckt sich über 11 Zeitzonen – mehr als jedes andere Land der Welt." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: In welcher Stadt gibt es eine gesetzliche Vorschrift, dass jeder Haushalt eine Schusswaffe besitzen muss (Kennesaw, USA)?", answers: ["Kennesaw, Georgia", "Austin, Texas", "Miami, Florida"], correct: 0, explanation: "💡 Die Kleinstadt Kennesaw in Georgia erließ 1982 ein (kaum durchgesetztes) Gesetz, das Waffenbesitz pro Haushalt vorschreibt." },
+    { category: "ungewoehnliches", question: "Ungewöhnliches: In welchem Land gibt es einen Ort, an dem die Sonne im Sommer wochenlang nicht untergeht?", answers: ["Norwegen", "Portugal", "Griechenland"], correct: 0, explanation: "💡 Nördlich des Polarkreises (z.B. in Norwegen) geht die Sonne im Sommer wochenlang nicht unter – die Mitternachtssonne." },
     { category: "ungewoehnliches", question: "Ungewöhnliches: Welches Land hat die Nationalflagge in Quadratform (nicht rechteckig)?", answers: ["Schweiz", "Österreich", "Dänemark"], correct: 0, explanation: "💡 Die Schweizer Flagge ist (neben der des Vatikans) eine der wenigen quadratischen Nationalflaggen der Welt." },
+
+    { category: "ungewoehnliches", question: "Ungewöhnliches: In welchem Land ist Ketchup an Schulen zeitweise eingeschränkt worden?", answers: ["Frankreich", "Italien", "Japan"], correct: 0, explanation: "💡 Frankreich schränkte 2011 Ketchup in Schulkantinen ein, um die traditionelle französische Küche zu fördern." },
+    { category: "ungewoehnliches", question: "Ungewöhnliches: Welches Tier kann bis zu 3 Jahre ohne Essen überleben?", answers: ["Kamel", "Krokodil", "Braunbär"], correct: 1, explanation: "💡 Krokodile haben einen extrem langsamen Stoffwechsel und können sehr lange hungern." },
+    { category: "ungewoehnliches", question: "Ungewöhnliches: Welches Land hat kein einziges natürliches Fließgewässer (keinen Fluss)?", answers: ["Saudi-Arabien", "Ägypten", "Marokko"], correct: 0, explanation: "💡 Saudi-Arabien hat keine dauerhaften natürlichen Flüsse – nur zeitweise wasserführende Täler (Wadis)." },
+    { category: "ungewoehnliches", question: "Ungewöhnliches: Wie viele Zeitzonen hat China – trotz seiner riesigen Fläche?", answers: ["1", "3", "5"], correct: 0, explanation: "💡 China nutzt landesweit nur eine einzige Zeitzone, obwohl es geografisch fünf umfassen würde." },
+    { category: "ungewoehnliches", question: "Ungewöhnliches: Welche Frucht schwimmt im Wasser, weil sie zu etwa 25% aus Luft besteht?", answers: ["Apfel", "Birne", "Kiwi"], correct: 0, explanation: "💡 Äpfel bestehen zu rund einem Viertel aus Luft und schwimmen deshalb oben." },
+    { category: "ungewoehnliches", question: "Ungewöhnliches: Welches Land verbraucht pro Kopf am meisten Schokolade?", answers: ["Schweiz", "Belgien", "Deutschland"], correct: 0, explanation: "💡 Die Schweiz liegt beim Pro-Kopf-Schokoladenkonsum regelmäßig weltweit an der Spitze." },
 
     // --- SPASS: ALLGEMEINWISSEN (EINFACH) ---
     { category: "allgemeinwissen_easy", question: "Wie viele Tage hat ein Schaltjahr?", answers: ["364", "365", "366"], correct: 2, explanation: "💡 Ein Schaltjahr hat einen zusätzlichen Tag (29. Februar) und damit 366 Tage." },
@@ -305,8 +376,16 @@ const QUESTIONS_DATABASE = [
     { category: "allgemeinwissen_easy", question: "Welches ist der größte Ozean der Welt?", answers: ["Atlantik", "Pazifik", "Indischer Ozean"], correct: 1, explanation: "💡 Der Pazifische Ozean ist der größte und tiefste Ozean der Erde." },
     { category: "allgemeinwissen_easy", question: "Wie viele Beine hat eine Spinne?", answers: ["6", "8", "10"], correct: 1, explanation: "💡 Spinnen haben 8 Beine – das unterscheidet sie von Insekten mit 6 Beinen." },
     { category: "allgemeinwissen_easy", question: "In welchem Land steht der Eiffelturm?", answers: ["Italien", "Frankreich", "Spanien"], correct: 1, explanation: "💡 Der Eiffelturm steht in Paris, Frankreich." },
-    { category: "allgemeinwissen_easy", question: "Welcher Planet ist der Erde am nächsten?", answers: ["Mars oder Venus (je nach Position)", "Jupiter", "Saturn"], correct: 0, explanation: "💡 Je nach Umlaufbahn-Position ist mal Venus, mal Mars der Erde am nächsten." },
-    { category: "allgemeinwissen_easy", question: "Wie viele Farben hat ein klassischer Regenbogen?", answers: ["5", "7", "9"], correct: 1, explanation: "💡 Ein klassischer Regenbogen zeigt 7 Farben: Rot, Orange, Gelb, Grün, Blau, Indigo, Violett." }
+    { category: "allgemeinwissen_easy", question: "Welcher Planet wird auch 'der rote Planet' genannt?", answers: ["Venus", "Mars", "Jupiter"], correct: 1, explanation: "💡 Mars wirkt durch das eisenhaltige Gestein rötlich – daher der Spitzname." },
+    { category: "allgemeinwissen_easy", question: "Wie viele Farben hat ein klassischer Regenbogen?", answers: ["5", "7", "9"], correct: 1, explanation: "💡 Ein klassischer Regenbogen zeigt 7 Farben: Rot, Orange, Gelb, Grün, Blau, Indigo, Violett." },
+    { category: "allgemeinwissen_easy", question: "Wie viele Monate hat ein Jahr?", answers: ["10", "12", "14"], correct: 1, explanation: "💡 Ein Jahr hat 12 Monate." },
+    { category: "allgemeinwissen_easy", question: "Welches Tier wird auch 'König der Tiere' genannt?", answers: ["Tiger", "Löwe", "Bär"], correct: 1, explanation: "💡 Der Löwe gilt traditionell als 'König der Tiere'." },
+    { category: "allgemeinwissen_easy", question: "Was ist die Hauptstadt von Deutschland?", answers: ["München", "Berlin", "Hamburg"], correct: 1, explanation: "💡 Berlin ist seit 1990 wieder Hauptstadt Deutschlands." },
+    { category: "allgemeinwissen_easy", question: "Wie viele Sekunden hat eine Minute?", answers: ["30", "60", "100"], correct: 1, explanation: "💡 Eine Minute hat 60 Sekunden." },
+    { category: "allgemeinwissen_easy", question: "Welche Farbe entsteht, wenn man Rot und Weiß mischt?", answers: ["Rosa", "Braun", "Grau"], correct: 0, explanation: "💡 Rot und Weiß ergeben Rosa." },
+    { category: "allgemeinwissen_easy", question: "Woraus besteht Wasser chemisch?", answers: ["Wasserstoff und Sauerstoff", "Nur Sauerstoff", "Stickstoff und Kohlenstoff"], correct: 0, explanation: "💡 Wasser (H₂O) besteht aus zwei Wasserstoffatomen und einem Sauerstoffatom." },
+    { category: "allgemeinwissen_easy", question: "Welches ist das größte Tier der Welt?", answers: ["Elefant", "Blauwal", "Giraffe"], correct: 1, explanation: "💡 Der Blauwal ist mit bis zu 30 Metern das größte Tier der Erde." },
+    { category: "allgemeinwissen_easy", question: "In welcher Himmelsrichtung geht die Sonne auf?", answers: ["Osten", "Westen", "Norden"], correct: 0, explanation: "💡 Die Sonne geht im Osten auf und im Westen unter." }
 ];
 
 // ==========================================
@@ -324,7 +403,10 @@ const VOCABULARY_DATABASE = {
                 {de:"Sechs",foreign:"six"}, {de:"Sieben",foreign:"seven"}, {de:"Acht",foreign:"eight"}, {de:"Neun",foreign:"nine"}, {de:"Zehn",foreign:"ten"},
                 {de:"Weiß",foreign:"white"}, {de:"Orange",foreign:"orange"}, {de:"Rosa",foreign:"pink"}, {de:"Braun",foreign:"brown"}, {de:"Lila",foreign:"purple"},
                 {de:"Pferd",foreign:"horse"}, {de:"Kuh",foreign:"cow"}, {de:"Schwein",foreign:"pig"}, {de:"Schaf",foreign:"sheep"}, {de:"Ente",foreign:"duck"},
-                {de:"Ball",foreign:"ball"}, {de:"Puppe",foreign:"doll"}, {de:"Sonne",foreign:"sun"}, {de:"Mond",foreign:"moon"}, {de:"Stern",foreign:"star"}
+                {de:"Ball",foreign:"ball"}, {de:"Puppe",foreign:"doll"}, {de:"Sonne",foreign:"sun"}, {de:"Mond",foreign:"moon"}, {de:"Stern",foreign:"star"},
+                {de:"Baum",foreign:"tree"}, {de:"Blume",foreign:"flower"}, {de:"Auto",foreign:"car"}, {de:"Buch",foreign:"book"}, {de:"Schuh",foreign:"shoe"},
+                {de:"Hand",foreign:"hand"}, {de:"Fuß",foreign:"foot"}, {de:"Auge",foreign:"eye"}, {de:"Ohr",foreign:"ear"}, {de:"Haar",foreign:"hair"},
+                {de:"groß",foreign:"big"}, {de:"klein",foreign:"small"}, {de:"glücklich",foreign:"happy"}, {de:"traurig",foreign:"sad"}, {de:"Freund",foreign:"friend"}
             ] 
         },
         klasse_3_4: { 
@@ -336,7 +418,10 @@ const VOCABULARY_DATABASE = {
                 {de:"Mutter",foreign:"mother"}, {de:"Vater",foreign:"father"}, {de:"Bruder",foreign:"brother"}, {de:"Schwester",foreign:"sister"}, {de:"Haus",foreign:"house"}, {de:"Garten",foreign:"garden"},
                 {de:"Küche",foreign:"kitchen"}, {de:"Schlafzimmer",foreign:"bedroom"}, {de:"Badezimmer",foreign:"bathroom"}, {de:"Fenster",foreign:"window"}, {de:"Tür",foreign:"door"},
                 {de:"Tafel",foreign:"blackboard"}, {de:"Radiergummi",foreign:"eraser"}, {de:"Lineal",foreign:"ruler"}, {de:"Rucksack",foreign:"backpack"}, {de:"Pause",foreign:"break"},
-                {de:"Montag",foreign:"Monday"}, {de:"Dienstag",foreign:"Tuesday"}, {de:"Mittwoch",foreign:"Wednesday"}, {de:"Freitag",foreign:"Friday"}, {de:"Sonntag",foreign:"Sunday"}
+                {de:"Montag",foreign:"Monday"}, {de:"Dienstag",foreign:"Tuesday"}, {de:"Mittwoch",foreign:"Wednesday"}, {de:"Freitag",foreign:"Friday"}, {de:"Sonntag",foreign:"Sunday"},
+                {de:"Donnerstag",foreign:"Thursday"}, {de:"Samstag",foreign:"Saturday"}, {de:"Frühling",foreign:"spring"}, {de:"Sommer",foreign:"summer"}, {de:"Herbst",foreign:"autumn / fall"}, {de:"Winter",foreign:"winter"},
+                {de:"Großmutter",foreign:"grandmother"}, {de:"Großvater",foreign:"grandfather"}, {de:"Cousin",foreign:"cousin"}, {de:"Nachbar",foreign:"neighbour"},
+                {de:"Frühstück",foreign:"breakfast"}, {de:"Mittagessen",foreign:"lunch"}, {de:"Abendessen",foreign:"dinner"}, {de:"Teller",foreign:"plate"}, {de:"Gabel",foreign:"fork"}
             ] 
         },
         klasse_5_6: { 
@@ -348,8 +433,11 @@ const VOCABULARY_DATABASE = {
                 {de:"lustig",foreign:"funny"}, {de:"spannend",foreign:"exciting"}, {de:"langweilig",foreign:"boring"}, {de:"Wochenende",foreign:"weekend"}, {de:"Ferien",foreign:"holidays"},
                 {de:"Bauch",foreign:"stomach"}, {de:"Bein",foreign:"leg"}, {de:"Arm",foreign:"arm"}, {de:"Nase",foreign:"nose"}, {de:"Mund",foreign:"mouth"},
                 {de:"Basketball",foreign:"basketball"}, {de:"Tanzen",foreign:"dancing"}, {de:"Malen",foreign:"painting"}, {de:"Musik hören",foreign:"listening to music"}, {de:"Videospiele",foreign:"video games"},
-                {de:"gestern",foreign:"yesterday"}, {de:"heute",foreign:"today"}, {de:"morgen",foreign:"tomorrow"}, {de:"nie",foreign:"never"}, {de:"immer",foreign:"always"},
-                {de:"Mathematik",foreign:"maths"}, {de:"Deutsch",foreign:"German"}, {de:"Biologie",foreign:"biology"}, {de:"Sport",foreign:"PE / sports"}, {de:"Kunst",foreign:"art"}, {de:"Musik",foreign:"music"}
+                {de:"gestern",foreign:"yesterday"}, {de:"heute",foreign:"today"}, {de:"nie",foreign:"never"}, {de:"immer",foreign:"always"},
+                {de:"Mathematik",foreign:"maths"}, {de:"Deutsch",foreign:"German"}, {de:"Biologie",foreign:"biology"}, {de:"Sport",foreign:"PE / sports"}, {de:"Kunst",foreign:"art"}, {de:"Musik",foreign:"music"},
+                {de:"Radfahren",foreign:"cycling"}, {de:"Wandern",foreign:"hiking"}, {de:"Mannschaft",foreign:"team"}, {de:"gewinnen",foreign:"to win"}, {de:"verlieren",foreign:"to lose"},
+                {de:"Schulter",foreign:"shoulder"}, {de:"Knie",foreign:"knee"}, {de:"Finger",foreign:"finger"}, {de:"Rücken",foreign:"back"}, {de:"Zahn",foreign:"tooth"},
+                {de:"früh",foreign:"early"}, {de:"spät",foreign:"late"}, {de:"manchmal",foreign:"sometimes"}, {de:"oft",foreign:"often"}
             ] 
         },
         klasse_7_8: { 
@@ -362,7 +450,10 @@ const VOCABULARY_DATABASE = {
                 {de:"Nachhaltigkeit",foreign:"sustainability"}, {de:"Recycling",foreign:"recycling"}, {de:"Verschmutzung",foreign:"pollution"}, {de:"Ressource",foreign:"resource"}, {de:"erneuerbar",foreign:"renewable"},
                 {de:"soziales Netzwerk",foreign:"social network"}, {de:"Werbung",foreign:"advertising"}, {de:"herunterladen",foreign:"download"}, {de:"hochladen",foreign:"upload"}, {de:"Passwort",foreign:"password"},
                 {de:"Gepäck",foreign:"luggage"}, {de:"Reisepass",foreign:"passport"}, {de:"Ankunft",foreign:"arrival"}, {de:"Abflug",foreign:"departure"}, {de:"Sehenswürdigkeit",foreign:"sight"},
-                {de:"Chemie",foreign:"chemistry"}, {de:"Physik",foreign:"physics"}, {de:"Geschichte",foreign:"history"}, {de:"Erdkunde",foreign:"geography"}, {de:"Experiment",foreign:"experiment"}
+                {de:"Chemie",foreign:"chemistry"}, {de:"Physik",foreign:"physics"}, {de:"Geschichte",foreign:"history"}, {de:"Erdkunde",foreign:"geography"}, {de:"Experiment",foreign:"experiment"},
+                {de:"Bildschirm",foreign:"screen"}, {de:"Nachricht (Chat)",foreign:"message"}, {de:"Datenschutz",foreign:"privacy"},
+                {de:"Abfall",foreign:"waste"}, {de:"Energie sparen",foreign:"to save energy"}, {de:"Art (Tierart)",foreign:"species"}, {de:"bedroht",foreign:"endangered"},
+                {de:"Fahrkarte",foreign:"ticket"}, {de:"Unterkunft",foreign:"accommodation"}, {de:"Grenze",foreign:"border"}, {de:"Währung",foreign:"currency"}
             ] 
         },
         klasse_9_11: { 
@@ -376,7 +467,9 @@ const VOCABULARY_DATABASE = {
                 {de:"Klimawandel",foreign:"climate change"}, {de:"Globalisierung",foreign:"globalization"}, {de:"Einwanderung",foreign:"immigration"}, {de:"Vorurteil",foreign:"prejudice"}, {de:"Toleranz",foreign:"tolerance"},
                 {de:"Argument",foreign:"argument"}, {de:"Beweis",foreign:"evidence"}, {de:"Vorteil",foreign:"advantage"}, {de:"Nachteil",foreign:"disadvantage"}, {de:"Herausforderung",foreign:"challenge"},
                 {de:"Gewaltenteilung",foreign:"separation of powers"}, {de:"Nachhaltigkeit",foreign:"sustainability"}, {de:"Verfassung",foreign:"constitution"}, {de:"Abgeordneter",foreign:"member of parliament"}, {de:"Staatsangehörigkeit",foreign:"nationality"},
-                {de:"Informatik",foreign:"computer science"}, {de:"Datenschutz",foreign:"data protection"}, {de:"künstliche Intelligenz",foreign:"artificial intelligence"}, {de:"Software",foreign:"software"}
+                {de:"Informatik",foreign:"computer science"}, {de:"Datenschutz",foreign:"data protection"}, {de:"künstliche Intelligenz",foreign:"artificial intelligence"}, {de:"Software",foreign:"software"},
+                {de:"Gleichberechtigung",foreign:"equality"}, {de:"Armut",foreign:"poverty"}, {de:"Wohlstand",foreign:"prosperity"},
+                {de:"Verhandlung",foreign:"negotiation"}, {de:"Entscheidung",foreign:"decision"}, {de:"Verantwortung übernehmen",foreign:"to take responsibility"}, {de:"überzeugen",foreign:"to convince"}, {de:"zustimmen",foreign:"to agree"}, {de:"ablehnen",foreign:"to reject"}
             ] 
         },
         kfz: {
@@ -390,7 +483,10 @@ const VOCABULARY_DATABASE = {
                 { de: "Werkstatt", foreign: "workshop" }, { de: "Ersatzteil", foreign: "spare part" }, { de: "Wartung", foreign: "maintenance" }, { de: "Fehlercode", foreign: "fault code" },
                 { de: "Anlasser", foreign: "starter motor" }, { de: "Sicherung", foreign: "fuse" }, { de: "Achsschenkel", foreign: "steering knuckle" }, { de: "Ölwechsel", foreign: "oil change" },
                 { de: "Auspuffrohr", foreign: "tailpipe" }, { de: "Zündkerze", foreign: "spark plug" }, { de: "Steuergerät", foreign: "control unit" }, { de: "Federung", foreign: "suspension" },
-                { de: "Lenkrad", foreign: "steering wheel" }, { de: "Windschutzscheibe", foreign: "windshield" }, { de: "Scheinwerfer", foreign: "headlight" }, { de: "Rückspiegel", foreign: "rearview mirror" }
+                { de: "Lenkrad", foreign: "steering wheel" }, { de: "Windschutzscheibe", foreign: "windshield" }, { de: "Scheinwerfer", foreign: "headlight" }, { de: "Rückspiegel", foreign: "rearview mirror" },
+                { de: "Radlager", foreign: "wheel bearing" }, { de: "Keilriemen", foreign: "V-belt" },
+                { de: "Drehmoment", foreign: "torque" }, { de: "Leerlauf", foreign: "idle" }, { de: "Kraftstoffpumpe", foreign: "fuel pump" }, { de: "Kühlmittel", foreign: "coolant" },
+                { de: "Drehmomentschlüssel", foreign: "torque wrench" }, { de: "Hebebühne", foreign: "vehicle lift" }, { de: "Kostenvoranschlag", foreign: "cost estimate" }
             ]
         }
     },
@@ -403,7 +499,8 @@ const VOCABULARY_DATABASE = {
                 {de:"Hallo",foreign:"merhaba"}, {de:"Tschüss",foreign:"hoşçakal"}, {de:"Danke",foreign:"teşekkürler"}, {de:"Bitte",foreign:"lütfen"}, {de:"Schule",foreign:"okul"},
                 {de:"Vier",foreign:"dört"}, {de:"Fünf",foreign:"beş"}, {de:"Grün",foreign:"yeşil"}, {de:"Gelb",foreign:"sarı"}, {de:"Mutter",foreign:"anne"},
                 {de:"Vater",foreign:"baba"}, {de:"Haus",foreign:"ev"}, {de:"Apfel",foreign:"elma"}, {de:"Wasser",foreign:"su"}, {de:"Stuhl",foreign:"sandalye"},
-                {de:"Lehrer",foreign:"öğretmen"}, {de:"lernen",foreign:"öğrenmek"}, {de:"spielen",foreign:"oynamak"}, {de:"Bruder",foreign:"kardeş"}, {de:"Zahlen (elf-zwanzig)",foreign:"on bir - yirmi"}
+                {de:"Lehrer",foreign:"öğretmen"}, {de:"lernen",foreign:"öğrenmek"}, {de:"spielen",foreign:"oynamak"}, {de:"Bruder",foreign:"kardeş"}, {de:"Zahlen (elf-zwanzig)",foreign:"on bir - yirmi"},
+                {de:"Brot",foreign:"ekmek"}, {de:"Milch",foreign:"süt"}, {de:"Tür",foreign:"kapı"}, {de:"Fenster",foreign:"pencere"}, {de:"Schwarz",foreign:"siyah"}, {de:"Weiß",foreign:"beyaz"}
             ] 
         },
         klasse_5_8: { 
@@ -413,7 +510,9 @@ const VOCABULARY_DATABASE = {
                 {de:"Umwelt",foreign:"çevre"}, {de:"Wald",foreign:"orman"}, {de:"Wasser",foreign:"su"}, {de:"Wetter",foreign:"hava durumu"}, {de:"Reisen",foreign:"seyahat"},
                 {de:"Musik",foreign:"müzik"}, {de:"Buch",foreign:"kitap"}, {de:"Handy",foreign:"telefon"}, {de:"Internet",foreign:"internet"}, {de:"Strand",foreign:"plaj"},
                 {de:"Familie",foreign:"aile"}, {de:"Geburtstag",foreign:"doğum günü"}, {de:"Zeit",foreign:"zaman"}, {de:"Gesundheit",foreign:"sağlık"}, {de:"Essen",foreign:"yemek"},
-                {de:"Mathematik",foreign:"matematik"}, {de:"Geschichte (Fach)",foreign:"tarih"}, {de:"Biologie",foreign:"biyoloji"}, {de:"Sport",foreign:"spor"}, {de:"Ferien",foreign:"tatil"}
+                {de:"Mathematik",foreign:"matematik"}, {de:"Geschichte (Fach)",foreign:"tarih"}, {de:"Biologie",foreign:"biyoloji"}, {de:"Sport",foreign:"spor"}, {de:"Ferien",foreign:"tatil"},
+                {de:"Freund",foreign:"arkadaş"}, {de:"Stadt",foreign:"şehir"}, {de:"Dorf",foreign:"köy"}, {de:"Straße",foreign:"sokak"}, {de:"Auto",foreign:"araba"},
+                {de:"schnell",foreign:"hızlı"}, {de:"langsam",foreign:"yavaş"}, {de:"schön",foreign:"güzel"}, {de:"schwierig",foreign:"zor"}, {de:"einfach",foreign:"kolay"}
             ] 
         },
         klasse_9_11: { 
@@ -422,7 +521,9 @@ const VOCABULARY_DATABASE = {
                 {de:"Gesellschaft",foreign:"toplum"}, {de:"Demokratie",foreign:"demokrasi"}, {de:"Bildung",foreign:"eğitim"}, {de:"Beruf",foreign:"meslek"}, {de:"Ziel",foreign:"hedef"},
                 {de:"Problem",foreign:"sorun"}, {de:"Lösung",foreign:"çözüm"}, {de:"Geld",foreign:"para"}, {de:"Wirtschaft",foreign:"ekonomi"}, {de:"Erfolg",foreign:"başarı"},
                 {de:"Gesetz",foreign:"kanun"}, {de:"Freiheit",foreign:"özgürlük"}, {de:"Gerechtigkeit",foreign:"adalet"}, {de:"Wahl",foreign:"seçim"}, {de:"Verantwortung",foreign:"sorumluluk"},
-                {de:"Nachhaltigkeit",foreign:"sürdürülebilirlik"}, {de:"Verfassung",foreign:"anayasa"}, {de:"Technologie",foreign:"teknoloji"}, {de:"global",foreign:"küresel"}
+                {de:"Nachhaltigkeit",foreign:"sürdürülebilirlik"}, {de:"Verfassung",foreign:"anayasa"}, {de:"Technologie",foreign:"teknoloji"}, {de:"global",foreign:"küresel"},
+                {de:"Umwelt",foreign:"çevre"}, {de:"Zukunft",foreign:"gelecek"}, {de:"Entwicklung",foreign:"gelişme"}, {de:"Meinung",foreign:"düşünce"},
+                {de:"Arbeit",foreign:"iş"}, {de:"Erfahrung",foreign:"deneyim"}
             ] 
         },
         kfz: {
@@ -431,7 +532,9 @@ const VOCABULARY_DATABASE = {
                 { de: "Auto", foreign: "araba" }, { de: "Motor", foreign: "motor" }, { de: "Reifen", foreign: "lastik" },
                 { de: "Bremse", foreign: "fren" }, { de: "tanken", foreign: "yakıt almak" },
                 { de: "Getriebe", foreign: "vites kutusu" }, { de: "Batterie", foreign: "akü" }, { de: "Werkstatt", foreign: "tamirhane" }, { de: "Öl", foreign: "yağ" },
-                { de: "Lenkrad", foreign: "direksiyon" }, { de: "Far (Scheinwerfer)", foreign: "far" }, { de: "Yol yardımı (Pannenhilfe)", foreign: "yol yardımı" }, { de: "Ehliyet (Führerschein)", foreign: "ehliyet" }
+                { de: "Lenkrad", foreign: "direksiyon" }, { de: "Scheinwerfer", foreign: "far" }, { de: "Pannenhilfe", foreign: "yol yardımı" }, { de: "Führerschein", foreign: "ehliyet" },
+                { de: "Benzin", foreign: "benzin" }, { de: "Unfall", foreign: "kaza" },
+                { de: "Werkzeug", foreign: "alet" }, { de: "reparieren", foreign: "tamir etmek" }
             ]
         }
     }

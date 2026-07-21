@@ -802,24 +802,7 @@
                 }
             };
 
-            // SICHERHEITSNETZ: Falls Firebase Auth (z.B. wegen instabiler Verbindung)
-            // nie antwortet, bleibt die Seite sonst für immer leer, da keine View
-            // ohne den onAuthStateChanged-Callback angezeigt wird.
-            let authResolved = false;
-            setTimeout(() => {
-                if (!authResolved) {
-                    document.body.innerHTML =
-                        '<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;color:white;font-family:sans-serif;background:#0b0f19;">' +
-                        '<div style="font-size:48px;">⚠️</div>' +
-                        '<h1 style="font-size:22px;font-weight:800;margin-top:12px;">Die App konnte nicht laden</h1>' +
-                        '<p style="color:#94a3b8;margin-top:8px;max-width:320px;">Meist liegt es an einer instabilen Internetverbindung beim Start. Bitte prüfe deine Verbindung und lade neu.</p>' +
-                        '<button onclick="window.location.reload()" style="margin-top:20px;padding:12px 28px;background:#4f46e5;color:white;border:none;border-radius:12px;font-weight:700;">Neu laden</button>' +
-                        '</div>';
-                }
-            }, 8000);
-
             auth.onAuthStateChanged((user) => {
-                authResolved = true;
                 if (user) { currentParentUser = user; loadFamilyProfiles(); }
                 else { currentParentUser = null; switchView('auth'); }
             });

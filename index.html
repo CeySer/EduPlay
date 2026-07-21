@@ -136,7 +136,28 @@
                         <span class="text-yellow-400">🪙 <span id="menu-coins">0</span> Coins</span>
                         <span id="menu-age-display" class="text-gray-400">🎒 Klasse: <span id="menu-age">-</span></span>
                     </div>
+
+                    <div class="mt-4 text-left">
+                        <div class="flex justify-between text-xs font-bold text-gray-300 mb-1">
+                            <span id="menu-level-label">🌱 Anfänger</span>
+                            <span id="menu-level-next" class="text-gray-500">Nächstes Level: 150 XP</span>
+                        </div>
+                        <div class="w-full bg-gray-950 rounded-full h-3 overflow-hidden border border-gray-700">
+                            <div id="menu-level-bar"
+                                class="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all"
+                                style="width:0%"></div>
+                        </div>
+                    </div>
+
+                    <div id="menu-streak" class="mt-3 text-sm font-bold text-orange-400">🔥 0 Tage Streak</div>
                 </div>
+
+                <div id="menu-badges-row" class="flex gap-2 overflow-x-auto pb-1"></div>
+
+                <button onclick="switchView('rewards')"
+                    class="w-full bg-purple-600 p-4 rounded-2xl font-black text-white shadow-lg hover:bg-purple-500 flex items-center justify-center gap-2">
+                    🎁 Belohnungen einlösen
+                </button>
 
                 <div id="pending-test-card" class="hidden"></div>
 
@@ -157,6 +178,18 @@
                         class="bg-yellow-500 p-5 rounded-2xl font-black text-slate-950 shadow-lg hover:bg-yellow-400 flex flex-col items-center gap-2">
                         <span class="text-3xl">⏱️</span> Fokus-Timer
                     </button>
+                </div>
+            </div>
+
+            <!-- VIEW: BELOHNUNGEN EINLÖSEN -->
+            <div id="view-rewards" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
+                    Zurück</button>
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
+                    <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen</h3>
+                    <p class="text-xs text-gray-400 mb-4">Du hast <span id="rewards-coin-balance"
+                            class="text-yellow-400 font-bold">0</span> Coins.</p>
+                    <div id="rewards-list" class="space-y-3"></div>
                 </div>
             </div>
 
@@ -215,6 +248,9 @@
                     <button id="ptab-test"
                         class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
                         onclick="switchAdminTab('test')">📝 Test erstellen</button>
+                    <button id="ptab-rewards"
+                        class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
+                        onclick="switchAdminTab('rewards')">🎁 Belohnungen</button>
                 </div>
 
                 <div id="admin-section-progress" class="space-y-4">
@@ -252,7 +288,25 @@
                             zuweisen 🚀</button>
                     </div>
                 </div>
+
+                <div id="admin-section-rewards" class="space-y-4 hidden">
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-4">
+                        <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen verwalten</h3>
+                        <p class="text-xs text-gray-400 mb-2">Lege fest, was eure Kinder sich mit Coins verdienen können (z.B. "30 Min. extra Bildschirmzeit").</p>
+                        <div class="flex gap-2">
+                            <input type="text" id="new-reward-name" placeholder="z.B. Extra Fernsehzeit"
+                                class="flex-1 p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                            <input type="number" id="new-reward-cost" placeholder="Coins"
+                                class="w-24 p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                        </div>
+                        <button onclick="addReward()"
+                            class="w-full bg-purple-600 py-3 rounded-xl font-bold text-white shadow-lg hover:bg-purple-500 transition">Belohnung
+                            hinzufügen</button>
+                        <div id="rewards-manage-list" class="space-y-2 mt-2"></div>
+                    </div>
+                </div>
             </div>
+
 
             <!-- VIEW: QUIZ & GRAMMATIK SETUP -->
             <!-- VIEW: QUIZ & GRAMMATIK SETUP -->
@@ -487,6 +541,148 @@
             let testCorrectCount = 0;
             let testAnsweredCount = 0;
 
+            // === GAMIFICATION: LEVEL, STREAK, ABZEICHEN, BELOHNUNGEN ===
+            let familyRewards = [];
+
+            const LEVELS = [
+                { name: "Anfänger", icon: "🌱", min: 0 },
+                { name: "Lernprofi", icon: "📗", min: 150 },
+                { name: "Überflieger", icon: "🚀", min: 400 },
+                { name: "Experte", icon: "🎓", min: 900 },
+                { name: "Meister", icon: "🏅", min: 1800 },
+                { name: "Champion", icon: "👑", min: 3200 },
+                { name: "Genie", icon: "🧠", min: 5500 }
+            ];
+            function getLevelInfo(xp) {
+                xp = xp || 0;
+                let idx = 0;
+                for (let i = 0; i < LEVELS.length; i++) { if (xp >= LEVELS[i].min) idx = i; }
+                const current = LEVELS[idx]; const next = LEVELS[idx + 1] || null;
+                const progressPct = next ? Math.round(((xp - current.min) / (next.min - current.min)) * 100) : 100;
+                return { index: idx, current, next, xp, progressPct };
+            }
+
+            const BADGES = [
+                { id: "starter", icon: "🌱", name: "Erster Schritt", desc: "Deine erste richtige Antwort" },
+                { id: "fifty", icon: "⭐", name: "Fleißig dabei", desc: "50 Fragen richtig beantwortet" },
+                { id: "hundred", icon: "💯", name: "100 Club", desc: "100 Fragen richtig beantwortet" },
+                { id: "streak3", icon: "🔥", name: "3-Tage-Streak", desc: "3 Tage in Folge geübt" },
+                { id: "streak7", icon: "🔥🔥", name: "Wochen-Streak", desc: "7 Tage in Folge geübt" },
+                { id: "vocab50", icon: "📚", name: "Vokabel-Sammler", desc: "50 Vokabeln gelernt" },
+                { id: "vocab100", icon: "📖", name: "Vokabel-Profi", desc: "100 Vokabeln gelernt" },
+                { id: "perfecttest", icon: "🏆", name: "Testsieger", desc: "Einen Test mit 100% bestanden" },
+                { id: "level_meister", icon: "🏅", name: "Meister erreicht", desc: "Level 'Meister' erreicht" }
+            ];
+            function getTotalCorrect(p) {
+                if (!p.stats) return 0;
+                return Object.values(p.stats).reduce((sum, s) => sum + s.correct, 0);
+            }
+            function checkAndAwardBadges() {
+                if (!currentPlayer) return;
+                if (!currentPlayer.badges) currentPlayer.badges = [];
+                const totalCorrect = getTotalCorrect(currentPlayer);
+                const vocabCount = sessionLearnedWords.size;
+                const streakCount = currentPlayer.streak ? currentPlayer.streak.count : 0;
+                const hasPerfectTest = (currentPlayer.testHistory || []).some(t => t.total > 0 && t.correct === t.total);
+                const level = getLevelInfo(currentPlayer.xp || 0);
+                const conditions = {
+                    starter: totalCorrect >= 1, fifty: totalCorrect >= 50, hundred: totalCorrect >= 100,
+                    streak3: streakCount >= 3, streak7: streakCount >= 7,
+                    vocab50: vocabCount >= 50, vocab100: vocabCount >= 100,
+                    perfecttest: hasPerfectTest, level_meister: level.index >= 4
+                };
+                let newBadge = null;
+                BADGES.forEach(b => { if (conditions[b.id] && !currentPlayer.badges.includes(b.id)) { currentPlayer.badges.push(b.id); newBadge = b; } });
+                if (newBadge) { showToast(`🎉 Neues Abzeichen: ${newBadge.icon} ${newBadge.name}!`, "success"); confetti(); }
+            }
+            function registerStreak() {
+                if (!currentPlayer) return;
+                const today = new Date().toISOString().slice(0, 10);
+                if (!currentPlayer.streak) currentPlayer.streak = { count: 0, lastDate: null };
+                if (currentPlayer.streak.lastDate === today) return;
+                const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+                currentPlayer.streak.count = (currentPlayer.streak.lastDate === yesterday) ? currentPlayer.streak.count + 1 : 1;
+                currentPlayer.streak.lastDate = today;
+            }
+            function addXP(amount) {
+                if (!currentPlayer) return;
+                currentPlayer.coins = (currentPlayer.coins || 0) + amount;
+                currentPlayer.xp = (currentPlayer.xp || 0) + amount;
+                registerStreak();
+                checkAndAwardBadges();
+                savePlayerProgress();
+                updateMenuGamification();
+            }
+            function updateMenuGamification() {
+                if (!currentPlayer) return;
+                const lvl = getLevelInfo(currentPlayer.xp || 0);
+                const lblEl = document.getElementById("menu-level-label");
+                if (!lblEl) return;
+                lblEl.innerText = `${lvl.current.icon} ${lvl.current.name}`;
+                document.getElementById("menu-level-next").innerText = lvl.next ? `Nächstes Level: ${lvl.next.icon} ${lvl.next.name} (${lvl.next.min} XP)` : "Höchstes Level erreicht! 🎉";
+                document.getElementById("menu-level-bar").style.width = lvl.progressPct + "%";
+                const streakCount = currentPlayer.streak ? currentPlayer.streak.count : 0;
+                document.getElementById("menu-streak").innerText = `🔥 ${streakCount} Tag${streakCount === 1 ? '' : 'e'} Streak`;
+                const badgesRow = document.getElementById("menu-badges-row");
+                const earned = currentPlayer.badges || [];
+                badgesRow.innerHTML = earned.length === 0
+                    ? `<p class="text-xs text-gray-500">Noch keine Abzeichen – leg los!</p>`
+                    : earned.map(id => { const b = BADGES.find(x => x.id === id); if (!b) return ""; return `<div class="flex-shrink-0 bg-gray-800 border border-gray-700 rounded-xl px-3 py-2 text-center" title="${b.desc}"><div class="text-2xl">${b.icon}</div><div class="text-[10px] font-bold text-gray-300 mt-1 whitespace-nowrap">${b.name}</div></div>`; }).join("");
+            }
+
+            // --- Belohnungen (vom Elternbereich definiert, vom Kind eingelöst) ---
+            async function loadFamilyRewards() {
+                try {
+                    const doc = await db.collection("parents").doc(currentParentUser.uid).get();
+                    familyRewards = (doc.exists && doc.data().rewards) ? doc.data().rewards : [];
+                } catch (e) { familyRewards = []; }
+            }
+            function saveFamilyRewards() {
+                db.collection("parents").doc(currentParentUser.uid).set({ rewards: familyRewards }, { merge: true });
+            }
+            function addReward() {
+                const name = document.getElementById("new-reward-name").value.trim();
+                const cost = parseInt(document.getElementById("new-reward-cost").value);
+                if (!name || !cost || cost <= 0) return showToast("Bitte Name und Coins angeben!", "error");
+                familyRewards.push({ id: "r_" + Date.now(), name, cost });
+                saveFamilyRewards();
+                document.getElementById("new-reward-name").value = ""; document.getElementById("new-reward-cost").value = "";
+                renderRewardsManageList();
+                showToast("Belohnung hinzugefügt!", "success");
+            }
+            function deleteReward(id) {
+                familyRewards = familyRewards.filter(r => r.id !== id);
+                saveFamilyRewards();
+                renderRewardsManageList();
+            }
+            function renderRewardsManageList() {
+                const list = document.getElementById("rewards-manage-list");
+                list.innerHTML = familyRewards.length === 0
+                    ? `<p class="text-xs text-gray-500">Noch keine Belohnungen angelegt.</p>`
+                    : familyRewards.map(r => `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-3"><div><div class="font-bold text-white text-sm">${r.name}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${r.cost} Coins</div></div><button onclick="deleteReward('${r.id}')" class="text-rose-400 font-bold text-xs hover:text-rose-300">Entfernen</button></div>`).join("");
+            }
+            function renderRewardsShop() {
+                if (!currentPlayer) return;
+                document.getElementById("rewards-coin-balance").innerText = currentPlayer.coins;
+                const list = document.getElementById("rewards-list");
+                list.innerHTML = familyRewards.length === 0
+                    ? `<p class="text-xs text-gray-500">Deine Eltern haben noch keine Belohnungen eingerichtet.</p>`
+                    : familyRewards.map(r => `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-3"><div><div class="font-bold text-white">${r.name}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${r.cost} Coins</div></div><button onclick="redeemReward('${r.id}')" class="bg-purple-600 hover:bg-purple-500 disabled:opacity-40 disabled:cursor-not-allowed px-4 py-2 rounded-lg font-bold text-white text-sm" ${currentPlayer.coins < r.cost ? 'disabled' : ''}>Einlösen</button></div>`).join("");
+            }
+            function redeemReward(id) {
+                const r = familyRewards.find(x => x.id === id);
+                if (!r || !currentPlayer || currentPlayer.coins < r.cost) return;
+                if (!confirm(`"${r.name}" für 🪙 ${r.cost} Coins einlösen?`)) return;
+                currentPlayer.coins -= r.cost;
+                if (!currentPlayer.redeemedRewards) currentPlayer.redeemedRewards = [];
+                currentPlayer.redeemedRewards.unshift({ name: r.name, cost: r.cost, date: new Date().toISOString() });
+                currentPlayer.redeemedRewards = currentPlayer.redeemedRewards.slice(0, 20);
+                savePlayerProgress();
+                updateMenuGamification();
+                showToast(`🎉 "${r.name}" eingelöst! Zeig das deinen Eltern.`, "success");
+                renderRewardsShop();
+            }
+
             window.onload = function () {
                 if (typeof QUESTIONS_DATABASE === 'undefined' || typeof VOCABULARY_DATABASE === 'undefined') {
                     alert("ACHTUNG: Die Datei 'data.js' wird vom Browser nicht gefunden!\n\n1. Liegt sie im exakt gleichen Ordner wie die index.html?\n2. Heißt sie vielleicht versehentlich 'data.js.txt'? (Windows versteckt oft Dateiendungen)");
@@ -508,6 +704,7 @@
                 document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
                 document.getElementById(`view-${viewId}`).classList.remove('hidden');
                 if (viewId === 'vokabeln') loadVocabSystem();
+                if (viewId === 'rewards') renderRewardsShop();
             }
 
             // === AUTH ===
@@ -520,6 +717,7 @@
                 try {
                     const snapshot = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").get();
                     ALL_PROFILES = {}; snapshot.forEach(doc => { ALL_PROFILES[doc.id] = doc.data(); });
+                    await loadFamilyRewards();
                     renderFamilyHub(); switchView('family-hub');
                 } catch (e) { showToast("Ladefehler", "error"); }
             }
@@ -589,6 +787,7 @@
                 document.getElementById("menu-coins").innerText = currentPlayer.coins;
                 document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType === 'alter' ? '🎂 Alter' : '🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`;
                 renderPendingTestCard();
+                updateMenuGamification();
                 switchView('menu');
             }
 
@@ -622,14 +821,15 @@
             function openParentArea() { const pin = prompt("Admin-Sperre: Bitte 1234 eingeben"); if (pin === "1234") { switchAdminTab('progress'); switchView('parent'); } }
 
             function switchAdminTab(tab) {
-                document.getElementById('admin-section-progress').classList.add('hidden');
-                document.getElementById('admin-section-test').classList.add('hidden');
-                document.getElementById('ptab-progress').className = "flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm";
-                document.getElementById('ptab-test').className = "flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm";
+                ['progress', 'test', 'rewards'].forEach(t => {
+                    document.getElementById('admin-section-' + t).classList.add('hidden');
+                    document.getElementById('ptab-' + t).className = "flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm";
+                });
                 document.getElementById('admin-section-' + tab).classList.remove('hidden');
                 document.getElementById('ptab-' + tab).className = "flex-1 py-2 px-1 rounded-lg font-bold text-white bg-blue-600 shadow-md transition-all text-sm";
                 if (tab === 'progress') renderAdminDashboard();
                 if (tab === 'test') renderTestAssignForm();
+                if (tab === 'rewards') renderRewardsManageList();
             }
 
             function renderAdminDashboard() {
@@ -637,6 +837,9 @@
                 Object.keys(ALL_PROFILES).forEach(key => {
                     const p = ALL_PROFILES[key];
                     const wC = p.learnedWords ? p.learnedWords.length : 0;
+                    const lvl = getLevelInfo(p.xp || 0);
+                    const streakCount = p.streak ? p.streak.count : 0;
+                    const earnedBadges = p.badges || [];
                     const stats = p.stats || {};
                     const catKeys = Object.keys(stats).filter(c => stats[c].attempts > 0);
                     let barsHtml = "";
@@ -665,15 +868,26 @@
                         const d = new Date(t.date);
                         lastTestHtml = `<div class="mt-3 text-xs bg-gray-950 border border-gray-800 rounded-lg p-2"><span class="text-indigo-400 font-bold">📝 Letzter Test:</span> ${t.correct}/${t.total} (${pct}%) am ${d.toLocaleDateString('de-DE')}</div>`;
                     }
+                    let lastRewardHtml = "";
+                    if (p.redeemedRewards && p.redeemedRewards.length > 0) {
+                        const r = p.redeemedRewards[0];
+                        const d = new Date(r.date);
+                        lastRewardHtml = `<div class="mt-2 text-xs bg-gray-950 border border-gray-800 rounded-lg p-2"><span class="text-purple-400 font-bold">🎁 Zuletzt eingelöst:</span> ${r.name} (🪙 ${r.cost}) am ${d.toLocaleDateString('de-DE')}</div>`;
+                    }
+                    const badgesHtml = earnedBadges.length > 0
+                        ? `<div class="flex gap-1 flex-wrap mt-2">${earnedBadges.map(id => { const b = BADGES.find(x => x.id === id); return b ? `<span class="text-lg" title="${b.name}">${b.icon}</span>` : ""; }).join("")}</div>`
+                        : "";
                     const pendingHtml = p.pendingTest ? `<div class="mt-2 text-xs text-yellow-400 font-bold">⏳ Test wartet auf Bearbeitung</div>` : "";
                     container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl">
                         <div class="flex justify-between items-center">
                             <div class="text-blue-400 font-bold">${p.name} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div>
                             <div class="text-yellow-400 font-black">🪙 ${p.coins}</div>
                         </div>
-                        <div class="text-xs text-gray-400 mt-1">📚 ${wC} Vokabeln gelernt</div>
+                        <div class="text-xs text-gray-400 mt-1">${lvl.current.icon} ${lvl.current.name} · 🔥 ${streakCount} Tage Streak · 📚 ${wC} Vokabeln</div>
+                        ${badgesHtml}
                         ${barsHtml}
                         ${lastTestHtml}
+                        ${lastRewardHtml}
                         ${pendingHtml}
                     </div>`;
                 });
@@ -712,7 +926,7 @@
 
             // === FOKUS LERNZEIT ===
             let focusTimerInterval = null; let focusTimeRemaining = 15 * 60;
-            function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); currentPlayer.coins += 20; savePlayerProgress(); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; } }, 1000); } }
+            function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); addXP(20); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; } }, 1000); } }
             function resetFocusTimer() { clearInterval(focusTimerInterval); focusTimerInterval = null; focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; }
 
             // === QUIZ LOGIK ===
@@ -766,7 +980,9 @@
                     currentPlayer.testHistory.unshift({ date: new Date().toISOString(), correct: testCorrectCount, total: total });
                     currentPlayer.testHistory = currentPlayer.testHistory.slice(0, 10);
                     currentPlayer.pendingTest = null;
+                    checkAndAwardBadges();
                     savePlayerProgress();
+                    updateMenuGamification();
                 }
                 showTestResultScreen(testCorrectCount, total, pct);
             }
@@ -821,7 +1037,7 @@
 
                 const expBox = document.getElementById("explanation-box");
                 if (sel === cor) {
-                    currentPlayer.coins += 10; savePlayerProgress(); confetti(); expBox.innerHTML = `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
+                    addXP(10); confetti(); expBox.innerHTML = `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
                 } else { savePlayerProgress(); showToast("Leider falsch!", "error"); expBox.innerHTML = `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/40 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block"; }
                 document.getElementById("next-question-btn").classList.remove("hidden");
             }
@@ -899,17 +1115,17 @@
                 if (ans) return;
                 const fb = document.getElementById("mc-feedback"); fb.classList.remove("hidden"); document.getElementById("mc-next-btn").classList.remove("hidden");
                 if (sel === cor) {
-                    showToast("Richtig! +2 Coins"); confetti(); currentPlayer.coins += 2; savePlayerProgress(); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-emerald-500 block"; fb.innerHTML = `<div class="font-black text-emerald-400 mb-1">✅ Richtig!</div><div class="text-gray-300 text-sm">Sehr gut gemerkt.</div>`;
+                    showToast("Richtig! +2 Coins"); confetti(); addXP(2); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-emerald-500 block"; fb.innerHTML = `<div class="font-black text-emerald-400 mb-1">✅ Richtig!</div><div class="text-gray-300 text-sm">Sehr gut gemerkt.</div>`;
                 } else { showToast("Falsch!", "error"); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-rose-500 block"; fb.innerHTML = `<div class="font-black text-rose-400 mb-1 flex items-center gap-2"><span class="text-xl">💡</span> Fehler-Analyse</div><div class="text-gray-300 text-sm">Du hast leider das falsche Wort gewählt.<br>Die richtige Übersetzung ist: <span class="text-white font-bold">${cor}</span></div>`; }
             }
 
             function checkVocabTyping(cor) {
                 const i = document.getElementById("vocab-typing-input"); const val = i.value.trim().toLowerCase(); if (!val) return; i.disabled = true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden"); const fb = document.getElementById("typing-feedback");
                 if (val === cor.toLowerCase()) {
-                    i.className = "w-full p-4 bg-emerald-900 text-emerald-400 font-bold text-center mb-4 text-lg rounded-xl"; fb.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`; showToast("Super!"); confetti(); currentPlayer.coins += 5; sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + cor); savePlayerProgress();
+                    i.className = "w-full p-4 bg-emerald-900 text-emerald-400 font-bold text-center mb-4 text-lg rounded-xl"; fb.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`; showToast("Super!"); confetti(); sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + cor); addXP(5);
                 } else { i.className = "w-full p-4 bg-rose-900 text-rose-400 font-bold text-center mb-4 text-lg rounded-xl line-through"; fb.innerHTML = `<div class="bg-slate-900 border-l-4 border-rose-500 p-4 rounded-xl text-left mt-2 shadow-inner"><span class="text-rose-400 font-black block mb-1">💡 Achte auf die Schreibweise!</span><span class="text-gray-300 text-sm">Du hast getippt: ${val}<br>Korrekt ist: <span class="text-white font-bold text-lg">${cor}</span></span></div>`; showToast("Leider falsch!", "error"); }
             }
-            function nextVocab(known) { if (known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); showToast("+2 Coins!", "success"); currentPlayer.coins += 2; savePlayerProgress(); } vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion(); }
+            function nextVocab(known) { if (known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); showToast("+2 Coins!", "success"); addXP(2); } vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion(); }
 
 
             // ==========================================
@@ -1141,7 +1357,7 @@
                             }
                         } else if (data.status === "finished") {
                             if (!myData.coinsClaimed) {
-                                currentPlayer.coins += myData.score; savePlayerProgress();
+                                addXP(myData.score);
                                 tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true });
                             }
                             document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 p-12 rounded-3xl text-center shadow-2xl mt-12"><div class="text-8xl mb-6">🏆</div><h2 class="text-4xl font-black text-yellow-400 mb-4">Spiel beendet!</h2><p class="text-2xl text-white font-bold bg-gray-900 p-4 rounded-xl inline-block">+ ${myData.score} Coins verdient!</p><button onclick="window.location.reload()" class="mt-12 w-full p-6 bg-indigo-600 font-black text-white rounded-xl shadow-lg text-2xl">Zurück ins Menü</button></div>`;

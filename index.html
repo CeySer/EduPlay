@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=8"></script>
+    <script src="data.js?v=9"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -124,14 +124,19 @@
                     + Neues Profil für Kind anlegen
                 </button>
 
-                <button onclick="openDuelSetup()"
+                <button onclick="openLiveDuelSetup('quiz')"
                     class="w-full p-4 bg-gradient-to-r from-rose-600 to-orange-600 text-white font-black rounded-2xl shadow-lg flex justify-center items-center gap-2">
                     ⚔️ Geschwister-Duell starten
                 </button>
 
-                <button onclick="openScrabbleSetup()"
+                <button onclick="openLiveDuelSetup('scrabble')"
                     class="w-full p-4 bg-gradient-to-r from-amber-600 to-yellow-500 text-slate-950 font-black rounded-2xl shadow-lg flex justify-center items-center gap-2">
                     🔤 Wort-Duell (Scrabble)
+                </button>
+
+                <button onclick="joinLiveDuel()"
+                    class="w-full p-3.5 bg-gray-800 border border-gray-700 text-indigo-300 font-bold rounded-2xl shadow-md flex justify-center items-center gap-2 text-sm">
+                    🔗 Einem laufenden Duell beitreten
                 </button>
 
                 <!-- RANGLISTE -->
@@ -273,6 +278,77 @@
             <!-- VIEW: SCRABBLE ERGEBNIS -->
             <div id="view-scrabble-result" class="view hidden space-y-4">
                 <div id="scrabble-result-content"></div>
+            </div>
+
+            <!-- VIEW: LIVE-DUELL SETUP (jeder auf eigenem Handy) -->
+            <div id="view-live-duel-setup" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                    onclick="switchView('family-hub')">← Zurück</button>
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
+                    <h2 id="live-duel-setup-title" class="text-2xl font-black text-center text-rose-400">⚔️ Live-Duell</h2>
+                    <p class="text-xs text-gray-400 text-center -mt-2">Du erstellst das Duell auf deinem Handy, die
+                        anderen treten mit ihrem eigenen Handy über "Einem laufenden Duell beitreten" bei. Alle
+                        spielen gleichzeitig auf ihrem eigenen Gerät.</p>
+
+                    <div id="live-duel-quiz-options">
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Themenbereich</label>
+                        <select id="live-duel-category"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold"></select>
+                    </div>
+
+                    <div id="live-duel-scrabble-options" class="hidden space-y-3">
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1">Schwierigkeitsgrad</label>
+                            <select id="live-duel-difficulty"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
+                                <option value="leicht">🟢 Leicht (5 Buchstaben, 60 Sek.)</option>
+                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 45 Sek.)</option>
+                                <option value="schwer">🔴 Schwer (9 Buchstaben, 30 Sek.)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1">Anzahl Runden</label>
+                            <select id="live-duel-rounds"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
+                                <option value="3">3 Runden</option>
+                                <option value="5" selected>5 Runden</option>
+                                <option value="8">8 Runden</option>
+                            </select>
+                        </div>
+                        <p class="text-xs text-gray-500 text-center">Rechtschreibprüfung von <a
+                                href="https://languagetool.org" target="_blank"
+                                class="underline text-indigo-400">LanguageTool.org</a></p>
+                    </div>
+
+                    <button onclick="createLiveDuel()"
+                        class="w-full p-4 mt-2 bg-rose-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-rose-500">Duell
+                        erstellen 🚀</button>
+                </div>
+            </div>
+
+            <!-- VIEW: LIVE-DUELL LOBBY (warten auf Mitspieler) -->
+            <div id="view-live-duel-lobby" class="view hidden space-y-4">
+                <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center shadow-lg space-y-6">
+                    <h2 class="text-3xl font-black text-white animate-pulse">Warte auf Mitspieler...</h2>
+                    <p class="text-gray-400 text-sm">Die anderen tippen auf ihrem Handy auf <span
+                            class="text-indigo-400 font-bold">"Einem laufenden Duell beitreten"</span></p>
+                    <div id="live-duel-player-list" class="grid grid-cols-2 gap-3"></div>
+                    <button id="live-duel-start-btn" onclick="startLiveDuelRound()"
+                        class="hidden w-full p-4 bg-yellow-500 text-slate-950 font-black rounded-xl shadow-lg hover:bg-yellow-400 text-xl">Los
+                        geht's! 🚀</button>
+                    <p id="live-duel-wait-hint" class="text-xs text-gray-500">Warte, bis der Ersteller startet...</p>
+                    <button onclick="leaveLiveDuel()" class="text-gray-500 text-sm font-bold underline">Verlassen</button>
+                </div>
+            </div>
+
+            <!-- VIEW: LIVE-DUELL SPIEL -->
+            <div id="view-live-duel-play" class="view hidden space-y-4">
+                <div id="live-duel-play-content"></div>
+            </div>
+
+            <!-- VIEW: LIVE-DUELL ERGEBNIS -->
+            <div id="view-live-duel-result" class="view hidden space-y-4">
+                <div id="live-duel-result-content"></div>
             </div>
 
             <!-- VIEW: HAUPTMENÜ (nach Profilauswahl) -->
@@ -1284,6 +1360,294 @@
                 document.getElementById("scrabble-result-content").innerHTML = html;
                 scrabbleState = null;
                 switchView('scrabble-result');
+                renderFamilyHub();
+                try { confetti(); } catch (e) { }
+            }
+
+            // === LIVE-DUELL: Quiz & Scrabble, jeder auf eigenem Handy ===
+            // Ein Familienmitglied erstellt das Duell, die anderen treten mit ihrem eigenen Profil/Handy
+            // bei. Alle beantworten gleichzeitig auf ihrem eigenen Gerät. Der Ersteller (isLiveDuelCreator)
+            // übernimmt die Auswertung & schaltet zur nächsten Frage/Runde weiter; alle Geräte zeigen
+            // denselben Zustand über einen gemeinsamen Firestore-Livestream an.
+            let liveDuelRef = null;
+            let liveDuelUnsubscribe = null;
+            let liveDuelType = "quiz";
+            let isLiveDuelCreator = false;
+            let liveDuelResolving = false;
+
+            function openLiveDuelSetup(type) {
+                liveDuelType = type;
+                document.getElementById("live-duel-setup-title").innerText = type === "scrabble" ? "🔤 Live-Wortduell" : "⚔️ Live-Quizduell";
+                document.getElementById("live-duel-quiz-options").classList.toggle("hidden", type !== "quiz");
+                document.getElementById("live-duel-scrabble-options").classList.toggle("hidden", type !== "scrabble");
+                if (type === "quiz") {
+                    const categories = [...new Set(QUESTIONS_DATABASE.map(q => q.category))];
+                    document.getElementById("live-duel-category").innerHTML = categories.map(c => `<option value="${c}">${CATEGORY_LABELS[c] || c}</option>`).join("");
+                }
+                switchView('live-duel-setup');
+            }
+
+            function liveDuelLobbyRef() {
+                return db.collection("parents").doc(currentParentUser.uid).collection("live_duel").doc("lobby");
+            }
+
+            async function createLiveDuel() {
+                if (!currentPlayer) return showToast("Fehler: kein Profil aktiv!", "error");
+                const ref = liveDuelLobbyRef();
+                let lobbyData;
+                if (liveDuelType === "scrabble") {
+                    const difficulty = document.getElementById("live-duel-difficulty").value;
+                    const totalRounds = parseInt(document.getElementById("live-duel-rounds").value);
+                    lobbyData = { type: "scrabble", status: "waiting", difficulty, totalRounds, currentRound: 0, createdBy: activePlayerKey, players: {} };
+                } else {
+                    const category = document.getElementById("live-duel-category").value;
+                    const questions = QUESTIONS_DATABASE.filter(q => q.category === category).sort(() => Math.random() - 0.5).slice(0, 10);
+                    if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
+                    lobbyData = { type: "quiz", status: "waiting", questions, currentIndex: 0, createdBy: activePlayerKey, players: {} };
+                }
+                lobbyData.players[activePlayerKey] = { name: currentPlayer.name, score: 0, hasAnswered: false, lastAnswer: null, word: "", coinsClaimed: false };
+                try {
+                    await ref.set(lobbyData);
+                    liveDuelRef = ref; isLiveDuelCreator = true; liveDuelResolving = false;
+                    subscribeLiveDuel();
+                } catch (e) { showToast("Fehler beim Erstellen des Duells", "error"); }
+            }
+
+            async function joinLiveDuel() {
+                if (!currentParentUser || !currentPlayer) return showToast("Fehler: Du musst als Kind eingeloggt sein!", "error");
+                const ref = liveDuelLobbyRef();
+                try {
+                    const snap = await ref.get();
+                    if (!snap.exists || snap.data().status !== "waiting") return showToast("Aktuell läuft kein beitretbares Duell!", "error");
+                    let players = snap.data().players || {};
+                    players[activePlayerKey] = { name: currentPlayer.name, score: 0, hasAnswered: false, lastAnswer: null, word: "", coinsClaimed: false };
+                    await ref.update({ players });
+                    liveDuelType = snap.data().type; liveDuelRef = ref; isLiveDuelCreator = (snap.data().createdBy === activePlayerKey); liveDuelResolving = false;
+                    subscribeLiveDuel();
+                } catch (e) { showToast("Verbindungsfehler", "error"); }
+            }
+
+            function subscribeLiveDuel() {
+                if (liveDuelUnsubscribe) liveDuelUnsubscribe();
+                liveDuelUnsubscribe = liveDuelRef.onSnapshot((doc) => {
+                    if (!doc.exists) return;
+                    renderLiveDuelFromSnapshot(doc.data());
+                });
+            }
+
+            function leaveLiveDuel() {
+                if (liveDuelUnsubscribe) liveDuelUnsubscribe();
+                liveDuelUnsubscribe = null; liveDuelRef = null; isLiveDuelCreator = false; liveDuelResolving = false;
+                switchView('family-hub');
+            }
+
+            function renderLiveDuelFromSnapshot(data) {
+                const myData = data.players[activePlayerKey];
+                if (!myData) return;
+
+                if (data.status === "waiting") {
+                    const list = document.getElementById("live-duel-player-list");
+                    if (list) list.innerHTML = Object.values(data.players).map(p => `<div class="bg-gray-900 border border-gray-700 rounded-xl p-3 text-center"><div class="text-2xl">🙋</div><div class="font-bold text-white text-sm mt-1">${p.name}</div></div>`).join("");
+                    document.getElementById("live-duel-start-btn").classList.toggle("hidden", !isLiveDuelCreator);
+                    document.getElementById("live-duel-wait-hint").classList.toggle("hidden", isLiveDuelCreator);
+                    switchView('live-duel-lobby');
+                    return;
+                }
+
+                if (data.status === "playing") {
+                    liveDuelResolving = false;
+                    if (myData.hasAnswered) {
+                        renderLiveDuelWaitingForOthers(data);
+                    } else if (data.type === "scrabble") {
+                        renderLiveDuelScrabblePlay(data);
+                    } else {
+                        renderLiveDuelQuizPlay(data);
+                    }
+                    // Ersteller prüft, ob alle geantwortet haben -> löst Runde aus
+                    if (isLiveDuelCreator && !liveDuelResolving) {
+                        const ansCount = Object.values(data.players).filter(p => p.hasAnswered).length;
+                        const totalCount = Object.keys(data.players).length;
+                        if (totalCount > 0 && ansCount >= totalCount) {
+                            liveDuelResolving = true;
+                            setTimeout(() => resolveLiveDuelRound(data), 600);
+                        }
+                    }
+                    switchView('live-duel-play');
+                    return;
+                }
+
+                if (data.status === "reveal") {
+                    renderLiveDuelReveal(data);
+                    switchView('live-duel-play');
+                    return;
+                }
+
+                if (data.status === "finished") {
+                    if (!myData.coinsClaimed) {
+                        currentPlayer.coins += (myData.score || 0);
+                        savePlayerProgress();
+                        liveDuelRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true });
+                    }
+                    renderLiveDuelFinalResult(data);
+                    switchView('live-duel-result');
+                }
+            }
+
+            function renderLiveDuelWaitingForOthers(data) {
+                const ansCount = Object.values(data.players).filter(p => p.hasAnswered).length;
+                const totalCount = Object.keys(data.players).length;
+                document.getElementById("live-duel-play-content").innerHTML = `
+                <div class="bg-gray-800 h-[70vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner">
+                    <div class="text-7xl mb-6 animate-spin">⏳</div>
+                    <h2 class="text-2xl font-black mb-2">Eingereicht!</h2>
+                    <p class="text-gray-400 font-bold">${ansCount} von ${totalCount} haben geantwortet...</p>
+                </div>`;
+            }
+
+            function renderLiveDuelQuizPlay(data) {
+                const q = data.questions[data.currentIndex];
+                let optsHtml = "";
+                q.answers.forEach((ans, i) => {
+                    optsHtml += `<button onclick="submitLiveDuelQuizAnswer(${i})" class="w-full p-4 bg-gray-900 hover:bg-gray-800 rounded-xl font-bold text-white border border-gray-700 transition-colors">${ans}</button>`;
+                });
+                document.getElementById("live-duel-play-content").innerHTML = `
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4 shadow-lg">
+                    <div class="text-xs text-gray-400 font-bold">Frage ${data.currentIndex + 1}/${data.questions.length}</div>
+                    <h2 class="text-lg font-bold text-pink-400 leading-snug">${q.question}</h2>
+                    <div class="flex flex-col gap-2.5">${optsHtml}</div>
+                </div>`;
+            }
+
+            async function submitLiveDuelQuizAnswer(ansIndex) {
+                const snap = await liveDuelRef.get(); const data = snap.data();
+                let players = data.players;
+                players[activePlayerKey].hasAnswered = true; players[activePlayerKey].lastAnswer = ansIndex;
+                await liveDuelRef.update({ players });
+            }
+
+            function renderLiveDuelScrabblePlay(data) {
+                document.getElementById("live-duel-play-content").innerHTML = `
+                <div class="space-y-4">
+                    <div class="text-center text-xs font-bold text-gray-400">Runde ${data.currentRound}/${data.totalRounds}</div>
+                    <div class="flex flex-wrap justify-center gap-2">${scrabbleTilesHTML(data.currentLetters)}</div>
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-3">
+                        <input type="text" id="live-duel-word-input" placeholder="Dein Wort..." autocomplete="off"
+                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none text-xl font-black text-center uppercase tracking-widest">
+                        <button onclick="submitLiveDuelWord()" class="w-full p-4 bg-emerald-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-emerald-500">Wort einreichen ✅</button>
+                    </div>
+                </div>`;
+            }
+
+            async function submitLiveDuelWord() {
+                const word = document.getElementById("live-duel-word-input").value.trim();
+                const snap = await liveDuelRef.get(); const data = snap.data();
+                let players = data.players;
+                players[activePlayerKey].hasAnswered = true; players[activePlayerKey].word = word;
+                await liveDuelRef.update({ players });
+            }
+
+            // --- Auswertung (nur auf dem Gerät des Erstellers) ---
+            async function resolveLiveDuelRound(data) {
+                const players = data.players;
+                if (data.type === "quiz") {
+                    const correct = data.questions[data.currentIndex].correct;
+                    Object.keys(players).forEach(key => {
+                        const points = players[key].lastAnswer === correct ? 10 : 0;
+                        players[key].score = (players[key].score || 0) + points;
+                        players[key].lastRoundPoints = points;
+                    });
+                    await liveDuelRef.update({ status: "reveal", players, correctAnswer: correct });
+                } else {
+                    const letters = data.currentLetters;
+                    for (const key of Object.keys(players)) {
+                        const word = (players[key].word || "").toUpperCase();
+                        const tileResult = word.length >= 2 ? computeScrabbleWordScore(word, letters) : { valid: false };
+                        let points = 0; let status = "invalid";
+                        if (tileResult.valid) {
+                            const check = await isValidGermanWord(word);
+                            status = check.status;
+                            points = (status === "invalid") ? 0 : tileResult.score;
+                        }
+                        players[key].score = (players[key].score || 0) + points;
+                        players[key].lastRoundPoints = points;
+                        players[key].wordStatus = status;
+                    }
+                    await liveDuelRef.update({ status: "reveal", players });
+                }
+            }
+
+            function renderLiveDuelReveal(data) {
+                const myData = data.players[activePlayerKey];
+                const isQuiz = data.type === "quiz";
+                const isLastStep = isQuiz ? (data.currentIndex >= data.questions.length - 1) : (data.currentRound >= data.totalRounds);
+
+                let rowsHtml = "";
+                Object.values(data.players).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
+                    const icon = isQuiz ? (p.lastRoundPoints > 0 ? "✅" : "❌") : (p.wordStatus === "valid" ? "✅" : p.wordStatus === "unknown" ? "⚠️" : "❌");
+                    const wordInfo = isQuiz ? "" : ` "${p.word || "-"}"`;
+                    rowsHtml += `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-3"><div class="font-bold text-white text-sm">${icon} ${p.name}${wordInfo}</div><div class="font-black text-emerald-400">+${p.lastRoundPoints || 0} <span class="text-xs text-gray-500">(Σ ${p.score})</span></div></div>`;
+                });
+
+                const nextBtn = isLastStep
+                    ? `<button onclick="liveDuelRef.update({status:'finished'})" class="w-full p-4 bg-yellow-500 text-slate-950 font-black rounded-xl shadow-lg hover:bg-yellow-400 text-lg">Endergebnis zeigen 🏆</button>`
+                    : `<button onclick="advanceLiveDuel()" class="w-full p-4 bg-indigo-600 text-white font-black rounded-xl shadow-lg hover:bg-indigo-500 text-lg">Weiter ➔</button>`;
+
+                document.getElementById("live-duel-play-content").innerHTML = `
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-3 shadow-lg">
+                    <h2 class="text-lg font-black text-white text-center">Runde ${isQuiz ? (data.currentIndex + 1) : data.currentRound} – Ergebnisse</h2>
+                    <div class="space-y-2">${rowsHtml}</div>
+                    ${isLiveDuelCreator ? nextBtn : `<p class="text-xs text-gray-500 text-center font-bold">Warte, bis der Ersteller weitermacht...</p>`}
+                </div>`;
+            }
+
+            async function advanceLiveDuel() {
+                const snap = await liveDuelRef.get(); const data = snap.data();
+                let players = data.players;
+                Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].lastAnswer = null; players[k].word = ""; });
+                if (data.type === "quiz") {
+                    await liveDuelRef.update({ status: "playing", currentIndex: data.currentIndex + 1, players });
+                } else {
+                    const diff = SCRABBLE_DIFFICULTIES[data.difficulty];
+                    await liveDuelRef.update({ status: "playing", currentRound: data.currentRound + 1, currentLetters: drawScrabbleLetters(diff.letters), players });
+                }
+            }
+
+            function startLiveDuelRound() {
+                if (liveDuelType === "scrabble") {
+                    liveDuelRef.get().then(doc => {
+                        const data = doc.data();
+                        const diff = SCRABBLE_DIFFICULTIES[data.difficulty];
+                        let players = data.players;
+                        Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].word = ""; });
+                        liveDuelRef.update({ status: "playing", currentRound: 1, currentLetters: drawScrabbleLetters(diff.letters), players });
+                    });
+                } else {
+                    liveDuelRef.get().then(doc => {
+                        let players = doc.data().players;
+                        Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].lastAnswer = null; });
+                        liveDuelRef.update({ status: "playing", currentIndex: 0, players });
+                    });
+                }
+            }
+
+            function renderLiveDuelFinalResult(data) {
+                const sorted = Object.values(data.players).sort((a, b) => b.score - a.score);
+                const medals = ["🥇", "🥈", "🥉"];
+                let html = `<div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center shadow-lg space-y-4">
+                    <div class="text-6xl">🏆</div>
+                    <h2 class="text-2xl font-black text-white mb-2">Duell beendet!</h2>
+                    <div class="space-y-3 max-w-sm mx-auto">`;
+                sorted.forEach((p, i) => {
+                    const medal = i < 3 ? medals[i] : `${i + 1}.`;
+                    html += `<div class="flex items-center justify-between bg-gray-900 border ${i === 0 ? 'border-yellow-400' : 'border-gray-700'} rounded-xl p-3">
+                        <div class="flex items-center gap-3"><span class="text-2xl">${medal}</span><span class="font-bold text-white">${p.name}</span></div>
+                        <div class="font-black text-yellow-400">${p.score} Pkt.</div>
+                    </div>`;
+                });
+                html += `</div>
+                    <button onclick="leaveLiveDuel()" class="w-full p-4 bg-indigo-600 hover:bg-indigo-500 font-black text-white rounded-xl shadow-lg mt-4 transition">Zurück zur Übersicht</button>
+                </div>`;
+                document.getElementById("live-duel-result-content").innerHTML = html;
                 renderFamilyHub();
                 try { confetti(); } catch (e) { }
             }

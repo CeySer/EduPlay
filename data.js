@@ -469,4 +469,127 @@ const VOCABULARY_DATABASE = {
                 {de:"Gewaltenteilung",foreign:"separation of powers"}, {de:"Nachhaltigkeit",foreign:"sustainability"}, {de:"Verfassung",foreign:"constitution"}, {de:"Abgeordneter",foreign:"member of parliament"}, {de:"Staatsangehörigkeit",foreign:"nationality"},
                 {de:"Informatik",foreign:"computer science"}, {de:"Datenschutz",foreign:"data protection"}, {de:"künstliche Intelligenz",foreign:"artificial intelligence"}, {de:"Software",foreign:"software"},
                 {de:"Gleichberechtigung",foreign:"equality"}, {de:"Armut",foreign:"poverty"}, {de:"Wohlstand",foreign:"prosperity"},
-                {de:"Verhandlung",foreign:"negotiation"}, {de:"Entscheidung",foreign:"decision"}, {de:"Verantwortung übernehmen",foreign:"to take responsibil
+                {de:"Verhandlung",foreign:"negotiation"}, {de:"Entscheidung",foreign:"decision"}, {de:"Verantwortung übernehmen",foreign:"to take responsibility"}, {de:"überzeugen",foreign:"to convince"}, {de:"zustimmen",foreign:"to agree"}, {de:"ablehnen",foreign:"to reject"}
+            ] 
+        },
+        kfz: {
+            label: "🔧 Berufsschule KFZ (Englisch)",
+            words: [
+                { de: "Motor", foreign: "engine" }, { de: "Bremse", foreign: "brake" }, { de: "Schaltplan", foreign: "wiring diagram" },
+                { de: "Zündspule", foreign: "ignition coil" }, { de: "Reifen", foreign: "tire" }, { de: "Schraubenschlüssel", foreign: "wrench" },
+                { de: "Kupplung", foreign: "clutch" }, { de: "Getriebe", foreign: "gearbox" }, { de: "Auspuff", foreign: "exhaust" }, { de: "Batterie", foreign: "battery" },
+                { de: "Lichtmaschine", foreign: "alternator" }, { de: "Zahnriemen", foreign: "timing belt" }, { de: "Stoßdämpfer", foreign: "shock absorber" }, { de: "tanken", foreign: "refuel" },
+                { de: "Achse", foreign: "axle" }, { de: "Kolben", foreign: "piston" }, { de: "Zylinder", foreign: "cylinder" }, { de: "Kühler", foreign: "radiator" },
+                { de: "Werkstatt", foreign: "workshop" }, { de: "Ersatzteil", foreign: "spare part" }, { de: "Wartung", foreign: "maintenance" }, { de: "Fehlercode", foreign: "fault code" },
+                { de: "Anlasser", foreign: "starter motor" }, { de: "Sicherung", foreign: "fuse" }, { de: "Achsschenkel", foreign: "steering knuckle" }, { de: "Ölwechsel", foreign: "oil change" },
+                { de: "Auspuffrohr", foreign: "tailpipe" }, { de: "Zündkerze", foreign: "spark plug" }, { de: "Steuergerät", foreign: "control unit" }, { de: "Federung", foreign: "suspension" },
+                { de: "Lenkrad", foreign: "steering wheel" }, { de: "Windschutzscheibe", foreign: "windshield" }, { de: "Scheinwerfer", foreign: "headlight" }, { de: "Rückspiegel", foreign: "rearview mirror" },
+                { de: "Radlager", foreign: "wheel bearing" }, { de: "Keilriemen", foreign: "V-belt" },
+                { de: "Drehmoment", foreign: "torque" }, { de: "Leerlauf", foreign: "idle" }, { de: "Kraftstoffpumpe", foreign: "fuel pump" }, { de: "Kühlmittel", foreign: "coolant" },
+                { de: "Drehmomentschlüssel", foreign: "torque wrench" }, { de: "Hebebühne", foreign: "vehicle lift" }, { de: "Kostenvoranschlag", foreign: "cost estimate" }
+            ]
+        }
+    },
+    tr: {
+        klasse_1_4: { 
+            label: "🧸 Grundschule (Temel Kelimeler)", 
+            words: [
+                {de:"Eins",foreign:"bir"}, {de:"Zwei",foreign:"iki"}, {de:"Drei",foreign:"üç"}, {de:"Hund",foreign:"köpek"}, {de:"Katze",foreign:"kedi"}, 
+                {de:"Vogel",foreign:"kuş"}, {de:"Rot",foreign:"kırmızı"}, {de:"Blau",foreign:"mavi"}, {de:"Tisch",foreign:"masa"}, {de:"Buch",foreign:"kitap"},
+                {de:"Hallo",foreign:"merhaba"}, {de:"Tschüss",foreign:"hoşçakal"}, {de:"Danke",foreign:"teşekkürler"}, {de:"Bitte",foreign:"lütfen"}, {de:"Schule",foreign:"okul"},
+                {de:"Vier",foreign:"dört"}, {de:"Fünf",foreign:"beş"}, {de:"Grün",foreign:"yeşil"}, {de:"Gelb",foreign:"sarı"}, {de:"Mutter",foreign:"anne"},
+                {de:"Vater",foreign:"baba"}, {de:"Haus",foreign:"ev"}, {de:"Apfel",foreign:"elma"}, {de:"Wasser",foreign:"su"}, {de:"Stuhl",foreign:"sandalye"},
+                {de:"Lehrer",foreign:"öğretmen"}, {de:"lernen",foreign:"öğrenmek"}, {de:"spielen",foreign:"oynamak"}, {de:"Bruder",foreign:"kardeş"}, {de:"Zahlen (elf-zwanzig)",foreign:"on bir - yirmi"},
+                {de:"Brot",foreign:"ekmek"}, {de:"Milch",foreign:"süt"}, {de:"Tür",foreign:"kapı"}, {de:"Fenster",foreign:"pencere"}, {de:"Schwarz",foreign:"siyah"}, {de:"Weiß",foreign:"beyaz"}
+            ] 
+        },
+        klasse_5_8: { 
+            label: "⚽ Mittelstufe (Hobiler & Çevre)", 
+            words: [
+                {de:"Fußball",foreign:"futbol"}, {de:"Schwimmen",foreign:"yüzme"}, {de:"Lesen",foreign:"okuma"}, {de:"Freundschaft",foreign:"arkadaşlık"}, {de:"Kino",foreign:"sinema"},
+                {de:"Umwelt",foreign:"çevre"}, {de:"Wald",foreign:"orman"}, {de:"Wasser",foreign:"su"}, {de:"Wetter",foreign:"hava durumu"}, {de:"Reisen",foreign:"seyahat"},
+                {de:"Musik",foreign:"müzik"}, {de:"Buch",foreign:"kitap"}, {de:"Handy",foreign:"telefon"}, {de:"Internet",foreign:"internet"}, {de:"Strand",foreign:"plaj"},
+                {de:"Familie",foreign:"aile"}, {de:"Geburtstag",foreign:"doğum günü"}, {de:"Zeit",foreign:"zaman"}, {de:"Gesundheit",foreign:"sağlık"}, {de:"Essen",foreign:"yemek"},
+                {de:"Mathematik",foreign:"matematik"}, {de:"Geschichte (Fach)",foreign:"tarih"}, {de:"Biologie",foreign:"biyoloji"}, {de:"Sport",foreign:"spor"}, {de:"Ferien",foreign:"tatil"},
+                {de:"Freund",foreign:"arkadaş"}, {de:"Stadt",foreign:"şehir"}, {de:"Dorf",foreign:"köy"}, {de:"Straße",foreign:"sokak"}, {de:"Auto",foreign:"araba"},
+                {de:"schnell",foreign:"hızlı"}, {de:"langsam",foreign:"yavaş"}, {de:"schön",foreign:"güzel"}, {de:"schwierig",foreign:"zor"}, {de:"einfach",foreign:"kolay"}
+            ] 
+        },
+        klasse_9_11: { 
+            label: "👥 Oberstufe (Toplum)", 
+            words: [
+                {de:"Gesellschaft",foreign:"toplum"}, {de:"Demokratie",foreign:"demokrasi"}, {de:"Bildung",foreign:"eğitim"}, {de:"Beruf",foreign:"meslek"}, {de:"Ziel",foreign:"hedef"},
+                {de:"Problem",foreign:"sorun"}, {de:"Lösung",foreign:"çözüm"}, {de:"Geld",foreign:"para"}, {de:"Wirtschaft",foreign:"ekonomi"}, {de:"Erfolg",foreign:"başarı"},
+                {de:"Gesetz",foreign:"kanun"}, {de:"Freiheit",foreign:"özgürlük"}, {de:"Gerechtigkeit",foreign:"adalet"}, {de:"Wahl",foreign:"seçim"}, {de:"Verantwortung",foreign:"sorumluluk"},
+                {de:"Nachhaltigkeit",foreign:"sürdürülebilirlik"}, {de:"Verfassung",foreign:"anayasa"}, {de:"Technologie",foreign:"teknoloji"}, {de:"global",foreign:"küresel"},
+                {de:"Umwelt",foreign:"çevre"}, {de:"Zukunft",foreign:"gelecek"}, {de:"Entwicklung",foreign:"gelişme"}, {de:"Meinung",foreign:"düşünce"},
+                {de:"Arbeit",foreign:"iş"}, {de:"Erfahrung",foreign:"deneyim"}
+            ] 
+        },
+        kfz: {
+            label: "🔧 Arabalar (Autos)",
+            words: [
+                { de: "Auto", foreign: "araba" }, { de: "Motor", foreign: "motor" }, { de: "Reifen", foreign: "lastik" },
+                { de: "Bremse", foreign: "fren" }, { de: "tanken", foreign: "yakıt almak" },
+                { de: "Getriebe", foreign: "vites kutusu" }, { de: "Batterie", foreign: "akü" }, { de: "Werkstatt", foreign: "tamirhane" }, { de: "Öl", foreign: "yağ" },
+                { de: "Lenkrad", foreign: "direksiyon" }, { de: "Scheinwerfer", foreign: "far" }, { de: "Pannenhilfe", foreign: "yol yardımı" }, { de: "Führerschein", foreign: "ehliyet" },
+                { de: "Benzin", foreign: "benzin" }, { de: "Unfall", foreign: "kaza" },
+                { de: "Werkzeug", foreign: "alet" }, { de: "reparieren", foreign: "tamir etmek" }
+            ]
+        }
+    }
+};
+
+// =======================================================
+// DEUTSCHES WOERTERBUCH (fuer das Wort-Duell / Scrabble)
+// Zweck 1: Aus diesen Woertern werden die Buchstaben erzeugt,
+//          damit garantiert immer mindestens ein Wort loesbar ist.
+// Zweck 2: Sofortige Wortpruefung auch ohne Internet.
+// Nur A-Z, keine Umlaute (die gibt es auch nicht als Spielsteine).
+// =======================================================
+const GERMAN_WORDS = [
+    "AAL", "ABEND", "ADLER", "ADRESSE", "AFFE", "AKTE", "ALT", "AMSEL", "ANFANG", "ANGEL",
+    "ANTWORT", "APFEL", "ARBEIT", "ARM", "ART", "ARZT", "AST", "ATLAS", "AUGE", "AUGUST",
+    "AUS", "AUSFLUG", "AUTO", "AXT", "BAD", "BALKON", "BALL", "BANANE", "BANK", "BAR",
+    "BART", "BAU", "BAUCH", "BAUM", "BEERE", "BEIN", "BERG", "BERUF", "BESEN", "BETT",
+    "BEUTEL", "BIENE", "BIER", "BILD", "BIRNE", "BLATT", "BLAU", "BLUME", "BLUMEN", "BLUT",
+    "BODEN", "BOGEN", "BOOT", "BOT", "BRIEF", "BROT", "BRUDER", "BRUST", "BUCH", "BUCHE",
+    "BUNT", "BUS", "DACH", "DACHS", "DAME", "DAMPF", "DANK", "DATUM", "DECKE", "DECKEL",
+    "DIENST", "DOM", "DONNER", "DORF", "DOSE", "DRACHE", "DRAHT", "DRUCK", "DUFT", "EBBE",
+    "ECKE", "EIER", "EIMER", "EIN", "EIS", "EISEN", "ELEFANT", "ELF", "ELTERN", "ENDE",
+    "ENGEL", "ENTE", "ERDE", "ERNTE", "ERZ", "ESEL", "ESSEN", "EULE", "FABRIK", "FADEN",
+    "FAMILIE", "FARBE", "FASS", "FEDER", "FEDERN", "FEE", "FEIN", "FELD", "FENSTER", "FERIEN",
+    "FEST", "FEUER", "FINGER", "FISCH", "FLASCHE", "FLIEGE", "FLUG", "FLUSS", "FORELLE", "FOTO",
+    "FRAGE", "FRAU", "FREUND", "FREUNDE", "FRUCHT", "FUSS", "GABEL", "GARAGE", "GARTEN", "GAS",
+    "GAST", "GEBIRGE", "GEDICHT", "GEFAHR", "GEIST", "GEL", "GELB", "GELD", "GEN", "GERN",
+    "GESICHT", "GITARRE", "GLANZ", "GLAS", "GLEIS", "GLOCKE", "GOLD", "GRAS", "GRAU", "GRUND",
+    "GUT", "HAAR", "HAFEN", "HAI", "HALLE", "HALS", "HAND", "HANDEL", "HANDY", "HASE",
+    "HAUCH", "HAUS", "HEBEL", "HEFT", "HEIM", "HERBST", "HERZ", "HIMMEL", "HOCH", "HOLZ",
+    "HONIG", "HOSEN", "HUND", "HUNGER", "HUT", "IGEL", "INSEKT", "INSEL", "JAHR", "KAFFEE",
+    "KALT", "KAMEL", "KAMERA", "KAMIN", "KANTE", "KARTE", "KARTON", "KASSE", "KASTEN", "KATZE",
+    "KEGEL", "KERZE", "KETTE", "KIND", "KINO", "KIRCHE", "KISSEN", "KLANG", "KLASSE", "KLAVIER",
+    "KLEE", "KLEID", "KNIE", "KNOCHEN", "KOCH", "KOFFER", "KOHLE", "KONZERT", "KOPF", "KOPIE",
+    "KORB", "KRAFT", "KREIDE", "KREIS", "KREUZ", "KUCHEN", "KUGEL", "KUH", "KUNST", "KUSS",
+    "LADEN", "LAMM", "LAMPE", "LAND", "LAUB", "LAUT", "LEBEN", "LEDER", "LEER", "LEHRER",
+    "LEITER", "LICHT", "LIEBE", "LIED", "LINIE", "LOB", "LOCH", "LUFT", "LUNGE", "MAGEN",
+    "MAI", "MAL", "MANTEL", "MARKT", "MAUER", "MAUS", "MEER", "MEHL", "MEHR", "MESSER",
+    "METALL", "MINUTE", "MITTE", "MOND", "MORGEN", "MOTOR", "MUND", "MUSEUM", "MUSIK", "MUT",
+    "MUTTER", "NACHBAR", "NACHT", "NADEL", "NAGEL", "NAME", "NASE", "NASS", "NEBEL", "NEST",
+    "NETT", "NEU", "NEUN", "NIE", "NORDEN", "NUDEL", "NUDELN", "NUN", "NUR", "OBST",
+    "OFEN", "OHR", "OMA", "ONKEL", "OPA", "OPER", "ORANGE", "ORGEL", "ORT", "OSTEN",
+    "PALAST", "PAPIER", "PARK", "PECH", "PERLE", "PFERD", "PFLANZE", "PILOT", "PILZ", "PLAN",
+    "PLANET", "PLATZ", "POLIZEI", "PREIS", "PROBLEM", "PULT", "PUNKT", "RAD", "RAHMEN", "RASEN",
+    "RAT", "RATTE", "RAUM", "RECHNER", "REGAL", "REGEN", "REGION", "REH", "REIS", "REISE",
+    "REISEN", "RICHTER", "RIESE", "RING", "ROH", "ROLLE", "ROLLER", "ROSE", "ROT", "RUHE",
+    "RUM", "SAAL", "SAFT", "SALAT", "SALZ", "SAND", "SCHAF", "SCHATTEN", "SCHATZ", "SCHIFF",
+    "SCHNEE", "SCHRANK", "SCHUH", "SCHULE", "SCHWESTER", "SEE", "SEIL", "SEITE", "SESSEL", "SIEBEN",
+    "SILBER", "SOFA", "SOHN", "SOMMER", "SONNE", "SPIEGEL", "SPIEL", "SPINNE", "SPORT", "STADT",
+    "STAR", "STEIN", "STERN", "STOCK", "STRAND", "STRASSE", "STUHL", "STUNDE", "STURM", "SUPPE",
+    "TAFEL", "TAG", "TAL", "TANZ", "TASCHE", "TASSE", "TAU", "TEICH", "TELLER", "TEPPICH",
+    "TIER", "TIGER", "TISCH", "TOMATE", "TON", "TOR", "TRAUM", "TREPPE", "TUCH", "TUN",
+    "TURM", "UFER", "UHR", "VATER", "VOGEL", "VOR", "WAGEN", "WALD", "WAND", "WASSER",
+    "WEG", "WEH", "WEIN", "WEIZEN", "WELLE", "WELT", "WESTE", "WIESE", "WIND", "WINTER",
+    "WOCHE", "WOLKE", "WOLKEN", "WOLLE", "WORT", "WUNDER", "WURZEL", "ZAHL", "ZAHN", "ZEBRA",
+    "ZEH", "ZEIT", "ZELT", "ZIEGE", "ZIEL", "ZIMMER", "ZOLL", "ZOO", "ZUCKER", "ZUG",
+    "ZWERG", "ZWIEBEL"
+];

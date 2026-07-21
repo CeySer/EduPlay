@@ -1,454 +1,312 @@
 // ==========================================
-// EDUPLAY HUB - ZENTRALE DATENBANK (data.js)
+// WISSEN & GRAMMATIK DATENBANK (Das große Quiz)
 // ==========================================
+const QUESTIONS_DATABASE = [
+    // --- GRUNDSCHULE (Klasse 1 - 4) ---
+    { category: "klasse_1_2", question: "Mathe: Was ist 25 + 14?", answers: ["35", "38", "39"], correct: 2, explanation: "💡 20+10=30, 5+4=9. Ergibt 39!" },
+    { category: "klasse_1_2", question: "Mathe: Was ist 8 mal 4?", answers: ["32", "24", "36"], correct: 0, explanation: "💡 Das kleine Einmaleins: 8, 16, 24, 32!" },
+    { category: "klasse_1_2", question: "Deutsch: Welches Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere (Nomen) schreibt man immer groß!" },
+    { category: "klasse_3_4", question: "Deutsch: Welches dieser Wörter ist ein Tuwort (Verb)?", answers: ["Schön", "Laufen", "Auto"], correct: 1, explanation: "💡 Verben beschreiben, was man tut (laufen, springen, spielen)." },
+    { category: "klasse_3_4", question: "Sachkunde: In welche Richtung zeigt die Nadel eines Kompasses immer?", answers: ["Süden", "Westen", "Norden"], correct: 2, explanation: "💡 Die Magnetnadel richtet sich immer nach dem magnetischen Nordpol der Erde aus." },
+    { category: "klasse_1_2", question: "Mathe: Was ist 10 minus 3?", answers: ["6", "7", "8"], correct: 1, explanation: "💡 Wenn man von 10 drei wegnimmt, bleiben 7 übrig." },
+    { category: "klasse_1_2", question: "Deutsch: Wie viele Silben hat das Wort 'Son-ne'?", answers: ["Eine", "Zwei", "Drei"], correct: 1, explanation: "💡 Son-ne wird in zwei Teile (Silben) geklatscht: Son und ne." },
+    { category: "klasse_1_2", question: "Sachkunde: Welches Tier legt Eier und kann fliegen?", answers: ["Hund", "Vogel", "Katze"], correct: 1, explanation: "💡 Vögel legen Eier und die meisten von ihnen können fliegen." },
+    { category: "klasse_1_2", question: "Mathe: Was ist die Hälfte von 10?", answers: ["4", "5", "6"], correct: 1, explanation: "💡 10 geteilt durch 2 ergibt 5." },
+    { category: "klasse_3_4", question: "Mathe: Was ist 6 mal 7?", answers: ["42", "36", "48"], correct: 0, explanation: "💡 Einmaleins: 6, 12, 18, 24, 30, 36, 42!" },
+    { category: "klasse_3_4", question: "Mathe: Wie viele Ecken hat ein Rechteck?", answers: ["3", "4", "5"], correct: 1, explanation: "💡 Ein Rechteck hat immer vier Ecken und vier Seiten." },
+    { category: "klasse_3_4", question: "Deutsch: Was ist das Gegenteil von 'groß'?", answers: ["klein", "schnell", "laut"], correct: 0, explanation: "💡 'klein' ist das Gegenteil (Antonym) von 'groß'." },
+    { category: "klasse_3_4", question: "Sachkunde: Wie nennt man den Übergang von Wasser zu Wasserdampf?", answers: ["Schmelzen", "Verdunsten", "Gefrieren"], correct: 1, explanation: "💡 Wenn Wasser erhitzt wird und zu Dampf wird, nennt man das Verdunsten (Verdampfen)." },
+    { category: "klasse_1_2", question: "Mathe: Was ist 7 + 8?", answers: ["14", "15", "16"], correct: 1, explanation: "💡 7 + 8 = 15. Tipp: 7+7=14, plus 1 macht 15!" },
+    { category: "klasse_1_2", question: "Deutsch: Welches Wort reimt sich auf 'Maus'?", answers: ["Haus", "Tisch", "Ball"], correct: 0, explanation: "💡 'Maus' und 'Haus' klingen am Ende gleich – das ist ein Reim." },
+    { category: "klasse_1_2", question: "Sachkunde: Welche Jahreszeit kommt nach dem Winter?", answers: ["Sommer", "Frühling", "Herbst"], correct: 1, explanation: "💡 Die Reihenfolge ist: Frühling, Sommer, Herbst, Winter." },
+    { category: "klasse_3_4", question: "Mathe: Was ist 100 geteilt durch 4?", answers: ["20", "25", "30"], correct: 1, explanation: "💡 100 : 4 = 25, denn 4 × 25 = 100." },
+    { category: "klasse_3_4", question: "Deutsch: Wie lautet die Mehrzahl (Plural) von 'Kind'?", answers: ["Kinde", "Kinder", "Kindern"], correct: 1, explanation: "💡 Die Mehrzahl von 'Kind' ist 'Kinder'." },
+    { category: "klasse_3_4", question: "Sachkunde: Welches Organ pumpt das Blut durch den Körper?", answers: ["Lunge", "Herz", "Magen"], correct: 1, explanation: "💡 Das Herz ist ein Muskel, der das Blut durch die Adern pumpt." },
 
-const APP_DATABASE = {
+    // --- UNTERSTUFE (Klasse 5 - 6) ---
+    { category: "klasse_5_6", question: "Englisch: He ___ to school every day.", answers: ["go", "goes", "going"], correct: 1, explanation: "💡 Simple Present: Bei 'he, she, it' muss das 's' mit! (He goes)" },
+    { category: "klasse_5_6", question: "Englisch: Look! The dog ___ in the garden.", answers: ["plays", "is playing", "play"], correct: 1, explanation: "💡 Present Progressive: Signalwort 'Look!'. Es passiert genau jetzt." },
+    { category: "klasse_5_6", question: "Englisch: I ___ not like apples.", answers: ["does", "am", "do"], correct: 2, explanation: "💡 Simple Present Verneinung: I do not (don't) like." },
+    { category: "klasse_5_6", question: "Biologie: Was benötigen Pflanzen, um Sauerstoff zu produzieren (Fotosynthese)?", answers: ["Nur Wasser", "Sonnenlicht, Wasser und CO2", "Erde und Dünger"], correct: 1, explanation: "💡 Pflanzen machen aus Sonnenlicht, Wasser und Kohlendioxid (CO2) Sauerstoff." },
+    { category: "klasse_5_6", question: "Englisch: There ___ two cats in the garden.", answers: ["is", "are", "be"], correct: 1, explanation: "💡 'There are' benutzt man bei mehreren Dingen (Plural: two cats)." },
+    { category: "klasse_5_6", question: "Englisch: This is my dog. ___ name is Rex.", answers: ["His", "Her", "Its"], correct: 2, explanation: "💡 Für Tiere und Dinge benutzt man 'its' (nicht 'it's', das heißt 'es ist')." },
+    { category: "klasse_5_6", question: "Mathe: Was ist ein Zehntel als Bruch?", answers: ["1/100", "1/10", "10/1"], correct: 1, explanation: "💡 Ein Zehntel schreibt man als 1/10." },
+    { category: "klasse_5_6", question: "Geografie: Wie heißt der längste Fluss Deutschlands?", answers: ["Donau", "Elbe", "Rhein"], correct: 2, explanation: "💡 Der Rhein ist mit rund 865 km auf deutschem Gebiet der längste Fluss Deutschlands." },
+    { category: "klasse_5_6", question: "Biologie: Wie viele Beine hat ein Insekt?", answers: ["4", "6", "8"], correct: 1, explanation: "💡 Insekten haben immer genau sechs Beine, das unterscheidet sie z.B. von Spinnen (8 Beine)." },
+    { category: "klasse_5_6", question: "Englisch: My birthday is ___ May.", answers: ["at", "on", "in"], correct: 2, explanation: "💡 Bei Monaten benutzt man immer 'in' (in May, in June)." },
+    { category: "klasse_5_6", question: "Mathe: Wie viele Grad hat ein rechter Winkel?", answers: ["45°", "90°", "180°"], correct: 1, explanation: "💡 Ein rechter Winkel hat genau 90°, erkennbar am kleinen Quadrat in der Ecke." },
+    { category: "klasse_5_6", question: "Englisch: We ___ football every Saturday.", answers: ["plays", "play", "playing"], correct: 1, explanation: "💡 Simple Present: Bei 'we' gibt es kein 's' am Verb (we play)." },
+    { category: "klasse_5_6", question: "Geografie: Wie heißt der höchste Berg Deutschlands?", answers: ["Watzmann", "Zugspitze", "Brocken"], correct: 1, explanation: "💡 Die Zugspitze ist mit 2.962 m der höchste Berg Deutschlands." },
+    { category: "klasse_5_6", question: "Mathe: Was ist 3/4 als Dezimalzahl?", answers: ["0,34", "0,75", "0,43"], correct: 1, explanation: "💡 3 geteilt durch 4 ergibt 0,75." },
+    { category: "klasse_5_6", question: "Englisch: Can you ___ me the salt, please?", answers: ["pass", "passes", "passing"], correct: 0, explanation: "💡 Nach 'can' folgt immer die Grundform des Verbs (pass, nicht passes)." },
+    { category: "klasse_5_6", question: "Biologie: Wozu dienen die Wurzeln einer Pflanze?", answers: ["Nur zur Deko", "Aufnahme von Wasser und Nährstoffen", "Fotosynthese"], correct: 1, explanation: "💡 Wurzeln verankern die Pflanze im Boden und nehmen Wasser sowie Nährstoffe auf." },
 
-    // 📚 BEREICH 1: SCHULE (Klasse 1 bis 13 einzeln aufgeteilt)
-    schule: {
-        klasse_1: {
-            faecher: ["Mathematik", "Deutsch", "Sachkunde", "Englisch"],
-            fragen: [
-                { fach: "Mathematik", question: "Was ist 25 + 14?", answers: ["35", "38", "39"], correct: 2, explanation: "💡 20+10=30, 5+4=9. Ergibt 39!" },
-                { fach: "Mathematik", question: "Was ist 8 mal 4?", answers: ["32", "24", "36"], correct: 0, explanation: "💡 Das kleine Einmaleins: 8, 16, 24, 32!" },
-                { fach: "Deutsch", question: "Welches Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere (Nomen) schreibt man immer groß!" },
-                { fach: "Mathematik", question: "Was ist 10 minus 3?", answers: ["6", "7", "8"], correct: 1, explanation: "💡 Wenn man von 10 drei wegnimmt, bleiben 7 übrig." },
-                { fach: "Deutsch", question: "Wie viele Silben hat das Wort 'Son-ne'?", answers: ["Eine", "Zwei", "Drei"], correct: 1, explanation: "💡 Son-ne wird in zwei Teile (Silben) geklatscht: Son und ne." },
-                { fach: "Sachkunde", question: "Welches Tier legt Eier und kann fliegen?", answers: ["Hund", "Vogel", "Katze"], correct: 1, explanation: "💡 Vögel legen Eier und die meisten von ihnen können fliegen." },
-                { fach: "Mathematik", question: "Was ist die Hälfte von 10?", answers: ["4", "5", "6"], correct: 1, explanation: "💡 10 geteilt durch 2 ergibt 5." },
-                { fach: "Mathematik", question: "Was ist 7 + 8?", answers: ["14", "15", "16"], correct: 1, explanation: "💡 7 + 8 = 15. Tipp: 7+7=14, plus 1 macht 15!" },
-                { fach: "Deutsch", question: "Welches Wort reimt sich auf 'Maus'?", answers: ["Haus", "Tisch", "Ball"], correct: 0, explanation: "💡 'Maus' und 'Haus' klingen am Ende gleich – das ist ein Reim." },
-                { fach: "Sachkunde", question: "Welche Jahreszeit kommt nach dem Winter?", answers: ["Sommer", "Frühling", "Herbst"], correct: 1, explanation: "💡 Die Reihenfolge ist: Frühling, Sommer, Herbst, Winter." }
-            ],
-            vokabeln: {
-                en: [
-                    {de:"Eins",foreign:"one"}, {de:"Zwei",foreign:"two"}, {de:"Drei",foreign:"three"}, {de:"Vier",foreign:"four"}, {de:"Fünf",foreign:"five"}, 
-                    {de:"Rot",foreign:"red"}, {de:"Blau",foreign:"blue"}, {de:"Grün",foreign:"green"}, {de:"Gelb",foreign:"yellow"}, {de:"Schwarz",foreign:"black"},
-                    {de:"Hund",foreign:"dog"}, {de:"Katze",foreign:"cat"}, {de:"Maus",foreign:"mouse"}, {de:"Vogel",foreign:"bird"}, {de:"Fisch",foreign:"fish"}
-                ],
-                tr: [
-                    {de:"Eins",foreign:"bir"}, {de:"Zwei",foreign:"iki"}, {de:"Drei",foreign:"üç"}, {de:"Hund",foreign:"köpek"}, {de:"Katze",foreign:"kedi"}, 
-                    {de:"Vogel",foreign:"kuş"}, {de:"Rot",foreign:"kırmızı"}, {de:"Blau",foreign:"mavi"}, {de:"Tisch",foreign:"masa"}, {de:"Buch",foreign:"kitap"}
-                ]
-            }
+    // --- MITTELSTUFE (Klasse 7 - 8) ---
+    { category: "klasse_7_8", question: "Englisch: Yesterday, I ___ a great movie.", answers: ["see", "saw", "have seen"], correct: 1, explanation: "💡 Simple Past: Signalwort 'Yesterday' verlangt die 2. Form (saw)." },
+    { category: "klasse_7_8", question: "Englisch: I ___ to London three times in my life.", answers: ["went", "have been", "am"], correct: 1, explanation: "💡 Present Perfect: Es geht um Erfahrungen bis heute ('in my life')." },
+    { category: "klasse_7_8", question: "Englisch: She runs ___ than her brother.", answers: ["faster", "fastest", "more fast"], correct: 0, explanation: "💡 Steigerung (Adjektiv): fast -> faster -> fastest. Hier Vergleich (faster than)." },
+    { category: "klasse_7_8", question: "Physik: Welche Einheit wird für elektrische Spannung verwendet?", answers: ["Ampere", "Watt", "Volt"], correct: 2, explanation: "💡 Die Spannung wird in Volt (V) gemessen. Stromstärke in Ampere (A)." },
+    { category: "klasse_7_8", question: "Englisch: By next year, I ___ my exams.", answers: ["will finish", "will have finished", "finish"], correct: 1, explanation: "💡 Future Perfect: 'will have' + 3. Form, für etwas, das bis zu einem Zeitpunkt abgeschlossen ist." },
+    { category: "klasse_7_8", question: "Englisch: This is the book ___ I told you about.", answers: ["who", "which", "whose"], correct: 1, explanation: "💡 Für Sachen benutzt man 'which' oder 'that' als Relativpronomen." },
+    { category: "klasse_7_8", question: "Chemie: Wie lautet das chemische Symbol für Sauerstoff?", answers: ["O", "S", "Ox"], correct: 0, explanation: "💡 Sauerstoff heißt auf Englisch/Latein 'oxygenium', daher das Symbol O." },
+    { category: "klasse_7_8", question: "Mathe: Wie berechnet man die Fläche eines Kreises?", answers: ["π × r", "π × r²", "2 × π × r"], correct: 1, explanation: "💡 Die Kreisfläche berechnet man mit π mal Radius zum Quadrat (π × r²)." },
+    { category: "klasse_7_8", question: "Geschichte: In welchem Jahr endete der Zweite Weltkrieg?", answers: ["1939", "1945", "1950"], correct: 1, explanation: "💡 Der Zweite Weltkrieg endete 1945 mit der Kapitulation Deutschlands und Japans." },
+    { category: "klasse_7_8", question: "Englisch: I wish I ___ more time.", answers: ["have", "had", "will have"], correct: 1, explanation: "💡 Nach 'I wish' benutzt man für die Gegenwart das Simple Past (unrealer Wunsch)." },
+    { category: "klasse_7_8", question: "Physik: Was beschreibt das Ohmsche Gesetz?", answers: ["U = R / I", "U = I × R", "I = U × R"], correct: 1, explanation: "💡 Ohmsches Gesetz: Spannung = Stromstärke × Widerstand (U = I × R)." },
+    { category: "klasse_7_8", question: "Mathe: Was ist der Satz des Pythagoras?", answers: ["a + b = c", "a² + b² = c²", "a × b = c²"], correct: 1, explanation: "💡 Im rechtwinkligen Dreieck gilt: a² + b² = c² (c ist die Hypotenuse)." },
+    { category: "klasse_7_8", question: "Englisch: I have ___ finished my homework.", answers: ["already", "yet", "just now"], correct: 0, explanation: "💡 'already' steht typischerweise im Present Perfect für 'schon'." },
+    { category: "klasse_7_8", question: "Chemie: Was ist der pH-Wert 7?", answers: ["Sauer", "Neutral", "Basisch"], correct: 1, explanation: "💡 pH 7 ist neutral, darunter sauer, darüber basisch (alkalisch)." },
+    { category: "klasse_7_8", question: "Geschichte: Wer war Otto von Bismarck?", answers: ["Ein Komponist", "Der erste Reichskanzler Deutschlands", "Ein Erfinder"], correct: 1, explanation: "💡 Bismarck war maßgeblich an der Reichsgründung 1871 beteiligt und wurde erster Reichskanzler." },
+    { category: "klasse_7_8", question: "Englisch: They ___ been living here for ten years.", answers: ["has", "have", "had"], correct: 1, explanation: "💡 Present Perfect mit 'they' (Plural): have been living." },
+
+    // --- OBERSTUFE (Klasse 9 - 11) ---
+    { category: "klasse_9_11", question: "Englisch: If I had a million dollars, I ___ a big house.", answers: ["will buy", "would buy", "bought"], correct: 1, explanation: "💡 If-Clause Typ 2 (unwahrscheinlich): If + Simple Past, im Hauptsatz 'would' + Verb." },
+    { category: "klasse_9_11", question: "Englisch: The car ___ repaired tomorrow.", answers: ["is repaired", "was repaired", "will be repaired"], correct: 2, explanation: "💡 Passiv in der Zukunft: will + be + Partizip Perfekt (3. Form)." },
+    { category: "klasse_9_11", question: "Englisch: She said that she ___ tired.", answers: ["is", "was", "has been"], correct: 1, explanation: "💡 Reported Speech (Indirekte Rede): Wenn der Einleitungssatz in der Vergangenheit steht ('said'), gibt es einen Backshift (is -> was)." },
+    { category: "klasse_9_11", question: "Politik: Wer wählt in Deutschland direkt den Bundeskanzler?", answers: ["Das Volk", "Der Bundestag", "Der Bundespräsident"], correct: 1, explanation: "💡 Das Volk wählt den Bundestag, und die Abgeordneten des Bundestages wählen den Kanzler." },
+    { category: "klasse_9_11", question: "Englisch: I would have helped you if I ___ about it.", answers: ["knew", "had known", "know"], correct: 1, explanation: "💡 If-Clause Typ 3 (unreale Vergangenheit): If + Past Perfect, im Hauptsatz 'would have' + 3. Form." },
+    { category: "klasse_9_11", question: "Englisch: He suggested ___ to the cinema.", answers: ["to go", "going", "go"], correct: 1, explanation: "💡 Nach 'suggest' folgt immer die -ing Form (Gerundium)." },
+    { category: "klasse_9_11", question: "Wirtschaft: Was versteht man unter 'Inflation'?", answers: ["Sinkende Preise", "Steigende Preise / Kaufkraftverlust", "Steigende Löhne"], correct: 1, explanation: "💡 Inflation bedeutet, dass das allgemeine Preisniveau steigt und Geld an Wert verliert." },
+    { category: "klasse_9_11", question: "Politik: Wie viele Bundesländer hat Deutschland?", answers: ["14", "16", "18"], correct: 1, explanation: "💡 Deutschland besteht aus 16 Bundesländern." },
+    { category: "klasse_9_11", question: "Englisch: Not only ___ late, but he also forgot his homework.", answers: ["he was", "was he", "he is"], correct: 1, explanation: "💡 Nach 'Not only' am Satzanfang folgt eine Inversion (was he statt he was)." },
+    { category: "klasse_9_11", question: "Biologie: Was ist die Grundeinheit der Vererbung?", answers: ["Zelle", "Gen", "Protein"], correct: 1, explanation: "💡 Gene sind die Abschnitte der DNA, die Erbinformationen tragen." },
+    { category: "klasse_9_11", question: "Englisch: The report ___ by the committee last week.", answers: ["was reviewed", "reviewed", "has reviewed"], correct: 0, explanation: "💡 Passiv Vergangenheit: was/were + 3. Form (was reviewed)." },
+    { category: "klasse_9_11", question: "Philosophie: Wer prägte den Satz 'Ich denke, also bin ich'?", answers: ["Kant", "Descartes", "Nietzsche"], correct: 1, explanation: "💡 'Cogito ergo sum' stammt von René Descartes." },
+    { category: "klasse_9_11", question: "Englisch: Hardly ___ arrived when the phone rang.", answers: ["I had", "had I", "I have"], correct: 1, explanation: "💡 Nach 'Hardly' am Satzanfang folgt eine Inversion: had I arrived." },
+    { category: "klasse_9_11", question: "Wirtschaft: Was beschreibt das Gesetz von Angebot und Nachfrage?", answers: ["Der Staat legt Preise fest", "Preise entstehen durch das Verhältnis von Angebot und Nachfrage", "Preise sind immer konstant"], correct: 1, explanation: "💡 Steigt die Nachfrage bei gleichem Angebot, steigen meist die Preise – und umgekehrt." },
+    { category: "klasse_9_11", question: "Englisch: It's high time we ___ a decision.", answers: ["make", "made", "will make"], correct: 1, explanation: "💡 Nach 'it's (high) time' folgt das Simple Past für einen unrealen Wunsch in der Gegenwart." },
+    { category: "klasse_9_11", question: "Biologie: Was ist Mitose?", answers: ["Zellteilung zur Vermehrung", "Ein Zellorganell", "Ein Hormon"], correct: 0, explanation: "💡 Mitose ist die Zellteilung, bei der zwei genetisch identische Tochterzellen entstehen." },
+
+    // --- KFZ-TECHNIK (Berufsschule) ---
+    { category: "kfz", question: "Werkstatt: Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug beim Zahnriemenwechsel angebracht ist?", answers: ["Wasserpumpe lösen", "Motor durchdrehen", "Riemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" },
+    { category: "kfz", question: "Elektrik: Welches Bauteil wandelt in der Lichtmaschine Wechselstrom in Gleichstrom um?", answers: ["Anlasser", "Zündspule", "Diodenplatte"], correct: 2, explanation: "💡 Die Dioden richten den erzeugten Wechselstrom in Gleichstrom für das Auto gleich." },
+    { category: "kfz", question: "Fahrwerk: Was genau ist ein Domlager?", answers: ["Ein Teil des Turboladers", "Das Verbindungsstück zwischen Federbein und Karosserie", "Ein Radlager an der Hinterachse"], correct: 1, explanation: "💡 Das Domlager sitzt oben am Stoßdämpfer und verbindet das Fahrwerk mit der Karosserie." },
+    { category: "kfz", question: "Getriebe: Welches Kürzel steht z.B. bei einem Opel 2.2 Motor für eine bestimmte Variante?", answers: ["ATC", "M32", "DSG"], correct: 0, explanation: "💡 Die exakte Bezeichnung der Variante ist ATC." },
+    { category: "kfz", question: "Bremsanlage: Wofür steht die Abkürzung ABS?", answers: ["Anti-Blockier-System", "Automatik-Brems-Sensor", "Achsen-Balance-Steuerung"], correct: 0, explanation: "💡 ABS verhindert das Blockieren der Räder beim Bremsen, damit das Fahrzeug lenkbar bleibt." },
+    { category: "kfz", question: "Motor: Was ist die Aufgabe des Turboladers?", answers: ["Kraftstoff einspritzen", "Die angesaugte Luft verdichten", "Öl kühlen"], correct: 1, explanation: "💡 Der Turbolader verdichtet die Ansaugluft, damit mehr Sauerstoff in den Zylinder gelangt und mehr Leistung entsteht." },
+    { category: "kfz", question: "Elektrik: Wofür steht die Abkürzung OBD?", answers: ["On-Board-Diagnose", "Öl-Behälter-Druck", "Ohm-Bemessungs-Daten"], correct: 0, explanation: "💡 OBD (On-Board-Diagnose) überwacht abgasrelevante Systeme und speichert Fehlercodes." },
+    { category: "kfz", question: "Fahrwerk: Was bewirkt ein Stoßdämpfer?", answers: ["Er dämpft die Schwingungen der Feder", "Er trägt das Fahrzeuggewicht allein", "Er lenkt die Räder"], correct: 0, explanation: "💡 Der Stoßdämpfer dämpft die Federbewegungen, damit das Auto nicht dauerhaft wippt." },
+    { category: "kfz", question: "Motor: Wie viele Takte hat ein klassischer Ottomotor?", answers: ["2", "4", "6"], correct: 1, explanation: "💡 Ansaugen, Verdichten, Arbeiten, Ausstoßen – der klassische Viertaktmotor." },
+    { category: "kfz", question: "Reifen: Was gibt die Zahl in '205/55 R16' an?", answers: ["Reifenbreite in mm, Höhe in % und Felgendurchmesser in Zoll", "Luftdruck und Gewicht", "Herstellungsjahr"], correct: 0, explanation: "💡 205 = Breite in mm, 55 = Querschnittsverhältnis in %, R16 = Felgendurchmesser in Zoll." },
+    { category: "kfz", question: "Klimaanlage: Welches Kältemittel wird häufig in modernen Klimaanlagen verwendet?", answers: ["R134a bzw. R1234yf", "Frigen", "Stickstoff"], correct: 0, explanation: "💡 R134a war lange Standard, moderne Fahrzeuge nutzen zunehmend das umweltfreundlichere R1234yf." },
+    { category: "kfz", question: "Motor: Was ist die Aufgabe der Lambdasonde?", answers: ["Sie misst den Restsauerstoff im Abgas", "Sie kühlt den Motor", "Sie erzeugt den Zündfunken"], correct: 0, explanation: "💡 Die Lambdasonde misst den Sauerstoffgehalt im Abgas, um das Kraftstoff-Luft-Gemisch zu regeln." },
+    { category: "kfz", question: "Elektrik: Was zeigt ein Multimeter im Modus 'Durchgangsprüfung' an?", answers: ["Ob ein Stromkreis geschlossen ist", "Die Motordrehzahl", "Den Ölstand"], correct: 0, explanation: "💡 Die Durchgangsprüfung piept, wenn ein Stromkreis leitfähig (geschlossen) ist – nützlich zur Fehlersuche." },
+    { category: "kfz", question: "Antriebsstrang: Was überträgt die Kraft vom Motor auf die Räder bei Frontantrieb typischerweise?", answers: ["Kardanwelle", "Antriebswelle (Gelenkwelle)", "Blattfeder"], correct: 1, explanation: "💡 Bei Frontantrieb übertragen Antriebs- bzw. Gelenkwellen die Kraft vom Getriebe auf die Vorderräder." },
+    { category: "kfz", question: "Sicherheit: Wofür steht die Abkürzung ESP?", answers: ["Elektronisches Stabilitätsprogramm", "Extra Sicherheits-Paket", "Elektro-Servo-Pumpe"], correct: 0, explanation: "💡 ESP greift gezielt in die Bremsen ein, um das Fahrzeug bei drohendem Schleudern zu stabilisieren." },
+    { category: "kfz", question: "Motor: Was passiert beim 'Verdichtungstakt' im Viertaktmotor?", answers: ["Das Gemisch wird angesaugt", "Das Gemisch wird komprimiert", "Die Abgase werden ausgestoßen"], correct: 1, explanation: "💡 Im zweiten Takt wird das angesaugte Luft-Kraftstoff-Gemisch vom Kolben verdichtet." },
+
+    // --- ALLGEMEINWISSEN, SPORT & FILM ---
+    { category: "allgemeinwissen", question: "Kino: Wer ist der Hauptdarsteller, der den Detective in der 'Crime City' Reihe spielt?", answers: ["Jackie Chan", "Don Lee", "Tony Jaa"], correct: 1, explanation: "💡 Don Lee (Ma Dong-seok) spielt den schlagkräftigen Detective." },
+    { category: "allgemeinwissen", question: "Geschichte: Wer war Miyamoto Musashi?", answers: ["Ein berühmter japanischer Samurai", "Ein südkoreanischer Kampfkünstler", "Ein Charakter aus Star Wars"], correct: 0, explanation: "💡 Er war einer der legendärsten Samurai der Geschichte und kämpfte mit zwei Schwertern." },
+    { category: "allgemeinwissen", question: "Sport: Wie lange dauert ein Fußballspiel bei einer F-Jugend in der Regel?", answers: ["2 x 45 Minuten", "2 x 20 Minuten", "3 x 15 Minuten"], correct: 1, explanation: "💡 Im Kleinfeldfußball bei den Jüngsten (z.B. F-Jugend) wird meist 2 x 20 Minuten gespielt." },
+    { category: "allgemeinwissen", question: "Geografie: Wie heißt die Hauptstadt von Südkorea?", answers: ["Busan", "Seoul", "Incheon"], correct: 1, explanation: "💡 Seoul ist die Hauptstadt und größte Stadt Südkoreas." },
+    { category: "allgemeinwissen", question: "Kino: In welchem Land wird ein Großteil der Martial-Arts-Filme mit Don Lee produziert?", answers: ["Japan", "Südkorea", "China"], correct: 1, explanation: "💡 Don Lee ist ein koreanisch-amerikanischer Schauspieler, viele seiner Filme entstehen in Südkorea." },
+    { category: "allgemeinwissen", question: "Sport: Wie viele Spieler stehen bei einem regulären Fußballspiel pro Mannschaft auf dem Feld?", answers: ["9", "10", "11"], correct: 2, explanation: "💡 Jede Mannschaft stellt 11 Spieler, inklusive Torwart." },
+    { category: "allgemeinwissen", question: "Geschichte: Wer war Alexander der Große?", answers: ["Ein römischer Kaiser", "Ein makedonischer König und Feldherr", "Ein ägyptischer Pharao"], correct: 1, explanation: "💡 Alexander der Große war König von Makedonien und eroberte eines der größten Reiche der Antike." },
+    { category: "allgemeinwissen", question: "Kino: Welches Kampfkunst-Genre ist besonders für Filme aus Thailand bekannt (z.B. mit Tony Jaa)?", answers: ["Muay Thai", "Karate", "Judo"], correct: 0, explanation: "💡 Muay Thai (Thaiboxen) ist die traditionelle Kampfkunst Thailands und prägt viele Actionfilme des Landes." },
+    { category: "allgemeinwissen", question: "Sport: Wie heißt die gelbe Karte im Fußball auch umgangssprachlich?", answers: ["Verwarnung", "Platzverweis", "Elfmeter"], correct: 0, explanation: "💡 Die gelbe Karte ist eine Verwarnung; erst die rote Karte führt zum Platzverweis." },
+    { category: "allgemeinwissen", question: "Geschichte: In welchem Jahrhundert lebte der Samurai Miyamoto Musashi?", answers: ["12. Jahrhundert", "16./17. Jahrhundert", "20. Jahrhundert"], correct: 1, explanation: "💡 Musashi lebte von 1584 bis 1645, also im 16./17. Jahrhundert." },
+    { category: "allgemeinwissen", question: "Sport: Wie heißt der Wettkampf, bei dem Schwimmen, Radfahren und Laufen kombiniert werden?", answers: ["Triathlon", "Biathlon", "Pentathlon"], correct: 0, explanation: "💡 Beim Triathlon werden diese drei Ausdauersportarten hintereinander absolviert." },
+    { category: "allgemeinwissen", question: "Kino: Wie heißt der japanische Regisseur, der für Filme wie 'Die sieben Samurai' bekannt ist?", answers: ["Hayao Miyazaki", "Akira Kurosawa", "Takeshi Kitano"], correct: 1, explanation: "💡 Akira Kurosawa gilt als einer der einflussreichsten Regisseure Japans." },
+    { category: "allgemeinwissen", question: "Geografie: Welcher Ozean ist der größte der Erde?", answers: ["Atlantik", "Pazifik", "Indischer Ozean"], correct: 1, explanation: "💡 Der Pazifische Ozean ist mit Abstand der größte und tiefste Ozean der Welt." },
+    { category: "allgemeinwissen", question: "Sport: Wie viele Ringe hat das olympische Symbol?", answers: ["4", "5", "6"], correct: 1, explanation: "💡 Die fünf Ringe stehen für die fünf bewohnten Kontinente." },
+
+    // --- FACH: MATHEMATIK (Sek I, nach Lehrplan) ---
+    { category: "mathematik", question: "Bruchrechnung: Was ist 1/2 + 1/4?", answers: ["2/6", "3/4", "1/6"], correct: 1, explanation: "💡 Gleichnamig machen: 2/4 + 1/4 = 3/4." },
+    { category: "mathematik", question: "Prozentrechnung: Wie viel sind 20% von 150?", answers: ["20", "30", "40"], correct: 1, explanation: "💡 150 × 0,20 = 30." },
+    { category: "mathematik", question: "Gleichungen: Löse nach x auf: 3x + 5 = 20", answers: ["x = 5", "x = 8", "x = 3"], correct: 0, explanation: "💡 3x = 15, also x = 15 : 3 = 5." },
+    { category: "mathematik", question: "Geometrie: Wie berechnet man den Umfang eines Rechtecks?", answers: ["a × b", "2 × (a + b)", "a² + b²"], correct: 1, explanation: "💡 Umfang = 2 × (Länge + Breite)." },
+    { category: "mathematik", question: "Dreisatz: 3 Kilo Äpfel kosten 6€. Was kosten 5 Kilo?", answers: ["8€", "10€", "12€"], correct: 1, explanation: "💡 1 Kilo kostet 2€, also 5 Kilo = 10€." },
+    { category: "mathematik", question: "Zinsrechnung: Was ist der Jahreszins bei 1000€ und 4% Zinssatz?", answers: ["4€", "40€", "400€"], correct: 1, explanation: "💡 1000 × 0,04 = 40€ Zinsen pro Jahr." },
+    { category: "mathematik", question: "Potenzen: Was ist 2 hoch 5 (2⁵)?", answers: ["10", "16", "32"], correct: 2, explanation: "💡 2×2×2×2×2 = 32." },
+    { category: "mathematik", question: "Statistik: Wie berechnet man den Mittelwert (Durchschnitt) von 2, 4 und 6?", answers: ["3", "4", "6"], correct: 1, explanation: "💡 (2+4+6) : 3 = 4." },
+    { category: "mathematik", question: "Geometrie: Wie viele Seiten hat ein Hexagon (Sechseck)?", answers: ["5", "6", "7"], correct: 1, explanation: "💡 'Hexa' kommt aus dem Griechischen für sechs." },
+    { category: "mathematik", question: "Algebra: Was ist die binomische Formel für (a+b)²?", answers: ["a² + b²", "a² + 2ab + b²", "a² - b²"], correct: 1, explanation: "💡 Erste binomische Formel: (a+b)² = a² + 2ab + b²." },
+
+    // --- FACH: DEUTSCH (Sek I, Grammatik & Sprache) ---
+    { category: "deutsch", question: "Grammatik: Welcher Fall (Kasus) antwortet auf die Frage 'Wem?'", answers: ["Nominativ", "Dativ", "Akkusativ"], correct: 1, explanation: "💡 Der Dativ ist der 3. Fall und antwortet auf 'Wem?'." },
+    { category: "deutsch", question: "Satzglieder: Was ist das Prädikat in 'Der Hund bellt laut'?", answers: ["Der Hund", "bellt", "laut"], correct: 1, explanation: "💡 Das Prädikat ist das Verb im Satz – hier 'bellt'." },
+    { category: "deutsch", question: "Zeichensetzung: Wann setzt man ein Komma vor 'und'?", answers: ["Nie", "Bei zwei Hauptsätzen (optional)", "Immer"], correct: 1, explanation: "💡 Vor 'und' zwischen zwei vollständigen Hauptsätzen kann man ein Komma setzen, muss aber nicht." },
+    { category: "deutsch", question: "Wortarten: Was für eine Wortart ist 'schnell' in 'Er läuft schnell'?", answers: ["Adjektiv (hier als Adverb)", "Nomen", "Konjunktion"], correct: 0, explanation: "💡 'schnell' beschreibt hier das Verb näher, also adverbialer Gebrauch eines Adjektivs." },
+    { category: "deutsch", question: "Textsorten: Was ist das Hauptmerkmal einer Inhaltsangabe?", answers: ["Eigene Meinung einbringen", "Sachlich und im Präsens zusammenfassen", "Wörtlich zitieren"], correct: 1, explanation: "💡 Eine Inhaltsangabe fasst sachlich, im Präsens und in eigenen Worten zusammen." },
+    { category: "deutsch", question: "Rechtschreibung: Wie schreibt man 'dass' richtig in 'Ich weiß, ___ du kommst'?", answers: ["das", "dass", "daß"], correct: 1, explanation: "💡 Als Konjunktion (Bindewort) schreibt man 'dass' mit Doppel-s." },
+    { category: "deutsch", question: "Grammatik: Welche Zeitform ist 'ich bin gegangen'?", answers: ["Präteritum", "Perfekt", "Futur I"], correct: 1, explanation: "💡 Perfekt bildet man mit 'haben/sein' + Partizip II (bin gegangen)." },
+    { category: "deutsch", question: "Stilmittel: Wie heißt die Übertreibung als Stilmittel?", answers: ["Metapher", "Hyperbel", "Ironie"], correct: 1, explanation: "💡 Eine Hyperbel ist eine bewusste, starke Übertreibung ('Ich hab dir das schon tausendmal gesagt')." },
+    { category: "deutsch", question: "Satzarten: Was ist ein Konjunktiv?", answers: ["Eine Zeitform", "Der Möglichkeitsform / Wunschform", "Ein Satzzeichen"], correct: 1, explanation: "💡 Der Konjunktiv drückt Wünsche, Möglichkeiten oder indirekte Rede aus (z.B. 'er sagte, er käme')." },
+    { category: "deutsch", question: "Wortarten: Zu welcher Wortart gehört 'und', 'aber', 'weil'?", answers: ["Präposition", "Konjunktion", "Pronomen"], correct: 1, explanation: "💡 Konjunktionen verbinden Wörter oder Sätze miteinander." },
+
+    // --- FACH: BIOLOGIE (Sek I) ---
+    { category: "biologie", question: "Zellbiologie: Was ist die 'Kraftwerk der Zelle'?", answers: ["Zellkern", "Mitochondrium", "Ribosom"], correct: 1, explanation: "💡 Mitochondrien erzeugen Energie (ATP) für die Zelle." },
+    { category: "biologie", question: "Ökologie: Was ist ein Ökosystem?", answers: ["Nur die Tiere eines Gebiets", "Lebewesen und ihre Umwelt im Zusammenspiel", "Ein künstlicher Garten"], correct: 1, explanation: "💡 Ein Ökosystem umfasst alle Lebewesen und ihre unbelebte Umwelt in einem Gebiet, die zusammenwirken." },
+    { category: "biologie", question: "Verdauung: Wo beginnt die Verdauung von Stärke bereits?", answers: ["Im Magen", "Im Mund (durch Speichel)", "Im Dünndarm"], correct: 1, explanation: "💡 Speichelenzyme (Amylase) beginnen schon im Mund mit dem Stärkeabbau." },
+    { category: "biologie", question: "Genetik: Wie viele Chromosomen hat eine menschliche Körperzelle normalerweise?", answers: ["23", "46", "48"], correct: 1, explanation: "💡 Der Mensch hat 46 Chromosomen (23 Paare)." },
+    { category: "biologie", question: "Evolution: Wer entwickelte die Theorie der natürlichen Selektion?", answers: ["Gregor Mendel", "Charles Darwin", "Louis Pasteur"], correct: 1, explanation: "💡 Charles Darwin veröffentlichte 1859 'Die Entstehung der Arten'." },
+    { category: "biologie", question: "Ökologie: Was versteht man unter einer Nahrungskette?", answers: ["Eine Reihenfolge, wer wen frisst", "Eine Art zu kochen", "Ein Verdauungsorgan"], correct: 0, explanation: "💡 Die Nahrungskette zeigt, wie Energie von Produzenten über Konsumenten weitergegeben wird." },
+    { category: "biologie", question: "Anatomie: Welches Organ produziert Insulin?", answers: ["Leber", "Bauchspeicheldrüse", "Niere"], correct: 1, explanation: "💡 Die Bauchspeicheldrüse (Pankreas) produziert Insulin zur Regulierung des Blutzuckers." },
+    { category: "biologie", question: "Genetik: Was ist ein dominantes Gen?", answers: ["Ein Gen, das sich immer durchsetzt, wenn vorhanden", "Ein fehlerhaftes Gen", "Ein Gen, das nie sichtbar wird"], correct: 0, explanation: "💡 Ein dominantes Allel setzt sich gegenüber einem rezessiven durch." },
+    { category: "biologie", question: "Botanik: Wie nennt man die Bestäubung durch Insekten?", answers: ["Zoogamie", "Entomophilie", "Anemophilie"], correct: 1, explanation: "💡 Entomophilie bezeichnet die Bestäubung von Pflanzen durch Insekten." },
+    { category: "biologie", question: "Immunsystem: Welche Blutzellen bekämpfen hauptsächlich Krankheitserreger?", answers: ["Rote Blutkörperchen", "Weiße Blutkörperchen (Leukozyten)", "Blutplättchen"], correct: 1, explanation: "💡 Weiße Blutkörperchen sind Teil des Immunsystems und bekämpfen Erreger." },
+
+    // --- FACH: CHEMIE (Sek I) ---
+    { category: "chemie", question: "Periodensystem: Wie viele Elektronen hat ein neutrales Wasserstoffatom?", answers: ["1", "2", "0"], correct: 0, explanation: "💡 Wasserstoff hat die Ordnungszahl 1 und damit 1 Proton und 1 Elektron." },
+    { category: "chemie", question: "Reaktionen: Wie nennt man eine Reaktion mit Sauerstoff, die Wärme freisetzt?", answers: ["Reduktion", "Verbrennung (Oxidation)", "Neutralisation"], correct: 1, explanation: "💡 Eine Verbrennung ist eine exotherme Oxidation mit Sauerstoff." },
+    { category: "chemie", question: "Säuren & Basen: Was entsteht bei der Neutralisation einer Säure mit einer Base?", answers: ["Nur Wasser", "Salz und Wasser", "Ein Gas"], correct: 1, explanation: "💡 Säure + Base → Salz + Wasser (Neutralisationsreaktion)." },
+    { category: "chemie", question: "Atommodell: Woraus besteht der Atomkern?", answers: ["Protonen und Neutronen", "Nur Elektronen", "Nur Protonen"], correct: 0, explanation: "💡 Der Atomkern besteht aus positiv geladenen Protonen und neutralen Neutronen." },
+    { category: "chemie", question: "Periodensystem: Welches Element hat das Symbol 'Fe'?", answers: ["Fluor", "Eisen", "Phosphor"], correct: 1, explanation: "💡 'Fe' kommt vom lateinischen Wort 'ferrum' für Eisen." },
+    { category: "chemie", question: "Stoffe: Was ist der Unterschied zwischen einem Gemisch und einer Verbindung?", answers: ["Kein Unterschied", "Ein Gemisch kann man physikalisch trennen, eine Verbindung nicht", "Verbindungen sind immer flüssig"], correct: 1, explanation: "💡 Gemische lassen sich z.B. durch Filtern trennen, chemische Verbindungen nur durch chemische Reaktionen." },
+    { category: "chemie", question: "pH-Wert: Welcher pH-Wert-Bereich gilt als sauer?", answers: ["0-6", "7", "8-14"], correct: 0, explanation: "💡 Werte unter 7 sind sauer, 7 ist neutral, darüber basisch." },
+    { category: "chemie", question: "Periodensystem: In welcher Gruppe stehen die Edelgase?", answers: ["Gruppe 1", "Gruppe 17", "Gruppe 18"], correct: 2, explanation: "💡 Edelgase wie Helium und Neon stehen in Gruppe 18 (ganz rechts)." },
+    { category: "chemie", question: "Reaktionen: Was ist ein Katalysator?", answers: ["Ein Stoff, der die Reaktion beschleunigt, ohne verbraucht zu werden", "Ein Endprodukt", "Ein Messgerät"], correct: 0, explanation: "💡 Katalysatoren senken die Aktivierungsenergie, ohne selbst verbraucht zu werden." },
+    { category: "chemie", question: "Aggregatzustände: Wie nennt man den Übergang von fest direkt zu gasförmig?", answers: ["Kondensation", "Sublimation", "Schmelzen"], correct: 1, explanation: "💡 Sublimation ist der direkte Übergang von fest zu gasförmig, z.B. bei Trockeneis." },
+
+    // --- FACH: PHYSIK (Sek I) ---
+    { category: "physik", question: "Mechanik: Welche Einheit hat die Kraft?", answers: ["Joule", "Newton", "Watt"], correct: 1, explanation: "💡 Kraft wird in Newton (N) gemessen." },
+    { category: "physik", question: "Energie: Was besagt der Energieerhaltungssatz?", answers: ["Energie kann erzeugt werden", "Energie kann nicht erzeugt oder vernichtet, nur umgewandelt werden", "Energie verschwindet mit der Zeit"], correct: 1, explanation: "💡 Energie bleibt in einem geschlossenen System immer konstant, wird nur umgewandelt." },
+    { category: "physik", question: "Elektrizität: Welche Formel beschreibt die elektrische Leistung?", answers: ["P = U × I", "P = U / I", "P = U + I"], correct: 0, explanation: "💡 Leistung = Spannung × Stromstärke (P = U × I)." },
+    { category: "physik", question: "Optik: Wie nennt man das Brechen von Licht beim Übergang in ein anderes Medium?", answers: ["Reflexion", "Refraktion (Brechung)", "Absorption"], correct: 1, explanation: "💡 Licht wird gebrochen, wenn es z.B. von Luft ins Wasser übergeht." },
+    { category: "physik", question: "Mechanik: Was besagt das erste Newtonsche Gesetz (Trägheitsgesetz)?", answers: ["Kraft = Masse × Beschleunigung", "Ein Körper bleibt in Ruhe oder Bewegung, solange keine Kraft wirkt", "Actio = Reactio"], correct: 1, explanation: "💡 Ohne äußere Kraft bleibt ein Körper in seinem Bewegungszustand (Trägheit)." },
+    { category: "physik", question: "Wärmelehre: Bei welcher Temperatur gefriert Wasser (bei Normaldruck)?", answers: ["0°C", "10°C", "-10°C"], correct: 0, explanation: "💡 Wasser gefriert bei 0°C und siedet bei 100°C (bei Normaldruck)." },
+    { category: "physik", question: "Elektrizität: Was passiert mit dem Gesamtwiderstand bei einer Reihenschaltung?", answers: ["Er wird kleiner", "Die Widerstände addieren sich", "Er bleibt gleich"], correct: 1, explanation: "💡 In der Reihenschaltung addieren sich die Einzelwiderstände zum Gesamtwiderstand." },
+    { category: "physik", question: "Mechanik: Was ist die Einheit der Arbeit/Energie?", answers: ["Newton", "Joule", "Volt"], correct: 1, explanation: "💡 Arbeit und Energie werden in Joule (J) gemessen." },
+    { category: "physik", question: "Akustik: Wovon hängt die Tonhöhe eines Schalls ab?", answers: ["Von der Lautstärke", "Von der Frequenz", "Von der Temperatur"], correct: 1, explanation: "💡 Je höher die Frequenz (Hz), desto höher klingt der Ton." },
+    { category: "physik", question: "Optik: Wie nennt man eine Linse, die Licht bündelt?", answers: ["Konkavlinse (Zerstreuungslinse)", "Konvexlinse (Sammellinse)", "Prisma"], correct: 1, explanation: "💡 Eine Konvexlinse (Sammellinse) bündelt einfallendes Licht in einem Brennpunkt." },
+
+    // --- FACH: GESCHICHTE, ERDKUNDE & POLITIK (Sek I) ---
+    { category: "gesellschaft", question: "Geschichte: Wann begann die Französische Revolution?", answers: ["1789", "1815", "1848"], correct: 0, explanation: "💡 Die Französische Revolution begann 1789 mit dem Sturm auf die Bastille." },
+    { category: "gesellschaft", question: "Erdkunde: Wie viele Kontinente gibt es üblicherweise (klassisches Modell)?", answers: ["5", "6", "7"], correct: 2, explanation: "💡 Klassisch werden 7 Kontinente unterschieden: Afrika, Antarktika, Asien, Australien, Europa, Nordamerika, Südamerika." },
+    { category: "gesellschaft", question: "Politik: Was bedeutet 'Gewaltenteilung'?", answers: ["Trennung von Legislative, Exekutive und Judikative", "Aufteilung des Militärs", "Verteilung von Steuern"], correct: 0, explanation: "💡 Die Gewaltenteilung verhindert, dass eine Institution zu viel Macht hat (Gesetzgebung, Ausführung, Rechtsprechung)." },
+    { category: "gesellschaft", question: "Geschichte: Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?", answers: ["Willy Brandt", "Konrad Adenauer", "Helmut Kohl"], correct: 1, explanation: "💡 Konrad Adenauer war von 1949 bis 1963 Bundeskanzler." },
+    { category: "gesellschaft", question: "Erdkunde: Welche Klimazone liegt am Äquator?", answers: ["Polarzone", "Tropen", "Gemäßigte Zone"], correct: 1, explanation: "💡 Am Äquator herrscht das tropische Klima mit hohen Temperaturen und viel Niederschlag." },
+    { category: "gesellschaft", question: "Politik: Was ist der Unterschied zwischen einer Monarchie und einer Republik?", answers: ["Kein Unterschied", "In einer Monarchie herrscht ein Erbmonarch, in einer Republik wird das Staatsoberhaupt gewählt", "Republiken haben keine Regierung"], correct: 1, explanation: "💡 In Monarchien wird die Macht meist vererbt, in Republiken durch Wahlen legitimiert." },
+    { category: "gesellschaft", question: "Geschichte: In welchem Jahr fiel die Berliner Mauer?", answers: ["1985", "1989", "1991"], correct: 1, explanation: "💡 Die Berliner Mauer fiel am 9. November 1989." },
+    { category: "gesellschaft", question: "Erdkunde: Was versteht man unter 'Urbanisierung'?", answers: ["Landflucht in ländliche Gebiete", "Wachstum von Städten durch Zuzug", "Bau von Straßen"], correct: 1, explanation: "💡 Urbanisierung bezeichnet das Wachstum und die Ausbreitung von Städten." },
+    { category: "gesellschaft", question: "Politik: Wie nennt man ein Wahlsystem, bei dem Sitze proportional zu Stimmenanteilen vergeben werden?", answers: ["Mehrheitswahlrecht", "Verhältniswahlrecht", "Zensuswahlrecht"], correct: 1, explanation: "💡 Beim Verhältniswahlrecht (wie in Deutschland) entspricht der Sitzanteil ungefähr dem Stimmenanteil." },
+    { category: "gesellschaft", question: "Geschichte: Wer war römischer Kaiser zur Zeitenwende (um Christi Geburt)?", answers: ["Julius Caesar", "Augustus", "Nero"], correct: 1, explanation: "💡 Augustus war der erste römische Kaiser und regierte von 27 v. Chr. bis 14 n. Chr." }
+];
+
+// ==========================================
+// VOKABEL DATENBANK (Klasse 1 bis 11 & KFZ)
+// ==========================================
+const VOCABULARY_DATABASE = {
+    en: {
+        klasse_1_2: { 
+            label: "🧸 Klasse 1-2 (Farben, Tiere, Zahlen)", 
+            words: [
+                {de:"Eins",foreign:"one"}, {de:"Zwei",foreign:"two"}, {de:"Drei",foreign:"three"}, {de:"Vier",foreign:"four"}, {de:"Fünf",foreign:"five"}, 
+                {de:"Rot",foreign:"red"}, {de:"Blau",foreign:"blue"}, {de:"Grün",foreign:"green"}, {de:"Gelb",foreign:"yellow"}, {de:"Schwarz",foreign:"black"},
+                {de:"Hund",foreign:"dog"}, {de:"Katze",foreign:"cat"}, {de:"Maus",foreign:"mouse"}, {de:"Vogel",foreign:"bird"}, {de:"Fisch",foreign:"fish"},
+                {de:"Apfel",foreign:"apple"}, {de:"Banane",foreign:"banana"}, {de:"Brot",foreign:"bread"}, {de:"Wasser",foreign:"water"}, {de:"Milch",foreign:"milk"},
+                {de:"Sechs",foreign:"six"}, {de:"Sieben",foreign:"seven"}, {de:"Acht",foreign:"eight"}, {de:"Neun",foreign:"nine"}, {de:"Zehn",foreign:"ten"},
+                {de:"Weiß",foreign:"white"}, {de:"Orange",foreign:"orange"}, {de:"Rosa",foreign:"pink"}, {de:"Braun",foreign:"brown"}, {de:"Lila",foreign:"purple"},
+                {de:"Pferd",foreign:"horse"}, {de:"Kuh",foreign:"cow"}, {de:"Schwein",foreign:"pig"}, {de:"Schaf",foreign:"sheep"}, {de:"Ente",foreign:"duck"},
+                {de:"Ball",foreign:"ball"}, {de:"Puppe",foreign:"doll"}, {de:"Sonne",foreign:"sun"}, {de:"Mond",foreign:"moon"}, {de:"Stern",foreign:"star"}
+            ] 
         },
-        klasse_2: {
-            faecher: ["Mathematik", "Deutsch", "Sachkunde", "Englisch"],
-            fragen: [
-                { fach: "Mathematik", question: "Was ist 5 + 6?", answers: ["10", "11", "12"], correct: 1, explanation: "💡 5 + 5 = 10, und noch 1 dazu ergibt 11." },
-                { fach: "Deutsch", question: "Mit welchem Buchstaben beginnt das Wort 'Elefant'?", answers: ["A", "E", "I"], correct: 1, explanation: "💡 Elefant beginnt mit dem Buchstaben E." },
-                { fach: "Sachkunde", question: "Wie viele Beine hat ein Hund?", answers: ["2", "4", "6"], correct: 1, explanation: "💡 Hunde sind Vierbeiner – sie haben 4 Beine." },
-                { fach: "Mathematik", question: "Welche Zahl kommt nach der 19?", answers: ["18", "20", "21"], correct: 1, explanation: "💡 Nach 19 kommt die 20." },
-                { fach: "Sachkunde", question: "Welche Farbe hat eine reife Banane?", answers: ["Blau", "Gelb", "Rot"], correct: 1, explanation: "💡 Reife Bananen sind gelb." },
-                { fach: "Deutsch", question: "Was ist das Gegenteil von 'kalt'?", answers: ["warm", "nass", "leise"], correct: 0, explanation: "💡 Das Gegenteil von kalt ist warm." },
-                { fach: "Mathematik", question: "Wie viele Finger hat man an einer Hand?", answers: ["4", "5", "6"], correct: 1, explanation: "💡 An einer Hand hat man 5 Finger." },
-                { fach: "Sachkunde", question: "Wo leben Fische?", answers: ["In der Luft", "Im Wasser", "Unter der Erde"], correct: 1, explanation: "💡 Fische leben im Wasser und atmen mit Kiemen." },
-                { fach: "Deutsch", question: "Wie viele Buchstaben hat das Wort 'Hund'?", answers: ["3", "4", "5"], correct: 1, explanation: "💡 H-U-N-D sind 4 Buchstaben." },
-                { fach: "Mathematik", question: "Was ist größer: 7 oder 9?", answers: ["7", "9", "Beide gleich"], correct: 1, explanation: "💡 9 ist größer als 7." }
-            ],
-            vokabeln: {
-                en: [
-                    {de:"Apfel",foreign:"apple"}, {de:"Banane",foreign:"banana"}, {de:"Brot",foreign:"bread"}, {de:"Wasser",foreign:"water"}, {de:"Milch",foreign:"milk"},
-                    {de:"Sechs",foreign:"six"}, {de:"Sieben",foreign:"seven"}, {de:"Acht",foreign:"eight"}, {de:"Neun",foreign:"nine"}, {de:"Zehn",foreign:"ten"},
-                    {de:"Weiß",foreign:"white"}, {de:"Orange",foreign:"orange"}, {de:"Rosa",foreign:"pink"}, {de:"Braun",foreign:"brown"}, {de:"Lila",foreign:"purple"}
-                ],
-                tr: [
-                    {de:"Hallo",foreign:"merhaba"}, {de:"Tschüss",foreign:"hoşçakal"}, {de:"Danke",foreign:"teşekkürler"}, {de:"Bitte",foreign:"lütfen"}, {de:"Schule",foreign:"okul"},
-                    {de:"Vier",foreign:"dört"}, {de:"Fünf",foreign:"beş"}, {de:"Grün",foreign:"yeşil"}, {de:"Gelb",foreign:"sarı"}, {de:"Mutter",foreign:"anne"}
-                ]
-            }
+        klasse_3_4: { 
+            label: "🎒 Klasse 3-4 (Schule, Haus, Familie)", 
+            words: [
+                {de:"Tisch",foreign:"desk"}, {de:"Stuhl",foreign:"chair"}, {de:"Buch",foreign:"book"}, {de:"Stift",foreign:"pen"}, {de:"Schule",foreign:"school"},
+                {de:"Lehrer",foreign:"teacher"}, {de:"spielen",foreign:"play"}, {de:"lernen",foreign:"learn"}, {de:"lesen",foreign:"read"}, {de:"schreiben",foreign:"write"},
+                {de:"Hallo",foreign:"hello"}, {de:"Tschüss",foreign:"goodbye"}, {de:"Danke",foreign:"thank you"}, {de:"Bitte",foreign:"please"}, 
+                {de:"Mutter",foreign:"mother"}, {de:"Vater",foreign:"father"}, {de:"Bruder",foreign:"brother"}, {de:"Schwester",foreign:"sister"}, {de:"Haus",foreign:"house"}, {de:"Garten",foreign:"garden"},
+                {de:"Küche",foreign:"kitchen"}, {de:"Schlafzimmer",foreign:"bedroom"}, {de:"Badezimmer",foreign:"bathroom"}, {de:"Fenster",foreign:"window"}, {de:"Tür",foreign:"door"},
+                {de:"Tafel",foreign:"blackboard"}, {de:"Radiergummi",foreign:"eraser"}, {de:"Lineal",foreign:"ruler"}, {de:"Rucksack",foreign:"backpack"}, {de:"Pause",foreign:"break"},
+                {de:"Montag",foreign:"Monday"}, {de:"Dienstag",foreign:"Tuesday"}, {de:"Mittwoch",foreign:"Wednesday"}, {de:"Freitag",foreign:"Friday"}, {de:"Sonntag",foreign:"Sunday"}
+            ] 
         },
-        klasse_3: {
-            faecher: ["Mathematik", "Deutsch", "Sachkunde", "Englisch", "Türkisch"],
-            fragen: [
-                { fach: "Deutsch", question: "Welches dieser Wörter ist ein Tuwort (Verb)?", answers: ["Schön", "Laufen", "Auto"], correct: 1, explanation: "💡 Verben beschreiben, was man tut (laufen, springen, spielen)." },
-                { fach: "Sachkunde", question: "In welche Richtung zeigt die Nadel eines Kompasses immer?", answers: ["Süden", "Westen", "Norden"], correct: 2, explanation: "💡 Die Magnetnadel richtet sich immer nach dem magnetischen Nordpol der Erde aus." },
-                { fach: "Mathematik", question: "Was ist 6 mal 7?", answers: ["42", "36", "48"], correct: 0, explanation: "💡 Einmaleins: 6, 12, 18, 24, 30, 36, 42!" },
-                { fach: "Mathematik", question: "Wie viele Ecken hat ein Rechteck?", answers: ["3", "4", "5"], correct: 1, explanation: "💡 Ein Rechteck hat immer vier Ecken und vier Seiten." },
-                { fach: "Deutsch", question: "Was ist das Gegenteil von 'groß'?", answers: ["klein", "schnell", "laut"], correct: 0, explanation: "💡 'klein' ist das Gegenteil (Antonym) von 'groß'." },
-                { fach: "Sachkunde", question: "Wie nennt man den Übergang von Wasser zu Wasserdampf?", answers: ["Schmelzen", "Verdunsten", "Gefrieren"], correct: 1, explanation: "💡 Wenn Wasser erhitzt wird und zu Dampf wird, nennt man das Verdunsten." },
-                { fach: "Mathematik", question: "Was ist 100 geteilt durch 4?", answers: ["20", "25", "30"], correct: 1, explanation: "💡 100 : 4 = 25, denn 4 × 25 = 100." },
-                { fach: "Deutsch", question: "Wie lautet die Mehrzahl (Plural) von 'Kind'?", answers: ["Kinde", "Kinder", "Kindern"], correct: 1, explanation: "💡 Die Mehrzahl von 'Kind' ist 'Kinder'." },
-                { fach: "Sachkunde", question: "Welches Organ pumpt das Blut durch den Körper?", answers: ["Lunge", "Herz", "Magen"], correct: 1, explanation: "💡 Das Herz ist ein Muskel, der das Blut durch die Adern pumpt." }
-            ],
-            vokabeln: {
-                en: [
-                    {de:"Pferd",foreign:"horse"}, {de:"Kuh",foreign:"cow"}, {de:"Schwein",foreign:"pig"}, {de:"Schaf",foreign:"sheep"}, {de:"Ente",foreign:"duck"},
-                    {de:"Ball",foreign:"ball"}, {de:"Puppe",foreign:"doll"}, {de:"Sonne",foreign:"sun"}, {de:"Mond",foreign:"moon"}, {de:"Stern",foreign:"star"}
-                ]
-            }
+        klasse_5_6: { 
+            label: "⚽ Klasse 5-6 (Hobbys, Zeit, Körper)", 
+            words: [
+                {de:"Fußball",foreign:"football"}, {de:"Schwimmen",foreign:"swimming"}, {de:"Singen",foreign:"singing"}, {de:"Kino",foreign:"cinema"}, {de:"Freundschaft",foreign:"friendship"},
+                {de:"Kopf",foreign:"head"}, {de:"Auge",foreign:"eye"}, {de:"Ohr",foreign:"ear"}, {de:"Hand",foreign:"hand"}, {de:"Fuß",foreign:"foot"},
+                {de:"Morgen",foreign:"morning"}, {de:"Abend",foreign:"evening"}, {de:"Uhr",foreign:"clock"}, {de:"Stunde",foreign:"hour"}, {de:"Woche",foreign:"week"},
+                {de:"lustig",foreign:"funny"}, {de:"spannend",foreign:"exciting"}, {de:"langweilig",foreign:"boring"}, {de:"Wochenende",foreign:"weekend"}, {de:"Ferien",foreign:"holidays"},
+                {de:"Bauch",foreign:"stomach"}, {de:"Bein",foreign:"leg"}, {de:"Arm",foreign:"arm"}, {de:"Nase",foreign:"nose"}, {de:"Mund",foreign:"mouth"},
+                {de:"Basketball",foreign:"basketball"}, {de:"Tanzen",foreign:"dancing"}, {de:"Malen",foreign:"painting"}, {de:"Musik hören",foreign:"listening to music"}, {de:"Videospiele",foreign:"video games"},
+                {de:"gestern",foreign:"yesterday"}, {de:"heute",foreign:"today"}, {de:"morgen",foreign:"tomorrow"}, {de:"nie",foreign:"never"}, {de:"immer",foreign:"always"},
+                {de:"Mathematik",foreign:"maths"}, {de:"Deutsch",foreign:"German"}, {de:"Biologie",foreign:"biology"}, {de:"Sport",foreign:"PE / sports"}, {de:"Kunst",foreign:"art"}, {de:"Musik",foreign:"music"}
+            ] 
         },
-        klasse_4: {
-            faecher: ["Mathematik", "Deutsch", "Sachkunde", "Englisch", "Türkisch"],
-            fragen: [
-                { fach: "Mathematik", question: "Was ist 7 mal 8?", answers: ["54", "56", "58"], correct: 1, explanation: "💡 7 × 8 = 56." },
-                { fach: "Sachkunde", question: "Wie viele Jahreszeiten gibt es?", answers: ["2", "3", "4"], correct: 2, explanation: "💡 Frühling, Sommer, Herbst und Winter – das sind 4 Jahreszeiten." },
-                { fach: "Deutsch", question: "Welches Wort ist ein Nomen (Hauptwort)?", answers: ["laufen", "Tisch", "schnell"], correct: 1, explanation: "💡 'Tisch' ist ein Nomen – man kann 'der Tisch' sagen und schreibt es groß." },
-                { fach: "Mathematik", question: "Wie viele Minuten hat eine halbe Stunde?", answers: ["15", "30", "45"], correct: 1, explanation: "💡 Eine ganze Stunde hat 60 Minuten, die Hälfte davon sind 30." },
-                { fach: "Sachkunde", question: "Welches Tier ist ein Säugetier?", answers: ["Forelle", "Delfin", "Adler"], correct: 1, explanation: "💡 Delfine leben im Wasser, sind aber Säugetiere – sie atmen Luft und säugen ihre Jungen." },
-                { fach: "Deutsch", question: "Wie schreibt man das Wort richtig?", answers: ["Fahrrad", "Farrad", "Fahrat"], correct: 0, explanation: "💡 Richtig ist 'Fahrrad' – von 'fahren' und 'Rad'." },
-                { fach: "Mathematik", question: "Wie viel ist die Hälfte von 48?", answers: ["22", "24", "26"], correct: 1, explanation: "💡 48 : 2 = 24." },
-                { fach: "Sachkunde", question: "Welcher Planet ist unser Heimatplanet?", answers: ["Mars", "Erde", "Venus"], correct: 1, explanation: "💡 Wir leben auf der Erde, dem dritten Planeten von der Sonne." },
-                { fach: "Deutsch", question: "Was ist ein Verb?", answers: ["Ein Tuwort (z.B. laufen)", "Ein Namenwort", "Ein Wiewort"], correct: 0, explanation: "💡 Verben sind Tuwörter und beschreiben, was jemand macht." },
-                { fach: "Mathematik", question: "Wie viele Seiten hat ein Würfel?", answers: ["4", "6", "8"], correct: 1, explanation: "💡 Ein Würfel hat 6 quadratische Flächen." }
-            ],
-            vokabeln: {
-                en: [
-                    {de:"Baum",foreign:"tree"}, {de:"Blume",foreign:"flower"}, {de:"Auto",foreign:"car"}, {de:"Buch",foreign:"book"}, {de:"Schuh",foreign:"shoe"},
-                    {de:"Tisch",foreign:"desk"}, {de:"Stuhl",foreign:"chair"}, {de:"Stift",foreign:"pen"}, {de:"Schule",foreign:"school"}, {de:"Lehrer",foreign:"teacher"}
-                ]
-            }
+        klasse_7_8: { 
+            label: "🌍 Klasse 7-8 (Umwelt, Medien, Reise)", 
+            words: [
+                {de:"Umwelt",foreign:"environment"}, {de:"Schutz",foreign:"protection"}, {de:"Müll",foreign:"rubbish"}, {de:"Energie",foreign:"energy"}, {de:"Klima",foreign:"climate"},
+                {de:"Internet",foreign:"internet"}, {de:"Computer",foreign:"computer"}, {de:"Nachricht",foreign:"message"}, {de:"Zeitung",foreign:"newspaper"}, {de:"Handy",foreign:"mobile phone"},
+                {de:"Reisen",foreign:"travel"}, {de:"Zug",foreign:"train"}, {de:"Flugzeug",foreign:"airplane"}, {de:"Strand",foreign:"beach"}, {de:"Hotel",foreign:"hotel"},
+                {de:"besuchen",foreign:"visit"}, {de:"treffen",foreign:"meet"}, {de:"verabreden",foreign:"arrange"}, {de:"Wald",foreign:"forest"}, {de:"Ozean",foreign:"ocean"},
+                {de:"Nachhaltigkeit",foreign:"sustainability"}, {de:"Recycling",foreign:"recycling"}, {de:"Verschmutzung",foreign:"pollution"}, {de:"Ressource",foreign:"resource"}, {de:"erneuerbar",foreign:"renewable"},
+                {de:"soziales Netzwerk",foreign:"social network"}, {de:"Werbung",foreign:"advertising"}, {de:"herunterladen",foreign:"download"}, {de:"hochladen",foreign:"upload"}, {de:"Passwort",foreign:"password"},
+                {de:"Gepäck",foreign:"luggage"}, {de:"Reisepass",foreign:"passport"}, {de:"Ankunft",foreign:"arrival"}, {de:"Abflug",foreign:"departure"}, {de:"Sehenswürdigkeit",foreign:"sight"},
+                {de:"Chemie",foreign:"chemistry"}, {de:"Physik",foreign:"physics"}, {de:"Geschichte",foreign:"history"}, {de:"Erdkunde",foreign:"geography"}, {de:"Experiment",foreign:"experiment"}
+            ] 
         },
-        klasse_5: {
-            faecher: ["Englisch", "Biologie", "Geografie", "Mathematik", "Türkisch"],
-            fragen: [
-                { fach: "Englisch", question: "He ___ to school every day.", answers: ["go", "goes", "going"], correct: 1, explanation: "💡 Simple Present: Bei 'he, she, it' muss das 's' mit! (He goes)" },
-                { fach: "Englisch", question: "Look! The dog ___ in the garden.", answers: ["plays", "is playing", "play"], correct: 1, explanation: "💡 Present Progressive: Signalwort 'Look!'. Es passiert genau jetzt." },
-                { fach: "Englisch", question: "I ___ not like apples.", answers: ["does", "am", "do"], correct: 2, explanation: "💡 Simple Present Verneinung: I do not (don't) like." },
-                { fach: "Biologie", question: "Was benötigen Pflanzen, um Sauerstoff zu produzieren (Fotosynthese)?", answers: ["Nur Wasser", "Sonnenlicht, Wasser und CO2", "Erde und Dünger"], correct: 1, explanation: "💡 Pflanzen machen aus Sonnenlicht, Wasser und Kohlendioxid (CO2) Sauerstoff." },
-                { fach: "Englisch", question: "There ___ two cats in the garden.", answers: ["is", "are", "be"], correct: 1, explanation: "💡 'There are' benutzt man bei mehreren Dingen (Plural: two cats)." },
-                { fach: "Englisch", question: "This is my dog. ___ name is Rex.", answers: ["His", "Her", "Its"], correct: 2, explanation: "💡 Für Tiere und Dinge benutzt man 'its'." },
-                { fach: "Mathematik", question: "Was ist ein Zehntel als Bruch?", answers: ["1/100", "1/10", "10/1"], correct: 1, explanation: "💡 Ein Zehntel schreibt man als 1/10." },
-                { fach: "Geografie", question: "Wie heißt der längste Fluss Deutschlands?", answers: ["Donau", "Elbe", "Rhein"], correct: 2, explanation: "💡 Der Rhein ist mit rund 865 km auf deutschem Gebiet der längste Fluss Deutschlands." },
-                { fach: "Biologie", question: "Wie viele Beine hat ein Insekt?", answers: ["4", "6", "8"], correct: 1, explanation: "💡 Insekten haben immer genau sechs Beine." }
-            ],
-            vokabeln: {
-                en: [
-                    {de:"spielen",foreign:"play"}, {de:"lernen",foreign:"learn"}, {de:"lesen",foreign:"read"}, {de:"schreiben",foreign:"write"},
-                    {de:"Mutter",foreign:"mother"}, {de:"Vater",foreign:"father"}, {de:"Bruder",foreign:"brother"}, {de:"Schwester",foreign:"sister"},
-                    {de:"Haus",foreign:"house"}, {de:"Garten",foreign:"garden"}
-                ]
-            }
+        klasse_9_11: { 
+            label: "👥 Klasse 9-11 (Gesellschaft, Politik)", 
+            words: [
+                {de:"Gesellschaft",foreign:"society"}, {de:"Politik",foreign:"politics"}, {de:"Demokratie",foreign:"democracy"}, {de:"Wahl",foreign:"election"}, {de:"Gesetz",foreign:"law"},
+                {de:"Freiheit",foreign:"freedom"}, {de:"Menschenrechte",foreign:"human rights"}, {de:"Gerechtigkeit",foreign:"justice"}, {de:"Regierung",foreign:"government"}, {de:"Bürger",foreign:"citizen"},
+                {de:"Wirtschaft",foreign:"economy"}, {de:"Entwicklung",foreign:"development"}, {de:"Bildung",foreign:"education"}, {de:"Erfolg",foreign:"success"}, {de:"Verantwortung",foreign:"responsibility"},
+                {de:"Technologie",foreign:"technology"}, {de:"Wissenschaft",foreign:"science"}, {de:"Diskussion",foreign:"discussion"}, {de:"Meinung",foreign:"opinion"}, {de:"Frieden",foreign:"peace"},
+                {de:"Arbeitslosigkeit",foreign:"unemployment"}, {de:"Steuer",foreign:"tax"}, {de:"Vertrag",foreign:"contract"}, {de:"Bewerbung",foreign:"application"}, {de:"Lebenslauf",foreign:"CV / résumé"},
+                {de:"Klimawandel",foreign:"climate change"}, {de:"Globalisierung",foreign:"globalization"}, {de:"Einwanderung",foreign:"immigration"}, {de:"Vorurteil",foreign:"prejudice"}, {de:"Toleranz",foreign:"tolerance"},
+                {de:"Argument",foreign:"argument"}, {de:"Beweis",foreign:"evidence"}, {de:"Vorteil",foreign:"advantage"}, {de:"Nachteil",foreign:"disadvantage"}, {de:"Herausforderung",foreign:"challenge"},
+                {de:"Gewaltenteilung",foreign:"separation of powers"}, {de:"Nachhaltigkeit",foreign:"sustainability"}, {de:"Verfassung",foreign:"constitution"}, {de:"Abgeordneter",foreign:"member of parliament"}, {de:"Staatsangehörigkeit",foreign:"nationality"}
+            ] 
         },
-        klasse_6: {
-            faecher: ["Englisch", "Biologie", "Geografie", "Mathematik", "Türkisch"],
-            fragen: [
-                { fach: "Englisch", question: "My birthday is ___ May.", answers: ["at", "on", "in"], correct: 2, explanation: "💡 Bei Monaten benutzt man immer 'in' (in May, in June)." },
-                { fach: "Mathematik", question: "Wie viele Grad hat ein rechter Winkel?", answers: ["45°", "90°", "180°"], correct: 1, explanation: "💡 Ein rechter Winkel hat genau 90°." },
-                { fach: "Englisch", question: "We ___ football every Saturday.", answers: ["plays", "play", "playing"], correct: 1, explanation: "💡 Simple Present: Bei 'we' gibt es kein 's' am Verb (we play)." },
-                { fach: "Geografie", question: "Wie heißt der höchste Berg Deutschlands?", answers: ["Watzmann", "Zugspitze", "Brocken"], correct: 1, explanation: "💡 Die Zugspitze ist mit 2.962 m der höchste Berg Deutschlands." },
-                { fach: "Mathematik", question: "Was ist 3/4 als Dezimalzahl?", answers: ["0,34", "0,75", "0,43"], correct: 1, explanation: "💡 3 geteilt durch 4 ergibt 0,75." },
-                { fach: "Englisch", question: "Can you ___ me the salt, please?", answers: ["pass", "passes", "passing"], correct: 0, explanation: "💡 Nach 'can' folgt immer die Grundform des Verbs." },
-                { fach: "Biologie", question: "Wozu dienen die Wurzeln einer Pflanze?", answers: ["Nur zur Deko", "Aufnahme von Wasser und Nährstoffen", "Fotosynthese"], correct: 1, explanation: "💡 Wurzeln verankern die Pflanze im Boden und nehmen Wasser sowie Nährstoffe auf." },
-                { fach: "Mathematik", question: "Was ist der Umfang eines Quadrats mit 5 cm Seitenlänge?", answers: ["10 cm", "20 cm", "25 cm"], correct: 1, explanation: "💡 Ein Quadrat hat 4 gleiche Seiten: 4 × 5 cm = 20 cm." },
-                { fach: "Biologie", question: "Welches Tier ist ein Wirbeltier?", answers: ["Regenwurm", "Frosch", "Schnecke"], correct: 1, explanation: "💡 Frösche haben eine Wirbelsäule und gehören zu den Wirbeltieren (Amphibien)." },
-                { fach: "Geografie", question: "An welches Meer grenzt Deutschland im Norden?", answers: ["Mittelmeer", "Nord- und Ostsee", "Schwarzes Meer"], correct: 1, explanation: "💡 Deutschland grenzt im Norden an die Nordsee und die Ostsee." }
-            ],
-            vokabeln: {
-                en: [
-                    {de:"Montag",foreign:"Monday"}, {de:"Dienstag",foreign:"Tuesday"}, {de:"Mittwoch",foreign:"Wednesday"}, {de:"Donnerstag",foreign:"Thursday"}, {de:"Freitag",foreign:"Friday"},
-                    {de:"Kopf",foreign:"head"}, {de:"Auge",foreign:"eye"}, {de:"Ohr",foreign:"ear"}, {de:"Hand",foreign:"hand"}, {de:"Fuß",foreign:"foot"}
-                ]
-            }
-        },
-        klasse_7: {
-            faecher: ["Englisch", "Physik", "Chemie", "Geschichte", "Mathematik", "Deutsch", "Biologie", "Gesellschaft", "Informatik", "Türkisch"],
-            fragen: [
-                { fach: "Englisch", question: "Yesterday, I ___ a great movie.", answers: ["see", "saw", "have seen"], correct: 1, explanation: "💡 Simple Past: Signalwort 'Yesterday' verlangt die 2. Form (saw)." },
-                { fach: "Physik", question: "Welche Einheit wird für elektrische Spannung verwendet?", answers: ["Ampere", "Watt", "Volt"], correct: 2, explanation: "💡 Die Spannung wird in Volt (V) gemessen." },
-                { fach: "Englisch", question: "By next year, I ___ my exams.", answers: ["will finish", "will have finished", "finish"], correct: 1, explanation: "💡 Future Perfect: 'will have' + 3. Form." },
-                { fach: "Chemie", question: "Wie lautet das chemische Symbol für Sauerstoff?", answers: ["O", "S", "Ox"], correct: 0, explanation: "💡 Sauerstoff heißt auf Englisch/Latein 'oxygenium', daher das Symbol O." },
-                { fach: "Mathematik", question: "Wie berechnet man die Fläche eines Kreises?", answers: ["π × r", "π × r²", "2 × π × r"], correct: 1, explanation: "💡 Die Kreisfläche berechnet man mit π mal Radius zum Quadrat (π × r²)." },
-                { fach: "Geschichte", question: "In welchem Jahr endete der Zweite Weltkrieg?", answers: ["1939", "1945", "1950"], correct: 1, explanation: "💡 Der Zweite Weltkrieg endete 1945." },
-                { fach: "Deutsch", question: "Welcher Fall (Kasus) antwortet auf die Frage 'Wem?'", answers: ["Nominativ", "Dativ", "Akkusativ"], correct: 1, explanation: "💡 Der Dativ ist der 3. Fall und antwortet auf 'Wem?'." },
-                { fach: "Informatik", question: "Was ist ein Algorithmus?", answers: ["Ein Computer-Virus", "Eine feste Schritt-für-Schritt-Anleitung", "Ein Programmiersprache"], correct: 1, explanation: "💡 Ein Algorithmus ist eine eindeutige, endliche Abfolge von Schritten." },
-                { fach: "Biologie", question: "Was ist die 'Kraftwerk der Zelle'?", answers: ["Zellkern", "Mitochondrium", "Ribosom"], correct: 1, explanation: "💡 Mitochondrien erzeugen Energie für die Zelle." }
-            ],
-            vokabeln: {
-                en: [
-                    {de:"Umwelt",foreign:"environment"}, {de:"Schutz",foreign:"protection"}, {de:"Müll",foreign:"rubbish"}, {de:"Energie",foreign:"energy"},
-                    {de:"Internet",foreign:"internet"}, {de:"Computer",foreign:"computer"}, {de:"Nachricht",foreign:"message"}, {de:"Zeitung",foreign:"newspaper"}
-                ]
-            }
-        },
-        klasse_8: {
-            faecher: ["Englisch", "Physik", "Chemie", "Geschichte", "Mathematik", "Deutsch", "Biologie", "Gesellschaft", "Informatik", "Türkisch"],
-            fragen: [
-                { fach: "Physik", question: "Was beschreibt das Ohmsche Gesetz?", answers: ["U = R / I", "U = I × R", "I = U × R"], correct: 1, explanation: "💡 Ohmsches Gesetz: Spannung = Stromstärke × Widerstand." },
-                { fach: "Mathematik", question: "Was ist der Satz des Pythagoras?", answers: ["a + b = c", "a² + b² = c²", "a × b = c²"], correct: 1, explanation: "💡 Im rechtwinkligen Dreieck gilt: a² + b² = c²." },
-                { fach: "Englisch", question: "I have ___ finished my homework.", answers: ["already", "yet", "just now"], correct: 0, explanation: "💡 'already' steht typischerweise im Present Perfect für 'schon'." },
-                { fach: "Chemie", question: "Was ist der pH-Wert 7?", answers: ["Sauer", "Neutral", "Basisch"], correct: 1, explanation: "💡 pH 7 ist neutral, darunter sauer, darüber basisch." },
-                { fach: "Geschichte", question: "Wer war Otto von Bismarck?", answers: ["Ein Komponist", "Der erste Reichskanzler Deutschlands", "Ein Erfinder"], correct: 1, explanation: "💡 Bismarck war maßgeblich an der Reichsgründung 1871 beteiligt." },
-                { fach: "Englisch", question: "If it rains tomorrow, we ___ at home.", answers: ["stay", "will stay", "stayed"], correct: 1, explanation: "💡 If-Clause Typ 1: If + Present, im Hauptsatz 'will' + Grundform." },
-                { fach: "Deutsch", question: "Was ist das Prädikat in 'Der Hund bellt laut'?", answers: ["Der Hund", "bellt", "laut"], correct: 1, explanation: "💡 Das Prädikat ist das Verb im Satz – hier 'bellt'." },
-                { fach: "Informatik", question: "Was ist eine 'Variable'?", answers: ["Ein fester Text", "Ein Speicherplatz für Werte, die sich ändern können", "Ein Fehler"], correct: 1, explanation: "💡 Eine Variable speichert einen Wert, der im Programmverlauf verändert werden kann." },
-                { fach: "Biologie", question: "Wo beginnt die Verdauung von Stärke bereits?", answers: ["Im Magen", "Im Mund", "Im Dünndarm"], correct: 1, explanation: "💡 Speichelenzyme (Amylase) beginnen schon im Mund mit dem Stärkeabbau." }
-            ],
-            vokabeln: {
-                en: [
-                    {de:"Reisen",foreign:"travel"}, {de:"Zug",foreign:"train"}, {de:"Flugzeug",foreign:"airplane"}, {de:"Strand",foreign:"beach"},
-                    {de:"Chemie",foreign:"chemistry"}, {de:"Physik",foreign:"physics"}, {de:"Geschichte",foreign:"history"}, {de:"Erdkunde",foreign:"geography"}
-                ]
-            }
-        },
-        klasse_9: {
-            faecher: ["Englisch", "Politik", "Wirtschaft", "Biologie", "Philosophie", "Deutsch", "Mathematik", "Türkisch"],
-            fragen: [
-                { fach: "Englisch", question: "If I had a million dollars, I ___ a big house.", answers: ["will buy", "would buy", "bought"], correct: 1, explanation: "💡 If-Clause Typ 2: If + Simple Past, im Hauptsatz 'would' + Verb." },
-                { fach: "Englisch", question: "The car ___ repaired tomorrow.", answers: ["is repaired", "was repaired", "will be repaired"], correct: 2, explanation: "💡 Passiv in der Zukunft: will + be + Partizip Perfekt (3. Form)." },
-                { fach: "Politik", question: "Wer wählt in Deutschland direkt den Bundeskanzler?", answers: ["Das Volk", "Der Bundestag", "Der Bundespräsident"], correct: 1, explanation: "💡 Das Volk wählt den Bundestag, und die Abgeordneten wählen den Kanzler." },
-                { fach: "Wirtschaft", question: "Was versteht man unter 'Inflation'?", answers: ["Sinkende Preise", "Steigende Preise / Kaufkraftverlust", "Steigende Löhne"], correct: 1, explanation: "💡 Inflation bedeutet, dass das allgemeine Preisniveau steigt." },
-                { fach: "Politik", question: "Wie viele Bundesländer hat Deutschland?", answers: ["14", "16", "18"], correct: 1, explanation: "💡 Deutschland besteht aus 16 Bundesländern." },
-                { fach: "Deutsch", question: "Wie heißt die Übertreibung als Stilmittel?", answers: ["Metapher", "Hyperbel", "Ironie"], correct: 1, explanation: "💡 Eine Hyperbel ist eine bewusste, starke Übertreibung." },
-                { fach: "Mathematik", question: "Was ist 2 hoch 5 (2⁵)?", answers: ["10", "16", "32"], correct: 2, explanation: "💡 2×2×2×2×2 = 32." },
-                { fach: "Biologie", question: "Was ist Mitose?", answers: ["Zellteilung", "Ein Zellorganell", "Ein Hormon"], correct: 0, explanation: "💡 Mitose ist die Zellteilung, bei der genetisch identische Zellen entstehen." }
-            ],
-            vokabeln: {
-                en: [
-                    {de:"Gesellschaft",foreign:"society"}, {de:"Politik",foreign:"politics"}, {de:"Demokratie",foreign:"democracy"}, {de:"Wahl",foreign:"election"},
-                    {de:"Wirtschaft",foreign:"economy"}, {de:"Entwicklung",foreign:"development"}, {de:"Bildung",foreign:"education"}
-                ]
-            }
-        },
-        klasse_10: {
-            faecher: ["Englisch", "Politik", "Wirtschaft", "Biologie", "Philosophie", "Deutsch", "Mathematik", "Türkisch"],
-            fragen: [
-                { fach: "Englisch", question: "She said that she ___ tired.", answers: ["is", "was", "has been"], correct: 1, explanation: "💡 Reported Speech: Backshift von 'is' zu 'was', da Einleitung in Vergangenheit." },
-                { fach: "Wirtschaft", question: "Was beschreibt das Gesetz von Angebot und Nachfrage?", answers: ["Staat legt Preise fest", "Preise entstehen durch Verhältnis von Angebot und Nachfrage", "Konstante Preise"], correct: 1, explanation: "💡 Steigt die Nachfrage bei gleichem Angebot, steigen die Preise." },
-                { fach: "Englisch", question: "He suggested ___ to the cinema.", answers: ["to go", "going", "go"], correct: 1, explanation: "💡 Nach 'suggest' folgt immer die -ing Form (Gerundium)." },
-                { fach: "Biologie", question: "Was ist die Grundeinheit der Vererbung?", answers: ["Zelle", "Gen", "Protein"], correct: 1, explanation: "💡 Gene sind die Abschnitte der DNA, die Erbinformationen tragen." },
-                { fach: "Philosophie", question: "Wer prägte den Satz 'Ich denke, also bin ich'?", answers: ["Kant", "Descartes", "Nietzsche"], correct: 1, explanation: "💡 'Cogito ergo sum' stammt von René Descartes." },
-                { fach: "Deutsch", question: "Was ist ein Konjunktiv?", answers: ["Zeitform", "Möglichkeitsform / Wunschform", "Satzzeichen"], correct: 1, explanation: "💡 Der Konjunktiv drückt Wünsche, Möglichkeiten oder indirekte Rede aus." },
-                { fach: "Mathematik", question: "Was ist die binomische Formel für (a+b)²?", answers: ["a² + b²", "a² + 2ab + b²", "a² - b²"], correct: 1, explanation: "💡 Erste binomische Formel: (a+b)² = a² + 2ab + b²." },
-                { fach: "Politik", question: "Was ist das Grundgesetz?", answers: ["Die Verfassung Deutschlands", "Ein einfaches Gesetz", "Ein EU-Vertrag"], correct: 0, explanation: "💡 Das Grundgesetz ist seit 1949 die Verfassung der BRD." }
-            ],
-            vokabeln: {
-                en: [
-                    {de:"Technologie",foreign:"technology"}, {de:"Wissenschaft",foreign:"science"}, {de:"Diskussion",foreign:"discussion"}, {de:"Meinung",foreign:"opinion"},
-                    {de:"Arbeitslosigkeit",foreign:"unemployment"}, {de:"Steuer",foreign:"tax"}, {de:"Vertrag",foreign:"contract"}
-                ]
-            }
-        },
-        klasse_11: {
-            faecher: ["Englisch", "Politik", "Philosophie", "Deutsch", "Mathematik"],
-            fragen: [
-                { fach: "Englisch", question: "Hardly ___ arrived when the phone rang.", answers: ["I had", "had I", "I have"], correct: 1, explanation: "💡 Nach 'Hardly' am Satzanfang folgt eine Inversion: had I arrived." },
-                { fach: "Englisch", question: "I would have helped you if I ___ about it.", answers: ["knew", "had known", "know"], correct: 1, explanation: "💡 If-Clause Typ 3: If + Past Perfect, im Hauptsatz 'would have' + 3. Form." },
-                { fach: "Deutsch", question: "Was ist eine These in einer Erörterung?", answers: ["Behauptung, die begründet wird", "Ein Beispiel", "Zusammenfassung"], correct: 0, explanation: "💡 Eine These ist die zentrale Behauptung, die mit Argumenten gestützt wird." },
-                { fach: "Politik", question: "Was bedeutet 'Gewaltenteilung'?", answers: ["Trennung von Legislative, Exekutive und Judikative", "Aufteilung des Militärs", "Verteilung von Steuern"], correct: 0, explanation: "💡 Die Gewaltenteilung verhindert, dass eine Institution zu viel Macht hat." }
-            ],
-            vokabeln: {
-                en: [
-                    {de:"Klimawandel",foreign:"climate change"}, {de:"Globalisierung",foreign:"globalization"}, {de:"Einwanderung",foreign:"immigration"}
-                ]
-            }
-        },
-        klasse_12: {
-            faecher: ["Englisch", "Politik", "Deutsch", "Mathematik"],
-            fragen: [
-                { fach: "Englisch", question: "Not only ___ late, but he also forgot his homework.", answers: ["he was", "was he", "he is"], correct: 1, explanation: "💡 Nach 'Not only' am Satzanfang folgt eine Inversion (was he)." },
-                { fach: "Mathematik", question: "Was ist die Ableitung von f(x) = x²?", answers: ["2x", "x", "x³"], correct: 0, explanation: "💡 Nach der Potenzregel: f'(x) = 2x." },
-                { fach: "Politik", question: "Wie nennt man ein Wahlsystem, bei dem Sitze proportional zu Stimmenanteilen vergeben werden?", answers: ["Mehrheitswahlrecht", "Verhältniswahlrecht", "Zensuswahlrecht"], correct: 1, explanation: "💡 Beim Verhältniswahlrecht entspricht der Sitzanteil ungefähr dem Stimmenanteil." }
-            ],
-            vokabeln: {}
-        },
-        klasse_13: {
-            faecher: ["Englisch", "Geschichte", "Deutsch", "Mathematik"],
-            fragen: [
-                { fach: "Englisch", question: "It's high time we ___ a decision.", answers: ["make", "made", "will make"], correct: 1, explanation: "💡 Nach 'it's (high) time' folgt das Simple Past." },
-                { fach: "Geschichte", question: "Wann begann die Französische Revolution?", answers: ["1789", "1815", "1848"], correct: 0, explanation: "💡 Die Französische Revolution begann 1789 mit dem Sturm auf die Bastille." },
-                { fach: "Geschichte", question: "In welchem Jahrhundert fand die industrielle Revolution in Europa hauptsächlich statt?", answers: ["16. Jahrhundert", "18./19. Jahrhundert", "20. Jahrhundert"], correct: 1, explanation: "💡 Die industrielle Revolution begann Ende des 18. Jahrhunderts in England." }
-            ],
-            vokabeln: {}
+        kfz: {
+            label: "🔧 Berufsschule KFZ (Englisch)",
+            words: [
+                { de: "Motor", foreign: "engine" }, { de: "Bremse", foreign: "brake" }, { de: "Schaltplan", foreign: "wiring diagram" },
+                { de: "Zündspule", foreign: "ignition coil" }, { de: "Reifen", foreign: "tire" }, { de: "Schraubenschlüssel", foreign: "wrench" },
+                { de: "Kupplung", foreign: "clutch" }, { de: "Getriebe", foreign: "gearbox" }, { de: "Auspuff", foreign: "exhaust" }, { de: "Batterie", foreign: "battery" },
+                { de: "Lichtmaschine", foreign: "alternator" }, { de: "Zahnriemen", foreign: "timing belt" }, { de: "Stoßdämpfer", foreign: "shock absorber" }, { de: "tanken", foreign: "refuel" },
+                { de: "Achse", foreign: "axle" }, { de: "Kolben", foreign: "piston" }, { de: "Zylinder", foreign: "cylinder" }, { de: "Kühler", foreign: "radiator" },
+                { de: "Werkstatt", foreign: "workshop" }, { de: "Ersatzteil", foreign: "spare part" }, { de: "Wartung", foreign: "maintenance" }, { de: "Fehlercode", foreign: "fault code" },
+                { de: "Anlasser", foreign: "starter motor" }, { de: "Sicherung", foreign: "fuse" }, { de: "Achsschenkel", foreign: "steering knuckle" }, { de: "Ölwechsel", foreign: "oil change" },
+                { de: "Auspuffrohr", foreign: "tailpipe" }, { de: "Zündkerze", foreign: "spark plug" }, { de: "Steuergerät", foreign: "control unit" }, { de: "Federung", foreign: "suspension" },
+                { de: "Lenkrad", foreign: "steering wheel" }, { de: "Windschutzscheibe", foreign: "windshield" }, { de: "Scheinwerfer", foreign: "headlight" }, { de: "Rückspiegel", foreign: "rearview mirror" }
+            ]
         }
     },
-
-    // 🔧 BEREICH 2: BERUFSSCHULE (Komplett separiert für deine KFZ Ausbildung)
-    berufsschule: {
-        kfz_mechatronik: {
-            faecher: ["Werkstatt", "Elektrik", "Fahrwerk", "Getriebe", "Bremsanlage", "Motor", "Reifen", "Klimaanlage", "Antriebsstrang", "Sicherheit", "Abgas", "Fachenglisch", "Fachtürkisch"],
-            fragen: [
-                { fach: "Werkstatt", question: "Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug beim Zahnriemenwechsel angebracht ist?", answers: ["Wasserpumpe lösen", "Motor durchdrehen", "Riemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" },
-                { fach: "Elektrik", question: "Welches Bauteil wandelt in der Lichtmaschine Wechselstrom in Gleichstrom um?", answers: ["Anlasser", "Zündspule", "Diodenplatte"], correct: 2, explanation: "💡 Die Dioden richten den erzeugten Wechselstrom in Gleichstrom für das Auto gleich." },
-                { fach: "Fahrwerk", question: "Was genau ist ein Domlager?", answers: ["Ein Teil des Turboladers", "Das Verbindungsstück zwischen Federbein und Karosserie", "Ein Radlager an der Hinterachse"], correct: 1, explanation: "💡 Das Domlager sitzt oben am Stoßdämpfer und verbindet das Fahrwerk mit der Karosserie." },
-                { fach: "Getriebe", question: "Welches Kürzel steht z.B. bei einem Opel 2.2 Motor für eine bestimmte Variante?", answers: ["ATC", "M32", "DSG"], correct: 0, explanation: "💡 Die exakte Bezeichnung der Variante ist ATC." },
-                { fach: "Bremsanlage", question: "Wofür steht die Abkürzung ABS?", answers: ["Anti-Blockier-System", "Automatik-Brems-Sensor", "Achsen-Balance-Steuerung"], correct: 0, explanation: "💡 ABS verhindert das Blockieren der Räder beim Bremsen, damit das Fahrzeug lenkbar bleibt." },
-                { fach: "Motor", question: "Was ist die Aufgabe des Turboladers?", answers: ["Kraftstoff einspritzen", "Die angesaugte Luft verdichten", "Öl kühlen"], correct: 1, explanation: "💡 Der Turbolader verdichtet die Ansaugluft, damit mehr Sauerstoff in den Zylinder gelangt und mehr Leistung entsteht." },
-                { fach: "Elektrik", question: "Wofür steht die Abkürzung OBD?", answers: ["On-Board-Diagnose", "Öl-Behälter-Druck", "Ohm-Bemessungs-Daten"], correct: 0, explanation: "💡 OBD (On-Board-Diagnose) überwacht abgasrelevante Systeme und speichert Fehlercodes." },
-                { fach: "Fahrwerk", question: "Was bewirkt ein Stoßdämpfer?", answers: ["Er dämpft die Schwingungen der Feder", "Er trägt das Fahrzeuggewicht allein", "Er lenkt die Räder"], correct: 0, explanation: "💡 Der Stoßdämpfer dämpft die Federbewegungen, damit das Auto nicht dauerhaft wippt." },
-                { fach: "Motor", question: "Wie viele Takte hat ein klassischer Ottomotor?", answers: ["2", "4", "6"], correct: 1, explanation: "💡 Ansaugen, Verdichten, Arbeiten, Ausstoßen – der klassische Viertaktmotor." },
-                { fach: "Reifen", question: "Was gibt die Zahl in '205/55 R16' an?", answers: ["Reifenbreite in mm, Höhe in % und Felgendurchmesser in Zoll", "Luftdruck und Gewicht", "Herstellungsjahr"], correct: 0, explanation: "💡 205 = Breite in mm, 55 = Querschnittsverhältnis in %, R16 = Felgendurchmesser in Zoll." },
-                { fach: "Klimaanlage", question: "Welches Kältemittel wird häufig in modernen Klimaanlagen verwendet?", answers: ["R134a bzw. R1234yf", "Frigen", "Stickstoff"], correct: 0, explanation: "💡 R134a war lange Standard, moderne Fahrzeuge nutzen zunehmend das umweltfreundlichere R1234yf." },
-                { fach: "Motor", question: "Was ist die Aufgabe der Lambdasonde?", answers: ["Sie misst den Restsauerstoff im Abgas", "Sie kühlt den Motor", "Sie erzeugt den Zündfunken"], correct: 0, explanation: "💡 Die Lambdasonde misst den Sauerstoffgehalt im Abgas, um das Kraftstoff-Luft-Gemisch zu regeln." },
-                { fach: "Elektrik", question: "Was zeigt ein Multimeter im Modus 'Durchgangsprüfung' an?", answers: ["Ob ein Stromkreis geschlossen ist", "Die Motordrehzahl", "Den Ölstand"], correct: 0, explanation: "💡 Die Durchgangsprüfung piept, wenn ein Stromkreis leitfähig (geschlossen) ist – nützlich zur Fehlersuche." },
-                { fach: "Antriebsstrang", question: "Was überträgt die Kraft vom Motor auf die Räder bei Frontantrieb typischerweise?", answers: ["Kardanwelle", "Antriebswelle (Gelenkwelle)", "Blattfeder"], correct: 1, explanation: "💡 Bei Frontantrieb übertragen Antriebs- bzw. Gelenkwellen die Kraft vom Getriebe auf die Vorderräder." },
-                { fach: "Sicherheit", question: "Wofür steht die Abkürzung ESP?", answers: ["Elektronisches Stabilitätsprogramm", "Extra Sicherheits-Paket", "Elektro-Servo-Pumpe"], correct: 0, explanation: "💡 ESP greift gezielt in die Bremsen ein, um das Fahrzeug bei drohendem Schleudern zu stabilisieren." },
-                { fach: "Motor", question: "Was passiert beim 'Verdichtungstakt' im Viertaktmotor?", answers: ["Das Gemisch wird angesaugt", "Das Gemisch wird komprimiert", "Die Abgase werden ausgestoßen"], correct: 1, explanation: "💡 Im zweiten Takt wird das angesaugte Luft-Kraftstoff-Gemisch vom Kolben verdichtet." },
-                { fach: "Motor", question: "Wozu dient der Ölfilter?", answers: ["Er reinigt das Motoröl von Partikeln", "Er kühlt den Motor", "Er filtert die Ansaugluft"], correct: 0, explanation: "💡 Der Ölfilter hält Abrieb und Schmutzpartikel aus dem Motoröl zurück." },
-                { fach: "Elektrik", question: "Was passiert, wenn die Batterie leer ist?", answers: ["Der Anlasser dreht nicht oder nur langsam", "Der Motor läuft schneller", "Die Bremsen versagen"], correct: 0, explanation: "💡 Ohne ausreichende Batteriespannung bekommt der Anlasser zu wenig Strom." },
-                { fach: "Bremsen", question: "Woran erkennt man verschlissene Bremsbeläge?", answers: ["Quietschen und längerer Bremsweg", "Der Motor ruckelt", "Die Klimaanlage kühlt schlechter"], correct: 0, explanation: "💡 Verschleißanzeiger erzeugen Quietschgeräusche, außerdem verlängert sich der Bremsweg." },
-                { fach: "Abgas", question: "Welche Aufgabe hat der Katalysator?", answers: ["Schadstoffe im Abgas umwandeln", "Kraftstoff filtern", "Öl reinigen"], correct: 0, explanation: "💡 Der Katalysator wandelt schädliche Abgase (CO, HC, NOx) in weniger schädliche Stoffe um." }
-            ],
-            vokabeln: {
-                en: [
-                    { de: "Motor", foreign: "engine" }, { de: "Bremse", foreign: "brake" }, { de: "Schaltplan", foreign: "wiring diagram" },
-                    { de: "Zündspule", foreign: "ignition coil" }, { de: "Reifen", foreign: "tire" }, { de: "Schraubenschlüssel", foreign: "wrench" },
-                    { de: "Kupplung", foreign: "clutch" }, { de: "Getriebe", foreign: "gearbox" }, { de: "Auspuff", foreign: "exhaust" }, { de: "Batterie", foreign: "battery" },
-                    { de: "Lichtmaschine", foreign: "alternator" }, { de: "Zahnriemen", foreign: "timing belt" }, { de: "Stoßdämpfer", foreign: "shock absorber" }, { de: "tanken", foreign: "refuel" },
-                    { de: "Achse", foreign: "axle" }, { de: "Kolben", foreign: "piston" }, { de: "Zylinder", foreign: "cylinder" }, { de: "Kühler", foreign: "radiator" },
-                    { de: "Werkstatt", foreign: "workshop" }, { de: "Ersatzteil", foreign: "spare part" }, { de: "Wartung", foreign: "maintenance" }, { de: "Fehlercode", foreign: "fault code" },
-                    { de: "Anlasser", foreign: "starter motor" }, { de: "Sicherung", foreign: "fuse" }, { de: "Achsschenkel", foreign: "steering knuckle" }, { de: "Ölwechsel", foreign: "oil change" },
-                    { de: "Auspuffrohr", foreign: "tailpipe" }, { de: "Zündkerze", foreign: "spark plug" }, { de: "Steuergerät", foreign: "control unit" }, { de: "Federung", foreign: "suspension" },
-                    { de: "Lenkrad", foreign: "steering wheel" }, { de: "Windschutzscheibe", foreign: "windshield" }, { de: "Scheinwerfer", foreign: "headlight" }, { de: "Rückspiegel", foreign: "rearview mirror" },
-                    { de: "Radlager", foreign: "wheel bearing" }, { de: "Keilriemen", foreign: "V-belt" },
-                    { de: "Drehmoment", foreign: "torque" }, { de: "Leerlauf", foreign: "idle" }, { de: "Kraftstoffpumpe", foreign: "fuel pump" }, { de: "Kühlmittel", foreign: "coolant" },
-                    { de: "Drehmomentschlüssel", foreign: "torque wrench" }, { de: "Hebebühne", foreign: "vehicle lift" }, { de: "Kostenvoranschlag", foreign: "cost estimate" }
-                ],
-                tr: [
-                    { de: "Auto", foreign: "araba" }, { de: "Motor", foreign: "motor" }, { de: "Reifen", foreign: "lastik" },
-                    { de: "Bremse", foreign: "fren" }, { de: "tanken", foreign: "yakıt almak" },
-                    { de: "Getriebe", foreign: "vites kutusu" }, { de: "Batterie", foreign: "akü" }, { de: "Werkstatt", foreign: "tamirhane" }, { de: "Öl", foreign: "yağ" },
-                    { de: "Lenkrad", foreign: "direksiyon" }, { de: "Scheinwerfer", foreign: "far" }, { de: "Pannenhilfe", foreign: "yol yardımı" }, { de: "Führerschein", foreign: "ehliyet" },
-                    { de: "Benzin", foreign: "benzin" }, { de: "Unfall", foreign: "kaza" },
-                    { de: "Werkzeug", foreign: "alet" }, { de: "reparieren", foreign: "tamir etmek" }
-                ]
-            }
+    tr: {
+        klasse_1_4: { 
+            label: "🧸 Grundschule (Temel Kelimeler)", 
+            words: [
+                {de:"Eins",foreign:"bir"}, {de:"Zwei",foreign:"iki"}, {de:"Drei",foreign:"üç"}, {de:"Hund",foreign:"köpek"}, {de:"Katze",foreign:"kedi"}, 
+                {de:"Vogel",foreign:"kuş"}, {de:"Rot",foreign:"kırmızı"}, {de:"Blau",foreign:"mavi"}, {de:"Tisch",foreign:"masa"}, {de:"Buch",foreign:"kitap"},
+                {de:"Hallo",foreign:"merhaba"}, {de:"Tschüss",foreign:"hoşçakal"}, {de:"Danke",foreign:"teşekkürler"}, {de:"Bitte",foreign:"lütfen"}, {de:"Schule",foreign:"okul"},
+                {de:"Vier",foreign:"dört"}, {de:"Fünf",foreign:"beş"}, {de:"Grün",foreign:"yeşil"}, {de:"Gelb",foreign:"sarı"}, {de:"Mutter",foreign:"anne"},
+                {de:"Vater",foreign:"baba"}, {de:"Haus",foreign:"ev"}, {de:"Apfel",foreign:"elma"}, {de:"Wasser",foreign:"su"}, {de:"Stuhl",foreign:"sandalye"},
+                {de:"Lehrer",foreign:"öğretmen"}, {de:"lernen",foreign:"öğrenmek"}, {de:"spielen",foreign:"oynamak"}, {de:"Bruder",foreign:"kardeş"}, {de:"Zahlen (elf-zwanzig)",foreign:"on bir - yirmi"}
+            ] 
+        },
+        klasse_5_8: { 
+            label: "⚽ Mittelstufe (Hobiler & Çevre)", 
+            words: [
+                {de:"Fußball",foreign:"futbol"}, {de:"Schwimmen",foreign:"yüzme"}, {de:"Lesen",foreign:"okuma"}, {de:"Freundschaft",foreign:"arkadaşlık"}, {de:"Kino",foreign:"sinema"},
+                {de:"Umwelt",foreign:"çevre"}, {de:"Wald",foreign:"orman"}, {de:"Wasser",foreign:"su"}, {de:"Wetter",foreign:"hava durumu"}, {de:"Reisen",foreign:"seyahat"},
+                {de:"Musik",foreign:"müzik"}, {de:"Buch",foreign:"kitap"}, {de:"Handy",foreign:"telefon"}, {de:"Internet",foreign:"internet"}, {de:"Strand",foreign:"plaj"},
+                {de:"Familie",foreign:"aile"}, {de:"Geburtstag",foreign:"doğum günü"}, {de:"Zeit",foreign:"zaman"}, {de:"Gesundheit",foreign:"sağlık"}, {de:"Essen",foreign:"yemek"},
+                {de:"Mathematik",foreign:"matematik"}, {de:"Geschichte (Fach)",foreign:"tarih"}, {de:"Biologie",foreign:"biyoloji"}, {de:"Sport",foreign:"spor"}, {de:"Ferien",foreign:"tatil"}
+            ] 
+        },
+        klasse_9_11: { 
+            label: "👥 Oberstufe (Toplum)", 
+            words: [
+                {de:"Gesellschaft",foreign:"toplum"}, {de:"Demokratie",foreign:"demokrasi"}, {de:"Bildung",foreign:"eğitim"}, {de:"Beruf",foreign:"meslek"}, {de:"Ziel",foreign:"hedef"},
+                {de:"Problem",foreign:"sorun"}, {de:"Lösung",foreign:"çözüm"}, {de:"Geld",foreign:"para"}, {de:"Wirtschaft",foreign:"ekonomi"}, {de:"Erfolg",foreign:"başarı"},
+                {de:"Gesetz",foreign:"kanun"}, {de:"Freiheit",foreign:"özgürlük"}, {de:"Gerechtigkeit",foreign:"adalet"}, {de:"Wahl",foreign:"seçim"}, {de:"Verantwortung",foreign:"sorumluluk"},
+                {de:"Nachhaltigkeit",foreign:"sürdürülebilirlik"}, {de:"Verfassung",foreign:"anayasa"}, {de:"Technologie",foreign:"teknoloji"}, {de:"global",foreign:"küresel"}
+            ] 
+        },
+        kfz: {
+            label: "🔧 Arabalar (Autos)",
+            words: [
+                { de: "Auto", foreign: "araba" }, { de: "Motor", foreign: "motor" }, { de: "Reifen", foreign: "lastik" },
+                { de: "Bremse", foreign: "fren" }, { de: "tanken", foreign: "yakıt almak" },
+                { de: "Getriebe", foreign: "vites kutusu" }, { de: "Batterie", foreign: "akü" }, { de: "Werkstatt", foreign: "tamirhane" }, { de: "Öl", foreign: "yağ" },
+                { de: "Lenkrad", foreign: "direksiyon" }, { de: "Far (Scheinwerfer)", foreign: "far" }, { de: "Yol yardımı (Pannenhilfe)", foreign: "yol yardımı" }, { de: "Ehliyet (Führerschein)", foreign: "ehliyet" }
+            ]
         }
-    },
-
-    // 🎮 BEREICH 3: SPASS & QUIZ (Losgelöst vom Schulstoff)
-    spass_und_quiz: {
-        allgemeinwissen: [
-            { question: "Wer ist der Hauptdarsteller, der den Detective in der 'Crime City' Reihe spielt?", answers: ["Jackie Chan", "Don Lee", "Tony Jaa"], correct: 1, explanation: "💡 Don Lee (Ma Dong-seok) spielt den schlagkräftigen Detective." },
-            { question: "Wer war Miyamoto Musashi?", answers: ["Ein berühmter japanischer Samurai", "Ein südkoreanischer Kampfkünstler", "Ein Charakter aus Star Wars"], correct: 0, explanation: "💡 Er war einer der legendärsten Samurai der Geschichte und kämpfte mit zwei Schwertern." },
-            { question: "Wie lange dauert ein Fußballspiel bei einer F-Jugend in der Regel?", answers: ["2 x 45 Minuten", "2 x 20 Minuten", "3 x 15 Minuten"], correct: 1, explanation: "💡 Im Kleinfeldfußball bei den Jüngsten (z.B. F-Jugend) wird meist 2 x 20 Minuten gespielt." },
-            { question: "Wie heißt die Hauptstadt von Südkorea?", answers: ["Busan", "Seoul", "Incheon"], correct: 1, explanation: "💡 Seoul ist die Hauptstadt und größte Stadt Südkoreas." },
-            { question: "In welchem Land wird ein Großteil der Martial-Arts-Filme mit Don Lee produziert?", answers: ["Japan", "Südkorea", "China"], correct: 1, explanation: "💡 Don Lee ist ein koreanisch-amerikanischer Schauspieler, viele seiner Filme entstehen in Südkorea." },
-            { question: "Wie viele Spieler stehen bei einem regulären Fußballspiel pro Mannschaft auf dem Feld?", answers: ["9", "10", "11"], correct: 2, explanation: "💡 Jede Mannschaft stellt 11 Spieler, inklusive Torwart." },
-            { question: "Wer war Alexander der Große?", answers: ["Ein römischer Kaiser", "Ein makedonischer König und Feldherr", "Ein ägyptischer Pharao"], correct: 1, explanation: "💡 Alexander der Große war König von Makedonien und eroberte eines der größten Reiche der Antike." },
-            { question: "Welches Kampfkunst-Genre ist besonders für Filme aus Thailand bekannt (z.B. mit Tony Jaa)?", answers: ["Muay Thai", "Karate", "Judo"], correct: 0, explanation: "💡 Muay Thai (Thaiboxen) ist die traditionelle Kampfkunst Thailands und prägt viele Actionfilme des Landes." },
-            { question: "Wie heißt die gelbe Karte im Fußball auch umgangssprachlich?", answers: ["Verwarnung", "Platzverweis", "Elfmeter"], correct: 0, explanation: "💡 Die gelbe Karte ist eine Verwarnung; erst die rote Karte führt zum Platzverweis." },
-            { question: "In welchem Jahrhundert lebte der Samurai Miyamoto Musashi?", answers: ["12. Jahrhundert", "16./17. Jahrhundert", "20. Jahrhundert"], correct: 1, explanation: "💡 Musashi lebte von 1584 bis 1645, also im 16./17. Jahrhundert." },
-            { question: "Wie heißt der Wettkampf, bei dem Schwimmen, Radfahren und Laufen kombiniert werden?", answers: ["Triathlon", "Biathlon", "Pentathlon"], correct: 0, explanation: "💡 Beim Triathlon werden diese drei Ausdauersportarten hintereinander absolviert." },
-            { question: "Wie heißt der japanische Regisseur, der für Filme wie 'Die sieben Samurai' bekannt ist?", answers: ["Hayao Miyazaki", "Akira Kurosawa", "Takeshi Kitano"], correct: 1, explanation: "💡 Akira Kurosawa gilt als einer der einflussreichsten Regisseure Japans." },
-            { question: "Welcher Ozean ist der größte der Erde?", answers: ["Atlantik", "Pazifik", "Indischer Ozean"], correct: 1, explanation: "💡 Der Pazifische Ozean ist mit Abstand der größte und tiefste Ozean der Welt." },
-            { question: "Wie viele Ringe hat das olympische Symbol?", answers: ["4", "5", "6"], correct: 1, explanation: "💡 Die fünf Ringe stehen für die fünf bewohnten Kontinente." },
-            { question: "Wie viele Runden hat ein Profi-Boxkampf maximal?", answers: ["8", "12", "15"], correct: 1, explanation: "💡 WM-Kämpfe gehen heute über maximal 12 Runden." },
-            { question: "Welches ist das größte Land der Welt nach Fläche?", answers: ["China", "Russland", "Kanada"], correct: 1, explanation: "💡 Russland ist mit rund 17 Millionen km² das flächengrößte Land der Erde." },
-            { question: "In welcher Sportart gibt es einen 'Slam Dunk'?", answers: ["Basketball", "Volleyball", "Handball"], correct: 0, explanation: "💡 Beim Slam Dunk stopft ein Basketballspieler den Ball direkt in den Korb." },
-            { question: "Wie viele Saiten hat eine klassische Gitarre normalerweise?", answers: ["4", "6", "8"], correct: 1, explanation: "💡 Eine klassische Gitarre hat 6 Saiten." }
-        ],
-        wuerdest_du_eher: [
-            { question: "Schätzfrage: Was würden die meisten Menschen eher tun – einen Popel essen oder mit Fallschirm springen?", answers: ["Popel essen 🤢", "Fallschirmspringen 🪂", "Beides auf keinen Fall!"], correct: 1, explanation: "😄 Die meisten würden wohl eher springen als naschen!" },
-            { question: "Schätzfrage: Was wählen die meisten, wenn sie sich für immer entscheiden müssten – Ketchup oder Senf?", answers: ["Nur Ketchup 🍅", "Nur Senf 🌭", "Dann lieber gar nichts mehr essen"], correct: 0, explanation: "😄 Reine Geschmackssache – die meisten Menschen wählen laut Umfragen Ketchup." },
-            { question: "Schätzfrage: Welche Superkraft wünschen sich die meisten Menschen – Fliegen oder Unsichtbarkeit?", answers: ["Fliegen ✈️", "Unsichtbar werden 👻", "Ich brauch keine Superkräfte"], correct: 0, explanation: "😄 Fliegen gewinnt bei den meisten Umfragen knapp gegen Unsichtbarkeit!" },
-            { question: "Scherzfrage: Nie wieder Schokolade oder nie wieder Chips – was ist die ehrlichste Antwort?", answers: ["Nie wieder Schokolade 🍫", "Nie wieder Chips 🍟", "Unmöglich zu entscheiden!"], correct: 2, explanation: "😄 Ehrlich gesagt: die schwerste Frage des ganzen Quiz." },
-            { question: "Schätzfrage: Was wären die meisten lieber für einen Tag – ein Vogel oder ein Fisch?", answers: ["Ein Vogel 🐦", "Ein Fisch 🐠", "Lieber Mensch bleiben"], correct: 0, explanation: "😄 Fliegen können vs. tauchen können – die Vögel gewinnen meist knapp." },
-            { question: "Scherzfrage: Jeden Tag Hausaufgaben in Mathe oder in Deutsch – was ist die ehrlichste Antwort?", answers: ["Nur Mathe 📐", "Nur Deutsch 📚", "Gar keine Hausaufgaben bitte!"], correct: 2, explanation: "😄 Das wär wohl die Lieblingsantwort der meisten Kids." },
-            { question: "Scherzfrage: Riesige Hände oder riesige Füße – was ist die ehrlichste Antwort?", answers: ["Riesige Hände 🖐️", "Riesige Füße 🦶", "Weder noch, bitte!"], correct: 2, explanation: "😄 Eine schön unangenehme Wahl – beides klingt nach Problemen beim Schuhe kaufen." },
-            { question: "Schätzfrage: Wo würden die meisten Menschen lieber für immer leben – im Sommer oder im Winter?", answers: ["Immer Sommer ☀️", "Immer Winter ❄️", "Ich brauch alle vier Jahreszeiten"], correct: 0, explanation: "😄 Weltweit sagen die meisten Menschen: Sommer gewinnt!" },
-            { question: "Schätzfrage: Was würden die meisten lieber können – in die Zukunft sehen oder die Vergangenheit noch mal erleben?", answers: ["Die Zukunft sehen 🔮", "Die Vergangenheit erleben ⏳", "Lieber überrascht werden"], correct: 0, explanation: "😄 Neugier auf das, was kommt, gewinnt bei den meisten." },
-            { question: "Schätzfrage: Worauf würden die meisten eher eine Woche verzichten – auf das Handy oder auf Süßigkeiten?", answers: ["Ohne Handy 📵", "Ohne Süßigkeiten 🍭", "Beides geht gar nicht!"], correct: 1, explanation: "😄 Für die meisten ist das Handy schwerer wegzudenken als Süßes." },
-            { question: "Schätzfrage: Was mögen die meisten Menschen weltweit lieber – Hunde oder Katzen?", answers: ["Hunde 🐕", "Katzen 🐈", "Beide gleich gern"], correct: 0, explanation: "😄 In den meisten Umfragen liegen Hunde als Lieblingshaustier knapp vorn." },
-            { question: "Schätzfrage: Was ist bei Kindern beliebter – Pizza oder Pommes?", answers: ["Pizza 🍕", "Pommes 🍟", "Beides zusammen!"], correct: 0, explanation: "😄 Pizza landet in Umfragen fast immer auf Platz 1 der Lieblingsgerichte." },
-            { question: "Scherzfrage: Zähne putzen oder Zimmer aufräumen – was ist die ehrlichste Antwort?", answers: ["Zähne putzen 🪥", "Zimmer aufräumen 🧹", "Am liebsten keins von beidem!"], correct: 2, explanation: "😄 Zähne putzen muss trotzdem sein – Zimmer aufräumen leider auch." },
-            { question: "Schätzfrage: Was würden die meisten lieber machen – eine Weltreise oder ins Weltall fliegen?", answers: ["Weltreise 🌍", "Ins Weltall 🚀", "Lieber zu Hause bleiben"], correct: 0, explanation: "😄 Die Weltreise gewinnt in Umfragen meist deutlich – das Weltall ist vielen zu weit weg." }
-        ],
-        nice_to_know: [
-            { question: "Wie viele Herzen hat ein Oktopus?", answers: ["1", "3", "8"], correct: 1, explanation: "💡 Oktopusse haben drei Herzen – zwei pumpen Blut zu den Kiemen, eins durch den restlichen Körper." },
-            { question: "Welches Tier schläft am meisten am Tag?", answers: ["Koala", "Elefant", "Löwe"], correct: 0, explanation: "💡 Koalas schlafen bis zu 20 Stunden am Tag – ihre Blätternahrung liefert kaum Energie." },
-            { question: "Kann Honig eigentlich schlecht werden?", answers: ["Ja, nach wenigen Monaten", "Nein, er ist praktisch unbegrenzt haltbar", "Nur wenn er geöffnet wird"], correct: 1, explanation: "💡 Archäologen fanden 3000 Jahre alten Honig in ägyptischen Gräbern, der noch genießbar war!" },
-            { question: "Wie lange dauert es ungefähr, bis Licht von der Sonne die Erde erreicht?", answers: ["8 Sekunden", "8 Minuten", "8 Stunden"], correct: 1, explanation: "💡 Das Sonnenlicht braucht etwa 8 Minuten und 20 Sekunden bis zur Erde." },
-            { question: "Welches ist das einzige Säugetier, das nicht springen kann?", answers: ["Elefant", "Nilpferd", "Beide können nicht springen"], correct: 2, explanation: "💡 Sowohl Elefanten als auch Nilpferde sind zu schwer, um mit allen vier Beinen gleichzeitig abzuheben." },
-            { question: "Wie viele Knochen hat ein erwachsener Mensch ungefähr?", answers: ["106", "206", "306"], correct: 1, explanation: "💡 Erwachsene haben etwa 206 Knochen – Babys werden mit rund 300 geboren, viele wachsen später zusammen." },
-            { question: "Welche Farbe hat das Blut eines Oktopus?", answers: ["Rot", "Blau", "Grün"], correct: 1, explanation: "💡 Oktopus-Blut ist blau, weil es Kupfer statt Eisen zum Sauerstofftransport nutzt." },
-            { question: "Wie lange kann eine Schnecke schlafen (am Stück)?", answers: ["Ein paar Stunden", "Ein paar Tage", "Bis zu 3 Jahre"], correct: 2, explanation: "💡 Manche Schneckenarten können bei ungünstigen Bedingungen jahrelang in einer Art Schlafstarre verharren." },
-            { question: "Was passiert, wenn man einen Stern (den Fisch, nicht das Weltall) in zwei Hälften teilt?", answers: ["Er stirbt sofort", "Ein Seestern kann sich aus einem Armstück komplett neu bilden", "Nichts Besonderes"], correct: 1, explanation: "💡 Seesterne können aus einem einzigen Arm mit einem Stück Zentralscheibe einen komplett neuen Körper regenerieren." },
-            { question: "Wie viele Sprachen gibt es schätzungsweise auf der Welt?", answers: ["Etwa 700", "Etwa 3.000", "Etwa 7.000"], correct: 2, explanation: "💡 Weltweit werden schätzungsweise über 7.000 Sprachen gesprochen, viele davon sind vom Aussterben bedroht." },
-            { question: "Welches Körperteil wächst beim Menschen ein Leben lang weiter?", answers: ["Die Nase und die Ohren", "Die Füße", "Die Zähne"], correct: 0, explanation: "💡 Nase und Ohren bestehen aus Knorpel und verändern sich das ganze Leben lang." },
-            { question: "Wie viele Muskeln braucht man ungefähr zum Lächeln?", answers: ["Etwa 5", "Etwa 17", "Etwa 60"], correct: 1, explanation: "💡 Zum Lächeln braucht man ungefähr 17 Muskeln – zum Stirnrunzeln deutlich mehr." },
-            { question: "Können Enten wirklich nicht 'echoen'?", answers: ["Stimmt, ihr Quaken erzeugt kein Echo", "Falsch, es ist ein Mythos", "Nur bei Regen"], correct: 1, explanation: "💡 Das ist ein bekannter Mythos – Entenquaken erzeugt sehr wohl ein Echo, es ist nur schwer zu hören." },
-            { question: "Wie schnell wächst menschliches Kopfhaar ungefähr pro Monat?", answers: ["Etwa 1 cm", "Etwa 5 cm", "Etwa 10 cm"], correct: 0, explanation: "💡 Haare wachsen im Schnitt rund 1 bis 1,5 cm pro Monat." },
-            { question: "Welches Tier hat den größten Augapfel der Welt?", answers: ["Elefant", "Riesenkalmar", "Blauwal"], correct: 1, explanation: "💡 Riesenkalmare haben Augen von bis zu 27 cm Durchmesser – so groß wie ein Fußball." },
-            { question: "Wie viel Prozent der Erdoberfläche sind von Wasser bedeckt?", answers: ["Etwa 50%", "Etwa 71%", "Etwa 90%"], correct: 1, explanation: "💡 Rund 71% der Erdoberfläche sind mit Wasser bedeckt." }
-        ],
-        ungewoehnliches: [
-            { question: "In welchem Land ist es gesetzlich verboten, Kaugummi zu verkaufen?", answers: ["Japan", "Singapur", "Norwegen"], correct: 1, explanation: "💡 In Singapur ist der Verkauf von Kaugummi seit 1992 aus Gründen der Sauberkeit weitgehend verboten." },
-            { question: "Welche deutsche Stadt hat mehr Brücken als Venedig, Amsterdam und London zusammen?", answers: ["Berlin", "Hamburg", "Köln"], correct: 1, explanation: "💡 Hamburg hat rund 2.500 Brücken – mehr als Venedig, Amsterdam und London zusammen." },
-            { question: "Wie lange dauerte der kürzeste Krieg der Geschichte?", answers: ["Ca. 38 Minuten", "Ca. 3 Tage", "Ca. 3 Wochen"], correct: 0, explanation: "💡 Der Anglo-Sansibar-Krieg von 1896 dauerte nur etwa 38 Minuten." },
-            { question: "In welchem Land gibt es mehr Schafe als Menschen?", answers: ["Neuseeland", "Irland", "Schottland"], correct: 0, explanation: "💡 In Neuseeland leben etwa 5x mehr Schafe als Menschen." },
-            { question: "Welches Land besteht aus über 17.000 Inseln?", answers: ["Philippinen", "Indonesien", "Japan"], correct: 1, explanation: "💡 Indonesien besteht aus über 17.000 Inseln, von denen nur etwa 6.000 bewohnt sind." },
-            { question: "Wie heißt die einzige Zahl, die auf Deutsch genauso viele Buchstaben hat wie ihr Wert?", answers: ["Vier", "Fünf", "Sechs"], correct: 0, explanation: "💡 'Vier' hat genau 4 Buchstaben – ein kleines Sprachkuriosum." },
-            { question: "Welche Farbe hatten die ersten Karotten, bevor sie orange gezüchtet wurden?", answers: ["Lila/violett", "Weiß", "Grün"], correct: 0, explanation: "💡 Ursprüngliche Karotten waren meist violett oder gelb – orange Karotten wurden erst im 17. Jahrhundert in den Niederlanden gezüchtet." },
-            { question: "Wie viele Zeitzonen hat Russland?", answers: ["5", "8", "11"], correct: 2, explanation: "💡 Russland erstreckt sich über 11 Zeitzonen – mehr als jedes andere Land der Welt." },
-            { question: "In welchem Land gibt es einen Ort, an dem die Sonne im Sommer wochenlang nicht untergeht?", answers: ["Norwegen", "Portugal", "Griechenland"], correct: 0, explanation: "💡 Nördlich des Polarkreises (z.B. in Norwegen) geht die Sonne im Sommer wochenlang nicht unter – die Mitternachtssonne." },
-            { question: "Welches Land hat die Nationalflagge in Quadratform (nicht rechteckig)?", answers: ["Schweiz", "Österreich", "Dänemark"], correct: 0, explanation: "💡 Die Schweizer Flagge ist (neben der des Vatikans) eine der wenigen quadratischen Nationalflaggen der Welt." },
-            { question: "In welchem Land ist Ketchup an Schulen zeitweise eingeschränkt worden?", answers: ["Frankreich", "Italien", "Japan"], correct: 0, explanation: "💡 Frankreich schränkte 2011 Ketchup in Schulkantinen ein, um die traditionelle französische Küche zu fördern." },
-            { question: "Welches Tier kann bis zu 3 Jahre ohne Essen überleben?", answers: ["Kamel", "Krokodil", "Braunbär"], correct: 1, explanation: "💡 Krokodile haben einen extrem langsamen Stoffwechsel und können sehr lange hungern." },
-            { question: "Welches Land hat kein einziges natürliches Fließgewässer (keinen Fluss)?", answers: ["Saudi-Arabien", "Ägypten", "Marokko"], correct: 0, explanation: "💡 Saudi-Arabien hat keine dauerhaften natürlichen Flüsse – nur zeitweise wasserführende Täler (Wadis)." },
-            { question: "Wie viele Zeitzonen hat China – trotz seiner riesigen Fläche?", answers: ["1", "3", "5"], correct: 0, explanation: "💡 China nutzt landesweit nur eine einzige Zeitzone, obwohl es geografisch fünf umfassen würde." },
-            { question: "Welche Frucht schwimmt im Wasser, weil sie zu etwa 25% aus Luft besteht?", answers: ["Apfel", "Birne", "Kiwi"], correct: 0, explanation: "💡 Äpfel bestehen zu rund einem Viertel aus Luft und schwimmen deshalb oben." },
-            { question: "Welches Land verbraucht pro Kopf am meisten Schokolade?", answers: ["Schweiz", "Belgien", "Deutschland"], correct: 0, explanation: "💡 Die Schweiz liegt beim Pro-Kopf-Schokoladenkonsum regelmäßig weltweit an der Spitze." }
-        ],
-        allgemeinwissen_easy: [
-            { question: "Wie viele Tage hat ein Schaltjahr?", answers: ["364", "365", "366"], correct: 2, explanation: "💡 Ein Schaltjahr hat einen zusätzlichen Tag (29. Februar) und damit 366 Tage." },
-            { question: "Welche Farbe entsteht, wenn man Blau und Gelb mischt?", answers: ["Grün", "Lila", "Orange"], correct: 0, explanation: "💡 Blau und Gelb ergeben zusammen Grün." },
-            { question: "Wie viele Kontinente kann man mit bloßem Auge auf einer Weltkarte grob zählen?", answers: ["5", "7", "9"], correct: 1, explanation: "💡 Klassisch werden 7 Kontinente unterschieden." },
-            { question: "Welches Tier gilt als das schnellste Landtier der Welt?", answers: ["Löwe", "Gepard", "Pferd"], correct: 1, explanation: "💡 Der Gepard kann kurzzeitig über 100 km/h erreichen." },
-            { question: "Wie viele Minuten hat eine Stunde?", answers: ["30", "60", "100"], correct: 1, explanation: "💡 Eine Stunde hat 60 Minuten." },
-            { question: "Welches ist der größte Ozean der Welt?", answers: ["Atlantik", "Pazifik", "Indischer Ozean"], correct: 1, explanation: "💡 Der Pazifische Ozean ist der größte und tiefste Ozean der Erde." },
-            { question: "Wie viele Beine hat eine Spinne?", answers: ["6", "8", "10"], correct: 1, explanation: "💡 Spinnen haben 8 Beine – das unterscheidet sie von Insekten mit 6 Beinen." },
-            { question: "In welchem Land steht der Eiffelturm?", answers: ["Italien", "Frankreich", "Spanien"], correct: 1, explanation: "💡 Der Eiffelturm steht in Paris, Frankreich." },
-            { question: "Welcher Planet wird auch 'der rote Planet' genannt?", answers: ["Venus", "Mars", "Jupiter"], correct: 1, explanation: "💡 Mars wirkt durch das eisenhaltige Gestein rötlich – daher der Spitzname." },
-            { question: "Wie viele Farben hat ein klassischer Regenbogen?", answers: ["5", "7", "9"], correct: 1, explanation: "💡 Ein klassischer Regenbogen zeigt 7 Farben: Rot, Orange, Gelb, Grün, Blau, Indigo, Violett." },
-            { question: "Wie viele Monate hat ein Jahr?", answers: ["10", "12", "14"], correct: 1, explanation: "💡 Ein Jahr hat 12 Monate." },
-            { question: "Welches Tier wird auch 'König der Tiere' genannt?", answers: ["Tiger", "Löwe", "Bär"], correct: 1, explanation: "💡 Der Löwe gilt traditionell als 'König der Tiere'." },
-            { question: "Was ist die Hauptstadt von Deutschland?", answers: ["München", "Berlin", "Hamburg"], correct: 1, explanation: "💡 Berlin ist seit 1990 wieder Hauptstadt Deutschlands." },
-            { question: "Wie viele Sekunden hat eine Minute?", answers: ["30", "60", "100"], correct: 1, explanation: "💡 Eine Minute hat 60 Sekunden." },
-            { question: "Welche Farbe entsteht, wenn man Rot und Weiß mischt?", answers: ["Rosa", "Braun", "Grau"], correct: 0, explanation: "💡 Rot und Weiß ergeben Rosa." },
-            { question: "Woraus besteht Wasser chemisch?", answers: ["Wasserstoff und Sauerstoff", "Nur Sauerstoff", "Stickstoff und Kohlenstoff"], correct: 0, explanation: "💡 Wasser (H₂O) besteht aus zwei Wasserstoffatomen und einem Sauerstoffatom." },
-            { question: "Welches ist das größte Tier der Welt?", answers: ["Elefant", "Blauwal", "Giraffe"], correct: 1, explanation: "💡 Der Blauwal ist mit bis zu 30 Metern das größte Tier der Erde." },
-            { question: "In welcher Himmelsrichtung geht die Sonne auf?", answers: ["Osten", "Westen", "Norden"], correct: 0, explanation: "💡 Die Sonne geht im Osten auf und im Westen unter." }
-        ]
-    },
-
-    // 🔠 BEREICH 4: TOOLS & SYSTEMDATEN
-    tools: {
-        deutsches_woerterbuch: [
-            "AAL", "ABEND", "ADLER", "ADRESSE", "AFFE", "AKTE", "ALT", "AMSEL", "ANFANG", "ANGEL",
-            "ANTWORT", "APFEL", "ARBEIT", "ARM", "ART", "ARZT", "AST", "ATLAS", "AUGE", "AUGUST",
-            "AUS", "AUSFLUG", "AUTO", "AXT", "BAD", "BALKON", "BALL", "BANANE", "BANK", "BAR",
-            "BART", "BAU", "BAUCH", "BAUM", "BEERE", "BEIN", "BERG", "BERUF", "BESEN", "BETT",
-            "BEUTEL", "BIENE", "BIER", "BILD", "BIRNE", "BLATT", "BLAU", "BLUME", "BLUMEN", "BLUT",
-            "BODEN", "BOGEN", "BOOT", "BOT", "BRIEF", "BROT", "BRUDER", "BRUST", "BUCH", "BUCHE",
-            "BUNT", "BUS", "DACH", "DACHS", "DAME", "DAMPF", "DANK", "DATUM", "DECKE", "DECKEL",
-            "DIENST", "DOM", "DONNER", "DORF", "DOSE", "DRACHE", "DRAHT", "DRUCK", "DUFT", "EBBE",
-            "ECKE", "EIER", "EIMER", "EIN", "EIS", "EISEN", "ELEFANT", "ELF", "ELTERN", "ENDE",
-            "ENGEL", "ENTE", "ERDE", "ERNTE", "ERZ", "ESEL", "ESSEN", "EULE", "FABRIK", "FADEN",
-            "FAMILIE", "FARBE", "FASS", "FEDER", "FEDERN", "FEE", "FEIN", "FELD", "FENSTER", "FERIEN",
-            "FEST", "FEUER", "FINGER", "FISCH", "FLASCHE", "FLIEGE", "FLUG", "FLUSS", "FORELLE", "FOTO",
-            "FRAGE", "FRAU", "FREUND", "FREUNDE", "FRUCHT", "FUSS", "GABEL", "GARAGE", "GARTEN", "GAS",
-            "GAST", "GEBIRGE", "GEDICHT", "GEFAHR", "GEIST", "GEL", "GELB", "GELD", "GEN", "GERN",
-            "GESICHT", "GITARRE", "GLANZ", "GLAS", "GLEIS", "GLOCKE", "GOLD", "GRAS", "GRAU", "GRUND",
-            "GUT", "HAAR", "HAFEN", "HAI", "HALLE", "HALS", "HAND", "HANDEL", "HANDY", "HASE",
-            "HAUCH", "HAUS", "HEBEL", "HEFT", "HEIM", "HERBST", "HERZ", "HIMMEL", "HOCH", "HOLZ",
-            "HONIG", "HOSEN", "HUND", "HUNGER", "HUT", "IGEL", "INSEKT", "INSEL", "JAHR", "KAFFEE",
-            "KALT", "KAMEL", "KAMERA", "KAMIN", "KANTE", "KARTE", "KARTON", "KASSE", "KASTEN", "KATZE",
-            "KEGEL", "KERZE", "KETTE", "KIND", "KINO", "KIRCHE", "KISSEN", "KLANG", "KLASSE", "KLAVIER",
-            "KLEE", "KLEID", "KNIE", "KNOCHEN", "KOCH", "KOFFER", "KOHLE", "KONZERT", "KOPF", "KOPIE",
-            "KORB", "KRAFT", "KREIDE", "KREIS", "KREUZ", "KUCHEN", "KUGEL", "KUH", "KUNST", "KUSS",
-            "LADEN", "LAMM", "LAMPE", "LAND", "LAUB", "LAUT", "LEBEN", "LEDER", "LEER", "LEHRER",
-            "LEITER", "LICHT", "LIEBE", "LIED", "LINIE", "LOB", "LOCH", "LUFT", "LUNGE", "MAGEN",
-            "MAI", "MAL", "MANTEL", "MARKT", "MAUER", "MAUS", "MEER", "MEHL", "MEHR", "MESSER",
-            "METALL", "MINUTE", "MITTE", "MOND", "MORGEN", "MOTOR", "MUND", "MUSEUM", "MUSIK", "MUT",
-            "MUTTER", "NACHBAR", "NACHT", "NADEL", "NAGEL", "NAME", "NASE", "NASS", "NEBEL", "NEST",
-            "NETT", "NEU", "NEUN", "NIE", "NORDEN", "NUDEL", "NUDELN", "NUN", "NUR", "OBST",
-            "OFEN", "OHR", "OMA", "ONKEL", "OPA", "OPER", "ORANGE", "ORGEL", "ORT", "OSTEN",
-            "PALAST", "PAPIER", "PARK", "PECH", "PERLE", "PFERD", "PFLANZE", "PILOT", "PILZ", "PLAN",
-            "PLANET", "PLATZ", "POLIZEI", "PREIS", "PROBLEM", "PULT", "PUNKT", "RAD", "RAHMEN", "RASEN",
-            "RAT", "RATTE", "RAUM", "RECHNER", "REGAL", "REGEN", "REGION", "REH", "REIS", "REISE",
-            "REISEN", "RICHTER", "RIESE", "RING", "ROH", "ROLLE", "ROLLER", "ROSE", "ROT", "RUHE",
-            "RUM", "SAAL", "SAFT", "SALAT", "SALZ", "SAND", "SCHAF", "SCHATTEN", "SCHATZ", "SCHIFF",
-            "SCHNEE", "SCHRANK", "SCHUH", "SCHULE", "SCHWESTER", "SEE", "SEIL", "SEITE", "SESSEL", "SIEBEN",
-            "SILBER", "SOFA", "SOHN", "SOMMER", "SONNE", "SPIEGEL", "SPIEL", "SPINNE", "SPORT", "STADT",
-            "STAR", "STEIN", "STERN", "STOCK", "STRAND", "STRASSE", "STUHL", "STUNDE", "STURM", "SUPPE",
-            "TAFEL", "TAG", "TAL", "TANZ", "TASCHE", "TASSE", "TAU", "TEICH", "TELLER", "TEPPICH",
-            "TIER", "TIGER", "TISCH", "TOMATE", "TON", "TOR", "TRAUM", "TREPPE", "TUCH", "TUN",
-            "TURM", "UFER", "UHR", "VATER", "VOGEL", "VOR", "WAGEN", "WALD", "WAND", "WASSER",
-            "WEG", "WEH", "WEIN", "WEIZEN", "WELLE", "WELT", "WESTE", "WIESE", "WIND", "WINTER",
-            "WOCHE", "WOLKE", "WOLKEN", "WOLLE", "WORT", "WUNDER", "WURZEL", "ZAHL", "ZAHN", "ZEBRA",
-            "ZEH", "ZEIT", "ZELT", "ZIEGE", "ZIEL", "ZIMMER", "ZOLL", "ZOO", "ZUCKER", "ZUG",
-            "ZWERG", "ZWIEBEL"
-        ]
     }
 };

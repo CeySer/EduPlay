@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=7"></script>
+    <script src="data.js?v=8"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -212,8 +212,8 @@
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
                     <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben 7 Buchstaben und
-                        bilden das beste Wort daraus (Handy weitergeben). Punkte wie bei Scrabble – eure Familie
-                        entscheidet per Ehrenwort, ob ein Wort zählt!</p>
+                        bilden das beste Wort daraus (Handy weitergeben). Die Wörter werden automatisch geprüft
+                        (Rechtschreibprüfung von <a href="https://languagetool.org" target="_blank" class="underline text-indigo-400">LanguageTool.org</a>).</p>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-2">Wer spielt mit? (mind. 1)</label>
                         <div id="scrabble-player-checkboxes" class="grid grid-cols-2 gap-2"></div>
@@ -661,6 +661,8 @@
                     </div>
 
                     <div id="tv-scrabble-mode-options" class="hidden text-left space-y-3 mb-2">
+                        <p class="text-xs text-gray-400 text-center">Wörter werden automatisch geprüft
+                            (Rechtschreibprüfung von <a href="https://languagetool.org" target="_blank" class="underline text-indigo-400">LanguageTool.org</a>).</p>
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1">Schwierigkeitsgrad</label>
                             <select id="tv-scrabble-difficulty"
@@ -1111,6 +1113,28 @@
                 schwer: { letters: 9, time: 30, label: "🔴 Schwer" }
             };
 
+            // Echte Wortprüfung über die kostenlose LanguageTool-Rechtschreibprüfung.
+            // status: 'valid' (erkannt), 'invalid' (kein Wort gefunden), 'unknown' (keine Verbindung -> Ehrenwort-Fallback)
+            async function isValidGermanWord(word) {
+                if (!word || word.length < 2) return { status: "invalid" };
+                try {
+                    const response = await fetch("https://api.languagetool.org/v2/check", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: `text=${encodeURIComponent(word)}&language=de-DE`
+                    });
+                    if (!response.ok) return { status: "unknown" };
+                    const data = await response.json();
+                    const hasSpellingError = (data.matches || []).some(m =>
+                        (m.rule && m.rule.issueType === "misspelling") ||
+                        (m.rule && m.rule.category && m.rule.category.id === "TYPOS")
+                    );
+                    return { status: hasSpellingError ? "invalid" : "valid" };
+                } catch (e) {
+                    return { status: "unknown" };
+                }
+            }
+
             let scrabbleState = null;
             let scrabbleTimerInterval = null;
 
@@ -1195,7 +1219,7 @@
                     const fb = document.getElementById("scrabble-live-feedback");
                     if (word.length === 0) { fb.innerText = ""; return; }
                     const result = computeScrabbleWordScore(word, scrabbleState.currentLetters);
-                    fb.innerText = result.valid ? `✅ ${result.score} Punkte${result.bonus ? " (inkl. +50 Bonus!)" : ""}` : "❌ Diese Buchstaben hast du nicht (oder zu oft benutzt)";
+                    fb.innerText = result.valid ? `${result.score} Punkte möglich${result.bonus ? " (inkl. +50 Bonus!)" : ""} – wird beim Einreichen geprüft` : "❌ Diese Buchstaben hast du nicht (oder zu oft benutzt)";
                     fb.className = "text-center text-sm font-bold h-5 " + (result.valid ? "text-emerald-400" : "text-rose-400");
                 };
                 let timeLeft = SCRABBLE_DIFFICULTIES[scrabbleState.difficulty].time;
@@ -1208,14 +1232,25 @@
                 }, 1000);
             }
 
-            function submitScrabbleWord() {
+            async function submitScrabbleWord() {
                 clearInterval(scrabbleTimerInterval);
+                const submitBtn = document.querySelector('#scrabble-play-area button[onclick="submitScrabbleWord()"]');
+                if (submitBtn) submitBtn.disabled = true;
                 const word = document.getElementById("scrabble-word-input").value.trim().toUpperCase();
                 const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
-                const result = word.length >= 2 ? computeScrabbleWordScore(word, scrabbleState.currentLetters) : { valid: false };
-                const points = result.valid ? result.score : 0;
+                const tileResult = word.length >= 2 ? computeScrabbleWordScore(word, scrabbleState.currentLetters) : { valid: false };
+
+                let points = 0; let note = "";
+                if (tileResult.valid) {
+                    const fb = document.getElementById("scrabble-live-feedback");
+                    fb.innerText = "🔍 Prüfe Wort..."; fb.className = "text-center text-sm font-bold h-5 text-gray-400";
+                    const check = await isValidGermanWord(word);
+                    if (check.status === "valid") { points = tileResult.score; }
+                    else if (check.status === "invalid") { points = 0; note = " – kein gültiges Wort erkannt"; }
+                    else { points = tileResult.score; note = " (offline – nach Ehrenwort gewertet)"; }
+                }
                 scrabbleState.scores[key] += points;
-                showToast(`${ALL_PROFILES[key].name}: +${points} Punkte${word ? ` für "${word}"` : ""}`, points > 0 ? "success" : "error");
+                showToast(`${ALL_PROFILES[key].name}: +${points} Punkte${word ? ` für "${word}"` : ""}${note}`, points > 0 ? "success" : "error");
 
                 scrabbleState.playerIndex++;
                 if (scrabbleState.playerIndex >= scrabbleState.playerKeys.length) {
@@ -1863,24 +1898,36 @@
                 tvGameRef.get().then(doc => revealTVScrabbleRound(doc.data()));
             }
 
-            function revealTVScrabbleRound(data) {
+            async function revealTVScrabbleRound(data) {
                 const playersData = data.players;
                 const letters = data.currentLetters;
-                const roundScores = {};
-                Object.keys(playersData).forEach(key => {
+
+                document.getElementById("view-tv-quiz-host").innerHTML = `
+            <div class="h-[90vh] flex flex-col items-center justify-center text-center">
+                <div class="text-6xl mb-6 animate-spin">🔍</div>
+                <h2 class="text-2xl font-black text-white">Prüfe Wörter...</h2>
+            </div>`;
+
+                for (const key of Object.keys(playersData)) {
                     const word = (playersData[key].word || "").toUpperCase();
-                    const result = word.length >= 2 ? computeScrabbleWordScore(word, letters) : { valid: false };
-                    const points = result.valid ? result.score : 0;
-                    roundScores[key] = points;
+                    const tileResult = word.length >= 2 ? computeScrabbleWordScore(word, letters) : { valid: false };
+                    let points = 0; let status = "invalid";
+                    if (tileResult.valid) {
+                        const check = await isValidGermanWord(word);
+                        status = check.status;
+                        points = (status === "invalid") ? 0 : tileResult.score;
+                    }
                     playersData[key].score = (playersData[key].score || 0) + points;
                     playersData[key].lastRoundPoints = points;
-                });
+                    playersData[key].wordStatus = status;
+                }
                 tvGameRef.update({ showAnswer: true, players: playersData });
 
                 const isLastRound = data.currentRound >= data.totalRounds;
                 let rowsHtml = "";
                 Object.values(playersData).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
-                    rowsHtml += `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-4"><div class="font-bold text-white text-lg">${p.name}: <span class="text-amber-300">"${p.word || "-"}"</span></div><div class="font-black text-emerald-400 text-xl">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
+                    const statusIcon = p.wordStatus === "valid" ? "✅" : p.wordStatus === "unknown" ? "⚠️" : "❌";
+                    rowsHtml += `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-4"><div class="font-bold text-white text-lg">${statusIcon} ${p.name}: <span class="text-amber-300">"${p.word || "-"}"</span></div><div class="font-black text-emerald-400 text-xl">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
                 });
 
                 document.getElementById("view-tv-quiz-host").innerHTML = `
@@ -2011,7 +2058,8 @@
                                 if (data.showAnswer) {
                                     const points = myData.lastRoundPoints || 0;
                                     const bg = points > 0 ? "bg-emerald-500" : "bg-gray-700";
-                                    document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-7xl mb-6">${points > 0 ? "✅" : "😅"}</div><h2 class="text-2xl font-black mb-2">Dein Wort: "${myData.word || "-"}"</h2><p class="text-xl font-bold">+ ${points} Punkte diese Runde</p><p class="text-sm opacity-80 mt-2">Gesamt: ${myData.score || 0} Punkte</p></div>`;
+                                    const statusText = myData.wordStatus === "invalid" ? "Kein gültiges Wort erkannt 😅" : myData.wordStatus === "unknown" ? "Offline geprüft (Ehrenwort) ⚠️" : "Erkannt! ✅";
+                                    document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-7xl mb-6">${points > 0 ? "✅" : "😅"}</div><h2 class="text-2xl font-black mb-2">Dein Wort: "${myData.word || "-"}"</h2><p class="text-sm opacity-70 mb-2">${statusText}</p><p class="text-xl font-bold">+ ${points} Punkte diese Runde</p><p class="text-sm opacity-80 mt-2">Gesamt: ${myData.score || 0} Punkte</p></div>`;
                                     if (points > 0) try { confetti(); } catch (e) { }
                                 } else if (!myData.hasAnswered) {
                                     document.getElementById("view-tv-quiz-player").innerHTML = `

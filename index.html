@@ -138,6 +138,8 @@
                     </div>
                 </div>
 
+                <div id="pending-test-card" class="hidden"></div>
+
                 <div class="grid grid-cols-2 gap-4">
                     <button onclick="showQuizSetup()"
                         class="bg-pink-600 p-5 rounded-2xl font-black text-white shadow-lg hover:bg-pink-500 flex flex-col items-center gap-2">
@@ -205,10 +207,50 @@
             <div id="view-parent" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
                     onclick="switchView('family-hub')">← Zurück zur Übersicht</button>
-                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
-                    <h3 class="text-xl font-black text-rose-400 mb-2">📊 Admin-Kontrollzentrum</h3>
-                    <p class="text-xs text-gray-400 mb-4">Übersicht der Lernfortschritte deiner Familie.</p>
-                    <div id="parent-stats-container" class="space-y-6"></div>
+
+                <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
+                    <button id="ptab-progress"
+                        class="flex-1 py-2 px-1 rounded-lg font-bold text-white bg-blue-600 shadow-md transition-all text-sm"
+                        onclick="switchAdminTab('progress')">📊 Fortschritt</button>
+                    <button id="ptab-test"
+                        class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
+                        onclick="switchAdminTab('test')">📝 Test erstellen</button>
+                </div>
+
+                <div id="admin-section-progress" class="space-y-4">
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
+                        <h3 class="text-xl font-black text-rose-400 mb-2">📊 Admin-Kontrollzentrum</h3>
+                        <p class="text-xs text-gray-400 mb-4">Übersicht der Lernfortschritte deiner Familie – wie in einer Fahrschul-App.</p>
+                        <div id="parent-stats-container" class="space-y-6"></div>
+                    </div>
+                </div>
+
+                <div id="admin-section-test" class="space-y-4 hidden">
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-4">
+                        <h3 class="text-xl font-black text-indigo-400 mb-1">📝 Neuen Test zuweisen</h3>
+                        <p class="text-xs text-gray-400 mb-2">Wähle ein Kind, die Themenbereiche und ein Zeitlimit. Der Test erscheint dann direkt im Menü des Kindes.</p>
+
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 block mb-1">Kind auswählen</label>
+                            <select id="test-profile-select"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none"></select>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 block mb-1">Themenbereiche auswählen</label>
+                            <div id="test-category-checkboxes" class="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto pr-1"></div>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 block mb-1">Zeitlimit (Minuten)</label>
+                            <input type="number" id="test-time-limit" value="10" min="1" max="90"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                        </div>
+
+                        <button onclick="assignTest()"
+                            class="w-full bg-indigo-600 py-3.5 rounded-xl font-black text-white shadow-lg hover:bg-indigo-500 transition">Test
+                            zuweisen 🚀</button>
+                    </div>
                 </div>
             </div>
 
@@ -267,6 +309,9 @@
             <div id="view-quiz" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="leaveQuiz()">←
                     Beenden</button>
+                <div id="test-timer-bar" class="hidden bg-indigo-900 border border-indigo-500 rounded-xl p-3 text-center font-black text-white">
+                    ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
+                </div>
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4 shadow-lg">
                     <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
                     <div id="options-container" class="flex flex-col gap-2.5"></div>
@@ -275,6 +320,11 @@
                         class="w-full p-3.5 bg-yellow-500 text-slate-950 font-extrabold rounded-xl hidden shadow-md mt-4"
                         onclick="triggerNextQuestion()">Nächste Frage ➔</button>
                 </div>
+            </div>
+
+            <!-- VIEW: TEST-ERGEBNIS -->
+            <div id="view-test-result" class="view hidden space-y-4">
+                <div id="test-result-content"></div>
             </div>
 
             <!-- VIEW: VOKABEL-TRAINER -->
@@ -413,6 +463,30 @@
             let activePlayerKey = "";
             let sessionLearnedWords = new Set();
 
+            // Anzeige-Namen für die Fragen-Kategorien (Fortschrittsanzeige & Testauswahl)
+            const CATEGORY_LABELS = {
+                klasse_1_2: "🧸 Klasse 1-2",
+                klasse_3_4: "🎒 Klasse 3-4",
+                klasse_5_6: "⚽ Klasse 5-6",
+                klasse_7_8: "🌍 Klasse 7-8",
+                klasse_9_11: "👥 Klasse 9-11",
+                kfz: "🔧 Berufsschule: KFZ-Mechatronik",
+                allgemeinwissen: "🏆 Allgemeinwissen (Sport & Filme)",
+                mathematik: "📐 Mathematik",
+                deutsch: "📚 Deutsch",
+                biologie: "🧬 Biologie",
+                chemie: "⚗️ Chemie",
+                physik: "⚡ Physik",
+                gesellschaft: "🌍 Geschichte, Erdkunde & Politik"
+            };
+
+            // Test-Modus Variablen (Eltern-Test mit Zeitlimit)
+            let testMode = false;
+            let testTimeRemaining = 0;
+            let testTimerInterval = null;
+            let testCorrectCount = 0;
+            let testAnsweredCount = 0;
+
             window.onload = function () {
                 if (typeof QUESTIONS_DATABASE === 'undefined' || typeof VOCABULARY_DATABASE === 'undefined') {
                     alert("ACHTUNG: Die Datei 'data.js' wird vom Browser nicht gefunden!\n\n1. Liegt sie im exakt gleichen Ordner wie die index.html?\n2. Heißt sie vielleicht versehentlich 'data.js.txt'? (Windows versteckt oft Dateiendungen)");
@@ -514,7 +588,27 @@
                 document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
                 document.getElementById("menu-coins").innerText = currentPlayer.coins;
                 document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType === 'alter' ? '🎂 Alter' : '🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`;
+                renderPendingTestCard();
                 switchView('menu');
+            }
+
+            function renderPendingTestCard() {
+                const card = document.getElementById("pending-test-card");
+                if (!card) return;
+                if (currentPlayer && currentPlayer.pendingTest) {
+                    const t = currentPlayer.pendingTest;
+                    const labels = t.categories.map(c => CATEGORY_LABELS[c] || c).join(", ");
+                    const minutes = Math.round(t.timeLimitSeconds / 60);
+                    card.innerHTML = `<div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-5 rounded-2xl shadow-lg text-white">
+                        <div class="font-black text-lg mb-1">📝 Neuer Test wartet auf dich!</div>
+                        <div class="text-xs opacity-90 mb-3">Themen: ${labels} · ⏱️ ${minutes} Min.</div>
+                        <button onclick="startAssignedTest()" class="w-full bg-white text-indigo-700 font-black p-3 rounded-xl shadow-md">Test jetzt starten 🚀</button>
+                    </div>`;
+                    card.classList.remove("hidden");
+                } else {
+                    card.classList.add("hidden");
+                    card.innerHTML = "";
+                }
             }
 
             function savePlayerProgress() {
@@ -525,10 +619,95 @@
                 document.getElementById("menu-coins").innerText = currentPlayer.coins;
             }
 
-            function openParentArea() { const pin = prompt("Admin-Sperre: Bitte 1234 eingeben"); if (pin === "1234") { renderAdminDashboard(); switchView('parent'); } }
+            function openParentArea() { const pin = prompt("Admin-Sperre: Bitte 1234 eingeben"); if (pin === "1234") { switchAdminTab('progress'); switchView('parent'); } }
+
+            function switchAdminTab(tab) {
+                document.getElementById('admin-section-progress').classList.add('hidden');
+                document.getElementById('admin-section-test').classList.add('hidden');
+                document.getElementById('ptab-progress').className = "flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm";
+                document.getElementById('ptab-test').className = "flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm";
+                document.getElementById('admin-section-' + tab).classList.remove('hidden');
+                document.getElementById('ptab-' + tab).className = "flex-1 py-2 px-1 rounded-lg font-bold text-white bg-blue-600 shadow-md transition-all text-sm";
+                if (tab === 'progress') renderAdminDashboard();
+                if (tab === 'test') renderTestAssignForm();
+            }
+
             function renderAdminDashboard() {
                 const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
-                Object.keys(ALL_PROFILES).forEach(key => { const p = ALL_PROFILES[key]; const wC = p.learnedWords ? p.learnedWords.length : 0; container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl flex justify-between items-center"><div><div class="text-blue-400 font-bold">${p.name} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div><div class="text-xs text-gray-400 mt-1">📚 ${wC} Vokabeln</div></div><div class="text-yellow-400 font-black">🪙 ${p.coins}</div></div>`; });
+                Object.keys(ALL_PROFILES).forEach(key => {
+                    const p = ALL_PROFILES[key];
+                    const wC = p.learnedWords ? p.learnedWords.length : 0;
+                    const stats = p.stats || {};
+                    const catKeys = Object.keys(stats).filter(c => stats[c].attempts > 0);
+                    let barsHtml = "";
+                    if (catKeys.length === 0) {
+                        barsHtml = `<p class="text-xs text-gray-500 mt-3">Noch keine Übungen absolviert.</p>`;
+                    } else {
+                        catKeys.sort((a, b) => stats[b].attempts - stats[a].attempts).forEach(cat => {
+                            const s = stats[cat];
+                            const pct = Math.round((s.correct / s.attempts) * 100);
+                            const label = CATEGORY_LABELS[cat] || cat;
+                            const barColor = pct >= 80 ? "bg-emerald-500" : pct >= 50 ? "bg-yellow-500" : "bg-rose-500";
+                            barsHtml += `<div class="mt-2">
+                                <div class="flex justify-between text-xs font-bold text-gray-300 mb-1">
+                                    <span>${label}</span><span>${s.correct}/${s.attempts} (${pct}%)</span>
+                                </div>
+                                <div class="w-full bg-gray-950 rounded-full h-2.5 overflow-hidden border border-gray-800">
+                                    <div class="${barColor} h-2.5 rounded-full" style="width:${pct}%"></div>
+                                </div>
+                            </div>`;
+                        });
+                    }
+                    let lastTestHtml = "";
+                    if (p.testHistory && p.testHistory.length > 0) {
+                        const t = p.testHistory[0];
+                        const pct = t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0;
+                        const d = new Date(t.date);
+                        lastTestHtml = `<div class="mt-3 text-xs bg-gray-950 border border-gray-800 rounded-lg p-2"><span class="text-indigo-400 font-bold">📝 Letzter Test:</span> ${t.correct}/${t.total} (${pct}%) am ${d.toLocaleDateString('de-DE')}</div>`;
+                    }
+                    const pendingHtml = p.pendingTest ? `<div class="mt-2 text-xs text-yellow-400 font-bold">⏳ Test wartet auf Bearbeitung</div>` : "";
+                    container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl">
+                        <div class="flex justify-between items-center">
+                            <div class="text-blue-400 font-bold">${p.name} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div>
+                            <div class="text-yellow-400 font-black">🪙 ${p.coins}</div>
+                        </div>
+                        <div class="text-xs text-gray-400 mt-1">📚 ${wC} Vokabeln gelernt</div>
+                        ${barsHtml}
+                        ${lastTestHtml}
+                        ${pendingHtml}
+                    </div>`;
+                });
+                if (Object.keys(ALL_PROFILES).length === 0) {
+                    container.innerHTML = `<p class="text-xs text-gray-500">Noch keine Profile angelegt.</p>`;
+                }
+            }
+
+            function renderTestAssignForm() {
+                const sel = document.getElementById("test-profile-select");
+                const keys = Object.keys(ALL_PROFILES);
+                sel.innerHTML = keys.length
+                    ? keys.map(k => `<option value="${k}">${ALL_PROFILES[k].name}</option>`).join("")
+                    : `<option value="">Kein Profil vorhanden</option>`;
+                const catBox = document.getElementById("test-category-checkboxes");
+                const categories = typeof QUESTIONS_DATABASE !== 'undefined' ? [...new Set(QUESTIONS_DATABASE.map(q => q.category))] : [];
+                catBox.innerHTML = categories.map(c => `
+                    <label class="flex items-center gap-2 bg-gray-950 border border-gray-800 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:border-indigo-500">
+                        <input type="checkbox" value="${c}" class="test-cat-checkbox w-4 h-4 accent-indigo-500">
+                        ${CATEGORY_LABELS[c] || c}
+                    </label>`).join("");
+            }
+
+            function assignTest() {
+                const profileKey = document.getElementById("test-profile-select").value;
+                const checked = Array.from(document.querySelectorAll(".test-cat-checkbox:checked")).map(cb => cb.value);
+                const minutes = parseInt(document.getElementById("test-time-limit").value) || 10;
+                if (!profileKey) return showToast("Kein Profil ausgewählt!", "error");
+                if (checked.length === 0) return showToast("Bitte mindestens ein Thema auswählen!", "error");
+                const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, createdAt: new Date().toISOString() };
+                ALL_PROFILES[profileKey].pendingTest = pendingTest;
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey).update({ pendingTest });
+                showToast(`Test für ${ALL_PROFILES[profileKey].name} zugewiesen! ⏱️`, "success");
+                renderAdminDashboard();
             }
 
             // === FOKUS LERNZEIT ===
@@ -549,9 +728,71 @@
                 const cat = document.getElementById("sub-category").value;
                 currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat);
                 if (currentQuestions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return; }
+                testMode = false;
+                document.getElementById("test-timer-bar").classList.add("hidden");
                 qIndex = 0; switchView('quiz'); showQuestion();
             }
-            function leaveQuiz() { switchView('menu'); }
+
+            // === TEST-MODUS (vom Elternbereich zugewiesen, mit Zeitlimit) ===
+            function startAssignedTest() {
+                if (!currentPlayer || !currentPlayer.pendingTest) return;
+                const { categories, timeLimitSeconds } = currentPlayer.pendingTest;
+                currentQuestions = QUESTIONS_DATABASE.filter(q => categories.includes(q.category)).sort(() => Math.random() - 0.5);
+                if (currentQuestions.length === 0) { showToast("Keine Fragen für diesen Test gefunden!", "error"); return; }
+                testMode = true; testCorrectCount = 0; testAnsweredCount = 0; testTimeRemaining = timeLimitSeconds; quizMode = 'mc';
+                qIndex = 0;
+                document.getElementById("test-timer-bar").classList.remove("hidden");
+                switchView('quiz'); showQuestion();
+                clearInterval(testTimerInterval);
+                updateTestTimerDisplay();
+                testTimerInterval = setInterval(() => {
+                    testTimeRemaining--;
+                    updateTestTimerDisplay();
+                    if (testTimeRemaining <= 0) { clearInterval(testTimerInterval); finishTest(); }
+                }, 1000);
+            }
+            function updateTestTimerDisplay() {
+                const el = document.getElementById("test-timer-display");
+                if (el) el.innerText = Math.max(0, Math.floor(testTimeRemaining / 60)) + ":" + Math.max(0, testTimeRemaining % 60).toString().padStart(2, '0');
+            }
+            function finishTest() {
+                clearInterval(testTimerInterval);
+                testMode = false;
+                document.getElementById("test-timer-bar").classList.add("hidden");
+                const total = testAnsweredCount;
+                const pct = total > 0 ? Math.round((testCorrectCount / total) * 100) : 0;
+                if (currentPlayer) {
+                    if (!currentPlayer.testHistory) currentPlayer.testHistory = [];
+                    currentPlayer.testHistory.unshift({ date: new Date().toISOString(), correct: testCorrectCount, total: total });
+                    currentPlayer.testHistory = currentPlayer.testHistory.slice(0, 10);
+                    currentPlayer.pendingTest = null;
+                    savePlayerProgress();
+                }
+                showTestResultScreen(testCorrectCount, total, pct);
+            }
+            function showTestResultScreen(correct, total, pct) {
+                const emoji = pct >= 80 ? "🏆" : pct >= 50 ? "👍" : "💪";
+                const msg = pct >= 80 ? "Super gemacht!" : pct >= 50 ? "Gut gemacht, weiter so!" : "Dranbleiben, das wird noch!";
+                document.getElementById("test-result-content").innerHTML = `
+                    <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center shadow-lg space-y-4">
+                        <div class="text-7xl">${emoji}</div>
+                        <h2 class="text-2xl font-black text-white">${msg}</h2>
+                        <div class="text-5xl font-black text-emerald-400">${correct} / ${total}</div>
+                        <div class="text-gray-400 font-bold">${pct}% richtig beantwortet</div>
+                        <button onclick="switchView('menu')" class="w-full p-4 bg-indigo-600 hover:bg-indigo-500 font-black text-white rounded-xl shadow-lg mt-4 transition">Zurück zum Menü</button>
+                    </div>`;
+                switchView('test-result');
+            }
+
+            function leaveQuiz() {
+                if (testMode) {
+                    if (!confirm("Test wirklich abbrechen? Dein bisheriger Fortschritt in diesem Test geht verloren.")) return;
+                    clearInterval(testTimerInterval);
+                    testMode = false;
+                    document.getElementById("test-timer-bar").classList.add("hidden");
+                }
+                switchView('menu');
+            }
             function showQuestion() {
                 const q = currentQuestions[qIndex]; const optsContainer = document.getElementById("options-container"); const expBox = document.getElementById("explanation-box");
                 optsContainer.innerHTML = ""; expBox.classList.add("hidden"); document.getElementById("next-question-btn").classList.add("hidden");
@@ -564,15 +805,34 @@
                 }
             }
             function checkQuiz(sel, cor, exp, correctAnswerText) {
+                if (testMode && testTimeRemaining <= 0) return;
                 const btns = document.getElementById("options-container").children;
                 for (let i = 0; i < btns.length; i++) { btns[i].disabled = true; if (i === cor) btns[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white mt-2 shadow-md"; else if (i === sel) btns[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white mt-2 opacity-60"; else btns[i].classList.add("opacity-30"); }
+
+                // Fortschritt pro Themenbereich speichern (für Eltern-Fortschrittsanzeige)
+                const q = currentQuestions[qIndex];
+                if (currentPlayer) {
+                    if (!currentPlayer.stats) currentPlayer.stats = {};
+                    if (!currentPlayer.stats[q.category]) currentPlayer.stats[q.category] = { attempts: 0, correct: 0 };
+                    currentPlayer.stats[q.category].attempts++;
+                    if (sel === cor) currentPlayer.stats[q.category].correct++;
+                }
+                if (testMode) { testAnsweredCount++; if (sel === cor) testCorrectCount++; }
+
                 const expBox = document.getElementById("explanation-box");
                 if (sel === cor) {
                     currentPlayer.coins += 10; savePlayerProgress(); confetti(); expBox.innerHTML = `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
-                } else { showToast("Leider falsch!", "error"); expBox.innerHTML = `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/40 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block"; }
+                } else { savePlayerProgress(); showToast("Leider falsch!", "error"); expBox.innerHTML = `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/40 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block"; }
                 document.getElementById("next-question-btn").classList.remove("hidden");
             }
-            function triggerNextQuestion() { qIndex++; if (qIndex < currentQuestions.length) showQuestion(); else { showToast("Lektion beendet! 🎉"); switchView('menu'); } }
+            function triggerNextQuestion() {
+                qIndex++;
+                if (testMode) {
+                    if (qIndex < currentQuestions.length && testTimeRemaining > 0) showQuestion(); else finishTest();
+                } else {
+                    if (qIndex < currentQuestions.length) showQuestion(); else { showToast("Lektion beendet! 🎉"); switchView('menu'); }
+                }
+            }
 
             // === VOKABEL LOGIK ===
             let activeLang = 'en', activeCategory = 'basics', vIndex = 0, vocabMode = 'flashcards';

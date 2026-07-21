@@ -106,6 +106,11 @@
                     + Neues Profil für Kind anlegen
                 </button>
 
+                <button onclick="openDuelSetup()"
+                    class="w-full p-4 bg-gradient-to-r from-rose-600 to-orange-600 text-white font-black rounded-2xl shadow-lg flex justify-center items-center gap-2">
+                    ⚔️ Geschwister-Duell starten
+                </button>
+
                 <!-- RANGLISTE -->
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg mt-6">
                     <h2 class="text-xl font-black text-yellow-400 mb-4 text-center">🏆 Familien-Rangliste</h2>
@@ -123,6 +128,58 @@
                         class="text-xs text-gray-500 font-bold text-center mt-2 underline">Familien-Account
                         ausloggen</button>
                 </div>
+            </div>
+
+            <!-- VIEW: DUELL SETUP -->
+            <div id="view-duel-setup" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                    onclick="switchView('family-hub')">← Zurück</button>
+                <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
+                    <h2 class="text-2xl font-black text-center text-rose-400">⚔️ Geschwister-Duell</h2>
+                    <p class="text-xs text-gray-400 text-center -mt-2">Zwei Profile treten nacheinander (Handy
+                        weitergeben) im selben Quiz gegeneinander an.</p>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Spieler 1</label>
+                        <select id="duel-player-a"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold"></select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Spieler 2</label>
+                        <select id="duel-player-b"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold"></select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Themenbereich</label>
+                        <select id="duel-category"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold"></select>
+                    </div>
+                    <button onclick="startDuel()"
+                        class="w-full p-4 mt-2 bg-rose-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-rose-500">Duell
+                        starten ⚔️</button>
+                </div>
+            </div>
+
+            <!-- VIEW: DUELL SPIEL -->
+            <div id="view-duel-play" class="view hidden space-y-4">
+                <div id="duel-turn-intro"
+                    class="bg-gradient-to-r from-rose-600 to-orange-600 p-8 rounded-2xl text-center shadow-lg space-y-4">
+                    <div id="duel-turn-emoji" class="text-6xl">🥊</div>
+                    <h2 id="duel-turn-title" class="text-2xl font-black text-white">Name ist dran!</h2>
+                    <p class="text-sm text-white/80">Gib das Handy weiter und drück auf Los, wenn du bereit bist.</p>
+                    <button onclick="beginDuelTurn()"
+                        class="w-full bg-white text-rose-700 font-black p-4 rounded-xl shadow-md">Los geht's! 🚀</button>
+                </div>
+                <div id="duel-question-area"
+                    class="hidden bg-gray-800 border border-gray-700 p-5 rounded-2xl text-center space-y-4 shadow-lg">
+                    <div id="duel-progress" class="text-xs text-gray-400 font-bold">Frage 1/8</div>
+                    <h2 id="duel-question-text" class="text-lg font-bold text-pink-400 leading-snug">...</h2>
+                    <div id="duel-options-container" class="flex flex-col gap-2.5"></div>
+                </div>
+            </div>
+
+            <!-- VIEW: DUELL ERGEBNIS -->
+            <div id="view-duel-result" class="view hidden space-y-4">
+                <div id="duel-result-content"></div>
             </div>
 
             <!-- VIEW: HAUPTMENÜ (nach Profilauswahl) -->
@@ -158,6 +215,8 @@
                     class="w-full bg-purple-600 p-4 rounded-2xl font-black text-white shadow-lg hover:bg-purple-500 flex items-center justify-center gap-2">
                     🎁 Belohnungen einlösen
                 </button>
+
+                <div id="weakness-card" class="hidden"></div>
 
                 <div id="pending-test-card" class="hidden"></div>
 
@@ -286,6 +345,14 @@
                         <button onclick="assignTest()"
                             class="w-full bg-indigo-600 py-3.5 rounded-xl font-black text-white shadow-lg hover:bg-indigo-500 transition">Test
                             zuweisen 🚀</button>
+
+                        <div class="pt-4 border-t border-gray-700 mt-2">
+                            <label class="text-xs font-bold text-gray-400 block mb-2">💾 Gespeicherte Vorlagen</label>
+                            <div id="test-templates-list" class="space-y-2 mb-3"></div>
+                            <button onclick="saveTestTemplate()"
+                                class="w-full bg-gray-700 hover:bg-gray-600 py-2.5 rounded-xl font-bold text-white text-sm transition">Aktuelle
+                                Auswahl als Vorlage speichern</button>
+                        </div>
                     </div>
                 </div>
 
@@ -313,6 +380,10 @@
             <div id="view-quiz-setup" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum
                     Hauptmenü</button>
+                <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
+                    class="hidden w-full bg-rose-600 hover:bg-rose-500 p-4 rounded-2xl font-black text-white shadow-lg flex items-center justify-center gap-2">
+                    🔁 Wiederholen (<span class="wq-count">0</span> Fragen, die noch nicht saßen)
+                </button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
                     <h2 class="text-2xl font-black text-center text-pink-400">Wissen & Grammatik</h2>
                     <div>
@@ -543,6 +614,7 @@
 
             // === GAMIFICATION: LEVEL, STREAK, ABZEICHEN, BELOHNUNGEN ===
             let familyRewards = [];
+            let testTemplates = [];
 
             const LEVELS = [
                 { name: "Anfänger", icon: "🌱", min: 0 },
@@ -577,14 +649,15 @@
                 if (!p.stats) return 0;
                 return Object.values(p.stats).reduce((sum, s) => sum + s.correct, 0);
             }
-            function checkAndAwardBadges() {
-                if (!currentPlayer) return;
-                if (!currentPlayer.badges) currentPlayer.badges = [];
-                const totalCorrect = getTotalCorrect(currentPlayer);
-                const vocabCount = sessionLearnedWords.size;
-                const streakCount = currentPlayer.streak ? currentPlayer.streak.count : 0;
-                const hasPerfectTest = (currentPlayer.testHistory || []).some(t => t.total > 0 && t.correct === t.total);
-                const level = getLevelInfo(currentPlayer.xp || 0);
+            // Prüft & vergibt Abzeichen für ein beliebiges Profil-Objekt (nicht nur currentPlayer),
+            // damit z.B. der Duell-Modus beide Spieler unabhängig auswerten kann.
+            function evaluateAndApplyBadges(p) {
+                if (!p.badges) p.badges = [];
+                const totalCorrect = getTotalCorrect(p);
+                const vocabCount = (p === currentPlayer) ? sessionLearnedWords.size : (p.learnedWords ? p.learnedWords.length : 0);
+                const streakCount = p.streak ? p.streak.count : 0;
+                const hasPerfectTest = (p.testHistory || []).some(t => t.total > 0 && t.correct === t.total);
+                const level = getLevelInfo(p.xp || 0);
                 const conditions = {
                     starter: totalCorrect >= 1, fifty: totalCorrect >= 50, hundred: totalCorrect >= 100,
                     streak3: streakCount >= 3, streak7: streakCount >= 7,
@@ -592,7 +665,12 @@
                     perfecttest: hasPerfectTest, level_meister: level.index >= 4
                 };
                 let newBadge = null;
-                BADGES.forEach(b => { if (conditions[b.id] && !currentPlayer.badges.includes(b.id)) { currentPlayer.badges.push(b.id); newBadge = b; } });
+                BADGES.forEach(b => { if (conditions[b.id] && !p.badges.includes(b.id)) { p.badges.push(b.id); newBadge = b; } });
+                return newBadge;
+            }
+            function checkAndAwardBadges() {
+                if (!currentPlayer) return;
+                const newBadge = evaluateAndApplyBadges(currentPlayer);
                 if (newBadge) { showToast(`🎉 Neues Abzeichen: ${newBadge.icon} ${newBadge.name}!`, "success"); confetti(); }
             }
             function registerStreak() {
@@ -613,6 +691,25 @@
                 savePlayerProgress();
                 updateMenuGamification();
             }
+            // Vergibt Coins/XP + Streak/Badges an ein beliebiges Profil, ohne den aktuell
+            // eingeloggten Spieler (currentPlayer/sessionLearnedWords) zu beeinflussen.
+            // Wird vom Duell-Modus benutzt, da dort zwei Profile abwechselnd spielen.
+            function awardXPToProfile(key, amount) {
+                const p = ALL_PROFILES[key];
+                if (!p) return;
+                p.coins = (p.coins || 0) + amount;
+                p.xp = (p.xp || 0) + amount;
+                const today = new Date().toISOString().slice(0, 10);
+                if (!p.streak) p.streak = { count: 0, lastDate: null };
+                if (p.streak.lastDate !== today) {
+                    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+                    p.streak.count = (p.streak.lastDate === yesterday) ? p.streak.count + 1 : 1;
+                    p.streak.lastDate = today;
+                }
+                evaluateAndApplyBadges(p);
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).set(p);
+                if (activePlayerKey === key) { currentPlayer = p; updateMenuGamification(); const el = document.getElementById("menu-coins"); if (el) el.innerText = p.coins; }
+            }
             function updateMenuGamification() {
                 if (!currentPlayer) return;
                 const lvl = getLevelInfo(currentPlayer.xp || 0);
@@ -630,12 +727,13 @@
                     : earned.map(id => { const b = BADGES.find(x => x.id === id); if (!b) return ""; return `<div class="flex-shrink-0 bg-gray-800 border border-gray-700 rounded-xl px-3 py-2 text-center" title="${b.desc}"><div class="text-2xl">${b.icon}</div><div class="text-[10px] font-bold text-gray-300 mt-1 whitespace-nowrap">${b.name}</div></div>`; }).join("");
             }
 
-            // --- Belohnungen (vom Elternbereich definiert, vom Kind eingelöst) ---
             async function loadFamilyRewards() {
                 try {
                     const doc = await db.collection("parents").doc(currentParentUser.uid).get();
-                    familyRewards = (doc.exists && doc.data().rewards) ? doc.data().rewards : [];
-                } catch (e) { familyRewards = []; }
+                    const data = doc.exists ? doc.data() : {};
+                    familyRewards = data.rewards || [];
+                    testTemplates = data.testTemplates || [];
+                } catch (e) { familyRewards = []; testTemplates = []; }
             }
             function saveFamilyRewards() {
                 db.collection("parents").doc(currentParentUser.uid).set({ rewards: familyRewards }, { merge: true });
@@ -756,6 +854,95 @@
                 lbContainer.innerHTML = lbHTML;
             }
 
+            // === DUELL-MODUS (1 gegen 1, gleiches Gerät, Handy weitergeben) ===
+            let duelState = null;
+            function openDuelSetup() {
+                if (Object.keys(ALL_PROFILES).length < 2) return showToast("Für ein Duell braucht ihr mindestens 2 Profile!", "error");
+                const keys = Object.keys(ALL_PROFILES);
+                const opts = keys.map(k => `<option value="${k}">${ALL_PROFILES[k].name}</option>`).join("");
+                const selA = document.getElementById("duel-player-a"); const selB = document.getElementById("duel-player-b");
+                selA.innerHTML = opts; selB.innerHTML = opts;
+                selB.selectedIndex = 1;
+                const catSel = document.getElementById("duel-category");
+                const categories = typeof QUESTIONS_DATABASE !== 'undefined' ? [...new Set(QUESTIONS_DATABASE.map(q => q.category))] : [];
+                catSel.innerHTML = categories.map(c => `<option value="${c}">${CATEGORY_LABELS[c] || c}</option>`).join("");
+                switchView('duel-setup');
+            }
+            function startDuel() {
+                const keyA = document.getElementById("duel-player-a").value;
+                const keyB = document.getElementById("duel-player-b").value;
+                const cat = document.getElementById("duel-category").value;
+                if (!keyA || !keyB) return showToast("Bitte zwei Profile auswählen!", "error");
+                if (keyA === keyB) return showToast("Bitte zwei unterschiedliche Spieler wählen!", "error");
+                const pool = QUESTIONS_DATABASE.filter(q => q.category === cat).sort(() => Math.random() - 0.5).slice(0, 8);
+                if (pool.length < 3) return showToast("Zu wenige Fragen in diesem Thema für ein Duell!", "error");
+                duelState = { keyA, keyB, questions: pool, qIndex: 0, scoreA: 0, scoreB: 0, turn: 'A' };
+                switchView('duel-play');
+                showDuelTurnIntro();
+            }
+            function showDuelTurnIntro() {
+                const key = duelState.turn === 'A' ? duelState.keyA : duelState.keyB;
+                document.getElementById("duel-turn-title").innerText = `${ALL_PROFILES[key].name} ist dran!`;
+                document.getElementById("duel-turn-emoji").innerText = duelState.turn === 'A' ? "🥊" : "🔥";
+                document.getElementById("duel-turn-intro").classList.remove("hidden");
+                document.getElementById("duel-question-area").classList.add("hidden");
+            }
+            function beginDuelTurn() {
+                duelState.qIndex = 0;
+                document.getElementById("duel-turn-intro").classList.add("hidden");
+                document.getElementById("duel-question-area").classList.remove("hidden");
+                showDuelQuestion();
+            }
+            function showDuelQuestion() {
+                const q = duelState.questions[duelState.qIndex];
+                document.getElementById("duel-progress").innerText = `Frage ${duelState.qIndex + 1}/${duelState.questions.length}`;
+                document.getElementById("duel-question-text").innerText = q.question;
+                const opts = document.getElementById("duel-options-container"); opts.innerHTML = "";
+                q.answers.forEach((ans, i) => {
+                    const b = document.createElement("button");
+                    b.className = "w-full p-4 bg-gray-900 hover:bg-gray-800 rounded-xl font-bold text-white mt-2 border border-gray-700 transition-colors";
+                    b.innerText = ans; b.onclick = () => checkDuelAnswer(i, q.correct); opts.appendChild(b);
+                });
+            }
+            function checkDuelAnswer(sel, cor) {
+                const btns = document.getElementById("duel-options-container").children;
+                for (let i = 0; i < btns.length; i++) {
+                    btns[i].disabled = true;
+                    if (i === cor) btns[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white mt-2 shadow-md";
+                    else if (i === sel) btns[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white mt-2 opacity-60";
+                    else btns[i].classList.add("opacity-30");
+                }
+                if (sel === cor) { if (duelState.turn === 'A') duelState.scoreA++; else duelState.scoreB++; }
+                setTimeout(() => {
+                    duelState.qIndex++;
+                    if (duelState.qIndex < duelState.questions.length) { showDuelQuestion(); }
+                    else if (duelState.turn === 'A') { duelState.turn = 'B'; showDuelTurnIntro(); }
+                    else { finishDuel(); }
+                }, 1100);
+            }
+            function finishDuel() {
+                const { keyA, keyB, scoreA, scoreB } = duelState;
+                const nameA = ALL_PROFILES[keyA].name; const nameB = ALL_PROFILES[keyB].name;
+                let resultTitle;
+                if (scoreA > scoreB) { resultTitle = `🏆 ${nameA} gewinnt!`; awardXPToProfile(keyA, 15); awardXPToProfile(keyB, 5); }
+                else if (scoreB > scoreA) { resultTitle = `🏆 ${nameB} gewinnt!`; awardXPToProfile(keyB, 15); awardXPToProfile(keyA, 5); }
+                else { resultTitle = "🤝 Unentschieden!"; awardXPToProfile(keyA, 8); awardXPToProfile(keyB, 8); }
+                document.getElementById("duel-result-content").innerHTML = `
+                    <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center shadow-lg space-y-4">
+                        <div class="text-6xl">⚔️</div>
+                        <h2 class="text-2xl font-black text-white">${resultTitle}</h2>
+                        <div class="flex justify-around items-center mt-4">
+                            <div><div class="text-3xl font-black text-indigo-400">${scoreA}</div><div class="text-xs font-bold text-gray-400 mt-1">${nameA}</div></div>
+                            <div class="text-gray-600 font-black">VS</div>
+                            <div><div class="text-3xl font-black text-pink-400">${scoreB}</div><div class="text-xs font-bold text-gray-400 mt-1">${nameB}</div></div>
+                        </div>
+                        <button onclick="switchView('family-hub')" class="w-full p-4 bg-indigo-600 hover:bg-indigo-500 font-black text-white rounded-xl shadow-lg mt-4 transition">Zurück zur Übersicht</button>
+                    </div>`;
+                duelState = null;
+                switchView('duel-result');
+                renderFamilyHub();
+            }
+
             async function saveNewProfile() {
                 const name = document.getElementById("new-profile-name").value.trim();
                 const type = document.getElementById("new-profile-type").value;
@@ -787,8 +974,42 @@
                 document.getElementById("menu-coins").innerText = currentPlayer.coins;
                 document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType === 'alter' ? '🎂 Alter' : '🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`;
                 renderPendingTestCard();
+                renderWeaknessSuggestion();
                 updateMenuGamification();
                 switchView('menu');
+            }
+
+            // === SCHWÄCHEN-ERKENNUNG ===
+            function getWeakestCategory(p) {
+                if (!p || !p.stats) return null;
+                let weakest = null;
+                Object.keys(p.stats).forEach(cat => {
+                    const s = p.stats[cat];
+                    if (s.attempts >= 3) {
+                        const pct = s.correct / s.attempts;
+                        if (!weakest || pct < weakest.pct) weakest = { category: cat, pct, attempts: s.attempts, correct: s.correct };
+                    }
+                });
+                return (weakest && weakest.pct < 0.7) ? weakest : null;
+            }
+            function renderWeaknessSuggestion() {
+                const card = document.getElementById("weakness-card");
+                if (!card) return;
+                const weak = getWeakestCategory(currentPlayer);
+                if (weak) {
+                    const label = CATEGORY_LABELS[weak.category] || weak.category;
+                    const pct = Math.round(weak.pct * 100);
+                    card.innerHTML = `<div class="bg-gray-800 border border-yellow-600/40 rounded-2xl p-4 flex items-center justify-between gap-3">
+                        <div>
+                            <div class="font-bold text-yellow-400 text-sm">💡 Tipp für dich</div>
+                            <div class="text-xs text-gray-300 mt-1">${label}: nur ${pct}% richtig. Lohnt sich zu üben!</div>
+                        </div>
+                        <button onclick="startQuizForCategory('${weak.category}')" class="bg-yellow-500 text-slate-950 font-black text-xs px-3 py-2 rounded-lg shadow-md flex-shrink-0">Üben →</button>
+                    </div>`;
+                    card.classList.remove("hidden");
+                } else {
+                    card.classList.add("hidden"); card.innerHTML = "";
+                }
             }
 
             function renderPendingTestCard() {
@@ -909,6 +1130,7 @@
                         <input type="checkbox" value="${c}" class="test-cat-checkbox w-4 h-4 accent-indigo-500">
                         ${CATEGORY_LABELS[c] || c}
                     </label>`).join("");
+                renderTestTemplatesList();
             }
 
             function assignTest() {
@@ -924,6 +1146,44 @@
                 renderAdminDashboard();
             }
 
+            // === TEST-VORLAGEN (wiederverwendbare Kombination aus Themen + Zeitlimit) ===
+            function saveTestTemplate() {
+                const checked = Array.from(document.querySelectorAll(".test-cat-checkbox:checked")).map(cb => cb.value);
+                const minutes = parseInt(document.getElementById("test-time-limit").value) || 10;
+                if (checked.length === 0) return showToast("Bitte zuerst Themen auswählen!", "error");
+                const name = prompt("Name für diese Test-Vorlage (z.B. 'Mathe-Check'):");
+                if (!name) return;
+                testTemplates.push({ id: "tpl_" + Date.now(), name, categories: checked, timeLimitSeconds: minutes * 60 });
+                saveTestTemplates();
+                renderTestTemplatesList();
+                showToast("Vorlage gespeichert!", "success");
+            }
+            function saveTestTemplates() {
+                db.collection("parents").doc(currentParentUser.uid).set({ testTemplates }, { merge: true });
+            }
+            function deleteTestTemplate(id) {
+                testTemplates = testTemplates.filter(t => t.id !== id);
+                saveTestTemplates();
+                renderTestTemplatesList();
+            }
+            function loadTestTemplate(id) {
+                const t = testTemplates.find(x => x.id === id);
+                if (!t) return;
+                document.querySelectorAll(".test-cat-checkbox").forEach(cb => { cb.checked = t.categories.includes(cb.value); });
+                document.getElementById("test-time-limit").value = Math.round(t.timeLimitSeconds / 60);
+                showToast(`Vorlage "${t.name}" geladen`, "success");
+            }
+            function renderTestTemplatesList() {
+                const list = document.getElementById("test-templates-list");
+                if (!list) return;
+                list.innerHTML = testTemplates.length === 0
+                    ? `<p class="text-xs text-gray-500">Noch keine Vorlagen gespeichert.</p>`
+                    : testTemplates.map(t => `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-3">
+                        <div class="text-sm font-bold text-white">${t.name}<div class="text-xs text-gray-400 font-normal">${t.categories.length} Themen · ${Math.round(t.timeLimitSeconds / 60)} Min.</div></div>
+                        <div class="flex gap-3 flex-shrink-0"><button onclick="loadTestTemplate('${t.id}')" class="text-indigo-400 font-bold text-xs hover:text-indigo-300">Laden</button><button onclick="deleteTestTemplate('${t.id}')" class="text-rose-400 font-bold text-xs hover:text-rose-300">Löschen</button></div>
+                    </div>`).join("");
+            }
+
             // === FOKUS LERNZEIT ===
             let focusTimerInterval = null; let focusTimeRemaining = 15 * 60;
             function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); addXP(20); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; } }, 1000); } }
@@ -936,15 +1196,41 @@
                 document.getElementById("qmode-mc").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'mc' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
                 document.getElementById("qmode-flashcards").className = `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'flashcards' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-900 text-gray-400'}`;
             }
-            function showQuizSetup() { switchView('quiz-setup'); }
-            function startQuiz() {
-                if (typeof QUESTIONS_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
-                const cat = document.getElementById("sub-category").value;
-                currentQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat);
-                if (currentQuestions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return; }
+            function showQuizSetup() {
+                switchView('quiz-setup');
+                const count = currentPlayer && currentPlayer.wrongQuestions ? currentPlayer.wrongQuestions.length : 0;
+                const btn = document.getElementById("wrong-questions-btn");
+                if (btn) {
+                    if (count > 0) { btn.classList.remove("hidden"); btn.querySelector("span.wq-count").innerText = count; }
+                    else { btn.classList.add("hidden"); }
+                }
+            }
+            function launchQuiz(questions) {
+                if (!questions || questions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return false; }
+                currentQuestions = questions;
                 testMode = false;
                 document.getElementById("test-timer-bar").classList.add("hidden");
                 qIndex = 0; switchView('quiz'); showQuestion();
+                return true;
+            }
+            function startQuiz() {
+                if (typeof QUESTIONS_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
+                const cat = document.getElementById("sub-category").value;
+                launchQuiz(QUESTIONS_DATABASE.filter(q => q.category === cat));
+            }
+            // === WIEDERHOLEN / SPACED REPETITION ===
+            function startWrongQuestionsQuiz() {
+                if (!currentPlayer || !currentPlayer.wrongQuestions || currentPlayer.wrongQuestions.length === 0) {
+                    return showToast("Keine offenen Fragen zum Wiederholen! 🎉", "success");
+                }
+                const qs = currentPlayer.wrongQuestions
+                    .map(w => QUESTIONS_DATABASE.find(q => q.category === w.category && q.question === w.question))
+                    .filter(Boolean).sort(() => Math.random() - 0.5);
+                launchQuiz(qs);
+            }
+            // === SCHWÄCHEN-VORSCHLAG DIREKT STARTEN ===
+            function startQuizForCategory(cat) {
+                launchQuiz(QUESTIONS_DATABASE.filter(q => q.category === cat));
             }
 
             // === TEST-MODUS (vom Elternbereich zugewiesen, mit Zeitlimit) ===
@@ -1031,7 +1317,16 @@
                     if (!currentPlayer.stats) currentPlayer.stats = {};
                     if (!currentPlayer.stats[q.category]) currentPlayer.stats[q.category] = { attempts: 0, correct: 0 };
                     currentPlayer.stats[q.category].attempts++;
-                    if (sel === cor) currentPlayer.stats[q.category].correct++;
+                    if (!currentPlayer.wrongQuestions) currentPlayer.wrongQuestions = [];
+                    if (sel === cor) {
+                        currentPlayer.stats[q.category].correct++;
+                        // Frage war jetzt richtig -> raus aus der Wiederholen-Liste
+                        currentPlayer.wrongQuestions = currentPlayer.wrongQuestions.filter(w => !(w.category === q.category && w.question === q.question));
+                    } else {
+                        // Frage war falsch -> merken für "Wiederholen" (Spaced Repetition), keine Duplikate
+                        const alreadyThere = currentPlayer.wrongQuestions.some(w => w.category === q.category && w.question === q.question);
+                        if (!alreadyThere) currentPlayer.wrongQuestions.push({ category: q.category, question: q.question });
+                    }
                 }
                 if (testMode) { testAnsweredCount++; if (sel === cor) testCorrectCount++; }
 
@@ -1168,235 +1463,4 @@
                         // Live-Zähler & Auto-Auflösung
                         if (data.status === "playing" && !data.showAnswer) {
                             const ansCount = Object.values(data.players).filter(p => p.hasAnswered).length;
-                            const totalCount = Object.keys(data.players).length;
-                            const cDiv = document.getElementById("tv-answer-count");
-                            if (cDiv) cDiv.innerText = `Antworten abgegeben: ${ansCount} / ${totalCount}`;
-
-                            // AUTO-AUFLÖSEN, wenn alle getippt haben
-                            if (ansCount === totalCount && totalCount > 0 && !isResolving) {
-                                isResolving = true;
-                                setTimeout(() => resolveTVQuestion(), 800); // Kurze Pause für den Dramatik-Effekt
-                            }
-                        }
-                    });
-                } catch (e) { showToast("Fehler beim Erstellen", "error"); }
-            }
-
-            function renderTVPlayerList(playersObj) {
-                const listDiv = document.getElementById("tv-player-list");
-                if (!listDiv) return; listDiv.innerHTML = "";
-                const playerNames = Object.values(playersObj || {});
-                if (playerNames.length === 0) { listDiv.innerHTML = "<p class='text-gray-500 col-span-full'>Noch niemand hier...</p>"; return; }
-
-                playerNames.forEach(player => {
-                    listDiv.innerHTML += `<div class="bg-indigo-900 border-2 border-indigo-500 p-4 rounded-xl text-white font-black text-2xl shadow-lg animate-bounce">👦👧 ${player.name}</div>`;
-                });
-            }
-
-            async function startTVGameLoop() {
-                const docSnap = await tvGameRef.get(); const data = docSnap.data();
-                tvQuestions = QUESTIONS_DATABASE.filter(q => q.category === data.category);
-                if (tvQuestions.length === 0) return alert("Keine Fragen für diese Klasse gefunden!");
-
-                let playersData = data.players || {};
-                Object.keys(playersData).forEach(k => { playersData[k].hasAnswered = false; playersData[k].lastAnswer = null; playersData[k].score = 0; });
-
-                await tvGameRef.update({ status: "playing", currentQuestionIndex: 0, players: playersData, showAnswer: false });
-                renderTVHostQuestion(0);
-            }
-
-            function renderTVHostQuestion(index) {
-                isResolving = false;
-                tvCurrentQ = tvQuestions[index];
-                const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
-                const shapes = ["▲", "♦", "●", "◼"];
-
-                let answersHtml = "";
-                tvCurrentQ.answers.forEach((ans, i) => {
-                    // SCHÖNERES DESIGN: Form links transparent, Text zentriert
-                    answersHtml += `
-            <div class="${colors[i]} p-4 rounded-2xl text-white shadow-xl flex items-center relative overflow-hidden min-h-[120px]">
-                <span class="text-8xl opacity-20 absolute left-4">${shapes[i]}</span> 
-                <span class="text-3xl md:text-4xl font-black w-full text-center relative z-10 px-6 break-words">${ans}</span>
-            </div>`;
-                });
-
-                document.getElementById("view-tv-quiz-host").innerHTML = `
-            <div class="h-[90vh] flex flex-col justify-between p-6">
-                <div class="text-center bg-gray-800 p-8 rounded-3xl border border-gray-700 shadow-xl mb-8 relative">
-                    <!-- TIMER KREIS -->
-                    <div class="absolute -top-6 -left-6 bg-purple-600 w-24 h-24 rounded-full flex items-center justify-center border-4 border-gray-900 shadow-xl">
-                        <span id="tv-timer" class="text-4xl font-black text-white">20</span>
-                    </div>
-                    <span class="text-gray-400 font-bold text-xl uppercase tracking-widest">Frage ${index + 1} von ${tvQuestions.length}</span>
-                    <h1 class="text-5xl md:text-6xl font-black text-white mt-4 leading-tight">${tvCurrentQ.question}</h1>
-                </div>
-                <div class="grid grid-cols-2 gap-6 flex-1">
-                    ${answersHtml}
-                </div>
-                <div class="flex justify-between items-center mt-8 bg-gray-900 p-6 rounded-2xl border border-gray-800">
-                    <div id="tv-answer-count" class="text-3xl font-black text-emerald-400">Antworten abgegeben: 0</div>
-                    <button onclick="resolveTVQuestion()" class="p-5 px-10 bg-gray-700 text-white font-black rounded-xl text-xl hover:bg-gray-600 shadow-lg">Zeit abbrechen ➔</button>
-                </div>
-            </div>
-        `;
-
-                // COUNTDOWN STARTEN
-                let timeLeft = 20;
-                clearInterval(tvCountdownInterval);
-                tvCountdownInterval = setInterval(() => {
-                    timeLeft--;
-                    const timerEl = document.getElementById("tv-timer");
-                    if (timerEl) timerEl.innerText = timeLeft;
-                    if (timeLeft <= 0) {
-                        clearInterval(tvCountdownInterval);
-                        if (!isResolving) { isResolving = true; resolveTVQuestion(); }
-                    }
-                }, 1000);
-            }
-
-            async function resolveTVQuestion() {
-                clearInterval(tvCountdownInterval); // Timer stoppen
-                isResolving = true;
-
-                const docSnap = await tvGameRef.get(); const data = docSnap.data();
-                if (data.showAnswer) return; // Sichergehen, dass nicht doppelt aufgelöst wird
-
-                const correctIndex = tvQuestions[data.currentQuestionIndex].correct;
-                let playersData = data.players;
-                Object.keys(playersData).forEach(k => { if (playersData[k].lastAnswer === correctIndex) playersData[k].score += 10; });
-
-                await tvGameRef.update({ showAnswer: true, correctAnswer: correctIndex, players: playersData });
-
-                const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
-                const shapes = ["▲", "♦", "●", "◼"];
-                let answersHtml = "";
-                tvCurrentQ.answers.forEach((ans, i) => {
-                    const opacity = i === correctIndex ? "opacity-100 ring-8 ring-white scale-105" : "opacity-20 grayscale";
-                    answersHtml += `
-            <div class="${colors[i]} p-4 rounded-2xl text-white shadow-xl flex items-center relative overflow-hidden min-h-[120px] transition-all duration-500 ${opacity}">
-                <span class="text-8xl opacity-20 absolute left-4">${shapes[i]}</span> 
-                <span class="text-3xl md:text-4xl font-black w-full text-center relative z-10 px-6 break-words">${ans}</span>
-            </div>`;
-                });
-
-                document.getElementById("view-tv-quiz-host").innerHTML = `
-            <div class="h-[90vh] flex flex-col justify-between p-6">
-                <div class="text-center bg-gray-800 p-8 rounded-3xl border-4 border-emerald-500 shadow-xl mb-8">
-                    <h1 class="text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
-                    <p class="text-emerald-400 font-black mt-6 text-3xl">💡 ${tvCurrentQ.explanation}</p>
-                </div>
-                <div class="grid grid-cols-2 gap-6 flex-1">${answersHtml}</div>
-                <div class="mt-8 text-center"><button onclick="nextTVQuestion()" class="p-6 px-16 bg-indigo-600 text-white font-black rounded-xl text-3xl hover:bg-indigo-500 shadow-xl w-1/2">Nächste Frage ➔</button></div>
-            </div>
-        `;
-            }
-
-            async function nextTVQuestion() {
-                const docSnap = await tvGameRef.get(); const data = docSnap.data();
-                let nextIndex = data.currentQuestionIndex + 1;
-                if (nextIndex >= tvQuestions.length) {
-                    await tvGameRef.update({ status: "finished" }); showTVHostPodium(data.players);
-                } else {
-                    let playersData = data.players;
-                    Object.keys(playersData).forEach(k => { playersData[k].hasAnswered = false; playersData[k].lastAnswer = null; });
-                    await tvGameRef.update({ currentQuestionIndex: nextIndex, showAnswer: false, players: playersData });
-                    renderTVHostQuestion(nextIndex);
-                }
-            }
-
-            function showTVHostPodium(playersData) {
-                const sorted = Object.values(playersData).sort((a, b) => b.score - a.score);
-                let html = `<h1 class="text-7xl font-black text-yellow-400 mb-10">🏆 Siegerehrung 🏆</h1><div class="space-y-6 max-w-3xl mx-auto w-full">`;
-                const medals = ["🥇", "🥈", "🥉"];
-                sorted.forEach((p, i) => {
-                    const medal = i < 3 ? medals[i] : `<span class="w-12 inline-block text-gray-500">${i + 1}.</span>`;
-                    html += `<div class="flex items-center justify-between bg-gray-800 p-8 rounded-2xl border-2 ${i === 0 ? 'border-yellow-400 bg-gray-800/80' : 'border-gray-700'} shadow-xl"><div class="text-4xl font-bold text-white flex items-center gap-6"><span class="text-5xl">${medal}</span> ${p.name}</div><div class="text-4xl font-black text-emerald-400">${p.score} <span class="text-2xl text-emerald-600">Coins</span></div></div>`;
-                });
-                html += `</div><button onclick="window.location.reload()" class="mt-16 p-6 px-12 bg-gray-700 text-white font-bold rounded-xl text-2xl hover:bg-gray-600 shadow-md">Beenden & Zurück zum Menü</button>`;
-                document.getElementById("view-tv-quiz-host").innerHTML = `<div class="h-screen flex flex-col items-center justify-center p-6 bg-gray-900">${html}</div>`;
-                try { confetti(); confetti(); } catch (e) { }
-            }
-
-            // --- 2. LOGIK FÜR DIE HANDYS (SPIELER) ---
-            async function joinTVGame() {
-                if (!currentParentUser || !currentPlayer) return showToast("Fehler: Du musst als Kind eingeloggt sein!", "error");
-                const lobbyRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
-
-                try {
-                    const docSnap = await lobbyRef.get();
-                    if (!docSnap.exists || docSnap.data().status !== "waiting") return showToast("Aktuell ist keine Lobby offen!", "error");
-
-                    let playersData = docSnap.data().players || {};
-                    playersData[activePlayerKey] = { name: currentPlayer.name, score: 0, hasAnswered: false, coinsClaimed: false };
-                    await lobbyRef.update({ players: playersData });
-                    tvGameRef = lobbyRef; isTVHost = false;
-
-                    document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 p-12 rounded-2xl text-center shadow-2xl mt-12"><div class="text-8xl mb-6 animate-bounce">🙌</div><h2 class="text-4xl font-black text-emerald-400 mb-4">Du bist drin!</h2><p class="text-xl text-white font-bold">Gleich geht's los. Schau auf den Fernseher!</p></div>`;
-
-                    tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
-                        if (!doc.exists || isTVHost) return;
-                        const data = doc.data(); const myData = data.players[activePlayerKey];
-                        if (!myData) return;
-
-                        if (data.status === "playing") {
-                            if (data.showAnswer) {
-                                const isCorrect = myData.lastAnswer === data.correctAnswer;
-                                const bg = isCorrect ? "bg-emerald-500" : "bg-rose-600";
-                                const icon = isCorrect ? "✅" : "❌";
-                                const text = isCorrect ? "Richtig!" : "Leider falsch!";
-                                document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-9xl mb-8">${icon}</div><h2 class="text-5xl font-black mb-4">${text}</h2><p class="text-2xl font-bold opacity-80">Dein Punktestand: ${myData.score}</p></div>`;
-                                if (isCorrect) try { confetti(); } catch (e) { }
-                            } else if (!myData.hasAnswered) {
-                                const q = QUESTIONS_DATABASE.filter(x => x.category === data.category)[data.currentQuestionIndex];
-                                const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
-                                const shapes = ["▲", "♦", "●", "◼"];
-                                let btnHtml = `<div class="grid grid-cols-2 gap-4 h-[75vh]">`;
-                                q.answers.forEach((ans, i) => { btnHtml += `<button onclick="submitTVAnswer(${i})" class="${colors[i]} rounded-3xl shadow-xl flex items-center justify-center text-8xl text-white/90 active:scale-95 transition-transform">${shapes[i]}</button>`; });
-                                document.getElementById("view-tv-quiz-player").innerHTML = btnHtml + `</div>`;
-                            }
-                        } else if (data.status === "finished") {
-                            if (!myData.coinsClaimed) {
-                                addXP(myData.score);
-                                tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true });
-                            }
-                            document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 p-12 rounded-3xl text-center shadow-2xl mt-12"><div class="text-8xl mb-6">🏆</div><h2 class="text-4xl font-black text-yellow-400 mb-4">Spiel beendet!</h2><p class="text-2xl text-white font-bold bg-gray-900 p-4 rounded-xl inline-block">+ ${myData.score} Coins verdient!</p><button onclick="window.location.reload()" class="mt-12 w-full p-6 bg-indigo-600 font-black text-white rounded-xl shadow-lg text-2xl">Zurück ins Menü</button></div>`;
-                        }
-                    });
-                } catch (error) { showToast("Verbindungsfehler", "error"); }
-            }
-
-            async function submitTVAnswer(ansIndex) {
-                document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-4xl font-black text-indigo-400 mb-4">Eingeloggt!</h2><p class="text-xl font-bold text-gray-400">Schau auf den Fernseher...</p></div>`;
-                const docSnap = await tvGameRef.get(); const data = docSnap.data();
-                let playersData = data.players;
-                playersData[activePlayerKey].hasAnswered = true; playersData[activePlayerKey].lastAnswer = ansIndex;
-                await tvGameRef.update({ players: playersData });
-            }
-
-            // ==========================================
-            // ELTERN-DASHBOARD TABS
-            // ==========================================
-            function switchParentTab(tabName) {
-                // 1. Alle Bereiche verstecken
-                document.getElementById('parent-section-manage').classList.add('hidden');
-                document.getElementById('parent-section-progress').classList.add('hidden');
-                document.getElementById('parent-section-test').classList.add('hidden');
-
-                // 2. Alle Buttons auf "Grau" (inaktiv) setzen
-                const tabs = ['manage', 'progress', 'test'];
-                tabs.forEach(t => {
-                    document.getElementById('tab-' + t).className = "flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm";
-                });
-
-                // 3. Den gewählten Bereich anzeigen und den Button Blau machen
-                document.getElementById('parent-section-' + tabName).classList.remove('hidden');
-                document.getElementById('tab-' + tabName).className = "flex-1 py-2 px-1 rounded-lg font-bold text-white bg-blue-600 shadow-md transition-all text-sm";
-            }
-
-
-        </script>
-    </div>
-</body>
-
-</html>
+                            const totalCount = Object.keys(data.player

@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=3"></script>
+    <script src="data.js?v=4"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -441,6 +441,12 @@
                                 <option value="gesellschaft">🌍 Geschichte, Erdkunde & Politik</option>
                                 <option value="informatik">💻 Informatik & Medien</option>
                             </optgroup>
+                            <optgroup label="Spaß & Wissen">
+                                <option value="wuerdest_du_eher">🤔 Würdest du eher...</option>
+                                <option value="nice_to_know">✨ Nice to Know</option>
+                                <option value="ungewoehnliches">🌍 Ungewöhnliches aus der Welt</option>
+                                <option value="allgemeinwissen_easy">🧠 Allgemeinwissen (easy)</option>
+                            </optgroup>
                         </select>
                     </div>
                     <button onclick="startQuiz()"
@@ -562,6 +568,10 @@
                         <option value="physik">⚡ Physik</option>
                         <option value="gesellschaft">🌍 Geschichte, Erdkunde & Politik</option>
                                 <option value="informatik">💻 Informatik & Medien</option>
+                        <option value="wuerdest_du_eher">🤔 Würdest du eher...</option>
+                        <option value="nice_to_know">✨ Nice to Know</option>
+                        <option value="ungewoehnliches">🌍 Ungewöhnliches aus der Welt</option>
+                        <option value="allgemeinwissen_easy">🧠 Allgemeinwissen (easy)</option>
                     </select>
                     <button onclick="startTVHostLobby()"
                         class="w-full p-4 bg-indigo-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-indigo-500 text-xl">Lobby
@@ -623,7 +633,11 @@
                 chemie: "⚗️ Chemie",
                 physik: "⚡ Physik",
                 gesellschaft: "🌍 Geschichte, Erdkunde & Politik",
-            informatik: "💻 Informatik & Medien"
+            informatik: "💻 Informatik & Medien",
+            wuerdest_du_eher: "🤔 Würdest du eher...",
+            nice_to_know: "✨ Nice to Know",
+            ungewoehnliches: "🌍 Ungewöhnliches aus der Welt",
+            allgemeinwissen_easy: "🧠 Allgemeinwissen (easy)"
             };
 
             // Test-Modus Variablen (Eltern-Test mit Zeitlimit)

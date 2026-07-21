@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=12"></script>
+    <script src="data.js?v=14"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -159,10 +159,23 @@
                 </div>
 
                 <!-- RANGLISTE -->
-                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg mt-6">
-                    <h2 class="text-xl font-black text-yellow-400 mb-4 text-center">🏆 Familien-Rangliste</h2>
-                    <div id="leaderboard-container" class="space-y-2">
-                        <!-- Wird per JS befüllt -->
+                <div>
+                    <button onclick="toggleLeaderboard()" id="leaderboard-toggle-btn"
+                        class="w-full p-4 bg-gray-800 border border-gray-700 rounded-2xl shadow-lg flex items-center justify-between">
+                        <span class="flex items-center gap-3 font-black text-lg text-yellow-400">
+                            <span class="text-2xl">🏆</span> Familien-Rangliste
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <span id="leaderboard-leader-badge"
+                                class="text-xs font-bold text-gray-400 bg-gray-900 px-2.5 py-1 rounded-full"></span>
+                            <span id="leaderboard-toggle-arrow"
+                                class="text-lg text-gray-400 transition-transform">▼</span>
+                        </span>
+                    </button>
+                    <div id="leaderboard-wrapper" class="hidden mt-3">
+                        <div id="leaderboard-container" class="space-y-2 max-h-[46vh] overflow-y-auto pr-1">
+                            <!-- Wird per JS befüllt -->
+                        </div>
                     </div>
                 </div>
 
@@ -238,8 +251,7 @@
                     <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben Buchstaben und bilden
                         reihum das beste Wort daraus – <span class="text-amber-300 font-bold">ein Handy wird
-                            weitergegeben</span>. Gut geeignet bei schlechtem Empfang. Wörter werden geprüft
-                        (Rechtschreibprüfung von <a href="https://languagetool.org" target="_blank" class="underline text-indigo-400">LanguageTool.org</a>).</p>
+                            weitergegeben</span>. Gut geeignet bei schlechtem Empfang. Aus den Buchstaben ist <span class="text-emerald-400 font-bold">immer mindestens ein echtes Wort</span> möglich. Geprüft wird mit eingebautem Wörterbuch (auch offline) und <a href="https://languagetool.org" target="_blank" class="underline text-indigo-400">LanguageTool.org</a>.</p>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-2">Wer spielt mit? (mind. 1)</label>
                         <div id="scrabble-player-checkboxes" class="grid grid-cols-2 gap-2"></div>
@@ -248,9 +260,9 @@
                         <label class="text-xs text-gray-400 font-bold block mb-1">Schwierigkeitsgrad</label>
                         <select id="scrabble-difficulty"
                             class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
-                            <option value="leicht">🟢 Leicht (5 Buchstaben, 60 Sek.)</option>
-                            <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 45 Sek.)</option>
-                            <option value="schwer">🔴 Schwer (9 Buchstaben, 30 Sek.)</option>
+                            <option value="leicht">🟢 Leicht (6 Buchstaben, kurze Wörter, 75 Sek.)</option>
+                            <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 60 Sek.)</option>
+                            <option value="schwer">🔴 Schwer (8 Buchstaben, lange Wörter, 45 Sek.)</option>
                         </select>
                     </div>
                     <div>
@@ -322,9 +334,9 @@
                             <label class="text-xs text-gray-400 font-bold block mb-1">Schwierigkeitsgrad</label>
                             <select id="live-duel-difficulty"
                                 class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
-                                <option value="leicht">🟢 Leicht (5 Buchstaben, 60 Sek.)</option>
-                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 45 Sek.)</option>
-                                <option value="schwer">🔴 Schwer (9 Buchstaben, 30 Sek.)</option>
+                                <option value="leicht">🟢 Leicht (6 Buchstaben, kurze Wörter, 75 Sek.)</option>
+                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 60 Sek.)</option>
+                                <option value="schwer">🔴 Schwer (8 Buchstaben, lange Wörter, 45 Sek.)</option>
                             </select>
                         </div>
                         <div>
@@ -776,15 +788,14 @@
                     </div>
 
                     <div id="tv-scrabble-mode-options" class="hidden text-left space-y-3 mb-2">
-                        <p class="text-xs text-gray-400 text-center">Wörter werden automatisch geprüft
-                            (Rechtschreibprüfung von <a href="https://languagetool.org" target="_blank" class="underline text-indigo-400">LanguageTool.org</a>).</p>
+                        <p class="text-xs text-gray-400 text-center">Aus den Buchstaben ist immer mindestens ein echtes Wort möglich. Geprüft wird mit eingebautem Wörterbuch und <a href="https://languagetool.org" target="_blank" class="underline text-indigo-400">LanguageTool.org</a>.</p>
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1">Schwierigkeitsgrad</label>
                             <select id="tv-scrabble-difficulty"
                                 class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-lg">
-                                <option value="leicht">🟢 Leicht (5 Buchstaben, 60 Sek.)</option>
-                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 45 Sek.)</option>
-                                <option value="schwer">🔴 Schwer (9 Buchstaben, 30 Sek.)</option>
+                                <option value="leicht">🟢 Leicht (6 Buchstaben, kurze Wörter, 75 Sek.)</option>
+                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 60 Sek.)</option>
+                                <option value="schwer">🔴 Schwer (8 Buchstaben, lange Wörter, 45 Sek.)</option>
                             </select>
                         </div>
                         <div>
@@ -1115,6 +1126,15 @@
                 if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
             }
 
+            function toggleLeaderboard(forceOpen) {
+                const wrapper = document.getElementById("leaderboard-wrapper");
+                const arrow = document.getElementById("leaderboard-toggle-arrow");
+                if (!wrapper) return;
+                const open = (typeof forceOpen === "boolean") ? forceOpen : wrapper.classList.contains("hidden");
+                wrapper.classList.toggle("hidden", !open);
+                if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
+            }
+
             function renderFamilyHub() {
                 const grid = document.getElementById("family-profiles-grid"); grid.innerHTML = "";
                 const profileKeys = Object.keys(ALL_PROFILES);
@@ -1133,7 +1153,16 @@
                 toggleProfileList(profileKeys.length === 0);
 
                 const lbContainer = document.getElementById("leaderboard-container");
+                const leaderBadge = document.getElementById("leaderboard-leader-badge");
                 const sortedProfiles = Object.values(ALL_PROFILES).sort((a, b) => b.coins - a.coins);
+
+                // Rangliste zugeklappt lassen, aber den Spitzenreiter schon im Knopf zeigen
+                toggleLeaderboard(false);
+                if (leaderBadge) {
+                    leaderBadge.innerText = sortedProfiles.length > 0
+                        ? `🥇 ${sortedProfiles[0].name}`
+                        : "";
+                }
 
                 if (sortedProfiles.length === 0) {
                     lbContainer.innerHTML = "<p class='text-xs text-gray-500 text-center'>Noch keine Profile vorhanden.</p>";
@@ -1258,22 +1287,34 @@
                 { letter: "N", count: 9, value: 1 }, { letter: "O", count: 3, value: 2 }, { letter: "P", count: 1, value: 4 },
                 { letter: "R", count: 6, value: 1 }, { letter: "S", count: 7, value: 1 }, { letter: "T", count: 6, value: 1 },
                 { letter: "U", count: 6, value: 1 }, { letter: "V", count: 1, value: 6 }, { letter: "W", count: 1, value: 3 },
+                { letter: "J", count: 1, value: 6 }, { letter: "X", count: 1, value: 8 }, { letter: "Y", count: 1, value: 10 },
                 { letter: "Z", count: 1, value: 3 }
             ];
             const SCRABBLE_VALUES = {};
             const SCRABBLE_BAG = [];
             SCRABBLE_LETTERS.forEach(l => { SCRABBLE_VALUES[l.letter] = l.value; for (let i = 0; i < l.count; i++) SCRABBLE_BAG.push(l.letter); });
 
+            // Schwierigkeitsgrad steuert: Anzahl der Buchstaben, Länge des garantiert
+            // lösbaren Zielworts und die Zeit. Mehr Buchstaben = mehr Möglichkeiten.
             const SCRABBLE_DIFFICULTIES = {
-                leicht: { letters: 5, time: 60, label: "🟢 Leicht" },
-                mittel: { letters: 7, time: 45, label: "🟡 Mittel" },
-                schwer: { letters: 9, time: 30, label: "🔴 Schwer" }
+                leicht: { letters: 6, targetMin: 3, targetMax: 4, time: 75, label: "🟢 Leicht" },
+                mittel: { letters: 7, targetMin: 4, targetMax: 5, time: 60, label: "🟡 Mittel" },
+                schwer: { letters: 8, targetMin: 5, targetMax: 7, time: 45, label: "🔴 Schwer" }
             };
 
-            // Echte Wortprüfung über die kostenlose LanguageTool-Rechtschreibprüfung.
-            // status: 'valid' (erkannt), 'invalid' (kein Wort gefunden), 'unknown' (keine Verbindung -> Ehrenwort-Fallback)
+            // Wörterbuch aus data.js als schnelles Nachschlagewerk
+            const WORD_SET = new Set(
+                (typeof GERMAN_WORDS !== "undefined" ? GERMAN_WORDS : []).map(w => w.toUpperCase())
+            );
+
+            // Wortprüfung: erst das eingebaute Wörterbuch (sofort, funktioniert auch
+            // ohne Internet), danach zur Sicherheit LanguageTool für Wörter, die wir
+            // selbst nicht kennen.
+            // status: 'valid' | 'invalid' | 'unknown' (offline und unbekannt)
             async function isValidGermanWord(word) {
                 if (!word || word.length < 2) return { status: "invalid" };
+                const upper = word.toUpperCase();
+                if (WORD_SET.has(upper)) return { status: "valid" };
                 try {
                     const response = await fetch("https://api.languagetool.org/v2/check", {
                         method: "POST",
@@ -1294,10 +1335,36 @@
 
             let scrabbleState = null;
 
-            function drawScrabbleLetters(count) {
-                count = count || 7;
-                const bag = [...SCRABBLE_BAG].sort(() => Math.random() - 0.5);
-                return bag.slice(0, count);
+            // Die Buchstaben werden aus einem echten Wort gebaut und dann gemischt.
+            // Dadurch ist garantiert immer mindestens ein richtiges Wort möglich –
+            // vorher wurden die Buchstaben rein zufällig gezogen und ergaben oft
+            // gar keine lösbare Kombination.
+            function generateScrabbleRack(difficulty) {
+                const cfg = SCRABBLE_DIFFICULTIES[difficulty] || SCRABBLE_DIFFICULTIES.mittel;
+                const pool = (typeof GERMAN_WORDS !== "undefined" ? GERMAN_WORDS : [])
+                    .filter(w => w.length >= cfg.targetMin && w.length <= cfg.targetMax && w.length <= cfg.letters);
+
+                let letters;
+                let solution = "";
+                if (pool.length > 0) {
+                    solution = pool[Math.floor(Math.random() * pool.length)];
+                    letters = solution.split("");
+                } else {
+                    letters = [];
+                }
+
+                // Restplätze mit häufigen Buchstaben auffüllen, damit noch mehr Wörter gehen
+                const filler = "EEEEENNNNIIIRRRSSSAAATTTDDHHUULLGGMMOOBWFKZP".split("");
+                while (letters.length < cfg.letters) {
+                    letters.push(filler[Math.floor(Math.random() * filler.length)]);
+                }
+
+                // Mischen (Fisher-Yates), damit das Zielwort nicht ablesbar ist
+                for (let i = letters.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [letters[i], letters[j]] = [letters[j], letters[i]];
+                }
+                return { letters, solution };
             }
 
             function openScrabbleSetup() {
@@ -1318,7 +1385,8 @@
                 const rounds = parseInt(document.getElementById("scrabble-rounds").value);
                 const difficulty = document.getElementById("scrabble-difficulty").value;
                 const diff = SCRABBLE_DIFFICULTIES[difficulty];
-                scrabbleState = { playerKeys: checked, rounds, round: 1, playerIndex: 0, difficulty, currentLetters: drawScrabbleLetters(diff.letters), scores: {} };
+                const startRack = generateScrabbleRack(difficulty);
+                scrabbleState = { playerKeys: checked, rounds, round: 1, playerIndex: 0, difficulty, currentLetters: startRack.letters, solution: startRack.solution, scores: {} };
                 checked.forEach(k => scrabbleState.scores[k] = 0);
                 switchView('scrabble-play');
                 showScrabbleTurnIntro();
@@ -1328,7 +1396,17 @@
                 const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
                 const isSolo = scrabbleState.playerKeys.length === 1;
                 document.getElementById("scrabble-turn-title").innerText = isSolo ? `Los geht's, ${ALL_PROFILES[key].name}!` : `${ALL_PROFILES[key].name} ist dran!`;
-                document.getElementById("scrabble-turn-sub").innerText = isSolo ? `Runde ${scrabbleState.round}/${scrabbleState.rounds} – knack deinen Highscore!` : `Runde ${scrabbleState.round}/${scrabbleState.rounds} – gib das Handy weiter.`;
+
+                // Nach einer abgeschlossenen Runde zeigen, welches Wort möglich gewesen wäre
+                let sub = isSolo
+                    ? `Runde ${scrabbleState.round}/${scrabbleState.rounds} – knack deinen Highscore!`
+                    : `Runde ${scrabbleState.round}/${scrabbleState.rounds} – gib das Handy weiter.`;
+                if (scrabbleState.lastSolution) {
+                    sub = `💡 Letzte Runde war z.B. "${scrabbleState.lastSolution}" möglich.\n` + sub;
+                    scrabbleState.lastSolution = null;
+                }
+                document.getElementById("scrabble-turn-sub").innerText = sub;
+
                 document.getElementById("scrabble-turn-intro").classList.remove("hidden");
                 document.getElementById("scrabble-play-area").classList.add("hidden");
             }
@@ -1402,18 +1480,22 @@
                     fb.innerText = "🔍 Prüfe Wort..."; fb.className = "text-center text-sm font-bold h-5 text-gray-400";
                     const check = await isValidGermanWord(word);
                     if (check.status === "valid") { points = tileResult.score; }
-                    else if (check.status === "invalid") { points = 0; note = " – kein gültiges Wort erkannt"; }
-                    else { points = tileResult.score; note = " (offline – nach Ehrenwort gewertet)"; }
+                    else if (check.status === "invalid") { points = 0; note = " – kein gültiges Wort"; }
+                    else { points = 0; note = " – unbekanntes Wort (offline nicht prüfbar)"; }
                 }
                 scrabbleState.scores[key] += points;
                 showToast(`${ALL_PROFILES[key].name}: +${points} Punkte${word ? ` für "${word}"` : ""}${note}`, points > 0 ? "success" : "error");
 
                 scrabbleState.playerIndex++;
                 if (scrabbleState.playerIndex >= scrabbleState.playerKeys.length) {
+                    // Runde komplett: kurz zeigen, welches Wort möglich gewesen wäre
+                    scrabbleState.lastSolution = scrabbleState.solution;
                     scrabbleState.playerIndex = 0;
                     scrabbleState.round++;
                     if (scrabbleState.round > scrabbleState.rounds) { finishScrabbleGame(); return; }
-                    scrabbleState.currentLetters = drawScrabbleLetters(SCRABBLE_DIFFICULTIES[scrabbleState.difficulty].letters);
+                    const nextRack = generateScrabbleRack(scrabbleState.difficulty);
+                    scrabbleState.currentLetters = nextRack.letters;
+                    scrabbleState.solution = nextRack.solution;
                 }
                 showScrabbleTurnIntro();
             }
@@ -1646,7 +1728,7 @@
                         if (tileResult.valid) {
                             const check = await isValidGermanWord(word);
                             status = check.status;
-                            points = (status === "invalid") ? 0 : tileResult.score;
+                            points = (status === "valid") ? tileResult.score : 0;
                         }
                         players[key].score = (players[key].score || 0) + points;
                         players[key].lastRoundPoints = points;
@@ -1663,7 +1745,7 @@
 
                 let rowsHtml = "";
                 Object.values(data.players).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
-                    const icon = isQuiz ? (p.lastRoundPoints > 0 ? "✅" : "❌") : (p.wordStatus === "valid" ? "✅" : p.wordStatus === "unknown" ? "⚠️" : "❌");
+                    const icon = isQuiz ? (p.lastRoundPoints > 0 ? "✅" : "❌") : (p.wordStatus === "valid" ? "✅" : p.wordStatus === "unknown" ? "❓" : "❌");
                     const wordInfo = isQuiz ? "" : ` "${p.word || "-"}"`;
                     rowsHtml += `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-3"><div class="font-bold text-white text-sm">${icon} ${p.name}${wordInfo}</div><div class="font-black text-emerald-400">+${p.lastRoundPoints || 0} <span class="text-xs text-gray-500">(Σ ${p.score})</span></div></div>`;
                 });
@@ -1675,6 +1757,7 @@
                 document.getElementById("live-duel-play-content").innerHTML = `
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-3 shadow-lg">
                     <h2 class="text-lg font-black text-white text-center">Runde ${isQuiz ? (data.currentIndex + 1) : data.currentRound} – Ergebnisse</h2>
+                    ${(!isQuiz && data.currentSolution) ? `<p class="text-amber-400 font-bold text-center text-sm">💡 Möglich war z.B.: ${data.currentSolution}</p>` : ""}
                     <div class="space-y-2">${rowsHtml}</div>
                     ${isLiveDuelCreator ? nextBtn : `<p class="text-xs text-gray-500 text-center font-bold">Warte, bis der Ersteller weitermacht...</p>`}
                 </div>`;
@@ -1688,7 +1771,8 @@
                     await liveDuelRef.update({ status: "playing", currentIndex: data.currentIndex + 1, players });
                 } else {
                     const diff = SCRABBLE_DIFFICULTIES[data.difficulty];
-                    await liveDuelRef.update({ status: "playing", currentRound: data.currentRound + 1, currentLetters: drawScrabbleLetters(diff.letters), players });
+                    const rack = generateScrabbleRack(data.difficulty);
+                    await liveDuelRef.update({ status: "playing", currentRound: data.currentRound + 1, currentLetters: rack.letters, currentSolution: rack.solution, players });
                 }
             }
 
@@ -1699,7 +1783,8 @@
                         const diff = SCRABBLE_DIFFICULTIES[data.difficulty];
                         let players = data.players;
                         Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].word = ""; });
-                        liveDuelRef.update({ status: "playing", currentRound: 1, currentLetters: drawScrabbleLetters(diff.letters), players });
+                        const rack = generateScrabbleRack(data.difficulty);
+                        liveDuelRef.update({ status: "playing", currentRound: 1, currentLetters: rack.letters, currentSolution: rack.solution, players });
                     });
                 } else {
                     liveDuelRef.get().then(doc => {
@@ -2311,13 +2396,13 @@
 
             // --- TV-SCRABBLE (Host-Seite) ---
             function startTVScrabbleRound(data) {
-                const diff = SCRABBLE_DIFFICULTIES[data.difficulty];
-                const letters = drawScrabbleLetters(diff.letters);
+                const rack = generateScrabbleRack(data.difficulty);
+                const letters = rack.letters;
                 const round = (data.currentRound || 0) + 1;
                 const playersData = data.players || {};
                 Object.keys(playersData).forEach(k => { playersData[k].hasAnswered = false; playersData[k].word = ""; playersData[k].score = playersData[k].score || 0; });
                 isResolving = false;
-                tvGameRef.update({ status: "playing", showAnswer: false, currentLetters: letters, currentRound: round, players: playersData });
+                tvGameRef.update({ status: "playing", showAnswer: false, currentLetters: letters, currentSolution: rack.solution, currentRound: round, players: playersData });
                 showTVHostScrabbleRound(letters, round, data.totalRounds);
             }
 
@@ -2358,7 +2443,7 @@
                     if (tileResult.valid) {
                         const check = await isValidGermanWord(word);
                         status = check.status;
-                        points = (status === "invalid") ? 0 : tileResult.score;
+                        points = (status === "valid") ? tileResult.score : 0;
                     }
                     playersData[key].score = (playersData[key].score || 0) + points;
                     playersData[key].lastRoundPoints = points;
@@ -2369,13 +2454,16 @@
                 const isLastRound = data.currentRound >= data.totalRounds;
                 let rowsHtml = "";
                 Object.values(playersData).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
-                    const statusIcon = p.wordStatus === "valid" ? "✅" : p.wordStatus === "unknown" ? "⚠️" : "❌";
+                    const statusIcon = p.wordStatus === "valid" ? "✅" : p.wordStatus === "unknown" ? "❓" : "❌";
                     rowsHtml += `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-4"><div class="font-bold text-white text-lg">${statusIcon} ${p.name}: <span class="text-amber-300">"${p.word || "-"}"</span></div><div class="font-black text-emerald-400 text-xl">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
                 });
 
                 document.getElementById("view-tv-quiz-host").innerHTML = `
             <div class="h-[90vh] flex flex-col justify-between p-6">
-                <div class="text-center mb-4"><h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1></div>
+                <div class="text-center mb-4">
+                    <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
+                    ${data.currentSolution ? `<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war z.B.: ${data.currentSolution}</p>` : ""}
+                </div>
                 <div class="space-y-3 flex-1 overflow-y-auto">${rowsHtml}</div>
                 <div class="mt-6 text-center">
                     ${isLastRound
@@ -2501,7 +2589,7 @@
                                 if (data.showAnswer) {
                                     const points = myData.lastRoundPoints || 0;
                                     const bg = points > 0 ? "bg-emerald-500" : "bg-gray-700";
-                                    const statusText = myData.wordStatus === "invalid" ? "Kein gültiges Wort erkannt 😅" : myData.wordStatus === "unknown" ? "Offline geprüft (Ehrenwort) ⚠️" : "Erkannt! ✅";
+                                    const statusText = myData.wordStatus === "invalid" ? "Kein gültiges Wort 😅" : myData.wordStatus === "unknown" ? "Unbekanntes Wort – offline nicht prüfbar ❓" : "Erkannt! ✅";
                                     document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-7xl mb-6">${points > 0 ? "✅" : "😅"}</div><h2 class="text-2xl font-black mb-2">Dein Wort: "${myData.word || "-"}"</h2><p class="text-sm opacity-70 mb-2">${statusText}</p><p class="text-xl font-bold">+ ${points} Punkte diese Runde</p><p class="text-sm opacity-80 mt-2">Gesamt: ${myData.score || 0} Punkte</p></div>`;
                                     if (points > 0) try { confetti(); } catch (e) { }
                                 } else if (!myData.hasAnswered) {

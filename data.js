@@ -539,3 +539,57 @@ const VOCABULARY_DATABASE = {
         }
     }
 };
+
+// =======================================================
+// DEUTSCHES WOERTERBUCH (fuer das Wort-Duell / Scrabble)
+// Zweck 1: Aus diesen Woertern werden die Buchstaben erzeugt,
+//          damit garantiert immer mindestens ein Wort loesbar ist.
+// Zweck 2: Sofortige Wortpruefung auch ohne Internet.
+// Nur A-Z, keine Umlaute (die gibt es auch nicht als Spielsteine).
+// =======================================================
+const GERMAN_WORDS = [
+    "AAL", "ABEND", "ADLER", "ADRESSE", "AFFE", "AKTE", "ALT", "AMSEL", "ANFANG", "ANGEL",
+    "ANTWORT", "APFEL", "ARBEIT", "ARM", "ART", "ARZT", "AST", "ATLAS", "AUGE", "AUGUST",
+    "AUS", "AUSFLUG", "AUTO", "AXT", "BAD", "BALKON", "BALL", "BANANE", "BANK", "BAR",
+    "BART", "BAU", "BAUCH", "BAUM", "BEERE", "BEIN", "BERG", "BERUF", "BESEN", "BETT",
+    "BEUTEL", "BIENE", "BIER", "BILD", "BIRNE", "BLATT", "BLAU", "BLUME", "BLUMEN", "BLUT",
+    "BODEN", "BOGEN", "BOOT", "BOT", "BRIEF", "BROT", "BRUDER", "BRUST", "BUCH", "BUCHE",
+    "BUNT", "BUS", "DACH", "DACHS", "DAME", "DAMPF", "DANK", "DATUM", "DECKE", "DECKEL",
+    "DIENST", "DOM", "DONNER", "DORF", "DOSE", "DRACHE", "DRAHT", "DRUCK", "DUFT", "EBBE",
+    "ECKE", "EIER", "EIMER", "EIN", "EIS", "EISEN", "ELEFANT", "ELF", "ELTERN", "ENDE",
+    "ENGEL", "ENTE", "ERDE", "ERNTE", "ERZ", "ESEL", "ESSEN", "EULE", "FABRIK", "FADEN",
+    "FAMILIE", "FARBE", "FASS", "FEDER", "FEDERN", "FEE", "FEIN", "FELD", "FENSTER", "FERIEN",
+    "FEST", "FEUER", "FINGER", "FISCH", "FLASCHE", "FLIEGE", "FLUG", "FLUSS", "FORELLE", "FOTO",
+    "FRAGE", "FRAU", "FREUND", "FREUNDE", "FRUCHT", "FUSS", "GABEL", "GARAGE", "GARTEN", "GAS",
+    "GAST", "GEBIRGE", "GEDICHT", "GEFAHR", "GEIST", "GEL", "GELB", "GELD", "GEN", "GERN",
+    "GESICHT", "GITARRE", "GLANZ", "GLAS", "GLEIS", "GLOCKE", "GOLD", "GRAS", "GRAU", "GRUND",
+    "GUT", "HAAR", "HAFEN", "HAI", "HALLE", "HALS", "HAND", "HANDEL", "HANDY", "HASE",
+    "HAUCH", "HAUS", "HEBEL", "HEFT", "HEIM", "HERBST", "HERZ", "HIMMEL", "HOCH", "HOLZ",
+    "HONIG", "HOSEN", "HUND", "HUNGER", "HUT", "IGEL", "INSEKT", "INSEL", "JAHR", "KAFFEE",
+    "KALT", "KAMEL", "KAMERA", "KAMIN", "KANTE", "KARTE", "KARTON", "KASSE", "KASTEN", "KATZE",
+    "KEGEL", "KERZE", "KETTE", "KIND", "KINO", "KIRCHE", "KISSEN", "KLANG", "KLASSE", "KLAVIER",
+    "KLEE", "KLEID", "KNIE", "KNOCHEN", "KOCH", "KOFFER", "KOHLE", "KONZERT", "KOPF", "KOPIE",
+    "KORB", "KRAFT", "KREIDE", "KREIS", "KREUZ", "KUCHEN", "KUGEL", "KUH", "KUNST", "KUSS",
+    "LADEN", "LAMM", "LAMPE", "LAND", "LAUB", "LAUT", "LEBEN", "LEDER", "LEER", "LEHRER",
+    "LEITER", "LICHT", "LIEBE", "LIED", "LINIE", "LOB", "LOCH", "LUFT", "LUNGE", "MAGEN",
+    "MAI", "MAL", "MANTEL", "MARKT", "MAUER", "MAUS", "MEER", "MEHL", "MEHR", "MESSER",
+    "METALL", "MINUTE", "MITTE", "MOND", "MORGEN", "MOTOR", "MUND", "MUSEUM", "MUSIK", "MUT",
+    "MUTTER", "NACHBAR", "NACHT", "NADEL", "NAGEL", "NAME", "NASE", "NASS", "NEBEL", "NEST",
+    "NETT", "NEU", "NEUN", "NIE", "NORDEN", "NUDEL", "NUDELN", "NUN", "NUR", "OBST",
+    "OFEN", "OHR", "OMA", "ONKEL", "OPA", "OPER", "ORANGE", "ORGEL", "ORT", "OSTEN",
+    "PALAST", "PAPIER", "PARK", "PECH", "PERLE", "PFERD", "PFLANZE", "PILOT", "PILZ", "PLAN",
+    "PLANET", "PLATZ", "POLIZEI", "PREIS", "PROBLEM", "PULT", "PUNKT", "RAD", "RAHMEN", "RASEN",
+    "RAT", "RATTE", "RAUM", "RECHNER", "REGAL", "REGEN", "REGION", "REH", "REIS", "REISE",
+    "REISEN", "RICHTER", "RIESE", "RING", "ROH", "ROLLE", "ROLLER", "ROSE", "ROT", "RUHE",
+    "RUM", "SAAL", "SAFT", "SALAT", "SALZ", "SAND", "SCHAF", "SCHATTEN", "SCHATZ", "SCHIFF",
+    "SCHNEE", "SCHRANK", "SCHUH", "SCHULE", "SCHWESTER", "SEE", "SEIL", "SEITE", "SESSEL", "SIEBEN",
+    "SILBER", "SOFA", "SOHN", "SOMMER", "SONNE", "SPIEGEL", "SPIEL", "SPINNE", "SPORT", "STADT",
+    "STAR", "STEIN", "STERN", "STOCK", "STRAND", "STRASSE", "STUHL", "STUNDE", "STURM", "SUPPE",
+    "TAFEL", "TAG", "TAL", "TANZ", "TASCHE", "TASSE", "TAU", "TEICH", "TELLER", "TEPPICH",
+    "TIER", "TIGER", "TISCH", "TOMATE", "TON", "TOR", "TRAUM", "TREPPE", "TUCH", "TUN",
+    "TURM", "UFER", "UHR", "VATER", "VOGEL", "VOR", "WAGEN", "WALD", "WAND", "WASSER",
+    "WEG", "WEH", "WEIN", "WEIZEN", "WELLE", "WELT", "WESTE", "WIESE", "WIND", "WINTER",
+    "WOCHE", "WOLKE", "WOLKEN", "WOLLE", "WORT", "WUNDER", "WURZEL", "ZAHL", "ZAHN", "ZEBRA",
+    "ZEH", "ZEIT", "ZELT", "ZIEGE", "ZIEL", "ZIMMER", "ZOLL", "ZOO", "ZUCKER", "ZUG",
+    "ZWERG", "ZWIEBEL"
+];

@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=10"></script>
+    <script src="data.js?v=11"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -125,25 +125,8 @@
                 </button>
 
                 <div class="space-y-3">
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">📶 Jeder am eigenen Handy
-                    </p>
-                    <button onclick="openLiveDuelSetup('quiz')"
-                        class="w-full p-4 bg-gradient-to-r from-rose-600 to-orange-600 text-white font-black rounded-2xl shadow-lg flex justify-center items-center gap-2">
-                        ⚔️ Geschwister-Duell starten
-                    </button>
-                    <button onclick="openLiveDuelSetup('scrabble')"
-                        class="w-full p-4 bg-gradient-to-r from-amber-600 to-yellow-500 text-slate-950 font-black rounded-2xl shadow-lg flex justify-center items-center gap-2">
-                        🔤 Wort-Duell (Scrabble)
-                    </button>
-                    <button onclick="joinLiveDuel()"
-                        class="w-full p-3.5 bg-gray-800 border border-gray-700 text-indigo-300 font-bold rounded-2xl shadow-md flex justify-center items-center gap-2 text-sm">
-                        🔗 Einem laufenden Duell beitreten
-                    </button>
-                </div>
-
-                <div class="space-y-3 pt-2">
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">🚗 Ein Gerät · gut bei
-                        schlechtem Empfang</p>
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">🚗 Zusammen an einem Gerät
+                        · gut bei schlechtem Empfang</p>
                     <div class="grid grid-cols-2 gap-3">
                         <button onclick="openDuelSetup()"
                             class="p-3.5 bg-gray-800 border border-gray-700 text-rose-300 font-bold rounded-2xl shadow-md text-sm">
@@ -154,6 +137,10 @@
                             🔤 Wort-Duell
                         </button>
                     </div>
+                    <p class="text-[11px] text-gray-500 text-center px-2">Für ein Duell, bei dem jeder sein
+                        <span class="text-indigo-400 font-bold">eigenes Handy</span> nutzt: erst oben dein Profil
+                        auswählen – die Duell-Knöpfe findest du dann in deinem Menü.
+                    </p>
                 </div>
 
                 <!-- RANGLISTE -->
@@ -302,7 +289,7 @@
             <!-- VIEW: LIVE-DUELL SETUP (jeder auf eigenem Handy) -->
             <div id="view-live-duel-setup" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
-                    onclick="switchView('family-hub')">← Zurück</button>
+                    onclick="switchView('menu')">← Zurück</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
                     <h2 id="live-duel-setup-title" class="text-2xl font-black text-center text-rose-400">⚔️ Live-Duell</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Du erstellst das Duell auf deinem Handy, die
@@ -407,6 +394,25 @@
                 <div id="weakness-card" class="hidden"></div>
 
                 <div id="pending-test-card" class="hidden"></div>
+
+                <div class="space-y-2.5">
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">📶 Duell · jeder am eigenen
+                        Handy</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="openLiveDuelSetup('quiz')"
+                            class="p-4 bg-gradient-to-r from-rose-600 to-orange-600 text-white font-black rounded-2xl shadow-lg text-sm flex flex-col items-center gap-1">
+                            <span class="text-2xl">⚔️</span> Quiz-Duell
+                        </button>
+                        <button onclick="openLiveDuelSetup('scrabble')"
+                            class="p-4 bg-gradient-to-r from-amber-600 to-yellow-500 text-slate-950 font-black rounded-2xl shadow-lg text-sm flex flex-col items-center gap-1">
+                            <span class="text-2xl">🔤</span> Wort-Duell
+                        </button>
+                    </div>
+                    <button onclick="joinLiveDuel()"
+                        class="w-full p-3.5 bg-gray-800 border border-gray-700 text-indigo-300 font-bold rounded-2xl shadow-md flex justify-center items-center gap-2 text-sm">
+                        🔗 Einem laufenden Duell beitreten
+                    </button>
+                </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <button onclick="showQuizSetup()"
@@ -1434,7 +1440,7 @@
             }
 
             async function createLiveDuel() {
-                if (!currentPlayer) return showToast("Fehler: kein Profil aktiv!", "error");
+                if (!currentPlayer || !activePlayerKey) return showToast("Bitte zuerst oben dein Profil auswählen!", "error");
                 const ref = liveDuelLobbyRef();
                 let lobbyData;
                 if (liveDuelType === "scrabble") {
@@ -1456,7 +1462,7 @@
             }
 
             async function joinLiveDuel() {
-                if (!currentParentUser || !currentPlayer) return showToast("Fehler: Du musst als Kind eingeloggt sein!", "error");
+                if (!currentParentUser || !currentPlayer || !activePlayerKey) return showToast("Bitte zuerst dein Profil auswählen, dann beitreten!", "error");
                 const ref = liveDuelLobbyRef();
                 try {
                     const snap = await ref.get();
@@ -1480,7 +1486,7 @@
             function leaveLiveDuel() {
                 if (liveDuelUnsubscribe) liveDuelUnsubscribe();
                 liveDuelUnsubscribe = null; liveDuelRef = null; isLiveDuelCreator = false; liveDuelResolving = false;
-                switchView('family-hub');
+                switchView(currentPlayer ? 'menu' : 'family-hub');
             }
 
             function renderLiveDuelFromSnapshot(data) {

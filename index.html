@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=6"></script>
+    <script src="data.js?v=7"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -1146,8 +1146,9 @@
 
             function showScrabbleTurnIntro() {
                 const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
-                document.getElementById("scrabble-turn-title").innerText = `${ALL_PROFILES[key].name} ist dran!`;
-                document.getElementById("scrabble-turn-sub").innerText = `Runde ${scrabbleState.round}/${scrabbleState.rounds} – gib das Handy weiter.`;
+                const isSolo = scrabbleState.playerKeys.length === 1;
+                document.getElementById("scrabble-turn-title").innerText = isSolo ? `Los geht's, ${ALL_PROFILES[key].name}!` : `${ALL_PROFILES[key].name} ist dran!`;
+                document.getElementById("scrabble-turn-sub").innerText = isSolo ? `Runde ${scrabbleState.round}/${scrabbleState.rounds} – knack deinen Highscore!` : `Runde ${scrabbleState.round}/${scrabbleState.rounds} – gib das Handy weiter.`;
                 document.getElementById("scrabble-turn-intro").classList.remove("hidden");
                 document.getElementById("scrabble-play-area").classList.add("hidden");
             }

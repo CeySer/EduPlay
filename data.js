@@ -970,7 +970,168 @@ const QUESTIONS_DATABASE = [
     { category: "beruf_friseur", question: "Warum wird vor einer Coloration eine Verträglichkeitsprobe empfohlen?", answers: ["Um allergische Reaktionen auf Farbstoffe auszuschließen", "Um den Preis zu ermitteln", "Um die Haarlänge zu messen"], correct: 0, explanation: "Besonders PPD in Oxidationsfarben kann Allergien auslösen." },
     { category: "beruf_friseur", question: "Was gehört zur Hygiene am Arbeitsplatz im Salon?", answers: ["Desinfektion von Scheren, Kämmen und Flächen", "Nur das Fegen der Haare", "Nur das Händewaschen am Feierabend"], correct: 0, explanation: "Der Hygieneplan regelt Reinigung und Desinfektion aller Werkzeuge und Flächen." },
     { category: "beruf_friseur", question: "Was ist das Ziel einer Kundenberatung vor dem Schnitt?", answers: ["Wünsche, Haarstruktur und Gesichtsform gemeinsam abzustimmen", "Möglichst teure Produkte zu verkaufen", "Den Termin zu verkürzen"], correct: 0, explanation: "Eine gute Beratung verhindert Missverständnisse und Reklamationen." },
-    { category: "beruf_friseur", question: "Was passiert beim Blondieren mit dem Haar?", answers: ["Die natürlichen Pigmente werden aufgehellt und zerstört", "Es wird Farbe hinzugefügt", "Die Schuppenschicht wird verdichtet"], correct: 0, explanation: "Blondieren belastet das Haar stark, deshalb sind Pflege und Abstände wichtig." }
+    { category: "beruf_friseur", question: "Was passiert beim Blondieren mit dem Haar?", answers: ["Die natürlichen Pigmente werden aufgehellt und zerstört", "Es wird Farbe hinzugefügt", "Die Schuppenschicht wird verdichtet"], correct: 0, explanation: "Blondieren belastet das Haar stark, deshalb sind Pflege und Abstände wichtig." },
+
+    // --- SPASS: FÜR DIE KLEINEN ---
+    { category: "spass_kleine", question: "Welches Tier sagt 'Muh'?", answers: ["Kuh 🐄", "Ente 🦆", "Hund 🐕"], correct: 0, explanation: "Die Kuh macht 'Muh'!" },
+    { category: "spass_kleine", question: "Welche Farbe hat Gras?", answers: ["Grün", "Blau", "Rot"], correct: 0, explanation: "Gras ist grün – das kommt vom Blattgrün (Chlorophyll)." },
+    { category: "spass_kleine", question: "Wie viele Räder hat ein Fahrrad?", answers: ["2", "3", "4"], correct: 0, explanation: "Ein Fahrrad hat zwei Räder, ein Dreirad drei." },
+    { category: "spass_kleine", question: "Was fliegt am Himmel?", answers: ["Ein Vogel", "Ein Fisch", "Ein Auto"], correct: 0, explanation: "Vögel und Flugzeuge fliegen am Himmel." },
+    { category: "spass_kleine", question: "Welches Tier hat einen langen Rüssel?", answers: ["Elefant 🐘", "Maus 🐭", "Katze 🐈"], correct: 0, explanation: "Mit dem Rüssel trinkt und greift der Elefant." },
+    { category: "spass_kleine", question: "Was isst man zum Frühstück?", answers: ["Brötchen", "Schuhe", "Steine"], correct: 0, explanation: "Zum Frühstück gibt es meist Brot, Müsli oder Obst." },
+    { category: "spass_kleine", question: "Welche Farbe hat Schnee?", answers: ["Weiß", "Schwarz", "Grün"], correct: 0, explanation: "Schnee sieht weiß aus, weil er das Licht in alle Richtungen streut." },
+    { category: "spass_kleine", question: "Wo schläft man normalerweise?", answers: ["Im Bett", "Im Kühlschrank", "Im Auto"], correct: 0, explanation: "Zum Schlafen legt man sich ins Bett." },
+    { category: "spass_kleine", question: "Wie viele Augen hat ein Mensch?", answers: ["2", "1", "3"], correct: 0, explanation: "Zwei Augen helfen uns, räumlich zu sehen." },
+    { category: "spass_kleine", question: "Welches Tier wohnt im Wasser?", answers: ["Fisch 🐟", "Löwe 🦁", "Pferd 🐴"], correct: 0, explanation: "Fische atmen mit Kiemen und leben im Wasser." },
+    { category: "spass_kleine", question: "Was braucht eine Pflanze zum Wachsen?", answers: ["Wasser und Licht", "Schokolade", "Musik"], correct: 0, explanation: "Pflanzen brauchen Wasser, Licht und Erde." },
+    { category: "spass_kleine", question: "Welche Jahreszeit ist es, wenn es schneit?", answers: ["Winter ❄️", "Sommer ☀️", "Frühling 🌷"], correct: 0, explanation: "Im Winter ist es kalt und es kann schneien." },
+
+    // --- SPASS: MUSIK ---
+    { category: "spass_musik", question: "Wie viele Saiten hat eine normale Gitarre?", answers: ["6", "4", "8"], correct: 0, explanation: "Eine E-Bass hat meist 4 Saiten, eine Gitarre 6." },
+    { category: "spass_musik", question: "Welches Instrument hat schwarze und weiße Tasten?", answers: ["Klavier", "Trompete", "Geige"], correct: 0, explanation: "Ein Klavier hat 88 Tasten – 52 weiße und 36 schwarze." },
+    { category: "spass_musik", question: "Wie heißt der Anführer eines Orchesters?", answers: ["Dirigent", "Kapitän", "Trainer"], correct: 0, explanation: "Der Dirigent gibt Takt und Einsätze vor." },
+    { category: "spass_musik", question: "Aus welchem Land stammt die Musikrichtung Reggae?", answers: ["Jamaika", "Brasilien", "Irland"], correct: 0, explanation: "Reggae entstand in den 1960er-Jahren in Jamaika." },
+    { category: "spass_musik", question: "Wie viele Töne hat eine Tonleiter von C bis zum nächsten C?", answers: ["8", "5", "12"], correct: 0, explanation: "C-D-E-F-G-A-H-C – acht Töne, daher der Name Oktave." },
+    { category: "spass_musik", question: "Welches Instrument gehört zu den Schlaginstrumenten?", answers: ["Trommel", "Flöte", "Cello"], correct: 0, explanation: "Bei Schlaginstrumenten entsteht der Ton durch Schlagen oder Schütteln." },
+    { category: "spass_musik", question: "Wer komponierte die 'Kleine Nachtmusik'?", answers: ["Wolfgang Amadeus Mozart", "Ludwig van Beethoven", "Johann Sebastian Bach"], correct: 0, explanation: "Mozart schrieb sie 1787 – eines der bekanntesten klassischen Stücke." },
+    { category: "spass_musik", question: "Was ist ein 'Refrain' in einem Lied?", answers: ["Der wiederkehrende Teil zwischen den Strophen", "Der erste Ton", "Das Instrument im Hintergrund"], correct: 0, explanation: "Der Refrain wiederholt sich und bleibt am besten im Ohr." },
+    { category: "spass_musik", question: "Welches Instrument spielt man mit einem Bogen?", answers: ["Geige", "Klavier", "Schlagzeug"], correct: 0, explanation: "Streichinstrumente wie Geige, Bratsche und Cello werden mit dem Bogen gestrichen." },
+    { category: "spass_musik", question: "Was misst man in 'BPM'?", answers: ["Das Tempo eines Liedes", "Die Lautstärke", "Die Länge des Liedes"], correct: 0, explanation: "BPM steht für 'beats per minute' – Schläge pro Minute." },
+    { category: "spass_musik", question: "Wie nennt man Musik ohne Gesang?", answers: ["Instrumental", "A cappella", "Duett"], correct: 0, explanation: "Umgekehrt bedeutet 'a cappella' Gesang ohne Instrumente." },
+    { category: "spass_musik", question: "Aus welchem Land kommt der Tango ursprünglich?", answers: ["Argentinien", "Spanien", "Italien"], correct: 0, explanation: "Der Tango entstand rund um Buenos Aires und Montevideo." },
+
+    // --- SPASS: ESSEN & TRINKEN ---
+    { category: "spass_essen", question: "Aus welchem Land stammt die Pizza ursprünglich?", answers: ["Italien", "Griechenland", "Spanien"], correct: 0, explanation: "Die Pizza Margherita stammt aus Neapel und trägt die Farben Italiens." },
+    { category: "spass_essen", question: "Woraus wird Schokolade hergestellt?", answers: ["Aus Kakaobohnen", "Aus Kaffeebohnen", "Aus Nüssen"], correct: 0, explanation: "Kakaobohnen wachsen an Kakaobäumen in tropischen Regionen." },
+    { category: "spass_essen", question: "Welches Gemüse macht beim Schneiden oft die Augen tränen?", answers: ["Zwiebel", "Karotte", "Gurke"], correct: 0, explanation: "Beim Schneiden werden reizende Schwefelverbindungen freigesetzt." },
+    { category: "spass_essen", question: "Was ist Sushi hauptsächlich?", answers: ["Reis mit Fisch oder Gemüse", "Gebratene Nudeln", "Ein Suppengericht"], correct: 0, explanation: "'Sushi' bezieht sich eigentlich auf den gesäuerten Reis." },
+    { category: "spass_essen", question: "Welches Getränk wird aus Gerste, Hopfen, Hefe und Wasser gebraut?", answers: ["Bier", "Wein", "Limonade"], correct: 0, explanation: "Das deutsche Reinheitsgebot von 1516 nennt genau diese Zutaten." },
+    { category: "spass_essen", question: "Woraus besteht Guacamole hauptsächlich?", answers: ["Avocado", "Erbsen", "Brokkoli"], correct: 0, explanation: "Guacamole ist eine mexikanische Creme aus Avocado, Limette und Zwiebel." },
+    { category: "spass_essen", question: "Welche Frucht ist botanisch gesehen eine Beere?", answers: ["Banane", "Erdbeere", "Himbeere"], correct: 0, explanation: "Kurios: Bananen sind botanisch Beeren, Erdbeeren dagegen Sammelnussfrüchte." },
+    { category: "spass_essen", question: "Was macht Chili scharf?", answers: ["Capsaicin", "Zucker", "Salz"], correct: 0, explanation: "Capsaicin reizt die Wärmerezeptoren im Mund – daher das Brennen." },
+    { category: "spass_essen", question: "Wie heißt das japanische Wort für grünen Pulvertee?", answers: ["Matcha", "Mango", "Miso"], correct: 0, explanation: "Matcha wird aus fein gemahlenen Grünteeblättern zubereitet." },
+    { category: "spass_essen", question: "Welches Lebensmittel besteht zu über 90 Prozent aus Wasser?", answers: ["Gurke", "Brot", "Käse"], correct: 0, explanation: "Gurken bestehen zu etwa 95 Prozent aus Wasser." },
+    { category: "spass_essen", question: "Was ist Hummus?", answers: ["Eine Creme aus Kichererbsen", "Ein Fleischgericht", "Eine Süßspeise"], correct: 0, explanation: "Hummus wird aus Kichererbsen, Sesampaste, Zitrone und Knoblauch gemacht." },
+    { category: "spass_essen", question: "Welcher Käse hat traditionell Löcher?", answers: ["Emmentaler", "Gouda", "Feta"], correct: 0, explanation: "Die Löcher entstehen durch Gasbildung bestimmter Bakterien beim Reifen." },
+
+    // --- SPASS: TIERE ---
+    { category: "spass_tiere", question: "Welches Tier kann seine Augen unabhängig voneinander bewegen?", answers: ["Chamäleon", "Katze", "Hund"], correct: 0, explanation: "So kann es gleichzeitig in zwei Richtungen schauen." },
+    { category: "spass_tiere", question: "Wie lange ist ein Blauwal ungefähr maximal?", answers: ["Etwa 30 Meter", "Etwa 10 Meter", "Etwa 60 Meter"], correct: 0, explanation: "Der Blauwal ist das größte Tier, das je auf der Erde gelebt hat." },
+    { category: "spass_tiere", question: "Welches Tier hat den stärksten Biss?", answers: ["Krokodil", "Löwe", "Wolf"], correct: 0, explanation: "Das Salzwasserkrokodil erreicht die höchste gemessene Beißkraft." },
+    { category: "spass_tiere", question: "Wie nennt man ein Baby-Känguru?", answers: ["Joey", "Kalb", "Welpe"], correct: 0, explanation: "Ein Joey ist bei der Geburt nur etwa 2 cm groß." },
+    { category: "spass_tiere", question: "Welches Tier schläft im Stehen?", answers: ["Pferd", "Hund", "Hamster"], correct: 0, explanation: "Pferde können dank eines Sperrmechanismus im Bein im Stehen dösen." },
+    { category: "spass_tiere", question: "Wie viele Beine hat ein Tausendfüßler tatsächlich meistens?", answers: ["Deutlich weniger als 1000", "Genau 1000", "Über 5000"], correct: 0, explanation: "Die meisten Arten haben zwischen 30 und 400 Beine." },
+    { category: "spass_tiere", question: "Welcher Vogel kann rückwärts fliegen?", answers: ["Kolibri", "Adler", "Taube"], correct: 0, explanation: "Kolibris schlagen bis zu 80-mal pro Sekunde mit den Flügeln." },
+    { category: "spass_tiere", question: "Was fressen Pandas fast ausschließlich?", answers: ["Bambus", "Fisch", "Fleisch"], correct: 0, explanation: "Große Pandas fressen täglich bis zu 20 kg Bambus." },
+    { category: "spass_tiere", question: "Welches Tier wechselt im Winter die Fellfarbe zu Weiß?", answers: ["Schneehase", "Fuchs", "Reh"], correct: 0, explanation: "Auch Hermelin und Schneehuhn tarnen sich so im Schnee." },
+    { category: "spass_tiere", question: "Wie verständigen sich Bienen über Futterquellen?", answers: ["Mit einem Schwänzeltanz", "Mit Gesang", "Mit Farben"], correct: 0, explanation: "Der Tanz verrät Richtung und Entfernung zur Blüte." },
+    { category: "spass_tiere", question: "Welches ist das schnellste Tier der Welt (im Sturzflug)?", answers: ["Wanderfalke", "Gepard", "Segelfisch"], correct: 0, explanation: "Im Sturzflug erreicht der Wanderfalke über 300 km/h." },
+    { category: "spass_tiere", question: "Wie viele Zähne hat ein erwachsener Hund ungefähr?", answers: ["42", "20", "60"], correct: 0, explanation: "Hunde haben 42 bleibende Zähne, Katzen nur 30." },
+
+    // --- SPASS: LÄNDER & FLAGGEN ---
+    { category: "spass_laender", question: "Welche Farben hat die deutsche Flagge von oben nach unten?", answers: ["Schwarz, Rot, Gold", "Rot, Schwarz, Gold", "Gold, Rot, Schwarz"], correct: 0, explanation: "Die Reihenfolge ist Schwarz-Rot-Gold." },
+    { category: "spass_laender", question: "Welches Land hat einen roten Punkt auf weißer Flagge?", answers: ["Japan", "China", "Südkorea"], correct: 0, explanation: "Die japanische Flagge heißt 'Hinomaru' – Sonnenscheibe." },
+    { category: "spass_laender", question: "Wie heißt die Hauptstadt der Türkei?", answers: ["Ankara", "Istanbul", "Izmir"], correct: 0, explanation: "Istanbul ist die größte Stadt, Hauptstadt ist aber Ankara." },
+    { category: "spass_laender", question: "Auf welchem Kontinent liegt Ägypten hauptsächlich?", answers: ["Afrika", "Asien", "Europa"], correct: 0, explanation: "Nur die Sinai-Halbinsel gehört geografisch zu Asien." },
+    { category: "spass_laender", question: "Welches Land ist das kleinste der Welt?", answers: ["Vatikanstadt", "Monaco", "Malta"], correct: 0, explanation: "Der Vatikan ist nur etwa 0,44 km² groß." },
+    { category: "spass_laender", question: "Welche Flagge zeigt ein Ahornblatt?", answers: ["Kanada", "Norwegen", "Australien"], correct: 0, explanation: "Das rote Ahornblatt ist das Wahrzeichen Kanadas." },
+    { category: "spass_laender", question: "An welches Land grenzt Deutschland im Süden?", answers: ["Österreich und Schweiz", "Dänemark", "Polen"], correct: 0, explanation: "Deutschland hat insgesamt neun Nachbarländer." },
+    { category: "spass_laender", question: "In welchem Land steht die Freiheitsstatue?", answers: ["USA", "Frankreich", "England"], correct: 0, explanation: "Sie steht in New York und war ein Geschenk Frankreichs." },
+    { category: "spass_laender", question: "Welches Land hat die meisten Zeitzonen?", answers: ["Frankreich (mit Überseegebieten)", "Deutschland", "Italien"], correct: 0, explanation: "Durch seine Überseegebiete kommt Frankreich auf zwölf Zeitzonen." },
+    { category: "spass_laender", question: "Wie heißt der längste Fluss Afrikas?", answers: ["Nil", "Kongo", "Sambesi"], correct: 0, explanation: "Der Nil ist etwa 6.650 km lang." },
+    { category: "spass_laender", question: "Welche Stadt wird auch 'die ewige Stadt' genannt?", answers: ["Rom", "Athen", "Kairo"], correct: 0, explanation: "Rom trägt diesen Beinamen seit der Antike." },
+    { category: "spass_laender", question: "Welches Land liegt vollständig in den Alpen und ist sehr klein?", answers: ["Liechtenstein", "Belgien", "Portugal"], correct: 0, explanation: "Liechtenstein liegt zwischen der Schweiz und Österreich." },
+
+    // --- SPASS: ERFINDUNGEN & TECHNIK ---
+    { category: "spass_erfindungen", question: "Wer erfand den Buchdruck mit beweglichen Lettern in Europa?", answers: ["Johannes Gutenberg", "Albert Einstein", "Karl Benz"], correct: 0, explanation: "Um 1450 revolutionierte Gutenberg die Verbreitung von Wissen." },
+    { category: "spass_erfindungen", question: "Wer baute das erste Automobil mit Verbrennungsmotor?", answers: ["Carl Benz", "Henry Ford", "Rudolf Diesel"], correct: 0, explanation: "1886 meldete Carl Benz seinen Motorwagen zum Patent an." },
+    { category: "spass_erfindungen", question: "Wofür steht 'WWW'?", answers: ["World Wide Web", "Wireless Web World", "Web Work Widget"], correct: 0, explanation: "Tim Berners-Lee entwickelte es 1989 am CERN." },
+    { category: "spass_erfindungen", question: "Was war der Zweck der ersten Glühbirne?", answers: ["Elektrisches Licht ohne offene Flamme", "Wärme erzeugen", "Töne verstärken"], correct: 0, explanation: "Thomas Edison machte sie ab 1879 alltagstauglich." },
+    { category: "spass_erfindungen", question: "Welches Gerät wandelt Sonnenlicht direkt in Strom um?", answers: ["Solarzelle", "Dynamo", "Turbine"], correct: 0, explanation: "In der Photovoltaik entsteht Strom durch den photoelektrischen Effekt." },
+    { category: "spass_erfindungen", question: "Wofür steht 'GPS'?", answers: ["Global Positioning System", "General Power Supply", "Global Phone Service"], correct: 0, explanation: "Satelliten bestimmen die Position über Laufzeitmessung." },
+    { category: "spass_erfindungen", question: "Was war die Aufgabe des ersten Computers ENIAC (1945)?", answers: ["Ballistische Berechnungen", "Videospiele", "Musik abspielen"], correct: 0, explanation: "Der ENIAC füllte einen ganzen Raum und wog etwa 27 Tonnen." },
+    { category: "spass_erfindungen", question: "Wer entwickelte die Theorie der Relativität?", answers: ["Albert Einstein", "Isaac Newton", "Nikola Tesla"], correct: 0, explanation: "Einstein veröffentlichte die spezielle Relativitätstheorie 1905." },
+    { category: "spass_erfindungen", question: "Was macht ein 3D-Drucker?", answers: ["Er baut Gegenstände Schicht für Schicht auf", "Er druckt bunte Bilder", "Er scannt Dokumente"], correct: 0, explanation: "Dieses Verfahren nennt man additive Fertigung." },
+    { category: "spass_erfindungen", question: "Wofür wurde Klettverschluss vorbildhaft nachgeahmt?", answers: ["Für Kletten aus der Natur", "Für Fischschuppen", "Für Spinnennetze"], correct: 0, explanation: "Ein Beispiel für Bionik: Natur als Vorbild für Technik." },
+    { category: "spass_erfindungen", question: "Was ist ein Akku im Unterschied zur Batterie?", answers: ["Er ist wiederaufladbar", "Er ist immer größer", "Er hält ewig"], correct: 0, explanation: "Batterien sind Primärzellen (einmalig), Akkus Sekundärzellen (wiederaufladbar)." },
+    { category: "spass_erfindungen", question: "Wann startete die erste bemannte Mondlandung?", answers: ["1969", "1959", "1979"], correct: 0, explanation: "Apollo 11 landete am 20. Juli 1969 auf dem Mond." },
+
+    // --- SPASS: RÄTSEL & LOGIK ---
+    { category: "spass_raetsel", question: "Was wird nasser, je mehr es trocknet?", answers: ["Ein Handtuch", "Ein Stein", "Ein Schuh"], correct: 0, explanation: "Je mehr es abtrocknet, desto nasser wird es selbst." },
+    { category: "spass_raetsel", question: "Ein Bauer hat 17 Schafe. Alle bis auf 9 laufen weg. Wie viele bleiben?", answers: ["9", "8", "17"], correct: 0, explanation: "'Alle bis auf 9' heißt: genau 9 bleiben übrig." },
+    { category: "spass_raetsel", question: "Was hat Städte, aber keine Häuser, und Wasser, aber keine Fische?", answers: ["Eine Landkarte", "Ein Buch", "Ein Fernseher"], correct: 0, explanation: "Auf einer Landkarte sind Städte und Flüsse eingezeichnet." },
+    { category: "spass_raetsel", question: "Wie viele Monate haben 28 Tage?", answers: ["Alle 12", "Nur einer", "Zwei"], correct: 0, explanation: "Jeder Monat hat mindestens 28 Tage." },
+    { category: "spass_raetsel", question: "Was geht hoch, wenn der Regen runterkommt?", answers: ["Der Regenschirm", "Der Boden", "Die Sonne"], correct: 0, explanation: "Ein kleines Wortspiel-Rätsel." },
+    { category: "spass_raetsel", question: "Setze die Reihe fort: 2, 4, 8, 16, ...", answers: ["32", "20", "24"], correct: 0, explanation: "Jede Zahl ist das Doppelte der vorherigen." },
+    { category: "spass_raetsel", question: "Setze fort: 1, 1, 2, 3, 5, 8, ...", answers: ["13", "11", "16"], correct: 0, explanation: "Fibonacci-Folge: Jede Zahl ist die Summe der beiden vorherigen." },
+    { category: "spass_raetsel", question: "Ein Zug fährt von Köln nach Berlin. Was fährt er, wenn er zurückfährt?", answers: ["Von Berlin nach Köln", "Nach Hamburg", "Er bleibt stehen"], correct: 0, explanation: "Eine Scherzfrage, bei der man oft zu kompliziert denkt." },
+    { category: "spass_raetsel", question: "Was ist schwerer: 1 kg Federn oder 1 kg Blei?", answers: ["Beides gleich schwer", "Blei", "Federn"], correct: 0, explanation: "Ein Kilogramm ist ein Kilogramm – nur das Volumen unterscheidet sich." },
+    { category: "spass_raetsel", question: "Vater und Sohn sind zusammen 60 Jahre. Der Vater ist dreimal so alt. Wie alt ist der Sohn?", answers: ["15", "20", "12"], correct: 0, explanation: "Sohn 15, Vater 45 – zusammen 60 und dreimal so alt." },
+    { category: "spass_raetsel", question: "Wie oft kann man 10 von 100 abziehen?", answers: ["Einmal, danach ist es 90", "Zehnmal", "Unendlich oft"], correct: 0, explanation: "Beim zweiten Mal zieht man ja von 90 ab, nicht mehr von 100." },
+    { category: "spass_raetsel", question: "Was kann man fangen, aber nicht werfen?", answers: ["Eine Erkältung", "Einen Ball", "Einen Stein"], correct: 0, explanation: "Man 'fängt sich' eine Erkältung ein." },
+
+    // --- ERGAENZUNG BESTEHENDE SPASS-KATEGORIEN ---
+    { category: "spass_allgemein", question: "Wie viele Bundesländer hat Österreich?", answers: ["9", "16", "7"], correct: 0, explanation: "Österreich besteht aus neun Bundesländern, Deutschland aus 16." },
+    { category: "spass_allgemein", question: "Welches Metall ist bei Zimmertemperatur flüssig?", answers: ["Quecksilber", "Eisen", "Kupfer"], correct: 0, explanation: "Quecksilber schmilzt bereits bei etwa -39 °C." },
+    { category: "spass_allgemein", question: "Wie viele Spieler stehen bei einer Volleyball-Mannschaft auf dem Feld?", answers: ["6", "5", "7"], correct: 0, explanation: "Beim Hallenvolleyball spielen sechs pro Team, beim Beachvolleyball zwei." },
+    { category: "spass_allgemein", question: "Welche Sprache wird in Brasilien gesprochen?", answers: ["Portugiesisch", "Spanisch", "Brasilianisch"], correct: 0, explanation: "Brasilien war portugiesische Kolonie – als einziges Land Südamerikas." },
+    { category: "spass_allgemein", question: "Wie heißt der höchste Berg der Welt?", answers: ["Mount Everest", "K2", "Mont Blanc"], correct: 0, explanation: "Der Mount Everest ist rund 8.849 Meter hoch." },
+
+    { category: "spass_wuerdest_du", question: "Schätzfrage: Was ist beliebter als Urlaubsziel – Berge oder Meer?", answers: ["Meer 🏖️", "Berge ⛰️", "Beides gleich"], correct: 0, explanation: "😄 In Umfragen liegt der Strandurlaub meist deutlich vorn." },
+    { category: "spass_wuerdest_du", question: "Schätzfrage: Was trinken die meisten Deutschen morgens?", answers: ["Kaffee ☕", "Tee 🍵", "Kakao"], correct: 0, explanation: "😄 Deutschland ist ein Kaffeeland – rund 160 Liter pro Kopf und Jahr." },
+    { category: "spass_wuerdest_du", question: "Scherzfrage: Aufstehen um 6 Uhr oder bis Mittag schlafen – was ist die ehrlichste Antwort?", answers: ["Bis Mittag schlafen 😴", "Um 6 Uhr aufstehen ⏰", "Kommt ganz auf den Tag an"], correct: 2, explanation: "😄 Am Wochenende sieht die Antwort meist anders aus als am Montag." },
+    { category: "spass_wuerdest_du", question: "Schätzfrage: Was ist das beliebteste Haustier in Deutschland?", answers: ["Katze 🐈", "Hund 🐕", "Hamster 🐹"], correct: 0, explanation: "😄 In deutschen Haushalten leben mehr Katzen als Hunde." },
+    { category: "spass_wuerdest_du", question: "Scherzfrage: Nie wieder Pizza oder nie wieder Pommes?", answers: ["Nie wieder Pommes 🍟", "Nie wieder Pizza 🍕", "Bitte beides behalten!"], correct: 2, explanation: "😄 Die ehrlichste Antwort am Familienabend." },
+    { category: "spass_wuerdest_du", question: "Schätzfrage: Welche Eissorte wird weltweit am meisten gegessen?", answers: ["Vanille 🍦", "Schokolade 🍫", "Erdbeere 🍓"], correct: 0, explanation: "😄 Vanille gilt als beliebteste Eissorte der Welt." },
+
+    { category: "spass_nice_to_know", question: "Nice to know: Wie viele Geschmacksrichtungen kann die Zunge unterscheiden?", answers: ["Fünf (süß, sauer, salzig, bitter, umami)", "Vier", "Zwei"], correct: 0, explanation: "Umami wurde erst 1908 in Japan beschrieben." },
+    { category: "spass_nice_to_know", question: "Nice to know: Warum ist der Himmel blau?", answers: ["Blaues Licht wird in der Luft am stärksten gestreut", "Weil das Meer sich spiegelt", "Weil die Sonne blau ist"], correct: 0, explanation: "Man nennt das Rayleigh-Streuung." },
+    { category: "spass_nice_to_know", question: "Nice to know: Wie viele Herzschläge hat ein Mensch etwa pro Tag?", answers: ["Rund 100.000", "Rund 10.000", "Rund 1 Million"], correct: 0, explanation: "Bei etwa 70 Schlägen pro Minute sind das gut 100.000 am Tag." },
+    { category: "spass_nice_to_know", question: "Nice to know: Was ist der härteste natürliche Stoff?", answers: ["Diamant", "Granit", "Stahl"], correct: 0, explanation: "Diamant hat den Härtegrad 10 auf der Mohs-Skala." },
+    { category: "spass_nice_to_know", question: "Nice to know: Wie viele Zellen hat der menschliche Körper ungefähr?", answers: ["Rund 30 Billionen", "Rund 30 Millionen", "Rund 30 Milliarden"], correct: 0, explanation: "Dazu kommen noch etwa genauso viele Bakterien im und am Körper." },
+    { category: "spass_nice_to_know", question: "Nice to know: Warum gähnen Menschen ansteckend?", answers: ["Vermutlich durch Empathie und Spiegelneurone", "Wegen Sauerstoffmangel im Raum", "Reiner Zufall"], correct: 0, explanation: "Je näher man sich steht, desto ansteckender wirkt das Gähnen." },
+
+    { category: "spass_welt", question: "Ungewöhnliches: Welches Land hat mehr Seen als der Rest der Welt zusammen?", answers: ["Kanada", "Russland", "Finnland"], correct: 0, explanation: "Kanada hat über zwei Millionen Seen." },
+    { category: "spass_welt", question: "Ungewöhnliches: In welchem Land gibt es einen See, der pink ist?", answers: ["Australien (Lake Hillier)", "Island", "Kanada"], correct: 0, explanation: "Die Farbe entsteht durch Algen und salzliebende Mikroorganismen." },
+    { category: "spass_welt", question: "Ungewöhnliches: Welche Stadt liegt auf zwei Kontinenten?", answers: ["Istanbul", "Kairo", "Athen"], correct: 0, explanation: "Der Bosporus trennt den europäischen vom asiatischen Teil." },
+    { category: "spass_welt", question: "Ungewöhnliches: Welcher Ort gilt als trockenster der Erde?", answers: ["Atacama-Wüste in Chile", "Sahara", "Death Valley"], correct: 0, explanation: "In manchen Teilen der Atacama wurde jahrzehntelang kein Regen gemessen." },
+    { category: "spass_welt", question: "Ungewöhnliches: Wie viele Menschen sprechen Chinesisch als Muttersprache?", answers: ["Über 900 Millionen", "Etwa 200 Millionen", "Etwa 50 Millionen"], correct: 0, explanation: "Mandarin ist die meistgesprochene Muttersprache der Welt." },
+    { category: "spass_welt", question: "Ungewöhnliches: Warum liegen Samoa und Amerikanisch-Samoa fast einen ganzen Tag auseinander?", answers: ["Zwischen ihnen verläuft die Datumsgrenze", "Sie liegen sehr weit voneinander entfernt", "Sie nutzen unterschiedliche Kalender"], correct: 0, explanation: "Die Nachbarinseln sind nur rund 100 km entfernt – aber Samoa feiert Neujahr fast 24 Stunden früher." },
+
+    { category: "spass_sport_film", question: "Wie lange dauert ein Basketballspiel in der NBA (reine Spielzeit)?", answers: ["4 x 12 Minuten", "2 x 45 Minuten", "3 x 20 Minuten"], correct: 0, explanation: "In der NBA sind es vier Viertel zu je zwölf Minuten." },
+    { category: "spass_sport_film", question: "Alle wie viele Jahre finden die Olympischen Sommerspiele statt?", answers: ["Alle 4 Jahre", "Alle 2 Jahre", "Jedes Jahr"], correct: 0, explanation: "Sommer- und Winterspiele wechseln sich im Zwei-Jahres-Rhythmus ab." },
+    { category: "spass_sport_film", question: "Wie heißt der wichtigste Filmpreis der USA?", answers: ["Oscar", "Grammy", "Emmy"], correct: 0, explanation: "Der Grammy ist für Musik, der Emmy für Fernsehen." },
+    { category: "spass_sport_film", question: "In welchem Sport gibt es den Begriff 'Strike'?", answers: ["Bowling", "Tennis", "Schwimmen"], correct: 0, explanation: "Ein Strike bedeutet: alle zehn Pins mit dem ersten Wurf." },
+    { category: "spass_sport_film", question: "Wie viele Minuten dauert eine Halbzeit beim Profi-Fußball?", answers: ["45", "30", "60"], correct: 0, explanation: "Zwei Halbzeiten à 45 Minuten plus Nachspielzeit." },
+    { category: "spass_sport_film", question: "Was ist ein 'Cliffhanger' im Film?", answers: ["Ein Spannungsende, das offen bleibt", "Eine Verfolgungsjagd", "Der Abspann"], correct: 0, explanation: "Cliffhanger sollen die Zuschauer zur nächsten Folge locken." },
+
+    // --- SPASS: SCHUL- & ALLTAGSHUMOR ---
+    { category: "spass_humor", question: "Was ist das gefährlichste Tier Deutschlands?", answers: ["Wolf", "Wildschwein", "Der Montagmorgen"], correct: 2, explanation: "😱 Kein Tier ist so gefährlich wie der Wecker am Montag!" },
+    { category: "spass_humor", question: "Wie überlebt man eine Gruppenarbeit?", answers: ["Nichts machen", "Kaffee trinken und nicken", "Alles selbst machen"], correct: 2, explanation: "🤝 Gruppenarbeit = Eine(r) macht's, der Rest guckt zu!" },
+    { category: "spass_humor", question: "Was bedeutet 'kurz' auf Deutsch?", answers: ["Weniger als 1 Minute", "Weniger als 5 Minuten", "Irgendwas zwischen 5 Minuten und 3 Stunden"], correct: 2, explanation: "⏰ 'Ich bin kurz weg' = Komm in 3 Stunden wieder!" },
+    { category: "spass_humor", question: "Was ist das wichtigste Schulfach, das es nicht gibt?", answers: ["Steuererklärung", "'Wie überlebe ich den Alltag?'", "Beides!"], correct: 2, explanation: "📚 Warum lernt man Gedichtanalyse, aber nicht, wie man eine Wohnung findet?!" },
+    { category: "spass_humor", question: "Wofür steht die Abkürzung 'LOL' bei Lehrern?", answers: ["Laughing Out Loud", "Lehrer Ohne Langeweile", "Lernziel Ohne Lust"], correct: 2, explanation: "😂 Lehrer-LOL = 'Warum lacht da jemand? Das ist ein ernstes Thema!'" },
+    { category: "spass_humor", question: "Was ist die häufigste Ausrede für fehlende Hausaufgaben?", answers: ["'Der Drucker war kaputt'", "'Ich dachte, das ist freiwillig'", "'Mein Hund hat sie gefressen'"], correct: 2, explanation: "🐶 Der Klassiker! Funktioniert seit 100 Jahren." },
+    { category: "spass_humor", question: "Was denkt ein Lehrer wirklich, wenn er sagt 'Das wird eine leichte Übung'?", answers: ["'Ich will einfach nur meine Ruhe'", "'Das habe ich aus dem Internet'", "'Ihr werdet alle scheitern'"], correct: 2, explanation: "😈 'Leichte Übung' = Lehrer-Code für 'Ihr werdet leiden'!" },
+    { category: "spass_humor", question: "Wofür steht die Abkürzung 'Muttizettel'?", answers: ["Mutters Genehmigung", "Mutti, ich will zocken", "Mündliche Unverbindliche Teilnahme-Toleranz"], correct: 2, explanation: "📝 Bürokratisch korrekt: M.U.T.T.! Egal was draufsteht – Hauptsache unterschrieben!" },
+    { category: "spass_humor", question: "Was macht ein Schüler in der letzten Reihe?", answers: ["Aufpassen", "Schlafen mit offenen Augen", "Das echte Leben planen"], correct: 2, explanation: "💭 Letzte Reihe = Denkfabrik für alles außer Unterricht!" },
+    { category: "spass_humor", question: "Was passiert, wenn der Lehrer sagt 'Ich brauche einen Freiwilligen'?", answers: ["Alle melden sich sofort", "Der Klassenbeste steht auf", "Plötzlich sind alle Schnürsenkel interessant"], correct: 2, explanation: "👀 Nie war der Fußboden so spannend wie in diesem Moment!" },
+    { category: "spass_humor", question: "Wie lange dauert 'gleich' bei Eltern?", answers: ["Ungefähr eine Minute", "Ungefähr fünf Minuten", "Niemand hat es je gemessen"], correct: 2, explanation: "⌛ 'Gleich' ist die dehnbarste Zeiteinheit der Welt." },
+    { category: "spass_humor", question: "Was ist das Erste, was man nach den Ferien in der Schule lernt?", answers: ["Den neuen Stundenplan", "Die neuen Regeln", "Wie man wieder früh aufsteht"], correct: 2, explanation: "😴 Und das ist mit Abstand das schwerste Fach!" },
+
+    // --- SPASS: BERUFE MIT HUMOR ---
+    { category: "spass_beruf_humor", question: "KFZ: Was sagt der Kunde, wenn der Motor klopft?", answers: ["'Da ist was kaputt'", "'Der klopft schon immer so'", "'Können Sie mal schnell gucken? Dauert bestimmt nur 5 Minuten'"], correct: 2, explanation: "⏱️ 'Nur 5 Minuten' = KFZ-Albtraum! In Wahrheit mindestens 5 Stunden." },
+    { category: "spass_beruf_humor", question: "KFZ: Was bleibt nach jeder Reparatur übrig?", answers: ["Eine Schraube", "Ein Werkzeug", "Beides – und keiner weiß, wo sie hingehören"], correct: 2, explanation: "🔩 Zwei Schrauben übrig? Das Auto ist jetzt leichter = schneller!" },
+    { category: "spass_beruf_humor", question: "Tischler: Was macht ein Tischler, wenn er Holz sägt?", answers: ["Genau nach Plan", "Dreimal falsch, einmal richtig", "Sägen, fluchen, neu sägen"], correct: 2, explanation: "🪚 Tischler-Regel Nr. 1: Immer mehr Holz einplanen als man braucht!" },
+    { category: "spass_beruf_humor", question: "Friseur: Was sagt der Kunde NIE beim Friseur?", answers: ["'Machen Sie ruhig kürzer'", "'Ich habe noch viel Zeit'", "'Genau so wollte ich es!'"], correct: 2, explanation: "💇 Egal wie gut es aussieht – der Kunde wollte es 'eigentlich anders'!" },
+    { category: "spass_beruf_humor", question: "Elektroniker: Wann funktioniert ein Gerät wieder?", answers: ["Nach genauer Fehleranalyse", "Wenn der Chef kommt", "Sobald man dagegen haut"], correct: 2, explanation: "⚡ 'Percussive Maintenance' – die edle Kunst des Draufhauens!" },
+    { category: "spass_beruf_humor", question: "IT: Was ist die Lösung für 99 Prozent aller IT-Probleme?", answers: ["Das Kabel einmal umdrehen", "Lauter schimpfen", "'Haben Sie schon versucht, es aus- und wieder einzuschalten?'"], correct: 2, explanation: "🖥️ Der IT-Support-Klassiker – und er funktioniert WIRKLICH meistens!" },
+    { category: "spass_beruf_humor", question: "Büro: Was bedeutet 'Ich melde mich zeitnah'?", answers: ["Innerhalb einer Stunde", "Noch heute", "Irgendwann zwischen morgen und nie"], correct: 2, explanation: "📧 'Zeitnah' ist die höflichste Art, 'keine Ahnung wann' zu sagen." },
+    { category: "spass_beruf_humor", question: "Einzelhandel: Wann kommt der letzte Kunde?", answers: ["Mittags", "Am Nachmittag", "Genau eine Minute vor Ladenschluss"], correct: 2, explanation: "🛒 Und er braucht dann natürlich eine ausführliche Beratung." },
+    { category: "spass_beruf_humor", question: "Werkstatt: Was ist die meistgenutzte Maßeinheit?", answers: ["Millimeter", "Zentimeter", "Pi mal Daumen"], correct: 2, explanation: "📏 Dicht gefolgt von 'passt schon' und 'ungefähr so'." },
+    { category: "spass_beruf_humor", question: "Pflege: Was ist die häufigste Antwort auf 'Wie geht es Ihnen?'", answers: ["'Sehr gut, danke'", "'Geht so'", "'Muss ja'"], correct: 2, explanation: "🩺 Zwei Wörter, die alles sagen." },
+    { category: "spass_beruf_humor", question: "Handwerk: Was heißt 'Ich komme dann Dienstag'?", answers: ["Nächsten Dienstag", "Übernächsten Dienstag", "Irgendeinen Dienstag in diesem Jahr"], correct: 2, explanation: "🔨 Die Handwerker-Woche hat bekanntlich sehr viele Dienstage." },
+    { category: "spass_beruf_humor", question: "Ausbildung: Was lernt man im ersten Lehrjahr am besten?", answers: ["Alle Fachbegriffe", "Alle Werkzeuge", "Wo die Kaffeemaschine steht"], correct: 2, explanation: "☕ Und wie man sie bedient – die wichtigste Grundqualifikation!" }
 ];
 
 // =======================================================
@@ -1007,10 +1168,19 @@ const BERUFSSCHULE = [
 // Spass-Kategorien - bewusst getrennt vom Lernbereich
 const FUN_CATEGORIES = [
     { key: "spass_allgemein", label: "🏆 Allgemeinwissen" },
+    { key: "spass_kleine", label: "🧸 Für die Kleinen (ganz leicht)" },
     { key: "spass_wuerdest_du", label: "🤔 Schätzfragen & Würdest du eher" },
     { key: "spass_nice_to_know", label: "✨ Nice to Know" },
     { key: "spass_welt", label: "🌍 Ungewöhnliches aus der Welt" },
-    { key: "spass_sport_film", label: "🎬 Sport & Film" }
+    { key: "spass_sport_film", label: "🎬 Sport & Film" },
+    { key: "spass_musik", label: "🎵 Musik" },
+    { key: "spass_essen", label: "🍕 Essen & Trinken" },
+    { key: "spass_tiere", label: "🐾 Tiere" },
+    { key: "spass_laender", label: "🗺️ Länder & Flaggen" },
+    { key: "spass_erfindungen", label: "💡 Erfindungen & Technik" },
+    { key: "spass_raetsel", label: "🧩 Rätsel & Logik" },
+    { key: "spass_humor", label: "😂 Schul- & Alltagshumor" },
+    { key: "spass_beruf_humor", label: "🔧 Berufe mit Humor" }
 ];
 
 const VOCABULARY_DATABASE = {

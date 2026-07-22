@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=14"></script>
+    <script src="data.js?v=15"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -113,8 +113,13 @@
 
             <!-- VIEW: FAMILIEN HUB -->
             <div id="view-family-hub" class="view hidden space-y-6">
-                <div class="text-center pt-6 pb-2 border-b border-gray-800">
+                <div class="pt-6 pb-2 border-b border-gray-800 flex items-center justify-between">
+                    <span class="w-10"></span>
                     <h1 class="text-2xl font-black text-white">Wer lernt heute?</h1>
+                    <button onclick="toggleSound()" title="Ton an/aus"
+                        class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg">
+                        <span class="sound-toggle-icon">🔊</span>
+                    </button>
                 </div>
 
                 <button onclick="toggleProfileList()" id="profile-toggle-btn"
@@ -137,11 +142,25 @@
                         class="w-full p-3.5 border-2 border-dashed border-gray-600 text-gray-400 font-bold rounded-2xl hover:border-emerald-500 hover:text-emerald-400 transition text-sm">
                         + Neues Profil für Kind anlegen
                     </button>
+
+                    <button onclick="addGuestProfile()"
+                        class="w-full p-3.5 border-2 border-dashed border-sky-700 text-sky-300 font-bold rounded-2xl hover:border-sky-500 transition text-sm">
+                        🙋 Gast hinzufügen (spielt nur heute mit)
+                    </button>
+
+                    <button id="clear-guests-btn" onclick="removeAllGuests()"
+                        class="hidden w-full p-2.5 text-rose-400 font-bold rounded-2xl text-xs underline">
+                        Alle Gäste wieder entfernen
+                    </button>
                 </div>
 
                 <div class="space-y-3">
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">🚗 Zusammen an einem Gerät
-                        · gut bei schlechtem Empfang</p>
+                    <div class="flex items-center gap-2 px-1">
+                        <span
+                            class="text-[10px] font-black bg-emerald-900/60 text-emerald-300 border border-emerald-700 px-2 py-0.5 rounded-full">📴
+                            OHNE INTERNET</span>
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Ein Gerät · weitergeben</span>
+                    </div>
                     <div class="grid grid-cols-2 gap-3">
                         <button onclick="openDuelSetup()"
                             class="p-3.5 bg-gray-800 border border-gray-700 text-rose-300 font-bold rounded-2xl shadow-md text-sm">
@@ -152,7 +171,8 @@
                             🔤 Wort-Duell
                         </button>
                     </div>
-                    <p class="text-[11px] text-gray-500 text-center px-2">Für ein Duell, bei dem jeder sein
+                    <p class="text-[11px] text-gray-500 text-center px-2">Diese beiden laufen komplett ohne
+                        Internet – ideal im Auto oder Funkloch.<br>Für ein Duell, bei dem jeder sein
                         <span class="text-indigo-400 font-bold">eigenes Handy</span> nutzt: erst oben dein Profil
                         auswählen – die Duell-Knöpfe findest du dann in deinem Menü.
                     </p>
@@ -386,8 +406,14 @@
 
             <!-- VIEW: HAUPTMENÜ (nach Profilauswahl) -->
             <div id="view-menu" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
-                    onclick="switchView('family-hub')">← Profil wechseln</button>
+                <div class="flex items-center justify-between gap-2">
+                    <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                        onclick="switchView('family-hub')">← Profil wechseln</button>
+                    <button onclick="toggleSound()" title="Ton an/aus"
+                        class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg shrink-0">
+                        <span class="sound-toggle-icon">🔊</span>
+                    </button>
+                </div>
 
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg text-center">
                     <h1 id="welcome-text" class="text-2xl font-black text-white mb-2">Hallo!</h1>
@@ -423,8 +449,12 @@
                 <div id="pending-test-card" class="hidden"></div>
 
                 <div class="space-y-2.5">
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">📶 Duell · jeder am eigenen
-                        Handy</p>
+                    <div class="flex items-center gap-2 px-1">
+                        <span
+                            class="text-[10px] font-black bg-indigo-900/60 text-indigo-300 border border-indigo-700 px-2 py-0.5 rounded-full">📶
+                            BRAUCHT INTERNET</span>
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Jeder am eigenen Handy</span>
+                    </div>
                     <div class="grid grid-cols-2 gap-3">
                         <button onclick="openLiveDuelSetup('quiz')"
                             class="p-4 bg-gradient-to-r from-rose-600 to-orange-600 text-white font-black rounded-2xl shadow-lg text-sm flex flex-col items-center gap-1">
@@ -949,7 +979,7 @@
             function checkAndAwardBadges() {
                 if (!currentPlayer) return;
                 const newBadge = evaluateAndApplyBadges(currentPlayer);
-                if (newBadge) { showToast(`🎉 Neues Abzeichen: ${newBadge.icon} ${newBadge.name}!`, "success"); confetti(); }
+                if (newBadge) { showToast(`🎉 Neues Abzeichen: ${newBadge.icon} ${newBadge.name}!`, "success"); confetti(); SFX.levelUp(); }
             }
             function registerStreak() {
                 if (!currentPlayer) return;
@@ -1055,6 +1085,7 @@
                 currentPlayer.redeemedRewards = currentPlayer.redeemedRewards.slice(0, 20);
                 savePlayerProgress();
                 updateMenuGamification();
+                SFX.coin();
                 showToast(`🎉 "${r.name}" eingelöst! Zeig das deinen Eltern.`, "success");
                 renderRewardsShop();
             }
@@ -1063,12 +1094,69 @@
                 if (typeof QUESTIONS_DATABASE === 'undefined' || typeof VOCABULARY_DATABASE === 'undefined') {
                     alert("ACHTUNG: Die Datei 'data.js' wird vom Browser nicht gefunden!\n\n1. Liegt sie im exakt gleichen Ordner wie die index.html?\n2. Heißt sie vielleicht versehentlich 'data.js.txt'? (Windows versteckt oft Dateiendungen)");
                 }
+                // Ton-Symbol an die gespeicherte Einstellung anpassen
+                document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
             };
 
             auth.onAuthStateChanged((user) => {
                 if (user) { currentParentUser = user; loadFamilyProfiles(); }
                 else { currentParentUser = null; switchView('auth'); }
             });
+
+            // === SOUNDS ===
+            // Alle Töne werden direkt im Browser erzeugt (Web Audio API). Das braucht
+            // keine Audiodateien, funktioniert offline und lädt nichts nach.
+            let audioCtx = null;
+            let soundOn = true;
+            try { soundOn = localStorage.getItem("eduplaySound") !== "off"; } catch (e) { }
+
+            function ensureAudio() {
+                if (!soundOn) return null;
+                try {
+                    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    if (audioCtx.state === "suspended") audioCtx.resume();
+                    return audioCtx;
+                } catch (e) { return null; }
+            }
+
+            // Spielt eine Folge von Tönen: [Frequenz in Hz, Dauer in Sekunden]
+            function playTones(sequence, type = "sine", volume = 0.15) {
+                const ctx = ensureAudio();
+                if (!ctx) return;
+                let startAt = ctx.currentTime;
+                sequence.forEach(([freq, dur]) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = type;
+                    osc.frequency.setValueAtTime(freq, startAt);
+                    // Weiches Ein- und Ausblenden, sonst knackt es
+                    gain.gain.setValueAtTime(0, startAt);
+                    gain.gain.linearRampToValueAtTime(volume, startAt + 0.015);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, startAt + dur);
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    osc.start(startAt); osc.stop(startAt + dur + 0.02);
+                    startAt += dur;
+                });
+            }
+
+            const SFX = {
+                tap: () => playTones([[440, 0.05]], "triangle", 0.07),
+                correct: () => playTones([[660, 0.09], [880, 0.14]], "sine", 0.14),
+                wrong: () => playTones([[220, 0.14], [165, 0.20]], "sawtooth", 0.10),
+                win: () => playTones([[523, 0.11], [659, 0.11], [784, 0.11], [1047, 0.26]], "sine", 0.14),
+                levelUp: () => playTones([[587, 0.09], [740, 0.09], [988, 0.20]], "triangle", 0.13),
+                coin: () => playTones([[988, 0.06], [1319, 0.11]], "square", 0.07),
+                tick: () => playTones([[880, 0.04]], "square", 0.05),
+                timeUp: () => playTones([[392, 0.15], [330, 0.15], [262, 0.28]], "sawtooth", 0.11)
+            };
+
+            function toggleSound() {
+                soundOn = !soundOn;
+                try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
+                document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
+                if (soundOn) SFX.tap();
+                showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus");
+            }
 
             function showToast(msg, type = "success") {
                 const c = document.getElementById("toast-container"); const t = document.createElement("div");
@@ -1141,8 +1229,13 @@
 
                 profileKeys.forEach(key => {
                     const p = ALL_PROFILES[key]; const btn = document.createElement("button");
-                    btn.className = "bg-gray-800 border border-gray-700 p-4 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-1";
-                    btn.innerHTML = `<div class="text-3xl">👦👧</div><div class="font-bold text-white text-sm leading-tight">${p.name}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>`;
+                    const guest = !!p.isGuest;
+                    btn.className = "bg-gray-800 border p-4 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-1 relative " +
+                        (guest ? "border-sky-600" : "border-gray-700");
+                    btn.innerHTML = `${guest ? '<span class="absolute top-1 right-2 text-[10px] font-black text-sky-400">GAST</span>' : ''}` +
+                        `<div class="text-3xl">${guest ? "🙋" : "👦👧"}</div>` +
+                        `<div class="font-bold text-white text-sm leading-tight">${p.name}</div>` +
+                        `<div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>`;
                     btn.onclick = () => selectProfile(key); grid.appendChild(btn);
                 });
 
@@ -1152,9 +1245,15 @@
                 if (badge) badge.innerText = profileKeys.length === 1 ? "1 Profil" : `${profileKeys.length} Profile`;
                 toggleProfileList(profileKeys.length === 0);
 
+                // Knopf zum Aufräumen nur zeigen, wenn es Gäste gibt
+                const guestKeys = profileKeys.filter(k => ALL_PROFILES[k].isGuest);
+                const clearGuestsBtn = document.getElementById("clear-guests-btn");
+                if (clearGuestsBtn) clearGuestsBtn.classList.toggle("hidden", guestKeys.length === 0);
+
                 const lbContainer = document.getElementById("leaderboard-container");
                 const leaderBadge = document.getElementById("leaderboard-leader-badge");
-                const sortedProfiles = Object.values(ALL_PROFILES).sort((a, b) => b.coins - a.coins);
+                // Gäste tauchen bewusst NICHT in der Familien-Rangliste auf
+                const sortedProfiles = Object.values(ALL_PROFILES).filter(p => !p.isGuest).sort((a, b) => b.coins - a.coins);
 
                 // Rangliste zugeklappt lassen, aber den Spitzenreiter schon im Knopf zeigen
                 toggleLeaderboard(false);
@@ -1316,11 +1415,17 @@
                 const upper = word.toUpperCase();
                 if (WORD_SET.has(upper)) return { status: "valid" };
                 try {
+                    // Harte Zeitgrenze: bei schlechtem Empfang darf die Prüfung das
+                    // Spiel nicht blockieren – nach 4 Sekunden brechen wir ab.
+                    const controller = new AbortController();
+                    const timeout = setTimeout(() => controller.abort(), 4000);
                     const response = await fetch("https://api.languagetool.org/v2/check", {
                         method: "POST",
                         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: `text=${encodeURIComponent(word)}&language=de-DE`
+                        body: `text=${encodeURIComponent(word)}&language=de-DE`,
+                        signal: controller.signal
                     });
+                    clearTimeout(timeout);
                     if (!response.ok) return { status: "unknown" };
                     const data = await response.json();
                     const hasSpellingError = (data.matches || []).some(m =>
@@ -1445,8 +1550,16 @@
                 const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
                 document.getElementById("scrabble-progress").innerText = `Runde ${scrabbleState.round}/${scrabbleState.rounds} – ${ALL_PROFILES[key].name}`;
                 renderScrabbleTiles(scrabbleState.currentLetters);
+
+                // Knopf wieder freigeben – er wird beim Einreichen gesperrt und muss
+                // für den nächsten Zug unbedingt wieder aktiv sein.
+                const submitBtn = document.querySelector('#scrabble-play-area button[onclick="submitScrabbleWord()"]');
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.classList.remove("opacity-50"); }
+                scrabbleSubmitting = false;
+
                 const input = document.getElementById("scrabble-word-input");
                 input.value = "";
+                input.disabled = false;
                 document.getElementById("scrabble-live-feedback").innerText = "";
                 input.oninput = () => {
                     const word = input.value.trim().toUpperCase();
@@ -1462,14 +1575,19 @@
                 scrabbleTimerInterval = setInterval(() => {
                     timeLeft--;
                     document.getElementById("scrabble-timer").innerText = timeLeft;
-                    if (timeLeft <= 0) { clearInterval(scrabbleTimerInterval); submitScrabbleWord(); }
+                    if (timeLeft > 0 && timeLeft <= 5) SFX.tick();
+                    if (timeLeft <= 0) { clearInterval(scrabbleTimerInterval); SFX.timeUp(); submitScrabbleWord(); }
                 }, 1000);
             }
 
+            let scrabbleSubmitting = false;
+
             async function submitScrabbleWord() {
+                if (scrabbleSubmitting) return;   // Doppeltippen ignorieren
+                scrabbleSubmitting = true;
                 clearInterval(scrabbleTimerInterval);
                 const submitBtn = document.querySelector('#scrabble-play-area button[onclick="submitScrabbleWord()"]');
-                if (submitBtn) submitBtn.disabled = true;
+                if (submitBtn) { submitBtn.disabled = true; submitBtn.classList.add("opacity-50"); }
                 const word = document.getElementById("scrabble-word-input").value.trim().toUpperCase();
                 const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
                 const tileResult = word.length >= 2 ? computeScrabbleWordScore(word, scrabbleState.currentLetters) : { valid: false };
@@ -1484,6 +1602,7 @@
                     else { points = 0; note = " – unbekanntes Wort (offline nicht prüfbar)"; }
                 }
                 scrabbleState.scores[key] += points;
+                if (points > 0) SFX.correct(); else SFX.wrong();
                 showToast(`${ALL_PROFILES[key].name}: +${points} Punkte${word ? ` für "${word}"` : ""}${note}`, points > 0 ? "success" : "error");
 
                 scrabbleState.playerIndex++;
@@ -1524,6 +1643,7 @@
                 switchView('scrabble-result');
                 renderFamilyHub();
                 try { confetti(); } catch (e) { }
+                SFX.win();
             }
 
             // === LIVE-DUELL: Quiz & Scrabble, jeder auf eigenem Handy ===
@@ -1815,6 +1935,7 @@
                 document.getElementById("live-duel-result-content").innerHTML = html;
                 renderFamilyHub();
                 try { confetti(); } catch (e) { }
+                SFX.win();
             }
 
             async function saveNewProfile() {
@@ -1841,6 +1962,7 @@
             }
 
             function selectProfile(key) {
+                SFX.tap();
                 activePlayerKey = key;
                 currentPlayer = ALL_PROFILES[key];
                 sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
@@ -1927,6 +2049,67 @@
                 if (tab === 'rewards') renderRewardsManageList();
             }
 
+            // === GAST-PROFILE ===
+            // Gäste (z.B. Besuch) können sofort mitspielen, erscheinen aber NICHT in
+            // der Familien-Rangliste und lassen sich mit einem Klick wieder entfernen.
+            async function addGuestProfile() {
+                const name = prompt("Name des Gastes:");
+                if (!name || !name.trim()) return;
+                const guest = {
+                    name: name.trim(), ageType: "gast", age: "-", coins: 0,
+                    learnedWords: [], isGuest: true
+                };
+                try {
+                    const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(guest);
+                    ALL_PROFILES[docRef.id] = guest;
+                    SFX.tap();
+                    showToast(`🙋 Gast "${guest.name}" kann jetzt mitspielen!`);
+                    renderFamilyHub();
+                    toggleProfileList(true);
+                } catch (e) {
+                    showToast("Fehler beim Anlegen des Gastes", "error");
+                }
+            }
+
+            async function removeAllGuests() {
+                const guestKeys = Object.keys(ALL_PROFILES).filter(k => ALL_PROFILES[k].isGuest);
+                if (guestKeys.length === 0) return;
+                const names = guestKeys.map(k => ALL_PROFILES[k].name).join(", ");
+                if (!confirm(`Diese Gäste endgültig entfernen?\n\n${names}\n\nIhre Punkte gehen dabei verloren.`)) return;
+                try {
+                    for (const key of guestKeys) {
+                        await db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).delete();
+                        delete ALL_PROFILES[key];
+                        if (activePlayerKey === key) { activePlayerKey = ""; currentPlayer = null; }
+                    }
+                    showToast("Gäste entfernt.");
+                    renderFamilyHub();
+                } catch (e) {
+                    showToast("Fehler beim Entfernen", "error");
+                }
+            }
+
+            // Profil dauerhaft löschen (nur aus dem Eltern-/Admin-Bereich erreichbar)
+            async function deleteProfile(key) {
+                const p = ALL_PROFILES[key];
+                if (!p) return;
+                if (!confirm(`Profil "${p.name}" wirklich endgültig löschen?\n\nAlle Coins, Abzeichen und der gesamte Lernfortschritt gehen unwiderruflich verloren.`)) return;
+                const check = prompt(`Zur Sicherheit: Tippe den Namen "${p.name}" ein, um das Löschen zu bestätigen.`);
+                if (!check || check.trim().toLowerCase() !== p.name.toLowerCase()) {
+                    return showToast("Name stimmt nicht – Profil wurde NICHT gelöscht.", "error");
+                }
+                try {
+                    await db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).delete();
+                    delete ALL_PROFILES[key];
+                    if (activePlayerKey === key) { activePlayerKey = ""; currentPlayer = null; }
+                    showToast(`Profil "${p.name}" wurde gelöscht.`);
+                    renderAdminDashboard();
+                    renderFamilyHub();
+                } catch (e) {
+                    showToast("Fehler beim Löschen", "error");
+                }
+            }
+
             function renderAdminDashboard() {
                 const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
                 Object.keys(ALL_PROFILES).forEach(key => {
@@ -1973,9 +2156,10 @@
                         ? `<div class="flex gap-1 flex-wrap mt-2">${earnedBadges.map(id => { const b = BADGES.find(x => x.id === id); return b ? `<span class="text-lg" title="${b.name}">${b.icon}</span>` : ""; }).join("")}</div>`
                         : "";
                     const pendingHtml = p.pendingTest ? `<div class="mt-2 text-xs text-yellow-400 font-bold">⏳ Test wartet auf Bearbeitung</div>` : "";
+                    const guestTag = p.isGuest ? ` <span class="text-[10px] font-black text-sky-400 bg-sky-950 px-1.5 py-0.5 rounded">GAST</span>` : "";
                     container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl">
                         <div class="flex justify-between items-center">
-                            <div class="text-blue-400 font-bold">${p.name} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div>
+                            <div class="text-blue-400 font-bold">${p.name}${guestTag} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div>
                             <div class="text-yellow-400 font-black">🪙 ${p.coins}</div>
                         </div>
                         <div class="text-xs text-gray-400 mt-1">${lvl.current.icon} ${lvl.current.name} · 🔥 ${streakCount} Tage Streak · 📚 ${wC} Vokabeln</div>
@@ -1984,6 +2168,10 @@
                         ${lastTestHtml}
                         ${lastRewardHtml}
                         ${pendingHtml}
+                        <button onclick="deleteProfile('${key}')"
+                            class="mt-3 w-full p-2 text-xs font-bold text-rose-400 border border-rose-900 rounded-lg hover:bg-rose-950 transition">
+                            🗑️ Profil löschen
+                        </button>
                     </div>`;
                 });
                 if (Object.keys(ALL_PROFILES).length === 0) {
@@ -2059,7 +2247,7 @@
             }
 
             // === FOKUS LERNZEIT ===
-            function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); focusTimerInterval = null; addXP(20); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; } }, 1000); } }
+            function startFocusTimer() { if (!focusTimerInterval) { focusTimerInterval = setInterval(() => { if (focusTimeRemaining > 0) { focusTimeRemaining--; document.getElementById("timer-display").innerText = Math.floor(focusTimeRemaining / 60) + ":" + (focusTimeRemaining % 60).toString().padStart(2, '0'); } else { clearInterval(focusTimerInterval); focusTimerInterval = null; SFX.timeUp(); addXP(20); showToast("Zeit um! +20 Coins"); focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; } }, 1000); } }
             function resetFocusTimer() { clearInterval(focusTimerInterval); focusTimerInterval = null; focusTimeRemaining = 15 * 60; document.getElementById("timer-display").innerText = "15:00"; }
 
             // === QUIZ LOGIK ===
@@ -2205,8 +2393,8 @@
 
                 const expBox = document.getElementById("explanation-box");
                 if (sel === cor) {
-                    addXP(10); confetti(); expBox.innerHTML = `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
-                } else { savePlayerProgress(); showToast("Leider falsch!", "error"); expBox.innerHTML = `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/40 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block"; }
+                    addXP(10); confetti(); SFX.correct(); expBox.innerHTML = `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
+                } else { savePlayerProgress(); SFX.wrong(); showToast("Leider falsch!", "error"); expBox.innerHTML = `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/40 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp}</div>`; expBox.className = "p-4 bg-slate-900 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block"; }
                 document.getElementById("next-question-btn").classList.remove("hidden");
             }
             function triggerNextQuestion() {
@@ -2283,14 +2471,14 @@
                 if (ans) return;
                 const fb = document.getElementById("mc-feedback"); fb.classList.remove("hidden"); document.getElementById("mc-next-btn").classList.remove("hidden");
                 if (sel === cor) {
-                    showToast("Richtig! +2 Coins"); confetti(); addXP(2); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-emerald-500 block"; fb.innerHTML = `<div class="font-black text-emerald-400 mb-1">✅ Richtig!</div><div class="text-gray-300 text-sm">Sehr gut gemerkt.</div>`;
+                    showToast("Richtig! +2 Coins"); confetti(); SFX.correct(); addXP(2); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-emerald-500 block"; fb.innerHTML = `<div class="font-black text-emerald-400 mb-1">✅ Richtig!</div><div class="text-gray-300 text-sm">Sehr gut gemerkt.</div>`;
                 } else { showToast("Falsch!", "error"); fb.className = "mt-4 p-4 rounded-xl text-left shadow-inner bg-slate-900 border-l-4 border-rose-500 block"; fb.innerHTML = `<div class="font-black text-rose-400 mb-1 flex items-center gap-2"><span class="text-xl">💡</span> Fehler-Analyse</div><div class="text-gray-300 text-sm">Du hast leider das falsche Wort gewählt.<br>Die richtige Übersetzung ist: <span class="text-white font-bold">${cor}</span></div>`; }
             }
 
             function checkVocabTyping(cor) {
                 const i = document.getElementById("vocab-typing-input"); const val = i.value.trim().toLowerCase(); if (!val) return; i.disabled = true; document.getElementById("typing-check-btn").classList.add("hidden"); document.getElementById("typing-next-btn").classList.remove("hidden"); const fb = document.getElementById("typing-feedback");
                 if (val === cor.toLowerCase()) {
-                    i.className = "w-full p-4 bg-emerald-900 text-emerald-400 font-bold text-center mb-4 text-lg rounded-xl"; fb.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`; showToast("Super!"); confetti(); sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + cor); addXP(5);
+                    i.className = "w-full p-4 bg-emerald-900 text-emerald-400 font-bold text-center mb-4 text-lg rounded-xl"; fb.innerHTML = `<span class="text-emerald-400">Perfekt! +5 Coins</span>`; showToast("Super!"); confetti(); SFX.correct(); sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + cor); addXP(5);
                 } else { i.className = "w-full p-4 bg-rose-900 text-rose-400 font-bold text-center mb-4 text-lg rounded-xl line-through"; fb.innerHTML = `<div class="bg-slate-900 border-l-4 border-rose-500 p-4 rounded-xl text-left mt-2 shadow-inner"><span class="text-rose-400 font-black block mb-1">💡 Achte auf die Schreibweise!</span><span class="text-gray-300 text-sm">Du hast getippt: ${val}<br>Korrekt ist: <span class="text-white font-bold text-lg">${cor}</span></span></div>`; showToast("Leider falsch!", "error"); }
             }
             function nextVocab(known) { if (known) { sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`); showToast("+2 Coins!", "success"); addXP(2); } vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length; showVocabQuestion(); }
@@ -2561,6 +2749,7 @@
                 html += `</div><div class="text-center"><button onclick="window.location.reload()" class="mt-16 p-6 px-12 bg-gray-700 text-white font-bold rounded-xl text-2xl hover:bg-gray-600 shadow-md">Beenden & Zurück zum Menü</button></div>`;
                 document.getElementById("view-tv-quiz-host").innerHTML = `<div class="min-h-[90vh] flex flex-col items-center justify-center p-6">${html}</div>`;
                 try { confetti(); confetti(); } catch (e) { }
+                SFX.win();
             }
 
             // --- 2. LOGIK FÜR DIE HANDYS (SPIELER) ---
@@ -2591,7 +2780,7 @@
                                     const bg = points > 0 ? "bg-emerald-500" : "bg-gray-700";
                                     const statusText = myData.wordStatus === "invalid" ? "Kein gültiges Wort 😅" : myData.wordStatus === "unknown" ? "Unbekanntes Wort – offline nicht prüfbar ❓" : "Erkannt! ✅";
                                     document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-7xl mb-6">${points > 0 ? "✅" : "😅"}</div><h2 class="text-2xl font-black mb-2">Dein Wort: "${myData.word || "-"}"</h2><p class="text-sm opacity-70 mb-2">${statusText}</p><p class="text-xl font-bold">+ ${points} Punkte diese Runde</p><p class="text-sm opacity-80 mt-2">Gesamt: ${myData.score || 0} Punkte</p></div>`;
-                                    if (points > 0) try { confetti(); } catch (e) { }
+                                    if (points > 0) { try { confetti(); } catch (e) { } SFX.correct(); } else { SFX.wrong(); }
                                 } else if (!myData.hasAnswered) {
                                     document.getElementById("view-tv-quiz-player").innerHTML = `
                                 <div class="space-y-4">
@@ -2621,7 +2810,7 @@
                                 const icon = isCorrect ? "✅" : "❌";
                                 const text = isCorrect ? "Richtig!" : "Leider falsch!";
                                 document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-9xl mb-8">${icon}</div><h2 class="text-4xl font-black mb-4">${text}</h2><p class="text-xl font-bold opacity-80">Dein Punktestand: ${myData.score || 0}</p></div>`;
-                                if (isCorrect) try { confetti(); } catch (e) { }
+                                if (isCorrect) { try { confetti(); } catch (e) { } SFX.correct(); } else { SFX.wrong(); }
                             } else if (!myData.hasAnswered) {
                                 const q = tvQuestions[data.currentQuestionIndex];
                                 const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];

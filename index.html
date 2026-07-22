@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=21"></script>
+    <script src="data.js?v=24"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -1357,7 +1357,7 @@
                 const cat = document.getElementById("duel-category").value;
                 if (!keyA || !keyB) return showToast("Bitte zwei Profile auswählen!", "error");
                 if (keyA === keyB) return showToast("Bitte zwei unterschiedliche Spieler wählen!", "error");
-                const pool = QUESTIONS_DATABASE.filter(q => q.category === cat).sort(() => Math.random() - 0.5).slice(0, 8);
+                const pool = prepareQuestions(QUESTIONS_DATABASE.filter(q => q.category === cat).sort(() => Math.random() - 0.5).slice(0, 8));
                 if (pool.length < 3) return showToast("Zu wenige Fragen in diesem Thema für ein Duell!", "error");
                 duelState = { keyA, keyB, questions: pool, qIndex: 0, scoreA: 0, scoreB: 0, turn: 'A' };
                 switchView('duel-play');
@@ -1778,7 +1778,7 @@
                     };
                 } else {
                     const category = document.getElementById("live-duel-category").value;
-                    const questions = QUESTIONS_DATABASE.filter(q => q.category === category).sort(() => Math.random() - 0.5).slice(0, 10);
+                    const questions = prepareQuestions(QUESTIONS_DATABASE.filter(q => q.category === category).sort(() => Math.random() - 0.5).slice(0, 10));
                     if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
                     lobbyData = {
                         type: "quiz", status: "waiting", questions, currentIndex: 0,
@@ -2119,6 +2119,59 @@
                 }
             }
 
+            // Neue Runde mit genau denselben Spielern – niemand muss die Lobby
+            // verlassen oder erneut beitreten. Punkte werden für den fairen
+            // Neustart zurückgesetzt.
+            async function restartLiveDuel() {
+                if (!liveDuelRef) return;
+                const snap = await liveDuelRef.get();
+                if (!snap.exists) return showToast("Die Runde existiert nicht mehr.", "error");
+                const data = snap.data();
+
+                const players = data.players || {};
+                if (Object.keys(players).length === 0) return showToast("Keine Spieler mehr in der Runde.", "error");
+                Object.keys(players).forEach(k => {
+                    players[k].score = 0;
+                    players[k].hasAnswered = false;
+                    players[k].lastAnswer = null;
+                    players[k].word = "";
+                    players[k].coinsClaimed = false;
+                    players[k].lastRoundPoints = 0;
+                    players[k].wordStatus = null;
+                });
+
+                try {
+                    if (data.type === "scrabble") {
+                        const difficulty = (document.getElementById("again-difficulty") || {}).value || data.difficulty || "mittel";
+                        const totalRounds = parseInt((document.getElementById("again-rounds") || {}).value) || data.totalRounds || 5;
+                        const rack = generateScrabbleRack(difficulty);
+                        await liveDuelRef.update({
+                            status: "playing", difficulty, totalRounds, currentRound: 1,
+                            answerSeconds: SCRABBLE_ANSWER_SECONDS[difficulty] || 20,
+                            currentLetters: rack.letters, currentSolution: rack.solution,
+                            answerDeadline: null, players
+                        });
+                    } else {
+                        const catSel = document.getElementById("again-category");
+                        const category = (catSel && catSel.value) ? catSel.value : data.category;
+                        const questions = prepareQuestions(
+                            QUESTIONS_DATABASE.filter(q => q.category === category).sort(() => Math.random() - 0.5).slice(0, 10)
+                        );
+                        if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
+                        await liveDuelRef.update({
+                            status: "playing", category, questions, currentIndex: 0,
+                            answerDeadline: null, correctAnswer: null, players
+                        });
+                    }
+                    liveDuelResolving = false;
+                    liveDuelRenderKey = "";
+                    SFX.tap();
+                    showToast("Neue Runde gestartet – alle sind dabei! 🚀");
+                } catch (e) {
+                    showToast("Neue Runde konnte nicht gestartet werden", "error");
+                }
+            }
+
             function renderLiveDuelFinalResult(data) {
                 const sorted = Object.values(data.players).sort((a, b) => b.score - a.score);
                 const medals = ["🥇", "🥈", "🥉"];
@@ -2133,10 +2186,48 @@
                         <div class="font-black text-yellow-400">${p.score} Pkt.</div>
                     </div>`;
                 });
-                html += `</div>
-                    <button onclick="leaveLiveDuel()" class="w-full p-4 bg-indigo-600 hover:bg-indigo-500 font-black text-white rounded-xl shadow-lg mt-4 transition">Zurück zur Übersicht</button>
+                html += `</div>`;
+
+                // Weiterspielen, ohne dass jemand die Runde verlassen und neu
+                // beitreten muss: alle Spieler bleiben eingetragen.
+                const names = Object.values(data.players).map(p => p.name).join(", ");
+                if (isLiveDuelCreator) {
+                    html += `
+                    <div class="bg-gray-900 border border-indigo-800 rounded-2xl p-4 mt-6 space-y-3 text-left">
+                        <p class="text-sm font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
+                        <p class="text-[11px] text-gray-400 text-center -mt-2">Alle bleiben dabei: ${names}</p>
+                        ${data.type === "quiz" ? `
+                            <select id="again-area" class="w-full p-3 bg-gray-950 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm"></select>
+                            <select id="again-category" class="w-full p-3 bg-gray-950 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm"></select>
+                        ` : `
+                            <select id="again-difficulty" class="w-full p-3 bg-gray-950 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm">
+                                <option value="leicht">🟢 Leicht (6 Buchstaben, 75 Sek.)</option>
+                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 60 Sek.)</option>
+                                <option value="schwer">🔴 Schwer (8 Buchstaben, 45 Sek.)</option>
+                            </select>
+                            <select id="again-rounds" class="w-full p-3 bg-gray-950 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm">
+                                <option value="3">3 Runden</option>
+                                <option value="5" selected>5 Runden</option>
+                                <option value="8">8 Runden</option>
+                            </select>
+                        `}
+                        <button onclick="restartLiveDuel()" class="w-full p-4 bg-emerald-600 hover:bg-emerald-500 font-black text-white rounded-xl shadow-lg">Neue Runde starten 🚀</button>
+                    </div>`;
+                } else {
+                    html += `<p class="text-xs text-gray-400 font-bold mt-6">Bleib dran – ${sorted.length > 1 ? "die nächste Runde" : "eine neue Runde"} kann gleich starten.</p>`;
+                }
+
+                html += `
+                    <button onclick="leaveLiveDuel()" class="w-full p-3 bg-gray-700 hover:bg-gray-600 font-bold text-white rounded-xl shadow-lg mt-3 transition text-sm">Zurück zur Übersicht</button>
                 </div>`;
                 document.getElementById("live-duel-result-content").innerHTML = html;
+
+                // Themenauswahl für die nächste Runde füllen
+                if (isLiveDuelCreator && data.type === "quiz" && document.getElementById("again-area")) {
+                    setupCategorySelectors("again-area", "again-category", "alle");
+                }
+
+                liveDuelRenderKey = "";   // damit die nächste Runde sicher neu gezeichnet wird
                 renderFamilyHub();
                 try { confetti(); } catch (e) { }
                 SFX.win();
@@ -2359,7 +2450,13 @@
                     const badgesHtml = earnedBadges.length > 0
                         ? `<div class="flex gap-1 flex-wrap mt-2">${earnedBadges.map(id => { const b = BADGES.find(x => x.id === id); return b ? `<span class="text-lg" title="${b.name}">${b.icon}</span>` : ""; }).join("")}</div>`
                         : "";
-                    const pendingHtml = p.pendingTest ? `<div class="mt-2 text-xs text-yellow-400 font-bold">⏳ Test wartet auf Bearbeitung</div>` : "";
+                    const pendingHtml = p.pendingTest
+                        ? `<div class="mt-2 text-xs bg-gray-950 border border-yellow-900 rounded-lg p-2 flex items-center justify-between gap-2">
+                               <span class="text-yellow-400 font-bold">⏳ Test wartet auf Bearbeitung</span>
+                               <button onclick="cancelPendingTest('${key}')"
+                                   class="text-rose-400 font-bold underline shrink-0">entfernen</button>
+                           </div>`
+                        : "";
                     const guestTag = p.isGuest ? ` <span class="text-[10px] font-black text-sky-400 bg-sky-950 px-1.5 py-0.5 rounded">GAST</span>` : "";
                     container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl">
                         <div class="flex justify-between items-center">
@@ -2397,6 +2494,26 @@
                         ${CATEGORY_LABELS[c] || c}
                     </label>`).join("");
                 renderTestTemplatesList();
+            }
+
+            // Einen zugewiesenen, noch nicht bearbeiteten Test wieder zurücknehmen
+            async function cancelPendingTest(profileKey) {
+                const p = ALL_PROFILES[profileKey];
+                if (!p || !p.pendingTest) return;
+                if (!confirm(`Den offenen Test für "${p.name}" wirklich entfernen?\n\nDer Test verschwindet dann aus dem Menü des Kindes.`)) return;
+                try {
+                    await db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
+                        .update({ pendingTest: firebase.firestore.FieldValue.delete() });
+                    delete ALL_PROFILES[profileKey].pendingTest;
+                    if (currentPlayer && activePlayerKey === profileKey) {
+                        delete currentPlayer.pendingTest;
+                        renderPendingTestCard();
+                    }
+                    showToast(`Test für ${p.name} wurde entfernt.`);
+                    renderAdminDashboard();
+                } catch (e) {
+                    showToast("Fehler beim Entfernen des Tests", "error");
+                }
             }
 
             function assignTest() {
@@ -2471,9 +2588,32 @@
                     else { btn.classList.add("hidden"); }
                 }
             }
+            // === ANTWORTEN MISCHEN ===
+            // Ohne das stünde die richtige Antwort fast immer an erster Stelle und
+            // wäre dadurch sofort erkennbar. Wir mischen die Antworten beim Start
+            // einer Runde und rechnen den Index der richtigen Antwort mit um.
+            // Fragen mit noShuffle behalten ihre Reihenfolge (z.B. wenn eine Antwort
+            // sich auf die davorstehenden bezieht: "Beides!").
+            function shuffleAnswers(q) {
+                if (!q || !Array.isArray(q.answers) || q.noShuffle) return q;
+                const order = q.answers.map((_, i) => i);
+                for (let i = order.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [order[i], order[j]] = [order[j], order[i]];
+                }
+                return Object.assign({}, q, {
+                    answers: order.map(i => q.answers[i]),
+                    correct: order.indexOf(q.correct)
+                });
+            }
+
+            function prepareQuestions(list) {
+                return (list || []).map(shuffleAnswers);
+            }
+
             function launchQuiz(questions) {
                 if (!questions || questions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return false; }
-                currentQuestions = questions;
+                currentQuestions = prepareQuestions(questions);
                 testMode = false;
                 document.getElementById("test-timer-bar").classList.add("hidden");
                 qIndex = 0; switchView('quiz'); showQuestion();
@@ -2503,7 +2643,7 @@
             function startAssignedTest() {
                 if (!currentPlayer || !currentPlayer.pendingTest) return;
                 const { categories, timeLimitSeconds } = currentPlayer.pendingTest;
-                currentQuestions = QUESTIONS_DATABASE.filter(q => categories.includes(q.category)).sort(() => Math.random() - 0.5);
+                currentQuestions = prepareQuestions(QUESTIONS_DATABASE.filter(q => categories.includes(q.category)).sort(() => Math.random() - 0.5));
                 if (currentQuestions.length === 0) { showToast("Keine Fragen für diesen Test gefunden!", "error"); return; }
                 testMode = true; testCorrectCount = 0; testAnsweredCount = 0; testTimeRemaining = timeLimitSeconds; quizMode = 'mc';
                 qIndex = 0;
@@ -2640,10 +2780,29 @@
                 if (typeof VOCABULARY_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
                 const dd = document.getElementById("category-dropdown");
                 dd.innerHTML = "";
-                Object.keys(VOCABULARY_DATABASE[activeLang]).forEach(k => {
+                const keys = Object.keys(VOCABULARY_DATABASE[activeLang]);
+                keys.forEach(k => {
                     dd.innerHTML += `<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label}</option>`;
                 });
-                activeCategory = Object.keys(VOCABULARY_DATABASE[activeLang])[0];
+
+                // Passend zur Klassenstufe des Profils vorauswählen (wie im Wissens-Quiz).
+                // Gibt es die Stufe für diese Sprache nicht, wird die nächstliegende genommen.
+                let preselect = keys[0];
+                if (currentPlayer && currentPlayer.ageType === "klasse") {
+                    const g = parseInt(currentPlayer.age);
+                    if (g >= 1 && g <= 13) {
+                        if (keys.includes("k" + g)) preselect = "k" + g;
+                        else {
+                            const grades = keys.map(k => parseInt(k.replace("k", ""))).filter(n => !isNaN(n));
+                            if (grades.length) {
+                                const nearest = grades.reduce((a, b) => Math.abs(b - g) < Math.abs(a - g) ? b : a);
+                                preselect = "k" + nearest;
+                            }
+                        }
+                    }
+                }
+                dd.value = preselect;
+                activeCategory = preselect;
                 vIndex = 0;
                 showVocabQuestion();
             }
@@ -2792,12 +2951,12 @@
                     const data = doc.data();
                     if (data.mode === "scrabble") { startTVScrabbleRound(data); return; }
                     const cat = data.category;
-                    tvQuestions = QUESTIONS_DATABASE.filter(q => q.category === cat).sort(() => Math.random() - 0.5).slice(0, 10);
+                    tvQuestions = prepareQuestions(QUESTIONS_DATABASE.filter(q => q.category === cat).sort(() => Math.random() - 0.5).slice(0, 10));
                     if (tvQuestions.length < 3) { showToast("Zu wenige Fragen für dieses Thema!", "error"); return; }
                     const playersData = data.players || {};
                     Object.keys(playersData).forEach(k => { playersData[k].hasAnswered = false; playersData[k].lastAnswer = null; playersData[k].score = playersData[k].score || 0; });
                     isResolving = false;
-                    tvGameRef.update({ status: "playing", currentQuestionIndex: 0, showAnswer: false, players: playersData, correctAnswer: tvQuestions[0].correct });
+                    tvGameRef.update({ status: "playing", currentQuestionIndex: 0, showAnswer: false, players: playersData, correctAnswer: tvQuestions[0].correct, answerCount: tvQuestions[0].answers.length });
                     showTVHostQuestion(0);
                 });
             }
@@ -2953,7 +3112,7 @@
                     let playersData = data.players;
                     Object.keys(playersData).forEach(k => { playersData[k].hasAnswered = false; playersData[k].lastAnswer = null; });
                     isResolving = false;
-                    await tvGameRef.update({ currentQuestionIndex: nextIndex, showAnswer: false, players: playersData, correctAnswer: tvQuestions[nextIndex].correct });
+                    await tvGameRef.update({ currentQuestionIndex: nextIndex, showAnswer: false, players: playersData, correctAnswer: tvQuestions[nextIndex].correct, answerCount: tvQuestions[nextIndex].answers.length });
                     showTVHostQuestion(nextIndex);
                 }
             }
@@ -3036,7 +3195,8 @@
                                 const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
                                 const shapes = ["▲", "♦", "●", "◼"];
                                 let btnHtml = `<div class="grid grid-cols-2 gap-4 h-[75vh]">`;
-                                (q ? q.answers : [0, 1, 2, 3]).forEach((ans, i) => { btnHtml += `<button onclick="submitTVAnswer(${i})" class="${colors[i]} rounded-3xl shadow-xl flex items-center justify-center text-8xl text-white/90 active:scale-95 transition-transform">${shapes[i]}</button>`; });
+                                const count = (q && q.answers) ? q.answers.length : (data.answerCount || 3);
+                                for (let i = 0; i < count; i++) { btnHtml += `<button onclick="submitTVAnswer(${i})" class="${colors[i]} rounded-3xl shadow-xl flex items-center justify-center text-8xl text-white/90 active:scale-95 transition-transform">${shapes[i]}</button>`; }
                                 document.getElementById("view-tv-quiz-player").innerHTML = btnHtml + `</div>`;
                             }
                         } else if (data.status === "finished") {

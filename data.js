@@ -54,7 +54,7 @@ const QUESTIONS_DATABASE = [
     { category: "k3_deutsch", question: "Wie lautet die Mehrzahl von 'Kind'?", answers: ["Kinder", "Kinde", "Kindern"], correct: 0, explanation: "Die Mehrzahl von Kind ist Kinder." },
     { category: "k3_deutsch", question: "Was ist ein Verb?", answers: ["Ein Tuwort wie 'laufen'", "Ein Namenwort", "Ein Wiewort"], correct: 0, explanation: "Verben beschreiben Tätigkeiten: laufen, essen, lesen." },
     { category: "k3_deutsch", question: "Wie schreibt man das Wort richtig?", answers: ["Fahrrad", "Farrad", "Fahrat"], correct: 0, explanation: "Fahrrad kommt von 'fahren' und 'Rad' – daher doppeltes r." },
-    { category: "k3_deutsch", question: "Wann schreibt man ein Wort groß?", answers: ["Bei Nomen und am Satzanfang", "Immer", "Nie"], correct: 0, explanation: "Nomen und der erste Buchstabe im Satz werden großgeschrieben." },
+    { category: "k3_deutsch", question: "Wann schreibt man ein Wort groß?", answers: ["Bei Nomen und am Satzanfang", "Bei Verben und am Satzende", "Bei allen Wörtern über vier Buchstaben"], correct: 0, explanation: "Nomen und der erste Buchstabe im Satz werden großgeschrieben." },
 
     // --- Klasse 3 - Mathematik ---
     { category: "k3_mathe", question: "Was ist 6 × 7?", answers: ["42", "36", "48"], correct: 0, explanation: "Einmaleins: 6, 12, 18, 24, 30, 36, 42." },
@@ -173,7 +173,7 @@ const QUESTIONS_DATABASE = [
     { category: "k6_deutsch", question: "Was ist ein Attribut?", answers: ["Ein Wort, das ein Satzglied näher beschreibt", "Ein eigener Satz", "Ein Satzzeichen"], correct: 0, explanation: "Beispiel: 'der GROSSE Hund' – 'große' ist ein Attribut." },
     { category: "k6_deutsch", question: "Was ist der Unterschied zwischen 'wie' und 'als' beim Vergleich?", answers: ["'wie' bei Gleichheit, 'als' bei Ungleichheit", "Kein Unterschied", "Genau umgekehrt"], correct: 0, explanation: "So groß WIE (gleich), größer ALS (ungleich)." },
     { category: "k6_deutsch", question: "Was kennzeichnet einen Bericht?", answers: ["Sachlich, im Präteritum, W-Fragen beantwortet", "Spannend und ausgeschmückt", "In der Ich-Form erfunden"], correct: 0, explanation: "Ein Bericht antwortet sachlich auf Wer, Was, Wann, Wo, Wie, Warum." },
-    { category: "k6_deutsch", question: "Was ist ein Reflexivpronomen?", answers: ["'sich' – bezieht sich aufs Subjekt zurück", "Ein Fragewort", "Ein Zeitwort"], correct: 0, explanation: "Beispiel: 'Er wäscht SICH.'" },
+    { category: "k6_deutsch", question: "Was ist ein Reflexivpronomen?", answers: ["'sich' – bezieht sich aufs Subjekt zurück", "Ein Fragewort wie 'wer' oder 'was'", "Ein Zeitwort wie 'laufen' oder 'sehen'"], correct: 0, explanation: "Beispiel: 'Er wäscht SICH.'" },
 
     // --- Klasse 6 - Mathematik ---
     { category: "k6_mathe", question: "Was ist 1/2 + 1/4?", answers: ["2/6", "3/4", "1/6"], correct: 1, explanation: "Gleichnamig machen: 2/4 + 1/4 = 3/4." },
@@ -212,10 +212,10 @@ const QUESTIONS_DATABASE = [
 
     // --- Klasse 6 - Erdkunde ---
     { category: "k6_erdkunde", question: "Welche Klimazone liegt am Äquator?", answers: ["Tropen", "Polarzone", "Gemäßigte Zone"], correct: 0, explanation: "Am Äquator ist es ganzjährig warm und feucht." },
-    { category: "k6_erdkunde", question: "Was ist ein Delta?", answers: ["Eine Flussmündung mit mehreren Armen", "Ein Gebirge", "Eine Wüste"], correct: 0, explanation: "Der Fluss teilt sich vor der Mündung in mehrere Arme." },
+    { category: "k6_erdkunde", question: "Was ist ein Delta?", answers: ["Eine Flussmündung mit mehreren Armen", "Ein Gebirgszug mit mehreren Gipfeln", "Eine Wüste mit wandernden Sanddünen"], correct: 0, explanation: "Der Fluss teilt sich vor der Mündung in mehrere Arme." },
     { category: "k6_erdkunde", question: "Welcher Ozean ist der größte?", answers: ["Pazifik", "Atlantik", "Indischer Ozean"], correct: 0, explanation: "Der Pazifik ist der größte und tiefste Ozean." },
     { category: "k6_erdkunde", question: "Was versteht man unter Urbanisierung?", answers: ["Wachstum der Städte durch Zuzug", "Rückzug aufs Land", "Bau von Straßen"], correct: 0, explanation: "Immer mehr Menschen ziehen in Städte." },
-    { category: "k6_erdkunde", question: "Was zeigt der Maßstab 1:100.000?", answers: ["1 cm auf der Karte = 1 km in Wirklichkeit", "1 cm = 100 m", "1 cm = 10 km"], correct: 0, explanation: "100.000 cm sind 1.000 m, also 1 km." },
+    { category: "k6_erdkunde", question: "Was zeigt der Maßstab 1:100.000?", answers: ["1 cm auf der Karte = 1 km in Wirklichkeit", "1 cm auf der Karte = 100 m in Wirklichkeit", "1 cm auf der Karte = 10 km in Wirklichkeit"], correct: 0, explanation: "100.000 cm sind 1.000 m, also 1 km." },
 
     // --- Klasse 6 - Türkisch (Herkunftssprache) ---
     { category: "k6_tuerkisch", question: "Was bedeutet 'çevre'?", answers: ["Umwelt", "Familie", "Schule"], correct: 0, explanation: "'çevre' heißt Umwelt." },
@@ -227,7 +227,7 @@ const QUESTIONS_DATABASE = [
     // --- Klasse 7 - Deutsch ---
     { category: "k7_deutsch", question: "Wie nennt man die Übertreibung als Stilmittel?", answers: ["Hyperbel", "Metapher", "Ironie"], correct: 0, explanation: "Beispiel: 'Ich habe es dir tausendmal gesagt.'" },
     { category: "k7_deutsch", question: "Was ist der Konjunktiv?", answers: ["Die Möglichkeits- und Wunschform", "Eine Zeitform", "Ein Satzzeichen"], correct: 0, explanation: "Der Konjunktiv drückt Wünsche, Möglichkeiten oder indirekte Rede aus." },
-    { category: "k7_deutsch", question: "Wann kann ein Komma vor 'und' stehen?", answers: ["Zwischen zwei vollständigen Hauptsätzen", "Nie", "Immer"], correct: 0, explanation: "Dort ist das Komma erlaubt, aber nicht verpflichtend." },
+    { category: "k7_deutsch", question: "Wann kann ein Komma vor 'und' stehen?", answers: ["Zwischen zwei vollständigen Hauptsätzen", "Vor jedem 'und' in einer Aufzählung", "Nur wenn danach ein Name folgt"], correct: 0, explanation: "Dort ist das Komma erlaubt, aber nicht verpflichtend." },
     { category: "k7_deutsch", question: "Wie nennt man die Wiederholung des Anfangslauts?", answers: ["Alliteration", "Personifikation", "Vergleich"], correct: 0, explanation: "Beispiel: 'Milch macht müde Männer munter'." },
     { category: "k7_deutsch", question: "Was ist typisch für eine Charakterisierung?", answers: ["Aussehen, Verhalten und Denken einer Figur beschreiben", "Die Handlung nacherzählen", "Die eigene Meinung schreiben"], correct: 0, explanation: "Eine Charakterisierung beschreibt äußere und innere Merkmale einer Figur." },
 
@@ -248,7 +248,7 @@ const QUESTIONS_DATABASE = [
     // --- Klasse 7 - Biologie ---
     { category: "k7_biologie", question: "Was ist das 'Kraftwerk der Zelle'?", answers: ["Mitochondrium", "Zellkern", "Ribosom"], correct: 0, explanation: "Mitochondrien erzeugen Energie in Form von ATP." },
     { category: "k7_biologie", question: "Was unterscheidet Pflanzenzellen von Tierzellen?", answers: ["Zellwand und Chloroplasten", "Mehr Zellkerne", "Gar nichts"], correct: 0, explanation: "Pflanzenzellen haben zusätzlich eine feste Zellwand und Chloroplasten." },
-    { category: "k7_biologie", question: "Welches Organ produziert Insulin?", answers: ["Bauchspeicheldrüse", "Leber", "Niere"], correct: 0, explanation: "Die Bauchspeicheldrüse regelt damit den Blutzucker." },
+    { category: "k7_biologie", question: "Welches Organ produziert Insulin?", answers: ["Bauchspeicheldrüse", "Die Leber", "Die Niere"], correct: 0, explanation: "Die Bauchspeicheldrüse regelt damit den Blutzucker." },
     { category: "k7_biologie", question: "Wie viele Kammern hat das menschliche Herz?", answers: ["2", "4", "6"], correct: 1, explanation: "Zwei Vorhöfe und zwei Herzkammern." },
     { category: "k7_biologie", question: "Welche Blutzellen bekämpfen Krankheitserreger?", answers: ["Weiße Blutkörperchen", "Rote Blutkörperchen", "Blutplättchen"], correct: 0, explanation: "Weiße Blutkörperchen gehören zum Immunsystem." },
 
@@ -256,7 +256,7 @@ const QUESTIONS_DATABASE = [
     { category: "k7_chemie", question: "Woraus besteht der Atomkern?", answers: ["Protonen und Neutronen", "Nur Elektronen", "Nur Protonen"], correct: 0, explanation: "Elektronen umkreisen den Kern in der Hülle." },
     { category: "k7_chemie", question: "Welcher pH-Bereich gilt als sauer?", answers: ["0-6", "genau 7", "8-14"], correct: 0, explanation: "Unter 7 sauer, 7 neutral, über 7 basisch." },
     { category: "k7_chemie", question: "Welches Element hat das Symbol 'Fe'?", answers: ["Eisen", "Fluor", "Phosphor"], correct: 0, explanation: "'Fe' kommt vom lateinischen 'ferrum'." },
-    { category: "k7_chemie", question: "Was braucht man für eine Verbrennung?", answers: ["Brennstoff, Sauerstoff und Zündtemperatur", "Nur Feuer", "Nur Sauerstoff"], correct: 0, explanation: "Das ist das sogenannte Verbrennungsdreieck." },
+    { category: "k7_chemie", question: "Was braucht man für eine Verbrennung?", answers: ["Brennstoff, Sauerstoff und Zündtemperatur", "Ausschließlich eine offene Flamme", "Ausschließlich reinen Sauerstoff"], correct: 0, explanation: "Das ist das sogenannte Verbrennungsdreieck." },
     { category: "k7_chemie", question: "Was ist der Unterschied zwischen Gemisch und Verbindung?", answers: ["Gemische kann man physikalisch trennen", "Es gibt keinen", "Verbindungen sind immer flüssig"], correct: 0, explanation: "Gemische trennt man z.B. durch Filtern, Verbindungen nur chemisch." },
 
     // --- Klasse 7 - Physik ---
@@ -285,7 +285,7 @@ const QUESTIONS_DATABASE = [
     { category: "k7_politik", question: "Wer wählt den Bundeskanzler?", answers: ["Der Bundestag", "Das Volk direkt", "Der Bundespräsident"], correct: 0, explanation: "Das Volk wählt den Bundestag, dieser wählt den Kanzler." },
     { category: "k7_politik", question: "Was ist das Grundgesetz?", answers: ["Die Verfassung Deutschlands", "Ein einfaches Gesetz", "Ein EU-Vertrag"], correct: 0, explanation: "Es gilt seit 1949 als Verfassung der Bundesrepublik." },
     { category: "k7_politik", question: "Was beschreibt Angebot und Nachfrage?", answers: ["Wie Preise am Markt entstehen", "Wie der Staat Preise festlegt", "Wie Löhne berechnet werden"], correct: 0, explanation: "Steigt die Nachfrage bei gleichem Angebot, steigen meist die Preise." },
-    { category: "k7_politik", question: "Was ist ein Tarifvertrag?", answers: ["Eine Vereinbarung über Löhne und Arbeitsbedingungen", "Ein Kaufvertrag", "Ein Mietvertrag"], correct: 0, explanation: "Gewerkschaften und Arbeitgeber handeln ihn aus." },
+    { category: "k7_politik", question: "Was ist ein Tarifvertrag?", answers: ["Eine Vereinbarung über Löhne und Arbeitsbedingungen", "Eine Vereinbarung über den Kauf einer Ware", "Eine Vereinbarung über die Miete einer Wohnung"], correct: 0, explanation: "Gewerkschaften und Arbeitgeber handeln ihn aus." },
 
     // --- Klasse 7 - Türkisch (Herkunftssprache) ---
     { category: "k7_tuerkisch", question: "Was bedeutet 'sorumluluk'?", answers: ["Verantwortung", "Freiheit", "Gerechtigkeit"], correct: 0, explanation: "'sorumluluk' heißt Verantwortung." },
@@ -318,7 +318,7 @@ const QUESTIONS_DATABASE = [
     // --- Klasse 8 - Biologie ---
     { category: "k8_biologie", question: "Was ist die Grundeinheit der Vererbung?", answers: ["Das Gen", "Die Zelle", "Das Protein"], correct: 0, explanation: "Gene sind DNA-Abschnitte mit Erbinformation." },
     { category: "k8_biologie", question: "Wie viele Chromosomen hat eine menschliche Körperzelle?", answers: ["23", "46", "48"], correct: 1, explanation: "46 Chromosomen, also 23 Paare." },
-    { category: "k8_biologie", question: "Was ist Mitose?", answers: ["Zellteilung mit zwei identischen Tochterzellen", "Ein Zellorganell", "Ein Hormon"], correct: 0, explanation: "Die Mitose dient dem Wachstum und der Erneuerung." },
+    { category: "k8_biologie", question: "Was ist Mitose?", answers: ["Zellteilung mit zwei identischen Tochterzellen", "Ein Zellorganell zur Energiegewinnung", "Ein Hormon zur Steuerung des Wachstums"], correct: 0, explanation: "Die Mitose dient dem Wachstum und der Erneuerung." },
     { category: "k8_biologie", question: "Was ist ein dominantes Allel?", answers: ["Es setzt sich gegenüber dem rezessiven durch", "Ein fehlerhaftes Gen", "Ein Gen ohne Wirkung"], correct: 0, explanation: "Das rezessive Merkmal zeigt sich nur bei zwei rezessiven Allelen." },
     { category: "k8_biologie", question: "Welches Organ ist für das Gleichgewicht zuständig?", answers: ["Das Innenohr", "Das Auge", "Die Nase"], correct: 0, explanation: "Im Innenohr sitzt das Gleichgewichtsorgan." },
 
@@ -326,7 +326,7 @@ const QUESTIONS_DATABASE = [
     { category: "k8_chemie", question: "Was entsteht bei einer Neutralisation?", answers: ["Salz und Wasser", "Nur Wasser", "Ein Gas"], correct: 0, explanation: "Säure + Base ergeben Salz und Wasser." },
     { category: "k8_chemie", question: "Was ist eine Ionenbindung?", answers: ["Elektronen werden übertragen", "Elektronen werden geteilt", "Es bewegen sich keine Elektronen"], correct: 0, explanation: "Beispiel Kochsalz: Natrium gibt ein Elektron an Chlor ab." },
     { category: "k8_chemie", question: "In welcher Gruppe stehen die Edelgase?", answers: ["Gruppe 18", "Gruppe 1", "Gruppe 17"], correct: 0, explanation: "Edelgase wie Helium und Neon stehen ganz rechts." },
-    { category: "k8_chemie", question: "Was ist ein Katalysator?", answers: ["Er beschleunigt eine Reaktion, ohne verbraucht zu werden", "Ein Endprodukt", "Ein Messgerät"], correct: 0, explanation: "Er senkt die nötige Aktivierungsenergie." },
+    { category: "k8_chemie", question: "Was ist ein Katalysator?", answers: ["Er beschleunigt eine Reaktion, ohne verbraucht zu werden", "Das Endprodukt einer chemischen Reaktion", "Ein Messgerät für die Reaktionstemperatur"], correct: 0, explanation: "Er senkt die nötige Aktivierungsenergie." },
     { category: "k8_chemie", question: "Wie nennt man den Übergang von fest direkt zu gasförmig?", answers: ["Sublimation", "Kondensation", "Schmelzen"], correct: 0, explanation: "Beispiel: Trockeneis sublimiert." },
 
     // --- Klasse 8 - Physik ---
@@ -351,15 +351,15 @@ const QUESTIONS_DATABASE = [
     { category: "k8_erdkunde", question: "Was ist eine Megastadt?", answers: ["Eine Stadt mit über 10 Millionen Einwohnern", "Eine Hauptstadt", "Eine Industriestadt"], correct: 0, explanation: "Beispiele sind Tokio, Delhi oder Shanghai." },
 
     // --- Klasse 8 - Politik & Wirtschaft ---
-    { category: "k8_politik", question: "Was ist Inflation?", answers: ["Allgemeiner Preisanstieg, Geld verliert an Wert", "Sinkende Preise", "Steigende Löhne"], correct: 0, explanation: "Für dasselbe Geld bekommt man weniger." },
+    { category: "k8_politik", question: "Was ist Inflation?", answers: ["Allgemeiner Preisanstieg, Geld verliert an Wert", "Allgemeiner Preisrückgang, Geld gewinnt an Wert", "Allgemeiner Lohnanstieg bei gleichen Preisen"], correct: 0, explanation: "Für dasselbe Geld bekommt man weniger." },
     { category: "k8_politik", question: "Was ist der Unterschied zwischen Monarchie und Republik?", answers: ["In der Republik wird das Staatsoberhaupt gewählt", "Kein Unterschied", "Republiken haben keine Regierung"], correct: 0, explanation: "In Monarchien wird die Macht meist vererbt." },
-    { category: "k8_politik", question: "Was ist eine Koalition?", answers: ["Ein Regierungsbündnis mehrerer Parteien", "Ein Gesetz", "Ein Gericht"], correct: 0, explanation: "Nötig, wenn keine Partei allein die Mehrheit hat." },
+    { category: "k8_politik", question: "Was ist eine Koalition?", answers: ["Ein Regierungsbündnis mehrerer Parteien", "Ein Gesetz zur Regelung von Wahlen", "Ein Gericht zur Prüfung von Parteien"], correct: 0, explanation: "Nötig, wenn keine Partei allein die Mehrheit hat." },
     { category: "k8_politik", question: "Was macht eine Gewerkschaft?", answers: ["Sie vertritt die Interessen der Arbeitnehmer", "Sie vertritt Arbeitgeber", "Sie erlässt Gesetze"], correct: 0, explanation: "Gewerkschaften verhandeln z.B. über Löhne." },
     { category: "k8_politik", question: "Was ist das Verhältniswahlrecht?", answers: ["Sitze werden nach Stimmenanteilen verteilt", "Nur der Sieger bekommt den Sitz", "Nur Reiche dürfen wählen"], correct: 0, explanation: "In Deutschland entspricht der Sitzanteil etwa dem Stimmenanteil." },
 
     // --- Klasse 8 - Informatik & Medien ---
     { category: "k8_informatik", question: "Was ist ein Algorithmus?", answers: ["Eine eindeutige Schritt-für-Schritt-Anleitung", "Ein Computervirus", "Eine Programmiersprache"], correct: 0, explanation: "Ein Algorithmus löst ein Problem in endlich vielen Schritten." },
-    { category: "k8_informatik", question: "Wie viele Ziffern kennt das Binärsystem?", answers: ["2 (0 und 1)", "8", "10"], correct: 0, explanation: "Computer rechnen mit 0 und 1." },
+    { category: "k8_informatik", question: "Wie viele Ziffern kennt das Binärsystem?", answers: ["2 (0 und 1)", "8 (die Ziffern 0 bis 7)", "10 (die Ziffern 0 bis 9)"], correct: 0, explanation: "Computer rechnen mit 0 und 1." },
     { category: "k8_informatik", question: "Was macht eine Schleife in einem Programm?", answers: ["Sie wiederholt einen Codeblock", "Sie beendet das Programm", "Sie löscht Daten"], correct: 0, explanation: "Solange die Bedingung gilt, wird wiederholt." },
     { category: "k8_informatik", question: "Was macht ein gutes Passwort aus?", answers: ["Lang und gemischt aus Zeichenarten", "Kurz und der eigene Name", "Immer '123456'"], correct: 0, explanation: "Länge und Mischung erschweren das Erraten." },
     { category: "k8_informatik", question: "Was ist 'Phishing'?", answers: ["Betrug, um an Zugangsdaten zu kommen", "Ein Computerspiel", "Eine Datensicherung"], correct: 0, explanation: "Betrüger täuschen echte Nachrichten vor." },
@@ -402,7 +402,7 @@ const QUESTIONS_DATABASE = [
     // --- Klasse 9 - Chemie ---
     { category: "k9_chemie", question: "Was ist eine Oxidation im engeren Sinn?", answers: ["Reaktion mit Sauerstoff", "Aufnahme von Wasser", "Abgabe von Wärme"], correct: 0, explanation: "Im weiteren Sinn ist es die Abgabe von Elektronen." },
     { category: "k9_chemie", question: "Welche Säure steckt im Essig?", answers: ["Essigsäure", "Salzsäure", "Schwefelsäure"], correct: 0, explanation: "Essigsäure heißt chemisch Ethansäure." },
-    { category: "k9_chemie", question: "Was sind Kohlenwasserstoffe?", answers: ["Verbindungen aus Kohlenstoff und Wasserstoff", "Salze", "Metalle"], correct: 0, explanation: "Beispiele sind Methan, Ethan und Propan." },
+    { category: "k9_chemie", question: "Was sind Kohlenwasserstoffe?", answers: ["Verbindungen aus Kohlenstoff und Wasserstoff", "Verbindungen aus Metall und Sauerstoff", "Salze aus Säure und Lauge"], correct: 0, explanation: "Beispiele sind Methan, Ethan und Propan." },
     { category: "k9_chemie", question: "Was ist ein Redoxvorgang?", answers: ["Elektronenübertragung: Oxidation und Reduktion", "Nur eine Verbrennung", "Eine Filtration"], correct: 0, explanation: "Ein Stoff gibt Elektronen ab, ein anderer nimmt sie auf." },
     { category: "k9_chemie", question: "Was ist eine Legierung?", answers: ["Ein Gemisch aus Metallen", "Eine Säure", "Ein Gas"], correct: 0, explanation: "Beispiel: Messing aus Kupfer und Zink." },
 
@@ -410,7 +410,7 @@ const QUESTIONS_DATABASE = [
     { category: "k9_physik", question: "Wie lautet das zweite Newtonsche Gesetz?", answers: ["F = m × a", "Actio = Reactio", "E = m × c²"], correct: 0, explanation: "Kraft ist Masse mal Beschleunigung." },
     { category: "k9_physik", question: "Was ist die Einheit der Frequenz?", answers: ["Hertz", "Watt", "Newton"], correct: 0, explanation: "1 Hertz bedeutet eine Schwingung pro Sekunde." },
     { category: "k9_physik", question: "Wie funktioniert ein Generator?", answers: ["Bewegung erzeugt elektrische Spannung", "Strom erzeugt Bewegung", "Er speichert Strom"], correct: 0, explanation: "Er nutzt elektromagnetische Induktion." },
-    { category: "k9_physik", question: "Was ist Radioaktivität?", answers: ["Zerfall instabiler Atomkerne unter Strahlung", "Eine Lichtart", "Ein Magnetfeld"], correct: 0, explanation: "Es gibt Alpha-, Beta- und Gammastrahlung." },
+    { category: "k9_physik", question: "Was ist Radioaktivität?", answers: ["Zerfall instabiler Atomkerne unter Strahlung", "Eine besonders energiereiche Lichtart", "Ein Magnetfeld um bewegte Ladungen"], correct: 0, explanation: "Es gibt Alpha-, Beta- und Gammastrahlung." },
     { category: "k9_physik", question: "Was besagt das Hebelgesetz?", answers: ["Kraft × Kraftarm = Last × Lastarm", "Kraft = Masse × Weg", "Energie bleibt erhalten"], correct: 0, explanation: "Damit lassen sich Hebel berechnen." },
 
     // --- Klasse 9 - Geschichte ---
@@ -429,7 +429,7 @@ const QUESTIONS_DATABASE = [
 
     // --- Klasse 9 - Politik & Wirtschaft ---
     { category: "k9_politik", question: "Was ist die soziale Marktwirtschaft?", answers: ["Freie Marktwirtschaft mit sozialem Ausgleich", "Reine Planwirtschaft", "Wirtschaft ohne Regeln"], correct: 0, explanation: "Der Staat sorgt für sozialen Ausgleich und Wettbewerb." },
-    { category: "k9_politik", question: "Was ist ein Sozialversicherungssystem?", answers: ["Absicherung bei Krankheit, Alter, Arbeitslosigkeit", "Eine Bank", "Ein Verein"], correct: 0, explanation: "In Deutschland gibt es fünf Säulen der Sozialversicherung." },
+    { category: "k9_politik", question: "Was ist ein Sozialversicherungssystem?", answers: ["Absicherung bei Krankheit, Alter, Arbeitslosigkeit", "Ein Sparkonto mit festem Zinssatz", "Ein freiwilliger Verein für Nachbarschaftshilfe"], correct: 0, explanation: "In Deutschland gibt es fünf Säulen der Sozialversicherung." },
     { category: "k9_politik", question: "Was ist die EU?", answers: ["Ein Staatenverbund europäischer Länder", "Ein einzelner Staat", "Eine Firma"], correct: 0, explanation: "Die Europäische Union hat gemeinsame Institutionen und Regeln." },
     { category: "k9_politik", question: "Was sind Steuern?", answers: ["Abgaben an den Staat ohne direkte Gegenleistung", "Freiwillige Spenden", "Bankgebühren"], correct: 0, explanation: "Sie finanzieren staatliche Aufgaben." },
     { category: "k9_politik", question: "Was ist Meinungsfreiheit?", answers: ["Das Recht, die eigene Meinung zu äußern", "Das Recht, alles zu behaupten ohne Grenzen", "Ein Verbot von Kritik"], correct: 0, explanation: "Sie steht in Artikel 5 des Grundgesetzes, hat aber Schranken." },
@@ -449,15 +449,15 @@ const QUESTIONS_DATABASE = [
     { category: "k9_tuerkisch", question: "Was bedeutet 'anayasa'?", answers: ["Verfassung", "Regierung", "Partei"], correct: 0, explanation: "'anayasa' heißt Verfassung." },
 
     // --- Klasse 10 - Deutsch ---
-    { category: "k10_deutsch", question: "Was ist ein Drama in der Literatur?", answers: ["Ein Text für die Bühne mit Dialogen", "Ein Gedicht", "Ein Sachtext"], correct: 0, explanation: "Dramen bestehen aus Akten und Szenen." },
+    { category: "k10_deutsch", question: "Was ist ein Drama in der Literatur?", answers: ["Ein Text für die Bühne mit Dialogen", "Ein Gedicht mit Reim und festem Versmaß", "Ein Sachtext mit informierender Absicht"], correct: 0, explanation: "Dramen bestehen aus Akten und Szenen." },
     { category: "k10_deutsch", question: "Was ist der Unterschied zwischen Epik, Lyrik und Dramatik?", answers: ["Erzählende, gedichtartige und dramatische Texte", "Alte, neue und moderne Texte", "Kurze, mittlere und lange Texte"], correct: 0, explanation: "Das sind die drei literarischen Gattungen." },
     { category: "k10_deutsch", question: "Was ist Sprachkritik?", answers: ["Das bewusste Hinterfragen von Sprachgebrauch", "Rechtschreibkorrektur", "Lautes Vorlesen"], correct: 0, explanation: "Zum Beispiel Analyse von Werbe- oder Politikersprache." },
-    { category: "k10_deutsch", question: "Was ist eine Textanalyse?", answers: ["Untersuchung von Inhalt, Aufbau und Sprache", "Nacherzählung", "Eigene Meinung"], correct: 0, explanation: "Man untersucht, WIE ein Text wirkt und warum." },
+    { category: "k10_deutsch", question: "Was ist eine Textanalyse?", answers: ["Untersuchung von Inhalt, Aufbau und Sprache", "Eine Nacherzählung der Handlung in eigenen Worten", "Eine persönliche Meinung zum Thema des Textes"], correct: 0, explanation: "Man untersucht, WIE ein Text wirkt und warum." },
     { category: "k10_deutsch", question: "Was ist ein Exposé?", answers: ["Eine kurze Vorstellung eines Vorhabens", "Ein Schlusswort", "Eine Fußnote"], correct: 0, explanation: "Es fasst Thema, Ziel und Vorgehen zusammen." },
 
     // --- Klasse 10 - Mathematik ---
     { category: "k10_mathe", question: "Wie lautet die Mitternachtsformel für ax² + bx + c = 0?", answers: ["x = (-b ± √(b²-4ac)) / 2a", "x = -b / 2a", "x = b² - 4ac"], correct: 0, explanation: "Damit löst man quadratische Gleichungen." },
-    { category: "k10_mathe", question: "Was ist eine Parabel?", answers: ["Der Graph einer quadratischen Funktion", "Eine Gerade", "Ein Kreis"], correct: 0, explanation: "y = x² ergibt eine nach oben geöffnete Parabel." },
+    { category: "k10_mathe", question: "Was ist eine Parabel?", answers: ["Der Graph einer quadratischen Funktion", "Der Graph einer linearen Funktion", "Der Graph einer Kreisgleichung"], correct: 0, explanation: "y = x² ergibt eine nach oben geöffnete Parabel." },
     { category: "k10_mathe", question: "Was ist der Kosinussatz nützlich für?", answers: ["Dreiecke ohne rechten Winkel berechnen", "Nur rechtwinklige Dreiecke", "Kreise"], correct: 0, explanation: "c² = a² + b² - 2ab·cos(γ)." },
     { category: "k10_mathe", question: "Was ist exponentielles Wachstum?", answers: ["Wachstum mit gleichbleibendem Faktor pro Schritt", "Gleichmäßige Zunahme", "Abnahme"], correct: 0, explanation: "Beispiel: Verdopplung in jedem Zeitschritt." },
     { category: "k10_mathe", question: "Wie berechnet man das Volumen einer Kugel?", answers: ["4/3 × π × r³", "π × r²", "2 × π × r"], correct: 0, explanation: "V = 4/3 π r³." },
@@ -478,9 +478,9 @@ const QUESTIONS_DATABASE = [
 
     // --- Klasse 10 - Chemie ---
     { category: "k10_chemie", question: "Was ist eine funktionelle Gruppe?", answers: ["Atomgruppe, die Eigenschaften bestimmt", "Eine Atomsorte", "Ein Katalysator"], correct: 0, explanation: "Beispiel: die OH-Gruppe bei Alkoholen." },
-    { category: "k10_chemie", question: "Was sind Alkane?", answers: ["Gesättigte Kohlenwasserstoffe", "Säuren", "Salze"], correct: 0, explanation: "Methan, Ethan, Propan, Butan." },
-    { category: "k10_chemie", question: "Was ist ein Ester?", answers: ["Reaktionsprodukt aus Säure und Alkohol", "Ein Metall", "Ein Edelgas"], correct: 0, explanation: "Ester sind oft für Fruchtaromen verantwortlich." },
-    { category: "k10_chemie", question: "Was gibt die Molmasse an?", answers: ["Masse eines Mols eines Stoffes in g/mol", "Die Dichte", "Das Volumen"], correct: 0, explanation: "Wasser hat etwa 18 g/mol." },
+    { category: "k10_chemie", question: "Was sind Alkane?", answers: ["Gesättigte Kohlenwasserstoffe", "Säuren mit einer Carboxygruppe", "Salze aus Metall und Säurerest"], correct: 0, explanation: "Methan, Ethan, Propan, Butan." },
+    { category: "k10_chemie", question: "Was ist ein Ester?", answers: ["Reaktionsprodukt aus Säure und Alkohol", "Ein Metall mit niedrigem Schmelzpunkt", "Ein Edelgas ohne Reaktionsfreude"], correct: 0, explanation: "Ester sind oft für Fruchtaromen verantwortlich." },
+    { category: "k10_chemie", question: "Was gibt die Molmasse an?", answers: ["Masse eines Mols eines Stoffes in g/mol", "Die Dichte eines Stoffes in g/cm³", "Das Volumen eines Stoffes in Litern"], correct: 0, explanation: "Wasser hat etwa 18 g/mol." },
     { category: "k10_chemie", question: "Was passiert bei einer Elektrolyse?", answers: ["Strom erzwingt eine chemische Reaktion", "Wärme erzeugt Strom", "Ein Stoff wird gefiltert"], correct: 0, explanation: "Beispiel: Zerlegung von Wasser in Wasserstoff und Sauerstoff." },
 
     // --- Klasse 10 - Physik ---
@@ -513,7 +513,7 @@ const QUESTIONS_DATABASE = [
 
     // --- Klasse 10 - Informatik & Medien ---
     { category: "k10_informatik", question: "Was ist eine Bedingung (if-Abfrage)?", answers: ["Code läuft nur, wenn etwas zutrifft", "Code läuft immer", "Ein Fehler"], correct: 0, explanation: "Damit trifft ein Programm Entscheidungen." },
-    { category: "k10_informatik", question: "Was ist eine Datenbank?", answers: ["Ein System zum strukturierten Speichern von Daten", "Ein Textprogramm", "Ein Bildformat"], correct: 0, explanation: "Beispiele sind MySQL oder SQLite." },
+    { category: "k10_informatik", question: "Was ist eine Datenbank?", answers: ["Ein System zum strukturierten Speichern von Daten", "Ein Programm zum Schreiben von Texten", "Ein Format zum Speichern von Bildern"], correct: 0, explanation: "Beispiele sind MySQL oder SQLite." },
     { category: "k10_informatik", question: "Was ist ein Betriebssystem?", answers: ["Software, die die Hardware steuert", "Ein Bauteil", "Ein Internetdienst"], correct: 0, explanation: "Windows, macOS, Linux, Android." },
     { category: "k10_informatik", question: "Was ist der Unterschied zwischen RAM und Festplatte?", answers: ["RAM ist schnell und flüchtig", "RAM speichert dauerhaft", "Kein Unterschied"], correct: 0, explanation: "Der RAM wird beim Ausschalten geleert." },
     { category: "k10_informatik", question: "Was sind Urheberrechte im Netz?", answers: ["Rechte des Erstellers an eigenen Werken", "Rechte des Internetanbieters", "Rechte des Servers"], correct: 0, explanation: "Fremde Bilder und Musik darf man nicht einfach nutzen." },
@@ -547,7 +547,7 @@ const QUESTIONS_DATABASE = [
     { category: "k11_biologie", question: "Was ist die Funktion der Zellmembran?", answers: ["Sie regelt den Stoffaustausch der Zelle", "Sie speichert Erbgut", "Sie erzeugt Energie"], correct: 0, explanation: "Sie ist selektiv permeabel." },
     { category: "k11_biologie", question: "Was ist Enzymspezifität?", answers: ["Ein Enzym passt nur zu bestimmten Substraten", "Enzyme wirken überall gleich", "Enzyme werden verbraucht"], correct: 0, explanation: "Schlüssel-Schloss-Prinzip." },
     { category: "k11_biologie", question: "Was passiert bei der Zellatmung?", answers: ["Glucose wird unter Sauerstoff zu Energie abgebaut", "Zucker wird aufgebaut", "Wasser wird gespalten"], correct: 0, explanation: "Sie liefert ATP für die Zelle." },
-    { category: "k11_biologie", question: "Was ist Osmose?", answers: ["Wasserbewegung durch eine halbdurchlässige Membran", "Aktiver Transport", "Ein Enzym"], correct: 0, explanation: "Wasser wandert zur höheren Teilchenkonzentration." },
+    { category: "k11_biologie", question: "Was ist Osmose?", answers: ["Wasserbewegung durch eine halbdurchlässige Membran", "Aktiver Transport unter Einsatz von Energie", "Ein Enzym zur Spaltung von Wassermolekülen"], correct: 0, explanation: "Wasser wandert zur höheren Teilchenkonzentration." },
 
     // --- Klasse 11 - Chemie ---
     { category: "k11_chemie", question: "Was besagt das Prinzip von Le Chatelier?", answers: ["Ein Gleichgewicht weicht dem Zwang aus", "Reaktionen laufen immer vollständig ab", "Energie geht verloren"], correct: 0, explanation: "Auch Prinzip des kleinsten Zwanges genannt." },
@@ -562,13 +562,13 @@ const QUESTIONS_DATABASE = [
     { category: "k11_physik", question: "Was ist die Zentripetalkraft?", answers: ["Die zum Kreismittelpunkt gerichtete Kraft", "Eine nach außen wirkende Kraft", "Die Schwerkraft"], correct: 0, explanation: "Sie hält einen Körper auf der Kreisbahn." },
 
     // --- Klasse 11 - Geschichte ---
-    { category: "k11_geschichte", question: "Was war der Absolutismus?", answers: ["Herrschaftsform mit unbeschränkter Macht des Fürsten", "Eine Demokratie", "Eine Republik"], correct: 0, explanation: "Ludwig XIV. gilt als Musterbeispiel." },
+    { category: "k11_geschichte", question: "Was war der Absolutismus?", answers: ["Herrschaftsform mit unbeschränkter Macht des Fürsten", "Eine Demokratie mit gewähltem Parlament", "Eine Republik mit begrenzter Amtszeit"], correct: 0, explanation: "Ludwig XIV. gilt als Musterbeispiel." },
     { category: "k11_geschichte", question: "Was ist eine historische Quelle?", answers: ["Ein Überrest oder Bericht aus der Vergangenheit", "Ein moderner Fachtext", "Eine Meinung"], correct: 0, explanation: "Man unterscheidet Primär- und Sekundärquellen." },
     { category: "k11_geschichte", question: "Was war der Wiener Kongress 1815?", answers: ["Neuordnung Europas nach Napoleon", "Gründung der EU", "Ein Friedensschluss 1945"], correct: 0, explanation: "Er ordnete Europa nach den Napoleonischen Kriegen neu." },
     { category: "k11_geschichte", question: "Was bedeutet Historizität?", answers: ["Die Gebundenheit an eine bestimmte Zeit", "Zeitlose Gültigkeit", "Ein Datum"], correct: 0, explanation: "Ereignisse müssen aus ihrer Zeit heraus verstanden werden." },
 
     // --- Klasse 11 - Sozialwissenschaften ---
-    { category: "k11_sowi", question: "Was ist Sozialisation?", answers: ["Der Prozess des Hineinwachsens in die Gesellschaft", "Ein Gesetz", "Eine Wahl"], correct: 0, explanation: "Familie, Schule und Medien sind Sozialisationsinstanzen." },
+    { category: "k11_sowi", question: "Was ist Sozialisation?", answers: ["Der Prozess des Hineinwachsens in die Gesellschaft", "Ein Gesetz zur Verteilung von Sozialleistungen", "Die Wahl der Vertreter einer Sozialbehörde"], correct: 0, explanation: "Familie, Schule und Medien sind Sozialisationsinstanzen." },
     { category: "k11_sowi", question: "Was ist eine Rolle im soziologischen Sinn?", answers: ["Erwartungen an eine soziale Position", "Eine Theaterfigur", "Ein Beruf"], correct: 0, explanation: "Zum Beispiel die Schüler- oder Elternrolle." },
     { category: "k11_sowi", question: "Was ist das Bruttoinlandsprodukt?", answers: ["Wert aller im Inland erzeugten Güter und Dienste", "Das Staatsvermögen", "Der Außenhandel"], correct: 0, explanation: "Ein zentraler Wohlstandsindikator." },
     { category: "k11_sowi", question: "Was sind Grundrechte?", answers: ["Rechte des Einzelnen gegenüber dem Staat", "Pflichten der Bürger", "Regeln der EU"], correct: 0, explanation: "Sie stehen in den Artikeln 1-19 des Grundgesetzes." },
@@ -586,13 +586,13 @@ const QUESTIONS_DATABASE = [
     { category: "k12_deutsch", question: "Was ist Expressionismus in der Literatur?", answers: ["Ausdruck innerer Zustände, oft verstörend", "Naturgetreue Abbildung", "Heitere Idylle"], correct: 0, explanation: "Typisch sind Großstadt-, Kriegs- und Weltuntergangsmotive." },
 
     // --- Klasse 12 - Mathematik ---
-    { category: "k12_mathe", question: "Was ist die Stammfunktion von f(x) = 2x?", answers: ["x² + C", "2", "x³"], correct: 0, explanation: "Beim Integrieren steigt der Exponent um eins." },
+    { category: "k12_mathe", question: "Was ist die Stammfunktion von f(x) = 2x?", answers: ["x² + C", "2x + C", "x³ + C"], correct: 0, explanation: "Beim Integrieren steigt der Exponent um eins." },
     { category: "k12_mathe", question: "Was berechnet ein bestimmtes Integral?", answers: ["Die Fläche zwischen Graph und x-Achse", "Die Steigung", "Die Nullstelle"], correct: 0, explanation: "Zwischen den angegebenen Grenzen." },
     { category: "k12_mathe", question: "Was ist ein Wendepunkt?", answers: ["Punkt, an dem die Krümmung wechselt", "Der höchste Punkt", "Die Nullstelle"], correct: 0, explanation: "Dort gilt f''(x) = 0 mit Vorzeichenwechsel." },
     { category: "k12_mathe", question: "Was ist ein Vektor?", answers: ["Eine Größe mit Betrag und Richtung", "Nur eine Zahl", "Eine Fläche"], correct: 0, explanation: "Zum Beispiel Kraft oder Geschwindigkeit." },
 
     // --- Klasse 12 - Englisch ---
-    { category: "k12_englisch", question: "Was ist 'globalisation' als Unterrichtsthema?", answers: ["Weltweite wirtschaftliche und kulturelle Verflechtung", "Nur Tourismus", "Nur Handel"], correct: 0, explanation: "Chancen und Risiken werden diskutiert." },
+    { category: "k12_englisch", question: "Was ist 'globalisation' als Unterrichtsthema?", answers: ["Weltweite wirtschaftliche und kulturelle Verflechtung", "Ausschließlich der weltweite Tourismus", "Ausschließlich der Handel zwischen Nachbarländern"], correct: 0, explanation: "Chancen und Risiken werden diskutiert." },
     { category: "k12_englisch", question: "Was bedeutet 'melting pot'?", answers: ["Bild für die Vermischung von Kulturen", "Ein Kochtopf", "Ein Klimaphänomen"], correct: 0, explanation: "Klassisch auf die USA bezogen." },
     { category: "k12_englisch", question: "Was ist ein 'unreliable narrator'?", answers: ["Ein Erzähler, dem man nicht trauen kann", "Ein allwissender Erzähler", "Ein Ich-Erzähler"], correct: 0, explanation: "Seine Darstellung ist bewusst verzerrt." },
     { category: "k12_englisch", question: "Was bedeutet 'to tackle a problem'?", answers: ["ein Problem angehen", "ein Problem ignorieren", "ein Problem verursachen"], correct: 0, explanation: "'tackle' heißt anpacken." },
@@ -600,17 +600,17 @@ const QUESTIONS_DATABASE = [
     // --- Klasse 12 - Biologie ---
     { category: "k12_biologie", question: "Was ist die Proteinbiosynthese?", answers: ["Herstellung von Proteinen nach DNA-Bauplan", "Abbau von Proteinen", "Zellteilung"], correct: 0, explanation: "Sie läuft in Transkription und Translation ab." },
     { category: "k12_biologie", question: "Was ist ein Neuron?", answers: ["Eine Nervenzelle", "Eine Muskelzelle", "Ein Hormon"], correct: 0, explanation: "Es leitet elektrische Signale weiter." },
-    { category: "k12_biologie", question: "Was ist ein Aktionspotenzial?", answers: ["Kurzfristige Spannungsänderung an der Nervenzelle", "Ein Dauerzustand", "Ein Enzym"], correct: 0, explanation: "So werden Reize weitergeleitet." },
+    { category: "k12_biologie", question: "Was ist ein Aktionspotenzial?", answers: ["Kurzfristige Spannungsänderung an der Nervenzelle", "Eine dauerhafte Spannung entlang des Nervs", "Ein Enzym zur Übertragung von Reizen"], correct: 0, explanation: "So werden Reize weitergeleitet." },
     { category: "k12_biologie", question: "Was ist Selektion in der Evolution?", answers: ["Auslese der besser angepassten Individuen", "Zufällige Genveränderung", "Wanderung von Arten"], correct: 0, explanation: "Sie wirkt auf die vorhandene Variabilität." },
 
     // --- Klasse 12 - Chemie ---
     { category: "k12_chemie", question: "Was ist ein Puffersystem?", answers: ["Es hält den pH-Wert weitgehend konstant", "Es beschleunigt Reaktionen", "Es speichert Wärme"], correct: 0, explanation: "Wichtig zum Beispiel im Blut." },
     { category: "k12_chemie", question: "Was ist die Elektronegativität?", answers: ["Maß für die Anziehung von Bindungselektronen", "Die Ladung des Kerns", "Die Atommasse"], correct: 0, explanation: "Fluor hat den höchsten Wert." },
-    { category: "k12_chemie", question: "Was sind Aminosäuren?", answers: ["Bausteine der Proteine mit NH2- und COOH-Gruppe", "Zuckerbausteine", "Fettbausteine"], correct: 0, explanation: "20 proteinogene Aminosäuren sind bekannt." },
+    { category: "k12_chemie", question: "Was sind Aminosäuren?", answers: ["Bausteine der Proteine mit NH2- und COOH-Gruppe", "Bausteine der Kohlenhydrate mit Ringstruktur", "Bausteine der Fette mit langer Kohlenstoffkette"], correct: 0, explanation: "20 proteinogene Aminosäuren sind bekannt." },
     { category: "k12_chemie", question: "Was passiert in einer galvanischen Zelle?", answers: ["Chemische Energie wird zu elektrischer Energie", "Strom erzwingt eine Reaktion", "Nichts"], correct: 0, explanation: "Das ist das Prinzip der Batterie." },
 
     // --- Klasse 12 - Physik ---
-    { category: "k12_physik", question: "Was ist ein elektrisches Feld?", answers: ["Der Raum, in dem Kräfte auf Ladungen wirken", "Ein Magnetfeld", "Ein Stromkreis"], correct: 0, explanation: "Feldlinien zeigen Richtung und Stärke." },
+    { category: "k12_physik", question: "Was ist ein elektrisches Feld?", answers: ["Der Raum, in dem Kräfte auf Ladungen wirken", "Der Raum, in dem Kräfte auf Magnete wirken", "Ein geschlossener Stromkreis mit Widerstand"], correct: 0, explanation: "Feldlinien zeigen Richtung und Stärke." },
     { category: "k12_physik", question: "Was ist die Lorentzkraft?", answers: ["Kraft auf bewegte Ladungen im Magnetfeld", "Die Schwerkraft", "Die Reibungskraft"], correct: 0, explanation: "Sie steht senkrecht zu Bewegung und Feld." },
     { category: "k12_physik", question: "Was zeigt der Photoeffekt?", answers: ["Licht hat Teilchencharakter", "Licht ist nur eine Welle", "Licht hat keine Energie"], correct: 0, explanation: "Einstein erklärte ihn 1905 mit Lichtquanten." },
     { category: "k12_physik", question: "Was ist Interferenz?", answers: ["Überlagerung von Wellen", "Brechung von Licht", "Absorption"], correct: 0, explanation: "Wellen können sich verstärken oder auslöschen." },
@@ -623,14 +623,14 @@ const QUESTIONS_DATABASE = [
 
     // --- Klasse 12 - Sozialwissenschaften ---
     { category: "k12_sowi", question: "Was ist Konjunkturpolitik?", answers: ["Staatliche Steuerung des Wirtschaftsverlaufs", "Reine Steuererhöhung", "Nur Sparen"], correct: 0, explanation: "Zum Beispiel über Ausgaben oder Zinsen." },
-    { category: "k12_sowi", question: "Was ist das magische Viereck?", answers: ["Wachstum, Preisstabilität, Beschäftigung, Außenbeitrag", "Vier Parteien", "Vier Gerichte"], correct: 0, explanation: "Ziele des Stabilitätsgesetzes von 1967." },
+    { category: "k12_sowi", question: "Was ist das magische Viereck?", answers: ["Wachstum, Preisstabilität, Beschäftigung, Außenbeitrag", "Vier Parteien mit gleicher Sitzzahl im Parlament", "Vier Gerichte mit gleicher Zuständigkeit"], correct: 0, explanation: "Ziele des Stabilitätsgesetzes von 1967." },
     { category: "k12_sowi", question: "Was ist soziale Ungleichheit?", answers: ["Ungleiche Verteilung von Chancen und Ressourcen", "Gleichbehandlung", "Ein Rechtsbegriff"], correct: 0, explanation: "Betrifft Einkommen, Bildung und Gesundheit." },
     { category: "k12_sowi", question: "Was ist eine repräsentative Demokratie?", answers: ["Das Volk wählt Vertreter, die entscheiden", "Das Volk entscheidet alles direkt", "Ein Monarch entscheidet"], correct: 0, explanation: "Deutschland ist eine repräsentative Demokratie." },
 
     // --- Klasse 12 - Informatik ---
     { category: "k12_informatik", question: "Was ist Rekursion?", answers: ["Eine Funktion ruft sich selbst auf", "Eine Endlosschleife", "Ein Datentyp"], correct: 0, explanation: "Sie braucht immer eine Abbruchbedingung." },
     { category: "k12_informatik", question: "Was ist eine verkettete Liste?", answers: ["Datenstruktur, in der Elemente aufeinander verweisen", "Ein Array fester Größe", "Eine Datenbank"], correct: 0, explanation: "Jedes Element kennt seinen Nachfolger." },
-    { category: "k12_informatik", question: "Was ist ein Binärbaum?", answers: ["Baumstruktur mit maximal zwei Kindknoten", "Eine Liste", "Ein Kreis"], correct: 0, explanation: "Wichtig für effizientes Suchen und Sortieren." },
+    { category: "k12_informatik", question: "Was ist ein Binärbaum?", answers: ["Baumstruktur mit maximal zwei Kindknoten", "Eine Liste mit genau zwei Einträgen", "Ein Kreis aus zwei verbundenen Knoten"], correct: 0, explanation: "Wichtig für effizientes Suchen und Sortieren." },
     { category: "k12_informatik", question: "Was ist Datenkapselung?", answers: ["Interne Daten werden vor direktem Zugriff geschützt", "Daten werden gelöscht", "Daten werden kopiert"], correct: 0, explanation: "Zugriff erfolgt über definierte Methoden." },
 
     // --- Klasse 13 - Deutsch (Abitur) ---
@@ -646,7 +646,7 @@ const QUESTIONS_DATABASE = [
     { category: "k13_mathe", question: "Was ist eine Ebenengleichung in Parameterform?", answers: ["Ortsvektor plus zwei Spannvektoren", "Nur ein Punkt", "Eine Zahl"], correct: 0, explanation: "E: x = a + r·u + s·v." },
 
     // --- Klasse 13 - Englisch (Abitur) ---
-    { category: "k13_englisch", question: "Was ist 'the American Dream'?", answers: ["Die Vorstellung, durch Leistung aufsteigen zu können", "Ein Feiertag", "Ein Roman"], correct: 0, explanation: "Ein zentrales Abiturthema mit kritischer Betrachtung." },
+    { category: "k13_englisch", question: "Was ist 'the American Dream'?", answers: ["Die Vorstellung, durch Leistung aufsteigen zu können", "Ein Feiertag zum Gedenken der Einwanderung", "Ein berühmter Roman über den Bürgerkrieg"], correct: 0, explanation: "Ein zentrales Abiturthema mit kritischer Betrachtung." },
     { category: "k13_englisch", question: "Was ist 'postcolonialism'?", answers: ["Auseinandersetzung mit den Folgen des Kolonialismus", "Eine Kunstepoche", "Ein Wirtschaftsmodell"], correct: 0, explanation: "Themen sind Identität, Macht und Sprache." },
     { category: "k13_englisch", question: "Was ist eine 'analysis of a cartoon'?", answers: ["Beschreibung und Deutung einer Karikatur", "Eine Nacherzählung", "Eine Übersetzung"], correct: 0, explanation: "Man beschreibt zuerst, deutet dann die Aussage." },
     { category: "k13_englisch", question: "Was bedeutet 'to jeopardise'?", answers: ["gefährden", "unterstützen", "beschleunigen"], correct: 0, explanation: "'jeopardise' heißt aufs Spiel setzen." },
@@ -654,12 +654,12 @@ const QUESTIONS_DATABASE = [
     // --- Klasse 13 - Biologie (Abitur) ---
     { category: "k13_biologie", question: "Was ist die Genregulation?", answers: ["Steuerung, welche Gene abgelesen werden", "Die Zellteilung", "Der Stoffwechsel"], correct: 0, explanation: "Das Operon-Modell beschreibt sie bei Bakterien." },
     { category: "k13_biologie", question: "Was ist ein Stoffkreislauf?", answers: ["Weg eines Stoffes durch das Ökosystem", "Ein einmaliger Verbrauch", "Eine Nahrungskette"], correct: 0, explanation: "Beispiel: Kohlenstoff- oder Stickstoffkreislauf." },
-    { category: "k13_biologie", question: "Was ist die PCR?", answers: ["Verfahren zur Vervielfältigung von DNA", "Eine Impfung", "Ein Mikroskop"], correct: 0, explanation: "Polymerase-Kettenreaktion, wichtig in der Diagnostik." },
+    { category: "k13_biologie", question: "Was ist die PCR?", answers: ["Verfahren zur Vervielfältigung von DNA", "Ein Verfahren zur Impfung gegen Viren", "Ein Mikroskop zur Betrachtung von DNA"], correct: 0, explanation: "Polymerase-Kettenreaktion, wichtig in der Diagnostik." },
     { category: "k13_biologie", question: "Was ist Homologie?", answers: ["Ähnlichkeit durch gemeinsame Abstammung", "Ähnlichkeit durch gleiche Funktion", "Ein Zufall"], correct: 0, explanation: "Analogie dagegen entsteht durch gleiche Anpassung." },
 
     // --- Klasse 13 - Chemie (Abitur) ---
     { category: "k13_chemie", question: "Was ist eine Titration?", answers: ["Maßanalyse zur Konzentrationsbestimmung", "Ein Filterverfahren", "Eine Destillation"], correct: 0, explanation: "Man gibt eine Maßlösung bis zum Äquivalenzpunkt zu." },
-    { category: "k13_chemie", question: "Was sind Kunststoffe chemisch?", answers: ["Polymere aus vielen Monomeren", "Metalle", "Salze"], correct: 0, explanation: "Beispiel: Polyethylen aus Ethen." },
+    { category: "k13_chemie", question: "Was sind Kunststoffe chemisch?", answers: ["Polymere aus vielen Monomeren", "Legierungen aus mehreren Metallen", "Kristalline Salze aus Ionenbindungen"], correct: 0, explanation: "Beispiel: Polyethylen aus Ethen." },
     { category: "k13_chemie", question: "Was ist die Nernst-Gleichung nützlich für?", answers: ["Berechnung von Elektrodenpotenzialen", "Berechnung der Masse", "Berechnung des Volumens"], correct: 0, explanation: "Sie berücksichtigt Konzentrationen." },
     { category: "k13_chemie", question: "Was ist ein Aromat in der Chemie?", answers: ["Ringförmige Verbindung wie Benzol", "Ein Duftstoff allgemein", "Ein Salz"], correct: 0, explanation: "Aromaten haben ein delokalisiertes Elektronensystem." },
 
@@ -679,12 +679,12 @@ const QUESTIONS_DATABASE = [
     { category: "k13_sowi", question: "Was sind die Institutionen der EU?", answers: ["Kommission, Parlament, Rat und Gerichtshof", "Nur das Parlament", "Nur die Kommission"], correct: 0, explanation: "Sie teilen sich Gesetzgebung und Kontrolle." },
     { category: "k13_sowi", question: "Was ist Globalisierungskritik?", answers: ["Hinterfragen der Folgen weltweiter Verflechtung", "Ablehnung jeden Handels", "Eine Partei"], correct: 0, explanation: "Themen sind Arbeitsbedingungen, Umwelt und Ungleichheit." },
     { category: "k13_sowi", question: "Was ist der Sozialstaat?", answers: ["Staat mit Verantwortung für soziale Sicherheit", "Staat ohne Steuern", "Staat ohne Gesetze"], correct: 0, explanation: "Im Grundgesetz als Sozialstaatsprinzip verankert." },
-    { category: "k13_sowi", question: "Was ist internationale Friedenssicherung?", answers: ["Konfliktverhütung durch Institutionen wie die UNO", "Aufrüstung", "Handelsblockaden"], correct: 0, explanation: "Die UNO wurde 1945 dafür gegründet." },
+    { category: "k13_sowi", question: "Was ist internationale Friedenssicherung?", answers: ["Konfliktverhütung durch Institutionen wie die UNO", "Aufrüstung zur Abschreckung möglicher Gegner", "Handelsblockaden gegen unliebsame Staaten"], correct: 0, explanation: "Die UNO wurde 1945 dafür gegründet." },
 
     // --- Klasse 13 - Informatik (Abitur) ---
     { category: "k13_informatik", question: "Was ist ein Sortieralgorithmus?", answers: ["Verfahren, um Daten in eine Reihenfolge zu bringen", "Ein Speichermedium", "Ein Netzwerkprotokoll"], correct: 0, explanation: "Beispiele: Bubblesort, Quicksort, Mergesort." },
     { category: "k13_informatik", question: "Was bedeutet O(n log n)?", answers: ["Eine Aufwandsklasse effizienter Sortierverfahren", "Ein Speicherplatz", "Eine Fehlermeldung"], correct: 0, explanation: "Quicksort und Mergesort liegen im Mittel dort." },
-    { category: "k13_informatik", question: "Was ist ein endlicher Automat?", answers: ["Modell mit Zuständen und Übergängen", "Ein Roboter", "Ein Computer"], correct: 0, explanation: "Grundlage für Sprach- und Mustererkennung." },
+    { category: "k13_informatik", question: "Was ist ein endlicher Automat?", answers: ["Modell mit Zuständen und Übergängen", "Ein Roboter mit begrenzter Rechenleistung", "Ein Computer mit festem Arbeitsspeicher"], correct: 0, explanation: "Grundlage für Sprach- und Mustererkennung." },
     { category: "k13_informatik", question: "Was ist Kryptografie?", answers: ["Die Lehre vom Verschlüsseln von Informationen", "Datenkompression", "Bildbearbeitung"], correct: 0, explanation: "Man unterscheidet symmetrische und asymmetrische Verfahren." },
 
     // --- KFZ-Mechatronik (Berufsschule) ---
@@ -867,7 +867,7 @@ const QUESTIONS_DATABASE = [
     { category: "k13_biologie", question: "Was ist genetische Drift?", answers: ["Zufällige Änderung der Allelhäufigkeit in kleinen Populationen", "Gerichtete Auslese durch die Umwelt", "Die Verdopplung der DNA"], correct: 0, explanation: "Anders als die Selektion wirkt die Drift ungerichtet und besonders in kleinen Populationen stark." },
     { category: "k13_biologie", question: "Was ist ein ökologisches Gleichgewicht?", answers: ["Ein dynamisch schwankender, aber stabiler Zustand im Ökosystem", "Ein völlig unveränderlicher Zustand", "Das Aussterben aller Arten"], correct: 0, explanation: "Populationsgrößen schwanken um einen Mittelwert, das System bleibt insgesamt stabil." },
 
-    { category: "k13_chemie", question: "Was ist ein Elektrolyt?", answers: ["Ein Stoff, dessen Lösung oder Schmelze Strom leitet", "Ein Isolator", "Ein Edelgas"], correct: 0, explanation: "Elektrolyte enthalten frei bewegliche Ionen, die den Ladungstransport ermöglichen." },
+    { category: "k13_chemie", question: "Was ist ein Elektrolyt?", answers: ["Ein Stoff, dessen Lösung oder Schmelze Strom leitet", "Ein Stoff, der elektrischen Strom vollständig sperrt", "Ein Gas, das keine chemischen Bindungen eingeht"], correct: 0, explanation: "Elektrolyte enthalten frei bewegliche Ionen, die den Ladungstransport ermöglichen." },
     { category: "k13_chemie", question: "Was beschreibt das chemische Gleichgewicht?", answers: ["Hin- und Rückreaktion laufen gleich schnell ab", "Die Reaktion ist vollständig beendet", "Es entstehen keine Produkte"], correct: 0, explanation: "Die Konzentrationen bleiben konstant, obwohl beide Reaktionen weiterlaufen." },
     { category: "k13_chemie", question: "Was ist die Elektrolyse?", answers: ["Eine durch elektrische Energie erzwungene Redoxreaktion", "Eine spontane Batteriereaktion", "Ein Filterverfahren"], correct: 0, explanation: "Bei der Elektrolyse wird elektrische Energie zugeführt, um eine Reaktion zu erzwingen." },
     { category: "k13_chemie", question: "Was sind Kohlenhydrate chemisch?", answers: ["Polyhydroxyaldehyde bzw. -ketone", "Reine Kohlenwasserstoffe", "Anorganische Salze"], correct: 0, explanation: "Glucose ist ein typisches Beispiel; Kohlenhydrate dienen als Energieträger." },
@@ -908,7 +908,7 @@ const QUESTIONS_DATABASE = [
     { category: "beruf_tischler", question: "Was ist eine Zinkenverbindung?", answers: ["Eine formschlüssige Eckverbindung aus ineinandergreifenden Zapfen", "Eine Verbindung mit Zinkblech", "Eine geklebte Stumpfverbindung"], correct: 0, explanation: "Schwalbenschwanzzinken sind besonders zugfest und ein Qualitätsmerkmal im Möbelbau." },
     { category: "beruf_tischler", question: "Warum arbeitet Holz auch nach der Verarbeitung noch?", answers: ["Es nimmt Feuchtigkeit auf und gibt sie ab", "Es wächst weiter", "Es reagiert auf Licht"], correct: 0, explanation: "Holz quillt und schwindet quer zur Faser deutlich stärker als in Längsrichtung." },
     { category: "beruf_tischler", question: "Wofür wird ein Stechbeitel verwendet?", answers: ["Zum Ausstemmen von Vertiefungen und Zapfenlöchern", "Zum Sägen von Brettern", "Zum Schleifen von Oberflächen"], correct: 0, explanation: "Der Stechbeitel wird mit dem Klüpfel oder von Hand geführt." },
-    { category: "beruf_tischler", question: "Was ist Furnier?", answers: ["Ein dünnes Blatt Echtholz zum Beschichten von Trägerplatten", "Eine Lackschicht", "Ein Klebstoff"], correct: 0, explanation: "Furniere sind meist 0,5 bis 0,9 mm dick und sparen wertvolles Vollholz." },
+    { category: "beruf_tischler", question: "Was ist Furnier?", answers: ["Ein dünnes Blatt Echtholz zum Beschichten von Trägerplatten", "Eine schützende Lackschicht auf der Oberfläche", "Ein Spezialklebstoff für Holzverbindungen"], correct: 0, explanation: "Furniere sind meist 0,5 bis 0,9 mm dick und sparen wertvolles Vollholz." },
     { category: "beruf_tischler", question: "Welche Schutzeinrichtung ist an der Tischkreissäge vorgeschrieben?", answers: ["Spaltkeil und Schutzhaube", "Nur eine Brille", "Keine, wenn man vorsichtig ist"], correct: 0, explanation: "Der Spaltkeil verhindert das Klemmen des Werkstücks und damit gefährliche Rückschläge." },
     { category: "beruf_tischler", question: "Wozu dient eine Absauganlage in der Werkstatt?", answers: ["Sie entfernt gesundheitsschädlichen Holzstaub", "Sie kühlt die Maschinen", "Sie erhöht die Drehzahl"], correct: 0, explanation: "Holzstaub gilt als krebserzeugend, besonders Eichen- und Buchenstaub." },
 
@@ -1037,7 +1037,7 @@ const QUESTIONS_DATABASE = [
     { category: "spass_laender", question: "Welche Flagge zeigt ein Ahornblatt?", answers: ["Kanada", "Norwegen", "Australien"], correct: 0, explanation: "Das rote Ahornblatt ist das Wahrzeichen Kanadas." },
     { category: "spass_laender", question: "An welches Land grenzt Deutschland im Süden?", answers: ["Österreich und Schweiz", "Dänemark", "Polen"], correct: 0, explanation: "Deutschland hat insgesamt neun Nachbarländer." },
     { category: "spass_laender", question: "In welchem Land steht die Freiheitsstatue?", answers: ["USA", "Frankreich", "England"], correct: 0, explanation: "Sie steht in New York und war ein Geschenk Frankreichs." },
-    { category: "spass_laender", question: "Welches Land hat die meisten Zeitzonen?", answers: ["Frankreich (mit Überseegebieten)", "Deutschland", "Italien"], correct: 0, explanation: "Durch seine Überseegebiete kommt Frankreich auf zwölf Zeitzonen." },
+    { category: "spass_laender", question: "Welches Land hat die meisten Zeitzonen?", answers: ["Frankreich (mit Überseegebieten)", "Deutschland (mit den Nordseeinseln)", "Italien (mit Sizilien und Sardinien)"], correct: 0, explanation: "Durch seine Überseegebiete kommt Frankreich auf zwölf Zeitzonen." },
     { category: "spass_laender", question: "Wie heißt der längste Fluss Afrikas?", answers: ["Nil", "Kongo", "Sambesi"], correct: 0, explanation: "Der Nil ist etwa 6.650 km lang." },
     { category: "spass_laender", question: "Welche Stadt wird auch 'die ewige Stadt' genannt?", answers: ["Rom", "Athen", "Kairo"], correct: 0, explanation: "Rom trägt diesen Beinamen seit der Antike." },
     { category: "spass_laender", question: "Welches Land liegt vollständig in den Alpen und ist sehr klein?", answers: ["Liechtenstein", "Belgien", "Portugal"], correct: 0, explanation: "Liechtenstein liegt zwischen der Schweiz und Österreich." },
@@ -1084,7 +1084,7 @@ const QUESTIONS_DATABASE = [
     { category: "spass_wuerdest_du", question: "Scherzfrage: Nie wieder Pizza oder nie wieder Pommes?", answers: ["Nie wieder Pommes 🍟", "Nie wieder Pizza 🍕", "Bitte beides behalten!"], correct: 2, explanation: "😄 Die ehrlichste Antwort am Familienabend." },
     { category: "spass_wuerdest_du", question: "Schätzfrage: Welche Eissorte wird weltweit am meisten gegessen?", answers: ["Vanille 🍦", "Schokolade 🍫", "Erdbeere 🍓"], correct: 0, explanation: "😄 Vanille gilt als beliebteste Eissorte der Welt." },
 
-    { category: "spass_nice_to_know", question: "Nice to know: Wie viele Geschmacksrichtungen kann die Zunge unterscheiden?", answers: ["Fünf (süß, sauer, salzig, bitter, umami)", "Vier", "Zwei"], correct: 0, explanation: "Umami wurde erst 1908 in Japan beschrieben." },
+    { category: "spass_nice_to_know", question: "Nice to know: Wie viele Geschmacksrichtungen kann die Zunge unterscheiden?", answers: ["Fünf (süß, sauer, salzig, bitter, umami)", "Vier (süß, sauer, salzig, bitter)", "Zwei (süß und salzig)"], correct: 0, explanation: "Umami wurde erst 1908 in Japan beschrieben." },
     { category: "spass_nice_to_know", question: "Nice to know: Warum ist der Himmel blau?", answers: ["Blaues Licht wird in der Luft am stärksten gestreut", "Weil das Meer sich spiegelt", "Weil die Sonne blau ist"], correct: 0, explanation: "Man nennt das Rayleigh-Streuung." },
     { category: "spass_nice_to_know", question: "Nice to know: Wie viele Herzschläge hat ein Mensch etwa pro Tag?", answers: ["Rund 100.000", "Rund 10.000", "Rund 1 Million"], correct: 0, explanation: "Bei etwa 70 Schlägen pro Minute sind das gut 100.000 am Tag." },
     { category: "spass_nice_to_know", question: "Nice to know: Was ist der härteste natürliche Stoff?", answers: ["Diamant", "Granit", "Stahl"], correct: 0, explanation: "Diamant hat den Härtegrad 10 auf der Mohs-Skala." },
@@ -1092,7 +1092,7 @@ const QUESTIONS_DATABASE = [
     { category: "spass_nice_to_know", question: "Nice to know: Warum gähnen Menschen ansteckend?", answers: ["Vermutlich durch Empathie und Spiegelneurone", "Wegen Sauerstoffmangel im Raum", "Reiner Zufall"], correct: 0, explanation: "Je näher man sich steht, desto ansteckender wirkt das Gähnen." },
 
     { category: "spass_welt", question: "Ungewöhnliches: Welches Land hat mehr Seen als der Rest der Welt zusammen?", answers: ["Kanada", "Russland", "Finnland"], correct: 0, explanation: "Kanada hat über zwei Millionen Seen." },
-    { category: "spass_welt", question: "Ungewöhnliches: In welchem Land gibt es einen See, der pink ist?", answers: ["Australien (Lake Hillier)", "Island", "Kanada"], correct: 0, explanation: "Die Farbe entsteht durch Algen und salzliebende Mikroorganismen." },
+    { category: "spass_welt", question: "Ungewöhnliches: In welchem Land gibt es einen See, der pink ist?", answers: ["Australien (Lake Hillier)", "Island (wegen der heißen Quellen)", "Kanada (wegen der roten Algen)"], correct: 0, explanation: "Die Farbe entsteht durch Algen und salzliebende Mikroorganismen." },
     { category: "spass_welt", question: "Ungewöhnliches: Welche Stadt liegt auf zwei Kontinenten?", answers: ["Istanbul", "Kairo", "Athen"], correct: 0, explanation: "Der Bosporus trennt den europäischen vom asiatischen Teil." },
     { category: "spass_welt", question: "Ungewöhnliches: Welcher Ort gilt als trockenster der Erde?", answers: ["Atacama-Wüste in Chile", "Sahara", "Death Valley"], correct: 0, explanation: "In manchen Teilen der Atacama wurde jahrzehntelang kein Regen gemessen." },
     { category: "spass_welt", question: "Ungewöhnliches: Wie viele Menschen sprechen Chinesisch als Muttersprache?", answers: ["Über 900 Millionen", "Etwa 200 Millionen", "Etwa 50 Millionen"], correct: 0, explanation: "Mandarin ist die meistgesprochene Muttersprache der Welt." },
@@ -1109,7 +1109,7 @@ const QUESTIONS_DATABASE = [
     { category: "spass_humor", question: "Was ist das gefährlichste Tier Deutschlands?", answers: ["Wolf", "Wildschwein", "Der Montagmorgen"], correct: 2, explanation: "😱 Kein Tier ist so gefährlich wie der Wecker am Montag!" },
     { category: "spass_humor", question: "Wie überlebt man eine Gruppenarbeit?", answers: ["Nichts machen", "Kaffee trinken und nicken", "Alles selbst machen"], correct: 2, explanation: "🤝 Gruppenarbeit = Eine(r) macht's, der Rest guckt zu!" },
     { category: "spass_humor", question: "Was bedeutet 'kurz' auf Deutsch?", answers: ["Weniger als 1 Minute", "Weniger als 5 Minuten", "Irgendwas zwischen 5 Minuten und 3 Stunden"], correct: 2, explanation: "⏰ 'Ich bin kurz weg' = Komm in 3 Stunden wieder!" },
-    { category: "spass_humor", question: "Was ist das wichtigste Schulfach, das es nicht gibt?", answers: ["Steuererklärung", "'Wie überlebe ich den Alltag?'", "Beides!"], correct: 2, explanation: "📚 Warum lernt man Gedichtanalyse, aber nicht, wie man eine Wohnung findet?!" },
+    { category: "spass_humor", noShuffle: true, question: "Was ist das wichtigste Schulfach, das es nicht gibt?", answers: ["Steuererklärung", "'Wie überlebe ich den Alltag?'", "Beides!"], correct: 2, explanation: "📚 Warum lernt man Gedichtanalyse, aber nicht, wie man eine Wohnung findet?!" },
     { category: "spass_humor", question: "Wofür steht die Abkürzung 'LOL' bei Lehrern?", answers: ["Laughing Out Loud", "Lehrer Ohne Langeweile", "Lernziel Ohne Lust"], correct: 2, explanation: "😂 Lehrer-LOL = 'Warum lacht da jemand? Das ist ein ernstes Thema!'" },
     { category: "spass_humor", question: "Was ist die häufigste Ausrede für fehlende Hausaufgaben?", answers: ["'Der Drucker war kaputt'", "'Ich dachte, das ist freiwillig'", "'Mein Hund hat sie gefressen'"], correct: 2, explanation: "🐶 Der Klassiker! Funktioniert seit 100 Jahren." },
     { category: "spass_humor", question: "Was denkt ein Lehrer wirklich, wenn er sagt 'Das wird eine leichte Übung'?", answers: ["'Ich will einfach nur meine Ruhe'", "'Das habe ich aus dem Internet'", "'Ihr werdet alle scheitern'"], correct: 2, explanation: "😈 'Leichte Übung' = Lehrer-Code für 'Ihr werdet leiden'!" },
@@ -1121,7 +1121,7 @@ const QUESTIONS_DATABASE = [
 
     // --- SPASS: BERUFE MIT HUMOR ---
     { category: "spass_beruf_humor", question: "KFZ: Was sagt der Kunde, wenn der Motor klopft?", answers: ["'Da ist was kaputt'", "'Der klopft schon immer so'", "'Können Sie mal schnell gucken? Dauert bestimmt nur 5 Minuten'"], correct: 2, explanation: "⏱️ 'Nur 5 Minuten' = KFZ-Albtraum! In Wahrheit mindestens 5 Stunden." },
-    { category: "spass_beruf_humor", question: "KFZ: Was bleibt nach jeder Reparatur übrig?", answers: ["Eine Schraube", "Ein Werkzeug", "Beides – und keiner weiß, wo sie hingehören"], correct: 2, explanation: "🔩 Zwei Schrauben übrig? Das Auto ist jetzt leichter = schneller!" },
+    { category: "spass_beruf_humor", noShuffle: true, question: "KFZ: Was bleibt nach jeder Reparatur übrig?", answers: ["Eine Schraube", "Ein Werkzeug", "Beides – und keiner weiß, wo sie hingehören"], correct: 2, explanation: "🔩 Zwei Schrauben übrig? Das Auto ist jetzt leichter = schneller!" },
     { category: "spass_beruf_humor", question: "Tischler: Was macht ein Tischler, wenn er Holz sägt?", answers: ["Genau nach Plan", "Dreimal falsch, einmal richtig", "Sägen, fluchen, neu sägen"], correct: 2, explanation: "🪚 Tischler-Regel Nr. 1: Immer mehr Holz einplanen als man braucht!" },
     { category: "spass_beruf_humor", question: "Friseur: Was sagt der Kunde NIE beim Friseur?", answers: ["'Machen Sie ruhig kürzer'", "'Ich habe noch viel Zeit'", "'Genau so wollte ich es!'"], correct: 2, explanation: "💇 Egal wie gut es aussieht – der Kunde wollte es 'eigentlich anders'!" },
     { category: "spass_beruf_humor", question: "Elektroniker: Wann funktioniert ein Gerät wieder?", answers: ["Nach genauer Fehleranalyse", "Wenn der Chef kommt", "Sobald man dagegen haut"], correct: 2, explanation: "⚡ 'Percussive Maintenance' – die edle Kunst des Draufhauens!" },
@@ -1185,148 +1185,255 @@ const FUN_CATEGORIES = [
 
 const VOCABULARY_DATABASE = {
     en: {
-        klasse_1_2: { 
-            label: "🧸 Klasse 1-2 (Farben, Tiere, Zahlen)", 
+        k3: {
+            label: "Klasse 3 · Erste Wörter",
             words: [
-                {de:"Eins",foreign:"one"}, {de:"Zwei",foreign:"two"}, {de:"Drei",foreign:"three"}, {de:"Vier",foreign:"four"}, {de:"Fünf",foreign:"five"}, 
-                {de:"Rot",foreign:"red"}, {de:"Blau",foreign:"blue"}, {de:"Grün",foreign:"green"}, {de:"Gelb",foreign:"yellow"}, {de:"Schwarz",foreign:"black"},
-                {de:"Hund",foreign:"dog"}, {de:"Katze",foreign:"cat"}, {de:"Maus",foreign:"mouse"}, {de:"Vogel",foreign:"bird"}, {de:"Fisch",foreign:"fish"},
-                {de:"Apfel",foreign:"apple"}, {de:"Banane",foreign:"banana"}, {de:"Brot",foreign:"bread"}, {de:"Wasser",foreign:"water"}, {de:"Milch",foreign:"milk"},
+                {de:"Eins",foreign:"one"}, {de:"Zwei",foreign:"two"}, {de:"Drei",foreign:"three"}, {de:"Vier",foreign:"four"}, {de:"Fünf",foreign:"five"},
                 {de:"Sechs",foreign:"six"}, {de:"Sieben",foreign:"seven"}, {de:"Acht",foreign:"eight"}, {de:"Neun",foreign:"nine"}, {de:"Zehn",foreign:"ten"},
-                {de:"Weiß",foreign:"white"}, {de:"Orange",foreign:"orange"}, {de:"Rosa",foreign:"pink"}, {de:"Braun",foreign:"brown"}, {de:"Lila",foreign:"purple"},
-                {de:"Pferd",foreign:"horse"}, {de:"Kuh",foreign:"cow"}, {de:"Schwein",foreign:"pig"}, {de:"Schaf",foreign:"sheep"}, {de:"Ente",foreign:"duck"},
-                {de:"Ball",foreign:"ball"}, {de:"Puppe",foreign:"doll"}, {de:"Sonne",foreign:"sun"}, {de:"Mond",foreign:"moon"}, {de:"Stern",foreign:"star"},
-                {de:"Baum",foreign:"tree"}, {de:"Blume",foreign:"flower"}, {de:"Auto",foreign:"car"}, {de:"Buch",foreign:"book"}, {de:"Schuh",foreign:"shoe"},
-                {de:"Hand",foreign:"hand"}, {de:"Fuß",foreign:"foot"}, {de:"Auge",foreign:"eye"}, {de:"Ohr",foreign:"ear"}, {de:"Haar",foreign:"hair"},
-                {de:"groß",foreign:"big"}, {de:"klein",foreign:"small"}, {de:"glücklich",foreign:"happy"}, {de:"traurig",foreign:"sad"}, {de:"Freund",foreign:"friend"}
-            ] 
+                {de:"Rot",foreign:"red"}, {de:"Blau",foreign:"blue"}, {de:"Grün",foreign:"green"}, {de:"Gelb",foreign:"yellow"}, {de:"Schwarz",foreign:"black"},
+                {de:"Weiß",foreign:"white"}, {de:"Orange",foreign:"orange"}, {de:"Rosa",foreign:"pink"}, {de:"Braun",foreign:"brown"},
+                {de:"Hund",foreign:"dog"}, {de:"Katze",foreign:"cat"}, {de:"Vogel",foreign:"bird"}, {de:"Pferd",foreign:"horse"}, {de:"Kuh",foreign:"cow"},
+                {de:"Ball",foreign:"ball"}, {de:"Buch",foreign:"book"}, {de:"Stift",foreign:"pen"}, {de:"Tasche",foreign:"bag"},
+                {de:"Hallo",foreign:"hello"}, {de:"Tschüss",foreign:"goodbye"}, {de:"Danke",foreign:"thank you"}, {de:"Bitte",foreign:"please"}
+            ]
         },
-        klasse_3_4: { 
-            label: "🎒 Klasse 3-4 (Schule, Haus, Familie)", 
+        k4: {
+            label: "Klasse 4 · Familie, Haus & Alltag",
             words: [
-                {de:"Tisch",foreign:"desk"}, {de:"Stuhl",foreign:"chair"}, {de:"Buch",foreign:"book"}, {de:"Stift",foreign:"pen"}, {de:"Schule",foreign:"school"},
-                {de:"Lehrer",foreign:"teacher"}, {de:"spielen",foreign:"play"}, {de:"lernen",foreign:"learn"}, {de:"lesen",foreign:"read"}, {de:"schreiben",foreign:"write"},
-                {de:"Hallo",foreign:"hello"}, {de:"Tschüss",foreign:"goodbye"}, {de:"Danke",foreign:"thank you"}, {de:"Bitte",foreign:"please"}, 
-                {de:"Mutter",foreign:"mother"}, {de:"Vater",foreign:"father"}, {de:"Bruder",foreign:"brother"}, {de:"Schwester",foreign:"sister"}, {de:"Haus",foreign:"house"}, {de:"Garten",foreign:"garden"},
-                {de:"Küche",foreign:"kitchen"}, {de:"Schlafzimmer",foreign:"bedroom"}, {de:"Badezimmer",foreign:"bathroom"}, {de:"Fenster",foreign:"window"}, {de:"Tür",foreign:"door"},
-                {de:"Tafel",foreign:"blackboard"}, {de:"Radiergummi",foreign:"eraser"}, {de:"Lineal",foreign:"ruler"}, {de:"Rucksack",foreign:"backpack"}, {de:"Pause",foreign:"break"},
-                {de:"Montag",foreign:"Monday"}, {de:"Dienstag",foreign:"Tuesday"}, {de:"Mittwoch",foreign:"Wednesday"}, {de:"Freitag",foreign:"Friday"}, {de:"Sonntag",foreign:"Sunday"},
-                {de:"Donnerstag",foreign:"Thursday"}, {de:"Samstag",foreign:"Saturday"}, {de:"Frühling",foreign:"spring"}, {de:"Sommer",foreign:"summer"}, {de:"Herbst",foreign:"autumn / fall"}, {de:"Winter",foreign:"winter"},
-                {de:"Großmutter",foreign:"grandmother"}, {de:"Großvater",foreign:"grandfather"}, {de:"Cousin",foreign:"cousin"}, {de:"Nachbar",foreign:"neighbour"},
-                {de:"Frühstück",foreign:"breakfast"}, {de:"Mittagessen",foreign:"lunch"}, {de:"Abendessen",foreign:"dinner"}, {de:"Teller",foreign:"plate"}, {de:"Gabel",foreign:"fork"}
-            ] 
+                {de:"Mutter",foreign:"mother"}, {de:"Vater",foreign:"father"}, {de:"Bruder",foreign:"brother"}, {de:"Schwester",foreign:"sister"},
+                {de:"Großmutter",foreign:"grandmother"}, {de:"Großvater",foreign:"grandfather"}, {de:"Freund",foreign:"friend"},
+                {de:"Haus",foreign:"house"}, {de:"Garten",foreign:"garden"}, {de:"Küche",foreign:"kitchen"}, {de:"Schlafzimmer",foreign:"bedroom"},
+                {de:"Badezimmer",foreign:"bathroom"}, {de:"Fenster",foreign:"window"}, {de:"Tür",foreign:"door"}, {de:"Stuhl",foreign:"chair"}, {de:"Tisch",foreign:"table"},
+                {de:"Schule",foreign:"school"}, {de:"Lehrer",foreign:"teacher"}, {de:"Tafel",foreign:"blackboard"}, {de:"Radiergummi",foreign:"eraser"}, {de:"Lineal",foreign:"ruler"},
+                {de:"Montag",foreign:"Monday"}, {de:"Dienstag",foreign:"Tuesday"}, {de:"Mittwoch",foreign:"Wednesday"}, {de:"Donnerstag",foreign:"Thursday"},
+                {de:"Freitag",foreign:"Friday"}, {de:"Samstag",foreign:"Saturday"}, {de:"Sonntag",foreign:"Sunday"},
+                {de:"Apfel",foreign:"apple"}, {de:"Brot",foreign:"bread"}, {de:"Wasser",foreign:"water"}, {de:"Milch",foreign:"milk"}
+            ]
         },
-        klasse_5_6: { 
-            label: "⚽ Klasse 5-6 (Hobbys, Zeit, Körper)", 
+        k5: {
+            label: "Klasse 5 · Körper, Zeit & Hobbys",
             words: [
-                {de:"Fußball",foreign:"football"}, {de:"Schwimmen",foreign:"swimming"}, {de:"Singen",foreign:"singing"}, {de:"Kino",foreign:"cinema"}, {de:"Freundschaft",foreign:"friendship"},
-                {de:"Kopf",foreign:"head"}, {de:"Auge",foreign:"eye"}, {de:"Ohr",foreign:"ear"}, {de:"Hand",foreign:"hand"}, {de:"Fuß",foreign:"foot"},
-                {de:"Morgen",foreign:"morning"}, {de:"Abend",foreign:"evening"}, {de:"Uhr",foreign:"clock"}, {de:"Stunde",foreign:"hour"}, {de:"Woche",foreign:"week"},
-                {de:"lustig",foreign:"funny"}, {de:"spannend",foreign:"exciting"}, {de:"langweilig",foreign:"boring"}, {de:"Wochenende",foreign:"weekend"}, {de:"Ferien",foreign:"holidays"},
-                {de:"Bauch",foreign:"stomach"}, {de:"Bein",foreign:"leg"}, {de:"Arm",foreign:"arm"}, {de:"Nase",foreign:"nose"}, {de:"Mund",foreign:"mouth"},
-                {de:"Basketball",foreign:"basketball"}, {de:"Tanzen",foreign:"dancing"}, {de:"Malen",foreign:"painting"}, {de:"Musik hören",foreign:"listening to music"}, {de:"Videospiele",foreign:"video games"},
-                {de:"gestern",foreign:"yesterday"}, {de:"heute",foreign:"today"}, {de:"nie",foreign:"never"}, {de:"immer",foreign:"always"},
-                {de:"Mathematik",foreign:"maths"}, {de:"Deutsch",foreign:"German"}, {de:"Biologie",foreign:"biology"}, {de:"Sport",foreign:"PE / sports"}, {de:"Kunst",foreign:"art"}, {de:"Musik",foreign:"music"},
-                {de:"Radfahren",foreign:"cycling"}, {de:"Wandern",foreign:"hiking"}, {de:"Mannschaft",foreign:"team"}, {de:"gewinnen",foreign:"to win"}, {de:"verlieren",foreign:"to lose"},
-                {de:"Schulter",foreign:"shoulder"}, {de:"Knie",foreign:"knee"}, {de:"Finger",foreign:"finger"}, {de:"Rücken",foreign:"back"}, {de:"Zahn",foreign:"tooth"},
-                {de:"früh",foreign:"early"}, {de:"spät",foreign:"late"}, {de:"manchmal",foreign:"sometimes"}, {de:"oft",foreign:"often"}
-            ] 
+                {de:"Kopf",foreign:"head"}, {de:"Hand",foreign:"hand"}, {de:"Fuß",foreign:"foot"}, {de:"Auge",foreign:"eye"}, {de:"Ohr",foreign:"ear"},
+                {de:"Nase",foreign:"nose"}, {de:"Mund",foreign:"mouth"}, {de:"Arm",foreign:"arm"}, {de:"Bein",foreign:"leg"}, {de:"Haar",foreign:"hair"},
+                {de:"Frühling",foreign:"spring"}, {de:"Sommer",foreign:"summer"}, {de:"Herbst",foreign:"autumn"}, {de:"Winter",foreign:"winter"},
+                {de:"Morgen",foreign:"morning"}, {de:"Abend",foreign:"evening"}, {de:"Nacht",foreign:"night"}, {de:"Woche",foreign:"week"}, {de:"Monat",foreign:"month"},
+                {de:"Fußball",foreign:"football"}, {de:"Schwimmen",foreign:"swimming"}, {de:"Radfahren",foreign:"cycling"}, {de:"Tanzen",foreign:"dancing"},
+                {de:"Malen",foreign:"painting"}, {de:"Lesen",foreign:"reading"}, {de:"Musik",foreign:"music"},
+                {de:"lustig",foreign:"funny"}, {de:"langweilig",foreign:"boring"}, {de:"schnell",foreign:"fast"}, {de:"langsam",foreign:"slow"}
+            ]
         },
-        klasse_7_8: { 
-            label: "🌍 Klasse 7-8 (Umwelt, Medien, Reise)", 
+        k6: {
+            label: "Klasse 6 · Alltag, Wetter & Kleidung",
             words: [
-                {de:"Umwelt",foreign:"environment"}, {de:"Schutz",foreign:"protection"}, {de:"Müll",foreign:"rubbish"}, {de:"Energie",foreign:"energy"}, {de:"Klima",foreign:"climate"},
-                {de:"Internet",foreign:"internet"}, {de:"Computer",foreign:"computer"}, {de:"Nachricht",foreign:"message"}, {de:"Zeitung",foreign:"newspaper"}, {de:"Handy",foreign:"mobile phone"},
-                {de:"Reisen",foreign:"travel"}, {de:"Zug",foreign:"train"}, {de:"Flugzeug",foreign:"airplane"}, {de:"Strand",foreign:"beach"}, {de:"Hotel",foreign:"hotel"},
-                {de:"besuchen",foreign:"visit"}, {de:"treffen",foreign:"meet"}, {de:"verabreden",foreign:"arrange"}, {de:"Wald",foreign:"forest"}, {de:"Ozean",foreign:"ocean"},
-                {de:"Nachhaltigkeit",foreign:"sustainability"}, {de:"Recycling",foreign:"recycling"}, {de:"Verschmutzung",foreign:"pollution"}, {de:"Ressource",foreign:"resource"}, {de:"erneuerbar",foreign:"renewable"},
-                {de:"soziales Netzwerk",foreign:"social network"}, {de:"Werbung",foreign:"advertising"}, {de:"herunterladen",foreign:"download"}, {de:"hochladen",foreign:"upload"}, {de:"Passwort",foreign:"password"},
-                {de:"Gepäck",foreign:"luggage"}, {de:"Reisepass",foreign:"passport"}, {de:"Ankunft",foreign:"arrival"}, {de:"Abflug",foreign:"departure"}, {de:"Sehenswürdigkeit",foreign:"sight"},
-                {de:"Chemie",foreign:"chemistry"}, {de:"Physik",foreign:"physics"}, {de:"Geschichte",foreign:"history"}, {de:"Erdkunde",foreign:"geography"}, {de:"Experiment",foreign:"experiment"},
-                {de:"Bildschirm",foreign:"screen"}, {de:"Nachricht (Chat)",foreign:"message"}, {de:"Datenschutz",foreign:"privacy"},
-                {de:"Abfall",foreign:"waste"}, {de:"Energie sparen",foreign:"to save energy"}, {de:"Art (Tierart)",foreign:"species"}, {de:"bedroht",foreign:"endangered"},
-                {de:"Fahrkarte",foreign:"ticket"}, {de:"Unterkunft",foreign:"accommodation"}, {de:"Grenze",foreign:"border"}, {de:"Währung",foreign:"currency"}
-            ] 
+                {de:"Hemd",foreign:"shirt"}, {de:"Hose",foreign:"trousers"}, {de:"Jacke",foreign:"jacket"}, {de:"Schuh",foreign:"shoe"},
+                {de:"Mütze",foreign:"cap"}, {de:"Kleid",foreign:"dress"}, {de:"Socke",foreign:"sock"},
+                {de:"Wetter",foreign:"weather"}, {de:"Regen",foreign:"rain"}, {de:"Schnee",foreign:"snow"}, {de:"Wind",foreign:"wind"},
+                {de:"Wolke",foreign:"cloud"}, {de:"Sonne",foreign:"sun"}, {de:"heiß",foreign:"hot"}, {de:"kalt",foreign:"cold"},
+                {de:"aufstehen",foreign:"to get up"}, {de:"frühstücken",foreign:"to have breakfast"}, {de:"arbeiten",foreign:"to work"},
+                {de:"kaufen",foreign:"to buy"}, {de:"helfen",foreign:"to help"}, {de:"warten",foreign:"to wait"}, {de:"bleiben",foreign:"to stay"},
+                {de:"Frühstück",foreign:"breakfast"}, {de:"Mittagessen",foreign:"lunch"}, {de:"Abendessen",foreign:"dinner"},
+                {de:"gestern",foreign:"yesterday"}, {de:"heute",foreign:"today"}, {de:"morgen",foreign:"tomorrow"},
+                {de:"immer",foreign:"always"}, {de:"nie",foreign:"never"}, {de:"manchmal",foreign:"sometimes"}
+            ]
         },
-        klasse_9_11: { 
-            label: "👥 Klasse 9-11 (Gesellschaft, Politik)", 
+        k7: {
+            label: "Klasse 7 · Reisen, Stadt & Medien",
             words: [
-                {de:"Gesellschaft",foreign:"society"}, {de:"Politik",foreign:"politics"}, {de:"Demokratie",foreign:"democracy"}, {de:"Wahl",foreign:"election"}, {de:"Gesetz",foreign:"law"},
-                {de:"Freiheit",foreign:"freedom"}, {de:"Menschenrechte",foreign:"human rights"}, {de:"Gerechtigkeit",foreign:"justice"}, {de:"Regierung",foreign:"government"}, {de:"Bürger",foreign:"citizen"},
-                {de:"Wirtschaft",foreign:"economy"}, {de:"Entwicklung",foreign:"development"}, {de:"Bildung",foreign:"education"}, {de:"Erfolg",foreign:"success"}, {de:"Verantwortung",foreign:"responsibility"},
-                {de:"Technologie",foreign:"technology"}, {de:"Wissenschaft",foreign:"science"}, {de:"Diskussion",foreign:"discussion"}, {de:"Meinung",foreign:"opinion"}, {de:"Frieden",foreign:"peace"},
-                {de:"Arbeitslosigkeit",foreign:"unemployment"}, {de:"Steuer",foreign:"tax"}, {de:"Vertrag",foreign:"contract"}, {de:"Bewerbung",foreign:"application"}, {de:"Lebenslauf",foreign:"CV / résumé"},
-                {de:"Klimawandel",foreign:"climate change"}, {de:"Globalisierung",foreign:"globalization"}, {de:"Einwanderung",foreign:"immigration"}, {de:"Vorurteil",foreign:"prejudice"}, {de:"Toleranz",foreign:"tolerance"},
-                {de:"Argument",foreign:"argument"}, {de:"Beweis",foreign:"evidence"}, {de:"Vorteil",foreign:"advantage"}, {de:"Nachteil",foreign:"disadvantage"}, {de:"Herausforderung",foreign:"challenge"},
-                {de:"Gewaltenteilung",foreign:"separation of powers"}, {de:"Nachhaltigkeit",foreign:"sustainability"}, {de:"Verfassung",foreign:"constitution"}, {de:"Abgeordneter",foreign:"member of parliament"}, {de:"Staatsangehörigkeit",foreign:"nationality"},
-                {de:"Informatik",foreign:"computer science"}, {de:"Datenschutz",foreign:"data protection"}, {de:"künstliche Intelligenz",foreign:"artificial intelligence"}, {de:"Software",foreign:"software"},
-                {de:"Gleichberechtigung",foreign:"equality"}, {de:"Armut",foreign:"poverty"}, {de:"Wohlstand",foreign:"prosperity"},
-                {de:"Verhandlung",foreign:"negotiation"}, {de:"Entscheidung",foreign:"decision"}, {de:"Verantwortung übernehmen",foreign:"to take responsibility"}, {de:"überzeugen",foreign:"to convince"}, {de:"zustimmen",foreign:"to agree"}, {de:"ablehnen",foreign:"to reject"}
-            ] 
+                {de:"Reise",foreign:"journey"}, {de:"Gepäck",foreign:"luggage"}, {de:"Reisepass",foreign:"passport"}, {de:"Fahrkarte",foreign:"ticket"},
+                {de:"Ankunft",foreign:"arrival"}, {de:"Abflug",foreign:"departure"}, {de:"Unterkunft",foreign:"accommodation"}, {de:"Sehenswürdigkeit",foreign:"sight"},
+                {de:"Bahnhof",foreign:"railway station"}, {de:"Flughafen",foreign:"airport"}, {de:"Straße",foreign:"street"}, {de:"Brücke",foreign:"bridge"},
+                {de:"Geschäft",foreign:"shop"}, {de:"Markt",foreign:"market"}, {de:"Krankenhaus",foreign:"hospital"}, {de:"Bücherei",foreign:"library"},
+                {de:"Nachricht",foreign:"news"}, {de:"Zeitung",foreign:"newspaper"}, {de:"Bildschirm",foreign:"screen"}, {de:"herunterladen",foreign:"to download"},
+                {de:"hochladen",foreign:"to upload"}, {de:"Passwort",foreign:"password"}, {de:"soziales Netzwerk",foreign:"social network"}, {de:"Werbung",foreign:"advertising"},
+                {de:"besuchen",foreign:"to visit"}, {de:"treffen",foreign:"to meet"}, {de:"entdecken",foreign:"to discover"}, {de:"vergleichen",foreign:"to compare"},
+                {de:"spannend",foreign:"exciting"}, {de:"beliebt",foreign:"popular"}
+            ]
         },
-        kfz: {
-            label: "🔧 Berufsschule KFZ (Englisch)",
+        k8: {
+            label: "Klasse 8 · Umwelt, Technik & Gefühle",
             words: [
-                { de: "Motor", foreign: "engine" }, { de: "Bremse", foreign: "brake" }, { de: "Schaltplan", foreign: "wiring diagram" },
-                { de: "Zündspule", foreign: "ignition coil" }, { de: "Reifen", foreign: "tire" }, { de: "Schraubenschlüssel", foreign: "wrench" },
-                { de: "Kupplung", foreign: "clutch" }, { de: "Getriebe", foreign: "gearbox" }, { de: "Auspuff", foreign: "exhaust" }, { de: "Batterie", foreign: "battery" },
-                { de: "Lichtmaschine", foreign: "alternator" }, { de: "Zahnriemen", foreign: "timing belt" }, { de: "Stoßdämpfer", foreign: "shock absorber" }, { de: "tanken", foreign: "refuel" },
-                { de: "Achse", foreign: "axle" }, { de: "Kolben", foreign: "piston" }, { de: "Zylinder", foreign: "cylinder" }, { de: "Kühler", foreign: "radiator" },
-                { de: "Werkstatt", foreign: "workshop" }, { de: "Ersatzteil", foreign: "spare part" }, { de: "Wartung", foreign: "maintenance" }, { de: "Fehlercode", foreign: "fault code" },
-                { de: "Anlasser", foreign: "starter motor" }, { de: "Sicherung", foreign: "fuse" }, { de: "Achsschenkel", foreign: "steering knuckle" }, { de: "Ölwechsel", foreign: "oil change" },
-                { de: "Auspuffrohr", foreign: "tailpipe" }, { de: "Zündkerze", foreign: "spark plug" }, { de: "Steuergerät", foreign: "control unit" }, { de: "Federung", foreign: "suspension" },
-                { de: "Lenkrad", foreign: "steering wheel" }, { de: "Windschutzscheibe", foreign: "windshield" }, { de: "Scheinwerfer", foreign: "headlight" }, { de: "Rückspiegel", foreign: "rearview mirror" },
-                { de: "Radlager", foreign: "wheel bearing" }, { de: "Keilriemen", foreign: "V-belt" },
-                { de: "Drehmoment", foreign: "torque" }, { de: "Leerlauf", foreign: "idle" }, { de: "Kraftstoffpumpe", foreign: "fuel pump" }, { de: "Kühlmittel", foreign: "coolant" },
-                { de: "Drehmomentschlüssel", foreign: "torque wrench" }, { de: "Hebebühne", foreign: "vehicle lift" }, { de: "Kostenvoranschlag", foreign: "cost estimate" }
+                {de:"Umwelt",foreign:"environment"}, {de:"Klima",foreign:"climate"}, {de:"Verschmutzung",foreign:"pollution"}, {de:"Abfall",foreign:"waste"},
+                {de:"Recycling",foreign:"recycling"}, {de:"erneuerbar",foreign:"renewable"}, {de:"Ressource",foreign:"resource"}, {de:"Art (Tierart)",foreign:"species"},
+                {de:"bedroht",foreign:"endangered"}, {de:"Energie sparen",foreign:"to save energy"},
+                {de:"Technik",foreign:"technology"}, {de:"Erfindung",foreign:"invention"}, {de:"Gerät",foreign:"device"}, {de:"entwickeln",foreign:"to develop"},
+                {de:"verbessern",foreign:"to improve"}, {de:"Experiment",foreign:"experiment"},
+                {de:"stolz",foreign:"proud"}, {de:"aufgeregt",foreign:"excited"}, {de:"enttäuscht",foreign:"disappointed"}, {de:"nervös",foreign:"nervous"},
+                {de:"überrascht",foreign:"surprised"}, {de:"zufrieden",foreign:"satisfied"}, {de:"besorgt",foreign:"worried"},
+                {de:"Fach (Schule)",foreign:"subject"}, {de:"Prüfung",foreign:"exam"}, {de:"Note",foreign:"grade / mark"}, {de:"Hausaufgabe",foreign:"homework"},
+                {de:"Chemie",foreign:"chemistry"}, {de:"Physik",foreign:"physics"}, {de:"Erdkunde",foreign:"geography"}
+            ]
+        },
+        k9: {
+            label: "Klasse 9 · Gesellschaft & Meinung",
+            words: [
+                {de:"Gesellschaft",foreign:"society"}, {de:"Gemeinschaft",foreign:"community"}, {de:"Regierung",foreign:"government"}, {de:"Gesetz",foreign:"law"},
+                {de:"Recht",foreign:"right"}, {de:"Pflicht",foreign:"duty"}, {de:"Freiheit",foreign:"freedom"}, {de:"Gleichberechtigung",foreign:"equality"},
+                {de:"Vorurteil",foreign:"prejudice"}, {de:"Toleranz",foreign:"tolerance"}, {de:"Einwanderung",foreign:"immigration"},
+                {de:"Meinung",foreign:"opinion"}, {de:"Argument",foreign:"argument"}, {de:"Beweis",foreign:"evidence"}, {de:"Vorteil",foreign:"advantage"},
+                {de:"Nachteil",foreign:"disadvantage"}, {de:"zustimmen",foreign:"to agree"}, {de:"ablehnen",foreign:"to reject"}, {de:"überzeugen",foreign:"to convince"},
+                {de:"vorschlagen",foreign:"to suggest"}, {de:"erklären",foreign:"to explain"}, {de:"vergleichen",foreign:"to compare with"},
+                {de:"Beruf",foreign:"profession"}, {de:"Praktikum",foreign:"work placement"}, {de:"Bewerbung",foreign:"application"}, {de:"Lebenslauf",foreign:"CV"},
+                {de:"Erfahrung",foreign:"experience"}, {de:"Fähigkeit",foreign:"skill"}, {de:"Verantwortung",foreign:"responsibility"}
+            ]
+        },
+        k10: {
+            label: "Klasse 10 · Beruf, Wirtschaft & Diskussion",
+            words: [
+                {de:"Wirtschaft",foreign:"economy"}, {de:"Unternehmen",foreign:"company"}, {de:"Arbeitsmarkt",foreign:"job market"}, {de:"Arbeitslosigkeit",foreign:"unemployment"},
+                {de:"Gehalt",foreign:"salary"}, {de:"Steuer",foreign:"tax"}, {de:"Vertrag",foreign:"contract"}, {de:"Gewinn",foreign:"profit"},
+                {de:"Verbraucher",foreign:"consumer"}, {de:"Angebot",foreign:"supply"}, {de:"Nachfrage",foreign:"demand"},
+                {de:"Herausforderung",foreign:"challenge"}, {de:"Lösung",foreign:"solution"}, {de:"Folge",foreign:"consequence"}, {de:"Ursache",foreign:"cause"},
+                {de:"Entwicklung",foreign:"development"}, {de:"Auswirkung",foreign:"impact"}, {de:"Verhandlung",foreign:"negotiation"},
+                {de:"einerseits",foreign:"on the one hand"}, {de:"andererseits",foreign:"on the other hand"}, {de:"außerdem",foreign:"moreover"},
+                {de:"dennoch",foreign:"nevertheless"}, {de:"deshalb",foreign:"therefore"}, {de:"zusammenfassend",foreign:"to sum up"},
+                {de:"Nachhaltigkeit",foreign:"sustainability"}, {de:"Globalisierung",foreign:"globalisation"}, {de:"Verfassung",foreign:"constitution"},
+                {de:"Staatsangehörigkeit",foreign:"nationality"}, {de:"Gewaltenteilung",foreign:"separation of powers"}
+            ]
+        },
+        k11: {
+            label: "Klasse 11 · Textarbeit & Analyse",
+            words: [
+                {de:"Zusammenfassung",foreign:"summary"}, {de:"Stellungnahme",foreign:"comment"}, {de:"Analyse",foreign:"analysis"}, {de:"Behauptung",foreign:"claim"},
+                {de:"Kernaussage",foreign:"key message"}, {de:"Absicht",foreign:"intention"}, {de:"Zielgruppe",foreign:"target audience"},
+                {de:"Erzähler",foreign:"narrator"}, {de:"Figur",foreign:"character"}, {de:"Handlung",foreign:"plot"}, {de:"Schauplatz",foreign:"setting"},
+                {de:"Stilmittel",foreign:"stylistic device"}, {de:"Metapher",foreign:"metaphor"}, {de:"Symbol",foreign:"symbol"}, {de:"Ironie",foreign:"irony"},
+                {de:"betonen",foreign:"to emphasise"}, {de:"darstellen",foreign:"to portray"}, {de:"hinweisen auf",foreign:"to point out"},
+                {de:"schlussfolgern",foreign:"to conclude"}, {de:"belegen",foreign:"to prove"}, {de:"beziehen auf",foreign:"to refer to"},
+                {de:"Sprachvermittlung",foreign:"mediation"}, {de:"befürworten",foreign:"to advocate"}, {de:"bewusst sein",foreign:"to be aware of"},
+                {de:"Vermutung",foreign:"assumption"}, {de:"Perspektive",foreign:"perspective"}, {de:"Widerspruch",foreign:"contradiction"},
+                {de:"überzeugend",foreign:"convincing"}, {de:"eindeutig",foreign:"obvious"}, {de:"bedeutend",foreign:"significant"}
+            ]
+        },
+        k12: {
+            label: "Klasse 12 · Globalisierung & Politik",
+            words: [
+                {de:"Vielfalt",foreign:"diversity"}, {de:"Integration",foreign:"integration"}, {de:"Identität",foreign:"identity"}, {de:"Herkunft",foreign:"origin"},
+                {de:"Schmelztiegel",foreign:"melting pot"}, {de:"Klischee",foreign:"stereotype"}, {de:"Diskriminierung",foreign:"discrimination"},
+                {de:"Wohlstand",foreign:"prosperity"}, {de:"Armut",foreign:"poverty"}, {de:"Kluft",foreign:"gap"}, {de:"überbrücken",foreign:"to bridge"},
+                {de:"Menschenrecht",foreign:"human right"}, {de:"Flüchtling",foreign:"refugee"}, {de:"Grenze",foreign:"border"},
+                {de:"Klimawandel",foreign:"climate change"}, {de:"Emission",foreign:"emission"}, {de:"Verantwortung übernehmen",foreign:"to take responsibility"},
+                {de:"Überwachung",foreign:"surveillance"}, {de:"Datenschutz",foreign:"data protection"}, {de:"künstliche Intelligenz",foreign:"artificial intelligence"},
+                {de:"Fortschritt",foreign:"progress"}, {de:"Bedrohung",foreign:"threat"}, {de:"Chance",foreign:"opportunity"},
+                {de:"angehen (Problem)",foreign:"to tackle"}, {de:"bewältigen",foreign:"to cope with"}, {de:"beitragen zu",foreign:"to contribute to"},
+                {de:"unzuverlässig",foreign:"unreliable"}, {de:"nachhaltig",foreign:"sustainable"}, {de:"umstritten",foreign:"controversial"}, {de:"dringend",foreign:"urgent"}
+            ]
+        },
+        k13: {
+            label: "Klasse 13 · Abitur-Wortschatz",
+            words: [
+                {de:"Utopie",foreign:"utopia"}, {de:"Dystopie",foreign:"dystopia"}, {de:"Nachkolonialismus",foreign:"postcolonialism"},
+                {de:"Amerikanischer Traum",foreign:"the American Dream"}, {de:"Karikatur",foreign:"cartoon"}, {de:"Erbe",foreign:"heritage"},
+                {de:"Wahrnehmung",foreign:"perception"}, {de:"Werte",foreign:"values"}, {de:"Glaube",foreign:"belief"}, {de:"Ausgrenzung",foreign:"exclusion"},
+                {de:"gefährden",foreign:"to jeopardise"}, {de:"hinterfragen",foreign:"to question"}, {de:"aufdecken",foreign:"to reveal"},
+                {de:"verstärken",foreign:"to reinforce"}, {de:"beeinflussen",foreign:"to influence"}, {de:"bezweifeln",foreign:"to doubt"},
+                {de:"Zusammenhang",foreign:"context"}, {de:"Entwicklungsverlauf",foreign:"development"}, {de:"Gegensatz",foreign:"contrast"},
+                {de:"Voraussetzung",foreign:"prerequisite"}, {de:"Schlussfolgerung",foreign:"conclusion"}, {de:"Rechtfertigung",foreign:"justification"},
+                {de:"tiefgreifend",foreign:"profound"}, {de:"unvermeidlich",foreign:"inevitable"}, {de:"weitreichend",foreign:"far-reaching"},
+                {de:"zweideutig",foreign:"ambiguous"}, {de:"bemerkenswert",foreign:"remarkable"}, {de:"maßgeblich",foreign:"decisive"},
+                {de:"Wahlrecht",foreign:"right to vote"}, {de:"Abgeordneter",foreign:"member of parliament"}
             ]
         }
     },
     tr: {
-        klasse_1_4: { 
-            label: "🧸 Grundschule (Temel Kelimeler)", 
+        k3: {
+            label: "Klasse 3 · Temel Kelimeler (Grundwörter)",
             words: [
-                {de:"Eins",foreign:"bir"}, {de:"Zwei",foreign:"iki"}, {de:"Drei",foreign:"üç"}, {de:"Hund",foreign:"köpek"}, {de:"Katze",foreign:"kedi"}, 
-                {de:"Vogel",foreign:"kuş"}, {de:"Rot",foreign:"kırmızı"}, {de:"Blau",foreign:"mavi"}, {de:"Tisch",foreign:"masa"}, {de:"Buch",foreign:"kitap"},
-                {de:"Hallo",foreign:"merhaba"}, {de:"Tschüss",foreign:"hoşçakal"}, {de:"Danke",foreign:"teşekkürler"}, {de:"Bitte",foreign:"lütfen"}, {de:"Schule",foreign:"okul"},
-                {de:"Vier",foreign:"dört"}, {de:"Fünf",foreign:"beş"}, {de:"Grün",foreign:"yeşil"}, {de:"Gelb",foreign:"sarı"}, {de:"Mutter",foreign:"anne"},
-                {de:"Vater",foreign:"baba"}, {de:"Haus",foreign:"ev"}, {de:"Apfel",foreign:"elma"}, {de:"Wasser",foreign:"su"}, {de:"Stuhl",foreign:"sandalye"},
-                {de:"Lehrer",foreign:"öğretmen"}, {de:"lernen",foreign:"öğrenmek"}, {de:"spielen",foreign:"oynamak"}, {de:"Bruder",foreign:"kardeş"}, {de:"Zahlen (elf-zwanzig)",foreign:"on bir - yirmi"},
-                {de:"Brot",foreign:"ekmek"}, {de:"Milch",foreign:"süt"}, {de:"Tür",foreign:"kapı"}, {de:"Fenster",foreign:"pencere"}, {de:"Schwarz",foreign:"siyah"}, {de:"Weiß",foreign:"beyaz"}
-            ] 
+                {de:"Hallo",foreign:"merhaba"}, {de:"Tschüss",foreign:"hoşçakal"}, {de:"Danke",foreign:"teşekkürler"}, {de:"Bitte",foreign:"lütfen"},
+                {de:"Ja",foreign:"evet"}, {de:"Nein",foreign:"hayır"},
+                {de:"Eins",foreign:"bir"}, {de:"Zwei",foreign:"iki"}, {de:"Drei",foreign:"üç"}, {de:"Vier",foreign:"dört"}, {de:"Fünf",foreign:"beş"},
+                {de:"Sechs",foreign:"altı"}, {de:"Sieben",foreign:"yedi"}, {de:"Acht",foreign:"sekiz"}, {de:"Neun",foreign:"dokuz"}, {de:"Zehn",foreign:"on"},
+                {de:"Rot",foreign:"kırmızı"}, {de:"Blau",foreign:"mavi"}, {de:"Grün",foreign:"yeşil"}, {de:"Gelb",foreign:"sarı"},
+                {de:"Schwarz",foreign:"siyah"}, {de:"Weiß",foreign:"beyaz"},
+                {de:"Mutter",foreign:"anne"}, {de:"Vater",foreign:"baba"}, {de:"Geschwisterkind",foreign:"kardeş"}, {de:"Kind",foreign:"çocuk"},
+                {de:"Katze",foreign:"kedi"}, {de:"Hund",foreign:"köpek"}, {de:"Vogel",foreign:"kuş"}
+            ]
         },
-        klasse_5_8: { 
-            label: "⚽ Mittelstufe (Hobiler & Çevre)", 
+        k4: {
+            label: "Klasse 4 · Okul & Ev (Schule & Haus)",
             words: [
-                {de:"Fußball",foreign:"futbol"}, {de:"Schwimmen",foreign:"yüzme"}, {de:"Lesen",foreign:"okuma"}, {de:"Freundschaft",foreign:"arkadaşlık"}, {de:"Kino",foreign:"sinema"},
-                {de:"Umwelt",foreign:"çevre"}, {de:"Wald",foreign:"orman"}, {de:"Wasser",foreign:"su"}, {de:"Wetter",foreign:"hava durumu"}, {de:"Reisen",foreign:"seyahat"},
-                {de:"Musik",foreign:"müzik"}, {de:"Buch",foreign:"kitap"}, {de:"Handy",foreign:"telefon"}, {de:"Internet",foreign:"internet"}, {de:"Strand",foreign:"plaj"},
-                {de:"Familie",foreign:"aile"}, {de:"Geburtstag",foreign:"doğum günü"}, {de:"Zeit",foreign:"zaman"}, {de:"Gesundheit",foreign:"sağlık"}, {de:"Essen",foreign:"yemek"},
-                {de:"Mathematik",foreign:"matematik"}, {de:"Geschichte (Fach)",foreign:"tarih"}, {de:"Biologie",foreign:"biyoloji"}, {de:"Sport",foreign:"spor"}, {de:"Ferien",foreign:"tatil"},
-                {de:"Freund",foreign:"arkadaş"}, {de:"Stadt",foreign:"şehir"}, {de:"Dorf",foreign:"köy"}, {de:"Straße",foreign:"sokak"}, {de:"Auto",foreign:"araba"},
-                {de:"schnell",foreign:"hızlı"}, {de:"langsam",foreign:"yavaş"}, {de:"schön",foreign:"güzel"}, {de:"schwierig",foreign:"zor"}, {de:"einfach",foreign:"kolay"}
-            ] 
+                {de:"Schule",foreign:"okul"}, {de:"Lehrer",foreign:"öğretmen"}, {de:"Schüler",foreign:"öğrenci"}, {de:"Buch",foreign:"kitap"},
+                {de:"Stift",foreign:"kalem"}, {de:"Tafel",foreign:"tahta"}, {de:"lernen",foreign:"öğrenmek"}, {de:"schreiben",foreign:"yazmak"},
+                {de:"lesen",foreign:"okumak"}, {de:"spielen",foreign:"oynamak"},
+                {de:"Haus",foreign:"ev"}, {de:"Tür",foreign:"kapı"}, {de:"Fenster",foreign:"pencere"}, {de:"Tisch",foreign:"masa"}, {de:"Stuhl",foreign:"sandalye"},
+                {de:"Zimmer",foreign:"oda"}, {de:"Küche",foreign:"mutfak"},
+                {de:"Wasser",foreign:"su"}, {de:"Brot",foreign:"ekmek"}, {de:"Milch",foreign:"süt"}, {de:"Apfel",foreign:"elma"}, {de:"Käse",foreign:"peynir"},
+                {de:"essen",foreign:"yemek"}, {de:"trinken",foreign:"içmek"},
+                {de:"Baum",foreign:"ağaç"}, {de:"Blume",foreign:"çiçek"}, {de:"Sonne",foreign:"güneş"}, {de:"Mond",foreign:"ay"}
+            ]
         },
-        klasse_9_11: { 
-            label: "👥 Oberstufe (Toplum)", 
+        k5: {
+            label: "Klasse 5 · Günlük Hayat (Alltag)",
             words: [
-                {de:"Gesellschaft",foreign:"toplum"}, {de:"Demokratie",foreign:"demokrasi"}, {de:"Bildung",foreign:"eğitim"}, {de:"Beruf",foreign:"meslek"}, {de:"Ziel",foreign:"hedef"},
-                {de:"Problem",foreign:"sorun"}, {de:"Lösung",foreign:"çözüm"}, {de:"Geld",foreign:"para"}, {de:"Wirtschaft",foreign:"ekonomi"}, {de:"Erfolg",foreign:"başarı"},
-                {de:"Gesetz",foreign:"kanun"}, {de:"Freiheit",foreign:"özgürlük"}, {de:"Gerechtigkeit",foreign:"adalet"}, {de:"Wahl",foreign:"seçim"}, {de:"Verantwortung",foreign:"sorumluluk"},
-                {de:"Nachhaltigkeit",foreign:"sürdürülebilirlik"}, {de:"Verfassung",foreign:"anayasa"}, {de:"Technologie",foreign:"teknoloji"}, {de:"global",foreign:"küresel"},
-                {de:"Umwelt",foreign:"çevre"}, {de:"Zukunft",foreign:"gelecek"}, {de:"Entwicklung",foreign:"gelişme"}, {de:"Meinung",foreign:"düşünce"},
-                {de:"Arbeit",foreign:"iş"}, {de:"Erfahrung",foreign:"deneyim"}
-            ] 
+                {de:"Tag",foreign:"gün"}, {de:"Woche",foreign:"hafta"}, {de:"Monat",foreign:"ay"}, {de:"Jahr",foreign:"yıl"}, {de:"Zeit",foreign:"zaman"},
+                {de:"heute",foreign:"bugün"}, {de:"morgen",foreign:"yarın"}, {de:"gestern",foreign:"dün"}, {de:"jetzt",foreign:"şimdi"},
+                {de:"Morgen (früh)",foreign:"sabah"}, {de:"Abend",foreign:"akşam"}, {de:"Nacht",foreign:"gece"},
+                {de:"Kopf",foreign:"baş"}, {de:"Hand",foreign:"el"}, {de:"Fuß",foreign:"ayak"}, {de:"Auge",foreign:"göz"}, {de:"Ohr",foreign:"kulak"},
+                {de:"Nase",foreign:"burun"}, {de:"Mund",foreign:"ağız"}, {de:"Herz",foreign:"kalp"},
+                {de:"gehen",foreign:"gitmek"}, {de:"kommen",foreign:"gelmek"}, {de:"sehen",foreign:"görmek"}, {de:"hören",foreign:"duymak"},
+                {de:"sprechen",foreign:"konuşmak"}, {de:"geben",foreign:"vermek"}, {de:"nehmen",foreign:"almak"},
+                {de:"groß",foreign:"büyük"}, {de:"klein",foreign:"küçük"}
+            ]
         },
-        kfz: {
-            label: "🔧 Arabalar (Autos)",
+        k6: {
+            label: "Klasse 6 · Hobiler & Doğa (Hobbys & Natur)",
             words: [
-                { de: "Auto", foreign: "araba" }, { de: "Motor", foreign: "motor" }, { de: "Reifen", foreign: "lastik" },
-                { de: "Bremse", foreign: "fren" }, { de: "tanken", foreign: "yakıt almak" },
-                { de: "Getriebe", foreign: "vites kutusu" }, { de: "Batterie", foreign: "akü" }, { de: "Werkstatt", foreign: "tamirhane" }, { de: "Öl", foreign: "yağ" },
-                { de: "Lenkrad", foreign: "direksiyon" }, { de: "Scheinwerfer", foreign: "far" }, { de: "Pannenhilfe", foreign: "yol yardımı" }, { de: "Führerschein", foreign: "ehliyet" },
-                { de: "Benzin", foreign: "benzin" }, { de: "Unfall", foreign: "kaza" },
-                { de: "Werkzeug", foreign: "alet" }, { de: "reparieren", foreign: "tamir etmek" }
+                {de:"Sport",foreign:"spor"}, {de:"Fußball",foreign:"futbol"}, {de:"Musik",foreign:"müzik"}, {de:"Film",foreign:"film"},
+                {de:"Spiel",foreign:"oyun"}, {de:"Ferien",foreign:"tatil"}, {de:"Reise",foreign:"seyahat"}, {de:"Freund",foreign:"arkadaş"},
+                {de:"Natur",foreign:"doğa"}, {de:"Wald",foreign:"orman"}, {de:"Berg",foreign:"dağ"}, {de:"Meer",foreign:"deniz"}, {de:"Fluss",foreign:"nehir"},
+                {de:"Himmel",foreign:"gökyüzü"}, {de:"Regen",foreign:"yağmur"}, {de:"Schnee",foreign:"kar"}, {de:"Wind",foreign:"rüzgar"},
+                {de:"Wetter",foreign:"hava durumu"}, {de:"heiß",foreign:"sıcak"}, {de:"kalt",foreign:"soğuk"},
+                {de:"schön",foreign:"güzel"}, {de:"schnell",foreign:"hızlı"}, {de:"langsam",foreign:"yavaş"}, {de:"schwierig",foreign:"zor"}, {de:"einfach",foreign:"kolay"},
+                {de:"Farbe",foreign:"renk"}, {de:"Tier",foreign:"hayvan"}, {de:"Pferd",foreign:"at"}, {de:"Fisch",foreign:"balık"}
+            ]
+        },
+        k7: {
+            label: "Klasse 7 · Şehir & Yolculuk (Stadt & Reisen)",
+            words: [
+                {de:"Stadt",foreign:"şehir"}, {de:"Dorf",foreign:"köy"}, {de:"Straße",foreign:"sokak"}, {de:"Weg",foreign:"yol"}, {de:"Platz",foreign:"meydan"},
+                {de:"Markt",foreign:"pazar"}, {de:"Geschäft",foreign:"dükkan"}, {de:"Restaurant",foreign:"lokanta"}, {de:"Hotel",foreign:"otel"},
+                {de:"Krankenhaus",foreign:"hastane"}, {de:"Bahnhof",foreign:"gar"}, {de:"Flughafen",foreign:"havalimanı"},
+                {de:"Auto",foreign:"araba"}, {de:"Bus",foreign:"otobüs"}, {de:"Zug",foreign:"tren"}, {de:"Flugzeug",foreign:"uçak"}, {de:"Fahrkarte",foreign:"bilet"},
+                {de:"Koffer",foreign:"bavul"}, {de:"Geld",foreign:"para"}, {de:"Preis",foreign:"fiyat"}, {de:"teuer",foreign:"pahalı"}, {de:"billig",foreign:"ucuz"},
+                {de:"kaufen",foreign:"satın almak"}, {de:"verkaufen",foreign:"satmak"}, {de:"warten",foreign:"beklemek"}, {de:"fragen",foreign:"sormak"},
+                {de:"finden",foreign:"bulmak"}, {de:"helfen",foreign:"yardım etmek"}
+            ]
+        },
+        k8: {
+            label: "Klasse 8 · Çevre & Medya (Umwelt & Medien)",
+            words: [
+                {de:"Umwelt",foreign:"çevre"}, {de:"Luft",foreign:"hava"}, {de:"Erde (Boden)",foreign:"toprak"}, {de:"Müll",foreign:"çöp"},
+                {de:"Energie",foreign:"enerji"}, {de:"schützen",foreign:"korumak"}, {de:"sauber",foreign:"temiz"}, {de:"schmutzig",foreign:"kirli"},
+                {de:"Internet",foreign:"internet"}, {de:"Telefon",foreign:"telefon"}, {de:"Computer",foreign:"bilgisayar"}, {de:"Nachricht",foreign:"haber"},
+                {de:"Zeitung",foreign:"gazete"}, {de:"Fernsehen",foreign:"televizyon"}, {de:"Foto",foreign:"fotoğraf"},
+                {de:"Gefühl",foreign:"duygu"}, {de:"glücklich",foreign:"mutlu"}, {de:"traurig",foreign:"üzgün"}, {de:"wütend",foreign:"kızgın"},
+                {de:"müde",foreign:"yorgun"}, {de:"Angst",foreign:"korku"}, {de:"Hoffnung",foreign:"umut"},
+                {de:"Gesundheit",foreign:"sağlık"}, {de:"krank",foreign:"hasta"}, {de:"Arzt",foreign:"doktor"}, {de:"Medikament",foreign:"ilaç"},
+                {de:"denken",foreign:"düşünmek"}, {de:"verstehen",foreign:"anlamak"}
+            ]
+        },
+        k9: {
+            label: "Klasse 9 · Toplum & Meslek (Gesellschaft & Beruf)",
+            words: [
+                {de:"Gesellschaft",foreign:"toplum"}, {de:"Familie",foreign:"aile"}, {de:"Nachbar",foreign:"komşu"}, {de:"Freundschaft",foreign:"dostluk"},
+                {de:"Kultur",foreign:"kültür"}, {de:"Sprache",foreign:"dil"}, {de:"Heimat",foreign:"memleket"}, {de:"Tradition",foreign:"gelenek"},
+                {de:"Arbeit",foreign:"iş"}, {de:"Beruf",foreign:"meslek"}, {de:"Ausbildung",foreign:"eğitim"}, {de:"Erfahrung",foreign:"deneyim"},
+                {de:"Erfolg",foreign:"başarı"}, {de:"Ziel",foreign:"hedef"}, {de:"Zukunft",foreign:"gelecek"}, {de:"Vergangenheit",foreign:"geçmiş"},
+                {de:"Problem",foreign:"sorun"}, {de:"Lösung",foreign:"çözüm"}, {de:"Möglichkeit",foreign:"imkan"}, {de:"Entscheidung",foreign:"karar"},
+                {de:"Verantwortung",foreign:"sorumluluk"}, {de:"Respekt",foreign:"saygı"}, {de:"Vertrauen",foreign:"güven"},
+                {de:"wichtig",foreign:"önemli"}, {de:"nötig",foreign:"gerekli"}, {de:"möglich",foreign:"mümkün"}, {de:"arbeiten",foreign:"çalışmak"}, {de:"entscheiden",foreign:"karar vermek"}
+            ]
+        },
+        k10: {
+            label: "Klasse 10 · Görüş & Politika (Meinung & Politik)",
+            words: [
+                {de:"Meinung",foreign:"düşünce"}, {de:"Diskussion",foreign:"tartışma"}, {de:"Beispiel",foreign:"örnek"}, {de:"Grund",foreign:"sebep"},
+                {de:"Ergebnis",foreign:"sonuç"}, {de:"Vorteil",foreign:"avantaj"}, {de:"Nachteil",foreign:"dezavantaj"},
+                {de:"Recht",foreign:"hak"}, {de:"Gesetz",foreign:"kanun"}, {de:"Verfassung",foreign:"anayasa"}, {de:"Freiheit",foreign:"özgürlük"},
+                {de:"Gerechtigkeit",foreign:"adalet"}, {de:"Wahl",foreign:"seçim"}, {de:"Regierung",foreign:"hükümet"}, {de:"Staat",foreign:"devlet"},
+                {de:"Frieden",foreign:"barış"}, {de:"Krieg",foreign:"savaş"}, {de:"Gleichheit",foreign:"eşitlik"},
+                {de:"Wirtschaft",foreign:"ekonomi"}, {de:"Entwicklung",foreign:"gelişme"}, {de:"Technologie",foreign:"teknoloji"}, {de:"Bildung",foreign:"eğitim sistemi"},
+                {de:"Nachhaltigkeit",foreign:"sürdürülebilirlik"}, {de:"global",foreign:"küresel"},
+                {de:"erklären",foreign:"açıklamak"}, {de:"vergleichen",foreign:"karşılaştırmak"}, {de:"unterstützen",foreign:"desteklemek"}, {de:"kritisieren",foreign:"eleştirmek"}
             ]
         }
     }

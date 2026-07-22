@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=16"></script>
+    <script src="data.js?v=17"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -231,6 +231,8 @@
                     </div>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1">Themenbereich</label>
+                        <select id="duel-area"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold mb-2"></select>
                         <select id="duel-category"
                             class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold"></select>
                     </div>
@@ -345,7 +347,10 @@
 
                     <div id="live-duel-quiz-options" class="space-y-3">
                         <div>
-                            <label class="text-xs text-gray-400 font-bold block mb-1">Themenbereich</label>
+                            <label class="text-xs text-gray-400 font-bold block mb-1">Klasse / Bereich</label>
+                            <select id="live-duel-area"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold mb-3"></select>
+                            <label class="text-xs text-gray-400 font-bold block mb-1">Fach / Thema</label>
                             <select id="live-duel-category"
                                 class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold"></select>
                         </div>
@@ -670,38 +675,12 @@
                         </div>
                     </div>
                     <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1">Klasse & Thema auswählen:</label>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Klasse / Bereich:</label>
+                        <select id="quiz-area"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold mb-3"></select>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Fach / Thema:</label>
                         <select id="sub-category"
-                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
-                            <optgroup label="Grundschule">
-                                <option value="klasse_1_2">🧸 Klasse 1-2 (Mathe & Deutsch)</option>
-                                <option value="klasse_3_4">🎒 Klasse 3-4 (Sachkunde & Deutsch)</option>
-                            </optgroup>
-                            <optgroup label="Weiterführende Schulen">
-                                <option value="klasse_5_6">⚽ Klasse 5-6 (Englisch, Biologie)</option>
-                                <option value="klasse_7_8">🌍 Klasse 7-8 (Englisch, Physik)</option>
-                                <option value="klasse_9_11">👥 Klasse 9-11 (Englisch, Politik)</option>
-                            </optgroup>
-                            <optgroup label="Spezial-Wissen">
-                                <option value="kfz">🔧 Berufsschule: KFZ-Mechatronik</option>
-                                <option value="allgemeinwissen">🏆 Allgemeinwissen (Sport & Filme)</option>
-                            </optgroup>
-                            <optgroup label="Fächer nach Lehrplan (Sek I)">
-                                <option value="mathematik">📐 Mathematik</option>
-                                <option value="deutsch">📚 Deutsch</option>
-                                <option value="biologie">🧬 Biologie</option>
-                                <option value="chemie">⚗️ Chemie</option>
-                                <option value="physik">⚡ Physik</option>
-                                <option value="gesellschaft">🌍 Geschichte, Erdkunde & Politik</option>
-                                <option value="informatik">💻 Informatik & Medien</option>
-                            </optgroup>
-                            <optgroup label="Spaß & Wissen">
-                                <option value="wuerdest_du_eher">🤔 Würdest du eher...</option>
-                                <option value="nice_to_know">✨ Nice to Know</option>
-                                <option value="ungewoehnliches">🌍 Ungewöhnliches aus der Welt</option>
-                                <option value="allgemeinwissen_easy">🧠 Allgemeinwissen (easy)</option>
-                            </optgroup>
-                        </select>
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold"></select>
                     </div>
                     <button onclick="startQuiz()"
                         class="w-full p-4 mt-2 bg-blue-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-blue-500">Starten
@@ -816,27 +795,10 @@
 
                     <div id="tv-quiz-mode-options">
                         <p class="text-gray-400 text-sm mb-4">Wähle ein Thema für die Familie:</p>
+                        <select id="tv-area"
+                            class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-lg mb-3"></select>
                         <select id="tv-quiz-category"
-                            class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-lg mb-2">
-                            <option value="klasse_1_2">🧸 Klasse 1-2 (Mathe & Deutsch)</option>
-                            <option value="klasse_3_4">🎒 Klasse 3-4 (Sachkunde & Deutsch)</option>
-                            <option value="klasse_5_6">⚽ Klasse 5-6 (Englisch, Biologie)</option>
-                            <option value="klasse_7_8">🌍 Klasse 7-8 (Englisch, Physik)</option>
-                            <option value="klasse_9_11">👥 Klasse 9-11 (Englisch, Politik)</option>
-                            <option value="kfz">🔧 Berufsschule: KFZ-Mechatronik</option>
-                            <option value="allgemeinwissen">🏆 Allgemeinwissen (Sport & Filme)</option>
-                            <option value="mathematik">📐 Mathematik</option>
-                            <option value="deutsch">📚 Deutsch</option>
-                            <option value="biologie">🧬 Biologie</option>
-                            <option value="chemie">⚗️ Chemie</option>
-                            <option value="physik">⚡ Physik</option>
-                            <option value="gesellschaft">🌍 Geschichte, Erdkunde & Politik</option>
-                            <option value="informatik">💻 Informatik & Medien</option>
-                            <option value="wuerdest_du_eher">🤔 Würdest du eher...</option>
-                            <option value="nice_to_know">✨ Nice to Know</option>
-                            <option value="ungewoehnliches">🌍 Ungewöhnliches aus der Welt</option>
-                            <option value="allgemeinwissen_easy">🧠 Allgemeinwissen (easy)</option>
-                        </select>
+                            class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-lg mb-2"></select>
                     </div>
 
                     <div id="tv-scrabble-mode-options" class="hidden text-left space-y-3 mb-2">
@@ -914,26 +876,72 @@
             let scrabbleTimerInterval = null;
 
             // Anzeige-Namen für die Fragen-Kategorien (Fortschrittsanzeige & Testauswahl)
-            const CATEGORY_LABELS = {
-                klasse_1_2: "🧸 Klasse 1-2",
-                klasse_3_4: "🎒 Klasse 3-4",
-                klasse_5_6: "⚽ Klasse 5-6",
-                klasse_7_8: "🌍 Klasse 7-8",
-                klasse_9_11: "👥 Klasse 9-11",
-                kfz: "🔧 Berufsschule: KFZ-Mechatronik",
-                allgemeinwissen: "🏆 Allgemeinwissen (Sport & Filme)",
-                mathematik: "📐 Mathematik",
-                deutsch: "📚 Deutsch",
-                biologie: "🧬 Biologie",
-                chemie: "⚗️ Chemie",
-                physik: "⚡ Physik",
-                gesellschaft: "🌍 Geschichte, Erdkunde & Politik",
-            informatik: "💻 Informatik & Medien",
-            wuerdest_du_eher: "🤔 Würdest du eher...",
-            nice_to_know: "✨ Nice to Know",
-            ungewoehnliches: "🌍 Ungewöhnliches aus der Welt",
-            allgemeinwissen_easy: "🧠 Allgemeinwissen (easy)"
-            };
+            // Beschriftungen werden aus der Lehrplan-Struktur in data.js aufgebaut,
+            // damit Lernbereich und Spass-Bereich sauber getrennt bleiben.
+            const CATEGORY_LABELS = (function () {
+                const m = {};
+                if (typeof CURRICULUM !== 'undefined') {
+                    CURRICULUM.forEach(g => g.subjects.forEach(s => { m[s.key] = g.label + " · " + s.label; }));
+                }
+                if (typeof BERUFSSCHULE !== 'undefined') BERUFSSCHULE.forEach(s => { m[s.key] = s.label; });
+                if (typeof FUN_CATEGORIES !== 'undefined') FUN_CATEGORIES.forEach(s => { m[s.key] = s.label; });
+                return m;
+            })();
+
+            // Bereiche fuer die zweistufige Auswahl: Klasse 1-13, Berufsschule, Spass
+            function getAreas() {
+                const areas = [];
+                if (typeof CURRICULUM !== 'undefined') {
+                    CURRICULUM.forEach(g => areas.push({ value: "grade_" + g.grade, label: g.label, stufe: g.stufe, subjects: g.subjects }));
+                }
+                if (typeof BERUFSSCHULE !== 'undefined' && BERUFSSCHULE.length) {
+                    areas.push({ value: "beruf", label: "Berufsschule", stufe: "Berufsschule", subjects: BERUFSSCHULE });
+                }
+                if (typeof FUN_CATEGORIES !== 'undefined' && FUN_CATEGORIES.length) {
+                    areas.push({ value: "spass", label: "Spaß-Quiz", stufe: "🎉 Spaß (kein Schulstoff)", subjects: FUN_CATEGORIES });
+                }
+                return areas;
+            }
+
+            // Schlaegt die Klasse des aktuellen Profils vor
+            function suggestedArea() {
+                if (currentPlayer && currentPlayer.ageType === "klasse") {
+                    const g = parseInt(currentPlayer.age);
+                    if (g >= 1 && g <= 13) return "grade_" + g;
+                }
+                return null;
+            }
+
+            function fillSubjectSelect(areaId, subjectId) {
+                const aSel = document.getElementById(areaId);
+                const sSel = document.getElementById(subjectId);
+                if (!aSel || !sSel) return;
+                const area = getAreas().find(a => a.value === aSel.value);
+                const subs = area ? area.subjects : [];
+                sSel.innerHTML = subs.map(s => `<option value="${s.key}">${s.label}</option>`).join("");
+            }
+
+            // Baut beide Auswahlfelder auf und verknuepft sie miteinander
+            function setupCategorySelectors(areaId, subjectId) {
+                const aSel = document.getElementById(areaId);
+                if (!aSel) return;
+                const areas = getAreas();
+                let html = "", lastStufe = null;
+                areas.forEach(a => {
+                    if (a.stufe !== lastStufe) {
+                        if (lastStufe !== null) html += "</optgroup>";
+                        html += `<optgroup label="${a.stufe}">`;
+                        lastStufe = a.stufe;
+                    }
+                    html += `<option value="${a.value}">${a.label}</option>`;
+                });
+                if (lastStufe !== null) html += "</optgroup>";
+                aSel.innerHTML = html;
+                const suggested = suggestedArea();
+                if (suggested && areas.some(a => a.value === suggested)) aSel.value = suggested;
+                fillSubjectSelect(areaId, subjectId);
+                aSel.onchange = () => fillSubjectSelect(areaId, subjectId);
+            }
 
             // Test-Modus Variablen (Eltern-Test mit Zeitlimit)
             let testMode = false;
@@ -1210,6 +1218,7 @@
                 if (viewId === 'vokabeln') loadVocabSystem();
                 if (viewId === 'rewards') renderRewardsShop();
                 if (viewId === 'family-hub' && typeof ALL_PROFILES !== 'undefined') renderFamilyHub();
+                if (viewId === 'tv-quiz-host' && document.getElementById("tv-area")) setupCategorySelectors("tv-area", "tv-quiz-category");
 
                 // Im Menü nachschauen, ob gerade ein Duell offen ist (Knopf leuchtet dann)
                 if (typeof watchForOpenDuel === 'function') {
@@ -1320,9 +1329,7 @@
                 const selA = document.getElementById("duel-player-a"); const selB = document.getElementById("duel-player-b");
                 selA.innerHTML = opts; selB.innerHTML = opts;
                 selB.selectedIndex = 1;
-                const catSel = document.getElementById("duel-category");
-                const categories = typeof QUESTIONS_DATABASE !== 'undefined' ? [...new Set(QUESTIONS_DATABASE.map(q => q.category))] : [];
-                catSel.innerHTML = categories.map(c => `<option value="${c}">${CATEGORY_LABELS[c] || c}</option>`).join("");
+                setupCategorySelectors("duel-area", "duel-category");
                 switchView('duel-setup');
             }
             function startDuel() {
@@ -1689,10 +1696,7 @@
                 document.getElementById("live-duel-setup-title").innerText = type === "scrabble" ? "🔤 Live-Wortduell" : "⚔️ Live-Quizduell";
                 document.getElementById("live-duel-quiz-options").classList.toggle("hidden", type !== "quiz");
                 document.getElementById("live-duel-scrabble-options").classList.toggle("hidden", type !== "scrabble");
-                if (type === "quiz") {
-                    const categories = [...new Set(QUESTIONS_DATABASE.map(q => q.category))];
-                    document.getElementById("live-duel-category").innerHTML = categories.map(c => `<option value="${c}">${CATEGORY_LABELS[c] || c}</option>`).join("");
-                }
+                if (type === "quiz") setupCategorySelectors("live-duel-area", "live-duel-category");
                 switchView('live-duel-setup');
             }
 
@@ -2440,6 +2444,7 @@
             }
             function showQuizSetup() {
                 switchView('quiz-setup');
+                setupCategorySelectors("quiz-area", "sub-category");
                 const count = currentPlayer && currentPlayer.wrongQuestions ? currentPlayer.wrongQuestions.length : 0;
                 const btn = document.getElementById("wrong-questions-btn");
                 if (btn) {
@@ -2680,6 +2685,9 @@
             let tvHostMode = 'quiz';
             function setTVHostMode(mode) {
                 tvHostMode = mode;
+                if (mode === 'quiz' && !document.getElementById("tv-area").options.length) {
+                    setupCategorySelectors("tv-area", "tv-quiz-category");
+                }
                 document.getElementById("tvmode-quiz").className = "flex-1 py-2.5 px-1 rounded-lg font-bold transition-all " + (mode === 'quiz' ? "text-white bg-indigo-600 shadow-md" : "text-gray-400 bg-gray-900");
                 document.getElementById("tvmode-scrabble").className = "flex-1 py-2.5 px-1 rounded-lg font-bold transition-all " + (mode === 'scrabble' ? "text-white bg-amber-500" : "text-gray-400 bg-gray-900");
                 document.getElementById("tv-quiz-mode-options").classList.toggle("hidden", mode !== 'quiz');

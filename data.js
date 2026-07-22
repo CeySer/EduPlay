@@ -1,396 +1,930 @@
-// ==========================================
-// WISSEN & GRAMMATIK DATENBANK (Das große Quiz)
-// ==========================================
+// =======================================================
+// FRAGEN-DATENBANK
+// Aufbau: LERNEN (nach Klassenstufe 1-13 und Fach) ist strikt
+// getrennt vom SPASS-Bereich. Die Faecher je Klasse richten sich
+// nach den ueblichen Lehrplaenen der Bundeslaender (KMK-Rahmen).
+// Hinweis: Lehrplaene sind Laendersache und unterscheiden sich
+// im Detail - dies ist eine gaengige, gut uebertragbare Einteilung.
+// =======================================================
 const QUESTIONS_DATABASE = [
-    // --- GRUNDSCHULE (Klasse 1 - 4) ---
-    { category: "klasse_1_2", question: "Mathe: Was ist 25 + 14?", answers: ["35", "38", "39"], correct: 2, explanation: "💡 20+10=30, 5+4=9. Ergibt 39!" },
-    { category: "klasse_1_2", question: "Mathe: Was ist 8 mal 4?", answers: ["32", "24", "36"], correct: 0, explanation: "💡 Das kleine Einmaleins: 8, 16, 24, 32!" },
-    { category: "klasse_1_2", question: "Deutsch: Welches Wort ist hier richtig großgeschrieben?", answers: ["hund", "Hund", "HUnD"], correct: 1, explanation: "💡 Regel: Menschen, Dinge und Tiere (Nomen) schreibt man immer groß!" },
-    { category: "klasse_3_4", question: "Deutsch: Welches dieser Wörter ist ein Tuwort (Verb)?", answers: ["Schön", "Laufen", "Auto"], correct: 1, explanation: "💡 Verben beschreiben, was man tut (laufen, springen, spielen)." },
-    { category: "klasse_3_4", question: "Sachkunde: In welche Richtung zeigt die Nadel eines Kompasses immer?", answers: ["Süden", "Westen", "Norden"], correct: 2, explanation: "💡 Die Magnetnadel richtet sich immer nach dem magnetischen Nordpol der Erde aus." },
-    { category: "klasse_1_2", question: "Mathe: Was ist 10 minus 3?", answers: ["6", "7", "8"], correct: 1, explanation: "💡 Wenn man von 10 drei wegnimmt, bleiben 7 übrig." },
-    { category: "klasse_1_2", question: "Deutsch: Wie viele Silben hat das Wort 'Son-ne'?", answers: ["Eine", "Zwei", "Drei"], correct: 1, explanation: "💡 Son-ne wird in zwei Teile (Silben) geklatscht: Son und ne." },
-    { category: "klasse_1_2", question: "Sachkunde: Welches Tier legt Eier und kann fliegen?", answers: ["Hund", "Vogel", "Katze"], correct: 1, explanation: "💡 Vögel legen Eier und die meisten von ihnen können fliegen." },
-    { category: "klasse_1_2", question: "Mathe: Was ist die Hälfte von 10?", answers: ["4", "5", "6"], correct: 1, explanation: "💡 10 geteilt durch 2 ergibt 5." },
-    { category: "klasse_3_4", question: "Mathe: Was ist 6 mal 7?", answers: ["42", "36", "48"], correct: 0, explanation: "💡 Einmaleins: 6, 12, 18, 24, 30, 36, 42!" },
-    { category: "klasse_3_4", question: "Mathe: Wie viele Ecken hat ein Rechteck?", answers: ["3", "4", "5"], correct: 1, explanation: "💡 Ein Rechteck hat immer vier Ecken und vier Seiten." },
-    { category: "klasse_3_4", question: "Deutsch: Was ist das Gegenteil von 'groß'?", answers: ["klein", "schnell", "laut"], correct: 0, explanation: "💡 'klein' ist das Gegenteil (Antonym) von 'groß'." },
-    { category: "klasse_3_4", question: "Sachkunde: Wie nennt man den Übergang von Wasser zu Wasserdampf?", answers: ["Schmelzen", "Verdunsten", "Gefrieren"], correct: 1, explanation: "💡 Wenn Wasser erhitzt wird und zu Dampf wird, nennt man das Verdunsten (Verdampfen)." },
-    { category: "klasse_1_2", question: "Mathe: Was ist 7 + 8?", answers: ["14", "15", "16"], correct: 1, explanation: "💡 7 + 8 = 15. Tipp: 7+7=14, plus 1 macht 15!" },
-    { category: "klasse_1_2", question: "Deutsch: Welches Wort reimt sich auf 'Maus'?", answers: ["Haus", "Tisch", "Ball"], correct: 0, explanation: "💡 'Maus' und 'Haus' klingen am Ende gleich – das ist ein Reim." },
-    { category: "klasse_1_2", question: "Sachkunde: Welche Jahreszeit kommt nach dem Winter?", answers: ["Sommer", "Frühling", "Herbst"], correct: 1, explanation: "💡 Die Reihenfolge ist: Frühling, Sommer, Herbst, Winter." },
-    { category: "klasse_3_4", question: "Mathe: Was ist 100 geteilt durch 4?", answers: ["20", "25", "30"], correct: 1, explanation: "💡 100 : 4 = 25, denn 4 × 25 = 100." },
-    { category: "klasse_3_4", question: "Deutsch: Wie lautet die Mehrzahl (Plural) von 'Kind'?", answers: ["Kinde", "Kinder", "Kindern"], correct: 1, explanation: "💡 Die Mehrzahl von 'Kind' ist 'Kinder'." },
-    { category: "klasse_3_4", question: "Sachkunde: Welches Organ pumpt das Blut durch den Körper?", answers: ["Lunge", "Herz", "Magen"], correct: 1, explanation: "💡 Das Herz ist ein Muskel, der das Blut durch die Adern pumpt." },
+    // --- Klasse 1 - Deutsch (Lesen & Schreiben) ---
+    { category: "k1_deutsch", question: "Mit welchem Buchstaben beginnt das Wort 'Oma'?", answers: ["O", "A", "M"], correct: 0, explanation: "Oma beginnt mit dem Buchstaben O." },
+    { category: "k1_deutsch", question: "Wie viele Buchstaben hat das Wort 'Ball'?", answers: ["3", "4", "5"], correct: 1, explanation: "B-A-L-L sind vier Buchstaben." },
+    { category: "k1_deutsch", question: "Welches Wort reimt sich auf 'Haus'?", answers: ["Maus", "Baum", "Tisch"], correct: 0, explanation: "Haus und Maus klingen am Ende gleich." },
+    { category: "k1_deutsch", question: "Wie viele Silben hat das Wort 'Ba-na-ne'?", answers: ["2", "3", "4"], correct: 1, explanation: "Ba-na-ne klatscht man in drei Teile." },
+    { category: "k1_deutsch", question: "Welcher Buchstabe fehlt: B, C, D, __, F?", answers: ["E", "G", "A"], correct: 0, explanation: "Das Alphabet geht B, C, D, E, F." },
 
-    { category: "klasse_1_2", question: "Mathe: Was ist 5 + 6?", answers: ["10", "11", "12"], correct: 1, explanation: "💡 5 + 5 = 10, und noch 1 dazu ergibt 11." },
-    { category: "klasse_1_2", question: "Deutsch: Mit welchem Buchstaben beginnt das Wort 'Elefant'?", answers: ["A", "E", "I"], correct: 1, explanation: "💡 Elefant beginnt mit dem Buchstaben E." },
-    { category: "klasse_1_2", question: "Sachkunde: Wie viele Beine hat ein Hund?", answers: ["2", "4", "6"], correct: 1, explanation: "💡 Hunde sind Vierbeiner – sie haben 4 Beine." },
-    { category: "klasse_1_2", question: "Mathe: Welche Zahl kommt nach der 19?", answers: ["18", "20", "21"], correct: 1, explanation: "💡 Nach 19 kommt die 20." },
-    { category: "klasse_1_2", question: "Sachkunde: Welche Farbe hat eine reife Banane?", answers: ["Blau", "Gelb", "Rot"], correct: 1, explanation: "💡 Reife Bananen sind gelb." },
-    { category: "klasse_1_2", question: "Deutsch: Was ist das Gegenteil von 'kalt'?", answers: ["warm", "nass", "leise"], correct: 0, explanation: "💡 Das Gegenteil von kalt ist warm." },
-    { category: "klasse_1_2", question: "Mathe: Wie viele Finger hat man an einer Hand?", answers: ["4", "5", "6"], correct: 1, explanation: "💡 An einer Hand hat man 5 Finger." },
-    { category: "klasse_1_2", question: "Sachkunde: Wo leben Fische?", answers: ["In der Luft", "Im Wasser", "Unter der Erde"], correct: 1, explanation: "💡 Fische leben im Wasser und atmen mit Kiemen." },
-    { category: "klasse_1_2", question: "Deutsch: Wie viele Buchstaben hat das Wort 'Hund'?", answers: ["3", "4", "5"], correct: 1, explanation: "💡 H-U-N-D sind 4 Buchstaben." },
-    { category: "klasse_1_2", question: "Mathe: Was ist größer: 7 oder 9?", answers: ["7", "9", "Beide gleich"], correct: 1, explanation: "💡 9 ist größer als 7." },
-    { category: "klasse_3_4", question: "Mathe: Was ist 7 mal 8?", answers: ["54", "56", "58"], correct: 1, explanation: "💡 7 × 8 = 56." },
-    { category: "klasse_3_4", question: "Sachkunde: Wie viele Jahreszeiten gibt es?", answers: ["2", "3", "4"], correct: 2, explanation: "💡 Frühling, Sommer, Herbst und Winter – das sind 4 Jahreszeiten." },
-    { category: "klasse_3_4", question: "Deutsch: Welches Wort ist ein Nomen (Hauptwort)?", answers: ["laufen", "Tisch", "schnell"], correct: 1, explanation: "💡 'Tisch' ist ein Nomen – man kann 'der Tisch' sagen und schreibt es groß." },
-    { category: "klasse_3_4", question: "Mathe: Wie viele Minuten hat eine halbe Stunde?", answers: ["15", "30", "45"], correct: 1, explanation: "💡 Eine ganze Stunde hat 60 Minuten, die Hälfte davon sind 30." },
-    { category: "klasse_3_4", question: "Sachkunde: Welches Tier ist ein Säugetier?", answers: ["Forelle", "Delfin", "Adler"], correct: 1, explanation: "💡 Delfine leben im Wasser, sind aber Säugetiere – sie atmen Luft und säugen ihre Jungen." },
-    { category: "klasse_3_4", question: "Deutsch: Wie schreibt man das Wort richtig?", answers: ["Fahrrad", "Farrad", "Fahrat"], correct: 0, explanation: "💡 Richtig ist 'Fahrrad' – von 'fahren' und 'Rad', daher mit doppeltem r." },
-    { category: "klasse_3_4", question: "Mathe: Wie viel ist die Hälfte von 48?", answers: ["22", "24", "26"], correct: 1, explanation: "💡 48 : 2 = 24." },
-    { category: "klasse_3_4", question: "Sachkunde: Welcher Planet ist unser Heimatplanet?", answers: ["Mars", "Erde", "Venus"], correct: 1, explanation: "💡 Wir leben auf der Erde, dem dritten Planeten von der Sonne." },
-    { category: "klasse_3_4", question: "Deutsch: Was ist ein Verb?", answers: ["Ein Tuwort (z.B. laufen)", "Ein Namenwort", "Ein Wiewort"], correct: 0, explanation: "💡 Verben sind Tuwörter und beschreiben, was jemand macht: laufen, essen, lesen." },
-    { category: "klasse_3_4", question: "Mathe: Wie viele Seiten hat ein Würfel?", answers: ["4", "6", "8"], correct: 1, explanation: "💡 Ein Würfel hat 6 quadratische Flächen." },
+    // --- Klasse 1 - Mathematik ---
+    { category: "k1_mathe", question: "Was ist 3 + 4?", answers: ["6", "7", "8"], correct: 1, explanation: "3 und 4 zusammen ergeben 7." },
+    { category: "k1_mathe", question: "Welche Zahl kommt nach der 9?", answers: ["8", "10", "11"], correct: 1, explanation: "Nach der 9 kommt die 10." },
+    { category: "k1_mathe", question: "Was ist 10 - 4?", answers: ["5", "6", "7"], correct: 1, explanation: "Von 10 vier weggenommen bleiben 6." },
+    { category: "k1_mathe", question: "Wie viele Finger hat man an beiden Händen zusammen?", answers: ["8", "10", "12"], correct: 1, explanation: "An jeder Hand 5 Finger, zusammen also 10." },
+    { category: "k1_mathe", question: "Welche Zahl ist größer: 5 oder 8?", answers: ["5", "8", "Beide gleich"], correct: 1, explanation: "8 kommt später beim Zählen, also ist 8 größer." },
 
-    // --- UNTERSTUFE (Klasse 5 - 6) ---
-    { category: "klasse_5_6", question: "Englisch: He ___ to school every day.", answers: ["go", "goes", "going"], correct: 1, explanation: "💡 Simple Present: Bei 'he, she, it' muss das 's' mit! (He goes)" },
-    { category: "klasse_5_6", question: "Englisch: Look! The dog ___ in the garden.", answers: ["plays", "is playing", "play"], correct: 1, explanation: "💡 Present Progressive: Signalwort 'Look!'. Es passiert genau jetzt." },
-    { category: "klasse_5_6", question: "Englisch: I ___ not like apples.", answers: ["does", "am", "do"], correct: 2, explanation: "💡 Simple Present Verneinung: I do not (don't) like." },
-    { category: "klasse_5_6", question: "Biologie: Was benötigen Pflanzen, um Sauerstoff zu produzieren (Fotosynthese)?", answers: ["Nur Wasser", "Sonnenlicht, Wasser und CO2", "Erde und Dünger"], correct: 1, explanation: "💡 Pflanzen machen aus Sonnenlicht, Wasser und Kohlendioxid (CO2) Sauerstoff." },
-    { category: "klasse_5_6", question: "Englisch: There ___ two cats in the garden.", answers: ["is", "are", "be"], correct: 1, explanation: "💡 'There are' benutzt man bei mehreren Dingen (Plural: two cats)." },
-    { category: "klasse_5_6", question: "Englisch: This is my dog. ___ name is Rex.", answers: ["His", "Her", "Its"], correct: 2, explanation: "💡 Für Tiere und Dinge benutzt man 'its' (nicht 'it's', das heißt 'es ist')." },
-    { category: "klasse_5_6", question: "Mathe: Was ist ein Zehntel als Bruch?", answers: ["1/100", "1/10", "10/1"], correct: 1, explanation: "💡 Ein Zehntel schreibt man als 1/10." },
-    { category: "klasse_5_6", question: "Geografie: Wie heißt der längste Fluss Deutschlands?", answers: ["Donau", "Elbe", "Rhein"], correct: 2, explanation: "💡 Der Rhein ist mit rund 865 km auf deutschem Gebiet der längste Fluss Deutschlands." },
-    { category: "klasse_5_6", question: "Biologie: Wie viele Beine hat ein Insekt?", answers: ["4", "6", "8"], correct: 1, explanation: "💡 Insekten haben immer genau sechs Beine, das unterscheidet sie z.B. von Spinnen (8 Beine)." },
-    { category: "klasse_5_6", question: "Englisch: My birthday is ___ May.", answers: ["at", "on", "in"], correct: 2, explanation: "💡 Bei Monaten benutzt man immer 'in' (in May, in June)." },
-    { category: "klasse_5_6", question: "Mathe: Wie viele Grad hat ein rechter Winkel?", answers: ["45°", "90°", "180°"], correct: 1, explanation: "💡 Ein rechter Winkel hat genau 90°, erkennbar am kleinen Quadrat in der Ecke." },
-    { category: "klasse_5_6", question: "Englisch: We ___ football every Saturday.", answers: ["plays", "play", "playing"], correct: 1, explanation: "💡 Simple Present: Bei 'we' gibt es kein 's' am Verb (we play)." },
-    { category: "klasse_5_6", question: "Geografie: Wie heißt der höchste Berg Deutschlands?", answers: ["Watzmann", "Zugspitze", "Brocken"], correct: 1, explanation: "💡 Die Zugspitze ist mit 2.962 m der höchste Berg Deutschlands." },
-    { category: "klasse_5_6", question: "Mathe: Was ist 3/4 als Dezimalzahl?", answers: ["0,34", "0,75", "0,43"], correct: 1, explanation: "💡 3 geteilt durch 4 ergibt 0,75." },
-    { category: "klasse_5_6", question: "Englisch: Can you ___ me the salt, please?", answers: ["pass", "passes", "passing"], correct: 0, explanation: "💡 Nach 'can' folgt immer die Grundform des Verbs (pass, nicht passes)." },
-    { category: "klasse_5_6", question: "Biologie: Wozu dienen die Wurzeln einer Pflanze?", answers: ["Nur zur Deko", "Aufnahme von Wasser und Nährstoffen", "Fotosynthese"], correct: 1, explanation: "💡 Wurzeln verankern die Pflanze im Boden und nehmen Wasser sowie Nährstoffe auf." },
+    // --- Klasse 1 - Sachunterricht ---
+    { category: "k1_sachunterricht", question: "Wie viele Beine hat eine Katze?", answers: ["2", "4", "6"], correct: 1, explanation: "Katzen sind Vierbeiner." },
+    { category: "k1_sachunterricht", question: "Welche Farbe hat der Himmel bei schönem Wetter?", answers: ["Blau", "Grün", "Rot"], correct: 0, explanation: "Bei Sonnenschein ist der Himmel blau." },
+    { category: "k1_sachunterricht", question: "Was brauchen Pflanzen zum Wachsen?", answers: ["Wasser und Licht", "Nur Erde", "Nur Luft"], correct: 0, explanation: "Pflanzen brauchen Wasser, Licht und Nährstoffe." },
+    { category: "k1_sachunterricht", question: "Welche Jahreszeit ist am kältesten?", answers: ["Sommer", "Winter", "Frühling"], correct: 1, explanation: "Im Winter ist es am kältesten, oft schneit es." },
+    { category: "k1_sachunterricht", question: "Wo wohnt eine Biene?", answers: ["Im Bienenstock", "Im Vogelnest", "In der Höhle"], correct: 0, explanation: "Bienen leben zusammen im Bienenstock." },
 
-    { category: "klasse_5_6", question: "Englisch: She ___ to school every day.", answers: ["go", "goes", "going"], correct: 1, explanation: "💡 Bei he/she/it kommt im Simple Present ein 's' ans Verb: she goes." },
-    { category: "klasse_5_6", question: "Mathe: Was ist der Umfang eines Quadrats mit 5 cm Seitenlänge?", answers: ["10 cm", "20 cm", "25 cm"], correct: 1, explanation: "💡 Ein Quadrat hat 4 gleiche Seiten: 4 × 5 cm = 20 cm." },
-    { category: "klasse_5_6", question: "Biologie: Welches Tier ist ein Wirbeltier?", answers: ["Regenwurm", "Frosch", "Schnecke"], correct: 1, explanation: "💡 Frösche haben eine Wirbelsäule und gehören zu den Wirbeltieren (Amphibien)." },
-    { category: "klasse_5_6", question: "Geografie: An welches Meer grenzt Deutschland im Norden?", answers: ["Mittelmeer", "Nord- und Ostsee", "Schwarzes Meer"], correct: 1, explanation: "💡 Deutschland grenzt im Norden an die Nordsee und die Ostsee." },
+    // --- Klasse 2 - Deutsch ---
+    { category: "k2_deutsch", question: "Welche Schreibweise ist richtig?", answers: ["Sonne", "Sone", "Zonne"], correct: 0, explanation: "Sonne schreibt man mit doppeltem n." },
+    { category: "k2_deutsch", question: "Was ist das Gegenteil von 'hell'?", answers: ["dunkel", "laut", "schnell"], correct: 0, explanation: "Hell und dunkel sind Gegenteile." },
+    { category: "k2_deutsch", question: "Welches Wort ist ein Nomen (Namenwort)?", answers: ["Baum", "laufen", "schnell"], correct: 0, explanation: "Baum ist ein Nomen – man sagt 'der Baum' und schreibt es groß." },
+    { category: "k2_deutsch", question: "Wie viele Silben hat 'Schmet-ter-ling'?", answers: ["2", "3", "4"], correct: 1, explanation: "Schmet-ter-ling hat drei Silben." },
+    { category: "k2_deutsch", question: "Welcher Satz ist richtig geschrieben?", answers: ["Ich gehe nach Hause.", "ich gehe nach hause.", "Ich gehe nach hause"], correct: 0, explanation: "Satzanfang groß, Nomen groß, Punkt am Ende." },
 
-    // --- MITTELSTUFE (Klasse 7 - 8) ---
-    { category: "klasse_7_8", question: "Englisch: Yesterday, I ___ a great movie.", answers: ["see", "saw", "have seen"], correct: 1, explanation: "💡 Simple Past: Signalwort 'Yesterday' verlangt die 2. Form (saw)." },
-    { category: "klasse_7_8", question: "Englisch: I ___ to London three times in my life.", answers: ["went", "have been", "am"], correct: 1, explanation: "💡 Present Perfect: Es geht um Erfahrungen bis heute ('in my life')." },
-    { category: "klasse_7_8", question: "Englisch: She runs ___ than her brother.", answers: ["faster", "fastest", "more fast"], correct: 0, explanation: "💡 Steigerung (Adjektiv): fast -> faster -> fastest. Hier Vergleich (faster than)." },
-    { category: "klasse_7_8", question: "Physik: Welche Einheit wird für elektrische Spannung verwendet?", answers: ["Ampere", "Watt", "Volt"], correct: 2, explanation: "💡 Die Spannung wird in Volt (V) gemessen. Stromstärke in Ampere (A)." },
-    { category: "klasse_7_8", question: "Englisch: By next year, I ___ my exams.", answers: ["will finish", "will have finished", "finish"], correct: 1, explanation: "💡 Future Perfect: 'will have' + 3. Form, für etwas, das bis zu einem Zeitpunkt abgeschlossen ist." },
-    { category: "klasse_7_8", question: "Englisch: This is the book ___ I told you about.", answers: ["who", "which", "whose"], correct: 1, explanation: "💡 Für Sachen benutzt man 'which' oder 'that' als Relativpronomen." },
-    { category: "klasse_7_8", question: "Chemie: Wie lautet das chemische Symbol für Sauerstoff?", answers: ["O", "S", "Ox"], correct: 0, explanation: "💡 Sauerstoff heißt auf Englisch/Latein 'oxygenium', daher das Symbol O." },
-    { category: "klasse_7_8", question: "Mathe: Wie berechnet man die Fläche eines Kreises?", answers: ["π × r", "π × r²", "2 × π × r"], correct: 1, explanation: "💡 Die Kreisfläche berechnet man mit π mal Radius zum Quadrat (π × r²)." },
-    { category: "klasse_7_8", question: "Geschichte: In welchem Jahr endete der Zweite Weltkrieg?", answers: ["1939", "1945", "1950"], correct: 1, explanation: "💡 Der Zweite Weltkrieg endete 1945 mit der Kapitulation Deutschlands und Japans." },
-    { category: "klasse_7_8", question: "Englisch: I wish I ___ more time.", answers: ["have", "had", "will have"], correct: 1, explanation: "💡 Nach 'I wish' benutzt man für die Gegenwart das Simple Past (unrealer Wunsch)." },
-    { category: "klasse_7_8", question: "Physik: Was beschreibt das Ohmsche Gesetz?", answers: ["U = R / I", "U = I × R", "I = U × R"], correct: 1, explanation: "💡 Ohmsches Gesetz: Spannung = Stromstärke × Widerstand (U = I × R)." },
-    { category: "klasse_7_8", question: "Mathe: Was ist der Satz des Pythagoras?", answers: ["a + b = c", "a² + b² = c²", "a × b = c²"], correct: 1, explanation: "💡 Im rechtwinkligen Dreieck gilt: a² + b² = c² (c ist die Hypotenuse)." },
-    { category: "klasse_7_8", question: "Englisch: I have ___ finished my homework.", answers: ["already", "yet", "just now"], correct: 0, explanation: "💡 'already' steht typischerweise im Present Perfect für 'schon'." },
-    { category: "klasse_7_8", question: "Chemie: Was ist der pH-Wert 7?", answers: ["Sauer", "Neutral", "Basisch"], correct: 1, explanation: "💡 pH 7 ist neutral, darunter sauer, darüber basisch (alkalisch)." },
-    { category: "klasse_7_8", question: "Geschichte: Wer war Otto von Bismarck?", answers: ["Ein Komponist", "Der erste Reichskanzler Deutschlands", "Ein Erfinder"], correct: 1, explanation: "💡 Bismarck war maßgeblich an der Reichsgründung 1871 beteiligt und wurde erster Reichskanzler." },
-    { category: "klasse_7_8", question: "Englisch: They ___ been living here for ten years.", answers: ["has", "have", "had"], correct: 1, explanation: "💡 Present Perfect mit 'they' (Plural): have been living." },
+    // --- Klasse 2 - Mathematik ---
+    { category: "k2_mathe", question: "Was ist 7 + 8?", answers: ["14", "15", "16"], correct: 1, explanation: "7 + 7 = 14, und einer mehr ergibt 15." },
+    { category: "k2_mathe", question: "Was ist die Hälfte von 12?", answers: ["5", "6", "7"], correct: 1, explanation: "12 geteilt durch 2 ergibt 6." },
+    { category: "k2_mathe", question: "Was ist 20 - 7?", answers: ["12", "13", "14"], correct: 1, explanation: "Von 20 sieben weggenommen bleiben 13." },
+    { category: "k2_mathe", question: "Wie viele Minuten hat eine Stunde?", answers: ["30", "60", "100"], correct: 1, explanation: "Eine Stunde hat 60 Minuten." },
+    { category: "k2_mathe", question: "Was ist 5 × 2?", answers: ["8", "10", "12"], correct: 1, explanation: "5 zweimal genommen ergibt 10." },
 
-    { category: "klasse_7_8", question: "Englisch: If it rains tomorrow, we ___ at home.", answers: ["stay", "will stay", "stayed"], correct: 1, explanation: "💡 If-Clause Typ 1: If + Present, im Hauptsatz 'will' + Grundform." },
-    { category: "klasse_7_8", question: "Mathe: Was ist der Kehrwert von 3/5?", answers: ["5/3", "3/5", "-3/5"], correct: 0, explanation: "💡 Beim Kehrwert vertauscht man Zähler und Nenner: 5/3." },
-    { category: "klasse_7_8", question: "Geschichte: Was war die Reformation?", answers: ["Eine Kirchenerneuerung ab 1517 durch Martin Luther", "Ein Krieg im Mittelalter", "Eine Erfindung"], correct: 0, explanation: "💡 Martin Luther löste 1517 mit seinen Thesen die Reformation aus, aus der die evangelische Kirche hervorging." },
-    { category: "klasse_7_8", question: "Physik: Was ist eine Kraft in der Physik?", answers: ["Ein Maß für Wärme", "Etwas, das Körper verformt oder ihre Bewegung ändert", "Eine Energieform"], correct: 1, explanation: "💡 Kräfte können Körper beschleunigen, abbremsen oder verformen." },
+    // --- Klasse 2 - Sachunterricht ---
+    { category: "k2_sachunterricht", question: "Welches Tier legt Eier?", answers: ["Huhn", "Kuh", "Hund"], correct: 0, explanation: "Hühner legen Eier, Kühe und Hunde bekommen lebende Junge." },
+    { category: "k2_sachunterricht", question: "Wie nennt man gefrorenes Wasser?", answers: ["Eis", "Dampf", "Nebel"], correct: 0, explanation: "Wird Wasser sehr kalt, gefriert es zu Eis." },
+    { category: "k2_sachunterricht", question: "Welche Jahreszeit kommt nach dem Sommer?", answers: ["Frühling", "Herbst", "Winter"], correct: 1, explanation: "Die Reihenfolge ist Frühling, Sommer, Herbst, Winter." },
+    { category: "k2_sachunterricht", question: "In welcher Richtung geht die Sonne auf?", answers: ["Osten", "Westen", "Norden"], correct: 0, explanation: "Die Sonne geht im Osten auf und im Westen unter." },
+    { category: "k2_sachunterricht", question: "Welches Verkehrszeichen bedeutet, dass man anhalten muss?", answers: ["Stoppschild", "Vorfahrtsschild", "Parkplatzschild"], correct: 0, explanation: "Das rote achteckige Stoppschild bedeutet: anhalten." },
 
-    // --- OBERSTUFE (Klasse 9 - 11) ---
-    { category: "klasse_9_11", question: "Englisch: If I had a million dollars, I ___ a big house.", answers: ["will buy", "would buy", "bought"], correct: 1, explanation: "💡 If-Clause Typ 2 (unwahrscheinlich): If + Simple Past, im Hauptsatz 'would' + Verb." },
-    { category: "klasse_9_11", question: "Englisch: The car ___ repaired tomorrow.", answers: ["is repaired", "was repaired", "will be repaired"], correct: 2, explanation: "💡 Passiv in der Zukunft: will + be + Partizip Perfekt (3. Form)." },
-    { category: "klasse_9_11", question: "Englisch: She said that she ___ tired.", answers: ["is", "was", "has been"], correct: 1, explanation: "💡 Reported Speech (Indirekte Rede): Wenn der Einleitungssatz in der Vergangenheit steht ('said'), gibt es einen Backshift (is -> was)." },
-    { category: "klasse_9_11", question: "Politik: Wer wählt in Deutschland direkt den Bundeskanzler?", answers: ["Das Volk", "Der Bundestag", "Der Bundespräsident"], correct: 1, explanation: "💡 Das Volk wählt den Bundestag, und die Abgeordneten des Bundestages wählen den Kanzler." },
-    { category: "klasse_9_11", question: "Englisch: I would have helped you if I ___ about it.", answers: ["knew", "had known", "know"], correct: 1, explanation: "💡 If-Clause Typ 3 (unreale Vergangenheit): If + Past Perfect, im Hauptsatz 'would have' + 3. Form." },
-    { category: "klasse_9_11", question: "Englisch: He suggested ___ to the cinema.", answers: ["to go", "going", "go"], correct: 1, explanation: "💡 Nach 'suggest' folgt immer die -ing Form (Gerundium)." },
-    { category: "klasse_9_11", question: "Wirtschaft: Was versteht man unter 'Inflation'?", answers: ["Sinkende Preise", "Steigende Preise / Kaufkraftverlust", "Steigende Löhne"], correct: 1, explanation: "💡 Inflation bedeutet, dass das allgemeine Preisniveau steigt und Geld an Wert verliert." },
-    { category: "klasse_9_11", question: "Politik: Wie viele Bundesländer hat Deutschland?", answers: ["14", "16", "18"], correct: 1, explanation: "💡 Deutschland besteht aus 16 Bundesländern." },
-    { category: "klasse_9_11", question: "Englisch: Not only ___ late, but he also forgot his homework.", answers: ["he was", "was he", "he is"], correct: 1, explanation: "💡 Nach 'Not only' am Satzanfang folgt eine Inversion (was he statt he was)." },
-    { category: "klasse_9_11", question: "Biologie: Was ist die Grundeinheit der Vererbung?", answers: ["Zelle", "Gen", "Protein"], correct: 1, explanation: "💡 Gene sind die Abschnitte der DNA, die Erbinformationen tragen." },
-    { category: "klasse_9_11", question: "Englisch: The report ___ by the committee last week.", answers: ["was reviewed", "reviewed", "has reviewed"], correct: 0, explanation: "💡 Passiv Vergangenheit: was/were + 3. Form (was reviewed)." },
-    { category: "klasse_9_11", question: "Philosophie: Wer prägte den Satz 'Ich denke, also bin ich'?", answers: ["Kant", "Descartes", "Nietzsche"], correct: 1, explanation: "💡 'Cogito ergo sum' stammt von René Descartes." },
-    { category: "klasse_9_11", question: "Englisch: Hardly ___ arrived when the phone rang.", answers: ["I had", "had I", "I have"], correct: 1, explanation: "💡 Nach 'Hardly' am Satzanfang folgt eine Inversion: had I arrived." },
-    { category: "klasse_9_11", question: "Wirtschaft: Was beschreibt das Gesetz von Angebot und Nachfrage?", answers: ["Der Staat legt Preise fest", "Preise entstehen durch das Verhältnis von Angebot und Nachfrage", "Preise sind immer konstant"], correct: 1, explanation: "💡 Steigt die Nachfrage bei gleichem Angebot, steigen meist die Preise – und umgekehrt." },
-    { category: "klasse_9_11", question: "Englisch: It's high time we ___ a decision.", answers: ["make", "made", "will make"], correct: 1, explanation: "💡 Nach 'it's (high) time' folgt das Simple Past für einen unrealen Wunsch in der Gegenwart." },
-    { category: "klasse_9_11", question: "Biologie: Was ist Mitose?", answers: ["Zellteilung zur Vermehrung", "Ein Zellorganell", "Ein Hormon"], correct: 0, explanation: "💡 Mitose ist die Zellteilung, bei der zwei genetisch identische Tochterzellen entstehen." },
+    // --- Klasse 3 - Deutsch ---
+    { category: "k3_deutsch", question: "Welche Wortart ist 'schnell' in 'Er läuft schnell'?", answers: ["Adjektiv", "Nomen", "Verb"], correct: 0, explanation: "'schnell' beschreibt näher, wie er läuft – es ist ein Adjektiv." },
+    { category: "k3_deutsch", question: "Wie lautet die Mehrzahl von 'Kind'?", answers: ["Kinder", "Kinde", "Kindern"], correct: 0, explanation: "Die Mehrzahl von Kind ist Kinder." },
+    { category: "k3_deutsch", question: "Was ist ein Verb?", answers: ["Ein Tuwort wie 'laufen'", "Ein Namenwort", "Ein Wiewort"], correct: 0, explanation: "Verben beschreiben Tätigkeiten: laufen, essen, lesen." },
+    { category: "k3_deutsch", question: "Wie schreibt man das Wort richtig?", answers: ["Fahrrad", "Farrad", "Fahrat"], correct: 0, explanation: "Fahrrad kommt von 'fahren' und 'Rad' – daher doppeltes r." },
+    { category: "k3_deutsch", question: "Wann schreibt man ein Wort groß?", answers: ["Bei Nomen und am Satzanfang", "Immer", "Nie"], correct: 0, explanation: "Nomen und der erste Buchstabe im Satz werden großgeschrieben." },
 
-    { category: "klasse_9_11", question: "Englisch: I look forward to ___ from you.", answers: ["hear", "hearing", "heard"], correct: 1, explanation: "💡 Nach 'look forward to' folgt die -ing-Form: hearing." },
-    { category: "klasse_9_11", question: "Deutsch: Was ist eine These in einer Erörterung?", answers: ["Eine Behauptung, die begründet wird", "Ein Beispiel", "Die Zusammenfassung"], correct: 0, explanation: "💡 Eine These ist die zentrale Behauptung, die mit Argumenten gestützt wird." },
-    { category: "klasse_9_11", question: "Mathe: Was ist die Ableitung von f(x) = x²?", answers: ["2x", "x", "x³"], correct: 0, explanation: "💡 Nach der Potenzregel: f'(x) = 2x." },
-    { category: "klasse_9_11", question: "Politik: Was ist das Grundgesetz?", answers: ["Die Verfassung Deutschlands", "Ein einfaches Gesetz", "Ein EU-Vertrag"], correct: 0, explanation: "💡 Das Grundgesetz ist seit 1949 die Verfassung der Bundesrepublik Deutschland." },
+    // --- Klasse 3 - Mathematik ---
+    { category: "k3_mathe", question: "Was ist 6 × 7?", answers: ["42", "36", "48"], correct: 0, explanation: "Einmaleins: 6, 12, 18, 24, 30, 36, 42." },
+    { category: "k3_mathe", question: "Was ist 100 : 4?", answers: ["20", "25", "30"], correct: 1, explanation: "4 × 25 = 100, also ist 100 : 4 = 25." },
+    { category: "k3_mathe", question: "Wie viele Ecken hat ein Rechteck?", answers: ["3", "4", "5"], correct: 1, explanation: "Ein Rechteck hat vier Ecken und vier Seiten." },
+    { category: "k3_mathe", question: "Was ist 45 + 38?", answers: ["73", "83", "93"], correct: 1, explanation: "45 + 38 = 83." },
+    { category: "k3_mathe", question: "Wie viele Zentimeter sind 1 Meter?", answers: ["10", "100", "1000"], correct: 1, explanation: "1 Meter sind 100 Zentimeter." },
 
-    // --- KFZ-TECHNIK (Berufsschule) ---
-    { category: "kfz", question: "Werkstatt: Was darfst du auf gar keinen Fall tun, während das Absteckwerkzeug beim Zahnriemenwechsel angebracht ist?", answers: ["Wasserpumpe lösen", "Motor durchdrehen", "Riemen abnehmen"], correct: 1, explanation: "💡 Wichtig: Ist die Arretierung dran, darf der Motor nicht mehr gedreht werden!" },
-    { category: "kfz", question: "Elektrik: Welches Bauteil wandelt in der Lichtmaschine Wechselstrom in Gleichstrom um?", answers: ["Anlasser", "Zündspule", "Diodenplatte"], correct: 2, explanation: "💡 Die Dioden richten den erzeugten Wechselstrom in Gleichstrom für das Auto gleich." },
-    { category: "kfz", question: "Fahrwerk: Was genau ist ein Domlager?", answers: ["Ein Teil des Turboladers", "Das Verbindungsstück zwischen Federbein und Karosserie", "Ein Radlager an der Hinterachse"], correct: 1, explanation: "💡 Das Domlager sitzt oben am Stoßdämpfer und verbindet das Fahrwerk mit der Karosserie." },
-    { category: "kfz", question: "Getriebe: Welches Kürzel steht z.B. bei einem Opel 2.2 Motor für eine bestimmte Variante?", answers: ["ATC", "M32", "DSG"], correct: 0, explanation: "💡 Die exakte Bezeichnung der Variante ist ATC." },
-    { category: "kfz", question: "Bremsanlage: Wofür steht die Abkürzung ABS?", answers: ["Anti-Blockier-System", "Automatik-Brems-Sensor", "Achsen-Balance-Steuerung"], correct: 0, explanation: "💡 ABS verhindert das Blockieren der Räder beim Bremsen, damit das Fahrzeug lenkbar bleibt." },
-    { category: "kfz", question: "Motor: Was ist die Aufgabe des Turboladers?", answers: ["Kraftstoff einspritzen", "Die angesaugte Luft verdichten", "Öl kühlen"], correct: 1, explanation: "💡 Der Turbolader verdichtet die Ansaugluft, damit mehr Sauerstoff in den Zylinder gelangt und mehr Leistung entsteht." },
-    { category: "kfz", question: "Elektrik: Wofür steht die Abkürzung OBD?", answers: ["On-Board-Diagnose", "Öl-Behälter-Druck", "Ohm-Bemessungs-Daten"], correct: 0, explanation: "💡 OBD (On-Board-Diagnose) überwacht abgasrelevante Systeme und speichert Fehlercodes." },
-    { category: "kfz", question: "Fahrwerk: Was bewirkt ein Stoßdämpfer?", answers: ["Er dämpft die Schwingungen der Feder", "Er trägt das Fahrzeuggewicht allein", "Er lenkt die Räder"], correct: 0, explanation: "💡 Der Stoßdämpfer dämpft die Federbewegungen, damit das Auto nicht dauerhaft wippt." },
-    { category: "kfz", question: "Motor: Wie viele Takte hat ein klassischer Ottomotor?", answers: ["2", "4", "6"], correct: 1, explanation: "💡 Ansaugen, Verdichten, Arbeiten, Ausstoßen – der klassische Viertaktmotor." },
-    { category: "kfz", question: "Reifen: Was gibt die Zahl in '205/55 R16' an?", answers: ["Reifenbreite in mm, Höhe in % und Felgendurchmesser in Zoll", "Luftdruck und Gewicht", "Herstellungsjahr"], correct: 0, explanation: "💡 205 = Breite in mm, 55 = Querschnittsverhältnis in %, R16 = Felgendurchmesser in Zoll." },
-    { category: "kfz", question: "Klimaanlage: Welches Kältemittel wird häufig in modernen Klimaanlagen verwendet?", answers: ["R134a bzw. R1234yf", "Frigen", "Stickstoff"], correct: 0, explanation: "💡 R134a war lange Standard, moderne Fahrzeuge nutzen zunehmend das umweltfreundlichere R1234yf." },
-    { category: "kfz", question: "Motor: Was ist die Aufgabe der Lambdasonde?", answers: ["Sie misst den Restsauerstoff im Abgas", "Sie kühlt den Motor", "Sie erzeugt den Zündfunken"], correct: 0, explanation: "💡 Die Lambdasonde misst den Sauerstoffgehalt im Abgas, um das Kraftstoff-Luft-Gemisch zu regeln." },
-    { category: "kfz", question: "Elektrik: Was zeigt ein Multimeter im Modus 'Durchgangsprüfung' an?", answers: ["Ob ein Stromkreis geschlossen ist", "Die Motordrehzahl", "Den Ölstand"], correct: 0, explanation: "💡 Die Durchgangsprüfung piept, wenn ein Stromkreis leitfähig (geschlossen) ist – nützlich zur Fehlersuche." },
-    { category: "kfz", question: "Antriebsstrang: Was überträgt die Kraft vom Motor auf die Räder bei Frontantrieb typischerweise?", answers: ["Kardanwelle", "Antriebswelle (Gelenkwelle)", "Blattfeder"], correct: 1, explanation: "💡 Bei Frontantrieb übertragen Antriebs- bzw. Gelenkwellen die Kraft vom Getriebe auf die Vorderräder." },
-    { category: "kfz", question: "Sicherheit: Wofür steht die Abkürzung ESP?", answers: ["Elektronisches Stabilitätsprogramm", "Extra Sicherheits-Paket", "Elektro-Servo-Pumpe"], correct: 0, explanation: "💡 ESP greift gezielt in die Bremsen ein, um das Fahrzeug bei drohendem Schleudern zu stabilisieren." },
-    { category: "kfz", question: "Motor: Was passiert beim 'Verdichtungstakt' im Viertaktmotor?", answers: ["Das Gemisch wird angesaugt", "Das Gemisch wird komprimiert", "Die Abgase werden ausgestoßen"], correct: 1, explanation: "💡 Im zweiten Takt wird das angesaugte Luft-Kraftstoff-Gemisch vom Kolben verdichtet." },
+    // --- Klasse 3 - Sachunterricht ---
+    { category: "k3_sachunterricht", question: "Welches Organ pumpt das Blut durch den Körper?", answers: ["Herz", "Lunge", "Magen"], correct: 0, explanation: "Das Herz ist ein Muskel und pumpt das Blut." },
+    { category: "k3_sachunterricht", question: "In welche Richtung zeigt die Nadel eines Kompasses?", answers: ["Norden", "Süden", "Westen"], correct: 0, explanation: "Die Kompassnadel richtet sich nach Norden aus." },
+    { category: "k3_sachunterricht", question: "Wie nennt man Tiere, die nur Fleisch fressen?", answers: ["Fleischfresser", "Pflanzenfresser", "Allesfresser"], correct: 0, explanation: "Fleischfresser sind zum Beispiel Löwe und Wolf." },
+    { category: "k3_sachunterricht", question: "Was passiert mit Wasser bei 0 Grad Celsius?", answers: ["Es gefriert", "Es kocht", "Es passiert nichts"], correct: 0, explanation: "Bei 0 °C wird Wasser zu Eis." },
+    { category: "k3_sachunterricht", question: "Welches Bundesland ist das größte nach Fläche?", answers: ["Bayern", "Hessen", "Saarland"], correct: 0, explanation: "Bayern ist mit Abstand das flächengrößte Bundesland." },
 
-    { category: "kfz", question: "Motor: Wozu dient der Ölfilter?", answers: ["Er reinigt das Motoröl von Partikeln", "Er kühlt den Motor", "Er filtert die Ansaugluft"], correct: 0, explanation: "💡 Der Ölfilter hält Abrieb und Schmutzpartikel aus dem Motoröl zurück." },
-    { category: "kfz", question: "Elektrik: Was passiert, wenn die Batterie leer ist?", answers: ["Der Anlasser dreht nicht oder nur langsam", "Der Motor läuft schneller", "Die Bremsen versagen"], correct: 0, explanation: "💡 Ohne ausreichende Batteriespannung bekommt der Anlasser zu wenig Strom." },
-    { category: "kfz", question: "Bremsen: Woran erkennt man verschlissene Bremsbeläge?", answers: ["Quietschen und längerer Bremsweg", "Der Motor ruckelt", "Die Klimaanlage kühlt schlechter"], correct: 0, explanation: "💡 Verschleißanzeiger erzeugen Quietschgeräusche, außerdem verlängert sich der Bremsweg." },
-    { category: "kfz", question: "Abgas: Welche Aufgabe hat der Katalysator?", answers: ["Schadstoffe im Abgas umwandeln", "Kraftstoff filtern", "Öl reinigen"], correct: 0, explanation: "💡 Der Katalysator wandelt schädliche Abgase (CO, HC, NOx) in weniger schädliche Stoffe um." },
+    // --- Klasse 3 - Englisch ---
+    { category: "k3_englisch", question: "Was heißt 'Hund' auf Englisch?", answers: ["dog", "cat", "bird"], correct: 0, explanation: "Hund heißt auf Englisch 'dog'." },
+    { category: "k3_englisch", question: "Was bedeutet 'red'?", answers: ["rot", "blau", "grün"], correct: 0, explanation: "'red' heißt rot." },
+    { category: "k3_englisch", question: "Wie sagt man 'Guten Morgen'?", answers: ["Good morning", "Good night", "Goodbye"], correct: 0, explanation: "'Good morning' bedeutet Guten Morgen." },
+    { category: "k3_englisch", question: "Was bedeutet 'school'?", answers: ["Schule", "Straße", "Stuhl"], correct: 0, explanation: "'school' heißt Schule." },
+    { category: "k3_englisch", question: "Wie geht es weiter: one, two, __?", answers: ["three", "four", "five"], correct: 0, explanation: "Die Reihenfolge ist one, two, three." },
 
-    // --- ALLGEMEINWISSEN, SPORT & FILM ---
-    { category: "allgemeinwissen", question: "Kino: Wer ist der Hauptdarsteller, der den Detective in der 'Crime City' Reihe spielt?", answers: ["Jackie Chan", "Don Lee", "Tony Jaa"], correct: 1, explanation: "💡 Don Lee (Ma Dong-seok) spielt den schlagkräftigen Detective." },
-    { category: "allgemeinwissen", question: "Geschichte: Wer war Miyamoto Musashi?", answers: ["Ein berühmter japanischer Samurai", "Ein südkoreanischer Kampfkünstler", "Ein Charakter aus Star Wars"], correct: 0, explanation: "💡 Er war einer der legendärsten Samurai der Geschichte und kämpfte mit zwei Schwertern." },
-    { category: "allgemeinwissen", question: "Sport: Wie lange dauert ein Fußballspiel bei einer F-Jugend in der Regel?", answers: ["2 x 45 Minuten", "2 x 20 Minuten", "3 x 15 Minuten"], correct: 1, explanation: "💡 Im Kleinfeldfußball bei den Jüngsten (z.B. F-Jugend) wird meist 2 x 20 Minuten gespielt." },
-    { category: "allgemeinwissen", question: "Geografie: Wie heißt die Hauptstadt von Südkorea?", answers: ["Busan", "Seoul", "Incheon"], correct: 1, explanation: "💡 Seoul ist die Hauptstadt und größte Stadt Südkoreas." },
-    { category: "allgemeinwissen", question: "Kino: In welchem Land wird ein Großteil der Martial-Arts-Filme mit Don Lee produziert?", answers: ["Japan", "Südkorea", "China"], correct: 1, explanation: "💡 Don Lee ist ein koreanisch-amerikanischer Schauspieler, viele seiner Filme entstehen in Südkorea." },
-    { category: "allgemeinwissen", question: "Sport: Wie viele Spieler stehen bei einem regulären Fußballspiel pro Mannschaft auf dem Feld?", answers: ["9", "10", "11"], correct: 2, explanation: "💡 Jede Mannschaft stellt 11 Spieler, inklusive Torwart." },
-    { category: "allgemeinwissen", question: "Geschichte: Wer war Alexander der Große?", answers: ["Ein römischer Kaiser", "Ein makedonischer König und Feldherr", "Ein ägyptischer Pharao"], correct: 1, explanation: "💡 Alexander der Große war König von Makedonien und eroberte eines der größten Reiche der Antike." },
-    { category: "allgemeinwissen", question: "Kino: Welches Kampfkunst-Genre ist besonders für Filme aus Thailand bekannt (z.B. mit Tony Jaa)?", answers: ["Muay Thai", "Karate", "Judo"], correct: 0, explanation: "💡 Muay Thai (Thaiboxen) ist die traditionelle Kampfkunst Thailands und prägt viele Actionfilme des Landes." },
-    { category: "allgemeinwissen", question: "Sport: Wie heißt die gelbe Karte im Fußball auch umgangssprachlich?", answers: ["Verwarnung", "Platzverweis", "Elfmeter"], correct: 0, explanation: "💡 Die gelbe Karte ist eine Verwarnung; erst die rote Karte führt zum Platzverweis." },
-    { category: "allgemeinwissen", question: "Geschichte: In welchem Jahrhundert lebte der Samurai Miyamoto Musashi?", answers: ["12. Jahrhundert", "16./17. Jahrhundert", "20. Jahrhundert"], correct: 1, explanation: "💡 Musashi lebte von 1584 bis 1645, also im 16./17. Jahrhundert." },
-    { category: "allgemeinwissen", question: "Sport: Wie heißt der Wettkampf, bei dem Schwimmen, Radfahren und Laufen kombiniert werden?", answers: ["Triathlon", "Biathlon", "Pentathlon"], correct: 0, explanation: "💡 Beim Triathlon werden diese drei Ausdauersportarten hintereinander absolviert." },
-    { category: "allgemeinwissen", question: "Kino: Wie heißt der japanische Regisseur, der für Filme wie 'Die sieben Samurai' bekannt ist?", answers: ["Hayao Miyazaki", "Akira Kurosawa", "Takeshi Kitano"], correct: 1, explanation: "💡 Akira Kurosawa gilt als einer der einflussreichsten Regisseure Japans." },
-    { category: "allgemeinwissen", question: "Geografie: Welcher Ozean ist der größte der Erde?", answers: ["Atlantik", "Pazifik", "Indischer Ozean"], correct: 1, explanation: "💡 Der Pazifische Ozean ist mit Abstand der größte und tiefste Ozean der Welt." },
-    { category: "allgemeinwissen", question: "Sport: Wie viele Ringe hat das olympische Symbol?", answers: ["4", "5", "6"], correct: 1, explanation: "💡 Die fünf Ringe stehen für die fünf bewohnten Kontinente." },
+    // --- Klasse 3 - Türkisch (Herkunftssprache) ---
+    { category: "k3_tuerkisch", question: "Was heißt 'Hallo' auf Türkisch?", answers: ["Merhaba", "Hoşçakal", "Teşekkürler"], correct: 0, explanation: "'Merhaba' bedeutet Hallo." },
+    { category: "k3_tuerkisch", question: "Was bedeutet 'okul'?", answers: ["Schule", "Haus", "Auto"], correct: 0, explanation: "'okul' heißt Schule." },
+    { category: "k3_tuerkisch", question: "Was heißt 'Wasser' auf Türkisch?", answers: ["su", "ev", "kitap"], correct: 0, explanation: "'su' bedeutet Wasser." },
+    { category: "k3_tuerkisch", question: "Was bedeutet 'anne'?", answers: ["Mutter", "Vater", "Bruder"], correct: 0, explanation: "'anne' heißt Mutter, 'baba' heißt Vater." },
+    { category: "k3_tuerkisch", question: "Wie geht es weiter: bir, iki, __?", answers: ["üç", "dört", "beş"], correct: 0, explanation: "Auf Türkisch zählt man bir, iki, üç." },
 
-    { category: "allgemeinwissen", question: "Sport: Wie viele Runden hat ein Profi-Boxkampf maximal?", answers: ["8", "12", "15"], correct: 1, explanation: "💡 WM-Kämpfe gehen heute über maximal 12 Runden." },
-    { category: "allgemeinwissen", question: "Geografie: Welches ist das größte Land der Welt nach Fläche?", answers: ["China", "Russland", "Kanada"], correct: 1, explanation: "💡 Russland ist mit rund 17 Millionen km² das flächengrößte Land der Erde." },
-    { category: "allgemeinwissen", question: "Sport: In welcher Sportart gibt es einen 'Slam Dunk'?", answers: ["Basketball", "Volleyball", "Handball"], correct: 0, explanation: "💡 Beim Slam Dunk stopft ein Basketballspieler den Ball direkt in den Korb." },
-    { category: "allgemeinwissen", question: "Musik: Wie viele Saiten hat eine klassische Gitarre normalerweise?", answers: ["4", "6", "8"], correct: 1, explanation: "💡 Eine klassische Gitarre hat 6 Saiten." },
+    // --- Klasse 4 - Deutsch (Grammatik) ---
+    { category: "k4_deutsch", question: "Welcher Fall antwortet auf die Frage 'Wem?'", answers: ["Dativ", "Genitiv", "Akkusativ"], correct: 0, explanation: "Der Dativ ist der 3. Fall und antwortet auf 'Wem?'." },
+    { category: "k4_deutsch", question: "Was ist das Subjekt in 'Der Hund bellt laut'?", answers: ["Der Hund", "bellt", "laut"], correct: 0, explanation: "Das Subjekt ist der Satzteil, der etwas tut – hier 'Der Hund'." },
+    { category: "k4_deutsch", question: "Welche Zeitform ist 'ich ging'?", answers: ["Präteritum", "Perfekt", "Futur"], correct: 0, explanation: "'ich ging' ist Präteritum (einfache Vergangenheit)." },
+    { category: "k4_deutsch", question: "Was gehört in die Lücke: 'Ich weiß, __ du kommst.'", answers: ["dass", "das", "daß"], correct: 0, explanation: "Als Bindewort schreibt man 'dass' mit doppeltem s." },
+    { category: "k4_deutsch", question: "Was ist ein Adjektiv?", answers: ["Ein Wiewort wie 'groß'", "Ein Tuwort", "Ein Namenwort"], correct: 0, explanation: "Adjektive beschreiben, wie etwas ist: groß, schnell, bunt." },
 
-    // --- FACH: MATHEMATIK (Sek I, nach Lehrplan) ---
-    { category: "mathematik", question: "Bruchrechnung: Was ist 1/2 + 1/4?", answers: ["2/6", "3/4", "1/6"], correct: 1, explanation: "💡 Gleichnamig machen: 2/4 + 1/4 = 3/4." },
-    { category: "mathematik", question: "Prozentrechnung: Wie viel sind 20% von 150?", answers: ["20", "30", "40"], correct: 1, explanation: "💡 150 × 0,20 = 30." },
-    { category: "mathematik", question: "Gleichungen: Löse nach x auf: 3x + 5 = 20", answers: ["x = 5", "x = 8", "x = 3"], correct: 0, explanation: "💡 3x = 15, also x = 15 : 3 = 5." },
-    { category: "mathematik", question: "Geometrie: Wie berechnet man den Umfang eines Rechtecks?", answers: ["a × b", "2 × (a + b)", "a² + b²"], correct: 1, explanation: "💡 Umfang = 2 × (Länge + Breite)." },
-    { category: "mathematik", question: "Dreisatz: 3 Kilo Äpfel kosten 6€. Was kosten 5 Kilo?", answers: ["8€", "10€", "12€"], correct: 1, explanation: "💡 1 Kilo kostet 2€, also 5 Kilo = 10€." },
-    { category: "mathematik", question: "Zinsrechnung: Was ist der Jahreszins bei 1000€ und 4% Zinssatz?", answers: ["4€", "40€", "400€"], correct: 1, explanation: "💡 1000 × 0,04 = 40€ Zinsen pro Jahr." },
-    { category: "mathematik", question: "Potenzen: Was ist 2 hoch 5 (2⁵)?", answers: ["10", "16", "32"], correct: 2, explanation: "💡 2×2×2×2×2 = 32." },
-    { category: "mathematik", question: "Statistik: Wie berechnet man den Mittelwert (Durchschnitt) von 2, 4 und 6?", answers: ["3", "4", "6"], correct: 1, explanation: "💡 (2+4+6) : 3 = 4." },
-    { category: "mathematik", question: "Geometrie: Wie viele Seiten hat ein Hexagon (Sechseck)?", answers: ["5", "6", "7"], correct: 1, explanation: "💡 'Hexa' kommt aus dem Griechischen für sechs." },
-    { category: "mathematik", question: "Algebra: Was ist die binomische Formel für (a+b)²?", answers: ["a² + b²", "a² + 2ab + b²", "a² - b²"], correct: 1, explanation: "💡 Erste binomische Formel: (a+b)² = a² + 2ab + b²." },
+    // --- Klasse 4 - Mathematik ---
+    { category: "k4_mathe", question: "Was ist 8 × 9?", answers: ["64", "72", "81"], correct: 1, explanation: "8 × 9 = 72." },
+    { category: "k4_mathe", question: "Was ist die Hälfte von 48?", answers: ["22", "24", "26"], correct: 1, explanation: "48 : 2 = 24." },
+    { category: "k4_mathe", question: "Wie groß ist der Umfang eines Quadrats mit 5 cm Seitenlänge?", answers: ["20 cm", "25 cm", "10 cm"], correct: 0, explanation: "Vier gleiche Seiten: 4 × 5 cm = 20 cm." },
+    { category: "k4_mathe", question: "Wie viele Gramm sind 1 Kilogramm?", answers: ["100", "1000", "10000"], correct: 1, explanation: "1 Kilogramm sind 1000 Gramm." },
+    { category: "k4_mathe", question: "Wie heißt 1234 auf Hunderter gerundet?", answers: ["1200", "1230", "1300"], correct: 0, explanation: "Die Zehnerstelle ist 3, also wird abgerundet: 1200." },
 
-    { category: "mathematik", question: "Geometrie: Wie berechnet man die Fläche eines Dreiecks?", answers: ["a × b", "(Grundseite × Höhe) : 2", "a + b + c"], correct: 1, explanation: "💡 Dreiecksfläche = (Grundseite × Höhe) : 2." },
-    { category: "mathematik", question: "Bruchrechnung: Was ist 2/3 × 3/4?", answers: ["1/2", "6/12", "5/7"], correct: 0, explanation: "💡 2×3=6, 3×4=12, also 6/12, gekürzt = 1/2." },
-    { category: "mathematik", question: "Negative Zahlen: Was ist -5 + 8?", answers: ["-13", "3", "13"], correct: 1, explanation: "💡 Von -5 aus 8 nach rechts (aufwärts) zählen ergibt 3." },
-    { category: "mathematik", question: "Geometrie: Wie viele Grad hat die Winkelsumme in einem Dreieck?", answers: ["90°", "180°", "360°"], correct: 1, explanation: "💡 Die Innenwinkelsumme eines jeden Dreiecks beträgt immer 180°." },
-    { category: "mathematik", question: "Gleichungen: Löse nach x auf: x/4 = 6", answers: ["x = 1,5", "x = 10", "x = 24"], correct: 2, explanation: "💡 x = 6 × 4 = 24." },
-    { category: "mathematik", question: "Wahrscheinlichkeit: Wie hoch ist die Wahrscheinlichkeit, mit einem Würfel eine 6 zu würfeln?", answers: ["1/6", "1/3", "1/2"], correct: 0, explanation: "💡 Ein Würfel hat 6 gleich wahrscheinliche Seiten, also 1/6 Chance für die 6." },
-    { category: "mathematik", question: "Geometrie: Wie berechnet man das Volumen eines Würfels mit Kantenlänge a?", answers: ["a × 4", "a²", "a³"], correct: 2, explanation: "💡 Volumen eines Würfels = Kantenlänge hoch drei (a³)." },
-    { category: "mathematik", question: "Prozentrechnung: Ein Pullover kostet 40€, im Sale 25% billiger. Was kostet er jetzt?", answers: ["10€", "15€", "30€"], correct: 2, explanation: "💡 25% von 40€ sind 10€ Rabatt, also 40€ - 10€ = 30€." },
-    { category: "mathematik", question: "Zahlenbereiche: Was ist eine Primzahl?", answers: ["Eine Zahl teilbar durch 2", "Eine Zahl nur durch 1 und sich selbst teilbar", "Jede ungerade Zahl"], correct: 1, explanation: "💡 Primzahlen (wie 2, 3, 5, 7, 11...) sind nur durch 1 und sich selbst ohne Rest teilbar." },
+    // --- Klasse 4 - Sachunterricht ---
+    { category: "k4_sachunterricht", question: "Wie nennt man die Karte, die Berge und Flüsse zeigt?", answers: ["Physische Karte", "Politische Karte", "Wetterkarte"], correct: 0, explanation: "Physische Karten zeigen die natürliche Landschaft." },
+    { category: "k4_sachunterricht", question: "Was ist ein Stromkreis?", answers: ["Ein geschlossener Weg für den Strom", "Eine Batterie", "Ein Schalter"], correct: 0, explanation: "Nur in einem geschlossenen Stromkreis kann Strom fließen." },
+    { category: "k4_sachunterricht", question: "Auf welchem Planeten leben wir?", answers: ["Erde", "Mars", "Venus"], correct: 0, explanation: "Wir leben auf der Erde, dem dritten Planeten von der Sonne." },
+    { category: "k4_sachunterricht", question: "Wie nennt man den Übergang von Wasser zu Wasserdampf?", answers: ["Verdunsten", "Gefrieren", "Schmelzen"], correct: 0, explanation: "Beim Erhitzen verdunstet Wasser zu Wasserdampf." },
+    { category: "k4_sachunterricht", question: "Wie heißt die Hauptstadt von Deutschland?", answers: ["Berlin", "München", "Hamburg"], correct: 0, explanation: "Berlin ist die Hauptstadt Deutschlands." },
 
-    // --- FACH: DEUTSCH (Sek I, Grammatik & Sprache) ---
-    { category: "deutsch", question: "Grammatik: Welcher Fall (Kasus) antwortet auf die Frage 'Wem?'", answers: ["Nominativ", "Dativ", "Akkusativ"], correct: 1, explanation: "💡 Der Dativ ist der 3. Fall und antwortet auf 'Wem?'." },
-    { category: "deutsch", question: "Satzglieder: Was ist das Prädikat in 'Der Hund bellt laut'?", answers: ["Der Hund", "bellt", "laut"], correct: 1, explanation: "💡 Das Prädikat ist das Verb im Satz – hier 'bellt'." },
-    { category: "deutsch", question: "Zeichensetzung: Wann setzt man ein Komma vor 'und'?", answers: ["Nie", "Bei zwei Hauptsätzen (optional)", "Immer"], correct: 1, explanation: "💡 Vor 'und' zwischen zwei vollständigen Hauptsätzen kann man ein Komma setzen, muss aber nicht." },
-    { category: "deutsch", question: "Wortarten: Was für eine Wortart ist 'schnell' in 'Er läuft schnell'?", answers: ["Adjektiv (hier als Adverb)", "Nomen", "Konjunktion"], correct: 0, explanation: "💡 'schnell' beschreibt hier das Verb näher, also adverbialer Gebrauch eines Adjektivs." },
-    { category: "deutsch", question: "Textsorten: Was ist das Hauptmerkmal einer Inhaltsangabe?", answers: ["Eigene Meinung einbringen", "Sachlich und im Präsens zusammenfassen", "Wörtlich zitieren"], correct: 1, explanation: "💡 Eine Inhaltsangabe fasst sachlich, im Präsens und in eigenen Worten zusammen." },
-    { category: "deutsch", question: "Rechtschreibung: Wie schreibt man 'dass' richtig in 'Ich weiß, ___ du kommst'?", answers: ["das", "dass", "daß"], correct: 1, explanation: "💡 Als Konjunktion (Bindewort) schreibt man 'dass' mit Doppel-s." },
-    { category: "deutsch", question: "Grammatik: Welche Zeitform ist 'ich bin gegangen'?", answers: ["Präteritum", "Perfekt", "Futur I"], correct: 1, explanation: "💡 Perfekt bildet man mit 'haben/sein' + Partizip II (bin gegangen)." },
-    { category: "deutsch", question: "Stilmittel: Wie heißt die Übertreibung als Stilmittel?", answers: ["Metapher", "Hyperbel", "Ironie"], correct: 1, explanation: "💡 Eine Hyperbel ist eine bewusste, starke Übertreibung ('Ich hab dir das schon tausendmal gesagt')." },
-    { category: "deutsch", question: "Satzarten: Was ist ein Konjunktiv?", answers: ["Eine Zeitform", "Der Möglichkeitsform / Wunschform", "Ein Satzzeichen"], correct: 1, explanation: "💡 Der Konjunktiv drückt Wünsche, Möglichkeiten oder indirekte Rede aus (z.B. 'er sagte, er käme')." },
-    { category: "deutsch", question: "Wortarten: Zu welcher Wortart gehört 'und', 'aber', 'weil'?", answers: ["Präposition", "Konjunktion", "Pronomen"], correct: 1, explanation: "💡 Konjunktionen verbinden Wörter oder Sätze miteinander." },
+    // --- Klasse 4 - Englisch ---
+    { category: "k4_englisch", question: "Wie sagt man 'Ich habe einen Bruder'?", answers: ["I have a brother", "I am a brother", "I has a brother"], correct: 0, explanation: "'I have' heißt 'ich habe'." },
+    { category: "k4_englisch", question: "Was bedeutet 'Wednesday'?", answers: ["Mittwoch", "Montag", "Freitag"], correct: 0, explanation: "'Wednesday' ist der Mittwoch." },
+    { category: "k4_englisch", question: "Was gehört in die Lücke: 'There __ two cats.'", answers: ["are", "is", "am"], correct: 0, explanation: "Bei mehreren Dingen benutzt man 'are'." },
+    { category: "k4_englisch", question: "Was bedeutet 'breakfast'?", answers: ["Frühstück", "Mittagessen", "Abendessen"], correct: 0, explanation: "'breakfast' ist das Frühstück." },
+    { category: "k4_englisch", question: "Wie fragt man nach dem Namen?", answers: ["What's your name?", "How are you?", "Where are you?"], correct: 0, explanation: "'What's your name?' heißt 'Wie heißt du?'." },
 
-    { category: "deutsch", question: "Grammatik: Wie lautet der Genitiv von 'der Hund'?", answers: ["des Hundes", "dem Hund", "den Hund"], correct: 0, explanation: "💡 Der Genitiv (2. Fall) von 'der Hund' ist 'des Hundes'." },
-    { category: "deutsch", question: "Satzglieder: Was ist ein Attribut?", answers: ["Ein zusätzliches Wort, das ein Satzglied näher beschreibt", "Ein eigenständiger Satz", "Ein Satzzeichen"], correct: 0, explanation: "💡 Attribute nähern ein Satzglied näher, z.B. 'der GROSSE Hund'." },
-    { category: "deutsch", question: "Rechtschreibung: Groß oder klein: 'Ich gehe heute (a)bend spazieren.'?", answers: ["klein: abend", "groß: Abend", "beides möglich"], correct: 1, explanation: "💡 'Abend' ist ein Nomen und wird großgeschrieben." },
-    { category: "deutsch", question: "Textsorten: Was ist das Hauptmerkmal einer Erörterung?", answers: ["Nur Nacherzählen", "Pro- und Contra-Argumente abwägen", "Gedichte analysieren"], correct: 1, explanation: "💡 In einer Erörterung wägt man Argumente für und gegen eine These ab." },
-    { category: "deutsch", question: "Grammatik: Was ist der Unterschied zwischen 'wie' und 'als' beim Vergleich?", answers: ["Kein Unterschied", "'wie' bei Gleichheit, 'als' bei Ungleichheit", "'als' bei Gleichheit, 'wie' bei Ungleichheit"], correct: 1, explanation: "💡 'So groß wie' (gleich) vs. 'größer als' (ungleich)." },
-    { category: "deutsch", question: "Stilmittel: Wie nennt man die Wiederholung des Anfangslauts mehrerer Wörter?", answers: ["Metapher", "Alliteration", "Vergleich"], correct: 1, explanation: "💡 Alliteration: z.B. 'Milch macht müde Männer munter'." },
-    { category: "deutsch", question: "Wortarten: Welche Wortart ist 'der', 'die', 'das' vor einem Nomen?", answers: ["Artikel", "Adjektiv", "Adverb"], correct: 0, explanation: "💡 'der/die/das' sind bestimmte Artikel (Begleiter des Nomens)." },
-    { category: "deutsch", question: "Zeichensetzung: Wann steht ein Semikolon (;)?", answers: ["Nie in deutschen Texten", "Zwischen eng verwandten, aber eigenständigen Hauptsätzen", "Nur am Satzende"], correct: 1, explanation: "💡 Das Semikolon steht zwischen Sätzen, die enger verbunden sind als durch einen Punkt, aber eigenständig bleiben." },
-    { category: "deutsch", question: "Grammatik: Was ist ein Reflexivpronomen?", answers: ["'sich' - bezieht sich auf das Subjekt zurück", "Ein Fragewort", "Ein Zeitwort"], correct: 0, explanation: "💡 'Er wäscht SICH' - das Reflexivpronomen 'sich' bezieht sich auf das Subjekt zurück." },
+    // --- Klasse 4 - Türkisch (Herkunftssprache) ---
+    { category: "k4_tuerkisch", question: "Was bedeutet 'teşekkürler'?", answers: ["Danke", "Bitte", "Tschüss"], correct: 0, explanation: "'teşekkürler' heißt danke." },
+    { category: "k4_tuerkisch", question: "Was heißt 'Buch' auf Türkisch?", answers: ["kitap", "kalem", "masa"], correct: 0, explanation: "'kitap' bedeutet Buch." },
+    { category: "k4_tuerkisch", question: "Was bedeutet 'kardeş'?", answers: ["Geschwister", "Freund", "Lehrer"], correct: 0, explanation: "'kardeş' bedeutet Geschwisterkind (Bruder oder Schwester)." },
+    { category: "k4_tuerkisch", question: "Was heißt 'öğretmen'?", answers: ["Lehrer", "Schüler", "Arzt"], correct: 0, explanation: "'öğretmen' bedeutet Lehrerin oder Lehrer." },
+    { category: "k4_tuerkisch", question: "Welche Farbe ist 'kırmızı'?", answers: ["rot", "blau", "gelb"], correct: 0, explanation: "'kırmızı' bedeutet rot." },
 
-    // --- FACH: BIOLOGIE (Sek I) ---
-    { category: "biologie", question: "Zellbiologie: Was ist die 'Kraftwerk der Zelle'?", answers: ["Zellkern", "Mitochondrium", "Ribosom"], correct: 1, explanation: "💡 Mitochondrien erzeugen Energie (ATP) für die Zelle." },
-    { category: "biologie", question: "Ökologie: Was ist ein Ökosystem?", answers: ["Nur die Tiere eines Gebiets", "Lebewesen und ihre Umwelt im Zusammenspiel", "Ein künstlicher Garten"], correct: 1, explanation: "💡 Ein Ökosystem umfasst alle Lebewesen und ihre unbelebte Umwelt in einem Gebiet, die zusammenwirken." },
-    { category: "biologie", question: "Verdauung: Wo beginnt die Verdauung von Stärke bereits?", answers: ["Im Magen", "Im Mund (durch Speichel)", "Im Dünndarm"], correct: 1, explanation: "💡 Speichelenzyme (Amylase) beginnen schon im Mund mit dem Stärkeabbau." },
-    { category: "biologie", question: "Genetik: Wie viele Chromosomen hat eine menschliche Körperzelle normalerweise?", answers: ["23", "46", "48"], correct: 1, explanation: "💡 Der Mensch hat 46 Chromosomen (23 Paare)." },
-    { category: "biologie", question: "Evolution: Wer entwickelte die Theorie der natürlichen Selektion?", answers: ["Gregor Mendel", "Charles Darwin", "Louis Pasteur"], correct: 1, explanation: "💡 Charles Darwin veröffentlichte 1859 'Die Entstehung der Arten'." },
-    { category: "biologie", question: "Ökologie: Was versteht man unter einer Nahrungskette?", answers: ["Eine Reihenfolge, wer wen frisst", "Eine Art zu kochen", "Ein Verdauungsorgan"], correct: 0, explanation: "💡 Die Nahrungskette zeigt, wie Energie von Produzenten über Konsumenten weitergegeben wird." },
-    { category: "biologie", question: "Anatomie: Welches Organ produziert Insulin?", answers: ["Leber", "Bauchspeicheldrüse", "Niere"], correct: 1, explanation: "💡 Die Bauchspeicheldrüse (Pankreas) produziert Insulin zur Regulierung des Blutzuckers." },
-    { category: "biologie", question: "Genetik: Was ist ein dominantes Gen?", answers: ["Ein Gen, das sich immer durchsetzt, wenn vorhanden", "Ein fehlerhaftes Gen", "Ein Gen, das nie sichtbar wird"], correct: 0, explanation: "💡 Ein dominantes Allel setzt sich gegenüber einem rezessiven durch." },
-    { category: "biologie", question: "Botanik: Wie nennt man die Bestäubung durch Insekten?", answers: ["Zoogamie", "Entomophilie", "Anemophilie"], correct: 1, explanation: "💡 Entomophilie bezeichnet die Bestäubung von Pflanzen durch Insekten." },
-    { category: "biologie", question: "Immunsystem: Welche Blutzellen bekämpfen hauptsächlich Krankheitserreger?", answers: ["Rote Blutkörperchen", "Weiße Blutkörperchen (Leukozyten)", "Blutplättchen"], correct: 1, explanation: "💡 Weiße Blutkörperchen sind Teil des Immunsystems und bekämpfen Erreger." },
+    // --- Klasse 5 - Deutsch ---
+    { category: "k5_deutsch", question: "Was ist das Prädikat in 'Der Hund bellt laut'?", answers: ["bellt", "Der Hund", "laut"], correct: 0, explanation: "Das Prädikat ist das Verb im Satz." },
+    { category: "k5_deutsch", question: "Welche Wortart sind 'und', 'aber', 'weil'?", answers: ["Konjunktionen", "Präpositionen", "Pronomen"], correct: 0, explanation: "Konjunktionen verbinden Wörter oder Sätze." },
+    { category: "k5_deutsch", question: "Was ist eine Inhaltsangabe?", answers: ["Sachliche Zusammenfassung im Präsens", "Eine eigene Meinung", "Ein wörtliches Zitat"], correct: 0, explanation: "Inhaltsangaben fassen sachlich, im Präsens und in eigenen Worten zusammen." },
+    { category: "k5_deutsch", question: "Wie lautet der Genitiv von 'der Hund'?", answers: ["des Hundes", "dem Hund", "den Hund"], correct: 0, explanation: "Der Genitiv ist der 2. Fall: des Hundes." },
+    { category: "k5_deutsch", question: "Was ist ein Märchen typischerweise?", answers: ["Eine erfundene Erzählung mit Zauber", "Ein Sachtext", "Ein Zeitungsbericht"], correct: 0, explanation: "Märchen sind erfundene Erzählungen, oft mit magischen Elementen." },
 
-    { category: "biologie", question: "Anatomie: Wie viele Kammern hat das menschliche Herz?", answers: ["2", "4", "6"], correct: 1, explanation: "💡 Das Herz hat 4 Kammern: linker/rechter Vorhof und linke/rechte Herzkammer." },
-    { category: "biologie", question: "Ökologie: Was ist ein Produzent in einem Ökosystem?", answers: ["Ein Tier, das andere Tiere frisst", "Eine Pflanze, die durch Fotosynthese Energie herstellt", "Ein Zersetzer"], correct: 1, explanation: "💡 Pflanzen sind Produzenten, da sie mit Fotosynthese ihre eigene Energie herstellen." },
-    { category: "biologie", question: "Genetik: Was ist DNA?", answers: ["Ein Protein", "Der Träger der Erbinformation", "Ein Hormon"], correct: 1, explanation: "💡 DNA (Desoxyribonukleinsäure) speichert die Erbinformationen eines Lebewesens." },
-    { category: "biologie", question: "Zellbiologie: Was unterscheidet Pflanzenzellen von Tierzellen?", answers: ["Pflanzenzellen haben eine Zellwand und Chloroplasten", "Tierzellen haben mehr Zellkerne", "Kein Unterschied"], correct: 0, explanation: "💡 Pflanzenzellen besitzen zusätzlich eine feste Zellwand und Chloroplasten für die Fotosynthese." },
-    { category: "biologie", question: "Atmung: Welches Organ tauscht Sauerstoff und Kohlendioxid aus?", answers: ["Leber", "Lunge", "Niere"], correct: 1, explanation: "💡 In den Lungenbläschen wird Sauerstoff aufgenommen und CO2 abgegeben." },
-    { category: "biologie", question: "Evolution: Was bedeutet 'Anpassung' (Adaption)?", answers: ["Zufällige Veränderung ohne Nutzen", "Ein Merkmal, das das Überleben in der Umwelt begünstigt", "Aussterben einer Art"], correct: 1, explanation: "💡 Angepasste Merkmale erhöhen die Überlebens- und Fortpflanzungschancen eines Lebewesens." },
-    { category: "biologie", question: "Sinnesorgane: Welches Organ ist für das Gleichgewicht zuständig?", answers: ["Auge", "Innenohr", "Nase"], correct: 1, explanation: "💡 Das Gleichgewichtsorgan sitzt im Innenohr." },
-    { category: "biologie", question: "Pflanzenbiologie: Wozu dienen Blätter hauptsächlich?", answers: ["Wasseraufnahme", "Fotosynthese", "Verankerung im Boden"], correct: 1, explanation: "💡 In den Blättern findet hauptsächlich die Fotosynthese statt." },
-    { category: "biologie", question: "Genetik: Was passiert bei einer Mutation?", answers: ["Die DNA-Sequenz verändert sich dauerhaft", "Eine Zelle stirbt sofort ab", "Nichts, Mutationen sind wirkungslos"], correct: 0, explanation: "💡 Eine Mutation ist eine dauerhafte Veränderung der Erbinformation (DNA)." },
+    // --- Klasse 5 - Mathematik ---
+    { category: "k5_mathe", question: "Was ist 3/4 als Dezimalzahl?", answers: ["0,34", "0,75", "0,43"], correct: 1, explanation: "3 geteilt durch 4 ergibt 0,75." },
+    { category: "k5_mathe", question: "Wie viele Grad hat ein rechter Winkel?", answers: ["45°", "90°", "180°"], correct: 1, explanation: "Ein rechter Winkel hat genau 90°." },
+    { category: "k5_mathe", question: "Wie berechnet man den Umfang eines Rechtecks?", answers: ["a × b", "2 × (a + b)", "a² + b²"], correct: 1, explanation: "Umfang = 2 × (Länge + Breite)." },
+    { category: "k5_mathe", question: "Was ist der Mittelwert von 2, 4 und 6?", answers: ["3", "4", "6"], correct: 1, explanation: "(2 + 4 + 6) : 3 = 4." },
+    { category: "k5_mathe", question: "Was ist eine Primzahl?", answers: ["Nur durch 1 und sich selbst teilbar", "Jede gerade Zahl", "Jede ungerade Zahl"], correct: 0, explanation: "Primzahlen wie 2, 3, 5, 7 haben genau zwei Teiler." },
 
-    // --- FACH: CHEMIE (Sek I) ---
-    { category: "chemie", question: "Periodensystem: Wie viele Elektronen hat ein neutrales Wasserstoffatom?", answers: ["1", "2", "0"], correct: 0, explanation: "💡 Wasserstoff hat die Ordnungszahl 1 und damit 1 Proton und 1 Elektron." },
-    { category: "chemie", question: "Reaktionen: Wie nennt man eine Reaktion mit Sauerstoff, die Wärme freisetzt?", answers: ["Reduktion", "Verbrennung (Oxidation)", "Neutralisation"], correct: 1, explanation: "💡 Eine Verbrennung ist eine exotherme Oxidation mit Sauerstoff." },
-    { category: "chemie", question: "Säuren & Basen: Was entsteht bei der Neutralisation einer Säure mit einer Base?", answers: ["Nur Wasser", "Salz und Wasser", "Ein Gas"], correct: 1, explanation: "💡 Säure + Base → Salz + Wasser (Neutralisationsreaktion)." },
-    { category: "chemie", question: "Atommodell: Woraus besteht der Atomkern?", answers: ["Protonen und Neutronen", "Nur Elektronen", "Nur Protonen"], correct: 0, explanation: "💡 Der Atomkern besteht aus positiv geladenen Protonen und neutralen Neutronen." },
-    { category: "chemie", question: "Periodensystem: Welches Element hat das Symbol 'Fe'?", answers: ["Fluor", "Eisen", "Phosphor"], correct: 1, explanation: "💡 'Fe' kommt vom lateinischen Wort 'ferrum' für Eisen." },
-    { category: "chemie", question: "Stoffe: Was ist der Unterschied zwischen einem Gemisch und einer Verbindung?", answers: ["Kein Unterschied", "Ein Gemisch kann man physikalisch trennen, eine Verbindung nicht", "Verbindungen sind immer flüssig"], correct: 1, explanation: "💡 Gemische lassen sich z.B. durch Filtern trennen, chemische Verbindungen nur durch chemische Reaktionen." },
-    { category: "chemie", question: "pH-Wert: Welcher pH-Wert-Bereich gilt als sauer?", answers: ["0-6", "7", "8-14"], correct: 0, explanation: "💡 Werte unter 7 sind sauer, 7 ist neutral, darüber basisch." },
-    { category: "chemie", question: "Periodensystem: In welcher Gruppe stehen die Edelgase?", answers: ["Gruppe 1", "Gruppe 17", "Gruppe 18"], correct: 2, explanation: "💡 Edelgase wie Helium und Neon stehen in Gruppe 18 (ganz rechts)." },
-    { category: "chemie", question: "Reaktionen: Was ist ein Katalysator?", answers: ["Ein Stoff, der die Reaktion beschleunigt, ohne verbraucht zu werden", "Ein Endprodukt", "Ein Messgerät"], correct: 0, explanation: "💡 Katalysatoren senken die Aktivierungsenergie, ohne selbst verbraucht zu werden." },
-    { category: "chemie", question: "Aggregatzustände: Wie nennt man den Übergang von fest direkt zu gasförmig?", answers: ["Kondensation", "Sublimation", "Schmelzen"], correct: 1, explanation: "💡 Sublimation ist der direkte Übergang von fest zu gasförmig, z.B. bei Trockeneis." },
+    // --- Klasse 5 - Englisch ---
+    { category: "k5_englisch", question: "'She __ to school every day.'", answers: ["go", "goes", "going"], correct: 1, explanation: "Bei he/she/it kommt im Simple Present ein 's' ans Verb." },
+    { category: "k5_englisch", question: "'My birthday is __ May.'", answers: ["at", "on", "in"], correct: 2, explanation: "Bei Monaten benutzt man 'in'." },
+    { category: "k5_englisch", question: "'This is my dog. __ name is Rex.'", answers: ["His", "Her", "Its"], correct: 2, explanation: "Für Tiere und Dinge benutzt man 'its'." },
+    { category: "k5_englisch", question: "'Can you __ me the salt, please?'", answers: ["pass", "passes", "passing"], correct: 0, explanation: "Nach 'can' folgt die Grundform." },
+    { category: "k5_englisch", question: "Was bedeutet 'yesterday'?", answers: ["gestern", "heute", "morgen"], correct: 0, explanation: "'yesterday' heißt gestern." },
 
-    { category: "chemie", question: "Periodensystem: Wie sind die Elemente im Periodensystem grundsätzlich sortiert?", answers: ["Alphabetisch", "Nach steigender Ordnungszahl (Protonenzahl)", "Nach Entdeckungsjahr"], correct: 1, explanation: "💡 Die Elemente sind nach aufsteigender Ordnungszahl (Anzahl der Protonen) angeordnet." },
-    { category: "chemie", question: "Bindungen: Was ist eine Ionenbindung?", answers: ["Elektronen werden gemeinsam genutzt", "Elektronen werden komplett übertragen (Anziehung von + und -)", "Es gibt keine Elektronenbewegung"], correct: 1, explanation: "💡 Bei Ionenbindungen werden Elektronen von einem Atom zum anderen übertragen, z.B. bei Kochsalz (NaCl)." },
-    { category: "chemie", question: "Stoffe: Was ist ein Molekül?", answers: ["Ein einzelnes Atom", "Eine Verbindung aus mindestens zwei Atomen", "Ein chemisches Element"], correct: 1, explanation: "💡 Ein Molekül besteht aus zwei oder mehr chemisch verbundenen Atomen, z.B. H₂O." },
-    { category: "chemie", question: "Reaktionen: Was zeigt eine chemische Reaktionsgleichung?", answers: ["Nur die Ausgangsstoffe", "Ausgangsstoffe und Endprodukte im richtigen Mengenverhältnis", "Nur die Endprodukte"], correct: 1, explanation: "💡 Eine Reaktionsgleichung zeigt Edukte und Produkte, ausgeglichen (Massenerhaltung)." },
-    { category: "chemie", question: "Metalle: Was ist typisch für Metalle?", answers: ["Sie leiten Strom gut und sind meist verformbar", "Sie sind immer durchsichtig", "Sie leiten keinen Strom"], correct: 0, explanation: "💡 Metalle leiten elektrischen Strom und Wärme gut und lassen sich meist verformen." },
-    { category: "chemie", question: "Periodensystem: Welches Element hat das Symbol 'Na'?", answers: ["Stickstoff", "Natrium", "Nickel"], correct: 1, explanation: "💡 'Na' steht für Natrium (lateinisch 'natrium')." },
-    { category: "chemie", question: "Löslichkeit: Was passiert, wenn Salz in Wasser gelöst wird?", answers: ["Eine chemische Reaktion mit neuem Stoff", "Ein physikalischer Vorgang, Salz bleibt Salz", "Das Wasser verdampft sofort"], correct: 1, explanation: "💡 Lösen ist ein physikalischer Vorgang – die Salzteilchen verteilen sich nur im Wasser." },
-    { category: "chemie", question: "Verbrennung: Was braucht man für eine Verbrennung (Verbrennungsdreieck)?", answers: ["Brennstoff, Sauerstoff, Zündtemperatur", "Nur Feuer", "Nur Sauerstoff"], correct: 0, explanation: "💡 Das Verbrennungsdreieck: Brennbarer Stoff + Sauerstoff + ausreichende Temperatur." },
-    { category: "chemie", question: "Säuren: Welche bekannte Säure steckt im Essig?", answers: ["Essigsäure", "Salzsäure", "Zitronensäure"], correct: 0, explanation: "💡 Essig enthält Essigsäure (Ethansäure)." },
+    // --- Klasse 5 - Biologie ---
+    { category: "k5_biologie", question: "Was brauchen Pflanzen für die Fotosynthese?", answers: ["Sonnenlicht, Wasser und CO2", "Nur Wasser", "Nur Dünger"], correct: 0, explanation: "Aus Licht, Wasser und Kohlendioxid entsteht Traubenzucker und Sauerstoff." },
+    { category: "k5_biologie", question: "Wie viele Beine hat ein Insekt?", answers: ["4", "6", "8"], correct: 1, explanation: "Insekten haben immer sechs Beine, Spinnen dagegen acht." },
+    { category: "k5_biologie", question: "Wozu dienen die Wurzeln einer Pflanze?", answers: ["Aufnahme von Wasser und Nährstoffen", "Nur zur Zierde", "Zur Fotosynthese"], correct: 0, explanation: "Wurzeln verankern die Pflanze und nehmen Wasser auf." },
+    { category: "k5_biologie", question: "Welches Tier ist ein Wirbeltier?", answers: ["Frosch", "Regenwurm", "Schnecke"], correct: 0, explanation: "Frösche haben eine Wirbelsäule und sind Amphibien." },
+    { category: "k5_biologie", question: "Welches Organ tauscht Sauerstoff und Kohlendioxid aus?", answers: ["Lunge", "Leber", "Niere"], correct: 0, explanation: "In den Lungenbläschen findet der Gasaustausch statt." },
 
-    // --- FACH: PHYSIK (Sek I) ---
-    { category: "physik", question: "Mechanik: Welche Einheit hat die Kraft?", answers: ["Joule", "Newton", "Watt"], correct: 1, explanation: "💡 Kraft wird in Newton (N) gemessen." },
-    { category: "physik", question: "Energie: Was besagt der Energieerhaltungssatz?", answers: ["Energie kann erzeugt werden", "Energie kann nicht erzeugt oder vernichtet, nur umgewandelt werden", "Energie verschwindet mit der Zeit"], correct: 1, explanation: "💡 Energie bleibt in einem geschlossenen System immer konstant, wird nur umgewandelt." },
-    { category: "physik", question: "Elektrizität: Welche Formel beschreibt die elektrische Leistung?", answers: ["P = U × I", "P = U / I", "P = U + I"], correct: 0, explanation: "💡 Leistung = Spannung × Stromstärke (P = U × I)." },
-    { category: "physik", question: "Optik: Wie nennt man das Brechen von Licht beim Übergang in ein anderes Medium?", answers: ["Reflexion", "Refraktion (Brechung)", "Absorption"], correct: 1, explanation: "💡 Licht wird gebrochen, wenn es z.B. von Luft ins Wasser übergeht." },
-    { category: "physik", question: "Mechanik: Was besagt das erste Newtonsche Gesetz (Trägheitsgesetz)?", answers: ["Kraft = Masse × Beschleunigung", "Ein Körper bleibt in Ruhe oder Bewegung, solange keine Kraft wirkt", "Actio = Reactio"], correct: 1, explanation: "💡 Ohne äußere Kraft bleibt ein Körper in seinem Bewegungszustand (Trägheit)." },
-    { category: "physik", question: "Wärmelehre: Bei welcher Temperatur gefriert Wasser (bei Normaldruck)?", answers: ["0°C", "10°C", "-10°C"], correct: 0, explanation: "💡 Wasser gefriert bei 0°C und siedet bei 100°C (bei Normaldruck)." },
-    { category: "physik", question: "Elektrizität: Was passiert mit dem Gesamtwiderstand bei einer Reihenschaltung?", answers: ["Er wird kleiner", "Die Widerstände addieren sich", "Er bleibt gleich"], correct: 1, explanation: "💡 In der Reihenschaltung addieren sich die Einzelwiderstände zum Gesamtwiderstand." },
-    { category: "physik", question: "Mechanik: Was ist die Einheit der Arbeit/Energie?", answers: ["Newton", "Joule", "Volt"], correct: 1, explanation: "💡 Arbeit und Energie werden in Joule (J) gemessen." },
-    { category: "physik", question: "Akustik: Wovon hängt die Tonhöhe eines Schalls ab?", answers: ["Von der Lautstärke", "Von der Frequenz", "Von der Temperatur"], correct: 1, explanation: "💡 Je höher die Frequenz (Hz), desto höher klingt der Ton." },
-    { category: "physik", question: "Optik: Wie nennt man eine Linse, die Licht bündelt?", answers: ["Konkavlinse (Zerstreuungslinse)", "Konvexlinse (Sammellinse)", "Prisma"], correct: 1, explanation: "💡 Eine Konvexlinse (Sammellinse) bündelt einfallendes Licht in einem Brennpunkt." },
+    // --- Klasse 5 - Erdkunde ---
+    { category: "k5_erdkunde", question: "Wie heißt der höchste Berg Deutschlands?", answers: ["Zugspitze", "Watzmann", "Brocken"], correct: 0, explanation: "Die Zugspitze ist 2.962 m hoch." },
+    { category: "k5_erdkunde", question: "An welche Meere grenzt Deutschland im Norden?", answers: ["Nord- und Ostsee", "Mittelmeer", "Schwarzes Meer"], correct: 0, explanation: "Deutschland grenzt an Nordsee und Ostsee." },
+    { category: "k5_erdkunde", question: "Wie viele Kontinente gibt es im klassischen Modell?", answers: ["5", "6", "7"], correct: 2, explanation: "Klassisch werden sieben Kontinente unterschieden." },
+    { category: "k5_erdkunde", question: "Was zeigt eine Legende auf einer Landkarte?", answers: ["Die Bedeutung der Zeichen", "Den Maßstab", "Die Himmelsrichtung"], correct: 0, explanation: "Die Legende erklärt, wofür die Symbole und Farben stehen." },
+    { category: "k5_erdkunde", question: "Wie heißt der längste Fluss Deutschlands?", answers: ["Rhein", "Donau", "Elbe"], correct: 0, explanation: "Der Rhein ist auf deutschem Gebiet der längste Fluss." },
 
-    { category: "physik", question: "Mechanik: Was besagt das dritte Newtonsche Gesetz (Actio = Reactio)?", answers: ["Jede Kraft erzeugt eine gleich große Gegenkraft", "Kraft = Masse × Beschleunigung", "Energie bleibt erhalten"], correct: 0, explanation: "💡 Zu jeder Kraft (Actio) gibt es eine gleich große, entgegengesetzte Gegenkraft (Reactio)." },
-    { category: "physik", question: "Elektrizität: Was ist ein Stromkreis?", answers: ["Ein geschlossener Weg, den der elektrische Strom fließen kann", "Nur eine Batterie", "Ein Widerstand"], correct: 0, explanation: "💡 Ein Stromkreis braucht eine geschlossene Leiterschleife, damit Strom fließen kann." },
-    { category: "physik", question: "Wärmelehre: Wie breitet sich Wärme in Metallen hauptsächlich aus?", answers: ["Durch Strahlung", "Durch Wärmeleitung", "Gar nicht"], correct: 1, explanation: "💡 In festen Stoffen wie Metall wird Wärme hauptsächlich durch Leitung übertragen." },
-    { category: "physik", question: "Mechanik: Welche Größe beschreibt, wie schnell sich ein Körper bewegt?", answers: ["Beschleunigung", "Geschwindigkeit", "Masse"], correct: 1, explanation: "💡 Die Geschwindigkeit (v) gibt an, welche Strecke in welcher Zeit zurückgelegt wird." },
-    { category: "physik", question: "Elektrizität: Was passiert mit dem Gesamtwiderstand bei einer Parallelschaltung?", answers: ["Er wird kleiner als der kleinste Einzelwiderstand", "Er wird größer", "Er bleibt gleich"], correct: 0, explanation: "💡 In einer Parallelschaltung ist der Gesamtwiderstand immer kleiner als jeder Einzelwiderstand." },
-    { category: "physik", question: "Optik: Was passiert bei der Reflexion von Licht?", answers: ["Licht wird komplett absorbiert", "Licht wird an einer Oberfläche zurückgeworfen", "Licht verändert seine Farbe"], correct: 1, explanation: "💡 Bei der Reflexion wird Licht an einer Oberfläche (z.B. Spiegel) zurückgeworfen." },
-    { category: "physik", question: "Energie: Was ist kinetische Energie?", answers: ["Bewegungsenergie", "Lageenergie", "Wärmeenergie"], correct: 0, explanation: "💡 Kinetische Energie ist die Energie eines bewegten Körpers." },
-    { category: "physik", question: "Mechanik: Was misst eine Federwaage?", answers: ["Masse in Gramm", "Gewichtskraft in Newton", "Geschwindigkeit"], correct: 1, explanation: "💡 Eine Federwaage misst die Gewichtskraft (in Newton), nicht direkt die Masse." },
-    { category: "physik", question: "Akustik: Kann sich Schall im Vakuum (luftleeren Raum) ausbreiten?", answers: ["Ja, problemlos", "Nein, Schall braucht ein Medium (z.B. Luft)", "Nur bei sehr lauten Tönen"], correct: 1, explanation: "💡 Schall ist eine mechanische Welle und braucht ein Medium wie Luft, Wasser oder Feststoffe." },
+    // --- Klasse 5 - Politik & Gesellschaftslehre ---
+    { category: "k5_politik", question: "Was bedeutet 'Demokratie'?", answers: ["Herrschaft des Volkes", "Herrschaft eines Königs", "Herrschaft des Militärs"], correct: 0, explanation: "Demokratie kommt aus dem Griechischen und heißt Volksherrschaft." },
+    { category: "k5_politik", question: "Wie viele Bundesländer hat Deutschland?", answers: ["14", "16", "18"], correct: 1, explanation: "Deutschland besteht aus 16 Bundesländern." },
+    { category: "k5_politik", question: "Was ist eine Klassensprecherwahl ein Beispiel für?", answers: ["Eine demokratische Wahl", "Eine Diktatur", "Eine Monarchie"], correct: 0, explanation: "Alle dürfen wählen – das ist ein demokratisches Grundprinzip." },
+    { category: "k5_politik", question: "Was sind Kinderrechte?", answers: ["Rechte, die allen Kindern zustehen", "Regeln nur für die Schule", "Gesetze für Erwachsene"], correct: 0, explanation: "Die UN-Kinderrechtskonvention sichert Kindern weltweit Rechte zu." },
+    { category: "k5_politik", question: "Was ist eine Gemeinde?", answers: ["Die kleinste politische Einheit vor Ort", "Ein Bundesland", "Ein Staat"], correct: 0, explanation: "Städte und Dörfer sind Gemeinden mit eigener Verwaltung." },
 
-    // --- FACH: GESCHICHTE, ERDKUNDE & POLITIK (Sek I) ---
-    { category: "gesellschaft", question: "Geschichte: Wann begann die Französische Revolution?", answers: ["1789", "1815", "1848"], correct: 0, explanation: "💡 Die Französische Revolution begann 1789 mit dem Sturm auf die Bastille." },
-    { category: "gesellschaft", question: "Erdkunde: Wie viele Kontinente gibt es üblicherweise (klassisches Modell)?", answers: ["5", "6", "7"], correct: 2, explanation: "💡 Klassisch werden 7 Kontinente unterschieden: Afrika, Antarktika, Asien, Australien, Europa, Nordamerika, Südamerika." },
-    { category: "gesellschaft", question: "Politik: Was bedeutet 'Gewaltenteilung'?", answers: ["Trennung von Legislative, Exekutive und Judikative", "Aufteilung des Militärs", "Verteilung von Steuern"], correct: 0, explanation: "💡 Die Gewaltenteilung verhindert, dass eine Institution zu viel Macht hat (Gesetzgebung, Ausführung, Rechtsprechung)." },
-    { category: "gesellschaft", question: "Geschichte: Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?", answers: ["Willy Brandt", "Konrad Adenauer", "Helmut Kohl"], correct: 1, explanation: "💡 Konrad Adenauer war von 1949 bis 1963 Bundeskanzler." },
-    { category: "gesellschaft", question: "Erdkunde: Welche Klimazone liegt am Äquator?", answers: ["Polarzone", "Tropen", "Gemäßigte Zone"], correct: 1, explanation: "💡 Am Äquator herrscht das tropische Klima mit hohen Temperaturen und viel Niederschlag." },
-    { category: "gesellschaft", question: "Politik: Was ist der Unterschied zwischen einer Monarchie und einer Republik?", answers: ["Kein Unterschied", "In einer Monarchie herrscht ein Erbmonarch, in einer Republik wird das Staatsoberhaupt gewählt", "Republiken haben keine Regierung"], correct: 1, explanation: "💡 In Monarchien wird die Macht meist vererbt, in Republiken durch Wahlen legitimiert." },
-    { category: "gesellschaft", question: "Geschichte: In welchem Jahr fiel die Berliner Mauer?", answers: ["1985", "1989", "1991"], correct: 1, explanation: "💡 Die Berliner Mauer fiel am 9. November 1989." },
-    { category: "gesellschaft", question: "Erdkunde: Was versteht man unter 'Urbanisierung'?", answers: ["Landflucht in ländliche Gebiete", "Wachstum von Städten durch Zuzug", "Bau von Straßen"], correct: 1, explanation: "💡 Urbanisierung bezeichnet das Wachstum und die Ausbreitung von Städten." },
-    { category: "gesellschaft", question: "Politik: Wie nennt man ein Wahlsystem, bei dem Sitze proportional zu Stimmenanteilen vergeben werden?", answers: ["Mehrheitswahlrecht", "Verhältniswahlrecht", "Zensuswahlrecht"], correct: 1, explanation: "💡 Beim Verhältniswahlrecht (wie in Deutschland) entspricht der Sitzanteil ungefähr dem Stimmenanteil." },
-    { category: "gesellschaft", question: "Geschichte: Wer war römischer Kaiser zur Zeitenwende (um Christi Geburt)?", answers: ["Julius Caesar", "Augustus", "Nero"], correct: 1, explanation: "💡 Augustus war der erste römische Kaiser und regierte von 27 v. Chr. bis 14 n. Chr." },
-    { category: "gesellschaft", question: "Politik: Was macht der Bundestag hauptsächlich?", answers: ["Gesetze beschließen", "Urteile fällen", "Steuern eintreiben"], correct: 0, explanation: "💡 Der Bundestag ist das deutsche Parlament und die zentrale gesetzgebende Instanz (Legislative)." },
-    { category: "gesellschaft", question: "Erdkunde: Was ist ein Delta (Fluss-Delta)?", answers: ["Eine Bergkette", "Eine Flussmündung mit mehreren Armen ins Meer", "Ein Wüstengebiet"], correct: 1, explanation: "💡 Ein Delta entsteht, wenn ein Fluss sich vor der Mündung ins Meer in mehrere Arme aufteilt." },
-    { category: "gesellschaft", question: "Geschichte: In welchem Jahrhundert fand die industrielle Revolution in Europa hauptsächlich statt?", answers: ["16. Jahrhundert", "18./19. Jahrhundert", "20. Jahrhundert"], correct: 1, explanation: "💡 Die industrielle Revolution begann Ende des 18. Jahrhunderts in England und breitete sich im 19. Jahrhundert aus." },
-    { category: "gesellschaft", question: "Politik: Was versteht man unter 'Demokratie'?", answers: ["Herrschaft eines Einzelnen", "Herrschaft des Volkes / Volksherrschaft", "Herrschaft des Militärs"], correct: 1, explanation: "💡 'Demokratie' kommt aus dem Griechischen und bedeutet 'Herrschaft des Volkes'." },
-    { category: "gesellschaft", question: "Erdkunde: Welches Land hat die meisten Einwohner der Welt (Stand grobe Schätzung)?", answers: ["USA", "Indien", "Russland"], correct: 1, explanation: "💡 Indien hat inzwischen China als bevölkerungsreichstes Land der Welt überholt." },
-    { category: "gesellschaft", question: "Geschichte: Was war die Weimarer Republik?", answers: ["Deutschlands erste Demokratie (1919-1933)", "Ein mittelalterliches Königreich", "Die heutige Bundesrepublik"], correct: 0, explanation: "💡 Die Weimarer Republik war Deutschlands erster demokratischer Staat, von 1919 bis 1933." },
-    { category: "gesellschaft", question: "Politik: Was ist eine 'Koalition'?", answers: ["Ein Bündnis mehrerer Parteien zur gemeinsamen Regierung", "Ein Gesetz", "Ein Gericht"], correct: 0, explanation: "💡 Wenn keine Partei allein die Mehrheit hat, bilden mehrere Parteien eine Regierungskoalition." },
-    { category: "gesellschaft", question: "Erdkunde: Was versteht man unter dem 'Treibhauseffekt'?", answers: ["Abkühlung der Erdatmosphäre", "Erwärmung der Erde durch Rückhalt von Wärmestrahlung", "Ein Vulkanausbruch"], correct: 1, explanation: "💡 Treibhausgase wie CO2 halten Wärme in der Atmosphäre zurück, was zur globalen Erwärmung führt." },
-    { category: "gesellschaft", question: "Geschichte: Wann trat Deutschland der EU (bzw. deren Vorläufer) bei?", answers: ["1957 (Gründungsmitglied)", "1990", "2004"], correct: 0, explanation: "💡 Deutschland (damals BRD) war 1957 Gründungsmitglied der Europäischen Wirtschaftsgemeinschaft (Vorläufer der EU)." },
-    { category: "gesellschaft", question: "Erdkunde: Wie nennt man eine lang anhaltende Trockenperiode mit Wassermangel?", answers: ["Flut", "Dürre", "Erosion"], correct: 1, explanation: "💡 Eine Dürre ist eine lang anhaltende Trockenperiode mit deutlichem Niederschlagsdefizit." },
+    // --- Klasse 5 - Türkisch (Herkunftssprache) ---
+    { category: "k5_tuerkisch", question: "Was bedeutet 'aile'?", answers: ["Familie", "Freund", "Schule"], correct: 0, explanation: "'aile' heißt Familie." },
+    { category: "k5_tuerkisch", question: "Was heißt 'Zeit' auf Türkisch?", answers: ["zaman", "yemek", "sağlık"], correct: 0, explanation: "'zaman' bedeutet Zeit." },
+    { category: "k5_tuerkisch", question: "Was bedeutet 'güzel'?", answers: ["schön", "schnell", "schwer"], correct: 0, explanation: "'güzel' heißt schön." },
+    { category: "k5_tuerkisch", question: "Was heißt 'Stadt' auf Türkisch?", answers: ["şehir", "köy", "sokak"], correct: 0, explanation: "'şehir' bedeutet Stadt, 'köy' bedeutet Dorf." },
+    { category: "k5_tuerkisch", question: "Was bedeutet 'kitap okumak'?", answers: ["ein Buch lesen", "Musik hören", "Fußball spielen"], correct: 0, explanation: "'kitap' = Buch, 'okumak' = lesen." },
 
-    // --- FACH: INFORMATIK & MEDIENBILDUNG (Sek I) ---
-    { category: "informatik", question: "Grundlagen: Was ist ein Algorithmus?", answers: ["Ein Computer-Virus", "Eine feste Schritt-für-Schritt-Anleitung zur Problemlösung", "Ein Programmiersprache"], correct: 1, explanation: "💡 Ein Algorithmus ist eine eindeutige, endliche Abfolge von Schritten zur Lösung eines Problems." },
-    { category: "informatik", question: "Zahlensysteme: Wie viele verschiedene Ziffern gibt es im Binärsystem?", answers: ["2 (0 und 1)", "8", "10"], correct: 0, explanation: "💡 Das Binärsystem (Dualsystem) kennt nur die Ziffern 0 und 1." },
-    { category: "informatik", question: "Internet: Wofür steht die Abkürzung 'URL'?", answers: ["Universal Resource Locator", "Uniform Resource Locator", "United Ring Link"], correct: 1, explanation: "💡 URL steht für 'Uniform Resource Locator' – die Adresse einer Webseite." },
-    { category: "informatik", question: "Sicherheit: Was macht ein gutes Passwort aus?", answers: ["Möglichst kurz und der eigene Name", "Lang, mit Groß-/Kleinbuchstaben, Zahlen und Sonderzeichen gemischt", "Immer '123456'"], correct: 1, explanation: "💡 Sichere Passwörter sind lang und mischen verschiedene Zeichenarten." },
-    { category: "informatik", question: "Hardware: Was ist die 'CPU' eines Computers?", answers: ["Der Bildschirm", "Der Prozessor / das 'Gehirn' des Rechners", "Die Festplatte"], correct: 1, explanation: "💡 CPU steht für 'Central Processing Unit' – der zentrale Prozessor, der Berechnungen durchführt." },
-    { category: "informatik", question: "Programmierung: Was ist eine 'Variable'?", answers: ["Ein fester Text im Programm", "Ein Speicherplatz für Werte, die sich ändern können", "Ein Fehler im Code"], correct: 1, explanation: "💡 Eine Variable speichert einen Wert, der im Programmverlauf verändert werden kann." },
-    { category: "informatik", question: "Medienkompetenz: Was ist 'Fake News'?", answers: ["Nur Nachrichten von gestern", "Bewusst falsche oder irreführende Nachrichten", "Werbeanzeigen"], correct: 1, explanation: "💡 Fake News sind absichtlich falsche oder verzerrte Informationen, die als echte Nachrichten getarnt sind." },
-    { category: "informatik", question: "Datenschutz: Wofür steht die Abkürzung 'DSGVO'?", answers: ["Deutsche Software-Grundverordnung", "Datenschutz-Grundverordnung", "Digitale Sicherheits- und Geräteordnung"], correct: 1, explanation: "💡 Die DSGVO regelt EU-weit, wie mit personenbezogenen Daten umgegangen werden muss." },
-    { category: "informatik", question: "Internet: Was ist ein 'Browser'?", answers: ["Ein Programm zum Anzeigen von Webseiten", "Ein Betriebssystem", "Ein Passwort-Speicher"], correct: 0, explanation: "💡 Browser wie Chrome, Firefox oder Safari zeigen Webseiten im Internet an." },
-    { category: "informatik", question: "Programmierung: Was macht eine 'Schleife' (Loop) in einem Programm?", answers: ["Sie beendet das Programm sofort", "Sie wiederholt einen Codeblock mehrfach", "Sie löscht Daten"], correct: 1, explanation: "💡 Schleifen wiederholen einen Programmteil, solange eine Bedingung erfüllt ist." },
+    // --- Klasse 6 - Deutsch ---
+    { category: "k6_deutsch", question: "Welche Zeitform ist 'ich bin gegangen'?", answers: ["Perfekt", "Präteritum", "Futur I"], correct: 0, explanation: "Perfekt bildet man mit haben/sein + Partizip II." },
+    { category: "k6_deutsch", question: "Was ist ein Attribut?", answers: ["Ein Wort, das ein Satzglied näher beschreibt", "Ein eigener Satz", "Ein Satzzeichen"], correct: 0, explanation: "Beispiel: 'der GROSSE Hund' – 'große' ist ein Attribut." },
+    { category: "k6_deutsch", question: "Was ist der Unterschied zwischen 'wie' und 'als' beim Vergleich?", answers: ["'wie' bei Gleichheit, 'als' bei Ungleichheit", "Kein Unterschied", "Genau umgekehrt"], correct: 0, explanation: "So groß WIE (gleich), größer ALS (ungleich)." },
+    { category: "k6_deutsch", question: "Was kennzeichnet einen Bericht?", answers: ["Sachlich, im Präteritum, W-Fragen beantwortet", "Spannend und ausgeschmückt", "In der Ich-Form erfunden"], correct: 0, explanation: "Ein Bericht antwortet sachlich auf Wer, Was, Wann, Wo, Wie, Warum." },
+    { category: "k6_deutsch", question: "Was ist ein Reflexivpronomen?", answers: ["'sich' – bezieht sich aufs Subjekt zurück", "Ein Fragewort", "Ein Zeitwort"], correct: 0, explanation: "Beispiel: 'Er wäscht SICH.'" },
 
-    { category: "informatik", question: "Hardware: Was ist der Unterschied zwischen RAM und Festplatte?", answers: ["Kein Unterschied", "RAM ist schneller, verliert aber Daten beim Ausschalten", "RAM speichert dauerhaft"], correct: 1, explanation: "💡 RAM ist der schnelle Arbeitsspeicher und wird beim Ausschalten geleert, die Festplatte speichert dauerhaft." },
-    { category: "informatik", question: "Sicherheit: Was ist 'Phishing'?", answers: ["Ein Computerspiel", "Betrugsversuch, um an Passwörter oder Daten zu kommen", "Eine Datensicherung"], correct: 1, explanation: "💡 Beim Phishing täuschen Betrüger echte Nachrichten vor, um an Zugangsdaten zu gelangen." },
-    { category: "informatik", question: "Internet: Was bedeutet das 'https' in einer Webadresse?", answers: ["Die Verbindung ist verschlüsselt", "Die Seite ist besonders schnell", "Die Seite ist kostenlos"], correct: 0, explanation: "💡 Das 's' steht für 'secure' – die Daten werden verschlüsselt übertragen." },
-    { category: "informatik", question: "Programmierung: Was ist eine 'Bedingung' (if-Abfrage)?", answers: ["Code wird nur ausgeführt, wenn etwas zutrifft", "Der Code läuft immer", "Ein Programmfehler"], correct: 0, explanation: "💡 Mit einer if-Abfrage entscheidet ein Programm, ob ein Codeteil ausgeführt wird." },
-    { category: "informatik", question: "Medien: Was sollte man vor dem Teilen eines Fotos von anderen beachten?", answers: ["Man braucht deren Einverständnis", "Nichts, Fotos darf man immer teilen", "Nur die Dateigröße"], correct: 0, explanation: "💡 Fotos von anderen Personen darf man nur mit deren Einverständnis veröffentlichen (Recht am eigenen Bild)." },
-    { category: "informatik", question: "Dateien: Wofür steht die Endung '.jpg'?", answers: ["Ein Bildformat", "Ein Textdokument", "Ein Programm"], correct: 0, explanation: "💡 .jpg (JPEG) ist ein weit verbreitetes Format für Fotos." },
-    { category: "informatik", question: "Grundlagen: Was ist ein Betriebssystem?", answers: ["Software, die den Computer steuert (z.B. Windows, Android)", "Ein Bauteil im Gehäuse", "Ein Internetdienst"], correct: 0, explanation: "💡 Betriebssysteme wie Windows, macOS, Android oder Linux verwalten die Hardware und starten Programme." },
-    { category: "informatik", question: "Zahlensysteme: Welche Dezimalzahl entspricht der Binärzahl 1010?", answers: ["8", "10", "12"], correct: 1, explanation: "💡 1010 = 8 + 0 + 2 + 0 = 10." },
-    { category: "informatik", question: "Sicherheit: Warum sollte man Software-Updates installieren?", answers: ["Sie schließen Sicherheitslücken", "Sie machen den Akku voller", "Nur wegen neuer Farben"], correct: 0, explanation: "💡 Updates beheben oft Sicherheitslücken, über die Angreifer sonst eindringen könnten." },
-    { category: "informatik", question: "Daten: Was ist ein Backup?", answers: ["Eine Sicherheitskopie von Daten", "Ein gelöschter Ordner", "Ein Virus"], correct: 0, explanation: "💡 Ein Backup ist eine Kopie wichtiger Daten, falls das Original verloren geht." },
+    // --- Klasse 6 - Mathematik ---
+    { category: "k6_mathe", question: "Was ist 1/2 + 1/4?", answers: ["2/6", "3/4", "1/6"], correct: 1, explanation: "Gleichnamig machen: 2/4 + 1/4 = 3/4." },
+    { category: "k6_mathe", question: "Wie viel sind 20 % von 150?", answers: ["20", "30", "40"], correct: 1, explanation: "150 × 0,20 = 30." },
+    { category: "k6_mathe", question: "Was ist 2/3 × 3/4?", answers: ["1/2", "5/7", "6/7"], correct: 0, explanation: "2×3=6 und 3×4=12, also 6/12 = 1/2." },
+    { category: "k6_mathe", question: "Was ist -5 + 8?", answers: ["-13", "3", "13"], correct: 1, explanation: "Von -5 aus acht nach oben zählen ergibt 3." },
+    { category: "k6_mathe", question: "Wie viel ist die Winkelsumme im Dreieck?", answers: ["90°", "180°", "360°"], correct: 1, explanation: "Die Innenwinkel eines Dreiecks ergeben zusammen 180°." },
 
-    // --- SPASS: WÜRDEST DU EHER...? ---
-    { category: "wuerdest_du_eher", question: "Schätzfrage: Was würden die meisten Menschen eher tun – einen Popel essen oder mit Fallschirm springen?", answers: ["Popel essen 🤢", "Fallschirmspringen 🪂", "Beides auf keinen Fall!"], correct: 1, explanation: "😄 Die meisten würden wohl eher springen als naschen!" },
-    { category: "wuerdest_du_eher", question: "Schätzfrage: Was wählen die meisten, wenn sie sich für immer entscheiden müssten – Ketchup oder Senf?", answers: ["Nur Ketchup 🍅", "Nur Senf 🌭", "Dann lieber gar nichts mehr essen"], correct: 0, explanation: "😄 Reine Geschmackssache – die meisten Menschen wählen laut Umfragen Ketchup." },
-    { category: "wuerdest_du_eher", question: "Schätzfrage: Welche Superkraft wünschen sich die meisten Menschen – Fliegen oder Unsichtbarkeit?", answers: ["Fliegen ✈️", "Unsichtbar werden 👻", "Ich brauch keine Superkräfte"], correct: 0, explanation: "😄 Fliegen gewinnt bei den meisten Umfragen knapp gegen Unsichtbarkeit!" },
-    { category: "wuerdest_du_eher", question: "Scherzfrage: Nie wieder Schokolade oder nie wieder Chips – was ist die ehrlichste Antwort?", answers: ["Nie wieder Schokolade 🍫", "Nie wieder Chips 🍟", "Unmöglich zu entscheiden!"], correct: 2, explanation: "😄 Ehrlich gesagt: die schwerste Frage des ganzen Quiz." },
-    { category: "wuerdest_du_eher", question: "Schätzfrage: Was wären die meisten lieber für einen Tag – ein Vogel oder ein Fisch?", answers: ["Ein Vogel 🐦", "Ein Fisch 🐠", "Lieber Mensch bleiben"], correct: 0, explanation: "😄 Fliegen können vs. tauchen können – die Vögel gewinnen meist knapp." },
-    { category: "wuerdest_du_eher", question: "Scherzfrage: Jeden Tag Hausaufgaben in Mathe oder in Deutsch – was ist die ehrlichste Antwort?", answers: ["Nur Mathe 📐", "Nur Deutsch 📚", "Gar keine Hausaufgaben bitte!"], correct: 2, explanation: "😄 Das wär wohl die Lieblingsantwort der meisten Kids." },
-    { category: "wuerdest_du_eher", question: "Scherzfrage: Riesige Hände oder riesige Füße – was ist die ehrlichste Antwort?", answers: ["Riesige Hände 🖐️", "Riesige Füße 🦶", "Weder noch, bitte!"], correct: 2, explanation: "😄 Eine schön unangenehme Wahl – beides klingt nach Problemen beim Schuhe kaufen." },
-    { category: "wuerdest_du_eher", question: "Schätzfrage: Wo würden die meisten Menschen lieber für immer leben – im Sommer oder im Winter?", answers: ["Immer Sommer ☀️", "Immer Winter ❄️", "Ich brauch alle vier Jahreszeiten"], correct: 0, explanation: "😄 Weltweit sagen die meisten Menschen: Sommer gewinnt!" },
-    { category: "wuerdest_du_eher", question: "Schätzfrage: Was würden die meisten lieber können – in die Zukunft sehen oder die Vergangenheit noch mal erleben?", answers: ["Die Zukunft sehen 🔮", "Die Vergangenheit erleben ⏳", "Lieber überrascht werden"], correct: 0, explanation: "😄 Neugier auf das, was kommt, gewinnt bei den meisten." },
-    { category: "wuerdest_du_eher", question: "Schätzfrage: Worauf würden die meisten eher eine Woche verzichten – auf das Handy oder auf Süßigkeiten?", answers: ["Ohne Handy 📵", "Ohne Süßigkeiten 🍭", "Beides geht gar nicht!"], correct: 1, explanation: "😄 Für die meisten ist das Handy schwerer wegzudenken als Süßes." },
+    // --- Klasse 6 - Englisch ---
+    { category: "k6_englisch", question: "'We __ football every Saturday.'", answers: ["plays", "play", "playing"], correct: 1, explanation: "Bei 'we' gibt es kein 's' am Verb." },
+    { category: "k6_englisch", question: "'I __ my homework yesterday.'", answers: ["do", "did", "does"], correct: 1, explanation: "Simple Past von 'do' ist 'did'." },
+    { category: "k6_englisch", question: "Was ist die Vergangenheit von 'go'?", answers: ["went", "goed", "gone"], correct: 0, explanation: "'go' ist unregelmäßig: go – went – gone." },
+    { category: "k6_englisch", question: "'She is __ than her brother.'", answers: ["taller", "tall", "tallest"], correct: 0, explanation: "Beim Vergleich zweier Dinge nutzt man den Komparativ." },
+    { category: "k6_englisch", question: "Was bedeutet 'always'?", answers: ["immer", "nie", "manchmal"], correct: 0, explanation: "'always' heißt immer." },
 
-    { category: "wuerdest_du_eher", question: "Schätzfrage: Was mögen die meisten Menschen weltweit lieber – Hunde oder Katzen?", answers: ["Hunde 🐕", "Katzen 🐈", "Beide gleich gern"], correct: 0, explanation: "😄 In den meisten Umfragen liegen Hunde als Lieblingshaustier knapp vorn." },
-    { category: "wuerdest_du_eher", question: "Schätzfrage: Was ist bei Kindern beliebter – Pizza oder Pommes?", answers: ["Pizza 🍕", "Pommes 🍟", "Beides zusammen!"], correct: 0, explanation: "😄 Pizza landet in Umfragen fast immer auf Platz 1 der Lieblingsgerichte." },
-    { category: "wuerdest_du_eher", question: "Scherzfrage: Zähne putzen oder Zimmer aufräumen – was ist die ehrlichste Antwort?", answers: ["Zähne putzen 🪥", "Zimmer aufräumen 🧹", "Am liebsten keins von beidem!"], correct: 2, explanation: "😄 Zähne putzen muss trotzdem sein – Zimmer aufräumen leider auch." },
-    { category: "wuerdest_du_eher", question: "Schätzfrage: Was würden die meisten lieber machen – eine Weltreise oder ins Weltall fliegen?", answers: ["Weltreise 🌍", "Ins Weltall 🚀", "Lieber zu Hause bleiben"], correct: 0, explanation: "😄 Die Weltreise gewinnt in Umfragen meist deutlich – das Weltall ist vielen zu weit weg." },
+    // --- Klasse 6 - Biologie ---
+    { category: "k6_biologie", question: "Wo beginnt die Verdauung von Stärke?", answers: ["Im Mund durch Speichel", "Im Magen", "Im Dünndarm"], correct: 0, explanation: "Enzyme im Speichel beginnen schon im Mund mit dem Stärkeabbau." },
+    { category: "k6_biologie", question: "Was ist eine Nahrungskette?", answers: ["Eine Reihenfolge, wer wen frisst", "Eine Kochanleitung", "Ein Verdauungsorgan"], correct: 0, explanation: "Sie zeigt, wie Energie von Pflanzen über Tiere weitergegeben wird." },
+    { category: "k6_biologie", question: "Wie nennt man die Bestäubung durch Insekten?", answers: ["Entomophilie", "Anemophilie", "Zoochorie"], correct: 0, explanation: "Entomophilie ist die Bestäubung durch Insekten." },
+    { category: "k6_biologie", question: "Wozu dienen die Blätter einer Pflanze vor allem?", answers: ["Fotosynthese", "Wasseraufnahme", "Verankerung"], correct: 0, explanation: "In den Blättern findet die Fotosynthese statt." },
+    { category: "k6_biologie", question: "Welches Merkmal haben alle Säugetiere?", answers: ["Sie säugen ihre Jungen", "Sie legen Eier", "Sie leben im Wasser"], correct: 0, explanation: "Säugetiere ernähren ihre Jungen mit Milch." },
 
-    // --- SPASS: NICE TO KNOW (kuriose Fakten) ---
-    { category: "nice_to_know", question: "Nice to know: Wie viele Herzen hat ein Oktopus?", answers: ["1", "3", "8"], correct: 1, explanation: "💡 Oktopusse haben drei Herzen – zwei pumpen Blut zu den Kiemen, eins durch den restlichen Körper." },
-    { category: "nice_to_know", question: "Nice to know: Welches Tier schläft am meisten am Tag?", answers: ["Koala", "Elefant", "Löwe"], correct: 0, explanation: "💡 Koalas schlafen bis zu 20 Stunden am Tag – ihre Blätternahrung liefert kaum Energie." },
-    { category: "nice_to_know", question: "Nice to know: Kann Honig eigentlich schlecht werden?", answers: ["Ja, nach wenigen Monaten", "Nein, er ist praktisch unbegrenzt haltbar", "Nur wenn er geöffnet wird"], correct: 1, explanation: "💡 Archäologen fanden 3000 Jahre alten Honig in ägyptischen Gräbern, der noch genießbar war!" },
-    { category: "nice_to_know", question: "Nice to know: Wie lange dauert es ungefähr, bis Licht von der Sonne die Erde erreicht?", answers: ["8 Sekunden", "8 Minuten", "8 Stunden"], correct: 1, explanation: "💡 Das Sonnenlicht braucht etwa 8 Minuten und 20 Sekunden bis zur Erde." },
-    { category: "nice_to_know", question: "Nice to know: Welches ist das einzige Säugetier, das nicht springen kann?", answers: ["Elefant", "Nilpferd", "Beide können nicht springen"], correct: 2, explanation: "💡 Sowohl Elefanten als auch Nilpferde sind zu schwer, um mit allen vier Beinen gleichzeitig abzuheben." },
-    { category: "nice_to_know", question: "Nice to know: Wie viele Knochen hat ein erwachsener Mensch ungefähr?", answers: ["106", "206", "306"], correct: 1, explanation: "💡 Erwachsene haben etwa 206 Knochen – Babys werden mit rund 300 geboren, viele wachsen später zusammen." },
-    { category: "nice_to_know", question: "Nice to know: Welche Farbe hat das Blut eines Oktopus?", answers: ["Rot", "Blau", "Grün"], correct: 1, explanation: "💡 Oktopus-Blut ist blau, weil es Kupfer statt Eisen zum Sauerstofftransport nutzt." },
-    { category: "nice_to_know", question: "Nice to know: Wie lange kann eine Schnecke schlafen (am Stück)?", answers: ["Ein paar Stunden", "Ein paar Tage", "Bis zu 3 Jahre"], correct: 2, explanation: "💡 Manche Schneckenarten können bei ungünstigen Bedingungen jahrelang in einer Art Schlafstarre verharren." },
-    { category: "nice_to_know", question: "Nice to know: Was passiert, wenn man einen Stern (den Fisch, nicht das Weltall) in zwei Hälften teilt?", answers: ["Er stirbt sofort", "Ein Seestern kann sich aus einem Armstück komplett neu bilden", "Nichts Besonderes"], correct: 1, explanation: "💡 Seesterne können aus einem einzigen Arm mit einem Stück Zentralscheibe einen komplett neuen Körper regenerieren." },
-    { category: "nice_to_know", question: "Nice to know: Wie viele Sprachen gibt es schätzungsweise auf der Welt?", answers: ["Etwa 700", "Etwa 3.000", "Etwa 7.000"], correct: 2, explanation: "💡 Weltweit werden schätzungsweise über 7.000 Sprachen gesprochen, viele davon sind vom Aussterben bedroht." },
+    // --- Klasse 6 - Physik ---
+    { category: "k6_physik", question: "Bei welcher Temperatur gefriert Wasser?", answers: ["0 °C", "10 °C", "-10 °C"], correct: 0, explanation: "Bei Normaldruck gefriert Wasser bei 0 °C." },
+    { category: "k6_physik", question: "Was ist ein geschlossener Stromkreis?", answers: ["Ein durchgehender Weg, in dem Strom fließen kann", "Nur eine Batterie", "Ein Schalter allein"], correct: 0, explanation: "Erst im geschlossenen Kreis fließt Strom." },
+    { category: "k6_physik", question: "Wie nennt man das Zurückwerfen von Licht an einer Oberfläche?", answers: ["Reflexion", "Brechung", "Absorption"], correct: 0, explanation: "Ein Spiegel reflektiert das Licht." },
+    { category: "k6_physik", question: "Wovon hängt die Tonhöhe ab?", answers: ["Von der Frequenz", "Von der Lautstärke", "Von der Temperatur"], correct: 0, explanation: "Je höher die Frequenz, desto höher der Ton." },
+    { category: "k6_physik", question: "Wie breitet sich Wärme in Metall hauptsächlich aus?", answers: ["Durch Wärmeleitung", "Durch Strahlung", "Gar nicht"], correct: 0, explanation: "In Feststoffen wird Wärme vor allem geleitet." },
 
-    { category: "nice_to_know", question: "Nice to know: Welches Körperteil wächst beim Menschen ein Leben lang weiter?", answers: ["Die Nase und die Ohren", "Die Füße", "Die Zähne"], correct: 0, explanation: "💡 Nase und Ohren bestehen aus Knorpel und verändern sich das ganze Leben lang." },
-    { category: "nice_to_know", question: "Nice to know: Wie viele Muskeln braucht man ungefähr zum Lächeln?", answers: ["Etwa 5", "Etwa 17", "Etwa 60"], correct: 1, explanation: "💡 Zum Lächeln braucht man ungefähr 17 Muskeln – zum Stirnrunzeln deutlich mehr." },
-    { category: "nice_to_know", question: "Nice to know: Können Enten wirklich nicht 'echoen'?", answers: ["Stimmt, ihr Quaken erzeugt kein Echo", "Falsch, es ist ein Mythos", "Nur bei Regen"], correct: 1, explanation: "💡 Das ist ein bekannter Mythos – Entenquaken erzeugt sehr wohl ein Echo, es ist nur schwer zu hören." },
-    { category: "nice_to_know", question: "Nice to know: Wie schnell wächst menschliches Kopfhaar ungefähr pro Monat?", answers: ["Etwa 1 cm", "Etwa 5 cm", "Etwa 10 cm"], correct: 0, explanation: "💡 Haare wachsen im Schnitt rund 1 bis 1,5 cm pro Monat." },
-    { category: "nice_to_know", question: "Nice to know: Welches Tier hat den größten Augapfel der Welt?", answers: ["Elefant", "Riesenkalmar", "Blauwal"], correct: 1, explanation: "💡 Riesenkalmare haben Augen von bis zu 27 cm Durchmesser – so groß wie ein Fußball." },
-    { category: "nice_to_know", question: "Nice to know: Wie viel Prozent der Erdoberfläche sind von Wasser bedeckt?", answers: ["Etwa 50%", "Etwa 71%", "Etwa 90%"], correct: 1, explanation: "💡 Rund 71% der Erdoberfläche sind mit Wasser bedeckt." },
+    // --- Klasse 6 - Geschichte ---
+    { category: "k6_geschichte", question: "Wer war Alexander der Große?", answers: ["Ein makedonischer König und Feldherr", "Ein römischer Kaiser", "Ein ägyptischer Pharao"], correct: 0, explanation: "Er eroberte eines der größten Reiche der Antike." },
+    { category: "k6_geschichte", question: "Wer war der erste römische Kaiser?", answers: ["Augustus", "Julius Caesar", "Nero"], correct: 0, explanation: "Augustus regierte von 27 v. Chr. bis 14 n. Chr." },
+    { category: "k6_geschichte", question: "Was waren die Pyramiden in Ägypten?", answers: ["Grabmäler für Pharaonen", "Wohnhäuser", "Tempel für Sport"], correct: 0, explanation: "Die Pyramiden dienten als Grabstätten der Pharaonen." },
+    { category: "k6_geschichte", question: "Was bedeutet die Zeitangabe 'v. Chr.'?", answers: ["Vor Christi Geburt", "Vor der Christenheit", "Vor dem Krieg"], correct: 0, explanation: "Die Zeitrechnung wird ab Christi Geburt gezählt." },
+    { category: "k6_geschichte", question: "Wie nennt man die Zeit vor der Schrift?", answers: ["Vorgeschichte / Urgeschichte", "Neuzeit", "Mittelalter"], correct: 0, explanation: "Ohne schriftliche Quellen spricht man von Vor- oder Urgeschichte." },
 
-    // --- SPASS: UNGEWÖHNLICHES AUS DER WELT ---
-    { category: "ungewoehnliches", question: "Ungewöhnliches: In welchem Land ist es gesetzlich verboten, Kaugummi zu verkaufen?", answers: ["Japan", "Singapur", "Norwegen"], correct: 1, explanation: "💡 In Singapur ist der Verkauf von Kaugummi seit 1992 aus Gründen der Sauberkeit weitgehend verboten." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Welche deutsche Stadt hat mehr Brücken als Venedig, Amsterdam und London zusammen?", answers: ["Berlin", "Hamburg", "Köln"], correct: 1, explanation: "💡 Hamburg hat rund 2.500 Brücken – mehr als Venedig, Amsterdam und London zusammen." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Wie lange dauerte der kürzeste Krieg der Geschichte?", answers: ["Ca. 38 Minuten", "Ca. 3 Tage", "Ca. 3 Wochen"], correct: 0, explanation: "💡 Der Anglo-Sansibar-Krieg von 1896 dauerte nur etwa 38 Minuten." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: In welchem Land gibt es mehr Schafe als Menschen?", answers: ["Neuseeland", "Irland", "Schottland"], correct: 0, explanation: "💡 In Neuseeland leben etwa 5x mehr Schafe als Menschen." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Welches Land besteht aus über 17.000 Inseln?", answers: ["Philippinen", "Indonesien", "Japan"], correct: 1, explanation: "💡 Indonesien besteht aus über 17.000 Inseln, von denen nur etwa 6.000 bewohnt sind." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Wie heißt die einzige Zahl, die auf Deutsch genauso viele Buchstaben hat wie ihr Wert?", answers: ["Vier", "Fünf", "Sechs"], correct: 0, explanation: "💡 'Vier' hat genau 4 Buchstaben – ein kleines Sprachkuriosum." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Welche Farbe hatten die ersten Karotten, bevor sie orange gezüchtet wurden?", answers: ["Lila/violett", "Weiß", "Grün"], correct: 0, explanation: "💡 Ursprüngliche Karotten waren meist violett oder gelb – orange Karotten wurden erst im 17. Jahrhundert in den Niederlanden gezüchtet." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Wie viele Zeitzonen hat Russland?", answers: ["5", "8", "11"], correct: 2, explanation: "💡 Russland erstreckt sich über 11 Zeitzonen – mehr als jedes andere Land der Welt." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: In welchem Land gibt es einen Ort, an dem die Sonne im Sommer wochenlang nicht untergeht?", answers: ["Norwegen", "Portugal", "Griechenland"], correct: 0, explanation: "💡 Nördlich des Polarkreises (z.B. in Norwegen) geht die Sonne im Sommer wochenlang nicht unter – die Mitternachtssonne." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Welches Land hat die Nationalflagge in Quadratform (nicht rechteckig)?", answers: ["Schweiz", "Österreich", "Dänemark"], correct: 0, explanation: "💡 Die Schweizer Flagge ist (neben der des Vatikans) eine der wenigen quadratischen Nationalflaggen der Welt." },
+    // --- Klasse 6 - Erdkunde ---
+    { category: "k6_erdkunde", question: "Welche Klimazone liegt am Äquator?", answers: ["Tropen", "Polarzone", "Gemäßigte Zone"], correct: 0, explanation: "Am Äquator ist es ganzjährig warm und feucht." },
+    { category: "k6_erdkunde", question: "Was ist ein Delta?", answers: ["Eine Flussmündung mit mehreren Armen", "Ein Gebirge", "Eine Wüste"], correct: 0, explanation: "Der Fluss teilt sich vor der Mündung in mehrere Arme." },
+    { category: "k6_erdkunde", question: "Welcher Ozean ist der größte?", answers: ["Pazifik", "Atlantik", "Indischer Ozean"], correct: 0, explanation: "Der Pazifik ist der größte und tiefste Ozean." },
+    { category: "k6_erdkunde", question: "Was versteht man unter Urbanisierung?", answers: ["Wachstum der Städte durch Zuzug", "Rückzug aufs Land", "Bau von Straßen"], correct: 0, explanation: "Immer mehr Menschen ziehen in Städte." },
+    { category: "k6_erdkunde", question: "Was zeigt der Maßstab 1:100.000?", answers: ["1 cm auf der Karte = 1 km in Wirklichkeit", "1 cm = 100 m", "1 cm = 10 km"], correct: 0, explanation: "100.000 cm sind 1.000 m, also 1 km." },
 
-    { category: "ungewoehnliches", question: "Ungewöhnliches: In welchem Land ist Ketchup an Schulen zeitweise eingeschränkt worden?", answers: ["Frankreich", "Italien", "Japan"], correct: 0, explanation: "💡 Frankreich schränkte 2011 Ketchup in Schulkantinen ein, um die traditionelle französische Küche zu fördern." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Welches Tier kann bis zu 3 Jahre ohne Essen überleben?", answers: ["Kamel", "Krokodil", "Braunbär"], correct: 1, explanation: "💡 Krokodile haben einen extrem langsamen Stoffwechsel und können sehr lange hungern." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Welches Land hat kein einziges natürliches Fließgewässer (keinen Fluss)?", answers: ["Saudi-Arabien", "Ägypten", "Marokko"], correct: 0, explanation: "💡 Saudi-Arabien hat keine dauerhaften natürlichen Flüsse – nur zeitweise wasserführende Täler (Wadis)." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Wie viele Zeitzonen hat China – trotz seiner riesigen Fläche?", answers: ["1", "3", "5"], correct: 0, explanation: "💡 China nutzt landesweit nur eine einzige Zeitzone, obwohl es geografisch fünf umfassen würde." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Welche Frucht schwimmt im Wasser, weil sie zu etwa 25% aus Luft besteht?", answers: ["Apfel", "Birne", "Kiwi"], correct: 0, explanation: "💡 Äpfel bestehen zu rund einem Viertel aus Luft und schwimmen deshalb oben." },
-    { category: "ungewoehnliches", question: "Ungewöhnliches: Welches Land verbraucht pro Kopf am meisten Schokolade?", answers: ["Schweiz", "Belgien", "Deutschland"], correct: 0, explanation: "💡 Die Schweiz liegt beim Pro-Kopf-Schokoladenkonsum regelmäßig weltweit an der Spitze." },
+    // --- Klasse 6 - Türkisch (Herkunftssprache) ---
+    { category: "k6_tuerkisch", question: "Was bedeutet 'çevre'?", answers: ["Umwelt", "Familie", "Schule"], correct: 0, explanation: "'çevre' heißt Umwelt." },
+    { category: "k6_tuerkisch", question: "Was heißt 'Gesundheit' auf Türkisch?", answers: ["sağlık", "yemek", "para"], correct: 0, explanation: "'sağlık' bedeutet Gesundheit." },
+    { category: "k6_tuerkisch", question: "Was bedeutet 'zor'?", answers: ["schwierig", "einfach", "schnell"], correct: 0, explanation: "'zor' heißt schwierig, 'kolay' heißt einfach." },
+    { category: "k6_tuerkisch", question: "Was heißt 'Ferien'?", answers: ["tatil", "okul", "ders"], correct: 0, explanation: "'tatil' bedeutet Ferien oder Urlaub." },
+    { category: "k6_tuerkisch", question: "Was bedeutet 'arkadaş'?", answers: ["Freund", "Bruder", "Nachbar"], correct: 0, explanation: "'arkadaş' heißt Freundin oder Freund." },
 
-    // --- SPASS: ALLGEMEINWISSEN (EINFACH) ---
-    { category: "allgemeinwissen_easy", question: "Wie viele Tage hat ein Schaltjahr?", answers: ["364", "365", "366"], correct: 2, explanation: "💡 Ein Schaltjahr hat einen zusätzlichen Tag (29. Februar) und damit 366 Tage." },
-    { category: "allgemeinwissen_easy", question: "Welche Farbe entsteht, wenn man Blau und Gelb mischt?", answers: ["Grün", "Lila", "Orange"], correct: 0, explanation: "💡 Blau und Gelb ergeben zusammen Grün." },
-    { category: "allgemeinwissen_easy", question: "Wie viele Kontinente kann man mit bloßem Auge auf einer Weltkarte grob zählen?", answers: ["5", "7", "9"], correct: 1, explanation: "💡 Klassisch werden 7 Kontinente unterschieden." },
-    { category: "allgemeinwissen_easy", question: "Welches Tier gilt als das schnellste Landtier der Welt?", answers: ["Löwe", "Gepard", "Pferd"], correct: 1, explanation: "💡 Der Gepard kann kurzzeitig über 100 km/h erreichen." },
-    { category: "allgemeinwissen_easy", question: "Wie viele Minuten hat eine Stunde?", answers: ["30", "60", "100"], correct: 1, explanation: "💡 Eine Stunde hat 60 Minuten." },
-    { category: "allgemeinwissen_easy", question: "Welches ist der größte Ozean der Welt?", answers: ["Atlantik", "Pazifik", "Indischer Ozean"], correct: 1, explanation: "💡 Der Pazifische Ozean ist der größte und tiefste Ozean der Erde." },
-    { category: "allgemeinwissen_easy", question: "Wie viele Beine hat eine Spinne?", answers: ["6", "8", "10"], correct: 1, explanation: "💡 Spinnen haben 8 Beine – das unterscheidet sie von Insekten mit 6 Beinen." },
-    { category: "allgemeinwissen_easy", question: "In welchem Land steht der Eiffelturm?", answers: ["Italien", "Frankreich", "Spanien"], correct: 1, explanation: "💡 Der Eiffelturm steht in Paris, Frankreich." },
-    { category: "allgemeinwissen_easy", question: "Welcher Planet wird auch 'der rote Planet' genannt?", answers: ["Venus", "Mars", "Jupiter"], correct: 1, explanation: "💡 Mars wirkt durch das eisenhaltige Gestein rötlich – daher der Spitzname." },
-    { category: "allgemeinwissen_easy", question: "Wie viele Farben hat ein klassischer Regenbogen?", answers: ["5", "7", "9"], correct: 1, explanation: "💡 Ein klassischer Regenbogen zeigt 7 Farben: Rot, Orange, Gelb, Grün, Blau, Indigo, Violett." },
-    { category: "allgemeinwissen_easy", question: "Wie viele Monate hat ein Jahr?", answers: ["10", "12", "14"], correct: 1, explanation: "💡 Ein Jahr hat 12 Monate." },
-    { category: "allgemeinwissen_easy", question: "Welches Tier wird auch 'König der Tiere' genannt?", answers: ["Tiger", "Löwe", "Bär"], correct: 1, explanation: "💡 Der Löwe gilt traditionell als 'König der Tiere'." },
-    { category: "allgemeinwissen_easy", question: "Was ist die Hauptstadt von Deutschland?", answers: ["München", "Berlin", "Hamburg"], correct: 1, explanation: "💡 Berlin ist seit 1990 wieder Hauptstadt Deutschlands." },
-    { category: "allgemeinwissen_easy", question: "Wie viele Sekunden hat eine Minute?", answers: ["30", "60", "100"], correct: 1, explanation: "💡 Eine Minute hat 60 Sekunden." },
-    { category: "allgemeinwissen_easy", question: "Welche Farbe entsteht, wenn man Rot und Weiß mischt?", answers: ["Rosa", "Braun", "Grau"], correct: 0, explanation: "💡 Rot und Weiß ergeben Rosa." },
-    { category: "allgemeinwissen_easy", question: "Woraus besteht Wasser chemisch?", answers: ["Wasserstoff und Sauerstoff", "Nur Sauerstoff", "Stickstoff und Kohlenstoff"], correct: 0, explanation: "💡 Wasser (H₂O) besteht aus zwei Wasserstoffatomen und einem Sauerstoffatom." },
-    { category: "allgemeinwissen_easy", question: "Welches ist das größte Tier der Welt?", answers: ["Elefant", "Blauwal", "Giraffe"], correct: 1, explanation: "💡 Der Blauwal ist mit bis zu 30 Metern das größte Tier der Erde." },
-    { category: "allgemeinwissen_easy", question: "In welcher Himmelsrichtung geht die Sonne auf?", answers: ["Osten", "Westen", "Norden"], correct: 0, explanation: "💡 Die Sonne geht im Osten auf und im Westen unter." }
+    // --- Klasse 7 - Deutsch ---
+    { category: "k7_deutsch", question: "Wie nennt man die Übertreibung als Stilmittel?", answers: ["Hyperbel", "Metapher", "Ironie"], correct: 0, explanation: "Beispiel: 'Ich habe es dir tausendmal gesagt.'" },
+    { category: "k7_deutsch", question: "Was ist der Konjunktiv?", answers: ["Die Möglichkeits- und Wunschform", "Eine Zeitform", "Ein Satzzeichen"], correct: 0, explanation: "Der Konjunktiv drückt Wünsche, Möglichkeiten oder indirekte Rede aus." },
+    { category: "k7_deutsch", question: "Wann kann ein Komma vor 'und' stehen?", answers: ["Zwischen zwei vollständigen Hauptsätzen", "Nie", "Immer"], correct: 0, explanation: "Dort ist das Komma erlaubt, aber nicht verpflichtend." },
+    { category: "k7_deutsch", question: "Wie nennt man die Wiederholung des Anfangslauts?", answers: ["Alliteration", "Personifikation", "Vergleich"], correct: 0, explanation: "Beispiel: 'Milch macht müde Männer munter'." },
+    { category: "k7_deutsch", question: "Was ist typisch für eine Charakterisierung?", answers: ["Aussehen, Verhalten und Denken einer Figur beschreiben", "Die Handlung nacherzählen", "Die eigene Meinung schreiben"], correct: 0, explanation: "Eine Charakterisierung beschreibt äußere und innere Merkmale einer Figur." },
+
+    // --- Klasse 7 - Mathematik ---
+    { category: "k7_mathe", question: "Löse: 3x + 5 = 20", answers: ["x = 5", "x = 8", "x = 3"], correct: 0, explanation: "3x = 15, also x = 5." },
+    { category: "k7_mathe", question: "Wie viel Zinsen bringen 1000 € bei 4 % pro Jahr?", answers: ["4 €", "40 €", "400 €"], correct: 1, explanation: "1000 × 0,04 = 40 €." },
+    { category: "k7_mathe", question: "3 kg Äpfel kosten 6 €. Was kosten 5 kg?", answers: ["8 €", "10 €", "12 €"], correct: 1, explanation: "1 kg kostet 2 €, also 5 kg = 10 €." },
+    { category: "k7_mathe", question: "Was ist 2 hoch 5?", answers: ["10", "16", "32"], correct: 2, explanation: "2×2×2×2×2 = 32." },
+    { category: "k7_mathe", question: "Was ist der Kehrwert von 3/5?", answers: ["5/3", "3/5", "-3/5"], correct: 0, explanation: "Beim Kehrwert werden Zähler und Nenner vertauscht." },
+
+    // --- Klasse 7 - Englisch ---
+    { category: "k7_englisch", question: "'If it rains tomorrow, we __ at home.'", answers: ["stay", "will stay", "stayed"], correct: 1, explanation: "If-Satz Typ 1: If + Present, Hauptsatz mit 'will'." },
+    { category: "k7_englisch", question: "'I have __ finished my homework.'", answers: ["already", "yet", "since"], correct: 0, explanation: "'already' bedeutet 'schon' im Present Perfect." },
+    { category: "k7_englisch", question: "'This is the book __ I told you about.'", answers: ["who", "which", "whose"], correct: 1, explanation: "Für Sachen benutzt man 'which' oder 'that'." },
+    { category: "k7_englisch", question: "'They __ been living here for ten years.'", answers: ["has", "have", "had"], correct: 1, explanation: "Bei 'they' benutzt man 'have'." },
+    { category: "k7_englisch", question: "Was bedeutet 'to borrow'?", answers: ["sich etwas leihen", "etwas verleihen", "etwas kaufen"], correct: 0, explanation: "'borrow' = sich leihen, 'lend' = verleihen." },
+
+    // --- Klasse 7 - Biologie ---
+    { category: "k7_biologie", question: "Was ist das 'Kraftwerk der Zelle'?", answers: ["Mitochondrium", "Zellkern", "Ribosom"], correct: 0, explanation: "Mitochondrien erzeugen Energie in Form von ATP." },
+    { category: "k7_biologie", question: "Was unterscheidet Pflanzenzellen von Tierzellen?", answers: ["Zellwand und Chloroplasten", "Mehr Zellkerne", "Gar nichts"], correct: 0, explanation: "Pflanzenzellen haben zusätzlich eine feste Zellwand und Chloroplasten." },
+    { category: "k7_biologie", question: "Welches Organ produziert Insulin?", answers: ["Bauchspeicheldrüse", "Leber", "Niere"], correct: 0, explanation: "Die Bauchspeicheldrüse regelt damit den Blutzucker." },
+    { category: "k7_biologie", question: "Wie viele Kammern hat das menschliche Herz?", answers: ["2", "4", "6"], correct: 1, explanation: "Zwei Vorhöfe und zwei Herzkammern." },
+    { category: "k7_biologie", question: "Welche Blutzellen bekämpfen Krankheitserreger?", answers: ["Weiße Blutkörperchen", "Rote Blutkörperchen", "Blutplättchen"], correct: 0, explanation: "Weiße Blutkörperchen gehören zum Immunsystem." },
+
+    // --- Klasse 7 - Chemie ---
+    { category: "k7_chemie", question: "Woraus besteht der Atomkern?", answers: ["Protonen und Neutronen", "Nur Elektronen", "Nur Protonen"], correct: 0, explanation: "Elektronen umkreisen den Kern in der Hülle." },
+    { category: "k7_chemie", question: "Welcher pH-Bereich gilt als sauer?", answers: ["0-6", "genau 7", "8-14"], correct: 0, explanation: "Unter 7 sauer, 7 neutral, über 7 basisch." },
+    { category: "k7_chemie", question: "Welches Element hat das Symbol 'Fe'?", answers: ["Eisen", "Fluor", "Phosphor"], correct: 0, explanation: "'Fe' kommt vom lateinischen 'ferrum'." },
+    { category: "k7_chemie", question: "Was braucht man für eine Verbrennung?", answers: ["Brennstoff, Sauerstoff und Zündtemperatur", "Nur Feuer", "Nur Sauerstoff"], correct: 0, explanation: "Das ist das sogenannte Verbrennungsdreieck." },
+    { category: "k7_chemie", question: "Was ist der Unterschied zwischen Gemisch und Verbindung?", answers: ["Gemische kann man physikalisch trennen", "Es gibt keinen", "Verbindungen sind immer flüssig"], correct: 0, explanation: "Gemische trennt man z.B. durch Filtern, Verbindungen nur chemisch." },
+
+    // --- Klasse 7 - Physik ---
+    { category: "k7_physik", question: "Welche Einheit hat die Kraft?", answers: ["Newton", "Joule", "Watt"], correct: 0, explanation: "Kraft wird in Newton (N) gemessen." },
+    { category: "k7_physik", question: "Was besagt das Trägheitsgesetz?", answers: ["Ohne Kraft bleibt der Bewegungszustand gleich", "Kraft = Masse × Beschleunigung", "Actio = Reactio"], correct: 0, explanation: "Das ist das erste Newtonsche Gesetz." },
+    { category: "k7_physik", question: "Welche Einheit hat die elektrische Spannung?", answers: ["Volt", "Ampere", "Watt"], correct: 0, explanation: "Spannung in Volt, Stromstärke in Ampere." },
+    { category: "k7_physik", question: "Wie nennt man das Brechen von Licht beim Medienwechsel?", answers: ["Refraktion", "Reflexion", "Absorption"], correct: 0, explanation: "Licht wird beim Übergang von Luft in Wasser gebrochen." },
+    { category: "k7_physik", question: "Was misst eine Federwaage?", answers: ["Die Gewichtskraft in Newton", "Die Masse in Gramm", "Die Geschwindigkeit"], correct: 0, explanation: "Sie misst die Kraft, mit der ein Körper zieht." },
+
+    // --- Klasse 7 - Geschichte ---
+    { category: "k7_geschichte", question: "Was war die Reformation?", answers: ["Eine Kirchenerneuerung ab 1517 durch Martin Luther", "Ein Krieg im Altertum", "Eine Erfindung"], correct: 0, explanation: "Aus ihr ging die evangelische Kirche hervor." },
+    { category: "k7_geschichte", question: "Wer entdeckte 1492 Amerika für Europa?", answers: ["Christoph Kolumbus", "Marco Polo", "Vasco da Gama"], correct: 0, explanation: "Kolumbus erreichte 1492 die Karibik." },
+    { category: "k7_geschichte", question: "Was war ein Lehnswesen im Mittelalter?", answers: ["Land gegen Treue und Dienst", "Eine Handelsform", "Eine Schulform"], correct: 0, explanation: "Der Lehnsherr vergab Land, der Lehnsmann leistete dafür Dienste." },
+    { category: "k7_geschichte", question: "Wer erfand um 1450 den Buchdruck mit beweglichen Lettern?", answers: ["Johannes Gutenberg", "Martin Luther", "Leonardo da Vinci"], correct: 0, explanation: "Gutenbergs Erfindung revolutionierte die Verbreitung von Wissen." },
+    { category: "k7_geschichte", question: "Was bedeutet 'Renaissance'?", answers: ["Wiedergeburt (der Antike)", "Neuzeit", "Aufklärung"], correct: 0, explanation: "Die Renaissance knüpfte an antike Vorbilder an." },
+
+    // --- Klasse 7 - Erdkunde ---
+    { category: "k7_erdkunde", question: "Was ist eine Wüste?", answers: ["Ein sehr trockenes Gebiet mit wenig Niederschlag", "Ein Gebiet mit viel Regen", "Ein Waldgebiet"], correct: 0, explanation: "Wüsten erhalten meist unter 250 mm Niederschlag pro Jahr." },
+    { category: "k7_erdkunde", question: "Wodurch entstehen Erdbeben?", answers: ["Durch Bewegung der Erdplatten", "Durch starken Wind", "Durch Regen"], correct: 0, explanation: "Spannungen zwischen tektonischen Platten entladen sich ruckartig." },
+    { category: "k7_erdkunde", question: "Was ist ein Passatwind?", answers: ["Ein beständiger Wind in den Tropen", "Ein Sturm in Europa", "Ein kalter Polarwind"], correct: 0, explanation: "Passate wehen regelmäßig Richtung Äquator." },
+    { category: "k7_erdkunde", question: "Welches Land hat die meisten Einwohner?", answers: ["Indien", "USA", "Russland"], correct: 0, explanation: "Indien hat China als bevölkerungsreichstes Land überholt." },
+    { category: "k7_erdkunde", question: "Was versteht man unter Tourismus?", answers: ["Reisen aus Freizeit- oder Erholungsgründen", "Handel mit Waren", "Landwirtschaft"], correct: 0, explanation: "Tourismus ist ein wichtiger Wirtschaftszweig vieler Regionen." },
+
+    // --- Klasse 7 - Politik & Wirtschaft ---
+    { category: "k7_politik", question: "Was bedeutet Gewaltenteilung?", answers: ["Trennung von Gesetzgebung, Regierung und Gerichten", "Aufteilung des Militärs", "Verteilung von Steuern"], correct: 0, explanation: "Legislative, Exekutive und Judikative kontrollieren sich gegenseitig." },
+    { category: "k7_politik", question: "Wer wählt den Bundeskanzler?", answers: ["Der Bundestag", "Das Volk direkt", "Der Bundespräsident"], correct: 0, explanation: "Das Volk wählt den Bundestag, dieser wählt den Kanzler." },
+    { category: "k7_politik", question: "Was ist das Grundgesetz?", answers: ["Die Verfassung Deutschlands", "Ein einfaches Gesetz", "Ein EU-Vertrag"], correct: 0, explanation: "Es gilt seit 1949 als Verfassung der Bundesrepublik." },
+    { category: "k7_politik", question: "Was beschreibt Angebot und Nachfrage?", answers: ["Wie Preise am Markt entstehen", "Wie der Staat Preise festlegt", "Wie Löhne berechnet werden"], correct: 0, explanation: "Steigt die Nachfrage bei gleichem Angebot, steigen meist die Preise." },
+    { category: "k7_politik", question: "Was ist ein Tarifvertrag?", answers: ["Eine Vereinbarung über Löhne und Arbeitsbedingungen", "Ein Kaufvertrag", "Ein Mietvertrag"], correct: 0, explanation: "Gewerkschaften und Arbeitgeber handeln ihn aus." },
+
+    // --- Klasse 7 - Türkisch (Herkunftssprache) ---
+    { category: "k7_tuerkisch", question: "Was bedeutet 'sorumluluk'?", answers: ["Verantwortung", "Freiheit", "Gerechtigkeit"], correct: 0, explanation: "'sorumluluk' heißt Verantwortung." },
+    { category: "k7_tuerkisch", question: "Was heißt 'Umwelt schützen'?", answers: ["çevreyi korumak", "kitap okumak", "spor yapmak"], correct: 0, explanation: "'çevre' = Umwelt, 'korumak' = schützen." },
+    { category: "k7_tuerkisch", question: "Was bedeutet 'gelecek'?", answers: ["Zukunft", "Vergangenheit", "Gegenwart"], correct: 0, explanation: "'gelecek' heißt Zukunft." },
+    { category: "k7_tuerkisch", question: "Was heißt 'Meinung' auf Türkisch?", answers: ["düşünce", "deneyim", "gelişme"], correct: 0, explanation: "'düşünce' bedeutet Gedanke oder Meinung." },
+    { category: "k7_tuerkisch", question: "Was bedeutet 'eğitim'?", answers: ["Bildung", "Arbeit", "Gesundheit"], correct: 0, explanation: "'eğitim' heißt Bildung oder Erziehung." },
+
+    // --- Klasse 8 - Deutsch ---
+    { category: "k8_deutsch", question: "Was ist das Ziel einer Erörterung?", answers: ["Pro- und Contra-Argumente abwägen", "Nur nacherzählen", "Gedichte reimen"], correct: 0, explanation: "Man wägt Argumente ab und kommt zu einem begründeten Fazit." },
+    { category: "k8_deutsch", question: "Was ist eine Metapher?", answers: ["Ein bildhafter Ausdruck ohne 'wie'", "Ein direkter Vergleich mit 'wie'", "Eine Übertreibung"], correct: 0, explanation: "Beispiel: 'ein Meer aus Menschen'." },
+    { category: "k8_deutsch", question: "Was ist die indirekte Rede?", answers: ["Wiedergabe von Gesagtem, meist im Konjunktiv", "Wörtliches Zitat", "Eine Frage"], correct: 0, explanation: "Beispiel: 'Er sagte, er komme später.'" },
+    { category: "k8_deutsch", question: "Was kennzeichnet einen Sachtext?", answers: ["Er informiert sachlich über ein Thema", "Er erzählt eine erfundene Geschichte", "Er reimt sich"], correct: 0, explanation: "Sachtexte vermitteln Informationen, keine erfundene Handlung." },
+    { category: "k8_deutsch", question: "Was ist ein Nebensatz?", answers: ["Ein Satz, der allein nicht stehen kann", "Der Hauptteil des Satzes", "Ein Satzzeichen"], correct: 0, explanation: "Nebensätze werden durch Konjunktionen eingeleitet und mit Komma abgetrennt." },
+
+    // --- Klasse 8 - Mathematik ---
+    { category: "k8_mathe", question: "Wie lautet die erste binomische Formel?", answers: ["a² + 2ab + b²", "a² + b²", "a² - b²"], correct: 0, explanation: "(a+b)² = a² + 2ab + b²." },
+    { category: "k8_mathe", question: "Wie berechnet man die Fläche eines Kreises?", answers: ["π × r²", "π × r", "2 × π × r"], correct: 0, explanation: "Die Kreisfläche ist π mal Radius zum Quadrat." },
+    { category: "k8_mathe", question: "Was ist der Satz des Pythagoras?", answers: ["a² + b² = c²", "a + b = c", "a × b = c²"], correct: 0, explanation: "Gilt im rechtwinkligen Dreieck, c ist die Hypotenuse." },
+    { category: "k8_mathe", question: "Wie viel Prozent Rabatt sind 10 € bei einem Preis von 40 €?", answers: ["20 %", "25 %", "30 %"], correct: 1, explanation: "10 von 40 sind ein Viertel, also 25 %." },
+    { category: "k8_mathe", question: "Wie berechnet man das Volumen eines Würfels?", answers: ["a³", "a²", "6 × a"], correct: 0, explanation: "Volumen = Kantenlänge hoch drei." },
+
+    // --- Klasse 8 - Englisch ---
+    { category: "k8_englisch", question: "'By next year, I __ my exams.'", answers: ["will finish", "will have finished", "finish"], correct: 1, explanation: "Future Perfect: will have + 3. Form." },
+    { category: "k8_englisch", question: "'The report __ by the committee last week.'", answers: ["was reviewed", "reviewed", "has reviewed"], correct: 0, explanation: "Passiv Vergangenheit: was/were + 3. Form." },
+    { category: "k8_englisch", question: "'He suggested __ to the cinema.'", answers: ["to go", "going", "go"], correct: 1, explanation: "Nach 'suggest' folgt die -ing-Form." },
+    { category: "k8_englisch", question: "'I wish I __ more time.'", answers: ["have", "had", "will have"], correct: 1, explanation: "Nach 'I wish' steht für die Gegenwart das Simple Past." },
+    { category: "k8_englisch", question: "Was bedeutet 'to afford'?", answers: ["sich etwas leisten können", "etwas anbieten", "etwas verlieren"], correct: 0, explanation: "'I can't afford it' = ich kann es mir nicht leisten." },
+
+    // --- Klasse 8 - Biologie ---
+    { category: "k8_biologie", question: "Was ist die Grundeinheit der Vererbung?", answers: ["Das Gen", "Die Zelle", "Das Protein"], correct: 0, explanation: "Gene sind DNA-Abschnitte mit Erbinformation." },
+    { category: "k8_biologie", question: "Wie viele Chromosomen hat eine menschliche Körperzelle?", answers: ["23", "46", "48"], correct: 1, explanation: "46 Chromosomen, also 23 Paare." },
+    { category: "k8_biologie", question: "Was ist Mitose?", answers: ["Zellteilung mit zwei identischen Tochterzellen", "Ein Zellorganell", "Ein Hormon"], correct: 0, explanation: "Die Mitose dient dem Wachstum und der Erneuerung." },
+    { category: "k8_biologie", question: "Was ist ein dominantes Allel?", answers: ["Es setzt sich gegenüber dem rezessiven durch", "Ein fehlerhaftes Gen", "Ein Gen ohne Wirkung"], correct: 0, explanation: "Das rezessive Merkmal zeigt sich nur bei zwei rezessiven Allelen." },
+    { category: "k8_biologie", question: "Welches Organ ist für das Gleichgewicht zuständig?", answers: ["Das Innenohr", "Das Auge", "Die Nase"], correct: 0, explanation: "Im Innenohr sitzt das Gleichgewichtsorgan." },
+
+    // --- Klasse 8 - Chemie ---
+    { category: "k8_chemie", question: "Was entsteht bei einer Neutralisation?", answers: ["Salz und Wasser", "Nur Wasser", "Ein Gas"], correct: 0, explanation: "Säure + Base ergeben Salz und Wasser." },
+    { category: "k8_chemie", question: "Was ist eine Ionenbindung?", answers: ["Elektronen werden übertragen", "Elektronen werden geteilt", "Es bewegen sich keine Elektronen"], correct: 0, explanation: "Beispiel Kochsalz: Natrium gibt ein Elektron an Chlor ab." },
+    { category: "k8_chemie", question: "In welcher Gruppe stehen die Edelgase?", answers: ["Gruppe 18", "Gruppe 1", "Gruppe 17"], correct: 0, explanation: "Edelgase wie Helium und Neon stehen ganz rechts." },
+    { category: "k8_chemie", question: "Was ist ein Katalysator?", answers: ["Er beschleunigt eine Reaktion, ohne verbraucht zu werden", "Ein Endprodukt", "Ein Messgerät"], correct: 0, explanation: "Er senkt die nötige Aktivierungsenergie." },
+    { category: "k8_chemie", question: "Wie nennt man den Übergang von fest direkt zu gasförmig?", answers: ["Sublimation", "Kondensation", "Schmelzen"], correct: 0, explanation: "Beispiel: Trockeneis sublimiert." },
+
+    // --- Klasse 8 - Physik ---
+    { category: "k8_physik", question: "Wie lautet das Ohmsche Gesetz?", answers: ["U = I × R", "U = R / I", "I = U × R"], correct: 0, explanation: "Spannung = Stromstärke × Widerstand." },
+    { category: "k8_physik", question: "Wie berechnet man die elektrische Leistung?", answers: ["P = U × I", "P = U / I", "P = U + I"], correct: 0, explanation: "Leistung = Spannung × Stromstärke." },
+    { category: "k8_physik", question: "Was passiert mit dem Gesamtwiderstand in einer Reihenschaltung?", answers: ["Die Widerstände addieren sich", "Er wird kleiner", "Er bleibt gleich"], correct: 0, explanation: "R gesamt = R1 + R2 + ..." },
+    { category: "k8_physik", question: "Was besagt der Energieerhaltungssatz?", answers: ["Energie wird nur umgewandelt, nie vernichtet", "Energie kann erzeugt werden", "Energie verschwindet mit der Zeit"], correct: 0, explanation: "In einem geschlossenen System bleibt die Energie konstant." },
+    { category: "k8_physik", question: "Welche Einheit hat die Energie?", answers: ["Joule", "Newton", "Volt"], correct: 0, explanation: "Arbeit und Energie werden in Joule gemessen." },
+
+    // --- Klasse 8 - Geschichte ---
+    { category: "k8_geschichte", question: "Wann begann die Französische Revolution?", answers: ["1789", "1815", "1848"], correct: 0, explanation: "1789 begann sie mit dem Sturm auf die Bastille." },
+    { category: "k8_geschichte", question: "Was war die Industrielle Revolution?", answers: ["Der Übergang zur maschinellen Produktion", "Ein Krieg", "Eine Kirchenreform"], correct: 0, explanation: "Sie begann Ende des 18. Jahrhunderts in England." },
+    { category: "k8_geschichte", question: "Wofür stehen die Ideale der Französischen Revolution?", answers: ["Freiheit, Gleichheit, Brüderlichkeit", "Ordnung, Fleiß, Gehorsam", "Glaube, Liebe, Hoffnung"], correct: 0, explanation: "'Liberté, égalité, fraternité'." },
+    { category: "k8_geschichte", question: "Wer war Otto von Bismarck?", answers: ["Der erste Reichskanzler Deutschlands", "Ein Komponist", "Ein Erfinder"], correct: 0, explanation: "Er war maßgeblich an der Reichsgründung 1871 beteiligt." },
+    { category: "k8_geschichte", question: "Was war die Aufklärung?", answers: ["Eine Geistesbewegung, die Vernunft betonte", "Eine Kriegstaktik", "Eine Kunstrichtung"], correct: 0, explanation: "Kant fasste sie als Ausgang aus selbstverschuldeter Unmündigkeit." },
+
+    // --- Klasse 8 - Erdkunde ---
+    { category: "k8_erdkunde", question: "Was versteht man unter dem Treibhauseffekt?", answers: ["Rückhalt von Wärmestrahlung in der Atmosphäre", "Abkühlung der Erde", "Ein Vulkanausbruch"], correct: 0, explanation: "Treibhausgase wie CO2 halten Wärme zurück." },
+    { category: "k8_erdkunde", question: "Was ist Erosion?", answers: ["Abtragung von Boden durch Wasser oder Wind", "Aufbau von Gebirgen", "Ein Erdbeben"], correct: 0, explanation: "Wind und Wasser tragen Material ab." },
+    { category: "k8_erdkunde", question: "Was sind erneuerbare Energien?", answers: ["Energie aus Sonne, Wind, Wasser", "Kohle und Erdöl", "Erdgas"], correct: 0, explanation: "Sie stehen dauerhaft zur Verfügung." },
+    { category: "k8_erdkunde", question: "Was bedeutet Migration?", answers: ["Wanderung von Menschen über Grenzen", "Handel mit Waren", "Klimawandel"], correct: 0, explanation: "Menschen verlassen dauerhaft ihren Wohnort." },
+    { category: "k8_erdkunde", question: "Was ist eine Megastadt?", answers: ["Eine Stadt mit über 10 Millionen Einwohnern", "Eine Hauptstadt", "Eine Industriestadt"], correct: 0, explanation: "Beispiele sind Tokio, Delhi oder Shanghai." },
+
+    // --- Klasse 8 - Politik & Wirtschaft ---
+    { category: "k8_politik", question: "Was ist Inflation?", answers: ["Allgemeiner Preisanstieg, Geld verliert an Wert", "Sinkende Preise", "Steigende Löhne"], correct: 0, explanation: "Für dasselbe Geld bekommt man weniger." },
+    { category: "k8_politik", question: "Was ist der Unterschied zwischen Monarchie und Republik?", answers: ["In der Republik wird das Staatsoberhaupt gewählt", "Kein Unterschied", "Republiken haben keine Regierung"], correct: 0, explanation: "In Monarchien wird die Macht meist vererbt." },
+    { category: "k8_politik", question: "Was ist eine Koalition?", answers: ["Ein Regierungsbündnis mehrerer Parteien", "Ein Gesetz", "Ein Gericht"], correct: 0, explanation: "Nötig, wenn keine Partei allein die Mehrheit hat." },
+    { category: "k8_politik", question: "Was macht eine Gewerkschaft?", answers: ["Sie vertritt die Interessen der Arbeitnehmer", "Sie vertritt Arbeitgeber", "Sie erlässt Gesetze"], correct: 0, explanation: "Gewerkschaften verhandeln z.B. über Löhne." },
+    { category: "k8_politik", question: "Was ist das Verhältniswahlrecht?", answers: ["Sitze werden nach Stimmenanteilen verteilt", "Nur der Sieger bekommt den Sitz", "Nur Reiche dürfen wählen"], correct: 0, explanation: "In Deutschland entspricht der Sitzanteil etwa dem Stimmenanteil." },
+
+    // --- Klasse 8 - Informatik & Medien ---
+    { category: "k8_informatik", question: "Was ist ein Algorithmus?", answers: ["Eine eindeutige Schritt-für-Schritt-Anleitung", "Ein Computervirus", "Eine Programmiersprache"], correct: 0, explanation: "Ein Algorithmus löst ein Problem in endlich vielen Schritten." },
+    { category: "k8_informatik", question: "Wie viele Ziffern kennt das Binärsystem?", answers: ["2 (0 und 1)", "8", "10"], correct: 0, explanation: "Computer rechnen mit 0 und 1." },
+    { category: "k8_informatik", question: "Was macht eine Schleife in einem Programm?", answers: ["Sie wiederholt einen Codeblock", "Sie beendet das Programm", "Sie löscht Daten"], correct: 0, explanation: "Solange die Bedingung gilt, wird wiederholt." },
+    { category: "k8_informatik", question: "Was macht ein gutes Passwort aus?", answers: ["Lang und gemischt aus Zeichenarten", "Kurz und der eigene Name", "Immer '123456'"], correct: 0, explanation: "Länge und Mischung erschweren das Erraten." },
+    { category: "k8_informatik", question: "Was ist 'Phishing'?", answers: ["Betrug, um an Zugangsdaten zu kommen", "Ein Computerspiel", "Eine Datensicherung"], correct: 0, explanation: "Betrüger täuschen echte Nachrichten vor." },
+
+    // --- Klasse 8 - Türkisch (Herkunftssprache) ---
+    { category: "k8_tuerkisch", question: "Was bedeutet 'ekonomi'?", answers: ["Wirtschaft", "Politik", "Geschichte"], correct: 0, explanation: "'ekonomi' heißt Wirtschaft." },
+    { category: "k8_tuerkisch", question: "Was heißt 'Lösung' auf Türkisch?", answers: ["çözüm", "sorun", "başarı"], correct: 0, explanation: "'çözüm' = Lösung, 'sorun' = Problem." },
+    { category: "k8_tuerkisch", question: "Was bedeutet 'başarı'?", answers: ["Erfolg", "Fehler", "Arbeit"], correct: 0, explanation: "'başarı' heißt Erfolg." },
+    { category: "k8_tuerkisch", question: "Was heißt 'Technologie'?", answers: ["teknoloji", "kanun", "seçim"], correct: 0, explanation: "'teknoloji' bedeutet Technologie." },
+    { category: "k8_tuerkisch", question: "Was bedeutet 'deneyim'?", answers: ["Erfahrung", "Beruf", "Bildung"], correct: 0, explanation: "'deneyim' heißt Erfahrung." },
+
+    // --- Klasse 9 - Deutsch ---
+    { category: "k9_deutsch", question: "Was ist eine These?", answers: ["Eine Behauptung, die begründet wird", "Ein Beispiel", "Die Zusammenfassung"], correct: 0, explanation: "Die These ist der Kern einer Argumentation." },
+    { category: "k9_deutsch", question: "Was ist ein Symbol in der Literatur?", answers: ["Ein Zeichen mit tieferer Bedeutung", "Ein Satzzeichen", "Eine Überschrift"], correct: 0, explanation: "Beispiel: die Taube als Symbol für Frieden." },
+    { category: "k9_deutsch", question: "Was ist eine Ballade?", answers: ["Ein erzählendes Gedicht", "Ein Sachtext", "Ein Drama"], correct: 0, explanation: "Balladen verbinden Merkmale von Epik, Lyrik und Dramatik." },
+    { category: "k9_deutsch", question: "Was ist eine Personifikation?", answers: ["Etwas Unbelebtes handelt wie ein Mensch", "Eine Übertreibung", "Ein Vergleich"], correct: 0, explanation: "Beispiel: 'Die Sonne lacht'." },
+    { category: "k9_deutsch", question: "Was gehört in eine Bewerbung?", answers: ["Anschreiben und Lebenslauf", "Nur ein Foto", "Nur ein Zeugnis"], correct: 0, explanation: "Anschreiben, Lebenslauf und Zeugnisse gehören dazu." },
+
+    // --- Klasse 9 - Mathematik ---
+    { category: "k9_mathe", question: "Was ist die Lösung von x² = 49?", answers: ["x = 7 oder x = -7", "nur x = 7", "x = 24,5"], correct: 0, explanation: "Beide Zahlen ergeben quadriert 49." },
+    { category: "k9_mathe", question: "Wie berechnet man das Volumen eines Zylinders?", answers: ["π × r² × h", "π × r × h", "2 × π × r"], correct: 0, explanation: "Grundfläche mal Höhe." },
+    { category: "k9_mathe", question: "Was ist eine lineare Funktion?", answers: ["y = m·x + b, Graph ist eine Gerade", "Eine Parabel", "Ein Kreis"], correct: 0, explanation: "m ist die Steigung, b der y-Achsenabschnitt." },
+    { category: "k9_mathe", question: "Was ist der Sinus in einem rechtwinkligen Dreieck?", answers: ["Gegenkathete geteilt durch Hypotenuse", "Ankathete durch Hypotenuse", "Gegenkathete durch Ankathete"], correct: 0, explanation: "sin = Gegenkathete / Hypotenuse." },
+    { category: "k9_mathe", question: "Wie hoch ist die Wahrscheinlichkeit für zweimal Kopf beim Münzwurf?", answers: ["1/2", "1/4", "1/8"], correct: 1, explanation: "1/2 × 1/2 = 1/4." },
+
+    // --- Klasse 9 - Englisch ---
+    { category: "k9_englisch", question: "'I would have helped you if I __ about it.'", answers: ["knew", "had known", "know"], correct: 1, explanation: "If-Satz Typ 3: If + Past Perfect." },
+    { category: "k9_englisch", question: "'Not only __ late, but he also forgot his homework.'", answers: ["he was", "was he", "he is"], correct: 1, explanation: "Nach 'Not only' am Satzanfang folgt Inversion." },
+    { category: "k9_englisch", question: "'I look forward to __ from you.'", answers: ["hear", "hearing", "heard"], correct: 1, explanation: "Nach 'look forward to' folgt die -ing-Form." },
+    { category: "k9_englisch", question: "'It's high time we __ a decision.'", answers: ["make", "made", "will make"], correct: 1, explanation: "Nach 'it's high time' steht das Simple Past." },
+    { category: "k9_englisch", question: "Was bedeutet 'unemployment'?", answers: ["Arbeitslosigkeit", "Anstellung", "Bewerbung"], correct: 0, explanation: "'unemployment' heißt Arbeitslosigkeit." },
+
+    // --- Klasse 9 - Biologie ---
+    { category: "k9_biologie", question: "Wer entwickelte die Theorie der natürlichen Selektion?", answers: ["Charles Darwin", "Gregor Mendel", "Louis Pasteur"], correct: 0, explanation: "Darwin veröffentlichte 1859 'Die Entstehung der Arten'." },
+    { category: "k9_biologie", question: "Was passiert bei einer Mutation?", answers: ["Die DNA verändert sich dauerhaft", "Die Zelle stirbt sofort", "Gar nichts"], correct: 0, explanation: "Mutationen sind die Grundlage genetischer Vielfalt." },
+    { category: "k9_biologie", question: "Was ist ein Ökosystem?", answers: ["Lebewesen und ihre Umwelt im Zusammenspiel", "Nur die Tiere eines Gebiets", "Ein künstlicher Garten"], correct: 0, explanation: "Belebte und unbelebte Faktoren wirken zusammen." },
+    { category: "k9_biologie", question: "Was bewirkt eine Impfung?", answers: ["Das Immunsystem lernt den Erreger kennen", "Sie tötet alle Bakterien", "Sie ersetzt Blut"], correct: 0, explanation: "Der Körper bildet Antikörper und Gedächtniszellen." },
+    { category: "k9_biologie", question: "Was ist Meiose?", answers: ["Reifeteilung mit halbem Chromosomensatz", "Normale Zellteilung", "Ein Hormon"], correct: 0, explanation: "Bei der Meiose entstehen Keimzellen." },
+
+    // --- Klasse 9 - Chemie ---
+    { category: "k9_chemie", question: "Was ist eine Oxidation im engeren Sinn?", answers: ["Reaktion mit Sauerstoff", "Aufnahme von Wasser", "Abgabe von Wärme"], correct: 0, explanation: "Im weiteren Sinn ist es die Abgabe von Elektronen." },
+    { category: "k9_chemie", question: "Welche Säure steckt im Essig?", answers: ["Essigsäure", "Salzsäure", "Schwefelsäure"], correct: 0, explanation: "Essigsäure heißt chemisch Ethansäure." },
+    { category: "k9_chemie", question: "Was sind Kohlenwasserstoffe?", answers: ["Verbindungen aus Kohlenstoff und Wasserstoff", "Salze", "Metalle"], correct: 0, explanation: "Beispiele sind Methan, Ethan und Propan." },
+    { category: "k9_chemie", question: "Was ist ein Redoxvorgang?", answers: ["Elektronenübertragung: Oxidation und Reduktion", "Nur eine Verbrennung", "Eine Filtration"], correct: 0, explanation: "Ein Stoff gibt Elektronen ab, ein anderer nimmt sie auf." },
+    { category: "k9_chemie", question: "Was ist eine Legierung?", answers: ["Ein Gemisch aus Metallen", "Eine Säure", "Ein Gas"], correct: 0, explanation: "Beispiel: Messing aus Kupfer und Zink." },
+
+    // --- Klasse 9 - Physik ---
+    { category: "k9_physik", question: "Wie lautet das zweite Newtonsche Gesetz?", answers: ["F = m × a", "Actio = Reactio", "E = m × c²"], correct: 0, explanation: "Kraft ist Masse mal Beschleunigung." },
+    { category: "k9_physik", question: "Was ist die Einheit der Frequenz?", answers: ["Hertz", "Watt", "Newton"], correct: 0, explanation: "1 Hertz bedeutet eine Schwingung pro Sekunde." },
+    { category: "k9_physik", question: "Wie funktioniert ein Generator?", answers: ["Bewegung erzeugt elektrische Spannung", "Strom erzeugt Bewegung", "Er speichert Strom"], correct: 0, explanation: "Er nutzt elektromagnetische Induktion." },
+    { category: "k9_physik", question: "Was ist Radioaktivität?", answers: ["Zerfall instabiler Atomkerne unter Strahlung", "Eine Lichtart", "Ein Magnetfeld"], correct: 0, explanation: "Es gibt Alpha-, Beta- und Gammastrahlung." },
+    { category: "k9_physik", question: "Was besagt das Hebelgesetz?", answers: ["Kraft × Kraftarm = Last × Lastarm", "Kraft = Masse × Weg", "Energie bleibt erhalten"], correct: 0, explanation: "Damit lassen sich Hebel berechnen." },
+
+    // --- Klasse 9 - Geschichte ---
+    { category: "k9_geschichte", question: "Wann endete der Zweite Weltkrieg?", answers: ["1945", "1939", "1950"], correct: 0, explanation: "1945 kapitulierten Deutschland und Japan." },
+    { category: "k9_geschichte", question: "Was war die Weimarer Republik?", answers: ["Deutschlands erste Demokratie 1919-1933", "Ein Königreich", "Die heutige Bundesrepublik"], correct: 0, explanation: "Sie entstand nach dem Ersten Weltkrieg." },
+    { category: "k9_geschichte", question: "Wann begann der Erste Weltkrieg?", answers: ["1914", "1918", "1900"], correct: 0, explanation: "Er dauerte von 1914 bis 1918." },
+    { category: "k9_geschichte", question: "Was war der Holocaust?", answers: ["Der Völkermord an den europäischen Juden", "Eine Schlacht", "Ein Friedensvertrag"], correct: 0, explanation: "Millionen Menschen wurden systematisch ermordet." },
+    { category: "k9_geschichte", question: "Was war der Kalte Krieg?", answers: ["Der Ost-West-Konflikt nach 1945", "Ein Krieg im Winter", "Ein Bürgerkrieg"], correct: 0, explanation: "Systemkonflikt zwischen USA und Sowjetunion ohne direkten Krieg." },
+
+    // --- Klasse 9 - Erdkunde ---
+    { category: "k9_erdkunde", question: "Was bedeutet Globalisierung?", answers: ["Weltweite Verflechtung von Wirtschaft und Kultur", "Rückzug ins eigene Land", "Nur Tourismus"], correct: 0, explanation: "Waren, Kapital und Informationen bewegen sich weltweit." },
+    { category: "k9_erdkunde", question: "Was ist Nachhaltigkeit?", answers: ["Heute so wirtschaften, dass künftige Generationen leben können", "Möglichst schnell wachsen", "Nur sparen"], correct: 0, explanation: "Ökologie, Ökonomie und Soziales im Gleichgewicht." },
+    { category: "k9_erdkunde", question: "Was ist ein Entwicklungsland?", answers: ["Land mit geringerem wirtschaftlichem Entwicklungsstand", "Ein Land ohne Regierung", "Ein sehr kleines Land"], correct: 0, explanation: "Kennzeichen sind z.B. niedriges Pro-Kopf-Einkommen." },
+    { category: "k9_erdkunde", question: "Was ist Desertifikation?", answers: ["Ausbreitung von Wüsten", "Bildung von Wäldern", "Anstieg des Meeresspiegels"], correct: 0, explanation: "Oft durch Übernutzung und Klimawandel verursacht." },
+    { category: "k9_erdkunde", question: "Was sind fossile Energieträger?", answers: ["Kohle, Erdöl, Erdgas", "Sonne und Wind", "Wasserkraft"], correct: 0, explanation: "Sie sind endlich und setzen CO2 frei." },
+
+    // --- Klasse 9 - Politik & Wirtschaft ---
+    { category: "k9_politik", question: "Was ist die soziale Marktwirtschaft?", answers: ["Freie Marktwirtschaft mit sozialem Ausgleich", "Reine Planwirtschaft", "Wirtschaft ohne Regeln"], correct: 0, explanation: "Der Staat sorgt für sozialen Ausgleich und Wettbewerb." },
+    { category: "k9_politik", question: "Was ist ein Sozialversicherungssystem?", answers: ["Absicherung bei Krankheit, Alter, Arbeitslosigkeit", "Eine Bank", "Ein Verein"], correct: 0, explanation: "In Deutschland gibt es fünf Säulen der Sozialversicherung." },
+    { category: "k9_politik", question: "Was ist die EU?", answers: ["Ein Staatenverbund europäischer Länder", "Ein einzelner Staat", "Eine Firma"], correct: 0, explanation: "Die Europäische Union hat gemeinsame Institutionen und Regeln." },
+    { category: "k9_politik", question: "Was sind Steuern?", answers: ["Abgaben an den Staat ohne direkte Gegenleistung", "Freiwillige Spenden", "Bankgebühren"], correct: 0, explanation: "Sie finanzieren staatliche Aufgaben." },
+    { category: "k9_politik", question: "Was ist Meinungsfreiheit?", answers: ["Das Recht, die eigene Meinung zu äußern", "Das Recht, alles zu behaupten ohne Grenzen", "Ein Verbot von Kritik"], correct: 0, explanation: "Sie steht in Artikel 5 des Grundgesetzes, hat aber Schranken." },
+
+    // --- Klasse 9 - Informatik & Medien ---
+    { category: "k9_informatik", question: "Wofür steht 'https' in einer Webadresse?", answers: ["Die Verbindung ist verschlüsselt", "Die Seite ist schnell", "Die Seite ist kostenlos"], correct: 0, explanation: "Das 's' steht für 'secure'." },
+    { category: "k9_informatik", question: "Was ist eine Variable?", answers: ["Ein Speicherplatz für veränderbare Werte", "Ein fester Text", "Ein Programmfehler"], correct: 0, explanation: "Der Inhalt kann sich während des Programms ändern." },
+    { category: "k9_informatik", question: "Wofür steht DSGVO?", answers: ["Datenschutz-Grundverordnung", "Digitale Software-Gruppenverordnung", "Deutsche Serverordnung"], correct: 0, explanation: "Sie regelt EU-weit den Umgang mit personenbezogenen Daten." },
+    { category: "k9_informatik", question: "Was ist ein Backup?", answers: ["Eine Sicherheitskopie von Daten", "Ein gelöschter Ordner", "Ein Virus"], correct: 0, explanation: "Falls die Originaldaten verloren gehen." },
+    { category: "k9_informatik", question: "Welche Dezimalzahl ist binär 1010?", answers: ["8", "10", "12"], correct: 1, explanation: "8 + 0 + 2 + 0 = 10." },
+
+    // --- Klasse 9 - Türkisch (Herkunftssprache) ---
+    { category: "k9_tuerkisch", question: "Was bedeutet 'özgürlük'?", answers: ["Freiheit", "Gerechtigkeit", "Verantwortung"], correct: 0, explanation: "'özgürlük' heißt Freiheit." },
+    { category: "k9_tuerkisch", question: "Was heißt 'Gesetz' auf Türkisch?", answers: ["kanun", "seçim", "adalet"], correct: 0, explanation: "'kanun' bedeutet Gesetz." },
+    { category: "k9_tuerkisch", question: "Was bedeutet 'adalet'?", answers: ["Gerechtigkeit", "Freiheit", "Wahl"], correct: 0, explanation: "'adalet' heißt Gerechtigkeit." },
+    { category: "k9_tuerkisch", question: "Was heißt 'Wahl' auf Türkisch?", answers: ["seçim", "anayasa", "eğitim"], correct: 0, explanation: "'seçim' bedeutet Wahl." },
+    { category: "k9_tuerkisch", question: "Was bedeutet 'anayasa'?", answers: ["Verfassung", "Regierung", "Partei"], correct: 0, explanation: "'anayasa' heißt Verfassung." },
+
+    // --- Klasse 10 - Deutsch ---
+    { category: "k10_deutsch", question: "Was ist ein Drama in der Literatur?", answers: ["Ein Text für die Bühne mit Dialogen", "Ein Gedicht", "Ein Sachtext"], correct: 0, explanation: "Dramen bestehen aus Akten und Szenen." },
+    { category: "k10_deutsch", question: "Was ist der Unterschied zwischen Epik, Lyrik und Dramatik?", answers: ["Erzählende, gedichtartige und dramatische Texte", "Alte, neue und moderne Texte", "Kurze, mittlere und lange Texte"], correct: 0, explanation: "Das sind die drei literarischen Gattungen." },
+    { category: "k10_deutsch", question: "Was ist Sprachkritik?", answers: ["Das bewusste Hinterfragen von Sprachgebrauch", "Rechtschreibkorrektur", "Lautes Vorlesen"], correct: 0, explanation: "Zum Beispiel Analyse von Werbe- oder Politikersprache." },
+    { category: "k10_deutsch", question: "Was ist eine Textanalyse?", answers: ["Untersuchung von Inhalt, Aufbau und Sprache", "Nacherzählung", "Eigene Meinung"], correct: 0, explanation: "Man untersucht, WIE ein Text wirkt und warum." },
+    { category: "k10_deutsch", question: "Was ist ein Exposé?", answers: ["Eine kurze Vorstellung eines Vorhabens", "Ein Schlusswort", "Eine Fußnote"], correct: 0, explanation: "Es fasst Thema, Ziel und Vorgehen zusammen." },
+
+    // --- Klasse 10 - Mathematik ---
+    { category: "k10_mathe", question: "Wie lautet die Mitternachtsformel für ax² + bx + c = 0?", answers: ["x = (-b ± √(b²-4ac)) / 2a", "x = -b / 2a", "x = b² - 4ac"], correct: 0, explanation: "Damit löst man quadratische Gleichungen." },
+    { category: "k10_mathe", question: "Was ist eine Parabel?", answers: ["Der Graph einer quadratischen Funktion", "Eine Gerade", "Ein Kreis"], correct: 0, explanation: "y = x² ergibt eine nach oben geöffnete Parabel." },
+    { category: "k10_mathe", question: "Was ist der Kosinussatz nützlich für?", answers: ["Dreiecke ohne rechten Winkel berechnen", "Nur rechtwinklige Dreiecke", "Kreise"], correct: 0, explanation: "c² = a² + b² - 2ab·cos(γ)." },
+    { category: "k10_mathe", question: "Was ist exponentielles Wachstum?", answers: ["Wachstum mit gleichbleibendem Faktor pro Schritt", "Gleichmäßige Zunahme", "Abnahme"], correct: 0, explanation: "Beispiel: Verdopplung in jedem Zeitschritt." },
+    { category: "k10_mathe", question: "Wie berechnet man das Volumen einer Kugel?", answers: ["4/3 × π × r³", "π × r²", "2 × π × r"], correct: 0, explanation: "V = 4/3 π r³." },
+
+    // --- Klasse 10 - Englisch ---
+    { category: "k10_englisch", question: "'Hardly __ arrived when the phone rang.'", answers: ["I had", "had I", "I have"], correct: 1, explanation: "Nach 'Hardly' am Satzanfang folgt Inversion." },
+    { category: "k10_englisch", question: "Was ist ein 'gerund'?", answers: ["Die -ing-Form als Substantiv", "Eine Vergangenheitsform", "Ein Adjektiv"], correct: 0, explanation: "Beispiel: 'Swimming is fun.'" },
+    { category: "k10_englisch", question: "'The book, __ was published in 2020, is great.'", answers: ["which", "who", "whose"], correct: 0, explanation: "Nicht-notwendiger Relativsatz mit Komma und 'which'." },
+    { category: "k10_englisch", question: "Was bedeutet 'to sustain'?", answers: ["aufrechterhalten", "zerstören", "vergessen"], correct: 0, explanation: "'sustainable' heißt nachhaltig." },
+    { category: "k10_englisch", question: "'If I were you, I __ apply for the job.'", answers: ["will", "would", "would have"], correct: 1, explanation: "If-Satz Typ 2: If + Past, Hauptsatz mit 'would'." },
+
+    // --- Klasse 10 - Biologie ---
+    { category: "k10_biologie", question: "Was ist die DNA?", answers: ["Träger der Erbinformation", "Ein Protein", "Ein Hormon"], correct: 0, explanation: "Sie hat die Form einer Doppelhelix." },
+    { category: "k10_biologie", question: "Was sind Hormone?", answers: ["Botenstoffe, die Vorgänge im Körper steuern", "Blutzellen", "Verdauungsenzyme"], correct: 0, explanation: "Beispiel: Insulin regelt den Blutzucker." },
+    { category: "k10_biologie", question: "Was ist die Aufgabe der Nieren?", answers: ["Blut filtern und Harn bilden", "Blut pumpen", "Sauerstoff aufnehmen"], correct: 0, explanation: "Sie regulieren auch den Wasserhaushalt." },
+    { category: "k10_biologie", question: "Was versteht man unter Biodiversität?", answers: ["Die Vielfalt des Lebens", "Die Anzahl der Menschen", "Die Größe eines Waldes"], correct: 0, explanation: "Vielfalt an Arten, Genen und Ökosystemen." },
+    { category: "k10_biologie", question: "Was ist ein Antibiotikum?", answers: ["Ein Mittel gegen Bakterien", "Ein Mittel gegen Viren", "Ein Schmerzmittel"], correct: 0, explanation: "Gegen Viren wirken Antibiotika nicht." },
+
+    // --- Klasse 10 - Chemie ---
+    { category: "k10_chemie", question: "Was ist eine funktionelle Gruppe?", answers: ["Atomgruppe, die Eigenschaften bestimmt", "Eine Atomsorte", "Ein Katalysator"], correct: 0, explanation: "Beispiel: die OH-Gruppe bei Alkoholen." },
+    { category: "k10_chemie", question: "Was sind Alkane?", answers: ["Gesättigte Kohlenwasserstoffe", "Säuren", "Salze"], correct: 0, explanation: "Methan, Ethan, Propan, Butan." },
+    { category: "k10_chemie", question: "Was ist ein Ester?", answers: ["Reaktionsprodukt aus Säure und Alkohol", "Ein Metall", "Ein Edelgas"], correct: 0, explanation: "Ester sind oft für Fruchtaromen verantwortlich." },
+    { category: "k10_chemie", question: "Was gibt die Molmasse an?", answers: ["Masse eines Mols eines Stoffes in g/mol", "Die Dichte", "Das Volumen"], correct: 0, explanation: "Wasser hat etwa 18 g/mol." },
+    { category: "k10_chemie", question: "Was passiert bei einer Elektrolyse?", answers: ["Strom erzwingt eine chemische Reaktion", "Wärme erzeugt Strom", "Ein Stoff wird gefiltert"], correct: 0, explanation: "Beispiel: Zerlegung von Wasser in Wasserstoff und Sauerstoff." },
+
+    // --- Klasse 10 - Physik ---
+    { category: "k10_physik", question: "Was ist Induktion?", answers: ["Spannungserzeugung durch Magnetfeldänderung", "Erwärmung durch Reibung", "Lichtbrechung"], correct: 0, explanation: "Grundlage von Generatoren und Transformatoren." },
+    { category: "k10_physik", question: "Wozu dient ein Transformator?", answers: ["Wechselspannung hoch- oder heruntersetzen", "Gleichstrom speichern", "Strom messen"], correct: 0, explanation: "Er nutzt zwei Spulen und Induktion." },
+    { category: "k10_physik", question: "Was beschreibt E = m·c²?", answers: ["Die Äquivalenz von Masse und Energie", "Die Fallgeschwindigkeit", "Den Luftwiderstand"], correct: 0, explanation: "Einsteins berühmte Formel." },
+    { category: "k10_physik", question: "Was ist der Unterschied zwischen Gleich- und Wechselstrom?", answers: ["Wechselstrom ändert regelmäßig die Richtung", "Gleichstrom ist stärker", "Es gibt keinen"], correct: 0, explanation: "Aus der Steckdose kommt Wechselstrom." },
+    { category: "k10_physik", question: "Was ist der Impuls in der Physik?", answers: ["Masse mal Geschwindigkeit", "Kraft mal Weg", "Energie pro Zeit"], correct: 0, explanation: "p = m × v, er bleibt in abgeschlossenen Systemen erhalten." },
+
+    // --- Klasse 10 - Geschichte ---
+    { category: "k10_geschichte", question: "Wann fiel die Berliner Mauer?", answers: ["1989", "1985", "1991"], correct: 0, explanation: "Am 9. November 1989." },
+    { category: "k10_geschichte", question: "Was war die deutsche Wiedervereinigung?", answers: ["Der Zusammenschluss von BRD und DDR 1990", "Die Reichsgründung 1871", "Der EU-Beitritt"], correct: 0, explanation: "Am 3. Oktober 1990 wurde Deutschland wiedervereinigt." },
+    { category: "k10_geschichte", question: "Wann wurde Deutschland Gründungsmitglied der EWG?", answers: ["1957", "1990", "2004"], correct: 0, explanation: "Die EWG war ein Vorläufer der heutigen EU." },
+    { category: "k10_geschichte", question: "Was war die Entkolonialisierung?", answers: ["Die Unabhängigkeit ehemaliger Kolonien", "Die Eroberung neuer Gebiete", "Ein Handelsabkommen"], correct: 0, explanation: "Vor allem in den 1950er und 1960er Jahren." },
+    { category: "k10_geschichte", question: "Wer war der erste Bundeskanzler der Bundesrepublik?", answers: ["Konrad Adenauer", "Willy Brandt", "Helmut Kohl"], correct: 0, explanation: "Adenauer regierte von 1949 bis 1963." },
+
+    // --- Klasse 10 - Erdkunde ---
+    { category: "k10_erdkunde", question: "Was ist der Strukturwandel?", answers: ["Verschiebung von Industrie zu Dienstleistung", "Bau neuer Straßen", "Wachstum der Bevölkerung"], correct: 0, explanation: "Beispiel: das Ruhrgebiet nach dem Bergbau." },
+    { category: "k10_erdkunde", question: "Was ist Raumordnung?", answers: ["Planung der Nutzung von Flächen", "Möbelplanung", "Wetterbeobachtung"], correct: 0, explanation: "Sie steuert Siedlung, Verkehr und Naturschutz." },
+    { category: "k10_erdkunde", question: "Was ist der demografische Wandel?", answers: ["Veränderung des Altersaufbaus der Bevölkerung", "Wetterveränderung", "Wanderung von Tieren"], correct: 0, explanation: "In Deutschland altert die Bevölkerung." },
+    { category: "k10_erdkunde", question: "Was ist eine Disparität?", answers: ["Ungleichheit zwischen Regionen", "Ein Naturereignis", "Eine Handelsroute"], correct: 0, explanation: "Zum Beispiel Unterschiede in Einkommen oder Infrastruktur." },
+    { category: "k10_erdkunde", question: "Was ist Landwirtschaft im Gunstraum?", answers: ["Anbau unter günstigen natürlichen Bedingungen", "Anbau in der Wüste", "Anbau im Gewächshaus"], correct: 0, explanation: "Gunsträume haben gutes Klima und fruchtbare Böden." },
+
+    // --- Klasse 10 - Politik & Wirtschaft ---
+    { category: "k10_politik", question: "Was ist das Subsidiaritätsprinzip?", answers: ["Aufgaben werden auf der kleinstmöglichen Ebene gelöst", "Der Staat regelt alles", "Nur die EU entscheidet"], correct: 0, explanation: "Höhere Ebenen greifen nur ein, wenn nötig." },
+    { category: "k10_politik", question: "Was macht das Bundesverfassungsgericht?", answers: ["Es prüft Gesetze auf Vereinbarkeit mit dem Grundgesetz", "Es erlässt Gesetze", "Es wählt den Kanzler"], correct: 0, explanation: "Es ist das höchste deutsche Gericht." },
+    { category: "k10_politik", question: "Was ist ein Betriebsrat?", answers: ["Vertretung der Beschäftigten im Betrieb", "Die Geschäftsführung", "Eine Behörde"], correct: 0, explanation: "Er hat Mitbestimmungsrechte." },
+    { category: "k10_politik", question: "Was bedeutet Konjunktur?", answers: ["Der wirtschaftliche Auf- und Abschwung", "Der Staatshaushalt", "Der Wechselkurs"], correct: 0, explanation: "Man spricht von Konjunkturzyklen." },
+    { category: "k10_politik", question: "Was ist Föderalismus?", answers: ["Aufteilung der Macht zwischen Bund und Ländern", "Alleinherrschaft", "Direkte Demokratie"], correct: 0, explanation: "Deutschland ist ein föderaler Bundesstaat." },
+
+    // --- Klasse 10 - Informatik & Medien ---
+    { category: "k10_informatik", question: "Was ist eine Bedingung (if-Abfrage)?", answers: ["Code läuft nur, wenn etwas zutrifft", "Code läuft immer", "Ein Fehler"], correct: 0, explanation: "Damit trifft ein Programm Entscheidungen." },
+    { category: "k10_informatik", question: "Was ist eine Datenbank?", answers: ["Ein System zum strukturierten Speichern von Daten", "Ein Textprogramm", "Ein Bildformat"], correct: 0, explanation: "Beispiele sind MySQL oder SQLite." },
+    { category: "k10_informatik", question: "Was ist ein Betriebssystem?", answers: ["Software, die die Hardware steuert", "Ein Bauteil", "Ein Internetdienst"], correct: 0, explanation: "Windows, macOS, Linux, Android." },
+    { category: "k10_informatik", question: "Was ist der Unterschied zwischen RAM und Festplatte?", answers: ["RAM ist schnell und flüchtig", "RAM speichert dauerhaft", "Kein Unterschied"], correct: 0, explanation: "Der RAM wird beim Ausschalten geleert." },
+    { category: "k10_informatik", question: "Was sind Urheberrechte im Netz?", answers: ["Rechte des Erstellers an eigenen Werken", "Rechte des Internetanbieters", "Rechte des Servers"], correct: 0, explanation: "Fremde Bilder und Musik darf man nicht einfach nutzen." },
+
+    // --- Klasse 10 - Türkisch (Herkunftssprache) ---
+    { category: "k10_tuerkisch", question: "Was bedeutet 'sürdürülebilirlik'?", answers: ["Nachhaltigkeit", "Globalisierung", "Wirtschaft"], correct: 0, explanation: "'sürdürülebilirlik' heißt Nachhaltigkeit." },
+    { category: "k10_tuerkisch", question: "Was heißt 'global' auf Türkisch?", answers: ["küresel", "yerel", "ulusal"], correct: 0, explanation: "'küresel' bedeutet global." },
+    { category: "k10_tuerkisch", question: "Was bedeutet 'gelişme'?", answers: ["Entwicklung", "Erfahrung", "Beruf"], correct: 0, explanation: "'gelişme' heißt Entwicklung." },
+    { category: "k10_tuerkisch", question: "Was heißt 'Beruf' auf Türkisch?", answers: ["meslek", "iş", "okul"], correct: 0, explanation: "'meslek' = Beruf, 'iş' = Arbeit." },
+    { category: "k10_tuerkisch", question: "Was bedeutet 'toplum'?", answers: ["Gesellschaft", "Familie", "Regierung"], correct: 0, explanation: "'toplum' heißt Gesellschaft." },
+
+    // --- Klasse 11 - Deutsch ---
+    { category: "k11_deutsch", question: "Was kennzeichnet die Epoche der Aufklärung in der Literatur?", answers: ["Vernunft und Kritik an Autoritäten", "Gefühl über alles", "Rückzug in die Natur"], correct: 0, explanation: "Lessings 'Nathan der Weise' ist ein typisches Werk." },
+    { category: "k11_deutsch", question: "Was ist ein Motiv in der Literaturwissenschaft?", answers: ["Ein wiederkehrendes inhaltliches Element", "Der Grund einer Figur zu handeln", "Die Textsorte"], correct: 0, explanation: "Zum Beispiel das Motiv der Reise oder des Doppelgängers." },
+    { category: "k11_deutsch", question: "Was ist eine Sprachvarietät?", answers: ["Eine Ausprägung wie Dialekt oder Fachsprache", "Ein Rechtschreibfehler", "Eine Zeitform"], correct: 0, explanation: "Dazu zählen Dialekt, Soziolekt und Fachsprache." },
+    { category: "k11_deutsch", question: "Was untersucht die Rhetorik?", answers: ["Die Kunst der wirkungsvollen Rede", "Die Rechtschreibung", "Die Grammatik"], correct: 0, explanation: "Sie analysiert Aufbau, Stilmittel und Wirkung von Reden." },
+
+    // --- Klasse 11 - Mathematik ---
+    { category: "k11_mathe", question: "Was ist die Ableitung von f(x) = x²?", answers: ["2x", "x", "x³/3"], correct: 0, explanation: "Nach der Potenzregel gilt f'(x) = 2x." },
+    { category: "k11_mathe", question: "Was beschreibt der Grenzwert einer Funktion?", answers: ["Das Verhalten bei Annäherung an einen Wert", "Den größten Funktionswert", "Die Nullstelle"], correct: 0, explanation: "Grundlage der Differenzialrechnung." },
+    { category: "k11_mathe", question: "Was bedeutet f'(x) = 0 an einer Stelle?", answers: ["Möglicher Hoch- oder Tiefpunkt", "Die Funktion ist null", "Die Funktion ist unstetig"], correct: 0, explanation: "Notwendige Bedingung für einen Extrempunkt." },
+    { category: "k11_mathe", question: "Was ist die Ableitung von f(x) = 3x³?", answers: ["9x²", "3x²", "x²"], correct: 0, explanation: "3 × 3x² = 9x²." },
+
+    // --- Klasse 11 - Englisch ---
+    { category: "k11_englisch", question: "Was ist 'mediation' im Englischunterricht?", answers: ["Sinngemäßes Übertragen zwischen Sprachen", "Wörtliche Übersetzung", "Eine Diskussion"], correct: 0, explanation: "Man gibt Inhalte adressatengerecht in der anderen Sprache wieder." },
+    { category: "k11_englisch", question: "Was bedeutet 'to advocate something'?", answers: ["sich für etwas einsetzen", "etwas ablehnen", "etwas ignorieren"], correct: 0, explanation: "'advocate' heißt befürworten." },
+    { category: "k11_englisch", question: "Was ist ein 'topic sentence'?", answers: ["Der Kernsatz eines Absatzes", "Die Überschrift", "Der Schlusssatz"], correct: 0, explanation: "Er nennt die Hauptaussage des Absatzes." },
+    { category: "k11_englisch", question: "'The data __ that climate change is accelerating.'", answers: ["suggest", "suggests", "suggesting"], correct: 0, explanation: "'data' wird im wissenschaftlichen Englisch meist als Plural behandelt." },
+
+    // --- Klasse 11 - Biologie ---
+    { category: "k11_biologie", question: "Was ist die Funktion der Zellmembran?", answers: ["Sie regelt den Stoffaustausch der Zelle", "Sie speichert Erbgut", "Sie erzeugt Energie"], correct: 0, explanation: "Sie ist selektiv permeabel." },
+    { category: "k11_biologie", question: "Was ist Enzymspezifität?", answers: ["Ein Enzym passt nur zu bestimmten Substraten", "Enzyme wirken überall gleich", "Enzyme werden verbraucht"], correct: 0, explanation: "Schlüssel-Schloss-Prinzip." },
+    { category: "k11_biologie", question: "Was passiert bei der Zellatmung?", answers: ["Glucose wird unter Sauerstoff zu Energie abgebaut", "Zucker wird aufgebaut", "Wasser wird gespalten"], correct: 0, explanation: "Sie liefert ATP für die Zelle." },
+    { category: "k11_biologie", question: "Was ist Osmose?", answers: ["Wasserbewegung durch eine halbdurchlässige Membran", "Aktiver Transport", "Ein Enzym"], correct: 0, explanation: "Wasser wandert zur höheren Teilchenkonzentration." },
+
+    // --- Klasse 11 - Chemie ---
+    { category: "k11_chemie", question: "Was besagt das Prinzip von Le Chatelier?", answers: ["Ein Gleichgewicht weicht dem Zwang aus", "Reaktionen laufen immer vollständig ab", "Energie geht verloren"], correct: 0, explanation: "Auch Prinzip des kleinsten Zwanges genannt." },
+    { category: "k11_chemie", question: "Was ist eine exotherme Reaktion?", answers: ["Sie gibt Energie ab", "Sie nimmt Energie auf", "Sie verändert nichts"], correct: 0, explanation: "Die Umgebung erwärmt sich." },
+    { category: "k11_chemie", question: "Was ist die Aktivierungsenergie?", answers: ["Die Energie, die eine Reaktion zum Start braucht", "Die frei werdende Energie", "Die Gesamtenergie"], correct: 0, explanation: "Katalysatoren senken sie." },
+    { category: "k11_chemie", question: "Was sind Alkohole chemisch gesehen?", answers: ["Verbindungen mit einer OH-Gruppe", "Verbindungen mit COOH", "Salze"], correct: 0, explanation: "Beispiel: Ethanol." },
+
+    // --- Klasse 11 - Physik ---
+    { category: "k11_physik", question: "Was ist eine gleichförmige Bewegung?", answers: ["Konstante Geschwindigkeit, keine Beschleunigung", "Ständig steigende Geschwindigkeit", "Stillstand"], correct: 0, explanation: "Der Weg-Zeit-Graph ist eine Gerade." },
+    { category: "k11_physik", question: "Was ist der freie Fall?", answers: ["Bewegung nur unter Schwerkraft ohne Luftwiderstand", "Bewegung mit Motor", "Bewegung im Kreis"], correct: 0, explanation: "Auf der Erde etwa 9,81 m/s²." },
+    { category: "k11_physik", question: "Was beschreibt die kinetische Energie?", answers: ["E = ½ m v²", "E = m g h", "E = m c²"], correct: 0, explanation: "Die Energie eines bewegten Körpers." },
+    { category: "k11_physik", question: "Was ist die Zentripetalkraft?", answers: ["Die zum Kreismittelpunkt gerichtete Kraft", "Eine nach außen wirkende Kraft", "Die Schwerkraft"], correct: 0, explanation: "Sie hält einen Körper auf der Kreisbahn." },
+
+    // --- Klasse 11 - Geschichte ---
+    { category: "k11_geschichte", question: "Was war der Absolutismus?", answers: ["Herrschaftsform mit unbeschränkter Macht des Fürsten", "Eine Demokratie", "Eine Republik"], correct: 0, explanation: "Ludwig XIV. gilt als Musterbeispiel." },
+    { category: "k11_geschichte", question: "Was ist eine historische Quelle?", answers: ["Ein Überrest oder Bericht aus der Vergangenheit", "Ein moderner Fachtext", "Eine Meinung"], correct: 0, explanation: "Man unterscheidet Primär- und Sekundärquellen." },
+    { category: "k11_geschichte", question: "Was war der Wiener Kongress 1815?", answers: ["Neuordnung Europas nach Napoleon", "Gründung der EU", "Ein Friedensschluss 1945"], correct: 0, explanation: "Er ordnete Europa nach den Napoleonischen Kriegen neu." },
+    { category: "k11_geschichte", question: "Was bedeutet Historizität?", answers: ["Die Gebundenheit an eine bestimmte Zeit", "Zeitlose Gültigkeit", "Ein Datum"], correct: 0, explanation: "Ereignisse müssen aus ihrer Zeit heraus verstanden werden." },
+
+    // --- Klasse 11 - Sozialwissenschaften ---
+    { category: "k11_sowi", question: "Was ist Sozialisation?", answers: ["Der Prozess des Hineinwachsens in die Gesellschaft", "Ein Gesetz", "Eine Wahl"], correct: 0, explanation: "Familie, Schule und Medien sind Sozialisationsinstanzen." },
+    { category: "k11_sowi", question: "Was ist eine Rolle im soziologischen Sinn?", answers: ["Erwartungen an eine soziale Position", "Eine Theaterfigur", "Ein Beruf"], correct: 0, explanation: "Zum Beispiel die Schüler- oder Elternrolle." },
+    { category: "k11_sowi", question: "Was ist das Bruttoinlandsprodukt?", answers: ["Wert aller im Inland erzeugten Güter und Dienste", "Das Staatsvermögen", "Der Außenhandel"], correct: 0, explanation: "Ein zentraler Wohlstandsindikator." },
+    { category: "k11_sowi", question: "Was sind Grundrechte?", answers: ["Rechte des Einzelnen gegenüber dem Staat", "Pflichten der Bürger", "Regeln der EU"], correct: 0, explanation: "Sie stehen in den Artikeln 1-19 des Grundgesetzes." },
+
+    // --- Klasse 11 - Informatik ---
+    { category: "k11_informatik", question: "Was ist ein Array?", answers: ["Eine Liste gleichartiger Werte", "Eine einzelne Zahl", "Ein Kommentar"], correct: 0, explanation: "Auf Elemente greift man über einen Index zu." },
+    { category: "k11_informatik", question: "Was ist objektorientierte Programmierung?", answers: ["Programmierung mit Klassen und Objekten", "Nur Schleifen benutzen", "Programmieren ohne Variablen"], correct: 0, explanation: "Daten und Funktionen werden gebündelt." },
+    { category: "k11_informatik", question: "Was ist eine Funktion in der Programmierung?", answers: ["Ein wiederverwendbarer Codeblock", "Eine Variable", "Ein Datentyp"], correct: 0, explanation: "Sie kann Parameter annehmen und Werte zurückgeben." },
+    { category: "k11_informatik", question: "Was beschreibt die Laufzeit eines Algorithmus?", answers: ["Wie der Aufwand mit der Datenmenge wächst", "Wie lange der PC läuft", "Die Dateigröße"], correct: 0, explanation: "Angegeben z.B. in O-Notation." },
+
+    // --- Klasse 12 - Deutsch ---
+    { category: "k12_deutsch", question: "Was kennzeichnet den Sturm und Drang?", answers: ["Gefühl, Natur und Auflehnung gegen Regeln", "Strenge Vernunft", "Nüchterne Sachlichkeit"], correct: 0, explanation: "Goethes 'Die Leiden des jungen Werthers' ist typisch." },
+    { category: "k12_deutsch", question: "Was ist die Weimarer Klassik?", answers: ["Streben nach Harmonie, Humanität und Maß", "Radikale Gefühlsbetonung", "Politische Satire"], correct: 0, explanation: "Hauptvertreter sind Goethe und Schiller." },
+    { category: "k12_deutsch", question: "Was ist ein innerer Monolog?", answers: ["Ungefilterte Gedankenwiedergabe einer Figur", "Ein Dialog", "Eine Regieanweisung"], correct: 0, explanation: "Er gibt das Denken in der Ich-Form wieder." },
+    { category: "k12_deutsch", question: "Was ist Expressionismus in der Literatur?", answers: ["Ausdruck innerer Zustände, oft verstörend", "Naturgetreue Abbildung", "Heitere Idylle"], correct: 0, explanation: "Typisch sind Großstadt-, Kriegs- und Weltuntergangsmotive." },
+
+    // --- Klasse 12 - Mathematik ---
+    { category: "k12_mathe", question: "Was ist die Stammfunktion von f(x) = 2x?", answers: ["x² + C", "2", "x³"], correct: 0, explanation: "Beim Integrieren steigt der Exponent um eins." },
+    { category: "k12_mathe", question: "Was berechnet ein bestimmtes Integral?", answers: ["Die Fläche zwischen Graph und x-Achse", "Die Steigung", "Die Nullstelle"], correct: 0, explanation: "Zwischen den angegebenen Grenzen." },
+    { category: "k12_mathe", question: "Was ist ein Wendepunkt?", answers: ["Punkt, an dem die Krümmung wechselt", "Der höchste Punkt", "Die Nullstelle"], correct: 0, explanation: "Dort gilt f''(x) = 0 mit Vorzeichenwechsel." },
+    { category: "k12_mathe", question: "Was ist ein Vektor?", answers: ["Eine Größe mit Betrag und Richtung", "Nur eine Zahl", "Eine Fläche"], correct: 0, explanation: "Zum Beispiel Kraft oder Geschwindigkeit." },
+
+    // --- Klasse 12 - Englisch ---
+    { category: "k12_englisch", question: "Was ist 'globalisation' als Unterrichtsthema?", answers: ["Weltweite wirtschaftliche und kulturelle Verflechtung", "Nur Tourismus", "Nur Handel"], correct: 0, explanation: "Chancen und Risiken werden diskutiert." },
+    { category: "k12_englisch", question: "Was bedeutet 'melting pot'?", answers: ["Bild für die Vermischung von Kulturen", "Ein Kochtopf", "Ein Klimaphänomen"], correct: 0, explanation: "Klassisch auf die USA bezogen." },
+    { category: "k12_englisch", question: "Was ist ein 'unreliable narrator'?", answers: ["Ein Erzähler, dem man nicht trauen kann", "Ein allwissender Erzähler", "Ein Ich-Erzähler"], correct: 0, explanation: "Seine Darstellung ist bewusst verzerrt." },
+    { category: "k12_englisch", question: "Was bedeutet 'to tackle a problem'?", answers: ["ein Problem angehen", "ein Problem ignorieren", "ein Problem verursachen"], correct: 0, explanation: "'tackle' heißt anpacken." },
+
+    // --- Klasse 12 - Biologie ---
+    { category: "k12_biologie", question: "Was ist die Proteinbiosynthese?", answers: ["Herstellung von Proteinen nach DNA-Bauplan", "Abbau von Proteinen", "Zellteilung"], correct: 0, explanation: "Sie läuft in Transkription und Translation ab." },
+    { category: "k12_biologie", question: "Was ist ein Neuron?", answers: ["Eine Nervenzelle", "Eine Muskelzelle", "Ein Hormon"], correct: 0, explanation: "Es leitet elektrische Signale weiter." },
+    { category: "k12_biologie", question: "Was ist ein Aktionspotenzial?", answers: ["Kurzfristige Spannungsänderung an der Nervenzelle", "Ein Dauerzustand", "Ein Enzym"], correct: 0, explanation: "So werden Reize weitergeleitet." },
+    { category: "k12_biologie", question: "Was ist Selektion in der Evolution?", answers: ["Auslese der besser angepassten Individuen", "Zufällige Genveränderung", "Wanderung von Arten"], correct: 0, explanation: "Sie wirkt auf die vorhandene Variabilität." },
+
+    // --- Klasse 12 - Chemie ---
+    { category: "k12_chemie", question: "Was ist ein Puffersystem?", answers: ["Es hält den pH-Wert weitgehend konstant", "Es beschleunigt Reaktionen", "Es speichert Wärme"], correct: 0, explanation: "Wichtig zum Beispiel im Blut." },
+    { category: "k12_chemie", question: "Was ist die Elektronegativität?", answers: ["Maß für die Anziehung von Bindungselektronen", "Die Ladung des Kerns", "Die Atommasse"], correct: 0, explanation: "Fluor hat den höchsten Wert." },
+    { category: "k12_chemie", question: "Was sind Aminosäuren?", answers: ["Bausteine der Proteine mit NH2- und COOH-Gruppe", "Zuckerbausteine", "Fettbausteine"], correct: 0, explanation: "20 proteinogene Aminosäuren sind bekannt." },
+    { category: "k12_chemie", question: "Was passiert in einer galvanischen Zelle?", answers: ["Chemische Energie wird zu elektrischer Energie", "Strom erzwingt eine Reaktion", "Nichts"], correct: 0, explanation: "Das ist das Prinzip der Batterie." },
+
+    // --- Klasse 12 - Physik ---
+    { category: "k12_physik", question: "Was ist ein elektrisches Feld?", answers: ["Der Raum, in dem Kräfte auf Ladungen wirken", "Ein Magnetfeld", "Ein Stromkreis"], correct: 0, explanation: "Feldlinien zeigen Richtung und Stärke." },
+    { category: "k12_physik", question: "Was ist die Lorentzkraft?", answers: ["Kraft auf bewegte Ladungen im Magnetfeld", "Die Schwerkraft", "Die Reibungskraft"], correct: 0, explanation: "Sie steht senkrecht zu Bewegung und Feld." },
+    { category: "k12_physik", question: "Was zeigt der Photoeffekt?", answers: ["Licht hat Teilchencharakter", "Licht ist nur eine Welle", "Licht hat keine Energie"], correct: 0, explanation: "Einstein erklärte ihn 1905 mit Lichtquanten." },
+    { category: "k12_physik", question: "Was ist Interferenz?", answers: ["Überlagerung von Wellen", "Brechung von Licht", "Absorption"], correct: 0, explanation: "Wellen können sich verstärken oder auslöschen." },
+
+    // --- Klasse 12 - Geschichte ---
+    { category: "k12_geschichte", question: "Was war der Imperialismus?", answers: ["Streben der Großmächte nach Kolonien und Einfluss", "Eine Wirtschaftskrise", "Eine Kunstepoche"], correct: 0, explanation: "Vor allem im späten 19. Jahrhundert." },
+    { category: "k12_geschichte", question: "Was war die Weltwirtschaftskrise ab 1929?", answers: ["Eine schwere globale Wirtschaftskrise", "Ein Krieg", "Eine Naturkatastrophe"], correct: 0, explanation: "Sie begann mit dem Börsencrash in New York." },
+    { category: "k12_geschichte", question: "Was kennzeichnet eine Diktatur?", answers: ["Machtkonzentration ohne echte Gewaltenteilung", "Freie Wahlen", "Unabhängige Gerichte"], correct: 0, explanation: "Opposition und Presse werden unterdrückt." },
+    { category: "k12_geschichte", question: "Was war der Marshallplan?", answers: ["US-Wirtschaftshilfe für Europa nach 1947", "Ein Kriegsplan", "Ein Handelsverbot"], correct: 0, explanation: "Er sollte den Wiederaufbau fördern." },
+
+    // --- Klasse 12 - Sozialwissenschaften ---
+    { category: "k12_sowi", question: "Was ist Konjunkturpolitik?", answers: ["Staatliche Steuerung des Wirtschaftsverlaufs", "Reine Steuererhöhung", "Nur Sparen"], correct: 0, explanation: "Zum Beispiel über Ausgaben oder Zinsen." },
+    { category: "k12_sowi", question: "Was ist das magische Viereck?", answers: ["Wachstum, Preisstabilität, Beschäftigung, Außenbeitrag", "Vier Parteien", "Vier Gerichte"], correct: 0, explanation: "Ziele des Stabilitätsgesetzes von 1967." },
+    { category: "k12_sowi", question: "Was ist soziale Ungleichheit?", answers: ["Ungleiche Verteilung von Chancen und Ressourcen", "Gleichbehandlung", "Ein Rechtsbegriff"], correct: 0, explanation: "Betrifft Einkommen, Bildung und Gesundheit." },
+    { category: "k12_sowi", question: "Was ist eine repräsentative Demokratie?", answers: ["Das Volk wählt Vertreter, die entscheiden", "Das Volk entscheidet alles direkt", "Ein Monarch entscheidet"], correct: 0, explanation: "Deutschland ist eine repräsentative Demokratie." },
+
+    // --- Klasse 12 - Informatik ---
+    { category: "k12_informatik", question: "Was ist Rekursion?", answers: ["Eine Funktion ruft sich selbst auf", "Eine Endlosschleife", "Ein Datentyp"], correct: 0, explanation: "Sie braucht immer eine Abbruchbedingung." },
+    { category: "k12_informatik", question: "Was ist eine verkettete Liste?", answers: ["Datenstruktur, in der Elemente aufeinander verweisen", "Ein Array fester Größe", "Eine Datenbank"], correct: 0, explanation: "Jedes Element kennt seinen Nachfolger." },
+    { category: "k12_informatik", question: "Was ist ein Binärbaum?", answers: ["Baumstruktur mit maximal zwei Kindknoten", "Eine Liste", "Ein Kreis"], correct: 0, explanation: "Wichtig für effizientes Suchen und Sortieren." },
+    { category: "k12_informatik", question: "Was ist Datenkapselung?", answers: ["Interne Daten werden vor direktem Zugriff geschützt", "Daten werden gelöscht", "Daten werden kopiert"], correct: 0, explanation: "Zugriff erfolgt über definierte Methoden." },
+
+    // --- Klasse 13 - Deutsch (Abitur) ---
+    { category: "k13_deutsch", question: "Was ist ein episches Theater nach Brecht?", answers: ["Theater, das zum Nachdenken statt Mitfühlen anregt", "Klassisches Illusionstheater", "Ein Musical"], correct: 0, explanation: "Mit Verfremdungseffekten wird Distanz erzeugt." },
+    { category: "k13_deutsch", question: "Was ist Intertextualität?", answers: ["Bezüge eines Textes auf andere Texte", "Die Textlänge", "Die Grammatik"], correct: 0, explanation: "Zitate und Anspielungen erzeugen Bedeutung." },
+    { category: "k13_deutsch", question: "Was ist ein Sonett?", answers: ["Gedichtform mit 14 Versen", "Ein Roman", "Ein Drama"], correct: 0, explanation: "Typisch sind zwei Quartette und zwei Terzette." },
+    { category: "k13_deutsch", question: "Was untersucht eine Sprachursprungstheorie?", answers: ["Wie menschliche Sprache entstanden ist", "Die Rechtschreibung", "Fremdwörter"], correct: 0, explanation: "Herder ist ein bekannter Vertreter." },
+
+    // --- Klasse 13 - Mathematik (Abitur) ---
+    { category: "k13_mathe", question: "Wie berechnet man das Skalarprodukt zweier Vektoren?", answers: ["Komponentenweise multiplizieren und addieren", "Komponenten subtrahieren", "Beträge multiplizieren"], correct: 0, explanation: "Ist es null, stehen die Vektoren senkrecht zueinander." },
+    { category: "k13_mathe", question: "Was beschreibt die Binomialverteilung?", answers: ["Wahrscheinlichkeit von Treffern bei n Versuchen", "Stetige Messwerte", "Die Ableitung"], correct: 0, explanation: "Zum Beispiel Münzwürfe mit zwei Ausgängen." },
+    { category: "k13_mathe", question: "Was ist die Normalverteilung?", answers: ["Eine glockenförmige stetige Verteilung", "Eine Gerade", "Eine Treppenfunktion"], correct: 0, explanation: "Beschreibt viele natürliche Messgrößen." },
+    { category: "k13_mathe", question: "Was ist eine Ebenengleichung in Parameterform?", answers: ["Ortsvektor plus zwei Spannvektoren", "Nur ein Punkt", "Eine Zahl"], correct: 0, explanation: "E: x = a + r·u + s·v." },
+
+    // --- Klasse 13 - Englisch (Abitur) ---
+    { category: "k13_englisch", question: "Was ist 'the American Dream'?", answers: ["Die Vorstellung, durch Leistung aufsteigen zu können", "Ein Feiertag", "Ein Roman"], correct: 0, explanation: "Ein zentrales Abiturthema mit kritischer Betrachtung." },
+    { category: "k13_englisch", question: "Was ist 'postcolonialism'?", answers: ["Auseinandersetzung mit den Folgen des Kolonialismus", "Eine Kunstepoche", "Ein Wirtschaftsmodell"], correct: 0, explanation: "Themen sind Identität, Macht und Sprache." },
+    { category: "k13_englisch", question: "Was ist eine 'analysis of a cartoon'?", answers: ["Beschreibung und Deutung einer Karikatur", "Eine Nacherzählung", "Eine Übersetzung"], correct: 0, explanation: "Man beschreibt zuerst, deutet dann die Aussage." },
+    { category: "k13_englisch", question: "Was bedeutet 'to jeopardise'?", answers: ["gefährden", "unterstützen", "beschleunigen"], correct: 0, explanation: "'jeopardise' heißt aufs Spiel setzen." },
+
+    // --- Klasse 13 - Biologie (Abitur) ---
+    { category: "k13_biologie", question: "Was ist die Genregulation?", answers: ["Steuerung, welche Gene abgelesen werden", "Die Zellteilung", "Der Stoffwechsel"], correct: 0, explanation: "Das Operon-Modell beschreibt sie bei Bakterien." },
+    { category: "k13_biologie", question: "Was ist ein Stoffkreislauf?", answers: ["Weg eines Stoffes durch das Ökosystem", "Ein einmaliger Verbrauch", "Eine Nahrungskette"], correct: 0, explanation: "Beispiel: Kohlenstoff- oder Stickstoffkreislauf." },
+    { category: "k13_biologie", question: "Was ist die PCR?", answers: ["Verfahren zur Vervielfältigung von DNA", "Eine Impfung", "Ein Mikroskop"], correct: 0, explanation: "Polymerase-Kettenreaktion, wichtig in der Diagnostik." },
+    { category: "k13_biologie", question: "Was ist Homologie?", answers: ["Ähnlichkeit durch gemeinsame Abstammung", "Ähnlichkeit durch gleiche Funktion", "Ein Zufall"], correct: 0, explanation: "Analogie dagegen entsteht durch gleiche Anpassung." },
+
+    // --- Klasse 13 - Chemie (Abitur) ---
+    { category: "k13_chemie", question: "Was ist eine Titration?", answers: ["Maßanalyse zur Konzentrationsbestimmung", "Ein Filterverfahren", "Eine Destillation"], correct: 0, explanation: "Man gibt eine Maßlösung bis zum Äquivalenzpunkt zu." },
+    { category: "k13_chemie", question: "Was sind Kunststoffe chemisch?", answers: ["Polymere aus vielen Monomeren", "Metalle", "Salze"], correct: 0, explanation: "Beispiel: Polyethylen aus Ethen." },
+    { category: "k13_chemie", question: "Was ist die Nernst-Gleichung nützlich für?", answers: ["Berechnung von Elektrodenpotenzialen", "Berechnung der Masse", "Berechnung des Volumens"], correct: 0, explanation: "Sie berücksichtigt Konzentrationen." },
+    { category: "k13_chemie", question: "Was ist ein Aromat in der Chemie?", answers: ["Ringförmige Verbindung wie Benzol", "Ein Duftstoff allgemein", "Ein Salz"], correct: 0, explanation: "Aromaten haben ein delokalisiertes Elektronensystem." },
+
+    // --- Klasse 13 - Physik (Abitur) ---
+    { category: "k13_physik", question: "Was besagt die Heisenbergsche Unschärferelation?", answers: ["Ort und Impuls sind nicht gleichzeitig exakt bestimmbar", "Energie geht verloren", "Licht ist nur eine Welle"], correct: 0, explanation: "Ein Grundprinzip der Quantenphysik." },
+    { category: "k13_physik", question: "Was ist der Welle-Teilchen-Dualismus?", answers: ["Objekte zeigen je nach Versuch Wellen- oder Teilchencharakter", "Alles ist nur Welle", "Alles ist nur Teilchen"], correct: 0, explanation: "Gilt für Licht und für Materie." },
+    { category: "k13_physik", question: "Was ist Kernfusion?", answers: ["Verschmelzung leichter Kerne unter Energiefreisetzung", "Spaltung schwerer Kerne", "Radioaktiver Zerfall"], correct: 0, explanation: "Sie liefert die Energie der Sonne." },
+    { category: "k13_physik", question: "Was beschreibt die spezielle Relativitätstheorie?", answers: ["Raum und Zeit hängen vom Bezugssystem ab", "Nur die Schwerkraft", "Nur Magnetismus"], correct: 0, explanation: "Einstein veröffentlichte sie 1905." },
+
+    // --- Klasse 13 - Geschichte (Abitur) ---
+    { category: "k13_geschichte", question: "Was war die deutsche Teilung?", answers: ["Trennung in BRD und DDR von 1949 bis 1990", "Die Reichsteilung 1871", "Ein Kolonialkonflikt"], correct: 0, explanation: "Sie endete mit der Wiedervereinigung 1990." },
+    { category: "k13_geschichte", question: "Was ist Vergangenheitsbewältigung?", answers: ["Auseinandersetzung mit der NS-Zeit und ihren Folgen", "Vergessen der Geschichte", "Eine Geschichtsschreibung ohne Quellen"], correct: 0, explanation: "Erinnerungskultur ist ein zentrales Abiturthema." },
+    { category: "k13_geschichte", question: "Was war die europäische Integration?", answers: ["Der Zusammenschluss europäischer Staaten seit 1951", "Die Teilung Europas", "Ein Handelskrieg"], correct: 0, explanation: "Von der Montanunion bis zur heutigen EU." },
+    { category: "k13_geschichte", question: "Was versteht man unter Modernisierung in der Geschichte?", answers: ["Wandel zu Industrie, Urbanisierung und Demokratie", "Rückkehr zur Landwirtschaft", "Nur technischer Fortschritt"], correct: 0, explanation: "Ein umfassender gesellschaftlicher Wandlungsprozess." },
+
+    // --- Klasse 13 - Sozialwissenschaften (Abitur) ---
+    { category: "k13_sowi", question: "Was sind die Institutionen der EU?", answers: ["Kommission, Parlament, Rat und Gerichtshof", "Nur das Parlament", "Nur die Kommission"], correct: 0, explanation: "Sie teilen sich Gesetzgebung und Kontrolle." },
+    { category: "k13_sowi", question: "Was ist Globalisierungskritik?", answers: ["Hinterfragen der Folgen weltweiter Verflechtung", "Ablehnung jeden Handels", "Eine Partei"], correct: 0, explanation: "Themen sind Arbeitsbedingungen, Umwelt und Ungleichheit." },
+    { category: "k13_sowi", question: "Was ist der Sozialstaat?", answers: ["Staat mit Verantwortung für soziale Sicherheit", "Staat ohne Steuern", "Staat ohne Gesetze"], correct: 0, explanation: "Im Grundgesetz als Sozialstaatsprinzip verankert." },
+    { category: "k13_sowi", question: "Was ist internationale Friedenssicherung?", answers: ["Konfliktverhütung durch Institutionen wie die UNO", "Aufrüstung", "Handelsblockaden"], correct: 0, explanation: "Die UNO wurde 1945 dafür gegründet." },
+
+    // --- Klasse 13 - Informatik (Abitur) ---
+    { category: "k13_informatik", question: "Was ist ein Sortieralgorithmus?", answers: ["Verfahren, um Daten in eine Reihenfolge zu bringen", "Ein Speichermedium", "Ein Netzwerkprotokoll"], correct: 0, explanation: "Beispiele: Bubblesort, Quicksort, Mergesort." },
+    { category: "k13_informatik", question: "Was bedeutet O(n log n)?", answers: ["Eine Aufwandsklasse effizienter Sortierverfahren", "Ein Speicherplatz", "Eine Fehlermeldung"], correct: 0, explanation: "Quicksort und Mergesort liegen im Mittel dort." },
+    { category: "k13_informatik", question: "Was ist ein endlicher Automat?", answers: ["Modell mit Zuständen und Übergängen", "Ein Roboter", "Ein Computer"], correct: 0, explanation: "Grundlage für Sprach- und Mustererkennung." },
+    { category: "k13_informatik", question: "Was ist Kryptografie?", answers: ["Die Lehre vom Verschlüsseln von Informationen", "Datenkompression", "Bildbearbeitung"], correct: 0, explanation: "Man unterscheidet symmetrische und asymmetrische Verfahren." },
+
+    // --- KFZ-Mechatronik (Berufsschule) ---
+    { category: "beruf_kfz", question: "Wofür steht die Abkürzung ABS?", answers: ["Anti-Blockier-System", "Automatik-Brems-Sensor", "Achsen-Balance-Steuerung"], correct: 0, explanation: "ABS verhindert das Blockieren der Räder beim Bremsen." },
+    { category: "beruf_kfz", question: "Was ist die Aufgabe des Turboladers?", answers: ["Die angesaugte Luft verdichten", "Kraftstoff einspritzen", "Öl kühlen"], correct: 0, explanation: "Mehr Sauerstoff im Zylinder bedeutet mehr Leistung." },
+    { category: "beruf_kfz", question: "Wofür steht OBD?", answers: ["On-Board-Diagnose", "Öl-Behälter-Druck", "Ohm-Bemessungs-Daten"], correct: 0, explanation: "Sie überwacht abgasrelevante Systeme und speichert Fehlercodes." },
+    { category: "beruf_kfz", question: "Wie viele Takte hat ein klassischer Ottomotor?", answers: ["2", "4", "6"], correct: 1, explanation: "Ansaugen, Verdichten, Arbeiten, Ausstoßen." },
+    { category: "beruf_kfz", question: "Was bedeutet '205/55 R16' beim Reifen?", answers: ["Breite in mm, Höhe in %, Felge in Zoll", "Luftdruck und Gewicht", "Herstellungsjahr"], correct: 0, explanation: "205 mm breit, Verhältnis 55 %, 16 Zoll Felge." },
+    { category: "beruf_kfz", question: "Was ist die Aufgabe der Lambdasonde?", answers: ["Restsauerstoff im Abgas messen", "Den Motor kühlen", "Den Zündfunken erzeugen"], correct: 0, explanation: "Damit wird das Kraftstoff-Luft-Gemisch geregelt." },
+    { category: "beruf_kfz", question: "Wofür steht ESP?", answers: ["Elektronisches Stabilitätsprogramm", "Extra Sicherheits-Paket", "Elektro-Servo-Pumpe"], correct: 0, explanation: "ESP bremst gezielt einzelne Räder ab." },
+    { category: "beruf_kfz", question: "Welche Aufgabe hat der Katalysator?", answers: ["Schadstoffe im Abgas umwandeln", "Kraftstoff filtern", "Öl reinigen"], correct: 0, explanation: "Er wandelt CO, HC und NOx in weniger schädliche Stoffe um." },
+    { category: "beruf_kfz", question: "Wozu dient der Ölfilter?", answers: ["Er reinigt das Motoröl", "Er kühlt den Motor", "Er filtert die Ansaugluft"], correct: 0, explanation: "Er hält Abrieb und Schmutzpartikel zurück." },
+    { category: "beruf_kfz", question: "Was bewirkt ein Stoßdämpfer?", answers: ["Er dämpft die Schwingungen der Feder", "Er trägt das Gewicht allein", "Er lenkt die Räder"], correct: 0, explanation: "Ohne ihn würde das Auto dauerhaft nachwippen." },
+
+    // ============ SPASS-BEREICH (kein Schulstoff) ============
+    // --- SPASS: Allgemeinwissen ---
+    { category: "spass_allgemein", question: "Wie viele Tage hat ein Schaltjahr?", answers: ["364", "365", "366"], correct: 2, explanation: "Ein Schaltjahr hat den 29. Februar zusätzlich." },
+    { category: "spass_allgemein", question: "Welche Farbe entsteht aus Blau und Gelb?", answers: ["Grün", "Lila", "Orange"], correct: 0, explanation: "Blau und Gelb ergeben Grün." },
+    { category: "spass_allgemein", question: "Welches Tier gilt als schnellstes Landtier?", answers: ["Löwe", "Gepard", "Pferd"], correct: 1, explanation: "Der Gepard erreicht kurzzeitig über 100 km/h." },
+    { category: "spass_allgemein", question: "Wie viele Beine hat eine Spinne?", answers: ["6", "8", "10"], correct: 1, explanation: "Spinnen haben acht Beine, Insekten sechs." },
+    { category: "spass_allgemein", question: "In welchem Land steht der Eiffelturm?", answers: ["Italien", "Frankreich", "Spanien"], correct: 1, explanation: "Er steht in Paris." },
+    { category: "spass_allgemein", question: "Welches ist das größte Tier der Welt?", answers: ["Elefant", "Blauwal", "Giraffe"], correct: 1, explanation: "Der Blauwal wird bis zu 30 Meter lang." },
+    { category: "spass_allgemein", question: "Wie viele Farben hat ein klassischer Regenbogen?", answers: ["5", "7", "9"], correct: 1, explanation: "Rot, Orange, Gelb, Grün, Blau, Indigo, Violett." },
+    { category: "spass_allgemein", question: "Wie viele Ringe hat das olympische Symbol?", answers: ["4", "5", "6"], correct: 1, explanation: "Die fünf Ringe stehen für die bewohnten Kontinente." },
+    { category: "spass_allgemein", question: "Wie heißt die Hauptstadt von Südkorea?", answers: ["Busan", "Seoul", "Incheon"], correct: 1, explanation: "Seoul ist die größte Stadt des Landes." },
+    { category: "spass_allgemein", question: "Wie viele Spieler stehen beim Fußball pro Mannschaft auf dem Feld?", answers: ["9", "10", "11"], correct: 2, explanation: "Elf Spieler inklusive Torwart." },
+    { category: "spass_allgemein", question: "Wie viele Saiten hat eine klassische Gitarre?", answers: ["4", "6", "8"], correct: 1, explanation: "Eine klassische Gitarre hat sechs Saiten." },
+    { category: "spass_allgemein", question: "Welches Land ist flächenmäßig das größte der Welt?", answers: ["China", "Russland", "Kanada"], correct: 1, explanation: "Russland umfasst rund 17 Millionen km²." },
+
+    // --- SPASS: Schätzfragen & Würdest du eher ---
+    { category: "spass_wuerdest_du", question: "Was würden die meisten eher tun – einen Popel essen oder Fallschirmspringen?", answers: ["Popel essen 🤢", "Fallschirmspringen 🪂", "Beides auf keinen Fall!"], correct: 1, explanation: "😄 Die meisten würden wohl eher springen als naschen." },
+    { category: "spass_wuerdest_du", question: "Was wählen die meisten: Ketchup oder Senf für immer?", answers: ["Ketchup 🍅", "Senf 🌭", "Lieber gar nichts"], correct: 0, explanation: "😄 Ketchup gewinnt in Umfragen fast immer." },
+    { category: "spass_wuerdest_du", question: "Welche Superkraft wünschen sich die meisten?", answers: ["Fliegen ✈️", "Unsichtbarkeit 👻", "Keine davon"], correct: 0, explanation: "😄 Fliegen liegt meist knapp vorn." },
+    { category: "spass_wuerdest_du", question: "Was mögen die meisten Menschen lieber: Hunde oder Katzen?", answers: ["Hunde 🐕", "Katzen 🐈", "Beide gleich"], correct: 0, explanation: "😄 Hunde liegen als Lieblingshaustier meist vorn." },
+    { category: "spass_wuerdest_du", question: "Was ist bei Kindern beliebter: Pizza oder Pommes?", answers: ["Pizza 🍕", "Pommes 🍟", "Beides zusammen"], correct: 0, explanation: "😄 Pizza landet fast immer auf Platz 1." },
+    { category: "spass_wuerdest_du", question: "Wo würden die meisten lieber für immer leben?", answers: ["Immer Sommer ☀️", "Immer Winter ❄️", "Alle vier Jahreszeiten"], correct: 0, explanation: "😄 Der Sommer gewinnt weltweit deutlich." },
+    { category: "spass_wuerdest_du", question: "Worauf würden die meisten eher eine Woche verzichten?", answers: ["Auf das Handy 📵", "Auf Süßigkeiten 🍭", "Auf beides nicht"], correct: 1, explanation: "😄 Das Handy fällt den meisten schwerer wegzudenken." },
+    { category: "spass_wuerdest_du", question: "Riesige Hände oder riesige Füße – was ist die ehrlichste Antwort?", answers: ["Riesige Hände 🖐️", "Riesige Füße 🦶", "Weder noch, bitte!"], correct: 2, explanation: "😄 Beides klingt nach Problemen beim Schuhkauf." },
+
+    // --- SPASS: Nice to Know ---
+    { category: "spass_nice_to_know", question: "Wie viele Herzen hat ein Oktopus?", answers: ["1", "3", "8"], correct: 1, explanation: "Zwei für die Kiemen, eins für den restlichen Körper." },
+    { category: "spass_nice_to_know", question: "Welches Tier schläft am meisten am Tag?", answers: ["Koala", "Elefant", "Löwe"], correct: 0, explanation: "Koalas schlafen bis zu 20 Stunden täglich." },
+    { category: "spass_nice_to_know", question: "Kann Honig schlecht werden?", answers: ["Ja, nach Monaten", "Nein, praktisch unbegrenzt haltbar", "Nur geöffnet"], correct: 1, explanation: "In ägyptischen Gräbern fand man noch genießbaren Honig." },
+    { category: "spass_nice_to_know", question: "Wie lange braucht Sonnenlicht bis zur Erde?", answers: ["8 Sekunden", "8 Minuten", "8 Stunden"], correct: 1, explanation: "Etwa 8 Minuten und 20 Sekunden." },
+    { category: "spass_nice_to_know", question: "Welche Farbe hat das Blut eines Oktopus?", answers: ["Rot", "Blau", "Grün"], correct: 1, explanation: "Es enthält Kupfer statt Eisen." },
+    { category: "spass_nice_to_know", question: "Wie viele Knochen hat ein erwachsener Mensch?", answers: ["106", "206", "306"], correct: 1, explanation: "Babys haben rund 300, viele wachsen zusammen." },
+    { category: "spass_nice_to_know", question: "Wie viele Sprachen gibt es schätzungsweise weltweit?", answers: ["etwa 700", "etwa 3.000", "über 7.000"], correct: 2, explanation: "Viele davon sind vom Aussterben bedroht." },
+    { category: "spass_nice_to_know", question: "Welches Körperteil wächst ein Leben lang weiter?", answers: ["Nase und Ohren", "Die Füße", "Die Zähne"], correct: 0, explanation: "Sie bestehen aus Knorpel." },
+    { category: "spass_nice_to_know", question: "Wie viel Prozent der Erdoberfläche sind Wasser?", answers: ["etwa 50 %", "etwa 71 %", "etwa 90 %"], correct: 1, explanation: "Rund 71 % sind von Wasser bedeckt." },
+    { category: "spass_nice_to_know", question: "Welches Tier hat den größten Augapfel?", answers: ["Elefant", "Riesenkalmar", "Blauwal"], correct: 1, explanation: "Bis zu 27 cm Durchmesser." },
+
+    // --- SPASS: Ungewöhnliches aus der Welt ---
+    { category: "spass_welt", question: "In welchem Land ist der Verkauf von Kaugummi stark eingeschränkt?", answers: ["Japan", "Singapur", "Norwegen"], correct: 1, explanation: "Singapur verbot ihn 1992 aus Sauberkeitsgründen." },
+    { category: "spass_welt", question: "Welche deutsche Stadt hat mehr Brücken als Venedig, Amsterdam und London zusammen?", answers: ["Berlin", "Hamburg", "Köln"], correct: 1, explanation: "Hamburg hat rund 2.500 Brücken." },
+    { category: "spass_welt", question: "Wie lange dauerte der kürzeste Krieg der Geschichte?", answers: ["ca. 38 Minuten", "ca. 3 Tage", "ca. 3 Wochen"], correct: 0, explanation: "Der Anglo-Sansibar-Krieg von 1896." },
+    { category: "spass_welt", question: "In welchem Land leben mehr Schafe als Menschen?", answers: ["Neuseeland", "Irland", "Schottland"], correct: 0, explanation: "Etwa fünfmal so viele Schafe wie Menschen." },
+    { category: "spass_welt", question: "Welches Land besteht aus über 17.000 Inseln?", answers: ["Philippinen", "Indonesien", "Japan"], correct: 1, explanation: "Nur etwa 6.000 davon sind bewohnt." },
+    { category: "spass_welt", question: "Welche Farbe hatten Karotten ursprünglich?", answers: ["Lila", "Weiß", "Grün"], correct: 0, explanation: "Orange Karotten wurden erst im 17. Jahrhundert gezüchtet." },
+    { category: "spass_welt", question: "Wie viele Zeitzonen hat Russland?", answers: ["5", "8", "11"], correct: 2, explanation: "Mehr als jedes andere Land." },
+    { category: "spass_welt", question: "Wie viele Zeitzonen nutzt China trotz seiner Größe?", answers: ["1", "3", "5"], correct: 0, explanation: "Landesweit gilt nur eine einzige Zeitzone." },
+    { category: "spass_welt", question: "Welches Land verbraucht pro Kopf am meisten Schokolade?", answers: ["Schweiz", "Belgien", "Deutschland"], correct: 0, explanation: "Die Schweiz liegt regelmäßig an der Spitze." },
+    { category: "spass_welt", question: "In welchem Land geht die Sonne im Sommer wochenlang nicht unter?", answers: ["Norwegen", "Portugal", "Griechenland"], correct: 0, explanation: "Nördlich des Polarkreises: die Mitternachtssonne." },
+
+    // --- SPASS: Sport & Film ---
+    { category: "spass_sport_film", question: "Wie heißt der Wettkampf aus Schwimmen, Radfahren und Laufen?", answers: ["Triathlon", "Biathlon", "Pentathlon"], correct: 0, explanation: "Drei Ausdauersportarten hintereinander." },
+    { category: "spass_sport_film", question: "Wie heißt die gelbe Karte im Fußball auch?", answers: ["Verwarnung", "Platzverweis", "Elfmeter"], correct: 0, explanation: "Erst Rot führt zum Platzverweis." },
+    { category: "spass_sport_film", question: "Wie viele Runden hat ein WM-Boxkampf maximal?", answers: ["8", "12", "15"], correct: 1, explanation: "Heute sind es maximal 12 Runden." },
+    { category: "spass_sport_film", question: "In welcher Sportart gibt es einen 'Slam Dunk'?", answers: ["Basketball", "Volleyball", "Handball"], correct: 0, explanation: "Der Ball wird direkt in den Korb gestopft." },
+    { category: "spass_sport_film", question: "Welcher japanische Regisseur drehte 'Die sieben Samurai'?", answers: ["Hayao Miyazaki", "Akira Kurosawa", "Takeshi Kitano"], correct: 1, explanation: "Kurosawa gilt als einer der einflussreichsten Regisseure." },
+    { category: "spass_sport_film", question: "Welche Kampfkunst prägt viele thailändische Actionfilme?", answers: ["Muay Thai", "Karate", "Judo"], correct: 0, explanation: "Muay Thai ist die traditionelle Kampfkunst Thailands." },
+    { category: "spass_sport_film", question: "Wie lange dauert ein Fußballspiel der F-Jugend meist?", answers: ["2 × 45 Minuten", "2 × 20 Minuten", "3 × 15 Minuten"], correct: 1, explanation: "Im Kleinfeldfußball wird kürzer gespielt." },
+    { category: "spass_sport_film", question: "In welchem Land entstehen die Martial-Arts-Filme mit Don Lee?", answers: ["Japan", "Südkorea", "China"], correct: 1, explanation: "Don Lee ist ein koreanisch-amerikanischer Schauspieler." },
+
+    // --- ERGAENZUNG OBERSTUFE (Klasse 11-13) ---
+    { category: "k11_deutsch", question: "Was ist ein Leitmotiv in einem literarischen Werk?", answers: ["Ein wiederkehrendes Motiv mit besonderer Bedeutung", "Der erste Satz eines Textes", "Die Biografie des Autors"], correct: 0, explanation: "Leitmotive tauchen mehrfach auf und tragen zur Deutung des Werks bei." },
+    { category: "k11_deutsch", question: "Was ist eine auktoriale Erzählperspektive?", answers: ["Ein allwissender Erzähler außerhalb der Handlung", "Ein Erzähler als Figur der Handlung", "Ein Erzähler ohne jede Wertung"], correct: 0, explanation: "Der auktoriale Erzähler kennt Gedanken aller Figuren und kommentiert das Geschehen." },
+    { category: "k11_deutsch", question: "Was kennzeichnet einen Konflikt im Drama?", answers: ["Der Gegensatz gegnerischer Kräfte oder Interessen", "Die Anzahl der Akte", "Die Länge der Regieanweisungen"], correct: 0, explanation: "Der Konflikt treibt die dramatische Handlung an und steuert auf einen Höhepunkt zu." },
+    { category: "k11_deutsch", question: "Was ist ein Vergleich als sprachliches Mittel?", answers: ["Eine Gegenüberstellung mit 'wie' oder 'als'", "Eine Übertreibung", "Eine Frage ohne Antwort"], correct: 0, explanation: "Anders als die Metapher benennt der Vergleich das Vergleichswort ausdrücklich." },
+
+    { category: "k11_mathe", question: "Wie lautet die Produktregel der Ableitung?", answers: ["(u·v)' = u'·v + u·v'", "(u·v)' = u'·v'", "(u·v)' = u' + v'"], correct: 0, explanation: "Produktregel: Ableitung des ersten mal zweiter plus erster mal Ableitung des zweiten." },
+    { category: "k11_mathe", question: "Was ist die Ableitung von f(x) = sin(x)?", answers: ["cos(x)", "-cos(x)", "-sin(x)"], correct: 0, explanation: "Die Ableitung von sin(x) ist cos(x), die von cos(x) ist -sin(x)." },
+    { category: "k11_mathe", question: "Was beschreibt die Monotonie einer Funktion?", answers: ["Ob sie steigt oder fällt", "Ihre Nullstellen", "Ihren Definitionsbereich"], correct: 0, explanation: "Ist f'(x) > 0, steigt die Funktion streng monoton; bei f'(x) < 0 fällt sie." },
+    { category: "k11_mathe", question: "Was ist eine Nullstelle einer Funktion?", answers: ["Eine Stelle x mit f(x) = 0", "Der höchste Funktionswert", "Die Steigung im Ursprung"], correct: 0, explanation: "An einer Nullstelle schneidet oder berührt der Graph die x-Achse." },
+
+    { category: "k11_englisch", question: "Was ist ein 'summary' im Englischunterricht?", answers: ["Eine sachliche Zusammenfassung im Present Tense", "Eine persönliche Meinung", "Eine wörtliche Übersetzung"], correct: 0, explanation: "Eine summary gibt den Inhalt sachlich, im Präsens und in eigenen Worten wieder." },
+    { category: "k11_englisch", question: "'If I had known, I ___ differently.'", answers: ["would have acted", "will act", "would act"], correct: 0, explanation: "If-Clause Typ 3: Past Perfect im Nebensatz, 'would have' + Partizip im Hauptsatz." },
+    { category: "k11_englisch", question: "Was bedeutet 'to be in favour of something'?", answers: ["Für etwas sein", "Gegen etwas sein", "Etwas verbieten"], correct: 0, explanation: "'to be in favour of' heißt, etwas zu befürworten." },
+    { category: "k11_englisch", question: "Was ist 'characterisation' in der Textarbeit?", answers: ["Die Beschreibung einer Figur mit Belegen aus dem Text", "Die Nacherzählung der Handlung", "Die Biografie des Autors"], correct: 0, explanation: "Eine characterisation beschreibt Aussehen, Verhalten und Entwicklung einer Figur, belegt am Text." },
+
+    { category: "k11_biologie", question: "Was ist die Aufgabe der Mitochondrien?", answers: ["Energiegewinnung durch Zellatmung (ATP)", "Speicherung der Erbinformation", "Proteinabbau"], correct: 0, explanation: "In den Mitochondrien wird über die Atmungskette der Energieträger ATP hergestellt." },
+    { category: "k11_biologie", question: "Was beschreibt das Schlüssel-Schloss-Prinzip?", answers: ["Die passgenaue Bindung von Substrat und Enzym", "Den Zellzyklus", "Den Blutkreislauf"], correct: 0, explanation: "Nur ein räumlich passendes Substrat bindet an das aktive Zentrum des Enzyms." },
+    { category: "k11_biologie", question: "Was ist Diffusion?", answers: ["Der Ausgleich von Konzentrationsunterschieden ohne Energieaufwand", "Aktiver Transport gegen ein Gefälle", "Die Zellteilung"], correct: 0, explanation: "Teilchen bewegen sich von hoher zu niedriger Konzentration – ein passiver Vorgang." },
+    { category: "k11_biologie", question: "Wovon hängt die Enzymaktivität besonders stark ab?", answers: ["Von Temperatur und pH-Wert", "Nur von der Tageszeit", "Von der Farbe des Substrats"], correct: 0, explanation: "Jedes Enzym hat ein Temperatur- und pH-Optimum; darüber hinaus denaturiert es." },
+
+    { category: "k11_chemie", question: "Was ist eine Redoxreaktion?", answers: ["Eine Reaktion mit Elektronenübergang", "Eine reine Wärmeabgabe", "Eine Zustandsänderung ohne Stoffumwandlung"], correct: 0, explanation: "Oxidation ist Elektronenabgabe, Reduktion Elektronenaufnahme – beides läuft gekoppelt ab." },
+    { category: "k11_chemie", question: "Was ist eine Elektronenpaarbindung?", answers: ["Zwei Atome teilen sich ein Elektronenpaar", "Ein Elektron wird vollständig übertragen", "Zwei Ionen ziehen sich an"], correct: 0, explanation: "Die Atombindung entsteht durch gemeinsam genutzte Elektronenpaare zwischen Nichtmetallen." },
+    { category: "k11_chemie", question: "Was besagt die Oktettregel?", answers: ["Atome streben acht Außenelektronen an", "Jedes Molekül hat acht Atome", "Es gibt acht Bindungsarten"], correct: 0, explanation: "Atome erreichen durch Bindungen die stabile Edelgaskonfiguration mit acht Außenelektronen." },
+    { category: "k11_chemie", question: "Was ist ein Katalysator im Energiediagramm?", answers: ["Ein Stoff, der die Aktivierungsenergie senkt", "Ein Stoff, der die Reaktionswärme erhöht", "Ein Endprodukt der Reaktion"], correct: 0, explanation: "Der Katalysator senkt die Aktivierungsenergie, ohne selbst verbraucht zu werden." },
+
+    { category: "k11_physik", question: "Was besagt der Impulserhaltungssatz?", answers: ["Der Gesamtimpuls bleibt in einem abgeschlossenen System konstant", "Impuls wandelt sich immer in Wärme um", "Impuls nimmt mit der Zeit ab"], correct: 0, explanation: "Ohne äußere Kräfte bleibt die Summe aller Impulse (m·v) erhalten – wichtig bei Stößen." },
+    { category: "k11_physik", question: "Was beschreibt die potentielle Energie im Schwerefeld?", answers: ["E = m·g·h", "E = ½·m·v²", "E = U·I"], correct: 0, explanation: "Die Lageenergie hängt von Masse, Ortsfaktor und Höhe ab." },
+    { category: "k11_physik", question: "Was ist eine beschleunigte Bewegung?", answers: ["Eine Bewegung mit sich ändernder Geschwindigkeit", "Eine Bewegung mit konstanter Geschwindigkeit", "Ein Zustand der Ruhe"], correct: 0, explanation: "Beschleunigung ist die Änderung der Geschwindigkeit pro Zeit (a = Δv/Δt)." },
+    { category: "k11_physik", question: "Was ist der Wirkungsgrad einer Maschine?", answers: ["Das Verhältnis von nutzbarer zu zugeführter Energie", "Die Leistung in Watt", "Die Betriebsdauer"], correct: 0, explanation: "Der Wirkungsgrad ist immer kleiner als 1, da stets Energie als Wärme verloren geht." },
+
+    { category: "k11_geschichte", question: "Was war die Aufklärung als Epoche?", answers: ["Eine Geistesbewegung, die Vernunft und Mündigkeit betonte", "Eine Kriegsphase im Mittelalter", "Eine Kunstrichtung der Antike"], correct: 0, explanation: "Kant fasste sie als 'Ausgang des Menschen aus seiner selbstverschuldeten Unmündigkeit'." },
+    { category: "k11_geschichte", question: "Was kennzeichnete die Industrialisierung in Deutschland?", answers: ["Fabrikarbeit, Urbanisierung und die soziale Frage", "Rückkehr zur Landwirtschaft", "Abschaffung der Städte"], correct: 0, explanation: "Massenproduktion und Landflucht führten zu neuen sozialen Problemen und zur Arbeiterbewegung." },
+    { category: "k11_geschichte", question: "Was ist eine Sekundärquelle?", answers: ["Eine spätere Darstellung über ein Ereignis", "Ein Augenzeugenbericht", "Ein Originaldokument der Zeit"], correct: 0, explanation: "Sekundärquellen deuten Ereignisse im Nachhinein, Primärquellen stammen aus der Zeit selbst." },
+    { category: "k11_geschichte", question: "Was war die Deutsche Revolution von 1848/49?", answers: ["Ein Aufstand für Einheit, Freiheit und Verfassung", "Ein Bauernkrieg des Mittelalters", "Der Beginn des Ersten Weltkriegs"], correct: 0, explanation: "Die Nationalversammlung tagte in der Frankfurter Paulskirche, die Revolution scheiterte jedoch." },
+
+    { category: "k11_sowi", question: "Was ist ein Markt in der Wirtschaft?", answers: ["Der Ort des Zusammentreffens von Angebot und Nachfrage", "Nur ein Wochenmarkt", "Eine staatliche Behörde"], correct: 0, explanation: "Auf Märkten bildet sich über Angebot und Nachfrage der Preis." },
+    { category: "k11_sowi", question: "Was ist eine Norm im soziologischen Sinn?", answers: ["Eine Verhaltenserwartung an Mitglieder einer Gruppe", "Ein Naturgesetz", "Eine mathematische Regel"], correct: 0, explanation: "Normen steuern Verhalten; bei Verstoß drohen Sanktionen." },
+    { category: "k11_sowi", question: "Was bedeutet Gewaltenverschränkung?", answers: ["Gegenseitige Kontrolle und Verzahnung der Staatsgewalten", "Die Abschaffung der Gewaltenteilung", "Die Trennung von Staat und Kirche"], correct: 0, explanation: "In der Praxis sind Legislative und Exekutive verschränkt, kontrollieren sich aber gegenseitig." },
+    { category: "k11_sowi", question: "Was versteht man unter Opportunitätskosten?", answers: ["Der Nutzen der besten nicht gewählten Alternative", "Die Steuern auf einen Gewinn", "Die Kosten einer Reparatur"], correct: 0, explanation: "Wer sich für eine Option entscheidet, verzichtet auf den Nutzen der nächstbesten – das sind die Opportunitätskosten." },
+
+    { category: "k11_informatik", question: "Was ist eine Schleife mit Abbruchbedingung?", answers: ["Eine while-Schleife", "Eine Konstante", "Ein Kommentar"], correct: 0, explanation: "Die while-Schleife läuft, solange ihre Bedingung wahr ist." },
+    { category: "k11_informatik", question: "Was ist eine Klasse in der objektorientierten Programmierung?", answers: ["Ein Bauplan für Objekte", "Ein einzelnes Objekt", "Eine Datei"], correct: 0, explanation: "Die Klasse definiert Attribute und Methoden; Objekte sind konkrete Ausprägungen davon." },
+    { category: "k11_informatik", question: "Was ist ein Boolescher Wert?", answers: ["Ein Wahrheitswert (true/false)", "Eine Zeichenkette", "Eine Kommazahl"], correct: 0, explanation: "Boolesche Werte steuern Bedingungen und Verzweigungen." },
+    { category: "k11_informatik", question: "Was ist ein Struktogramm?", answers: ["Eine grafische Darstellung eines Algorithmus", "Ein Schaltplan", "Eine Datenbanktabelle"], correct: 0, explanation: "Struktogramme (Nassi-Shneiderman-Diagramme) stellen Abläufe übersichtlich dar." },
+    { category: "k12_deutsch", question: "Was kennzeichnet die Romantik als Literaturepoche?", answers: ["Sehnsucht, Naturverbundenheit und das Fantastische", "Strenge Vernunftorientierung", "Sachliche Reportagen"], correct: 0, explanation: "Die Romantik betont Gefühl, Fernweh und das Geheimnisvolle – Symbol ist die blaue Blume." },
+    { category: "k12_deutsch", question: "Was ist eine Novelle als literarische Gattung?", answers: ["Eine Erzählung mittlerer Länge um ein zentrales Ereignis", "Ein mehrbändiger Roman", "Ein Bühnenstück in fünf Akten"], correct: 0, explanation: "Kennzeichen sind die straffe Handlung um eine unerhörte Begebenheit und oft ein Dingsymbol." },
+    { category: "k12_deutsch", question: "Was ist eine Antithese?", answers: ["Die Gegenüberstellung gegensätzlicher Begriffe", "Eine Wiederholung", "Eine Untertreibung"], correct: 0, explanation: "Beispiel: 'Der eine lacht, der andere weint' – Gegensätze werden bewusst kontrastiert." },
+    { category: "k12_deutsch", question: "Was ist der Realismus in der Literatur?", answers: ["Eine Epoche, die Wirklichkeit maßvoll und geordnet darstellt", "Eine Fantasy-Richtung", "Die Literatur der Antike"], correct: 0, explanation: "Der poetische Realismus (ca. 1848-1890) zeigt Alltag, aber künstlerisch verklärt." },
+
+    { category: "k12_mathe", question: "Was besagt der Hauptsatz der Differential- und Integralrechnung?", answers: ["Integration und Differentiation sind Umkehroperationen", "Jede Funktion ist stetig", "Ableitungen sind immer positiv"], correct: 0, explanation: "Ist F eine Stammfunktion von f, gilt: Integral von a bis b = F(b) - F(a)." },
+    { category: "k12_mathe", question: "Was ist die Stammfunktion von f(x) = x²?", answers: ["(1/3)x³ + C", "2x + C", "x³ + C"], correct: 0, explanation: "Beim Integrieren erhöht sich der Exponent um 1 und man teilt durch den neuen Exponenten." },
+    { category: "k12_mathe", question: "Wann sind zwei Vektoren orthogonal zueinander?", answers: ["Wenn ihr Skalarprodukt null ist", "Wenn sie gleich lang sind", "Wenn sie parallel sind"], correct: 0, explanation: "Skalarprodukt = 0 bedeutet, die Vektoren stehen senkrecht aufeinander." },
+    { category: "k12_mathe", question: "Was beschreibt eine Geradengleichung in Parameterform?", answers: ["Stützvektor plus Vielfaches eines Richtungsvektors", "Nur einen einzelnen Punkt", "Eine Kreisgleichung"], correct: 0, explanation: "g: x = a + t·u, wobei a der Stütz- und u der Richtungsvektor ist." },
+
+    { category: "k12_englisch", question: "Was bedeutet 'to be aware of something'?", answers: ["Sich einer Sache bewusst sein", "Etwas ablehnen", "Etwas vergessen"], correct: 0, explanation: "'to be aware of' heißt, etwas wahrzunehmen oder sich dessen bewusst zu sein." },
+    { category: "k12_englisch", question: "Was ist eine 'thesis statement'?", answers: ["Die zentrale Aussage eines Aufsatzes", "Die Überschrift", "Das Literaturverzeichnis"], correct: 0, explanation: "Sie fasst die Kernthese, die im Text belegt wird, in ein bis zwei Sätzen zusammen." },
+    { category: "k12_englisch", question: "'Not until later ___ what had happened.'", answers: ["did we realise", "we realised", "we did realise"], correct: 0, explanation: "Nach 'Not until' am Satzanfang folgt eine Inversion mit Hilfsverb." },
+    { category: "k12_englisch", question: "Was ist 'stereotyping'?", answers: ["Verallgemeinernde, vereinfachte Bilder über Gruppen", "Eine Druckertechnik im Unterricht", "Eine Zeitform"], correct: 0, explanation: "Stereotype vereinfachen komplexe Wirklichkeit und können zu Vorurteilen führen." },
+
+    { category: "k12_biologie", question: "Was ist die Transkription?", answers: ["Das Umschreiben von DNA in mRNA", "Die Zellteilung", "Der Abbau von Proteinen"], correct: 0, explanation: "Im Zellkern wird die DNA-Information in mRNA übersetzt und dann zum Ribosom gebracht." },
+    { category: "k12_biologie", question: "Was besagen die Mendelschen Regeln?", answers: ["Gesetzmäßigkeiten der Vererbung von Merkmalen", "Regeln der Fotosynthese", "Gesetze der Thermodynamik"], correct: 0, explanation: "Uniformitäts-, Spaltungs- und Unabhängigkeitsregel beschreiben Kreuzungsergebnisse." },
+    { category: "k12_biologie", question: "Was ist die Meiose?", answers: ["Reifeteilung mit Halbierung des Chromosomensatzes", "Normale Körperzellteilung", "Der Zelltod"], correct: 0, explanation: "Aus einer diploiden Zelle entstehen vier haploide Keimzellen." },
+    { category: "k12_biologie", question: "Was ist eine Synapse?", answers: ["Die Kontaktstelle zwischen zwei Nervenzellen", "Ein Muskelfaserbündel", "Ein Zellorganell zur Energiegewinnung"], correct: 0, explanation: "An der Synapse wird das Signal chemisch über Botenstoffe (Transmitter) übertragen." },
+
+    { category: "k12_chemie", question: "Was ist eine Veresterung?", answers: ["Reaktion von Alkohol und Carbonsäure zu Ester und Wasser", "Die Verbrennung von Metall", "Die Bildung eines Salzes aus Ionen"], correct: 0, explanation: "Die Veresterung ist eine Kondensationsreaktion und läuft im Gleichgewicht ab." },
+    { category: "k12_chemie", question: "Was kennzeichnet Alkane?", answers: ["Gesättigte Kohlenwasserstoffe mit Einfachbindungen", "Kohlenwasserstoffe mit Dreifachbindung", "Sauerstoffhaltige Säuren"], correct: 0, explanation: "Alkane haben die allgemeine Formel CnH2n+2, z.B. Methan und Ethan." },
+    { category: "k12_chemie", question: "Was ist der pKs-Wert?", answers: ["Ein Maß für die Stärke einer Säure", "Die Siedetemperatur", "Die Molare Masse"], correct: 0, explanation: "Je kleiner der pKs-Wert, desto stärker die Säure." },
+    { category: "k12_chemie", question: "Was sind Isomere?", answers: ["Stoffe mit gleicher Summenformel, aber unterschiedlichem Bau", "Stoffe mit gleicher Farbe", "Zwei Namen für denselben Stoff"], correct: 0, explanation: "Butan und Isobutan haben beide C4H10, unterscheiden sich aber in der Struktur und damit in ihren Eigenschaften." },
+
+    { category: "k12_physik", question: "Was beschreibt das Induktionsgesetz?", answers: ["Eine Spannung entsteht bei Änderung des magnetischen Flusses", "Strom fließt nur in Metallen", "Ladung geht verloren"], correct: 0, explanation: "Grundlage von Generator und Transformator – eine Flussänderung erzeugt eine Induktionsspannung." },
+    { category: "k12_physik", question: "Was ist die Kapazität eines Kondensators?", answers: ["Das Verhältnis von Ladung zu Spannung", "Die Leistung in Watt", "Der Widerstand in Ohm"], correct: 0, explanation: "C = Q/U, gemessen in Farad." },
+    { category: "k12_physik", question: "Was ist die Resonanz bei Schwingungen?", answers: ["Starke Amplitudenzunahme bei passender Erregerfrequenz", "Das Abklingen einer Welle", "Die Umkehr der Bewegungsrichtung"], correct: 0, explanation: "Stimmt die Erregerfrequenz mit der Eigenfrequenz überein, wächst die Amplitude stark an." },
+    { category: "k12_physik", question: "Was zeigt das Doppelspaltexperiment mit Licht?", answers: ["Den Wellencharakter durch Interferenzmuster", "Dass Licht keine Energie hat", "Dass Licht nur geradlinig verläuft"], correct: 0, explanation: "Das Streifenmuster entsteht durch Überlagerung – ein klarer Wellennachweis." },
+
+    { category: "k12_geschichte", question: "Warum gilt die Weimarer Republik als 'Demokratie ohne Demokraten'?", answers: ["Viele Eliten und Bürger lehnten die Republik ab", "Es gab keine Wahlen", "Es fehlte eine Verfassung"], correct: 0, explanation: "Justiz, Militär und Teile der Bevölkerung standen der Republik ablehnend gegenüber." },
+    { category: "k12_geschichte", question: "Was war die Machtübertragung 1933?", answers: ["Hitlers Ernennung zum Reichskanzler am 30. Januar 1933", "Die Gründung der Bundesrepublik", "Der Beginn des Ersten Weltkriegs"], correct: 0, explanation: "Reichspräsident Hindenburg ernannte Hitler; es folgte die rasche Ausschaltung der Demokratie." },
+    { category: "k12_geschichte", question: "Was war der Versailler Vertrag von 1919?", answers: ["Der Friedensvertrag nach dem Ersten Weltkrieg", "Ein Handelsabkommen des Mittelalters", "Die Gründungsurkunde der EU"], correct: 0, explanation: "Er legte Deutschland Gebietsverluste und Reparationen auf und belastete die Weimarer Republik." },
+    { category: "k12_geschichte", question: "Was bedeutet 'Gleichschaltung' im Nationalsozialismus?", answers: ["Die erzwungene Ausrichtung aller Bereiche auf die NS-Ideologie", "Die Angleichung der Löhne", "Die Vereinheitlichung der Stromnetze"], correct: 0, explanation: "Parteien, Verbände und Länder wurden 1933/34 systematisch entmachtet oder unterworfen." },
+
+    { category: "k12_sowi", question: "Was ist Inflation volkswirtschaftlich?", answers: ["Ein anhaltender Anstieg des Preisniveaus", "Ein Rückgang der Preise", "Ein Anstieg der Beschäftigung"], correct: 0, explanation: "Bei Inflation sinkt die Kaufkraft des Geldes; die EZB strebt rund 2 Prozent an." },
+    { category: "k12_sowi", question: "Was ist Angebotspolitik?", answers: ["Stärkung der Produktionsbedingungen der Unternehmen", "Erhöhung der Staatsnachfrage", "Verstaatlichung der Wirtschaft"], correct: 0, explanation: "Angebotspolitik setzt auf Steuersenkungen und Deregulierung statt auf Nachfrageimpulse." },
+    { category: "k12_sowi", question: "Was misst die Arbeitslosenquote?", answers: ["Den Anteil der Arbeitslosen an den Erwerbspersonen", "Die Zahl aller Nichterwerbstätigen", "Die Zahl der offenen Stellen"], correct: 0, explanation: "Sie bezieht die registrierten Arbeitslosen auf alle zivilen Erwerbspersonen." },
+    { category: "k12_sowi", question: "Was sind Interessenverbände?", answers: ["Organisationen, die Interessen ihrer Mitglieder vertreten", "Staatliche Ministerien", "Gerichte"], correct: 0, explanation: "Gewerkschaften und Arbeitgeberverbände nehmen Einfluss auf politische Entscheidungen." },
+
+    { category: "k12_informatik", question: "Was ist ein Stack (Stapelspeicher)?", answers: ["Eine Datenstruktur nach dem LIFO-Prinzip", "Eine Warteschlange nach FIFO", "Eine Datenbank"], correct: 0, explanation: "Last In, First Out: Das zuletzt abgelegte Element wird zuerst entnommen." },
+    { category: "k12_informatik", question: "Was ist eine Queue?", answers: ["Eine Warteschlange nach dem FIFO-Prinzip", "Ein Stapelspeicher", "Ein Sortierverfahren"], correct: 0, explanation: "First In, First Out – wie eine Warteschlange an der Kasse." },
+    { category: "k12_informatik", question: "Wozu dient ein Primärschlüssel in einer Datenbank?", answers: ["Zur eindeutigen Identifikation eines Datensatzes", "Zum Verschlüsseln der Datenbank", "Zum Sortieren der Spalten"], correct: 0, explanation: "Der Primärschlüssel ist eindeutig und darf nicht leer sein." },
+    { category: "k12_informatik", question: "Was ist Vererbung in der objektorientierten Programmierung?", answers: ["Eine Klasse übernimmt Eigenschaften einer Oberklasse", "Das Löschen von Objekten", "Das Kopieren von Dateien"], correct: 0, explanation: "Unterklassen erben Attribute und Methoden und können sie erweitern oder überschreiben." },
+    { category: "k13_deutsch", question: "Was kennzeichnet die literarische Moderne um 1900?", answers: ["Brüche mit Traditionen und neue Erzählformen", "Strenge Regelpoetik der Antike", "Ausschließlich Heimatliteratur"], correct: 0, explanation: "Autoren wie Kafka und Musil lösen sich von geschlossenen Formen und festen Weltbildern." },
+    { category: "k13_deutsch", question: "Was ist eine Ellipse als Stilmittel?", answers: ["Ein unvollständiger Satz durch Auslassung", "Eine Übertreibung", "Ein Vergleich"], correct: 0, explanation: "Beispiel: 'Ende gut, alles gut' – Satzglieder werden bewusst weggelassen." },
+    { category: "k13_deutsch", question: "Was untersucht die Sprachkritik?", answers: ["Wie Sprache Denken und Wirklichkeit beeinflusst", "Nur die Rechtschreibung", "Die Druckgeschichte von Büchern"], correct: 0, explanation: "Sprachkritik fragt, ob und wie Sprache Wirklichkeit abbilden oder verschleiern kann." },
+    { category: "k13_deutsch", question: "Was ist ein Bildungsroman?", answers: ["Ein Roman über die innere Entwicklung einer Hauptfigur", "Ein Sachbuch über Schule", "Eine Gedichtsammlung"], correct: 0, explanation: "Klassisches Beispiel ist Goethes 'Wilhelm Meisters Lehrjahre'." },
+
+    { category: "k13_mathe", question: "Was ist die Bernoulli-Kette?", answers: ["Wiederholte unabhängige Versuche mit zwei Ausgängen", "Eine Folge von Ableitungen", "Ein Gleichungssystem"], correct: 0, explanation: "Sie ist die Grundlage der Binomialverteilung – jeder Versuch hat dieselbe Trefferwahrscheinlichkeit." },
+    { category: "k13_mathe", question: "Was ist der Erwartungswert einer Zufallsgröße?", answers: ["Der auf lange Sicht durchschnittlich erwartete Wert", "Der größte mögliche Wert", "Die Anzahl der Versuche"], correct: 0, explanation: "Bei der Binomialverteilung gilt E(X) = n·p." },
+    { category: "k13_mathe", question: "Was ist ein Hypothesentest?", answers: ["Ein Verfahren zur Prüfung einer Annahme anhand von Daten", "Eine Kurvendiskussion", "Ein Integrationsverfahren"], correct: 0, explanation: "Man prüft, ob ein Stichprobenergebnis mit der Nullhypothese vereinbar ist." },
+    { category: "k13_mathe", question: "Wie berechnet man den Abstand eines Punktes von einer Ebene?", answers: ["Mit der Hesseschen Normalform", "Mit dem Skalarprodukt allein", "Mit der Produktregel"], correct: 0, explanation: "Die Hessesche Normalform liefert direkt den Abstand als Betrag des eingesetzten Punktes." },
+
+    { category: "k13_englisch", question: "Was ist 'utopia' und 'dystopia' in der Literatur?", answers: ["Idealer bzw. bedrohlicher Gesellschaftsentwurf", "Zwei englische Zeitformen", "Zwei Städte in England"], correct: 0, explanation: "Dystopien wie '1984' warnen vor gesellschaftlichen Fehlentwicklungen." },
+    { category: "k13_englisch", question: "Was ist ein 'comment' als Aufgabenformat?", answers: ["Eine begründete eigene Stellungnahme", "Eine reine Inhaltsangabe", "Eine Übersetzung"], correct: 0, explanation: "Im comment nimmt man Stellung, argumentiert und kommt zu einem klaren Fazit." },
+    { category: "k13_englisch", question: "Was bedeutet 'to bridge the gap'?", answers: ["Eine Kluft überbrücken", "Eine Brücke abreißen", "Ein Problem verschweigen"], correct: 0, explanation: "Bildlich: Unterschiede oder Gegensätze verringern." },
+    { category: "k13_englisch", question: "Was ist 'irony' als Stilmittel?", answers: ["Das Gegenteil des Gesagten ist gemeint", "Eine wörtliche Wiederholung", "Eine Frage ohne Antwort"], correct: 0, explanation: "Ironie erzeugt eine Spannung zwischen Wortlaut und tatsächlicher Aussageabsicht." },
+
+    { category: "k13_biologie", question: "Was ist die Synapsengift-Wirkung am Beispiel von Hemmstoffen?", answers: ["Sie stören die Signalübertragung an der Synapse", "Sie beschleunigen die Zellteilung", "Sie verändern die DNA"], correct: 0, explanation: "Hemmstoffe blockieren z.B. Rezeptoren oder den Abbau von Transmittern." },
+    { category: "k13_biologie", question: "Was besagt die Endosymbiontentheorie?", answers: ["Mitochondrien und Chloroplasten stammen von aufgenommenen Bakterien ab", "Alle Zellen entstehen aus Kristallen", "Arten entstehen ohne Selektion"], correct: 0, explanation: "Beide Organellen besitzen eigene DNA und Doppelmembranen – starke Belege der Theorie." },
+    { category: "k13_biologie", question: "Was ist genetische Drift?", answers: ["Zufällige Änderung der Allelhäufigkeit in kleinen Populationen", "Gerichtete Auslese durch die Umwelt", "Die Verdopplung der DNA"], correct: 0, explanation: "Anders als die Selektion wirkt die Drift ungerichtet und besonders in kleinen Populationen stark." },
+    { category: "k13_biologie", question: "Was ist ein ökologisches Gleichgewicht?", answers: ["Ein dynamisch schwankender, aber stabiler Zustand im Ökosystem", "Ein völlig unveränderlicher Zustand", "Das Aussterben aller Arten"], correct: 0, explanation: "Populationsgrößen schwanken um einen Mittelwert, das System bleibt insgesamt stabil." },
+
+    { category: "k13_chemie", question: "Was ist ein Elektrolyt?", answers: ["Ein Stoff, dessen Lösung oder Schmelze Strom leitet", "Ein Isolator", "Ein Edelgas"], correct: 0, explanation: "Elektrolyte enthalten frei bewegliche Ionen, die den Ladungstransport ermöglichen." },
+    { category: "k13_chemie", question: "Was beschreibt das chemische Gleichgewicht?", answers: ["Hin- und Rückreaktion laufen gleich schnell ab", "Die Reaktion ist vollständig beendet", "Es entstehen keine Produkte"], correct: 0, explanation: "Die Konzentrationen bleiben konstant, obwohl beide Reaktionen weiterlaufen." },
+    { category: "k13_chemie", question: "Was ist die Elektrolyse?", answers: ["Eine durch elektrische Energie erzwungene Redoxreaktion", "Eine spontane Batteriereaktion", "Ein Filterverfahren"], correct: 0, explanation: "Bei der Elektrolyse wird elektrische Energie zugeführt, um eine Reaktion zu erzwingen." },
+    { category: "k13_chemie", question: "Was sind Kohlenhydrate chemisch?", answers: ["Polyhydroxyaldehyde bzw. -ketone", "Reine Kohlenwasserstoffe", "Anorganische Salze"], correct: 0, explanation: "Glucose ist ein typisches Beispiel; Kohlenhydrate dienen als Energieträger." },
+
+    { category: "k13_physik", question: "Was beschreibt das Plancksche Wirkungsquantum?", answers: ["Den Zusammenhang von Energie und Frequenz eines Photons", "Die Lichtgeschwindigkeit", "Die Gravitationskonstante"], correct: 0, explanation: "E = h·f – Energie tritt nur in festen Portionen (Quanten) auf." },
+    { category: "k13_physik", question: "Was ist der radioaktive Zerfall?", answers: ["Die spontane Umwandlung instabiler Atomkerne", "Die Verbrennung von Uran", "Die Aufheizung von Metall"], correct: 0, explanation: "Man unterscheidet Alpha-, Beta- und Gammazerfall; die Halbwertszeit beschreibt das Tempo." },
+    { category: "k13_physik", question: "Was ist die Halbwertszeit?", answers: ["Die Zeit, nach der die Hälfte der Kerne zerfallen ist", "Die Lebensdauer eines Atoms", "Die halbe Lichtgeschwindigkeit"], correct: 0, explanation: "Sie ist für jedes Nuklid charakteristisch und unabhängig von der Ausgangsmenge." },
+    { category: "k13_physik", question: "Was besagt die Zeitdilatation?", answers: ["Bewegte Uhren gehen aus Sicht eines ruhenden Beobachters langsamer", "Zeit vergeht überall gleich", "Zeit läuft rückwärts"], correct: 0, explanation: "Ein Ergebnis der speziellen Relativitätstheorie, messbar z.B. bei Myonen." },
+
+    { category: "k13_geschichte", question: "Was war die Kubakrise 1962?", answers: ["Eine Zuspitzung des Kalten Krieges um Raketen auf Kuba", "Ein Handelsstreit um Zucker", "Der Beginn der NATO"], correct: 0, explanation: "Die Welt stand kurz vor einem Atomkrieg; die Krise endete mit dem Abzug der Raketen." },
+    { category: "k13_geschichte", question: "Was war der Mauerbau 1961?", answers: ["Die Abriegelung West-Berlins durch die DDR", "Der Bau der Berliner Stadtmauer im Mittelalter", "Ein Bauprojekt der Bundesrepublik"], correct: 0, explanation: "Die DDR wollte die massenhafte Flucht in den Westen stoppen." },
+    { category: "k13_geschichte", question: "Was kennzeichnete die Friedliche Revolution 1989?", answers: ["Gewaltlose Massenproteste in der DDR", "Ein Militärputsch", "Ein Bürgerkrieg"], correct: 0, explanation: "Montagsdemonstrationen und der Ruf 'Wir sind das Volk' führten zum Fall der Mauer." },
+    { category: "k13_geschichte", question: "Was war der Zwei-plus-Vier-Vertrag 1990?", answers: ["Die außenpolitische Regelung der deutschen Einheit", "Ein Wirtschaftsabkommen der EU", "Ein Militärbündnis"], correct: 0, explanation: "Die beiden deutschen Staaten und die vier Siegermächte regelten die volle Souveränität Deutschlands." },
+
+    { category: "k13_sowi", question: "Was ist der Europäische Binnenmarkt?", answers: ["Freier Verkehr von Waren, Personen, Dienstleistungen und Kapital", "Ein gemeinsamer Wochenmarkt", "Eine EU-Behörde"], correct: 0, explanation: "Die vier Grundfreiheiten bilden das wirtschaftliche Kernstück der EU." },
+    { category: "k13_sowi", question: "Wofür steht das Prinzip der Tarifautonomie?", answers: ["Gewerkschaften und Arbeitgeber handeln Löhne ohne den Staat aus", "Der Staat legt alle Löhne fest", "Jeder verhandelt seinen Lohn allein"], correct: 0, explanation: "Die Tarifautonomie ist grundgesetzlich geschützt (Art. 9 Abs. 3 GG)." },
+    { category: "k13_sowi", question: "Was ist das Umlageverfahren in der Rentenversicherung?", answers: ["Die Beiträge der Erwerbstätigen finanzieren die heutigen Renten", "Jeder spart nur für sich selbst", "Der Staat zahlt Renten aus Steuern allein"], correct: 0, explanation: "Der Generationenvertrag gerät durch den demografischen Wandel unter Druck." },
+    { category: "k13_sowi", question: "Was ist Multilateralismus?", answers: ["Zusammenarbeit mehrerer Staaten nach gemeinsamen Regeln", "Alleingang eines einzelnen Staates", "Ein Handelsverbot"], correct: 0, explanation: "Organisationen wie UNO, WTO und EU sind Ausdruck multilateraler Politik." },
+
+    { category: "k13_informatik", question: "Was ist die Zeitkomplexität O(n²) typischerweise?", answers: ["Quadratisches Wachstum, z.B. bei einfachen Sortierverfahren", "Konstante Laufzeit", "Logarithmisches Wachstum"], correct: 0, explanation: "Bubblesort und Insertionsort liegen im schlechtesten Fall bei O(n²)." },
+    { category: "k13_informatik", question: "Was ist eine reguläre Sprache?", answers: ["Eine Sprache, die ein endlicher Automat erkennen kann", "Eine natürliche Sprache wie Deutsch", "Eine Programmiersprache mit Klassen"], correct: 0, explanation: "Reguläre Sprachen lassen sich durch reguläre Ausdrücke beschreiben." },
+    { category: "k13_informatik", question: "Was ist asymmetrische Verschlüsselung?", answers: ["Verfahren mit öffentlichem und privatem Schlüssel", "Verschlüsselung mit nur einem Schlüssel", "Eine Datenkompression"], correct: 0, explanation: "Der öffentliche Schlüssel verschlüsselt, nur der private kann entschlüsseln – Basis von RSA." },
+    { category: "k13_informatik", question: "Wozu dient das Client-Server-Modell?", answers: ["Aufgabenteilung: Server bietet Dienste, Client fragt sie an", "Zur Sortierung von Daten", "Zur Verschlüsselung von Passwörtern"], correct: 0, explanation: "Webseiten, E-Mail und Datenbanken arbeiten typischerweise nach diesem Modell." }
 ];
 
-// ==========================================
-// VOKABEL DATENBANK (Klasse 1 bis 11 & KFZ)
-// ==========================================
+// =======================================================
+// LEHRPLAN-STRUKTUR: welche Faecher gibt es in welcher Klasse
+// =======================================================
+const CURRICULUM = [
+    { grade: 1, label: "Klasse 1", stufe: "Grundschule", subjects: [{ key: "k1_deutsch", label: "📖 Deutsch (Lesen & Schreiben)" }, { key: "k1_mathe", label: "🔢 Mathematik" }, { key: "k1_sachunterricht", label: "🌱 Sachunterricht" }] },
+    { grade: 2, label: "Klasse 2", stufe: "Grundschule", subjects: [{ key: "k2_deutsch", label: "📖 Deutsch" }, { key: "k2_mathe", label: "🔢 Mathematik" }, { key: "k2_sachunterricht", label: "🌱 Sachunterricht" }] },
+    { grade: 3, label: "Klasse 3", stufe: "Grundschule", subjects: [{ key: "k3_deutsch", label: "📖 Deutsch" }, { key: "k3_mathe", label: "🔢 Mathematik" }, { key: "k3_sachunterricht", label: "🌱 Sachunterricht" }, { key: "k3_englisch", label: "🇬🇧 Englisch" }, { key: "k3_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
+    { grade: 4, label: "Klasse 4", stufe: "Grundschule", subjects: [{ key: "k4_deutsch", label: "📖 Deutsch (Grammatik)" }, { key: "k4_mathe", label: "🔢 Mathematik" }, { key: "k4_sachunterricht", label: "🌱 Sachunterricht" }, { key: "k4_englisch", label: "🇬🇧 Englisch" }, { key: "k4_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
+    { grade: 5, label: "Klasse 5", stufe: "Sekundarstufe I", subjects: [{ key: "k5_deutsch", label: "📖 Deutsch" }, { key: "k5_mathe", label: "🔢 Mathematik" }, { key: "k5_englisch", label: "🇬🇧 Englisch" }, { key: "k5_biologie", label: "🧬 Biologie" }, { key: "k5_erdkunde", label: "🌍 Erdkunde" }, { key: "k5_politik", label: "🏛️ Politik & Gesellschaftslehre" }, { key: "k5_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
+    { grade: 6, label: "Klasse 6", stufe: "Sekundarstufe I", subjects: [{ key: "k6_deutsch", label: "📖 Deutsch" }, { key: "k6_mathe", label: "🔢 Mathematik" }, { key: "k6_englisch", label: "🇬🇧 Englisch" }, { key: "k6_biologie", label: "🧬 Biologie" }, { key: "k6_physik", label: "⚡ Physik" }, { key: "k6_geschichte", label: "📜 Geschichte" }, { key: "k6_erdkunde", label: "🌍 Erdkunde" }, { key: "k6_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
+    { grade: 7, label: "Klasse 7", stufe: "Sekundarstufe I", subjects: [{ key: "k7_deutsch", label: "📖 Deutsch" }, { key: "k7_mathe", label: "🔢 Mathematik" }, { key: "k7_englisch", label: "🇬🇧 Englisch" }, { key: "k7_biologie", label: "🧬 Biologie" }, { key: "k7_chemie", label: "⚗️ Chemie" }, { key: "k7_physik", label: "⚡ Physik" }, { key: "k7_geschichte", label: "📜 Geschichte" }, { key: "k7_erdkunde", label: "🌍 Erdkunde" }, { key: "k7_politik", label: "🏛️ Politik & Wirtschaft" }, { key: "k7_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
+    { grade: 8, label: "Klasse 8", stufe: "Sekundarstufe I", subjects: [{ key: "k8_deutsch", label: "📖 Deutsch" }, { key: "k8_mathe", label: "🔢 Mathematik" }, { key: "k8_englisch", label: "🇬🇧 Englisch" }, { key: "k8_biologie", label: "🧬 Biologie" }, { key: "k8_chemie", label: "⚗️ Chemie" }, { key: "k8_physik", label: "⚡ Physik" }, { key: "k8_geschichte", label: "📜 Geschichte" }, { key: "k8_erdkunde", label: "🌍 Erdkunde" }, { key: "k8_politik", label: "🏛️ Politik & Wirtschaft" }, { key: "k8_informatik", label: "💻 Informatik & Medien" }, { key: "k8_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
+    { grade: 9, label: "Klasse 9", stufe: "Sekundarstufe I", subjects: [{ key: "k9_deutsch", label: "📖 Deutsch" }, { key: "k9_mathe", label: "🔢 Mathematik" }, { key: "k9_englisch", label: "🇬🇧 Englisch" }, { key: "k9_biologie", label: "🧬 Biologie" }, { key: "k9_chemie", label: "⚗️ Chemie" }, { key: "k9_physik", label: "⚡ Physik" }, { key: "k9_geschichte", label: "📜 Geschichte" }, { key: "k9_erdkunde", label: "🌍 Erdkunde" }, { key: "k9_politik", label: "🏛️ Politik & Wirtschaft" }, { key: "k9_informatik", label: "💻 Informatik & Medien" }, { key: "k9_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
+    { grade: 10, label: "Klasse 10", stufe: "Sekundarstufe I", subjects: [{ key: "k10_deutsch", label: "📖 Deutsch" }, { key: "k10_mathe", label: "🔢 Mathematik" }, { key: "k10_englisch", label: "🇬🇧 Englisch" }, { key: "k10_biologie", label: "🧬 Biologie" }, { key: "k10_chemie", label: "⚗️ Chemie" }, { key: "k10_physik", label: "⚡ Physik" }, { key: "k10_geschichte", label: "📜 Geschichte" }, { key: "k10_erdkunde", label: "🌍 Erdkunde" }, { key: "k10_politik", label: "🏛️ Politik & Wirtschaft" }, { key: "k10_informatik", label: "💻 Informatik & Medien" }, { key: "k10_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
+    { grade: 11, label: "Klasse 11", stufe: "Oberstufe", subjects: [{ key: "k11_deutsch", label: "📖 Deutsch" }, { key: "k11_mathe", label: "🔢 Mathematik" }, { key: "k11_englisch", label: "🇬🇧 Englisch" }, { key: "k11_biologie", label: "🧬 Biologie" }, { key: "k11_chemie", label: "⚗️ Chemie" }, { key: "k11_physik", label: "⚡ Physik" }, { key: "k11_geschichte", label: "📜 Geschichte" }, { key: "k11_sowi", label: "🏛️ Sozialwissenschaften" }, { key: "k11_informatik", label: "💻 Informatik" }] },
+    { grade: 12, label: "Klasse 12", stufe: "Oberstufe", subjects: [{ key: "k12_deutsch", label: "📖 Deutsch" }, { key: "k12_mathe", label: "🔢 Mathematik" }, { key: "k12_englisch", label: "🇬🇧 Englisch" }, { key: "k12_biologie", label: "🧬 Biologie" }, { key: "k12_chemie", label: "⚗️ Chemie" }, { key: "k12_physik", label: "⚡ Physik" }, { key: "k12_geschichte", label: "📜 Geschichte" }, { key: "k12_sowi", label: "🏛️ Sozialwissenschaften" }, { key: "k12_informatik", label: "💻 Informatik" }] },
+    { grade: 13, label: "Klasse 13", stufe: "Oberstufe", subjects: [{ key: "k13_deutsch", label: "📖 Deutsch (Abitur)" }, { key: "k13_mathe", label: "🔢 Mathematik (Abitur)" }, { key: "k13_englisch", label: "🇬🇧 Englisch (Abitur)" }, { key: "k13_biologie", label: "🧬 Biologie (Abitur)" }, { key: "k13_chemie", label: "⚗️ Chemie (Abitur)" }, { key: "k13_physik", label: "⚡ Physik (Abitur)" }, { key: "k13_geschichte", label: "📜 Geschichte (Abitur)" }, { key: "k13_sowi", label: "🏛️ Sozialwissenschaften (Abitur)" }, { key: "k13_informatik", label: "💻 Informatik (Abitur)" }] }
+];
+
+const BERUFSSCHULE = [
+    { key: "beruf_kfz", label: "🔧 KFZ-Mechatronik (Berufsschule)" }
+];
+
+// Spass-Kategorien - bewusst getrennt vom Lernbereich
+const FUN_CATEGORIES = [
+    { key: "spass_allgemein", label: "🏆 Allgemeinwissen" },
+    { key: "spass_wuerdest_du", label: "🤔 Schätzfragen & Würdest du eher" },
+    { key: "spass_nice_to_know", label: "✨ Nice to Know" },
+    { key: "spass_welt", label: "🌍 Ungewöhnliches aus der Welt" },
+    { key: "spass_sport_film", label: "🎬 Sport & Film" }
+];
+
 const VOCABULARY_DATABASE = {
     en: {
         klasse_1_2: { 
@@ -546,6 +1080,7 @@ const VOCABULARY_DATABASE = {
 //          damit garantiert immer mindestens ein Wort loesbar ist.
 // Zweck 2: Sofortige Wortpruefung auch ohne Internet.
 // Nur A-Z, keine Umlaute (die gibt es auch nicht als Spielsteine).
+
 // =======================================================
 const GERMAN_WORDS = [
     "AAL", "ABEND", "ADLER", "ADRESSE", "AFFE", "AKTE", "ALT", "AMSEL", "ANFANG", "ANGEL",

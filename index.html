@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=17"></script>
+    <script src="data.js?v=18"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -794,7 +794,15 @@
                     </div>
 
                     <div id="tv-quiz-mode-options">
-                        <p class="text-gray-400 text-sm mb-4">Wähle ein Thema für die Familie:</p>
+                        <p class="text-gray-400 text-sm mb-3">Worum soll es gehen?</p>
+                        <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl mb-4">
+                            <button id="tvtopic-spass"
+                                class="flex-1 py-2.5 px-1 rounded-lg font-bold text-white bg-pink-600 shadow-md transition-all text-sm"
+                                onclick="setTVTopicMode('spass')">🎉 Spaß-Quiz</button>
+                            <button id="tvtopic-lernen"
+                                class="flex-1 py-2.5 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
+                                onclick="setTVTopicMode('lernen')">📚 Lern-Duell</button>
+                        </div>
                         <select id="tv-area"
                             class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-lg mb-3"></select>
                         <select id="tv-quiz-category"
@@ -888,17 +896,24 @@
                 return m;
             })();
 
-            // Bereiche fuer die zweistufige Auswahl: Klasse 1-13, Berufsschule, Spass
-            function getAreas() {
+            // Bereiche fuer die zweistufige Auswahl.
+            // mode: "lernen" = nur Schule + Berufsschule, "spass" = nur Spassthemen,
+            //       "alle" = beides (z.B. in den Duellen)
+            function getAreas(mode) {
+                mode = mode || "alle";
                 const areas = [];
-                if (typeof CURRICULUM !== 'undefined') {
-                    CURRICULUM.forEach(g => areas.push({ value: "grade_" + g.grade, label: g.label, stufe: g.stufe, subjects: g.subjects }));
+                if (mode !== "spass") {
+                    if (typeof CURRICULUM !== 'undefined') {
+                        CURRICULUM.forEach(g => areas.push({ value: "grade_" + g.grade, label: g.label, stufe: g.stufe, subjects: g.subjects }));
+                    }
+                    if (typeof BERUFSSCHULE !== 'undefined' && BERUFSSCHULE.length) {
+                        areas.push({ value: "beruf", label: "Berufsschule", stufe: "Berufsschule", subjects: BERUFSSCHULE });
+                    }
                 }
-                if (typeof BERUFSSCHULE !== 'undefined' && BERUFSSCHULE.length) {
-                    areas.push({ value: "beruf", label: "Berufsschule", stufe: "Berufsschule", subjects: BERUFSSCHULE });
-                }
-                if (typeof FUN_CATEGORIES !== 'undefined' && FUN_CATEGORIES.length) {
-                    areas.push({ value: "spass", label: "Spaß-Quiz", stufe: "🎉 Spaß (kein Schulstoff)", subjects: FUN_CATEGORIES });
+                if (mode !== "lernen") {
+                    if (typeof FUN_CATEGORIES !== 'undefined' && FUN_CATEGORIES.length) {
+                        areas.push({ value: "spass", label: "Spaß-Quiz", stufe: "🎉 Spaß (kein Schulstoff)", subjects: FUN_CATEGORIES });
+                    }
                 }
                 return areas;
             }
@@ -916,16 +931,19 @@
                 const aSel = document.getElementById(areaId);
                 const sSel = document.getElementById(subjectId);
                 if (!aSel || !sSel) return;
-                const area = getAreas().find(a => a.value === aSel.value);
+                const mode = aSel.dataset.mode || "alle";
+                const area = getAreas(mode).find(a => a.value === aSel.value);
                 const subs = area ? area.subjects : [];
                 sSel.innerHTML = subs.map(s => `<option value="${s.key}">${s.label}</option>`).join("");
             }
 
             // Baut beide Auswahlfelder auf und verknuepft sie miteinander
-            function setupCategorySelectors(areaId, subjectId) {
+            function setupCategorySelectors(areaId, subjectId, mode) {
                 const aSel = document.getElementById(areaId);
                 if (!aSel) return;
-                const areas = getAreas();
+                mode = mode || "alle";
+                aSel.dataset.mode = mode;
+                const areas = getAreas(mode);
                 let html = "", lastStufe = null;
                 areas.forEach(a => {
                     if (a.stufe !== lastStufe) {
@@ -937,7 +955,8 @@
                 });
                 if (lastStufe !== null) html += "</optgroup>";
                 aSel.innerHTML = html;
-                const suggested = suggestedArea();
+                // Im Spass-Modus gibt es keine Klassenstufe zum Vorschlagen
+                const suggested = (mode !== "spass") ? suggestedArea() : null;
                 if (suggested && areas.some(a => a.value === suggested)) aSel.value = suggested;
                 fillSubjectSelect(areaId, subjectId);
                 aSel.onchange = () => fillSubjectSelect(areaId, subjectId);
@@ -1218,7 +1237,7 @@
                 if (viewId === 'vokabeln') loadVocabSystem();
                 if (viewId === 'rewards') renderRewardsShop();
                 if (viewId === 'family-hub' && typeof ALL_PROFILES !== 'undefined') renderFamilyHub();
-                if (viewId === 'tv-quiz-host' && document.getElementById("tv-area")) setupCategorySelectors("tv-area", "tv-quiz-category");
+                if (viewId === 'tv-quiz-host' && document.getElementById("tv-area") && typeof setTVTopicMode === 'function') setTVTopicMode();
 
                 // Im Menü nachschauen, ob gerade ein Duell offen ist (Knopf leuchtet dann)
                 if (typeof watchForOpenDuel === 'function') {
@@ -2444,7 +2463,7 @@
             }
             function showQuizSetup() {
                 switchView('quiz-setup');
-                setupCategorySelectors("quiz-area", "sub-category");
+                setupCategorySelectors("quiz-area", "sub-category", "lernen");
                 const count = currentPlayer && currentPlayer.wrongQuestions ? currentPlayer.wrongQuestions.length : 0;
                 const btn = document.getElementById("wrong-questions-btn");
                 if (btn) {
@@ -2683,10 +2702,22 @@
 
             // --- 1. LOGIK FÜR DEN FERNSEHER (HOST) ---
             let tvHostMode = 'quiz';
+            // Im TV-Quiz kann zwischen Spaß-Themen und Schulstoff gewählt werden
+            let tvTopicMode = 'spass';
+            function setTVTopicMode(mode) {
+                mode = mode || tvTopicMode || 'spass';
+                tvTopicMode = mode;
+                const s = document.getElementById("tvtopic-spass");
+                const l = document.getElementById("tvtopic-lernen");
+                if (s) s.className = "flex-1 py-2.5 px-1 rounded-lg font-bold transition-all text-sm " + (mode === 'spass' ? "text-white bg-pink-600 shadow-md" : "text-gray-400 bg-gray-900");
+                if (l) l.className = "flex-1 py-2.5 px-1 rounded-lg font-bold transition-all text-sm " + (mode === 'lernen' ? "text-white bg-emerald-600 shadow-md" : "text-gray-400 bg-gray-900");
+                setupCategorySelectors("tv-area", "tv-quiz-category", mode);
+            }
+
             function setTVHostMode(mode) {
                 tvHostMode = mode;
                 if (mode === 'quiz' && !document.getElementById("tv-area").options.length) {
-                    setupCategorySelectors("tv-area", "tv-quiz-category");
+                    setTVTopicMode();
                 }
                 document.getElementById("tvmode-quiz").className = "flex-1 py-2.5 px-1 rounded-lg font-bold transition-all " + (mode === 'quiz' ? "text-white bg-indigo-600 shadow-md" : "text-gray-400 bg-gray-900");
                 document.getElementById("tvmode-scrabble").className = "flex-1 py-2.5 px-1 rounded-lg font-bold transition-all " + (mode === 'scrabble' ? "text-white bg-amber-500" : "text-gray-400 bg-gray-900");

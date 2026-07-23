@@ -1580,3 +1580,49 @@ const GERMAN_WORDS = [
     "ZEH", "ZEIT", "ZELT", "ZIEGE", "ZIEL", "ZIMMER", "ZOLL", "ZOO", "ZUCKER", "ZUG",
     "ZWERG", "ZWIEBEL"
 ];
+
+
+
+// --- HILFSSKRIPT ANFANG (Nach der Umwandlung wieder löschen) ---
+const generiereNeueStruktur = (alteDatenbank) => {
+    return alteDatenbank.map((q, index) => {
+        const newId = "q_" + (1000 + index);
+        let newLevel = "";
+        let newSubject = "";
+
+        if (q.category.startsWith("k") && q.category.includes("_")) {
+            const parts = q.category.split("_");
+            newLevel = parts[0].replace("k", "Klasse ");
+            newSubject = parts[1].charAt(0).toUpperCase() + parts[1].slice(1);
+        } else if (q.category.startsWith("beruf_")) {
+            newLevel = "Berufsschule";
+            newSubject = q.category.replace("beruf_", "").toUpperCase();
+        } else if (q.category.startsWith("spass_")) {
+            newLevel = "Spaß";
+            newSubject = q.category.replace("spass_", "").toUpperCase();
+        } else {
+            newLevel = "Unsortiert";
+            newSubject = q.category;
+        }
+
+        return {
+            id: newId,
+            level: newLevel,
+            subject: newSubject,
+            topic: "", 
+            question: q.question,
+            answers: q.answers,
+            correct: q.correct,
+            explanation: q.explanation,
+            difficulty: 1, 
+            coins: 10,     
+            image: null,   
+            timeLimitSec: q.category.startsWith("spass_") ? 20 : 45 
+        };
+    });
+};
+
+const QUESTIONS_DATABASE_NEU = generiereNeueStruktur(QUESTIONS_DATABASE);
+console.log("HIER IST DEIN NEUER CODE:");
+console.log(JSON.stringify(QUESTIONS_DATABASE_NEU, null, 4));
+// --- HILFSSKRIPT ENDE ---

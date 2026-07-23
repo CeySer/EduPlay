@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=28"></script>
+    <script src="data.js?v=33"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -588,8 +588,13 @@
 
             <!-- VIEW: ELTERNBEREICH ADMIN -->
             <div id="view-parent" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
-                    onclick="switchView('family-hub')">← Zurück zur Übersicht</button>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                    <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                        onclick="switchView('family-hub')">← Zurück zur Übersicht</button>
+                    <button onclick="setupAdminPin(false)" title="Eltern-PIN ändern"
+                        class="px-3 py-2 rounded-xl bg-gray-800 border border-gray-700 text-gray-300 font-bold text-sm shrink-0">🔑
+                        PIN</button>
+                </div>
 
                 <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
                     <button id="ptab-progress"
@@ -1017,6 +1022,7 @@
 
             // === GAMIFICATION: LEVEL, STREAK, ABZEICHEN, BELOHNUNGEN ===
             let familyRewards = [];
+            let adminPin = null;   // von den Eltern gesetzt, liegt in Firebase
             let testTemplates = [];
 
             const LEVELS = [
@@ -1136,13 +1142,14 @@
                     const data = doc.exists ? doc.data() : {};
                     familyRewards = data.rewards || [];
                     testTemplates = data.testTemplates || [];
-                } catch (e) { familyRewards = []; testTemplates = []; }
+                    adminPin = data.adminPin || null;
+                } catch (e) { familyRewards = []; testTemplates = []; adminPin = null; }
             }
             function saveFamilyRewards() {
                 db.collection("parents").doc(currentParentUser.uid).set({ rewards: familyRewards }, { merge: true });
             }
             function addReward() {
-                const name = document.getElementById("new-reward-name").value.trim();
+                const name = cleanInput(document.getElementById("new-reward-name").value, 40);
                 const cost = parseInt(document.getElementById("new-reward-cost").value);
                 if (!name || !cost || cost <= 0) return showToast("Bitte Name und Coins angeben!", "error");
                 familyRewards.push({ id: "r_" + Date.now(), name, cost });
@@ -1160,7 +1167,7 @@
                 const list = document.getElementById("rewards-manage-list");
                 list.innerHTML = familyRewards.length === 0
                     ? `<p class="text-xs text-gray-500">Noch keine Belohnungen angelegt.</p>`
-                    : familyRewards.map(r => `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-3"><div><div class="font-bold text-white text-sm">${r.name}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${r.cost} Coins</div></div><button onclick="deleteReward('${r.id}')" class="text-rose-400 font-bold text-xs hover:text-rose-300">Entfernen</button></div>`).join("");
+                    : familyRewards.map(r => `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-3"><div><div class="font-bold text-white text-sm">${esc(r.name)}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${r.cost} Coins</div></div><button onclick="deleteReward('${r.id}')" class="text-rose-400 font-bold text-xs hover:text-rose-300">Entfernen</button></div>`).join("");
             }
             function renderRewardsShop() {
                 if (!currentPlayer) return;
@@ -1168,12 +1175,12 @@
                 const list = document.getElementById("rewards-list");
                 list.innerHTML = familyRewards.length === 0
                     ? `<p class="text-xs text-gray-500">Deine Eltern haben noch keine Belohnungen eingerichtet.</p>`
-                    : familyRewards.map(r => `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-3"><div><div class="font-bold text-white">${r.name}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${r.cost} Coins</div></div><button onclick="redeemReward('${r.id}')" class="bg-purple-600 hover:bg-purple-500 disabled:opacity-40 disabled:cursor-not-allowed px-4 py-2 rounded-lg font-bold text-white text-sm" ${currentPlayer.coins < r.cost ? 'disabled' : ''}>Einlösen</button></div>`).join("");
+                    : familyRewards.map(r => `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-3"><div><div class="font-bold text-white">${esc(r.name)}</div><div class="text-xs text-yellow-400 font-bold">🪙 ${r.cost} Coins</div></div><button onclick="redeemReward('${r.id}')" class="bg-purple-600 hover:bg-purple-500 disabled:opacity-40 disabled:cursor-not-allowed px-4 py-2 rounded-lg font-bold text-white text-sm" ${currentPlayer.coins < r.cost ? 'disabled' : ''}>Einlösen</button></div>`).join("");
             }
             function redeemReward(id) {
                 const r = familyRewards.find(x => x.id === id);
                 if (!r || !currentPlayer || currentPlayer.coins < r.cost) return;
-                if (!confirm(`"${r.name}" für 🪙 ${r.cost} Coins einlösen?`)) return;
+                if (!confirm(`"${esc(r.name)}" für 🪙 ${r.cost} Coins einlösen?`)) return;
                 currentPlayer.coins -= r.cost;
                 if (!currentPlayer.redeemedRewards) currentPlayer.redeemedRewards = [];
                 currentPlayer.redeemedRewards.unshift({ name: r.name, cost: r.cost, date: new Date().toISOString() });
@@ -1181,7 +1188,7 @@
                 savePlayerProgress();
                 updateMenuGamification();
                 SFX.coin();
-                showToast(`🎉 "${r.name}" eingelöst! Zeig das deinen Eltern.`, "success");
+                showToast(`🎉 "${esc(r.name)}" eingelöst! Zeig das deinen Eltern.`, "success");
                 renderRewardsShop();
             }
 
@@ -1256,6 +1263,31 @@
             // Meldungen mit gleichem "key" ersetzen sich gegenseitig, statt sich zu
             // stapeln. Ohne das würde z.B. mehrfaches Tippen auf den Ton-Schalter
             // den halben Bildschirm mit "Ton an / Ton aus" zupflastern.
+            // === XSS-SCHUTZ ===
+            // Alles, was Nutzer eintippen (Profilnamen, Wörter, Belohnungen), landet
+            // über innerHTML im Seiteninhalt - und über Firebase auch auf den Geräten
+            // der anderen. Ohne Maskierung könnte jemand HTML oder Skriptcode als Namen
+            // eingeben und damit fremde Geräte beeinflussen. esc() entschärft das.
+            function esc(value) {
+                if (value === null || value === undefined) return "";
+                return String(value)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#39;");
+            }
+
+            // Eingaben schon beim Speichern entschärfen: Steuerzeichen raus, Länge
+            // begrenzen. Zweite Verteidigungslinie, falls irgendwo esc() vergessen wird.
+            function cleanInput(value, maxLen) {
+                return String(value || "")
+                    .replace(/[<>]/g, "")
+                    .replace(/[\u0000-\u001F\u007F]/g, "")
+                    .trim()
+                    .slice(0, maxLen || 40);
+            }
+
             function showToast(msg, type = "success", key) {
                 const c = document.getElementById("toast-container");
                 if (!c) return;
@@ -1363,7 +1395,7 @@
                         (guest ? "border-sky-600" : "border-gray-700");
                     btn.innerHTML = `${guest ? '<span class="absolute top-1 right-2 text-[10px] font-black text-sky-400">GAST</span>' : ''}` +
                         `<div class="text-3xl">${guest ? "🙋" : "👦👧"}</div>` +
-                        `<div class="font-bold text-white text-sm leading-tight">${p.name}</div>` +
+                        `<div class="font-bold text-white text-sm leading-tight">${esc(p.name)}</div>` +
                         `<div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>`;
                     btn.onclick = () => selectProfile(key); grid.appendChild(btn);
                 });
@@ -1390,7 +1422,7 @@
                 toggleFamilyDuel(false);
                 if (leaderBadge) {
                     leaderBadge.innerText = sortedProfiles.length > 0
-                        ? `🥇 ${sortedProfiles[0].name}`
+                        ? `🥇 ${esc(sortedProfiles[0].name)}`
                         : "";
                 }
 
@@ -1407,7 +1439,7 @@
         <div class="flex items-center justify-between bg-slate-900 border border-slate-700 p-3 rounded-xl shadow-sm">
             <div class="flex items-center gap-3">
                 <div class="text-xl">${medal}</div>
-                <div class="font-bold text-white">${p.name}</div>
+                <div class="font-bold text-white">${esc(p.name)}</div>
             </div>
             <div class="text-yellow-400 font-black">🪙 ${p.coins}</div>
         </div>`;
@@ -1420,7 +1452,7 @@
             function openDuelSetup() {
                 if (Object.keys(ALL_PROFILES).length < 2) return showToast("Für ein Duell braucht ihr mindestens 2 Profile!", "error");
                 const keys = Object.keys(ALL_PROFILES);
-                const opts = keys.map(k => `<option value="${k}">${ALL_PROFILES[k].name}</option>`).join("");
+                const opts = keys.map(k => `<option value="${k}">${esc(ALL_PROFILES[k].name)}</option>`).join("");
                 const selA = document.getElementById("duel-player-a"); const selB = document.getElementById("duel-player-b");
                 selA.innerHTML = opts; selB.innerHTML = opts;
                 selB.selectedIndex = 1;
@@ -1441,7 +1473,7 @@
             }
             function showDuelTurnIntro() {
                 const key = duelState.turn === 'A' ? duelState.keyA : duelState.keyB;
-                document.getElementById("duel-turn-title").innerText = `${ALL_PROFILES[key].name} ist dran!`;
+                document.getElementById("duel-turn-title").innerText = `${esc(ALL_PROFILES[key].name)} ist dran!`;
                 document.getElementById("duel-turn-emoji").innerText = duelState.turn === 'A' ? "🥊" : "🔥";
                 document.getElementById("duel-turn-intro").classList.remove("hidden");
                 document.getElementById("duel-question-area").classList.add("hidden");
@@ -1608,7 +1640,7 @@
                 box.innerHTML = keys.map((k, i) => `
                     <label class="flex items-center gap-2 bg-gray-900 border border-gray-700 rounded-xl p-3 cursor-pointer">
                         <input type="checkbox" class="scrabble-player-check w-5 h-5 accent-amber-500" value="${k}" ${i < 2 ? 'checked' : ''}>
-                        <span class="font-bold text-white text-sm">${ALL_PROFILES[k].name}</span>
+                        <span class="font-bold text-white text-sm">${esc(ALL_PROFILES[k].name)}</span>
                     </label>`).join("");
                 switchView('scrabble-setup');
             }
@@ -1629,7 +1661,7 @@
             function showScrabbleTurnIntro() {
                 const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
                 const isSolo = scrabbleState.playerKeys.length === 1;
-                document.getElementById("scrabble-turn-title").innerText = isSolo ? `Los geht's, ${ALL_PROFILES[key].name}!` : `${ALL_PROFILES[key].name} ist dran!`;
+                document.getElementById("scrabble-turn-title").innerText = isSolo ? `Los geht's, ${esc(ALL_PROFILES[key].name)}!` : `${esc(ALL_PROFILES[key].name)} ist dran!`;
 
                 // Nach einer abgeschlossenen Runde zeigen, welches Wort möglich gewesen wäre
                 let sub = isSolo
@@ -1690,7 +1722,7 @@
                 document.getElementById("scrabble-turn-intro").classList.add("hidden");
                 document.getElementById("scrabble-play-area").classList.remove("hidden");
                 const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
-                document.getElementById("scrabble-progress").innerText = `Runde ${scrabbleState.round}/${scrabbleState.rounds} – ${ALL_PROFILES[key].name}`;
+                document.getElementById("scrabble-progress").innerText = `Runde ${scrabbleState.round}/${scrabbleState.rounds} – ${esc(ALL_PROFILES[key].name)}`;
                 renderScrabbleTiles(scrabbleState.currentLetters);
 
                 // Knopf wieder freigeben – er wird beim Einreichen gesperrt und muss
@@ -1730,7 +1762,7 @@
                 clearInterval(scrabbleTimerInterval);
                 const submitBtn = document.querySelector('#scrabble-play-area button[onclick="submitScrabbleWord()"]');
                 if (submitBtn) { submitBtn.disabled = true; submitBtn.classList.add("opacity-50"); }
-                const word = document.getElementById("scrabble-word-input").value.trim().toUpperCase();
+                const word = cleanInput(document.getElementById("scrabble-word-input").value, 20).toUpperCase();
                 const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
 
                 const fb = document.getElementById("scrabble-live-feedback");
@@ -1743,7 +1775,7 @@
 
                 scrabbleState.scores[key] += points;
                 if (points > 0) SFX.correct(); else SFX.wrong();
-                showToast(`${ALL_PROFILES[key].name}: +${points} Punkte${word ? ` für "${word}"` : ""}${note}`, points > 0 ? "success" : "error");
+                showToast(`${esc(ALL_PROFILES[key].name)}: +${points} Punkte${word ? ` für "${word}"` : ""}${note}`, points > 0 ? "success" : "error");
 
                 scrabbleState.playerIndex++;
                 if (scrabbleState.playerIndex >= scrabbleState.playerKeys.length) {
@@ -1771,7 +1803,7 @@
                 sorted.forEach((key, i) => {
                     const medal = i < 3 ? medals[i] : `${i + 1}.`;
                     html += `<div class="flex items-center justify-between bg-gray-900 border ${i === 0 ? 'border-amber-400' : 'border-gray-700'} rounded-xl p-3">
-                        <div class="flex items-center gap-3"><span class="text-2xl">${medal}</span><span class="font-bold text-white">${ALL_PROFILES[key].name}</span></div>
+                        <div class="flex items-center gap-3"><span class="text-2xl">${medal}</span><span class="font-bold text-white">${esc(ALL_PROFILES[key].name)}</span></div>
                         <div class="font-black text-amber-400">${scrabbleState.scores[key]} Pkt.</div>
                     </div>`;
                 });
@@ -2002,7 +2034,7 @@
                 if (data.status === "waiting") {
                     clearLiveDuelTimers();
                     const list = document.getElementById("live-duel-player-list");
-                    if (list) list.innerHTML = Object.values(data.players).map(p => `<div class="bg-gray-900 border border-gray-700 rounded-xl p-3 text-center"><div class="text-2xl">🙋</div><div class="font-bold text-white text-sm mt-1">${p.name}</div></div>`).join("");
+                    if (list) list.innerHTML = Object.values(data.players).map(p => `<div class="bg-gray-900 border border-gray-700 rounded-xl p-3 text-center"><div class="text-2xl">🙋</div><div class="font-bold text-white text-sm mt-1">${esc(p.name)}</div></div>`).join("");
                     document.getElementById("live-duel-start-btn").classList.toggle("hidden", !isLiveDuelCreator);
                     document.getElementById("live-duel-wait-hint").classList.toggle("hidden", isLiveDuelCreator);
                     switchView('live-duel-lobby');
@@ -2147,7 +2179,7 @@
 
             async function submitLiveDuelWord() {
                 const inputEl = document.getElementById("live-duel-word-input");
-                const word = inputEl ? inputEl.value.trim() : "";
+                const word = inputEl ? cleanInput(inputEl.value, 20) : "";
                 if (inputEl) inputEl.disabled = true;
                 SFX.tap();
                 const snap = await liveDuelRef.get(); const data = snap.data();
@@ -2229,9 +2261,9 @@
                         icon = info.icon;
                         detail = info.text ? `<div class="text-[11px] text-gray-500 font-normal mt-0.5">${info.text}</div>` : "";
                     }
-                    const wordInfo = isQuiz ? "" : ` <span class="text-amber-300">"${p.word || "-"}"</span>`;
+                    const wordInfo = isQuiz ? "" : ` <span class="text-amber-300">"${esc(p.word || "-")}"</span>`;
                     rowsHtml += `<div class="flex justify-between items-start bg-gray-900 border border-gray-700 rounded-xl p-3 gap-2">
-                        <div class="font-bold text-white text-sm">${icon} ${p.name}${wordInfo}${detail}</div>
+                        <div class="font-bold text-white text-sm">${icon} ${esc(p.name)}${wordInfo}${detail}</div>
                         <div class="font-black text-emerald-400 shrink-0">+${p.lastRoundPoints || 0} <span class="text-xs text-gray-500">(Σ ${p.score})</span></div>
                     </div>`;
                 });
@@ -2376,7 +2408,7 @@
                 sorted.forEach((p, i) => {
                     const medal = i < 3 ? medals[i] : `${i + 1}.`;
                     html += `<div class="flex items-center justify-between bg-gray-900 border ${i === 0 ? 'border-yellow-400' : 'border-gray-700'} rounded-xl p-3">
-                        <div class="flex items-center gap-3"><span class="text-2xl">${medal}</span><span class="font-bold text-white">${p.name}</span></div>
+                        <div class="flex items-center gap-3"><span class="text-2xl">${medal}</span><span class="font-bold text-white">${esc(p.name)}</span></div>
                         <div class="font-black text-yellow-400">${p.score} Pkt.</div>
                     </div>`;
                 });
@@ -2402,7 +2434,7 @@
                             <div class="text-xs text-gray-400 font-bold mb-1">${r.question}</div>
                             <div class="text-sm text-white font-bold mb-1">Richtig: <span class="text-emerald-300">${r.correctAnswer}</span></div>
                             ${r.explanation ? `<div class="text-[11px] text-gray-400 mb-1">${r.explanation}</div>` : ""}
-                            <div class="text-[11px] text-gray-500">Nochmal anschauen: ${r.wrongNames.join(", ")}</div>
+                            <div class="text-[11px] text-gray-500">Nochmal anschauen: ${esc((r.wrongNames || []).join(", "))}</div>
                         </div>`;
                     });
                     html += `</div></div>`;
@@ -2410,7 +2442,7 @@
 
                 // Weiterspielen, ohne dass jemand die Runde verlassen und neu
                 // beitreten muss: alle Spieler bleiben eingetragen.
-                const names = Object.values(data.players).map(p => p.name).join(", ");
+                const names = esc(Object.values(data.players).map(p => p.name).join(", "));
                 if (isLiveDuelCreator) {
                     html += `
                     <div class="bg-gray-900 border border-indigo-800 rounded-2xl p-4 mt-6 space-y-3 text-left">
@@ -2454,9 +2486,9 @@
             }
 
             async function saveNewProfile() {
-                const name = document.getElementById("new-profile-name").value.trim();
+                const name = cleanInput(document.getElementById("new-profile-name").value, 24);
                 const type = document.getElementById("new-profile-type").value;
-                const age = document.getElementById("new-profile-age").value.trim();
+                const age = cleanInput(document.getElementById("new-profile-age").value, 12);
                 if (!name) return showToast("Bitte Namen eingeben!", "error");
 
                 const newProf = { name: name, ageType: type, age: age || "-", coins: 0, learnedWords: [] };
@@ -2481,7 +2513,7 @@
                 activePlayerKey = key;
                 currentPlayer = ALL_PROFILES[key];
                 sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
-                document.getElementById("welcome-text").innerText = `Hallo, ${currentPlayer.name}!`;
+                document.getElementById("welcome-text").innerText = `Hallo, ${esc(currentPlayer.name)}!`;
                 document.getElementById("menu-coins").innerText = currentPlayer.coins;
                 document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType === 'alter' ? '🎂 Alter' : '🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`;
                 renderPendingTestCard();
@@ -2550,7 +2582,51 @@
                 document.getElementById("menu-coins").innerText = currentPlayer.coins;
             }
 
-            function openParentArea() { const pin = prompt("Admin-Sperre: Bitte 1234 eingeben"); if (pin === "1234") { switchAdminTab('progress'); switchView('parent'); } }
+            // === ELTERN-BEREICH ===
+            // Der PIN wird von den Eltern selbst gesetzt und in Firebase gespeichert -
+            // früher stand hier eine feste "1234", die die Abfrage sogar im eigenen Text
+            // verraten hat. Hinweis: Das ist eine Kindersicherung, kein echter Schutz
+            // gegen jemanden, der die Entwicklerwerkzeuge des Browsers bedienen kann.
+            function openParentArea() {
+                if (!adminPin) return setupAdminPin(true);
+
+                const entered = cleanInput(prompt("Eltern-Bereich\n\nBitte PIN eingeben:"), 12);
+                if (entered === null || entered === "") return;
+                if (entered !== adminPin) {
+                    SFX.wrong();
+                    return showToast("PIN stimmt nicht.", "error", "pin");
+                }
+                switchAdminTab('progress');
+                switchView('parent');
+            }
+
+            // PIN erstmalig festlegen oder ändern
+            async function setupAdminPin(isFirstTime) {
+                if (!isFirstTime && adminPin) {
+                    const current = cleanInput(prompt("Zum Ändern bitte aktuellen PIN eingeben:"), 12);
+                    if (current === null || current === "") return;
+                    if (current !== adminPin) { SFX.wrong(); return showToast("PIN stimmt nicht.", "error", "pin"); }
+                }
+
+                const intro = isFirstTime
+                    ? "Eltern-Bereich einrichten\n\nLegt einen PIN fest, damit die Kinder hier nicht hineinkommen.\n\nNeuer PIN (4-12 Zeichen):"
+                    : "Neuer PIN (4-12 Zeichen):";
+                const p1 = cleanInput(prompt(intro), 12);
+                if (p1 === null || p1 === "") return;
+                if (p1.length < 4) return showToast("Der PIN braucht mindestens 4 Zeichen.", "error", "pin");
+
+                const p2 = cleanInput(prompt("Zur Sicherheit noch einmal eingeben:"), 12);
+                if (p2 !== p1) return showToast("Die beiden Eingaben stimmen nicht überein.", "error", "pin");
+
+                try {
+                    await db.collection("parents").doc(currentParentUser.uid).set({ adminPin: p1 }, { merge: true });
+                    adminPin = p1;
+                    showToast("PIN gespeichert.", "success", "pin");
+                    if (isFirstTime) { switchAdminTab('progress'); switchView('parent'); }
+                } catch (e) {
+                    showToast("PIN konnte nicht gespeichert werden.", "error", "pin");
+                }
+            }
 
             function switchAdminTab(tab) {
                 ['progress', 'test', 'rewards'].forEach(t => {
@@ -2568,17 +2644,17 @@
             // Gäste (z.B. Besuch) können sofort mitspielen, erscheinen aber NICHT in
             // der Familien-Rangliste und lassen sich mit einem Klick wieder entfernen.
             async function addGuestProfile() {
-                const name = prompt("Name des Gastes:");
-                if (!name || !name.trim()) return;
+                const name = cleanInput(prompt("Name des Gastes:"), 24);
+                if (!name) return;
                 const guest = {
-                    name: name.trim(), ageType: "gast", age: "-", coins: 0,
+                    name: name, ageType: "gast", age: "-", coins: 0,
                     learnedWords: [], isGuest: true
                 };
                 try {
                     const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(guest);
                     ALL_PROFILES[docRef.id] = guest;
                     SFX.tap();
-                    showToast(`🙋 Gast "${guest.name}" kann jetzt mitspielen!`);
+                    showToast(`🙋 Gast "${esc(guest.name)}" kann jetzt mitspielen!`);
                     renderFamilyHub();
                     toggleProfileList(true);
                 } catch (e) {
@@ -2608,8 +2684,8 @@
             async function deleteProfile(key) {
                 const p = ALL_PROFILES[key];
                 if (!p) return;
-                if (!confirm(`Profil "${p.name}" wirklich endgültig löschen?\n\nAlle Coins, Abzeichen und der gesamte Lernfortschritt gehen unwiderruflich verloren.`)) return;
-                const check = prompt(`Zur Sicherheit: Tippe den Namen "${p.name}" ein, um das Löschen zu bestätigen.`);
+                if (!confirm(`Profil "${esc(p.name)}" wirklich endgültig löschen?\n\nAlle Coins, Abzeichen und der gesamte Lernfortschritt gehen unwiderruflich verloren.`)) return;
+                const check = prompt(`Zur Sicherheit: Tippe den Namen "${esc(p.name)}" ein, um das Löschen zu bestätigen.`);
                 if (!check || check.trim().toLowerCase() !== p.name.toLowerCase()) {
                     return showToast("Name stimmt nicht – Profil wurde NICHT gelöscht.", "error");
                 }
@@ -2617,7 +2693,7 @@
                     await db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).delete();
                     delete ALL_PROFILES[key];
                     if (activePlayerKey === key) { activePlayerKey = ""; currentPlayer = null; }
-                    showToast(`Profil "${p.name}" wurde gelöscht.`);
+                    showToast(`Profil "${esc(p.name)}" wurde gelöscht.`);
                     renderAdminDashboard();
                     renderFamilyHub();
                 } catch (e) {
@@ -2665,7 +2741,7 @@
                     if (p.redeemedRewards && p.redeemedRewards.length > 0) {
                         const r = p.redeemedRewards[0];
                         const d = new Date(r.date);
-                        lastRewardHtml = `<div class="mt-2 text-xs bg-gray-950 border border-gray-800 rounded-lg p-2"><span class="text-purple-400 font-bold">🎁 Zuletzt eingelöst:</span> ${r.name} (🪙 ${r.cost}) am ${d.toLocaleDateString('de-DE')}</div>`;
+                        lastRewardHtml = `<div class="mt-2 text-xs bg-gray-950 border border-gray-800 rounded-lg p-2"><span class="text-purple-400 font-bold">🎁 Zuletzt eingelöst:</span> ${esc(r.name)} (🪙 ${r.cost}) am ${d.toLocaleDateString('de-DE')}</div>`;
                     }
                     const badgesHtml = earnedBadges.length > 0
                         ? `<div class="flex gap-1 flex-wrap mt-2">${earnedBadges.map(id => { const b = BADGES.find(x => x.id === id); return b ? `<span class="text-lg" title="${b.name}">${b.icon}</span>` : ""; }).join("")}</div>`
@@ -2680,7 +2756,7 @@
                     const guestTag = p.isGuest ? ` <span class="text-[10px] font-black text-sky-400 bg-sky-950 px-1.5 py-0.5 rounded">GAST</span>` : "";
                     container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl">
                         <div class="flex justify-between items-center">
-                            <div class="text-blue-400 font-bold">${p.name}${guestTag} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div>
+                            <div class="text-blue-400 font-bold">${esc(p.name)}${guestTag} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div>
                             <div class="text-yellow-400 font-black">🪙 ${p.coins}</div>
                         </div>
                         <div class="text-xs text-gray-400 mt-1">${lvl.current.icon} ${lvl.current.name} · 🔥 ${streakCount} Tage Streak · 📚 ${wC} Vokabeln</div>
@@ -2704,7 +2780,7 @@
                 const sel = document.getElementById("test-profile-select");
                 const keys = Object.keys(ALL_PROFILES);
                 sel.innerHTML = keys.length
-                    ? keys.map(k => `<option value="${k}">${ALL_PROFILES[k].name}</option>`).join("")
+                    ? keys.map(k => `<option value="${k}">${esc(ALL_PROFILES[k].name)}</option>`).join("")
                     : `<option value="">Kein Profil vorhanden</option>`;
                 const catBox = document.getElementById("test-category-checkboxes");
                 const categories = typeof QUESTIONS_DATABASE !== 'undefined' ? [...new Set(QUESTIONS_DATABASE.map(q => q.category))] : [];
@@ -2720,7 +2796,7 @@
             async function cancelPendingTest(profileKey) {
                 const p = ALL_PROFILES[profileKey];
                 if (!p || !p.pendingTest) return;
-                if (!confirm(`Den offenen Test für "${p.name}" wirklich entfernen?\n\nDer Test verschwindet dann aus dem Menü des Kindes.`)) return;
+                if (!confirm(`Den offenen Test für "${esc(p.name)}" wirklich entfernen?\n\nDer Test verschwindet dann aus dem Menü des Kindes.`)) return;
                 try {
                     await db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
                         .update({ pendingTest: firebase.firestore.FieldValue.delete() });
@@ -2729,7 +2805,7 @@
                         delete currentPlayer.pendingTest;
                         renderPendingTestCard();
                     }
-                    showToast(`Test für ${p.name} wurde entfernt.`);
+                    showToast(`Test für ${esc(p.name)} wurde entfernt.`);
                     renderAdminDashboard();
                 } catch (e) {
                     showToast("Fehler beim Entfernen des Tests", "error");
@@ -2745,7 +2821,7 @@
                 const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, createdAt: new Date().toISOString() };
                 ALL_PROFILES[profileKey].pendingTest = pendingTest;
                 db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey).update({ pendingTest });
-                showToast(`Test für ${ALL_PROFILES[profileKey].name} zugewiesen! ⏱️`, "success");
+                showToast(`Test für ${esc(ALL_PROFILES[profileKey].name)} zugewiesen! ⏱️`, "success");
                 renderAdminDashboard();
             }
 
@@ -2774,7 +2850,7 @@
                 if (!t) return;
                 document.querySelectorAll(".test-cat-checkbox").forEach(cb => { cb.checked = t.categories.includes(cb.value); });
                 document.getElementById("test-time-limit").value = Math.round(t.timeLimitSeconds / 60);
-                showToast(`Vorlage "${t.name}" geladen`, "success");
+                showToast(`Vorlage "${esc(t.name)}" geladen`, "success");
             }
             function renderTestTemplatesList() {
                 const list = document.getElementById("test-templates-list");
@@ -2782,7 +2858,7 @@
                 list.innerHTML = testTemplates.length === 0
                     ? `<p class="text-xs text-gray-500">Noch keine Vorlagen gespeichert.</p>`
                     : testTemplates.map(t => `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-3">
-                        <div class="text-sm font-bold text-white">${t.name}<div class="text-xs text-gray-400 font-normal">${t.categories.length} Themen · ${Math.round(t.timeLimitSeconds / 60)} Min.</div></div>
+                        <div class="text-sm font-bold text-white">${esc(t.name)}<div class="text-xs text-gray-400 font-normal">${t.categories.length} Themen · ${Math.round(t.timeLimitSeconds / 60)} Min.</div></div>
                         <div class="flex gap-3 flex-shrink-0"><button onclick="loadTestTemplate('${t.id}')" class="text-indigo-400 font-bold text-xs hover:text-indigo-300">Laden</button><button onclick="deleteTestTemplate('${t.id}')" class="text-rose-400 font-bold text-xs hover:text-rose-300">Löschen</button></div>
                     </div>`).join("");
             }
@@ -3113,6 +3189,27 @@
             let tvCountdownInterval = null;
             let isResolving = false; // Verhindert doppeltes Auflösen
 
+            // Sauber aus der TV-Lobby aussteigen: abmelden, austragen, zurück ins Menü.
+            // Ohne das würde der Platz belegt bleiben und die Runde auf jemanden warten,
+            // der gar nicht mehr mitspielt.
+            async function leaveTVGame() {
+                const ref = tvGameRef;
+                if (tvUnsubscribe) { tvUnsubscribe(); tvUnsubscribe = null; }
+                if (tvCountdownInterval) { clearInterval(tvCountdownInterval); tvCountdownInterval = null; }
+                stopTVAutoAdvance();
+                tvGameRef = null; isTVHost = false; isResolving = false;
+                switchView(currentPlayer ? 'menu' : 'family-hub');
+
+                if (!ref || !activePlayerKey) return;
+                try {
+                    const snap = await ref.get();
+                    if (!snap.exists) return;
+                    const players = snap.data().players || {};
+                    delete players[activePlayerKey];
+                    await ref.update({ players });
+                } catch (e) { /* Lobby evtl. schon weg - kein Problem */ }
+            }
+
             // --- 1. LOGIK FÜR DEN FERNSEHER (HOST) ---
             let tvHostMode = 'quiz';
             // Im TV-Quiz kann zwischen Spaß-Themen und Schulstoff gewählt werden
@@ -3197,7 +3294,7 @@
                 const names = Object.values(players || {});
                 list.innerHTML = names.length === 0
                     ? `<p class="col-span-4 text-gray-500 font-bold">Noch niemand beigetreten...</p>`
-                    : names.map(p => `<div class="bg-gray-900 border border-gray-700 rounded-xl p-4 text-center"><div class="text-3xl">🙋</div><div class="font-bold text-white mt-2">${p.name}</div></div>`).join("");
+                    : names.map(p => `<div class="bg-gray-900 border border-gray-700 rounded-xl p-4 text-center"><div class="text-3xl">🙋</div><div class="font-bold text-white mt-2">${esc(p.name)}</div></div>`).join("");
             }
 
             function startTVGameLoop() {
@@ -3270,7 +3367,7 @@
                 Object.values(playersData).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
                     const sInfo = wordStatusInfo(p.wordStatus);
                     const sDetail = sInfo.text ? `<div class="text-sm text-gray-500 font-normal mt-1">${sInfo.text}</div>` : "";
-                    rowsHtml += `<div class="flex justify-between items-start bg-gray-900 border border-gray-700 rounded-xl p-4 gap-3"><div class="font-bold text-white text-lg">${sInfo.icon} ${p.name}: <span class="text-amber-300">"${p.word || "-"}"</span>${sDetail}</div><div class="font-black text-emerald-400 text-xl shrink-0">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
+                    rowsHtml += `<div class="flex justify-between items-start bg-gray-900 border border-gray-700 rounded-xl p-4 gap-3"><div class="font-bold text-white text-lg">${sInfo.icon} ${esc(p.name)}: <span class="text-amber-300">"${esc(p.word || "-")}"</span>${sDetail}</div><div class="font-black text-emerald-400 text-xl shrink-0">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
                 });
 
                 document.getElementById("view-tv-quiz-host").innerHTML = `
@@ -3421,12 +3518,90 @@
                 const medals = ["🥇", "🥈", "🥉"];
                 sorted.forEach((p, i) => {
                     const medal = i < 3 ? medals[i] : `<span class="w-12 inline-block text-gray-500">${i + 1}.</span>`;
-                    html += `<div class="flex items-center justify-between bg-gray-800 p-8 rounded-2xl border-2 ${i === 0 ? 'border-yellow-400' : 'border-gray-700'} shadow-xl"><div class="text-4xl font-bold text-white flex items-center gap-6"><span class="text-5xl">${medal}</span> ${p.name}</div><div class="text-4xl font-black text-emerald-400">${p.score || 0} <span class="text-2xl text-emerald-600">Punkte</span></div></div>`;
+                    html += `<div class="flex items-center justify-between bg-gray-800 p-8 rounded-2xl border-2 ${i === 0 ? 'border-yellow-400' : 'border-gray-700'} shadow-xl"><div class="text-4xl font-bold text-white flex items-center gap-6"><span class="text-5xl">${medal}</span> ${esc(p.name)}</div><div class="text-4xl font-black text-emerald-400">${p.score || 0} <span class="text-2xl text-emerald-600">Punkte</span></div></div>`;
                 });
-                html += `</div><div class="text-center"><button onclick="window.location.reload()" class="mt-16 p-6 px-12 bg-gray-700 text-white font-bold rounded-xl text-2xl hover:bg-gray-600 shadow-md">Beenden & Zurück zum Menü</button></div>`;
+                html += `</div>`;
+
+                // Weiterspielen, ohne dass jemand neu laden, sein Profil neu wählen
+                // oder erneut beitreten muss. Alle Spieler bleiben in der Lobby.
+                const names = esc(sorted.map(p => p.name).join(", "));
+                html += `
+                <div class="bg-gray-800 border-2 border-indigo-700 rounded-3xl p-8 mt-12 max-w-3xl mx-auto w-full space-y-4">
+                    <p class="text-3xl font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
+                    <p class="text-xl text-gray-400 text-center">Alle bleiben dabei: ${names}</p>
+                    <div class="flex gap-3 bg-gray-900 p-2 rounded-xl">
+                        <button id="againtopic-spass" onclick="setTVAgainTopic('spass')"
+                            class="flex-1 py-3 rounded-lg font-bold text-white bg-pink-600 text-xl">🎉 Spaß</button>
+                        <button id="againtopic-lernen" onclick="setTVAgainTopic('lernen')"
+                            class="flex-1 py-3 rounded-lg font-bold text-gray-400 bg-gray-900 text-xl">📚 Lernen</button>
+                    </div>
+                    <select id="tv-again-area"
+                        class="w-full p-4 bg-gray-950 border border-gray-700 rounded-xl text-white outline-none font-bold text-xl"></select>
+                    <select id="tv-again-category"
+                        class="w-full p-4 bg-gray-950 border border-gray-700 rounded-xl text-white outline-none font-bold text-xl"></select>
+                    <button onclick="restartTVGame()"
+                        class="w-full p-6 bg-emerald-600 hover:bg-emerald-500 font-black text-white rounded-xl shadow-lg text-2xl">Neue Runde starten 🚀</button>
+                </div>
+                <div class="text-center"><button onclick="window.location.reload()" class="mt-8 text-gray-500 text-lg font-bold underline">Beenden & Zurück zum Menü</button></div>`;
+
                 document.getElementById("view-tv-quiz-host").innerHTML = `<div class="min-h-[90vh] flex flex-col items-center justify-center p-6">${html}</div>`;
+                setTVAgainTopic(tvTopicMode || "spass");
                 try { confetti(); confetti(); } catch (e) { }
                 SFX.win();
+            }
+
+            // Themenauswahl für die nächste TV-Runde
+            function setTVAgainTopic(mode) {
+                const s = document.getElementById("againtopic-spass");
+                const l = document.getElementById("againtopic-lernen");
+                if (!s || !l) return;
+                tvTopicMode = mode;
+                s.className = "flex-1 py-3 rounded-lg font-bold text-xl transition-all " + (mode === 'spass' ? "text-white bg-pink-600" : "text-gray-400 bg-gray-900");
+                l.className = "flex-1 py-3 rounded-lg font-bold text-xl transition-all " + (mode === 'lernen' ? "text-white bg-emerald-600" : "text-gray-400 bg-gray-900");
+                setupCategorySelectors("tv-again-area", "tv-again-category", mode);
+            }
+
+            // Neue Runde starten - alle Spieler bleiben eingetragen
+            async function restartTVGame() {
+                if (!tvGameRef) return;
+                const catSel = document.getElementById("tv-again-category");
+                const category = catSel ? catSel.value : null;
+                if (!category) return showToast("Bitte ein Thema wählen!", "error");
+
+                const fresh = QUESTIONS_DATABASE.filter(q => q.category === category).sort(() => Math.random() - 0.5).slice(0, 10);
+                if (fresh.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
+                tvQuestions = prepareQuestions(fresh);
+
+                try {
+                    const snap = await tvGameRef.get();
+                    if (!snap.exists) return showToast("Die Runde existiert nicht mehr.", "error");
+                    const playersData = snap.data().players || {};
+                    if (Object.keys(playersData).length === 0) return showToast("Keine Spieler mehr in der Lobby.", "error");
+
+                    Object.keys(playersData).forEach(k => {
+                        playersData[k].score = 0;
+                        playersData[k].hasAnswered = false;
+                        playersData[k].lastAnswer = null;
+                        playersData[k].word = "";
+                        playersData[k].coinsClaimed = false;
+                        playersData[k].lastRoundPoints = 0;
+                        playersData[k].wordStatus = null;
+                    });
+
+                    isResolving = false;
+                    await tvGameRef.update({
+                        status: "playing", mode: "quiz", category,
+                        currentQuestionIndex: 0, showAnswer: false,
+                        players: playersData,
+                        correctAnswer: tvQuestions[0].correct,
+                        answerCount: tvQuestions[0].answers.length
+                    });
+                    showTVHostQuestion(0);
+                    SFX.tap();
+                    showToast("Neue Runde gestartet – alle sind dabei! 🚀");
+                } catch (e) {
+                    showToast("Neue Runde konnte nicht gestartet werden", "error");
+                }
             }
 
             // --- 2. LOGIK FÜR DIE HANDYS (SPIELER) ---
@@ -3457,7 +3632,7 @@
                                     const bg = points > 0 ? "bg-emerald-500" : "bg-gray-700";
                                     const pInfo = wordStatusInfo(myData.wordStatus);
                                     const statusText = myData.wordStatus === "valid" ? "Erkannt! ✅" : `${pInfo.icon} ${pInfo.text}`;
-                                    document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-7xl mb-6">${points > 0 ? "✅" : "😅"}</div><h2 class="text-2xl font-black mb-2">Dein Wort: "${myData.word || "-"}"</h2><p class="text-sm opacity-70 mb-2">${statusText}</p><p class="text-xl font-bold">+ ${points} Punkte diese Runde</p><p class="text-sm opacity-80 mt-2">Gesamt: ${myData.score || 0} Punkte</p></div>`;
+                                    document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-7xl mb-6">${points > 0 ? "✅" : "😅"}</div><h2 class="text-2xl font-black mb-2">Dein Wort: "${esc(myData.word || "-")}"</h2><p class="text-sm opacity-70 mb-2">${statusText}</p><p class="text-xl font-bold">+ ${points} Punkte diese Runde</p><p class="text-sm opacity-80 mt-2">Gesamt: ${myData.score || 0} Punkte</p></div>`;
                                     if (points > 0) { try { confetti(); } catch (e) { } SFX.correct(); } else { SFX.wrong(); }
                                 } else if (!myData.hasAnswered) {
                                     document.getElementById("view-tv-quiz-player").innerHTML = `
@@ -3476,7 +3651,7 @@
                                     savePlayerProgress();
                                     tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true });
                                 }
-                                document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 p-12 rounded-3xl text-center shadow-2xl mt-12"><div class="text-8xl mb-6">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-4">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-gray-900 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><button onclick="window.location.reload()" class="mt-12 w-full p-6 bg-indigo-600 font-black text-white rounded-xl shadow-lg text-xl">Zurück ins Menü</button></div>`;
+                                document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 p-10 rounded-3xl text-center shadow-2xl mt-12"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-gray-900 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><div class="mt-8 p-4 bg-gray-900 border border-indigo-800 rounded-2xl"><div class="text-4xl mb-2 animate-pulse">⏳</div><p class="text-indigo-300 font-black">Du bleibst dabei!</p><p class="text-xs text-gray-400 mt-1">Sobald am Fernseher eine neue Runde startet, geht es hier automatisch weiter.</p></div><button onclick="leaveTVGame()" class="mt-6 w-full p-4 bg-gray-700 hover:bg-gray-600 font-bold text-white rounded-xl shadow-lg text-sm">Doch beenden & zurück ins Menü</button></div>`;
                             }
                             return;
                         }
@@ -3504,14 +3679,14 @@
                                 savePlayerProgress();
                                 tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true });
                             }
-                            document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 p-12 rounded-3xl text-center shadow-2xl mt-12"><div class="text-8xl mb-6">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-4">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-gray-900 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><button onclick="window.location.reload()" class="mt-12 w-full p-6 bg-indigo-600 font-black text-white rounded-xl shadow-lg text-xl">Zurück ins Menü</button></div>`;
+                            document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 p-10 rounded-3xl text-center shadow-2xl mt-12"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-gray-900 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><div class="mt-8 p-4 bg-gray-900 border border-indigo-800 rounded-2xl"><div class="text-4xl mb-2 animate-pulse">⏳</div><p class="text-indigo-300 font-black">Du bleibst dabei!</p><p class="text-xs text-gray-400 mt-1">Sobald am Fernseher eine neue Runde startet, geht es hier automatisch weiter.</p></div><button onclick="leaveTVGame()" class="mt-6 w-full p-4 bg-gray-700 hover:bg-gray-600 font-bold text-white rounded-xl shadow-lg text-sm">Doch beenden & zurück ins Menü</button></div>`;
                         }
                     });
                 } catch (error) { showToast("Verbindungsfehler", "error"); }
             }
 
             async function submitTVScrabbleWord() {
-                const word = document.getElementById("tv-scrabble-word-input").value.trim();
+                const word = cleanInput(document.getElementById("tv-scrabble-word-input").value, 20);
                 document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-amber-400 mb-4">Eingereicht!</h2><p class="text-lg font-bold text-gray-400">Warte auf die anderen...</p></div>`;
                 const docSnap = await tvGameRef.get(); const data = docSnap.data();
                 let playersData = data.players;

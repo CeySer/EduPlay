@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=34"></script>
+    <script src="data.js?v=38"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -917,6 +917,95 @@
             // Bereiche fuer die zweistufige Auswahl.
             // mode: "lernen" = nur Schule + Berufsschule, "spass" = nur Spassthemen,
             //       "alle" = beides (z.B. in den Duellen)
+            // === ABFRAGEN ÜBER DIE STRUKTURIERTEN FELDER ===
+            // Jede Frage trägt jetzt zusätzlich area / grade / subject. Dadurch
+            // lassen sich Fragen frei filtern, ohne den Schlüssel zu zerlegen.
+            // "category" bleibt als stabile ID erhalten (gespeicherte Tests
+            // und Testvorlagen verweisen darauf).
+
+            // Löst einen Auswahl-Schlüssel in Fragen auf.
+            // "k5_mathe"        -> genau diese Kategorie
+            // "subject:deutsch" -> dieses Fach über alle Klassenstufen
+            // === FRAGEN-IDs ===
+            // Jede Frage hat eine feste ID (q0001, q0002, ...). Regeln:
+            //  - einmal vergeben, NIE wieder ändern (auch nicht beim Umsortieren)
+            //  - neue Fragen bekommen die nächsthöhere freie Nummer, keine Wiederverwendung
+            // Dadurch bleiben gespeicherte Verweise gültig, selbst wenn der
+            // Fragetext später korrigiert wird.
+            let _byId = null;
+            function questionById(id) {
+                if (!_byId) {
+                    _byId = {};
+                    if (typeof QUESTIONS_DATABASE !== 'undefined') {
+                        QUESTIONS_DATABASE.forEach(q => { if (q.id) _byId[q.id] = q; });
+                    }
+                }
+                return _byId[id] || null;
+            }
+            function questionsByIds(ids) {
+                return (ids || []).map(questionById).filter(Boolean);
+            }
+
+            // Selbstkontrolle beim Start: meldet fehlende oder doppelte IDs in der
+            // Konsole, damit ein Fehler beim Ergänzen neuer Fragen sofort auffällt.
+            function pruefeFragenIds() {
+                if (typeof QUESTIONS_DATABASE === 'undefined') return;
+                const gesehen = {}, ohne = [], doppelt = [];
+                QUESTIONS_DATABASE.forEach(q => {
+                    if (!q.id) { ohne.push(q.question); return; }
+                    if (gesehen[q.id]) doppelt.push(q.id);
+                    gesehen[q.id] = true;
+                });
+                if (ohne.length || doppelt.length) {
+                    console.warn("[EduPlay] Fragen-IDs prüfen -> ohne ID:", ohne.length,
+                        "| doppelt:", doppelt.length, doppelt.slice(0, 5));
+                }
+                return { ohne: ohne.length, doppelt: doppelt.length };
+            }
+
+            function questionsForKey(key) {
+                if (typeof QUESTIONS_DATABASE === 'undefined' || !key) return [];
+                if (String(key).startsWith("subject:")) {
+                    const sub = String(key).slice("subject:".length);
+                    return QUESTIONS_DATABASE.filter(q => q.subject === sub && q.area === "schule");
+                }
+                return QUESTIONS_DATABASE.filter(q => q.category === key);
+            }
+
+            function questionsWhere(filter) {
+                if (typeof QUESTIONS_DATABASE === 'undefined') return [];
+                return QUESTIONS_DATABASE.filter(filter);
+            }
+            // Alle Fragen einer Klasse, unabhängig vom Fach
+            function questionsByGrade(grade) {
+                return questionsWhere(q => q.grade === grade);
+            }
+            // Alle Fragen eines Fachs, über alle Klassen hinweg
+            function questionsBySubject(subject) {
+                return questionsWhere(q => q.subject === subject && q.area === "schule");
+            }
+            function questionsByArea(area) {
+                return questionsWhere(q => q.area === area);
+            }
+
+            // Fächer, die es über mehrere Klassen hinweg gibt - für die Auswahl
+            // "ein Fach quer durch alle Klassenstufen".
+            function subjectsAcrossGrades() {
+                if (typeof CURRICULUM === 'undefined') return [];
+                const gefunden = {};
+                CURRICULUM.forEach(g => g.subjects.forEach(s => {
+                    const sub = s.key.replace(/^k\d+_/, "");
+                    if (!gefunden[sub]) {
+                        // Label ohne Klassenzusatz, z.B. "📖 Deutsch (Abitur)" -> "📖 Deutsch"
+                        gefunden[sub] = { key: sub, label: s.label.replace(/\s*\([^)]*\)\s*$/, "") };
+                    }
+                }));
+                return Object.values(gefunden)
+                    .map(s => ({ key: "subject:" + s.key, label: s.label, count: questionsBySubject(s.key).length }))
+                    .filter(s => s.count > 0)
+                    .sort((a, b) => a.label.localeCompare(b.label, "de"));
+            }
+
             function getAreas(mode) {
                 mode = mode || "alle";
                 const areas = [];
@@ -926,6 +1015,11 @@
                     }
                     if (typeof BERUFSSCHULE !== 'undefined' && BERUFSSCHULE.length) {
                         areas.push({ value: "beruf", label: "Berufsschule", stufe: "Berufsschule", subjects: BERUFSSCHULE });
+                    }
+                    // Neu: ein Fach quer durch alle Klassenstufen üben
+                    const quer = subjectsAcrossGrades();
+                    if (quer.length) {
+                        areas.push({ value: "quer", label: "Fach über alle Klassen", stufe: "📚 Fachweise Wiederholung", subjects: quer });
                     }
                 }
                 if (mode !== "lernen") {
@@ -953,6 +1047,11 @@
                     if (typeof QUESTIONS_DATABASE !== 'undefined') {
                         QUESTIONS_DATABASE.forEach(q => {
                             _questionCounts[q.category] = (_questionCounts[q.category] || 0) + 1;
+                            // Fachweise Summe über alle Klassenstufen mitzählen
+                            if (q.area === "schule" && q.subject) {
+                                const sk = "subject:" + q.subject;
+                                _questionCounts[sk] = (_questionCounts[sk] || 0) + 1;
+                            }
                         });
                     }
                 }
@@ -1200,6 +1299,8 @@
                 document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
                 // Falls die App offline gestartet wird, gleich Bescheid geben
                 if (typeof renderOfflineBanner === "function") renderOfflineBanner();
+                // Fragen-IDs auf Vollständigkeit prüfen (nur Konsole)
+                if (typeof pruefeFragenIds === "function") pruefeFragenIds();
             };
 
             auth.onAuthStateChanged((user) => {
@@ -1545,7 +1646,7 @@
                 const cat = document.getElementById("duel-category").value;
                 if (!keyA || !keyB) return showToast("Bitte zwei Profile auswählen!", "error");
                 if (keyA === keyB) return showToast("Bitte zwei unterschiedliche Spieler wählen!", "error");
-                const pool = prepareQuestions(QUESTIONS_DATABASE.filter(q => q.category === cat).sort(() => Math.random() - 0.5).slice(0, 8));
+                const pool = prepareQuestions(questionsForKey(cat).sort(() => Math.random() - 0.5).slice(0, 8));
                 if (pool.length < 3) return showToast("Zu wenige Fragen in diesem Thema für ein Duell!", "error");
                 duelState = { keyA, keyB, questions: pool, qIndex: 0, scoreA: 0, scoreB: 0, turn: 'A' };
                 switchView('duel-play');
@@ -1977,7 +2078,7 @@
                     };
                 } else {
                     const category = document.getElementById("live-duel-category").value;
-                    const questions = prepareQuestions(QUESTIONS_DATABASE.filter(q => q.category === category).sort(() => Math.random() - 0.5).slice(0, 10));
+                    const questions = prepareQuestions(questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10));
                     if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
                     lobbyData = {
                         type: "quiz", status: "waiting", questions, currentIndex: 0,
@@ -2176,7 +2277,10 @@
                     const isQuiz = data.type === "quiz";
                     const isLastStep = isQuiz ? (data.currentIndex >= data.questions.length - 1) : (data.currentRound >= data.totalRounds);
                     if (!isLastStep) {
-                        let left = 8;
+                        // Gleiche Logik wie im TV-Modus: kurze Erklärung, kurze Wartezeit
+                        const erkl = isQuiz && data.questions[data.currentIndex]
+                            ? (data.questions[data.currentIndex].explanation || "") : "";
+                        let left = Math.round(Math.min(10, Math.max(5, 3 + erkl.length / 15)));
                         const cdEl = () => document.getElementById("live-duel-auto-countdown");
                         const tick = () => {
                             const el = cdEl();
@@ -2452,7 +2556,7 @@
                         const catSel = document.getElementById("again-category");
                         const category = (catSel && catSel.value) ? catSel.value : data.category;
                         const questions = prepareQuestions(
-                            QUESTIONS_DATABASE.filter(q => q.category === category).sort(() => Math.random() - 0.5).slice(0, 10)
+                            questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10)
                         );
                         if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
                         await liveDuelRef.update({
@@ -2998,7 +3102,7 @@
             function startQuiz() {
                 if (typeof QUESTIONS_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
                 const cat = document.getElementById("sub-category").value;
-                launchQuiz(QUESTIONS_DATABASE.filter(q => q.category === cat));
+                launchQuiz(questionsForKey(cat));
             }
             // === WIEDERHOLEN / SPACED REPETITION ===
             function startWrongQuestionsQuiz() {
@@ -3012,7 +3116,7 @@
             }
             // === SCHWÄCHEN-VORSCHLAG DIREKT STARTEN ===
             function startQuizForCategory(cat) {
-                launchQuiz(QUESTIONS_DATABASE.filter(q => q.category === cat));
+                launchQuiz(questionsForKey(cat));
             }
 
             // === TEST-MODUS (vom Elternbereich zugewiesen, mit Zeitlimit) ===
@@ -3382,7 +3486,7 @@
                     const data = doc.data();
                     if (data.mode === "scrabble") { startTVScrabbleRound(data); return; }
                     const cat = data.category;
-                    tvQuestions = prepareQuestions(QUESTIONS_DATABASE.filter(q => q.category === cat).sort(() => Math.random() - 0.5).slice(0, 10));
+                    tvQuestions = prepareQuestions(questionsForKey(cat).sort(() => Math.random() - 0.5).slice(0, 10));
                     if (tvQuestions.length < 3) { showToast("Zu wenige Fragen für dieses Thema!", "error"); return; }
                     const playersData = data.players || {};
                     Object.keys(playersData).forEach(k => { playersData[k].hasAnswered = false; playersData[k].lastAnswer = null; playersData[k].score = playersData[k].score || 0; });
@@ -3540,7 +3644,19 @@
             // will selbst bestimmen, wann es weitergeht. Wer mag, schaltet es an.
             let tvAutoAdvanceOn = false;
             let tvAutoAdvanceInterval = null;
-            const TV_AUTO_SECONDS = 12;
+
+            // Wie lange die Auflösung stehen bleibt, hängt davon ab, wie viel es
+            // zu lesen gibt. Eine kurze Erklärung braucht keine 12 Sekunden,
+            // eine lange schon. Grundlage: ~15 Zeichen pro Sekunde Mitlesen.
+            const TV_AUTO_BASIS = 3;     // Sekunden, um Ergebnis und Markierung zu erfassen
+            const TV_AUTO_MIN = 5;
+            const TV_AUTO_MAX = 10;
+
+            function tvAutoSeconds() {
+                const text = (tvCurrentQ && tvCurrentQ.explanation) ? tvCurrentQ.explanation : "";
+                const lesen = text.length / 15;
+                return Math.round(Math.min(TV_AUTO_MAX, Math.max(TV_AUTO_MIN, TV_AUTO_BASIS + lesen)));
+            }
 
             function stopTVAutoAdvance() {
                 if (tvAutoAdvanceInterval) { clearInterval(tvAutoAdvanceInterval); tvAutoAdvanceInterval = null; }
@@ -3560,7 +3676,7 @@
 
             function startTVAutoAdvance() {
                 stopTVAutoAdvance();
-                let left = TV_AUTO_SECONDS;
+                let left = tvAutoSeconds();
                 renderTVAutoControls(left);
                 if (!tvAutoAdvanceOn) return;
                 tvAutoAdvanceInterval = setInterval(() => {
@@ -3648,7 +3764,7 @@
                 const category = catSel ? catSel.value : null;
                 if (!category) return showToast("Bitte ein Thema wählen!", "error");
 
-                const fresh = QUESTIONS_DATABASE.filter(q => q.category === category).sort(() => Math.random() - 0.5).slice(0, 10);
+                const fresh = questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10);
                 if (fresh.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
                 tvQuestions = prepareQuestions(fresh);
 

@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=25"></script>
+    <script src="data.js?v=28"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -154,28 +154,41 @@
                     </button>
                 </div>
 
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2 px-1">
-                        <span
-                            class="text-[10px] font-black bg-emerald-900/60 text-emerald-300 border border-emerald-700 px-2 py-0.5 rounded-full">📴
-                            OHNE INTERNET</span>
-                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Ein Gerät · weitergeben</span>
+                <!-- FAMILIEN-DUELL (ein Gerät, ohne Internet) -->
+                <div>
+                    <button onclick="toggleFamilyDuel()" id="family-duel-toggle-btn"
+                        class="w-full p-4 bg-gray-800 border border-gray-700 rounded-2xl shadow-lg flex items-center justify-between">
+                        <span class="flex items-center gap-3 font-black text-lg text-rose-300">
+                            <span class="text-2xl">⚔️</span> Familien-Duell
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <span
+                                class="text-[10px] font-black bg-emerald-900/60 text-emerald-300 border border-emerald-700 px-2 py-0.5 rounded-full shrink-0">📴
+                                OFFLINE</span>
+                            <span id="family-duel-toggle-arrow"
+                                class="text-lg text-gray-400 transition-transform">▼</span>
+                        </span>
+                    </button>
+
+                    <div id="family-duel-wrapper" class="hidden mt-3 space-y-3">
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">Ein Gerät ·
+                            weitergeben</p>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="openDuelSetup()"
+                                class="p-3.5 bg-gray-900 border border-gray-700 text-rose-300 font-bold rounded-2xl shadow-md text-sm">
+                                ⚔️ Quiz-Duell
+                            </button>
+                            <button onclick="openScrabbleSetup()"
+                                class="p-3.5 bg-gray-900 border border-gray-700 text-amber-300 font-bold rounded-2xl shadow-md text-sm">
+                                🔤 Wort-Duell
+                            </button>
+                        </div>
+                        <p class="text-[11px] text-gray-500 text-center px-2">Diese beiden laufen komplett ohne
+                            Internet – ideal im Auto oder Funkloch.<br>Für ein Duell, bei dem jeder sein
+                            <span class="text-indigo-400 font-bold">eigenes Handy</span> nutzt: erst oben dein Profil
+                            auswählen – die Duell-Knöpfe findest du dann in deinem Menü.
+                        </p>
                     </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <button onclick="openDuelSetup()"
-                            class="p-3.5 bg-gray-800 border border-gray-700 text-rose-300 font-bold rounded-2xl shadow-md text-sm">
-                            ⚔️ Quiz-Duell
-                        </button>
-                        <button onclick="openScrabbleSetup()"
-                            class="p-3.5 bg-gray-800 border border-gray-700 text-amber-300 font-bold rounded-2xl shadow-md text-sm">
-                            🔤 Wort-Duell
-                        </button>
-                    </div>
-                    <p class="text-[11px] text-gray-500 text-center px-2">Diese beiden laufen komplett ohne
-                        Internet – ideal im Auto oder Funkloch.<br>Für ein Duell, bei dem jeder sein
-                        <span class="text-indigo-400 font-bold">eigenes Handy</span> nutzt: erst oben dein Profil
-                        auswählen – die Duell-Knöpfe findest du dann in deinem Menü.
-                    </p>
                 </div>
 
                 <!-- RANGLISTE -->
@@ -927,6 +940,37 @@
                 return null;
             }
 
+            // Fragen je Kategorie zaehlen (einmal berechnet und gemerkt)
+            let _questionCounts = null;
+            function questionCount(key) {
+                if (!_questionCounts) {
+                    _questionCounts = {};
+                    if (typeof QUESTIONS_DATABASE !== 'undefined') {
+                        QUESTIONS_DATABASE.forEach(q => {
+                            _questionCounts[q.category] = (_questionCounts[q.category] || 0) + 1;
+                        });
+                    }
+                }
+                return _questionCounts[key] || 0;
+            }
+
+            // Kleine Zeile unter dem Fach-Auswahlfeld: wie viele Fragen stecken drin?
+            function updateSubjectCountHint(sSel) {
+                if (!sSel) return;
+                const hintId = sSel.id + "-count-hint";
+                let hint = document.getElementById(hintId);
+                if (!hint) {
+                    hint = document.createElement("p");
+                    hint.id = hintId;
+                    hint.className = "text-[11px] text-gray-500 mt-1 px-1 text-left";
+                    sSel.insertAdjacentElement("afterend", hint);
+                }
+                const n = questionCount(sSel.value);
+                hint.innerText = n === 0
+                    ? "Noch keine Fragen in diesem Thema"
+                    : (n === 1 ? "1 Frage in diesem Thema" : `${n} Fragen in diesem Thema`);
+            }
+
             function fillSubjectSelect(areaId, subjectId) {
                 const aSel = document.getElementById(areaId);
                 const sSel = document.getElementById(subjectId);
@@ -934,7 +978,9 @@
                 const mode = aSel.dataset.mode || "alle";
                 const area = getAreas(mode).find(a => a.value === aSel.value);
                 const subs = area ? area.subjects : [];
-                sSel.innerHTML = subs.map(s => `<option value="${s.key}">${s.label}</option>`).join("");
+                sSel.innerHTML = subs.map(s => `<option value="${s.key}">${s.label} · ${questionCount(s.key)}</option>`).join("");
+                updateSubjectCountHint(sSel);
+                sSel.onchange = () => updateSubjectCountHint(sSel);
             }
 
             // Baut beide Auswahlfelder auf und verknuepft sie miteinander
@@ -1204,13 +1250,32 @@
                 try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
                 document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
                 if (soundOn) SFX.tap();
-                showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus");
+                showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
             }
 
-            function showToast(msg, type = "success") {
-                const c = document.getElementById("toast-container"); const t = document.createElement("div");
+            // Meldungen mit gleichem "key" ersetzen sich gegenseitig, statt sich zu
+            // stapeln. Ohne das würde z.B. mehrfaches Tippen auf den Ton-Schalter
+            // den halben Bildschirm mit "Ton an / Ton aus" zupflastern.
+            function showToast(msg, type = "success", key) {
+                const c = document.getElementById("toast-container");
+                if (!c) return;
+
+                if (key) {
+                    Array.from(c.children).forEach(el => {
+                        if (el.dataset && el.dataset.toastKey === key) el.remove();
+                    });
+                }
+
+                const t = document.createElement("div");
+                if (key) t.dataset.toastKey = key;
                 t.className = `p-4 rounded-xl shadow-xl font-bold bg-gray-800 text-white border-l-4 ${type === "success" ? "border-emerald-500" : "border-rose-500"}`;
-                t.innerHTML = msg; c.appendChild(t); setTimeout(() => t.remove(), 3000);
+                t.innerHTML = msg;
+                c.appendChild(t);
+
+                // Sicherheitsnetz: nie mehr als 3 Meldungen gleichzeitig anzeigen
+                while (c.children.length > 3) c.removeChild(c.firstElementChild);
+
+                setTimeout(() => t.remove(), 3000);
             }
 
             function switchView(viewId) {
@@ -1269,6 +1334,15 @@
                 if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
             }
 
+            function toggleFamilyDuel(forceOpen) {
+                const wrapper = document.getElementById("family-duel-wrapper");
+                const arrow = document.getElementById("family-duel-toggle-arrow");
+                if (!wrapper) return;
+                const open = (typeof forceOpen === "boolean") ? forceOpen : wrapper.classList.contains("hidden");
+                wrapper.classList.toggle("hidden", !open);
+                if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
+            }
+
             function toggleLeaderboard(forceOpen) {
                 const wrapper = document.getElementById("leaderboard-wrapper");
                 const arrow = document.getElementById("leaderboard-toggle-arrow");
@@ -1310,8 +1384,10 @@
                 // Gäste tauchen bewusst NICHT in der Familien-Rangliste auf
                 const sortedProfiles = Object.values(ALL_PROFILES).filter(p => !p.isGuest).sort((a, b) => b.coins - a.coins);
 
-                // Rangliste zugeklappt lassen, aber den Spitzenreiter schon im Knopf zeigen
+                // Rangliste und Familien-Duell zugeklappt lassen, damit der Hub
+                // übersichtlich bleibt; beim Spitzenreiter genügt der Knopf-Hinweis.
                 toggleLeaderboard(false);
+                toggleFamilyDuel(false);
                 if (leaderBadge) {
                     leaderBadge.innerText = sortedProfiles.length > 0
                         ? `🥇 ${sortedProfiles[0].name}`
@@ -1597,6 +1673,19 @@
                 return { valid: true, score: score + bonus, bonus };
             }
 
+            // Bewertet ein eingereichtes Wort einheitlich für alle Spielmodi und
+            // liefert mit, WARUM es ggf. nicht zählt (statt nur "falsch").
+            async function evaluateScrabbleWord(word, letters) {
+                const w = (word || "").trim().toUpperCase();
+                if (w.length < 2) return { points: 0, status: "tooshort", word: w };
+                const tileResult = computeScrabbleWordScore(w, letters);
+                if (!tileResult.valid) return { points: 0, status: "letters", word: w };
+                const check = await isValidGermanWord(w);
+                if (check.status === "valid") return { points: tileResult.score, status: "valid", bonus: tileResult.bonus, word: w };
+                if (check.status === "unknown") return { points: 0, status: "unknown", word: w };
+                return { points: 0, status: "invalid", word: w };
+            }
+
             function beginScrabbleTurn() {
                 document.getElementById("scrabble-turn-intro").classList.add("hidden");
                 document.getElementById("scrabble-play-area").classList.remove("hidden");
@@ -1643,17 +1732,15 @@
                 if (submitBtn) { submitBtn.disabled = true; submitBtn.classList.add("opacity-50"); }
                 const word = document.getElementById("scrabble-word-input").value.trim().toUpperCase();
                 const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
-                const tileResult = word.length >= 2 ? computeScrabbleWordScore(word, scrabbleState.currentLetters) : { valid: false };
 
-                let points = 0; let note = "";
-                if (tileResult.valid) {
-                    const fb = document.getElementById("scrabble-live-feedback");
-                    fb.innerText = "🔍 Prüfe Wort..."; fb.className = "text-center text-sm font-bold h-5 text-gray-400";
-                    const check = await isValidGermanWord(word);
-                    if (check.status === "valid") { points = tileResult.score; }
-                    else if (check.status === "invalid") { points = 0; note = " – kein gültiges Wort"; }
-                    else { points = 0; note = " – unbekanntes Wort (offline nicht prüfbar)"; }
-                }
+                const fb = document.getElementById("scrabble-live-feedback");
+                if (fb) { fb.innerText = "🔍 Prüfe Wort..."; fb.className = "text-center text-sm font-bold h-5 text-gray-400"; }
+
+                const res = await evaluateScrabbleWord(word, scrabbleState.currentLetters);
+                const points = res.points;
+                const info = wordStatusInfo(res.status);
+                const note = info.text ? ` – ${info.text}` : "";
+
                 scrabbleState.scores[key] += points;
                 if (points > 0) SFX.correct(); else SFX.wrong();
                 showToast(`${ALL_PROFILES[key].name}: +${points} Punkte${word ? ` für "${word}"` : ""}${note}`, points > 0 ? "success" : "error");
@@ -1838,15 +1925,51 @@
 
             function clearLiveDuelTimers() {
                 if (liveDuelTimerInterval) { clearInterval(liveDuelTimerInterval); liveDuelTimerInterval = null; }
-                if (liveDuelAutoAdvanceTimer) { clearTimeout(liveDuelAutoAdvanceTimer); liveDuelAutoAdvanceTimer = null; }
+                // Auto-Weiter läuft als Intervall (sichtbarer Countdown), daher clearInterval
+                if (liveDuelAutoAdvanceTimer) { clearInterval(liveDuelAutoAdvanceTimer); liveDuelAutoAdvanceTimer = null; }
             }
 
-            function leaveLiveDuel() {
+            // Beim Verlassen trägt man sich auch wirklich aus der Lobby aus.
+            // Bleibt niemand übrig, wird die Lobby gelöscht – sonst würde der
+            // "Duell beitreten"-Knopf bei allen ewig weiterleuchten.
+            async function leaveLiveDuel() {
                 clearLiveDuelTimers();
+                const ref = liveDuelRef;
+                const wasCreator = isLiveDuelCreator;
+
                 if (liveDuelUnsubscribe) liveDuelUnsubscribe();
                 liveDuelUnsubscribe = null; liveDuelRef = null; isLiveDuelCreator = false;
                 liveDuelResolving = false; liveDuelRenderKey = "";
                 switchView(currentPlayer ? 'menu' : 'family-hub');
+
+                if (!ref || !activePlayerKey) return;
+                try {
+                    const snap = await ref.get();
+                    if (!snap.exists) return;
+                    const data = snap.data();
+                    const players = data.players || {};
+                    delete players[activePlayerKey];
+                    const rest = Object.keys(players);
+
+                    if (rest.length === 0) {
+                        await ref.delete();            // niemand mehr da -> Lobby zu
+                    } else if (wasCreator) {
+                        // Damit die Runde weiterlaufen kann, übernimmt jemand anders
+                        await ref.update({ players, createdBy: rest[0], updatedAt: Date.now() });
+                    } else {
+                        await ref.update({ players, updatedAt: Date.now() });
+                    }
+                } catch (e) { /* Lobby war schon weg */ }
+            }
+
+            // Offene Lobby von Hand schließen (z.B. wenn alle einfach weggeklickt haben)
+            async function closeOpenDuel() {
+                try {
+                    await liveDuelLobbyRef().delete();
+                    showToast("Offene Duell-Runde wurde geschlossen.");
+                } catch (e) {
+                    showToast("Konnte die Runde nicht schließen", "error");
+                }
             }
 
             // Countdown, der erst startet, wenn der Erste geantwortet hat.
@@ -1935,11 +2058,26 @@
                     renderLiveDuelReveal(data);
                     switchView('live-duel-play');
 
-                    // Nach kurzer Anzeige automatisch weiter, damit niemand warten muss
+                    // Nach kurzer Anzeige automatisch weiter, damit niemand warten muss.
+                    // Der Countdown läuft auf ALLEN Geräten sichtbar mit, ausgelöst
+                    // wird das Weiterschalten aber nur vom Ersteller.
                     const isQuiz = data.type === "quiz";
                     const isLastStep = isQuiz ? (data.currentIndex >= data.questions.length - 1) : (data.currentRound >= data.totalRounds);
-                    if (isLiveDuelCreator && !isLastStep) {
-                        liveDuelAutoAdvanceTimer = setTimeout(() => advanceLiveDuel(), 6000);
+                    if (!isLastStep) {
+                        let left = 8;
+                        const cdEl = () => document.getElementById("live-duel-auto-countdown");
+                        const tick = () => {
+                            const el = cdEl();
+                            if (el) el.innerText = left + "s";
+                            if (left <= 0) {
+                                clearLiveDuelTimers();
+                                if (isLiveDuelCreator) advanceLiveDuel();
+                                return;
+                            }
+                            left--;
+                        };
+                        tick();
+                        liveDuelAutoAdvanceTimer = setInterval(tick, 1000);
                     }
                     return;
                 }
@@ -2030,29 +2168,49 @@
                 data = fresh.data();
                 const players = data.players;
                 if (data.type === "quiz") {
-                    const correct = data.questions[data.currentIndex].correct;
+                    const q = data.questions[data.currentIndex];
+                    const correct = q.correct;
+                    const wrongNames = [];
                     Object.keys(players).forEach(key => {
-                        const points = players[key].lastAnswer === correct ? 10 : 0;
+                        const isRight = players[key].lastAnswer === correct;
+                        const points = isRight ? 10 : 0;
                         players[key].score = (players[key].score || 0) + points;
                         players[key].lastRoundPoints = points;
+                        if (!isRight) wrongNames.push(players[key].name);
                     });
-                    await liveDuelRef.update({ status: "reveal", players, correctAnswer: correct, answerDeadline: null });
+
+                    // Nur Fragen merken, bei denen jemand danebenlag - daraus wird am
+                    // Ende die Lern-Zusammenfassung. Bewusst keine komplette Historie.
+                    const review = Array.isArray(data.review) ? data.review : [];
+                    if (wrongNames.length > 0) {
+                        review.push({
+                            question: q.question,
+                            correctAnswer: q.answers[correct],
+                            explanation: q.explanation || "",
+                            wrongNames
+                        });
+                    }
+                    await liveDuelRef.update({ status: "reveal", players, correctAnswer: correct, answerDeadline: null, review });
                 } else {
                     const letters = data.currentLetters;
                     for (const key of Object.keys(players)) {
-                        const word = (players[key].word || "").toUpperCase();
-                        const tileResult = word.length >= 2 ? computeScrabbleWordScore(word, letters) : { valid: false };
-                        let points = 0; let status = "invalid";
-                        if (tileResult.valid) {
-                            const check = await isValidGermanWord(word);
-                            status = check.status;
-                            points = (status === "valid") ? tileResult.score : 0;
-                        }
-                        players[key].score = (players[key].score || 0) + points;
-                        players[key].lastRoundPoints = points;
-                        players[key].wordStatus = status;
+                        const res = await evaluateScrabbleWord(players[key].word, letters);
+                        players[key].score = (players[key].score || 0) + res.points;
+                        players[key].lastRoundPoints = res.points;
+                        players[key].wordStatus = res.status;
                     }
                     await liveDuelRef.update({ status: "reveal", players, answerDeadline: null });
+                }
+            }
+
+            // Warum zählte ein Wort nicht? Klartext statt nur einem Symbol.
+            function wordStatusInfo(status) {
+                switch (status) {
+                    case "valid": return { icon: "✅", text: "" };
+                    case "letters": return { icon: "❌", text: "Buchstaben nicht vorhanden" };
+                    case "tooshort": return { icon: "❌", text: "zu kurz (min. 2 Buchstaben)" };
+                    case "unknown": return { icon: "❓", text: "Wort unbekannt (offline nicht prüfbar)" };
+                    default: return { icon: "❌", text: "kein gültiges Wort" };
                 }
             }
 
@@ -2063,10 +2221,37 @@
 
                 let rowsHtml = "";
                 Object.values(data.players).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
-                    const icon = isQuiz ? (p.lastRoundPoints > 0 ? "✅" : "❌") : (p.wordStatus === "valid" ? "✅" : p.wordStatus === "unknown" ? "❓" : "❌");
-                    const wordInfo = isQuiz ? "" : ` "${p.word || "-"}"`;
-                    rowsHtml += `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-3"><div class="font-bold text-white text-sm">${icon} ${p.name}${wordInfo}</div><div class="font-black text-emerald-400">+${p.lastRoundPoints || 0} <span class="text-xs text-gray-500">(Σ ${p.score})</span></div></div>`;
+                    let icon, detail = "";
+                    if (isQuiz) {
+                        icon = p.lastRoundPoints > 0 ? "✅" : "❌";
+                    } else {
+                        const info = wordStatusInfo(p.wordStatus);
+                        icon = info.icon;
+                        detail = info.text ? `<div class="text-[11px] text-gray-500 font-normal mt-0.5">${info.text}</div>` : "";
+                    }
+                    const wordInfo = isQuiz ? "" : ` <span class="text-amber-300">"${p.word || "-"}"</span>`;
+                    rowsHtml += `<div class="flex justify-between items-start bg-gray-900 border border-gray-700 rounded-xl p-3 gap-2">
+                        <div class="font-bold text-white text-sm">${icon} ${p.name}${wordInfo}${detail}</div>
+                        <div class="font-black text-emerald-400 shrink-0">+${p.lastRoundPoints || 0} <span class="text-xs text-gray-500">(Σ ${p.score})</span></div>
+                    </div>`;
                 });
+
+                // Beim Quiz zeigen, was richtig war und warum - wie im Lern-Quiz
+                let solutionHtml = "";
+                if (isQuiz) {
+                    const q = data.questions[data.currentIndex];
+                    if (q) {
+                        const wasRight = myData && myData.lastRoundPoints > 0;
+                        solutionHtml = `
+                        <div class="p-3 bg-slate-900 border-l-4 ${wasRight ? "border-emerald-500" : "border-rose-500"} rounded-xl text-left">
+                            <div class="text-xs text-gray-400 font-bold mb-1">${q.question}</div>
+                            <div class="text-white font-bold text-sm mb-2">Richtig war: <span class="${wasRight ? "text-emerald-300" : "text-rose-300"}">${q.answers[q.correct]}</span></div>
+                            <div class="text-gray-300 text-xs">${q.explanation || ""}</div>
+                        </div>`;
+                    }
+                } else if (data.currentSolution) {
+                    solutionHtml = `<p class="text-amber-400 font-bold text-center text-sm">💡 Möglich war z.B.: ${data.currentSolution}</p>`;
+                }
 
                 const nextBtn = isLastStep
                     ? `<button onclick="liveDuelRef.update({status:'finished'})" class="w-full p-4 bg-yellow-500 text-slate-950 font-black rounded-xl shadow-lg hover:bg-yellow-400 text-lg">Endergebnis zeigen 🏆</button>`
@@ -2075,10 +2260,10 @@
                 document.getElementById("live-duel-play-content").innerHTML = `
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-3 shadow-lg">
                     <h2 class="text-lg font-black text-white text-center">Runde ${isQuiz ? (data.currentIndex + 1) : data.currentRound} – Ergebnisse</h2>
-                    ${(!isQuiz && data.currentSolution) ? `<p class="text-amber-400 font-bold text-center text-sm">💡 Möglich war z.B.: ${data.currentSolution}</p>` : ""}
+                    ${solutionHtml}
                     <div class="space-y-2">${rowsHtml}</div>
                     ${nextBtn}
-                    <p class="text-[11px] text-gray-500 text-center">Es geht gleich automatisch weiter – oder tippt auf "Weiter".</p>
+                    ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in <span id="live-duel-auto-countdown" class="font-bold text-gray-400">…</span> – oder jetzt auf "Weiter" tippen.</p>`}
                 </div>`;
             }
 
@@ -2149,7 +2334,7 @@
                             status: "playing", difficulty, totalRounds, currentRound: 1,
                             answerSeconds: SCRABBLE_ANSWER_SECONDS[difficulty] || 20,
                             currentLetters: rack.letters, currentSolution: rack.solution,
-                            answerDeadline: null, players
+                            answerDeadline: null, players, review: []
                         });
                     } else {
                         const catSel = document.getElementById("again-category");
@@ -2160,7 +2345,7 @@
                         if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
                         await liveDuelRef.update({
                             status: "playing", category, questions, currentIndex: 0,
-                            answerDeadline: null, correctAnswer: null, players
+                            answerDeadline: null, correctAnswer: null, players, review: []
                         });
                     }
                     liveDuelResolving = false;
@@ -2170,6 +2355,15 @@
                 } catch (e) {
                     showToast("Neue Runde konnte nicht gestartet werden", "error");
                 }
+            }
+
+            function toggleDuelReview(forceOpen) {
+                const wrapper = document.getElementById("duel-review-wrapper");
+                const arrow = document.getElementById("duel-review-arrow");
+                if (!wrapper) return;
+                const open = (typeof forceOpen === "boolean") ? forceOpen : wrapper.classList.contains("hidden");
+                wrapper.classList.toggle("hidden", !open);
+                if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
             }
 
             function renderLiveDuelFinalResult(data) {
@@ -2187,6 +2381,32 @@
                     </div>`;
                 });
                 html += `</div>`;
+
+                // Lern-Zusammenfassung: nur die Fragen, bei denen jemand danebenlag.
+                // Bewusst kein Durchblättern aller Fragen - hier steht genau das,
+                // was sich zu wiederholen lohnt.
+                const review = Array.isArray(data.review) ? data.review : [];
+                if (review.length > 0) {
+                    html += `<div class="mt-6 text-left space-y-2">
+                        <button onclick="toggleDuelReview()" id="duel-review-btn"
+                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl flex items-center justify-between">
+                            <span class="font-black text-indigo-300 text-sm">📚 Das lohnt sich zu merken</span>
+                            <span class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-gray-400 bg-gray-950 px-2 py-0.5 rounded-full">${review.length}</span>
+                                <span id="duel-review-arrow" class="text-gray-400 transition-transform">▼</span>
+                            </span>
+                        </button>
+                        <div id="duel-review-wrapper" class="hidden space-y-2 max-h-[40vh] overflow-y-auto pr-1">`;
+                    review.forEach(r => {
+                        html += `<div class="bg-gray-900 border-l-4 border-indigo-500 rounded-xl p-3">
+                            <div class="text-xs text-gray-400 font-bold mb-1">${r.question}</div>
+                            <div class="text-sm text-white font-bold mb-1">Richtig: <span class="text-emerald-300">${r.correctAnswer}</span></div>
+                            ${r.explanation ? `<div class="text-[11px] text-gray-400 mb-1">${r.explanation}</div>` : ""}
+                            <div class="text-[11px] text-gray-500">Nochmal anschauen: ${r.wrongNames.join(", ")}</div>
+                        </div>`;
+                    });
+                    html += `</div></div>`;
+                }
 
                 // Weiterspielen, ohne dass jemand die Runde verlassen und neu
                 // beitreten muss: alle Spieler bleiben eingetragen.
@@ -2491,7 +2711,7 @@
                 catBox.innerHTML = categories.map(c => `
                     <label class="flex items-center gap-2 bg-gray-950 border border-gray-800 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:border-indigo-500">
                         <input type="checkbox" value="${c}" class="test-cat-checkbox w-4 h-4 accent-indigo-500">
-                        ${CATEGORY_LABELS[c] || c}
+                        <span>${CATEGORY_LABELS[c] || c} <span class="text-[10px] text-gray-500 font-normal">· ${questionCount(c)} Fragen</span></span>
                     </label>`).join("");
                 renderTestTemplatesList();
             }
@@ -2752,9 +2972,33 @@
             }
 
             // === VOKABEL LOGIK ===
+            // === VOKABEL-SPRACHEN ===
+            // Zum Wiedereinschalten von Türkisch einfach auf true setzen.
+            // Die Vokabeln selbst bleiben in der data.js erhalten.
+            const VOCAB_LANG_ENABLED = { en: true, tr: false };
+
+            function isVocabLangEnabled(l) { return VOCAB_LANG_ENABLED[l] !== false; }
+
+            // Blendet abgeschaltete Sprachen aus. Bleibt nur eine übrig,
+            // verschwindet die ganze Auswahlleiste (ein einzelner Knopf wäre sinnlos).
+            function applyVocabLangSettings() {
+                const langs = Object.keys(VOCAB_LANG_ENABLED);
+                let visible = 0;
+                langs.forEach(l => {
+                    const btn = document.getElementById("lang-btn-" + l);
+                    if (!btn) return;
+                    const on = isVocabLangEnabled(l);
+                    btn.classList.toggle("hidden", !on);
+                    if (on) visible++;
+                });
+                const bar = document.getElementById("lang-selector");
+                if (bar) bar.classList.toggle("hidden", visible < 2);
+            }
+
             let activeLang = 'en', activeCategory = 'basics', vIndex = 0, vocabMode = 'flashcards';
 
             function setLanguage(l) {
+                if (!isVocabLangEnabled(l)) return;
                 activeLang = l;
                 vIndex = 0;
                 loadVocabSystem();
@@ -2778,11 +3022,21 @@
 
             function loadVocabSystem() {
                 if (typeof VOCABULARY_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
+
+                // Abgeschaltete Sprachen ausblenden und ggf. auf eine aktive wechseln
+                applyVocabLangSettings();
+                if (!isVocabLangEnabled(activeLang) || !VOCABULARY_DATABASE[activeLang]) {
+                    const fallback = Object.keys(VOCABULARY_DATABASE).find(isVocabLangEnabled);
+                    if (!fallback) return;
+                    activeLang = fallback;
+                }
+
                 const dd = document.getElementById("category-dropdown");
                 dd.innerHTML = "";
                 const keys = Object.keys(VOCABULARY_DATABASE[activeLang]);
                 keys.forEach(k => {
-                    dd.innerHTML += `<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label}</option>`;
+                    const n = VOCABULARY_DATABASE[activeLang][k].words.length;
+                    dd.innerHTML += `<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label} · ${n} Wörter</option>`;
                 });
 
                 // Passend zur Klassenstufe des Profils vorauswählen (wie im Wissens-Quiz).
@@ -3004,25 +3258,19 @@
             </div>`;
 
                 for (const key of Object.keys(playersData)) {
-                    const word = (playersData[key].word || "").toUpperCase();
-                    const tileResult = word.length >= 2 ? computeScrabbleWordScore(word, letters) : { valid: false };
-                    let points = 0; let status = "invalid";
-                    if (tileResult.valid) {
-                        const check = await isValidGermanWord(word);
-                        status = check.status;
-                        points = (status === "valid") ? tileResult.score : 0;
-                    }
-                    playersData[key].score = (playersData[key].score || 0) + points;
-                    playersData[key].lastRoundPoints = points;
-                    playersData[key].wordStatus = status;
+                    const res = await evaluateScrabbleWord(playersData[key].word, letters);
+                    playersData[key].score = (playersData[key].score || 0) + res.points;
+                    playersData[key].lastRoundPoints = res.points;
+                    playersData[key].wordStatus = res.status;
                 }
                 tvGameRef.update({ showAnswer: true, players: playersData });
 
                 const isLastRound = data.currentRound >= data.totalRounds;
                 let rowsHtml = "";
                 Object.values(playersData).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
-                    const statusIcon = p.wordStatus === "valid" ? "✅" : p.wordStatus === "unknown" ? "❓" : "❌";
-                    rowsHtml += `<div class="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-xl p-4"><div class="font-bold text-white text-lg">${statusIcon} ${p.name}: <span class="text-amber-300">"${p.word || "-"}"</span></div><div class="font-black text-emerald-400 text-xl">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
+                    const sInfo = wordStatusInfo(p.wordStatus);
+                    const sDetail = sInfo.text ? `<div class="text-sm text-gray-500 font-normal mt-1">${sInfo.text}</div>` : "";
+                    rowsHtml += `<div class="flex justify-between items-start bg-gray-900 border border-gray-700 rounded-xl p-4 gap-3"><div class="font-bold text-white text-lg">${sInfo.icon} ${p.name}: <span class="text-amber-300">"${p.word || "-"}"</span>${sDetail}</div><div class="font-black text-emerald-400 text-xl shrink-0">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
                 });
 
                 document.getElementById("view-tv-quiz-host").innerHTML = `
@@ -3097,12 +3345,61 @@
                     <p class="text-emerald-400 font-black mt-6 text-3xl">💡 ${tvCurrentQ.explanation}</p>
                 </div>
                 <div class="grid grid-cols-2 gap-6 flex-1">${answersHtml}</div>
-                <div class="mt-8 text-center"><button onclick="nextTVQuestion()" class="p-6 px-16 bg-indigo-600 text-white font-black rounded-xl text-3xl hover:bg-indigo-500 shadow-xl w-1/2">Nächste Frage ➔</button></div>
+                <div class="mt-8 text-center space-y-3">
+                    <button onclick="nextTVQuestion()" class="p-6 px-16 bg-indigo-600 text-white font-black rounded-xl text-3xl hover:bg-indigo-500 shadow-xl w-1/2">Nächste Frage ➔</button>
+                    <div id="tv-auto-row" class="flex items-center justify-center gap-4 text-xl text-gray-400 font-bold">
+                        <span id="tv-auto-label"></span>
+                        <button onclick="toggleTVAutoAdvance()" id="tv-auto-btn"
+                            class="px-5 py-2 rounded-xl border border-gray-600 hover:bg-gray-800 text-base"></button>
+                    </div>
+                </div>
             </div>
         `;
+                startTVAutoAdvance();
+            }
+
+            // === AUTO-WEITER IM TV-QUIZ (optional) ===
+            // Standardmäßig aus: beim Familienquiz redet man über die Antworten und
+            // will selbst bestimmen, wann es weitergeht. Wer mag, schaltet es an.
+            let tvAutoAdvanceOn = false;
+            let tvAutoAdvanceInterval = null;
+            const TV_AUTO_SECONDS = 12;
+
+            function stopTVAutoAdvance() {
+                if (tvAutoAdvanceInterval) { clearInterval(tvAutoAdvanceInterval); tvAutoAdvanceInterval = null; }
+            }
+
+            function renderTVAutoControls(secondsLeft) {
+                const label = document.getElementById("tv-auto-label");
+                const btn = document.getElementById("tv-auto-btn");
+                if (!btn) return;
+                btn.innerText = tvAutoAdvanceOn ? "⏸ Automatik aus" : "▶ Automatik an";
+                if (label) {
+                    label.innerText = tvAutoAdvanceOn
+                        ? `Nächste Frage in ${secondsLeft}s`
+                        : "Weiter per Knopf";
+                }
+            }
+
+            function startTVAutoAdvance() {
+                stopTVAutoAdvance();
+                let left = TV_AUTO_SECONDS;
+                renderTVAutoControls(left);
+                if (!tvAutoAdvanceOn) return;
+                tvAutoAdvanceInterval = setInterval(() => {
+                    left--;
+                    renderTVAutoControls(left);
+                    if (left <= 0) { stopTVAutoAdvance(); nextTVQuestion(); }
+                }, 1000);
+            }
+
+            function toggleTVAutoAdvance() {
+                tvAutoAdvanceOn = !tvAutoAdvanceOn;
+                startTVAutoAdvance();
             }
 
             async function nextTVQuestion() {
+                stopTVAutoAdvance();
                 const docSnap = await tvGameRef.get(); const data = docSnap.data();
                 let nextIndex = data.currentQuestionIndex + 1;
                 if (nextIndex >= tvQuestions.length) {
@@ -3118,6 +3415,7 @@
             }
 
             function showTVHostPodium(playersData) {
+                stopTVAutoAdvance();
                 const sorted = Object.values(playersData || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
                 let html = `<h1 class="text-6xl font-black text-yellow-400 mb-10 text-center">🏆 Siegerehrung 🏆</h1><div class="space-y-6 max-w-3xl mx-auto w-full">`;
                 const medals = ["🥇", "🥈", "🥉"];
@@ -3157,7 +3455,8 @@
                                 if (data.showAnswer) {
                                     const points = myData.lastRoundPoints || 0;
                                     const bg = points > 0 ? "bg-emerald-500" : "bg-gray-700";
-                                    const statusText = myData.wordStatus === "invalid" ? "Kein gültiges Wort 😅" : myData.wordStatus === "unknown" ? "Unbekanntes Wort – offline nicht prüfbar ❓" : "Erkannt! ✅";
+                                    const pInfo = wordStatusInfo(myData.wordStatus);
+                                    const statusText = myData.wordStatus === "valid" ? "Erkannt! ✅" : `${pInfo.icon} ${pInfo.text}`;
                                     document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-7xl mb-6">${points > 0 ? "✅" : "😅"}</div><h2 class="text-2xl font-black mb-2">Dein Wort: "${myData.word || "-"}"</h2><p class="text-sm opacity-70 mb-2">${statusText}</p><p class="text-xl font-bold">+ ${points} Punkte diese Runde</p><p class="text-sm opacity-80 mt-2">Gesamt: ${myData.score || 0} Punkte</p></div>`;
                                     if (points > 0) { try { confetti(); } catch (e) { } SFX.correct(); } else { SFX.wrong(); }
                                 } else if (!myData.hasAnswered) {

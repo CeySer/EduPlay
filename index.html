@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=33"></script>
+    <script src="data.js?v=34"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -1198,6 +1198,8 @@
                 }
                 // Ton-Symbol an die gespeicherte Einstellung anpassen
                 document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
+                // Falls die App offline gestartet wird, gleich Bescheid geben
+                if (typeof renderOfflineBanner === "function") renderOfflineBanner();
             };
 
             auth.onAuthStateChanged((user) => {
@@ -1288,6 +1290,84 @@
                     .slice(0, maxLen || 40);
             }
 
+            // === ZENTRALE FEHLERBEHANDLUNG ===
+            // Statt überall ein anderes "Fehler beim ..." zu zeigen, laufen alle
+            // Fehler hier zusammen. Vorteile: eine Stelle zum Nachschauen in der
+            // Konsole, einheitlicher Ton nach außen und ein eigener Hinweis, wenn
+            // das Gerät schlicht offline ist (der häufigste Fall im Auto).
+
+            function isOffline() {
+                return (typeof navigator !== "undefined" && navigator.onLine === false);
+            }
+
+            // Erkennt Verbindungsprobleme an Firebase-Codes bzw. an der Meldung
+            function isNetworkError(err) {
+                if (isOffline()) return true;
+                if (!err) return false;
+                const code = String(err.code || "").toLowerCase();
+                const msg = String(err.message || err).toLowerCase();
+                return code.includes("unavailable")
+                    || code.includes("deadline-exceeded")
+                    || code.includes("network")
+                    || msg.includes("offline")
+                    || msg.includes("network")
+                    || msg.includes("failed to fetch");
+            }
+
+            // Erkennt fehlende Berechtigungen (z.B. wenn die Firestore-Regeln greifen)
+            function isPermissionError(err) {
+                if (!err) return false;
+                const code = String(err.code || "").toLowerCase();
+                return code.includes("permission-denied") || code.includes("unauthenticated");
+            }
+
+            /**
+             * context  - kurze technische Beschreibung, nur für die Konsole
+             * err      - der gefangene Fehler
+             * friendly - was der Nutzer lesen soll (optional)
+             * opts     - { silent: true } zeigt nichts an, loggt aber
+             */
+            function handleError(context, err, friendly, opts) {
+                opts = opts || {};
+                // Für die Fehlersuche bleibt der echte Fehler mit Kontext erhalten
+                try { console.error("[EduPlay] " + context, err); } catch (e) { }
+
+                if (opts.silent) return;
+
+                let msg;
+                if (isNetworkError(err)) {
+                    msg = "📴 Keine Verbindung – probier es gleich noch einmal.";
+                } else if (isPermissionError(err)) {
+                    msg = "🔒 Dafür fehlt die Berechtigung. Bist du noch angemeldet?";
+                } else {
+                    msg = friendly || "Hoppla, das hat nicht geklappt – versuch es gleich nochmal!";
+                }
+                // Gleicher Kontext ersetzt die vorherige Meldung, statt zu stapeln
+                showToast(msg, "error", "err:" + context);
+            }
+
+            // Fehler in async-Funktionen ohne try/catch würden sonst lautlos
+            // verschwinden - hier landen sie wenigstens in der Konsole.
+            window.addEventListener("unhandledrejection", function (ev) {
+                handleError("unhandled", ev.reason, null, { silent: !isNetworkError(ev.reason) });
+            });
+
+            // Sichtbarer Hinweis, wenn das Gerät offline ist. Wichtig im Auto:
+            // Die Ein-Gerät-Duelle laufen weiter, alles mit Firebase nicht.
+            function renderOfflineBanner() {
+                let bar = document.getElementById("offline-banner");
+                if (!bar) {
+                    bar = document.createElement("div");
+                    bar.id = "offline-banner";
+                    bar.className = "fixed top-0 left-0 right-0 z-50 bg-amber-600 text-slate-950 text-center text-xs font-black py-1.5 shadow-lg";
+                    bar.innerText = "📴 Offline – Duelle über mehrere Handys pausieren. Ein-Gerät-Modi laufen weiter.";
+                    document.body.appendChild(bar);
+                }
+                bar.classList.toggle("hidden", !isOffline());
+            }
+            window.addEventListener("online", renderOfflineBanner);
+            window.addEventListener("offline", renderOfflineBanner);
+
             function showToast(msg, type = "success", key) {
                 const c = document.getElementById("toast-container");
                 if (!c) return;
@@ -1354,7 +1434,7 @@
                     ALL_PROFILES = {}; snapshot.forEach(doc => { ALL_PROFILES[doc.id] = doc.data(); });
                     await loadFamilyRewards();
                     renderFamilyHub(); switchView('family-hub');
-                } catch (e) { showToast("Ladefehler", "error"); }
+                } catch (e) { handleError("loadFamilyProfiles", e, "Profile konnten nicht geladen werden."); }
             }
 
             function toggleProfileList(forceOpen) {
@@ -1910,7 +1990,7 @@
                     await ref.set(lobbyData);
                     liveDuelRef = ref; isLiveDuelCreator = true; liveDuelResolving = false; liveDuelRenderKey = "";
                     subscribeLiveDuel();
-                } catch (e) { showToast("Fehler beim Erstellen des Duells", "error"); }
+                } catch (e) { handleError("createLiveDuel", e, "Das Duell konnte nicht erstellt werden."); }
             }
 
             // Beitreten funktioniert auch MITTEN im Spiel – so kann man nach einem
@@ -1940,7 +2020,7 @@
                     liveDuelResolving = false; liveDuelRenderKey = "";
                     showToast(wasAlreadyIn ? "Willkommen zurück im Duell!" : "Du bist dabei!");
                     subscribeLiveDuel();
-                } catch (e) { showToast("Verbindungsfehler", "error"); }
+                } catch (e) { handleError("joinLiveDuel", e, "Beitreten hat nicht geklappt."); }
             }
 
             function subscribeLiveDuel() {
@@ -2342,7 +2422,7 @@
             async function restartLiveDuel() {
                 if (!liveDuelRef) return;
                 const snap = await liveDuelRef.get();
-                if (!snap.exists) return showToast("Die Runde existiert nicht mehr.", "error");
+                if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
                 const data = snap.data();
 
                 const players = data.players || {};
@@ -2385,7 +2465,7 @@
                     SFX.tap();
                     showToast("Neue Runde gestartet – alle sind dabei! 🚀");
                 } catch (e) {
-                    showToast("Neue Runde konnte nicht gestartet werden", "error");
+                    handleError("restartLiveDuel", e, "Die neue Runde konnte nicht gestartet werden.");
                 }
             }
 
@@ -2504,7 +2584,7 @@
                     renderFamilyHub();
                     switchView('family-hub');
                 } catch (e) {
-                    showToast("Fehler beim Erstellen", "error");
+                    handleError("saveNewProfile", e, "Das Profil konnte nicht angelegt werden.");
                 }
             }
 
@@ -2658,7 +2738,7 @@
                     renderFamilyHub();
                     toggleProfileList(true);
                 } catch (e) {
-                    showToast("Fehler beim Anlegen des Gastes", "error");
+                    handleError("addGuestProfile", e, "Der Gast konnte nicht angelegt werden.");
                 }
             }
 
@@ -2676,7 +2756,7 @@
                     showToast("Gäste entfernt.");
                     renderFamilyHub();
                 } catch (e) {
-                    showToast("Fehler beim Entfernen", "error");
+                    handleError("removeAllGuests", e, "Die Gäste konnten nicht entfernt werden.");
                 }
             }
 
@@ -2697,7 +2777,7 @@
                     renderAdminDashboard();
                     renderFamilyHub();
                 } catch (e) {
-                    showToast("Fehler beim Löschen", "error");
+                    handleError("deleteProfile", e, "Das Profil konnte nicht gelöscht werden.");
                 }
             }
 
@@ -2808,7 +2888,7 @@
                     showToast(`Test für ${esc(p.name)} wurde entfernt.`);
                     renderAdminDashboard();
                 } catch (e) {
-                    showToast("Fehler beim Entfernen des Tests", "error");
+                    handleError("cancelPendingTest", e, "Der Test konnte nicht entfernt werden.");
                 }
             }
 
@@ -3236,7 +3316,7 @@
             }
 
             async function startTVHostLobby() {
-                if (!currentParentUser) return showToast("Fehler: Eltern-Account muss eingeloggt sein!", "error");
+                if (!currentParentUser) return showToast("Dafür musst du als Elternteil angemeldet sein.", "error", "noparent");
 
                 const hostRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
                 let lobbyData;
@@ -3284,7 +3364,7 @@
                         }
                     });
                 } catch (e) {
-                    showToast("Fehler beim Erstellen der Lobby", "error");
+                    handleError("startTVHostLobby", e, "Die Lobby konnte nicht erstellt werden.");
                 }
             }
 
@@ -3574,7 +3654,7 @@
 
                 try {
                     const snap = await tvGameRef.get();
-                    if (!snap.exists) return showToast("Die Runde existiert nicht mehr.", "error");
+                    if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
                     const playersData = snap.data().players || {};
                     if (Object.keys(playersData).length === 0) return showToast("Keine Spieler mehr in der Lobby.", "error");
 
@@ -3600,13 +3680,13 @@
                     SFX.tap();
                     showToast("Neue Runde gestartet – alle sind dabei! 🚀");
                 } catch (e) {
-                    showToast("Neue Runde konnte nicht gestartet werden", "error");
+                    handleError("restartTVGame", e, "Die neue Runde konnte nicht gestartet werden.");
                 }
             }
 
             // --- 2. LOGIK FÜR DIE HANDYS (SPIELER) ---
             async function joinTVGame() {
-                if (!currentParentUser || !currentPlayer) return showToast("Fehler: Du musst als Kind eingeloggt sein!", "error");
+                if (!currentParentUser || !currentPlayer) return showToast("Bitte wähle zuerst oben dein Profil aus.", "error", "noprofile");
                 const lobbyRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
 
                 try {
@@ -3682,7 +3762,7 @@
                             document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 p-10 rounded-3xl text-center shadow-2xl mt-12"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-gray-900 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><div class="mt-8 p-4 bg-gray-900 border border-indigo-800 rounded-2xl"><div class="text-4xl mb-2 animate-pulse">⏳</div><p class="text-indigo-300 font-black">Du bleibst dabei!</p><p class="text-xs text-gray-400 mt-1">Sobald am Fernseher eine neue Runde startet, geht es hier automatisch weiter.</p></div><button onclick="leaveTVGame()" class="mt-6 w-full p-4 bg-gray-700 hover:bg-gray-600 font-bold text-white rounded-xl shadow-lg text-sm">Doch beenden & zurück ins Menü</button></div>`;
                         }
                     });
-                } catch (error) { showToast("Verbindungsfehler", "error"); }
+                } catch (error) { handleError("joinTVGame", error, "Beitreten hat nicht geklappt."); }
             }
 
             async function submitTVScrabbleWord() {

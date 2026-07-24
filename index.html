@@ -478,7 +478,7 @@
             <!-- VIEW: DUELL SETUP -->
             <div id="view-duel-setup" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
-                    onclick="switchView('family-hub')">← Zurück</button>
+                    onclick="switchView('family-hub')">← Übersicht</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
                     <h2 class="text-2xl font-black text-center text-rose-400">⚔️ Quiz-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Zwei Spieler treten nacheinander im selben Quiz
@@ -533,7 +533,7 @@
             <!-- VIEW: SCRABBLE SETUP -->
             <div id="view-scrabble-setup" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
-                    onclick="switchView('family-hub')">← Zurück</button>
+                    onclick="switchView('family-hub')">← Übersicht</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
                     <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben Buchstaben und bilden
@@ -613,7 +613,7 @@
             <!-- VIEW: LIVE-DUELL SETUP (jeder auf eigenem Handy) -->
             <div id="view-live-duel-setup" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
-                    onclick="switchView('menu')">← Zurück</button>
+                    onclick="switchView('menu')">← Menü</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
                     <h2 id="live-duel-setup-title" class="text-2xl font-black text-center text-rose-400">⚔️ Live-Duell</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Du erstellst das Duell auf deinem Handy, die
@@ -821,8 +821,7 @@
 
             <!-- VIEW: BELOHNUNGEN EINLÖSEN -->
             <div id="view-rewards" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
-                    Zurück</button>
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Menü</button>
                 <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
                     <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen</h3>
                     <p class="text-xs text-gray-400 mb-4">Du hast <span id="rewards-coin-balance"
@@ -860,6 +859,12 @@
                         </select>
                         <p class="text-[11px] text-gray-500 mt-1.5">Danach wählt die App im Quiz und bei den Vokabeln
                             automatisch die passende Stufe vor.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Farbe der Spielerscheibe</label>
+                        <div id="edit-player-colors" class="flex flex-wrap gap-2.5"></div>
+                        <p class="text-[11px] text-gray-500 mt-1.5">Tippe eine Farbe an – so sieht jeder sofort, wer dran ist.</p>
                     </div>
 
                     <div id="edit-player-hint" class="hidden text-xs font-bold text-rose-400"></div>
@@ -976,8 +981,7 @@
 
             <!-- VIEW: FOKUS LERNZEIT -->
             <div id="view-fokus" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">←
-                    Zurück</button>
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Menü</button>
                 <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl text-center space-y-6 shadow-lg">
                     <div class="text-6xl">⏱️</div>
                     <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
@@ -997,7 +1001,7 @@
             <div id="view-parent" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
-                        onclick="switchView('family-hub')">← Zurück zur Übersicht</button>
+                        onclick="switchView('family-hub')">← Übersicht</button>
                     <button onclick="setupAdminPin(false)" title="Eltern-PIN ändern"
                         class="px-3 py-2 rounded-xl bg-gray-800 border border-gray-700 text-gray-300 font-bold text-sm shrink-0">🔑
                         PIN</button>
@@ -1020,6 +1024,14 @@
                         <h3 class="text-xl font-black text-rose-400 mb-2">📊 Admin-Kontrollzentrum</h3>
                         <p class="text-xs text-gray-400 mb-4">Übersicht der Lernfortschritte deiner Familie – wie in einer Fahrschul-App.</p>
                         <div id="parent-stats-container" class="space-y-6"></div>
+                    </div>
+
+                    <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
+                        <h3 class="text-xl font-black text-amber-400 mb-2">🧪 Antwortlängen-Check</h3>
+                        <p class="text-xs text-gray-400 mb-4">Prüft, wie oft die richtige Antwort auch die längste ist. Bei drei Optionen wären ~33&nbsp;% neutral.</p>
+                        <button onclick="runAnswerLengthAudit()"
+                            class="w-full p-3 bg-amber-600 rounded-xl font-black text-white hover:bg-amber-500">Jetzt prüfen</button>
+                        <div id="answer-audit-result" class="mt-4 hidden space-y-2"></div>
                     </div>
                 </div>
 
@@ -1080,8 +1092,7 @@
 
             <!-- VIEW: QUIZ SETUP -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum
-                    Hauptmenü</button>
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Menü</button>
                 <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
                     class="hidden w-full bg-rose-600 hover:bg-rose-500 p-4 rounded-2xl font-black text-white shadow-lg flex items-center justify-center gap-2">
                     🔁 Wiederholen (<span class="wq-count">0</span> Fragen, die noch nicht saßen)
@@ -1174,8 +1185,7 @@
 
             <!-- VIEW: TV-QUIZ (KAHOOT-MODUS) SETUP -->
             <div id="view-tv-quiz-setup" class="view hidden space-y-4">
-                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Zum
-                    Hauptmenü</button>
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Menü</button>
 
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-6 text-center">
                     <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
@@ -2137,6 +2147,25 @@
 
             // === SPIELER BEARBEITEN ===
             let editingPlayerKey = null;
+            let editingPlayerColor = null;
+
+            // Zeichnet die Farb-Swatches in den Bearbeiten-Dialog. Die getippte
+            // Farbe bekommt einen Ring; gespeichert wird sie erst beim Speichern.
+            function renderColorPicker(selected) {
+                editingPlayerColor = selected;
+                const box = document.getElementById("edit-player-colors");
+                if (!box) return;
+                box.innerHTML = "";
+                PLAYER_COLORS.forEach(col => {
+                    const sw = document.createElement("button");
+                    sw.type = "button";
+                    sw.style.cssText = "width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;background:" + col +
+                        ";box-shadow:" + (col === editingPlayerColor ? "0 0 0 3px #1f2937, 0 0 0 5px " + col : "none") + ";transition:box-shadow .12s ease;";
+                    sw.setAttribute("aria-label", "Farbe wählen");
+                    sw.onclick = () => { SFX.tap(); renderColorPicker(col); };
+                    box.appendChild(sw);
+                });
+            }
 
             // Rechnet das Alter aus dem Geburtstag - damit es nie veraltet.
             function ageFromBirthday(birthday) {
@@ -2204,6 +2233,10 @@
                 }
                 sel.value = playerGrade(p) || "";
 
+                // Aktuelle Farbe vorbelegen: die selbst gewählte, sonst die
+                // automatisch vergebene - so ist immer eine Farbe markiert.
+                renderColorPicker(p.discColor || colorForPlayer(key));
+
                 const hint = document.getElementById("edit-player-hint");
                 if (hint) hint.classList.add("hidden");
                 updateAgePreview();
@@ -2238,6 +2271,7 @@
                     ageType: grade ? "klasse" : "alter",
                     age: grade ? String(grade) : (ageFromBirthday(birthday) !== null ? String(ageFromBirthday(birthday)) : "-")
                 };
+                if (editingPlayerColor) update.discColor = editingPlayerColor;
 
                 try {
                     await db.collection("parents").doc(currentParentUser.uid)
@@ -2351,8 +2385,15 @@
                 // und Liste dieselbe Scheibe hat.
                 const taken = new Set();
                 const colorMap = {};
-                profileKeys.slice().sort().forEach(k => {
-                    if (!ALL_PROFILES[k].isGuest) colorMap[k] = colorForPlayer(k, taken);
+                const sortedKeys = profileKeys.slice().sort();
+                // Zuerst selbst gewählte Farben eintragen, damit die Auto-Vergabe
+                // sie kennt; danach für alle ohne eigene Wahl automatisch vergeben.
+                sortedKeys.forEach(k => {
+                    const p = ALL_PROFILES[k];
+                    if (!p.isGuest && p.discColor) { colorMap[k] = p.discColor; taken.add(p.discColor); }
+                });
+                sortedKeys.forEach(k => {
+                    if (!ALL_PROFILES[k].isGuest && !colorMap[k]) colorMap[k] = colorForPlayer(k, taken);
                 });
 
                 if (preview) previewKeys.forEach(key => preview.appendChild(buildPlayerCard(key, colorMap[key])));
@@ -2970,19 +3011,22 @@
 
                     let players = data.players || {};
                     const wasAlreadyIn = !!players[activePlayerKey];
+                    const midGame = (data.status === "playing" || data.status === "reveal");
                     if (!wasAlreadyIn) {
-                        // Neu dazugekommen: startet mit 0 Punkten und gilt für die
-                        // laufende Runde als "hat geantwortet", damit niemand wartet.
+                        // Neu dazugekommen: wartet in der Schleife, bis die nächste
+                        // Runde startet. pending=true hält ihn aus der laufenden
+                        // Runde raus (zählt nicht, blockiert die Auswertung nicht).
                         players[activePlayerKey] = {
                             name: currentPlayer.name, score: 0,
-                            hasAnswered: data.status === "playing", lastAnswer: null, word: "", coinsClaimed: false
+                            hasAnswered: false, lastAnswer: null, word: "", coinsClaimed: false,
+                            pending: midGame
                         };
                         await ref.update({ players });
                     }
                     liveDuelType = data.type; liveDuelRef = ref;
                     isLiveDuelCreator = (data.createdBy === activePlayerKey);
                     liveDuelResolving = false; liveDuelRenderKey = "";
-                    showToast(wasAlreadyIn ? "Willkommen zurück im Duell!" : "Du bist dabei!");
+                    showToast(wasAlreadyIn ? "Willkommen zurück im Duell!" : (midGame ? "Du bist dabei – es geht in der nächsten Runde los!" : "Du bist dabei!"));
                     subscribeLiveDuel();
                 } catch (e) { handleError("joinLiveDuel", e, "Beitreten hat nicht geklappt."); }
             }
@@ -2998,6 +3042,11 @@
             let liveDuelTimerInterval = null;
             let liveDuelAutoAdvanceTimer = null;
             let liveDuelRenderKey = "";
+            // Kurze Sperre direkt nach dem Aufbau der Antwort-/Eingabemaske.
+            // Fängt den zweiten Tipp ab, wenn nach "Weiter" die Maske an genau
+            // derselben Stelle erscheint (sonst löst der zweite Tipp sofort
+            // "Wort einreichen" bzw. eine zufällige Antwort aus).
+            let liveDuelInputLockUntil = 0;
 
             function clearLiveDuelTimers() {
                 if (liveDuelTimerInterval) { clearInterval(liveDuelTimerInterval); liveDuelTimerInterval = null; }
@@ -3088,6 +3137,10 @@
                 if (data.status === "playing") {
                     liveDuelResolving = false;
 
+                    // Wer mitten im Spiel beigetreten ist, wartet - er spielt diese
+                    // Runde nicht mit und zählt nicht zur Auswertung.
+                    if (myData.pending) { renderLiveDuelPending(data); switchView('live-duel-play'); return; }
+
                     // Inhalt nur neu zeichnen, wenn sich wirklich etwas ändert – sonst
                     // würde die Tastatureingabe beim Wort-Duell dauernd gelöscht,
                     // sobald ein anderer antwortet.
@@ -3099,8 +3152,11 @@
                         else renderLiveDuelQuizPlay(data);
                     }
 
-                    const ansCount = Object.values(data.players).filter(p => p.hasAnswered).length;
-                    const totalCount = Object.keys(data.players).length;
+                    // pending-Spieler zählen NICHT mit (weder als Teilnehmer noch als
+                    // "hat geantwortet") - sonst wartet die Runde ewig auf sie.
+                    const activePl = Object.values(data.players).filter(p => !p.pending);
+                    const ansCount = activePl.filter(p => p.hasAnswered).length;
+                    const totalCount = activePl.length;
                     const statusEl = document.getElementById("live-duel-status");
                     if (statusEl) statusEl.innerText = `${ansCount}/${totalCount} fertig`;
                     const waitEl = document.getElementById("live-duel-answer-counter");
@@ -3126,6 +3182,9 @@
 
                 if (data.status === "reveal") {
                     clearLiveDuelTimers();
+                    // pending-Beitreter warten weiter - sie steigen erst zur nächsten
+                    // Runde ein und sehen die Auflösung dieser Runde nicht.
+                    if (myData.pending) { renderLiveDuelPending(data); switchView('live-duel-play'); return; }
                     const cd = document.getElementById("live-duel-countdown");
                     if (cd) cd.innerText = "";
                     const statusEl = document.getElementById("live-duel-status");
@@ -3173,6 +3232,16 @@
                 }
             }
 
+            // Warte-Screen für jemanden, der mitten im Spiel beigetreten ist.
+            function renderLiveDuelPending(data) {
+                document.getElementById("live-duel-play-content").innerHTML = `
+                <div class="bg-gray-800 h-[70vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner">
+                    <div class="text-7xl mb-6 animate-pulse">⏳</div>
+                    <h2 class="text-2xl font-black mb-2">Du bist dabei!</h2>
+                    <p class="text-gray-400 font-bold">Die aktuelle Runde läuft noch – du steigst automatisch ein, sobald die nächste Runde beginnt.</p>
+                </div>`;
+            }
+
             function renderLiveDuelWaitingForOthers(data) {
                 const ansCount = Object.values(data.players).filter(p => p.hasAnswered).length;
                 const totalCount = Object.keys(data.players).length;
@@ -3196,9 +3265,11 @@
                     <h2 class="text-lg font-bold text-pink-400 leading-snug">${q.question}</h2>
                     <div class="flex flex-col gap-2.5">${optsHtml}</div>
                 </div>`;
+                liveDuelInputLockUntil = Date.now() + 450;
             }
 
             async function submitLiveDuelQuizAnswer(ansIndex) {
+                if (Date.now() < liveDuelInputLockUntil) return;
                 SFX.tap();
                 const snap = await liveDuelRef.get(); const data = snap.data();
                 if (!data || data.status !== "playing") return;
@@ -3222,11 +3293,16 @@
                         <button onclick="submitLiveDuelWord()" class="w-full p-4 bg-emerald-600 font-extrabold text-white rounded-xl shadow-lg hover:bg-emerald-500">Wort einreichen ✅</button>
                     </div>
                 </div>`;
+                liveDuelInputLockUntil = Date.now() + 450;
             }
 
             async function submitLiveDuelWord() {
+                if (Date.now() < liveDuelInputLockUntil) return;
                 const inputEl = document.getElementById("live-duel-word-input");
                 const word = inputEl ? cleanInput(inputEl.value, 20) : "";
+                // Leeres Wort NICHT einreichen - sonst sperrt ein versehentlicher
+                // Tipp den Spieler mit einer leeren Antwort aus der Runde.
+                if (!word) { SFX.wrong(); showToast("Bitte zuerst ein Wort eingeben.", "error", "word"); if (inputEl) inputEl.focus(); return; }
                 if (inputEl) inputEl.disabled = true;
                 SFX.tap();
                 const snap = await liveDuelRef.get(); const data = snap.data();
@@ -3251,6 +3327,7 @@
                     const correct = q.correct;
                     const wrongNames = [];
                     Object.keys(players).forEach(key => {
+                        if (players[key].pending) return; // wartet noch, spielt erst ab nächster Runde
                         const isRight = players[key].lastAnswer === correct;
                         const points = isRight ? 10 : 0;
                         players[key].score = (players[key].score || 0) + points;
@@ -3273,6 +3350,7 @@
                 } else {
                     const letters = data.currentLetters;
                     for (const key of Object.keys(players)) {
+                        if (players[key].pending) continue; // wartet noch, spielt erst ab nächster Runde
                         const res = await evaluateScrabbleWord(players[key].word, letters, {
                             minWord: (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord,
                             required: data.currentRequired || "",
@@ -3311,7 +3389,7 @@
                 const isLastStep = isQuiz ? (data.currentIndex >= data.questions.length - 1) : (data.currentRound >= data.totalRounds);
 
                 let rowsHtml = "";
-                Object.values(data.players).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
+                Object.values(data.players).filter(p => !p.pending).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
                     let icon, detail = "";
                     if (isQuiz) {
                         icon = p.lastRoundPoints > 0 ? "✅" : "❌";
@@ -3367,7 +3445,8 @@
                 // wenn mehrere gleichzeitig auf "Weiter" tippen.
                 if (data.status !== "reveal") return;
                 let players = data.players;
-                Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].lastAnswer = null; players[k].word = ""; });
+                // Neue Runde: Wartende steigen jetzt ein (pending weg).
+                Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].lastAnswer = null; players[k].word = ""; players[k].pending = false; });
                 if (data.type === "quiz") {
                     await liveDuelRef.update({ status: "playing", currentIndex: data.currentIndex + 1, players, answerDeadline: null });
                 } else {
@@ -3382,14 +3461,14 @@
                         const data = doc.data();
                         const diff = SCRABBLE_DIFFICULTIES[data.difficulty];
                         let players = data.players;
-                        Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].word = ""; });
+                        Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].word = ""; players[k].pending = false; });
                         const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter);
                         liveDuelRef.update({ status: "playing", currentRound: 1, currentLetters: rack.letters, currentSolution: rack.solution, currentRequired: rack.required || "", players, answerDeadline: null });
                     });
                 } else {
                     liveDuelRef.get().then(doc => {
                         let players = doc.data().players;
-                        Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].lastAnswer = null; });
+                        Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].lastAnswer = null; players[k].pending = false; });
                         liveDuelRef.update({ status: "playing", currentIndex: 0, players, answerDeadline: null });
                     });
                 }
@@ -3414,6 +3493,7 @@
                     players[k].coinsClaimed = false;
                     players[k].lastRoundPoints = 0;
                     players[k].wordStatus = null;
+                    players[k].pending = false;
                 });
 
                 try {
@@ -3732,6 +3812,41 @@
                 if (tab === 'progress') renderAdminDashboard();
                 if (tab === 'test') renderTestAssignForm();
                 if (tab === 'rewards') renderRewardsManageList();
+            }
+
+            // Zählt, bei wie vielen Fragen die richtige Antwort die längste ist.
+            // "Eindeutig längste" ist der klare Tipp - wer immer die längste tippt,
+            // gewinnt dort ohne Wissen. Jederzeit im Admin neu aufrufbar.
+            function runAnswerLengthAudit() {
+                const box = document.getElementById("answer-audit-result");
+                if (!box) return;
+                box.classList.remove("hidden");
+                if (typeof QUESTIONS_DATABASE === "undefined") {
+                    box.innerHTML = '<div class="text-sm text-rose-300">Fragen-Datenbank nicht geladen.</div>';
+                    return;
+                }
+                let total = 0, longestIncl = 0, strict = 0;
+                const strictIds = [];
+                QUESTIONS_DATABASE.forEach(q => {
+                    if (!Array.isArray(q.answers) || q.answers.length < 2) return;
+                    if (typeof q.correct !== "number" || q.answers[q.correct] == null) return;
+                    total++;
+                    const lens = q.answers.map(a => String(a).length);
+                    const max = Math.max.apply(null, lens);
+                    if (lens[q.correct] === max) {
+                        longestIncl++;
+                        if (lens.filter(l => l === max).length === 1) { strict++; strictIds.push(q.id || "?"); }
+                    }
+                });
+                const pct = total ? (longestIncl / total * 100) : 0;
+                const pctStrict = total ? (strict / total * 100) : 0;
+                SFX.tap();
+                box.innerHTML =
+                    '<div class="text-sm text-gray-200">Geprüft: <b>' + total + '</b> Fragen</div>' +
+                    '<div class="text-sm text-gray-200">Richtige = längste (inkl. Gleichstand): <b class="text-amber-300">' + pct.toFixed(1) + '&nbsp;%</b> (' + longestIncl + ')</div>' +
+                    '<div class="text-sm text-gray-200">Eindeutig längste (klarer Tipp): <b class="text-rose-300">' + pctStrict.toFixed(1) + '&nbsp;%</b> (' + strict + ')</div>' +
+                    '<div class="text-xs text-gray-400 pt-1">Diese ' + strict + ' Fragen sind die Kandidaten zum Nachbessern (kopierbar):</div>' +
+                    '<textarea readonly class="w-full h-32 p-2 bg-gray-900 border border-gray-700 rounded-lg text-xs text-gray-300 font-mono" onclick="this.select()">' + strictIds.join(", ") + '</textarea>';
             }
 
             // === GAST-PROFILE ===
@@ -4806,7 +4921,9 @@
             }
 
             async function submitTVScrabbleWord() {
-                const word = cleanInput(document.getElementById("tv-scrabble-word-input").value, 20);
+                const inputEl = document.getElementById("tv-scrabble-word-input");
+                const word = inputEl ? cleanInput(inputEl.value, 20) : "";
+                if (!word) { SFX.wrong(); showToast("Bitte zuerst ein Wort eingeben.", "error", "word"); if (inputEl) inputEl.focus(); return; }
                 document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-amber-400 mb-4">Eingereicht!</h2><p class="text-lg font-bold text-gray-400">Warte auf die anderen...</p></div>`;
                 const docSnap = await tvGameRef.get(); const data = docSnap.data();
                 let playersData = data.players;

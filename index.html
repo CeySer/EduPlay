@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=41"></script>
+    <script src="data.js?v=42"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -42,6 +42,32 @@
             font-family: 'Inter', sans-serif;
             background-color: #0b0f19;
             color: #f1f5f9;
+        }
+
+        /* "Autofenster" fuer die Spielerliste: faehrt weich runter statt
+           hart ein- und auszublenden. max-height statt height, weil die
+           Hoehe je nach Anzahl der Spieler unterschiedlich ist. */
+        .window-roll {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s ease;
+        }
+
+        .window-roll.open {
+            max-height: 70vh;
+            opacity: 1;
+            overflow-y: auto;
+        }
+
+        /* Wer gerade am Geraet ist, bekommt einen leuchtenden Rand. */
+        .player-active {
+            box-shadow: 0 0 0 2px #34d399, 0 0 14px rgba(52, 211, 153, 0.35);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .window-roll { transition: none; }
         }
 
         .flip-card {
@@ -122,10 +148,15 @@
                     </button>
                 </div>
 
+                <!-- Die zwei zuletzt aktiven Spieler stehen immer offen da,
+                     damit man sofort sieht wer dran ist. Der Rest faehrt auf
+                     Knopfdruck runter wie ein Autofenster. -->
+                <div id="family-profiles-preview" class="grid grid-cols-2 gap-3"></div>
+
                 <button onclick="toggleProfileList()" id="profile-toggle-btn"
                     class="w-full p-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl shadow-lg flex items-center justify-between text-white">
                     <span class="flex items-center gap-3 font-black text-lg">
-                        <span class="text-2xl">👤</span> Profil wählen
+                        <span class="text-2xl">👤</span> <span id="profile-toggle-label">Alle Spieler</span>
                     </span>
                     <span class="flex items-center gap-2">
                         <span id="profile-count-badge"
@@ -134,13 +165,13 @@
                     </span>
                 </button>
 
-                <div id="family-profiles-wrapper" class="hidden space-y-3">
-                    <div id="family-profiles-grid"
-                        class="grid grid-cols-2 gap-3 max-h-[46vh] overflow-y-auto pr-1"></div>
+                <div id="family-profiles-wrapper" class="window-roll">
+                  <div class="space-y-3 pb-1">
+                    <div id="family-profiles-grid" class="grid grid-cols-2 gap-3 pr-1"></div>
 
                     <button onclick="switchView('create-profile')"
                         class="w-full p-3.5 border-2 border-dashed border-gray-600 text-gray-400 font-bold rounded-2xl hover:border-emerald-500 hover:text-emerald-400 transition text-sm">
-                        + Neues Profil für Kind anlegen
+                        + Neuen Spieler anlegen
                     </button>
 
                     <button onclick="addGuestProfile()"
@@ -152,7 +183,13 @@
                         class="hidden w-full p-2.5 text-rose-400 font-bold rounded-2xl text-xs underline">
                         Alle Gäste wieder entfernen
                     </button>
+                  </div>
                 </div>
+
+                <button onclick="openFeedback('family-hub')"
+                    class="w-full p-2.5 text-gray-500 font-bold rounded-2xl text-xs underline hover:text-amber-400">
+                    💬 Feedback geben
+                </button>
 
                 <!-- FAMILIEN-DUELL (ein Gerät, weitergeben)
                      Ausgeblendet, solange es keinen echten Offline-Modus gibt:
@@ -188,7 +225,7 @@
                         </div>
                         <p class="text-[11px] text-gray-500 text-center px-2">Diese beiden laufen komplett ohne
                             Internet – ideal im Auto oder Funkloch.<br>Für ein Duell, bei dem jeder sein
-                            <span class="text-indigo-400 font-bold">eigenes Handy</span> nutzt: erst oben dein Profil
+                            <span class="text-indigo-400 font-bold">eigenes Handy</span> nutzt: erst oben deinen Spieler
                             auswählen – die Duell-Knöpfe findest du dann in deinem Menü.
                         </p>
                     </div>
@@ -232,7 +269,7 @@
                     onclick="switchView('family-hub')">← Zurück</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-4">
                     <h2 class="text-2xl font-black text-center text-rose-400">⚔️ Quiz-Duell · ein Gerät</h2>
-                    <p class="text-xs text-gray-400 text-center -mt-2">Zwei Profile treten nacheinander im selben Quiz
+                    <p class="text-xs text-gray-400 text-center -mt-2">Zwei Spieler treten nacheinander im selben Quiz
                         gegeneinander an – <span class="text-rose-300 font-bold">ein Handy wird weitergegeben</span>.
                         Gut geeignet bei schlechtem Empfang.</p>
                     <div>
@@ -447,11 +484,11 @@
                 <div id="live-duel-result-content"></div>
             </div>
 
-            <!-- VIEW: HAUPTMENÜ (nach Profilauswahl) -->
+            <!-- VIEW: HAUPTMENÜ (nach Spielerauswahl) -->
             <div id="view-menu" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
                     <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
-                        onclick="switchView('family-hub')">← Profil wechseln</button>
+                        onclick="switchView('family-hub')">← Spieler wechseln</button>
                     <button onclick="toggleSound()" title="Ton an/aus"
                         class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg shrink-0">
                         <span class="sound-toggle-icon">🔊</span>
@@ -493,8 +530,8 @@
 
                 <div class="space-y-2.5">
                     <div class="flex items-center gap-2 px-1">
-                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">⚔️ Duell · jeder am
-                            eigenen Handy</span>
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">⚔️ Gegeneinander
+                            spielen · jeder am eigenen Handy</span>
                     </div>
                     <div class="grid grid-cols-2 gap-3">
                         <button onclick="openLiveDuelSetup('quiz')"
@@ -506,30 +543,41 @@
                             <span class="text-2xl">🔤</span> Wort-Duell
                         </button>
                     </div>
+                    <button onclick="switchView('tv-quiz-setup')"
+                        class="w-full p-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-black rounded-2xl shadow-lg text-sm flex items-center justify-center gap-2">
+                        <span class="text-2xl">📺</span> TV-Quiz
+                        <span class="text-xs font-bold text-indigo-200">· alle zusammen</span>
+                    </button>
                     <button id="join-duel-btn" onclick="joinLiveDuel()"
                         class="w-full p-3.5 bg-gray-800 border border-gray-700 text-indigo-300 font-bold rounded-2xl shadow-md flex justify-center items-center gap-2 text-sm transition-all">
                         <span id="join-duel-label">🔗 Einem laufenden Duell beitreten</span>
                     </button>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <button onclick="showQuizSetup()"
-                        class="bg-pink-600 p-5 rounded-2xl font-black text-white shadow-lg hover:bg-pink-500 flex flex-col items-center gap-2">
-                        <span class="text-3xl">🧠</span> Wissen
-                    </button>
-                    <button onclick="switchView('vokabeln')"
-                        class="bg-emerald-600 p-5 rounded-2xl font-black text-white shadow-lg hover:bg-emerald-500 flex flex-col items-center gap-2">
-                        <span class="text-3xl">🃏</span> Vokabeln lernen
-                    </button>
-                    <button onclick="switchView('tv-quiz-setup')"
-                        class="bg-indigo-600 p-5 rounded-2xl font-black text-white shadow-lg hover:bg-indigo-500 flex flex-col items-center gap-2">
-                        <span class="text-3xl">📺</span> TV-Familienquiz
-                    </button>
+                <div class="space-y-2.5">
+                    <div class="flex items-center gap-2 px-1">
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">🎓 Allein lernen</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="showQuizSetup()"
+                            class="bg-pink-600 p-5 rounded-2xl font-black text-white shadow-lg hover:bg-pink-500 flex flex-col items-center gap-2">
+                            <span class="text-3xl">🧠</span> Wissen
+                        </button>
+                        <button onclick="switchView('vokabeln')"
+                            class="bg-emerald-600 p-5 rounded-2xl font-black text-white shadow-lg hover:bg-emerald-500 flex flex-col items-center gap-2">
+                            <span class="text-3xl">🃏</span> Vokabeln lernen
+                        </button>
+                    </div>
                     <button onclick="switchView('fokus')"
-                        class="bg-yellow-500 p-5 rounded-2xl font-black text-slate-950 shadow-lg hover:bg-yellow-400 flex flex-col items-center gap-2">
-                        <span class="text-3xl">⏱️</span> Fokus-Timer
+                        class="w-full bg-yellow-500 p-4 rounded-2xl font-black text-slate-950 shadow-lg hover:bg-yellow-400 flex items-center justify-center gap-2">
+                        <span class="text-2xl">⏱️</span> Fokus-Timer
                     </button>
                 </div>
+
+                <button onclick="openFeedback('menu')"
+                    class="w-full p-3 border-2 border-dashed border-gray-700 text-gray-400 font-bold rounded-2xl hover:border-amber-500 hover:text-amber-400 transition text-sm">
+                    💬 Feedback geben
+                </button>
             </div>
 
             <!-- VIEW: BELOHNUNGEN EINLÖSEN -->
@@ -544,12 +592,73 @@
                 </div>
             </div>
 
-            <!-- VIEW: NEUES PROFIL ERSTELLEN -->
+            <!-- VIEW: FEEDBACK -->
+            <div id="view-feedback" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                    onclick="switchView(feedbackReturnView)">← Zurück</button>
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-4">
+                    <div>
+                        <h3 class="text-xl font-black text-amber-400 mb-1">💬 Feedback</h3>
+                        <p class="text-xs text-gray-400">Was ist kaputt, was fehlt, was war gut?
+                            Schreib's rein – wir lesen alles.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Worum geht's?</label>
+                        <select id="feedback-type"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white font-bold outline-none">
+                            <option value="Fehler">🐞 Etwas funktioniert nicht</option>
+                            <option value="Idee">💡 Ich habe eine Idee</option>
+                            <option value="Frage">❓ Frage zu einer Frage</option>
+                            <option value="Lob">🎉 Lob / Sonstiges</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Dein Name (freiwillig)</label>
+                        <input type="text" id="feedback-name" maxlength="24" placeholder="z.B. Mia"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Deine Nachricht</label>
+                        <textarea id="feedback-text" rows="5" maxlength="1500"
+                            placeholder="Beschreib möglichst genau, was passiert ist..."
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none resize-none"></textarea>
+                        <div class="text-right text-[10px] text-gray-500 mt-1">
+                            <span id="feedback-counter">0</span>/1500
+                        </div>
+                    </div>
+
+                    <div id="feedback-hint" class="hidden text-xs font-bold text-rose-400"></div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="sendFeedback('mail')"
+                            class="p-3.5 bg-indigo-600 rounded-xl font-black text-white hover:bg-indigo-500 flex flex-col items-center gap-1">
+                            <span class="text-2xl">✉️</span>
+                            <span class="text-sm">Per Mail</span>
+                        </button>
+                        <button onclick="sendFeedback('whatsapp')"
+                            class="p-3.5 bg-emerald-600 rounded-xl font-black text-white hover:bg-emerald-500 flex flex-col items-center gap-1">
+                            <span class="text-2xl">💬</span>
+                            <span class="text-sm">Per WhatsApp</span>
+                        </button>
+                    </div>
+
+                    <p class="text-[10px] text-gray-500 leading-relaxed">
+                        Beim Absenden öffnet sich dein Mail- bzw. WhatsApp-Programm mit
+                        fertig ausgefülltem Text. Abgeschickt wird erst, wenn du dort
+                        auf Senden tippst.
+                    </p>
+                </div>
+            </div>
+
+            <!-- VIEW: NEUEN SPIELER ANLEGEN -->
             <div id="view-create-profile" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white mb-2"
                     onclick="switchView('family-hub')">← Abbrechen</button>
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl shadow-lg space-y-4">
-                    <h2 class="text-xl font-black text-emerald-400">Neues Profil anlegen</h2>
+                    <h2 class="text-xl font-black text-emerald-400">Neuen Spieler anlegen</h2>
                     <input type="text" id="new-profile-name" placeholder="Name"
                         class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
                     <div class="flex gap-2">
@@ -562,7 +671,7 @@
                             class="w-2/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
                     </div>
                     <button onclick="saveNewProfile()"
-                        class="w-full p-4 bg-emerald-600 rounded-xl font-bold text-white shadow-lg">Profil
+                        class="w-full p-4 bg-emerald-600 rounded-xl font-bold text-white shadow-lg">Spieler
                         speichern</button>
                 </div>
             </div>
@@ -772,7 +881,7 @@
                     Hauptmenü</button>
 
                 <div class="bg-gray-800 border border-gray-700 p-6 rounded-2xl space-y-6 text-center">
-                    <h2 class="text-3xl font-black text-yellow-400">📺 Familien TV-Quiz</h2>
+                    <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
                     <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die
                         anderen sind die Handys der Spieler.</p>
 
@@ -1050,7 +1159,7 @@
                 return areas;
             }
 
-            // Schlaegt die Klasse des aktuellen Profils vor
+            // Schlaegt die Klasse des aktuellen Spielers vor
             function suggestedArea() {
                 if (currentPlayer && currentPlayer.ageType === "klasse") {
                     const g = parseInt(currentPlayer.age);
@@ -1177,7 +1286,7 @@
                 if (!p.stats) return 0;
                 return Object.values(p.stats).reduce((sum, s) => sum + s.correct, 0);
             }
-            // Prüft & vergibt Abzeichen für ein beliebiges Profil-Objekt (nicht nur currentPlayer),
+            // Prüft & vergibt Abzeichen für ein beliebiges Spieler-Objekt (nicht nur currentPlayer),
             // damit z.B. der Duell-Modus beide Spieler unabhängig auswerten kann.
             function evaluateAndApplyBadges(p) {
                 if (!p.badges) p.badges = [];
@@ -1219,9 +1328,9 @@
                 savePlayerProgress();
                 updateMenuGamification();
             }
-            // Vergibt Coins/XP + Streak/Badges an ein beliebiges Profil, ohne den aktuell
+            // Vergibt Coins/XP + Streak/Badges an ein beliebiges Spieler, ohne den aktuell
             // eingeloggten Spieler (currentPlayer/sessionLearnedWords) zu beeinflussen.
-            // Wird vom Duell-Modus benutzt, da dort zwei Profile abwechselnd spielen.
+            // Wird vom Duell-Modus benutzt, da dort zwei Spieler abwechselnd spielen.
             function awardXPToProfile(key, amount) {
                 const p = ALL_PROFILES[key];
                 if (!p) return;
@@ -1388,7 +1497,7 @@
             // stapeln. Ohne das würde z.B. mehrfaches Tippen auf den Ton-Schalter
             // den halben Bildschirm mit "Ton an / Ton aus" zupflastern.
             // === XSS-SCHUTZ ===
-            // Alles, was Nutzer eintippen (Profilnamen, Wörter, Belohnungen), landet
+            // Alles, was Nutzer eintippen (Spielernamen, Wörter, Belohnungen), landet
             // über innerHTML im Seiteninhalt - und über Firebase auch auf den Geräten
             // der anderen. Ohne Maskierung könnte jemand HTML oder Skriptcode als Namen
             // eingeben und damit fremde Geräte beeinflussen. esc() entschärft das.
@@ -1477,7 +1586,7 @@
             // === OFFLINE-MODUS ===
             // Bewusst ausgeschaltet. Ein echter Offline-Betrieb fehlt noch:
             // Es gibt keinen Service Worker (die App startet ohne Netz gar nicht),
-            // keine Firestore-Zwischenspeicherung (keine Profile, kein Fortschritt)
+            // keine Firestore-Zwischenspeicherung (keine Spieler, kein Fortschritt)
             // und fünf Skripte werden von fremden Servern nachgeladen.
             // Erst wenn das gebaut ist, hier auf true setzen - dann erscheinen
             // wieder das Familien-Duell (ein Gerät) und der Offline-Hinweis.
@@ -1551,6 +1660,11 @@
                 if (viewId === 'vokabeln') loadVocabSystem();
                 if (viewId === 'rewards') renderRewardsShop();
                 if (viewId === 'family-hub' && typeof ALL_PROFILES !== 'undefined') renderFamilyHub();
+
+                // Aktivitaets-Anzeige nur in der Spielerauswahl mitlaufen lassen
+                if (typeof startHubWatch === 'function') {
+                    if (viewId === 'family-hub') startHubWatch(); else stopHubWatch();
+                }
                 if (viewId === 'tv-quiz-host' && document.getElementById("tv-area") && typeof setTVTopicMode === 'function') setTVTopicMode();
 
                 // Im Menü nachschauen, ob gerade ein Duell offen ist (Knopf leuchtet dann)
@@ -1571,16 +1685,18 @@
                     ALL_PROFILES = {}; snapshot.forEach(doc => { ALL_PROFILES[doc.id] = doc.data(); });
                     await loadFamilyRewards();
                     renderFamilyHub(); switchView('family-hub');
-                } catch (e) { handleError("loadFamilyProfiles", e, "Profile konnten nicht geladen werden."); }
+                } catch (e) { handleError("loadFamilyProfiles", e, "Spieler konnten nicht geladen werden."); }
             }
 
             function toggleProfileList(forceOpen) {
                 const wrapper = document.getElementById("family-profiles-wrapper");
                 const arrow = document.getElementById("profile-toggle-arrow");
+                const label = document.getElementById("profile-toggle-label");
                 if (!wrapper) return;
-                const open = (typeof forceOpen === "boolean") ? forceOpen : wrapper.classList.contains("hidden");
-                wrapper.classList.toggle("hidden", !open);
+                const open = (typeof forceOpen === "boolean") ? forceOpen : !wrapper.classList.contains("open");
+                wrapper.classList.toggle("open", open);
                 if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
+                if (label) label.innerText = open ? "Liste schließen" : "Alle Spieler";
             }
 
             function toggleFamilyDuel(forceOpen) {
@@ -1601,27 +1717,167 @@
                 if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
             }
 
+            // === FEEDBACK ===
+            const FEEDBACK_MAIL = "cu.oezdemir@gmail.com";
+            const FEEDBACK_WHATSAPP = "491778744183"; // ohne + und ohne Leerzeichen
+            let feedbackReturnView = "menu";
+
+            function openFeedback(returnView) {
+                feedbackReturnView = returnView || "menu";
+                const nameField = document.getElementById("feedback-name");
+                const textField = document.getElementById("feedback-text");
+                const hint = document.getElementById("feedback-hint");
+                if (nameField && currentPlayer && !nameField.value) nameField.value = currentPlayer.name || "";
+                if (hint) hint.classList.add("hidden");
+                if (textField) {
+                    textField.oninput = () => {
+                        const c = document.getElementById("feedback-counter");
+                        if (c) c.innerText = textField.value.length;
+                    };
+                }
+                switchView("feedback");
+                if (textField) setTimeout(() => textField.focus(), 150);
+            }
+
+            function buildFeedbackText() {
+                const type = document.getElementById("feedback-type").value;
+                const name = cleanInput(document.getElementById("feedback-name").value, 24);
+                const text = cleanInput(document.getElementById("feedback-text").value, 1500);
+                if (!text) return null;
+                // Technische Angaben helfen beim Nachstellen von Fehlern.
+                const info = `\n\n---\nApp: EduPlay Hub\nGerät: ${navigator.userAgent}\nZeit: ${new Date().toLocaleString("de-DE")}`;
+                return {
+                    subject: `EduPlay Feedback: ${type}`,
+                    body: `Art: ${type}\nVon: ${name || "anonym"}\n\n${text}${info}`
+                };
+            }
+
+            function sendFeedback(channel) {
+                const hint = document.getElementById("feedback-hint");
+                const msg = buildFeedbackText();
+                if (!msg) {
+                    if (hint) {
+                        hint.innerText = "Bitte schreib noch kurz, worum es geht.";
+                        hint.classList.remove("hidden");
+                    }
+                    return;
+                }
+                if (hint) hint.classList.add("hidden");
+                SFX.tap();
+                try {
+                    if (channel === "whatsapp") {
+                        const url = `https://wa.me/${FEEDBACK_WHATSAPP}?text=${encodeURIComponent(msg.subject + "\n\n" + msg.body)}`;
+                        window.open(url, "_blank");
+                    } else {
+                        window.location.href = `mailto:${FEEDBACK_MAIL}?subject=${encodeURIComponent(msg.subject)}&body=${encodeURIComponent(msg.body)}`;
+                    }
+                    document.getElementById("feedback-text").value = "";
+                    const c = document.getElementById("feedback-counter");
+                    if (c) c.innerText = "0";
+                } catch (e) {
+                    handleError("sendFeedback", e, "Das Senden hat nicht geklappt. Schreib uns gern direkt an " + FEEDBACK_MAIL + ".");
+                }
+            }
+
+            // === LIVE-BEOBACHTUNG DER SPIELERAUSWAHL ===
+            // Laeuft absichtlich NUR, solange die Spielerauswahl sichtbar ist.
+            // Waehrend eines Spiels wuerde ein Listener sonst den laufenden
+            // Spielstand aus Firestore ueberschreiben.
+            let hubWatchUnsub = null;
+            let hubTickInterval = null;
+
+            function startHubWatch() {
+                stopHubWatch();
+                if (!currentParentUser) return;
+                try {
+                    hubWatchUnsub = db.collection("parents").doc(currentParentUser.uid)
+                        .collection("profiles")
+                        .onSnapshot(snap => {
+                            snap.forEach(doc => {
+                                const data = doc.data();
+                                if (!ALL_PROFILES[doc.id]) ALL_PROFILES[doc.id] = data;
+                                else ALL_PROFILES[doc.id].lastActive = data.lastActive;
+                            });
+                            renderFamilyHub();
+                        }, err => console.warn("Spieler-Aktivität nicht beobachtbar:", err));
+                } catch (e) {
+                    console.warn("Spieler-Aktivität nicht beobachtbar:", e);
+                }
+                // Damit aus "vor 2 Min." von selbst "vor 3 Min." wird.
+                hubTickInterval = setInterval(renderFamilyHub, 30000);
+            }
+
+            function stopHubWatch() {
+                if (hubWatchUnsub) { try { hubWatchUnsub(); } catch (e) { } hubWatchUnsub = null; }
+                if (hubTickInterval) { clearInterval(hubTickInterval); hubTickInterval = null; }
+            }
+
+            // === LETZTE AKTIVITÄT ===
+            // Zeigt an, wer wann zuletzt gespielt hat - familienweit, weil der
+            // Zeitstempel in Firestore am Spieler haengt und nicht am Geraet.
+            function activityLabel(lastActive) {
+                if (!lastActive) return { icon: "⚪", text: "noch nicht gespielt", color: "text-gray-500" };
+                const mins = Math.floor((Date.now() - lastActive) / 60000);
+                if (mins < 0) return { icon: "🟢", text: "aktiv", color: "text-emerald-400" };
+                if (mins < 5) return { icon: "🟢", text: "aktiv", color: "text-emerald-400" };
+                if (mins < 60) return { icon: "🟡", text: `vor ${mins} Min.`, color: "text-yellow-400" };
+                const hours = Math.floor(mins / 60);
+                if (hours < 24) return { icon: "⚪", text: `vor ${hours} Std.`, color: "text-gray-500" };
+                const days = Math.floor(hours / 24);
+                return { icon: "⚪", text: days === 1 ? "gestern" : `vor ${days} Tagen`, color: "text-gray-500" };
+            }
+
+            function buildPlayerCard(key) {
+                const p = ALL_PROFILES[key];
+                const btn = document.createElement("button");
+                const guest = !!p.isGuest;
+                const isActive = (key === activePlayerKey);
+                const act = activityLabel(p.lastActive);
+                btn.className = "bg-gray-800 border p-4 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-1 relative " +
+                    (guest ? "border-sky-600 " : "border-gray-700 ") + (isActive ? "player-active" : "");
+                btn.innerHTML =
+                    `${guest ? '<span class="absolute top-1 right-2 text-[10px] font-black text-sky-400">GAST</span>' : ''}` +
+                    `${isActive ? '<span class="absolute top-1 left-2 text-sm" title="Gerade an diesem Gerät">⭐</span>' : ''}` +
+                    `<div class="text-3xl">${guest ? "🙋" : "👦👧"}</div>` +
+                    `<div class="font-bold text-white text-sm leading-tight">${esc(p.name)}</div>` +
+                    `<div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>` +
+                    `<div class="text-[10px] font-bold ${act.color} leading-tight">${act.icon} ${esc(act.text)}</div>`;
+                btn.onclick = () => selectProfile(key);
+                return btn;
+            }
+
             function renderFamilyHub() {
                 const grid = document.getElementById("family-profiles-grid"); grid.innerHTML = "";
+                const preview = document.getElementById("family-profiles-preview");
+                if (preview) preview.innerHTML = "";
                 const profileKeys = Object.keys(ALL_PROFILES);
 
-                profileKeys.forEach(key => {
-                    const p = ALL_PROFILES[key]; const btn = document.createElement("button");
-                    const guest = !!p.isGuest;
-                    btn.className = "bg-gray-800 border p-4 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-1 relative " +
-                        (guest ? "border-sky-600" : "border-gray-700");
-                    btn.innerHTML = `${guest ? '<span class="absolute top-1 right-2 text-[10px] font-black text-sky-400">GAST</span>' : ''}` +
-                        `<div class="text-3xl">${guest ? "🙋" : "👦👧"}</div>` +
-                        `<div class="font-bold text-white text-sm leading-tight">${esc(p.name)}</div>` +
-                        `<div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>`;
-                    btn.onclick = () => selectProfile(key); grid.appendChild(btn);
+                // Sortierung fuer die Vorschau: wer gerade am Geraet ist zuerst,
+                // danach nach letzter Aktivitaet. So stehen oben die zwei, die
+                // am wahrscheinlichsten als naechstes dran sind.
+                const sortedByActivity = profileKeys.slice().sort((a, b) => {
+                    if (a === activePlayerKey) return -1;
+                    if (b === activePlayerKey) return 1;
+                    return (ALL_PROFILES[b].lastActive || 0) - (ALL_PROFILES[a].lastActive || 0);
                 });
+                const previewKeys = sortedByActivity.slice(0, 2);
+
+                if (preview) previewKeys.forEach(key => preview.appendChild(buildPlayerCard(key)));
+                profileKeys.forEach(key => grid.appendChild(buildPlayerCard(key)));
 
                 // Anzahl im Knopf anzeigen und Liste standardmäßig zuklappen,
                 // damit Rangliste und Duell-Knöpfe darunter sichtbar bleiben.
                 const badge = document.getElementById("profile-count-badge");
-                if (badge) badge.innerText = profileKeys.length === 1 ? "1 Profil" : `${profileKeys.length} Profile`;
-                toggleProfileList(profileKeys.length === 0);
+                if (badge) badge.innerText = profileKeys.length === 1 ? "1 Spieler" : `${profileKeys.length} Spieler`;
+                if (profileKeys.length === 0) toggleProfileList(true);
+
+                // Bei hoechstens zwei Spielern stehen ohnehin alle oben -
+                // dann waere der Aufklapp-Knopf nur im Weg. Die Knoepfe zum
+                // Anlegen wandern in dem Fall unter die Vorschau.
+                const toggleBtn = document.getElementById("profile-toggle-btn");
+                const allVisible = profileKeys.length > 0 && profileKeys.length <= 2;
+                if (toggleBtn) toggleBtn.classList.toggle("hidden", allVisible);
+                if (allVisible) { grid.innerHTML = ""; toggleProfileList(true); }
 
                 // Knopf zum Aufräumen nur zeigen, wenn es Gäste gibt
                 const guestKeys = profileKeys.filter(k => ALL_PROFILES[k].isGuest);
@@ -1645,7 +1901,7 @@
                 }
 
                 if (sortedProfiles.length === 0) {
-                    lbContainer.innerHTML = "<p class='text-xs text-gray-500 text-center'>Noch keine Profile vorhanden.</p>";
+                    lbContainer.innerHTML = "<p class='text-xs text-gray-500 text-center'>Noch keine Spieler vorhanden.</p>";
                     return;
                 }
 
@@ -1668,7 +1924,7 @@
             // === DUELL-MODUS (1 gegen 1, gleiches Gerät, Handy weitergeben) ===
             let duelState = null;
             function openDuelSetup() {
-                if (Object.keys(ALL_PROFILES).length < 2) return showToast("Für ein Duell braucht ihr mindestens 2 Profile!", "error");
+                if (Object.keys(ALL_PROFILES).length < 2) return showToast("Für ein Duell braucht ihr mindestens 2 Spieler!", "error");
                 const keys = Object.keys(ALL_PROFILES);
                 const opts = keys.map(k => `<option value="${k}">${esc(ALL_PROFILES[k].name)}</option>`).join("");
                 const selA = document.getElementById("duel-player-a"); const selB = document.getElementById("duel-player-b");
@@ -1681,7 +1937,7 @@
                 const keyA = document.getElementById("duel-player-a").value;
                 const keyB = document.getElementById("duel-player-b").value;
                 const cat = document.getElementById("duel-category").value;
-                if (!keyA || !keyB) return showToast("Bitte zwei Profile auswählen!", "error");
+                if (!keyA || !keyB) return showToast("Bitte zwei Spieler auswählen!", "error");
                 if (keyA === keyB) return showToast("Bitte zwei unterschiedliche Spieler wählen!", "error");
                 const pool = prepareQuestions(questionsForKey(cat).sort(() => Math.random() - 0.5).slice(0, 8));
                 if (pool.length < 3) return showToast("Zu wenige Fragen in diesem Thema für ein Duell!", "error");
@@ -1853,7 +2109,7 @@
 
             function openScrabbleSetup() {
                 const keys = Object.keys(ALL_PROFILES);
-                if (keys.length === 0) return showToast("Ihr braucht mindestens ein Profil!", "error");
+                if (keys.length === 0) return showToast("Ihr braucht mindestens einen Spieler!", "error");
                 const box = document.getElementById("scrabble-player-checkboxes");
                 box.innerHTML = keys.map((k, i) => `
                     <label class="flex items-center gap-2 bg-gray-900 border border-gray-700 rounded-xl p-3 cursor-pointer">
@@ -2037,7 +2293,7 @@
             }
 
             // === LIVE-DUELL: Quiz & Scrabble, jeder auf eigenem Handy ===
-            // Ein Familienmitglied erstellt das Duell, die anderen treten mit ihrem eigenen Profil/Handy
+            // Ein Familienmitglied erstellt das Duell, die anderen treten mit ihrem eigenen Spieler/Handy
             // bei. Alle beantworten gleichzeitig auf ihrem eigenen Gerät. Der Ersteller (isLiveDuelCreator)
             // übernimmt die Auswertung & schaltet zur nächsten Frage/Runde weiter; alle Geräte zeigen
             // denselben Zustand über einen gemeinsamen Firestore-Livestream an.
@@ -2102,7 +2358,7 @@
             const SCRABBLE_ANSWER_SECONDS = { leicht: 30, mittel: 20, schwer: 15 };
 
             async function createLiveDuel() {
-                if (!currentPlayer || !activePlayerKey) return showToast("Bitte zuerst oben dein Profil auswählen!", "error");
+                if (!currentPlayer || !activePlayerKey) return showToast("Bitte zuerst oben deinen Spieler auswählen!", "error");
                 const ref = liveDuelLobbyRef();
                 let lobbyData;
                 if (liveDuelType === "scrabble") {
@@ -2134,7 +2390,7 @@
             // Beitreten funktioniert auch MITTEN im Spiel – so kann man nach einem
             // Verbindungsabbruch einfach wieder einsteigen.
             async function joinLiveDuel() {
-                if (!currentParentUser || !currentPlayer || !activePlayerKey) return showToast("Bitte zuerst dein Profil auswählen, dann beitreten!", "error");
+                if (!currentParentUser || !currentPlayer || !activePlayerKey) return showToast("Bitte zuerst deinen Spieler auswählen, dann beitreten!", "error");
                 const ref = liveDuelLobbyRef();
                 try {
                     const snap = await ref.get();
@@ -2721,11 +2977,29 @@
                     document.getElementById("new-profile-name").value = "";
                     document.getElementById("new-profile-age").value = "";
 
-                    showToast("Profil angelegt!", "success");
+                    showToast("Spieler angelegt!", "success");
                     renderFamilyHub();
                     switchView('family-hub');
                 } catch (e) {
-                    handleError("saveNewProfile", e, "Das Profil konnte nicht angelegt werden.");
+                    handleError("saveNewProfile", e, "Der Spieler konnte nicht angelegt werden.");
+                }
+            }
+
+            // Schreibt den Aktivitaets-Zeitstempel des Spielers nach Firestore.
+            // Bewusst nur bei Spielerwechsel und beim Speichern des Fortschritts,
+            // nicht im Sekundentakt - sonst produziert die App dauernd Schreibzugriffe.
+            function touchPlayerActivity(key) {
+                if (!key || !currentParentUser || !ALL_PROFILES[key]) return;
+                const now = Date.now();
+                ALL_PROFILES[key].lastActive = now;
+                if (currentPlayer && activePlayerKey === key) currentPlayer.lastActive = now;
+                try {
+                    db.collection("parents").doc(currentParentUser.uid)
+                        .collection("profiles").doc(key)
+                        .update({ lastActive: now })
+                        .catch(e => console.warn("lastActive konnte nicht gespeichert werden:", e));
+                } catch (e) {
+                    console.warn("lastActive konnte nicht gespeichert werden:", e);
                 }
             }
 
@@ -2733,6 +3007,7 @@
                 SFX.tap();
                 activePlayerKey = key;
                 currentPlayer = ALL_PROFILES[key];
+                touchPlayerActivity(key);
                 sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
                 document.getElementById("welcome-text").innerText = `Hallo, ${esc(currentPlayer.name)}!`;
                 document.getElementById("menu-coins").innerText = currentPlayer.coins;
@@ -2798,6 +3073,7 @@
             function savePlayerProgress() {
                 if (!currentPlayer) return;
                 currentPlayer.learnedWords = Array.from(sessionLearnedWords);
+                currentPlayer.lastActive = Date.now();
                 ALL_PROFILES[activePlayerKey] = currentPlayer;
                 db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(activePlayerKey).set(currentPlayer);
                 document.getElementById("menu-coins").innerText = currentPlayer.coins;
@@ -2901,24 +3177,24 @@
                 }
             }
 
-            // Profil dauerhaft löschen (nur aus dem Eltern-/Admin-Bereich erreichbar)
+            // Spieler dauerhaft löschen (nur aus dem Eltern-/Admin-Bereich erreichbar)
             async function deleteProfile(key) {
                 const p = ALL_PROFILES[key];
                 if (!p) return;
-                if (!confirm(`Profil "${esc(p.name)}" wirklich endgültig löschen?\n\nAlle Coins, Abzeichen und der gesamte Lernfortschritt gehen unwiderruflich verloren.`)) return;
+                if (!confirm(`Spieler "${esc(p.name)}" wirklich endgültig löschen?\n\nAlle Coins, Abzeichen und der gesamte Lernfortschritt gehen unwiderruflich verloren.`)) return;
                 const check = prompt(`Zur Sicherheit: Tippe den Namen "${esc(p.name)}" ein, um das Löschen zu bestätigen.`);
                 if (!check || check.trim().toLowerCase() !== p.name.toLowerCase()) {
-                    return showToast("Name stimmt nicht – Profil wurde NICHT gelöscht.", "error");
+                    return showToast("Name stimmt nicht – Spieler wurde NICHT gelöscht.", "error");
                 }
                 try {
                     await db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).delete();
                     delete ALL_PROFILES[key];
                     if (activePlayerKey === key) { activePlayerKey = ""; currentPlayer = null; }
-                    showToast(`Profil "${esc(p.name)}" wurde gelöscht.`);
+                    showToast(`Spieler "${esc(p.name)}" wurde gelöscht.`);
                     renderAdminDashboard();
                     renderFamilyHub();
                 } catch (e) {
-                    handleError("deleteProfile", e, "Das Profil konnte nicht gelöscht werden.");
+                    handleError("deleteProfile", e, "Der Spieler konnte nicht gelöscht werden.");
                 }
             }
 
@@ -2988,12 +3264,12 @@
                         ${pendingHtml}
                         <button onclick="deleteProfile('${key}')"
                             class="mt-3 w-full p-2 text-xs font-bold text-rose-400 border border-rose-900 rounded-lg hover:bg-rose-950 transition">
-                            🗑️ Profil löschen
+                            🗑️ Spieler löschen
                         </button>
                     </div>`;
                 });
                 if (Object.keys(ALL_PROFILES).length === 0) {
-                    container.innerHTML = `<p class="text-xs text-gray-500">Noch keine Profile angelegt.</p>`;
+                    container.innerHTML = `<p class="text-xs text-gray-500">Noch keine Spieler angelegt.</p>`;
                 }
             }
 
@@ -3002,7 +3278,7 @@
                 const keys = Object.keys(ALL_PROFILES);
                 sel.innerHTML = keys.length
                     ? keys.map(k => `<option value="${k}">${esc(ALL_PROFILES[k].name)}</option>`).join("")
-                    : `<option value="">Kein Profil vorhanden</option>`;
+                    : `<option value="">Kein Spieler vorhanden</option>`;
                 const catBox = document.getElementById("test-category-checkboxes");
                 const categories = typeof QUESTIONS_DATABASE !== 'undefined' ? [...new Set(QUESTIONS_DATABASE.map(q => q.category))] : [];
                 catBox.innerHTML = categories.map(c => `
@@ -3037,7 +3313,7 @@
                 const profileKey = document.getElementById("test-profile-select").value;
                 const checked = Array.from(document.querySelectorAll(".test-cat-checkbox:checked")).map(cb => cb.value);
                 const minutes = parseInt(document.getElementById("test-time-limit").value) || 10;
-                if (!profileKey) return showToast("Kein Profil ausgewählt!", "error");
+                if (!profileKey) return showToast("Kein Spieler ausgewählt!", "error");
                 if (checked.length === 0) return showToast("Bitte mindestens ein Thema auswählen!", "error");
                 const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, createdAt: new Date().toISOString() };
                 ALL_PROFILES[profileKey].pendingTest = pendingTest;
@@ -3336,7 +3612,7 @@
                     dd.innerHTML += `<option value="${k}">${VOCABULARY_DATABASE[activeLang][k].label} · ${n} Wörter</option>`;
                 });
 
-                // Passend zur Klassenstufe des Profils vorauswählen (wie im Wissens-Quiz).
+                // Passend zur Klassenstufe des Spielers vorauswählen (wie im Wissens-Quiz).
                 // Gibt es die Stufe für diese Sprache nicht, wird die nächstliegende genommen.
                 let preselect = keys[0];
                 if (currentPlayer && currentPlayer.ageType === "klasse") {
@@ -3755,7 +4031,7 @@
                 });
                 html += `</div>`;
 
-                // Weiterspielen, ohne dass jemand neu laden, sein Profil neu wählen
+                // Weiterspielen, ohne dass jemand neu laden, seinen Spieler neu wählen
                 // oder erneut beitreten muss. Alle Spieler bleiben in der Lobby.
                 const names = esc(sorted.map(p => p.name).join(", "));
                 html += `
@@ -3839,7 +4115,7 @@
 
             // --- 2. LOGIK FÜR DIE HANDYS (SPIELER) ---
             async function joinTVGame() {
-                if (!currentParentUser || !currentPlayer) return showToast("Bitte wähle zuerst oben dein Profil aus.", "error", "noprofile");
+                if (!currentParentUser || !currentPlayer) return showToast("Bitte wähle zuerst oben deinen Spieler aus.", "error", "noprofile");
                 const lobbyRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
 
                 try {

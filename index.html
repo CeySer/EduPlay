@@ -44,6 +44,150 @@
             color: #f1f5f9;
         }
 
+        /* ============================================================
+           SPIELERAUSWAHL
+           Grundgedanke: Die Spielerfarben sind das EINZIGE Satte auf
+           diesem Bildschirm. Alle Moebel drumherum bleiben ruhig, damit
+           die Menschen hervorstechen - das ist die Aufgabe der Seite.
+           ============================================================ */
+        .hub-surface {
+            background: #141a26;
+            border: 1px solid #232c3d;
+        }
+
+        .hub-bar {
+            background: #141a26;
+            border: 1px solid #232c3d;
+        }
+
+        /* Spielerkarte */
+        .player-card {
+            background: #141a26;
+            border: 1px solid #232c3d;
+            border-radius: 18px;
+            padding: 16px 12px 14px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: border-color 0.18s ease, background 0.18s ease, transform 0.12s ease;
+        }
+
+        .player-card:hover { background: #18202e; border-color: #33405a; }
+        .player-card:active { transform: scale(0.98); }
+        .player-card:focus-visible { outline: 2px solid #6ea8ff; outline-offset: 2px; }
+
+        /* Die farbige Scheibe mit dem Anfangsbuchstaben - das Erkennungszeichen */
+        .player-disc {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #0b0f19;
+            flex-shrink: 0;
+        }
+
+        .player-disc-guest {
+            background: transparent;
+            border: 2px dashed #64748b;
+            color: #94a3b8;
+        }
+
+        /* Wer gerade am Geraet ist: Ring in der eigenen Farbe */
+        .player-card.is-active { border-color: transparent; }
+        .player-card.is-active .player-disc { box-shadow: 0 0 0 3px #141a26, 0 0 0 5px currentColor; }
+
+        .player-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #f1f5f9;
+            line-height: 1.15;
+            text-align: center;
+            word-break: break-word;
+        }
+
+        .player-meta {
+            font-size: 11px;
+            font-weight: 600;
+            color: #7c8798;
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Aktivitaetspunkt als CSS statt Emoji - Emojis sehen auf jedem
+           Geraet anders aus, ein Punkt ueberall gleich. */
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dot-live { background: #3ddc97; box-shadow: 0 0 6px rgba(61, 220, 151, 0.7); }
+        .dot-recent { background: #f2c14e; }
+        .dot-idle { background: #4a5567; }
+
+        .player-coins {
+            font-size: 12px;
+            font-weight: 700;
+            color: #d8b64a;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-guest {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: #7c8798;
+        }
+
+        .edit-pin {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 9px;
+            background: #0f1420;
+            border: 1px solid #232c3d;
+            color: #64748b;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .edit-pin:hover { color: #3ddc97; border-color: #2f6f55; }
+        .edit-pin:focus-visible { outline: 2px solid #6ea8ff; outline-offset: 2px; }
+
+        /* Ueberschrift: Rang durch Groesse und Laufweite, nicht durch neue Schrift */
+        .hub-title {
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #f1f5f9;
+        }
+
+        .hub-eyebrow {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #5c6678;
+        }
+
         /* Schiebemenue fuer Einstellungen: faehrt von rechts herein. */
         .drawer {
             position: fixed;
@@ -98,11 +242,6 @@
             max-height: 70vh;
             opacity: 1;
             overflow-y: auto;
-        }
-
-        /* Wer gerade am Geraet ist, bekommt einen leuchtenden Rand. */
-        .player-active {
-            box-shadow: 0 0 0 2px #34d399, 0 0 14px rgba(52, 211, 153, 0.35);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -179,17 +318,22 @@
             <!-- VIEW: FAMILIEN HUB -->
             <div id="view-family-hub" class="view hidden space-y-6">
                 <div class="pt-6 pb-2 border-b border-gray-800 flex items-center justify-between">
-                    <span class="w-10"></span>
-                    <h1 class="text-2xl font-black text-white">Wer lernt heute?</h1>
+                    <!-- Platzhalter genauso breit wie die zwei Knoepfe rechts (2x40px + 8px Abstand),
+                         sonst sitzt die Ueberschrift nicht mittig. -->
+                    <span class="w-[88px] shrink-0"></span>
+                    <div class="text-center">
+                        <div class="hub-eyebrow mb-1">EduPlay</div>
+                        <h1 class="hub-title">Wer lernt heute?</h1>
+                    </div>
                     <div class="flex items-center gap-2">
                         <!-- Ton bleibt bewusst AUSSERHALB des Menues: der wird im Auto
                              staendig gedrueckt, zwei Tipps waeren ein Rueckschritt. -->
                         <button onclick="toggleSound()" title="Ton an/aus"
-                            class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg">
+                            class="w-10 h-10 rounded-xl hub-bar text-lg">
                             <span class="sound-toggle-icon">🔊</span>
                         </button>
                         <button onclick="openDrawer()" title="Einstellungen" aria-label="Einstellungen"
-                            class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg text-gray-300">
+                            class="w-10 h-10 rounded-xl hub-bar text-lg text-gray-400">
                             ☰
                         </button>
                     </div>
@@ -201,14 +345,12 @@
                 <div id="family-profiles-preview" class="grid grid-cols-2 gap-3"></div>
 
                 <button onclick="toggleProfileList()" id="profile-toggle-btn"
-                    class="w-full p-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl shadow-lg flex items-center justify-between text-white">
-                    <span class="flex items-center gap-3 font-black text-lg">
-                        <span class="text-2xl">👤</span> <span id="profile-toggle-label">Alle Spieler</span>
-                    </span>
+                    class="w-full p-4 hub-bar rounded-2xl flex items-center justify-between">
+                    <span id="profile-toggle-label" class="font-bold text-[15px] text-slate-200">Alle Spieler</span>
                     <span class="flex items-center gap-2">
                         <span id="profile-count-badge"
-                            class="text-xs font-bold bg-black/25 px-2.5 py-1 rounded-full">0</span>
-                        <span id="profile-toggle-arrow" class="text-lg transition-transform">▼</span>
+                            class="text-xs font-bold text-gray-400 bg-gray-900 px-2.5 py-1 rounded-full">0</span>
+                        <span id="profile-toggle-arrow" class="text-lg text-gray-400 transition-transform">▼</span>
                     </span>
                 </button>
 
@@ -216,22 +358,28 @@
                   <div class="space-y-3 pb-1">
                     <div id="family-profiles-grid" class="grid grid-cols-2 gap-3 pr-1"></div>
 
-                    <button onclick="switchView('create-profile')"
-                        class="w-full p-3.5 border-2 border-dashed border-gray-600 text-gray-400 font-bold rounded-2xl hover:border-emerald-500 hover:text-emerald-400 transition text-sm">
-                        + Neuen Spieler anlegen
-                    </button>
-
-                    <button onclick="addGuestProfile()"
-                        class="w-full p-3.5 border-2 border-dashed border-sky-700 text-sky-300 font-bold rounded-2xl hover:border-sky-500 transition text-sm">
-                        🙋 Gast hinzufügen (spielt nur heute mit)
-                    </button>
-
-                    <button id="clear-guests-btn" onclick="removeAllGuests()"
-                        class="hidden w-full p-2.5 text-rose-400 font-bold rounded-2xl text-xs underline">
-                        Alle Gäste wieder entfernen
-                    </button>
                   </div>
                 </div>
+
+                <!-- Anlegen gehoert nach draussen: wer einen Spieler hinzufuegen will,
+                     sollte dafuer nicht erst die Liste aufklappen muessen. -->
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="switchView('create-profile')"
+                        class="p-3 border border-dashed border-[#2b3547] text-[#7c8798] font-bold rounded-2xl hover:border-[#3ECFB2] hover:text-[#3ECFB2] transition text-xs">
+                        + Neuer Spieler
+                    </button>
+                    <button onclick="addGuestProfile()"
+                        class="p-3 border border-dashed border-[#2b3547] text-[#7c8798] font-bold rounded-2xl hover:border-[#5FB3F5] hover:text-[#5FB3F5] transition text-xs">
+                        + Gast (nur heute)
+                    </button>
+                </div>
+
+                <button id="clear-guests-btn" onclick="removeAllGuests()"
+                    class="hidden w-full p-2.5 text-rose-400 font-bold rounded-2xl text-xs underline">
+                    Alle Gäste wieder entfernen
+                </button>
+
+                <div class="hub-eyebrow pt-2">Familie</div>
 
                 <!-- FAMILIEN-DUELL (ein Gerät, weitergeben)
                      Ausgeblendet, solange es keinen echten Offline-Modus gibt:
@@ -239,7 +387,7 @@
                      Fortschritt liesse sich nicht speichern. Siehe OFFLINE_MODUS_AKTIV. -->
                 <div id="family-duel-block" class="hidden">
                     <button onclick="toggleFamilyDuel()" id="family-duel-toggle-btn"
-                        class="w-full p-4 bg-gray-800 border border-gray-700 rounded-2xl shadow-lg flex items-center justify-between">
+                        class="w-full p-4 hub-bar rounded-2xl flex items-center justify-between">
                         <span class="flex items-center gap-3 font-black text-lg text-rose-300">
                             <span class="text-2xl">⚔️</span> Familien-Duell
                         </span>
@@ -276,10 +424,8 @@
                 <!-- RANGLISTE -->
                 <div>
                     <button onclick="toggleLeaderboard()" id="leaderboard-toggle-btn"
-                        class="w-full p-4 bg-gray-800 border border-gray-700 rounded-2xl shadow-lg flex items-center justify-between">
-                        <span class="flex items-center gap-3 font-black text-lg text-yellow-400">
-                            <span class="text-2xl">🏆</span> Familien-Rangliste
-                        </span>
+                        class="w-full p-4 hub-bar rounded-2xl flex items-center justify-between">
+                        <span class="font-bold text-[15px] text-[#F2C14E]">Familien-Rangliste</span>
                         <span class="flex items-center gap-2">
                             <span id="leaderboard-leader-badge"
                                 class="text-xs font-bold text-gray-400 bg-gray-900 px-2.5 py-1 rounded-full"></span>
@@ -2110,46 +2256,75 @@
             // Zeigt an, wer wann zuletzt gespielt hat - familienweit, weil der
             // Zeitstempel in Firestore am Spieler haengt und nicht am Geraet.
             function activityLabel(lastActive) {
-                if (!lastActive) return { icon: "⚪", text: "noch nicht gespielt", color: "text-gray-500" };
+                if (!lastActive) return { dot: "dot-idle", text: "noch nicht gespielt" };
                 const mins = Math.floor((Date.now() - lastActive) / 60000);
-                if (mins < 0) return { icon: "🟢", text: "aktiv", color: "text-emerald-400" };
-                if (mins < 5) return { icon: "🟢", text: "aktiv", color: "text-emerald-400" };
-                if (mins < 60) return { icon: "🟡", text: `vor ${mins} Min.`, color: "text-yellow-400" };
+                if (mins < 5) return { dot: "dot-live", text: "gerade aktiv" };
+                if (mins < 60) return { dot: "dot-recent", text: `vor ${mins} Min.` };
                 const hours = Math.floor(mins / 60);
-                if (hours < 24) return { icon: "⚪", text: `vor ${hours} Std.`, color: "text-gray-500" };
+                if (hours < 24) return { dot: "dot-idle", text: `vor ${hours} Std.` };
                 const days = Math.floor(hours / 24);
-                return { icon: "⚪", text: days === 1 ? "gestern" : `vor ${days} Tagen`, color: "text-gray-500" };
+                return { dot: "dot-idle", text: days === 1 ? "gestern" : `vor ${days} Tagen` };
             }
 
-            function buildPlayerCard(key) {
+            // === SPIELERFARBEN ===
+            // Sechs Farben, die sich auch bei Sonnenlicht im Auto noch
+            // unterscheiden lassen. Die Farbe haengt fest am Spieler-Schluessel,
+            // damit Mia immer tuerkis bleibt - auch nach einem Neustart.
+            const PLAYER_COLORS = ["#FF8A4C", "#3ECFB2", "#F2C14E", "#9B8CFF", "#5FB3F5", "#F585B0"];
+            const GUEST_COLOR = "#94A3B8";
+
+            function colorForPlayer(key, takenColors) {
+                let h = 0;
+                for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+                let idx = h % PLAYER_COLORS.length;
+                // Bei gleicher Farbe die naechste freie nehmen, damit zwei
+                // Geschwister nie dieselbe Scheibe bekommen.
+                if (takenColors) {
+                    for (let n = 0; n < PLAYER_COLORS.length; n++) {
+                        const c = PLAYER_COLORS[(idx + n) % PLAYER_COLORS.length];
+                        if (!takenColors.has(c)) { takenColors.add(c); return c; }
+                    }
+                }
+                return PLAYER_COLORS[idx];
+            }
+
+            function initialsFor(name) {
+                const n = (name || "?").trim();
+                if (!n) return "?";
+                const parts = n.split(/\s+/);
+                if (parts.length > 1) return (parts[0][0] + parts[1][0]).toUpperCase();
+                return n.slice(0, 1).toUpperCase();
+            }
+
+            function buildPlayerCard(key, color) {
                 const p = ALL_PROFILES[key];
                 const guest = !!p.isGuest;
                 const isActive = (key === activePlayerKey);
                 const act = activityLabel(p.lastActive);
+                const c = guest ? GUEST_COLOR : (color || PLAYER_COLORS[0]);
 
-                // Der Stift liegt als eigener Knopf NEBEN der Karte, nicht darin -
-                // ein Knopf im Knopf ist ungueltiges HTML und tippt sich schlecht.
                 const wrap = document.createElement("div");
                 wrap.className = "relative";
 
                 const btn = document.createElement("button");
-                btn.className = "w-full bg-gray-800 border p-4 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-1 " +
-                    (guest ? "border-sky-600 " : "border-gray-700 ") + (isActive ? "player-active" : "");
+                btn.className = "player-card" + (isActive ? " is-active" : "");
+                if (isActive) btn.style.color = c;
                 btn.innerHTML =
-                    `${guest ? '<span class="absolute top-1 right-2 text-[10px] font-black text-sky-400">GAST</span>' : ''}` +
-                    `${isActive ? '<span class="absolute top-1 left-2 text-sm" title="Gerade an diesem Gerät">⭐</span>' : ''}` +
-                    `<div class="text-3xl">${guest ? "🙋" : "👦👧"}</div>` +
-                    `<div class="font-bold text-white text-sm leading-tight">${esc(p.name)}</div>` +
-                    `<div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>` +
-                    `<div class="text-[10px] font-bold ${act.color} leading-tight">${act.icon} ${esc(act.text)}</div>`;
+                    `${guest ? '<span class="badge-guest">GAST</span>' : ''}` +
+                    `<div class="player-disc${guest ? ' player-disc-guest' : ''}"${guest ? '' : ` style="background:${c}"`}>${esc(initialsFor(p.name))}</div>` +
+                    `<div class="player-name">${esc(p.name)}</div>` +
+                    `<div class="player-coins">${p.coins} Coins</div>` +
+                    `<div class="player-meta"><span class="dot ${act.dot}"></span>${esc(act.text)}</div>`;
                 btn.onclick = () => selectProfile(key);
                 wrap.appendChild(btn);
 
+                // Der Stift liegt als eigener Knopf NEBEN der Karte, nicht darin -
+                // ein Knopf im Knopf ist ungueltiges HTML und tippt sich schlecht.
                 const edit = document.createElement("button");
-                edit.className = "absolute bottom-1.5 right-1.5 w-7 h-7 rounded-lg bg-gray-900 border border-gray-700 text-xs text-gray-400 hover:text-emerald-400 hover:border-emerald-600 flex items-center justify-center";
+                edit.className = "edit-pin";
                 edit.title = "Spieler bearbeiten";
                 edit.setAttribute("aria-label", `${p.name} bearbeiten`);
-                edit.innerText = "✏️";
+                edit.innerText = "✎";
                 edit.onclick = (ev) => { ev.stopPropagation(); openEditPlayer(key); };
                 wrap.appendChild(edit);
 
@@ -2172,22 +2347,29 @@
                 });
                 const previewKeys = sortedByActivity.slice(0, 2);
 
-                if (preview) previewKeys.forEach(key => preview.appendChild(buildPlayerCard(key)));
-                profileKeys.forEach(key => grid.appendChild(buildPlayerCard(key)));
+                // Farben einmal fuer alle vergeben, damit ein Spieler in Vorschau
+                // und Liste dieselbe Scheibe hat.
+                const taken = new Set();
+                const colorMap = {};
+                profileKeys.slice().sort().forEach(k => {
+                    if (!ALL_PROFILES[k].isGuest) colorMap[k] = colorForPlayer(k, taken);
+                });
+
+                if (preview) previewKeys.forEach(key => preview.appendChild(buildPlayerCard(key, colorMap[key])));
+                profileKeys.forEach(key => grid.appendChild(buildPlayerCard(key, colorMap[key])));
 
                 // Anzahl im Knopf anzeigen und Liste standardmäßig zuklappen,
                 // damit Rangliste und Duell-Knöpfe darunter sichtbar bleiben.
                 const badge = document.getElementById("profile-count-badge");
                 if (badge) badge.innerText = profileKeys.length === 1 ? "1 Spieler" : `${profileKeys.length} Spieler`;
-                if (profileKeys.length === 0) toggleProfileList(true);
 
-                // Bei hoechstens zwei Spielern stehen ohnehin alle oben -
-                // dann waere der Aufklapp-Knopf nur im Weg. Die Knoepfe zum
-                // Anlegen wandern in dem Fall unter die Vorschau.
+                // Bei hoechstens zwei Spielern stehen ohnehin alle in der Vorschau -
+                // dann waere der Aufklapp-Knopf nur im Weg. Die Knoepfe zum Anlegen
+                // stehen inzwischen ausserhalb und bleiben immer erreichbar.
                 const toggleBtn = document.getElementById("profile-toggle-btn");
-                const allVisible = profileKeys.length > 0 && profileKeys.length <= 2;
+                const allVisible = profileKeys.length <= 2;
                 if (toggleBtn) toggleBtn.classList.toggle("hidden", allVisible);
-                if (allVisible) { grid.innerHTML = ""; toggleProfileList(true); }
+                if (allVisible) { grid.innerHTML = ""; toggleProfileList(false); }
 
                 // Knopf zum Aufräumen nur zeigen, wenn es Gäste gibt
                 const guestKeys = profileKeys.filter(k => ALL_PROFILES[k].isGuest);
@@ -3568,7 +3750,10 @@
                     SFX.tap();
                     showToast(`🙋 Gast "${esc(guest.name)}" kann jetzt mitspielen!`);
                     renderFamilyHub();
-                    toggleProfileList(true);
+                    // Nur aufklappen, wenn es die Liste ueberhaupt gibt - bei bis zu
+                    // zwei Spielern stehen ohnehin alle in der Vorschau.
+                    const tb = document.getElementById("profile-toggle-btn");
+                    if (tb && !tb.classList.contains("hidden")) toggleProfileList(true);
                 } catch (e) {
                     handleError("addGuestProfile", e, "Der Gast konnte nicht angelegt werden.");
                 }

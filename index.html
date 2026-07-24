@@ -544,9 +544,10 @@
                         </button>
                     </div>
                     <button onclick="switchView('tv-quiz-setup')"
-                        class="w-full p-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-black rounded-2xl shadow-lg text-sm flex items-center justify-center gap-2">
-                        <span class="text-2xl">📺</span> TV-Quiz
-                        <span class="text-xs font-bold text-indigo-200">· alle zusammen</span>
+                        class="w-full p-5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-black rounded-2xl shadow-lg flex flex-col items-center gap-2">
+                        <span class="text-3xl">📺</span>
+                        <span>TV-Quiz</span>
+                        <span class="text-xs font-bold text-indigo-200 -mt-1">· alle zusammen ·</span>
                     </button>
                     <button id="join-duel-btn" onclick="joinLiveDuel()"
                         class="w-full p-3.5 bg-gray-800 border border-gray-700 text-indigo-300 font-bold rounded-2xl shadow-md flex justify-center items-center gap-2 text-sm transition-all">
@@ -569,15 +570,21 @@
                         </button>
                     </div>
                     <button onclick="switchView('fokus')"
-                        class="w-full bg-yellow-500 p-4 rounded-2xl font-black text-slate-950 shadow-lg hover:bg-yellow-400 flex items-center justify-center gap-2">
-                        <span class="text-2xl">⏱️</span> Fokus-Timer
+                        class="w-full bg-yellow-500 p-5 rounded-2xl font-black text-slate-950 shadow-lg hover:bg-yellow-400 flex flex-col items-center gap-2">
+                        <span class="text-3xl">⏱️</span>
+                        <span>Fokus-Timer</span>
                     </button>
                 </div>
 
-                <button onclick="openFeedback('menu')"
-                    class="w-full p-3 border-2 border-dashed border-gray-700 text-gray-400 font-bold rounded-2xl hover:border-amber-500 hover:text-amber-400 transition text-sm">
-                    💬 Feedback geben
-                </button>
+                <div class="pt-4 mt-2 border-t border-gray-800">
+                    <button onclick="openFeedback('menu')"
+                        class="w-full p-4 bg-gray-800 border-2 border-amber-600 text-amber-400 font-black rounded-2xl shadow-md hover:bg-gray-700 hover:border-amber-400 transition flex flex-col items-center gap-1">
+                        <span class="flex items-center gap-2 text-base">
+                            <span class="text-2xl">💬</span> Feedback geben
+                        </span>
+                        <span class="text-[11px] font-bold text-gray-400">Fehler melden oder Idee vorschlagen</span>
+                    </button>
+                </div>
             </div>
 
             <!-- VIEW: BELOHNUNGEN EINLÖSEN -->

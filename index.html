@@ -781,10 +781,7 @@
                         <span>TV-Quiz</span>
                         <span class="text-xs font-bold text-indigo-200 -mt-1">· alle zusammen ·</span>
                     </button>
-                    <button id="join-duel-btn" onclick="joinLiveDuel()"
-                        class="w-full p-3.5 bg-gray-800 border border-gray-700 text-indigo-300 font-bold rounded-2xl shadow-md flex justify-center items-center gap-2 text-sm transition-all">
-                        <span id="join-duel-label">🔗 Einem laufenden Duell beitreten</span>
-                    </button>
+                    <div id="open-duels-list" class="space-y-2"></div>
                 </div>
 
                 <div class="space-y-2.5">
@@ -2925,34 +2922,59 @@
                 stopWatchingForOpenDuel();
                 if (!currentParentUser) return;
                 try {
-                    openDuelWatcher = liveDuelLobbyRef().onSnapshot((doc) => {
-                        const btn = document.getElementById("join-duel-btn");
-                        const label = document.getElementById("join-duel-label");
-                        if (!btn) return;
-                        const d = doc.exists ? doc.data() : null;
-                        // Offen = es läuft ein Duell, an dem man teilnehmen/wieder einsteigen kann
-                        const open = !!d && d.status !== "finished";
-                        const running = open && d.status !== "waiting";
-
-                        btn.className = open
-                            ? "w-full p-3.5 bg-indigo-600 border-2 border-indigo-300 text-white font-black rounded-2xl shadow-lg shadow-indigo-500/40 flex justify-center items-center gap-2 text-sm transition-all animate-pulse"
-                            : "w-full p-3.5 bg-gray-800 border border-gray-700 text-indigo-300 font-bold rounded-2xl shadow-md flex justify-center items-center gap-2 text-sm transition-all";
-
-                        if (label) {
-                            if (!open) label.innerText = "🔗 Einem laufenden Duell beitreten";
-                            else {
-                                const count = d.players ? Object.keys(d.players).length : 0;
-                                label.innerText = running
-                                    ? `🔥 Duell läuft – wieder einsteigen (${count})`
-                                    : `🔥 Duell offen – jetzt beitreten! (${count})`;
-                            }
-                        }
+                    openDuelWatcher = liveDuelCollectionRef().onSnapshot((snap) => {
+                        renderOpenDuelsList(snap);
                     }, () => { });
                 } catch (e) { }
             }
 
-            function liveDuelLobbyRef() {
-                return db.collection("parents").doc(currentParentUser.uid).collection("live_duel").doc("lobby");
+            // Baut im Menü die Liste offener/laufender Duelle. Jede Lobby zeigt Typ,
+            // Ersteller und Spielerzahl. Verwaiste Warte-Lobbys (leer + kein
+            // Lebenszeichen) werden nebenbei gelöscht, damit nichts ewig weiterblinkt.
+            function renderOpenDuelsList(snap) {
+                const box = document.getElementById("open-duels-list");
+                if (!box) return;
+                const now = Date.now();
+                const STALE = 45000;
+                let html = "";
+                snap.forEach(docSnap => {
+                    const d = docSnap.data() || {};
+                    if (d.status === "finished") return;
+                    const count = d.players ? Object.keys(d.players).length : 0;
+                    const alive = (now - (d.hostLastSeen || d.createdAt || 0)) < STALE;
+                    if (d.status === "waiting" && count <= 1 && !alive) {
+                        docSnap.ref.delete().catch(() => { }); // verwaiste, leere Lobby aufräumen
+                        return;
+                    }
+                    const running = d.status !== "waiting";
+                    const icon = d.type === "scrabble" ? "🔤" : "⚔️";
+                    const typeName = d.type === "scrabble" ? "Wort-Duell" : "Quiz-Duell";
+                    const who = esc(d.createdByName || "jemandem");
+                    const state = running ? "läuft – einsteigen" : "offen – beitreten";
+                    html += `<button onclick="joinLiveDuelById('${docSnap.id}')" class="w-full p-3.5 bg-gray-800 border-2 ${running ? "border-gray-600" : "border-indigo-400 animate-pulse"} text-white font-bold rounded-2xl shadow-md flex items-center justify-between gap-2 text-sm transition-all">
+                        <span class="flex items-center gap-2"><span class="text-lg">${icon}</span><span>${typeName} von ${who}</span></span>
+                        <span class="text-[11px] text-indigo-200 shrink-0 text-right">🔥 ${state}<br>(${count} dabei)</span>
+                    </button>`;
+                });
+                box.innerHTML = html;
+            }
+
+            function liveDuelCollectionRef() {
+                return db.collection("parents").doc(currentParentUser.uid).collection("live_duel");
+            }
+
+            // Lebenszeichen des Erstellers, solange die Lobby offen wartet. Meldet
+            // sich eine wartende Lobby ~45 Sek. nicht mehr, gilt sie als verwaist
+            // und wird vom nächsten, der die Menü-Liste sieht, gelöscht.
+            let liveDuelHeartbeat = null;
+            function maybeStartHostHeartbeat() {
+                if (liveDuelHeartbeat || !liveDuelRef || !isLiveDuelCreator) return;
+                const beat = () => { if (liveDuelRef && isLiveDuelCreator) liveDuelRef.update({ hostLastSeen: Date.now() }).catch(() => { }); };
+                beat();
+                liveDuelHeartbeat = setInterval(beat, 12000);
+            }
+            function stopHostHeartbeat() {
+                if (liveDuelHeartbeat) { clearInterval(liveDuelHeartbeat); liveDuelHeartbeat = null; }
             }
 
             // Zeit, die den anderen bleibt, NACHDEM der Erste geantwortet hat
@@ -2967,7 +2989,7 @@
 
             async function createLiveDuel() {
                 if (!currentPlayer || !activePlayerKey) return showToast("Bitte zuerst oben deinen Spieler auswählen!", "error");
-                const ref = liveDuelLobbyRef();
+                const ref = liveDuelCollectionRef().doc(); // eigene Lobby mit Auto-ID -> mehrere gleichzeitig möglich
                 let lobbyData;
                 if (liveDuelType === "scrabble") {
                     const difficulty = document.getElementById("live-duel-difficulty").value;
@@ -2991,41 +3013,49 @@
                     };
                 }
                 lobbyData.players[activePlayerKey] = { name: currentPlayer.name, score: 0, hasAnswered: false, lastAnswer: null, word: "", coinsClaimed: false };
+                lobbyData.createdByName = currentPlayer.name;
+                lobbyData.createdAt = Date.now();
+                lobbyData.hostLastSeen = Date.now();
                 try {
                     await ref.set(lobbyData);
                     liveDuelRef = ref; isLiveDuelCreator = true; liveDuelResolving = false; liveDuelRenderKey = "";
+                    maybeStartHostHeartbeat();
                     subscribeLiveDuel();
                 } catch (e) { handleError("createLiveDuel", e, "Das Duell konnte nicht erstellt werden."); }
             }
 
             // Beitreten funktioniert auch MITTEN im Spiel – so kann man nach einem
             // Verbindungsabbruch einfach wieder einsteigen.
-            async function joinLiveDuel() {
+            async function joinLiveDuelById(lobbyId) {
                 if (!currentParentUser || !currentPlayer || !activePlayerKey) return showToast("Bitte zuerst deinen Spieler auswählen, dann beitreten!", "error");
-                const ref = liveDuelLobbyRef();
+                if (!lobbyId) return;
+                const ref = liveDuelCollectionRef().doc(lobbyId);
                 try {
                     const snap = await ref.get();
-                    if (!snap.exists) return showToast("Aktuell läuft kein Duell!", "error");
+                    if (!snap.exists) return showToast("Dieses Duell gibt es nicht mehr.", "error");
                     const data = snap.data();
-                    if (data.status === "finished") return showToast("Das letzte Duell ist schon beendet.", "error");
+                    if (data.status === "finished") return showToast("Dieses Duell ist schon beendet.", "error");
 
-                    let players = data.players || {};
-                    const wasAlreadyIn = !!players[activePlayerKey];
+                    const wasAlreadyIn = !!(data.players && data.players[activePlayerKey]);
                     const midGame = (data.status === "playing" || data.status === "reveal");
                     if (!wasAlreadyIn) {
                         // Neu dazugekommen: wartet in der Schleife, bis die nächste
                         // Runde startet. pending=true hält ihn aus der laufenden
                         // Runde raus (zählt nicht, blockiert die Auswertung nicht).
-                        players[activePlayerKey] = {
-                            name: currentPlayer.name, score: 0,
-                            hasAnswered: false, lastAnswer: null, word: "", coinsClaimed: false,
-                            pending: midGame
-                        };
-                        await ref.update({ players });
+                        // Nur das eigene Feld schreiben, damit parallele Beitritte
+                        // sich nicht gegenseitig überschreiben.
+                        await ref.update({
+                            [`players.${activePlayerKey}`]: {
+                                name: currentPlayer.name, score: 0,
+                                hasAnswered: false, lastAnswer: null, word: "", coinsClaimed: false,
+                                pending: midGame
+                            }
+                        });
                     }
                     liveDuelType = data.type; liveDuelRef = ref;
                     isLiveDuelCreator = (data.createdBy === activePlayerKey);
                     liveDuelResolving = false; liveDuelRenderKey = "";
+                    maybeStartHostHeartbeat();
                     showToast(wasAlreadyIn ? "Willkommen zurück im Duell!" : (midGame ? "Du bist dabei – es geht in der nächsten Runde los!" : "Du bist dabei!"));
                     subscribeLiveDuel();
                 } catch (e) { handleError("joinLiveDuel", e, "Beitreten hat nicht geklappt."); }
@@ -3059,6 +3089,7 @@
             // "Duell beitreten"-Knopf bei allen ewig weiterleuchten.
             async function leaveLiveDuel() {
                 clearLiveDuelTimers();
+                stopHostHeartbeat();
                 const ref = liveDuelRef;
                 const wasCreator = isLiveDuelCreator;
 
@@ -3087,16 +3118,6 @@
                 } catch (e) { /* Lobby war schon weg */ }
             }
 
-            // Offene Lobby von Hand schließen (z.B. wenn alle einfach weggeklickt haben)
-            async function closeOpenDuel() {
-                try {
-                    await liveDuelLobbyRef().delete();
-                    showToast("Offene Duell-Runde wurde geschlossen.");
-                } catch (e) {
-                    showToast("Konnte die Runde nicht schließen", "error");
-                }
-            }
-
             // Countdown, der erst startet, wenn der Erste geantwortet hat.
             function startLiveDuelCountdown(deadline) {
                 clearLiveDuelTimers();
@@ -3123,6 +3144,12 @@
             function renderLiveDuelFromSnapshot(data) {
                 const myData = data.players[activePlayerKey];
                 if (!myData) return;
+
+                // Ersteller-Rolle live aus den Daten ableiten (deckt auch Übergaben ab).
+                // Heartbeat läuft nur, solange die Lobby wartet - während des Spiels
+                // würde ein 12-Sek.-Snapshot sonst die Rundentimer zurücksetzen.
+                isLiveDuelCreator = (data.createdBy === activePlayerKey);
+                if (data.status === "waiting" && isLiveDuelCreator) maybeStartHostHeartbeat(); else stopHostHeartbeat();
 
                 if (data.status === "waiting") {
                     clearLiveDuelTimers();
@@ -3275,8 +3302,12 @@
                 if (!data || data.status !== "playing") return;
                 let players = data.players;
                 if (!players[activePlayerKey] || players[activePlayerKey].hasAnswered) return;
-                players[activePlayerKey].hasAnswered = true; players[activePlayerKey].lastAnswer = ansIndex;
-                const update = { players };
+                // Nur das eigene Feld schreiben - sonst überschreibt bei gleichzeitiger
+                // Eingabe der zweite Schreibvorgang die Antwort des ersten.
+                const update = {
+                    [`players.${activePlayerKey}.hasAnswered`]: true,
+                    [`players.${activePlayerKey}.lastAnswer`]: ansIndex
+                };
                 // Der Erste startet die Uhr für alle anderen
                 if (!data.answerDeadline) update.answerDeadline = Date.now() + (data.answerSeconds || 20) * 1000;
                 await liveDuelRef.update(update);
@@ -3309,8 +3340,11 @@
                 if (!data || data.status !== "playing") return;
                 let players = data.players;
                 if (!players[activePlayerKey] || players[activePlayerKey].hasAnswered) return;
-                players[activePlayerKey].hasAnswered = true; players[activePlayerKey].word = word;
-                const update = { players };
+                // Nur das eigene Feld schreiben (Kollisionsschutz bei gleichzeitigem Einreichen).
+                const update = {
+                    [`players.${activePlayerKey}.hasAnswered`]: true,
+                    [`players.${activePlayerKey}.word`]: word
+                };
                 if (!data.answerDeadline) update.answerDeadline = Date.now() + (data.answerSeconds || 20) * 1000;
                 await liveDuelRef.update(update);
             }
@@ -4925,17 +4959,17 @@
                 const word = inputEl ? cleanInput(inputEl.value, 20) : "";
                 if (!word) { SFX.wrong(); showToast("Bitte zuerst ein Wort eingeben.", "error", "word"); if (inputEl) inputEl.focus(); return; }
                 document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-amber-400 mb-4">Eingereicht!</h2><p class="text-lg font-bold text-gray-400">Warte auf die anderen...</p></div>`;
-                const docSnap = await tvGameRef.get(); const data = docSnap.data();
-                let playersData = data.players;
-                playersData[activePlayerKey].hasAnswered = true; playersData[activePlayerKey].word = word;
-                await tvGameRef.update({ players: playersData });
+                await tvGameRef.update({
+                    [`players.${activePlayerKey}.hasAnswered`]: true,
+                    [`players.${activePlayerKey}.word`]: word
+                });
             }
             async function submitTVAnswer(ansIndex) {
                 document.getElementById("view-tv-quiz-player").innerHTML = `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-indigo-400 mb-4">Eingeloggt!</h2><p class="text-lg font-bold text-gray-400">Schau auf den Fernseher...</p></div>`;
-                const docSnap = await tvGameRef.get(); const data = docSnap.data();
-                let playersData = data.players;
-                playersData[activePlayerKey].hasAnswered = true; playersData[activePlayerKey].lastAnswer = ansIndex;
-                await tvGameRef.update({ players: playersData });
+                await tvGameRef.update({
+                    [`players.${activePlayerKey}.hasAnswered`]: true,
+                    [`players.${activePlayerKey}.lastAnswer`]: ansIndex
+                });
             }
         </script>
     </div>

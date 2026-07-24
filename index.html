@@ -44,6 +44,45 @@
             color: #f1f5f9;
         }
 
+        /* Schiebemenue fuer Einstellungen: faehrt von rechts herein. */
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 78%;
+            max-width: 320px;
+            background: #111827;
+            border-left: 1px solid #1f2937;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 60;
+            overflow-y: auto;
+        }
+
+        .drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 55;
+        }
+
+        .drawer-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .drawer { transition: none; }
+        }
+
         /* "Autofenster" fuer die Spielerliste: faehrt weich runter statt
            hart ein- und auszublenden. max-height statt height, weil die
            Hoehe je nach Anzahl der Spieler unterschiedlich ist. */
@@ -142,10 +181,18 @@
                 <div class="pt-6 pb-2 border-b border-gray-800 flex items-center justify-between">
                     <span class="w-10"></span>
                     <h1 class="text-2xl font-black text-white">Wer lernt heute?</h1>
-                    <button onclick="toggleSound()" title="Ton an/aus"
-                        class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg">
-                        <span class="sound-toggle-icon">🔊</span>
-                    </button>
+                    <div class="flex items-center gap-2">
+                        <!-- Ton bleibt bewusst AUSSERHALB des Menues: der wird im Auto
+                             staendig gedrueckt, zwei Tipps waeren ein Rueckschritt. -->
+                        <button onclick="toggleSound()" title="Ton an/aus"
+                            class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg">
+                            <span class="sound-toggle-icon">🔊</span>
+                        </button>
+                        <button onclick="openDrawer()" title="Einstellungen" aria-label="Einstellungen"
+                            class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg text-gray-300">
+                            ☰
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Die zwei zuletzt aktiven Spieler stehen immer offen da,
@@ -185,11 +232,6 @@
                     </button>
                   </div>
                 </div>
-
-                <button onclick="openFeedback('family-hub')"
-                    class="w-full p-2.5 text-gray-500 font-bold rounded-2xl text-xs underline hover:text-amber-400">
-                    💬 Feedback geben
-                </button>
 
                 <!-- FAMILIEN-DUELL (ein Gerät, weitergeben)
                      Ausgeblendet, solange es keinen echten Offline-Modus gibt:
@@ -252,14 +294,38 @@
                     </div>
                 </div>
 
-                <div class="pt-4 flex flex-col gap-3">
-                    <button onclick="openParentArea()"
-                        class="w-full bg-gray-800 text-rose-400 p-4 rounded-xl font-bold border border-gray-700 shadow-md flex justify-center items-center gap-2">
-                        🔒 Admin-Bereich (Fortschritt)
-                    </button>
-                    <button onclick="logoutParent()"
-                        class="text-xs text-gray-500 font-bold text-center mt-2 underline">Familien-Account
-                        ausloggen</button>
+                <!-- Admin, Feedback und Ausloggen sind ins Schiebemenü (☰ oben rechts) gewandert. -->
+            </div>
+
+            <!-- SCHIEBEMENÜ: EINSTELLUNGEN -->
+            <div id="drawer-backdrop" class="drawer-backdrop" onclick="closeDrawer()"></div>
+            <div id="settings-drawer" class="drawer">
+                <div class="p-5 space-y-5">
+                    <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                        <h2 class="text-lg font-black text-white">⚙️ Einstellungen</h2>
+                        <button onclick="closeDrawer()" aria-label="Menü schließen"
+                            class="w-9 h-9 rounded-xl bg-gray-800 border border-gray-700 text-gray-300 font-bold">✕</button>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <button onclick="closeDrawer(); openParentArea();"
+                            class="w-full bg-gray-800 text-rose-400 p-4 rounded-xl font-bold border border-gray-700 shadow-md flex items-center gap-3">
+                            <span class="text-xl">🔒</span> Admin-Bereich
+                        </button>
+                        <button onclick="closeDrawer(); openFeedback('family-hub');"
+                            class="w-full bg-gray-800 text-amber-400 p-4 rounded-xl font-bold border border-gray-700 shadow-md flex items-center gap-3">
+                            <span class="text-xl">💬</span> Feedback geben
+                        </button>
+                        <button onclick="closeDrawer(); logoutParent();"
+                            class="w-full bg-gray-800 text-gray-400 p-4 rounded-xl font-bold border border-gray-700 shadow-md flex items-center gap-3">
+                            <span class="text-xl">🚪</span> Familien-Account ausloggen
+                        </button>
+                    </div>
+
+                    <p class="text-[10px] text-gray-600 leading-relaxed pt-2 border-t border-gray-800">
+                        EduPlay Hub · Familien Edition<br>
+                        Den Ton schaltest du oben neben dem Menü-Knopf ein und aus.
+                    </p>
                 </div>
             </div>
 
@@ -599,6 +665,48 @@
                 </div>
             </div>
 
+            <!-- VIEW: SPIELER BEARBEITEN -->
+            <div id="view-edit-player" class="view hidden space-y-4">
+                <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                    onclick="switchView('family-hub')">← Abbrechen</button>
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-4">
+                    <h2 class="text-xl font-black text-emerald-400">✏️ Spieler bearbeiten</h2>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Name</label>
+                        <input type="text" id="edit-player-name" maxlength="24"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Geburtstag</label>
+                        <input type="date" id="edit-player-birthday" onchange="updateAgePreview()"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
+                        <p id="edit-age-preview" class="text-[11px] text-gray-500 mt-1.5">Das Alter rechnet die App
+                            selbst aus – du musst es nie wieder ändern.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Schulklasse</label>
+                        <select id="edit-player-grade"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
+                            <option value="">Noch keine / keine Angabe</option>
+                        </select>
+                        <p class="text-[11px] text-gray-500 mt-1.5">Danach wählt die App im Quiz und bei den Vokabeln
+                            automatisch die passende Stufe vor.</p>
+                    </div>
+
+                    <div id="edit-player-hint" class="hidden text-xs font-bold text-rose-400"></div>
+
+                    <button onclick="saveEditedPlayer()"
+                        class="w-full p-4 bg-emerald-600 rounded-xl font-black text-white shadow-lg hover:bg-emerald-500">
+                        Speichern
+                    </button>
+                    <p class="text-[10px] text-gray-600 text-center">Coins, Abzeichen und der Lernfortschritt bleiben
+                        beim Bearbeiten unangetastet.</p>
+                </div>
+            </div>
+
             <!-- VIEW: FEEDBACK -->
             <div id="view-feedback" class="view hidden space-y-4">
                 <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
@@ -668,14 +776,30 @@
                     <h2 class="text-xl font-black text-emerald-400">Neuen Spieler anlegen</h2>
                     <input type="text" id="new-profile-name" placeholder="Name"
                         class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
-                    <div class="flex gap-2">
-                        <select id="new-profile-type"
-                            class="w-1/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm">
-                            <option value="klasse">🎒 Klasse</option>
-                            <option value="alter">🎂 Alter</option>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Geburtstag (freiwillig)</label>
+                        <input type="date" id="new-profile-birthday"
+                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Schulklasse</label>
+                        <select id="new-profile-grade"
+                            class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
+                            <option value="">Noch keine / keine Angabe</option>
+                            <option value="1">1. Klasse</option>
+                            <option value="2">2. Klasse</option>
+                            <option value="3">3. Klasse</option>
+                            <option value="4">4. Klasse</option>
+                            <option value="5">5. Klasse</option>
+                            <option value="6">6. Klasse</option>
+                            <option value="7">7. Klasse</option>
+                            <option value="8">8. Klasse</option>
+                            <option value="9">9. Klasse</option>
+                            <option value="10">10. Klasse</option>
+                            <option value="11">11. Klasse</option>
+                            <option value="12">12. Klasse</option>
+                            <option value="13">13. Klasse</option>
                         </select>
-                        <input type="number" id="new-profile-age" placeholder="Zahl..."
-                            class="w-2/3 p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
                     </div>
                     <button onclick="saveNewProfile()"
                         class="w-full p-4 bg-emerald-600 rounded-xl font-bold text-white shadow-lg">Spieler
@@ -1168,10 +1292,8 @@
 
             // Schlaegt die Klasse des aktuellen Spielers vor
             function suggestedArea() {
-                if (currentPlayer && currentPlayer.ageType === "klasse") {
-                    const g = parseInt(currentPlayer.age);
-                    if (g >= 1 && g <= 13) return "grade_" + g;
-                }
+                const g = playerGrade(currentPlayer);
+                if (g) return "grade_" + g;
                 return null;
             }
 
@@ -1654,6 +1776,7 @@
 
                 document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
                 document.getElementById(`view-${viewId}`).classList.remove('hidden');
+                if (typeof closeDrawer === 'function') closeDrawer();
 
                 // Der Fernseher-Modus soll den ganzen Bildschirm nutzen, alles andere
                 // bleibt in der schmalen Handy-Ansicht.
@@ -1819,6 +1942,140 @@
                 if (hubTickInterval) { clearInterval(hubTickInterval); hubTickInterval = null; }
             }
 
+            // === SCHIEBEMENÜ (EINSTELLUNGEN) ===
+            function openDrawer() {
+                SFX.tap();
+                document.getElementById("settings-drawer").classList.add("open");
+                document.getElementById("drawer-backdrop").classList.add("open");
+            }
+
+            function closeDrawer() {
+                document.getElementById("settings-drawer").classList.remove("open");
+                document.getElementById("drawer-backdrop").classList.remove("open");
+            }
+
+            // Zurück-Taste des Handys schließt erst das Menü, statt die App zu verlassen
+            document.addEventListener("keydown", e => {
+                if (e.key === "Escape") closeDrawer();
+            });
+
+            // === SPIELER BEARBEITEN ===
+            let editingPlayerKey = null;
+
+            // Rechnet das Alter aus dem Geburtstag - damit es nie veraltet.
+            function ageFromBirthday(birthday) {
+                if (!birthday) return null;
+                const b = new Date(birthday);
+                if (isNaN(b.getTime())) return null;
+                const now = new Date();
+                let age = now.getFullYear() - b.getFullYear();
+                const m = now.getMonth() - b.getMonth();
+                if (m < 0 || (m === 0 && now.getDate() < b.getDate())) age--;
+                return (age >= 0 && age < 120) ? age : null;
+            }
+
+            // Klassenstufe eines Spielers - neues Feld bevorzugt, sonst das alte
+            // ageType/age-Paar, damit vorhandene Spieler weiter funktionieren.
+            function playerGrade(p) {
+                if (!p) return null;
+                if (p.grade) {
+                    const g = parseInt(p.grade);
+                    if (g >= 1 && g <= 13) return g;
+                }
+                if (p.ageType === "klasse") {
+                    const g = parseInt(p.age);
+                    if (g >= 1 && g <= 13) return g;
+                }
+                return null;
+            }
+
+            // Kurzbeschreibung wie "3. Klasse · 9 Jahre" - je nachdem was gepflegt ist
+            function playerDescription(p) {
+                const parts = [];
+                const g = playerGrade(p);
+                if (g) parts.push(`${g}. Klasse`);
+                const a = ageFromBirthday(p && p.birthday);
+                if (a !== null) parts.push(`${a} Jahre`);
+                if (!parts.length && p && p.age && p.age !== "-") {
+                    parts.push(`${p.ageType === "klasse" ? "Klasse" : "Alter"}: ${p.age}`);
+                }
+                return parts.length ? parts.join(" · ") : "keine Angabe";
+            }
+
+            function updateAgePreview() {
+                const el = document.getElementById("edit-age-preview");
+                const val = document.getElementById("edit-player-birthday").value;
+                const age = ageFromBirthday(val);
+                if (!el) return;
+                el.innerText = (age === null)
+                    ? "Das Alter rechnet die App selbst aus – du musst es nie wieder ändern."
+                    : `Macht aktuell ${age} Jahre. Das aktualisiert sich von selbst.`;
+            }
+
+            function openEditPlayer(key) {
+                const p = ALL_PROFILES[key];
+                if (!p) return;
+                SFX.tap();
+                editingPlayerKey = key;
+
+                document.getElementById("edit-player-name").value = p.name || "";
+                document.getElementById("edit-player-birthday").value = p.birthday || "";
+
+                const sel = document.getElementById("edit-player-grade");
+                sel.innerHTML = `<option value="">Noch keine / keine Angabe</option>`;
+                for (let g = 1; g <= 13; g++) {
+                    sel.innerHTML += `<option value="${g}">${g}. Klasse</option>`;
+                }
+                sel.value = playerGrade(p) || "";
+
+                const hint = document.getElementById("edit-player-hint");
+                if (hint) hint.classList.add("hidden");
+                updateAgePreview();
+                switchView("edit-player");
+            }
+
+            async function saveEditedPlayer() {
+                const key = editingPlayerKey;
+                const hint = document.getElementById("edit-player-hint");
+                if (!key || !ALL_PROFILES[key]) return switchView("family-hub");
+
+                const name = cleanInput(document.getElementById("edit-player-name").value, 24);
+                const birthday = document.getElementById("edit-player-birthday").value || "";
+                const gradeRaw = document.getElementById("edit-player-grade").value;
+                const grade = gradeRaw ? parseInt(gradeRaw) : null;
+
+                if (!name) {
+                    if (hint) { hint.innerText = "Ohne Namen geht es nicht."; hint.classList.remove("hidden"); }
+                    return;
+                }
+                if (birthday && ageFromBirthday(birthday) === null) {
+                    if (hint) { hint.innerText = "Der Geburtstag sieht nicht richtig aus."; hint.classList.remove("hidden"); }
+                    return;
+                }
+
+                // Die alten Felder bleiben gefüllt, damit Ansichten, die noch
+                // ageType/age lesen, weiter das Richtige anzeigen.
+                const update = {
+                    name: name,
+                    birthday: birthday,
+                    grade: grade,
+                    ageType: grade ? "klasse" : "alter",
+                    age: grade ? String(grade) : (ageFromBirthday(birthday) !== null ? String(ageFromBirthday(birthday)) : "-")
+                };
+
+                try {
+                    await db.collection("parents").doc(currentParentUser.uid)
+                        .collection("profiles").doc(key).update(update);
+                    Object.assign(ALL_PROFILES[key], update);
+                    if (activePlayerKey === key && currentPlayer) Object.assign(currentPlayer, update);
+                    showToast("Änderungen gespeichert!", "success");
+                    renderFamilyHub();
+                    switchView("family-hub");
+                } catch (e) {
+                    handleError("saveEditedPlayer", e, "Die Änderungen konnten nicht gespeichert werden.");
+                }
+            }
+
             // === LETZTE AKTIVITÄT ===
             // Zeigt an, wer wann zuletzt gespielt hat - familienweit, weil der
             // Zeitstempel in Firestore am Spieler haengt und nicht am Geraet.
@@ -1836,11 +2093,17 @@
 
             function buildPlayerCard(key) {
                 const p = ALL_PROFILES[key];
-                const btn = document.createElement("button");
                 const guest = !!p.isGuest;
                 const isActive = (key === activePlayerKey);
                 const act = activityLabel(p.lastActive);
-                btn.className = "bg-gray-800 border p-4 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-1 relative " +
+
+                // Der Stift liegt als eigener Knopf NEBEN der Karte, nicht darin -
+                // ein Knopf im Knopf ist ungueltiges HTML und tippt sich schlecht.
+                const wrap = document.createElement("div");
+                wrap.className = "relative";
+
+                const btn = document.createElement("button");
+                btn.className = "w-full bg-gray-800 border p-4 rounded-2xl shadow-md hover:bg-gray-700 flex flex-col items-center gap-1 " +
                     (guest ? "border-sky-600 " : "border-gray-700 ") + (isActive ? "player-active" : "");
                 btn.innerHTML =
                     `${guest ? '<span class="absolute top-1 right-2 text-[10px] font-black text-sky-400">GAST</span>' : ''}` +
@@ -1850,7 +2113,17 @@
                     `<div class="text-xs text-yellow-400 font-bold">🪙 ${p.coins}</div>` +
                     `<div class="text-[10px] font-bold ${act.color} leading-tight">${act.icon} ${esc(act.text)}</div>`;
                 btn.onclick = () => selectProfile(key);
-                return btn;
+                wrap.appendChild(btn);
+
+                const edit = document.createElement("button");
+                edit.className = "absolute bottom-1.5 right-1.5 w-7 h-7 rounded-lg bg-gray-900 border border-gray-700 text-xs text-gray-400 hover:text-emerald-400 hover:border-emerald-600 flex items-center justify-center";
+                edit.title = "Spieler bearbeiten";
+                edit.setAttribute("aria-label", `${p.name} bearbeiten`);
+                edit.innerText = "✏️";
+                edit.onclick = (ev) => { ev.stopPropagation(); openEditPlayer(key); };
+                wrap.appendChild(edit);
+
+                return wrap;
             }
 
             function renderFamilyHub() {
@@ -2971,18 +3244,30 @@
 
             async function saveNewProfile() {
                 const name = cleanInput(document.getElementById("new-profile-name").value, 24);
-                const type = document.getElementById("new-profile-type").value;
-                const age = cleanInput(document.getElementById("new-profile-age").value, 12);
+                const birthday = document.getElementById("new-profile-birthday").value || "";
+                const gradeRaw = document.getElementById("new-profile-grade").value;
+                const grade = gradeRaw ? parseInt(gradeRaw) : null;
                 if (!name) return showToast("Bitte Namen eingeben!", "error");
+                if (birthday && ageFromBirthday(birthday) === null) return showToast("Der Geburtstag sieht nicht richtig aus.", "error");
 
-                const newProf = { name: name, ageType: type, age: age || "-", coins: 0, learnedWords: [] };
+                const newProf = {
+                    name: name,
+                    birthday: birthday,
+                    grade: grade,
+                    // Alte Felder mitfuehren, damit nichts bricht das sie noch liest
+                    ageType: grade ? "klasse" : "alter",
+                    age: grade ? String(grade) : (ageFromBirthday(birthday) !== null ? String(ageFromBirthday(birthday)) : "-"),
+                    coins: 0,
+                    learnedWords: []
+                };
 
                 try {
                     const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(newProf);
                     ALL_PROFILES[docRef.id] = newProf;
 
                     document.getElementById("new-profile-name").value = "";
-                    document.getElementById("new-profile-age").value = "";
+                    document.getElementById("new-profile-birthday").value = "";
+                    document.getElementById("new-profile-grade").value = "";
 
                     showToast("Spieler angelegt!", "success");
                     renderFamilyHub();
@@ -3018,7 +3303,7 @@
                 sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
                 document.getElementById("welcome-text").innerText = `Hallo, ${esc(currentPlayer.name)}!`;
                 document.getElementById("menu-coins").innerText = currentPlayer.coins;
-                document.getElementById("menu-age-display").innerHTML = `${currentPlayer.ageType === 'alter' ? '🎂 Alter' : '🎒 Klasse'}: <span id="menu-age">${currentPlayer.age}</span>`;
+                document.getElementById("menu-age-display").innerHTML = `🎒 <span id="menu-age">${esc(playerDescription(currentPlayer))}</span>`;
                 renderPendingTestCard();
                 renderWeaknessSuggestion();
                 updateMenuGamification();
@@ -3260,7 +3545,7 @@
                     const guestTag = p.isGuest ? ` <span class="text-[10px] font-black text-sky-400 bg-sky-950 px-1.5 py-0.5 rounded">GAST</span>` : "";
                     container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl">
                         <div class="flex justify-between items-center">
-                            <div class="text-blue-400 font-bold">${esc(p.name)}${guestTag} <span class="text-xs text-gray-500">(${p.ageType}: ${p.age})</span></div>
+                            <div class="text-blue-400 font-bold">${esc(p.name)}${guestTag} <span class="text-xs text-gray-500">(${playerDescription(p)})</span></div>
                             <div class="text-yellow-400 font-black">🪙 ${p.coins}</div>
                         </div>
                         <div class="text-xs text-gray-400 mt-1">${lvl.current.icon} ${lvl.current.name} · 🔥 ${streakCount} Tage Streak · 📚 ${wC} Vokabeln</div>
@@ -3622,8 +3907,8 @@
                 // Passend zur Klassenstufe des Spielers vorauswählen (wie im Wissens-Quiz).
                 // Gibt es die Stufe für diese Sprache nicht, wird die nächstliegende genommen.
                 let preselect = keys[0];
-                if (currentPlayer && currentPlayer.ageType === "klasse") {
-                    const g = parseInt(currentPlayer.age);
+                if (currentPlayer && playerGrade(currentPlayer)) {
+                    const g = playerGrade(currentPlayer);
                     if (g >= 1 && g <= 13) {
                         if (keys.includes("k" + g)) preselect = "k" + g;
                         else {

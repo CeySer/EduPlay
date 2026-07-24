@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=38"></script>
+    <script src="data.js?v=41"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -154,8 +154,11 @@
                     </button>
                 </div>
 
-                <!-- FAMILIEN-DUELL (ein Gerät, ohne Internet) -->
-                <div>
+                <!-- FAMILIEN-DUELL (ein Gerät, weitergeben)
+                     Ausgeblendet, solange es keinen echten Offline-Modus gibt:
+                     ohne Service Worker startet die App im Funkloch gar nicht und
+                     Fortschritt liesse sich nicht speichern. Siehe OFFLINE_MODUS_AKTIV. -->
+                <div id="family-duel-block" class="hidden">
                     <button onclick="toggleFamilyDuel()" id="family-duel-toggle-btn"
                         class="w-full p-4 bg-gray-800 border border-gray-700 rounded-2xl shadow-lg flex items-center justify-between">
                         <span class="flex items-center gap-3 font-black text-lg text-rose-300">
@@ -490,10 +493,8 @@
 
                 <div class="space-y-2.5">
                     <div class="flex items-center gap-2 px-1">
-                        <span
-                            class="text-[10px] font-black bg-indigo-900/60 text-indigo-300 border border-indigo-700 px-2 py-0.5 rounded-full">📶
-                            BRAUCHT INTERNET</span>
-                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Jeder am eigenen Handy</span>
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">⚔️ Duell · jeder am
+                            eigenen Handy</span>
                     </div>
                     <div class="grid grid-cols-2 gap-3">
                         <button onclick="openLiveDuelSetup('quiz')"
@@ -960,6 +961,25 @@
                     console.warn("[EduPlay] Fragen-IDs prüfen -> ohne ID:", ohne.length,
                         "| doppelt:", doppelt.length, doppelt.slice(0, 5));
                 }
+
+                // Vokabeln nach derselben Regel prüfen (IDs v0001, v0002, ...)
+                if (typeof VOCABULARY_DATABASE !== 'undefined') {
+                    const vGesehen = {}; let vOhne = 0; const vDoppelt = [];
+                    for (const lang in VOCABULARY_DATABASE) {
+                        for (const stufe in VOCABULARY_DATABASE[lang]) {
+                            VOCABULARY_DATABASE[lang][stufe].words.forEach(w => {
+                                if (!w.id) { vOhne++; return; }
+                                if (vGesehen[w.id]) vDoppelt.push(w.id);
+                                vGesehen[w.id] = true;
+                            });
+                        }
+                    }
+                    if (vOhne || vDoppelt.length) {
+                        console.warn("[EduPlay] Vokabel-IDs prüfen -> ohne ID:", vOhne,
+                            "| doppelt:", vDoppelt.length, vDoppelt.slice(0, 5));
+                    }
+                }
+
                 return { ohne: ohne.length, doppelt: doppelt.length };
             }
 
@@ -1299,6 +1319,7 @@
                 document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
                 // Falls die App offline gestartet wird, gleich Bescheid geben
                 if (typeof renderOfflineBanner === "function") renderOfflineBanner();
+                if (typeof applyOfflineModusSichtbarkeit === "function") applyOfflineModusSichtbarkeit();
                 // Fragen-IDs auf Vollständigkeit prüfen (nur Konsole)
                 if (typeof pruefeFragenIds === "function") pruefeFragenIds();
             };
@@ -1453,9 +1474,24 @@
                 handleError("unhandled", ev.reason, null, { silent: !isNetworkError(ev.reason) });
             });
 
+            // === OFFLINE-MODUS ===
+            // Bewusst ausgeschaltet. Ein echter Offline-Betrieb fehlt noch:
+            // Es gibt keinen Service Worker (die App startet ohne Netz gar nicht),
+            // keine Firestore-Zwischenspeicherung (keine Profile, kein Fortschritt)
+            // und fünf Skripte werden von fremden Servern nachgeladen.
+            // Erst wenn das gebaut ist, hier auf true setzen - dann erscheinen
+            // wieder das Familien-Duell (ein Gerät) und der Offline-Hinweis.
+            const OFFLINE_MODUS_AKTIV = false;
+
+            function applyOfflineModusSichtbarkeit() {
+                const block = document.getElementById("family-duel-block");
+                if (block) block.classList.toggle("hidden", !OFFLINE_MODUS_AKTIV);
+            }
+
             // Sichtbarer Hinweis, wenn das Gerät offline ist. Wichtig im Auto:
             // Die Ein-Gerät-Duelle laufen weiter, alles mit Firebase nicht.
             function renderOfflineBanner() {
+                if (!OFFLINE_MODUS_AKTIV) return;   // solange kein echter Offline-Modus existiert
                 let bar = document.getElementById("offline-banner");
                 if (!bar) {
                     bar = document.createElement("div");
@@ -1601,6 +1637,7 @@
                 // übersichtlich bleibt; beim Spitzenreiter genügt der Knopf-Hinweis.
                 toggleLeaderboard(false);
                 toggleFamilyDuel(false);
+                applyOfflineModusSichtbarkeit();
                 if (leaderBadge) {
                     leaderBadge.innerText = sortedProfiles.length > 0
                         ? `🥇 ${esc(sortedProfiles[0].name)}`

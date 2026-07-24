@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=42"></script>
+    <script src="data.js?v=43"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -401,11 +401,21 @@
                         <label class="text-xs text-gray-400 font-bold block mb-1">Schwierigkeitsgrad</label>
                         <select id="scrabble-difficulty"
                             class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
-                            <option value="leicht">🟢 Leicht (6 Buchstaben, kurze Wörter, 75 Sek.)</option>
-                            <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 60 Sek.)</option>
-                            <option value="schwer">🔴 Schwer (8 Buchstaben, lange Wörter, 45 Sek.)</option>
+                            <option value="leicht">🟢 Leicht (6 Buchstaben, ab 3, 70 Sek.)</option>
+                            <option value="mittel" selected>🟡 Mittel (7 Buchstaben, ab 3, 55 Sek.)</option>
+                            <option value="schwer">🔴 Schwer (8 Buchstaben, ab 4, 40 Sek.)</option>
+                            <option value="experte">🟣 Experte (9 seltene Buchstaben, ab 5, 30 Sek.)</option>
                         </select>
                     </div>
+                    <label class="flex items-start gap-3 bg-gray-900 border border-gray-700 rounded-xl p-3 cursor-pointer">
+                        <input type="checkbox" id="scrabble-require-letter" class="w-5 h-5 accent-amber-500 mt-0.5">
+                        <span class="text-sm">
+                            <span class="font-bold text-white">Pflichtbuchstabe</span>
+                            <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss im Wort
+                                vorkommen. Macht jede Stufe deutlich schwerer.</span>
+                        </span>
+                    </label>
+
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1">Runden pro Spieler</label>
                         <select id="scrabble-rounds"
@@ -491,11 +501,21 @@
                             <label class="text-xs text-gray-400 font-bold block mb-1">Schwierigkeitsgrad</label>
                             <select id="live-duel-difficulty"
                                 class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
-                                <option value="leicht">🟢 Leicht (6 Buchstaben, kurze Wörter, 75 Sek.)</option>
-                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 60 Sek.)</option>
-                                <option value="schwer">🔴 Schwer (8 Buchstaben, lange Wörter, 45 Sek.)</option>
+                                <option value="leicht">🟢 Leicht (6 Buchstaben, ab 3, 70 Sek.)</option>
+                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, ab 3, 55 Sek.)</option>
+                                <option value="schwer">🔴 Schwer (8 Buchstaben, ab 4, 40 Sek.)</option>
+                            <option value="experte">🟣 Experte (9 seltene Buchstaben, ab 5, 30 Sek.)</option>
                             </select>
                         </div>
+                    <label class="flex items-start gap-3 bg-gray-900 border border-gray-700 rounded-xl p-3 cursor-pointer">
+                        <input type="checkbox" id="live-duel-require-letter" class="w-5 h-5 accent-amber-500 mt-0.5">
+                        <span class="text-sm">
+                            <span class="font-bold text-white">Pflichtbuchstabe</span>
+                            <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss im Wort
+                                vorkommen. Macht jede Stufe deutlich schwerer.</span>
+                        </span>
+                    </label>
+
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1">Anzahl Runden</label>
                             <select id="live-duel-rounds"
@@ -1074,11 +1094,21 @@
                             <label class="text-xs text-gray-400 font-bold block mb-1">Schwierigkeitsgrad</label>
                             <select id="tv-scrabble-difficulty"
                                 class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-lg">
-                                <option value="leicht">🟢 Leicht (6 Buchstaben, kurze Wörter, 75 Sek.)</option>
-                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 60 Sek.)</option>
-                                <option value="schwer">🔴 Schwer (8 Buchstaben, lange Wörter, 45 Sek.)</option>
+                                <option value="leicht">🟢 Leicht (6 Buchstaben, ab 3, 70 Sek.)</option>
+                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, ab 3, 55 Sek.)</option>
+                                <option value="schwer">🔴 Schwer (8 Buchstaben, ab 4, 40 Sek.)</option>
+                            <option value="experte">🟣 Experte (9 seltene Buchstaben, ab 5, 30 Sek.)</option>
                             </select>
                         </div>
+                    <label class="flex items-start gap-3 bg-gray-900 border border-gray-700 rounded-xl p-3 cursor-pointer">
+                        <input type="checkbox" id="tv-scrabble-require-letter" class="w-5 h-5 accent-amber-500 mt-0.5">
+                        <span class="text-sm">
+                            <span class="font-bold text-white">Pflichtbuchstabe</span>
+                            <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss im Wort
+                                vorkommen. Macht jede Stufe deutlich schwerer.</span>
+                        </span>
+                    </label>
+
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1">Anzahl Runden</label>
                             <select id="tv-scrabble-rounds"
@@ -2310,10 +2340,34 @@
 
             // Schwierigkeitsgrad steuert: Anzahl der Buchstaben, Länge des garantiert
             // lösbaren Zielworts und die Zeit. Mehr Buchstaben = mehr Möglichkeiten.
+            // letters   = Anzahl Spielsteine
+            // targetMin/Max = Laenge des Wortes, aus dem die Steine gebaut werden
+            // minWord   = kuerzestes Wort, das noch Punkte gibt
+            // filler    = Vorrat fuer die Restplaetze. DAS ist der eigentliche
+            //             Schwierigkeitsregler: haeufige Buchstaben (E,N,I,R,S)
+            //             ergeben viele moegliche Woerter, seltene (K,Z,P,F,W,B)
+            //             machen es knifflig.
             const SCRABBLE_DIFFICULTIES = {
-                leicht: { letters: 6, targetMin: 3, targetMax: 4, time: 75, label: "🟢 Leicht" },
-                mittel: { letters: 7, targetMin: 4, targetMax: 5, time: 60, label: "🟡 Mittel" },
-                schwer: { letters: 8, targetMin: 5, targetMax: 7, time: 45, label: "🔴 Schwer" }
+                leicht: {
+                    letters: 6, targetMin: 3, targetMax: 4, time: 70, minWord: 3,
+                    filler: "EEEEENNNNIIIIRRRSSSAAATTTDDHHUULLGGMMOO",
+                    label: "🟢 Leicht"
+                },
+                mittel: {
+                    letters: 7, targetMin: 4, targetMax: 5, time: 55, minWord: 3,
+                    filler: "EEENNNIIIRRRSSSAAATTTDDHHUULLGGMMOOBWFKZ",
+                    label: "🟡 Mittel"
+                },
+                schwer: {
+                    letters: 8, targetMin: 5, targetMax: 7, time: 40, minWord: 4,
+                    filler: "EENNIIRRSSAATTDDHHUULLGGMMOOBBWWFFKKZZPPVJ",
+                    label: "🔴 Schwer"
+                },
+                experte: {
+                    letters: 9, targetMin: 6, targetMax: 9, time: 30, minWord: 5,
+                    filler: "KKZZPPFFWWBBVVJJXQGGMMOOUUDDLLTTNNEE",
+                    label: "🟣 Experte"
+                }
             };
 
             // Wörterbuch aus data.js als schnelles Nachschlagewerk
@@ -2359,7 +2413,7 @@
             // Dadurch ist garantiert immer mindestens ein richtiges Wort möglich –
             // vorher wurden die Buchstaben rein zufällig gezogen und ergaben oft
             // gar keine lösbare Kombination.
-            function generateScrabbleRack(difficulty) {
+            function generateScrabbleRack(difficulty, requireLetter) {
                 const cfg = SCRABBLE_DIFFICULTIES[difficulty] || SCRABBLE_DIFFICULTIES.mittel;
                 const pool = (typeof GERMAN_WORDS !== "undefined" ? GERMAN_WORDS : [])
                     .filter(w => w.length >= cfg.targetMin && w.length <= cfg.targetMax && w.length <= cfg.letters);
@@ -2373,8 +2427,8 @@
                     letters = [];
                 }
 
-                // Restplätze mit häufigen Buchstaben auffüllen, damit noch mehr Wörter gehen
-                const filler = "EEEEENNNNIIIRRRSSSAAATTTDDHHUULLGGMMOOBWFKZP".split("");
+                // Restplätze aus dem Vorrat der jeweiligen Stufe auffüllen
+                const filler = (cfg.filler || "EEEEENNNNIIIRRRSSSAAATTTDDHHUULLGGMMOOBWFKZP").split("");
                 while (letters.length < cfg.letters) {
                     letters.push(filler[Math.floor(Math.random() * filler.length)]);
                 }
@@ -2384,7 +2438,16 @@
                     const j = Math.floor(Math.random() * (i + 1));
                     [letters[i], letters[j]] = [letters[j], letters[i]];
                 }
-                return { letters, solution };
+
+                // Pflichtbuchstabe: einer aus dem Lösungswort, damit die Aufgabe
+                // lösbar bleibt. Ohne Lösungswort einer der gezogenen Steine.
+                let required = "";
+                if (requireLetter) {
+                    const src = solution ? solution.split("") : letters;
+                    required = src[Math.floor(Math.random() * src.length)];
+                }
+
+                return { letters, solution, required };
             }
 
             function openScrabbleSetup() {
@@ -2405,8 +2468,14 @@
                 const rounds = parseInt(document.getElementById("scrabble-rounds").value);
                 const difficulty = document.getElementById("scrabble-difficulty").value;
                 const diff = SCRABBLE_DIFFICULTIES[difficulty];
-                const startRack = generateScrabbleRack(difficulty);
-                scrabbleState = { playerKeys: checked, rounds, round: 1, playerIndex: 0, difficulty, currentLetters: startRack.letters, solution: startRack.solution, scores: {} };
+                const requireLetter = !!(document.getElementById("scrabble-require-letter") || {}).checked;
+                const startRack = generateScrabbleRack(difficulty, requireLetter);
+                scrabbleState = {
+                    playerKeys: checked, rounds, round: 1, playerIndex: 0, difficulty,
+                    currentLetters: startRack.letters, solution: startRack.solution,
+                    required: startRack.required, requireLetter,
+                    usedWords: new Set(), scores: {}
+                };
                 checked.forEach(k => scrabbleState.scores[k] = 0);
                 switchView('scrabble-play');
                 showScrabbleTurnIntro();
@@ -2431,19 +2500,30 @@
                 document.getElementById("scrabble-play-area").classList.add("hidden");
             }
 
-            function scrabbleTilesHTML(letters, big) {
+            function scrabbleTilesHTML(letters, big, required) {
                 const size = big ? "w-20 h-20" : "w-12 h-12";
                 const textSize = big ? "text-4xl" : "text-2xl";
                 const valSize = big ? "text-xs" : "text-[9px]";
-                return letters.map(l => `
-                    <div class="${size} bg-amber-200 rounded-lg shadow-md flex items-center justify-center relative border-2 border-amber-400">
+                let marked = false;
+                return letters.map(l => {
+                    // Nur EINEN Stein markieren, auch wenn der Buchstabe mehrfach vorkommt
+                    const isReq = required && l === required && !marked;
+                    if (isReq) marked = true;
+                    const look = isReq
+                        ? "bg-emerald-200 border-emerald-500 ring-2 ring-emerald-400"
+                        : "bg-amber-200 border-amber-400";
+                    const valColor = isReq ? "text-emerald-700" : "text-amber-700";
+                    return `
+                    <div class="${size} ${look} rounded-lg shadow-md flex items-center justify-center relative border-2">
                         <span class="${textSize} font-black text-slate-900">${l}</span>
-                        <span class="absolute bottom-0.5 right-1 ${valSize} font-bold text-amber-700">${SCRABBLE_VALUES[l]}</span>
-                    </div>`).join("");
+                        <span class="absolute bottom-0.5 right-1 ${valSize} font-bold ${valColor}">${SCRABBLE_VALUES[l]}</span>
+                        ${isReq ? '<span class="absolute -top-2 -left-2 text-xs">📌</span>' : ''}
+                    </div>`;
+                }).join("");
             }
 
-            function renderScrabbleTiles(letters) {
-                document.getElementById("scrabble-tiles").innerHTML = scrabbleTilesHTML(letters);
+            function renderScrabbleTiles(letters, required) {
+                document.getElementById("scrabble-tiles").innerHTML = scrabbleTilesHTML(letters, false, required);
             }
 
             function computeScrabbleWordScore(word, letters) {
@@ -2461,13 +2541,26 @@
 
             // Bewertet ein eingereichtes Wort einheitlich für alle Spielmodi und
             // liefert mit, WARUM es ggf. nicht zählt (statt nur "falsch").
-            async function evaluateScrabbleWord(word, letters) {
+            // opts: { minWord, required, used }
+            //   minWord  = kuerzestes Wort das zaehlt
+            //   required = Buchstabe der vorkommen MUSS (leer = egal)
+            //   used     = Set der Woerter, die in dieser Partie schon fielen
+            async function evaluateScrabbleWord(word, letters, opts) {
+                const o = opts || {};
                 const w = (word || "").trim().toUpperCase();
-                if (w.length < 2) return { points: 0, status: "tooshort", word: w };
+                const min = o.minWord || 2;
+                if (w.length < min) return { points: 0, status: "tooshort", word: w, min };
+                if (o.required && !w.includes(o.required)) {
+                    return { points: 0, status: "missing", word: w, required: o.required };
+                }
+                if (o.used && o.used.has(w)) return { points: 0, status: "repeat", word: w };
                 const tileResult = computeScrabbleWordScore(w, letters);
                 if (!tileResult.valid) return { points: 0, status: "letters", word: w };
                 const check = await isValidGermanWord(w);
-                if (check.status === "valid") return { points: tileResult.score, status: "valid", bonus: tileResult.bonus, word: w };
+                if (check.status === "valid") {
+                    if (o.used && o.addToUsed !== false) o.used.add(w);
+                    return { points: tileResult.score, status: "valid", bonus: tileResult.bonus, word: w };
+                }
                 if (check.status === "unknown") return { points: 0, status: "unknown", word: w };
                 return { points: 0, status: "invalid", word: w };
             }
@@ -2477,7 +2570,7 @@
                 document.getElementById("scrabble-play-area").classList.remove("hidden");
                 const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
                 document.getElementById("scrabble-progress").innerText = `Runde ${scrabbleState.round}/${scrabbleState.rounds} – ${esc(ALL_PROFILES[key].name)}`;
-                renderScrabbleTiles(scrabbleState.currentLetters);
+                renderScrabbleTiles(scrabbleState.currentLetters, scrabbleState.required);
 
                 // Knopf wieder freigeben – er wird beim Einreichen gesperrt und muss
                 // für den nächsten Zug unbedingt wieder aktiv sein.
@@ -2522,9 +2615,13 @@
                 const fb = document.getElementById("scrabble-live-feedback");
                 if (fb) { fb.innerText = "🔍 Prüfe Wort..."; fb.className = "text-center text-sm font-bold h-5 text-gray-400"; }
 
-                const res = await evaluateScrabbleWord(word, scrabbleState.currentLetters);
+                const res = await evaluateScrabbleWord(word, scrabbleState.currentLetters, {
+                    minWord: (SCRABBLE_DIFFICULTIES[scrabbleState.difficulty] || {}).minWord,
+                    required: scrabbleState.required,
+                    used: scrabbleState.usedWords
+                });
                 const points = res.points;
-                const info = wordStatusInfo(res.status);
+                const info = wordStatusInfo(res.status, res);
                 const note = info.text ? ` – ${info.text}` : "";
 
                 scrabbleState.scores[key] += points;
@@ -2538,9 +2635,10 @@
                     scrabbleState.playerIndex = 0;
                     scrabbleState.round++;
                     if (scrabbleState.round > scrabbleState.rounds) { finishScrabbleGame(); return; }
-                    const nextRack = generateScrabbleRack(scrabbleState.difficulty);
+                    const nextRack = generateScrabbleRack(scrabbleState.difficulty, scrabbleState.requireLetter);
                     scrabbleState.currentLetters = nextRack.letters;
                     scrabbleState.solution = nextRack.solution;
+                    scrabbleState.required = nextRack.required;
                 }
                 showScrabbleTurnIntro();
             }
@@ -2635,7 +2733,14 @@
             }
 
             // Zeit, die den anderen bleibt, NACHDEM der Erste geantwortet hat
-            const SCRABBLE_ANSWER_SECONDS = { leicht: 30, mittel: 20, schwer: 15 };
+            const SCRABBLE_ANSWER_SECONDS = { leicht: 30, mittel: 20, schwer: 15, experte: 12 };
+
+            // Woerter, die in dieser Partie schon Punkte gebracht haben.
+            // In den gleichzeitigen Modi werden sie ERST NACH der Runde
+            // eingetragen - sonst wuerde bestraft, wer zufaellig als Zweiter
+            // ausgewertet wird, obwohl beide gleichzeitig getippt haben.
+            let liveDuelUsedWords = new Set();
+            let tvUsedWords = new Set();
 
             async function createLiveDuel() {
                 if (!currentPlayer || !activePlayerKey) return showToast("Bitte zuerst oben deinen Spieler auswählen!", "error");
@@ -2644,8 +2749,11 @@
                 if (liveDuelType === "scrabble") {
                     const difficulty = document.getElementById("live-duel-difficulty").value;
                     const totalRounds = parseInt(document.getElementById("live-duel-rounds").value);
+                    const requireLetter = !!(document.getElementById("live-duel-require-letter") || {}).checked;
+                    liveDuelUsedWords = new Set();
                     lobbyData = {
                         type: "scrabble", status: "waiting", difficulty, totalRounds, currentRound: 0,
+                        requireLetter,
                         answerSeconds: SCRABBLE_ANSWER_SECONDS[difficulty] || 20,
                         createdBy: activePlayerKey, players: {}
                     };
@@ -2925,7 +3033,7 @@
                 document.getElementById("live-duel-play-content").innerHTML = `
                 <div class="space-y-4">
                     <div class="text-center text-xs font-bold text-gray-400">Runde ${data.currentRound}/${data.totalRounds}</div>
-                    <div class="flex flex-wrap justify-center gap-2">${scrabbleTilesHTML(data.currentLetters)}</div>
+                    <div class="flex flex-wrap justify-center gap-2">${scrabbleTilesHTML(data.currentLetters, false, data.currentRequired)}</div>
                     <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-3">
                         <input type="text" id="live-duel-word-input" placeholder="Dein Wort..." autocomplete="off"
                             class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none text-xl font-black text-center uppercase tracking-widest">
@@ -2983,21 +3091,33 @@
                 } else {
                     const letters = data.currentLetters;
                     for (const key of Object.keys(players)) {
-                        const res = await evaluateScrabbleWord(players[key].word, letters);
+                        const res = await evaluateScrabbleWord(players[key].word, letters, {
+                            minWord: (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord,
+                            required: data.currentRequired || "",
+                            used: liveDuelUsedWords, addToUsed: false
+                        });
                         players[key].score = (players[key].score || 0) + res.points;
                         players[key].lastRoundPoints = res.points;
                         players[key].wordStatus = res.status;
                     }
+                    Object.keys(players).forEach(k => {
+                        if (players[k].wordStatus === "valid" && players[k].word) {
+                            liveDuelUsedWords.add(String(players[k].word).toUpperCase());
+                        }
+                    });
                     await liveDuelRef.update({ status: "reveal", players, answerDeadline: null });
                 }
             }
 
             // Warum zählte ein Wort nicht? Klartext statt nur einem Symbol.
-            function wordStatusInfo(status) {
+            function wordStatusInfo(status, extra) {
+                const e = extra || {};
                 switch (status) {
                     case "valid": return { icon: "✅", text: "" };
                     case "letters": return { icon: "❌", text: "Buchstaben nicht vorhanden" };
-                    case "tooshort": return { icon: "❌", text: "zu kurz (min. 2 Buchstaben)" };
+                    case "tooshort": return { icon: "❌", text: `zu kurz (min. ${e.min || 2} Buchstaben)` };
+                    case "missing": return { icon: "❌", text: `Pflichtbuchstabe ${e.required || ""} fehlt` };
+                    case "repeat": return { icon: "🔁", text: "Wort gab es in dieser Runde schon" };
                     case "unknown": return { icon: "❓", text: "Wort unbekannt (offline nicht prüfbar)" };
                     default: return { icon: "❌", text: "kein gültiges Wort" };
                 }
@@ -3014,7 +3134,7 @@
                     if (isQuiz) {
                         icon = p.lastRoundPoints > 0 ? "✅" : "❌";
                     } else {
-                        const info = wordStatusInfo(p.wordStatus);
+                        const info = wordStatusInfo(p.wordStatus, p);
                         icon = info.icon;
                         detail = info.text ? `<div class="text-[11px] text-gray-500 font-normal mt-0.5">${info.text}</div>` : "";
                     }
@@ -3069,8 +3189,8 @@
                 if (data.type === "quiz") {
                     await liveDuelRef.update({ status: "playing", currentIndex: data.currentIndex + 1, players, answerDeadline: null });
                 } else {
-                    const rack = generateScrabbleRack(data.difficulty);
-                    await liveDuelRef.update({ status: "playing", currentRound: data.currentRound + 1, currentLetters: rack.letters, currentSolution: rack.solution, players, answerDeadline: null });
+                    const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter);
+                    await liveDuelRef.update({ status: "playing", currentRound: data.currentRound + 1, currentLetters: rack.letters, currentSolution: rack.solution, currentRequired: rack.required || "", players, answerDeadline: null });
                 }
             }
 
@@ -3081,8 +3201,8 @@
                         const diff = SCRABBLE_DIFFICULTIES[data.difficulty];
                         let players = data.players;
                         Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].word = ""; });
-                        const rack = generateScrabbleRack(data.difficulty);
-                        liveDuelRef.update({ status: "playing", currentRound: 1, currentLetters: rack.letters, currentSolution: rack.solution, players, answerDeadline: null });
+                        const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter);
+                        liveDuelRef.update({ status: "playing", currentRound: 1, currentLetters: rack.letters, currentSolution: rack.solution, currentRequired: rack.required || "", players, answerDeadline: null });
                     });
                 } else {
                     liveDuelRef.get().then(doc => {
@@ -3118,11 +3238,13 @@
                     if (data.type === "scrabble") {
                         const difficulty = (document.getElementById("again-difficulty") || {}).value || data.difficulty || "mittel";
                         const totalRounds = parseInt((document.getElementById("again-rounds") || {}).value) || data.totalRounds || 5;
-                        const rack = generateScrabbleRack(difficulty);
+                        const requireLetter = !!data.requireLetter;
+                        liveDuelUsedWords = new Set();
+                        const rack = generateScrabbleRack(difficulty, requireLetter);
                         await liveDuelRef.update({
-                            status: "playing", difficulty, totalRounds, currentRound: 1,
+                            status: "playing", difficulty, totalRounds, currentRound: 1, requireLetter,
                             answerSeconds: SCRABBLE_ANSWER_SECONDS[difficulty] || 20,
-                            currentLetters: rack.letters, currentSolution: rack.solution,
+                            currentLetters: rack.letters, currentSolution: rack.solution, currentRequired: rack.required || "",
                             answerDeadline: null, players, review: []
                         });
                     } else {
@@ -3210,9 +3332,10 @@
                             <select id="again-category" class="w-full p-3 bg-gray-950 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm"></select>
                         ` : `
                             <select id="again-difficulty" class="w-full p-3 bg-gray-950 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm">
-                                <option value="leicht">🟢 Leicht (6 Buchstaben, 75 Sek.)</option>
-                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 60 Sek.)</option>
-                                <option value="schwer">🔴 Schwer (8 Buchstaben, 45 Sek.)</option>
+                                <option value="leicht">🟢 Leicht (6 Buchstaben, 70 Sek.)</option>
+                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, ab 3, 55 Sek.)</option>
+                                <option value="schwer">🔴 Schwer (8 Buchstaben, 40 Sek.)</option>
+                                <option value="experte">🟣 Experte (9 Buchstaben, 30 Sek.)</option>
                             </select>
                             <select id="again-rounds" class="w-full p-3 bg-gray-950 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm">
                                 <option value="3">3 Runden</option>
@@ -4032,7 +4155,9 @@
                 if (tvHostMode === 'scrabble') {
                     const difficulty = document.getElementById("tv-scrabble-difficulty").value;
                     const totalRounds = parseInt(document.getElementById("tv-scrabble-rounds").value);
-                    lobbyData = { status: "waiting", mode: "scrabble", difficulty, totalRounds, currentRound: 0, players: {} };
+                    const requireLetter = !!(document.getElementById("tv-scrabble-require-letter") || {}).checked;
+                    tvUsedWords = new Set();
+                    lobbyData = { status: "waiting", mode: "scrabble", difficulty, totalRounds, currentRound: 0, requireLetter, players: {} };
                 } else {
                     const category = document.getElementById("tv-quiz-category").value;
                     lobbyData = { status: "waiting", mode: "quiz", category: category, currentQuestionIndex: 0, players: {} };
@@ -4103,23 +4228,23 @@
 
             // --- TV-SCRABBLE (Host-Seite) ---
             function startTVScrabbleRound(data) {
-                const rack = generateScrabbleRack(data.difficulty);
+                const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter);
                 const letters = rack.letters;
                 const round = (data.currentRound || 0) + 1;
                 const playersData = data.players || {};
                 Object.keys(playersData).forEach(k => { playersData[k].hasAnswered = false; playersData[k].word = ""; playersData[k].score = playersData[k].score || 0; });
                 isResolving = false;
-                tvGameRef.update({ status: "playing", showAnswer: false, currentLetters: letters, currentSolution: rack.solution, currentRound: round, players: playersData });
-                showTVHostScrabbleRound(letters, round, data.totalRounds);
+                tvGameRef.update({ status: "playing", showAnswer: false, currentLetters: letters, currentSolution: rack.solution, currentRequired: rack.required || "", currentRound: round, players: playersData });
+                showTVHostScrabbleRound(letters, round, data.totalRounds, rack.required || "");
             }
 
-            function showTVHostScrabbleRound(letters, round, totalRounds) {
+            function showTVHostScrabbleRound(letters, round, totalRounds, required) {
                 document.getElementById("view-tv-quiz-host").innerHTML = `
             <div class="h-[90vh] flex flex-col justify-between p-6">
                 <div class="text-center bg-gray-800 p-8 rounded-3xl border-4 border-amber-500 shadow-xl mb-8">
                     <p class="text-amber-400 font-black text-xl mb-4">Runde ${round} / ${totalRounds}</p>
                     <h1 class="text-2xl md:text-3xl font-black text-white leading-tight mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
-                    <div class="flex flex-wrap justify-center gap-3">${scrabbleTilesHTML(letters, true)}</div>
+                    <div class="flex flex-wrap justify-center gap-3">${scrabbleTilesHTML(letters, true, required)}</div>
                 </div>
                 <div class="text-center"><span id="tv-answer-counter" class="text-gray-400 font-bold text-xl">0 von 0 haben geantwortet</span></div>
                 <div class="text-center mt-4"><button onclick="forceTVScrabbleReveal()" class="p-4 px-10 bg-gray-700 hover:bg-gray-600 text-white font-bold rounded-xl shadow-md">Runde jetzt auswerten ⏱️</button></div>
@@ -4144,17 +4269,26 @@
             </div>`;
 
                 for (const key of Object.keys(playersData)) {
-                    const res = await evaluateScrabbleWord(playersData[key].word, letters);
+                    const res = await evaluateScrabbleWord(playersData[key].word, letters, {
+                        minWord: (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord,
+                        required: data.currentRequired || "",
+                        used: tvUsedWords, addToUsed: false
+                    });
                     playersData[key].score = (playersData[key].score || 0) + res.points;
                     playersData[key].lastRoundPoints = res.points;
                     playersData[key].wordStatus = res.status;
                 }
+                Object.keys(playersData).forEach(k => {
+                    if (playersData[k].wordStatus === "valid" && playersData[k].word) {
+                        tvUsedWords.add(String(playersData[k].word).toUpperCase());
+                    }
+                });
                 tvGameRef.update({ showAnswer: true, players: playersData });
 
                 const isLastRound = data.currentRound >= data.totalRounds;
                 let rowsHtml = "";
                 Object.values(playersData).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
-                    const sInfo = wordStatusInfo(p.wordStatus);
+                    const sInfo = wordStatusInfo(p.wordStatus, p);
                     const sDetail = sInfo.text ? `<div class="text-sm text-gray-500 font-normal mt-1">${sInfo.text}</div>` : "";
                     rowsHtml += `<div class="flex justify-between items-start bg-gray-900 border border-gray-700 rounded-xl p-4 gap-3"><div class="font-bold text-white text-lg">${sInfo.icon} ${esc(p.name)}: <span class="text-amber-300">"${esc(p.word || "-")}"</span>${sDetail}</div><div class="font-black text-emerald-400 text-xl shrink-0">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
                 });
@@ -4431,14 +4565,14 @@
                                 if (data.showAnswer) {
                                     const points = myData.lastRoundPoints || 0;
                                     const bg = points > 0 ? "bg-emerald-500" : "bg-gray-700";
-                                    const pInfo = wordStatusInfo(myData.wordStatus);
+                                    const pInfo = wordStatusInfo(myData.wordStatus, myData);
                                     const statusText = myData.wordStatus === "valid" ? "Erkannt! ✅" : `${pInfo.icon} ${pInfo.text}`;
                                     document.getElementById("view-tv-quiz-player").innerHTML = `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-7xl mb-6">${points > 0 ? "✅" : "😅"}</div><h2 class="text-2xl font-black mb-2">Dein Wort: "${esc(myData.word || "-")}"</h2><p class="text-sm opacity-70 mb-2">${statusText}</p><p class="text-xl font-bold">+ ${points} Punkte diese Runde</p><p class="text-sm opacity-80 mt-2">Gesamt: ${myData.score || 0} Punkte</p></div>`;
                                     if (points > 0) { try { confetti(); } catch (e) { } SFX.correct(); } else { SFX.wrong(); }
                                 } else if (!myData.hasAnswered) {
                                     document.getElementById("view-tv-quiz-player").innerHTML = `
                                 <div class="space-y-4">
-                                    <div class="flex flex-wrap justify-center gap-2">${scrabbleTilesHTML(data.currentLetters)}</div>
+                                    <div class="flex flex-wrap justify-center gap-2">${scrabbleTilesHTML(data.currentLetters, false, data.currentRequired)}</div>
                                     <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl space-y-3">
                                         <input type="text" id="tv-scrabble-word-input" placeholder="Dein Wort..." autocomplete="off"
                                             class="w-full p-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none text-xl font-black text-center uppercase tracking-widest">

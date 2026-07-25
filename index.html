@@ -282,6 +282,22 @@
 
 <body class="min-h-screen flex justify-center items-start overflow-x-hidden antialiased">
 
+    <!-- Fernseher-Steuerung: nur sichtbar, wenn mit dem TV/Receiver verbunden -->
+    <div id="castControlPanel" class="hidden fixed bottom-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur border-t border-indigo-500/40 p-3">
+        <div class="max-w-md mx-auto">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-indigo-300">📺 Fernseher-Steuerung</span>
+                <span id="castPanelStatus" class="text-xs text-gray-400">Lobby – bereit</span>
+            </div>
+            <div class="grid grid-cols-4 gap-2">
+                <button onclick="castStartQuiz()" class="py-2 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-sm transition-all">🚀 Start</button>
+                <button onclick="castReveal()" class="py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-sm transition-all">💡 Lösung</button>
+                <button onclick="castNext()" class="py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm transition-all">➔ Nächste</button>
+                <button onclick="castRestart()" class="py-2 rounded-xl bg-gray-700 hover:bg-gray-600 text-white font-bold text-sm transition-all">🔄 Neu</button>
+            </div>
+        </div>
+    </div>
+
     <div id="toast-container"
         class="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 w-[90%] max-w-md pointer-events-none">
     </div>
@@ -5100,8 +5116,11 @@
                         }
                     }, 1000);
 
-                    // Lobby in Firebase erstellen
+                    // Lobby in Firebase erstellen (inkl. Fragen fuer die Klasse des Spielers)
                     createTVLobby(parentId, playerName);
+                    // Host-Steuerung aktivieren: Panel zeigen + auf Lobby/Befehle lauschen
+                    startCastLobbyListener();
+                    showCastPanel(true);
                 } else {
                     showToast('⚠️ Bitte Popups erlauben für den Fernseher-Modus!', 'error', 'cast');
                 }
@@ -5118,6 +5137,8 @@
                 castWindow.close();
             }
             castWindow = null;
+            stopCastLobbyListener();
+            showCastPanel(false);
             updateCastButton();
             showToast('📺 Verbindung getrennt', 'info', 'cast');
         }
@@ -5140,6 +5161,8 @@
                 .set({
                     status: 'lobby',
                     players: {},
+                    questions: buildCastQuestions(),
+                    currentIndex: 0,
                     createdBy: hostName || 'Host',
                     createdAt: Date.now()
                 })
@@ -5173,6 +5196,105 @@
         });
 
         console.log('📺 Cast-Funktionen geladen');
+
+        // ===== HOST-STEUERUNG fuer den Fernseher (Schritt 2, v1: Praesentation) =====
+        // Die App ist die Wahrheit: sie schreibt status/currentIndex/questions ins
+        // Lobby-Doc, der Receiver rendert nach data.status. Zusaetzlich lauscht sie auf
+        // hostCommand, damit auch die Knoepfe auf dem TV-Screen funktionieren.
+        // Spaeter leicht erweiterbar: Mitspieler schreiben sich in players/lastAnswer,
+        // Auswertung/Punkte kommen dann bei castReveal dazu.
+        let castLobbyUnsub = null;
+        const CAST_QUESTION_COUNT = 10;
+
+        function castLobbyRef() {
+            if (!currentParentUser) return null;
+            return db.collection('parents').doc(currentParentUser.uid).collection('tv_game').doc('lobby');
+        }
+
+        // Fragen fuer die Klasse des aktuellen Spielers, ins Receiver-Format gebracht.
+        function buildCastQuestions() {
+            const grade = (typeof playerGrade === 'function') ? playerGrade(currentPlayer) : null;
+            let pool = (grade ? questionsByGrade(grade) : QUESTIONS_DATABASE) || [];
+            if (!pool.length) pool = QUESTIONS_DATABASE || [];
+            const picked = shuffleArray(pool).slice(0, CAST_QUESTION_COUNT).map(shuffleAnswers);
+            return picked.map(function (q) {
+                return { question: q.question, answers: q.answers, correct: q.correct, explanation: q.explanation || '' };
+            });
+        }
+
+        // Quiz starten (frische Fragen) -> Receiver zeigt Frage 1
+        function castStartQuiz() {
+            const ref = castLobbyRef();
+            if (!ref) { showToast('Bitte zuerst mit dem Fernseher verbinden.', 'error', 'cast'); return; }
+            const questions = buildCastQuestions();
+            if (!questions.length) { showToast('Keine Fragen fuer diese Klasse gefunden!', 'error', 'cast'); return; }
+            ref.set({ status: 'playing', currentIndex: 0, questions: questions, updatedAt: Date.now() }, { merge: true });
+        }
+
+        // Aufloesung der aktuellen Frage zeigen
+        function castReveal() {
+            const ref = castLobbyRef(); if (!ref) return;
+            ref.set({ status: 'reveal', updatedAt: Date.now() }, { merge: true });
+        }
+
+        // Naechste Frage (oder Ende)
+        function castNext() {
+            const ref = castLobbyRef(); if (!ref) return;
+            ref.get().then(function (snap) {
+                const d = snap.data() || {};
+                const total = (d.questions || []).length;
+                const idx = (d.currentIndex || 0) + 1;
+                if (idx >= total) {
+                    ref.set({ status: 'finished', updatedAt: Date.now() }, { merge: true });
+                } else {
+                    ref.set({ status: 'playing', currentIndex: idx, updatedAt: Date.now() }, { merge: true });
+                }
+            });
+        }
+
+        // Neustart mit frischen Fragen
+        function castRestart() {
+            const ref = castLobbyRef(); if (!ref) return;
+            ref.set({ status: 'playing', currentIndex: 0, questions: buildCastQuestions(), updatedAt: Date.now() }, { merge: true });
+        }
+
+        // Panel ein-/ausblenden
+        function showCastPanel(show) {
+            const p = document.getElementById('castControlPanel');
+            if (p) p.classList.toggle('hidden', !show);
+        }
+
+        // Statuszeile im Panel aktualisieren
+        function updateCastPanel(status, idx, total) {
+            const el = document.getElementById('castPanelStatus');
+            if (!el) return;
+            let txt = 'Lobby';
+            if (status === 'playing') txt = 'Frage ' + ((idx || 0) + 1) + '/' + (total || 0);
+            else if (status === 'reveal') txt = 'Loesung ' + ((idx || 0) + 1) + '/' + (total || 0);
+            else if (status === 'finished') txt = '🏆 Beendet';
+            else if (status === 'lobby') txt = 'Lobby – bereit';
+            el.textContent = txt;
+        }
+
+        // Auf das Lobby-Doc lauschen: Panel-Anzeige + Befehle der TV-Knoepfe ausfuehren
+        function startCastLobbyListener() {
+            const ref = castLobbyRef(); if (!ref) return;
+            stopCastLobbyListener();
+            castLobbyUnsub = ref.onSnapshot(function (snap) {
+                const d = snap.data() || {};
+                updateCastPanel(d.status, d.currentIndex || 0, (d.questions || []).length);
+                if (d.hostCommand && d.hostCommand.type) {
+                    const t = d.hostCommand.type;
+                    ref.update({ hostCommand: null }).catch(function () { });
+                    if (t === 'START_QUIZ') castStartQuiz();
+                    else if (t === 'NEXT_QUESTION') castNext();
+                    else if (t === 'RESTART') castRestart();
+                }
+            });
+        }
+        function stopCastLobbyListener() {
+            if (castLobbyUnsub) { castLobbyUnsub(); castLobbyUnsub = null; }
+        }
         </script>
     </div>
 </body>

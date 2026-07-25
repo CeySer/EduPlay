@@ -561,6 +561,7 @@
                             <option value="mittel" selected>🟡 Mittel (7 Buchstaben, ab 3, 55 Sek.)</option>
                             <option value="schwer">🔴 Schwer (8 Buchstaben, ab 4, 40 Sek.)</option>
                             <option value="experte">🟣 Experte (9 seltene Buchstaben, ab 5, 30 Sek.)</option>
+                            <option value="profi">🔥 Profi (14 Buchstaben, ab 6, nur schwere Wörter)</option>
                         </select>
                     </div>
                     <label class="flex items-start gap-3 bg-gray-900 border border-gray-700 rounded-xl p-3 cursor-pointer">
@@ -654,6 +655,14 @@
 
                     <div id="live-duel-scrabble-options" class="hidden space-y-3">
                         <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1">Wortschatz</label>
+                            <select id="live-duel-wordmode"
+                                class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
+                                <option value="kids" selected>👶 Kinder (einfache Wörter)</option>
+                                <option value="adult">🎓 Erwachsene (schwere Wörter)</option>
+                            </select>
+                        </div>
+                        <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1">Schwierigkeitsgrad</label>
                             <select id="live-duel-difficulty"
                                 class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
@@ -661,6 +670,7 @@
                                 <option value="mittel" selected>🟡 Mittel (7 Buchstaben, ab 3, 55 Sek.)</option>
                                 <option value="schwer">🔴 Schwer (8 Buchstaben, ab 4, 40 Sek.)</option>
                             <option value="experte">🟣 Experte (9 seltene Buchstaben, ab 5, 30 Sek.)</option>
+                            <option value="profi">🔥 Profi (14 Buchstaben, ab 6, nur schwere Wörter)</option>
                             </select>
                         </div>
                     <label class="flex items-start gap-3 bg-gray-900 border border-gray-700 rounded-xl p-3 cursor-pointer">
@@ -1254,6 +1264,14 @@
                     <div id="tv-scrabble-mode-options" class="hidden text-left space-y-3 mb-2">
                         <p class="text-xs text-gray-400 text-center">Aus den Buchstaben ist immer mindestens ein echtes Wort möglich. Geprüft wird mit eingebautem Wörterbuch und <a href="https://languagetool.org" target="_blank" class="underline text-indigo-400">LanguageTool.org</a>.</p>
                         <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1">Wortschatz</label>
+                            <select id="tv-scrabble-wordmode"
+                                class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-lg">
+                                <option value="kids" selected>👶 Kinder (einfache Wörter)</option>
+                                <option value="adult">🎓 Erwachsene (schwere Wörter)</option>
+                            </select>
+                        </div>
+                        <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1">Schwierigkeitsgrad</label>
                             <select id="tv-scrabble-difficulty"
                                 class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold text-lg">
@@ -1261,6 +1279,7 @@
                                 <option value="mittel" selected>🟡 Mittel (7 Buchstaben, ab 3, 55 Sek.)</option>
                                 <option value="schwer">🔴 Schwer (8 Buchstaben, ab 4, 40 Sek.)</option>
                             <option value="experte">🟣 Experte (9 seltene Buchstaben, ab 5, 30 Sek.)</option>
+                            <option value="profi">🔥 Profi (14 Buchstaben, ab 6, nur schwere Wörter)</option>
                             </select>
                         </div>
                     <label class="flex items-start gap-3 bg-gray-900 border border-gray-700 rounded-xl p-3 cursor-pointer">
@@ -2597,6 +2616,14 @@
                     letters: 9, targetMin: 6, targetMax: 9, time: 30, minWord: 5,
                     filler: "KKZZPPFFWWBBVVJJXQGGMMOOUUDDLLTTNNEE",
                     label: "🟣 Experte"
+                },
+                profi: {
+                    // 12–14 Buchstaben. Nur die Erwachsenenliste hat so lange Wörter,
+                    // deshalb wird hier immer aus GERMAN_WORDS_ADULT gezogen (siehe
+                    // generateScrabbleRack). Das eine 16-Buchstaben-Wort bleibt außen vor.
+                    letters: 14, targetMin: 12, targetMax: 14, time: 60, minWord: 6,
+                    filler: "EEEEENNNNIIIIRRRSSSSAAAATTTTDDDHHHUULLGGMMOOBBWWFFKKZZPP",
+                    label: "🔥 Profi"
                 }
             };
 
@@ -2651,7 +2678,10 @@
             function generateScrabbleRack(difficulty, requireLetter, wordMode) {
                 const cfg = SCRABBLE_DIFFICULTIES[difficulty] || SCRABBLE_DIFFICULTIES.mittel;
                 // Wortschatz je nach Modus: "adult" = schwere Wörter, sonst Kinder (Standard).
-                const wordSource = (wordMode === "adult" && typeof GERMAN_WORDS_ADULT !== "undefined")
+                // Profi (12+ Buchstaben) gibt es nur in der Erwachsenenliste – dort deshalb
+                // immer die schweren Wörter, egal welcher Modus gewählt ist.
+                const useAdult = (wordMode === "adult" || difficulty === "profi");
+                const wordSource = (useAdult && typeof GERMAN_WORDS_ADULT !== "undefined")
                     ? GERMAN_WORDS_ADULT
                     : (typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : []);
                 const pool = wordSource
@@ -2998,7 +3028,7 @@
             }
 
             // Zeit, die den anderen bleibt, NACHDEM der Erste geantwortet hat
-            const SCRABBLE_ANSWER_SECONDS = { leicht: 30, mittel: 20, schwer: 15, experte: 12 };
+            const SCRABBLE_ANSWER_SECONDS = { leicht: 30, mittel: 20, schwer: 15, experte: 12, profi: 35 };
 
             // Woerter, die in dieser Partie schon Punkte gebracht haben.
             // In den gleichzeitigen Modi werden sie ERST NACH der Runde
@@ -3015,10 +3045,11 @@
                     const difficulty = document.getElementById("live-duel-difficulty").value;
                     const totalRounds = parseInt(document.getElementById("live-duel-rounds").value);
                     const requireLetter = !!(document.getElementById("live-duel-require-letter") || {}).checked;
+                    const wordMode = (document.getElementById("live-duel-wordmode") || {}).value || "kids";
                     liveDuelUsedWords = new Set();
                     lobbyData = {
                         type: "scrabble", status: "waiting", difficulty, totalRounds, currentRound: 0,
-                        requireLetter,
+                        requireLetter, wordMode,
                         answerSeconds: SCRABBLE_ANSWER_SECONDS[difficulty] || 20,
                         createdBy: activePlayerKey, players: {}
                     };
@@ -3504,7 +3535,7 @@
                 if (data.type === "quiz") {
                     await liveDuelRef.update({ status: "playing", currentIndex: data.currentIndex + 1, players, answerDeadline: null });
                 } else {
-                    const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter);
+                    const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
                     await liveDuelRef.update({ status: "playing", currentRound: data.currentRound + 1, currentLetters: rack.letters, currentSolution: rack.solution, currentRequired: rack.required || "", players, answerDeadline: null });
                 }
             }
@@ -3516,7 +3547,7 @@
                         const diff = SCRABBLE_DIFFICULTIES[data.difficulty];
                         let players = data.players;
                         Object.keys(players).forEach(k => { players[k].hasAnswered = false; players[k].word = ""; players[k].pending = false; });
-                        const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter);
+                        const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
                         liveDuelRef.update({ status: "playing", currentRound: 1, currentLetters: rack.letters, currentSolution: rack.solution, currentRequired: rack.required || "", players, answerDeadline: null });
                     });
                 } else {
@@ -3556,9 +3587,9 @@
                         const totalRounds = parseInt((document.getElementById("again-rounds") || {}).value) || data.totalRounds || 5;
                         const requireLetter = !!data.requireLetter;
                         liveDuelUsedWords = new Set();
-                        const rack = generateScrabbleRack(difficulty, requireLetter);
+                        const rack = generateScrabbleRack(difficulty, requireLetter, data.wordMode);
                         await liveDuelRef.update({
-                            status: "playing", difficulty, totalRounds, currentRound: 1, requireLetter,
+                            status: "playing", difficulty, totalRounds, currentRound: 1, requireLetter, wordMode: data.wordMode || "kids",
                             answerSeconds: SCRABBLE_ANSWER_SECONDS[difficulty] || 20,
                             currentLetters: rack.letters, currentSolution: rack.solution, currentRequired: rack.required || "",
                             answerDeadline: null, players, review: []
@@ -3652,6 +3683,7 @@
                                 <option value="mittel" selected>🟡 Mittel (7 Buchstaben, ab 3, 55 Sek.)</option>
                                 <option value="schwer">🔴 Schwer (8 Buchstaben, 40 Sek.)</option>
                                 <option value="experte">🟣 Experte (9 Buchstaben, 30 Sek.)</option>
+                                <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
                             </select>
                             <select id="again-rounds" class="w-full p-3 bg-gray-950 border border-gray-700 rounded-xl text-white outline-none font-bold text-sm">
                                 <option value="3">3 Runden</option>
@@ -4510,8 +4542,9 @@
                     const difficulty = document.getElementById("tv-scrabble-difficulty").value;
                     const totalRounds = parseInt(document.getElementById("tv-scrabble-rounds").value);
                     const requireLetter = !!(document.getElementById("tv-scrabble-require-letter") || {}).checked;
+                    const wordMode = (document.getElementById("tv-scrabble-wordmode") || {}).value || "kids";
                     tvUsedWords = new Set();
-                    lobbyData = { status: "waiting", mode: "scrabble", difficulty, totalRounds, currentRound: 0, requireLetter, players: {} };
+                    lobbyData = { status: "waiting", mode: "scrabble", difficulty, totalRounds, currentRound: 0, requireLetter, wordMode, players: {} };
                 } else {
                     const category = document.getElementById("tv-quiz-category").value;
                     lobbyData = { status: "waiting", mode: "quiz", category: category, currentQuestionIndex: 0, players: {} };
@@ -4582,7 +4615,7 @@
 
             // --- TV-SCRABBLE (Host-Seite) ---
             function startTVScrabbleRound(data) {
-                const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter);
+                const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
                 const letters = rack.letters;
                 const round = (data.currentRound || 0) + 1;
                 const playersData = data.players || {};

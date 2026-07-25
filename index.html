@@ -18,7 +18,9 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- HIER WERDEN DEINE DATEN GELADEN -->
-    <script src="data.js?v=45"></script>
+    <script src="data.js?v=46"></script>
+    <script src="words_kids.js?v=1"></script>
+    <script src="words_adult.js?v=1"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -542,6 +544,14 @@
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-2">Wer spielt mit? (mind. 1)</label>
                         <div id="scrabble-player-checkboxes" class="grid grid-cols-2 gap-2"></div>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1">Wortschatz</label>
+                        <select id="scrabble-wordmode"
+                            class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none font-bold">
+                            <option value="kids" selected>👶 Kinder (einfache Wörter)</option>
+                            <option value="adult">🎓 Erwachsene (schwere Wörter)</option>
+                        </select>
                     </div>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1">Schwierigkeitsgrad</label>
@@ -2591,8 +2601,13 @@
             };
 
             // Wörterbuch aus data.js als schnelles Nachschlagewerk
+            // Wörterbuch = Vereinigung beider Listen, damit auch im Erwachsenen-Modus
+            // einfache Wörter (z. B. HUND) als gültig zählen.
             const WORD_SET = new Set(
-                (typeof GERMAN_WORDS !== "undefined" ? GERMAN_WORDS : []).map(w => w.toUpperCase())
+                [
+                    ...(typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : []),
+                    ...(typeof GERMAN_WORDS_ADULT !== "undefined" ? GERMAN_WORDS_ADULT : [])
+                ].map(w => w.toUpperCase())
             );
 
             // Wortprüfung: erst das eingebaute Wörterbuch (sofort, funktioniert auch
@@ -2633,9 +2648,13 @@
             // Dadurch ist garantiert immer mindestens ein richtiges Wort möglich –
             // vorher wurden die Buchstaben rein zufällig gezogen und ergaben oft
             // gar keine lösbare Kombination.
-            function generateScrabbleRack(difficulty, requireLetter) {
+            function generateScrabbleRack(difficulty, requireLetter, wordMode) {
                 const cfg = SCRABBLE_DIFFICULTIES[difficulty] || SCRABBLE_DIFFICULTIES.mittel;
-                const pool = (typeof GERMAN_WORDS !== "undefined" ? GERMAN_WORDS : [])
+                // Wortschatz je nach Modus: "adult" = schwere Wörter, sonst Kinder (Standard).
+                const wordSource = (wordMode === "adult" && typeof GERMAN_WORDS_ADULT !== "undefined")
+                    ? GERMAN_WORDS_ADULT
+                    : (typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : []);
+                const pool = wordSource
                     .filter(w => w.length >= cfg.targetMin && w.length <= cfg.targetMax && w.length <= cfg.letters);
 
                 let letters;
@@ -2688,10 +2707,11 @@
                 const rounds = parseInt(document.getElementById("scrabble-rounds").value);
                 const difficulty = document.getElementById("scrabble-difficulty").value;
                 const diff = SCRABBLE_DIFFICULTIES[difficulty];
+                const wordMode = (document.getElementById("scrabble-wordmode") || {}).value || "kids";
                 const requireLetter = !!(document.getElementById("scrabble-require-letter") || {}).checked;
-                const startRack = generateScrabbleRack(difficulty, requireLetter);
+                const startRack = generateScrabbleRack(difficulty, requireLetter, wordMode);
                 scrabbleState = {
-                    playerKeys: checked, rounds, round: 1, playerIndex: 0, difficulty,
+                    playerKeys: checked, rounds, round: 1, playerIndex: 0, difficulty, wordMode,
                     currentLetters: startRack.letters, solution: startRack.solution,
                     required: startRack.required, requireLetter,
                     usedWords: new Set(), scores: {}
@@ -2855,7 +2875,7 @@
                     scrabbleState.playerIndex = 0;
                     scrabbleState.round++;
                     if (scrabbleState.round > scrabbleState.rounds) { finishScrabbleGame(); return; }
-                    const nextRack = generateScrabbleRack(scrabbleState.difficulty, scrabbleState.requireLetter);
+                    const nextRack = generateScrabbleRack(scrabbleState.difficulty, scrabbleState.requireLetter, scrabbleState.wordMode);
                     scrabbleState.currentLetters = nextRack.letters;
                     scrabbleState.solution = nextRack.solution;
                     scrabbleState.required = nextRack.required;

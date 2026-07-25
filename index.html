@@ -2990,17 +2990,19 @@
                 const box = document.getElementById("open-duels-list");
                 if (!box) return;
                 const now = Date.now();
-                const STALE = 45000;
+                const STALE = 90000; // ~90 Sek. ohne Lebenszeichen des Erstellers -> Lobby gilt als verwaist
                 let html = "";
                 snap.forEach(docSnap => {
                     const d = docSnap.data() || {};
-                    if (d.status === "finished") return;
-                    const count = d.players ? Object.keys(d.players).length : 0;
                     const alive = (now - (d.hostLastSeen || d.createdAt || 0)) < STALE;
-                    if (d.status === "waiting" && count <= 1 && !alive) {
-                        docSnap.ref.delete().catch(() => { }); // verwaiste, leere Lobby aufräumen
+                    // Aufräumen: fertige Runden sofort; sonst JEDE Lobby (wartend ODER
+                    // laufend, egal wie viele Spieler drin sind), deren letztes
+                    // Lebenszeichen zu alt ist. So bleibt kein "läuft"-Balken ewig hängen.
+                    if (d.status === "finished" || !alive) {
+                        docSnap.ref.delete().catch(() => { });
                         return;
                     }
+                    const count = d.players ? Object.keys(d.players).length : 0;
                     const running = d.status !== "waiting";
                     const icon = d.type === "scrabble" ? "🔤" : "⚔️";
                     const typeName = d.type === "scrabble" ? "Wort-Duell" : "Quiz-Duell";
@@ -3205,7 +3207,7 @@
                 // Heartbeat läuft nur, solange die Lobby wartet - während des Spiels
                 // würde ein 12-Sek.-Snapshot sonst die Rundentimer zurücksetzen.
                 isLiveDuelCreator = (data.createdBy === activePlayerKey);
-                if (data.status === "waiting" && isLiveDuelCreator) maybeStartHostHeartbeat(); else stopHostHeartbeat();
+                if (isLiveDuelCreator && data.status !== "finished") maybeStartHostHeartbeat(); else stopHostHeartbeat(); // Herzschlag auch während "läuft", damit aktive Spiele nicht fälschlich als verwaist gelöscht werden
 
                 if (data.status === "waiting") {
                     clearLiveDuelTimers();

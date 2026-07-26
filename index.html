@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.1</title>
+    <title>EduPlay Hub - Familien Edition v2.2</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -73,20 +73,69 @@
             overflow-x: hidden;
         }
 
-        /* Versionshinweis */
-        .version-badge {
-            position: fixed;
-            bottom: 8px;
-            right: 8px;
-            z-index: 9998;
+        /* ============================================================
+           APP HEADER MIT VERSIONSHINWEIS
+           ============================================================ */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(14, 22, 40, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .app-header .version {
             font-size: 9px;
             color: rgba(255, 255, 255, 0.15);
-            background: rgba(0, 0, 0, 0.4);
-            padding: 2px 8px;
-            border-radius: 10px;
             font-family: monospace;
-            pointer-events: none;
             letter-spacing: 0.5px;
+            margin-left: 8px;
+        }
+
+        .app-header .title-area {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .app-header .title-area .logo {
+            font-size: 16px;
+            font-weight: 900;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-header .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .app-header .header-actions button {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .app-header .header-actions button:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
         }
 
         /* ============================================================
@@ -121,12 +170,15 @@
             0% {
                 transform: translate(0, 0) rotate(0deg) scale(1);
             }
+
             33% {
                 transform: translate(2%, -3%) rotate(1deg) scale(1.02);
             }
+
             66% {
                 transform: translate(-2%, 2%) rotate(-1deg) scale(0.98);
             }
+
             100% {
                 transform: translate(3%, -1%) rotate(0.5deg) scale(1.01);
             }
@@ -140,6 +192,7 @@
             opacity: 0.3;
             animation: orbFloat 15s ease-in-out infinite alternate;
         }
+
         .orb-1 {
             width: 300px;
             height: 300px;
@@ -148,6 +201,7 @@
             left: -10%;
             animation-duration: 20s;
         }
+
         .orb-2 {
             width: 400px;
             height: 400px;
@@ -157,6 +211,7 @@
             animation-duration: 25s;
             animation-delay: -5s;
         }
+
         .orb-3 {
             width: 200px;
             height: 200px;
@@ -173,6 +228,7 @@
             0% {
                 transform: translate(0, 0) scale(1);
             }
+
             100% {
                 transform: translate(30px, -40px) scale(1.2);
             }
@@ -209,14 +265,17 @@
             width: 4px;
             height: 4px;
         }
+
         ::-webkit-scrollbar-track {
             background: rgba(26, 35, 50, 0.3);
             border-radius: 10px;
         }
+
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, #6366f1, #8b5cf6);
             border-radius: 10px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(180deg, #818cf8, #a78bfa);
         }
@@ -341,10 +400,12 @@
         }
 
         @keyframes pulseGlow {
+
             0%,
             100% {
                 box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
             }
+
             50% {
                 box-shadow: 0 0 50px rgba(99, 102, 241, 0.35);
             }
@@ -452,13 +513,16 @@
             border-radius: 50%;
             flex-shrink: 0;
         }
+
         .dot-live {
             background: #34d399;
             box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
         }
+
         .dot-recent {
             background: #fbbf24;
         }
+
         .dot-idle {
             background: #4a6088;
         }
@@ -653,11 +717,13 @@
             display: block;
             margin-bottom: 4px;
         }
+
         .dash-admin-tab .label {
             font-weight: 700;
             font-size: 13px;
             color: var(--text-primary);
         }
+
         .dash-admin-tab .sub {
             font-size: 10px;
             color: var(--text-muted);
@@ -707,6 +773,7 @@
                 opacity: 0;
                 transform: translateY(-30px) scale(0.95);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -714,7 +781,7 @@
         }
 
         /* ============================================================
-           DRAWER
+           DRAWER (SLIDE-MENÜ) - REPARIERT
            ============================================================ */
         .drawer {
             position: fixed;
@@ -723,13 +790,17 @@
             height: 100%;
             width: 80%;
             max-width: 340px;
-            background: rgba(14, 22, 40, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(14, 22, 40, 0.98);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border-left: 1px solid rgba(255, 255, 255, 0.06);
             transform: translateX(100%);
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 60;
+            z-index: 100;
             overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         .drawer.open {
@@ -743,12 +814,99 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.35s ease;
-            z-index: 55;
+            z-index: 95;
         }
 
         .drawer-backdrop.open {
             opacity: 1;
             pointer-events: auto;
+        }
+
+        .drawer .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 20px;
+        }
+
+        .drawer .drawer-header h2 {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--text-primary);
+        }
+
+        .drawer .drawer-header .close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .drawer .drawer-header .close-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+        }
+
+        .drawer .drawer-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 6px;
+        }
+
+        .drawer .drawer-menu-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.08);
+            transform: translateX(4px);
+        }
+
+        .drawer .drawer-menu-item .icon {
+            font-size: 22px;
+            width: 32px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .drawer .drawer-menu-item.danger {
+            color: #f87171;
+        }
+
+        .drawer .drawer-menu-item.danger:hover {
+            background: rgba(248, 113, 113, 0.08);
+            border-color: rgba(248, 113, 113, 0.2);
+        }
+
+        .drawer .drawer-footer {
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.12);
+            text-align: center;
+            font-family: monospace;
+            letter-spacing: 0.3px;
         }
 
         /* ============================================================
@@ -774,6 +932,7 @@
         .flip-card {
             perspective: 1000px;
         }
+
         .flip-card-inner {
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
@@ -781,9 +940,11 @@
             width: 100%;
             height: 100%;
         }
+
         .flip-card.flipped .flip-card-inner {
             transform: rotateY(180deg);
         }
+
         .flip-card-front,
         .flip-card-back {
             backface-visibility: hidden;
@@ -791,6 +952,7 @@
             position: absolute;
             inset: 0;
         }
+
         .flip-card-back {
             transform: rotateY(180deg);
         }
@@ -801,6 +963,7 @@
         .view {
             display: none;
         }
+
         .view:not(.hidden) {
             display: block;
         }
@@ -814,6 +977,7 @@
                 opacity: 0;
                 transform: translateY(8px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -844,11 +1008,13 @@
                 padding: 14px 10px 12px;
                 border-radius: 18px;
             }
+
             .player-disc {
                 width: 48px;
                 height: 48px;
                 font-size: 20px;
             }
+
             .player-name {
                 font-size: 13px;
             }
@@ -856,12 +1022,15 @@
             .dash-stat-card .value {
                 font-size: 22px;
             }
+
             .dash-tile {
                 padding: 18px 12px;
             }
+
             .dash-tile .icon {
                 font-size: 32px;
             }
+
             .dash-tile .title {
                 font-size: 15px;
             }
@@ -876,6 +1045,11 @@
                 font-size: 13px;
                 padding: 14px 16px;
             }
+
+            .drawer {
+                width: 85%;
+                max-width: 300px;
+            }
         }
 
         @media (max-width: 380px) {
@@ -883,17 +1057,21 @@
                 padding: 10px 8px;
                 border-radius: 14px;
             }
+
             .player-disc {
                 width: 40px;
                 height: 40px;
                 font-size: 16px;
             }
+
             .player-name {
                 font-size: 11px;
             }
+
             .player-meta {
                 font-size: 9px;
             }
+
             .player-coins {
                 font-size: 10px;
             }
@@ -950,9 +1128,11 @@
         .stat-bar .fill.good {
             background: var(--gradient-green);
         }
+
         .stat-bar .fill.ok {
             background: var(--gradient-amber);
         }
+
         .stat-bar .fill.bad {
             background: var(--gradient-rose);
         }
@@ -1057,7 +1237,6 @@
             margin-top: 8px;
         }
 
-        /* Lesen Verständnis - Frage und Antwort getrennt */
         .lesen-verstaendnis-frage {
             font-size: 20px;
             font-weight: 700;
@@ -1134,9 +1313,6 @@
 
 <body>
 
-    <!-- Versionshinweis -->
-    <div class="version-badge">v2.1 · 26.07.2026</div>
-
     <!-- ============================================================
     ANIMIERTER HINTERGRUND
     ============================================================ -->
@@ -1149,8 +1325,7 @@
     <!-- ============================================================
     FERNSEHER-STEUERUNG
     ============================================================ -->
-    <div id="castControlPanel"
-        class="hidden fixed bottom-0 left-0 right-0 z-50 p-3"
+    <div id="castControlPanel" class="hidden fixed bottom-0 left-0 right-0 z-50 p-3"
         style="background:rgba(14,22,40,0.95);backdrop-filter:blur(12px);border-top:1px solid rgba(99,102,241,0.2);">
         <div class="max-w-md mx-auto">
             <div class="flex items-center justify-between mb-2">
@@ -1183,6 +1358,25 @@
     APP SHELL
     ============================================================ -->
     <div id="app-shell">
+
+        <!-- ============================================================
+        APP HEADER - Immer sichtbar, enthält Versionshinweis
+        ============================================================ -->
+        <header class="app-header">
+            <div class="title-area">
+                <span class="logo">EduPlay</span>
+                <span class="version">v2.1</span>
+            </div>
+            <div class="header-actions">
+                <button onclick="toggleSound()" title="Ton an/aus">
+                    <span class="sound-toggle-icon">🔊</span>
+                </button>
+                <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
+                    ☰
+                </button>
+            </div>
+        </header>
+
         <main class="flex-grow p-4">
 
             <!-- ==========================================================
@@ -1190,7 +1384,8 @@
             ========================================================== -->
             <div id="view-auth" class="view">
                 <div class="text-center py-10">
-                    <div class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 mb-1 glow-text">
+                    <div
+                        class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 mb-1 glow-text">
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
@@ -1199,13 +1394,11 @@
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
                         neuen erstellen.</p>
-                    <input type="email" id="auth-email" placeholder="E-Mail Adresse"
-                        class="input-modern">
+                    <input type="email" id="auth-email" placeholder="E-Mail Adresse" class="input-modern">
                     <input type="password" id="auth-password" placeholder="Passwort (min. 6 Zeichen)"
                         class="input-modern">
                     <div class="flex gap-2 pt-2">
-                        <button onclick="loginParent()"
-                            class="flex-1 btn-primary text-center">Einloggen</button>
+                        <button onclick="loginParent()" class="flex-1 btn-primary text-center">Einloggen</button>
                         <button onclick="registerParent()"
                             class="flex-1 btn-secondary text-center">Registrieren</button>
                     </div>
@@ -1217,23 +1410,13 @@
             ========================================================== -->
             <div id="view-family-hub" class="view hidden space-y-5">
 
-                <!-- Header -->
-                <div class="pt-4 pb-3 border-b border-gray-800/50 flex items-center justify-between">
-                    <span class="w-[88px] shrink-0"></span>
-                    <div class="text-center">
-                        <div class="text-[10px] font-bold tracking-[0.14em] text-gray-500 uppercase mb-0.5">EduPlay</div>
-                        <h1 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">
-                            Wer lernt heute?
-                        </h1>
+                <div class="text-center">
+                    <div class="text-[10px] font-bold tracking-[0.14em] text-gray-500 uppercase mb-0.5">Wer lernt heute?
                     </div>
-                    <div class="flex items-center gap-2">
-                        <button onclick="toggleSound()" title="Ton an/aus"
-                            class="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-lg hover:bg-white/10 transition">
-                            <span class="sound-toggle-icon">🔊</span>
-                        </button>
-                        <button onclick="openDrawer()" title="Einstellungen" aria-label="Einstellungen"
-                            class="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-lg text-gray-400 hover:bg-white/10 transition">☰</button>
-                    </div>
+                    <h1
+                        class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">
+                        Spieler auswählen
+                    </h1>
                 </div>
 
                 <!-- Player Grid Preview -->
@@ -1293,9 +1476,11 @@
                             <span class="text-2xl">⚔️</span> Familien-Duell
                         </span>
                         <span class="flex items-center gap-2">
-                            <span class="text-[10px] font-black bg-emerald-900/40 text-emerald-300 border border-emerald-700/30 px-2 py-0.5 rounded-full shrink-0">📴
+                            <span
+                                class="text-[10px] font-black bg-emerald-900/40 text-emerald-300 border border-emerald-700/30 px-2 py-0.5 rounded-full shrink-0">📴
                                 OFFLINE</span>
-                            <span id="family-duel-toggle-arrow" class="text-lg text-gray-400 transition-transform">▼</span>
+                            <span id="family-duel-toggle-arrow"
+                                class="text-lg text-gray-400 transition-transform">▼</span>
                         </span>
                     </button>
                     <div id="family-duel-wrapper" class="hidden mt-3 space-y-3">
@@ -1324,7 +1509,8 @@
                         <span class="flex items-center gap-2">
                             <span id="leaderboard-leader-badge"
                                 class="text-xs font-bold text-gray-400 bg-white/5 px-2.5 py-1 rounded-full"></span>
-                            <span id="leaderboard-toggle-arrow" class="text-lg text-gray-400 transition-transform">▼</span>
+                            <span id="leaderboard-toggle-arrow"
+                                class="text-lg text-gray-400 transition-transform">▼</span>
                         </span>
                     </button>
                     <div id="leaderboard-wrapper" class="hidden mt-3">
@@ -1340,33 +1526,28 @@
 
                 <!-- Kopf -->
                 <div class="flex items-center justify-between gap-2 pt-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4"
-                        onclick="switchView('family-hub')">← Übersicht</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
+                        Übersicht</button>
                     <span class="text-sm font-bold text-gray-400">📊 Dashboard</span>
-                    <button onclick="toggleSound()" title="Ton an/aus"
-                        class="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-lg flex items-center justify-center hover:bg-white/10 transition">
-                        <span class="sound-toggle-icon">🔊</span>
-                    </button>
+                    <span class="w-10"></span>
                 </div>
 
                 <!-- 3 große Kacheln -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <button onclick="switchDashboardSection('inhalte')"
-                        class="dash-tile group">
+                    <button onclick="switchDashboardSection('inhalte')" class="dash-tile group">
                         <span class="icon">📚</span>
                         <div class="title">Inhalte</div>
                         <div class="desc">Fragen · Vokabeln · Wörter</div>
                     </button>
 
-                    <button onclick="openParentArea()"
-                        class="dash-tile group" style="border-color:rgba(245,158,11,0.15);">
+                    <button onclick="openParentArea()" class="dash-tile group"
+                        style="border-color:rgba(245,158,11,0.15);">
                         <span class="icon">👨‍👩‍👧‍👦</span>
                         <div class="title text-amber-400">Eltern-Bereich</div>
                         <div class="desc">Fortschritt · Tests · Belohnungen</div>
                     </button>
 
-                    <button onclick="switchDashboardSection('statistiken')"
-                        class="dash-tile group">
+                    <button onclick="switchDashboardSection('statistiken')" class="dash-tile group">
                         <span class="icon">📊</span>
                         <div class="title text-emerald-400">Statistiken</div>
                         <div class="desc">Spielerübersicht · Fortschritt</div>
@@ -1440,8 +1621,7 @@
                         <div class="flex gap-2">
                             <input type="text" id="dash-global-search" placeholder="🔎 Suche in ALLEN Datenbanken..."
                                 class="input-modern flex-1 text-sm">
-                            <button onclick="performDashSearch()"
-                                class="btn-primary py-3 px-4 text-sm">Suchen</button>
+                            <button onclick="performDashSearch()" class="btn-primary py-3 px-4 text-sm">Suchen</button>
                         </div>
                         <div id="dash-search-results" class="mt-3 max-h-[200px] overflow-y-auto space-y-1.5 hidden">
                         </div>
@@ -1459,7 +1639,8 @@
 
                     <!-- 3 Admin-Tabs -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div id="dash-admin-progress" class="dash-admin-tab active" onclick="switchDashAdminTab('progress')">
+                        <div id="dash-admin-progress" class="dash-admin-tab active"
+                            onclick="switchDashAdminTab('progress')">
                             <span class="icon">📊</span>
                             <div class="label">Fortschritt</div>
                             <div class="sub">Übersicht aller Spieler</div>
@@ -1483,8 +1664,7 @@
                             class="btn-secondary w-full text-sm text-amber-400 border-amber-400/20 hover:border-amber-400/40">
                             🧪 Antwortlängen-Check
                         </button>
-                        <div id="dash-audit-result"
-                            class="hidden glass-card p-3 text-xs text-gray-300 space-y-1"></div>
+                        <div id="dash-audit-result" class="hidden glass-card p-3 text-xs text-gray-300 space-y-1"></div>
                     </div>
 
                     <div id="dash-admin-test-view" class="hidden space-y-3">
@@ -1495,21 +1675,23 @@
                             </div>
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Themen auswählen</label>
-                                <div id="dash-test-categories" class="grid grid-cols-2 gap-1.5 max-h-32 overflow-y-auto"></div>
+                                <div id="dash-test-categories"
+                                    class="grid grid-cols-2 gap-1.5 max-h-32 overflow-y-auto"></div>
                             </div>
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Zeitlimit (Minuten)</label>
                                 <input type="number" id="dash-test-time" value="10" min="1" max="90"
                                     class="input-modern">
                             </div>
-                            <button onclick="assignTestFromDashboard()"
-                                class="btn-primary w-full text-center">Test zuweisen 🚀</button>
+                            <button onclick="assignTestFromDashboard()" class="btn-primary w-full text-center">Test
+                                zuweisen 🚀</button>
 
                             <div class="pt-3 border-t border-white/5 mt-1">
-                                <label class="text-xs text-gray-400 font-bold block mb-2">💾 Gespeicherte Vorlagen</label>
+                                <label class="text-xs text-gray-400 font-bold block mb-2">💾 Gespeicherte
+                                    Vorlagen</label>
                                 <div id="dash-test-templates-list" class="space-y-2 mb-3"></div>
-                                <button onclick="saveTestTemplate()"
-                                    class="btn-secondary w-full text-sm">Aktuelle Auswahl als Vorlage speichern</button>
+                                <button onclick="saveTestTemplate()" class="btn-secondary w-full text-sm">Aktuelle
+                                    Auswahl als Vorlage speichern</button>
                             </div>
                         </div>
                     </div>
@@ -1522,8 +1704,8 @@
                                 <input type="number" id="dash-reward-cost" placeholder="Coins"
                                     class="input-modern w-24 text-sm">
                             </div>
-                            <button onclick="addRewardFromDashboard()"
-                                class="btn-primary w-full text-center">Belohnung hinzufügen</button>
+                            <button onclick="addRewardFromDashboard()" class="btn-primary w-full text-center">Belohnung
+                                hinzufügen</button>
                             <div id="dash-reward-list" class="space-y-1.5"></div>
                         </div>
                     </div>
@@ -1547,78 +1729,48 @@
                     </div>
                 </div>
 
-                <!-- ==========================================================
-                EINSTELLUNGEN
-                ========================================================== -->
-                <div class="glass-card overflow-hidden mt-2">
-                    <button onclick="toggleSettings()"
-                        class="w-full p-4 flex items-center justify-between hover:bg-white/5 transition">
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">⚙️</span>
-                            <span class="font-bold text-white">Einstellungen</span>
-                        </div>
-                        <span id="settings-arrow" class="text-gray-400 transition-transform">▼</span>
-                    </button>
-                    <div id="settings-content" class="hidden p-4 pt-0 space-y-3">
-                        <div class="flex items-center justify-between bg-white/5 rounded-xl p-3">
-                            <span class="text-sm font-bold text-gray-300">🔊 Ton</span>
-                            <button onclick="toggleSound()"
-                                class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-lg hover:bg-white/10 transition">
-                                <span class="sound-toggle-icon">🔊</span>
-                            </button>
-                        </div>
-                        <div class="flex items-center justify-between bg-white/5 rounded-xl p-3">
-                            <span class="text-sm font-bold text-gray-300">🌙 Design</span>
-                            <button onclick="toggleTheme()"
-                                class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-lg hover:bg-white/10 transition">
-                                🌓
-                            </button>
-                        </div>
-                        <div class="flex items-center justify-between bg-white/5 rounded-xl p-3">
-                            <span class="text-sm font-bold text-gray-300">🌐 Sprache</span>
-                            <button onclick="toggleLanguage()"
-                                class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-sm font-bold text-white hover:bg-white/10 transition">
-                                DE
-                            </button>
-                        </div>
-                        <button onclick="resetAllData()"
-                            class="w-full p-3 bg-rose-900/20 border border-rose-700/30 rounded-xl text-rose-400 font-bold text-sm hover:bg-rose-900/30 transition">
-                            🗑️ Alle Daten zurücksetzen (mit PIN)
-                        </button>
-                    </div>
-                </div>
-
             </div>
 
             <!-- ==========================================================
-            VIEW: SCHIEBEMENÜ (DRAWER)
+            VIEW: SCHIEBEMENÜ (DRAWER) - REPARIERT
             ========================================================== -->
             <div id="drawer-backdrop" class="drawer-backdrop" onclick="closeDrawer()"></div>
             <div id="settings-drawer" class="drawer">
-                <div class="p-5 space-y-5">
-                    <div class="flex items-center justify-between border-b border-white/5 pb-3">
-                        <h2 class="text-lg font-black text-white">⚙️ Einstellungen</h2>
-                        <button onclick="closeDrawer()" aria-label="Menü schließen"
-                            class="w-9 h-9 rounded-xl bg-white/5 border border-white/5 text-gray-300 font-bold hover:bg-white/10 transition">✕</button>
-                    </div>
-                    <div class="flex flex-col gap-3">
-                        <button onclick="closeDrawer(); switchView('dashboard')"
-                            class="w-full bg-white/5 text-indigo-400 p-4 rounded-xl font-bold border border-white/5 shadow-md flex items-center gap-3 hover:bg-white/10 transition">
-                            <span class="text-xl">📊</span> Dashboard
-                        </button>
-                        <button onclick="closeDrawer(); openFeedback('family-hub')"
-                            class="w-full bg-white/5 text-amber-400 p-4 rounded-xl font-bold border border-white/5 shadow-md flex items-center gap-3 hover:bg-white/10 transition">
-                            <span class="text-xl">💬</span> Feedback geben
-                        </button>
-                        <button onclick="closeDrawer(); logoutParent()"
-                            class="w-full bg-white/5 text-gray-400 p-4 rounded-xl font-bold border border-white/5 shadow-md flex items-center gap-3 hover:bg-white/10 transition">
-                            <span class="text-xl">🚪</span> Familien-Account ausloggen
-                        </button>
-                    </div>
-                    <p class="text-[10px] text-gray-600 leading-relaxed pt-2 border-t border-white/5">
-                        EduPlay Hub · Familien Edition v2.1<br>
-                        Den Ton schaltest du oben neben dem Menü-Knopf ein und aus.
-                    </p>
+                <div class="drawer-header">
+                    <h2>📋 Menü</h2>
+                    <button class="close-btn" onclick="closeDrawer()">✕</button>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <button onclick="closeDrawer(); switchView('dashboard')" class="drawer-menu-item">
+                        <span class="icon">📊</span>
+                        Dashboard
+                    </button>
+                    <button onclick="closeDrawer(); switchView('family-hub')" class="drawer-menu-item">
+                        <span class="icon">🏠</span>
+                        Übersicht
+                    </button>
+                    <button onclick="closeDrawer(); openFeedback('family-hub')" class="drawer-menu-item">
+                        <span class="icon">💬</span>
+                        Feedback geben
+                    </button>
+                    <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
+                        <span class="icon">🔊</span>
+                        <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
+                    </button>
+                    <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
+                        <span class="icon">🌓</span>
+                        Design umschalten
+                    </button>
+                    <button onclick="closeDrawer(); logoutParent()" class="drawer-menu-item danger">
+                        <span class="icon">🚪</span>
+                        Ausloggen
+                    </button>
+                </div>
+
+                <div class="drawer-footer">
+                    EduPlay Hub · v2.1<br>
+                    © 2026 · Familien Edition
                 </div>
             </div>
 
@@ -1626,7 +1778,8 @@
             VIEW: DUELL SETUP
             ========================================================== -->
             <div id="view-duel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">← Übersicht</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
+                    Übersicht</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-rose-400">⚔️ Quiz-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Zwei Spieler treten nacheinander im selben Quiz
@@ -1645,8 +1798,7 @@
                         <select id="duel-area" class="input-modern font-bold mb-2"></select>
                         <select id="duel-category" class="input-modern font-bold"></select>
                     </div>
-                    <button onclick="startDuel()"
-                        class="btn-primary w-full text-center">Duell starten ⚔️</button>
+                    <button onclick="startDuel()" class="btn-primary w-full text-center">Duell starten ⚔️</button>
                 </div>
             </div>
 
@@ -1654,17 +1806,14 @@
             VIEW: DUELL SPIEL
             ========================================================== -->
             <div id="view-duel-play" class="view hidden space-y-4">
-                <div id="duel-turn-intro"
-                    class="glass-card-glow p-8 text-center space-y-4"
+                <div id="duel-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(244,63,94,0.15),rgba(236,72,153,0.1));border-color:rgba(244,63,94,0.2);">
                     <div id="duel-turn-emoji" class="text-6xl">🥊</div>
                     <h2 id="duel-turn-title" class="text-2xl font-black text-white">Name ist dran!</h2>
                     <p class="text-sm text-gray-400">Gib das Handy weiter und drück auf Los, wenn du bereit bist.</p>
-                    <button onclick="beginDuelTurn()"
-                        class="btn-primary w-full text-center">Los geht's! 🚀</button>
+                    <button onclick="beginDuelTurn()" class="btn-primary w-full text-center">Los geht's! 🚀</button>
                 </div>
-                <div id="duel-question-area"
-                    class="hidden glass-card p-5 text-center space-y-4 shadow-lg">
+                <div id="duel-question-area" class="hidden glass-card p-5 text-center space-y-4 shadow-lg">
                     <div id="duel-progress" class="text-xs text-gray-400 font-bold">Frage 1/8</div>
                     <h2 id="duel-question-text" class="text-lg font-bold text-pink-400 leading-snug">...</h2>
                     <div id="duel-options-container" class="flex flex-col gap-2.5"></div>
@@ -1682,7 +1831,8 @@
             VIEW: SCRABBLE SETUP
             ========================================================== -->
             <div id="view-scrabble-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">← Übersicht</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
+                    Übersicht</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben Buchstaben und bilden
@@ -1710,7 +1860,8 @@
                             <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
                         </select>
                     </div>
-                    <label class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                    <label
+                        class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
                         <input type="checkbox" id="scrabble-require-letter" class="w-5 h-5 accent-amber-500 mt-0.5">
                         <span class="text-sm">
                             <span class="font-bold text-white">Pflichtbuchstabe</span>
@@ -1726,8 +1877,8 @@
                             <option value="5">5 Runden</option>
                         </select>
                     </div>
-                    <button onclick="startScrabbleGame()"
-                        class="btn-primary w-full text-center" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Los
+                    <button onclick="startScrabbleGame()" class="btn-primary w-full text-center"
+                        style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Los
                         geht's! 🔤</button>
                 </div>
             </div>
@@ -1736,14 +1887,13 @@
             VIEW: SCRABBLE SPIEL
             ========================================================== -->
             <div id="view-scrabble-play" class="view hidden space-y-4">
-                <div id="scrabble-turn-intro"
-                    class="glass-card-glow p-8 text-center space-y-4"
+                <div id="scrabble-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(251,191,36,0.1));border-color:rgba(245,158,11,0.2);">
                     <div class="text-6xl">🔤</div>
                     <h2 id="scrabble-turn-title" class="text-2xl font-black text-slate-200">Name ist dran!</h2>
                     <p id="scrabble-turn-sub" class="text-sm text-gray-400">Runde 1/3 – gib das Handy weiter.</p>
-                    <button onclick="beginScrabbleTurn()"
-                        class="btn-primary w-full text-center" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Los
+                    <button onclick="beginScrabbleTurn()" class="btn-primary w-full text-center"
+                        style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Los
                         geht's! 🚀</button>
                 </div>
                 <div id="scrabble-play-area" class="hidden space-y-4">
@@ -1756,8 +1906,8 @@
                         <input type="text" id="scrabble-word-input" placeholder="Dein Wort..." autocomplete="off"
                             class="input-modern text-xl font-black text-center uppercase tracking-widest">
                         <div id="scrabble-live-feedback" class="text-center text-sm font-bold text-gray-400 h-5"></div>
-                        <button onclick="submitScrabbleWord()"
-                            class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Wort
+                        <button onclick="submitScrabbleWord()" class="btn-primary w-full text-center"
+                            style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Wort
                             einreichen ✅</button>
                     </div>
                 </div>
@@ -1817,8 +1967,10 @@
                                 <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
                             </select>
                         </div>
-                        <label class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
-                            <input type="checkbox" id="live-duel-require-letter" class="w-5 h-5 accent-amber-500 mt-0.5">
+                        <label
+                            class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                            <input type="checkbox" id="live-duel-require-letter"
+                                class="w-5 h-5 accent-amber-500 mt-0.5">
                             <span class="text-sm">
                                 <span class="font-bold text-white">Pflichtbuchstabe</span>
                                 <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss im
@@ -1834,8 +1986,8 @@
                             </select>
                         </div>
                     </div>
-                    <button onclick="createLiveDuel()"
-                        class="btn-primary w-full text-center">Duell erstellen 🚀</button>
+                    <button onclick="createLiveDuel()" class="btn-primary w-full text-center">Duell erstellen
+                        🚀</button>
                 </div>
             </div>
 
@@ -1861,8 +2013,7 @@
             ========================================================== -->
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
-                    <button onclick="leaveLiveDuel()"
-                        class="btn-secondary text-sm py-2 px-3">← Menü</button>
+                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">← Menü</button>
                     <div id="live-duel-status" class="text-xs font-bold text-gray-400"></div>
                     <div id="live-duel-countdown" class="min-w-[3rem] text-center text-xl font-black text-amber-400">
                     </div>
@@ -1874,8 +2025,7 @@
             VIEW: LIVE-DUELL ERGEBNIS
             ========================================================== -->
             <div id="view-live-duel-result" class="view hidden space-y-4">
-                <button onclick="leaveLiveDuel()"
-                    class="btn-secondary text-sm py-2.5 px-4">← Menü</button>
+                <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">← Menü</button>
                 <div id="live-duel-result-content"></div>
             </div>
 
@@ -2020,13 +2170,13 @@
             VIEW: SPIELER BEARBEITEN
             ========================================================== -->
             <div id="view-edit-player" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">← Abbrechen</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
+                    Abbrechen</button>
                 <div class="glass-card p-5 space-y-4">
                     <h2 class="text-xl font-black text-emerald-400">✏️ Spieler bearbeiten</h2>
                     <div>
                         <label class="block text-xs font-bold text-gray-400 mb-1.5">Name</label>
-                        <input type="text" id="edit-player-name" maxlength="24"
-                            class="input-modern font-bold">
+                        <input type="text" id="edit-player-name" maxlength="24" class="input-modern font-bold">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-400 mb-1.5">Geburtstag</label>
@@ -2050,8 +2200,8 @@
                             dran ist.</p>
                     </div>
                     <div id="edit-player-hint" class="hidden text-xs font-bold text-rose-400"></div>
-                    <button onclick="saveEditedPlayer()"
-                        class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
+                    <button onclick="saveEditedPlayer()" class="btn-primary w-full text-center"
+                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
                         Speichern
                     </button>
                     <p class="text-[10px] text-gray-600 text-center">Coins, Abzeichen und der Lernfortschritt bleiben
@@ -2099,7 +2249,8 @@
                             <span class="text-sm">Per Mail</span>
                         </button>
                         <button onclick="sendFeedback('whatsapp')"
-                            class="btn-primary flex flex-col items-center gap-1 text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
+                            class="btn-primary flex flex-col items-center gap-1 text-center"
+                            style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
                             <span class="text-2xl">💬</span>
                             <span class="text-sm">Per WhatsApp</span>
                         </button>
@@ -2113,11 +2264,11 @@
             VIEW: NEUEN SPIELER ANLEGEN
             ========================================================== -->
             <div id="view-create-profile" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">← Abbrechen</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
+                    Abbrechen</button>
                 <div class="glass-card p-6 space-y-4 shadow-lg">
                     <h2 class="text-xl font-black text-emerald-400">Neuen Spieler anlegen</h2>
-                    <input type="text" id="new-profile-name" placeholder="Name"
-                        class="input-modern">
+                    <input type="text" id="new-profile-name" placeholder="Name" class="input-modern">
                     <div>
                         <label class="block text-xs font-bold text-gray-400 mb-1.5">Geburtstag (freiwillig)</label>
                         <input type="date" id="new-profile-birthday" class="input-modern font-bold">
@@ -2141,8 +2292,8 @@
                             <option value="13">13. Klasse</option>
                         </select>
                     </div>
-                    <button onclick="saveNewProfile()"
-                        class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Spieler
+                    <button onclick="saveNewProfile()" class="btn-primary w-full text-center"
+                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Spieler
                         speichern</button>
                 </div>
             </div>
@@ -2157,7 +2308,8 @@
                     <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
                     <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
                     <div class="flex gap-2 justify-center">
-                        <button class="btn-primary" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);"
+                        <button class="btn-primary"
+                            style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);"
                             onclick="startFocusTimer()">Start</button>
                         <button class="btn-secondary" onclick="resetFocusTimer()">Reset</button>
                     </div>
@@ -2187,7 +2339,8 @@
             <div id="view-quiz-setup" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">← Menü</button>
                 <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
-                    class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center" style="background:var(--gradient-rose);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
+                    class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center"
+                    style="background:var(--gradient-rose);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
                     🔁 Wiederholen (<span class="wq-count">0</span> Fragen, die noch nicht saßen)
                 </button>
                 <div class="glass-card p-6 space-y-4">
@@ -2205,8 +2358,7 @@
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema:</label>
                         <select id="sub-category" class="input-modern font-bold"></select>
                     </div>
-                    <button onclick="startQuiz()"
-                        class="btn-primary w-full text-center">Starten 🚀</button>
+                    <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
                 </div>
             </div>
 
@@ -2215,8 +2367,7 @@
             ========================================================== -->
             <div id="view-quiz" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveQuiz()">← Beenden</button>
-                <div id="test-timer-bar"
-                    class="hidden glass-card-glow p-3 text-center font-black text-white"
+                <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
                     style="border-color:rgba(99,102,241,0.2);">
                     ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
                 </div>
@@ -2224,8 +2375,8 @@
                     <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
                     <div id="options-container" class="flex flex-col gap-2.5"></div>
                     <div id="explanation-box" class="hidden"></div>
-                    <button id="next-question-btn"
-                        class="btn-primary w-full hidden text-center" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);"
+                    <button id="next-question-btn" class="btn-primary w-full hidden text-center"
+                        style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);"
                         onclick="triggerNextQuestion()">Nächste Frage ➔</button>
                 </div>
             </div>
@@ -2294,7 +2445,8 @@
             VIEW: TV-QUIZ HOST
             ========================================================== -->
             <div id="view-tv-quiz-host" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">← Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">←
+                    Zurück</button>
                 <div class="glass-card p-6 text-center">
                     <h2 class="text-2xl font-black text-white mb-4">Spiel erstellen</h2>
                     <div class="dash-sub-nav mb-6">
@@ -2331,8 +2483,10 @@
                                 <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
                             </select>
                         </div>
-                        <label class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
-                            <input type="checkbox" id="tv-scrabble-require-letter" class="w-5 h-5 accent-amber-500 mt-0.5">
+                        <label
+                            class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                            <input type="checkbox" id="tv-scrabble-require-letter"
+                                class="w-5 h-5 accent-amber-500 mt-0.5">
                             <span class="text-sm">
                                 <span class="font-bold text-white">Pflichtbuchstabe</span>
                                 <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss im
@@ -2348,8 +2502,8 @@
                             </select>
                         </div>
                     </div>
-                    <button onclick="startTVHostLobby()"
-                        class="btn-primary w-full text-center text-xl mt-4">Lobby eröffnen 🚀</button>
+                    <button onclick="startTVHostLobby()" class="btn-primary w-full text-center text-xl mt-4">Lobby
+                        eröffnen 🚀</button>
                 </div>
             </div>
 
@@ -2357,13 +2511,14 @@
             VIEW: TV-QUIZ PLAYER
             ========================================================== -->
             <div id="view-tv-quiz-player" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">← Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">←
+                    Zurück</button>
                 <div class="glass-card p-6 text-center">
                     <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
                     <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
                     <div id="player-waiting-area">
-                        <button onclick="joinTVGame()"
-                            class="btn-primary w-full text-2xl animate-pulse py-6" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Jetzt
+                        <button onclick="joinTVGame()" class="btn-primary w-full text-2xl animate-pulse py-6"
+                            style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Jetzt
                             beitreten! 🎮</button>
                     </div>
                 </div>
@@ -2807,7 +2962,7 @@
 
         function handleError(context, err, friendly, opts) {
             opts = opts || {};
-            try { console.error("[EduPlay] " + context, err); } catch (e) {}
+            try { console.error("[EduPlay] " + context, err); } catch (e) { }
             if (opts.silent) return;
             let msg;
             if (isNetworkError(err)) {
@@ -2841,7 +2996,7 @@
         // ============================================================
         let audioCtx = null;
         let soundOn = true;
-        try { soundOn = localStorage.getItem("eduplaySound") !== "off"; } catch (e) {}
+        try { soundOn = localStorage.getItem("eduplaySound") !== "off"; } catch (e) { }
 
         function ensureAudio() {
             if (!soundOn) return null;
@@ -2911,7 +3066,7 @@
 
         function toggleSound() {
             soundOn = !soundOn;
-            try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) {}
+            try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
             document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
             if (soundOn) SFX.tap();
             showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
@@ -3263,44 +3418,9 @@
             switchDashAdminTab('progress');
         }
 
-        function toggleSettings() {
-            const content = document.getElementById('settings-content');
-            const arrow = document.getElementById('settings-arrow');
-            if (!content || !arrow) return;
-            const open = content.classList.contains('hidden');
-            content.classList.toggle('hidden', !open);
-            arrow.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
-        }
-
         function toggleTheme() {
             const isDark = document.body.classList.toggle('dark-theme');
             showToast(isDark ? "🌙 Dark-Mode aktiv" : "☀️ Light-Mode aktiv", "success", "theme");
-        }
-
-        function toggleLanguage() {
-            const btn = document.querySelector('[onclick="toggleLanguage()"]');
-            if (!btn) return;
-            const current = btn.textContent.trim();
-            btn.textContent = current === 'DE' ? 'EN' : 'DE';
-            showToast(`🌐 Sprache auf ${btn.textContent} umgestellt (Vorschau)`, "success", "lang");
-        }
-
-        function resetAllData() {
-            if (!adminPin) {
-                showToast("🔑 Bitte zuerst einen Eltern-PIN einrichten!", "error");
-                return;
-            }
-            const entered = cleanInput(prompt("🗑️ Alle Daten zurücksetzen\n\nBitte PIN eingeben:"), 12);
-            if (entered === null || entered === "") return;
-            if (entered !== adminPin) {
-                SFX.wrong();
-                showToast("❌ PIN stimmt nicht.", "error", "pin");
-                return;
-            }
-            if (!confirm("⚠️ Wirklich ALLE Daten aller Spieler zurücksetzen?\n\nDiese Aktion kann nicht rückgängig gemacht werden!")) return;
-            if (!confirm("🔄 Nochmal: Alle Fortschritte, Coins, Abzeichen und Statistiken werden gelöscht. Fortfahren?")) return;
-
-            showToast("🔄 Daten werden zurückgesetzt...", "info");
         }
 
         function switchDashboardTab(tab) {
@@ -3506,7 +3626,7 @@
         }
 
         // Dashboard Filter Events
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const qGrade = document.getElementById('dash-question-grade');
             const qSubject = document.getElementById('dash-question-subject');
             const qSearch = document.getElementById('dash-question-search');
@@ -3785,8 +3905,10 @@
                 }
             });
             if (tab === 'progress') renderDashAdminProgress();
-            if (tab === 'test') { renderDashAdminTest();
-                renderTestTemplatesList(); }
+            if (tab === 'test') {
+                renderDashAdminTest();
+                renderTestTemplatesList();
+            }
             if (tab === 'rewards') renderDashRewards();
         }
 
@@ -4181,7 +4303,7 @@
         }
 
         function stopHubWatch() {
-            if (hubWatchUnsub) { try { hubWatchUnsub(); } catch (e) {} hubWatchUnsub = null; }
+            if (hubWatchUnsub) { try { hubWatchUnsub(); } catch (e) { } hubWatchUnsub = null; }
             if (hubTickInterval) {
                 clearInterval(hubTickInterval);
                 hubTickInterval = null;
@@ -5347,7 +5469,7 @@
             scrabbleState = null;
             switchView('scrabble-result');
             renderFamilyHub();
-            try { if (typeof confetti === 'function') confetti(); } catch (e) {}
+            try { if (typeof confetti === 'function') confetti(); } catch (e) { }
             SFX.win();
         }
 
@@ -5370,7 +5492,7 @@
             let pool = (grade ? questionsByGrade(grade) : QUESTIONS_DATABASE) || [];
             if (!pool.length) pool = QUESTIONS_DATABASE || [];
             const picked = shuffleArray(pool).slice(0, CAST_QUESTION_COUNT).map(shuffleAnswers);
-            return picked.map(function(q) {
+            return picked.map(function (q) {
                 return {
                     question: q.question,
                     answers: q.answers,
@@ -5411,7 +5533,7 @@
                     castConnected = true;
                     updateCastButton();
                     showToast('📺 Fernseher-Modus gestartet!', 'success', 'cast');
-                    castStatusCheck = setInterval(function() {
+                    castStatusCheck = setInterval(function () {
                         if (castWindow && castWindow.closed) {
                             disconnectCast();
                         }
@@ -5461,8 +5583,8 @@
                     createdBy: hostName || 'Host',
                     createdAt: Date.now()
                 })
-                .then(function() { console.log('✅ TV-Lobby erstellt für parentId:', parentId); })
-                .catch(function(err) { console.error('❌ Fehler beim Erstellen der TV-Lobby:', err); });
+                .then(function () { console.log('✅ TV-Lobby erstellt für parentId:', parentId); })
+                .catch(function (err) { console.error('❌ Fehler beim Erstellen der TV-Lobby:', err); });
         }
 
         function checkCastStatus() {
@@ -5472,7 +5594,7 @@
         }
         setInterval(checkCastStatus, 5000);
 
-        window.addEventListener('beforeunload', function() {
+        window.addEventListener('beforeunload', function () {
             if (castConnected) { disconnectCast(); }
         });
 
@@ -5496,12 +5618,12 @@
             const ref = castLobbyRef();
             if (!ref) return;
             stopCastLobbyListener();
-            castLobbyUnsub = ref.onSnapshot(function(snap) {
+            castLobbyUnsub = ref.onSnapshot(function (snap) {
                 const d = snap.data() || {};
                 updateCastPanel(d.status, d.currentIndex || 0, (d.questions || []).length);
                 if (d.hostCommand && d.hostCommand.type) {
                     const t = d.hostCommand.type;
-                    ref.update({ hostCommand: null }).catch(function() {});
+                    ref.update({ hostCommand: null }).catch(function () { });
                     if (t === 'START_QUIZ') castStartQuiz();
                     else if (t === 'NEXT_QUESTION') castNext();
                     else if (t === 'RESTART') castRestart();
@@ -5533,7 +5655,7 @@
         function castNext() {
             const ref = castLobbyRef();
             if (!ref) return;
-            ref.get().then(function(snap) {
+            ref.get().then(function (snap) {
                 const d = snap.data() || {};
                 const total = (d.questions || []).length;
                 const idx = (d.currentIndex || 0) + 1;
@@ -5879,7 +6001,7 @@
                     confetti();
                     confetti();
                 }
-            } catch (e) {}
+            } catch (e) { }
             SFX.win();
         }
 
@@ -6032,7 +6154,7 @@
                                 <div class="space-y-3 flex-1 overflow-y-auto">${rowsHtml}</div>
                                 <div class="mt-6 text-center">
                                     ${isLastRound ? `<button onclick="tvGameRef.update({status:'finished'})" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
-                        `<button onclick="nextTVScrabbleRound()" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2">Nächste Runde ➔</button>`}
+                    `<button onclick="nextTVScrabbleRound()" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2">Nächste Runde ➔</button>`}
                                 </div>
                             </div>
                         `;
@@ -6086,7 +6208,7 @@
                                     `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-7xl mb-6">${points > 0 ? "✅" : "😅"}</div><h2 class="text-2xl font-black mb-2">Dein Wort: "${esc(myData.word || "-")}"</h2><p class="text-sm opacity-70 mb-2">${statusText}</p><p class="text-xl font-bold">+ ${points} Punkte diese Runde</p><p class="text-sm opacity-80 mt-2">Gesamt: ${myData.score || 0} Punkte</p></div>`;
                                 if (points > 0) {
                                     try { if (typeof confetti === 'function') confetti(); } catch (
-                                    e) {} SFX.correct();
+                                    e) { } SFX.correct();
                                 } else { SFX.wrong(); }
                             } else if (!myData.hasAnswered) {
                                 document.getElementById("view-tv-quiz-player").innerHTML = `
@@ -6120,7 +6242,7 @@
                             document.getElementById("view-tv-quiz-player").innerHTML =
                                 `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-9xl mb-8">${icon}</div><h2 class="text-4xl font-black mb-4">${text}</h2><p class="text-xl font-bold opacity-80">Dein Punktestand: ${myData.score || 0}</p></div>`;
                             if (isCorrect) {
-                                try { if (typeof confetti === 'function') confetti(); } catch (e) {} SFX
+                                try { if (typeof confetti === 'function') confetti(); } catch (e) { } SFX
                                     .correct();
                             } else { SFX.wrong(); }
                         } else if (!myData.hasAnswered) {
@@ -6236,7 +6358,7 @@
             const beat = () => {
                 if (liveDuelRef && isLiveDuelCreator) liveDuelRef.update({
                     hostLastSeen: Date.now()
-                }).catch(() => {});
+                }).catch(() => { });
             };
             beat();
             liveDuelHeartbeat = setInterval(beat, 12000);
@@ -6656,23 +6778,23 @@
             let rowsHtml = "";
             Object.values(data.players).filter(p => !p.pending).sort((a, b) => (b.lastRoundPoints || 0) - (a
                 .lastRoundPoints || 0)).forEach(p => {
-                let icon, detail = "";
-                if (isQuiz) {
-                    icon = p.lastRoundPoints > 0 ? "✅" : "❌";
-                } else {
-                    const info = wordStatusInfo(p.wordStatus, p);
-                    icon = info.icon;
-                    detail = info.text ?
-                        `<div class="text-[11px] text-gray-500 font-normal mt-0.5">${info.text}</div>` :
-                        "";
-                }
-                const wordInfo = isQuiz ? "" : ` <span class="text-amber-300">"${esc(p.word || "-")}"</span>`;
-                rowsHtml +=
-                    `<div class="flex justify-between items-start bg-white/5 border border-white/5 rounded-xl p-3 gap-2">
+                    let icon, detail = "";
+                    if (isQuiz) {
+                        icon = p.lastRoundPoints > 0 ? "✅" : "❌";
+                    } else {
+                        const info = wordStatusInfo(p.wordStatus, p);
+                        icon = info.icon;
+                        detail = info.text ?
+                            `<div class="text-[11px] text-gray-500 font-normal mt-0.5">${info.text}</div>` :
+                            "";
+                    }
+                    const wordInfo = isQuiz ? "" : ` <span class="text-amber-300">"${esc(p.word || "-")}"</span>`;
+                    rowsHtml +=
+                        `<div class="flex justify-between items-start bg-white/5 border border-white/5 rounded-xl p-3 gap-2">
                                     <div class="font-bold text-white text-sm">${icon} ${esc(p.name)}${wordInfo}${detail}</div>
                                     <div class="font-black text-emerald-400 shrink-0">+${p.lastRoundPoints || 0} <span class="text-xs text-gray-500">(Σ ${p.score})</span></div>
                                 </div>`;
-            });
+                });
 
             let solutionHtml = "";
             if (isQuiz) {
@@ -6931,7 +7053,7 @@
 
             liveDuelRenderKey = "";
             renderFamilyHub();
-            try { if (typeof confetti === 'function') confetti(); } catch (e) {}
+            try { if (typeof confetti === 'function') confetti(); } catch (e) { }
             SFX.win();
         }
 
@@ -6986,8 +7108,8 @@
             try {
                 openDuelWatcher = liveDuelCollectionRef().onSnapshot((snap) => {
                     renderOpenDuelsList(snap);
-                }, () => {});
-            } catch (e) {}
+                }, () => { });
+            } catch (e) { }
         }
 
         function renderOpenDuelsList(snap) {
@@ -7000,7 +7122,7 @@
                 const d = docSnap.data() || {};
                 const alive = (now - (d.hostLastSeen || d.createdAt || 0)) < STALE;
                 if (d.status === "finished" || !alive) {
-                    docSnap.ref.delete().catch(() => {});
+                    docSnap.ref.delete().catch(() => { });
                     return;
                 }
                 const count = d.players ? Object.keys(d.players).length : 0;
@@ -7028,11 +7150,11 @@
             const ref = tvLobbyDocRef();
             if (!ref) return;
             stopWatchingForOpenTVLobby();
-            tvLobbyWatcher = ref.onSnapshot(renderOpenTVBar, () => {});
+            tvLobbyWatcher = ref.onSnapshot(renderOpenTVBar, () => { });
         }
 
         function stopWatchingForOpenTVLobby() {
-            if (tvLobbyWatcher) { try { tvLobbyWatcher(); } catch (e) {} tvLobbyWatcher = null; }
+            if (tvLobbyWatcher) { try { tvLobbyWatcher(); } catch (e) { } tvLobbyWatcher = null; }
             const box = document.getElementById("open-tv-list");
             if (box) box.innerHTML = "";
         }
@@ -7082,7 +7204,7 @@
         //  LESEN LERNEN (aus lesen_in_index.js)
         // ============================================================
         if (typeof renderLesenCategories !== 'function') {
-            window.renderLesenCategories = function() {
+            window.renderLesenCategories = function () {
                 const container = document.getElementById('lesen-categories');
                 if (!container) return;
                 container.innerHTML =

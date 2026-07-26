@@ -8,7 +8,7 @@ const READING_DATABASE = {
     // KLASSE 1 - BUCHSTABEN LERNEN (A-Z)
     // ============================================================
     buchstaben: {
-        label: "🔤 Buchstaben lernen (A-Z)",
+        label: "🔤 Buchstaben lernen (A bis Z)",
         description: "Lerne alle Buchstaben mit Bildern",
         items: [
             { letter: "A", word: "Affe", image: "img/A.jpg", sound: "ah" },

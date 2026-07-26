@@ -1,7 +1,4 @@
 
-
-
-
 <!DOCTYPE html>
 <html lang="de">
 
@@ -1870,55 +1867,6 @@
             setTimeout(() => t.remove(), 3000);
         }
 
-        function switchView(viewId) {
-            if (viewId !== 'fokus' && typeof focusTimerInterval !== 'undefined' && focusTimerInterval) {
-                clearInterval(focusTimerInterval);
-                focusTimerInterval = null;
-            }
-            if (viewId !== 'scrabble-play' && scrabbleTimerInterval) {
-                clearInterval(scrabbleTimerInterval);
-                scrabbleTimerInterval = null;
-            }
-            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
-            const target = document.getElementById(`view-${viewId}`);
-            if (target) target.classList.remove('hidden');
-            if (typeof closeDrawer === 'function') closeDrawer();
-            const shell = document.getElementById("app-shell");
-            if (shell) {
-                const wide = (viewId === 'tv-quiz-host');
-                shell.classList.toggle('max-w-md', !wide);
-                shell.classList.toggle('max-w-none', wide);
-            }
-            if (viewId === 'vokabeln') loadVocabSystem();
-            if (viewId === 'lesen' && typeof renderLesenCategories === 'function') {
-                const ex = document.getElementById('lesen-exercise');
-                const gr = document.getElementById('lesen-categories');
-                if (ex) ex.classList.add('hidden');
-                if (gr) gr.classList.remove('hidden');
-                renderLesenCategories();
-            }
-            if (viewId === 'rewards') renderRewardsShop();
-            if (viewId === 'family-hub' && typeof ALL_PROFILES !== 'undefined') renderFamilyHub();
-            if (typeof startHubWatch === 'function') {
-                if (viewId === 'family-hub') startHubWatch();
-                else stopHubWatch();
-            }
-            if (viewId === 'tv-quiz-host' && document.getElementById("tv-area") && typeof setTVTopicMode === 'function')
-                setTVTopicMode();
-            if (typeof watchForOpenDuel === 'function') {
-                if (viewId === 'menu') watchForOpenDuel();
-                else stopWatchingForOpenDuel();
-            }
-            if (typeof watchForOpenTVLobby === 'function') {
-                if (viewId === 'menu') watchForOpenTVLobby();
-                else stopWatchingForOpenTVLobby();
-            }
-            // Dashboard initialisieren
-            if (viewId === 'dashboard') {
-                switchDashboardTab('inhalte');
-                switchDashboardSubTab('fragen');
-            }
-        }
 
         function switchView(viewId) {
             // Laufende Timer stoppen

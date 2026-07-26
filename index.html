@@ -3284,7 +3284,7 @@
             if (birthday && ageFromBirthday(birthday) === null) {
                 if (hint) {
                     hint.innerText =
-                    "Der Geburtstag sieht nicht richtig aus.";
+                        "Der Geburtstag sieht nicht richtig aus.";
                     hint.classList.remove("hidden");
                 } return;
             }
@@ -3946,7 +3946,7 @@
             let sc = 0;
             while (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && sc < list
                 .length) {
-                    vIndex = (vIndex + 1) % list.length;
+                vIndex = (vIndex + 1) % list.length;
                 sc++;
             }
             const w = list[vIndex];
@@ -4130,7 +4130,7 @@
                 duelState.qIndex++;
                 if (duelState.qIndex < duelState.questions.length) { showDuelQuestion(); } else if (duelState
                     .turn === 'A') {
-                        duelState.turn = 'B';
+                    duelState.turn = 'B';
                     showDuelTurnIntro();
                 } else { finishDuel(); }
             }, 1100);
@@ -4887,7 +4887,7 @@
                             isResolving = true;
                             setTimeout(() => {
                                 data.mode === "scrabble" ? revealTVScrabbleRound(data) :
-                                revealTVAnswer(data);
+                                    revealTVAnswer(data);
                             }, 800);
                         }
                     }

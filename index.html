@@ -7,15 +7,15 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.2</title>
+    <title>EduPlay Hub - Familien Edition v2.3</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
     <!-- Firebase Cloud Einbindung -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
 
     <!-- DATENBANKEN -->
     <script src="data.js?v=46"></script>
@@ -1365,7 +1365,7 @@
         <header class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.2</span>
+                <span class="version">v2.3</span>
             </div>
             <div class="header-actions">
                 <button onclick="toggleSound()" title="Ton an/aus">
@@ -1389,7 +1389,7 @@
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.2</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.3</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -1731,48 +1731,6 @@
 
             </div>
 
-            <!-- ==========================================================
-            VIEW: SCHIEBEMENÜ (DRAWER) - REPARIERT
-            ========================================================== -->
-            <div id="drawer-backdrop" class="drawer-backdrop" onclick="closeDrawer()"></div>
-            <div id="settings-drawer" class="drawer">
-                <div class="drawer-header">
-                    <h2>📋 Menü</h2>
-                    <button class="close-btn" onclick="closeDrawer()">✕</button>
-                </div>
-
-                <div class="flex flex-col gap-1">
-                    <button onclick="closeDrawer(); switchView('dashboard')" class="drawer-menu-item">
-                        <span class="icon">📊</span>
-                        Dashboard
-                    </button>
-                    <button onclick="closeDrawer(); switchView('family-hub')" class="drawer-menu-item">
-                        <span class="icon">🏠</span>
-                        Übersicht
-                    </button>
-                    <button onclick="closeDrawer(); openFeedback('family-hub')" class="drawer-menu-item">
-                        <span class="icon">💬</span>
-                        Feedback geben
-                    </button>
-                    <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
-                        <span class="icon">🔊</span>
-                        <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
-                    </button>
-                    <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
-                        <span class="icon">🌓</span>
-                        Design umschalten
-                    </button>
-                    <button onclick="closeDrawer(); logoutParent()" class="drawer-menu-item danger">
-                        <span class="icon">🚪</span>
-                        Ausloggen
-                    </button>
-                </div>
-
-                <div class="drawer-footer">
-                    EduPlay Hub · v2.2<br>
-                    © 2026 · Familien Edition
-                </div>
-            </div>
 
             <!-- ==========================================================
             VIEW: DUELL SETUP
@@ -7297,11 +7255,54 @@
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe data.js");
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.2)");
+        console.log("🚀 EduPlay Hub gestartet (v2.3)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
     </script>
+
+
+    <!-- ==========================================================
+    SCHIEBEMENÜ (DRAWER) – als direktes <body>-Kind, damit position:fixed
+    sich auf den Viewport bezieht (NICHT auf #app-shell mit backdrop-filter)
+    ========================================================== -->
+    <div id="drawer-backdrop" class="drawer-backdrop" onclick="closeDrawer()"></div>
+    <div id="settings-drawer" class="drawer">
+        <div class="drawer-header">
+            <h2>📋 Menü</h2>
+            <button class="close-btn" onclick="closeDrawer()">✕</button>
+        </div>
+        <div class="flex flex-col gap-1">
+            <button onclick="closeDrawer(); switchView('dashboard')" class="drawer-menu-item">
+                <span class="icon">📊</span>
+                Dashboard
+            </button>
+            <button onclick="closeDrawer(); switchView('family-hub')" class="drawer-menu-item">
+                <span class="icon">🏠</span>
+                Übersicht
+            </button>
+            <button onclick="closeDrawer(); openFeedback('family-hub')" class="drawer-menu-item">
+                <span class="icon">💬</span>
+                Feedback geben
+            </button>
+            <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
+                <span class="icon">🔊</span>
+                <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
+            </button>
+            <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
+                <span class="icon">🌓</span>
+                Design umschalten
+            </button>
+            <button onclick="closeDrawer(); logoutParent()" class="drawer-menu-item danger">
+                <span class="icon">🚪</span>
+                Ausloggen
+            </button>
+        </div>
+        <div class="drawer-footer">
+            EduPlay Hub · v2.3<br>
+            © 2026 · Familien Edition
+        </div>
+    </div>
 
 </body>
 

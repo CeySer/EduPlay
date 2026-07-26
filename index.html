@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>EduPlay Hub – Eltern & Lehrer</title>
+    <title>📚 EduPlay Hub – Eltern & Lehrer</title>
     <style>
         * {
             box-sizing: border-box;
@@ -20,7 +20,9 @@
             color: #e8edf5;
         }
 
-        /* --- SPA VIEW LOGIK --- */
+        /* ============================================================ */
+        /*  SPA VIEW LOGIK (App-Struktur)                               */
+        /* ============================================================ */
         .app-view {
             display: none;
             max-width: 1000px;
@@ -35,7 +37,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- GLOBALE UI ELEMENTE --- */
         .top-bar {
             display: flex;
             align-items: center;
@@ -57,30 +58,9 @@
         }
         .btn-back:active { background: #142030; transform: scale(0.95); }
 
-        .header {
-            background: linear-gradient(145deg, #1a2637, #0f1724);
-            border-radius: 24px;
-            padding: 20px 24px;
-            margin-bottom: 16px;
-            border: 1px solid #2a3a50;
-        }
-        .header h1 {
-            color: #e8edf5;
-            font-size: 1.6rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .header p {
-            color: #7a8fa8;
-            font-size: 0.85rem;
-            margin-top: 4px;
-        }
-
-        /* --- HUB MENÜ KARTEN --- */
+        /* ============================================================ */
+        /*  HUB STARTBILDSCHIRM (KACHELN)                               */
+        /* ============================================================ */
         .hub-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -103,30 +83,90 @@
         .hub-card h2 { font-size: 1.2rem; color: #e8edf5; }
         .hub-card p { font-size: 0.85rem; color: #7a8fa8; line-height: 1.4; }
 
-        /* --- STYLES FÜR INHALTE-DASHBOARD (von dir übernommen) --- */
-        .tab-nav {
-            display: flex; gap: 4px; background: #121d2b; border-radius: 16px;
-            padding: 4px; margin-bottom: 16px; border: 1px solid #1e2c3f; overflow-x: auto;
+        /* ============================================================ */
+        /*  NEUE UI: ELTERN & SCHÜLER BEREICHE                          */
+        /* ============================================================ */
+        .admin-section {
+            background: #16222f;
+            border-radius: 18px;
+            padding: 20px;
+            border: 1px solid #253649;
+            margin-bottom: 16px;
         }
-        .tab-nav button {
-            background: transparent; border: none; padding: 10px 18px; border-radius: 12px;
-            color: #7a8fa8; font-weight: 500; font-size: 0.85rem; cursor: pointer;
-            transition: all 0.2s; white-space: nowrap; font-family: inherit;
+        .admin-section h3 {
+            color: #b0c8e0;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+        .form-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .form-group select, .form-group input {
+            background: #121d2b;
+            border: 1px solid #253649;
+            border-radius: 12px;
+            padding: 10px 14px;
+            color: #e8edf5;
+            font-size: 0.9rem;
+            flex: 1;
+            min-width: 150px;
+        }
+        .btn-coin {
+            background: #c09a4a;
+            color: #121d2b;
+            border: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        .btn-coin.minus { background: #8a4a4a; color: #f5e0e0; }
+        .btn-coin.plus { background: #4a8a5a; color: #e0f5e5; }
+        
+        .stat-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .stat-card {
+            background: #121d2b;
+            border: 1px solid #1e2c3f;
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-card .val { font-size: 1.8rem; font-weight: bold; color: #f0c060; margin: 8px 0; }
+        .stat-card .lbl { font-size: 0.8rem; color: #7a8fa8; }
+
+        /* ============================================================ */
+        /*  URSPRÜNGLICHE DASHBOARD STYLES (1:1 übernommen)             */
+        /* ============================================================ */
+        .header { background: linear-gradient(145deg, #1a2637, #0f1724); border-radius: 24px; padding: 20px 24px; margin-bottom: 16px; border: 1px solid #2a3a50; }
+        .header h1 { color: #e8edf5; font-size: 1.6rem; font-weight: 700; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .header h1 small { font-size: 0.7rem; font-weight: 400; color: #7a8fa8; background: #1e2c3f; padding: 4px 16px; border-radius: 40px; }
+        .header p { color: #7a8fa8; font-size: 0.85rem; margin-top: 4px; }
+
+        .tab-nav { display: flex; gap: 4px; background: #121d2b; border-radius: 16px; padding: 4px; margin-bottom: 16px; border: 1px solid #1e2c3f; overflow-x: auto; }
+        .tab-nav button { background: transparent; border: none; padding: 10px 18px; border-radius: 12px; color: #7a8fa8; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit; }
+        .tab-nav button:hover { color: #b0c8e0; }
         .tab-nav button.active { background: #1e2c3f; color: #e8edf5; }
-        .tab-nav button .badge {
-            background: #1e2c3f; padding: 1px 8px; border-radius: 40px; font-size: 0.6rem; margin-left: 6px;
-        }
+        .tab-nav button .badge { background: #1e2c3f; padding: 1px 8px; border-radius: 40px; font-size: 0.6rem; margin-left: 6px; }
         .tab-nav button.active .badge { background: #2a4a6a; color: #b0c8e0; }
         
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 16px; }
-        .card { background: #16222f; border-radius: 18px; padding: 18px 16px; border: 1px solid #253649; cursor: pointer; }
+        .card { background: #16222f; border-radius: 18px; padding: 18px 16px; border: 1px solid #253649; cursor: pointer; transition: all 0.2s; text-decoration: none; color: inherit; display: block; }
         .card:active { transform: scale(0.97); }
         .card .icon { font-size: 2rem; display: block; margin-bottom: 4px; }
-        .card .title { font-weight: 600; font-size: 1rem; }
+        .card .title { color: #e8edf5; font-weight: 600; font-size: 1rem; }
         .card .count { color: #7a8fa8; font-size: 0.8rem; }
         .card .badge { display: inline-block; background: #1e2c3f; color: #b0c8e0; font-size: 0.6rem; padding: 2px 10px; border-radius: 40px; margin-top: 4px; }
         .card-questions { border-left: 3px solid #4a8ab5; }
@@ -134,55 +174,85 @@
         .card-words { border-left: 3px solid #c09a4a; }
 
         .stats-area { background: #16222f; border-radius: 18px; padding: 16px 18px; margin-bottom: 16px; border: 1px solid #253649; }
-        .stats-area h3 { color: #b0c8e0; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; }
+        .stats-area h3 { color: #b0c8e0; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
         .stat-item { background: #121d2b; border-radius: 12px; padding: 10px 14px; border: 1px solid #1e2c3f; }
         .stat-item .label { color: #7a8fa8; font-size: 0.65rem; text-transform: uppercase; }
-        .stat-item .value { font-size: 1.1rem; font-weight: 600; }
+        .stat-item .value { color: #e8edf5; font-size: 1.1rem; font-weight: 600; }
 
         .search-area { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-        .search-area input, .filter-bar select, .filter-bar input {
-            flex: 1; background: #121d2b; border: 1px solid #253649; border-radius: 14px;
-            padding: 12px 16px; font-size: 0.95rem; color: #e8edf5; min-width: 150px;
-        }
-        .search-area input:focus, .filter-bar select:focus, .filter-bar input:focus { outline: none; border-color: #4a8ab5; }
-        .btn { background: #1e2c3f; border: 1px solid #253649; border-radius: 14px; padding: 12px 20px; color: #b0c8e0; cursor: pointer; font-weight: 600; }
-        .btn:active { background: #142030; }
-        .btn-primary { background: #2a4a6a; border-color: #3a6a8a; color: #e0ecf5; }
+        .search-area input { flex: 1; background: #121d2b; border: 1px solid #253649; border-radius: 14px; padding: 12px 16px; font-size: 0.95rem; color: #e8edf5; font-family: inherit; min-width: 150px; }
+        .search-area input::placeholder { color: #4a5f7a; }
+        .search-area input:focus { outline: none; border-color: #4a8ab5; }
+        .search-area .btn { background: #1e2c3f; border: 1px solid #253649; border-radius: 14px; padding: 12px 20px; color: #b0c8e0; font-weight: 600; cursor: pointer; transition: 0.15s; font-size: 0.9rem; font-family: inherit; }
+        .search-area .btn:active { background: #142030; }
 
-        .results { background: #16222f; border-radius: 18px; padding: 16px 18px; border: 1px solid #253649; max-height: 300px; overflow-y: auto; display: none; }
+        .results { background: #16222f; border-radius: 18px; padding: 16px 18px; border: 1px solid #253649; max-height: 500px; overflow-y: auto; display: none; }
         .results.show { display: block; }
-        .result-item { padding: 10px; border-bottom: 1px solid #1e2c3f; font-size: 0.9rem; }
+        .result-item { padding: 10px 12px; border-bottom: 1px solid #1e2c3f; color: #c0d0e0; font-size: 0.9rem; transition: background 0.15s; }
+        .result-item:last-child { border-bottom: none; }
+        .result-item:hover { background: #1a2637; }
         .result-item .match { color: #f0c060; font-weight: 500; }
-        .result-item .source { color: #7a8fa8; font-size: 0.7rem; background: #1e2c3f; padding: 1px 10px; border-radius: 40px; margin-left: 8px; }
+        .result-item .source { color: #7a8fa8; font-size: 0.7rem; display: inline-block; background: #1e2c3f; padding: 1px 10px; border-radius: 40px; margin-left: 8px; }
+        .result-item .id-tag { color: #4a6a8a; font-size: 0.65rem; margin-left: 8px; }
+        .result-item .top-tag { color: #f0c060; font-size: 0.6rem; margin-left: 6px; }
+        .results .empty { color: #7a8fa8; text-align: center; padding: 20px; line-height: 1.6; }
+        .results .result-header { color: #7a8fa8; font-size: 0.7rem; padding-bottom: 6px; border-bottom: 1px solid #1e2c3f; margin-bottom: 6px; }
 
-        .viewer-container { background: #16222f; border-radius: 18px; padding: 16px; border: 1px solid #253649; min-height: 400px; }
-        .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
-        .question-card, .vocab-card { background: #121d2b; border-radius: 14px; padding: 14px; margin-bottom: 10px; border: 1px solid #1e2c3f; }
-        .q-answers span { background: #1e2c3f; padding: 2px 12px; border-radius: 40px; font-size: 0.8rem; margin-right: 6px; display: inline-block; margin-bottom: 4px; }
-        .q-answers .correct { background: #1a4a2a; color: #90d0a0; border-color: #2a6a3a; }
-        
-        .word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
-        .word-card { background: #121d2b; border-radius: 12px; padding: 10px 8px; text-align: center; border: 1px solid #1e2c3f; font-size: 0.9rem; }
+        .viewer-container { background: #16222f; border-radius: 18px; padding: 16px 18px; border: 1px solid #253649; min-height: 400px; }
+        .viewer-container .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+        .viewer-container .filter-bar select, .viewer-container .filter-bar input { background: #121d2b; border: 1px solid #253649; border-radius: 12px; padding: 8px 14px; color: #e8edf5; font-family: inherit; font-size: 0.85rem; flex: 1; min-width: 120px; }
+        .viewer-container .filter-bar select option { background: #1a2637; }
+        .viewer-container .filter-bar input::placeholder { color: #4a5f7a; }
+        .viewer-container .filter-bar input:focus, .viewer-container .filter-bar select:focus { outline: none; border-color: #4a8ab5; }
 
-        /* Scrollbars für Listen */
+        .question-card { background: #121d2b; border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; border: 1px solid #1e2c3f; }
+        .question-card .q-header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; font-size: 0.7rem; color: #7a8fa8; margin-bottom: 4px; }
+        .question-card .q-text { color: #e8edf5; font-weight: 500; font-size: 0.95rem; margin-bottom: 6px; }
+        .question-card .q-answers { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+        .question-card .q-answers span { background: #1e2c3f; padding: 2px 12px; border-radius: 40px; font-size: 0.8rem; color: #b0c8e0; }
+        .question-card .q-answers .correct { background: #1a4a2a; color: #90d0a0; border: 1px solid #2a6a3a; }
+        .question-card .q-footer { font-size: 0.7rem; color: #7a8fa8; display: flex; gap: 12px; flex-wrap: wrap; border-top: 1px solid #1e2c3f; padding-top: 6px; margin-top: 4px; }
+
+        .vocab-card { background: #121d2b; border-radius: 14px; padding: 12px 16px; margin-bottom: 10px; border: 1px solid #1e2c3f; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .vocab-card .de { color: #e8edf5; font-weight: 500; }
+        .vocab-card .foreign { color: #b0c8e0; background: #1e2c3f; padding: 2px 14px; border-radius: 40px; }
+        .vocab-card .meta { color: #7a8fa8; font-size: 0.65rem; width: 100%; border-top: 1px solid #1e2c3f; padding-top: 4px; margin-top: 2px; }
+
+        .word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+        .word-card { background: #121d2b; border-radius: 12px; padding: 10px 8px; text-align: center; border: 1px solid #1e2c3f; color: #e8edf5; font-weight: 500; font-size: 0.9rem; transition: 0.15s; }
+        .word-card:active { background: #1a2637; }
+        .word-card .meta { display: block; color: #7a8fa8; font-size: 0.55rem; font-weight: 400; margin-top: 2px; }
+
+        .viewer-stats { color: #7a8fa8; font-size: 0.8rem; padding: 8px 0 12px 0; border-bottom: 1px solid #1e2c3f; margin-bottom: 12px; }
+        .viewer-stats strong { color: #e8edf5; }
+
         .results::-webkit-scrollbar, .viewer-container::-webkit-scrollbar { width: 4px; }
+        .results::-webkit-scrollbar-track, .viewer-container::-webkit-scrollbar-track { background: #121d2b; border-radius: 10px; }
         .results::-webkit-scrollbar-thumb, .viewer-container::-webkit-scrollbar-thumb { background: #2a4a6a; border-radius: 10px; }
-        
-        /* Platzhalter Styles für neue Bereiche */
-        .placeholder-box { background: #121d2b; border: 1px dashed #253649; padding: 30px; text-align: center; border-radius: 16px; color: #7a8fa8; }
+
+        .action-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+        .action-row .btn { background: #1e2c3f; border: 1px solid #253649; border-radius: 14px; padding: 10px 18px; color: #b0c8e0; font-weight: 500; cursor: pointer; transition: 0.15s; font-size: 0.8rem; font-family: inherit; }
+        .action-row .btn:active { background: #142030; }
+        .action-row .btn-primary { background: #2a4a6a; border-color: #3a6a8a; color: #e0ecf5; }
+        .action-row .btn-primary:active { background: #1a3a5a; }
 
         @media (max-width: 480px) {
-            .card-grid, .stats-grid { grid-template-columns: 1fr 1fr; }
+            .card-grid { grid-template-columns: 1fr 1fr; }
+            .header h1 { font-size: 1.2rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .search-area input { min-width: 100px; }
+            .tab-nav button { font-size: 0.75rem; padding: 8px 12px; }
+            .word-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
             .hub-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ======================================================= -->
-    <!-- APP VIEW 1: HAUPTMENÜ (HUB)                             -->
-    <!-- ======================================================= -->
+    <!-- ============================================================ -->
+    <!-- VIEW 1: HUB HAUPTMENÜ                                        -->
+    <!-- ============================================================ -->
     <div id="viewHub" class="app-view active">
         <div class="header">
             <h1>⚙️ Eltern & Lehrer Hub</h1>
@@ -211,104 +281,178 @@
     </div>
 
 
-    <!-- ======================================================= -->
-    <!-- APP VIEW 2: SCHÜLER-STATISTIKEN                         -->
-    <!-- ======================================================= -->
+    <!-- ============================================================ -->
+    <!-- VIEW 2: SCHÜLER-STATISTIKEN                                  -->
+    <!-- ============================================================ -->
     <div id="viewSchueler" class="app-view">
         <div class="top-bar">
             <button class="btn-back" onclick="switchView('viewHub')">⬅ Zurück zum Hub</button>
         </div>
         <div class="header">
             <h1>👥 Schüler-Statistiken</h1>
+            <p>Übersicht der Spieler und Lernfortschritte</p>
         </div>
-        <div class="stats-area">
-            <h3>Auswertung & Fortschritt</h3>
-            <div class="placeholder-box">
-                <div style="font-size: 2rem; margin-bottom: 10px;">📊</div>
-                Hier fließen in Kürze die Live-Daten aus Firebase ein.<br><br>
-                <strong>Geplante Funktionen:</strong><br>
-                - XP und aktuelle Level der Profile<br>
-                - Lern-Streaks (tägliche Nutzung)<br>
-                - Erkannte Schwächen (Falsch beantwortete Fragen)
+        
+        <div class="admin-section">
+            <h3>Auswahl Spieler</h3>
+            <div class="form-group">
+                <select id="statPlayerSelect">
+                    <option value="p1">Profil: Ceyhun (Beispiel)</option>
+                    <option value="p2">Profil: Gast (Beispiel)</option>
+                </select>
+                <button class="btn-primary" style="padding: 10px 20px; border-radius: 12px; border:none; cursor:pointer;">Laden</button>
+            </div>
+        </div>
+
+        <div class="stat-card-grid">
+            <div class="stat-card">
+                <div class="lbl">Aktuelles Level</div>
+                <div class="val">Lvl 12</div>
+                <div class="lbl">1.250 XP</div>
+            </div>
+            <div class="stat-card">
+                <div class="lbl">Gesammelte Coins 💰</div>
+                <div class="val">4.500</div>
+                <div class="lbl">Bereit für den Shop</div>
+            </div>
+            <div class="stat-card">
+                <div class="lbl">Lern-Streak 🔥</div>
+                <div class="val">5 Tage</div>
+                <div class="lbl">Tägliche Serie</div>
+            </div>
+            <div class="stat-card">
+                <div class="lbl">Trefferquote 🎯</div>
+                <div class="val">78%</div>
+                <div class="lbl">In allen Fächern</div>
             </div>
         </div>
     </div>
 
 
-    <!-- ======================================================= -->
-    <!-- APP VIEW 3: ELTERN-EINSTELLUNGEN                        -->
-    <!-- ======================================================= -->
+    <!-- ============================================================ -->
+    <!-- VIEW 3: ELTERN-EINSTELLUNGEN (inkl. COINS VERWALTEN)         -->
+    <!-- ============================================================ -->
     <div id="viewEltern" class="app-view">
         <div class="top-bar">
             <button class="btn-back" onclick="switchView('viewHub')">⬅ Zurück zum Hub</button>
         </div>
         <div class="header">
             <h1>🔐 Eltern-Einstellungen</h1>
+            <p>Bereich für manuelle Anpassungen und Sicherheit</p>
         </div>
-        <div class="stats-area">
-            <h3>Verwaltung</h3>
-            <div class="placeholder-box">
-                <div style="font-size: 2rem; margin-bottom: 10px;">⚙️</div>
-                Dieser Bereich wird durch den 4-stelligen PIN geschützt.<br><br>
-                <strong>Geplante Funktionen:</strong><br>
-                - Profile anlegen / Alter anpassen<br>
-                - Manuelle Coin-Gutschriften (+ / -)<br>
-                - Wöchentlichen Report aktivieren
+
+        <!-- Coins manuell verwalten -->
+        <div class="admin-section">
+            <h3>💰 Coins manuell verwalten</h3>
+            <p style="color:#7a8fa8; font-size:0.85rem; margin-bottom:12px;">Coins hinzufügen (als Belohnung) oder abziehen.</p>
+            <div class="form-group">
+                <select id="coinPlayerSelect">
+                    <option value="p1">Profil: Ceyhun</option>
+                    <option value="p2">Profil: Gast</option>
+                </select>
+                <input type="number" id="coinAmount" placeholder="Anzahl Coins (z.B. 100)" min="1">
+            </div>
+            <div class="form-group">
+                <button class="btn-coin plus">+ Coins hinzufügen</button>
+                <button class="btn-coin minus">- Coins abziehen</button>
+            </div>
+        </div>
+
+        <!-- Spieler Profil Verwaltung -->
+        <div class="admin-section">
+            <h3>👥 Spieler-Profile verwalten</h3>
+            <div class="form-group">
+                <input type="text" placeholder="Neuer Spieler Name">
+                <input type="date" title="Geburtsdatum">
+                <button class="btn-primary" style="padding: 10px 20px; border-radius: 12px; border:none; cursor:pointer;">Profil anlegen</button>
+            </div>
+        </div>
+
+        <!-- PIN Wiederherstellung / Ändern -->
+        <div class="admin-section">
+            <h3>🔑 Eltern-PIN ändern</h3>
+            <div class="form-group">
+                <input type="password" placeholder="Alte PIN" maxlength="4">
+                <input type="password" placeholder="Neue PIN" maxlength="4">
+                <button class="btn-primary" style="padding: 10px 20px; border-radius: 12px; border:none; cursor:pointer;">PIN Speichern</button>
             </div>
         </div>
     </div>
 
 
-    <!-- ======================================================= -->
-    <!-- APP VIEW 4: INHALTE-DASHBOARD (Dein Code)               -->
-    <!-- ======================================================= -->
+    <!-- ============================================================ -->
+    <!-- VIEW 4: INHALTE-DASHBOARD (Dein originaler Code)             -->
+    <!-- ============================================================ -->
     <div id="viewInhalte" class="app-view">
         <div class="top-bar">
             <button class="btn-back" onclick="switchView('viewHub')">⬅ Zurück zum Hub</button>
         </div>
+        
         <div class="header">
-            <h1>📚 Inhalte-Übersicht</h1>
-            <p>Gesamte Spieldatenbank (Fragen, Vokabeln, Wörter) durchsuchen</p>
+            <h1>📚 Bildungs-Dashboard <small>Lehrer &amp; Eltern</small></h1>
+            <p>🧑‍🏫 Alle Lernressourcen zentral verwalten – Fragen, Vokabeln &amp; Wörter</p>
         </div>
 
-        <!-- TAB-NAVIGATION FÜR INHALTE -->
+        <!-- TAB-NAVIGATION -->
         <div class="tab-nav" id="tabNav">
-            <button class="active" data-tab="dashboard">📊 Übersicht</button>
+            <button class="active" data-tab="dashboard">📊 Dashboard</button>
             <button data-tab="fragen">📖 Fragen <span class="badge" id="tabQuestionCount">0</span></button>
             <button data-tab="vokabeln">📝 Vokabeln <span class="badge" id="tabVocabCount">0</span></button>
             <button data-tab="woerter">🔤 Wörter <span class="badge" id="tabWordCount">0</span></button>
         </div>
 
-        <!-- TAB 1: ÜBERSICHT -->
+        <!-- TAB 1: DASHBOARD -->
         <div class="tab-content active" id="tabDashboard">
             <div class="card-grid">
                 <div class="card card-questions" id="cardQuestions">
-                    <span class="icon">📖</span><span class="title">Fragen</span><span class="count" id="questionCount">0</span>
+                    <span class="icon">📖</span><span class="title">Fragen</span>
+                    <span class="count" id="questionCount">0</span><span class="badge">⭐ Quiz-Fragen</span>
                 </div>
                 <div class="card card-vocab" id="cardVocab">
-                    <span class="icon">📝</span><span class="title">Vokabeln</span><span class="count" id="vocabCount">0</span>
+                    <span class="icon">📝</span><span class="title">Vokabeln</span>
+                    <span class="count" id="vocabCount">0</span><span class="badge">🌍 Deutsch &amp; Fremdsprachen</span>
                 </div>
                 <div class="card card-words" id="cardWords">
-                    <span class="icon">🔤</span><span class="title">Wörter</span><span class="count" id="wordCount">0</span>
+                    <span class="icon">🔤</span><span class="title">Wörter</span>
+                    <span class="count" id="wordCount">0</span><span class="badge">📝 Deutsche Wortliste</span>
+                </div>
+            </div>
+
+            <div class="stats-area">
+                <h3>📊 Statistik &amp; Übersicht</h3>
+                <div class="stats-grid">
+                    <div class="stat-item"><div class="label">Klassenstufen</div><div class="value" id="gradeCount">0</div></div>
+                    <div class="stat-item"><div class="label">Fächer (Schule)</div><div class="value" id="subjectCount">0</div></div>
+                    <div class="stat-item"><div class="label">Sprachen (Vokabeln)</div><div class="value" id="langCount">0</div></div>
+                    <div class="stat-item"><div class="label">Gesamt-Ressourcen</div><div class="value" id="totalCount">0</div></div>
                 </div>
             </div>
 
             <div class="search-area">
-                <input type="text" id="globalSearch" placeholder="🔎 Suche in allen Datenbanken …">
+                <input type="text" id="globalSearch" placeholder="🔎 Suche in allen Datenbanken … (z.B. &quot;Hund&quot; oder &quot;schreib&quot;)">
                 <button class="btn" id="searchBtn">🔍 Suchen</button>
                 <button class="btn" id="clearSearchBtn">✕</button>
             </div>
+
             <div class="results" id="resultsContainer">
-                <div class="placeholder-box" style="padding:15px; border:none;">🔍 Gib einen Suchbegriff ein …</div>
+                <div class="empty">🔍 Gib einen Suchbegriff ein …</div>
+            </div>
+
+            <div class="action-row">
+                <button class="btn btn-primary" id="exportBtn">📤 Export (JSON)</button>
+                <button class="btn" id="printBtn">🖨 Drucken</button>
+                <button class="btn" id="refreshBtn">🔄 Aktualisieren</button>
             </div>
         </div>
 
         <!-- TAB 2: FRAGEN-VIEWER -->
         <div class="tab-content" id="tabFragen">
             <div class="viewer-container">
+                <div class="viewer-stats">📖 <strong id="viewerQuestionCount">0</strong> Fragen · 🔍 <span id="viewerQuestionFiltered">0</span> gefiltert</div>
                 <div class="filter-bar">
                     <select id="questionGradeFilter"><option value="">Alle Klassen</option></select>
                     <select id="questionSubjectFilter"><option value="">Alle Fächer</option></select>
+                    <select id="questionDifficultyFilter"><option value="">Alle Schwierigkeiten</option></select>
                     <input type="text" id="questionSearch" placeholder="🔎 Suche in Fragen …">
                 </div>
                 <div id="questionList"></div>
@@ -318,11 +462,10 @@
         <!-- TAB 3: VOKABELN-VIEWER -->
         <div class="tab-content" id="tabVokabeln">
             <div class="viewer-container">
+                <div class="viewer-stats">📝 <strong id="viewerVocabCount">0</strong> Vokabeln · 🔍 <span id="viewerVocabFiltered">0</span> gefiltert</div>
                 <div class="filter-bar">
-                    <select id="vocabLangFilter">
-                        <option value="en">🇬🇧 Englisch</option>
-                        <option value="tr">🇹🇷 Türkisch</option>
-                    </select>
+                    <select id="vocabLangFilter"><option value="en">🇬🇧 Englisch</option><option value="tr">🇹🇷 Türkisch</option></select>
+                    <select id="vocabLevelFilter"><option value="">Alle Niveaus</option></select>
                     <input type="text" id="vocabSearch" placeholder="🔎 Suche in Vokabeln …">
                 </div>
                 <div id="vocabList"></div>
@@ -332,8 +475,10 @@
         <!-- TAB 4: WÖRTER-VIEWER -->
         <div class="tab-content" id="tabWoerter">
             <div class="viewer-container">
+                <div class="viewer-stats">🔤 <strong id="viewerWordCount">0</strong> Wörter · 🔍 <span id="viewerWordFiltered">0</span> gefiltert</div>
                 <div class="filter-bar">
                     <select id="wordLengthFilter"><option value="">Alle Längen</option></select>
+                    <select id="wordStartFilter"><option value="">Anfangsbuchstabe</option></select>
                     <input type="text" id="wordSearch" placeholder="🔎 Suche in Wörtern …">
                 </div>
                 <div id="wordList" class="word-grid"></div>
@@ -342,30 +487,29 @@
     </div>
 
 
-    <!-- ======================================================= -->
-    <!-- SCRIPTS                                                 -->
-    <!-- ======================================================= -->
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT & LOGIK                                           -->
+    <!-- ============================================================ -->
     <script src="data.js?v=46"></script>
     <script src="words_kids.js?v=1"></script>
     <script src="words_adult.js?v=1"></script>
     <script>
-        // --- 1. DATEN-INITIALISIERUNG ---
+        // --- Dummy Daten Fallback (falls Dateien fehlen) ---
+        if(typeof QUESTIONS_DATABASE === 'undefined') window.QUESTIONS_DATABASE = [];
+        if(typeof VOCABULARY_DATABASE === 'undefined') window.VOCABULARY_DATABASE = { en: {} };
         const GERMAN_WORDS = [
             ...(typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : []),
             ...(typeof GERMAN_WORDS_ADULT !== "undefined" ? GERMAN_WORDS_ADULT : [])
         ];
-        // Dummy Daten falls die JS Dateien gerade nicht laden
-        if(typeof QUESTIONS_DATABASE === 'undefined') window.QUESTIONS_DATABASE = [];
-        if(typeof VOCABULARY_DATABASE === 'undefined') window.VOCABULARY_DATABASE = { en: {} };
 
-        // --- 2. SPA VIEW-WECHSEL LOGIK ---
+        // --- SPA VIEW-WECHSEL LOGIK ---
         function switchView(viewId) {
             document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active'));
             document.getElementById(viewId).classList.add('active');
-            window.scrollTo(0, 0); // Nach oben scrollen beim Wechsel
+            window.scrollTo(0, 0); 
         }
 
-        // --- 3. INHALTE-TAB LOGIK ---
+        // --- DASHBOARD TAB-NAVIGATION LOGIK ---
         const tabs = {
             dashboard: document.getElementById('tabDashboard'),
             fragen: document.getElementById('tabFragen'),
@@ -387,20 +531,21 @@
             });
         });
 
-        // Verknüpfung der Dashboard-Karten
-        document.getElementById('cardQuestions').addEventListener('click', () => document.querySelector('[data-tab="fragen"]').click());
-        document.getElementById('cardVocab').addEventListener('click', () => document.querySelector('[data-tab="vokabeln"]').click());
-        document.getElementById('cardWords').addEventListener('click', () => document.querySelector('[data-tab="woerter"]').click());
+        document.getElementById('cardQuestions').addEventListener('click', () => document.querySelector('.tab-nav button[data-tab="fragen"]').click());
+        document.getElementById('cardVocab').addEventListener('click', () => document.querySelector('.tab-nav button[data-tab="vokabeln"]').click());
+        document.getElementById('cardWords').addEventListener('click', () => document.querySelector('.tab-nav button[data-tab="woerter"]').click());
 
-        // --- 4. COUNTER & STATS ---
+        // --- ZÄHLER AKTUALISIEREN ---
         function updateCounts() {
             const qCount = QUESTIONS_DATABASE.length;
             let vocabTotal = 0;
             if (VOCABULARY_DATABASE && typeof VOCABULARY_DATABASE === 'object') {
                 Object.keys(VOCABULARY_DATABASE).forEach(lang => {
-                    if(VOCABULARY_DATABASE[lang]) {
+                    if (VOCABULARY_DATABASE[lang] && typeof VOCABULARY_DATABASE[lang] === 'object') {
                         Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
-                            if (VOCABULARY_DATABASE[lang][level].words) vocabTotal += VOCABULARY_DATABASE[lang][level].words.length;
+                            if (VOCABULARY_DATABASE[lang][level] && VOCABULARY_DATABASE[lang][level].words) {
+                                vocabTotal += VOCABULARY_DATABASE[lang][level].words.length;
+                            }
                         });
                     }
                 });
@@ -410,77 +555,275 @@
             document.getElementById('questionCount').textContent = qCount;
             document.getElementById('vocabCount').textContent = vocabTotal;
             document.getElementById('wordCount').textContent = wCount;
-            
+            document.getElementById('totalCount').textContent = qCount + vocabTotal + wCount;
             document.getElementById('tabQuestionCount').textContent = qCount;
             document.getElementById('tabVocabCount').textContent = vocabTotal;
             document.getElementById('tabWordCount').textContent = wCount;
+
+            const grades = new Set();
+            const subjects = new Set();
+            QUESTIONS_DATABASE.forEach(q => {
+                if (q.grade !== undefined && q.grade !== null) grades.add(q.grade);
+                if (q.subject) subjects.add(q.subject);
+            });
+            document.getElementById('gradeCount').textContent = grades.size;
+            document.getElementById('subjectCount').textContent = subjects.size;
+            document.getElementById('langCount').textContent = VOCABULARY_DATABASE ? Object.keys(VOCABULARY_DATABASE).length : 0;
+        }
+        updateCounts();
+
+        // --- VIEWER: FRAGEN ---
+        const questionGradeFilter = document.getElementById('questionGradeFilter');
+        const questionSubjectFilter = document.getElementById('questionSubjectFilter');
+        const questionDifficultyFilter = document.getElementById('questionDifficultyFilter');
+        const questionSearch = document.getElementById('questionSearch');
+        const questionList = document.getElementById('questionList');
+
+        function populateQuestionFilters() {
+            const grades = new Set();
+            const subjects = new Set();
+            const difficulties = new Set();
+            QUESTIONS_DATABASE.forEach(q => {
+                if (q.grade !== undefined && q.grade !== null) grades.add(q.grade);
+                if (q.subject) subjects.add(q.subject);
+                if (q.difficulty) difficulties.add(q.difficulty);
+            });
+
+            questionGradeFilter.innerHTML = '<option value="">Alle Klassen</option>' + [...grades].sort((a, b) => a - b).map(g => `<option value="${g}">Klasse ${g}</option>`).join('');
+            questionSubjectFilter.innerHTML = '<option value="">Alle Fächer</option>' + [...subjects].sort().map(s => `<option value="${s}">${s}</option>`).join('');
+            questionDifficultyFilter.innerHTML = '<option value="">Alle Schwierigkeiten</option>' + [...difficulties].sort().map(d => `<option value="${d}">${d}</option>`).join('');
         }
 
-        // --- 5. RENDER FUNKTIONEN (Vereinfacht) ---
         function renderQuestions() {
-            const list = document.getElementById('questionList');
-            const search = document.getElementById('questionSearch').value.toLowerCase();
-            let html = '';
-            
-            let filtered = QUESTIONS_DATABASE.filter(q => (q.question || '').toLowerCase().includes(search));
-            if(filtered.length === 0) html = '<div class="placeholder-box">Keine Fragen gefunden</div>';
-            
-            filtered.forEach(q => {
-                const answersHtml = (q.answers || []).map((a, i) => 
-                    `<span class="${i === q.correct ? 'correct' : ''}">${a}</span>`
-                ).join('');
-                html += `<div class="question-card"><div style="color:#7a8fa8;font-size:0.7rem;">Klasse ${q.grade || '?'} · ${q.subject || '?'}</div>
-                         <div style="margin: 6px 0;"><strong>${q.question}</strong></div><div class="q-answers">${answersHtml}</div></div>`;
+            const grade = questionGradeFilter.value;
+            const subject = questionSubjectFilter.value;
+            const difficulty = questionDifficultyFilter.value;
+            const search = questionSearch.value.toLowerCase();
+
+            let filtered = QUESTIONS_DATABASE.filter(q => {
+                if (grade && q.grade !== undefined && String(q.grade) !== grade) return false;
+                if (subject && q.subject !== subject) return false;
+                if (difficulty && q.difficulty !== difficulty) return false;
+                if (search) {
+                    const haystack = (q.question + ' ' + (q.explanation || '') + ' ' + (q.answers || []).join(' ')).toLowerCase();
+                    if (!haystack.includes(search)) return false;
+                }
+                return true;
             });
-            list.innerHTML = html;
+
+            document.getElementById('viewerQuestionCount').textContent = QUESTIONS_DATABASE.length;
+            document.getElementById('viewerQuestionFiltered').textContent = filtered.length;
+
+            if (filtered.length === 0) { questionList.innerHTML = `<div class="empty" style="padding:30px;">😕 Keine Fragen gefunden</div>`; return; }
+
+            let html = '';
+            filtered.forEach(q => {
+                const answersHtml = (q.answers || []).map((a, i) => `<span class="${i === q.correct ? 'correct' : ''}">${a}${i === q.correct ? ' ✅' : ''}</span>`).join('');
+                html += `
+            <div class="question-card">
+                <div class="q-header"><span>${q.id || '—'}</span><span>Klasse ${q.grade || '?'} · ${q.subject || '?'} · ${q.difficulty || '—'}</span></div>
+                <div class="q-text">${q.question}</div>
+                <div class="q-answers">${answersHtml}</div>
+                <div class="q-footer"><span>${q.points || 0} Pkt.</span>${q.explanation ? `<span>💡 ${q.explanation}</span>` : ''}</div>
+            </div>`;
+            });
+            questionList.innerHTML = html;
+        }
+
+        questionGradeFilter.addEventListener('change', renderQuestions);
+        questionSubjectFilter.addEventListener('change', renderQuestions);
+        questionDifficultyFilter.addEventListener('change', renderQuestions);
+        questionSearch.addEventListener('input', renderQuestions);
+        populateQuestionFilters();
+        renderQuestions();
+
+        // --- VIEWER: VOKABELN ---
+        const vocabLangFilter = document.getElementById('vocabLangFilter');
+        const vocabLevelFilter = document.getElementById('vocabLevelFilter');
+        const vocabSearch = document.getElementById('vocabSearch');
+        const vocabList = document.getElementById('vocabList');
+
+        function getVocabWords(lang) {
+            const data = VOCABULARY_DATABASE[lang];
+            if (!data) return [];
+            const words = [];
+            Object.keys(data).forEach(level => {
+                if (data[level] && data[level].words) data[level].words.forEach(w => words.push({ ...w, _level: level, _levelLabel: data[level].label || level, _lang: lang }));
+            });
+            return words;
+        }
+
+        function populateVocabLevels() {
+            const lang = vocabLangFilter.value;
+            const data = VOCABULARY_DATABASE[lang];
+            if (!data) { vocabLevelFilter.innerHTML = '<option value="">Keine Daten</option>'; return; }
+            const currentVal = vocabLevelFilter.value;
+            vocabLevelFilter.innerHTML = '<option value="">Alle Niveaus</option>';
+            Object.keys(data).forEach(key => {
+                const opt = document.createElement('option');
+                opt.value = key; opt.textContent = data[key].label || key;
+                vocabLevelFilter.appendChild(opt);
+            });
+            if (currentVal) vocabLevelFilter.value = currentVal;
         }
 
         function renderVocab() {
-            const list = document.getElementById('vocabList');
-            const search = document.getElementById('vocabSearch').value.toLowerCase();
-            const lang = document.getElementById('vocabLangFilter').value;
+            const lang = vocabLangFilter.value;
+            const level = vocabLevelFilter.value;
+            const search = vocabSearch.value.toLowerCase();
+
+            let words = getVocabWords(lang);
+            if (level) words = words.filter(w => w._level === level);
+            if (search) words = words.filter(w => (w.de + ' ' + w.foreign).toLowerCase().includes(search));
+
+            document.getElementById('viewerVocabCount').textContent = getVocabWords(lang).length;
+            document.getElementById('viewerVocabFiltered').textContent = words.length;
+
+            if (words.length === 0) { vocabList.innerHTML = `<div class="empty" style="padding:30px;">😕 Keine Vokabeln gefunden</div>`; return; }
+
             let html = '';
-            let words = [];
-            
-            if(VOCABULARY_DATABASE[lang]) {
-                Object.keys(VOCABULARY_DATABASE[lang]).forEach(l => {
-                    if(VOCABULARY_DATABASE[lang][l].words) words.push(...VOCABULARY_DATABASE[lang][l].words);
-                });
-            }
-
-            let filtered = words.filter(w => (w.de + ' ' + w.foreign).toLowerCase().includes(search));
-            if(filtered.length === 0) html = '<div class="placeholder-box">Keine Vokabeln gefunden</div>';
-
-            filtered.forEach(w => {
-                html += `<div class="vocab-card" style="display:flex; justify-content:space-between;">
-                            <span>${w.de}</span><span style="color:#b0c8e0;">${w.foreign}</span>
-                         </div>`;
+            words.forEach(w => {
+                html += `<div class="vocab-card"><span class="de">${w.de}</span><span class="foreign">${w.foreign}</span><span class="meta">${w._levelLabel} · ${w.id || ''}</span></div>`;
             });
-            list.innerHTML = html;
+            vocabList.innerHTML = html;
+        }
+
+        vocabLangFilter.addEventListener('change', () => { populateVocabLevels(); renderVocab(); });
+        vocabLevelFilter.addEventListener('change', renderVocab);
+        vocabSearch.addEventListener('input', renderVocab);
+        populateVocabLevels();
+        renderVocab();
+
+        // --- VIEWER: WÖRTER ---
+        const wordLengthFilter = document.getElementById('wordLengthFilter');
+        const wordStartFilter = document.getElementById('wordStartFilter');
+        const wordSearch = document.getElementById('wordSearch');
+        const wordList = document.getElementById('wordList');
+
+        function populateWordFilters() {
+            const lengths = new Set();
+            GERMAN_WORDS.forEach(w => lengths.add(w.length));
+            wordLengthFilter.innerHTML = '<option value="">Alle Längen</option>' + [...lengths].sort((a, b) => a - b).map(l => `<option value="${l}">${l} Buchstaben</option>`).join('');
+            const letters = new Set();
+            GERMAN_WORDS.forEach(w => letters.add(w.charAt(0)));
+            wordStartFilter.innerHTML = '<option value="">Anfangsbuchstabe</option>' + [...letters].sort().map(l => `<option value="${l}">${l}</option>`).join('');
         }
 
         function renderWords() {
-            const list = document.getElementById('wordList');
-            const search = document.getElementById('wordSearch').value.toUpperCase();
-            let html = '';
-            
-            let filtered = GERMAN_WORDS.filter(w => w.includes(search));
-            if(filtered.length === 0) html = '<div class="placeholder-box" style="grid-column:1/-1;">Keine Wörter gefunden</div>';
+            const length = wordLengthFilter.value;
+            const start = wordStartFilter.value;
+            const search = wordSearch.value.toUpperCase();
 
-            filtered.forEach(w => {
-                html += `<div class="word-card">${w}</div>`;
+            let filtered = GERMAN_WORDS.filter(w => {
+                if (length && w.length !== parseInt(length)) return false;
+                if (start && w.charAt(0) !== start) return false;
+                if (search && !w.includes(search)) return false;
+                return true;
             });
-            list.innerHTML = html;
+
+            document.getElementById('viewerWordCount').textContent = GERMAN_WORDS.length;
+            document.getElementById('viewerWordFiltered').textContent = filtered.length;
+
+            if (filtered.length === 0) { wordList.innerHTML = `<div class="empty" style="padding:30px;grid-column:1/-1;">😕 Keine Wörter gefunden</div>`; return; }
+
+            let html = '';
+            filtered.forEach(w => { html += `<div class="word-card">${w}<span class="meta">${w.length} Buchst.</span></div>`; });
+            wordList.innerHTML = html;
         }
 
-        // Event Listener für die Suchen
-        document.getElementById('questionSearch').addEventListener('input', renderQuestions);
-        document.getElementById('vocabSearch').addEventListener('input', renderVocab);
-        document.getElementById('vocabLangFilter').addEventListener('change', renderVocab);
-        document.getElementById('wordSearch').addEventListener('input', renderWords);
+        wordLengthFilter.addEventListener('change', renderWords);
+        wordStartFilter.addEventListener('change', renderWords);
+        wordSearch.addEventListener('input', renderWords);
+        populateWordFilters();
+        renderWords();
 
-        // Init
-        updateCounts();
+        // --- GLOBALE SUCHE ---
+        const resultsContainer = document.getElementById('resultsContainer');
+        const globalSearch = document.getElementById('globalSearch');
+
+        function highlightMatch(text, query) {
+            if (!text || !query) return text;
+            const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            return text.replace(new RegExp(`(${safeQuery})`, 'gi'), '<span style="color:#f0c060;font-weight:600;">$1</span>');
+        }
+
+        function performSearch() {
+            const query = globalSearch.value.trim().toLowerCase();
+            if (query.length < 2) { resultsContainer.classList.remove('show'); return; }
+
+            const results = [];
+            const limit = 50;
+
+            QUESTIONS_DATABASE.forEach(q => {
+                const haystack = (q.question + ' ' + (q.explanation || '') + ' ' + (q.id || '') + ' ' + (q.answers || []).join(' ')).toLowerCase();
+                if (haystack.includes(query)) {
+                    results.push({ type: '📖 Frage', title: q.question, source: `Klasse ${q.grade || '?'} · ${q.subject || '?'}`, id: q.id, weight: (q.question || '').toLowerCase().includes(query) ? 10 : 5, match: query });
+                }
+            });
+
+            Object.keys(VOCABULARY_DATABASE).forEach(lang => {
+                Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
+                    VOCABULARY_DATABASE[lang][level].words.forEach(w => {
+                        const haystack = (w.de + ' ' + w.foreign + ' ' + (w.id || '')).toLowerCase();
+                        if (haystack.includes(query)) {
+                            results.push({ type: '📝 Vokabel', title: `${w.de} → ${w.foreign}`, source: `${VOCABULARY_DATABASE[lang][level].label} (${lang})`, id: w.id, weight: w.de.toLowerCase().includes(query) ? 10 : 8, match: query });
+                        }
+                    });
+                });
+            });
+
+            GERMAN_WORDS.forEach(w => {
+                if (w.toLowerCase().includes(query)) {
+                    results.push({ type: '🔤 Wort', title: w, source: `${w.length} Buchstaben`, id: '', weight: 10, match: query });
+                }
+            });
+
+            if (/^\d+$/.test(query)) {
+                const len = parseInt(query);
+                GERMAN_WORDS.forEach(w => {
+                    if (w.length === len) results.push({ type: '🔤 Wort (Länge)', title: w, source: `${w.length} Buchstaben`, id: '', weight: 8, match: query });
+                });
+            }
+
+            results.sort((a, b) => (b.weight || 0) - (a.weight || 0));
+            const seen = new Set();
+            const unique = results.filter(r => { const key = r.title + r.source; if (seen.has(key)) return false; seen.add(key); return true; });
+
+            if (unique.length === 0) {
+                resultsContainer.innerHTML = `<div class="empty">😕 Keine Treffer für "<strong>${query}</strong>"</div>`;
+            } else {
+                const limited = unique.slice(0, limit);
+                resultsContainer.innerHTML = `
+            <div class="result-header">🔍 ${unique.length} Treffer für "<strong>${query}</strong>"</div>
+            ${limited.map((r, i) => `
+                <div class="result-item" style="border-left:3px solid ${i < 3 ? '#f0c060' : 'transparent'};">
+                    <span class="match">${highlightMatch(r.title, r.match)}</span><span class="source">${r.type} · ${r.source}</span>
+                    ${r.id ? `<span class="id-tag">${r.id}</span>` : ''}${r.weight >= 10 ? '<span class="top-tag">⭐ Top</span>' : ''}
+                </div>
+            `).join('')}
+            ${unique.length > limit ? `<div class="empty" style="padding:8px;">… und ${unique.length - limit} weitere</div>` : ''}
+        `;
+            }
+            resultsContainer.classList.add('show');
+        }
+
+        globalSearch.addEventListener('input', performSearch);
+        globalSearch.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); performSearch(); } });
+        document.getElementById('searchBtn').addEventListener('click', performSearch);
+        document.getElementById('clearSearchBtn').addEventListener('click', function () { globalSearch.value = ''; resultsContainer.classList.remove('show'); });
+
+        // --- EXPORT / DRUCKEN ---
+        document.getElementById('exportBtn').addEventListener('click', function () {
+            const data = { questions: QUESTIONS_DATABASE, vocabulary: VOCABULARY_DATABASE, words: GERMAN_WORDS, exported: new Date().toISOString() };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = `eduplay_export_${new Date().toISOString().slice(0, 10)}.json`;
+            a.click(); URL.revokeObjectURL(url);
+        });
+        document.getElementById('printBtn').addEventListener('click', () => window.print());
+        document.getElementById('refreshBtn').addEventListener('click', () => location.reload());
+
     </script>
 </body>
 </html>

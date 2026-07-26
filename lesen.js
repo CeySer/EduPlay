@@ -11,7 +11,7 @@ const READING_DATABASE = {
         label: "🔤 Buchstaben lernen (A-Z)",
         description: "Lerne alle Buchstaben mit Bildern",
         items: [
-            { letter: "A", word: "Affe", image: "🐒", sound: "ah" },
+            { letter: "A", word: "Affe", image: "img/A.jpg", sound: "ah" },
             { letter: "B", word: "Ball", image: "⚽", sound: "beh" },
             { letter: "C", word: "Computer", image: "💻", sound: "tseh" },
             { letter: "D", word: "Drache", image: "🐉", sound: "deh" },

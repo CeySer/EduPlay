@@ -21,6 +21,8 @@
     <script src="data.js?v=46"></script>
     <script src="words_kids.js?v=1"></script>
     <script src="words_adult.js?v=1"></script>
+    <script src="lesen.js?v=1"></script>
+    <script src="lesen_in_index.js?v=1"></script>
 
     <!-- SICHERHEITSNETZ: Zeigt eine klare Meldung statt leerem Bildschirm,
          falls z.B. Firebase/Tailwind bei schlechtem Empfang nicht laden konnten -->
@@ -823,6 +825,7 @@
                         <span>TV-Quiz</span>
                         <span class="text-xs font-bold text-indigo-200 -mt-1">· alle zusammen ·</span>
                     </button>
+                    <div id="open-tv-list" class="space-y-2"></div>
                     <div id="open-duels-list" class="space-y-2"></div>
                 </div>
 
@@ -840,6 +843,12 @@
                             <span class="text-3xl">🃏</span> Vokabeln lernen
                         </button>
                     </div>
+                    <button onclick="switchView('lesen')"
+                        class="w-full bg-blue-600 p-5 rounded-2xl font-black text-white shadow-lg hover:bg-blue-500 flex flex-col items-center gap-2">
+                        <span class="text-3xl">📖</span>
+                        <span>Lesen lernen</span>
+                        <span class="text-xs font-bold text-blue-200 -mt-1">Klasse 1 & 2</span>
+                    </button>
                     <button onclick="switchView('fokus')"
                         class="w-full bg-yellow-500 p-5 rounded-2xl font-black text-slate-950 shadow-lg hover:bg-yellow-400 flex flex-col items-center gap-2">
                         <span class="text-3xl">⏱️</span>
@@ -1033,6 +1042,21 @@
                             class="bg-rose-600 px-6 py-3 rounded-xl font-bold text-white shadow-md hover:bg-rose-500"
                             onclick="resetFocusTimer()">Reset</button>
                     </div>
+                </div>
+            </div>
+
+            <!-- VIEW: LESEN LERNEN -->
+            <div id="view-lesen" class="view hidden space-y-4">
+                <div class="flex items-center justify-between gap-2">
+                    <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white" onclick="switchView('menu')">← Menü</button>
+                    <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
+                    <span class="w-20"></span>
+                </div>
+                <div class="bg-gray-800 border border-gray-700 p-5 rounded-2xl">
+                    <h2 class="text-2xl font-black text-blue-400 mb-1">📖 Lesen lernen</h2>
+                    <p class="text-xs text-gray-400 mb-4">Klasse 1 & 2 · Buchstaben, Silben, Wörter und Sätze</p>
+                    <div id="lesen-categories" class="grid grid-cols-2 gap-3"></div>
+                    <div id="lesen-exercise" class="mt-6 hidden"></div>
                 </div>
             </div>
 
@@ -2027,6 +2051,13 @@
                 }
 
                 if (viewId === 'vokabeln') loadVocabSystem();
+                if (viewId === 'lesen' && typeof renderLesenCategories === 'function') {
+                    const ex = document.getElementById('lesen-exercise');
+                    const gr = document.getElementById('lesen-categories');
+                    if (ex) ex.classList.add('hidden');
+                    if (gr) gr.classList.remove('hidden');
+                    renderLesenCategories();
+                }
                 if (viewId === 'rewards') renderRewardsShop();
                 if (viewId === 'family-hub' && typeof ALL_PROFILES !== 'undefined') renderFamilyHub();
 
@@ -2039,6 +2070,10 @@
                 // Im Menü nachschauen, ob gerade ein Duell offen ist (Knopf leuchtet dann)
                 if (typeof watchForOpenDuel === 'function') {
                     if (viewId === 'menu') watchForOpenDuel(); else stopWatchingForOpenDuel();
+                }
+                // ...und ob eine TV-Quiz-Lobby offen ist (Beitreten-Balken wie bei den Duellen)
+                if (typeof watchForOpenTVLobby === 'function') {
+                    if (viewId === 'menu') watchForOpenTVLobby(); else stopWatchingForOpenTVLobby();
                 }
             }
 
@@ -3038,6 +3073,44 @@
                 box.innerHTML = html;
             }
 
+            // ===== BEITRETEN-BALKEN fuer eine offene TV-Quiz-Lobby (wie bei den Duellen) =====
+            let tvLobbyWatcher = null;
+            function tvLobbyDocRef() {
+                if (!currentParentUser) return null;
+                return db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
+            }
+            function watchForOpenTVLobby() {
+                const ref = tvLobbyDocRef();
+                if (!ref) return;
+                stopWatchingForOpenTVLobby();
+                tvLobbyWatcher = ref.onSnapshot(renderOpenTVBar, () => { });
+            }
+            function stopWatchingForOpenTVLobby() {
+                if (tvLobbyWatcher) { try { tvLobbyWatcher(); } catch (e) { } tvLobbyWatcher = null; }
+                const box = document.getElementById("open-tv-list");
+                if (box) box.innerHTML = "";
+            }
+            function renderOpenTVBar(snap) {
+                const box = document.getElementById("open-tv-list");
+                if (!box) return;
+                const d = (snap && snap.exists) ? (snap.data() || {}) : {};
+                const alreadyIn = d.players && d.players[activePlayerKey];
+                // Nur zeigen, wenn eine Lobby offen wartet, man nicht selbst Host ist
+                // und noch nicht drin ist.
+                if (d.status !== "waiting" || isTVHost || alreadyIn) { box.innerHTML = ""; return; }
+                const typeName = d.mode === "scrabble" ? "TV-Wort-Quiz" : "TV-Quiz";
+                const count = d.players ? Object.keys(d.players).length : 0;
+                box.innerHTML = `<button onclick="joinOpenTVQuiz()" class="w-full p-3.5 bg-gray-800 border-2 border-indigo-400 animate-pulse text-white font-bold rounded-2xl shadow-md flex items-center justify-between gap-2 text-sm transition-all">
+                        <span class="flex items-center gap-2"><span class="text-lg">📺</span><span>${typeName} – am Fernseher</span></span>
+                        <span class="text-[11px] text-indigo-200 shrink-0 text-right">🔥 offen – beitreten<br>(${count} dabei)</span>
+                    </button>`;
+            }
+            // Balken angetippt: zur Spieler-Ansicht wechseln und der Lobby beitreten
+            function joinOpenTVQuiz() {
+                switchView('tv-quiz-player');
+                joinTVGame();
+            }
+
             function liveDuelCollectionRef() {
                 return db.collection("parents").doc(currentParentUser.uid).collection("live_duel");
             }
@@ -4028,6 +4101,16 @@
                 }
             }
 
+            // Profilkarte im Eltern-Dashboard auf-/zuklappen (Stil wie die anderen Aufklapper)
+            function toggleProfileCard(key) {
+                const wrapper = document.getElementById('profile-card-body-' + key);
+                const arrow = document.getElementById('profile-card-arrow-' + key);
+                if (!wrapper) return;
+                const open = wrapper.classList.contains('hidden');
+                wrapper.classList.toggle('hidden', !open);
+                if (arrow) arrow.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
+
             function renderAdminDashboard() {
                 const container = document.getElementById("parent-stats-container"); container.innerHTML = "";
                 Object.keys(ALL_PROFILES).forEach(key => {
@@ -4081,21 +4164,28 @@
                            </div>`
                         : "";
                     const guestTag = p.isGuest ? ` <span class="text-[10px] font-black text-sky-400 bg-sky-950 px-1.5 py-0.5 rounded">GAST</span>` : "";
-                    container.innerHTML += `<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl">
-                        <div class="flex justify-between items-center">
-                            <div class="text-blue-400 font-bold">${esc(p.name)}${guestTag} <span class="text-xs text-gray-500">(${playerDescription(p)})</span></div>
-                            <div class="text-yellow-400 font-black">🪙 ${p.coins}</div>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">${lvl.current.icon} ${lvl.current.name} · 🔥 ${streakCount} Tage Streak · 📚 ${wC} Vokabeln</div>
-                        ${badgesHtml}
-                        ${barsHtml}
-                        ${lastTestHtml}
-                        ${lastRewardHtml}
-                        ${pendingHtml}
-                        <button onclick="deleteProfile('${key}')"
-                            class="mt-3 w-full p-2 text-xs font-bold text-rose-400 border border-rose-900 rounded-lg hover:bg-rose-950 transition">
-                            🗑️ Spieler löschen
+                    container.innerHTML += `<div class="bg-gray-900 border border-gray-700 rounded-xl overflow-hidden">
+                        <button onclick="toggleProfileCard('${key}')" class="w-full p-4 flex items-center justify-between gap-2 text-left">
+                            <div class="min-w-0">
+                                <div class="text-blue-400 font-bold truncate">${esc(p.name)}${guestTag} <span class="text-xs text-gray-500">(${playerDescription(p)})</span></div>
+                                <div class="text-xs text-gray-400 mt-1">${lvl.current.icon} ${lvl.current.name} · 🔥 ${streakCount} Tage Streak · 📚 ${wC} Vokabeln</div>
+                            </div>
+                            <span class="flex items-center gap-2 shrink-0">
+                                <span class="text-yellow-400 font-black">🪙 ${p.coins}</span>
+                                <span id="profile-card-arrow-${key}" class="text-lg text-gray-400 transition-transform">▼</span>
+                            </span>
                         </button>
+                        <div id="profile-card-body-${key}" class="hidden px-4 pb-4">
+                            ${badgesHtml}
+                            ${barsHtml}
+                            ${lastTestHtml}
+                            ${lastRewardHtml}
+                            ${pendingHtml}
+                            <button onclick="deleteProfile('${key}')"
+                                class="mt-3 w-full p-2 text-xs font-bold text-rose-400 border border-rose-900 rounded-lg hover:bg-rose-950 transition">
+                                🗑️ Spieler löschen
+                            </button>
+                        </div>
                     </div>`;
                 });
                 if (Object.keys(ALL_PROFILES).length === 0) {

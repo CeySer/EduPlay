@@ -2648,16 +2648,12 @@
         }
 
         function openParentArea() {
+            // Das Dashboard wird beim Öffnen bereits per PIN geschützt (siehe switchView-Hook
+            // für viewId === 'dashboard'). Deshalb hier KEINE zweite PIN-Abfrage mehr,
+            // sonst wird der PIN doppelt verlangt.
             if (!adminPin) return setupAdminPin(true);
-            const entered = cleanInput(prompt("👨‍👩‍👧‍👦 Eltern-Bereich\n\nBitte PIN eingeben:"), 12);
-            if (entered === null || entered === "") return;
-            if (entered !== adminPin) {
-                SFX.wrong();
-                showToast("❌ PIN stimmt nicht.", "error", "pin");
-                return;
-            }
             switchDashboardSection('eltern');
-            showToast("🔓 Eltern-Bereich freigeschaltet!", "success");
+            switchDashAdminTab('progress');
         }
 
         function toggleSettings() {
@@ -3303,17 +3299,10 @@
         // ============================================================
         //  ELTERN-ADMIN (PIN)
         // ============================================================
-        function openParentArea() {
-            if (!adminPin) return setupAdminPin(true);
-            const entered = cleanInput(prompt("Eltern-Bereich\n\nBitte PIN eingeben:"), 12);
-            if (entered === null || entered === "") return;
-            if (entered !== adminPin) {
-                SFX.wrong();
-                return showToast("PIN stimmt nicht.", "error", "pin");
-            }
-            switchView('dashboard');
-            switchDashboardTab('admin');
-        }
+        // Hinweis: Die frühere zweite openParentArea() wurde hier entfernt.
+        // Sie sprang auf das alte Dashboard-Tab 'admin' (existiert im neuen HTML
+        // nicht mehr → leerer Bereich) und verlangte den PIN ein zweites Mal.
+        // Die gültige Version steht weiter oben und öffnet dash-section-eltern.
 
         async function setupAdminPin(isFirstTime) {
             if (!isFirstTime && adminPin) {

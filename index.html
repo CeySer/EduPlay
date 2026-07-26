@@ -17,7 +17,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
-    <!-- HIER WERDEN DEINE DATEN GELADEN -->
+    <!-- DATENBANKEN -->
     <script src="data.js?v=46"></script>
     <script src="words_kids.js?v=1"></script>
     <script src="words_adult.js?v=1"></script>
@@ -555,9 +555,7 @@
                             <span class="sound-toggle-icon">🔊</span>
                         </button>
                         <button onclick="openDrawer()" title="Einstellungen" aria-label="Einstellungen"
-                            class="w-10 h-10 rounded-xl hub-bar text-lg text-gray-400">
-                            ☰
-                        </button>
+                            class="w-10 h-10 rounded-xl hub-bar text-lg text-gray-400">☰</button>
                     </div>
                 </div>
 
@@ -657,76 +655,71 @@
             <!-- ========================================================== -->
             <div id="view-dashboard" class="view hidden space-y-4">
 
+                <!-- Kopf -->
                 <div class="flex items-center justify-between gap-2">
-                    <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white"
+                    <button class="bg-gray-700 px-4 py-2 rounded-xl font-bold text-white hover:bg-gray-600 transition"
                         onclick="switchView('family-hub')">← Übersicht</button>
                     <span class="text-sm font-bold text-gray-400">📊 Dashboard</span>
                     <button onclick="toggleSound()" title="Ton an/aus"
-                        class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg flex items-center justify-center">
+                        class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg flex items-center justify-center hover:bg-gray-700 transition">
                         <span class="sound-toggle-icon">🔊</span>
                     </button>
                 </div>
 
-                <!-- DASHBOARD-NAVIGATION (3 Tabs) -->
-                <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
-                    <button id="dash-tab-inhalte"
-                        class="flex-1 py-2.5 px-1 rounded-lg font-bold text-white bg-indigo-600 shadow-md transition-all text-sm"
-                        onclick="switchDashboardTab('inhalte')">
-                        📚 Inhalte
+                <!-- 3 große Kacheln -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                    <!-- Kachel 1: Inhalte -->
+                    <button onclick="switchDashboardSection('inhalte')"
+                        class="group bg-gray-800 border border-gray-700 hover:border-indigo-500 rounded-2xl p-6 text-center transition-all hover:scale-[1.02]">
+                        <div class="text-5xl mb-3 group-hover:scale-110 transition">📚</div>
+                        <div class="text-xl font-black text-white">Inhalte</div>
+                        <div class="text-xs text-gray-400 mt-1">Fragen · Vokabeln · Wörter durchsuchen</div>
                     </button>
-                    <button id="dash-tab-schueler"
-                        class="flex-1 py-2.5 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
-                        onclick="switchDashboardTab('schueler')">
-                        👥 Statistiken
+
+                    <!-- Kachel 2: Eltern/Lehrer-Bereich (PIN-geschützt) -->
+                    <button onclick="openParentArea()"
+                        class="group bg-gray-800 border border-gray-700 hover:border-amber-500 rounded-2xl p-6 text-center transition-all hover:scale-[1.02]">
+                        <div class="text-5xl mb-3 group-hover:scale-110 transition">👨‍👩‍👧‍👦</div>
+                        <div class="text-xl font-black text-amber-400">Eltern-Bereich</div>
+                        <div class="text-xs text-gray-400 mt-1">Fortschritt · Tests · Belohnungen</div>
+                        <div class="text-[10px] text-amber-600/60 mt-1">🔒 PIN-geschützt</div>
                     </button>
-                    <button id="dash-tab-admin"
-                        class="flex-1 py-2.5 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
-                        onclick="switchDashboardTab('admin')">
-                        ⚙️ Admin
+
+                    <!-- Kachel 3: Statistiken -->
+                    <button onclick="switchDashboardSection('statistiken')"
+                        class="group bg-gray-800 border border-gray-700 hover:border-emerald-500 rounded-2xl p-6 text-center transition-all hover:scale-[1.02]">
+                        <div class="text-5xl mb-3 group-hover:scale-110 transition">📊</div>
+                        <div class="text-xl font-black text-emerald-400">Statistiken</div>
+                        <div class="text-xs text-gray-400 mt-1">Spielerübersicht · Fortschritt</div>
                     </button>
+
                 </div>
 
-                <!-- TAB 1: INHALTE -->
-                <div id="dash-inhalte" class="dash-tab space-y-4">
-                    <div class="grid grid-cols-3 gap-3">
-                        <div class="card-dash bg-gray-800 border border-gray-700 rounded-2xl p-4 text-center cursor-pointer"
-                            onclick="switchDashboardSubTab('fragen')">
-                            <span class="text-3xl">📖</span>
-                            <div class="text-white font-bold text-lg" id="dash-question-count">0</div>
-                            <div class="text-xs text-gray-400">Fragen</div>
-                        </div>
-                        <div class="card-dash bg-gray-800 border border-gray-700 rounded-2xl p-4 text-center cursor-pointer"
-                            onclick="switchDashboardSubTab('vokabeln')">
-                            <span class="text-3xl">📝</span>
-                            <div class="text-white font-bold text-lg" id="dash-vocab-count">0</div>
-                            <div class="text-xs text-gray-400">Vokabeln</div>
-                        </div>
-                        <div class="card-dash bg-gray-800 border border-gray-700 rounded-2xl p-4 text-center cursor-pointer"
-                            onclick="switchDashboardSubTab('woerter')">
-                            <span class="text-3xl">🔤</span>
-                            <div class="text-white font-bold text-lg" id="dash-word-count">0</div>
-                            <div class="text-xs text-gray-400">Wörter</div>
-                        </div>
-                    </div>
-
+                <!-- ========================================================== -->
+                <!-- BEREICH: INHALTE (wird bei Klick auf Kachel 1 sichtbar) -->
+                <!-- ========================================================== -->
+                <div id="dash-section-inhalte" class="hidden space-y-4">
+                    <!-- Sub-Navigation: 3 kleine Buttons -->
                     <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
                         <button id="dash-sub-fragen"
-                            class="flex-1 py-2 px-1 rounded-lg font-bold text-white bg-indigo-600 shadow-md transition-all text-xs"
+                            class="flex-1 py-2.5 px-1 rounded-lg font-bold text-white bg-indigo-600 shadow-md transition-all text-sm"
                             onclick="switchDashboardSubTab('fragen')">
                             📖 Fragen
                         </button>
                         <button id="dash-sub-vokabeln"
-                            class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-xs"
+                            class="flex-1 py-2.5 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
                             onclick="switchDashboardSubTab('vokabeln')">
                             📝 Vokabeln
                         </button>
                         <button id="dash-sub-woerter"
-                            class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-xs"
+                            class="flex-1 py-2.5 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm"
                             onclick="switchDashboardSubTab('woerter')">
                             🔤 Wörter
                         </button>
                     </div>
 
+                    <!-- Fragen-View -->
                     <div id="dash-sub-fragen-view" class="space-y-3">
                         <div class="bg-gray-800 border border-gray-700 rounded-2xl p-4">
                             <div class="flex flex-wrap gap-2 mb-3">
@@ -745,6 +738,7 @@
                         </div>
                     </div>
 
+                    <!-- Vokabeln-View -->
                     <div id="dash-sub-vokabeln-view" class="hidden space-y-3">
                         <div class="bg-gray-800 border border-gray-700 rounded-2xl p-4">
                             <div class="flex flex-wrap gap-2 mb-3">
@@ -764,6 +758,7 @@
                         </div>
                     </div>
 
+                    <!-- Wörter-View -->
                     <div id="dash-sub-woerter-view" class="hidden space-y-3">
                         <div class="bg-gray-800 border border-gray-700 rounded-2xl p-4">
                             <div class="flex flex-wrap gap-2 mb-3">
@@ -778,66 +773,50 @@
                         </div>
                     </div>
 
+                    <!-- Globale Suche -->
                     <div class="bg-gray-800 border border-gray-700 rounded-2xl p-4">
                         <div class="flex gap-2">
                             <input type="text" id="dash-global-search" placeholder="🔎 Suche in ALLEN Datenbanken..."
                                 class="flex-1 p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none text-sm">
                             <button onclick="performDashSearch()"
-                                class="px-4 py-3 bg-indigo-600 rounded-xl font-bold text-white text-sm">Suchen</button>
+                                class="px-4 py-3 bg-indigo-600 rounded-xl font-bold text-white text-sm hover:bg-indigo-500 transition">Suchen</button>
                         </div>
                         <div id="dash-search-results" class="mt-3 max-h-[200px] overflow-y-auto space-y-1.5 hidden">
                         </div>
                     </div>
                 </div>
 
-                <!-- TAB 2: SCHÜLER-STATISTIKEN -->
-                <div id="dash-schueler" class="dash-tab hidden space-y-4">
-                    <div class="bg-gray-800 border border-gray-700 rounded-2xl overflow-hidden">
-                        <button onclick="toggleDashPlayerList()" class="w-full p-4 flex items-center justify-between">
-                            <span class="font-bold text-white">👥 Spieler auswählen</span>
-                            <span id="dash-player-arrow" class="text-gray-400 transition-transform">▼</span>
+                <!-- ========================================================== -->
+                <!-- BEREICH: ELTERN (wird bei Klick auf Kachel 2 sichtbar) -->
+                <!-- ========================================================== -->
+                <div id="dash-section-eltern" class="hidden space-y-4">
+                    <!-- 3 Sub-Kacheln für Eltern-Bereich -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <button onclick="switchDashAdminTab('progress')"
+                            class="p-4 bg-gray-800 border border-gray-700 hover:border-blue-500 rounded-2xl text-center transition-all">
+                            <div class="text-3xl mb-2">📊</div>
+                            <div class="font-bold text-white text-sm">Fortschritt</div>
+                            <div class="text-[10px] text-gray-400">Übersicht aller Spieler</div>
                         </button>
-                        <div id="dash-player-list" class="hidden p-4 pt-0 grid grid-cols-2 gap-2"></div>
-                    </div>
-                    <div id="dash-stats-container" class="space-y-4">
-                        <div class="text-center text-gray-400 text-sm py-8">👆 Wähle oben einen Spieler aus, um die
-                            Statistiken zu sehen.</div>
-                    </div>
-                </div>
-
-                <!-- TAB 3: ELTERN-ADMIN -->
-                <div id="dash-admin" class="dash-tab hidden space-y-4">
-                    <div class="bg-gray-800 border border-gray-700 rounded-2xl p-4 flex items-center justify-between">
-                        <div>
-                            <div class="font-bold text-white">🔑 Eltern-PIN</div>
-                            <div class="text-xs text-gray-400">Schützt den Admin-Bereich vor den Kindern</div>
-                        </div>
-                        <button onclick="setupAdminPin(false)"
-                            class="px-4 py-2 bg-gray-700 rounded-xl font-bold text-white text-sm">Ändern</button>
-                    </div>
-
-                    <div class="flex gap-2 bg-gray-900 p-1.5 rounded-xl">
-                        <button id="dash-admin-progress"
-                            class="flex-1 py-2 px-1 rounded-lg font-bold text-white bg-blue-600 shadow-md transition-all text-xs"
-                            onclick="switchDashAdminTab('progress')">
-                            📊 Fortschritt
+                        <button onclick="switchDashAdminTab('test')"
+                            class="p-4 bg-gray-800 border border-gray-700 hover:border-purple-500 rounded-2xl text-center transition-all">
+                            <div class="text-3xl mb-2">📝</div>
+                            <div class="font-bold text-white text-sm">Tests</div>
+                            <div class="text-[10px] text-gray-400">Tests zuweisen</div>
                         </button>
-                        <button id="dash-admin-test"
-                            class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-xs"
-                            onclick="switchDashAdminTab('test')">
-                            📝 Test
-                        </button>
-                        <button id="dash-admin-rewards"
-                            class="flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-xs"
-                            onclick="switchDashAdminTab('rewards')">
-                            🎁 Belohnungen
+                        <button onclick="switchDashAdminTab('rewards')"
+                            class="p-4 bg-gray-800 border border-gray-700 hover:border-yellow-500 rounded-2xl text-center transition-all">
+                            <div class="text-3xl mb-2">🎁</div>
+                            <div class="font-bold text-white text-sm">Belohnungen</div>
+                            <div class="text-[10px] text-gray-400">Verwalten</div>
                         </button>
                     </div>
 
+                    <!-- Admin-Tab Inhalte -->
                     <div id="dash-admin-progress-view" class="space-y-3">
                         <div id="dash-admin-stats" class="space-y-3"></div>
                         <button onclick="runAnswerLengthAudit()"
-                            class="w-full p-3 bg-amber-600 rounded-xl font-bold text-white hover:bg-amber-500 text-sm">
+                            class="w-full p-3 bg-amber-600 rounded-xl font-bold text-white hover:bg-amber-500 text-sm transition">
                             🧪 Antwortlängen-Check
                         </button>
                         <div id="dash-audit-result"
@@ -863,7 +842,7 @@
                                     class="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none">
                             </div>
                             <button onclick="assignTestFromDashboard()"
-                                class="w-full p-3 bg-indigo-600 rounded-xl font-bold text-white hover:bg-indigo-500">Test
+                                class="w-full p-3 bg-purple-600 rounded-xl font-bold text-white hover:bg-purple-500 transition">Test
                                 zuweisen 🚀</button>
                         </div>
                     </div>
@@ -877,12 +856,72 @@
                                     class="w-24 p-3 bg-gray-900 border border-gray-700 rounded-xl text-white outline-none text-sm">
                             </div>
                             <button onclick="addRewardFromDashboard()"
-                                class="w-full p-3 bg-purple-600 rounded-xl font-bold text-white hover:bg-purple-500">Belohnung
+                                class="w-full p-3 bg-yellow-600 rounded-xl font-bold text-white hover:bg-yellow-500 transition">Belohnung
                                 hinzufügen</button>
                             <div id="dash-reward-list" class="space-y-1.5"></div>
                         </div>
                     </div>
                 </div>
+
+                <!-- ========================================================== -->
+                <!-- BEREICH: STATISTIKEN (wird bei Klick auf Kachel 3 sichtbar) -->
+                <!-- ========================================================== -->
+                <div id="dash-section-statistiken" class="hidden space-y-4">
+                    <div class="bg-gray-800 border border-gray-700 rounded-2xl overflow-hidden">
+                        <button onclick="toggleDashPlayerList()"
+                            class="w-full p-4 flex items-center justify-between hover:bg-gray-700/50 transition">
+                            <span class="font-bold text-white">👥 Spieler auswählen</span>
+                            <span id="dash-player-arrow" class="text-gray-400 transition-transform">▼</span>
+                        </button>
+                        <div id="dash-player-list" class="hidden p-4 pt-0 grid grid-cols-2 gap-2"></div>
+                    </div>
+                    <div id="dash-stats-container" class="space-y-4">
+                        <div class="text-center text-gray-400 text-sm py-8">👆 Wähle oben einen Spieler aus, um die
+                            Statistiken zu sehen.</div>
+                    </div>
+                </div>
+
+                <!-- ========================================================== -->
+                <!-- EINSTELLUNGEN (immer sichtbar) -->
+                <!-- ========================================================== -->
+                <div class="bg-gray-800 border border-gray-700 rounded-2xl overflow-hidden mt-2">
+                    <button onclick="toggleSettings()"
+                        class="w-full p-4 flex items-center justify-between hover:bg-gray-700/50 transition">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">⚙️</span>
+                            <span class="font-bold text-white">Einstellungen</span>
+                        </div>
+                        <span id="settings-arrow" class="text-gray-400 transition-transform">▼</span>
+                    </button>
+                    <div id="settings-content" class="hidden p-4 pt-0 space-y-3">
+                        <div class="flex items-center justify-between bg-gray-900 rounded-xl p-3">
+                            <span class="text-sm font-bold text-gray-300">🔊 Ton</span>
+                            <button onclick="toggleSound()"
+                                class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-xl text-lg hover:bg-gray-700 transition">
+                                <span class="sound-toggle-icon">🔊</span>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between bg-gray-900 rounded-xl p-3">
+                            <span class="text-sm font-bold text-gray-300">🌙 Design</span>
+                            <button onclick="toggleTheme()"
+                                class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-xl text-lg hover:bg-gray-700 transition">
+                                🌓
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between bg-gray-900 rounded-xl p-3">
+                            <span class="text-sm font-bold text-gray-300">🌐 Sprache</span>
+                            <button onclick="toggleLanguage()"
+                                class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-xl text-sm font-bold text-white hover:bg-gray-700 transition">
+                                DE
+                            </button>
+                        </div>
+                        <button onclick="resetAllData()"
+                            class="w-full p-3 bg-rose-900/50 border border-rose-700 rounded-xl text-rose-400 font-bold text-sm hover:bg-rose-900/70 transition">
+                            🗑️ Alle Daten zurücksetzen (mit PIN)
+                        </button>
+                    </div>
+                </div>
+
             </div>
 
             <!-- ========================================================== -->
@@ -1204,9 +1243,7 @@
                         onclick="switchView('family-hub')">← Spieler wechseln</button>
                     <div class="flex items-center gap-2">
                         <button onclick="toggleCast()" id="castButton" title="Mit Fernseher verbinden"
-                            class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg shrink-0 text-gray-400 hover:text-white transition-all">
-                            🖥️
-                        </button>
+                            class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
                         <button onclick="toggleSound()" title="Ton an/aus"
                             class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 text-lg shrink-0">
                             <span class="sound-toggle-icon">🔊</span>
@@ -1828,7 +1865,9 @@
             if (mode !== "spass") {
                 if (typeof CURRICULUM !== 'undefined') {
                     CURRICULUM.forEach(g => areas.push({
-                        value: "grade_" + g.grade, label: g.label, stufe: g.stufe,
+                        value: "grade_" + g.grade,
+                        label: g.label,
+                        stufe: g.stufe,
                         subjects: g.subjects
                     }));
                 }
@@ -1838,7 +1877,9 @@
                 const quer = subjectsAcrossGrades();
                 if (quer.length) {
                     areas.push({
-                        value: "quer", label: "Fach über alle Klassen", stufe: "📚 Fachweise Wiederholung",
+                        value: "quer",
+                        label: "Fach über alle Klassen",
+                        stufe: "📚 Fachweise Wiederholung",
                         subjects: quer
                     });
                 }
@@ -1846,7 +1887,9 @@
             if (mode !== "lernen") {
                 if (typeof FUN_CATEGORIES !== 'undefined' && FUN_CATEGORIES.length) {
                     areas.push({
-                        value: "spass", label: "Spaß-Quiz", stufe: "🎉 Spaß (kein Schulstoff)",
+                        value: "spass",
+                        label: "Spaß-Quiz",
+                        stufe: "🎉 Spaß (kein Schulstoff)",
                         subjects: FUN_CATEGORIES
                     });
                 }
@@ -1962,8 +2005,7 @@
         function evaluateAndApplyBadges(p) {
             if (!p.badges) p.badges = [];
             const totalCorrect = getTotalCorrect(p);
-            const vocabCount = (p === currentPlayer) ? sessionLearnedWords.size : (p.learnedWords ? p.learnedWords.length :
-                0);
+            const vocabCount = (p === currentPlayer) ? sessionLearnedWords.size : (p.learnedWords ? p.learnedWords.length : 0);
             const streakCount = p.streak ? p.streak.count : 0;
             const hasPerfectTest = (p.testHistory || []).some(t => t.total > 0 && t.correct === t.total);
             const level = getLevelInfo(p.xp || 0);
@@ -2054,10 +2096,10 @@
             badgesRow.innerHTML = earned.length === 0 ?
                 `<p class="text-xs text-gray-500">Noch keine Abzeichen – leg los!</p>` :
                 earned.map(id => {
-                    const b = BADGES.find(x => x.id === id); if (!b) return "";
+                    const b = BADGES.find(x => x.id === id);
+                    if (!b) return "";
                     return `<div class="flex-shrink-0 bg-gray-800 border border-gray-700 rounded-xl px-3 py-2 text-center" title="${b.desc}"><div class="text-2xl">${b.icon}</div><div class="text-[10px] font-bold text-gray-300 mt-1 whitespace-nowrap">${b.name}</div></div>`;
-                })
-                    .join('');
+                }).join('');
         }
 
         async function loadFamilyRewards() {
@@ -2571,6 +2613,93 @@
         let currentDashTab = 'inhalte';
         let currentDashSubTab = 'fragen';
         let selectedStatPlayer = null;
+        let currentDashboardSection = null;
+
+        function switchDashboardSection(section) {
+            // Alle Sektionen ausblenden
+            const sections = ['inhalte', 'eltern', 'statistiken'];
+            sections.forEach(s => {
+                const el = document.getElementById('dash-section-' + s);
+                if (el) el.classList.add('hidden');
+            });
+
+            // Gewählte Sektion einblenden
+            const target = document.getElementById('dash-section-' + section);
+            if (target) target.classList.remove('hidden');
+
+            currentDashboardSection = section;
+
+            // Initialisierung
+            if (section === 'inhalte') {
+                updateDashCounts();
+                renderDashQuestions();
+                renderDashVocab();
+                renderDashWords();
+            }
+            if (section === 'eltern') {
+                renderDashAdminProgress();
+                renderDashAdminTest();
+                renderDashRewards();
+            }
+            if (section === 'statistiken') {
+                renderDashPlayerList();
+                if (selectedStatPlayer) renderPlayerStats(selectedStatPlayer);
+            }
+        }
+
+        function openParentArea() {
+            if (!adminPin) return setupAdminPin(true);
+            const entered = cleanInput(prompt("👨‍👩‍👧‍👦 Eltern-Bereich\n\nBitte PIN eingeben:"), 12);
+            if (entered === null || entered === "") return;
+            if (entered !== adminPin) {
+                SFX.wrong();
+                showToast("❌ PIN stimmt nicht.", "error", "pin");
+                return;
+            }
+            switchDashboardSection('eltern');
+            showToast("🔓 Eltern-Bereich freigeschaltet!", "success");
+        }
+
+        function toggleSettings() {
+            const content = document.getElementById('settings-content');
+            const arrow = document.getElementById('settings-arrow');
+            if (!content || !arrow) return;
+            const open = content.classList.contains('hidden');
+            content.classList.toggle('hidden', !open);
+            arrow.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        function toggleTheme() {
+            const isDark = document.body.classList.toggle('dark-theme');
+            showToast(isDark ? "🌙 Dark-Mode aktiv" : "☀️ Light-Mode aktiv", "success", "theme");
+        }
+
+        function toggleLanguage() {
+            const btn = document.querySelector('[onclick="toggleLanguage()"]');
+            if (!btn) return;
+            const current = btn.textContent.trim();
+            btn.textContent = current === 'DE' ? 'EN' : 'DE';
+            showToast(`🌐 Sprache auf ${btn.textContent} umgestellt (Vorschau)`, "success", "lang");
+        }
+
+        function resetAllData() {
+            if (!adminPin) {
+                showToast("🔑 Bitte zuerst einen Eltern-PIN einrichten!", "error");
+                return;
+            }
+            const entered = cleanInput(prompt("🗑️ Alle Daten zurücksetzen\n\nBitte PIN eingeben:"), 12);
+            if (entered === null || entered === "") return;
+            if (entered !== adminPin) {
+                SFX.wrong();
+                showToast("❌ PIN stimmt nicht.", "error", "pin");
+                return;
+            }
+            if (!confirm("⚠️ Wirklich ALLE Daten aller Spieler zurücksetzen?\n\nDiese Aktion kann nicht rückgängig gemacht werden!")) return;
+            if (!confirm("🔄 Nochmal: Alle Fortschritte, Coins, Abzeichen und Statistiken werden gelöscht. Fortfahren?")) return;
+
+            showToast("🔄 Daten werden zurückgesetzt...", "info");
+            // Die tatsächliche Implementierung kommt später
+        }
 
         function switchDashboardTab(tab) {
             currentDashTab = tab;
@@ -2650,8 +2779,7 @@
             let filtered = typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE : [];
             if (grade) filtered = filtered.filter(q => String(q.grade) === grade);
             if (subject) filtered = filtered.filter(q => q.subject === subject);
-            if (search) filtered = filtered.filter(q => (q.question + ' ' + (q.explanation || '')).toLowerCase().includes(
-                search));
+            if (search) filtered = filtered.filter(q => (q.question + ' ' + (q.explanation || '')).toLowerCase().includes(search));
 
             const list = document.getElementById('dash-question-list');
             if (!list) return;
@@ -2731,7 +2859,8 @@
                 QUESTIONS_DATABASE.forEach(q => {
                     if ((q.question + ' ' + (q.explanation || '')).toLowerCase().includes(query)) {
                         found.push({
-                            type: '📖 Frage', text: q.question,
+                            type: '📖 Frage',
+                            text: q.question,
                             detail: `Klasse ${q.grade || '?'} · ${q.subject || '?'}`
                         });
                     }
@@ -2743,7 +2872,8 @@
                         VOCABULARY_DATABASE[lang][level].words.forEach(w => {
                             if ((w.de + ' ' + w.foreign).toLowerCase().includes(query)) {
                                 found.push({
-                                    type: '📝 Vokabel', text: `${w.de} → ${w.foreign}`,
+                                    type: '📝 Vokabel',
+                                    text: `${w.de} → ${w.foreign}`,
                                     detail: VOCABULARY_DATABASE[lang][level].label
                                 });
                             }
@@ -2855,8 +2985,7 @@
                 const pct = s.attempts > 0 ? Math.round((s.correct / s.attempts) * 100) : 0;
                 subjectStats[cat] = { ...s, pct };
             });
-            const sortedSubjects = Object.keys(subjectStats).sort((a, b) => subjectStats[b].attempts - subjectStats[a]
-                .attempts);
+            const sortedSubjects = Object.keys(subjectStats).sort((a, b) => subjectStats[b].attempts - subjectStats[a].attempts);
             if (sortedSubjects.length > 0) {
                 subjectHtml = sortedSubjects.slice(0, 6).map(cat => {
                     const s = subjectStats[cat];
@@ -2982,7 +3111,9 @@
                 if (s.attempts >= 3) {
                     const pct = s.correct / s.attempts;
                     if (!weakest || pct < weakest.pct) weakest = {
-                        category: cat, pct, attempts: s.attempts,
+                        category: cat,
+                        pct,
+                        attempts: s.attempts,
                         correct: s.correct
                     };
                 }
@@ -3279,14 +3410,15 @@
                 if (hint) {
                     hint.innerText = "Ohne Namen geht es nicht.";
                     hint.classList.remove("hidden");
-                } return;
+                }
+                return;
             }
             if (birthday && ageFromBirthday(birthday) === null) {
                 if (hint) {
-                    hint.innerText =
-                        "Der Geburtstag sieht nicht richtig aus.";
+                    hint.innerText = "Der Geburtstag sieht nicht richtig aus.";
                     hint.classList.remove("hidden");
-                } return;
+                }
+                return;
             }
             const update = {
                 name: name,
@@ -3325,8 +3457,7 @@
                 isGuest: true
             };
             try {
-                const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(
-                    guest);
+                const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(guest);
                 ALL_PROFILES[docRef.id] = guest;
                 SFX.tap();
                 showToast(`🙋 Gast "${esc(guest.name)}" kann jetzt mitspielen!`);
@@ -3381,8 +3512,7 @@
                 learnedWords: []
             };
             try {
-                const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(
-                    newProf);
+                const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(newProf);
                 ALL_PROFILES[docRef.id] = newProf;
                 document.getElementById("new-profile-name").value = "";
                 document.getElementById("new-profile-birthday").value = "";
@@ -3718,14 +3848,12 @@
                 if (!currentPlayer.wrongQuestions) currentPlayer.wrongQuestions = [];
                 if (sel === cor) {
                     currentPlayer.stats[q.category].correct++;
-                    currentPlayer.wrongQuestions = currentPlayer.wrongQuestions.filter(w => !(w.category === q
-                        .category && w.question === q.question));
+                    currentPlayer.wrongQuestions = currentPlayer.wrongQuestions.filter(w => !(w.category === q.category && w.question === q.question));
                 } else {
-                    const alreadyThere = currentPlayer.wrongQuestions.some(w => w.category === q.category && w
-                        .question === q.question);
+                    const alreadyThere = currentPlayer.wrongQuestions.some(w => w.category === q.category && w.question === q.question);
                     if (!alreadyThere) currentPlayer.wrongQuestions.push({
-                        category: q.category, question: q
-                            .question
+                        category: q.category,
+                        question: q.question
                     });
                 }
             }
@@ -3811,7 +3939,8 @@
             if (currentPlayer) {
                 if (!currentPlayer.testHistory) currentPlayer.testHistory = [];
                 currentPlayer.testHistory.unshift({
-                    date: new Date().toISOString(), correct: testCorrectCount,
+                    date: new Date().toISOString(),
+                    correct: testCorrectCount,
                     total: total
                 });
                 currentPlayer.testHistory = currentPlayer.testHistory.slice(0, 10);
@@ -3926,11 +4055,12 @@
         }
 
         function shuffleArray(array) {
-            let arr = [...array]; for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(
-                    Math.random() * (i + 1));
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
                 [arr[i], arr[j]] = [arr[j], arr[i]];
-            } return arr;
+            }
+            return arr;
         }
 
         function showVocabQuestion() {
@@ -3944,8 +4074,7 @@
                 savePlayerProgress();
             }
             let sc = 0;
-            while (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && sc < list
-                .length) {
+            while (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + list[vIndex].foreign) && sc < list.length) {
                 vIndex = (vIndex + 1) % list.length;
                 sc++;
             }
@@ -4128,8 +4257,7 @@
             }
             setTimeout(() => {
                 duelState.qIndex++;
-                if (duelState.qIndex < duelState.questions.length) { showDuelQuestion(); } else if (duelState
-                    .turn === 'A') {
+                if (duelState.qIndex < duelState.questions.length) { showDuelQuestion(); } else if (duelState.turn === 'A') {
                     duelState.turn = 'B';
                     showDuelTurnIntro();
                 } else { finishDuel(); }
@@ -4211,7 +4339,8 @@
         const SCRABBLE_VALUES = {};
         const SCRABBLE_BAG = [];
         SCRABBLE_LETTERS.forEach(l => {
-            SCRABBLE_VALUES[l.letter] = l.value; for (let i = 0; i < l.count; i++)
+            SCRABBLE_VALUES[l.letter] = l.value;
+            for (let i = 0; i < l.count; i++)
                 SCRABBLE_BAG.push(l.letter);
         });
 
@@ -4613,8 +4742,10 @@
             const picked = shuffleArray(pool).slice(0, CAST_QUESTION_COUNT).map(shuffleAnswers);
             return picked.map(function (q) {
                 return {
-                    question: q.question, answers: q.answers, correct: q.correct, explanation: q.explanation ||
-                        ''
+                    question: q.question,
+                    answers: q.answers,
+                    correct: q.correct,
+                    explanation: q.explanation || ''
                 };
             });
         }
@@ -4787,8 +4918,7 @@
         function castRestart() {
             const ref = castLobbyRef();
             if (!ref) return;
-            ref.set({ status: 'playing', currentIndex: 0, questions: buildCastQuestions(), updatedAt: Date.now() },
-                { merge: true });
+            ref.set({ status: 'playing', currentIndex: 0, questions: buildCastQuestions(), updatedAt: Date.now() }, { merge: true });
         }
 
         // ============================================================
@@ -4847,13 +4977,22 @@
                 const wordMode = (document.getElementById("tv-scrabble-wordmode") || {}).value || "kids";
                 tvUsedWords = new Set();
                 lobbyData = {
-                    status: "waiting", mode: "scrabble", difficulty, totalRounds, currentRound: 0,
-                    requireLetter, wordMode, players: {}
+                    status: "waiting",
+                    mode: "scrabble",
+                    difficulty,
+                    totalRounds,
+                    currentRound: 0,
+                    requireLetter,
+                    wordMode,
+                    players: {}
                 };
             } else {
                 const category = document.getElementById("tv-quiz-category").value;
                 lobbyData = {
-                    status: "waiting", mode: "quiz", category: category, currentQuestionIndex: 0,
+                    status: "waiting",
+                    mode: "quiz",
+                    category: category,
+                    currentQuestionIndex: 0,
                     players: {}
                 };
             }
@@ -5291,8 +5430,11 @@
 
                 let playersData = docSnap.data().players || {};
                 playersData[activePlayerKey] = {
-                    name: currentPlayer.name, score: 0, hasAnswered: false,
-                    lastAnswer: null, coinsClaimed: false
+                    name: currentPlayer.name,
+                    score: 0,
+                    hasAnswered: false,
+                    lastAnswer: null,
+                    coinsClaimed: false
                 };
                 await lobbyRef.update({ players: playersData });
                 tvGameRef = lobbyRef;
@@ -5386,7 +5528,9 @@
             const word = inputEl ? cleanInput(inputEl.value, 20) : "";
             if (!word) {
                 SFX.wrong();
-                showToast("Bitte zuerst ein Wort eingeben.", "error", "word"); if (inputEl) inputEl.focus(); return;
+                showToast("Bitte zuerst ein Wort eingeben.", "error", "word");
+                if (inputEl) inputEl.focus();
+                return;
             }
             document.getElementById("view-tv-quiz-player").innerHTML =
                 `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-amber-400 mb-4">Eingereicht!</h2><p class="text-lg font-bold text-gray-400">Warte auf die anderen...</p></div>`;
@@ -5466,8 +5610,7 @@
             if (liveDuelHeartbeat || !liveDuelRef || !isLiveDuelCreator) return;
             const beat = () => {
                 if (liveDuelRef && isLiveDuelCreator) liveDuelRef.update({
-                    hostLastSeen: Date
-                        .now()
+                    hostLastSeen: Date.now()
                 }).catch(() => { });
             };
             beat();
@@ -5531,8 +5674,12 @@
                 };
             }
             lobbyData.players[activePlayerKey] = {
-                name: currentPlayer.name, score: 0, hasAnswered: false,
-                lastAnswer: null, word: "", coinsClaimed: false
+                name: currentPlayer.name,
+                score: 0,
+                hasAnswered: false,
+                lastAnswer: null,
+                word: "",
+                coinsClaimed: false
             };
             lobbyData.createdByName = currentPlayer.name;
             lobbyData.createdAt = Date.now();
@@ -5640,7 +5787,8 @@
 
                 if (myData.pending) {
                     renderLiveDuelPending(data);
-                    switchView('live-duel-play'); return;
+                    switchView('live-duel-play');
+                    return;
                 }
 
                 const key = `playing|${data.type}|${data.currentIndex}|${data.currentRound}|${myData.hasAnswered}`;
@@ -5679,7 +5827,8 @@
                 clearLiveDuelTimers();
                 if (myData.pending) {
                     renderLiveDuelPending(data);
-                    switchView('live-duel-play'); return;
+                    switchView('live-duel-play');
+                    return;
                 }
                 const cd = document.getElementById("live-duel-countdown");
                 if (cd) cd.innerText = "";
@@ -5797,7 +5946,9 @@
             const word = inputEl ? cleanInput(inputEl.value, 20) : "";
             if (!word) {
                 SFX.wrong();
-                showToast("Bitte zuerst ein Wort eingeben.", "error", "word"); if (inputEl) inputEl.focus(); return;
+                showToast("Bitte zuerst ein Wort eingeben.", "error", "word");
+                if (inputEl) inputEl.focus();
+                return;
             }
             if (inputEl) inputEl.disabled = true;
             SFX.tap();
@@ -5842,7 +5993,10 @@
                     });
                 }
                 await liveDuelRef.update({
-                    status: "reveal", players, correctAnswer: correct, answerDeadline: null,
+                    status: "reveal",
+                    players,
+                    correctAnswer: correct,
+                    answerDeadline: null,
                     review
                 });
             } else {
@@ -5940,15 +6094,21 @@
             });
             if (data.type === "quiz") {
                 await liveDuelRef.update({
-                    status: "playing", currentIndex: data.currentIndex + 1, players,
+                    status: "playing",
+                    currentIndex: data.currentIndex + 1,
+                    players,
                     answerDeadline: null
                 });
             } else {
                 const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
                 await liveDuelRef.update({
-                    status: "playing", currentRound: data.currentRound + 1,
-                    currentLetters: rack.letters, currentSolution: rack.solution, currentRequired: rack
-                        .required || "", players, answerDeadline: null
+                    status: "playing",
+                    currentRound: data.currentRound + 1,
+                    currentLetters: rack.letters,
+                    currentSolution: rack.solution,
+                    currentRequired: rack.required || "",
+                    players,
+                    answerDeadline: null
                 });
             }
         }
@@ -5966,8 +6126,12 @@
                     });
                     const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
                     liveDuelRef.update({
-                        status: "playing", currentRound: 1, currentLetters: rack.letters,
-                        currentSolution: rack.solution, currentRequired: rack.required || "", players,
+                        status: "playing",
+                        currentRound: 1,
+                        currentLetters: rack.letters,
+                        currentSolution: rack.solution,
+                        currentRequired: rack.required || "",
+                        players,
                         answerDeadline: null
                     });
                 });
@@ -6304,7 +6468,6 @@
         // ============================================================
         //  START
         // ============================================================
-        // Hier wird switchView definiert (nur EINMAL!)
         function switchView(viewId) {
             // Laufende Timer stoppen
             if (viewId !== 'fokus' && typeof focusTimerInterval !== 'undefined' && focusTimerInterval) {
@@ -6355,10 +6518,24 @@
                 else stopWatchingForOpenTVLobby();
             }
 
-            // Dashboard initialisieren
+            // Dashboard initialisieren mit PIN-Abfrage
             if (viewId === 'dashboard') {
-                switchDashboardTab('inhalte');
-                switchDashboardSubTab('fragen');
+                // PIN-Abfrage beim Öffnen
+                if (adminPin) {
+                    const entered = cleanInput(prompt("🔒 Dashboard\n\nBitte PIN eingeben:"), 12);
+                    if (entered === null || entered === "") {
+                        switchView('family-hub');
+                        return;
+                    }
+                    if (entered !== adminPin) {
+                        SFX.wrong();
+                        showToast("❌ PIN stimmt nicht.", "error", "pin");
+                        switchView('family-hub');
+                        return;
+                    }
+                }
+                // Standard: Inhalte anzeigen
+                switchDashboardSection('inhalte');
                 updateDashCounts();
                 renderDashQuestions();
                 renderDashVocab();

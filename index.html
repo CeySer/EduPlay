@@ -3548,6 +3548,30 @@
         let selectedStatPlayer = null;
         let currentDashboardSection = null;
 
+        function updateDashSubjectFilter() {
+            const qGradeVal = document.getElementById('dash-question-grade').value;
+            const qSubSel = document.getElementById('dash-question-subject');
+
+            if (!qSubSel) return;
+
+            // 1. Fragen filtern basierend auf der Klasse
+            let filtered = QUESTIONS_DATABASE;
+            if (qGradeVal) {
+                if (qGradeVal === 'beruf') filtered = QUESTIONS_DATABASE.filter(q => q.area === 'beruf');
+                else if (qGradeVal === 'spass') filtered = QUESTIONS_DATABASE.filter(q => q.area === 'spass');
+                else filtered = QUESTIONS_DATABASE.filter(q => q.grade == qGradeVal);
+            }
+
+            // 2. Einzigartige Fächer aus den gefilterten Fragen sammeln
+            const subjects = [...new Set(filtered.map(q => q.subject).filter(Boolean))].sort();
+
+            // 3. Dropdown aktualisieren
+            let html = '<option value="">Alle Fächer</option>';
+            subjects.forEach(s => {
+                html += `<option value="${s}">${s}</option>`;
+            });
+            qSubSel.innerHTML = html;
+        }
         /**
          * =========================================================
          * BESCHREIBUNG: Bereichswechsel im Dashboard (switchDashboardSection)
@@ -4113,8 +4137,20 @@
         document.addEventListener('DOMContentLoaded', function () {
             console.log('📋 Event-Listener werden registriert...');
 
+            // ... im Event-Listener Block ...
             const qGrade = document.getElementById('dash-question-grade');
-            const qSubject = document.getElementById('dash-question-subject');
+
+            if (qGrade) {
+                qGrade.addEventListener('change', function () {
+                    console.log('🔍 Klasse-Filter geändert:', this.value);
+
+                    // 1. Erst die Fächer-Liste für die Klasse neu laden
+                    updateDashSubjectFilter();
+
+                    // 2. Dann die Fragen-Liste basierend auf Klasse UND dem (jetzt neuen) Fach rendern
+                    renderDashQuestions();
+                });
+            } const qSubject = document.getElementById('dash-question-subject');
             const qSearch = document.getElementById('dash-question-search');
             const vLang = document.getElementById('dash-vocab-lang');
             const vLevel = document.getElementById('dash-vocab-level');

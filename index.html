@@ -2619,7 +2619,67 @@
         // ============================================================
         // DATENBANKEN ZUSAMMENFÜHREN
         // ============================================================
+        // ============================================================
+        // VOCABULARY_DATABASE - NOTFALL (direkt in index.html)
+        // ============================================================
+        if (typeof VOCABULARY_DATABASE === 'undefined') {
+            console.warn('⚠️ VOCABULARY_DATABASE wird nicht geladen – verwende Notfall-Datenbank!');
 
+            window.VOCABULARY_DATABASE = {
+                en: {
+                    k1: {
+                        label: "1. Klasse · Erste Wörter",
+                        words: [
+                            { de: "Hallo", foreign: "Hello" },
+                            { de: "Tschüss", foreign: "Goodbye" },
+                            { de: "Ja", foreign: "Yes" },
+                            { de: "Nein", foreign: "No" },
+                            { de: "Katze", foreign: "Cat" },
+                            { de: "Hund", foreign: "Dog" },
+                            { de: "Haus", foreign: "House" },
+                            { de: "Baum", foreign: "Tree" },
+                            { de: "Blume", foreign: "Flower" },
+                            { de: "Sonne", foreign: "Sun" }
+                        ]
+                    },
+                    k2: {
+                        label: "2. Klasse · Grundwortschatz",
+                        words: [
+                            { de: "Apfel", foreign: "Apple" },
+                            { de: "Banane", foreign: "Banana" },
+                            { de: "Auto", foreign: "Car" },
+                            { de: "Flugzeug", foreign: "Plane" },
+                            { de: "Schule", foreign: "School" },
+                            { de: "Lehrer", foreign: "Teacher" },
+                            { de: "Schüler", foreign: "Student" },
+                            { de: "Buch", foreign: "Book" },
+                            { de: "Tisch", foreign: "Table" },
+                            { de: "Stuhl", foreign: "Chair" }
+                        ]
+                    }
+                },
+                tr: {
+                    k1: {
+                        label: "1. Sınıf · İlk Kelimeler",
+                        words: [
+                            { de: "Hallo", foreign: "Merhaba" },
+                            { de: "Tschüss", foreign: "Hoşçakal" },
+                            { de: "Ja", foreign: "Evet" },
+                            { de: "Nein", foreign: "Hayır" },
+                            { de: "Katze", foreign: "Kedi" },
+                            { de: "Hund", foreign: "Köpek" },
+                            { de: "Haus", foreign: "Ev" },
+                            { de: "Baum", foreign: "Ağaç" },
+                            { de: "Blume", foreign: "Çiçek" },
+                            { de: "Sonne", foreign: "Güneş" }
+                        ]
+                    }
+                }
+            };
+
+            console.log('✅ VOCABULARY_DATABASE (Notfall) geladen!');
+            console.log(`📝 Sprachen: ${Object.keys(window.VOCABULARY_DATABASE).join(', ')}`);
+        }
         // ============================================================
         // DATENBANKEN ZUSAMMENFÜHREN
         // ============================================================
@@ -3751,7 +3811,7 @@
             }
 
             const levels = Object.keys(VOCABULARY_DATABASE[vLang]);
-            console.log(`📝 Gefundene Niveaus für ${vLang}:`, levels);
+            console.log(`📝 Gefundene Niveaus für ${vLang}:`, levels); 99999
 
             vLevelSel.innerHTML = '<option value="">Alle Niveaus</option>' +
                 levels.map(l => `<option value="${l}">${VOCABULARY_DATABASE[vLang][l].label || l}</option>`).join('');

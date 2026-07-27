@@ -18,12 +18,12 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
 
     <!-- DATENBANKEN -->
-    <script src="words_kids.js?v=5"></script>
-    <script src="words_adult.js?v=5"></script>
-    <script src="vocabulary.js?v=5"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_school.js?v=5"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_beruf.js?v=5"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_fun.js?v=5"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="words_kids.js?v=1.6"></script>
+    <script src="words_adult.js?v=1.6"></script>
+    <script src="vocabulary.js?v=1.6"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="questions_school.js?v=1.6"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="questions_beruf.js?v=1.6"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="questions_fun.js?v=1.6"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
     <!-- <script src="lesen.js?v=5"></script>
     <script src="lesen_in_index.js?v=6"></script> -->
 
@@ -2398,20 +2398,33 @@
             <!-- ==========================================================
             VIEW: LESEN LERNEN
             ========================================================== -->
+
+            <!-- ==========================================================
+VIEW: LESEN LERNEN
+========================================================== -->
             <div id="view-lesen" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">← Menü</button>
                     <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
                     <span class="w-20"></span>
                 </div>
+
                 <div class="glass-card p-5">
-                    <h2 class="text-2xl font-black text-blue-400 mb-1">📖 Lesen lernen</h2>
+                    <!-- NEU: Flex-Container gruppiert den Titel und den Vorlese-Button -->
+                    <div class="flex justify-between items-start mb-1">
+                        <h2 class="text-2xl font-black text-blue-400">📖 Lesen lernen</h2>
+                        <!-- Der Vorlese-Button im btn-secondary Design -->
+                        <button onclick="leseAktuelleAufgabeVor()"
+                            class="btn-secondary flex items-center justify-center p-2 text-xl"
+                            title="Aktuelle Aufgabe vorlesen">
+                            🔊
+                        </button>
+                    </div>
                     <p class="text-xs text-gray-400 mb-4">Klasse 1 & 2 · Buchstaben, Silben, Wörter und Sätze</p>
                     <div id="lesen-categories" class="grid grid-cols-2 gap-3"></div>
                     <div id="lesen-exercise" class="mt-6 hidden"></div>
                 </div>
             </div>
-
 
 
             <!-- ==========================================================
@@ -7805,6 +7818,27 @@
         }
 
         // ============================================================
+        // VORLESEFUNKTION FÜR LESEN LERNEN
+        // ============================================================
+        function leseAktuelleAufgabeVor() {
+            // Greift exakt auf den Container zu, in dem die Aufgabe angezeigt wird
+            const exerciseContainer = document.getElementById('lesen-exercise');
+
+            // Bricht ab, falls keine Aufgabe geladen/sichtbar ist
+            if (!exerciseContainer || exerciseContainer.classList.contains('hidden')) {
+                return;
+            }
+
+            // Holt sich den gesamten reinen Text der aktuellen Übung ohne HTML-Schnipsel
+            const textZumVorlesen = exerciseContainer.innerText || exerciseContainer.textContent;
+
+            // Startet die Vorlesefunktion, falls Text vorhanden ist
+            if (textZumVorlesen.trim() !== '') {
+                speakNatural(textZumVorlesen);
+            }
+        }
+
+        // ============================================================
         //  START
         // ============================================================
         function switchView(viewId) {
@@ -8559,6 +8593,39 @@
                 }
             } catch (e) { }
         }
+
+
+        // Sorgt dafür, dass die Stimmen im Hintergrund geladen werden (wichtig für Chrome/Safari)
+        window.speechSynthesis.onvoiceschanged = () => {
+            window.speechSynthesis.getVoices();
+        };
+
+        function speakNatural(text) {
+            if (!('speechSynthesis' in window)) return;
+
+            // Bricht aktuelles Vorlesen ab, falls noch etwas gesprochen wird
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'de-DE';
+            utterance.rate = 0.9; // Leicht verlangsamt (0.9 statt 1.0) für bessere Verständlichkeit
+            utterance.pitch = 1.1; // Ein kleines bisschen höher, wirkt oft freundlicher
+
+            const voices = window.speechSynthesis.getVoices();
+
+            // Wir suchen gezielt nach hochwertigen deutschen Stimmen
+            const bestVoice = voices.find(v => v.lang.includes('de') && (v.name.includes('Natural') || v.name.includes('Premium') || v.name.includes('Google')))
+                || voices.find(v => v.lang.includes('de')); // Fallback: Erste verfügbare deutsche Stimme
+
+            if (bestVoice) {
+                utterance.voice = bestVoice;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+
+
         // --------------------------------------------------------
 
         function lesenNext() {

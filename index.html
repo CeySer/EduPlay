@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.10</title>
+    <title>EduPlay Hub - Familien Edition v2.11</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -1322,6 +1322,105 @@
             --text-secondary: #8888bb;
             --text-muted: #555588;
         }
+
+
+
+
+
+        /* Light-Mode */
+        body:not(.dark-theme) {
+            --bg-primary: #f0f4ff;
+            --bg-secondary: #e8edf8;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f5f8ff;
+            --border-color: #d0d8e8;
+            --border-light: #b8c4dc;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5a7a;
+            --text-muted: #8899bb;
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        body:not(.dark-theme) .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(200, 210, 230, 0.5);
+            box-shadow: var(--shadow-card);
+        }
+
+        body:not(.dark-theme) .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: var(--shadow-hover);
+        }
+
+        body:not(.dark-theme) .glass-card-glow {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+        }
+
+        body:not(.dark-theme) .btn-secondary {
+            background: rgba(220, 230, 245, 0.6);
+            border: 1px solid rgba(200, 210, 230, 0.3);
+            color: var(--text-primary);
+        }
+
+        body:not(.dark-theme) .btn-secondary:hover {
+            background: rgba(200, 215, 240, 0.8);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        body:not(.dark-theme) .player-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(200, 210, 230, 0.3);
+        }
+
+        body:not(.dark-theme) .player-card:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        body:not(.dark-theme) .player-card.is-active {
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                var(--gradient-main) border-box;
+        }
+
+        body:not(.dark-theme) .input-modern {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(200, 210, 230, 0.5);
+            color: var(--text-primary);
+        }
+
+        body:not(.dark-theme) .input-modern:focus {
+            border-color: rgba(99, 102, 241, 0.4);
+            background: white;
+        }
+
+        body:not(.dark-theme) .dash-stat-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(200, 210, 230, 0.3);
+        }
+
+        body:not(.dark-theme) .dash-tile {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(200, 210, 230, 0.2);
+        }
+
+        body:not(.dark-theme) .dash-tile:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: var(--shadow-hover);
+        }
+
+        body:not(.dark-theme) .app-header {
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(200, 210, 230, 0.3);
+        }
+
+        body:not(.dark-theme) #app-shell {
+            background: rgba(240, 244, 255, 0.9);
+            border-left: 1px solid rgba(200, 210, 230, 0.2);
+            border-right: 1px solid rgba(200, 210, 230, 0.2);
+        }
     </style>
 </head>
 
@@ -1379,7 +1478,7 @@
         <header class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.10</span>
+                <span class="version">v2.11</span>
             </div>
             <div class="header-actions">
                 <button onclick="toggleSound()" title="Ton an/aus">
@@ -1403,7 +1502,7 @@
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.10</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.11</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -2512,6 +2611,51 @@
         let OFFLINE_MODUS_AKTIV = false;
         let hubWatchUnsub = null;
 
+
+
+        // ============================================================
+        // DATENBANKEN ZUSAMMENFÜHREN
+        // ============================================================
+
+        // 1. Fragen aus allen Quellen zusammenführen
+        const QUESTIONS_DATABASE = [];
+        if (typeof SCHOOL_QUESTIONS !== 'undefined') {
+            QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS);
+        }
+        if (typeof BERUFS_QUESTIONS !== 'undefined') {
+            QUESTIONS_DATABASE.push(...BERUFS_QUESTIONS);
+        }
+        if (typeof FUN_QUESTIONS !== 'undefined') {
+            QUESTIONS_DATABASE.push(...FUN_QUESTIONS);
+        }
+
+        // 2. Vokabeln aus vocabulary.js
+        const VOCABULARY_DATABASE = {};
+        if (typeof vocabularyData !== 'undefined') {
+            Object.assign(VOCABULARY_DATABASE, vocabularyData);
+        }
+        // Fallback: falls die Daten anders heißen
+        if (typeof VOCABULARY !== 'undefined') {
+            Object.assign(VOCABULARY_DATABASE, VOCABULARY);
+        }
+
+        // 3. Wörter für Buchstabensalat
+        const GERMAN_WORDS = [];
+        if (typeof GERMAN_WORDS_KIDS !== 'undefined') {
+            GERMAN_WORDS.push(...GERMAN_WORDS_KIDS);
+        }
+        if (typeof GERMAN_WORDS_ADULT !== 'undefined') {
+            GERMAN_WORDS.push(...GERMAN_WORDS_ADULT);
+        }
+
+        console.log('📚 Daten geladen:');
+        console.log(`📖 Fragen: ${QUESTIONS_DATABASE.length}`);
+        console.log(`📝 Vokabeln: ${Object.keys(VOCABULARY_DATABASE).length} Sprachen`);
+        console.log(`🔤 Wörter: ${GERMAN_WORDS.length}`);
+
+
+
+
         // ============================================================
         //  FIREBASE INITIALISIERUNG
         // ============================================================
@@ -3429,26 +3573,27 @@
          */
         function updateDashCounts() {
             // 1. Fragen zählen
-            const qCount = typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)
-                ? QUESTIONS_DATABASE.length
-                : 0;
+            let qCount = 0;
+            if (typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
+                qCount = QUESTIONS_DATABASE.length;
+            }
 
-            // 2. Vokabeln zählen (über alle Sprachen und Niveaus)
-            let vocabTotal = 0;
-            if (typeof VOCABULARY_DATABASE !== 'undefined' && VOCABULARY_DATABASE) {
+            // 2. Vokabeln zählen
+            let vCount = 0;
+            if (typeof VOCABULARY_DATABASE !== 'undefined') {
                 Object.keys(VOCABULARY_DATABASE).forEach(lang => {
-                    Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
-                        if (VOCABULARY_DATABASE[lang][level]?.words) {
-                            vocabTotal += VOCABULARY_DATABASE[lang][level].words.length;
-                        }
+                    Object.keys(VOCABULARY_DATABASE[lang] || {}).forEach(level => {
+                        const words = VOCABULARY_DATABASE[lang][level]?.words;
+                        if (Array.isArray(words)) vCount += words.length;
                     });
                 });
             }
 
             // 3. Wörter zählen
-            const wordTotal = typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)
-                ? GERMAN_WORDS.length
-                : 0;
+            let wCount = 0;
+            if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
+                wCount = GERMAN_WORDS.length;
+            }
 
             // 4. In HTML-Spans eintragen
             const elQ = document.getElementById('dash-question-count');
@@ -3456,8 +3601,8 @@
             const elW = document.getElementById('dash-word-count');
 
             if (elQ) elQ.textContent = qCount;
-            if (elV) elV.textContent = vocabTotal;
-            if (elW) elW.textContent = wordTotal;
+            if (elV) elV.textContent = vCount;
+            if (elW) elW.textContent = wCount;
         }
 
         /**
@@ -3495,7 +3640,6 @@
                     lengths.map(l => `<option value="${l}">${l} Buchstaben</option>`).join('');
             }
         }
-
         /**
          * =========================================================
          * BESCHREIBUNG: Vokabel-Niveaus aktualisieren (updateDashVocabLevels)
@@ -3509,7 +3653,7 @@
             if (vLevelSel && typeof VOCABULARY_DATABASE !== 'undefined' && VOCABULARY_DATABASE[vLang]) {
                 const levels = Object.keys(VOCABULARY_DATABASE[vLang]);
                 vLevelSel.innerHTML = '<option value="">Alle Niveaus</option>' +
-                    levels.map(l => `<option value="${l}">${VOCABULARY_DATABASE[vLang][l].label}</option>`).join('');
+                    levels.map(l => `<option value="${l}">${VOCABULARY_DATABASE[vLang][l].label || l}</option>`).join('');
             }
         }
 
@@ -3664,11 +3808,14 @@
             if (!list) return;
 
             let words = [];
-            if (typeof GERMAN_WORDS !== 'undefined') words = GERMAN_WORDS;
-            else if (typeof WORDS_DATABASE !== 'undefined') words = WORDS_DATABASE;
-            else if (typeof wordList !== 'undefined') words = wordList;
+            if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
+                words = GERMAN_WORDS;
+            }
 
-            if (!Array.isArray(words)) words = [];
+            if (!Array.isArray(words) || words.length === 0) {
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">😕 Keine Wörter gefunden</div>';
+                return;
+            }
 
             if (length) words = words.filter(w => w.length === parseInt(length));
             if (search) words = words.filter(w => w.toUpperCase().includes(search));
@@ -3678,9 +3825,27 @@
                 return;
             }
 
-            list.innerHTML = words.slice(0, 100).map(w => `
-        <span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm">${esc(w)}</span>
-    `).join('');
+        }
+
+        function renderDashQuestions() {
+            const grade = document.getElementById('dash-question-grade')?.value || '';
+            const subject = document.getElementById('dash-question-subject')?.value || '';
+            const search = document.getElementById('dash-question-search')?.value.toLowerCase() || '';
+            const list = document.getElementById('dash-question-list');
+            if (!list) return;
+
+            let questions = typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE : [];
+
+            if (grade) questions = questions.filter(q => q.grade == grade);
+            if (subject) questions = questions.filter(q => q.subject === subject);
+            if (search) questions = questions.filter(q => q.question.toLowerCase().includes(search));
+
+            if (questions.length === 0) {
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Fragen gefunden</div>';
+                return;
+            }
+
+
         }
 
         function renderDashVocab() {
@@ -3704,11 +3869,14 @@
 
             Object.keys(langData).forEach(key => {
                 if (!level || key === level) {
-                    words = words.concat(langData[key].words.map(w => ({ ...w, level: key, levelLabel: langData[key].label })));
+                    const wordList = langData[key]?.words;
+                    if (Array.isArray(wordList)) {
+                        words = words.concat(wordList.map(w => ({ ...w, level: key, levelLabel: langData[key].label || key })));
+                    }
                 }
             });
 
-            if (search) words = words.filter(w => w.de.toLowerCase().includes(search) || w.foreign.toLowerCase().includes(search));
+            if (search) words = words.filter(w => w.de?.toLowerCase().includes(search) || w.foreign?.toLowerCase().includes(search));
 
             if (words.length === 0) {
                 list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Vokabeln gefunden</div>';
@@ -3724,6 +3892,8 @@
         </div>
     `).join('');
         }
+
+
 
         function performDashSearch() {
             const query = document.getElementById('dash-global-search').value.trim().toLowerCase();
@@ -7465,19 +7635,27 @@
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe data.js");
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.10)");
+        console.log("🚀 EduPlay Hub gestartet (v2.11)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
 
 
-        // Theme beim Laden wiederherstellen
+        // Theme beim Laden wiederherstellen (Standard = Light)
         document.addEventListener('DOMContentLoaded', function () {
             try {
                 const savedTheme = localStorage.getItem('eduplayTheme');
-                if (savedTheme === 'dark') document.body.classList.add('dark-theme');
+                if (savedTheme === 'dark') {
+                    document.body.classList.add('dark-theme');
+                } else {
+                    // Standard ist Light-Mode
+                    document.body.classList.remove('dark-theme');
+                }
             } catch (e) { }
         });
+
+
+
 
 
     </script>
@@ -7520,7 +7698,7 @@
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.10<br>
+            EduPlay Hub · v2.11<br>
             © 2026 · Familien Edition
         </div>
     </div>

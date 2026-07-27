@@ -1310,6 +1310,18 @@
             font-weight: 800;
             font-size: 14px;
         }
+
+        /* Dark-Mode */
+        body.dark-theme {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #111128;
+            --bg-card: #1a1a3e;
+            --bg-card-hover: #252555;
+            --border-color: #2a2a5a;
+            --text-primary: #e8e8ff;
+            --text-secondary: #8888bb;
+            --text-muted: #555588;
+        }
     </style>
 </head>
 
@@ -2557,13 +2569,24 @@
 
         function questionsForKey(key) {
             if (typeof QUESTIONS_DATABASE === 'undefined' || !key) return [];
+
+            // Prüfe ob key mit "subject:" beginnt
             if (String(key).startsWith("subject:")) {
                 const sub = String(key).slice("subject:".length);
                 return QUESTIONS_DATABASE.filter(q => q.subject === sub && q.area === "schule");
             }
+
+
+
+            function questionsWhere(filter) {
+                if (typeof QUESTIONS_DATABASE === 'undefined') return [];
+                return QUESTIONS_DATABASE.filter(filter);
+            }
+
+
+            // Normaler Category-Lookup
             return QUESTIONS_DATABASE.filter(q => q.category === key);
         }
-
         function questionsWhere(filter) {
             if (typeof QUESTIONS_DATABASE === 'undefined') return [];
             return QUESTIONS_DATABASE.filter(filter);
@@ -3041,6 +3064,12 @@
             showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
         }
 
+        function toggleTheme() {
+            const isDark = document.body.classList.toggle('dark-theme');
+            try { localStorage.setItem('eduplayTheme', isDark ? 'dark' : 'light'); } catch (e) { }
+            showToast(isDark ? "🌙 Dark-Mode aktiv" : "☀️ Light-Mode aktiv", "success", "theme");
+        }
+
         // ============================================================
         //  AUTH
         // ============================================================
@@ -3360,6 +3389,8 @@
          * Befüllt dabei automatisch die Filter und aktualisiert die Zähler.
          */
         function switchDashboardSection(section) {
+            currentDashboardSection = section;
+
             const sections = ['inhalte', 'eltern', 'statistiken'];
             sections.forEach(s => {
                 const el = document.getElementById('dash-section-' + s);
@@ -3482,10 +3513,28 @@
             }
         }
 
-
+        /**
+                 * =========================================================
+                 * BESCHREIBUNG: PIN Abfrage
+                 * =========================================================
+                 * 
+                 * 
+                 */
 
         function openParentArea() {
-            if (!adminPin) return setupAdminPin(true);
+            if (!adminPin) {
+                setupAdminPin(true);
+                return;
+            }
+            const entered = cleanInput(prompt("🔒 Eltern-Bereich\n\nBitte PIN eingeben:"), 12);
+            if (entered === null || entered === "") {
+                return;
+            }
+            if (entered !== adminPin) {
+                SFX.wrong();
+                showToast("❌ PIN stimmt nicht.", "error", "pin");
+                return;
+            }
             switchDashboardSection('eltern');
             switchDashAdminTab('progress');
         }
@@ -3608,28 +3657,72 @@
             if (elW) elW.textContent = wCount;
         }
 
-
-
-
-
-
-
         function renderDashWords() {
-            const length = document.getElementById('dash-word-length').value;
-            const search = document.getElementById('dash-word-search').value.toUpperCase();
-            let words = typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS : [];
-            if (length) words = words.filter(w => w.length === parseInt(length));
-            if (search) words = words.filter(w => w.includes(search));
-
+            const length = document.getElementById('dash-word-length')?.value || '';
+            const search = document.getElementById('dash-word-search')?.value.toUpperCase() || '';
             const list = document.getElementById('dash-word-list');
             if (!list) return;
+
+            let words = [];
+            if (typeof GERMAN_WORDS !== 'undefined') words = GERMAN_WORDS;
+            else if (typeof WORDS_DATABASE !== 'undefined') words = WORDS_DATABASE;
+            else if (typeof wordList !== 'undefined') words = wordList;
+
+            if (!Array.isArray(words)) words = [];
+
+            if (length) words = words.filter(w => w.length === parseInt(length));
+            if (search) words = words.filter(w => w.toUpperCase().includes(search));
+
             if (words.length === 0) {
                 list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">😕 Keine Wörter gefunden</div>';
                 return;
             }
+
             list.innerHTML = words.slice(0, 100).map(w => `
-                        <span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm">${w}</span>
-                    `).join('');
+        <span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm">${esc(w)}</span>
+    `).join('');
+        }
+
+        function renderDashVocab() {
+            const lang = document.getElementById('dash-vocab-lang')?.value || 'en';
+            const level = document.getElementById('dash-vocab-level')?.value || '';
+            const search = document.getElementById('dash-vocab-search')?.value.toLowerCase() || '';
+            const list = document.getElementById('dash-vocab-list');
+            if (!list) return;
+
+            if (typeof VOCABULARY_DATABASE === 'undefined') {
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">⚠️ Vokabel-Datenbank nicht geladen</div>';
+                return;
+            }
+
+            let words = [];
+            const langData = VOCABULARY_DATABASE[lang];
+            if (!langData) {
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Sprache nicht gefunden</div>';
+                return;
+            }
+
+            Object.keys(langData).forEach(key => {
+                if (!level || key === level) {
+                    words = words.concat(langData[key].words.map(w => ({ ...w, level: key, levelLabel: langData[key].label })));
+                }
+            });
+
+            if (search) words = words.filter(w => w.de.toLowerCase().includes(search) || w.foreign.toLowerCase().includes(search));
+
+            if (words.length === 0) {
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Vokabeln gefunden</div>';
+                return;
+            }
+
+            list.innerHTML = words.slice(0, 50).map(w => `
+        <div class="flex justify-between items-center bg-white/5 border border-white/5 rounded-xl px-3 py-2 text-sm">
+            <span class="text-white font-bold">${esc(w.de)}</span>
+            <span class="text-gray-400">→</span>
+            <span class="text-indigo-300 font-bold">${esc(w.foreign)}</span>
+            <span class="text-[10px] text-gray-500">${w.levelLabel || w.level}</span>
+        </div>
+    `).join('');
         }
 
         function performDashSearch() {
@@ -4584,9 +4677,21 @@
         }
 
         function startQuiz() {
-            if (typeof QUESTIONS_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
-            const cat = document.getElementById("sub-category").value;
-            launchQuiz(questionsForKey(cat));
+            if (typeof QUESTIONS_DATABASE === 'undefined') {
+                showToast("Fehler: Datenbank nicht geladen!", "error");
+                return;
+            }
+            const cat = document.getElementById("sub-category")?.value;
+            if (!cat) {
+                showToast("Bitte ein Thema auswählen!", "error");
+                return;
+            }
+            const questions = questionsForKey(cat);
+            if (!questions || questions.length === 0) {
+                showToast("Keine Fragen für dieses Thema gefunden!", "error");
+                return;
+            }
+            launchQuiz(questions);
         }
 
         function startWrongQuestionsQuiz() {
@@ -7366,9 +7471,13 @@
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
 
 
-
-
-
+        // Theme beim Laden wiederherstellen
+        document.addEventListener('DOMContentLoaded', function () {
+            try {
+                const savedTheme = localStorage.getItem('eduplayTheme');
+                if (savedTheme === 'dark') document.body.classList.add('dark-theme');
+            } catch (e) { }
+        });
 
 
     </script>

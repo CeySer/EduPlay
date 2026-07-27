@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.14</title>
+    <title>EduPlay Hub - Familien Edition v2.15</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -18,12 +18,12 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
 
     <!-- DATENBANKEN -->
-    <script src="words_kids.js?v=1.6"></script>
-    <script src="words_adult.js?v=1.6"></script>
-    <script src="vocabulary.js?v=1.6"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_school.js?v=1.6"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_beruf.js?v=1.6"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_fun.js?v=1.6"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="words_kids.js?v=6.1"></script>
+    <script src="words_adult.js?v=6.1"></script>
+    <script src="vocabulary.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="questions_school.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="questions_beruf.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="questions_fun.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
     <!-- <script src="lesen.js?v=5"></script>
     <script src="lesen_in_index.js?v=6"></script> -->
 
@@ -1481,7 +1481,7 @@
         <header class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.14</span>
+                <span class="version">v2.15</span>
             </div>
             <div class="header-actions">
                 <button onclick="toggleSound()" title="Ton an/aus">
@@ -1505,7 +1505,7 @@
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.14</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.15</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -5375,7 +5375,7 @@ VIEW: LESEN LERNEN
         function leaveVocab() { switchView('menu'); }
 
         function loadVocabSystem() {
-            if (typeof VOCABULARY_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
+            if (typeof VOCABULARY_DATABASE === 'undefined') return alert("Fehler: vocabulary.js nicht gefunden!");
             applyVocabLangSettings();
             if (!isVocabLangEnabled(activeLang) || !VOCABULARY_DATABASE[activeLang]) {
                 const fallback = Object.keys(VOCABULARY_DATABASE).find(isVocabLangEnabled);
@@ -7916,12 +7916,13 @@ VIEW: LESEN LERNEN
         // Prüfe, ob die Datenbanken geladen sind
         if (typeof QUESTIONS_DATABASE === 'undefined') {
             console.warn("⚠️ QUESTIONS_DATABASE nicht geladen – prüfe data.js");
+
         }
         if (typeof VOCABULARY_DATABASE === 'undefined') {
-            console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe data.js");
+            console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe vocabulary.js");
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.14)");
+        console.log("🚀 EduPlay Hub gestartet (v2.15)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
@@ -7986,7 +7987,7 @@ VIEW: LESEN LERNEN
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.14<br>
+            EduPlay Hub · v2.15<br>
             © 2026 · Familien Edition
         </div>
     </div>

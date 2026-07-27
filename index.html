@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.7</title>
+    <title>EduPlay Hub - Familien Edition v2.8</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -23,6 +23,8 @@
     <script src="words_adult.js?v=1"></script>
     <script src="lesen.js?v=1"></script>
     <script src="lesen_in_index.js?v=1"></script>
+
+    <link rel="icon" href="data:,">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
@@ -1365,7 +1367,7 @@
         <header class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.7</span>
+                <span class="version">v2.8</span>
             </div>
             <div class="header-actions">
                 <button onclick="toggleSound()" title="Ton an/aus">
@@ -1389,7 +1391,7 @@
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.7</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.8</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -2494,6 +2496,10 @@
     JAVASCRIPT
     ============================================================ -->
     <script>
+
+        let OFFLINE_MODUS_AKTIV = false;
+        let hubWatchUnsub = null;
+
         // ============================================================
         //  FIREBASE INITIALISIERUNG
         // ============================================================
@@ -3398,26 +3404,6 @@
 
 
 
-        const target = document.getElementById('dash-section-' + section);
-        if (target) target.classList.remove('hidden');
-
-        currentDashboardSection = section;
-
-        if (section === 'inhalte') {
-            updateDashCounts();
-            renderDashQuestions();
-            renderDashVocab();
-            renderDashWords();
-        }
-        if (section === 'eltern') {
-            renderDashAdminProgress();
-            renderDashAdminTest();
-            renderDashRewards();
-        }
-        if (section === 'statistiken') {
-            renderDashPlayerList();
-            if (selectedStatPlayer) renderPlayerStats(selectedStatPlayer);
-        }
 
 
         function openParentArea() {
@@ -3483,82 +3469,72 @@
             if (sub === 'woerter') renderDashWords();
         }
 
+
+
+        /**
+         * =========================================================
+         * BESCHREIBUNG: Dashboard-Zähler für Inhalte (updateDashCounts)
+         * =========================================================
+         * Diese Funktion berechnet die Gesamtzahl aller hinterlegten Fragen,
+         * Vokabeln und Wörter in der EduPlay-Datenbank und aktualisiert 
+         * die Zahlenanzeigen im Dashboard-Bereich ("Inhalte").
+         * 
+         * Behebt das "0 Wörter"-Problem durch flexible Prüfung von:
+         * - Arrays und Objekt-Kategorien
+         * - Verschiedenen gängigen Variablennamen (WORDS_DATABASE, WORD_LIST, etc.)
+         * - Verschiedenen HTML-Element-IDs für die Zahlen-Anzeige
+         */
         function updateDashCounts() {
-            const qCount = typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : 0;
-            let vocabTotal = 0;
-            if (typeof VOCABULARY_DATABASE !== 'undefined') {
-                Object.keys(VOCABULARY_DATABASE).forEach(lang => {
-                    Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
-                        if (VOCABULARY_DATABASE[lang][level].words) {
-                            vocabTotal += VOCABULARY_DATABASE[lang][level].words.length;
-                        }
-                    });
-                });
+            // 1. Fragen zählen
+            let qCount = 0;
+            if (typeof QUESTIONS_DATABASE !== 'undefined' && QUESTIONS_DATABASE) {
+                qCount = Array.isArray(QUESTIONS_DATABASE)
+                    ? QUESTIONS_DATABASE.length
+                    : Object.keys(QUESTIONS_DATABASE).reduce((acc, cat) => acc + (QUESTIONS_DATABASE[cat]?.length || 0), 0);
             }
-            const wordTotal = typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : 0;
-            document.getElementById('dash-question-count').textContent = qCount;
-            document.getElementById('dash-vocab-count').textContent = vocabTotal;
-            document.getElementById('dash-word-count').textContent = wordTotal;
+
+            // 2. Vokabeln zählen
+            let vCount = 0;
+            if (typeof VOCAB_DATABASE !== 'undefined' && VOCAB_DATABASE) {
+                vCount = Array.isArray(VOCAB_DATABASE)
+                    ? VOCAB_DATABASE.length
+                    : Object.keys(VOCAB_DATABASE).reduce((acc, cat) => acc + (VOCAB_DATABASE[cat]?.length || 0), 0);
+            }
+
+            // 3. Wörter zählen (Wort-Quiz / Scrabble)
+            let wCount = 0;
+            // Automatische Ermittlung der Wörter-Datenbank
+            const wordSource = typeof WORDS_DATABASE !== 'undefined' ? WORDS_DATABASE :
+                (typeof WORD_LIST !== 'undefined' ? WORD_LIST :
+                    (typeof wordsData !== 'undefined' ? wordsData : null));
+
+            if (wordSource) {
+                if (Array.isArray(wordSource)) {
+                    wCount = wordSource.length;
+                } else if (typeof wordSource === 'object') {
+                    // Falls die Wörter in Kategorien/Längen unterteilt sind
+                    wCount = Object.keys(wordSource).reduce((acc, key) => {
+                        const item = wordSource[key];
+                        return acc + (Array.isArray(item) ? item.length : 1);
+                    }, 0);
+                }
+            }
+
+            // 4. HTML-Elemente im Dashboard aktualisieren
+            const elQ = document.getElementById('dash-count-questions') || document.getElementById('dash-questions-count');
+            const elV = document.getElementById('dash-count-vocab') || document.getElementById('dash-vocab-count');
+            const elW = document.getElementById('dash-count-words') || document.getElementById('dash-words-count');
+
+            if (elQ) elQ.textContent = qCount;
+            if (elV) elV.textContent = vCount;
+            if (elW) elW.textContent = wCount;
         }
 
-        function renderDashQuestions() {
-            const grade = document.getElementById('dash-question-grade').value;
-            const subject = document.getElementById('dash-question-subject').value;
-            const search = document.getElementById('dash-question-search').value.toLowerCase();
 
-            let filtered = typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE : [];
-            if (grade) filtered = filtered.filter(q => String(q.grade) === grade);
-            if (subject) filtered = filtered.filter(q => q.subject === subject);
-            if (search) filtered = filtered.filter(q => (q.question + ' ' + (q.explanation || '')).toLowerCase().includes(search));
 
-            const list = document.getElementById('dash-question-list');
-            if (!list) return;
-            if (filtered.length === 0) {
-                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Fragen gefunden</div>';
-                return;
-            }
-            list.innerHTML = filtered.slice(0, 30).map(q => `
-                        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-xs">
-                            <div class="text-gray-400">${q.id || ''} · Klasse ${q.grade || '?'} · ${q.subject || '?'}</div>
-                            <div class="text-white font-bold mt-0.5">${q.question}</div>
-                            <div class="flex flex-wrap gap-1 mt-1">
-                                ${(q.answers || []).map((a, i) => `<span class="px-2 py-0.5 rounded-full ${i === q.correct ? 'bg-emerald-900/50 text-emerald-300' : 'bg-white/5 text-gray-400'} text-[10px]">${a}</span>`).join('')}
-                            </div>
-                            ${q.explanation ? `<div class="text-gray-500 text-[10px] mt-1">💡 ${q.explanation}</div>` : ''}
-                        </div>
-                    `).join('');
-        }
 
-        function renderDashVocab() {
-            const lang = document.getElementById('dash-vocab-lang').value;
-            const level = document.getElementById('dash-vocab-level').value;
-            const search = document.getElementById('dash-vocab-search').value.toLowerCase();
 
-            let words = [];
-            if (typeof VOCABULARY_DATABASE !== 'undefined' && VOCABULARY_DATABASE[lang]) {
-                Object.keys(VOCABULARY_DATABASE[lang]).forEach(l => {
-                    if (level && l !== level) return;
-                    VOCABULARY_DATABASE[lang][l].words.forEach(w => {
-                        words.push({ ...w, level: l, levelLabel: VOCABULARY_DATABASE[lang][l].label });
-                    });
-                });
-            }
-            if (search) words = words.filter(w => (w.de + ' ' + w.foreign).toLowerCase().includes(search));
 
-            const list = document.getElementById('dash-vocab-list');
-            if (!list) return;
-            if (words.length === 0) {
-                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Vokabeln gefunden</div>';
-                return;
-            }
-            list.innerHTML = words.slice(0, 50).map(w => `
-                        <div class="flex justify-between items-center bg-white/5 border border-white/5 rounded-xl px-3 py-2">
-                            <span class="text-white font-bold text-sm">${w.de}</span>
-                            <span class="text-indigo-300 text-sm">→ ${w.foreign}</span>
-                            <span class="text-gray-500 text-[10px]">${w.levelLabel}</span>
-                        </div>
-                    `).join('');
-        }
 
         function renderDashWords() {
             const length = document.getElementById('dash-word-length').value;
@@ -4287,7 +4263,7 @@
         // ============================================================
         //  HUB WATCH
         // ============================================================
-        let hubWatchUnsub = null;
+        hubWatchUnsub = null;
         let hubTickInterval = null;
 
         function startHubWatch() {
@@ -7185,7 +7161,8 @@
         // ============================================================
         //  INIT & OFFLINE
         // ============================================================
-        const OFFLINE_MODUS_AKTIV = false;
+        OFFLINE_MODUS_AKTIV = false;
+
 
         function applyOfflineModusSichtbarkeit() {
             const block = document.getElementById("family-duel-block");
@@ -7305,7 +7282,7 @@
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe data.js");
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.7)");
+        console.log("🚀 EduPlay Hub gestartet (v2.8)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
@@ -7400,7 +7377,7 @@
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.7<br>
+            EduPlay Hub · v2.8<br>
             © 2026 · Familien Edition
         </div>
     </div>

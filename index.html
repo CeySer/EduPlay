@@ -3671,10 +3671,33 @@
             // 1. Klassen-Filter
             const qGradeSel = document.getElementById('dash-question-grade');
             if (qGradeSel && typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
+                // Hole alle Klassen aus den Fragen
                 const grades = [...new Set(QUESTIONS_DATABASE.map(q => q.grade).filter(Boolean))].sort((a, b) => a - b);
-                console.log('📖 Gefundene Klassen:', grades);
-                qGradeSel.innerHTML = '<option value="">Alle Klassen</option>' +
-                    grades.map(g => `<option value="${g}">${g}. Klasse</option>`).join('');
+                console.log('📖 Gefundene Schul-Klassen:', grades);
+
+                // Baue das HTML
+                let html = '<option value="">Alle Klassen</option>';
+
+                // Schul-Klassen
+                grades.forEach(g => {
+                    html += `<option value="${g}">${g}. Klasse</option>`;
+                });
+
+                // Berufsschule
+                const hasBeruf = QUESTIONS_DATABASE.some(q => q.area === 'beruf');
+                if (hasBeruf) {
+                    html += `<option value="beruf">🏭 Berufsschule</option>`;
+                    console.log('📖 Berufsschule hinzugefügt');
+                }
+
+                // Spaß
+                const hasSpass = QUESTIONS_DATABASE.some(q => q.area === 'spass');
+                if (hasSpass) {
+                    html += `<option value="spass">🎉 Spaß-Quiz</option>`;
+                    console.log('📖 Spaß-Quiz hinzugefügt');
+                }
+
+                qGradeSel.innerHTML = html;
             } else if (qGradeSel) {
                 qGradeSel.innerHTML = '<option value="">Keine Klassen verfügbar</option>';
             }

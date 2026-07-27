@@ -6121,23 +6121,22 @@ VIEW: TV-QUIZ SETUP
             }, 1000);
 
             // ⚡ Action-Modus starten
-            // ⚡ Action-Modus starten
             if (scrabbleState.actionMode) {
                 scrabbleState.changeCount = 0;
                 scrabbleState.bonusEarned = false;
                 showActionFeedback("⚡ Action-Modus aktiv!");
 
-                // HIER IST DIE ÄNDERUNG: 
-                // 1. Variable für das aktuelle Wort (z.B. scrabbleState.currentWord)
-                // 2. Die HTML-ID, wo das Wort steht (z.B. "word-display")
-                // 3. Die Zeit in Sekunden (z.B. 5)
-                startActionMode(scrabbleState.currentWord, "scrabble-wort-anzeige", 5);
+                // 1. Zufällige Zeit berechnen (hier zwischen 1 und 8 Sekunden)
+                const minSekunden = 1;
+                const maxSekunden = 8;
+                const zufallsZeit = Math.floor(Math.random() * (maxSekunden - minSekunden + 1)) + minSekunden;
+
+                console.log("Die Buchstaben mischen sich dieses Mal nach " + zufallsZeit + " Sekunden!");
+
+                // 2. Die zufällige Zeit an die Funktion übergeben
+                startActionMode(scrabbleState.currentWord, "HIER_DEINE_HTML_ID_EINTRAGEN", zufallsZeit);
             }
         }
-
-
-
-
 
 
         // function beginScrabbleTurn() {
@@ -7171,9 +7170,16 @@ VIEW: TV-QUIZ SETUP
             tvGameRef.get().then(doc => revealTVScrabbleRound(doc.data()));
         }
 
+
         async function revealTVScrabbleRound(data) {
             const playersData = data.players;
+
+            // HIER IST DIE WICHTIGSTE ÄNDERUNG:
+            // Wir müssen sicherstellen, dass wir die Buchstaben und die Required-Info nehmen,
+            // die in 'data' (dem aktuellen Snapshot aus der Datenbank) stehen, 
+            // nicht die, mit denen die Runde ursprünglich gestartet ist!
             const letters = data.currentLetters;
+            const currentRequired = data.currentRequired || "";
 
             document.getElementById("view-tv-quiz-host").innerHTML = `
                             <div class="h-[90vh] flex flex-col items-center justify-center text-center">
@@ -7182,16 +7188,26 @@ VIEW: TV-QUIZ SETUP
                             </div>`;
 
             for (const key of Object.keys(playersData)) {
+                // Die evaluate-Funktion nutzt nun zwingend die hochaktuellen Buchstaben (letters) 
+                // und die hochaktuelle Require-Bedingung (currentRequired)
                 const res = await evaluateScrabbleWord(playersData[key].word, letters, {
                     minWord: (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord,
-                    required: data.currentRequired || "",
+                    required: currentRequired,
                     used: tvUsedWords,
                     addToUsed: false
                 });
-                playersData[key].score = (playersData[key].score || 0) + res.points;
-                playersData[key].lastRoundPoints = res.points;
+
+                // NEU: Bonus für schnelles Einreichen im Action-Modus (auch für den TV-Modus!)
+                let finalPoints = res.points;
+                if (data.actionMode && res.points > 0 && playersData[key].word) {
+                    finalPoints += 5; // 5 Extra-Punkte für den Stress im Action Mode
+                }
+
+                playersData[key].score = (playersData[key].score || 0) + finalPoints;
+                playersData[key].lastRoundPoints = finalPoints;
                 playersData[key].wordStatus = res.status;
             }
+
             Object.keys(playersData).forEach(k => {
                 if (playersData[k].wordStatus === "valid" && playersData[k].word) {
                     tvUsedWords.add(String(playersData[k].word).toUpperCase());
@@ -7203,17 +7219,20 @@ VIEW: TV-QUIZ SETUP
             let rowsHtml = "";
             Object.values(playersData).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
                 const sInfo = wordStatusInfo(p.wordStatus, p);
-                const sDetail = sInfo.text ? `<div class="text-sm text-gray-500 font-normal mt-1">${sInfo.text}</div>` :
-                    "";
+
+                // Hinweis auf den Action-Bonus in der Auswertung
+                const bonusText = (data.actionMode && p.wordStatus === "valid") ? ' <span class="text-amber-400 text-xs font-bold">(+5 Action-Bonus)</span>' : '';
+
+                const sDetail = sInfo.text ? `<div class="text-sm text-gray-500 font-normal mt-1">${sInfo.text}</div>` : "";
                 rowsHtml +=
-                    `<div class="flex justify-between items-start bg-white/5 border border-white/5 rounded-xl p-4 gap-3"><div class="font-bold text-white text-lg">${sInfo.icon} ${esc(p.name)}: <span class="text-amber-300">"${esc(p.word || "-")}"</span>${sDetail}</div><div class="font-black text-emerald-400 text-xl shrink-0">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
+                    `<div class="flex justify-between items-start bg-white/5 border border-white/5 rounded-xl p-4 gap-3"><div class="font-bold text-white text-lg">${sInfo.icon} ${esc(p.name)}: <span class="text-amber-300">"${esc(p.word || "-")}"</span>${bonusText}${sDetail}</div><div class="font-black text-emerald-400 text-xl shrink-0">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
             });
 
             document.getElementById("view-tv-quiz-host").innerHTML = `
                             <div class="h-[90vh] flex flex-col justify-between p-6">
                                 <div class="text-center mb-4">
                                     <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
-                                    ${data.currentSolution ? `<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war z.B.: ${data.currentSolution}</p>` : ""}
+                                    ${data.currentSolution ? `<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war am Ende z.B.: ${data.currentSolution}</p>` : ""}
                                 </div>
                                 <div class="space-y-3 flex-1 overflow-y-auto">${rowsHtml}</div>
                                 <div class="mt-6 text-center">
@@ -7223,6 +7242,7 @@ VIEW: TV-QUIZ SETUP
                             </div>
                         `;
         }
+
 
         function nextTVScrabbleRound() {
             tvGameRef.get().then(doc => startTVScrabbleRound(doc.data()));

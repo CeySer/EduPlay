@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.13</title>
+    <title>EduPlay Hub - Familien Edition v2.14</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -1481,7 +1481,7 @@
         <header class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.13</span>
+                <span class="version">v2.14</span>
             </div>
             <div class="header-actions">
                 <button onclick="toggleSound()" title="Ton an/aus">
@@ -1505,7 +1505,7 @@
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.13</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.14</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -2674,6 +2674,44 @@
         // ============================================================
         //  GLOBALE VARIABLEN
         // ============================================================
+
+        // ============================================================
+        //  DEBUG-FUNKTIONEN (NEU)
+        // ============================================================
+        function debugDatabaseLoading() {
+            console.log('🔍 Datenbank-Check:');
+            console.log('QUESTIONS_DATABASE:', typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '❌ NICHT GELADEN');
+            console.log('VOCABULARY_DATABASE:', typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '❌ NICHT GELADEN');
+            console.log('GERMAN_WORDS:', typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '❌ NICHT GELADEN');
+
+            // Prüfe, ob die Datenbanken wirklich Arrays sind
+            if (typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
+                console.log('✅ Fragen geladen:', QUESTIONS_DATABASE.length, 'Fragen');
+                if (QUESTIONS_DATABASE.length > 0) {
+                    console.log('📖 Beispiel-Frage:', QUESTIONS_DATABASE[0]);
+                }
+            } else {
+                console.warn('⚠️ QUESTIONS_DATABASE ist kein Array oder nicht definiert!');
+            }
+
+            if (typeof VOCABULARY_DATABASE !== 'undefined') {
+                console.log('✅ Vokabeln geladen');
+                const firstLang = Object.keys(VOCABULARY_DATABASE)[0];
+                if (firstLang) {
+                    const firstLevel = Object.keys(VOCABULARY_DATABASE[firstLang])[0];
+                    if (firstLevel && VOCABULARY_DATABASE[firstLang][firstLevel].words) {
+                        console.log('📝 Beispiel-Vokabel:', VOCABULARY_DATABASE[firstLang][firstLevel].words[0]);
+                    }
+                }
+            }
+
+            if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
+                console.log('✅ Wörter geladen:', GERMAN_WORDS.length, 'Wörter');
+                if (GERMAN_WORDS.length > 0) {
+                    console.log('🔤 Beispiel-Wort:', GERMAN_WORDS[0]);
+                }
+            }
+        }
         let currentParentUser = null;
         let ALL_PROFILES = {};
         let currentPlayer = null;
@@ -3526,25 +3564,27 @@
          * Befüllt dabei automatisch die Filter und aktualisiert die Zähler.
          */
         function switchDashboardSection(section) {
+            console.log(`📊 switchDashboardSection: ${section}`);
             currentDashboardSection = section;
 
             const sections = ['inhalte', 'eltern', 'statistiken'];
             sections.forEach(s => {
                 const el = document.getElementById('dash-section-' + s);
-                if (el) el.classList.add('hidden');
+                if (el) {
+                    el.classList.toggle('hidden', s !== section);
+                }
             });
-
-            const target = document.getElementById('dash-section-' + section);
-            if (target) target.classList.remove('hidden');
 
             currentDashboardSection = section;
 
             if (section === 'inhalte') {
-                initDashFilters();    // Befüllt die Filter-Dropdowns
-                updateDashCounts();   // Aktualisiert die drei Zähler
+                console.log('📊 Initialisiere Inhalte-Tab...');
+                initDashFilters();
+                updateDashCounts();
                 renderDashQuestions();
                 renderDashVocab();
                 renderDashWords();
+                console.log('✅ Inhalte-Tab initialisiert');
             }
             if (section === 'eltern') {
                 renderDashAdminProgress();
@@ -3565,27 +3605,46 @@
          * und trägt die Summen in die Spans im Inhalte-Tab ein.
          */
         function updateDashCounts() {
+            console.log('📊 updateDashCounts wird ausgeführt...');
+
             // 1. Fragen zählen
             let qCount = 0;
             if (typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
                 qCount = QUESTIONS_DATABASE.length;
+                console.log(`📖 Fragen gefunden: ${qCount}`);
+            } else {
+                console.warn('⚠️ QUESTIONS_DATABASE nicht gefunden oder kein Array!');
             }
 
             // 2. Vokabeln zählen
             let vCount = 0;
             if (typeof VOCABULARY_DATABASE !== 'undefined') {
+                console.log('📝 VOCABULARY_DATABASE gefunden, Schlüssel:', Object.keys(VOCABULARY_DATABASE));
                 Object.keys(VOCABULARY_DATABASE).forEach(lang => {
-                    Object.keys(VOCABULARY_DATABASE[lang] || {}).forEach(level => {
-                        const words = VOCABULARY_DATABASE[lang][level]?.words;
-                        if (Array.isArray(words)) vCount += words.length;
+                    console.log(`  Sprache: ${lang}`);
+                    const langData = VOCABULARY_DATABASE[lang];
+                    Object.keys(langData || {}).forEach(level => {
+                        const words = langData[level]?.words;
+                        if (Array.isArray(words)) {
+                            vCount += words.length;
+                            console.log(`    Level ${level}: ${words.length} Wörter`);
+                        } else {
+                            console.log(`    Level ${level}: keine Wörter gefunden`);
+                        }
                     });
                 });
+                console.log(`📊 Vokabeln gesamt: ${vCount}`);
+            } else {
+                console.warn('⚠️ VOCABULARY_DATABASE nicht gefunden!');
             }
 
             // 3. Wörter zählen
             let wCount = 0;
             if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
                 wCount = GERMAN_WORDS.length;
+                console.log(`🔤 Wörter gefunden: ${wCount}`);
+            } else {
+                console.warn('⚠️ GERMAN_WORDS nicht gefunden oder kein Array!');
             }
 
             // 4. In HTML-Spans eintragen
@@ -3593,9 +3652,18 @@
             const elV = document.getElementById('dash-vocab-count');
             const elW = document.getElementById('dash-word-count');
 
-            if (elQ) elQ.textContent = qCount;
-            if (elV) elV.textContent = vCount;
-            if (elW) elW.textContent = wCount;
+            if (elQ) {
+                elQ.textContent = qCount;
+                console.log(`✅ Frage-Zähler gesetzt: ${qCount}`);
+            }
+            if (elV) {
+                elV.textContent = vCount;
+                console.log(`✅ Vokabel-Zähler gesetzt: ${vCount}`);
+            }
+            if (elW) {
+                elW.textContent = wCount;
+                console.log(`✅ Wort-Zähler gesetzt: ${wCount}`);
+            }
         }
 
         /**
@@ -3605,21 +3673,30 @@
          * Liest verfügbare Klassen, Fächer und Wortlängen aus
          * den Datenbanken und befüllt die Auswahl-Dropdowns.
          */
+
         function initDashFilters() {
+            console.log('🔧 initDashFilters wird ausgeführt...');
+
             // 1. Klassen-Filter
             const qGradeSel = document.getElementById('dash-question-grade');
             if (qGradeSel && typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
                 const grades = [...new Set(QUESTIONS_DATABASE.map(q => q.grade).filter(Boolean))].sort((a, b) => a - b);
+                console.log('📖 Gefundene Klassen:', grades);
                 qGradeSel.innerHTML = '<option value="">Alle Klassen</option>' +
                     grades.map(g => `<option value="${g}">${g}. Klasse</option>`).join('');
+            } else if (qGradeSel) {
+                qGradeSel.innerHTML = '<option value="">Keine Klassen verfügbar</option>';
             }
 
             // 2. Fächer-Filter
             const qSubSel = document.getElementById('dash-question-subject');
             if (qSubSel && typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
                 const subjects = [...new Set(QUESTIONS_DATABASE.map(q => q.subject).filter(Boolean))].sort();
+                console.log('📖 Gefundene Fächer:', subjects);
                 qSubSel.innerHTML = '<option value="">Alle Fächer</option>' +
                     subjects.map(s => `<option value="${s}">${s}</option>`).join('');
+            } else if (qSubSel) {
+                qSubSel.innerHTML = '<option value="">Keine Fächer verfügbar</option>';
             }
 
             // 3. Vokabel-Niveaus
@@ -3629,25 +3706,55 @@
             const wLenSel = document.getElementById('dash-word-length');
             if (wLenSel && typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
                 const lengths = [...new Set(GERMAN_WORDS.map(w => w.length))].sort((a, b) => a - b);
+                console.log('🔤 Gefundene Wortlängen:', lengths);
                 wLenSel.innerHTML = '<option value="">Alle Längen</option>' +
                     lengths.map(l => `<option value="${l}">${l} Buchstaben</option>`).join('');
+            } else if (wLenSel) {
+                wLenSel.innerHTML = '<option value="">Keine Längen verfügbar</option>';
             }
+
+            console.log('✅ initDashFilters abgeschlossen');
         }
+
+
+
+
+
+
+
+
+
+
+
         /**
-         * =========================================================
-         * BESCHREIBUNG: Vokabel-Niveaus aktualisieren (updateDashVocabLevels)
-         * =========================================================
-         * Lädt die Niveaus (z.B. Klasse 1-4 oder A1/A2) passend zur
-         * aktuell gewählten Sprache (Englisch/Türkisch).
-         */
+                 * =========================================================
+                 * BESCHREIBUNG: Vokabel-Niveaus aktualisieren (updateDashVocabLevels)
+                 * =========================================================
+                 * Lädt die Niveaus (z.B. Klasse 1-4 oder A1/A2) passend zur
+                 * aktuell gewählten Sprache (Englisch/Türkisch).
+                 */
         function updateDashVocabLevels() {
+            console.log('🔄 updateDashVocabLevels wird ausgeführt...');
+
             const vLang = document.getElementById('dash-vocab-lang')?.value || 'en';
             const vLevelSel = document.getElementById('dash-vocab-level');
-            if (vLevelSel && typeof VOCABULARY_DATABASE !== 'undefined' && VOCABULARY_DATABASE[vLang]) {
-                const levels = Object.keys(VOCABULARY_DATABASE[vLang]);
-                vLevelSel.innerHTML = '<option value="">Alle Niveaus</option>' +
-                    levels.map(l => `<option value="${l}">${VOCABULARY_DATABASE[vLang][l].label || l}</option>`).join('');
+
+            if (!vLevelSel) {
+                console.warn('⚠️ dash-vocab-level nicht gefunden!');
+                return;
             }
+
+            if (typeof VOCABULARY_DATABASE === 'undefined' || !VOCABULARY_DATABASE[vLang]) {
+                console.warn(`⚠️ VOCABULARY_DATABASE[${vLang}] nicht gefunden!`);
+                vLevelSel.innerHTML = '<option value="">Keine Niveaus verfügbar</option>';
+                return;
+            }
+
+            const levels = Object.keys(VOCABULARY_DATABASE[vLang]);
+            console.log(`📝 Gefundene Niveaus für ${vLang}:`, levels);
+
+            vLevelSel.innerHTML = '<option value="">Alle Niveaus</option>' +
+                levels.map(l => `<option value="${l}">${VOCABULARY_DATABASE[vLang][l].label || l}</option>`).join('');
         }
 
         /**
@@ -3725,43 +3832,76 @@
 
 
         function renderDashVocab() {
+            console.log('📝 renderDashVocab wird ausgeführt...');
+
             const lang = document.getElementById('dash-vocab-lang')?.value || 'en';
             const level = document.getElementById('dash-vocab-level')?.value || '';
             const search = document.getElementById('dash-vocab-search')?.value.toLowerCase() || '';
             const list = document.getElementById('dash-vocab-list');
-            if (!list) return;
+
+            if (!list) {
+                console.warn('⚠️ dash-vocab-list nicht gefunden!');
+                return;
+            }
 
             if (typeof VOCABULARY_DATABASE === 'undefined') {
+                console.warn('⚠️ VOCABULARY_DATABASE nicht definiert!');
                 list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">⚠️ Vokabel-Datenbank nicht geladen</div>';
                 return;
             }
 
-            let words = [];
+            console.log('📝 VOCABULARY_DATABASE verfügbar. Sprachen:', Object.keys(VOCABULARY_DATABASE));
+
             const langData = VOCABULARY_DATABASE[lang];
             if (!langData) {
-                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Sprache nicht gefunden</div>';
+                console.warn(`⚠️ Sprache "${lang}" nicht gefunden in VOCABULARY_DATABASE`);
+                list.innerHTML = `<div class="text-center text-gray-500 text-sm py-4">😕 Sprache "${lang}" nicht gefunden</div>`;
                 return;
             }
 
+            console.log(`📝 Sprache ${lang} gefunden. Levels:`, Object.keys(langData));
+
+            let words = [];
             Object.keys(langData).forEach(key => {
                 if (!level || key === level) {
                     const wordList = langData[key]?.words;
-                    if (Array.isArray(wordList)) {
-                        words = words.concat(wordList.map(w => ({ ...w, level: key, levelLabel: langData[key].label || key })));
+                    if (Array.isArray(wordList) && wordList.length > 0) {
+                        const labeledWords = wordList.map(w => ({
+                            ...w,
+                            level: key,
+                            levelLabel: langData[key].label || key
+                        }));
+                        words = words.concat(labeledWords);
+                        console.log(`  Level ${key}: ${wordList.length} Wörter geladen`);
+                    } else {
+                        console.log(`  Level ${key}: keine Wörter oder kein Array`);
                     }
                 }
             });
 
-            if (search) words = words.filter(w => w.de?.toLowerCase().includes(search) || w.foreign?.toLowerCase().includes(search));
+            console.log(`📝 Gesamt Wörter vor Filter: ${words.length}`);
+
+            if (search) {
+                const filtered = words.filter(w =>
+                    w.de?.toLowerCase().includes(search) ||
+                    w.foreign?.toLowerCase().includes(search)
+                );
+                console.log(`  Nach Suche "${search}" gefiltert: ${filtered.length} Wörter`);
+                words = filtered;
+            }
 
             if (words.length === 0) {
+                console.log('😕 Keine Vokabeln gefunden');
                 list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Vokabeln gefunden</div>';
                 return;
             }
 
-            list.innerHTML = words.slice(0, 50).map(w => `
-        <div class="flex justify-between items-center bg-white/5 border border-white/5 rounded-xl px-3 py-2 text-sm">
-            <span class="text-white font-bold">${esc(w.de)}</span>
+            const displayWords = words.slice(0, 50);
+            console.log(`📝 Zeige ${displayWords.length} von ${words.length} Vokabeln`);
+
+            list.innerHTML = displayWords.map((w, index) => `
+        <div class="flex justify-between items-center bg-white/5 border border-white/5 rounded-xl px-3 py-2 text-sm hover:bg-white/10 transition">
+            <span class="text-white font-bold">${index + 1}. ${esc(w.de)}</span>
             <span class="text-gray-400">→</span>
             <span class="text-indigo-300 font-bold">${esc(w.foreign)}</span>
             <span class="text-[10px] text-gray-500">${w.levelLabel || w.level}</span>
@@ -3769,60 +3909,118 @@
     `).join('');
         }
 
+
         function renderDashQuestions() {
+            console.log('📖 renderDashQuestions wird ausgeführt...');
+
             const grade = document.getElementById('dash-question-grade')?.value || '';
             const subject = document.getElementById('dash-question-subject')?.value || '';
             const search = document.getElementById('dash-question-search')?.value.toLowerCase() || '';
             const list = document.getElementById('dash-question-list');
-            if (!list) return;
 
-            let questions = typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE : [];
+            if (!list) {
+                console.warn('⚠️ dash-question-list nicht gefunden!');
+                return;
+            }
 
-            if (grade) questions = questions.filter(q => q.grade == grade);
-            if (subject) questions = questions.filter(q => q.subject === subject);
-            if (search) questions = questions.filter(q => q.question.toLowerCase().includes(search));
+            if (typeof QUESTIONS_DATABASE === 'undefined' || !Array.isArray(QUESTIONS_DATABASE)) {
+                console.warn('⚠️ QUESTIONS_DATABASE nicht verfügbar!');
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">❌ Fragen-Datenbank nicht geladen</div>';
+                return;
+            }
+
+            console.log(`📖 Fragen gesamt: ${QUESTIONS_DATABASE.length}`);
+
+            let questions = [...QUESTIONS_DATABASE];
+
+            if (grade) {
+                const filtered = questions.filter(q => q.grade == grade);
+                console.log(`  Nach Klasse ${grade} gefiltert: ${filtered.length} Fragen`);
+                questions = filtered;
+            }
+            if (subject) {
+                const filtered = questions.filter(q => q.subject === subject);
+                console.log(`  Nach Fach ${subject} gefiltert: ${filtered.length} Fragen`);
+                questions = filtered;
+            }
+            if (search) {
+                const filtered = questions.filter(q => q.question.toLowerCase().includes(search));
+                console.log(`  Nach Suche "${search}" gefiltert: ${filtered.length} Fragen`);
+                questions = filtered;
+            }
 
             if (questions.length === 0) {
+                console.log('😕 Keine Fragen gefunden für die Filter');
                 list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Fragen gefunden</div>';
                 return;
             }
 
-            list.innerHTML = questions.slice(0, 50).map(q => `
-        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-sm">
-            <div class="font-bold text-white">${esc(q.question)}</div>
+            const displayQuestions = questions.slice(0, 50);
+            console.log(`📖 Zeige ${displayQuestions.length} von ${questions.length} Fragen`);
+
+            list.innerHTML = displayQuestions.map((q, index) => `
+        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-sm hover:bg-white/10 transition">
+            <div class="font-bold text-white">${index + 1}. ${esc(q.question)}</div>
             <div class="text-xs text-gray-400 mt-1">Klasse ${q.grade || '?'} · ${q.subject || '?'} · ${q.answers?.length || 0} Antworten</div>
+            ${q.answers && q.answers.length > 0 ? `<div class="text-xs text-gray-500 mt-1">Antworten: ${q.answers.join(' · ')}</div>` : ''}
         </div>
     `).join('');
         }
 
+
+
+
+
         function renderDashWords() {
+            console.log('🔤 renderDashWords wird ausgeführt...');
+
             const length = document.getElementById('dash-word-length')?.value || '';
             const search = document.getElementById('dash-word-search')?.value.toUpperCase() || '';
             const list = document.getElementById('dash-word-list');
-            if (!list) return;
 
-            let words = [];
-            if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
-                words = GERMAN_WORDS;
-            }
-
-            if (!Array.isArray(words) || words.length === 0) {
-                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">😕 Keine Wörter gefunden</div>';
+            if (!list) {
+                console.warn('⚠️ dash-word-list nicht gefunden!');
                 return;
             }
 
-            if (length) words = words.filter(w => w.length === parseInt(length));
-            if (search) words = words.filter(w => w.toUpperCase().includes(search));
+            if (typeof GERMAN_WORDS === 'undefined' || !Array.isArray(GERMAN_WORDS)) {
+                console.warn('⚠️ GERMAN_WORDS nicht definiert oder kein Array!');
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">⚠️ Wörter-Datenbank nicht geladen</div>';
+                return;
+            }
+
+            console.log(`🔤 GERMAN_WORDS verfügbar: ${GERMAN_WORDS.length} Wörter`);
+
+            let words = [...GERMAN_WORDS];
+
+            if (length) {
+                const filtered = words.filter(w => w.length === parseInt(length));
+                console.log(`  Nach Länge ${length} gefiltert: ${filtered.length} Wörter`);
+                words = filtered;
+            }
+            if (search) {
+                const filtered = words.filter(w => w.toUpperCase().includes(search));
+                console.log(`  Nach Suche "${search}" gefiltert: ${filtered.length} Wörter`);
+                words = filtered;
+            }
 
             if (words.length === 0) {
+                console.log('😕 Keine Wörter gefunden');
                 list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">😕 Keine Wörter gefunden</div>';
                 return;
             }
 
-            list.innerHTML = words.slice(0, 100).map(w => `
-        <span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm">${esc(w)}</span>
+            const displayWords = words.slice(0, 100);
+            console.log(`🔤 Zeige ${displayWords.length} von ${words.length} Wörtern`);
+
+            list.innerHTML = displayWords.map(w => `
+        <span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm hover:bg-white/10 transition cursor-default">${esc(w)}</span>
     `).join('');
         }
+
+
+
+
 
 
 
@@ -3884,6 +4082,8 @@
 
         // Dashboard Filter Events
         document.addEventListener('DOMContentLoaded', function () {
+            console.log('📋 Event-Listener werden registriert...');
+
             const qGrade = document.getElementById('dash-question-grade');
             const qSubject = document.getElementById('dash-question-subject');
             const qSearch = document.getElementById('dash-question-search');
@@ -3894,15 +4094,63 @@
             const wSearch = document.getElementById('dash-word-search');
             const gSearch = document.getElementById('dash-global-search');
 
-            if (qGrade) qGrade.addEventListener('change', renderDashQuestions);
-            if (qSubject) qSubject.addEventListener('change', renderDashQuestions);
-            if (qSearch) qSearch.addEventListener('input', renderDashQuestions);
-            if (vLang) vLang.addEventListener('change', renderDashVocab);
-            if (vLevel) vLevel.addEventListener('change', renderDashVocab);
-            if (vSearch) vSearch.addEventListener('input', renderDashVocab);
-            if (wLength) wLength.addEventListener('change', renderDashWords);
-            if (wSearch) wSearch.addEventListener('input', renderDashWords);
-            if (gSearch) gSearch.addEventListener('input', performDashSearch);
+            if (qGrade) {
+                qGrade.addEventListener('change', function () {
+                    console.log('🔍 Klasse-Filter geändert:', this.value);
+                    renderDashQuestions();
+                });
+            }
+            if (qSubject) {
+                qSubject.addEventListener('change', function () {
+                    console.log('🔍 Fach-Filter geändert:', this.value);
+                    renderDashQuestions();
+                });
+            }
+            if (qSearch) {
+                qSearch.addEventListener('input', function () {
+                    console.log('🔍 Fragen-Suche:', this.value);
+                    renderDashQuestions();
+                });
+            }
+            if (vLang) {
+                vLang.addEventListener('change', function () {
+                    console.log('🔍 Vokabel-Sprache geändert:', this.value);
+                    updateDashVocabLevels();
+                    renderDashVocab();
+                });
+            }
+            if (vLevel) {
+                vLevel.addEventListener('change', function () {
+                    console.log('🔍 Vokabel-Niveau geändert:', this.value);
+                    renderDashVocab();
+                });
+            }
+            if (vSearch) {
+                vSearch.addEventListener('input', function () {
+                    console.log('🔍 Vokabel-Suche:', this.value);
+                    renderDashVocab();
+                });
+            }
+            if (wLength) {
+                wLength.addEventListener('change', function () {
+                    console.log('🔍 Wort-Länge geändert:', this.value);
+                    renderDashWords();
+                });
+            }
+            if (wSearch) {
+                wSearch.addEventListener('input', function () {
+                    console.log('🔍 Wort-Suche:', this.value);
+                    renderDashWords();
+                });
+            }
+            if (gSearch) {
+                gSearch.addEventListener('input', function () {
+                    console.log('🔍 Globale Suche:', this.value);
+                    performDashSearch();
+                });
+            }
+
+            console.log('✅ Event-Listener registriert');
         });
 
         // ============================================================
@@ -7542,6 +7790,7 @@
 
             // Dashboard initialisieren mit PIN-Abfrage
             if (viewId === 'dashboard') {
+                console.log('📊 Dashboard geöffnet');
                 if (adminPin) {
                     const entered = cleanInput(prompt("🔒 Dashboard\n\nBitte PIN eingeben:"), 12);
                     if (entered === null || entered === "") {
@@ -7555,12 +7804,9 @@
                         return;
                     }
                 }
+                // Debug-Ausgabe vor dem Laden
+                debugDatabaseLoading();
                 switchDashboardSection('inhalte');
-                updateDashCounts();
-                renderDashQuestions();
-                renderDashVocab();
-                renderDashWords();
-                renderDashAdmin();
             }
         }
 
@@ -7572,7 +7818,7 @@
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe data.js");
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.13)");
+        console.log("🚀 EduPlay Hub gestartet (v2.14)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
@@ -7580,19 +7826,76 @@
 
         // Theme beim Laden wiederherstellen (Standard = Light)
         document.addEventListener('DOMContentLoaded', function () {
-            try {
-                const savedTheme = localStorage.getItem('eduplayTheme');
-                if (savedTheme === 'dark') {
-                    document.body.classList.add('dark-theme');
-                } else {
-                    // Standard ist Light-Mode
-                    document.body.classList.remove('dark-theme');
-                }
-            } catch (e) { }
+            console.log('📋 Event-Listener werden registriert...');
+
+            const qGrade = document.getElementById('dash-question-grade');
+            const qSubject = document.getElementById('dash-question-subject');
+            const qSearch = document.getElementById('dash-question-search');
+            const vLang = document.getElementById('dash-vocab-lang');
+            const vLevel = document.getElementById('dash-vocab-level');
+            const vSearch = document.getElementById('dash-vocab-search');
+            const wLength = document.getElementById('dash-word-length');
+            const wSearch = document.getElementById('dash-word-search');
+            const gSearch = document.getElementById('dash-global-search');
+
+            if (qGrade) {
+                qGrade.addEventListener('change', function () {
+                    console.log('🔍 Klasse-Filter geändert:', this.value);
+                    renderDashQuestions();
+                });
+            }
+            if (qSubject) {
+                qSubject.addEventListener('change', function () {
+                    console.log('🔍 Fach-Filter geändert:', this.value);
+                    renderDashQuestions();
+                });
+            }
+            if (qSearch) {
+                qSearch.addEventListener('input', function () {
+                    console.log('🔍 Fragen-Suche:', this.value);
+                    renderDashQuestions();
+                });
+            }
+            if (vLang) {
+                vLang.addEventListener('change', function () {
+                    console.log('🔍 Vokabel-Sprache geändert:', this.value);
+                    updateDashVocabLevels();
+                    renderDashVocab();
+                });
+            }
+            if (vLevel) {
+                vLevel.addEventListener('change', function () {
+                    console.log('🔍 Vokabel-Niveau geändert:', this.value);
+                    renderDashVocab();
+                });
+            }
+            if (vSearch) {
+                vSearch.addEventListener('input', function () {
+                    console.log('🔍 Vokabel-Suche:', this.value);
+                    renderDashVocab();
+                });
+            }
+            if (wLength) {
+                wLength.addEventListener('change', function () {
+                    console.log('🔍 Wort-Länge geändert:', this.value);
+                    renderDashWords();
+                });
+            }
+            if (wSearch) {
+                wSearch.addEventListener('input', function () {
+                    console.log('🔍 Wort-Suche:', this.value);
+                    renderDashWords();
+                });
+            }
+            if (gSearch) {
+                gSearch.addEventListener('input', function () {
+                    console.log('🔍 Globale Suche:', this.value);
+                    performDashSearch();
+                });
+            }
+
+            console.log('✅ Event-Listener registriert');
         });
-
-
-
 
 
     </script>
@@ -7635,7 +7938,7 @@
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.13<br>
+            EduPlay Hub · v2.14<br>
             © 2026 · Familien Edition
         </div>
     </div>

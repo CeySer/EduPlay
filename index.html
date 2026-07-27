@@ -4184,24 +4184,56 @@ VIEW: TV-QUIZ SETUP
             results.classList.remove('hidden');
         }
 
+        // // Dashboard Filter Events
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     console.log('📋 Event-Listener werden registriert...');
+
+        //     // ... im Event-Listener Block ...
+        //     const qGrade = document.getElementById('dash-question-grade');
+
+        //     if (qGrade) {
+        //         qGrade.addEventListener('change', function () {
+        //             console.log('🔍 Klasse-Filter geändert:', this.value);
+
+        //             // 1. Erst die Fächer-Liste für die Klasse neu laden
+        //             updateDashSubjectFilter();
+
+        //             // 2. Dann die Fragen-Liste basierend auf Klasse UND dem (jetzt neuen) Fach rendern
+        //             renderDashQuestions();
+        //         });
+        //     } const qSubject = document.getElementById('dash-question-subject');
+
+
+
+        //     const qSearch = document.getElementById('dash-question-search');
+        //     const vLang = document.getElementById('dash-vocab-lang');
+        //     const vLevel = document.getElementById('dash-vocab-level');
+        //     const vSearch = document.getElementById('dash-vocab-search');
+        //     const wLength = document.getElementById('dash-word-length');
+        //     const wSearch = document.getElementById('dash-word-search');
+        //     const gSearch = document.getElementById('dash-global-search');
+
+        //     if (qGrade) {
+        //         qGrade.addEventListener('change', function () {
+        //             console.log('🔍 Klasse-Filter geändert:', this.value);
+        //             if (qSubject) qSubject.value = ""; // <-- DIESE ZEILE HINZUFÜGEN
+        //             renderDashQuestions();
+        //         });
+
+        //     }
+        //     if (qSubject) {
+        //         qSubject.addEventListener('change', function () {
+        //             console.log('🔍 Fach-Filter geändert:', this.value);
+        //             renderDashQuestions();
+        //         });
+        //     }
+
         // Dashboard Filter Events
         document.addEventListener('DOMContentLoaded', function () {
             console.log('📋 Event-Listener werden registriert...');
 
-            // ... im Event-Listener Block ...
             const qGrade = document.getElementById('dash-question-grade');
-
-            if (qGrade) {
-                qGrade.addEventListener('change', function () {
-                    console.log('🔍 Klasse-Filter geändert:', this.value);
-
-                    // 1. Erst die Fächer-Liste für die Klasse neu laden
-                    updateDashSubjectFilter();
-
-                    // 2. Dann die Fragen-Liste basierend auf Klasse UND dem (jetzt neuen) Fach rendern
-                    renderDashQuestions();
-                });
-            } const qSubject = document.getElementById('dash-question-subject');
+            const qSubject = document.getElementById('dash-question-subject');
             const qSearch = document.getElementById('dash-question-search');
             const vLang = document.getElementById('dash-vocab-lang');
             const vLevel = document.getElementById('dash-vocab-level');
@@ -4213,17 +4245,29 @@ VIEW: TV-QUIZ SETUP
             if (qGrade) {
                 qGrade.addEventListener('change', function () {
                     console.log('🔍 Klasse-Filter geändert:', this.value);
-                    if (qSubject) qSubject.value = ""; // <-- DIESE ZEILE HINZUFÜGEN
+
+                    // 1. Die Fächer-Auswahl zurücksetzen (die neue Zeile)
+                    if (qSubject) qSubject.value = "";
+
+                    // 2. Die Fächer-Liste für die neu gewählte Klasse aktualisieren
+                    updateDashSubjectFilter();
+
+                    // 3. Die Fragen-Liste basierend auf der neuen Auswahl rendern
                     renderDashQuestions();
                 });
-
             }
+
             if (qSubject) {
                 qSubject.addEventListener('change', function () {
                     console.log('🔍 Fach-Filter geändert:', this.value);
                     renderDashQuestions();
                 });
             }
+
+            // ... hier folgen dann wie gewohnt qSearch, vLang, usw.
+
+
+
             if (qSearch) {
                 qSearch.addEventListener('input', function () {
                     console.log('🔍 Fragen-Suche:', this.value);

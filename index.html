@@ -2074,7 +2074,7 @@
 
                         <label
                             class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
-                            <input type="checkbox" id="scrabble-action-mode" class="w-5 h-5 accent-red-500 mt-0.5">
+                            <input type="checkbox" id="live-duel-action-mode" class="w-5 h-5 accent-red-500 mt-0.5">
                             <span class="text-sm">
                                 <span class="font-bold text-white">⚡ Action-Modus</span>
                                 <span class="block text-[11px] text-gray-400">Das komplette Wort ändert sich zufällig –
@@ -2617,7 +2617,7 @@ VIEW: TV-QUIZ SETUP
                         </label>
                         <label
                             class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
-                            <input type="checkbox" id="scrabble-action-mode" class="w-5 h-5 accent-red-500 mt-0.5">
+                            <input type="checkbox" id="tv-scrabble-action-mode" class="w-5 h-5 accent-red-500 mt-0.5">
                             <span class="text-sm">
                                 <span class="font-bold text-white">⚡ Action-Modus</span>
                                 <span class="block text-[11px] text-gray-400">Das komplette Wort ändert sich zufällig –
@@ -6653,8 +6653,13 @@ VIEW: TV-QUIZ SETUP
             if (tvHostMode === 'scrabble') {
                 const difficulty = document.getElementById("tv-scrabble-difficulty").value;
                 const totalRounds = parseInt(document.getElementById("tv-scrabble-rounds").value);
+
                 const requireLetter = !!(document.getElementById("tv-scrabble-require-letter") || {}).checked;
                 const wordMode = (document.getElementById("tv-scrabble-wordmode") || {}).value || "kids";
+
+                // NEU: Wert aus der Checkbox auslesen
+                const actionMode = !!(document.getElementById("tv-scrabble-action-mode") || {}).checked;
+
                 tvUsedWords = new Set();
                 lobbyData = {
                     status: "waiting",
@@ -6664,6 +6669,7 @@ VIEW: TV-QUIZ SETUP
                     currentRound: 0,
                     requireLetter,
                     wordMode,
+                    actionMode: actionMode, // NEU: An Firebase übergeben
                     players: {}
                 };
             } else {
@@ -6991,8 +6997,48 @@ VIEW: TV-QUIZ SETUP
             }
         }
 
+        let tvActionModeInterval = null;
+
+        function startTVActionMode(data) {
+            if (!isTVHost || !data.actionMode) return;
+
+            stopTVActionMode();
+
+            let nextChangeTime = Date.now() + (3000 + Math.random() * 9000);
+            let changeCount = 0;
+            const maxChanges = 5;
+
+            tvActionModeInterval = setInterval(() => {
+                if (Date.now() >= nextChangeTime) {
+                    const newRack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
+
+                    tvGameRef.update({
+                        currentLetters: newRack.letters,
+                        currentSolution: newRack.solution,
+                        currentRequired: newRack.required || ""
+                    });
+
+                    changeCount++;
+                    nextChangeTime = Date.now() + (3000 + Math.random() * 9000);
+                    SFX.tick();
+
+                    if (changeCount >= maxChanges) {
+                        stopTVActionMode();
+                    }
+                }
+            }, 500);
+        }
+
+        function stopTVActionMode() {
+            if (tvActionModeInterval) {
+                clearInterval(tvActionModeInterval);
+                tvActionModeInterval = null;
+            }
+        }
+
         // --- TV-SCRABBLE (Host) ---
         function startTVScrabbleRound(data) {
+
             const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
             const letters = rack.letters;
             const round = (data.currentRound || 0) + 1;
@@ -7013,6 +7059,11 @@ VIEW: TV-QUIZ SETUP
                 players: playersData
             });
             showTVHostScrabbleRound(letters, round, data.totalRounds, rack.required || "");
+
+            // NEU: Action Modus für TV starten
+            if (data.actionMode) {
+                startTVActionMode(data);
+            }
         }
 
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
@@ -7032,6 +7083,9 @@ VIEW: TV-QUIZ SETUP
         function forceTVScrabbleReveal() {
             if (isResolving) return;
             isResolving = true;
+
+            stopTVActionMode(); // NEU: Timer stoppen, Runde ist vorbei!
+
             tvGameRef.get().then(doc => revealTVScrabbleRound(doc.data()));
         }
 

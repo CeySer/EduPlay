@@ -3659,19 +3659,7 @@
                  */
 
         function openParentArea() {
-            if (!adminPin) {
-                setupAdminPin(true);
-                return;
-            }
-            const entered = cleanInput(prompt("🔒 Eltern-Bereich\n\nBitte PIN eingeben:"), 12);
-            if (entered === null || entered === "") {
-                return;
-            }
-            if (entered !== adminPin) {
-                SFX.wrong();
-                showToast("❌ PIN stimmt nicht.", "error", "pin");
-                return;
-            }
+            // Keine PIN-Abfrage – das Dashboard fragt bereits nach dem PIN
             switchDashboardSection('eltern');
             switchDashAdminTab('progress');
         }
@@ -3735,124 +3723,6 @@
 
 
 
-        /**
-         * =========================================================
-         * BESCHREIBUNG: Dashboard-Zähler für Inhalte (updateDashCounts)
-         * =========================================================
-         * Diese Funktion berechnet die Gesamtzahl aller hinterlegten Fragen,
-         * Vokabeln und Wörter in der EduPlay-Datenbank und aktualisiert 
-         * die Zahlenanzeigen im Dashboard-Bereich ("Inhalte").
-         * 
-         * Behebt das "0 Wörter"-Problem durch flexible Prüfung von:
-         * - Arrays und Objekt-Kategorien
-         * - Verschiedenen gängigen Variablennamen (WORDS_DATABASE, WORD_LIST, etc.)
-         * - Verschiedenen HTML-Element-IDs für die Zahlen-Anzeige
-         */
-        function updateDashCounts() {
-            // 1. Fragen zählen
-            let qCount = 0;
-            if (typeof QUESTIONS_DATABASE !== 'undefined' && QUESTIONS_DATABASE) {
-                qCount = Array.isArray(QUESTIONS_DATABASE)
-                    ? QUESTIONS_DATABASE.length
-                    : Object.keys(QUESTIONS_DATABASE).reduce((acc, cat) => acc + (QUESTIONS_DATABASE[cat]?.length || 0), 0);
-            }
-
-            // 2. Vokabeln zählen
-            let vCount = 0;
-            if (typeof VOCAB_DATABASE !== 'undefined' && VOCAB_DATABASE) {
-                vCount = Array.isArray(VOCAB_DATABASE)
-                    ? VOCAB_DATABASE.length
-                    : Object.keys(VOCAB_DATABASE).reduce((acc, cat) => acc + (VOCAB_DATABASE[cat]?.length || 0), 0);
-            }
-
-            // 3. Wörter zählen (Wort-Quiz / Scrabble)
-            let wCount = 0;
-            // Automatische Ermittlung der Wörter-Datenbank
-            const wordSource = typeof WORDS_DATABASE !== 'undefined' ? WORDS_DATABASE :
-                (typeof WORD_LIST !== 'undefined' ? WORD_LIST :
-                    (typeof wordsData !== 'undefined' ? wordsData : null));
-
-            if (wordSource) {
-                if (Array.isArray(wordSource)) {
-                    wCount = wordSource.length;
-                } else if (typeof wordSource === 'object') {
-                    // Falls die Wörter in Kategorien/Längen unterteilt sind
-                    wCount = Object.keys(wordSource).reduce((acc, key) => {
-                        const item = wordSource[key];
-                        return acc + (Array.isArray(item) ? item.length : 1);
-                    }, 0);
-                }
-            }
-
-            // 4. HTML-Elemente im Dashboard aktualisieren
-            const elQ = document.getElementById('dash-count-questions') || document.getElementById('dash-questions-count');
-            const elV = document.getElementById('dash-count-vocab') || document.getElementById('dash-vocab-count');
-            const elW = document.getElementById('dash-count-words') || document.getElementById('dash-words-count');
-
-            if (elQ) elQ.textContent = qCount;
-            if (elV) elV.textContent = vCount;
-            if (elW) elW.textContent = wCount;
-        }
-
-        function renderDashWords() {
-            const length = document.getElementById('dash-word-length')?.value || '';
-            const search = document.getElementById('dash-word-search')?.value.toUpperCase() || '';
-            const list = document.getElementById('dash-word-list');
-            if (!list) return;
-
-            let words = [];
-            if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
-                words = GERMAN_WORDS;
-            }
-
-            if (!Array.isArray(words) || words.length === 0) {
-                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">😕 Keine Wörter gefunden</div>';
-                return;
-            }
-
-            if (length) words = words.filter(w => w.length === parseInt(length));
-            if (search) words = words.filter(w => w.toUpperCase().includes(search));
-
-            if (words.length === 0) {
-                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">😕 Keine Wörter gefunden</div>';
-                return;
-            }
-
-            list.innerHTML = words.slice(0, 100).map(w => `
-        <span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm">${esc(w)}</span>
-    `).join('');
-        }
-
-
-
-        function renderDashQuestions() {
-            const grade = document.getElementById('dash-question-grade')?.value || '';
-            const subject = document.getElementById('dash-question-subject')?.value || '';
-            const search = document.getElementById('dash-question-search')?.value.toLowerCase() || '';
-            const list = document.getElementById('dash-question-list');
-            if (!list) return;
-
-            let questions = typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE : [];
-
-            if (grade) questions = questions.filter(q => q.grade == grade);
-            if (subject) questions = questions.filter(q => q.subject === subject);
-            if (search) questions = questions.filter(q => q.question.toLowerCase().includes(search));
-
-            if (questions.length === 0) {
-                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Fragen gefunden</div>';
-                return;
-            }
-
-            list.innerHTML = questions.slice(0, 50).map(q => `
-        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-sm">
-            <div class="font-bold text-white">${esc(q.question)}</div>
-            <div class="text-xs text-gray-400 mt-1">Klasse ${q.grade || '?'} · ${q.subject || '?'} · ${q.answers?.length || 0} Antworten</div>
-        </div>
-    `).join('');
-        }
-
-
-
 
         function renderDashVocab() {
             const lang = document.getElementById('dash-vocab-lang')?.value || 'en';
@@ -3898,6 +3768,62 @@
         </div>
     `).join('');
         }
+
+        function renderDashQuestions() {
+            const grade = document.getElementById('dash-question-grade')?.value || '';
+            const subject = document.getElementById('dash-question-subject')?.value || '';
+            const search = document.getElementById('dash-question-search')?.value.toLowerCase() || '';
+            const list = document.getElementById('dash-question-list');
+            if (!list) return;
+
+            let questions = typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE : [];
+
+            if (grade) questions = questions.filter(q => q.grade == grade);
+            if (subject) questions = questions.filter(q => q.subject === subject);
+            if (search) questions = questions.filter(q => q.question.toLowerCase().includes(search));
+
+            if (questions.length === 0) {
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Fragen gefunden</div>';
+                return;
+            }
+
+            list.innerHTML = questions.slice(0, 50).map(q => `
+        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-sm">
+            <div class="font-bold text-white">${esc(q.question)}</div>
+            <div class="text-xs text-gray-400 mt-1">Klasse ${q.grade || '?'} · ${q.subject || '?'} · ${q.answers?.length || 0} Antworten</div>
+        </div>
+    `).join('');
+        }
+
+        function renderDashWords() {
+            const length = document.getElementById('dash-word-length')?.value || '';
+            const search = document.getElementById('dash-word-search')?.value.toUpperCase() || '';
+            const list = document.getElementById('dash-word-list');
+            if (!list) return;
+
+            let words = [];
+            if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
+                words = GERMAN_WORDS;
+            }
+
+            if (!Array.isArray(words) || words.length === 0) {
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">😕 Keine Wörter gefunden</div>';
+                return;
+            }
+
+            if (length) words = words.filter(w => w.length === parseInt(length));
+            if (search) words = words.filter(w => w.toUpperCase().includes(search));
+
+            if (words.length === 0) {
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">😕 Keine Wörter gefunden</div>';
+                return;
+            }
+
+            list.innerHTML = words.slice(0, 100).map(w => `
+        <span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm">${esc(w)}</span>
+    `).join('');
+        }
+
 
 
 

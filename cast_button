@@ -1,0 +1,18 @@
+<!-- In der oberen Leiste von view-family-hub -->
+<div class="flex items-center gap-2">
+    <!-- Cast-Button (neu) -->
+    <button onclick="toggleCast()" id="castButton"
+        class="w-10 h-10 rounded-xl hub-bar text-lg text-gray-400 hover:text-white transition-all"
+        title="Mit Fernseher verbinden">
+        🖥️
+    </button>
+    <!-- Ton-Button (bestehend) -->
+    <button onclick="toggleSound()" title="Ton an/aus" class="w-10 h-10 rounded-xl hub-bar text-lg">
+        <span class="sound-toggle-icon">🔊</span>
+    </button>
+    <!-- Einstellungen-Button (bestehend) -->
+    <button onclick="openDrawer()" title="Einstellungen" aria-label="Einstellungen"
+        class="w-10 h-10 rounded-xl hub-bar text-lg text-gray-400">
+        ☰
+    </button>
+</div>

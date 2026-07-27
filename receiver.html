@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPlay TV</title>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0b0f19;
+            color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .tv-container {
+            width: 100%;
+            max-width: 1400px;
+            min-height: 80vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tv-header {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .tv-subheader {
+            font-size: 1.8rem;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .tv-players {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tv-player {
+            background: #1e293b;
+            border-radius: 20px;
+            padding: 25px 15px;
+            border: 2px solid #334155;
+        }
+
+        .tv-player .name {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .tv-player .score {
+            font-size: 1.4rem;
+            color: #fbbf24;
+            margin-top: 5px;
+        }
+
+        .tv-player .badge {
+            display: inline-block;
+            background: #4f46e5;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        .tv-question {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 30px 0 40px;
+            line-height: 1.3;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tv-question-number {
+            font-size: 1.4rem;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+
+        .tv-answers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tv-answer {
+            padding: 35px 20px;
+            border-radius: 20px;
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: #1e293b;
+            border: 3px solid #334155;
+            transition: all 0.3s ease;
+        }
+
+        .tv-answer.correct {
+            border-color: #22c55e;
+            background: #166534;
+            transform: scale(1.05);
+        }
+
+        .tv-answer.wrong {
+            border-color: #ef4444;
+            background: #7f1d1d;
+        }
+
+        .tv-answer.reveal-correct {
+            border-color: #22c55e;
+            background: #166534;
+        }
+
+        .tv-answer.reveal-wrong {
+            border-color: #ef4444;
+            background: #7f1d1d;
+            opacity: 0.4;
+        }
+
+        .tv-answer-letter {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 16px;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .tv-explanation {
+            margin-top: 30px;
+            padding: 25px 40px;
+            background: #1e293b;
+            border-radius: 20px;
+            font-size: 1.8rem;
+            color: #94a3b8;
+            border-left: 6px solid #4f46e5;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tv-explanation strong {
+            color: #f1f5f9;
+        }
+
+        .tv-btn {
+            padding: 20px 50px;
+            font-size: 2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 10px;
+        }
+
+        .tv-btn-primary {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .tv-btn-primary:hover {
+            background: #6366f1;
+            transform: scale(1.03);
+        }
+
+        .tv-btn-success {
+            background: #22c55e;
+            color: white;
+        }
+
+        .tv-btn-success:hover {
+            background: #16a34a;
+            transform: scale(1.03);
+        }
+
+        .tv-btn-warning {
+            background: #f59e0b;
+            color: #0b0f19;
+        }
+
+        .tv-btn-warning:hover {
+            background: #d97706;
+            transform: scale(1.03);
+        }
+
+        .tv-podium {
+            max-width: 700px;
+            margin: 30px auto;
+        }
+
+        .tv-podium-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e293b;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            font-size: 2rem;
+            border: 1px solid #334155;
+        }
+
+        .tv-podium-item.gold {
+            border-color: #fbbf24;
+            background: #1e293b;
+            border-width: 3px;
+        }
+
+        .tv-podium-item .rank {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .tv-podium-item .points {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .tv-header {
+                font-size: 2.8rem;
+            }
+
+            .tv-question {
+                font-size: 2.5rem;
+            }
+
+            .tv-answer {
+                font-size: 1.8rem;
+                padding: 25px 15px;
+            }
+
+            .tv-answers {
+                gap: 15px;
+            }
+
+            .tv-btn {
+                font-size: 1.4rem;
+                padding: 15px 30px;
+            }
+
+            .tv-player .name {
+                font-size: 1.4rem;
+            }
+
+            .tv-explanation {
+                font-size: 1.3rem;
+                padding: 18px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="tv-container" id="app">
+        <div class="tv-header">📺 EduPlay TV</div>
+        <div class="tv-subheader" id="statusText">Warte auf Verbindung...</div>
+        <div id="tvContent"></div>
+    </div>
+
+    <script>
+        // Firebase Konfiguration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDh8uyjrB_hJlT5a5oJSQd6YhBjLaUZIyM",
+            authDomain: "eduplay-hub-70d1a.firebaseapp.com",
+            projectId: "eduplay-hub-70d1a",
+            storageBucket: "eduplay-hub-70d1a.firebasestorage.app",
+            messagingSenderId: "705290582264",
+            appId: "1:705290582264:web:6655d999a5564ecb7b230d"
+        };
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+
+        console.log('✅ Firebase initialisiert');
+
+        // App-State
+        var state = {
+            parentId: null,
+            mode: 'waiting',
+            players: {},
+            questions: [],
+            currentIndex: 0,
+            hostName: 'Host'
+        };
+
+        var firestoreUnsubscribe = null;
+        var content = document.getElementById('tvContent');
+        var statusText = document.getElementById('statusText');
+
+        // Render-Funktionen
+        function render() {
+            switch (state.mode) {
+                case 'waiting':
+                    renderWaiting();
+                    break;
+                case 'lobby':
+                    renderLobby();
+                    break;
+                case 'playing':
+                    renderPlaying();
+                    break;
+                case 'reveal':
+                    renderReveal();
+                    break;
+                case 'finished':
+                    renderFinished();
+                    break;
+                default:
+                    renderWaiting();
+            }
+        }
+
+        function renderWaiting() {
+            statusText.textContent = '🔄 Warte auf Verbindung...';
+            content.innerHTML = `
+            <div style="font-size: 3rem; color: #64748b; margin-top: 40px;">
+                Öffne die EduPlay-App auf deinem Handy<br>
+                und tippe auf das <strong style="color:#f1f5f9;">🖥️</strong>-Symbol.
+            </div>
+            <div style="margin-top: 30px; font-size: 1.4rem; color: #475569;">
+                Du siehst hier dann die Fragen auf dem großen Bildschirm.
+            </div>
+            <div style="margin-top: 40px; padding: 30px; background: #1e293b; border-radius: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 1.2rem; color: #94a3b8;">🧪 <strong style="color: #fbbf24;">Test-Modus</strong></p>
+                <p style="font-size: 0.9rem; color: #64748b; margin-top: 8px;">
+                    Öffne die Browser-Konsole (F12) und gib ein:<br>
+                    <code style="background: #0b0f19; padding: 4px 12px; border-radius: 8px; display: inline-block; margin-top: 6px; color: #22c55e;">
+                        testReceiver("DEINE_USER_ID")
+                    </code>
+                </p>
+            </div>
+        `;
+        }
+
+        function renderLobby() {
+            statusText.textContent = '🎮 Warte auf Spieler...';
+            var playerCount = Object.keys(state.players).length;
+
+            var playerHtml = '';
+            if (playerCount === 0) {
+                playerHtml = '<div style="color: #64748b; font-size: 1.8rem; grid-column: 1/-1;">Noch niemand beigetreten</div>';
+            } else {
+                var players = Object.values(state.players);
+                for (var i = 0; i < players.length; i++) {
+                    var p = players[i];
+                    playerHtml += `
+                    <div class="tv-player">
+                        <div class="name">${p.name}</div>
+                        <div class="score">🪙 ${p.score || 0}</div>
+                        ${p.isHost ? '<div class="badge">👑 Host</div>' : ''}
+                    </div>
+                `;
+                }
+            }
+
+            content.innerHTML = `
+            <div style="font-size: 2rem; color: #fbbf24; margin-bottom: 10px;">
+                ${playerCount} ${playerCount === 1 ? 'Spieler' : 'Spieler'} dabei
+            </div>
+            <div class="tv-players">${playerHtml}</div>
+            <div class="flex-center mt-20">
+                <button class="tv-btn tv-btn-success" onclick="sendToHost('START_QUIZ')">
+                    🚀 Los geht's!
+                </button>
+            </div>
+            <div style="margin-top: 15px; font-size: 1.2rem; color: #64748b;">
+                Der Host startet das Spiel – alle anderen antworten auf ihren Handys.
+            </div>
+        `;
+        }
+
+        function renderPlaying() {
+            var q = state.questions[state.currentIndex];
+            if (!q) {
+                content.innerHTML = '<div style="font-size: 3rem; color: #ef4444;">❌ Keine Fragen gefunden</div>';
+                return;
+            }
+
+            statusText.textContent = 'Frage ' + (state.currentIndex + 1) + ' / ' + state.questions.length;
+
+            var letters = ['A', 'B', 'C', 'D'];
+            var answersHtml = '';
+            for (var i = 0; i < q.answers.length; i++) {
+                answersHtml += `
+                <div class="tv-answer" data-index="${i}">
+                    <div class="tv-answer-letter">${letters[i]}</div>
+                    ${q.answers[i]}
+                </div>
+            `;
+            }
+
+            var answered = 0;
+            var players = Object.values(state.players);
+            for (var j = 0; j < players.length; j++) {
+                if (players[j].hasAnswered) answered++;
+            }
+
+            content.innerHTML = `
+            <div class="tv-question-number">Frage ${state.currentIndex + 1} von ${state.questions.length}</div>
+            <div class="tv-question">${q.question}</div>
+            <div class="tv-answers">${answersHtml}</div>
+            <div style="margin-top: 25px; font-size: 1.6rem; color: #64748b;">
+                ⏳ Warte auf Antworten...
+            </div>
+            <div style="margin-top: 10px; font-size: 1.2rem; color: #475569;">
+                ${answered} von ${Object.keys(state.players).length} haben geantwortet
+            </div>
+        `;
+        }
+
+        function renderReveal() {
+            var q = state.questions[state.currentIndex];
+            if (!q) return;
+
+            statusText.textContent = '💡 Auflösung – Frage ' + (state.currentIndex + 1);
+
+            var letters = ['A', 'B', 'C', 'D'];
+            var answersHtml = '';
+            for (var i = 0; i < q.answers.length; i++) {
+                var isCorrect = (i === q.correct);
+                var cls = 'tv-answer';
+                if (isCorrect) cls += ' reveal-correct';
+                answersHtml += `
+                <div class="${cls}">
+                    <div class="tv-answer-letter">${letters[i]}</div>
+                    ${q.answers[i]}
+                    ${isCorrect ? ' ✅' : ''}
+                </div>
+            `;
+            }
+
+            content.innerHTML = `
+            <div class="tv-question">${q.question}</div>
+            <div class="tv-answers">${answersHtml}</div>
+            <div class="tv-explanation">
+                💡 <strong>Erklärung:</strong> ${q.explanation || 'Keine Erklärung verfügbar.'}
+            </div>
+            <div class="flex-center mt-20">
+                <button class="tv-btn tv-btn-primary" onclick="sendToHost('NEXT_QUESTION')">
+                    ➔ Nächste Frage
+                </button>
+            </div>
+        `;
+        }
+
+        function renderFinished() {
+            statusText.textContent = '🏆 Spiel beendet!';
+
+            var sorted = Object.values(state.players).sort(function (a, b) {
+                return (b.score || 0) - (a.score || 0);
+            });
+            var medals = ['🥇', '🥈', '🥉'];
+
+            var podiumHtml = '';
+            for (var i = 0; i < sorted.length; i++) {
+                var p = sorted[i];
+                var medal = medals[i] || (i + 1 + '.');
+                var goldClass = (i === 0) ? ' gold' : '';
+                podiumHtml += `
+                <div class="tv-podium-item${goldClass}">
+                    <span>
+                        <span class="rank">${medal}</span>
+                        ${p.name}
+                    </span>
+                    <span class="points">🪙 ${p.score || 0}</span>
+                </div>
+            `;
+            }
+
+            content.innerHTML = `
+            <div style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; color: #fbbf24;">
+                🏆 Gewinner: ${sorted[0]?.name || '—'}
+            </div>
+            <div class="tv-podium">${podiumHtml}</div>
+            <div class="flex-center mt-20">
+                <button class="tv-btn tv-btn-warning" onclick="sendToHost('RESTART')">
+                    🔄 Nochmal spielen
+                </button>
+            </div>
+        `;
+        }
+
+        // Kommunikation zum Handy
+        function sendToHost(type, payload) {
+            payload = payload || {};
+            if (!state.parentId) {
+                console.warn('[Receiver] Keine parentId – kann nicht senden');
+                return;
+            }
+
+            db.collection('parents')
+                .doc(state.parentId)
+                .collection('tv_game')
+                .doc('lobby')
+                .update({
+                    hostCommand: { type: type, payload: payload, timestamp: Date.now() }
+                })
+                .then(function () {
+                    console.log('[Receiver] Befehl gesendet:', type);
+                })
+                .catch(function (err) {
+                    console.warn('Fehler beim Senden an Host:', err);
+                });
+        }
+
+        // Firestore Listener
+        function listenToLobby(parentId) {
+            if (firestoreUnsubscribe) {
+                firestoreUnsubscribe();
+                firestoreUnsubscribe = null;
+            }
+
+            state.parentId = parentId;
+
+            console.log('[Receiver] Höre auf Lobby für parentId:', parentId);
+
+            firestoreUnsubscribe = db.collection('parents')
+                .doc(parentId)
+                .collection('tv_game')
+                .doc('lobby')
+                .onSnapshot(function (snap) {
+                    if (!snap.exists) {
+                        console.log('[Receiver] Lobby existiert noch nicht');
+                        state.mode = 'waiting';
+                        render();
+                        return;
+                    }
+
+                    var data = snap.data();
+                    console.log('[Receiver] Lobby-Daten aktualisiert:', data.status);
+
+                    state.players = data.players || {};
+                    state.questions = data.questions || [];
+                    state.currentIndex = data.currentIndex || 0;
+                    state.mode = data.status || 'waiting';
+                    state.hostName = data.createdBy || 'Host';
+
+                    if (data.hostCommand) {
+                        handleHostCommand(data.hostCommand);
+                        snap.ref.update({ hostCommand: null }).catch(function () { });
+                    }
+
+                    render();
+                }, function (error) {
+                    console.error('Firestore Listener Fehler:', error);
+                    statusText.textContent = '❌ Verbindung verloren: ' + error.message;
+                });
+        }
+
+        function handleHostCommand(cmd) {
+            console.log('[Receiver] Host-Befehl:', cmd);
+            switch (cmd.type) {
+                case 'START_QUIZ':
+                    state.mode = 'playing';
+                    state.currentIndex = 0;
+                    var keys = Object.keys(state.players);
+                    for (var i = 0; i < keys.length; i++) {
+                        state.players[keys[i]].hasAnswered = false;
+                        state.players[keys[i]].lastAnswer = null;
+                    }
+                    render();
+                    break;
+
+                case 'NEXT_QUESTION':
+                    state.currentIndex++;
+                    if (state.currentIndex >= state.questions.length) {
+                        state.mode = 'finished';
+                    } else {
+                        state.mode = 'playing';
+                        var keys2 = Object.keys(state.players);
+                        for (var j = 0; j < keys2.length; j++) {
+                            state.players[keys2[j]].hasAnswered = false;
+                            state.players[keys2[j]].lastAnswer = null;
+                        }
+                    }
+                    render();
+                    break;
+
+                case 'RESTART':
+                    state.currentIndex = 0;
+                    state.mode = 'playing';
+                    var keys3 = Object.keys(state.players);
+                    for (var k = 0; k < keys3.length; k++) {
+                        state.players[keys3[k]].score = 0;
+                        state.players[keys3[k]].hasAnswered = false;
+                        state.players[keys3[k]].lastAnswer = null;
+                    }
+                    render();
+                    break;
+
+                default:
+                    console.warn('Unbekannter Host-Befehl:', cmd.type);
+            }
+        }
+
+        // Test-Modus
+        window.testReceiver = function (parentId) {
+            console.log('🧪 Test-Modus gestartet für parentId:', parentId);
+
+            if (!parentId || parentId === 'DEINE_USER_ID_HIER') {
+                console.error('❌ Bitte gib deine echte User-ID ein!');
+                console.log('ℹ️ So findest du deine User-ID: firebase.auth().currentUser.uid');
+                return;
+            }
+
+            state.parentId = parentId;
+            listenToLobby(parentId);
+
+            db.collection('parents')
+                .doc(parentId)
+                .collection('tv_game')
+                .doc('lobby')
+                .set({
+                    status: 'lobby',
+                    players: {
+                        'player1': { name: 'Mia (Test)', score: 0 },
+                        'player2': { name: 'Tom (Test)', score: 0 }
+                    },
+                    createdBy: 'Test-Host',
+                    createdAt: Date.now()
+                })
+                .then(function () {
+                    console.log('✅ Test-Lobby erstellt!');
+                    setTimeout(function () {
+                        state.mode = 'lobby';
+                        render();
+                    }, 500);
+                })
+                .catch(function (err) {
+                    console.error('❌ Fehler beim Erstellen der Test-Lobby:', err);
+                    console.log('ℹ️ Prüfe die Firestore-Regeln in der Firebase Console!');
+                });
+        };
+
+        // Start
+        console.log('📺 EduPlay TV Receiver geladen (Test-Modus)');
+        console.log('🧪 Für Test: testReceiver("DEINE_USER_ID")');
+        console.log('ℹ️  Deine User-ID bekommst du mit: firebase.auth().currentUser.uid');
+
+        render();
+    </script>
+</body>
+
+</html>

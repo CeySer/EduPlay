@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.14</title>
+    <title>EduPlay Hub - Familien Edition v2.3</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -18,16 +18,11 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
 
     <!-- DATENBANKEN -->
-    <script src="words_kids.js?v=2"></script>
-    <script src="words_adult.js?v=2"></script>
-    <script src="vocabulary.js?v=2"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_school.js?v=2"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_beruf.js?v=2"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_fun.js?v=2"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="lesen.js?v=2"></script>
-    <script src="lesen_in_index.js?v=2"></script>
-
-    <link rel="icon" href="data:,">
+    <script src="data.js?v=46"></script>
+    <script src="words_kids.js?v=1"></script>
+    <script src="words_adult.js?v=1"></script>
+    <script src="lesen.js?v=1"></script>
+    <script src="lesen_in_index.js?v=1"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
@@ -1313,117 +1308,6 @@
             font-weight: 800;
             font-size: 14px;
         }
-
-        /* Dark-Mode */
-        body.dark-theme {
-            --bg-primary: #0a0a1a;
-            --bg-secondary: #111128;
-            --bg-card: #1a1a3e;
-            --bg-card-hover: #252555;
-            --border-color: #2a2a5a;
-            --text-primary: #e8e8ff;
-            --text-secondary: #8888bb;
-            --text-muted: #555588;
-        }
-
-
-
-
-
-        /* Light-Mode */
-        body:not(.dark-theme) {
-            --bg-primary: #f0f4ff;
-            --bg-secondary: #e8edf8;
-            --bg-card: #ffffff;
-            --bg-card-hover: #f5f8ff;
-            --border-color: #d0d8e8;
-            --border-light: #b8c4dc;
-            --text-primary: #1a1a2e;
-            --text-secondary: #4a5a7a;
-            --text-muted: #8899bb;
-            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.12);
-        }
-
-        body:not(.dark-theme) .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(200, 210, 230, 0.5);
-            box-shadow: var(--shadow-card);
-        }
-
-        body:not(.dark-theme) .glass-card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: var(--shadow-hover);
-        }
-
-        body:not(.dark-theme) .glass-card-glow {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(99, 102, 241, 0.15);
-        }
-
-        body:not(.dark-theme) .btn-secondary {
-            background: rgba(220, 230, 245, 0.6);
-            border: 1px solid rgba(200, 210, 230, 0.3);
-            color: var(--text-primary);
-        }
-
-        body:not(.dark-theme) .btn-secondary:hover {
-            background: rgba(200, 215, 240, 0.8);
-            border-color: rgba(99, 102, 241, 0.3);
-        }
-
-        body:not(.dark-theme) .player-card {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(200, 210, 230, 0.3);
-        }
-
-        body:not(.dark-theme) .player-card:hover {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: rgba(99, 102, 241, 0.2);
-        }
-
-        body:not(.dark-theme) .player-card.is-active {
-            border: 2px solid transparent;
-            background: linear-gradient(white, white) padding-box,
-                var(--gradient-main) border-box;
-        }
-
-        body:not(.dark-theme) .input-modern {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(200, 210, 230, 0.5);
-            color: var(--text-primary);
-        }
-
-        body:not(.dark-theme) .input-modern:focus {
-            border-color: rgba(99, 102, 241, 0.4);
-            background: white;
-        }
-
-        body:not(.dark-theme) .dash-stat-card {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(200, 210, 230, 0.3);
-        }
-
-        body:not(.dark-theme) .dash-tile {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(200, 210, 230, 0.2);
-        }
-
-        body:not(.dark-theme) .dash-tile:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: var(--shadow-hover);
-        }
-
-        body:not(.dark-theme) .app-header {
-            background: rgba(255, 255, 255, 0.85);
-            border-bottom: 1px solid rgba(200, 210, 230, 0.3);
-        }
-
-        body:not(.dark-theme) #app-shell {
-            background: rgba(240, 244, 255, 0.9);
-            border-left: 1px solid rgba(200, 210, 230, 0.2);
-            border-right: 1px solid rgba(200, 210, 230, 0.2);
-        }
     </style>
 </head>
 
@@ -1481,7 +1365,7 @@
         <header class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.14</span>
+                <span class="version">v2.3</span>
             </div>
             <div class="header-actions">
                 <button onclick="toggleSound()" title="Ton an/aus">
@@ -1505,7 +1389,7 @@
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.14</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.3</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -1674,19 +1558,14 @@
                 BEREICH: INHALTE
                 ========================================================== -->
                 <div id="dash-section-inhalte" class="hidden space-y-4">
-                    <!-- Sub-Navigation mit Zähler-Elementen -->
+                    <!-- Sub-Navigation -->
                     <div class="dash-sub-nav">
-                        <button id="dash-sub-fragen" class="active" onclick="switchDashboardSubTab('fragen')">
-                            📖 Fragen (<span id="dash-question-count">0</span>)
-                        </button>
-                        <button id="dash-sub-vokabeln" onclick="switchDashboardSubTab('vokabeln')">
-                            📝 Vokabeln (<span id="dash-vocab-count">0</span>)
-                        </button>
-                        <button id="dash-sub-woerter" onclick="switchDashboardSubTab('woerter')">
-                            🔤 Wörter (<span id="dash-word-count">0</span>)
-                        </button>
+                        <button id="dash-sub-fragen" class="active" onclick="switchDashboardSubTab('fragen')">📖
+                            Fragen</button>
+                        <button id="dash-sub-vokabeln" onclick="switchDashboardSubTab('vokabeln')">📝
+                            Vokabeln</button>
+                        <button id="dash-sub-woerter" onclick="switchDashboardSubTab('woerter')">🔤 Wörter</button>
                     </div>
-
 
                     <!-- Fragen-View -->
                     <div id="dash-sub-fragen-view" class="space-y-3">
@@ -2610,111 +2489,6 @@
     JAVASCRIPT
     ============================================================ -->
     <script>
-
-        let OFFLINE_MODUS_AKTIV = false;
-        let hubWatchUnsub = null;
-
-
-
-        // ============================================================
-        // DATENBANKEN ZUSAMMENFÜHREN
-        // ============================================================
-        // ============================================================
-        // VOCABULARY_DATABASE - NOTFALL (direkt in index.html)
-        // ============================================================
-        if (typeof VOCABULARY_DATABASE === 'undefined') {
-            console.warn('⚠️ VOCABULARY_DATABASE wird nicht geladen – verwende Notfall-Datenbank!');
-
-            window.VOCABULARY_DATABASE = {
-                en: {
-                    k1: {
-                        label: "1. Klasse · Erste Wörter",
-                        words: [
-                            { de: "Hallo", foreign: "Hello" },
-                            { de: "Tschüss", foreign: "Goodbye" },
-                            { de: "Ja", foreign: "Yes" },
-                            { de: "Nein", foreign: "No" },
-                            { de: "Katze", foreign: "Cat" },
-                            { de: "Hund", foreign: "Dog" },
-                            { de: "Haus", foreign: "House" },
-                            { de: "Baum", foreign: "Tree" },
-                            { de: "Blume", foreign: "Flower" },
-                            { de: "Sonne", foreign: "Sun" }
-                        ]
-                    },
-                    k2: {
-                        label: "2. Klasse · Grundwortschatz",
-                        words: [
-                            { de: "Apfel", foreign: "Apple" },
-                            { de: "Banane", foreign: "Banana" },
-                            { de: "Auto", foreign: "Car" },
-                            { de: "Flugzeug", foreign: "Plane" },
-                            { de: "Schule", foreign: "School" },
-                            { de: "Lehrer", foreign: "Teacher" },
-                            { de: "Schüler", foreign: "Student" },
-                            { de: "Buch", foreign: "Book" },
-                            { de: "Tisch", foreign: "Table" },
-                            { de: "Stuhl", foreign: "Chair" }
-                        ]
-                    }
-                },
-                tr: {
-                    k1: {
-                        label: "1. Sınıf · İlk Kelimeler",
-                        words: [
-                            { de: "Hallo", foreign: "Merhaba" },
-                            { de: "Tschüss", foreign: "Hoşçakal" },
-                            { de: "Ja", foreign: "Evet" },
-                            { de: "Nein", foreign: "Hayır" },
-                            { de: "Katze", foreign: "Kedi" },
-                            { de: "Hund", foreign: "Köpek" },
-                            { de: "Haus", foreign: "Ev" },
-                            { de: "Baum", foreign: "Ağaç" },
-                            { de: "Blume", foreign: "Çiçek" },
-                            { de: "Sonne", foreign: "Güneş" }
-                        ]
-                    }
-                }
-            };
-
-            console.log('✅ VOCABULARY_DATABASE (Notfall) geladen!');
-            console.log(`📝 Sprachen: ${Object.keys(window.VOCABULARY_DATABASE).join(', ')}`);
-        }
-        // ============================================================
-        // DATENBANKEN ZUSAMMENFÜHREN
-        // ============================================================
-
-        // 1. Fragen aus den einzelnen Dateien zusammenführen
-        const QUESTIONS_DATABASE = [];
-        if (typeof SCHOOL_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS);
-        }
-        if (typeof BERUFS_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...BERUFS_QUESTIONS);
-        }
-        if (typeof FUN_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...FUN_QUESTIONS);
-        }
-
-        // 2. Vokabeln - werden bereits von vocabulary.js geladen
-        // Die Variable VOCABULARY_DATABASE existiert bereits!
-
-        // 3. Wörter für Buchstabensalat zusammenführen
-        const GERMAN_WORDS = [];
-        if (typeof GERMAN_WORDS_KIDS !== 'undefined') {
-            GERMAN_WORDS.push(...GERMAN_WORDS_KIDS);
-        }
-        if (typeof GERMAN_WORDS_ADULT !== 'undefined') {
-            GERMAN_WORDS.push(...GERMAN_WORDS_ADULT);
-        }
-
-        console.log('📚 Daten geladen:');
-        console.log(`📖 Fragen: ${QUESTIONS_DATABASE.length}`);
-        console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'} Sprachen`);
-        console.log(`🔤 Wörter: ${GERMAN_WORDS.length}`);
-
-
-
         // ============================================================
         //  FIREBASE INITIALISIERUNG
         // ============================================================
@@ -2734,44 +2508,6 @@
         // ============================================================
         //  GLOBALE VARIABLEN
         // ============================================================
-
-        // ============================================================
-        //  DEBUG-FUNKTIONEN (NEU)
-        // ============================================================
-        function debugDatabaseLoading() {
-            console.log('🔍 Datenbank-Check:');
-            console.log('QUESTIONS_DATABASE:', typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '❌ NICHT GELADEN');
-            console.log('VOCABULARY_DATABASE:', typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '❌ NICHT GELADEN');
-            console.log('GERMAN_WORDS:', typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '❌ NICHT GELADEN');
-
-            // Prüfe, ob die Datenbanken wirklich Arrays sind
-            if (typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
-                console.log('✅ Fragen geladen:', QUESTIONS_DATABASE.length, 'Fragen');
-                if (QUESTIONS_DATABASE.length > 0) {
-                    console.log('📖 Beispiel-Frage:', QUESTIONS_DATABASE[0]);
-                }
-            } else {
-                console.warn('⚠️ QUESTIONS_DATABASE ist kein Array oder nicht definiert!');
-            }
-
-            if (typeof VOCABULARY_DATABASE !== 'undefined') {
-                console.log('✅ Vokabeln geladen');
-                const firstLang = Object.keys(VOCABULARY_DATABASE)[0];
-                if (firstLang) {
-                    const firstLevel = Object.keys(VOCABULARY_DATABASE[firstLang])[0];
-                    if (firstLevel && VOCABULARY_DATABASE[firstLang][firstLevel].words) {
-                        console.log('📝 Beispiel-Vokabel:', VOCABULARY_DATABASE[firstLang][firstLevel].words[0]);
-                    }
-                }
-            }
-
-            if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
-                console.log('✅ Wörter geladen:', GERMAN_WORDS.length, 'Wörter');
-                if (GERMAN_WORDS.length > 0) {
-                    console.log('🔤 Beispiel-Wort:', GERMAN_WORDS[0]);
-                }
-            }
-        }
         let currentParentUser = null;
         let ALL_PROFILES = {};
         let currentPlayer = null;
@@ -2810,14 +2546,10 @@
 
         function questionsForKey(key) {
             if (typeof QUESTIONS_DATABASE === 'undefined' || !key) return [];
-
-            // Prüfe ob key mit "subject:" beginnt
             if (String(key).startsWith("subject:")) {
                 const sub = String(key).slice("subject:".length);
                 return QUESTIONS_DATABASE.filter(q => q.subject === sub && q.area === "schule");
             }
-
-            // Normaler Category-Lookup
             return QUESTIONS_DATABASE.filter(q => q.category === key);
         }
 
@@ -3298,13 +3030,6 @@
             showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
         }
 
-        function toggleTheme() {
-            const isDark = document.body.classList.toggle('dark-theme');
-            try { localStorage.setItem('eduplayTheme', isDark ? 'dark' : 'light'); } catch (e) { }
-            showToast(isDark ? "🌙 Dark-Mode aktiv" : "☀️ Light-Mode aktiv", "success", "theme");
-        }
-
-
         // ============================================================
         //  AUTH
         // ============================================================
@@ -3616,35 +3341,23 @@
         let selectedStatPlayer = null;
         let currentDashboardSection = null;
 
-        /**
-         * =========================================================
-         * BESCHREIBUNG: Bereichswechsel im Dashboard (switchDashboardSection)
-         * =========================================================
-         * Schaltet zwischen "Inhalte", "Eltern" und "Statistiken" um.
-         * Befüllt dabei automatisch die Filter und aktualisiert die Zähler.
-         */
         function switchDashboardSection(section) {
-            console.log(`📊 switchDashboardSection: ${section}`);
-            currentDashboardSection = section;
-
             const sections = ['inhalte', 'eltern', 'statistiken'];
             sections.forEach(s => {
                 const el = document.getElementById('dash-section-' + s);
-                if (el) {
-                    el.classList.toggle('hidden', s !== section);
-                }
+                if (el) el.classList.add('hidden');
             });
+
+            const target = document.getElementById('dash-section-' + section);
+            if (target) target.classList.remove('hidden');
 
             currentDashboardSection = section;
 
             if (section === 'inhalte') {
-                console.log('📊 Initialisiere Inhalte-Tab...');
-                initDashFilters();
                 updateDashCounts();
                 renderDashQuestions();
                 renderDashVocab();
                 renderDashWords();
-                console.log('✅ Inhalte-Tab initialisiert');
             }
             if (section === 'eltern') {
                 renderDashAdminProgress();
@@ -3657,176 +3370,8 @@
             }
         }
 
-        /**
-         * =========================================================
-         * BESCHREIBUNG: Dashboard-Zähler (updateDashCounts)
-         * =========================================================
-         * Zählt Fragen, Vokabeln und Wörter aus den Datenbanken
-         * und trägt die Summen in die Spans im Inhalte-Tab ein.
-         */
-        function updateDashCounts() {
-            console.log('📊 updateDashCounts wird ausgeführt...');
-
-            // 1. Fragen zählen
-            let qCount = 0;
-            if (typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
-                qCount = QUESTIONS_DATABASE.length;
-                console.log(`📖 Fragen gefunden: ${qCount}`);
-            } else {
-                console.warn('⚠️ QUESTIONS_DATABASE nicht gefunden oder kein Array!');
-            }
-
-            // 2. Vokabeln zählen
-            let vCount = 0;
-            if (typeof VOCABULARY_DATABASE !== 'undefined') {
-                console.log('📝 VOCABULARY_DATABASE gefunden, Schlüssel:', Object.keys(VOCABULARY_DATABASE));
-                Object.keys(VOCABULARY_DATABASE).forEach(lang => {
-                    console.log(`  Sprache: ${lang}`);
-                    const langData = VOCABULARY_DATABASE[lang];
-                    Object.keys(langData || {}).forEach(level => {
-                        const words = langData[level]?.words;
-                        if (Array.isArray(words)) {
-                            vCount += words.length;
-                            console.log(`    Level ${level}: ${words.length} Wörter`);
-                        } else {
-                            console.log(`    Level ${level}: keine Wörter gefunden`);
-                        }
-                    });
-                });
-                console.log(`📊 Vokabeln gesamt: ${vCount}`);
-            } else {
-                console.warn('⚠️ VOCABULARY_DATABASE nicht gefunden!');
-            }
-
-            // 3. Wörter zählen
-            let wCount = 0;
-            if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
-                wCount = GERMAN_WORDS.length;
-                console.log(`🔤 Wörter gefunden: ${wCount}`);
-            } else {
-                console.warn('⚠️ GERMAN_WORDS nicht gefunden oder kein Array!');
-            }
-
-            // 4. In HTML-Spans eintragen
-            const elQ = document.getElementById('dash-question-count');
-            const elV = document.getElementById('dash-vocab-count');
-            const elW = document.getElementById('dash-word-count');
-
-            if (elQ) {
-                elQ.textContent = qCount;
-                console.log(`✅ Frage-Zähler gesetzt: ${qCount}`);
-            }
-            if (elV) {
-                elV.textContent = vCount;
-                console.log(`✅ Vokabel-Zähler gesetzt: ${vCount}`);
-            }
-            if (elW) {
-                elW.textContent = wCount;
-                console.log(`✅ Wort-Zähler gesetzt: ${wCount}`);
-            }
-        }
-
-        /**
-         * =========================================================
-         * BESCHREIBUNG: Dynamische Filter befüllen (initDashFilters)
-         * =========================================================
-         * Liest verfügbare Klassen, Fächer und Wortlängen aus
-         * den Datenbanken und befüllt die Auswahl-Dropdowns.
-         */
-
-        function initDashFilters() {
-            console.log('🔧 initDashFilters wird ausgeführt...');
-
-            // 1. Klassen-Filter
-            const qGradeSel = document.getElementById('dash-question-grade');
-            if (qGradeSel && typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
-                const grades = [...new Set(QUESTIONS_DATABASE.map(q => q.grade).filter(Boolean))].sort((a, b) => a - b);
-                console.log('📖 Gefundene Klassen:', grades);
-                qGradeSel.innerHTML = '<option value="">Alle Klassen</option>' +
-                    grades.map(g => `<option value="${g}">${g}. Klasse</option>`).join('');
-            } else if (qGradeSel) {
-                qGradeSel.innerHTML = '<option value="">Keine Klassen verfügbar</option>';
-            }
-
-            // 2. Fächer-Filter
-            const qSubSel = document.getElementById('dash-question-subject');
-            if (qSubSel && typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
-                const subjects = [...new Set(QUESTIONS_DATABASE.map(q => q.subject).filter(Boolean))].sort();
-                console.log('📖 Gefundene Fächer:', subjects);
-                qSubSel.innerHTML = '<option value="">Alle Fächer</option>' +
-                    subjects.map(s => `<option value="${s}">${s}</option>`).join('');
-            } else if (qSubSel) {
-                qSubSel.innerHTML = '<option value="">Keine Fächer verfügbar</option>';
-            }
-
-            // 3. Vokabel-Niveaus
-            updateDashVocabLevels();
-
-            // 4. Wortlängen-Filter
-            const wLenSel = document.getElementById('dash-word-length');
-            if (wLenSel && typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
-                const lengths = [...new Set(GERMAN_WORDS.map(w => w.length))].sort((a, b) => a - b);
-                console.log('🔤 Gefundene Wortlängen:', lengths);
-                wLenSel.innerHTML = '<option value="">Alle Längen</option>' +
-                    lengths.map(l => `<option value="${l}">${l} Buchstaben</option>`).join('');
-            } else if (wLenSel) {
-                wLenSel.innerHTML = '<option value="">Keine Längen verfügbar</option>';
-            }
-
-            console.log('✅ initDashFilters abgeschlossen');
-        }
-
-
-
-
-
-
-
-
-
-
-
-        /**
-                 * =========================================================
-                 * BESCHREIBUNG: Vokabel-Niveaus aktualisieren (updateDashVocabLevels)
-                 * =========================================================
-                 * Lädt die Niveaus (z.B. Klasse 1-4 oder A1/A2) passend zur
-                 * aktuell gewählten Sprache (Englisch/Türkisch).
-                 */
-        function updateDashVocabLevels() {
-            console.log('🔄 updateDashVocabLevels wird ausgeführt...');
-
-            const vLang = document.getElementById('dash-vocab-lang')?.value || 'en';
-            const vLevelSel = document.getElementById('dash-vocab-level');
-
-            if (!vLevelSel) {
-                console.warn('⚠️ dash-vocab-level nicht gefunden!');
-                return;
-            }
-
-            if (typeof VOCABULARY_DATABASE === 'undefined' || !VOCABULARY_DATABASE[vLang]) {
-                console.warn(`⚠️ VOCABULARY_DATABASE[${vLang}] nicht gefunden!`);
-                vLevelSel.innerHTML = '<option value="">Keine Niveaus verfügbar</option>';
-                return;
-            }
-
-            const levels = Object.keys(VOCABULARY_DATABASE[vLang]);
-            console.log(`📝 Gefundene Niveaus für ${vLang}:`, levels); 99999
-
-            vLevelSel.innerHTML = '<option value="">Alle Niveaus</option>' +
-                levels.map(l => `<option value="${l}">${VOCABULARY_DATABASE[vLang][l].label || l}</option>`).join('');
-        }
-
-        /**
-                 * =========================================================
-                 * BESCHREIBUNG: PIN Abfrage
-                 * =========================================================
-                 * 
-                 * 
-                 */
-
         function openParentArea() {
-            // Keine PIN-Abfrage – das Dashboard fragt bereits nach dem PIN
+            if (!adminPin) return setupAdminPin(true);
             switchDashboardSection('eltern');
             switchDashAdminTab('progress');
         }
@@ -3888,202 +3433,100 @@
             if (sub === 'woerter') renderDashWords();
         }
 
-
-
-
-        function renderDashVocab() {
-            console.log('📝 renderDashVocab wird ausgeführt...');
-
-            const lang = document.getElementById('dash-vocab-lang')?.value || 'en';
-            const level = document.getElementById('dash-vocab-level')?.value || '';
-            const search = document.getElementById('dash-vocab-search')?.value.toLowerCase() || '';
-            const list = document.getElementById('dash-vocab-list');
-
-            if (!list) {
-                console.warn('⚠️ dash-vocab-list nicht gefunden!');
-                return;
+        function updateDashCounts() {
+            const qCount = typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : 0;
+            let vocabTotal = 0;
+            if (typeof VOCABULARY_DATABASE !== 'undefined') {
+                Object.keys(VOCABULARY_DATABASE).forEach(lang => {
+                    Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
+                        if (VOCABULARY_DATABASE[lang][level].words) {
+                            vocabTotal += VOCABULARY_DATABASE[lang][level].words.length;
+                        }
+                    });
+                });
             }
-
-            if (typeof VOCABULARY_DATABASE === 'undefined') {
-                console.warn('⚠️ VOCABULARY_DATABASE nicht definiert!');
-                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">⚠️ Vokabel-Datenbank nicht geladen</div>';
-                return;
-            }
-
-            console.log('📝 VOCABULARY_DATABASE verfügbar. Sprachen:', Object.keys(VOCABULARY_DATABASE));
-
-            const langData = VOCABULARY_DATABASE[lang];
-            if (!langData) {
-                console.warn(`⚠️ Sprache "${lang}" nicht gefunden in VOCABULARY_DATABASE`);
-                list.innerHTML = `<div class="text-center text-gray-500 text-sm py-4">😕 Sprache "${lang}" nicht gefunden</div>`;
-                return;
-            }
-
-            console.log(`📝 Sprache ${lang} gefunden. Levels:`, Object.keys(langData));
-
-            let words = [];
-            Object.keys(langData).forEach(key => {
-                if (!level || key === level) {
-                    const wordList = langData[key]?.words;
-                    if (Array.isArray(wordList) && wordList.length > 0) {
-                        const labeledWords = wordList.map(w => ({
-                            ...w,
-                            level: key,
-                            levelLabel: langData[key].label || key
-                        }));
-                        words = words.concat(labeledWords);
-                        console.log(`  Level ${key}: ${wordList.length} Wörter geladen`);
-                    } else {
-                        console.log(`  Level ${key}: keine Wörter oder kein Array`);
-                    }
-                }
-            });
-
-            console.log(`📝 Gesamt Wörter vor Filter: ${words.length}`);
-
-            if (search) {
-                const filtered = words.filter(w =>
-                    w.de?.toLowerCase().includes(search) ||
-                    w.foreign?.toLowerCase().includes(search)
-                );
-                console.log(`  Nach Suche "${search}" gefiltert: ${filtered.length} Wörter`);
-                words = filtered;
-            }
-
-            if (words.length === 0) {
-                console.log('😕 Keine Vokabeln gefunden');
-                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Vokabeln gefunden</div>';
-                return;
-            }
-
-            const displayWords = words.slice(0, 50);
-            console.log(`📝 Zeige ${displayWords.length} von ${words.length} Vokabeln`);
-
-            list.innerHTML = displayWords.map((w, index) => `
-        <div class="flex justify-between items-center bg-white/5 border border-white/5 rounded-xl px-3 py-2 text-sm hover:bg-white/10 transition">
-            <span class="text-white font-bold">${index + 1}. ${esc(w.de)}</span>
-            <span class="text-gray-400">→</span>
-            <span class="text-indigo-300 font-bold">${esc(w.foreign)}</span>
-            <span class="text-[10px] text-gray-500">${w.levelLabel || w.level}</span>
-        </div>
-    `).join('');
+            const wordTotal = typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : 0;
+            document.getElementById('dash-question-count').textContent = qCount;
+            document.getElementById('dash-vocab-count').textContent = vocabTotal;
+            document.getElementById('dash-word-count').textContent = wordTotal;
         }
 
-
         function renderDashQuestions() {
-            console.log('📖 renderDashQuestions wird ausgeführt...');
+            const grade = document.getElementById('dash-question-grade').value;
+            const subject = document.getElementById('dash-question-subject').value;
+            const search = document.getElementById('dash-question-search').value.toLowerCase();
 
-            const grade = document.getElementById('dash-question-grade')?.value || '';
-            const subject = document.getElementById('dash-question-subject')?.value || '';
-            const search = document.getElementById('dash-question-search')?.value.toLowerCase() || '';
+            let filtered = typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE : [];
+            if (grade) filtered = filtered.filter(q => String(q.grade) === grade);
+            if (subject) filtered = filtered.filter(q => q.subject === subject);
+            if (search) filtered = filtered.filter(q => (q.question + ' ' + (q.explanation || '')).toLowerCase().includes(search));
+
             const list = document.getElementById('dash-question-list');
-
-            if (!list) {
-                console.warn('⚠️ dash-question-list nicht gefunden!');
-                return;
-            }
-
-            if (typeof QUESTIONS_DATABASE === 'undefined' || !Array.isArray(QUESTIONS_DATABASE)) {
-                console.warn('⚠️ QUESTIONS_DATABASE nicht verfügbar!');
-                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">❌ Fragen-Datenbank nicht geladen</div>';
-                return;
-            }
-
-            console.log(`📖 Fragen gesamt: ${QUESTIONS_DATABASE.length}`);
-
-            let questions = [...QUESTIONS_DATABASE];
-
-            if (grade) {
-                const filtered = questions.filter(q => q.grade == grade);
-                console.log(`  Nach Klasse ${grade} gefiltert: ${filtered.length} Fragen`);
-                questions = filtered;
-            }
-            if (subject) {
-                const filtered = questions.filter(q => q.subject === subject);
-                console.log(`  Nach Fach ${subject} gefiltert: ${filtered.length} Fragen`);
-                questions = filtered;
-            }
-            if (search) {
-                const filtered = questions.filter(q => q.question.toLowerCase().includes(search));
-                console.log(`  Nach Suche "${search}" gefiltert: ${filtered.length} Fragen`);
-                questions = filtered;
-            }
-
-            if (questions.length === 0) {
-                console.log('😕 Keine Fragen gefunden für die Filter');
+            if (!list) return;
+            if (filtered.length === 0) {
                 list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Fragen gefunden</div>';
                 return;
             }
-
-            const displayQuestions = questions.slice(0, 50);
-            console.log(`📖 Zeige ${displayQuestions.length} von ${questions.length} Fragen`);
-
-            list.innerHTML = displayQuestions.map((q, index) => `
-        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-sm hover:bg-white/10 transition">
-            <div class="font-bold text-white">${index + 1}. ${esc(q.question)}</div>
-            <div class="text-xs text-gray-400 mt-1">Klasse ${q.grade || '?'} · ${q.subject || '?'} · ${q.answers?.length || 0} Antworten</div>
-            ${q.answers && q.answers.length > 0 ? `<div class="text-xs text-gray-500 mt-1">Antworten: ${q.answers.join(' · ')}</div>` : ''}
-        </div>
-    `).join('');
+            list.innerHTML = filtered.slice(0, 30).map(q => `
+                        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-xs">
+                            <div class="text-gray-400">${q.id || ''} · Klasse ${q.grade || '?'} · ${q.subject || '?'}</div>
+                            <div class="text-white font-bold mt-0.5">${q.question}</div>
+                            <div class="flex flex-wrap gap-1 mt-1">
+                                ${(q.answers || []).map((a, i) => `<span class="px-2 py-0.5 rounded-full ${i === q.correct ? 'bg-emerald-900/50 text-emerald-300' : 'bg-white/5 text-gray-400'} text-[10px]">${a}</span>`).join('')}
+                            </div>
+                            ${q.explanation ? `<div class="text-gray-500 text-[10px] mt-1">💡 ${q.explanation}</div>` : ''}
+                        </div>
+                    `).join('');
         }
 
+        function renderDashVocab() {
+            const lang = document.getElementById('dash-vocab-lang').value;
+            const level = document.getElementById('dash-vocab-level').value;
+            const search = document.getElementById('dash-vocab-search').value.toLowerCase();
 
+            let words = [];
+            if (typeof VOCABULARY_DATABASE !== 'undefined' && VOCABULARY_DATABASE[lang]) {
+                Object.keys(VOCABULARY_DATABASE[lang]).forEach(l => {
+                    if (level && l !== level) return;
+                    VOCABULARY_DATABASE[lang][l].words.forEach(w => {
+                        words.push({ ...w, level: l, levelLabel: VOCABULARY_DATABASE[lang][l].label });
+                    });
+                });
+            }
+            if (search) words = words.filter(w => (w.de + ' ' + w.foreign).toLowerCase().includes(search));
 
-
+            const list = document.getElementById('dash-vocab-list');
+            if (!list) return;
+            if (words.length === 0) {
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">😕 Keine Vokabeln gefunden</div>';
+                return;
+            }
+            list.innerHTML = words.slice(0, 50).map(w => `
+                        <div class="flex justify-between items-center bg-white/5 border border-white/5 rounded-xl px-3 py-2">
+                            <span class="text-white font-bold text-sm">${w.de}</span>
+                            <span class="text-indigo-300 text-sm">→ ${w.foreign}</span>
+                            <span class="text-gray-500 text-[10px]">${w.levelLabel}</span>
+                        </div>
+                    `).join('');
+        }
 
         function renderDashWords() {
-            console.log('🔤 renderDashWords wird ausgeführt...');
+            const length = document.getElementById('dash-word-length').value;
+            const search = document.getElementById('dash-word-search').value.toUpperCase();
+            let words = typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS : [];
+            if (length) words = words.filter(w => w.length === parseInt(length));
+            if (search) words = words.filter(w => w.includes(search));
 
-            const length = document.getElementById('dash-word-length')?.value || '';
-            const search = document.getElementById('dash-word-search')?.value.toUpperCase() || '';
             const list = document.getElementById('dash-word-list');
-
-            if (!list) {
-                console.warn('⚠️ dash-word-list nicht gefunden!');
-                return;
-            }
-
-            if (typeof GERMAN_WORDS === 'undefined' || !Array.isArray(GERMAN_WORDS)) {
-                console.warn('⚠️ GERMAN_WORDS nicht definiert oder kein Array!');
-                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">⚠️ Wörter-Datenbank nicht geladen</div>';
-                return;
-            }
-
-            console.log(`🔤 GERMAN_WORDS verfügbar: ${GERMAN_WORDS.length} Wörter`);
-
-            let words = [...GERMAN_WORDS];
-
-            if (length) {
-                const filtered = words.filter(w => w.length === parseInt(length));
-                console.log(`  Nach Länge ${length} gefiltert: ${filtered.length} Wörter`);
-                words = filtered;
-            }
-            if (search) {
-                const filtered = words.filter(w => w.toUpperCase().includes(search));
-                console.log(`  Nach Suche "${search}" gefiltert: ${filtered.length} Wörter`);
-                words = filtered;
-            }
-
+            if (!list) return;
             if (words.length === 0) {
-                console.log('😕 Keine Wörter gefunden');
                 list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">😕 Keine Wörter gefunden</div>';
                 return;
             }
-
-            const displayWords = words.slice(0, 100);
-            console.log(`🔤 Zeige ${displayWords.length} von ${words.length} Wörtern`);
-
-            list.innerHTML = displayWords.map(w => `
-        <span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm hover:bg-white/10 transition cursor-default">${esc(w)}</span>
-    `).join('');
+            list.innerHTML = words.slice(0, 100).map(w => `
+                        <span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm">${w}</span>
+                    `).join('');
         }
-
-
-
-
-
-
-
 
         function performDashSearch() {
             const query = document.getElementById('dash-global-search').value.trim().toLowerCase();
@@ -4142,8 +3585,6 @@
 
         // Dashboard Filter Events
         document.addEventListener('DOMContentLoaded', function () {
-            console.log('📋 Event-Listener werden registriert...');
-
             const qGrade = document.getElementById('dash-question-grade');
             const qSubject = document.getElementById('dash-question-subject');
             const qSearch = document.getElementById('dash-question-search');
@@ -4154,63 +3595,15 @@
             const wSearch = document.getElementById('dash-word-search');
             const gSearch = document.getElementById('dash-global-search');
 
-            if (qGrade) {
-                qGrade.addEventListener('change', function () {
-                    console.log('🔍 Klasse-Filter geändert:', this.value);
-                    renderDashQuestions();
-                });
-            }
-            if (qSubject) {
-                qSubject.addEventListener('change', function () {
-                    console.log('🔍 Fach-Filter geändert:', this.value);
-                    renderDashQuestions();
-                });
-            }
-            if (qSearch) {
-                qSearch.addEventListener('input', function () {
-                    console.log('🔍 Fragen-Suche:', this.value);
-                    renderDashQuestions();
-                });
-            }
-            if (vLang) {
-                vLang.addEventListener('change', function () {
-                    console.log('🔍 Vokabel-Sprache geändert:', this.value);
-                    updateDashVocabLevels();
-                    renderDashVocab();
-                });
-            }
-            if (vLevel) {
-                vLevel.addEventListener('change', function () {
-                    console.log('🔍 Vokabel-Niveau geändert:', this.value);
-                    renderDashVocab();
-                });
-            }
-            if (vSearch) {
-                vSearch.addEventListener('input', function () {
-                    console.log('🔍 Vokabel-Suche:', this.value);
-                    renderDashVocab();
-                });
-            }
-            if (wLength) {
-                wLength.addEventListener('change', function () {
-                    console.log('🔍 Wort-Länge geändert:', this.value);
-                    renderDashWords();
-                });
-            }
-            if (wSearch) {
-                wSearch.addEventListener('input', function () {
-                    console.log('🔍 Wort-Suche:', this.value);
-                    renderDashWords();
-                });
-            }
-            if (gSearch) {
-                gSearch.addEventListener('input', function () {
-                    console.log('🔍 Globale Suche:', this.value);
-                    performDashSearch();
-                });
-            }
-
-            console.log('✅ Event-Listener registriert');
+            if (qGrade) qGrade.addEventListener('change', renderDashQuestions);
+            if (qSubject) qSubject.addEventListener('change', renderDashQuestions);
+            if (qSearch) qSearch.addEventListener('input', renderDashQuestions);
+            if (vLang) vLang.addEventListener('change', renderDashVocab);
+            if (vLevel) vLevel.addEventListener('change', renderDashVocab);
+            if (vSearch) vSearch.addEventListener('input', renderDashVocab);
+            if (wLength) wLength.addEventListener('change', renderDashWords);
+            if (wSearch) wSearch.addEventListener('input', renderDashWords);
+            if (gSearch) gSearch.addEventListener('input', performDashSearch);
         });
 
         // ============================================================
@@ -4844,7 +4237,7 @@
         // ============================================================
         //  HUB WATCH
         // ============================================================
-        hubWatchUnsub = null;
+        let hubWatchUnsub = null;
         let hubTickInterval = null;
 
         function startHubWatch() {
@@ -4884,15 +4277,10 @@
             document.getElementById("drawer-backdrop").classList.add("open");
         }
 
-
-
-
         function closeDrawer() {
             document.getElementById("settings-drawer").classList.remove("open");
             document.getElementById("drawer-backdrop").classList.remove("open");
         }
-
-
 
         document.addEventListener("keydown", e => {
             if (e.key === "Escape") closeDrawer();
@@ -5092,21 +4480,9 @@
         }
 
         function startQuiz() {
-            if (typeof QUESTIONS_DATABASE === 'undefined') {
-                showToast("Fehler: Datenbank nicht geladen!", "error");
-                return;
-            }
-            const cat = document.getElementById("sub-category")?.value;
-            if (!cat) {
-                showToast("Bitte ein Thema auswählen!", "error");
-                return;
-            }
-            const questions = questionsForKey(cat);
-            if (!questions || questions.length === 0) {
-                showToast("Keine Fragen für dieses Thema gefunden!", "error");
-                return;
-            }
-            launchQuiz(questions);
+            if (typeof QUESTIONS_DATABASE === 'undefined') return alert("Fehler: data.js nicht gefunden!");
+            const cat = document.getElementById("sub-category").value;
+            launchQuiz(questionsForKey(cat));
         }
 
         function startWrongQuestionsQuiz() {
@@ -7759,8 +7135,7 @@
         // ============================================================
         //  INIT & OFFLINE
         // ============================================================
-        OFFLINE_MODUS_AKTIV = false;
-
+        const OFFLINE_MODUS_AKTIV = false;
 
         function applyOfflineModusSichtbarkeit() {
             const block = document.getElementById("family-duel-block");
@@ -7850,7 +7225,6 @@
 
             // Dashboard initialisieren mit PIN-Abfrage
             if (viewId === 'dashboard') {
-                console.log('📊 Dashboard geöffnet');
                 if (adminPin) {
                     const entered = cleanInput(prompt("🔒 Dashboard\n\nBitte PIN eingeben:"), 12);
                     if (entered === null || entered === "") {
@@ -7864,9 +7238,12 @@
                         return;
                     }
                 }
-                // Debug-Ausgabe vor dem Laden
-                debugDatabaseLoading();
                 switchDashboardSection('inhalte');
+                updateDashCounts();
+                renderDashQuestions();
+                renderDashVocab();
+                renderDashWords();
+                renderDashAdmin();
             }
         }
 
@@ -7878,86 +7255,10 @@
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe data.js");
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.14)");
+        console.log("🚀 EduPlay Hub gestartet (v2.3)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
-
-
-        // Theme beim Laden wiederherstellen (Standard = Light)
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('📋 Event-Listener werden registriert...');
-
-            const qGrade = document.getElementById('dash-question-grade');
-            const qSubject = document.getElementById('dash-question-subject');
-            const qSearch = document.getElementById('dash-question-search');
-            const vLang = document.getElementById('dash-vocab-lang');
-            const vLevel = document.getElementById('dash-vocab-level');
-            const vSearch = document.getElementById('dash-vocab-search');
-            const wLength = document.getElementById('dash-word-length');
-            const wSearch = document.getElementById('dash-word-search');
-            const gSearch = document.getElementById('dash-global-search');
-
-            if (qGrade) {
-                qGrade.addEventListener('change', function () {
-                    console.log('🔍 Klasse-Filter geändert:', this.value);
-                    renderDashQuestions();
-                });
-            }
-            if (qSubject) {
-                qSubject.addEventListener('change', function () {
-                    console.log('🔍 Fach-Filter geändert:', this.value);
-                    renderDashQuestions();
-                });
-            }
-            if (qSearch) {
-                qSearch.addEventListener('input', function () {
-                    console.log('🔍 Fragen-Suche:', this.value);
-                    renderDashQuestions();
-                });
-            }
-            if (vLang) {
-                vLang.addEventListener('change', function () {
-                    console.log('🔍 Vokabel-Sprache geändert:', this.value);
-                    updateDashVocabLevels();
-                    renderDashVocab();
-                });
-            }
-            if (vLevel) {
-                vLevel.addEventListener('change', function () {
-                    console.log('🔍 Vokabel-Niveau geändert:', this.value);
-                    renderDashVocab();
-                });
-            }
-            if (vSearch) {
-                vSearch.addEventListener('input', function () {
-                    console.log('🔍 Vokabel-Suche:', this.value);
-                    renderDashVocab();
-                });
-            }
-            if (wLength) {
-                wLength.addEventListener('change', function () {
-                    console.log('🔍 Wort-Länge geändert:', this.value);
-                    renderDashWords();
-                });
-            }
-            if (wSearch) {
-                wSearch.addEventListener('input', function () {
-                    console.log('🔍 Wort-Suche:', this.value);
-                    renderDashWords();
-                });
-            }
-            if (gSearch) {
-                gSearch.addEventListener('input', function () {
-                    console.log('🔍 Globale Suche:', this.value);
-                    performDashSearch();
-                });
-            }
-
-            console.log('✅ Event-Listener registriert');
-        });
-
-
     </script>
 
 
@@ -7998,7 +7299,7 @@
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.14<br>
+            EduPlay Hub · v2.3<br>
             © 2026 · Familien Edition
         </div>
     </div>

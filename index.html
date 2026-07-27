@@ -4000,19 +4000,6 @@
     `}).join('');
         }
 
-        const displayQuestions = questions.slice(0, 50);
-        console.log(`📖 Zeige ${displayQuestions.length} von ${questions.length} Fragen`);
-
-        list.innerHTML = displayQuestions.map((q, index) => `
-        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-sm hover:bg-white/10 transition">
-            <div class="font-bold text-white">${index + 1}. ${esc(q.question)}</div>
-            <div class="text-xs text-gray-400 mt-1">Klasse ${q.grade || '?'} · ${q.subject || '?'} · ${q.answers?.length || 0} Antworten</div>
-            ${q.answers && q.answers.length > 0 ? `<div class="text-xs text-gray-500 mt-1">Antworten: ${q.answers.join(' · ')}</div>` : ''}
-        </div>
-    `).join('');
-        }
-
-
 
 
 

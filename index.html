@@ -1937,6 +1937,7 @@
                             <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
                         </select>
                     </div>
+
                     <label
                         class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
                         <input type="checkbox" id="scrabble-require-letter" class="w-5 h-5 accent-amber-500 mt-0.5">
@@ -1944,6 +1945,15 @@
                             <span class="font-bold text-white">Pflichtbuchstabe</span>
                             <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss im Wort
                                 vorkommen.</span>
+                        </span>
+                    </label>
+                    <label
+                        class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                        <input type="checkbox" id="scrabble-action-mode" class="w-5 h-5 accent-red-500 mt-0.5">
+                        <span class="text-sm">
+                            <span class="font-bold text-white">⚡ Action-Modus</span>
+                            <span class="block text-[11px] text-gray-400">Das komplette Wort ändert sich zufällig – sei
+                                schnell!</span>
                         </span>
                     </label>
                     <div>
@@ -6052,7 +6062,7 @@ VIEW: TV-QUIZ SETUP
                 }
             }, 1000);
 
-            // NEU: Action-Modus starten
+            // ⚡ NEU: Action-Modus starten (HIER WAR DER FEHLER!)
             if (scrabbleState.actionMode) {
                 scrabbleState.changeCount = 0;
                 scrabbleState.bonusEarned = false;
@@ -6060,7 +6070,6 @@ VIEW: TV-QUIZ SETUP
                 startActionMode();
             }
         }
-
         // function beginScrabbleTurn() {
         //     document.getElementById("scrabble-turn-intro").classList.add("hidden");
         //     document.getElementById("scrabble-play-area").classList.remove("hidden");
@@ -6283,6 +6292,7 @@ VIEW: TV-QUIZ SETUP
                 }
             }, 500);
         }
+
 
         function scheduleNextChange() {
             // Zufällige Zeit zwischen 3 und 12 Sekunden

@@ -1558,18 +1558,18 @@
                 BEREICH: INHALTE
                 ========================================================== -->
                 <div id="dash-section-inhalte" class="hidden space-y-4">
-<!-- Sub-Navigation mit Zähler-Elementen -->
-<div class="dash-sub-nav">
-    <button id="dash-sub-fragen" class="active" onclick="switchDashboardSubTab('fragen')">
-        📖 Fragen (<span id="dash-question-count">0</span>)
-    </button>
-    <button id="dash-sub-vokabeln" onclick="switchDashboardSubTab('vokabeln')">
-        📝 Vokabeln (<span id="dash-vocab-count">0</span>)
-    </button>
-    <button id="dash-sub-woerter" onclick="switchDashboardSubTab('woerter')">
-        🔤 Wörter (<span id="dash-word-count">0</span>)
-    </button>
-</div>
+                    <!-- Sub-Navigation mit Zähler-Elementen -->
+                    <div class="dash-sub-nav">
+                        <button id="dash-sub-fragen" class="active" onclick="switchDashboardSubTab('fragen')">
+                            📖 Fragen (<span id="dash-question-count">0</span>)
+                        </button>
+                        <button id="dash-sub-vokabeln" onclick="switchDashboardSubTab('vokabeln')">
+                            📝 Vokabeln (<span id="dash-vocab-count">0</span>)
+                        </button>
+                        <button id="dash-sub-woerter" onclick="switchDashboardSubTab('woerter')">
+                            🔤 Wörter (<span id="dash-word-count">0</span>)
+                        </button>
+                    </div>
 
 
                     <!-- Fragen-View -->
@@ -3346,44 +3346,12 @@
         let selectedStatPlayer = null;
         let currentDashboardSection = null;
 
-function switchDashboardSection(section) {
-    const sections = ['inhalte', 'eltern', 'statistiken'];
-    sections.forEach(s => {
-        const el = document.getElementById('dash-section-' + s);
-        if (el) el.classList.add('hidden');
-    });
-
-    const target = document.getElementById('dash-section-' + section);
-    if (target) target.classList.remove('hidden');
-
-    currentDashboardSection = section;
-
-    if (section === 'inhalte') {
-        initDashFilters();    // <-- Befüllt die Filter-Dropdowns
-        updateDashCounts();   // <-- Aktualisiert die Zähler
-        renderDashQuestions();
-        renderDashVocab();
-        renderDashWords();
-    }
-    if (section === 'eltern') {
-        renderDashAdminProgress();
-        renderDashAdminTest();
-        renderDashRewards();
-    }
-    if (section === 'statistiken') {
-        renderDashPlayerList();
-        if (selectedStatPlayer) renderPlayerStats(selectedStatPlayer);
-    }
-}
-
-
-
-
-
-
-
-
-
+        function switchDashboardSection(section) {
+            const sections = ['inhalte', 'eltern', 'statistiken'];
+            sections.forEach(s => {
+                const el = document.getElementById('dash-section-' + s);
+                if (el) el.classList.add('hidden');
+            });
 
             const target = document.getElementById('dash-section-' + section);
             if (target) target.classList.remove('hidden');
@@ -3391,7 +3359,8 @@ function switchDashboardSection(section) {
             currentDashboardSection = section;
 
             if (section === 'inhalte') {
-                updateDashCounts();
+                initDashFilters();    // <-- Befüllt die Filter-Dropdowns
+                updateDashCounts();   // <-- Aktualisiert die Zähler
                 renderDashQuestions();
                 renderDashVocab();
                 renderDashWords();
@@ -3406,6 +3375,37 @@ function switchDashboardSection(section) {
                 if (selectedStatPlayer) renderPlayerStats(selectedStatPlayer);
             }
         }
+
+
+
+
+
+
+
+
+
+
+        const target = document.getElementById('dash-section-' + section);
+        if (target) target.classList.remove('hidden');
+
+        currentDashboardSection = section;
+
+        if (section === 'inhalte') {
+            updateDashCounts();
+            renderDashQuestions();
+            renderDashVocab();
+            renderDashWords();
+        }
+        if (section === 'eltern') {
+            renderDashAdminProgress();
+            renderDashAdminTest();
+            renderDashRewards();
+        }
+        if (section === 'statistiken') {
+            renderDashPlayerList();
+            if (selectedStatPlayer) renderPlayerStats(selectedStatPlayer);
+        }
+
 
         function openParentArea() {
             if (!adminPin) return setupAdminPin(true);
@@ -7299,48 +7299,48 @@ function switchDashboardSection(section) {
 
 
 
-// ==========================================
-// DYNAMISCHE FILTER FÜR DAS DASHBOARD
-// ==========================================
+        // ==========================================
+        // DYNAMISCHE FILTER FÜR DAS DASHBOARD
+        // ==========================================
 
-function initDashFilters() {
-    // 1. Klassen-Filter befüllen
-    const qGradeSel = document.getElementById('dash-question-grade');
-    if (qGradeSel && typeof QUESTIONS_DATABASE !== 'undefined') {
-        const grades = [...new Set(QUESTIONS_DATABASE.map(q => q.grade).filter(Boolean))].sort((a, b) => a - b);
-        qGradeSel.innerHTML = '<option value="">Alle Klassen</option>' + 
-            grades.map(g => `<option value="${g}">${g}. Klasse</option>`).join('');
-    }
+        function initDashFilters() {
+            // 1. Klassen-Filter befüllen
+            const qGradeSel = document.getElementById('dash-question-grade');
+            if (qGradeSel && typeof QUESTIONS_DATABASE !== 'undefined') {
+                const grades = [...new Set(QUESTIONS_DATABASE.map(q => q.grade).filter(Boolean))].sort((a, b) => a - b);
+                qGradeSel.innerHTML = '<option value="">Alle Klassen</option>' +
+                    grades.map(g => `<option value="${g}">${g}. Klasse</option>`).join('');
+            }
 
-    // 2. Fächer-Filter befüllen
-    const qSubSel = document.getElementById('dash-question-subject');
-    if (qSubSel && typeof QUESTIONS_DATABASE !== 'undefined') {
-        const subjects = [...new Set(QUESTIONS_DATABASE.map(q => q.subject).filter(Boolean))].sort();
-        qSubSel.innerHTML = '<option value="">Alle Fächer</option>' + 
-            subjects.map(s => `<option value="${s}">${s}</option>`).join('');
-    }
+            // 2. Fächer-Filter befüllen
+            const qSubSel = document.getElementById('dash-question-subject');
+            if (qSubSel && typeof QUESTIONS_DATABASE !== 'undefined') {
+                const subjects = [...new Set(QUESTIONS_DATABASE.map(q => q.subject).filter(Boolean))].sort();
+                qSubSel.innerHTML = '<option value="">Alle Fächer</option>' +
+                    subjects.map(s => `<option value="${s}">${s}</option>`).join('');
+            }
 
-    // 3. Vokabel-Niveaus befüllen
-    updateDashVocabLevels();
+            // 3. Vokabel-Niveaus befüllen
+            updateDashVocabLevels();
 
-    // 4. Wortlängen-Filter befüllen
-    const wLenSel = document.getElementById('dash-word-length');
-    if (wLenSel && typeof GERMAN_WORDS !== 'undefined') {
-        const lengths = [...new Set(GERMAN_WORDS.map(w => w.length))].sort((a, b) => a - b);
-        wLenSel.innerHTML = '<option value="">Alle Längen</option>' + 
-            lengths.map(l => `<option value="${l}">${l} Buchstaben</option>`).join('');
-    }
-}
+            // 4. Wortlängen-Filter befüllen
+            const wLenSel = document.getElementById('dash-word-length');
+            if (wLenSel && typeof GERMAN_WORDS !== 'undefined') {
+                const lengths = [...new Set(GERMAN_WORDS.map(w => w.length))].sort((a, b) => a - b);
+                wLenSel.innerHTML = '<option value="">Alle Längen</option>' +
+                    lengths.map(l => `<option value="${l}">${l} Buchstaben</option>`).join('');
+            }
+        }
 
-function updateDashVocabLevels() {
-    const vLang = document.getElementById('dash-vocab-lang')?.value || 'en';
-    const vLevelSel = document.getElementById('dash-vocab-level');
-    if (vLevelSel && typeof VOCABULARY_DATABASE !== 'undefined' && VOCABULARY_DATABASE[vLang]) {
-        const levels = Object.keys(VOCABULARY_DATABASE[vLang]);
-        vLevelSel.innerHTML = '<option value="">Alle Niveaus</option>' + 
-            levels.map(l => `<option value="${l}">${VOCABULARY_DATABASE[vLang][l].label}</option>`).join('');
-    }
-}
+        function updateDashVocabLevels() {
+            const vLang = document.getElementById('dash-vocab-lang')?.value || 'en';
+            const vLevelSel = document.getElementById('dash-vocab-level');
+            if (vLevelSel && typeof VOCABULARY_DATABASE !== 'undefined' && VOCABULARY_DATABASE[vLang]) {
+                const levels = Object.keys(VOCABULARY_DATABASE[vLang]);
+                vLevelSel.innerHTML = '<option value="">Alle Niveaus</option>' +
+                    levels.map(l => `<option value="${l}">${VOCABULARY_DATABASE[vLang][l].label}</option>`).join('');
+            }
+        }
 
 
 

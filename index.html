@@ -3231,6 +3231,7 @@
 
         function toggleTheme() {
             const isDark = document.body.classList.toggle('dark-theme');
+            // Speichert die Auswahl des Nutzers
             try { localStorage.setItem('eduplayTheme', isDark ? 'dark' : 'light'); } catch (e) { }
             showToast(isDark ? "🌙 Dark-Mode aktiv" : "☀️ Light-Mode aktiv", "success", "theme");
         }
@@ -3785,10 +3786,7 @@
             switchDashAdminTab('progress');
         }
 
-        function toggleTheme() {
-            const isDark = document.body.classList.toggle('dark-theme');
-            showToast(isDark ? "🌙 Dark-Mode aktiv" : "☀️ Light-Mode aktiv", "success", "theme");
-        }
+
 
         function switchDashboardTab(tab) {
             currentDashTab = tab;
@@ -3967,8 +3965,7 @@
             }
 
             if (search) {
-                questions = questions.filter(q => q.question.toLowerCase().includes(search));
-                console.log(`  Nach Suche "${search}" gefiltert: ${questions.length} Fragen`);
+                questions = questions.filter(q => (q.question || '').toLowerCase().includes(search));
             }
 
             if (questions.length === 0) {
@@ -4129,8 +4126,10 @@
             if (qGrade) {
                 qGrade.addEventListener('change', function () {
                     console.log('🔍 Klasse-Filter geändert:', this.value);
+                    if (qSubject) qSubject.value = ""; // <-- DIESE ZEILE HINZUFÜGEN
                     renderDashQuestions();
                 });
+
             }
             if (qSubject) {
                 qSubject.addEventListener('change', function () {
@@ -7858,77 +7857,22 @@
 
         // Theme beim Laden wiederherstellen (Standard = Light)
         document.addEventListener('DOMContentLoaded', function () {
-            console.log('📋 Event-Listener werden registriert...');
-
-            const qGrade = document.getElementById('dash-question-grade');
-            const qSubject = document.getElementById('dash-question-subject');
-            const qSearch = document.getElementById('dash-question-search');
-            const vLang = document.getElementById('dash-vocab-lang');
-            const vLevel = document.getElementById('dash-vocab-level');
-            const vSearch = document.getElementById('dash-vocab-search');
-            const wLength = document.getElementById('dash-word-length');
-            const wSearch = document.getElementById('dash-word-search');
-            const gSearch = document.getElementById('dash-global-search');
-
-            if (qGrade) {
-                qGrade.addEventListener('change', function () {
-                    console.log('🔍 Klasse-Filter geändert:', this.value);
-                    renderDashQuestions();
-                });
-            }
-            if (qSubject) {
-                qSubject.addEventListener('change', function () {
-                    console.log('🔍 Fach-Filter geändert:', this.value);
-                    renderDashQuestions();
-                });
-            }
-            if (qSearch) {
-                qSearch.addEventListener('input', function () {
-                    console.log('🔍 Fragen-Suche:', this.value);
-                    renderDashQuestions();
-                });
-            }
-            if (vLang) {
-                vLang.addEventListener('change', function () {
-                    console.log('🔍 Vokabel-Sprache geändert:', this.value);
-                    updateDashVocabLevels();
-                    renderDashVocab();
-                });
-            }
-            if (vLevel) {
-                vLevel.addEventListener('change', function () {
-                    console.log('🔍 Vokabel-Niveau geändert:', this.value);
-                    renderDashVocab();
-                });
-            }
-            if (vSearch) {
-                vSearch.addEventListener('input', function () {
-                    console.log('🔍 Vokabel-Suche:', this.value);
-                    renderDashVocab();
-                });
-            }
-            if (wLength) {
-                wLength.addEventListener('change', function () {
-                    console.log('🔍 Wort-Länge geändert:', this.value);
-                    renderDashWords();
-                });
-            }
-            if (wSearch) {
-                wSearch.addEventListener('input', function () {
-                    console.log('🔍 Wort-Suche:', this.value);
-                    renderDashWords();
-                });
-            }
-            if (gSearch) {
-                gSearch.addEventListener('input', function () {
-                    console.log('🔍 Globale Suche:', this.value);
-                    performDashSearch();
-                });
-            }
-
-            console.log('✅ Event-Listener registriert');
+            try {
+                if (localStorage.getItem('eduplayTheme') === 'dark') {
+                    document.body.classList.add('dark-theme');
+                }
+            } catch (e) { }
         });
 
+        // Theme beim Laden wiederherstellen (Standard = Dark)
+        document.addEventListener('DOMContentLoaded', function () {
+            try {
+                // Wenn NICHT explizit "light" gespeichert wurde, aktiviere den Dark Mode
+                if (localStorage.getItem('eduplayTheme') !== 'light') {
+                    document.body.classList.add('dark-theme');
+                }
+            } catch (e) { }
+        });
 
     </script>
 

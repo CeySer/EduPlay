@@ -1642,8 +1642,8 @@
 
                 <!-- Kopf -->
                 <div class="flex items-center justify-between gap-2 pt-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
-                        Übersicht</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4"
+                        onclick="switchView('family-hub')">Übersicht</button>
                     <span class="text-sm font-bold text-gray-400">📊 Dashboard</span>
                     <span class="w-10"></span>
                 </div>
@@ -1857,8 +1857,7 @@
             VIEW: DUELL SETUP
             ========================================================== -->
             <div id="view-duel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
-                    Übersicht</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Übersicht</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-rose-400">⚔️ Quiz-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Zwei Spieler treten nacheinander im selben Quiz
@@ -1910,8 +1909,7 @@
             VIEW: SCRABBLE SETUP
             ========================================================== -->
             <div id="view-scrabble-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
-                    Übersicht</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Übersicht</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben Buchstaben und bilden
@@ -2111,12 +2109,10 @@
             <!-- ==========================================================
             VIEW: HAUPTMENÜ
             ========================================================== -->
-            <!-- ==========================================================
-VIEW: HAUPTMENÜ
-========================================================= -->
+
             <div id="view-menu" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">← Spieler
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Spieler
                         wechseln</button>
                     <div class="flex items-center gap-2">
                         <button onclick="toggleCast()" id="castButton" title="Mit Fernseher verbinden"
@@ -2239,8 +2235,7 @@ VIEW: HAUPTMENÜ
             VIEW: BELOHNUNGEN EINLÖSEN
             ========================================================== -->
             <div id="view-rewards" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
-                    Übersicht</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Übersicht</button>
                 <div class="glass-card p-5">
                     <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen</h3>
                     <p class="text-xs text-gray-400 mb-4">Du hast <span id="rewards-coin-balance"
@@ -2253,8 +2248,7 @@ VIEW: HAUPTMENÜ
             VIEW: SPIELER BEARBEITEN
             ========================================================== -->
             <div id="view-edit-player" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
-                    Abbrechen</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Abbrechen</button>
                 <div class="glass-card p-5 space-y-4">
                     <h2 class="text-xl font-black text-emerald-400">✏️ Spieler bearbeiten</h2>
                     <div>
@@ -2296,8 +2290,8 @@ VIEW: HAUPTMENÜ
             VIEW: FEEDBACK
             ========================================================== -->
             <div id="view-feedback" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView(feedbackReturnView)">←
-                    Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4"
+                    onclick="switchView(feedbackReturnView)">Zurück</button>
                 <div class="glass-card p-5 space-y-4">
                     <h3 class="text-xl font-black text-amber-400 mb-1">💬 Feedback</h3>
                     <p class="text-xs text-gray-400">Was ist kaputt, was fehlt, was war gut? Schreib's rein – wir lesen
@@ -2347,8 +2341,7 @@ VIEW: HAUPTMENÜ
             VIEW: NEUEN SPIELER ANLEGEN
             ========================================================== -->
             <div id="view-create-profile" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
-                    Abbrechen</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Abbrechen</button>
                 <div class="glass-card p-6 space-y-4 shadow-lg">
                     <h2 class="text-xl font-black text-emerald-400">Neuen Spieler anlegen</h2>
                     <input type="text" id="new-profile-name" placeholder="Name" class="input-modern">
@@ -2385,7 +2378,7 @@ VIEW: HAUPTMENÜ
             VIEW: FOKUS LERNZEIT
             ========================================================== -->
             <div id="view-fokus" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Menü</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-8 text-center space-y-6 shadow-lg">
                     <div class="text-6xl">⏱️</div>
                     <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
@@ -2408,7 +2401,8 @@ VIEW: LESEN LERNEN
 ========================================================== -->
             <div id="view-lesen" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Menü</button>
+                    <!-- <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Menü</button> -->
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="closeLesen()">Zurück</button>
                     <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
                     <span class="w-20"></span>
                 </div>
@@ -2432,12 +2426,10 @@ VIEW: LESEN LERNEN
 
 
             <!-- ==========================================================
-<!-- ==========================================================
 VIEW: QUIZ SETUP
 ========================================================= -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
-                    Übersicht</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Übersicht</button>
                 <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
                     class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center"
                     style="background:var(--gradient-rose);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
@@ -2466,7 +2458,7 @@ VIEW: QUIZ SETUP
             VIEW: QUIZ ARENA
             ========================================================== -->
             <div id="view-quiz" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveQuiz()">← Beenden</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveQuiz()">Beenden</button>
                 <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
                     style="border-color:rgba(99,102,241,0.2);">
                     ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
@@ -2492,7 +2484,7 @@ VIEW: QUIZ SETUP
             VIEW: VOKABEL-TRAINER
             ========================================================== -->
             <div id="view-vokabeln" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveVocab()">← Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveVocab()">Zurück</button>
                 <div class="glass-card p-5 text-center space-y-4">
                     <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
                     <div id="lang-selector" class="dash-sub-nav">
@@ -2520,8 +2512,7 @@ VIEW: QUIZ SETUP
 VIEW: TV-QUIZ SETUP
 ========================================================= -->
             <div id="view-tv-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
-                    Übersicht</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Übersicht</button>
                 <div class="glass-card p-6 space-y-6 text-center">
                     <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
                     <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die
@@ -2549,8 +2540,7 @@ VIEW: TV-QUIZ SETUP
             VIEW: TV-QUIZ HOST
             ========================================================== -->
             <div id="view-tv-quiz-host" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">←
-                    Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">Zurück</button>
                 <div class="glass-card p-6 text-center">
                     <h2 class="text-2xl font-black text-white mb-4">Spiel erstellen</h2>
                     <div class="dash-sub-nav mb-6">
@@ -2615,8 +2605,7 @@ VIEW: TV-QUIZ SETUP
             VIEW: TV-QUIZ PLAYER
             ========================================================== -->
             <div id="view-tv-quiz-player" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">←
-                    Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">Zurück</button>
                 <div class="glass-card p-6 text-center">
                     <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
                     <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
@@ -8012,7 +8001,7 @@ VIEW: TV-QUIZ SETUP
         // =======================================================
         const READING_DATABASE = {
             buchstaben: {
-                label: "🔤 Buchstaben lernen (A-Z)",
+                label: "Alphabetsi lernen (A-Z)",
                 description: "Lerne alle Buchstaben mit Bildern",
                 items: [
                     { letter: "A", word: "Affe", image: '<img src="img/A.jpg" alt="🐒">', sound: "ah" },
@@ -8048,7 +8037,7 @@ VIEW: TV-QUIZ SETUP
                 ]
             },
             silben: {
-                label: "👏 Silben klatschen",
+                label: "👏 Sil-ben klat-schen",
                 description: "Klatsche die Silben in jedem Wort",
                 items: [
                     { word: "Haus", syllables: "Haus", count: 1 },
@@ -8255,9 +8244,24 @@ VIEW: TV-QUIZ SETUP
         }
 
         function hoerButton(text) {
-            const safe = encodeURIComponent(text);
-            return `<button onclick="speakLesen(decodeURIComponent('${safe}'))"
-                class="mt-3 inline-flex items-center gap-2 px-5 py-2 bg-yellow-500 text-gray-900 rounded-xl font-bold shadow hover:bg-yellow-400">
+            // Nur den relevanten Teil zum Vorlesen extrahieren
+            let textToRead = String(text);
+
+            // Bei Buchstaben: Nur den Buchstaben + Wort vorlesen
+            if (textToRead.includes('.')) {
+                const parts = textToRead.split('.');
+                textToRead = parts[0] + '. ' + (parts[1] || '').trim();
+            }
+
+            // Bei Silben: Nur das Wort vorlesen
+            if (textToRead.includes('👏')) {
+                const match = textToRead.match(/([A-ZÄÖÜa-zäöüß\-]+)/);
+                if (match) textToRead = match[1];
+            }
+
+            const safe = encodeURIComponent(textToRead);
+            return `<button onclick="speakNatural(decodeURIComponent('${safe}'))"
+                class="mt-3 inline-flex items-center gap-2 px-5 py-2 bg-yellow-500 text-gray-900 rounded-xl font-bold shadow hover:bg-yellow-400 transition">
                 🔊 Hören
             </button>`;
         }
@@ -8291,8 +8295,16 @@ VIEW: TV-QUIZ SETUP
                 return;
             }
 
+            // "Zurück zur Übersicht" Button oberhalb der Kategorien
+            let html = `
+        <button onclick="switchView('family-hub')" 
+                class="w-full mb-4 p-3 bg-gray-800 border border-gray-700 rounded-xl text-left hover:border-blue-500 transition-all flex items-center gap-2 text-sm text-gray-400 hover:text-white">
+            ← Zurück zur Übersicht
+        </button>
+    `;
+
             const keys = Object.keys(categories);
-            let html = '';
+            // ❌ DIESE ZEILE LÖSCHEN: let html = '';
             keys.forEach(key => {
                 const cat = categories[key];
                 const icon = LESEN_ICONS[key] || '📚';
@@ -8307,7 +8319,7 @@ VIEW: TV-QUIZ SETUP
 
                 html += `
             <button onclick="startLesenCategory('${key}')"
-                    class="bg-gray-900 border border-gray-700 rounded-xl p-4 text-left hover:border-blue-500 transition-all">
+                    class="w-full bg-gray-900 border border-gray-700 rounded-xl p-4 text-left hover:border-blue-500 transition-all">
                 <div class="flex items-center gap-2">
                     <span class="text-2xl">${icon}</span>
                     <div class="min-w-0">
@@ -8321,7 +8333,6 @@ VIEW: TV-QUIZ SETUP
             });
             container.innerHTML = html;
         }
-
         function startLesenCategory(categoryKey) {
             const categories = lesenDB();
             if (!categories || !categories[categoryKey]) return;
@@ -8572,10 +8583,33 @@ VIEW: TV-QUIZ SETUP
         </div>
     `;
         }
+        //     //     // --------------------------------------------------------
+        //     // DAS IST DIE ÜBERARBEITETE "LESEN MIT VERSTÄNDNIS"-FUNKTION
         //     // --------------------------------------------------------
-        // DAS IST DIE ÜBERARBEITETE "LESEN MIT VERSTÄNDNIS"-FUNKTION
-        // --------------------------------------------------------
-        let comprehensionStep = 0;
+        //     let comprehensionStep = 0;
+
+        //     function renderComprehension(item) {
+        //         const categories = lesenDB();
+        //         const pool = (categories.reading_comprehension.items || []).map(it => it.answer);
+        //         const distractors = pickDistractors(pool, item.answer, 3);
+        //         const opts = prepareOptions([item.answer].concat(distractors), item.answer);
+
+        //         const buttons = opts.map((a, i) => `
+        //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${a}</button>
+        // `).join('');
+
+        //         if (comprehensionStep === 0) {
+        //             return `
+        //         <div class="text-center py-6">
+        //             <div class="text-xl font-bold text-white leading-relaxed mb-4">📖 Lies den Satz:</div>
+        //             <div class="text-2xl font-bold text-yellow-400 leading-relaxed mb-8">${item.sentence}</div>
+        //             <button onclick="comprehensionNext()" 
+        //                     class="mt-6 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500">
+        //                 ➔ Weiter zur Frage
+        //             </button>
+        //         </div>
+        //     `;
+        //         }
 
         function renderComprehension(item) {
             const categories = lesenDB();
@@ -8592,6 +8626,7 @@ VIEW: TV-QUIZ SETUP
             <div class="text-center py-6">
                 <div class="text-xl font-bold text-white leading-relaxed mb-4">📖 Lies den Satz:</div>
                 <div class="text-2xl font-bold text-yellow-400 leading-relaxed mb-8">${item.sentence}</div>
+                ${hoerButton(item.sentence)}
                 <button onclick="comprehensionNext()" 
                         class="mt-6 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500">
                     ➔ Weiter zur Frage
@@ -8608,6 +8643,15 @@ VIEW: TV-QUIZ SETUP
         </div>
     `;
         }
+
+        //     return `
+        //     <div class="text-center py-4">
+        //         <div class="text-sm text-gray-400 mb-2">📖 ${item.sentence}</div>
+        //         <div class="text-lg text-yellow-400 font-bold my-4">❓ ${item.question}</div>
+        //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
+        //     </div>
+        // `;
+        //     }
 
         function comprehensionNext() {
             comprehensionStep = 1;
@@ -8722,26 +8766,56 @@ VIEW: TV-QUIZ SETUP
 
 
         // Sorgt dafür, dass die Stimmen im Hintergrund geladen werden (wichtig für Chrome/Safari)
-        window.speechSynthesis.onvoiceschanged = () => {
-            window.speechSynthesis.getVoices();
-        };
+        // window.speechSynthesis.onvoiceschanged = () => {
+        //     window.speechSynthesis.getVoices();
+        // };
+
+        // function speakNatural(text) {
+        //     if (!('speechSynthesis' in window)) return;
+
+        //     // Bricht aktuelles Vorlesen ab, falls noch etwas gesprochen wird
+        //     window.speechSynthesis.cancel();
+
+        //     const utterance = new SpeechSynthesisUtterance(text);
+        //     utterance.lang = 'de-DE';
+        //     utterance.rate = 0.9; // Leicht verlangsamt (0.9 statt 1.0) für bessere Verständlichkeit
+        //     utterance.pitch = 1.1; // Ein kleines bisschen höher, wirkt oft freundlicher
+
+        //     const voices = window.speechSynthesis.getVoices();
+
+        //     // Wir suchen gezielt nach hochwertigen deutschen Stimmen
+        //     const bestVoice = voices.find(v => v.lang.includes('de') && (v.name.includes('Natural') || v.name.includes('Premium') || v.name.includes('Google')))
+        //         || voices.find(v => v.lang.includes('de')); // Fallback: Erste verfügbare deutsche Stimme
+
+        //     if (bestVoice) {
+        //         utterance.voice = bestVoice;
+        //     }
+
+        //     window.speechSynthesis.speak(utterance);
+        // }
 
         function speakNatural(text) {
             if (!('speechSynthesis' in window)) return;
 
-            // Bricht aktuelles Vorlesen ab, falls noch etwas gesprochen wird
+            // Bricht aktuelles Vorlesen ab
             window.speechSynthesis.cancel();
 
-            const utterance = new SpeechSynthesisUtterance(text);
+            // Nur den reinen Text vorlesen, ohne Emojis oder Sonderzeichen
+            const cleanText = String(text)
+                .replace(/[🔤👏🔊📖🖼️📗📕📝🧠🧩✅❌➔❓💡🎉🌟🏆👂👀📚]/g, '') // Emojis entfernen
+                .replace(/[^\w\s\.\,\!\?\-\u00C0-\u017F]/g, '') // Sonderzeichen entfernen (außer deutsche Umlaute)
+                .trim();
+
+            if (!cleanText) return;
+
+            const utterance = new SpeechSynthesisUtterance(cleanText);
             utterance.lang = 'de-DE';
-            utterance.rate = 0.9; // Leicht verlangsamt (0.9 statt 1.0) für bessere Verständlichkeit
-            utterance.pitch = 1.1; // Ein kleines bisschen höher, wirkt oft freundlicher
+            utterance.rate = 0.9;
+            utterance.pitch = 1.1;
 
             const voices = window.speechSynthesis.getVoices();
-
-            // Wir suchen gezielt nach hochwertigen deutschen Stimmen
             const bestVoice = voices.find(v => v.lang.includes('de') && (v.name.includes('Natural') || v.name.includes('Premium') || v.name.includes('Google')))
-                || voices.find(v => v.lang.includes('de')); // Fallback: Erste verfügbare deutsche Stimme
+                || voices.find(v => v.lang.includes('de'));
 
             if (bestVoice) {
                 utterance.voice = bestVoice;

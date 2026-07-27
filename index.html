@@ -1973,11 +1973,17 @@
                         style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Los
                         geht's! 🚀</button>
                 </div>
+
                 <div id="scrabble-play-area" class="hidden space-y-4">
                     <div class="flex justify-between items-center text-xs font-bold text-gray-400 px-1">
                         <span id="scrabble-progress">Runde 1/3</span>
                         <span id="scrabble-timer" class="text-amber-400 text-lg font-black">45</span>
                     </div>
+
+                    <div id="scrabble-action-status" class="text-center text-xs font-bold text-amber-400 hidden">
+                        ⚡ Action-Modus aktiv – Das komplette Wort ändert sich!
+                    </div>
+
                     <div id="scrabble-tiles" class="flex flex-wrap justify-center gap-2"></div>
                     <div class="glass-card p-5 space-y-3">
                         <input type="text" id="scrabble-word-input" placeholder="Dein Wort..." autocomplete="off"
@@ -2585,6 +2591,15 @@ VIEW: TV-QUIZ SETUP
                                 <span class="font-bold text-white">Pflichtbuchstabe</span>
                                 <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss im
                                     Wort vorkommen.</span>
+                            </span>
+                        </label>
+                        <label
+                            class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                            <input type="checkbox" id="scrabble-action-mode" class="w-5 h-5 accent-red-500 mt-0.5">
+                            <span class="text-sm">
+                                <span class="font-bold text-white">⚡ Action-Modus</span>
+                                <span class="block text-[11px] text-gray-400">Das komplette Wort ändert sich zufällig –
+                                    sei schnell!</span>
                             </span>
                         </label>
                         <div>
@@ -5895,6 +5910,20 @@ VIEW: TV-QUIZ SETUP
             const wordMode = (document.getElementById("scrabble-wordmode") || {}).value || "kids";
             const requireLetter = !!(document.getElementById("scrabble-require-letter") || {}).checked;
             const startRack = generateScrabbleRack(difficulty, requireLetter, wordMode);
+            // scrabbleState = {
+            //     playerKeys: checked,
+            //     rounds,
+            //     round: 1,
+            //     playerIndex: 0,
+            //     difficulty,
+            //     wordMode,
+            //     currentLetters: startRack.letters,
+            //     solution: startRack.solution,
+            //     required: startRack.required,
+            //     requireLetter,
+            //     usedWords: new Set(),
+            //     scores: {}
+            // };
             scrabbleState = {
                 playerKeys: checked,
                 rounds,
@@ -5907,12 +5936,39 @@ VIEW: TV-QUIZ SETUP
                 required: startRack.required,
                 requireLetter,
                 usedWords: new Set(),
-                scores: {}
+                scores: {},
+                // NEUE ACTION-MODE VARIABLEN ↓
+                actionMode: document.getElementById('scrabble-action-mode').checked,
+                changeInterval: null,
+                nextChangeTime: 0,
+                changeCount: 0,
+                maxChanges: 5,
+                bonusEarned: false
             };
             checked.forEach(k => scrabbleState.scores[k] = 0);
             switchView('scrabble-play');
             showScrabbleTurnIntro();
         }
+
+        // function showScrabbleTurnIntro() {
+        //     const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
+        //     const isSolo = scrabbleState.playerKeys.length === 1;
+        //     document.getElementById("scrabble-turn-title").innerText = isSolo ?
+        //         `Los geht's, ${esc(ALL_PROFILES[key].name)}!` :
+        //         `${esc(ALL_PROFILES[key].name)} ist dran!`;
+
+        //     let sub = isSolo ?
+        //         `Runde ${scrabbleState.round}/${scrabbleState.rounds} – knack deinen Highscore!` :
+        //         `Runde ${scrabbleState.round}/${scrabbleState.rounds} – gib das Handy weiter.`;
+        //     if (scrabbleState.lastSolution) {
+        //         sub = `💡 Letzte Runde war z.B. "${scrabbleState.lastSolution}" möglich.\n` + sub;
+        //         scrabbleState.lastSolution = null;
+        //     }
+        //     document.getElementById("scrabble-turn-sub").innerText = sub;
+
+        //     document.getElementById("scrabble-turn-intro").classList.remove("hidden");
+        //     document.getElementById("scrabble-play-area").classList.add("hidden");
+        // }
 
         function showScrabbleTurnIntro() {
             const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
@@ -5924,6 +5980,12 @@ VIEW: TV-QUIZ SETUP
             let sub = isSolo ?
                 `Runde ${scrabbleState.round}/${scrabbleState.rounds} – knack deinen Highscore!` :
                 `Runde ${scrabbleState.round}/${scrabbleState.rounds} – gib das Handy weiter.`;
+
+            // NEU: Action-Mode Hinweis
+            if (scrabbleState.actionMode) {
+                sub += ` ⚡ Action-Modus: Das komplette Wort ändert sich!`;
+            }
+
             if (scrabbleState.lastSolution) {
                 sub = `💡 Letzte Runde war z.B. "${scrabbleState.lastSolution}" möglich.\n` + sub;
                 scrabbleState.lastSolution = null;
@@ -5937,6 +5999,18 @@ VIEW: TV-QUIZ SETUP
         function beginScrabbleTurn() {
             document.getElementById("scrabble-turn-intro").classList.add("hidden");
             document.getElementById("scrabble-play-area").classList.remove("hidden");
+
+            // Action-Status einblenden
+            const statusEl = document.getElementById("scrabble-action-status");
+            if (statusEl) {
+                if (scrabbleState.actionMode) {
+                    statusEl.classList.remove("hidden");
+                    statusEl.innerText = "⚡ Action-Modus aktiv – Das komplette Wort ändert sich!";
+                } else {
+                    statusEl.classList.add("hidden");
+                }
+            }
+
             const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
             document.getElementById("scrabble-progress").innerText =
                 `Runde ${scrabbleState.round}/${scrabbleState.rounds} – ${esc(ALL_PROFILES[key].name)}`;
@@ -5977,6 +6051,28 @@ VIEW: TV-QUIZ SETUP
                     submitScrabbleWord();
                 }
             }, 1000);
+
+
+
+            function beginScrabbleTurn() {
+                document.getElementById("scrabble-turn-intro").classList.add("hidden");
+                document.getElementById("scrabble-play-area").classList.remove("hidden");
+                const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
+                document.getElementById("scrabble-progress").innerText =
+                    `Runde ${scrabbleState.round}/${scrabbleState.rounds} – ${esc(ALL_PROFILES[key].name)}`;
+                renderScrabbleTiles(scrabbleState.currentLetters, scrabbleState.required);
+
+                // ... bestehender Code (Timer, Input, etc.) ...
+
+                // NEU: Action-Modus starten
+                if (scrabbleState.actionMode) {
+                    scrabbleState.changeCount = 0;
+                    scrabbleState.bonusEarned = false;
+                    showActionFeedback("⚡ Action-Modus aktiv!");
+                    startActionMode();
+                }
+            }
+
         }
 
         let scrabbleSubmitting = false;
@@ -5985,6 +6081,10 @@ VIEW: TV-QUIZ SETUP
             if (scrabbleSubmitting) return;
             scrabbleSubmitting = true;
             clearInterval(scrabbleTimerInterval);
+
+            // NEU: Action-Mode stoppen (für diese Runde)
+            stopActionMode();
+
             const submitBtn = document.querySelector('#scrabble-play-area button[onclick="submitScrabbleWord()"]');
             if (submitBtn) {
                 submitBtn.disabled = true;
@@ -6004,9 +6104,18 @@ VIEW: TV-QUIZ SETUP
                 required: scrabbleState.required,
                 used: scrabbleState.usedWords
             });
-            const points = res.points;
+            let points = res.points;
             const info = wordStatusInfo(res.status, res);
             const note = info.text ? ` – ${info.text}` : "";
+
+            // NEU: Bonus für schnelles Einreichen im Action-Modus
+            if (scrabbleState.actionMode && points > 0 && !scrabbleState.bonusEarned) {
+                const bonus = 5;
+                points += bonus;
+                scrabbleState.bonusEarned = true;
+                showActionFeedback(`⚡ +${bonus} Bonus-Punkte für schnelles Einreichen!`);
+                SFX.coin();
+            }
 
             scrabbleState.scores[key] += points;
             if (points > 0) SFX.correct();
@@ -6014,20 +6123,53 @@ VIEW: TV-QUIZ SETUP
             showToast(`${esc(ALL_PROFILES[key].name)}: +${points} Punkte${word ? ` für "${word}"` : ""}${note}`, points > 0 ?
                 "success" : "error");
 
-            scrabbleState.playerIndex++;
-            if (scrabbleState.playerIndex >= scrabbleState.playerKeys.length) {
-                scrabbleState.lastSolution = scrabbleState.solution;
-                scrabbleState.playerIndex = 0;
-                scrabbleState.round++;
-                if (scrabbleState.round > scrabbleState.rounds) { finishScrabbleGame(); return; }
-                const nextRack = generateScrabbleRack(scrabbleState.difficulty, scrabbleState.requireLetter,
-                    scrabbleState.wordMode);
-                scrabbleState.currentLetters = nextRack.letters;
-                scrabbleState.solution = nextRack.solution;
-                scrabbleState.required = nextRack.required;
-            }
-            showScrabbleTurnIntro();
+            // ... restlicher Code bleibt gleich ...
         }
+
+
+        const submitBtn = document.querySelector('#scrabble-play-area button[onclick="submitScrabbleWord()"]');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.classList.add("opacity-50");
+        }
+        const word = cleanInput(document.getElementById("scrabble-word-input").value, 20).toUpperCase();
+        const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
+
+        const fb = document.getElementById("scrabble-live-feedback");
+        if (fb) {
+            fb.innerText = "🔍 Prüfe Wort...";
+            fb.className = "text-center text-sm font-bold h-5 text-gray-400";
+        }
+
+        const res = await evaluateScrabbleWord(word, scrabbleState.currentLetters, {
+            minWord: (SCRABBLE_DIFFICULTIES[scrabbleState.difficulty] || {}).minWord,
+            required: scrabbleState.required,
+            used: scrabbleState.usedWords
+        });
+        const points = res.points;
+        const info = wordStatusInfo(res.status, res);
+        const note = info.text ? ` – ${info.text}` : "";
+
+        scrabbleState.scores[key] += points;
+        if (points > 0) SFX.correct();
+        else SFX.wrong();
+        showToast(`${esc(ALL_PROFILES[key].name)}: +${points} Punkte${word ? ` für "${word}"` : ""}${note}`, points > 0 ?
+            "success" : "error");
+
+        scrabbleState.playerIndex++;
+        if (scrabbleState.playerIndex >= scrabbleState.playerKeys.length) {
+            scrabbleState.lastSolution = scrabbleState.solution;
+            scrabbleState.playerIndex = 0;
+            scrabbleState.round++;
+            if (scrabbleState.round > scrabbleState.rounds) { finishScrabbleGame(); return; }
+            const nextRack = generateScrabbleRack(scrabbleState.difficulty, scrabbleState.requireLetter,
+                scrabbleState.wordMode);
+            scrabbleState.currentLetters = nextRack.letters;
+            scrabbleState.solution = nextRack.solution;
+            scrabbleState.required = nextRack.required;
+        }
+        showScrabbleTurnIntro();
+
 
         function wordStatusInfo(status, extra) {
             const e = extra || {};
@@ -6048,10 +6190,102 @@ VIEW: TV-QUIZ SETUP
                     return { icon: "❌", text: "kein gültiges Wort" };
             }
         }
+        // ============================================================
+        // ACTION-MODE FÜR SCRABBLE
+        // ============================================================
+
+        function startActionMode() {
+            if (!scrabbleState || !scrabbleState.actionMode) return;
+
+            // Zufällige Zeit bis zur nächsten Änderung (3-10 Sekunden)
+            scheduleNextChange();
+
+            // Alle 500ms prüfen ob Zeit für Änderung gekommen ist
+            scrabbleState.changeInterval = setInterval(() => {
+                if (Date.now() >= scrabbleState.nextChangeTime) {
+                    changeLettersRandomly();
+                    scheduleNextChange();
+                    scrabbleState.changeCount++;
+
+                    // Nach 5 Änderungen ist Schluss
+                    if (scrabbleState.changeCount >= scrabbleState.maxChanges) {
+                        clearInterval(scrabbleState.changeInterval);
+                        scrabbleState.changeInterval = null;
+                        showActionFeedback("⏰ Action-Modus beendet!");
+                    }
+                }
+            }, 500);
+        }
+
+        function scheduleNextChange() {
+            // Zufällige Zeit zwischen 3 und 12 Sekunden
+            const delay = 3000 + Math.random() * 9000;
+            scrabbleState.nextChangeTime = Date.now() + delay;
+        }
+
+        function changeLettersRandomly() {
+            // KOMPLETT NEUES WORT GENERIEREN
+            const difficulty = scrabbleState.difficulty;
+            const wordMode = scrabbleState.wordMode;
+            const requireLetter = scrabbleState.requireLetter;
+
+            // Neues Wort generieren
+            const newRack = generateScrabbleRack(difficulty, requireLetter, wordMode);
+
+            // Buchstaben ersetzen
+            scrabbleState.currentLetters = newRack.letters;
+            scrabbleState.solution = newRack.solution;
+            scrabbleState.required = newRack.required;
+
+            // Buchstaben neu rendern
+            renderScrabbleTiles(scrabbleState.currentLetters, scrabbleState.required);
+
+            // Eingabefeld zurücksetzen
+            const input = document.getElementById("scrabble-word-input");
+            if (input) {
+                input.value = "";
+                input.focus();
+            }
+
+            // Feedback anzeigen
+            showActionFeedback("⚡ Das komplette Wort hat sich geändert!");
+            SFX.tick();
+
+            // Bonuschance zurücksetzen
+            scrabbleState.bonusEarned = false;
+        }
+
+        function showActionFeedback(text) {
+            const fb = document.getElementById("scrabble-live-feedback");
+            if (fb) {
+                fb.innerText = text;
+                fb.className = "text-center text-sm font-bold h-5 text-amber-400 animate-pulse";
+                setTimeout(() => {
+                    if (fb && scrabbleState && scrabbleState.actionMode) {
+                        fb.className = "text-center text-sm font-bold h-5 text-gray-400";
+                        fb.innerText = "⚡ Action-Modus aktiv!";
+                    }
+                }, 2500);
+            }
+        }
+
+        function stopActionMode() {
+            if (scrabbleState && scrabbleState.changeInterval) {
+                clearInterval(scrabbleState.changeInterval);
+                scrabbleState.changeInterval = null;
+            }
+        }
+
+        // function finishScrabbleGame() {
+        //     const sorted = [...scrabbleState.playerKeys].sort((a, b) => scrabbleState.scores[b] - scrabbleState.scores[a]);
+        //     sorted.forEach((key, i) => { awardXPToProfile(key, i === 0 ? 15 : 5); });
 
         function finishScrabbleGame() {
+            // NEU: Action-Mode stoppen
+            stopActionMode();
+
             const sorted = [...scrabbleState.playerKeys].sort((a, b) => scrabbleState.scores[b] - scrabbleState.scores[a]);
-            sorted.forEach((key, i) => { awardXPToProfile(key, i === 0 ? 15 : 5); });
+            // ... restlicher Code bleibt gleich ...
 
             const medals = ["🥇", "🥈", "🥉"];
             let html = `<div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(245,158,11,0.2);">

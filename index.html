@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.11</title>
+    <title>EduPlay Hub - Familien Edition v2.12</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -1478,7 +1478,7 @@
         <header class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.11</span>
+                <span class="version">v2.12</span>
             </div>
             <div class="header-actions">
                 <button onclick="toggleSound()" title="Ton an/aus">
@@ -1502,7 +1502,7 @@
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.11</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.12</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -3214,6 +3214,7 @@
             showToast(isDark ? "🌙 Dark-Mode aktiv" : "☀️ Light-Mode aktiv", "success", "theme");
         }
 
+
         // ============================================================
         //  AUTH
         // ============================================================
@@ -3825,7 +3826,12 @@
                 return;
             }
 
+            list.innerHTML = words.slice(0, 100).map(w => `
+        <span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm">${esc(w)}</span>
+    `).join('');
         }
+
+
 
         function renderDashQuestions() {
             const grade = document.getElementById('dash-question-grade')?.value || '';
@@ -3845,8 +3851,16 @@
                 return;
             }
 
-
+            list.innerHTML = questions.slice(0, 50).map(q => `
+        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-sm">
+            <div class="font-bold text-white">${esc(q.question)}</div>
+            <div class="text-xs text-gray-400 mt-1">Klasse ${q.grade || '?'} · ${q.subject || '?'} · ${q.answers?.length || 0} Antworten</div>
+        </div>
+    `).join('');
         }
+
+
+
 
         function renderDashVocab() {
             const lang = document.getElementById('dash-vocab-lang')?.value || 'en';
@@ -4644,10 +4658,15 @@
             document.getElementById("drawer-backdrop").classList.add("open");
         }
 
+
+
+
         function closeDrawer() {
             document.getElementById("settings-drawer").classList.remove("open");
             document.getElementById("drawer-backdrop").classList.remove("open");
         }
+
+
 
         document.addEventListener("keydown", e => {
             if (e.key === "Escape") closeDrawer();
@@ -7635,7 +7654,7 @@
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe data.js");
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.11)");
+        console.log("🚀 EduPlay Hub gestartet (v2.12)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
@@ -7698,7 +7717,7 @@
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.11<br>
+            EduPlay Hub · v2.12<br>
             © 2026 · Familien Edition
         </div>
     </div>

@@ -3947,20 +3947,28 @@
 
             let questions = [...QUESTIONS_DATABASE];
 
+            // Filter nach Klasse oder Bereich
             if (grade) {
-                const filtered = questions.filter(q => q.grade == grade);
-                console.log(`  Nach Klasse ${grade} gefiltert: ${filtered.length} Fragen`);
-                questions = filtered;
+                if (grade === 'beruf') {
+                    questions = questions.filter(q => q.area === 'beruf');
+                    console.log(`  Nach Bereich "Berufsschule" gefiltert: ${questions.length} Fragen`);
+                } else if (grade === 'spass') {
+                    questions = questions.filter(q => q.area === 'spass');
+                    console.log(`  Nach Bereich "Spaß" gefiltert: ${questions.length} Fragen`);
+                } else {
+                    questions = questions.filter(q => q.grade == grade);
+                    console.log(`  Nach Klasse ${grade} gefiltert: ${questions.length} Fragen`);
+                }
             }
+
             if (subject) {
-                const filtered = questions.filter(q => q.subject === subject);
-                console.log(`  Nach Fach ${subject} gefiltert: ${filtered.length} Fragen`);
-                questions = filtered;
+                questions = questions.filter(q => q.subject === subject);
+                console.log(`  Nach Fach ${subject} gefiltert: ${questions.length} Fragen`);
             }
+
             if (search) {
-                const filtered = questions.filter(q => q.question.toLowerCase().includes(search));
-                console.log(`  Nach Suche "${search}" gefiltert: ${filtered.length} Fragen`);
-                questions = filtered;
+                questions = questions.filter(q => q.question.toLowerCase().includes(search));
+                console.log(`  Nach Suche "${search}" gefiltert: ${questions.length} Fragen`);
             }
 
             if (questions.length === 0) {
@@ -3972,7 +3980,30 @@
             const displayQuestions = questions.slice(0, 50);
             console.log(`📖 Zeige ${displayQuestions.length} von ${questions.length} Fragen`);
 
-            list.innerHTML = displayQuestions.map((q, index) => `
+            list.innerHTML = displayQuestions.map((q, index) => {
+                // Bestimme den Bereichs-Label
+                let areaLabel = '';
+                if (q.area === 'beruf') {
+                    areaLabel = '🏭 Berufsschule';
+                } else if (q.area === 'spass') {
+                    areaLabel = '🎉 Spaß';
+                } else {
+                    areaLabel = 'Klasse ' + (q.grade || '?');
+                }
+
+                return `
+        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-sm hover:bg-white/10 transition">
+            <div class="font-bold text-white">${index + 1}. ${esc(q.question)}</div>
+            <div class="text-xs text-gray-400 mt-1">${areaLabel} · ${q.subject || '?'} · ${q.answers?.length || 0} Antworten</div>
+            ${q.answers && q.answers.length > 0 ? `<div class="text-xs text-gray-500 mt-1">Antworten: ${q.answers.join(' · ')}</div>` : ''}
+        </div>
+    `}).join('');
+        }
+
+        const displayQuestions = questions.slice(0, 50);
+        console.log(`📖 Zeige ${displayQuestions.length} von ${questions.length} Fragen`);
+
+        list.innerHTML = displayQuestions.map((q, index) => `
         <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-sm hover:bg-white/10 transition">
             <div class="font-bold text-white">${index + 1}. ${esc(q.question)}</div>
             <div class="text-xs text-gray-400 mt-1">Klasse ${q.grade || '?'} · ${q.subject || '?'} · ${q.answers?.length || 0} Antworten</div>

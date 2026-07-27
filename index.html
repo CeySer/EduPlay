@@ -2617,105 +2617,6 @@
 
 
         // ============================================================
-        // DATENBANKEN ZUSAMMENFÜHREN
-        // ============================================================
-        // ============================================================
-        // VOCABULARY_DATABASE - NOTFALL (direkt in index.html)
-        // ============================================================
-        if (typeof VOCABULARY_DATABASE === 'undefined') {
-            console.warn('⚠️ VOCABULARY_DATABASE wird nicht geladen – verwende Notfall-Datenbank!');
-
-            window.VOCABULARY_DATABASE = {
-                en: {
-                    k1: {
-                        label: "1. Klasse · Erste Wörter",
-                        words: [
-                            { de: "Hallo", foreign: "Hello" },
-                            { de: "Tschüss", foreign: "Goodbye" },
-                            { de: "Ja", foreign: "Yes" },
-                            { de: "Nein", foreign: "No" },
-                            { de: "Katze", foreign: "Cat" },
-                            { de: "Hund", foreign: "Dog" },
-                            { de: "Haus", foreign: "House" },
-                            { de: "Baum", foreign: "Tree" },
-                            { de: "Blume", foreign: "Flower" },
-                            { de: "Sonne", foreign: "Sun" }
-                        ]
-                    },
-                    k2: {
-                        label: "2. Klasse · Grundwortschatz",
-                        words: [
-                            { de: "Apfel", foreign: "Apple" },
-                            { de: "Banane", foreign: "Banana" },
-                            { de: "Auto", foreign: "Car" },
-                            { de: "Flugzeug", foreign: "Plane" },
-                            { de: "Schule", foreign: "School" },
-                            { de: "Lehrer", foreign: "Teacher" },
-                            { de: "Schüler", foreign: "Student" },
-                            { de: "Buch", foreign: "Book" },
-                            { de: "Tisch", foreign: "Table" },
-                            { de: "Stuhl", foreign: "Chair" }
-                        ]
-                    }
-                },
-                tr: {
-                    k1: {
-                        label: "1. Sınıf · İlk Kelimeler",
-                        words: [
-                            { de: "Hallo", foreign: "Merhaba" },
-                            { de: "Tschüss", foreign: "Hoşçakal" },
-                            { de: "Ja", foreign: "Evet" },
-                            { de: "Nein", foreign: "Hayır" },
-                            { de: "Katze", foreign: "Kedi" },
-                            { de: "Hund", foreign: "Köpek" },
-                            { de: "Haus", foreign: "Ev" },
-                            { de: "Baum", foreign: "Ağaç" },
-                            { de: "Blume", foreign: "Çiçek" },
-                            { de: "Sonne", foreign: "Güneş" }
-                        ]
-                    }
-                }
-            };
-
-            console.log('✅ VOCABULARY_DATABASE (Notfall) geladen!');
-            console.log(`📝 Sprachen: ${Object.keys(window.VOCABULARY_DATABASE).join(', ')}`);
-        }
-        // ============================================================
-        // DATENBANKEN ZUSAMMENFÜHREN
-        // ============================================================
-
-        // 1. Fragen aus den einzelnen Dateien zusammenführen
-        const QUESTIONS_DATABASE = [];
-        if (typeof SCHOOL_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS);
-        }
-        if (typeof BERUFS_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...BERUFS_QUESTIONS);
-        }
-        if (typeof FUN_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...FUN_QUESTIONS);
-        }
-
-        // 2. Vokabeln - werden bereits von vocabulary.js geladen
-        // Die Variable VOCABULARY_DATABASE existiert bereits!
-
-        // 3. Wörter für Buchstabensalat zusammenführen
-        const GERMAN_WORDS = [];
-        if (typeof GERMAN_WORDS_KIDS !== 'undefined') {
-            GERMAN_WORDS.push(...GERMAN_WORDS_KIDS);
-        }
-        if (typeof GERMAN_WORDS_ADULT !== 'undefined') {
-            GERMAN_WORDS.push(...GERMAN_WORDS_ADULT);
-        }
-
-        console.log('📚 Daten geladen:');
-        console.log(`📖 Fragen: ${QUESTIONS_DATABASE.length}`);
-        console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'} Sprachen`);
-        console.log(`🔤 Wörter: ${GERMAN_WORDS.length}`);
-
-
-
-        // ============================================================
         //  FIREBASE INITIALISIERUNG
         // ============================================================
         const firebaseConfig = {
@@ -2731,9 +2632,6 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // ============================================================
-        //  GLOBALE VARIABLEN
-        // ============================================================
 
         // ============================================================
         //  DEBUG-FUNKTIONEN (NEU)

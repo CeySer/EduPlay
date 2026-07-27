@@ -8295,8 +8295,13 @@ VIEW: TV-QUIZ SETUP
                 return;
             }
 
-            // NUR die Kacheln, KEIN "Zurück zur Übersicht" Button mehr!
-            let html = '';
+            // "Zurück zur Übersicht" Button oberhalb der Kategorien
+            let html = `
+        <button onclick="switchView('family-hub')" 
+                class="w-full mb-4 p-3 bg-gray-800 border border-gray-700 rounded-xl text-left hover:border-blue-500 transition-all flex items-center gap-2 text-sm text-gray-400 hover:text-white">
+            ← Zurück zur Übersicht
+        </button>
+    `;
 
             const keys = Object.keys(categories);
             keys.forEach(key => {

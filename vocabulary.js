@@ -15,11 +15,7 @@ const VOCABULARY_DATABASE = {
                 { de: "Ja", foreign: "Yes" },
                 { de: "Nein", foreign: "No" },
                 { de: "Katze", foreign: "Cat" },
-                { de: "Hund", foreign: "Dog" },
-                { de: "Haus", foreign: "House" },
-                { de: "Baum", foreign: "Tree" },
-                { de: "Blume", foreign: "Flower" },
-                { de: "Sonne", foreign: "Sun" }
+
             ]
         },
         k2: {
@@ -27,14 +23,7 @@ const VOCABULARY_DATABASE = {
             words: [
                 { de: "Apfel", foreign: "Apple" },
                 { de: "Banane", foreign: "Banana" },
-                { de: "Auto", foreign: "Car" },
-                { de: "Flugzeug", foreign: "Plane" },
-                { de: "Schule", foreign: "School" },
-                { de: "Lehrer", foreign: "Teacher" },
-                { de: "Schüler", foreign: "Student" },
-                { de: "Buch", foreign: "Book" },
-                { de: "Tisch", foreign: "Table" },
-                { de: "Stuhl", foreign: "Chair" }
+
             ]
         },
         k3: {
@@ -42,14 +31,6 @@ const VOCABULARY_DATABASE = {
             words: [
                 { de: "Freund", foreign: "Friend" },
                 { de: "Familie", foreign: "Family" },
-                { de: "Glücklich", foreign: "Happy" },
-                { de: "Traurig", foreign: "Sad" },
-                { de: "Groß", foreign: "Big" },
-                { de: "Klein", foreign: "Small" },
-                { de: "Schnell", foreign: "Fast" },
-                { de: "Langsam", foreign: "Slow" },
-                { de: "Hell", foreign: "Bright" },
-                { de: "Dunkel", foreign: "Dark" }
             ]
         },
         k4: {
@@ -124,13 +105,7 @@ const VOCABULARY_DATABASE = {
                 { de: "Freund", foreign: "Arkadaş" },
                 { de: "Familie", foreign: "Aile" },
                 { de: "Glücklich", foreign: "Mutlu" },
-                { de: "Traurig", foreign: "Üzgün" },
-                { de: "Groß", foreign: "Büyük" },
-                { de: "Klein", foreign: "Küçük" },
-                { de: "Schnell", foreign: "Hızlı" },
-                { de: "Langsam", foreign: "Yavaş" },
-                { de: "Hell", foreign: "Aydınlık" },
-                { de: "Dunkel", foreign: "Karanlık" }
+
             ]
         }
     }

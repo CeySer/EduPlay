@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.15</title>
+    <title>EduPlay Hub - Familien Edition v2.16</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -1481,7 +1481,7 @@
         <header class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.15</span>
+                <span class="version">v2.16</span>
             </div>
             <div class="header-actions">
                 <button onclick="toggleSound()" title="Ton an/aus">
@@ -1505,7 +1505,7 @@
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.15</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.16</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -2003,7 +2003,7 @@
             VIEW: LIVE-DUELL SETUP
             ========================================================== -->
             <div id="view-live-duel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">← Menü</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Menü</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 id="live-duel-setup-title" class="text-2xl font-black text-center text-rose-400">⚔️ Live-Duell
                     </h2>
@@ -2092,7 +2092,7 @@
             ========================================================== -->
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
-                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">← Menü</button>
+                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Menü</button>
                     <div id="live-duel-status" class="text-xs font-bold text-gray-400"></div>
                     <div id="live-duel-countdown" class="min-w-[3rem] text-center text-xl font-black text-amber-400">
                     </div>
@@ -2104,13 +2104,16 @@
             VIEW: LIVE-DUELL ERGEBNIS
             ========================================================== -->
             <div id="view-live-duel-result" class="view hidden space-y-4">
-                <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">← Menü</button>
+                <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Menü</button>
                 <div id="live-duel-result-content"></div>
             </div>
 
             <!-- ==========================================================
             VIEW: HAUPTMENÜ
             ========================================================== -->
+            <!-- ==========================================================
+VIEW: HAUPTMENÜ
+========================================================= -->
             <div id="view-menu" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">← Spieler
@@ -2236,7 +2239,8 @@
             VIEW: BELOHNUNGEN EINLÖSEN
             ========================================================== -->
             <div id="view-rewards" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">← Menü</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
+                    Übersicht</button>
                 <div class="glass-card p-5">
                     <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen</h3>
                     <p class="text-xs text-gray-400 mb-4">Du hast <span id="rewards-coin-balance"
@@ -2381,7 +2385,7 @@
             VIEW: FOKUS LERNZEIT
             ========================================================== -->
             <div id="view-fokus" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">← Menü</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Menü</button>
                 <div class="glass-card p-8 text-center space-y-6 shadow-lg">
                     <div class="text-6xl">⏱️</div>
                     <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
@@ -2404,7 +2408,7 @@ VIEW: LESEN LERNEN
 ========================================================== -->
             <div id="view-lesen" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">← Menü</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Menü</button>
                     <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
                     <span class="w-20"></span>
                 </div>
@@ -2428,10 +2432,12 @@ VIEW: LESEN LERNEN
 
 
             <!-- ==========================================================
-            VIEW: QUIZ SETUP
-            ========================================================== -->
+<!-- ==========================================================
+VIEW: QUIZ SETUP
+========================================================= -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">← Menü</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
+                    Übersicht</button>
                 <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
                     class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center"
                     style="background:var(--gradient-rose);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
@@ -2510,8 +2516,12 @@ VIEW: LESEN LERNEN
             <!-- ==========================================================
             VIEW: TV-QUIZ SETUP
             ========================================================== -->
+            <!-- ==========================================================
+VIEW: TV-QUIZ SETUP
+========================================================= -->
             <div id="view-tv-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">← Menü</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">←
+                    Übersicht</button>
                 <div class="glass-card p-6 space-y-6 text-center">
                     <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
                     <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die
@@ -7922,7 +7932,7 @@ VIEW: LESEN LERNEN
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe vocabulary.js");
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.15)");
+        console.log("🚀 EduPlay Hub gestartet (v2.16)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
@@ -7987,7 +7997,7 @@ VIEW: LESEN LERNEN
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.15<br>
+            EduPlay Hub · v2.16<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -8376,6 +8386,19 @@ VIEW: LESEN LERNEN
             container.innerHTML = html;
         }
 
+        //     function renderBuchstaben(item) {
+        //         return `
+        //     <div class="text-center py-6">
+        //         <div class="text-8xl font-black text-blue-400 mb-2">${item.letter}</div>
+        //         <div class="text-3xl font-bold text-white">${item.word}</div>
+        //         <div class="text-6xl my-4">${item.image}</div>
+        //         <div class="text-sm text-gray-400">Klingt wie: <span class="text-yellow-400 font-bold">"${item.sound}"</span></div>
+        //         ${hoerButton(item.letter + '. ' + item.word)}
+        //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
+        //     </div>
+        // `;
+        // }
+
         function renderBuchstaben(item) {
             return `
         <div class="text-center py-6">
@@ -8389,6 +8412,18 @@ VIEW: LESEN LERNEN
     `;
         }
 
+        //     function renderSilben(item) {
+        //         return `
+        //     <div class="text-center py-6">
+        //         <div class="text-5xl font-bold text-white mb-4">${item.word}</div>
+        //         <div class="text-2xl text-yellow-400 font-bold">👏 ${item.syllables}</div>
+        //         <div class="text-sm text-gray-400 mt-2">${item.count} Silbe${item.count > 1 ? 'n' : ''}</div>
+        //         ${hoerButton(item.word)}
+        //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
+        //     </div>
+        // `;
+        //     }
+
         function renderSilben(item) {
             return `
         <div class="text-center py-6">
@@ -8400,6 +8435,18 @@ VIEW: LESEN LERNEN
         </div>
     `;
         }
+
+        //     function renderWordWithImage(item) {
+        //         return `
+        //     <div class="text-center py-6">
+        //         <div class="text-7xl mb-4">${item.image}</div>
+        //         <div class="text-4xl font-bold text-white">${item.word}</div>
+        //         ${item.syllables ? `<div class="text-sm text-gray-400 mt-2">👏 ${item.syllables}</div>` : ''}
+        //         ${hoerButton(item.word)}
+        //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
+        //     </div>
+        // `;
+        //     }
 
         function renderWordWithImage(item) {
             return `
@@ -8413,6 +8460,18 @@ VIEW: LESEN LERNEN
     `;
         }
 
+        //     function renderSentence(item) {
+        //         return `
+        //     <div class="text-center py-6">
+        //         <div class="text-4xl font-bold text-white mb-4">${item.emoji}</div>
+        //         <div class="text-2xl font-bold text-yellow-400 leading-relaxed">${item.sentence}</div>
+        //         <div class="text-xs text-gray-500 mt-2">${item.words.join(' · ')}</div>
+        //         ${hoerButton(item.sentence)}
+        //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
+        //     </div>
+        // `;
+        //     }
+
         function renderSentence(item) {
             return `
         <div class="text-center py-6">
@@ -8424,7 +8483,6 @@ VIEW: LESEN LERNEN
         </div>
     `;
         }
-
         function prepareOptions(values, correctValue) {
             const opts = shuffle(values.slice());
             lesenState.options = opts;
@@ -8437,6 +8495,26 @@ VIEW: LESEN LERNEN
             shuffle(uniq);
             return uniq.slice(0, n);
         }
+
+        //     function renderAnlaute(item) {
+        //         const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        //         const distractors = pickDistractors(letters, item.startsWith, 3);
+        //         const opts = prepareOptions([item.startsWith].concat(distractors), item.startsWith);
+
+        //         const buttons = opts.map((l, i) => `
+        //     <button onclick="lesenCheck(${i})" class="w-16 h-16 text-2xl font-bold bg-gray-700 rounded-xl">${l}</button>
+        // `).join('');
+
+        //         return `
+        //     <div class="text-center py-6">
+        //         <div class="text-6xl mb-4">${item.image}</div>
+        //         <div class="text-3xl font-bold text-white mb-1">${item.word}</div>
+        //         ${hoerButton(item.word)}
+        //         <div class="text-sm text-gray-400 my-3">Mit welchem Buchstaben beginnt das Wort?</div>
+        //         <div class="flex justify-center gap-4 flex-wrap">${buttons}</div>
+        //     </div>
+        // `;
+        //     }
 
         function renderAnlaute(item) {
             const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -8458,6 +8536,24 @@ VIEW: LESEN LERNEN
     `;
         }
 
+        //     function renderWordMatch(item) {
+        //         const categories = lesenDB();
+        //         const pool = (categories.word_match.items || []).map(it => it.word);
+        //         const distractors = pickDistractors(pool, item.word, 3);
+        //         const opts = prepareOptions([item.word].concat(distractors), item.word);
+
+        //         const buttons = opts.map((w, i) => `
+        //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${w}</button>
+        // `).join('');
+
+        //         return `
+        //     <div class="text-center py-6">
+        //         <div class="text-7xl mb-4">${item.image}</div>
+        //         <div class="text-sm text-gray-400 mb-4">Welches Wort passt zum Bild?</div>
+        //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
+        //     </div>
+        // `;
+        //     }
         function renderWordMatch(item) {
             const categories = lesenDB();
             const pool = (categories.word_match.items || []).map(it => it.word);
@@ -8476,8 +8572,7 @@ VIEW: LESEN LERNEN
         </div>
     `;
         }
-
-        // --------------------------------------------------------
+        //     // --------------------------------------------------------
         // DAS IST DIE ÜBERARBEITETE "LESEN MIT VERSTÄNDNIS"-FUNKTION
         // --------------------------------------------------------
         let comprehensionStep = 0;
@@ -8519,6 +8614,36 @@ VIEW: LESEN LERNEN
             renderLesenExercise(lesenState.currentCategory);
         }
         // --------------------------------------------------------
+
+        //     function renderWordPuzzle(item) {
+        //         const shownLetters = shuffle(item.letters.split('-'));
+        //         const categories = lesenDB();
+        //         const allWords = [];
+        //         Object.keys(categories).forEach(key => {
+        //             (categories[key].items || []).forEach(it => {
+        //                 if (it.solution) allWords.push(it.solution);
+        //                 else if (it.word) allWords.push(it.word.toUpperCase());
+        //             });
+        //         });
+        //         const distractors = pickDistractors(allWords, item.solution, 3);
+        //         const opts = prepareOptions([item.solution].concat(distractors), item.solution);
+
+        //         const tiles = shownLetters.map(l => `
+        //     <span class="w-14 h-14 bg-gray-700 rounded-xl flex items-center justify-center text-2xl font-bold text-white">${l}</span>
+        // `).join('');
+
+        //         const buttons = opts.map((w, i) => `
+        //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${w}</button>
+        // `).join('');
+
+        //         return `
+        //     <div class="text-center py-4">
+        //         <div class="text-sm text-gray-400 mb-3">Setze die Buchstaben zum Wort zusammen</div>
+        //         <div class="flex justify-center gap-2 flex-wrap mb-4">${tiles}</div>
+        //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
+        //     </div>
+        // `;
+        //     }
 
         function renderWordPuzzle(item) {
             const shownLetters = shuffle(item.letters.split('-'));

@@ -64,12 +64,8 @@ function getCurrentProfileId() {
 
 // Ton-Einstellung der App respektieren (Auto-Vorlesen nur, wenn Ton an ist).
 // In EduPlay steuert soundOn den Ton-Schalter.
-function lesenSoundOn() {
-    try {
-        if (typeof soundOn !== 'undefined') return !!soundOn;
-    } catch (e) {}
-    return true;
-}
+// Auto-Vorlesen ist AUS – der Nutzer muss auf den Hören-Button klicken.
+// (Nichts tun, das Vorlesen ist jetzt manuell)
 
 // Vorlesen per Browser-Sprachausgabe (für Erstleser der eigentliche Kern).
 function speakLesen(text) {
@@ -78,7 +74,25 @@ function speakLesen(text) {
         window.speechSynthesis.cancel();
         const u = new SpeechSynthesisUtterance(String(text));
         u.lang = 'de-DE';
-        u.rate = 0.85;
+        u.rate = 0.9;
+        u.pitch = 1.0;
+        
+        // Versuche, eine natürliche deutsche Stimme zu finden
+        const voices = window.speechSynthesis.getVoices();
+        const deVoices = voices.filter(v => v.lang.startsWith('de'));
+        
+        // Bevorzugte Stimmen (Google/Apple sind meist besser)
+        const preferred = ['Google Deutsch', 'Google Deutsche', 'Samantha', 'Anna', 'Maria'];
+        let found = null;
+        for (const name of preferred) {
+            found = deVoices.find(v => v.name.includes(name));
+            if (found) break;
+        }
+        if (!found && deVoices.length > 0) {
+            found = deVoices[0];
+        }
+        if (found) u.voice = found;
+        
         window.speechSynthesis.speak(u);
     } catch (e) {}
 }
@@ -188,6 +202,9 @@ function startLesenCategory(categoryKey) {
     lesenState.wrongAttempts = 0;
     lesenState.total = (categories[categoryKey].items || []).length;
 
+        // Comprehension-Schritt zurücksetzen
+    comprehensionStep = 0;
+    
     const ex = document.getElementById('lesen-exercise');
     const gr = document.getElementById('lesen-categories');
     if (ex) ex.classList.remove('hidden');
@@ -195,6 +212,9 @@ function startLesenCategory(categoryKey) {
 
     renderLesenExercise(categoryKey);
 }
+
+
+
 
 function renderLesenExercise(categoryKey) {
     const container = document.getElementById('lesen-exercise');
@@ -376,6 +396,9 @@ function renderWordMatch(item) {
     `;
 }
 
+// Zustand für die Comprehension-Zwei-Schritt-Ansicht
+let comprehensionStep = 0; // 0 = Satz anzeigen, 1 = Frage anzeigen
+
 function renderComprehension(item) {
     const categories = lesenDB();
     const pool = (categories.reading_comprehension.items || []).map(it => it.answer);
@@ -387,14 +410,38 @@ function renderComprehension(item) {
                 class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white hover:bg-gray-600 transition-all">${a}</button>
     `).join('');
 
+    // Wenn Schritt 0: Nur den Satz zeigen
+    if (comprehensionStep === 0) {
+        return `
+            <div class="text-center py-6">
+                <div class="text-xl font-bold text-white leading-relaxed mb-4">📖 Lies den Satz:</div>
+                <div class="text-2xl font-bold text-yellow-400 leading-relaxed">${item.sentence}</div>
+                ${hoerButton(item.sentence)}
+                <button onclick="comprehensionNext()" 
+                        class="mt-6 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500">
+                    ➔ Weiter zur Frage
+                </button>
+            </div>
+        `;
+    }
+
+    // Schritt 1: Frage mit Antworten
     return `
         <div class="text-center py-4">
-            <div class="text-xl font-bold text-white leading-relaxed mb-2">📖 ${item.sentence}</div>
+            <div class="text-sm text-gray-400 mb-2">📖 ${item.sentence}</div>
             ${hoerButton(item.sentence)}
             <div class="text-lg text-yellow-400 font-bold my-4">❓ ${item.question}</div>
             <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
         </div>
     `;
+}
+
+// Weiter zur Frage
+function comprehensionNext() {
+    comprehensionStep = 1;
+    // Aktuelle Übung neu rendern
+    const cat = lesenState.currentCategory;
+    renderLesenExercise(cat);
 }
 
 function renderWordPuzzle(item) {
@@ -446,16 +493,47 @@ function renderDefault(item) {
 
 function lesenCheck(idx) {
     if (idx === lesenState.correctIndex) {
-        if (typeof showToast === 'function') showToast('✅ Richtig!', 'success');
-        if (lesenSoundOn()) speakLesen('Richtig!');
+        // Richtig: Nur ein schöner Ton, kein Text
+        playLesenSound(true);
         lesenState.score++;
-        setTimeout(() => lesenNext(), 550);
+        setTimeout(() => lesenNext(), 500);
     } else {
         lesenState.wrongAttempts++;
-        if (typeof showToast === 'function') showToast('❌ Versuch es nochmal!', 'error');
+        // Falsch: Anderer Ton, kein Text
+        playLesenSound(false);
     }
 }
 
+// Funktion für die Töne (nutzt die bestehenden SFX-Funktionen)
+function playLesenSound(correct) {
+    try {
+        if (correct) {
+            // Fröhlicher, aufsteigender Ton
+            if (typeof playTones === 'function') {
+                playTones([
+                    [523, 0.1],
+                    [659, 0.1],
+                    [784, 0.2]
+                ], 'sine', 0.15);
+            } else if (typeof SFX !== 'undefined' && SFX.correct) {
+                SFX.correct();
+            }
+        } else {
+            // Sanfter, absteigender Ton (nicht zu hart)
+            if (typeof playTones === 'function') {
+                playTones([
+                    [392, 0.12],
+                    [349, 0.12],
+                    [330, 0.2]
+                ], 'sine', 0.12);
+            } else if (typeof SFX !== 'undefined' && SFX.wrong) {
+                SFX.wrong();
+            }
+        }
+    } catch (e) {
+        // Fallback: Nichts
+    }
+}
 // ============================================================
 //  WEITER / FORTSCHRITT / ERGEBNIS
 // ============================================================

@@ -6121,13 +6121,25 @@ VIEW: TV-QUIZ SETUP
             }, 1000);
 
             // ⚡ Action-Modus starten
+            // ⚡ Action-Modus starten
             if (scrabbleState.actionMode) {
                 scrabbleState.changeCount = 0;
                 scrabbleState.bonusEarned = false;
                 showActionFeedback("⚡ Action-Modus aktiv!");
-                startActionMode();
+
+                // HIER IST DIE ÄNDERUNG: 
+                // 1. Variable für das aktuelle Wort (z.B. scrabbleState.currentWord)
+                // 2. Die HTML-ID, wo das Wort steht (z.B. "word-display")
+                // 3. Die Zeit in Sekunden (z.B. 5)
+                startActionMode(scrabbleState.currentWord, "scrabble-wort-anzeige", 5);
             }
         }
+
+
+
+
+
+
         // function beginScrabbleTurn() {
         //     document.getElementById("scrabble-turn-intro").classList.add("hidden");
         //     document.getElementById("scrabble-play-area").classList.remove("hidden");
@@ -6778,6 +6790,32 @@ VIEW: TV-QUIZ SETUP
                 names.map(p =>
                     `<div class="bg-white/5 border border-white/5 rounded-xl p-4 text-center"><div class="text-3xl">🙋</div><div class="font-bold text-white mt-2">${esc(p.name)}</div></div>`
                 ).join('');
+        }
+
+
+
+        // Funktion für den Action Mode: Mischt die Buchstaben nach Ablauf der Zeit
+        function startActionMode(wort, htmlElementId, wartezeitSekunden) {
+            setTimeout(function () {
+                // Wort in Buchstaben zerlegen
+                let buchstaben = wort.split('');
+
+                // Buchstaben zufällig vertauschen
+                for (let i = buchstaben.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    let temp = buchstaben[i];
+                    buchstaben[i] = buchstaben[j];
+                    buchstaben[j] = temp;
+                }
+
+                // Wieder zu einem Wort zusammensetzen
+                let gemischtesWort = buchstaben.join('');
+
+                // Auf dem Bildschirm anzeigen
+                document.getElementById(htmlElementId).innerText = gemischtesWort;
+                console.log("Action Mode: Wort wurde gemischt zu " + gemischtesWort);
+
+            }, wartezeitSekunden * 1000);
         }
 
         function startTVGameLoop() {

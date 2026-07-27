@@ -1,3 +1,27 @@
+const BERUFSSCHULE = [
+    { key: "beruf_kfz", label: "🔧 KFZ-Mechatronik" },
+    { key: "beruf_elektro", label: "⚡ Elektroniker/in" },
+    { key: "beruf_tischler", label: "🪵 Tischler/in" },
+    { key: "beruf_industriemechaniker", label: "⚙️ Industriemechaniker/in" },
+    { key: "beruf_fachinformatiker", label: "💻 Fachinformatiker/in" },
+    { key: "beruf_buero", label: "📇 Kaufmann/-frau für Büromanagement" },
+    { key: "beruf_verkaeufer", label: "🛒 Verkäufer/in & Einzelhandel" },
+    { key: "beruf_pflege", label: "🩺 Pflegefachkraft" },
+    { key: "beruf_friseur", label: "✂️ Friseur/in" }
+];
+
+const BERUFSSCHULE = [
+    { key: "beruf_kfz", label: "🔧 KFZ-Mechatronik" },
+    { key: "beruf_elektro", label: "⚡ Elektroniker/in" },
+    { key: "beruf_tischler", label: "🪵 Tischler/in" },
+    { key: "beruf_industriemechaniker", label: "⚙️ Industriemechaniker/in" },
+    { key: "beruf_fachinformatiker", label: "💻 Fachinformatiker/in" },
+    { key: "beruf_buero", label: "📇 Kaufmann/-frau für Büromanagement" },
+    { key: "beruf_verkaeufer", label: "🛒 Verkäufer/in & Einzelhandel" },
+    { key: "beruf_pflege", label: "🩺 Pflegefachkraft" },
+    { key: "beruf_friseur", label: "✂️ Friseur/in" }
+];
+
 const BERUFS_QUESTIONS = [
     // ============ KFZ-Mechatronik ============
     { id: "q0542", category: "beruf_kfz", area: "beruf", subject: "kfz", question: "Wofür steht die Abkürzung ABS?", answers: ["Anti-Blockier-System", "Automatik-Brems-Sensor", "Achsen-Balance-Steuerung", "Automatische Bremskraft-Steigerung"], correct: 0, difficulty: "schwer", points: 15, explanation: "ABS verhindert das Blockieren der Räder beim Bremsen." },

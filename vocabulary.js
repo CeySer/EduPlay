@@ -122,3 +122,9 @@ Object.keys(VOCABULARY_DATABASE).forEach(lang => {
     });
     console.log(`  ${lang}: ${levels.length} Niveaus, ${total} Wörter`);
 });
+
+
+// Für Browser (globale Variablen)
+if (typeof window !== 'undefined') {
+    window.VOCABULARY_DATABASE = VOCABULARY_DATABASE;
+}

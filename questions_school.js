@@ -13,21 +13,6 @@ const CURRICULUM = [
     { grade: 1, label: "Klasse 1", stufe: "Grundschule", subjects: [{ key: "k1_deutsch", label: "📖 Deutsch (Lesen & Schreiben)" }, { key: "k1_mathe", label: "🔢 Mathematik" }, { key: "k1_sachunterricht", label: "🌱 Sachunterricht" }] },
     { grade: 2, label: "Klasse 2", stufe: "Grundschule", subjects: [{ key: "k2_deutsch", label: "📖 Deutsch" }, { key: "k2_mathe", label: "🔢 Mathematik" }, { key: "k2_sachunterricht", label: "🌱 Sachunterricht" }] },
     { grade: 3, label: "Klasse 3", stufe: "Grundschule", subjects: [{ key: "k3_deutsch", label: "📖 Deutsch" }, { key: "k3_mathe", label: "🔢 Mathematik" }, { key: "k3_sachunterricht", label: "🌱 Sachunterricht" }, { key: "k3_englisch", label: "🇬🇧 Englisch" }, { key: "k3_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
-    // ... alle Klassen bis 13
-];
-// =======================================================
-const QUESTIONS_DATABASE = [
-    // --- Hier kommen alle Schul-Fragen (Klasse 1-13) ---
-    // Siehe separate Datei: school_questions.js
-];
-
-// =======================================================
-// LEHRPLAN-STRUKTUR: welche Faecher gibt es in welcher Klasse
-// =======================================================
-const CURRICULUM = [
-    { grade: 1, label: "Klasse 1", stufe: "Grundschule", subjects: [{ key: "k1_deutsch", label: "📖 Deutsch (Lesen & Schreiben)" }, { key: "k1_mathe", label: "🔢 Mathematik" }, { key: "k1_sachunterricht", label: "🌱 Sachunterricht" }] },
-    { grade: 2, label: "Klasse 2", stufe: "Grundschule", subjects: [{ key: "k2_deutsch", label: "📖 Deutsch" }, { key: "k2_mathe", label: "🔢 Mathematik" }, { key: "k2_sachunterricht", label: "🌱 Sachunterricht" }] },
-    { grade: 3, label: "Klasse 3", stufe: "Grundschule", subjects: [{ key: "k3_deutsch", label: "📖 Deutsch" }, { key: "k3_mathe", label: "🔢 Mathematik" }, { key: "k3_sachunterricht", label: "🌱 Sachunterricht" }, { key: "k3_englisch", label: "🇬🇧 Englisch" }, { key: "k3_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
     { grade: 4, label: "Klasse 4", stufe: "Grundschule", subjects: [{ key: "k4_deutsch", label: "📖 Deutsch (Grammatik)" }, { key: "k4_mathe", label: "🔢 Mathematik" }, { key: "k4_sachunterricht", label: "🌱 Sachunterricht" }, { key: "k4_englisch", label: "🇬🇧 Englisch" }, { key: "k4_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
     { grade: 5, label: "Klasse 5", stufe: "Sekundarstufe I", subjects: [{ key: "k5_deutsch", label: "📖 Deutsch" }, { key: "k5_mathe", label: "🔢 Mathematik" }, { key: "k5_englisch", label: "🇬🇧 Englisch" }, { key: "k5_biologie", label: "🧬 Biologie" }, { key: "k5_erdkunde", label: "🌍 Erdkunde" }, { key: "k5_politik", label: "🏛️ Politik & Gesellschaftslehre" }, { key: "k5_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
     { grade: 6, label: "Klasse 6", stufe: "Sekundarstufe I", subjects: [{ key: "k6_deutsch", label: "📖 Deutsch" }, { key: "k6_mathe", label: "🔢 Mathematik" }, { key: "k6_englisch", label: "🇬🇧 Englisch" }, { key: "k6_biologie", label: "🧬 Biologie" }, { key: "k6_physik", label: "⚡ Physik" }, { key: "k6_geschichte", label: "📜 Geschichte" }, { key: "k6_erdkunde", label: "🌍 Erdkunde" }, { key: "k6_tuerkisch", label: "🇹🇷 Türkisch (Herkunftssprache)" }] },
@@ -986,3 +971,10 @@ const SCHOOL_QUESTIONS = [
   {"id":"q0540","category":"k13_informatik","area":"schule","grade":13,"subject":"informatik","question":"Was ist ein endlicher Automat?","answers":["Modell mit Zuständen und Übergängen","Ein Roboter mit begrenzter Rechenleistung","Ein Computer mit festem Arbeitsspeicher","Ein Netzwerk aus mehreren Servern"],"correct":0,"difficulty":"schwer","points":15,"explanation":"Grundlage für Sprach- und Mustererkennung."},
   {"id":"q0541","category":"k13_informatik","area":"schule","grade":13,"subject":"informatik","question":"Was ist Kryptografie?","answers":["Die Lehre vom Verschlüsseln von Informationen","Das Verkleinern von Dateien ohne Qualitätsverlust","Das nachträgliche Bearbeiten digitaler Bilder","Die Lehre vom Aufbau von Datenbanken"],"correct":0,"difficulty":"schwer","points":15,"explanation":"Man unterscheidet symmetrische und asymmetrische Verfahren."}
 ];
+
+
+// Für Browser (globale Variablen)
+if (typeof window !== 'undefined') {
+    window.CURRICULUM = CURRICULUM;
+    window.SCHOOL_QUESTIONS = SCHOOL_QUESTIONS;
+}

@@ -1,19 +1,4 @@
-const FUN_CATEGORIES = [
-    { key: "spass_allgemein", label: "🏆 Allgemeinwissen" },
-    { key: "spass_kleine", label: "🧸 Für die Kleinen (ganz leicht)" },
-    { key: "spass_wuerdest_du", label: "🤔 Schätzfragen & Würdest du eher" },
-    { key: "spass_nice_to_know", label: "✨ Nice to Know" },
-    { key: "spass_welt", label: "🌍 Ungewöhnliches aus der Welt" },
-    { key: "spass_sport_film", label: "🎬 Sport & Film" },
-    { key: "spass_musik", label: "🎵 Musik" },
-    { key: "spass_essen", label: "🍕 Essen & Trinken" },
-    { key: "spass_tiere", label: "🐾 Tiere" },
-    { key: "spass_laender", label: "🗺️ Länder & Flaggen" },
-    { key: "spass_erfindungen", label: "💡 Erfindungen & Technik" },
-    { key: "spass_raetsel", label: "🧩 Rätsel & Logik" },
-    { key: "spass_humor", label: "😂 Schul- & Alltagshumor" },
-    { key: "spass_beruf_humor", label: "🔧 Berufe mit Humor" }
-];
+
 // Spass-Kategorien - bewusst getrennt vom Lernbereich
 const FUN_CATEGORIES = [
     { key: "spass_allgemein", label: "🏆 Allgemeinwissen" },
@@ -356,3 +341,9 @@ const FUN_QUESTIONS = [
     { id: "q0818", category: "spass_kleine", area: "spass", subject: "kleine", question: "Welches Tier gibt Milch?", answers: ["Kuh 🐄", "Huhn 🐔", "Biene 🐝", "Ente 🦆"], correct: 0, difficulty: "mittel", points: 10, explanation: "Kühe geben Milch – Hühner legen Eier und Bienen machen Honig." },
     { id: "q0819", category: "spass_kleine", area: "spass", subject: "kleine", question: "Was kann man im Frühling auf der Wiese pflücken?", answers: ["Blume 🌷", "Schnee", "Eis", "Stein"], correct: 0, difficulty: "mittel", points: 10, explanation: "Im Frühling blühen die Blumen auf der Wiese." }
 ];
+
+// Für Browser (globale Variablen)
+if (typeof window !== 'undefined') {
+    window.FUN_CATEGORIES = FUN_CATEGORIES;
+    window.FUN_QUESTIONS = FUN_QUESTIONS;
+}

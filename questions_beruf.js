@@ -10,18 +10,6 @@ const BERUFSSCHULE = [
     { key: "beruf_friseur", label: "✂️ Friseur/in" }
 ];
 
-const BERUFSSCHULE = [
-    { key: "beruf_kfz", label: "🔧 KFZ-Mechatronik" },
-    { key: "beruf_elektro", label: "⚡ Elektroniker/in" },
-    { key: "beruf_tischler", label: "🪵 Tischler/in" },
-    { key: "beruf_industriemechaniker", label: "⚙️ Industriemechaniker/in" },
-    { key: "beruf_fachinformatiker", label: "💻 Fachinformatiker/in" },
-    { key: "beruf_buero", label: "📇 Kaufmann/-frau für Büromanagement" },
-    { key: "beruf_verkaeufer", label: "🛒 Verkäufer/in & Einzelhandel" },
-    { key: "beruf_pflege", label: "🩺 Pflegefachkraft" },
-    { key: "beruf_friseur", label: "✂️ Friseur/in" }
-];
-
 const BERUFS_QUESTIONS = [
     // ============ KFZ-Mechatronik ============
     { id: "q0542", category: "beruf_kfz", area: "beruf", subject: "kfz", question: "Wofür steht die Abkürzung ABS?", answers: ["Anti-Blockier-System", "Automatik-Brems-Sensor", "Achsen-Balance-Steuerung", "Automatische Bremskraft-Steigerung"], correct: 0, difficulty: "schwer", points: 15, explanation: "ABS verhindert das Blockieren der Räder beim Bremsen." },
@@ -139,3 +127,9 @@ const BERUFS_QUESTIONS = [
     { id: "q0794", category: "beruf_friseur", area: "beruf", subject: "friseur", question: "Was ist das Ziel einer Kundenberatung vor dem Schnitt?", answers: ["Wünsche, Haarstruktur und Gesichtsform abstimmen", "Möglichst viele teure Pflegeprodukte verkaufen", "Die Dauer des Termins deutlich verkürzen", "Den Termin möglichst lange auszudehnen"], correct: 0, difficulty: "schwer", points: 15, explanation: "Eine gute Beratung verhindert Missverständnisse und Reklamationen." },
     { id: "q0795", category: "beruf_friseur", area: "beruf", subject: "friseur", question: "Was passiert beim Blondieren mit dem Haar?", answers: ["Die natürlichen Pigmente werden aufgehellt", "Zusätzliche Farbpigmente werden eingelagert", "Die Schuppenschicht wird dauerhaft verdichtet", "Die Haarstruktur wird dauerhaft verdichtet"], correct: 0, difficulty: "schwer", points: 15, explanation: "Blondieren belastet das Haar stark, deshalb sind Pflege und Abstände wichtig." }
 ];
+
+// Für Browser (globale Variablen)
+if (typeof window !== 'undefined') {
+    window.BERUFSSCHULE = BERUFSSCHULE;
+    window.BERUFS_QUESTIONS = BERUFS_QUESTIONS;
+}

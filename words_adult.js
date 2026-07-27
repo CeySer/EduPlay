@@ -339,3 +339,9 @@ const GERMAN_WORDS_ADULT = [
     "ZUGANG", "ZUNGE", "ZUSTAND", "ZUTAT", "ZWANG", "ZWECK", "ZWEIFEL", "ZWEIG", "ZWERG", "ZWIEBEL",
     "ZWILLING", "ZWINGE", "ZWINGEN", "ZYKLUS"
 ];
+
+
+// Für Browser (globale Variablen)
+if (typeof window !== 'undefined') {
+    window.GERMAN_WORDS_ADULT = GERMAN_WORDS_ADULT;
+}

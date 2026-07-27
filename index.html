@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.8</title>
+    <title>EduPlay Hub - Familien Edition v2.9</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -1367,7 +1367,7 @@
         <header class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.8</span>
+                <span class="version">v2.9</span>
             </div>
             <div class="header-actions">
                 <button onclick="toggleSound()" title="Ton an/aus">
@@ -1391,7 +1391,7 @@
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.8</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.9</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -3352,34 +3352,28 @@
         let selectedStatPlayer = null;
         let currentDashboardSection = null;
 
-
-
-
-
-
-
-
-
-
-
-
-
+        /**
+         * =========================================================
+         * BESCHREIBUNG: Bereichswechsel im Dashboard (switchDashboardSection)
+         * =========================================================
+         * Schaltet zwischen "Inhalte", "Eltern" und "Statistiken" um.
+         * Befüllt dabei automatisch die Filter und aktualisiert die Zähler.
+         */
         function switchDashboardSection(section) {
-            // Alle Dashboard-Abschnitte ausblenden
-            const sections = document.querySelectorAll('[id^="dash-section-"]');
-            sections.forEach(s => s.classList.add('hidden'));
+            const sections = ['inhalte', 'eltern', 'statistiken'];
+            sections.forEach(s => {
+                const el = document.getElementById('dash-section-' + s);
+                if (el) el.classList.add('hidden');
+            });
 
-            // Gewählten Abschnitt einblenden
             const target = document.getElementById('dash-section-' + section);
-            if (target) {
-                target.classList.remove('hidden');
-            }
+            if (target) target.classList.remove('hidden');
 
             currentDashboardSection = section;
 
-            // Je nach Abschnitt passende Inhalte laden/rendern
             if (section === 'inhalte') {
-                updateDashCounts();
+                initDashFilters();    // Befüllt die Filter-Dropdowns
+                updateDashCounts();   // Aktualisiert die drei Zähler
                 renderDashQuestions();
                 renderDashVocab();
                 renderDashWords();
@@ -3395,14 +3389,98 @@
             }
         }
 
+        /**
+         * =========================================================
+         * BESCHREIBUNG: Dashboard-Zähler (updateDashCounts)
+         * =========================================================
+         * Zählt Fragen, Vokabeln und Wörter aus den Datenbanken
+         * und trägt die Summen in die Spans im Inhalte-Tab ein.
+         */
+        function updateDashCounts() {
+            // 1. Fragen zählen
+            const qCount = typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)
+                ? QUESTIONS_DATABASE.length
+                : 0;
 
+            // 2. Vokabeln zählen (über alle Sprachen und Niveaus)
+            let vocabTotal = 0;
+            if (typeof VOCABULARY_DATABASE !== 'undefined' && VOCABULARY_DATABASE) {
+                Object.keys(VOCABULARY_DATABASE).forEach(lang => {
+                    Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
+                        if (VOCABULARY_DATABASE[lang][level]?.words) {
+                            vocabTotal += VOCABULARY_DATABASE[lang][level].words.length;
+                        }
+                    });
+                });
+            }
 
+            // 3. Wörter zählen
+            const wordTotal = typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)
+                ? GERMAN_WORDS.length
+                : 0;
 
+            // 4. In HTML-Spans eintragen
+            const elQ = document.getElementById('dash-question-count');
+            const elV = document.getElementById('dash-vocab-count');
+            const elW = document.getElementById('dash-word-count');
 
+            if (elQ) elQ.textContent = qCount;
+            if (elV) elV.textContent = vocabTotal;
+            if (elW) elW.textContent = wordTotal;
+        }
 
+        /**
+         * =========================================================
+         * BESCHREIBUNG: Dynamische Filter befüllen (initDashFilters)
+         * =========================================================
+         * Liest verfügbare Klassen, Fächer und Wortlängen aus
+         * den Datenbanken und befüllt die Auswahl-Dropdowns.
+         */
+        function initDashFilters() {
+            // 1. Klassen-Filter
+            const qGradeSel = document.getElementById('dash-question-grade');
+            if (qGradeSel && typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
+                const grades = [...new Set(QUESTIONS_DATABASE.map(q => q.grade).filter(Boolean))].sort((a, b) => a - b);
+                qGradeSel.innerHTML = '<option value="">Alle Klassen</option>' +
+                    grades.map(g => `<option value="${g}">${g}. Klasse</option>`).join('');
+            }
 
+            // 2. Fächer-Filter
+            const qSubSel = document.getElementById('dash-question-subject');
+            if (qSubSel && typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
+                const subjects = [...new Set(QUESTIONS_DATABASE.map(q => q.subject).filter(Boolean))].sort();
+                qSubSel.innerHTML = '<option value="">Alle Fächer</option>' +
+                    subjects.map(s => `<option value="${s}">${s}</option>`).join('');
+            }
 
+            // 3. Vokabel-Niveaus
+            updateDashVocabLevels();
 
+            // 4. Wortlängen-Filter
+            const wLenSel = document.getElementById('dash-word-length');
+            if (wLenSel && typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
+                const lengths = [...new Set(GERMAN_WORDS.map(w => w.length))].sort((a, b) => a - b);
+                wLenSel.innerHTML = '<option value="">Alle Längen</option>' +
+                    lengths.map(l => `<option value="${l}">${l} Buchstaben</option>`).join('');
+            }
+        }
+
+        /**
+         * =========================================================
+         * BESCHREIBUNG: Vokabel-Niveaus aktualisieren (updateDashVocabLevels)
+         * =========================================================
+         * Lädt die Niveaus (z.B. Klasse 1-4 oder A1/A2) passend zur
+         * aktuell gewählten Sprache (Englisch/Türkisch).
+         */
+        function updateDashVocabLevels() {
+            const vLang = document.getElementById('dash-vocab-lang')?.value || 'en';
+            const vLevelSel = document.getElementById('dash-vocab-level');
+            if (vLevelSel && typeof VOCABULARY_DATABASE !== 'undefined' && VOCABULARY_DATABASE[vLang]) {
+                const levels = Object.keys(VOCABULARY_DATABASE[vLang]);
+                vLevelSel.innerHTML = '<option value="">Alle Niveaus</option>' +
+                    levels.map(l => `<option value="${l}">${VOCABULARY_DATABASE[vLang][l].label}</option>`).join('');
+            }
+        }
 
 
 
@@ -7282,55 +7360,11 @@
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe data.js");
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.8)");
+        console.log("🚀 EduPlay Hub gestartet (v2.9)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
 
-
-
-        // ==========================================
-        // DYNAMISCHE FILTER FÜR DAS DASHBOARD
-        // ==========================================
-
-        function initDashFilters() {
-            // 1. Klassen-Filter befüllen
-            const qGradeSel = document.getElementById('dash-question-grade');
-            if (qGradeSel && typeof QUESTIONS_DATABASE !== 'undefined') {
-                const grades = [...new Set(QUESTIONS_DATABASE.map(q => q.grade).filter(Boolean))].sort((a, b) => a - b);
-                qGradeSel.innerHTML = '<option value="">Alle Klassen</option>' +
-                    grades.map(g => `<option value="${g}">${g}. Klasse</option>`).join('');
-            }
-
-            // 2. Fächer-Filter befüllen
-            const qSubSel = document.getElementById('dash-question-subject');
-            if (qSubSel && typeof QUESTIONS_DATABASE !== 'undefined') {
-                const subjects = [...new Set(QUESTIONS_DATABASE.map(q => q.subject).filter(Boolean))].sort();
-                qSubSel.innerHTML = '<option value="">Alle Fächer</option>' +
-                    subjects.map(s => `<option value="${s}">${s}</option>`).join('');
-            }
-
-            // 3. Vokabel-Niveaus befüllen
-            updateDashVocabLevels();
-
-            // 4. Wortlängen-Filter befüllen
-            const wLenSel = document.getElementById('dash-word-length');
-            if (wLenSel && typeof GERMAN_WORDS !== 'undefined') {
-                const lengths = [...new Set(GERMAN_WORDS.map(w => w.length))].sort((a, b) => a - b);
-                wLenSel.innerHTML = '<option value="">Alle Längen</option>' +
-                    lengths.map(l => `<option value="${l}">${l} Buchstaben</option>`).join('');
-            }
-        }
-
-        function updateDashVocabLevels() {
-            const vLang = document.getElementById('dash-vocab-lang')?.value || 'en';
-            const vLevelSel = document.getElementById('dash-vocab-level');
-            if (vLevelSel && typeof VOCABULARY_DATABASE !== 'undefined' && VOCABULARY_DATABASE[vLang]) {
-                const levels = Object.keys(VOCABULARY_DATABASE[vLang]);
-                vLevelSel.innerHTML = '<option value="">Alle Niveaus</option>' +
-                    levels.map(l => `<option value="${l}">${VOCABULARY_DATABASE[vLang][l].label}</option>`).join('');
-            }
-        }
 
 
 
@@ -7377,7 +7411,7 @@
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.8<br>
+            EduPlay Hub · v2.9<br>
             © 2026 · Familien Edition
         </div>
     </div>

@@ -795,6 +795,93 @@
             }
         }
 
+        /* Das dunkle Overlay mit Unschärfe (Blur) */
+        .drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 998;
+        }
+
+        .drawer-backdrop.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Der Drawer selbst im Glassmorphism-Look */
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            /* Falls er von links kommen soll: left: 0; und transform: translateX(-100%); */
+            width: 280px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.85);
+            /* Leicht transparent */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            transform: translateX(100%);
+            /* Startet außerhalb des Bildschirms */
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            /* Sehr weiche Bewegung */
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Wenn der Drawer die Klasse "open" vom JS bekommt */
+        .drawer.open {
+            transform: translateX(0);
+        }
+
+        /* Animation für die einzelnen Menüpunkte (Stagger-Effekt) */
+        .drawer .drawer-menu-item {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .drawer.open .drawer-menu-item {
+            /* Die Animation wird durch das JS-Delay nacheinander abgespielt */
+            animation: slideInItem 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        @keyframes slideInItem {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Layout-Anpassungen innerhalb des Drawers */
+        .drawer-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .drawer-items-container {
+            padding: 20px 10px;
+            flex-grow: 1;
+            overflow-y: auto;
+            /* Falls es mal viele Menüpunkte werden */
+        }
+
+        .drawer-footer {
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
         /* ============================================================
            DRAWER (SLIDE-MENÜ) - REPARIERT
            ============================================================ */
@@ -1519,10 +1606,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 </button>
             </div>
         </header>
-
-
-
-
 
 
         <main class="flex-grow p-4">
@@ -5247,47 +5330,45 @@ VIEW: QUIZ SETUP
         }
 
         // ============================================================
-        //  DRAWER
+        //  DRAWER LOGIK
         // ============================================================
         function openDrawer() {
-            SFX.tap();
+            if (typeof SFX !== 'undefined') SFX.tap();
 
+            // Prüfen, welcher Header gerade aktiv ist
             const isFamilyHub = !document.getElementById('header-familyhub').classList.contains('hidden');
-            const drawer = document.getElementById('settings-drawer');
 
-            // Dashboard-Button im Drawer ausblenden/einblenden
-            const dashboardBtn = drawer.querySelector('.drawer-menu-item .icon');
-            // Suche den kompletten Dashboard-Button
-            const allItems = drawer.querySelectorAll('.drawer-menu-item');
-            let dashboardItem = null;
-            allItems.forEach(item => {
-                if (item.textContent.includes('Dashboard')) {
-                    dashboardItem = item;
-                }
-            });
-
-            if (dashboardItem) {
-                if (isFamilyHub) {
-                    dashboardItem.classList.add('hidden');
-                } else {
-                    dashboardItem.classList.remove('hidden');
-                }
+            // Den richtigen Drawer auswählen
+            let activeDrawer;
+            if (isFamilyHub) {
+                activeDrawer = document.getElementById('drawer-familyhub');
+            } else {
+                activeDrawer = document.getElementById('drawer-menu');
             }
 
-            drawer.classList.add('open');
+            // Cooler Stagger-Effekt: Menüpunkte des AKTIVEN Drawers fliegen nacheinander ein
+            const items = activeDrawer.querySelectorAll('.drawer-menu-item');
+            items.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.05}s`;
+            });
+
+            // Den ausgewählten Drawer und den Hintergrund einblenden
+            activeDrawer.classList.add('open');
             document.getElementById("drawer-backdrop").classList.add("open");
         }
 
         function closeDrawer() {
+            // Wir schließen einfach sicherheitshalber beide Drawer
             document.getElementById('drawer-familyhub').classList.remove('open');
             document.getElementById('drawer-menu').classList.remove('open');
             document.getElementById("drawer-backdrop").classList.remove("open");
         }
 
-
+        // Drawer mit Escape-Taste schließen
         document.addEventListener("keydown", e => {
             if (e.key === "Escape") closeDrawer();
         });
+
 
         // ============================================================
         //  FEEDBACK
@@ -9566,46 +9647,40 @@ VIEW: QUIZ SETUP
     </script>
 
 
-    <!-- ==========================================================
+    <!-- ========================================================== burger menü
     SCHIEBEMENÜ (DRAWER) – als direktes <body>-Kind, damit position:fixed
     sich auf den Viewport bezieht (NICHT auf #app-shell mit backdrop-filter)
-    ========================================================== -->
-    <div id="drawer-backdrop" class="drawer-backdrop" onclick="closeDrawer()"></div>
-    <!-- ==========================================================
-SCHIEBEMENÜ (DRAWER)
+<!-- ==========================================================
+GEMEINSAMER BACKDROP FÜR BEIDE DRAWER
 ========================================================== -->
     <div id="drawer-backdrop" class="drawer-backdrop" onclick="closeDrawer()"></div>
 
-    <!-- DRAWER FÜR FAMILY HUB (ohne Dashboard) -->
+    <!-- ==========================================================
+DRAWER 1: FAMILY HUB (ohne Dashboard)
+========================================================== -->
     <div id="drawer-familyhub" class="drawer">
         <div class="drawer-header">
             <h2>📋 Menü</h2>
             <button class="close-btn" onclick="closeDrawer()">✕</button>
         </div>
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 drawer-items-container">
             <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
-                <span class="icon">🔊</span>
-                <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
+                <span class="icon">🔊</span> <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
             </button>
             <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
-                <span class="icon">🌓</span>
-                Design umschalten
+                <span class="icon">🌓</span> Design umschalten
             </button>
             <button onclick="closeDrawer(); inviteFriends()" class="drawer-menu-item">
-                <span class="icon">👥</span>
-                Freunde einladen
+                <span class="icon">👥</span> Freunde einladen
             </button>
             <button onclick="closeDrawer(); openFeedback('family-hub')" class="drawer-menu-item">
-                <span class="icon">💬</span>
-                Feedback geben
+                <span class="icon">💬</span> Feedback geben
             </button>
             <button onclick="closeDrawer(); switchView('einstellungen')" class="drawer-menu-item">
-                <span class="icon">⚙️</span>
-                Einstellungen
+                <span class="icon">⚙️</span> Einstellungen
             </button>
             <button onclick="closeDrawer(); logoutParent()" class="drawer-menu-item danger">
-                <span class="icon">🚪</span>
-                Ausloggen
+                <span class="icon">🚪</span> Ausloggen
             </button>
         </div>
         <div class="drawer-footer">
@@ -9614,40 +9689,35 @@ SCHIEBEMENÜ (DRAWER)
         </div>
     </div>
 
-    <!-- DRAWER FÜR HAUPTMENÜ (mit Dashboard) -->
-    <div id="drawer-menu" class="drawer hidden">
+    <!-- ==========================================================
+DRAWER 2: HAUPTMENÜ (mit Dashboard)
+========================================================== -->
+    <div id="drawer-menu" class="drawer">
         <div class="drawer-header">
             <h2>📋 Menü</h2>
             <button class="close-btn" onclick="closeDrawer()">✕</button>
         </div>
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 drawer-items-container">
             <button onclick="closeDrawer(); switchView('dashboard')" class="drawer-menu-item">
-                <span class="icon">📊</span>
-                Dashboard
+                <span class="icon">📊</span> Dashboard
             </button>
             <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
-                <span class="icon">🔊</span>
-                <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
+                <span class="icon">🔊</span> <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
             </button>
             <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
-                <span class="icon">🌓</span>
-                Design umschalten
+                <span class="icon">🌓</span> Design umschalten
             </button>
             <button onclick="closeDrawer(); inviteFriends()" class="drawer-menu-item">
-                <span class="icon">👥</span>
-                Freunde einladen
+                <span class="icon">👥</span> Freunde einladen
             </button>
             <button onclick="closeDrawer(); openFeedback('family-hub')" class="drawer-menu-item">
-                <span class="icon">💬</span>
-                Feedback geben
+                <span class="icon">💬</span> Feedback geben
             </button>
             <button onclick="closeDrawer(); switchView('einstellungen')" class="drawer-menu-item">
-                <span class="icon">⚙️</span>
-                Einstellungen
+                <span class="icon">⚙️</span> Einstellungen
             </button>
             <button onclick="closeDrawer(); logoutParent()" class="drawer-menu-item danger">
-                <span class="icon">🚪</span>
-                Ausloggen
+                <span class="icon">🚪</span> Ausloggen
             </button>
         </div>
         <div class="drawer-footer">
@@ -9655,8 +9725,6 @@ SCHIEBEMENÜ (DRAWER)
             © 2026 · Familien Edition
         </div>
     </div>
-
-
 
 
     <!-- 1. ZUERST DIE DATENBANK (Inhalt aus lesen.js) -->

@@ -1597,8 +1597,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 ========================================================== -->
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
-                <span class="logo">EduPlay</span>
-                <span class="version">v2.23</span>
+                <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.23</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -2257,8 +2257,9 @@ BEREICH: INHALTE
                     <button id="live-duel-start-btn" onclick="startLiveDuelRound()"
                         class="hidden btn-primary w-full text-center text-xl">Los geht's! 🚀</button>
                     <p id="live-duel-wait-hint" class="text-xs text-gray-500">Warte, bis der Ersteller startet...</p>
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveQuiz()">Beenden</button>
-
+                    <button class="btn-secondary text-sm py-2.5 px-4"
+                        onclick="leaveQuiz(); switchView('view-tv-quiz-setup')">Duell erstellen
+                    </button>
                 </div>
             </div>
 
@@ -2268,8 +2269,8 @@ BEREICH: INHALTE
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
                     <!-- <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück</button> -->
-                    <button onclick="leaveLiveDuel(view-live-duel-lobby)" <button
-                        class="btn-secondary text-sm py-2.5 px-4" onclick="leaveQuiz()">Beenden</button>
+                    <button onclick="leaveLiveDuel(view-live-duel-lobby)" class="btn-secondary text-sm py-2.5 px-4"
+                        onclick="leaveQuiz(view-live-duel-lobby)">Beenden</button>
                     <div id="live-duel-status" class="text-xs font-bold text-gray-400"></div>
                     <div id="live-duel-countdown" class="min-w-[3rem] text-center text-xl font-black text-amber-400">
                     </div>
@@ -2668,7 +2669,7 @@ VIEW: HAUPTMENÜ
                 </div>
             </div>
 
-            <!-- <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: FOKUS LERNZEIT
             ========================================================== -->
             <div id="view-fokus" class="view hidden space-y-4">
@@ -2685,10 +2686,6 @@ VIEW: HAUPTMENÜ
                     </div>
                 </div>
             </div>
-
-            <!-- ==========================================================
-            VIEW: LESEN LERNEN
-            ========================================================== -->
 
             <!-- ==========================================================
 VIEW: LESEN LERNEN

@@ -1484,9 +1484,9 @@
                 <span class="version">v2.23</span>
             </div>
             <div class="header-actions">
-                <button onclick="toggleSound()" title="Ton an/aus">
+                <!-- <button onclick="toggleSound()" title="Ton an/aus">
                     <span class="sound-toggle-icon">🔊</span>
-                </button>
+                </button> -->
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
                     ☰
                 </button>
@@ -1574,12 +1574,6 @@
                     Alle Gäste wieder entfernen
                 </button>
 
-                <!-- Dashboard Button -->
-                <button onclick="switchView('dashboard')"
-                    class="btn-primary w-full flex items-center justify-center gap-2 text-center">
-                    📊 Dashboard
-                </button>
-
                 <!-- Familien-Duell (Offline) -->
                 <div class="pt-2">
                     <div class="text-[10px] font-bold tracking-[0.14em] text-gray-500 uppercase">Familie</div>
@@ -1642,8 +1636,7 @@
 
                 <!-- Kopf -->
                 <div class="flex items-center justify-between gap-2 pt-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4"
-                        onclick="switchView('family-hub')">Übersicht</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Übersicht</button>
                     <span class="text-sm font-bold text-gray-400">📊 Dashboard</span>
                     <span class="w-10"></span>
                 </div>
@@ -1735,7 +1728,7 @@
                             </div>
                             <div id="dash-word-list" class="flex flex-wrap gap-1.5 max-h-[400px] overflow-y-auto"></div>
                         </div>
-                    </div> -->
+                    </div>
 
                     <!-- ==========================================================
 BEREICH: INHALTE
@@ -2173,7 +2166,7 @@ BEREICH: INHALTE
                 <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Zurück</button>
                 <div id="live-duel-result-content"></div>
             </div>
-            <!-- 
+
             <!-- ==========================================================
             VIEW: HAUPTMENÜ
             ========================================================== -->
@@ -2185,10 +2178,6 @@ BEREICH: INHALTE
                     <div class="flex items-center gap-2">
                         <button onclick="toggleCast()" id="castButton" title="Mit Fernseher verbinden"
                             class="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
-                        <button onclick="toggleSound()" title="Ton an/aus"
-                            class="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 hover:bg-white/10 transition">
-                            <span class="sound-toggle-icon">🔊</span>
-                        </button>
                     </div>
                 </div>
 
@@ -2297,7 +2286,7 @@ BEREICH: INHALTE
                         <span class="text-[11px] font-bold text-gray-400">Fehler melden oder Idee vorschlagen</span>
                     </button>
                 </div>
-            </div> -->
+            </div>
 
 
 
@@ -2316,10 +2305,10 @@ VIEW: HAUPTMENÜ
                             title="Fernseher verbinden">
                             🖥️
                         </button>
-                        <button onclick="toggleSound()"
+                        <!-- <button onclick="toggleSound()"
                             class="w-9 h-9 rounded-xl bg-white/5 border border-white/5 text-base shrink-0 hover:bg-white/10 transition">
                             <span class="sound-toggle-icon">🔊</span>
-                        </button>
+                        </button> -->
                     </div>
                 </div>
 
@@ -3444,6 +3433,29 @@ VIEW: TV-QUIZ SETUP
             if (soundOn) SFX.tap();
             showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
         }
+
+        function inviteFriends() {
+            // Teilen-Link für die App
+            const shareData = {
+                title: 'EduPlay Hub',
+                text: 'Hey! Lern mit mir zusammen auf EduPlay Hub – mach mit! 🚀',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                // Mobile: Native Share API
+                navigator.share(shareData).catch(() => { });
+            } else {
+                // Desktop: Link kopieren
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    showToast('🔗 Link kopiert! Schick ihn deinen Freunden.', 'success');
+                }).catch(() => {
+                    // Fallback: Alert mit Link
+                    alert('Teile diesen Link mit deinen Freunden:\n\n' + window.location.href);
+                });
+            }
+        }
+
 
         function toggleTheme() {
             const isDark = document.body.classList.toggle('dark-theme');
@@ -9506,14 +9518,6 @@ VIEW: TV-QUIZ SETUP
                 <span class="icon">📊</span>
                 Dashboard
             </button>
-            <button onclick="closeDrawer(); switchView('family-hub')" class="drawer-menu-item">
-                <span class="icon">🏠</span>
-                Übersicht
-            </button>
-            <button onclick="closeDrawer(); openFeedback('family-hub')" class="drawer-menu-item">
-                <span class="icon">💬</span>
-                Feedback geben
-            </button>
             <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
                 <span class="icon">🔊</span>
                 <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
@@ -9521,6 +9525,18 @@ VIEW: TV-QUIZ SETUP
             <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
                 <span class="icon">🌓</span>
                 Design umschalten
+            </button>
+            <button onclick="closeDrawer(); inviteFriends()" class="drawer-menu-item">
+                <span class="icon">👥</span>
+                Freunde einladen
+            </button>
+            <button onclick="closeDrawer(); openFeedback('family-hub')" class="drawer-menu-item">
+                <span class="icon">💬</span>
+                Feedback geben
+            </button>
+            <button onclick="closeDrawer(); switchView('einstellungen')" class="drawer-menu-item">
+                <span class="icon">⚙️</span>
+                Einstellungen
             </button>
             <button onclick="closeDrawer(); logoutParent()" class="drawer-menu-item danger">
                 <span class="icon">🚪</span>

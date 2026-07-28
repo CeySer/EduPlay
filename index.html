@@ -7099,10 +7099,29 @@ VIEW: TV-QUIZ SETUP
         // ============================================================
         // ACTION-MODE FÜR TV-HOST
         // ============================================================
+
+
+
+        // ============================================================
+        // ACTION-MODE FÜR TV-MODUS - MIT OPTIMIERTEN ZEITEN
+        // ============================================================
+
+        function getTVActionModeTimings(difficulty) {
+            // Gleiche Zeiten wie beim Live-Duell
+            const timings = {
+                leicht: { firstChange: 10, betweenChanges: 8, maxChanges: 4 },
+                mittel: { firstChange: 12, betweenChanges: 10, maxChanges: 3 },
+                schwer: { firstChange: 15, betweenChanges: 12, maxChanges: 3 },
+                experte: { firstChange: 18, betweenChanges: 15, maxChanges: 2 },
+                profi: { firstChange: 25, betweenChanges: 20, maxChanges: 2 }
+            };
+            return timings[difficulty] || timings.mittel;
+        }
+
         function startTVActionMode(data) {
             // Prüfen ob Action Mode aktiv ist
             if (!data || !data.actionMode) {
-                console.log("Action Mode nicht aktiv");
+                console.log("TV: Action Mode nicht aktiv");
                 return;
             }
 
@@ -7110,49 +7129,78 @@ VIEW: TV-QUIZ SETUP
             if (tvActionModeInterval) {
                 clearInterval(tvActionModeInterval);
                 tvActionModeInterval = null;
-                console.log("Alter Timer gestoppt");
             }
 
+            const timings = getTVActionModeTimings(data.difficulty || "mittel");
             let changeCount = 0;
-            const maxChanges = 5;
-            let nextChangeTime = Date.now() + (3000 + Math.random() * 9000);
+            const maxChanges = timings.maxChanges;
 
-            console.log("🔄 Action Mode gestartet (max. " + maxChanges + " Änderungen)");
+            console.log(`📺 TV Action Mode gestartet (${maxChanges} Änderungen, erste nach ${timings.firstChange}s)`);
 
-            tvActionModeInterval = setInterval(() => {
-                // Prüfen ob der Timer noch aktiv ist
-                if (!tvActionModeInterval) {
-                    return;
+            // Erste Änderung nach festgelegter Zeit
+            setTimeout(() => {
+                if (changeCount >= maxChanges) return;
+
+                // Buchstaben ändern
+                const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
+                tvGameRef.update({
+                    currentLetters: rack.letters,
+                    currentSolution: rack.solution,
+                    currentRequired: rack.required || ""
+                });
+                changeCount++;
+
+                // Weitere Änderungen planen
+                if (changeCount < maxChanges) {
+                    tvActionModeInterval = setInterval(() => {
+                        if (changeCount >= maxChanges) {
+                            clearInterval(tvActionModeInterval);
+                            tvActionModeInterval = null;
+                            console.log("📺 TV Action Mode beendet");
+                            return;
+                        }
+
+                        const newRack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
+                        tvGameRef.update({
+                            currentLetters: newRack.letters,
+                            currentSolution: newRack.solution,
+                            currentRequired: newRack.required || ""
+                        });
+                        changeCount++;
+
+                        if (changeCount >= maxChanges) {
+                            clearInterval(tvActionModeInterval);
+                            tvActionModeInterval = null;
+                            console.log("📺 TV Action Mode beendet");
+                        }
+                    }, timings.betweenChanges * 1000);
                 }
-
-                if (Date.now() >= nextChangeTime && changeCount < maxChanges) {
-                    // Neues Wort generieren
-                    const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
-
-                    console.log("📝 Neue Buchstaben:", rack.letters.join(' '));
-
-                    // NUR Firebase updaten - der Snapshot-Listener kümmert sich um die Anzeige!
-                    tvGameRef.update({
-                        currentLetters: rack.letters,
-                        currentSolution: rack.solution,
-                        currentRequired: rack.required || ""
-                    }).then(() => {
-                        console.log("✅ Firebase updated mit neuen Buchstaben");
-                        // KEIN showTVHostScrabbleRound() mehr hier - das macht der Listener!
-                    }).catch(error => {
-                        console.error("❌ Fehler beim Firebase-Update:", error);
-                    });
-
-                    changeCount++;
-                    nextChangeTime = Date.now() + (3000 + Math.random() * 9000);
-
-                    if (changeCount >= maxChanges) {
-                        stopTVActionMode();
-                        console.log("✅ Action Mode beendet nach " + maxChanges + " Änderungen");
-                    }
-                }
-            }, 500);
+            }, timings.firstChange * 1000);
         }
+
+        // Verbesserte stopTVActionMode
+        function stopTVActionMode() {
+            if (tvActionModeInterval) {
+                clearInterval(tvActionModeInterval);
+                tvActionModeInterval = null;
+                console.log("⏹ TV Action Mode gestoppt");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         function stopTVActionMode() {
             if (tvActionModeInterval) {
@@ -8401,6 +8449,23 @@ VIEW: TV-QUIZ SETUP
         let liveDuelChangeCount = 0;
         const LIVE_DUEL_MAX_CHANGES = 5;
 
+
+        // ============================================================
+        // ACTION-MODE FÜR LIVE-WORTDUELL - MIT OPTIMIERTEN ZEITEN
+        // ============================================================
+
+        function getActionModeTimings(difficulty) {
+            // Angepasste Zeiten für jede Schwierigkeitsstufe
+            const timings = {
+                leicht: { firstChange: 10, betweenChanges: 8, maxChanges: 4 },
+                mittel: { firstChange: 12, betweenChanges: 10, maxChanges: 3 },
+                schwer: { firstChange: 15, betweenChanges: 12, maxChanges: 3 },
+                experte: { firstChange: 18, betweenChanges: 15, maxChanges: 2 },
+                profi: { firstChange: 25, betweenChanges: 20, maxChanges: 2 }
+            };
+            return timings[difficulty] || timings.mittel;
+        }
+
         function startLiveDuelActionMode(data) {
             // Prüfen ob Action Mode aktiv ist
             if (!data || !data.actionMode) {
@@ -8410,16 +8475,90 @@ VIEW: TV-QUIZ SETUP
 
             // Alten Timer stoppen
             if (liveDuelActionInterval) {
-                clearInterval(liveDuelActionInterval);
+                clearTimeout(liveDuelActionInterval);
                 liveDuelActionInterval = null;
             }
 
+            // Timings für diese Schwierigkeitsstufe holen
+            const timings = getActionModeTimings(data.difficulty || "mittel");
             liveDuelChangeCount = 0;
-            console.log("🔄 Live-Duell Action Mode gestartet (max. " + LIVE_DUEL_MAX_CHANGES + " Änderungen)");
+            liveDuelMaxChanges = timings.maxChanges;
 
-            // Sofort die erste Änderung nach 3-8 Sekunden
-            scheduleLiveDuelChange();
+            console.log(`🔄 Live-Duell Action Mode gestartet (${timings.maxChanges} Änderungen, erste nach ${timings.firstChange}s)`);
+
+            // Action-Status für alle sichtbar machen
+            const statusEl = document.getElementById("live-duel-status");
+            if (statusEl) {
+                const currentText = statusEl.innerText || "";
+                if (!currentText.includes("⚡")) {
+                    statusEl.innerText = "⚡ " + currentText;
+                }
+            }
+
+            // Erste Änderung nach festgelegter Zeit
+            liveDuelActionInterval = setTimeout(() => {
+                if (liveDuelChangeCount >= timings.maxChanges) {
+                    stopLiveDuelActionMode();
+                    return;
+                }
+
+                // Buchstaben ändern
+                changeLiveDuelLetters();
+                liveDuelChangeCount++;
+
+                // Nächste Änderung planen (mit zufälliger Abweichung ±2 Sekunden)
+                if (liveDuelChangeCount < timings.maxChanges) {
+                    const nextDelay = timings.betweenChanges + (Math.random() * 4 - 2); // ±2 Sekunden
+                    scheduleLiveDuelChange(nextDelay);
+                } else {
+                    // Letzte Änderung: noch ein letztes Mal anschlagen, dann Ende
+                    setTimeout(() => {
+                        if (liveDuelActionInterval) {
+                            stopLiveDuelActionMode();
+                            showLiveDuelActionFeedback("⏰ Action-Modus beendet!");
+                        }
+                    }, timings.betweenChanges * 1000 + 2000);
+                }
+            }, timings.firstChange * 1000);
         }
+
+        function scheduleLiveDuelChange(delay) {
+            if (!liveDuelRef) return;
+
+            // Zufällige Abweichung von ±2 Sekunden
+            const actualDelay = Math.max(5, delay + (Math.random() * 4 - 2));
+
+            liveDuelActionInterval = setTimeout(() => {
+                if (liveDuelChangeCount >= liveDuelMaxChanges) {
+                    stopLiveDuelActionMode();
+                    return;
+                }
+
+                changeLiveDuelLetters();
+                liveDuelChangeCount++;
+
+                if (liveDuelChangeCount < liveDuelMaxChanges) {
+                    const nextDelay = (liveDuelActionTimings?.betweenChanges || 10) + (Math.random() * 4 - 2);
+                    scheduleLiveDuelChange(nextDelay);
+                } else {
+                    // Letzte Änderung durchgeführt
+                    setTimeout(() => {
+                        if (liveDuelActionInterval) {
+                            stopLiveDuelActionMode();
+                            showLiveDuelActionFeedback("⏰ Action-Modus beendet!");
+                        }
+                    }, (liveDuelActionTimings?.betweenChanges || 10) * 1000 + 2000);
+                }
+            }, actualDelay * 1000);
+        }
+
+        // Globale Variable für die Timings
+        let liveDuelActionTimings = null;
+        let liveDuelMaxChanges = 3;
+
+
+
+
 
         function scheduleLiveDuelChange() {
             if (!liveDuelRef) return;
@@ -8483,6 +8622,10 @@ VIEW: TV-QUIZ SETUP
                 console.error("❌ Fehler beim Ändern der Live-Duell Buchstaben:", e);
             }
         }
+
+
+
+
         function showLiveDuelActionFeedback(text) {
             // Bestehenden Feedback-Container finden oder erstellen
             let fb = document.getElementById("live-duel-action-feedback");
@@ -8503,23 +8646,44 @@ VIEW: TV-QUIZ SETUP
             fb.innerText = text;
             fb.className = "text-center text-sm font-bold text-amber-400 animate-pulse py-2";
 
-            // Nach 2.5 Sekunden ausblenden
+            // Nach 3 Sekunden ausblenden (nicht mehr 2.5s)
             clearTimeout(fb._timeout);
             fb._timeout = setTimeout(() => {
                 if (fb) {
                     fb.className = "text-center text-sm font-bold text-gray-400 py-2";
                     fb.innerText = "⚡ Action-Modus aktiv!";
                 }
-            }, 2500);
+            }, 3000);
         }
+
+
+
+
+
+
+
+
+
+
 
         function stopLiveDuelActionMode() {
             if (liveDuelActionInterval) {
                 clearTimeout(liveDuelActionInterval);
                 liveDuelActionInterval = null;
             }
+
+            // Action-Status aus der Status-Leiste entfernen
+            const statusEl = document.getElementById("live-duel-status");
+            if (statusEl) {
+                statusEl.innerText = statusEl.innerText.replace("⚡ ", "");
+            }
+
             console.log("⏹ Live-Duell Action Mode gestoppt");
         }
+
+
+
+
 
         // Überschreibe die createLiveDuel-Funktion, um actionMode zu speichern
         const originalCreateLiveDuel = createLiveDuel;

@@ -1499,9 +1499,6 @@ HEADER FÜR FAMILY HUB
                 <span class="version">v2.23</span>
             </div>
             <div class="header-actions">
-                <button onclick="toggleSound()" title="Ton an/aus">
-                    <span class="sound-toggle-icon">🔊</span>
-                </button>
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
                     ☰
                 </button>
@@ -1517,9 +1514,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <span class="version">v2.23</span>
             </div>
             <div class="header-actions">
-                <button onclick="toggleSound()" title="Ton an/aus">
-                    <span class="sound-toggle-icon">🔊</span>
-                </button>
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
                     ☰
                 </button>
@@ -1928,7 +1922,7 @@ BEREICH: INHALTE
             VIEW: DUELL SETUP
             ========================================================== -->
             <div id="view-duel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-rose-400">⚔️ Quiz-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Zwei Spieler treten nacheinander im selben Quiz
@@ -2170,6 +2164,7 @@ BEREICH: INHALTE
             <!-- ==========================================================
             VIEW: LIVE-DUELL LOBBY
             ========================================================== -->
+
             <div id="view-live-duel-lobby" class="view hidden space-y-4">
                 <div class="glass-card p-8 text-center space-y-6 shadow-lg">
                     <h2 class="text-3xl font-black text-white animate-pulse">Warte auf Mitspieler...</h2>
@@ -2455,7 +2450,7 @@ VIEW: HAUPTMENÜ
             VIEW: BELOHNUNGEN EINLÖSEN
             ========================================================== -->
             <div id="view-rewards" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-5">
                     <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen</h3>
                     <p class="text-xs text-gray-400 mb-4">Du hast <span id="rewards-coin-balance"
@@ -5261,18 +5256,22 @@ VIEW: TV-QUIZ SETUP
         // ============================================================
         function openDrawer() {
             SFX.tap();
-            document.getElementById("settings-drawer").classList.add("open");
+
+            const isFamilyHub = !document.getElementById('header-familyhub').classList.contains('hidden');
+
+            if (isFamilyHub) {
+                document.getElementById('drawer-familyhub').classList.add('open');
+            } else {
+                document.getElementById('drawer-menu').classList.add('open');
+            }
             document.getElementById("drawer-backdrop").classList.add("open");
         }
 
-
-
-
         function closeDrawer() {
-            document.getElementById("settings-drawer").classList.remove("open");
+            document.getElementById('drawer-familyhub').classList.remove('open');
+            document.getElementById('drawer-menu').classList.remove('open');
             document.getElementById("drawer-backdrop").classList.remove("open");
         }
-
 
 
         document.addEventListener("keydown", e => {
@@ -9559,7 +9558,7 @@ VIEW: TV-QUIZ SETUP
     ========================================================== -->
     <div id="drawer-backdrop" class="drawer-backdrop" onclick="closeDrawer()"></div>
     <div id="settings-drawer" class="drawer">
-        <div class="drawer-header">
+        <!-- <div class="drawer-header">
             <h2>📋 Menü</h2>
             <button class="close-btn" onclick="closeDrawer()">✕</button>
         </div>
@@ -9597,329 +9596,411 @@ VIEW: TV-QUIZ SETUP
             EduPlay Hub · v2.23<br>
             © 2026 · Familien Edition
         </div>
-    </div>
+    </div> -->
+
+        <!-- ==========================================================
+DRAWER FÜR FAMILY HUB (ohne Dashboard)
+========================================================== -->
+        <div id="drawer-familyhub" class="drawer">
+            <div class="drawer-header">
+                <h2>📋 Menü</h2>
+                <button class="close-btn" onclick="closeDrawer()">✕</button>
+            </div>
+            <div class="flex flex-col gap-1">
+                <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
+                    <span class="icon">🔊</span>
+                    <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
+                </button>
+                <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
+                    <span class="icon">🌓</span>
+                    Design umschalten
+                </button>
+                <button onclick="closeDrawer(); inviteFriends()" class="drawer-menu-item">
+                    <span class="icon">👥</span>
+                    Freunde einladen
+                </button>
+                <button onclick="closeDrawer(); openFeedback('family-hub')" class="drawer-menu-item">
+                    <span class="icon">💬</span>
+                    Feedback geben
+                </button>
+                <button onclick="closeDrawer(); switchView('einstellungen')" class="drawer-menu-item">
+                    <span class="icon">⚙️</span>
+                    Einstellungen
+                </button>
+                <button onclick="closeDrawer(); logoutParent()" class="drawer-menu-item danger">
+                    <span class="icon">🚪</span>
+                    Ausloggen
+                </button>
+            </div>
+            <div class="drawer-footer">
+                EduPlay Hub · v2.23<br>
+                © 2026 · Familien Edition
+            </div>
+        </div>
+
+        <!-- ==========================================================
+DRAWER FÜR HAUPTMENÜ (mit Dashboard)
+========================================================== -->
+        <div id="drawer-menu" class="drawer hidden">
+            <div class="drawer-header">
+                <h2>📋 Menü</h2>
+                <button class="close-btn" onclick="closeDrawer()">✕</button>
+            </div>
+            <div class="flex flex-col gap-1">
+                <button onclick="closeDrawer(); switchView('dashboard')" class="drawer-menu-item">
+                    <span class="icon">📊</span>
+                    Dashboard
+                </button>
+                <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
+                    <span class="icon">🔊</span>
+                    <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
+                </button>
+                <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
+                    <span class="icon">🌓</span>
+                    Design umschalten
+                </button>
+                <button onclick="closeDrawer(); inviteFriends()" class="drawer-menu-item">
+                    <span class="icon">👥</span>
+                    Freunde einladen
+                </button>
+                <button onclick="closeDrawer(); openFeedback('family-hub')" class="drawer-menu-item">
+                    <span class="icon">💬</span>
+                    Feedback geben
+                </button>
+                <button onclick="closeDrawer(); switchView('einstellungen')" class="drawer-menu-item">
+                    <span class="icon">⚙️</span>
+                    Einstellungen
+                </button>
+                <button onclick="closeDrawer(); logoutParent()" class="drawer-menu-item danger">
+                    <span class="icon">🚪</span>
+                    Ausloggen
+                </button>
+            </div>
+            <div class="drawer-footer">
+                EduPlay Hub · v2.23<br>
+                © 2026 · Familien Edition
+            </div>
+        </div>
 
 
-
-
-    <!-- 1. ZUERST DIE DATENBANK (Inhalt aus lesen.js) -->
-    <script>
-        // =======================================================
-        // DATENBANK: LESEN-LERNEN FÜR KLASSE 1 & 2
-        // =======================================================
-        const READING_DATABASE = {
-            buchstaben: {
-                label: "Alphabetsi lernen (A-Z)",
-                description: "Lerne alle Buchstaben mit Bildern",
-                items: [
-                    { letter: "A", word: "Affe", image: '<img src="img/A.jpg" alt="🐒">', sound: "ah" },
-                    { letter: "B", word: "Ball", image: "⚽", sound: "beh" },
-                    { letter: "C", word: "Computer", image: "💻", sound: "tseh" },
-                    { letter: "D", word: "Drache", image: "🐉", sound: "deh" },
-                    { letter: "E", word: "Ente", image: "🦆", sound: "eh" },
-                    { letter: "F", word: "Fisch", image: "🐟", sound: "eff" },
-                    { letter: "G", word: "Giraffe", image: "🦒", sound: "geh" },
-                    { letter: "H", word: "Hund", image: "🐕", sound: "hah" },
-                    { letter: "I", word: "Igel", image: "🦔", sound: "ih" },
-                    { letter: "J", word: "Joghurt", image: "🍦", sound: "jott" },
-                    { letter: "K", word: "Katze", image: "🐈", sound: "kah" },
-                    { letter: "L", word: "Löwe", image: "🦁", sound: "ell" },
-                    { letter: "M", word: "Maus", image: "🐭", sound: "emm" },
-                    { letter: "N", word: "Nase", image: "👃", sound: "enn" },
-                    { letter: "O", word: "Oma", image: "👵", sound: "oh" },
-                    { letter: "P", word: "Pferd", image: "🐴", sound: "peh" },
-                    { letter: "Q", word: "Quelle", image: "⛲", sound: "kuh" },
-                    { letter: "R", word: "Regen", image: "🌧️", sound: "err" },
-                    { letter: "S", word: "Sonne", image: "☀️", sound: "ess" },
-                    { letter: "T", word: "Tiger", image: "🐯", sound: "teh" },
-                    { letter: "U", word: "Uhu", image: "🦉", sound: "uh" },
-                    { letter: "V", word: "Vogel", image: "🐦", sound: "vau" },
-                    { letter: "W", word: "Wasser", image: "💧", sound: "weh" },
-                    { letter: "X", word: "Xylophon", image: "🎵", sound: "ix" },
-                    { letter: "Y", word: "Yoga", image: "🧘", sound: "üpsilon" },
-                    { letter: "Z", word: "Zebra", image: "🦓", sound: "zett" },
-                    { letter: "Ä", word: "Äpfel", image: "🍎", sound: "äh" },
-                    { letter: "Ö", word: "Öl", image: "🛢️", sound: "öh" },
-                    { letter: "Ü", word: "Über", image: "⬆️", sound: "üh" },
-                    { letter: "ß", word: "Straße", image: "🛣️", sound: "ess-tsett" }
-                ]
-            },
-            silben: {
-                label: "👏 Sil-ben klat-schen",
-                description: "Klatsche die Silben in jedem Wort",
-                items: [
-                    { word: "Haus", syllables: "Haus", count: 1 },
-                    { word: "Ball", syllables: "Ball", count: 1 },
-                    { word: "Tisch", syllables: "Tisch", count: 1 },
-                    { word: "Apfel", syllables: "Ap-fel", count: 2 },
-                    { word: "Tasse", syllables: "Tas-se", count: 2 },
-                    { word: "Hose", syllables: "Ho-se", count: 2 },
-                    { word: "Banane", syllables: "Ba-na-ne", count: 3 },
-                    { word: "Tomate", syllables: "To-ma-te", count: 3 },
-                    { word: "Elefant", syllables: "E-le-fant", count: 3 },
-                    { word: "Krokodil", syllables: "Kro-ko-dil", count: 3 },
-                    { word: "Schmetterling", syllables: "Schmet-ter-ling", count: 3 },
-                    { word: "Taschenlampe", syllables: "Ta-schen-lam-pe", count: 4 },
-                    { word: "Bananen", syllables: "Ba-na-nen", count: 3 },
-                    { word: "Kartoffel", syllables: "Kar-tof-fel", count: 3 },
-                    { word: "Sonne", syllables: "Son-ne", count: 2 }
-                ]
-            },
-            anlaute: {
-                label: "🔊 Erste Wörter (Anlaute)",
-                description: "Mit welchem Buchstaben beginnt das Wort?",
-                items: [
-                    { word: "Affe", startsWith: "A", image: "🐒" },
-                    { word: "Ball", startsWith: "B", image: "⚽" },
-                    { word: "Drache", startsWith: "D", image: "🐉" },
-                    { word: "Ente", startsWith: "E", image: "🦆" },
-                    { word: "Fisch", startsWith: "F", image: "🐟" },
-                    { word: "Giraffe", startsWith: "G", image: "🦒" },
-                    { word: "Hund", startsWith: "H", image: "🐕" },
-                    { word: "Igel", startsWith: "I", image: "🦔" },
-                    { word: "Katze", startsWith: "K", image: "🐈" },
-                    { word: "Löwe", startsWith: "L", image: "🦁" },
-                    { word: "Maus", startsWith: "M", image: "🐭" },
-                    { word: "Nase", startsWith: "N", image: "👃" },
-                    { word: "Oma", startsWith: "O", image: "👵" },
-                    { word: "Pferd", startsWith: "P", image: "🐴" },
-                    { word: "Regen", startsWith: "R", image: "🌧️" },
-                    { word: "Sonne", startsWith: "S", image: "☀️" },
-                    { word: "Tiger", startsWith: "T", image: "🐯" },
-                    { word: "Uhu", startsWith: "U", image: "🦉" },
-                    { word: "Vogel", startsWith: "V", image: "🐦" },
-                    { word: "Wasser", startsWith: "W", image: "💧" },
-                    { word: "Zebra", startsWith: "Z", image: "🦓" }
-                ]
-            },
-            simple_words: {
-                label: "📖 Einfache Wörter",
-                description: "Kurze Wörter mit 3-4 Buchstaben",
-                items: [
-                    { word: "Mama", image: "👩" }, { word: "Papa", image: "👨" }, { word: "Oma", image: "👵" }, { word: "Opa", image: "👴" },
-                    { word: "Haus", image: "🏠" }, { word: "Baum", image: "🌳" }, { word: "Sonne", image: "☀️" }, { word: "Mond", image: "🌙" },
-                    { word: "Stern", image: "⭐" }, { word: "Tisch", image: "🪑" }, { word: "Stuhl", image: "💺" }, { word: "Brot", image: "🍞" },
-                    { word: "Milch", image: "🥛" }, { word: "Wasser", image: "💧" }, { word: "Apfel", image: "🍎" }, { word: "Banane", image: "🍌" },
-                    { word: "Hund", image: "🐕" }, { word: "Katze", image: "🐈" }, { word: "Fisch", image: "🐟" }, { word: "Vogel", image: "🐦" },
-                    { word: "Auto", image: "🚗" }, { word: "Zug", image: "🚂" }, { word: "Schiff", image: "🚢" }, { word: "Flugzeug", image: "✈️" }
-                ]
-            },
-            word_match: {
-                label: "🖼️ Wort zu Bild zuordnen",
-                description: "Welches Wort passt zum Bild?",
-                items: [
-                    { word: "Hund", image: "🐕" }, { word: "Katze", image: "🐈" }, { word: "Maus", image: "🐭" }, { word: "Vogel", image: "🐦" },
-                    { word: "Fisch", image: "🐟" }, { word: "Apfel", image: "🍎" }, { word: "Banane", image: "🍌" }, { word: "Brot", image: "🍞" },
-                    { word: "Milch", image: "🥛" }, { word: "Wasser", image: "💧" }
-                ]
-            },
-            zweisilbig: {
-                label: "📗 Zweisilbige Wörter",
-                description: "Wörter mit zwei Silben",
-                items: [
-                    { word: "Tasse", syllables: "Tas-se", image: "☕" }, { word: "Hose", syllables: "Ho-se", image: "👖" },
-                    { word: "Mütze", syllables: "Müt-ze", image: "🧢" }, { word: "Tasche", syllables: "Ta-sche", image: "👜" },
-                    { word: "Schule", syllables: "Schu-le", image: "🏫" }, { word: "Lehrer", syllables: "Leh-rer", image: "👨‍🏫" },
-                    { word: "Buch", syllables: "Buch", image: "📖" }, { word: "Tür", syllables: "Tür", image: "🚪" },
-                    { word: "Fenster", syllables: "Fens-ter", image: "🪟" }, { word: "Garten", syllables: "Gar-ten", image: "🌻" },
-                    { word: "Blume", syllables: "Blu-me", image: "🌸" }, { word: "Baum", syllables: "Baum", image: "🌳" }
-                ]
-            },
-            dreisilbig: {
-                label: "📕 Dreisilbige Wörter",
-                description: "Wörter mit drei Silben",
-                items: [
-                    { word: "Banane", syllables: "Ba-na-ne", image: "🍌" }, { word: "Tomate", syllables: "To-ma-te", image: "🍅" },
-                    { word: "Elefant", syllables: "E-le-fant", image: "🐘" }, { word: "Krokodil", syllables: "Kro-ko-dil", image: "🐊" },
-                    { word: "Schmetterling", syllables: "Schmet-ter-ling", image: "🦋" }, { word: "Libelle", syllables: "Li-bel-le", image: "🪰" },
-                    { word: "Marienkäfer", syllables: "Ma-ri-en-kä-fer", image: "🐞" }, { word: "Schokolade", syllables: "Scho-ko-la-de", image: "🍫" },
-                    { word: "Kartoffel", syllables: "Kar-tof-fel", image: "🥔" }, { word: "Giraffe", syllables: "Gi-raf-fe", image: "🦒" }
-                ]
-            },
-            sentences: {
-                label: "📝 Erste Sätze",
-                description: "Lies die kurzen Sätze vor",
-                items: [
-                    { sentence: "Ich sehe einen Hund.", emoji: "🐕", words: ["Ich", "sehe", "einen", "Hund"] },
-                    { sentence: "Mama hat einen Apfel.", emoji: "🍎", words: ["Mama", "hat", "einen", "Apfel"] },
-                    { sentence: "Papa liest ein Buch.", emoji: "📖", words: ["Papa", "liest", "ein", "Buch"] },
-                    { sentence: "Die Sonne scheint warm.", emoji: "☀️", words: ["Die", "Sonne", "scheint", "warm"] },
-                    { sentence: "Der Hund bellt laut.", emoji: "🐕", words: ["Der", "Hund", "bellt", "laut"] },
-                    { sentence: "Das Kind spielt im Garten.", emoji: "🧒", words: ["Das", "Kind", "spielt", "im", "Garten"] },
-                    { sentence: "Die Katze schläft auf dem Stuhl.", emoji: "🐈", words: ["Die", "Katze", "schläft", "auf", "dem", "Stuhl"] },
-                    { sentence: "Ich trinke Wasser.", emoji: "💧", words: ["Ich", "trinke", "Wasser"] },
-                    { sentence: "Das Auto fährt schnell.", emoji: "🚗", words: ["Das", "Auto", "fährt", "schnell"] },
-                    { sentence: "Ich mag die Schule.", emoji: "🏫", words: ["Ich", "mag", "die", "Schule"] },
-                    { sentence: "Oma backt einen Kuchen.", emoji: "👵", words: ["Oma", "backt", "einen", "Kuchen"] },
-                    { sentence: "Der Vogel fliegt hoch.", emoji: "🐦", words: ["Der", "Vogel", "fliegt", "hoch"] }
-                ]
-            },
-            reading_comprehension: {
-                label: "🧠 Lesen mit Verständnis",
-                description: "Lies den Satz und entscheide",
-                items: [
-                    { sentence: "Die Sonne scheint. Es ist warm.", question: "Wie ist das Wetter?", answer: "warm" },
-                    { sentence: "Der Hund bellt laut.", question: "Was macht der Hund?", answer: "er bellt" },
-                    { sentence: "Mama backt einen Kuchen.", question: "Was backt Mama?", answer: "einen Kuchen" },
-                    { sentence: "Das Kind spielt im Sandkasten.", question: "Wo spielt das Kind?", answer: "im Sandkasten" },
-                    { sentence: "Die Katze schläft auf dem Bett.", question: "Wo schläft die Katze?", answer: "auf dem Bett" }
-                ]
-            },
-            word_puzzle: {
-                label: "🧩 Buchstaben-Puzzle",
-                description: "Setze die Buchstaben zum Wort zusammen",
-                items: [
-                    { letters: "A-U-S-H", solution: "HAUS" }, { letters: "B-A-L-L", solution: "BALL" },
-                    { letters: "T-I-S-C-H", solution: "TISCH" }, { letters: "S-O-N-N-E", solution: "SONNE" },
-                    { letters: "M-O-N-D", solution: "MOND" }, { letters: "S-T-E-R-N", solution: "STERN" },
-                    { letters: "A-P-F-E-L", solution: "APFEL" }, { letters: "B-U-C-H", solution: "BUCH" },
-                    { letters: "F-I-S-C-H", solution: "FISCH" }, { letters: "V-O-G-E-L", solution: "VOGEL" }
-                ]
-            }
-        };
-
-        const LESEN_DATABASE = READING_DATABASE;
-
-
-        // ============================================================
-        // LOGIK: LESEN-LERNEN  (Klasse 1 & 2)
-        // ============================================================
-
-        let lesenState = {
-            currentCategory: null,
-            currentIndex: 0,
-            score: 0,
-            wrongAttempts: 0,
-            total: 0,
-            options: [],
-            correctIndex: -1
-        };
-
-        const LESEN_ICONS = {
-            buchstaben: '🔤', silben: '👏', anlaute: '🔊', simple_words: '📖',
-            word_match: '🖼️', zweisilbig: '📗', dreisilbig: '📕', sentences: '📝',
-            reading_comprehension: '🧠', word_puzzle: '🧩'
-        };
-
-        const LESEN_FLASHCARDS = ['buchstaben', 'silben', 'simple_words', 'zweisilbig', 'dreisilbig', 'sentences'];
-
-        function lesenDB() {
-            if (typeof LESEN_DATABASE !== 'undefined' && LESEN_DATABASE) return LESEN_DATABASE;
-            return null;
-        }
-
-        function shuffle(arr) {
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
-        }
-
-        function getCurrentProfileId() {
-            try {
-                if (typeof activePlayerKey !== 'undefined' && activePlayerKey) return String(activePlayerKey);
-                if (typeof currentPlayer !== 'undefined' && currentPlayer && currentPlayer.name) return 'name_' + currentPlayer.name;
-            } catch (e) { }
-            return 'gast';
-        }
-
-        function speakLesen(text) {
-            try {
-                if (!('speechSynthesis' in window) || !text) return;
-                window.speechSynthesis.cancel();
-                const u = new SpeechSynthesisUtterance(String(text));
-                u.lang = 'de-DE';
-                u.rate = 0.9;
-                u.pitch = 1.0;
-
-                const voices = window.speechSynthesis.getVoices();
-                const deVoices = voices.filter(v => v.lang.startsWith('de'));
-
-                const preferred = ['Google Deutsch', 'Google Deutsche', 'Samantha', 'Anna', 'Maria'];
-                let found = null;
-                for (const name of preferred) {
-                    found = deVoices.find(v => v.name.includes(name));
-                    if (found) break;
+        <!-- 1. ZUERST DIE DATENBANK (Inhalt aus lesen.js) -->
+        <script>
+            // =======================================================
+            // DATENBANK: LESEN-LERNEN FÜR KLASSE 1 & 2
+            // =======================================================
+            const READING_DATABASE = {
+                buchstaben: {
+                    label: "Alphabetsi lernen (A-Z)",
+                    description: "Lerne alle Buchstaben mit Bildern",
+                    items: [
+                        { letter: "A", word: "Affe", image: '<img src="img/A.jpg" alt="🐒">', sound: "ah" },
+                        { letter: "B", word: "Ball", image: "⚽", sound: "beh" },
+                        { letter: "C", word: "Computer", image: "💻", sound: "tseh" },
+                        { letter: "D", word: "Drache", image: "🐉", sound: "deh" },
+                        { letter: "E", word: "Ente", image: "🦆", sound: "eh" },
+                        { letter: "F", word: "Fisch", image: "🐟", sound: "eff" },
+                        { letter: "G", word: "Giraffe", image: "🦒", sound: "geh" },
+                        { letter: "H", word: "Hund", image: "🐕", sound: "hah" },
+                        { letter: "I", word: "Igel", image: "🦔", sound: "ih" },
+                        { letter: "J", word: "Joghurt", image: "🍦", sound: "jott" },
+                        { letter: "K", word: "Katze", image: "🐈", sound: "kah" },
+                        { letter: "L", word: "Löwe", image: "🦁", sound: "ell" },
+                        { letter: "M", word: "Maus", image: "🐭", sound: "emm" },
+                        { letter: "N", word: "Nase", image: "👃", sound: "enn" },
+                        { letter: "O", word: "Oma", image: "👵", sound: "oh" },
+                        { letter: "P", word: "Pferd", image: "🐴", sound: "peh" },
+                        { letter: "Q", word: "Quelle", image: "⛲", sound: "kuh" },
+                        { letter: "R", word: "Regen", image: "🌧️", sound: "err" },
+                        { letter: "S", word: "Sonne", image: "☀️", sound: "ess" },
+                        { letter: "T", word: "Tiger", image: "🐯", sound: "teh" },
+                        { letter: "U", word: "Uhu", image: "🦉", sound: "uh" },
+                        { letter: "V", word: "Vogel", image: "🐦", sound: "vau" },
+                        { letter: "W", word: "Wasser", image: "💧", sound: "weh" },
+                        { letter: "X", word: "Xylophon", image: "🎵", sound: "ix" },
+                        { letter: "Y", word: "Yoga", image: "🧘", sound: "üpsilon" },
+                        { letter: "Z", word: "Zebra", image: "🦓", sound: "zett" },
+                        { letter: "Ä", word: "Äpfel", image: "🍎", sound: "äh" },
+                        { letter: "Ö", word: "Öl", image: "🛢️", sound: "öh" },
+                        { letter: "Ü", word: "Über", image: "⬆️", sound: "üh" },
+                        { letter: "ß", word: "Straße", image: "🛣️", sound: "ess-tsett" }
+                    ]
+                },
+                silben: {
+                    label: "👏 Sil-ben klat-schen",
+                    description: "Klatsche die Silben in jedem Wort",
+                    items: [
+                        { word: "Haus", syllables: "Haus", count: 1 },
+                        { word: "Ball", syllables: "Ball", count: 1 },
+                        { word: "Tisch", syllables: "Tisch", count: 1 },
+                        { word: "Apfel", syllables: "Ap-fel", count: 2 },
+                        { word: "Tasse", syllables: "Tas-se", count: 2 },
+                        { word: "Hose", syllables: "Ho-se", count: 2 },
+                        { word: "Banane", syllables: "Ba-na-ne", count: 3 },
+                        { word: "Tomate", syllables: "To-ma-te", count: 3 },
+                        { word: "Elefant", syllables: "E-le-fant", count: 3 },
+                        { word: "Krokodil", syllables: "Kro-ko-dil", count: 3 },
+                        { word: "Schmetterling", syllables: "Schmet-ter-ling", count: 3 },
+                        { word: "Taschenlampe", syllables: "Ta-schen-lam-pe", count: 4 },
+                        { word: "Bananen", syllables: "Ba-na-nen", count: 3 },
+                        { word: "Kartoffel", syllables: "Kar-tof-fel", count: 3 },
+                        { word: "Sonne", syllables: "Son-ne", count: 2 }
+                    ]
+                },
+                anlaute: {
+                    label: "🔊 Erste Wörter (Anlaute)",
+                    description: "Mit welchem Buchstaben beginnt das Wort?",
+                    items: [
+                        { word: "Affe", startsWith: "A", image: "🐒" },
+                        { word: "Ball", startsWith: "B", image: "⚽" },
+                        { word: "Drache", startsWith: "D", image: "🐉" },
+                        { word: "Ente", startsWith: "E", image: "🦆" },
+                        { word: "Fisch", startsWith: "F", image: "🐟" },
+                        { word: "Giraffe", startsWith: "G", image: "🦒" },
+                        { word: "Hund", startsWith: "H", image: "🐕" },
+                        { word: "Igel", startsWith: "I", image: "🦔" },
+                        { word: "Katze", startsWith: "K", image: "🐈" },
+                        { word: "Löwe", startsWith: "L", image: "🦁" },
+                        { word: "Maus", startsWith: "M", image: "🐭" },
+                        { word: "Nase", startsWith: "N", image: "👃" },
+                        { word: "Oma", startsWith: "O", image: "👵" },
+                        { word: "Pferd", startsWith: "P", image: "🐴" },
+                        { word: "Regen", startsWith: "R", image: "🌧️" },
+                        { word: "Sonne", startsWith: "S", image: "☀️" },
+                        { word: "Tiger", startsWith: "T", image: "🐯" },
+                        { word: "Uhu", startsWith: "U", image: "🦉" },
+                        { word: "Vogel", startsWith: "V", image: "🐦" },
+                        { word: "Wasser", startsWith: "W", image: "💧" },
+                        { word: "Zebra", startsWith: "Z", image: "🦓" }
+                    ]
+                },
+                simple_words: {
+                    label: "📖 Einfache Wörter",
+                    description: "Kurze Wörter mit 3-4 Buchstaben",
+                    items: [
+                        { word: "Mama", image: "👩" }, { word: "Papa", image: "👨" }, { word: "Oma", image: "👵" }, { word: "Opa", image: "👴" },
+                        { word: "Haus", image: "🏠" }, { word: "Baum", image: "🌳" }, { word: "Sonne", image: "☀️" }, { word: "Mond", image: "🌙" },
+                        { word: "Stern", image: "⭐" }, { word: "Tisch", image: "🪑" }, { word: "Stuhl", image: "💺" }, { word: "Brot", image: "🍞" },
+                        { word: "Milch", image: "🥛" }, { word: "Wasser", image: "💧" }, { word: "Apfel", image: "🍎" }, { word: "Banane", image: "🍌" },
+                        { word: "Hund", image: "🐕" }, { word: "Katze", image: "🐈" }, { word: "Fisch", image: "🐟" }, { word: "Vogel", image: "🐦" },
+                        { word: "Auto", image: "🚗" }, { word: "Zug", image: "🚂" }, { word: "Schiff", image: "🚢" }, { word: "Flugzeug", image: "✈️" }
+                    ]
+                },
+                word_match: {
+                    label: "🖼️ Wort zu Bild zuordnen",
+                    description: "Welches Wort passt zum Bild?",
+                    items: [
+                        { word: "Hund", image: "🐕" }, { word: "Katze", image: "🐈" }, { word: "Maus", image: "🐭" }, { word: "Vogel", image: "🐦" },
+                        { word: "Fisch", image: "🐟" }, { word: "Apfel", image: "🍎" }, { word: "Banane", image: "🍌" }, { word: "Brot", image: "🍞" },
+                        { word: "Milch", image: "🥛" }, { word: "Wasser", image: "💧" }
+                    ]
+                },
+                zweisilbig: {
+                    label: "📗 Zweisilbige Wörter",
+                    description: "Wörter mit zwei Silben",
+                    items: [
+                        { word: "Tasse", syllables: "Tas-se", image: "☕" }, { word: "Hose", syllables: "Ho-se", image: "👖" },
+                        { word: "Mütze", syllables: "Müt-ze", image: "🧢" }, { word: "Tasche", syllables: "Ta-sche", image: "👜" },
+                        { word: "Schule", syllables: "Schu-le", image: "🏫" }, { word: "Lehrer", syllables: "Leh-rer", image: "👨‍🏫" },
+                        { word: "Buch", syllables: "Buch", image: "📖" }, { word: "Tür", syllables: "Tür", image: "🚪" },
+                        { word: "Fenster", syllables: "Fens-ter", image: "🪟" }, { word: "Garten", syllables: "Gar-ten", image: "🌻" },
+                        { word: "Blume", syllables: "Blu-me", image: "🌸" }, { word: "Baum", syllables: "Baum", image: "🌳" }
+                    ]
+                },
+                dreisilbig: {
+                    label: "📕 Dreisilbige Wörter",
+                    description: "Wörter mit drei Silben",
+                    items: [
+                        { word: "Banane", syllables: "Ba-na-ne", image: "🍌" }, { word: "Tomate", syllables: "To-ma-te", image: "🍅" },
+                        { word: "Elefant", syllables: "E-le-fant", image: "🐘" }, { word: "Krokodil", syllables: "Kro-ko-dil", image: "🐊" },
+                        { word: "Schmetterling", syllables: "Schmet-ter-ling", image: "🦋" }, { word: "Libelle", syllables: "Li-bel-le", image: "🪰" },
+                        { word: "Marienkäfer", syllables: "Ma-ri-en-kä-fer", image: "🐞" }, { word: "Schokolade", syllables: "Scho-ko-la-de", image: "🍫" },
+                        { word: "Kartoffel", syllables: "Kar-tof-fel", image: "🥔" }, { word: "Giraffe", syllables: "Gi-raf-fe", image: "🦒" }
+                    ]
+                },
+                sentences: {
+                    label: "📝 Erste Sätze",
+                    description: "Lies die kurzen Sätze vor",
+                    items: [
+                        { sentence: "Ich sehe einen Hund.", emoji: "🐕", words: ["Ich", "sehe", "einen", "Hund"] },
+                        { sentence: "Mama hat einen Apfel.", emoji: "🍎", words: ["Mama", "hat", "einen", "Apfel"] },
+                        { sentence: "Papa liest ein Buch.", emoji: "📖", words: ["Papa", "liest", "ein", "Buch"] },
+                        { sentence: "Die Sonne scheint warm.", emoji: "☀️", words: ["Die", "Sonne", "scheint", "warm"] },
+                        { sentence: "Der Hund bellt laut.", emoji: "🐕", words: ["Der", "Hund", "bellt", "laut"] },
+                        { sentence: "Das Kind spielt im Garten.", emoji: "🧒", words: ["Das", "Kind", "spielt", "im", "Garten"] },
+                        { sentence: "Die Katze schläft auf dem Stuhl.", emoji: "🐈", words: ["Die", "Katze", "schläft", "auf", "dem", "Stuhl"] },
+                        { sentence: "Ich trinke Wasser.", emoji: "💧", words: ["Ich", "trinke", "Wasser"] },
+                        { sentence: "Das Auto fährt schnell.", emoji: "🚗", words: ["Das", "Auto", "fährt", "schnell"] },
+                        { sentence: "Ich mag die Schule.", emoji: "🏫", words: ["Ich", "mag", "die", "Schule"] },
+                        { sentence: "Oma backt einen Kuchen.", emoji: "👵", words: ["Oma", "backt", "einen", "Kuchen"] },
+                        { sentence: "Der Vogel fliegt hoch.", emoji: "🐦", words: ["Der", "Vogel", "fliegt", "hoch"] }
+                    ]
+                },
+                reading_comprehension: {
+                    label: "🧠 Lesen mit Verständnis",
+                    description: "Lies den Satz und entscheide",
+                    items: [
+                        { sentence: "Die Sonne scheint. Es ist warm.", question: "Wie ist das Wetter?", answer: "warm" },
+                        { sentence: "Der Hund bellt laut.", question: "Was macht der Hund?", answer: "er bellt" },
+                        { sentence: "Mama backt einen Kuchen.", question: "Was backt Mama?", answer: "einen Kuchen" },
+                        { sentence: "Das Kind spielt im Sandkasten.", question: "Wo spielt das Kind?", answer: "im Sandkasten" },
+                        { sentence: "Die Katze schläft auf dem Bett.", question: "Wo schläft die Katze?", answer: "auf dem Bett" }
+                    ]
+                },
+                word_puzzle: {
+                    label: "🧩 Buchstaben-Puzzle",
+                    description: "Setze die Buchstaben zum Wort zusammen",
+                    items: [
+                        { letters: "A-U-S-H", solution: "HAUS" }, { letters: "B-A-L-L", solution: "BALL" },
+                        { letters: "T-I-S-C-H", solution: "TISCH" }, { letters: "S-O-N-N-E", solution: "SONNE" },
+                        { letters: "M-O-N-D", solution: "MOND" }, { letters: "S-T-E-R-N", solution: "STERN" },
+                        { letters: "A-P-F-E-L", solution: "APFEL" }, { letters: "B-U-C-H", solution: "BUCH" },
+                        { letters: "F-I-S-C-H", solution: "FISCH" }, { letters: "V-O-G-E-L", solution: "VOGEL" }
+                    ]
                 }
-                if (!found && deVoices.length > 0) {
-                    found = deVoices[0];
+            };
+
+            const LESEN_DATABASE = READING_DATABASE;
+
+
+            // ============================================================
+            // LOGIK: LESEN-LERNEN  (Klasse 1 & 2)
+            // ============================================================
+
+            let lesenState = {
+                currentCategory: null,
+                currentIndex: 0,
+                score: 0,
+                wrongAttempts: 0,
+                total: 0,
+                options: [],
+                correctIndex: -1
+            };
+
+            const LESEN_ICONS = {
+                buchstaben: '🔤', silben: '👏', anlaute: '🔊', simple_words: '📖',
+                word_match: '🖼️', zweisilbig: '📗', dreisilbig: '📕', sentences: '📝',
+                reading_comprehension: '🧠', word_puzzle: '🧩'
+            };
+
+            const LESEN_FLASHCARDS = ['buchstaben', 'silben', 'simple_words', 'zweisilbig', 'dreisilbig', 'sentences'];
+
+            function lesenDB() {
+                if (typeof LESEN_DATABASE !== 'undefined' && LESEN_DATABASE) return LESEN_DATABASE;
+                return null;
+            }
+
+            function shuffle(arr) {
+                for (let i = arr.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
                 }
-                if (found) u.voice = found;
-
-                window.speechSynthesis.speak(u);
-            } catch (e) { }
-        }
-
-        function hoerButton(text) {
-            // Nur den relevanten Teil zum Vorlesen extrahieren
-            let textToRead = String(text);
-
-            // Bei Buchstaben: Nur den Buchstaben + Wort vorlesen
-            if (textToRead.includes('.')) {
-                const parts = textToRead.split('.');
-                textToRead = parts[0] + '. ' + (parts[1] || '').trim();
+                return arr;
             }
 
-            // Bei Silben: Nur das Wort vorlesen
-            if (textToRead.includes('👏')) {
-                const match = textToRead.match(/([A-ZÄÖÜa-zäöüß\-]+)/);
-                if (match) textToRead = match[1];
+            function getCurrentProfileId() {
+                try {
+                    if (typeof activePlayerKey !== 'undefined' && activePlayerKey) return String(activePlayerKey);
+                    if (typeof currentPlayer !== 'undefined' && currentPlayer && currentPlayer.name) return 'name_' + currentPlayer.name;
+                } catch (e) { }
+                return 'gast';
             }
 
-            const safe = encodeURIComponent(textToRead);
-            return `<button onclick="speakNatural(decodeURIComponent('${safe}'))"
+            function speakLesen(text) {
+                try {
+                    if (!('speechSynthesis' in window) || !text) return;
+                    window.speechSynthesis.cancel();
+                    const u = new SpeechSynthesisUtterance(String(text));
+                    u.lang = 'de-DE';
+                    u.rate = 0.9;
+                    u.pitch = 1.0;
+
+                    const voices = window.speechSynthesis.getVoices();
+                    const deVoices = voices.filter(v => v.lang.startsWith('de'));
+
+                    const preferred = ['Google Deutsch', 'Google Deutsche', 'Samantha', 'Anna', 'Maria'];
+                    let found = null;
+                    for (const name of preferred) {
+                        found = deVoices.find(v => v.name.includes(name));
+                        if (found) break;
+                    }
+                    if (!found && deVoices.length > 0) {
+                        found = deVoices[0];
+                    }
+                    if (found) u.voice = found;
+
+                    window.speechSynthesis.speak(u);
+                } catch (e) { }
+            }
+
+            function hoerButton(text) {
+                // Nur den relevanten Teil zum Vorlesen extrahieren
+                let textToRead = String(text);
+
+                // Bei Buchstaben: Nur den Buchstaben + Wort vorlesen
+                if (textToRead.includes('.')) {
+                    const parts = textToRead.split('.');
+                    textToRead = parts[0] + '. ' + (parts[1] || '').trim();
+                }
+
+                // Bei Silben: Nur das Wort vorlesen
+                if (textToRead.includes('👏')) {
+                    const match = textToRead.match(/([A-ZÄÖÜa-zäöüß\-]+)/);
+                    if (match) textToRead = match[1];
+                }
+
+                const safe = encodeURIComponent(textToRead);
+                return `<button onclick="speakNatural(decodeURIComponent('${safe}'))"
                 class="mt-3 inline-flex items-center gap-2 px-5 py-2 bg-yellow-500 text-gray-900 rounded-xl font-bold shadow hover:bg-yellow-400 transition">
                 🔊 Hören
             </button>`;
-        }
-
-        function lesenStorageKey() {
-            return 'lesen_progress_' + getCurrentProfileId();
-        }
-
-        function getAllLesenProgress() {
-            try { return JSON.parse(localStorage.getItem(lesenStorageKey()) || '{}'); } catch (e) { return {}; }
-        }
-
-        function getLesenProgress(categoryKey) {
-            const all = getAllLesenProgress();
-            return all[categoryKey] || { done: 0, total: 0 };
-        }
-
-        function saveLesenProgress(categoryKey, done, total) {
-            const all = getAllLesenProgress();
-            all[categoryKey] = { done: done, total: total };
-            try { localStorage.setItem(lesenStorageKey(), JSON.stringify(all)); } catch (e) { }
-        }
-
-        function renderLesenCategories() {
-            const container = document.getElementById('lesen-categories');
-            if (!container) return;
-
-            const categories = lesenDB();
-            if (!categories) {
-                container.innerHTML = '<div class="col-span-2 text-center text-gray-500 py-8">❌ Lesen-Datenbank nicht gefunden</div>';
-                return;
             }
 
-            // NUR die Kacheln, KEIN "Zurück zur Übersicht" Button mehr!
-            let html = '';
+            function lesenStorageKey() {
+                return 'lesen_progress_' + getCurrentProfileId();
+            }
 
-            const keys = Object.keys(categories);
-            keys.forEach(key => {
-                const cat = categories[key];
-                const icon = LESEN_ICONS[key] || '📚';
-                const count = cat.items ? cat.items.length : 0;
-                const progress = getLesenProgress(key);
-                const total = progress.total || count;
-                const pct = total > 0 ? Math.round((progress.done / total) * 100) : 0;
-                const progressBar = pct > 0
-                    ? `<div class="w-full bg-gray-700 rounded-full h-1.5 mt-2"><div class="bg-green-500 h-1.5 rounded-full" style="width:${pct}%"></div></div>`
-                    : '';
-                const doneBadge = pct >= 100 ? '<span class="text-green-400 text-xs">✅</span>' : '';
+            function getAllLesenProgress() {
+                try { return JSON.parse(localStorage.getItem(lesenStorageKey()) || '{}'); } catch (e) { return {}; }
+            }
 
-                html += `
+            function getLesenProgress(categoryKey) {
+                const all = getAllLesenProgress();
+                return all[categoryKey] || { done: 0, total: 0 };
+            }
+
+            function saveLesenProgress(categoryKey, done, total) {
+                const all = getAllLesenProgress();
+                all[categoryKey] = { done: done, total: total };
+                try { localStorage.setItem(lesenStorageKey(), JSON.stringify(all)); } catch (e) { }
+            }
+
+            function renderLesenCategories() {
+                const container = document.getElementById('lesen-categories');
+                if (!container) return;
+
+                const categories = lesenDB();
+                if (!categories) {
+                    container.innerHTML = '<div class="col-span-2 text-center text-gray-500 py-8">❌ Lesen-Datenbank nicht gefunden</div>';
+                    return;
+                }
+
+                // NUR die Kacheln, KEIN "Zurück zur Übersicht" Button mehr!
+                let html = '';
+
+                const keys = Object.keys(categories);
+                keys.forEach(key => {
+                    const cat = categories[key];
+                    const icon = LESEN_ICONS[key] || '📚';
+                    const count = cat.items ? cat.items.length : 0;
+                    const progress = getLesenProgress(key);
+                    const total = progress.total || count;
+                    const pct = total > 0 ? Math.round((progress.done / total) * 100) : 0;
+                    const progressBar = pct > 0
+                        ? `<div class="w-full bg-gray-700 rounded-full h-1.5 mt-2"><div class="bg-green-500 h-1.5 rounded-full" style="width:${pct}%"></div></div>`
+                        : '';
+                    const doneBadge = pct >= 100 ? '<span class="text-green-400 text-xs">✅</span>' : '';
+
+                    html += `
             <button onclick="startLesenCategory('${key}')"
                     class="w-full bg-gray-900 border border-gray-700 rounded-xl p-4 text-left hover:border-blue-500 transition-all">
                 <div class="flex items-center gap-2">
@@ -9932,50 +10013,50 @@ VIEW: TV-QUIZ SETUP
                 ${progressBar}
             </button>
         `;
-            });
-            container.innerHTML = html;
-        }
-
-        function startLesenCategory(categoryKey) {
-            const categories = lesenDB();
-            if (!categories || !categories[categoryKey]) return;
-
-            lesenState.currentCategory = categoryKey;
-            lesenState.currentIndex = 0;
-            lesenState.score = 0;
-            lesenState.wrongAttempts = 0;
-            lesenState.total = (categories[categoryKey].items || []).length;
-
-            // Für "Lesen mit Verständnis" den Schritt zurücksetzen
-            comprehensionStep = 0;
-
-            const ex = document.getElementById('lesen-exercise');
-            const gr = document.getElementById('lesen-categories');
-            if (ex) ex.classList.remove('hidden');
-            if (gr) gr.classList.add('hidden');
-
-            renderLesenExercise(categoryKey);
-        }
-
-        function renderLesenExercise(categoryKey) {
-            const container = document.getElementById('lesen-exercise');
-            if (!container) return;
-            const categories = lesenDB();
-            const cat = categories[categoryKey];
-            const items = cat.items || [];
-            const idx = lesenState.currentIndex;
-
-            if (idx >= items.length) {
-                showLesenResult(categoryKey);
-                return;
+                });
+                container.innerHTML = html;
             }
 
-            const item = items[idx];
-            const progress = getLesenProgress(categoryKey);
-            const done = Math.min(progress.done || 0, items.length);
-            const total = items.length;
+            function startLesenCategory(categoryKey) {
+                const categories = lesenDB();
+                if (!categories || !categories[categoryKey]) return;
 
-            let html = `
+                lesenState.currentCategory = categoryKey;
+                lesenState.currentIndex = 0;
+                lesenState.score = 0;
+                lesenState.wrongAttempts = 0;
+                lesenState.total = (categories[categoryKey].items || []).length;
+
+                // Für "Lesen mit Verständnis" den Schritt zurücksetzen
+                comprehensionStep = 0;
+
+                const ex = document.getElementById('lesen-exercise');
+                const gr = document.getElementById('lesen-categories');
+                if (ex) ex.classList.remove('hidden');
+                if (gr) gr.classList.add('hidden');
+
+                renderLesenExercise(categoryKey);
+            }
+
+            function renderLesenExercise(categoryKey) {
+                const container = document.getElementById('lesen-exercise');
+                if (!container) return;
+                const categories = lesenDB();
+                const cat = categories[categoryKey];
+                const items = cat.items || [];
+                const idx = lesenState.currentIndex;
+
+                if (idx >= items.length) {
+                    showLesenResult(categoryKey);
+                    return;
+                }
+
+                const item = items[idx];
+                const progress = getLesenProgress(categoryKey);
+                const done = Math.min(progress.done || 0, items.length);
+                const total = items.length;
+
+                let html = `
     <div class="flex justify-between items-center mb-3">
         <span class="text-xs font-bold text-gray-400">${idx + 1} / ${total}</span>
         <span class="text-xs font-bold text-green-400">✅ ${done} / ${total}</span>
@@ -9986,38 +10067,38 @@ VIEW: TV-QUIZ SETUP
     </div>
 `;
 
-            switch (categoryKey) {
-                case 'buchstaben': html += renderBuchstaben(item); break;
-                case 'silben': html += renderSilben(item); break;
-                case 'anlaute': html += renderAnlaute(item); break;
-                case 'simple_words':
-                case 'zweisilbig':
-                case 'dreisilbig': html += renderWordWithImage(item); break;
-                case 'word_match': html += renderWordMatch(item); break;
-                case 'sentences': html += renderSentence(item); break;
-                case 'reading_comprehension': html += renderComprehension(item); break;
-                case 'word_puzzle': html += renderWordPuzzle(item); break;
-                default: html += renderDefault(item);
+                switch (categoryKey) {
+                    case 'buchstaben': html += renderBuchstaben(item); break;
+                    case 'silben': html += renderSilben(item); break;
+                    case 'anlaute': html += renderAnlaute(item); break;
+                    case 'simple_words':
+                    case 'zweisilbig':
+                    case 'dreisilbig': html += renderWordWithImage(item); break;
+                    case 'word_match': html += renderWordMatch(item); break;
+                    case 'sentences': html += renderSentence(item); break;
+                    case 'reading_comprehension': html += renderComprehension(item); break;
+                    case 'word_puzzle': html += renderWordPuzzle(item); break;
+                    default: html += renderDefault(item);
+                }
+
+                container.innerHTML = html;
             }
 
-            container.innerHTML = html;
-        }
+            //     function renderBuchstaben(item) {
+            //         return `
+            //     <div class="text-center py-6">
+            //         <div class="text-8xl font-black text-blue-400 mb-2">${item.letter}</div>
+            //         <div class="text-3xl font-bold text-white">${item.word}</div>
+            //         <div class="text-6xl my-4">${item.image}</div>
+            //         <div class="text-sm text-gray-400">Klingt wie: <span class="text-yellow-400 font-bold">"${item.sound}"</span></div>
+            //         ${hoerButton(item.letter + '. ' + item.word)}
+            //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
+            //     </div>
+            // `;
+            // }
 
-        //     function renderBuchstaben(item) {
-        //         return `
-        //     <div class="text-center py-6">
-        //         <div class="text-8xl font-black text-blue-400 mb-2">${item.letter}</div>
-        //         <div class="text-3xl font-bold text-white">${item.word}</div>
-        //         <div class="text-6xl my-4">${item.image}</div>
-        //         <div class="text-sm text-gray-400">Klingt wie: <span class="text-yellow-400 font-bold">"${item.sound}"</span></div>
-        //         ${hoerButton(item.letter + '. ' + item.word)}
-        //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
-        //     </div>
-        // `;
-        // }
-
-        function renderBuchstaben(item) {
-            return `
+            function renderBuchstaben(item) {
+                return `
         <div class="text-center py-6">
             <div class="text-8xl font-black text-blue-400 mb-2">${item.letter}</div>
             <div class="text-3xl font-bold text-white">${item.word}</div>
@@ -10027,22 +10108,22 @@ VIEW: TV-QUIZ SETUP
             <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
         </div>
     `;
-        }
+            }
 
-        //     function renderSilben(item) {
-        //         return `
-        //     <div class="text-center py-6">
-        //         <div class="text-5xl font-bold text-white mb-4">${item.word}</div>
-        //         <div class="text-2xl text-yellow-400 font-bold">👏 ${item.syllables}</div>
-        //         <div class="text-sm text-gray-400 mt-2">${item.count} Silbe${item.count > 1 ? 'n' : ''}</div>
-        //         ${hoerButton(item.word)}
-        //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
-        //     </div>
-        // `;
-        //     }
+            //     function renderSilben(item) {
+            //         return `
+            //     <div class="text-center py-6">
+            //         <div class="text-5xl font-bold text-white mb-4">${item.word}</div>
+            //         <div class="text-2xl text-yellow-400 font-bold">👏 ${item.syllables}</div>
+            //         <div class="text-sm text-gray-400 mt-2">${item.count} Silbe${item.count > 1 ? 'n' : ''}</div>
+            //         ${hoerButton(item.word)}
+            //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
+            //     </div>
+            // `;
+            //     }
 
-        function renderSilben(item) {
-            return `
+            function renderSilben(item) {
+                return `
         <div class="text-center py-6">
             <div class="text-5xl font-bold text-white mb-4">${item.word}</div>
             <div class="text-2xl text-yellow-400 font-bold">👏 ${item.syllables}</div>
@@ -10051,22 +10132,22 @@ VIEW: TV-QUIZ SETUP
             <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
         </div>
     `;
-        }
+            }
 
-        //     function renderWordWithImage(item) {
-        //         return `
-        //     <div class="text-center py-6">
-        //         <div class="text-7xl mb-4">${item.image}</div>
-        //         <div class="text-4xl font-bold text-white">${item.word}</div>
-        //         ${item.syllables ? `<div class="text-sm text-gray-400 mt-2">👏 ${item.syllables}</div>` : ''}
-        //         ${hoerButton(item.word)}
-        //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
-        //     </div>
-        // `;
-        //     }
+            //     function renderWordWithImage(item) {
+            //         return `
+            //     <div class="text-center py-6">
+            //         <div class="text-7xl mb-4">${item.image}</div>
+            //         <div class="text-4xl font-bold text-white">${item.word}</div>
+            //         ${item.syllables ? `<div class="text-sm text-gray-400 mt-2">👏 ${item.syllables}</div>` : ''}
+            //         ${hoerButton(item.word)}
+            //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
+            //     </div>
+            // `;
+            //     }
 
-        function renderWordWithImage(item) {
-            return `
+            function renderWordWithImage(item) {
+                return `
         <div class="text-center py-6">
             <div class="text-7xl mb-4">${item.image}</div>
             <div class="text-4xl font-bold text-white">${item.word}</div>
@@ -10075,22 +10156,22 @@ VIEW: TV-QUIZ SETUP
             <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
         </div>
     `;
-        }
+            }
 
-        //     function renderSentence(item) {
-        //         return `
-        //     <div class="text-center py-6">
-        //         <div class="text-4xl font-bold text-white mb-4">${item.emoji}</div>
-        //         <div class="text-2xl font-bold text-yellow-400 leading-relaxed">${item.sentence}</div>
-        //         <div class="text-xs text-gray-500 mt-2">${item.words.join(' · ')}</div>
-        //         ${hoerButton(item.sentence)}
-        //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
-        //     </div>
-        // `;
-        //     }
+            //     function renderSentence(item) {
+            //         return `
+            //     <div class="text-center py-6">
+            //         <div class="text-4xl font-bold text-white mb-4">${item.emoji}</div>
+            //         <div class="text-2xl font-bold text-yellow-400 leading-relaxed">${item.sentence}</div>
+            //         <div class="text-xs text-gray-500 mt-2">${item.words.join(' · ')}</div>
+            //         ${hoerButton(item.sentence)}
+            //         <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
+            //     </div>
+            // `;
+            //     }
 
-        function renderSentence(item) {
-            return `
+            function renderSentence(item) {
+                return `
         <div class="text-center py-6">
             <div class="text-4xl font-bold text-white mb-4">${item.emoji}</div>
             <div class="text-2xl font-bold text-yellow-400 leading-relaxed">${item.sentence}</div>
@@ -10099,50 +10180,50 @@ VIEW: TV-QUIZ SETUP
             <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
         </div>
     `;
-        }
-        function prepareOptions(values, correctValue) {
-            const opts = shuffle(values.slice());
-            lesenState.options = opts;
-            lesenState.correctIndex = opts.indexOf(correctValue);
-            return opts;
-        }
+            }
+            function prepareOptions(values, correctValue) {
+                const opts = shuffle(values.slice());
+                lesenState.options = opts;
+                lesenState.correctIndex = opts.indexOf(correctValue);
+                return opts;
+            }
 
-        function pickDistractors(pool, correctValue, n) {
-            const uniq = Array.from(new Set(pool)).filter(v => v !== correctValue);
-            shuffle(uniq);
-            return uniq.slice(0, n);
-        }
+            function pickDistractors(pool, correctValue, n) {
+                const uniq = Array.from(new Set(pool)).filter(v => v !== correctValue);
+                shuffle(uniq);
+                return uniq.slice(0, n);
+            }
 
-        //     function renderAnlaute(item) {
-        //         const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-        //         const distractors = pickDistractors(letters, item.startsWith, 3);
-        //         const opts = prepareOptions([item.startsWith].concat(distractors), item.startsWith);
+            //     function renderAnlaute(item) {
+            //         const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+            //         const distractors = pickDistractors(letters, item.startsWith, 3);
+            //         const opts = prepareOptions([item.startsWith].concat(distractors), item.startsWith);
 
-        //         const buttons = opts.map((l, i) => `
-        //     <button onclick="lesenCheck(${i})" class="w-16 h-16 text-2xl font-bold bg-gray-700 rounded-xl">${l}</button>
-        // `).join('');
+            //         const buttons = opts.map((l, i) => `
+            //     <button onclick="lesenCheck(${i})" class="w-16 h-16 text-2xl font-bold bg-gray-700 rounded-xl">${l}</button>
+            // `).join('');
 
-        //         return `
-        //     <div class="text-center py-6">
-        //         <div class="text-6xl mb-4">${item.image}</div>
-        //         <div class="text-3xl font-bold text-white mb-1">${item.word}</div>
-        //         ${hoerButton(item.word)}
-        //         <div class="text-sm text-gray-400 my-3">Mit welchem Buchstaben beginnt das Wort?</div>
-        //         <div class="flex justify-center gap-4 flex-wrap">${buttons}</div>
-        //     </div>
-        // `;
-        //     }
+            //         return `
+            //     <div class="text-center py-6">
+            //         <div class="text-6xl mb-4">${item.image}</div>
+            //         <div class="text-3xl font-bold text-white mb-1">${item.word}</div>
+            //         ${hoerButton(item.word)}
+            //         <div class="text-sm text-gray-400 my-3">Mit welchem Buchstaben beginnt das Wort?</div>
+            //         <div class="flex justify-center gap-4 flex-wrap">${buttons}</div>
+            //     </div>
+            // `;
+            //     }
 
-        function renderAnlaute(item) {
-            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-            const distractors = pickDistractors(letters, item.startsWith, 3);
-            const opts = prepareOptions([item.startsWith].concat(distractors), item.startsWith);
+            function renderAnlaute(item) {
+                const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+                const distractors = pickDistractors(letters, item.startsWith, 3);
+                const opts = prepareOptions([item.startsWith].concat(distractors), item.startsWith);
 
-            const buttons = opts.map((l, i) => `
+                const buttons = opts.map((l, i) => `
         <button onclick="lesenCheck(${i})" class="w-16 h-16 text-2xl font-bold bg-gray-700 rounded-xl">${l}</button>
     `).join('');
 
-            return `
+                return `
         <div class="text-center py-6">
             <div class="text-6xl mb-4">${item.image}</div>
             <div class="text-3xl font-bold text-white mb-1">${item.word}</div>
@@ -10151,84 +10232,84 @@ VIEW: TV-QUIZ SETUP
             <div class="flex justify-center gap-4 flex-wrap">${buttons}</div>
         </div>
     `;
-        }
+            }
 
-        //     function renderWordMatch(item) {
-        //         const categories = lesenDB();
-        //         const pool = (categories.word_match.items || []).map(it => it.word);
-        //         const distractors = pickDistractors(pool, item.word, 3);
-        //         const opts = prepareOptions([item.word].concat(distractors), item.word);
+            //     function renderWordMatch(item) {
+            //         const categories = lesenDB();
+            //         const pool = (categories.word_match.items || []).map(it => it.word);
+            //         const distractors = pickDistractors(pool, item.word, 3);
+            //         const opts = prepareOptions([item.word].concat(distractors), item.word);
 
-        //         const buttons = opts.map((w, i) => `
-        //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${w}</button>
-        // `).join('');
+            //         const buttons = opts.map((w, i) => `
+            //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${w}</button>
+            // `).join('');
 
-        //         return `
-        //     <div class="text-center py-6">
-        //         <div class="text-7xl mb-4">${item.image}</div>
-        //         <div class="text-sm text-gray-400 mb-4">Welches Wort passt zum Bild?</div>
-        //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
-        //     </div>
-        // `;
-        //     }
-        function renderWordMatch(item) {
-            const categories = lesenDB();
-            const pool = (categories.word_match.items || []).map(it => it.word);
-            const distractors = pickDistractors(pool, item.word, 3);
-            const opts = prepareOptions([item.word].concat(distractors), item.word);
+            //         return `
+            //     <div class="text-center py-6">
+            //         <div class="text-7xl mb-4">${item.image}</div>
+            //         <div class="text-sm text-gray-400 mb-4">Welches Wort passt zum Bild?</div>
+            //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
+            //     </div>
+            // `;
+            //     }
+            function renderWordMatch(item) {
+                const categories = lesenDB();
+                const pool = (categories.word_match.items || []).map(it => it.word);
+                const distractors = pickDistractors(pool, item.word, 3);
+                const opts = prepareOptions([item.word].concat(distractors), item.word);
 
-            const buttons = opts.map((w, i) => `
+                const buttons = opts.map((w, i) => `
         <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${w}</button>
     `).join('');
 
-            return `
+                return `
         <div class="text-center py-6">
             <div class="text-7xl mb-4">${item.image}</div>
             <div class="text-sm text-gray-400 mb-4">Welches Wort passt zum Bild?</div>
             <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
         </div>
     `;
-        }
-        //     //     // --------------------------------------------------------
-        //     // DAS IST DIE ÜBERARBEITETE "LESEN MIT VERSTÄNDNIS"-FUNKTION
-        //     // --------------------------------------------------------
-        //     let comprehensionStep = 0;
+            }
+            //     //     // --------------------------------------------------------
+            //     // DAS IST DIE ÜBERARBEITETE "LESEN MIT VERSTÄNDNIS"-FUNKTION
+            //     // --------------------------------------------------------
+            //     let comprehensionStep = 0;
 
-        //     function renderComprehension(item) {
-        //         const categories = lesenDB();
-        //         const pool = (categories.reading_comprehension.items || []).map(it => it.answer);
-        //         const distractors = pickDistractors(pool, item.answer, 3);
-        //         const opts = prepareOptions([item.answer].concat(distractors), item.answer);
+            //     function renderComprehension(item) {
+            //         const categories = lesenDB();
+            //         const pool = (categories.reading_comprehension.items || []).map(it => it.answer);
+            //         const distractors = pickDistractors(pool, item.answer, 3);
+            //         const opts = prepareOptions([item.answer].concat(distractors), item.answer);
 
-        //         const buttons = opts.map((a, i) => `
-        //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${a}</button>
-        // `).join('');
+            //         const buttons = opts.map((a, i) => `
+            //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${a}</button>
+            // `).join('');
 
-        //         if (comprehensionStep === 0) {
-        //             return `
-        //         <div class="text-center py-6">
-        //             <div class="text-xl font-bold text-white leading-relaxed mb-4">📖 Lies den Satz:</div>
-        //             <div class="text-2xl font-bold text-yellow-400 leading-relaxed mb-8">${item.sentence}</div>
-        //             <button onclick="comprehensionNext()" 
-        //                     class="mt-6 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500">
-        //                 ➔ Weiter zur Frage
-        //             </button>
-        //         </div>
-        //     `;
-        //         }
+            //         if (comprehensionStep === 0) {
+            //             return `
+            //         <div class="text-center py-6">
+            //             <div class="text-xl font-bold text-white leading-relaxed mb-4">📖 Lies den Satz:</div>
+            //             <div class="text-2xl font-bold text-yellow-400 leading-relaxed mb-8">${item.sentence}</div>
+            //             <button onclick="comprehensionNext()" 
+            //                     class="mt-6 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500">
+            //                 ➔ Weiter zur Frage
+            //             </button>
+            //         </div>
+            //     `;
+            //         }
 
-        function renderComprehension(item) {
-            const categories = lesenDB();
-            const pool = (categories.reading_comprehension.items || []).map(it => it.answer);
-            const distractors = pickDistractors(pool, item.answer, 3);
-            const opts = prepareOptions([item.answer].concat(distractors), item.answer);
+            function renderComprehension(item) {
+                const categories = lesenDB();
+                const pool = (categories.reading_comprehension.items || []).map(it => it.answer);
+                const distractors = pickDistractors(pool, item.answer, 3);
+                const opts = prepareOptions([item.answer].concat(distractors), item.answer);
 
-            const buttons = opts.map((a, i) => `
+                const buttons = opts.map((a, i) => `
         <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${a}</button>
     `).join('');
 
-            if (comprehensionStep === 0) {
-                return `
+                if (comprehensionStep === 0) {
+                    return `
             <div class="text-center py-6">
                 <div class="text-xl font-bold text-white leading-relaxed mb-4">📖 Lies den Satz:</div>
                 <div class="text-2xl font-bold text-yellow-400 leading-relaxed mb-8">${item.sentence}</div>
@@ -10239,234 +10320,234 @@ VIEW: TV-QUIZ SETUP
                 </button>
             </div>
         `;
-            }
+                }
 
-            return `
+                return `
         <div class="text-center py-4">
             <div class="text-sm text-gray-400 mb-2">📖 ${item.sentence}</div>
             <div class="text-lg text-yellow-400 font-bold my-4">❓ ${item.question}</div>
             <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
         </div>
     `;
-        }
+            }
 
-        //     return `
-        //     <div class="text-center py-4">
-        //         <div class="text-sm text-gray-400 mb-2">📖 ${item.sentence}</div>
-        //         <div class="text-lg text-yellow-400 font-bold my-4">❓ ${item.question}</div>
-        //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
-        //     </div>
-        // `;
-        //     }
+            //     return `
+            //     <div class="text-center py-4">
+            //         <div class="text-sm text-gray-400 mb-2">📖 ${item.sentence}</div>
+            //         <div class="text-lg text-yellow-400 font-bold my-4">❓ ${item.question}</div>
+            //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
+            //     </div>
+            // `;
+            //     }
 
-        function comprehensionNext() {
-            comprehensionStep = 1;
-            renderLesenExercise(lesenState.currentCategory);
-        }
-        // --------------------------------------------------------
+            function comprehensionNext() {
+                comprehensionStep = 1;
+                renderLesenExercise(lesenState.currentCategory);
+            }
+            // --------------------------------------------------------
 
-        //     function renderWordPuzzle(item) {
-        //         const shownLetters = shuffle(item.letters.split('-'));
-        //         const categories = lesenDB();
-        //         const allWords = [];
-        //         Object.keys(categories).forEach(key => {
-        //             (categories[key].items || []).forEach(it => {
-        //                 if (it.solution) allWords.push(it.solution);
-        //                 else if (it.word) allWords.push(it.word.toUpperCase());
-        //             });
-        //         });
-        //         const distractors = pickDistractors(allWords, item.solution, 3);
-        //         const opts = prepareOptions([item.solution].concat(distractors), item.solution);
+            //     function renderWordPuzzle(item) {
+            //         const shownLetters = shuffle(item.letters.split('-'));
+            //         const categories = lesenDB();
+            //         const allWords = [];
+            //         Object.keys(categories).forEach(key => {
+            //             (categories[key].items || []).forEach(it => {
+            //                 if (it.solution) allWords.push(it.solution);
+            //                 else if (it.word) allWords.push(it.word.toUpperCase());
+            //             });
+            //         });
+            //         const distractors = pickDistractors(allWords, item.solution, 3);
+            //         const opts = prepareOptions([item.solution].concat(distractors), item.solution);
 
-        //         const tiles = shownLetters.map(l => `
-        //     <span class="w-14 h-14 bg-gray-700 rounded-xl flex items-center justify-center text-2xl font-bold text-white">${l}</span>
-        // `).join('');
+            //         const tiles = shownLetters.map(l => `
+            //     <span class="w-14 h-14 bg-gray-700 rounded-xl flex items-center justify-center text-2xl font-bold text-white">${l}</span>
+            // `).join('');
 
-        //         const buttons = opts.map((w, i) => `
-        //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${w}</button>
-        // `).join('');
+            //         const buttons = opts.map((w, i) => `
+            //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${w}</button>
+            // `).join('');
 
-        //         return `
-        //     <div class="text-center py-4">
-        //         <div class="text-sm text-gray-400 mb-3">Setze die Buchstaben zum Wort zusammen</div>
-        //         <div class="flex justify-center gap-2 flex-wrap mb-4">${tiles}</div>
-        //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
-        //     </div>
-        // `;
-        //     }
+            //         return `
+            //     <div class="text-center py-4">
+            //         <div class="text-sm text-gray-400 mb-3">Setze die Buchstaben zum Wort zusammen</div>
+            //         <div class="flex justify-center gap-2 flex-wrap mb-4">${tiles}</div>
+            //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
+            //     </div>
+            // `;
+            //     }
 
-        function renderWordPuzzle(item) {
-            const shownLetters = shuffle(item.letters.split('-'));
-            const categories = lesenDB();
-            const allWords = [];
-            Object.keys(categories).forEach(key => {
-                (categories[key].items || []).forEach(it => {
-                    if (it.solution) allWords.push(it.solution);
-                    else if (it.word) allWords.push(it.word.toUpperCase());
+            function renderWordPuzzle(item) {
+                const shownLetters = shuffle(item.letters.split('-'));
+                const categories = lesenDB();
+                const allWords = [];
+                Object.keys(categories).forEach(key => {
+                    (categories[key].items || []).forEach(it => {
+                        if (it.solution) allWords.push(it.solution);
+                        else if (it.word) allWords.push(it.word.toUpperCase());
+                    });
                 });
-            });
-            const distractors = pickDistractors(allWords, item.solution, 3);
-            const opts = prepareOptions([item.solution].concat(distractors), item.solution);
+                const distractors = pickDistractors(allWords, item.solution, 3);
+                const opts = prepareOptions([item.solution].concat(distractors), item.solution);
 
-            const tiles = shownLetters.map(l => `
+                const tiles = shownLetters.map(l => `
         <span class="w-14 h-14 bg-gray-700 rounded-xl flex items-center justify-center text-2xl font-bold text-white">${l}</span>
     `).join('');
 
-            const buttons = opts.map((w, i) => `
+                const buttons = opts.map((w, i) => `
         <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${w}</button>
     `).join('');
 
-            return `
+                return `
         <div class="text-center py-4">
             <div class="text-sm text-gray-400 mb-3">Setze die Buchstaben zum Wort zusammen</div>
             <div class="flex justify-center gap-2 flex-wrap mb-4">${tiles}</div>
             <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
         </div>
     `;
-        }
+            }
 
-        function renderDefault(item) {
-            return `
+            function renderDefault(item) {
+                return `
         <div class="text-center py-6">
             <div class="text-xl font-bold text-white">${item.word || item.sentence || '—'}</div>
             <button onclick="lesenNext()" class="mt-4 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg">➔ Weiter</button>
         </div>
     `;
-        }
-
-        // --------------------------------------------------------
-        // ÜBERARBEITETE ANTWORT-PRÜFUNG: NUR TÖNE
-        // --------------------------------------------------------
-        function lesenCheck(idx) {
-            if (idx === lesenState.correctIndex) {
-                playLesenSound(true);
-                lesenState.score++;
-                setTimeout(() => lesenNext(), 500);
-            } else {
-                lesenState.wrongAttempts++;
-                playLesenSound(false);
             }
-        }
 
-        function playLesenSound(correct) {
-            try {
-                if (correct) {
-                    if (typeof playTones === 'function') {
-                        playTones([[523, 0.1], [659, 0.1], [784, 0.2]], 'sine', 0.15);
-                    } else if (typeof SFX !== 'undefined' && SFX.correct) {
-                        SFX.correct();
-                    } else {
-                        console.log("Richtig-Ton abgespielt");
-                    }
+            // --------------------------------------------------------
+            // ÜBERARBEITETE ANTWORT-PRÜFUNG: NUR TÖNE
+            // --------------------------------------------------------
+            function lesenCheck(idx) {
+                if (idx === lesenState.correctIndex) {
+                    playLesenSound(true);
+                    lesenState.score++;
+                    setTimeout(() => lesenNext(), 500);
                 } else {
-                    if (typeof playTones === 'function') {
-                        playTones([[392, 0.12], [349, 0.12], [330, 0.2]], 'sine', 0.12);
-                    } else if (typeof SFX !== 'undefined' && SFX.wrong) {
-                        SFX.wrong();
-                    } else {
-                        console.log("Falsch-Ton abgespielt");
-                    }
+                    lesenState.wrongAttempts++;
+                    playLesenSound(false);
                 }
-            } catch (e) { }
-        }
-
-
-        // Sorgt dafür, dass die Stimmen im Hintergrund geladen werden (wichtig für Chrome/Safari)
-        // window.speechSynthesis.onvoiceschanged = () => {
-        //     window.speechSynthesis.getVoices();
-        // };
-
-        // function speakNatural(text) {
-        //     if (!('speechSynthesis' in window)) return;
-
-        //     // Bricht aktuelles Vorlesen ab, falls noch etwas gesprochen wird
-        //     window.speechSynthesis.cancel();
-
-        //     const utterance = new SpeechSynthesisUtterance(text);
-        //     utterance.lang = 'de-DE';
-        //     utterance.rate = 0.9; // Leicht verlangsamt (0.9 statt 1.0) für bessere Verständlichkeit
-        //     utterance.pitch = 1.1; // Ein kleines bisschen höher, wirkt oft freundlicher
-
-        //     const voices = window.speechSynthesis.getVoices();
-
-        //     // Wir suchen gezielt nach hochwertigen deutschen Stimmen
-        //     const bestVoice = voices.find(v => v.lang.includes('de') && (v.name.includes('Natural') || v.name.includes('Premium') || v.name.includes('Google')))
-        //         || voices.find(v => v.lang.includes('de')); // Fallback: Erste verfügbare deutsche Stimme
-
-        //     if (bestVoice) {
-        //         utterance.voice = bestVoice;
-        //     }
-
-        //     window.speechSynthesis.speak(utterance);
-        // }
-
-        function speakNatural(text) {
-            if (!('speechSynthesis' in window)) return;
-
-            // Bricht aktuelles Vorlesen ab
-            window.speechSynthesis.cancel();
-
-            // Nur den reinen Text vorlesen, ohne Emojis oder Sonderzeichen
-            const cleanText = String(text)
-                .replace(/[🔤👏🔊📖🖼️📗📕📝🧠🧩✅❌➔❓💡🎉🌟🏆👂👀📚]/g, '') // Emojis entfernen
-                .replace(/[^\w\s\.\,\!\?\-\u00C0-\u017F]/g, '') // Sonderzeichen entfernen (außer deutsche Umlaute)
-                .trim();
-
-            if (!cleanText) return;
-
-            const utterance = new SpeechSynthesisUtterance(cleanText);
-            utterance.lang = 'de-DE';
-            utterance.rate = 0.9;
-            utterance.pitch = 1.1;
-
-            const voices = window.speechSynthesis.getVoices();
-            const bestVoice = voices.find(v => v.lang.includes('de') && (v.name.includes('Natural') || v.name.includes('Premium') || v.name.includes('Google')))
-                || voices.find(v => v.lang.includes('de'));
-
-            if (bestVoice) {
-                utterance.voice = bestVoice;
             }
 
-            window.speechSynthesis.speak(utterance);
-        }
+            function playLesenSound(correct) {
+                try {
+                    if (correct) {
+                        if (typeof playTones === 'function') {
+                            playTones([[523, 0.1], [659, 0.1], [784, 0.2]], 'sine', 0.15);
+                        } else if (typeof SFX !== 'undefined' && SFX.correct) {
+                            SFX.correct();
+                        } else {
+                            console.log("Richtig-Ton abgespielt");
+                        }
+                    } else {
+                        if (typeof playTones === 'function') {
+                            playTones([[392, 0.12], [349, 0.12], [330, 0.2]], 'sine', 0.12);
+                        } else if (typeof SFX !== 'undefined' && SFX.wrong) {
+                            SFX.wrong();
+                        } else {
+                            console.log("Falsch-Ton abgespielt");
+                        }
+                    }
+                } catch (e) { }
+            }
+
+
+            // Sorgt dafür, dass die Stimmen im Hintergrund geladen werden (wichtig für Chrome/Safari)
+            // window.speechSynthesis.onvoiceschanged = () => {
+            //     window.speechSynthesis.getVoices();
+            // };
+
+            // function speakNatural(text) {
+            //     if (!('speechSynthesis' in window)) return;
+
+            //     // Bricht aktuelles Vorlesen ab, falls noch etwas gesprochen wird
+            //     window.speechSynthesis.cancel();
+
+            //     const utterance = new SpeechSynthesisUtterance(text);
+            //     utterance.lang = 'de-DE';
+            //     utterance.rate = 0.9; // Leicht verlangsamt (0.9 statt 1.0) für bessere Verständlichkeit
+            //     utterance.pitch = 1.1; // Ein kleines bisschen höher, wirkt oft freundlicher
+
+            //     const voices = window.speechSynthesis.getVoices();
+
+            //     // Wir suchen gezielt nach hochwertigen deutschen Stimmen
+            //     const bestVoice = voices.find(v => v.lang.includes('de') && (v.name.includes('Natural') || v.name.includes('Premium') || v.name.includes('Google')))
+            //         || voices.find(v => v.lang.includes('de')); // Fallback: Erste verfügbare deutsche Stimme
+
+            //     if (bestVoice) {
+            //         utterance.voice = bestVoice;
+            //     }
+
+            //     window.speechSynthesis.speak(utterance);
+            // }
+
+            function speakNatural(text) {
+                if (!('speechSynthesis' in window)) return;
+
+                // Bricht aktuelles Vorlesen ab
+                window.speechSynthesis.cancel();
+
+                // Nur den reinen Text vorlesen, ohne Emojis oder Sonderzeichen
+                const cleanText = String(text)
+                    .replace(/[🔤👏🔊📖🖼️📗📕📝🧠🧩✅❌➔❓💡🎉🌟🏆👂👀📚]/g, '') // Emojis entfernen
+                    .replace(/[^\w\s\.\,\!\?\-\u00C0-\u017F]/g, '') // Sonderzeichen entfernen (außer deutsche Umlaute)
+                    .trim();
+
+                if (!cleanText) return;
+
+                const utterance = new SpeechSynthesisUtterance(cleanText);
+                utterance.lang = 'de-DE';
+                utterance.rate = 0.9;
+                utterance.pitch = 1.1;
+
+                const voices = window.speechSynthesis.getVoices();
+                const bestVoice = voices.find(v => v.lang.includes('de') && (v.name.includes('Natural') || v.name.includes('Premium') || v.name.includes('Google')))
+                    || voices.find(v => v.lang.includes('de'));
+
+                if (bestVoice) {
+                    utterance.voice = bestVoice;
+                }
+
+                window.speechSynthesis.speak(utterance);
+            }
 
 
 
-        // --------------------------------------------------------
+            // --------------------------------------------------------
 
-        function lesenNext() {
-            const categories = lesenDB();
-            const cat = categories[lesenState.currentCategory];
-            const items = cat.items || [];
+            function lesenNext() {
+                const categories = lesenDB();
+                const cat = categories[lesenState.currentCategory];
+                const items = cat.items || [];
 
-            lesenState.currentIndex++;
-            comprehensionStep = 0; // Setzt den Leseschritt für die nächste Aufgabe zurück
+                lesenState.currentIndex++;
+                comprehensionStep = 0; // Setzt den Leseschritt für die nächste Aufgabe zurück
 
-            const prev = getLesenProgress(lesenState.currentCategory);
-            const done = Math.min(Math.max(prev.done || 0, lesenState.currentIndex), items.length);
-            saveLesenProgress(lesenState.currentCategory, done, items.length);
+                const prev = getLesenProgress(lesenState.currentCategory);
+                const done = Math.min(Math.max(prev.done || 0, lesenState.currentIndex), items.length);
+                saveLesenProgress(lesenState.currentCategory, done, items.length);
 
-            renderLesenExercise(lesenState.currentCategory);
-        }
+                renderLesenExercise(lesenState.currentCategory);
+            }
 
-        function showLesenResult(categoryKey) {
-            const container = document.getElementById('lesen-exercise');
-            const categories = lesenDB();
-            const cat = categories[categoryKey];
-            const total = cat.items ? cat.items.length : 0;
+            function showLesenResult(categoryKey) {
+                const container = document.getElementById('lesen-exercise');
+                const categories = lesenDB();
+                const cat = categories[categoryKey];
+                const total = cat.items ? cat.items.length : 0;
 
-            const wrong = lesenState.wrongAttempts;
-            let emoji, msg;
-            if (wrong <= 2) { emoji = '🏆'; msg = 'Perfekt gemacht!'; }
-            else if (wrong <= 6) { emoji = '🌟'; msg = 'Super gemacht!'; }
-            else { emoji = '👍'; msg = 'Gut gemacht!'; }
+                const wrong = lesenState.wrongAttempts;
+                let emoji, msg;
+                if (wrong <= 2) { emoji = '🏆'; msg = 'Perfekt gemacht!'; }
+                else if (wrong <= 6) { emoji = '🌟'; msg = 'Super gemacht!'; }
+                else { emoji = '👍'; msg = 'Gut gemacht!'; }
 
-            const isFlashcard = LESEN_FLASHCARDS.indexOf(categoryKey) !== -1;
-            const line = isFlashcard ? `Du hast alle ${total} angeschaut!` : `Du hast alle ${total} geschafft!`;
+                const isFlashcard = LESEN_FLASHCARDS.indexOf(categoryKey) !== -1;
+                const line = isFlashcard ? `Du hast alle ${total} angeschaut!` : `Du hast alle ${total} geschafft!`;
 
-            saveLesenProgress(categoryKey, total, total);
+                saveLesenProgress(categoryKey, total, total);
 
-            container.innerHTML = `
+                container.innerHTML = `
         <div class="text-center py-8">
             <div class="text-7xl mb-4">${emoji}</div>
             <div class="text-2xl font-bold text-white">${msg}</div>
@@ -10477,77 +10558,77 @@ VIEW: TV-QUIZ SETUP
             </div>
         </div>
     `;
-        }
+            }
 
-        function resetLesenCategory(categoryKey) {
-            if (!confirm('Fortschritt für diese Übung zurücksetzen?')) return;
-            const categories = lesenDB();
-            const total = categories[categoryKey].items ? categories[categoryKey].items.length : 0;
-            saveLesenProgress(categoryKey, 0, total);
-            lesenState.currentIndex = 0;
-            lesenState.score = 0;
-            lesenState.wrongAttempts = 0;
-            renderLesenExercise(categoryKey);
-        }
+            function resetLesenCategory(categoryKey) {
+                if (!confirm('Fortschritt für diese Übung zurücksetzen?')) return;
+                const categories = lesenDB();
+                const total = categories[categoryKey].items ? categories[categoryKey].items.length : 0;
+                saveLesenProgress(categoryKey, 0, total);
+                lesenState.currentIndex = 0;
+                lesenState.score = 0;
+                lesenState.wrongAttempts = 0;
+                renderLesenExercise(categoryKey);
+            }
 
-        // --------------------------------------------------------
-        // ÜBERARBEITETE NAVIGATION: ZURÜCK VS. HAUPTMENÜ
-        // --------------------------------------------------------
+            // --------------------------------------------------------
+            // ÜBERARBEITETE NAVIGATION: ZURÜCK VS. HAUPTMENÜ
+            // --------------------------------------------------------
 
-        // Geht einen Schritt zurück (von Übung zu Kategorieliste)
-        // function closeLesen() {
-        //     try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { }
-        //     const ex = document.getElementById('lesen-exercise');
-        //     const gr = document.getElementById('lesen-categories');
-        //     if (ex) ex.classList.add('hidden');
-        //     if (gr) gr.classList.remove('hidden');
-        //     renderLesenCategories();
-        // }
+            // Geht einen Schritt zurück (von Übung zu Kategorieliste)
+            // function closeLesen() {
+            //     try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { }
+            //     const ex = document.getElementById('lesen-exercise');
+            //     const gr = document.getElementById('lesen-categories');
+            //     if (ex) ex.classList.add('hidden');
+            //     if (gr) gr.classList.remove('hidden');
+            //     renderLesenCategories();
+            // }
 
-        function closeLesen() {
-            try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { }
-            const ex = document.getElementById('lesen-exercise');
-            const gr = document.getElementById('lesen-categories');
-            if (ex) ex.classList.add('hidden');
-            if (gr) gr.classList.remove('hidden');
-            renderLesenCategories();
-        }
+            function closeLesen() {
+                try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { }
+                const ex = document.getElementById('lesen-exercise');
+                const gr = document.getElementById('lesen-categories');
+                if (ex) ex.classList.add('hidden');
+                if (gr) gr.classList.remove('hidden');
+                renderLesenCategories();
+            }
 
 
-        // Geht von überall im Lesen-Bereich komplett zurück ins Hauptmenü
-        function goToMainMenu() {
-            try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { }
+            // Geht von überall im Lesen-Bereich komplett zurück ins Hauptmenü
+            function goToMainMenu() {
+                try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { }
 
-            const ex = document.getElementById('lesen-exercise');
-            const gr = document.getElementById('lesen-categories');
+                const ex = document.getElementById('lesen-exercise');
+                const gr = document.getElementById('lesen-categories');
 
-            // Lesebereich verstecken (Passe die ID an deine echte View-ID an!)
-            const viewLesen = document.getElementById('view-lesen');
-            if (viewLesen) viewLesen.classList.add('hidden');
+                // Lesebereich verstecken (Passe die ID an deine echte View-ID an!)
+                const viewLesen = document.getElementById('view-lesen');
+                if (viewLesen) viewLesen.classList.add('hidden');
 
-            // Setze das Dashboard zurück für den nächsten Besuch
-            if (ex) ex.classList.add('hidden');
-            if (gr) gr.classList.remove('hidden');
+                // Setze das Dashboard zurück für den nächsten Besuch
+                if (ex) ex.classList.add('hidden');
+                if (gr) gr.classList.remove('hidden');
 
-            // Zeige Hauptmenü
-            // WICHTIG: Ersetze 'view-menu' mit der ID, die dein Hauptmenü wirklich hat!
-            const viewMenu = document.getElementById('view-menu');
-            if (viewMenu) viewMenu.classList.remove('hidden');
+                // Zeige Hauptmenü
+                // WICHTIG: Ersetze 'view-menu' mit der ID, die dein Hauptmenü wirklich hat!
+                const viewMenu = document.getElementById('view-menu');
+                if (viewMenu) viewMenu.classList.remove('hidden');
 
-            // Falls EduPlay eine switchView Funktion hat, nutzt du diese stattdessen:
-            if (typeof switchView === 'function') switchView('menu');
-        }
+                // Falls EduPlay eine switchView Funktion hat, nutzt du diese stattdessen:
+                if (typeof switchView === 'function') switchView('menu');
+            }
 
-        function openLesen() {
-            renderLesenCategories();
-            const ex = document.getElementById('lesen-exercise');
-            const gr = document.getElementById('lesen-categories');
-            if (ex) ex.classList.add('hidden');
-            if (gr) gr.classList.remove('hidden');
-            if (typeof switchView === 'function') switchView('lesen');
-        }
+            function openLesen() {
+                renderLesenCategories();
+                const ex = document.getElementById('lesen-exercise');
+                const gr = document.getElementById('lesen-categories');
+                if (ex) ex.classList.add('hidden');
+                if (gr) gr.classList.remove('hidden');
+                if (typeof switchView === 'function') switchView('lesen');
+            }
 
-    </script>
+        </script>
 
 
 </body>

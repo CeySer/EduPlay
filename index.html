@@ -7470,33 +7470,6 @@ VIEW: TV-QUIZ SETUP
             } catch (e) { /* Lobby evtl. schon weg - kein Problem */ }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // ============================================================
         //  LIVE-DUELL (jeder auf eigenem Handy)
         // ============================================================
@@ -8350,6 +8323,427 @@ VIEW: TV-QUIZ SETUP
         }
 
         // ============================================================
+        // ACTION-MODE FÜR LIVE-WORTDUELL
+        // ============================================================
+
+        let liveDuelActionInterval = null;
+        let liveDuelChangeCount = 0;
+        const LIVE_DUEL_MAX_CHANGES = 5;
+
+        function startLiveDuelActionMode(data) {
+            // Prüfen ob Action Mode aktiv ist
+            if (!data || !data.actionMode) {
+                console.log("Live-Duell: Action Mode nicht aktiv");
+                return;
+            }
+
+            // Alten Timer stoppen
+            if (liveDuelActionInterval) {
+                clearInterval(liveDuelActionInterval);
+                liveDuelActionInterval = null;
+            }
+
+            liveDuelChangeCount = 0;
+            console.log("🔄 Live-Duell Action Mode gestartet (max. " + LIVE_DUEL_MAX_CHANGES + " Änderungen)");
+
+            // Sofort die erste Änderung nach 3-8 Sekunden
+            scheduleLiveDuelChange();
+        }
+
+        function scheduleLiveDuelChange() {
+            if (!liveDuelRef) return;
+
+            // Zufällige Zeit zwischen 3 und 10 Sekunden
+            const delay = 3000 + Math.random() * 7000;
+
+            liveDuelActionInterval = setTimeout(() => {
+                if (liveDuelChangeCount >= LIVE_DUEL_MAX_CHANGES) {
+                    stopLiveDuelActionMode();
+                    return;
+                }
+
+                // Buchstaben im Live-Duell ändern
+                changeLiveDuelLetters();
+
+                liveDuelChangeCount++;
+                if (liveDuelChangeCount < LIVE_DUEL_MAX_CHANGES) {
+                    scheduleLiveDuelChange();
+                } else {
+                    stopLiveDuelActionMode();
+                }
+            }, delay);
+        }
+
+        async function changeLiveDuelLetters() {
+            if (!liveDuelRef) return;
+
+            try {
+                const snap = await liveDuelRef.get();
+                if (!snap.exists) return;
+
+                const data = snap.data();
+                if (data.status !== "playing") return;
+
+                // Neues Wort generieren
+                const difficulty = data.difficulty || "mittel";
+                const wordMode = data.wordMode || "kids";
+                const requireLetter = !!data.requireLetter;
+
+                const newRack = generateScrabbleRack(difficulty, requireLetter, wordMode);
+
+                // Firebase updaten
+                await liveDuelRef.update({
+                    currentLetters: newRack.letters,
+                    currentSolution: newRack.solution,
+                    currentRequired: newRack.required || ""
+                });
+
+                // UI für den aktuellen Spieler aktualisieren (wenn er gerade in der Runde ist)
+                const myData = data.players[activePlayerKey];
+                if (myData && !myData.hasAnswered && !myData.pending) {
+                    const playContent = document.getElementById("live-duel-play-content");
+                    if (playContent) {
+                        // Nur die Buchstaben neu rendern, den Rest lassen wir unverändert
+                        const tilesContainer = playContent.querySelector('.flex.flex-wrap.justify-center.gap-2');
+                        if (tilesContainer) {
+                            tilesContainer.innerHTML = scrabbleTilesHTML(newRack.letters, false, newRack.required || "");
+                        }
+                        // Eingabefeld leeren und Fokus setzen
+                        const input = document.getElementById("live-duel-word-input");
+                        if (input) {
+                            input.value = "";
+                            input.focus();
+                        }
+                        // Action-Feedback anzeigen
+                        showLiveDuelActionFeedback("⚡ Die Buchstaben haben sich geändert!");
+                    }
+                }
+
+                console.log("✅ Live-Duell Buchstaben geändert:", newRack.letters.join(' '));
+                SFX.tick();
+
+            } catch (e) {
+                console.error("❌ Fehler beim Ändern der Live-Duell Buchstaben:", e);
+            }
+        }
+
+        function showLiveDuelActionFeedback(text) {
+            // Bestehenden Feedback-Container finden oder erstellen
+            let fb = document.getElementById("live-duel-action-feedback");
+            if (!fb) {
+                const playContent = document.getElementById("live-duel-play-content");
+                if (!playContent) return;
+
+                // Feedback über den Buchstaben einfügen
+                const tilesContainer = playContent.querySelector('.flex.flex-wrap.justify-center.gap-2');
+                if (!tilesContainer) return;
+
+                fb = document.createElement("div");
+                fb.id = "live-duel-action-feedback";
+                fb.className = "text-center text-sm font-bold text-amber-400 animate-pulse py-2";
+                tilesContainer.parentNode.insertBefore(fb, tilesContainer);
+            }
+
+            fb.innerText = text;
+            fb.className = "text-center text-sm font-bold text-amber-400 animate-pulse py-2";
+
+            // Nach 2.5 Sekunden ausblenden
+            clearTimeout(fb._timeout);
+            fb._timeout = setTimeout(() => {
+                if (fb) {
+                    fb.className = "text-center text-sm font-bold text-gray-400 py-2";
+                    fb.innerText = "⚡ Action-Modus aktiv!";
+                }
+            }, 2500);
+        }
+
+        function stopLiveDuelActionMode() {
+            if (liveDuelActionInterval) {
+                clearTimeout(liveDuelActionInterval);
+                liveDuelActionInterval = null;
+            }
+            console.log("⏹ Live-Duell Action Mode gestoppt");
+        }
+
+        // Überschreibe die createLiveDuel-Funktion, um actionMode zu speichern
+        const originalCreateLiveDuel = createLiveDuel;
+        createLiveDuel = async function () {
+            if (!currentPlayer || !activePlayerKey) {
+                return showToast("Bitte zuerst oben deinen Spieler auswählen!", "error");
+            }
+            const ref = liveDuelCollectionRef().doc();
+            let lobbyData;
+            if (liveDuelType === "scrabble") {
+                const difficulty = document.getElementById("live-duel-difficulty").value;
+                const totalRounds = parseInt(document.getElementById("live-duel-rounds").value);
+                const requireLetter = !!(document.getElementById("live-duel-require-letter") || {}).checked;
+                const wordMode = (document.getElementById("live-duel-wordmode") || {}).value || "kids";
+                // NEU: Action-Mode auslesen
+                const actionMode = !!(document.getElementById("live-duel-action-mode") || {}).checked;
+                liveDuelUsedWords = new Set();
+                lobbyData = {
+                    type: "scrabble",
+                    status: "waiting",
+                    difficulty,
+                    totalRounds,
+                    currentRound: 0,
+                    requireLetter,
+                    wordMode,
+                    actionMode, // <-- NEU: Action-Mode speichern
+                    answerSeconds: SCRABBLE_ANSWER_SECONDS[difficulty] || 20,
+                    createdBy: activePlayerKey,
+                    players: {}
+                };
+            } else {
+                // Quiz-Modus bleibt unverändert
+                const category = document.getElementById("live-duel-category").value;
+                const questions = prepareQuestions(questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10));
+                if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
+                lobbyData = {
+                    type: "quiz",
+                    status: "waiting",
+                    questions,
+                    currentIndex: 0,
+                    answerSeconds: parseInt(document.getElementById("live-duel-speed").value) || 20,
+                    createdBy: activePlayerKey,
+                    players: {}
+                };
+            }
+            lobbyData.players[activePlayerKey] = {
+                name: currentPlayer.name,
+                score: 0,
+                hasAnswered: false,
+                lastAnswer: null,
+                word: "",
+                coinsClaimed: false
+            };
+            lobbyData.createdByName = currentPlayer.name;
+            lobbyData.createdAt = Date.now();
+            lobbyData.hostLastSeen = Date.now();
+            try {
+                await ref.set(lobbyData);
+                liveDuelRef = ref;
+                isLiveDuelCreator = true;
+                liveDuelResolving = false;
+                liveDuelRenderKey = "";
+                maybeStartHostHeartbeat();
+                subscribeLiveDuel();
+            } catch (e) {
+                handleError("createLiveDuel", e, "Das Duell konnte nicht erstellt werden.");
+            }
+        };
+
+        // Überschreibe startLiveDuelRound, um den Action-Mode zu starten
+        const originalStartLiveDuelRound = startLiveDuelRound;
+        startLiveDuelRound = function () {
+            if (liveDuelType === "scrabble") {
+                liveDuelRef.get().then(doc => {
+                    const data = doc.data();
+                    let players = data.players;
+                    Object.keys(players).forEach(k => {
+                        players[k].hasAnswered = false;
+                        players[k].word = "";
+                        players[k].pending = false;
+                    });
+                    const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
+                    liveDuelRef.update({
+                        status: "playing",
+                        currentRound: 1,
+                        currentLetters: rack.letters,
+                        currentSolution: rack.solution,
+                        currentRequired: rack.required || "",
+                        players,
+                        answerDeadline: null
+                    }).then(() => {
+                        // Action-Mode starten (wenn aktiv)
+                        if (data.actionMode) {
+                            startLiveDuelActionMode({
+                                difficulty: data.difficulty,
+                                requireLetter: data.requireLetter,
+                                wordMode: data.wordMode,
+                                actionMode: data.actionMode
+                            });
+                        }
+                    });
+                });
+            } else {
+                liveDuelRef.get().then(doc => {
+                    let players = doc.data().players;
+                    Object.keys(players).forEach(k => {
+                        players[k].hasAnswered = false;
+                        players[k].lastAnswer = null;
+                        players[k].pending = false;
+                    });
+                    liveDuelRef.update({ status: "playing", currentIndex: 0, players, answerDeadline: null });
+                });
+            }
+        };
+
+        // Überschreibe advanceLiveDuel, um den Action-Mode für die nächste Runde zu starten
+        const originalAdvanceLiveDuel = advanceLiveDuel;
+        advanceLiveDuel = async function () {
+            clearLiveDuelTimers();
+            stopLiveDuelActionMode(); // <-- Wichtig: Action-Mode stoppen
+
+            const snap = await liveDuelRef.get();
+            if (!snap.exists) return;
+            const data = snap.data();
+            if (data.status !== "reveal") return;
+            let players = data.players;
+            Object.keys(players).forEach(k => {
+                players[k].hasAnswered = false;
+                players[k].lastAnswer = null;
+                players[k].word = "";
+                players[k].pending = false;
+            });
+            if (data.type === "quiz") {
+                await liveDuelRef.update({
+                    status: "playing",
+                    currentIndex: data.currentIndex + 1,
+                    players,
+                    answerDeadline: null
+                });
+            } else {
+                const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
+                await liveDuelRef.update({
+                    status: "playing",
+                    currentRound: data.currentRound + 1,
+                    currentLetters: rack.letters,
+                    currentSolution: rack.solution,
+                    currentRequired: rack.required || "",
+                    players,
+                    answerDeadline: null
+                });
+                // Action-Mode für die neue Runde starten (wenn aktiv)
+                if (data.actionMode) {
+                    startLiveDuelActionMode({
+                        difficulty: data.difficulty,
+                        requireLetter: data.requireLetter,
+                        wordMode: data.wordMode,
+                        actionMode: data.actionMode
+                    });
+                }
+            }
+        };
+
+        // Überschreibe restartLiveDuel, um den Action-Mode zu starten
+        const originalRestartLiveDuel = restartLiveDuel;
+        restartLiveDuel = async function () {
+            if (!liveDuelRef) return;
+            stopLiveDuelActionMode(); // <-- Wichtig: Action-Mode stoppen
+
+            const snap = await liveDuelRef.get();
+            if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
+            const data = snap.data();
+
+            const players = data.players || {};
+            if (Object.keys(players).length === 0) return showToast("Keine Spieler mehr in der Runde.", "error");
+            Object.keys(players).forEach(k => {
+                players[k].score = 0;
+                players[k].hasAnswered = false;
+                players[k].lastAnswer = null;
+                players[k].word = "";
+                players[k].coinsClaimed = false;
+                players[k].lastRoundPoints = 0;
+                players[k].wordStatus = null;
+                players[k].pending = false;
+            });
+
+            try {
+                if (data.type === "scrabble") {
+                    const difficulty = (document.getElementById("again-difficulty") || {}).value || data.difficulty || "mittel";
+                    const totalRounds = parseInt((document.getElementById("again-rounds") || {}).value) || data.totalRounds || 5;
+                    const requireLetter = !!data.requireLetter;
+                    liveDuelUsedWords = new Set();
+                    const rack = generateScrabbleRack(difficulty, requireLetter, data.wordMode);
+                    await liveDuelRef.update({
+                        status: "playing",
+                        difficulty,
+                        totalRounds,
+                        currentRound: 1,
+                        requireLetter,
+                        wordMode: data.wordMode || "kids",
+                        answerSeconds: SCRABBLE_ANSWER_SECONDS[difficulty] || 20,
+                        currentLetters: rack.letters,
+                        currentSolution: rack.solution,
+                        currentRequired: rack.required || "",
+                        answerDeadline: null,
+                        players,
+                        review: []
+                    });
+                    // Action-Mode für die neue Runde starten (wenn aktiv)
+                    if (data.actionMode) {
+                        startLiveDuelActionMode({
+                            difficulty: difficulty,
+                            requireLetter: requireLetter,
+                            wordMode: data.wordMode || "kids",
+                            actionMode: data.actionMode
+                        });
+                    }
+                } else {
+                    const catSel = document.getElementById("again-category");
+                    const category = (catSel && catSel.value) ? catSel.value : data.category;
+                    const questions = prepareQuestions(
+                        questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10)
+                    );
+                    if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
+                    await liveDuelRef.update({
+                        status: "playing",
+                        category,
+                        questions,
+                        currentIndex: 0,
+                        answerDeadline: null,
+                        correctAnswer: null,
+                        players,
+                        review: []
+                    });
+                }
+                liveDuelResolving = false;
+                liveDuelRenderKey = "";
+                SFX.tap();
+                showToast("Neue Runde gestartet – alle sind dabei! 🚀");
+            } catch (e) {
+                handleError("restartLiveDuel", e, "Die neue Runde konnte nicht gestartet werden.");
+            }
+        };
+
+        // Überschreibe leaveLiveDuel, um den Action-Mode zu stoppen
+        const originalLeaveLiveDuel = leaveLiveDuel;
+        leaveLiveDuel = async function () {
+            stopLiveDuelActionMode(); // <-- Wichtig: Action-Mode stoppen
+            clearLiveDuelTimers();
+            stopHostHeartbeat();
+            const ref = liveDuelRef;
+            const wasCreator = isLiveDuelCreator;
+
+            if (liveDuelUnsubscribe) liveDuelUnsubscribe();
+            liveDuelUnsubscribe = null;
+            liveDuelRef = null;
+            isLiveDuelCreator = false;
+            liveDuelResolving = false;
+            liveDuelRenderKey = "";
+            switchView(currentPlayer ? 'menu' : 'family-hub');
+
+            if (!ref || !activePlayerKey) return;
+            try {
+                const snap = await ref.get();
+                if (!snap.exists) return;
+                const data = snap.data();
+                const players = data.players || {};
+                delete players[activePlayerKey];
+                const rest = Object.keys(players);
+
+                if (rest.length === 0) {
+                    await ref.delete();
+                } else if (wasCreator) {
+                    await ref.update({ players, createdBy: rest[0], updatedAt: Date.now() });
+                } else {
+                    await ref.update({ players, updatedAt: Date.now() });
+                }
+            } catch (e) { /* Lobby war schon weg */ }
+        };
+
+        // ============================================================
         //  INIT & OFFLINE
         // ============================================================
         OFFLINE_MODUS_AKTIV = false;
@@ -8517,6 +8911,9 @@ VIEW: TV-QUIZ SETUP
                 }
             } catch (e) { }
         });
+
+
+
 
     </script>
 

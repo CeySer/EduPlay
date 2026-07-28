@@ -1974,7 +1974,7 @@ BEREICH: INHALTE
             VIEW: SCRABBLE SETUP
             ========================================================== -->
             <div id="view-scrabble-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben Buchstaben und bilden
@@ -2083,7 +2083,7 @@ BEREICH: INHALTE
             VIEW: LIVE-DUELL SETUP
             ========================================================== -->
             <div id="view-live-duel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 id="live-duel-setup-title" class="text-2xl font-black text-center text-rose-400">⚔️ Live-Duell
                     </h2>
@@ -2321,16 +2321,14 @@ BEREICH: INHALTE
                 </div>
             </div>
 
-
-
             <!-- ==========================================================
 VIEW: HAUPTMENÜ
 ========================================================== -->
             <div id="view-menu" class="view hidden space-y-4">
                 <!-- Kopf mit Spielerinfo -->
                 <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">
-                        ← Spieler wechseln
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Spieler
+                        wechseln
                     </button>
                     <div class="flex items-center gap-2">
                         <button onclick="toggleCast()" id="castButton"
@@ -2338,10 +2336,6 @@ VIEW: HAUPTMENÜ
                             title="Fernseher verbinden">
                             🖥️
                         </button>
-                        <!-- <button onclick="toggleSound()"
-                            class="w-9 h-9 rounded-xl bg-white/5 border border-white/5 text-base shrink-0 hover:bg-white/10 transition">
-                            <span class="sound-toggle-icon">🔊</span>
-                        </button> -->
                     </div>
                 </div>
 
@@ -2593,7 +2587,7 @@ VIEW: HAUPTMENÜ
             VIEW: FOKUS LERNZEIT
             ========================================================== -->
             <div id="view-fokus" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-8 text-center space-y-6 shadow-lg">
                     <div class="text-6xl">⏱️</div>
                     <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
@@ -2644,7 +2638,7 @@ VIEW: LESEN LERNEN
 VIEW: QUIZ SETUP
 ========================================================= -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
                     class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center"
                     style="background:var(--gradient-rose);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
@@ -2727,7 +2721,7 @@ VIEW: QUIZ SETUP
 VIEW: TV-QUIZ SETUP
 ========================================================= -->
             <div id="view-tv-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-6 text-center">
                     <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
                     <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die
@@ -5258,12 +5252,28 @@ VIEW: TV-QUIZ SETUP
             SFX.tap();
 
             const isFamilyHub = !document.getElementById('header-familyhub').classList.contains('hidden');
+            const drawer = document.getElementById('settings-drawer');
 
-            if (isFamilyHub) {
-                document.getElementById('drawer-familyhub').classList.add('open');
-            } else {
-                document.getElementById('drawer-menu').classList.add('open');
+            // Dashboard-Button im Drawer ausblenden/einblenden
+            const dashboardBtn = drawer.querySelector('.drawer-menu-item .icon');
+            // Suche den kompletten Dashboard-Button
+            const allItems = drawer.querySelectorAll('.drawer-menu-item');
+            let dashboardItem = null;
+            allItems.forEach(item => {
+                if (item.textContent.includes('Dashboard')) {
+                    dashboardItem = item;
+                }
+            });
+
+            if (dashboardItem) {
+                if (isFamilyHub) {
+                    dashboardItem.classList.add('hidden');
+                } else {
+                    dashboardItem.classList.remove('hidden');
+                }
             }
+
+            drawer.classList.add('open');
             document.getElementById("drawer-backdrop").classList.add("open");
         }
 
@@ -6005,6 +6015,9 @@ VIEW: TV-QUIZ SETUP
                                 <div class="text-gray-600 font-black">VS</div>
                                 <div><div class="text-3xl font-black text-pink-400">${scoreB}</div><div class="text-xs font-bold text-gray-400 mt-1">${nameB}</div></div>
                             </div>
+                                  // ============================================================
+        //  zurück button muss angepasst werden
+        // ============================================================
                             <button onclick="switchView('family-hub')" class="btn-primary w-full text-center mt-4">Zurück</button>
                         </div>`;
             duelState = null;
@@ -6724,7 +6737,7 @@ VIEW: TV-QUIZ SETUP
                                 </div>`;
             });
             html += `</div>
-                        <button onclick="switchView('family-hub')" class="btn-primary w-full text-center mt-4">Zurück zur Übersicht</button>
+                        <button onclick="switchView('view-live-duel-lobby')" class="btn-primary w-full text-center mt-4">Zurück zur Übersicht</button>
                     </div>`;
             document.getElementById("scrabble-result-content").innerHTML = html;
             scrabbleState = null;

@@ -2257,8 +2257,8 @@ BEREICH: INHALTE
                     <button id="live-duel-start-btn" onclick="startLiveDuelRound()"
                         class="hidden btn-primary w-full text-center text-xl">Los geht's! 🚀</button>
                     <p id="live-duel-wait-hint" class="text-xs text-gray-500">Warte, bis der Ersteller startet...</p>
-                    <button onclick="leaveLiveDuel(view-live-duel-lobby)"
-                        class="text-gray-500 text-sm font-bold underline hover:text-gray-400 transition">Verlassen</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveQuiz()">Beenden</button>
+
                 </div>
             </div>
 
@@ -2268,9 +2268,8 @@ BEREICH: INHALTE
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
                     <!-- <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück</button> -->
-                    <button onclick="leaveLiveDuel(view-live-duel-lobby)"
-                        class="text-gray-500 text-sm font-bold underline hover:text-gray-400 transition">Verlassen</button>
-
+                    <button onclick="leaveLiveDuel(view-live-duel-lobby)" <button
+                        class="btn-secondary text-sm py-2.5 px-4" onclick="leaveQuiz()">Beenden</button>
                     <div id="live-duel-status" class="text-xs font-bold text-gray-400"></div>
                     <div id="live-duel-countdown" class="min-w-[3rem] text-center text-xl font-black text-amber-400">
                     </div>

@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.20</title>
+    <title>EduPlay Hub - Familien Edition v2.22</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -1481,7 +1481,7 @@
         <header class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.20</span>
+                <span class="version">v2.22</span>
             </div>
             <div class="header-actions">
                 <button onclick="toggleSound()" title="Ton an/aus">
@@ -1505,7 +1505,7 @@
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.20</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.22</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -7118,6 +7118,8 @@ VIEW: TV-QUIZ SETUP
             return timings[difficulty] || timings.mittel;
         }
 
+
+
         function startTVActionMode(data) {
             // Prüfen ob Action Mode aktiv ist
             if (!data || !data.actionMode) {
@@ -7259,6 +7261,12 @@ VIEW: TV-QUIZ SETUP
                 });
             }
         }
+
+
+
+
+
+
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
             document.getElementById("view-tv-quiz-host").innerHTML = `
                     <div class="h-[90vh] flex flex-col justify-between p-6">
@@ -7979,11 +7987,13 @@ VIEW: TV-QUIZ SETUP
             await liveDuelRef.update(update);
         }
 
+
         async function resolveLiveDuelRound(data) {
             const fresh = await liveDuelRef.get();
             if (!fresh.exists || fresh.data().status !== "playing") return;
             data = fresh.data();
             const players = data.players;
+
             if (data.type === "quiz") {
                 const q = data.questions[data.currentIndex];
                 const correct = q.correct;
@@ -8014,19 +8024,38 @@ VIEW: TV-QUIZ SETUP
                     review
                 });
             } else {
-                const letters = data.currentLetters;
+                // ============================================================
+                // SCRABBLE AUSWERTUNG - MIT GESPEICHERTEN BUCHSTABEN
+                // ============================================================
                 for (const key of Object.keys(players)) {
                     if (players[key].pending) continue;
-                    const res = await evaluateScrabbleWord(players[key].word, letters, {
-                        minWord: (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord,
-                        required: data.currentRequired || "",
-                        used: liveDuelUsedWords,
-                        addToUsed: false
-                    });
+
+                    // NEU: Die gespeicherten Buchstaben dieses Spielers verwenden
+                    const letters = players[key].submittedLetters || data.currentLetters || [];
+                    const required = players[key].submittedRequired || data.currentRequired || "";
+
+                    // Debug-Ausgabe (kann später entfernt werden)
+                    console.log(`🔍 Prüfe ${players[key].name}: Wort="${players[key].word}", Buchstaben=${letters.join(',')}, Required=${required}`);
+
+                    const res = await evaluateScrabbleWord(
+                        players[key].word,
+                        letters,  // ← Individuelle Buchstaben pro Spieler!
+                        {
+                            minWord: (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord,
+                            required: required,
+                            used: liveDuelUsedWords,
+                            addToUsed: false
+                        }
+                    );
+
                     players[key].score = (players[key].score || 0) + res.points;
                     players[key].lastRoundPoints = res.points;
                     players[key].wordStatus = res.status;
+                    players[key].wordChecked = players[key].word; // Zurückmelden was geprüft wurde
+
+                    console.log(`  → ${res.status}: +${res.points} Punkte`);
                 }
+
                 Object.keys(players).forEach(k => {
                     if (players[k].wordStatus === "valid" && players[k].word) {
                         liveDuelUsedWords.add(String(players[k].word).toUpperCase());
@@ -8036,32 +8065,45 @@ VIEW: TV-QUIZ SETUP
             }
         }
 
+
+
+
+
         function renderLiveDuelReveal(data) {
             const myData = data.players[activePlayerKey];
             const isQuiz = data.type === "quiz";
-            const isLastStep = isQuiz ? (data.currentIndex >= data.questions.length - 1) : (data.currentRound >= data
-                .totalRounds);
+            const isLastStep = isQuiz ? (data.currentIndex >= data.questions.length - 1) : (data.currentRound >= data.totalRounds);
 
             let rowsHtml = "";
-            Object.values(data.players).filter(p => !p.pending).sort((a, b) => (b.lastRoundPoints || 0) - (a
-                .lastRoundPoints || 0)).forEach(p => {
-                    let icon, detail = "";
-                    if (isQuiz) {
-                        icon = p.lastRoundPoints > 0 ? "✅" : "❌";
-                    } else {
-                        const info = wordStatusInfo(p.wordStatus, p);
-                        icon = info.icon;
-                        detail = info.text ?
-                            `<div class="text-[11px] text-gray-500 font-normal mt-0.5">${info.text}</div>` :
-                            "";
-                    }
-                    const wordInfo = isQuiz ? "" : ` <span class="text-amber-300">"${esc(p.word || "-")}"</span>`;
-                    rowsHtml +=
-                        `<div class="flex justify-between items-start bg-white/5 border border-white/5 rounded-xl p-3 gap-2">
-                                    <div class="font-bold text-white text-sm">${icon} ${esc(p.name)}${wordInfo}${detail}</div>
-                                    <div class="font-black text-emerald-400 shrink-0">+${p.lastRoundPoints || 0} <span class="text-xs text-gray-500">(Σ ${p.score})</span></div>
-                                </div>`;
-                });
+            Object.values(data.players).filter(p => !p.pending).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
+                let icon, detail = "";
+                if (isQuiz) {
+                    icon = p.lastRoundPoints > 0 ? "✅" : "❌";
+                } else {
+                    const info = wordStatusInfo(p.wordStatus, p);
+                    icon = info.icon;
+                    detail = info.text ?
+                        `<div class="text-[11px] text-gray-500 font-normal mt-0.5">${info.text}</div>` :
+                        "";
+                }
+
+                // NEU: Buchstaben-Info für Scrabble anzeigen
+                let lettersInfo = "";
+                if (!isQuiz && p.submittedLetters && p.submittedLetters.length > 0) {
+                    const lettersDisplay = p.submittedLetters.join(' ');
+                    const requiredDisplay = p.submittedRequired ? ` 📌${p.submittedRequired}` : "";
+                    lettersInfo = `<div class="text-[10px] text-gray-600 mt-0.5">📝 ${lettersDisplay}${requiredDisplay}</div>`;
+                }
+
+                const wordInfo = isQuiz ? "" : ` <span class="text-amber-300">"${esc(p.word || "-")}"</span>`;
+                rowsHtml +=
+                    `<div class="flex justify-between items-start bg-white/5 border border-white/5 rounded-xl p-3 gap-2">
+                <div class="font-bold text-white text-sm">
+                    ${icon} ${esc(p.name)}${wordInfo}${detail}${lettersInfo}
+                </div>
+                <div class="font-black text-emerald-400 shrink-0">+${p.lastRoundPoints || 0} <span class="text-xs text-gray-500">(Σ ${p.score})</span></div>
+            </div>`;
+            });
 
             let solutionHtml = "";
             if (isQuiz) {
@@ -8069,11 +8111,11 @@ VIEW: TV-QUIZ SETUP
                 if (q) {
                     const wasRight = myData && myData.lastRoundPoints > 0;
                     solutionHtml = `
-                                    <div class="p-3 bg-white/5 border-l-4 ${wasRight ? "border-emerald-500" : "border-rose-500"} rounded-xl text-left">
-                                        <div class="text-xs text-gray-400 font-bold mb-1">${q.question}</div>
-                                        <div class="text-white font-bold text-sm mb-2">Richtig war: <span class="${wasRight ? "text-emerald-300" : "text-rose-300"}">${q.answers[q.correct]}</span></div>
-                                        <div class="text-gray-300 text-xs">${q.explanation || ""}</div>
-                                    </div>`;
+                <div class="p-3 bg-white/5 border-l-4 ${wasRight ? "border-emerald-500" : "border-rose-500"} rounded-xl text-left">
+                    <div class="text-xs text-gray-400 font-bold mb-1">${q.question}</div>
+                    <div class="text-white font-bold text-sm mb-2">Richtig war: <span class="${wasRight ? "text-emerald-300" : "text-rose-300"}">${q.answers[q.correct]}</span></div>
+                    <div class="text-gray-300 text-xs">${q.explanation || ""}</div>
+                </div>`;
                 }
             } else if (data.currentSolution) {
                 solutionHtml = `<p class="text-amber-400 font-bold text-center text-sm">💡 Möglich war z.B.: ${data.currentSolution}</p>`;
@@ -8084,28 +8126,49 @@ VIEW: TV-QUIZ SETUP
                 `<button onclick="advanceLiveDuel()" class="btn-primary w-full text-center text-lg">Weiter ➔</button>`;
 
             document.getElementById("live-duel-play-content").innerHTML = `
-                            <div class="glass-card p-5 rounded-2xl space-y-3 shadow-lg">
-                                <h2 class="text-lg font-black text-white text-center">Runde ${isQuiz ? (data.currentIndex + 1) : data.currentRound} – Ergebnisse</h2>
-                                ${solutionHtml}
-                                <div class="space-y-2">${rowsHtml}</div>
-                                ${nextBtn}
-                                ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in <span id="live-duel-auto-countdown" class="font-bold text-gray-400">…</span> – oder jetzt auf "Weiter" tippen.</p>`}
-                            </div>`;
+        <div class="glass-card p-5 rounded-2xl space-y-3 shadow-lg">
+            <h2 class="text-lg font-black text-white text-center">Runde ${isQuiz ? (data.currentIndex + 1) : data.currentRound} – Ergebnisse</h2>
+            ${solutionHtml}
+            <div class="space-y-2">${rowsHtml}</div>
+            ${nextBtn}
+            ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in <span id="live-duel-auto-countdown" class="font-bold text-gray-400">…</span> – oder jetzt auf "Weiter" tippen.</p>`}
+        </div>`;
         }
+
+
+
+
+
+
+
+
+
+
+
 
         async function advanceLiveDuel() {
             clearLiveDuelTimers();
+            stopLiveDuelActionMode();
+
             const snap = await liveDuelRef.get();
             if (!snap.exists) return;
             const data = snap.data();
             if (data.status !== "reveal") return;
+
             let players = data.players;
             Object.keys(players).forEach(k => {
                 players[k].hasAnswered = false;
                 players[k].lastAnswer = null;
                 players[k].word = "";
                 players[k].pending = false;
+                // NEU: Gespeicherte Buchstaben zurücksetzen
+                players[k].submittedLetters = [];
+                players[k].submittedRequired = "";
+                players[k].submittedSolution = "";
+                players[k].wordStatus = null;
+                players[k].lastRoundPoints = 0;
             });
+
             if (data.type === "quiz") {
                 await liveDuelRef.update({
                     status: "playing",
@@ -8124,19 +8187,34 @@ VIEW: TV-QUIZ SETUP
                     players,
                     answerDeadline: null
                 });
+                if (data.actionMode) {
+                    startLiveDuelActionMode({
+                        difficulty: data.difficulty,
+                        requireLetter: data.requireLetter,
+                        wordMode: data.wordMode,
+                        actionMode: data.actionMode
+                    });
+                }
             }
         }
+
+
 
         function startLiveDuelRound() {
             if (liveDuelType === "scrabble") {
                 liveDuelRef.get().then(doc => {
                     const data = doc.data();
-                    const diff = SCRABBLE_DIFFICULTIES[data.difficulty];
                     let players = data.players;
                     Object.keys(players).forEach(k => {
                         players[k].hasAnswered = false;
                         players[k].word = "";
                         players[k].pending = false;
+                        // NEU: Gespeicherte Buchstaben zurücksetzen
+                        players[k].submittedLetters = [];
+                        players[k].submittedRequired = "";
+                        players[k].submittedSolution = "";
+                        players[k].wordStatus = null;
+                        players[k].lastRoundPoints = 0;
                     });
                     const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
                     liveDuelRef.update({
@@ -8147,6 +8225,15 @@ VIEW: TV-QUIZ SETUP
                         currentRequired: rack.required || "",
                         players,
                         answerDeadline: null
+                    }).then(() => {
+                        if (data.actionMode) {
+                            startLiveDuelActionMode({
+                                difficulty: data.difficulty,
+                                requireLetter: data.requireLetter,
+                                wordMode: data.wordMode,
+                                actionMode: data.actionMode
+                            });
+                        }
                     });
                 });
             } else {
@@ -8162,8 +8249,12 @@ VIEW: TV-QUIZ SETUP
             }
         }
 
+
+
         async function restartLiveDuel() {
             if (!liveDuelRef) return;
+            stopLiveDuelActionMode();
+
             const snap = await liveDuelRef.get();
             if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
             const data = snap.data();
@@ -8179,14 +8270,16 @@ VIEW: TV-QUIZ SETUP
                 players[k].lastRoundPoints = 0;
                 players[k].wordStatus = null;
                 players[k].pending = false;
+                // NEU: Gespeicherte Buchstaben zurücksetzen
+                players[k].submittedLetters = [];
+                players[k].submittedRequired = "";
+                players[k].submittedSolution = "";
             });
 
             try {
                 if (data.type === "scrabble") {
-                    const difficulty = (document.getElementById("again-difficulty") || {}).value || data.difficulty ||
-                        "mittel";
-                    const totalRounds = parseInt((document.getElementById("again-rounds") || {}).value) || data
-                        .totalRounds || 5;
+                    const difficulty = (document.getElementById("again-difficulty") || {}).value || data.difficulty || "mittel";
+                    const totalRounds = parseInt((document.getElementById("again-rounds") || {}).value) || data.totalRounds || 5;
                     const requireLetter = !!data.requireLetter;
                     liveDuelUsedWords = new Set();
                     const rack = generateScrabbleRack(difficulty, requireLetter, data.wordMode);
@@ -8205,6 +8298,14 @@ VIEW: TV-QUIZ SETUP
                         players,
                         review: []
                     });
+                    if (data.actionMode) {
+                        startLiveDuelActionMode({
+                            difficulty: difficulty,
+                            requireLetter: requireLetter,
+                            wordMode: data.wordMode || "kids",
+                            actionMode: data.actionMode
+                        });
+                    }
                 } else {
                     const catSel = document.getElementById("again-category");
                     const category = (catSel && catSel.value) ? catSel.value : data.category;
@@ -8231,6 +8332,21 @@ VIEW: TV-QUIZ SETUP
                 handleError("restartLiveDuel", e, "Die neue Runde konnte nicht gestartet werden.");
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         function toggleDuelReview(forceOpen) {
             const wrapper = document.getElementById("duel-review-wrapper");
@@ -8598,6 +8714,19 @@ VIEW: TV-QUIZ SETUP
                 const data = snap.data();
                 if (data.status !== "playing") return;
 
+                // ============================================================
+                // NEU: Prüfen ob schon jemand eingereicht hat
+                // ============================================================
+                const hasAnyAnswer = Object.values(data.players).some(p => p.hasAnswered === true);
+
+                if (hasAnyAnswer) {
+                    console.log("⏸ Action-Mode pausiert - Spieler hat schon geantwortet");
+                    // Action-Mode komplett stoppen
+                    stopLiveDuelActionMode();
+                    showLiveDuelActionFeedback("⏸ Action-Mode pausiert (jemand hat geantwortet)");
+                    return;
+                }
+
                 // Neues Wort generieren
                 const difficulty = data.difficulty || "mittel";
                 const wordMode = data.wordMode || "kids";
@@ -8615,15 +8744,10 @@ VIEW: TV-QUIZ SETUP
                 console.log("✅ Live-Duell Buchstaben geändert:", newRack.letters.join(' '));
                 SFX.tick();
 
-                // Den Snapshot-Listener aktualisiert jetzt automatisch alle Spieler!
-                // Das Feedback wird in renderLiveDuelFromSnapshot angezeigt
-
             } catch (e) {
                 console.error("❌ Fehler beim Ändern der Live-Duell Buchstaben:", e);
             }
         }
-
-
 
 
         function showLiveDuelActionFeedback(text) {
@@ -9107,7 +9231,7 @@ VIEW: TV-QUIZ SETUP
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe vocabulary.js");
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.20)");
+        console.log("🚀 EduPlay Hub gestartet (v2.22)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
@@ -9175,7 +9299,7 @@ VIEW: TV-QUIZ SETUP
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.20<br>
+            EduPlay Hub · v2.22<br>
             © 2026 · Familien Edition
         </div>
     </div>

@@ -94,6 +94,16 @@
             z-index: 10;
         }
 
+        #header-familyhub {
+            border-bottom-color: rgba(52, 211, 153, 0.2);
+            /* grünlicher Akzent */
+        }
+
+        #header-menu {
+            border-bottom-color: rgba(99, 102, 241, 0.2);
+            /* lila Akzent */
+        }
+
         .app-header .version {
             font-size: 9px;
             color: rgba(255, 255, 255, 0.15);
@@ -1478,20 +1488,48 @@
         <!-- ============================================================
         APP HEADER - Immer sichtbar, enthält Versionshinweis
         ============================================================ -->
-        <header class="app-header">
+
+
+        <!-- ==========================================================
+HEADER FÜR FAMILY HUB
+========================================================== -->
+        <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
                 <span class="version">v2.23</span>
             </div>
             <div class="header-actions">
-                <!-- <button onclick="toggleSound()" title="Ton an/aus">
+                <button onclick="toggleSound()" title="Ton an/aus">
                     <span class="sound-toggle-icon">🔊</span>
-                </button> -->
+                </button>
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
                     ☰
                 </button>
             </div>
         </header>
+
+        <!-- ==========================================================
+HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
+========================================================== -->
+        <header id="header-menu" class="app-header hidden">
+            <div class="title-area">
+                <span class="logo">EduPlay</span>
+                <span class="version">v2.23</span>
+            </div>
+            <div class="header-actions">
+                <button onclick="toggleSound()" title="Ton an/aus">
+                    <span class="sound-toggle-icon">🔊</span>
+                </button>
+                <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
+                    ☰
+                </button>
+            </div>
+        </header>
+
+
+
+
+
 
         <main class="flex-grow p-4">
 
@@ -9391,7 +9429,19 @@ VIEW: TV-QUIZ SETUP
         // ============================================================
         //  START
         // ============================================================
+
         function switchView(viewId) {
+            // Header umschalten
+            const headerFamily = document.getElementById('header-familyhub');
+            const headerMenu = document.getElementById('header-menu');
+
+            if (viewId === 'family-hub') {
+                headerFamily?.classList.remove('hidden');
+                headerMenu?.classList.add('hidden');
+            } else {
+                headerFamily?.classList.add('hidden');
+                headerMenu?.classList.remove('hidden');
+            }
             // Laufende Timer stoppen
             if (viewId !== 'fokus' && typeof focusTimerInterval !== 'undefined' && focusTimerInterval) {
                 clearInterval(focusTimerInterval);

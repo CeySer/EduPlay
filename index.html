@@ -6759,6 +6759,44 @@ VIEW: TV-QUIZ SETUP
                     </div>
                 `;
 
+                // In startTVHostLobby() - der onSnapshot Listener muss erweitert werden:
+                tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
+                    if (!doc.exists) return;
+                    const data = doc.data();
+
+                    // NEU: Bei Scrabble-Änderungen den Bildschirm aktualisieren
+                    if (data.mode === "scrabble" && data.status === "playing" && !data.showAnswer) {
+                        // Prüfen ob sich die Buchstaben geändert haben
+                        const currentLetters = data.currentLetters;
+                        const currentRound = data.currentRound;
+                        const totalRounds = data.totalRounds || 0;
+                        const currentRequired = data.currentRequired || "";
+
+                        // Bildschirm immer mit den aktuellen Daten aus Firebase rendern
+                        showTVHostScrabbleRound(currentLetters, currentRound, totalRounds, currentRequired);
+
+                        // Counter aktualisieren
+                        const ansCount = Object.values(data.players).filter(p => p.hasAnswered).length;
+                        const totalCount = Object.keys(data.players).length;
+                        const counterEl = document.getElementById("tv-answer-counter");
+                        if (counterEl) counterEl.innerText = `${ansCount} von ${totalCount} haben geantwortet`;
+
+                        // Prüfen ob alle geantwortet haben
+                        if (totalCount > 0 && ansCount >= totalCount && !isResolving) {
+                            isResolving = true;
+                            setTimeout(() => {
+                                data.mode === "scrabble" ? revealTVScrabbleRound(data) : revealTVAnswer(data);
+                            }, 800);
+                        }
+                    }
+
+                    // ... restliche Logik für Quiz-Modus
+                    if (data.status === "waiting") renderTVPlayerList(data.players);
+                    if (data.status === "finished" && isTVHost) {
+                        showTVHostPodium(data.players);
+                    }
+                });
+
                 tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
                     if (!doc.exists) return;
                     const data = doc.data();
@@ -7059,7 +7097,7 @@ VIEW: TV-QUIZ SETUP
         }
 
         // ============================================================
-        // ACTION-MODE FÜR TV-HOST (NUR EINMAL DEFINIEREN!)
+        // ACTION-MODE FÜR TV-HOST
         // ============================================================
         function startTVActionMode(data) {
             // Prüfen ob Action Mode aktiv ist
@@ -7091,22 +7129,18 @@ VIEW: TV-QUIZ SETUP
                     // Neues Wort generieren
                     const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
 
-                    // Firebase update
+                    console.log("📝 Neue Buchstaben:", rack.letters.join(' '));
+
+                    // NUR Firebase updaten - der Snapshot-Listener kümmert sich um die Anzeige!
                     tvGameRef.update({
                         currentLetters: rack.letters,
                         currentSolution: rack.solution,
                         currentRequired: rack.required || ""
                     }).then(() => {
-                        // Bildschirm aktualisieren
-                        showTVHostScrabbleRound(
-                            rack.letters,
-                            data.currentRound || 0,
-                            data.totalRounds || 0,
-                            rack.required || ""
-                        );
-                        console.log("🔄 Buchstaben gewechselt zu: " + rack.letters.join(' '));
+                        console.log("✅ Firebase updated mit neuen Buchstaben");
+                        // KEIN showTVHostScrabbleRound() mehr hier - das macht der Listener!
                     }).catch(error => {
-                        console.error("Fehler beim Firebase-Update:", error);
+                        console.error("❌ Fehler beim Firebase-Update:", error);
                     });
 
                     changeCount++;
@@ -7119,6 +7153,15 @@ VIEW: TV-QUIZ SETUP
                 }
             }, 500);
         }
+
+        function stopTVActionMode() {
+            if (tvActionModeInterval) {
+                clearInterval(tvActionModeInterval);
+                tvActionModeInterval = null;
+                console.log("⏹ Action Mode gestoppt");
+            }
+        }
+
 
         function stopTVActionMode() {
             if (tvActionModeInterval) {
@@ -7153,7 +7196,8 @@ VIEW: TV-QUIZ SETUP
                 players: playersData
             });
 
-            showTVHostScrabbleRound(letters, round, data.totalRounds, rack.required || "");
+            // NICHT mehr showTVHostScrabbleRound() hier aufrufen - das macht der Listener!
+            // showTVHostScrabbleRound(letters, round, data.totalRounds, rack.required || "");
 
             // Action Mode starten (wenn aktiv)
             if (data.actionMode) {
@@ -7167,7 +7211,6 @@ VIEW: TV-QUIZ SETUP
                 });
             }
         }
-
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
             document.getElementById("view-tv-quiz-host").innerHTML = `
                     <div class="h-[90vh] flex flex-col justify-between p-6">

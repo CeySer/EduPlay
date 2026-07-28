@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.24</title>
+    <title>EduPlay Hub - Familien Edition v2.23</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -1481,7 +1481,7 @@
         <header class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.24</span>
+                <span class="version">v2.23</span>
             </div>
             <div class="header-actions">
                 <button onclick="toggleSound()" title="Ton an/aus">
@@ -1505,7 +1505,7 @@
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.24</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.23</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -5976,7 +5976,20 @@ VIEW: TV-QUIZ SETUP
             const wordMode = (document.getElementById("scrabble-wordmode") || {}).value || "kids";
             const requireLetter = !!(document.getElementById("scrabble-require-letter") || {}).checked;
             const startRack = generateScrabbleRack(difficulty, requireLetter, wordMode);
-
+            // scrabbleState = {
+            //     playerKeys: checked,
+            //     rounds,
+            //     round: 1,
+            //     playerIndex: 0,
+            //     difficulty,
+            //     wordMode,
+            //     currentLetters: startRack.letters,
+            //     solution: startRack.solution,
+            //     required: startRack.required,
+            //     requireLetter,
+            //     usedWords: new Set(),
+            //     scores: {}
+            // };
             scrabbleState = {
                 playerKeys: checked,
                 rounds,
@@ -6003,6 +6016,25 @@ VIEW: TV-QUIZ SETUP
             showScrabbleTurnIntro();
         }
 
+        // function showScrabbleTurnIntro() {
+        //     const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
+        //     const isSolo = scrabbleState.playerKeys.length === 1;
+        //     document.getElementById("scrabble-turn-title").innerText = isSolo ?
+        //         `Los geht's, ${esc(ALL_PROFILES[key].name)}!` :
+        //         `${esc(ALL_PROFILES[key].name)} ist dran!`;
+
+        //     let sub = isSolo ?
+        //         `Runde ${scrabbleState.round}/${scrabbleState.rounds} – knack deinen Highscore!` :
+        //         `Runde ${scrabbleState.round}/${scrabbleState.rounds} – gib das Handy weiter.`;
+        //     if (scrabbleState.lastSolution) {
+        //         sub = `💡 Letzte Runde war z.B. "${scrabbleState.lastSolution}" möglich.\n` + sub;
+        //         scrabbleState.lastSolution = null;
+        //     }
+        //     document.getElementById("scrabble-turn-sub").innerText = sub;
+
+        //     document.getElementById("scrabble-turn-intro").classList.remove("hidden");
+        //     document.getElementById("scrabble-play-area").classList.add("hidden");
+        // }
 
         function showScrabbleTurnIntro() {
             const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
@@ -6030,53 +6062,101 @@ VIEW: TV-QUIZ SETUP
             document.getElementById("scrabble-play-area").classList.add("hidden");
         }
 
-        // ⚡ Action-Modus starten
-        if (scrabbleState.actionMode) {
-            scrabbleState.changeCount = 0;
-            scrabbleState.bonusEarned = false;
-            showActionFeedback("⚡ Action-Modus aktiv!");
 
-            // 1. Zufällige Zeit berechnen (hier zwischen 5 und 10 Sekunden)
-            const minSekunden = 5;
-            const maxSekunden = 10;
-            const zufallsZeit = Math.floor(Math.random() * (maxSekunden - minSekunden + 1)) + minSekunden;
+        function beginScrabbleTurn() {
+            document.getElementById("scrabble-turn-intro").classList.add("hidden");
+            document.getElementById("scrabble-play-area").classList.remove("hidden");
 
-            console.log("Die Buchstaben mischen sich dieses Mal nach " + zufallsZeit + " Sekunden!");
-
-            // 2. Timer starten, der nach der zufälligen Zeit die Buchstaben ändert
-            setTimeout(() => {
-                if (scrabbleState && scrabbleState.actionMode) {
-                    changeLettersRandomly();
-
-                    // Weitere Änderungen in unregelmäßigen Abständen
-                    scheduleNextChange();
-
-                    // Intervall für kontinuierliche Änderungen
-                    scrabbleState.changeInterval = setInterval(() => {
-                        if (Date.now() >= scrabbleState.nextChangeTime) {
-                            changeLettersRandomly();
-                            scheduleNextChange();
-                            scrabbleState.changeCount++;
-
-                            if (scrabbleState.changeCount >= scrabbleState.maxChanges) {
-                                clearInterval(scrabbleState.changeInterval);
-                                scrabbleState.changeInterval = null;
-                                showActionFeedback("⏰ Action-Modus beendet!");
-                                scrabbleState.actionMode = false;
-                            }
-                        }
-                    }, 500);
+            // Action-Status einblenden
+            const statusEl = document.getElementById("scrabble-action-status");
+            if (statusEl) {
+                if (scrabbleState.actionMode) {
+                    statusEl.classList.remove("hidden");
+                    statusEl.innerText = "⚡ Action-Modus aktiv – Das komplette Wort ändert sich!";
+                } else {
+                    statusEl.classList.add("hidden");
                 }
-            }, zufallsZeit * 1000);
+            }
+
+            const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
+            document.getElementById("scrabble-progress").innerText =
+                `Runde ${scrabbleState.round}/${scrabbleState.rounds} – ${esc(ALL_PROFILES[key].name)}`;
+            renderScrabbleTiles(scrabbleState.currentLetters, scrabbleState.required);
+
+            const submitBtn = document.querySelector('#scrabble-play-area button[onclick="submitScrabbleWord()"]');
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove("opacity-50");
+            }
+            scrabbleSubmitting = false;
+
+            const input = document.getElementById("scrabble-word-input");
+            input.value = "";
+            input.disabled = false;
+            document.getElementById("scrabble-live-feedback").innerText = "";
+            input.oninput = () => {
+                const word = input.value.trim().toUpperCase();
+                const fb = document.getElementById("scrabble-live-feedback");
+                if (word.length === 0) { fb.innerText = ""; return; }
+                const result = computeScrabbleWordScore(word, scrabbleState.currentLetters);
+                fb.innerText = result.valid ?
+                    `${result.score} Punkte möglich${result.bonus ? " (inkl. +50 Bonus!)" : ""} – wird beim Einreichen geprüft` :
+                    "❌ Diese Buchstaben hast du nicht (oder zu oft benutzt)";
+                fb.className = "text-center text-sm font-bold h-5 " + (result.valid ? "text-emerald-400" :
+                    "text-rose-400");
+            };
+
+            let timeLeft = SCRABBLE_DIFFICULTIES[scrabbleState.difficulty].time;
+            document.getElementById("scrabble-timer").innerText = timeLeft;
+            clearInterval(scrabbleTimerInterval);
+            scrabbleTimerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById("scrabble-timer").innerText = timeLeft;
+                if (timeLeft > 0 && timeLeft <= 5) SFX.tick();
+                if (timeLeft <= 0) {
+                    clearInterval(scrabbleTimerInterval);
+                    SFX.timeUp();
+                    submitScrabbleWord();
+                }
+            }, 1000);
+
+            // ⚡ Action-Modus starten
+            if (scrabbleState.actionMode) {
+                scrabbleState.changeCount = 0;
+                scrabbleState.bonusEarned = false;
+                showActionFeedback("⚡ Action-Modus aktiv!");
+
+                // 1. Zufällige Zeit berechnen (hier zwischen 1 und 8 Sekunden)
+                const minSekunden = 1;
+                const maxSekunden = 8;
+                const zufallsZeit = Math.floor(Math.random() * (maxSekunden - minSekunden + 1)) + minSekunden;
+
+                console.log("Die Buchstaben mischen sich dieses Mal nach " + zufallsZeit + " Sekunden!");
+
+                // 2. Die zufällige Zeit an die Funktion übergeben
+                startActionMode(scrabbleState.currentWord, "HIER_DEINE_HTML_ID_EINTRAGEN", zufallsZeit);
+            }
         }
 
-        function scheduleNextChange() {
-            // Zufällige Zeit zwischen 3 und 10 Sekunden
-            const delay = 3000 + Math.random() * 7000;
-            scrabbleState.nextChangeTime = Date.now() + delay;
-        }
 
+        // function beginScrabbleTurn() {
+        //     document.getElementById("scrabble-turn-intro").classList.add("hidden");
+        //     document.getElementById("scrabble-play-area").classList.remove("hidden");
+        //     const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
+        //     document.getElementById("scrabble-progress").innerText =
+        //         `Runde ${scrabbleState.round}/${scrabbleState.rounds} – ${esc(ALL_PROFILES[key].name)}`;
+        //     renderScrabbleTiles(scrabbleState.currentLetters, scrabbleState.required);
 
+        //     // ... bestehender Code (Timer, Input, etc.) ...
+
+        //     // NEU: Action-Modus starten
+        //     if (scrabbleState.actionMode) {
+        //         scrabbleState.changeCount = 0;
+        //         scrabbleState.bonusEarned = false;
+        //         showActionFeedback("⚡ Action-Modus aktiv!");
+        //         startActionMode();
+        //     }
+        // }
 
         let scrabbleSubmitting = false;
 
@@ -6140,6 +6220,101 @@ VIEW: TV-QUIZ SETUP
             }
             showScrabbleTurnIntro();
         }
+        // let scrabbleSubmitting = false;
+
+        // async function submitScrabbleWord() {
+        //     if (scrabbleSubmitting) return;
+        //     scrabbleSubmitting = true;
+        //     clearInterval(scrabbleTimerInterval);
+
+        //     // NEU: Action-Mode stoppen (für diese Runde)
+        //     stopActionMode();
+
+        //     const submitBtn = document.querySelector('#scrabble-play-area button[onclick="submitScrabbleWord()"]');
+        //     if (submitBtn) {
+        //         submitBtn.disabled = true;
+        //         submitBtn.classList.add("opacity-50");
+        //     }
+        //     const word = cleanInput(document.getElementById("scrabble-word-input").value, 20).toUpperCase();
+        //     const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
+
+        //     const fb = document.getElementById("scrabble-live-feedback");
+        //     if (fb) {
+        //         fb.innerText = "🔍 Prüfe Wort...";
+        //         fb.className = "text-center text-sm font-bold h-5 text-gray-400";
+        //     }
+
+        //     const res = await evaluateScrabbleWord(word, scrabbleState.currentLetters, {
+        //         minWord: (SCRABBLE_DIFFICULTIES[scrabbleState.difficulty] || {}).minWord,
+        //         required: scrabbleState.required,
+        //         used: scrabbleState.usedWords
+        //     });
+        //     let points = res.points;
+        //     const info = wordStatusInfo(res.status, res);
+        //     const note = info.text ? ` – ${info.text}` : "";
+
+        //     // NEU: Bonus für schnelles Einreichen im Action-Modus
+        //     if (scrabbleState.actionMode && points > 0 && !scrabbleState.bonusEarned) {
+        //         const bonus = 5;
+        //         points += bonus;
+        //         scrabbleState.bonusEarned = true;
+        //         showActionFeedback(`⚡ +${bonus} Bonus-Punkte für schnelles Einreichen!`);
+        //         SFX.coin();
+        //     }
+
+        //     scrabbleState.scores[key] += points;
+        //     if (points > 0) SFX.correct();
+        //     else SFX.wrong();
+        //     showToast(`${esc(ALL_PROFILES[key].name)}: +${points} Punkte${word ? ` für "${word}"` : ""}${note}`, points > 0 ?
+        //         "success" : "error");
+
+        //     // ... restlicher Code bleibt gleich ...
+        // }
+
+
+        // const submitBtn = document.querySelector('#scrabble-play-area button[onclick="submitScrabbleWord()"]');
+        // if (submitBtn) {
+        //     submitBtn.disabled = true;
+        //     submitBtn.classList.add("opacity-50");
+        // }
+        // const word = cleanInput(document.getElementById("scrabble-word-input").value, 20).toUpperCase();
+        // const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
+
+        // const fb = document.getElementById("scrabble-live-feedback");
+        // if (fb) {
+        //     fb.innerText = "🔍 Prüfe Wort...";
+        //     fb.className = "text-center text-sm font-bold h-5 text-gray-400";
+        // }
+
+        // const res = await evaluateScrabbleWord(word, scrabbleState.currentLetters, {
+        //     minWord: (SCRABBLE_DIFFICULTIES[scrabbleState.difficulty] || {}).minWord,
+        //     required: scrabbleState.required,
+        //     used: scrabbleState.usedWords
+        // });
+        // const points = res.points;
+        // const info = wordStatusInfo(res.status, res);
+        // const note = info.text ? ` – ${info.text}` : "";
+
+        // scrabbleState.scores[key] += points;
+        // if (points > 0) SFX.correct();
+        // else SFX.wrong();
+        // showToast(`${esc(ALL_PROFILES[key].name)}: +${points} Punkte${word ? ` für "${word}"` : ""}${note}`, points > 0 ?
+        //     "success" : "error");
+
+        // scrabbleState.playerIndex++;
+        // if (scrabbleState.playerIndex >= scrabbleState.playerKeys.length) {
+        //     scrabbleState.lastSolution = scrabbleState.solution;
+        //     scrabbleState.playerIndex = 0;
+        //     scrabbleState.round++;
+        //     if (scrabbleState.round > scrabbleState.rounds) { finishScrabbleGame(); return; }
+        //     const nextRack = generateScrabbleRack(scrabbleState.difficulty, scrabbleState.requireLetter,
+        //         scrabbleState.wordMode);
+        //     scrabbleState.currentLetters = nextRack.letters;
+        //     scrabbleState.solution = nextRack.solution;
+        //     scrabbleState.required = nextRack.required;
+        // }
+        // showScrabbleTurnIntro();
+
 
         function wordStatusInfo(status, extra) {
             const e = extra || {};
@@ -6160,21 +6335,12 @@ VIEW: TV-QUIZ SETUP
                     return { icon: "❌", text: "kein gültiges Wort" };
             }
         }
-
         // ============================================================
         // ACTION-MODE FÜR SCRABBLE
         // ============================================================
 
         function startActionMode() {
-            if (!scrabbleState || !scrabbleState.actionMode) {
-                console.log("Action-Mode nicht aktiv");
-                return;
-            }
-
-            scrabbleState.changeCount = 0;
-            scrabbleState.bonusEarned = false;
-            showActionFeedback("⚡ Action-Modus aktiv!");
-
+            if (!scrabbleState || !scrabbleState.actionMode) return;
 
             // Zufällige Zeit bis zur nächsten Änderung (3-10 Sekunden)
             scheduleNextChange();
@@ -6233,9 +6399,6 @@ VIEW: TV-QUIZ SETUP
 
             // Bonuschance zurücksetzen
             scrabbleState.bonusEarned = false;
-
-            // Zufällige nächste Änderung planen
-            scheduleNextChange();
         }
 
         function showActionFeedback(text) {
@@ -6248,43 +6411,27 @@ VIEW: TV-QUIZ SETUP
                         fb.className = "text-center text-sm font-bold h-5 text-gray-400";
                         fb.innerText = "⚡ Action-Modus aktiv!";
                     }
-                }, 3000);
+                }, 2500);
             }
         }
-
-
-
 
         function stopActionMode() {
             if (scrabbleState && scrabbleState.changeInterval) {
                 clearInterval(scrabbleState.changeInterval);
                 scrabbleState.changeInterval = null;
             }
-            if (scrabbleState) {
-                scrabbleState.actionMode = false;
-            }
-            console.log("⏹ Action Mode gestoppt");
         }
 
-
-
-
         // function finishScrabbleGame() {
-        //     // NEU: Action-Mode stoppen
-        //     stopActionMode();
-
         //     const sorted = [...scrabbleState.playerKeys].sort((a, b) => scrabbleState.scores[b] - scrabbleState.scores[a]);
-        //     // ... restlicher Code bleibt gleich ...
-
+        //     sorted.forEach((key, i) => { awardXPToProfile(key, i === 0 ? 15 : 5); });
 
         function finishScrabbleGame() {
-            // ⚡ Action-Mode stoppen
+            // NEU: Action-Mode stoppen
             stopActionMode();
 
             const sorted = [...scrabbleState.playerKeys].sort((a, b) => scrabbleState.scores[b] - scrabbleState.scores[a]);
-            sorted.forEach((key, i) => { awardXPToProfile(key, i === 0 ? 15 : 5); });
-            // ... restlicher Code ...
-
+            // ... restlicher Code bleibt gleich ...
 
             const medals = ["🥇", "🥈", "🥉"];
             let html = `<div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(245,158,11,0.2);">
@@ -7045,6 +7192,35 @@ VIEW: TV-QUIZ SETUP
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+        function stopTVActionMode() {
+            if (tvActionModeInterval) {
+                clearInterval(tvActionModeInterval);
+                tvActionModeInterval = null;
+                console.log("⏹ Action Mode gestoppt");
+            }
+        }
+
+
+        function stopTVActionMode() {
+            if (tvActionModeInterval) {
+                clearInterval(tvActionModeInterval);
+                tvActionModeInterval = null;
+                console.log("⏹ Action Mode gestoppt");
+            }
+        }
+
         // --- TV-SCRABBLE (Host) ---
         function startTVScrabbleRound(data) {
             const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
@@ -7105,78 +7281,51 @@ VIEW: TV-QUIZ SETUP
                 `;
         }
 
-
-
-
-
         function forceTVScrabbleReveal() {
             if (isResolving) return;
             isResolving = true;
 
             stopTVActionMode(); // Timer stoppen, Runde ist vorbei!
 
-            tvGameRef.get().then(doc => {
-                const data = doc.data();
-                // NEU: Sicherstellen, dass alle Daten aktuell sind
-                if (data.players) {
-                    Object.keys(data.players).forEach(k => {
-                        // Wenn ein Spieler noch nicht geantwortet hat, aber die Runde wird erzwungen
-                        if (!data.players[k].hasAnswered) {
-                            data.players[k].hasAnswered = true;
-                            data.players[k].word = "";
-                            data.players[k].submittedLetters = data.currentLetters || [];
-                            data.players[k].submittedRequired = data.currentRequired || "";
-                            data.players[k].submittedSolution = data.currentSolution || "";
-                        }
-                    });
-                }
-                revealTVScrabbleRound(data);
-            });
+            tvGameRef.get().then(doc => revealTVScrabbleRound(doc.data()));
         }
-
-
-
-
 
         async function revealTVScrabbleRound(data) {
             stopTVActionMode();
             const playersData = data.players;
 
+            // HIER IST DIE WICHTIGSTE ÄNDERUNG:
+            // Wir müssen sicherstellen, dass wir die Buchstaben und die Required-Info nehmen,
+            // die in 'data' (dem aktuellen Snapshot aus der Datenbank) stehen, 
+            // nicht die, mit denen die Runde ursprünglich gestartet ist!
+            const letters = data.currentLetters;
+            const currentRequired = data.currentRequired || "";
+
             document.getElementById("view-tv-quiz-host").innerHTML = `
-        <div class="h-[90vh] flex flex-col items-center justify-center text-center">
-            <div class="text-6xl mb-6 animate-spin">🔍</div>
-            <h2 class="text-2xl font-black text-white">Prüfe Wörter...</h2>
-        </div>`;
+                    <div class="h-[90vh] flex flex-col items-center justify-center text-center">
+                        <div class="text-6xl mb-6 animate-spin">🔍</div>
+                        <h2 class="text-2xl font-black text-white">Prüfe Wörter...</h2>
+                    </div>`;
 
-            // ============================================================
-            // SCRABBLE AUSWERTUNG - MIT GESPEICHERTEN BUCHSTABEN
-            // ============================================================
             for (const key of Object.keys(playersData)) {
-                // NEU: Die gespeicherten Buchstaben dieses Spielers verwenden
-                const letters = playersData[key].submittedLetters || data.currentLetters || [];
-                const required = playersData[key].submittedRequired || data.currentRequired || "";
-
-                console.log(`📺 TV: Prüfe ${playersData[key].name}: Wort="${playersData[key].word}", Buchstaben=${letters.join(',')}, Required=${required}`);
-
+                // Die evaluate-Funktion nutzt nun zwingend die hochaktuellen Buchstaben (letters) 
+                // und die hochaktuelle Require-Bedingung (currentRequired)
                 const res = await evaluateScrabbleWord(playersData[key].word, letters, {
                     minWord: (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord,
-                    required: required,
+                    required: currentRequired,
                     used: tvUsedWords,
                     addToUsed: false
                 });
 
-                // NEU: Bonus für schnelles Einreichen im Action-Modus
+                // NEU: Bonus für schnelles Einreichen im Action-Modus (auch für den TV-Modus!)
                 let finalPoints = res.points;
                 if (data.actionMode && res.points > 0 && playersData[key].word) {
-                    finalPoints += 5;
+                    finalPoints += 5; // 5 Extra-Punkte für den Stress im Action Mode
                 }
 
                 playersData[key].score = (playersData[key].score || 0) + finalPoints;
                 playersData[key].lastRoundPoints = finalPoints;
                 playersData[key].wordStatus = res.status;
-                playersData[key].wordChecked = playersData[key].word;
-
-                console.log(`  → ${res.status}: +${finalPoints} Punkte`);
             }
 
             Object.keys(playersData).forEach(k => {
@@ -7184,7 +7333,6 @@ VIEW: TV-QUIZ SETUP
                     tvUsedWords.add(String(playersData[k].word).toUpperCase());
                 }
             });
-
             tvGameRef.update({ showAnswer: true, players: playersData });
 
             const isLastRound = data.currentRound >= data.totalRounds;
@@ -7192,67 +7340,32 @@ VIEW: TV-QUIZ SETUP
             Object.values(playersData).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
                 const sInfo = wordStatusInfo(p.wordStatus, p);
 
-                // NEU: Buchstaben-Info anzeigen
-                let lettersInfo = "";
-                if (p.submittedLetters && p.submittedLetters.length > 0) {
-                    const lettersDisplay = p.submittedLetters.join(' ');
-                    const requiredDisplay = p.submittedRequired ? ` 📌${p.submittedRequired}` : "";
-                    lettersInfo = `<div class="text-[10px] text-gray-600 mt-0.5">📝 ${lettersDisplay}${requiredDisplay}</div>`;
-                }
-
+                // Hinweis auf den Action-Bonus in der Auswertung
                 const bonusText = (data.actionMode && p.wordStatus === "valid") ? ' <span class="text-amber-400 text-xs font-bold">(+5 Action-Bonus)</span>' : '';
+
                 const sDetail = sInfo.text ? `<div class="text-sm text-gray-500 font-normal mt-1">${sInfo.text}</div>` : "";
                 rowsHtml +=
-                    `<div class="flex justify-between items-start bg-white/5 border border-white/5 rounded-xl p-4 gap-3">
-                <div class="font-bold text-white text-lg">
-                    ${sInfo.icon} ${esc(p.name)}: <span class="text-amber-300">"${esc(p.word || "-")}"</span>${bonusText}${sDetail}${lettersInfo}
-                </div>
-                <div class="font-black text-emerald-400 text-xl shrink-0">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div>
-            </div>`;
+                    `<div class="flex justify-between items-start bg-white/5 border border-white/5 rounded-xl p-4 gap-3"><div class="font-bold text-white text-lg">${sInfo.icon} ${esc(p.name)}: <span class="text-amber-300">"${esc(p.word || "-")}"</span>${bonusText}${sDetail}</div><div class="font-black text-emerald-400 text-xl shrink-0">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
             });
 
             document.getElementById("view-tv-quiz-host").innerHTML = `
-        <div class="h-[90vh] flex flex-col justify-between p-6">
-            <div class="text-center mb-4">
-                <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
-                ${data.currentSolution ? `<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war z.B.: ${data.currentSolution}</p>` : ""}
-            </div>
-            <div class="space-y-3 flex-1 overflow-y-auto">${rowsHtml}</div>
-            <div class="mt-6 text-center">
-                ${isLastRound ? `<button onclick="tvGameRef.update({status:'finished'})" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
+                    <div class="h-[90vh] flex flex-col justify-between p-6">
+                        <div class="text-center mb-4">
+                            <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
+                            ${data.currentSolution ? `<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war am Ende z.B.: ${data.currentSolution}</p>` : ""}
+                        </div>
+                        <div class="space-y-3 flex-1 overflow-y-auto">${rowsHtml}</div>
+                        <div class="mt-6 text-center">
+                            ${isLastRound ? `<button onclick="tvGameRef.update({status:'finished'})" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
                     `<button onclick="nextTVScrabbleRound()" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2">Nächste Runde ➔</button>`}
-            </div>
-        </div>
-    `;
+                        </div>
+                    </div>
+                `;
         }
-
-
 
         function nextTVScrabbleRound() {
-            tvGameRef.get().then(doc => {
-                const data = doc.data();
-                // NEU: Spieler-Daten für neue Runde zurücksetzen
-                const playersData = data.players || {};
-                Object.keys(playersData).forEach(k => {
-                    playersData[k].hasAnswered = false;
-                    playersData[k].word = "";
-                    playersData[k].submittedLetters = [];
-                    playersData[k].submittedRequired = "";
-                    playersData[k].submittedSolution = "";
-                    playersData[k].wordStatus = null;
-                    playersData[k].lastRoundPoints = 0;
-                });
-
-                // Daten für die nächste Runde vorbereiten
-                const nextData = { ...data, players: playersData };
-                startTVScrabbleRound(nextData);
-            });
+            tvGameRef.get().then(doc => startTVScrabbleRound(doc.data()));
         }
-
-
-
-
-
 
         // --- TV-QUIZ PLAYER (Handy) ---
         async function joinTVGame() {
@@ -7360,8 +7473,6 @@ VIEW: TV-QUIZ SETUP
             } catch (error) { handleError("joinTVGame", error, "Beitreten hat nicht geklappt."); }
         }
 
-
-
         async function submitTVScrabbleWord() {
             const inputEl = document.getElementById("tv-scrabble-word-input");
             const word = inputEl ? cleanInput(inputEl.value, 20) : "";
@@ -7371,36 +7482,13 @@ VIEW: TV-QUIZ SETUP
                 if (inputEl) inputEl.focus();
                 return;
             }
-
             document.getElementById("view-tv-quiz-player").innerHTML =
-                `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner">
-            <div class="text-8xl mb-8 animate-spin">⏳</div>
-            <h2 class="text-3xl font-black text-amber-400 mb-4">Eingereicht!</h2>
-            <p class="text-lg font-bold text-gray-400">Warte auf die anderen...</p>
-        </div>`;
-
-            // NEU: Aktuelle Buchstaben für diesen Spieler speichern
-            const snap = await tvGameRef.get();
-            const data = snap.data();
-            const currentLetters = data.currentLetters || [];
-            const currentRequired = data.currentRequired || "";
-            const currentSolution = data.currentSolution || "";
-
+                `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-amber-400 mb-4">Eingereicht!</h2><p class="text-lg font-bold text-gray-400">Warte auf die anderen...</p></div>`;
             await tvGameRef.update({
                 [`players.${activePlayerKey}.hasAnswered`]: true,
-                [`players.${activePlayerKey}.word`]: word,
-                // NEU: Buchstaben für diese Eingabe speichern
-                [`players.${activePlayerKey}.submittedLetters`]: currentLetters,
-                [`players.${activePlayerKey}.submittedRequired`]: currentRequired,
-                [`players.${activePlayerKey}.submittedSolution`]: currentSolution
+                [`players.${activePlayerKey}.word`]: word
             });
         }
-
-
-
-
-
-
 
         async function submitTVAnswer(ansIndex) {
             document.getElementById("view-tv-quiz-player").innerHTML =
@@ -7649,10 +7737,8 @@ VIEW: TV-QUIZ SETUP
                 return;
             }
 
-
-
-
             if (data.status === "playing") {
+                renderLiveDuelScrabblePlay
                 liveDuelResolving = false;
 
                 if (myData.pending) {
@@ -8511,7 +8597,6 @@ VIEW: TV-QUIZ SETUP
 
             // Timings für diese Schwierigkeitsstufe holen
             const timings = getActionModeTimings(data.difficulty || "mittel");
-            liveDuelActionTimings = timings;  // ← DIESE ZEILE HINZUFÜGEN!
             liveDuelChangeCount = 0;
             liveDuelMaxChanges = timings.maxChanges;
 
@@ -9146,7 +9231,7 @@ VIEW: TV-QUIZ SETUP
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe vocabulary.js");
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.24)");
+        console.log("🚀 EduPlay Hub gestartet (v2.23)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
@@ -9214,7 +9299,7 @@ VIEW: TV-QUIZ SETUP
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.24<br>
+            EduPlay Hub · v2.23<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -9733,6 +9818,25 @@ VIEW: TV-QUIZ SETUP
             return uniq.slice(0, n);
         }
 
+        //     function renderAnlaute(item) {
+        //         const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        //         const distractors = pickDistractors(letters, item.startsWith, 3);
+        //         const opts = prepareOptions([item.startsWith].concat(distractors), item.startsWith);
+
+        //         const buttons = opts.map((l, i) => `
+        //     <button onclick="lesenCheck(${i})" class="w-16 h-16 text-2xl font-bold bg-gray-700 rounded-xl">${l}</button>
+        // `).join('');
+
+        //         return `
+        //     <div class="text-center py-6">
+        //         <div class="text-6xl mb-4">${item.image}</div>
+        //         <div class="text-3xl font-bold text-white mb-1">${item.word}</div>
+        //         ${hoerButton(item.word)}
+        //         <div class="text-sm text-gray-400 my-3">Mit welchem Buchstaben beginnt das Wort?</div>
+        //         <div class="flex justify-center gap-4 flex-wrap">${buttons}</div>
+        //     </div>
+        // `;
+        //     }
 
         function renderAnlaute(item) {
             const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -9754,7 +9858,24 @@ VIEW: TV-QUIZ SETUP
     `;
         }
 
+        //     function renderWordMatch(item) {
+        //         const categories = lesenDB();
+        //         const pool = (categories.word_match.items || []).map(it => it.word);
+        //         const distractors = pickDistractors(pool, item.word, 3);
+        //         const opts = prepareOptions([item.word].concat(distractors), item.word);
 
+        //         const buttons = opts.map((w, i) => `
+        //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${w}</button>
+        // `).join('');
+
+        //         return `
+        //     <div class="text-center py-6">
+        //         <div class="text-7xl mb-4">${item.image}</div>
+        //         <div class="text-sm text-gray-400 mb-4">Welches Wort passt zum Bild?</div>
+        //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
+        //     </div>
+        // `;
+        //     }
         function renderWordMatch(item) {
             const categories = lesenDB();
             const pool = (categories.word_match.items || []).map(it => it.word);
@@ -9773,7 +9894,33 @@ VIEW: TV-QUIZ SETUP
         </div>
     `;
         }
+        //     //     // --------------------------------------------------------
+        //     // DAS IST DIE ÜBERARBEITETE "LESEN MIT VERSTÄNDNIS"-FUNKTION
+        //     // --------------------------------------------------------
+        //     let comprehensionStep = 0;
 
+        //     function renderComprehension(item) {
+        //         const categories = lesenDB();
+        //         const pool = (categories.reading_comprehension.items || []).map(it => it.answer);
+        //         const distractors = pickDistractors(pool, item.answer, 3);
+        //         const opts = prepareOptions([item.answer].concat(distractors), item.answer);
+
+        //         const buttons = opts.map((a, i) => `
+        //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${a}</button>
+        // `).join('');
+
+        //         if (comprehensionStep === 0) {
+        //             return `
+        //         <div class="text-center py-6">
+        //             <div class="text-xl font-bold text-white leading-relaxed mb-4">📖 Lies den Satz:</div>
+        //             <div class="text-2xl font-bold text-yellow-400 leading-relaxed mb-8">${item.sentence}</div>
+        //             <button onclick="comprehensionNext()" 
+        //                     class="mt-6 w-full p-4 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500">
+        //                 ➔ Weiter zur Frage
+        //             </button>
+        //         </div>
+        //     `;
+        //         }
 
         function renderComprehension(item) {
             const categories = lesenDB();
@@ -9808,15 +9955,50 @@ VIEW: TV-QUIZ SETUP
     `;
         }
 
+        //     return `
+        //     <div class="text-center py-4">
+        //         <div class="text-sm text-gray-400 mb-2">📖 ${item.sentence}</div>
+        //         <div class="text-lg text-yellow-400 font-bold my-4">❓ ${item.question}</div>
+        //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
+        //     </div>
+        // `;
+        //     }
 
         function comprehensionNext() {
             comprehensionStep = 1;
             renderLesenExercise(lesenState.currentCategory);
         }
+        // --------------------------------------------------------
 
+        //     function renderWordPuzzle(item) {
+        //         const shownLetters = shuffle(item.letters.split('-'));
+        //         const categories = lesenDB();
+        //         const allWords = [];
+        //         Object.keys(categories).forEach(key => {
+        //             (categories[key].items || []).forEach(it => {
+        //                 if (it.solution) allWords.push(it.solution);
+        //                 else if (it.word) allWords.push(it.word.toUpperCase());
+        //             });
+        //         });
+        //         const distractors = pickDistractors(allWords, item.solution, 3);
+        //         const opts = prepareOptions([item.solution].concat(distractors), item.solution);
 
+        //         const tiles = shownLetters.map(l => `
+        //     <span class="w-14 h-14 bg-gray-700 rounded-xl flex items-center justify-center text-2xl font-bold text-white">${l}</span>
+        // `).join('');
 
+        //         const buttons = opts.map((w, i) => `
+        //     <button onclick="lesenCheck(${i})" class="px-6 py-3 bg-gray-700 rounded-xl font-bold text-white">${w}</button>
+        // `).join('');
 
+        //         return `
+        //     <div class="text-center py-4">
+        //         <div class="text-sm text-gray-400 mb-3">Setze die Buchstaben zum Wort zusammen</div>
+        //         <div class="flex justify-center gap-2 flex-wrap mb-4">${tiles}</div>
+        //         <div class="flex justify-center gap-3 flex-wrap">${buttons}</div>
+        //     </div>
+        // `;
+        //     }
 
         function renderWordPuzzle(item) {
             const shownLetters = shuffle(item.letters.split('-'));
@@ -9894,7 +10076,34 @@ VIEW: TV-QUIZ SETUP
         }
 
 
+        // Sorgt dafür, dass die Stimmen im Hintergrund geladen werden (wichtig für Chrome/Safari)
+        // window.speechSynthesis.onvoiceschanged = () => {
+        //     window.speechSynthesis.getVoices();
+        // };
 
+        // function speakNatural(text) {
+        //     if (!('speechSynthesis' in window)) return;
+
+        //     // Bricht aktuelles Vorlesen ab, falls noch etwas gesprochen wird
+        //     window.speechSynthesis.cancel();
+
+        //     const utterance = new SpeechSynthesisUtterance(text);
+        //     utterance.lang = 'de-DE';
+        //     utterance.rate = 0.9; // Leicht verlangsamt (0.9 statt 1.0) für bessere Verständlichkeit
+        //     utterance.pitch = 1.1; // Ein kleines bisschen höher, wirkt oft freundlicher
+
+        //     const voices = window.speechSynthesis.getVoices();
+
+        //     // Wir suchen gezielt nach hochwertigen deutschen Stimmen
+        //     const bestVoice = voices.find(v => v.lang.includes('de') && (v.name.includes('Natural') || v.name.includes('Premium') || v.name.includes('Google')))
+        //         || voices.find(v => v.lang.includes('de')); // Fallback: Erste verfügbare deutsche Stimme
+
+        //     if (bestVoice) {
+        //         utterance.voice = bestVoice;
+        //     }
+
+        //     window.speechSynthesis.speak(utterance);
+        // }
 
         function speakNatural(text) {
             if (!('speechSynthesis' in window)) return;

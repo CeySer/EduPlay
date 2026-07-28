@@ -7657,6 +7657,10 @@ VIEW: TV-QUIZ SETUP
             liveDuelTimerInterval = setInterval(tick, 1000);
         }
 
+        // ============================================================
+        // VERBESSERTE renderLiveDuelFromSnapshot FÜR ACTION-MODE
+        // ============================================================
+
         function renderLiveDuelFromSnapshot(data) {
             const myData = data.players[activePlayerKey];
             if (!myData) return;
@@ -7678,6 +7682,7 @@ VIEW: TV-QUIZ SETUP
             }
 
             if (data.status === "playing") {
+                renderLiveDuelScrabblePlay
                 liveDuelResolving = false;
 
                 if (myData.pending) {
@@ -7686,12 +7691,40 @@ VIEW: TV-QUIZ SETUP
                     return;
                 }
 
-                const key = `playing|${data.type}|${data.currentIndex}|${data.currentRound}|${myData.hasAnswered}`;
-                if (key !== liveDuelRenderKey) {
-                    liveDuelRenderKey = key;
-                    if (myData.hasAnswered) renderLiveDuelWaitingForOthers(data);
-                    else if (data.type === "scrabble") renderLiveDuelScrabblePlay(data);
-                    else renderLiveDuelQuizPlay(data);
+                // NEU: Prüfen ob sich die Buchstaben geändert haben (für Scrabble)
+                const isScrabble = data.type === "scrabble";
+                if (isScrabble && data.currentLetters && !myData.hasAnswered) {
+                    // Prüfen ob sich die Buchstaben seit dem letzten Render geändert haben
+                    const lettersKey = data.currentLetters.join('');
+                    if (lettersKey !== liveDuelRenderKey) {
+                        liveDuelRenderKey = lettersKey;
+                        // UI mit neuen Buchstaben aktualisieren
+                        renderLiveDuelScrabblePlay(data);
+                        // Action-Feedback anzeigen (wenn nicht die erste Runde)
+                        if (data.currentRound > 1 || liveDuelChangeCount > 0) {
+                            showLiveDuelActionFeedback("⚡ Die Buchstaben haben sich geändert!");
+                        }
+                    }
+                }
+
+                // Nur rendern wenn nötig
+                if (!myData.hasAnswered) {
+                    if (data.type === "scrabble") {
+                        // Nur rendern wenn es noch nicht gerendert wurde oder sich was geändert hat
+                        const key = `playing|${data.type}|${data.currentRound}|${data.currentLetters ? data.currentLetters.join('') : ''}|${myData.hasAnswered}`;
+                        if (key !== liveDuelRenderKey || data.currentLetters) {
+                            liveDuelRenderKey = key;
+                            renderLiveDuelScrabblePlay(data);
+                        }
+                    } else {
+                        const key = `playing|${data.type}|${data.currentIndex}|${myData.hasAnswered}`;
+                        if (key !== liveDuelRenderKey) {
+                            liveDuelRenderKey = key;
+                            renderLiveDuelQuizPlay(data);
+                        }
+                    }
+                } else {
+                    renderLiveDuelWaitingForOthers(data);
                 }
 
                 const activePl = Object.values(data.players).filter(p => !p.pending);
@@ -7720,6 +7753,8 @@ VIEW: TV-QUIZ SETUP
 
             if (data.status === "reveal") {
                 clearLiveDuelTimers();
+                stopLiveDuelActionMode(); // <-- Action-Mode stoppen wenn aufgelöst wird
+
                 if (myData.pending) {
                     renderLiveDuelPending(data);
                     switchView('live-duel-play');
@@ -7734,8 +7769,7 @@ VIEW: TV-QUIZ SETUP
                 switchView('live-duel-play');
 
                 const isQuiz = data.type === "quiz";
-                const isLastStep = isQuiz ? (data.currentIndex >= data.questions.length - 1) : (data.currentRound >= data
-                    .totalRounds);
+                const isLastStep = isQuiz ? (data.currentIndex >= data.questions.length - 1) : (data.currentRound >= data.totalRounds);
                 if (!isLastStep) {
                     const erkl = isQuiz && data.questions[data.currentIndex] ?
                         (data.questions[data.currentIndex].explanation || "") : "";
@@ -7743,6 +7777,7 @@ VIEW: TV-QUIZ SETUP
                     const cdEl = () => document.getElementById("live-duel-auto-countdown");
                     const tick = () => {
                         const el = cdEl();
+
                         if (el) el.innerText = left + "s";
                         if (left <= 0) {
                             clearLiveDuelTimers();
@@ -7759,6 +7794,8 @@ VIEW: TV-QUIZ SETUP
 
             if (data.status === "finished") {
                 clearLiveDuelTimers();
+                stopLiveDuelActionMode(); // <-- Action-Mode stoppen wenn beendet
+
                 if (!myData.coinsClaimed) {
                     currentPlayer.coins += (myData.score || 0);
                     savePlayerProgress();
@@ -7768,7 +7805,6 @@ VIEW: TV-QUIZ SETUP
                 switchView('live-duel-result');
             }
         }
-
         function renderLiveDuelPending(data) {
             document.getElementById("live-duel-play-content").innerHTML = `
                             <div class="glass-card h-[70vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner">
@@ -7821,19 +7857,54 @@ VIEW: TV-QUIZ SETUP
             await liveDuelRef.update(update);
         }
 
+
+
+        // ============================================================
+        // VERBESSERTE renderLiveDuelScrabblePlay
+        // ============================================================
+
         function renderLiveDuelScrabblePlay(data) {
+            // Stelle sicher, dass currentLetters existiert
+            const letters = data.currentLetters || [];
+            const required = data.currentRequired || "";
+
             document.getElementById("live-duel-play-content").innerHTML = `
-                            <div class="space-y-4">
-                                <div class="text-center text-xs font-bold text-gray-400">Runde ${data.currentRound}/${data.totalRounds}</div>
-                                <div class="flex flex-wrap justify-center gap-2">${scrabbleTilesHTML(data.currentLetters, false, data.currentRequired)}</div>
-                                <div class="glass-card p-5 space-y-3">
-                                    <input type="text" id="live-duel-word-input" placeholder="Dein Wort..." autocomplete="off"
-                                        class="input-modern text-xl font-black text-center uppercase tracking-widest">
-                                    <button onclick="submitLiveDuelWord()" class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Wort einreichen ✅</button>
-                                </div>
-                            </div>`;
+        <div class="space-y-4">
+            <div class="text-center text-xs font-bold text-gray-400">
+                Runde ${data.currentRound}/${data.totalRounds}
+                ${data.actionMode ? ' ⚡ Action-Modus' : ''}
+            </div>
+            <div class="flex flex-wrap justify-center gap-2" id="live-duel-tiles-container">
+                ${scrabbleTilesHTML(letters, false, required)}
+            </div>
+            <div class="glass-card p-5 space-y-3">
+                <input type="text" id="live-duel-word-input" placeholder="Dein Wort..." autocomplete="off"
+                    class="input-modern text-xl font-black text-center uppercase tracking-widest">
+                <button onclick="submitLiveDuelWord()" class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Wort einreichen ✅</button>
+            </div>
+        </div>`;
+
+            // Eingabefeld fokussieren
+            setTimeout(() => {
+                const input = document.getElementById("live-duel-word-input");
+                if (input) {
+                    input.focus();
+                    // Bei Buchstaben-Änderung: leeren und fokussieren
+                    if (liveDuelChangeCount > 0) {
+                        input.value = "";
+                    }
+                }
+            }, 100);
+
             liveDuelInputLockUntil = Date.now() + 450;
         }
+
+
+
+
+
+
+
 
         async function submitLiveDuelWord() {
             if (Date.now() < liveDuelInputLockUntil) return;
@@ -8374,6 +8445,10 @@ VIEW: TV-QUIZ SETUP
             }, delay);
         }
 
+        // ============================================================
+        // VERBESSERTE changeLiveDuelLetters
+        // ============================================================
+
         async function changeLiveDuelLetters() {
             if (!liveDuelRef) return;
 
@@ -8391,42 +8466,23 @@ VIEW: TV-QUIZ SETUP
 
                 const newRack = generateScrabbleRack(difficulty, requireLetter, wordMode);
 
-                // Firebase updaten
+                // Firebase updaten - das löst den Snapshot-Listener aus
                 await liveDuelRef.update({
                     currentLetters: newRack.letters,
                     currentSolution: newRack.solution,
                     currentRequired: newRack.required || ""
                 });
 
-                // UI für den aktuellen Spieler aktualisieren (wenn er gerade in der Runde ist)
-                const myData = data.players[activePlayerKey];
-                if (myData && !myData.hasAnswered && !myData.pending) {
-                    const playContent = document.getElementById("live-duel-play-content");
-                    if (playContent) {
-                        // Nur die Buchstaben neu rendern, den Rest lassen wir unverändert
-                        const tilesContainer = playContent.querySelector('.flex.flex-wrap.justify-center.gap-2');
-                        if (tilesContainer) {
-                            tilesContainer.innerHTML = scrabbleTilesHTML(newRack.letters, false, newRack.required || "");
-                        }
-                        // Eingabefeld leeren und Fokus setzen
-                        const input = document.getElementById("live-duel-word-input");
-                        if (input) {
-                            input.value = "";
-                            input.focus();
-                        }
-                        // Action-Feedback anzeigen
-                        showLiveDuelActionFeedback("⚡ Die Buchstaben haben sich geändert!");
-                    }
-                }
-
                 console.log("✅ Live-Duell Buchstaben geändert:", newRack.letters.join(' '));
                 SFX.tick();
+
+                // Den Snapshot-Listener aktualisiert jetzt automatisch alle Spieler!
+                // Das Feedback wird in renderLiveDuelFromSnapshot angezeigt
 
             } catch (e) {
                 console.error("❌ Fehler beim Ändern der Live-Duell Buchstaben:", e);
             }
         }
-
         function showLiveDuelActionFeedback(text) {
             // Bestehenden Feedback-Container finden oder erstellen
             let fb = document.getElementById("live-duel-action-feedback");

@@ -3570,6 +3570,7 @@ VIEW: TV-QUIZ SETUP
             return (age >= 0 && age < 120) ? age : null;
         }
 
+
         function buildPlayerCard(key, color) {
             const p = ALL_PROFILES[key];
             const guest = !!p.isGuest;
@@ -3581,21 +3582,22 @@ VIEW: TV-QUIZ SETUP
             wrap.className = "relative";
 
             const btn = document.createElement("button");
-            btn.className = "player-card" + (isActive ? " is-active" : "");
+            btn.className = "player-card p-3 rounded-xl" + (isActive ? " is-active" : "");
             if (isActive) btn.style.color = c;
-            btn.innerHTML =
-                `${guest ? '<span class="badge-guest">GAST</span>' : ''}` +
-                `<div class="player-disc${guest ? ' player-disc-guest' : ''}"${guest ? '' : ` style="background:${c}"`}>${esc(initialsFor(p.name))}</div>` +
-                `<div class="player-name">${esc(p.name)}</div>` +
-                `<div class="player-coins">${p.coins || 0} Coins</div>` +
-                `<div class="player-meta"><span class="dot ${act.dot}"></span>${esc(act.text)}</div>`;
+            btn.innerHTML = `
+        ${guest ? '<span class="badge-guest text-[8px]">GAST</span>' : ''}
+        <div class="player-disc w-10 h-10 text-sm${guest ? ' player-disc-guest' : ''}"${guest ? '' : ` style="background:${c}"`}>
+            ${esc(initialsFor(p.name))}
+        </div>
+        <div class="player-name text-xs font-bold">${esc(p.name)}</div>
+        <div class="player-coins text-[10px]">🪙 ${p.coins || 0}</div>
+        <div class="player-meta text-[9px]"><span class="dot ${act.dot} w-1.5 h-1.5"></span>${esc(act.text)}</div>
+    `;
             btn.onclick = () => selectProfile(key);
             wrap.appendChild(btn);
 
             const edit = document.createElement("button");
-            edit.className = "edit-pin";
-            edit.title = "Spieler bearbeiten";
-            edit.setAttribute("aria-label", `${p.name} bearbeiten`);
+            edit.className = "edit-pin absolute bottom-1 right-1 w-5 h-5 text-[9px] rounded-lg bg-white/5 border border-white/5";
             edit.innerText = "✎";
             edit.onclick = (ev) => {
                 ev.stopPropagation();
@@ -3605,6 +3607,14 @@ VIEW: TV-QUIZ SETUP
 
             return wrap;
         }
+
+
+
+
+
+
+
+
 
         function renderFamilyHub() {
             const grid = document.getElementById("family-profiles-grid");
@@ -4026,8 +4036,6 @@ VIEW: TV-QUIZ SETUP
             switchDashAdminTab('progress');
         }
 
-
-
         function switchDashboardTab(tab) {
             currentDashTab = tab;
             ['inhalte', 'schueler', 'admin'].forEach(t => {
@@ -4059,6 +4067,67 @@ VIEW: TV-QUIZ SETUP
             }
         }
 
+
+
+
+
+        function renderDashFilters() {
+            const container = document.getElementById('dash-filter-container');
+            if (!container) return;
+
+            const sub = currentDashSubTab || 'fragen';
+
+            if (sub === 'fragen') {
+                container.innerHTML = `
+            <select id="dash-question-grade" class="input-modern text-xs flex-1 min-w-[70px]">
+                <option value="">Alle Klassen</option>
+            </select>
+            <select id="dash-question-subject" class="input-modern text-xs flex-1 min-w-[70px]">
+                <option value="">Alle Fächer</option>
+            </select>
+            <input type="text" id="dash-question-search" placeholder="🔎 Suche..." class="input-modern text-xs flex-1 min-w-[80px]">
+        `;
+                // Event-Listener neu setzen
+                const qGrade = document.getElementById('dash-question-grade');
+                const qSubject = document.getElementById('dash-question-subject');
+                const qSearch = document.getElementById('dash-question-search');
+                if (qGrade) qGrade.addEventListener('change', renderDashQuestions);
+                if (qSubject) qSubject.addEventListener('change', renderDashQuestions);
+                if (qSearch) qSearch.addEventListener('input', renderDashQuestions);
+                initDashFilters();
+                renderDashQuestions();
+            } else if (sub === 'vokabeln') {
+                container.innerHTML = `
+            <select id="dash-vocab-lang" class="input-modern text-xs flex-1 min-w-[70px]">
+                <option value="en">🇬🇧 Englisch</option>
+                <option value="tr">🇹🇷 Türkisch</option>
+            </select>
+            <select id="dash-vocab-level" class="input-modern text-xs flex-1 min-w-[70px]">
+                <option value="">Alle Niveaus</option>
+            </select>
+            <input type="text" id="dash-vocab-search" placeholder="🔎 Suche..." class="input-modern text-xs flex-1 min-w-[80px]">
+        `;
+                document.getElementById('dash-vocab-lang')?.addEventListener('change', () => {
+                    updateDashVocabLevels();
+                    renderDashVocab();
+                });
+                document.getElementById('dash-vocab-level')?.addEventListener('change', renderDashVocab);
+                document.getElementById('dash-vocab-search')?.addEventListener('input', renderDashVocab);
+                renderDashVocab();
+            } else if (sub === 'woerter') {
+                container.innerHTML = `
+            <select id="dash-word-length" class="input-modern text-xs flex-1 min-w-[70px]">
+                <option value="">Alle Längen</option>
+            </select>
+            <input type="text" id="dash-word-search" placeholder="🔎 Suche..." class="input-modern text-xs flex-1 min-w-[80px]">
+        `;
+                document.getElementById('dash-word-length')?.addEventListener('change', renderDashWords);
+                document.getElementById('dash-word-search')?.addEventListener('input', renderDashWords);
+                renderDashWords();
+            }
+        }
+
+
         function switchDashboardSubTab(sub) {
             currentDashSubTab = sub;
             ['fragen', 'vokabeln', 'woerter'].forEach(s => {
@@ -4066,20 +4135,15 @@ VIEW: TV-QUIZ SETUP
                 const view = document.getElementById('dash-sub-' + s + '-view');
                 if (!btn || !view) return;
                 if (s === sub) {
-                    btn.className =
-                        'flex-1 py-2 px-1 rounded-lg font-bold text-white bg-indigo-600 shadow-md transition-all text-xs';
+                    btn.className = 'flex-1 py-2 px-1 rounded-lg font-bold text-white bg-indigo-600 shadow-md transition-all text-xs';
                     view.classList.remove('hidden');
                 } else {
-                    btn.className =
-                        'flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-xs';
+                    btn.className = 'flex-1 py-2 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-xs';
                     view.classList.add('hidden');
                 }
             });
-            if (sub === 'fragen') renderDashQuestions();
-            if (sub === 'vokabeln') renderDashVocab();
-            if (sub === 'woerter') renderDashWords();
+            renderDashFilters(); // <- NEU: Filter dynamisch rendern
         }
-
 
 
 

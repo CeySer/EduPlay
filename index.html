@@ -6656,6 +6656,11 @@ VIEW: TV-QUIZ SETUP
             ref.set({ status: 'playing', currentIndex: 0, questions: buildCastQuestions(), updatedAt: Date.now() }, { merge: true });
         }
 
+
+
+
+
+
         // ============================================================
         //  TV-QUIZ (KAHOOT-MODUS)
         // ============================================================
@@ -6671,6 +6676,7 @@ VIEW: TV-QUIZ SETUP
         let tvAutoAdvanceOn = false;
         let tvAutoAdvanceInterval = null;
         let tvUsedWords = new Set();
+        let tvActionModeInterval = null; // <-- NUR EINMAL DEFINIEREN!
 
         function setTVTopicMode(mode) {
             mode = mode || tvTopicMode || 'spass';
@@ -6744,14 +6750,14 @@ VIEW: TV-QUIZ SETUP
                 tvGameRef = hostRef;
 
                 document.getElementById("view-tv-quiz-host").innerHTML = `
-                            <div class="glass-card-glow h-[80vh] flex flex-col items-center justify-center p-8 text-center" style="border-color:rgba(99,102,241,0.15);">
-                                <h2 class="text-5xl font-black text-indigo-400 mb-6 animate-pulse">Warte auf Spieler...</h2>
-                                <p class="text-2xl text-white mb-12">Drückt auf euren Handys auf <br><span class="text-emerald-400 font-bold text-4xl">'Jetzt beitreten!'</span></p>
-                                <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>
-                                <button onclick="startTVGameLoop()" class="btn-primary text-3xl py-6 px-12" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Spiel starten! 🚀</button>
-                                <button onclick="window.location.reload()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Lobby abbrechen</button>
-                            </div>
-                        `;
+                    <div class="glass-card-glow h-[80vh] flex flex-col items-center justify-center p-8 text-center" style="border-color:rgba(99,102,241,0.15);">
+                        <h2 class="text-5xl font-black text-indigo-400 mb-6 animate-pulse">Warte auf Spieler...</h2>
+                        <p class="text-2xl text-white mb-12">Drückt auf euren Handys auf <br><span class="text-emerald-400 font-bold text-4xl">'Jetzt beitreten!'</span></p>
+                        <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>
+                        <button onclick="startTVGameLoop()" class="btn-primary text-3xl py-6 px-12" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Spiel starten! 🚀</button>
+                        <button onclick="window.location.reload()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Lobby abbrechen</button>
+                    </div>
+                `;
 
                 tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
                     if (!doc.exists) return;
@@ -6791,32 +6797,6 @@ VIEW: TV-QUIZ SETUP
                 ).join('');
         }
 
-
-
-        // Funktion für den Action Mode: Mischt die Buchstaben nach Ablauf der Zeit
-        function startActionMode(wort, htmlElementId, wartezeitSekunden) {
-            setTimeout(function () {
-                // Wort in Buchstaben zerlegen
-                let buchstaben = wort.split('');
-
-                // Buchstaben zufällig vertauschen
-                for (let i = buchstaben.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    let temp = buchstaben[i];
-                    buchstaben[i] = buchstaben[j];
-                    buchstaben[j] = temp;
-                }
-
-                // Wieder zu einem Wort zusammensetzen
-                let gemischtesWort = buchstaben.join('');
-
-                // Auf dem Bildschirm anzeigen
-                document.getElementById(htmlElementId).innerText = gemischtesWort;
-                console.log("Action Mode: Wort wurde gemischt zu " + gemischtesWort);
-
-            }, wartezeitSekunden * 1000);
-        }
-
         function startTVGameLoop() {
             tvGameRef.get().then(doc => {
                 const data = doc.data();
@@ -6850,21 +6830,21 @@ VIEW: TV-QUIZ SETUP
             let answersHtml = "";
             tvCurrentQ.answers.forEach((ans, i) => {
                 answersHtml += `
-                                <div class="${colors[i]} p-4 rounded-2xl text-white shadow-xl flex items-center relative overflow-hidden min-h-[120px]">
-                                    <span class="text-8xl opacity-20 absolute left-4">${shapes[i]}</span>
-                                    <span class="text-3xl md:text-4xl font-black w-full text-center relative z-10 px-6 break-words">${ans}</span>
-                                </div>`;
+                        <div class="${colors[i]} p-4 rounded-2xl text-white shadow-xl flex items-center relative overflow-hidden min-h-[120px]">
+                            <span class="text-8xl opacity-20 absolute left-4">${shapes[i]}</span>
+                            <span class="text-3xl md:text-4xl font-black w-full text-center relative z-10 px-6 break-words">${ans}</span>
+                        </div>`;
             });
             document.getElementById("view-tv-quiz-host").innerHTML = `
-                            <div class="h-[90vh] flex flex-col justify-between p-6">
-                                <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(99,102,241,0.15);">
-                                    <p class="text-indigo-400 font-black text-xl mb-2">Frage ${index + 1} / ${tvQuestions.length}</p>
-                                    <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
-                                </div>
-                                <div class="grid grid-cols-2 gap-6 flex-1">${answersHtml}</div>
-                                <div class="mt-8 text-center"><span id="tv-answer-counter" class="text-gray-400 font-bold text-xl">0 von 0 haben geantwortet</span></div>
-                            </div>
-                        `;
+                    <div class="h-[90vh] flex flex-col justify-between p-6">
+                        <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(99,102,241,0.15);">
+                            <p class="text-indigo-400 font-black text-xl mb-2">Frage ${index + 1} / ${tvQuestions.length}</p>
+                            <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6 flex-1">${answersHtml}</div>
+                        <div class="mt-8 text-center"><span id="tv-answer-counter" class="text-gray-400 font-bold text-xl">0 von 0 haben geantwortet</span></div>
+                    </div>
+                `;
         }
 
         function revealTVAnswer(data) {
@@ -6884,29 +6864,29 @@ VIEW: TV-QUIZ SETUP
                 const opacity = i === correctIndex ? "opacity-100 ring-8 ring-white scale-105" :
                     "opacity-20 grayscale";
                 answersHtml += `
-                                <div class="${colors[i]} p-4 rounded-2xl text-white shadow-xl flex items-center relative overflow-hidden min-h-[120px] transition-all duration-500 ${opacity}">
-                                    <span class="text-8xl opacity-20 absolute left-4">${shapes[i]}</span>
-                                    <span class="text-3xl md:text-4xl font-black w-full text-center relative z-10 px-6 break-words">${ans}</span>
-                                </div>`;
+                        <div class="${colors[i]} p-4 rounded-2xl text-white shadow-xl flex items-center relative overflow-hidden min-h-[120px] transition-all duration-500 ${opacity}">
+                            <span class="text-8xl opacity-20 absolute left-4">${shapes[i]}</span>
+                            <span class="text-3xl md:text-4xl font-black w-full text-center relative z-10 px-6 break-words">${ans}</span>
+                        </div>`;
             });
 
             document.getElementById("view-tv-quiz-host").innerHTML = `
-                            <div class="h-[90vh] flex flex-col justify-between p-6">
-                                <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(16,185,129,0.2);">
-                                    <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
-                                    <p class="text-emerald-400 font-black mt-6 text-3xl">💡 ${tvCurrentQ.explanation}</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-6 flex-1">${answersHtml}</div>
-                                <div class="mt-8 text-center space-y-3">
-                                    <button onclick="nextTVQuestion()" class="btn-primary text-3xl py-6 px-16" style="box-shadow:0 4px 32px rgba(99,102,241,0.3);">Nächste Frage ➔</button>
-                                    <div id="tv-auto-row" class="flex items-center justify-center gap-4 text-xl text-gray-400 font-bold">
-                                        <span id="tv-auto-label"></span>
-                                        <button onclick="toggleTVAutoAdvance()" id="tv-auto-btn"
-                                            class="btn-ghost text-base py-2 px-5"></button>
-                                    </div>
-                                </div>
+                    <div class="h-[90vh] flex flex-col justify-between p-6">
+                        <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(16,185,129,0.2);">
+                            <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
+                            <p class="text-emerald-400 font-black mt-6 text-3xl">💡 ${tvCurrentQ.explanation}</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6 flex-1">${answersHtml}</div>
+                        <div class="mt-8 text-center space-y-3">
+                            <button onclick="nextTVQuestion()" class="btn-primary text-3xl py-6 px-16" style="box-shadow:0 4px 32px rgba(99,102,241,0.3);">Nächste Frage ➔</button>
+                            <div id="tv-auto-row" class="flex items-center justify-center gap-4 text-xl text-gray-400 font-bold">
+                                <span id="tv-auto-label"></span>
+                                <button onclick="toggleTVAutoAdvance()" id="tv-auto-btn"
+                                    class="btn-ghost text-base py-2 px-5"></button>
                             </div>
-                        `;
+                        </div>
+                    </div>
+                `;
             startTVAutoAdvance();
         }
 
@@ -6994,19 +6974,19 @@ VIEW: TV-QUIZ SETUP
 
             const names = esc(sorted.map(p => p.name).join(", "));
             html += `
-                            <div class="glass-card p-8 mt-12 max-w-3xl mx-auto w-full space-y-4" style="border-color:rgba(99,102,241,0.15);">
-                                <p class="text-3xl font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
-                                <p class="text-xl text-gray-400 text-center">Alle bleiben dabei: ${names}</p>
-                                <div class="dash-sub-nav">
-                                    <button id="againtopic-spass" onclick="setTVAgainTopic('spass')" class="active">🎉 Spaß</button>
-                                    <button id="againtopic-lernen" onclick="setTVAgainTopic('lernen')" class="">📚 Lernen</button>
-                                </div>
-                                <select id="tv-again-area" class="input-modern font-bold text-xl"></select>
-                                <select id="tv-again-category" class="input-modern font-bold text-xl"></select>
-                                <button onclick="restartTVGame()" class="btn-primary w-full text-center text-2xl py-6" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
-                            </div>
-                            <div class="text-center"><button onclick="window.location.reload()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Beenden & Zurück zum Übersicht</button></div>
-                        `;
+                    <div class="glass-card p-8 mt-12 max-w-3xl mx-auto w-full space-y-4" style="border-color:rgba(99,102,241,0.15);">
+                        <p class="text-3xl font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
+                        <p class="text-xl text-gray-400 text-center">Alle bleiben dabei: ${names}</p>
+                        <div class="dash-sub-nav">
+                            <button id="againtopic-spass" onclick="setTVAgainTopic('spass')" class="active">🎉 Spaß</button>
+                            <button id="againtopic-lernen" onclick="setTVAgainTopic('lernen')" class="">📚 Lernen</button>
+                        </div>
+                        <select id="tv-again-area" class="input-modern font-bold text-xl"></select>
+                        <select id="tv-again-category" class="input-modern font-bold text-xl"></select>
+                        <button onclick="restartTVGame()" class="btn-primary w-full text-center text-2xl py-6" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
+                    </div>
+                    <div class="text-center"><button onclick="window.location.reload()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Beenden & Zurück zum Übersicht</button></div>
+                `;
 
             document.getElementById("view-tv-quiz-host").innerHTML =
                 `<div class="min-h-[90vh] flex flex-col items-center justify-center p-6">${html}</div>`;
@@ -7078,33 +7058,63 @@ VIEW: TV-QUIZ SETUP
             }
         }
 
-        let tvActionModeInterval = null;
-
+        // ============================================================
+        // ACTION-MODE FÜR TV-HOST (NUR EINMAL DEFINIEREN!)
+        // ============================================================
         function startTVActionMode(data) {
-            if (!isTVHost || !data.actionMode) return;
+            // Prüfen ob Action Mode aktiv ist
+            if (!data || !data.actionMode) {
+                console.log("Action Mode nicht aktiv");
+                return;
+            }
 
-            stopTVActionMode();
+            // Alten Timer stoppen
+            if (tvActionModeInterval) {
+                clearInterval(tvActionModeInterval);
+                tvActionModeInterval = null;
+                console.log("Alter Timer gestoppt");
+            }
 
-            let nextChangeTime = Date.now() + (3000 + Math.random() * 9000);
             let changeCount = 0;
             const maxChanges = 5;
+            let nextChangeTime = Date.now() + (3000 + Math.random() * 9000);
+
+            console.log("🔄 Action Mode gestartet (max. " + maxChanges + " Änderungen)");
 
             tvActionModeInterval = setInterval(() => {
-                if (Date.now() >= nextChangeTime) {
-                    const newRack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
+                // Prüfen ob der Timer noch aktiv ist
+                if (!tvActionModeInterval) {
+                    return;
+                }
 
+                if (Date.now() >= nextChangeTime && changeCount < maxChanges) {
+                    // Neues Wort generieren
+                    const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
+
+                    // Firebase update
                     tvGameRef.update({
-                        currentLetters: newRack.letters,
-                        currentSolution: newRack.solution,
-                        currentRequired: newRack.required || ""
+                        currentLetters: rack.letters,
+                        currentSolution: rack.solution,
+                        currentRequired: rack.required || ""
+                    }).then(() => {
+                        // Bildschirm aktualisieren
+                        showTVHostScrabbleRound(
+                            rack.letters,
+                            data.currentRound || 0,
+                            data.totalRounds || 0,
+                            rack.required || ""
+                        );
+                        console.log("🔄 Buchstaben gewechselt zu: " + rack.letters.join(' '));
+                    }).catch(error => {
+                        console.error("Fehler beim Firebase-Update:", error);
                     });
 
                     changeCount++;
                     nextChangeTime = Date.now() + (3000 + Math.random() * 9000);
-                    SFX.tick();
 
                     if (changeCount >= maxChanges) {
                         stopTVActionMode();
+                        console.log("✅ Action Mode beendet nach " + maxChanges + " Änderungen");
                     }
                 }
             }, 500);
@@ -7114,22 +7124,25 @@ VIEW: TV-QUIZ SETUP
             if (tvActionModeInterval) {
                 clearInterval(tvActionModeInterval);
                 tvActionModeInterval = null;
+                console.log("⏹ Action Mode gestoppt");
             }
         }
 
         // --- TV-SCRABBLE (Host) ---
         function startTVScrabbleRound(data) {
-
             const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
             const letters = rack.letters;
             const round = (data.currentRound || 0) + 1;
             const playersData = data.players || {};
+
             Object.keys(playersData).forEach(k => {
                 playersData[k].hasAnswered = false;
                 playersData[k].word = "";
                 playersData[k].score = playersData[k].score || 0;
             });
+
             isResolving = false;
+
             tvGameRef.update({
                 status: "playing",
                 showAnswer: false,
@@ -7139,39 +7152,47 @@ VIEW: TV-QUIZ SETUP
                 currentRound: round,
                 players: playersData
             });
+
             showTVHostScrabbleRound(letters, round, data.totalRounds, rack.required || "");
 
-            // NEU: Action Modus für TV starten
+            // Action Mode starten (wenn aktiv)
             if (data.actionMode) {
-                startTVActionMode(data);
+                startTVActionMode({
+                    difficulty: data.difficulty,
+                    requireLetter: data.requireLetter,
+                    wordMode: data.wordMode,
+                    currentRound: round,
+                    totalRounds: data.totalRounds,
+                    actionMode: data.actionMode
+                });
             }
         }
 
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
             document.getElementById("view-tv-quiz-host").innerHTML = `
-                            <div class="h-[90vh] flex flex-col justify-between p-6">
-                                <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(245,158,11,0.15);">
-                                    <p class="text-amber-400 font-black text-xl mb-4">Runde ${round} / ${totalRounds}</p>
-                                    <h1 class="text-2xl md:text-3xl font-black text-white leading-tight mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
-                                    <div class="flex flex-wrap justify-center gap-3">${scrabbleTilesHTML(letters, true, required)}</div>
-                                </div>
-                                <div class="text-center"><span id="tv-answer-counter" class="text-gray-400 font-bold text-xl">0 von 0 haben geantwortet</span></div>
-                                <div class="text-center mt-4"><button onclick="forceTVScrabbleReveal()" class="btn-secondary text-lg py-4 px-10">Runde jetzt auswerten ⏱️</button></div>
-                            </div>
-                        `;
+                    <div class="h-[90vh] flex flex-col justify-between p-6">
+                        <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(245,158,11,0.15);">
+                            <p class="text-amber-400 font-black text-xl mb-4">Runde ${round} / ${totalRounds}</p>
+                            <h1 class="text-2xl md:text-3xl font-black text-white leading-tight mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
+                            <div class="flex flex-wrap justify-center gap-3">${scrabbleTilesHTML(letters, true, required)}</div>
+                        </div>
+                        <div class="text-center"><span id="tv-answer-counter" class="text-gray-400 font-bold text-xl">0 von 0 haben geantwortet</span></div>
+                        <div class="text-center mt-4"><button onclick="forceTVScrabbleReveal()" class="btn-secondary text-lg py-4 px-10">Runde jetzt auswerten ⏱️</button></div>
+                    </div>
+                `;
         }
 
         function forceTVScrabbleReveal() {
             if (isResolving) return;
             isResolving = true;
 
-            stopTVActionMode(); // NEU: Timer stoppen, Runde ist vorbei!
+            stopTVActionMode(); // Timer stoppen, Runde ist vorbei!
 
             tvGameRef.get().then(doc => revealTVScrabbleRound(doc.data()));
         }
 
-
         async function revealTVScrabbleRound(data) {
+            stopTVActionMode();
             const playersData = data.players;
 
             // HIER IST DIE WICHTIGSTE ÄNDERUNG:
@@ -7182,10 +7203,10 @@ VIEW: TV-QUIZ SETUP
             const currentRequired = data.currentRequired || "";
 
             document.getElementById("view-tv-quiz-host").innerHTML = `
-                            <div class="h-[90vh] flex flex-col items-center justify-center text-center">
-                                <div class="text-6xl mb-6 animate-spin">🔍</div>
-                                <h2 class="text-2xl font-black text-white">Prüfe Wörter...</h2>
-                            </div>`;
+                    <div class="h-[90vh] flex flex-col items-center justify-center text-center">
+                        <div class="text-6xl mb-6 animate-spin">🔍</div>
+                        <h2 class="text-2xl font-black text-white">Prüfe Wörter...</h2>
+                    </div>`;
 
             for (const key of Object.keys(playersData)) {
                 // Die evaluate-Funktion nutzt nun zwingend die hochaktuellen Buchstaben (letters) 
@@ -7229,20 +7250,19 @@ VIEW: TV-QUIZ SETUP
             });
 
             document.getElementById("view-tv-quiz-host").innerHTML = `
-                            <div class="h-[90vh] flex flex-col justify-between p-6">
-                                <div class="text-center mb-4">
-                                    <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
-                                    ${data.currentSolution ? `<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war am Ende z.B.: ${data.currentSolution}</p>` : ""}
-                                </div>
-                                <div class="space-y-3 flex-1 overflow-y-auto">${rowsHtml}</div>
-                                <div class="mt-6 text-center">
-                                    ${isLastRound ? `<button onclick="tvGameRef.update({status:'finished'})" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
+                    <div class="h-[90vh] flex flex-col justify-between p-6">
+                        <div class="text-center mb-4">
+                            <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
+                            ${data.currentSolution ? `<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war am Ende z.B.: ${data.currentSolution}</p>` : ""}
+                        </div>
+                        <div class="space-y-3 flex-1 overflow-y-auto">${rowsHtml}</div>
+                        <div class="mt-6 text-center">
+                            ${isLastRound ? `<button onclick="tvGameRef.update({status:'finished'})" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
                     `<button onclick="nextTVScrabbleRound()" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2">Nächste Runde ➔</button>`}
-                                </div>
-                            </div>
-                        `;
+                        </div>
+                    </div>
+                `;
         }
-
 
         function nextTVScrabbleRound() {
             tvGameRef.get().then(doc => startTVScrabbleRound(doc.data()));
@@ -7296,14 +7316,14 @@ VIEW: TV-QUIZ SETUP
                                 } else { SFX.wrong(); }
                             } else if (!myData.hasAnswered) {
                                 document.getElementById("view-tv-quiz-player").innerHTML = `
-                                            <div class="space-y-4">
-                                                <div class="flex flex-wrap justify-center gap-2">${scrabbleTilesHTML(data.currentLetters, false, data.currentRequired)}</div>
-                                                <div class="glass-card p-5 space-y-3">
-                                                    <input type="text" id="tv-scrabble-word-input" placeholder="Dein Wort..." autocomplete="off"
-                                                        class="input-modern text-xl font-black text-center uppercase tracking-widest">
-                                                    <button onclick="submitTVScrabbleWord()" class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Wort einreichen ✅</button>
-                                                </div>
-                                            </div>`;
+                                    <div class="space-y-4">
+                                        <div class="flex flex-wrap justify-center gap-2">${scrabbleTilesHTML(data.currentLetters, false, data.currentRequired)}</div>
+                                        <div class="glass-card p-5 space-y-3">
+                                            <input type="text" id="tv-scrabble-word-input" placeholder="Dein Wort..." autocomplete="off"
+                                                class="input-modern text-xl font-black text-center uppercase tracking-widest">
+                                            <button onclick="submitTVScrabbleWord()" class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Wort einreichen ✅</button>
+                                        </div>
+                                    </div>`;
                             }
                         } else if (data.status === "finished") {
                             if (!myData.coinsClaimed) {
@@ -7391,6 +7411,7 @@ VIEW: TV-QUIZ SETUP
                 tvCountdownInterval = null;
             }
             stopTVAutoAdvance();
+            stopTVActionMode(); // <-- NEU: Action Mode stoppen beim Verlassen
             tvGameRef = null;
             isTVHost = false;
             isResolving = false;
@@ -7405,6 +7426,33 @@ VIEW: TV-QUIZ SETUP
                 await ref.update({ players });
             } catch (e) { /* Lobby evtl. schon weg - kein Problem */ }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // ============================================================
         //  LIVE-DUELL (jeder auf eigenem Handy)

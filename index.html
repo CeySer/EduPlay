@@ -7401,24 +7401,92 @@ VIEW: QUIZ SETUP
             html += `</div>`;
 
             const names = esc(sorted.map(p => p.name).join(", "));
+
+            // NEU: Erkennen ob es ein Quiz oder Scrabble war
+            const isScrabble = tvHostMode === 'scrabble';
+            const modeIcon = isScrabble ? '🔤' : '📚';
+            const modeName = isScrabble ? 'Wort-Duell' : 'Quiz';
+
             html += `
-                    <div class="glass-card p-8 mt-12 max-w-3xl mx-auto w-full space-y-4" style="border-color:rgba(99,102,241,0.15);">
-                        <p class="text-3xl font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
-                        <p class="text-xl text-gray-400 text-center">Alle bleiben dabei: ${names}</p>
-                        <div class="dash-sub-nav">
-                            <button id="againtopic-spass" onclick="setTVAgainTopic('spass')" class="active">🎉 Spaß</button>
-                            <button id="againtopic-lernen" onclick="setTVAgainTopic('lernen')" class="">📚 Lernen</button>
-                        </div>
-                        <select id="tv-again-area" class="input-modern font-bold text-xl"></select>
-                        <select id="tv-again-category" class="input-modern font-bold text-xl"></select>
-                        <button onclick="restartTVGame()" class="btn-primary w-full text-center text-2xl py-6" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
-                    </div>
-                    <div class="text-center"><button onclick="window.location.reload()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Beenden & Zurück zum Übersicht</button></div>
-                `;
+        <div class="glass-card p-8 mt-12 max-w-3xl mx-auto w-full space-y-4" style="border-color:rgba(99,102,241,0.15);">
+            <p class="text-3xl font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
+            <p class="text-xl text-gray-400 text-center">Alle bleiben dabei: ${names}</p>
+            
+            <!-- Modus-Umschalter für den Neustart -->
+            <div class="dash-sub-nav">
+                <button id="againmode-quiz" class="${isScrabble ? '' : 'active'}" onclick="setTVAgainMode('quiz')">🧠 Quiz</button>
+                <button id="againmode-scrabble" class="${isScrabble ? 'active' : ''}" onclick="setTVAgainMode('scrabble')">🔤 Wort-Duell</button>
+            </div>
+            
+            <!-- Quiz-Optionen -->
+            <div id="again-quiz-options" class="${isScrabble ? 'hidden' : ''} space-y-3">
+                <div class="dash-sub-nav">
+                    <button id="againtopic-spass" class="active" onclick="setTVAgainTopic('spass')">🎉 Spaß</button>
+                    <button id="againtopic-lernen" onclick="setTVAgainTopic('lernen')">📚 Lernen</button>
+                </div>
+                <select id="tv-again-area" class="input-modern font-bold text-xl"></select>
+                <select id="tv-again-category" class="input-modern font-bold text-xl"></select>
+            </div>
+            
+            <!-- Scrabble-Optionen -->
+            <div id="again-scrabble-options" class="${isScrabble ? '' : 'hidden'} space-y-3">
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
+                    <select id="tv-again-wordmode" class="input-modern font-bold text-lg">
+                        <option value="kids" selected>👶 Kinder</option>
+                        <option value="adult">🎓 Erwachsene</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
+                    <select id="tv-again-difficulty" class="input-modern font-bold text-lg">
+                        <option value="leicht">🟢 Leicht (6 Buchstaben, 70 Sek.)</option>
+                        <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 55 Sek.)</option>
+                        <option value="schwer">🔴 Schwer (8 Buchstaben, 40 Sek.)</option>
+                        <option value="experte">🟣 Experte (9 Buchstaben, 30 Sek.)</option>
+                        <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
+                    </select>
+                </div>
+                <label class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                    <input type="checkbox" id="tv-again-require-letter" class="w-5 h-5 accent-amber-500 mt-0.5">
+                    <span class="text-sm">
+                        <span class="font-bold text-white">Pflichtbuchstabe</span>
+                        <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss im Wort vorkommen.</span>
+                    </span>
+                </label>
+                <label class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                    <input type="checkbox" id="tv-again-action-mode" class="w-5 h-5 accent-red-500 mt-0.5">
+                    <span class="text-sm">
+                        <span class="font-bold text-white">⚡ Action-Modus</span>
+                        <span class="block text-[11px] text-gray-400">Das komplette Wort ändert sich zufällig – sei schnell!</span>
+                    </span>
+                </label>
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Anzahl Runden</label>
+                    <select id="tv-again-rounds" class="input-modern font-bold text-lg">
+                        <option value="3">3 Runden</option>
+                        <option value="5" selected>5 Runden</option>
+                        <option value="8">8 Runden</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button onclick="restartTVGame()" class="btn-primary w-full text-center text-2xl py-6" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
+        </div>
+        <div class="text-center"><button onclick="window.location.reload()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Beenden & Zurück zum Übersicht</button></div>
+    `;
 
             document.getElementById("view-tv-quiz-host").innerHTML =
                 `<div class="min-h-[90vh] flex flex-col items-center justify-center p-6">${html}</div>`;
-            setTVAgainTopic(tvTopicMode || "spass");
+
+            // Setup für die aktuellen Optionen
+            if (isScrabble) {
+                setTVAgainMode('scrabble');
+            } else {
+                setTVAgainTopic(tvTopicMode || "spass");
+                setupCategorySelectors("tv-again-area", "tv-again-category", tvTopicMode || "spass");
+            }
+
             try {
                 if (typeof confetti === 'function') {
                     confetti();
@@ -7427,7 +7495,6 @@ VIEW: QUIZ SETUP
             } catch (e) { }
             SFX.win();
         }
-
         function setTVAgainTopic(mode) {
             const s = document.getElementById("againtopic-spass");
             const l = document.getElementById("againtopic-lernen");
@@ -8128,7 +8195,6 @@ VIEW: QUIZ SETUP
             }
 
             if (data.status === "playing") {
-                renderLiveDuelScrabblePlay
                 liveDuelResolving = false;
 
                 if (myData.pending) {

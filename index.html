@@ -9809,6 +9809,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
         // =======================================================
         // DATENBANK: LESEN-LERNEN FÜR KLASSE 1
         // =======================================================
+
         const READING_DATABASE = {
             buchstaben: {
                 label: "Buchstaben lernen (A-Z)",
@@ -9855,57 +9856,38 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                     { letter: "ß", word: "Straße", image: "🛣️", sound: "ess-tsett" }
                 ]
             },
-            // ===== SILBEN - ALLES IN EINEM (ZUSAMMENGEFASST) =====
             silben: {
-                label: "👏 Silben lernen",
-                description: "Von 1 bis 4 Silben – klatsche mit!",
-                icon: "👏",
+                label: "👏 Sil-ben klat-schen",
+                description: "Klatsche die Silben in jedem Wort",
                 items: [
-                    // ===== 1 SILBE =====
-                    { word: "Haus", syllables: "Haus", count: 1, level: "einsilbig" },
-                    { word: "Ball", syllables: "Ball", count: 1, level: "einsilbig" },
-                    { word: "Tisch", syllables: "Tisch", count: 1, level: "einsilbig" },
-                    { word: "Brot", syllables: "Brot", count: 1, level: "einsilbig" },
-                    { word: "Tür", syllables: "Tür", count: 1, level: "einsilbig" },
-                    { word: "Buch", syllables: "Buch", count: 1, level: "einsilbig" },
-                    { word: "Mond", syllables: "Mond", count: 1, level: "einsilbig" },
-                    { word: "Stern", syllables: "Stern", count: 1, level: "einsilbig" },
-                    { word: "Zug", syllables: "Zug", count: 1, level: "einsilbig" },
-                    { word: "Baum", syllables: "Baum", count: 1, level: "einsilbig" },
+                    { word: "Haus", syllables: "Haus", count: 1 },
+                    { word: "Ball", syllables: "Ball", count: 1 },
+                    { word: "Tisch", syllables: "Tisch", count: 1 },
+                    { word: "Apfel", syllables: "Ap-fel", count: 2 },
+                    { word: "Tasse", syllables: "Tas-se", count: 2 },
+                    { word: "Hose", syllables: "Ho-se", count: 2 },
+                    { word: "Banane", syllables: "Ba-na-ne", count: 3 },
+                    { word: "Tomate", syllables: "To-ma-te", count: 3 },
+                    { word: "Elefant", syllables: "E-le-fant", count: 3 },
+                    { word: "Krokodil", syllables: "Kro-ko-dil", count: 3 },
+                    { word: "Schmetterling", syllables: "Schmet-ter-ling", count: 3 },
+                    { word: "Taschenlampe", syllables: "Ta-schen-lam-pe", count: 4 },
+                    { word: "Bananen", syllables: "Ba-na-nen", count: 3 },
+                    { word: "Kartoffel", syllables: "Kar-tof-fel", count: 3 },
+                    { word: "Sonne", syllables: "Son-ne", count: 2 },
+                    { word: "Tasse", syllables: "Tas-se", image: "☕" }, { word: "Hose", syllables: "Ho-se", image: "👖" },
+                    { word: "Mütze", syllables: "Müt-ze", image: "🧢" }, { word: "Tasche", syllables: "Ta-sche", image: "👜" },
+                    { word: "Schule", syllables: "Schu-le", image: "🏫" }, { word: "Lehrer", syllables: "Leh-rer", image: "👨‍🏫" },
+                    { word: "Buch", syllables: "Buch", image: "📖" }, { word: "Tür", syllables: "Tür", image: "🚪" },
+                    { word: "Fenster", syllables: "Fens-ter", image: "🪟" }, { word: "Garten", syllables: "Gar-ten", image: "🌻" },
+                    { word: "Blume", syllables: "Blu-me", image: "🌸" }, { word: "Baum", syllables: "Baum", image: "🌳" },
+                    { word: "Banane", syllables: "Ba-na-ne", image: "🍌" }, { word: "Tomate", syllables: "To-ma-te", image: "🍅" },
 
-                    // ===== 2 SILBEN =====
-                    { word: "Apfel", syllables: "Ap-fel", count: 2, level: "zweisilbig" },
-                    { word: "Tasse", syllables: "Tas-se", count: 2, level: "zweisilbig" },
-                    { word: "Hose", syllables: "Ho-se", count: 2, level: "zweisilbig" },
-                    { word: "Mütze", syllables: "Müt-ze", count: 2, level: "zweisilbig" },
-                    { word: "Tasche", syllables: "Ta-sche", count: 2, level: "zweisilbig" },
-                    { word: "Schule", syllables: "Schu-le", count: 2, level: "zweisilbig" },
-                    { word: "Lehrer", syllables: "Leh-rer", count: 2, level: "zweisilbig" },
-                    { word: "Fenster", syllables: "Fens-ter", count: 2, level: "zweisilbig" },
-                    { word: "Garten", syllables: "Gar-ten", count: 2, level: "zweisilbig" },
-                    { word: "Blume", syllables: "Blu-me", count: 2, level: "zweisilbig" },
-                    { word: "Teller", syllables: "Tel-ler", count: 2, level: "zweisilbig" },
-                    { word: "Gabel", syllables: "Ga-bel", count: 2, level: "zweisilbig" },
-                    { word: "Sonne", syllables: "Son-ne", count: 2, level: "zweisilbig" },
-                    { word: "Wasser", syllables: "Was-ser", count: 2, level: "zweisilbig" },
+                    { word: "Elefant", syllables: "E-le-fant", image: "🐘" }, { word: "Krokodil", syllables: "Kro-ko-dil", image: "🐊" },
+                    { word: "Schmetterling", syllables: "Schmet-ter-ling", image: "🦋" }, { word: "Libelle", syllables: "Li-bel-le", image: "🪰" },
+                    { word: "Marienkäfer", syllables: "Ma-ri-en-kä-fer", image: "🐞" }, { word: "Schokolade", syllables: "Scho-ko-la-de", image: "🍫" },
+                    { word: "Kartoffel", syllables: "Kar-tof-fel", image: "🥔" }, { word: "Giraffe", syllables: "Gi-raf-fe", image: "🦒" }
 
-                    // ===== 3 SILBEN =====
-                    { word: "Banane", syllables: "Ba-na-ne", count: 3, level: "dreisilbig" },
-                    { word: "Tomate", syllables: "To-ma-te", count: 3, level: "dreisilbig" },
-                    { word: "Elefant", syllables: "E-le-fant", count: 3, level: "dreisilbig" },
-                    { word: "Krokodil", syllables: "Kro-ko-dil", count: 3, level: "dreisilbig" },
-                    { word: "Schmetterling", syllables: "Schmet-ter-ling", count: 3, level: "dreisilbig" },
-                    { word: "Libelle", syllables: "Li-bel-le", count: 3, level: "dreisilbig" },
-                    { word: "Schokolade", syllables: "Scho-ko-la-de", count: 3, level: "dreisilbig" },
-                    { word: "Kartoffel", syllables: "Kar-tof-fel", count: 3, level: "dreisilbig" },
-                    { word: "Giraffe", syllables: "Gi-raf-fe", count: 3, level: "dreisilbig" },
-                    { word: "Pirat", syllables: "Pi-rat", count: 3, level: "dreisilbig" },
-                    { word: "Marienkäfer", syllables: "Ma-ri-en-kä-fer", count: 3, level: "dreisilbig" },
-
-                    // ===== 4 SILBEN =====
-                    { word: "Taschenlampe", syllables: "Ta-schen-lam-pe", count: 4, level: "viersilbig" },
-                    { word: "Dinosaurier", syllables: "Di-no-sau-ri-er", count: 4, level: "viersilbig" },
-                    { word: "Schokoladenkuchen", syllables: "Scho-ko-la-den-ku-chen", count: 4, level: "viersilbig" }
                 ]
             },
             anlaute: {
@@ -9932,14 +9914,20 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                     { word: "Uhu", startsWith: "U", image: "🦉" },
                     { word: "Vogel", startsWith: "V", image: "🐦" },
                     { word: "Wasser", startsWith: "W", image: "💧" },
-                    { word: "Zebra", startsWith: "Z", image: "🦓" }
-                                        { word: "Mama", image: "👩" }, { word: "Papa", image: "👨" }, { word: "Oma", image: "👵" }, { word: "Opa", image: "👴" },
+                    { word: "Zebra", startsWith: "Z", image: "🦓" },
+                    { word: "Mama", image: "👩" }, { word: "Papa", image: "👨" }, { word: "Oma", image: "👵" }, { word: "Opa", image: "👴" },
                     { word: "Haus", image: "🏠" }, { word: "Baum", image: "🌳" }, { word: "Sonne", image: "☀️" }, { word: "Mond", image: "🌙" },
                     { word: "Stern", image: "⭐" }, { word: "Tisch", image: "🪑" }, { word: "Stuhl", image: "💺" }, { word: "Brot", image: "🍞" },
                     { word: "Milch", image: "🥛" }, { word: "Wasser", image: "💧" }, { word: "Apfel", image: "🍎" }, { word: "Banane", image: "🍌" },
                     { word: "Hund", image: "🐕" }, { word: "Katze", image: "🐈" }, { word: "Fisch", image: "🐟" }, { word: "Vogel", image: "🐦" },
                     { word: "Auto", image: "🚗" }, { word: "Zug", image: "🚂" }, { word: "Schiff", image: "🚢" }, { word: "Flugzeug", image: "✈️" }
 
+                ]
+            },
+            simple_words: {
+                label: "📖 Einfache Wörter",
+                description: "Kurze Wörter mit 3-4 Buchstaben",
+                items: [
                 ]
             },
             word_match: {
@@ -9949,6 +9937,19 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                     { word: "Hund", image: "🐕" }, { word: "Katze", image: "🐈" }, { word: "Maus", image: "🐭" }, { word: "Vogel", image: "🐦" },
                     { word: "Fisch", image: "🐟" }, { word: "Apfel", image: "🍎" }, { word: "Banane", image: "🍌" }, { word: "Brot", image: "🍞" },
                     { word: "Milch", image: "🥛" }, { word: "Wasser", image: "💧" }
+                ]
+            },
+            zweisilbig: {
+                label: "📗 Zweisilbige Wörter",
+                description: "Wörter mit zwei Silben",
+                items: [
+
+                ]
+            },
+            dreisilbig: {
+                label: "📕 Dreisilbige Wörter",
+                description: "Wörter mit drei Silben",
+                items: [
                 ]
             },
             sentences: {

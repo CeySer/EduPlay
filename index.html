@@ -2384,7 +2384,7 @@ BEREICH: INHALTE
                         style="background:linear-gradient(135deg,#3b82f6,#6366f1);">
                         <span class="text-3xl">📖</span>
                         <span>Lesen lernen</span>
-                        <span class="text-xs font-bold text-blue-200 -mt-1">Klasse 1 & 2</span>
+                        <span class="text-xs font-bold text-blue-200 -mt-1">Klasse 1</span>
                     </button>
                     <button onclick="switchView('fokus')"
                         class="btn-primary w-full flex flex-col items-center gap-1 text-center"
@@ -2691,8 +2691,7 @@ VIEW: LESEN LERNEN
 ========================================================== -->
             <div id="view-lesen" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Menü</button>
-                    <!-- <button class="btn-secondary text-sm py-2.5 px-4" onclick="closeLesen()">Zurück</button> -->
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                     <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
                     <span class="w-20"></span>
                 </div>
@@ -2701,14 +2700,8 @@ VIEW: LESEN LERNEN
                     <!-- NEU: Flex-Container gruppiert den Titel und den Vorlese-Button -->
                     <div class="flex justify-between items-start mb-1">
                         <h2 class="text-2xl font-black text-blue-400">📖 Lesen lernen</h2>
-                        <!-- Der Vorlese-Button im btn-secondary Design -->
-                        <button onclick="leseAktuelleAufgabeVor()"
-                            class="btn-secondary flex items-center justify-center p-2 text-xl"
-                            title="Aktuelle Aufgabe vorlesen">
-                            🔊
-                        </button>
                     </div>
-                    <p class="text-xs text-gray-400 mb-4">Klasse 1 & 2 · Buchstaben, Silben, Wörter und Sätze</p>
+                    <p class="text-xs text-gray-400 mb-4">Buchstaben, Silben, Wörter und Sätze</p>
                     <div id="lesen-categories" class="grid grid-cols-2 gap-3"></div>
                     <div id="lesen-exercise" class="mt-6 hidden"></div>
                 </div>
@@ -9516,6 +9509,94 @@ VIEW: QUIZ SETUP
             }
         }
 
+        // function leseAktuelleAufgabeVor() {
+        //     // Statt des gesamten Texts nur das AKTUELLE ELEMENT vorlesen
+        //     const exerciseDiv = document.getElementById('lesen-exercise');
+
+        //     // Nur den sichtbaren Text im Übungsbereich nehmen
+        //     // (nicht den ganzen Container mit allen versteckten Elementen)
+        //     const visibleText = exerciseDiv.querySelector('.aktuelle-aufgabe')?.textContent ||
+        //         exerciseDiv.textContent;
+
+        //     // ODER: Nur das aktuell markierte Wort/Silbe
+        //     const highlightedWord = exerciseDiv.querySelector('.highlight')?.textContent;
+        //     const textToRead = highlightedWord || visibleText;
+
+        //     if (!textToRead || textToRead.trim() === '') {
+        //         showToast('Kein Text zum Vorlesen', 'warning');
+        //         return;
+        //     }
+
+        //     // Vorlesen mit dem bereinigten Text
+        //     const utterance = new SpeechSynthesisUtterance(textToRead.trim());
+        //     utterance.lang = 'de-DE';
+        //     utterance.rate = 0.8;
+        //     window.speechSynthesis.speak(utterance);
+        // }
+
+
+        // function leseSilbenweiseVor(text) {
+        //     // Silben erkennen (einfache Regel: nach Vokalen trennen)
+        //     const silben = text.split(/(?<=[aeiouäöü])/i).filter(s => s.trim().length > 0);
+
+        //     let index = 0;
+
+        //     function sprecheNaechsteSilbe() {
+        //         if (index >= silben.length) {
+        //             showToast('✅ Fertig!', 'success');
+        //             return;
+        //         }
+
+        //         const silbe = silben[index].trim();
+        //         if (!silbe) {
+        //             index++;
+        //             sprecheNaechsteSilbe();
+        //             return;
+        //         }
+
+        //         // Silbe vorlesen
+        //         const utterance = new SpeechSynthesisUtterance(silbe);
+        //         utterance.lang = 'de-DE';
+        //         utterance.rate = 0.7; // Extra langsam für Leseanfänger
+
+        //         // Die aktuelle Silbe im Text hervorheben
+        //         markiereSilbe(index, silben);
+
+        //         utterance.onend = () => {
+        //             index++;
+        //             // Pause von 500ms zwischen den Silben
+        //             setTimeout(sprecheNaechsteSilbe, 500);
+        //         };
+
+        //         window.speechSynthesis.speak(utterance);
+        //     }
+
+        //     sprecheNaechsteSilbe();
+        // }
+
+        // Silbe im Text markieren
+        function markiereSilbe(index, silben) {
+            const container = document.getElementById('lesen-uebung-inhalt');
+            let html = '';
+            silben.forEach((s, i) => {
+                const trimmed = s.trim();
+                if (trimmed) {
+                    if (i === index) {
+                        html += `<span class="bg-yellow-400 text-black px-1 rounded font-bold">${trimmed}</span>`;
+                    } else {
+                        html += trimmed;
+                    }
+                    // Leerzeichen zwischen Silben erhalten
+                    if (s.endsWith(' ')) html += ' ';
+                }
+            });
+            container.innerHTML = html;
+        }
+
+
+
+
+
         // ============================================================
         //  START
         // ============================================================
@@ -9726,23 +9807,32 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
     <!-- 1. ZUERST DIE DATENBANK (Inhalt aus lesen.js) -->
     <script>
         // =======================================================
-        // DATENBANK: LESEN-LERNEN FÜR KLASSE 1 & 2
+        // DATENBANK: LESEN-LERNEN FÜR KLASSE 1
         // =======================================================
         const READING_DATABASE = {
             buchstaben: {
-                label: "Alphabetsi lernen (A-Z)",
+                label: "Buchstaben lernen (A-Z)",
                 description: "Lerne alle Buchstaben mit Bildern",
                 items: [
                     { letter: "A", word: "Affe", image: '<img src="img/A.jpg" alt="🐒">', sound: "ah" },
-                    { letter: "B", word: "Ball", image: "⚽", sound: "beh" },
-                    { letter: "C", word: "Computer", image: "💻", sound: "tseh" },
-                    { letter: "D", word: "Drache", image: "🐉", sound: "deh" },
-                    { letter: "E", word: "Ente", image: "🦆", sound: "eh" },
-                    { letter: "F", word: "Fisch", image: "🐟", sound: "eff" },
-                    { letter: "G", word: "Giraffe", image: "🦒", sound: "geh" },
-                    { letter: "H", word: "Hund", image: "🐕", sound: "hah" },
-                    { letter: "I", word: "Igel", image: "🦔", sound: "ih" },
-                    { letter: "J", word: "Joghurt", image: "🍦", sound: "jott" },
+                    { letter: "B", word: "Ball", image: '<img src="img/B.jpg" alt="⚽">', sound: "beh" },
+
+                    { letter: "C", word: "Clown", image: '<img src="img/C.jpg" alt="💻">', sound: "tseh" },
+
+                    { letter: "D", word: "Dino", image: '<img src="img/D.jpg" alt="🐉">', sound: "deh" },
+
+                    { letter: "E", word: "Elefant", image: '<img src="img/E.jpg" alt="🦆">', sound: "eh" },
+
+                    { letter: "F", word: "FiFuchssch", image: '<img src="img/F.jpg" alt="🐟">', sound: "eff" },
+
+                    { letter: "G", word: "Giraffe", image: '<img src="img/G.jpg" alt="🦒">', sound: "geh" },
+
+                    { letter: "H", word: "Hase", image: '<img src="img/H.jpg" alt="🐕">', sound: "hah" },
+
+                    { letter: "I", word: "Igel", image: '<img src="img/I.jpg" alt="🦔">', sound: "ih" },
+
+                    { letter: "J", word: "Joghurt", image: '<img src="img/J.jpg" alt="🍦">', sound: "jott" },
+
                     { letter: "K", word: "Katze", image: "🐈", sound: "kah" },
                     { letter: "L", word: "Löwe", image: "🦁", sound: "ell" },
                     { letter: "M", word: "Maus", image: "🐭", sound: "emm" },
@@ -9765,25 +9855,57 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                     { letter: "ß", word: "Straße", image: "🛣️", sound: "ess-tsett" }
                 ]
             },
+            // ===== SILBEN - ALLES IN EINEM (ZUSAMMENGEFASST) =====
             silben: {
-                label: "👏 Sil-ben klat-schen",
-                description: "Klatsche die Silben in jedem Wort",
+                label: "👏 Silben lernen",
+                description: "Von 1 bis 4 Silben – klatsche mit!",
+                icon: "👏",
                 items: [
-                    { word: "Haus", syllables: "Haus", count: 1 },
-                    { word: "Ball", syllables: "Ball", count: 1 },
-                    { word: "Tisch", syllables: "Tisch", count: 1 },
-                    { word: "Apfel", syllables: "Ap-fel", count: 2 },
-                    { word: "Tasse", syllables: "Tas-se", count: 2 },
-                    { word: "Hose", syllables: "Ho-se", count: 2 },
-                    { word: "Banane", syllables: "Ba-na-ne", count: 3 },
-                    { word: "Tomate", syllables: "To-ma-te", count: 3 },
-                    { word: "Elefant", syllables: "E-le-fant", count: 3 },
-                    { word: "Krokodil", syllables: "Kro-ko-dil", count: 3 },
-                    { word: "Schmetterling", syllables: "Schmet-ter-ling", count: 3 },
-                    { word: "Taschenlampe", syllables: "Ta-schen-lam-pe", count: 4 },
-                    { word: "Bananen", syllables: "Ba-na-nen", count: 3 },
-                    { word: "Kartoffel", syllables: "Kar-tof-fel", count: 3 },
-                    { word: "Sonne", syllables: "Son-ne", count: 2 }
+                    // ===== 1 SILBE =====
+                    { word: "Haus", syllables: "Haus", count: 1, level: "einsilbig" },
+                    { word: "Ball", syllables: "Ball", count: 1, level: "einsilbig" },
+                    { word: "Tisch", syllables: "Tisch", count: 1, level: "einsilbig" },
+                    { word: "Brot", syllables: "Brot", count: 1, level: "einsilbig" },
+                    { word: "Tür", syllables: "Tür", count: 1, level: "einsilbig" },
+                    { word: "Buch", syllables: "Buch", count: 1, level: "einsilbig" },
+                    { word: "Mond", syllables: "Mond", count: 1, level: "einsilbig" },
+                    { word: "Stern", syllables: "Stern", count: 1, level: "einsilbig" },
+                    { word: "Zug", syllables: "Zug", count: 1, level: "einsilbig" },
+                    { word: "Baum", syllables: "Baum", count: 1, level: "einsilbig" },
+
+                    // ===== 2 SILBEN =====
+                    { word: "Apfel", syllables: "Ap-fel", count: 2, level: "zweisilbig" },
+                    { word: "Tasse", syllables: "Tas-se", count: 2, level: "zweisilbig" },
+                    { word: "Hose", syllables: "Ho-se", count: 2, level: "zweisilbig" },
+                    { word: "Mütze", syllables: "Müt-ze", count: 2, level: "zweisilbig" },
+                    { word: "Tasche", syllables: "Ta-sche", count: 2, level: "zweisilbig" },
+                    { word: "Schule", syllables: "Schu-le", count: 2, level: "zweisilbig" },
+                    { word: "Lehrer", syllables: "Leh-rer", count: 2, level: "zweisilbig" },
+                    { word: "Fenster", syllables: "Fens-ter", count: 2, level: "zweisilbig" },
+                    { word: "Garten", syllables: "Gar-ten", count: 2, level: "zweisilbig" },
+                    { word: "Blume", syllables: "Blu-me", count: 2, level: "zweisilbig" },
+                    { word: "Teller", syllables: "Tel-ler", count: 2, level: "zweisilbig" },
+                    { word: "Gabel", syllables: "Ga-bel", count: 2, level: "zweisilbig" },
+                    { word: "Sonne", syllables: "Son-ne", count: 2, level: "zweisilbig" },
+                    { word: "Wasser", syllables: "Was-ser", count: 2, level: "zweisilbig" },
+
+                    // ===== 3 SILBEN =====
+                    { word: "Banane", syllables: "Ba-na-ne", count: 3, level: "dreisilbig" },
+                    { word: "Tomate", syllables: "To-ma-te", count: 3, level: "dreisilbig" },
+                    { word: "Elefant", syllables: "E-le-fant", count: 3, level: "dreisilbig" },
+                    { word: "Krokodil", syllables: "Kro-ko-dil", count: 3, level: "dreisilbig" },
+                    { word: "Schmetterling", syllables: "Schmet-ter-ling", count: 3, level: "dreisilbig" },
+                    { word: "Libelle", syllables: "Li-bel-le", count: 3, level: "dreisilbig" },
+                    { word: "Schokolade", syllables: "Scho-ko-la-de", count: 3, level: "dreisilbig" },
+                    { word: "Kartoffel", syllables: "Kar-tof-fel", count: 3, level: "dreisilbig" },
+                    { word: "Giraffe", syllables: "Gi-raf-fe", count: 3, level: "dreisilbig" },
+                    { word: "Pirat", syllables: "Pi-rat", count: 3, level: "dreisilbig" },
+                    { word: "Marienkäfer", syllables: "Ma-ri-en-kä-fer", count: 3, level: "dreisilbig" },
+
+                    // ===== 4 SILBEN =====
+                    { word: "Taschenlampe", syllables: "Ta-schen-lam-pe", count: 4, level: "viersilbig" },
+                    { word: "Dinosaurier", syllables: "Di-no-sau-ri-er", count: 4, level: "viersilbig" },
+                    { word: "Schokoladenkuchen", syllables: "Scho-ko-la-den-ku-chen", count: 4, level: "viersilbig" }
                 ]
             },
             anlaute: {
@@ -9811,18 +9933,13 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                     { word: "Vogel", startsWith: "V", image: "🐦" },
                     { word: "Wasser", startsWith: "W", image: "💧" },
                     { word: "Zebra", startsWith: "Z", image: "🦓" }
-                ]
-            },
-            simple_words: {
-                label: "📖 Einfache Wörter",
-                description: "Kurze Wörter mit 3-4 Buchstaben",
-                items: [
-                    { word: "Mama", image: "👩" }, { word: "Papa", image: "👨" }, { word: "Oma", image: "👵" }, { word: "Opa", image: "👴" },
+                                        { word: "Mama", image: "👩" }, { word: "Papa", image: "👨" }, { word: "Oma", image: "👵" }, { word: "Opa", image: "👴" },
                     { word: "Haus", image: "🏠" }, { word: "Baum", image: "🌳" }, { word: "Sonne", image: "☀️" }, { word: "Mond", image: "🌙" },
                     { word: "Stern", image: "⭐" }, { word: "Tisch", image: "🪑" }, { word: "Stuhl", image: "💺" }, { word: "Brot", image: "🍞" },
                     { word: "Milch", image: "🥛" }, { word: "Wasser", image: "💧" }, { word: "Apfel", image: "🍎" }, { word: "Banane", image: "🍌" },
                     { word: "Hund", image: "🐕" }, { word: "Katze", image: "🐈" }, { word: "Fisch", image: "🐟" }, { word: "Vogel", image: "🐦" },
                     { word: "Auto", image: "🚗" }, { word: "Zug", image: "🚂" }, { word: "Schiff", image: "🚢" }, { word: "Flugzeug", image: "✈️" }
+
                 ]
             },
             word_match: {
@@ -9832,29 +9949,6 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                     { word: "Hund", image: "🐕" }, { word: "Katze", image: "🐈" }, { word: "Maus", image: "🐭" }, { word: "Vogel", image: "🐦" },
                     { word: "Fisch", image: "🐟" }, { word: "Apfel", image: "🍎" }, { word: "Banane", image: "🍌" }, { word: "Brot", image: "🍞" },
                     { word: "Milch", image: "🥛" }, { word: "Wasser", image: "💧" }
-                ]
-            },
-            zweisilbig: {
-                label: "📗 Zweisilbige Wörter",
-                description: "Wörter mit zwei Silben",
-                items: [
-                    { word: "Tasse", syllables: "Tas-se", image: "☕" }, { word: "Hose", syllables: "Ho-se", image: "👖" },
-                    { word: "Mütze", syllables: "Müt-ze", image: "🧢" }, { word: "Tasche", syllables: "Ta-sche", image: "👜" },
-                    { word: "Schule", syllables: "Schu-le", image: "🏫" }, { word: "Lehrer", syllables: "Leh-rer", image: "👨‍🏫" },
-                    { word: "Buch", syllables: "Buch", image: "📖" }, { word: "Tür", syllables: "Tür", image: "🚪" },
-                    { word: "Fenster", syllables: "Fens-ter", image: "🪟" }, { word: "Garten", syllables: "Gar-ten", image: "🌻" },
-                    { word: "Blume", syllables: "Blu-me", image: "🌸" }, { word: "Baum", syllables: "Baum", image: "🌳" }
-                ]
-            },
-            dreisilbig: {
-                label: "📕 Dreisilbige Wörter",
-                description: "Wörter mit drei Silben",
-                items: [
-                    { word: "Banane", syllables: "Ba-na-ne", image: "🍌" }, { word: "Tomate", syllables: "To-ma-te", image: "🍅" },
-                    { word: "Elefant", syllables: "E-le-fant", image: "🐘" }, { word: "Krokodil", syllables: "Kro-ko-dil", image: "🐊" },
-                    { word: "Schmetterling", syllables: "Schmet-ter-ling", image: "🦋" }, { word: "Libelle", syllables: "Li-bel-le", image: "🪰" },
-                    { word: "Marienkäfer", syllables: "Ma-ri-en-kä-fer", image: "🐞" }, { word: "Schokolade", syllables: "Scho-ko-la-de", image: "🍫" },
-                    { word: "Kartoffel", syllables: "Kar-tof-fel", image: "🥔" }, { word: "Giraffe", syllables: "Gi-raf-fe", image: "🦒" }
                 ]
             },
             sentences: {
@@ -10626,27 +10720,14 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
         // }
 
         function closeLesen() {
-            // 1. Sprachausgabe sicher stoppen
             try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { }
-
             const ex = document.getElementById('lesen-exercise');
             const gr = document.getElementById('lesen-categories');
-
-            // 2. Prüfen, ob gerade eine Übung (lesen-exercise) sichtbar ist
-            if (ex && !ex.classList.contains('hidden')) {
-                // JA, Übung ist offen -> Übung verstecken, Kategorien zeigen
-                ex.classList.add('hidden');
-                if (gr) gr.classList.remove('hidden');
-
-                // Falls du die Funktion hast, Kategorien neu laden:
-                if (typeof renderLesenCategories === 'function') {
-                    renderLesenCategories();
-                }
-            } else {
-                // NEIN, wir sind schon in der Übersicht -> Zurück zum Hauptmenü
-                switchView('menu');
-            }
+            if (ex) ex.classList.add('hidden');
+            if (gr) gr.classList.remove('hidden');
+            renderLesenCategories();
         }
+
 
         // Geht von überall im Lesen-Bereich komplett zurück ins Hauptmenü
         function goToMainMenu() {

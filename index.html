@@ -9524,6 +9524,7 @@ VIEW: QUIZ SETUP
             // Header umschalten
             const headerFamily = document.getElementById('header-familyhub');
             const headerMenu = document.getElementById('header-menu');
+            console.log('🔵 switchView aufgerufen mit:', viewId);
 
             if (viewId === 'family-hub') {
                 headerFamily?.classList.remove('hidden');
@@ -9617,6 +9618,7 @@ VIEW: QUIZ SETUP
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
 
+        console.log('✅ switchView fertig für:', viewId);
 
         // Theme beim Laden wiederherstellen (Standard = Light)
         document.addEventListener('DOMContentLoaded', function () {

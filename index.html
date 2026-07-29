@@ -10626,14 +10626,27 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
         // }
 
         function closeLesen() {
+            // 1. Sprachausgabe sicher stoppen
             try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { }
+
             const ex = document.getElementById('lesen-exercise');
             const gr = document.getElementById('lesen-categories');
-            if (ex) ex.classList.add('hidden');
-            if (gr) gr.classList.remove('hidden');
-            renderLesenCategories();
-        }
 
+            // 2. Prüfen, ob gerade eine Übung (lesen-exercise) sichtbar ist
+            if (ex && !ex.classList.contains('hidden')) {
+                // JA, Übung ist offen -> Übung verstecken, Kategorien zeigen
+                ex.classList.add('hidden');
+                if (gr) gr.classList.remove('hidden');
+
+                // Falls du die Funktion hast, Kategorien neu laden:
+                if (typeof renderLesenCategories === 'function') {
+                    renderLesenCategories();
+                }
+            } else {
+                // NEIN, wir sind schon in der Übersicht -> Zurück zum Hauptmenü
+                switchView('menu');
+            }
+        }
 
         // Geht von überall im Lesen-Bereich komplett zurück ins Hauptmenü
         function goToMainMenu() {

@@ -9915,19 +9915,6 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                     { word: "Vogel", startsWith: "V", image: "🐦" },
                     { word: "Wasser", startsWith: "W", image: "💧" },
                     { word: "Zebra", startsWith: "Z", image: "🦓" },
-                    { word: "Mama", image: "👩" }, { word: "Papa", image: "👨" }, { word: "Oma", image: "👵" }, { word: "Opa", image: "👴" },
-                    { word: "Haus", image: "🏠" }, { word: "Baum", image: "🌳" }, { word: "Sonne", image: "☀️" }, { word: "Mond", image: "🌙" },
-                    { word: "Stern", image: "⭐" }, { word: "Tisch", image: "🪑" }, { word: "Stuhl", image: "💺" }, { word: "Brot", image: "🍞" },
-                    { word: "Milch", image: "🥛" }, { word: "Wasser", image: "💧" }, { word: "Apfel", image: "🍎" }, { word: "Banane", image: "🍌" },
-                    { word: "Hund", image: "🐕" }, { word: "Katze", image: "🐈" }, { word: "Fisch", image: "🐟" }, { word: "Vogel", image: "🐦" },
-                    { word: "Auto", image: "🚗" }, { word: "Zug", image: "🚂" }, { word: "Schiff", image: "🚢" }, { word: "Flugzeug", image: "✈️" }
-
-                ]
-            },
-            simple_words: {
-                label: "📖 Einfache Wörter",
-                description: "Kurze Wörter mit 3-4 Buchstaben",
-                items: [
                 ]
             },
             word_match: {
@@ -9937,19 +9924,6 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                     { word: "Hund", image: "🐕" }, { word: "Katze", image: "🐈" }, { word: "Maus", image: "🐭" }, { word: "Vogel", image: "🐦" },
                     { word: "Fisch", image: "🐟" }, { word: "Apfel", image: "🍎" }, { word: "Banane", image: "🍌" }, { word: "Brot", image: "🍞" },
                     { word: "Milch", image: "🥛" }, { word: "Wasser", image: "💧" }
-                ]
-            },
-            zweisilbig: {
-                label: "📗 Zweisilbige Wörter",
-                description: "Wörter mit zwei Silben",
-                items: [
-
-                ]
-            },
-            dreisilbig: {
-                label: "📕 Dreisilbige Wörter",
-                description: "Wörter mit drei Silben",
-                items: [
                 ]
             },
             sentences: {
@@ -10012,12 +9986,12 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
         };
 
         const LESEN_ICONS = {
-            buchstaben: '🔤', silben: '👏', anlaute: '🔊', simple_words: '📖',
-            word_match: '🖼️', zweisilbig: '📗', dreisilbig: '📕', sentences: '📝',
+            buchstaben: '🔤', silben: '👏', anlaute: '🔊',
+            word_match: '🖼️', sentences: '📝',
             reading_comprehension: '🧠', word_puzzle: '🧩'
         };
 
-        const LESEN_FLASHCARDS = ['buchstaben', 'silben', 'simple_words', 'zweisilbig', 'dreisilbig', 'sentences'];
+        const LESEN_FLASHCARDS = ['buchstaben', 'silben', 'simple_words', 'sentences'];
 
         function lesenDB() {
             if (typeof LESEN_DATABASE !== 'undefined' && LESEN_DATABASE) return LESEN_DATABASE;

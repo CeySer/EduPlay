@@ -2262,6 +2262,7 @@ BEREICH: INHALTE
             <div id="view-scrabble-setup" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
+
                     <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben Buchstaben und bilden
                         reihum das beste Wort daraus – <span class="text-amber-300 font-bold">ein Handy wird
@@ -2470,11 +2471,9 @@ BEREICH: INHALTE
                         class="hidden btn-primary w-full text-center text-xl">Los geht's! 🚀</button>
                     <p id="live-duel-wait-hint" class="text-xs text-gray-500">Warte, bis der Ersteller startet...</p>
 
-                    <!-- <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveLiveDuel()">Duell verlassen</button> -->
-
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveQuiz('live-duel-setup')">Duell
-                        verlassen</button>
-
+                    <button class="btn btn-danger btn-sm" onclick="leaveLiveDuel()">
+                        <span class="icon-left">✕</span> Duell verlassen
+                    </button>
                 </div>
             </div>
 
@@ -2483,8 +2482,10 @@ BEREICH: INHALTE
             ========================================================== -->
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
-                    <!-- <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück</button> -->
-                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Beenden</button>
+
+                    <button onclick="leaveLiveDuel()" class="btn btn-danger btn-sm">
+                        <span class="icon-left">✕</span> Beenden
+                    </button>
                     <div id="live-duel-status" class="text-xs font-bold text-gray-400"></div>
                     <div id="live-duel-countdown" class="min-w-[3rem] text-center text-xl font-black text-amber-400">
                     </div>
@@ -2956,8 +2957,9 @@ VIEW: QUIZ SETUP
             VIEW: QUIZ ARENA
             ========================================================== -->
             <div id="view-quiz" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4"
-                    onclick="leaveQuiz('view-live-duel-setup')">Beenden</button>
+                <button class="btn btn-danger btn-sm" onclick="leaveQuizGame()">
+                    <span class="icon-left">✕</span> Beenden
+                </button>
                 <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
                     style="border-color:rgba(99,102,241,0.2);">
                     ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
@@ -9046,9 +9048,45 @@ VIEW: QUIZ SETUP
             SFX.win();
         }
 
+        // async function leaveLiveDuel() {
+        //     clearLiveDuelTimers();
+        //     stopHostHeartbeat();
+        //     const ref = liveDuelRef;
+        //     const wasCreator = isLiveDuelCreator;
+
+        //     if (liveDuelUnsubscribe) liveDuelUnsubscribe();
+        //     liveDuelUnsubscribe = null;
+        //     liveDuelRef = null;
+        //     isLiveDuelCreator = false;
+        //     liveDuelResolving = false;
+        //     liveDuelRenderKey = "";
+        //     switchView('live-duel-setup');
+
+        //     if (!ref || !activePlayerKey) return;
+        //     try {
+        //         const snap = await ref.get();
+        //         if (!snap.exists) return;
+        //         const data = snap.data();
+        //         const players = data.players || {};
+        //         delete players[activePlayerKey];
+        //         const rest = Object.keys(players);
+
+        //         if (rest.length === 0) {
+        //             await ref.delete();
+        //         } else if (wasCreator) {
+        //             await ref.update({ players, createdBy: rest[0], updatedAt: Date.now() });
+        //         } else {
+        //             await ref.update({ players, updatedAt: Date.now() });
+        //         }
+        //     } catch (e) { /* Lobby war schon weg */ }
+        // }
+
+        // Existierende leaveLiveDuel() Funktion - ersetze das switchView Ziel
         async function leaveLiveDuel() {
             clearLiveDuelTimers();
             stopHostHeartbeat();
+            stopLiveDuelActionMode();
+
             const ref = liveDuelRef;
             const wasCreator = isLiveDuelCreator;
 
@@ -9058,6 +9096,8 @@ VIEW: QUIZ SETUP
             isLiveDuelCreator = false;
             liveDuelResolving = false;
             liveDuelRenderKey = "";
+
+            // 🔥 GEÄNDERT: Zurück zum Live-Duell-Setup, nicht zum Menü
             switchView('live-duel-setup');
 
             if (!ref || !activePlayerKey) return;
@@ -9078,6 +9118,13 @@ VIEW: QUIZ SETUP
                 }
             } catch (e) { /* Lobby war schon weg */ }
         }
+
+
+
+
+
+
+
 
         // ============================================================
         //  OPEN DUEL & TV LISTENER
@@ -9963,7 +10010,108 @@ VIEW: QUIZ SETUP
         });
 
 
+        // ============================================================
+        //  KONSISTENTE "BEENDEN"-FUNKTIONEN - FÜHREN ZUM SETUP ZURÜCK
+        // ============================================================
 
+        /**
+         * Beenden für Quiz (Einzelspieler) → zurück zum Quiz-Setup
+         */
+        function leaveQuizGame() {
+            if (!confirm('Möchtest du das Quiz wirklich beenden? Dein Fortschritt geht verloren.')) return;
+
+            // Timer stoppen (falls Test läuft)
+            if (testTimerInterval) {
+                clearInterval(testTimerInterval);
+                testTimerInterval = null;
+            }
+            testMode = false;
+            document.getElementById("test-timer-bar").classList.add("hidden");
+
+            // Zurück zum Quiz-Setup
+            switchView('quiz-setup');
+            showToast('Quiz beendet', 'info');
+        }
+
+        /**
+         * Beenden für Scrabble (Einzelgerät) → zurück zum Scrabble-Setup
+         */
+        function leaveScrabbleGame() {
+            if (!confirm('Möchtest du das Wort-Duell wirklich beenden? Der Fortschritt geht verloren.')) return;
+
+            // Timer stoppen
+            if (scrabbleTimerInterval) {
+                clearInterval(scrabbleTimerInterval);
+                scrabbleTimerInterval = null;
+            }
+
+            // Action-Mode stoppen (falls aktiv)
+            stopActionMode();
+
+            // Scrabble-State zurücksetzen
+            scrabbleState = null;
+
+            // Zurück zum Scrabble-Setup
+            switchView('scrabble-setup');
+            showToast('Wort-Duell beendet', 'info');
+        }
+
+        /**
+         * Beenden für Live-Duell (mehrere Handys) → zurück zur Live-Duell-Auswahl
+         */
+        // leaveLiveDuel() existiert bereits, wir passen das Ziel an:
+        // In der existierenden leaveLiveDuel() Funktion am Ende:
+        // switchView('live-duel-setup');  // statt 'menu'
+
+        /**
+         * Beenden für TV-Quiz → zurück zum TV-Setup
+         */
+        function leaveTVGame() {
+            if (!confirm('Möchtest du das TV-Quiz wirklich verlassen?')) return;
+
+            // Timer stoppen
+            if (tvCountdownInterval) {
+                clearInterval(tvCountdownInterval);
+                tvCountdownInterval = null;
+            }
+            stopTVAutoAdvance();
+            stopTVActionMode();
+
+            // Unsubscribe vom Listener
+            if (tvUnsubscribe) {
+                tvUnsubscribe();
+                tvUnsubscribe = null;
+            }
+
+            // Spieler aus der Lobby entfernen
+            if (tvGameRef && activePlayerKey) {
+                tvGameRef.get().then(snap => {
+                    if (snap.exists) {
+                        const players = snap.data().players || {};
+                        delete players[activePlayerKey];
+                        tvGameRef.update({ players });
+                    }
+                }).catch(() => { });
+            }
+
+            tvGameRef = null;
+            isTVHost = false;
+
+            // Zurück zum TV-Setup
+            switchView('tv-quiz-setup');
+            showToast('TV-Quiz verlassen', 'info');
+        }
+
+        /**
+         * Beenden für Familien-Duell (Einzelgerät) → zurück zum Family Hub
+         */
+        function leaveFamilyDuel() {
+            if (!confirm('Möchtest du das Familien-Duell wirklich beenden?')) return;
+            duelState = null;
+            // Zurück zum Family Hub (wo die Duelle ausgewählt werden)
+            switchView('family-hub');
+            showToast('Duell beendet', 'info');
+        }
 
     </script>
 

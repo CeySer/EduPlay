@@ -1279,6 +1279,174 @@
         }
 
         /* ============================================================
+   FORTSCHRITTSBALKEN MIT MEILENSTEINEN
+   ============================================================ */
+        .progress-track {
+            position: relative;
+            width: 100%;
+            padding: 4px 0;
+        }
+
+        .progress-track .milestones {
+            position: relative;
+            width: 100%;
+            height: 28px;
+            margin-bottom: -6px;
+        }
+
+        .progress-track .milestone {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(20, 30, 51, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: default;
+            z-index: 2;
+        }
+
+        .progress-track .milestone.reached {
+            background: var(--gradient-main);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+            transform: translate(-50%, -50%) scale(1.15);
+        }
+
+        .progress-track .milestone.reached .milestone-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .progress-track .milestone .milestone-tooltip {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background: rgba(14, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-primary);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .progress-track .milestone:hover .milestone-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .progress-track .bar-bg {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(30, 48, 80, 0.4);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .progress-track .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: var(--gradient-main);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 0 16px rgba(99, 102, 241, 0.2);
+        }
+
+        .progress-track .bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15));
+            border-radius: 4px;
+        }
+
+        .progress-track .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .progress-track .progress-label .current {
+            color: var(--text-primary);
+        }
+
+        /* Kleine Version für Menü */
+        .progress-track.small .milestones {
+            height: 20px;
+            margin-bottom: -4px;
+        }
+
+        .progress-track.small .milestone {
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+        }
+
+        .progress-track.small .bar-bg {
+            height: 6px;
+        }
+
+        .progress-track.small .progress-label {
+            font-size: 9px;
+        }
+
+        /* Große Version für Dashboard */
+        .progress-track.large .milestones {
+            height: 36px;
+            margin-bottom: -8px;
+        }
+
+        .progress-track.large .milestone {
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+        }
+
+        .progress-track.large .bar-bg {
+            height: 10px;
+        }
+
+        /* Animation beim Erreichen eines Meilensteins */
+        @keyframes milestonePop {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+
+            60% {
+                transform: translate(-50%, -50%) scale(1.3);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1.15);
+            }
+        }
+
+        .progress-track .milestone.just-reached {
+            animation: milestonePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ============================================================
            UTILITY HELPER
            ============================================================ */
         .text-gradient {
@@ -1619,6 +1787,25 @@
             background: rgba(240, 244, 255, 0.9);
             border-left: 1px solid rgba(200, 210, 230, 0.2);
             border-right: 1px solid rgba(200, 210, 230, 0.2);
+        }
+
+        /* Anpassungen für dunkles Theme */
+        body.dark-theme .progress-track .milestone {
+            background: rgba(20, 30, 51, 0.9);
+        }
+
+        body:not(.dark-theme) .progress-track .milestone {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(200, 210, 230, 0.3);
+        }
+
+        body:not(.dark-theme) .progress-track .milestone.reached {
+            background: var(--gradient-main);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        body:not(.dark-theme) .progress-track .bar-bg {
+            background: rgba(200, 210, 230, 0.3);
         }
     </style>
 </head>
@@ -2428,6 +2615,8 @@ BEREICH: INHALTE
                                 class="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all"
                                 style="width:0%"></div>
                         </div>
+                        <!-- Fortschrittsbalken mit Meilensteinen -->
+                        <div id="menu-progress-container" class="mt-3"></div>
                     </div>
                     <div id="menu-streak" class="mt-3 text-sm font-bold text-orange-400">🔥 0 Tage Streak</div>
                 </div>
@@ -2553,6 +2742,8 @@ VIEW: HAUPTMENÜ
                                 class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full transition-all"
                                 style="width:0%"></div>
                         </div>
+                        <!-- Fortschrittsbalken mit Meilensteinen -->
+                        <div id="menu-progress-container" class="mt-3"></div>
                     </div>
                     <div id="menu-streak" class="mt-2 text-sm font-bold text-orange-400">🔥 0 Tage Streak</div>
                 </div>
@@ -3442,6 +3633,8 @@ VIEW: QUIZ SETUP
                     if (!b) return "";
                     return `<div class="flex-shrink-0 bg-white/5 border border-white/5 rounded-xl px-3 py-2 text-center" title="${b.desc}"><div class="text-2xl">${b.icon}</div><div class="text-[10px] font-bold text-gray-300 mt-1 whitespace-nowrap">${b.name}</div></div>`;
                 }).join('');
+            // Fortschrittsbalken mit Meilensteinen aktualisieren
+            renderMenuProgress();
         }
 
         async function loadFamilyRewards() {
@@ -3708,6 +3901,172 @@ VIEW: QUIZ SETUP
                 switchView('auth');
             }
         });
+
+
+        // ============================================================
+        //  FORTSCHRITTSBALKEN MIT MEILENSTEINEN
+        // ============================================================
+
+        // Meilenstein-Definitionen
+        const MILESTONES = [
+            { at: 0.25, icon: '🌱', label: 'Start', color: '#34d399' },
+            { at: 0.50, icon: '⭐', label: 'Halbzeit', color: '#fbbf24' },
+            { at: 0.75, icon: '🔥', label: 'Fast geschafft', color: '#f97316' },
+            { at: 1.00, icon: '🏆', label: 'Abgeschlossen!', color: '#8b5cf6' }
+        ];
+
+        // Erstellt einen Fortschrittsbalken mit Meilensteinen
+        function createProgressTrack(progress, total, options = {}) {
+            const pct = total > 0 ? Math.min(100, (progress / total) * 100) : 0;
+            const size = options.size || 'default'; // 'small', 'default', 'large'
+            const showLabel = options.showLabel !== false;
+            const onMilestoneReached = options.onMilestoneReached || null;
+
+            // Meilensteine berechnen
+            let milestoneHTML = '';
+            let reachedCount = 0;
+
+            MILESTONES.forEach((m, index) => {
+                const targetPct = m.at * 100;
+                const isReached = pct >= targetPct;
+                const isJustReached = isReached && pct >= targetPct && pct < targetPct + 5;
+
+                if (isReached) reachedCount++;
+
+                // Position in Prozent
+                const pos = Math.min(100, targetPct);
+
+                milestoneHTML += `
+            <div class="milestone ${isReached ? 'reached' : ''} ${isJustReached ? 'just-reached' : ''}" 
+                 style="left: ${pos}%;"
+                 data-milestone="${index}"
+                 data-reached="${isReached}">
+                ${m.icon}
+                <span class="milestone-tooltip">${m.label} ${isReached ? '✅' : ''}</span>
+            </div>
+        `;
+            });
+
+            // Label
+            let labelHTML = '';
+            if (showLabel) {
+                const remaining = total - progress;
+                labelHTML = `
+            <div class="progress-label">
+                <span class="current">${progress} / ${total} geschafft</span>
+                <span>${remaining > 0 ? `${remaining} noch offen` : '🎉 Fertig!'}</span>
+            </div>
+        `;
+            }
+
+            // HTML zusammenbauen
+            return `
+        <div class="progress-track ${size}">
+            <div class="milestones">
+                ${milestoneHTML}
+            </div>
+            <div class="bar-bg">
+                <div class="bar-fill" style="width: ${Math.min(100, pct)}%;"></div>
+            </div>
+            ${labelHTML}
+        </div>
+    `;
+        }
+
+        // Aktualisiert einen bestehenden Fortschrittsbalken
+        function updateProgressTrack(containerId, progress, total) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const pct = total > 0 ? Math.min(100, (progress / total) * 100) : 0;
+
+            // Balken aktualisieren
+            const fill = container.querySelector('.bar-fill');
+            if (fill) {
+                fill.style.width = Math.min(100, pct) + '%';
+            }
+
+            // Label aktualisieren
+            const label = container.querySelector('.progress-label .current');
+            if (label) {
+                label.textContent = `${progress} / ${total} geschafft`;
+            }
+            const remaining = container.querySelector('.progress-label span:last-child');
+            if (remaining) {
+                const left = total - progress;
+                remaining.textContent = left > 0 ? `${left} noch offen` : '🎉 Fertig!';
+            }
+
+            // Meilensteine aktualisieren
+            const milestones = container.querySelectorAll('.milestone');
+            MILESTONES.forEach((m, index) => {
+                const targetPct = m.at * 100;
+                const isReached = pct >= targetPct;
+                const milestone = milestones[index];
+                if (milestone) {
+                    milestone.classList.toggle('reached', isReached);
+                    const tooltip = milestone.querySelector('.milestone-tooltip');
+                    if (tooltip) {
+                        tooltip.textContent = `${m.label} ${isReached ? '✅' : ''}`;
+                    }
+                }
+            });
+        }
+
+        // Beispiel: Fortschrittsbalken für das Hauptmenü
+        function renderMenuProgress() {
+            if (!currentPlayer) return;
+
+            const totalCorrect = getTotalCorrect(currentPlayer);
+            const totalAttempts = Object.values(currentPlayer.stats || {}).reduce((sum, s) => sum + s.attempts, 0);
+            const progress = totalCorrect;
+            const total = Math.max(1, Math.min(100, Math.ceil(totalAttempts * 1.2))); // Dynamisches Ziel
+
+            const container = document.getElementById('menu-progress-container');
+            if (!container) return;
+
+            // Prüfen ob der Container schon existiert
+            let existing = document.getElementById('menu-progress-track');
+            if (existing) {
+                updateProgressTrack('menu-progress-track', progress, total);
+                return;
+            }
+
+            // Neuen Fortschrittsbalken einfügen
+            const html = createProgressTrack(progress, total, {
+                size: 'small',
+                showLabel: true,
+                onMilestoneReached: (index) => {
+                    const milestone = MILESTONES[index];
+                    if (milestone) {
+                        showToast(`${milestone.icon} Meilenstein erreicht: ${milestone.label}!`, 'success');
+                        if (typeof confetti === 'function') confetti();
+                        SFX.coin();
+                    }
+                }
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Fortschrittsbalken für das Dashboard
+        function renderDashboardProgress(containerId, playerKey) {
+            const p = ALL_PROFILES[playerKey];
+            if (!p) return;
+
+            const totalCorrect = getTotalCorrect(p);
+            const totalAttempts = Object.values(p.stats || {}).reduce((sum, s) => sum + s.attempts, 0);
+            const progress = totalCorrect;
+            const total = Math.max(1, Math.min(100, Math.ceil(totalAttempts * 1.2)));
+
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = createProgressTrack(progress, total, {
+                size: 'large',
+                showLabel: true
+            });
+        }
 
         // ============================================================
         //  FAMILY HUB & PROFILES
@@ -5039,6 +5398,11 @@ VIEW: QUIZ SETUP
                             </div>
                         `;
             }).join('');
+            // Fortschrittsbalken für ausgewählten Spieler anzeigen
+            const selectedKey = document.getElementById('dash-test-profile')?.value;
+            if (selectedKey && ALL_PROFILES[selectedKey]) {
+                renderDashboardProgress('dash-progress-track', selectedKey);
+            }
         }
 
         function renderDashAdminTest() {

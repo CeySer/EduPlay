@@ -2234,13 +2234,28 @@ BEREICH: INHALTE
             <!-- ==========================================================
             VIEW: DUELL SPIEL
             ========================================================== -->
+            <!-- ==========================================================
+VIEW: DUELL SPIEL
+========================================================== -->
             <div id="view-duel-play" class="view hidden space-y-4">
+
+                <!-- NEU: Kopf mit Beenden-Button -->
+                <div class="flex items-center justify-between gap-2">
+                    <button class="btn btn-danger btn-sm" onclick="leaveFamilyDuel()">
+                        <span class="icon-left">✕</span> Beenden
+                    </button>
+                    <span class="text-sm font-bold text-gray-400">⚔️ Familien-Duell</span>
+                    <span class="w-20"></span>
+                </div>
+
                 <div id="duel-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(244,63,94,0.15),rgba(236,72,153,0.1));border-color:rgba(244,63,94,0.2);">
                     <div id="duel-turn-emoji" class="text-6xl">🥊</div>
                     <h2 id="duel-turn-title" class="text-2xl font-black text-white">Name ist dran!</h2>
                     <p class="text-sm text-gray-400">Gib das Handy weiter und drück auf Los, wenn du bereit bist.</p>
-                    <button onclick="beginDuelTurn()" class="btn-primary w-full text-center">Los geht's! 🚀</button>
+                    <button onclick="beginDuelTurn()" class="btn btn-primary w-full text-center">
+                        <span class="icon-left">🚀</span> Los geht's!
+                    </button>
                 </div>
                 <div id="duel-question-area" class="hidden glass-card p-5 text-center space-y-4 shadow-lg">
                     <div id="duel-progress" class="text-xs text-gray-400 font-bold">Frage 1/8</div>
@@ -2461,7 +2476,7 @@ BEREICH: INHALTE
             VIEW: LIVE-DUELL LOBBY
             ========================================================== -->
 
-            <div id="view-live-duel-lobby" class="view hidden space-y-4">
+            <!-- <div id="view-live-duel-lobby" class="view hidden space-y-4">
                 <div class="glass-card p-8 text-center space-y-6 shadow-lg">
                     <h2 class="text-3xl font-black text-white animate-pulse">Warte auf Mitspieler...</h2>
                     <p class="text-gray-400 text-sm">Die anderen tippen auf ihrem Handy auf <span
@@ -2475,14 +2490,33 @@ BEREICH: INHALTE
                         <span class="icon-left">✕</span> Duell verlassen
                     </button>
                 </div>
+            </div> -->
+
+            <!-- ==========================================================
+VIEW: LIVE-DUELL LOBBY
+========================================================== -->
+            <div id="view-live-duel-lobby" class="view hidden space-y-4">
+                <div class="flex items-center justify-between gap-2">
+                    <button class="btn btn-danger btn-sm" onclick="leaveLiveDuel()">
+                        <span class="icon-left">✕</span> Duell verlassen
+                    </button>
+                    <span class="text-sm font-bold text-gray-400">⚔️ Warte auf Mitspieler</span>
+                    <span class="w-20"></span>
+                </div>
+                <div class="glass-card p-8 text-center space-y-6 shadow-lg">
+                    <!-- Rest bleibt gleich -->
+                    ...
+                </div>
             </div>
 
             <!-- ==========================================================
             VIEW: LIVE-DUELL SPIEL
             ========================================================== -->
+            <!-- ==========================================================
+VIEW: LIVE-DUELL SPIEL
+========================================================== -->
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
-
                     <button onclick="leaveLiveDuel()" class="btn btn-danger btn-sm">
                         <span class="icon-left">✕</span> Beenden
                     </button>
@@ -2496,8 +2530,23 @@ BEREICH: INHALTE
             <!-- ==========================================================
             VIEW: LIVE-DUELL ERGEBNIS
             ========================================================== -->
-            <div id="view-live-duel-result" class="view hidden space-y-4">
+            <!-- <div id="view-live-duel-result" class="view hidden space-y-4">
                 <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Zurück</button>
+                <div id="live-duel-result-content"></div>
+            </div> -->
+
+            <!-- ==========================================================
+VIEW: LIVE-DUELL ERGEBNIS
+========================================================== -->
+            <div id="view-live-duel-result" class="view hidden space-y-4">
+                <div class="flex items-center justify-between gap-2">
+                    <button class="btn btn-secondary btn-sm" onclick="switchView('live-duel-setup')">
+                        <span class="icon-left">←</span> Zurück zur Auswahl
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="leaveLiveDuel()">
+                        <span class="icon-left">✕</span> Beenden
+                    </button>
+                </div>
                 <div id="live-duel-result-content"></div>
             </div>
 

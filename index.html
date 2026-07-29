@@ -2258,7 +2258,6 @@ BEREICH: INHALTE
                         class="hidden btn-primary w-full text-center text-xl">Los geht's! 🚀</button>
                     <p id="live-duel-wait-hint" class="text-xs text-gray-500">Warte, bis der Ersteller startet...</p>
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveLiveDuel()">Duell verlassen</button>
-
                 </div>
             </div>
 
@@ -2268,8 +2267,7 @@ BEREICH: INHALTE
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
                     <!-- <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück</button> -->
-                    <button onclick="leaveLiveDuel(view-live-duel-lobby)" class="btn-secondary text-sm py-2.5 px-4"
-                        onclick="leaveQuiz(view-live-duel-lobby)">Beenden</button>
+                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Beenden</button>
                     <div id="live-duel-status" class="text-xs font-bold text-gray-400"></div>
                     <div id="live-duel-countdown" class="min-w-[3rem] text-center text-xl font-black text-amber-400">
                     </div>
@@ -2742,7 +2740,7 @@ VIEW: QUIZ SETUP
             ========================================================== -->
             <div id="view-quiz" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4"
-                    onclick="switchView(view-live-duel-setup)">Beenden</button>
+                    onclick="leaveQuiz('view-live-duel-setup')">Beenden</button>
                 <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
                     style="border-color:rgba(99,102,241,0.2);">
                     ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
@@ -6078,19 +6076,25 @@ VIEW: QUIZ SETUP
                 awardXPToProfile(keyB, 8);
             }
             document.getElementById("duel-result-content").innerHTML = `
-                        <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(244,63,94,0.2);">
-                            <div class="text-6xl">⚔️</div>
-                            <h2 class="text-2xl font-black text-white">${resultTitle}</h2>
-                            <div class="flex justify-around items-center mt-4">
-                                <div><div class="text-3xl font-black text-indigo-400">${scoreA}</div><div class="text-xs font-bold text-gray-400 mt-1">${nameA}</div></div>
-                                <div class="text-gray-600 font-black">VS</div>
-                                <div><div class="text-3xl font-black text-pink-400">${scoreB}</div><div class="text-xs font-bold text-gray-400 mt-1">${nameB}</div></div>
-                            </div>
-                                  // ============================================================
-        //  zurück button muss angepasst werden
-        // ============================================================
-                            <button onclick="switchView('family-hub')" class="btn-primary w-full text-center mt-4">Zurück</button>
-                        </div>`;
+    <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(244,63,94,0.2);">
+        <div class="text-6xl">⚔️</div>
+        <h2 class="text-2xl font-black text-white">\${resultTitle}</h2>
+        <div class="flex justify-around items-center mt-4">
+            <div><div class="text-3xl font-black text-indigo-400">\${scoreA}</div><div class="text-xs font-bold text-gray-400 mt-1">\${nameA}</div></div>
+            <div class="text-gray-600 font-black">VS</div>
+            <div><div class="text-3xl font-black text-pink-400">\${scoreB}</div><div class="text-xs font-bold text-gray-400 mt-1">\${nameB}</div></div>
+        </div>
+        
+        <!-- Überarbeitete Buttons -->
+        <div class="grid grid-cols-2 gap-3 mt-6">
+            <button onclick="switchView('duel-setup')" class="btn-primary w-full text-center" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">
+                🔄 Nochmal
+            </button>
+            <button onclick="switchView('menu')" class="btn-secondary w-full text-center">
+                🏠 Menü
+            </button>
+        </div>
+    </div>`;
             duelState = null;
             switchView('duel-result');
             renderFamilyHub();
@@ -9727,7 +9731,7 @@ VIEW: QUIZ SETUP
     <!-- ========================================================== burger menü
     SCHIEBEMENÜ (DRAWER) – als direktes <body>-Kind, damit position:fixed
     sich auf den Viewport bezieht (NICHT auf #app-shell mit backdrop-filter)
-<!-- ==========================================================
+ ==========================================================
 GEMEINSAMER BACKDROP FÜR BEIDE DRAWER
 ========================================================== -->
     <div id="drawer-backdrop" class="drawer-backdrop" onclick="closeDrawer()"></div>
@@ -9815,24 +9819,24 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                 label: "Buchstaben lernen (A-Z)",
                 description: "Lerne alle Buchstaben mit Bildern",
                 items: [
-                    { word: "Affe", image: '<img src="img/A.png" alt="🐒">', sound: "ah" },
-                    { word: "Ball", image: '<img src="img/B.png" alt="⚽">', sound: "beh" },
-                    { word: "Clown", image: '<img src="img/C.jpg" alt="💻">', sound: "tseh" },
-                    { word: "Dino", image: '<img src="img/D.jpg" alt="🐉">', sound: "deh" },
-                    { word: "Elefant", image: '<img src="img/E.jpg" alt="🦆">', sound: "eh" },
-                    { word: "Fuchs", image: '<img src="img/F.png" alt="🐟">', sound: "eff" },
-                    { word: "Giraffe", image: '<img src="img/G.png" alt="🦒">', sound: "geh" },
-                    { word: "Hase", image: '<img src="img/H.png" alt="🐕">', sound: "hah" },
-                    { word: "Igel", image: '<img src="img/I.jpg" alt="🦔">', sound: "ih" },
-                    { word: "Joghurt", image: '<img src="img/J.jpg" alt="🍦">', sound: "jott" },
-                    { word: "Katze", image: '<img src="img/K.jpg" alt="🐈">', sound: "kah" },
-                    { word: "Löwe", image: '<img src="img/L.jpg" alt="🦁">', sound: "ell" },
-                    { word: "Maus", image: '<img src="img/M.jpg" alt="🐭">', sound: "emm" },
-                    { word: "Nase", image: '<img src="img/J.jpg" alt="👃">', sound: "enn" },
-                    { word: "Oma", image: '<img src="img/J.jpg" alt="👵">', sound: "oh" },
+                    { letter: "A", word: "Affe", image: '<img src="img/A.png" alt="🐒">', sound: "ah" },
+                    { letter: "B", word: "Ball", image: '<img src="img/B.png" alt="⚽">', sound: "beh" },
+                    { letter: "C", word: "Clown", image: '<img src="img/C.jpg" alt="💻">', sound: "tseh" },
+                    { letter: "D", word: "Dino", image: '<img src="img/D.jpg" alt="🐉">', sound: "deh" },
+                    { letter: "E", word: "Elefant", image: '<img src="img/E.jpg" alt="🦆">', sound: "eh" },
+                    { letter: "F", word: "Fuchs", image: '<img src="img/F.png" alt="🐟">', sound: "eff" },
+                    { letter: "G", word: "Giraffe", image: '<img src="img/G.png" alt="🦒">', sound: "geh" },
+                    { letter: "H", word: "Hase", image: '<img src="img/H.png" alt="🐕">', sound: "hah" },
+                    { letter: "I", word: "Igel", image: '<img src="img/I.jpg" alt="🦔">', sound: "ih" },
+                    { letter: "J", word: "Joghurt", image: '<img src="img/J.jpg" alt="🍦">', sound: "jott" },
+                    { letter: "K", word: "Katze", image: '<img src="img/K.jpg" alt="🐈">', sound: "kah" },
+                    { letter: "L", word: "Löwe", image: '<img src="img/L.jpg" alt="🦁">', sound: "ell" },
+                    { letter: "M", word: "Maus", image: '<img src="img/M.jpg" alt="🐭">', sound: "emm" },
+                    { letter: "N", word: "Nase", image: '<img src="img/J.jpg" alt="👃">', sound: "enn" },
+                    { letter: "O", word: "Oma", image: "👵", sound: "oh" },
 
-                    { word: "Pony", image: "🐴", sound: "peh" },
 
+                    { letter: "P", word: "Pferd", image: "🐴", sound: "peh" },
                     { letter: "Q", word: "Quelle", image: "⛲", sound: "kuh" },
                     { letter: "R", word: "Regen", image: "🌧️", sound: "err" },
                     { letter: "S", word: "Sonne", image: "☀️", sound: "ess" },

@@ -7495,6 +7495,30 @@ VIEW: QUIZ SETUP
             } catch (e) { }
             SFX.win();
         }
+
+        // ============================================================
+        // MODUS-UMSCHALTER FÜR TV-NEUSTART
+        // ============================================================
+
+        let tvAgainMode = 'quiz';
+
+        function setTVAgainMode(mode) {
+            tvAgainMode = mode;
+            const qBtn = document.getElementById("againmode-quiz");
+            const sBtn = document.getElementById("againmode-scrabble");
+            const qOpts = document.getElementById("again-quiz-options");
+            const sOpts = document.getElementById("again-scrabble-options");
+
+            if (qBtn) qBtn.className = `flex-1 py-3 rounded-lg font-bold text-xl transition-all ${mode === 'quiz' ? 'active' : ''}`;
+            if (sBtn) sBtn.className = `flex-1 py-3 rounded-lg font-bold text-xl transition-all ${mode === 'scrabble' ? 'active' : ''}`;
+            if (qOpts) qOpts.classList.toggle('hidden', mode !== 'quiz');
+            if (sOpts) sOpts.classList.toggle('hidden', mode !== 'scrabble');
+
+            if (mode === 'quiz') {
+                setTVAgainTopic(tvTopicMode || "spass");
+                setupCategorySelectors("tv-again-area", "tv-again-category", tvTopicMode || "spass");
+            }
+        }
         function setTVAgainTopic(mode) {
             const s = document.getElementById("againtopic-spass");
             const l = document.getElementById("againtopic-lernen");
@@ -7509,51 +7533,111 @@ VIEW: QUIZ SETUP
 
         async function restartTVGame() {
             if (!tvGameRef) return;
-            const catSel = document.getElementById("tv-again-category");
-            const category = catSel ? catSel.value : null;
-            if (!category) return showToast("Bitte ein Thema wählen!", "error");
 
-            const fresh = questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10);
-            if (fresh.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
-            tvQuestions = prepareQuestions(fresh);
+            // Je nach Modus die passenden Werte holen
+            if (tvAgainMode === 'scrabble') {
+                // SCRABBLE NEUSTART
+                const difficulty = document.getElementById("tv-again-difficulty").value;
+                const totalRounds = parseInt(document.getElementById("tv-again-rounds").value);
+                const requireLetter = !!(document.getElementById("tv-again-require-letter") || {}).checked;
+                const wordMode = (document.getElementById("tv-again-wordmode") || {}).value || "kids";
+                const actionMode = !!(document.getElementById("tv-again-action-mode") || {}).checked;
 
-            try {
-                const snap = await tvGameRef.get();
-                if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
-                const playersData = snap.data().players || {};
-                if (Object.keys(playersData).length === 0) return showToast("Keine Spieler mehr in der Lobby.",
-                    "error");
+                tvUsedWords = new Set();
+                const rack = generateScrabbleRack(difficulty, requireLetter, wordMode);
 
-                Object.keys(playersData).forEach(k => {
-                    playersData[k].score = 0;
-                    playersData[k].hasAnswered = false;
-                    playersData[k].lastAnswer = null;
-                    playersData[k].word = "";
-                    playersData[k].coinsClaimed = false;
-                    playersData[k].lastRoundPoints = 0;
-                    playersData[k].wordStatus = null;
-                });
+                try {
+                    const snap = await tvGameRef.get();
+                    if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
+                    const playersData = snap.data().players || {};
+                    if (Object.keys(playersData).length === 0) return showToast("Keine Spieler mehr in der Lobby.", "error");
 
-                isResolving = false;
-                await tvGameRef.update({
-                    status: "playing",
-                    mode: "quiz",
-                    category,
-                    currentQuestionIndex: 0,
-                    showAnswer: false,
-                    players: playersData,
-                    correctAnswer: tvQuestions[0].correct,
-                    answerCount: tvQuestions[0].answers.length
-                });
-                showTVHostQuestion(0);
-                SFX.tap();
-                showToast("Neue Runde gestartet – alle sind dabei! 🚀");
-            } catch (e) {
-                handleError("restartTVGame", e, "Die neue Runde konnte nicht gestartet werden.");
+                    Object.keys(playersData).forEach(k => {
+                        playersData[k].score = 0;
+                        playersData[k].hasAnswered = false;
+                        playersData[k].lastAnswer = null;
+                        playersData[k].word = "";
+                        playersData[k].coinsClaimed = false;
+                        playersData[k].lastRoundPoints = 0;
+                        playersData[k].wordStatus = null;
+                    });
+
+                    isResolving = false;
+                    await tvGameRef.update({
+                        status: "playing",
+                        mode: "scrabble",
+                        difficulty,
+                        totalRounds,
+                        currentRound: 1,
+                        requireLetter,
+                        wordMode,
+                        actionMode,
+                        currentLetters: rack.letters,
+                        currentSolution: rack.solution,
+                        currentRequired: rack.required || "",
+                        players: playersData,
+                        showAnswer: false
+                    });
+
+                    if (actionMode) {
+                        startTVActionMode({
+                            difficulty,
+                            requireLetter,
+                            wordMode,
+                            actionMode
+                        });
+                    }
+
+                    SFX.tap();
+                    showToast("Neue Wort-Runde gestartet – alle sind dabei! 🚀");
+                } catch (e) {
+                    handleError("restartTVGame", e, "Die neue Runde konnte nicht gestartet werden.");
+                }
+            } else {
+                // QUIZ NEUSTART (bestehende Logik)
+                const catSel = document.getElementById("tv-again-category");
+                const category = catSel ? catSel.value : null;
+                if (!category) return showToast("Bitte ein Thema wählen!", "error");
+
+                const fresh = questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10);
+                if (fresh.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
+                tvQuestions = prepareQuestions(fresh);
+
+                try {
+                    const snap = await tvGameRef.get();
+                    if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
+                    const playersData = snap.data().players || {};
+                    if (Object.keys(playersData).length === 0) return showToast("Keine Spieler mehr in der Lobby.", "error");
+
+                    Object.keys(playersData).forEach(k => {
+                        playersData[k].score = 0;
+                        playersData[k].hasAnswered = false;
+                        playersData[k].lastAnswer = null;
+                        playersData[k].word = "";
+                        playersData[k].coinsClaimed = false;
+                        playersData[k].lastRoundPoints = 0;
+                        playersData[k].wordStatus = null;
+                    });
+
+                    isResolving = false;
+                    await tvGameRef.update({
+                        status: "playing",
+                        mode: "quiz",
+                        category,
+                        currentQuestionIndex: 0,
+                        showAnswer: false,
+                        players: playersData,
+                        correctAnswer: tvQuestions[0].correct,
+                        answerCount: tvQuestions[0].answers.length
+                    });
+                    showTVHostQuestion(0);
+                    SFX.tap();
+                    showToast("Neue Runde gestartet – alle sind dabei! 🚀");
+                } catch (e) {
+                    handleError("restartTVGame", e, "Die neue Runde konnte nicht gestartet werden.");
+                }
             }
-        }
-
-        // ============================================================
+        }        // ============================================================
         // ACTION-MODE FÜR TV-HOST
         // ============================================================
 

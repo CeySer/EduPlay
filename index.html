@@ -5692,6 +5692,7 @@ VIEW: QUIZ SETUP
         // ============================================================
         //  TEST-MODUS
         // ============================================================
+
         function startAssignedTest() {
             if (!currentPlayer || !currentPlayer.pendingTest) return;
             const { categories, timeLimitSeconds } = currentPlayer.pendingTest;
@@ -5749,17 +5750,67 @@ VIEW: QUIZ SETUP
 
         function showTestResultScreen(correct, total, pct) {
             const emoji = pct >= 80 ? "🏆" : pct >= 50 ? "👍" : "💪";
-            const msg = pct >= 80 ? "Super gemacht!" : pct >= 50 ? "Gut gemacht, weiter so!" :
-                "Dranbleiben, das wird noch!";
+            const msg = pct >= 80 ? "Super gemacht!" : pct >= 50 ? "Gut gemacht, weiter so!" : "Dranbleiben, das wird noch!";
+
             document.getElementById("test-result-content").innerHTML = `
-                        <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(99,102,241,0.2);">
-                            <div class="text-7xl">${emoji}</div>
-                            <h2 class="text-2xl font-black text-white">${msg}</h2>
-                            <div class="text-5xl font-black text-emerald-400">${correct} / ${total}</div>
-                            <div class="text-gray-400 font-bold">${pct}% richtig beantwortet</div>
-                            <button onclick="switchView('menu')" class="btn-primary w-full text-center mt-4">Zurück zur Übersicht</button>
-                        </div>`;
+        <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(99,102,241,0.2);">
+            <div class="text-7xl">${emoji}</div>
+            <h2 class="text-2xl font-black text-white">${msg}</h2>
+            <div class="text-5xl font-black text-emerald-400">${correct} / ${total}</div>
+            <div class="text-gray-400 font-bold">${pct}% richtig beantwortet</div>
+            <div class="flex gap-3 mt-4">
+                <button onclick="startAssignedTest()" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Nochmal</button>
+                <button onclick="goToMainMenu()" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">🏠 Zum Menü</button>
+            </div>
+        </div>`;
             switchView('test-result');
+        }
+
+        function goToMainMenu() {
+            try {
+                if (window.speechSynthesis) window.speechSynthesis.cancel();
+            } catch (e) { }
+
+            // Alle offenen Timer stoppen
+            if (typeof focusTimerInterval !== 'undefined' && focusTimerInterval) {
+                clearInterval(focusTimerInterval);
+                focusTimerInterval = null;
+            }
+            if (typeof scrabbleTimerInterval !== 'undefined' && scrabbleTimerInterval) {
+                clearInterval(scrabbleTimerInterval);
+                scrabbleTimerInterval = null;
+            }
+            if (typeof testTimerInterval !== 'undefined' && testTimerInterval) {
+                clearInterval(testTimerInterval);
+                testTimerInterval = null;
+            }
+            if (typeof liveDuelTimerInterval !== 'undefined' && liveDuelTimerInterval) {
+                clearInterval(liveDuelTimerInterval);
+                liveDuelTimerInterval = null;
+            }
+
+            // Alle Views ausblenden
+            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+
+            // Hauptmenü anzeigen
+            const menu = document.getElementById('view-menu');
+            if (menu) menu.classList.remove('hidden');
+
+            // Header zurücksetzen
+            const headerFamily = document.getElementById('header-familyhub');
+            const headerMenu = document.getElementById('header-menu');
+            if (headerFamily) headerFamily.classList.add('hidden');
+            if (headerMenu) headerMenu.classList.remove('hidden');
+
+            // Wenn ein Spieler ausgewählt ist, Menü-Gamification aktualisieren
+            if (typeof currentPlayer !== 'undefined' && currentPlayer) {
+                if (typeof updateMenuGamification === 'function') {
+                    updateMenuGamification();
+                }
+            }
+
+            // Drawer schließen
+            if (typeof closeDrawer === 'function') closeDrawer();
         }
 
         // ============================================================

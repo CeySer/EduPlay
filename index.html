@@ -2775,7 +2775,7 @@ VIEW: QUIZ SETUP
             VIEW: VOKABEL-TRAINER
             ========================================================== -->
             <div id="view-vokabeln" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView(menu)">Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-5 text-center space-y-4">
                     <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
                     <div id="lang-selector" class="dash-sub-nav">
@@ -8821,7 +8821,7 @@ VIEW: QUIZ SETUP
             isLiveDuelCreator = false;
             liveDuelResolving = false;
             liveDuelRenderKey = "";
-            switchView(currentPlayer ? 'menu' : 'family-hub');
+            switchView('live-duel-setup');
 
             if (!ref || !activePlayerKey) return;
             try {

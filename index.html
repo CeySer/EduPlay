@@ -427,6 +427,105 @@
         }
 
         /* ============================================================
+   FLOATING ACTION BUTTON (FAB)
+   ============================================================ */
+        .fab-container {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fab {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            border: none;
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .fab:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 48px rgba(99, 102, 241, 0.5);
+        }
+
+        .fab:active {
+            transform: scale(0.9);
+        }
+
+        .fab .tooltip {
+            position: absolute;
+            right: 74px;
+            background: rgba(14, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            white-space: nowrap;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            transform: translateX(10px);
+        }
+
+        .fab:hover .tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fab .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #f43f5e;
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-primary);
+        }
+
+        /* FAB für mobil optimieren */
+        @media (max-width: 480px) {
+            .fab-container {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .fab {
+                width: 56px;
+                height: 56px;
+                font-size: 24px;
+            }
+
+            .fab .tooltip {
+                display: none;
+                /* Auf mobil kein Tooltip, wegen Platz */
+            }
+        }
+
+        /* ============================================================
            PLAYER CARDS
            ============================================================ */
         .player-card {
@@ -1566,6 +1665,17 @@
     TOAST CONTAINER
     ============================================================ -->
     <div id="toast-container"></div>
+
+    <!-- ============================================================
+   FLOATING ACTION BUTTON (FAB)
+   ============================================================ -->
+    <div class="fab-container" id="fabContainer">
+        <button class="fab" id="fabButton" onclick="handleFabClick()" title="Schnellstart">
+            <span id="fabIcon">🏠</span>
+            <span class="tooltip" id="fabTooltip">Zum Hauptmenü</span>
+            <span class="badge" id="fabBadge" style="display:none;">1</span>
+        </button>
+    </div>
 
     <!-- ============================================================
     APP SHELL
@@ -7401,92 +7511,24 @@ VIEW: QUIZ SETUP
             html += `</div>`;
 
             const names = esc(sorted.map(p => p.name).join(", "));
-
-            // NEU: Erkennen ob es ein Quiz oder Scrabble war
-            const isScrabble = tvHostMode === 'scrabble';
-            const modeIcon = isScrabble ? '🔤' : '📚';
-            const modeName = isScrabble ? 'Wort-Duell' : 'Quiz';
-
             html += `
-        <div class="glass-card p-8 mt-12 max-w-3xl mx-auto w-full space-y-4" style="border-color:rgba(99,102,241,0.15);">
-            <p class="text-3xl font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
-            <p class="text-xl text-gray-400 text-center">Alle bleiben dabei: ${names}</p>
-            
-            <!-- Modus-Umschalter für den Neustart -->
-            <div class="dash-sub-nav">
-                <button id="againmode-quiz" class="${isScrabble ? '' : 'active'}" onclick="setTVAgainMode('quiz')">🧠 Quiz</button>
-                <button id="againmode-scrabble" class="${isScrabble ? 'active' : ''}" onclick="setTVAgainMode('scrabble')">🔤 Wort-Duell</button>
-            </div>
-            
-            <!-- Quiz-Optionen -->
-            <div id="again-quiz-options" class="${isScrabble ? 'hidden' : ''} space-y-3">
-                <div class="dash-sub-nav">
-                    <button id="againtopic-spass" class="active" onclick="setTVAgainTopic('spass')">🎉 Spaß</button>
-                    <button id="againtopic-lernen" onclick="setTVAgainTopic('lernen')">📚 Lernen</button>
-                </div>
-                <select id="tv-again-area" class="input-modern font-bold text-xl"></select>
-                <select id="tv-again-category" class="input-modern font-bold text-xl"></select>
-            </div>
-            
-            <!-- Scrabble-Optionen -->
-            <div id="again-scrabble-options" class="${isScrabble ? '' : 'hidden'} space-y-3">
-                <div>
-                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
-                    <select id="tv-again-wordmode" class="input-modern font-bold text-lg">
-                        <option value="kids" selected>👶 Kinder</option>
-                        <option value="adult">🎓 Erwachsene</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
-                    <select id="tv-again-difficulty" class="input-modern font-bold text-lg">
-                        <option value="leicht">🟢 Leicht (6 Buchstaben, 70 Sek.)</option>
-                        <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 55 Sek.)</option>
-                        <option value="schwer">🔴 Schwer (8 Buchstaben, 40 Sek.)</option>
-                        <option value="experte">🟣 Experte (9 Buchstaben, 30 Sek.)</option>
-                        <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
-                    </select>
-                </div>
-                <label class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
-                    <input type="checkbox" id="tv-again-require-letter" class="w-5 h-5 accent-amber-500 mt-0.5">
-                    <span class="text-sm">
-                        <span class="font-bold text-white">Pflichtbuchstabe</span>
-                        <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss im Wort vorkommen.</span>
-                    </span>
-                </label>
-                <label class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
-                    <input type="checkbox" id="tv-again-action-mode" class="w-5 h-5 accent-red-500 mt-0.5">
-                    <span class="text-sm">
-                        <span class="font-bold text-white">⚡ Action-Modus</span>
-                        <span class="block text-[11px] text-gray-400">Das komplette Wort ändert sich zufällig – sei schnell!</span>
-                    </span>
-                </label>
-                <div>
-                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Anzahl Runden</label>
-                    <select id="tv-again-rounds" class="input-modern font-bold text-lg">
-                        <option value="3">3 Runden</option>
-                        <option value="5" selected>5 Runden</option>
-                        <option value="8">8 Runden</option>
-                    </select>
-                </div>
-            </div>
-            
-            <button onclick="restartTVGame()" class="btn-primary w-full text-center text-2xl py-6" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
-        </div>
-        <div class="text-center"><button onclick="window.location.reload()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Beenden & Zurück zum Übersicht</button></div>
-    `;
+                    <div class="glass-card p-8 mt-12 max-w-3xl mx-auto w-full space-y-4" style="border-color:rgba(99,102,241,0.15);">
+                        <p class="text-3xl font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
+                        <p class="text-xl text-gray-400 text-center">Alle bleiben dabei: ${names}</p>
+                        <div class="dash-sub-nav">
+                            <button id="againtopic-spass" onclick="setTVAgainTopic('spass')" class="active">🎉 Spaß</button>
+                            <button id="againtopic-lernen" onclick="setTVAgainTopic('lernen')" class="">📚 Lernen</button>
+                        </div>
+                        <select id="tv-again-area" class="input-modern font-bold text-xl"></select>
+                        <select id="tv-again-category" class="input-modern font-bold text-xl"></select>
+                        <button onclick="restartTVGame()" class="btn-primary w-full text-center text-2xl py-6" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
+                    </div>
+                    <div class="text-center"><button onclick="window.location.reload()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Beenden & Zurück zum Übersicht</button></div>
+                `;
 
             document.getElementById("view-tv-quiz-host").innerHTML =
                 `<div class="min-h-[90vh] flex flex-col items-center justify-center p-6">${html}</div>`;
-
-            // Setup für die aktuellen Optionen
-            if (isScrabble) {
-                setTVAgainMode('scrabble');
-            } else {
-                setTVAgainTopic(tvTopicMode || "spass");
-                setupCategorySelectors("tv-again-area", "tv-again-category", tvTopicMode || "spass");
-            }
-
+            setTVAgainTopic(tvTopicMode || "spass");
             try {
                 if (typeof confetti === 'function') {
                     confetti();
@@ -7496,29 +7538,6 @@ VIEW: QUIZ SETUP
             SFX.win();
         }
 
-        // ============================================================
-        // MODUS-UMSCHALTER FÜR TV-NEUSTART
-        // ============================================================
-
-        let tvAgainMode = 'quiz';
-
-        function setTVAgainMode(mode) {
-            tvAgainMode = mode;
-            const qBtn = document.getElementById("againmode-quiz");
-            const sBtn = document.getElementById("againmode-scrabble");
-            const qOpts = document.getElementById("again-quiz-options");
-            const sOpts = document.getElementById("again-scrabble-options");
-
-            if (qBtn) qBtn.className = `flex-1 py-3 rounded-lg font-bold text-xl transition-all ${mode === 'quiz' ? 'active' : ''}`;
-            if (sBtn) sBtn.className = `flex-1 py-3 rounded-lg font-bold text-xl transition-all ${mode === 'scrabble' ? 'active' : ''}`;
-            if (qOpts) qOpts.classList.toggle('hidden', mode !== 'quiz');
-            if (sOpts) sOpts.classList.toggle('hidden', mode !== 'scrabble');
-
-            if (mode === 'quiz') {
-                setTVAgainTopic(tvTopicMode || "spass");
-                setupCategorySelectors("tv-again-area", "tv-again-category", tvTopicMode || "spass");
-            }
-        }
         function setTVAgainTopic(mode) {
             const s = document.getElementById("againtopic-spass");
             const l = document.getElementById("againtopic-lernen");
@@ -7533,111 +7552,51 @@ VIEW: QUIZ SETUP
 
         async function restartTVGame() {
             if (!tvGameRef) return;
+            const catSel = document.getElementById("tv-again-category");
+            const category = catSel ? catSel.value : null;
+            if (!category) return showToast("Bitte ein Thema wählen!", "error");
 
-            // Je nach Modus die passenden Werte holen
-            if (tvAgainMode === 'scrabble') {
-                // SCRABBLE NEUSTART
-                const difficulty = document.getElementById("tv-again-difficulty").value;
-                const totalRounds = parseInt(document.getElementById("tv-again-rounds").value);
-                const requireLetter = !!(document.getElementById("tv-again-require-letter") || {}).checked;
-                const wordMode = (document.getElementById("tv-again-wordmode") || {}).value || "kids";
-                const actionMode = !!(document.getElementById("tv-again-action-mode") || {}).checked;
+            const fresh = questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10);
+            if (fresh.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
+            tvQuestions = prepareQuestions(fresh);
 
-                tvUsedWords = new Set();
-                const rack = generateScrabbleRack(difficulty, requireLetter, wordMode);
+            try {
+                const snap = await tvGameRef.get();
+                if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
+                const playersData = snap.data().players || {};
+                if (Object.keys(playersData).length === 0) return showToast("Keine Spieler mehr in der Lobby.",
+                    "error");
 
-                try {
-                    const snap = await tvGameRef.get();
-                    if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
-                    const playersData = snap.data().players || {};
-                    if (Object.keys(playersData).length === 0) return showToast("Keine Spieler mehr in der Lobby.", "error");
+                Object.keys(playersData).forEach(k => {
+                    playersData[k].score = 0;
+                    playersData[k].hasAnswered = false;
+                    playersData[k].lastAnswer = null;
+                    playersData[k].word = "";
+                    playersData[k].coinsClaimed = false;
+                    playersData[k].lastRoundPoints = 0;
+                    playersData[k].wordStatus = null;
+                });
 
-                    Object.keys(playersData).forEach(k => {
-                        playersData[k].score = 0;
-                        playersData[k].hasAnswered = false;
-                        playersData[k].lastAnswer = null;
-                        playersData[k].word = "";
-                        playersData[k].coinsClaimed = false;
-                        playersData[k].lastRoundPoints = 0;
-                        playersData[k].wordStatus = null;
-                    });
-
-                    isResolving = false;
-                    await tvGameRef.update({
-                        status: "playing",
-                        mode: "scrabble",
-                        difficulty,
-                        totalRounds,
-                        currentRound: 1,
-                        requireLetter,
-                        wordMode,
-                        actionMode,
-                        currentLetters: rack.letters,
-                        currentSolution: rack.solution,
-                        currentRequired: rack.required || "",
-                        players: playersData,
-                        showAnswer: false
-                    });
-
-                    if (actionMode) {
-                        startTVActionMode({
-                            difficulty,
-                            requireLetter,
-                            wordMode,
-                            actionMode
-                        });
-                    }
-
-                    SFX.tap();
-                    showToast("Neue Wort-Runde gestartet – alle sind dabei! 🚀");
-                } catch (e) {
-                    handleError("restartTVGame", e, "Die neue Runde konnte nicht gestartet werden.");
-                }
-            } else {
-                // QUIZ NEUSTART (bestehende Logik)
-                const catSel = document.getElementById("tv-again-category");
-                const category = catSel ? catSel.value : null;
-                if (!category) return showToast("Bitte ein Thema wählen!", "error");
-
-                const fresh = questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10);
-                if (fresh.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
-                tvQuestions = prepareQuestions(fresh);
-
-                try {
-                    const snap = await tvGameRef.get();
-                    if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
-                    const playersData = snap.data().players || {};
-                    if (Object.keys(playersData).length === 0) return showToast("Keine Spieler mehr in der Lobby.", "error");
-
-                    Object.keys(playersData).forEach(k => {
-                        playersData[k].score = 0;
-                        playersData[k].hasAnswered = false;
-                        playersData[k].lastAnswer = null;
-                        playersData[k].word = "";
-                        playersData[k].coinsClaimed = false;
-                        playersData[k].lastRoundPoints = 0;
-                        playersData[k].wordStatus = null;
-                    });
-
-                    isResolving = false;
-                    await tvGameRef.update({
-                        status: "playing",
-                        mode: "quiz",
-                        category,
-                        currentQuestionIndex: 0,
-                        showAnswer: false,
-                        players: playersData,
-                        correctAnswer: tvQuestions[0].correct,
-                        answerCount: tvQuestions[0].answers.length
-                    });
-                    showTVHostQuestion(0);
-                    SFX.tap();
-                    showToast("Neue Runde gestartet – alle sind dabei! 🚀");
-                } catch (e) {
-                    handleError("restartTVGame", e, "Die neue Runde konnte nicht gestartet werden.");
-                }
+                isResolving = false;
+                await tvGameRef.update({
+                    status: "playing",
+                    mode: "quiz",
+                    category,
+                    currentQuestionIndex: 0,
+                    showAnswer: false,
+                    players: playersData,
+                    correctAnswer: tvQuestions[0].correct,
+                    answerCount: tvQuestions[0].answers.length
+                });
+                showTVHostQuestion(0);
+                SFX.tap();
+                showToast("Neue Runde gestartet – alle sind dabei! 🚀");
+            } catch (e) {
+                handleError("restartTVGame", e, "Die neue Runde konnte nicht gestartet werden.");
             }
-        }        // ============================================================
+        }
+
+        // ============================================================
         // ACTION-MODE FÜR TV-HOST
         // ============================================================
 
@@ -9728,8 +9687,174 @@ VIEW: QUIZ SETUP
         }
 
 
+        // ============================================================
+        //  FLOATING ACTION BUTTON (FAB) LOGIK
+        // ============================================================
 
+        // Speichert die letzte Aktivität des Spielers
+        let lastActivity = {
+            view: 'menu',      // Standard: Hauptmenü
+            label: 'Hauptmenü',
+            icon: '🏠'
+        };
 
+        // Funktion, die beim Klick auf den FAB ausgeführt wird
+        function handleFabClick() {
+            SFX.tap();
+
+            // Prüfen, ob der Spieler aktuell in einer Aktivität ist
+            const currentView = getCurrentView();
+
+            // Wenn wir schon im Hauptmenü sind, zur Family-Hub gehen
+            if (currentView === 'menu') {
+                switchView('family-hub');
+                updateFab('family-hub', '👨‍👩‍👧‍👦', 'Spieler wechseln');
+                return;
+            }
+
+            // Wenn wir in einer anderen View sind, zum Hauptmenü zurück
+            if (currentView !== 'family-hub' && currentView !== 'auth') {
+                // Letzte Aktivität speichern für später
+                lastActivity.view = currentView;
+                lastActivity.label = getViewLabel(currentView);
+                lastActivity.icon = getViewIcon(currentView);
+
+                switchView('menu');
+                updateFab('menu', '🏠', 'Zum Hauptmenü');
+                return;
+            }
+
+            // Wenn wir im Family-Hub sind, zum Hauptmenü
+            if (currentView === 'family-hub') {
+                switchView('menu');
+                updateFab('menu', '🏠', 'Zum Hauptmenü');
+                return;
+            }
+        }
+
+        // Hilft, die aktuelle View zu erkennen
+        function getCurrentView() {
+            const views = document.querySelectorAll('.view');
+            for (const view of views) {
+                if (!view.classList.contains('hidden')) {
+                    return view.id.replace('view-', '');
+                }
+            }
+            return 'menu';
+        }
+
+        // Gibt einen lesbaren Namen für die View zurück
+        function getViewLabel(viewId) {
+            const labels = {
+                'menu': 'Hauptmenü',
+                'family-hub': 'Familien-Hub',
+                'dashboard': 'Dashboard',
+                'quiz-setup': 'Quiz-Einstellungen',
+                'quiz': 'Quiz',
+                'vokabeln': 'Vokabel-Trainer',
+                'lesen': 'Lesen lernen',
+                'fokus': 'Fokus-Timer',
+                'rewards': 'Belohnungen',
+                'duel-setup': 'Duell',
+                'duel-play': 'Duell-Spiel',
+                'scrabble-setup': 'Wort-Duell',
+                'scrabble-play': 'Wort-Duell-Spiel',
+                'live-duel-setup': 'Live-Duell',
+                'live-duel-lobby': 'Live-Duell-Lobby',
+                'live-duel-play': 'Live-Duell-Spiel',
+                'tv-quiz-setup': 'TV-Quiz',
+                'tv-quiz-host': 'TV-Quiz (Host)',
+                'tv-quiz-player': 'TV-Quiz (Spieler)'
+            };
+            return labels[viewId] || viewId;
+        }
+
+        // Gibt ein passendes Icon für die View zurück
+        function getViewIcon(viewId) {
+            const icons = {
+                'menu': '🏠',
+                'family-hub': '👨‍👩‍👧‍👦',
+                'dashboard': '📊',
+                'quiz-setup': '🧠',
+                'quiz': '🎯',
+                'vokabeln': '🃏',
+                'lesen': '📖',
+                'fokus': '⏱️',
+                'rewards': '🎁',
+                'duel-setup': '⚔️',
+                'duel-play': '⚔️',
+                'scrabble-setup': '🔤',
+                'scrabble-play': '🔤',
+                'live-duel-setup': '⚔️',
+                'live-duel-lobby': '⚔️',
+                'live-duel-play': '⚔️',
+                'tv-quiz-setup': '📺',
+                'tv-quiz-host': '📺',
+                'tv-quiz-player': '📺'
+            };
+            return icons[viewId] || '🚀';
+        }
+
+        // Aktualisiert den FAB basierend auf der aktuellen View
+        function updateFab(viewId, icon, tooltip) {
+            const fabIcon = document.getElementById('fabIcon');
+            const fabTooltip = document.getElementById('fabTooltip');
+            const fabBadge = document.getElementById('fabBadge');
+
+            if (fabIcon) fabIcon.textContent = icon || '🚀';
+            if (fabTooltip) fabTooltip.textContent = tooltip || 'Schnellstart';
+
+            // Badge anzeigen, wenn wir nicht im Hauptmenü sind
+            if (fabBadge) {
+                if (viewId !== 'menu' && viewId !== 'family-hub' && viewId !== 'auth') {
+                    fabBadge.style.display = 'flex';
+                    fabBadge.textContent = '1';
+                } else {
+                    fabBadge.style.display = 'none';
+                }
+            }
+        }
+
+        // Initialisiere den FAB beim Start
+        function initFab() {
+            updateFab('menu', '🏠', 'Zum Hauptmenü');
+        }
+
+        // FAB bei View-Wechsel aktualisieren
+        const originalSwitchView = switchView;
+        switchView = function (viewId) {
+            // Original-Funktion aufrufen
+            originalSwitchView(viewId);
+
+            // FAB aktualisieren, aber nicht bei Auth
+            if (viewId !== 'auth') {
+                const icon = getViewIcon(viewId);
+                const label = getViewLabel(viewId);
+
+                // Wenn wir im Hauptmenü sind, "Zurück" anzeigen
+                if (viewId === 'menu') {
+                    updateFab('menu', '🏠', 'Zum Hauptmenü');
+                }
+                // Wenn wir im Family-Hub sind, zum Hauptmenü
+                else if (viewId === 'family-hub') {
+                    updateFab('family-hub', '👨‍👩‍👧‍👦', 'Zum Hauptmenü');
+                }
+                // In allen anderen Views: "Zum Hauptmenü"
+                else {
+                    updateFab(viewId, getViewIcon(viewId), `Zurück zum Menü`);
+                }
+            }
+        };
+
+        // Initialisiere beim Laden
+        document.addEventListener('DOMContentLoaded', function () {
+            initFab();
+        });
+
+        // FAB auch initialisieren, wenn die Seite schon geladen ist
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initFab();
+        }
 
         // ============================================================
         //  START
@@ -9739,6 +9864,7 @@ VIEW: QUIZ SETUP
             // Header umschalten
             const headerFamily = document.getElementById('header-familyhub');
             const headerMenu = document.getElementById('header-menu');
+
 
             if (viewId === 'family-hub') {
                 headerFamily?.classList.remove('hidden');
@@ -9825,6 +9951,10 @@ VIEW: QUIZ SETUP
         }
         if (typeof VOCABULARY_DATABASE === 'undefined') {
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe vocabulary.js");
+            // FAB aktualisieren (am Ende der switchView-Funktion)
+            if (viewId !== 'auth') {
+                updateFab(viewId, getViewIcon(viewId), viewId === 'menu' ? 'Zum Hauptmenü' : 'Zurück zum Menü');
+            }
         }
 
         console.log("🚀 EduPlay Hub gestartet (v2.23)");

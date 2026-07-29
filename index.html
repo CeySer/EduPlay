@@ -329,6 +329,7 @@
             transform: translateY(-3px);
         }
 
+        /* 
         /* ============================================================
            BUTTONS
            ============================================================ */
@@ -425,6 +426,208 @@
                 box-shadow: 0 0 50px rgba(99, 102, 241, 0.35);
             }
         }
+
+        */
+
+        /* ============================================================
+   KONSISTENTE BUTTONS - NEUES SYSTEM
+   ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+            min-height: 48px;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Größen */
+        .btn-sm {
+            padding: 8px 14px;
+            font-size: 12px;
+            min-height: 36px;
+            border-radius: 10px;
+        }
+
+        .btn-lg {
+            padding: 16px 28px;
+            font-size: 18px;
+            min-height: 56px;
+            border-radius: 18px;
+        }
+
+        /* Farbvarianten */
+        .btn-primary {
+            background: var(--gradient-main);
+            color: white;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.45);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid transparent;
+        }
+
+        .btn-ghost:hover:not(:disabled) {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .btn-danger {
+            background: var(--gradient-rose);
+            color: white;
+            box-shadow: 0 4px 20px rgba(244, 63, 94, 0.3);
+        }
+
+        .btn-danger:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(244, 63, 94, 0.45);
+        }
+
+        .btn-success {
+            background: var(--gradient-green);
+            color: white;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-success:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.45);
+        }
+
+        .btn-warning {
+            background: var(--gradient-amber);
+            color: #1a1a2e;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-warning:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(245, 158, 11, 0.45);
+        }
+
+        .btn-info {
+            background: var(--gradient-cool);
+            color: white;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-info:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.45);
+        }
+
+        /* Grid-Helfer */
+        .btn-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .btn-grid-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .btn-grid-2-sm {
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .btn-grid-3 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media (max-width: 480px) {
+            .btn-grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Icons in Buttons */
+        .btn .icon-left {
+            font-size: 1.2em;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .btn .icon-right {
+            font-size: 1.2em;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .btn .label-small {
+            display: block;
+            font-size: 10px;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-top: 1px;
+        }
+
+        /* Ripple-Effekt */
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 60%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .btn-auto {
+            width: auto;
+        }
+
 
         /* ============================================================
            PLAYER CARDS
@@ -2118,6 +2321,15 @@ BEREICH: INHALTE
                         geht's! 🔤</button>
                 </div>
             </div>
+
+            <div class="flex items-center justify-between gap-2 mb-2">
+                <button class="btn btn-danger btn-sm" onclick="leaveScrabbleGame()">
+                    <span class="icon-left">✕</span> Beenden
+                </button>
+                <span class="text-sm font-bold text-gray-400">🔤 Wort-Duell</span>
+                <span class="w-20"></span>
+            </div>
+
 
             <!-- ==========================================================
             VIEW: SCRABBLE SPIEL
@@ -5593,6 +5805,27 @@ VIEW: QUIZ SETUP
             // Gehe zur übergebenen View. Wenn nichts übergeben wurde, gehe standardmäßig zum 'family-hub'
             switchView(zielView || 'family-hub');
         }
+
+
+
+        function leaveScrabbleGame() {
+            if (!confirm('Möchtest du das Spiel wirklich beenden? Der Fortschritt geht verloren.')) return;
+
+            // Timer stoppen
+            if (scrabbleTimerInterval) {
+                clearInterval(scrabbleTimerInterval);
+                scrabbleTimerInterval = null;
+            }
+
+            // Scrabble-State zurücksetzen
+            scrabbleState = null;
+
+            // Zurück zum Menü
+            switchView('menu');
+        }
+
+
+
         function showQuestion() {
             const q = currentQuestions[qIndex];
             const optsContainer = document.getElementById("options-container");

@@ -2269,8 +2269,9 @@ BEREICH: INHALTE
             ========================================================== -->
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
-                    <!-- <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück</button> -->
-                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Beende oder was</button>
+                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück</button>
+                    <!-- <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Beenden oder
+                        was</button> -->
                     <div id="live-duel-status" class="text-xs font-bold text-gray-400"></div>
                     <div id="live-duel-countdown" class="min-w-[3rem] text-center text-xl font-black text-amber-400">
                     </div>
@@ -2281,10 +2282,10 @@ BEREICH: INHALTE
             <!-- ==========================================================
             VIEW: LIVE-DUELL ERGEBNIS
             ========================================================== -->
-            <div id="view-live-duel-result" class="view hidden space-y-4">
+            <!-- <div id="view-live-duel-result" class="view hidden space-y-4">
                 <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Zurück</button>
                 <div id="live-duel-result-content"></div>
-            </div>
+            </div> -->
 
             <!-- ==========================================================
             VIEW: HAUPTMENÜ
@@ -6866,7 +6867,7 @@ VIEW: QUIZ SETUP
                                 </div>`;
             });
             html += `</div>
-                        <button onclick="switchView('view-live-duel-lobby')" class="btn-primary w-full text-center mt-4">Zurück zur Übersicht</button>
+                        <button onclick="switchView('view-live-duel-lobby')" class="btn-primary w-full text-center mt-4">Zurück zur Übersicht oder was</button>
                     </div>`;
             document.getElementById("scrabble-result-content").innerHTML = html;
             scrabbleState = null;

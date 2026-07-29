@@ -329,7 +329,6 @@
             transform: translateY(-3px);
         }
 
-        /* 
         /* ============================================================
            BUTTONS
            ============================================================ */
@@ -426,208 +425,6 @@
                 box-shadow: 0 0 50px rgba(99, 102, 241, 0.35);
             }
         }
-
-        */
-
-        /* ============================================================
-   KONSISTENTE BUTTONS - NEUES SYSTEM
-   ============================================================ */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 20px;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: center;
-            user-select: none;
-            position: relative;
-            overflow: hidden;
-            min-height: 48px;
-            width: 100%;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn:active {
-            transform: scale(0.96);
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        /* Größen */
-        .btn-sm {
-            padding: 8px 14px;
-            font-size: 12px;
-            min-height: 36px;
-            border-radius: 10px;
-        }
-
-        .btn-lg {
-            padding: 16px 28px;
-            font-size: 18px;
-            min-height: 56px;
-            border-radius: 18px;
-        }
-
-        /* Farbvarianten */
-        .btn-primary {
-            background: var(--gradient-main);
-            color: white;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.45);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.06);
-            color: var(--text-secondary);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .btn-secondary:hover:not(:disabled) {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .btn-ghost {
-            background: transparent;
-            color: var(--text-muted);
-            border: 1px solid transparent;
-        }
-
-        .btn-ghost:hover:not(:disabled) {
-            color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.06);
-        }
-
-        .btn-danger {
-            background: var(--gradient-rose);
-            color: white;
-            box-shadow: 0 4px 20px rgba(244, 63, 94, 0.3);
-        }
-
-        .btn-danger:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(244, 63, 94, 0.45);
-        }
-
-        .btn-success {
-            background: var(--gradient-green);
-            color: white;
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn-success:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.45);
-        }
-
-        .btn-warning {
-            background: var(--gradient-amber);
-            color: #1a1a2e;
-            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
-        }
-
-        .btn-warning:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(245, 158, 11, 0.45);
-        }
-
-        .btn-info {
-            background: var(--gradient-cool);
-            color: white;
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-info:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.45);
-        }
-
-        /* Grid-Helfer */
-        .btn-grid {
-            display: grid;
-            gap: 10px;
-        }
-
-        .btn-grid-2 {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .btn-grid-2-sm {
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
-
-        .btn-grid-3 {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        @media (max-width: 480px) {
-            .btn-grid-3 {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        /* Icons in Buttons */
-        .btn .icon-left {
-            font-size: 1.2em;
-            line-height: 1;
-            flex-shrink: 0;
-        }
-
-        .btn .icon-right {
-            font-size: 1.2em;
-            line-height: 1;
-            flex-shrink: 0;
-        }
-
-        .btn .label-small {
-            display: block;
-            font-size: 10px;
-            font-weight: 400;
-            opacity: 0.8;
-            margin-top: 1px;
-        }
-
-        /* Ripple-Effekt */
-        .btn::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 60%);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .btn:hover::after {
-            opacity: 1;
-        }
-
-        .btn-full {
-            width: 100%;
-        }
-
-        .btn-auto {
-            width: auto;
-        }
-
 
         /* ============================================================
            PLAYER CARDS
@@ -2234,28 +2031,13 @@ BEREICH: INHALTE
             <!-- ==========================================================
             VIEW: DUELL SPIEL
             ========================================================== -->
-            <!-- ==========================================================
-VIEW: DUELL SPIEL
-========================================================== -->
             <div id="view-duel-play" class="view hidden space-y-4">
-
-                <!-- NEU: Kopf mit Beenden-Button -->
-                <div class="flex items-center justify-between gap-2">
-                    <button class="btn btn-danger btn-sm" onclick="leaveFamilyDuel()">
-                        <span class="icon-left">✕</span> Beenden
-                    </button>
-                    <span class="text-sm font-bold text-gray-400">⚔️ Familien-Duell</span>
-                    <span class="w-20"></span>
-                </div>
-
                 <div id="duel-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(244,63,94,0.15),rgba(236,72,153,0.1));border-color:rgba(244,63,94,0.2);">
                     <div id="duel-turn-emoji" class="text-6xl">🥊</div>
                     <h2 id="duel-turn-title" class="text-2xl font-black text-white">Name ist dran!</h2>
                     <p class="text-sm text-gray-400">Gib das Handy weiter und drück auf Los, wenn du bereit bist.</p>
-                    <button onclick="beginDuelTurn()" class="btn btn-primary w-full text-center">
-                        <span class="icon-left">🚀</span> Los geht's!
-                    </button>
+                    <button onclick="beginDuelTurn()" class="btn-primary w-full text-center">Los geht's! 🚀</button>
                 </div>
                 <div id="duel-question-area" class="hidden glass-card p-5 text-center space-y-4 shadow-lg">
                     <div id="duel-progress" class="text-xs text-gray-400 font-bold">Frage 1/8</div>
@@ -2277,7 +2059,6 @@ VIEW: DUELL SPIEL
             <div id="view-scrabble-setup" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
-
                     <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben Buchstaben und bilden
                         reihum das beste Wort daraus – <span class="text-amber-300 font-bold">ein Handy wird
@@ -2337,15 +2118,6 @@ VIEW: DUELL SPIEL
                         geht's! 🔤</button>
                 </div>
             </div>
-
-            <div class="flex items-center justify-between gap-2 mb-2">
-                <button class="btn btn-danger btn-sm" onclick="leaveScrabbleGame()">
-                    <span class="icon-left">✕</span> Beenden
-                </button>
-                <span class="text-sm font-bold text-gray-400">🔤 Wort-Duell</span>
-                <span class="w-20"></span>
-            </div>
-
 
             <!-- ==========================================================
             VIEW: SCRABBLE SPIEL
@@ -2476,7 +2248,7 @@ VIEW: DUELL SPIEL
             VIEW: LIVE-DUELL LOBBY
             ========================================================== -->
 
-            <!-- <div id="view-live-duel-lobby" class="view hidden space-y-4">
+            <div id="view-live-duel-lobby" class="view hidden space-y-4">
                 <div class="glass-card p-8 text-center space-y-6 shadow-lg">
                     <h2 class="text-3xl font-black text-white animate-pulse">Warte auf Mitspieler...</h2>
                     <p class="text-gray-400 text-sm">Die anderen tippen auf ihrem Handy auf <span
@@ -2486,40 +2258,21 @@ VIEW: DUELL SPIEL
                         class="hidden btn-primary w-full text-center text-xl">Los geht's! 🚀</button>
                     <p id="live-duel-wait-hint" class="text-xs text-gray-500">Warte, bis der Ersteller startet...</p>
 
-                    <button class="btn btn-danger btn-sm" onclick="leaveLiveDuel()">
-                        <span class="icon-left">✕</span> Duell verlassen
-                    </button>
-                </div>
-            </div> -->
+                    <!-- <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveLiveDuel()">Duell verlassen</button> -->
 
-            <!-- ==========================================================
-VIEW: LIVE-DUELL LOBBY
-========================================================== -->
-            <div id="view-live-duel-lobby" class="view hidden space-y-4">
-                <div class="flex items-center justify-between gap-2">
-                    <button class="btn btn-danger btn-sm" onclick="leaveLiveDuel()">
-                        <span class="icon-left">✕</span> Duell verlassen
-                    </button>
-                    <span class="text-sm font-bold text-gray-400">⚔️ Warte auf Mitspieler</span>
-                    <span class="w-20"></span>
-                </div>
-                <div class="glass-card p-8 text-center space-y-6 shadow-lg">
-                    <!-- Rest bleibt gleich -->
-                    ...
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveQuiz('live-duel-setup')">Duell
+                        verlassen</button>
+
                 </div>
             </div>
 
             <!-- ==========================================================
             VIEW: LIVE-DUELL SPIEL
             ========================================================== -->
-            <!-- ==========================================================
-VIEW: LIVE-DUELL SPIEL
-========================================================== -->
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
-                    <button onclick="leaveLiveDuel()" class="btn btn-danger btn-sm">
-                        <span class="icon-left">✕</span> Beenden
-                    </button>
+                    <!-- <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück</button> -->
+                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Beenden</button>
                     <div id="live-duel-status" class="text-xs font-bold text-gray-400"></div>
                     <div id="live-duel-countdown" class="min-w-[3rem] text-center text-xl font-black text-amber-400">
                     </div>
@@ -2530,23 +2283,8 @@ VIEW: LIVE-DUELL SPIEL
             <!-- ==========================================================
             VIEW: LIVE-DUELL ERGEBNIS
             ========================================================== -->
-            <!-- <div id="view-live-duel-result" class="view hidden space-y-4">
-                <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Zurück</button>
-                <div id="live-duel-result-content"></div>
-            </div> -->
-
-            <!-- ==========================================================
-VIEW: LIVE-DUELL ERGEBNIS
-========================================================== -->
             <div id="view-live-duel-result" class="view hidden space-y-4">
-                <div class="flex items-center justify-between gap-2">
-                    <button class="btn btn-secondary btn-sm" onclick="switchView('live-duel-setup')">
-                        <span class="icon-left">←</span> Zurück zur Auswahl
-                    </button>
-                    <button class="btn btn-danger btn-sm" onclick="leaveLiveDuel()">
-                        <span class="icon-left">✕</span> Beenden
-                    </button>
-                </div>
+                <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Zurück</button>
                 <div id="live-duel-result-content"></div>
             </div>
 
@@ -3006,9 +2744,8 @@ VIEW: QUIZ SETUP
             VIEW: QUIZ ARENA
             ========================================================== -->
             <div id="view-quiz" class="view hidden space-y-4">
-                <button class="btn btn-danger btn-sm" onclick="leaveQuizGame()">
-                    <span class="icon-left">✕</span> Beenden
-                </button>
+                <button class="btn-secondary text-sm py-2.5 px-4"
+                    onclick="leaveQuiz('view-live-duel-setup')">Beenden</button>
                 <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
                     style="border-color:rgba(99,102,241,0.2);">
                     ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
@@ -5856,27 +5593,6 @@ VIEW: QUIZ SETUP
             // Gehe zur übergebenen View. Wenn nichts übergeben wurde, gehe standardmäßig zum 'family-hub'
             switchView(zielView || 'family-hub');
         }
-
-
-
-        function leaveScrabbleGame() {
-            if (!confirm('Möchtest du das Spiel wirklich beenden? Der Fortschritt geht verloren.')) return;
-
-            // Timer stoppen
-            if (scrabbleTimerInterval) {
-                clearInterval(scrabbleTimerInterval);
-                scrabbleTimerInterval = null;
-            }
-
-            // Scrabble-State zurücksetzen
-            scrabbleState = null;
-
-            // Zurück zum Menü
-            switchView('menu');
-        }
-
-
-
         function showQuestion() {
             const q = currentQuestions[qIndex];
             const optsContainer = document.getElementById("options-container");
@@ -6043,7 +5759,7 @@ VIEW: QUIZ SETUP
                             <h2 class="text-2xl font-black text-white">${msg}</h2>
                             <div class="text-5xl font-black text-emerald-400">${correct} / ${total}</div>
                             <div class="text-gray-400 font-bold">${pct}% richtig beantwortet</div>
-                            <button onclick="switchView('quiz-setup')" class="btn-primary w-full text-center mt-4">Zurück zum Setup</button>
+                            <button onclick="switchView('menu')" class="btn-primary w-full text-center mt-4">Zurück zur Übersicht</button>
                         </div>`;
             switchView('test-result');
         }
@@ -7086,13 +6802,13 @@ VIEW: QUIZ SETUP
             stopActionMode();
 
             const sorted = [...scrabbleState.playerKeys].sort((a, b) => scrabbleState.scores[b] - scrabbleState.scores[a]);
+            // ... restlicher Code bleibt gleich ...
 
             const medals = ["🥇", "🥈", "🥉"];
             let html = `<div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(245,158,11,0.2);">
                             <div class="text-6xl">🔤</div>
                             <h2 class="text-2xl font-black text-white mb-2">Wort-Duell beendet!</h2>
                             <div class="space-y-3 max-w-sm mx-auto">`;
-
             sorted.forEach((key, i) => {
                 const medal = i < 3 ? medals[i] : `${i + 1}.`;
                 html += `<div class="flex items-center justify-between bg-white/5 border ${i === 0 ? 'border-amber-400' : 'border-white/5'} rounded-xl p-3">
@@ -7100,12 +6816,9 @@ VIEW: QUIZ SETUP
                                     <div class="font-black text-amber-400">${scrabbleState.scores[key]} Pkt.</div>
                                 </div>`;
             });
-
-            // Hier der Button zum Setup und kein extra Beenden-Button mehr
             html += `</div>
-                     <button onclick="switchView('scrabble-setup')" class="btn-primary w-full text-center mt-4">Zurück zum Setup</button>
-                 </div>`;
-
+                        <button onclick="switchView('view-live-duel-lobby')" class="btn-primary w-full text-center mt-4">Zurück zur Übersicht</button>
+                    </div>`;
             document.getElementById("scrabble-result-content").innerHTML = html;
             scrabbleState = null;
             switchView('scrabble-result');
@@ -7113,6 +6826,7 @@ VIEW: QUIZ SETUP
             try { if (typeof confetti === 'function') confetti(); } catch (e) { }
             SFX.win();
         }
+
         // ============================================================
         //  CAST / FERNSEHER
         // ============================================================
@@ -9097,45 +8811,9 @@ VIEW: QUIZ SETUP
             SFX.win();
         }
 
-        // async function leaveLiveDuel() {
-        //     clearLiveDuelTimers();
-        //     stopHostHeartbeat();
-        //     const ref = liveDuelRef;
-        //     const wasCreator = isLiveDuelCreator;
-
-        //     if (liveDuelUnsubscribe) liveDuelUnsubscribe();
-        //     liveDuelUnsubscribe = null;
-        //     liveDuelRef = null;
-        //     isLiveDuelCreator = false;
-        //     liveDuelResolving = false;
-        //     liveDuelRenderKey = "";
-        //     switchView('live-duel-setup');
-
-        //     if (!ref || !activePlayerKey) return;
-        //     try {
-        //         const snap = await ref.get();
-        //         if (!snap.exists) return;
-        //         const data = snap.data();
-        //         const players = data.players || {};
-        //         delete players[activePlayerKey];
-        //         const rest = Object.keys(players);
-
-        //         if (rest.length === 0) {
-        //             await ref.delete();
-        //         } else if (wasCreator) {
-        //             await ref.update({ players, createdBy: rest[0], updatedAt: Date.now() });
-        //         } else {
-        //             await ref.update({ players, updatedAt: Date.now() });
-        //         }
-        //     } catch (e) { /* Lobby war schon weg */ }
-        // }
-
-        // Existierende leaveLiveDuel() Funktion - ersetze das switchView Ziel
         async function leaveLiveDuel() {
             clearLiveDuelTimers();
             stopHostHeartbeat();
-            stopLiveDuelActionMode();
-
             const ref = liveDuelRef;
             const wasCreator = isLiveDuelCreator;
 
@@ -9145,8 +8823,6 @@ VIEW: QUIZ SETUP
             isLiveDuelCreator = false;
             liveDuelResolving = false;
             liveDuelRenderKey = "";
-
-            // 🔥 GEÄNDERT: Zurück zum Live-Duell-Setup, nicht zum Menü
             switchView('live-duel-setup');
 
             if (!ref || !activePlayerKey) return;
@@ -9167,13 +8843,6 @@ VIEW: QUIZ SETUP
                 }
             } catch (e) { /* Lobby war schon weg */ }
         }
-
-
-
-
-
-
-
 
         // ============================================================
         //  OPEN DUEL & TV LISTENER
@@ -10059,108 +9728,7 @@ VIEW: QUIZ SETUP
         });
 
 
-        // ============================================================
-        //  KONSISTENTE "BEENDEN"-FUNKTIONEN - FÜHREN ZUM SETUP ZURÜCK
-        // ============================================================
 
-        /**
-         * Beenden für Quiz (Einzelspieler) → zurück zum Quiz-Setup
-         */
-        function leaveQuizGame() {
-            if (!confirm('Möchtest du das Quiz wirklich beenden? Dein Fortschritt geht verloren.')) return;
-
-            // Timer stoppen (falls Test läuft)
-            if (testTimerInterval) {
-                clearInterval(testTimerInterval);
-                testTimerInterval = null;
-            }
-            testMode = false;
-            document.getElementById("test-timer-bar").classList.add("hidden");
-
-            // Zurück zum Quiz-Setup
-            switchView('quiz-setup');
-            showToast('Quiz beendet', 'info');
-        }
-
-        /**
-         * Beenden für Scrabble (Einzelgerät) → zurück zum Scrabble-Setup
-         */
-        function leaveScrabbleGame() {
-            if (!confirm('Möchtest du das Wort-Duell wirklich beenden? Der Fortschritt geht verloren.')) return;
-
-            // Timer stoppen
-            if (scrabbleTimerInterval) {
-                clearInterval(scrabbleTimerInterval);
-                scrabbleTimerInterval = null;
-            }
-
-            // Action-Mode stoppen (falls aktiv)
-            stopActionMode();
-
-            // Scrabble-State zurücksetzen
-            scrabbleState = null;
-
-            // Zurück zum Scrabble-Setup
-            switchView('scrabble-setup');
-            showToast('Wort-Duell beendet', 'info');
-        }
-
-        /**
-         * Beenden für Live-Duell (mehrere Handys) → zurück zur Live-Duell-Auswahl
-         */
-        // leaveLiveDuel() existiert bereits, wir passen das Ziel an:
-        // In der existierenden leaveLiveDuel() Funktion am Ende:
-        // switchView('live-duel-setup');  // statt 'menu'
-
-        /**
-         * Beenden für TV-Quiz → zurück zum TV-Setup
-         */
-        function leaveTVGame() {
-            if (!confirm('Möchtest du das TV-Quiz wirklich verlassen?')) return;
-
-            // Timer stoppen
-            if (tvCountdownInterval) {
-                clearInterval(tvCountdownInterval);
-                tvCountdownInterval = null;
-            }
-            stopTVAutoAdvance();
-            stopTVActionMode();
-
-            // Unsubscribe vom Listener
-            if (tvUnsubscribe) {
-                tvUnsubscribe();
-                tvUnsubscribe = null;
-            }
-
-            // Spieler aus der Lobby entfernen
-            if (tvGameRef && activePlayerKey) {
-                tvGameRef.get().then(snap => {
-                    if (snap.exists) {
-                        const players = snap.data().players || {};
-                        delete players[activePlayerKey];
-                        tvGameRef.update({ players });
-                    }
-                }).catch(() => { });
-            }
-
-            tvGameRef = null;
-            isTVHost = false;
-
-            // Zurück zum TV-Setup
-            switchView('tv-quiz-setup');
-            showToast('TV-Quiz verlassen', 'info');
-        }
-
-        /**
-         * Beenden für Familien-Duell (Einzelgerät) → zurück zum Family Hub
-         */
-        function leaveFamilyDuel() {
-            if (!confirm('Möchtest du das Familien-Duell wirklich beenden?')) return;
-            duelState = null;
-            // Zurück zum Family Hub (wo die Duelle ausgewählt werden)
-            switchView('family-hub');
-            showToast('Duell beendet', 'info');
-        }
 
     </script>
 

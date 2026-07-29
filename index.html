@@ -2257,9 +2257,8 @@ BEREICH: INHALTE
                     <button id="live-duel-start-btn" onclick="startLiveDuelRound()"
                         class="hidden btn-primary w-full text-center text-xl">Los geht's! 🚀</button>
                     <p id="live-duel-wait-hint" class="text-xs text-gray-500">Warte, bis der Ersteller startet...</p>
-                    <button class="btn-secondary text-sm py-2.5 px-4"
-                        onclick="leaveQuiz(view-live-duel-setup); switchView('view-live-duel-setup')">Duell verlassen
-                    </button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveLiveDuel()">Duell verlassen</button>
+
                 </div>
             </div>
 
@@ -8822,7 +8821,7 @@ VIEW: QUIZ SETUP
             isLiveDuelCreator = false;
             liveDuelResolving = false;
             liveDuelRenderKey = "";
-            switchView(currentPlayer ? 'menu' : 'family-hub');
+            switchView('live-duel-setup');
 
             if (!ref || !activePlayerKey) return;
             try {

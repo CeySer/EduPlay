@@ -1620,6 +1620,289 @@
             border-left: 1px solid rgba(200, 210, 230, 0.2);
             border-right: 1px solid rgba(200, 210, 230, 0.2);
         }
+
+        /* ==========================================================
+   NEUES FLIP-CARD LAYOUT (Modernes EduPlay-Design)
+   ========================================================== */
+        .flip-card-container {
+            perspective: 1000px;
+            width: 100%;
+            height: 250px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            border-radius: 20px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .flip-card-inner:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .flip-card-container.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Vorderseite: Fragen-Design */
+        .flip-card-front {
+            background: linear-gradient(145deg, rgba(30, 48, 80, 0.9), rgba(20, 30, 51, 0.95));
+            color: var(--text-primary);
+        }
+
+        /* Rückseite: Antwort-Design */
+        .flip-card-back {
+            background: linear-gradient(145deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.15));
+            color: white;
+            transform: rotateY(180deg);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Typografie für Flip-Cards */
+        .flip-card-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.4;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .flip-card-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .flip-card-back .flip-card-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Hinweis unten */
+        .tap-hint {
+            position: absolute;
+            bottom: 12px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tap-hint::before {
+            content: '↺';
+            font-size: 1rem;
+        }
+
+
+        /* ==========================================================
+   NEUES MULTIPLE CHOICE QUIZ LAYOUT (Modernes EduPlay-Design)
+   ========================================================== */
+        .quiz-container {
+            background: rgba(20, 30, 51, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            width: 100%;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .quiz-progress {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+
+        .quiz-score {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #fbbf24;
+        }
+
+        .quiz-question {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.4;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .quiz-options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        @media (min-width: 480px) {
+            .quiz-options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .quiz-option-btn {
+            background: rgba(30, 48, 80, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 16px;
+            border-radius: 16px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quiz-option-btn:hover:not(:disabled) {
+            background: rgba(50, 70, 110, 0.7);
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-option-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .quiz-option-letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.6);
+            flex-shrink: 0;
+        }
+
+        .quiz-option-btn.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: #34d399;
+            color: white;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+
+        .quiz-option-btn.correct .quiz-option-letter {
+            background: #34d399;
+            color: #000;
+        }
+
+        .quiz-option-btn.wrong {
+            background: rgba(244, 63, 94, 0.2);
+            border-color: #f87171;
+            color: white;
+        }
+
+        .quiz-option-btn.wrong .quiz-option-letter {
+            background: #f87171;
+            color: #fff;
+        }
+
+        .quiz-option-btn:disabled {
+            cursor: default;
+            opacity: 0.6;
+        }
+
+        .quiz-option-btn.correct:disabled,
+        .quiz-option-btn.wrong:disabled {
+            opacity: 1;
+        }
+
+        .quiz-feedback {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .quiz-feedback.show {
+            display: block;
+        }
+
+        .quiz-feedback.success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #a7f3d0;
+        }
+
+        .quiz-feedback.error {
+            background: rgba(244, 63, 94, 0.1);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            color: #fecdd3;
+        }
+
+        .quiz-next-btn {
+            margin-top: 20px;
+            width: 100%;
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            transition: all 0.2s ease;
+            display: none;
+        }
+
+        .quiz-next-btn.show {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .quiz-next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
+        }
     </style>
 </head>
 
@@ -2142,7 +2425,8 @@ BEREICH: INHALTE
             VIEW: DUELL SPIEL
             ========================================================== -->
             <div id="view-duel-play" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2 px-3" onclick="if(confirm('Duell wirklich beenden?')) switchView('duel-setup')">Beenden</button>
+                <button class="btn-secondary text-sm py-2 px-3"
+                    onclick="if(confirm('Duell wirklich beenden?')) switchView('duel-setup')">Beenden</button>
                 <div id="duel-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(244,63,94,0.15),rgba(236,72,153,0.1));border-color:rgba(244,63,94,0.2);">
                     <div id="duel-turn-emoji" class="text-6xl">🥊</div>
@@ -2234,7 +2518,8 @@ BEREICH: INHALTE
             VIEW: SCRABBLE SPIEL
             ========================================================== -->
             <div id="view-scrabble-play" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2 px-3" onclick="if(confirm('Wort-Duell wirklich beenden?')){ if(scrabbleState&&scrabbleState.changeInterval){clearInterval(scrabbleState.changeInterval);scrabbleState.changeInterval=null;} switchView('scrabble-setup'); }">Beenden</button>
+                <button class="btn-secondary text-sm py-2 px-3"
+                    onclick="if(confirm('Wort-Duell wirklich beenden?')){ if(scrabbleState&&scrabbleState.changeInterval){clearInterval(scrabbleState.changeInterval);scrabbleState.changeInterval=null;} switchView('scrabble-setup'); }">Beenden</button>
                 <div id="scrabble-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(251,191,36,0.1));border-color:rgba(245,158,11,0.2);">
                     <div class="text-6xl">🔤</div>
@@ -2521,7 +2806,7 @@ BEREICH: INHALTE
             <!-- ==========================================================
 VIEW: HAUPTMENÜ
 ========================================================== -->
-            
+
 
 
 
@@ -2756,25 +3041,31 @@ VIEW: QUIZ SETUP
             </div>
 
             <!-- ==========================================================
-            VIEW: QUIZ ARENA
-            ========================================================== -->
+VIEW: QUIZ ARENA (NEU)
+========================================================== -->
             <div id="view-quiz" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4"
                     onclick="leaveQuiz('view-live-duel-setup')">Beenden</button>
+
                 <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
                     style="border-color:rgba(99,102,241,0.2);">
                     ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
                 </div>
-                <div class="glass-card p-5 text-center space-y-4 shadow-lg">
-                    <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
+
+                <!-- Hier wird dynamisch das neue Layout eingefügt -->
+                <div class="glass-card p-5 shadow-lg" id="quiz-main-container">
+                    <!-- Wrapper, damit wir den Header (Progress/Coins) einfügen können -->
+                    <div id="question-header-wrapper">
+                        <h2 id="question-text" class="quiz-question">Lade Frage...</h2>
+                    </div>
+
                     <div id="options-container" class="flex flex-col gap-2.5"></div>
-                    <div id="explanation-box" class="hidden"></div>
-                    <button id="next-question-btn" class="btn-primary w-full hidden text-center"
-                        style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);"
-                        onclick="triggerNextQuestion()">Nächste Frage ➔</button>
+                    <div id="explanation-box" class="quiz-feedback"></div>
+
+                    <button id="next-question-btn" class="quiz-next-btn" onclick="triggerNextQuestion()">Nächste Frage
+                        ➔</button>
                 </div>
             </div>
-
             <!-- ==========================================================
             VIEW: TEST-ERGEBNIS
             ========================================================== -->
@@ -5577,48 +5868,121 @@ VIEW: QUIZ SETUP
             // Gehe zur übergebenen View. Wenn nichts übergeben wurde, gehe standardmäßig zum 'family-hub'
             switchView(zielView || 'family-hub');
         }
+        // ==========================================================
+        // JS INTEGRATION FÜR DAS NEUE QUIZ-DESIGN
+        // ==========================================================
+
         function showQuestion() {
             const q = currentQuestions[qIndex];
             const optsContainer = document.getElementById("options-container");
             const expBox = document.getElementById("explanation-box");
+
+            // Leere alte Inhalte
             optsContainer.innerHTML = "";
-            expBox.classList.add("hidden");
-            document.getElementById("next-question-btn").classList.add("hidden");
+            optsContainer.className = ""; // Reset für unterschiedliche Layouts
+
+            // Feedback/Next-Button verstecken
+            expBox.classList.remove("show");
+            expBox.classList.remove("success", "error");
+            document.getElementById("next-question-btn").classList.remove("show");
 
             if (quizMode === 'flashcards') {
-                document.getElementById("question-text").innerText = "Klicke zum Umdrehen";
-                optsContainer.innerHTML =
-                    `<div class="flip-card w-full h-64 cursor-pointer" onclick="this.classList.toggle('flipped')">
-                                <div class="flip-card-inner shadow-lg">
-                                    <div class="flip-card-front glass-card-glow flex flex-col items-center justify-center font-bold text-xl text-white p-6 text-center" style="background:rgba(99,102,241,0.15);border-color:rgba(99,102,241,0.2);">${q.question}</div>
-                                    <div class="flip-card-back glass-card-glow flex flex-col items-center justify-center text-white p-6 text-center" style="background:rgba(236,72,153,0.15);border-color:rgba(236,72,153,0.2);">
-                                        <span class="text-yellow-400 font-black mb-3">Lösung: ${q.answers[q.correct]}</span>
-                                        <span class="text-sm font-medium bg-black/20 p-3 rounded-lg leading-snug">${q.explanation}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <button onclick="triggerNextQuestion()" class="mt-4 btn-primary w-full text-center">Nächste Karte ➔</button>`;
+                // --- FLIP CARD MODUS ---
+                document.getElementById("question-text").innerText = "Karteikarten-Modus";
+                optsContainer.className = "w-full";
+
+                optsContainer.innerHTML = `
+            <div class="flip-card-container" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="flip-card-label">Frage</span>
+                        <span class="flip-card-text">${esc(q.question)}</span>
+                        <span class="tap-hint">Tippe zum Umdrehen</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="flip-card-label">Lösung</span>
+                        <span class="flip-card-text text-amber-400">${esc(q.answers[q.correct])}</span>
+                        ${q.explanation ? `<div class="mt-4 text-sm bg-black/20 p-3 rounded-lg">${esc(q.explanation)}</div>` : ''}
+                        <span class="tap-hint">Tippe zum Zurückdrehen</span>
+                    </div>
+                </div>
+            </div>
+        `;
+
+                // Button für Flashcards direkt anzeigen
+                document.getElementById("next-question-btn").innerText = "Nächste Karte ➔";
+                document.getElementById("next-question-btn").classList.add("show");
+
+                // Optional: Den Quiz-Container etwas stylen für Flipcards
+                document.getElementById("quiz-main-container").className = "glass-card p-5 shadow-lg bg-transparent border-0";
+                document.getElementById("question-header-wrapper").innerHTML = `<h3 id="question-text" class="quiz-question text-center text-gray-400 text-sm">Karte ${qIndex + 1}/${currentQuestions.length}</h3>`;
+
             } else {
-                document.getElementById("question-text").innerText = q.question;
+                // --- MULTIPLE CHOICE MODUS ---
+                // Wir bauen den Header (Progress/Score) direkt über die Frage
+                let progressHtml = "";
+                if (!testMode) {
+                    progressHtml = `
+                <div class="quiz-header">
+                    <span class="quiz-progress">Frage ${qIndex + 1} / ${currentQuestions.length}</span>
+                    <span class="quiz-score">🪙 ${currentPlayer ? (currentPlayer.coins || 0) : 0}</span>
+                </div>
+            `;
+                } else {
+                    progressHtml = `
+                <div class="quiz-header">
+                    <span class="quiz-progress">Testfrage ${qIndex + 1} / ${currentQuestions.length}</span>
+                </div>
+            `;
+                }
+
+                // Überschreibe den kompletten Fragen-Container, um das neue Layout reinzubekommen
+                const quizCard = document.getElementById("quiz-main-container");
+                quizCard.className = "quiz-container shadow-lg";
+
+                // Setze das neue HTML (Header + Frage)
+                const wrapper = document.getElementById("question-header-wrapper");
+                if (wrapper) {
+                    wrapper.innerHTML = `
+                ${progressHtml}
+                <h3 id="question-text" class="quiz-question">${esc(q.question)}</h3>
+            `;
+                }
+
+                // Grid für Antworten anwenden
+                optsContainer.className = "quiz-options-grid";
+
+                const letters = ["A", "B", "C", "D", "E", "F"];
+
                 q.answers.forEach((ans, i) => {
                     const b = document.createElement("button");
-                    b.className =
-                        "w-full p-4 bg-white/5 hover:bg-white/10 rounded-xl font-bold text-white mt-2 border border-white/5 transition-colors";
-                    b.innerText = ans;
+                    b.className = "quiz-option-btn";
+                    b.innerHTML = `
+                <span class="quiz-option-letter">${letters[i] || '-'}</span>
+                <span>${esc(ans)}</span>
+            `;
                     b.onclick = () => checkQuiz(i, q.correct, q.explanation, q.answers[q.correct]);
                     optsContainer.appendChild(b);
                 });
+
+                // Button Text zurücksetzen
+                document.getElementById("next-question-btn").innerText = "Nächste Frage ➔";
             }
         }
 
         function checkQuiz(sel, cor, exp, correctAnswerText) {
             if (testMode && testTimeRemaining <= 0) return;
+
             const btns = document.getElementById("options-container").children;
+
+            // Buttons stylen und deaktivieren
             for (let i = 0; i < btns.length; i++) {
                 btns[i].disabled = true;
-                if (i === cor) btns[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white mt-2 shadow-md";
-                else if (i === sel) btns[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white mt-2 opacity-60";
-                else btns[i].classList.add("opacity-30");
+                if (i === cor) {
+                    btns[i].classList.add("correct");
+                } else if (i === sel) {
+                    btns[i].classList.add("wrong");
+                }
             }
 
             const q = currentQuestions[qIndex];
@@ -5626,11 +5990,15 @@ VIEW: QUIZ SETUP
                 if (!currentPlayer.stats) currentPlayer.stats = {};
                 if (!currentPlayer.stats[q.category]) currentPlayer.stats[q.category] = { attempts: 0, correct: 0 };
                 currentPlayer.stats[q.category].attempts++;
+
                 if (!currentPlayer.wrongQuestions) currentPlayer.wrongQuestions = [];
+
                 if (sel === cor) {
                     currentPlayer.stats[q.category].correct++;
+                    // Entferne aus falschen Fragen, falls drin
                     currentPlayer.wrongQuestions = currentPlayer.wrongQuestions.filter(w => !(w.category === q.category && w.question === q.question));
                 } else {
+                    // Füge zu falschen Fragen hinzu
                     const alreadyThere = currentPlayer.wrongQuestions.some(w => w.category === q.category && w.question === q.question);
                     if (!alreadyThere) currentPlayer.wrongQuestions.push({
                         category: q.category,
@@ -5638,29 +6006,52 @@ VIEW: QUIZ SETUP
                     });
                 }
             }
-            if (testMode) { testAnsweredCount++; if (sel === cor) testCorrectCount++; }
+
+            if (testMode) {
+                testAnsweredCount++;
+                if (sel === cor) testCorrectCount++;
+            }
 
             const expBox = document.getElementById("explanation-box");
+
             if (sel === cor) {
                 addXP(10);
                 if (typeof confetti === 'function') confetti();
                 SFX.correct();
-                expBox.innerHTML =
-                    `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`;
-                expBox.className =
-                    "p-4 bg-white/5 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
+
+                expBox.className = "quiz-feedback success show";
+                expBox.innerHTML = `
+            <div style="font-weight: 800; margin-bottom: 8px; display:flex; align-items:center; gap:8px;">
+                <span style="font-size:1.2rem">✅</span> Super gemacht!
+            </div>
+            ${exp ? `<div class="text-sm opacity-90">${esc(exp)}</div>` : ''}
+        `;
             } else {
                 savePlayerProgress();
                 SFX.wrong();
                 showToast("Leider falsch!", "error");
-                expBox.innerHTML =
-                    `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/20 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp}</div>`;
-                expBox.className =
-                    "p-4 bg-white/5 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block";
-            }
-            document.getElementById("next-question-btn").classList.remove("hidden");
-        }
 
+                expBox.className = "quiz-feedback error show";
+                expBox.innerHTML = `
+            <div style="font-weight: 800; margin-bottom: 8px; display:flex; align-items:center; gap:8px;">
+                <span style="font-size:1.2rem">❌</span> Nicht ganz.
+            </div>
+            <div style="background: rgba(0,0,0,0.15); padding: 10px 12px; border-radius: 8px; margin-bottom: 8px;">
+                Richtig ist: <strong class="text-white">${esc(correctAnswerText)}</strong>
+            </div>
+            ${exp ? `<div class="text-sm opacity-90">${esc(exp)}</div>` : ''}
+        `;
+            }
+
+            // Nächste Frage Button einblenden
+            document.getElementById("next-question-btn").classList.add("show");
+
+            // Score im Header live updaten
+            const scoreEl = document.querySelector(".quiz-score");
+            if (scoreEl && currentPlayer && !testMode) {
+                scoreEl.innerHTML = `🪙 ${currentPlayer.coins || 0}`;
+            }
+        }
         function triggerNextQuestion() {
             qIndex++;
             if (testMode) {
@@ -8918,11 +9309,11 @@ VIEW: QUIZ SETUP
         // Zufall bleibt, aber gleicher Rahmen in JEDEM Spiel + Mindestabstand.
         // ============================================================
         const ACTION_TIMINGS = {
-            leicht:  { firstChange: 8,  minGap: 6,  maxGap: 10, maxChanges: 4 },
-            mittel:  { firstChange: 10, minGap: 8,  maxGap: 12, maxChanges: 3 },
-            schwer:  { firstChange: 12, minGap: 10, maxGap: 15, maxChanges: 3 },
+            leicht: { firstChange: 8, minGap: 6, maxGap: 10, maxChanges: 4 },
+            mittel: { firstChange: 10, minGap: 8, maxGap: 12, maxChanges: 3 },
+            schwer: { firstChange: 12, minGap: 10, maxGap: 15, maxChanges: 3 },
             experte: { firstChange: 15, minGap: 12, maxGap: 18, maxChanges: 2 },
-            profi:   { firstChange: 18, minGap: 15, maxGap: 22, maxChanges: 2 }
+            profi: { firstChange: 18, minGap: 15, maxGap: 22, maxChanges: 2 }
         };
         function getActionTiming(difficulty) {
             return ACTION_TIMINGS[difficulty] || ACTION_TIMINGS.mittel;
@@ -10872,6 +11263,9 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             if (gr) gr.classList.remove('hidden');
             if (typeof switchView === 'function') switchView('lesen');
         }
+
+
+
 
     </script>
 

@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.23</title>
+    <title>EduPlay Hub - Familien Edition v2.24</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -1693,7 +1693,7 @@ HEADER FÜR FAMILY HUB
         <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.23</span>
+                <span class="version">v2.24</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1708,7 +1708,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
                 <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
-                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.23</span>
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.24</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1730,7 +1730,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.23</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.24</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -2142,6 +2142,7 @@ BEREICH: INHALTE
             VIEW: DUELL SPIEL
             ========================================================== -->
             <div id="view-duel-play" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2 px-3" onclick="if(confirm('Duell wirklich beenden?')) switchView('duel-setup')">Beenden</button>
                 <div id="duel-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(244,63,94,0.15),rgba(236,72,153,0.1));border-color:rgba(244,63,94,0.2);">
                     <div id="duel-turn-emoji" class="text-6xl">🥊</div>
@@ -2233,6 +2234,7 @@ BEREICH: INHALTE
             VIEW: SCRABBLE SPIEL
             ========================================================== -->
             <div id="view-scrabble-play" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2 px-3" onclick="if(confirm('Wort-Duell wirklich beenden?')){ if(scrabbleState&&scrabbleState.changeInterval){clearInterval(scrabbleState.changeInterval);scrabbleState.changeInterval=null;} switchView('scrabble-setup'); }">Beenden</button>
                 <div id="scrabble-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(251,191,36,0.1));border-color:rgba(245,158,11,0.2);">
                     <div class="text-6xl">🔤</div>
@@ -2380,8 +2382,6 @@ BEREICH: INHALTE
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
                     <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück</button>
-                    <!-- <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Beenden oder
-                        was</button> -->
                     <div id="live-duel-status" class="text-xs font-bold text-gray-400"></div>
                     <div id="live-duel-countdown" class="min-w-[3rem] text-center text-xl font-black text-amber-400">
                     </div>
@@ -2521,119 +2521,7 @@ BEREICH: INHALTE
             <!-- ==========================================================
 VIEW: HAUPTMENÜ
 ========================================================== -->
-            <div id="view-menu" class="view hidden space-y-4">
-                <!-- Kopf mit Spielerinfo -->
-                <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Spieler
-                        wechseln
-                    </button>
-                    <div class="flex items-center gap-2">
-                        <button onclick="toggleCast()" id="castButton"
-                            class="w-9 h-9 rounded-xl bg-white/5 border border-white/5 text-base shrink-0 text-gray-400 hover:text-white transition-all"
-                            title="Fernseher verbinden">
-                            🖥️
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Willkommenskarte – kompakt -->
-                <div class="glass-card-glow p-5 text-center shadow-lg">
-                    <h1 id="welcome-text" class="text-xl font-black text-white mb-1">Hallo!</h1>
-                    <div class="flex justify-center gap-5 text-sm font-bold">
-                        <span class="text-amber-400">🪙 <span id="menu-coins">0</span></span>
-                        <span id="menu-age-display" class="text-gray-400">🎒 <span id="menu-age">-</span></span>
-                    </div>
-                    <div class="mt-3 text-left">
-                        <div class="flex justify-between text-xs font-bold text-gray-300">
-                            <span id="menu-level-label">🌱 Anfänger</span>
-                            <span id="menu-level-next" class="text-gray-500 text-[10px]">Nächstes: 150 XP</span>
-                        </div>
-                        <div class="w-full bg-white/5 rounded-full h-2 overflow-hidden border border-white/5 mt-1">
-                            <div id="menu-level-bar"
-                                class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full transition-all"
-                                style="width:0%"></div>
-                        </div>
-                    </div>
-                    <div id="menu-streak" class="mt-2 text-sm font-bold text-orange-400">🔥 0 Tage Streak</div>
-                </div>
-
-                <!-- Abzeichen (kompakt) -->
-                <div id="menu-badges-row" class="flex gap-1.5 overflow-x-auto pb-1"></div>
-
-                <!-- Schwächen-Karte & Test-Karte -->
-                <div id="weakness-card" class="hidden"></div>
-                <div id="pending-test-card" class="hidden"></div>
-
-                <!-- 🔥 HAUPT-KACHELN: 3x2 Raster -->
-                <div class="grid grid-cols-3 gap-2.5 mt-1">
-                    <button onclick="showQuizSetup()"
-                        class="rounded-2xl p-4 text-center transition hover:scale-[1.03] active:scale-95"
-                        style="background:linear-gradient(135deg,#ec4899,#f43f5e);">
-                        <span class="text-2xl block">🧠</span>
-                        <span class="text-[10px] font-black text-white leading-tight">Wissen</span>
-                    </button>
-
-                    <button onclick="switchView('vokabeln')"
-                        class="rounded-2xl p-4 text-center transition hover:scale-[1.03] active:scale-95"
-                        style="background:linear-gradient(135deg,#10b981,#34d399);">
-                        <span class="text-2xl block">🃏</span>
-                        <span class="text-[10px] font-black text-white leading-tight">Vokabeln</span>
-                    </button>
-
-                    <button onclick="openLesen()"
-                        class="rounded-2xl p-4 text-center transition hover:scale-[1.03] active:scale-95"
-                        style="background:linear-gradient(135deg,#3b82f6,#6366f1);">
-                        <span class="text-2xl block">📖</span>
-                        <span class="text-[10px] font-black text-white leading-tight">Lesen</span>
-                    </button>
-
-                    <button onclick="switchView('fokus')"
-                        class="rounded-2xl p-4 text-center transition hover:scale-[1.03] active:scale-95"
-                        style="background:linear-gradient(135deg,#f59e0b,#fbbf24);">
-                        <span class="text-2xl block">⏱️</span>
-                        <span class="text-[10px] font-black text-slate-900 leading-tight">Fokus</span>
-                    </button>
-
-                    <button onclick="openLiveDuelSetup('quiz')"
-                        class="rounded-2xl p-4 text-center transition hover:scale-[1.03] active:scale-95"
-                        style="background:linear-gradient(135deg,#f43f5e,#ec4899);">
-                        <span class="text-2xl block">⚔️</span>
-                        <span class="text-[10px] font-black text-white leading-tight">Quiz-Duell</span>
-                    </button>
-
-                    <button onclick="openLiveDuelSetup('scrabble')"
-                        class="rounded-2xl p-4 text-center transition hover:scale-[1.03] active:scale-95"
-                        style="background:linear-gradient(135deg,#f59e0b,#fbbf24);">
-                        <span class="text-2xl block">🔤</span>
-                        <span class="text-[10px] font-black text-slate-900 leading-tight">Wort-Duell</span>
-                    </button>
-                </div>
-
-                <!-- TV-Quiz – etwas größer, als 7. Kachel -->
-                <button onclick="switchView('tv-quiz-setup')"
-                    class="w-full rounded-2xl p-4 text-center transition hover:scale-[1.01] active:scale-95"
-                    style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">
-                    <span class="text-2xl block">📺</span>
-                    <span class="text-sm font-black text-white">TV-Quiz – alle zusammen</span>
-                    <span class="text-[10px] font-bold text-indigo-200 block">Ein Fernseher, viele Handys</span>
-                </button>
-
-                <!-- Offene Duelle / TV-Lobbys – kompakt -->
-                <div id="open-duels-list" class="space-y-1.5"></div>
-                <div id="open-tv-list" class="space-y-1.5"></div>
-
-                <!-- Belohnungen & Feedback – kleine Zeile -->
-                <div class="grid grid-cols-2 gap-3 pt-1 border-t border-white/5">
-                    <button onclick="switchView('rewards')"
-                        class="p-3.5 glass-card rounded-2xl text-center font-bold text-sm text-purple-400 hover:bg-white/5 transition">
-                        🎁 Belohnungen
-                    </button>
-                    <button onclick="openFeedback('menu')"
-                        class="p-3.5 glass-card rounded-2xl text-center font-bold text-sm text-amber-400 hover:bg-white/5 transition">
-                        💬 Feedback
-                    </button>
-                </div>
-            </div>
+            
 
 
 
@@ -5858,7 +5746,7 @@ VIEW: QUIZ SETUP
             <div class="text-gray-400 font-bold">${pct}% richtig beantwortet</div>
             <div class="flex gap-3 mt-4">
                 <button onclick="startAssignedTest()" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Nochmal</button>
-                <button onclick="goToMainMenu()" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">🏠 Zum Menü</button>
+                <button onclick="goToMainMenu(); switchView('quiz-setup')" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Zurück</button>
             </div>
         </div>`;
             switchView('test-result');
@@ -6642,17 +6530,10 @@ VIEW: QUIZ SETUP
             if (scrabbleState.actionMode) {
                 scrabbleState.changeCount = 0;
                 scrabbleState.bonusEarned = false;
+                const timing = getActionTiming(scrabbleState.difficulty);
+                scrabbleState.maxChanges = timing.maxChanges;
                 showActionFeedback("⚡ Action-Modus aktiv!");
-
-                // 1. Zufällige Zeit berechnen (hier zwischen 1 und 8 Sekunden)
-                const minSekunden = 1;
-                const maxSekunden = 8;
-                const zufallsZeit = Math.floor(Math.random() * (maxSekunden - minSekunden + 1)) + minSekunden;
-
-                console.log("Die Buchstaben mischen sich dieses Mal nach " + zufallsZeit + " Sekunden!");
-
-                // 2. Die zufällige Zeit an die Funktion übergeben
-                startActionMode(scrabbleState.currentWord, "HIER_DEINE_HTML_ID_EINTRAGEN", zufallsZeit);
+                startActionMode();
             }
         }
 
@@ -6860,17 +6741,17 @@ VIEW: QUIZ SETUP
         function startActionMode() {
             if (!scrabbleState || !scrabbleState.actionMode) return;
 
-            // Zufällige Zeit bis zur nächsten Änderung (3-10 Sekunden)
-            scheduleNextChange();
+            const timing = getActionTiming(scrabbleState.difficulty);
+            // Erste Aenderung nach fester firstChange-Zeit
+            scrabbleState.nextChangeTime = Date.now() + timing.firstChange * 1000;
 
-            // Alle 500ms prüfen ob Zeit für Änderung gekommen ist
+            // Alle 500ms pruefen ob Zeit fuer Aenderung gekommen ist
             scrabbleState.changeInterval = setInterval(() => {
                 if (Date.now() >= scrabbleState.nextChangeTime) {
                     changeLettersRandomly();
                     scheduleNextChange();
                     scrabbleState.changeCount++;
 
-                    // Nach 5 Änderungen ist Schluss
                     if (scrabbleState.changeCount >= scrabbleState.maxChanges) {
                         clearInterval(scrabbleState.changeInterval);
                         scrabbleState.changeInterval = null;
@@ -6882,9 +6763,9 @@ VIEW: QUIZ SETUP
 
 
         function scheduleNextChange() {
-            // Zufällige Zeit zwischen 3 und 12 Sekunden
-            const delay = 3000 + Math.random() * 9000;
-            scrabbleState.nextChangeTime = Date.now() + delay;
+            // Abstand zufaellig, aber im festen Rahmen (mit Mindestabstand)
+            const timing = getActionTiming(scrabbleState.difficulty);
+            scrabbleState.nextChangeTime = Date.now() + actionRandomGap(timing) * 1000;
         }
 
         function changeLettersRandomly() {
@@ -6964,7 +6845,7 @@ VIEW: QUIZ SETUP
                                 </div>`;
             });
             html += `</div>
-                        <button onclick="switchView('view-live-duel-lobby')" class="btn-primary w-full text-center mt-4">Zurück zur Übersicht oder was</button>
+                        <button onclick="switchView('scrabble-setup')" class="btn-primary w-full text-center mt-4">⬅ Zurück</button>
                     </div>`;
             document.getElementById("scrabble-result-content").innerHTML = html;
             scrabbleState = null;
@@ -7541,7 +7422,7 @@ VIEW: QUIZ SETUP
                         <select id="tv-again-category" class="input-modern font-bold text-xl"></select>
                         <button onclick="restartTVGame()" class="btn-primary w-full text-center text-2xl py-6" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
                     </div>
-                    <div class="text-center"><button onclick="window.location.reload()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Beenden & Zurück zum Übersicht</button></div>
+                    <div class="text-center"><button onclick="leaveTVGame(); switchView('tv-quiz-setup')" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">⬅ Zurück</button></div>
                 `;
 
             document.getElementById("view-tv-quiz-host").innerHTML =
@@ -7625,21 +7506,12 @@ VIEW: QUIZ SETUP
         // ============================================================
 
         function getTVActionModeTimings(difficulty) {
-            // Gleiche Zeiten wie beim Live-Duell
-            const timings = {
-                leicht: { firstChange: 10, betweenChanges: 8, maxChanges: 4 },
-                mittel: { firstChange: 12, betweenChanges: 10, maxChanges: 3 },
-                schwer: { firstChange: 15, betweenChanges: 12, maxChanges: 3 },
-                experte: { firstChange: 18, betweenChanges: 15, maxChanges: 2 },
-                profi: { firstChange: 25, betweenChanges: 20, maxChanges: 2 }
-            };
-            return timings[difficulty] || timings.mittel;
+            return getActionTiming(difficulty);
         }
 
 
 
         function startTVActionMode(data) {
-            // Prüfen ob Action Mode aktiv ist
             if (!data || !data.actionMode) {
                 console.log("TV: Action Mode nicht aktiv");
                 return;
@@ -7647,21 +7519,21 @@ VIEW: QUIZ SETUP
 
             // Alten Timer stoppen
             if (tvActionModeInterval) {
-                clearInterval(tvActionModeInterval);
+                clearTimeout(tvActionModeInterval);
                 tvActionModeInterval = null;
             }
 
-            const timings = getTVActionModeTimings(data.difficulty || "mittel");
+            const timing = getActionTiming(data.difficulty || "mittel");
             let changeCount = 0;
-            const maxChanges = timings.maxChanges;
 
-            console.log(`📺 TV Action Mode gestartet (${maxChanges} Änderungen, erste nach ${timings.firstChange}s)`);
+            console.log(`📺 TV Action Mode gestartet (${timing.maxChanges} Aenderungen, erste nach ${timing.firstChange}s)`);
 
-            // Erste Änderung nach festgelegter Zeit
-            setTimeout(() => {
-                if (changeCount >= maxChanges) return;
-
-                // Buchstaben ändern
+            function tvChange() {
+                if (changeCount >= timing.maxChanges) {
+                    tvActionModeInterval = null;
+                    console.log("📺 TV Action Mode beendet");
+                    return;
+                }
                 const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
                 tvGameRef.update({
                     currentLetters: rack.letters,
@@ -7669,33 +7541,17 @@ VIEW: QUIZ SETUP
                     currentRequired: rack.required || ""
                 });
                 changeCount++;
-
-                // Weitere Änderungen planen
-                if (changeCount < maxChanges) {
-                    tvActionModeInterval = setInterval(() => {
-                        if (changeCount >= maxChanges) {
-                            clearInterval(tvActionModeInterval);
-                            tvActionModeInterval = null;
-                            console.log("📺 TV Action Mode beendet");
-                            return;
-                        }
-
-                        const newRack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
-                        tvGameRef.update({
-                            currentLetters: newRack.letters,
-                            currentSolution: newRack.solution,
-                            currentRequired: newRack.required || ""
-                        });
-                        changeCount++;
-
-                        if (changeCount >= maxChanges) {
-                            clearInterval(tvActionModeInterval);
-                            tvActionModeInterval = null;
-                            console.log("📺 TV Action Mode beendet");
-                        }
-                    }, timings.betweenChanges * 1000);
+                if (changeCount < timing.maxChanges) {
+                    // Abstand zufaellig, aber im festen Rahmen
+                    tvActionModeInterval = setTimeout(tvChange, actionRandomGap(timing) * 1000);
+                } else {
+                    tvActionModeInterval = null;
+                    console.log("📺 TV Action Mode beendet");
                 }
-            }, timings.firstChange * 1000);
+            }
+
+            // Erste Aenderung nach fester firstChange-Zeit
+            tvActionModeInterval = setTimeout(tvChange, timing.firstChange * 1000);
         }
 
         // Verbesserte stopTVActionMode
@@ -8913,7 +8769,7 @@ VIEW: QUIZ SETUP
             }
 
             html += `
-                            <button onclick="leaveLiveDuel()" class="btn-secondary w-full text-center mt-3 text-sm">Zurück zur Übersicht</button>
+                            <button onclick="leaveLiveDuel()" class="btn-secondary w-full text-center mt-3 text-sm">⬅ Zurück</button>
                         </div>`;
             document.getElementById("live-duel-result-content").innerHTML = html;
 
@@ -9057,16 +8913,26 @@ VIEW: QUIZ SETUP
         // ACTION-MODE FÜR LIVE-WORTDUELL - MIT OPTIMIERTEN ZEITEN
         // ============================================================
 
+        // ============================================================
+        // EINHEITLICHES ACTION-MODE TIMING (fuer Live-Duell, Scrabble, TV)
+        // Zufall bleibt, aber gleicher Rahmen in JEDEM Spiel + Mindestabstand.
+        // ============================================================
+        const ACTION_TIMINGS = {
+            leicht:  { firstChange: 8,  minGap: 6,  maxGap: 10, maxChanges: 4 },
+            mittel:  { firstChange: 10, minGap: 8,  maxGap: 12, maxChanges: 3 },
+            schwer:  { firstChange: 12, minGap: 10, maxGap: 15, maxChanges: 3 },
+            experte: { firstChange: 15, minGap: 12, maxGap: 18, maxChanges: 2 },
+            profi:   { firstChange: 18, minGap: 15, maxGap: 22, maxChanges: 2 }
+        };
+        function getActionTiming(difficulty) {
+            return ACTION_TIMINGS[difficulty] || ACTION_TIMINGS.mittel;
+        }
+        // Zufaelliger Abstand (Sekunden) im festen Rahmen, nie kuerzer als minGap
+        function actionRandomGap(t) {
+            return t.minGap + Math.random() * (t.maxGap - t.minGap);
+        }
         function getActionModeTimings(difficulty) {
-            // Angepasste Zeiten für jede Schwierigkeitsstufe
-            const timings = {
-                leicht: { firstChange: 10, betweenChanges: 8, maxChanges: 4 },
-                mittel: { firstChange: 12, betweenChanges: 10, maxChanges: 3 },
-                schwer: { firstChange: 15, betweenChanges: 12, maxChanges: 3 },
-                experte: { firstChange: 18, betweenChanges: 15, maxChanges: 2 },
-                profi: { firstChange: 25, betweenChanges: 20, maxChanges: 2 }
-            };
-            return timings[difficulty] || timings.mittel;
+            return getActionTiming(difficulty);
         }
 
         function startLiveDuelActionMode(data) {
@@ -9084,6 +8950,7 @@ VIEW: QUIZ SETUP
 
             // Timings für diese Schwierigkeitsstufe holen
             const timings = getActionModeTimings(data.difficulty || "mittel");
+            liveDuelActionTimings = timings;
             liveDuelChangeCount = 0;
             liveDuelMaxChanges = timings.maxChanges;
 
@@ -9109,27 +8976,28 @@ VIEW: QUIZ SETUP
                 changeLiveDuelLetters();
                 liveDuelChangeCount++;
 
-                // Nächste Änderung planen (mit zufälliger Abweichung ±2 Sekunden)
+                // Naechste Aenderung planen - zufaellig, aber im festen Rahmen
                 if (liveDuelChangeCount < timings.maxChanges) {
-                    const nextDelay = timings.betweenChanges + (Math.random() * 4 - 2); // ±2 Sekunden
-                    scheduleLiveDuelChange(nextDelay);
+                    scheduleLiveDuelChange(actionRandomGap(timings));
                 } else {
-                    // Letzte Änderung: noch ein letztes Mal anschlagen, dann Ende
+                    // Letzte Aenderung durchgefuehrt, sauber beenden
                     setTimeout(() => {
                         if (liveDuelActionInterval) {
                             stopLiveDuelActionMode();
                             showLiveDuelActionFeedback("⏰ Action-Modus beendet!");
                         }
-                    }, timings.betweenChanges * 1000 + 2000);
+                    }, timings.maxGap * 1000 + 2000);
                 }
             }, timings.firstChange * 1000);
         }
 
-        function scheduleLiveDuelChange(delay) {
+        function scheduleLiveDuelChange(delaySeconds) {
             if (!liveDuelRef) return;
 
-            // Zufällige Abweichung von ±2 Sekunden
-            const actualDelay = Math.max(5, delay + (Math.random() * 4 - 2));
+            const timings = liveDuelActionTimings || getActionTiming("mittel");
+            // Abstand zufaellig, aber immer >= Mindestabstand
+            const gap = (typeof delaySeconds === "number") ? delaySeconds : actionRandomGap(timings);
+            const actualDelay = Math.max(timings.minGap, gap);
 
             liveDuelActionInterval = setTimeout(() => {
                 if (liveDuelChangeCount >= liveDuelMaxChanges) {
@@ -9141,16 +9009,14 @@ VIEW: QUIZ SETUP
                 liveDuelChangeCount++;
 
                 if (liveDuelChangeCount < liveDuelMaxChanges) {
-                    const nextDelay = (liveDuelActionTimings?.betweenChanges || 10) + (Math.random() * 4 - 2);
-                    scheduleLiveDuelChange(nextDelay);
+                    scheduleLiveDuelChange(actionRandomGap(timings));
                 } else {
-                    // Letzte Änderung durchgeführt
                     setTimeout(() => {
                         if (liveDuelActionInterval) {
                             stopLiveDuelActionMode();
                             showLiveDuelActionFeedback("⏰ Action-Modus beendet!");
                         }
-                    }, (liveDuelActionTimings?.betweenChanges || 10) * 1000 + 2000);
+                    }, timings.maxGap * 1000 + 2000);
                 }
             }, actualDelay * 1000);
         }
@@ -9163,29 +9029,7 @@ VIEW: QUIZ SETUP
 
 
 
-        function scheduleLiveDuelChange() {
-            if (!liveDuelRef) return;
-
-            // Zufällige Zeit zwischen 3 und 10 Sekunden
-            const delay = 3000 + Math.random() * 7000;
-
-            liveDuelActionInterval = setTimeout(() => {
-                if (liveDuelChangeCount >= LIVE_DUEL_MAX_CHANGES) {
-                    stopLiveDuelActionMode();
-                    return;
-                }
-
-                // Buchstaben im Live-Duell ändern
-                changeLiveDuelLetters();
-
-                liveDuelChangeCount++;
-                if (liveDuelChangeCount < LIVE_DUEL_MAX_CHANGES) {
-                    scheduleLiveDuelChange();
-                } else {
-                    stopLiveDuelActionMode();
-                }
-            }, delay);
-        }
+        // (Doppelte scheduleLiveDuelChange mit Zufall 3-10s entfernt - siehe Version oben)
 
         // ============================================================
         // VERBESSERTE changeLiveDuelLetters
@@ -9975,7 +9819,7 @@ VIEW: QUIZ SETUP
             }
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.23)");
+        console.log("🚀 EduPlay Hub gestartet (v2.24)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
@@ -10060,7 +9904,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.23<br>
+            EduPlay Hub · v2.24<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -10097,7 +9941,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.23<br>
+            EduPlay Hub · v2.24<br>
             © 2026 · Familien Edition
         </div>
     </div>

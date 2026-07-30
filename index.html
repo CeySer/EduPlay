@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.24</title>
+    <title>EduPlay Hub - Familien Edition v2.25</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -24,6 +24,7 @@
     <script src="questions_school.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
     <script src="questions_beruf.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
     <script src="questions_fun.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="formula.js"></script>
     <!-- <script src="lesen.js?v=5"></script>
     <script src="lesen_in_index.js?v=6"></script> -->
 
@@ -1976,7 +1977,7 @@ HEADER FÜR FAMILY HUB
         <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.24</span>
+                <span class="version">v2.25</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1991,7 +1992,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
                 <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
-                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.24</span>
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.25</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -2013,7 +2014,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.24</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.25</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -10210,7 +10211,7 @@ VIEW: QUIZ ARENA (NEU)
             }
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.24)");
+        console.log("🚀 EduPlay Hub gestartet (v2.25)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
@@ -10295,7 +10296,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.24<br>
+            EduPlay Hub · v2.25<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -10332,7 +10333,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.24<br>
+            EduPlay Hub · v2.25<br>
             © 2026 · Familien Edition
         </div>
     </div>

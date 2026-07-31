@@ -2625,6 +2625,12 @@ BEREICH: INHALTE
                             <span class="text-3xl">🃏</span> Vokabeln
                         </button>
                     </div>
+                    <!-- Dein neuer Formeln-Button im Hauptmenü -->
+                    <button onclick="switchView('formel-setup')"
+                        class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
+                        style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);">
+                        <span class="text-3xl">🧮</span> Formeln
+                    </button>
                     <button onclick="switchView('lesen')"
                         class="btn-primary w-full flex flex-col items-center gap-1 text-center"
                         style="background:linear-gradient(135deg,#3b82f6,#6366f1);">
@@ -2835,6 +2841,37 @@ VIEW: HAUPTMENÜ
                             onclick="startFocusTimer()">Start</button>
                         <button class="btn-secondary" onclick="resetFocusTimer()">Reset</button>
                     </div>
+                </div>
+            </div>
+
+
+            <!-- ==========================================================
+VIEW: FORMELN SETUP (NEU & SEPARAT)
+========================================================= -->
+            <div id="view-formel-setup" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+
+                <div class="glass-card p-6 space-y-4">
+                    <h2 class="text-2xl font-black text-center text-pink-400">Formeln üben</h2>
+
+                    <!-- Lern-Modus -->
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Lern-Modus:</label>
+                        <div class="dash-sub-nav">
+                            <button id="qmode-mc-formel" class="active" onclick="setQuizMode('mc')">🎯 Multiple
+                                Choice</button>
+                            <button id="qmode-flashcards-formel" onclick="setQuizMode('flashcards')">🃏
+                                Karteikarten</button>
+                        </div>
+                    </div>
+
+                    <!-- Nur Klasse wählen (kein Fach nötig) -->
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse wählen:</label>
+                        <select id="quiz-area" class="input-modern font-bold w-full"></select>
+                    </div>
+
+                    <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
                 </div>
             </div>
 

@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.25</title>
+    <title>EduPlay Hub - Familien Edition v2.26</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -1693,7 +1693,7 @@ HEADER FÜR FAMILY HUB
         <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.25</span>
+                <span class="version">v2.26</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1708,7 +1708,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
                 <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
-                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.25</span>
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.26</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1730,7 +1730,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.25</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.26</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -2754,7 +2754,7 @@ VIEW: LESEN LERNEN
 ========================================================== -->
             <div id="view-lesen" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
-                    <!-- <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button> -->
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                     <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
                     <span class="w-20"></span>
                 </div>
@@ -2805,7 +2805,7 @@ VIEW: QUIZ SETUP
             ========================================================== -->
             <div id="view-quiz" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4"
-                    onclick="leaveQuiz('view-live-duel-setup')">Beenden</button>
+                    onclick="endLesson()">Beenden</button>
                 <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
                     style="border-color:rgba(99,102,241,0.2);">
                     ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
@@ -5573,10 +5573,50 @@ VIEW: QUIZ SETUP
             return (list || []).map(shuffleAnswers);
         }
 
+        function showLessonResultScreen() {
+            const total = testAnsweredCount || 0;
+            const correct = testCorrectCount || 0;
+            const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+            const emoji = pct >= 80 ? "🏆" : pct >= 50 ? "👍" : "💪";
+            const msg = pct >= 80 ? "Super gemacht!" : pct >= 50 ? "Gut gemacht, weiter so!" : "Dranbleiben, das wird noch!";
+            document.getElementById("test-result-content").innerHTML = `
+        <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(99,102,241,0.2);">
+            <div class="text-7xl">${emoji}</div>
+            <h2 class="text-2xl font-black text-white">${msg}</h2>
+            <div class="text-5xl font-black text-emerald-400">${correct} / ${total}</div>
+            <div class="text-gray-400 font-bold">${pct}% richtig</div>
+            <div class="flex gap-3 mt-4">
+                <button onclick="replayLesson()" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Nochmal</button>
+                <button onclick="switchView('menu')" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Beenden</button>
+            </div>
+        </div>`;
+            switchView('test-result');
+        }
+
+        function replayLesson() {
+            if (window.lastLessonQuestions && window.lastLessonQuestions.length) {
+                launchQuiz(window.lastLessonQuestions);
+            } else {
+                switchView('quiz-setup');
+            }
+        }
+
+        function endLesson() {
+            if (testMode) { leaveQuiz('menu'); return; }
+            if (quizMode !== 'flashcards' && testAnsweredCount > 0) {
+                showLessonResultScreen();
+            } else {
+                switchView('menu');
+            }
+        }
+
         function launchQuiz(questions) {
             if (!questions || questions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return false; }
             currentQuestions = prepareQuestions(questions);
             testMode = false;
+            testAnsweredCount = 0;
+            testCorrectCount = 0;
+            window.lastLessonQuestions = questions;
             document.getElementById("test-timer-bar").classList.add("hidden");
             qIndex = 0;
             switchView('quiz');
@@ -5683,7 +5723,7 @@ VIEW: QUIZ SETUP
                     });
                 }
             }
-            if (testMode) { testAnsweredCount++; if (sel === cor) testCorrectCount++; }
+            testAnsweredCount++; if (sel === cor) testCorrectCount++;
 
             const expBox = document.getElementById("explanation-box");
             if (sel === cor) {
@@ -5714,8 +5754,12 @@ VIEW: QUIZ SETUP
             } else {
                 if (qIndex < currentQuestions.length) showQuestion();
                 else {
-                    showToast("Lektion beendet! 🎉");
-                    switchView('menu');
+                    if (quizMode !== 'flashcards' && testAnsweredCount > 0) {
+                        showLessonResultScreen();
+                    } else {
+                        showToast("Fertig! 🎉");
+                        switchView('menu');
+                    }
                 }
             }
         }
@@ -7319,6 +7363,7 @@ VIEW: QUIZ SETUP
             });
             document.getElementById("view-tv-quiz-host").innerHTML = `
                     <div class="h-[90vh] flex flex-col justify-between p-6">
+                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(99,102,241,0.15);">
                             <p class="text-indigo-400 font-black text-xl mb-2">Frage ${index + 1} / ${tvQuestions.length}</p>
                             <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
@@ -7354,6 +7399,7 @@ VIEW: QUIZ SETUP
 
             document.getElementById("view-tv-quiz-host").innerHTML = `
                     <div class="h-[90vh] flex flex-col justify-between p-6">
+                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(16,185,129,0.2);">
                             <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
                             <p class="text-emerald-400 font-black mt-6 text-3xl">💡 ${tvCurrentQ.explanation}</p>
@@ -7689,6 +7735,7 @@ VIEW: QUIZ SETUP
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
             document.getElementById("view-tv-quiz-host").innerHTML = `
                     <div class="h-[90vh] flex flex-col justify-between p-6">
+                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(245,158,11,0.15);">
                             <p class="text-amber-400 font-black text-xl mb-4">Runde ${round} / ${totalRounds}</p>
                             <h1 class="text-2xl md:text-3xl font-black text-white leading-tight mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
@@ -7769,6 +7816,7 @@ VIEW: QUIZ SETUP
 
             document.getElementById("view-tv-quiz-host").innerHTML = `
                     <div class="h-[90vh] flex flex-col justify-between p-6">
+                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="text-center mb-4">
                             <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
                             ${data.currentSolution ? `<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war am Ende z.B.: ${data.currentSolution}</p>` : ""}
@@ -10000,7 +10048,7 @@ VIEW: QUIZ SETUP
             }
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.25)");
+        console.log("🚀 EduPlay Hub gestartet (v2.26)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
@@ -10085,7 +10133,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.25<br>
+            EduPlay Hub · v2.26<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -10122,7 +10170,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.25<br>
+            EduPlay Hub · v2.26<br>
             © 2026 · Familien Edition
         </div>
     </div>

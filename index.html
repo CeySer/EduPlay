@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.27</title>
+    <title>EduPlay Hub - Familien Edition v2.28</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -1152,6 +1152,8 @@
             -webkit-backface-visibility: hidden;
             position: absolute;
             inset: 0;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
         }
 
         .flip-card-back {
@@ -1693,7 +1695,7 @@ HEADER FÜR FAMILY HUB
         <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.27</span>
+                <span class="version">v2.28</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1708,7 +1710,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
                 <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
-                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.27</span>
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.28</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1730,7 +1732,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.27</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.28</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -2142,7 +2144,8 @@ BEREICH: INHALTE
             VIEW: DUELL SPIEL
             ========================================================== -->
             <div id="view-duel-play" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2 px-3" onclick="if(confirm('Duell wirklich beenden?')) switchView('duel-setup')">Beenden</button>
+                <button class="btn-secondary text-sm py-2 px-3"
+                    onclick="if(confirm('Duell wirklich beenden?')) switchView('duel-setup')">Beenden</button>
                 <div id="duel-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(244,63,94,0.15),rgba(236,72,153,0.1));border-color:rgba(244,63,94,0.2);">
                     <div id="duel-turn-emoji" class="text-6xl">🥊</div>
@@ -2234,7 +2237,8 @@ BEREICH: INHALTE
             VIEW: SCRABBLE SPIEL
             ========================================================== -->
             <div id="view-scrabble-play" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2 px-3" onclick="if(confirm('Wort-Duell wirklich beenden?')){ if(scrabbleState&&scrabbleState.changeInterval){clearInterval(scrabbleState.changeInterval);scrabbleState.changeInterval=null;} switchView('scrabble-setup'); }">Beenden</button>
+                <button class="btn-secondary text-sm py-2 px-3"
+                    onclick="if(confirm('Wort-Duell wirklich beenden?')){ if(scrabbleState&&scrabbleState.changeInterval){clearInterval(scrabbleState.changeInterval);scrabbleState.changeInterval=null;} switchView('scrabble-setup'); }">Beenden</button>
                 <div id="scrabble-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(251,191,36,0.1));border-color:rgba(245,158,11,0.2);">
                     <div class="text-6xl">🔤</div>
@@ -2279,7 +2283,9 @@ BEREICH: INHALTE
             ========================================================== -->
             <div id="view-live-duel-setup" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                <button onclick="openCodedLobbySetup()" class="btn-primary w-full text-center" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">🌍 Online-Lobby mit Code (verschiedene Konten)</button>
+                <button onclick="openCodedLobbySetup()" class="btn-primary w-full text-center"
+                    style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">🌍
+                    Online-Lobby mit Code (verschiedene Konten)</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 id="live-duel-setup-title" class="text-2xl font-black text-center text-rose-400">⚔️ Live-Duell
                     </h2>
@@ -2361,10 +2367,12 @@ BEREICH: INHALTE
             VIEW: CODE-LOBBY SETUP (kontouebergreifend)
             ========================================================== -->
             <div id="view-coded-lobby-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('live-duel-setup')">Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4"
+                    onclick="switchView('live-duel-setup')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-indigo-400">🌍 Online-Lobby</h2>
-                    <p class="text-xs text-gray-400 text-center -mt-2">Verschiedene Konten treffen sich über einen kurzen Code. Der Host spielt selbst mit.</p>
+                    <p class="text-xs text-gray-400 text-center -mt-2">Verschiedene Konten treffen sich über einen
+                        kurzen Code. Der Host spielt selbst mit.</p>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Modus</label>
                         <select id="coded-lobby-mode" class="input-modern font-bold">
@@ -2375,8 +2383,10 @@ BEREICH: INHALTE
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Spielart</label>
                         <div class="dash-sub-nav">
-                            <button id="coded-type-quiz" class="active" onclick="setCodedLobbyType('quiz')">🧠 Quiz</button>
-                            <button id="coded-type-scrabble" onclick="setCodedLobbyType('scrabble')">🔤 Wort-Duell</button>
+                            <button id="coded-type-quiz" class="active" onclick="setCodedLobbyType('quiz')">🧠
+                                Quiz</button>
+                            <button id="coded-type-scrabble" onclick="setCodedLobbyType('scrabble')">🔤
+                                Wort-Duell</button>
                         </div>
                     </div>
                     <div id="coded-lobby-quiz-options" class="space-y-4">
@@ -2393,7 +2403,8 @@ BEREICH: INHALTE
                                 <option value="20" selected>🙂 Normal (20 Sek.)</option>
                                 <option value="15">⚡ Schnell (15 Sek.)</option>
                             </select>
-                            <p class="text-[11px] text-gray-500 mt-1">Die Uhr startet erst, sobald der Erste geantwortet hat.</p>
+                            <p class="text-[11px] text-gray-500 mt-1">Die Uhr startet erst, sobald der Erste geantwortet
+                                hat.</p>
                         </div>
                     </div>
                     <div id="coded-lobby-scrabble-options" class="hidden space-y-3">
@@ -2414,13 +2425,20 @@ BEREICH: INHALTE
                                 <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
                             </select>
                         </div>
-                        <label class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
-                            <input type="checkbox" id="coded-lobby-require-letter" class="w-5 h-5 accent-amber-500 mt-0.5">
-                            <span class="text-sm"><span class="font-bold text-white">Pflichtbuchstabe</span><span class="block text-[11px] text-gray-400">Ein Buchstabe muss im Wort vorkommen.</span></span>
+                        <label
+                            class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                            <input type="checkbox" id="coded-lobby-require-letter"
+                                class="w-5 h-5 accent-amber-500 mt-0.5">
+                            <span class="text-sm"><span class="font-bold text-white">Pflichtbuchstabe</span><span
+                                    class="block text-[11px] text-gray-400">Ein Buchstabe muss im Wort
+                                    vorkommen.</span></span>
                         </label>
-                        <label class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                        <label
+                            class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
                             <input type="checkbox" id="coded-lobby-action-mode" class="w-5 h-5 accent-red-500 mt-0.5">
-                            <span class="text-sm"><span class="font-bold text-white">⚡ Action-Modus</span><span class="block text-[11px] text-gray-400">Das Wort ändert sich zufällig – sei schnell!</span></span>
+                            <span class="text-sm"><span class="font-bold text-white">⚡ Action-Modus</span><span
+                                    class="block text-[11px] text-gray-400">Das Wort ändert sich zufällig – sei
+                                    schnell!</span></span>
                         </label>
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Anzahl Runden</label>
@@ -2431,13 +2449,16 @@ BEREICH: INHALTE
                             </select>
                         </div>
                     </div>
-                    <button onclick="createCodedLobby()" class="btn-primary w-full text-center">Lobby erstellen 🚀</button>
+                    <button onclick="createCodedLobby()" class="btn-primary w-full text-center">Lobby erstellen
+                        🚀</button>
                 </div>
                 <div class="glass-card p-6 space-y-3">
                     <h3 class="text-lg font-black text-center text-emerald-400">Mit Code beitreten</h3>
                     <input id="coded-lobby-join-code" maxlength="4" placeholder="z.B. K7P2" autocomplete="off"
                         class="input-modern text-2xl font-black text-center uppercase tracking-[0.3em]">
-                    <button onclick="joinCodedLobby()" class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Beitreten 🎮</button>
+                    <button onclick="joinCodedLobby()" class="btn-primary w-full text-center"
+                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Beitreten
+                        🎮</button>
                 </div>
             </div>
 
@@ -2446,9 +2467,11 @@ BEREICH: INHALTE
             ========================================================== -->
 
             <div id="view-live-duel-lobby" class="view hidden space-y-4">
-                <div id="live-duel-lobby-code-wrap" class="hidden glass-card p-4 text-center" style="border-color:rgba(99,102,241,0.2);">
+                <div id="live-duel-lobby-code-wrap" class="hidden glass-card p-4 text-center"
+                    style="border-color:rgba(99,102,241,0.2);">
                     <p class="text-xs text-gray-400 font-bold">Teile diesen Code:</p>
-                    <div id="live-duel-lobby-code" class="text-4xl font-black tracking-[0.3em] text-indigo-300 mt-1"></div>
+                    <div id="live-duel-lobby-code" class="text-4xl font-black tracking-[0.3em] text-indigo-300 mt-1">
+                    </div>
                 </div>
                 <div class="glass-card p-8 text-center space-y-6 shadow-lg">
                     <h2 class="text-3xl font-black text-white animate-pulse">Warte auf Mitspieler...</h2>
@@ -2610,7 +2633,7 @@ BEREICH: INHALTE
             <!-- ==========================================================
 VIEW: HAUPTMENÜ
 ========================================================== -->
-            
+
 
 
 
@@ -2848,8 +2871,7 @@ VIEW: QUIZ SETUP
             VIEW: QUIZ ARENA
             ========================================================== -->
             <div id="view-quiz" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4"
-                    onclick="endLesson()">Beenden</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="endLesson()">Beenden</button>
                 <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
                     style="border-color:rgba(99,102,241,0.2);">
                     ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
@@ -9078,11 +9100,11 @@ VIEW: QUIZ SETUP
         // Zufall bleibt, aber gleicher Rahmen in JEDEM Spiel + Mindestabstand.
         // ============================================================
         const ACTION_TIMINGS = {
-            leicht:  { firstChange: 8,  minGap: 6,  maxGap: 10, maxChanges: 4 },
-            mittel:  { firstChange: 10, minGap: 8,  maxGap: 12, maxChanges: 3 },
-            schwer:  { firstChange: 12, minGap: 10, maxGap: 15, maxChanges: 3 },
+            leicht: { firstChange: 8, minGap: 6, maxGap: 10, maxChanges: 4 },
+            mittel: { firstChange: 10, minGap: 8, maxGap: 12, maxChanges: 3 },
+            schwer: { firstChange: 12, minGap: 10, maxGap: 15, maxChanges: 3 },
             experte: { firstChange: 15, minGap: 12, maxGap: 18, maxChanges: 2 },
-            profi:   { firstChange: 18, minGap: 15, maxGap: 22, maxChanges: 2 }
+            profi: { firstChange: 18, minGap: 15, maxGap: 22, maxChanges: 2 }
         };
         function getActionTiming(difficulty) {
             return ACTION_TIMINGS[difficulty] || ACTION_TIMINGS.mittel;
@@ -10132,7 +10154,7 @@ VIEW: QUIZ SETUP
             }
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.27)");
+        console.log("🚀 EduPlay Hub gestartet (v2.28)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
@@ -10217,7 +10239,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.27<br>
+            EduPlay Hub · v2.28<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -10254,7 +10276,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.27<br>
+            EduPlay Hub · v2.28<br>
             © 2026 · Familien Edition
         </div>
     </div>

@@ -1305,7 +1305,7 @@ const FORMULA_CARDS = [
         id: "f113",
         name: "Volumen Zylinderstumpf",
         formula: "V = π × r² × (h₁ + h₂) / 2",
-        variables: { r: "Radius", h₁: "Höhe 1", h₂: "Höhe 2" },
+        variables: { r: "Radius", h1: "Höhe 1", h2: "Höhe 2" },
         example: "r = 7 cm, h₁ = 8 cm, h₂ = 6 cm → V = 1077,57 cm³",
         shape: "   .---.\n  /     \\\n |   ●   | h\n  \\     /\n   '---'",
         category: "volumen_10"
@@ -1314,7 +1314,7 @@ const FORMULA_CARDS = [
         id: "f114",
         name: "Oberfläche Zylinderstumpf",
         formula: "O = π × r × (h₁ + h₂ + 2r)",
-        variables: { r: "Radius", h₁: "Höhe 1", h₂: "Höhe 2" },
+        variables: { r: "Radius", h1: "Höhe 1", h2: "Höhe 2" },
         example: "r = 7 cm, h₁ = 8 cm, h₂ = 6 cm → O ≈ 703,72 cm²",
         shape: "   .---.\n  /     \\\n |   ●   | h\n  \\     /\n   '---'",
         category: "oberflaeche_10"
@@ -1406,7 +1406,7 @@ const FORMULA_CARDS = [
         id: "f124",
         name: "Abstand zweier Punkte",
         formula: "d = √((x₂-x₁)² + (y₂-y₁)² + (z₂-z₁)²)",
-        variables: { P₁: "Punkt 1", P₂: "Punkt 2" },
+        variables: { P1: "Punkt 1", P2: "Punkt 2" },
         example: "P₁ = (1, 2, 3), P₂ = (4, 5, 6) → d = 5,20",
         shape: "  P₁ → P₂",
         category: "analytische_geometrie_11"
@@ -2483,7 +2483,7 @@ const FORMULA_CARDS = [
         id: "f242",
         name: "Flächeneinheiten",
         formula: "1 m² = 100 dm² = 10.000 cm²",
-        variables: { m²: "Quadratmeter", dm²: "Quadratdezimeter", cm²: "Quadratzentimeter" },
+        variables: { m2: "Quadratmeter", dm2: "Quadratdezimeter", cm2: "Quadratzentimeter" },
         example: "2 m² = 200 dm² = 20.000 cm²",
         shape: "m² → dm² → cm²",
         category: "einheiten_umrechnung"
@@ -2492,7 +2492,7 @@ const FORMULA_CARDS = [
         id: "f243",
         name: "Volumeneinheiten",
         formula: "1 m³ = 1000 dm³ = 1.000.000 cm³",
-        variables: { m³: "Kubikmeter", dm³: "Kubikdezimeter", cm³: "Kubikzentimeter" },
+        variables: { m3: "Kubikmeter", dm3: "Kubikdezimeter", cm3: "Kubikzentimeter" },
         example: "3 m³ = 3000 dm³ = 3.000.000 cm³",
         shape: "m³ → dm³ → cm³",
         category: "einheiten_umrechnung"
@@ -2501,7 +2501,7 @@ const FORMULA_CARDS = [
         id: "f244",
         name: "Hohlmaße",
         formula: "1 l = 1 dm³ = 1000 ml",
-        variables: { l: "Liter", dm³: "Kubikdezimeter", ml: "Milliliter" },
+        variables: { l: "Liter", dm3: "Kubikdezimeter", ml: "Milliliter" },
         example: "5 l = 5 dm³ = 5000 ml",
         shape: "l → dm³ → ml",
         category: "einheiten_umrechnung"

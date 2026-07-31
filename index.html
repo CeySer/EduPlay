@@ -18,13 +18,14 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
 
     <!-- DATENBANKEN -->
-    <script src="words_kids.js?v=6.2"></script>
-    <script src="words_adult.js?v=6.2"></script>
-    <script src="vocabulary.js?v=6.2"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_school.js?v=6.2"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_beruf.js?v=6.2"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="questions_fun.js?v=6.2"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="formula.js?v=6.2"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="words_kids.js?v=6.1"></script>
+    <script src="words_adult.js?v=6.1"></script>
+    <script src="vocabulary.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="questions_school.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="questions_beruf.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="questions_fun.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <!-- <script src="lesen.js?v=5"></script>
+    <script src="lesen_in_index.js?v=6"></script> -->
 
     <link rel="icon" href="data:,">
 
@@ -2637,7 +2638,7 @@ BEREICH: INHALTE
                         <span class="text-xs font-bold text-blue-200 -mt-1">Klasse 1</span>
                     </button> -->
 
-                    <!-- Dashboard Raster: Wissen + Lesen oben, Vokabeln + Formeln unten -->
+                    <!-- Dashboard Raster -->
                     <div class="grid grid-cols-2 gap-3">
 
                         <!-- 1. WISSEN -->
@@ -2647,491 +2648,486 @@ BEREICH: INHALTE
                             <span class="text-3xl">🧠</span> Wissen
                         </button>
 
-                        <!-- 2. LESEN -->
-                        <button onclick="switchView('lesen')"
-                            class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
-                            style="background:linear-gradient(135deg,#3b82f6,#6366f1);">
-                            <span class="text-3xl">📖</span> Lesen
-                        </button>
-
-                        <!-- 3. VOKABELN -->
+                        <!-- 2. VOKABELN -->
                         <button onclick="switchView('vokabeln')"
                             class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
                             style="background:linear-gradient(135deg,#10b981,#34d399);">
                             <span class="text-3xl">🃏</span> Vokabeln
                         </button>
 
-                        <!-- 4. FORMELN -->
-                        <button onclick="switchView('formel-setup')"
-                            class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
-                            style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);">
-                            <span class="text-3xl">🧮</span> Formeln
-                        </button>
 
-                    </div>
-                    <!-- Feedback -->
-                    <div class="pt-3 mt-1 border-t border-white/5">
-                        <button onclick="openFeedback('menu')"
-                            class="w-full p-4 glass-card border-2 border-amber-600/30 text-amber-400 font-black rounded-2xl shadow-md hover:border-amber-400/50 transition flex flex-col items-center gap-1">
-                            <span class="flex items-center gap-2 text-base">
-                                <span class="text-2xl">💬</span> Feedback geben
-                            </span>
-                            <span class="text-[11px] font-bold text-gray-400">Fehler melden oder Idee vorschlagen</span>
+                        <!-- 4. LESEN LERNEN (angepasst an das Design der anderen) -->
+                        <button onclick="switchView('lesen')"
+                            class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
+                            style="background:linear-gradient(135deg,#3b82f6,#6366f1);">
+                            <span class="text-3xl">📖</span> Lesen
                         </button>
                     </div>
+
+                    <!-- 3. FORMELN -->
+                    <button onclick="switchView('formel-setup')"
+                        class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
+                        style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);">
+                        <span class="text-3xl">🧮</span> Formeln
+                    </button>
+
+                    <button onclick="switchView('fokus')"
+                        class="btn-primary w-full flex flex-col items-center gap-1 text-center"
+                        style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">
+                        <span class="text-3xl">⏱️</span>
+                        <span>Fokus-Timer</span>
+                    </button>
                 </div>
 
-                <!-- ==========================================================
+                <!-- Feedback -->
+                <div class="pt-3 mt-1 border-t border-white/5">
+                    <button onclick="openFeedback('menu')"
+                        class="w-full p-4 glass-card border-2 border-amber-600/30 text-amber-400 font-black rounded-2xl shadow-md hover:border-amber-400/50 transition flex flex-col items-center gap-1">
+                        <span class="flex items-center gap-2 text-base">
+                            <span class="text-2xl">💬</span> Feedback geben
+                        </span>
+                        <span class="text-[11px] font-bold text-gray-400">Fehler melden oder Idee vorschlagen</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==========================================================
 VIEW: HAUPTMENÜ
 ========================================================== -->
 
 
 
 
-                <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: BELOHNUNGEN EINLÖSEN
             ========================================================== -->
-                <div id="view-rewards" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                    <div class="glass-card p-5">
-                        <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen</h3>
-                        <p class="text-xs text-gray-400 mb-4">Du hast <span id="rewards-coin-balance"
-                                class="text-yellow-400 font-bold">0</span> Coins.</p>
-                        <div id="rewards-list" class="space-y-3"></div>
-                    </div>
+            <div id="view-rewards" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+                <div class="glass-card p-5">
+                    <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen</h3>
+                    <p class="text-xs text-gray-400 mb-4">Du hast <span id="rewards-coin-balance"
+                            class="text-yellow-400 font-bold">0</span> Coins.</p>
+                    <div id="rewards-list" class="space-y-3"></div>
                 </div>
+            </div>
 
-                <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: SPIELER BEARBEITEN
             ========================================================== -->
-                <div id="view-edit-player" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4"
-                        onclick="switchView('family-hub')">Abbrechen</button>
-                    <div class="glass-card p-5 space-y-4">
-                        <!-- AVATAR TEST-BEREICH -->
-                        <div class="flex flex-col items-center bg-white/5 p-4 rounded-xl mb-4 border border-white/5">
-                            <p class="text-xs font-bold text-gray-400 mb-2">Avatar anpassen</p>
+            <div id="view-edit-player" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Abbrechen</button>
+                <div class="glass-card p-5 space-y-4">
+                    <!-- AVATAR TEST-BEREICH -->
+                    <div class="flex flex-col items-center bg-white/5 p-4 rounded-xl mb-4 border border-white/5">
+                        <p class="text-xs font-bold text-gray-400 mb-2">Avatar anpassen</p>
 
-                            <!-- Das ist dein SVG. Später ersetzt du das durch deinen Canva-Code -->
+                        <!-- Das ist dein SVG. Später ersetzt du das durch deinen Canva-Code -->
 
-                            <img src="img_avatar/junge_koch.png" alt="Spieler Avatar" class="avatar-bild">
+                        <img src="img_avatar/junge_koch.png" alt="Spieler Avatar" class="avatar-bild">
 
-                            <!-- Buttons zum Ändern der Farbe -->
-                            <div class="flex gap-3 mt-4">
-                                <button type="button" onclick="changeShirtColor('#f43f5e')"
-                                    class="w-8 h-8 rounded-full bg-rose-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
-                                <button type="button" onclick="changeShirtColor('#3b82f6')"
-                                    class="w-8 h-8 rounded-full bg-blue-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
-                                <button type="button" onclick="changeShirtColor('#10b981')"
-                                    class="w-8 h-8 rounded-full bg-emerald-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
-                            </div>
+                        <!-- Buttons zum Ändern der Farbe -->
+                        <div class="flex gap-3 mt-4">
+                            <button type="button" onclick="changeShirtColor('#f43f5e')"
+                                class="w-8 h-8 rounded-full bg-rose-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
+                            <button type="button" onclick="changeShirtColor('#3b82f6')"
+                                class="w-8 h-8 rounded-full bg-blue-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
+                            <button type="button" onclick="changeShirtColor('#10b981')"
+                                class="w-8 h-8 rounded-full bg-emerald-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
                         </div>
-                        <h2 class="text-xl font-black text-emerald-400">✏️ Spieler bearbeiten</h2>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-1.5">Name</label>
-                            <input type="text" id="edit-player-name" maxlength="24" class="input-modern font-bold">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-1.5">Geburtstag</label>
-                            <input type="date" id="edit-player-birthday" onchange="updateAgePreview()"
-                                class="input-modern font-bold">
-                            <p id="edit-age-preview" class="text-[11px] text-gray-500 mt-1.5">Das Alter rechnet die App
-                                selbst aus – du musst es nie wieder ändern.</p>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-1.5">Schulklasse</label>
-                            <select id="edit-player-grade" class="input-modern font-bold">
-                                <option value="">Noch keine / keine Angabe</option>
-                            </select>
-                            <p class="text-[11px] text-gray-500 mt-1.5">Danach wählt die App im Quiz und bei den
-                                Vokabeln
-                                automatisch die passende Stufe vor.</p>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-1.5">Farbe der Spielerscheibe</label>
-                            <div id="edit-player-colors" class="flex flex-wrap gap-2.5"></div>
-                            <p class="text-[11px] text-gray-500 mt-1.5">Tippe eine Farbe an – so sieht jeder sofort, wer
-                                dran ist.</p>
-                        </div>
-                        <div id="edit-player-hint" class="hidden text-xs font-bold text-rose-400"></div>
-                        <button onclick="saveEditedPlayer()" class="btn-primary w-full text-center"
-                            style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
-                            Speichern
-                        </button>
-                        <p class="text-[10px] text-gray-600 text-center">Coins, Abzeichen und der Lernfortschritt
-                            bleiben
-                            beim Bearbeiten unangetastet.</p>
                     </div>
+                    <h2 class="text-xl font-black text-emerald-400">✏️ Spieler bearbeiten</h2>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Name</label>
+                        <input type="text" id="edit-player-name" maxlength="24" class="input-modern font-bold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Geburtstag</label>
+                        <input type="date" id="edit-player-birthday" onchange="updateAgePreview()"
+                            class="input-modern font-bold">
+                        <p id="edit-age-preview" class="text-[11px] text-gray-500 mt-1.5">Das Alter rechnet die App
+                            selbst aus – du musst es nie wieder ändern.</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Schulklasse</label>
+                        <select id="edit-player-grade" class="input-modern font-bold">
+                            <option value="">Noch keine / keine Angabe</option>
+                        </select>
+                        <p class="text-[11px] text-gray-500 mt-1.5">Danach wählt die App im Quiz und bei den Vokabeln
+                            automatisch die passende Stufe vor.</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Farbe der Spielerscheibe</label>
+                        <div id="edit-player-colors" class="flex flex-wrap gap-2.5"></div>
+                        <p class="text-[11px] text-gray-500 mt-1.5">Tippe eine Farbe an – so sieht jeder sofort, wer
+                            dran ist.</p>
+                    </div>
+                    <div id="edit-player-hint" class="hidden text-xs font-bold text-rose-400"></div>
+                    <button onclick="saveEditedPlayer()" class="btn-primary w-full text-center"
+                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
+                        Speichern
+                    </button>
+                    <p class="text-[10px] text-gray-600 text-center">Coins, Abzeichen und der Lernfortschritt bleiben
+                        beim Bearbeiten unangetastet.</p>
                 </div>
+            </div>
 
-                <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: FEEDBACK
             ========================================================== -->
-                <div id="view-feedback" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4"
-                        onclick="switchView(feedbackReturnView)">Zurück</button>
-                    <div class="glass-card p-5 space-y-4">
-                        <h3 class="text-xl font-black text-amber-400 mb-1">💬 Feedback</h3>
-                        <p class="text-xs text-gray-400">Was ist kaputt, was fehlt, was war gut? Schreib's rein – wir
-                            lesen
-                            alles.</p>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-1.5">Worum geht's?</label>
-                            <select id="feedback-type" class="input-modern font-bold">
-                                <option value="Fehler">🐞 Etwas funktioniert nicht</option>
-                                <option value="Idee">💡 Ich habe eine Idee</option>
-                                <option value="Frage">❓ Frage zu einer Frage</option>
-                                <option value="Lob">🎉 Lob / Sonstiges</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-1.5">Dein Name (freiwillig)</label>
-                            <input type="text" id="feedback-name" maxlength="24" placeholder="z.B. Mia"
-                                class="input-modern">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-1.5">Deine Nachricht</label>
-                            <textarea id="feedback-text" rows="5" maxlength="1500"
-                                placeholder="Beschreib möglichst genau, was passiert ist..."
-                                class="input-modern resize-none"></textarea>
-                            <div class="text-right text-[10px] text-gray-500 mt-1"><span
-                                    id="feedback-counter">0</span>/1500
-                            </div>
-                        </div>
-                        <div id="feedback-hint" class="hidden text-xs font-bold text-rose-400"></div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <button onclick="sendFeedback('mail')"
-                                class="btn-primary flex flex-col items-center gap-1 text-center">
-                                <span class="text-2xl">✉️</span>
-                                <span class="text-sm">Per Mail</span>
-                            </button>
-                            <button onclick="sendFeedback('whatsapp')"
-                                class="btn-primary flex flex-col items-center gap-1 text-center"
-                                style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
-                                <span class="text-2xl">💬</span>
-                                <span class="text-sm">Per WhatsApp</span>
-                            </button>
-                        </div>
-                        <p class="text-[10px] text-gray-500 leading-relaxed">Beim Absenden öffnet sich dein Mail- bzw.
-                            WhatsApp-Programm mit fertig ausgefülltem Text.</p>
+            <div id="view-feedback" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4"
+                    onclick="switchView(feedbackReturnView)">Zurück</button>
+                <div class="glass-card p-5 space-y-4">
+                    <h3 class="text-xl font-black text-amber-400 mb-1">💬 Feedback</h3>
+                    <p class="text-xs text-gray-400">Was ist kaputt, was fehlt, was war gut? Schreib's rein – wir lesen
+                        alles.</p>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Worum geht's?</label>
+                        <select id="feedback-type" class="input-modern font-bold">
+                            <option value="Fehler">🐞 Etwas funktioniert nicht</option>
+                            <option value="Idee">💡 Ich habe eine Idee</option>
+                            <option value="Frage">❓ Frage zu einer Frage</option>
+                            <option value="Lob">🎉 Lob / Sonstiges</option>
+                        </select>
                     </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Dein Name (freiwillig)</label>
+                        <input type="text" id="feedback-name" maxlength="24" placeholder="z.B. Mia"
+                            class="input-modern">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Deine Nachricht</label>
+                        <textarea id="feedback-text" rows="5" maxlength="1500"
+                            placeholder="Beschreib möglichst genau, was passiert ist..."
+                            class="input-modern resize-none"></textarea>
+                        <div class="text-right text-[10px] text-gray-500 mt-1"><span id="feedback-counter">0</span>/1500
+                        </div>
+                    </div>
+                    <div id="feedback-hint" class="hidden text-xs font-bold text-rose-400"></div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="sendFeedback('mail')"
+                            class="btn-primary flex flex-col items-center gap-1 text-center">
+                            <span class="text-2xl">✉️</span>
+                            <span class="text-sm">Per Mail</span>
+                        </button>
+                        <button onclick="sendFeedback('whatsapp')"
+                            class="btn-primary flex flex-col items-center gap-1 text-center"
+                            style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
+                            <span class="text-2xl">💬</span>
+                            <span class="text-sm">Per WhatsApp</span>
+                        </button>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-relaxed">Beim Absenden öffnet sich dein Mail- bzw.
+                        WhatsApp-Programm mit fertig ausgefülltem Text.</p>
                 </div>
+            </div>
 
-                <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: NEUEN SPIELER ANLEGEN
             ========================================================== -->
-                <div id="view-create-profile" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4"
-                        onclick="switchView('family-hub')">Abbrechen</button>
-                    <div class="glass-card p-6 space-y-4 shadow-lg">
-                        <h2 class="text-xl font-black text-emerald-400">Neuen Spieler anlegen</h2>
-                        <input type="text" id="new-profile-name" placeholder="Name" class="input-modern">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-1.5">Geburtstag (freiwillig)</label>
-                            <input type="date" id="new-profile-birthday" class="input-modern font-bold">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-1.5">Schulklasse</label>
-                            <select id="new-profile-grade" class="input-modern font-bold">
-                                <option value="">Noch keine / keine Angabe</option>
-                                <option value="1">1. Klasse</option>
-                                <option value="2">2. Klasse</option>
-                                <option value="3">3. Klasse</option>
-                                <option value="4">4. Klasse</option>
-                                <option value="5">5. Klasse</option>
-                                <option value="6">6. Klasse</option>
-                                <option value="7">7. Klasse</option>
-                                <option value="8">8. Klasse</option>
-                                <option value="9">9. Klasse</option>
-                                <option value="10">10. Klasse</option>
-                                <option value="11">11. Klasse</option>
-                                <option value="12">12. Klasse</option>
-                                <option value="13">13. Klasse</option>
-                            </select>
-                        </div>
-                        <button onclick="saveNewProfile()" class="btn-primary w-full text-center"
-                            style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Spieler
-                            speichern</button>
+            <div id="view-create-profile" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Abbrechen</button>
+                <div class="glass-card p-6 space-y-4 shadow-lg">
+                    <h2 class="text-xl font-black text-emerald-400">Neuen Spieler anlegen</h2>
+                    <input type="text" id="new-profile-name" placeholder="Name" class="input-modern">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Geburtstag (freiwillig)</label>
+                        <input type="date" id="new-profile-birthday" class="input-modern font-bold">
                     </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Schulklasse</label>
+                        <select id="new-profile-grade" class="input-modern font-bold">
+                            <option value="">Noch keine / keine Angabe</option>
+                            <option value="1">1. Klasse</option>
+                            <option value="2">2. Klasse</option>
+                            <option value="3">3. Klasse</option>
+                            <option value="4">4. Klasse</option>
+                            <option value="5">5. Klasse</option>
+                            <option value="6">6. Klasse</option>
+                            <option value="7">7. Klasse</option>
+                            <option value="8">8. Klasse</option>
+                            <option value="9">9. Klasse</option>
+                            <option value="10">10. Klasse</option>
+                            <option value="11">11. Klasse</option>
+                            <option value="12">12. Klasse</option>
+                            <option value="13">13. Klasse</option>
+                        </select>
+                    </div>
+                    <button onclick="saveNewProfile()" class="btn-primary w-full text-center"
+                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Spieler
+                        speichern</button>
                 </div>
+            </div>
 
-                <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: FOKUS LERNZEIT
             ========================================================== -->
-                <div id="view-fokus" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                    <div class="glass-card p-8 text-center space-y-6 shadow-lg">
-                        <div class="text-6xl">⏱️</div>
-                        <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
-                        <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
-                        <div class="flex gap-2 justify-center">
-                            <button class="btn-primary"
-                                style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);"
-                                onclick="startFocusTimer()">Start</button>
-                            <button class="btn-secondary" onclick="resetFocusTimer()">Reset</button>
-                        </div>
+            <div id="view-fokus" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+                <div class="glass-card p-8 text-center space-y-6 shadow-lg">
+                    <div class="text-6xl">⏱️</div>
+                    <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
+                    <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
+                    <div class="flex gap-2 justify-center">
+                        <button class="btn-primary"
+                            style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);"
+                            onclick="startFocusTimer()">Start</button>
+                        <button class="btn-secondary" onclick="resetFocusTimer()">Reset</button>
                     </div>
                 </div>
+            </div>
 
 
-                <!-- ==========================================================
+            <!-- ==========================================================
 VIEW: FORMELN SETUP (NEU & SEPARAT)
 ========================================================= -->
-                <div id="view-formel-setup" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+            <div id="view-formel-setup" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
 
-                    <div class="glass-card p-6 space-y-4">
-                        <h2 class="text-2xl font-black text-center text-pink-400">Formeln üben</h2>
+                <div class="glass-card p-6 space-y-4">
+                    <h2 class="text-2xl font-black text-center text-pink-400">Formeln üben</h2>
 
-                        <!-- Lern-Modus -->
-                        <div>
-                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Lern-Modus:</label>
-                            <div class="dash-sub-nav">
-                                <button id="qmode-mc-formel" class="active" onclick="setQuizMode('mc')">🎯 Multiple
-                                    Choice</button>
-                                <button id="qmode-flashcards-formel" onclick="setQuizMode('flashcards')">🃏
-                                    Karteikarten</button>
-                            </div>
+                    <!-- Lern-Modus -->
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Lern-Modus:</label>
+                        <div class="dash-sub-nav">
+                            <button id="qmode-mc-formel" class="active" onclick="setQuizMode('mc')">🎯 Multiple
+                                Choice</button>
+                            <button id="qmode-flashcards-formel" onclick="setQuizMode('flashcards')">🃏
+                                Karteikarten</button>
                         </div>
-
-                        <!-- Nur Klasse wählen (kein Fach nötig) -->
-                        <div>
-                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse wählen:</label>
-                            <select id="quiz-area" class="input-modern font-bold w-full"></select>
-                        </div>
-
-                        <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
                     </div>
-                </div>
 
-                <!-- ==========================================================
+                    <!-- Nur Klasse wählen (kein Fach nötig) -->
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse wählen:</label>
+                        <select id="quiz-area" class="input-modern font-bold w-full"></select>
+                    </div>
+
+                    <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
+                </div>
+            </div>
+
+            <!-- ==========================================================
 VIEW: LESEN LERNEN
 ========================================================== -->
-                <div id="view-lesen" class="view hidden space-y-4">
-                    <div class="flex items-center justify-between gap-2">
-                        <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                        <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
-                        <span class="w-20"></span>
-                    </div>
-
-                    <div class="glass-card p-5">
-                        <!-- NEU: Flex-Container gruppiert den Titel und den Vorlese-Button -->
-                        <div class="flex justify-between items-start mb-1">
-                            <h2 class="text-2xl font-black text-blue-400">📖 Lesen lernen</h2>
-                        </div>
-                        <p class="text-xs text-gray-400 mb-4">Buchstaben, Silben, Wörter und Sätze</p>
-                        <div id="lesen-categories" class="grid grid-cols-2 gap-3"></div>
-                        <div id="lesen-exercise" class="mt-6 hidden"></div>
-                    </div>
+            <div id="view-lesen" class="view hidden space-y-4">
+                <div class="flex items-center justify-between gap-2">
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+                    <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
+                    <span class="w-20"></span>
                 </div>
 
+                <div class="glass-card p-5">
+                    <!-- NEU: Flex-Container gruppiert den Titel und den Vorlese-Button -->
+                    <div class="flex justify-between items-start mb-1">
+                        <h2 class="text-2xl font-black text-blue-400">📖 Lesen lernen</h2>
+                    </div>
+                    <p class="text-xs text-gray-400 mb-4">Buchstaben, Silben, Wörter und Sätze</p>
+                    <div id="lesen-categories" class="grid grid-cols-2 gap-3"></div>
+                    <div id="lesen-exercise" class="mt-6 hidden"></div>
+                </div>
+            </div>
 
-                <!-- ==========================================================
+
+            <!-- ==========================================================
 VIEW: QUIZ SETUP
 ========================================================= -->
-                <div id="view-quiz-setup" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                    <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
-                        class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center"
-                        style="background:var(--gradient-rose);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
-                        🔁 Wiederholen (<span class="wq-count">0</span> Fragen, die noch nicht saßen)
-                    </button>
-                    <div class="glass-card p-6 space-y-4">
-                        <h2 class="text-2xl font-black text-center text-pink-400">Wissen</h2>
-                        <div>
-                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Lern-Modus wählen:</label>
-                            <div class="dash-sub-nav">
-                                <button id="qmode-mc" class="active" onclick="setQuizMode('mc')">🎯 Multiple
-                                    Choice</button>
-                                <button id="qmode-flashcards" onclick="setQuizMode('flashcards')">🃏
-                                    Karteikarten</button>
-                            </div>
+            <div id="view-quiz-setup" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+                <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
+                    class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center"
+                    style="background:var(--gradient-rose);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
+                    🔁 Wiederholen (<span class="wq-count">0</span> Fragen, die noch nicht saßen)
+                </button>
+                <div class="glass-card p-6 space-y-4">
+                    <h2 class="text-2xl font-black text-center text-pink-400">Wissen</h2>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Lern-Modus wählen:</label>
+                        <div class="dash-sub-nav">
+                            <button id="qmode-mc" class="active" onclick="setQuizMode('mc')">🎯 Multiple Choice</button>
+                            <button id="qmode-flashcards" onclick="setQuizMode('flashcards')">🃏 Karteikarten</button>
                         </div>
-                        <div>
-                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse / Bereich:</label>
-                            <select id="quiz-area" class="input-modern font-bold mb-3"></select>
-                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema:</label>
-                            <select id="sub-category" class="input-modern font-bold"></select>
-                        </div>
-                        <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
                     </div>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse / Bereich:</label>
+                        <select id="quiz-area" class="input-modern font-bold mb-3"></select>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema:</label>
+                        <select id="sub-category" class="input-modern font-bold"></select>
+                    </div>
+                    <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
                 </div>
+            </div>
 
-                <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: QUIZ ARENA
             ========================================================== -->
-                <div id="view-quiz" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="endLesson()">Beenden</button>
-                    <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
-                        style="border-color:rgba(99,102,241,0.2);">
-                        ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
-                    </div>
-                    <div class="glass-card p-5 text-center space-y-4 shadow-lg">
-                        <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
-                        <div id="options-container" class="flex flex-col gap-2.5"></div>
-                        <div id="explanation-box" class="hidden"></div>
-                        <button id="next-question-btn" class="btn-primary w-full hidden text-center"
-                            style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);"
-                            onclick="triggerNextQuestion()">Nächste Frage ➔</button>
-                    </div>
+            <div id="view-quiz" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="endLesson()">Beenden</button>
+                <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
+                    style="border-color:rgba(99,102,241,0.2);">
+                    ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
                 </div>
+                <div class="glass-card p-5 text-center space-y-4 shadow-lg">
+                    <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
+                    <div id="options-container" class="flex flex-col gap-2.5"></div>
+                    <div id="explanation-box" class="hidden"></div>
+                    <button id="next-question-btn" class="btn-primary w-full hidden text-center"
+                        style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);"
+                        onclick="triggerNextQuestion()">Nächste Frage ➔</button>
+                </div>
+            </div>
 
-                <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: TEST-ERGEBNIS
             ========================================================== -->
-                <div id="view-test-result" class="view hidden space-y-4">
-                    <div id="test-result-content"></div>
-                </div>
+            <div id="view-test-result" class="view hidden space-y-4">
+                <div id="test-result-content"></div>
+            </div>
 
-                <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: VOKABEL-TRAINER
             ========================================================== -->
-                <div id="view-vokabeln" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                    <div class="glass-card p-5 text-center space-y-4">
-                        <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
-                        <div id="lang-selector" class="dash-sub-nav">
-                            <button id="lang-btn-en" class="active" onclick="setLanguage('en')">🇬🇧 Englisch</button>
-                            <button id="lang-btn-tr" onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
-                        </div>
-                        <div class="dash-sub-nav">
-                            <button id="vmode-flashcards" class="active" onclick="setVocabMode('flashcards')">🃏
-                                Kärtchen</button>
-                            <button id="vmode-mc" onclick="setVocabMode('mc')">🎯 Auswahl</button>
-                            <button id="vmode-typing" onclick="setVocabMode('typing')">✍️ Tippen</button>
-                        </div>
-                        <select id="category-dropdown" class="input-modern text-sm font-bold"
-                            onchange="selectCategory(this.value)"></select>
-                        <div id="vokabel-box" class="min-h-[200px] flex flex-col justify-center mt-2"></div>
-                        <div class="text-xs text-gray-400 font-bold mt-4">Wort: <span id="current-index-display"
-                                class="text-blue-400">1</span> / <span id="total-display">0</span></div>
+            <div id="view-vokabeln" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+                <div class="glass-card p-5 text-center space-y-4">
+                    <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
+                    <div id="lang-selector" class="dash-sub-nav">
+                        <button id="lang-btn-en" class="active" onclick="setLanguage('en')">🇬🇧 Englisch</button>
+                        <button id="lang-btn-tr" onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
                     </div>
+                    <div class="dash-sub-nav">
+                        <button id="vmode-flashcards" class="active" onclick="setVocabMode('flashcards')">🃏
+                            Kärtchen</button>
+                        <button id="vmode-mc" onclick="setVocabMode('mc')">🎯 Auswahl</button>
+                        <button id="vmode-typing" onclick="setVocabMode('typing')">✍️ Tippen</button>
+                    </div>
+                    <select id="category-dropdown" class="input-modern text-sm font-bold"
+                        onchange="selectCategory(this.value)"></select>
+                    <div id="vokabel-box" class="min-h-[200px] flex flex-col justify-center mt-2"></div>
+                    <div class="text-xs text-gray-400 font-bold mt-4">Wort: <span id="current-index-display"
+                            class="text-blue-400">1</span> / <span id="total-display">0</span></div>
                 </div>
+            </div>
 
-                <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: TV-QUIZ SETUP
             ========================================================== -->
 
-                <div id="view-tv-quiz-setup" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                    <div class="glass-card p-6 space-y-6 text-center">
-                        <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
-                        <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die
-                            anderen sind die Handys der Spieler.</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                            <button onclick="switchView('tv-quiz-host')"
-                                class="p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition hover:scale-[1.02]"
-                                style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">
-                                <span class="text-5xl">🖥️</span>
-                                <span class="font-black text-white text-lg">Ich bin der Fernseher</span>
-                                <span class="text-xs text-indigo-200">Spiel erstellen & Fragen anzeigen</span>
-                            </button>
-                            <button onclick="switchView('tv-quiz-player')"
-                                class="p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition hover:scale-[1.02]"
-                                style="background:linear-gradient(135deg,#10b981,#34d399);">
-                                <span class="text-5xl">📱</span>
-                                <span class="font-black text-white text-lg">Ich spiele mit!</span>
-                                <span class="text-xs text-emerald-200">Am Handy antworten</span>
-                            </button>
-                        </div>
+            <div id="view-tv-quiz-setup" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+                <div class="glass-card p-6 space-y-6 text-center">
+                    <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
+                    <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die
+                        anderen sind die Handys der Spieler.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <button onclick="switchView('tv-quiz-host')"
+                            class="p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition hover:scale-[1.02]"
+                            style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">
+                            <span class="text-5xl">🖥️</span>
+                            <span class="font-black text-white text-lg">Ich bin der Fernseher</span>
+                            <span class="text-xs text-indigo-200">Spiel erstellen & Fragen anzeigen</span>
+                        </button>
+                        <button onclick="switchView('tv-quiz-player')"
+                            class="p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition hover:scale-[1.02]"
+                            style="background:linear-gradient(135deg,#10b981,#34d399);">
+                            <span class="text-5xl">📱</span>
+                            <span class="font-black text-white text-lg">Ich spiele mit!</span>
+                            <span class="text-xs text-emerald-200">Am Handy antworten</span>
+                        </button>
                     </div>
                 </div>
+            </div>
 
-                <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: TV-QUIZ HOST
             ========================================================== -->
-                <div id="view-tv-quiz-host" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4"
-                        onclick="switchView('tv-quiz-setup')">Zurück</button>
-                    <div class="glass-card p-6 text-center">
-                        <h2 class="text-2xl font-black text-white mb-4">Spiel erstellen</h2>
-                        <div class="dash-sub-nav mb-6">
-                            <button id="tvmode-quiz" class="active" onclick="setTVHostMode('quiz')">🧠 Quiz</button>
-                            <button id="tvmode-scrabble" onclick="setTVHostMode('scrabble')">🔤 Wort-Duell</button>
-                        </div>
-                        <div id="tv-quiz-mode-options">
-                            <p class="text-gray-400 text-sm mb-3">Worum soll es gehen?</p>
-                            <div class="dash-sub-nav mb-4">
-                                <button id="tvtopic-spass" class="active" onclick="setTVTopicMode('spass')">🎉
-                                    Spaß-Quiz</button>
-                                <button id="tvtopic-lernen" onclick="setTVTopicMode('lernen')">📚 Lern-Duell</button>
-                            </div>
-                            <select id="tv-area" class="input-modern font-bold text-lg mb-3"></select>
-                            <select id="tv-quiz-category" class="input-modern font-bold text-lg mb-2"></select>
-                        </div>
-                        <div id="tv-scrabble-mode-options" class="hidden text-left space-y-3 mb-2">
-                            <p class="text-xs text-gray-400 text-center">Aus den Buchstaben ist immer mindestens ein
-                                echtes
-                                Wort möglich.</p>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
-                                <select id="tv-scrabble-wordmode" class="input-modern font-bold text-lg">
-                                    <option value="kids" selected>👶 Kinder</option>
-                                    <option value="adult">🎓 Erwachsene</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
-                                <select id="tv-scrabble-difficulty" class="input-modern font-bold text-lg">
-                                    <option value="leicht">🟢 Leicht (6 Buchstaben, 70 Sek.)</option>
-                                    <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 55 Sek.)</option>
-                                    <option value="schwer">🔴 Schwer (8 Buchstaben, 40 Sek.)</option>
-                                    <option value="experte">🟣 Experte (9 Buchstaben, 30 Sek.)</option>
-                                    <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
-                                </select>
-                            </div>
-                            <label
-                                class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
-                                <input type="checkbox" id="tv-scrabble-require-letter"
-                                    class="w-5 h-5 accent-amber-500 mt-0.5">
-                                <span class="text-sm">
-                                    <span class="font-bold text-white">Pflichtbuchstabe</span>
-                                    <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss
-                                        im
-                                        Wort vorkommen.</span>
-                                </span>
-                            </label>
-                            <label
-                                class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
-                                <input type="checkbox" id="tv-scrabble-action-mode"
-                                    class="w-5 h-5 accent-red-500 mt-0.5">
-                                <span class="text-sm">
-                                    <span class="font-bold text-white">⚡ Action-Modus</span>
-                                    <span class="block text-[11px] text-gray-400">Das komplette Wort ändert sich
-                                        zufällig –
-                                        sei schnell!</span>
-                                </span>
-                            </label>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Anzahl Runden</label>
-                                <select id="tv-scrabble-rounds" class="input-modern font-bold text-lg">
-                                    <option value="3">3 Runden</option>
-                                    <option value="5" selected>5 Runden</option>
-                                    <option value="8">8 Runden</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button onclick="startTVHostLobby()" class="btn-primary w-full text-center text-xl mt-4">Lobby
-                            eröffnen 🚀</button>
+            <div id="view-tv-quiz-host" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">Zurück</button>
+                <div class="glass-card p-6 text-center">
+                    <h2 class="text-2xl font-black text-white mb-4">Spiel erstellen</h2>
+                    <div class="dash-sub-nav mb-6">
+                        <button id="tvmode-quiz" class="active" onclick="setTVHostMode('quiz')">🧠 Quiz</button>
+                        <button id="tvmode-scrabble" onclick="setTVHostMode('scrabble')">🔤 Wort-Duell</button>
                     </div>
+                    <div id="tv-quiz-mode-options">
+                        <p class="text-gray-400 text-sm mb-3">Worum soll es gehen?</p>
+                        <div class="dash-sub-nav mb-4">
+                            <button id="tvtopic-spass" class="active" onclick="setTVTopicMode('spass')">🎉
+                                Spaß-Quiz</button>
+                            <button id="tvtopic-lernen" onclick="setTVTopicMode('lernen')">📚 Lern-Duell</button>
+                        </div>
+                        <select id="tv-area" class="input-modern font-bold text-lg mb-3"></select>
+                        <select id="tv-quiz-category" class="input-modern font-bold text-lg mb-2"></select>
+                    </div>
+                    <div id="tv-scrabble-mode-options" class="hidden text-left space-y-3 mb-2">
+                        <p class="text-xs text-gray-400 text-center">Aus den Buchstaben ist immer mindestens ein echtes
+                            Wort möglich.</p>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
+                            <select id="tv-scrabble-wordmode" class="input-modern font-bold text-lg">
+                                <option value="kids" selected>👶 Kinder</option>
+                                <option value="adult">🎓 Erwachsene</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
+                            <select id="tv-scrabble-difficulty" class="input-modern font-bold text-lg">
+                                <option value="leicht">🟢 Leicht (6 Buchstaben, 70 Sek.)</option>
+                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 55 Sek.)</option>
+                                <option value="schwer">🔴 Schwer (8 Buchstaben, 40 Sek.)</option>
+                                <option value="experte">🟣 Experte (9 Buchstaben, 30 Sek.)</option>
+                                <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
+                            </select>
+                        </div>
+                        <label
+                            class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                            <input type="checkbox" id="tv-scrabble-require-letter"
+                                class="w-5 h-5 accent-amber-500 mt-0.5">
+                            <span class="text-sm">
+                                <span class="font-bold text-white">Pflichtbuchstabe</span>
+                                <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss im
+                                    Wort vorkommen.</span>
+                            </span>
+                        </label>
+                        <label
+                            class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                            <input type="checkbox" id="tv-scrabble-action-mode" class="w-5 h-5 accent-red-500 mt-0.5">
+                            <span class="text-sm">
+                                <span class="font-bold text-white">⚡ Action-Modus</span>
+                                <span class="block text-[11px] text-gray-400">Das komplette Wort ändert sich zufällig –
+                                    sei schnell!</span>
+                            </span>
+                        </label>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Anzahl Runden</label>
+                            <select id="tv-scrabble-rounds" class="input-modern font-bold text-lg">
+                                <option value="3">3 Runden</option>
+                                <option value="5" selected>5 Runden</option>
+                                <option value="8">8 Runden</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="startTVHostLobby()" class="btn-primary w-full text-center text-xl mt-4">Lobby
+                        eröffnen 🚀</button>
                 </div>
+            </div>
 
-                <!-- ==========================================================
+            <!-- ==========================================================
             VIEW: TV-QUIZ PLAYER
             ========================================================== -->
-                <div id="view-tv-quiz-player" class="view hidden space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4"
-                        onclick="switchView('tv-quiz-setup')">Zurück</button>
-                    <div class="glass-card p-6 text-center">
-                        <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
-                        <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
-                        <div id="player-waiting-area">
-                            <button onclick="joinTVGame()" class="btn-primary w-full text-2xl animate-pulse py-6"
-                                style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Jetzt
-                                beitreten! 🎮</button>
-                        </div>
+            <div id="view-tv-quiz-player" class="view hidden space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">Zurück</button>
+                <div class="glass-card p-6 text-center">
+                    <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
+                    <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
+                    <div id="player-waiting-area">
+                        <button onclick="joinTVGame()" class="btn-primary w-full text-2xl animate-pulse py-6"
+                            style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Jetzt
+                            beitreten! 🎮</button>
                     </div>
                 </div>
+            </div>
 
         </main>
     </div>

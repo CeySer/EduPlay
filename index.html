@@ -25,7 +25,15 @@
     <script src="Fragensammlung/questions_beruf.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
     <script src="Fragensammlung/questions_fun.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
     <!-- Bei den anderen Fragen-Dateien einfügen: -->
-    <script src="Fragensammlung/questions_K1_Mathe.js"></script>
+    <script src="Fragensammlung/klasse1/questions_K1_Mathe.js?v=6.1"></script>
+    <script src="Fragensammlung/klasse1/questions_K1_deutsch.js?v=6.1"></script>
+    <script src="Fragensammlung/klasse1/questions_questions_k1_sachunterricht.js?v=6.1"></script>
+
+    <script src="Fragensammlung/klasse1/questions_K2_Mathe.js?v=6.1"></script>
+    <script src="Fragensammlung/klasse1/questions_K2_deutsch.js?v=6.1"></script>
+    <script src="Fragensammlung/klasse1/questions_K2_sachunterricht.js?v=6.1"></script>
+    <script src="Fragensammlung/Klasse2/questions_k2_englisch.js"></script>
+
     <script src="formula.js?v=6.1"></script>
 
     <link rel="icon" href="data:,">
@@ -3337,13 +3345,47 @@ VIEW: QUIZ SETUP
         //     const subs = area ? area.subjects : [];
         //     sSel.innerHTML = subs.map(s => `<option value="${s.key}">${s.label} · ${questionCount(s.key)}</option>`).join("");
         // }
-
         const TOPIC_LABELS = {
+            // Klasse 1
             "nachbarzahlen": "🔢 Zählen & Nachbarzahlen",
-            "zaehlen": "🔢 Zählen",
+            "verliebte_zahlen": "❤️ Verliebte Zahlen (bis 10)",
             "addition": "➕ Addition (+)",
             "subtraktion": "➖ Subtraktion (-)",
-            "geometrie": "📐 Geometrie & Größen"
+            "groessen_messen": "💶 Geld, Uhrzeit & Tage",
+            "geometrie": "📐 Formen & Geometrie",
+            "anlaute": "🔤 Anlaute & Buchstaben",
+            "silben": "👏 Silben klatschen",
+            "reime": "🎵 Reime & Wörter",
+            "lesen": "📖 Erstes Lesen",
+            "tiere_pflanzen": "🦊 Tiere & Pflanzen",
+            "jahreszeiten": "🍂 Jahreszeiten & Wetter",
+            "koerper": "👁️ Körper & Gesundheit",
+            "verkehr": "🚦 Verkehr & Sicherheit",
+
+            // Klasse 2 - Deutsch
+            "nomen": "🏷️ Nomen & Mehrzahl",
+            "verben_adjektive": "🏃 Verben & Adjektive",
+            "satzarten": "✍️ Satzarten & Satzzeichen",
+            "abc_rechtschreibung": "🔤 ABC & Rechtschreibung",
+
+            // Klasse 2 - Mathematik
+            "hunderterraum": "💯 Hunderterraum & Zahlen",
+            "add_sub_20_100": "➕➖ Plus & Minus bis 100",
+            "einmaleins": "✖️ Das Kleine Einmaleins",
+            "groessen_geometrie_k2": "🕒 Geld, Uhrzeit & Formen",
+
+            // Klasse 2 - Sachunterricht
+            "tiere_pflanzen_k2": "🌾 Tiere & Getreidesorten",
+            "stoffe_wasser": "💧 Wasser, Eis & Experimente",
+            "zeit_orientierung": "🧭 Himmelsrichtungen & Zeit",
+            "verkehr_koerper_k2": "🚲 Zähne, Körper & Verkehr",
+
+            // Grundschule KLasse 2 - Englisch
+            "greetings": "👋 Begrüßung & Redewendungen",
+            "colors_numbers": "🎨 Farben & Zahlen",
+            "animals": "🐶 Tiere (Animals)",
+            "school_family": "🏫 Schule, Familie & Körper"
+
         };
 
         function fillSubjectSelect(areaId, subjectId) {

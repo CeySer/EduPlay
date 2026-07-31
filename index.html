@@ -1911,76 +1911,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </button>
                 </div>
 
-                <!-- <!-- ==========================================================
-                BEREICH: INHALTE
-                ========================================================== -->
-                <div id="dash-section-inhalte" class="hidden space-y-4">
-                    <!-- Sub-Navigation mit Zähler-Elementen -->
-                    <div class="dash-sub-nav">
-                        <button id="dash-sub-fragen" class="active" onclick="switchDashboardSubTab('fragen')">
-                            📖 Fragen (<span id="dash-question-count">0</span>)
-                        </button>
-                        <button id="dash-sub-vokabeln" onclick="switchDashboardSubTab('vokabeln')">
-                            📝 Vokabeln (<span id="dash-vocab-count">0</span>)
-                        </button>
-                        <button id="dash-sub-woerter" onclick="switchDashboardSubTab('woerter')">
-                            🔤 Wörter (<span id="dash-word-count">0</span>)
-                        </button>
-                    </div>
-
-
-                    <!-- Fragen-View -->
-                    <div id="dash-sub-fragen-view" class="space-y-3">
-                        <div class="glass-card p-4">
-                            <div class="flex flex-wrap gap-2 mb-3">
-                                <select id="dash-question-grade" class="input-modern text-xs flex-1 min-w-[80px]">
-                                    <option value="">Alle Klassen</option>
-                                </select>
-                                <select id="dash-question-subject" class="input-modern text-xs flex-1 min-w-[80px]">
-                                    <option value="">Alle Fächer</option>
-                                </select>
-                                <input type="text" id="dash-question-search" placeholder="🔎 Suche..."
-                                    class="input-modern text-xs flex-1 min-w-[100px]">
-                            </div>
-                            <div id="dash-question-list" class="max-h-[400px] overflow-y-auto space-y-2"></div>
-                        </div>
-                    </div>
-
-                    <!-- Vokabeln-View -->
-                    <div id="dash-sub-vokabeln-view" class="hidden space-y-3">
-                        <div class="glass-card p-4">
-                            <div class="flex flex-wrap gap-2 mb-3">
-                                <select id="dash-vocab-lang" class="input-modern text-xs flex-1 min-w-[80px]">
-                                    <option value="en">🇬🇧 Englisch</option>
-                                    <option value="tr">🇹🇷 Türkisch</option>
-                                </select>
-                                <select id="dash-vocab-level" class="input-modern text-xs flex-1 min-w-[80px]">
-                                    <option value="">Alle Niveaus</option>
-                                </select>
-                                <input type="text" id="dash-vocab-search" placeholder="🔎 Suche..."
-                                    class="input-modern text-xs flex-1 min-w-[100px]">
-                            </div>
-                            <div id="dash-vocab-list" class="max-h-[400px] overflow-y-auto space-y-1.5"></div>
-                        </div>
-                    </div>
-
-                    <!-- Wörter-View -->
-                    <div id="dash-sub-woerter-view" class="hidden space-y-3">
-                        <div class="glass-card p-4">
-                            <div class="flex flex-wrap gap-2 mb-3">
-                                <select id="dash-word-length" class="input-modern text-xs flex-1 min-w-[80px]">
-                                    <option value="">Alle Längen</option>
-                                </select>
-                                <input type="text" id="dash-word-search" placeholder="🔎 Suche..."
-                                    class="input-modern text-xs flex-1 min-w-[100px]">
-                            </div>
-                            <div id="dash-word-list" class="flex flex-wrap gap-1.5 max-h-[400px] overflow-y-auto"></div>
-                        </div>
-                    </div>
-
-                    <!-- ==========================================================
-BEREICH: INHALTE
-========================================================== -->
                     <div id="dash-section-inhalte" class="hidden space-y-4">
                         <!-- Sub-Navigation mit Zählern -->
                         <div class="dash-sub-nav">
@@ -2016,7 +1946,6 @@ BEREICH: INHALTE
                         <div id="dash-sub-woerter-view" class="hidden space-y-3">
                             <div id="dash-word-list" class="flex flex-wrap gap-1.5 max-h-[400px] overflow-y-auto"></div>
                         </div>
-                    </div>
 
                     <!-- Globale Suche -->
                     <div class="glass-card p-4">
@@ -6037,6 +5966,12 @@ VIEW: QUIZ SETUP
             // Alle Views ausblenden
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
 
+            // Lesen-Modul für nächsten Besuch zurücksetzen
+            const _lex = document.getElementById('lesen-exercise');
+            const _lcat = document.getElementById('lesen-categories');
+            if (_lex) _lex.classList.add('hidden');
+            if (_lcat) _lcat.classList.remove('hidden');
+
             // Hauptmenü anzeigen
             const menu = document.getElementById('view-menu');
             if (menu) menu.classList.remove('hidden');
@@ -7816,38 +7751,6 @@ VIEW: QUIZ SETUP
         }
 
         // Verbesserte stopTVActionMode
-        function stopTVActionMode() {
-            if (tvActionModeInterval) {
-                clearInterval(tvActionModeInterval);
-                tvActionModeInterval = null;
-                console.log("⏹ TV Action Mode gestoppt");
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        function stopTVActionMode() {
-            if (tvActionModeInterval) {
-                clearInterval(tvActionModeInterval);
-                tvActionModeInterval = null;
-                console.log("⏹ Action Mode gestoppt");
-            }
-        }
-
-
         function stopTVActionMode() {
             if (tvActionModeInterval) {
                 clearInterval(tvActionModeInterval);
@@ -11280,28 +11183,6 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
 
 
         // Geht von überall im Lesen-Bereich komplett zurück ins Hauptmenü
-        function goToMainMenu() {
-            try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { }
-
-            const ex = document.getElementById('lesen-exercise');
-            const gr = document.getElementById('lesen-categories');
-
-            // Lesebereich verstecken (Passe die ID an deine echte View-ID an!)
-            const viewLesen = document.getElementById('view-lesen');
-            if (viewLesen) viewLesen.classList.add('hidden');
-
-            // Setze das Dashboard zurück für den nächsten Besuch
-            if (ex) ex.classList.add('hidden');
-            if (gr) gr.classList.remove('hidden');
-
-            // Zeige Hauptmenü
-            // WICHTIG: Ersetze 'view-menu' mit der ID, die dein Hauptmenü wirklich hat!
-            const viewMenu = document.getElementById('view-menu');
-            if (viewMenu) viewMenu.classList.remove('hidden');
-
-            // Falls EduPlay eine switchView Funktion hat, nutzt du diese stattdessen:
-            if (typeof switchView === 'function') switchView('menu');
-        }
 
         function openLesen() {
             renderLesenCategories();
@@ -11313,6 +11194,10 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
         }
 
     </script>
+
+
+
+
 
 
 </body>

@@ -2613,7 +2613,7 @@ BEREICH: INHALTE
                     <div class="flex items-center gap-2 px-1">
                         <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">🎓 Allein lernen</span>
                     </div>
-                    <div class="grid grid-cols-2 gap-3">
+                    <!-- <div class="grid grid-cols-2 gap-3">
                         <button onclick="showQuizSetup()"
                             class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
                             style="background:linear-gradient(135deg,#ec4899,#f43f5e);">
@@ -2625,7 +2625,6 @@ BEREICH: INHALTE
                             <span class="text-3xl">🃏</span> Vokabeln
                         </button>
                     </div>
-                    <!-- Dein neuer Formeln-Button im Hauptmenü -->
                     <button onclick="switchView('formel-setup')"
                         class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
                         style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);">
@@ -2637,7 +2636,40 @@ BEREICH: INHALTE
                         <span class="text-3xl">📖</span>
                         <span>Lesen lernen</span>
                         <span class="text-xs font-bold text-blue-200 -mt-1">Klasse 1</span>
-                    </button>
+                    </button> -->
+
+                    <!-- Dashboard Raster -->
+                    <div class="grid grid-cols-2 gap-3">
+
+                        <!-- 1. WISSEN -->
+                        <button onclick="showQuizSetup()"
+                            class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
+                            style="background:linear-gradient(135deg,#ec4899,#f43f5e);">
+                            <span class="text-3xl">🧠</span> Wissen
+                        </button>
+
+                        <!-- 2. VOKABELN -->
+                        <button onclick="switchView('vokabeln')"
+                            class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
+                            style="background:linear-gradient(135deg,#10b981,#34d399);">
+                            <span class="text-3xl">🃏</span> Vokabeln
+                        </button>
+
+                        <!-- 3. FORMELN -->
+                        <button onclick="switchView('formel-setup')"
+                            class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
+                            style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);">
+                            <span class="text-3xl">🧮</span> Formeln
+                        </button>
+
+                        <!-- 4. LESEN LERNEN (angepasst an das Design der anderen) -->
+                        <button onclick="switchView('lesen')"
+                            class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
+                            style="background:linear-gradient(135deg,#3b82f6,#6366f1);">
+                            <span class="text-3xl">📖</span> Lesen
+                        </button>
+                    </div>
+
                     <button onclick="switchView('fokus')"
                         class="btn-primary w-full flex flex-col items-center gap-1 text-center"
                         style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">

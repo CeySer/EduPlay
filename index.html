@@ -3199,16 +3199,38 @@ VIEW: QUIZ SETUP
             return (ids || []).map(questionById).filter(Boolean);
         }
 
+        // function questionsForKey(key) {
+        //     if (typeof QUESTIONS_DATABASE === 'undefined' || !key) return [];
+
+        //     // Prüfe ob key mit "subject:" beginnt
+        //     if (String(key).startsWith("subject:")) {
+        //         const sub = String(key).slice("subject:".length);
+        //         return QUESTIONS_DATABASE.filter(q => q.subject === sub && q.area === "schule");
+        //     }
+
+        //     // Normaler Category-Lookup
+        //     return QUESTIONS_DATABASE.filter(q => q.category === key);
+        // }
+
         function questionsForKey(key) {
             if (typeof QUESTIONS_DATABASE === 'undefined' || !key) return [];
 
-            // Prüfe ob key mit "subject:" beginnt
+            // Unterthema-Filter (z.B. "topic:k1_mathe:addition")
+            if (String(key).startsWith("topic:")) {
+                const parts = key.split(":");
+                if (parts.length === 3) {
+                    const [_, cat, top] = parts;
+                    return QUESTIONS_DATABASE.filter(q => q.category === cat && q.topic === top);
+                }
+            }
+
+            // Quer-Fach über alle Klassen (z.B. "subject:mathe")
             if (String(key).startsWith("subject:")) {
                 const sub = String(key).slice("subject:".length);
                 return QUESTIONS_DATABASE.filter(q => q.subject === sub && q.area === "schule");
             }
 
-            // Normaler Category-Lookup
+            // Standard-Kategorie (z.B. "k1_mathe")
             return QUESTIONS_DATABASE.filter(q => q.category === key);
         }
 
@@ -3306,6 +3328,24 @@ VIEW: QUIZ SETUP
             return _questionCounts[key] || 0;
         }
 
+        // function fillSubjectSelect(areaId, subjectId) {
+        //     const aSel = document.getElementById(areaId);
+        //     const sSel = document.getElementById(subjectId);
+        //     if (!aSel || !sSel) return;
+        //     const mode = aSel.dataset.mode || "alle";
+        //     const area = getAreas(mode).find(a => a.value === aSel.value);
+        //     const subs = area ? area.subjects : [];
+        //     sSel.innerHTML = subs.map(s => `<option value="${s.key}">${s.label} · ${questionCount(s.key)}</option>`).join("");
+        // }
+
+        const TOPIC_LABELS = {
+            "nachbarzahlen": "🔢 Zählen & Nachbarzahlen",
+            "zaehlen": "🔢 Zählen",
+            "addition": "➕ Addition (+)",
+            "subtraktion": "➖ Subtraktion (-)",
+            "geometrie": "📐 Geometrie & Größen"
+        };
+
         function fillSubjectSelect(areaId, subjectId) {
             const aSel = document.getElementById(areaId);
             const sSel = document.getElementById(subjectId);
@@ -3313,7 +3353,27 @@ VIEW: QUIZ SETUP
             const mode = aSel.dataset.mode || "alle";
             const area = getAreas(mode).find(a => a.value === aSel.value);
             const subs = area ? area.subjects : [];
-            sSel.innerHTML = subs.map(s => `<option value="${s.key}">${s.label} · ${questionCount(s.key)}</option>`).join("");
+
+            let html = "";
+            subs.forEach(s => {
+                const totalCount = questionCount(s.key);
+                // Hauptfach (z.B. Alle 100 Mathefragen)
+                html += `<option value="${s.key}">${s.label} (Alle · ${totalCount})</option>`;
+
+                // Dynamische Unterthemen (topics) einfügen, falls vorhanden
+                if (typeof QUESTIONS_DATABASE !== 'undefined') {
+                    const subQuestions = QUESTIONS_DATABASE.filter(q => q.category === s.key);
+                    const topics = [...new Set(subQuestions.map(q => q.topic).filter(Boolean))];
+
+                    topics.forEach(t => {
+                        const tCount = subQuestions.filter(q => q.topic === t).length;
+                        const label = TOPIC_LABELS[t] || (t.charAt(0).toUpperCase() + t.slice(1));
+                        html += `<option value="topic:${s.key}:${t}">&nbsp;&nbsp;&nbsp;&nbsp;└ ${label} (${tCount})</option>`;
+                    });
+                }
+            });
+
+            sSel.innerHTML = html;
         }
 
         function setupCategorySelectors(areaId, subjectId, mode) {

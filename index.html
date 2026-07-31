@@ -6321,11 +6321,11 @@ VIEW: QUIZ SETUP
         
         <!-- Überarbeitete Buttons -->
         <div class="grid grid-cols-2 gap-3 mt-6">
-            <button onclick="switchView('duel-setup')" class="btn-primary w-full text-center" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">
+            <button onclick="startDuel()" class="btn-primary w-full text-center" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">
                 🔄 Nochmal
             </button>
             <button onclick="switchView('menu')" class="btn-secondary w-full text-center">
-                🏠 Menü
+                🏁 Beenden
             </button>
         </div>
     </div>`;
@@ -7039,7 +7039,10 @@ VIEW: QUIZ SETUP
                                 </div>`;
             });
             html += `</div>
-                        <button onclick="switchView('scrabble-setup')" class="btn-primary w-full text-center mt-4">⬅ Zurück</button>
+                        <div class="grid grid-cols-2 gap-3 mt-6">
+                            <button onclick="startScrabbleGame()" class="btn-primary w-full text-center" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">🔄 Nochmal</button>
+                            <button onclick="switchView('menu')" class="btn-secondary w-full text-center">🏁 Beenden</button>
+                        </div>
                     </div>`;
             document.getElementById("scrabble-result-content").innerHTML = html;
             scrabbleState = null;

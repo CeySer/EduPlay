@@ -11266,7 +11266,47 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
         }
 
 
+        // 1. Füge hier die beiden Funktionen ein:
+        function initDropdowns() {
+            const areaSelect = document.getElementById("quiz-area");
+            if (!areaSelect) return;
 
+            areaSelect.innerHTML = '<option value="">-- Klasse wählen --</option>';
+            Object.entries(FORMULA_DATABASE).forEach(([key, data]) => {
+                let option = document.createElement("option");
+                option.value = key;
+                option.text = data.label;
+                areaSelect.appendChild(option);
+            });
+        }
+
+        function startQuiz() {
+            const selectedKey = document.getElementById("quiz-area").value;
+            if (!selectedKey) {
+                alert("Bitte wähle erst eine Klasse aus!");
+                return;
+            }
+            const selectedFormulas = FORMULA_DATABASE[selectedKey].formulas;
+            currentQuestions = selectedFormulas.map(item => ({
+                question: `Was ist die Formel/Lösung für: ${item.name}?`,
+                answers: [item.formula, "Falsche Antwort A", "Falsche Antwort B", "Falsche Antwort C"],
+                correct: 0,
+                explanation: item.explanation
+            }));
+            qIndex = 0;
+
+            // WICHTIG: Ersetze "switchView('quiz')" durch deine Funktion, die das Quiz-Fenster öffnet
+            // Bei dir hieß das in einem vorherigen Ausschnitt z.B. so:
+            document.getElementById('view-quiz-setup').classList.add('hidden');
+            document.getElementById('view-quiz').classList.remove('hidden');
+
+            showQuestion();
+        }
+
+        // 2. Das Document-Event kommt ganz ans Ende deines <script>-Blocks:
+        document.addEventListener("DOMContentLoaded", () => {
+            initDropdowns();
+        });
 
     </script>
 

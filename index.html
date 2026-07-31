@@ -24,7 +24,7 @@
     <script src="questions_school.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
     <script src="questions_beruf.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
     <script src="questions_fun.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="formula.js"></script>
+    <script src="formula.js?v=6.1"></script>
     <!-- <script src="lesen.js?v=5"></script>
     <script src="lesen_in_index.js?v=6"></script> -->
 
@@ -2775,6 +2775,9 @@ BEREICH: INHALTE
                             class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
                             style="background:linear-gradient(135deg,#10b981,#34d399);">
                             <span class="text-3xl">🃏</span> Vokabeln
+                        </button>
+                        <button class="btn-primary w-full py-4 text-center" onclick="switchView('quiz-setup')">
+                            🧪 Formeln üben
                         </button>
                     </div>
                     <button onclick="switchView('lesen')"
@@ -11269,17 +11272,25 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
         // 1. Füge hier die beiden Funktionen ein:
         function initDropdowns() {
             const areaSelect = document.getElementById("quiz-area");
-            if (!areaSelect) return;
+
+            // Prüfen, ob die Daten überhaupt existieren
+            if (typeof FORMULA_DATABASE === 'undefined') {
+                console.error("KRITISCH: FORMULA_DATABASE ist undefined! Die formula.js wurde nicht korrekt geladen.");
+                return;
+            }
+
+            console.log("Daten gefunden, Anzahl der Klassen:", Object.keys(FORMULA_DATABASE).length);
 
             areaSelect.innerHTML = '<option value="">-- Klasse wählen --</option>';
+
             Object.entries(FORMULA_DATABASE).forEach(([key, data]) => {
+                console.log("Versuche hinzuzufügen:", data.label); // Siehst du das in der Konsole?
                 let option = document.createElement("option");
                 option.value = key;
                 option.text = data.label;
                 areaSelect.appendChild(option);
             });
         }
-
         function startQuiz() {
             const selectedKey = document.getElementById("quiz-area").value;
             if (!selectedKey) {

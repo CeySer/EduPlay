@@ -2,7 +2,7 @@
 // FORMELSAMMLUNG - MATHEMATIK & PHYSIK (Klasse 1-13)
 // Kurze, jugendgerechte Erklärungen fürs Auswendiglernen
 // =======================================================
-
+console.log("formula.js wurde geladen!");
 // ============================================================
 // TEIL 1: FORMULA_DATABASE - Nach Klassen sortiert
 // ============================================================

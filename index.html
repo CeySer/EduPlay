@@ -3124,6 +3124,36 @@ VIEW: QUIZ SETUP
             QUESTIONS_DATABASE.push(...K1_MATHE_QUESTIONS);
         }
 
+        // ============================================================
+        // DATENBANKEN ZUSAMMENFÜHREN
+        // ============================================================
+
+        // Allgemeine Fragen
+        if (typeof SCHOOL_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS); }
+        if (typeof BERUFS_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...BERUFS_QUESTIONS); }
+        if (typeof FUN_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...FUN_QUESTIONS); }
+
+        // Klasse 1
+        if (typeof K1_MATHE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K1_MATHE_QUESTIONS); }
+        if (typeof K1_DEUTSCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K1_DEUTSCH_QUESTIONS); }
+        if (typeof K1_SACHUNTERRICHT_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K1_SACHUNTERRICHT_QUESTIONS); }
+
+        // Klasse 2
+        if (typeof K2_MATHE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_MATHE_QUESTIONS); }
+        if (typeof K2_DEUTSCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_DEUTSCH_QUESTIONS); }
+        if (typeof K2_SACHUNTERRICHT_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_SACHUNTERRICHT_QUESTIONS); }
+        if (typeof K2_ENGLISCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_ENGLISCH_QUESTIONS); }
+
+        // Klasse 3
+        if (typeof K3_MATHE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_MATHE_QUESTIONS); }
+        if (typeof K3_DEUTSCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_DEUTSCH_QUESTIONS); }
+        if (typeof K3_SACHUNTERRICHT_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_SACHUNTERRICHT_QUESTIONS); }
+        if (typeof K3_ENGLISCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_ENGLISCH_QUESTIONS); }
+
+
+
+
+
         // 2. Vokabeln - werden bereits von vocabulary.js geladen
         // Die Variable VOCABULARY_DATABASE existiert bereits!
 

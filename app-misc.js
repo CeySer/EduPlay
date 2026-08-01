@@ -1,0 +1,314 @@
+        // ============================================================
+        //  INIT & OFFLINE
+        // ============================================================
+        OFFLINE_MODUS_AKTIV = false;
+
+
+        function applyOfflineModusSichtbarkeit() {
+            const block = document.getElementById("family-duel-block");
+            if (block) block.classList.toggle("hidden", !OFFLINE_MODUS_AKTIV);
+        }
+
+        function renderOfflineBanner() {
+            if (!OFFLINE_MODUS_AKTIV) return;
+            let bar = document.getElementById("offline-banner");
+            if (!bar) {
+                bar = document.createElement("div");
+                bar.id = "offline-banner";
+                bar.className =
+                    "fixed top-0 left-0 right-0 z-50 bg-amber-600 text-slate-950 text-center text-xs font-black py-1.5 shadow-lg";
+                bar.innerText = "📴 Offline – Duelle über mehrere Handys pausieren. Ein-Gerät-Modi laufen weiter.";
+                document.body.appendChild(bar);
+            }
+            bar.classList.toggle("hidden", !isOffline());
+        }
+        window.addEventListener("online", renderOfflineBanner);
+        window.addEventListener("offline", renderOfflineBanner);
+
+        // ============================================================
+        //  LESEN LERNEN (aus lesen_in_index.js)
+        // ============================================================
+        if (typeof renderLesenCategories !== 'function') {
+            window.renderLesenCategories = function () {
+                const container = document.getElementById('lesen-categories');
+                if (!container) return;
+                container.innerHTML =
+                    '<div class="text-gray-400 text-sm text-center col-span-2 py-4">📖 Lesen-Modul wird geladen...</div>';
+            };
+        }
+
+        // ============================================================
+        // VORLESEFUNKTION FÜR LESEN LERNEN
+        // ============================================================
+        function leseAktuelleAufgabeVor() {
+            // Greift exakt auf den Container zu, in dem die Aufgabe angezeigt wird
+            const exerciseContainer = document.getElementById('lesen-exercise');
+
+            // Bricht ab, falls keine Aufgabe geladen/sichtbar ist
+            if (!exerciseContainer || exerciseContainer.classList.contains('hidden')) {
+                return;
+            }
+
+            // Holt sich den gesamten reinen Text der aktuellen Übung ohne HTML-Schnipsel
+            const textZumVorlesen = exerciseContainer.innerText || exerciseContainer.textContent;
+
+            // Startet die Vorlesefunktion, falls Text vorhanden ist
+            if (textZumVorlesen.trim() !== '') {
+                speakNatural(textZumVorlesen);
+            }
+        }
+
+        // function leseAktuelleAufgabeVor() {
+        //     // Statt des gesamten Texts nur das AKTUELLE ELEMENT vorlesen
+        //     const exerciseDiv = document.getElementById('lesen-exercise');
+
+        //     // Nur den sichtbaren Text im Übungsbereich nehmen
+        //     // (nicht den ganzen Container mit allen versteckten Elementen)
+        //     const visibleText = exerciseDiv.querySelector('.aktuelle-aufgabe')?.textContent ||
+        //         exerciseDiv.textContent;
+
+        //     // ODER: Nur das aktuell markierte Wort/Silbe
+        //     const highlightedWord = exerciseDiv.querySelector('.highlight')?.textContent;
+        //     const textToRead = highlightedWord || visibleText;
+
+        //     if (!textToRead || textToRead.trim() === '') {
+        //         showToast('Kein Text zum Vorlesen', 'warning');
+        //         return;
+        //     }
+
+        //     // Vorlesen mit dem bereinigten Text
+        //     const utterance = new SpeechSynthesisUtterance(textToRead.trim());
+        //     utterance.lang = 'de-DE';
+        //     utterance.rate = 0.8;
+        //     window.speechSynthesis.speak(utterance);
+        // }
+
+
+        // function leseSilbenweiseVor(text) {
+        //     // Silben erkennen (einfache Regel: nach Vokalen trennen)
+        //     const silben = text.split(/(?<=[aeiouäöü])/i).filter(s => s.trim().length > 0);
+
+        //     let index = 0;
+
+        //     function sprecheNaechsteSilbe() {
+        //         if (index >= silben.length) {
+        //             showToast('✅ Fertig!', 'success');
+        //             return;
+        //         }
+
+        //         const silbe = silben[index].trim();
+        //         if (!silbe) {
+        //             index++;
+        //             sprecheNaechsteSilbe();
+        //             return;
+        //         }
+
+        //         // Silbe vorlesen
+        //         const utterance = new SpeechSynthesisUtterance(silbe);
+        //         utterance.lang = 'de-DE';
+        //         utterance.rate = 0.7; // Extra langsam für Leseanfänger
+
+        //         // Die aktuelle Silbe im Text hervorheben
+        //         markiereSilbe(index, silben);
+
+        //         utterance.onend = () => {
+        //             index++;
+        //             // Pause von 500ms zwischen den Silben
+        //             setTimeout(sprecheNaechsteSilbe, 500);
+        //         };
+
+        //         window.speechSynthesis.speak(utterance);
+        //     }
+
+        //     sprecheNaechsteSilbe();
+        // }
+
+        // Silbe im Text markieren
+        function markiereSilbe(index, silben) {
+            const container = document.getElementById('lesen-uebung-inhalt');
+            let html = '';
+            silben.forEach((s, i) => {
+                const trimmed = s.trim();
+                if (trimmed) {
+                    if (i === index) {
+                        html += `<span class="bg-yellow-400 text-black px-1 rounded font-bold">${trimmed}</span>`;
+                    } else {
+                        html += trimmed;
+                    }
+                    // Leerzeichen zwischen Silben erhalten
+                    if (s.endsWith(' ')) html += ' ';
+                }
+            });
+            container.innerHTML = html;
+        }
+
+
+        // ============================================================
+        //  FLOATING ACTION BUTTON (FAB) LOGIK
+        // ============================================================
+
+        // Speichert die letzte Aktivität des Spielers
+        let lastActivity = {
+            view: 'menu',      // Standard: Hauptmenü
+            label: 'Hauptmenü',
+            icon: '🏠'
+        };
+
+        // Funktion, die beim Klick auf den FAB ausgeführt wird
+        function handleFabClick() {
+            SFX.tap();
+
+            // Prüfen, ob der Spieler aktuell in einer Aktivität ist
+            const currentView = getCurrentView();
+
+            // Wenn wir schon im Hauptmenü sind, zur Family-Hub gehen
+            if (currentView === 'menu') {
+                switchView('family-hub');
+                updateFab('family-hub', '👨‍👩‍👧‍👦', 'Spieler wechseln');
+                return;
+            }
+
+            // Wenn wir in einer anderen View sind, zum Hauptmenü zurück
+            if (currentView !== 'family-hub' && currentView !== 'auth') {
+                // Letzte Aktivität speichern für später
+                lastActivity.view = currentView;
+                lastActivity.label = getViewLabel(currentView);
+                lastActivity.icon = getViewIcon(currentView);
+
+                switchView('menu');
+                updateFab('menu', '🏠', 'Zum Hauptmenü');
+                return;
+            }
+
+            // Wenn wir im Family-Hub sind, zum Hauptmenü
+            if (currentView === 'family-hub') {
+                switchView('menu');
+                updateFab('menu', '🏠', 'Zum Hauptmenü');
+                return;
+            }
+        }
+
+        // Hilft, die aktuelle View zu erkennen
+        function getCurrentView() {
+            const views = document.querySelectorAll('.view');
+            for (const view of views) {
+                if (!view.classList.contains('hidden')) {
+                    return view.id.replace('view-', '');
+                }
+            }
+            return 'menu';
+        }
+
+        // Gibt einen lesbaren Namen für die View zurück
+        function getViewLabel(viewId) {
+            const labels = {
+                'menu': 'Hauptmenü',
+                'family-hub': 'Familien-Hub',
+                'dashboard': 'Dashboard',
+                'quiz-setup': 'Quiz-Einstellungen',
+                'quiz': 'Quiz',
+                'vokabeln': 'Vokabel-Trainer',
+                'lesen': 'Lesen lernen',
+                'fokus': 'Fokus-Timer',
+                'rewards': 'Belohnungen',
+                'duel-setup': 'Duell',
+                'duel-play': 'Duell-Spiel',
+                'scrabble-setup': 'Wort-Duell',
+                'scrabble-play': 'Wort-Duell-Spiel',
+                'live-duel-setup': 'Live-Duell',
+                'live-duel-lobby': 'Live-Duell-Lobby',
+                'live-duel-play': 'Live-Duell-Spiel',
+                'tv-quiz-setup': 'TV-Quiz',
+                'tv-quiz-host': 'TV-Quiz (Host)',
+                'tv-quiz-player': 'TV-Quiz (Spieler)'
+            };
+            return labels[viewId] || viewId;
+        }
+
+        // Gibt ein passendes Icon für die View zurück
+        function getViewIcon(viewId) {
+            const icons = {
+                'menu': '🏠',
+                'family-hub': '👨‍👩‍👧‍👦',
+                'dashboard': '📊',
+                'quiz-setup': '🧠',
+                'quiz': '🎯',
+                'vokabeln': '🃏',
+                'lesen': '📖',
+                'fokus': '⏱️',
+                'rewards': '🎁',
+                'duel-setup': '⚔️',
+                'duel-play': '⚔️',
+                'scrabble-setup': '🔤',
+                'scrabble-play': '🔤',
+                'live-duel-setup': '⚔️',
+                'live-duel-lobby': '⚔️',
+                'live-duel-play': '⚔️',
+                'tv-quiz-setup': '📺',
+                'tv-quiz-host': '📺',
+                'tv-quiz-player': '📺'
+            };
+            return icons[viewId] || '🚀';
+        }
+
+        // Aktualisiert den FAB basierend auf der aktuellen View
+        function updateFab(viewId, icon, tooltip) {
+            const fabIcon = document.getElementById('fabIcon');
+            const fabTooltip = document.getElementById('fabTooltip');
+            const fabBadge = document.getElementById('fabBadge');
+
+            if (fabIcon) fabIcon.textContent = icon || '🚀';
+            if (fabTooltip) fabTooltip.textContent = tooltip || 'Schnellstart';
+
+            // Badge anzeigen, wenn wir nicht im Hauptmenü sind
+            if (fabBadge) {
+                if (viewId !== 'menu' && viewId !== 'family-hub' && viewId !== 'auth') {
+                    fabBadge.style.display = 'flex';
+                    fabBadge.textContent = '1';
+                } else {
+                    fabBadge.style.display = 'none';
+                }
+            }
+        }
+
+        // Initialisiere den FAB beim Start
+        function initFab() {
+            updateFab('menu', '🏠', 'Zum Hauptmenü');
+        }
+
+        // FAB bei View-Wechsel aktualisieren
+        const originalSwitchView = switchView;
+        switchView = function (viewId) {
+            // Original-Funktion aufrufen
+            originalSwitchView(viewId);
+
+            // FAB aktualisieren, aber nicht bei Auth
+            if (viewId !== 'auth') {
+                const icon = getViewIcon(viewId);
+                const label = getViewLabel(viewId);
+
+                // Wenn wir im Hauptmenü sind, "Zurück" anzeigen
+                if (viewId === 'menu') {
+                    updateFab('menu', '🏠', 'Zum Hauptmenü');
+                }
+                // Wenn wir im Family-Hub sind, zum Hauptmenü
+                else if (viewId === 'family-hub') {
+                    updateFab('family-hub', '👨‍👩‍👧‍👦', 'Zum Hauptmenü');
+                }
+                // In allen anderen Views: "Zum Hauptmenü"
+                else {
+                    updateFab(viewId, getViewIcon(viewId), `Zurück zum Menü`);
+                }
+            }
+        };
+
+        // Initialisiere beim Laden
+        document.addEventListener('DOMContentLoaded', function () {
+            initFab();
+        });
+
+        // FAB auch initialisieren, wenn die Seite schon geladen ist
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initFab();
+        }
+

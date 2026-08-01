@@ -1,0 +1,133 @@
+// ============================================================
+//  📺 CAST-FUNKTIONEN (Fernseher-Verbindung)
+// ============================================================
+
+let castConnected = false;
+let castWindow = null;
+let castStatusCheck = null;
+
+function toggleCast() {
+    if (castConnected) {
+        // Verbindung trennen
+        disconnectCast();
+    } else {
+        // Verbinden
+        connectCast();
+    }
+}
+
+function connectCast() {
+    if (!currentParentUser) {
+        showToast("Bitte zuerst als Elternteil anmelden!", "error", "cast");
+        return;
+    }
+    
+    if (!currentPlayer) {
+        showToast("Bitte zuerst einen Spieler auswählen!", "error", "cast");
+        return;
+    }
+    
+    const parentId = currentParentUser.uid;
+    const playerName = currentPlayer.name || "Host";
+    
+    // Prüfen, ob der Receiver erreichbar ist
+    // Für den Test: Wir öffnen den Receiver in einem neuen Tab/Fenster
+    // Später wird das durch den echten Chromecast ersetzt
+    
+    // Öffne den Receiver (entweder im gleichen Tab oder als Popup)
+    const receiverUrl = window.location.origin + '/receiver.html';
+    
+    // Für den Test: Im gleichen Tab öffnen (später per Chromecast)
+    if (confirm('📺 Fernseher-Modus starten?\n\nDer Receiver wird geöffnet. Auf dem Handy siehst du weiterhin die Steuerung.')) {
+        // Receiver in neuem Fenster öffnen
+        castWindow = window.open(
+            receiverUrl + '?mode=cast&parentId=' + parentId + '&host=' + encodeURIComponent(playerName),
+            'EduPlayTV',
+            'width=1200,height=800,menubar=no,toolbar=no,location=no,status=no'
+        );
+        
+        if (castWindow) {
+            castConnected = true;
+            updateCastButton();
+            showToast('📺 Fernseher-Modus gestartet!', 'success', 'cast');
+            
+            // Auf Schließen des Fensters reagieren
+            castStatusCheck = setInterval(function() {
+                if (castWindow && castWindow.closed) {
+                    disconnectCast();
+                }
+            }, 1000);
+            
+            // Lobby in Firebase erstellen
+            createTVLobby(parentId, playerName);
+        } else {
+            showToast('⚠️ Bitte Popups erlauben für den Fernseher-Modus!', 'error', 'cast');
+        }
+    }
+}
+
+function disconnectCast() {
+    castConnected = false;
+    if (castStatusCheck) {
+        clearInterval(castStatusCheck);
+        castStatusCheck = null;
+    }
+    if (castWindow && !castWindow.closed) {
+        castWindow.close();
+    }
+    castWindow = null;
+    updateCastButton();
+    showToast('📺 Verbindung getrennt', 'info', 'cast');
+}
+
+function updateCastButton() {
+    const btn = document.getElementById('castButton');
+    if (btn) {
+        btn.textContent = castConnected ? '📡' : '🖥️';
+        btn.classList.toggle('text-green-400', castConnected);
+        btn.classList.toggle('text-gray-400', !castConnected);
+    }
+}
+
+function createTVLobby(parentId, hostName) {
+    // Lobby in Firebase anlegen (für den Receiver)
+    db.collection('parents')
+        .doc(parentId)
+        .collection('tv_game')
+        .doc('lobby')
+        .set({
+            status: 'lobby',
+            players: {},
+            createdBy: hostName || 'Host',
+            createdAt: Date.now()
+        })
+        .then(function() {
+            console.log('✅ TV-Lobby erstellt für parentId:', parentId);
+        })
+        .catch(function(err) {
+            console.error('❌ Fehler beim Erstellen der TV-Lobby:', err);
+        });
+}
+
+// ============================================================
+//  📡 CAST-STATUS PRÜFEN (beim Laden)
+// ============================================================
+
+// Prüft, ob der Receiver noch läuft
+function checkCastStatus() {
+    if (castConnected && castWindow && castWindow.closed) {
+        disconnectCast();
+    }
+}
+
+// Alle 5 Sekunden prüfen
+setInterval(checkCastStatus, 5000);
+
+// Wenn die Seite geschlossen wird, Cast-Verbindung trennen
+window.addEventListener('beforeunload', function() {
+    if (castConnected) {
+        disconnectCast();
+    }
+});
+
+console.log('📺 Cast-Funktionen geladen');

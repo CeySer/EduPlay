@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.28</title>
+    <title>EduPlay Hub - Familien Edition v2.29</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -910,95 +910,8 @@
             }
         }
 
-        /* Das dunkle Overlay mit Unschärfe (Blur) */
-        .drawer-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 998;
-        }
-
-        .drawer-backdrop.open {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        /* Der Drawer selbst im Glassmorphism-Look */
-        .drawer {
-            position: fixed;
-            top: 0;
-            right: 0;
-            /* Falls er von links kommen soll: left: 0; und transform: translateX(-100%); */
-            width: 280px;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.85);
-            /* Leicht transparent */
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
-            transform: translateX(100%);
-            /* Startet außerhalb des Bildschirms */
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            /* Sehr weiche Bewegung */
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Wenn der Drawer die Klasse "open" vom JS bekommt */
-        .drawer.open {
-            transform: translateX(0);
-        }
-
-        /* Animation für die einzelnen Menüpunkte (Stagger-Effekt) */
-        .drawer .drawer-menu-item {
-            opacity: 0;
-            transform: translateX(20px);
-        }
-
-        .drawer.open .drawer-menu-item {
-            /* Die Animation wird durch das JS-Delay nacheinander abgespielt */
-            animation: slideInItem 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-        }
-
-        @keyframes slideInItem {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Layout-Anpassungen innerhalb des Drawers */
-        .drawer-header {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .drawer-items-container {
-            padding: 20px 10px;
-            flex-grow: 1;
-            overflow-y: auto;
-            /* Falls es mal viele Menüpunkte werden */
-        }
-
-        .drawer-footer {
-            padding: 20px;
-            font-size: 0.8rem;
-            color: #666;
-            text-align: center;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
         /* ============================================================
-           DRAWER (SLIDE-MENÜ) - REPARIERT
+           DRAWER (SLIDE-MENÜ)
            ============================================================ */
         .drawer {
             position: fixed;
@@ -1711,7 +1624,7 @@ HEADER FÜR FAMILY HUB
         <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.28</span>
+                <span class="version">v2.29</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1726,7 +1639,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
                 <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
-                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.28</span>
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.29</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1748,7 +1661,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.28</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.29</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -1937,6 +1850,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <button id="dash-sub-vokabeln" onclick="switchDashboardSubTab('vokabeln')">
                             📝 <span id="dash-vocab-count">0</span>
                         </button>
+                        <button id="dash-sub-woerter" onclick="switchDashboardSubTab('woerter')">
+                            🔤 <span id="dash-word-count">0</span>
+                        </button>
                     </div>
 
                     <!-- FILTER-LEISTE – kompakt -->
@@ -1956,7 +1872,10 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div id="dash-vocab-list" class="max-h-[400px] overflow-y-auto space-y-1.5"></div>
                     </div>
 
-
+                    <!-- Wörter-View -->
+                    <div id="dash-sub-woerter-view" class="hidden space-y-3">
+                        <div id="dash-word-list" class="flex flex-wrap gap-1.5 max-h-[400px] overflow-y-auto"></div>
+                    </div>
 
                     <!-- Globale Suche -->
                     <div class="glass-card p-4">
@@ -2019,19 +1938,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Themen auswählen</label>
                                 <div id="dash-test-categories"
                                     class="grid grid-cols-2 gap-1.5 max-h-32 overflow-y-auto"></div>
-                            </div>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">🌍 Vokabeln auswählen</label>
-                                <div id="dash-test-vocab"
-                                    class="grid grid-cols-2 gap-1.5 max-h-32 overflow-y-auto"></div>
-                            </div>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Vokabel-Richtung</label>
-                                <select id="dash-test-dir" class="input-modern">
-                                    <option value="de2f">Deutsch → Fremdsprache</option>
-                                    <option value="f2de">Fremdsprache → Deutsch</option>
-                                    <option value="mix">Gemischt</option>
-                                </select>
                             </div>
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Zeitlimit (Minuten)</label>
@@ -3116,6 +3022,24 @@ VIEW: QUIZ SETUP
 
         // 1. Fragen aus den einzelnen Dateien zusammenführen
         const QUESTIONS_DATABASE = [];
+        if (typeof SCHOOL_QUESTIONS !== 'undefined') {
+            QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS);
+        }
+        if (typeof BERUFS_QUESTIONS !== 'undefined') {
+            QUESTIONS_DATABASE.push(...BERUFS_QUESTIONS);
+        }
+        if (typeof FUN_QUESTIONS !== 'undefined') {
+            QUESTIONS_DATABASE.push(...FUN_QUESTIONS);
+        }
+
+        // Bei der Initialisierung von QUESTIONS_DATABASE hinzufügen:
+        if (typeof K1_MATHE_QUESTIONS !== 'undefined') {
+            QUESTIONS_DATABASE.push(...K1_MATHE_QUESTIONS);
+        }
+
+        // ============================================================
+        // DATENBANKEN ZUSAMMENFÜHREN
+        // ============================================================
 
         // Allgemeine Fragen
         if (typeof SCHOOL_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS); }
@@ -3493,18 +3417,6 @@ VIEW: QUIZ SETUP
             if (suggested && areas.some(a => a.value === suggested)) aSel.value = suggested;
             fillSubjectSelect(areaId, subjectId);
             aSel.onchange = () => fillSubjectSelect(areaId, subjectId);
-        }
-
-        function setupFormelAreas() {
-            const sel = document.getElementById('formel-area');
-            if (!sel || typeof FORMULA_DATABASE === 'undefined') return;
-            let html = '';
-            Object.keys(FORMULA_DATABASE).forEach(key => {
-                const b = FORMULA_DATABASE[key];
-                const n = (b.formulas || []).length;
-                if (n > 0) html += `<option value="${key}">${b.label || key} (${n})</option>`;
-            });
-            sel.innerHTML = html || '<option value="">Keine Formeln gefunden</option>';
         }
 
         let testMode = false;
@@ -4261,8 +4173,11 @@ VIEW: QUIZ SETUP
 
             if (section === 'inhalte') {
                 console.log('📊 Initialisiere Inhalte-Tab...');
+                initDashFilters();
                 updateDashCounts();
-                switchDashboardSubTab(currentDashSubTab || 'fragen');
+                renderDashQuestions();
+                renderDashVocab();
+                renderDashWords();
                 console.log('✅ Inhalte-Tab initialisiert');
             }
             if (section === 'eltern') {
@@ -4636,7 +4551,7 @@ VIEW: QUIZ SETUP
                 return;
             }
 
-            const displayWords = words.slice(0, 2000);
+            const displayWords = words.slice(0, 50);
             console.log(`📝 Zeige ${displayWords.length} von ${words.length} Vokabeln`);
 
             list.innerHTML = displayWords.map((w, index) => `
@@ -4702,7 +4617,7 @@ VIEW: QUIZ SETUP
                 return;
             }
 
-            const displayQuestions = questions.slice(0, 2000);
+            const displayQuestions = questions.slice(0, 50);
             console.log(`📖 Zeige ${displayQuestions.length} von ${questions.length} Fragen`);
 
             list.innerHTML = displayQuestions.map((q, index) => {
@@ -5281,25 +5196,6 @@ VIEW: QUIZ SETUP
                             </label>
                         `).join('');
             }
-
-            const vocBox = document.getElementById('dash-test-vocab');
-            if (vocBox && typeof VOCABULARY_DATABASE !== 'undefined') {
-                const langLabel = { en: 'EN', tr: 'TR' };
-                let html = '';
-                Object.keys(VOCABULARY_DATABASE).forEach(lang => {
-                    Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
-                        const set = VOCABULARY_DATABASE[lang][level];
-                        const n = (set.words || []).length;
-                        if (!n) return;
-                        html += `
-                            <label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
-                                <input type="checkbox" value="vocab:${lang}:${level}" class="dash-test-cat w-4 h-4 accent-emerald-500">
-                                <span class="truncate">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
-                            </label>`;
-                    });
-                });
-                vocBox.innerHTML = html || '<div class="text-xs text-gray-500 col-span-2">Keine Vokabeln geladen</div>';
-            }
         }
 
         function assignTestFromDashboard() {
@@ -5308,8 +5204,7 @@ VIEW: QUIZ SETUP
             const minutes = parseInt(document.getElementById('dash-test-time').value) || 10;
             if (!profileKey) return showToast("Kein Spieler ausgewählt!", "error");
             if (checked.length === 0) return showToast("Bitte mindestens ein Thema auswählen!", "error");
-            const vocabDir = document.getElementById('dash-test-dir')?.value || 'de2f';
-            const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, vocabDir, createdAt: new Date().toISOString() };
+            const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, createdAt: new Date().toISOString() };
             ALL_PROFILES[profileKey].pendingTest = pendingTest;
             db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey).update({ pendingTest });
             showToast(`Test für ${esc(ALL_PROFILES[profileKey].name)} zugewiesen! ⏱️`, "success");
@@ -5322,8 +5217,7 @@ VIEW: QUIZ SETUP
             if (checked.length === 0) return showToast("Bitte zuerst Themen auswählen!", "error");
             const name = prompt("Name für diese Test-Vorlage (z.B. 'Mathe-Check'):");
             if (!name) return;
-            const vocabDir = document.getElementById('dash-test-dir')?.value || 'de2f';
-            testTemplates.push({ id: "tpl_" + Date.now(), name, categories: checked, timeLimitSeconds: minutes * 60, vocabDir });
+            testTemplates.push({ id: "tpl_" + Date.now(), name, categories: checked, timeLimitSeconds: minutes * 60 });
             saveTestTemplates();
             renderTestTemplatesList();
             showToast("Vorlage gespeichert!", "success");
@@ -5345,8 +5239,6 @@ VIEW: QUIZ SETUP
             document.querySelectorAll('.dash-test-cat').forEach(cb => { cb.checked = t.categories.includes(cb.value); });
             const timeEl = document.getElementById('dash-test-time');
             if (timeEl) timeEl.value = Math.round(t.timeLimitSeconds / 60);
-            const dirEl = document.getElementById('dash-test-dir');
-            if (dirEl && t.vocabDir) dirEl.value = t.vocabDir;
             showToast(`Vorlage "${esc(t.name)}" geladen`, "success");
         }
 
@@ -5917,38 +5809,7 @@ VIEW: QUIZ SETUP
             return true;
         }
 
-        function startFormulaSession() {
-            if (typeof FORMULA_DATABASE === 'undefined') { showToast("Formeln nicht geladen!", "error"); return; }
-            const key = document.getElementById("formel-area")?.value;
-            const block = key && FORMULA_DATABASE[key];
-            if (!block || !block.formulas || !block.formulas.length) { showToast("Keine Formeln für diese Klasse!", "error"); return; }
-            const formulas = block.formulas.slice();
-            let questions;
-            if (quizMode === 'flashcards') {
-                questions = formulas.map(f => ({
-                    category: "formel_" + key, question: f.name,
-                    answers: [f.formula], correct: 0,
-                    explanation: f.explanation || "", noShuffle: true
-                }));
-            } else {
-                const pool = [...new Set(formulas.map(f => f.formula))];
-                questions = formulas.map(f => {
-                    const distr = pool.filter(x => x !== f.formula).sort(() => Math.random() - 0.5).slice(0, 3);
-                    return {
-                        category: "formel_" + key,
-                        question: `Wie lautet die Formel für: ${f.name}?`,
-                        answers: [f.formula, ...distr], correct: 0,
-                        explanation: f.formula + (f.explanation ? " — " + f.explanation : "")
-                    };
-                });
-            }
-            questions.sort(() => Math.random() - 0.5);
-            launchQuiz(questions);
-        }
-
         function startQuiz() {
-            const formelView = document.getElementById('view-formel-setup');
-            if (formelView && !formelView.classList.contains('hidden')) return startFormulaSession();
             if (typeof QUESTIONS_DATABASE === 'undefined') {
                 showToast("Fehler: Datenbank nicht geladen!", "error");
                 return;
@@ -6092,41 +5953,11 @@ VIEW: QUIZ SETUP
         //  TEST-MODUS
         // ============================================================
 
-        function buildVocabTestQuestions(vocabKeys, dir) {
-            const out = [];
-            if (typeof VOCABULARY_DATABASE === 'undefined') return out;
-            (vocabKeys || []).forEach(vk => {
-                const [, lang, level] = vk.split(':');
-                const set = VOCABULARY_DATABASE?.[lang]?.[level];
-                if (!set || !set.words) return;
-                const words = set.words;
-                words.forEach(w => {
-                    const thisDir = dir === 'mix' ? (Math.random() < 0.5 ? 'de2f' : 'f2de') : dir;
-                    const askDe = thisDir !== 'f2de';
-                    const prompt = askDe ? w.de : w.foreign;
-                    const answer = askDe ? w.foreign : w.de;
-                    const pool = [...new Set(words.map(x => askDe ? x.foreign : x.de))].filter(x => x !== answer);
-                    const distr = pool.sort(() => Math.random() - 0.5).slice(0, 3);
-                    out.push({
-                        category: vk,
-                        question: `Was heißt „${prompt}"?`,
-                        answers: [answer, ...distr],
-                        correct: 0,
-                        explanation: `${w.de} = ${w.foreign}`
-                    });
-                });
-            });
-            return out;
-        }
-
         function startAssignedTest() {
             if (!currentPlayer || !currentPlayer.pendingTest) return;
-            const { categories, timeLimitSeconds, vocabDir } = currentPlayer.pendingTest;
-            const qCats = (categories || []).filter(c => !c.startsWith('vocab:'));
-            const vCats = (categories || []).filter(c => c.startsWith('vocab:'));
-            let pool = QUESTIONS_DATABASE.filter(q => qCats.includes(q.category));
-            pool = pool.concat(buildVocabTestQuestions(vCats, vocabDir || 'de2f'));
-            currentQuestions = prepareQuestions(pool.sort(() => Math.random() - 0.5));
+            const { categories, timeLimitSeconds } = currentPlayer.pendingTest;
+            currentQuestions = prepareQuestions(QUESTIONS_DATABASE.filter(q => categories.includes(q.category)).sort(() =>
+                Math.random() - 0.5));
             if (currentQuestions.length === 0) { showToast("Keine Fragen für diesen Test gefunden!", "error"); return; }
             testMode = true;
             testCorrectCount = 0;
@@ -10008,37 +9839,29 @@ VIEW: QUIZ SETUP
         };
 
         // Funktion, die beim Klick auf den FAB ausgeführt wird
+        // FAB-Icon/Tooltip werden in switchView automatisch aktualisiert
         function handleFabClick() {
-            SFX.tap();
+            if (typeof SFX !== 'undefined' && SFX.tap) SFX.tap();
 
-            // Prüfen, ob der Spieler aktuell in einer Aktivität ist
             const currentView = getCurrentView();
 
-            // Wenn wir schon im Hauptmenü sind, zur Family-Hub gehen
+            // Im Hauptmenü → zum Family-Hub (Spieler wechseln)
             if (currentView === 'menu') {
                 switchView('family-hub');
-                updateFab('family-hub', '👨‍👩‍👧‍👦', 'Spieler wechseln');
                 return;
             }
 
-            // Wenn wir in einer anderen View sind, zum Hauptmenü zurück
-            if (currentView !== 'family-hub' && currentView !== 'auth') {
-                // Letzte Aktivität speichern für später
-                lastActivity.view = currentView;
-                lastActivity.label = getViewLabel(currentView);
-                lastActivity.icon = getViewIcon(currentView);
-
+            // Im Family-Hub oder Auth → zum Hauptmenü
+            if (currentView === 'family-hub' || currentView === 'auth') {
                 switchView('menu');
-                updateFab('menu', '🏠', 'Zum Hauptmenü');
                 return;
             }
 
-            // Wenn wir im Family-Hub sind, zum Hauptmenü
-            if (currentView === 'family-hub') {
-                switchView('menu');
-                updateFab('menu', '🏠', 'Zum Hauptmenü');
-                return;
-            }
+            // Überall sonst → zurück zum Hauptmenü
+            lastActivity.view = currentView;
+            lastActivity.label = getViewLabel(currentView);
+            lastActivity.icon = getViewIcon(currentView);
+            switchView('menu');
         }
 
         // Hilft, die aktuelle View zu erkennen
@@ -10128,32 +9951,6 @@ VIEW: QUIZ SETUP
         function initFab() {
             updateFab('menu', '🏠', 'Zum Hauptmenü');
         }
-
-        // FAB bei View-Wechsel aktualisieren
-        const originalSwitchView = switchView;
-        switchView = function (viewId) {
-            // Original-Funktion aufrufen
-            originalSwitchView(viewId);
-
-            // FAB aktualisieren, aber nicht bei Auth
-            if (viewId !== 'auth') {
-                const icon = getViewIcon(viewId);
-                const label = getViewLabel(viewId);
-
-                // Wenn wir im Hauptmenü sind, "Zurück" anzeigen
-                if (viewId === 'menu') {
-                    updateFab('menu', '🏠', 'Zum Hauptmenü');
-                }
-                // Wenn wir im Family-Hub sind, zum Hauptmenü
-                else if (viewId === 'family-hub') {
-                    updateFab('family-hub', '👨‍👩‍👧‍👦', 'Zum Hauptmenü');
-                }
-                // In allen anderen Views: "Zum Hauptmenü"
-                else {
-                    updateFab(viewId, getViewIcon(viewId), `Zurück zum Menü`);
-                }
-            }
-        };
 
         // Initialisiere beim Laden
         document.addEventListener('DOMContentLoaded', function () {
@@ -10358,7 +10155,6 @@ VIEW: QUIZ SETUP
             }
 
             if (viewId === 'vokabeln') loadVocabSystem();
-            if (viewId === 'formel-setup') setupFormelAreas();
             if (viewId === 'lesen' && typeof renderLesenCategories === 'function') {
                 const ex = document.getElementById('lesen-exercise');
                 const gr = document.getElementById('lesen-categories');
@@ -10405,40 +10201,35 @@ VIEW: QUIZ SETUP
                 debugDatabaseLoading();
                 switchDashboardSection('inhalte');
             }
+
+            // FAB an aktuelle View anpassen (direkt hier, kein Override nötig)
+            if (viewId !== 'auth' && typeof updateFab === 'function') {
+                if (viewId === 'menu') {
+                    updateFab('menu', '🏠', 'Zum Hauptmenü');
+                } else if (viewId === 'family-hub') {
+                    updateFab('family-hub', '👨‍👩‍👧‍👦', 'Zum Hauptmenü');
+                } else {
+                    updateFab(viewId, getViewIcon(viewId), 'Zurück zum Menü');
+                }
+            }
         }
 
         // Prüfe, ob die Datenbanken geladen sind
         if (typeof QUESTIONS_DATABASE === 'undefined') {
-            console.warn("⚠️ QUESTIONS_DATABASE nicht geladen – prüfe data.js");
-
+            console.warn("⚠️ QUESTIONS_DATABASE nicht geladen – prüfe questions-Dateien");
         }
         if (typeof VOCABULARY_DATABASE === 'undefined') {
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe vocabulary.js");
-            // FAB aktualisieren (am Ende der switchView-Funktion)
-            if (viewId !== 'auth') {
-                updateFab(viewId, getViewIcon(viewId), viewId === 'menu' ? 'Zum Hauptmenü' : 'Zurück zum Menü');
-            }
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.28)");
+        console.log("🚀 EduPlay Hub gestartet (v2.29)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
 
-
-        // Theme beim Laden wiederherstellen (Standard = Light)
-        document.addEventListener('DOMContentLoaded', function () {
-            try {
-                if (localStorage.getItem('eduplayTheme') === 'dark') {
-                    document.body.classList.add('dark-theme');
-                }
-            } catch (e) { }
-        });
-
         // Theme beim Laden wiederherstellen (Standard = Dark)
         document.addEventListener('DOMContentLoaded', function () {
             try {
-                // Wenn NICHT explizit "light" gespeichert wurde, aktiviere den Dark Mode
                 if (localStorage.getItem('eduplayTheme') !== 'light') {
                     document.body.classList.add('dark-theme');
                 }
@@ -10505,7 +10296,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.28<br>
+            EduPlay Hub · v2.29<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -10542,7 +10333,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.28<br>
+            EduPlay Hub · v2.29<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -10721,6 +10512,9 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             options: [],
             correctIndex: -1
         };
+
+        // Schritt für "Lesen mit Verständnis" (Satz lesen → Frage beantworten)
+        let comprehensionStep = 0;
 
         const LESEN_ICONS = {
             buchstaben: '🔤', silben: '👏', anlaute: '🔊',

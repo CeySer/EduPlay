@@ -2976,8 +2976,7 @@ VIEW: QUIZ SETUP
             VIEW: TV-QUIZ PLAYER
             ========================================================== -->
             <div id="view-tv-quiz-player" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">Zurück
-                    16</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame()">Zurück 16</button>
                 <div class="glass-card p-6 text-center">
                     <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
                     <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
@@ -2988,6 +2987,10 @@ VIEW: QUIZ SETUP
                     </div>
                 </div>
             </div>
+
+            <button id="tv-player-exit" onclick="leaveTVGame()" class="hidden"
+                style="position:fixed;top:12px;right:12px;z-index:60;background:rgba(225,29,72,0.92);color:#fff;font-weight:700;font-size:13px;padding:8px 14px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.3);">✕Beenden
+                11</button>
 
         </main>
     </div>
@@ -8748,9 +8751,11 @@ VIEW: QUIZ SETUP
                 solutionHtml = `<p class="text-amber-400 font-bold text-center text-sm">💡 Möglich war z.B.: ${data.currentSolution}</p>`;
             }
 
-            const nextBtn = isLastStep ?
-                `<button onclick="liveDuelRef.update({status:'finished'})" class="btn-primary w-full text-center text-lg" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
-                `<button onclick="advanceLiveDuel()" class="btn-primary w-full text-center text-lg">Weiter ➔</button>`;
+            const nextBtn = !isLiveDuelCreator ?
+                `<p class="text-center text-sm text-gray-400 font-bold py-2">⏳ Warte auf den Ersteller…</p>` :
+                (isLastStep ?
+                    `<button onclick="liveDuelRef.update({status:'finished'})" class="btn-primary w-full text-center text-lg" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
+                    `<button onclick="advanceLiveDuel()" class="btn-primary w-full text-center text-lg">Weiter ➔</button>`);
 
             document.getElementById("live-duel-play-content").innerHTML = `
         <div class="glass-card p-5 rounded-2xl space-y-3 shadow-lg">
@@ -8758,12 +8763,12 @@ VIEW: QUIZ SETUP
             ${solutionHtml}
             <div class="space-y-2">${rowsHtml}</div>
             ${nextBtn}
-            ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in <span id="live-duel-auto-countdown" class="font-bold text-gray-400">…</span> – oder jetzt auf "Weiter" tippen.</p>`}
-        </div>`;
+${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in <span id="live-duel-auto-countdown" class="font-bold text-gray-400">…</span>${isLiveDuelCreator ? ` – oder jetzt auf "Weiter" tippen.` : ""}</p>`}        </div>`;
         }
 
 
         async function advanceLiveDuel() {
+            if (!isLiveDuelCreator) return;
             clearLiveDuelTimers();
             stopLiveDuelActionMode();
 
@@ -10152,6 +10157,8 @@ VIEW: QUIZ SETUP
             const target = document.getElementById(`view-${viewId}`);
             if (target) target.classList.remove('hidden');
             if (typeof closeDrawer === 'function') closeDrawer();
+            const _tvExit = document.getElementById('tv-player-exit');
+            if (_tvExit) _tvExit.classList.toggle('hidden', viewId !== 'tv-quiz-player');
 
             const shell = document.getElementById("app-shell");
             if (shell) {

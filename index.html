@@ -5621,6 +5621,7 @@ VIEW: QUIZ SETUP
         // ============================================================
         hubWatchUnsub = null;
         let hubTickInterval = null;
+        let hubRenderScheduled = null;
 
         function startHubWatch() {
             stopHubWatch();
@@ -5629,17 +5630,48 @@ VIEW: QUIZ SETUP
                 hubWatchUnsub = db.collection("parents").doc(currentParentUser.uid)
                     .collection("profiles")
                     .onSnapshot(snap => {
-                        snap.forEach(doc => {
-                            const data = doc.data();
-                            if (!ALL_PROFILES[doc.id]) ALL_PROFILES[doc.id] = data;
-                            else ALL_PROFILES[doc.id].lastActive = data.lastActive;
+                        let needsRender = false;
+                        snap.docChanges().forEach(change => {
+                            const id = change.doc.id;
+                            const data = change.doc.data();
+                            if (change.type === "removed") {
+                                if (ALL_PROFILES[id]) {
+                                    delete ALL_PROFILES[id];
+                                    needsRender = true;
+                                }
+                                return;
+                            }
+                            if (!ALL_PROFILES[id]) {
+                                ALL_PROFILES[id] = data;
+                                needsRender = true;
+                            } else {
+                                const p = ALL_PROFILES[id];
+                                if (p.lastActive !== data.lastActive ||
+                                    p.coins !== data.coins ||
+                                    p.name !== data.name) {
+                                    p.lastActive = data.lastActive;
+                                    if (data.coins !== undefined) p.coins = data.coins;
+                                    if (data.name) p.name = data.name;
+                                    needsRender = true;
+                                }
+                            }
                         });
-                        renderFamilyHub();
+                        if (needsRender) {
+                            if (hubRenderScheduled) clearTimeout(hubRenderScheduled);
+                            hubRenderScheduled = setTimeout(() => {
+                                hubRenderScheduled = null;
+                                const hub = document.getElementById("view-family-hub");
+                                if (hub && !hub.classList.contains("hidden")) renderFamilyHub();
+                            }, 120);
+                        }
                     }, err => console.warn("Spieler-Aktivität nicht beobachtbar:", err));
             } catch (e) {
                 console.warn("Spieler-Aktivität nicht beobachtbar:", e);
             }
-            hubTickInterval = setInterval(renderFamilyHub, 30000);
+            hubTickInterval = setInterval(() => {
+                const hub = document.getElementById("view-family-hub");
+                if (hub && !hub.classList.contains("hidden")) renderFamilyHub();
+            }, 30000);
         }
 
         function stopHubWatch() {
@@ -5647,6 +5679,10 @@ VIEW: QUIZ SETUP
             if (hubTickInterval) {
                 clearInterval(hubTickInterval);
                 hubTickInterval = null;
+            }
+            if (hubRenderScheduled) {
+                clearTimeout(hubRenderScheduled);
+                hubRenderScheduled = null;
             }
         }
 
@@ -5912,7 +5948,9 @@ VIEW: QUIZ SETUP
 
         function launchQuiz(questions) {
             if (!questions || questions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return false; }
-            currentQuestions = prepareQuestions(questions);
+            currentQuestions = prepareQuestions([...questions].sort(() => Math.random() - 0.5));
+
+
             testMode = false;
             testAnsweredCount = 0;
             testCorrectCount = 0;
@@ -6261,7 +6299,8 @@ VIEW: QUIZ SETUP
         let activeLang = 'en',
             activeCategory = 'k1',
             vIndex = 0,
-            vocabMode = 'flashcards';
+            vocabMode = 'flashcards',
+            currentVocabList = [];
 
         const VOCAB_LANG_ENABLED = { en: true, tr: false };
 
@@ -6302,6 +6341,7 @@ VIEW: QUIZ SETUP
         function selectCategory(c) {
             activeCategory = c;
             vIndex = 0;
+            currentVocabList = shuffleArray(VOCABULARY_DATABASE[activeLang][activeCategory].words);
             showVocabQuestion();
         }
 
@@ -6339,6 +6379,7 @@ VIEW: QUIZ SETUP
             dd.value = preselect;
             activeCategory = preselect;
             vIndex = 0;
+            currentVocabList = shuffleArray(VOCABULARY_DATABASE[activeLang][activeCategory].words);
             showVocabQuestion();
         }
 
@@ -6352,8 +6393,7 @@ VIEW: QUIZ SETUP
         }
 
         function showVocabQuestion() {
-            let list = VOCABULARY_DATABASE[activeLang][activeCategory].words;
-            if (list.length === 0) return;
+            let list = currentVocabList.length ? currentVocabList : (currentVocabList = shuffleArray(VOCABULARY_DATABASE[activeLang][activeCategory].words)); if (list.length === 0) return;
             let lc = 0;
             list.forEach(i => { if (sessionLearnedWords.has(activeLang + "_" + activeCategory + "_" + i.foreign)) lc++; });
             if (lc >= list.length) {
@@ -6461,11 +6501,11 @@ VIEW: QUIZ SETUP
 
         function nextVocab(known) {
             if (known) {
-                sessionLearnedWords.add(`${activeLang}_${activeCategory}_${VOCABULARY_DATABASE[activeLang][activeCategory].words[vIndex].foreign}`);
+                sessionLearnedWords.add(`${activeLang}_${activeCategory}_${currentVocabList[vIndex].foreign}`);
                 showToast("+2 Coins!", "success");
                 addXP(2);
             }
-            vIndex = (vIndex + 1) % VOCABULARY_DATABASE[activeLang][activeCategory].words.length;
+            vIndex = (vIndex + 1) % currentVocabList.length;
             showVocabQuestion();
         }
 
@@ -7617,64 +7657,40 @@ VIEW: QUIZ SETUP
                     </div>
                 `;
 
-                // In startTVHostLobby() - der onSnapshot Listener muss erweitert werden:
+                if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
                 tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
                     if (!doc.exists) return;
                     const data = doc.data();
 
-                    // NEU: Bei Scrabble-Änderungen den Bildschirm aktualisieren
-                    if (data.mode === "scrabble" && data.status === "playing" && !data.showAnswer) {
-                        // Prüfen ob sich die Buchstaben geändert haben
-                        const currentLetters = data.currentLetters;
-                        const currentRound = data.currentRound;
-                        const totalRounds = data.totalRounds || 0;
-                        const currentRequired = data.currentRequired || "";
+                    if (data.status === "waiting") {
+                        renderTVPlayerList(data.players);
+                        return;
+                    }
 
-                        // Bildschirm immer mit den aktuellen Daten aus Firebase rendern
-                        showTVHostScrabbleRound(currentLetters, currentRound, totalRounds, currentRequired);
+                    if (data.status === "finished" && isTVHost) {
+                        showTVHostPodium(data.players);
+                        return;
+                    }
 
-                        // Counter aktualisieren
-                        const ansCount = Object.values(data.players).filter(p => p.hasAnswered).length;
-                        const totalCount = Object.keys(data.players).length;
+                    if (data.status === "playing" && !data.showAnswer) {
+                        if (data.mode === "scrabble") {
+                            showTVHostScrabbleRound(
+                                data.currentLetters,
+                                data.currentRound,
+                                data.totalRounds || 0,
+                                data.currentRequired || ""
+                            );
+                        }
+                        const ansCount = Object.values(data.players || {}).filter(p => p.hasAnswered).length;
+                        const totalCount = Object.keys(data.players || {}).length;
                         const counterEl = document.getElementById("tv-answer-counter");
                         if (counterEl) counterEl.innerText = `${ansCount} von ${totalCount} haben geantwortet`;
-
-                        // Prüfen ob alle geantwortet haben
                         if (totalCount > 0 && ansCount >= totalCount && !isResolving) {
                             isResolving = true;
                             setTimeout(() => {
                                 data.mode === "scrabble" ? revealTVScrabbleRound(data) : revealTVAnswer(data);
                             }, 800);
                         }
-                    }
-
-                    // ... restliche Logik für Quiz-Modus
-                    if (data.status === "waiting") renderTVPlayerList(data.players);
-                    if (data.status === "finished" && isTVHost) {
-                        showTVHostPodium(data.players);
-                    }
-                });
-
-                tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
-                    if (!doc.exists) return;
-                    const data = doc.data();
-                    if (data.status === "waiting") renderTVPlayerList(data.players);
-
-                    if (data.status === "playing" && !data.showAnswer) {
-                        const ansCount = Object.values(data.players).filter(p => p.hasAnswered).length;
-                        const totalCount = Object.keys(data.players).length;
-                        const counterEl = document.getElementById("tv-answer-counter");
-                        if (counterEl) counterEl.innerText = `${ansCount} von ${totalCount} haben geantwortet`;
-                        if (totalCount > 0 && ansCount >= totalCount && !isResolving) {
-                            isResolving = true;
-                            setTimeout(() => {
-                                data.mode === "scrabble" ? revealTVScrabbleRound(data) :
-                                    revealTVAnswer(data);
-                            }, 800);
-                        }
-                    }
-                    if (data.status === "finished" && isTVHost) {
-                        showTVHostPodium(data.players);
                     }
                 });
             } catch (e) {
@@ -8198,6 +8214,7 @@ VIEW: QUIZ SETUP
                 document.getElementById("view-tv-quiz-player").innerHTML =
                     `<div class="glass-card-glow p-12 text-center mt-12" style="border-color:rgba(16,185,129,0.15);"><div class="text-8xl mb-6 animate-bounce">🙌</div><h2 class="text-3xl font-black text-emerald-400 mb-4">Du bist drin!</h2><p class="text-lg text-white font-bold">Gleich geht's los. Schau auf den Fernseher!</p></div>`;
 
+                if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
                 tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
                     if (!doc.exists || isTVHost) return;
                     const data = doc.data();

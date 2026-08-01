@@ -1937,9 +1937,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <button id="dash-sub-vokabeln" onclick="switchDashboardSubTab('vokabeln')">
                             📝 <span id="dash-vocab-count">0</span>
                         </button>
-                        <button id="dash-sub-woerter" onclick="switchDashboardSubTab('woerter')">
-                            🔤 <span id="dash-word-count">0</span>
-                        </button>
                     </div>
 
                     <!-- FILTER-LEISTE – kompakt -->
@@ -1959,10 +1956,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div id="dash-vocab-list" class="max-h-[400px] overflow-y-auto space-y-1.5"></div>
                     </div>
 
-                    <!-- Wörter-View -->
-                    <div id="dash-sub-woerter-view" class="hidden space-y-3">
-                        <div id="dash-word-list" class="flex flex-wrap gap-1.5 max-h-[400px] overflow-y-auto"></div>
-                    </div>
+
 
                     <!-- Globale Suche -->
                     <div class="glass-card p-4">
@@ -2025,6 +2019,19 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Themen auswählen</label>
                                 <div id="dash-test-categories"
                                     class="grid grid-cols-2 gap-1.5 max-h-32 overflow-y-auto"></div>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold block mb-1.5">🌍 Vokabeln auswählen</label>
+                                <div id="dash-test-vocab"
+                                    class="grid grid-cols-2 gap-1.5 max-h-32 overflow-y-auto"></div>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Vokabel-Richtung</label>
+                                <select id="dash-test-dir" class="input-modern">
+                                    <option value="de2f">Deutsch → Fremdsprache</option>
+                                    <option value="f2de">Fremdsprache → Deutsch</option>
+                                    <option value="mix">Gemischt</option>
+                                </select>
                             </div>
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Zeitlimit (Minuten)</label>
@@ -3109,24 +3116,6 @@ VIEW: QUIZ SETUP
 
         // 1. Fragen aus den einzelnen Dateien zusammenführen
         const QUESTIONS_DATABASE = [];
-        if (typeof SCHOOL_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS);
-        }
-        if (typeof BERUFS_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...BERUFS_QUESTIONS);
-        }
-        if (typeof FUN_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...FUN_QUESTIONS);
-        }
-
-        // Bei der Initialisierung von QUESTIONS_DATABASE hinzufügen:
-        if (typeof K1_MATHE_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...K1_MATHE_QUESTIONS);
-        }
-
-        // ============================================================
-        // DATENBANKEN ZUSAMMENFÜHREN
-        // ============================================================
 
         // Allgemeine Fragen
         if (typeof SCHOOL_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS); }
@@ -3504,6 +3493,18 @@ VIEW: QUIZ SETUP
             if (suggested && areas.some(a => a.value === suggested)) aSel.value = suggested;
             fillSubjectSelect(areaId, subjectId);
             aSel.onchange = () => fillSubjectSelect(areaId, subjectId);
+        }
+
+        function setupFormelAreas() {
+            const sel = document.getElementById('formel-area');
+            if (!sel || typeof FORMULA_DATABASE === 'undefined') return;
+            let html = '';
+            Object.keys(FORMULA_DATABASE).forEach(key => {
+                const b = FORMULA_DATABASE[key];
+                const n = (b.formulas || []).length;
+                if (n > 0) html += `<option value="${key}">${b.label || key} (${n})</option>`;
+            });
+            sel.innerHTML = html || '<option value="">Keine Formeln gefunden</option>';
         }
 
         let testMode = false;
@@ -4260,11 +4261,8 @@ VIEW: QUIZ SETUP
 
             if (section === 'inhalte') {
                 console.log('📊 Initialisiere Inhalte-Tab...');
-                initDashFilters();
                 updateDashCounts();
-                renderDashQuestions();
-                renderDashVocab();
-                renderDashWords();
+                switchDashboardSubTab(currentDashSubTab || 'fragen');
                 console.log('✅ Inhalte-Tab initialisiert');
             }
             if (section === 'eltern') {
@@ -4638,7 +4636,7 @@ VIEW: QUIZ SETUP
                 return;
             }
 
-            const displayWords = words.slice(0, 50);
+            const displayWords = words.slice(0, 2000);
             console.log(`📝 Zeige ${displayWords.length} von ${words.length} Vokabeln`);
 
             list.innerHTML = displayWords.map((w, index) => `
@@ -4704,7 +4702,7 @@ VIEW: QUIZ SETUP
                 return;
             }
 
-            const displayQuestions = questions.slice(0, 50);
+            const displayQuestions = questions.slice(0, 2000);
             console.log(`📖 Zeige ${displayQuestions.length} von ${questions.length} Fragen`);
 
             list.innerHTML = displayQuestions.map((q, index) => {
@@ -5283,6 +5281,25 @@ VIEW: QUIZ SETUP
                             </label>
                         `).join('');
             }
+
+            const vocBox = document.getElementById('dash-test-vocab');
+            if (vocBox && typeof VOCABULARY_DATABASE !== 'undefined') {
+                const langLabel = { en: 'EN', tr: 'TR' };
+                let html = '';
+                Object.keys(VOCABULARY_DATABASE).forEach(lang => {
+                    Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
+                        const set = VOCABULARY_DATABASE[lang][level];
+                        const n = (set.words || []).length;
+                        if (!n) return;
+                        html += `
+                            <label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
+                                <input type="checkbox" value="vocab:${lang}:${level}" class="dash-test-cat w-4 h-4 accent-emerald-500">
+                                <span class="truncate">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
+                            </label>`;
+                    });
+                });
+                vocBox.innerHTML = html || '<div class="text-xs text-gray-500 col-span-2">Keine Vokabeln geladen</div>';
+            }
         }
 
         function assignTestFromDashboard() {
@@ -5291,7 +5308,8 @@ VIEW: QUIZ SETUP
             const minutes = parseInt(document.getElementById('dash-test-time').value) || 10;
             if (!profileKey) return showToast("Kein Spieler ausgewählt!", "error");
             if (checked.length === 0) return showToast("Bitte mindestens ein Thema auswählen!", "error");
-            const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, createdAt: new Date().toISOString() };
+            const vocabDir = document.getElementById('dash-test-dir')?.value || 'de2f';
+            const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, vocabDir, createdAt: new Date().toISOString() };
             ALL_PROFILES[profileKey].pendingTest = pendingTest;
             db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey).update({ pendingTest });
             showToast(`Test für ${esc(ALL_PROFILES[profileKey].name)} zugewiesen! ⏱️`, "success");
@@ -5304,7 +5322,8 @@ VIEW: QUIZ SETUP
             if (checked.length === 0) return showToast("Bitte zuerst Themen auswählen!", "error");
             const name = prompt("Name für diese Test-Vorlage (z.B. 'Mathe-Check'):");
             if (!name) return;
-            testTemplates.push({ id: "tpl_" + Date.now(), name, categories: checked, timeLimitSeconds: minutes * 60 });
+            const vocabDir = document.getElementById('dash-test-dir')?.value || 'de2f';
+            testTemplates.push({ id: "tpl_" + Date.now(), name, categories: checked, timeLimitSeconds: minutes * 60, vocabDir });
             saveTestTemplates();
             renderTestTemplatesList();
             showToast("Vorlage gespeichert!", "success");
@@ -5326,6 +5345,8 @@ VIEW: QUIZ SETUP
             document.querySelectorAll('.dash-test-cat').forEach(cb => { cb.checked = t.categories.includes(cb.value); });
             const timeEl = document.getElementById('dash-test-time');
             if (timeEl) timeEl.value = Math.round(t.timeLimitSeconds / 60);
+            const dirEl = document.getElementById('dash-test-dir');
+            if (dirEl && t.vocabDir) dirEl.value = t.vocabDir;
             showToast(`Vorlage "${esc(t.name)}" geladen`, "success");
         }
 
@@ -5896,7 +5917,38 @@ VIEW: QUIZ SETUP
             return true;
         }
 
+        function startFormulaSession() {
+            if (typeof FORMULA_DATABASE === 'undefined') { showToast("Formeln nicht geladen!", "error"); return; }
+            const key = document.getElementById("formel-area")?.value;
+            const block = key && FORMULA_DATABASE[key];
+            if (!block || !block.formulas || !block.formulas.length) { showToast("Keine Formeln für diese Klasse!", "error"); return; }
+            const formulas = block.formulas.slice();
+            let questions;
+            if (quizMode === 'flashcards') {
+                questions = formulas.map(f => ({
+                    category: "formel_" + key, question: f.name,
+                    answers: [f.formula], correct: 0,
+                    explanation: f.explanation || "", noShuffle: true
+                }));
+            } else {
+                const pool = [...new Set(formulas.map(f => f.formula))];
+                questions = formulas.map(f => {
+                    const distr = pool.filter(x => x !== f.formula).sort(() => Math.random() - 0.5).slice(0, 3);
+                    return {
+                        category: "formel_" + key,
+                        question: `Wie lautet die Formel für: ${f.name}?`,
+                        answers: [f.formula, ...distr], correct: 0,
+                        explanation: f.formula + (f.explanation ? " — " + f.explanation : "")
+                    };
+                });
+            }
+            questions.sort(() => Math.random() - 0.5);
+            launchQuiz(questions);
+        }
+
         function startQuiz() {
+            const formelView = document.getElementById('view-formel-setup');
+            if (formelView && !formelView.classList.contains('hidden')) return startFormulaSession();
             if (typeof QUESTIONS_DATABASE === 'undefined') {
                 showToast("Fehler: Datenbank nicht geladen!", "error");
                 return;
@@ -6040,11 +6092,41 @@ VIEW: QUIZ SETUP
         //  TEST-MODUS
         // ============================================================
 
+        function buildVocabTestQuestions(vocabKeys, dir) {
+            const out = [];
+            if (typeof VOCABULARY_DATABASE === 'undefined') return out;
+            (vocabKeys || []).forEach(vk => {
+                const [, lang, level] = vk.split(':');
+                const set = VOCABULARY_DATABASE?.[lang]?.[level];
+                if (!set || !set.words) return;
+                const words = set.words;
+                words.forEach(w => {
+                    const thisDir = dir === 'mix' ? (Math.random() < 0.5 ? 'de2f' : 'f2de') : dir;
+                    const askDe = thisDir !== 'f2de';
+                    const prompt = askDe ? w.de : w.foreign;
+                    const answer = askDe ? w.foreign : w.de;
+                    const pool = [...new Set(words.map(x => askDe ? x.foreign : x.de))].filter(x => x !== answer);
+                    const distr = pool.sort(() => Math.random() - 0.5).slice(0, 3);
+                    out.push({
+                        category: vk,
+                        question: `Was heißt „${prompt}"?`,
+                        answers: [answer, ...distr],
+                        correct: 0,
+                        explanation: `${w.de} = ${w.foreign}`
+                    });
+                });
+            });
+            return out;
+        }
+
         function startAssignedTest() {
             if (!currentPlayer || !currentPlayer.pendingTest) return;
-            const { categories, timeLimitSeconds } = currentPlayer.pendingTest;
-            currentQuestions = prepareQuestions(QUESTIONS_DATABASE.filter(q => categories.includes(q.category)).sort(() =>
-                Math.random() - 0.5));
+            const { categories, timeLimitSeconds, vocabDir } = currentPlayer.pendingTest;
+            const qCats = (categories || []).filter(c => !c.startsWith('vocab:'));
+            const vCats = (categories || []).filter(c => c.startsWith('vocab:'));
+            let pool = QUESTIONS_DATABASE.filter(q => qCats.includes(q.category));
+            pool = pool.concat(buildVocabTestQuestions(vCats, vocabDir || 'de2f'));
+            currentQuestions = prepareQuestions(pool.sort(() => Math.random() - 0.5));
             if (currentQuestions.length === 0) { showToast("Keine Fragen für diesen Test gefunden!", "error"); return; }
             testMode = true;
             testCorrectCount = 0;
@@ -10276,6 +10358,7 @@ VIEW: QUIZ SETUP
             }
 
             if (viewId === 'vokabeln') loadVocabSystem();
+            if (viewId === 'formel-setup') setupFormelAreas();
             if (viewId === 'lesen' && typeof renderLesenCategories === 'function') {
                 const ex = document.getElementById('lesen-exercise');
                 const gr = document.getElementById('lesen-categories');

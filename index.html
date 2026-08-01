@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPlay Hub - Familien Edition v2.29</title>
+    <title>EduPlay Hub - Familien Edition v2.28</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -26,11 +26,11 @@
     <script src="fragensammlung/questions_beruf.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
     <script src="fragensammlung/questions_fun.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
     <!-- Bei den anderen Fragen-Dateien einfügen: -->
-    <script src="fragensammlung/klasse1/questions_k1_mathe.js?v=6.2"></script>
+    <script src="fragensammlung/klasse1/questions_k1_Mathe.js?v=6.2"></script>
     <script src="fragensammlung/klasse1/questions_k1_deutsch.js?v=6.2"></script>
     <script src="fragensammlung/klasse1/questions_k1_sachunterricht.js?v=6.2"></script>
 
-    <script src="fragensammlung/klasse2/questions_k2_mathe.js?v=6.2"></script>
+    <script src="fragensammlung/klasse2/questions_k2_Mathe.js?v=6.2"></script>
     <script src="fragensammlung/klasse2/questions_k2_deutsch.js?v=6.2"></script>
     <script src="fragensammlung/klasse2/questions_k2_sachunterricht.js?v=6.2"></script>
     <script src="fragensammlung/Klasse2/questions_k2_englisch.js?v=6.2"></script>
@@ -910,8 +910,95 @@
             }
         }
 
+        /* Das dunkle Overlay mit Unschärfe (Blur) */
+        .drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 998;
+        }
+
+        .drawer-backdrop.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Der Drawer selbst im Glassmorphism-Look */
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            /* Falls er von links kommen soll: left: 0; und transform: translateX(-100%); */
+            width: 280px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.85);
+            /* Leicht transparent */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            transform: translateX(100%);
+            /* Startet außerhalb des Bildschirms */
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            /* Sehr weiche Bewegung */
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Wenn der Drawer die Klasse "open" vom JS bekommt */
+        .drawer.open {
+            transform: translateX(0);
+        }
+
+        /* Animation für die einzelnen Menüpunkte (Stagger-Effekt) */
+        .drawer .drawer-menu-item {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .drawer.open .drawer-menu-item {
+            /* Die Animation wird durch das JS-Delay nacheinander abgespielt */
+            animation: slideInItem 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        @keyframes slideInItem {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Layout-Anpassungen innerhalb des Drawers */
+        .drawer-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .drawer-items-container {
+            padding: 20px 10px;
+            flex-grow: 1;
+            overflow-y: auto;
+            /* Falls es mal viele Menüpunkte werden */
+        }
+
+        .drawer-footer {
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
         /* ============================================================
-           DRAWER (SLIDE-MENÜ)
+           DRAWER (SLIDE-MENÜ) - REPARIERT
            ============================================================ */
         .drawer {
             position: fixed;
@@ -1624,7 +1711,7 @@ HEADER FÜR FAMILY HUB
         <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.29</span>
+                <span class="version">v2.28</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1639,7 +1726,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
                 <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
-                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.29</span>
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.28</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1661,7 +1748,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.29</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.28</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -1814,7 +1901,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
                 <!-- Kopf -->
                 <div class="flex items-center justify-between gap-2 pt-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Übersicht 01</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Übersicht</button>
                     <span class="text-sm font-bold text-gray-400">📊 Dashboard</span>
                     <span class="w-10"></span>
                 </div>
@@ -1850,9 +1937,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <button id="dash-sub-vokabeln" onclick="switchDashboardSubTab('vokabeln')">
                             📝 <span id="dash-vocab-count">0</span>
                         </button>
-                        <button id="dash-sub-woerter" onclick="switchDashboardSubTab('woerter')">
-                            🔤 <span id="dash-word-count">0</span>
-                        </button>
                     </div>
 
                     <!-- FILTER-LEISTE – kompakt -->
@@ -1872,10 +1956,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div id="dash-vocab-list" class="max-h-[400px] overflow-y-auto space-y-1.5"></div>
                     </div>
 
-                    <!-- Wörter-View -->
-                    <div id="dash-sub-woerter-view" class="hidden space-y-3">
-                        <div id="dash-word-list" class="flex flex-wrap gap-1.5 max-h-[400px] overflow-y-auto"></div>
-                    </div>
+
 
                     <!-- Globale Suche -->
                     <div class="glass-card p-4">
@@ -1940,6 +2021,19 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                     class="grid grid-cols-2 gap-1.5 max-h-32 overflow-y-auto"></div>
                             </div>
                             <div>
+                                <label class="text-xs text-gray-400 font-bold block mb-1.5">🌍 Vokabeln auswählen</label>
+                                <div id="dash-test-vocab"
+                                    class="grid grid-cols-2 gap-1.5 max-h-32 overflow-y-auto"></div>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Vokabel-Richtung</label>
+                                <select id="dash-test-dir" class="input-modern">
+                                    <option value="de2f">Deutsch → Fremdsprache</option>
+                                    <option value="f2de">Fremdsprache → Deutsch</option>
+                                    <option value="mix">Gemischt</option>
+                                </select>
+                            </div>
+                            <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Zeitlimit (Minuten)</label>
                                 <input type="number" id="dash-test-time" value="10" min="1" max="90"
                                     class="input-modern">
@@ -1997,7 +2091,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: DUELL SETUP
             ========================================================== -->
             <div id="view-duel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 1</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-rose-400">⚔️ Quiz-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Zwei Spieler treten nacheinander im selben Quiz
@@ -2025,7 +2119,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-duel-play" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2 px-3"
-                    onclick="if(confirm('Duell wirklich beenden?')) switchView('duel-setup')">Beenden 01</button>
+                    onclick="if(confirm('Duell wirklich beenden?')) switchView('duel-setup')">Beenden</button>
                 <div id="duel-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(244,63,94,0.15),rgba(236,72,153,0.1));border-color:rgba(244,63,94,0.2);">
                     <div id="duel-turn-emoji" class="text-6xl">🥊</div>
@@ -2051,7 +2145,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: SCRABBLE SETUP
             ========================================================== -->
             <div id="view-scrabble-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 2</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben Buchstaben und bilden
@@ -2118,8 +2212,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-scrabble-play" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2 px-3"
-                    onclick="if(confirm('Wort-Duell wirklich beenden?')){ if(scrabbleState&&scrabbleState.changeInterval){clearInterval(scrabbleState.changeInterval);scrabbleState.changeInterval=null;} switchView('scrabble-setup'); }">Beenden
-                    02</button>
+                    onclick="if(confirm('Wort-Duell wirklich beenden?')){ if(scrabbleState&&scrabbleState.changeInterval){clearInterval(scrabbleState.changeInterval);scrabbleState.changeInterval=null;} switchView('scrabble-setup'); }">Beenden</button>
                 <div id="scrabble-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(251,191,36,0.1));border-color:rgba(245,158,11,0.2);">
                     <div class="text-6xl">🔤</div>
@@ -2163,7 +2256,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: LIVE-DUELL SETUP
             ========================================================== -->
             <div id="view-live-duel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 3</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <button onclick="openCodedLobbySetup()" class="btn-primary w-full text-center"
                     style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">🌍
                     Online-Lobby mit Code (verschiedene Konten)</button>
@@ -2248,8 +2341,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: CODE-LOBBY SETUP (kontouebergreifend)
             ========================================================== -->
             <div id="view-coded-lobby-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('live-duel-setup')">Zurück
-                    4</button>
+                <button class="btn-secondary text-sm py-2.5 px-4"
+                    onclick="switchView('live-duel-setup')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-indigo-400">🌍 Online-Lobby</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Verschiedene Konten treffen sich über einen
@@ -2363,7 +2456,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         class="hidden btn-primary w-full text-center text-xl">Los geht's! 🚀</button>
                     <p id="live-duel-wait-hint" class="text-xs text-gray-500">Warte, bis der Ersteller startet...</p>
 
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveQuiz('live-duel-setup')">Duell
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveLiveDuel()">Duell
                         Verlassen</button>
 
                 </div>
@@ -2374,11 +2467,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
-                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück 5</button>
+                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück</button>
                     <div id="live-duel-status" class="text-xs font-bold text-gray-400"></div>
                     <div id="live-duel-countdown" class="min-w-[3rem] text-center text-xl font-black text-amber-400">
                     </div>
                 </div>
+                <button id="live-duel-force-resolve" onclick="forceResolveLiveDuel()" class="hidden btn-secondary text-xs py-2 px-3 w-full">⏭ Runde trotzdem auflösen</button>
                 <div id="live-duel-play-content"></div>
             </div>
 
@@ -2386,7 +2480,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: LIVE-DUELL ERGEBNIS
             ========================================================== -->
             <div id="view-live-duel-result" class="view hidden space-y-4">
-                <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Zurück 6</button>
+                <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Zurück</button>
                 <div id="live-duel-result-content"></div>
             </div>
 
@@ -2560,7 +2654,7 @@ VIEW: HAUPTMENÜ
             VIEW: BELOHNUNGEN EINLÖSEN
             ========================================================== -->
             <div id="view-rewards" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 7</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-5">
                     <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen</h3>
                     <p class="text-xs text-gray-400 mb-4">Du hast <span id="rewards-coin-balance"
@@ -2633,8 +2727,8 @@ VIEW: HAUPTMENÜ
             VIEW: FEEDBACK
             ========================================================== -->
             <div id="view-feedback" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView(feedbackReturnView)">Zurück
-                    8</button>
+                <button class="btn-secondary text-sm py-2.5 px-4"
+                    onclick="switchView(feedbackReturnView)">Zurück</button>
                 <div class="glass-card p-5 space-y-4">
                     <h3 class="text-xl font-black text-amber-400 mb-1">💬 Feedback</h3>
                     <p class="text-xs text-gray-400">Was ist kaputt, was fehlt, was war gut? Schreib's rein – wir lesen
@@ -2721,7 +2815,7 @@ VIEW: HAUPTMENÜ
             VIEW: FOKUS LERNZEIT
             ========================================================== -->
             <div id="view-fokus" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 9</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-8 text-center space-y-6 shadow-lg">
                     <div class="text-6xl">⏱️</div>
                     <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
@@ -2740,7 +2834,7 @@ VIEW: HAUPTMENÜ
 VIEW: FORMELN SETUP (NEU & SEPARAT)
 ========================================================= -->
             <div id="view-formel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 10</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
 
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-pink-400">Formeln üben</h2>
@@ -2771,7 +2865,7 @@ VIEW: LESEN LERNEN
 ========================================================== -->
             <div id="view-lesen" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 11</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                     <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
                     <span class="w-20"></span>
                 </div>
@@ -2792,7 +2886,7 @@ VIEW: LESEN LERNEN
 VIEW: QUIZ SETUP
 ========================================================= -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 12</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
                     class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center"
                     style="background:var(--gradient-rose);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
@@ -2821,7 +2915,7 @@ VIEW: QUIZ SETUP
             VIEW: QUIZ ARENA
             ========================================================== -->
             <div id="view-quiz" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="endLesson()">Beenden 03</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="endLesson()">Beenden</button>
                 <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
                     style="border-color:rgba(99,102,241,0.2);">
                     ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
@@ -2847,7 +2941,7 @@ VIEW: QUIZ SETUP
             VIEW: VOKABEL-TRAINER
             ========================================================== -->
             <div id="view-vokabeln" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 13</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-5 text-center space-y-4">
                     <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
                     <div id="lang-selector" class="dash-sub-nav">
@@ -2873,7 +2967,7 @@ VIEW: QUIZ SETUP
             ========================================================== -->
 
             <div id="view-tv-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 14</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-6 text-center">
                     <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
                     <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die
@@ -2901,8 +2995,7 @@ VIEW: QUIZ SETUP
             VIEW: TV-QUIZ HOST
             ========================================================== -->
             <div id="view-tv-quiz-host" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">Zurück
-                    15</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">Zurück</button>
                 <div class="glass-card p-6 text-center">
                     <h2 class="text-2xl font-black text-white mb-4">Spiel erstellen</h2>
                     <div class="dash-sub-nav mb-6">
@@ -2976,7 +3069,7 @@ VIEW: QUIZ SETUP
             VIEW: TV-QUIZ PLAYER
             ========================================================== -->
             <div id="view-tv-quiz-player" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame()">Zurück 16</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame()">Zurück</button>
                 <div class="glass-card p-6 text-center">
                     <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
                     <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
@@ -2988,9 +3081,7 @@ VIEW: QUIZ SETUP
                 </div>
             </div>
 
-            <button id="tv-player-exit" onclick="leaveTVGame()" class="hidden"
-                style="position:fixed;top:12px;right:12px;z-index:60;background:rgba(225,29,72,0.92);color:#fff;font-weight:700;font-size:13px;padding:8px 14px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.3);">✕Beenden
-                11</button>
+        <button id="tv-player-exit" onclick="leaveTVGame()" class="hidden" style="position:fixed;top:12px;right:12px;z-index:60;background:rgba(225,29,72,0.92);color:#fff;font-weight:700;font-size:13px;padding:8px 14px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.3);">✕ Beenden</button>
 
         </main>
     </div>
@@ -3028,24 +3119,6 @@ VIEW: QUIZ SETUP
 
         // 1. Fragen aus den einzelnen Dateien zusammenführen
         const QUESTIONS_DATABASE = [];
-        if (typeof SCHOOL_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS);
-        }
-        if (typeof BERUFS_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...BERUFS_QUESTIONS);
-        }
-        if (typeof FUN_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...FUN_QUESTIONS);
-        }
-
-        // Bei der Initialisierung von QUESTIONS_DATABASE hinzufügen:
-        if (typeof K1_MATHE_QUESTIONS !== 'undefined') {
-            QUESTIONS_DATABASE.push(...K1_MATHE_QUESTIONS);
-        }
-
-        // ============================================================
-        // DATENBANKEN ZUSAMMENFÜHREN
-        // ============================================================
 
         // Allgemeine Fragen
         if (typeof SCHOOL_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS); }
@@ -3423,6 +3496,18 @@ VIEW: QUIZ SETUP
             if (suggested && areas.some(a => a.value === suggested)) aSel.value = suggested;
             fillSubjectSelect(areaId, subjectId);
             aSel.onchange = () => fillSubjectSelect(areaId, subjectId);
+        }
+
+        function setupFormelAreas() {
+            const sel = document.getElementById('formel-area');
+            if (!sel || typeof FORMULA_DATABASE === 'undefined') return;
+            let html = '';
+            Object.keys(FORMULA_DATABASE).forEach(key => {
+                const b = FORMULA_DATABASE[key];
+                const n = (b.formulas || []).length;
+                if (n > 0) html += `<option value="${key}">${b.label || key} (${n})</option>`;
+            });
+            sel.innerHTML = html || '<option value="">Keine Formeln gefunden</option>';
         }
 
         let testMode = false;
@@ -4179,11 +4264,8 @@ VIEW: QUIZ SETUP
 
             if (section === 'inhalte') {
                 console.log('📊 Initialisiere Inhalte-Tab...');
-                initDashFilters();
                 updateDashCounts();
-                renderDashQuestions();
-                renderDashVocab();
-                renderDashWords();
+                switchDashboardSubTab(currentDashSubTab || 'fragen');
                 console.log('✅ Inhalte-Tab initialisiert');
             }
             if (section === 'eltern') {
@@ -4557,7 +4639,7 @@ VIEW: QUIZ SETUP
                 return;
             }
 
-            const displayWords = words.slice(0, 50);
+            const displayWords = words.slice(0, 2000);
             console.log(`📝 Zeige ${displayWords.length} von ${words.length} Vokabeln`);
 
             list.innerHTML = displayWords.map((w, index) => `
@@ -4623,7 +4705,7 @@ VIEW: QUIZ SETUP
                 return;
             }
 
-            const displayQuestions = questions.slice(0, 50);
+            const displayQuestions = questions.slice(0, 2000);
             console.log(`📖 Zeige ${displayQuestions.length} von ${questions.length} Fragen`);
 
             list.innerHTML = displayQuestions.map((q, index) => {
@@ -5202,6 +5284,25 @@ VIEW: QUIZ SETUP
                             </label>
                         `).join('');
             }
+
+            const vocBox = document.getElementById('dash-test-vocab');
+            if (vocBox && typeof VOCABULARY_DATABASE !== 'undefined') {
+                const langLabel = { en: 'EN', tr: 'TR' };
+                let html = '';
+                Object.keys(VOCABULARY_DATABASE).forEach(lang => {
+                    Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
+                        const set = VOCABULARY_DATABASE[lang][level];
+                        const n = (set.words || []).length;
+                        if (!n) return;
+                        html += `
+                            <label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
+                                <input type="checkbox" value="vocab:${lang}:${level}" class="dash-test-cat w-4 h-4 accent-emerald-500">
+                                <span class="truncate">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
+                            </label>`;
+                    });
+                });
+                vocBox.innerHTML = html || '<div class="text-xs text-gray-500 col-span-2">Keine Vokabeln geladen</div>';
+            }
         }
 
         function assignTestFromDashboard() {
@@ -5210,7 +5311,8 @@ VIEW: QUIZ SETUP
             const minutes = parseInt(document.getElementById('dash-test-time').value) || 10;
             if (!profileKey) return showToast("Kein Spieler ausgewählt!", "error");
             if (checked.length === 0) return showToast("Bitte mindestens ein Thema auswählen!", "error");
-            const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, createdAt: new Date().toISOString() };
+            const vocabDir = document.getElementById('dash-test-dir')?.value || 'de2f';
+            const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, vocabDir, createdAt: new Date().toISOString() };
             ALL_PROFILES[profileKey].pendingTest = pendingTest;
             db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey).update({ pendingTest });
             showToast(`Test für ${esc(ALL_PROFILES[profileKey].name)} zugewiesen! ⏱️`, "success");
@@ -5223,7 +5325,8 @@ VIEW: QUIZ SETUP
             if (checked.length === 0) return showToast("Bitte zuerst Themen auswählen!", "error");
             const name = prompt("Name für diese Test-Vorlage (z.B. 'Mathe-Check'):");
             if (!name) return;
-            testTemplates.push({ id: "tpl_" + Date.now(), name, categories: checked, timeLimitSeconds: minutes * 60 });
+            const vocabDir = document.getElementById('dash-test-dir')?.value || 'de2f';
+            testTemplates.push({ id: "tpl_" + Date.now(), name, categories: checked, timeLimitSeconds: minutes * 60, vocabDir });
             saveTestTemplates();
             renderTestTemplatesList();
             showToast("Vorlage gespeichert!", "success");
@@ -5245,6 +5348,8 @@ VIEW: QUIZ SETUP
             document.querySelectorAll('.dash-test-cat').forEach(cb => { cb.checked = t.categories.includes(cb.value); });
             const timeEl = document.getElementById('dash-test-time');
             if (timeEl) timeEl.value = Math.round(t.timeLimitSeconds / 60);
+            const dirEl = document.getElementById('dash-test-dir');
+            if (dirEl && t.vocabDir) dirEl.value = t.vocabDir;
             showToast(`Vorlage "${esc(t.name)}" geladen`, "success");
         }
 
@@ -5778,7 +5883,7 @@ VIEW: QUIZ SETUP
             <div class="text-gray-400 font-bold">${pct}% richtig</div>
             <div class="flex gap-3 mt-4">
                 <button onclick="replayLesson()" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Nochmal</button>
-                <button onclick="switchView('menu')" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Beenden 04</button>
+                <button onclick="switchView('menu')" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Beenden</button>
             </div>
         </div>`;
             switchView('test-result');
@@ -5815,7 +5920,38 @@ VIEW: QUIZ SETUP
             return true;
         }
 
+        function startFormulaSession() {
+            if (typeof FORMULA_DATABASE === 'undefined') { showToast("Formeln nicht geladen!", "error"); return; }
+            const key = document.getElementById("formel-area")?.value;
+            const block = key && FORMULA_DATABASE[key];
+            if (!block || !block.formulas || !block.formulas.length) { showToast("Keine Formeln für diese Klasse!", "error"); return; }
+            const formulas = block.formulas.slice();
+            let questions;
+            if (quizMode === 'flashcards') {
+                questions = formulas.map(f => ({
+                    category: "formel_" + key, question: f.name,
+                    answers: [f.formula], correct: 0,
+                    explanation: f.explanation || "", noShuffle: true
+                }));
+            } else {
+                const pool = [...new Set(formulas.map(f => f.formula))];
+                questions = formulas.map(f => {
+                    const distr = pool.filter(x => x !== f.formula).sort(() => Math.random() - 0.5).slice(0, 3);
+                    return {
+                        category: "formel_" + key,
+                        question: `Wie lautet die Formel für: ${f.name}?`,
+                        answers: [f.formula, ...distr], correct: 0,
+                        explanation: f.formula + (f.explanation ? " — " + f.explanation : "")
+                    };
+                });
+            }
+            questions.sort(() => Math.random() - 0.5);
+            launchQuiz(questions);
+        }
+
         function startQuiz() {
+            const formelView = document.getElementById('view-formel-setup');
+            if (formelView && !formelView.classList.contains('hidden')) return startFormulaSession();
             if (typeof QUESTIONS_DATABASE === 'undefined') {
                 showToast("Fehler: Datenbank nicht geladen!", "error");
                 return;
@@ -5959,11 +6095,41 @@ VIEW: QUIZ SETUP
         //  TEST-MODUS
         // ============================================================
 
+        function buildVocabTestQuestions(vocabKeys, dir) {
+            const out = [];
+            if (typeof VOCABULARY_DATABASE === 'undefined') return out;
+            (vocabKeys || []).forEach(vk => {
+                const [, lang, level] = vk.split(':');
+                const set = VOCABULARY_DATABASE?.[lang]?.[level];
+                if (!set || !set.words) return;
+                const words = set.words;
+                words.forEach(w => {
+                    const thisDir = dir === 'mix' ? (Math.random() < 0.5 ? 'de2f' : 'f2de') : dir;
+                    const askDe = thisDir !== 'f2de';
+                    const prompt = askDe ? w.de : w.foreign;
+                    const answer = askDe ? w.foreign : w.de;
+                    const pool = [...new Set(words.map(x => askDe ? x.foreign : x.de))].filter(x => x !== answer);
+                    const distr = pool.sort(() => Math.random() - 0.5).slice(0, 3);
+                    out.push({
+                        category: vk,
+                        question: `Was heißt „${prompt}"?`,
+                        answers: [answer, ...distr],
+                        correct: 0,
+                        explanation: `${w.de} = ${w.foreign}`
+                    });
+                });
+            });
+            return out;
+        }
+
         function startAssignedTest() {
             if (!currentPlayer || !currentPlayer.pendingTest) return;
-            const { categories, timeLimitSeconds } = currentPlayer.pendingTest;
-            currentQuestions = prepareQuestions(QUESTIONS_DATABASE.filter(q => categories.includes(q.category)).sort(() =>
-                Math.random() - 0.5));
+            const { categories, timeLimitSeconds, vocabDir } = currentPlayer.pendingTest;
+            const qCats = (categories || []).filter(c => !c.startsWith('vocab:'));
+            const vCats = (categories || []).filter(c => c.startsWith('vocab:'));
+            let pool = QUESTIONS_DATABASE.filter(q => qCats.includes(q.category));
+            pool = pool.concat(buildVocabTestQuestions(vCats, vocabDir || 'de2f'));
+            currentQuestions = prepareQuestions(pool.sort(() => Math.random() - 0.5));
             if (currentQuestions.length === 0) { showToast("Keine Fragen für diesen Test gefunden!", "error"); return; }
             testMode = true;
             testCorrectCount = 0;
@@ -6026,7 +6192,7 @@ VIEW: QUIZ SETUP
             <div class="text-gray-400 font-bold">${pct}% richtig beantwortet</div>
             <div class="flex gap-3 mt-4">
                 <button onclick="startAssignedTest()" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Nochmal</button>
-                <button onclick="goToMainMenu(); switchView('quiz-setup')" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Zurück 17</button>
+                <button onclick="goToMainMenu(); switchView('quiz-setup')" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Zurück</button>
             </div>
         </div>`;
             switchView('test-result');
@@ -6416,7 +6582,9 @@ VIEW: QUIZ SETUP
             <button onclick="startDuel()" class="btn-primary w-full text-center" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">
                 🔄 Nochmal
             </button>
-            <button onclick="switchView('menu')" class="btn-secondary w-full text-center">🏁 Beenden 05</button>
+            <button onclick="switchView('menu')" class="btn-secondary w-full text-center">
+                🏁 Beenden
+            </button>
         </div>
     </div>`;
             duelState = null;
@@ -7131,7 +7299,7 @@ VIEW: QUIZ SETUP
             html += `</div>
                         <div class="grid grid-cols-2 gap-3 mt-6">
                             <button onclick="startScrabbleGame()" class="btn-primary w-full text-center" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">🔄 Nochmal</button>
-                            <button onclick="switchView('menu')" class="btn-secondary w-full text-center">🏁 Beenden 06</button>
+                            <button onclick="switchView('menu')" class="btn-secondary w-full text-center">🏁 Beenden</button>
                         </div>
                     </div>`;
             document.getElementById("scrabble-result-content").innerHTML = html;
@@ -7561,7 +7729,7 @@ VIEW: QUIZ SETUP
             });
             document.getElementById("view-tv-quiz-host").innerHTML = `
                     <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden 07</button></div>
+                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(99,102,241,0.15);">
                             <p class="text-indigo-400 font-black text-xl mb-2">Frage ${index + 1} / ${tvQuestions.length}</p>
                             <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
@@ -7597,7 +7765,7 @@ VIEW: QUIZ SETUP
 
             document.getElementById("view-tv-quiz-host").innerHTML = `
                     <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden 08</button></div>
+                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(16,185,129,0.2);">
                             <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
                             <p class="text-emerald-400 font-black mt-6 text-3xl">💡 ${tvCurrentQ.explanation}</p>
@@ -7711,7 +7879,7 @@ VIEW: QUIZ SETUP
                         <select id="tv-again-category" class="input-modern font-bold text-xl"></select>
                         <button onclick="restartTVGame()" class="btn-primary w-full text-center text-2xl py-6" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
                     </div>
-                    <div class="text-center"><button onclick="leaveTVGame(); switchView('tv-quiz-setup')" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">⬅ Zurück 18</button></div>
+                    <div class="text-center"><button onclick="leaveTVGame(); switchView('tv-quiz-setup')" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">⬅ Zurück</button></div>
                 `;
 
             document.getElementById("view-tv-quiz-host").innerHTML =
@@ -7901,7 +8069,7 @@ VIEW: QUIZ SETUP
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
             document.getElementById("view-tv-quiz-host").innerHTML = `
                     <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden 09</button></div>
+                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(245,158,11,0.15);">
                             <p class="text-amber-400 font-black text-xl mb-4">Runde ${round} / ${totalRounds}</p>
                             <h1 class="text-2xl md:text-3xl font-black text-white leading-tight mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
@@ -7982,7 +8150,7 @@ VIEW: QUIZ SETUP
 
             document.getElementById("view-tv-quiz-host").innerHTML = `
                     <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden 10</button></div>
+                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="text-center mb-4">
                             <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
                             ${data.currentSolution ? `<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war am Ende z.B.: ${data.currentSolution}</p>` : ""}
@@ -8064,7 +8232,7 @@ VIEW: QUIZ SETUP
                                 tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true });
                             }
                             document.getElementById("view-tv-quiz-player").innerHTML =
-                                `<div class="glass-card-glow p-10 text-center mt-12" style="border-color:rgba(245,158,11,0.15);"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-white/5 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><div class="mt-8 p-4 bg-white/5 border border-indigo-800/30 rounded-2xl"><div class="text-4xl mb-2 animate-pulse">⏳</div><p class="text-indigo-300 font-black">Du bleibst dabei!</p><p class="text-xs text-gray-400 mt-1">Sobald am Fernseher eine neue Runde startet, geht es hier automatisch weiter.</p></div><button onclick="leaveTVGame()" class="mt-6 btn-secondary w-full text-center text-sm">Doch beenden & zurück ins Menü 001</button></div>`;
+                                `<div class="glass-card-glow p-10 text-center mt-12" style="border-color:rgba(245,158,11,0.15);"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-white/5 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><div class="mt-8 p-4 bg-white/5 border border-indigo-800/30 rounded-2xl"><div class="text-4xl mb-2 animate-pulse">⏳</div><p class="text-indigo-300 font-black">Du bleibst dabei!</p><p class="text-xs text-gray-400 mt-1">Sobald am Fernseher eine neue Runde startet, geht es hier automatisch weiter.</p></div><button onclick="leaveTVGame()" class="mt-6 btn-secondary w-full text-center text-sm">Doch beenden & zurück ins Menü</button></div>`;
                         }
                         return;
                     }
@@ -8100,7 +8268,7 @@ VIEW: QUIZ SETUP
                             tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true });
                         }
                         document.getElementById("view-tv-quiz-player").innerHTML =
-                            `<div class="glass-card-glow p-10 text-center mt-12" style="border-color:rgba(245,158,11,0.15);"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-white/5 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><div class="mt-8 p-4 bg-white/5 border border-indigo-800/30 rounded-2xl"><div class="text-4xl mb-2 animate-pulse">⏳</div><p class="text-indigo-300 font-black">Du bleibst dabei!</p><p class="text-xs text-gray-400 mt-1">Sobald am Fernseher eine neue Runde startet, geht es hier automatisch weiter.</p></div><button onclick="leaveTVGame()" class="mt-6 btn-secondary w-full text-center text-sm">Doch beenden & zurück ins Menü 002</button></div>`;
+                            `<div class="glass-card-glow p-10 text-center mt-12" style="border-color:rgba(245,158,11,0.15);"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-white/5 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><div class="mt-8 p-4 bg-white/5 border border-indigo-800/30 rounded-2xl"><div class="text-4xl mb-2 animate-pulse">⏳</div><p class="text-indigo-300 font-black">Du bleibst dabei!</p><p class="text-xs text-gray-400 mt-1">Sobald am Fernseher eine neue Runde startet, geht es hier automatisch weiter.</p></div><button onclick="leaveTVGame()" class="mt-6 btn-secondary w-full text-center text-sm">Doch beenden & zurück ins Menü</button></div>`;
                     }
                 });
             } catch (error) { handleError("joinTVGame", error, "Beitreten hat nicht geklappt."); }
@@ -8326,6 +8494,18 @@ VIEW: QUIZ SETUP
             });
         }
 
+        async function forceResolveLiveDuel() {
+            if (!isLiveDuelCreator || !liveDuelRef) return;
+            clearLiveDuelTimers();
+            try {
+                const snap = await liveDuelRef.get();
+                if (snap.exists && snap.data().status === "playing" && !liveDuelResolving) {
+                    liveDuelResolving = true;
+                    resolveLiveDuelRound(snap.data());
+                }
+            } catch (e) {}
+        }
+
         function startLiveDuelCountdown(deadline) {
             clearLiveDuelTimers();
             const el = document.getElementById("live-duel-countdown");
@@ -8353,6 +8533,9 @@ VIEW: QUIZ SETUP
         function renderLiveDuelFromSnapshot(data) {
             const myData = data.players[activePlayerKey];
             if (!myData) return;
+
+            const _fr = document.getElementById("live-duel-force-resolve");
+            if (_fr) _fr.classList.add("hidden");
 
             isLiveDuelCreator = (data.createdBy === activePlayerKey);
             if (isLiveDuelCreator && data.status !== "finished") maybeStartHostHeartbeat();
@@ -8429,11 +8612,19 @@ VIEW: QUIZ SETUP
 
                 if (data.answerDeadline) {
                     if (!liveDuelTimerInterval) startLiveDuelCountdown(data.answerDeadline);
+                } else if (isLiveDuelCreator) {
+                    // Ghost-Schutz: Ersteller setzt einmalig eine Rundendeadline
+                    const _secs = data.type === "quiz" ? 30 : 60;
+                    liveDuelRef.update({ answerDeadline: Date.now() + _secs * 1000 });
                 } else {
                     clearLiveDuelTimers();
                     const cd = document.getElementById("live-duel-countdown");
                     if (cd) cd.innerText = "";
                 }
+
+                // "Trotzdem auflösen"-Knopf nur für Ersteller, solange nicht alle fertig
+                const forceBtn = document.getElementById("live-duel-force-resolve");
+                if (forceBtn) forceBtn.classList.toggle("hidden", !(isLiveDuelCreator && ansCount < totalCount));
 
                 if (isLiveDuelCreator && !liveDuelResolving && totalCount > 0 && ansCount >= totalCount) {
                     liveDuelResolving = true;
@@ -8754,8 +8945,8 @@ VIEW: QUIZ SETUP
             const nextBtn = !isLiveDuelCreator ?
                 `<p class="text-center text-sm text-gray-400 font-bold py-2">⏳ Warte auf den Ersteller…</p>` :
                 (isLastStep ?
-                    `<button onclick="liveDuelRef.update({status:'finished'})" class="btn-primary w-full text-center text-lg" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
-                    `<button onclick="advanceLiveDuel()" class="btn-primary w-full text-center text-lg">Weiter ➔</button>`);
+                `<button onclick="liveDuelRef.update({status:'finished'})" class="btn-primary w-full text-center text-lg" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
+                `<button onclick="advanceLiveDuel()" class="btn-primary w-full text-center text-lg">Weiter ➔</button>`);
 
             document.getElementById("live-duel-play-content").innerHTML = `
         <div class="glass-card p-5 rounded-2xl space-y-3 shadow-lg">
@@ -8763,7 +8954,8 @@ VIEW: QUIZ SETUP
             ${solutionHtml}
             <div class="space-y-2">${rowsHtml}</div>
             ${nextBtn}
-${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in <span id="live-duel-auto-countdown" class="font-bold text-gray-400">…</span>${isLiveDuelCreator ? ` – oder jetzt auf "Weiter" tippen.` : ""}</p>`}        </div>`;
+            ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in <span id="live-duel-auto-countdown" class="font-bold text-gray-400">…</span>${isLiveDuelCreator ? ` – oder jetzt auf "Weiter" tippen.` : ""}</p>`}
+        </div>`;
         }
 
 
@@ -9053,7 +9245,7 @@ ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in 
             }
 
             html += `
-                            <button onclick="leaveLiveDuel()" class="btn-secondary w-full text-center mt-3 text-sm">⬅ Zurück 19</button>
+                            <button onclick="leaveLiveDuel()" class="btn-secondary w-full text-center mt-3 text-sm">⬅ Zurück</button>
                         </div>`;
             document.getElementById("live-duel-result-content").innerHTML = html;
 
@@ -9845,29 +10037,37 @@ ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in 
         };
 
         // Funktion, die beim Klick auf den FAB ausgeführt wird
-        // FAB-Icon/Tooltip werden in switchView automatisch aktualisiert
         function handleFabClick() {
-            if (typeof SFX !== 'undefined' && SFX.tap) SFX.tap();
+            SFX.tap();
 
+            // Prüfen, ob der Spieler aktuell in einer Aktivität ist
             const currentView = getCurrentView();
 
-            // Im Hauptmenü → zum Family-Hub (Spieler wechseln)
+            // Wenn wir schon im Hauptmenü sind, zur Family-Hub gehen
             if (currentView === 'menu') {
                 switchView('family-hub');
+                updateFab('family-hub', '👨‍👩‍👧‍👦', 'Spieler wechseln');
                 return;
             }
 
-            // Im Family-Hub oder Auth → zum Hauptmenü
-            if (currentView === 'family-hub' || currentView === 'auth') {
+            // Wenn wir in einer anderen View sind, zum Hauptmenü zurück
+            if (currentView !== 'family-hub' && currentView !== 'auth') {
+                // Letzte Aktivität speichern für später
+                lastActivity.view = currentView;
+                lastActivity.label = getViewLabel(currentView);
+                lastActivity.icon = getViewIcon(currentView);
+
                 switchView('menu');
+                updateFab('menu', '🏠', 'Zum Hauptmenü');
                 return;
             }
 
-            // Überall sonst → zurück zum Hauptmenü
-            lastActivity.view = currentView;
-            lastActivity.label = getViewLabel(currentView);
-            lastActivity.icon = getViewIcon(currentView);
-            switchView('menu');
+            // Wenn wir im Family-Hub sind, zum Hauptmenü
+            if (currentView === 'family-hub') {
+                switchView('menu');
+                updateFab('menu', '🏠', 'Zum Hauptmenü');
+                return;
+            }
         }
 
         // Hilft, die aktuelle View zu erkennen
@@ -9957,6 +10157,32 @@ ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in 
         function initFab() {
             updateFab('menu', '🏠', 'Zum Hauptmenü');
         }
+
+        // FAB bei View-Wechsel aktualisieren
+        const originalSwitchView = switchView;
+        switchView = function (viewId) {
+            // Original-Funktion aufrufen
+            originalSwitchView(viewId);
+
+            // FAB aktualisieren, aber nicht bei Auth
+            if (viewId !== 'auth') {
+                const icon = getViewIcon(viewId);
+                const label = getViewLabel(viewId);
+
+                // Wenn wir im Hauptmenü sind, "Zurück" anzeigen
+                if (viewId === 'menu') {
+                    updateFab('menu', '🏠', 'Zum Hauptmenü');
+                }
+                // Wenn wir im Family-Hub sind, zum Hauptmenü
+                else if (viewId === 'family-hub') {
+                    updateFab('family-hub', '👨‍👩‍👧‍👦', 'Zum Hauptmenü');
+                }
+                // In allen anderen Views: "Zum Hauptmenü"
+                else {
+                    updateFab(viewId, getViewIcon(viewId), `Zurück zum Menü`);
+                }
+            }
+        };
 
         // Initialisiere beim Laden
         document.addEventListener('DOMContentLoaded', function () {
@@ -10157,6 +10383,7 @@ ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in 
             const target = document.getElementById(`view-${viewId}`);
             if (target) target.classList.remove('hidden');
             if (typeof closeDrawer === 'function') closeDrawer();
+
             const _tvExit = document.getElementById('tv-player-exit');
             if (_tvExit) _tvExit.classList.toggle('hidden', viewId !== 'tv-quiz-player');
 
@@ -10168,6 +10395,7 @@ ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in 
             }
 
             if (viewId === 'vokabeln') loadVocabSystem();
+            if (viewId === 'formel-setup') setupFormelAreas();
             if (viewId === 'lesen' && typeof renderLesenCategories === 'function') {
                 const ex = document.getElementById('lesen-exercise');
                 const gr = document.getElementById('lesen-categories');
@@ -10214,35 +10442,40 @@ ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in 
                 debugDatabaseLoading();
                 switchDashboardSection('inhalte');
             }
-
-            // FAB an aktuelle View anpassen (direkt hier, kein Override nötig)
-            if (viewId !== 'auth' && typeof updateFab === 'function') {
-                if (viewId === 'menu') {
-                    updateFab('menu', '🏠', 'Zum Hauptmenü');
-                } else if (viewId === 'family-hub') {
-                    updateFab('family-hub', '👨‍👩‍👧‍👦', 'Zum Hauptmenü');
-                } else {
-                    updateFab(viewId, getViewIcon(viewId), 'Zurück zum Menü');
-                }
-            }
         }
 
         // Prüfe, ob die Datenbanken geladen sind
         if (typeof QUESTIONS_DATABASE === 'undefined') {
-            console.warn("⚠️ QUESTIONS_DATABASE nicht geladen – prüfe questions-Dateien");
+            console.warn("⚠️ QUESTIONS_DATABASE nicht geladen – prüfe data.js");
+
         }
         if (typeof VOCABULARY_DATABASE === 'undefined') {
             console.warn("⚠️ VOCABULARY_DATABASE nicht geladen – prüfe vocabulary.js");
+            // FAB aktualisieren (am Ende der switchView-Funktion)
+            if (viewId !== 'auth') {
+                updateFab(viewId, getViewIcon(viewId), viewId === 'menu' ? 'Zum Hauptmenü' : 'Zurück zum Menü');
+            }
         }
 
-        console.log("🚀 EduPlay Hub gestartet (v2.29)");
+        console.log("🚀 EduPlay Hub gestartet (v2.28)");
         console.log(`📖 Fragen: ${typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length : '?'}`);
         console.log(`📝 Vokabeln: ${typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : '?'}`);
         console.log(`🔤 Wörter: ${typeof GERMAN_WORDS !== 'undefined' ? GERMAN_WORDS.length : '?'}`);
 
+
+        // Theme beim Laden wiederherstellen (Standard = Light)
+        document.addEventListener('DOMContentLoaded', function () {
+            try {
+                if (localStorage.getItem('eduplayTheme') === 'dark') {
+                    document.body.classList.add('dark-theme');
+                }
+            } catch (e) { }
+        });
+
         // Theme beim Laden wiederherstellen (Standard = Dark)
         document.addEventListener('DOMContentLoaded', function () {
             try {
+                // Wenn NICHT explizit "light" gespeichert wurde, aktiviere den Dark Mode
                 if (localStorage.getItem('eduplayTheme') !== 'light') {
                     document.body.classList.add('dark-theme');
                 }
@@ -10309,7 +10542,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.29<br>
+            EduPlay Hub · v2.28<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -10346,7 +10579,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.29<br>
+            EduPlay Hub · v2.28<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -10525,9 +10758,6 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             options: [],
             correctIndex: -1
         };
-
-        // Schritt für "Lesen mit Verständnis" (Satz lesen → Frage beantworten)
-        let comprehensionStep = 0;
 
         const LESEN_ICONS = {
             buchstaben: '🔤', silben: '👏', anlaute: '🔊',
@@ -10714,7 +10944,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
         <span class="text-xs font-bold text-gray-400">${idx + 1} / ${total}</span>
         <span class="text-xs font-bold text-green-400">✅ ${done} / ${total}</span>
         <div class="flex gap-2">
-            <button onclick="closeLesen()" class="text-xs text-gray-500 hover:text-white transition px-2 py-1 bg-white/5 rounded-lg">← Zurück 20</button>
+            <button onclick="closeLesen()" class="text-xs text-gray-500 hover:text-white transition px-2 py-1 bg-white/5 rounded-lg">← Zurück</button>
             <button onclick="resetLesenCategory('${categoryKey}')" class="text-xs text-gray-500 hover:text-red-400 transition px-2 py-1 bg-white/5 rounded-lg">↺</button>
         </div>
     </div>
@@ -11207,7 +11437,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             <div class="text-lg font-bold text-yellow-400 mt-2">${line}</div>
             <div class="flex gap-3 mt-6">
                 <button onclick="startLesenCategory('${categoryKey}')" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg">🔄 Nochmal</button>
-                <button onclick="closeLesen()" class="flex-1 p-3 bg-gray-700 rounded-xl font-bold text-white shadow-lg">↩️ Zurück 21</button>
+                <button onclick="closeLesen()" class="flex-1 p-3 bg-gray-700 rounded-xl font-bold text-white shadow-lg">↩️ Zurück</button>
             </div>
         </div>
     `;

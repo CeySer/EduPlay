@@ -1,4 +1,4 @@
-const BERUFS_QUESTIONS = [
+const KFZ_QUESTIONS = [
   // ==========================================
   // BASICS & INFRASTRUKTUR (q0542 - q0575)
   // ==========================================
@@ -4011,3 +4011,10 @@ const BERUFS_QUESTIONS = [
     explanation: "Wasser kocht bei 100 °C. Entstehen im Hydrauliksystem Dampfblasen, lassen sich diese komprimieren – die Bremse verliert ihre Funktion völlig."
   },
 ]
+
+window.KFZ_QUESTIONS = KFZ_QUESTIONS;
+
+// Global verfügbar machen
+if (typeof window !== 'undefined') {
+    window.KFZ_QUESTIONS = KFZ_QUESTIONS;
+}

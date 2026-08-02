@@ -182,6 +182,9 @@
                 clearInterval(scrabbleTimerInterval);
                 scrabbleTimerInterval = null;
             }
+            if (viewId !== 'wortraten-play' && typeof wortratenState !== 'undefined' && wortratenState) {
+                wortratenState.roundActive = false;
+            }
 
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
             const target = document.getElementById(`view-${viewId}`);

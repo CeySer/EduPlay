@@ -1403,3 +1403,4 @@ const K1_DEUTSCH_QUESTIONS = [
     explanation: "S-C-H-U-L-E bedeutet Schule."
   }
 ];
+

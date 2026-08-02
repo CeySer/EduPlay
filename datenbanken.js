@@ -18,8 +18,6 @@
 // Die Variable FORMULA_DATABASE wird in formula.js definiert
 
 
-
-
    <script src="words_kids.js?v=7.0"></script>,
 
     <script src="words_adult.js?v=7.0"></script>,

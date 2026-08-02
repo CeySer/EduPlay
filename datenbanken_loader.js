@@ -1,76 +1,57 @@
-console.log('🔥 datenbanken_loader.js wurde geladen!');
 // ============================================================
-// DATENBANKEN LOADER
-// Lädt alle Datenbank-Dateien dynamisch
-// Version: 7.0
+// DATENBANKEN LOADER - VEREINFACHT & REPARIERT
+// Version: 7.5
 // ============================================================
 
 (function() {
-    console.log('📚 Lade alle Datenbanken...');
+    console.log('🔥 datenbanken_loader.js wurde geladen!');
     
-    // Liste aller zu ladenden Skripte
+    // ALLE Skripte in der richtigen Reihenfolge
+    // Entferne die, die nicht existieren oder Probleme machen
     const scripts = [
-        // ============================================================
-        // WÖRTER FÜR BUCHSTABENSALAT
-        // ============================================================
+        // Wörter - KOMMENTIERE SIE AUS, WENN SIE FEHLEN!
         'words_kids.js?v=7.0',
         'words_adult.js?v=7.0',
         
-        // ============================================================
-        // VOKABELN
-        // ============================================================
+        // Vokabeln
         'fragen/vocabulary.js?v=7.0',
         
-        // ============================================================
-        // FRAGEN - ALLGEMEIN
-        // ============================================================
+        // Fragen - Allgemein
         'fragen/questions_school.js?v=7.0',
         'fragen/questions_beruf.js?v=7.0',
-        'fragen/questions_kfz.js?v=7.0',
+        // 'fragen/questions_kfz.js?v=7.0', // AUSKOMMENTIERT WEGEN DUPLIKAT
         'fragen/questions_fun.js?v=7.0',
         
-        // ============================================================
-        // KLASSE 1
-        // ============================================================
+        // Klasse 1
         'fragen/klasse1/questions_k1_mathe.js?v=7.0',
         'fragen/klasse1/questions_k1_deutsch.js?v=7.0',
         'fragen/klasse1/questions_k1_sachunterricht.js?v=7.0',
         
-        // ============================================================
-        // KLASSE 2
-        // ============================================================
+        // Klasse 2
         'fragen/klasse2/questions_k2_mathe.js?v=7.0',
         'fragen/klasse2/questions_k2_deutsch.js?v=7.0',
         'fragen/klasse2/questions_k2_sachunterricht.js?v=7.0',
-        'fragen/lasse2/questions_k2_englisch.js?v=7.0',
+        'fragen/kasse2/questions_k2_englisch.js?v=7.0', // KORREKTUR: Ordner prüfen!
         
-        // ============================================================
-        // KLASSE 3
-        // ============================================================
+        // Klasse 3
         'fragen/klasse3/questions_k3_mathe.js?v=7.0',
         'fragen/klasse3/questions_k3_deutsch.js?v=7.0',
         'fragen/klasse3/questions_k3_sachunterricht.js?v=7.0',
         'fragen/klasse3/questions_k3_englisch.js?v=7.0',
         
-        // ============================================================
-        // KLASSE 4
-        // ============================================================
+        // Klasse 4
         'fragen/klasse4/questions_k4_mathe.js?v=7.0',
         'fragen/klasse4/questions_k4_deutsch.js?v=7.0',
         'fragen/klasse4/questions_k4_sachunterricht.js?v=7.0',
         'fragen/klasse4/questions_k4_englisch.js?v=7.0',
         
-        // ============================================================
-        // FUN - KINDER
-        // ============================================================
+        // Fun - Kinder
         'fragen/fun/kinder_anime.js?v=7.0',
         'fragen/fun/kinder_maerchen.js?v=7.0',
         'fragen/fun/kinder_tiere_natur.js?v=7.0',
         'fragen/fun/kinder_wissen.js?v=7.0',
         
-        // ============================================================
-        // FUN - SPASS
-        // ============================================================
+        // Fun - Spaß (alle ohne export!)
         'fragen/fun/spass_allgemein.js',
         'fragen/fun/spass_erfindungen.js?v=7.0',
         'fragen/fun/spass_essen.js?v=7.0',
@@ -84,37 +65,35 @@ console.log('🔥 datenbanken_loader.js wurde geladen!');
         'fragen/fun/spass_tiere.js?v=7.0',
         'fragen/fun/spass_ungewoehnliches.js?v=7.0',
         
-        // ============================================================
-        // FORMELN
-        // ============================================================
+        // Formeln
         'formula.js?v=7.0'
     ];
     
-    // ============================================================
-    // LADE-LOGIK
-    // ============================================================
     let loaded = 0;
     let failed = 0;
     const total = scripts.length;
-    let allLoaded = false;
     
     function loadNext() {
         if (loaded >= total) {
-            allLoaded = true;
             console.log(`✅ Alle ${total} Datenbanken geladen! (${failed} Fehler)`);
             
-            // Event auslösen, dass alle Datenbanken bereit sind
+            // WICHTIG: Fragen aus allen Quellen zusammenführen
+            mergeAllQuestions();
+            
+            // Prüfen, ob die Datenbanken da sind
+            console.log('📊 GERMAN_WORDS_KIDS:', typeof GERMAN_WORDS_KIDS !== 'undefined' ? GERMAN_WORDS_KIDS.length + ' Wörter' : '❌ fehlt (optional)');
+            console.log('📊 VOCABULARY_DATABASE:', typeof VOCABULARY_DATABASE !== 'undefined' ? '✅ vorhanden' : '❌ fehlt');
+            console.log('📊 QUESTIONS_DATABASE:', typeof QUESTIONS_DATABASE !== 'undefined' ? QUESTIONS_DATABASE.length + ' Fragen' : '❌ fehlt');
+            console.log('📊 FORMULA_DATABASE:', typeof FORMULA_DATABASE !== 'undefined' ? FORMULA_DATABASE.length + ' Formeln' : '❌ fehlt');
+            
+            // Event auslösen
             try {
                 document.dispatchEvent(new CustomEvent('datenbanken-geladen'));
             } catch (e) {
-                // Fallback für ältere Browser
                 const event = document.createEvent('CustomEvent');
                 event.initCustomEvent('datenbanken-geladen', true, true, null);
                 document.dispatchEvent(event);
             }
-            
-            // Prüfen, ob alle wichtigen Datenbanken da sind
-            checkDatabaseIntegrity();
             return;
         }
         
@@ -124,13 +103,13 @@ console.log('🔥 datenbanken_loader.js wurde geladen!');
         
         const script = document.createElement('script');
         script.src = src;
-        script.async = false; // Wichtig: Nacheinander laden, da Abhängigkeiten bestehen
+        script.async = false;
         script.onload = function() {
             loaded++;
             loadNext();
         };
         script.onerror = function() {
-            console.warn(`⚠️ Konnte ${fileName} nicht laden!`);
+            console.warn(`⚠️ Konnte ${fileName} nicht laden! (404)`);
             failed++;
             loaded++;
             loadNext();
@@ -139,59 +118,80 @@ console.log('🔥 datenbanken_loader.js wurde geladen!');
     }
     
     // ============================================================
-    // INTEGRITÄTS-CHECK
+    // FRAGEN ZUSAMMENFÜHREN
     // ============================================================
-    function checkDatabaseIntegrity() {
-        console.log('🔍 Prüfe Datenbank-Integrität...');
+    function mergeAllQuestions() {
+        console.log('🔗 Füge alle Fragen zusammen...');
         
-        const checks = [];
-        
-        // Wörter prüfen
-        if (typeof GERMAN_WORDS_KIDS !== 'undefined') {
-            checks.push('✅ GERMAN_WORDS_KIDS: ' + GERMAN_WORDS_KIDS.length + ' Wörter');
-        } else {
-            checks.push('❌ GERMAN_WORDS_KIDS fehlt!');
+        // Globale Datenbank initialisieren (falls nicht vorhanden)
+        if (typeof window.QUESTIONS_DATABASE === 'undefined') {
+            window.QUESTIONS_DATABASE = [];
         }
         
-        if (typeof GERMAN_WORDS_ADULT !== 'undefined') {
-            checks.push('✅ GERMAN_WORDS_ADULT: ' + GERMAN_WORDS_ADULT.length + ' Wörter');
-        } else {
-            checks.push('❌ GERMAN_WORDS_ADULT fehlt!');
-        }
+        // Alle möglichen Frage-Quellen durchgehen
+        const sources = [
+            'SCHOOL_QUESTIONS',
+            'BERUFS_QUESTIONS',
+            'FUN_QUESTIONS',
+            'K1_MATHE_QUESTIONS',
+            'K1_DEUTSCH_QUESTIONS',
+            'K1_SACHUNTERRICHT_QUESTIONS',
+            'K2_MATHE_QUESTIONS',
+            'K2_DEUTSCH_QUESTIONS',
+            'K2_SACHUNTERRICHT_QUESTIONS',
+            'K2_ENGLISCH_QUESTIONS',
+            'K3_MATHE_QUESTIONS',
+            'K3_DEUTSCH_QUESTIONS',
+            'K3_SACHUNTERRICHT_QUESTIONS',
+            'K3_ENGLISCH_QUESTIONS',
+            'K4_MATHE_QUESTIONS',
+            'K4_DEUTSCH_QUESTIONS',
+            'K4_SACHUNTERRICHT_QUESTIONS',
+            'K4_ENGLISCH_QUESTIONS',
+            'KINDER_ANIME_QUESTIONS',
+            'KINDER_MAERCHEN_QUESTIONS',
+            'KINDER_TIERE_NATUR_QUESTIONS',
+            'KINDER_WISSEN_QUESTIONS',
+            'SPASS_ALLGEMEIN_QUESTIONS',
+            'SPASS_ERFINDUNGEN_QUESTIONS',
+            'SPASS_ESSEN_QUESTIONS',
+            'SPASS_HAUPTSTAEDTE_QUESTIONS',
+            'SPASS_HAUPTSTAEDTE_EUROPA_QUESTIONS',
+            'SPASS_MUSIK_QUESTIONS',
+            'SPASS_NICE_TO_KNOW_QUESTIONS',
+            'SPASS_RAETSEL_QUESTIONS',
+            'SPASS_SCHAETZFRAGEN_QUESTIONS',
+            'SPASS_SPORT_FILM_QUESTIONS',
+            'SPASS_TIERE_QUESTIONS',
+            'SPASS_UNGEWOEHNLICHES_QUESTIONS'
+        ];
         
-        // Vokabeln prüfen
-        if (typeof VOCABULARY_DATABASE !== 'undefined') {
-            const languages = Object.keys(VOCABULARY_DATABASE);
-            checks.push('✅ VOCABULARY_DATABASE: ' + languages.length + ' Sprachen (' + languages.join(', ') + ')');
-        } else {
-            checks.push('❌ VOCABULARY_DATABASE fehlt!');
-        }
+        let totalQuestions = 0;
+        sources.forEach(name => {
+            if (typeof window[name] !== 'undefined' && Array.isArray(window[name])) {
+                window.QUESTIONS_DATABASE.push(...window[name]);
+                totalQuestions += window[name].length;
+                console.log(`  ✅ ${name}: ${window[name].length} Fragen`);
+            } else if (typeof window[name] !== 'undefined') {
+                console.log(`  ⚠️ ${name} ist kein Array, überspringe`);
+            }
+        });
         
-        // Fragen prüfen
-        if (typeof QUESTIONS_DATABASE !== 'undefined') {
-            checks.push('✅ QUESTIONS_DATABASE: ' + QUESTIONS_DATABASE.length + ' Fragen');
-        } else {
-            checks.push('❌ QUESTIONS_DATABASE fehlt! (wird später aus den Einzeldateien zusammengebaut)');
-        }
+        console.log(`📊 Insgesamt: ${totalQuestions} Fragen in QUESTIONS_DATABASE`);
         
-        // Formeln prüfen
-        if (typeof FORMULA_DATABASE !== 'undefined') {
-            checks.push('✅ FORMULA_DATABASE: ' + FORMULA_DATABASE.length + ' Formeln');
-        } else {
-            checks.push('❌ FORMULA_DATABASE fehlt!');
-        }
-        
-        // Ergebnisse anzeigen
-        console.log('📊 Integritäts-Check:');
-        checks.forEach(msg => console.log('  ' + msg));
-        
-        // Eventuell fehlende Datenbanken melden
-        const missing = checks.filter(c => c.startsWith('❌'));
-        if (missing.length > 0) {
-            console.warn('⚠️ Es fehlen ' + missing.length + ' Datenbank(en)!');
-            // Trotzdem weitermachen - die App wird versuchen, damit umzugehen
-        } else {
-            console.log('✅ Alle Datenbanken sind vollständig! 🎉');
+        // Duplikate entfernen (optional)
+        if (totalQuestions > 0) {
+            const unique = new Map();
+            window.QUESTIONS_DATABASE.forEach(q => {
+                const key = q.question + '|' + (q.category || '');
+                if (!unique.has(key)) {
+                    unique.set(key, q);
+                }
+            });
+            if (unique.size !== window.QUESTIONS_DATABASE.length) {
+                console.log(`🧹 Duplikate entfernt: ${window.QUESTIONS_DATABASE.length} → ${unique.size}`);
+                window.QUESTIONS_DATABASE = Array.from(unique.values());
+            }
         }
     }
     
@@ -199,7 +199,6 @@ console.log('🔥 datenbanken_loader.js wurde geladen!');
     // START
     // ============================================================
     
-    // Warten, bis das DOM bereit ist
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', loadNext);
     } else {

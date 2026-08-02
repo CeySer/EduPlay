@@ -157,20 +157,28 @@
         // Funktion, die beim Klick auf den FAB ausgeführt wird
         function handleFabClick() {
             if (typeof SFX !== 'undefined') SFX.tap();
+
             const currentView = getCurrentView();
+
             if (currentView === 'menu') {
                 switchView('family-hub');
+                updateFab('family-hub', '👨‍👩‍👧‍👦', 'Spieler wechseln');
                 return;
             }
-            if (currentView === 'family-hub') {
-                switchView('menu');
-                return;
-            }
-            if (currentView !== 'auth') {
+
+            if (currentView !== 'family-hub' && currentView !== 'auth') {
                 lastActivity.view = currentView;
                 lastActivity.label = getViewLabel(currentView);
                 lastActivity.icon = getViewIcon(currentView);
                 switchView('menu');
+                updateFab('menu', '🏠', 'Zum Hauptmenü');
+                return;
+            }
+
+            if (currentView === 'family-hub') {
+                switchView('menu');
+                updateFab('menu', '🏠', 'Zum Hauptmenü');
+                return;
             }
         }
 

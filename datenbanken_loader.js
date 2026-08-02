@@ -1,3 +1,4 @@
+console.log('🔥 datenbanken_loader.js wurde geladen!');
 // ============================================================
 // DATENBANKEN LOADER
 // Lädt alle Datenbank-Dateien dynamisch

@@ -18,37 +18,34 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
 
     <!-- DATENBANKEN -->
-    <script src="fragen/words_kids.js?v=7.0"></script>
-    <script src="fragen/words_adult.js?v=7.0"></script>
-    <script src="fragen/vocabulary.js?v=7.0"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="words_kids.js?v=6.1"></script>
+    <script src="words_adult.js?v=6.1"></script>
+    <script src="fragen/vocabulary.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
 
-    <script src="fragen/questions_school.js?v=7.0"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="fragen/questions_beruf.js?v=7.0"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="fragen/questions_fun.js?v=7.0"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="fragen/questions_school.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="fragen/questions_beruf.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <script src="fragen/questions_fun.js?v=6.1"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
     <!-- Bei den anderen Fragen-Dateien einfügen: -->
-    <script src="fragen/klasse1/questions_k1_mathe.js?v=7.0"></script>
-    <script src="fragen/klasse1/questions_k1_deutsch.js?v=7.0"></script>
-    <script src="fragen/klasse1/questions_k1_sachunterricht.js?v=7.0"></script>
+    <script src="fragen/klasse1/questions_k1_Mathe.js?v=6.2"></script>
+    <script src="fragen/klasse1/questions_k1_deutsch.js?v=6.2"></script>
+    <script src="fragen/klasse1/questions_k1_sachunterricht.js?v=6.2"></script>
 
-    <script src="fragen/klasse2/questions_k2_mathe.js?v=7.0"></script>
-    <script src="fragen/klasse2/questions_k2_deutsch.js?v=7.0"></script>
-    <script src="fragen/klasse2/questions_k2_sachunterricht.js?v=7.0"></script>
-    <script src="fragen/Klasse2/questions_k2_englisch.js?v=7.0"></script>
+    <script src="fragen/klasse2/questions_k2_Mathe.js?v=6.2"></script>
+    <script src="fragen/klasse2/questions_k2_deutsch.js?v=6.2"></script>
+    <script src="fragen/klasse2/questions_k2_sachunterricht.js?v=6.2"></script>
+    <script src="fragen/Klasse2/questions_k2_englisch.js?v=6.2"></script>
 
-    <script src="fragen/klasse3/questions_k3_mathe.js?v=7.0"></script>
-    <script src="fragen/klasse3/questions_k3_deutsch.js?v=7.0"></script>
-    <script src="fragen/klasse3/questions_k3_sachunterricht.js?v=7.0"></script>
-    <script src="fragen/Klasse3/questions_k3_englisch.js?v=7.0"></script>
-
-    <!-- berufe -->
-    <script src="fragen/questions_kfz.js?v=7.0"></script>
+    <script src="fragen/klasse3/questions_k3_Mathe.js?v=6.2"></script>
+    <script src="fragen/klasse3/questions_k3_deutsch.js?v=6.2"></script>
+    <script src="fragen/klasse3/questions_k3_sachunterricht.js?v=6.2"></script>
+    <script src="fragen/Klasse3/questions_k3_englisch.js?v=6.2"></script>
 
 
-    <script src="formula.js?v=7.0"></script>
+    <script src="formula.js?v=6.1"></script>
 
     <link rel="icon" href="data:,">
 
-    <link rel="stylesheet" href="styles.css?v=7.0">
+    <link rel="stylesheet" href="styles.css?v=6.6">
 </head>
 
 <body>
@@ -93,6 +90,16 @@
     TOAST CONTAINER
     ============================================================ -->
     <div id="toast-container"></div>
+
+    <!-- ============================================================
+    GLOBAL LOADING OVERLAY
+    ============================================================ -->
+    <div id="global-loading" class="global-loading hidden" aria-live="polite" aria-busy="true">
+        <div class="global-loading-card">
+            <div class="spinner" aria-hidden="true"></div>
+            <div id="global-loading-text" class="global-loading-text">Laden…</div>
+        </div>
+    </div>
 
     <!-- ============================================================
    FLOATING ACTION BUTTON (FAB)
@@ -1353,24 +1360,31 @@ VIEW: QUIZ SETUP
             VIEW: VOKABEL-TRAINER
             ========================================================== -->
             <div id="view-vokabeln" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                <div class="glass-card p-5 text-center space-y-4">
+                <div class="flex items-center justify-between gap-2">
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+                    <span id="vocab-streak-badge" class="hidden badge-pill text-amber-400 font-bold">🔥 0</span>
+                </div>
+                <div class="glass-card p-5 text-center space-y-3">
                     <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
                     <div id="lang-selector" class="dash-sub-nav">
                         <button id="lang-btn-en" class="active" onclick="setLanguage('en')">🇬🇧 Englisch</button>
                         <button id="lang-btn-tr" onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
                     </div>
                     <div class="dash-sub-nav">
-                        <button id="vmode-flashcards" class="active" onclick="setVocabMode('flashcards')">🃏
-                            Kärtchen</button>
+                        <button id="vmode-flashcards" class="active" onclick="setVocabMode('flashcards')">🃏 Kärtchen</button>
                         <button id="vmode-mc" onclick="setVocabMode('mc')">🎯 Auswahl</button>
                         <button id="vmode-typing" onclick="setVocabMode('typing')">✍️ Tippen</button>
                     </div>
                     <select id="category-dropdown" class="input-modern text-sm font-bold"
                         onchange="selectCategory(this.value)"></select>
-                    <div id="vokabel-box" class="min-h-[200px] flex flex-col justify-center mt-2"></div>
-                    <div class="text-xs text-gray-400 font-bold mt-4">Wort: <span id="current-index-display"
-                            class="text-blue-400">1</span> / <span id="total-display">0</span></div>
+                    <div class="vocab-progress-track">
+                        <div id="vocab-progress-bar" class="vocab-progress-fill"></div>
+                    </div>
+                    <div class="text-xs font-bold" style="color:var(--text-muted)">Wort
+                        <span id="current-index-display" class="text-blue-400">1</span> /
+                        <span id="total-display">0</span>
+                    </div>
+                    <div id="vokabel-box" class="vocab-box relative"></div>
                 </div>
             </div>
 
@@ -1503,16 +1517,16 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=7.0"></script>
-    <script src="family-dashboard.js?v=7.0"></script>
-    <script src="ui-common.js?v=7.0"></script>
+    <script src="app-config.js?v=7.2"></script>
+    <script src="family-dashboard.js?v=7.1"></script>
+    <script src="ui-common.js?v=7.1"></script>
     <script src="quiz-core.js?v=7.0"></script>
-    <script src="vocab.js?v=7.0"></script>
-    <script src="duel-scrabble.js?v=7.0"></script>
-    <script src="tv-cast.js?v=7.0"></script>
-    <script src="live-duel.js?v=7.0"></script>
+    <script src="vocab.js?v=7.3"></script>
+    <script src="duel-scrabble.js?v=7.2"></script>
+    <script src="tv-cast.js?v=7.2"></script>
+    <script src="live-duel.js?v=7.2"></script>
     <script src="app-misc.js?v=7.0"></script>
-    <script src="lobby-avatar.js?v=7.0"></script>
+    <script src="lobby-avatar.js?v=7.1"></script>
 
 
     <!-- ========================================================== burger menü

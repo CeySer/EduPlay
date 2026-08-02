@@ -1030,11 +1030,12 @@
                         </div>
                         <div class="space-y-3 flex-1 overflow-y-auto">${rowsHtml}</div>
                         <div class="mt-6 text-center">
-                            ${isLastRound ? `<button onclick="tvGameRef.update({status:'finished'})" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
-                    `<button onclick="nextTVScrabbleRound()" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2">Nächste Runde ➔</button>`}
+                            ${isLastRound
+                                ? `<button onclick="tvGameRef.update({status:'finished'})" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>`
+                                : `<button onclick="nextTVScrabbleRound()" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2">Nächste Runde ➔</button>`}
                         </div>
                     </div>
-                `;
+                `);
         }
 
         function nextTVScrabbleRound() {

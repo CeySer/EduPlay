@@ -1,4 +1,4 @@
-export const QUESTIONS_SCHAETZEN_NICE_TO_KNOW = [
+ const QUESTIONS_SCHAETZEN_NICE_TO_KNOW = [
     // 001
     {
         id: "sch_ntk_001",

@@ -1,4 +1,4 @@
-export const QUESTIONS_ALLGEMEIN = [
+ const QUESTIONS_ALLGEMEIN = [
     // 001
     {
         id: "allg_001",

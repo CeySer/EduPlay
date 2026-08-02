@@ -1,4 +1,4 @@
-export const QUESTIONS_KINDER_ANIME_CARTOONS = [
+ const QUESTIONS_KINDER_ANIME_CARTOONS = [
     // 001
     {
         id: "k_ani_001",

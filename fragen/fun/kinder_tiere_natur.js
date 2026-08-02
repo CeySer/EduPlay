@@ -1,4 +1,4 @@
-export const QUESTIONS_KINDER_TIERE_NATUR = [
+ const QUESTIONS_KINDER_TIERE_NATUR = [
     // 001
     {
         id: "k_tn_001",

@@ -1,4 +1,4 @@
-export const QUESTIONS_HAUPTSTAEDTE_EUROPA = [
+ const QUESTIONS_HAUPTSTAEDTE_EUROPA = [
     {
         id: "eur_001",
         category: "spass_hauptstaedte_europa",

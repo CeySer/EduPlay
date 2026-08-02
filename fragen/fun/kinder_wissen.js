@@ -1,4 +1,4 @@
-export const QUESTIONS_KINDER_ERSTES_WISSEN = [
+ const QUESTIONS_KINDER_ERSTES_WISSEN = [
     // 001
     {
         id: "k_ew_001",

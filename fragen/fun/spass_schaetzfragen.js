@@ -1,4 +1,4 @@
-export const QUESTIONS_SCHAETZEN_MENSCH_KOERPER = [
+ const QUESTIONS_SCHAETZEN_MENSCH_KOERPER = [
     // 001 
     {
         id: "sch_mko_001",

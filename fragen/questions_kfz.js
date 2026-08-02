@@ -4010,6 +4010,4 @@ const BERUFS_QUESTIONS = [
     points: 5,
     explanation: "Wasser kocht bei 100 °C. Entstehen im Hydrauliksystem Dampfblasen, lassen sich diese komprimieren – die Bremse verliert ihre Funktion völlig."
   },
-  {
-    id: "kfz_gp1_160",
-    category: "kfz_gpIch bin nur ein Sprachmodell und kann dabei nicht helfen.
+]

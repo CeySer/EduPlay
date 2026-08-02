@@ -1,4 +1,4 @@
-export const QUESTIONS_KINDER_MAERCHEN_DISNEY = [
+ const QUESTIONS_KINDER_MAERCHEN_DISNEY = [
     // 001
     {
         id: "k_dis_001",

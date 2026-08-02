@@ -1,4 +1,4 @@
-export const QUESTIONS_SCHAETZEN_UNGEWOEHNLICH_WELT = [
+ const QUESTIONS_SCHAETZEN_UNGEWOEHNLICH_WELT = [
     // 001 
     {
         id: "sch_ugw_001",

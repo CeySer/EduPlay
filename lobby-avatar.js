@@ -268,18 +268,9 @@
 
 
         // Theme beim Laden wiederherstellen (Standard = Light)
+        // Theme: Standard = Dark
         document.addEventListener('DOMContentLoaded', function () {
             try {
-                if (localStorage.getItem('eduplayTheme') === 'dark') {
-                    document.body.classList.add('dark-theme');
-                }
-            } catch (e) { }
-        });
-
-        // Theme beim Laden wiederherstellen (Standard = Dark)
-        document.addEventListener('DOMContentLoaded', function () {
-            try {
-                // Wenn NICHT explizit "light" gespeichert wurde, aktiviere den Dark Mode
                 if (localStorage.getItem('eduplayTheme') !== 'light') {
                     document.body.classList.add('dark-theme');
                 }

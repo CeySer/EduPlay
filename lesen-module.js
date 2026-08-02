@@ -311,6 +311,8 @@
             container.innerHTML = html;
         }
 
+
+        let comprehensionStep = 0;
         function startLesenCategory(categoryKey) {
             const categories = lesenDB();
             if (!categories || !categories[categoryKey]) return;

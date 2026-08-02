@@ -1011,29 +1011,32 @@
             const ref = liveDuelRef;
             const wasCreator = isLiveDuelCreator;
 
-            if (liveDuelUnsubscribe) liveDuelUnsubscribe();
+            if (liveDuelUnsubscribe) { try { liveDuelUnsubscribe(); } catch (e) { } }
             liveDuelUnsubscribe = null;
             liveDuelRef = null;
             isLiveDuelCreator = false;
             liveDuelResolving = false;
             liveDuelRenderKey = "";
-            switchView('live-duel-setup');
+            switchView(currentPlayer ? 'menu' : 'family-hub');
 
-            if (!ref || !activePlayerKey) return;
+            if (!ref) return;
             try {
+                if (wasCreator) {
+                    try { await ref.set({ status: "finished" }, { merge: true }); } catch (e) { }
+                    try { await ref.delete(); } catch (e) { }
+                    return;
+                }
+                if (!activePlayerKey) return;
                 const snap = await ref.get();
                 if (!snap.exists) return;
                 const data = snap.data();
-                const players = data.players || {};
+                const players = Object.assign({}, data.players || {});
                 delete players[activePlayerKey];
                 const rest = Object.keys(players);
-
                 if (rest.length === 0) {
                     await ref.delete();
-                } else if (wasCreator) {
-                    await ref.update({ players, createdBy: rest[0], updatedAt: Date.now() });
                 } else {
-                    await ref.update({ players, updatedAt: Date.now() });
+                    await ref.update({ players: players, updatedAt: Date.now() });
                 }
             } catch (e) { /* Lobby war schon weg */ }
         }

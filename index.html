@@ -1421,7 +1421,8 @@ VIEW: QUIZ SETUP
             VIEW: TV-QUIZ HOST
             ========================================================== -->
             <div id="view-tv-quiz-host" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('tv-quiz-setup')">Zurück</button>
+                <div id="tv-host-setup" class="space-y-4">
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame(); switchView('tv-quiz-setup')">Zurück</button>
                 <div class="glass-card p-6 text-center">
                     <h2 class="text-2xl font-black text-white mb-4">Spiel erstellen</h2>
                     <div class="dash-sub-nav mb-6">
@@ -1489,12 +1490,15 @@ VIEW: QUIZ SETUP
                     <button onclick="startTVHostLobby()" class="btn-primary w-full text-center text-xl mt-4">Lobby
                         eröffnen 🚀</button>
                 </div>
+                </div><!-- /tv-host-setup -->
+                <div id="tv-host-play" class="hidden"></div>
             </div>
 
             <!-- ==========================================================
             VIEW: TV-QUIZ PLAYER
             ========================================================== -->
             <div id="view-tv-quiz-player" class="view hidden space-y-4">
+                <div id="tv-player-setup" class="space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame()">Zurück</button>
                 <div class="glass-card p-6 text-center">
                     <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
@@ -1505,6 +1509,8 @@ VIEW: QUIZ SETUP
                             beitreten! 🎮</button>
                     </div>
                 </div>
+                </div><!-- /tv-player-setup -->
+                <div id="tv-player-play" class="hidden"></div>
             </div>
 
             <button id="tv-player-exit" onclick="leaveTVGame()" class="hidden"
@@ -1518,15 +1524,15 @@ VIEW: QUIZ SETUP
     JAVASCRIPT MODULE
     ============================================================ -->
     <script src="app-config.js?v=7.2"></script>
-    <script src="family-dashboard.js?v=7.1"></script>
+    <script src="family-dashboard.js?v=7.5"></script>
     <script src="ui-common.js?v=7.1"></script>
     <script src="quiz-core.js?v=7.0"></script>
     <script src="vocab.js?v=7.3"></script>
     <script src="duel-scrabble.js?v=7.2"></script>
-    <script src="tv-cast.js?v=7.2"></script>
-    <script src="live-duel.js?v=7.2"></script>
-    <script src="app-misc.js?v=7.0"></script>
-    <script src="lobby-avatar.js?v=7.1"></script>
+    <script src="tv-cast.js?v=7.5"></script>
+    <script src="live-duel.js?v=7.5"></script>
+    <script src="app-misc.js?v=7.5"></script>
+    <script src="lobby-avatar.js?v=7.5"></script>
 
 
     <!-- ========================================================== burger menü
@@ -1610,7 +1616,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
 
 
     <!-- 1. ZUERST DIE DATENBANK (Inhalt aus lesen.js) -->
-    <script src="lesen-module.js?v=7.0"></script>
+    <script src="lesen-module.js?v=7.5"></script>
 
 
 

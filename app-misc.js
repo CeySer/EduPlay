@@ -156,35 +156,21 @@
 
         // Funktion, die beim Klick auf den FAB ausgeführt wird
         function handleFabClick() {
-            SFX.tap();
-
-            // Prüfen, ob der Spieler aktuell in einer Aktivität ist
+            if (typeof SFX !== 'undefined') SFX.tap();
             const currentView = getCurrentView();
-
-            // Wenn wir schon im Hauptmenü sind, zur Family-Hub gehen
             if (currentView === 'menu') {
                 switchView('family-hub');
-                updateFab('family-hub', '👨‍👩‍👧‍👦', 'Spieler wechseln');
                 return;
             }
-
-            // Wenn wir in einer anderen View sind, zum Hauptmenü zurück
-            if (currentView !== 'family-hub' && currentView !== 'auth') {
-                // Letzte Aktivität speichern für später
+            if (currentView === 'family-hub') {
+                switchView('menu');
+                return;
+            }
+            if (currentView !== 'auth') {
                 lastActivity.view = currentView;
                 lastActivity.label = getViewLabel(currentView);
                 lastActivity.icon = getViewIcon(currentView);
-
                 switchView('menu');
-                updateFab('menu', '🏠', 'Zum Hauptmenü');
-                return;
-            }
-
-            // Wenn wir im Family-Hub sind, zum Hauptmenü
-            if (currentView === 'family-hub') {
-                switchView('menu');
-                updateFab('menu', '🏠', 'Zum Hauptmenü');
-                return;
             }
         }
 
@@ -276,31 +262,8 @@
             updateFab('menu', '🏠', 'Zum Hauptmenü');
         }
 
-        // FAB bei View-Wechsel aktualisieren
-        const originalSwitchView = switchView;
-        switchView = function (viewId) {
-            // Original-Funktion aufrufen
-            originalSwitchView(viewId);
+        // FAB-Update sitzt in switchView (lobby-avatar.js)
 
-            // FAB aktualisieren, aber nicht bei Auth
-            if (viewId !== 'auth') {
-                const icon = getViewIcon(viewId);
-                const label = getViewLabel(viewId);
-
-                // Wenn wir im Hauptmenü sind, "Zurück" anzeigen
-                if (viewId === 'menu') {
-                    updateFab('menu', '🏠', 'Zum Hauptmenü');
-                }
-                // Wenn wir im Family-Hub sind, zum Hauptmenü
-                else if (viewId === 'family-hub') {
-                    updateFab('family-hub', '👨‍👩‍👧‍👦', 'Zum Hauptmenü');
-                }
-                // In allen anderen Views: "Zum Hauptmenü"
-                else {
-                    updateFab(viewId, getViewIcon(viewId), `Zurück zum Menü`);
-                }
-            }
-        };
 
         // Initialisiere beim Laden
         document.addEventListener('DOMContentLoaded', function () {

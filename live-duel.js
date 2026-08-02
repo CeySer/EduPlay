@@ -405,7 +405,8 @@
             if (!players[activePlayerKey] || players[activePlayerKey].hasAnswered) return;
             const update = {
                 [`players.${activePlayerKey}.hasAnswered`]: true,
-                [`players.${activePlayerKey}.lastAnswer`]: ansIndex
+                [`players.${activePlayerKey}.lastAnswer`]: ansIndex,
+                [`players.${activePlayerKey}.answeredAt`]: Date.now()
             };
             if (!data.answerDeadline) update.answerDeadline = Date.now() + (data.answerSeconds || 20) * 1000;
             await liveDuelRef.update(update);
@@ -473,7 +474,10 @@
             if (!players[activePlayerKey] || players[activePlayerKey].hasAnswered) return;
             const update = {
                 [`players.${activePlayerKey}.hasAnswered`]: true,
-                [`players.${activePlayerKey}.word`]: word
+                [`players.${activePlayerKey}.word`]: word,
+                [`players.${activePlayerKey}.answeredAt`]: Date.now(),
+                [`players.${activePlayerKey}.submittedLetters`]: data.currentLetters || [],
+                [`players.${activePlayerKey}.submittedRequired`]: data.currentRequired || ""
             };
             if (!data.answerDeadline) update.answerDeadline = Date.now() + (data.answerSeconds || 20) * 1000;
             await liveDuelRef.update(update);
@@ -490,13 +494,35 @@
                 const q = data.questions[data.currentIndex];
                 const correct = q.correct;
                 const wrongNames = [];
+
+                let firstKey = null, firstAt = Infinity;
+                Object.keys(players).forEach(key => {
+                    if (players[key].pending) return;
+                    if (players[key].lastAnswer === correct && players[key].answeredAt && players[key].answeredAt < firstAt) {
+                        firstAt = players[key].answeredAt;
+                        firstKey = key;
+                    }
+                });
+
                 Object.keys(players).forEach(key => {
                     if (players[key].pending) return;
                     const isRight = players[key].lastAnswer === correct;
-                    const points = isRight ? 10 : 0;
-                    players[key].score = (players[key].score || 0) + points;
-                    players[key].lastRoundPoints = points;
-                    if (!isRight) wrongNames.push(players[key].name);
+                    if (isRight) {
+                        players[key].answerStreak = (players[key].answerStreak || 0) + 1;
+                        const isFirst = (key === firstKey);
+                        const b = (typeof calcAnswerBonus === "function")
+                            ? calcAnswerBonus(players[key].answerStreak, isFirst)
+                            : { bonus: 0, parts: [] };
+                        const points = 10 + b.bonus;
+                        players[key].score = (players[key].score || 0) + points;
+                        players[key].lastRoundPoints = points;
+                        players[key].lastRoundDetail = b.parts.join(" · ");
+                    } else {
+                        players[key].answerStreak = 0;
+                        players[key].lastRoundPoints = 0;
+                        players[key].lastRoundDetail = "";
+                        wrongNames.push(players[key].name);
+                    }
                 });
 
                 const review = Array.isArray(data.review) ? data.review : [];
@@ -540,13 +566,41 @@
                         }
                     );
 
-                    players[key].score = (players[key].score || 0) + res.points;
-                    players[key].lastRoundPoints = res.points;
                     players[key].wordStatus = res.status;
-                    players[key].wordChecked = players[key].word; // Zurückmelden was geprüft wurde
-
+                    players[key].wordChecked = players[key].word;
+                    players[key]._basePoints = res.points || 0;
                     console.log(`  → ${res.status}: +${res.points} Punkte`);
                 }
+
+                let firstKey = null, firstAt = Infinity;
+                Object.keys(players).forEach(key => {
+                    if (players[key].pending) return;
+                    if (players[key].wordStatus === "valid" && players[key].answeredAt && players[key].answeredAt < firstAt) {
+                        firstAt = players[key].answeredAt;
+                        firstKey = key;
+                    }
+                });
+
+                Object.keys(players).forEach(key => {
+                    if (players[key].pending) return;
+                    let pts = players[key]._basePoints || 0;
+                    const parts = [];
+                    if (pts > 0) {
+                        players[key].answerStreak = (players[key].answerStreak || 0) + 1;
+                        const isFirst = (key === firstKey);
+                        const b = (typeof calcAnswerBonus === "function")
+                            ? calcAnswerBonus(players[key].answerStreak, isFirst)
+                            : { bonus: 0, parts: [] };
+                        pts += b.bonus;
+                        parts.push(...(b.parts || []));
+                    } else {
+                        players[key].answerStreak = 0;
+                    }
+                    players[key].score = (players[key].score || 0) + pts;
+                    players[key].lastRoundPoints = pts;
+                    players[key].lastRoundDetail = parts.join(" · ");
+                    delete players[key]._basePoints;
+                });
 
                 Object.keys(players).forEach(k => {
                     if (players[k].wordStatus === "valid" && players[k].word) {
@@ -554,6 +608,16 @@
                     }
                 });
                 await liveDuelRef.update({ status: "reveal", players, answerDeadline: null });
+
+                try {
+                    if (activePlayerKey && players[activePlayerKey] && players[activePlayerKey].lastRoundPoints > 0
+                        && typeof showPointsPopup === "function") {
+                        showPointsPopup(
+                            players[activePlayerKey].lastRoundPoints,
+                            players[activePlayerKey].lastRoundDetail || ""
+                        );
+                    }
+                } catch (e) { }
             }
         }
 
@@ -565,6 +629,17 @@
             const myData = data.players[activePlayerKey];
             const isQuiz = data.type === "quiz";
             const isLastStep = isQuiz ? (data.currentIndex >= data.questions.length - 1) : (data.currentRound >= data.totalRounds);
+
+            // Punkte-Animation einmal pro Reveal
+            try {
+                const popKey = "reveal|" + (isQuiz ? data.currentIndex : data.currentRound) + "|" + (myData && myData.lastRoundPoints);
+                if (myData && myData.lastRoundPoints > 0 && liveDuelRenderKey !== popKey) {
+                    liveDuelRenderKey = popKey;
+                    if (typeof showPointsPopup === "function") {
+                        showPointsPopup(myData.lastRoundPoints, myData.lastRoundDetail || "");
+                    }
+                }
+            } catch (e) { }
 
             let rowsHtml = "";
             Object.values(data.players).filter(p => !p.pending).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {

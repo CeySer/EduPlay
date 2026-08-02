@@ -523,6 +523,55 @@
             updateMenuGamification();
         }
 
+        // ============================================================
+        //  PUNKTE-ANIMATION & ANTWORT-BONI (geteilt)
+        // ============================================================
+        /** First-Answer + Streak-Bonus berechnen */
+        function calcAnswerBonus(streak, isFirstCorrect) {
+            let bonus = 0;
+            const parts = [];
+            if (isFirstCorrect) {
+                bonus += 3;
+                parts.push("Erster! +3");
+            }
+            if (streak >= 2) {
+                const s = Math.min(streak, 5);
+                bonus += s;
+                parts.push("Streak +" + s);
+            }
+            return { bonus: bonus, parts: parts };
+        }
+
+        /**
+         * Punkte-Popup Animation.
+         * hostEl: DOM-Element (optional). Sonst zentriert auf dem Screen.
+         */
+        function showPointsPopup(amount, detail, hostEl) {
+            if (!amount && amount !== 0) return;
+            const host = hostEl || document.getElementById("app-shell") || document.body;
+            const el = document.createElement("div");
+            const useFixed = !hostEl || host === document.body || (host.id === "app-shell");
+            el.className = "points-popup" + (useFixed ? " points-popup-fixed" : "");
+            el.innerHTML = '<span class="points-popup-amount">+' + amount + ' 🪙</span>' +
+                (detail ? '<span class="points-popup-detail">' + detail + '</span>' : '');
+            host.appendChild(el);
+            requestAnimationFrame(function () { el.classList.add("show"); });
+            setTimeout(function () {
+                el.classList.remove("show");
+                el.classList.add("hide");
+                setTimeout(function () { el.remove(); }, 350);
+            }, 1300);
+            if (typeof confetti === "function" && amount >= 5) {
+                try {
+                    confetti({ particleCount: Math.min(30 + amount * 3, 70), spread: 50, origin: { y: 0.6 } });
+                } catch (e) { }
+            }
+            if (typeof SFX !== "undefined" && amount > 0 && SFX.coin) {
+                try { SFX.coin(); } catch (e) { }
+            }
+        }
+
+
         function awardXPToProfile(key, amount) {
             const p = ALL_PROFILES[key];
             if (!p) return;
@@ -678,12 +727,59 @@
             }
             const t = document.createElement("div");
             if (key) t.dataset.toastKey = key;
-            t.className =
-                `toast ${type === "success" ? "success" : "error"}`;
+            const typeClass = type === "error" ? "error" : (type === "info" ? "info" : "success");
+            t.className = `toast ${typeClass}`;
             t.innerHTML = msg;
             c.appendChild(t);
             while (c.children.length > 3) c.removeChild(c.firstElementChild);
-            setTimeout(() => t.remove(), 3000);
+            setTimeout(() => {
+                t.style.opacity = "0";
+                t.style.transition = "opacity 0.25s ease";
+                setTimeout(() => t.remove(), 260);
+            }, 2800);
+        }
+
+        // ============================================================
+        //  LOADING OVERLAY
+        // ============================================================
+        let _loadingDepth = 0;
+
+        function showLoading(text) {
+            _loadingDepth++;
+            const el = document.getElementById("global-loading");
+            const label = document.getElementById("global-loading-text");
+            if (label) label.textContent = text || "Laden…";
+            if (el) el.classList.remove("hidden");
+        }
+
+        function hideLoading(force) {
+            if (force) _loadingDepth = 0;
+            else _loadingDepth = Math.max(0, _loadingDepth - 1);
+            if (_loadingDepth > 0) return;
+            const el = document.getElementById("global-loading");
+            if (el) el.classList.add("hidden");
+        }
+
+        function withLoading(promiseOrFn, text) {
+            showLoading(text);
+            const p = typeof promiseOrFn === "function" ? promiseOrFn() : promiseOrFn;
+            return Promise.resolve(p).finally(() => hideLoading());
+        }
+
+        function setButtonLoading(btn, on) {
+            if (!btn) return;
+            if (on) {
+                btn.dataset._label = btn.innerHTML;
+                btn.classList.add("btn-loading");
+                btn.disabled = true;
+            } else {
+                btn.classList.remove("btn-loading");
+                btn.disabled = false;
+                if (btn.dataset._label) {
+                    btn.innerHTML = btn.dataset._label;
+                    delete btn.dataset._label;
+                }
+            }
         }
 
         // ============================================================

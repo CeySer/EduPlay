@@ -410,11 +410,49 @@
             const shapes = ["▲", "♦", "●", "◼"];
             const correctIndex = data.correctAnswer;
             const playersData = data.players;
+
+            // Erster Richtiger (frühestes answeredAt)
+            let firstKey = null, firstAt = Infinity;
             Object.keys(playersData).forEach(k => {
-                if (playersData[k].lastAnswer === correctIndex) playersData[k].score = (playersData[k].score ||
-                    0) + 10;
+                const p = playersData[k];
+                if (p.lastAnswer === correctIndex && p.answeredAt && p.answeredAt < firstAt) {
+                    firstAt = p.answeredAt;
+                    firstKey = k;
+                }
+            });
+
+            Object.keys(playersData).forEach(k => {
+                const p = playersData[k];
+                const isRight = p.lastAnswer === correctIndex;
+                if (isRight) {
+                    p.answerStreak = (p.answerStreak || 0) + 1;
+                    const isFirst = (k === firstKey);
+                    const b = (typeof calcAnswerBonus === "function")
+                        ? calcAnswerBonus(p.answerStreak, isFirst)
+                        : { bonus: 0, parts: [] };
+                    const pts = 10 + b.bonus;
+                    p.score = (p.score || 0) + pts;
+                    p.lastRoundPoints = pts;
+                    p.lastRoundDetail = b.parts.join(" · ");
+                } else {
+                    p.answerStreak = 0;
+                    p.lastRoundPoints = 0;
+                    p.lastRoundDetail = "";
+                }
             });
             tvGameRef.update({ players: playersData });
+
+            // Host-Anzeige: Erster + Streak
+            try {
+                const sorted = Object.entries(playersData)
+                    .filter(([, p]) => (p.lastRoundPoints || 0) > 0)
+                    .sort((a, b) => (b[1].lastRoundPoints || 0) - (a[1].lastRoundPoints || 0));
+                if (sorted.length && typeof showPointsPopup === "function") {
+                    const [fk, fp] = sorted[0];
+                    const detail = (fk === firstKey ? "Erster! " : "") + (fp.lastRoundDetail || "");
+                    showPointsPopup(fp.lastRoundPoints, detail.trim());
+                }
+            } catch (e) { }
 
             let answersHtml = "";
             tvCurrentQ.answers.forEach((ans, i) => {
@@ -772,25 +810,50 @@
                     </div>`;
 
             for (const key of Object.keys(playersData)) {
-                // Die evaluate-Funktion nutzt nun zwingend die hochaktuellen Buchstaben (letters) 
-                // und die hochaktuelle Require-Bedingung (currentRequired)
                 const res = await evaluateScrabbleWord(playersData[key].word, letters, {
                     minWord: (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord,
                     required: currentRequired,
                     used: tvUsedWords,
                     addToUsed: false
                 });
-
-                // NEU: Bonus für schnelles Einreichen im Action-Modus (auch für den TV-Modus!)
-                let finalPoints = res.points;
-                if (data.actionMode && res.points > 0 && playersData[key].word) {
-                    finalPoints += 5; // 5 Extra-Punkte für den Stress im Action Mode
-                }
-
-                playersData[key].score = (playersData[key].score || 0) + finalPoints;
-                playersData[key].lastRoundPoints = finalPoints;
                 playersData[key].wordStatus = res.status;
+                playersData[key]._basePoints = res.points || 0;
             }
+
+            // Erster gültiges Wort (frühestes answeredAt)
+            let firstKey = null, firstAt = Infinity;
+            Object.keys(playersData).forEach(k => {
+                const p = playersData[k];
+                if (p.wordStatus === "valid" && p.answeredAt && p.answeredAt < firstAt) {
+                    firstAt = p.answeredAt;
+                    firstKey = k;
+                }
+            });
+
+            Object.keys(playersData).forEach(k => {
+                const p = playersData[k];
+                let finalPoints = p._basePoints || 0;
+                const parts = [];
+                if (data.actionMode && finalPoints > 0 && p.word) {
+                    finalPoints += 5;
+                    parts.push("Action +5");
+                }
+                if (finalPoints > 0) {
+                    p.answerStreak = (p.answerStreak || 0) + 1;
+                    const isFirst = (k === firstKey);
+                    const b = (typeof calcAnswerBonus === "function")
+                        ? calcAnswerBonus(p.answerStreak, isFirst)
+                        : { bonus: 0, parts: [] };
+                    finalPoints += b.bonus;
+                    parts.push(...(b.parts || []));
+                } else {
+                    p.answerStreak = 0;
+                }
+                p.score = (p.score || 0) + finalPoints;
+                p.lastRoundPoints = finalPoints;
+                p.lastRoundDetail = parts.join(" · ");
+                delete p._basePoints;
+            });
 
             Object.keys(playersData).forEach(k => {
                 if (playersData[k].wordStatus === "valid" && playersData[k].word) {
@@ -798,6 +861,15 @@
                 }
             });
             tvGameRef.update({ showAnswer: true, players: playersData });
+
+            try {
+                const top = Object.entries(playersData)
+                    .filter(([, p]) => (p.lastRoundPoints || 0) > 0)
+                    .sort((a, b) => (b[1].lastRoundPoints || 0) - (a[1].lastRoundPoints || 0))[0];
+                if (top && typeof showPointsPopup === "function") {
+                    showPointsPopup(top[1].lastRoundPoints, top[1].lastRoundDetail || "");
+                }
+            } catch (e) { }
 
             const isLastRound = data.currentRound >= data.totalRounds;
             let rowsHtml = "";
@@ -905,14 +977,19 @@
                     if (data.status === "playing") {
                         if (data.showAnswer) {
                             const isCorrect = myData.lastAnswer === data.correctAnswer;
+                            const pts = myData.lastRoundPoints || (isCorrect ? 10 : 0);
                             const bg = isCorrect ? "bg-emerald-500" : "bg-rose-600";
                             const icon = isCorrect ? "✅" : "❌";
                             const text = isCorrect ? "Richtig!" : "Leider falsch!";
+                            const detail = myData.lastRoundDetail ? `<p class="text-sm opacity-80 mt-2">${myData.lastRoundDetail}</p>` : "";
                             document.getElementById("view-tv-quiz-player").innerHTML =
-                                `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-9xl mb-8">${icon}</div><h2 class="text-4xl font-black mb-4">${text}</h2><p class="text-xl font-bold opacity-80">Dein Punktestand: ${myData.score || 0}</p></div>`;
+                                `<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-9xl mb-8">${icon}</div><h2 class="text-4xl font-black mb-4">${text}</h2><p class="text-2xl font-black">+${pts} Punkte</p>${detail}<p class="text-xl font-bold opacity-80 mt-3">Gesamt: ${myData.score || 0}</p></div>`;
                             if (isCorrect) {
-                                try { if (typeof confetti === 'function') confetti(); } catch (e) { } SFX
-                                    .correct();
+                                try { if (typeof confetti === 'function') confetti(); } catch (e) { }
+                                SFX.correct();
+                                if (pts > 0 && typeof showPointsPopup === "function") {
+                                    showPointsPopup(pts, myData.lastRoundDetail || "");
+                                }
                             } else { SFX.wrong(); }
                         } else if (!myData.hasAnswered) {
                             const q = tvQuestions[data.currentQuestionIndex];
@@ -952,7 +1029,8 @@
                 `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-amber-400 mb-4">Eingereicht!</h2><p class="text-lg font-bold text-gray-400">Warte auf die anderen...</p></div>`;
             await tvGameRef.update({
                 [`players.${activePlayerKey}.hasAnswered`]: true,
-                [`players.${activePlayerKey}.word`]: word
+                [`players.${activePlayerKey}.word`]: word,
+                [`players.${activePlayerKey}.answeredAt`]: Date.now()
             });
         }
 
@@ -961,7 +1039,8 @@
                 `<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-indigo-400 mb-4">Eingeloggt!</h2><p class="text-lg font-bold text-gray-400">Schau auf den Fernseher...</p></div>`;
             await tvGameRef.update({
                 [`players.${activePlayerKey}.hasAnswered`]: true,
-                [`players.${activePlayerKey}.lastAnswer`]: ansIndex
+                [`players.${activePlayerKey}.lastAnswer`]: ansIndex,
+                [`players.${activePlayerKey}.answeredAt`]: Date.now()
             });
         }
 

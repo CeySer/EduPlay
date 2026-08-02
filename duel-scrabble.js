@@ -25,7 +25,7 @@
             if (keyA === keyB) return showToast("Bitte zwei unterschiedliche Spieler wählen!", "error");
             const pool = prepareQuestions(questionsForKey(cat).sort(() => Math.random() - 0.5).slice(0, 8));
             if (pool.length < 3) return showToast("Zu wenige Fragen in diesem Thema für ein Duell!", "error");
-            duelState = { keyA, keyB, questions: pool, qIndex: 0, scoreA: 0, scoreB: 0, turn: 'A' };
+            duelState = { keyA, keyB, questions: pool, qIndex: 0, scoreA: 0, scoreB: 0, turn: 'A', streakA: 0, streakB: 0 };
             switchView('duel-play');
             showDuelTurnIntro();
         }
@@ -70,13 +70,31 @@
                 else btns[i].classList.add("opacity-30");
             }
             if (sel === cor) {
-                if (duelState.turn === 'A') duelState.scoreA++;
-                else duelState.scoreB++;
+                const isA = duelState.turn === 'A';
+                if (isA) duelState.streakA = (duelState.streakA || 0) + 1;
+                else duelState.streakB = (duelState.streakB || 0) + 1;
+                const streak = isA ? duelState.streakA : duelState.streakB;
+                // Erster Versuch = immer firstTry in Single-Device-Duell (sofort geantwortet)
+                const b = (typeof calcAnswerBonus === "function")
+                    ? calcAnswerBonus(streak, true)
+                    : { bonus: 0, parts: [] };
+                const pts = 1 + b.bonus; // 1 Basis-Punkt pro Frage + Boni
+                if (isA) duelState.scoreA += pts;
+                else duelState.scoreB += pts;
+                if (typeof showPointsPopup === "function") {
+                    showPointsPopup(pts, b.parts.join(" · ") || "Richtig!");
+                }
+                if (typeof SFX !== "undefined") SFX.correct();
+            } else {
+                if (duelState.turn === 'A') duelState.streakA = 0;
+                else duelState.streakB = 0;
+                if (typeof SFX !== "undefined") SFX.wrong();
             }
             setTimeout(() => {
                 duelState.qIndex++;
                 if (duelState.qIndex < duelState.questions.length) { showDuelQuestion(); } else if (duelState.turn === 'A') {
                     duelState.turn = 'B';
+                    duelState.streakB = 0;
                     showDuelTurnIntro();
                 } else { finishDuel(); }
             }, 1100);
@@ -402,7 +420,11 @@
                 maxChanges: 5,
                 bonusEarned: false
             };
-            checked.forEach(k => scrabbleState.scores[k] = 0);
+            checked.forEach(k => {
+                scrabbleState.scores[k] = 0;
+            });
+            scrabbleState.streaks = {};
+            checked.forEach(k => { scrabbleState.streaks[k] = 0; });
             switchView('scrabble-play');
             showScrabbleTurnIntro();
         }
@@ -574,19 +596,37 @@
             let points = res.points;
             const info = wordStatusInfo(res.status, res);
             const note = info.text ? ` – ${info.text}` : "";
+            const parts = [];
 
-            // NEU: Bonus für schnelles Einreichen im Action-Modus
             if (scrabbleState.actionMode && points > 0 && !scrabbleState.bonusEarned) {
-                const bonus = 5;
-                points += bonus;
+                points += 5;
                 scrabbleState.bonusEarned = true;
-                showActionFeedback(`⚡ +${bonus} Bonus-Punkte für schnelles Einreichen!`);
-                SFX.coin();
+                parts.push("Action +5");
+                showActionFeedback("⚡ +5 Bonus-Punkte für schnelles Einreichen!");
+            }
+
+            if (!scrabbleState.streaks) scrabbleState.streaks = {};
+            if (points > 0) {
+                scrabbleState.streaks[key] = (scrabbleState.streaks[key] || 0) + 1;
+                // Offline: wer als Erster in der Runde einreicht = firstTry (hier immer der aktuelle Spieler)
+                const b = (typeof calcAnswerBonus === "function")
+                    ? calcAnswerBonus(scrabbleState.streaks[key], true)
+                    : { bonus: 0, parts: [] };
+                points += b.bonus;
+                parts.push(...(b.parts || []));
+            } else {
+                scrabbleState.streaks[key] = 0;
             }
 
             scrabbleState.scores[key] += points;
-            if (points > 0) SFX.correct();
-            else SFX.wrong();
+            if (points > 0) {
+                SFX.correct();
+                if (typeof showPointsPopup === "function") {
+                    showPointsPopup(points, parts.join(" · ") || (word ? '"' + word + '"' : "Treffer"));
+                }
+            } else {
+                SFX.wrong();
+            }
             showToast(`${esc(ALL_PROFILES[key].name)}: +${points} Punkte${word ? ` für "${word}"` : ""}${note}`, points > 0 ?
                 "success" : "error");
 

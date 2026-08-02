@@ -20,22 +20,7 @@
     <!-- DATENBANKEN -->
     <!-- DATENBANKEN - ZENTRAL GELADEN -->
     <script src="datenbanken_loader.js?v=7.0"></script>
-    // In deiner index.html (nach dem Loader)
-    document.addEventListener('datenbanken-geladen', function() {
-    console.log('🚀 Alle Datenbanken sind da! App startet...');
 
-    // Hier kommt dein normaler App-Start-Code
-    // z.B. auth.onAuthStateChanged(...) oder ähnliches
-
-    // Deine bestehenden Funktionen wie switchView etc.
-    // werden jetzt erst ausgeführt
-    });
-
-    // Fallback: Wenn das Event schon passiert ist (z.B. bei sehr schnellem Laden)
-    if (typeof QUESTIONS_DATABASE !== 'undefined' || typeof VOCABULARY_DATABASE !== 'undefined') {
-    console.log('🚀 Datenbanken sind schon da! App startet...');
-    // App starten
-    }
 
     <link rel="icon" href="data:,">
 

@@ -58,8 +58,23 @@
         if (typeof K4_SACHUNTERRICHT_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K4_SACHUNTERRICHT_QUESTIONS); }
         if (typeof K4_ENGLISCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K4_ENGLISCH_QUESTIONS); }
 
-
-
+        // Fun – Einzeldateien (fragen/fun/*)
+        if (typeof QUESTIONS_KINDER_ANIME_CARTOONS !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_KINDER_ANIME_CARTOONS); }
+        if (typeof QUESTIONS_KINDER_MAERCHEN_DISNEY !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_KINDER_MAERCHEN_DISNEY); }
+        if (typeof QUESTIONS_KINDER_TIERE_NATUR !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_KINDER_TIERE_NATUR); }
+        if (typeof QUESTIONS_KINDER_ERSTES_WISSEN !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_KINDER_ERSTES_WISSEN); }
+        if (typeof QUESTIONS_ALLGEMEIN !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_ALLGEMEIN); }
+        if (typeof SPASS_ERFINDUNGEN_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_ERFINDUNGEN_QUESTIONS); }
+        if (typeof SPASS_ESSEN_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_ESSEN_QUESTIONS); }
+        if (typeof SPASS_HAUPTSTAEDTE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_HAUPTSTAEDTE_QUESTIONS); }
+        if (typeof QUESTIONS_HAUPTSTAEDTE_EUROPA !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_HAUPTSTAEDTE_EUROPA); }
+        if (typeof SPASS_MUSIK_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_MUSIK_QUESTIONS); }
+        if (typeof QUESTIONS_SCHAETZEN_NICE_TO_KNOW !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_SCHAETZEN_NICE_TO_KNOW); }
+        if (typeof SPASS_RAETSEL_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_RAETSEL_QUESTIONS); }
+        if (typeof QUESTIONS_SCHAETZEN_MENSCH_KOERPER !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_SCHAETZEN_MENSCH_KOERPER); }
+        if (typeof SPASS_SPORT_FILM_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_SPORT_FILM_QUESTIONS); }
+        if (typeof SPASS_TIERE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_TIERE_QUESTIONS); }
+        if (typeof QUESTIONS_SCHAETZEN_UNGEWOEHNLICH_WELT !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_SCHAETZEN_UNGEWOEHNLICH_WELT); }
 
 
         // 2. Vokabeln - werden bereits von vocabulary.js geladen

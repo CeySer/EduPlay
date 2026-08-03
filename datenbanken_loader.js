@@ -10,8 +10,8 @@
     // Entferne die, die nicht existieren oder Probleme machen
     const scripts = [
         // Wörter - KOMMENTIERE SIE AUS, WENN SIE FEHLEN!
-        'words_kids.js?v=7.0',
-        'words_adult.js?v=7.0',
+        'fragen/words_kids.js',
+        'fragen/words_adult.js',
         
         // Vokabeln
         'fragen/vocabulary.js?v=7.0',
@@ -31,7 +31,7 @@
         'fragen/klasse2/questions_k2_mathe.js?v=7.0',
         'fragen/klasse2/questions_k2_deutsch.js?v=7.0',
         'fragen/klasse2/questions_k2_sachunterricht.js?v=7.0',
-        'fragen/kasse2/questions_k2_englisch.js?v=7.0', // KORREKTUR: Ordner prüfen!
+        'fragen/klasse2/questions_k2_englisch.js?v=7.0', // KORREKTUR: Ordner prüfen!
         
         // Klasse 3
         'fragen/klasse3/questions_k3_mathe.js?v=7.0',

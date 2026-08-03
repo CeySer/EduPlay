@@ -18,60 +18,13 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
 
     <!-- DATENBANKEN -->
-    <script src="fragen/words_kids.js?v=7.0"></script>
-    <script src="fragen/words_adult.js?v=7.0"></script>
-    <script src="fragen/vocabulary.js?v=7.0"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
+    <!-- DATENBANKEN - ZENTRAL GELADEN -->
+    <script src="datenbanken_loader.js?v=7.0"></script>
 
-    <script src="fragen/questions_school.js?v=7.0"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <script src="fragen/questions_beruf.js?v=7.0"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-
-    <script src="fragen/questions_kfz.js?v=7.0"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-
-    <script src="fragen/questions_fun.js?v=7.0"></script> <!-- DIESE ZEILE HINZUFÜGEN -->
-    <!-- Bei den anderen Fragen-Dateien einfügen: -->
-    <script src="fragen/klasse1/questions_k1_mathe.js?v=7.0"></script>
-    <script src="fragen/klasse1/questions_k1_deutsch.js?v=7.0"></script>
-    <script src="fragen/klasse1/questions_k1_sachunterricht.js?v=7.0"></script>
-
-    <script src="fragen/klasse2/questions_k2_mathe.js?v=7.0"></script>
-    <script src="fragen/klasse2/questions_k2_deutsch.js?v=7.0"></script>
-    <script src="fragen/klasse2/questions_k2_sachunterricht.js?v=7.0"></script>
-    <script src="fragen/klasse2/questions_k2_englisch.js?v=7.0"></script>
-
-    <script src="fragen/klasse3/questions_k3_mathe.js?v=7.0"></script>
-    <script src="fragen/klasse3/questions_k3_deutsch.js?v=7.0"></script>
-    <script src="fragen/klasse3/questions_k3_sachunterricht.js?v=7.0"></script>
-    <script src="fragen/klasse3/questions_k3_englisch.js?v=7.0"></script>
-
-    <script src="fragen/klasse4/questions_k4_mathe.js?v=7.0"></script>
-    <script src="fragen/klasse4/questions_k4_deutsch.js?v=7.0"></script>
-    <script src="fragen/klasse4/questions_k4_sachunterricht.js?v=7.0"></script>
-    <script src="fragen/klasse4/questions_k4_englisch.js?v=7.0"></script>
-
-    <!-- fun -->
-    <script src="fragen/fun/kinder_anime.js?v=7.0"></script>
-    <script src="fragen/fun/kinder_maerchen.js?v=7.0"></script>
-    <script src="fragen/fun/kinder_tiere_natur.js?v=7.0"></script>
-    <script src="fragen/fun/kinder_wissen.js?v=7.0"></script>
-    <script src="fragen/fun/spass_allgemein.js"></script>
-    <script src="fragen/fun/spass_erfindungen.js?v=7.0"></script>
-    <script src="fragen/fun/spass_essen.js?v=7.0"></script>
-    <script src="fragen/fun/spass_hauptstaedte.js?v=7.0"></script>
-    <script src="fragen/fun/spass_hauptstaedte_europa.js?v=7.0"></script>
-    <script src="fragen/fun/spass_musik.js?v=7.0"></script>
-    <script src="fragen/fun/spass_nice_to_know.js?v=7.0"></script>
-    <script src="fragen/fun/spass_raetsel.js?v=7.0"></script>
-    <script src="fragen/fun/spass_schaetzfragen.js?v=7.0"></script>
-    <script src="fragen/fun/spass_sport_film.js?v=7.0"></script>
-    <script src="fragen/fun/spass_tiere.js?v=7.0"></script>
-    <script src="fragen/fun/spass_ungewoehnliches.js?v=7.0"></script>
-
-
-    <script src="formula.js?v=7.0"></script>
 
     <link rel="icon" href="data:,">
 
-    <link rel="stylesheet" href="styles.css?v=7.5">
+    <link rel="stylesheet" href="styles.css?v=?v=7.5">
 </head>
 
 <body>
@@ -304,7 +257,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="family-duel-wrapper" class="hidden mt-3 space-y-3">
                         <p class="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">Ein Gerät · weitergeben
                         </p>
-                        <div class="grid grid-cols-3 gap-3">
+                        <div class="grid grid-cols-2 gap-3">
                             <button onclick="openDuelSetup()"
                                 class="p-3.5 bg-white/5 border border-white/10 text-rose-300 font-bold rounded-2xl shadow-md text-sm hover:bg-white/10 transition">
                                 ⚔️ Quiz-Duell
@@ -313,12 +266,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 class="p-3.5 bg-white/5 border border-white/10 text-amber-300 font-bold rounded-2xl shadow-md text-sm hover:bg-white/10 transition">
                                 🔤 Wort-Duell
                             </button>
-                            <button onclick="openWortratenSetup()"
-                                class="p-3.5 bg-white/5 border border-white/10 text-sky-300 font-bold rounded-2xl shadow-md text-sm hover:bg-white/10 transition">
-                                ⛄ Wort-Rätsel
-                            </button>
                         </div>
-                        <p class="text-[11px] text-gray-500 text-center px-2">Diese laufen komplett ohne Internet
+                        <p class="text-[11px] text-gray-500 text-center px-2">Diese beiden laufen komplett ohne Internet
                             – ideal im Auto oder Funkloch.</p>
                     </div>
                 </div>
@@ -706,26 +655,15 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             <div id="view-wortraten-setup" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
-                    <h2 class="text-2xl font-black text-center text-sky-400">⛄ Wort-Rätsel · ein Gerät</h2>
-                    <p class="text-xs text-gray-400 text-center -mt-2">Reihum Buchstaben raten – bei Fehlern wächst ein
-                        freundlicher <span class="text-sky-300 font-bold">Schneemann oder Roboter</span>. Niemand wird
-                        „gehängt“.</p>
+                    <h2 class="text-2xl font-black text-center text-sky-400">🧩 Wort-Rätsel · ein Gerät</h2>
+                    <p class="text-xs text-gray-400 text-center -mt-2">Reihum Buchstaben wählen und gemeinsam ein
+                        Wort erraten – <span class="text-sky-300 font-bold">ein Handy wird weitergegeben</span>. Bei
+                        jedem falschen Buchstaben wächst ein freundlicher Begleiter –
+                        <span class="text-emerald-400 font-bold">niemand wird bestraft</span>, es macht einfach nur
+                        Spaß!</p>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-2">Wer spielt mit? (mind. 1)</label>
                         <div id="wortraten-player-checkboxes" class="grid grid-cols-2 gap-2"></div>
-                    </div>
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Figur</label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <button type="button" id="wortraten-theme-schneemann" onclick="setWortratenTheme('schneemann')"
-                                class="p-3.5 rounded-2xl border border-white/10 font-bold text-sm transition bg-white/10 ring-2 ring-sky-400">
-                                ⛄ Schneemann
-                            </button>
-                            <button type="button" id="wortraten-theme-roboter" onclick="setWortratenTheme('roboter')"
-                                class="p-3.5 rounded-2xl border border-white/10 font-bold text-sm transition">
-                                🤖 Roboter
-                            </button>
-                        </div>
                     </div>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
@@ -737,11 +675,28 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
                         <select id="wortraten-difficulty" class="input-modern font-bold">
-                            <option value="leicht">🟢 Leicht (3–5 Buchstaben)</option>
-                            <option value="mittel" selected>🟡 Mittel (5–7 Buchstaben)</option>
-                            <option value="schwer">🔴 Schwer (7–10 Buchstaben)</option>
+                            <option value="leicht">🟢 Leicht (3-5 Buchstaben)</option>
+                            <option value="mittel" selected>🟡 Mittel (5-7 Buchstaben)</option>
+                            <option value="schwer">🔴 Schwer (7-10 Buchstaben)</option>
                             <option value="experte">🟣 Experte (9+ Buchstaben)</option>
                         </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-2">Wer wächst mit euren
+                            Fehlversuchen?</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button id="wortraten-theme-schneemann" type="button"
+                                onclick="setWortratenTheme('schneemann')"
+                                class="p-4 rounded-2xl bg-white/5 border border-white/10 text-center transition ring-sky-400">
+                                <div class="text-4xl mb-1">⛄</div>
+                                <div class="text-xs font-bold text-white">Schneemann</div>
+                            </button>
+                            <button id="wortraten-theme-roboter" type="button" onclick="setWortratenTheme('roboter')"
+                                class="p-4 rounded-2xl bg-white/5 border border-white/10 text-center transition ring-sky-400">
+                                <div class="text-4xl mb-1">🤖</div>
+                                <div class="text-xs font-bold text-white">Roboter</div>
+                            </button>
+                        </div>
                     </div>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Runden</label>
@@ -752,8 +707,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         </select>
                     </div>
                     <button onclick="startWortratenGame()" class="btn-primary w-full text-center"
-                        style="background:linear-gradient(135deg,#0ea5e9,#06b6d4);box-shadow:0 4px 24px rgba(14,165,233,0.3);">Los
-                        geht's! ⛄</button>
+                        style="background:var(--gradient-cool);box-shadow:0 4px 24px rgba(6,182,212,0.3);">Los
+                        geht's! 🧩</button>
                 </div>
             </div>
 
@@ -762,25 +717,26 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-wortraten-play" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2 px-3"
-                    onclick="if(confirm('Wort-Rätsel wirklich beenden?')){ wortratenState=null; switchView('wortraten-setup'); }">Beenden</button>
+                    onclick="if(confirm('Wort-Rätsel wirklich beenden?')) switchView('wortraten-setup')">Beenden</button>
                 <div id="wortraten-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
-                    style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(6,182,212,0.1));border-color:rgba(14,165,233,0.2);">
-                    <div class="text-6xl">⛄</div>
+                    style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(56,189,248,0.1));border-color:rgba(14,165,233,0.2);">
+                    <div class="text-6xl">🧩</div>
                     <h2 id="wortraten-turn-title" class="text-2xl font-black text-white">Name ist dran!</h2>
                     <p id="wortraten-turn-sub" class="text-sm text-gray-400">Runde 1/3</p>
                     <button onclick="wrBeginRound()" class="btn-primary w-full text-center"
-                        style="background:linear-gradient(135deg,#0ea5e9,#06b6d4);box-shadow:0 4px 24px rgba(14,165,233,0.3);">Los
+                        style="background:var(--gradient-cool);box-shadow:0 4px 24px rgba(6,182,212,0.3);">Los
                         geht's! 🚀</button>
                 </div>
+
                 <div id="wortraten-play-area" class="hidden space-y-4">
                     <div class="flex justify-between items-center text-xs font-bold text-gray-400 px-1">
                         <span id="wortraten-progress">Runde 1/3</span>
-                        <span id="wortraten-turn-banner" class="text-sky-300">Wähl einen Buchstaben!</span>
                     </div>
-                    <div id="wortraten-scores" class="flex flex-wrap gap-2 justify-center"></div>
-                    <div id="wortraten-figure" class="flex justify-center min-h-[120px]"></div>
-                    <div id="wortraten-word-tiles" class="flex flex-wrap justify-center gap-2 text-2xl font-black tracking-widest"></div>
-                    <div id="wortraten-keyboard" class="grid grid-cols-7 gap-1.5 max-w-md mx-auto"></div>
+                    <div id="wortraten-figure" class="w-44 h-48 mx-auto"></div>
+                    <div id="wortraten-word-tiles" class="flex flex-wrap justify-center gap-1.5"></div>
+                    <div id="wortraten-turn-banner" class="text-center text-sm font-bold text-sky-300 h-5"></div>
+                    <div id="wortraten-scores" class="flex gap-2 overflow-x-auto pb-1"></div>
+                    <div id="wortraten-keyboard" class="grid grid-cols-6 sm:grid-cols-7 gap-1.5"></div>
                 </div>
             </div>
 
@@ -1096,6 +1052,13 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <span class="text-3xl">📺</span>
                         <span>TV-Quiz</span>
                         <span class="text-xs font-bold text-indigo-200 -mt-1">· alle zusammen ·</span>
+                    </button>
+                    <button onclick="openWortratenSetup()"
+                        class="btn-primary w-full flex flex-col items-center gap-1 text-center"
+                        style="background:var(--gradient-cool);box-shadow:0 4px 24px rgba(6,182,212,0.3);">
+                        <span class="text-3xl">🧩</span>
+                        <span>Wort-Rätsel</span>
+                        <span class="text-xs font-bold text-sky-100 -mt-1">· ein Handy, reihum ·</span>
                     </button>
                     <div id="open-tv-list" class="space-y-2"></div>
                     <div id="open-duels-list" class="space-y-2"></div>
@@ -1656,7 +1619,7 @@ VIEW: QUIZ SETUP
     <script src="quiz-core.js?v=7.5"></script>
     <script src="vocab.js?v=7.5"></script>
     <script src="duel-scrabble.js?v=7"></script>
-    <script src="wortraten.js?v=7.5"></script>
+    <script src="wortraten.js?v=1.0"></script>
     <script src="tv-cast.js?v=7.5"></script>
     <script src="live-duel.js?v=7.5"></script>
     <script src="app-misc.js?v=7.5"></script>

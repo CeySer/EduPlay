@@ -1,0 +1,546 @@
+EduPlay Roadmap - Vollständig Sortiert & Strukturiert
+
+---
+
+🚨 KATEGORIE 1: KRITISCHE SOFORT-FIXES (PHASE 0 – JETZT)
+
+Bugs, die den Spielspaß und die Grundfunktion kaputt machen
+
+Lobby & Beitritts-Probleme
+
+☐ Lobby-Hänger & Blinken ("Lobby-Leichen")
+  · Wenn jemand rausgeht, blinkt das Duell weiter oder man bleibt hängen
+  · Teilweise muss man sich komplett abmelden, um wieder reinzukommen
+  · Lösung: Heartbeat-Mechanismus (alle 10 Sek. Signal), Cleanup beim Verlassen (leaveLiveDuel() & beforeunload), automatisches Löschen nach 10 Min. Timeout, Host-Übergabe
+☐ Beitritts-Bug - Mitten ins Spiel platzen
+  · Man kommt mitten in ein laufendes Spiel rein
+  · Lösung: Warte-Lobby einrichten - Spieler wartet bis Runde beendet ist, wird dann ins Spiel geholt
+☐ Lobby bleibt nach Verlassen sichtbar
+  · Wenn man ein Spiel eröffnet hat und niemand drin war, dann zurück ins Menü geht, soll es verschwinden
+  · Wenn man ausversehen rausgeht, kommt der Lobby-Balken erst bei neuer Runde wieder
+☐ TV Quiz - Keine Warte-Lobby
+  · Man kann nicht warten bis Spiel beendet ist
+  · Braucht: Warte-Lobby wie bei anderen Modi
+
+Wort-Quiz Eingabe-Bug
+
+☐ Tastatur/Eingabe verschwindet plötzlich
+  · Während des Tippens verschwindet die Eingabe, man muss von vorne anfangen
+  · Manchmal nimmt er die Eingabe nicht, bleibt hängen
+☐ Wort-Quiz - Falsche Wörter bei Spielern
+  · Jeder hatte ein anderes Wort, am Ende war bei allen falsch was sie eingetippt haben
+
+Duell "Weiter"-Button Bug
+
+☐ Hänger beim gleichzeitigen Drücken
+  · Wenn beide gleichzeitig drücken, geht es bei einem wirklich weiter, der andere tippt auf "Wort einreichen"
+  · Führt zu ungewollter Aktion
+
+TV Duell Bugs
+
+☐ Nach Beenden von TV Duell kommt man in falsche Ansicht
+  · Nur noch Quiz Auswahl (Spaß Quiz und Lernen), kein Wort Duell mehr
+  · Obere Zeile mit Quiz und Wort Duell fehlt
+  · Bleibt hängen bis Seite neu geladen
+☐ TV Quiz - Kein Timer und kein automatisches Weiter
+  · Timer fehlt komplett
+  · Kein automatischer Wechsel zur nächsten Frage
+☐ TV Quiz - Wenn einer rausgeht, geht es nicht weiter
+  · Der Spieler sollte rausgenommen werden, Spiel muss weiterlaufen
+
+Fehlerbehandlung
+
+☐ Leere try...catch-Blöcke füllen
+☐ Globalen Error-Handler einbauen
+☐ Freundliche Fehlermeldungen formulieren
+  · Statt "Fehler beim Laden" → "Hoppla, das hat nicht geklappt – versuch es gleich nochmal!"
+
+Navigation & UI-Fehler
+
+☐ Quiz Duell - Zurück Knopf führt zu weit zurück
+☐ Am Ende des Tests soll er wieder ins Menü (Klasse/Fach-Auswahl)
+☐ Duell Menü - Zurück führt nicht in Auswahl sondern zu Spielern
+☐ Lobby verlassen muss zurück zum Duell Setup führen
+☐ Live Duell Play - Verlass Button zurück zu Duell Setup
+☐ TV Quiz - Lobby verlassen führt zu weit zurück
+☐ TV Quiz - Siegerehrung führt zu falschem Menü
+
+Belohnungs-Anzeige
+
+☐ Coins müssen sofort aktualisiert werden
+  · Ohne manuelles Neuladen der Seite
+
+---
+
+🏛️ KATEGORIE 2: APP-STRUKTUR, UI/UX & DESIGN
+
+Wording & Menüstruktur
+
+☐ "Profil" überall in "Spieler" ändern
+  · "Spieler wählen" statt "Profil wählen"
+☐ "TV Duell" statt "TV Familien Quiz"
+  · Konsistente Benennung
+☐ EduPlay-Schriftzug prominenter/größer
+  · Mittig positionieren, Version Nummer darunter
+☐ "Zurück"-Navigation aufräumen
+  · Klar trennen zwischen "Einen Schritt zurück" und "Zum Hauptmenü"
+  · Einheitliches Navigations-Muster schaffen
+  · Nach Siegerehrung in jeweiliges Menü kommen
+
+Spieler-Auswahl verbessern
+
+☐ Dashboard bei Spielerauswahl entfernen
+☐ Text "Familie" über Ranglisten-Button entfernen, Button etwas höher
+☐ "Neuer Spieler" und "Gast" Button etwas nach oben schieben
+☐ Alle Abstände symmetrisch gestalten
+
+Slide-in-Menü / Burger-Menü
+
+☐ Einstellungen-Menü-Punkt erstellen
+  · Ton an/aus Knopf rein
+  · PIN ändern Knopf hier rein (aus Elternbereich raus)
+  · Später: PIN ändern über E-Mail
+☐ View-Menu (Spieler Menü)
+  · Ton an/aus Knopf entfernen (nur Fernseher verbinden lassen)
+  · Profil bearbeiten Knopf beim Spieler Namen einfügen
+
+Dashboard
+
+☐ Überschrift "Dashboard" größer
+☐ "Übersicht" in "Zurück" umbenennen
+☐ EduPlay wieder mittig
+☐ Wörter entweder alle auflisten oder ganz weg lassen
+
+Responsive Design
+
+☐ TV-Modus Optimierung
+  · Handydarstellung anpassen, sodass TV-Modus vom Smartphone genauso vollbildfüllend aussieht wie vom Laptop
+☐ Responsive für Tablets verbessern
+  · Größere Buttons, mehr Spalten
+☐ Dark Mode Kontraste prüfen (WCAG)
+  · Text auf dunklem Hintergrund verbessern
+
+Animationen & Feedback
+
+☐ Lade-Spinner einbauen
+  · Wenn Firebase lädt, damit App nicht eingefroren wirkt
+☐ Animationen sanfter machen
+  · Elastic- oder Fade-Effekte
+☐ UX-Feedback verbessern
+  · Ladezustände überall anzeigen
+
+Helle-Modus UI verbessern
+
+☐ Helle-Modus UI optimieren
+
+Navigation vereinheitlichen
+
+☐ Auf EduPlay links oben klicken → Home Menü
+☐ Zurück-Buttons überall logisch anpassen
+☐ Manche Bereiche haben gar keinen Zurück-Button - beheben
+
+---
+
+🗄️ KATEGORIE 3: DATENBANK & QUIZ-LOGIK (data.js)
+
+Antworten & Fragen-Struktur
+
+☐ 4. Antwortmöglichkeit konsequent hinzufügen
+  · Überall, nicht nur teilweise
+☐ Antwort-Mischung (Shuffle) überall aktivieren
+  · prepareQuestions() konsequent für alle Modi (Quiz, Duell, TV)
+  · Nicht nur für Standard-Quiz
+☐ Antwortlängen & Erkennbarkeit beheben (Das 51,7% Problem)
+  · Richtige Antwort oft die längste/detaillierteste
+  · Falsche Antworten meist kürzer oder anders formuliert
+  · Lösung: Antworten auf gleiche Länge kürzen/anpassen oder gleichem Schema folgen
+  · Bei "Würdest du eher"-Fragen: lustige/ausführliche Antwort bewusst kürzen
+☐ Eindeutige IDs für jede Frage
+  · Buchstaben-Zahlen-Kombination, unveränderlich
+☐ Feld-Trennung: Klasse/Zielgruppe und Fach trennen
+  · Nicht mehr kombiniert als "k1_deutsch"
+  · Separate Eigenschaften
+☐ Neue Felder einfügen
+  · Schwierigkeitsgrade (leicht, mittel, schwer)
+  · Punktewerte direkt in Datenbank
+☐ Premium-Flags vorbereiten
+  · Für spätere Bezahlmodelle
+
+Mathe-Formelsammlung
+
+☐ Formelsammlung wie Vokabeln lernen
+  · Dreisatz erklärt
+  · Bruchrechnen erklärt
+  · Was je nach Klasse gefordert wird
+
+Fragenanzahl sichtbar machen
+
+☐ Unter jedem Fach anzeigen wie viele Fragen vorhanden sind
+
+---
+
+🎮 KATEGORIE 4: GAMEPLAY, QUIZ-ABLAUF & AUDIO
+
+Timer & Countdown
+
+☐ Countdown/Timer überall einheitlich
+  · Sobald einer antwortet, läuft Timer für andere
+  · In letzten 5 Sek. optische/akustische Warnung (roter Rand)
+  · Prüfen ob überall sinnvoll, ggf. bei Kindermodus ausschalten
+☐ TV Quiz - Timer und automatisches Weiter einbauen
+
+Auswahl & Anzeige
+
+☐ Nach der Runde anzeigen, wer welche Antwort gewählt hat
+  · Fehlt aktuell komplett
+☐ Fragenanzahl vor Spielstart wählbar
+  · Bestimmte Anzahl mit der man spielen/lernen möchte
+☐ Im TV Quiz Halbzeit-Ranking anzeigen
+  · Nach jeder Halbzeit kurz zeigen wer welchen Rang/Platz hat
+
+Spielmodi & Schwierigkeit
+
+☐ Kids-Mode vs. Erwachsenen-Mode
+  · Kids: kein Zeitdruck, leichtere Fragen
+  · Erwachsene: Zeitdruck, schwierigere Fragen, höhere Spannung
+  · Schwierigkeiten ändern sich, Timer läuft schneller
+☐ Lernmodus vs. Spielmodus
+  · Lernmodus: kein Zeitdruck, sofortige Erklärung bei Fehlern, Wiederholungsfunktion
+  · Spielmodus: Zeitdruck, Ranglisten-Punkte, Wettbewerb
+☐ Text auswählen zum Spielstart (verständlicher)
+
+Neue Spielmodi
+
+☐ Lesen-App für Erstklässler
+  · Buchstaben-Modus (Klasse 1):
+    · Buchstabe zeigen → Kind sagt den Laut
+    · Buchstabe hören → Kind tippt den richtigen Buchstaben
+    · Bild sehen → Kind tippt den Anfangsbuchstaben
+  · Silben-Modus (Klasse 1-2):
+    · Wort zeigen → Kind klatscht die Silben
+    · Silben hören → Kind tippt das Wort
+  · Wort-Modus (Klasse 1-2):
+    · Bild sehen → Kind liest das Wort vor
+    · Wort hören → Kind tippt das richtige Bild
+    · Buchstaben-Puzzle → Buchstaben zum Wort zusammensetzen
+  · Satz-Modus (Klasse 2):
+    · Satz lesen → Kind liest laut vor
+    · Satz verstehen → Kind beantwortet eine Frage
+☐ Lückentext-Sprint (Klasse 1-2)
+  · Satz mit fehlendem Wort, drei Optionen zur Auswahl
+  · Lerneffekt: Satzbau und Sprachgefühl
+☐ Wort-Salat / Anagramme
+  · Buchstaben durcheinander, Wort richtig ordnen
+  · Variante mit Zeitdruck
+☐ Wort-Wächter (Anti-Galgenmann)
+  · Wort erraten, Avatar bewacht Schatz
+  · Bei falschem Buchstaben verliert Avatar Coins
+  · Bei Lösung bekommt Avatar Coins zurück
+☐ Kategorien-Duell (Drag & Drop)
+  · Boxen (z.B. Nomen/Verben), Wörter zuordnen
+  · Wie Fruit Ninja mit Förderband
+☐ Herausforderungs-Modus
+  · Mit Spielern außerhalb der Familie spielen (Online-Matchmaking)
+  · Freunde herausfordern, Meldung bekommen
+
+Audio-Design
+
+☐ Durchgehende Hintergrundmusik (Minecraft-Stil)
+  · Leiser als alle anderen Sounds
+  · In Einstellungen ausschaltbar
+☐ Moderne Klick-Sounds für Buttons/Navigation
+  · Überall einfügen
+☐ Sound-Designer-Modus (Zukunft)
+  · Verschiedene Sound-Pakete (Retro, Natur, leise)
+
+Fokus-Timer
+
+☐ Zeitauswahl: 10, 15, 25 Minuten
+  · Coin-Multiplikator: 25 Min = 2x oder 3x Coins
+☐ "Anti-Schummel" Fokus-Zwang
+  · Wenn App verlassen wird, Timer pausiert und warnt
+  · Bei zu langer Unterbrechung geht Coin-Bonus verloren
+☐ In-App Meldung beim Timer-Start
+  · "Hinweis: Eine vollständige Geräte-Sperrung zur absoluten Konzentration (nur Notruf/SMS möglich) folgt in einem späteren Update!"
+☐ Vollständige Geräte-Sperrung (Zukunft)
+  · Nur bei nativer App möglich
+  · Notruf, SMS und Anrufe auf bestimmte Kontakte möglich
+  · Kontakte vorher im Fokus-Timer anlegen
+
+Fokus-Timer als eigene App (Zukunft)
+
+☐ Eigene Fokus-Timer App
+  · Wie Family Link von Google
+  · Komplettes Handy lahmlegen mit eigenem Countdown
+  · Lobby mit Freunden via Einladungslink
+  · Gemeinsame Zeit festlegen, alle Handys gesperrt
+  · Nur Notruf, SMS, Anrufe auf bestimmte Kontakte möglich
+
+Karteikarten
+
+☐ Bei Karteikarten üben: Vor und Zurück gehen können
+
+Quiz Duell
+
+☐ Kurze Erklärung und richtige Antwort zeigen
+
+---
+
+👤 KATEGORIE 5: PROFILE, ELTERN & BELOHNUNGEN
+
+Profile
+
+☐ Profil bearbeiten Funktion
+  · Namen ändern
+  · Geburtstag eintragen (Alter wächst mit)
+☐ Profile löschen können
+☐ Gast-Profile
+  · Temporär für Besuch
+  · Nur in Moment in Rangliste, nicht in Familien-Rangliste
+☐ Automatisches Alter durch Geburtsdatum
+
+Elternbereich
+
+☐ PIN-Wiederherstellung und Ändern
+  · Nicht mehr anzeigen
+  · Über E-Mail Wiederherstellung
+  · Möglichkeit auch über Telefonnummer
+☐ Coins manuell verwalten (+/-)
+☐ Wochen-Report per Mail
+☐ Statistiken & Fortschritt
+  · Detaillierte Lernanalysen
+  · Leistungsstatistik
+  · Schwächen und Stärken erkennen
+  · Falsche Antworten sammeln zum späteren Üben
+☐ Spieler im geschlossenen Fenster
+  · Das dann wieder runterfährt
+☐ Export/Import-Button
+  · JSON-Backup aller Profildaten (Fortschritt, Coins, Vokabeln)
+
+Belohnungssystem (Toca-Boca-Welt)
+
+☐ Coin-Bank (zentrale Verwaltung pro Spieler)
+☐ Shop
+  · Avatar-Kategorie: Hüte, Brillen, Accessoires
+  · Möbel-Kategorie: Sofa, Bett, Pflanzen
+  · Kauf zieht Coins ab, füllt Inventar
+☐ Avatar-System
+  · 2D-Ebene für Charakter
+  · Items als Layer (z-index) darüberlegen
+  · Aussehen speichern
+☐ 2D-Traumhaus (Zukunft - Königsdisziplin)
+  · Drag & Drop Engine (z.B. interact.js)
+  · X/Y-Koordinaten jedes Möbelstücks im Profil speichern
+
+Gamification-Ideen
+
+☐ Gemeinsames "Familien-Ziel"
+  · Fortschrittsbalken für alle
+  · "Alle haben 500 Punkte erreicht → Kinoabend"
+☐ Tägliche Herausforderungen (Tagesmissionen)
+  · "Heute 10 Vokabeln richtig" → Bonus-Coins
+☐ Streak-System (Lern-Flamme)
+  · Für tägliche Serie
+☐ Schwächen-Erkennung ausbauen
+  · Automatischer "Wiederholungs-Quiz"
+  · Nur falsch beantwortete Fragen aus letzten 7 Tagen (Spaced Repetition)
+☐ Lern-Zertifikate
+  · PDF-Download nach bestandenem Lernfeld
+☐ Tägliche Belohnung
+  · Glücksrad oder Mystery Box
+
+Individuelle Anpassung
+
+☐ Von "Viewer" zu "Editor" ausbauen
+  · Eltern/Lehrer können gezielt Wörter/Fragen hinzufügen
+  · Aktueller Schulstoff (z.B. "Diese Woche haben wir Vokabeln zu Thema X")
+
+---
+
+🏫 KATEGORIE 6: SCHULE, LEHRER & KLASSEN
+
+Lehrer-Dashboard
+
+☐ Spezielle Anmeldung für Schulen
+  · Lehrer-Account mit mehreren Klassen
+☐ Klassen anlegen
+  · Lehrer legt Klassen an
+☐ Profile/Spieler verwalten
+  · Namen, Alter, Geburtstag eintragen
+  · Sofortige Kontrolle
+☐ Tests zuweisen und zurücknehmen
+  · Gezielt Tests für schwache/starke Kinder
+☐ Statistiken über Kinder sehen
+  · Pro Klasse einsehbar
+☐ Ranglisten für Schulgebrauch ausblendbar/einblendbar
+  · Pädagogisch sinnvoll
+☐ TV-Modus für Schule
+  · Lehrer hostet Klassen-Lobbys
+  · Spiele im Unterricht starten
+☐ Bildungs-Dashboard
+  · Schüler-Statistiken auf einer Seite zum Auswählen
+  · Daraus in Dashboards rein
+
+Feedback-Funktion für Lehrkräfte
+
+☐ "Frage/Vokabel melden" Button
+  · Unangemessen
+  · Nicht für Klasse geeignet
+  · Zu leicht/schwer
+  · Überall einfügen
+
+Berufsschule
+
+☐ Kfz-Lernfelder 1-14 als Untermenü
+☐ Top 5 Berufe in Deutschland als Fächer
+  · Kfz, Tischler, Krankenschwester, etc.
+☐ Praxis-Modus mit Bildern
+
+---
+
+🌐 KATEGORIE 7: SOCIAL, ONLINE & PERFORMANCE
+
+Online-Duelle & Freunde
+
+☐ Einladungs-System
+  · Freunde einladen Funktion
+  · Andere Spieler herausfordern
+  · Meldung bekommen
+☐ Benachrichtigungen
+  · Wenn herausgefordert wird
+☐ Andere online Spieler sehen
+☐ Freunde einladen an Bekannte und Verwandte schicken
+
+App-Bewertung & Feedback
+
+☐ Feedback-Funktion einbauen
+  · Button für direkte Feedback-Gabe
+☐ App bewerten
+  · Sehen können was Leute nutzen
+
+Offline-Modus
+
+☐ Auto-Sync
+  · Sobald Internet da ist, werden Coins & Fortschritte hochgeladen
+☐ Service Worker für echten Offline-Modus
+☐ "Ohne Internet Modus" Text
+
+Technik & Performance
+
+☐ Lazy Loading für Fragen
+  · Nur Metadaten laden, Fragen erst bei Bedarf
+☐ Lokaler Cache für Profil-Daten
+  · localStorage mit "Sync"-Button
+☐ Firestore-Caching optimieren
+  · Profile nicht bei jedem Ladevorgang neu holen
+
+Vorlesefunktion
+
+☐ Text-to-Speech für Grundschulkinder
+
+---
+
+🔒 KATEGORIE 8: SICHERHEIT & DATENSCHUTZ
+
+Authentifizierung
+
+☐ Echte Firebase-Auth für Eltern
+  · Custom Claims für Berechtigungen
+  · Statt harter "1234"-PIN
+
+Firestore-Sicherheitsregeln
+
+☐ Nur eigener Parent-User kann auf Collections zugreifen
+
+Benutzereingaben
+
+☐ Sanitizen (XSS-Schutz)
+  · Besonders bei Vokabel-Eingaben und Wort-Duellen
+
+---
+
+🏗️ KATEGORIE 9: TECHNISCHE SCHULDEN (ZURÜCKGESTELLT)
+
+Architektur
+
+☐ Aufteilung der monolithischen index.html
+  · Auslagern in app.js, quiz.js, duel.js, auth.js, firebase.js, gamification.js, ui.js
+☐ Zentrales State-Management
+  · Über 50 globale Variablen in zentralen Store (AppState) verlagern
+☐ Konfiguration zentralisieren
+  · config.js für Level, Belohnungen, Timer
+
+Die 5 EduPlay-Welten (Langfristig)
+
+☐ EduPlay Grundschule
+☐ EduPlay Sek I
+☐ EduPlay Oberstufe
+☐ EduPlay Family
+  · Pakete kaufen mit allen Klassen oder was man hat
+☐ EduPlay Berufe
+  · Kommt später als 5. Welt
+☐ Dynamisches Theming
+  · Automatischer Design-Wechsel (CSS-Themes) je nach Bereich
+☐ Layout-Gruppierung
+  · Block 1 (Solo): Wissen, Vokabeln, Fokus-Timer
+  · Block 2 (Multiplayer): Quiz Duell, Wort Duell, TV Duell
+☐ Interaktives Onboarding beim ersten App-Start
+☐ Barrierefreiheit (Kontrast-Modus)
+
+---
+
+🎯 KATEGORIE 10: OFFENE FRAGEN & ENTSCHEIDUNGEN
+
+Native App vs. Web-App
+
+☐ Sollen wir mit Web-App weiterfahren oder richtige App machen?
+  · Richtige App erst am Ende wenn keine Ideen mehr?
+
+Sonstige offene Punkte
+☐ Mid-Game-Absturz-Fall behandeln
+
+---
+
+📊 ZUSAMMENFASSUNG DER PRIORITÄTEN
+
+Priorität 1 (JETZT)
+
+· Alle Lobby/Beitritts-Bugs
+· Wort-Quiz Eingabe-Bug
+· Duell "Weiter"-Button Bug
+· TV Duell Bugs
+· Navigation/Back-Button Fehler
+· Fehlerbehandlung
+· Belohnungs-Anzeige
+· Alle Punkte aus Kategorie 1
+
+Priorität 2 (Demnächst)
+
+· Datenbank-Umbau (Antworten, IDs, Felder)
+· Timer/Countdown überall
+· Auswahl-Anzeige
+· Sound-Design
+· Fokus-Timer (Zeitauswahl, Meldung)
+· Design-Verbesserungen
+· Profil bearbeiten
+· Alle Punkte aus Kategorie 2, 3, 4
+
+Priorität 3 (Mittelfristig)
+
+· Elternbereich mit Statistiken
+· Gamification (Familien-Ziel, Tagesmissionen)
+· Shop & Avatar-System
+· Lehrer-Dashboard
+· Online-Duelle
+· Lesen-App
+· Alle Punkte aus Kategorie 5, 6
+
+Priorität 4 (Langfristig/Zukunft)
+
+· Native App
+· Fokus-Timer als eigene App
+· Vollständige Geräte-Sperrung
+· 2D-Traumhaus
+· Die 5 EduPlay-Welten
+· Technische Schulden abbauen
+· Alle Punkte aus Kategorie 7, 8, 9

@@ -1,6 +1,33 @@
         // ============================================================
         //  DRAWER LOGIK
         // ============================================================
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.menu-fab-btn').forEach(function (btn) {
+                const fill = btn.querySelector('.menu-fab-ring-fill');
+                if (!fill) return;
+                let raf = null;
+                function start() {
+                    if (raf) cancelAnimationFrame(raf);
+                    const dur = 450, t0 = performance.now();
+                    fill.style.transition = 'none';
+                    function step(t) {
+                        const p = Math.min(1, (t - t0) / dur);
+                        fill.style.strokeDashoffset = String(94.2 * (1 - p));
+                        if (p < 1) raf = requestAnimationFrame(step);
+                    }
+                    raf = requestAnimationFrame(step);
+                }
+                function reset() {
+                    if (raf) cancelAnimationFrame(raf);
+                    fill.style.transition = 'stroke-dashoffset .25s ease-out';
+                    fill.style.strokeDashoffset = '94.2';
+                }
+                btn.addEventListener('pointerdown', start);
+                btn.addEventListener('pointerup', reset);
+                btn.addEventListener('pointerleave', reset);
+            });
+        });
+
         function openDrawer() {
             if (typeof SFX !== 'undefined') SFX.tap();
 

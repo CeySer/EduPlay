@@ -41,6 +41,7 @@
             } else {
                 currentParentUser = null;
                 switchView('auth');
+                hideGlobalLoader();
             }
         });
 
@@ -56,6 +57,7 @@
                 renderFamilyHub();
                 switchView('family-hub');
             } catch (e) { handleError("loadFamilyProfiles", e, "Spieler konnten nicht geladen werden."); }
+            finally { hideGlobalLoader(); }
         }
 
         const PLAYER_COLORS = ["#FF8A4C", "#3ECFB2", "#F2C14E", "#9B8CFF", "#5FB3F5", "#F585B0"];

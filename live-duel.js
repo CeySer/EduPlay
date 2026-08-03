@@ -18,12 +18,9 @@
         function openLiveDuelSetup(type) {
             liveDuelType = type;
             document.getElementById("live-duel-setup-title").innerText = type === "scrabble" ? "🔤 Live-Wortduell" :
-                type === "wortraten" ? "🧩 Live-Wort-Rätsel" :
                 "⚔️ Live-Quizduell";
             document.getElementById("live-duel-quiz-options").classList.toggle("hidden", type !== "quiz");
             document.getElementById("live-duel-scrabble-options").classList.toggle("hidden", type !== "scrabble");
-            const wrOpts = document.getElementById("live-duel-wortraten-options");
-            if (wrOpts) wrOpts.classList.toggle("hidden", type !== "wortraten");
             if (type === "quiz") setupCategorySelectors("live-duel-area", "live-duel-category");
             switchView('live-duel-setup');
         }
@@ -59,7 +56,6 @@
                 clearInterval(liveDuelAutoAdvanceTimer);
                 liveDuelAutoAdvanceTimer = null;
             }
-            if (typeof wrLiveClearTurnTimer === "function") wrLiveClearTurnTimer();
         }
 
         async function createLiveDuel() {
@@ -136,7 +132,7 @@
                 const wasAlreadyIn = !!(data.players && data.players[activePlayerKey]);
                 const midGame = (data.status === "playing" || data.status === "reveal");
                 if (!wasAlreadyIn) {
-                    const joinUpdate = {
+                    await ref.update({
                         [`players.${activePlayerKey}`]: {
                             name: currentPlayer.name,
                             score: 0,
@@ -146,11 +142,7 @@
                             coinsClaimed: false,
                             pending: midGame
                         }
-                    };
-                    if (data.type === "wortraten" && !midGame) {
-                        joinUpdate.order = firebase.firestore.FieldValue.arrayUnion(activePlayerKey);
-                    }
-                    await ref.update(joinUpdate);
+                    });
                 }
                 liveDuelType = data.type;
                 liveDuelRef = ref;
@@ -182,7 +174,7 @@
                     liveDuelResolving = true;
                     resolveLiveDuelRound(snap.data());
                 }
-            } catch (e) { }
+            } catch (e) { console.warn("forceResolveLiveDuel fehlgeschlagen:", e); }
         }
 
         function startLiveDuelCountdown(deadline) {
@@ -241,18 +233,6 @@
 
                 if (myData.pending) {
                     renderLiveDuelPending(data);
-                    switchView('live-duel-play');
-                    return;
-                }
-
-                if (data.type === "wortraten") {
-                    renderLiveDuelWortratenPlay(data);
-                    const statusEl2 = document.getElementById("live-duel-status");
-                    if (statusEl2) statusEl2.innerText = `Runde ${data.currentRound}/${data.totalRounds}`;
-                    const cd2 = document.getElementById("live-duel-countdown");
-                    if (cd2) cd2.innerText = "";
-                    const forceBtn2 = document.getElementById("live-duel-force-resolve");
-                    if (forceBtn2) forceBtn2.classList.add("hidden");
                     switchView('live-duel-play');
                     return;
                 }
@@ -425,8 +405,7 @@
             if (!players[activePlayerKey] || players[activePlayerKey].hasAnswered) return;
             const update = {
                 [`players.${activePlayerKey}.hasAnswered`]: true,
-                [`players.${activePlayerKey}.lastAnswer`]: ansIndex,
-                [`players.${activePlayerKey}.answeredAt`]: Date.now()
+                [`players.${activePlayerKey}.lastAnswer`]: ansIndex
             };
             if (!data.answerDeadline) update.answerDeadline = Date.now() + (data.answerSeconds || 20) * 1000;
             await liveDuelRef.update(update);
@@ -438,27 +417,10 @@
         // VERBESSERTE renderLiveDuelScrabblePlay
         // ============================================================
 
-        // Indizes der angetippten Steine für das Live-Wortduell (ersetzt Tastatur-Eingabe)
-        let liveDuelSelected = [];
-        let liveDuelCurrentLetters = []; // lokaler Cache der zuletzt gerenderten Buchstaben (für Tap-Handler)
-        let liveDuelCurrentRequired = "";
-
-        function ldCurrentWord() {
-            return liveDuelSelected.map(i => liveDuelCurrentLetters[i]).join("");
-        }
-
         function renderLiveDuelScrabblePlay(data) {
             // Stelle sicher, dass currentLetters existiert
             const letters = data.currentLetters || [];
             const required = data.currentRequired || "";
-
-            // Auswahl zurücksetzen, wenn sich die Buchstaben seit der letzten Auswahl geändert haben
-            const lettersKey = letters.join('');
-            if (lettersKey !== liveDuelCurrentLetters.join('')) {
-                liveDuelSelected = [];
-            }
-            liveDuelCurrentLetters = letters;
-            liveDuelCurrentRequired = required;
 
             document.getElementById("live-duel-play-content").innerHTML = `
         <div class="space-y-4">
@@ -467,83 +429,42 @@
                 ${data.actionMode ? ' ⚡ Action-Modus' : ''}
             </div>
             <div class="flex flex-wrap justify-center gap-2" id="live-duel-tiles-container">
-                ${scrabbleTilesHTML(letters, false, required, liveDuelSelected, "liveDuelTapTile")}
+                ${scrabbleTilesHTML(letters, false, required)}
             </div>
             <div class="glass-card p-5 space-y-3">
-                <div id="live-duel-word-preview" class="input-modern text-xl font-black text-center uppercase tracking-widest text-gray-500">…</div>
-                <div id="live-duel-live-feedback" class="text-center text-sm font-bold text-gray-400 h-5"></div>
-                <div class="grid grid-cols-2 gap-2">
-                    <button id="live-duel-undo-btn" onclick="liveDuelUndoTile()" disabled class="btn-secondary w-full text-center disabled:opacity-30">⌫ Entfernen</button>
-                    <button onclick="liveDuelClearTiles()" class="btn-secondary w-full text-center">🗑 Neu anfangen</button>
-                </div>
+                <input type="text" id="live-duel-word-input" placeholder="Dein Wort..." autocomplete="off"
+                    class="input-modern text-xl font-black text-center uppercase tracking-widest">
                 <button onclick="submitLiveDuelWord()" class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Wort einreichen ✅</button>
             </div>
         </div>`;
 
-            ldRenderPreview();
-            liveDuelInputLockUntil = Date.now() + 450;
-        }
-
-        function ldRenderPreview() {
-            const word = ldCurrentWord();
-            const preview = document.getElementById("live-duel-word-preview");
-            if (preview) {
-                preview.innerText = word || "…";
-                preview.classList.toggle("text-gray-500", !word);
-                preview.classList.toggle("text-white", !!word);
-            }
-            const undoBtn = document.getElementById("live-duel-undo-btn");
-            if (undoBtn) undoBtn.disabled = liveDuelSelected.length === 0;
-            const tilesContainer = document.getElementById("live-duel-tiles-container");
-            if (tilesContainer) {
-                tilesContainer.innerHTML = scrabbleTilesHTML(liveDuelCurrentLetters, false, liveDuelCurrentRequired, liveDuelSelected, "liveDuelTapTile");
-            }
-            const fb = document.getElementById("live-duel-live-feedback");
-            if (fb) {
-                if (!word) { fb.innerText = ""; }
-                else {
-                    const result = computeScrabbleWordScore(word, liveDuelCurrentLetters);
-                    fb.innerText = result.valid ?
-                        `${result.score} Punkte möglich${result.bonus ? " (inkl. +50 Bonus!)" : ""} – wird beim Einreichen geprüft` :
-                        "❌ Diese Buchstaben hast du nicht (oder zu oft benutzt)";
-                    fb.className = "text-center text-sm font-bold h-5 " + (result.valid ? "text-emerald-400" : "text-rose-400");
+            // Eingabefeld fokussieren
+            setTimeout(() => {
+                const input = document.getElementById("live-duel-word-input");
+                if (input) {
+                    input.focus();
+                    // Bei Buchstaben-Änderung: leeren und fokussieren
+                    if (liveDuelChangeCount > 0) {
+                        input.value = "";
+                    }
                 }
-            }
-        }
+            }, 100);
 
-        function liveDuelTapTile(idx) {
-            if (liveDuelSelected.includes(idx)) return;
-            if (liveDuelSelected.length >= liveDuelCurrentLetters.length) return;
-            liveDuelSelected.push(idx);
-            if (typeof SFX !== "undefined") SFX.tap();
-            ldRenderPreview();
-        }
-
-        function liveDuelUndoTile() {
-            if (liveDuelSelected.length === 0) return;
-            liveDuelSelected.pop();
-            if (typeof SFX !== "undefined") SFX.tap();
-            ldRenderPreview();
-        }
-
-        function liveDuelClearTiles() {
-            if (liveDuelSelected.length === 0) return;
-            liveDuelSelected = [];
-            if (typeof SFX !== "undefined") SFX.tap();
-            ldRenderPreview();
+            liveDuelInputLockUntil = Date.now() + 450;
         }
 
 
         async function submitLiveDuelWord() {
             if (Date.now() < liveDuelInputLockUntil) return;
-            const word = ldCurrentWord();
+            const inputEl = document.getElementById("live-duel-word-input");
+            const word = inputEl ? cleanInput(inputEl.value, 20) : "";
             if (!word) {
                 SFX.wrong();
-                showToast("Bitte zuerst Buchstaben antippen.", "error", "word");
+                showToast("Bitte zuerst ein Wort eingeben.", "error", "word");
+                if (inputEl) inputEl.focus();
                 return;
             }
-            const undoBtn = document.getElementById("live-duel-undo-btn");
-            if (undoBtn) undoBtn.disabled = true;
+            if (inputEl) inputEl.disabled = true;
             SFX.tap();
             const snap = await liveDuelRef.get();
             const data = snap.data();
@@ -552,271 +473,10 @@
             if (!players[activePlayerKey] || players[activePlayerKey].hasAnswered) return;
             const update = {
                 [`players.${activePlayerKey}.hasAnswered`]: true,
-                [`players.${activePlayerKey}.word`]: word,
-                [`players.${activePlayerKey}.answeredAt`]: Date.now(),
-                [`players.${activePlayerKey}.submittedLetters`]: data.currentLetters || [],
-                [`players.${activePlayerKey}.submittedRequired`]: data.currentRequired || ""
+                [`players.${activePlayerKey}.word`]: word
             };
             if (!data.answerDeadline) update.answerDeadline = Date.now() + (data.answerSeconds || 20) * 1000;
             await liveDuelRef.update(update);
-        }
-
-
-        // ============================================================
-        // LIVE WORT-RÄTSEL (kontoübergreifend, reihum Buchstaben raten)
-        // ============================================================
-
-        function wrLiveActivePlayerKey(data) {
-            const order = (data.order || []).filter(k => data.players && data.players[k] && !data.players[k].pending);
-            if (order.length === 0) return null;
-            return order[(data.turnIndex || 0) % order.length];
-        }
-
-        function wrLiveNewRoundFields(data) {
-            const cfg = WORTRAETSEL_DIFFICULTIES[data.difficulty] || WORTRAETSEL_DIFFICULTIES.mittel;
-            const pool = wrWordPool(data.wordMode, data.difficulty);
-            const avoid = new Set(data.usedWords || []);
-            const word = wrPickWord(pool, cfg.minLen, cfg.maxLen, avoid);
-            return {
-                word, guessed: [], wrongCount: 0, roundOver: false, roundSolved: false,
-                turnRepeat: 0, turnDeadline: Date.now() + WORTRAETSEL_TURN_SECONDS * 1000
-            };
-        }
-
-        // ---- Bedenkzeit pro Zug (Live) ----
-        let wrLiveTurnInterval = null;
-
-        function wrLiveClearTurnTimer() {
-            if (wrLiveTurnInterval) { clearInterval(wrLiveTurnInterval); wrLiveTurnInterval = null; }
-        }
-
-        function wrLiveTickTurnTimer(data) {
-            wrLiveClearTurnTimer();
-            const el = document.getElementById("live-duel-wr-timer");
-            if (!el) return;
-            const players = data.players || {};
-            const activeCount = Object.keys(players).filter(k => !players[k].pending).length;
-            if (!data.turnDeadline || data.roundOver || activeCount < 2) { el.innerText = ""; return; }
-            const deadline = data.turnDeadline;
-            const paint = () => {
-                const el2 = document.getElementById("live-duel-wr-timer");
-                if (!el2) { wrLiveClearTurnTimer(); return; }
-                const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
-                el2.innerText = `⏱ ${left}`;
-                el2.className = "text-lg font-black " + (left <= 5 ? "text-rose-400" : "text-amber-400");
-                if (left <= 0) {
-                    wrLiveClearTurnTimer();
-                    if (isLiveDuelCreator) wrLiveSkipTurn();
-                }
-            };
-            paint();
-            wrLiveTurnInterval = setInterval(paint, 1000);
-        }
-
-        async function wrLiveSkipTurn() {
-            if (!liveDuelRef || !isLiveDuelCreator) return;
-            const snap = await liveDuelRef.get();
-            if (!snap.exists) return;
-            const data = snap.data();
-            if (data.status !== "playing" || data.type !== "wortraten" || data.roundOver) return;
-            if (data.turnDeadline && Date.now() < data.turnDeadline - 500) return;
-            const players = data.players;
-            const order = (data.order || []).filter(k => players[k] && !players[k].pending);
-            if (order.length < 2) return;
-            const key = wrLiveActivePlayerKey(data);
-            if (key && players[key]) players[key].answerStreak = 0;
-            const curIdx = order.indexOf(key);
-            await liveDuelRef.update({
-                players,
-                turnRepeat: 0,
-                turnIndex: (curIdx + 1) % order.length,
-                turnDeadline: Date.now() + WORTRAETSEL_TURN_SECONDS * 1000
-            });
-        }
-
-        function renderLiveDuelWortratenPlay(data) {
-            const key = wrLiveActivePlayerKey(data);
-            const isMyTurn = key === activePlayerKey;
-            const word = data.word || "";
-            const guessedArr = data.guessed || [];
-            const guessedSet = new Set(guessedArr);
-            const mask = wrMaskArray(word, guessedSet);
-
-            const wordHtml = mask.map(ch => `
-                <div class="w-8 h-10 sm:w-9 sm:h-11 border-b-4 ${ch === '_' ? 'border-sky-400/40' : 'border-emerald-400'} flex items-center justify-center text-lg sm:text-xl font-black text-white">${ch === '_' ? '' : ch}</div>
-            `).join("");
-
-            const kbHtml = WORTRAETSEL_ALPHABET.map(letter => {
-                const used = guessedSet.has(letter);
-                const correct = used && word.includes(letter);
-                const canTap = isMyTurn && !data.roundOver;
-                const cls = !used
-                    ? (canTap ? "bg-white/10 border border-white/10 text-white hover:bg-white/20" : "bg-white/5 border border-white/5 text-gray-500")
-                    : correct
-                        ? "bg-emerald-500 border border-emerald-400 text-white opacity-90"
-                        : "bg-rose-500/70 border border-rose-400/50 text-white opacity-50";
-                const disabled = used || !canTap;
-                return `<button ${disabled ? 'disabled' : ''} onclick="wrLiveGuessLetter('${letter}')"
-                    class="h-9 rounded-lg font-black text-xs sm:text-sm transition ${cls}">${letter}</button>`;
-            }).join("");
-
-            const scoresHtml = Object.keys(data.players).filter(k => !data.players[k].pending).map(k => {
-                const p = data.players[k];
-                const active = k === key && !data.roundOver;
-                return `<div class="flex-shrink-0 px-3 py-2 rounded-xl border text-center ${active ? 'bg-sky-500/20 border-sky-400 ring-2 ring-sky-400' : 'bg-white/5 border-white/5'}">
-                    <div class="text-xs font-bold text-white whitespace-nowrap">${esc(p.name)}</div>
-                    <div class="text-sm font-black text-sky-300">${p.score || 0} Pkt.</div>
-                </div>`;
-            }).join("");
-
-            let banner;
-            if (data.roundOver) {
-                banner = data.roundSolved
-                    ? `<p class="text-center text-sm font-bold text-emerald-400">🎉 Gelöst! Das Wort war "${esc(word)}"</p>`
-                    : `<p class="text-center text-sm font-bold text-amber-400">${wrFigureEmoji(data.theme)} ${wrFigureName(data.theme)} ist fertig! Das Wort war "${esc(word)}"</p>`;
-            } else {
-                const activeName = data.players[key] ? esc(data.players[key].name) : "";
-                const rep = data.turnRepeat || 0;
-                const repTxt = rep > 0 ? ` (Zug ${rep + 1}/${WORTRAETSEL_MAX_TURNS_IN_ROW})` : "";
-                banner = isMyTurn
-                    ? `<p class="text-center text-sm font-bold text-sky-300">${rep > 0 ? "🔥 Nochmal du" : "🎯 Du bist dran"}${repTxt} – wähl einen Buchstaben!</p>`
-                    : `<p class="text-center text-sm font-bold text-gray-400">⏳ ${activeName} ist dran${repTxt}...</p>`;
-            }
-
-            document.getElementById("live-duel-play-content").innerHTML = `
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center text-xs font-bold text-gray-400 px-1">
-                        <span>Runde ${data.currentRound}/${data.totalRounds}</span>
-                        <span id="live-duel-wr-timer" class="text-lg font-black text-amber-400"></span>
-                    </div>
-                    <div class="flex justify-center gap-2 overflow-x-auto py-1">${scoresHtml}</div>
-                    <div class="glass-card p-4 flex items-center justify-center">
-                        <div id="live-duel-wr-figure" class="w-32 h-36"></div>
-                    </div>
-                    <div class="flex flex-wrap justify-center gap-1.5">${wordHtml}</div>
-                    ${banner}
-                    <div class="grid grid-cols-7 sm:grid-cols-9 gap-1.5">${kbHtml}</div>
-                </div>`;
-
-            wrRenderFigureBase(data.theme, "live-duel-wr-figure");
-            for (let i = 1; i <= (data.wrongCount || 0); i++) wrRevealFigureStage(i, "live-duel-wr-figure");
-            wrLiveTickTurnTimer(data);
-        }
-
-        async function wrLiveGuessLetter(letter) {
-            if (!liveDuelRef) return;
-            const snap = await liveDuelRef.get();
-            if (!snap.exists) return;
-            const data = snap.data();
-            if (data.status !== "playing" || data.type !== "wortraten" || data.roundOver) return;
-            const key = wrLiveActivePlayerKey(data);
-            if (key !== activePlayerKey) return;
-            const guessed = data.guessed || [];
-            if (guessed.includes(letter)) return;
-
-            const word = data.word || "";
-            const isHit = word.includes(letter);
-            const newGuessed = guessed.concat([letter]);
-            const players = data.players;
-
-            let wrongCount = data.wrongCount || 0;
-            let roundOver = false, roundSolved = false;
-            const update = {};
-
-            if (isHit) {
-                const occ = wrCountOccurrences(word, letter);
-                players[key].answerStreak = (players[key].answerStreak || 0) + 1;
-                const b = (typeof calcAnswerBonus === "function") ? calcAnswerBonus(players[key].answerStreak, true) : { bonus: 0, parts: [] };
-                let points = occ * 3 + b.bonus;
-                if (wrIsComplete(word, new Set(newGuessed))) {
-                    points += 15;
-                    roundOver = true;
-                    roundSolved = true;
-                }
-                players[key].score = (players[key].score || 0) + points;
-                players[key].lastRoundPoints = points;
-                if (typeof showPointsPopup === "function" && key === activePlayerKey) showPointsPopup(points, roundSolved ? "Wort komplett! +15 🎉" : (b.parts.join(" · ") || "Treffer!"));
-            } else {
-                players[key].answerStreak = 0;
-                wrongCount++;
-                if (wrongCount >= WORTRAETSEL_MAX_WRONG) {
-                    roundOver = true;
-                    roundSolved = false;
-                }
-            }
-
-            update.guessed = newGuessed;
-            update.wrongCount = wrongCount;
-            update.players = players;
-            update.roundOver = roundOver;
-            update.roundSolved = roundSolved;
-            if (!roundOver) {
-                const order = (data.order || []).filter(k => players[k] && !players[k].pending);
-                const curIdx = order.indexOf(key);
-                const rep = data.turnRepeat || 0;
-                // Treffer = nochmal dran, aber max. WORTRAETSEL_MAX_TURNS_IN_ROW Züge am Stück
-                if (isHit && order.length > 1 && rep < WORTRAETSEL_MAX_TURNS_IN_ROW - 1) {
-                    update.turnRepeat = rep + 1;
-                } else {
-                    update.turnRepeat = 0;
-                    update.turnIndex = order.length > 0 ? (curIdx + 1) % order.length : 0;
-                }
-                update.turnDeadline = Date.now() + WORTRAETSEL_TURN_SECONDS * 1000;
-            } else {
-                update.turnRepeat = 0;
-                update.turnDeadline = null;
-            }
-
-            await liveDuelRef.update(update);
-
-            if (typeof SFX !== "undefined") { if (isHit) SFX.correct(); else SFX.wrong(); }
-            if (roundOver) {
-                try { if (roundSolved && typeof confetti === "function") confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } }); } catch (e) { }
-                if (isLiveDuelCreator) setTimeout(() => wrLiveAdvanceRound(), 2200);
-            }
-        }
-
-        async function wrLiveAdvanceRound() {
-            if (!liveDuelRef || !isLiveDuelCreator) return;
-            const snap = await liveDuelRef.get();
-            if (!snap.exists) return;
-            const data = snap.data();
-            if (data.status !== "playing" || data.type !== "wortraten" || !data.roundOver) return;
-
-            if ((data.currentRound || 0) >= data.totalRounds) {
-                await liveDuelRef.update({ status: "finished" });
-                return;
-            }
-
-            const players = data.players;
-            let order = (data.order || []).slice();
-            Object.keys(players).forEach(k => {
-                if (players[k].pending) {
-                    players[k].pending = false;
-                    if (!order.includes(k)) order.push(k);
-                }
-            });
-            const usedWords = Array.isArray(data.usedWords) ? data.usedWords.slice() : [];
-            const nextRound = wrLiveNewRoundFields({ wordMode: data.wordMode, difficulty: data.difficulty, usedWords });
-            if (!nextRound.word) {
-                await liveDuelRef.update({ status: "finished" });
-                return;
-            }
-            usedWords.push(nextRound.word);
-            await liveDuelRef.update({
-                currentRound: (data.currentRound || 0) + 1,
-                turnIndex: order.length > 0 ? (data.currentRound || 0) % order.length : 0,
-                order,
-                players,
-                word: nextRound.word,
-                guessed: [],
-                wrongCount: 0,
-                roundOver: false,
-                roundSolved: false,
-                turnRepeat: 0,
-                turnDeadline: Date.now() + WORTRAETSEL_TURN_SECONDS * 1000,
-                usedWords
-            });
         }
 
 
@@ -830,35 +490,13 @@
                 const q = data.questions[data.currentIndex];
                 const correct = q.correct;
                 const wrongNames = [];
-
-                let firstKey = null, firstAt = Infinity;
-                Object.keys(players).forEach(key => {
-                    if (players[key].pending) return;
-                    if (players[key].lastAnswer === correct && players[key].answeredAt && players[key].answeredAt < firstAt) {
-                        firstAt = players[key].answeredAt;
-                        firstKey = key;
-                    }
-                });
-
                 Object.keys(players).forEach(key => {
                     if (players[key].pending) return;
                     const isRight = players[key].lastAnswer === correct;
-                    if (isRight) {
-                        players[key].answerStreak = (players[key].answerStreak || 0) + 1;
-                        const isFirst = (key === firstKey);
-                        const b = (typeof calcAnswerBonus === "function")
-                            ? calcAnswerBonus(players[key].answerStreak, isFirst)
-                            : { bonus: 0, parts: [] };
-                        const points = 10 + b.bonus;
-                        players[key].score = (players[key].score || 0) + points;
-                        players[key].lastRoundPoints = points;
-                        players[key].lastRoundDetail = b.parts.join(" · ");
-                    } else {
-                        players[key].answerStreak = 0;
-                        players[key].lastRoundPoints = 0;
-                        players[key].lastRoundDetail = "";
-                        wrongNames.push(players[key].name);
-                    }
+                    const points = isRight ? 10 : 0;
+                    players[key].score = (players[key].score || 0) + points;
+                    players[key].lastRoundPoints = points;
+                    if (!isRight) wrongNames.push(players[key].name);
                 });
 
                 const review = Array.isArray(data.review) ? data.review : [];
@@ -902,41 +540,13 @@
                         }
                     );
 
+                    players[key].score = (players[key].score || 0) + res.points;
+                    players[key].lastRoundPoints = res.points;
                     players[key].wordStatus = res.status;
-                    players[key].wordChecked = players[key].word;
-                    players[key]._basePoints = res.points || 0;
+                    players[key].wordChecked = players[key].word; // Zurückmelden was geprüft wurde
+
                     console.log(`  → ${res.status}: +${res.points} Punkte`);
                 }
-
-                let firstKey = null, firstAt = Infinity;
-                Object.keys(players).forEach(key => {
-                    if (players[key].pending) return;
-                    if (players[key].wordStatus === "valid" && players[key].answeredAt && players[key].answeredAt < firstAt) {
-                        firstAt = players[key].answeredAt;
-                        firstKey = key;
-                    }
-                });
-
-                Object.keys(players).forEach(key => {
-                    if (players[key].pending) return;
-                    let pts = players[key]._basePoints || 0;
-                    const parts = [];
-                    if (pts > 0) {
-                        players[key].answerStreak = (players[key].answerStreak || 0) + 1;
-                        const isFirst = (key === firstKey);
-                        const b = (typeof calcAnswerBonus === "function")
-                            ? calcAnswerBonus(players[key].answerStreak, isFirst)
-                            : { bonus: 0, parts: [] };
-                        pts += b.bonus;
-                        parts.push(...(b.parts || []));
-                    } else {
-                        players[key].answerStreak = 0;
-                    }
-                    players[key].score = (players[key].score || 0) + pts;
-                    players[key].lastRoundPoints = pts;
-                    players[key].lastRoundDetail = parts.join(" · ");
-                    delete players[key]._basePoints;
-                });
 
                 Object.keys(players).forEach(k => {
                     if (players[k].wordStatus === "valid" && players[k].word) {
@@ -944,16 +554,6 @@
                     }
                 });
                 await liveDuelRef.update({ status: "reveal", players, answerDeadline: null });
-
-                try {
-                    if (activePlayerKey && players[activePlayerKey] && players[activePlayerKey].lastRoundPoints > 0
-                        && typeof showPointsPopup === "function") {
-                        showPointsPopup(
-                            players[activePlayerKey].lastRoundPoints,
-                            players[activePlayerKey].lastRoundDetail || ""
-                        );
-                    }
-                } catch (e) { }
             }
         }
 
@@ -966,28 +566,11 @@
             const isQuiz = data.type === "quiz";
             const isLastStep = isQuiz ? (data.currentIndex >= data.questions.length - 1) : (data.currentRound >= data.totalRounds);
 
-            // Punkte-Animation einmal pro Reveal
-            try {
-                const popKey = "reveal|" + (isQuiz ? data.currentIndex : data.currentRound) + "|" + (myData && myData.lastRoundPoints);
-                if (myData && myData.lastRoundPoints > 0 && liveDuelRenderKey !== popKey) {
-                    liveDuelRenderKey = popKey;
-                    if (typeof showPointsPopup === "function") {
-                        showPointsPopup(myData.lastRoundPoints, myData.lastRoundDetail || "");
-                    }
-                }
-            } catch (e) { }
-
             let rowsHtml = "";
             Object.values(data.players).filter(p => !p.pending).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
                 let icon, detail = "";
                 if (isQuiz) {
                     icon = p.lastRoundPoints > 0 ? "✅" : "❌";
-                    // NEU: Zeigen, was jeder Spieler getippt hat
-                    const qq = data.questions[data.currentIndex];
-                    const picked = (qq && typeof p.lastAnswer === "number" && qq.answers[p.lastAnswer] !== undefined)
-                        ? esc(qq.answers[p.lastAnswer])
-                        : "⏱ keine Antwort";
-                    detail = `<div class="text-[11px] font-normal mt-0.5 ${p.lastRoundPoints > 0 ? "text-emerald-300" : "text-rose-300"}">${picked}</div>`;
                 } else {
                     const info = wordStatusInfo(p.wordStatus, p);
                     icon = info.icon;
@@ -1312,26 +895,6 @@
                                     ${data.type === "quiz" ? `
                                         <select id="again-area" class="input-modern text-sm font-bold"></select>
                                         <select id="again-category" class="input-modern text-sm font-bold"></select>
-                                    ` : data.type === "wortraten" ? `
-                                        <select id="again-wr-wordmode" class="input-modern text-sm font-bold">
-                                            <option value="kids" selected>👶 Kinder</option>
-                                            <option value="adult">🎓 Erwachsene</option>
-                                        </select>
-                                        <select id="again-wr-difficulty" class="input-modern text-sm font-bold">
-                                            <option value="leicht">🟢 Leicht (3-5 Buchstaben)</option>
-                                            <option value="mittel" selected>🟡 Mittel (5-7 Buchstaben)</option>
-                                            <option value="schwer">🔴 Schwer (7-10 Buchstaben)</option>
-                                            <option value="experte">🟣 Experte (9+ Buchstaben)</option>
-                                        </select>
-                                        <select id="again-wr-theme" class="input-modern text-sm font-bold">
-                                            <option value="schneemann" selected>⛄ Schneemann</option>
-                                            <option value="roboter">🤖 Roboter</option>
-                                        </select>
-                                        <select id="again-wr-rounds" class="input-modern text-sm font-bold">
-                                            <option value="3" selected>3 Runden</option>
-                                            <option value="5">5 Runden</option>
-                                            <option value="8">8 Runden</option>
-                                        </select>
                                     ` : `
                                         <select id="again-difficulty" class="input-modern text-sm font-bold">
                                             <option value="leicht">🟢 Leicht (6 Buchstaben, 70 Sek.)</option>
@@ -1373,32 +936,29 @@
             const ref = liveDuelRef;
             const wasCreator = isLiveDuelCreator;
 
-            if (liveDuelUnsubscribe) { try { liveDuelUnsubscribe(); } catch (e) { } }
+            if (liveDuelUnsubscribe) liveDuelUnsubscribe();
             liveDuelUnsubscribe = null;
             liveDuelRef = null;
             isLiveDuelCreator = false;
             liveDuelResolving = false;
             liveDuelRenderKey = "";
-            switchView(currentPlayer ? 'menu' : 'family-hub');
+            switchView('live-duel-setup');
 
-            if (!ref) return;
+            if (!ref || !activePlayerKey) return;
             try {
-                if (wasCreator) {
-                    try { await ref.set({ status: "finished" }, { merge: true }); } catch (e) { }
-                    try { await ref.delete(); } catch (e) { }
-                    return;
-                }
-                if (!activePlayerKey) return;
                 const snap = await ref.get();
                 if (!snap.exists) return;
                 const data = snap.data();
-                const players = Object.assign({}, data.players || {});
+                const players = data.players || {};
                 delete players[activePlayerKey];
                 const rest = Object.keys(players);
+
                 if (rest.length === 0) {
                     await ref.delete();
+                } else if (wasCreator) {
+                    await ref.update({ players, createdBy: rest[0], updatedAt: Date.now() });
                 } else {
-                    await ref.update({ players: players, updatedAt: Date.now() });
+                    await ref.update({ players, updatedAt: Date.now() });
                 }
             } catch (e) { /* Lobby war schon weg */ }
         }
@@ -1421,8 +981,8 @@
             try {
                 openDuelWatcher = liveDuelCollectionRef().onSnapshot((snap) => {
                     renderOpenDuelsList(snap);
-                }, () => { });
-            } catch (e) { }
+                }, (err) => { console.warn("watchForOpenDuel Snapshot-Fehler:", err); });
+            } catch (e) { console.warn("watchForOpenDuel fehlgeschlagen:", e); }
         }
 
         function renderOpenDuelsList(snap) {
@@ -1440,8 +1000,8 @@
                 }
                 const count = d.players ? Object.keys(d.players).length : 0;
                 const running = d.status !== "waiting";
-                const icon = d.type === "scrabble" ? "🔤" : d.type === "wortraten" ? "🧩" : "⚔️";
-                const typeName = d.type === "scrabble" ? "Wort-Duell" : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
+                const icon = d.type === "scrabble" ? "🔤" : "⚔️";
+                const typeName = d.type === "scrabble" ? "Wort-Duell" : "Quiz-Duell";
                 const who = esc(d.createdByName || "jemandem");
                 const state = running ? "läuft – einsteigen" : "offen – beitreten";
                 html += `<button onclick="joinLiveDuelById('${docSnap.id}')" class="w-full p-3.5 glass-card text-white font-bold rounded-2xl shadow-md flex items-center justify-between gap-2 text-sm transition-all ${running ? "" : "border-indigo-400/30 animate-pulse"}">
@@ -1742,30 +1302,6 @@
                     createdBy: activePlayerKey,
                     players: {}
                 };
-            } else if (liveDuelType === "wortraten") {
-                const wordMode = (document.getElementById("live-duel-wr-wordmode") || {}).value || "kids";
-                const difficulty = (document.getElementById("live-duel-wr-difficulty") || {}).value || "mittel";
-                const theme = (document.getElementById("live-duel-wr-theme") || {}).value || "schneemann";
-                const totalRounds = parseInt((document.getElementById("live-duel-wr-rounds") || {}).value || "3");
-                lobbyData = {
-                    type: "wortraten",
-                    status: "waiting",
-                    wordMode,
-                    difficulty,
-                    theme,
-                    totalRounds,
-                    currentRound: 0,
-                    order: [activePlayerKey],
-                    turnIndex: 0,
-                    word: "",
-                    guessed: [],
-                    wrongCount: 0,
-                    roundOver: false,
-                    roundSolved: false,
-                    usedWords: [],
-                    createdBy: activePlayerKey,
-                    players: {}
-                };
             } else {
                 // Quiz-Modus bleibt unverändert
                 const category = document.getElementById("live-duel-category").value;
@@ -1836,30 +1372,6 @@
                                 actionMode: data.actionMode
                             });
                         }
-                    });
-                });
-            } else if (liveDuelType === "wortraten") {
-                liveDuelRef.get().then(doc => {
-                    const data = doc.data();
-                    const players = data.players;
-                    Object.keys(players).forEach(k => { players[k].pending = false; players[k].answerStreak = 0; });
-                    const order = (data.order && data.order.length ? data.order : Object.keys(players));
-                    const round = wrLiveNewRoundFields(data);
-                    if (!round.word) { showToast("Keine passenden Wörter für diese Einstellungen gefunden.", "error"); return; }
-                    liveDuelRef.update({
-                        status: "playing",
-                        currentRound: 1,
-                        turnIndex: 0,
-                        order,
-                        players,
-                        word: round.word,
-                        guessed: [],
-                        wrongCount: 0,
-                        roundOver: false,
-                        roundSolved: false,
-                        turnRepeat: 0,
-                        turnDeadline: Date.now() + WORTRAETSEL_TURN_SECONDS * 1000,
-                        usedWords: [round.word]
                     });
                 });
             } else {
@@ -1943,38 +1455,10 @@
                 players[k].lastRoundPoints = 0;
                 players[k].wordStatus = null;
                 players[k].pending = false;
-                players[k].answerStreak = 0;
             });
 
             try {
-                if (data.type === "wortraten") {
-                    const wordMode = (document.getElementById("again-wr-wordmode") || {}).value || data.wordMode || "kids";
-                    const difficulty = (document.getElementById("again-wr-difficulty") || {}).value || data.difficulty || "mittel";
-                    const theme = (document.getElementById("again-wr-theme") || {}).value || data.theme || "schneemann";
-                    const totalRounds = parseInt((document.getElementById("again-wr-rounds") || {}).value) || data.totalRounds || 3;
-                    const order = (data.order && data.order.length ? data.order : Object.keys(players));
-                    const round = wrLiveNewRoundFields({ wordMode, difficulty, usedWords: [] });
-                    if (!round.word) return showToast("Keine passenden Wörter für diese Einstellungen gefunden.", "error");
-                    await liveDuelRef.update({
-                        status: "playing",
-                        wordMode,
-                        difficulty,
-                        theme,
-                        totalRounds,
-                        currentRound: 1,
-                        turnIndex: 0,
-                        order,
-                        players,
-                        word: round.word,
-                        guessed: [],
-                        wrongCount: 0,
-                        roundOver: false,
-                        roundSolved: false,
-                        turnRepeat: 0,
-                        turnDeadline: Date.now() + WORTRAETSEL_TURN_SECONDS * 1000,
-                        usedWords: [round.word]
-                    });
-                } else if (data.type === "scrabble") {
+                if (data.type === "scrabble") {
                     const difficulty = (document.getElementById("again-difficulty") || {}).value || data.difficulty || "mittel";
                     const totalRounds = parseInt((document.getElementById("again-rounds") || {}).value) || data.totalRounds || 5;
                     const requireLetter = !!data.requireLetter;

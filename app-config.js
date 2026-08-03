@@ -1,5 +1,4 @@
 
-
         let OFFLINE_MODUS_AKTIV = false;
         let hubWatchUnsub = null;
 
@@ -29,60 +28,30 @@
         // 1. Fragen aus den einzelnen Dateien zusammenführen
         const QUESTIONS_DATABASE = [];
 
-        // Hinweis: Der datenbanken_loader.js füllt QUESTIONS_DATABASE nach dem
-        // asynchronen Laden neu. Dieser Block ist Fallback, falls Dateien
-        // bereits synchron geladen wurden.
-        function _pushIf(arr) {
-            if (typeof arr !== 'undefined' && Array.isArray(arr) && arr.length) {
-                QUESTIONS_DATABASE.push(...arr);
-            }
-        }
-        _pushIf(typeof SCHOOL_QUESTIONS !== 'undefined' ? SCHOOL_QUESTIONS : null);
-        _pushIf(typeof BERUF_ELEKTRO_QUESTIONS !== 'undefined' ? BERUF_ELEKTRO_QUESTIONS : null);
-        _pushIf(typeof BERUF_TISCHLER_QUESTIONS !== 'undefined' ? BERUF_TISCHLER_QUESTIONS : null);
-        _pushIf(typeof BERUF_INDUSTRIEMECHANIKER_QUESTIONS !== 'undefined' ? BERUF_INDUSTRIEMECHANIKER_QUESTIONS : null);
-        _pushIf(typeof BERUF_FACHINFORMATIKER_QUESTIONS !== 'undefined' ? BERUF_FACHINFORMATIKER_QUESTIONS : null);
-        _pushIf(typeof BERUF_BUERO_QUESTIONS !== 'undefined' ? BERUF_BUERO_QUESTIONS : null);
-        _pushIf(typeof BERUF_VERKAEUFER_QUESTIONS !== 'undefined' ? BERUF_VERKAEUFER_QUESTIONS : null);
-        _pushIf(typeof BERUF_PFLEGE_QUESTIONS !== 'undefined' ? BERUF_PFLEGE_QUESTIONS : null);
-        _pushIf(typeof BERUF_FRISEUR_QUESTIONS !== 'undefined' ? BERUF_FRISEUR_QUESTIONS : null);
-        _pushIf(typeof KFZ_QUESTIONS !== 'undefined' ? KFZ_QUESTIONS : null);
-        _pushIf(typeof K1_MATHE_QUESTIONS !== 'undefined' ? K1_MATHE_QUESTIONS : null);
-        _pushIf(typeof K1_DEUTSCH_QUESTIONS !== 'undefined' ? K1_DEUTSCH_QUESTIONS : null);
-        _pushIf(typeof K1_SACHUNTERRICHT_QUESTIONS !== 'undefined' ? K1_SACHUNTERRICHT_QUESTIONS : null);
-        _pushIf(typeof K2_MATHE_QUESTIONS !== 'undefined' ? K2_MATHE_QUESTIONS : null);
-        _pushIf(typeof K2_DEUTSCH_QUESTIONS !== 'undefined' ? K2_DEUTSCH_QUESTIONS : null);
-        _pushIf(typeof K2_SACHUNTERRICHT_QUESTIONS !== 'undefined' ? K2_SACHUNTERRICHT_QUESTIONS : null);
-        _pushIf(typeof K2_ENGLISCH_QUESTIONS !== 'undefined' ? K2_ENGLISCH_QUESTIONS : null);
-        _pushIf(typeof K3_MATHE_QUESTIONS !== 'undefined' ? K3_MATHE_QUESTIONS : null);
-        _pushIf(typeof K3_DEUTSCH_QUESTIONS !== 'undefined' ? K3_DEUTSCH_QUESTIONS : null);
-        _pushIf(typeof K3_SACHUNTERRICHT_QUESTIONS !== 'undefined' ? K3_SACHUNTERRICHT_QUESTIONS : null);
-        _pushIf(typeof K3_ENGLISCH_QUESTIONS !== 'undefined' ? K3_ENGLISCH_QUESTIONS : null);
-        _pushIf(typeof K4_MATHE_QUESTIONS !== 'undefined' ? K4_MATHE_QUESTIONS : null);
-        _pushIf(typeof K4_DEUTSCH_QUESTIONS !== 'undefined' ? K4_DEUTSCH_QUESTIONS : null);
-        _pushIf(typeof K4_SACHUNTERRICHT_QUESTIONS !== 'undefined' ? K4_SACHUNTERRICHT_QUESTIONS : null);
-        _pushIf(typeof K4_ENGLISCH_QUESTIONS !== 'undefined' ? K4_ENGLISCH_QUESTIONS : null);
-        _pushIf(typeof KINDER_ANIME_QUESTIONS !== 'undefined' ? KINDER_ANIME_QUESTIONS : null);
-        _pushIf(typeof KINDER_MAERCHEN_QUESTIONS !== 'undefined' ? KINDER_MAERCHEN_QUESTIONS : null);
-        _pushIf(typeof KINDER_TIERE_NATUR_QUESTIONS !== 'undefined' ? KINDER_TIERE_NATUR_QUESTIONS : null);
-        _pushIf(typeof KINDER_WISSEN_QUESTIONS !== 'undefined' ? KINDER_WISSEN_QUESTIONS : null);
-        _pushIf(typeof SPASS_ALLGEMEIN_QUESTIONS !== 'undefined' ? SPASS_ALLGEMEIN_QUESTIONS : null);
-        _pushIf(typeof SPASS_KLEINE_QUESTIONS !== 'undefined' ? SPASS_KLEINE_QUESTIONS : null);
-        _pushIf(typeof SPASS_WUERDEST_DU_QUESTIONS !== 'undefined' ? SPASS_WUERDEST_DU_QUESTIONS : null);
-        _pushIf(typeof SPASS_NICE_TO_KNOW_QUESTIONS !== 'undefined' ? SPASS_NICE_TO_KNOW_QUESTIONS : null);
-        _pushIf(typeof SPASS_UNGEWOEHNLICHES_QUESTIONS !== 'undefined' ? SPASS_UNGEWOEHNLICHES_QUESTIONS : null);
-        _pushIf(typeof SPASS_SPORT_FILM_QUESTIONS !== 'undefined' ? SPASS_SPORT_FILM_QUESTIONS : null);
-        _pushIf(typeof SPASS_MUSIK_QUESTIONS !== 'undefined' ? SPASS_MUSIK_QUESTIONS : null);
-        _pushIf(typeof SPASS_ESSEN_QUESTIONS !== 'undefined' ? SPASS_ESSEN_QUESTIONS : null);
-        _pushIf(typeof SPASS_TIERE_QUESTIONS !== 'undefined' ? SPASS_TIERE_QUESTIONS : null);
-        _pushIf(typeof SPASS_LAENDER_QUESTIONS !== 'undefined' ? SPASS_LAENDER_QUESTIONS : null);
-        _pushIf(typeof SPASS_ERFINDUNGEN_QUESTIONS !== 'undefined' ? SPASS_ERFINDUNGEN_QUESTIONS : null);
-        _pushIf(typeof SPASS_RAETSEL_QUESTIONS !== 'undefined' ? SPASS_RAETSEL_QUESTIONS : null);
-        _pushIf(typeof SPASS_HUMOR_QUESTIONS !== 'undefined' ? SPASS_HUMOR_QUESTIONS : null);
-        _pushIf(typeof SPASS_BERUF_HUMOR_QUESTIONS !== 'undefined' ? SPASS_BERUF_HUMOR_QUESTIONS : null);
-        _pushIf(typeof SPASS_HAUPTSTAEDTE_QUESTIONS !== 'undefined' ? SPASS_HAUPTSTAEDTE_QUESTIONS : null);
-        _pushIf(typeof SPASS_HAUPTSTAEDTE_EUROPA_QUESTIONS !== 'undefined' ? SPASS_HAUPTSTAEDTE_EUROPA_QUESTIONS : null);
-        _pushIf(typeof SPASS_SCHAETZFRAGEN_QUESTIONS !== 'undefined' ? SPASS_SCHAETZFRAGEN_QUESTIONS : null);
+        // Allgemeine Fragen
+        if (typeof SCHOOL_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS); }
+        if (typeof BERUFS_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...BERUFS_QUESTIONS); }
+        if (typeof FUN_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...FUN_QUESTIONS); }
+
+        // Klasse 1
+        if (typeof K1_MATHE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K1_MATHE_QUESTIONS); }
+        if (typeof K1_DEUTSCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K1_DEUTSCH_QUESTIONS); }
+        if (typeof K1_SACHUNTERRICHT_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K1_SACHUNTERRICHT_QUESTIONS); }
+
+        // Klasse 2
+        if (typeof K2_MATHE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_MATHE_QUESTIONS); }
+        if (typeof K2_DEUTSCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_DEUTSCH_QUESTIONS); }
+        if (typeof K2_SACHUNTERRICHT_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_SACHUNTERRICHT_QUESTIONS); }
+        if (typeof K2_ENGLISCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_ENGLISCH_QUESTIONS); }
+
+        // Klasse 3
+        if (typeof K3_MATHE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_MATHE_QUESTIONS); }
+        if (typeof K3_DEUTSCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_DEUTSCH_QUESTIONS); }
+        if (typeof K3_SACHUNTERRICHT_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_SACHUNTERRICHT_QUESTIONS); }
+        if (typeof K3_ENGLISCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_ENGLISCH_QUESTIONS); }
+
+
+
 
 
         // 2. Vokabeln - werden bereits von vocabulary.js geladen
@@ -437,6 +406,18 @@
             aSel.onchange = () => fillSubjectSelect(areaId, subjectId);
         }
 
+        function setupFormelAreas() {
+            const sel = document.getElementById('formel-area');
+            if (!sel || typeof FORMULA_DATABASE === 'undefined') return;
+            let html = '';
+            Object.keys(FORMULA_DATABASE).forEach(key => {
+                const b = FORMULA_DATABASE[key];
+                const n = (b.formulas || []).length;
+                if (n > 0) html += `<option value="${key}">${b.label || key} (${n})</option>`;
+            });
+            sel.innerHTML = html || '<option value="">Keine Formeln gefunden</option>';
+        }
+
         let testMode = false;
         let testTimeRemaining = 0;
         let testTimerInterval = null;
@@ -706,6 +687,39 @@
         }
 
         // ============================================================
+        //  GLOBALER LADE-OVERLAY
+        // ============================================================
+        function showGlobalLoader() {
+            const el = document.getElementById('global-loader');
+            if (el) el.classList.remove('gl-hide');
+        }
+        function hideGlobalLoader() {
+            const el = document.getElementById('global-loader');
+            if (el) el.classList.add('gl-hide');
+        }
+        setTimeout(hideGlobalLoader, 8000);
+
+        // ============================================================
+        //  GLOBALER ERROR-HANDLER
+        // ============================================================
+        let lastGlobalErrorAt = 0;
+        function reportGlobalError(err, source) {
+            try { console.error("[EduPlay] Unerwarteter Fehler (" + source + ")", err); } catch (e) { }
+            const now = Date.now();
+            if (now - lastGlobalErrorAt < 4000) return;
+            lastGlobalErrorAt = now;
+            if (typeof showToast === 'function') {
+                showToast("Hoppla, da ist etwas schiefgelaufen. Versuch's gleich nochmal!", "error", "global-error");
+            }
+        }
+        window.addEventListener('error', function (e) {
+            reportGlobalError(e.error || e.message, 'error');
+        });
+        window.addEventListener('unhandledrejection', function (e) {
+            reportGlobalError(e.reason, 'promise');
+        });
+
+        // ============================================================
         //  SOUND
         // ============================================================
         let audioCtx = null;
@@ -815,3 +829,5 @@
             try { localStorage.setItem('eduplayTheme', isDark ? 'dark' : 'light'); } catch (e) { }
             showToast(isDark ? "🌙 Dark-Mode aktiv" : "☀️ Light-Mode aktiv", "success", "theme");
         }
+
+

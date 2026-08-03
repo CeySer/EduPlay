@@ -156,25 +156,31 @@
 
         // Funktion, die beim Klick auf den FAB ausgeführt wird
         function handleFabClick() {
-            if (typeof SFX !== 'undefined') SFX.tap();
+            SFX.tap();
 
+            // Prüfen, ob der Spieler aktuell in einer Aktivität ist
             const currentView = getCurrentView();
 
+            // Wenn wir schon im Hauptmenü sind, zur Family-Hub gehen
             if (currentView === 'menu') {
                 switchView('family-hub');
                 updateFab('family-hub', '👨‍👩‍👧‍👦', 'Spieler wechseln');
                 return;
             }
 
+            // Wenn wir in einer anderen View sind, zum Hauptmenü zurück
             if (currentView !== 'family-hub' && currentView !== 'auth') {
+                // Letzte Aktivität speichern für später
                 lastActivity.view = currentView;
                 lastActivity.label = getViewLabel(currentView);
                 lastActivity.icon = getViewIcon(currentView);
+
                 switchView('menu');
                 updateFab('menu', '🏠', 'Zum Hauptmenü');
                 return;
             }
 
+            // Wenn wir im Family-Hub sind, zum Hauptmenü
             if (currentView === 'family-hub') {
                 switchView('menu');
                 updateFab('menu', '🏠', 'Zum Hauptmenü');
@@ -269,9 +275,6 @@
         function initFab() {
             updateFab('menu', '🏠', 'Zum Hauptmenü');
         }
-
-        // FAB-Update sitzt in switchView (lobby-avatar.js)
-
 
         // Initialisiere beim Laden
         document.addEventListener('DOMContentLoaded', function () {

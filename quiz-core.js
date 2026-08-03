@@ -377,9 +377,7 @@
         function goToMainMenu() {
             try {
                 if (window.speechSynthesis) window.speechSynthesis.cancel();
-            } catch (e) { }
-
-            // Alle offenen Timer stoppen
+            } catch (e) { console.warn("speechSynthesis.cancel() fehlgeschlagen:", e); }
             if (typeof focusTimerInterval !== 'undefined' && focusTimerInterval) {
                 clearInterval(focusTimerInterval);
                 focusTimerInterval = null;

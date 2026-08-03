@@ -44,16 +44,12 @@
         function setCodedLobbyType(type) {
             const q = document.getElementById("coded-lobby-quiz-options");
             const sc = document.getElementById("coded-lobby-scrabble-options");
-            const wr = document.getElementById("coded-lobby-wortraten-options");
             if (q) q.classList.toggle("hidden", type !== "quiz");
             if (sc) sc.classList.toggle("hidden", type !== "scrabble");
-            if (wr) wr.classList.toggle("hidden", type !== "wortraten");
             const bq = document.getElementById("coded-type-quiz");
             const bs = document.getElementById("coded-type-scrabble");
-            const bw = document.getElementById("coded-type-wortraten");
             if (bq) bq.classList.toggle("active", type === "quiz");
             if (bs) bs.classList.toggle("active", type === "scrabble");
-            if (bw) bw.classList.toggle("active", type === "wortraten");
         }
 
         async function createCodedLobby() {
@@ -61,37 +57,9 @@
             if (!currentPlayer || !activePlayerKey) return showToast("Bitte zuerst oben deinen Spieler auswaehlen!", "error");
             const mode = (document.getElementById("coded-lobby-mode") || {}).value || "versus";
             const bs = document.getElementById("coded-type-scrabble");
-            const bw = document.getElementById("coded-type-wortraten");
-            const gameType = (bw && bw.classList.contains("active")) ? "wortraten" : (bs && bs.classList.contains("active")) ? "scrabble" : "quiz";
+            const gameType = (bs && bs.classList.contains("active")) ? "scrabble" : "quiz";
             let lobbyData;
-            if (gameType === "wortraten") {
-                const wordMode = (document.getElementById("coded-lobby-wr-wordmode") || {}).value || "kids";
-                const difficulty = (document.getElementById("coded-lobby-wr-difficulty") || {}).value || "mittel";
-                const theme = (document.getElementById("coded-lobby-wr-theme") || {}).value || "schneemann";
-                const totalRounds = parseInt((document.getElementById("coded-lobby-wr-rounds") || {}).value || "3");
-                lobbyData = {
-                    type: "wortraten",
-                    mode: mode,
-                    isCoded: true,
-                    status: "waiting",
-                    wordMode,
-                    difficulty,
-                    theme,
-                    totalRounds,
-                    currentRound: 0,
-                    order: [activePlayerKey],
-                    turnIndex: 0,
-                    word: "",
-                    guessed: [],
-                    wrongCount: 0,
-                    roundOver: false,
-                    roundSolved: false,
-                    usedWords: [],
-                    createdBy: activePlayerKey,
-                    players: {}
-                };
-                liveDuelType = "wortraten";
-            } else if (gameType === "scrabble") {
+            if (gameType === "scrabble") {
                 const difficulty = (document.getElementById("coded-lobby-difficulty") || {}).value || "mittel";
                 const totalRounds = parseInt((document.getElementById("coded-lobby-rounds") || {}).value || "5");
                 const requireLetter = !!(document.getElementById("coded-lobby-require-letter") || {}).checked;
@@ -169,16 +137,12 @@
                 const wasAlreadyIn = !!(data.players && data.players[activePlayerKey]);
                 const midGame = (data.status === "playing" || data.status === "reveal");
                 if (!wasAlreadyIn) {
-                    const joinUpdate = {
+                    await ref.update({
                         [`players.${activePlayerKey}`]: {
                             name: currentPlayer.name, score: 0, hasAnswered: false,
                             lastAnswer: null, word: "", coinsClaimed: false, pending: midGame
                         }
-                    };
-                    if (data.type === "wortraten" && !midGame) {
-                        joinUpdate.order = firebase.firestore.FieldValue.arrayUnion(activePlayerKey);
-                    }
-                    await ref.update(joinUpdate);
+                    });
                 }
                 liveDuelRef = ref;
                 liveDuelType = data.type || "quiz";
@@ -217,9 +181,6 @@
             if (viewId !== 'scrabble-play' && scrabbleTimerInterval) {
                 clearInterval(scrabbleTimerInterval);
                 scrabbleTimerInterval = null;
-            }
-            if (viewId !== 'wortraten-play' && typeof wortratenState !== 'undefined' && wortratenState) {
-                wortratenState.roundActive = false;
             }
 
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
@@ -287,6 +248,32 @@
             }
         }
 
+        // FAB bei View-Wechsel aktualisieren
+        const originalSwitchView = switchView;
+        switchView = function (viewId) {
+            // Original-Funktion aufrufen
+            originalSwitchView(viewId);
+
+            // FAB aktualisieren, aber nicht bei Auth
+            if (viewId !== 'auth') {
+                const icon = getViewIcon(viewId);
+                const label = getViewLabel(viewId);
+
+                // Wenn wir im Hauptmenü sind, "Zurück" anzeigen
+                if (viewId === 'menu') {
+                    updateFab('menu', '🏠', 'Zum Hauptmenü');
+                }
+                // Wenn wir im Family-Hub sind, zum Hauptmenü
+                else if (viewId === 'family-hub') {
+                    updateFab('family-hub', '👨‍👩‍👧‍👦', 'Zum Hauptmenü');
+                }
+                // In allen anderen Views: "Zum Hauptmenü"
+                else {
+                    updateFab(viewId, getViewIcon(viewId), `Zurück zum Menü`);
+                }
+            }
+        };
+
         // Prüfe, ob die Datenbanken geladen sind
         if (typeof QUESTIONS_DATABASE === 'undefined') {
             console.warn("⚠️ QUESTIONS_DATABASE nicht geladen – prüfe data.js");
@@ -307,13 +294,22 @@
 
 
         // Theme beim Laden wiederherstellen (Standard = Light)
-        // Theme: Standard = Dark
         document.addEventListener('DOMContentLoaded', function () {
             try {
+                if (localStorage.getItem('eduplayTheme') === 'dark') {
+                    document.body.classList.add('dark-theme');
+                }
+            } catch (e) { console.warn("Theme konnte nicht geladen werden:", e); }
+        });
+
+        // Theme beim Laden wiederherstellen (Standard = Dark)
+        document.addEventListener('DOMContentLoaded', function () {
+            try {
+                // Wenn NICHT explizit "light" gespeichert wurde, aktiviere den Dark Mode
                 if (localStorage.getItem('eduplayTheme') !== 'light') {
                     document.body.classList.add('dark-theme');
                 }
-            } catch (e) { }
+            } catch (e) { console.warn("Theme konnte nicht geladen werden:", e); }
         });
 
 

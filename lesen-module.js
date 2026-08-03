@@ -195,7 +195,7 @@
             try {
                 if (typeof activePlayerKey !== 'undefined' && activePlayerKey) return String(activePlayerKey);
                 if (typeof currentPlayer !== 'undefined' && currentPlayer && currentPlayer.name) return 'name_' + currentPlayer.name;
-            } catch (e) { }
+            } catch (e) { console.warn("getCurrentProfileId fehlgeschlagen:", e); }
             return 'gast';
         }
 
@@ -223,7 +223,7 @@
                 if (found) u.voice = found;
 
                 window.speechSynthesis.speak(u);
-            } catch (e) { }
+            } catch (e) { console.warn("Vorlesefunktion fehlgeschlagen:", e); }
         }
 
         function hoerButton(text) {
@@ -311,8 +311,6 @@
             container.innerHTML = html;
         }
 
-
-        let comprehensionStep = 0;
         function startLesenCategory(categoryKey) {
             const categories = lesenDB();
             if (!categories || !categories[categoryKey]) return;
@@ -744,7 +742,7 @@
                         console.log("Falsch-Ton abgespielt");
                     }
                 }
-            } catch (e) { }
+            } catch (e) { console.warn("Sound-Feedback fehlgeschlagen:", e); }
         }
 
 

@@ -19,12 +19,12 @@
 
     <!-- DATENBANKEN -->
     <!-- DATENBANKEN - ZENTRAL GELADEN -->
-    <script src="datenbanken_loader.js?v=7.6"></script>
+    <script src="datenbanken_loader.js?v=7.0"></script>
 
 
     <link rel="icon" href="data:,">
 
-    <link rel="stylesheet" href="styles.css?v=7.6">
+    <link rel="stylesheet" href="styles.css?v=?v=7.5">
 </head>
 
 <body>
@@ -632,9 +632,16 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
                     <div id="scrabble-tiles" class="flex flex-wrap justify-center gap-2"></div>
                     <div class="glass-card p-5 space-y-3">
-                        <input type="text" id="scrabble-word-input" placeholder="Dein Wort..." autocomplete="off"
-                            class="input-modern text-xl font-black text-center uppercase tracking-widest">
+                        <div id="scrabble-word-preview"
+                            class="input-modern text-xl font-black text-center uppercase tracking-widest text-gray-500">
+                            …</div>
                         <div id="scrabble-live-feedback" class="text-center text-sm font-bold text-gray-400 h-5"></div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button id="scrabble-undo-btn" onclick="srUndoTile()" disabled
+                                class="btn-secondary w-full text-center disabled:opacity-30">⌫ Entfernen</button>
+                            <button onclick="srClearTiles()" class="btn-secondary w-full text-center">🗑 Neu
+                                anfangen</button>
+                        </div>
                         <button onclick="submitScrabbleWord()" class="btn-primary w-full text-center"
                             style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Wort
                             einreichen ✅</button>
@@ -827,6 +834,40 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             </select>
                         </div>
                     </div>
+                    <div id="live-duel-wortraten-options" class="hidden space-y-3">
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
+                            <select id="live-duel-wr-wordmode" class="input-modern font-bold">
+                                <option value="kids" selected>👶 Kinder</option>
+                                <option value="adult">🎓 Erwachsene</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
+                            <select id="live-duel-wr-difficulty" class="input-modern font-bold">
+                                <option value="leicht">🟢 Leicht (3-5 Buchstaben)</option>
+                                <option value="mittel" selected>🟡 Mittel (5-7 Buchstaben)</option>
+                                <option value="schwer">🔴 Schwer (7-10 Buchstaben)</option>
+                                <option value="experte">🟣 Experte (9+ Buchstaben)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Wer wächst mit
+                                Fehlversuchen?</label>
+                            <select id="live-duel-wr-theme" class="input-modern font-bold">
+                                <option value="schneemann" selected>⛄ Schneemann</option>
+                                <option value="roboter">🤖 Roboter</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Anzahl Runden</label>
+                            <select id="live-duel-wr-rounds" class="input-modern font-bold">
+                                <option value="3" selected>3 Runden</option>
+                                <option value="5">5 Runden</option>
+                                <option value="8">8 Runden</option>
+                            </select>
+                        </div>
+                    </div>
                     <button onclick="createLiveDuel()" class="btn-primary w-full text-center">Duell erstellen
                         🚀</button>
                 </div>
@@ -856,6 +897,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 Quiz</button>
                             <button id="coded-type-scrabble" onclick="setCodedLobbyType('scrabble')">🔤
                                 Wort-Duell</button>
+                            <button id="coded-type-wortraten" onclick="setCodedLobbyType('wortraten')">🧩
+                                Wort-Rätsel</button>
                         </div>
                     </div>
                     <div id="coded-lobby-quiz-options" class="space-y-4">
@@ -914,6 +957,40 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <select id="coded-lobby-rounds" class="input-modern font-bold">
                                 <option value="3">3 Runden</option>
                                 <option value="5" selected>5 Runden</option>
+                                <option value="8">8 Runden</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="coded-lobby-wortraten-options" class="hidden space-y-3">
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
+                            <select id="coded-lobby-wr-wordmode" class="input-modern font-bold">
+                                <option value="kids" selected>👶 Kinder</option>
+                                <option value="adult">🎓 Erwachsene</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
+                            <select id="coded-lobby-wr-difficulty" class="input-modern font-bold">
+                                <option value="leicht">🟢 Leicht (3-5 Buchstaben)</option>
+                                <option value="mittel" selected>🟡 Mittel (5-7 Buchstaben)</option>
+                                <option value="schwer">🔴 Schwer (7-10 Buchstaben)</option>
+                                <option value="experte">🟣 Experte (9+ Buchstaben)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Wer wächst mit
+                                Fehlversuchen?</label>
+                            <select id="coded-lobby-wr-theme" class="input-modern font-bold">
+                                <option value="schneemann" selected>⛄ Schneemann</option>
+                                <option value="roboter">🤖 Roboter</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Anzahl Runden</label>
+                            <select id="coded-lobby-wr-rounds" class="input-modern font-bold">
+                                <option value="3" selected>3 Runden</option>
+                                <option value="5">5 Runden</option>
                                 <option value="8">8 Runden</option>
                             </select>
                         </div>
@@ -1046,6 +1123,13 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <span class="text-2xl">🔤</span> Wort-Duell
                         </button>
                     </div>
+                    <button onclick="openLiveDuelSetup('wortraten')"
+                        class="btn-primary w-full flex flex-col items-center gap-1 text-center"
+                        style="background:linear-gradient(135deg,#0ea5e9,#22d3ee);box-shadow:0 4px 24px rgba(14,165,233,0.3);">
+                        <span class="text-3xl">🧩</span>
+                        <span>Wort-Rätsel Online</span>
+                        <span class="text-xs font-bold text-sky-100 -mt-1">· jeder am eigenen Handy ·</span>
+                    </button>
                     <button onclick="switchView('tv-quiz-setup')"
                         class="btn-primary w-full flex flex-col items-center gap-1 text-center"
                         style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">

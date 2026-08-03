@@ -23,10 +23,19 @@ let wortratenSetupTheme = "schneemann";
 // ============================================================
 //  Reine Logik-Helfer (ohne DOM-Zugriff – gut testbar)
 // ============================================================
-function wrWordPool(wordmode) {
-    const src = (wordmode === "adult" && typeof GERMAN_WORDS_ADULT !== "undefined")
-        ? GERMAN_WORDS_ADULT
-        : (typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : []);
+function wrWordPool(wordmode, difficulty) {
+    const kids = typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : [];
+    const adult = typeof GERMAN_WORDS_ADULT !== "undefined" ? GERMAN_WORDS_ADULT : [];
+    let src;
+    if (wordmode === "adult") {
+        src = adult;
+    } else if (difficulty === "experte") {
+        // Bei "Experte" im Kinder-Wortschatz gibt es nur wenige passend lange Wörter (9+ Buchstaben).
+        // Deshalb zusätzlich die Erwachsenen-Liste mit reinnehmen - für mehr Abwechslung.
+        src = kids.concat(adult);
+    } else {
+        src = kids;
+    }
     // Wörter mit "ß" rausfiltern - dafür gibt's keine eigene Taste auf der Tastatur
     return src.filter(w => !w.includes("ß") && !w.includes("ẞ"));
 }
@@ -82,10 +91,11 @@ function wrFigureStagesSVG(theme) {
 function wrFigureEmoji(theme) { return theme === "roboter" ? "🤖" : "⛄"; }
 function wrFigureName(theme) { return theme === "roboter" ? "Robo" : "Schneemann"; }
 
-function wrRenderFigureBase(theme) {
+function wrRenderFigureBase(theme, hostId) {
+    hostId = hostId || "wortraten-figure";
     const stages = wrFigureStagesSVG(theme);
-    const groups = stages.map((markup, i) => `<g id="wr-stage-${i + 1}" class="hidden">${markup}</g>`).join("");
-    const host = document.getElementById("wortraten-figure");
+    const groups = stages.map((markup, i) => `<g id="${hostId}-stage-${i + 1}" class="hidden">${markup}</g>`).join("");
+    const host = document.getElementById(hostId);
     if (!host) return;
     host.innerHTML = `
         <svg viewBox="0 0 200 220" class="w-full h-full">
@@ -94,8 +104,9 @@ function wrRenderFigureBase(theme) {
         </svg>`;
 }
 
-function wrRevealFigureStage(n) {
-    const g = document.getElementById(`wr-stage-${n}`);
+function wrRevealFigureStage(n, hostId) {
+    hostId = hostId || "wortraten-figure";
+    const g = document.getElementById(`${hostId}-stage-${n}`);
     if (!g) return;
     g.classList.remove("hidden");
     try {
@@ -175,7 +186,7 @@ function wrStartRound() {
     const s = wortratenState;
     if (!s) return;
     const cfg = WORTRAETSEL_DIFFICULTIES[s.difficulty] || WORTRAETSEL_DIFFICULTIES.mittel;
-    const pool = wrWordPool(s.wordmode);
+    const pool = wrWordPool(s.wordmode, s.difficulty);
     s.word = wrPickWord(pool, cfg.minLen, cfg.maxLen, s.usedWords);
     if (!s.word) {
         showToast("Hoppla, dafür haben wir gerade keine passenden Wörter. Bitte andere Einstellungen wählen!", "error");

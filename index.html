@@ -297,7 +297,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
                 <!-- Kopf -->
                 <div class="flex items-center justify-between gap-2 pt-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Übersicht 01</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Übersicht</button>
                     <span class="text-sm font-bold text-gray-400">📊 Dashboard</span>
                     <span class="w-10"></span>
                 </div>
@@ -488,7 +488,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: DUELL SETUP
             ========================================================== -->
             <div id="view-duel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 01</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-rose-400">⚔️ Quiz-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Zwei Spieler treten nacheinander im selben Quiz
@@ -516,7 +516,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-duel-play" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2 px-3"
-                    onclick="if(confirm('Duell wirklich beenden?')) switchView('duel-setup')">Beenden 01</button>
+                    onclick="if(confirm('Duell wirklich beenden?')) switchView('duel-setup')">Beenden</button>
                 <div id="duel-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(244,63,94,0.15),rgba(236,72,153,0.1));border-color:rgba(244,63,94,0.2);">
                     <div id="duel-turn-emoji" class="text-6xl">🥊</div>
@@ -542,7 +542,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: SCRABBLE SETUP
             ========================================================== -->
             <div id="view-scrabble-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 02</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-amber-400">🔤 Wort-Duell · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Alle bekommen dieselben Buchstaben und bilden
@@ -609,8 +609,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-scrabble-play" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2 px-3"
-                    onclick="if(confirm('Wort-Duell wirklich beenden?')){ if(scrabbleState&&scrabbleState.changeInterval){clearInterval(scrabbleState.changeInterval);scrabbleState.changeInterval=null;} switchView('scrabble-setup'); }">Beenden
-                    02</button>
+                    onclick="if(confirm('Wort-Duell wirklich beenden?')){ if(scrabbleState&&scrabbleState.changeInterval){clearInterval(scrabbleState.changeInterval);scrabbleState.changeInterval=null;} switchView('scrabble-setup'); }">Beenden</button>
                 <div id="scrabble-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(251,191,36,0.1));border-color:rgba(245,158,11,0.2);">
                     <div class="text-6xl">🔤</div>
@@ -661,15 +660,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: WORT-RÄTSEL SETUP
             ========================================================== -->
             <div id="view-wortraten-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 03</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-sky-400">🧩 Wort-Rätsel · ein Gerät</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Reihum Buchstaben wählen und gemeinsam ein
                         Wort erraten – <span class="text-sky-300 font-bold">ein Handy wird weitergegeben</span>. Bei
                         jedem falschen Buchstaben wächst ein freundlicher Begleiter –
                         <span class="text-emerald-400 font-bold">niemand wird bestraft</span>, es macht einfach nur
-                        Spaß!
-                    </p>
+                        Spaß!</p>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-2">Wer spielt mit? (mind. 1)</label>
                         <div id="wortraten-player-checkboxes" class="grid grid-cols-2 gap-2"></div>
@@ -726,8 +724,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-wortraten-play" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2 px-3"
-                    onclick="if(confirm('Wort-Rätsel wirklich beenden?')) switchView('wortraten-setup')">Beenden
-                    03</button>
+                    onclick="if(confirm('Wort-Rätsel wirklich beenden?')) switchView('wortraten-setup')">Beenden</button>
                 <div id="wortraten-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(56,189,248,0.1));border-color:rgba(14,165,233,0.2);">
                     <div class="text-6xl">🧩</div>
@@ -758,7 +755,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             style="background:var(--gradient-cool);box-shadow:0 4px 24px rgba(6,182,212,0.3);">Nächste
                             Runde ➔</button>
                         <button onclick="if(confirm('Wort-Rätsel wirklich beenden?')) switchView('wortraten-setup')"
-                            class="btn-secondary flex-1 text-center">Beenden 04</button>
+                            class="btn-secondary flex-1 text-center">Beenden</button>
                     </div>
                 </div>
             </div>
@@ -774,7 +771,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: LIVE-DUELL SETUP
             ========================================================== -->
             <div id="view-live-duel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 04</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <button onclick="openCodedLobbySetup()" class="btn-primary w-full text-center"
                     style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">🌍
                     Online-Lobby mit Code (verschiedene Konten)</button>
@@ -893,8 +890,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: CODE-LOBBY SETUP (kontouebergreifend)
             ========================================================== -->
             <div id="view-coded-lobby-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('live-duel-setup')">Zurück
-                    05</button>
+                <button class="btn-secondary text-sm py-2.5 px-4"
+                    onclick="switchView('live-duel-setup')">Zurück</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-indigo-400">🌍 Online-Lobby</h2>
                     <p class="text-xs text-gray-400 text-center -mt-2">Verschiedene Konten treffen sich über einen
@@ -1055,7 +1052,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-live-duel-play" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
-                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück 06</button>
+                    <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2 px-3">Zurück</button>
                     <div id="live-duel-status" class="text-xs font-bold text-gray-400"></div>
                     <div id="live-duel-countdown" class="min-w-[3rem] text-center text-xl font-black text-amber-400">
                     </div>
@@ -1069,7 +1066,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: LIVE-DUELL ERGEBNIS
             ========================================================== -->
             <div id="view-live-duel-result" class="view hidden space-y-4">
-                <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Zurück 07</button>
+                <button onclick="leaveLiveDuel()" class="btn-secondary text-sm py-2.5 px-4">Zurück</button>
                 <div id="live-duel-result-content"></div>
             </div>
 
@@ -1139,6 +1136,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <span class="text-2xl">🔤</span> Wort-Duell
                         </button>
                     </div>
+                    <button onclick="openCodedLobbySetup()" class="btn-primary w-full text-center"
+                        style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">🌍
+                        Online-Lobby beitreten / erstellen</button>
                     <button onclick="openLiveDuelSetup('wortraten')"
                         class="btn-primary w-full flex flex-col items-center gap-1 text-center"
                         style="background:linear-gradient(135deg,#0ea5e9,#22d3ee);box-shadow:0 4px 24px rgba(14,165,233,0.3);">
@@ -1257,7 +1257,7 @@ VIEW: HAUPTMENÜ
             VIEW: BELOHNUNGEN EINLÖSEN
             ========================================================== -->
             <div id="view-rewards" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 08</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-5">
                     <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen</h3>
                     <p class="text-xs text-gray-400 mb-4">Du hast <span id="rewards-coin-balance"
@@ -1330,8 +1330,8 @@ VIEW: HAUPTMENÜ
             VIEW: FEEDBACK
             ========================================================== -->
             <div id="view-feedback" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView(feedbackReturnView)">Zurück
-                    09</button>
+                <button class="btn-secondary text-sm py-2.5 px-4"
+                    onclick="switchView(feedbackReturnView)">Zurück</button>
                 <div class="glass-card p-5 space-y-4">
                     <h3 class="text-xl font-black text-amber-400 mb-1">💬 Feedback</h3>
                     <p class="text-xs text-gray-400">Was ist kaputt, was fehlt, was war gut? Schreib's rein – wir lesen
@@ -1418,7 +1418,7 @@ VIEW: HAUPTMENÜ
             VIEW: FOKUS LERNZEIT
             ========================================================== -->
             <div id="view-fokus" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 10</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-8 text-center space-y-6 shadow-lg">
                     <div class="text-6xl">⏱️</div>
                     <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
@@ -1437,7 +1437,7 @@ VIEW: HAUPTMENÜ
 VIEW: FORMELN SETUP (NEU & SEPARAT)
 ========================================================= -->
             <div id="view-formel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 11</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
 
                 <div class="glass-card p-6 space-y-4">
                     <h2 class="text-2xl font-black text-center text-pink-400">Formeln üben</h2>
@@ -1468,7 +1468,7 @@ VIEW: LESEN LERNEN
 ========================================================== -->
             <div id="view-lesen" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 12</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                     <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
                     <span class="w-20"></span>
                 </div>
@@ -1489,7 +1489,7 @@ VIEW: LESEN LERNEN
 VIEW: QUIZ SETUP
 ========================================================= -->
             <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 13</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
                     class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center"
                     style="background:var(--gradient-rose);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
@@ -1545,7 +1545,7 @@ VIEW: QUIZ SETUP
             ========================================================== -->
             <div id="view-vokabeln" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 14</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                     <span id="vocab-streak-badge" class="hidden badge-pill text-amber-400 font-bold">🔥 0</span>
                 </div>
                 <div class="glass-card p-5 text-center space-y-3">
@@ -1578,7 +1578,7 @@ VIEW: QUIZ SETUP
             ========================================================== -->
 
             <div id="view-tv-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück 15</button>
+                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <div class="glass-card p-6 space-y-6 text-center">
                     <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
                     <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die
@@ -1608,7 +1608,7 @@ VIEW: QUIZ SETUP
             <div id="view-tv-quiz-host" class="view hidden space-y-4">
                 <div id="tv-host-setup" class="space-y-4">
                     <button class="btn-secondary text-sm py-2.5 px-4"
-                        onclick="leaveTVGame(); switchView('tv-quiz-setup')">Zurück 16</button>
+                        onclick="leaveTVGame(); switchView('tv-quiz-setup')">Zurück</button>
                     <div class="glass-card p-6 text-center">
                         <h2 class="text-2xl font-black text-white mb-4">Spiel erstellen</h2>
                         <div class="dash-sub-nav mb-6">
@@ -1689,7 +1689,7 @@ VIEW: QUIZ SETUP
             ========================================================== -->
             <div id="view-tv-quiz-player" class="view hidden space-y-4">
                 <div id="tv-player-setup" class="space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame()">Zurück 17</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame()">Zurück</button>
                     <div class="glass-card p-6 text-center">
                         <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
                         <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
@@ -1718,7 +1718,7 @@ VIEW: QUIZ SETUP
     <script src="ui-common.js?v=7.5"></script>
     <script src="quiz-core.js?v=7.5"></script>
     <script src="vocab.js?v=7.5"></script>
-    <script src="duel-scrabble.js?v=7"></script>
+    <script src="duel-scrabble.js?v=7.1"></script>
     <script src="wortraten.js?v=1.1"></script>
     <script src="tv-cast.js?v=7.5"></script>
     <script src="live-duel.js?v=7.5"></script>

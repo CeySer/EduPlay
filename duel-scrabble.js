@@ -317,24 +317,33 @@
             switchView('scrabble-setup');
         }
 
-        function scrabbleTilesHTML(letters, big, required) {
+        function scrabbleTilesHTML(letters, big, required, selected, onTapFn) {
             const size = big ? "w-20 h-20" : "w-12 h-12";
             const textSize = big ? "text-4xl" : "text-2xl";
             const valSize = big ? "text-xs" : "text-[9px]";
+            const interactive = !!onTapFn;
+            const selectedSet = new Set(selected || []);
             let marked = false;
-            return letters.map(l => {
+            return letters.map((l, idx) => {
                 const isReq = required && l === required && !marked;
                 if (isReq) marked = true;
-                const look = isReq ?
-                    "bg-emerald-200 border-emerald-500 ring-2 ring-emerald-400" :
-                    "bg-amber-200 border-amber-400";
+                const isSelected = selectedSet.has(idx);
+                const look = isSelected ?
+                    "bg-slate-500/40 border-slate-400 opacity-40" :
+                    isReq ?
+                        "bg-emerald-200 border-emerald-500 ring-2 ring-emerald-400" :
+                        "bg-amber-200 border-amber-400";
                 const valColor = isReq ? "text-emerald-700" : "text-amber-700";
+                const tag = interactive ? "button" : "div";
+                const attrs = interactive
+                    ? `type="button" ${isSelected ? "disabled" : ""} onclick="${onTapFn}(${idx})"`
+                    : "";
                 return `
-                                <div class="${size} ${look} rounded-lg shadow-md flex items-center justify-center relative border-2">
+                                <${tag} ${attrs} class="${size} ${look} rounded-lg shadow-md flex items-center justify-center relative border-2 ${interactive ? "cursor-pointer active:scale-95 transition" : ""}">
                                     <span class="${textSize} font-black text-slate-900">${l}</span>
                                     <span class="absolute bottom-0.5 right-1 ${valSize} font-bold ${valColor}">${SCRABBLE_VALUES[l]}</span>
                                     ${isReq ? '<span class="absolute -top-2 -left-2 text-xs">📌</span>' : ''}
-                                </div>`;
+                                </${tag}>`;
             }).join("");
         }
 

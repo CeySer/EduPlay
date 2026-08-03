@@ -29,52 +29,60 @@
         // 1. Fragen aus den einzelnen Dateien zusammenführen
         const QUESTIONS_DATABASE = [];
 
-        // Allgemeine Fragen
-        if (typeof SCHOOL_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SCHOOL_QUESTIONS); }
-        if (typeof BERUFS_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...BERUFS_QUESTIONS); }
-        if (typeof KFZ_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...KFZ_QUESTIONS); }
-        if (typeof FUN_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...FUN_QUESTIONS); }
-
-        // Klasse 1
-        if (typeof K1_MATHE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K1_MATHE_QUESTIONS); }
-        if (typeof K1_DEUTSCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K1_DEUTSCH_QUESTIONS); }
-        if (typeof K1_SACHUNTERRICHT_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K1_SACHUNTERRICHT_QUESTIONS); }
-
-        // Klasse 2
-        if (typeof K2_MATHE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_MATHE_QUESTIONS); }
-        if (typeof K2_DEUTSCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_DEUTSCH_QUESTIONS); }
-        if (typeof K2_SACHUNTERRICHT_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_SACHUNTERRICHT_QUESTIONS); }
-        if (typeof K2_ENGLISCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K2_ENGLISCH_QUESTIONS); }
-
-        // Klasse 3
-        if (typeof K3_MATHE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_MATHE_QUESTIONS); }
-        if (typeof K3_DEUTSCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_DEUTSCH_QUESTIONS); }
-        if (typeof K3_SACHUNTERRICHT_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_SACHUNTERRICHT_QUESTIONS); }
-        if (typeof K3_ENGLISCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K3_ENGLISCH_QUESTIONS); }
-
-        // Klasse 4
-        if (typeof K4_MATHE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K4_MATHE_QUESTIONS); }
-        if (typeof K4_DEUTSCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K4_DEUTSCH_QUESTIONS); }
-        if (typeof K4_SACHUNTERRICHT_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K4_SACHUNTERRICHT_QUESTIONS); }
-        if (typeof K4_ENGLISCH_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...K4_ENGLISCH_QUESTIONS); }
-
-        // Fun – Einzeldateien (fragen/fun/*)
-        if (typeof QUESTIONS_KINDER_ANIME_CARTOONS !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_KINDER_ANIME_CARTOONS); }
-        if (typeof QUESTIONS_KINDER_MAERCHEN_DISNEY !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_KINDER_MAERCHEN_DISNEY); }
-        if (typeof QUESTIONS_KINDER_TIERE_NATUR !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_KINDER_TIERE_NATUR); }
-        if (typeof QUESTIONS_KINDER_ERSTES_WISSEN !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_KINDER_ERSTES_WISSEN); }
-        if (typeof QUESTIONS_ALLGEMEIN !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_ALLGEMEIN); }
-        if (typeof SPASS_ERFINDUNGEN_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_ERFINDUNGEN_QUESTIONS); }
-        if (typeof SPASS_ESSEN_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_ESSEN_QUESTIONS); }
-        if (typeof SPASS_HAUPTSTAEDTE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_HAUPTSTAEDTE_QUESTIONS); }
-        if (typeof QUESTIONS_HAUPTSTAEDTE_EUROPA !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_HAUPTSTAEDTE_EUROPA); }
-        if (typeof SPASS_MUSIK_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_MUSIK_QUESTIONS); }
-        if (typeof QUESTIONS_SCHAETZEN_NICE_TO_KNOW !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_SCHAETZEN_NICE_TO_KNOW); }
-        if (typeof SPASS_RAETSEL_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_RAETSEL_QUESTIONS); }
-        if (typeof QUESTIONS_SCHAETZEN_MENSCH_KOERPER !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_SCHAETZEN_MENSCH_KOERPER); }
-        if (typeof SPASS_SPORT_FILM_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_SPORT_FILM_QUESTIONS); }
-        if (typeof SPASS_TIERE_QUESTIONS !== 'undefined') { QUESTIONS_DATABASE.push(...SPASS_TIERE_QUESTIONS); }
-        if (typeof QUESTIONS_SCHAETZEN_UNGEWOEHNLICH_WELT !== 'undefined') { QUESTIONS_DATABASE.push(...QUESTIONS_SCHAETZEN_UNGEWOEHNLICH_WELT); }
+        // Hinweis: Der datenbanken_loader.js füllt QUESTIONS_DATABASE nach dem
+        // asynchronen Laden neu. Dieser Block ist Fallback, falls Dateien
+        // bereits synchron geladen wurden.
+        function _pushIf(arr) {
+            if (typeof arr !== 'undefined' && Array.isArray(arr) && arr.length) {
+                QUESTIONS_DATABASE.push(...arr);
+            }
+        }
+        _pushIf(typeof SCHOOL_QUESTIONS !== 'undefined' ? SCHOOL_QUESTIONS : null);
+        _pushIf(typeof BERUF_ELEKTRO_QUESTIONS !== 'undefined' ? BERUF_ELEKTRO_QUESTIONS : null);
+        _pushIf(typeof BERUF_TISCHLER_QUESTIONS !== 'undefined' ? BERUF_TISCHLER_QUESTIONS : null);
+        _pushIf(typeof BERUF_INDUSTRIEMECHANIKER_QUESTIONS !== 'undefined' ? BERUF_INDUSTRIEMECHANIKER_QUESTIONS : null);
+        _pushIf(typeof BERUF_FACHINFORMATIKER_QUESTIONS !== 'undefined' ? BERUF_FACHINFORMATIKER_QUESTIONS : null);
+        _pushIf(typeof BERUF_BUERO_QUESTIONS !== 'undefined' ? BERUF_BUERO_QUESTIONS : null);
+        _pushIf(typeof BERUF_VERKAEUFER_QUESTIONS !== 'undefined' ? BERUF_VERKAEUFER_QUESTIONS : null);
+        _pushIf(typeof BERUF_PFLEGE_QUESTIONS !== 'undefined' ? BERUF_PFLEGE_QUESTIONS : null);
+        _pushIf(typeof BERUF_FRISEUR_QUESTIONS !== 'undefined' ? BERUF_FRISEUR_QUESTIONS : null);
+        _pushIf(typeof KFZ_QUESTIONS !== 'undefined' ? KFZ_QUESTIONS : null);
+        _pushIf(typeof K1_MATHE_QUESTIONS !== 'undefined' ? K1_MATHE_QUESTIONS : null);
+        _pushIf(typeof K1_DEUTSCH_QUESTIONS !== 'undefined' ? K1_DEUTSCH_QUESTIONS : null);
+        _pushIf(typeof K1_SACHUNTERRICHT_QUESTIONS !== 'undefined' ? K1_SACHUNTERRICHT_QUESTIONS : null);
+        _pushIf(typeof K2_MATHE_QUESTIONS !== 'undefined' ? K2_MATHE_QUESTIONS : null);
+        _pushIf(typeof K2_DEUTSCH_QUESTIONS !== 'undefined' ? K2_DEUTSCH_QUESTIONS : null);
+        _pushIf(typeof K2_SACHUNTERRICHT_QUESTIONS !== 'undefined' ? K2_SACHUNTERRICHT_QUESTIONS : null);
+        _pushIf(typeof K2_ENGLISCH_QUESTIONS !== 'undefined' ? K2_ENGLISCH_QUESTIONS : null);
+        _pushIf(typeof K3_MATHE_QUESTIONS !== 'undefined' ? K3_MATHE_QUESTIONS : null);
+        _pushIf(typeof K3_DEUTSCH_QUESTIONS !== 'undefined' ? K3_DEUTSCH_QUESTIONS : null);
+        _pushIf(typeof K3_SACHUNTERRICHT_QUESTIONS !== 'undefined' ? K3_SACHUNTERRICHT_QUESTIONS : null);
+        _pushIf(typeof K3_ENGLISCH_QUESTIONS !== 'undefined' ? K3_ENGLISCH_QUESTIONS : null);
+        _pushIf(typeof K4_MATHE_QUESTIONS !== 'undefined' ? K4_MATHE_QUESTIONS : null);
+        _pushIf(typeof K4_DEUTSCH_QUESTIONS !== 'undefined' ? K4_DEUTSCH_QUESTIONS : null);
+        _pushIf(typeof K4_SACHUNTERRICHT_QUESTIONS !== 'undefined' ? K4_SACHUNTERRICHT_QUESTIONS : null);
+        _pushIf(typeof K4_ENGLISCH_QUESTIONS !== 'undefined' ? K4_ENGLISCH_QUESTIONS : null);
+        _pushIf(typeof KINDER_ANIME_QUESTIONS !== 'undefined' ? KINDER_ANIME_QUESTIONS : null);
+        _pushIf(typeof KINDER_MAERCHEN_QUESTIONS !== 'undefined' ? KINDER_MAERCHEN_QUESTIONS : null);
+        _pushIf(typeof KINDER_TIERE_NATUR_QUESTIONS !== 'undefined' ? KINDER_TIERE_NATUR_QUESTIONS : null);
+        _pushIf(typeof KINDER_WISSEN_QUESTIONS !== 'undefined' ? KINDER_WISSEN_QUESTIONS : null);
+        _pushIf(typeof SPASS_ALLGEMEIN_QUESTIONS !== 'undefined' ? SPASS_ALLGEMEIN_QUESTIONS : null);
+        _pushIf(typeof SPASS_KLEINE_QUESTIONS !== 'undefined' ? SPASS_KLEINE_QUESTIONS : null);
+        _pushIf(typeof SPASS_WUERDEST_DU_QUESTIONS !== 'undefined' ? SPASS_WUERDEST_DU_QUESTIONS : null);
+        _pushIf(typeof SPASS_NICE_TO_KNOW_QUESTIONS !== 'undefined' ? SPASS_NICE_TO_KNOW_QUESTIONS : null);
+        _pushIf(typeof SPASS_UNGEWOEHNLICHES_QUESTIONS !== 'undefined' ? SPASS_UNGEWOEHNLICHES_QUESTIONS : null);
+        _pushIf(typeof SPASS_SPORT_FILM_QUESTIONS !== 'undefined' ? SPASS_SPORT_FILM_QUESTIONS : null);
+        _pushIf(typeof SPASS_MUSIK_QUESTIONS !== 'undefined' ? SPASS_MUSIK_QUESTIONS : null);
+        _pushIf(typeof SPASS_ESSEN_QUESTIONS !== 'undefined' ? SPASS_ESSEN_QUESTIONS : null);
+        _pushIf(typeof SPASS_TIERE_QUESTIONS !== 'undefined' ? SPASS_TIERE_QUESTIONS : null);
+        _pushIf(typeof SPASS_LAENDER_QUESTIONS !== 'undefined' ? SPASS_LAENDER_QUESTIONS : null);
+        _pushIf(typeof SPASS_ERFINDUNGEN_QUESTIONS !== 'undefined' ? SPASS_ERFINDUNGEN_QUESTIONS : null);
+        _pushIf(typeof SPASS_RAETSEL_QUESTIONS !== 'undefined' ? SPASS_RAETSEL_QUESTIONS : null);
+        _pushIf(typeof SPASS_HUMOR_QUESTIONS !== 'undefined' ? SPASS_HUMOR_QUESTIONS : null);
+        _pushIf(typeof SPASS_BERUF_HUMOR_QUESTIONS !== 'undefined' ? SPASS_BERUF_HUMOR_QUESTIONS : null);
+        _pushIf(typeof SPASS_HAUPTSTAEDTE_QUESTIONS !== 'undefined' ? SPASS_HAUPTSTAEDTE_QUESTIONS : null);
+        _pushIf(typeof SPASS_HAUPTSTAEDTE_EUROPA_QUESTIONS !== 'undefined' ? SPASS_HAUPTSTAEDTE_EUROPA_QUESTIONS : null);
+        _pushIf(typeof SPASS_SCHAETZFRAGEN_QUESTIONS !== 'undefined' ? SPASS_SCHAETZFRAGEN_QUESTIONS : null);
 
 
         // 2. Vokabeln - werden bereits von vocabulary.js geladen

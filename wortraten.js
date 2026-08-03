@@ -7,6 +7,8 @@
 // ============================================================
 
 const WORTRAETSEL_MAX_WRONG = 7; // = Anzahl Bau-Stufen der Figur
+const WORTRAETSEL_TURN_SECONDS = 20;   // Bedenkzeit pro Zug (nur ab 2 Spielern)
+const WORTRAETSEL_MAX_TURNS_IN_ROW = 3; // Treffer = nochmal dran, aber max. so oft am Stück
 
 const WORTRAETSEL_DIFFICULTIES = {
     leicht: { label: "🟢 Leicht (3-5 Buchstaben)", minLen: 3, maxLen: 5 },
@@ -19,6 +21,7 @@ const WORTRAETSEL_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ".split("");
 
 let wortratenState = null;
 let wortratenSetupTheme = "schneemann";
+let wortratenTurnTimer = null;
 
 // ============================================================
 //  Reine Logik-Helfer (ohne DOM-Zugriff – gut testbar)
@@ -171,6 +174,7 @@ function startWortratenGame() {
         word: "",
         guessed: new Set(),
         wrongCount: 0,
+        turnRepeat: 0,
         roundActive: false
     };
     checked.forEach(k => { wortratenState.scores[k] = 0; wortratenState.streaks[k] = 0; });
@@ -196,7 +200,9 @@ function wrStartRound() {
     s.usedWords.add(s.word);
     s.guessed = new Set();
     s.wrongCount = 0;
+    s.turnRepeat = 0;
     s.roundActive = false;
+    wrClearTurnTimer();
 
     document.getElementById("wortraten-turn-intro").classList.remove("hidden");
     document.getElementById("wortraten-play-area").classList.add("hidden");
@@ -223,6 +229,46 @@ function wrBeginRound() {
     wrRenderKeyboard();
     wrRenderScores();
     wrUpdateTurnBanner();
+    wrStartTurnTimer();
+}
+
+// ---- Bedenkzeit pro Zug ----
+function wrClearTurnTimer() {
+    if (wortratenTurnTimer) { clearInterval(wortratenTurnTimer); wortratenTurnTimer = null; }
+    const el = document.getElementById("wortraten-timer");
+    if (el) el.innerText = "";
+}
+
+function wrStartTurnTimer() {
+    const s = wortratenState;
+    wrClearTurnTimer();
+    if (!s || !s.roundActive || s.playerKeys.length < 2) return;
+    const el = document.getElementById("wortraten-timer");
+    let left = WORTRAETSEL_TURN_SECONDS;
+    if (el) el.innerText = `⏱ ${left}`;
+    wortratenTurnTimer = setInterval(() => {
+        left--;
+        if (el) el.innerText = `⏱ ${Math.max(0, left)}`;
+        if (left > 0 && left <= 5 && typeof SFX !== "undefined") SFX.tick();
+        if (left <= 0) {
+            wrClearTurnTimer();
+            if (typeof SFX !== "undefined") SFX.timeUp();
+            wrSkipTurn();
+        }
+    }, 1000);
+}
+
+function wrSkipTurn() {
+    const s = wortratenState;
+    if (!s || !s.roundActive) return;
+    const key = s.playerKeys[s.turnIndex % s.playerKeys.length];
+    s.streaks[key] = 0;
+    s.turnRepeat = 0;
+    if (typeof showToast === "function") showToast(`⏱ Zeit um – ${ALL_PROFILES[key].name} setzt aus!`, "error");
+    s.turnIndex = (s.turnIndex + 1) % s.playerKeys.length;
+    wrRenderScores();
+    wrUpdateTurnBanner();
+    wrStartTurnTimer();
 }
 
 function wrRenderWord() {
@@ -264,14 +310,17 @@ function wrUpdateTurnBanner() {
     const key = s.playerKeys[s.turnIndex % s.playerKeys.length];
     const el = document.getElementById("wortraten-turn-banner");
     if (!el) return;
-    el.innerText = s.playerKeys.length === 1
-        ? "Wähl einen Buchstaben!"
+    if (s.playerKeys.length === 1) { el.innerText = "Wähl einen Buchstaben!"; return; }
+    const rep = s.turnRepeat || 0;
+    el.innerText = rep > 0
+        ? `🔥 ${ALL_PROFILES[key].name} darf nochmal (Zug ${rep + 1}/${WORTRAETSEL_MAX_TURNS_IN_ROW})!`
         : `🎯 ${ALL_PROFILES[key].name} ist dran – wähl einen Buchstaben!`;
 }
 
 function wrGuessLetter(letter) {
     const s = wortratenState;
     if (!s || !s.roundActive || s.guessed.has(letter)) return;
+    wrClearTurnTimer();
     s.guessed.add(letter);
     const key = s.playerKeys[s.turnIndex % s.playerKeys.length];
     const isHit = s.word.includes(letter);
@@ -308,13 +357,21 @@ function wrGuessLetter(letter) {
         }
     }
 
-    s.turnIndex = (s.turnIndex + 1) % s.playerKeys.length;
+    // Treffer = nochmal dran, aber max. WORTRAETSEL_MAX_TURNS_IN_ROW Züge am Stück
+    if (isHit && (s.turnRepeat || 0) < WORTRAETSEL_MAX_TURNS_IN_ROW - 1) {
+        s.turnRepeat = (s.turnRepeat || 0) + 1;
+    } else {
+        s.turnRepeat = 0;
+        s.turnIndex = (s.turnIndex + 1) % s.playerKeys.length;
+    }
     wrRenderScores();
     wrUpdateTurnBanner();
+    wrStartTurnTimer();
 }
 
 function wrEndRound(solved) {
     const s = wortratenState;
+    wrClearTurnTimer();
     s.roundActive = false;
     wrRenderScores();
     const isLast = s.round >= s.rounds;
@@ -345,6 +402,7 @@ function wrContinueAfterRound() {
 
 function wrFinishGame() {
     const s = wortratenState;
+    wrClearTurnTimer();
     const sorted = [...s.playerKeys].sort((a, b) => s.scores[b] - s.scores[a]);
     sorted.forEach((key, i) => { if (typeof awardXPToProfile === "function") awardXPToProfile(key, i === 0 ? 15 : 5); });
 

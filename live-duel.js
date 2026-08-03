@@ -59,6 +59,7 @@
                 clearInterval(liveDuelAutoAdvanceTimer);
                 liveDuelAutoAdvanceTimer = null;
             }
+            if (typeof wrLiveClearTurnTimer === "function") wrLiveClearTurnTimer();
         }
 
         async function createLiveDuel() {
@@ -576,7 +577,61 @@
             const pool = wrWordPool(data.wordMode, data.difficulty);
             const avoid = new Set(data.usedWords || []);
             const word = wrPickWord(pool, cfg.minLen, cfg.maxLen, avoid);
-            return { word, guessed: [], wrongCount: 0, roundOver: false, roundSolved: false };
+            return {
+                word, guessed: [], wrongCount: 0, roundOver: false, roundSolved: false,
+                turnRepeat: 0, turnDeadline: Date.now() + WORTRAETSEL_TURN_SECONDS * 1000
+            };
+        }
+
+        // ---- Bedenkzeit pro Zug (Live) ----
+        let wrLiveTurnInterval = null;
+
+        function wrLiveClearTurnTimer() {
+            if (wrLiveTurnInterval) { clearInterval(wrLiveTurnInterval); wrLiveTurnInterval = null; }
+        }
+
+        function wrLiveTickTurnTimer(data) {
+            wrLiveClearTurnTimer();
+            const el = document.getElementById("live-duel-wr-timer");
+            if (!el) return;
+            const players = data.players || {};
+            const activeCount = Object.keys(players).filter(k => !players[k].pending).length;
+            if (!data.turnDeadline || data.roundOver || activeCount < 2) { el.innerText = ""; return; }
+            const deadline = data.turnDeadline;
+            const paint = () => {
+                const el2 = document.getElementById("live-duel-wr-timer");
+                if (!el2) { wrLiveClearTurnTimer(); return; }
+                const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+                el2.innerText = `⏱ ${left}`;
+                el2.className = "text-lg font-black " + (left <= 5 ? "text-rose-400" : "text-amber-400");
+                if (left <= 0) {
+                    wrLiveClearTurnTimer();
+                    if (isLiveDuelCreator) wrLiveSkipTurn();
+                }
+            };
+            paint();
+            wrLiveTurnInterval = setInterval(paint, 1000);
+        }
+
+        async function wrLiveSkipTurn() {
+            if (!liveDuelRef || !isLiveDuelCreator) return;
+            const snap = await liveDuelRef.get();
+            if (!snap.exists) return;
+            const data = snap.data();
+            if (data.status !== "playing" || data.type !== "wortraten" || data.roundOver) return;
+            if (data.turnDeadline && Date.now() < data.turnDeadline - 500) return;
+            const players = data.players;
+            const order = (data.order || []).filter(k => players[k] && !players[k].pending);
+            if (order.length < 2) return;
+            const key = wrLiveActivePlayerKey(data);
+            if (key && players[key]) players[key].answerStreak = 0;
+            const curIdx = order.indexOf(key);
+            await liveDuelRef.update({
+                players,
+                turnRepeat: 0,
+                turnIndex: (curIdx + 1) % order.length,
+                turnDeadline: Date.now() + WORTRAETSEL_TURN_SECONDS * 1000
+            });
         }
 
         function renderLiveDuelWortratenPlay(data) {
@@ -621,14 +676,19 @@
                     : `<p class="text-center text-sm font-bold text-amber-400">${wrFigureEmoji(data.theme)} ${wrFigureName(data.theme)} ist fertig! Das Wort war "${esc(word)}"</p>`;
             } else {
                 const activeName = data.players[key] ? esc(data.players[key].name) : "";
+                const rep = data.turnRepeat || 0;
+                const repTxt = rep > 0 ? ` (Zug ${rep + 1}/${WORTRAETSEL_MAX_TURNS_IN_ROW})` : "";
                 banner = isMyTurn
-                    ? `<p class="text-center text-sm font-bold text-sky-300">🎯 Du bist dran – wähl einen Buchstaben!</p>`
-                    : `<p class="text-center text-sm font-bold text-gray-400">⏳ ${activeName} ist dran...</p>`;
+                    ? `<p class="text-center text-sm font-bold text-sky-300">${rep > 0 ? "🔥 Nochmal du" : "🎯 Du bist dran"}${repTxt} – wähl einen Buchstaben!</p>`
+                    : `<p class="text-center text-sm font-bold text-gray-400">⏳ ${activeName} ist dran${repTxt}...</p>`;
             }
 
             document.getElementById("live-duel-play-content").innerHTML = `
                 <div class="space-y-4">
-                    <div class="text-center text-xs font-bold text-gray-400">Runde ${data.currentRound}/${data.totalRounds}</div>
+                    <div class="flex justify-between items-center text-xs font-bold text-gray-400 px-1">
+                        <span>Runde ${data.currentRound}/${data.totalRounds}</span>
+                        <span id="live-duel-wr-timer" class="text-lg font-black text-amber-400"></span>
+                    </div>
                     <div class="flex justify-center gap-2 overflow-x-auto py-1">${scoresHtml}</div>
                     <div class="glass-card p-4 flex items-center justify-center">
                         <div id="live-duel-wr-figure" class="w-32 h-36"></div>
@@ -640,6 +700,7 @@
 
             wrRenderFigureBase(data.theme, "live-duel-wr-figure");
             for (let i = 1; i <= (data.wrongCount || 0); i++) wrRevealFigureStage(i, "live-duel-wr-figure");
+            wrLiveTickTurnTimer(data);
         }
 
         async function wrLiveGuessLetter(letter) {
@@ -692,7 +753,18 @@
             if (!roundOver) {
                 const order = (data.order || []).filter(k => players[k] && !players[k].pending);
                 const curIdx = order.indexOf(key);
-                update.turnIndex = order.length > 0 ? (curIdx + 1) % order.length : 0;
+                const rep = data.turnRepeat || 0;
+                // Treffer = nochmal dran, aber max. WORTRAETSEL_MAX_TURNS_IN_ROW Züge am Stück
+                if (isHit && order.length > 1 && rep < WORTRAETSEL_MAX_TURNS_IN_ROW - 1) {
+                    update.turnRepeat = rep + 1;
+                } else {
+                    update.turnRepeat = 0;
+                    update.turnIndex = order.length > 0 ? (curIdx + 1) % order.length : 0;
+                }
+                update.turnDeadline = Date.now() + WORTRAETSEL_TURN_SECONDS * 1000;
+            } else {
+                update.turnRepeat = 0;
+                update.turnDeadline = null;
             }
 
             await liveDuelRef.update(update);
@@ -741,6 +813,8 @@
                 wrongCount: 0,
                 roundOver: false,
                 roundSolved: false,
+                turnRepeat: 0,
+                turnDeadline: Date.now() + WORTRAETSEL_TURN_SECONDS * 1000,
                 usedWords
             });
         }
@@ -908,6 +982,12 @@
                 let icon, detail = "";
                 if (isQuiz) {
                     icon = p.lastRoundPoints > 0 ? "✅" : "❌";
+                    // NEU: Zeigen, was jeder Spieler getippt hat
+                    const qq = data.questions[data.currentIndex];
+                    const picked = (qq && typeof p.lastAnswer === "number" && qq.answers[p.lastAnswer] !== undefined)
+                        ? esc(qq.answers[p.lastAnswer])
+                        : "⏱ keine Antwort";
+                    detail = `<div class="text-[11px] font-normal mt-0.5 ${p.lastRoundPoints > 0 ? "text-emerald-300" : "text-rose-300"}">${picked}</div>`;
                 } else {
                     const info = wordStatusInfo(p.wordStatus, p);
                     icon = info.icon;
@@ -1777,6 +1857,8 @@
                         wrongCount: 0,
                         roundOver: false,
                         roundSolved: false,
+                        turnRepeat: 0,
+                        turnDeadline: Date.now() + WORTRAETSEL_TURN_SECONDS * 1000,
                         usedWords: [round.word]
                     });
                 });
@@ -1888,6 +1970,8 @@
                         wrongCount: 0,
                         roundOver: false,
                         roundSolved: false,
+                        turnRepeat: 0,
+                        turnDeadline: Date.now() + WORTRAETSEL_TURN_SECONDS * 1000,
                         usedWords: [round.word]
                     });
                 } else if (data.type === "scrabble") {

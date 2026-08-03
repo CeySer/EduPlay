@@ -10,8 +10,8 @@
     // Entferne die, die nicht existieren oder Probleme machen
     const scripts = [
         // Wörter - KOMMENTIERE SIE AUS, WENN SIE FEHLEN!
-        'fragen/words_kids.js',
-        'fragen/words_adult.js',
+        'fragen/words_kids.js?v=7.0',
+        'fragen/words_adult.js?v=7.0',
         
         // Vokabeln
         'fragen/vocabulary.js?v=7.0',
@@ -19,7 +19,7 @@
         // Fragen - Allgemein
         'fragen/questions_school.js?v=7.0',
         'fragen/questions_beruf.js?v=7.0',
-        // 'fragen/questions_kfz.js?v=7.0', // AUSKOMMENTIERT WEGEN DUPLIKAT
+        'fragen/questions_kfz.js?v=7.0', // AUSKOMMENTIERT WEGEN DUPLIKAT
         'fragen/questions_fun.js?v=7.0',
         
         // Klasse 1
@@ -123,15 +123,26 @@
     function mergeAllQuestions() {
         console.log('🔗 Füge alle Fragen zusammen...');
         
-        // Globale Datenbank initialisieren (falls nicht vorhanden)
-        if (typeof window.QUESTIONS_DATABASE === 'undefined') {
-            window.QUESTIONS_DATABASE = [];
+        // Gemeinsame Liste – app-config nutzt QUESTIONS_DATABASE (const), nicht nur window
+        var target = null;
+        try {
+            if (typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
+                target = QUESTIONS_DATABASE;
+            }
+        } catch (e) { /* ignore */ }
+        if (!target) {
+            if (typeof window.QUESTIONS_DATABASE === 'undefined' || !Array.isArray(window.QUESTIONS_DATABASE)) {
+                window.QUESTIONS_DATABASE = [];
+            }
+            target = window.QUESTIONS_DATABASE;
         }
+        target.length = 0;
         
         // Alle möglichen Frage-Quellen durchgehen
         const sources = [
             'SCHOOL_QUESTIONS',
             'BERUFS_QUESTIONS',
+            'KFZ_QUESTIONS',
             'FUN_QUESTIONS',
             'K1_MATHE_QUESTIONS',
             'K1_DEUTSCH_QUESTIONS',
@@ -168,29 +179,33 @@
         
         let totalQuestions = 0;
         sources.forEach(name => {
-            if (typeof window[name] !== 'undefined' && Array.isArray(window[name])) {
-                window.QUESTIONS_DATABASE.push(...window[name]);
-                totalQuestions += window[name].length;
-                console.log(`  ✅ ${name}: ${window[name].length} Fragen`);
-            } else if (typeof window[name] !== 'undefined') {
-                console.log(`  ⚠️ ${name} ist kein Array, überspringe`);
+            var arr = (typeof window[name] !== 'undefined') ? window[name]
+                : (typeof self[name] !== 'undefined' ? self[name] : undefined);
+            // const-Variablen sind nicht immer auf window – Fallback über eval-safe globalThis
+            if (!arr) {
+                try { arr = Function('return typeof ' + name + ' !== "undefined" ? ' + name + ' : null')(); } catch (e) { arr = null; }
+            }
+            if (arr && Array.isArray(arr)) {
+                target.push(...arr);
+                totalQuestions += arr.length;
+                console.log('  ✅ ' + name + ': ' + arr.length + ' Fragen');
             }
         });
         
-        console.log(`📊 Insgesamt: ${totalQuestions} Fragen in QUESTIONS_DATABASE`);
+        console.log('📊 Insgesamt: ' + totalQuestions + ' Fragen in QUESTIONS_DATABASE');
+        window.QUESTIONS_DATABASE = target;
         
-        // Duplikate entfernen (optional)
+        // Duplikate entfernen
         if (totalQuestions > 0) {
             const unique = new Map();
-            window.QUESTIONS_DATABASE.forEach(q => {
-                const key = q.question + '|' + (q.category || '');
-                if (!unique.has(key)) {
-                    unique.set(key, q);
-                }
+            target.forEach(q => {
+                const key = (q.question || '') + '|' + (q.category || '');
+                if (!unique.has(key)) unique.set(key, q);
             });
-            if (unique.size !== window.QUESTIONS_DATABASE.length) {
-                console.log(`🧹 Duplikate entfernt: ${window.QUESTIONS_DATABASE.length} → ${unique.size}`);
-                window.QUESTIONS_DATABASE = Array.from(unique.values());
+            if (unique.size !== target.length) {
+                console.log('🧹 Duplikate entfernt: ' + target.length + ' → ' + unique.size);
+                target.length = 0;
+                unique.forEach(q => target.push(q));
             }
         }
     }

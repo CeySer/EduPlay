@@ -708,7 +708,7 @@ const K4_SACHUNTERRICHT_QUESTIONS = [
   },
 
   // ================================================================
-  // 3. PUBERTÄT, KÖRPER & ENTWICKLUNG (25 Fragen)
+  // 3. KÖRPER & ENTWICKLUNG (14 Fragen)
   // ================================================================
   {
     id: "q4_s_051",
@@ -738,77 +738,7 @@ const K4_SACHUNTERRICHT_QUESTIONS = [
     points: 5,
     explanation: "Hormone steuern die körperlichen Veränderungen während des Wachstums."
   },
-  {
-    id: "q4_s_053",
-    category: "k4_sachunterricht",
-    topic: "koerper_entwicklung",
-    area: "schule",
-    grade: 4,
-    subject: "sachunterricht",
-    question: "Wie nennt man die weibliche Keimzelle?",
-    answers: ["Eizelle", "Samenzelle", "Blutzelle", "Hautzelle"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Die Eizelle ist die weibliche Fortpflanzungszelle."
-  },
-  {
-    id: "q4_s_054",
-    category: "k4_sachunterricht",
-    topic: "koerper_entwicklung",
-    area: "schule",
-    grade: 4,
-    subject: "sachunterricht",
-    question: "Wie nennt man die männliche Keimzelle?",
-    answers: ["Samenzelle (Spermium)", "Eizelle", "Nervenzelle", "Stammzelle"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Die Samenzellen werden in den Hoden gebildet."
-  },
-  {
-    id: "q4_s_055",
-    category: "k4_sachunterricht",
-    topic: "koerper_entwicklung",
-    area: "schule",
-    grade: 4,
-    subject: "sachunterricht",
-    question: "Wo wächst das Baby im Körper der Mutter während der Schwangerschaft heran?",
-    answers: ["Gebärmutter (Uterus)", "Magen", "Blase", "Darm"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Das Baby schützt und ernährt sich in der Gebärmutter der Mutter."
-  },
-  {
-    id: "q4_s_056",
-    category: "k4_sachunterricht",
-    topic: "koerper_entwicklung",
-    area: "schule",
-    grade: 4,
-    subject: "sachunterricht",
-    question: "Wie lange dauert eine menschliche Schwangerschaft normalerweise?",
-    answers: ["ca. 9 Monate (ca. 40 Wochen)", "ca. 6 Monate", "ca. 12 Monate", "ca. 3 Monate"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Eine Schwangerschaft dauert ungefähr 9 Monate."
-  },
-  {
-    id: "q4_s_057",
-    category: "k4_sachunterricht",
-    topic: "koerper_entwicklung",
-    area: "schule",
-    grade: 4,
-    subject: "sachunterricht",
-    question: "Über welches Organ verbindet sich das Baby im Bauch der Mutter, um Nahrung und Sauerstoff zu erhalten?",
-    answers: ["Nabelschnur und Mutterkuchen (Plazenta)", "Speiseröhre", "Luftröhre", "Magenbrücke"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Die Nabelschnur versorgt das ungeborene Kind im Bauch."
-  },
-  {
+            {
     id: "q4_s_058",
     category: "k4_sachunterricht",
     topic: "koerper_entwicklung",
@@ -836,35 +766,7 @@ const K4_SACHUNTERRICHT_QUESTIONS = [
     points: 5,
     explanation: "Beim Stimmbruch wächst der Kehlkopf und die Stimme wird tiefer."
   },
-  {
-    id: "q4_s_060",
-    category: "k4_sachunterricht",
-    topic: "koerper_entwicklung",
-    area: "schule",
-    grade: 4,
-    subject: "sachunterricht",
-    question: "Wie nennt man den regelmäßigen Vorgang im weiblichen Körper ab der Pubertät, bei dem unbefruchtete Eizellen ausgeschieden werden?",
-    answers: ["Menstruation / Regelblutung", "Eisprung-Erkältung", "Wachstumsschub", "Hormonschock"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Die Monatsblutung (Menstruation) tritt etwa alle 28 Tage auf."
-  },
-  {
-    id: "q4_s_061",
-    category: "k4_sachunterricht",
-    topic: "koerper_entwicklung",
-    area: "schule",
-    grade: 4,
-    subject: "sachunterricht",
-    question: "Wie nennt man die Verschmelzung einer Eizelle mit einer Samenzelle?",
-    answers: ["Befruchtung", "Geburt", "Reifung", "Teilung"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Verschmelzen Samen- und Eizelle, spricht man von Befruchtung."
-  },
-  {
+      {
     id: "q4_s_062",
     category: "k4_sachunterricht",
     topic: "koerper_entwicklung",
@@ -920,21 +822,7 @@ const K4_SACHUNTERRICHT_QUESTIONS = [
     points: 5,
     explanation: "Körperpflege gewinnt in der Pubertät an Bedeutung, da Schweißdrüsen aktiver werden."
   },
-  {
-    id: "q4_s_066",
-    category: "k4_sachunterricht",
-    topic: "koerper_entwicklung",
-    area: "schule",
-    grade: 4,
-    subject: "sachunterricht",
-    question: "Was versteht man unter den 'Genitalien'?",
-    answers: ["Die geschlechtsspezifischen Fortpflanzungsorgane von Mann und Frau", "Die Knochen im Bein", "Die Sinnesorgane im Kopf", "Die Zähne"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Genitalien sind die Geschlechtsorgane."
-  },
-  {
+    {
     id: "q4_s_067",
     category: "k4_sachunterricht",
     topic: "koerper_entwicklung",
@@ -976,35 +864,7 @@ const K4_SACHUNTERRICHT_QUESTIONS = [
     points: 5,
     explanation: "Durch Hormone verändern sich auch Emotionen und Wahrnehmungen."
   },
-  {
-    id: "q4_s_070",
-    category: "k4_sachunterricht",
-    topic: "koerper_entwicklung",
-    area: "schule",
-    grade: 4,
-    subject: "sachunterricht",
-    question: "Wie heißen die zwei Drüsen beim Mann, in denen die Spermien gebildet werden?",
-    answers: ["Hoden", "Eierstöcke", "Nieren", "Drüsenbeutel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Die Hoden produzieren Samenzellen und das männliche Hormon Testosteron."
-  },
-  {
-    id: "q4_s_071",
-    category: "k4_sachunterricht",
-    topic: "koerper_entwicklung",
-    area: "schule",
-    grade: 4,
-    subject: "sachunterricht",
-    question: "Wie heißen die zwei Organe bei der Frau, in denen die Eizellen heranreifen?",
-    answers: ["Eierstöcke", "Hoden", "Gebärmutter", "Scheide"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "In den Eierstöcken reift jeden Monat eine Eizelle heran."
-  },
-  {
+      {
     id: "q4_s_072",
     category: "k4_sachunterricht",
     topic: "koerper_entwicklung",
@@ -1018,21 +878,7 @@ const K4_SACHUNTERRICHT_QUESTIONS = [
     points: 5,
     explanation: "Durch Zellteilung (Mitose) wächst der menschliche Körper."
   },
-  {
-    id: "q4_s_073",
-    category: "k4_sachunterricht",
-    topic: "koerper_entwicklung",
-    area: "schule",
-    grade: 4,
-    subject: "sachunterricht",
-    question: "Wie nennt man ein ungeborenes Kind ab der 9. Schwangerschaftswoche bis zur Geburt?",
-    answers: ["Fötus (oder Fetus)", "Embryo", "Säugling", "Kleinkind"],
-    correct: 0,
-    difficulty: "mittel",
-    points: 5,
-    explanation: "In den ersten Wochen heißt es Embryo, ab der 9. Woche Fötus."
-  },
-  {
+    {
     id: "q4_s_074",
     category: "k4_sachunterricht",
     topic: "koerper_entwicklung",

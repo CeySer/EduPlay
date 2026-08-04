@@ -40,10 +40,16 @@ const HAIR_COLORS = [
     { id: 'hc_purple', name: 'Lila', color: '#8b5cf6', price: 60 }
 ];
 
-// Katalog – echte Bilder später über src
+// Katalog – volle Charakterbilder (fullArt) oder Layer-SVG
 const AVATAR_ITEMS = {
-    body_boy: { id: 'body_boy', cat: 'body', name: 'Junge', price: 0, free: true },
-    body_girl: { id: 'body_girl', cat: 'body', name: 'Mädchen', price: 0, free: true },
+    body_boy: {
+        id: 'body_boy', cat: 'body', name: 'Junge Koch', price: 0, free: true,
+        src: 'img_avatar/junge_chibi_koch.jpg', fullArt: true
+    },
+    body_girl: {
+        id: 'body_girl', cat: 'body', name: 'Mädchen Koch', price: 0, free: true,
+        src: 'img_avatar/maedchen_chibi_koch.jpg', fullArt: true
+    },
 
     hair_short: { id: 'hair_short', cat: 'hair', name: 'Kurz', price: 0, free: true },
     hair_long: { id: 'hair_long', cat: 'hair', name: 'Lang', price: 40 },
@@ -152,7 +158,9 @@ function svgWrap(inner, w = 200, h = 260) {
 function renderLayerSVG(itemId, eq) {
     const item = AVATAR_ITEMS[itemId];
     if (!item) return '';
-    if (item.src) return `<img src="${item.src}" alt="${item.name}" style="width:100%;height:100%;object-fit:contain;">`;
+    if (item.src) {
+        return `<img src="${item.src}" alt="${item.name}" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">`;
+    }
 
     const skin = getSkinColor(eq);
     const hairC = getHairColor(eq);
@@ -270,6 +278,27 @@ function renderAvatarLayers(container, equipped) {
     const eq = equipped || getEquipped();
     container.innerHTML = '';
     container.classList.add('avatar-stage');
+
+    const bodyItem = AVATAR_ITEMS[eq.body];
+    // Volles Charakterbild → sauber anzeigen, Accessoire-Layer optional darüber
+    if (bodyItem && bodyItem.fullArt && bodyItem.src) {
+        const base = document.createElement('div');
+        base.className = 'avatar-layer avatar-layer-body avatar-fullart';
+        base.innerHTML = `<img src="${bodyItem.src}" alt="${bodyItem.name}" class="avatar-fullart-img">`;
+        container.appendChild(base);
+
+        // Nur Accessoires über dem Vollbild (Hut, Brille, Extra)
+        ['hat', 'glasses', 'extra'].forEach(layer => {
+            const itemId = eq[layer];
+            if (!itemId) return;
+            const div = document.createElement('div');
+            div.className = `avatar-layer avatar-layer-${layer}`;
+            div.dataset.layer = layer;
+            div.innerHTML = renderLayerSVG(itemId, eq);
+            container.appendChild(div);
+        });
+        return;
+    }
 
     AVATAR_LAYER_ORDER.forEach(layer => {
         const itemId = eq[layer];

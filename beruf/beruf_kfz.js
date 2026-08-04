@@ -2,26 +2,8 @@ const BERUF_KFZ_QUESTIONS = [
   // ==========================================
   // BASICS & INFRASTRUKTUR (q0542 - q0575)
   // ==========================================
-  {
-    id: "q0542",
-    category: "beruf_kfz",
-    area: "beruf",
-    subject: "kfz",
-    exam: "gp1",
-    lernfeld: "lf5",
-    topic: "abs_grundlagen",
-    question: "Wofür steht die Abkürzung ABS?",
-    answers: [
-      "Anti-Blockier-System",
-      "Automatische Bremskraft-Steuerung",
-      "Achsen-Balance-System",
-      "Automatik-Brems-Sensor"
-    ],
-    correct: 0,
-    difficulty: "schwer",
-    points: 15,
-    explanation: "ABS verhindert das Blockieren der Räder beim Bremsen."
-  },
+  { id: "q0542",category: "beruf_kfz",area: "beruf",subject: "kfz",exam: "gp1",lernfeld: "lf5",topic: "abs_grundlagen",question: "Wofür steht die Abkürzung ABS?",answers: ["Anti-Blockier-System","Automatische Bremskraft-Steuerung","Achsen-Balance-System","Automatik-Brems-Sensor"],correct: 0,difficulty: "schwer",points: 15,explanation: "ABS verhindert das Blockieren der Räder beim Bremsen."
+},
   {
     id: "q0543",
     category: "beruf_kfz",

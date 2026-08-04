@@ -46,8 +46,15 @@
         'fragen/klasse3/questions_k3_englisch.js?v=7.8',
         'fragen/klasse4/questions_k4_mathe.js?v=7.8',
         'fragen/klasse4/questions_k4_deutsch.js?v=8.0',
-        'fragen/klasse4/questions_k4_sachunterricht.js?v=7.8',
+        'fragen/klasse4/questions_k4_sachunterricht.js?v=8.1',
         'fragen/klasse4/questions_k4_englisch.js?v=7.8',
+
+        'fragen/klasse4/questions_k5_mathe.js?v=7.8',
+        'fragen/klasse4/questions_k5_deutsch.js?v=8.0',
+        'fragen/klasse4/questions_k5_erdkunde.js?v=8.1',
+        'fragen/klasse4/questions_k5_englisch.js?v=7.8',
+        'fragen/klasse4/questions_k4_biologie.js?v=8.0',
+        'fragen/klasse4/questions_k4_politik.js?v=8.1',
 
         // Fun – Kinder
         'fragen/fun/kinder_anime.js?v=7.8',
@@ -72,7 +79,7 @@
         'fragen/fun/spass_beruf_humor.js?v=8.0',
         'fragen/fun/spass_hauptstaedte.js?v=7.8',
         'fragen/fun/spass_hauptstaedte_europa.js?v=7.8',
-        'fragen/fun/spass_schaetzfragen.js?v=8.0',
+        'fragen/fun/spass_schaetzfragen.js?v=8.1',
 
         // Formeln
         'formula.js?v=7.8'

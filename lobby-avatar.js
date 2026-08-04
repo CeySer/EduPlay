@@ -47,11 +47,33 @@
             return c;
         }
 
-        async function reserveLobbyCode() {
+        const LOBBY_STALE_MS = 4 * 60 * 60 * 1000; // 4h ohne Lebenszeichen = Leiche
+
+        // Reserviert einen freien 4-stelligen Code UND legt die Lobby im selben
+        // Schritt an (Transaktion) – verhindert, dass zwei Hosts gleichzeitig
+        // denselben Code bekommen und sich gegenseitig überschreiben. Trifft der
+        // Zufallscode eine "Leiche" (alte Lobby ohne Lebenszeichen seit Stunden,
+        // z.B. weil der Tab einfach geschlossen wurde statt sauber zu verlassen),
+        // wird der Platz direkt wiederverwendet statt übersprungen – so wächst
+        // die Sammlung nicht unbegrenzt weiter.
+        async function reserveAndCreateLobby(buildLobbyData) {
             for (let i = 0; i < 8; i++) {
                 const code = generateLobbyCode();
-                const snap = await codedLobbyRef(code).get();
-                if (!snap.exists) return code;
+                const ref = codedLobbyRef(code);
+                try {
+                    const created = await db.runTransaction(async (txn) => {
+                        const snap = await txn.get(ref);
+                        if (snap.exists) {
+                            const d = snap.data() || {};
+                            const lastSeen = d.hostLastSeen || d.createdAt || 0;
+                            const isStale = d.status === "finished" || (Date.now() - lastSeen) > LOBBY_STALE_MS;
+                            if (!isStale) return false;
+                        }
+                        txn.set(ref, buildLobbyData(code));
+                        return true;
+                    });
+                    if (created) return { code, ref };
+                } catch (e) { /* Transaktions-Konflikt, nächsten Code versuchen */ }
             }
             throw new Error("Kein freier Code gefunden - bitte nochmal versuchen.");
         }
@@ -192,18 +214,17 @@
                 };
                 liveDuelType = "quiz";
             }
+            lobbyData.createdByName = currentPlayer.name;
+            lobbyData.players[activePlayerKey] = {
+                name: currentPlayer.name, score: 0, hasAnswered: false,
+                lastAnswer: null, word: "", coinsClaimed: false
+            };
             try {
-                const code = await reserveLobbyCode();
-                const ref = codedLobbyRef(code);
-                lobbyData.code = code;
-                lobbyData.createdByName = currentPlayer.name;
-                lobbyData.createdAt = Date.now();
-                lobbyData.hostLastSeen = Date.now();
-                lobbyData.players[activePlayerKey] = {
-                    name: currentPlayer.name, score: 0, hasAnswered: false,
-                    lastAnswer: null, word: "", coinsClaimed: false
-                };
-                await ref.set(lobbyData);
+                const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lobbyData, {
+                    code,
+                    createdAt: Date.now(),
+                    hostLastSeen: Date.now()
+                }));
                 liveDuelRef = ref;
                 isLiveDuelCreator = true;
                 liveDuelResolving = false;

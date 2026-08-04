@@ -1,168 +1,18 @@
-EduPlay Roadmap - Vollständig Sortiert & Strukturiert
+Ich habe neue Kategorien in Spaß 
+Kann man da vorlesen Funktion einbauen für Kinder. 
+Wer bin ich und Schiffe versenken 
+Die Schiffe mit Vokabeln oder sowas.
 
----
-
-🚨 KATEGORIE 1: KRITISCHE SOFORT-FIXES (PHASE 0 – JETZT)
-
-Bugs, die den Spielspaß und die Grundfunktion kaputt machen
-
-Lobby & Beitritts-Probleme
-
-☐ Lobby-Hänger & Blinken ("Lobby-Leichen")
-  · Wenn jemand rausgeht, blinkt das Duell weiter oder man bleibt hängen
-  · Teilweise muss man sich komplett abmelden, um wieder reinzukommen
-  · Lösung: Heartbeat-Mechanismus (alle 10 Sek. Signal), Cleanup beim Verlassen (leaveLiveDuel() & beforeunload), automatisches Löschen nach 10 Min. Timeout, Host-Übergabe
-☐ Beitritts-Bug - Mitten ins Spiel platzen
-  · Man kommt mitten in ein laufendes Spiel rein
-  · Lösung: Warte-Lobby einrichten - Spieler wartet bis Runde beendet ist, wird dann ins Spiel geholt
-☐ Lobby bleibt nach Verlassen sichtbar
-  · Wenn man ein Spiel eröffnet hat und niemand drin war, dann zurück ins Menü geht, soll es verschwinden
-  · Wenn man ausversehen rausgeht, kommt der Lobby-Balken erst bei neuer Runde wieder
-☐ TV Quiz - Keine Warte-Lobby
-  · Man kann nicht warten bis Spiel beendet ist
-  · Braucht: Warte-Lobby wie bei anderen Modi
-
-Wort-Quiz Eingabe-Bug
-
-☐ Tastatur/Eingabe verschwindet plötzlich
-  · Während des Tippens verschwindet die Eingabe, man muss von vorne anfangen
-  · Manchmal nimmt er die Eingabe nicht, bleibt hängen
-☐ Wort-Quiz - Falsche Wörter bei Spielern
-  · Jeder hatte ein anderes Wort, am Ende war bei allen falsch was sie eingetippt haben
-
-Duell "Weiter"-Button Bug
-
-☐ Hänger beim gleichzeitigen Drücken
-  · Wenn beide gleichzeitig drücken, geht es bei einem wirklich weiter, der andere tippt auf "Wort einreichen"
-  · Führt zu ungewollter Aktion
-
-TV Duell Bugs
-
-☐ Nach Beenden von TV Duell kommt man in falsche Ansicht
-  · Nur noch Quiz Auswahl (Spaß Quiz und Lernen), kein Wort Duell mehr
-  · Obere Zeile mit Quiz und Wort Duell fehlt
-  · Bleibt hängen bis Seite neu geladen
-☐ TV Quiz - Kein Timer und kein automatisches Weiter
-  · Timer fehlt komplett
-  · Kein automatischer Wechsel zur nächsten Frage
-☐ TV Quiz - Wenn einer rausgeht, geht es nicht weiter
-  · Der Spieler sollte rausgenommen werden, Spiel muss weiterlaufen
-
-Fehlerbehandlung
-
-☐ Leere try...catch-Blöcke füllen
-☐ Globalen Error-Handler einbauen
-☐ Freundliche Fehlermeldungen formulieren
-  · Statt "Fehler beim Laden" → "Hoppla, das hat nicht geklappt – versuch es gleich nochmal!"
-
-Navigation & UI-Fehler
-
-☐ Quiz Duell - Zurück Knopf führt zu weit zurück
-☐ Am Ende des Tests soll er wieder ins Menü (Klasse/Fach-Auswahl)
-☐ Duell Menü - Zurück führt nicht in Auswahl sondern zu Spielern
-☐ Lobby verlassen muss zurück zum Duell Setup führen
-☐ Live Duell Play - Verlass Button zurück zu Duell Setup
-☐ TV Quiz - Lobby verlassen führt zu weit zurück
-☐ TV Quiz - Siegerehrung führt zu falschem Menü
-
-Belohnungs-Anzeige
-
-☐ Coins müssen sofort aktualisiert werden
-  · Ohne manuelles Neuladen der Seite
-
----
-
-🏛️ KATEGORIE 2: APP-STRUKTUR, UI/UX & DESIGN
-
-Wording & Menüstruktur
-
-☐ "Profil" überall in "Spieler" ändern
-  · "Spieler wählen" statt "Profil wählen"
-☐ "TV Duell" statt "TV Familien Quiz"
-  · Konsistente Benennung
-☐ EduPlay-Schriftzug prominenter/größer
-  · Mittig positionieren, Version Nummer darunter
-☐ "Zurück"-Navigation aufräumen
-  · Klar trennen zwischen "Einen Schritt zurück" und "Zum Hauptmenü"
-  · Einheitliches Navigations-Muster schaffen
-  · Nach Siegerehrung in jeweiliges Menü kommen
-
-Spieler-Auswahl verbessern
-
-☐ Dashboard bei Spielerauswahl entfernen
-☐ Text "Familie" über Ranglisten-Button entfernen, Button etwas höher
-☐ "Neuer Spieler" und "Gast" Button etwas nach oben schieben
-☐ Alle Abstände symmetrisch gestalten
-
-Slide-in-Menü / Burger-Menü
-
-☐ Einstellungen-Menü-Punkt erstellen
-  · Ton an/aus Knopf rein
-  · PIN ändern Knopf hier rein (aus Elternbereich raus)
-  · Später: PIN ändern über E-Mail
-☐ View-Menu (Spieler Menü)
-  · Ton an/aus Knopf entfernen (nur Fernseher verbinden lassen)
-  · Profil bearbeiten Knopf beim Spieler Namen einfügen
-
-Dashboard
-
-☐ Überschrift "Dashboard" größer
-☐ "Übersicht" in "Zurück" umbenennen
-☐ EduPlay wieder mittig
-☐ Wörter entweder alle auflisten oder ganz weg lassen
-
-Responsive Design
-
-☐ TV-Modus Optimierung
-  · Handydarstellung anpassen, sodass TV-Modus vom Smartphone genauso vollbildfüllend aussieht wie vom Laptop
-☐ Responsive für Tablets verbessern
-  · Größere Buttons, mehr Spalten
-☐ Dark Mode Kontraste prüfen (WCAG)
-  · Text auf dunklem Hintergrund verbessern
-
-Animationen & Feedback
-
-☐ Lade-Spinner einbauen
-  · Wenn Firebase lädt, damit App nicht eingefroren wirkt
-☐ Animationen sanfter machen
-  · Elastic- oder Fade-Effekte
-☐ UX-Feedback verbessern
-  · Ladezustände überall anzeigen
-
-Helle-Modus UI verbessern
-
-☐ Helle-Modus UI optimieren
-
-Navigation vereinheitlichen
-
-☐ Auf EduPlay links oben klicken → Home Menü
-☐ Zurück-Buttons überall logisch anpassen
-☐ Manche Bereiche haben gar keinen Zurück-Button - beheben
-
----
+Im TV Modus Spiel sollten wir da ein QR Code oder eintritts code machen damit andere Spieler  mit einem. anderen Account rein können und dann man zusammen spielt.
 
 🗄️ KATEGORIE 3: DATENBANK & QUIZ-LOGIK (data.js)
 
 Antworten & Fragen-Struktur
-
-☐ 4. Antwortmöglichkeit konsequent hinzufügen
-  · Überall, nicht nur teilweise
-☐ Antwort-Mischung (Shuffle) überall aktivieren
-  · prepareQuestions() konsequent für alle Modi (Quiz, Duell, TV)
-  · Nicht nur für Standard-Quiz
-☐ Antwortlängen & Erkennbarkeit beheben (Das 51,7% Problem)
-  · Richtige Antwort oft die längste/detaillierteste
-  · Falsche Antworten meist kürzer oder anders formuliert
-  · Lösung: Antworten auf gleiche Länge kürzen/anpassen oder gleichem Schema folgen
   · Bei "Würdest du eher"-Fragen: lustige/ausführliche Antwort bewusst kürzen
-☐ Eindeutige IDs für jede Frage
-  · Buchstaben-Zahlen-Kombination, unveränderlich
 ☐ Feld-Trennung: Klasse/Zielgruppe und Fach trennen
   · Nicht mehr kombiniert als "k1_deutsch"
-  · Separate Eigenschaften
-☐ Neue Felder einfügen
-  · Schwierigkeitsgrade (leicht, mittel, schwer)
-  · Punktewerte direkt in Datenbank
+  · Separate Eigenschafte
+  
 ☐ Premium-Flags vorbereiten
   · Für spätere Bezahlmodelle
 
@@ -544,3 +394,6 @@ Priorität 4 (Langfristig/Zukunft)
 · Die 5 EduPlay-Welten
 · Technische Schulden abbauen
 · Alle Punkte aus Kategorie 7, 8, 9
+
+
+Code teilen Button erstellen der sofort den Code teilt.

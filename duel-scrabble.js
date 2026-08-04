@@ -106,11 +106,11 @@
             const nameB = ALL_PROFILES[keyB].name;
             let resultTitle;
             if (scoreA > scoreB) {
-                resultTitle = `🏆 ${nameA} gewinnt!`;
+                resultTitle = `🏆 ${esc(nameA)} gewinnt!`;
                 awardXPToProfile(keyA, 15);
                 awardXPToProfile(keyB, 5);
             } else if (scoreB > scoreA) {
-                resultTitle = `🏆 ${nameB} gewinnt!`;
+                resultTitle = `🏆 ${esc(nameB)} gewinnt!`;
                 awardXPToProfile(keyB, 15);
                 awardXPToProfile(keyA, 5);
             } else {
@@ -121,11 +121,11 @@
             document.getElementById("duel-result-content").innerHTML = `
     <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(244,63,94,0.2);">
         <div class="text-6xl">⚔️</div>
-        <h2 class="text-2xl font-black text-white">\${resultTitle}</h2>
+        <h2 class="text-2xl font-black text-white">${resultTitle}</h2>
         <div class="flex justify-around items-center mt-4">
-            <div><div class="text-3xl font-black text-indigo-400">\${scoreA}</div><div class="text-xs font-bold text-gray-400 mt-1">\${nameA}</div></div>
+            <div><div class="text-3xl font-black text-indigo-400">${scoreA}</div><div class="text-xs font-bold text-gray-400 mt-1">${esc(nameA)}</div></div>
             <div class="text-gray-600 font-black">VS</div>
-            <div><div class="text-3xl font-black text-pink-400">\${scoreB}</div><div class="text-xs font-bold text-gray-400 mt-1">\${nameB}</div></div>
+            <div><div class="text-3xl font-black text-pink-400">${scoreB}</div><div class="text-xs font-bold text-gray-400 mt-1">${esc(nameB)}</div></div>
         </div>
         
         <!-- Überarbeitete Buttons -->
@@ -347,60 +347,74 @@
             }).join("");
         }
 
-        // ---- Tap-Steine für das lokale Wort-Duell (statt Tastatur-Eingabe) ----
-        let scrabbleSelected = [];
+        // ============================================================
+        //  TIPP-KACHELN (offline Wort-Duell, gleiches Prinzip wie beim
+        //  Online-Wort-Duell in live-duel.js)
+        // ============================================================
+        let srSelected = [];
+        let srCurrentLetters = [];
+        let srCurrentRequired = "";
 
         function srCurrentWord() {
-            const letters = (scrabbleState && scrabbleState.currentLetters) || [];
-            return scrabbleSelected.map(i => letters[i]).join("");
+            return srSelected.map(i => srCurrentLetters[i]).join("");
         }
 
         function renderScrabbleTiles(letters, required) {
+            srSelected = [];
+            srCurrentLetters = letters;
+            srCurrentRequired = required;
             document.getElementById("scrabble-tiles").innerHTML =
-                scrabbleTilesHTML(letters, false, required, scrabbleSelected, "srTapTile");
-            srUpdatePreview();
+                scrabbleTilesHTML(letters, false, required, srSelected, "srTapTile");
+            srRenderPreview();
         }
 
-        function srUpdatePreview() {
+        function srRenderPreview() {
             const word = srCurrentWord();
-            const prev = document.getElementById("scrabble-word-preview");
-            if (prev) {
-                prev.innerText = word || "…";
-                prev.classList.toggle("text-gray-500", !word);
-                prev.classList.toggle("text-white", !!word);
+            const preview = document.getElementById("scrabble-word-preview");
+            if (preview) {
+                preview.innerText = word || "…";
+                preview.classList.toggle("text-gray-500", !word);
+                preview.classList.toggle("text-white", !!word);
             }
             const undoBtn = document.getElementById("scrabble-undo-btn");
-            if (undoBtn) undoBtn.disabled = scrabbleSelected.length === 0;
-
+            if (undoBtn) undoBtn.disabled = srSelected.length === 0;
+            const tilesContainer = document.getElementById("scrabble-tiles");
+            if (tilesContainer) {
+                tilesContainer.innerHTML = scrabbleTilesHTML(srCurrentLetters, false, srCurrentRequired, srSelected, "srTapTile");
+            }
             const fb = document.getElementById("scrabble-live-feedback");
-            if (!fb || (scrabbleState && scrabbleState.actionMode && !word)) return;
-            if (!word) { fb.innerText = ""; return; }
-            const result = computeScrabbleWordScore(word, (scrabbleState || {}).currentLetters || []);
-            fb.innerText = result.valid
-                ? `${result.score} Punkte möglich${result.bonus ? " (inkl. +50 Bonus!)" : ""} – wird beim Einreichen geprüft`
-                : "❌ Diese Buchstaben hast du nicht (oder zu oft benutzt)";
-            fb.className = "text-center text-sm font-bold h-5 " + (result.valid ? "text-emerald-400" : "text-rose-400");
+            if (fb) {
+                if (!word) { fb.innerText = ""; }
+                else {
+                    const result = computeScrabbleWordScore(word, srCurrentLetters);
+                    fb.innerText = result.valid ?
+                        `${result.score} Punkte möglich${result.bonus ? " (inkl. +50 Bonus!)" : ""} – wird beim Einreichen geprüft` :
+                        "❌ Diese Buchstaben hast du nicht (oder zu oft benutzt)";
+                    fb.className = "text-center text-sm font-bold h-5 " + (result.valid ? "text-emerald-400" : "text-rose-400");
+                }
+            }
         }
 
         function srTapTile(idx) {
-            if (!scrabbleState || scrabbleSubmitting) return;
-            if (scrabbleSelected.includes(idx)) return;
-            if (scrabbleSelected.length >= scrabbleState.currentLetters.length) return;
-            scrabbleSelected.push(idx);
+            if (srSelected.includes(idx)) return;
+            if (srSelected.length >= srCurrentLetters.length) return;
+            srSelected.push(idx);
             if (typeof SFX !== "undefined") SFX.tap();
-            renderScrabbleTiles(scrabbleState.currentLetters, scrabbleState.required);
+            srRenderPreview();
         }
 
         function srUndoTile() {
-            if (!scrabbleState || scrabbleSelected.length === 0) return;
-            scrabbleSelected.pop();
-            renderScrabbleTiles(scrabbleState.currentLetters, scrabbleState.required);
+            if (srSelected.length === 0) return;
+            srSelected.pop();
+            if (typeof SFX !== "undefined") SFX.tap();
+            srRenderPreview();
         }
 
         function srClearTiles() {
-            if (!scrabbleState) return;
-            scrabbleSelected = [];
-            renderScrabbleTiles(scrabbleState.currentLetters, scrabbleState.required);
+            if (srSelected.length === 0) return;
+            srSelected = [];
+            if (typeof SFX !== "undefined") SFX.tap();
+            srRenderPreview();
         }
 
         function computeScrabbleWordScore(word, letters) {
@@ -555,7 +569,6 @@
             const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
             document.getElementById("scrabble-progress").innerText =
                 `Runde ${scrabbleState.round}/${scrabbleState.rounds} – ${esc(ALL_PROFILES[key].name)}`;
-            scrabbleSelected = [];
             renderScrabbleTiles(scrabbleState.currentLetters, scrabbleState.required);
 
             const submitBtn = document.querySelector('#scrabble-play-area button[onclick="submitScrabbleWord()"]');
@@ -564,9 +577,7 @@
                 submitBtn.classList.remove("opacity-50");
             }
             scrabbleSubmitting = false;
-
-            const fbEl = document.getElementById("scrabble-live-feedback");
-            if (fbEl) fbEl.innerText = "";
+            srRenderPreview();
 
             let timeLeft = SCRABBLE_DIFFICULTIES[scrabbleState.difficulty].time;
             document.getElementById("scrabble-timer").innerText = timeLeft;
@@ -628,7 +639,7 @@
                 submitBtn.disabled = true;
                 submitBtn.classList.add("opacity-50");
             }
-            const word = cleanInput(srCurrentWord(), 20).toUpperCase();
+            const word = srCurrentWord();
             const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
 
             const fb = document.getElementById("scrabble-live-feedback");
@@ -856,8 +867,7 @@
             scrabbleState.solution = newRack.solution;
             scrabbleState.required = newRack.required;
 
-            // Buchstaben neu rendern + bisherige Auswahl verwerfen
-            scrabbleSelected = [];
+            // Buchstaben neu rendern (setzt die Kachel-Auswahl automatisch zurück)
             renderScrabbleTiles(scrabbleState.currentLetters, scrabbleState.required);
 
             // Feedback anzeigen

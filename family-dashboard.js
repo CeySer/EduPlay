@@ -322,7 +322,11 @@
             currentPlayer.learnedWords = Array.from(sessionLearnedWords);
             currentPlayer.lastActive = Date.now();
             ALL_PROFILES[activePlayerKey] = currentPlayer;
-            db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(activePlayerKey).set(currentPlayer);
+            // merge:true, damit parallele Änderungen der Eltern (z.B. zugewiesener Test,
+            // Klasse/Geburtstag) nicht vom RAM-Stand des Kindes überschrieben werden.
+            db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(activePlayerKey)
+                .set(currentPlayer, { merge: true })
+                .catch(e => handleError("savePlayerProgress", e, "Fortschritt konnte nicht gespeichert werden."));
             document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
         }
 
@@ -1431,7 +1435,9 @@
             const vocabDir = document.getElementById('dash-test-dir')?.value || 'de2f';
             const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, vocabDir, createdAt: new Date().toISOString() };
             ALL_PROFILES[profileKey].pendingTest = pendingTest;
-            db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey).update({ pendingTest });
+            db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
+                .update({ pendingTest })
+                .catch(e => handleError("assignTestFromDashboard", e, "Test konnte nicht zugewiesen werden."));
             showToast(`Test für ${esc(ALL_PROFILES[profileKey].name)} zugewiesen! ⏱️`, "success");
             renderDashAdminProgress();
         }

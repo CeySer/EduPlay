@@ -1,33 +1,33 @@
 // ============================================================
 // DATENBANKEN LOADER
-// Version: 7.9
+// Version: 8.0
 // ============================================================
 
 (function () {
-    console.log('🔥 datenbanken_loader.js v7.9');
+    console.log('🔥 datenbanken_loader.js v8.0');
 
     const scripts = [
         // Wörter
         'fragen/words_kids.js?v=7.8',
-        'fragen/words_adult.js?v=7.8',
+        'fragen/words_adult.js?v=8.0',
 
         // Vokabeln
         'fragen/vocabulary.js?v=7.8',
 
         // Schule
-        'fragen/questions_school.js?v=7.8',
+        'fragen/questions_school.js?v=8.0',
 
         // Beruf – Meta + Einzelgruppen + KFZ
-        'fragen/questions_beruf.js?v=7.9',
-        'fragen/beruf/beruf_elektro.js?v=7.8',
-        'fragen/beruf/beruf_tischler.js?v=7.8',
-        'fragen/beruf/beruf_industriemechaniker.js?v=7.8',
-        'fragen/beruf/beruf_fachinformatiker.js?v=7.8',
-        'fragen/beruf/beruf_buero.js?v=7.8',
-        'fragen/beruf/beruf_verkaeufer.js?v=7.8',
-        'fragen/beruf/beruf_pflege.js?v=7.8',
-        'fragen/beruf/beruf_friseur.js?v=7.8',
-        'fragen/beruf/beruf_kfz.js?v=7.9',
+        'fragen/questions_beruf.js?v=8.0',
+        'fragen/beruf/beruf_elektro.js?v=8.0',
+        'fragen/beruf/beruf_tischler.js?v=8.0',
+        'fragen/beruf/beruf_industriemechaniker.js?v=8.0',
+        'fragen/beruf/beruf_fachinformatiker.js?v=8.0',
+        'fragen/beruf/beruf_buero.js?v=8.0',
+        'fragen/beruf/beruf_verkaeufer.js?v=8.0',
+        'fragen/beruf/beruf_pflege.js?v=8.0',
+        'fragen/beruf/beruf_friseur.js?v=8.0',
+        'fragen/beruf/beruf_kfz.js?v=8.0',
 
         // Fun – Meta (nur FUN_CATEGORIES)
         'fragen/questions_fun.js?v=7.8',
@@ -45,7 +45,7 @@
         'fragen/klasse3/questions_k3_sachunterricht.js?v=7.8',
         'fragen/klasse3/questions_k3_englisch.js?v=7.8',
         'fragen/klasse4/questions_k4_mathe.js?v=7.8',
-        'fragen/klasse4/questions_k4_deutsch.js?v=7.8',
+        'fragen/klasse4/questions_k4_deutsch.js?v=8.0',
         'fragen/klasse4/questions_k4_sachunterricht.js?v=7.8',
         'fragen/klasse4/questions_k4_englisch.js?v=7.8',
 
@@ -56,23 +56,23 @@
         'fragen/fun/kinder_wissen.js?v=7.8',
 
         // Fun – Spaß (Einzeldateien)
-        'fragen/fun/spass_allgemein.js?v=7.8',
-        'fragen/fun/spass_kleine.js?v=7.8',
-        'fragen/fun/spass_wuerdest_du.js?v=7.8',
-        'fragen/fun/spass_nice_to_know.js?v=7.8',
-        'fragen/fun/spass_ungewoehnliches.js?v=7.8',
-        'fragen/fun/spass_sport_film.js?v=7.8',
-        'fragen/fun/spass_musik.js?v=7.8',
-        'fragen/fun/spass_essen.js?v=7.8',
-        'fragen/fun/spass_tiere.js?v=7.8',
-        'fragen/fun/spass_laender.js?v=7.8',
-        'fragen/fun/spass_erfindungen.js?v=7.8',
-        'fragen/fun/spass_raetsel.js?v=7.8',
+        'fragen/fun/spass_allgemein.js?v=8.0',
+        'fragen/fun/spass_kleine.js?v=8.0',
+        'fragen/fun/spass_wuerdest_du.js?v=8.0',
+        'fragen/fun/spass_nice_to_know.js?v=8.0',
+        'fragen/fun/spass_ungewoehnliches.js?v=8.0',
+        'fragen/fun/spass_sport_film.js?v=8.0',
+        'fragen/fun/spass_musik.js?v=8.0',
+        'fragen/fun/spass_essen.js?v=8.0',
+        'fragen/fun/spass_tiere.js?v=8.0',
+        'fragen/fun/spass_laender.js?v=8.0',
+        'fragen/fun/spass_erfindungen.js?v=8.0',
+        'fragen/fun/spass_raetsel.js?v=8.0',
         'fragen/fun/spass_humor.js?v=7.8',
-        'fragen/fun/spass_beruf_humor.js?v=7.8',
+        'fragen/fun/spass_beruf_humor.js?v=8.0',
         'fragen/fun/spass_hauptstaedte.js?v=7.8',
         'fragen/fun/spass_hauptstaedte_europa.js?v=7.8',
-        'fragen/fun/spass_schaetzfragen.js?v=7.8',
+        'fragen/fun/spass_schaetzfragen.js?v=8.0',
 
         // Formeln
         'formula.js?v=7.8'

@@ -19,7 +19,7 @@
 
     <!-- DATENBANKEN -->
     <!-- DATENBANKEN - ZENTRAL GELADEN -->
-    <script src="datenbanken_loader.js?v=7.9"></script>
+    <script src="datenbanken_loader.js?v=8.0"></script>
 
 
     <link rel="icon" href="data:,">
@@ -1134,8 +1134,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Spieler
                         wechseln</button>
                     <div class="flex items-center gap-2">
+                        <!-- Cast-Button ausgeblendet: benötigt receiver.html (fehlt) für den
+                             Zweitbildschirm-Modus. Das eigenständige "TV-Quiz" (Menü-Kachel)
+                             ist davon nicht betroffen und funktioniert unabhängig. -->
                         <button onclick="toggleCast()" id="castButton" title="Mit Fernseher verbinden"
-                            class="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
+                            class="hidden w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
                     </div>
                 </div>
 
@@ -1796,17 +1799,17 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=7.5"></script>
-    <script src="family-dashboard.js?v=7.6"></script>
-    <script src="ui-common.js?v=7.5"></script>
+    <script src="app-config.js?v=7.6"></script>
+    <script src="family-dashboard.js?v=7.7"></script>
+    <script src="ui-common.js?v=7.6"></script>
     <script src="quiz-core.js?v=7.5"></script>
     <script src="vocab.js?v=7.5"></script>
-    <script src="duel-scrabble.js?v=7.1"></script>
+    <script src="duel-scrabble.js?v=7.2"></script>
     <script src="wortraten.js?v=1.1"></script>
-    <script src="tv-cast.js?v=7.5"></script>
-    <script src="live-duel.js?v=7.8"></script>
+    <script src="tv-cast.js?v=7.6"></script>
+    <script src="live-duel.js?v=7.9"></script>
     <script src="app-misc.js?v=7.5"></script>
-    <script src="lobby-avatar.js?v=7.9"></script>
+    <script src="lobby-avatar.js?v=8.0"></script>
 
 
     <!-- ========================================================== burger menü

@@ -281,6 +281,14 @@
             if (viewId !== 'wortraten-play' && typeof wortratenState !== 'undefined' && wortratenState) {
                 wortratenState.roundActive = false;
             }
+            // Live-Duell-Listener stoppen, wenn wir die Duell-Ansichten verlassen
+            // (z.B. über FAB/Drawer). Der Firestore-Eintrag bleibt bestehen, ein
+            // erneutes Beitreten (offene Duelle / Lobby-Code) hängt sich wieder ein.
+            const _liveDuelViews = ['live-duel-setup', 'live-duel-lobby', 'live-duel-play', 'live-duel-result'];
+            if (!_liveDuelViews.includes(viewId) && typeof liveDuelUnsubscribe !== 'undefined' && liveDuelUnsubscribe) {
+                try { liveDuelUnsubscribe(); } catch (e) { }
+                liveDuelUnsubscribe = null;
+            }
 
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
             const target = document.getElementById(`view-${viewId}`);

@@ -12,6 +12,10 @@
         let liveDuelInputLockUntil = 0;
         let liveDuelUsedWords = new Set();
         let liveDuelHeartbeat = null;
+        let liveDuelHostTakeoverInFlight = false;
+        const HOST_STALE_MS = 45000;
+        const liveDuelCoinsClaimedLocal = new Set();
+        let liveDuelResolvedRoundKey = "";
 
         const SCRABBLE_ANSWER_SECONDS = { leicht: 30, mittel: 20, schwer: 15, experte: 12, profi: 35 };
 
@@ -140,6 +144,7 @@
                 isLiveDuelCreator = true;
                 liveDuelResolving = false;
                 liveDuelRenderKey = "";
+                liveDuelResolvedRoundKey = "";
                 maybeStartHostHeartbeat();
                 subscribeLiveDuel();
             } catch (e) { handleError("createLiveDuel", e, "Das Duell konnte nicht erstellt werden."); }
@@ -180,6 +185,7 @@
                 isLiveDuelCreator = (data.createdBy === activePlayerKey);
                 liveDuelResolving = false;
                 liveDuelRenderKey = "";
+                liveDuelResolvedRoundKey = "";
                 maybeStartHostHeartbeat();
                 showToast(wasAlreadyIn ? "Willkommen zurück im Duell!" : (midGame ?
                     "Du bist dabei – es geht in der nächsten Runde los!" :
@@ -243,6 +249,22 @@
             if (isLiveDuelCreator && data.status !== "finished") maybeStartHostHeartbeat();
             else stopHostHeartbeat();
 
+            // Host-Übernahme: hat sich der Ersteller lange nicht gemeldet (Tab zu, Akku leer,
+            // Netz weg), übernimmt automatisch der Mitspieler mit dem kleinsten Key, damit
+            // nicht alle für immer auf "Warte auf den Ersteller" hängen bleiben.
+            if (!isLiveDuelCreator && data.status !== "finished") {
+                const lastSeen = data.hostLastSeen || data.createdAt || 0;
+                if (Date.now() - lastSeen > HOST_STALE_MS && !liveDuelHostTakeoverInFlight) {
+                    const activeKeys = Object.keys(data.players || {}).filter(k => !data.players[k].pending).sort();
+                    if (activeKeys[0] === activePlayerKey) {
+                        liveDuelHostTakeoverInFlight = true;
+                        liveDuelRef.update({ createdBy: activePlayerKey, hostLastSeen: Date.now() })
+                            .catch(() => { })
+                            .finally(() => { liveDuelHostTakeoverInFlight = false; });
+                    }
+                }
+            }
+
             if (data.status === "waiting") {
                 clearLiveDuelTimers();
                 const list = document.getElementById("live-duel-player-list");
@@ -260,7 +282,15 @@
             }
 
             if (data.status === "playing") {
-                liveDuelResolving = false;
+                // liveDuelResolving nur bei echtem Rundenwechsel zurücksetzen, nicht bei jedem
+                // Snapshot (z.B. Heartbeat) – sonst kann eine noch laufende Auswertung
+                // (z.B. Scrabble-Wortprüfung) ein zweites Mal angestoßen werden.
+                const _roundKey = data.type === "wortraten" ? ("wr:" + data.currentRound) :
+                    data.type === "scrabble" ? ("sc:" + data.currentRound) : ("qz:" + data.currentIndex);
+                if (_roundKey !== liveDuelResolvedRoundKey) {
+                    liveDuelResolvedRoundKey = _roundKey;
+                    liveDuelResolving = false;
+                }
 
                 if (myData.pending) {
                     renderLiveDuelPending(data);
@@ -362,6 +392,7 @@
                 const statusEl = document.getElementById("live-duel-status");
                 if (statusEl) statusEl.innerText = "Auflösung";
                 liveDuelRenderKey = "";
+                liveDuelResolvedRoundKey = "";
                 renderLiveDuelReveal(data);
                 switchView('live-duel-play');
 
@@ -393,10 +424,14 @@
                 clearLiveDuelTimers();
                 stopLiveDuelActionMode(); // <-- Action-Mode stoppen wenn beendet
 
-                if (!myData.coinsClaimed) {
+                // Lokale Sperre zusätzlich zum Firestore-Flag: mehrere Snapshots können eintreffen,
+                // bevor der eigene coinsClaimed-Write beim Server angekommen ist (sonst Mehrfach-Gutschrift).
+                const _coinKey = liveDuelRef.id + ":" + activePlayerKey;
+                if (!myData.coinsClaimed && !liveDuelCoinsClaimedLocal.has(_coinKey)) {
+                    liveDuelCoinsClaimedLocal.add(_coinKey);
                     currentPlayer.coins += (myData.score || 0);
                     savePlayerProgress();
-                    liveDuelRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true });
+                    liveDuelRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true }).catch(() => { });
                 }
                 renderLiveDuelFinalResult(data);
                 switchView('live-duel-result');
@@ -668,62 +703,71 @@
 
         async function wrLiveGuessLetter(letter) {
             if (!liveDuelRef) return;
-            const snap = await liveDuelRef.get();
-            if (!snap.exists) return;
-            const data = snap.data();
-            if (data.status !== "playing" || data.type !== "wortraten" || data.roundOver) return;
-            const key = wrLiveActivePlayerKey(data);
-            if (key !== activePlayerKey) return;
-            const guessed = data.guessed || [];
-            if (guessed.includes(letter)) return;
+            // Als Transaktion: verhindert, dass zwei schnell hintereinander getippte
+            // Buchstaben beide vom selben (veralteten) Stand ausgehen und sich
+            // gegenseitig überschreiben (verlorene Punkte/Buchstaben).
+            let outcome = null;
+            try {
+                await db.runTransaction(async (txn) => {
+                    const snap = await txn.get(liveDuelRef);
+                    if (!snap.exists) return;
+                    const data = snap.data();
+                    if (data.status !== "playing" || data.type !== "wortraten" || data.roundOver) return;
+                    const key = wrLiveActivePlayerKey(data);
+                    if (key !== activePlayerKey) return;
+                    const guessed = data.guessed || [];
+                    if (guessed.includes(letter)) return;
 
-            const word = data.word || "";
-            const isHit = word.includes(letter);
-            const newGuessed = guessed.concat([letter]);
-            const players = data.players;
+                    const word = data.word || "";
+                    const isHit = word.includes(letter);
+                    const newGuessed = guessed.concat([letter]);
+                    const players = data.players;
 
-            let wrongCount = data.wrongCount || 0;
-            let roundOver = false, roundSolved = false;
-            const update = {};
+                    let wrongCount = data.wrongCount || 0;
+                    let roundOver = false, roundSolved = false;
+                    let points = 0;
+                    let parts = [];
 
-            if (isHit) {
-                const occ = wrCountOccurrences(word, letter);
-                players[key].answerStreak = (players[key].answerStreak || 0) + 1;
-                const b = (typeof calcAnswerBonus === "function") ? calcAnswerBonus(players[key].answerStreak, true) : { bonus: 0, parts: [] };
-                let points = occ * 3 + b.bonus;
-                if (wrIsComplete(word, new Set(newGuessed))) {
-                    points += 15;
-                    roundOver = true;
-                    roundSolved = true;
-                }
-                players[key].score = (players[key].score || 0) + points;
-                players[key].lastRoundPoints = points;
-                if (typeof showPointsPopup === "function" && key === activePlayerKey) showPointsPopup(points, roundSolved ? "Wort komplett! +15 🎉" : (b.parts.join(" · ") || "Treffer!"));
-            } else {
-                players[key].answerStreak = 0;
-                wrongCount++;
-                if (wrongCount >= WORTRAETSEL_MAX_WRONG) {
-                    roundOver = true;
-                    roundSolved = false;
-                }
+                    if (isHit) {
+                        const occ = wrCountOccurrences(word, letter);
+                        players[key].answerStreak = (players[key].answerStreak || 0) + 1;
+                        const b = (typeof calcAnswerBonus === "function") ? calcAnswerBonus(players[key].answerStreak, true) : { bonus: 0, parts: [] };
+                        points = occ * 3 + b.bonus;
+                        parts = b.parts || [];
+                        if (wrIsComplete(word, new Set(newGuessed))) {
+                            points += 15;
+                            roundOver = true;
+                            roundSolved = true;
+                        }
+                        players[key].score = (players[key].score || 0) + points;
+                        players[key].lastRoundPoints = points;
+                    } else {
+                        players[key].answerStreak = 0;
+                        wrongCount++;
+                        if (wrongCount >= WORTRAETSEL_MAX_WRONG) {
+                            roundOver = true;
+                            roundSolved = false;
+                        }
+                    }
+
+                    const update = { guessed: newGuessed, wrongCount, players, roundOver, roundSolved };
+                    if (!roundOver) {
+                        const order = (data.order || []).filter(k => players[k] && !players[k].pending);
+                        const curIdx = order.indexOf(key);
+                        update.turnIndex = order.length > 0 ? (curIdx + 1) % order.length : 0;
+                    }
+                    txn.update(liveDuelRef, update);
+                    outcome = { isHit, roundOver, roundSolved, points, parts, key };
+                });
+            } catch (e) { handleError("wrLiveGuessLetter", e, "Der Buchstabe konnte nicht übermittelt werden."); return; }
+
+            if (!outcome) return;
+            if (outcome.isHit && typeof showPointsPopup === "function" && outcome.key === activePlayerKey) {
+                showPointsPopup(outcome.points, outcome.roundSolved ? "Wort komplett! +15 🎉" : (outcome.parts.join(" · ") || "Treffer!"));
             }
-
-            update.guessed = newGuessed;
-            update.wrongCount = wrongCount;
-            update.players = players;
-            update.roundOver = roundOver;
-            update.roundSolved = roundSolved;
-            if (!roundOver) {
-                const order = (data.order || []).filter(k => players[k] && !players[k].pending);
-                const curIdx = order.indexOf(key);
-                update.turnIndex = order.length > 0 ? (curIdx + 1) % order.length : 0;
-            }
-
-            await liveDuelRef.update(update);
-
-            if (typeof SFX !== "undefined") { if (isHit) SFX.correct(); else SFX.wrong(); }
-            if (roundOver) {
-                try { if (roundSolved && typeof confetti === "function") confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } }); } catch (e) { }
+            if (typeof SFX !== "undefined") { if (outcome.isHit) SFX.correct(); else SFX.wrong(); }
+            if (outcome.roundOver) {
+                try { if (outcome.roundSolved && typeof confetti === "function") confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } }); } catch (e) { }
                 if (isLiveDuelCreator) setTimeout(() => wrLiveAdvanceRound(), 2200);
             }
         }
@@ -769,6 +813,21 @@
             });
         }
 
+
+        // Holt kurz vor einem "ganze players-Map"-Write nochmal den aktuellen Stand und
+        // übernimmt Spieler, die zwischenzeitlich beigetreten sind (Feldpfad-Write des
+        // Joins), damit sie nicht durch den veralteten lokalen Stand überschrieben werden.
+        async function mergeLateJoiners(players) {
+            try {
+                const fresh = await liveDuelRef.get();
+                if (!fresh.exists) return players;
+                const freshPlayers = fresh.data().players || {};
+                Object.keys(freshPlayers).forEach(key => {
+                    if (!players[key]) players[key] = freshPlayers[key];
+                });
+            } catch (e) { }
+            return players;
+        }
 
         async function resolveLiveDuelRound(data) {
             const fresh = await liveDuelRef.get();
@@ -822,7 +881,7 @@
                 }
                 await liveDuelRef.update({
                     status: "reveal",
-                    players,
+                    players: await mergeLateJoiners(players),
                     correctAnswer: correct,
                     answerDeadline: null,
                     review
@@ -893,7 +952,7 @@
                         liveDuelUsedWords.add(String(players[k].word).toUpperCase());
                     }
                 });
-                await liveDuelRef.update({ status: "reveal", players, answerDeadline: null });
+                await liveDuelRef.update({ status: "reveal", players: await mergeLateJoiners(players), answerDeadline: null });
 
                 try {
                     if (activePlayerKey && players[activePlayerKey] && players[activePlayerKey].lastRoundPoints > 0
@@ -1187,6 +1246,7 @@
                 }
                 liveDuelResolving = false;
                 liveDuelRenderKey = "";
+                liveDuelResolvedRoundKey = "";
                 SFX.tap();
                 showToast("Neue Runde gestartet – alle sind dabei! 🚀");
             } catch (e) {
@@ -1321,6 +1381,7 @@
             }
 
             liveDuelRenderKey = "";
+            liveDuelResolvedRoundKey = "";
             renderFamilyHub();
             try { if (typeof confetti === 'function') confetti(); } catch (e) { }
             SFX.win();
@@ -1338,6 +1399,7 @@
             isLiveDuelCreator = false;
             liveDuelResolving = false;
             liveDuelRenderKey = "";
+            liveDuelResolvedRoundKey = "";
             switchView(currentPlayer ? 'menu' : 'family-hub');
 
             if (!ref) return;
@@ -1780,6 +1842,7 @@
                 isLiveDuelCreator = true;
                 liveDuelResolving = false;
                 liveDuelRenderKey = "";
+                liveDuelResolvedRoundKey = "";
                 maybeStartHostHeartbeat();
                 subscribeLiveDuel();
             } catch (e) {
@@ -2017,6 +2080,7 @@
                 }
                 liveDuelResolving = false;
                 liveDuelRenderKey = "";
+                liveDuelResolvedRoundKey = "";
                 SFX.tap();
                 showToast("Neue Runde gestartet – alle sind dabei! 🚀");
             } catch (e) {
@@ -2039,6 +2103,7 @@
             isLiveDuelCreator = false;
             liveDuelResolving = false;
             liveDuelRenderKey = "";
+            liveDuelResolvedRoundKey = "";
             switchView(currentPlayer ? 'menu' : 'family-hub');
 
             if (!ref || !activePlayerKey) return;

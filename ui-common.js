@@ -1,33 +1,6 @@
         // ============================================================
         //  DRAWER LOGIK
         // ============================================================
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('.menu-fab-btn').forEach(function (btn) {
-                const fill = btn.querySelector('.menu-fab-ring-fill');
-                if (!fill) return;
-                let raf = null;
-                function start() {
-                    if (raf) cancelAnimationFrame(raf);
-                    const dur = 450, t0 = performance.now();
-                    fill.style.transition = 'none';
-                    function step(t) {
-                        const p = Math.min(1, (t - t0) / dur);
-                        fill.style.strokeDashoffset = String(94.2 * (1 - p));
-                        if (p < 1) raf = requestAnimationFrame(step);
-                    }
-                    raf = requestAnimationFrame(step);
-                }
-                function reset() {
-                    if (raf) cancelAnimationFrame(raf);
-                    fill.style.transition = 'stroke-dashoffset .25s ease-out';
-                    fill.style.strokeDashoffset = '94.2';
-                }
-                btn.addEventListener('pointerdown', start);
-                btn.addEventListener('pointerup', reset);
-                btn.addEventListener('pointerleave', reset);
-            });
-        });
-
         function openDrawer() {
             if (typeof SFX !== 'undefined') SFX.tap();
 
@@ -201,5 +174,49 @@
             focusTimerInterval = null;
             focusTimeRemaining = 15 * 60;
             document.getElementById("timer-display").innerText = "15:00";
+        }
+
+        // ============================================================
+        //  PUNKTE-BONUS & POPUP (gemeinsam für Quiz/Duell/Wort-Rätsel/Scrabble/Vokabeln)
+        // ============================================================
+
+        // Bonus für Serien (Streak) und Schnelligkeit (zuerst richtig geantwortet).
+        // Gibt { bonus, parts } zurück – parts sind kurze Labels fürs Popup.
+        function calcAnswerBonus(streak, isFirst) {
+            let bonus = 0;
+            const parts = [];
+            streak = streak || 0;
+            if (streak >= 2) {
+                bonus += Math.min(streak - 1, 3);
+                parts.push(`🔥 Serie ×${streak}`);
+            }
+            if (isFirst) {
+                bonus += 2;
+                parts.push("⚡ Zuerst!");
+            }
+            return { bonus, parts };
+        }
+
+        // Zeigt eine kurze "+X Punkte"-Animation. Ohne container erscheint sie fest
+        // mittig auf dem Bildschirm, mit container relativ darin (z.B. Vokabel-Box).
+        function showPointsPopup(amount, detail, container) {
+            if (!amount) return;
+            const useFixed = !container;
+            const parent = useFixed ? document.body : container;
+            if (!parent) return;
+            const wrap = document.createElement("div");
+            wrap.className = "points-popup" + (useFixed ? " points-popup-fixed" : "");
+            wrap.innerHTML = `<div class="points-popup-amount">+${amount}</div>` +
+                (detail ? `<div class="points-popup-detail">${esc(String(detail))}</div>` : "");
+            if (!useFixed && getComputedStyle(parent).position === "static") {
+                parent.style.position = "relative";
+            }
+            parent.appendChild(wrap);
+            requestAnimationFrame(() => wrap.classList.add("show"));
+            setTimeout(() => {
+                wrap.classList.remove("show");
+                wrap.classList.add("hide");
+                setTimeout(() => wrap.remove(), 450);
+            }, 900);
         }
 

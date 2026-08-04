@@ -1,10 +1,10 @@
 // ============================================================
 // DATENBANKEN LOADER
-// Version: 7.8
+// Version: 7.9
 // ============================================================
 
 (function () {
-    console.log('🔥 datenbanken_loader.js v7.8');
+    console.log('🔥 datenbanken_loader.js v7.9');
 
     const scripts = [
         // Wörter
@@ -18,16 +18,19 @@
         'fragen/questions_school.js?v=7.8',
 
         // Beruf – Meta + Einzelgruppen + KFZ
-        'fragen/questions_beruf.js?v=7.8',
-        'fragen/beruf/beruf_buero.js?v=7.8',
+        'fragen/questions_beruf.js?v=7.9',
         'fragen/beruf/beruf_elektro.js?v=7.8',
-        'fragen/beruf/beruf_fachinformatiker.js?v=7.8',
-        'fragen/beruf/beruf_friseur.js?v=7.8',
-        'fragen/beruf/beruf_industriemechaniker.js?v=7.8',
-        'fragen/beruf/beruf_kfz.js?v=7.8',
-        'fragen/beruf/beruf_pflege.js?v=7.8',
         'fragen/beruf/beruf_tischler.js?v=7.8',
+        'fragen/beruf/beruf_industriemechaniker.js?v=7.8',
+        'fragen/beruf/beruf_fachinformatiker.js?v=7.8',
+        'fragen/beruf/beruf_buero.js?v=7.8',
         'fragen/beruf/beruf_verkaeufer.js?v=7.8',
+        'fragen/beruf/beruf_pflege.js?v=7.8',
+        'fragen/beruf/beruf_friseur.js?v=7.8',
+        'fragen/beruf/beruf_kfz.js?v=7.9',
+
+        // Fun – Meta (nur FUN_CATEGORIES)
+        'fragen/questions_fun.js?v=7.8',
 
         // Klasse 1–4
         'fragen/klasse1/questions_k1_mathe.js?v=7.8',
@@ -46,10 +49,6 @@
         'fragen/klasse4/questions_k4_sachunterricht.js?v=7.8',
         'fragen/klasse4/questions_k4_englisch.js?v=7.8',
 
-
-        // Fun – Meta (nur FUN_CATEGORIES)
-        'fragen/questions_fun.js?v=7.8',
-
         // Fun – Kinder
         'fragen/fun/kinder_anime.js?v=7.8',
         'fragen/fun/kinder_maerchen.js?v=7.8',
@@ -58,22 +57,22 @@
 
         // Fun – Spaß (Einzeldateien)
         'fragen/fun/spass_allgemein.js?v=7.8',
-        'fragen/fun/spass_beruf_humor.js?v=7.8',
-        'fragen/fun/spass_erfindungen.js?v=7.8',
+        'fragen/fun/spass_kleine.js?v=7.8',
+        'fragen/fun/spass_wuerdest_du.js?v=7.8',
+        'fragen/fun/spass_nice_to_know.js?v=7.8',
+        'fragen/fun/spass_ungewoehnliches.js?v=7.8',
+        'fragen/fun/spass_sport_film.js?v=7.8',
+        'fragen/fun/spass_musik.js?v=7.8',
         'fragen/fun/spass_essen.js?v=7.8',
+        'fragen/fun/spass_tiere.js?v=7.8',
+        'fragen/fun/spass_laender.js?v=7.8',
+        'fragen/fun/spass_erfindungen.js?v=7.8',
+        'fragen/fun/spass_raetsel.js?v=7.8',
+        'fragen/fun/spass_humor.js?v=7.8',
+        'fragen/fun/spass_beruf_humor.js?v=7.8',
         'fragen/fun/spass_hauptstaedte.js?v=7.8',
         'fragen/fun/spass_hauptstaedte_europa.js?v=7.8',
-        'fragen/fun/spass_humor.js?v=7.8',
-        'fragen/fun/spass_kleine.js?v=7.8',
-        'fragen/fun/spass_laender.js?v=7.8',
-        'fragen/fun/spass_musik.js?v=7.8',
-        'fragen/fun/spass_nice_to_know.js?v=7.8',
-        'fragen/fun/spass_raetsel.js?v=7.8',
         'fragen/fun/spass_schaetzfragen.js?v=7.8',
-        'fragen/fun/spass_sport_film.js?v=7.8',
-        'fragen/fun/spass_tiere.js?v=7.8',
-        'fragen/fun/spass_ungewoehnliches.js?v=7.8',
-        'fragen/fun/spass_wuerdest_du.js?v=7.8',
 
         // Formeln
         'formula.js?v=7.8'
@@ -83,7 +82,6 @@
     const questionSources = [
         'SCHOOL_QUESTIONS',
         // Beruf
-        'BERUF_KFZ_QUESTIONS',
         'BERUF_ELEKTRO_QUESTIONS',
         'BERUF_TISCHLER_QUESTIONS',
         'BERUF_INDUSTRIEMECHANIKER_QUESTIONS',
@@ -92,6 +90,7 @@
         'BERUF_VERKAEUFER_QUESTIONS',
         'BERUF_PFLEGE_QUESTIONS',
         'BERUF_FRISEUR_QUESTIONS',
+        'BERUF_KFZ_QUESTIONS',
         // Klasse 1–4
         'K1_MATHE_QUESTIONS', 'K1_DEUTSCH_QUESTIONS', 'K1_SACHUNTERRICHT_QUESTIONS',
         'K2_MATHE_QUESTIONS', 'K2_DEUTSCH_QUESTIONS', 'K2_SACHUNTERRICHT_QUESTIONS', 'K2_ENGLISCH_QUESTIONS',

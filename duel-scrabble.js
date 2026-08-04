@@ -908,12 +908,15 @@
             stopActionMode();
 
             const sorted = [...scrabbleState.playerKeys].sort((a, b) => scrabbleState.scores[b] - scrabbleState.scores[a]);
-            // ... restlicher Code bleibt gleich ...
+            const wordMode = scrabbleState.wordMode || "kids";
+            const modeLabel = wordMode === "adult" ? "🎓 Erwachsene" : "👶 Kinder";
+            const difficulty = scrabbleState.difficulty || "mittel";
 
             const medals = ["🥇", "🥈", "🥉"];
             let html = `<div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(245,158,11,0.2);">
                             <div class="text-6xl">🔤</div>
                             <h2 class="text-2xl font-black text-white mb-2">Wort-Duell beendet!</h2>
+                            <div class="text-sm font-bold text-amber-300">${modeLabel} · ${esc(difficulty)}</div>
                             <div class="space-y-3 max-w-sm mx-auto">`;
             sorted.forEach((key, i) => {
                 const medal = i < 3 ? medals[i] : `${i + 1}.`;

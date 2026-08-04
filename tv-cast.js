@@ -315,14 +315,14 @@
             if (mode === 'quiz' && !document.getElementById("tv-area").options.length) {
                 setTVTopicMode();
             }
-            document.getElementById("tvmode-quiz").className =
-                "flex-1 py-2.5 px-1 rounded-lg font-bold transition-all " + (mode === 'quiz' ?
-                    "active" : "");
-            document.getElementById("tvmode-scrabble").className =
-                "flex-1 py-2.5 px-1 rounded-lg font-bold transition-all " + (mode === 'scrabble' ?
-                    "active" : "");
+            ["quiz", "scrabble", "wortraten"].forEach(m => {
+                const btn = document.getElementById("tvmode-" + m);
+                if (btn) btn.className = "flex-1 py-2.5 px-1 rounded-lg font-bold transition-all " + (mode === m ? "active" : "");
+            });
             document.getElementById("tv-quiz-mode-options").classList.toggle("hidden", mode !== 'quiz');
             document.getElementById("tv-scrabble-mode-options").classList.toggle("hidden", mode !== 'scrabble');
+            const wrOpts = document.getElementById("tv-wortraten-mode-options");
+            if (wrOpts) wrOpts.classList.toggle("hidden", mode !== 'wortraten');
         }
 
         async function startTVHostLobby() {
@@ -351,6 +351,18 @@
                     requireLetter,
                     wordMode,
                     actionMode: actionMode, // NEU: An Firebase übergeben
+                    players: {}
+                };
+            } else if (tvHostMode === 'wortraten') {
+                tvUsedWords = new Set();
+                lobbyData = {
+                    status: "waiting",
+                    mode: "wortraten",
+                    wordMode: (document.getElementById("tv-wr-wordmode") || {}).value || "kids",
+                    difficulty: (document.getElementById("tv-wr-difficulty") || {}).value || "mittel",
+                    theme: (document.getElementById("tv-wr-theme") || {}).value || "schneemann",
+                    totalRounds: parseInt((document.getElementById("tv-wr-rounds") || {}).value || "3"),
+                    currentRound: 0,
                     players: {}
                 };
             } else {
@@ -402,12 +414,14 @@
                                 data.totalRounds || 0,
                                 data.currentRequired || ""
                             );
+                        } else if (data.mode === "wortraten") {
+                            showTVHostWortraten(data);
                         }
                         const ansCount = Object.values(data.players || {}).filter(p => p.hasAnswered).length;
                         const totalCount = Object.keys(data.players || {}).length;
                         const counterEl = document.getElementById("tv-answer-counter");
                         if (counterEl) counterEl.innerText = `${ansCount} von ${totalCount} haben geantwortet`;
-                        if (totalCount > 0 && ansCount >= totalCount && !isResolving) {
+                        if (data.mode !== "wortraten" && totalCount > 0 && ansCount >= totalCount && !isResolving) {
                             isResolving = true;
                             setTimeout(() => {
                                 data.mode === "scrabble" ? revealTVScrabbleRound(data) : revealTVAnswer(data);
@@ -435,6 +449,7 @@
             tvGameRef.get().then(doc => {
                 const data = doc.data();
                 if (data.mode === "scrabble") { startTVScrabbleRound(data); return; }
+                if (data.mode === "wortraten") { startTVWortratenRound(data); return; }
                 const cat = data.category;
                 tvQuestions = prepareQuestions(questionsForKey(cat).sort(() => Math.random() - 0.5).slice(0, 10));
                 if (tvQuestions.length < 3) { showToast("Zu wenige Fragen für dieses Thema!", "error"); return; }
@@ -643,6 +658,82 @@
             }
         }
 
+        async function startTVWortratenRound(data) {
+            if (!tvGameRef) return;
+            const difficulty = data.difficulty || "mittel";
+            const wordMode = data.wordMode || "kids";
+            const theme = data.theme || "schneemann";
+            const totalRounds = data.totalRounds || 3;
+            const currentRound = (data.currentRound || 0) + 1;
+            if (currentRound > totalRounds) {
+                await tvGameRef.update({ status: "finished" });
+                showTVHostPodium(data.players);
+                return;
+            }
+            const pool = typeof wrWordPool === "function" ? wrWordPool(wordMode, difficulty, "gemischt") : [];
+            const cfg = (typeof WORTRAETSEL_DIFFICULTIES !== "undefined" && WORTRAETSEL_DIFFICULTIES[difficulty])
+                ? WORTRAETSEL_DIFFICULTIES[difficulty] : { minLen: 5, maxLen: 7 };
+            const used = tvUsedWords || new Set();
+            const word = typeof wrPickWord === "function" ? wrPickWord(pool, cfg.minLen, cfg.maxLen, used) : "";
+            if (!word) return showToast("Keine passenden Wörter.", "error");
+            used.add(word);
+            tvUsedWords = used;
+            const players = data.players || {};
+            const order = Object.keys(players);
+            Object.keys(players).forEach(k => {
+                players[k].hasAnswered = false;
+                players[k].lastAnswer = null;
+            });
+            await tvGameRef.update({
+                status: "playing",
+                mode: "wortraten",
+                currentRound,
+                totalRounds,
+                word,
+                guessed: [],
+                wrongCount: 0,
+                roundOver: false,
+                roundSolved: false,
+                theme,
+                wordMode,
+                difficulty,
+                order,
+                turnIndex: 0,
+                players
+            });
+            showTVHostWortraten({ word, guessed: [], wrongCount: 0, currentRound, totalRounds, theme, players, roundOver: false });
+        }
+
+        function showTVHostWortraten(d) {
+            const guessedSet = new Set(d.guessed || []);
+            const mask = (typeof wrMaskArray === "function") ? wrMaskArray(d.word || "", guessedSet) : [];
+            const wordHtml = mask.map(ch =>
+                `<div class="w-12 h-16 border-b-4 ${ch === '_' ? 'border-sky-400/40' : 'border-emerald-400'} flex items-center justify-center text-3xl font-black text-white">${ch === '_' ? '' : ch}</div>`
+            ).join("");
+            const scores = Object.values(d.players || {}).map(p =>
+                `<div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-center"><div class="font-bold text-white">${esc(p.name)}</div><div class="text-sky-300 font-black">${p.score || 0}</div></div>`
+            ).join("");
+            setTVHostPlayHTML(`
+                <div class="min-h-[80vh] flex flex-col items-center justify-center p-6 space-y-6">
+                    <p class="text-xl font-bold text-gray-400">Runde ${d.currentRound}/${d.totalRounds}</p>
+                    <div class="flex gap-3 flex-wrap justify-center">${scores}</div>
+                    <div id="tv-wr-figure" class="w-48 h-52"></div>
+                    <div class="flex flex-wrap justify-center gap-2">${wordHtml}</div>
+                    <p class="text-lg text-sky-300 font-bold">${d.roundOver ? (d.roundSolved ? '🎉 Gelöst!' : 'Figur fertig – nächste Runde') : 'Buchstaben am Handy tippen'}</p>
+                    ${d.roundOver ? `<button onclick="startTVWortratenRoundFromHost()" class="btn-primary text-2xl py-4 px-10">Weiter ➔</button>` : ''}
+                    <button onclick="if(confirm('Beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="text-gray-500 underline">Beenden</button>
+                </div>`);
+            if (typeof wrRenderFigureBase === "function") {
+                wrRenderFigureBase(d.theme || "schneemann", "tv-wr-figure");
+                for (let i = 1; i <= (d.wrongCount || 0); i++) wrRevealFigureStage(i, "tv-wr-figure");
+            }
+        }
+
+        function startTVWortratenRoundFromHost() {
+            if (!tvGameRef) return;
+            tvGameRef.get().then(doc => { if (doc.exists) startTVWortratenRound(doc.data()); });
+        }
+
         function showTVHostPodium(playersData) {
             stopTVAutoAdvance();
             const sorted = Object.values(playersData || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
@@ -664,6 +755,7 @@
                         <div class="dash-sub-nav mb-2">
                             <button id="againmode-quiz" onclick="setTVAgainMode('quiz')" class="active">🧠 Quiz</button>
                             <button id="againmode-scrabble" onclick="setTVAgainMode('scrabble')">🔤 Wort-Duell</button>
+                            <button id="againmode-wortraten" onclick="setTVAgainMode('wortraten')">🧩 Wort-Rätsel</button>
                         </div>
                         <div id="tv-again-quiz-opts">
                             <div class="dash-sub-nav">
@@ -686,6 +778,21 @@
                                 <option value="8">8 Runden</option>
                             </select>
                         </div>
+                        <div id="tv-again-wr-opts" class="hidden text-left space-y-2">
+                            <select id="tv-again-wr-mode" class="input-modern font-bold text-lg">
+                                <option value="kids" selected>👶 Kinder</option>
+                                <option value="adult">🎓 Erwachsene</option>
+                            </select>
+                            <select id="tv-again-wr-diff" class="input-modern font-bold text-lg">
+                                <option value="leicht">🟢 Leicht</option>
+                                <option value="mittel" selected>🟡 Mittel</option>
+                                <option value="schwer">🔴 Schwer</option>
+                            </select>
+                            <select id="tv-again-wr-rounds" class="input-modern font-bold text-lg">
+                                <option value="3" selected>3 Runden</option>
+                                <option value="5">5 Runden</option>
+                            </select>
+                        </div>
                         <button onclick="restartTVGame()" class="btn-primary w-full text-center text-2xl py-6" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
                     </div>
                     <div class="text-center"><button onclick="leaveTVGame()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">⬅ Zurück ins Menü</button></div>
@@ -703,15 +810,19 @@
         }
 
         function setTVAgainMode(mode) {
-            tvAgainMode = mode === "scrabble" ? "scrabble" : "quiz";
+            tvAgainMode = (mode === "scrabble" || mode === "wortraten") ? mode : "quiz";
             const qBtn = document.getElementById("againmode-quiz");
             const sBtn = document.getElementById("againmode-scrabble");
+            const wBtn = document.getElementById("againmode-wortraten");
             const qOpts = document.getElementById("tv-again-quiz-opts");
             const sOpts = document.getElementById("tv-again-scrabble-opts");
+            const wOpts = document.getElementById("tv-again-wr-opts");
             if (qBtn) qBtn.classList.toggle("active", tvAgainMode === "quiz");
             if (sBtn) sBtn.classList.toggle("active", tvAgainMode === "scrabble");
+            if (wBtn) wBtn.classList.toggle("active", tvAgainMode === "wortraten");
             if (qOpts) qOpts.classList.toggle("hidden", tvAgainMode !== "quiz");
             if (sOpts) sOpts.classList.toggle("hidden", tvAgainMode !== "scrabble");
+            if (wOpts) wOpts.classList.toggle("hidden", tvAgainMode !== "wortraten");
             if (tvAgainMode === "quiz") setTVAgainTopic(tvTopicMode || "spass");
         }
 
@@ -765,6 +876,24 @@
                     const data = (await tvGameRef.get()).data();
                     startTVScrabbleRound(data);
                     showToast("Wort-Duell gestartet! 🔤");
+                    return;
+                }
+                if (tvAgainMode === "wortraten") {
+                    tvUsedWords = new Set();
+                    await tvGameRef.update({
+                        status: "waiting",
+                        mode: "wortraten",
+                        wordMode: (document.getElementById("tv-again-wr-mode") || {}).value || "kids",
+                        difficulty: (document.getElementById("tv-again-wr-diff") || {}).value || "mittel",
+                        theme: "schneemann",
+                        totalRounds: parseInt((document.getElementById("tv-again-wr-rounds") || {}).value || "3", 10),
+                        currentRound: 0,
+                        showAnswer: false,
+                        players: playersData
+                    });
+                    const data = (await tvGameRef.get()).data();
+                    startTVWortratenRound(data);
+                    showToast("Wort-Rätsel gestartet! 🧩");
                     return;
                 }
 
@@ -1114,6 +1243,41 @@
                         return;
                     }
 
+                    if (data.mode === "wortraten") {
+                        if (data.status === "playing") {
+                            const word = data.word || "";
+                            const guessedArr = data.guessed || [];
+                            const guessedSet = new Set(guessedArr);
+                            const order = (data.order || []).filter(k => data.players[k]);
+                            const turnIdx = data.turnIndex || 0;
+                            const turnKey = order.length ? order[turnIdx % order.length] : null;
+                            const isMyTurn = turnKey === activePlayerKey && !data.roundOver;
+                            const alphabet = (typeof WORTRAETSEL_ALPHABET !== "undefined") ? WORTRAETSEL_ALPHABET : "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ".split("");
+                            const kb = alphabet.map(letter => {
+                                const used = guessedSet.has(letter);
+                                const ok = used && word.includes(letter);
+                                const cls = !used
+                                    ? (isMyTurn ? "bg-white/10 border border-white/10 text-white" : "bg-white/5 text-gray-500")
+                                    : ok ? "bg-emerald-500 text-white" : "bg-rose-500/60 text-white opacity-50";
+                                return `<button ${used || !isMyTurn ? "disabled" : ""} onclick="submitTVWrLetter('${letter}')"
+                                    class="h-10 rounded-lg font-black text-sm ${cls}">${letter}</button>`;
+                            }).join("");
+                            let msg = data.roundOver
+                                ? (data.roundSolved ? "🎉 Gelöst!" : "Figur fertig")
+                                : (isMyTurn ? "🎯 Du bist dran" : "⏳ Warte…");
+                            setTVPlayerPlayHTML(`
+                                <div class="space-y-3 p-2">
+                                    <p class="text-center text-xs font-bold text-gray-400">Runde ${data.currentRound}/${data.totalRounds}</p>
+                                    <p class="text-center text-sm font-bold text-sky-300">${msg}</p>
+                                    <div class="grid grid-cols-7 gap-1.5">${kb}</div>
+                                    <p class="text-center text-xs text-gray-500">Figur und Wort siehst du am Fernseher</p>
+                                </div>`);
+                        } else if (data.status === "finished") {
+                            setTVPlayerPlayHTML(`<div class="glass-card-glow p-10 text-center mt-12"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold">+ ${myData.score || 0} Punkte</p><button onclick="leaveTVGame()" class="mt-6 btn-secondary w-full text-sm">Zurück</button></div>`);
+                        }
+                        return;
+                    }
+
                     if (data.status === "playing") {
                         if (data.showAnswer) {
                             const isCorrect = myData.lastAnswer === data.correctAnswer;
@@ -1221,3 +1385,49 @@
             } catch (e) { /* Lobby evtl. schon weg */ }
         }
 
+
+        async function submitTVWrLetter(letter) {
+            if (!tvGameRef || !activePlayerKey) return;
+            try {
+                await db.runTransaction(async (txn) => {
+                    const snap = await txn.get(tvGameRef);
+                    if (!snap.exists) return;
+                    const data = snap.data();
+                    if (data.status !== "playing" || data.mode !== "wortraten" || data.roundOver) return;
+                    const order = (data.order || []).filter(k => data.players[k]);
+                    const turnKey = order.length ? order[(data.turnIndex || 0) % order.length] : null;
+                    if (turnKey !== activePlayerKey) return;
+                    const guessed = data.guessed || [];
+                    if (guessed.includes(letter)) return;
+                    const word = data.word || "";
+                    const isHit = word.includes(letter);
+                    const newGuessed = guessed.concat([letter]);
+                    const players = data.players;
+                    let wrongCount = data.wrongCount || 0;
+                    let roundOver = false, roundSolved = false;
+                    let points = 0;
+                    if (isHit) {
+                        const occ = word.split("").filter(c => c === letter).length;
+                        points = occ * 3;
+                        if (typeof wrIsComplete === "function" && wrIsComplete(word, new Set(newGuessed))) {
+                            points += 15;
+                            roundOver = true;
+                            roundSolved = true;
+                        }
+                        players[activePlayerKey].score = (players[activePlayerKey].score || 0) + points;
+                    } else {
+                        wrongCount++;
+                        const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
+                        if (wrongCount >= maxW) { roundOver = true; roundSolved = false; }
+                    }
+                    const update = { guessed: newGuessed, wrongCount, players, roundOver, roundSolved };
+                    if (!roundOver && order.length) {
+                        const curIdx = order.indexOf(activePlayerKey);
+                        update.turnIndex = (curIdx + 1) % order.length;
+                    }
+                    txn.update(tvGameRef, update);
+                });
+            } catch (e) {
+                handleError("submitTVWrLetter", e, "Buchstabe konnte nicht gesendet werden.");
+            }
+        }

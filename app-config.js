@@ -808,24 +808,40 @@
         }
 
         function inviteFriends() {
-            // Teilen-Link für die App
+            const codeEl = document.getElementById("live-duel-lobby-code");
+            const code = (codeEl && codeEl.innerText || "").trim().toUpperCase();
+            const hasCode = code && code.length >= 4 && !code.includes("…");
+            const text = hasCode
+                ? `Komm ins EduPlay-Spiel! Code: ${code} – unter „Online-Lobby“ eingeben und beitreten. 🚀`
+                : 'Hey! Lern mit mir zusammen auf EduPlay Hub – mach mit! 🚀';
             const shareData = {
                 title: 'EduPlay Hub',
-                text: 'Hey! Lern mit mir zusammen auf EduPlay Hub – mach mit! 🚀',
+                text,
                 url: window.location.href
             };
-
             if (navigator.share) {
-                // Mobile: Native Share API
                 navigator.share(shareData).catch(() => { });
             } else {
-                // Desktop: Link kopieren
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    showToast('🔗 Link kopiert! Schick ihn deinen Freunden.', 'success');
+                const payload = hasCode ? `${text}\n${window.location.href}` : window.location.href;
+                navigator.clipboard.writeText(payload).then(() => {
+                    showToast(hasCode ? `🔗 Code ${code} kopiert!` : '🔗 Link kopiert!', 'success');
                 }).catch(() => {
-                    // Fallback: Alert mit Link
-                    alert('Teile diesen Link mit deinen Freunden:\n\n' + window.location.href);
+                    alert(payload);
                 });
+            }
+        }
+
+        function shareLobbyCode() {
+            const codeEl = document.getElementById("live-duel-lobby-code");
+            const code = (codeEl && codeEl.innerText || "").trim().toUpperCase();
+            if (!code || code.length < 4) return showToast("Noch kein Code.", "error");
+            const text = `EduPlay Lobby-Code: ${code}\nÖffne die App → Online-Lobby → Code eingeben.`;
+            if (navigator.share) {
+                navigator.share({ title: "EduPlay Lobby", text }).catch(() => { });
+            } else if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => showToast(`Code ${code} kopiert!`, "success"));
+            } else {
+                alert(text);
             }
         }
 

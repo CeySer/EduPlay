@@ -6,9 +6,14 @@
 //  meisten Buchstaben richtig errät, sammelt die meisten Punkte.
 // ============================================================
 
-const WORTRAETSEL_MAX_WRONG = 7; // = Anzahl Bau-Stufen der Figur
+const WORTRAETSEL_MAX_WRONG_KIDS = 10;  // Kindermodus: mehr Chancen
+const WORTRAETSEL_MAX_WRONG_ADULT = 7;  // Erwachsene
 const WORTRAETSEL_TURN_SECONDS = 20;   // Bedenkzeit pro Zug (nur ab 2 Spielern)
 const WORTRAETSEL_MAX_TURNS_IN_ROW = 3; // Treffer = nochmal dran, aber max. so oft am Stück
+
+function wrMaxWrong(wordmode) {
+    return wordmode === "adult" ? WORTRAETSEL_MAX_WRONG_ADULT : WORTRAETSEL_MAX_WRONG_KIDS;
+}
 
 const WORTRAETSEL_DIFFICULTIES = {
     leicht: { label: "🟢 Leicht (3-5 Buchstaben)", minLen: 3, maxLen: 5 },
@@ -26,20 +31,25 @@ let wortratenTurnTimer = null;
 // ============================================================
 //  Reine Logik-Helfer (ohne DOM-Zugriff – gut testbar)
 // ============================================================
-function wrWordPool(wordmode, difficulty) {
+function wrWordPool(wordmode, difficulty, theme) {
     const kids = typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : [];
     const adult = typeof GERMAN_WORDS_ADULT !== "undefined" ? GERMAN_WORDS_ADULT : [];
+    const themes = typeof GERMAN_WORDS_KIDS_THEMES !== "undefined" ? GERMAN_WORDS_KIDS_THEMES : {};
     let src;
     if (wordmode === "adult") {
         src = adult;
+    } else if (theme && theme !== "gemischt" && themes[theme] && themes[theme].length) {
+        src = themes[theme];
+        // Experte + Thema: bei zu wenigen langen Wörtern gemischte Kids dazu
+        if (difficulty === "experte") {
+            const longEnough = src.filter(w => w.length >= 9);
+            if (longEnough.length < 15) src = src.concat(kids);
+        }
     } else if (difficulty === "experte") {
-        // Bei "Experte" im Kinder-Wortschatz gibt es nur wenige passend lange Wörter (9+ Buchstaben).
-        // Deshalb zusätzlich die Erwachsenen-Liste mit reinnehmen - für mehr Abwechslung.
         src = kids.concat(adult);
     } else {
         src = kids;
     }
-    // Wörter mit "ß" rausfiltern - dafür gibt's keine eigene Taste auf der Tastatur
     return src.filter(w => !w.includes("ß") && !w.includes("ẞ"));
 }
 
@@ -75,18 +85,24 @@ function wrFigureStagesSVG(theme) {
             `<rect x="72" y="78" width="56" height="48" rx="12" fill="#e2e8f0" stroke="#64748b" stroke-width="3"/>`,
             `<circle cx="88" cy="100" r="7" fill="#0ea5e9"/><circle cx="112" cy="100" r="7" fill="#0ea5e9"/><circle cx="88" cy="100" r="2.5" fill="#fff"/><circle cx="112" cy="100" r="2.5" fill="#fff"/>`,
             `<rect x="90" y="112" width="20" height="6" rx="2" fill="#64748b"/><line x1="93" y1="112" x2="93" y2="118" stroke="#334155" stroke-width="1.5"/><line x1="100" y1="112" x2="100" y2="118" stroke="#334155" stroke-width="1.5"/><line x1="107" y1="112" x2="107" y2="118" stroke="#334155" stroke-width="1.5"/>`,
-            `<rect x="38" y="148" width="18" height="45" rx="8" fill="#94a3b8" stroke="#64748b" stroke-width="2"/><rect x="144" y="148" width="18" height="45" rx="8" fill="#94a3b8" stroke="#64748b" stroke-width="2"/><circle cx="47" cy="196" r="9" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><circle cx="153" cy="196" r="9" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>`,
-            `<line x1="100" y1="78" x2="100" y2="58" stroke="#64748b" stroke-width="3"/><circle cx="100" cy="52" r="7" fill="#f43f5e"/>`
+            `<rect x="38" y="148" width="18" height="45" rx="8" fill="#94a3b8" stroke="#64748b" stroke-width="2"/><rect x="144" y="148" width="18" height="45" rx="8" fill="#94a3b8" stroke="#64748b" stroke-width="2"/>`,
+            `<circle cx="47" cy="196" r="9" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><circle cx="153" cy="196" r="9" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>`,
+            `<rect x="85" y="155" width="30" height="8" rx="2" fill="#64748b"/>`,
+            `<line x1="100" y1="78" x2="100" y2="58" stroke="#64748b" stroke-width="3"/>`,
+            `<circle cx="100" cy="52" r="7" fill="#f43f5e"/>`
         ];
     }
-    // Schneemann (Standard)
+    // Schneemann (10 Stufen – Kindermodus braucht mehr Chancen)
     return [
         `<ellipse cx="100" cy="196" rx="14" ry="6" fill="#cbd5e1" opacity="0.5"/><circle cx="100" cy="168" r="50" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>`,
         `<circle cx="100" cy="108" r="38" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>`,
         `<circle cx="100" cy="58" r="26" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>`,
-        `<circle cx="91" cy="53" r="3" fill="#1e293b"/><circle cx="109" cy="53" r="3" fill="#1e293b"/><path d="M88,68 Q100,76 112,68" stroke="#1e293b" stroke-width="2" fill="none" stroke-linecap="round"/>`,
+        `<circle cx="91" cy="53" r="3" fill="#1e293b"/><circle cx="109" cy="53" r="3" fill="#1e293b"/>`,
+        `<path d="M88,68 Q100,76 112,68" stroke="#1e293b" stroke-width="2" fill="none" stroke-linecap="round"/>`,
         `<polygon points="100,58 120,63 100,69" fill="#f97316"/>`,
-        `<line x1="65" y1="100" x2="28" y2="80" stroke="#92400e" stroke-width="4" stroke-linecap="round"/><line x1="135" y1="100" x2="172" y2="80" stroke="#92400e" stroke-width="4" stroke-linecap="round"/><circle cx="100" cy="150" r="4" fill="#1e293b"/><circle cx="100" cy="168" r="4" fill="#1e293b"/><circle cx="100" cy="186" r="4" fill="#1e293b"/>`,
+        `<line x1="65" y1="100" x2="28" y2="80" stroke="#92400e" stroke-width="4" stroke-linecap="round"/><line x1="135" y1="100" x2="172" y2="80" stroke="#92400e" stroke-width="4" stroke-linecap="round"/>`,
+        `<circle cx="100" cy="150" r="4" fill="#1e293b"/><circle cx="100" cy="168" r="4" fill="#1e293b"/><circle cx="100" cy="186" r="4" fill="#1e293b"/>`,
+        `<path d="M70,95 Q100,130 130,95" fill="none" stroke="#ef4444" stroke-width="8" stroke-linecap="round"/>`,
         `<rect x="80" y="6" width="40" height="27" rx="2" fill="#1e293b"/><rect x="66" y="30" width="68" height="10" rx="2" fill="#1e293b"/><rect x="76" y="74" width="48" height="13" rx="3" fill="#ef4444"/><rect x="118" y="84" width="10" height="26" rx="2" fill="#ef4444"/>`
     ];
 }
@@ -140,6 +156,12 @@ function openWortratenSetup() {
     switchView('wortraten-setup');
 }
 
+function toggleWortratenThemeRow() {
+    const mode = (document.getElementById("wortraten-wordmode") || {}).value || "kids";
+    const row = document.getElementById("wortraten-theme-row");
+    if (row) row.classList.toggle("hidden", mode === "adult");
+}
+
 function setWortratenTheme(theme) {
     wortratenSetupTheme = theme;
     const btnSnow = document.getElementById("wortraten-theme-schneemann");
@@ -159,11 +181,13 @@ function startWortratenGame() {
     const wordmode = (document.getElementById("wortraten-wordmode") || {}).value || "kids";
     const difficulty = (document.getElementById("wortraten-difficulty") || {}).value || "mittel";
     const rounds = parseInt((document.getElementById("wortraten-rounds") || {}).value || "3");
+    const wordTheme = (document.getElementById("wortraten-word-theme") || {}).value || "gemischt";
 
     wortratenState = {
         playerKeys: checked,
         wordmode,
         difficulty,
+        wordTheme,
         theme: wortratenSetupTheme,
         rounds,
         round: 1,
@@ -190,7 +214,7 @@ function wrStartRound() {
     const s = wortratenState;
     if (!s) return;
     const cfg = WORTRAETSEL_DIFFICULTIES[s.difficulty] || WORTRAETSEL_DIFFICULTIES.mittel;
-    const pool = wrWordPool(s.wordmode, s.difficulty);
+    const pool = wrWordPool(s.wordmode, s.difficulty, s.wordTheme);
     s.word = wrPickWord(pool, cfg.minLen, cfg.maxLen, s.usedWords);
     if (!s.word) {
         showToast("Hoppla, dafür haben wir gerade keine passenden Wörter. Bitte andere Einstellungen wählen!", "error");
@@ -351,7 +375,7 @@ function wrGuessLetter(letter) {
         s.wrongCount++;
         wrRevealFigureStage(s.wrongCount);
         if (typeof SFX !== "undefined") SFX.wrong();
-        if (s.wrongCount >= WORTRAETSEL_MAX_WRONG) {
+        if (s.wrongCount >= wrMaxWrong(s.wordmode)) {
             wrEndRound(false, key);
             return;
         }

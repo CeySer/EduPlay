@@ -1,5 +1,6 @@
 
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        /* Inter: nur benötigte Gewichte, display=swap für schnelleren Text */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
 
         /* ============================================================
            ROOT VARIABLES - NEUES DESIGN-SYSTEM
@@ -2193,4 +2194,83 @@
 }
 .shop-card-color .shop-card-info {
     text-align: center;
+}
+
+/* ============================================================
+   MOBILE PERFORMANCE
+   ============================================================ */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+}
+button, a, .btn-primary, .btn-secondary, .drawer-menu-item {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Versteckte Views: Layout/Paint sparen */
+.view.hidden {
+    display: none !important;
+    content-visibility: hidden;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+    .animated-bg::before,
+    .orb {
+        animation: none !important;
+    }
+    .orb {
+        filter: blur(40px);
+        opacity: 0.45;
+    }
+    .glass-card,
+    .glass-card-glow,
+    #app-shell,
+    .drawer,
+    .drawer-backdrop {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    .glass-card:hover,
+    .glass-card-glow:hover {
+        transform: none;
+    }
+    .view:not(.hidden) {
+        animation: none;
+    }
+    .dash-tab {
+        animation: none;
+    }
+    /* Weniger teure Schatten auf Touch-Geräten */
+    .glass-card,
+    .glass-card-glow {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .animated-bg::before,
+    .orb {
+        animation: none !important;
+    }
+}
+
+/* Schwachere CPU: wenn Tab im Hintergrund */
+body.perf-lite .animated-bg {
+    display: none;
+}
+body.perf-lite .orb {
+    display: none;
 }

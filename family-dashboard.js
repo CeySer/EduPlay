@@ -1524,17 +1524,12 @@
         //  ELTERN-ADMIN (PIN)
         // ============================================================
         async function setupAdminPin(isFirstTime) {
-            if (!isFirstTime && adminPin) {
-                const current = cleanInput(prompt("Zum Ändern bitte aktuellen PIN eingeben:"), 12);
-                if (current === null || current === "") return;
-                if (current !== adminPin) {
-                    SFX.wrong();
-                    return showToast("PIN stimmt nicht.", "error", "pin");
-                }
+            // Ersteinrichtung: weiter Prompt; sonst → Einstellungen
+            if (!isFirstTime) {
+                switchView('einstellungen');
+                return;
             }
-            const intro = isFirstTime ?
-                "Eltern-Bereich einrichten\n\nLegt einen PIN fest, damit die Kinder hier nicht hineinkommen.\n\nNeuer PIN (4-12 Zeichen):" :
-                "Neuer PIN (4-12 Zeichen):";
+            const intro = "Eltern-Bereich einrichten\n\nLegt einen PIN fest, damit die Kinder hier nicht hineinkommen.\n\nNeuer PIN (4-12 Zeichen):";
             const p1 = cleanInput(prompt(intro), 12);
             if (p1 === null || p1 === "") return;
             if (p1.length < 4) return showToast("Der PIN braucht mindestens 4 Zeichen.", "error", "pin");
@@ -1543,6 +1538,38 @@
             try {
                 await db.collection("parents").doc(currentParentUser.uid).set({ adminPin: p1 }, { merge: true });
                 adminPin = p1;
+                showToast("PIN gespeichert.", "success", "pin");
+            } catch (e) {
+                showToast("PIN konnte nicht gespeichert werden.", "error", "pin");
+            }
+        }
+
+        async function saveAdminPinFromSettings() {
+            const hint = document.getElementById("pin-hint");
+            const showHint = (msg) => {
+                if (hint) { hint.innerText = msg; hint.classList.remove("hidden"); }
+                else showToast(msg, "error", "pin");
+            };
+            if (hint) hint.classList.add("hidden");
+            const current = cleanInput((document.getElementById("pin-current") || {}).value || "", 12);
+            const p1 = cleanInput((document.getElementById("pin-new") || {}).value || "", 12);
+            const p2 = cleanInput((document.getElementById("pin-new2") || {}).value || "", 12);
+            if (adminPin) {
+                if (!current) return showHint("Bitte aktuellen PIN eingeben.");
+                if (current !== adminPin) {
+                    if (typeof SFX !== "undefined") SFX.wrong();
+                    return showHint("Aktueller PIN stimmt nicht.");
+                }
+            }
+            if (!p1 || p1.length < 4) return showHint("Neuer PIN braucht mindestens 4 Zeichen.");
+            if (p1 !== p2) return showHint("Die beiden neuen PINs stimmen nicht überein.");
+            try {
+                await db.collection("parents").doc(currentParentUser.uid).set({ adminPin: p1 }, { merge: true });
+                adminPin = p1;
+                ["pin-current", "pin-new", "pin-new2"].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.value = "";
+                });
                 showToast("PIN gespeichert.", "success", "pin");
             } catch (e) {
                 showToast("PIN konnte nicht gespeichert werden.", "error", "pin");

@@ -268,9 +268,19 @@
             if (data.status === "waiting") {
                 clearLiveDuelTimers();
                 const list = document.getElementById("live-duel-player-list");
-                if (list) list.innerHTML = Object.values(data.players).map(p =>
-                    `<div class="bg-white/5 border border-white/5 rounded-xl p-3 text-center"><div class="text-2xl">🙋</div><div class="font-bold text-white text-sm mt-1">${esc(p.name)}</div></div>`
-                ).join("");
+                if (list) {
+                    const entries = Object.entries(data.players || {});
+                    list.innerHTML = entries.map(([k, p], i) => {
+                        const isHost = data.createdBy === k;
+                        const colors = ["#6366f1", "#ec4899", "#10b981", "#f59e0b", "#06b6d4", "#a78bfa"];
+                        const col = colors[i % colors.length];
+                        return `<div class="rounded-2xl p-3.5 text-center border border-white/10" style="background:linear-gradient(160deg,${col}22,rgba(255,255,255,0.04));">
+                            <div class="w-10 h-10 mx-auto rounded-full flex items-center justify-center text-lg font-black text-white mb-1.5" style="background:${col}">${esc((p.name || "?").charAt(0).toUpperCase())}</div>
+                            <div class="font-bold text-white text-sm truncate">${esc(p.name)}</div>
+                            ${isHost ? '<div class="text-[10px] font-bold text-amber-300 mt-0.5">Host</div>' : '<div class="text-[10px] text-gray-500 mt-0.5">bereit</div>'}
+                        </div>`;
+                    }).join("");
+                }
                 document.getElementById("live-duel-start-btn").classList.toggle("hidden", !isLiveDuelCreator);
                 document.getElementById("live-duel-wait-hint").classList.toggle("hidden", isLiveDuelCreator);
                 const _clWrap = document.getElementById("live-duel-lobby-code-wrap");
@@ -632,7 +642,7 @@
 
         function wrLiveNewRoundFields(data) {
             const cfg = WORTRAETSEL_DIFFICULTIES[data.difficulty] || WORTRAETSEL_DIFFICULTIES.mittel;
-            const pool = wrWordPool(data.wordMode, data.difficulty);
+            const pool = wrWordPool(data.wordMode, data.difficulty, data.wordTheme || "gemischt");
             const avoid = new Set(data.usedWords || []);
             const word = wrPickWord(pool, cfg.minLen, cfg.maxLen, avoid);
             return { word, guessed: [], wrongCount: 0, roundOver: false, roundSolved: false };
@@ -678,6 +688,9 @@
                 banner = data.roundSolved
                     ? `<p class="text-center text-sm font-bold text-emerald-400">🎉 Gelöst! Das Wort war "${esc(word)}"</p>`
                     : `<p class="text-center text-sm font-bold text-amber-400">${wrFigureEmoji(data.theme)} ${wrFigureName(data.theme)} ist fertig! Das Wort war "${esc(word)}"</p>`;
+                if (isLiveDuelCreator) {
+                    banner += `<button type="button" onclick="wrLiveAdvanceRound()" class="btn-primary w-full mt-3 text-center">Weiter ➔</button>`;
+                }
             } else {
                 const activeName = data.players[key] ? esc(data.players[key].name) : "";
                 banner = isMyTurn
@@ -685,9 +698,15 @@
                     : `<p class="text-center text-sm font-bold text-gray-400">⏳ ${activeName} ist dran...</p>`;
             }
 
+            const showTimer = data.wordMode === "adult" && !data.roundOver;
+            const timerHtml = showTimer
+                ? `<div id="live-wr-turn-timer" class="text-center text-lg font-black text-amber-400">⏱️ ${typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 20}s</div>`
+                : "";
+
             document.getElementById("live-duel-play-content").innerHTML = `
                 <div class="space-y-4">
                     <div class="text-center text-xs font-bold text-gray-400">Runde ${data.currentRound}/${data.totalRounds}</div>
+                    ${timerHtml}
                     <div class="flex justify-center gap-2 overflow-x-auto py-1">${scoresHtml}</div>
                     <div class="glass-card p-4 flex items-center justify-center">
                         <div id="live-duel-wr-figure" class="w-32 h-36"></div>
@@ -699,10 +718,51 @@
 
             wrRenderFigureBase(data.theme, "live-duel-wr-figure");
             for (let i = 1; i <= (data.wrongCount || 0); i++) wrRevealFigureStage(i, "live-duel-wr-figure");
+
+            if (showTimer && isLiveDuelCreator) startLiveWrTurnTimer(data);
+        }
+
+        let liveWrTurnTimer = null;
+
+        function clearLiveWrTurnTimer() {
+            if (liveWrTurnTimer) { clearInterval(liveWrTurnTimer); liveWrTurnTimer = null; }
+        }
+
+        function startLiveWrTurnTimer(data) {
+            clearLiveWrTurnTimer();
+            if (!isLiveDuelCreator || data.wordMode !== "adult" || data.roundOver) return;
+            let left = (typeof WORTRAETSEL_TURN_SECONDS !== "undefined") ? WORTRAETSEL_TURN_SECONDS : 20;
+            const el = document.getElementById("live-wr-turn-timer");
+            if (el) el.innerText = `⏱️ ${left}s`;
+            liveWrTurnTimer = setInterval(async () => {
+                left--;
+                const t = document.getElementById("live-wr-turn-timer");
+                if (t) t.innerText = `⏱️ ${left}s`;
+                if (left <= 0) {
+                    clearLiveWrTurnTimer();
+                    // Zug überspringen
+                    if (!liveDuelRef) return;
+                    try {
+                        await db.runTransaction(async (txn) => {
+                            const snap = await txn.get(liveDuelRef);
+                            if (!snap.exists) return;
+                            const d = snap.data();
+                            if (d.status !== "playing" || d.type !== "wortraten" || d.roundOver) return;
+                            const players = d.players || {};
+                            const order = (d.order || []).filter(k => players[k] && !players[k].pending);
+                            const cur = wrLiveActivePlayerKey(d);
+                            const curIdx = order.indexOf(cur);
+                            const next = order.length > 0 ? (curIdx + 1) % order.length : 0;
+                            txn.update(liveDuelRef, { turnIndex: next });
+                        });
+                    } catch (e) { /* ignore */ }
+                }
+            }, 1000);
         }
 
         async function wrLiveGuessLetter(letter) {
             if (!liveDuelRef) return;
+            clearLiveWrTurnTimer();
             // Als Transaktion: verhindert, dass zwei schnell hintereinander getippte
             // Buchstaben beide vom selben (veralteten) Stand ausgehen und sich
             // gegenseitig überschreiben (verlorene Punkte/Buchstaben).
@@ -744,7 +804,7 @@
                     } else {
                         players[key].answerStreak = 0;
                         wrongCount++;
-                        if (wrongCount >= WORTRAETSEL_MAX_WRONG) {
+                        if (wrongCount >= (typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7)) {
                             roundOver = true;
                             roundSolved = false;
                         }
@@ -1285,9 +1345,13 @@
                 });
                 html += `</div>`;
             } else {
+                const modeBadge = (data.type === "scrabble" || data.type === "wortraten")
+                    ? `<div class="text-sm font-bold text-amber-300">${(data.wordMode === "adult") ? "🎓 Erwachsene" : "👶 Kinder"}${data.difficulty ? " · " + esc(data.difficulty) : ""}</div>`
+                    : "";
                 html = `<div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(245,158,11,0.15);">
                             <div class="text-6xl">🏆</div>
                             <h2 class="text-2xl font-black text-white mb-2">Duell beendet!</h2>
+                            ${modeBadge}
                             <div class="space-y-3 max-w-sm mx-auto">`;
                 sorted.forEach((p, i) => {
                     const medal = i < 3 ? medals[i] : `${i + 1}.`;
@@ -2125,3 +2189,202 @@
             } catch (e) { /* Lobby war schon weg */ }
         };
 
+
+        // ============================================================
+        //  CODE-LOBBY (kontenübergreifend)
+        // ============================================================
+        let codedLobbyType = "quiz";
+
+        function openCodedLobbySetup() {
+            codedLobbyType = "quiz";
+            setCodedLobbyType("quiz");
+            const inp = document.getElementById("coded-lobby-join-code");
+            if (inp) inp.value = "";
+            switchView("coded-lobby-setup");
+            setTimeout(() => {
+                const el = document.getElementById("coded-lobby-join-code");
+                if (el) { el.focus(); el.select && el.select(); }
+            }, 120);
+        }
+
+        function setCodedLobbyType(type) {
+            codedLobbyType = type;
+            ["quiz", "scrabble", "wortraten", "vokabel"].forEach(t => {
+                const btn = document.getElementById("coded-type-" + t);
+                if (btn) btn.classList.toggle("active", t === type);
+            });
+            const q = document.getElementById("coded-lobby-quiz-options");
+            const s = document.getElementById("coded-lobby-scrabble-options");
+            const w = document.getElementById("coded-lobby-wortraten-options");
+            const v = document.getElementById("coded-lobby-vokabel-options");
+            if (q) q.classList.toggle("hidden", type !== "quiz");
+            if (s) s.classList.toggle("hidden", type !== "scrabble");
+            if (w) w.classList.toggle("hidden", type !== "wortraten");
+            if (v) v.classList.toggle("hidden", type !== "vokabel");
+            if (type === "quiz") setupCategorySelectors("coded-lobby-area", "coded-lobby-category", "spass");
+            if (type === "vokabel" && typeof renderVocabGroupCheckboxes === "function") {
+                renderVocabGroupCheckboxes("coded-lobby-vokabel-checkboxes");
+            }
+        }
+
+        function generateLobbyCode() {
+            const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+            let c = "";
+            for (let i = 0; i < 4; i++) c += chars[Math.floor(Math.random() * chars.length)];
+            return c;
+        }
+
+        function lobbyCodesRef() {
+            return db.collection("lobby_codes");
+        }
+
+        async function createCodedLobby() {
+            if (!currentParentUser || !currentPlayer || !activePlayerKey) {
+                return showToast("Bitte zuerst oben deinen Spieler auswählen!", "error");
+            }
+            let lobbyData;
+            if (codedLobbyType === "scrabble") {
+                const difficulty = (document.getElementById("coded-lobby-difficulty") || {}).value || "mittel";
+                const totalRounds = parseInt((document.getElementById("coded-lobby-rounds") || {}).value || "5");
+                const requireLetter = !!(document.getElementById("coded-lobby-require-letter") || {}).checked;
+                const wordMode = (document.getElementById("coded-lobby-wordmode") || {}).value || "kids";
+                const actionMode = !!(document.getElementById("coded-lobby-action-mode") || {}).checked;
+                liveDuelUsedWords = new Set();
+                lobbyData = {
+                    type: "scrabble", status: "waiting", difficulty, totalRounds, currentRound: 0,
+                    requireLetter, wordMode, actionMode,
+                    answerSeconds: SCRABBLE_ANSWER_SECONDS[difficulty] || 20,
+                    createdBy: activePlayerKey, players: {}
+                };
+            } else if (codedLobbyType === "wortraten") {
+                lobbyData = {
+                    type: "wortraten", status: "waiting",
+                    wordMode: (document.getElementById("coded-lobby-wr-wordmode") || {}).value || "kids",
+                    difficulty: (document.getElementById("coded-lobby-wr-difficulty") || {}).value || "mittel",
+                    theme: (document.getElementById("coded-lobby-wr-theme") || {}).value || "schneemann",
+                    totalRounds: parseInt((document.getElementById("coded-lobby-wr-rounds") || {}).value || "3"),
+                    currentRound: 0, createdBy: activePlayerKey, players: {}
+                };
+            } else if (codedLobbyType === "vokabel") {
+                const checked = Array.from(document.querySelectorAll("#coded-lobby-vokabel-checkboxes .vokabel-group-check:checked")).map(cb => cb.value);
+                if (checked.length === 0) return showToast("Bitte mindestens eine Vokabelgruppe!", "error");
+                const dir = (document.getElementById("coded-lobby-vokabel-dir") || {}).value || "mix";
+                const questions = prepareQuestions(buildVocabTestQuestions(checked, dir).sort(() => Math.random() - 0.5).slice(0, 10));
+                if (questions.length < 3) return showToast("Zu wenige Vokabeln!", "error");
+                lobbyData = {
+                    type: "quiz", subject: "vokabel",
+                    mode: (document.getElementById("coded-lobby-mode") || {}).value || "versus",
+                    status: "waiting", questions, currentIndex: 0,
+                    answerSeconds: parseInt((document.getElementById("coded-lobby-vokabel-speed") || {}).value) || 20,
+                    createdBy: activePlayerKey, players: {}
+                };
+            } else {
+                const category = (document.getElementById("coded-lobby-category") || {}).value;
+                if (!category) return showToast("Bitte ein Thema wählen!", "error");
+                const questions = prepareQuestions(questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10));
+                if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
+                lobbyData = {
+                    type: "quiz",
+                    mode: (document.getElementById("coded-lobby-mode") || {}).value || "versus",
+                    status: "waiting", questions, currentIndex: 0,
+                    answerSeconds: parseInt((document.getElementById("coded-lobby-speed") || {}).value) || 20,
+                    createdBy: activePlayerKey, players: {}
+                };
+            }
+
+            lobbyData.players[activePlayerKey] = {
+                name: currentPlayer.name, score: 0, hasAnswered: false,
+                lastAnswer: null, word: "", coinsClaimed: false
+            };
+            lobbyData.createdByName = currentPlayer.name;
+            lobbyData.createdAt = Date.now();
+            lobbyData.hostLastSeen = Date.now();
+            lobbyData.parentUid = currentParentUser.uid;
+
+            try {
+                let code = generateLobbyCode();
+                for (let attempt = 0; attempt < 8; attempt++) {
+                    const codeSnap = await lobbyCodesRef().doc(code).get();
+                    if (!codeSnap.exists) break;
+                    code = generateLobbyCode();
+                }
+                lobbyData.code = code;
+
+                const ref = liveDuelCollectionRef().doc();
+                await ref.set(lobbyData);
+                await lobbyCodesRef().doc(code).set({
+                    parentUid: currentParentUser.uid,
+                    duelId: ref.id,
+                    createdAt: Date.now(),
+                    createdByName: currentPlayer.name
+                });
+
+                liveDuelRef = ref;
+                isLiveDuelCreator = true;
+                liveDuelType = lobbyData.type === "scrabble" ? "scrabble" : lobbyData.type === "wortraten" ? "wortraten" : "quiz";
+                liveDuelResolving = false;
+                liveDuelRenderKey = "";
+                liveDuelResolvedRoundKey = "";
+                maybeStartHostHeartbeat();
+                subscribeLiveDuel();
+                showToast("Lobby " + code + " erstellt!", "success");
+            } catch (e) {
+                handleError("createCodedLobby", e, "Lobby konnte nicht erstellt werden.");
+            }
+        }
+
+        async function joinCodedLobby() {
+            if (!currentParentUser || !currentPlayer || !activePlayerKey) {
+                return showToast("Bitte zuerst deinen Spieler auswählen!", "error");
+            }
+            const raw = ((document.getElementById("coded-lobby-join-code") || {}).value || "").trim().toUpperCase();
+            if (raw.length < 4) return showToast("Bitte 4-stelligen Code eingeben.", "error");
+
+            try {
+                const codeSnap = await lobbyCodesRef().doc(raw).get();
+                if (!codeSnap.exists) return showToast("Code ungültig oder Lobby zu.", "error");
+                const meta = codeSnap.data();
+                if (!meta.parentUid || !meta.duelId) return showToast("Lobby-Daten unvollständig.", "error");
+
+                const ref = db.collection("parents").doc(meta.parentUid).collection("live_duel").doc(meta.duelId);
+                const snap = await ref.get();
+                if (!snap.exists) return showToast("Dieses Duell gibt es nicht mehr.", "error");
+                const data = snap.data();
+                if (data.status === "finished") return showToast("Dieses Duell ist schon beendet.", "error");
+
+                const players = Object.assign({}, data.players || {});
+                if (!players[activePlayerKey]) {
+                    players[activePlayerKey] = {
+                        name: currentPlayer.name, score: 0, hasAnswered: false,
+                        lastAnswer: null, word: "", coinsClaimed: false,
+                        pending: data.status === "playing"
+                    };
+                    await ref.update({ players, updatedAt: Date.now() });
+                }
+
+                liveDuelRef = ref;
+                isLiveDuelCreator = data.createdBy === activePlayerKey;
+                liveDuelType = data.type || "quiz";
+                liveDuelResolving = false;
+                liveDuelRenderKey = "";
+                liveDuelResolvedRoundKey = "";
+                if (isLiveDuelCreator) maybeStartHostHeartbeat();
+                subscribeLiveDuel();
+                showToast("Beigetreten! 🎮", "success");
+            } catch (e) {
+                handleError("joinCodedLobby", e, "Beitreten hat nicht geklappt.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const inp = document.getElementById("coded-lobby-join-code");
+            if (inp) {
+                inp.addEventListener("input", function () {
+                    this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4);
+                    if (this.value.length === 4) joinCodedLobby();
+                });
+                inp.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") { e.preventDefault(); joinCodedLobby(); }
+                });
+            }
+        });

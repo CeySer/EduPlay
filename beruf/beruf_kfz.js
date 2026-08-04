@@ -1,4 +1,4 @@
-const KFZ_QUESTIONS = [
+const BERUF_KFZ_QUESTIONS = [
   // ==========================================
   // BASICS & INFRASTRUKTUR (q0542 - q0575)
   // ==========================================
@@ -4017,7 +4017,6 @@ if (typeof BERUFSSCHULE !== 'undefined' && Array.isArray(BERUFSSCHULE)) {
     if (!BERUFSSCHULE.some(s => s.key === 'beruf_kfz')) {
         BERUFSSCHULE.unshift({ key: 'beruf_kfz', label: '🔧 KFZ-Mechatronik' });
     }
-}
-if (typeof window !== 'undefined') {
-    window.KFZ_QUESTIONS = KFZ_QUESTIONS;
+
+if (typeof window !== "undefined") window.BERUF_KFZ_QUESTIONS = BERUF_KFZ_QUESTIONS; 
 }

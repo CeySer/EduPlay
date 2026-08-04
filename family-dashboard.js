@@ -41,7 +41,6 @@
             } else {
                 currentParentUser = null;
                 switchView('auth');
-                hideGlobalLoader();
             }
         });
 
@@ -57,7 +56,6 @@
                 renderFamilyHub();
                 switchView('family-hub');
             } catch (e) { handleError("loadFamilyProfiles", e, "Spieler konnten nicht geladen werden."); }
-            finally { hideGlobalLoader(); }
         }
 
         const PLAYER_COLORS = ["#FF8A4C", "#3ECFB2", "#F2C14E", "#9B8CFF", "#5FB3F5", "#F585B0"];
@@ -1706,7 +1704,8 @@
                 age: grade ? String(grade) : (ageFromBirthday(birthday) !== null ? String(ageFromBirthday(birthday)) :
                     "-"),
                 coins: 0,
-                learnedWords: []
+                learnedWords: [],
+                avatar: (typeof DEFAULT_AVATAR !== 'undefined') ? JSON.parse(JSON.stringify(DEFAULT_AVATAR)) : undefined
             };
             try {
                 const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(newProf);

@@ -269,6 +269,15 @@
             if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
         }
 
+        function toggleOfflineGames(forceOpen) {
+            const wrapper = document.getElementById("offline-games-wrapper");
+            const arrow = document.getElementById("offline-games-toggle-arrow");
+            if (!wrapper) return;
+            const open = (typeof forceOpen === "boolean") ? forceOpen : wrapper.classList.contains("hidden");
+            wrapper.classList.toggle("hidden", !open);
+            if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
+        }
+
         function toggleLeaderboard(forceOpen) {
             const wrapper = document.getElementById("leaderboard-wrapper");
             const arrow = document.getElementById("leaderboard-toggle-arrow");
@@ -1704,8 +1713,7 @@
                 age: grade ? String(grade) : (ageFromBirthday(birthday) !== null ? String(ageFromBirthday(birthday)) :
                     "-"),
                 coins: 0,
-                learnedWords: [],
-                avatar: (typeof DEFAULT_AVATAR !== 'undefined') ? JSON.parse(JSON.stringify(DEFAULT_AVATAR)) : undefined
+                learnedWords: []
             };
             try {
                 const docRef = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").add(newProf);

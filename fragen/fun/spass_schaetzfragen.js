@@ -949,30 +949,6 @@ const SPASS_SCHAETZFRAGEN_QUESTIONS = [
         explanation: "Die hochtransparente Hornhaut im Zentrum des Auges ist nur knapp 0,5 Millimeter dick."
     },
   {
-        id: "sch_mko_080",
-        category: "schaetzen_mensch_koerper",
-        area: "spass",
-        subject: "schaetzen",
-        question: "Welchen Durchmesser hat eine reife menschliche Eizelle (die größte Zelle des Körpers)?",
-        answers: ["ca. 0,02 Millimeter", "ca. 0,05 Millimeter", "ca. 0,08 Millimeter", "ca. 0,12 Millimeter"],
-        correct: 3,
-        difficulty: "schwer",
-        points: 10,
-        explanation: "Die Eizelle misst etwa 0,12 mm (120 Mikrometer) und ist mit bloßem Auge gerade noch als Pünktchen erkennbar."
-    },
-  {
-        id: "sch_mko_082",
-        category: "schaetzen_mensch_koerper",
-        area: "spass",
-        subject: "schaetzen",
-        question: "Wie lange dauert die Entwicklung eines neuen Spermiums im menschlichen Körper?",
-        answers: ["ca. 30 Tage", "ca. 64 Tage", "ca. 90 Tage", "ca. 120 Tage"],
-        correct: 1,
-        difficulty: "schwer",
-        points: 10,
-        explanation: "Von der Stammzelle bis zum ausgereiften Spermium vergehen etwa 64 Tage."
-    },
-  {
         id: "sch_mko_083",
         category: "schaetzen_mensch_koerper",
         area: "spass",

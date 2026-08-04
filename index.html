@@ -881,6 +881,36 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             </select>
                         </div>
                     </div>
+                    <div id="live-duel-vokabel-options" class="hidden space-y-3">
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Modus</label>
+                            <select id="live-duel-vokabel-mode" class="input-modern font-bold">
+                                <option value="versus" selected>⚔️ Gegeneinander</option>
+                                <option value="coop">🤝 Zusammen lernen</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Richtung</label>
+                            <select id="live-duel-vokabel-dir" class="input-modern font-bold">
+                                <option value="de2f">🇩🇪 → Fremdsprache</option>
+                                <option value="f2de">Fremdsprache → 🇩🇪</option>
+                                <option value="mix" selected>🔀 Gemischt</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Vokabelgruppen (mehrere
+                                möglich)</label>
+                            <div id="live-duel-vokabel-checkboxes" class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto"></div>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Tempo</label>
+                            <select id="live-duel-vokabel-speed" class="input-modern font-bold">
+                                <option value="30">🐢 Gemütlich (30 Sek.)</option>
+                                <option value="20" selected>🙂 Normal (20 Sek.)</option>
+                                <option value="15">⚡ Schnell (15 Sek.)</option>
+                            </select>
+                        </div>
+                    </div>
                     <button onclick="createLiveDuel()" class="btn-primary w-full text-center">Duell erstellen
                         🚀</button>
                 </div>
@@ -912,6 +942,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 Wort-Duell</button>
                             <button id="coded-type-wortraten" onclick="setCodedLobbyType('wortraten')">🧩
                                 Wort-Rätsel</button>
+                            <button id="coded-type-vokabel" onclick="setCodedLobbyType('vokabel')">📚
+                                Vokabeln</button>
                         </div>
                     </div>
                     <div id="coded-lobby-quiz-options" class="space-y-4">
@@ -1005,6 +1037,29 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <option value="3" selected>3 Runden</option>
                                 <option value="5">5 Runden</option>
                                 <option value="8">8 Runden</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="coded-lobby-vokabel-options" class="hidden space-y-3">
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Richtung</label>
+                            <select id="coded-lobby-vokabel-dir" class="input-modern font-bold">
+                                <option value="de2f">🇩🇪 → Fremdsprache</option>
+                                <option value="f2de">Fremdsprache → 🇩🇪</option>
+                                <option value="mix" selected>🔀 Gemischt</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Vokabelgruppen (mehrere
+                                möglich)</label>
+                            <div id="coded-lobby-vokabel-checkboxes" class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto"></div>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Tempo</label>
+                            <select id="coded-lobby-vokabel-speed" class="input-modern font-bold">
+                                <option value="30">🐢 Gemütlich (30 Sek.)</option>
+                                <option value="20" selected>🙂 Normal (20 Sek.)</option>
+                                <option value="15">⚡ Schnell (15 Sek.)</option>
                             </select>
                         </div>
                     </div>
@@ -1139,6 +1194,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <span class="text-2xl">🔤</span> Wort-Duell
                         </button>
                     </div>
+                    <button onclick="openLiveDuelSetup('vokabel')"
+                        class="btn-primary w-full flex flex-col items-center gap-1 text-center"
+                        style="background:linear-gradient(135deg,#10b981,#34d399);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
+                        <span class="text-3xl">📚</span>
+                        <span>Vokabel-Duell</span>
+                        <span class="text-xs font-bold text-emerald-100 -mt-1">· jeder am eigenen Handy · auch im
+                            Team ·</span>
+                    </button>
                     <button onclick="openLiveDuelSetup('wortraten')"
                         class="btn-primary w-full flex flex-col items-center gap-1 text-center"
                         style="background:linear-gradient(135deg,#0ea5e9,#22d3ee);box-shadow:0 4px 24px rgba(14,165,233,0.3);">
@@ -1741,9 +1804,9 @@ VIEW: QUIZ SETUP
     <script src="duel-scrabble.js?v=7.1"></script>
     <script src="wortraten.js?v=1.1"></script>
     <script src="tv-cast.js?v=7.5"></script>
-    <script src="live-duel.js?v=7.5"></script>
+    <script src="live-duel.js?v=7.7"></script>
     <script src="app-misc.js?v=7.5"></script>
-    <script src="lobby-avatar.js?v=7.6"></script>
+    <script src="lobby-avatar.js?v=7.8"></script>
 
 
     <!-- ========================================================== burger menü

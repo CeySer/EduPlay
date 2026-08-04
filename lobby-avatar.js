@@ -9,6 +9,34 @@
         // ============================================================
         const CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // ohne I,O,0,1
 
+        // ============================================================
+        //  VOKABEL-GRUPPEN-AUSWAHL (mehrfach kombinierbar)
+        //  Genutzt von Live-Duell + Online-Lobby, Typ "vokabel"
+        // ============================================================
+        function renderVocabGroupCheckboxes(containerId) {
+            const box = document.getElementById(containerId);
+            if (!box) return;
+            if (typeof VOCABULARY_DATABASE === 'undefined') {
+                box.innerHTML = '<div class="text-xs text-gray-500 col-span-2">Keine Vokabeln geladen</div>';
+                return;
+            }
+            const langLabel = { en: 'EN', tr: 'TR' };
+            let html = '';
+            Object.keys(VOCABULARY_DATABASE).forEach(lang => {
+                Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
+                    const set = VOCABULARY_DATABASE[lang][level];
+                    const n = (set.words || []).length;
+                    if (!n) return;
+                    html += `
+                        <label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
+                            <input type="checkbox" value="vocab:${lang}:${level}" class="vokabel-group-check w-4 h-4 accent-emerald-500">
+                            <span class="truncate">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
+                        </label>`;
+                });
+            });
+            box.innerHTML = html || '<div class="text-xs text-gray-500 col-span-2">Keine Vokabeln geladen</div>';
+        }
+
         function codedLobbyRef(code) {
             return db.collection("lobbies").doc(code);
         }
@@ -33,7 +61,7 @@
                 return showToast("Bitte zuerst oben deinen Spieler auswaehlen!", "error");
             }
             if (typeof setupCategorySelectors === "function") {
-                setupCategorySelectors("coded-lobby-area", "coded-lobby-category", "alle");
+                setupCategorySelectors("coded-lobby-area", "coded-lobby-category", "spass");
             }
             const inp = document.getElementById("coded-lobby-join-code");
             if (inp) inp.value = "";
@@ -45,15 +73,22 @@
             const q = document.getElementById("coded-lobby-quiz-options");
             const sc = document.getElementById("coded-lobby-scrabble-options");
             const wr = document.getElementById("coded-lobby-wortraten-options");
+            const vk = document.getElementById("coded-lobby-vokabel-options");
             if (q) q.classList.toggle("hidden", type !== "quiz");
             if (sc) sc.classList.toggle("hidden", type !== "scrabble");
             if (wr) wr.classList.toggle("hidden", type !== "wortraten");
+            if (vk) vk.classList.toggle("hidden", type !== "vokabel");
             const bq = document.getElementById("coded-type-quiz");
             const bs = document.getElementById("coded-type-scrabble");
             const bw = document.getElementById("coded-type-wortraten");
+            const bv = document.getElementById("coded-type-vokabel");
             if (bq) bq.classList.toggle("active", type === "quiz");
             if (bs) bs.classList.toggle("active", type === "scrabble");
             if (bw) bw.classList.toggle("active", type === "wortraten");
+            if (bv) bv.classList.toggle("active", type === "vokabel");
+            if (type === "vokabel" && typeof renderVocabGroupCheckboxes === "function") {
+                renderVocabGroupCheckboxes("coded-lobby-vokabel-checkboxes");
+            }
         }
 
         async function createCodedLobby() {
@@ -62,9 +97,32 @@
             const mode = (document.getElementById("coded-lobby-mode") || {}).value || "versus";
             const bs = document.getElementById("coded-type-scrabble");
             const bw = document.getElementById("coded-type-wortraten");
-            const gameType = (bw && bw.classList.contains("active")) ? "wortraten" : (bs && bs.classList.contains("active")) ? "scrabble" : "quiz";
+            const bv = document.getElementById("coded-type-vokabel");
+            const gameType = (bw && bw.classList.contains("active")) ? "wortraten" :
+                (bs && bs.classList.contains("active")) ? "scrabble" :
+                (bv && bv.classList.contains("active")) ? "vokabel" : "quiz";
             let lobbyData;
-            if (gameType === "wortraten") {
+            if (gameType === "vokabel") {
+                const checked = Array.from(document.querySelectorAll("#coded-lobby-vokabel-checkboxes .vokabel-group-check:checked")).map(cb => cb.value);
+                if (checked.length === 0) return showToast("Bitte mindestens eine Vokabelgruppe auswaehlen!", "error");
+                const dir = (document.getElementById("coded-lobby-vokabel-dir") || {}).value || "mix";
+                const answerSeconds = parseInt((document.getElementById("coded-lobby-vokabel-speed") || {}).value || "20");
+                const questions = prepareQuestions(buildVocabTestQuestions(checked, dir).sort(() => Math.random() - 0.5).slice(0, 10));
+                if (questions.length < 3) return showToast("Zu wenige Vokabeln fuer diese Auswahl!", "error");
+                lobbyData = {
+                    type: "quiz",
+                    subject: "vokabel",
+                    mode: mode,
+                    isCoded: true,
+                    status: "waiting",
+                    questions: questions,
+                    currentIndex: 0,
+                    answerSeconds: answerSeconds,
+                    createdBy: activePlayerKey,
+                    players: {}
+                };
+                liveDuelType = "vokabel";
+            } else if (gameType === "wortraten") {
                 const wordMode = (document.getElementById("coded-lobby-wr-wordmode") || {}).value || "kids";
                 const difficulty = (document.getElementById("coded-lobby-wr-difficulty") || {}).value || "mittel";
                 const theme = (document.getElementById("coded-lobby-wr-theme") || {}).value || "schneemann";

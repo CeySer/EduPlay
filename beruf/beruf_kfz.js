@@ -4010,13 +4010,13 @@ const BERUF_KFZ_QUESTIONS = [
     points: 5,
     explanation: "Wasser kocht bei 100 °C. Entstehen im Hydrauliksystem Dampfblasen, lassen sich diese komprimieren – die Bremse verliert ihre Funktion völlig."
   },
-]
+];
 
-// Kategorie in Berufsschule-Menü registrieren (Fragen liegen nur hier)
-if (typeof BERUFSSCHULE !== 'undefined' && Array.isArray(BERUFSSCHULE)) {
-    if (!BERUFSSCHULE.some(s => s.key === 'beruf_kfz')) {
-        BERUFSSCHULE.unshift({ key: 'beruf_kfz', label: '🔧 KFZ-Mechatronik' });
-    }
+// // Kategorie in Berufsschule-Menü registrieren (Fragen liegen nur hier)
+// if (typeof BERUFSSCHULE !== 'undefined' && Array.isArray(BERUFSSCHULE)) {
+//     if (!BERUFSSCHULE.some(s => s.key === 'beruf_kfz')) {
+//         BERUFSSCHULE.unshift({ key: 'beruf_kfz', label: '🔧 KFZ-Mechatronik' });
+//     }
 
 if (typeof window !== "undefined") window.BERUF_KFZ_QUESTIONS = BERUF_KFZ_QUESTIONS; 
-}
+

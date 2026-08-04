@@ -113,6 +113,8 @@
                     type: "quiz",
                     subject: "vokabel",
                     mode: mode,
+                    vocabGroups: checked,
+                    vocabDir: dir,
                     isCoded: true,
                     status: "waiting",
                     questions: questions,
@@ -296,7 +298,14 @@
             }
 
             if (viewId === 'vokabeln') loadVocabSystem();
-            if (viewId === 'formel-setup') setupFormelAreas();
+            if (viewId === 'formel-setup') {
+                if (typeof setupFormelAreas === 'function') {
+                    setupFormelAreas();
+                } else {
+                    showToast("Der Formel-Bereich ist noch in Arbeit.", "error");
+                    return switchView('menu');
+                }
+            }
             if (viewId === 'lesen' && typeof renderLesenCategories === 'function') {
                 const ex = document.getElementById('lesen-exercise');
                 const gr = document.getElementById('lesen-categories');

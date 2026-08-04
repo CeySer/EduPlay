@@ -1152,6 +1152,21 @@
                             actionMode: data.actionMode
                         });
                     }
+                } else if (data.subject === "vokabel" && Array.isArray(data.vocabGroups) && data.vocabGroups.length) {
+                    const questions = prepareQuestions(
+                        buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix")
+                        .sort(() => Math.random() - 0.5).slice(0, 10)
+                    );
+                    if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
+                    await liveDuelRef.update({
+                        status: "playing",
+                        questions,
+                        currentIndex: 0,
+                        answerDeadline: null,
+                        correctAnswer: null,
+                        players,
+                        review: []
+                    });
                 } else {
                     const catSel = document.getElementById("again-category");
                     const category = (catSel && catSel.value) ? catSel.value : data.category;
@@ -1711,6 +1726,28 @@
                     createdBy: activePlayerKey,
                     players: {}
                 };
+            } else if (liveDuelType === "vokabel") {
+                const checked = Array.from(document.querySelectorAll(
+                    "#live-duel-vokabel-checkboxes .vokabel-group-check:checked")).map(cb => cb.value);
+                if (checked.length === 0) return showToast("Bitte mindestens eine Vokabelgruppe auswählen!", "error");
+                const vocabDir = (document.getElementById("live-duel-vokabel-dir") || {}).value || "mix";
+                const mode = (document.getElementById("live-duel-vokabel-mode") || {}).value || "versus";
+                const questions = prepareQuestions(buildVocabTestQuestions(checked, vocabDir).sort(() => Math.random() -
+                    0.5).slice(0, 10));
+                if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
+                lobbyData = {
+                    type: "quiz",
+                    subject: "vokabel",
+                    mode,
+                    vocabGroups: checked,
+                    vocabDir,
+                    status: "waiting",
+                    questions,
+                    currentIndex: 0,
+                    answerSeconds: parseInt((document.getElementById("live-duel-vokabel-speed") || {}).value) || 20,
+                    createdBy: activePlayerKey,
+                    players: {}
+                };
             } else {
                 // Quiz-Modus bleibt unverändert
                 const category = document.getElementById("live-duel-category").value;
@@ -1945,6 +1982,21 @@
                             actionMode: data.actionMode
                         });
                     }
+                } else if (data.subject === "vokabel" && Array.isArray(data.vocabGroups) && data.vocabGroups.length) {
+                    const questions = prepareQuestions(
+                        buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix")
+                        .sort(() => Math.random() - 0.5).slice(0, 10)
+                    );
+                    if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
+                    await liveDuelRef.update({
+                        status: "playing",
+                        questions,
+                        currentIndex: 0,
+                        answerDeadline: null,
+                        correctAnswer: null,
+                        players,
+                        review: []
+                    });
                 } else {
                     const catSel = document.getElementById("again-category");
                     const category = (catSel && catSel.value) ? catSel.value : data.category;

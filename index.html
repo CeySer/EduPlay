@@ -1169,13 +1169,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     🎁 Belohnungen einlösen
                 </button>
 
-                <!-- Avatar-Shop -->
-                <button onclick="openAvatarShop()"
-                    class="btn-primary w-full flex items-center justify-center gap-2 text-center"
-                    style="background:linear-gradient(135deg,#8b5cf6,#ec4899);box-shadow:0 4px 24px rgba(139,92,246,0.3);">
-                    🧍 Avatar-Shop
-                </button>
-
                 <!-- Schwächen-Karte & Test-Karte -->
                 <div id="weakness-card" class="hidden"></div>
                 <div id="pending-test-card" class="hidden"></div>
@@ -1354,25 +1347,6 @@ VIEW: HAUPTMENÜ
                             class="text-yellow-400 font-bold">0</span> Coins.</p>
                     <div id="rewards-list" class="space-y-3"></div>
                 </div>
-            </div>
-
-            <!-- ==========================================================
-            VIEW: AVATAR-SHOP
-            ========================================================== -->
-            <div id="view-avatar-shop" class="view hidden space-y-3">
-                <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                    <span class="text-amber-400 font-black text-sm">🪙 <span id="shop-coins">0</span></span>
-                </div>
-
-                <div class="glass-card p-4">
-                    <div id="avatar-shop-stage" class="avatar-stage mx-auto"></div>
-                    <button type="button" onclick="applyPreviewToAvatar()"
-                        class="btn-primary w-full mt-3 text-center">Outfit speichern</button>
-                </div>
-
-                <div id="shop-tabs" class="shop-tabs"></div>
-                <div id="shop-items" class="shop-items"></div>
             </div>
 
             <!-- ==========================================================
@@ -1830,10 +1804,9 @@ VIEW: QUIZ SETUP
     <script src="duel-scrabble.js?v=7.1"></script>
     <script src="wortraten.js?v=1.1"></script>
     <script src="tv-cast.js?v=7.5"></script>
-    <script src="live-duel.js?v=7.7"></script>
+    <script src="live-duel.js?v=7.8"></script>
     <script src="app-misc.js?v=7.5"></script>
-    <script src="lobby-avatar.js?v=7.8"></script>
-    <script src="avatar-shop.js?v=1.0"></script>
+    <script src="lobby-avatar.js?v=7.9"></script>
 
 
     <!-- ========================================================== burger menü

@@ -368,11 +368,15 @@ function wrFinishGame() {
     const s = wortratenState;
     const sorted = [...s.playerKeys].sort((a, b) => s.scores[b] - s.scores[a]);
     sorted.forEach((key, i) => { if (typeof awardXPToProfile === "function") awardXPToProfile(key, i === 0 ? 15 : 5); });
+    const modeLabel = s.wordmode === "adult" ? "🎓 Erwachsene" : "👶 Kinder";
+    const wm = s.wordmode || "kids";
+    const df = s.difficulty || "mittel";
 
     const medals = ["🥇", "🥈", "🥉"];
     let html = `<div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(14,165,233,0.2);">
         <div class="text-6xl">${wrFigureEmoji(s.theme)}</div>
         <h2 class="text-2xl font-black text-white mb-2">Wort-Rätsel beendet!</h2>
+        <div class="text-sm font-bold text-sky-300">${modeLabel} · ${esc(df)}</div>
         <div class="space-y-3 max-w-sm mx-auto">`;
     sorted.forEach((key, i) => {
         const medal = i < 3 ? medals[i] : `${i + 1}.`;
@@ -382,13 +386,41 @@ function wrFinishGame() {
         </div>`;
     });
     html += `</div>
-        <div class="grid grid-cols-2 gap-3 mt-6">
-            <button onclick="startWortratenGame()" class="btn-primary w-full text-center" style="background:var(--gradient-cool);box-shadow:0 4px 24px rgba(6,182,212,0.3);">🔄 Nochmal</button>
+        <div class="mt-4 space-y-2 text-left max-w-sm mx-auto">
+            <p class="text-xs font-bold text-gray-400 text-center">🔄 Gleich weiterspielen</p>
+            <select id="again-wr-offline-wordmode" class="input-modern text-sm font-bold">
+                <option value="kids" ${wm !== "adult" ? "selected" : ""}>👶 Kinder</option>
+                <option value="adult" ${wm === "adult" ? "selected" : ""}>🎓 Erwachsene</option>
+            </select>
+            <select id="again-wr-offline-difficulty" class="input-modern text-sm font-bold">
+                <option value="leicht" ${df === "leicht" ? "selected" : ""}>🟢 Leicht</option>
+                <option value="mittel" ${df === "mittel" || !df ? "selected" : ""}>🟡 Mittel</option>
+                <option value="schwer" ${df === "schwer" ? "selected" : ""}>🔴 Schwer</option>
+                <option value="experte" ${df === "experte" ? "selected" : ""}>🟣 Experte</option>
+            </select>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-4">
+            <button onclick="restartWortratenFromResult()" class="btn-primary w-full text-center" style="background:var(--gradient-cool);box-shadow:0 4px 24px rgba(6,182,212,0.3);">🔄 Nochmal</button>
             <button onclick="switchView('menu')" class="btn-secondary w-full text-center">🏁 Beenden</button>
         </div>
     </div>`;
     document.getElementById("wortraten-result-content").innerHTML = html;
+    const setupWm = document.getElementById("wortraten-wordmode");
+    const setupDf = document.getElementById("wortraten-difficulty");
+    if (setupWm) setupWm.value = wm;
+    if (setupDf) setupDf.value = df;
     wortratenState = null;
     switchView('wortraten-result');
     if (typeof renderFamilyHub === "function") renderFamilyHub();
+}
+
+function restartWortratenFromResult() {
+    const wm = (document.getElementById("again-wr-offline-wordmode") || {}).value;
+    const df = (document.getElementById("again-wr-offline-difficulty") || {}).value;
+    const setupWm = document.getElementById("wortraten-wordmode");
+    const setupDf = document.getElementById("wortraten-difficulty");
+    if (setupWm && wm) setupWm.value = wm;
+    if (setupDf && df) setupDf.value = df;
+    if (typeof toggleWortratenThemeRow === "function") toggleWortratenThemeRow();
+    startWortratenGame();
 }

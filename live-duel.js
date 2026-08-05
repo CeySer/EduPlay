@@ -267,6 +267,18 @@
 
             if (data.status === "waiting") {
                 clearLiveDuelTimers();
+                const meta = document.getElementById("live-duel-lobby-meta");
+                if (meta) {
+                    const typeLabel = data.type === "scrabble" ? "🔤 Wort-Duell" :
+                        data.type === "wortraten" ? "🧩 Wort-Rätsel" :
+                        data.subject === "vokabel" ? "📚 Vokabeln" : "🧠 Quiz";
+                    const modeBits = [];
+                    if (data.wordMode) modeBits.push(data.wordMode === "adult" ? "🎓 Erwachsene" : "👶 Kinder");
+                    if (data.difficulty) modeBits.push(String(data.difficulty));
+                    if (data.mode) modeBits.push(data.mode === "coop" ? "🤝 Team" : "⚔️ Duell");
+                    meta.innerHTML = typeLabel + (modeBits.length ? " · " + modeBits.join(" · ") : "");
+                    meta.classList.remove("hidden");
+                }
                 const list = document.getElementById("live-duel-player-list");
                 if (list) list.innerHTML = Object.values(data.players).map(p =>
                     `<div class="bg-white/5 border border-white/5 rounded-xl p-3 text-center"><div class="text-2xl">🙋</div><div class="font-bold text-white text-sm mt-1">${esc(p.name)}</div></div>`
@@ -277,6 +289,13 @@
                 const _clCode = document.getElementById("live-duel-lobby-code");
                 if (_clWrap) _clWrap.classList.toggle("hidden", !data.code);
                 if (_clCode) _clCode.innerText = data.code || "";
+                const qr = document.getElementById("live-duel-lobby-qr");
+                if (qr && data.code) {
+                    const payload = encodeURIComponent("EduPlay Lobby " + data.code);
+                    qr.innerHTML = '<img alt="QR" class="w-full h-full object-contain" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=' + payload + '">';
+                } else if (qr) {
+                    qr.innerHTML = "";
+                }
                 switchView('live-duel-lobby');
                 return;
             }
@@ -685,20 +704,41 @@
                     : `<p class="text-center text-sm font-bold text-gray-400">⏳ ${activeName} ist dran...</p>`;
             }
 
+            const continueBtn = (data.roundOver && isLiveDuelCreator)
+                ? `<button type="button" onclick="wrLiveAdvanceRound()" class="btn-primary w-full text-center py-3.5 mt-2" style="background:var(--gradient-cool);">Weiter ➔</button>`
+                : "";
+            const timerNote = (!data.roundOver && data.wordMode === "adult" && isMyTurn)
+                ? `<p class="text-center text-xs text-amber-300 font-bold">⏱️ ${typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 20} Sek. – Erwachsenen-Tempo</p>`
+                : "";
+
             document.getElementById("live-duel-play-content").innerHTML = `
                 <div class="space-y-4">
-                    <div class="text-center text-xs font-bold text-gray-400">Runde ${data.currentRound}/${data.totalRounds}</div>
+                    <div class="text-center text-xs font-bold text-gray-400">Runde ${data.currentRound}/${data.totalRounds} · ${data.wordMode === "adult" ? "🎓 Erwachsene" : "👶 Kinder"}</div>
                     <div class="flex justify-center gap-2 overflow-x-auto py-1">${scoresHtml}</div>
                     <div class="glass-card p-4 flex items-center justify-center">
                         <div id="live-duel-wr-figure" class="w-32 h-36"></div>
                     </div>
                     <div class="flex flex-wrap justify-center gap-1.5">${wordHtml}</div>
                     ${banner}
+                    ${timerNote}
                     <div class="grid grid-cols-7 sm:grid-cols-9 gap-1.5">${kbHtml}</div>
+                    ${continueBtn}
                 </div>`;
 
             wrRenderFigureBase(data.theme, "live-duel-wr-figure");
-            for (let i = 1; i <= (data.wrongCount || 0); i++) wrRevealFigureStage(i, "live-duel-wr-figure");
+            const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
+            for (let i = 1; i <= Math.min(data.wrongCount || 0, maxW); i++) wrRevealFigureStage(i, "live-duel-wr-figure");
+
+            // Erwachsenen-Modus: Zug-Timer (nur für den aktiven Spieler sichtbar über Countdown)
+            if (!data.roundOver && data.wordMode === "adult" && isMyTurn && isLiveDuelCreator) {
+                if (!data.wrTurnDeadline) {
+                    const secs = typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 20;
+                    liveDuelRef.update({ wrTurnDeadline: Date.now() + secs * 1000 }).catch(() => { });
+                }
+            }
+            if (data.wrTurnDeadline && !data.roundOver) {
+                startLiveDuelCountdown(data.wrTurnDeadline);
+            }
         }
 
         async function wrLiveGuessLetter(letter) {
@@ -768,7 +808,8 @@
             if (typeof SFX !== "undefined") { if (outcome.isHit) SFX.correct(); else SFX.wrong(); }
             if (outcome.roundOver) {
                 try { if (outcome.roundSolved && typeof confetti === "function") confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } }); } catch (e) { }
-                if (isLiveDuelCreator) setTimeout(() => wrLiveAdvanceRound(), 2200);
+                // Host: Weiter-Button; Auto-Weiter nach 8s als Fallback
+                if (isLiveDuelCreator) setTimeout(() => wrLiveAdvanceRound(), 8000);
             }
         }
 
@@ -809,7 +850,8 @@
                 wrongCount: 0,
                 roundOver: false,
                 roundSolved: false,
-                usedWords
+                usedWords,
+                wrTurnDeadline: null
             });
         }
 
@@ -1471,9 +1513,9 @@
                 const typeName = isVokabel ? "Vokabel-Duell" : d.type === "scrabble" ? "Wort-Duell" : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
                 const who = esc(d.createdByName || "jemandem");
                 const state = running ? "läuft – einsteigen" : "offen – beitreten";
-                html += `<button onclick="joinLiveDuelById('${docSnap.id}')" class="w-full p-3.5 glass-card text-white font-bold rounded-2xl shadow-md flex items-center justify-between gap-2 text-sm transition-all ${running ? "" : "border-indigo-400/30 animate-pulse"}">
-                                <span class="flex items-center gap-2"><span class="text-lg">${icon}</span><span>${typeName} von ${who}</span></span>
-                                <span class="text-[11px] text-indigo-200 shrink-0 text-right">🔥 ${state}<br>(${count} dabei)</span>
+                html += `<button onclick="joinLiveDuelById('${docSnap.id}')" class="w-full p-5 glass-card text-white font-black rounded-2xl shadow-lg flex items-center justify-between gap-3 text-base transition-all border-2 ${running ? "border-amber-400/40" : "border-indigo-400/50 animate-pulse"}" style="min-height:4.5rem;">
+                                <span class="flex items-center gap-3 text-left"><span class="text-3xl">${icon}</span><span><span class="block">${typeName}</span><span class="block text-xs font-bold text-gray-400">von ${who}</span></span></span>
+                                <span class="text-xs text-indigo-200 shrink-0 text-right font-bold">🔥 ${state}<br>(${count} dabei)</span>
                             </button>`;
             });
             box.innerHTML = html;
@@ -1505,12 +1547,12 @@
             const d = (snap && snap.exists) ? (snap.data() || {}) : {};
             const alreadyIn = d.players && d.players[activePlayerKey];
             if (d.status !== "waiting" || isTVHost || alreadyIn) { box.innerHTML = ""; return; }
-            const typeName = d.mode === "scrabble" ? "TV-Wort-Quiz" : "TV-Quiz";
+            const typeName = d.mode === "scrabble" ? "TV-Wort-Duell" : d.mode === "wortraten" ? "TV-Wort-Rätsel" : "TV-Quiz";
             const count = d.players ? Object.keys(d.players).length : 0;
             box.innerHTML =
-                `<button onclick="switchView('tv-quiz-player');joinTVGame()" class="w-full p-3.5 glass-card border-2 border-indigo-400/30 animate-pulse text-white font-bold rounded-2xl shadow-md flex items-center justify-between gap-2 text-sm transition-all">
-                                <span class="flex items-center gap-2"><span class="text-lg">📺</span><span>${typeName} – am Fernseher</span></span>
-                                <span class="text-[11px] text-indigo-200 shrink-0 text-right">🔥 offen – beitreten<br>(${count} dabei)</span>
+                `<button onclick="switchView('tv-quiz-player');joinTVGame()" class="w-full p-5 glass-card border-2 border-indigo-400/50 animate-pulse text-white font-black rounded-2xl shadow-lg flex items-center justify-between gap-3 text-base transition-all" style="min-height:4.5rem;">
+                                <span class="flex items-center gap-3 text-left"><span class="text-3xl">📺</span><span><span class="block">${typeName}</span><span class="block text-xs font-bold text-gray-400">am Fernseher</span></span></span>
+                                <span class="text-xs text-indigo-200 shrink-0 text-right font-bold">🔥 offen – beitreten<br>(${count} dabei)</span>
                             </button>`;
         }
 

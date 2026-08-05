@@ -225,13 +225,16 @@
             width: 100%;
             max-width: 480px;
             min-height: 100vh;
+            min-height: 100dvh;
             background: rgba(14, 22, 40, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             position: relative;
             display: flex;
             flex-direction: column;
-            padding-bottom: 32px;
+            padding-bottom: max(32px, env(safe-area-inset-bottom));
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
             border-left: 1px solid rgba(255, 255, 255, 0.04);
             border-right: 1px solid rgba(255, 255, 255, 0.04);
             box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
@@ -2072,4 +2075,84 @@ button, a, .btn-primary, .btn-secondary { touch-action: manipulation; -webkit-ta
   *, *::before, *::after {
     animation-duration: 0.01ms !important; transition-duration: 0.01ms !important;
   }
+}
+
+/* ============================================================
+   RESPONSIVE – erweitert
+   ============================================================ */
+#app-shell > main,
+#app-shell .view {
+    padding-left: max(0.75rem, env(safe-area-inset-left));
+    padding-right: max(0.75rem, env(safe-area-inset-right));
+}
+
+/* Tablets / große Handys: etwas breiter */
+@media (min-width: 640px) {
+    #app-shell:not(.max-w-none) {
+        max-width: 560px;
+    }
+}
+@media (min-width: 900px) {
+    #app-shell:not(.max-w-none) {
+        max-width: 640px;
+    }
+}
+
+/* Sehr schmale Geräte */
+@media (max-width: 360px) {
+    #live-duel-lobby-code {
+        font-size: 1.75rem !important;
+        letter-spacing: 0.15em !important;
+    }
+    .text-5xl { font-size: 2rem !important; }
+    .text-3xl { font-size: 1.5rem !important; }
+    .grid.grid-cols-2 { gap: 0.5rem !important; }
+    .p-8 { padding: 1.25rem !important; }
+    .p-6 { padding: 1rem !important; }
+    #live-duel-lobby-qr {
+        width: 7.5rem !important;
+        height: 7.5rem !important;
+    }
+}
+
+/* Landscape Handy */
+@media (max-height: 480px) and (orientation: landscape) {
+    #app-shell {
+        padding-bottom: 12px;
+    }
+    .app-header {
+        padding: 6px 12px;
+    }
+    .glass-card-glow.p-8,
+    .p-8 {
+        padding: 1rem !important;
+    }
+    #live-duel-lobby-qr {
+        width: 5.5rem !important;
+        height: 5.5rem !important;
+        margin-top: 0.25rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    .text-5xl { font-size: 1.75rem !important; }
+}
+
+/* Touch: große Tipziele */
+@media (pointer: coarse) {
+    .btn-primary,
+    .btn-secondary,
+    .drawer-menu-item {
+        min-height: 44px;
+    }
+    input.input-modern,
+    select.input-modern {
+        min-height: 44px;
+        font-size: 16px; /* iOS Zoom-Vermeidung */
+    }
+}
+
+/* TV / Host: volle Breite bleibt über .max-w-none */
+#app-shell.max-w-none {
+    max-width: 100%;
+    border: none;
+    box-shadow: none;
 }

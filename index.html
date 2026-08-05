@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
     <meta name="theme-color" content="#080c18">
     <title>EduPlay Hub - Familien Edition v2.30</title>
 
@@ -1225,6 +1225,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">⚔️ Gegeneinander spielen
                             · jeder am eigenen Handy</span>
                     </div>
+                    <!-- Offene Lobbys / TV – über den Spiel-Buttons -->
+                    <div id="open-duels-list" class="space-y-2"></div>
+                    <div id="open-tv-list" class="space-y-2"></div>
                     <button onclick="openCodedLobbySetup()"
                         class="p-4 rounded-2xl text-white font-black shadow-lg text-sm flex flex-col items-center gap-1 transition hover:scale-[1.02] w-full"
                         style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">
@@ -1265,8 +1268,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <span>TV-Quiz</span>
                         <span class="text-xs font-bold text-indigo-200 -mt-1">· alle zusammen ·</span>
                     </button>
-                    <div id="open-tv-list" class="space-y-2"></div>
-                    <div id="open-duels-list" class="space-y-2"></div>
                 </div>
 
                 <!-- Offline · ein Handy reihum -->
@@ -1759,6 +1760,7 @@ VIEW: QUIZ SETUP
                         <div class="dash-sub-nav mb-6">
                             <button id="tvmode-quiz" class="active" onclick="setTVHostMode('quiz')">🧠 Quiz</button>
                             <button id="tvmode-scrabble" onclick="setTVHostMode('scrabble')">🔤 Wort-Duell</button>
+                            <button id="tvmode-wortraten" onclick="setTVHostMode('wortraten')">🧩 Wort-Rätsel</button>
                         </div>
                         <div id="tv-quiz-mode-options">
                             <p class="text-gray-400 text-sm mb-3">Worum soll es gehen?</p>
@@ -1822,6 +1824,40 @@ VIEW: QUIZ SETUP
                                 </select>
                             </div>
                         </div>
+                        <div id="tv-wortraten-mode-options" class="hidden text-left space-y-3 mb-2">
+                            <p class="text-xs text-gray-400 text-center">Reihum Buchstaben raten · Figur wächst bei Fehlern · TV zeigt Wort & Figur</p>
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
+                                <select id="tv-wr-wordmode" class="input-modern font-bold text-lg">
+                                    <option value="kids" selected>👶 Kinder</option>
+                                    <option value="adult">🎓 Erwachsene</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeit</label>
+                                <select id="tv-wr-difficulty" class="input-modern font-bold text-lg">
+                                    <option value="leicht">🟢 Leicht (3-5)</option>
+                                    <option value="mittel" selected>🟡 Mittel (5-7)</option>
+                                    <option value="schwer">🔴 Schwer (7-10)</option>
+                                    <option value="experte">🟣 Experte (9+)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Figur</label>
+                                <select id="tv-wr-theme" class="input-modern font-bold text-lg">
+                                    <option value="schneemann" selected>⛄ Schneemann</option>
+                                    <option value="roboter">🤖 Roboter</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Runden</label>
+                                <select id="tv-wr-rounds" class="input-modern font-bold text-lg">
+                                    <option value="3" selected>3 Runden</option>
+                                    <option value="5">5 Runden</option>
+                                    <option value="8">8 Runden</option>
+                                </select>
+                            </div>
+                        </div>
                         <button onclick="startTVHostLobby()" class="btn-primary w-full text-center text-xl mt-4">Lobby
                             eröffnen 🚀</button>
                     </div>
@@ -1858,17 +1894,17 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=7.5"></script>
-    <script src="family-dashboard.js?v=7.6"></script>
-    <script src="ui-common.js?v=7.5"></script>
-    <script src="quiz-core.js?v=7.5"></script>
-    <script src="vocab.js?v=7.5"></script>
-    <script src="duel-scrabble.js?v=7.1"></script>
-    <script src="wortraten.js?v=1.1"></script>
-    <script src="tv-cast.js?v=7.5"></script>
-    <script src="live-duel.js?v=7.7"></script>
-    <script src="app-misc.js?v=7.5"></script>
-    <script src="lobby-avatar.js?v=7.8"></script>
+    <script src="app-config.js?v=8.2"></script>
+    <script src="family-dashboard.js?v=8.2"></script>
+    <script src="ui-common.js?v=8.2"></script>
+    <script src="quiz-core.js?v=8.2"></script>
+    <script src="vocab.js?v=8.2"></script>
+    <script src="duel-scrabble.js?v=8.2"></script>
+    <script src="wortraten.js?v=8.2"></script>
+    <script src="tv-cast.js?v=8.2"></script>
+    <script src="live-duel.js?v=8.2"></script>
+    <script src="app-misc.js?v=8.2"></script>
+    <script src="lobby-avatar.js?v=8.2"></script>
 
 
     <!-- ========================================================== burger menü
@@ -1951,7 +1987,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
     </div>
 
     <!-- 1. ZUERST DIE DATENBANK (Inhalt aus lesen.js) -->
-    <script src="lesen-module.js?v=7.5"></script>
+    <!-- lesen-module.js ausgeblendet -->
 
 </body>
 

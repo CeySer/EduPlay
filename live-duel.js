@@ -1185,16 +1185,17 @@
                 if (data.type === "scrabble") {
                     const difficulty = (document.getElementById("again-difficulty") || {}).value || data.difficulty || "mittel";
                     const totalRounds = parseInt((document.getElementById("again-rounds") || {}).value) || data.totalRounds || 5;
+                    const wordMode = (document.getElementById("again-wordmode") || {}).value || data.wordMode || "kids";
                     const requireLetter = !!data.requireLetter;
                     liveDuelUsedWords = new Set();
-                    const rack = generateScrabbleRack(difficulty, requireLetter, data.wordMode);
+                    const rack = generateScrabbleRack(difficulty, requireLetter, wordMode);
                     await liveDuelRef.update({
                         status: "playing",
                         difficulty,
                         totalRounds,
                         currentRound: 1,
                         requireLetter,
-                        wordMode: data.wordMode || "kids",
+                        wordMode,
                         answerSeconds: SCRABBLE_ANSWER_SECONDS[difficulty] || 20,
                         currentLetters: rack.letters,
                         currentSolution: rack.solution,
@@ -1207,7 +1208,7 @@
                         startLiveDuelActionMode({
                             difficulty: difficulty,
                             requireLetter: requireLetter,
-                            wordMode: data.wordMode || "kids",
+                            wordMode,
                             actionMode: data.actionMode
                         });
                     }
@@ -1352,17 +1353,21 @@
                                             <option value="8">8 Runden</option>
                                         </select>
                                     ` : `
+                                        <select id="again-wordmode" class="input-modern text-sm font-bold">
+                                            <option value="kids" ${(data.wordMode || "kids") !== "adult" ? "selected" : ""}>👶 Kinder</option>
+                                            <option value="adult" ${data.wordMode === "adult" ? "selected" : ""}>🎓 Erwachsene</option>
+                                        </select>
                                         <select id="again-difficulty" class="input-modern text-sm font-bold">
-                                            <option value="leicht">🟢 Leicht (6 Buchstaben, 70 Sek.)</option>
-                                            <option value="mittel" selected>🟡 Mittel (7 Buchstaben, ab 3, 55 Sek.)</option>
-                                            <option value="schwer">🔴 Schwer (8 Buchstaben, 40 Sek.)</option>
-                                            <option value="experte">🟣 Experte (9 Buchstaben, 30 Sek.)</option>
-                                            <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
+                                            <option value="leicht" ${data.difficulty === "leicht" ? "selected" : ""}>🟢 Leicht (6 Buchstaben, 70 Sek.)</option>
+                                            <option value="mittel" ${!data.difficulty || data.difficulty === "mittel" ? "selected" : ""}>🟡 Mittel (7 Buchstaben, ab 3, 55 Sek.)</option>
+                                            <option value="schwer" ${data.difficulty === "schwer" ? "selected" : ""}>🔴 Schwer (8 Buchstaben, 40 Sek.)</option>
+                                            <option value="experte" ${data.difficulty === "experte" ? "selected" : ""}>🟣 Experte (9 Buchstaben, 30 Sek.)</option>
+                                            <option value="profi" ${data.difficulty === "profi" ? "selected" : ""}>🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
                                         </select>
                                         <select id="again-rounds" class="input-modern text-sm font-bold">
-                                            <option value="3">3 Runden</option>
-                                            <option value="5" selected>5 Runden</option>
-                                            <option value="8">8 Runden</option>
+                                            <option value="3" ${String(data.totalRounds) === "3" ? "selected" : ""}>3 Runden</option>
+                                            <option value="5" ${!data.totalRounds || String(data.totalRounds) === "5" ? "selected" : ""}>5 Runden</option>
+                                            <option value="8" ${String(data.totalRounds) === "8" ? "selected" : ""}>8 Runden</option>
                                         </select>
                                     `}
                                     <button onclick="restartLiveDuel()" class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>

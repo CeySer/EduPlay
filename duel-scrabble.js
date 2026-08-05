@@ -452,6 +452,16 @@
 
         let scrabbleState = null;
 
+        function restartScrabbleFromResult() {
+            const wm = (document.getElementById("again-scrabble-wordmode") || {}).value;
+            const df = (document.getElementById("again-scrabble-difficulty") || {}).value;
+            const setupWm = document.getElementById("scrabble-wordmode");
+            const setupDf = document.getElementById("scrabble-difficulty");
+            if (setupWm && wm) setupWm.value = wm;
+            if (setupDf && df) setupDf.value = df;
+            startScrabbleGame();
+        }
+
         function startScrabbleGame() {
             const checked = Array.from(document.querySelectorAll(".scrabble-player-check:checked")).map(c => c.value);
             if (checked.length === 0) return showToast("Bitte mindestens einen Spieler auswählen!", "error");
@@ -926,12 +936,31 @@
                                 </div>`;
             });
             html += `</div>
-                        <div class="grid grid-cols-2 gap-3 mt-6">
-                            <button onclick="startScrabbleGame()" class="btn-primary w-full text-center" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">🔄 Nochmal</button>
+                        <div class="mt-5 space-y-2 text-left max-w-sm mx-auto">
+                            <p class="text-xs font-bold text-gray-400 text-center">🔄 Gleich weiterspielen</p>
+                            <select id="again-scrabble-wordmode" class="input-modern text-sm font-bold">
+                                <option value="kids" ${wordMode !== "adult" ? "selected" : ""}>👶 Kinder</option>
+                                <option value="adult" ${wordMode === "adult" ? "selected" : ""}>🎓 Erwachsene</option>
+                            </select>
+                            <select id="again-scrabble-difficulty" class="input-modern text-sm font-bold">
+                                <option value="leicht" ${difficulty === "leicht" ? "selected" : ""}>🟢 Leicht</option>
+                                <option value="mittel" ${difficulty === "mittel" || !difficulty ? "selected" : ""}>🟡 Mittel</option>
+                                <option value="schwer" ${difficulty === "schwer" ? "selected" : ""}>🔴 Schwer</option>
+                                <option value="experte" ${difficulty === "experte" ? "selected" : ""}>🟣 Experte</option>
+                                <option value="profi" ${difficulty === "profi" ? "selected" : ""}>🔥 Profi</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 mt-4">
+                            <button onclick="restartScrabbleFromResult()" class="btn-primary w-full text-center" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">🔄 Nochmal</button>
                             <button onclick="switchView('menu')" class="btn-secondary w-full text-center">🏁 Beenden</button>
                         </div>
                     </div>`;
             document.getElementById("scrabble-result-content").innerHTML = html;
+            // Spieler-Haken für Nochmal behalten: Setup-Selects anpassen
+            const wm = document.getElementById("scrabble-wordmode");
+            const df = document.getElementById("scrabble-difficulty");
+            if (wm) wm.value = wordMode;
+            if (df) df.value = difficulty;
             scrabbleState = null;
             switchView('scrabble-result');
             renderFamilyHub();

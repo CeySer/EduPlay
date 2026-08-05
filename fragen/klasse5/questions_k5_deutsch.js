@@ -1,4 +1,4 @@
-const SCHOOL_QUESTIONS_KLASSE5 = [
+const K3_DEUTSCH_QUESTIONS = [
 
   // ================================================================
   // KLASSE 5 - DEUTSCH (100 Fragen)

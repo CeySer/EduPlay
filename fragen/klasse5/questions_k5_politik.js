@@ -4,7 +4,7 @@
 // Medien und erste wirtschaftliche Grundlagen
 // ================================================================
 
-const POLITIK_KLASSE5 = [
+const K3_POLITIK_QUESTIONS = [
 
   // --- Demokratie und Mitbestimmung (20 Fragen) ---
   {"id":"k5po001","category":"k5_politik","area":"schule","grade":5,"subject":"politik","question":"Was bedeutet das griechische Wort 'Demokratie' wörtlich übersetzt?","answers":["Herrschaft des Volkes (demos = Volk, kratein = herrschen)","Herrschaft eines einzelnen Königs über das Reich","Herrschaft des Militärs über die Bevölkerung","Herrschaft der reichsten Bürger einer Stadt"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Demokratie kommt von griechisch 'demos' (Volk) und 'kratein' (herrschen). Das Volk bestimmt durch Wahlen und Abstimmungen."},

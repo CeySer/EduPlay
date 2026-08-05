@@ -4,7 +4,7 @@
 // NRW-Regionen, Klima und Landschaften
 // ================================================================
 
-const ERDKUNDE_KLASSE5 = [
+const K3_ERDKUNDE_QUESTIONS = [
 
   // --- Orientierung auf der Erde (25 Fragen) ---
   {"id":"k5ek001","category":"k5_erdkunde","area":"schule","grade":5,"subject":"erdkunde","question":"Wie heißt die gedachte Linie, die die Erde in Nord- und Südhalbkugel teilt?","answers":["Äquator (0° Breite)","Nullmeridian (0° Länge)","Wendekreis des Krebses","Polarkreis (66,5° Nord)"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Der Äquator ist der längste Breitenkreis und teilt die Erde in die nördliche und südliche Hemisphäre."},

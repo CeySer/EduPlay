@@ -550,9 +550,22 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </div>
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
-                        <select id="scrabble-wordmode" class="input-modern font-bold">
+                        <select id="scrabble-wordmode" class="input-modern font-bold" onchange="toggleScrabbleThemeRow()">
                             <option value="kids" selected>👶 Kinder (einfache Wörter)</option>
                             <option value="adult">🎓 Erwachsene (schwere Wörter)</option>
+                        </select>
+                    </div>
+                    <div id="scrabble-theme-row">
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Thema (nur Kinder)</label>
+                        <select id="scrabble-word-theme" class="input-modern font-bold">
+                            <option value="gemischt" selected>🎲 Gemischt</option>
+                            <option value="tiere">🐾 Tiere</option>
+                            <option value="schule">📚 Schule</option>
+                            <option value="essen">🍎 Essen</option>
+                            <option value="sport">⚽ Sport</option>
+                            <option value="natur">🌿 Natur</option>
+                            <option value="zuhause">🏠 Zuhause</option>
+                            <option value="fahrzeuge">🚗 Fahrzeuge</option>
                         </select>
                     </div>
                     <div>
@@ -637,6 +650,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <button onclick="srClearTiles()" class="btn-secondary w-full text-center">🗑 Neu
                                 anfangen</button>
                         </div>
+                        <button type="button" onclick="useScrabbleTip()"
+                            class="btn-secondary w-full text-center text-sm py-2.5">💡 Tipp (−2 Pkt.)</button>
                         <button onclick="submitScrabbleWord()" class="btn-primary w-full text-center"
                             style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Wort
                             einreichen ✅</button>
@@ -1113,10 +1128,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     style="border-color:rgba(99,102,241,0.35);background:linear-gradient(180deg,rgba(99,102,241,0.12),rgba(14,22,40,0.4));">
                     <p class="text-[11px] text-indigo-300 font-bold uppercase tracking-wider">Lobby-Code</p>
                     <div id="live-duel-lobby-code" class="text-5xl font-black tracking-[0.28em] text-white mt-2 mb-1 select-all"></div>
+                    <div id="live-duel-lobby-qr" class="mx-auto my-3 w-36 h-36 rounded-xl bg-white p-2 flex items-center justify-center overflow-hidden"></div>
                     <p class="text-[11px] text-gray-400 mb-3">Freunde: Online-Lobby → Code eingeben</p>
                     <button type="button" onclick="shareLobbyCode()" class="btn-primary w-full text-sm py-3"
                         style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">📤 Einladen / Code teilen</button>
                 </div>
+                <div id="live-duel-lobby-meta" class="hidden glass-card p-3 text-center text-xs font-bold text-indigo-200"></div>
                 <div class="glass-card p-5 space-y-4">
                     <div class="text-center">
                         <div class="text-4xl mb-2">⏳</div>

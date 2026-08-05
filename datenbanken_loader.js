@@ -50,6 +50,14 @@
         'fragen/klasse4/questions_k4_sachunterricht.js?v=8.1',
         'fragen/klasse4/questions_k4_englisch.js?v=7.8',
 
+        // Klasse 5-10
+        'fragen/klasse5/questions_k5_mathe.js?v=7.8',
+        'fragen/klasse5/questions_k5_deutsch.js?v=8.0',
+        'fragen/klasse5/questions_k5_englisch.js?v=7.8',
+        'fragen/klasse5/questions_k5_politik.js?v=7.8',
+        'fragen/klasse4/questions_k5_biologie.js?v=8.0',
+        'fragen/klasse5/questions_k5_edrkunde.js?v=8.1',
+
         // Fun – Kinder
         'fragen/fun/kinder_anime.js?v=7.8',
         'fragen/fun/kinder_maerchen.js?v=7.8',
@@ -97,6 +105,7 @@
         'K2_MATHE_QUESTIONS', 'K2_DEUTSCH_QUESTIONS', 'K2_SACHUNTERRICHT_QUESTIONS', 'K2_ENGLISCH_QUESTIONS',
         'K3_MATHE_QUESTIONS', 'K3_DEUTSCH_QUESTIONS', 'K3_SACHUNTERRICHT_QUESTIONS', 'K3_ENGLISCH_QUESTIONS',
         'K4_MATHE_QUESTIONS', 'K4_DEUTSCH_QUESTIONS', 'K4_SACHUNTERRICHT_QUESTIONS', 'K4_ENGLISCH_QUESTIONS',
+        'K5_MATHE_QUESTIONS', 'K5_DEUTSCH_QUESTIONS', 'K5_ENGLISCH_QUESTIONS', 'K5_BIOLOGIE_QUESTIONS', 'K5_POLITIK_QUESTIONS', 'K5_ERDKUNDE_QUESTIONS',
         // Fun
         'KINDER_ANIME_QUESTIONS',
         'KINDER_MAERCHEN_QUESTIONS',

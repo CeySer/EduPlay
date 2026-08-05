@@ -61,7 +61,12 @@
         _pushIf(typeof K4_MATHE_QUESTIONS !== 'undefined' ? K4_MATHE_QUESTIONS : null);
         _pushIf(typeof K4_DEUTSCH_QUESTIONS !== 'undefined' ? K4_DEUTSCH_QUESTIONS : null);
         _pushIf(typeof K4_SACHUNTERRICHT_QUESTIONS !== 'undefined' ? K4_SACHUNTERRICHT_QUESTIONS : null);
-        _pushIf(typeof K4_ENGLISCH_QUESTIONS !== 'undefined' ? K4_ENGLISCH_QUESTIONS : null);
+        _pushIf(typeof K5_ENGLISCH_QUESTIONS !== 'undefined' ? K5_ENGLISCH_QUESTIONS : null);
+        _pushIf(typeof K5_DEUTSCH_QUESTIONS !== 'undefined' ? K5_DEUTSCH_QUESTIONS : null);
+        _pushIf(typeof K5_MATHE_QUESTIONS !== 'undefined' ? K5_MATHE_QUESTIONS : null);
+        _pushIf(typeof K5_POLITIK_QUESTIONS !== 'undefined' ? K5_POLITIK_QUESTIONS : null);
+        _pushIf(typeof K5_ERDKUNDE_QUESTIONS !== 'undefined' ? K5_ERDKUNDE_QUESTIONS : null);
+        _pushIf(typeof K5_BIOLOGIE_QUESTIONS !== 'undefined' ? K5_BIOLOGIE_QUESTIONS : null);
         _pushIf(typeof KINDER_ANIME_QUESTIONS !== 'undefined' ? KINDER_ANIME_QUESTIONS : null);
         _pushIf(typeof KINDER_MAERCHEN_QUESTIONS !== 'undefined' ? KINDER_MAERCHEN_QUESTIONS : null);
         _pushIf(typeof KINDER_TIERE_NATUR_QUESTIONS !== 'undefined' ? KINDER_TIERE_NATUR_QUESTIONS : null);

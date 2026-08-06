@@ -334,6 +334,18 @@ function wrGuessLetter(letter) {
     wrUpdateTurnBanner();
 }
 
+function wrRevealWord() {
+    const s = wortratenState;
+    if (!s || !s.roundActive) return;
+    // Alle Buchstaben als geraten markieren, keine Punkte
+    s.word.split("").forEach(ch => s.guessed.add(ch));
+    wrRenderWord();
+    wrRenderKeyboard();
+    if (typeof SFX !== "undefined") SFX.wrong();
+    showToast("Wort: " + s.word + " · 0 Punkte", "error");
+    wrEndRound(false);
+}
+
 function wrEndRound(solved) {
     const s = wortratenState;
     s.roundActive = false;

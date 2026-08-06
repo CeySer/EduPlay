@@ -388,7 +388,7 @@
             renderWeaknessSuggestion();
             updateMenuGamification();
             switchView('menu');
-            // QR-/Link-Beitritt (?join=CODE): nach Profilwahl automatisch beitreten
+            // QR-/Link-Beitritt: Online (?join=) oder TV (?tv=)
             try {
                 if (window._pendingJoinCode && typeof joinCodedLobby === "function") {
                     const code = window._pendingJoinCode;
@@ -396,6 +396,13 @@
                     const inp = document.getElementById("coded-lobby-join-code");
                     if (inp) inp.value = code;
                     setTimeout(() => joinCodedLobby(), 200);
+                } else if (window._pendingTVCode) {
+                    const tvInp = document.getElementById("tv-join-code");
+                    if (tvInp) tvInp.value = window._pendingTVCode;
+                    if (typeof switchView === "function") switchView("tv-quiz-player");
+                    setTimeout(() => {
+                        if (typeof joinTVGame === "function") joinTVGame(window._pendingTVCode);
+                    }, 300);
                 }
             } catch (e) { }
             // Läuft für dieses Kind noch etwas? Dann direkt anbieten –

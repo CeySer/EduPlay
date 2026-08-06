@@ -775,8 +775,8 @@
         let soundOn = true;
         try { soundOn = localStorage.getItem("eduplaySound") !== "off"; } catch (e) { }
 
-        function ensureAudio() {
-            if (!soundOn) return null;
+        function ensureAudio(force) {
+            if (!force && !soundOn) return null;
             try {
                 if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 if (audioCtx.state === "suspended") audioCtx.resume();
@@ -841,27 +841,32 @@
             ], "sawtooth", 0.11)
         };
 
-        // Hintergrundmusik (leise, Minecraft-ähnlich, abschaltbar)
+        // Hintergrundmusik – unabhängig von SFX (Ton an/aus)
         let bgMusicOn = true;
+        let bgMusicVolume = 0.4;
         let bgMusicNodes = [];
         try { bgMusicOn = localStorage.getItem("eduplayBgMusic") !== "off"; } catch (e) { }
+        try {
+            const v = parseFloat(localStorage.getItem("eduplayBgMusicVol"));
+            if (!isNaN(v) && v >= 0 && v <= 1) bgMusicVolume = v;
+        } catch (e) { }
 
         function startBgMusic() {
-            if (!bgMusicOn || !soundOn) return;
+            if (!bgMusicOn || bgMusicVolume <= 0) return;
             stopBgMusic();
-            const ctx = ensureAudio();
+            const ctx = ensureAudio(true);
             if (!ctx) return;
-            // Sanfte, leise Ambient-Schleife (tiefe Töne)
-            const notes = [130.81, 164.81, 196.00, 164.81]; // C3 E3 G3 E3
+            const base = 0.03 * bgMusicVolume;
+            const notes = [130.81, 164.81, 196.00, 164.81];
             let t = ctx.currentTime;
-            notes.forEach((freq, i) => {
+            notes.forEach((freq) => {
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();
                 osc.type = "sine";
                 osc.frequency.value = freq;
-                gain.gain.setValueAtTime(0.012, t);
-                gain.gain.linearRampToValueAtTime(0.018, t + 1.5);
-                gain.gain.linearRampToValueAtTime(0.012, t + 3);
+                gain.gain.setValueAtTime(base * 0.7, t);
+                gain.gain.linearRampToValueAtTime(base, t + 1.5);
+                gain.gain.linearRampToValueAtTime(base * 0.7, t + 3);
                 osc.connect(gain);
                 gain.connect(ctx.destination);
                 osc.start(t);
@@ -869,7 +874,6 @@
                 bgMusicNodes.push(osc, gain);
                 t += 3;
             });
-            // Loop alle ~12s
             if (window._bgMusicTimeout) clearTimeout(window._bgMusicTimeout);
             window._bgMusicTimeout = setTimeout(startBgMusic, 12000);
         }
@@ -883,12 +887,42 @@
         function toggleBgMusic() {
             bgMusicOn = !bgMusicOn;
             try { localStorage.setItem("eduplayBgMusic", bgMusicOn ? "on" : "off"); } catch (e) { }
-            if (bgMusicOn && soundOn) startBgMusic();
+            if (bgMusicOn) startBgMusic();
             else stopBgMusic();
-            showToast(bgMusicOn ? "🎵 Hintergrundmusik an" : "🎵 Hintergrundmusik aus", "success", "bgmusic");
+            document.querySelectorAll(".bgmusic-toggle-icon").forEach(el => {
+                el.innerText = bgMusicOn ? "an" : "aus";
+            });
+            const slider = document.getElementById("bg-music-volume");
+            if (slider) slider.disabled = !bgMusicOn;
+            showToast(bgMusicOn ? "🎵 Musik an" : "🎵 Musik aus", "success", "bgmusic");
         }
 
-        // Moderne Klick-Sounds für alle Buttons
+        function setBgMusicVolume(val) {
+            const v = Math.max(0, Math.min(1, parseFloat(val)));
+            if (isNaN(v)) return;
+            bgMusicVolume = v;
+            try { localStorage.setItem("eduplayBgMusicVol", String(v)); } catch (e) { }
+            const label = document.getElementById("bg-music-vol-label");
+            if (label) label.innerText = Math.round(v * 100) + "%";
+            if (bgMusicOn) {
+                if (v <= 0) stopBgMusic();
+                else startBgMusic();
+            }
+        }
+
+        function syncAudioSettingsUI() {
+            document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
+            document.querySelectorAll(".bgmusic-toggle-icon").forEach(el => el.innerText = bgMusicOn ? "an" : "aus");
+            const slider = document.getElementById("bg-music-volume");
+            if (slider) {
+                slider.value = String(bgMusicVolume);
+                slider.disabled = !bgMusicOn;
+            }
+            const label = document.getElementById("bg-music-vol-label");
+            if (label) label.innerText = Math.round(bgMusicVolume * 100) + "%";
+        }
+
+        // Klick-Sounds nur bei SFX an
         document.addEventListener("click", (e) => {
             const btn = e.target.closest("button, .btn-primary, .btn-secondary, .btn-ghost, [onclick]");
             if (btn && soundOn) SFX.tap();
@@ -898,13 +932,8 @@
             soundOn = !soundOn;
             try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
             document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
-            if (soundOn) {
-                SFX.tap();
-                if (bgMusicOn) startBgMusic();
-            } else {
-                stopBgMusic();
-            }
-            showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
+            if (soundOn) SFX.tap();
+            showToast(soundOn ? "🔊 Effekte an" : "🔇 Effekte aus", "success", "sound");
         }
 
         function inviteFriends() {

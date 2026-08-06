@@ -440,6 +440,7 @@
             }
 
             if (viewId === 'vokabeln') loadVocabSystem();
+            if (viewId === 'einstellungen' && typeof syncAudioSettingsUI === 'function') syncAudioSettingsUI();
             if (viewId === 'quiz-setup' && typeof setupCategorySelectors === 'function') {
                 setupCategorySelectors("quiz-area", "sub-category", "lernen");
             }
@@ -546,16 +547,18 @@
                     document.body.classList.add('dark-theme');
                 }
             } catch (e) { }
-            // QR-/Deep-Link: ?join=ABCD → Code merken, nach Login/Profil beitreten
+            // QR-/Deep-Link: ?join=ABCD (Online) oder ?tv=ABCD (TV)
             try {
                 const params = new URLSearchParams(window.location.search || "");
                 let join = (params.get("join") || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
-                if (join.length === 4) {
-                    window._pendingJoinCode = join;
-                    // URL bereinigen, damit Reload nicht erneut triggert
+                let tv = (params.get("tv") || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+                if (join.length === 4) window._pendingJoinCode = join;
+                if (tv.length === 4) window._pendingTVCode = tv;
+                if (join.length === 4 || tv.length === 4) {
                     try {
                         const u = new URL(window.location.href);
                         u.searchParams.delete("join");
+                        u.searchParams.delete("tv");
                         window.history.replaceState({}, "", u.pathname + u.search + u.hash);
                     } catch (e2) { }
                 }

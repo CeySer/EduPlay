@@ -149,33 +149,113 @@
         // ============================================================
         //  FOKUS TIMER
         // ============================================================
-        function startFocusTimer() {
-            if (!focusTimerInterval) {
-                focusTimerInterval = setInterval(() => {
-                    if (focusTimeRemaining > 0) {
-                        focusTimeRemaining--;
-                        const mins = Math.floor(focusTimeRemaining / 60);
-                        const secs = focusTimeRemaining % 60;
-                        document.getElementById("timer-display").innerText = mins + ":" + String(secs).padStart(2,
-                            '0');
-                    } else {
-                        clearInterval(focusTimerInterval);
-                        focusTimerInterval = null;
-                        SFX.timeUp();
-                        addXP(20);
-                        showToast("Zeit um! +20 Coins");
-                        focusTimeRemaining = 15 * 60;
-                        document.getElementById("timer-display").innerText = "15:00";
+        let focusDurationMin = 15;
+        let focusPausedByHide = false;
+        let focusVisibilityBound = false;
+
+        function focusRewardCoins(mins) {
+            if (mins >= 25) return 40;
+            if (mins >= 15) return 20;
+            return 12;
+        }
+
+        function setFocusDuration(mins) {
+            if (focusTimerInterval) return showToast("Zuerst Reset, dann Zeit wählen.", "error");
+            focusDurationMin = mins;
+            focusTimeRemaining = mins * 60;
+            const el = document.getElementById("timer-display");
+            if (el) el.innerText = mins + ":00";
+            const hint = document.getElementById("fokus-reward-hint");
+            if (hint) hint.innerText = "Belohnung: +" + focusRewardCoins(mins) + " Coins" + (mins >= 25 ? " (2×)" : "");
+            [10, 15, 25].forEach(m => {
+                const btn = document.getElementById("fokus-dur-" + m);
+                if (!btn) return;
+                if (m === mins) {
+                    btn.className = "btn-primary text-sm py-2 px-3";
+                    btn.style.background = "var(--gradient-green)";
+                } else {
+                    btn.className = "btn-secondary text-sm py-2 px-3";
+                    btn.style.background = "";
+                }
+            });
+            if (typeof SFX !== "undefined") SFX.tap();
+        }
+
+        function updateFocusDisplay() {
+            const mins = Math.floor(focusTimeRemaining / 60);
+            const secs = focusTimeRemaining % 60;
+            const el = document.getElementById("timer-display");
+            if (el) el.innerText = mins + ":" + String(secs).padStart(2, "0");
+        }
+
+        function bindFocusVisibility() {
+            if (focusVisibilityBound) return;
+            focusVisibilityBound = true;
+            document.addEventListener("visibilitychange", () => {
+                if (!focusTimerInterval) return;
+                const status = document.getElementById("fokus-status");
+                if (document.hidden) {
+                    clearInterval(focusTimerInterval);
+                    focusTimerInterval = null;
+                    focusPausedByHide = true;
+                    if (status) {
+                        status.classList.remove("hidden");
+                        status.innerText = "⏸️ Pausiert – App wieder öffnen zum Fortsetzen.";
+                        status.classList.add("text-amber-400");
                     }
-                }, 1000);
+                    showToast("Fokus pausiert (App verlassen).", "error");
+                } else if (focusPausedByHide) {
+                    focusPausedByHide = false;
+                    if (status) {
+                        status.innerText = "App im Vordergrund lassen – sonst pausiert der Timer.";
+                        status.classList.remove("text-amber-400");
+                    }
+                    startFocusTimer(true);
+                    showToast("Fokus weiter.", "success");
+                }
+            });
+        }
+
+        function startFocusTimer(resume) {
+            if (focusTimerInterval) return;
+            bindFocusVisibility();
+            const status = document.getElementById("fokus-status");
+            if (status) status.classList.remove("hidden");
+            if (!resume) {
+                focusTimeRemaining = focusDurationMin * 60;
+                updateFocusDisplay();
             }
+            focusTimerInterval = setInterval(() => {
+                if (focusTimeRemaining > 0) {
+                    focusTimeRemaining--;
+                    updateFocusDisplay();
+                } else {
+                    clearInterval(focusTimerInterval);
+                    focusTimerInterval = null;
+                    focusPausedByHide = false;
+                    if (typeof SFX !== "undefined") SFX.timeUp();
+                    const coins = focusRewardCoins(focusDurationMin);
+                    if (typeof addXP === "function") addXP(coins);
+                    else if (currentPlayer) {
+                        currentPlayer.coins = (currentPlayer.coins || 0) + coins;
+                        if (typeof savePlayerProgress === "function") savePlayerProgress();
+                    }
+                    showToast("Zeit um! +" + coins + " Coins 🎉", "success");
+                    focusTimeRemaining = focusDurationMin * 60;
+                    updateFocusDisplay();
+                    if (status) status.classList.add("hidden");
+                }
+            }, 1000);
         }
 
         function resetFocusTimer() {
             clearInterval(focusTimerInterval);
             focusTimerInterval = null;
-            focusTimeRemaining = 15 * 60;
-            document.getElementById("timer-display").innerText = "15:00";
+            focusPausedByHide = false;
+            focusTimeRemaining = focusDurationMin * 60;
+            updateFocusDisplay();
+            const status = document.getElementById("fokus-status");
+            if (status) status.classList.add("hidden");
         }
 
         // ============================================================

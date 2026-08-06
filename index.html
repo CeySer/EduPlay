@@ -817,6 +817,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="wortraten-turn-banner" class="text-center text-sm font-bold text-sky-300 h-5"></div>
                     <div id="wortraten-scores" class="flex gap-2 overflow-x-auto pb-1"></div>
                     <div id="wortraten-keyboard" class="grid grid-cols-6 sm:grid-cols-7 gap-1.5"></div>
+                    <button type="button" onclick="wrRevealWord()" class="btn-ghost w-full text-xs text-gray-400 py-2">Wort auflösen (0 Punkte)</button>
                 </div>
 
                 <div id="wortraten-round-end" class="hidden glass-card-glow p-6 text-center space-y-4"
@@ -1618,8 +1619,21 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div class="glass-card p-5 space-y-4">
                     <h2 class="text-xl font-black text-indigo-400">⚙️ Einstellungen</h2>
                     <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">
-                        <span class="font-bold text-white">🔊 Ton</span>
-                        <button onclick="toggleSound()" class="btn-secondary text-sm py-2 px-4"><span class="sound-toggle-icon">an/aus</span></button>
+                        <span class="font-bold text-white">🔊 Sound-Effekte</span>
+                        <button onclick="toggleSound()" class="btn-secondary text-sm py-2 px-4"><span class="sound-toggle-icon">🔊</span></button>
+                    </div>
+                    <div class="py-2 border-b border-white/5 space-y-2">
+                        <div class="flex items-center justify-between gap-3">
+                            <span class="font-bold text-white">🎵 Hintergrundmusik</span>
+                            <button onclick="toggleBgMusic()" class="btn-secondary text-sm py-2 px-4"><span class="bgmusic-toggle-icon">an</span></button>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs text-gray-400 shrink-0">Lautstärke</span>
+                            <input type="range" id="bg-music-volume" min="0" max="1" step="0.05" value="0.4"
+                                class="flex-1 accent-indigo-400"
+                                oninput="setBgMusicVolume(this.value)">
+                            <span id="bg-music-vol-label" class="text-xs font-bold text-indigo-300 w-10 text-right">40%</span>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">
                         <span class="font-bold text-white">🌓 Design</span>
@@ -1640,12 +1654,19 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
             <div id="view-fokus" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                <div class="glass-card p-8 text-center space-y-6 shadow-lg">
+                <div class="glass-card p-8 text-center space-y-5 shadow-lg">
                     <div class="text-6xl">⏱️</div>
                     <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
+                    <div id="fokus-duration-row" class="flex gap-2 justify-center flex-wrap">
+                        <button type="button" id="fokus-dur-10" onclick="setFocusDuration(10)" class="btn-secondary text-sm py-2 px-3">10 Min</button>
+                        <button type="button" id="fokus-dur-15" onclick="setFocusDuration(15)" class="btn-primary text-sm py-2 px-3" style="background:var(--gradient-green);">15 Min · 1×</button>
+                        <button type="button" id="fokus-dur-25" onclick="setFocusDuration(25)" class="btn-secondary text-sm py-2 px-3">25 Min · 2×</button>
+                    </div>
+                    <p id="fokus-reward-hint" class="text-[11px] text-gray-400">Belohnung: +20 Coins</p>
                     <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
+                    <p id="fokus-status" class="text-xs text-gray-400 hidden">App im Vordergrund lassen – sonst pausiert der Timer.</p>
                     <div class="flex gap-2 justify-center">
-                        <button class="btn-primary"
+                        <button id="fokus-start-btn" class="btn-primary"
                             style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);"
                             onclick="startFocusTimer()">Start</button>
                         <button class="btn-secondary" onclick="resetFocusTimer()">Reset</button>
@@ -1952,9 +1973,11 @@ VIEW: QUIZ SETUP
             <div id="view-tv-quiz-player" class="view hidden space-y-4">
                 <div id="tv-player-setup" class="space-y-4">
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame()">Zurück</button>
-                    <div class="glass-card p-6 text-center">
-                        <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
-                        <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
+                    <div class="glass-card p-6 text-center space-y-4">
+                        <h2 class="text-2xl font-black text-white">Spiel beitreten</h2>
+                        <p class="text-gray-400 text-sm">Gleiche Familie: einfach beitreten.<br>Anderer Account: Code vom TV eingeben.</p>
+                        <input id="tv-join-code" maxlength="4" placeholder="Code (optional)"
+                            class="input-modern font-bold text-center tracking-[0.2em] uppercase" autocomplete="off">
                         <div id="player-waiting-area">
                             <button onclick="joinTVGame()" class="btn-primary w-full text-2xl animate-pulse py-6"
                                 style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Jetzt

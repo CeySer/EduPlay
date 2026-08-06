@@ -449,10 +449,34 @@
                 isTVHost = true;
                 tvGameRef = hostRef;
 
+                // Kurzcode für Beitritt von anderen Accounts
+                let tvCode = "";
+                try {
+                    const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+                    for (let i = 0; i < 4; i++) tvCode += alphabet[Math.floor(Math.random() * alphabet.length)];
+                    await db.collection("tv_codes").doc(tvCode).set({
+                        parentId: currentParentUser.uid,
+                        createdAt: Date.now(),
+                        hostName: (currentPlayer && currentPlayer.name) || "Host"
+                    });
+                    window._activeTVCode = tvCode;
+                } catch (e) { console.warn("TV-Code konnte nicht angelegt werden", e); }
+
+                const joinUrl = (window.location.origin || "") + (window.location.pathname || "/") + "?tv=" + encodeURIComponent(tvCode);
+                const qrSrc = tvCode
+                    ? "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(joinUrl)
+                    : "";
+
                 setTVHostPlayHTML(`
                     <div class="glass-card-glow h-[80vh] flex flex-col items-center justify-center p-8 text-center" style="border-color:rgba(99,102,241,0.15);">
-                        <h2 class="text-5xl font-black text-indigo-400 mb-6 animate-pulse">Warte auf Spieler...</h2>
-                        <p class="text-2xl text-white mb-12">Drückt auf euren Handys auf <br><span class="text-emerald-400 font-bold text-4xl">'Jetzt beitreten!'</span></p>
+                        <h2 class="text-5xl font-black text-indigo-400 mb-4 animate-pulse">Warte auf Spieler...</h2>
+                        ${tvCode ? `<div class="mb-6">
+                            <p class="text-sm text-indigo-300 font-bold uppercase tracking-wider">Beitritts-Code</p>
+                            <div class="text-5xl font-black tracking-[0.28em] text-white my-2">${tvCode}</div>
+                            ${qrSrc ? `<img alt="QR" class="mx-auto w-40 h-40 rounded-xl bg-white p-2" src="${qrSrc}">` : ""}
+                            <p class="text-xs text-gray-400 mt-2">Familie: „Jetzt beitreten“ · Andere: QR scannen oder Code eingeben</p>
+                        </div>` : ""}
+                        <p class="text-xl text-white mb-8">Auf dem Handy: <span class="text-emerald-400 font-bold">'Jetzt beitreten!'</span></p>
                         <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>
                         <button onclick="startTVGameLoop()" class="btn-primary text-3xl py-6 px-12" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Spiel starten! 🚀</button>
                         <button onclick="leaveTVGame()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Lobby abbrechen</button>
@@ -1380,10 +1404,26 @@
         }
 
         // --- TV-QUIZ PLAYER (Handy) ---
-        async function joinTVGame() {
+        async function joinTVGame(codeOverride) {
             if (!currentParentUser || !currentPlayer) return showToast(
                 "Bitte wähle zuerst oben deinen Spieler aus.", "error", "noprofile");
-            const lobbyRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
+
+            let lobbyRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
+            // Optional: Code von anderem Account / QR (?tv=CODE)
+            let code = (codeOverride || (document.getElementById("tv-join-code") || {}).value || window._pendingTVCode || "")
+                .toString().trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+            if (code.length === 4) {
+                try {
+                    const mapSnap = await db.collection("tv_codes").doc(code).get();
+                    if (!mapSnap.exists) return showToast("Dieser TV-Code ist ungültig.", "error");
+                    const parentId = mapSnap.data().parentId;
+                    if (!parentId) return showToast("TV-Code kaputt.", "error");
+                    lobbyRef = db.collection("parents").doc(parentId).collection("tv_game").doc("lobby");
+                    window._pendingTVCode = null;
+                } catch (e) {
+                    return showToast("TV-Code konnte nicht geprüft werden.", "error");
+                }
+            }
 
             try {
                 const docSnap = await lobbyRef.get();
@@ -1597,6 +1637,10 @@
                 if (wasHost) {
                     try { await ref.set({ status: "finished" }, { merge: true }); } catch (e) { }
                     try { await ref.delete(); } catch (e) { }
+                    if (window._activeTVCode) {
+                        try { await db.collection("tv_codes").doc(window._activeTVCode).delete(); } catch (e) { }
+                        window._activeTVCode = null;
+                    }
                 } else if (activePlayerKey) {
                     const snap = await ref.get();
                     if (!snap.exists) return;

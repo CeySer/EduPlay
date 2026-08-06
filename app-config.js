@@ -21,6 +21,17 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
+        // Lokaler Zwischenspeicher: Ohne Netz liest die App weiter aus dem
+        // Gerät (Profile, Coins, laufende Duelle) und schickt Änderungen
+        // nach, sobald wieder Empfang da ist. Wichtig für Autofahrten –
+        // ohne das steht bei jedem Funkloch alles still.
+        db.enablePersistence({ synchronizeTabs: true }).catch(function (err) {
+            // failed-precondition = mehrere Tabs ohne Tab-Sync,
+            // unimplemented  = Browser kann es nicht (z.B. privater Modus).
+            // Beides ist kein Grund, die App anzuhalten.
+            console.warn("Offline-Speicher nicht aktiv:", err && err.code);
+        });
+
 
         // ============================================================
         // DATENBANKEN ZUSAMMENFÜHREN
@@ -263,7 +274,9 @@
                         subjects: g.subjects
                     }));
                 }
-                // Berufsschule vorerst entfernt (laut Anforderung)
+                if (typeof BERUFSSCHULE !== 'undefined' && BERUFSSCHULE.length) {
+                    areas.push({ value: "beruf", label: "Berufsschule", stufe: "Berufsschule", subjects: BERUFSSCHULE });
+                }
                 const quer = subjectsAcrossGrades();
                 if (quer.length) {
                     areas.push({
@@ -775,8 +788,8 @@
         let soundOn = true;
         try { soundOn = localStorage.getItem("eduplaySound") !== "off"; } catch (e) { }
 
-        function ensureAudio(force) {
-            if (!force && !soundOn) return null;
+        function ensureAudio() {
+            if (!soundOn) return null;
             try {
                 if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 if (audioCtx.state === "suspended") audioCtx.resume();
@@ -841,99 +854,12 @@
             ], "sawtooth", 0.11)
         };
 
-        // Hintergrundmusik – unabhängig von SFX (Ton an/aus)
-        let bgMusicOn = true;
-        let bgMusicVolume = 0.4;
-        let bgMusicNodes = [];
-        try { bgMusicOn = localStorage.getItem("eduplayBgMusic") !== "off"; } catch (e) { }
-        try {
-            const v = parseFloat(localStorage.getItem("eduplayBgMusicVol"));
-            if (!isNaN(v) && v >= 0 && v <= 1) bgMusicVolume = v;
-        } catch (e) { }
-
-        function startBgMusic() {
-            if (!bgMusicOn || bgMusicVolume <= 0) return;
-            stopBgMusic();
-            const ctx = ensureAudio(true);
-            if (!ctx) return;
-            const base = 0.03 * bgMusicVolume;
-            const notes = [130.81, 164.81, 196.00, 164.81];
-            let t = ctx.currentTime;
-            notes.forEach((freq) => {
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = "sine";
-                osc.frequency.value = freq;
-                gain.gain.setValueAtTime(base * 0.7, t);
-                gain.gain.linearRampToValueAtTime(base, t + 1.5);
-                gain.gain.linearRampToValueAtTime(base * 0.7, t + 3);
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start(t);
-                osc.stop(t + 3.2);
-                bgMusicNodes.push(osc, gain);
-                t += 3;
-            });
-            if (window._bgMusicTimeout) clearTimeout(window._bgMusicTimeout);
-            window._bgMusicTimeout = setTimeout(startBgMusic, 12000);
-        }
-
-        function stopBgMusic() {
-            bgMusicNodes.forEach(n => { try { n.stop?.(); n.disconnect?.(); } catch (e) {} });
-            bgMusicNodes = [];
-            if (window._bgMusicTimeout) { clearTimeout(window._bgMusicTimeout); window._bgMusicTimeout = null; }
-        }
-
-        function toggleBgMusic() {
-            bgMusicOn = !bgMusicOn;
-            try { localStorage.setItem("eduplayBgMusic", bgMusicOn ? "on" : "off"); } catch (e) { }
-            if (bgMusicOn) startBgMusic();
-            else stopBgMusic();
-            document.querySelectorAll(".bgmusic-toggle-icon").forEach(el => {
-                el.innerText = bgMusicOn ? "an" : "aus";
-            });
-            const slider = document.getElementById("bg-music-volume");
-            if (slider) slider.disabled = !bgMusicOn;
-            showToast(bgMusicOn ? "🎵 Musik an" : "🎵 Musik aus", "success", "bgmusic");
-        }
-
-        function setBgMusicVolume(val) {
-            const v = Math.max(0, Math.min(1, parseFloat(val)));
-            if (isNaN(v)) return;
-            bgMusicVolume = v;
-            try { localStorage.setItem("eduplayBgMusicVol", String(v)); } catch (e) { }
-            const label = document.getElementById("bg-music-vol-label");
-            if (label) label.innerText = Math.round(v * 100) + "%";
-            if (bgMusicOn) {
-                if (v <= 0) stopBgMusic();
-                else startBgMusic();
-            }
-        }
-
-        function syncAudioSettingsUI() {
-            document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
-            document.querySelectorAll(".bgmusic-toggle-icon").forEach(el => el.innerText = bgMusicOn ? "an" : "aus");
-            const slider = document.getElementById("bg-music-volume");
-            if (slider) {
-                slider.value = String(bgMusicVolume);
-                slider.disabled = !bgMusicOn;
-            }
-            const label = document.getElementById("bg-music-vol-label");
-            if (label) label.innerText = Math.round(bgMusicVolume * 100) + "%";
-        }
-
-        // Klick-Sounds nur bei SFX an
-        document.addEventListener("click", (e) => {
-            const btn = e.target.closest("button, .btn-primary, .btn-secondary, .btn-ghost, [onclick]");
-            if (btn && soundOn) SFX.tap();
-        }, true);
-
         function toggleSound() {
             soundOn = !soundOn;
             try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
             document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
             if (soundOn) SFX.tap();
-            showToast(soundOn ? "🔊 Effekte an" : "🔇 Effekte aus", "success", "sound");
+            showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
         }
 
         function inviteFriends() {
@@ -958,9 +884,8 @@
             const codeEl = document.getElementById("live-duel-lobby-code");
             const code = (codeEl && codeEl.innerText || "").trim().toUpperCase();
             if (!code || code.length < 4) return showToast("Noch kein Code.", "error");
-            const joinUrl = (window.location.origin || "") + (window.location.pathname || "/") + "?join=" + encodeURIComponent(code);
-            const text = "EduPlay Lobby-Code: " + code + "\nLink: " + joinUrl + "\nOder: Online-Lobby → Code eingeben.";
-            if (navigator.share) navigator.share({ title: "EduPlay Lobby", text, url: joinUrl }).catch(() => { });
+            const text = "EduPlay Lobby-Code: " + code + "\nOnline-Lobby → Code eingeben.";
+            if (navigator.share) navigator.share({ title: "EduPlay Lobby", text }).catch(() => { });
             else if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => showToast("Code " + code + " kopiert!", "success"));
             else appAlert(text, { titel: "Lobby-Code", icon: "🔗" });
         }

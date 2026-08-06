@@ -62,10 +62,7 @@
             testTemplates = [];
             adminPin = null;
             const codeInp = document.getElementById("guest-code");
-            if (codeInp) {
-                codeInp.value = (window._pendingJoinCode && window._pendingJoinCode.length === 4)
-                    ? window._pendingJoinCode : "";
-            }
+            if (codeInp) codeInp.value = "";
             switchView('guest-join');
             // Gäste verlieren beim Neustart alles – wenn ihre Runde noch
             // läuft, kommen sie mit einem Tipp zurück statt neu zu tippen.
@@ -388,23 +385,6 @@
             renderWeaknessSuggestion();
             updateMenuGamification();
             switchView('menu');
-            // QR-/Link-Beitritt: Online (?join=) oder TV (?tv=)
-            try {
-                if (window._pendingJoinCode && typeof joinCodedLobby === "function") {
-                    const code = window._pendingJoinCode;
-                    window._pendingJoinCode = null;
-                    const inp = document.getElementById("coded-lobby-join-code");
-                    if (inp) inp.value = code;
-                    setTimeout(() => joinCodedLobby(), 200);
-                } else if (window._pendingTVCode) {
-                    const tvInp = document.getElementById("tv-join-code");
-                    if (tvInp) tvInp.value = window._pendingTVCode;
-                    if (typeof switchView === "function") switchView("tv-quiz-player");
-                    setTimeout(() => {
-                        if (typeof joinTVGame === "function") joinTVGame(window._pendingTVCode);
-                    }, 300);
-                }
-            } catch (e) { }
             // Läuft für dieses Kind noch etwas? Dann direkt anbieten –
             // erst das Familien-Duell, sonst die zuletzt genutzte Online-Lobby.
             if (typeof biteWiedereinstiegAn === "function") biteWiedereinstiegAn();
@@ -1261,7 +1241,7 @@
             if (sortedSubjects.length > 0) {
                 subjectHtml = sortedSubjects.slice(0, 6).map(cat => {
                     const s = subjectStats[cat];
-                    const label = CATEGORY_LABELS[cat] || cat;
+                    const label = labelFuerKategorie(cat) || CATEGORY_LABELS[cat] || cat;
                     const barColor = s.pct >= 80 ? 'good' : s.pct >= 50 ? 'ok' : 'bad';
                     return `
                                 <div class="dash-stat-card">
@@ -1307,7 +1287,7 @@
             const weakHtml = weak ? `
                         <div class="dash-stat-card border-l-4 border-amber-500">
                             <div class="label">💡 Schwächste Kategorie</div>
-                            <div class="text-white font-bold text-sm">${CATEGORY_LABELS[weak.category] || weak.category}</div>
+                            <div class="text-white font-bold text-sm">${labelFuerKategorie(weak.category) || CATEGORY_LABELS[weak.category] || weak.category}</div>
                             <div class="text-gray-400 text-xs">${Math.round(weak.pct * 100)}% richtig (${weak.attempts} Versuche)</div>
                         </div>
                     ` :
@@ -1398,7 +1378,7 @@
             if (!card) return;
             const weak = getWeakestCategory(currentPlayer);
             if (weak) {
-                const label = CATEGORY_LABELS[weak.category] || weak.category;
+                const label = labelFuerKategorie(weak.category) || CATEGORY_LABELS[weak.category] || weak.category;
                 const pct = Math.round(weak.pct * 100);
                 card.innerHTML =
                     `<div class="glass-card-glow p-4 flex items-center justify-between gap-3" style="border-color:rgba(245,158,11,0.2);">
@@ -1420,7 +1400,7 @@
             if (!card) return;
             if (currentPlayer && currentPlayer.pendingTest) {
                 const t = currentPlayer.pendingTest;
-                const labels = t.categories.map(c => CATEGORY_LABELS[c] || c).join(", ");
+                const labels = t.categories.map(c => labelFuerKategorie(c) || CATEGORY_LABELS[c] || c).join(", ");
                 const minutes = Math.round(t.timeLimitSeconds / 60);
                 card.innerHTML =
                     `<div class="glass-card-glow p-5 text-white" style="background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(139,92,246,0.1));border-color:rgba(99,102,241,0.2);">
@@ -1517,7 +1497,7 @@
                 catBox.innerHTML = cats.map(c => `
                             <label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
                                 <input type="checkbox" value="${c}" class="dash-test-cat w-4 h-4 accent-indigo-500">
-                                <span class="truncate">${CATEGORY_LABELS[c] || c}</span>
+                                <span class="truncate">${labelFuerKategorie(c) || CATEGORY_LABELS[c] || c}</span>
                             </label>
                         `).join('');
             }

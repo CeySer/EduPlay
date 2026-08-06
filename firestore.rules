@@ -2,17 +2,17 @@ rules_version = '2';
 
 // ============================================================
 //  EduPlay Hub – Firestore Sicherheitsregeln
-//  Stand: 05.08.2026
+//  Stand: 06.08.2026
 //
-//  Einspielen: Firebase Console → Firestore Database → Regeln →
-//  Inhalt komplett ersetzen → "Veröffentlichen".
+//  Einspielen: Firebase Console → Firestore → Regeln →
+//  Inhalt ersetzen → „Veröffentlichen".
 //
-//  Grundidee:
-//   • parents/{uid}  = alle Familiendaten. Nur der eigene Account.
-//   • lobbies/{code} = flüchtige Online-Lobbys. Wer den 4-stelligen
-//     Code kennt, darf mitspielen – auch anonyme Gäste. Auflisten
-//     aller Lobbys ist verboten, nur gezielter Zugriff per Code.
-//   • Alles andere ist zu.
+//  Aufbau:
+//   • parents/{uid}   Familiendaten – nur der eigene Account
+//   • …/tv_game       Ausnahme: der Fernseher liest ohne Anmeldung
+//   • lobbies/{code}  Online-Lobbys, Zugriff nur mit dem Code
+//   • tv_codes/{code} Code → parentId, für Beitritt fremder Konten
+//   • alles andere    zu
 // ============================================================
 
 service cloud.firestore {
@@ -22,9 +22,23 @@ service cloud.firestore {
       return request.auth != null;
     }
 
-    // 4 Stunden ohne Lebenszeichen = die Lobby gilt als Leiche und
-    // darf von einem neuen Host mit demselben Code überschrieben
-    // werden (siehe reserveAndCreateLobby in lobby-avatar.js).
+    function istEigentuemer(uid) {
+      return angemeldet() && request.auth.uid == uid;
+    }
+
+    // Welche Felder ändert dieser Schreibvorgang?
+    function nurFelder(felder) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(felder);
+    }
+
+    // Feld unverändert? (fehlt es auf beiden Seiten, gilt es als unverändert)
+    function bleibtGleich(feld) {
+      return !(feld in resource.data)
+             || request.resource.data[feld] == resource.data[feld];
+    }
+
+    // 4 Stunden ohne Lebenszeichen: die Lobby gilt als Leiche und darf mit
+    // demselben Code neu belegt werden (siehe reserveAndCreateLobby).
     function lobbyIstLeiche() {
       return resource.data.status == 'finished'
              || !('hostLastSeen' in resource.data)
@@ -33,57 +47,115 @@ service cloud.firestore {
 
     // --------------------------------------------------------
     //  FAMILIENDATEN
-    //  Profile, Fortschritt, Coins, Belohnungen, Eltern-PIN,
-    //  Live-Duelle und TV-Lobbys der Familie.
-    //  Nur der angemeldete Eltern-Account kommt an seine eigenen
-    //  Daten. Anonyme Gäste haben hier keinen Zutritt – ihre uid
-    //  gehört zu keinem parents-Dokument.
+    //  Profile, Coins, Fortschritt, Eltern-PIN, Belohnungen,
+    //  Live-Duelle. Nur der eigene Eltern-Account.
     // --------------------------------------------------------
     match /parents/{uid} {
-      allow read, write: if angemeldet() && request.auth.uid == uid;
+      allow read, write: if istEigentuemer(uid);
+
+      // ----------------------------------------------------
+      //  TV-LOBBY
+      //  Drei verschiedene Beteiligte schreiben hier:
+      //
+      //  1. Der Host (Eltern-Account)  – darf alles.
+      //  2. Der Fernseher (receiver.html) – ist NICHT angemeldet.
+      //     Er liest die Lobby und schreibt ausschließlich
+      //     hostCommand (Fernbedienung Richtung Handy).
+      //  3. Mitspieler mit eigenem Konto – schreiben ihre
+      //     Antworten und Lebenszeichen, während das Spiel läuft.
+      // ----------------------------------------------------
+      match /tv_game/{doc} {
+        // get statt read: der Fernseher braucht ein bestimmtes
+        // Dokument, aber niemand soll die Sammlung durchblättern.
+        allow get: if true;
+        allow list: if false;
+
+        allow create, delete: if istEigentuemer(uid);
+
+        allow update: if istEigentuemer(uid)
+
+                      // Der Fernseher darf ohne Anmeldung genau ein Feld
+                      // setzen: hostCommand. Sonst nichts. Ohne diese Zeile
+                      // funktioniert die Steuerung vom Fernseher aus nicht,
+                      // weil receiver.html sich nirgends anmeldet.
+                      || nurFelder(['hostCommand'])
+
+                      // Mitspieler aus anderen Konten: dürfen mitspielen,
+                      // aber weder den Spielstand umschalten noch andere
+                      // Spieler entfernen. Bewusst nicht auf status
+                      // 'waiting' beschränkt – sonst könnten sie beitreten,
+                      // aber im laufenden Spiel keine Antwort abgeben.
+                      || (angemeldet()
+                          && bleibtGleich('status')
+                          && request.resource.data.players.size() >= resource.data.players.size()
+                          && request.resource.data.players.size() <= 20);
+      }
 
       match /{document=**} {
-        allow read, write: if angemeldet() && request.auth.uid == uid;
+        allow read, write: if istEigentuemer(uid);
       }
     }
 
     // --------------------------------------------------------
-    //  ONLINE-LOBBYS (Beitritt per 4-stelligem Code)
+    //  ONLINE-LOBBYS (4-stelliger Code, kontenübergreifend)
     //
-    //  get  = erlaubt: man braucht den exakten Code.
-    //  list = verboten: niemand kann sich alle laufenden Lobbys
-    //         auflisten lassen und darin herumstöbern.
+    //  get  = erlaubt, man braucht den exakten Code.
+    //  list = verboten, niemand blättert durch fremde Runden.
     //
-    //  In einer Lobby stehen nur Spitzname, Punkte und die Fragen
-    //  der laufenden Runde – keine Mailadressen, keine Profildaten,
-    //  keine Lernfortschritte.
+    //  Inhalt: Spitzname, Punkte, Fragen der laufenden Runde.
+    //  Keine Mailadressen, keine Profildaten, kein Fortschritt.
     // --------------------------------------------------------
     match /lobbies/{code} {
-
       allow get: if angemeldet();
       allow list: if false;
 
       allow create: if angemeldet()
-                    && request.resource.data.keys().hasAll(['type', 'status']);
+                    && request.resource.data.keys().hasAll(['code', 'status', 'players', 'createdBy'])
+                    && request.resource.data.code == code
+                    && request.resource.data.players.size() <= 12;
 
-      // Mitspielen: Punkte, Antworten, Runden fortschreiben.
-      // Spieltyp und Ersteller dürfen dabei nicht umgeschrieben
-      // werden – sonst könnte jemand mit dem Code eine laufende
-      // Lobby kapern. Ausnahme: eine abgelaufene Lobby darf mit
-      // demselben Code neu belegt werden.
       allow update: if angemeldet()
+                    && request.resource.data.code == code
+                    && request.resource.data.players.size() <= 12
                     && (
-                         (
-                           (!('type' in resource.data)
-                            || request.resource.data.type == resource.data.type)
-                           && (!('createdBy' in resource.data)
-                            || request.resource.data.createdBy == resource.data.createdBy)
-                         )
+                         // Normales Mitspielen: Spieltyp und Ersteller
+                         // bleiben, damit niemand mit dem Code eine
+                         // laufende Runde übernimmt.
+                         (bleibtGleich('type') && bleibtGleich('createdBy'))
+
+                         // Ausnahme: abgelaufene Lobby wird mit demselben
+                         // Code neu belegt.
                          || lobbyIstLeiche()
                        );
 
-      // Aufräumen nach dem Spiel: erlaubt, wer den Code kennt.
       allow delete: if angemeldet();
+    }
+
+    // --------------------------------------------------------
+    //  TV-CODES (Code → parentId)
+    //  Damit ein fremdes Konto einer TV-Runde beitreten kann,
+    //  ohne die uid des Gastgebers zu kennen.
+    //
+    //  Erwartetes Feld: parentId (die uid des Gastgebers).
+    //  Wer einen Code anlegt, trägt sich selbst ein – sonst
+    //  könnte jemand fremde Codes auf sich umbiegen und die
+    //  Mitspieler in seine eigene Lobby umleiten.
+    // --------------------------------------------------------
+    match /tv_codes/{code} {
+      allow get: if angemeldet();
+      allow list: if false;
+
+      allow create: if angemeldet()
+                    && request.resource.data.parentId == request.auth.uid;
+
+      // Ändern und Löschen nur durch den Eigentümer – oder wenn der
+      // Eintrag älter als 12 Stunden ist und der Code neu vergeben wird.
+      allow update, delete: if angemeldet()
+                            && (
+                                 resource.data.parentId == request.auth.uid
+                                 || !('createdAt' in resource.data)
+                                 || request.time.toMillis() - resource.data.createdAt > 43200000
+                               );
     }
 
     // --------------------------------------------------------

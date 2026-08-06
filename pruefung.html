@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EduPlay – Fragen prüfen</title>
+    <style>
+        :root {
+            --bg: #080c18;
+            --karte: #141e33;
+            --rand: #1e3050;
+            --hell: #f0f4ff;
+            --grau: #8aa0cc;
+            --rot: #fb7185;
+            --gelb: #fbbf24;
+            --gruen: #34d399;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--hell);
+            padding: 28px 18px 80px;
+            line-height: 1.55;
+        }
+
+        .huelle { max-width: 940px; margin: 0 auto; }
+
+        h1 { font-size: 25px; font-weight: 900; margin-bottom: 6px; }
+        .unter { color: var(--grau); font-size: 14.5px; margin-bottom: 24px; }
+
+        .kacheln { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 26px; }
+        .kachel { background: var(--karte); border: 1px solid var(--rand); border-radius: 16px; padding: 14px 16px; }
+        .kachel b { display: block; font-size: 26px; font-weight: 900; }
+        .kachel span { font-size: 12px; color: var(--grau); font-weight: 700; }
+        .kachel.warn b { color: var(--gelb); }
+        .kachel.schlecht b { color: var(--rot); }
+        .kachel.gut b { color: var(--gruen); }
+
+        .block { background: var(--karte); border: 1px solid var(--rand); border-radius: 18px; padding: 18px 20px; margin-bottom: 16px; }
+        .block h2 { font-size: 16px; font-weight: 900; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+        .block .erklaerung { font-size: 13px; color: var(--grau); margin-bottom: 12px; }
+        .block.leer { opacity: 0.65; }
+
+        .marke { font-size: 11px; font-weight: 900; padding: 3px 9px; border-radius: 99px; }
+        .m-rot { background: rgba(244, 63, 94, 0.18); color: var(--rot); }
+        .m-gelb { background: rgba(245, 158, 11, 0.18); color: var(--gelb); }
+        .m-gruen { background: rgba(52, 211, 153, 0.18); color: var(--gruen); }
+
+        ul { list-style: none; }
+        li { font-size: 13.5px; padding: 7px 0; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        li:first-child { border-top: none; }
+        code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; background: rgba(255, 255, 255, 0.06); padding: 1px 6px; border-radius: 6px; }
+        .pfad { color: var(--grau); font-size: 12px; }
+
+        .mehr { color: var(--grau); font-size: 12.5px; padding-top: 8px; font-style: italic; }
+
+        .laden { text-align: center; padding: 60px 20px; color: var(--grau); font-weight: 700; }
+
+        .hinweis { background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 14px; padding: 13px 16px; font-size: 13px; color: var(--grau); margin-bottom: 22px; }
+        .hinweis b { color: var(--hell); }
+    </style>
+</head>
+
+<body>
+    <div class="huelle">
+        <h1>Fragen prüfen</h1>
+        <p class="unter">Lädt dieselben Dateien wie die App und meldet, was in der Datenbank nicht stimmt.
+            Nach jedem neuen Fragensatz einmal aufrufen.</p>
+
+        <div class="hinweis">
+            <b>So benutzen:</b> Diese Seite über denselben Weg öffnen wie die App (also über deinen Webserver
+            bzw. die Adresse, unter der <code>index.html</code> läuft) – nur mit <code>pruefung.html</code> am Ende.
+            Ein Doppelklick auf die Datei funktioniert meistens nicht, weil Browser das Laden der Fragen-Dateien
+            dann blockieren.
+        </div>
+
+        <div id="ausgabe" class="laden">Fragen werden geladen …</div>
+    </div>
+
+    <script src="datenbanken_loader.js?v=8.8"></script>
+    <script>
+        document.addEventListener('datenbanken-geladen', function () {
+            setTimeout(pruefen, 60);
+        });
+        setTimeout(function () {
+            const a = document.getElementById('ausgabe');
+            if (a && a.classList.contains('laden')) {
+                a.innerHTML = '<div class="laden">Die Fragen kamen nicht an. Läuft diese Seite über deinen Webserver ' +
+                    '(gleiche Adresse wie index.html)?</div>';
+            }
+        }, 25000);
+
+        function esc(s) {
+            return String(s === undefined || s === null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        function block(titel, erklaerung, eintraege, stufe, grenze) {
+            grenze = grenze || 25;
+            const leer = eintraege.length === 0;
+            const marke = leer ? '<span class="marke m-gruen">sauber</span>'
+                : (stufe === 'rot' ? '<span class="marke m-rot">' + eintraege.length + '</span>'
+                    : '<span class="marke m-gelb">' + eintraege.length + '</span>');
+            let html = '<div class="block' + (leer ? ' leer' : '') + '"><h2>' + titel + marke + '</h2>' +
+                '<div class="erklaerung">' + erklaerung + '</div>';
+            if (!leer) {
+                html += '<ul>' + eintraege.slice(0, grenze).map(function (z) { return '<li>' + z + '</li>'; }).join('') + '</ul>';
+                if (eintraege.length > grenze) {
+                    html += '<div class="mehr">… und ' + (eintraege.length - grenze) + ' weitere</div>';
+                }
+            }
+            return html + '</div>';
+        }
+
+        function pruefen() {
+            const F = (typeof QUESTIONS_DATABASE !== 'undefined' && QUESTIONS_DATABASE) || [];
+            if (!F.length) {
+                document.getElementById('ausgabe').innerHTML =
+                    '<div class="laden">Es sind keine Fragen angekommen.</div>';
+                return;
+            }
+
+            // --- bekannte Kategorien aus dem CURRICULUM & Co. ---
+            const bekannt = {};
+            const label = {};
+            if (typeof CURRICULUM !== 'undefined') {
+                CURRICULUM.forEach(function (g) {
+                    g.subjects.forEach(function (s) { bekannt[s.key] = true; label[s.key] = g.label + ' · ' + s.label; });
+                });
+            }
+            if (typeof FUN_CATEGORIES !== 'undefined') FUN_CATEGORIES.forEach(function (s) { bekannt[s.key] = true; label[s.key] = s.label; });
+            if (typeof BERUFSSCHULE !== 'undefined') BERUFSSCHULE.forEach(function (s) { bekannt[s.key] = true; label[s.key] = s.label; });
+
+            const namevon = function (k) { return label[k] ? label[k] + ' (' + k + ')' : k; };
+
+            // --- Sammeln ---
+            const proKat = {};
+            const idZaehler = {};
+            const textZaehler = {};
+            const doppelteAntwort = [];
+            const struktur = [];
+            const richtigeAufEins = { ja: 0, gesamt: 0 };
+            const laengsteRichtig = { ja: 0, gesamt: 0 };
+
+            F.forEach(function (q) {
+                const kat = q.category || '(ohne Kategorie)';
+                proKat[kat] = (proKat[kat] || 0) + 1;
+                if (q.id) idZaehler[q.id] = (idZaehler[q.id] || 0) + 1;
+                const schluessel = (q.question || '') + '|' + kat;
+                textZaehler[schluessel] = (textZaehler[schluessel] || 0) + 1;
+
+                const a = q.answers;
+                if (!Array.isArray(a) || a.length < 2) {
+                    struktur.push('<code>' + esc(q.id) + '</code> hat keine gültige Antwortliste');
+                    return;
+                }
+                if (typeof q.correct !== 'number' || q.correct < 0 || q.correct >= a.length) {
+                    struktur.push('<code>' + esc(q.id) + '</code> hat einen ungültigen <code>correct</code>-Index');
+                    return;
+                }
+                // richtige Antwort mehrfach in den Optionen
+                const richtig = String(a[q.correct]).trim().toLowerCase();
+                let treffer = 0;
+                a.forEach(function (x) { if (String(x).trim().toLowerCase() === richtig) treffer++; });
+                if (treffer > 1) {
+                    doppelteAntwort.push('<code>' + esc(q.id) + '</code> ' + esc(namevon(kat)) +
+                        '<br><span class="pfad">„' + esc(q.question) + '" – „' + esc(a[q.correct]) +
+                        '" steht ' + treffer + '× in den Antworten, eine davon zählt als falsch</span>');
+                }
+                // Position der richtigen Antwort
+                richtigeAufEins.gesamt++;
+                if (q.correct === 0) richtigeAufEins.ja++;
+                // längste Antwort = richtige Antwort?
+                laengsteRichtig.gesamt++;
+                let maxLen = 0;
+                a.forEach(function (x) { maxLen = Math.max(maxLen, String(x).length); });
+                if (String(a[q.correct]).length === maxLen) laengsteRichtig.ja++;
+            });
+
+            // --- Auswertungen ---
+            const doppelteIds = Object.keys(idZaehler).filter(function (k) { return idZaehler[k] > 1; })
+                .map(function (k) { return '<code>' + esc(k) + '</code> kommt ' + idZaehler[k] + '× vor'; });
+
+            const dubletten = Object.keys(textZaehler).filter(function (k) { return textZaehler[k] > 1; })
+                .map(function (k) {
+                    const teile = k.split('|');
+                    return esc(teile[0].slice(0, 90)) + '<br><span class="pfad">' +
+                        esc(namevon(teile[1])) + ' – ' + textZaehler[k] + '×</span>';
+                });
+
+            const ohneMenue = Object.keys(proKat).filter(function (k) {
+                return !bekannt[k] && k !== '(ohne Kategorie)';
+            }).map(function (k) { return '<code>' + esc(k) + '</code> – ' + proKat[k] + ' Fragen, aber kein Menü-Eintrag'; });
+
+            const ohneFragen = Object.keys(bekannt).filter(function (k) { return !proKat[k]; })
+                .map(function (k) { return esc(namevon(k)) + ' – <b>0 Fragen</b>'; });
+
+            const zuKlein = Object.keys(proKat).filter(function (k) {
+                return bekannt[k] && proKat[k] > 0 && proKat[k] < 10;
+            }).sort(function (a, b) { return proKat[a] - proKat[b]; })
+                .map(function (k) { return esc(namevon(k)) + ' – nur <b>' + proKat[k] + '</b> Fragen'; });
+
+            const knapp = Object.keys(proKat).filter(function (k) {
+                return bekannt[k] && proKat[k] >= 10 && proKat[k] < 30;
+            }).sort(function (a, b) { return proKat[a] - proKat[b]; })
+                .map(function (k) { return esc(namevon(k)) + ' – ' + proKat[k] + ' Fragen (reicht für ' + Math.floor(proKat[k] / 10) + ' Runden)'; });
+
+            const einsPct = richtigeAufEins.gesamt ? Math.round(richtigeAufEins.ja / richtigeAufEins.gesamt * 100) : 0;
+            const langPct = laengsteRichtig.gesamt ? Math.round(laengsteRichtig.ja / laengsteRichtig.gesamt * 100) : 0;
+
+            const katAnzahl = Object.keys(proKat).length;
+            const tragfaehig = Object.keys(proKat).filter(function (k) { return proKat[k] >= 30; }).length;
+
+            // --- Ausgabe ---
+            let html = '<div class="kacheln">' +
+                '<div class="kachel"><b>' + F.length + '</b><span>Fragen geladen</span></div>' +
+                '<div class="kachel"><b>' + katAnzahl + '</b><span>Kategorien</span></div>' +
+                '<div class="kachel ' + (tragfaehig / Math.max(1, katAnzahl) > 0.5 ? 'gut' : 'warn') + '"><b>' + tragfaehig + '</b><span>ab 30 Fragen</span></div>' +
+                '<div class="kachel ' + (doppelteIds.length ? 'schlecht' : 'gut') + '"><b>' + doppelteIds.length + '</b><span>doppelte IDs</span></div>' +
+                '<div class="kachel ' + (dubletten.length ? 'warn' : 'gut') + '"><b>' + dubletten.length + '</b><span>Dubletten</span></div>' +
+                '<div class="kachel ' + (einsPct > 40 ? 'warn' : 'gut') + '"><b>' + einsPct + '%</b><span>richtig auf Platz 1</span></div>' +
+                '</div>';
+
+            html += block('🔴 Richtige Antwort steht mehrfach in den Optionen',
+                'Das Kind tippt die richtige Antwort an und bekommt „falsch". Der schlimmste Fehlertyp, weil er Vertrauen kostet.',
+                doppelteAntwort, 'rot');
+
+            html += block('🔴 Doppelt vergebene IDs',
+                'Zwei Fragen mit derselben ID. Jede Fortschritts- und Wiederholungslogik, die über IDs geht, verwechselt sie.',
+                doppelteIds, 'rot');
+
+            html += block('🔴 Kaputte Struktur',
+                'Fragen ohne gültige Antwortliste oder mit falschem <code>correct</code>-Index – die stürzen im Spiel ab oder werten falsch.',
+                struktur, 'rot');
+
+            html += block('🟡 Wortgleiche Dubletten',
+                'Dieselbe Frage steht mehrfach in derselben Kategorie. Der Loader wirft sie beim Zusammenführen zwar raus, aber in den Dateien liegen sie doppelt.',
+                dubletten, 'gelb');
+
+            html += block('🟡 Fach im Menü, aber keine Fragen',
+                'Diese Fächer kann man auswählen und bekommt dann nichts. Besser: Fragen ergänzen oder aus dem CURRICULUM nehmen.',
+                ohneFragen, 'gelb');
+
+            html += block('🟡 Fragen ohne Menü-Eintrag',
+                'Diese Kategorien existieren in den Daten, stehen aber in keinem Menü – die Fragen sind unerreichbar.',
+                ohneMenue, 'gelb');
+
+            html += block('🟡 Unter 10 Fragen',
+                'Eine Runde hat 10 Fragen. Diese Kategorien sind nach einer einzigen Runde durchgespielt und wiederholen sich danach identisch.',
+                zuKlein, 'gelb', 60);
+
+            html += block('🟡 10 bis 29 Fragen',
+                'Nach ein bis drei Runden durchgespielt. Nicht kaputt, aber der nächste Ausbauschritt.',
+                knapp, 'gelb', 60);
+
+            const muster = [];
+            if (einsPct > 40) muster.push('Bei <b>' + einsPct + '%</b> der Fragen steht die richtige Antwort an erster Stelle. Zufällig wären es etwa 25%. Die App mischt zur Laufzeit, aber jeder Weg ohne Mischen verrät damit die Lösung.');
+            if (langPct > 45) muster.push('Bei <b>' + langPct + '%</b> der Fragen ist die richtige Antwort die längste. Kinder erkennen dieses Muster schnell und raten danach statt zu lernen.');
+            html += block('🟡 Verräterische Muster',
+                'Systematische Auffälligkeiten, an denen man die richtige Antwort erraten kann, ohne den Inhalt zu kennen.',
+                muster, 'gelb');
+
+            document.getElementById('ausgabe').className = '';
+            document.getElementById('ausgabe').innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>

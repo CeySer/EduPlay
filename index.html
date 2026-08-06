@@ -3,23 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
     <meta name="theme-color" content="#080c18">
     <title>EduPlay Hub - Familien Edition v2.30</title>
 
-    <link rel="stylesheet" href="styles.css?v=8.7">
+    <link rel="stylesheet" href="styles.css?v=8.8">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
 
-    <script src="datenbanken_loader.js?v=8.7"></script>
+    <script src="datenbanken_loader.js?v=8.8"></script>
 
-    <link rel="icon" href="data:,">
+    <link rel="icon" type="image/png" href="icons/favicon-64.png">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EduPlay">
+    <meta name="description" content="Lernen und spielen für die ganze Familie: Quiz nach Klasse und Fach, Vokabeln, Wort-Duelle und TV-Quiz.">
 </head>
 
 <body>
@@ -817,7 +820,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="wortraten-turn-banner" class="text-center text-sm font-bold text-sky-300 h-5"></div>
                     <div id="wortraten-scores" class="flex gap-2 overflow-x-auto pb-1"></div>
                     <div id="wortraten-keyboard" class="grid grid-cols-6 sm:grid-cols-7 gap-1.5"></div>
-                    <button type="button" onclick="wrRevealWord()" class="btn-ghost w-full text-xs text-gray-400 py-2">Wort auflösen (0 Punkte)</button>
                 </div>
 
                 <div id="wortraten-round-end" class="hidden glass-card-glow p-6 text-center space-y-4"
@@ -860,13 +862,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse / Bereich</label>
                             <select id="live-duel-area" class="input-modern font-bold mb-3"></select>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema</label>
-                            <select id="live-duel-category" class="input-modern font-bold mb-3"></select>
-                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Fragenanzahl</label>
-                            <select id="live-duel-count" class="input-modern font-bold">
-                                <option value="5">5 Fragen</option>
-                                <option value="10" selected>10 Fragen</option>
-                                <option value="15">15 Fragen</option>
-                            </select>
+                            <select id="live-duel-category" class="input-modern font-bold"></select>
                         </div>
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Tempo</label>
@@ -1187,7 +1183,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <p class="text-[11px] text-indigo-300 font-bold uppercase tracking-wider">Lobby-Code</p>
                     <div id="live-duel-lobby-code" class="text-5xl font-black tracking-[0.28em] text-white mt-2 mb-1 select-all"></div>
                     <div id="live-duel-lobby-qr" class="mx-auto my-3 w-36 h-36 rounded-xl bg-white p-2 flex items-center justify-center overflow-hidden"></div>
-                    <p class="text-[11px] text-gray-400 mb-3">QR scannen oder Code eingeben (auch anderer Account / Gast)</p>
+                    <p class="text-[11px] text-gray-400 mb-3">Freunde: Online-Lobby → Code eingeben</p>
                     <button type="button" onclick="shareLobbyCode()" class="btn-primary w-full text-sm py-3"
                         style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">📤 Einladen / Code teilen</button>
                 </div>
@@ -1619,21 +1615,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div class="glass-card p-5 space-y-4">
                     <h2 class="text-xl font-black text-indigo-400">⚙️ Einstellungen</h2>
                     <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">
-                        <span class="font-bold text-white">🔊 Sound-Effekte</span>
-                        <button onclick="toggleSound()" class="btn-secondary text-sm py-2 px-4"><span class="sound-toggle-icon">🔊</span></button>
-                    </div>
-                    <div class="py-2 border-b border-white/5 space-y-2">
-                        <div class="flex items-center justify-between gap-3">
-                            <span class="font-bold text-white">🎵 Hintergrundmusik</span>
-                            <button onclick="toggleBgMusic()" class="btn-secondary text-sm py-2 px-4"><span class="bgmusic-toggle-icon">an</span></button>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs text-gray-400 shrink-0">Lautstärke</span>
-                            <input type="range" id="bg-music-volume" min="0" max="1" step="0.05" value="0.4"
-                                class="flex-1 accent-indigo-400"
-                                oninput="setBgMusicVolume(this.value)">
-                            <span id="bg-music-vol-label" class="text-xs font-bold text-indigo-300 w-10 text-right">40%</span>
-                        </div>
+                        <span class="font-bold text-white">🔊 Ton</span>
+                        <button onclick="toggleSound()" class="btn-secondary text-sm py-2 px-4"><span class="sound-toggle-icon">an/aus</span></button>
                     </div>
                     <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">
                         <span class="font-bold text-white">🌓 Design</span>
@@ -1654,19 +1637,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
             <div id="view-fokus" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                <div class="glass-card p-8 text-center space-y-5 shadow-lg">
+                <div class="glass-card p-8 text-center space-y-6 shadow-lg">
                     <div class="text-6xl">⏱️</div>
                     <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
-                    <div id="fokus-duration-row" class="flex gap-2 justify-center flex-wrap">
-                        <button type="button" id="fokus-dur-10" onclick="setFocusDuration(10)" class="btn-secondary text-sm py-2 px-3">10 Min</button>
-                        <button type="button" id="fokus-dur-15" onclick="setFocusDuration(15)" class="btn-primary text-sm py-2 px-3" style="background:var(--gradient-green);">15 Min · 1×</button>
-                        <button type="button" id="fokus-dur-25" onclick="setFocusDuration(25)" class="btn-secondary text-sm py-2 px-3">25 Min · 2×</button>
-                    </div>
-                    <p id="fokus-reward-hint" class="text-[11px] text-gray-400">Belohnung: +20 Coins</p>
                     <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
-                    <p id="fokus-status" class="text-xs text-gray-400 hidden">App im Vordergrund lassen – sonst pausiert der Timer.</p>
                     <div class="flex gap-2 justify-center">
-                        <button id="fokus-start-btn" class="btn-primary"
+                        <button class="btn-primary"
                             style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);"
                             onclick="startFocusTimer()">Start</button>
                         <button class="btn-secondary" onclick="resetFocusTimer()">Reset</button>
@@ -1750,13 +1726,7 @@ VIEW: QUIZ SETUP
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse / Bereich:</label>
                         <select id="quiz-area" class="input-modern font-bold mb-3"></select>
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema:</label>
-                        <select id="sub-category" class="input-modern font-bold mb-3"></select>
-                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Fragenanzahl:</label>
-                        <select id="quiz-count" class="input-modern font-bold">
-                            <option value="5">5 Fragen</option>
-                            <option value="10" selected>10 Fragen</option>
-                            <option value="15">15 Fragen</option>
-                        </select>
+                        <select id="sub-category" class="input-modern font-bold"></select>
                     </div>
                     <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
                 </div>
@@ -1973,11 +1943,9 @@ VIEW: QUIZ SETUP
             <div id="view-tv-quiz-player" class="view hidden space-y-4">
                 <div id="tv-player-setup" class="space-y-4">
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame()">Zurück</button>
-                    <div class="glass-card p-6 text-center space-y-4">
-                        <h2 class="text-2xl font-black text-white">Spiel beitreten</h2>
-                        <p class="text-gray-400 text-sm">Gleiche Familie: einfach beitreten.<br>Anderer Account: Code vom TV eingeben.</p>
-                        <input id="tv-join-code" maxlength="4" placeholder="Code (optional)"
-                            class="input-modern font-bold text-center tracking-[0.2em] uppercase" autocomplete="off">
+                    <div class="glass-card p-6 text-center">
+                        <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
+                        <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
                         <div id="player-waiting-area">
                             <button onclick="joinTVGame()" class="btn-primary w-full text-2xl animate-pulse py-6"
                                 style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Jetzt
@@ -1998,18 +1966,36 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=8.7"></script>
-    <script src="app-ui.js?v=8.7"></script>
-    <script src="family-dashboard.js?v=8.7"></script>
-    <script src="ui-common.js?v=8.7"></script>
-    <script src="quiz-core.js?v=8.7"></script>
-    <script src="vocab.js?v=8.7"></script>
-    <script src="duel-scrabble.js?v=8.7"></script>
-    <script src="wortraten.js?v=8.7"></script>
-    <script src="tv-cast.js?v=8.7"></script>
-    <script src="live-duel.js?v=8.7"></script>
-    <script src="app-misc.js?v=8.7"></script>
-    <script src="lobby-avatar.js?v=8.7"></script>
+    <script src="app-config.js?v=8.8"></script>
+    <script src="app-ui.js?v=8.8"></script>
+    <script src="family-dashboard.js?v=8.8"></script>
+    <script src="ui-common.js?v=8.8"></script>
+    <script src="quiz-core.js?v=8.8"></script>
+    <script src="vocab.js?v=8.8"></script>
+    <script src="duel-scrabble.js?v=8.8"></script>
+    <script src="wortraten.js?v=8.8"></script>
+    <script src="tv-cast.js?v=8.8"></script>
+    <script src="live-duel.js?v=8.8"></script>
+    <script src="app-misc.js?v=8.8"></script>
+    <script src="lobby-avatar.js?v=8.8"></script>
+
+    <script>
+        // Service Worker: sorgt dafür, dass die App auch ohne Netz startet.
+        // Läuft nur über http/https – bei einem Doppelklick auf die Datei
+        // (file://) ist das nicht möglich, dann bleibt einfach alles wie bisher.
+        if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function (reg) {
+                        // Neue Version gefunden? Beim nächsten Start ist sie aktiv.
+                        reg.addEventListener('updatefound', function () {
+                            console.log('🔄 Neue App-Version wird geladen');
+                        });
+                    })
+                    .catch(function (e) { console.warn('Service Worker nicht aktiv:', e); });
+            });
+        }
+    </script>
 
 
     <!-- ========================================================== burger menü

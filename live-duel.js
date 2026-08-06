@@ -237,7 +237,13 @@
             } catch (e) { }
         }
 
-        function startLiveDuelCountdown(deadline) {
+        // onExpire: optionaler Callback für den Ablauf des Countdowns. Ohne
+        // Angabe läuft wie bisher resolveLiveDuelRound() (Quiz/Wort-Duell).
+        // Wort-Rätsel braucht beim Ablaufen des Zug-Timers etwas anderes
+        // (Zug weiterreichen statt Runde auszuwerten) - vorher landete das
+        // hier fälschlich im Scrabble-Zweig von resolveLiveDuelRound und
+        // brachte den Rätsel-Stand durcheinander ("springt von alleine").
+        function startLiveDuelCountdown(deadline, onExpire) {
             clearLiveDuelTimers();
             const el = document.getElementById("live-duel-countdown");
             const playEl = document.getElementById("live-duel-play-content");
@@ -258,7 +264,11 @@
                     if (isLiveDuelCreator && !liveDuelResolving) {
                         liveDuelResolving = true;
                         SFX.timeUp();
-                        liveDuelRef.get().then(d => { if (d.exists) resolveLiveDuelRound(d.data()); });
+                        if (typeof onExpire === "function") {
+                            onExpire();
+                        } else {
+                            liveDuelRef.get().then(d => { if (d.exists) resolveLiveDuelRound(d.data()); });
+                        }
                     }
                 }
             };
@@ -427,8 +437,11 @@
                 if (data.answerDeadline) {
                     if (!liveDuelTimerInterval) startLiveDuelCountdown(data.answerDeadline);
                 } else if (isLiveDuelCreator) {
-                    // Ghost-Schutz: Ersteller setzt einmalig eine Rundendeadline
-                    const _secs = data.type === "quiz" ? 30 : 60;
+                    // Ghost-Schutz: Ersteller setzt einmalig eine Rundendeadline.
+                    // Vorher hart 30/60s, unabhängig von der gewählten Geschwindigkeit -
+                    // dadurch griff answerSeconds (Dropdown bzw. Schwierigkeit beim
+                    // Wort-Duell) nie, weil answerDeadline zu dem Zeitpunkt schon gesetzt war.
+                    const _secs = data.answerSeconds || (data.type === "quiz" ? 20 : 30);
                     liveDuelRef.update({ answerDeadline: Date.now() + _secs * 1000 });
                 } else {
                     clearLiveDuelTimers();
@@ -701,6 +714,12 @@
         // LIVE WORT-RÄTSEL (kontoübergreifend, reihum Buchstaben raten)
         // ============================================================
 
+        // Merkt den 8s-Auto-Weiter-Timer, damit ein manuelles "Weiter" (Klick oder
+        // eigener Auto-Lauf) ihn canceln kann - sonst feuert der alte Timer später
+        // nochmal, wenn die nächste Runde zufällig schon wieder vorbei ist, und
+        // schiebt ungefragt eine weitere Runde weiter.
+        let wrLiveAutoAdvanceTimer = null;
+
         function wrLiveActivePlayerKey(data) {
             const order = (data.order || []).filter(k => data.players && data.players[k] && !data.players[k].pending);
             if (order.length === 0) return null;
@@ -787,15 +806,21 @@
             const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
             for (let i = 1; i <= Math.min(data.wrongCount || 0, maxW); i++) wrRevealFigureStage(i, "live-duel-wr-figure");
 
-            // Erwachsenen-Modus: Zug-Timer (nur für den aktiven Spieler sichtbar über Countdown)
-            if (!data.roundOver && data.wordMode === "adult" && isMyTurn && isLiveDuelCreator) {
+            // Erwachsenen-Modus: Zug-Timer. Der Ersteller setzt die Deadline
+            // fürs jeweils aktive Kind/Erwachsenen-Duell - unabhängig davon,
+            // ob er selbst gerade dran ist, sonst bekommt ein Zug des
+            // Mitspielers nie eine Deadline (vorher: "isMyTurn && isLiveDuelCreator",
+            // das griff nur, wenn ausgerechnet der Ersteller selbst dran war).
+            if (!data.roundOver && data.wordMode === "adult" && isLiveDuelCreator) {
                 if (!data.wrTurnDeadline) {
                     const secs = typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 20;
                     liveDuelRef.update({ wrTurnDeadline: Date.now() + secs * 1000 }).catch(() => { });
                 }
             }
             if (data.wrTurnDeadline && !data.roundOver) {
-                startLiveDuelCountdown(data.wrTurnDeadline);
+                startLiveDuelCountdown(data.wrTurnDeadline, () => {
+                    wrLiveSkipTurn().finally(() => { liveDuelResolving = false; });
+                });
             }
         }
 
@@ -867,11 +892,42 @@
             if (outcome.roundOver) {
                 try { if (outcome.roundSolved && typeof confetti === "function") confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } }); } catch (e) { }
                 // Host: Weiter-Button; Auto-Weiter nach 8s als Fallback
-                if (isLiveDuelCreator) setTimeout(() => wrLiveAdvanceRound(), 8000);
+                if (isLiveDuelCreator) {
+                    if (wrLiveAutoAdvanceTimer) clearTimeout(wrLiveAutoAdvanceTimer);
+                    wrLiveAutoAdvanceTimer = setTimeout(() => {
+                        wrLiveAutoAdvanceTimer = null;
+                        wrLiveAdvanceRound();
+                    }, 8000);
+                }
             }
         }
 
+        // Läuft der Zug-Timer (Erwachsenen-Tempo) ab, ohne dass der aktive
+        // Spieler einen Buchstaben gewählt hat: Zug einfach weiterreichen,
+        // ohne Strafe/Fehlversuch. Läuft als Transaktion, damit ein Buchstabe,
+        // der im selben Moment eintrifft, nicht mit dem Timer kollidiert.
+        async function wrLiveSkipTurn() {
+            if (!liveDuelRef) return;
+            try {
+                await db.runTransaction(async (txn) => {
+                    const snap = await txn.get(liveDuelRef);
+                    if (!snap.exists) return;
+                    const data = snap.data();
+                    if (data.status !== "playing" || data.type !== "wortraten" || data.roundOver) return;
+                    const order = (data.order || []).filter(k => data.players && data.players[k] && !data.players[k].pending);
+                    if (order.length === 0) return;
+                    const key = wrLiveActivePlayerKey(data);
+                    const curIdx = order.indexOf(key);
+                    const turnIndex = (curIdx + 1) % order.length;
+                    txn.update(liveDuelRef, { turnIndex, wrTurnDeadline: null });
+                });
+            } catch (e) { handleError("wrLiveSkipTurn", e, "Der Zug konnte nicht weitergegeben werden."); }
+        }
+
         async function wrLiveAdvanceRound() {
+            // Manuelles "Weiter" (Klick) soll den wartenden Auto-Timer canceln,
+            // sonst feuert der später nochmal für eine bereits neue Runde.
+            if (wrLiveAutoAdvanceTimer) { clearTimeout(wrLiveAutoAdvanceTimer); wrLiveAutoAdvanceTimer = null; }
             if (!liveDuelRef || !isLiveDuelCreator) return;
             const snap = await liveDuelRef.get();
             if (!snap.exists) return;
@@ -1477,6 +1533,16 @@
                                         </select>
                                     `}
                                     <button onclick="restartLiveDuel()" class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
+                                </div>
+                                <div class="glass-card p-4 mt-3 space-y-3 text-left" style="border-color:rgba(168,85,247,0.15);">
+                                    <p class="text-sm font-black text-purple-300 text-center">🔀 Anderes Spiel starten</p>
+                                    <div class="grid grid-cols-4 gap-2">
+                                        <button onclick="renderSwitchTypeOptions('quiz')" class="btn-secondary text-xs py-2 px-1">⚔️ Quiz</button>
+                                        <button onclick="renderSwitchTypeOptions('scrabble')" class="btn-secondary text-xs py-2 px-1">🔤 Wort</button>
+                                        <button onclick="renderSwitchTypeOptions('wortraten')" class="btn-secondary text-xs py-2 px-1">🧩 Rätsel</button>
+                                        <button onclick="renderSwitchTypeOptions('vokabel')" class="btn-secondary text-xs py-2 px-1">📚 Vokabeln</button>
+                                    </div>
+                                    <div id="switch-type-options"></div>
                                 </div>`;
             } else {
                 html += `<p class="text-xs text-gray-400 font-bold mt-6">Bleib dran – ${sorted.length > 1 ? "die nächste Runde" : "eine neue Runde"} kann gleich starten.</p>`;
@@ -1496,6 +1562,170 @@
             renderFamilyHub();
             try { if (typeof confetti === 'function') confetti(); } catch (e) { }
             SFX.win();
+        }
+
+        // Zeigt im Endergebnis-Screen die Optionen zum gewählten Spieltyp an
+        // (Wortduell/Rätsel/Vokabeln/Quiz), damit man nach einem Online-Spiel
+        // in derselben Lobby (gleicher Code, gleiche Mitspieler) ein ANDERES
+        // Spiel starten kann statt nur dasselbe zu wiederholen.
+        function renderSwitchTypeOptions(type) {
+            const box = document.getElementById("switch-type-options");
+            if (!box) return;
+            let html = "";
+            if (type === "quiz") {
+                html = `
+                    <select id="switch-quiz-area" class="input-modern text-sm font-bold"></select>
+                    <select id="switch-quiz-category" class="input-modern text-sm font-bold"></select>
+                    <button onclick="restartLiveDuelAsType('quiz')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">⚔️ Quiz starten 🚀</button>`;
+                box.innerHTML = html;
+                setupCategorySelectors("switch-quiz-area", "switch-quiz-category", "spass");
+            } else if (type === "scrabble") {
+                html = `
+                    <select id="switch-scrabble-wordmode" class="input-modern text-sm font-bold">
+                        <option value="kids" selected>👶 Kinder</option>
+                        <option value="adult">🎓 Erwachsene</option>
+                    </select>
+                    <select id="switch-scrabble-difficulty" class="input-modern text-sm font-bold">
+                        <option value="leicht">🟢 Leicht</option>
+                        <option value="mittel" selected>🟡 Mittel</option>
+                        <option value="schwer">🔴 Schwer</option>
+                        <option value="experte">🟣 Experte</option>
+                        <option value="profi">🔥 Profi</option>
+                    </select>
+                    <select id="switch-scrabble-rounds" class="input-modern text-sm font-bold">
+                        <option value="3">3 Runden</option>
+                        <option value="5" selected>5 Runden</option>
+                        <option value="8">8 Runden</option>
+                    </select>
+                    <button onclick="restartLiveDuelAsType('scrabble')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">🔤 Wortduell starten 🚀</button>`;
+                box.innerHTML = html;
+            } else if (type === "wortraten") {
+                html = `
+                    <select id="switch-wr-wordmode" class="input-modern text-sm font-bold">
+                        <option value="kids" selected>👶 Kinder</option>
+                        <option value="adult">🎓 Erwachsene</option>
+                    </select>
+                    <select id="switch-wr-difficulty" class="input-modern text-sm font-bold">
+                        <option value="leicht">🟢 Leicht (3-5 Buchstaben)</option>
+                        <option value="mittel" selected>🟡 Mittel (5-7 Buchstaben)</option>
+                        <option value="schwer">🔴 Schwer (7-10 Buchstaben)</option>
+                        <option value="experte">🟣 Experte (9+ Buchstaben)</option>
+                    </select>
+                    <select id="switch-wr-theme" class="input-modern text-sm font-bold">
+                        <option value="schneemann" selected>⛄ Schneemann</option>
+                        <option value="roboter">🤖 Roboter</option>
+                    </select>
+                    <select id="switch-wr-rounds" class="input-modern text-sm font-bold">
+                        <option value="3" selected>3 Runden</option>
+                        <option value="5">5 Runden</option>
+                        <option value="8">8 Runden</option>
+                    </select>
+                    <button onclick="restartLiveDuelAsType('wortraten')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">🧩 Wort-Rätsel starten 🚀</button>`;
+                box.innerHTML = html;
+            } else if (type === "vokabel") {
+                html = `
+                    <select id="switch-vokabel-dir" class="input-modern font-bold">
+                        <option value="de2f">🇩🇪 → Fremdsprache</option>
+                        <option value="f2de">Fremdsprache → 🇩🇪</option>
+                        <option value="mix" selected>🔀 Gemischt</option>
+                    </select>
+                    <div id="switch-vokabel-checkboxes" class="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto"></div>
+                    <button onclick="restartLiveDuelAsType('vokabel')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">📚 Vokabel-Duell starten 🚀</button>`;
+                box.innerHTML = html;
+                if (typeof renderVocabGroupCheckboxes === "function") renderVocabGroupCheckboxes("switch-vokabel-checkboxes");
+            }
+        }
+
+        // Startet in DERSELBEN Lobby (gleicher Raumcode, gleiche Mitspieler)
+        // ein Spiel eines ANDEREN Typs, statt nur dieselbe Spielart zu
+        // wiederholen. Die Mitspieler bleiben verbunden, weil sie weiter auf
+        // dasselbe Firestore-Dokument (liveDuelRef) hören.
+        async function restartLiveDuelAsType(newType) {
+            if (!liveDuelRef || !isLiveDuelCreator) return;
+            stopLiveDuelActionMode();
+
+            const snap = await liveDuelRef.get();
+            if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
+            const data = snap.data();
+            const players = data.players || {};
+            if (Object.keys(players).length === 0) return showToast("Keine Spieler mehr in der Runde.", "error");
+            Object.keys(players).forEach(k => {
+                players[k].score = 0;
+                players[k].hasAnswered = false;
+                players[k].lastAnswer = null;
+                players[k].word = "";
+                players[k].coinsClaimed = false;
+                players[k].lastRoundPoints = 0;
+                players[k].wordStatus = null;
+                players[k].pending = false;
+                players[k].answerStreak = 0;
+                players[k].submittedLetters = [];
+                players[k].submittedRequired = "";
+                players[k].submittedSolution = "";
+            });
+
+            let update;
+            try {
+                if (newType === "scrabble") {
+                    const wordMode = (document.getElementById("switch-scrabble-wordmode") || {}).value || "kids";
+                    const difficulty = (document.getElementById("switch-scrabble-difficulty") || {}).value || "mittel";
+                    const totalRounds = parseInt((document.getElementById("switch-scrabble-rounds") || {}).value) || 5;
+                    liveDuelUsedWords = new Set();
+                    const rack = generateScrabbleRack(difficulty, false, wordMode);
+                    update = {
+                        type: "scrabble", subject: null, status: "playing", difficulty, totalRounds,
+                        currentRound: 1, requireLetter: false, wordMode,
+                        answerSeconds: SCRABBLE_ANSWER_SECONDS[difficulty] || 20,
+                        currentLetters: rack.letters, currentSolution: rack.solution, currentRequired: rack.required || "",
+                        answerDeadline: null, players, review: []
+                    };
+                } else if (newType === "wortraten") {
+                    const wordMode = (document.getElementById("switch-wr-wordmode") || {}).value || "kids";
+                    const difficulty = (document.getElementById("switch-wr-difficulty") || {}).value || "mittel";
+                    const theme = (document.getElementById("switch-wr-theme") || {}).value || "schneemann";
+                    const totalRounds = parseInt((document.getElementById("switch-wr-rounds") || {}).value) || 3;
+                    const order = Object.keys(players);
+                    const round = wrLiveNewRoundFields({ wordMode, difficulty, usedWords: [] });
+                    if (!round.word) return showToast("Keine passenden Wörter für diese Einstellungen gefunden.", "error");
+                    update = {
+                        type: "wortraten", subject: null, status: "playing", wordMode, difficulty, theme, totalRounds,
+                        currentRound: 1, turnIndex: 0, order, players, word: round.word, guessed: [], wrongCount: 0,
+                        roundOver: false, roundSolved: false, usedWords: [round.word]
+                    };
+                } else if (newType === "vokabel") {
+                    const checked = Array.from(document.querySelectorAll("#switch-vokabel-checkboxes .vokabel-group-check:checked")).map(cb => cb.value);
+                    if (checked.length === 0) return showToast("Bitte mindestens eine Vokabelgruppe auswählen!", "error");
+                    const dir = (document.getElementById("switch-vokabel-dir") || {}).value || "mix";
+                    const questions = prepareQuestions(
+                        buildVocabTestQuestions(checked, dir).sort(() => Math.random() - 0.5).slice(0, 10)
+                    );
+                    if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
+                    update = {
+                        type: "quiz", subject: "vokabel", vocabGroups: checked, vocabDir: dir, status: "playing",
+                        questions, currentIndex: 0, answerDeadline: null, correctAnswer: null, players, review: []
+                    };
+                } else {
+                    const category = (document.getElementById("switch-quiz-category") || {}).value;
+                    if (!category) return showToast("Bitte ein Thema wählen!", "error");
+                    const questions = prepareQuestions(
+                        questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10)
+                    );
+                    if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
+                    update = {
+                        type: "quiz", subject: null, category, status: "playing", questions, currentIndex: 0,
+                        answerDeadline: null, correctAnswer: null, players, review: []
+                    };
+                }
+                await liveDuelRef.update(update);
+                liveDuelType = newType;
+                liveDuelResolving = false;
+                liveDuelRenderKey = "";
+                liveDuelResolvedRoundKey = "";
+                SFX.tap();
+                showToast("Neues Spiel gestartet – alle sind dabei! 🚀");
+            } catch (e) {
+                handleError("restartLiveDuelAsType", e, "Das neue Spiel konnte nicht gestartet werden.");
+            }
         }
 
         async function leaveLiveDuel() {

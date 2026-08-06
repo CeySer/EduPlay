@@ -120,3 +120,6 @@ const K5_ENGLISCH_QUESTIONS = [
   {"id":"k5en100","category":"k5_englisch","area":"schule","grade":5,"subject":"englisch","question":"'My phone number is 0176...' – Read '0' in English:","answers":["zero / oh","null / nil","one / won","ten / net"],"correct":0,"difficulty":"mittel","points":10,"explanation":"In phone numbers, '0' is read as 'zero' or 'oh'."}
 
   ];
+
+if (typeof window !== 'undefined') window.K5_ENGLISCH_QUESTIONS = K5_ENGLISCH_QUESTIONS;
+if (typeof registerQuestions === 'function') registerQuestions('K5_ENGLISCH_QUESTIONS', K5_ENGLISCH_QUESTIONS);

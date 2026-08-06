@@ -4,7 +4,7 @@
 // KEINE Sexualerziehung! Keine Fortpflanzungsthemen.
 // ================================================================
 
-const K3_BIOLOGIE_QUESTIONS = [
+const K5_BIOLOGIE_QUESTIONS = [
 
   // --- Pflanzen: Bau und Funktion (25 Fragen) ---
   {"id":"k5bi001","category":"k5_biologie","area":"schule","grade":5,"subject":"biologie","question":"Welche Aufgabe haben die Wurzeln einer Pflanze hauptsächlich?","answers":["Aufnahme von Wasser und Mineralstoffen aus dem Boden","Aufnahme von Sonnenlicht für die Fotosynthese","Abgabe von Sauerstoff an die Umgebungsluft","Produktion von Blüten und Samen für die Vermehrung"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Die Wurzeln verankern die Pflanze im Boden und nehmen Wasser mit darin gelösten Mineralstoffen (Nährsalzen) auf."},
@@ -115,3 +115,6 @@ const K3_BIOLOGIE_QUESTIONS = [
   {"id":"k5bi100","category":"k5_biologie","area":"schule","grade":5,"subject":"biologie","question":"Welche einfache Maßnahme schützt am besten vor ansteckenden Krankheiten?","answers":["Regelmäßiges und gründliches Händewaschen mit Seife","Tägliches Trinken von ausschließlich gesüßten Getränken","Schlafen bei dauerhaft geöffneten Fenstern im Winter","Verzicht auf jeglichen Kontakt mit anderen Menschen"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Händewaschen ist eine der wirksamsten Methoden, um die Verbreitung von Krankheitserregern zu verhindern."}
 
 ];
+
+if (typeof window !== 'undefined') window.K5_BIOLOGIE_QUESTIONS = K5_BIOLOGIE_QUESTIONS;
+if (typeof registerQuestions === 'function') registerQuestions('K5_BIOLOGIE_QUESTIONS', K5_BIOLOGIE_QUESTIONS);

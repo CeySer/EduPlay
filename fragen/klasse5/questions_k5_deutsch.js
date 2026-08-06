@@ -1,4 +1,4 @@
-const K3_DEUTSCH_QUESTIONS = [
+const K5_DEUTSCH_QUESTIONS = [
 
   // ================================================================
   // KLASSE 5 - DEUTSCH (100 Fragen)
@@ -115,3 +115,6 @@ const K3_DEUTSCH_QUESTIONS = [
   {"id":"k5de100","category":"k5_deutsch","area":"schule","grade":5,"subject":"deutsch","question":"Was versteht man unter dem Begriff 'Verbklammer'?","answers":["Trennung von finitem Verb und Verbzusatz im Satz","Ein Verb, das in Klammern geschrieben wird","Die Beugung eines Verbs in allen Personen","Die Verbindung von zwei Hauptsätzen durch 'und'"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Bei trennbaren Verben: 'Ich | stehe | morgens früh | auf.' – 'stehe...auf' bildet die Verbklammer."},
 
 ];
+
+if (typeof window !== 'undefined') window.K5_DEUTSCH_QUESTIONS = K5_DEUTSCH_QUESTIONS;
+if (typeof registerQuestions === 'function') registerQuestions('K5_DEUTSCH_QUESTIONS', K5_DEUTSCH_QUESTIONS);

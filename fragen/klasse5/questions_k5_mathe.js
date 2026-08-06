@@ -1,5 +1,5 @@
 
-const K3_MATHE_QUESTIONS = [
+const K5_MATHE_QUESTIONS = [
 
   // ================================================================
   // KLASSE 5 - MATHEMATIK (100 Fragen)
@@ -117,3 +117,6 @@ const K3_MATHE_QUESTIONS = [
 
 
 ];
+
+if (typeof window !== 'undefined') window.K5_MATHE_QUESTIONS = K5_MATHE_QUESTIONS;
+if (typeof registerQuestions === 'function') registerQuestions('K5_MATHE_QUESTIONS', K5_MATHE_QUESTIONS);

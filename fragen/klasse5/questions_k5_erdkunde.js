@@ -4,7 +4,7 @@
 // NRW-Regionen, Klima und Landschaften
 // ================================================================
 
-const K3_ERDKUNDE_QUESTIONS = [
+const K5_ERDKUNDE_QUESTIONS = [
 
   // --- Orientierung auf der Erde (25 Fragen) ---
   {"id":"k5ek001","category":"k5_erdkunde","area":"schule","grade":5,"subject":"erdkunde","question":"Wie heißt die gedachte Linie, die die Erde in Nord- und Südhalbkugel teilt?","answers":["Äquator (0° Breite)","Nullmeridian (0° Länge)","Wendekreis des Krebses","Polarkreis (66,5° Nord)"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Der Äquator ist der längste Breitenkreis und teilt die Erde in die nördliche und südliche Hemisphäre."},
@@ -119,3 +119,6 @@ const K3_ERDKUNDE_QUESTIONS = [
   {"id":"k5ek100","category":"k5_erdkunde","area":"schule","grade":5,"subject":"erdkunde","question":"Welche Bedeutung hat der Dortmund-Ems-Kanal für NRW?","answers":["Er verbindet das Ruhrgebiet mit dem Nordseehafen Emden","Er leitet ausschließlich Hochwasser in den Rhein ab","Er dient nur der Freizeitschifffahrt ohne Güterverkehr","Er versorgt das Sauerland mit Trinkwasser aus der Ems"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Der Dortmund-Ems-Kanal verbindet den Dortmund-Ems-Hafen mit Emden und ist eine wichtige Binnenwasserstraße für Güter."}
 
 ];
+
+if (typeof window !== 'undefined') window.K5_ERDKUNDE_QUESTIONS = K5_ERDKUNDE_QUESTIONS;
+if (typeof registerQuestions === 'function') registerQuestions('K5_ERDKUNDE_QUESTIONS', K5_ERDKUNDE_QUESTIONS);

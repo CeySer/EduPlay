@@ -4,7 +4,7 @@
 // Medien und erste wirtschaftliche Grundlagen
 // ================================================================
 
-const K3_POLITIK_QUESTIONS = [
+const K5_POLITIK_QUESTIONS = [
 
   // --- Demokratie und Mitbestimmung (20 Fragen) ---
   {"id":"k5po001","category":"k5_politik","area":"schule","grade":5,"subject":"politik","question":"Was bedeutet das griechische Wort 'Demokratie' wörtlich übersetzt?","answers":["Herrschaft des Volkes (demos = Volk, kratein = herrschen)","Herrschaft eines einzelnen Königs über das Reich","Herrschaft des Militärs über die Bevölkerung","Herrschaft der reichsten Bürger einer Stadt"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Demokratie kommt von griechisch 'demos' (Volk) und 'kratein' (herrschen). Das Volk bestimmt durch Wahlen und Abstimmungen."},
@@ -119,3 +119,6 @@ const K3_POLITIK_QUESTIONS = [
   {"id":"k5po100","category":"k5_politik","area":"schule","grade":5,"subject":"politik","question":"Warum sind Bäume und Wälder für das Klima so wichtig?","answers":["Sie speichern CO₂ und produzieren Sauerstoff","Sie bieten ausschließlich Schatten für Spaziergänger","Sie verbrauchen den gesamten Sauerstoff der Erde","Sie erhöhen die Temperatur in ihrer Umgebung"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Wälder sind Kohlenstoffspeicher. Bäume nehmen CO₂ auf und geben Sauerstoff ab – sie sind die 'grüne Lunge' der Erde."}
 
 ];
+
+if (typeof window !== 'undefined') window.K5_POLITIK_QUESTIONS = K5_POLITIK_QUESTIONS;
+if (typeof registerQuestions === 'function') registerQuestions('K5_POLITIK_QUESTIONS', K5_POLITIK_QUESTIONS);

@@ -856,8 +856,10 @@
     `;
         }
 
-        function resetLesenCategory(categoryKey) {
-            if (!confirm('Fortschritt für diese Übung zurücksetzen?')) return;
+        async function resetLesenCategory(categoryKey) {
+            if (!(await appConfirm("Der Fortschritt für diese Übung wird auf null gesetzt.", {
+                titel: "Fortschritt zurücksetzen?", icon: "🔄", okText: "Zurücksetzen", gefahr: true
+            }))) return;
             const categories = lesenDB();
             const total = categories[categoryKey].items ? categories[categoryKey].items.length : 0;
             saveLesenProgress(categoryKey, 0, total);

@@ -34,12 +34,84 @@
                 .catch(err => showToast(err.message, "error"));
         }
 
+        // ------------------------------------------------------------
+        //  GAST-BEITRITT (ohne Konto)
+        //  Meldet anonym bei Firebase an. Der Gast bekommt kein
+        //  Familienprofil und schreibt nichts in die Familiendaten –
+        //  er existiert nur in der Online-Lobby, der er per Code
+        //  beitritt. Nach dem Verlassen ist alles weg.
+        // ------------------------------------------------------------
+        function loginAsGuest() {
+            auth.signInAnonymously()
+                .catch(err => {
+                    const code = String((err && err.code) || "");
+                    if (code.indexOf("operation-not-allowed") !== -1) {
+                        showToast("Gast-Beitritt ist in Firebase noch nicht freigeschaltet (Authentication → Anmeldemethode → Anonym).", "error");
+                    } else {
+                        showToast((err && err.message) || "Gast-Beitritt hat nicht geklappt.", "error");
+                    }
+                });
+        }
+
+        function startGuestSession() {
+            isAnonGuest = true;
+            ALL_PROFILES = {};
+            currentPlayer = null;
+            activePlayerKey = null;
+            familyRewards = [];
+            testTemplates = [];
+            adminPin = null;
+            const codeInp = document.getElementById("guest-code");
+            if (codeInp) codeInp.value = "";
+            switchView('guest-join');
+            // Gäste verlieren beim Neustart alles – wenn ihre Runde noch
+            // läuft, kommen sie mit einem Tipp zurück statt neu zu tippen.
+            if (typeof biteOnlineLobbyWiedereinstiegAn === "function") {
+                setTimeout(biteOnlineLobbyWiedereinstiegAn, 400);
+            }
+        }
+
+        // Legt ein reines Speicher-Profil an (nichts davon geht nach
+        // Firestore) und tritt damit der Code-Lobby bei.
+        async function guestEnterLobby() {
+            if (!currentParentUser) return showToast("Einen Moment, die Verbindung steht noch nicht.", "error");
+            const name = cleanInput((document.getElementById("guest-name") || {}).value, 16);
+            if (!name) return showToast("Bitte gib deinen Namen ein.", "error");
+            const code = String((document.getElementById("guest-code") || {}).value || "")
+                .trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+            if (code.length !== 4) return showToast("Bitte den 4-stelligen Code eingeben.", "error");
+
+            activePlayerKey = "gast_" + String(currentParentUser.uid || "x").slice(0, 12);
+            currentPlayer = {
+                name: name,
+                isGuest: true,
+                coins: 0,
+                xp: 0,
+                learnedWords: [],
+                discColor: GUEST_COLOR
+            };
+            ALL_PROFILES[activePlayerKey] = currentPlayer;
+
+            const inp = document.getElementById("coded-lobby-join-code");
+            if (inp) inp.value = code;
+            await joinCodedLobby();
+        }
+
         auth.onAuthStateChanged((user) => {
             if (user) {
                 currentParentUser = user;
+                if (user.isAnonymous) {
+                    startGuestSession();
+                    return;
+                }
+                isAnonGuest = false;
                 loadFamilyProfiles();
             } else {
                 currentParentUser = null;
+                isAnonGuest = false;
+                ALL_PROFILES = {};
+                currentPlayer = null;
+                activePlayerKey = null;
                 switchView('auth');
             }
         });
@@ -48,6 +120,7 @@
         //  FAMILY HUB & PROFILES
         // ============================================================
         async function loadFamilyProfiles() {
+            if (typeof showGlobalLoading === "function") showGlobalLoading("Spieler werden geladen …");
             try {
                 const snapshot = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").get();
                 ALL_PROFILES = {};
@@ -55,7 +128,11 @@
                 await loadFamilyRewards();
                 renderFamilyHub();
                 switchView('family-hub');
-            } catch (e) { handleError("loadFamilyProfiles", e, "Spieler konnten nicht geladen werden."); }
+            } catch (e) {
+                handleError("loadFamilyProfiles", e, "Spieler konnten nicht geladen werden.");
+            } finally {
+                if (typeof hideGlobalLoading === "function") hideGlobalLoading(true);
+            }
         }
 
         const PLAYER_COLORS = ["#FF8A4C", "#3ECFB2", "#F2C14E", "#9B8CFF", "#5FB3F5", "#F585B0"];
@@ -296,13 +373,26 @@
             document.getElementById("welcome-text").innerText = `Hallo, ${esc(currentPlayer.name)}!`;
             document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
             document.getElementById("menu-age-display").innerHTML = `🎒 <span id="menu-age">${esc(playerDescription(currentPlayer))}</span>`;
+            // Farbscheibe mit den Initialen des Kindes in der Fortschrittskarte
+            const disc = document.getElementById("menu-avatar-disc");
+            if (disc) {
+                disc.innerText = initialsFor(currentPlayer.name);
+                const farbe = currentPlayer.discColor || (currentPlayer.isGuest ? GUEST_COLOR : colorForPlayer(key));
+                disc.style.background = farbe;
+                disc.style.color = "#0b1020";
+            }
             renderPendingTestCard();
             renderWeaknessSuggestion();
             updateMenuGamification();
             switchView('menu');
+            // Läuft für dieses Kind noch etwas? Dann direkt anbieten –
+            // erst das Familien-Duell, sonst die zuletzt genutzte Online-Lobby.
+            if (typeof biteWiedereinstiegAn === "function") biteWiedereinstiegAn();
+            if (typeof biteOnlineLobbyWiedereinstiegAn === "function") biteOnlineLobbyWiedereinstiegAn();
         }
 
         function touchPlayerActivity(key) {
+            if (isAnonGuest) return; // Gäste haben kein Familienprofil
             if (!key || !currentParentUser || !ALL_PROFILES[key]) return;
             const now = Date.now();
             ALL_PROFILES[key].lastActive = now;
@@ -322,6 +412,12 @@
             currentPlayer.learnedWords = Array.from(sessionLearnedWords);
             currentPlayer.lastActive = Date.now();
             ALL_PROFILES[activePlayerKey] = currentPlayer;
+            // Gäste ohne Konto: nur die Anzeige aktualisieren, nichts speichern.
+            if (isAnonGuest || !currentParentUser) {
+                const c = document.getElementById("menu-coins");
+                if (c) c.innerText = currentPlayer.coins || 0;
+                return;
+            }
             // merge:true, damit parallele Änderungen der Eltern (z.B. zugewiesener Test,
             // Klasse/Geburtstag) nicht vom RAM-Stand des Kindes überschrieben werden.
             db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(activePlayerKey)
@@ -1442,11 +1538,14 @@
             renderDashAdminProgress();
         }
 
-        function saveTestTemplate() {
+        async function saveTestTemplate() {
             const checked = Array.from(document.querySelectorAll('.dash-test-cat:checked')).map(cb => cb.value);
             const minutes = parseInt(document.getElementById('dash-test-time').value) || 10;
             if (checked.length === 0) return showToast("Bitte zuerst Themen auswählen!", "error");
-            const name = prompt("Name für diese Test-Vorlage (z.B. 'Mathe-Check'):");
+            const name = cleanInput(await appPrompt("Wie soll die Vorlage heißen?", {
+                titel: "Test-Vorlage speichern", icon: "📝",
+                platzhalter: "z.B. Mathe-Check", maxLen: 40, okText: "Speichern"
+            }), 40);
             if (!name) return;
             const vocabDir = document.getElementById('dash-test-dir')?.value || 'de2f';
             testTemplates.push({ id: "tpl_" + Date.now(), name, categories: checked, timeLimitSeconds: minutes * 60, vocabDir });
@@ -1528,11 +1627,16 @@
                 switchView('einstellungen');
                 return;
             }
-            const intro = "Eltern-Bereich einrichten\n\nLegt einen PIN fest, damit die Kinder hier nicht hineinkommen.\n\nNeuer PIN (4-12 Zeichen):";
-            const p1 = cleanInput(prompt(intro), 12);
+            const p1 = cleanInput(await appPrompt("Legt eine PIN fest, damit die Kinder hier nicht hineinkommen. 4 bis 12 Zeichen.", {
+                titel: "🔒 Eltern-Bereich einrichten", icon: "🔒",
+                passwort: true, maxLen: 12, platzhalter: "Neue PIN", okText: "Weiter"
+            }), 12);
             if (p1 === null || p1 === "") return;
             if (p1.length < 4) return showToast("Der PIN braucht mindestens 4 Zeichen.", "error", "pin");
-            const p2 = cleanInput(prompt("Zur Sicherheit noch einmal eingeben:"), 12);
+            const p2 = cleanInput(await appPrompt("Bitte zur Sicherheit noch einmal eingeben.", {
+                titel: "PIN bestätigen", icon: "🔒",
+                passwort: true, maxLen: 12, platzhalter: "PIN wiederholen", okText: "Speichern"
+            }), 12);
             if (p2 !== p1) return showToast("Die beiden Eingaben stimmen nicht überein.", "error", "pin");
             try {
                 await db.collection("parents").doc(currentParentUser.uid).set({ adminPin: p1 }, { merge: true });
@@ -1682,7 +1786,10 @@
         //  GAST-PROFILE
         // ============================================================
         async function addGuestProfile() {
-            const name = cleanInput(prompt("Name des Gastes:"), 24);
+            const name = cleanInput(await appPrompt("Wie heißt dein Gast?", {
+                titel: "Gast hinzufügen", icon: "👋",
+                platzhalter: "Name", maxLen: 24, okText: "Hinzufügen"
+            }), 24);
             if (!name) return;
             const guest = {
                 name: name,
@@ -1709,7 +1816,9 @@
             const guestKeys = Object.keys(ALL_PROFILES).filter(k => ALL_PROFILES[k].isGuest);
             if (guestKeys.length === 0) return;
             const names = guestKeys.map(k => ALL_PROFILES[k].name).join(", ");
-            if (!confirm(`Diese Gäste endgültig entfernen?\n\n${names}\n\nIhre Punkte gehen dabei verloren.`)) return;
+            if (!(await appConfirm(`${names}\n\nIhre Punkte gehen dabei verloren.`, {
+                titel: "Gäste entfernen?", icon: "🗑", okText: "Entfernen", gefahr: true
+            }))) return;
             try {
                 for (const key of guestKeys) {
                     await db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).delete();

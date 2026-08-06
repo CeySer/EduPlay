@@ -2156,3 +2156,189 @@ button, a, .btn-primary, .btn-secondary { touch-action: manipulation; -webkit-ta
     border: none;
     box-shadow: none;
 }
+
+/* ============================================================
+   v8.4 – BEDIENBARKEIT & BARRIEREFREIHEIT
+   ============================================================ */
+
+/* --- Lesbarkeit: Kontraste ---------------------------------
+   --text-muted lag bei 2,63:1 gegen die Karten (WCAG verlangt
+   4,5:1). Angehoben auf einen Ton, der die Hierarchie erhält,
+   aber lesbar bleibt.                                        */
+:root {
+    --text-muted: #7d92bb;          /* vorher #4a6088 → 2,63:1 */
+    --text-faint: #64789f;          /* für wirklich Nebensächliches */
+}
+
+/* Der Versionshinweis lag bei 1,24:1 – praktisch unsichtbar. */
+.app-header .version {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 10px;
+}
+
+/* Tailwinds text-gray-500 lag bei 3,44:1 gegen die Karten. */
+.text-gray-500 {
+    color: #8b9bb4 !important;
+}
+
+/* --- Schriftgrößen ------------------------------------------
+   Ein Schritt größer für die Zielgruppe (Grundschulkinder und
+   deren Eltern, oft unterwegs). Zentral hier statt an über 140
+   Einzelstellen – dadurch jederzeit zurückdrehbar.            */
+.text-xs { font-size: 13px !important; line-height: 1.5 !important; }
+.text-\[11px\] { font-size: 12px !important; }
+.text-\[10px\] { font-size: 11px !important; }
+.text-sm { font-size: 15px !important; }
+
+/* --- Sichtbarer Tastatur-Fokus -------------------------------
+   Vorher gab es Fokusstile nur für Eingabefelder. Wer mit
+   Tastatur, Schaltersteuerung oder Screenreader navigiert,
+   konnte nicht erkennen, wo er gerade steht.                  */
+:focus-visible {
+    outline: 3px solid #a5b4fc;
+    outline-offset: 3px;
+    border-radius: 10px;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.drawer-menu-item:focus-visible,
+.dash-admin-tab:focus-visible {
+    outline: 3px solid #a5b4fc;
+    outline-offset: 3px;
+}
+
+body:not(.dark-theme) :focus-visible {
+    outline-color: #4f46e5;
+}
+
+/* Maus- und Touch-Bedienung bleibt unverändert ohne Rahmen. */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* --- Knöpfe, die erst nach dem Laden der Fragen gehen -------- */
+.is-loading-disabled {
+    opacity: 0.45;
+    pointer-events: none;
+    filter: saturate(0.4);
+}
+
+#db-loading-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.18);
+    border-radius: 14px;
+    padding: 12px 14px;
+}
+
+#db-loading-hint.hidden {
+    display: none !important;
+}
+
+/* ============================================================
+   v8.4 – APP-EIGENE DIALOGE (statt confirm/prompt/alert)
+   ============================================================ */
+.app-dialog-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 12000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(8, 12, 24, 0.62);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.16s ease;
+}
+
+.app-dialog-backdrop.app-dialog-open { opacity: 1; }
+.app-dialog-backdrop.app-dialog-closing { opacity: 0; }
+
+body:not(.dark-theme) .app-dialog-backdrop {
+    background: rgba(244, 246, 251, 0.7);
+}
+
+.app-dialog {
+    width: 100%;
+    max-width: 340px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 22px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+    padding: 26px 22px 20px;
+    text-align: center;
+    transform: translateY(12px) scale(0.97);
+    transition: transform 0.18s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+.app-dialog-open .app-dialog { transform: translateY(0) scale(1); }
+
+body:not(.dark-theme) .app-dialog {
+    background: #ffffff;
+    border-color: var(--border-color);
+    box-shadow: 0 18px 50px rgba(30, 40, 70, 0.18);
+}
+
+.app-dialog-icon { font-size: 34px; line-height: 1; margin-bottom: 10px; }
+
+.app-dialog-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.app-dialog-text {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    white-space: normal;
+}
+
+.app-dialog-input {
+    margin-top: 16px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px; /* verhindert das Zoomen auf iOS */
+}
+
+.app-dialog-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.app-dialog-btn {
+    flex: 1;
+    min-height: 48px;
+    padding: 13px 14px;
+    font-size: 15px;
+}
+
+@media (max-width: 340px) {
+    .app-dialog-buttons { flex-direction: column-reverse; }
+}
+
+/* Beschriftung nur für Screenreader (visuell versteckt, aber vorhanden) */
+.sr-only-label {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

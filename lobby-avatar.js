@@ -41,6 +41,88 @@
             return db.collection("lobbies").doc(code);
         }
 
+        // ============================================================
+        //  ZULETZT GENUTZTE ONLINE-LOBBY
+        //  Die Sicherheitsregeln verbieten das Auflisten von "lobbies"
+        //  (sonst könnte jeder in fremden Runden stöbern). Deshalb lässt
+        //  sich nicht suchen, in welcher Lobby jemand steckt – also merkt
+        //  sich das Gerät den Code selbst. Beim nächsten Start reicht ein
+        //  einzelner gezielter Lesevorgang.
+        // ============================================================
+        const LOBBY_MERK_SCHLUESSEL = "eduplayLetzteLobby";
+        const LOBBY_MERK_DAUER_MS = 3 * 60 * 60 * 1000; // 3 Stunden
+
+        function merkeLobby(code) {
+            try {
+                localStorage.setItem(LOBBY_MERK_SCHLUESSEL, JSON.stringify({
+                    code: code,
+                    spielerKey: activePlayerKey,
+                    name: (currentPlayer && currentPlayer.name) || "",
+                    gast: !!isAnonGuest,
+                    ts: Date.now()
+                }));
+            } catch (e) { /* privater Modus o.ä. – dann eben ohne */ }
+        }
+
+        function vergissLobby() {
+            try { localStorage.removeItem(LOBBY_MERK_SCHLUESSEL); } catch (e) { }
+        }
+
+        function gemerkteLobby() {
+            try {
+                const roh = localStorage.getItem(LOBBY_MERK_SCHLUESSEL);
+                if (!roh) return null;
+                const d = JSON.parse(roh);
+                if (!d || !d.code) return null;
+                if (Date.now() - (d.ts || 0) > LOBBY_MERK_DAUER_MS) { vergissLobby(); return null; }
+                return d;
+            } catch (e) { return null; }
+        }
+
+        // Prüft die gemerkte Lobby und bietet den Wiedereinstieg an.
+        // Ein einziger get – erlaubt, weil wir den Code kennen.
+        async function biteOnlineLobbyWiedereinstiegAn() {
+            if (liveDuelRef) return;                       // schon mittendrin
+            if (typeof appConfirm !== "function") return;
+            const merk = gemerkteLobby();
+            if (!merk) return;
+            // Nur anbieten, wenn dasselbe Profil aktiv ist wie beim Verlassen
+            if (merk.spielerKey && activePlayerKey && merk.spielerKey !== activePlayerKey) return;
+
+            try {
+                const snap = await codedLobbyRef(merk.code).get();
+                if (!snap.exists) { vergissLobby(); return; }
+                const d = snap.data() || {};
+                if (d.status === "finished") { vergissLobby(); return; }
+                const ich = d.players && d.players[merk.spielerKey || activePlayerKey];
+                if (!ich) { vergissLobby(); return; }
+                const lebt = (Date.now() - (d.hostLastSeen || d.createdAt || 0)) < 90000;
+                if (!lebt) { vergissLobby(); return; }
+
+                const name = d.subject === "vokabel" ? "Vokabel-Duell"
+                    : d.type === "scrabble" ? "Wort-Duell"
+                        : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
+                const ok = await appConfirm(
+                    `Deine Runde ${name} mit dem Code ${merk.code} läuft noch. Willst du wieder einsteigen?`,
+                    { titel: "Willkommen zurück!", icon: "🔄", okText: "Weiterspielen", abbrechenText: "Später" }
+                );
+                if (!ok) { vergissLobby(); return; }
+
+                // Gast ohne Konto: Profil im Speicher wiederherstellen
+                if (isAnonGuest && !currentPlayer && merk.name) {
+                    activePlayerKey = merk.spielerKey;
+                    currentPlayer = {
+                        name: merk.name, isGuest: true, coins: 0, xp: 0,
+                        learnedWords: [], discColor: GUEST_COLOR
+                    };
+                    ALL_PROFILES[activePlayerKey] = currentPlayer;
+                }
+                const inp = document.getElementById("coded-lobby-join-code");
+                if (inp) inp.value = merk.code;
+                await joinCodedLobby();
+            } catch (e) { /* kein Netz – später nochmal */ }
+        }
+
         function generateLobbyCode() {
             let c = "";
             for (let i = 0; i < 4; i++) c += CODE_ALPHABET[Math.floor(Math.random() * CODE_ALPHABET.length)];
@@ -219,6 +301,7 @@
                 name: currentPlayer.name, score: 0, hasAnswered: false,
                 lastAnswer: null, word: "", coinsClaimed: false
             };
+            if (typeof showGlobalLoading === "function") showGlobalLoading("Lobby wird erstellt …");
             try {
                 const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lobbyData, {
                     code,
@@ -230,9 +313,14 @@
                 liveDuelResolving = false;
                 liveDuelRenderKey = "";
                 maybeStartHostHeartbeat();
+                merkeLobby(code);
                 subscribeLiveDuel();
                 showToast("Lobby erstellt! Code: " + code);
-            } catch (e) { handleError("createCodedLobby", e, "Die Lobby konnte nicht erstellt werden."); }
+            } catch (e) {
+                handleError("createCodedLobby", e, "Die Lobby konnte nicht erstellt werden.");
+            } finally {
+                if (typeof hideGlobalLoading === "function") hideGlobalLoading(true);
+            }
         }
 
         async function joinCodedLobby() {
@@ -242,6 +330,7 @@
             let code = (inp ? inp.value : "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
             if (code.length !== 4) return showToast("Bitte einen 4-stelligen Code eingeben.", "error");
             const ref = codedLobbyRef(code);
+            if (typeof showGlobalLoading === "function") showGlobalLoading("Lobby wird gesucht …");
             try {
                 const snap = await ref.get();
                 if (!snap.exists) return showToast("Diese Lobby gibt es nicht (mehr).", "error");
@@ -267,16 +356,35 @@
                 liveDuelResolving = false;
                 liveDuelRenderKey = "";
                 maybeStartHostHeartbeat();
+                merkeLobby(code);
                 showToast(wasAlreadyIn ? "Willkommen zurueck!" : (midGame ? "Du bist dabei - naechste Runde geht's los!" : "Du bist dabei!"));
                 subscribeLiveDuel();
-            } catch (e) { handleError("joinCodedLobby", e, "Beitreten hat nicht geklappt."); }
+            } catch (e) {
+                handleError("joinCodedLobby", e, "Beitreten hat nicht geklappt.");
+            } finally {
+                if (typeof hideGlobalLoading === "function") hideGlobalLoading(true);
+            }
         }
+
+        // Ansichten, die einem anonymen Gast offen stehen. Alles andere
+        // (Familien-Hub, Menü, Eltern-Dashboard, Alleine-Lernen) gehört
+        // zum Familienkonto und ist für ihn gesperrt.
+        const GUEST_ALLOWED_VIEWS = [
+            'auth', 'guest-join',
+            'live-duel-lobby', 'live-duel-play', 'live-duel-result',
+            'feedback'
+        ];
 
         function switchView(viewId) {
             // Auth-Schutz: ohne Login nur die Anmelde-Ansicht erlauben
             if (viewId !== 'auth' && !currentParentUser) {
                 showToast("Bitte zuerst einloggen.", "error");
                 viewId = 'auth';
+            }
+            // Gast ohne Konto: nur die Lobby-Ansichten freigeben.
+            if (typeof isAnonGuest !== 'undefined' && isAnonGuest
+                && GUEST_ALLOWED_VIEWS.indexOf(viewId) === -1) {
+                viewId = 'guest-join';
             }
             // Header umschalten
             const headerFamily = document.getElementById('header-familyhub');
@@ -285,6 +393,11 @@
 
             if (viewId === 'family-hub') {
                 headerFamily?.classList.remove('hidden');
+                headerMenu?.classList.add('hidden');
+            } else if (viewId === 'auth' || viewId === 'guest-join') {
+                // Anmeldung und Gast-Beitritt kommen ohne Kopfzeile aus –
+                // es gibt weder Coins noch Level noch ein Menü.
+                headerFamily?.classList.add('hidden');
                 headerMenu?.classList.add('hidden');
             } else {
                 headerFamily?.classList.add('hidden');
@@ -343,6 +456,7 @@
                 renderLesenCategories();
             }
             if (viewId === 'rewards') renderRewardsShop();
+            if (viewId === 'menu' && typeof renderContinueCard === 'function') renderContinueCard();
             if (viewId === 'family-hub' && typeof ALL_PROFILES !== 'undefined') renderFamilyHub();
 
             if (typeof startHubWatch === 'function') {
@@ -361,31 +475,50 @@
                 else stopWatchingForOpenTVLobby();
             }
 
-            // Dashboard initialisieren mit PIN-Abfrage
+            // Dashboard initialisieren mit PIN-Abfrage.
+            // Die Abfrage läuft über den App-eigenen Dialog und damit
+            // asynchron: erst die Ansicht anzeigen, dann fragen, bei
+            // falscher PIN sofort wieder zurück.
             if (viewId === 'dashboard') {
                 console.log('📊 Dashboard geöffnet');
                 if (adminPin) {
-                    const entered = cleanInput(prompt("🔒 Dashboard\n\nBitte PIN eingeben:"), 12);
-                    if (entered === null || entered === "") {
-                        switchView('family-hub');
-                        return;
-                    }
-                    if (entered !== adminPin) {
-                        SFX.wrong();
-                        showToast("❌ PIN stimmt nicht.", "error", "pin");
-                        switchView('family-hub');
-                        return;
-                    }
+                    fragePinUndOeffneDashboard();
+                } else {
+                    debugDatabaseLoading();
+                    switchDashboardSection('inhalte');
                 }
-                // Debug-Ausgabe vor dem Laden
-                debugDatabaseLoading();
-                switchDashboardSection('inhalte');
             }
 
             // FAB aktualisieren
             if (viewId !== 'auth') {
                 updateFab(viewId, getViewIcon(viewId), viewId === 'menu' ? 'Zum Hauptmenü' : 'Zurück zum Menü');
             }
+        }
+
+        // PIN-Abfrage fürs Eltern-Dashboard. Früher über prompt() – das
+        // ist in iOS-WebViews unzuverlässig und hätte den Eltern-Bereich
+        // in der Store-Version unerreichbar machen können.
+        async function fragePinUndOeffneDashboard() {
+            const eingabe = await appPrompt("Bitte gib die PIN ein, um den Eltern-Bereich zu öffnen.", {
+                titel: "🔒 Eltern-Bereich",
+                icon: "🔒",
+                passwort: true,
+                maxLen: 12,
+                platzhalter: "••••",
+                okText: "Öffnen"
+            });
+            if (eingabe === null || cleanInput(eingabe, 12) === "") {
+                switchView('family-hub');
+                return;
+            }
+            if (cleanInput(eingabe, 12) !== adminPin) {
+                if (typeof SFX !== "undefined") SFX.wrong();
+                showToast("Die PIN stimmt nicht.", "error", "pin");
+                switchView('family-hub');
+                return;
+            }
+            debugDatabaseLoading();
+            switchDashboardSection('inhalte');
         }
 
         // Prüfe, ob die Datenbanken geladen sind

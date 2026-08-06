@@ -42,12 +42,20 @@
             return db.collection("parents").doc(currentParentUser.uid).collection("live_duel");
         }
 
+        // istAnwesend() und PRESENCE_STALE_MS stehen jetzt in app-config.js,
+        // damit Live-Duell und TV-Modus dieselbe Regel benutzen.
+
+        // Lebenszeichen. Jeder Mitspieler meldet sich alle 12 Sekunden,
+        // der Ersteller schreibt zusätzlich hostLastSeen – beides in
+        // einem einzigen Schreibvorgang, damit es nicht doppelt kostet.
         function maybeStartHostHeartbeat() {
-            if (liveDuelHeartbeat || !liveDuelRef || !isLiveDuelCreator) return;
+            if (liveDuelHeartbeat || !liveDuelRef) return;
             const beat = () => {
-                if (liveDuelRef && isLiveDuelCreator) liveDuelRef.update({
-                    hostLastSeen: Date.now()
-                }).catch(() => { });
+                if (!liveDuelRef || !activePlayerKey) return;
+                const update = {};
+                update["players." + activePlayerKey + ".lastSeen"] = Date.now();
+                if (isLiveDuelCreator) update.hostLastSeen = Date.now();
+                liveDuelRef.update(update).catch(() => { });
             };
             beat();
             liveDuelHeartbeat = setInterval(beat, 12000);
@@ -59,6 +67,20 @@
                 liveDuelHeartbeat = null;
             }
         }
+
+        // Kommt die App aus dem Hintergrund zurück (Handy entsperrt, Anruf
+        // beendet, Tab gewechselt), friert iOS das JavaScript bis dahin ein.
+        // Dann sofort ein Lebenszeichen senden statt bis zum nächsten
+        // Intervall zu warten – so ist man in unter einer Sekunde wieder
+        // als anwesend markiert.
+        document.addEventListener("visibilitychange", function () {
+            if (document.visibilityState !== "visible") return;
+            if (!liveDuelRef || !activePlayerKey) return;
+            const update = {};
+            update["players." + activePlayerKey + ".lastSeen"] = Date.now();
+            if (isLiveDuelCreator) update.hostLastSeen = Date.now();
+            liveDuelRef.update(update).catch(() => { });
+        });
 
         function clearLiveDuelTimers() {
             if (liveDuelTimerInterval) {
@@ -246,7 +268,8 @@
             if (_fr) _fr.classList.add("hidden");
 
             isLiveDuelCreator = (data.createdBy === activePlayerKey);
-            if (isLiveDuelCreator && data.status !== "finished") maybeStartHostHeartbeat();
+            // Lebenszeichen läuft für alle, solange das Spiel läuft.
+            if (data.status !== "finished") maybeStartHostHeartbeat();
             else stopHostHeartbeat();
 
             // Host-Übernahme: hat sich der Ersteller lange nicht gemeldet (Tab zu, Akku leer,
@@ -280,9 +303,17 @@
                     meta.classList.remove("hidden");
                 }
                 const list = document.getElementById("live-duel-player-list");
-                if (list) list.innerHTML = Object.values(data.players).map(p =>
-                    `<div class="bg-white/5 border border-white/5 rounded-xl p-3 text-center"><div class="text-2xl">🙋</div><div class="font-bold text-white text-sm mt-1">${esc(p.name)}</div></div>`
-                ).join("");
+                if (list) list.innerHTML = Object.values(data.players).map(p => {
+                    const da = istAnwesend(p);
+                    const punkt = da
+                        ? '<span class="inline-block w-2 h-2 rounded-full bg-emerald-400 align-middle"></span>'
+                        : '<span class="inline-block w-2 h-2 rounded-full bg-gray-500 align-middle"></span>';
+                    return `<div class="bg-white/5 border border-white/5 rounded-xl p-3 text-center ${da ? '' : 'opacity-50'}">
+                        <div class="text-2xl">🙋</div>
+                        <div class="font-bold text-white text-sm mt-1">${esc(p.name)}</div>
+                        <div class="text-[10px] font-bold text-gray-400 mt-0.5">${punkt} ${da ? 'da' : 'kurz weg'}</div>
+                    </div>`;
+                }).join("");
                 document.getElementById("live-duel-start-btn").classList.toggle("hidden", !isLiveDuelCreator);
                 document.getElementById("live-duel-wait-hint").classList.toggle("hidden", isLiveDuelCreator);
                 const _clWrap = document.getElementById("live-duel-lobby-code-wrap");
@@ -365,11 +396,20 @@
                     renderLiveDuelWaitingForOthers(data);
                 }
 
-                const activePl = Object.values(data.players).filter(p => !p.pending);
+                // Wer gerade nicht da ist, blockiert die Runde nicht mehr.
+                // Seine bereits abgegebene Antwort zählt aber weiter.
+                const activePl = Object.values(data.players)
+                    .filter(p => !p.pending && (istAnwesend(p) || p.hasAnswered));
                 const ansCount = activePl.filter(p => p.hasAnswered).length;
                 const totalCount = activePl.length;
+                const abwesend = Object.values(data.players)
+                    .filter(p => !p.pending && !istAnwesend(p) && !p.hasAnswered);
                 const statusEl = document.getElementById("live-duel-status");
-                if (statusEl) statusEl.innerText = `${ansCount}/${totalCount} fertig`;
+                if (statusEl) {
+                    statusEl.innerText = abwesend.length
+                        ? `${ansCount}/${totalCount} fertig · ${abwesend.length} kurz weg`
+                        : `${ansCount}/${totalCount} fertig`;
+                }
                 const waitEl = document.getElementById("live-duel-answer-counter");
                 if (waitEl) waitEl.innerText = `${ansCount} von ${totalCount} haben geantwortet...`;
 
@@ -537,6 +577,12 @@
             liveDuelCurrentLetters = letters;
             liveDuelCurrentRequired = required;
 
+            // Mindestlänge dauerhaft anzeigen, nicht erst als Fehlermeldung
+            // nach dem Einreichen.
+            const minLen = (typeof SCRABBLE_DIFFICULTIES !== "undefined"
+                ? (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord
+                : 0) || 2;
+
             document.getElementById("live-duel-play-content").innerHTML = `
         <div class="space-y-4">
             <div class="text-center text-xs font-bold text-gray-400">
@@ -546,6 +592,7 @@
             <div class="flex flex-wrap justify-center gap-2" id="live-duel-tiles-container">
                 ${scrabbleTilesHTML(letters, false, required, liveDuelSelected, "liveDuelTapTile")}
             </div>
+            <div class="text-center text-[11px] font-bold text-gray-500">Dein Wort braucht mindestens ${minLen} Buchstaben</div>
             <div class="glass-card p-5 space-y-3">
                 <div id="live-duel-word-preview" class="input-modern text-xl font-black text-center uppercase tracking-widest text-gray-500">…</div>
                 <div id="live-duel-live-feedback" class="text-center text-sm font-bold text-gray-400 h-5"></div>
@@ -1493,6 +1540,39 @@
             } catch (e) { }
         }
 
+        // Beim Wechsel auf ein Profil prüfen, ob dieses Kind noch in einem
+        // laufenden Duell steht – und es aktiv anbieten, statt darauf zu
+        // hoffen, dass die Liste im Menü entdeckt wird.
+        async function biteWiedereinstiegAn() {
+            if (!currentParentUser || !activePlayerKey || typeof appConfirm !== "function") return;
+            if (liveDuelRef) return; // schon mittendrin
+            try {
+                const snap = await liveDuelCollectionRef().get();
+                let treffer = null;
+                snap.forEach(docSnap => {
+                    if (treffer) return;
+                    const d = docSnap.data() || {};
+                    if (d.status === "finished" || d.status === "waiting") return;
+                    const ich = d.players && d.players[activePlayerKey];
+                    if (!ich || ich.pending) return;
+                    const lebt = (Date.now() - (d.hostLastSeen || d.createdAt || 0)) < 90000;
+                    if (lebt) treffer = docSnap;
+                });
+                if (!treffer) return;
+
+                const d = treffer.data() || {};
+                const name = d.subject === "vokabel" ? "Vokabel-Duell"
+                    : d.type === "scrabble" ? "Wort-Duell"
+                        : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
+                const ok = await appConfirm(
+                    `Dein ${name} von ${d.createdByName || "der Familie"} läuft noch. Willst du wieder einsteigen?`,
+                    { titel: "Willkommen zurück!", icon: "🔄", okText: "Weiterspielen", abbrechenText: "Später" }
+                );
+                if (!ok) return;
+                joinLiveDuelById(treffer.id);
+            } catch (e) { /* kein Netz oder keine Rechte – dann eben nicht */ }
+        }
+
         function renderOpenDuelsList(snap) {
             const box = document.getElementById("open-duels-list");
             if (!box) return;
@@ -2152,6 +2232,8 @@
             liveDuelRenderKey = "";
             liveDuelResolvedRoundKey = "";
             switchView(currentPlayer ? 'menu' : 'family-hub');
+
+            if (typeof vergissLobby === "function") vergissLobby();
 
             if (!ref || !activePlayerKey) return;
             try {

@@ -142,6 +142,8 @@
                 showToast("Keine Fragen für dieses Thema gefunden!", "error");
                 return;
             }
+            // Für die "Weitermachen?"-Karte auf der Startseite
+            if (typeof merkeLetzteAktivitaet === "function") merkeLetzteAktivitaet(cat);
             launchQuiz(questions);
         }
 
@@ -155,9 +157,11 @@
             launchQuiz(qs);
         }
 
-        function leaveQuiz(zielView) {
+        async function leaveQuiz(zielView) {
             if (testMode) {
-                if (!confirm("Test wirklich abbrechen? Dein bisheriger Fortschritt in diesem Test geht verloren.")) return;
+                if (!(await appConfirm("Dein bisheriger Fortschritt in diesem Test geht dabei verloren.", {
+                    titel: "Test abbrechen?", icon: "⚠️", okText: "Abbrechen", abbrechenText: "Weitermachen", gefahr: true
+                }))) return;
                 clearInterval(testTimerInterval);
                 testMode = false;
                 document.getElementById("test-timer-bar").classList.add("hidden");

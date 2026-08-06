@@ -55,7 +55,10 @@
         function leaveVocab() { switchView('family-hub'); }
 
         function loadVocabSystem() {
-            if (typeof VOCABULARY_DATABASE === 'undefined') return alert("Fehler: vocabulary.js nicht gefunden!");
+            if (typeof VOCABULARY_DATABASE === 'undefined') {
+                showToast("Die Vokabeln konnten nicht geladen werden. Bitte lade die App neu.", "error", "vocab-db");
+                return;
+            }
             applyVocabLangSettings();
             if (!isVocabLangEnabled(activeLang) || !VOCABULARY_DATABASE[activeLang]) {
                 const fallback = Object.keys(VOCABULARY_DATABASE).find(isVocabLangEnabled);

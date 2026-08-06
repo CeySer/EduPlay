@@ -1,0 +1,96 @@
+rules_version = '2';
+
+// ============================================================
+//  EduPlay Hub – Firestore Sicherheitsregeln
+//  Stand: 05.08.2026
+//
+//  Einspielen: Firebase Console → Firestore Database → Regeln →
+//  Inhalt komplett ersetzen → "Veröffentlichen".
+//
+//  Grundidee:
+//   • parents/{uid}  = alle Familiendaten. Nur der eigene Account.
+//   • lobbies/{code} = flüchtige Online-Lobbys. Wer den 4-stelligen
+//     Code kennt, darf mitspielen – auch anonyme Gäste. Auflisten
+//     aller Lobbys ist verboten, nur gezielter Zugriff per Code.
+//   • Alles andere ist zu.
+// ============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function angemeldet() {
+      return request.auth != null;
+    }
+
+    // 4 Stunden ohne Lebenszeichen = die Lobby gilt als Leiche und
+    // darf von einem neuen Host mit demselben Code überschrieben
+    // werden (siehe reserveAndCreateLobby in lobby-avatar.js).
+    function lobbyIstLeiche() {
+      return resource.data.status == 'finished'
+             || !('hostLastSeen' in resource.data)
+             || request.time.toMillis() - resource.data.hostLastSeen > 14400000;
+    }
+
+    // --------------------------------------------------------
+    //  FAMILIENDATEN
+    //  Profile, Fortschritt, Coins, Belohnungen, Eltern-PIN,
+    //  Live-Duelle und TV-Lobbys der Familie.
+    //  Nur der angemeldete Eltern-Account kommt an seine eigenen
+    //  Daten. Anonyme Gäste haben hier keinen Zutritt – ihre uid
+    //  gehört zu keinem parents-Dokument.
+    // --------------------------------------------------------
+    match /parents/{uid} {
+      allow read, write: if angemeldet() && request.auth.uid == uid;
+
+      match /{document=**} {
+        allow read, write: if angemeldet() && request.auth.uid == uid;
+      }
+    }
+
+    // --------------------------------------------------------
+    //  ONLINE-LOBBYS (Beitritt per 4-stelligem Code)
+    //
+    //  get  = erlaubt: man braucht den exakten Code.
+    //  list = verboten: niemand kann sich alle laufenden Lobbys
+    //         auflisten lassen und darin herumstöbern.
+    //
+    //  In einer Lobby stehen nur Spitzname, Punkte und die Fragen
+    //  der laufenden Runde – keine Mailadressen, keine Profildaten,
+    //  keine Lernfortschritte.
+    // --------------------------------------------------------
+    match /lobbies/{code} {
+
+      allow get: if angemeldet();
+      allow list: if false;
+
+      allow create: if angemeldet()
+                    && request.resource.data.keys().hasAll(['type', 'status']);
+
+      // Mitspielen: Punkte, Antworten, Runden fortschreiben.
+      // Spieltyp und Ersteller dürfen dabei nicht umgeschrieben
+      // werden – sonst könnte jemand mit dem Code eine laufende
+      // Lobby kapern. Ausnahme: eine abgelaufene Lobby darf mit
+      // demselben Code neu belegt werden.
+      allow update: if angemeldet()
+                    && (
+                         (
+                           (!('type' in resource.data)
+                            || request.resource.data.type == resource.data.type)
+                           && (!('createdBy' in resource.data)
+                            || request.resource.data.createdBy == resource.data.createdBy)
+                         )
+                         || lobbyIstLeiche()
+                       );
+
+      // Aufräumen nach dem Spiel: erlaubt, wer den Code kennt.
+      allow delete: if angemeldet();
+    }
+
+    // --------------------------------------------------------
+    //  Alles andere ist zu.
+    // --------------------------------------------------------
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

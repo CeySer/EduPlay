@@ -417,6 +417,40 @@
             srRenderPreview();
         }
 
+        // Stoppt den Buchstaben-Wechsler des Action-Modus. Wird beim
+        // vorzeitigen Beenden des Wort-Duells aufgerufen.
+        function stopScrabbleTicker() {
+            if (scrabbleState && scrabbleState.changeInterval) {
+                clearInterval(scrabbleState.changeInterval);
+                scrabbleState.changeInterval = null;
+            }
+        }
+
+        // Tipp-Knopf im Wort-Duell (ein Gerät). Verrät Anfangsbuchstabe und
+        // Länge eines Wortes, das aus den Buchstaben sicher gebildet werden
+        // kann. Kostet 2 Punkte und geht pro Zug nur einmal.
+        function useScrabbleTip() {
+            if (!scrabbleState || !scrabbleState.playerKeys) return;
+            const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
+            if (!key) return;
+            const solution = String(scrabbleState.solution || "").toUpperCase();
+            if (!solution) return showToast("Für diese Runde gibt es keinen Tipp.", "info");
+
+            if (!scrabbleState.tipUsed) scrabbleState.tipUsed = {};
+            const turnId = scrabbleState.round + ":" + scrabbleState.playerIndex;
+            if (scrabbleState.tipUsed[turnId]) {
+                return showToast("Den Tipp hast du für diesen Zug schon benutzt.", "info");
+            }
+
+            scrabbleState.tipUsed[turnId] = true;
+            scrabbleState.scores[key] = (scrabbleState.scores[key] || 0) - 2;
+            if (typeof SFX !== "undefined") SFX.tap();
+            showToast(
+                `💡 Ein mögliches Wort fängt mit "${solution.charAt(0)}" an und hat ${solution.length} Buchstaben. (−2 Punkte)`,
+                "info"
+            );
+        }
+
         function computeScrabbleWordScore(word, letters) {
             const available = [...letters];
             let score = 0;
@@ -579,6 +613,15 @@
             const key = scrabbleState.playerKeys[scrabbleState.playerIndex];
             document.getElementById("scrabble-progress").innerText =
                 `Runde ${scrabbleState.round}/${scrabbleState.rounds} – ${esc(ALL_PROFILES[key].name)}`;
+
+            // Mindestlänge dauerhaft anzeigen – sonst erfährt man sie erst als
+            // Fehlermeldung, nachdem man ein zu kurzes Wort eingereicht hat.
+            const minHint = document.getElementById("scrabble-min-hint");
+            if (minHint) {
+                const minLen = (SCRABBLE_DIFFICULTIES[scrabbleState.difficulty] || {}).minWord || 2;
+                minHint.innerText = `Dein Wort braucht mindestens ${minLen} Buchstaben`;
+            }
+
             renderScrabbleTiles(scrabbleState.currentLetters, scrabbleState.required);
 
             const submitBtn = document.querySelector('#scrabble-play-area button[onclick="submitScrabbleWord()"]');

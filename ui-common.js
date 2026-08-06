@@ -129,10 +129,12 @@
                         `).join('');
         }
 
-        function redeemReward(id) {
+        async function redeemReward(id) {
             const r = familyRewards.find(x => x.id === id);
             if (!r || !currentPlayer || (currentPlayer.coins || 0) < r.cost) return;
-            if (!confirm(`"${esc(r.name)}" für 🪙 ${r.cost} Coins einlösen?`)) return;
+            if (!(await appConfirm(`"${r.name}" kostet ${r.cost} Coins. Jetzt einlösen?`, {
+                titel: "Belohnung einlösen", icon: "🎁", okText: "Einlösen"
+            }))) return;
             currentPlayer.coins -= r.cost;
             if (!currentPlayer.redeemedRewards) currentPlayer.redeemedRewards = [];
             currentPlayer.redeemedRewards.unshift({ name: r.name, cost: r.cost, date: new Date().toISOString() });

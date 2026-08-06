@@ -223,6 +223,9 @@
         function getViewIcon(viewId) {
             const icons = {
                 'menu': '🏠',
+                'spielen': '⚔️',
+                'lernen': '🎓',
+                'guest-join': '🎮',
                 'family-hub': '👨‍👩‍👧‍👦',
                 'dashboard': '📊',
                 'quiz-setup': '🧠',

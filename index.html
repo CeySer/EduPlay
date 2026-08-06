@@ -10,14 +10,14 @@
     <meta name="theme-color" content="#080c18">
     <title>EduPlay Hub - Familien Edition v2.30</title>
 
-    <link rel="stylesheet" href="styles.css?v=8.0">
+    <link rel="stylesheet" href="styles.css?v=8.7">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
 
-    <script src="datenbanken_loader.js?v=8.1"></script>
+    <script src="datenbanken_loader.js?v=8.7"></script>
 
     <link rel="icon" href="data:,">
 </head>
@@ -144,9 +144,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
                         neuen erstellen.</p>
-                    <input type="email" id="auth-email" placeholder="E-Mail Adresse" class="input-modern">
-                    <input type="password" id="auth-password" placeholder="Passwort (min. 6 Zeichen)"
-                        class="input-modern">
+                    <label for="auth-email" class="text-xs text-gray-400 font-bold block mb-1.5">E-Mail Adresse</label>
+                    <input type="email" id="auth-email" placeholder="name@beispiel.de" class="input-modern" autocomplete="email">
+                    <label for="auth-password" class="text-xs text-gray-400 font-bold block mb-1.5">Passwort</label>
+                    <input type="password" id="auth-password" placeholder="mindestens 6 Zeichen"
+                        class="input-modern" autocomplete="current-password">
                     <div class="flex gap-2 pt-2">
                         <button onclick="loginParent()" class="flex-1 btn-primary text-center">Einloggen</button>
                         <button onclick="registerParent()"
@@ -175,6 +177,53 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         Mit Google anmelden
                     </button>
                 </div>
+
+                <div class="glass-card p-5 mt-4 space-y-3" style="border-color:rgba(16,185,129,0.25);">
+                    <div class="text-center">
+                        <div class="text-2xl mb-1">🎮</div>
+                        <h3 class="text-base font-black text-emerald-400">Nur mitspielen?</h3>
+                        <p class="text-[11px] text-gray-500 mt-1">Du hast einen 4-stelligen Code bekommen? Dann brauchst
+                            du kein Konto.</p>
+                    </div>
+                    <button onclick="loginAsGuest()" class="btn-primary w-full text-center py-3"
+                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.35);">
+                        Als Gast beitreten
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==========================================================
+            VIEW: GAST-BEITRITT (ohne Konto)
+            ========================================================== -->
+            <div id="view-guest-join" class="view hidden space-y-4">
+                <div class="text-center py-8">
+                    <div
+                        class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 mb-1">
+                        Als Gast mitspielen
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">Dein Name und deine Punkte gelten nur für diese Runde und
+                        werden nicht gespeichert.</p>
+                </div>
+                <div class="glass-card p-6 space-y-4" style="border-color:rgba(16,185,129,0.25);">
+                    <div>
+                        <label for="guest-name" class="text-xs text-gray-400 font-bold block mb-1.5">Wie heißt du?</label>
+                        <input id="guest-name" maxlength="16" placeholder="Dein Name" autocomplete="off"
+                            class="input-modern font-bold">
+                    </div>
+                    <div>
+                        <label for="guest-code" class="text-xs text-gray-400 font-bold block mb-1.5">Code vom Gastgeber</label>
+                        <input id="guest-code" maxlength="4" placeholder="K7P2" autocomplete="off" inputmode="text"
+                            autocapitalize="characters" enterkeyhint="go"
+                            class="input-modern text-3xl font-black text-center uppercase py-4"
+                            style="letter-spacing:0.35em;">
+                    </div>
+                    <button onclick="guestEnterLobby()" class="btn-primary w-full text-center py-3.5"
+                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.35);">Mitspielen
+                        ✅</button>
+                </div>
+                <button onclick="logoutParent()"
+                    class="w-full text-center text-xs text-gray-500 hover:text-gray-300 underline py-2">Zurück zur
+                    Anmeldung</button>
             </div>
 
             <!-- ==========================================================
@@ -511,7 +560,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-duel-play" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2 px-3"
-                    onclick="if(confirm('Duell wirklich beenden?')) switchView('duel-setup')">Beenden</button>
+                    onclick="appConfirmSwitch('Euer Fortschritt in dieser Runde geht verloren.','Duell beenden?','duel-setup')">Beenden</button>
                 <div id="duel-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(244,63,94,0.15),rgba(236,72,153,0.1));border-color:rgba(244,63,94,0.2);">
                     <div id="duel-turn-emoji" class="text-6xl">🥊</div>
@@ -571,11 +620,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div>
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
                         <select id="scrabble-difficulty" class="input-modern font-bold">
-                            <option value="leicht">🟢 Leicht (6 Buchstaben, 70 Sek.)</option>
-                            <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 55 Sek.)</option>
-                            <option value="schwer">🔴 Schwer (8 Buchstaben, 40 Sek.)</option>
-                            <option value="experte">🟣 Experte (9 Buchstaben, 30 Sek.)</option>
-                            <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
+                            <option value="leicht">🟢 Leicht · 6 Buchstaben · Wort ab 3 · 70 Sek.</option>
+                            <option value="mittel" selected>🟡 Mittel · 7 Buchstaben · Wort ab 3 · 55 Sek.</option>
+                            <option value="schwer">🔴 Schwer · 8 Buchstaben · Wort ab 4 · 40 Sek.</option>
+                            <option value="experte">🟣 Experte · 9 Buchstaben · Wort ab 5 · 30 Sek.</option>
+                            <option value="profi">🔥 Profi · 14 Buchstaben · Wort ab 6 · nur schwere Wörter</option>
                         </select>
                     </div>
 
@@ -617,7 +666,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-scrabble-play" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2 px-3"
-                    onclick="if(confirm('Wort-Duell wirklich beenden?')){ if(scrabbleState&&scrabbleState.changeInterval){clearInterval(scrabbleState.changeInterval);scrabbleState.changeInterval=null;} switchView('scrabble-setup'); }">Beenden</button>
+                    onclick="appConfirmSwitch('Euer Fortschritt in dieser Runde geht verloren.','Wort-Duell beenden?','scrabble-setup',stopScrabbleTicker)">Beenden</button>
                 <div id="scrabble-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(251,191,36,0.1));border-color:rgba(245,158,11,0.2);">
                     <div class="text-6xl">🔤</div>
@@ -639,6 +688,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </div>
 
                     <div id="scrabble-tiles" class="flex flex-wrap justify-center gap-2"></div>
+                    <div id="scrabble-min-hint" class="text-center text-[11px] font-bold text-gray-500"></div>
                     <div class="glass-card p-5 space-y-3">
                         <div id="scrabble-word-preview"
                             class="input-modern text-xl font-black text-center uppercase tracking-widest text-gray-500">
@@ -747,7 +797,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-wortraten-play" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2 px-3"
-                    onclick="if(confirm('Wort-Rätsel wirklich beenden?')) switchView('wortraten-setup')">Beenden</button>
+                    onclick="appConfirmSwitch('Euer Fortschritt in dieser Runde geht verloren.','Wort-Rätsel beenden?','wortraten-setup')">Beenden</button>
                 <div id="wortraten-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(56,189,248,0.1));border-color:rgba(14,165,233,0.2);">
                     <div class="text-6xl">🧩</div>
@@ -777,7 +827,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             class="btn-primary flex-1 text-center"
                             style="background:var(--gradient-cool);box-shadow:0 4px 24px rgba(6,182,212,0.3);">Nächste
                             Runde ➔</button>
-                        <button onclick="if(confirm('Wort-Rätsel wirklich beenden?')) switchView('wortraten-setup')"
+                        <button onclick="appConfirmSwitch('Euer Fortschritt in dieser Runde geht verloren.','Wort-Rätsel beenden?','wortraten-setup')"
                             class="btn-secondary flex-1 text-center">Beenden</button>
                     </div>
                 </div>
@@ -795,7 +845,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-live-duel-setup" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                <button onclick="openCodedLobbySetup()" class="btn-primary w-full text-center"
+                <button onclick="openCodedLobbySetup()" data-needs-questions class="btn-primary w-full text-center"
                     style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">🌍
                     Online-Lobby mit Code (verschiedene Konten)</button>
                 <div class="glass-card p-6 space-y-4">
@@ -833,11 +883,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
                             <select id="live-duel-difficulty" class="input-modern font-bold">
-                                <option value="leicht">🟢 Leicht (6 Buchstaben, 70 Sek.)</option>
-                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 55 Sek.)</option>
-                                <option value="schwer">🔴 Schwer (8 Buchstaben, 40 Sek.)</option>
-                                <option value="experte">🟣 Experte (9 Buchstaben, 30 Sek.)</option>
-                                <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
+                                <option value="leicht">🟢 Leicht · 6 Buchstaben · Wort ab 3 · 70 Sek.</option>
+                                <option value="mittel" selected>🟡 Mittel · 7 Buchstaben · Wort ab 3 · 55 Sek.</option>
+                                <option value="schwer">🔴 Schwer · 8 Buchstaben · Wort ab 4 · 40 Sek.</option>
+                                <option value="experte">🟣 Experte · 9 Buchstaben · Wort ab 5 · 30 Sek.</option>
+                                <option value="profi">🔥 Profi · 14 Buchstaben · Wort ab 6 · nur schwere Wörter</option>
                             </select>
                         </div>
                         <label
@@ -954,6 +1004,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <h3 class="text-lg font-black text-emerald-400">Mit Code beitreten</h3>
                         <p class="text-[11px] text-gray-500">4-stelligen Code vom Host eingeben</p>
                     </div>
+                    <label for="coded-lobby-join-code" class="sr-only-label">Lobby-Code, vier Zeichen</label>
                     <input id="coded-lobby-join-code" maxlength="4" placeholder="K7P2" autocomplete="off"
                         inputmode="text" autocapitalize="characters" enterkeyhint="go"
                         class="input-modern text-3xl font-black text-center uppercase py-4"
@@ -1021,11 +1072,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
                             <select id="coded-lobby-difficulty" class="input-modern font-bold">
-                                <option value="leicht">🟢 Leicht (6 Buchstaben)</option>
-                                <option value="mittel" selected>🟡 Mittel (7 Buchstaben)</option>
-                                <option value="schwer">🔴 Schwer (8 Buchstaben)</option>
-                                <option value="experte">🟣 Experte (9 Buchstaben)</option>
-                                <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
+                                <option value="leicht">🟢 Leicht · 6 Buchstaben · Wort ab 3</option>
+                                <option value="mittel" selected>🟡 Mittel · 7 Buchstaben · Wort ab 3</option>
+                                <option value="schwer">🔴 Schwer · 8 Buchstaben · Wort ab 4</option>
+                                <option value="experte">🟣 Experte · 9 Buchstaben · Wort ab 5</option>
+                                <option value="profi">🔥 Profi · 14 Buchstaben · Wort ab 6 · nur schwere Wörter</option>
                             </select>
                         </div>
                         <label
@@ -1120,7 +1171,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
             <div id="view-live-duel-lobby" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveLiveDuel()">Verlassen</button>
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveLiveDuel()">Beenden</button>
                     <span class="text-sm font-bold text-gray-400">Warteraum</span>
                     <span class="w-20"></span>
                 </div>
@@ -1176,26 +1227,32 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
 
             <div id="view-menu" class="view hidden space-y-4">
-                <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('family-hub')">Spieler
-                        wechseln</button>
-                    <div class="flex items-center gap-2">
-                        <button onclick="toggleCast()" id="castButton" title="Mit Fernseher verbinden"
-                            class="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
-                    </div>
+
+                <div id="db-loading-hint" class="hidden">
+                    <span class="spinner" aria-hidden="true"></span>
+                    <span>Die Fragen werden geladen …</span>
                 </div>
 
-                <!-- Willkommenskarte -->
-                <div class="glass-card-glow p-6 text-center shadow-lg">
-                    <h1 id="welcome-text" class="text-2xl font-black text-white mb-2">Hallo!</h1>
-                    <div class="flex justify-center gap-6 text-sm font-bold">
-                        <span class="text-amber-400">🪙 <span id="menu-coins">0</span> Coins</span>
-                        <span id="menu-age-display" class="text-gray-400">🎒 Klasse: <span id="menu-age">-</span></span>
+                <!-- Fortschrittskarte: alles Wichtige auf einen Blick -->
+                <div class="glass-card-glow p-5 shadow-lg">
+                    <div class="flex items-center gap-3">
+                        <div id="menu-avatar-disc"
+                            class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl font-black shrink-0"
+                            style="background:var(--gradient-cool);">🙂</div>
+                        <div class="min-w-0">
+                            <h1 id="welcome-text" class="text-xl font-black text-white leading-tight truncate">Hallo!
+                            </h1>
+                            <div class="flex items-center gap-2 mt-0.5">
+                                <span id="menu-level-label" class="text-xs font-bold text-indigo-300">🌱 Anfänger</span>
+                                <span id="menu-age-display" class="text-xs font-bold text-gray-400">🎒 <span
+                                        id="menu-age">-</span></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mt-4 text-left">
-                        <div class="flex justify-between text-xs font-bold text-gray-300 mb-1">
-                            <span id="menu-level-label">🌱 Anfänger</span>
-                            <span id="menu-level-next" class="text-gray-500">Nächstes Level: 150 XP</span>
+
+                    <div class="mt-4">
+                        <div class="flex justify-between text-xs font-bold text-gray-400 mb-1.5">
+                            <span id="menu-level-next">Nächstes Level: 150 XP</span>
                         </div>
                         <div class="w-full bg-white/5 rounded-full h-3 overflow-hidden border border-white/5">
                             <div id="menu-level-bar"
@@ -1203,175 +1260,187 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 style="width:0%"></div>
                         </div>
                     </div>
-                    <div id="menu-streak" class="mt-3 text-sm font-bold text-orange-400">🔥 0 Tage Streak</div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4">
+                        <div class="bg-white/5 rounded-xl py-2 text-center">
+                            <div id="menu-streak" class="text-sm font-black text-orange-400">🔥 0 Tage</div>
+                            <div class="text-[10px] font-bold text-gray-500">Lernserie</div>
+                        </div>
+                        <div class="bg-white/5 rounded-xl py-2 text-center">
+                            <div class="text-sm font-black text-amber-400">🪙 <span id="menu-coins">0</span></div>
+                            <div class="text-[10px] font-bold text-gray-500">Coins</div>
+                        </div>
+                        <div class="bg-white/5 rounded-xl py-2 text-center">
+                            <div class="text-sm font-black text-emerald-400">🏅 <span id="menu-badge-count">0</span>
+                            </div>
+                            <div class="text-[10px] font-bold text-gray-500">Abzeichen</div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Weitermachen? – zeigt das zuletzt gespielte Thema -->
+                <div id="continue-card" class="hidden"></div>
+
+                <!-- Schwächen-Karte & zugewiesener Test -->
+                <div id="weakness-card" class="hidden"></div>
+                <div id="pending-test-card" class="hidden"></div>
+
+                <!-- Offene Einladungen der Familie -->
+                <div id="open-duels-list" class="space-y-2"></div>
+                <div id="open-tv-list" class="space-y-2"></div>
+
+                <!-- Die zwei Wege -->
+                <button onclick="switchView('spielen')" data-needs-questions
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
+                    style="background:linear-gradient(140deg,#f43f5e,#ec4899);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
+                    <span class="text-4xl shrink-0">⚔️</span>
+                    <span>
+                        <span class="block text-lg font-black">Gegeneinander</span>
+                        <span class="block text-xs font-bold text-rose-100/80">Duelle, TV-Quiz, Online-Lobby</span>
+                    </span>
+                </button>
+
+                <button onclick="switchView('lernen')" data-needs-questions
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
+                    style="background:linear-gradient(140deg,#10b981,#34d399);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
+                    <span class="text-4xl shrink-0">🎓</span>
+                    <span>
+                        <span class="block text-lg font-black">Allein lernen</span>
+                        <span class="block text-xs font-bold text-emerald-100/80">Wissen, Vokabeln, Fokus-Timer</span>
+                    </span>
+                </button>
+
+                <button onclick="switchView('rewards')"
+                    class="w-full flex items-center justify-center gap-2 p-4 rounded-2xl font-black text-sm transition hover:scale-[1.01]"
+                    style="background:linear-gradient(140deg,#f59e0b,#fbbf24);color:#0b1020;">
+                    <span class="text-2xl">🎁</span> Belohnungen einlösen
+                </button>
 
                 <!-- Abzeichen -->
                 <div id="menu-badges-row" class="flex gap-2 overflow-x-auto pb-1"></div>
 
-                <!-- Belohnungen -->
-                <button onclick="switchView('rewards')"
-                    class="btn-primary w-full flex items-center justify-center gap-2 text-center">
-                    🎁 Belohnungen einlösen
+                <p class="text-center text-xs text-gray-500 pt-1">Spieler wechseln, Eltern-Bereich und Feedback findest
+                    du im Menü ☰ oben rechts.</p>
+            </div>
+
+            <!-- ==========================================================
+            VIEW: GEGENEINANDER SPIELEN
+            ========================================================== -->
+            <div id="view-spielen" class="view hidden space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+                    <span class="text-sm font-bold text-gray-400">⚔️ Gegeneinander</span>
+                    <button onclick="toggleCast()" id="castButton" title="Mit Fernseher verbinden"
+                        aria-label="Mit Fernseher verbinden"
+                        class="w-11 h-11 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
+                </div>
+
+                <div class="flex items-center gap-2 px-1">
+                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">📱 Jeder am eigenen
+                        Handy</span>
+                </div>
+
+                <button onclick="openCodedLobbySetup()" data-needs-questions
+                    class="p-4 rounded-2xl text-white font-black shadow-lg text-sm flex flex-col items-center gap-1 transition hover:scale-[1.02] w-full"
+                    style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">
+                    <span class="text-2xl">🌍</span> Online-Lobby
+                    <span class="text-xs font-bold text-indigo-200 -mt-1">beitreten oder erstellen · auch für
+                        Gäste</span>
                 </button>
 
-                <!-- Schwächen-Karte & Test-Karte -->
-                <div id="weakness-card" class="hidden"></div>
-                <div id="pending-test-card" class="hidden"></div>
-
-                <!-- Multiplayer -->
-                <div class="space-y-2.5">
-                    <div class="flex items-center gap-2 px-1">
-                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">⚔️ Gegeneinander spielen
-                            · jeder am eigenen Handy</span>
-                    </div>
-                    <!-- Offene Lobbys / TV – über den Spiel-Buttons -->
-                    <div id="open-duels-list" class="space-y-2"></div>
-                    <div id="open-tv-list" class="space-y-2"></div>
-                    <button onclick="openCodedLobbySetup()"
-                        class="p-4 rounded-2xl text-white font-black shadow-lg text-sm flex flex-col items-center gap-1 transition hover:scale-[1.02] w-full"
-                        style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">
-                        <span class="text-2xl">🌍</span> Online-Lobby
-                        <span class="text-xs font-bold text-indigo-200 -mt-1">beitreten / erstellen</span>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="openLiveDuelSetup('quiz')" data-needs-questions
+                        class="p-4 rounded-2xl text-white font-black shadow-lg text-sm flex flex-col items-center gap-1 transition hover:scale-[1.02]"
+                        style="background:linear-gradient(135deg,#f43f5e,#ec4899);">
+                        <span class="text-2xl">⚔️</span> Quiz-Duell
                     </button>
-                    <div class="grid grid-cols-2 gap-3">
-                        <button onclick="openLiveDuelSetup('quiz')"
-                            class="p-4 rounded-2xl text-white font-black shadow-lg text-sm flex flex-col items-center gap-1 transition hover:scale-[1.02]"
-                            style="background:linear-gradient(135deg,#f43f5e,#ec4899);">
-                            <span class="text-2xl">⚔️</span> Quiz-Duell
-                        </button>
-                        <button onclick="openLiveDuelSetup('scrabble')"
-                            class="p-4 rounded-2xl text-slate-950 font-black shadow-lg text-sm flex flex-col items-center gap-1 transition hover:scale-[1.02]"
-                            style="background:linear-gradient(135deg,#f59e0b,#fbbf24);">
-                            <span class="text-2xl">🔤</span> Wort-Duell
-                        </button>
-                    </div>
-                    <button onclick="openLiveDuelSetup('vokabel')"
-                        class="btn-primary w-full flex flex-col items-center gap-1 text-center"
-                        style="background:linear-gradient(135deg,#10b981,#34d399);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
-                        <span class="text-3xl">📚</span>
-                        <span>Vokabel-Duell</span>
-                        <span class="text-xs font-bold text-emerald-100 -mt-1">· jeder am eigenen Handy · auch im
-                            Team ·</span>
+                    <button onclick="openLiveDuelSetup('scrabble')"
+                        class="p-4 rounded-2xl text-slate-950 font-black shadow-lg text-sm flex flex-col items-center gap-1 transition hover:scale-[1.02]"
+                        style="background:linear-gradient(135deg,#f59e0b,#fbbf24);">
+                        <span class="text-2xl">🔤</span> Wort-Duell
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="openLiveDuelSetup('vokabel')" data-needs-questions
+                        class="p-4 rounded-2xl text-white font-black shadow-lg text-sm flex flex-col items-center gap-1 transition hover:scale-[1.02]"
+                        style="background:linear-gradient(135deg,#10b981,#34d399);">
+                        <span class="text-2xl">📚</span> Vokabel-Duell
                     </button>
                     <button onclick="openLiveDuelSetup('wortraten')"
-                        class="btn-primary w-full flex flex-col items-center gap-1 text-center"
-                        style="background:linear-gradient(135deg,#0ea5e9,#22d3ee);box-shadow:0 4px 24px rgba(14,165,233,0.3);">
-                        <span class="text-3xl">🧩</span>
-                        <span>Wort-Rätsel Online</span>
-                        <span class="text-xs font-bold text-sky-100 -mt-1">· jeder am eigenen Handy ·</span>
-                    </button>
-                    <button onclick="switchView('tv-quiz-setup')"
-                        class="btn-primary w-full flex flex-col items-center gap-1 text-center"
-                        style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">
-                        <span class="text-3xl">📺</span>
-                        <span>TV-Quiz</span>
-                        <span class="text-xs font-bold text-indigo-200 -mt-1">· alle zusammen ·</span>
+                        class="p-4 rounded-2xl text-white font-black shadow-lg text-sm flex flex-col items-center gap-1 transition hover:scale-[1.02]"
+                        style="background:linear-gradient(135deg,#06b6d4,#3b82f6);">
+                        <span class="text-2xl">🧩</span> Wort-Rätsel
                     </button>
                 </div>
 
-                <!-- Offline · ein Handy reihum -->
-                <div>
-                    <button onclick="toggleOfflineGames()" id="offline-games-toggle-btn"
-                        class="w-full p-3.5 glass-card flex items-center justify-between">
-                        <span class="flex items-center gap-3 font-black text-sm text-gray-300">
-                            <span class="text-2xl">📴</span> Offline · ein Handy reihum
-                        </span>
-                        <span id="offline-games-toggle-arrow" class="text-lg text-gray-400 transition-transform">▼</span>
-                    </button>
-                    <div id="offline-games-wrapper" class="hidden mt-3 space-y-3">
-                        <div class="grid grid-cols-2 gap-3">
-                            <button onclick="openDuelSetup()"
-                                class="p-3.5 bg-white/5 border border-white/10 text-rose-300 font-bold rounded-2xl shadow-md text-sm hover:bg-white/10 transition">
-                                ⚔️ Quiz-Duell
-                            </button>
-                            <button onclick="openScrabbleSetup()"
-                                class="p-3.5 bg-white/5 border border-white/10 text-amber-300 font-bold rounded-2xl shadow-md text-sm hover:bg-white/10 transition">
-                                🔤 Wort-Duell
-                            </button>
-                        </div>
-                        <button onclick="openWortratenSetup()"
-                            class="w-full p-3.5 bg-white/5 border border-white/10 text-sky-300 font-bold rounded-2xl shadow-md text-sm hover:bg-white/10 transition">
-                            🧩 Wort-Rätsel
-                        </button>
-                    </div>
+                <button onclick="switchView('tv-quiz-setup')" data-needs-questions
+                    class="btn-primary w-full flex items-center justify-center gap-2 text-center">
+                    <span class="text-xl">📺</span> TV-Quiz · alle am Fernseher
+                </button>
+
+                <div class="flex items-center gap-2 px-1 pt-3">
+                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">🔄 Ein Handy reihum</span>
                 </div>
+                <p class="text-xs text-gray-500 px-1 -mt-1">Für unterwegs oder schlechten Empfang – ihr gebt ein Gerät
+                    weiter.</p>
 
-                <!-- Allein lernen -->
-                <div class="space-y-2.5">
-                    <div class="flex items-center gap-2 px-1">
-                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">🎓 Allein lernen</span>
-                    </div>
-                    <!-- <div class="grid grid-cols-2 gap-3">
-                        <button onclick="showQuizSetup()"
-                            class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
-                            style="background:linear-gradient(135deg,#ec4899,#f43f5e);">
-                            <span class="text-3xl">🧠</span> Wissen
-                        </button>
-                        <button onclick="switchView('vokabeln')"
-                            class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
-                            style="background:linear-gradient(135deg,#10b981,#34d399);">
-                            <span class="text-3xl">🃏</span> Vokabeln
-                        </button>
-                    </div>
-                    <button onclick="switchView('formel-setup')"
-                        class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
-                        style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);">
-                        <span class="text-3xl">🧮</span> Formeln
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="openDuelSetup()" data-needs-questions
+                        class="btn-secondary text-xs py-3 flex flex-col items-center gap-1">
+                        <span class="text-xl">⚔️</span> Quiz
                     </button>
-                    <button onclick="switchView('lesen')"
-                        class="btn-primary w-full flex flex-col items-center gap-1 text-center"
-                        style="background:linear-gradient(135deg,#3b82f6,#6366f1);">
-                        <span class="text-3xl">📖</span>
-                        <span>Lesen lernen</span>
-                        <span class="text-xs font-bold text-blue-200 -mt-1">Klasse 1</span>
-                    </button> -->
-
-                    <!-- Dashboard Raster -->
-                    <div class="grid grid-cols-2 gap-3">
-
-                        <!-- 1. WISSEN -->
-                        <button onclick="showQuizSetup()"
-                            class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
-                            style="background:linear-gradient(135deg,#ec4899,#f43f5e);">
-                            <span class="text-3xl">🧠</span> Wissen
-                        </button>
-
-                        <!-- 2. VOKABELN -->
-                        <button onclick="switchView('vokabeln')"
-                            class="p-4 rounded-2xl font-black text-white shadow-lg flex flex-col items-center gap-1 transition hover:scale-[1.02]"
-                            style="background:linear-gradient(135deg,#10b981,#34d399);">
-                            <span class="text-3xl">🃏</span> Vokabeln
-                        </button>
-
-                        <!-- Formeln + Lesen vorerst ausgeblendet -->
-                    </div>
-
-                    <button onclick="switchView('fokus')"
-                        class="btn-primary w-full flex flex-col items-center gap-1 text-center"
-                        style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">
-                        <span class="text-3xl">⏱️</span>
-                        <span>Fokus-Timer</span>
+                    <button onclick="openScrabbleSetup()"
+                        class="btn-secondary text-xs py-3 flex flex-col items-center gap-1">
+                        <span class="text-xl">🔤</span> Wörter
                     </button>
-                </div>
-
-                <!-- Feedback -->
-                <div class="pt-3 mt-1 border-t border-white/5">
-                    <button onclick="openFeedback('menu')"
-                        class="w-full p-4 glass-card border-2 border-amber-600/30 text-amber-400 font-black rounded-2xl shadow-md hover:border-amber-400/50 transition flex flex-col items-center gap-1">
-                        <span class="flex items-center gap-2 text-base">
-                            <span class="text-2xl">💬</span> Feedback geben
-                        </span>
-                        <span class="text-[11px] font-bold text-gray-400">Fehler melden oder Idee vorschlagen</span>
+                    <button onclick="openWortratenSetup()"
+                        class="btn-secondary text-xs py-3 flex flex-col items-center gap-1">
+                        <span class="text-xl">🧩</span> Rätsel
                     </button>
                 </div>
             </div>
 
             <!-- ==========================================================
-VIEW: HAUPTMENÜ
-========================================================== -->
+            VIEW: ALLEIN LERNEN
+            ========================================================== -->
+            <div id="view-lernen" class="view hidden space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+                    <span class="text-sm font-bold text-gray-400">🎓 Allein lernen</span>
+                    <span class="w-16"></span>
+                </div>
 
+                <button onclick="showQuizSetup()" data-needs-questions
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
+                    style="background:linear-gradient(140deg,#10b981,#34d399);">
+                    <span class="text-3xl shrink-0">🧠</span>
+                    <span>
+                        <span class="block text-base font-black">Wissen</span>
+                        <span class="block text-xs font-bold text-emerald-100/80">Quiz nach Klasse und Fach</span>
+                    </span>
+                </button>
 
+                <button onclick="switchView('vokabeln')"
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
+                    style="background:linear-gradient(140deg,#6366f1,#8b5cf6);">
+                    <span class="text-3xl shrink-0">🃏</span>
+                    <span>
+                        <span class="block text-base font-black">Vokabeln</span>
+                        <span class="block text-xs font-bold text-indigo-100/80">Englisch und Türkisch üben</span>
+                    </span>
+                </button>
+
+                <button onclick="switchView('fokus')"
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
+                    style="background:linear-gradient(140deg,#06b6d4,#3b82f6);">
+                    <span class="text-3xl shrink-0">⏱️</span>
+                    <span>
+                        <span class="block text-base font-black">Fokus-Timer</span>
+                        <span class="block text-xs font-bold text-cyan-100/80">Konzentriert lernen, Coins verdienen</span>
+                    </span>
+                </button>
+            </div>
 
 
             <!-- ==========================================================
@@ -1786,11 +1855,11 @@ VIEW: QUIZ SETUP
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
                                 <select id="tv-scrabble-difficulty" class="input-modern font-bold text-lg">
-                                    <option value="leicht">🟢 Leicht (6 Buchstaben, 70 Sek.)</option>
-                                    <option value="mittel" selected>🟡 Mittel (7 Buchstaben, 55 Sek.)</option>
-                                    <option value="schwer">🔴 Schwer (8 Buchstaben, 40 Sek.)</option>
-                                    <option value="experte">🟣 Experte (9 Buchstaben, 30 Sek.)</option>
-                                    <option value="profi">🔥 Profi (14 Buchstaben, nur schwere Wörter)</option>
+                                    <option value="leicht">🟢 Leicht · 6 Buchstaben · Wort ab 3 · 70 Sek.</option>
+                                    <option value="mittel" selected>🟡 Mittel · 7 Buchstaben · Wort ab 3 · 55 Sek.</option>
+                                    <option value="schwer">🔴 Schwer · 8 Buchstaben · Wort ab 4 · 40 Sek.</option>
+                                    <option value="experte">🟣 Experte · 9 Buchstaben · Wort ab 5 · 30 Sek.</option>
+                                    <option value="profi">🔥 Profi · 14 Buchstaben · Wort ab 6 · nur schwere Wörter</option>
                                 </select>
                             </div>
                             <label
@@ -1894,17 +1963,18 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=8.2"></script>
-    <script src="family-dashboard.js?v=8.2"></script>
-    <script src="ui-common.js?v=8.2"></script>
-    <script src="quiz-core.js?v=8.2"></script>
-    <script src="vocab.js?v=8.2"></script>
-    <script src="duel-scrabble.js?v=8.2"></script>
-    <script src="wortraten.js?v=8.2"></script>
-    <script src="tv-cast.js?v=8.2"></script>
-    <script src="live-duel.js?v=8.2"></script>
-    <script src="app-misc.js?v=8.2"></script>
-    <script src="lobby-avatar.js?v=8.2"></script>
+    <script src="app-config.js?v=8.7"></script>
+    <script src="app-ui.js?v=8.7"></script>
+    <script src="family-dashboard.js?v=8.7"></script>
+    <script src="ui-common.js?v=8.7"></script>
+    <script src="quiz-core.js?v=8.7"></script>
+    <script src="vocab.js?v=8.7"></script>
+    <script src="duel-scrabble.js?v=8.7"></script>
+    <script src="wortraten.js?v=8.7"></script>
+    <script src="tv-cast.js?v=8.7"></script>
+    <script src="live-duel.js?v=8.7"></script>
+    <script src="app-misc.js?v=8.7"></script>
+    <script src="lobby-avatar.js?v=8.7"></script>
 
 
     <!-- ========================================================== burger menü
@@ -1921,7 +1991,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
     <div id="drawer-familyhub" class="drawer">
         <div class="drawer-header">
             <h2>📋 Menü</h2>
-            <button class="close-btn" onclick="closeDrawer()">✕</button>
+            <button class="close-btn" onclick="closeDrawer()" aria-label="Menü schließen">✕</button>
         </div>
         <div class="flex flex-col gap-1 drawer-items-container">
             <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
@@ -1955,9 +2025,12 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
     <div id="drawer-menu" class="drawer">
         <div class="drawer-header">
             <h2>📋 Menü</h2>
-            <button class="close-btn" onclick="closeDrawer()">✕</button>
+            <button class="close-btn" onclick="closeDrawer()" aria-label="Menü schließen">✕</button>
         </div>
         <div class="flex flex-col gap-1 drawer-items-container">
+            <div class="drawer-menu-item" onclick="closeDrawer(); switchView('family-hub')">
+                <span class="icon">🔄</span> Spieler wechseln
+            </div>
             <button onclick="closeDrawer(); switchView('dashboard')" class="drawer-menu-item">
                 <span class="icon">📊</span> Dashboard
             </button>

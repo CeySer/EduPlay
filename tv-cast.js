@@ -35,7 +35,7 @@
             }
         }
 
-        function connectCast() {
+        async function connectCast() {
             if (!currentParentUser) {
                 showToast("Bitte zuerst als Elternteil anmelden!", "error", "cast");
                 return;
@@ -48,7 +48,9 @@
             const playerName = currentPlayer.name || "Host";
             const receiverUrl = new URL('receiver.html', window.location.href).href;
 
-            if (confirm('📺 Fernseher-Modus starten?\n\nDer Receiver wird geöffnet. Auf dem Handy siehst du weiterhin die Steuerung.')) {
+            if (await appConfirm('Der Receiver wird in einem zweiten Fenster geöffnet. Auf dem Handy siehst du weiterhin die Steuerung.', {
+                titel: '📺 Fernseher-Modus starten?', icon: '📺', okText: 'Starten'
+            })) {
                 castWindow = window.open(
                     receiverUrl + '?mode=cast&parentId=' + parentId + '&host=' + encodeURIComponent(playerName),
                     'EduPlayTV',
@@ -294,6 +296,63 @@
             }).catch(() => { isResolving = false; });
         }
 
+        // Tickt am Fernseher sekündlich, damit die Frist auch dann abläuft,
+        // wenn kein neuer Snapshot mehr hereinkommt (niemand antwortet mehr).
+        let tvFristTicker = null;
+
+        function starteTVRundenTimer(data) {
+            stoppeTVRundenTimer();
+            if (!data || !data.answerDeadline) return;
+            tvFristTicker = setInterval(() => {
+                if (!tvGameRef) return stoppeTVRundenTimer();
+                const rest = Math.max(0, Math.ceil((data.answerDeadline - Date.now()) / 1000));
+                const el = document.getElementById("tv-answer-counter");
+                if (el && el.innerText.indexOf("noch ") !== -1) {
+                    el.innerText = el.innerText.replace(/noch \d+s/, "noch " + rest + "s");
+                }
+                if (rest <= 0) {
+                    stoppeTVRundenTimer();
+                    if (isResolving) return;
+                    isResolving = true;
+                    tvGameRef.get().then(d => {
+                        if (!d.exists) return;
+                        const frisch = d.data();
+                        if (frisch.status !== "playing" || frisch.showAnswer) { isResolving = false; return; }
+                        frisch.mode === "scrabble" ? revealTVScrabbleRound(frisch) : revealTVAnswer(frisch);
+                    }).catch(() => { isResolving = false; });
+                }
+            }, 1000);
+        }
+
+        // Lebenszeichen des Spielerhandys. Der Fernseher erkennt daran, wer
+        // gerade wirklich mitspielt, und wartet nicht auf weggelegte Geräte.
+        let tvLebenszeichen = null;
+
+        function starteTVLebenszeichen() {
+            stoppeTVLebenszeichen();
+            const schlag = () => {
+                if (!tvGameRef || !activePlayerKey) return;
+                sendeLebenszeichen(tvGameRef, activePlayerKey, isTVHost ? "hostLastSeen" : null);
+            };
+            schlag();
+            tvLebenszeichen = setInterval(schlag, 12000);
+        }
+
+        function stoppeTVLebenszeichen() {
+            if (tvLebenszeichen) { clearInterval(tvLebenszeichen); tvLebenszeichen = null; }
+        }
+
+        // Handy entsperrt oder Anruf beendet: sofort zurückmelden.
+        document.addEventListener("visibilitychange", function () {
+            if (document.visibilityState !== "visible") return;
+            if (!tvGameRef || !activePlayerKey) return;
+            sendeLebenszeichen(tvGameRef, activePlayerKey, isTVHost ? "hostLastSeen" : null);
+        });
+
+        function stoppeTVRundenTimer() {
+            if (tvFristTicker) { clearInterval(tvFristTicker); tvFristTicker = null; }
+        }
+
         let tvUsedWords = new Set();
         const tvCoinsClaimedLocal = new Set();
         let tvActionModeInterval = null; // <-- NUR EINMAL DEFINIEREN!
@@ -400,6 +459,7 @@
                     </div>
                 `);
 
+                starteTVLebenszeichen();
                 if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
                 tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
                     if (!doc.exists) return;
@@ -429,12 +489,37 @@
                                 data.currentRequired || ""
                             );
                         }
-                        const ansCount = Object.values(data.players || {}).filter(p => p.hasAnswered).length;
-                        const totalCount = Object.keys(data.players || {}).length;
+                        // Wer sein Handy weggelegt hat, blockiert die Runde nicht mehr.
+                        // Vorher zählte jeder mit, der je beigetreten war – das ganze
+                        // Wohnzimmer wartete dann auf ein Handy in der Hosentasche.
+                        const alle = Object.values(data.players || {});
+                        const zaehlend = alle.filter(p => istAnwesend(p) || p.hasAnswered);
+                        const ansCount = zaehlend.filter(p => p.hasAnswered).length;
+                        const totalCount = zaehlend.length;
+                        const wegCount = alle.length - totalCount;
+
+                        // Rundenfrist: Der Fernseher ist immer da und setzt sie
+                        // zuverlässig. Läuft sie ab, geht es auch ohne die Fehlenden weiter.
+                        if (!data.answerDeadline) {
+                            const secs = data.mode === "scrabble" ? 60 : 30;
+                            tvGameRef.update({ answerDeadline: Date.now() + secs * 1000 }).catch(() => { });
+                        }
+                        const restSek = data.answerDeadline
+                            ? Math.max(0, Math.ceil((data.answerDeadline - Date.now()) / 1000))
+                            : null;
+
                         const counterEl = document.getElementById("tv-answer-counter");
-                        if (counterEl) counterEl.innerText = `${ansCount} von ${totalCount} haben geantwortet`;
-                        if (totalCount > 0 && ansCount >= totalCount && !isResolving) {
+                        if (counterEl) {
+                            counterEl.innerText = `${ansCount} von ${totalCount} haben geantwortet`
+                                + (restSek !== null ? ` · noch ${restSek}s` : "")
+                                + (wegCount > 0 ? ` · ${wegCount} kurz weg` : "");
+                        }
+                        starteTVRundenTimer(data);
+
+                        const fristAbgelaufen = data.answerDeadline && Date.now() >= data.answerDeadline;
+                        if (totalCount > 0 && !isResolving && (ansCount >= totalCount || fristAbgelaufen)) {
                             isResolving = true;
+                            stoppeTVRundenTimer();
                             setTimeout(() => {
                                 data.mode === "scrabble" ? revealTVScrabbleRound(data) : revealTVAnswer(data);
                             }, 800);
@@ -452,9 +537,17 @@
             const names = Object.values(players || {});
             list.innerHTML = names.length === 0 ?
                 `<p class="col-span-4 text-gray-500 font-bold">Noch niemand beigetreten...</p>` :
-                names.map(p =>
-                    `<div class="bg-white/5 border border-white/5 rounded-xl p-4 text-center"><div class="text-3xl">🙋</div><div class="font-bold text-white mt-2">${esc(p.name)}</div></div>`
-                ).join('');
+                names.map(p => {
+                    const da = istAnwesend(p);
+                    const punkt = da
+                        ? '<span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 align-middle"></span>'
+                        : '<span class="inline-block w-2.5 h-2.5 rounded-full bg-gray-500 align-middle"></span>';
+                    return `<div class="bg-white/5 border border-white/5 rounded-xl p-4 text-center ${da ? '' : 'opacity-50'}">
+                        <div class="text-3xl">🙋</div>
+                        <div class="font-bold text-white mt-2">${esc(p.name)}</div>
+                        <div class="text-xs font-bold text-gray-400 mt-1">${punkt} ${da ? 'bereit' : 'kurz weg'}</div>
+                    </div>`;
+                }).join('');
         }
 
         function startTVGameLoop() {
@@ -476,6 +569,7 @@
                     status: "playing",
                     currentQuestionIndex: 0,
                     showAnswer: false,
+                    answerDeadline: null,
                     players: playersData,
                     correctAnswer: tvQuestions[0].correct,
                     answerCount: tvQuestions[0].answers.length
@@ -502,7 +596,7 @@
                     <div class="h-[90vh] flex flex-col justify-between p-6">
                         <div class="flex justify-between items-center">
                             <span id="tv-round-timer" class="text-2xl font-black text-amber-400">25s</span>
-                            <button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
+                            <button onclick="appConfirmSwitch('Das laufende TV-Spiel wird für alle beendet.','TV-Spiel beenden?',null,leaveTVGame)" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
                         </div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(99,102,241,0.15);">
                             <p class="text-indigo-400 font-black text-xl mb-2">Frage ${index + 1} / ${tvQuestions.length}</p>
@@ -582,7 +676,7 @@
 
             setTVHostPlayHTML(`
                     <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
+                        <div class="flex justify-end"><button onclick="appConfirmSwitch('Das laufende TV-Spiel wird für alle beendet.','TV-Spiel beenden?','tv-quiz-setup',leaveTVGame)" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(16,185,129,0.2);">
                             <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
                             <p class="text-emerald-400 font-black mt-6 text-3xl">💡 ${tvCurrentQ.explanation}</p>
@@ -662,6 +756,7 @@
                 await tvGameRef.update({
                     currentQuestionIndex: nextIndex,
                     showAnswer: false,
+                    answerDeadline: null,
                     players: playersData,
                     correctAnswer: tvQuestions[nextIndex].correct,
                     answerCount: tvQuestions[nextIndex].answers.length
@@ -806,6 +901,7 @@
                         totalRounds,
                         currentRound: 0,
                         showAnswer: false,
+                        answerDeadline: null,
                         players: playersData
                     });
                     // Sofort starten
@@ -845,6 +941,7 @@
                     category,
                     currentQuestionIndex: 0,
                     showAnswer: false,
+                    answerDeadline: null,
                     players: playersData,
                     correctAnswer: tvQuestions[0].correct,
                     answerCount: tvQuestions[0].answers.length
@@ -996,7 +1093,7 @@
                 <div class="h-[90vh] flex flex-col p-6 gap-4">
                     <div class="flex justify-between items-center">
                         <p class="text-amber-400 font-black text-xl">Runde ${data.currentRound || 1} / ${data.totalRounds || 3} · ${data.wordMode === "adult" ? "🎓" : "👶"}</p>
-                        <button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
+                        <button onclick="appConfirmSwitch('Das laufende TV-Spiel wird für alle beendet.','TV-Spiel beenden?','tv-quiz-setup',leaveTVGame)" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
                     </div>
                     <div class="flex justify-center gap-3 flex-wrap">${scores}</div>
                     <div class="glass-card p-6 flex items-center justify-center flex-1">
@@ -1116,6 +1213,7 @@
             tvGameRef.update({
                 status: "playing",
                 showAnswer: false,
+                answerDeadline: null,
                 currentLetters: letters,
                 currentSolution: rack.solution,
                 currentRequired: rack.required || "",
@@ -1147,7 +1245,7 @@
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
             setTVHostPlayHTML(`
                     <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
+                        <div class="flex justify-end"><button onclick="appConfirmSwitch('Das laufende TV-Spiel wird für alle beendet.','TV-Spiel beenden?','tv-quiz-setup',leaveTVGame)" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(245,158,11,0.15);">
                             <p class="text-amber-400 font-black text-xl mb-4">Runde ${round} / ${totalRounds}</p>
                             <h1 class="text-2xl md:text-3xl font-black text-white leading-tight mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
@@ -1262,7 +1360,7 @@
 
             setTVHostPlayHTML(`
                     <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="if(confirm('TV-Spiel wirklich beenden?')){ leaveTVGame(); switchView('tv-quiz-setup'); }" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
+                        <div class="flex justify-end"><button onclick="appConfirmSwitch('Das laufende TV-Spiel wird für alle beendet.','TV-Spiel beenden?','tv-quiz-setup',leaveTVGame)" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="text-center mb-4">
                             <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
                             ${data.currentSolution ? `);<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war am Ende z.B.: ${data.currentSolution}</p>` : ""}
@@ -1305,6 +1403,7 @@
                 });
                 tvGameRef = lobbyRef;
                 isTVHost = false;
+                starteTVLebenszeichen();
 
                 setTVPlayerPlayHTML(`<div class="glass-card-glow p-12 text-center mt-12" style="border-color:rgba(16,185,129,0.15);"><div class="text-8xl mb-6 animate-bounce">🙌</div><h2 class="text-3xl font-black text-emerald-400 mb-4">Du bist drin!</h2><p class="text-lg text-white font-bold">Gleich geht's los. Schau auf den Fernseher!</p></div>`);
 
@@ -1382,6 +1481,7 @@
                                 setTVPlayerPlayHTML(`
                                     <div class="space-y-4">
                                         <div class="flex flex-wrap justify-center gap-2">${scrabbleTilesHTML(data.currentLetters, false, data.currentRequired)}</div>
+                                        <div class="text-center text-[11px] font-bold text-gray-500">Dein Wort braucht mindestens ${((typeof SCRABBLE_DIFFICULTIES !== "undefined" ? (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord : 0) || 2)} Buchstaben</div>
                                         <div class="glass-card p-5 space-y-3">
                                             <input type="text" id="tv-scrabble-word-input" placeholder="Dein Wort..." autocomplete="off"
                                                 class="input-modern text-xl font-black text-center uppercase tracking-widest">
@@ -1483,6 +1583,8 @@
             }
             stopTVAutoAdvance();
             stopTVRoundTimer();
+            stoppeTVLebenszeichen();
+            stoppeTVRundenTimer();
             stopTVActionMode();
             tvGameRef = null;
             isTVHost = false;

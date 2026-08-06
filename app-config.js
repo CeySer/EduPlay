@@ -149,6 +149,10 @@
         let currentPlayer = null;
         let activePlayerKey = "";
         let sessionLearnedWords = new Set();
+        // true = anonym beigetretener Gast ohne Konto. Er hat kein
+        // Familienprofil, sieht kein Dashboard und es wird nichts von
+        // ihm gespeichert – er existiert nur in der Online-Lobby.
+        let isAnonGuest = false;
 
         let focusTimerInterval = null;
         let focusTimeRemaining = 15 * 60;
@@ -560,7 +564,11 @@
                 p.streak.lastDate = today;
             }
             evaluateAndApplyBadges(p);
-            db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).set(p);
+            // Gäste ohne Konto haben kein Profil in der Datenbank.
+            if (!isAnonGuest && currentParentUser) {
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).set(p)
+                    .catch(e => console.warn("awardXPToProfile:", e));
+            }
             if (activePlayerKey === key) {
                 currentPlayer = p;
                 updateMenuGamification();
@@ -580,6 +588,8 @@
             document.getElementById("menu-streak").innerText = `🔥 ${streakCount} Tag${streakCount === 1 ? '' : 'e'} Streak`;
             const badgesRow = document.getElementById("menu-badges-row");
             const earned = currentPlayer.badges || [];
+            const badgeCount = document.getElementById("menu-badge-count");
+            if (badgeCount) badgeCount.innerText = earned.length;
             badgesRow.innerHTML = earned.length === 0 ?
                 `<p class="text-xs text-gray-500">Noch keine Abzeichen – leg los!</p>` :
                 earned.map(id => {
@@ -660,6 +670,35 @@
                 .replace(/[\u0000-\u001F\u007F]/g, "")
                 .trim()
                 .slice(0, maxLen || 40);
+        }
+
+        // ============================================================
+        //  ANWESENHEIT IM MEHRSPIELER-MODUS
+        //  Jedes Gerät schreibt regelmäßig players.<key>.lastSeen.
+        //  Wer länger als 40 Sekunden still ist, gilt als "kurz weg" und
+        //  blockiert keine Runde mehr. Bewusst großzügig – in der Familie
+        //  legt jemand das Handy auch mal beiseite.
+        //  Wird von live-duel.js und tv-cast.js gemeinsam genutzt.
+        // ============================================================
+        const PRESENCE_STALE_MS = 40000;
+
+        function istAnwesend(p) {
+            if (!p) return false;
+            // Spielstände ohne lastSeen zählen als anwesend, damit laufende
+            // Partien nach einem Update nicht schlagartig alle als weg gelten.
+            if (!p.lastSeen) return true;
+            return (Date.now() - p.lastSeen) < PRESENCE_STALE_MS;
+        }
+
+        // Schreibt ein Lebenszeichen für den eigenen Spieler. hostFeld wird
+        // zusätzlich gesetzt, wenn dieses Gerät die Runde steuert – beides
+        // in einem Schreibvorgang, damit es nicht doppelt kostet.
+        function sendeLebenszeichen(ref, spielerKey, hostFeld) {
+            if (!ref || !spielerKey) return;
+            const update = {};
+            update["players." + spielerKey + ".lastSeen"] = Date.now();
+            if (hostFeld) update[hostFeld] = Date.now();
+            ref.update(update).catch(() => { });
         }
 
         function isOffline() {
@@ -826,7 +865,7 @@
                 const payload = hasCode ? text + "\n" + window.location.href : window.location.href;
                 navigator.clipboard.writeText(payload).then(() => {
                     showToast(hasCode ? '🔗 Code ' + code + ' kopiert!' : '🔗 Link kopiert!', 'success');
-                }).catch(() => { alert(payload); });
+                }).catch(() => { appAlert(payload, { titel: "Zum Kopieren", icon: "🔗" }); });
             }
         }
 
@@ -837,7 +876,7 @@
             const text = "EduPlay Lobby-Code: " + code + "\nOnline-Lobby → Code eingeben.";
             if (navigator.share) navigator.share({ title: "EduPlay Lobby", text }).catch(() => { });
             else if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => showToast("Code " + code + " kopiert!", "success"));
-            else alert(text);
+            else appAlert(text, { titel: "Lobby-Code", icon: "🔗" });
         }
 
 

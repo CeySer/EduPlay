@@ -62,7 +62,10 @@
             testTemplates = [];
             adminPin = null;
             const codeInp = document.getElementById("guest-code");
-            if (codeInp) codeInp.value = "";
+            if (codeInp) {
+                codeInp.value = (window._pendingJoinCode && window._pendingJoinCode.length === 4)
+                    ? window._pendingJoinCode : "";
+            }
             switchView('guest-join');
             // Gäste verlieren beim Neustart alles – wenn ihre Runde noch
             // läuft, kommen sie mit einem Tipp zurück statt neu zu tippen.
@@ -385,6 +388,16 @@
             renderWeaknessSuggestion();
             updateMenuGamification();
             switchView('menu');
+            // QR-/Link-Beitritt (?join=CODE): nach Profilwahl automatisch beitreten
+            try {
+                if (window._pendingJoinCode && typeof joinCodedLobby === "function") {
+                    const code = window._pendingJoinCode;
+                    window._pendingJoinCode = null;
+                    const inp = document.getElementById("coded-lobby-join-code");
+                    if (inp) inp.value = code;
+                    setTimeout(() => joinCodedLobby(), 200);
+                }
+            } catch (e) { }
             // Läuft für dieses Kind noch etwas? Dann direkt anbieten –
             // erst das Familien-Duell, sonst die zuletzt genutzte Online-Lobby.
             if (typeof biteWiedereinstiegAn === "function") biteWiedereinstiegAn();

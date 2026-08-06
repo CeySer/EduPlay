@@ -440,6 +440,9 @@
             }
 
             if (viewId === 'vokabeln') loadVocabSystem();
+            if (viewId === 'quiz-setup' && typeof setupCategorySelectors === 'function') {
+                setupCategorySelectors("quiz-area", "sub-category", "lernen");
+            }
             if (viewId === 'formel-setup') {
                 if (typeof setupFormelAreas === 'function') {
                     setupFormelAreas();
@@ -541,6 +544,20 @@
             try {
                 if (localStorage.getItem('eduplayTheme') !== 'light') {
                     document.body.classList.add('dark-theme');
+                }
+            } catch (e) { }
+            // QR-/Deep-Link: ?join=ABCD → Code merken, nach Login/Profil beitreten
+            try {
+                const params = new URLSearchParams(window.location.search || "");
+                let join = (params.get("join") || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+                if (join.length === 4) {
+                    window._pendingJoinCode = join;
+                    // URL bereinigen, damit Reload nicht erneut triggert
+                    try {
+                        const u = new URL(window.location.href);
+                        u.searchParams.delete("join");
+                        window.history.replaceState({}, "", u.pathname + u.search + u.hash);
+                    } catch (e2) { }
                 }
             } catch (e) { }
         });

@@ -263,9 +263,7 @@
                         subjects: g.subjects
                     }));
                 }
-                if (typeof BERUFSSCHULE !== 'undefined' && BERUFSSCHULE.length) {
-                    areas.push({ value: "beruf", label: "Berufsschule", stufe: "Berufsschule", subjects: BERUFSSCHULE });
-                }
+                // Berufsschule vorerst entfernt (laut Anforderung)
                 const quer = subjectsAcrossGrades();
                 if (quer.length) {
                     areas.push({
@@ -843,11 +841,69 @@
             ], "sawtooth", 0.11)
         };
 
+        // Hintergrundmusik (leise, Minecraft-ähnlich, abschaltbar)
+        let bgMusicOn = true;
+        let bgMusicNodes = [];
+        try { bgMusicOn = localStorage.getItem("eduplayBgMusic") !== "off"; } catch (e) { }
+
+        function startBgMusic() {
+            if (!bgMusicOn || !soundOn) return;
+            stopBgMusic();
+            const ctx = ensureAudio();
+            if (!ctx) return;
+            // Sanfte, leise Ambient-Schleife (tiefe Töne)
+            const notes = [130.81, 164.81, 196.00, 164.81]; // C3 E3 G3 E3
+            let t = ctx.currentTime;
+            notes.forEach((freq, i) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = "sine";
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.012, t);
+                gain.gain.linearRampToValueAtTime(0.018, t + 1.5);
+                gain.gain.linearRampToValueAtTime(0.012, t + 3);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(t);
+                osc.stop(t + 3.2);
+                bgMusicNodes.push(osc, gain);
+                t += 3;
+            });
+            // Loop alle ~12s
+            if (window._bgMusicTimeout) clearTimeout(window._bgMusicTimeout);
+            window._bgMusicTimeout = setTimeout(startBgMusic, 12000);
+        }
+
+        function stopBgMusic() {
+            bgMusicNodes.forEach(n => { try { n.stop?.(); n.disconnect?.(); } catch (e) {} });
+            bgMusicNodes = [];
+            if (window._bgMusicTimeout) { clearTimeout(window._bgMusicTimeout); window._bgMusicTimeout = null; }
+        }
+
+        function toggleBgMusic() {
+            bgMusicOn = !bgMusicOn;
+            try { localStorage.setItem("eduplayBgMusic", bgMusicOn ? "on" : "off"); } catch (e) { }
+            if (bgMusicOn && soundOn) startBgMusic();
+            else stopBgMusic();
+            showToast(bgMusicOn ? "🎵 Hintergrundmusik an" : "🎵 Hintergrundmusik aus", "success", "bgmusic");
+        }
+
+        // Moderne Klick-Sounds für alle Buttons
+        document.addEventListener("click", (e) => {
+            const btn = e.target.closest("button, .btn-primary, .btn-secondary, .btn-ghost, [onclick]");
+            if (btn && soundOn) SFX.tap();
+        }, true);
+
         function toggleSound() {
             soundOn = !soundOn;
             try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
             document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
-            if (soundOn) SFX.tap();
+            if (soundOn) {
+                SFX.tap();
+                if (bgMusicOn) startBgMusic();
+            } else {
+                stopBgMusic();
+            }
             showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
         }
 
@@ -873,8 +929,9 @@
             const codeEl = document.getElementById("live-duel-lobby-code");
             const code = (codeEl && codeEl.innerText || "").trim().toUpperCase();
             if (!code || code.length < 4) return showToast("Noch kein Code.", "error");
-            const text = "EduPlay Lobby-Code: " + code + "\nOnline-Lobby → Code eingeben.";
-            if (navigator.share) navigator.share({ title: "EduPlay Lobby", text }).catch(() => { });
+            const joinUrl = (window.location.origin || "") + (window.location.pathname || "/") + "?join=" + encodeURIComponent(code);
+            const text = "EduPlay Lobby-Code: " + code + "\nLink: " + joinUrl + "\nOder: Online-Lobby → Code eingeben.";
+            if (navigator.share) navigator.share({ title: "EduPlay Lobby", text, url: joinUrl }).catch(() => { });
             else if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => showToast("Code " + code + " kopiert!", "success"));
             else appAlert(text, { titel: "Lobby-Code", icon: "🔗" });
         }

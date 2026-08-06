@@ -121,7 +121,8 @@
                 if (checked.length === 0) return showToast("Bitte mindestens eine Vokabelgruppe auswählen!", "error");
                 const dir = (document.getElementById("live-duel-vokabel-dir") || {}).value || "mix";
                 const mode = (document.getElementById("live-duel-vokabel-mode") || {}).value || "versus";
-                const questions = prepareQuestions(buildVocabTestQuestions(checked, dir).sort(() => Math.random() - 0.5).slice(0, 10));
+                const qCount = parseInt((document.getElementById("live-duel-count") || {}).value) || 10;
+                const questions = prepareQuestions(buildVocabTestQuestions(checked, dir).sort(() => Math.random() - 0.5).slice(0, qCount));
                 if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
                 lobbyData = {
                     type: "quiz",
@@ -136,8 +137,8 @@
                 };
             } else {
                 const category = document.getElementById("live-duel-category").value;
-                const questions = prepareQuestions(questionsForKey(category).sort(() => Math.random() - 0.5).slice(0,
-                    10));
+                const qCount = parseInt((document.getElementById("live-duel-count") || {}).value) || 10;
+                const questions = prepareQuestions(questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, qCount));
                 if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
                 lobbyData = {
                     type: "quiz",
@@ -239,12 +240,21 @@
         function startLiveDuelCountdown(deadline) {
             clearLiveDuelTimers();
             const el = document.getElementById("live-duel-countdown");
+            const playEl = document.getElementById("live-duel-play-content");
             const tick = () => {
                 const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
                 if (el) el.innerText = left > 0 ? left + "s" : "⏰";
-                if (left > 0 && left <= 5) SFX.tick();
+                if (left > 0 && left <= 5) {
+                    SFX.tick();
+                    if (playEl) playEl.style.boxShadow = "0 0 0 3px rgba(239,68,68,0.7), 0 0 24px rgba(239,68,68,0.35)";
+                    if (el) el.classList.add("text-rose-400");
+                } else {
+                    if (playEl) playEl.style.boxShadow = "";
+                    if (el) el.classList.remove("text-rose-400");
+                }
                 if (left <= 0) {
                     clearLiveDuelTimers();
+                    if (playEl) playEl.style.boxShadow = "";
                     if (isLiveDuelCreator && !liveDuelResolving) {
                         liveDuelResolving = true;
                         SFX.timeUp();
@@ -322,7 +332,8 @@
                 if (_clCode) _clCode.innerText = data.code || "";
                 const qr = document.getElementById("live-duel-lobby-qr");
                 if (qr && data.code) {
-                    const payload = encodeURIComponent("EduPlay Lobby " + data.code);
+                    const joinUrl = (window.location.origin || "") + (window.location.pathname || "/") + "?join=" + encodeURIComponent(data.code);
+                    const payload = encodeURIComponent(joinUrl);
                     qr.innerHTML = '<img alt="QR" class="w-full h-full object-contain" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=' + payload + '">';
                 } else if (qr) {
                     qr.innerHTML = "";
@@ -1076,10 +1087,16 @@
             } catch (e) { }
 
             let rowsHtml = "";
+            const qReveal = isQuiz ? data.questions[data.currentIndex] : null;
             Object.values(data.players).filter(p => !p.pending).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
                 let icon, detail = "";
                 if (isQuiz) {
                     icon = p.lastRoundPoints > 0 ? "✅" : "❌";
+                    if (qReveal && p.lastAnswer != null && qReveal.answers[p.lastAnswer] != null) {
+                        detail = `<div class="text-[11px] text-gray-400 font-normal mt-0.5">gewählt: ${esc(qReveal.answers[p.lastAnswer])}</div>`;
+                    } else if (p.hasAnswered === false || p.lastAnswer == null) {
+                        detail = `<div class="text-[11px] text-gray-500 font-normal mt-0.5">keine Antwort</div>`;
+                    }
                 } else {
                     const info = wordStatusInfo(p.wordStatus, p);
                     icon = info.icon;
@@ -1304,7 +1321,7 @@
                 } else if (data.subject === "vokabel" && Array.isArray(data.vocabGroups) && data.vocabGroups.length) {
                     const questions = prepareQuestions(
                         buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix")
-                        .sort(() => Math.random() - 0.5).slice(0, 10)
+                        .sort(() => Math.random() - 0.5).slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
                     );
                     if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
                     await liveDuelRef.update({
@@ -1320,7 +1337,7 @@
                     const catSel = document.getElementById("again-category");
                     const category = (catSel && catSel.value) ? catSel.value : data.category;
                     const questions = prepareQuestions(
-                        questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10)
+                        questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
                     );
                     if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
                     await liveDuelRef.update({
@@ -1921,8 +1938,8 @@
                 if (checked.length === 0) return showToast("Bitte mindestens eine Vokabelgruppe auswählen!", "error");
                 const vocabDir = (document.getElementById("live-duel-vokabel-dir") || {}).value || "mix";
                 const mode = (document.getElementById("live-duel-vokabel-mode") || {}).value || "versus";
-                const questions = prepareQuestions(buildVocabTestQuestions(checked, vocabDir).sort(() => Math.random() -
-                    0.5).slice(0, 10));
+                const qCount = parseInt((document.getElementById("live-duel-count") || {}).value) || 10;
+                const questions = prepareQuestions(buildVocabTestQuestions(checked, vocabDir).sort(() => Math.random() - 0.5).slice(0, qCount));
                 if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
                 lobbyData = {
                     type: "quiz",
@@ -1938,9 +1955,9 @@
                     players: {}
                 };
             } else {
-                // Quiz-Modus bleibt unverändert
+                // Quiz-Modus
                 const category = document.getElementById("live-duel-category").value;
-                const questions = prepareQuestions(questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10));
+                const questions = prepareQuestions(questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10)));
                 if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
                 lobbyData = {
                     type: "quiz",
@@ -2175,7 +2192,7 @@
                 } else if (data.subject === "vokabel" && Array.isArray(data.vocabGroups) && data.vocabGroups.length) {
                     const questions = prepareQuestions(
                         buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix")
-                        .sort(() => Math.random() - 0.5).slice(0, 10)
+                        .sort(() => Math.random() - 0.5).slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
                     );
                     if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
                     await liveDuelRef.update({
@@ -2191,7 +2208,7 @@
                     const catSel = document.getElementById("again-category");
                     const category = (catSel && catSel.value) ? catSel.value : data.category;
                     const questions = prepareQuestions(
-                        questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10)
+                        questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
                     );
                     if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
                     await liveDuelRef.update({

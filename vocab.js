@@ -206,7 +206,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="vocab-actions">
+                        <div class="vocab-actions flex gap-2">
+                            <button onclick="prevVocab()" class="btn-secondary flex-1 text-center">← Zurück</button>
                             <button onclick="nextVocab(false)" class="btn-primary flex-1 text-center">Weiter ➔</button>
                             <button onclick="nextVocab(true)" class="btn-secondary flex-1 text-center text-sm">✅ Kann ich</button>
                         </div>
@@ -329,5 +330,11 @@
                 onVocabCorrect(2, { firstTry: false });
             }
             vIndex = (vIndex + 1) % currentVocabList.length;
+            showVocabQuestion();
+        }
+
+        function prevVocab() {
+            if (!currentVocabList || !currentVocabList.length) return;
+            vIndex = (vIndex - 1 + currentVocabList.length) % currentVocabList.length;
             showVocabQuestion();
         }

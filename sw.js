@@ -36,7 +36,8 @@ const GRUNDGERUEST = [
     './app-misc.js',
 './lobby-avatar.js',
     './konto-loeschen.js',
-    './datenschutz.html'
+    './datenschutz.html',
+    './konto-loeschen.html'
 ];
 
 self.addEventListener('install', function (event) {

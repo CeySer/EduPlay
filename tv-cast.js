@@ -1117,7 +1117,8 @@
                     : `<p class="text-3xl font-black text-amber-400">${typeof wrFigureEmoji === "function" ? wrFigureEmoji(theme) : "⛄"} Fertig! Wort war: ${esc(word)}</p>
                        <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">Weiter ➔</button>`;
             } else {
-                footer = `<p class="text-2xl font-bold text-sky-300">Dran: ${esc(turnName)} · Fehler ${data.wrongCount || 0}/${maxW}</p>`;
+                footer = `<p class="text-2xl font-bold text-sky-300">Dran: ${esc(turnName)} · Fehler ${data.wrongCount || 0}/${maxW}</p>
+                          <button onclick="skipTVWortratenTurn()" class="btn-secondary text-sm py-2 px-5 mt-2">⏭️ Zug überspringen</button>`;
             }
             setTVHostPlayHTML(`
                 <div class="h-[90vh] flex flex-col p-6 gap-4">
@@ -1173,6 +1174,28 @@
                 roundSolved: false,
                 usedWords
             });
+        }
+
+        // Manuelles Weiterschalten, falls der/die Spieler:in am Zug gerade nicht
+        // reagiert (z.B. schaut nicht aufs Handy) - ohne diesen Knopf hängt die
+        // Runde sonst fest, weil es (anders als beim normalen Online-Wort-Rätsel)
+        // hier keinen automatischen Zug-Timer gibt.
+        async function skipTVWortratenTurn() {
+            if (!tvGameRef || !isTVHost) return;
+            try {
+                await db.runTransaction(async (txn) => {
+                    const snap = await txn.get(tvGameRef);
+                    if (!snap.exists) return;
+                    const data = snap.data();
+                    if (data.status !== "playing" || data.mode !== "wortraten" || data.roundOver) return;
+                    const order = data.order || [];
+                    if (!order.length) return;
+                    const cur = (data.turnIndex || 0) % order.length;
+                    txn.update(tvGameRef, { turnIndex: (cur + 1) % order.length });
+                });
+            } catch (e) {
+                handleError("skipTVWortratenTurn", e, "Zug konnte nicht übersprungen werden.");
+            }
         }
 
         async function submitTVWrLetter(letter) {

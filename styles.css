@@ -2124,6 +2124,44 @@ button, a, .btn-primary, .btn-secondary { touch-action: manipulation; -webkit-ta
     }
 }
 
+/* TV-Host/TV-Player: die Fragen-Ansicht ist auf feste h-[90vh] gebaut (war
+   bisher nur im Hochformat mit viel Platz sichtbar). Im Querformat reicht
+   die Höhe knapp nicht - Fragen-Text wurde oben abgeschnitten. Höhe daher
+   flexibel statt fest, plus Schrift/Kacheln kompakter. */
+@media (orientation: landscape) and (pointer: coarse) {
+    #tv-host-play .h-\[90vh\],
+    #tv-player-play .h-\[90vh\],
+    #view-tv-quiz-host .h-\[90vh\],
+    #view-tv-quiz-player .h-\[90vh\] {
+        height: auto !important;
+        min-height: 100%;
+    }
+    #tv-host-play h1,
+    #tv-player-play h1 {
+        font-size: 1.6rem !important;
+        line-height: 1.25 !important;
+    }
+    #tv-host-play .glass-card-glow.p-8,
+    #tv-player-play .glass-card-glow.p-8 {
+        padding: 0.85rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    #tv-host-play .min-h-\[120px\],
+    #tv-player-play .min-h-\[120px\] {
+        min-height: 64px !important;
+    }
+    #tv-host-play .text-8xl,
+    #tv-player-play .text-8xl {
+        font-size: 2.5rem !important;
+    }
+    #tv-host-play .text-3xl,
+    #tv-player-play .text-3xl,
+    #tv-host-play .text-4xl,
+    #tv-player-play .text-4xl {
+        font-size: 1.4rem !important;
+    }
+}
+
 /* Landscape Handy */
 @media (max-height: 480px) and (orientation: landscape) {
     #app-shell {

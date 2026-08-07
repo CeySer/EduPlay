@@ -1780,6 +1780,8 @@ VIEW: QUIZ SETUP
                 </div>
                 <div class="glass-card p-5 text-center space-y-4 shadow-lg">
                     <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
+                    <button id="question-speak-btn" class="hidden btn-secondary text-sm py-2 px-4 mx-auto"
+                        onclick="speakCurrentQuestion()" title="Frage vorlesen">🔊 Vorlesen</button>
                     <div id="options-container" class="flex flex-col gap-2.5"></div>
                     <div id="explanation-box" class="hidden"></div>
                     <button id="next-question-btn" class="btn-primary w-full hidden text-center"

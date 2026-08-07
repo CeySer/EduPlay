@@ -178,6 +178,8 @@
             document.getElementById("next-question-btn").classList.add("hidden");
 
             if (quizMode === 'flashcards') {
+                const speakBtn0 = document.getElementById("question-speak-btn");
+                if (speakBtn0) speakBtn0.classList.add("hidden");
                 document.getElementById("question-text").innerText = "Klicke zum Umdrehen";
                 optsContainer.innerHTML =
                     `<div class="flip-card w-full h-64 cursor-pointer" onclick="this.classList.toggle('flipped')">
@@ -192,6 +194,7 @@
                             <button onclick="triggerNextQuestion()" class="mt-4 btn-primary w-full text-center">Nächste Karte ➔</button>`;
             } else {
                 document.getElementById("question-text").innerText = q.question;
+                if (typeof updateSpeakButtonForQuestion === 'function') updateSpeakButtonForQuestion(q);
                 q.answers.forEach((ans, i) => {
                     const b = document.createElement("button");
                     b.className =

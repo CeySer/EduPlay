@@ -1125,6 +1125,40 @@
         }
         bindMusicAutostart();
 
+        // ============================================================
+        //  VORLESEFUNKTION (Klasse 1/2)
+        //  Nutzt die Web Speech API (Browser-eigene Sprachausgabe, kein
+        //  Audio-Asset). Button/Auto-Vorlesen tauchen nur auf, wenn die
+        //  aktuelle Frage grade 1 oder 2 zugeordnet ist.
+        // ============================================================
+        function speakText(text) {
+            try {
+                if (!('speechSynthesis' in window) || !text) return;
+                window.speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(text);
+                u.lang = "de-DE";
+                u.rate = 0.9;
+                window.speechSynthesis.speak(u);
+            } catch (e) { }
+        }
+
+        function speakCurrentQuestion() {
+            const q = (typeof currentQuestions !== 'undefined' && typeof qIndex !== 'undefined')
+                ? currentQuestions[qIndex] : null;
+            if (q && q.question) speakText(q.question);
+        }
+
+        // Zeigt/versteckt den 🔊-Button je nach Klassenstufe der Frage und
+        // liest bei Klasse 1/2 automatisch vor, sobald eine neue Frage
+        // angezeigt wird.
+        function updateSpeakButtonForQuestion(q) {
+            const btn = document.getElementById("question-speak-btn");
+            const isEarlyGrade = !!(q && (q.grade === 1 || q.grade === 2));
+            if (btn) btn.classList.toggle("hidden", !isEarlyGrade);
+            if (isEarlyGrade && q.question) speakText(q.question);
+            else if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        }
+
         function inviteFriends() {
             const codeEl = document.getElementById("live-duel-lobby-code");
             const code = (codeEl && codeEl.innerText || "").trim().toUpperCase();

@@ -244,7 +244,63 @@
             return wrap;
         }
 
+        // ============================================================
+        //  TEST-ERGEBNIS-HINWEIS FÜR ELTERN
+        //  Zeigt im Familien-Hub (erster Bildschirm nach Login) einen
+        //  Banner, sobald ein Kind einen zugewiesenen Test abgeschlossen
+        //  hat und die Eltern das Ergebnis noch nicht gesehen haben.
+        // ============================================================
+        function renderTestResultsBanner() {
+            const container = document.getElementById("family-test-banner");
+            if (!container) return;
+            const entries = Object.keys(ALL_PROFILES || {})
+                .map(k => ({ key: k, p: ALL_PROFILES[k], t: (ALL_PROFILES[k].testHistory || [])[0] }))
+                .filter(e => e.t && !e.t.seenByParent);
+            if (entries.length === 0) {
+                container.innerHTML = "";
+                container.classList.add("hidden");
+                return;
+            }
+            container.classList.remove("hidden");
+            container.innerHTML = entries.map(e => {
+                const pct = e.t.total > 0 ? Math.round((e.t.correct / e.t.total) * 100) : 0;
+                const emoji = pct >= 80 ? "🏆" : pct >= 50 ? "🎉" : "💪";
+                return `
+                    <div class="glass-card-glow p-3 flex items-center justify-between gap-2 mb-2" style="border-color:rgba(16,185,129,0.35);">
+                        <div class="flex items-center gap-2 text-left">
+                            <span class="text-2xl">${emoji}</span>
+                            <div>
+                                <div class="text-white font-bold text-sm">${esc(e.p.name)} hat einen Test abgeschlossen</div>
+                                <div class="text-emerald-400 font-black text-xs">${e.t.correct}/${e.t.total} (${pct}%)</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5 shrink-0">
+                            <button onclick="openTestResultInDashboard('${e.key}')" class="text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1.5 rounded-lg">Ansehen</button>
+                            <button onclick="markTestResultSeen('${e.key}')" class="text-gray-500 hover:text-gray-300 text-sm px-1" title="Ausblenden">✕</button>
+                        </div>
+                    </div>`;
+            }).join("");
+        }
+
+        function markTestResultSeen(key) {
+            const p = ALL_PROFILES[key];
+            if (!p || !p.testHistory || !p.testHistory[0]) return;
+            p.testHistory[0].seenByParent = true;
+            if (!isAnonGuest && currentParentUser) {
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key)
+                    .update({ testHistory: p.testHistory })
+                    .catch(e => console.warn("markTestResultSeen:", e));
+            }
+            renderTestResultsBanner();
+        }
+
+        function openTestResultInDashboard(key) {
+            markTestResultSeen(key);
+            fragePinUndOeffneDashboard('statistiken', key);
+        }
+
         function renderFamilyHub() {
+            renderTestResultsBanner();
             const grid = document.getElementById("family-profiles-grid");
             if (grid) grid.innerHTML = "";
             const preview = document.getElementById("family-profiles-preview");

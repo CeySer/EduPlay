@@ -352,7 +352,8 @@
                 currentPlayer.testHistory.unshift({
                     date: new Date().toISOString(),
                     correct: testCorrectCount,
-                    total: total
+                    total: total,
+                    seenByParent: false
                 });
                 currentPlayer.testHistory = currentPlayer.testHistory.slice(0, 10);
                 currentPlayer.pendingTest = null;

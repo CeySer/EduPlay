@@ -515,7 +515,7 @@
         // PIN-Abfrage fürs Eltern-Dashboard. Früher über prompt() – das
         // ist in iOS-WebViews unzuverlässig und hätte den Eltern-Bereich
         // in der Store-Version unerreichbar machen können.
-        async function fragePinUndOeffneDashboard() {
+        async function fragePinUndOeffneDashboard(targetSection, targetPlayerKey) {
             const eingabe = await appPrompt("Bitte gib die PIN ein, um den Eltern-Bereich zu öffnen.", {
                 titel: "🔒 Eltern-Bereich",
                 icon: "🔒",
@@ -540,7 +540,8 @@
                 return;
             }
             debugDatabaseLoading();
-            switchDashboardSection('inhalte');
+            if (targetPlayerKey && typeof selectedStatPlayer !== 'undefined') selectedStatPlayer = targetPlayerKey;
+            switchDashboardSection(targetSection || 'inhalte');
         }
 
         // PIN vergessen: statt eines E-Mail-Versands (den die App aktuell

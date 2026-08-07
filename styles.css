@@ -2035,10 +2035,66 @@
         body:not(.dark-theme) .text-blue-400 { color: #1d4ed8 !important; }
         body:not(.dark-theme) .text-cyan-300,
         body:not(.dark-theme) .text-cyan-400 { color: #0e7490 !important; }
+        body:not(.dark-theme) .text-sky-300,
+        body:not(.dark-theme) .text-sky-400 { color: #0369a1 !important; }
+        body:not(.dark-theme) .text-orange-300,
+        body:not(.dark-theme) .text-orange-400 { color: #c2410c !important; }
+
+        /* Weiße Schrift auf bunten Buttons/Flächen behalten */
+        body:not(.dark-theme) .btn-primary,
+        body:not(.dark-theme) .btn-primary *,
+        body:not(.dark-theme) .fab,
+        body:not(.dark-theme) .fab .badge,
+        body:not(.dark-theme) [class*="bg-emerald-"],
+        body:not(.dark-theme) [class*="bg-emerald-"] *,
+        body:not(.dark-theme) [class*="bg-indigo-"],
+        body:not(.dark-theme) [class*="bg-indigo-"] *,
+        body:not(.dark-theme) [class*="bg-amber-"],
+        body:not(.dark-theme) [class*="bg-amber-"] *,
+        body:not(.dark-theme) [class*="bg-rose-"],
+        body:not(.dark-theme) [class*="bg-rose-"] *,
+        body:not(.dark-theme) [class*="bg-purple-"],
+        body:not(.dark-theme) [class*="bg-purple-"] *,
+        body:not(.dark-theme) [class*="bg-violet-"],
+        body:not(.dark-theme) [class*="bg-violet-"] *,
+        body:not(.dark-theme) [class*="bg-fuchsia-"],
+        body:not(.dark-theme) [class*="bg-fuchsia-"] *,
+        body:not(.dark-theme) [class*="bg-pink-"],
+        body:not(.dark-theme) [class*="bg-pink-"] *,
+        body:not(.dark-theme) [class*="bg-sky-"],
+        body:not(.dark-theme) [class*="bg-sky-"] *,
+        body:not(.dark-theme) [class*="bg-blue-"],
+        body:not(.dark-theme) [class*="bg-blue-"] *,
+        body:not(.dark-theme) [class*="bg-cyan-"],
+        body:not(.dark-theme) [class*="bg-cyan-"] *,
+        body:not(.dark-theme) [class*="bg-teal-"],
+        body:not(.dark-theme) [class*="bg-teal-"] *,
+        body:not(.dark-theme) [class*="bg-green-"],
+        body:not(.dark-theme) [class*="bg-green-"] *,
+        body:not(.dark-theme) [class*="bg-orange-"],
+        body:not(.dark-theme) [class*="bg-orange-"] *,
+        body:not(.dark-theme) [class*="bg-red-"],
+        body:not(.dark-theme) [class*="bg-red-"] *,
+        body:not(.dark-theme) [class*="bg-yellow-"].text-white,
+        body:not(.dark-theme) [style*="gradient"].text-white,
+        body:not(.dark-theme) [style*="gradient"] .text-white,
+        body:not(.dark-theme) button[style*="linear-gradient"],
+        body:not(.dark-theme) button[style*="var(--gradient"] {
+            color: #fff !important;
+        }
+        /* Hellgelbe Gradienten: dunkle Schrift */
+        body:not(.dark-theme) button[style*="#f59e0b,#fbbf24"],
+        body:not(.dark-theme) button[style*="#fbbf24"] {
+            color: #0b1020 !important;
+        }
 
         body:not(.dark-theme) .bg-white\/5,
         body:not(.dark-theme) .bg-white\/10 {
-            background-color: rgba(0, 0, 0, 0.04) !important;
+            background-color: rgba(15, 23, 42, 0.04) !important;
+        }
+        body:not(.dark-theme) .hover\:bg-white\/5:hover,
+        body:not(.dark-theme) .hover\:bg-white\/10:hover {
+            background-color: rgba(15, 23, 42, 0.07) !important;
         }
         body:not(.dark-theme) .border-white\/5,
         body:not(.dark-theme) .border-white\/10,
@@ -2046,16 +2102,47 @@
         body:not(.dark-theme) .border-gray-600 {
             border-color: var(--border-color) !important;
         }
+        /* Graue Action-Buttons lesbar halten */
         body:not(.dark-theme) .bg-gray-700,
         body:not(.dark-theme) .bg-gray-800,
         body:not(.dark-theme) .bg-gray-900 {
-            background-color: #e9eef8 !important;
-            color: var(--text-primary) !important;
+            background-color: #64748b !important;
+            color: #fff !important;
+        }
+        body:not(.dark-theme) .hover\:bg-gray-600:hover {
+            background-color: #475569 !important;
         }
         body:not(.dark-theme) .bg-black\/40,
         body:not(.dark-theme) .bg-black\/50,
         body:not(.dark-theme) .bg-black\/60 {
-            background-color: rgba(0, 0, 0, 0.08) !important;
+            background-color: rgba(15, 23, 42, 0.06) !important;
+        }
+
+        /* FAB Tooltip + Badge Light */
+        body:not(.dark-theme) .fab .tooltip {
+            background: #ffffff;
+            color: var(--text-primary);
+            border-color: var(--border-color);
+            box-shadow: var(--shadow-card);
+        }
+        body:not(.dark-theme) .fab .badge {
+            border-color: var(--bg-primary);
+        }
+
+        /* Divider */
+        body:not(.dark-theme) .h-px.bg-white\/10,
+        body:not(.dark-theme) .bg-white\/10.h-px {
+            background-color: var(--border-color) !important;
+        }
+
+        /* Progress-Tracks */
+        body:not(.dark-theme) .stat-bar {
+            background: rgba(15, 23, 42, 0.08) !important;
+        }
+
+        /* Glow-Text dezenter */
+        body:not(.dark-theme) .glow-text {
+            text-shadow: 0 0 24px rgba(99, 102, 241, 0.18);
         }
 
 /* Mobile Performance */

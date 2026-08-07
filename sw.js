@@ -37,7 +37,9 @@ const GRUNDGERUEST = [
 './lobby-avatar.js',
     './konto-loeschen.js',
     './datenschutz.html',
-    './konto-loeschen.html'
+'./konto-loeschen.js',
+    './email-bestaetigung.js',
+
 ];
 
 self.addEventListener('install', function (event) {

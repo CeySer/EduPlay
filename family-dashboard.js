@@ -4,10 +4,12 @@
         function registerParent() {
             const e = document.getElementById("auth-email").value;
             const p = document.getElementById("auth-password").value;
-            auth.createUserWithEmailAndPassword(e, p)
-                .then(() => showToast("Account erstellt!", "success"))
+auth.createUserWithEmailAndPassword(e, p)
+                .then((cred) => cred.user.sendEmailVerification()
+                    .then(() => showToast("Account erstellt! Wir haben dir eine Bestätigungsmail geschickt 📧", "success"))
+                    .catch(() => showToast("Account erstellt – die Bestätigungsmail ging leider nicht raus.", "error")))
                 .catch(e => showToast(e.message, "error"));
-        }
+                    }
 
         function loginParent() {
             const e = document.getElementById("auth-email").value;
@@ -104,7 +106,13 @@
                     startGuestSession();
                     return;
                 }
-                isAnonGuest = false;
+                                isAnonGuest = false;
+                // Ohne bestätigte Adresse kommt niemand an die Familiendaten.
+                // Gäste und Google-Anmeldungen sind ausgenommen.
+                if (typeof emailBestaetigungNoetig === "function" && emailBestaetigungNoetig(user)) {
+                    zeigeEmailSperre(user);
+                    return;
+                }
                 loadFamilyProfiles();
             } else {
                 currentParentUser = null;

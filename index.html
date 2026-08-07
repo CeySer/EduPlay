@@ -1643,6 +1643,16 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div id="pin-hint" class="hidden text-xs font-bold text-rose-400"></div>
                         <button onclick="saveAdminPinFromSettings()" class="btn-primary w-full text-center">PIN speichern</button>
                     </div>
+                    <!-- Entwickler-Modus: aktuell offen sichtbar zum Testen, kann später
+                         wieder hinter einen Schalter/Long-Press versteckt werden. -->
+                    <div class="pt-3 border-t border-white/5 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-black text-cyan-400">🛠 Entwickler-Modus</h3>
+                            <button onclick="renderDevPanel()" class="text-xs text-gray-400 hover:text-white font-bold">🔄 Aktualisieren</button>
+                        </div>
+                        <div id="dev-panel-content" class="bg-black/20 rounded-xl p-3 overflow-x-auto"></div>
+                        <button onclick="devClearLocalData()" class="btn-secondary w-full text-center text-xs text-rose-400" style="border-color:rgba(244,63,94,0.3);">🗑 Lokale Daten leeren</button>
+                    </div>
                     <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.30</div>
                 </div>
             </div>

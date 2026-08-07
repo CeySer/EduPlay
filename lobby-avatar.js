@@ -412,6 +412,7 @@
                 const pct = Math.round((typeof musicVolume !== 'undefined' ? musicVolume : 0.25) * 100);
                 if (mSlider) mSlider.value = pct;
                 if (mLabel) mLabel.innerText = pct + '%';
+                if (typeof renderDevPanel === 'function') renderDevPanel();
             }
             // Laufende Timer stoppen
             if (viewId !== 'fokus' && typeof focusTimerInterval !== 'undefined' && focusTimerInterval) {

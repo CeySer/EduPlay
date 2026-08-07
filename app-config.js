@@ -742,20 +742,77 @@
         //  (z.B. ReferenceError in einem onclick-Handler) und zeigt dem
         //  Nutzer wenigstens eine Meldung statt einer eingefrorenen App.
         // ============================================================
+        // Merkt die letzten Fehler fürs Entwickler-Panel (Einstellungen) - rein
+        // im Speicher, nichts davon wird irgendwo gespeichert/verschickt.
+        window.__eduplayErrorLog = window.__eduplayErrorLog || [];
+        function logDevError(msg) {
+            try {
+                window.__eduplayErrorLog.unshift({ time: new Date().toLocaleTimeString("de-DE"), msg: String(msg).slice(0, 300) });
+                window.__eduplayErrorLog = window.__eduplayErrorLog.slice(0, 20);
+            } catch (e) { }
+        }
         window.addEventListener('error', function (e) {
             if (!e || (!e.message && !e.error)) return;
             if (e.message === "Script error." && !e.error) return; // Cross-Origin, keine Info
             try { console.error("[EduPlay] Unerwarteter Fehler", e.error || e.message); } catch (_) { }
+            logDevError((e.error && e.error.message) || e.message);
             if (typeof showToast === "function") {
                 showToast("Hoppla, da ist etwas schiefgelaufen. Bitte kurz neu laden.", "error", "global-error");
             }
         });
         window.addEventListener('unhandledrejection', function (e) {
             try { console.error("[EduPlay] Unbehandelter Promise-Fehler", e.reason); } catch (_) { }
+            logDevError(e.reason && e.reason.message ? e.reason.message : e.reason);
             if (typeof showToast === "function") {
                 showToast("Hoppla, da ist etwas schiefgelaufen. Bitte kurz neu laden.", "error", "global-error");
             }
         });
+
+        // ============================================================
+        //  ENTWICKLER-MODUS (Einstellungen)
+        //  Reiner Lese-/Debug-Bereich fürs Testen: DB-Status, aktiver
+        //  Spieler, Feature-Flags, letzte Fehler. Verändert nichts am
+        //  Spielbetrieb - "Lokale Daten leeren" ausgenommen, klar markiert.
+        // ============================================================
+        function renderDevPanel() {
+            const box = document.getElementById("dev-panel-content");
+            if (!box) return;
+            const qCount = typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE) ? QUESTIONS_DATABASE.length : null;
+            const vLangs = typeof VOCABULARY_DATABASE !== 'undefined' ? Object.keys(VOCABULARY_DATABASE).length : null;
+            const wCount = typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS) ? GERMAN_WORDS.length : null;
+            const curriculumOk = typeof CURRICULUM !== 'undefined';
+            const rows = [
+                ["Version", (document.querySelector('#view-einstellungen .text-gray-500') || {}).innerText || "-"],
+                ["Familie (uid)", currentParentUser ? currentParentUser.uid.slice(0, 10) + "…" : "nicht eingeloggt"],
+                ["Login-E-Mail", currentParentUser ? (currentParentUser.email || "(Google)") : "-"],
+                ["Aktiver Spieler", currentPlayer ? `${currentPlayer.name} (${activePlayerKey})` : "keiner"],
+                ["Profile geladen", Object.keys(ALL_PROFILES || {}).length],
+                ["QUESTIONS_DATABASE", qCount === null ? "❌ nicht geladen" : qCount + " Fragen"],
+                ["VOCABULARY_DATABASE", vLangs === null ? "❌ nicht geladen" : vLangs + " Sprachen"],
+                ["GERMAN_WORDS", wCount === null ? "❌ nicht geladen" : wCount + " Wörter"],
+                ["CURRICULUM", curriculumOk ? "✅ definiert" : "❌ undefiniert (bekannter offener Punkt)"],
+                ["Premium (isPremium)", typeof isPremium === "function" ? String(isPremium()) : "-"],
+                ["Ton / Musik", (typeof soundOn !== 'undefined' ? soundOn : "-") + " / " + Math.round((typeof musicVolume !== 'undefined' ? musicVolume : 0) * 100) + "%"],
+                ["Eltern-PIN gesetzt", typeof adminPin !== 'undefined' && adminPin ? "ja" : "nein"],
+                ["Online", navigator.onLine ? "✅" : "❌ offline"],
+            ];
+            let html = `<table class="w-full text-[11px]"><tbody>` +
+                rows.map(([k, v]) => `<tr class="border-b border-white/5"><td class="py-1 pr-2 text-gray-500 font-bold whitespace-nowrap">${k}</td><td class="py-1 text-gray-200 break-all">${esc(String(v))}</td></tr>`).join("") +
+                `</tbody></table>`;
+            const errs = window.__eduplayErrorLog || [];
+            html += `<div class="mt-3 text-[11px]"><div class="text-gray-500 font-bold mb-1">Letzte Fehler (${errs.length})</div>` +
+                (errs.length ? errs.map(e => `<div class="text-rose-400 mb-0.5">${esc(e.time)} – ${esc(e.msg)}</div>`).join("") : `<div class="text-gray-600">Keine seit Laden der Seite.</div>`) +
+                `</div>`;
+            box.innerHTML = html;
+        }
+
+        async function devClearLocalData() {
+            if (!(await appConfirm("Löscht lokal gespeicherte Einstellungen (Ton/Musik-Lautstärke, gemerkte Lobby) auf diesem Gerät und lädt die App neu. Deine Firestore-Daten (Punkte, Profile) sind davon NICHT betroffen.", {
+                titel: "🗑 Lokale Daten leeren?", icon: "🗑", okText: "Leeren & neu laden", gefahr: true
+            }))) return;
+            try { localStorage.clear(); } catch (e) { }
+            location.reload();
+        }
 
         function handleError(context, err, friendly, opts) {
             opts = opts || {};

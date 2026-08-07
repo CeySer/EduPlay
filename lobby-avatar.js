@@ -303,10 +303,14 @@
             };
             if (typeof showGlobalLoading === "function") showGlobalLoading("Lobby wird erstellt …");
             try {
-                const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lobbyData, {
+const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lobbyData, {
                     code,
                     createdAt: Date.now(),
-                    hostLastSeen: Date.now()
+                    hostLastSeen: Date.now(),
+                    // Wem gehört die Runde? createdBy ist nur der Profil-Schlüssel
+                    // und wechselt bei der Host-Übergabe – die Regeln brauchen
+                    // das Konto dahinter.
+                    hostUid: (auth.currentUser && auth.currentUser.uid) || null
                 }));
                 liveDuelRef = ref;
                 isLiveDuelCreator = true;

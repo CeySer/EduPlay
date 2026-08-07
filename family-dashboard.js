@@ -490,9 +490,11 @@
             // erst das Familien-Duell, sonst die zuletzt genutzte Online-Lobby.
             if (typeof biteWiedereinstiegAn === "function") biteWiedereinstiegAn();
             if (typeof biteOnlineLobbyWiedereinstiegAn === "function") biteOnlineLobbyWiedereinstiegAn();
-            // QR-Code/Link gescannt (?join=CODE)? Dann jetzt automatisch der
-            // Lobby beitreten, statt dass der Code stumm verworfen wird.
+            // QR-Code/Link gescannt (?join=CODE bzw. ?tv=CODE)? Dann jetzt
+            // automatisch der Lobby beitreten, statt dass der Code stumm
+            // verworfen wird.
             if (typeof versucheDeepLinkJoin === "function") versucheDeepLinkJoin();
+            if (typeof versucheTVDeepLinkJoin === "function") versucheTVDeepLinkJoin();
         }
 
         function touchPlayerActivity(key) {

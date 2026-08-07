@@ -1432,10 +1432,31 @@
             tvGameRef.get().then(doc => startTVScrabbleRound(doc.data()));
         }
 
+        // QR-/Link-Beitritt (?tv=CODE): Der Code wird beim Laden in
+        // window._pendingTVCode zwischengespeichert (siehe DOMContentLoaded in
+        // lobby-avatar.js), wurde bisher aber nirgends automatisch abgeholt -
+        // man landete also nie direkt im Spiel. Sobald ein Spielerprofil aktiv
+        // ist (selectProfile in family-dashboard.js ruft das auf), automatisch
+        // der TV-Lobby beitreten.
+        async function versucheTVDeepLinkJoin() {
+            const code = window._pendingTVCode;
+            if (!code || !currentPlayer || isTVHost) return;
+            window._pendingTVCode = null;
+            switchView('tv-quiz-player');
+            await joinTVGame(code);
+        }
+
         // --- TV-QUIZ PLAYER (Handy) ---
         async function joinTVGame(codeOverride) {
             if (!currentParentUser || !currentPlayer) return showToast(
                 "Bitte wähle zuerst oben deinen Spieler aus.", "error", "noprofile");
+            // Der Fernseher (Host-Gerät) zeigt nur an - er kann nicht gleichzeitig
+            // selbst mitspielen, sonst landet er als "Geister-Spieler" in der
+            // Punkteliste, ohne je an der Reihe sein zu können (sein eigenes
+            // onSnapshot überspringt die Spieler-Ansicht komplett, siehe isTVHost
+            // weiter unten).
+            if (isTVHost) return showToast(
+                "Der Fernseher kann nicht gleichzeitig mitspielen - bitte mit einem anderen Handy beitreten.", "error", "hostplay");
 
             let lobbyRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
             // Optional: Code von anderem Account / QR (?tv=CODE)
@@ -1499,19 +1520,25 @@
                             if (data.roundOver) {
                                 body = `<p class="text-lg font-bold text-amber-300 mt-4">Runde vorbei – warte auf den Fernseher…</p>
                                     <p class="text-sm text-gray-400">Dein Stand: ${myData.score || 0} Pkt.</p>`;
-                            } else if (isMyTurn) {
+                            } else {
+                                // Tastatur ist immer sichtbar (wie beim normalen Online-Wort-Duell
+                                // gegeneinander) - nur die Buchstaben sind deaktiviert, solange man
+                                // nicht dran ist. Vorher wurde die Tastatur komplett durch einen
+                                // Warte-Text ersetzt, wirkte wie "keine Tastatur vorhanden".
                                 const alphabet = (typeof WORTRAETSEL_ALPHABET !== "undefined") ? WORTRAETSEL_ALPHABET : "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ".split("");
                                 const kb = alphabet.map(L => {
                                     const used = guessed.has(L);
-                                    return `<button ${used ? "disabled" : ""} onclick="submitTVWrLetter('${L}')"
-                                        class="h-11 rounded-lg font-black text-sm ${used ? "bg-white/5 text-gray-600" : "bg-sky-600/80 text-white active:scale-95"}">${L}</button>`;
+                                    const canTap = isMyTurn && !used;
+                                    return `<button ${canTap ? "" : "disabled"} onclick="submitTVWrLetter('${L}')"
+                                        class="h-11 rounded-lg font-black text-sm ${used ? "bg-white/5 text-gray-600" : canTap ? "bg-sky-600/80 text-white active:scale-95" : "bg-white/5 border border-white/5 text-gray-500"}">${L}</button>`;
                                 }).join("");
-                                body = `<p class="text-center text-sky-300 font-bold mb-2">🎯 Du bist dran!</p>
-                                    <div class="grid grid-cols-7 gap-1.5">${kb}</div>`;
-                            } else {
-                                const name = (turnKey && data.players[turnKey]) ? data.players[turnKey].name : "…";
-                                body = `<p class="text-center text-gray-400 font-bold text-lg mt-6">⏳ ${esc(name)} tippt…</p>
-                                    <p class="text-center text-sm text-gray-500">Schau auf den Fernseher</p>`;
+                                const banner = isMyTurn
+                                    ? `<p class="text-center text-sky-300 font-bold mb-2">🎯 Du bist dran!</p>`
+                                    : (() => {
+                                        const name = (turnKey && data.players[turnKey]) ? data.players[turnKey].name : "…";
+                                        return `<p class="text-center text-gray-400 font-bold mb-2">⏳ ${esc(name)} ist dran…</p>`;
+                                    })();
+                                body = `${banner}<div class="grid grid-cols-7 gap-1.5">${kb}</div>`;
                             }
                             setTVPlayerPlayHTML(`
                                 <div class="space-y-4 p-2">

@@ -2115,6 +2115,15 @@ button, a, .btn-primary, .btn-secondary { touch-action: manipulation; -webkit-ta
     }
 }
 
+/* Handy quer (z.B. beim Spiegeln auf einen Fernseher via Smart View/Screen
+   Mirroring) - Karte darf deutlich breiter werden statt als schmale
+   Hochkant-Spalte mit Balken links/rechts zu bleiben. */
+@media (orientation: landscape) and (pointer: coarse) {
+    #app-shell:not(.max-w-none) {
+        max-width: min(94vw, 1000px);
+    }
+}
+
 /* Landscape Handy */
 @media (max-height: 480px) and (orientation: landscape) {
     #app-shell {

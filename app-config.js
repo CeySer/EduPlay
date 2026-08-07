@@ -970,6 +970,10 @@
         let musicVolume = 0.25;
         let musicTimer = null;
         let musicStep = 0;
+        // 'menu' = ruhige Dur-Melodie (Menü/Setup/Ergebnis), 'game' = treibende
+        // Moll-Arpeggios für aktive Spielrunden, siehe setMusicMode() unten.
+        let musicMode = 'menu';
+        let gameStep = 0;
         try {
             const savedVol = localStorage.getItem("eduplayMusicVolume");
             if (savedVol !== null) musicVolume = Math.max(0, Math.min(1, parseFloat(savedVol)));
@@ -980,6 +984,50 @@
         // verspielter als eine reine Tonleiter.
         const MUSIC_SCALE = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25];
         const MUSIC_PATTERN = [0, 2, 4, 2, 5, 4, 2, 0, 3, 4, 5, 4, 2, 4, 0, 1];
+
+        // Moll-Arpeggio für aktive Spielrunden - schneller, dunklerer,
+        // treibender Sound (Sägezahn + Tiefpass), Basspuls einmal pro Takt.
+        // In Anlehnung an Retro-Synth-Arpeggios (Stranger-Things-artig), aber
+        // weiterhin rein synthetisiert, kein Audio-Asset.
+        const GAME_SCALE = [220.00, 261.63, 329.63, 440.00, 392.00, 329.63, 261.63, 220.00];
+
+        function playMusicNoteGame() {
+            const ctx = ensureMusicAudio();
+            if (!ctx || musicVolume <= 0) return;
+            const t = ctx.currentTime;
+            const freq = GAME_SCALE[gameStep % GAME_SCALE.length];
+            const osc = ctx.createOscillator();
+            const filt = ctx.createBiquadFilter();
+            const g = ctx.createGain();
+            osc.type = "sawtooth";
+            osc.frequency.setValueAtTime(freq, t);
+            filt.type = "lowpass";
+            filt.frequency.setValueAtTime(1400, t);
+            filt.Q.value = 4;
+            g.gain.setValueAtTime(0, t);
+            g.gain.linearRampToValueAtTime(0.28, t + 0.02);
+            g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+            osc.connect(filt);
+            filt.connect(g);
+            g.connect(musicGain);
+            osc.start(t);
+            osc.stop(t + 0.18);
+            // Basspuls einmal pro Takt (alle 8 Arpeggio-Schritte).
+            if (gameStep % 8 === 0) {
+                const bosc = ctx.createOscillator();
+                const bg = ctx.createGain();
+                bosc.type = "square";
+                bosc.frequency.setValueAtTime(freq / 4, t);
+                bg.gain.setValueAtTime(0, t);
+                bg.gain.linearRampToValueAtTime(0.35, t + 0.03);
+                bg.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
+                bosc.connect(bg);
+                bg.connect(musicGain);
+                bosc.start(t);
+                bosc.stop(t + 1.35);
+            }
+            gameStep++;
+        }
 
         function ensureMusicAudio() {
             try {
@@ -1031,12 +1079,25 @@
         function startBackgroundMusic() {
             if (musicTimer || musicVolume <= 0) return;
             if (!ensureMusicAudio()) return;
-            playMusicNote();
-            musicTimer = setInterval(playMusicNote, 900);
+            const tick = musicMode === 'game' ? playMusicNoteGame : playMusicNote;
+            tick();
+            musicTimer = setInterval(tick, musicMode === 'game' ? 180 : 900);
         }
 
         function stopBackgroundMusic() {
             if (musicTimer) { clearInterval(musicTimer); musicTimer = null; }
+        }
+
+        // Screens mit aktiver Spielrunde -> treibende Moll-Musik. Menü,
+        // Setup- und Ergebnis-Screens bleiben bei der ruhigen Dur-Melodie.
+        const GAME_MUSIC_VIEWS = ['quiz', 'duel-play', 'scrabble-play', 'wortraten-play',
+            'live-duel-play', 'tv-quiz-player', 'tv-quiz-host'];
+
+        function setMusicMode(viewId) {
+            const mode = GAME_MUSIC_VIEWS.includes(viewId) ? 'game' : 'menu';
+            if (mode === musicMode) return;
+            musicMode = mode;
+            if (musicTimer) { stopBackgroundMusic(); startBackgroundMusic(); }
         }
 
         function setMusicVolume(pct) {

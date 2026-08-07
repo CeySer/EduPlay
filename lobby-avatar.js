@@ -435,6 +435,8 @@
                 liveDuelUnsubscribe = null;
             }
 
+            if (typeof setMusicMode === 'function') setMusicMode(viewId);
+
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
             const target = document.getElementById(`view-${viewId}`);
             if (target) target.classList.remove('hidden');

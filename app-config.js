@@ -266,17 +266,18 @@
             mode = mode || "alle";
             const areas = [];
             if (mode !== "spass") {
-                if (typeof CURRICULUM !== 'undefined') {
-                    CURRICULUM.forEach(g => areas.push({
+if (typeof CURRICULUM !== 'undefined') {
+                    // Klasse 11–13 ausgeblendet: dort liegen nur rund 10 Fragen
+                    // je Fach. Zum Wiedereinschalten die Filterzeile entfernen.
+                    CURRICULUM.filter(g => g.grade <= 10).forEach(g => areas.push({
                         value: "grade_" + g.grade,
                         label: g.label,
                         stufe: g.stufe,
                         subjects: g.subjects
                     }));
                 }
-                if (typeof BERUFSSCHULE !== 'undefined' && BERUFSSCHULE.length) {
-                    areas.push({ value: "beruf", label: "Berufsschule", stufe: "Berufsschule", subjects: BERUFSSCHULE });
-                }
+                // Berufsschule ausgeblendet: die Fragendateien liegen in
+                // _ausgliedern/beruf/, der Bereich wäre komplett leer.
                 const quer = subjectsAcrossGrades();
                 if (quer.length) {
                     areas.push({
@@ -321,8 +322,17 @@
                     });
                 }
             }
-            return _questionCounts[key] || 0;
+const geladen = _questionCounts[key] || 0;
+            // Seit dem Laden bei Bedarf steht in QUESTIONS_DATABASE nur das,
+            // was schon geholt wurde. Wie viele es insgesamt gibt, weiß das
+            // Verzeichnis (fragen/manifest.js) – sonst zeigt das Menü überall 0.
+            const laut = (typeof fragenAnzahlLaut === 'function') ? fragenAnzahlLaut(key) : 0;
+            return Math.max(geladen, laut);
         }
+
+        // Nach dem Nachladen neu zählen – der Zwischenspeicher oben wird
+        // sonst nie aktualisiert und die Zahlen bleiben zu niedrig.
+        document.addEventListener('fragen-nachgeladen', function () { _questionCounts = null; });
 
         // function fillSubjectSelect(areaId, subjectId) {
         //     const aSel = document.getElementById(areaId);

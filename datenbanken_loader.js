@@ -1,4 +1,4 @@
-/ ============================================================
+// ============================================================
 // DATENBANKEN LOADER
 // Version: 9.0 – Fragen werden erst bei Bedarf geladen
 //
@@ -23,13 +23,13 @@
 // Alle sind gefahrlos mehrfach aufrufbar – was schon da ist,
 // wird nicht erneut geholt.
 // ============================================================
- 
+
 (function () {
     'use strict';
- 
+
     const V = '9.0';
     console.log('🔥 datenbanken_loader.js v' + V + ' (Laden bei Bedarf)');
- 
+
     // ------------------------------------------------------------
     //  BEIM START – ohne das geht das Menü nicht
     // ------------------------------------------------------------
@@ -49,10 +49,10 @@
         'fragen/vocabulary.js',         // Vokabel-Duell
         'formula.js'
     ];
- 
+
     // Diese Namen liefern beim Start bereits Fragen mit.
     const START_QUELLEN = ['SCHOOL_QUESTIONS'];
- 
+
     // ------------------------------------------------------------
     //  Zustand
     // ------------------------------------------------------------
@@ -60,7 +60,7 @@
     const laufendeLadungen = {};     // datei -> Promise
     const eingemischt = {};          // Variablenname -> true
     let zielCache = null;
- 
+
     // Fragen-Dateien können sich selbst anmelden (ältere Bauart).
     const REGISTRIERT = [];
     window.registerQuestions = function (name, arr) {
@@ -71,7 +71,7 @@
         REGISTRIERT.push({ name: name, arr: arr });
         try { window[name] = arr; } catch (e) { /* egal */ }
     };
- 
+
     // ------------------------------------------------------------
     //  QUESTIONS_DATABASE finden
     //
@@ -88,12 +88,12 @@
             )();
             if (ausConst) { zielCache = ausConst; window.QUESTIONS_DATABASE = ausConst; return zielCache; }
         } catch (e) { /* weiter unten */ }
- 
+
         if (!Array.isArray(window.QUESTIONS_DATABASE)) window.QUESTIONS_DATABASE = [];
         zielCache = window.QUESTIONS_DATABASE;
         return zielCache;
     }
- 
+
     function holeArray(name) {
         if (Array.isArray(window[name])) return window[name];
         try {
@@ -104,20 +104,20 @@
             return null;
         }
     }
- 
+
     // Fragen anhängen, ohne Doppelte. Der Schlüssel ist derselbe wie
     // früher beim Zusammenführen: Fragetext + Kategorie.
     const bekannteFragen = new Set();
- 
+
     function mischeEin(name) {
         if (eingemischt[name]) return 0;
         const arr = holeArray(name);
         if (!arr || !arr.length) return 0;
- 
+
         eingemischt[name] = true;
         const zielArr = ziel();
         let neu = 0;
- 
+
         for (let i = 0; i < arr.length; i++) {
             const q = arr[i];
             if (!q) continue;
@@ -129,14 +129,14 @@
         }
         return neu;
     }
- 
+
     // ------------------------------------------------------------
     //  Eine Datei laden (jede nur einmal, parallel erlaubt)
     // ------------------------------------------------------------
     function ladeDatei(pfad) {
         if (geladeneDateien[pfad]) return Promise.resolve(true);
         if (laufendeLadungen[pfad]) return laufendeLadungen[pfad];
- 
+
         const p = new Promise(function (fertig) {
             const s = document.createElement('script');
             s.src = pfad + (pfad.indexOf('?') === -1 ? '?v=' + V : '');
@@ -154,28 +154,28 @@
             };
             document.head.appendChild(s);
         });
- 
+
         laufendeLadungen[pfad] = p;
         return p;
     }
- 
+
     // ------------------------------------------------------------
     //  Verzeichnis durchsuchen
     // ------------------------------------------------------------
     function verzeichnis() {
         return Array.isArray(window.FRAGEN_VERZEICHNIS) ? window.FRAGEN_VERZEICHNIS : [];
     }
- 
+
     // Welche Dateien liefern diese Kategorien?
     function dateienFuerKategorien(kategorien) {
         const gesucht = {};
         kategorien.forEach(function (k) { if (k) gesucht[k] = true; });
- 
+
         return verzeichnis().filter(function (e) {
             return (e.kat || []).some(function (k) { return gesucht[k]; });
         });
     }
- 
+
     // Bei "subject:mathe" ist die Kategorie unbekannt – gesucht wird
     // über den Namen. k7_mathematik und k6_mathe sollen beide passen.
     function dateienFuerFach(fach) {
@@ -188,15 +188,15 @@
             });
         });
     }
- 
+
     // ------------------------------------------------------------
     //  ÖFFENTLICH: Fragen für einen Schlüssel bereitstellen
     // ------------------------------------------------------------
     window.ladeFragenFuer = function (schluessel) {
         if (!schluessel) return Promise.resolve(0);
- 
+
         let eintraege = [];
- 
+
         if (Array.isArray(schluessel)) {
             const flach = [];
             schluessel.forEach(function (k) {
@@ -205,10 +205,10 @@
                 flach.push(s.indexOf('topic:') === 0 ? s.split(':')[1] : s);
             });
             eintraege = dateienFuerKategorien(flach);
- 
+
         } else {
             const s = String(schluessel);
- 
+
             if (s.indexOf('topic:') === 0) {
                 eintraege = dateienFuerKategorien([s.split(':')[1]]);
             } else if (s.indexOf('subject:') === 0) {
@@ -219,7 +219,7 @@
                 eintraege = dateienFuerKategorien([s]);
             }
         }
- 
+
         const offen = eintraege.filter(function (e) { return !geladeneDateien[e.datei]; });
         if (!offen.length) {
             // Schon da – trotzdem einmischen, falls die Datei geladen
@@ -228,16 +228,16 @@
             eintraege.forEach(function (e) { n += mischeEin(e.name); });
             return Promise.resolve(n);
         }
- 
+
         console.log('📥 Lade ' + offen.length + ' Fragendatei(en) für "' + schluessel + '"');
- 
+
         return Promise.all(offen.map(function (e) { return ladeDatei(e.datei); }))
             .then(function () {
                 let neu = 0;
                 eintraege.forEach(function (e) { neu += mischeEin(e.name); });
- 
+
                 REGISTRIERT.forEach(function (r) { neu += mischeEin(r.name); });
- 
+
                 if (neu) {
                     console.log('  ✅ ' + neu + ' Fragen dazu (gesamt ' + ziel().length + ')');
                     try {
@@ -249,7 +249,7 @@
                 return neu;
             });
     };
- 
+
     // Alles laden – für den Eltern-Bereich (Testerstellung, Statistik),
     // wo über den gesamten Bestand gesucht wird. Bewusst getrennt,
     // damit es nicht versehentlich beim Start passiert.
@@ -257,7 +257,7 @@
         const alle = verzeichnis();
         const offen = alle.filter(function (e) { return !geladeneDateien[e.datei]; });
         if (!offen.length) return Promise.resolve(0);
- 
+
         console.log('📥 Lade den gesamten Fragenbestand (' + offen.length + " Dateien) …");
         return Promise.all(offen.map(function (e) { return ladeDatei(e.datei); }))
             .then(function () {
@@ -273,7 +273,7 @@
                 return neu;
             });
     };
- 
+
     // Wie viele Fragen gäbe es zu dieser Kategorie? Beantwortet sich
     // aus dem Verzeichnis, ohne etwas zu laden – für Menü-Anzeigen.
     // Ohne das stünde im Menü überall "0", weil beim Aufbau noch
@@ -281,7 +281,7 @@
     window.fragenAnzahlLaut = function (schluessel) {
         if (!schluessel) return 0;
         const s = String(schluessel);
- 
+
         let treffer;
         if (s.indexOf('subject:') === 0) {
             treffer = dateienFuerFach(s.slice('subject:'.length));
@@ -292,15 +292,15 @@
         } else {
             treffer = dateienFuerKategorien([s]);
         }
- 
+
         return treffer.reduce(function (summe, e) { return summe + (e.n || 0); }, 0);
     };
- 
+
     window.istKategorieGeladen = function (kategorie) {
         const e = dateienFuerKategorien([kategorie]);
         return e.length > 0 && e.every(function (x) { return geladeneDateien[x.datei]; });
     };
- 
+
     // ------------------------------------------------------------
     //  Startvorgang
     // ------------------------------------------------------------
@@ -309,7 +309,7 @@
         verzeichnis().forEach(function (e) {
             (e.kat || []).forEach(function (k) { bestand[k] = (bestand[k] || 0) + (e.n || 0); });
         });
- 
+
         const ohneFragen = [];
         if (typeof CURRICULUM !== 'undefined' && Array.isArray(CURRICULUM)) {
             CURRICULUM.forEach(function (g) {
@@ -320,10 +320,10 @@
                 });
             });
         }
- 
+
         const imVerzeichnis = verzeichnis().length;
         console.log('📚 Verzeichnis: ' + imVerzeichnis + ' Fragendateien vorgemerkt');
- 
+
         if (!imVerzeichnis) {
             console.error('❌ fragen/manifest.js fehlt oder ist leer – es lassen sich keine Fragen nachladen!');
         }
@@ -333,16 +333,16 @@
                 + (ohneFragen.length > 20 ? '\n   … und ' + (ohneFragen.length - 20) + ' weitere' : ''));
         }
     }
- 
+
     function starte() {
         Promise.all(START_DATEIEN.map(ladeDatei)).then(function () {
             let n = 0;
             START_QUELLEN.forEach(function (name) { n += mischeEin(name); });
             REGISTRIERT.forEach(function (r) { n += mischeEin(r.name); });
- 
+
             console.log('📊 Beim Start bereit: ' + ziel().length + ' Fragen');
             selbsttest();
- 
+
             try {
                 document.dispatchEvent(new CustomEvent('datenbanken-geladen', {
                     detail: { count: ziel().length }
@@ -350,12 +350,10 @@
             } catch (e) { /* egal */ }
         });
     }
- 
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', starte);
     } else {
         starte();
     }
 })();
- 
-

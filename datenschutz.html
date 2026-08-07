@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Datenschutz & Impressum – EduPlay Hub</title>
+    <link rel="icon" href="icons/favicon-64.png">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <meta name="robots" content="index, follow">
+
+    <!--
+      Bewusst ohne Tailwind-CDN und ohne styles.css: Diese Seite muss
+      auch dann noch lesbar sein, wenn sonst nichts lädt. Apple verlangt
+      im App Store Connect eine öffentlich erreichbare Datenschutz-URL –
+      das ist diese Datei.
+    -->
+    <style>
+        :root {
+            --bg: #0f1117;
+            --card: rgba(255, 255, 255, 0.04);
+            --line: rgba(255, 255, 255, 0.08);
+            --text: #e7e9ee;
+            --muted: #9aa1ad;
+            --accent: #818cf8;
+            --accent2: #fbbf24;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px 16px 64px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 15px;
+            line-height: 1.65;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .wrap {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 22px 20px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 0 4px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 30px 0 8px;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent2);
+            margin: 20px 0 6px;
+        }
+
+        p,
+        li {
+            color: var(--text);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: var(--accent);
+            overflow-wrap: anywhere;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .back {
+            display: inline-block;
+            padding: 9px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0 4px;
+            font-size: 13.5px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 9px 8px;
+            border-bottom: 1px solid var(--line);
+            vertical-align: top;
+        }
+
+        th {
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .toc a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <a class="back" href="index.html">← Zurück zur App</a>
+
+        <div class="card">
+            <h1>Datenschutz &amp; Impressum</h1>
+            <p class="muted">EduPlay Hub · Stand: 7. August 2026</p>
+        </div>
+
+        <!-- ============================================================
+             IMPRESSUM
+        ============================================================= -->
+        <div class="card">
+            <h2 id="impressum" style="margin-top:0;">Impressum</h2>
+
+            <p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG):</p>
+            <p>
+                Ceyhun Özdemir<br>
+                Michaelstr. 13a<br>
+                47475 Kamp-Lintfort<br>
+                Deutschland
+            </p>
+
+            <h3>Kontakt</h3>
+            <p>E-Mail: <a href="mailto:cu.oezdemir@gmail.com">cu.oezdemir@gmail.com</a></p>
+
+            <h3>Verantwortlich für den Inhalt</h3>
+            <p>Ceyhun Özdemir, Anschrift wie oben.</p>
+
+            <h3>Streitbeilegung</h3>
+            <p>
+                Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor
+                einer Verbraucherschlichtungsstelle teilzunehmen.
+            </p>
+
+            <h3>Haftung für Inhalte und Links</h3>
+            <p>
+                Die Inhalte dieser App werden mit Sorgfalt erstellt. Für die Richtigkeit und
+                Vollständigkeit der Lerninhalte wird keine Gewähr übernommen. Für Inhalte
+                verlinkter externer Seiten sind deren Betreiber verantwortlich.
+            </p>
+        </div>
+
+        <!-- ============================================================
+             DATENSCHUTZERKLÄRUNG
+        ============================================================= -->
+        <div class="card">
+            <h2 id="datenschutz" style="margin-top:0;">Datenschutzerklärung</h2>
+
+            <h3>1. Kurzfassung für Eltern</h3>
+            <ul>
+                <li>Es gibt <strong>keine Werbung</strong>, <strong>kein Tracking</strong>,
+                    <strong>keine Analyse-Dienste</strong> und <strong>keine Käufe</strong> in dieser App.
+                </li>
+                <li>Es werden <strong>keine Daten verkauft oder für Werbung weitergegeben</strong>.</li>
+                <li>Das Konto legen <strong>Eltern</strong> an – mit E-Mail-Adresse und Passwort oder
+                    wahlweise mit einem bestehenden Google-Konto. Kinder benötigen keine eigene
+                    E-Mail-Adresse.</li>
+                <li>Für die Kinderprofile reicht ein <strong>Spitzname</strong>. Echte Namen,
+                    Geburtsdaten oder Fotos werden nicht abgefragt.</li>
+                <li>Das Konto lässt sich jederzeit in der App vollständig löschen.</li>
+            </ul>
+
+            <h3>2. Verantwortlicher</h3>
+            <p>
+                Ceyhun Özdemir, Michaelstr. 13a, 47475 Kamp-Lintfort, Deutschland<br>
+                E-Mail: <a href="mailto:cu.oezdemir@gmail.com">cu.oezdemir@gmail.com</a>
+            </p>
+
+            <h3>3. Welche Daten verarbeitet werden</h3>
+
+            <table>
+                <tr>
+                    <th>Daten</th>
+                    <th>Wozu</th>
+                    <th>Rechtsgrundlage</th>
+                </tr>
+                <tr>
+                    <td>E-Mail-Adresse und Passwort des Eltern-Kontos – bei Anmeldung über Google
+                        stattdessen die dort hinterlegte E-Mail-Adresse und der Anzeigename</td>
+                    <td>Anmeldung, Zuordnung der Familiendaten, Passwort-Zurücksetzen</td>
+                    <td>Art. 6 Abs. 1 lit. b DSGVO (Vertrag)</td>
+                </tr>
+                <tr>
+                    <td>Spielerprofile: Spitzname, gewählter Avatar, Klassenstufe</td>
+                    <td>Darstellung des Profils, Auswahl passender Aufgaben</td>
+                    <td>Art. 6 Abs. 1 lit. b DSGVO</td>
+                </tr>
+                <tr>
+                    <td>Lernfortschritt: beantwortete Aufgaben, Punkte, Coins, Abzeichen, Serien</td>
+                    <td>Fortschrittsanzeige, Belohnungen, Eltern-Übersicht</td>
+                    <td>Art. 6 Abs. 1 lit. b DSGVO</td>
+                </tr>
+                <tr>
+                    <td>Eltern-PIN</td>
+                    <td>Schutz des Eltern-Bereichs</td>
+                    <td>Art. 6 Abs. 1 lit. f DSGVO (Schutz vor unbefugtem Zugriff)</td>
+                </tr>
+                <tr>
+                    <td>Bei gemeinsamen Runden: Spitzname, Punktestand, Antworten der laufenden Runde</td>
+                    <td>Anzeige für die Mitspieler derselben Runde</td>
+                    <td>Art. 6 Abs. 1 lit. b DSGVO</td>
+                </tr>
+                <tr>
+                    <td>Technische Verbindungsdaten (IP-Adresse, Gerät, Zeitpunkt)</td>
+                    <td>Auslieferung der App, Betrieb und Sicherheit</td>
+                    <td>Art. 6 Abs. 1 lit. f DSGVO (sicherer Betrieb)</td>
+                </tr>
+            </table>
+
+            <p class="muted">
+                Einstellungen wie Lautstärke, Design und zwischengespeicherte Aufgaben liegen
+                zusätzlich lokal auf dem Gerät und verlassen es nicht.
+            </p>
+
+            <h3>4. Gemeinsame Runden und Fernseher-Modus</h3>
+            <p>
+                Wer eine Runde eröffnet oder ihr beitritt, macht seinen <strong>Spitznamen und
+                    Punktestand</strong> für die anderen Teilnehmer derselben Runde sichtbar.
+                Übertragen werden ausschließlich Spitzname, Punkte und die Aufgaben der laufenden
+                Runde – keine E-Mail-Adresse, kein Lernfortschritt, keine Profildaten. Eine Runde
+                ist nur mit dem jeweiligen Code erreichbar; ein Durchblättern fremder Runden ist
+                technisch ausgeschlossen. Abgelaufene Runden werden automatisch freigegeben.
+            </p>
+            <p>
+                Wird das Spiel auf einen Fernseher übertragen, zeigt der Fernseher dieselben
+                Angaben an. Der Fernseher selbst meldet sich nicht an und kann nur die eine Runde
+                lesen, deren Code er kennt.
+            </p>
+
+            <h3>5. Eingesetzte Dienste</h3>
+
+            <p><strong>Google Firebase (Authentifizierung und Datenbank)</strong><br>
+                Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+                Firebase speichert das Konto und die Familiendaten. Die Daten liegen auf Servern
+                von Google; eine Übermittlung in die USA ist nicht ausgeschlossen. Google LLC ist
+                unter dem EU-US Data Privacy Framework zertifiziert; ergänzend gelten die
+                Standardvertragsklauseln. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO, für die
+                Übermittlung Art. 45 bzw. Art. 46 DSGVO.<br>
+                Wird die Anmeldung <strong>mit einem Google-Konto</strong> gewählt, erfährt Google
+                zusätzlich, dass dieses Konto für EduPlay Hub verwendet wird; die App erhält von
+                Google die E-Mail-Adresse und den Anzeigenamen. Diese Anmeldeart ist freiwillig –
+                die Anmeldung per E-Mail und Passwort funktioniert ohne Google-Konto.<br>
+                Datenschutzerklärung: <a href="https://policies.google.com/privacy"
+                    target="_blank" rel="noopener">policies.google.com/privacy</a>
+            </p>
+
+            <p><strong>QR-Code-Erzeugung (api.qrserver.com)</strong><br>
+                Anbieter: GOQR.me. Wird ein QR-Code zum Beitreten angezeigt, wird der
+                <em>Beitritts-Link der Runde</em> an diesen Dienst übertragen, der daraus das Bild
+                erzeugt. Dabei wird auch die IP-Adresse des Geräts übermittelt. Es werden keine
+                Konto- oder Profildaten übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO
+                (einfaches Beitreten ohne Tippen des Codes).<br>
+                Datenschutzerklärung: <a href="https://goqr.me/de/privacy.html" target="_blank"
+                    rel="noopener">goqr.me/de/privacy.html</a>
+            </p>
+
+            <p><strong>LanguageTool (api.languagetool.org)</strong><br>
+                Anbieter: LanguageTooler GmbH, Potsdam. Beim Wort-Duell wird das
+                <em>gelegte Wort</em> zur Prüfung an diesen Dienst übertragen, um zu erkennen, ob
+                es ein gültiges Wort ist. Übertragen wird nur das einzelne Wort, keine
+                personenbezogenen Angaben. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO
+                (Spielregel-Prüfung).<br>
+                Datenschutzerklärung: <a href="https://languagetool.org/legal/privacy"
+                    target="_blank" rel="noopener">languagetool.org/legal/privacy</a>
+            </p>
+
+            <p><strong>Auslieferung von Programmbausteinen</strong><br>
+                Teile der Programmbibliotheken werden von <code>gstatic.com</code> (Google) und
+                <code>cdn.tailwindcss.com</code> geladen. Dabei wird die IP-Adresse an den
+                jeweiligen Anbieter übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO
+                (technische Bereitstellung).
+            </p>
+
+            <p><strong>Rückmeldung per WhatsApp</strong><br>
+                Über den Feedback-Bereich lässt sich freiwillig eine Nachricht per WhatsApp
+                senden. Erst beim Antippen dieses Links wird WhatsApp geöffnet; dann gelten die
+                Bedingungen von WhatsApp Ireland Limited. Ohne Antippen wird nichts übertragen.
+            </p>
+
+            <h3>6. Kinder</h3>
+            <p>
+                Das Konto wird von einem Erziehungsberechtigten angelegt und verwaltet. Kinder
+                melden sich nicht selbst an und geben keine E-Mail-Adresse an. Für ein Kinderprofil
+                genügt ein frei gewählter Spitzname – wir empfehlen ausdrücklich, <strong>nicht den
+                    vollständigen echten Namen</strong> zu verwenden, da der Spitzname in
+                gemeinsamen Runden für Mitspieler sichtbar ist. Es findet keine Profilbildung und
+                keine auf Kinder gerichtete Werbung statt. Der Eltern-Bereich ist durch eine PIN
+                geschützt.
+            </p>
+
+            <h3>7. Speicherdauer</h3>
+            <p>
+                Konto- und Fortschrittsdaten werden gespeichert, solange das Konto besteht. Nach
+                der Löschung des Kontos werden sie entfernt. Daten gemeinsamer Runden werden
+                automatisch verworfen, sobald die Runde beendet oder abgelaufen ist (spätestens
+                nach wenigen Stunden).
+            </p>
+
+            <h3>8. Konto und Daten löschen</h3>
+            <p>
+                In der App unter <strong>Einstellungen → Konto löschen</strong> lässt sich das
+                Konto einschließlich aller Profile, Fortschritte und Belohnungen dauerhaft
+                entfernen. Der Vorgang ist nicht umkehrbar. Alternativ genügt eine formlose E-Mail
+                an <a href="mailto:cu.oezdemir@gmail.com">cu.oezdemir@gmail.com</a>.
+            </p>
+
+            <h3>9. Ihre Rechte</h3>
+            <p>
+                Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung
+                (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit
+                (Art. 20) sowie ein Widerspruchsrecht gegen Verarbeitungen auf Grundlage
+                berechtigter Interessen (Art. 21 DSGVO). Wenden Sie sich dafür an die oben
+                genannte E-Mail-Adresse.
+            </p>
+            <p>
+                Außerdem besteht ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde.
+                Zuständig ist die Landesbeauftragte für Datenschutz und Informationsfreiheit
+                Nordrhein-Westfalen, Kavalleriestr. 2–4, 40213 Düsseldorf.
+            </p>
+
+            <h3>10. Datensicherheit</h3>
+            <p>
+                Die Übertragung erfolgt verschlüsselt (HTTPS). Der Zugriff auf die Datenbank ist
+                serverseitig so eingeschränkt, dass ausschließlich das jeweils eigene Konto seine
+                Familiendaten lesen und schreiben kann.
+            </p>
+
+            <h3>11. Änderungen</h3>
+            <p>
+                Diese Erklärung wird angepasst, wenn sich die App oder die Rechtslage ändert. Es
+                gilt die jeweils hier veröffentlichte Fassung.
+            </p>
+        </div>
+
+        <a class="back" href="index.html">← Zurück zur App</a>
+    </div>
+</body>
+
+</html>

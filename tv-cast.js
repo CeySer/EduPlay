@@ -221,6 +221,12 @@
         let tvAutoAdvanceInterval = null;
         let tvRoundTimerInterval = null;
         let tvAgainMode = "quiz";
+        // Tipp-Kacheln fürs Wort-Duell im TV-Modus (Handy des Spielers) -
+        // gleiches Prinzip wie beim normalen Online-Wort-Duell in live-duel.js,
+        // statt Text-Eingabefeld mit System-Tastatur.
+        let tvScrabbleSelected = [];
+        let tvScrabbleCurrentLetters = [];
+        let tvScrabbleCurrentRequired = "";
 
         function tvHostPlayEl() {
             return document.getElementById("tv-host-play") || document.getElementById("view-tv-quiz-host");
@@ -1518,16 +1524,28 @@
                                     e) { } SFX.correct();
                                 } else { SFX.wrong(); }
                             } else if (!myData.hasAnswered) {
+                                const lettersKey = (data.currentLetters || []).join('');
+                                if (lettersKey !== tvScrabbleCurrentLetters.join('')) {
+                                    tvScrabbleSelected = [];
+                                }
+                                tvScrabbleCurrentLetters = data.currentLetters || [];
+                                tvScrabbleCurrentRequired = data.currentRequired || "";
+                                const minLen = ((typeof SCRABBLE_DIFFICULTIES !== "undefined" ? (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord : 0) || 2);
                                 setTVPlayerPlayHTML(`
                                     <div class="space-y-4">
-                                        <div class="flex flex-wrap justify-center gap-2">${scrabbleTilesHTML(data.currentLetters, false, data.currentRequired)}</div>
-                                        <div class="text-center text-[11px] font-bold text-gray-500">Dein Wort braucht mindestens ${((typeof SCRABBLE_DIFFICULTIES !== "undefined" ? (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord : 0) || 2)} Buchstaben</div>
+                                        <div class="flex flex-wrap justify-center gap-2" id="tv-scrabble-tiles-container">${scrabbleTilesHTML(tvScrabbleCurrentLetters, false, tvScrabbleCurrentRequired, tvScrabbleSelected, "tvScrabbleTapTile")}</div>
+                                        <div class="text-center text-[11px] font-bold text-gray-500">Dein Wort braucht mindestens ${minLen} Buchstaben</div>
                                         <div class="glass-card p-5 space-y-3">
-                                            <input type="text" id="tv-scrabble-word-input" placeholder="Dein Wort..." autocomplete="off"
-                                                class="input-modern text-xl font-black text-center uppercase tracking-widest">
+                                            <div id="tv-scrabble-word-preview" class="input-modern text-xl font-black text-center uppercase tracking-widest text-gray-500">…</div>
+                                            <div id="tv-scrabble-live-feedback" class="text-center text-sm font-bold text-gray-400 h-5"></div>
+                                            <div class="grid grid-cols-2 gap-2">
+                                                <button id="tv-scrabble-undo-btn" onclick="tvScrabbleUndoTile()" disabled class="btn-secondary w-full text-center disabled:opacity-30">⌫ Entfernen</button>
+                                                <button onclick="tvScrabbleClearTiles()" class="btn-secondary w-full text-center">🗑 Neu anfangen</button>
+                                            </div>
                                             <button onclick="submitTVScrabbleWord()" class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Wort einreichen ✅</button>
                                         </div>
                                     </div>`);
+                                renderTVScrabblePreview();
                             }
                         } else if (data.status === "finished") {
                             const _coinKey = tvGameRef.id + ":" + activePlayerKey;
@@ -1584,15 +1602,67 @@
             } catch (error) { handleError("joinTVGame", error, "Beitreten hat nicht geklappt."); }
         }
 
+        function tvScrabbleCurrentWord() {
+            return tvScrabbleSelected.map(i => tvScrabbleCurrentLetters[i]).join("");
+        }
+
+        function renderTVScrabblePreview() {
+            const word = tvScrabbleCurrentWord();
+            const preview = document.getElementById("tv-scrabble-word-preview");
+            if (preview) {
+                preview.innerText = word || "…";
+                preview.classList.toggle("text-gray-500", !word);
+                preview.classList.toggle("text-white", !!word);
+            }
+            const undoBtn = document.getElementById("tv-scrabble-undo-btn");
+            if (undoBtn) undoBtn.disabled = tvScrabbleSelected.length === 0;
+            const tilesContainer = document.getElementById("tv-scrabble-tiles-container");
+            if (tilesContainer) {
+                tilesContainer.innerHTML = scrabbleTilesHTML(tvScrabbleCurrentLetters, false, tvScrabbleCurrentRequired, tvScrabbleSelected, "tvScrabbleTapTile");
+            }
+            const fb = document.getElementById("tv-scrabble-live-feedback");
+            if (fb) {
+                if (!word) { fb.innerText = ""; }
+                else {
+                    const result = computeScrabbleWordScore(word, tvScrabbleCurrentLetters);
+                    fb.innerText = result.valid ?
+                        `${result.score} Punkte möglich${result.bonus ? " (inkl. +50 Bonus!)" : ""} – wird beim Einreichen geprüft` :
+                        "❌ Diese Buchstaben hast du nicht (oder zu oft benutzt)";
+                    fb.className = "text-center text-sm font-bold h-5 " + (result.valid ? "text-emerald-400" : "text-rose-400");
+                }
+            }
+        }
+
+        function tvScrabbleTapTile(idx) {
+            if (tvScrabbleSelected.includes(idx)) return;
+            if (tvScrabbleSelected.length >= tvScrabbleCurrentLetters.length) return;
+            tvScrabbleSelected.push(idx);
+            if (typeof SFX !== "undefined") SFX.tap();
+            renderTVScrabblePreview();
+        }
+
+        function tvScrabbleUndoTile() {
+            if (tvScrabbleSelected.length === 0) return;
+            tvScrabbleSelected.pop();
+            if (typeof SFX !== "undefined") SFX.tap();
+            renderTVScrabblePreview();
+        }
+
+        function tvScrabbleClearTiles() {
+            if (tvScrabbleSelected.length === 0) return;
+            tvScrabbleSelected = [];
+            if (typeof SFX !== "undefined") SFX.tap();
+            renderTVScrabblePreview();
+        }
+
         async function submitTVScrabbleWord() {
-            const inputEl = document.getElementById("tv-scrabble-word-input");
-            const word = inputEl ? cleanInput(inputEl.value, 20) : "";
+            const word = tvScrabbleCurrentWord();
             if (!word) {
                 SFX.wrong();
-                showToast("Bitte zuerst ein Wort eingeben.", "error", "word");
-                if (inputEl) inputEl.focus();
+                showToast("Bitte zuerst Buchstaben antippen.", "error", "word");
                 return;
             }
+            tvScrabbleSelected = [];
             setTVPlayerPlayHTML(`<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-amber-400 mb-4">Eingereicht!</h2><p class="text-lg font-bold text-gray-400">Warte auf die anderen...</p></div>`);
             await tvGameRef.update({
                 [`players.${activePlayerKey}.hasAnswered`]: true,

@@ -366,6 +366,21 @@
             }
         }
 
+        // QR-/Link-Beitritt (?join=CODE): Der Code wird beim Laden in
+        // window._pendingJoinCode zwischengespeichert (siehe DOMContentLoaded
+        // oben in dieser Datei), vorher aber nirgends wieder abgeholt - der
+        // Code wurde also stumm verworfen und man landete nie direkt in der
+        // Lobby. Sobald ein Spielerprofil aktiv ist (selectProfile in
+        // family-dashboard.js ruft das auf), automatisch beitreten.
+        async function versucheDeepLinkJoin() {
+            const code = window._pendingJoinCode;
+            if (!code || !currentPlayer || !activePlayerKey) return;
+            window._pendingJoinCode = null;
+            const inp = document.getElementById("coded-lobby-join-code");
+            if (inp) inp.value = code;
+            await joinCodedLobby();
+        }
+
         // Ansichten, die einem anonymen Gast offen stehen. Alles andere
         // (Familien-Hub, Menü, Eltern-Dashboard, Alleine-Lernen) gehört
         // zum Familienkonto und ist für ihn gesperrt.

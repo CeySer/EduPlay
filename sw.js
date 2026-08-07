@@ -76,6 +76,10 @@ self.addEventListener('fetch', function (event) {
 
     const url = req.url;
 
+    // Nur echte Web-Adressen. chrome-extension:// und andere Schemata
+    // lassen sich nicht in den Cache legen – cache.put() wirft dort.
+    if (url.indexOf('http') !== 0) return;
+
     // Firestore, Anmeldung, QR-Bilder, Wörterbuch-Prüfung: nie abfangen.
     if (istFirebaseVerkehr(url)) return;
 

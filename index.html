@@ -1434,7 +1434,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </span>
                 </button>
 
-                <button onclick="switchView('fokus')"
+                <button onclick="switchView('fokus'); if (!focusTimerInterval) setFocusDuration(15);"
                     class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
                     style="background:linear-gradient(140deg,#06b6d4,#3b82f6);">
                     <span class="text-3xl shrink-0">⏱️</span>
@@ -1516,6 +1516,10 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </button>
                     <p class="text-[10px] text-gray-600 text-center">Coins, Abzeichen und der Lernfortschritt bleiben
                         beim Bearbeiten unangetastet.</p>
+                    <button onclick="deleteEditedPlayer()" class="btn-secondary w-full text-center text-sm text-rose-400"
+                        style="border-color:rgba(244,63,94,0.3);">
+                        🗑 Profil löschen
+                    </button>
                 </div>
             </div>
 
@@ -1618,6 +1622,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <span class="font-bold text-white">🔊 Ton</span>
                         <button onclick="toggleSound()" class="btn-secondary text-sm py-2 px-4"><span class="sound-toggle-icon">an/aus</span></button>
                     </div>
+                    <div class="py-2 border-b border-white/5 space-y-2">
+                        <div class="flex items-center justify-between gap-3">
+                            <span class="font-bold text-white">🎵 Musik</span>
+                            <span id="music-volume-label" class="text-xs text-gray-400 font-bold">25%</span>
+                        </div>
+                        <input type="range" id="music-volume-slider" min="0" max="100" value="25"
+                            oninput="setMusicVolume(this.value)" class="w-full accent-indigo-500">
+                    </div>
                     <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">
                         <span class="font-bold text-white">🌓 Design</span>
                         <button onclick="toggleTheme()" class="btn-secondary text-sm py-2 px-4">Umschalten</button>
@@ -1640,13 +1652,25 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div class="glass-card p-8 text-center space-y-6 shadow-lg">
                     <div class="text-6xl">⏱️</div>
                     <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-2">Wie lange fokussiert bleiben?</label>
+                        <div class="flex gap-2 justify-center">
+                            <button id="fokus-dur-10" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(10)">10 Min.</button>
+                            <button id="fokus-dur-15" class="btn-primary text-sm py-2 px-3" style="background:var(--gradient-green);" onclick="setFocusDuration(15)">15 Min.</button>
+                            <button id="fokus-dur-25" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(25)">25 Min.</button>
+                        </div>
+                        <p id="fokus-reward-hint" class="text-xs text-gray-500 mt-2">Belohnung: +20 Coins</p>
+                    </div>
                     <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
+                    <p id="fokus-status" class="hidden text-xs font-bold"></p>
                     <div class="flex gap-2 justify-center">
                         <button class="btn-primary"
                             style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);"
                             onclick="startFocusTimer()">Start</button>
                         <button class="btn-secondary" onclick="resetFocusTimer()">Reset</button>
                     </div>
+                    <p class="text-[10px] text-gray-600">Verlässt du die App während des Fokus-Timers, pausiert er
+                        automatisch. Zu oft verlassen kostet Belohnung.</p>
                 </div>
             </div>
 
@@ -1736,7 +1760,10 @@ VIEW: QUIZ SETUP
             VIEW: QUIZ ARENA
             ========================================================== -->
             <div id="view-quiz" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="endLesson()">Beenden</button>
+                <div class="flex items-center justify-between gap-2">
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="endLesson()">Beenden</button>
+                    <button class="text-xs text-gray-500 hover:text-amber-400 font-bold" onclick="reportCurrentQuestion()" title="Diese Frage melden">🚩 Melden</button>
+                </div>
                 <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
                     style="border-color:rgba(99,102,241,0.2);">
                     ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>

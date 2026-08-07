@@ -373,8 +373,15 @@
                     renderLiveDuelWortratenPlay(data);
                     const statusEl2 = document.getElementById("live-duel-status");
                     if (statusEl2) statusEl2.innerText = `Runde ${data.currentRound}/${data.totalRounds}`;
-                    const cd2 = document.getElementById("live-duel-countdown");
-                    if (cd2) cd2.innerText = "";
+                    // Nur leeren, wenn gerade KEIN Zug-Timer läuft - sonst überschreibt
+                    // das hier bei jedem Snapshot (z.B. alle paar Sekunden durchs
+                    // Lebenszeichen) die Sekundenzahl, die startLiveDuelCountdown()
+                    // für den Erwachsenen-Zug-Timer gerade erst gesetzt hat. Wirkte
+                    // dadurch, als würde der Countdown "nichts tun" (ständig leer).
+                    if (!(data.wrTurnDeadline && !data.roundOver)) {
+                        const cd2 = document.getElementById("live-duel-countdown");
+                        if (cd2) cd2.innerText = "";
+                    }
                     const forceBtn2 = document.getElementById("live-duel-force-resolve");
                     if (forceBtn2) forceBtn2.classList.add("hidden");
                     switchView('live-duel-play');

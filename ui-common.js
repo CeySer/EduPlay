@@ -63,6 +63,28 @@
             if (textField) setTimeout(() => textField.focus(), 150);
         }
 
+        // "Melden"-Button an einer laufenden Frage: öffnet dasselbe
+        // Feedback-Formular wie sonst, aber mit Typ "Frage" und Frage-ID/Text
+        // schon eingetragen - spart Tippen und macht das Melden eindeutig
+        // zuordenbar (statt frei beschriebenem Fließtext).
+        function reportCurrentQuestion() {
+            const q = (typeof currentQuestions !== "undefined" && typeof qIndex !== "undefined")
+                ? currentQuestions[qIndex] : null;
+            openFeedback('quiz');
+            const typeSel = document.getElementById("feedback-type");
+            if (typeSel) typeSel.value = "Frage";
+            const textField = document.getElementById("feedback-text");
+            if (textField && q) {
+                textField.value = `Frage-ID: ${q.id || "?"} (${q.category || "?"})\nFrage: "${q.question}"\n\nWas stimmt nicht: `;
+                const c = document.getElementById("feedback-counter");
+                if (c) c.innerText = textField.value.length;
+                setTimeout(() => {
+                    textField.focus();
+                    textField.setSelectionRange(textField.value.length, textField.value.length);
+                }, 160);
+            }
+        }
+
         function buildFeedbackText() {
             const type = document.getElementById("feedback-type").value;
             const name = cleanInput(document.getElementById("feedback-name").value, 24);
@@ -152,11 +174,20 @@
         let focusDurationMin = 15;
         let focusPausedByHide = false;
         let focusVisibilityBound = false;
+        // Anti-Schummel: zählt, wie oft während EINES Laufs die App verlassen
+        // wurde. Zeit, die man weg war, zählt (wie bisher) nicht mit - wer es
+        // aber übertreibt, bekommt am Ende weniger Belohnung statt die volle.
+        let focusPauseCount = 0;
 
+        // Multiplikator statt fixer Werte: längere Fokus-Zeit lohnt sich
+        // überproportional mehr (Anreiz, nicht nur die kurze Zeit zu wählen).
+        function focusMultiplier(mins) {
+            if (mins >= 25) return 2;
+            if (mins >= 15) return 1.5;
+            return 1.2;
+        }
         function focusRewardCoins(mins) {
-            if (mins >= 25) return 40;
-            if (mins >= 15) return 20;
-            return 12;
+            return Math.round(mins * focusMultiplier(mins));
         }
 
         function setFocusDuration(mins) {
@@ -166,7 +197,7 @@
             const el = document.getElementById("timer-display");
             if (el) el.innerText = mins + ":00";
             const hint = document.getElementById("fokus-reward-hint");
-            if (hint) hint.innerText = "Belohnung: +" + focusRewardCoins(mins) + " Coins" + (mins >= 25 ? " (2×)" : "");
+            if (hint) hint.innerText = "Belohnung: +" + focusRewardCoins(mins) + " Coins (" + focusMultiplier(mins) + "× Multiplikator)";
             [10, 15, 25].forEach(m => {
                 const btn = document.getElementById("fokus-dur-" + m);
                 if (!btn) return;
@@ -198,6 +229,7 @@
                     clearInterval(focusTimerInterval);
                     focusTimerInterval = null;
                     focusPausedByHide = true;
+                    focusPauseCount++;
                     if (status) {
                         status.classList.remove("hidden");
                         status.innerText = "⏸️ Pausiert – App wieder öffnen zum Fortsetzen.";
@@ -223,6 +255,7 @@
             if (status) status.classList.remove("hidden");
             if (!resume) {
                 focusTimeRemaining = focusDurationMin * 60;
+                focusPauseCount = 0;
                 updateFocusDisplay();
             }
             focusTimerInterval = setInterval(() => {
@@ -234,14 +267,21 @@
                     focusTimerInterval = null;
                     focusPausedByHide = false;
                     if (typeof SFX !== "undefined") SFX.timeUp();
-                    const coins = focusRewardCoins(focusDurationMin);
+                    let coins = focusRewardCoins(focusDurationMin);
+                    let malus = "";
+                    // Anti-Schummel: mehr als 2× die App verlassen -> nur halbe Belohnung.
+                    if (focusPauseCount > 2) {
+                        coins = Math.max(1, Math.round(coins / 2));
+                        malus = " (App zu oft verlassen – nur halbe Belohnung)";
+                    }
                     if (typeof addXP === "function") addXP(coins);
                     else if (currentPlayer) {
                         currentPlayer.coins = (currentPlayer.coins || 0) + coins;
                         if (typeof savePlayerProgress === "function") savePlayerProgress();
                     }
-                    showToast("Zeit um! +" + coins + " Coins 🎉", "success");
+                    showToast("Zeit um! +" + coins + " Coins 🎉" + malus, "success");
                     focusTimeRemaining = focusDurationMin * 60;
+                    focusPauseCount = 0;
                     updateFocusDisplay();
                     if (status) status.classList.add("hidden");
                 }
@@ -252,6 +292,7 @@
             clearInterval(focusTimerInterval);
             focusTimerInterval = null;
             focusPausedByHide = false;
+            focusPauseCount = 0;
             focusTimeRemaining = focusDurationMin * 60;
             updateFocusDisplay();
             const status = document.getElementById("fokus-status");

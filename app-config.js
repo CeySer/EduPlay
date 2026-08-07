@@ -466,6 +466,11 @@
         let familyRewards = [];
         let adminPin = null;
         let testTemplates = [];
+        // Vorbereitung für spätere Bezahlmodelle: reines Datenfeld, keine
+        // Sperren/Bezahl-UI. isPremium() ist die einzige Stelle, die später
+        // (wenn es Premium-Funktionen gibt) abgefragt werden soll.
+        let familyPremium = false;
+        function isPremium() { return !!familyPremium; }
 
         const LEVELS = [
             { name: "Anfänger", icon: "🌱", min: 0 },
@@ -617,10 +622,12 @@
                 familyRewards = data.rewards || [];
                 testTemplates = data.testTemplates || [];
                 adminPin = data.adminPin || null;
+                familyPremium = !!data.premium;
             } catch (e) {
                 familyRewards = [];
                 testTemplates = [];
                 adminPin = null;
+                familyPremium = false;
             }
         }
 
@@ -817,10 +824,43 @@
             });
         }
 
+        // Modernerer Klick: kurzer, gefilterter Noise-Burst statt eines reinen
+        // Sinuston-Blips - klingt eher wie ein Tastatur-/App-Klick als ein Piepsen.
+        let clickNoiseBuffer = null;
+        function getClickNoiseBuffer(ctx) {
+            if (clickNoiseBuffer && clickNoiseBuffer._ctx === ctx) return clickNoiseBuffer;
+            const len = Math.floor(ctx.sampleRate * 0.03);
+            const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+            const data = buf.getChannelData(0);
+            for (let i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / len);
+            buf._ctx = ctx;
+            clickNoiseBuffer = buf;
+            return buf;
+        }
+        function playModernClick() {
+            const ctx = ensureAudio();
+            if (!ctx) return;
+            const t = ctx.currentTime;
+            const noise = ctx.createBufferSource();
+            noise.buffer = getClickNoiseBuffer(ctx);
+            const filter = ctx.createBiquadFilter();
+            filter.type = "highpass";
+            filter.frequency.value = 2200;
+            const gain = ctx.createGain();
+            gain.gain.setValueAtTime(0.12, t);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.045);
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(ctx.destination);
+            noise.start(t);
+            noise.stop(t + 0.05);
+            playTones([
+                [1600, 0.03]
+            ], "sine", 0.05);
+        }
+
         const SFX = {
-            tap: () => playTones([
-                [440, 0.05]
-            ], "triangle", 0.07),
+            tap: () => playModernClick(),
             correct: () => playTones([
                 [660, 0.09],
                 [880, 0.14]
@@ -861,6 +901,111 @@
             if (soundOn) SFX.tap();
             showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
         }
+
+        // ============================================================
+        //  HINTERGRUNDMUSIK
+        //  Eigenständig vom SFX-Ton-Schalter oben ("Ton an/aus" betrifft nur
+        //  Klicks/Erfolgs-Sounds). Musik ist standardmäßig an, Lautstärke
+        //  wird über einen Regler in den Einstellungen geregelt - 0% = aus.
+        // ============================================================
+        let musicCtx = null;
+        let musicGain = null;
+        let musicVolume = 0.25;
+        let musicTimer = null;
+        let musicStep = 0;
+        try {
+            const savedVol = localStorage.getItem("eduplayMusicVolume");
+            if (savedVol !== null) musicVolume = Math.max(0, Math.min(1, parseFloat(savedVol)));
+        } catch (e) { }
+
+        // Dur-Pentatonik (klingt für Kinder immer freundlich, nie schräg),
+        // Muster geht leicht auf und ab statt stur rauf/runter - etwas
+        // verspielter als eine reine Tonleiter.
+        const MUSIC_SCALE = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25];
+        const MUSIC_PATTERN = [0, 2, 4, 2, 5, 4, 2, 0, 3, 4, 5, 4, 2, 4, 0, 1];
+
+        function ensureMusicAudio() {
+            try {
+                if (!musicCtx) musicCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (musicCtx.state === "suspended") musicCtx.resume();
+                if (!musicGain) {
+                    musicGain = musicCtx.createGain();
+                    musicGain.gain.value = musicVolume;
+                    musicGain.connect(musicCtx.destination);
+                }
+                return musicCtx;
+            } catch (e) { return null; }
+        }
+
+        function playMusicNote() {
+            const ctx = ensureMusicAudio();
+            if (!ctx || musicVolume <= 0) return;
+            const idx = MUSIC_PATTERN[musicStep % MUSIC_PATTERN.length];
+            const freq = MUSIC_SCALE[idx];
+            const t = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const g = ctx.createGain();
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(freq, t);
+            g.gain.setValueAtTime(0, t);
+            g.gain.linearRampToValueAtTime(0.5, t + 0.25);
+            g.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
+            osc.connect(g);
+            g.connect(musicGain);
+            osc.start(t);
+            osc.stop(t + 1.35);
+            // Alle 4 Schritte ein leiser Unterton (Oktave drunter) für etwas Wärme.
+            if (musicStep % 4 === 0) {
+                const osc2 = ctx.createOscillator();
+                const g2 = ctx.createGain();
+                osc2.type = "sine";
+                osc2.frequency.setValueAtTime(freq / 2, t);
+                g2.gain.setValueAtTime(0, t);
+                g2.gain.linearRampToValueAtTime(0.22, t + 0.4);
+                g2.gain.exponentialRampToValueAtTime(0.0001, t + 1.8);
+                osc2.connect(g2);
+                g2.connect(musicGain);
+                osc2.start(t);
+                osc2.stop(t + 1.85);
+            }
+            musicStep++;
+        }
+
+        function startBackgroundMusic() {
+            if (musicTimer || musicVolume <= 0) return;
+            if (!ensureMusicAudio()) return;
+            playMusicNote();
+            musicTimer = setInterval(playMusicNote, 900);
+        }
+
+        function stopBackgroundMusic() {
+            if (musicTimer) { clearInterval(musicTimer); musicTimer = null; }
+        }
+
+        function setMusicVolume(pct) {
+            musicVolume = Math.max(0, Math.min(100, parseInt(pct) || 0)) / 100;
+            try { localStorage.setItem("eduplayMusicVolume", musicVolume); } catch (e) { }
+            const label = document.getElementById("music-volume-label");
+            if (label) label.innerText = Math.round(musicVolume * 100) + "%";
+            if (musicGain && musicCtx) musicGain.gain.setTargetAtTime(musicVolume, musicCtx.currentTime, 0.05);
+            if (musicVolume > 0) startBackgroundMusic();
+            else stopBackgroundMusic();
+        }
+
+        // Browser lassen Audio erst nach einer Nutzer-Geste zu - Musik daher
+        // beim allerersten Klick/Tastendruck einmalig anstoßen. Läuft danach
+        // durch, unabhängig vom SFX-Ton-Schalter.
+        let musicStartBound = false;
+        function bindMusicAutostart() {
+            if (musicStartBound) return;
+            musicStartBound = true;
+            const starter = () => {
+                if (musicVolume > 0) startBackgroundMusic();
+            };
+            document.addEventListener("pointerdown", starter, { once: true });
+            document.addEventListener("keydown", starter, { once: true });
+        }
+        bindMusicAutostart();
 
         function inviteFriends() {
             const codeEl = document.getElementById("live-duel-lobby-code");

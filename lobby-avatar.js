@@ -403,6 +403,16 @@
                 headerFamily?.classList.add('hidden');
                 headerMenu?.classList.remove('hidden');
             }
+            // Musik-Regler mit dem tatsächlichen Wert synchronisieren, sobald
+            // die Einstellungen geöffnet werden (Wert kommt aus localStorage,
+            // nicht aus dem statischen HTML-Default).
+            if (viewId === 'einstellungen') {
+                const mSlider = document.getElementById('music-volume-slider');
+                const mLabel = document.getElementById('music-volume-label');
+                const pct = Math.round((typeof musicVolume !== 'undefined' ? musicVolume : 0.25) * 100);
+                if (mSlider) mSlider.value = pct;
+                if (mLabel) mLabel.innerText = pct + '%';
+            }
             // Laufende Timer stoppen
             if (viewId !== 'fokus' && typeof focusTimerInterval !== 'undefined' && focusTimerInterval) {
                 clearInterval(focusTimerInterval);
@@ -518,11 +528,71 @@
             if (cleanInput(eingabe, 12) !== adminPin) {
                 if (typeof SFX !== "undefined") SFX.wrong();
                 showToast("Die PIN stimmt nicht.", "error", "pin");
+                if (await appConfirm("Möchtest du die PIN zurücksetzen? Dafür bestätigst du dich mit deinem Account-Login.", {
+                    titel: "PIN vergessen?", icon: "🔑", okText: "Zurücksetzen"
+                })) {
+                    return resetAdminPinViaLogin();
+                }
                 switchView('family-hub');
                 return;
             }
             debugDatabaseLoading();
             switchDashboardSection('inhalte');
+        }
+
+        // PIN vergessen: statt eines E-Mail-Versands (den die App aktuell
+        // technisch nicht kann - nur "mailto:" fürs Feedback) bestätigt sich
+        // der Elternteil einfach nochmal mit seinem Account-Login (Passwort
+        // oder Google), dann darf er/sie direkt eine neue PIN vergeben.
+        async function resetAdminPinViaLogin() {
+            try {
+                const providers = (currentParentUser.providerData || []).map(p => p.providerId);
+                if (providers.includes("password")) {
+                    const pw = await appPrompt("Gib dein Account-Passwort ein, um die PIN zurückzusetzen.", {
+                        titel: "🔑 PIN zurücksetzen", icon: "🔑",
+                        passwort: true, maxLen: 60, platzhalter: "Account-Passwort", okText: "Bestätigen"
+                    });
+                    if (!pw) { switchView('family-hub'); return; }
+                    const cred = firebase.auth.EmailAuthProvider.credential(currentParentUser.email, pw);
+                    await currentParentUser.reauthenticateWithCredential(cred);
+                } else if (providers.includes("google.com")) {
+                    await currentParentUser.reauthenticateWithPopup(new firebase.auth.GoogleAuthProvider());
+                } else {
+                    showToast("PIN-Reset für diesen Login ist nicht möglich.", "error", "pin");
+                    switchView('family-hub');
+                    return;
+                }
+            } catch (e) {
+                showToast("Bestätigung fehlgeschlagen – PIN bleibt unverändert.", "error", "pin");
+                switchView('family-hub');
+                return;
+            }
+            const p1 = cleanInput(await appPrompt("Bestätigung ok! Lege jetzt eine neue PIN fest (4 bis 12 Zeichen).", {
+                titel: "Neue PIN", icon: "🔒", passwort: true, maxLen: 12, platzhalter: "Neue PIN", okText: "Weiter"
+            }), 12);
+            if (!p1 || p1.length < 4) {
+                showToast("Der PIN braucht mindestens 4 Zeichen.", "error", "pin");
+                switchView('family-hub');
+                return;
+            }
+            const p2 = cleanInput(await appPrompt("Bitte zur Sicherheit noch einmal eingeben.", {
+                titel: "PIN bestätigen", icon: "🔒", passwort: true, maxLen: 12, platzhalter: "PIN wiederholen", okText: "Speichern"
+            }), 12);
+            if (p2 !== p1) {
+                showToast("Die beiden Eingaben stimmen nicht überein.", "error", "pin");
+                switchView('family-hub');
+                return;
+            }
+            try {
+                await db.collection("parents").doc(currentParentUser.uid).set({ adminPin: p1 }, { merge: true });
+                adminPin = p1;
+                showToast("Neue PIN gespeichert!", "success", "pin");
+                debugDatabaseLoading();
+                switchDashboardSection('inhalte');
+            } catch (e) {
+                showToast("PIN konnte nicht gespeichert werden.", "error", "pin");
+                switchView('family-hub');
+            }
         }
 
         // Prüfe, ob die Datenbanken geladen sind

@@ -1782,6 +1782,30 @@
             }
         }
 
+        // Löscht das gerade bearbeitete Profil komplett (egal ob Gast oder
+        // festes Familienmitglied) - Punkte/Fortschritt gehen dabei verloren.
+        async function deleteEditedPlayer() {
+            const key = editingPlayerKey;
+            if (!key || !ALL_PROFILES[key]) return switchView('family-hub');
+            const name = ALL_PROFILES[key].name || "Dieses Profil";
+            if (!(await appConfirm(`"${name}" wird komplett gelöscht - Punkte, Fortschritt und Abzeichen gehen dabei verloren.`, {
+                titel: "Profil löschen?", icon: "🗑", okText: "Löschen", gefahr: true
+            }))) return;
+            try {
+                await db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key).delete();
+                delete ALL_PROFILES[key];
+                if (activePlayerKey === key) {
+                    activePlayerKey = "";
+                    currentPlayer = null;
+                }
+                showToast(`Profil "${esc(name)}" wurde gelöscht.`);
+                renderFamilyHub();
+                switchView('family-hub');
+            } catch (e) {
+                handleError("deleteEditedPlayer", e, "Das Profil konnte nicht gelöscht werden.");
+            }
+        }
+
         // ============================================================
         //  GAST-PROFILE
         // ============================================================

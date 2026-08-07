@@ -245,41 +245,28 @@
         }
 
         // ============================================================
-        //  TEST-ERGEBNIS-HINWEIS FÜR ELTERN
-        //  Zeigt im Familien-Hub (erster Bildschirm nach Login) einen
-        //  Banner, sobald ein Kind einen zugewiesenen Test abgeschlossen
-        //  hat und die Eltern das Ergebnis noch nicht gesehen haben.
+        //  TEST-ERGEBNISSE + STÄRKEN/SCHWÄCHEN IM ELTERN-BEREICH
+        //  Sitzt im "Tests"-Tab des Eltern-Bereichs (PIN-geschützt), direkt
+        //  unter der Kind-Auswahl - nicht im Familien-Bereich, wo die Kinder
+        //  ihr Profil wählen. Ergebnisse bleiben hier dauerhaft abrufbar
+        //  (komplette testHistory, nicht nur der neueste Test).
         // ============================================================
-        function renderTestResultsBanner() {
-            const container = document.getElementById("family-test-banner");
-            if (!container) return;
-            const entries = Object.keys(ALL_PROFILES || {})
-                .map(k => ({ key: k, p: ALL_PROFILES[k], t: (ALL_PROFILES[k].testHistory || [])[0] }))
-                .filter(e => e.t && !e.t.seenByParent);
-            if (entries.length === 0) {
-                container.innerHTML = "";
-                container.classList.add("hidden");
-                return;
-            }
-            container.classList.remove("hidden");
-            container.innerHTML = entries.map(e => {
-                const pct = e.t.total > 0 ? Math.round((e.t.correct / e.t.total) * 100) : 0;
-                const emoji = pct >= 80 ? "🏆" : pct >= 50 ? "🎉" : "💪";
-                return `
-                    <div class="glass-card-glow p-3 flex items-center justify-between gap-2 mb-2" style="border-color:rgba(16,185,129,0.35);">
-                        <div class="flex items-center gap-2 text-left">
-                            <span class="text-2xl">${emoji}</span>
-                            <div>
-                                <div class="text-white font-bold text-sm">${esc(e.p.name)} hat einen Test abgeschlossen</div>
-                                <div class="text-emerald-400 font-black text-xs">${e.t.correct}/${e.t.total} (${pct}%)</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-1.5 shrink-0">
-                            <button onclick="openTestResultInDashboard('${e.key}')" class="text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1.5 rounded-lg">Ansehen</button>
-                            <button onclick="markTestResultSeen('${e.key}')" class="text-gray-500 hover:text-gray-300 text-sm px-1" title="Ausblenden">✕</button>
-                        </div>
-                    </div>`;
-            }).join("");
+        function getStrongestCategory(p) {
+            if (!p || !p.stats) return null;
+            let strongest = null;
+            Object.keys(p.stats).forEach(cat => {
+                const s = p.stats[cat];
+                if (s.attempts >= 3) {
+                    const pct = s.correct / s.attempts;
+                    if (!strongest || pct > strongest.pct) strongest = {
+                        category: cat,
+                        pct,
+                        attempts: s.attempts,
+                        correct: s.correct
+                    };
+                }
+            });
+            return (strongest && strongest.pct >= 0.8) ? strongest : null;
         }
 
         function markTestResultSeen(key) {
@@ -291,16 +278,74 @@
                     .update({ testHistory: p.testHistory })
                     .catch(e => console.warn("markTestResultSeen:", e));
             }
-            renderTestResultsBanner();
+            renderDashTestResults();
         }
 
-        function openTestResultInDashboard(key) {
-            markTestResultSeen(key);
-            fragePinUndOeffneDashboard('statistiken', key);
+        function renderDashTestResults() {
+            const container = document.getElementById("dash-test-results");
+            if (!container) return;
+            const sel = document.getElementById("dash-test-profile");
+            const key = sel ? sel.value : null;
+            const p = key ? ALL_PROFILES[key] : null;
+            if (!p) { container.innerHTML = ""; return; }
+
+            const history = p.testHistory || [];
+            const newest = history[0];
+            const newBadge = (newest && !newest.seenByParent) ? (() => {
+                const pct = newest.total > 0 ? Math.round((newest.correct / newest.total) * 100) : 0;
+                return `
+                    <div class="glass-card-glow p-3 flex items-center justify-between gap-2" style="border-color:rgba(16,185,129,0.35);">
+                        <div class="text-left">
+                            <div class="text-white font-bold text-sm">🎉 ${esc(p.name)} hat einen Test abgeschlossen</div>
+                            <div class="text-emerald-400 font-black text-xs">${newest.correct}/${newest.total} (${pct}%)</div>
+                        </div>
+                        <button onclick="markTestResultSeen('${key}')" class="text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1.5 rounded-lg shrink-0">Gesehen</button>
+                    </div>`;
+            })() : "";
+
+            const historyHtml = history.length > 0 ?
+                history.slice(0, 10).map(t => {
+                    const pct = t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0;
+                    const date = new Date(t.date);
+                    return `<div class="dash-stat-card flex justify-between items-center">
+                                <span class="text-white text-sm">${t.correct}/${t.total} (${pct}%)</span>
+                                <span class="text-gray-500 text-xs">${date.toLocaleDateString('de-DE')}</span>
+                            </div>`;
+                }).join('') :
+                '<div class="text-gray-500 text-sm">Noch keine Tests absolviert</div>';
+
+            const weak = getWeakestCategory(p);
+            const strong = getStrongestCategory(p);
+            const weakHtml = weak ? `
+                        <div class="dash-stat-card border-l-4 border-amber-500">
+                            <div class="label">💡 Schwäche</div>
+                            <div class="text-white font-bold text-sm">${labelFuerKategorie(weak.category) || CATEGORY_LABELS[weak.category] || weak.category}</div>
+                            <div class="text-gray-400 text-xs">${Math.round(weak.pct * 100)}% richtig (${weak.attempts} Versuche)</div>
+                        </div>` : '';
+            const strongHtml = strong ? `
+                        <div class="dash-stat-card border-l-4 border-emerald-500">
+                            <div class="label">💪 Stärke</div>
+                            <div class="text-white font-bold text-sm">${labelFuerKategorie(strong.category) || CATEGORY_LABELS[strong.category] || strong.category}</div>
+                            <div class="text-gray-400 text-xs">${Math.round(strong.pct * 100)}% richtig (${strong.attempts} Versuche)</div>
+                        </div>` : '';
+            const strengthWeaknessHtml = (weakHtml || strongHtml) ?
+                `${strongHtml}${weakHtml}` :
+                '<div class="dash-stat-card text-gray-400 text-sm">Noch nicht genug Übungen für eine Auswertung</div>';
+
+            container.innerHTML = `
+                        ${newBadge}
+                        <div>
+                            <div class="text-xs text-gray-400 font-bold mb-1.5">📝 Testergebnisse (${esc(p.name)})</div>
+                            <div class="space-y-1.5">${historyHtml}</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-400 font-bold mb-1.5">📊 Stärken & Schwächen</div>
+                            <div class="space-y-1.5">${strengthWeaknessHtml}</div>
+                        </div>
+                    `;
         }
 
         function renderFamilyHub() {
-            renderTestResultsBanner();
             const grid = document.getElementById("family-profiles-grid");
             if (grid) grid.innerHTML = "";
             const preview = document.getElementById("family-profiles-preview");
@@ -1576,6 +1621,8 @@
                 });
                 vocBox.innerHTML = html || '<div class="text-xs text-gray-500 col-span-2">Keine Vokabeln geladen</div>';
             }
+
+            renderDashTestResults();
         }
 
         function assignTestFromDashboard() {

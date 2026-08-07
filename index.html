@@ -243,9 +243,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </h1>
                 </div>
 
-                <!-- Test-Ergebnis-Hinweis für Eltern -->
-                <div id="family-test-banner" class="hidden"></div>
-
                 <!-- Player Grid Preview -->
                 <div id="family-profiles-preview" class="grid grid-cols-2 gap-3"></div>
 
@@ -459,8 +456,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div class="glass-card p-4 space-y-3">
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Kind auswählen</label>
-                                <select id="dash-test-profile" class="input-modern"></select>
+                                <select id="dash-test-profile" class="input-modern" onchange="renderDashTestResults()"></select>
                             </div>
+                        </div>
+
+                        <!-- Bisherige Testergebnisse + Stärken/Schwächen des ausgewählten Kindes -->
+                        <div id="dash-test-results" class="space-y-3"></div>
+
+                        <div class="glass-card p-4 space-y-3">
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Themen auswählen</label>
                                 <div id="dash-test-categories"

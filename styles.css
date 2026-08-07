@@ -2592,3 +2592,30 @@ body:not(.dark-theme) .app-dialog {
     white-space: nowrap;
     border: 0;
 }
+
+
+
+/* ============================================================
+   Kein seitliches Verrutschen mehr
+   Die Schiebemenüs stehen geschlossen per translateX(100%)
+   rechts außerhalb des Bildschirms. Android zählt das zur
+   Seitenbreite dazu – dadurch ließ sich die ganze Seite seitlich
+   wegschieben und der Inhalt saß verrutscht.
+   ============================================================ */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Zusätzlich aus dem Layout nehmen, solange geschlossen.
+   Sicherer als overflow allein, weil manche Browser bei
+   position:fixed trotzdem Platz einrechnen. */
+.drawer:not(.open) {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.drawer.open {
+    visibility: visible;
+    pointer-events: auto;
+}

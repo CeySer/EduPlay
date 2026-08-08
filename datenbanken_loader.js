@@ -27,7 +27,7 @@
 (function () {
     'use strict';
 
-    const V = '9.0';
+    const V = '9.1';
     console.log('🔥 datenbanken_loader.js v' + V + ' (Laden bei Bedarf)');
 
     // ------------------------------------------------------------

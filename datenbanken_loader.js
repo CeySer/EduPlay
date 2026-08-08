@@ -139,7 +139,9 @@
 
         const p = new Promise(function (fertig) {
             const s = document.createElement('script');
-            s.src = pfad + (pfad.indexOf('?') === -1 ? '?v=' + V : '');
+            // Kein "?v=" mehr nötig: der Service Worker hält sich bei diesen
+            // Dateien jetzt selbst aktuell (stale-while-revalidate, sw.js).
+            s.src = pfad;
             s.async = true;
             s.onload = function () {
                 geladeneDateien[pfad] = true;

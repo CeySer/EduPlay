@@ -12,7 +12,7 @@
 //  würde ihn nur stören.
 // ============================================================
 
-const CACHE = 'eduplay-v4';
+const CACHE = 'eduplay-v5';
 
 // Alles, was die App zum Starten braucht. Die Fragen-Dateien landen
 // beim ersten Laden automatisch im Cache (siehe unten), damit diese
@@ -88,21 +88,26 @@ self.addEventListener('fetch', function (event) {
     // Firestore, Anmeldung, QR-Bilder, Wörterbuch-Prüfung: nie abfangen.
     if (istFirebaseVerkehr(url)) return;
 
-    // Fragen-, Vokabel- und Wörterdateien ändern sich nur mit neuer
-    // ?v=-Nummer. Erst aus dem Cache, das spart Ladezeit und Datenvolumen.
+    // Fragen-, Vokabel- und Wörterdateien: sofort aus dem Cache antworten
+    // (schnell, spart Datenvolumen), aber im Hintergrund IMMER neu holen und
+    // den Cache aktualisieren ("stale-while-revalidate"). So kommt jede
+    // Änderung an einer Datei spätestens beim zweiten Laden automatisch an –
+    // ganz ohne manuell gepflegte "?v="-Nummer, die man vergessen kann.
     const istDatenDatei = url.indexOf('/fragen/') !== -1
         || url.indexOf('formula.js') !== -1;
 
     if (istDatenDatei) {
         event.respondWith(
-            caches.match(req).then(function (treffer) {
-                if (treffer) return treffer;
-                return fetch(req).then(function (antwort) {
-                    if (antwort && (antwort.ok || antwort.type === 'opaque')) {
-                        const kopie = antwort.clone();
-                        caches.open(CACHE).then(function (c) { c.put(req, kopie); });
-                    }
-                    return antwort;
+            caches.open(CACHE).then(function (cache) {
+                return cache.match(req).then(function (treffer) {
+                    const netzwerk = fetch(req).then(function (antwort) {
+                        if (antwort && (antwort.ok || antwort.type === 'opaque')) {
+                            cache.put(req, antwort.clone());
+                        }
+                        return antwort;
+                    }).catch(function () { return treffer; });
+
+                    return treffer || netzwerk;
                 });
             })
         );

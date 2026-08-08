@@ -461,6 +461,10 @@ const geladen = _questionCounts[key] || 0;
                     <span>${s.label} <span class="text-gray-500 font-normal">(${totalCount})</span></span>
                 </label>`;
             });
+            if (html) {
+                html += `<button type="button" onclick="document.getElementById('live-duel-category-checks').classList.add('hidden')"
+                    class="btn-secondary text-xs w-full py-1.5 mt-1">✓ Fertig</button>`;
+            }
             box.innerHTML = html || '<p class="text-xs text-gray-500">Keine Themen in diesem Bereich.</p>';
         }
 

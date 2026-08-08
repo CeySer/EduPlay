@@ -539,6 +539,12 @@ auth.createUserWithEmailAndPassword(e, p)
 
         async function loadOpenChallenges() {
             const box = document.getElementById("open-challenges-list");
+            // Herausfordern-Feature vorerst pausiert (08.08.2026) – beim Annehmen
+            // passierte auf Seite des Herausforderers nichts. Bewusst zurückgestellt,
+            // siehe todo-vor-release.md. Code darunter bleibt für später erhalten.
+            if (box) box.innerHTML = "";
+            return;
+            /* eslint-disable no-unreachable */
             if (!box || !currentParentUser || !activePlayerKey) {
                 if (box) box.innerHTML = "";
                 return;

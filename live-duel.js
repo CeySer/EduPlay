@@ -1834,6 +1834,7 @@
                 });
                 if (!ok) return;
             }
+            stopLiveDuelActionMode();
             clearLiveDuelTimers();
             stopHostHeartbeat();
             const ref = liveDuelRef;
@@ -1848,6 +1849,8 @@
             liveDuelRenderKey = "";
             liveDuelResolvedRoundKey = "";
             switchView(currentPlayer ? 'menu' : 'family-hub');
+
+            if (typeof vergissLobby === "function") vergissLobby();
 
             if (!ref) return;
             try {
@@ -2581,53 +2584,11 @@
             }
         };
 
-        // Überschreibe leaveLiveDuel, um den Action-Mode zu stoppen
-        const originalLeaveLiveDuel = leaveLiveDuel;
-        leaveLiveDuel = async function (force) {
-            if (liveDuelRef && typeof confirmLeaveGame === "function") {
-                const ok = await confirmLeaveGame({
-                    force: force === true,
-                    text: isLiveDuelCreator
-                        ? "Spiel endet für alle."
-                        : "Fortschritt geht verloren."
-                });
-                if (!ok) return;
-            }
-            stopLiveDuelActionMode(); // <-- Wichtig: Action-Mode stoppen
-            clearLiveDuelTimers();
-            stopHostHeartbeat();
-            const ref = liveDuelRef;
-            const wasCreator = isLiveDuelCreator;
-            const meName = (currentPlayer && currentPlayer.name) || "";
-
-            if (liveDuelUnsubscribe) liveDuelUnsubscribe();
-            liveDuelUnsubscribe = null;
-            liveDuelRef = null;
-            isLiveDuelCreator = false;
-            liveDuelResolving = false;
-            liveDuelRenderKey = "";
-            liveDuelResolvedRoundKey = "";
-            switchView(currentPlayer ? 'menu' : 'family-hub');
-
-            if (typeof vergissLobby === "function") vergissLobby();
-
-            if (!ref || !activePlayerKey) return;
-            try {
-                const snap = await ref.get();
-                if (!snap.exists) return;
-                const data = snap.data();
-                const players = data.players || {};
-                delete players[activePlayerKey];
-                const rest = Object.keys(players);
-
-                const lastEvent = { type: "left", name: meName, ts: Date.now() };
-                if (rest.length === 0) {
-                    await ref.delete();
-                } else if (wasCreator) {
-                    await ref.update({ players, createdBy: rest[0], updatedAt: Date.now(), lastEvent: lastEvent });
-                } else {
-                    await ref.update({ players, updatedAt: Date.now(), lastEvent: lastEvent });
-                }
-            } catch (e) { /* Lobby war schon weg */ }
-        };
+        // Duplikat entfernt (08.08.2026): hier stand eine zweite, überschreibende
+        // leaveLiveDuel-Definition, die die erste (oben) zur Laufzeit stillschweigend
+        // ersetzt hat. Dadurch endete das Spiel beim Verlassen des Gastgebers nicht
+        // mehr für alle (nur Host-Übergabe) und es kam nie das "hat das Spiel beendet"-
+        // Event – im Widerspruch zum Bestätigungsdialog ("Spiel endet für alle.").
+        // Die nötigen Ergänzungen (Action-Mode stoppen, Lobby vergessen) sind jetzt
+        // in der einen verbleibenden Definition oben enthalten.
 

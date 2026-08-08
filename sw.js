@@ -118,8 +118,12 @@ self.addEventListener('fetch', function (event) {
     // CDN: erst das Netz versuchen (damit Updates ankommen), bei
     // Fehlschlag aus dem Cache. Für den Store-Build sollten Tailwind und
     // Firebase trotzdem echte lokale Kopien werden.
+    // cache: 'no-store' hier bewusst: sonst kann der normale HTTP-Cache des
+    // Browsers eine alte Antwort liefern, obwohl "das Netz" versucht wird -
+    // genau das sorgte zuletzt dafür, dass frisch gelieferte Änderungen
+    // (z. B. app-ui.js) nicht ankamen, obwohl online.
     event.respondWith(
-        fetch(req).then(function (antwort) {
+        fetch(req, { cache: 'no-store' }).then(function (antwort) {
             if (antwort && (antwort.ok || antwort.type === 'opaque')) {
                 const kopie = antwort.clone();
                 caches.open(CACHE).then(function (c) { c.put(req, kopie); });

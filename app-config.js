@@ -913,6 +913,7 @@ const geladen = _questionCounts[key] || 0;
             const wCount = typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS) ? GERMAN_WORDS.length : null;
             const curriculumOk = typeof CURRICULUM !== 'undefined';
             const rows = [
+                ["Build", window.EDUPLAY_BUILD || "-"],
                 ["Version", (document.querySelector('#view-einstellungen .text-gray-500') || {}).innerText || "-"],
                 ["Familie (uid)", currentParentUser ? currentParentUser.uid.slice(0, 10) + "…" : "nicht eingeloggt"],
                 ["Login-E-Mail", currentParentUser ? (currentParentUser.email || "(Google)") : "-"],

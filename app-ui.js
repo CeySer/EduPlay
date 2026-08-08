@@ -278,37 +278,45 @@
                 if (e.target === wrap) schliesse(offenerDialog ? offenerDialog.abbruchWert : false);
             });
 
-            // Wegswippen (Touch): die Dialog-Karte nach unten ziehen schließt sie,
-            // gleiche Bedeutung wie Klick auf den Hintergrund. Betrifft alle
-            // appConfirm/appPrompt/appAlert-Dialoge, u.a. die "Weiter?"-Meldung
-            // beim Wiedereinstieg in eine Runde.
+            // Wegswippen: die Dialog-Karte nach unten ziehen schließt sie, gleiche
+            // Bedeutung wie Klick auf den Hintergrund. Betrifft alle appConfirm/
+            // appPrompt/appAlert-Dialoge, u.a. die "Weiter?"-Meldung beim
+            // Wiedereinstieg in eine Runde. Pointer Events statt Touch Events:
+            // funktioniert damit einheitlich auf Handy (Touch), Maus und Stift.
             const dialogEl = wrap.querySelector(".app-dialog");
-            if (dialogEl) {
-                let swipeStartY = null, swiping = false;
-                dialogEl.addEventListener("touchstart", function (e) {
-                    if (!e.touches || e.touches.length !== 1) return;
-                    swipeStartY = e.touches[0].clientY;
+            if (dialogEl && window.PointerEvent) {
+                let swipeStartY = null, swiping = false, activePointerId = null;
+                dialogEl.style.touchAction = "none";
+                dialogEl.addEventListener("pointerdown", function (e) {
+                    if (activePointerId !== null) return;
+                    // Nicht auf Eingabefeldern/Buttons starten, sonst blockiert es Tippen/Klicken.
+                    if (e.target.closest && e.target.closest("input, button, textarea, select, a")) return;
+                    activePointerId = e.pointerId;
+                    swipeStartY = e.clientY;
                     swiping = true;
                     dialogEl.style.transition = "none";
-                }, { passive: true });
-                dialogEl.addEventListener("touchmove", function (e) {
-                    if (!swiping || swipeStartY === null || !e.touches || !e.touches.length) return;
-                    const dy = e.touches[0].clientY - swipeStartY;
+                    try { dialogEl.setPointerCapture(e.pointerId); } catch (_) { }
+                });
+                dialogEl.addEventListener("pointermove", function (e) {
+                    if (!swiping || e.pointerId !== activePointerId) return;
+                    const dy = e.clientY - swipeStartY;
                     if (dy > 0) dialogEl.style.transform = `translateY(${dy}px)`;
-                }, { passive: true });
-                dialogEl.addEventListener("touchend", function (e) {
-                    if (!swiping) return;
+                });
+                function swipeEnde(e) {
+                    if (!swiping || e.pointerId !== activePointerId) return;
                     swiping = false;
+                    activePointerId = null;
                     dialogEl.style.transition = "";
-                    const touch = e.changedTouches && e.changedTouches[0];
-                    const dy = touch ? touch.clientY - swipeStartY : 0;
+                    const dy = e.clientY - swipeStartY;
                     swipeStartY = null;
                     if (dy > 80) {
                         schliesse(offenerDialog ? offenerDialog.abbruchWert : false);
                     } else {
                         dialogEl.style.transform = "";
                     }
-                });
+                }
+                dialogEl.addEventListener("pointerup", swipeEnde);
+                dialogEl.addEventListener("pointercancel", swipeEnde);
             }
 
             if (input) {

@@ -20,6 +20,10 @@
         // gezeigt wurde, damit es nicht bei jedem Snapshot erneut aufploppt.
         // null = noch nicht initialisiert (Altbestand beim Beitreten nicht zeigen).
         let liveDuelLastShownEventTs = null;
+        let liveDuelEventBaselined = false; // erster Snapshot nach dem Beitreten setzt nur den Ausgangswert, zeigt nie eine Meldung
+        // Synchronisiertes Buchstaben-Aufblitzen beim Wort-Rätsel (auch beim Gegenspieler sichtbar)
+        let wrLiveLastFlashTs = 0;
+        let wrLiveFlashBaselined = false;
 
         const SCRABBLE_ANSWER_SECONDS = { leicht: 30, mittel: 20, schwer: 15, experte: 12, profi: 35 };
 
@@ -253,6 +257,9 @@
         function subscribeLiveDuel() {
             if (liveDuelUnsubscribe) liveDuelUnsubscribe();
             liveDuelLastShownEventTs = null;
+            liveDuelEventBaselined = false;
+            wrLiveLastFlashTs = 0;
+            wrLiveFlashBaselined = false;
             liveDuelUnsubscribe = liveDuelRef.onSnapshot((doc) => {
                 if (!doc.exists) {
                     // Dokument komplett weg (Gastgeber hat beendet und gelöscht).
@@ -333,16 +340,20 @@
 
             // Meldung, wenn jemand die Lobby/Runde verlassen oder der
             // Gastgeber beendet hat – einmal pro Ereignis.
-            if (data.lastEvent && data.lastEvent.ts) {
-                if (liveDuelLastShownEventTs === null) {
-                    liveDuelLastShownEventTs = data.lastEvent.ts; // Altbestand nicht nachträglich zeigen
-                } else if (data.lastEvent.ts > liveDuelLastShownEventTs) {
-                    liveDuelLastShownEventTs = data.lastEvent.ts;
-                    if (data.lastEvent.type === "host_ended") {
-                        showToast("🚪 " + (data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
-                    } else if (data.lastEvent.type === "left") {
-                        showToast("🚪 " + (data.lastEvent.name || "Ein Spieler") + " hat verlassen");
-                    }
+            // Baseline erst beim ERSTEN Snapshot nach dem Beitreten setzen, egal ob
+            // darin schon ein lastEvent steckt oder nicht. Vorher wurde die Baseline
+            // nur gesetzt, wenn zufällig schon ein lastEvent da war – dadurch wurde
+            // ausgerechnet das allererste "richtige" Ereignis (jemand verlässt gerade)
+            // fälschlich als "Altbestand" verschluckt und nie angezeigt.
+            if (!liveDuelEventBaselined) {
+                liveDuelEventBaselined = true;
+                liveDuelLastShownEventTs = (data.lastEvent && data.lastEvent.ts) || 0;
+            } else if (data.lastEvent && data.lastEvent.ts && data.lastEvent.ts > liveDuelLastShownEventTs) {
+                liveDuelLastShownEventTs = data.lastEvent.ts;
+                if (data.lastEvent.type === "host_ended") {
+                    showToast("🚪 " + (data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
+                } else if (data.lastEvent.type === "left") {
+                    showToast("🚪 " + (data.lastEvent.name || "Ein Spieler") + " hat verlassen");
                 }
             }
 
@@ -804,6 +815,20 @@
         }
 
         function renderLiveDuelWortratenPlay(data) {
+            // Buchstaben-Aufblitzen synchron beim Gegenspieler zeigen (der Tippende
+            // sieht es schon sofort lokal per onclick, siehe wrFlashLetter-Aufruf
+            // im Tastatur-Button unten). Gleiche Baseline-Logik wie bei den
+            // Verlassen-Meldungen: erster Snapshot setzt nur den Ausgangswert.
+            if (!wrLiveFlashBaselined) {
+                wrLiveFlashBaselined = true;
+                wrLiveLastFlashTs = (data.lastGuess && data.lastGuess.ts) || 0;
+            } else if (data.lastGuess && data.lastGuess.ts && data.lastGuess.ts > wrLiveLastFlashTs) {
+                wrLiveLastFlashTs = data.lastGuess.ts;
+                if (data.lastGuess.by !== activePlayerKey && typeof wrFlashLetter === "function") {
+                    wrFlashLetter(data.lastGuess.letter);
+                }
+            }
+
             const key = wrLiveActivePlayerKey(data);
             const isMyTurn = key === activePlayerKey;
             const word = data.word || "";
@@ -947,7 +972,10 @@
                         }
                     }
 
-                    const update = { guessed: newGuessed, wrongCount, players, roundOver, roundSolved };
+                    const update = {
+                        guessed: newGuessed, wrongCount, players, roundOver, roundSolved,
+                        lastGuess: { letter: letter, by: key, ts: Date.now() } // fürs synchronisierte Aufblitzen beim Gegenspieler
+                    };
                     if (!roundOver) {
                         const order = (data.order || []).filter(k => players[k] && !players[k].pending);
                         const curIdx = order.indexOf(key);

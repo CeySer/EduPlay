@@ -83,6 +83,7 @@ window.FRAGEN_VERZEICHNIS = [
   { datei: "fragen/klasse8/questions_k8_erdkunde.js", name: "questions_k8_erdkunde", n: 100, kat: ["k8_erdkunde"] },
   { datei: "fragen/klasse8/questions_k8_franzoesisch.js", name: "questions_k8_franzoesisch", n: 100, kat: ["k8_franzoesisch"] },
   { datei: "fragen/klasse8/questions_k8_geschichte.js", name: "questions_k8_geschichte", n: 100, kat: ["k8_geschichte"] },
+  { datei: "fragen/klasse8/questions_k8_informatik.js", name: "questions_k8_informatik", n: 100, kat: ["k8_informatik"] },
   { datei: "fragen/klasse8/questions_k8_mathe.js", name: "questions_k8_mathematik", n: 100, kat: ["k8_mathe"] },
   { datei: "fragen/klasse8/questions_k8_physik.js", name: "questions_k8_physik", n: 100, kat: ["k8_physik"] },
   { datei: "fragen/klasse8/questions_k8_politik.js", name: "questions_k8_politik", n: 100, kat: ["k8_politik"] },

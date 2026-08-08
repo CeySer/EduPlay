@@ -441,6 +441,62 @@ const geladen = _questionCounts[key] || 0;
             });
 
             sSel.innerHTML = html;
+            if (areaId === "live-duel-area" && typeof fillLiveDuelCategoryChecks === "function") {
+                fillLiveDuelCategoryChecks();
+            }
+        }
+
+        function fillLiveDuelCategoryChecks() {
+            const box = document.getElementById("live-duel-category-checks");
+            const aSel = document.getElementById("live-duel-area");
+            if (!box || !aSel) return;
+            const mode = aSel.dataset.mode || "spass";
+            const area = getAreas(mode).find(a => a.value === aSel.value);
+            const subs = area ? area.subjects : [];
+            let html = "";
+            subs.forEach(s => {
+                const totalCount = questionCount(s.key);
+                html += `<label class="flex items-center gap-2 text-sm text-white font-bold cursor-pointer py-1">
+                    <input type="checkbox" class="live-duel-cat-check w-4 h-4 accent-indigo-500" value="${s.key}">
+                    <span>${s.label} <span class="text-gray-500 font-normal">(${totalCount})</span></span>
+                </label>`;
+            });
+            box.innerHTML = html || '<p class="text-xs text-gray-500">Keine Themen in diesem Bereich.</p>';
+        }
+
+        function toggleLiveDuelCategoryMix() {
+            const on = !!(document.getElementById("live-duel-mix-categories") || {}).checked;
+            const checks = document.getElementById("live-duel-category-checks");
+            const single = document.getElementById("live-duel-category");
+            if (checks) checks.classList.toggle("hidden", !on);
+            if (single) single.classList.toggle("hidden", on);
+            if (on) fillLiveDuelCategoryChecks();
+        }
+
+        function collectLiveDuelCategoryKeys() {
+            const mix = !!(document.getElementById("live-duel-mix-categories") || {}).checked;
+            if (mix) {
+                return Array.from(document.querySelectorAll(".live-duel-cat-check:checked")).map(cb => cb.value);
+            }
+            const single = document.getElementById("live-duel-category");
+            return single && single.value ? [single.value] : [];
+        }
+
+        function buildMixedQuestions(keys, qCount) {
+            let pool = [];
+            (keys || []).forEach(k => {
+                pool = pool.concat(questionsForKey(k) || []);
+            });
+            // Duplikate nach id entfernen
+            const seen = new Set();
+            pool = pool.filter(q => {
+                const id = q && (q.id || q.question);
+                if (!id || seen.has(id)) return false;
+                seen.add(id);
+                return true;
+            });
+            pool = pool.sort(() => Math.random() - 0.5).slice(0, qCount || 10);
+            return prepareQuestions(pool);
         }
 
         function setupCategorySelectors(areaId, subjectId, mode) {
@@ -1169,32 +1225,53 @@ const geladen = _questionCounts[key] || 0;
             else if ('speechSynthesis' in window) window.speechSynthesis.cancel();
         }
 
-        function inviteFriends() {
-            const codeEl = document.getElementById("live-duel-lobby-code");
-            const code = (codeEl && codeEl.innerText || "").trim().toUpperCase();
-            const hasCode = code && code.length >= 4 && !code.includes("…");
-            const text = hasCode
-                ? `Komm ins EduPlay-Spiel! Code: ${code} – unter „Online-Lobby“ eingeben. 🚀`
-                : 'Hey! Lern mit mir zusammen auf EduPlay Hub – mach mit! 🚀';
-            const shareData = { title: 'EduPlay Hub', text, url: window.location.href };
+        function getActiveInviteCode() {
+            const fromLobby = (document.getElementById("live-duel-lobby-code") || {}).innerText || "";
+            const fromTV = window._activeTVCode || "";
+            const raw = (fromLobby || fromTV).trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+            return raw.length >= 4 ? raw.slice(0, 4) : "";
+        }
+
+        function buildInviteLink(code, mode) {
+            const base = (window.location.origin || "") + (window.location.pathname || "/");
+            if (!code) return base;
+            if (mode === "tv") return base + "?tv=" + encodeURIComponent(code);
+            return base + "?join=" + encodeURIComponent(code);
+        }
+
+        function inviteFriends(mode) {
+            const code = getActiveInviteCode();
+            const isTV = mode === "tv" || (!!window._activeTVCode && !document.getElementById("live-duel-lobby-code-wrap"));
+            const link = buildInviteLink(code, isTV || (window._activeTVCode && code === window._activeTVCode) ? "tv" : "join");
+            const text = code
+                ? (isTV || (window._activeTVCode && code === String(window._activeTVCode).toUpperCase())
+                    ? `Komm zu EduPlay TV! Code: ${code}\n${link}`
+                    : `Komm zu EduPlay! Code: ${code}\nMit Freunden spielen → Code eingeben\n${link}`)
+                : `Hey! Lern mit mir auf EduPlay Hub 🚀\n${link}`;
+            const shareData = { title: "EduPlay Hub", text, url: link };
             if (navigator.share) {
                 navigator.share(shareData).catch(() => { });
             } else {
-                const payload = hasCode ? text + "\n" + window.location.href : window.location.href;
-                navigator.clipboard.writeText(payload).then(() => {
-                    showToast(hasCode ? '🔗 Code ' + code + ' kopiert!' : '🔗 Link kopiert!', 'success');
-                }).catch(() => { appAlert(payload, { titel: "Zum Kopieren", icon: "🔗" }); });
+                const payload = text;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(payload).then(() => {
+                        showToast(code ? "Code " + code + " kopiert!" : "Link kopiert!", "success");
+                    }).catch(() => { appAlert(payload, { titel: "Zum Kopieren", icon: "🔗" }); });
+                } else {
+                    appAlert(payload, { titel: "Zum Kopieren", icon: "🔗" });
+                }
             }
         }
 
         function shareLobbyCode() {
-            const codeEl = document.getElementById("live-duel-lobby-code");
-            const code = (codeEl && codeEl.innerText || "").trim().toUpperCase();
-            if (!code || code.length < 4) return showToast("Noch kein Code.", "error");
-            const text = "EduPlay Lobby-Code: " + code + "\nOnline-Lobby → Code eingeben.";
-            if (navigator.share) navigator.share({ title: "EduPlay Lobby", text }).catch(() => { });
-            else if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => showToast("Code " + code + " kopiert!", "success"));
-            else appAlert(text, { titel: "Lobby-Code", icon: "🔗" });
+            const code = getActiveInviteCode();
+            if (!code) return showToast("Noch kein Code.", "error");
+            inviteFriends();
+        }
+
+        function shareTVCode() {
+            if (!window._activeTVCode) return showToast("Noch kein TV-Code.", "error");
+            inviteFriends("tv");
         }
 
 

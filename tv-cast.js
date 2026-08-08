@@ -480,7 +480,9 @@
                             <p class="text-sm text-indigo-300 font-bold uppercase tracking-wider">Beitritts-Code</p>
                             <div class="text-5xl font-black tracking-[0.28em] text-white my-2">${tvCode}</div>
                             ${qrSrc ? `<img alt="QR" class="mx-auto w-40 h-40 rounded-xl bg-white p-2" src="${qrSrc}">` : ""}
-                            <p class="text-xs text-gray-400 mt-2">Familie: „Jetzt beitreten“ · Andere: QR scannen oder Code eingeben</p>
+                            <p class="text-xs text-gray-400 mt-2">Familie: „Jetzt beitreten“ · Andere: QR oder Code</p>
+                            <button type="button" onclick="shareTVCode()" class="btn-primary mt-3 text-base py-3 px-6"
+                                style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">👥 Freunde einladen</button>
                         </div>` : ""}
                         <p class="text-xl text-white mb-8">Auf dem Handy: <span class="text-emerald-400 font-bold">'Jetzt beitreten!'</span></p>
                         <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>

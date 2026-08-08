@@ -45,6 +45,37 @@
         const FEEDBACK_MAIL = "cu.oezdemir@gmail.com";
         const FEEDBACK_WHATSAPP = "491778744183";
         let feedbackReturnView = "menu";
+        let appRatingStars = 0;
+
+        function setAppRating(n) {
+            appRatingStars = Math.max(0, Math.min(5, parseInt(n, 10) || 0));
+            try { localStorage.setItem("eduplayRating", String(appRatingStars)); } catch (e) { }
+            document.querySelectorAll(".app-rating-star").forEach(btn => {
+                const s = parseInt(btn.getAttribute("data-stars"), 10);
+                btn.classList.toggle("is-on", s <= appRatingStars);
+            });
+            const label = document.getElementById("app-rating-label");
+            if (label) {
+                label.textContent = appRatingStars
+                    ? (appRatingStars + " von 5 Sternen")
+                    : "Tippe auf die Sterne";
+            }
+        }
+
+        function openAppRating(returnView) {
+            openFeedback(returnView || "menu");
+            const typeSel = document.getElementById("feedback-type");
+            if (typeSel) typeSel.value = "Bewertung";
+            let saved = 0;
+            try { saved = parseInt(localStorage.getItem("eduplayRating") || "0", 10) || 0; } catch (e) { }
+            setAppRating(saved || 5);
+            const textField = document.getElementById("feedback-text");
+            if (textField && !textField.value.trim()) {
+                textField.value = "Meine Bewertung: ";
+                const c = document.getElementById("feedback-counter");
+                if (c) c.innerText = textField.value.length;
+            }
+        }
 
         function openFeedback(returnView) {
             feedbackReturnView = returnView || "menu";
@@ -59,6 +90,9 @@
                     if (c) c.innerText = textField.value.length;
                 };
             }
+            let saved = 0;
+            try { saved = parseInt(localStorage.getItem("eduplayRating") || "0", 10) || 0; } catch (e) { }
+            setAppRating(saved);
             switchView("feedback");
             if (textField) setTimeout(() => textField.focus(), 150);
         }
@@ -89,11 +123,13 @@
             const type = document.getElementById("feedback-type").value;
             const name = cleanInput(document.getElementById("feedback-name").value, 24);
             const text = cleanInput(document.getElementById("feedback-text").value, 1500);
-            if (!text) return null;
+            if (!text && !appRatingStars) return null;
+            const ratingLine = appRatingStars ? `Bewertung: ${appRatingStars}/5 Sterne\n` : "";
+            const bodyText = text || "(nur Sterne)";
             const info = `\n\n---\nApp: EduPlay Hub\nGerät: ${navigator.userAgent}\nZeit: ${new Date().toLocaleString("de-DE")}`;
             return {
-                subject: `EduPlay Feedback: ${type}`,
-                body: `Art: ${type}\nVon: ${name || "anonym"}\n\n${text}${info}`
+                subject: `EduPlay Feedback: ${type}${appRatingStars ? " " + appRatingStars + "/5" : ""}`,
+                body: `Art: ${type}\n${ratingLine}Von: ${name || "anonym"}\n\n${bodyText}${info}`
             };
         }
 

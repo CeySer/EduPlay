@@ -2661,3 +2661,34 @@ html, body {
     visibility: visible;
     pointer-events: auto;
 }
+
+/* App-Bewertung Sterne */
+.app-rating-stars {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 6px;
+}
+.app-rating-star {
+    border: none;
+    background: transparent;
+    font-size: 2rem;
+    line-height: 1;
+    color: rgba(148, 163, 184, 0.45);
+    cursor: pointer;
+    padding: 4px 2px;
+    transition: color 0.15s ease, transform 0.12s ease;
+}
+.app-rating-star.is-on {
+    color: #fbbf24;
+    text-shadow: 0 0 12px rgba(251, 191, 36, 0.35);
+}
+.app-rating-star:active {
+    transform: scale(1.12);
+}
+body:not(.dark-theme) .app-rating-star {
+    color: rgba(100, 116, 139, 0.4);
+}
+body:not(.dark-theme) .app-rating-star.is-on {
+    color: #d97706;
+}

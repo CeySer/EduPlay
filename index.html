@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#080c18">
     <title>EduPlay Hub - Familien Edition v2.30</title>
 
-    <link rel="stylesheet" href="styles.css?v=9.2">
+    <link rel="stylesheet" href="styles.css?v=9.3">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
@@ -870,8 +870,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             <div id="view-live-duel-setup" class="view hidden space-y-4">
                 <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                 <button onclick="openCodedLobbySetup()" data-needs-questions class="btn-primary w-full text-center"
-                    style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">🌍
-                    Online-Lobby mit Code (verschiedene Konten)</button>
+                    style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">👥
+                    Mit Freunden spielen (Code)</button>
                 <div class="glass-card p-6 space-y-4">
                     <h2 id="live-duel-setup-title" class="text-2xl font-black text-center text-rose-400">⚔️ Live-Duell
                     </h2>
@@ -884,6 +884,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <select id="live-duel-area" class="input-modern font-bold mb-3"></select>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema</label>
                             <select id="live-duel-category" class="input-modern font-bold"></select>
+                            <label class="flex items-center gap-2 mt-2 text-xs font-bold text-gray-400 cursor-pointer">
+                                <input type="checkbox" id="live-duel-mix-categories" class="w-4 h-4 accent-indigo-500"
+                                    onchange="toggleLiveDuelCategoryMix()">
+                                Mehrere Themen mischen
+                            </label>
+                            <div id="live-duel-category-checks" class="hidden mt-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10"></div>
                         </div>
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Tempo</label>
@@ -1020,7 +1026,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             <div id="view-coded-lobby-setup" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                    <span class="text-sm font-bold text-gray-400">🌍 Online-Lobby</span>
+                    <span class="text-sm font-bold text-gray-400">👥 Mit Freunden</span>
                     <span class="w-16"></span>
                 </div>
                 <div class="glass-card p-5 space-y-3" style="border-color:rgba(16,185,129,0.25);">
@@ -1209,9 +1215,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="live-duel-lobby-qr"
                         class="mx-auto my-3 w-36 h-36 rounded-xl bg-white p-2 flex items-center justify-center overflow-hidden">
                     </div>
-                    <p class="text-[11px] text-gray-400 mb-3">Freunde: Online-Lobby → Code eingeben</p>
+                    <p class="text-[11px] text-gray-400 mb-3">Freunde: Mit Freunden spielen → Code</p>
                     <button type="button" onclick="shareLobbyCode()" class="btn-primary w-full text-sm py-3"
-                        style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">📤 Einladen / Code teilen</button>
+                        style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">👥 Freunde einladen</button>
                 </div>
                 <div id="live-duel-lobby-meta"
                     class="hidden glass-card p-3 text-center text-xs font-bold text-indigo-200"></div>
@@ -1317,6 +1323,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div id="pending-test-card" class="hidden"></div>
 
                 <!-- Offene Einladungen der Familie -->
+                <div id="open-challenges-list" class="space-y-2"></div>
                 <div id="open-duels-list" class="space-y-2"></div>
                 <div id="open-tv-list" class="space-y-2"></div>
 
@@ -1327,7 +1334,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <span class="text-4xl shrink-0">⚔️</span>
                     <span>
                         <span class="block text-lg font-black">Gegeneinander</span>
-                        <span class="block text-xs font-bold text-rose-100/80">Duelle, TV-Quiz, Online-Lobby</span>
+                        <span class="block text-xs font-bold text-rose-100/80">Duelle, TV-Quiz, mit Freunden</span>
                     </span>
                 </button>
 
@@ -1374,9 +1381,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <button onclick="openCodedLobbySetup()" data-needs-questions
                     class="p-4 rounded-2xl text-white font-black shadow-lg text-sm flex flex-col items-center gap-1 transition hover:scale-[1.02] w-full"
                     style="background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 24px rgba(99,102,241,0.3);">
-                    <span class="text-2xl">🌍</span> Online-Lobby
-                    <span class="text-xs font-bold text-indigo-200 -mt-1">beitreten oder erstellen · auch für
-                        Gäste</span>
+                    <span class="text-2xl">👥</span> Mit Freunden spielen
+                    <span class="text-xs font-bold text-indigo-200 -mt-1">Code teilen · auch für Gäste</span>
                 </button>
 
                 <div class="grid grid-cols-2 gap-3">
@@ -1561,8 +1567,18 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     onclick="switchView(feedbackReturnView)">Zurück</button>
                 <div class="glass-card p-5 space-y-4">
                     <h3 class="text-xl font-black text-amber-400 mb-1">💬 Feedback</h3>
-                    <p class="text-xs text-gray-400">Was ist kaputt, was fehlt, was war gut? Schreib's rein – wir lesen
-                        alles.</p>
+                    <p class="text-xs text-gray-400">Was ist kaputt, was fehlt, was war gut?</p>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">App bewerten</label>
+                        <div id="app-rating-stars" class="app-rating-stars" role="radiogroup" aria-label="Sterne">
+                            <button type="button" class="app-rating-star" data-stars="1" onclick="setAppRating(1)" aria-label="1 Stern">★</button>
+                            <button type="button" class="app-rating-star" data-stars="2" onclick="setAppRating(2)" aria-label="2 Sterne">★</button>
+                            <button type="button" class="app-rating-star" data-stars="3" onclick="setAppRating(3)" aria-label="3 Sterne">★</button>
+                            <button type="button" class="app-rating-star" data-stars="4" onclick="setAppRating(4)" aria-label="4 Sterne">★</button>
+                            <button type="button" class="app-rating-star" data-stars="5" onclick="setAppRating(5)" aria-label="5 Sterne">★</button>
+                        </div>
+                        <p id="app-rating-label" class="text-[11px] text-gray-500 mt-1">Tippe auf die Sterne</p>
+                    </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-400 mb-1.5">Worum geht's?</label>
                         <select id="feedback-type" class="input-modern font-bold">
@@ -1570,6 +1586,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <option value="Idee">💡 Ich habe eine Idee</option>
                             <option value="Frage">❓ Frage zu einer Frage</option>
                             <option value="Lob">🎉 Lob / Sonstiges</option>
+                            <option value="Bewertung">⭐ App-Bewertung</option>
                         </select>
                     </div>
                     <div>
@@ -2067,18 +2084,18 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=8.8"></script>
+    <script src="app-config.js?v=9.1"></script>
     <script src="app-ui.js?v=9.1"></script>
-    <script src="family-dashboard.js?v=8.8"></script>
-    <script src="ui-common.js?v=8.8"></script>
+    <script src="family-dashboard.js?v=9.0"></script>
+    <script src="ui-common.js?v=9.0"></script>
     <script src="quiz-core.js?v=8.8"></script>
     <script src="vocab.js?v=8.8"></script>
     <script src="duel-scrabble.js?v=8.8"></script>
     <script src="wortraten.js?v=8.9"></script>
-    <script src="tv-cast.js?v=9.2"></script>
-    <script src="live-duel.js?v=9.1"></script>
+    <script src="tv-cast.js?v=9.3"></script>
+    <script src="live-duel.js?v=9.3"></script>
     <script src="app-misc.js?v=8.8"></script>
-    <script src="lobby-avatar.js?v=8.8"></script>
+    <script src="lobby-avatar.js?v=8.9"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
     <script src="email-bestaetigung.js?v=8.8"></script>
     <script src="fragen-vorladen.js?v=8.8"></script>
@@ -2130,6 +2147,9 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             <button onclick="closeDrawer(); inviteFriends()" class="drawer-menu-item">
                 <span class="icon">👥</span> Freunde einladen
             </button>
+            <button onclick="closeDrawer(); openAppRating('family-hub')" class="drawer-menu-item">
+                <span class="icon">⭐</span> App bewerten
+            </button>
             <button onclick="closeDrawer(); openFeedback('family-hub')" class="drawer-menu-item">
                 <span class="icon">💬</span> Feedback geben
             </button>
@@ -2169,6 +2189,9 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
             <button onclick="closeDrawer(); inviteFriends()" class="drawer-menu-item">
                 <span class="icon">👥</span> Freunde einladen
+            </button>
+            <button onclick="closeDrawer(); openAppRating('menu')" class="drawer-menu-item">
+                <span class="icon">⭐</span> App bewerten
             </button>
             <button onclick="closeDrawer(); openFeedback('family-hub')" class="drawer-menu-item">
                 <span class="icon">💬</span> Feedback geben

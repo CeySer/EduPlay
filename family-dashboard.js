@@ -503,6 +503,122 @@ auth.createUserWithEmailAndPassword(e, p)
             // verworfen wird.
             if (typeof versucheDeepLinkJoin === "function") versucheDeepLinkJoin();
             if (typeof versucheTVDeepLinkJoin === "function") versucheTVDeepLinkJoin();
+            if (typeof loadOpenChallenges === "function") loadOpenChallenges();
+        }
+
+        function challengesRef() {
+            if (!currentParentUser) return null;
+            return db.collection("parents").doc(currentParentUser.uid).collection("challenges");
+        }
+
+        async function challengePlayer(toKey) {
+            if (!currentParentUser || !activePlayerKey || !currentPlayer) {
+                return showToast("Bitte zuerst deinen Spieler wählen.", "error");
+            }
+            if (!toKey || toKey === activePlayerKey) return;
+            const to = ALL_PROFILES[toKey];
+            if (!to) return showToast("Spieler nicht gefunden.", "error");
+            if (to.isGuest) return showToast("Gäste kann man nicht herausfordern.", "error");
+            try {
+                await challengesRef().add({
+                    fromKey: activePlayerKey,
+                    fromName: currentPlayer.name,
+                    toKey,
+                    toName: to.name,
+                    type: "quiz",
+                    status: "pending",
+                    createdAt: Date.now()
+                });
+                showToast(`⚔️ Herausforderung an ${to.name} gesendet!`, "success");
+                if (typeof loadOpenChallenges === "function") loadOpenChallenges();
+            } catch (e) {
+                handleError("challengePlayer", e, "Herausforderung fehlgeschlagen.");
+            }
+        }
+
+        async function loadOpenChallenges() {
+            const box = document.getElementById("open-challenges-list");
+            if (!box || !currentParentUser || !activePlayerKey) {
+                if (box) box.innerHTML = "";
+                return;
+            }
+            try {
+                const snap = await challengesRef().where("status", "==", "pending").get();
+                const now = Date.now();
+                let html = "";
+                snap.forEach(doc => {
+                    const c = doc.data() || {};
+                    if (now - (c.createdAt || 0) > 24 * 60 * 60 * 1000) return; // älter als 1 Tag
+                    if (c.toKey === activePlayerKey) {
+                        html += `<div class="glass-card p-3 flex items-center justify-between gap-2 border border-amber-400/30">
+                            <div class="min-w-0">
+                                <div class="text-sm font-black text-amber-300">⚔️ Herausforderung</div>
+                                <div class="text-xs text-gray-400 truncate">${esc(c.fromName || "Jemand")} fordert dich heraus</div>
+                            </div>
+                            <div class="flex gap-1.5 shrink-0">
+                                <button onclick="acceptChallenge('${doc.id}')" class="btn-primary text-xs py-2 px-3">Annehmen</button>
+                                <button onclick="declineChallenge('${doc.id}')" class="btn-secondary text-xs py-2 px-2">Nein</button>
+                            </div>
+                        </div>`;
+                    } else if (c.fromKey === activePlayerKey) {
+                        html += `<div class="glass-card p-3 flex items-center justify-between gap-2">
+                            <div class="min-w-0">
+                                <div class="text-xs text-gray-400">Warte auf ${esc(c.toName || "…")}</div>
+                            </div>
+                            <button onclick="declineChallenge('${doc.id}')" class="btn-ghost text-xs py-1.5 px-2 text-gray-500">Zurücknehmen</button>
+                        </div>`;
+                    }
+                });
+                // Andere Familien-Spieler herausfordern (kurz)
+                const others = Object.keys(ALL_PROFILES || {}).filter(k =>
+                    k !== activePlayerKey && ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest
+                );
+                if (others.length) {
+                    html += `<div class="glass-card p-3 space-y-2">
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Herausfordern</div>
+                        <div class="flex flex-wrap gap-2">`;
+                    others.slice(0, 6).forEach(k => {
+                        const p = ALL_PROFILES[k];
+                        const online = p.lastActive && (now - p.lastActive) < 5 * 60 * 1000;
+                        html += `<button onclick="challengePlayer('${k}')" class="btn-secondary text-xs py-2 px-3">
+                            ${online ? "🟢 " : ""}${esc(p.name)}
+                        </button>`;
+                    });
+                    html += `</div></div>`;
+                }
+                box.innerHTML = html;
+            } catch (e) {
+                box.innerHTML = "";
+            }
+        }
+
+        async function acceptChallenge(id) {
+            if (!id || !currentParentUser) return;
+            try {
+                const ref = challengesRef().doc(id);
+                const snap = await ref.get();
+                if (!snap.exists) return showToast("Schon weg.", "error");
+                const c = snap.data() || {};
+                await ref.update({ status: "accepted", acceptedAt: Date.now() });
+                showToast(`Challenge von ${c.fromName || "Gegner"} angenommen!`, "success");
+                // Zum Duell-Setup
+                if (typeof openLiveDuelSetup === "function") openLiveDuelSetup("quiz");
+                else switchView("spielen");
+                loadOpenChallenges();
+            } catch (e) {
+                handleError("acceptChallenge", e, "Annehmen fehlgeschlagen.");
+            }
+        }
+
+        async function declineChallenge(id) {
+            if (!id || !currentParentUser) return;
+            try {
+                await challengesRef().doc(id).update({ status: "declined", declinedAt: Date.now() });
+                loadOpenChallenges();
+            } catch (e) {
+                try { await challengesRef().doc(id).delete(); } catch (_) { }
+                loadOpenChallenges();
+            }
         }
 
         function touchPlayerActivity(key) {

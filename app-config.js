@@ -444,6 +444,10 @@ const geladen = _questionCounts[key] || 0;
             if (areaId === "live-duel-area" && typeof fillLiveDuelCategoryChecks === "function") {
                 fillLiveDuelCategoryChecks();
             }
+            const mixPrefixes = { "coded-lobby-area": "coded-lobby", "tv-area": "tv", "duel-area": "duel" };
+            if (mixPrefixes[areaId] && typeof fillCategoryChecksFor === "function") {
+                fillCategoryChecksFor(mixPrefixes[areaId]);
+            }
         }
 
         function fillLiveDuelCategoryChecks() {
@@ -483,6 +487,63 @@ const geladen = _questionCounts[key] || 0;
                 return Array.from(document.querySelectorAll(".live-duel-cat-check:checked")).map(cb => cb.value);
             }
             const single = document.getElementById("live-duel-category");
+            return single && single.value ? [single.value] : [];
+        }
+
+        // Generische Variante von fillLiveDuelCategoryChecks/toggleLiveDuelCategoryMix/
+        // collectLiveDuelCategoryKeys für weitere Stellen (TV-Quiz, Mit-Freunden-Lobby,
+        // Offline-Duell). Element-IDs pro Stelle unten in CATEGORY_MIX_IDS, weil sie
+        // historisch nicht alle demselben Namensschema folgen (z.B. "tv-quiz-category"
+        // statt "tv-category").
+        const CATEGORY_MIX_IDS = {
+            "coded-lobby": { area: "coded-lobby-area", category: "coded-lobby-category", mix: "coded-lobby-mix-categories", checks: "coded-lobby-category-checks", cls: "coded-lobby-cat-check" },
+            "tv": { area: "tv-area", category: "tv-quiz-category", mix: "tv-mix-categories", checks: "tv-category-checks", cls: "tv-cat-check" },
+            "duel": { area: "duel-area", category: "duel-category", mix: "duel-mix-categories", checks: "duel-category-checks", cls: "duel-cat-check" }
+        };
+
+        function fillCategoryChecksFor(key) {
+            const ids = CATEGORY_MIX_IDS[key];
+            if (!ids) return;
+            const box = document.getElementById(ids.checks);
+            const aSel = document.getElementById(ids.area);
+            if (!box || !aSel) return;
+            const mode = aSel.dataset.mode || "spass";
+            const area = getAreas(mode).find(a => a.value === aSel.value);
+            const subs = area ? area.subjects : [];
+            let html = "";
+            subs.forEach(s => {
+                const totalCount = questionCount(s.key);
+                html += `<label class="flex items-center gap-2 text-sm text-white font-bold cursor-pointer py-1">
+                    <input type="checkbox" class="${ids.cls} w-4 h-4 accent-indigo-500" value="${s.key}">
+                    <span>${s.label} <span class="text-gray-500 font-normal">(${totalCount})</span></span>
+                </label>`;
+            });
+            if (html) {
+                html += `<button type="button" onclick="document.getElementById('${ids.checks}').classList.add('hidden')"
+                    class="btn-secondary text-xs w-full py-1.5 mt-1">✓ Fertig</button>`;
+            }
+            box.innerHTML = html || '<p class="text-xs text-gray-500">Keine Themen in diesem Bereich.</p>';
+        }
+
+        function toggleCategoryMixFor(key) {
+            const ids = CATEGORY_MIX_IDS[key];
+            if (!ids) return;
+            const on = !!(document.getElementById(ids.mix) || {}).checked;
+            const checks = document.getElementById(ids.checks);
+            const single = document.getElementById(ids.category);
+            if (checks) checks.classList.toggle("hidden", !on);
+            if (single) single.classList.toggle("hidden", on);
+            if (on) fillCategoryChecksFor(key);
+        }
+
+        function collectCategoryKeysFor(key) {
+            const ids = CATEGORY_MIX_IDS[key];
+            if (!ids) return [];
+            const mix = !!(document.getElementById(ids.mix) || {}).checked;
+            if (mix) {
+                return Array.from(document.querySelectorAll("." + ids.cls + ":checked")).map(cb => cb.value);
+            }
+            const single = document.getElementById(ids.category);
             return single && single.value ? [single.value] : [];
         }
 

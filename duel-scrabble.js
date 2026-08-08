@@ -20,10 +20,13 @@
         function startDuel() {
             const keyA = document.getElementById("duel-player-a").value;
             const keyB = document.getElementById("duel-player-b").value;
-            const cat = document.getElementById("duel-category").value;
             if (!keyA || !keyB) return showToast("Bitte zwei Spieler auswählen!", "error");
             if (keyA === keyB) return showToast("Bitte zwei unterschiedliche Spieler wählen!", "error");
-            const pool = prepareQuestions(questionsForKey(cat).sort(() => Math.random() - 0.5).slice(0, 8));
+            const categoryKeys = (typeof collectCategoryKeysFor === "function") ? collectCategoryKeysFor("duel") : [];
+            if (categoryKeys.length === 0) return showToast("Bitte ein Thema wählen!", "error");
+            const pool = categoryKeys.length > 1
+                ? buildMixedQuestions(categoryKeys, 8)
+                : prepareQuestions(questionsForKey(categoryKeys[0]).sort(() => Math.random() - 0.5).slice(0, 8));
             if (pool.length < 3) return showToast("Zu wenige Fragen in diesem Thema für ein Duell!", "error");
             duelState = { keyA, keyB, questions: pool, qIndex: 0, scoreA: 0, scoreB: 0, turn: 'A', streakA: 0, streakB: 0 };
             switchView('duel-play');

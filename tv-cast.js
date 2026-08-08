@@ -440,11 +440,13 @@
                     players: {}
                 };
             } else {
-                const category = document.getElementById("tv-quiz-category").value;
+                const categoryKeys = (typeof collectCategoryKeysFor === "function") ? collectCategoryKeysFor("tv") : [];
+                if (categoryKeys.length === 0) return showToast("Bitte ein Thema wählen!", "error");
                 lobbyData = {
                     status: "waiting",
                     mode: "quiz",
-                    category: category,
+                    category: categoryKeys[0],
+                    categoryKeys: categoryKeys,
                     currentQuestionIndex: 0,
                     players: {}
                 };
@@ -587,8 +589,10 @@
                 const data = doc.data();
                 if (data.mode === "scrabble") { startTVScrabbleRound(data); return; }
                 if (data.mode === "wortraten") { startTVWortratenRound(data); return; }
-                const cat = data.category;
-                tvQuestions = prepareQuestions(questionsForKey(cat).sort(() => Math.random() - 0.5).slice(0, 10));
+                const catKeys = (data.categoryKeys && data.categoryKeys.length) ? data.categoryKeys : [data.category];
+                tvQuestions = catKeys.length > 1
+                    ? buildMixedQuestions(catKeys, 10)
+                    : prepareQuestions(questionsForKey(catKeys[0]).sort(() => Math.random() - 0.5).slice(0, 10));
                 if (tvQuestions.length < 3) { showToast("Zu wenige Fragen für dieses Thema!", "error"); return; }
                 const playersData = data.players || {};
                 Object.keys(playersData).forEach(k => {

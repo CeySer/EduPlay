@@ -570,6 +570,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Themenbereich</label>
                         <select id="duel-area" class="input-modern font-bold mb-2"></select>
                         <select id="duel-category" class="input-modern font-bold"></select>
+                        <label class="flex items-center gap-2 mt-2 text-xs font-bold text-gray-400 cursor-pointer">
+                            <input type="checkbox" id="duel-mix-categories" class="w-4 h-4 accent-indigo-500"
+                                onchange="toggleCategoryMixFor('duel')">
+                            Mehrere Themen mischen
+                        </label>
+                        <div id="duel-category-checks" class="hidden mt-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10"></div>
                     </div>
                     <button onclick="startDuel()" class="btn-primary w-full text-center">Duell starten ⚔️</button>
                 </div>
@@ -1008,7 +1014,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Vokabelgruppen (mehrere
                                 möglich)</label>
                             <div id="live-duel-vokabel-checkboxes"
-                                class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto"></div>
+                                class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-48 overflow-y-auto"></div>
                         </div>
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Tempo</label>
@@ -1084,6 +1090,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <select id="coded-lobby-area" class="input-modern font-bold mb-3"></select>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema</label>
                             <select id="coded-lobby-category" class="input-modern font-bold"></select>
+                            <label class="flex items-center gap-2 mt-2 text-xs font-bold text-gray-400 cursor-pointer">
+                                <input type="checkbox" id="coded-lobby-mix-categories" class="w-4 h-4 accent-indigo-500"
+                                    onchange="toggleCategoryMixFor('coded-lobby')">
+                                Mehrere Themen mischen
+                            </label>
+                            <div id="coded-lobby-category-checks" class="hidden mt-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10"></div>
                         </div>
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Tempo</label>
@@ -1185,7 +1197,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Vokabelgruppen (mehrere
                                 möglich)</label>
                             <div id="coded-lobby-vokabel-checkboxes"
-                                class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto"></div>
+                                class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-48 overflow-y-auto"></div>
                         </div>
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Tempo</label>
@@ -1965,6 +1977,12 @@ VIEW: QUIZ SETUP
                     </div>
                     <select id="tv-area" class="input-modern font-bold text-lg mb-3"></select>
                     <select id="tv-quiz-category" class="input-modern font-bold text-lg mb-2"></select>
+                    <label class="flex items-center gap-2 mt-1 mb-2 text-xs font-bold text-gray-400 cursor-pointer justify-center">
+                        <input type="checkbox" id="tv-mix-categories" class="w-4 h-4 accent-indigo-500"
+                            onchange="toggleCategoryMixFor('tv')">
+                        Mehrere Themen mischen
+                    </label>
+                    <div id="tv-category-checks" class="hidden mb-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10 text-left"></div>
                 </div>
                 <div id="tv-scrabble-mode-options" class="hidden text-left space-y-3 mb-2">
                     <p class="text-xs text-gray-400 text-center">Aus den Buchstaben ist immer mindestens ein

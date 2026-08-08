@@ -1099,7 +1099,9 @@
             const theme = data.theme || "schneemann";
             const order = data.order || [];
             const turnKey = order.length ? order[(data.turnIndex || 0) % order.length] : null;
-            const turnName = (turnKey && data.players[turnKey]) ? data.players[turnKey].name : "…";
+            const turnName = (turnKey && data.players[turnKey] && data.players[turnKey].name)
+                ? data.players[turnKey].name
+                : (turnKey || "Spieler");
             const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
             const mask = word.split("").map(ch =>
                 guessed.has(ch)

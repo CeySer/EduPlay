@@ -116,15 +116,26 @@ function wrRenderFigureBase(theme, hostId) {
     const groups = stages.map((markup, i) => `<g id="${hostId}-stage-${i + 1}" class="hidden">${markup}</g>`).join("");
     const host = document.getElementById(hostId);
     if (!host) return;
+    const emoji = wrFigureEmoji(theme);
+    const name = wrFigureName(theme);
     host.innerHTML = `
-        <svg viewBox="0 0 200 220" class="w-full h-full">
-            <ellipse cx="100" cy="208" rx="72" ry="8" fill="#000" opacity="0.07"/>
-            ${groups}
-        </svg>`;
+        <div class="relative w-full h-full">
+            <svg viewBox="0 0 200 220" class="w-full h-full">
+                <ellipse cx="100" cy="208" rx="72" ry="8" fill="#000" opacity="0.07"/>
+                ${groups}
+            </svg>
+            <div id="${hostId}-empty" class="absolute inset-0 flex flex-col items-center justify-center gap-1.5 pointer-events-none">
+                <span class="text-5xl md:text-6xl opacity-45" aria-hidden="true">${emoji}</span>
+                <span class="text-xs md:text-sm font-bold text-gray-400">${name} wartet…</span>
+                <span class="text-[10px] md:text-xs text-gray-500">bei Fehlern wächst die Figur</span>
+            </div>
+        </div>`;
 }
 
 function wrRevealFigureStage(n, hostId) {
     hostId = hostId || "wortraten-figure";
+    const empty = document.getElementById(`${hostId}-empty`);
+    if (empty) empty.classList.add("hidden");
     const g = document.getElementById(`${hostId}-stage-${n}`);
     if (!g) return;
     g.classList.remove("hidden");

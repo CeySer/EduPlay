@@ -626,7 +626,7 @@
                     <div class="h-[90vh] flex flex-col justify-between p-6">
                         <div class="flex justify-between items-center">
                             <span id="tv-round-timer" class="text-2xl font-black text-amber-400">25s</span>
-                            <button onclick="appConfirmSwitch('Das laufende TV-Spiel wird für alle beendet.','TV-Spiel beenden?',null,leaveTVGame)" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
                         </div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(99,102,241,0.15);">
                             <p class="text-indigo-400 font-black text-xl mb-2">Frage ${index + 1} / ${tvQuestions.length}</p>
@@ -706,7 +706,7 @@
 
             setTVHostPlayHTML(`
                     <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="appConfirmSwitch('Das laufende TV-Spiel wird für alle beendet.','TV-Spiel beenden?','tv-quiz-setup',leaveTVGame)" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
+                        <div class="flex justify-end"><button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(16,185,129,0.2);">
                             <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
                             <p class="text-emerald-400 font-black mt-6 text-3xl">💡 ${tvCurrentQ.explanation}</p>
@@ -1126,7 +1126,7 @@
                 <div class="h-[90vh] flex flex-col p-6 gap-4">
                     <div class="flex justify-between items-center">
                         <p class="text-amber-400 font-black text-xl">Runde ${data.currentRound || 1} / ${data.totalRounds || 3} · ${data.wordMode === "adult" ? "🎓" : "👶"}</p>
-                        <button onclick="appConfirmSwitch('Das laufende TV-Spiel wird für alle beendet.','TV-Spiel beenden?','tv-quiz-setup',leaveTVGame)" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
+                        <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
                     </div>
                     <div class="flex justify-center gap-3 flex-wrap">${scores}</div>
                     <div class="glass-card p-6 flex items-center justify-center flex-1">
@@ -1300,7 +1300,7 @@
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
             setTVHostPlayHTML(`
                     <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="appConfirmSwitch('Das laufende TV-Spiel wird für alle beendet.','TV-Spiel beenden?','tv-quiz-setup',leaveTVGame)" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
+                        <div class="flex justify-end"><button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(245,158,11,0.15);">
                             <p class="text-amber-400 font-black text-xl mb-4">Runde ${round} / ${totalRounds}</p>
                             <h1 class="text-2xl md:text-3xl font-black text-white leading-tight mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
@@ -1415,7 +1415,7 @@
 
             setTVHostPlayHTML(`
                     <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="appConfirmSwitch('Das laufende TV-Spiel wird für alle beendet.','TV-Spiel beenden?','tv-quiz-setup',leaveTVGame)" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
+                        <div class="flex justify-end"><button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
                         <div class="text-center mb-4">
                             <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
                             ${data.currentSolution ? `);<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war am Ende z.B.: ${data.currentSolution}</p>` : ""}
@@ -1732,7 +1732,16 @@
             });
         }
 
-        async function leaveTVGame() {
+        async function leaveTVGame(force) {
+            if (tvGameRef && typeof confirmLeaveGame === "function") {
+                const ok = await confirmLeaveGame({
+                    force: force === true,
+                    text: isTVHost
+                        ? "TV-Spiel endet für alle."
+                        : "Fortschritt geht verloren."
+                });
+                if (!ok) return;
+            }
             const ref = tvGameRef;
             const wasHost = isTVHost;
             if (tvUnsubscribe) {

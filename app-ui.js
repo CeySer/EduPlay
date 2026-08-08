@@ -318,10 +318,10 @@
     // die Ansicht wechseln. Ersetzt die inline-confirm() im HTML.
     window.appConfirmSwitch = async function (text, titel, zielView, vorher) {
         const ok = await appConfirm(text, {
-            titel: titel || "Wirklich beenden?",
+            titel: titel || "Spiel verlassen?",
             icon: "🚪",
-            okText: "Beenden",
-            abbrechenText: "Weiterspielen",
+            okText: "Ja",
+            abbrechenText: "Nein",
             gefahr: true
         });
         if (!ok) return;
@@ -329,6 +329,23 @@
             try { vorher(); } catch (e) { console.warn("appConfirmSwitch:", e); }
         }
         if (zielView && typeof switchView === "function") switchView(zielView);
+    };
+
+    // Typische Ja/Nein-Abfrage beim Verlassen eines laufenden Spiels.
+    // force=true überspringt den Dialog (z.B. nach Spielende).
+    window.confirmLeaveGame = async function (opt) {
+        opt = opt || {};
+        if (opt.force) return true;
+        return appConfirm(
+            opt.text || "Fortschritt geht verloren.",
+            {
+                titel: opt.titel || "Spiel verlassen?",
+                icon: opt.icon || "🚪",
+                okText: opt.okText || "Ja",
+                abbrechenText: opt.abbrechenText || "Nein",
+                gefahr: true
+            }
+        );
     };
 
     window.appAlert = function (text, opt) {

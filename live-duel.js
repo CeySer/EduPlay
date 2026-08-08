@@ -1735,7 +1735,16 @@
             }
         }
 
-        async function leaveLiveDuel() {
+        async function leaveLiveDuel(force) {
+            if (liveDuelRef && typeof confirmLeaveGame === "function") {
+                const ok = await confirmLeaveGame({
+                    force: force === true,
+                    text: isLiveDuelCreator
+                        ? "Spiel endet für alle."
+                        : "Fortschritt geht verloren."
+                });
+                if (!ok) return;
+            }
             clearLiveDuelTimers();
             stopHostHeartbeat();
             const ref = liveDuelRef;
@@ -2471,7 +2480,16 @@
 
         // Überschreibe leaveLiveDuel, um den Action-Mode zu stoppen
         const originalLeaveLiveDuel = leaveLiveDuel;
-        leaveLiveDuel = async function () {
+        leaveLiveDuel = async function (force) {
+            if (liveDuelRef && typeof confirmLeaveGame === "function") {
+                const ok = await confirmLeaveGame({
+                    force: force === true,
+                    text: isLiveDuelCreator
+                        ? "Spiel endet für alle."
+                        : "Fortschritt geht verloren."
+                });
+                if (!ok) return;
+            }
             stopLiveDuelActionMode(); // <-- Wichtig: Action-Mode stoppen
             clearLiveDuelTimers();
             stopHostHeartbeat();

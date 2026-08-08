@@ -44,6 +44,7 @@
         }
 
         function showLessonResultScreen() {
+            vergissSoloFortschritt();
             const total = testAnsweredCount || 0;
             const correct = testCorrectCount || 0;
             const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
@@ -93,6 +94,7 @@
             qIndex = 0;
             switchView('quiz');
             showQuestion();
+            merkeSoloFortschritt();
             return true;
         }
 
@@ -165,6 +167,8 @@
                 clearInterval(testTimerInterval);
                 testMode = false;
                 document.getElementById("test-timer-bar").classList.add("hidden");
+            } else {
+                vergissSoloFortschritt();
             }
             // Gehe zur übergebenen View. Wenn nichts übergeben wurde, gehe standardmäßig zum 'family-hub'
             switchView(zielView || 'family-hub');
@@ -262,8 +266,11 @@
                 if (qIndex < currentQuestions.length && testTimeRemaining > 0) showQuestion();
                 else finishTest();
             } else {
-                if (qIndex < currentQuestions.length) showQuestion();
-                else {
+                if (qIndex < currentQuestions.length) {
+                    showQuestion();
+                    merkeSoloFortschritt();
+                } else {
+                    vergissSoloFortschritt();
                     if (quizMode !== 'flashcards' && testAnsweredCount > 0) {
                         showLessonResultScreen();
                     } else {
@@ -272,6 +279,69 @@
                     }
                 }
             }
+        }
+
+        // ============================================================
+        //  SOLO-WIEDEREINSTIEG (Absturz mitten im Quiz)
+        // ============================================================
+        const SOLO_MERK_SCHLUESSEL = "eduplaySoloFortschritt";
+        const SOLO_MERK_DAUER_MS = 3 * 60 * 60 * 1000; // 3 Stunden
+
+        function merkeSoloFortschritt() {
+            if (testMode) return; // zeitlimitierte Tests hängen am Server, nicht hier
+            try {
+                localStorage.setItem(SOLO_MERK_SCHLUESSEL, JSON.stringify({
+                    spielerKey: typeof activePlayerKey !== 'undefined' ? activePlayerKey : null,
+                    questions: currentQuestions,
+                    qIndex: qIndex,
+                    quizMode: quizMode,
+                    testAnsweredCount: testAnsweredCount,
+                    testCorrectCount: testCorrectCount,
+                    ts: Date.now()
+                }));
+            } catch (e) { /* privater Modus o.ä. – dann eben ohne */ }
+        }
+
+        function vergissSoloFortschritt() {
+            try { localStorage.removeItem(SOLO_MERK_SCHLUESSEL); } catch (e) { }
+        }
+
+        function gemerkterSoloFortschritt() {
+            try {
+                const roh = localStorage.getItem(SOLO_MERK_SCHLUESSEL);
+                if (!roh) return null;
+                const d = JSON.parse(roh);
+                if (!d || !Array.isArray(d.questions) || !d.questions.length) return null;
+                if (typeof d.qIndex !== 'number' || d.qIndex >= d.questions.length) return null;
+                if (Date.now() - (d.ts || 0) > SOLO_MERK_DAUER_MS) { vergissSoloFortschritt(); return null; }
+                return d;
+            } catch (e) { return null; }
+        }
+
+        // Prüft beim Profilwechsel, ob eine abgebrochene Solo-Runde wartet, und
+        // bietet den Wiedereinstieg an – gleiches Muster wie bei der Online-Lobby
+        // (siehe biteOnlineLobbyWiedereinstiegAn in lobby-avatar.js).
+        async function biteSoloWiedereinstiegAn() {
+            if (typeof appConfirm !== "function") return;
+            const merk = gemerkterSoloFortschritt();
+            if (!merk) return;
+            if (merk.spielerKey && typeof activePlayerKey !== 'undefined' && activePlayerKey && merk.spielerKey !== activePlayerKey) return;
+
+            const ok = await appConfirm(
+                "Deine Runde läuft noch – weiter?",
+                { titel: "Willkommen zurück!", icon: "🧠", okText: "Weitermachen", abbrechenText: "Neu starten" }
+            );
+            if (!ok) { vergissSoloFortschritt(); return; }
+
+            currentQuestions = merk.questions;
+            qIndex = merk.qIndex;
+            quizMode = merk.quizMode || 'mc';
+            testMode = false;
+            testAnsweredCount = merk.testAnsweredCount || 0;
+            testCorrectCount = merk.testCorrectCount || 0;
+            document.getElementById("test-timer-bar").classList.add("hidden");
+            switchView('quiz');
+            showQuestion();
         }
 
         // ============================================================

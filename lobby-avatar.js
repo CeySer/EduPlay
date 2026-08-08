@@ -96,15 +96,18 @@
                 if (d.status === "finished") { vergissLobby(); return; }
                 const ich = d.players && d.players[merk.spielerKey || activePlayerKey];
                 if (!ich) { vergissLobby(); return; }
-                const lebt = (Date.now() - (d.hostLastSeen || d.createdAt || 0)) < 90000;
-                if (!lebt) { vergissLobby(); return; }
+                const now = Date.now();
+                const hostAlive = (now - (d.hostLastSeen || d.createdAt || 0)) < 90000;
+                const selfRecent = ich.lastSeen && (now - ich.lastSeen) < 15 * 60 * 1000;
+                if (!hostAlive && !selfRecent) { vergissLobby(); return; }
 
                 const name = d.subject === "vokabel" ? "Vokabel-Duell"
                     : d.type === "scrabble" ? "Wort-Duell"
                         : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
+                const mid = (d.status === "playing" || d.status === "reveal");
                 const ok = await appConfirm(
-                    `Deine Runde ${name} mit dem Code ${merk.code} läuft noch. Willst du wieder einsteigen?`,
-                    { titel: "Willkommen zurück!", icon: "🔄", okText: "Weiterspielen", abbrechenText: "Später" }
+                    mid ? `${name} (${merk.code}) läuft noch. Weiterspielen?` : `${name} (${merk.code}) wartet. Zurück?`,
+                    { titel: "Wieder einsteigen?", icon: "🔄", okText: "Ja", abbrechenText: "Nein" }
                 );
                 if (!ok) { vergissLobby(); return; }
 
@@ -342,17 +345,28 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 if (data.status === "finished") return showToast("Diese Lobby ist schon beendet.", "error");
                 const wasAlreadyIn = !!(data.players && data.players[activePlayerKey]);
                 const midGame = (data.status === "playing" || data.status === "reveal");
+                const me = wasAlreadyIn ? data.players[activePlayerKey] : null;
                 if (!wasAlreadyIn) {
                     const joinUpdate = {
                         [`players.${activePlayerKey}`]: {
                             name: currentPlayer.name, score: 0, hasAnswered: false,
-                            lastAnswer: null, word: "", coinsClaimed: false, pending: midGame
+                            lastAnswer: null, word: "", coinsClaimed: false, pending: midGame,
+                            lastSeen: Date.now()
                         }
                     };
                     if (data.type === "wortraten" && !midGame) {
                         joinUpdate.order = firebase.firestore.FieldValue.arrayUnion(activePlayerKey);
                     }
                     await ref.update(joinUpdate);
+                } else {
+                    // Reload/Absturz: wieder anwesend
+                    const reconnect = {
+                        [`players.${activePlayerKey}.lastSeen`]: Date.now(),
+                        [`players.${activePlayerKey}.name`]: currentPlayer.name
+                    };
+                    if (data.createdBy === activePlayerKey) reconnect.hostLastSeen = Date.now();
+                    if (me && me.pending !== true) reconnect[`players.${activePlayerKey}.pending`] = false;
+                    await ref.update(reconnect);
                 }
                 liveDuelRef = ref;
                 liveDuelType = data.type || "quiz";
@@ -361,7 +375,9 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 liveDuelRenderKey = "";
                 maybeStartHostHeartbeat();
                 merkeLobby(code);
-                showToast(wasAlreadyIn ? "Willkommen zurueck!" : (midGame ? "Du bist dabei - naechste Runde geht's los!" : "Du bist dabei!"));
+                showToast(wasAlreadyIn
+                    ? (midGame ? "Wieder da – Spiel läuft weiter!" : "Willkommen zurück!")
+                    : (midGame ? "Dabei ab nächster Runde." : "Du bist dabei!"));
                 subscribeLiveDuel();
             } catch (e) {
                 handleError("joinCodedLobby", e, "Beitreten hat nicht geklappt.");

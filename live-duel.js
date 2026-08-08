@@ -186,7 +186,10 @@
 
                 const wasAlreadyIn = !!(data.players && data.players[activePlayerKey]);
                 const midGame = (data.status === "playing" || data.status === "reveal");
+                const me = wasAlreadyIn ? data.players[activePlayerKey] : null;
+
                 if (!wasAlreadyIn) {
+                    // Neu mittendrin: erst ab nächster Runde mitspielen
                     const joinUpdate = {
                         [`players.${activePlayerKey}`]: {
                             name: currentPlayer.name,
@@ -195,14 +198,33 @@
                             lastAnswer: null,
                             word: "",
                             coinsClaimed: false,
-                            pending: midGame
+                            pending: midGame,
+                            lastSeen: Date.now()
                         }
                     };
                     if (data.type === "wortraten" && !midGame) {
                         joinUpdate.order = firebase.firestore.FieldValue.arrayUnion(activePlayerKey);
                     }
                     await ref.update(joinUpdate);
+                } else {
+                    // Mid-Game-Absturz / Reload: wieder anwesend melden
+                    const reconnect = {
+                        [`players.${activePlayerKey}.lastSeen`]: Date.now(),
+                        [`players.${activePlayerKey}.name`]: currentPlayer.name
+                    };
+                    // Host war weg → Host-Rolle wieder übernehmen
+                    if (data.createdBy === activePlayerKey) {
+                        reconnect.hostLastSeen = Date.now();
+                    } else if (!(data.hostLastSeen) || (Date.now() - (data.hostLastSeen || 0) > (typeof HOST_STALE_MS === "number" ? HOST_STALE_MS : 45000))) {
+                        // Host tot, wir übernehmen beim Reconnect nicht still – das macht der Snapshot-Watcher
+                    }
+                    // War aktiv (nicht nur „pending“-Zuschauer) → sicherstellen, dass pending weg ist
+                    if (me && me.pending !== true) {
+                        reconnect[`players.${activePlayerKey}.pending`] = false;
+                    }
+                    await ref.update(reconnect);
                 }
+
                 liveDuelType = data.type;
                 liveDuelRef = ref;
                 isLiveDuelCreator = (data.createdBy === activePlayerKey);
@@ -210,9 +232,9 @@
                 liveDuelRenderKey = "";
                 liveDuelResolvedRoundKey = "";
                 maybeStartHostHeartbeat();
-                showToast(wasAlreadyIn ? "Willkommen zurück im Duell!" : (midGame ?
-                    "Du bist dabei – es geht in der nächsten Runde los!" :
-                    "Du bist dabei!"));
+                showToast(wasAlreadyIn
+                    ? (midGame ? "Wieder da – Spiel läuft weiter!" : "Willkommen zurück!")
+                    : (midGame ? "Dabei ab nächster Runde." : "Du bist dabei!"));
                 subscribeLiveDuel();
             } catch (e) { handleError("joinLiveDuel", e, "Beitreten hat nicht geklappt."); }
         }
@@ -529,10 +551,10 @@
         }
         function renderLiveDuelPending(data) {
             document.getElementById("live-duel-play-content").innerHTML = `
-                            <div class="glass-card h-[70vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner">
-                                <div class="text-7xl mb-6 animate-pulse">⏳</div>
-                                <h2 class="text-2xl font-black mb-2">Du bist dabei!</h2>
-                                <p class="text-gray-400 font-bold">Die aktuelle Runde läuft noch – du steigst automatisch ein, sobald die nächste Runde beginnt.</p>
+                            <div class="glass-card h-[70vh] rounded-3xl flex flex-col items-center justify-center p-6 text-center text-white shadow-inner">
+                                <div class="text-6xl mb-4 animate-pulse">⏳</div>
+                                <h2 class="text-xl font-black mb-2">Du bist dabei!</h2>
+                                <p class="text-gray-400 font-bold text-sm">Aktuelle Runde läuft noch.<br>Ab der nächsten Runde spielst du mit.</p>
                             </div>`;
         }
 
@@ -1812,14 +1834,17 @@
             try {
                 const snap = await liveDuelCollectionRef().get();
                 let treffer = null;
+                const now = Date.now();
                 snap.forEach(docSnap => {
                     if (treffer) return;
                     const d = docSnap.data() || {};
-                    if (d.status === "finished" || d.status === "waiting") return;
+                    if (d.status === "finished") return;
+                    // waiting + playing + reveal: nach Absturz/Reload wieder rein
                     const ich = d.players && d.players[activePlayerKey];
-                    if (!ich || ich.pending) return;
-                    const lebt = (Date.now() - (d.hostLastSeen || d.createdAt || 0)) < 90000;
-                    if (lebt) treffer = docSnap;
+                    if (!ich) return;
+                    const hostAlive = (now - (d.hostLastSeen || d.createdAt || 0)) < 90000;
+                    const selfRecent = ich.lastSeen && (now - ich.lastSeen) < 15 * 60 * 1000;
+                    if (hostAlive || selfRecent) treffer = docSnap;
                 });
                 if (!treffer) return;
 
@@ -1827,9 +1852,10 @@
                 const name = d.subject === "vokabel" ? "Vokabel-Duell"
                     : d.type === "scrabble" ? "Wort-Duell"
                         : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
+                const mid = (d.status === "playing" || d.status === "reveal");
                 const ok = await appConfirm(
-                    `Dein ${name} von ${d.createdByName || "der Familie"} läuft noch. Willst du wieder einsteigen?`,
-                    { titel: "Willkommen zurück!", icon: "🔄", okText: "Weiterspielen", abbrechenText: "Später" }
+                    mid ? `${name} läuft noch. Weiterspielen?` : `${name} wartet. Zurück in die Lobby?`,
+                    { titel: "Wieder einsteigen?", icon: "🔄", okText: "Ja", abbrechenText: "Nein" }
                 );
                 if (!ok) return;
                 joinLiveDuelById(treffer.id);

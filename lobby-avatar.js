@@ -465,6 +465,12 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
             if (viewId !== 'wortraten-play' && typeof wortratenState !== 'undefined' && wortratenState) {
                 wortratenState.roundActive = false;
             }
+            // Vorlesen (Klasse 1/2) stoppen, wenn die Quiz-Ansicht verlassen wird –
+            // sonst läuft die Sprachausgabe im Hintergrund weiter, egal wie man
+            // rausgeht (Beenden-Knopf, Zurück, Fertig).
+            if (viewId !== 'quiz' && 'speechSynthesis' in window) {
+                try { window.speechSynthesis.cancel(); } catch (e) { }
+            }
             // Live-Duell-Listener stoppen, wenn wir die Duell-Ansichten verlassen
             // (z.B. über FAB/Drawer). Der Firestore-Eintrag bleibt bestehen, ein
             // erneutes Beitreten (offene Duelle / Lobby-Code) hängt sich wieder ein.

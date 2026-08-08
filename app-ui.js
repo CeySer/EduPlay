@@ -278,6 +278,39 @@
                 if (e.target === wrap) schliesse(offenerDialog ? offenerDialog.abbruchWert : false);
             });
 
+            // Wegswippen (Touch): die Dialog-Karte nach unten ziehen schließt sie,
+            // gleiche Bedeutung wie Klick auf den Hintergrund. Betrifft alle
+            // appConfirm/appPrompt/appAlert-Dialoge, u.a. die "Weiter?"-Meldung
+            // beim Wiedereinstieg in eine Runde.
+            const dialogEl = wrap.querySelector(".app-dialog");
+            if (dialogEl) {
+                let swipeStartY = null, swiping = false;
+                dialogEl.addEventListener("touchstart", function (e) {
+                    if (!e.touches || e.touches.length !== 1) return;
+                    swipeStartY = e.touches[0].clientY;
+                    swiping = true;
+                    dialogEl.style.transition = "none";
+                }, { passive: true });
+                dialogEl.addEventListener("touchmove", function (e) {
+                    if (!swiping || swipeStartY === null || !e.touches || !e.touches.length) return;
+                    const dy = e.touches[0].clientY - swipeStartY;
+                    if (dy > 0) dialogEl.style.transform = `translateY(${dy}px)`;
+                }, { passive: true });
+                dialogEl.addEventListener("touchend", function (e) {
+                    if (!swiping) return;
+                    swiping = false;
+                    dialogEl.style.transition = "";
+                    const touch = e.changedTouches && e.changedTouches[0];
+                    const dy = touch ? touch.clientY - swipeStartY : 0;
+                    swipeStartY = null;
+                    if (dy > 80) {
+                        schliesse(offenerDialog ? offenerDialog.abbruchWert : false);
+                    } else {
+                        dialogEl.style.transform = "";
+                    }
+                });
+            }
+
             if (input) {
                 input.addEventListener("keydown", function (e) {
                     if (e.key === "Enter") { e.preventDefault(); schliesse(input.value); }

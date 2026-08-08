@@ -672,28 +672,34 @@ auth.createUserWithEmailAndPassword(e, p)
         let currentDashboardSection = null;
 
         function updateDashSubjectFilter() {
-            const qGradeVal = document.getElementById('dash-question-grade').value;
             const qSubSel = document.getElementById('dash-question-subject');
-
             if (!qSubSel) return;
+            if (typeof QUESTIONS_DATABASE === 'undefined' || !Array.isArray(QUESTIONS_DATABASE)) return;
+            const qGradeVal = document.getElementById('dash-question-grade')?.value || '';
+            const bisherigerWert = qSubSel.value;
 
-            // 1. Fragen filtern basierend auf der Klasse
-            let filtered = QUESTIONS_DATABASE;
+            // 1. Fragen filtern basierend auf der Klasse. Klasse 11–13 bewusst
+            // raus, genau wie in initDashFilters() bei der Klassenliste selbst –
+            // sonst tauchten deren Fächer hier trotzdem auf, unabhängig davon,
+            // welche Klasse gerade gewählt ist.
+            let filtered = QUESTIONS_DATABASE.filter(q => !(q.grade && q.grade > 10));
             if (qGradeVal) {
-                if (qGradeVal === 'beruf') filtered = QUESTIONS_DATABASE.filter(q => q.area === 'beruf');
-                else if (qGradeVal === 'spass') filtered = QUESTIONS_DATABASE.filter(q => q.area === 'spass');
-                else filtered = QUESTIONS_DATABASE.filter(q => q.grade == qGradeVal);
+                if (qGradeVal === 'beruf') filtered = filtered.filter(q => q.area === 'beruf');
+                else if (qGradeVal === 'spass') filtered = filtered.filter(q => q.area === 'spass');
+                else filtered = filtered.filter(q => q.grade == qGradeVal);
             }
 
             // 2. Einzigartige Fächer aus den gefilterten Fragen sammeln
             const subjects = [...new Set(filtered.map(q => q.subject).filter(Boolean))].sort();
 
-            // 3. Dropdown aktualisieren
+            // 3. Dropdown aktualisieren, bisherige Auswahl beibehalten, wenn sie
+            // in der neu gewählten Klasse noch existiert.
             let html = '<option value="">Alle Fächer</option>';
             subjects.forEach(s => {
                 html += `<option value="${s}">${s}</option>`;
             });
             qSubSel.innerHTML = html;
+            if (subjects.includes(bisherigerWert)) qSubSel.value = bisherigerWert;
         }
         /**
          * =========================================================
@@ -849,16 +855,10 @@ auth.createUserWithEmailAndPassword(e, p)
                 qGradeSel.innerHTML = '<option value="">Keine Klassen verfügbar</option>';
             }
 
-            // 2. Fächer-Filter
-            const qSubSel = document.getElementById('dash-question-subject');
-            if (qSubSel && typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
-                const subjects = [...new Set(QUESTIONS_DATABASE.map(q => q.subject).filter(Boolean))].sort();
-                console.log('📖 Gefundene Fächer:', subjects);
-                qSubSel.innerHTML = '<option value="">Alle Fächer</option>' +
-                    subjects.map(s => `<option value="${s}">${s}</option>`).join('');
-            } else if (qSubSel) {
-                qSubSel.innerHTML = '<option value="">Keine Fächer verfügbar</option>';
-            }
+            // 2. Fächer-Filter – nutzt updateDashSubjectFilter() (koppelt die
+            // Fächerliste an die gewählte Klasse, siehe deren Wiring beim
+            // Klassenwechsel weiter unten in renderDashFilters()).
+            updateDashSubjectFilter();
 
             // 3. Vokabel-Niveaus
             updateDashVocabLevels();
@@ -974,7 +974,14 @@ auth.createUserWithEmailAndPassword(e, p)
                 const qGrade = document.getElementById('dash-question-grade');
                 const qSubject = document.getElementById('dash-question-subject');
                 const qSearch = document.getElementById('dash-question-search');
-                if (qGrade) qGrade.addEventListener('change', renderDashQuestions);
+                if (qGrade) qGrade.addEventListener('change', function () {
+                    // Fächerliste an die neu gewählte Klasse anpassen, sonst blieben
+                    // Fächer aus anderen Klassen wählbar (der eigentliche "Fächer nicht
+                    // richtig zugeordnet"-Bug).
+                    if (qSubject) qSubject.value = '';
+                    updateDashSubjectFilter();
+                    renderDashQuestions();
+                });
                 if (qSubject) qSubject.addEventListener('change', renderDashQuestions);
                 if (qSearch) qSearch.addEventListener('input', renderDashQuestions);
                 initDashFilters();
@@ -1139,7 +1146,8 @@ auth.createUserWithEmailAndPassword(e, p)
 
             console.log(`📖 Fragen gesamt: ${QUESTIONS_DATABASE.length}`);
 
-            let questions = [...QUESTIONS_DATABASE];
+            // Klasse 11–13 bewusst raus, siehe initDashFilters().
+            let questions = QUESTIONS_DATABASE.filter(q => !(q.grade && q.grade > 10));
 
             // Filter nach Klasse oder Bereich
             if (grade) {
@@ -1248,7 +1256,7 @@ auth.createUserWithEmailAndPassword(e, p)
 
             const found = [];
             if (typeof QUESTIONS_DATABASE !== 'undefined') {
-                QUESTIONS_DATABASE.forEach(q => {
+                QUESTIONS_DATABASE.filter(q => !(q.grade && q.grade > 10)).forEach(q => {
                     if ((q.question + ' ' + (q.explanation || '')).toLowerCase().includes(query)) {
                         found.push({
                             type: '📖 Frage',

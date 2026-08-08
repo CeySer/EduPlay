@@ -810,8 +810,10 @@ auth.createUserWithEmailAndPassword(e, p)
             // 1. Klassen-Filter
             const qGradeSel = document.getElementById('dash-question-grade');
             if (qGradeSel && typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
-                // Hole alle Klassen aus den Fragen
-                const grades = [...new Set(QUESTIONS_DATABASE.map(q => q.grade).filter(Boolean))].sort((a, b) => a - b);
+                // Hole alle Klassen aus den Fragen. Klasse 11–13 bewusst raus,
+                // genau wie im Kinder-Menü (app-config.js: getAreas()) – dort
+                // liegen bislang nur wenige Fragen pro Fach.
+                const grades = [...new Set(QUESTIONS_DATABASE.map(q => q.grade).filter(Boolean))].filter(g => g <= 10).sort((a, b) => a - b);
                 console.log('📖 Gefundene Schul-Klassen:', grades);
 
                 // Baue das HTML
@@ -971,6 +973,15 @@ auth.createUserWithEmailAndPassword(e, p)
                 if (qSearch) qSearch.addEventListener('input', renderDashQuestions);
                 initDashFilters();
                 renderDashQuestions();
+                // Eltern-Bereich braucht den ganzen Fragenbestand, nicht nur das,
+                // was ein Kind bisher gespielt hat (Lazy Loading) – sonst fehlen
+                // hier Klassen/Fächer, die noch nie geladen wurden.
+                if (typeof ladeAlleFragen === 'function') {
+                    ladeAlleFragen().then(function () {
+                        initDashFilters();
+                        renderDashQuestions();
+                    });
+                }
             } else if (sub === 'vokabeln') {
                 container.innerHTML = `
             <select id="dash-vocab-lang" class="input-modern text-xs flex-1 min-w-[70px]">

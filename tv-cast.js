@@ -1503,7 +1503,26 @@
 
                 if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
                 tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
-                    if (!doc.exists || isTVHost) return;
+                    if (isTVHost) return;
+                    if (!doc.exists) {
+                        // Gastgeber hat beendet und die TV-Runde gelöscht. Vorher
+                        // lief das hier für die Mitspieler lautlos ins Leere -
+                        // keine Meldung, kein Rücksprung ins Menü.
+                        if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
+                        if (tvCountdownInterval) { clearInterval(tvCountdownInterval); tvCountdownInterval = null; }
+                        stopTVAutoAdvance();
+                        stopTVRoundTimer();
+                        stoppeTVLebenszeichen();
+                        stoppeTVRundenTimer();
+                        stopTVActionMode();
+                        tvGameRef = null;
+                        isResolving = false;
+                        showTVHostSetup();
+                        showTVPlayerSetup();
+                        if (typeof showToast === "function") showToast("🚪 Der Gastgeber hat das Spiel beendet");
+                        switchView(currentPlayer ? 'menu' : 'family-hub');
+                        return;
+                    }
                     const data = doc.data();
                     const myData = data.players[activePlayerKey];
                     if (!myData) return;

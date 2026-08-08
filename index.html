@@ -1662,7 +1662,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: FOKUS LERNZEIT
             ========================================================== -->
             <div id="view-einstellungen" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+                <button class="btn-secondary text-sm py-2.5 px-4"
+                    onclick="switchView(currentPlayer ? 'menu' : 'family-hub')">Zurück</button>
                 <div class="glass-card p-5 space-y-4">
                     <h2 class="text-xl font-black text-indigo-400">⚙️ Einstellungen</h2>
                     <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">

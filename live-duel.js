@@ -16,6 +16,10 @@
         const HOST_STALE_MS = 45000;
         const liveDuelCoinsClaimedLocal = new Set();
         let liveDuelResolvedRoundKey = "";
+        // Meldung "X hat verlassen": merkt sich, welches lastEvent schon
+        // gezeigt wurde, damit es nicht bei jedem Snapshot erneut aufploppt.
+        // null = noch nicht initialisiert (Altbestand beim Beitreten nicht zeigen).
+        let liveDuelLastShownEventTs = null;
 
         const SCRABBLE_ANSWER_SECONDS = { leicht: 30, mittel: 20, schwer: 15, experte: 12, profi: 35 };
 
@@ -248,8 +252,22 @@
 
         function subscribeLiveDuel() {
             if (liveDuelUnsubscribe) liveDuelUnsubscribe();
+            liveDuelLastShownEventTs = null;
             liveDuelUnsubscribe = liveDuelRef.onSnapshot((doc) => {
-                if (!doc.exists) return;
+                if (!doc.exists) {
+                    // Dokument komplett weg (Gastgeber hat beendet und gelöscht).
+                    // Vorher lief das hier für alle außer dem Gastgeber lautlos
+                    // ins Leere - keine Meldung, kein Rücksprung ins Menü.
+                    if (liveDuelUnsubscribe) { try { liveDuelUnsubscribe(); } catch (e) { } liveDuelUnsubscribe = null; }
+                    clearLiveDuelTimers();
+                    stopHostHeartbeat();
+                    liveDuelRef = null;
+                    isLiveDuelCreator = false;
+                    liveDuelResolving = false;
+                    if (typeof showToast === "function") showToast("🚪 Das Spiel wurde beendet");
+                    switchView(currentPlayer ? 'menu' : 'family-hub');
+                    return;
+                }
                 renderLiveDuelFromSnapshot(doc.data());
             });
         }
@@ -312,6 +330,21 @@
         function renderLiveDuelFromSnapshot(data) {
             const myData = data.players[activePlayerKey];
             if (!myData) return;
+
+            // Meldung, wenn jemand die Lobby/Runde verlassen oder der
+            // Gastgeber beendet hat – einmal pro Ereignis.
+            if (data.lastEvent && data.lastEvent.ts) {
+                if (liveDuelLastShownEventTs === null) {
+                    liveDuelLastShownEventTs = data.lastEvent.ts; // Altbestand nicht nachträglich zeigen
+                } else if (data.lastEvent.ts > liveDuelLastShownEventTs) {
+                    liveDuelLastShownEventTs = data.lastEvent.ts;
+                    if (data.lastEvent.type === "host_ended") {
+                        showToast("🚪 " + (data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
+                    } else if (data.lastEvent.type === "left") {
+                        showToast("🚪 " + (data.lastEvent.name || "Ein Spieler") + " hat verlassen");
+                    }
+                }
+            }
 
             const _fr = document.getElementById("live-duel-force-resolve");
             if (_fr) _fr.classList.add("hidden");
@@ -1778,6 +1811,7 @@
             stopHostHeartbeat();
             const ref = liveDuelRef;
             const wasCreator = isLiveDuelCreator;
+            const meName = (currentPlayer && currentPlayer.name) || "";
 
             if (liveDuelUnsubscribe) { try { liveDuelUnsubscribe(); } catch (e) { } }
             liveDuelUnsubscribe = null;
@@ -1791,7 +1825,12 @@
             if (!ref) return;
             try {
                 if (wasCreator) {
-                    try { await ref.set({ status: "finished" }, { merge: true }); } catch (e) { }
+                    try {
+                        await ref.set({
+                            status: "finished",
+                            lastEvent: { type: "host_ended", name: meName, ts: Date.now() }
+                        }, { merge: true });
+                    } catch (e) { }
                     try { await ref.delete(); } catch (e) { }
                     return;
                 }
@@ -1805,7 +1844,11 @@
                 if (rest.length === 0) {
                     await ref.delete();
                 } else {
-                    await ref.update({ players: players, updatedAt: Date.now() });
+                    await ref.update({
+                        players: players,
+                        updatedAt: Date.now(),
+                        lastEvent: { type: "left", name: meName || (data.players[activePlayerKey] && data.players[activePlayerKey].name) || "", ts: Date.now() }
+                    });
                 }
             } catch (e) { /* Lobby war schon weg */ }
         }
@@ -2528,6 +2571,7 @@
             stopHostHeartbeat();
             const ref = liveDuelRef;
             const wasCreator = isLiveDuelCreator;
+            const meName = (currentPlayer && currentPlayer.name) || "";
 
             if (liveDuelUnsubscribe) liveDuelUnsubscribe();
             liveDuelUnsubscribe = null;
@@ -2549,12 +2593,13 @@
                 delete players[activePlayerKey];
                 const rest = Object.keys(players);
 
+                const lastEvent = { type: "left", name: meName, ts: Date.now() };
                 if (rest.length === 0) {
                     await ref.delete();
                 } else if (wasCreator) {
-                    await ref.update({ players, createdBy: rest[0], updatedAt: Date.now() });
+                    await ref.update({ players, createdBy: rest[0], updatedAt: Date.now(), lastEvent: lastEvent });
                 } else {
-                    await ref.update({ players, updatedAt: Date.now() });
+                    await ref.update({ players, updatedAt: Date.now(), lastEvent: lastEvent });
                 }
             } catch (e) { /* Lobby war schon weg */ }
         };

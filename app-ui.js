@@ -231,6 +231,7 @@
 
         wrap.innerHTML = `
             <div class="app-dialog">
+                <button type="button" class="app-dialog-close" data-rolle="x" aria-label="Schließen">✕</button>
                 ${opt.icon ? `<div class="app-dialog-icon" aria-hidden="true">${opt.icon}</div>` : ""}
                 ${opt.titel ? `<h3 class="app-dialog-title">${escHtml(opt.titel)}</h3>` : ""}
                 <p class="app-dialog-text">${textZuHtml(opt.text)}</p>

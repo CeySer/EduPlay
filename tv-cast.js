@@ -240,6 +240,99 @@
             if (setup) setup.classList.add("hidden");
             if (play) play.classList.remove("hidden");
         }
+        const TV_HOST_MERK = "eduplayTVHostAktiv";
+
+        function merkeTVHost(aktiv, code) {
+            try {
+                if (!aktiv) { localStorage.removeItem(TV_HOST_MERK); return; }
+                localStorage.setItem(TV_HOST_MERK, JSON.stringify({
+                    uid: currentParentUser && currentParentUser.uid,
+                    code: code || window._activeTVCode || "",
+                    ts: Date.now()
+                }));
+            } catch (e) { /* */ }
+        }
+
+        function gemerkterTVHost() {
+            try {
+                const roh = localStorage.getItem(TV_HOST_MERK);
+                if (!roh) return null;
+                const d = JSON.parse(roh);
+                if (!d || !d.uid) return null;
+                if (Date.now() - (d.ts || 0) > 4 * 60 * 60 * 1000) { merkeTVHost(false); return null; }
+                return d;
+            } catch (e) { return null; }
+        }
+
+        async function versucheTVHostWiedereinstieg() {
+            if (isTVHost || tvGameRef) return;
+            if (!currentParentUser) return;
+            const merk = gemerkterTVHost();
+            if (!merk || merk.uid !== currentParentUser.uid) return;
+            try {
+                const ref = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
+                const snap = await ref.get();
+                if (!snap.exists) { merkeTVHost(false); return; }
+                const data = snap.data() || {};
+                if (data.status === "finished") { merkeTVHost(false); return; }
+                if (typeof appConfirm !== "function") return;
+                const ok = await appConfirm(
+                    "TV-Lobby läuft noch (" + (data.status || "?") + "). Als Host fortsetzen?",
+                    { titel: "TV wieder übernehmen?", icon: "📺", okText: "Ja", abbrechenText: "Nein" }
+                );
+                if (!ok) { merkeTVHost(false); return; }
+                isTVHost = true;
+                tvGameRef = ref;
+                if (merk.code) window._activeTVCode = merk.code;
+                starteTVLebenszeichen();
+                if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
+                tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
+                    if (!doc.exists) return;
+                    const d = doc.data();
+                    if (d.status === "waiting") {
+                        renderTVPlayerList(d.players);
+                    } else if (d.status === "playing") {
+                        if (d.mode === "wortraten") showTVHostWortraten(d);
+                        else if (d.mode === "scrabble") { /* Host-UI via bestehende Snapshot-Logik */ }
+                        else { /* quiz */ }
+                    } else if (d.status === "finished") {
+                        merkeTVHost(false);
+                    }
+                    // Volle Host-UI läuft über die bestehende startTVHostLobby-Snapshot-Logik;
+                    // bei Resume triggern wir einen frischen Render über startTVGameLoop-Pfad.
+                });
+                // Snapshot der bestehenden Host-Logik wieder anbinden, indem wir
+                // die Lobby-Ansicht wie nach create neu aufbauen.
+                if (data.status === "waiting") {
+                    const tvCode = merk.code || "";
+                    const joinUrl = (window.location.origin || "") + (window.location.pathname || "/") + "?tv=" + encodeURIComponent(tvCode);
+                    const qrSrc = tvCode ? "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(joinUrl) : "";
+                    setTVHostPlayHTML(`
+                        <div class="glass-card-glow h-[80vh] flex flex-col items-center justify-center p-8 text-center" style="border-color:rgba(99,102,241,0.15);">
+                            <h2 class="text-5xl font-black text-indigo-400 mb-4">TV-Lobby wiederhergestellt</h2>
+                            ${tvCode ? `<div class="mb-6">
+                                <p class="text-sm text-indigo-300 font-bold uppercase tracking-wider">Beitritts-Code</p>
+                                <div class="text-5xl font-black tracking-[0.28em] text-white my-2">${tvCode}</div>
+                                ${qrSrc ? `<img alt="QR" class="mx-auto w-40 h-40 rounded-xl bg-white p-2" src="${qrSrc}">` : ""}
+                            </div>` : ""}
+                            <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>
+                            <button onclick="startTVGameLoop()" class="btn-primary text-3xl py-6 px-12" style="background:var(--gradient-amber);">Spiel starten! 🚀</button>
+                            <button onclick="leaveTVGame()" class="mt-8 text-gray-500 text-lg font-bold underline">Lobby abbrechen</button>
+                        </div>`);
+                    renderTVPlayerList(data.players);
+                } else if (data.status === "playing") {
+                    if (data.mode === "wortraten") showTVHostWortraten(data);
+                    else if (typeof startTVGameLoop === "function") {
+                        // Fallback: einmaligen Render anstoßen
+                        showToast("TV-Spiel fortgesetzt", "success");
+                    }
+                }
+                showToast("📺 TV-Host wieder verbunden", "success");
+            } catch (e) {
+                handleError("versucheTVHostWiedereinstieg", e, "TV-Wiedereinstieg fehlgeschlagen.");
+            }
+        }
+
         function showTVHostSetup() {
             stopTVRoundTimer();
             stopTVAutoAdvance();
@@ -247,6 +340,7 @@
             const play = document.getElementById("tv-host-play");
             if (play) { play.classList.add("hidden"); play.innerHTML = ""; }
             if (setup) setup.classList.remove("hidden");
+            setTimeout(versucheTVHostWiedereinstieg, 300);
         }
         function showTVPlayerPlay() {
             const setup = document.getElementById("tv-player-setup");
@@ -465,10 +559,11 @@
                     await db.collection("tv_codes").doc(tvCode).set({
                         parentId: currentParentUser.uid,
                         createdAt: Date.now(),
-                        hostName: (currentPlayer && currentPlayer.name) || "Host"
+                        hostName: (currentPlayer && currentPlayer.name && String(currentPlayer.name).trim()) || "Gastgeber"
                     });
                     window._activeTVCode = tvCode;
                 } catch (e) { console.warn("TV-Code konnte nicht angelegt werden", e); }
+                merkeTVHost(true, tvCode);
 
                 const joinUrl = (window.location.origin || "") + (window.location.pathname || "/") + "?tv=" + encodeURIComponent(tvCode);
                 const qrSrc = tvCode
@@ -1126,7 +1221,10 @@
                        <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">Weiter ➔</button>`;
             } else {
                 footer = `<p class="text-2xl font-bold text-sky-300">Dran: ${esc(turnName)} · Fehler ${data.wrongCount || 0}/${maxW}</p>
-                          <button onclick="skipTVWortratenTurn()" class="btn-secondary text-sm py-2 px-5 mt-2">⏭️ Zug überspringen</button>`;
+                          <div class="flex flex-wrap justify-center gap-2 mt-2">
+                            <button onclick="skipTVWortratenTurn()" class="btn-secondary text-sm py-2 px-5">⏭️ Zug überspringen</button>
+                            <button onclick="if(confirm('Wort auflösen? Keine Punkte mehr für diese Runde.')) revealTVWortratenWord()" class="btn-secondary text-sm py-2 px-5">🏳️ Wort auflösen</button>
+                          </div>`;
             }
             setTVHostPlayHTML(`
                 <div class="h-[90vh] flex flex-col p-6 gap-4">
@@ -1203,6 +1301,27 @@
                 });
             } catch (e) {
                 handleError("skipTVWortratenTurn", e, "Zug konnte nicht übersprungen werden.");
+            }
+        }
+
+        async function revealTVWortratenWord() {
+            if (!tvGameRef || !isTVHost) return;
+            try {
+                await db.runTransaction(async (txn) => {
+                    const snap = await txn.get(tvGameRef);
+                    if (!snap.exists) return;
+                    const data = snap.data();
+                    if (data.status !== "playing" || data.mode !== "wortraten" || data.roundOver) return;
+                    const word = data.word || "";
+                    const letters = word.split("").filter((ch, i, a) => a.indexOf(ch) === i);
+                    txn.update(tvGameRef, {
+                        guessed: letters,
+                        roundOver: true,
+                        roundSolved: false
+                    });
+                });
+            } catch (e) {
+                handleError("revealTVWortratenWord", e, "Wort konnte nicht aufgelöst werden.");
             }
         }
 
@@ -1785,6 +1904,7 @@
             tvGameRef = null;
             isTVHost = false;
             isResolving = false;
+            if (wasHost) merkeTVHost(false);
             showTVHostSetup();
             showTVPlayerSetup();
             switchView(currentPlayer ? 'menu' : 'family-hub');

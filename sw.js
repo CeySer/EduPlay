@@ -12,7 +12,7 @@
 //  würde ihn nur stören.
 // ============================================================
 
-const CACHE = 'eduplay-v5';
+const CACHE = 'eduplay-v6';
 
 // Alles, was die App zum Starten braucht. Die Fragen-Dateien landen
 // beim ersten Laden automatisch im Cache (siehe unten), damit diese
@@ -136,6 +136,26 @@ self.addEventListener('fetch', function (event) {
                 if (req.mode === 'navigate') return caches.match('./index.html');
                 return new Response('', { status: 504, statusText: 'offline' });
             });
+        })
+    );
+});
+
+// ============================================================
+//  Benachrichtigungen (offene Duelle / TV)
+// ============================================================
+self.addEventListener('notificationclick', function (event) {
+    event.notification.close();
+    const ziel = (event.notification.data && event.notification.data.url) || './index.html';
+    event.waitUntil(
+        clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (list) {
+            for (let i = 0; i < list.length; i++) {
+                const c = list[i];
+                if (c.url && 'focus' in c) {
+                    c.postMessage({ type: 'eduplay-notif-click', url: ziel });
+                    return c.focus();
+                }
+            }
+            if (clients.openWindow) return clients.openWindow('./index.html');
         })
     );
 });

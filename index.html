@@ -854,8 +854,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="wortraten-scores" class="flex gap-2 overflow-x-auto pb-1"></div>
                     <div id="wortraten-keyboard" class="grid grid-cols-6 sm:grid-cols-7 gap-1.5"></div>
                     <button type="button"
-                        onclick="if(confirm('Wort aufgeben? Keine Punkte mehr für diese Runde.')) wrRevealWord()"
-                        class="btn-secondary text-xs w-full py-2">🏳️ Aufgeben</button>
+                        onclick="if(confirm('Wort auflösen? Keine Punkte mehr für diese Runde.')) wrRevealWord()"
+                        class="btn-secondary text-xs w-full py-2">🏳️ Wort auflösen</button>
                 </div>
 
                 <div id="wortraten-round-end" class="hidden glass-card-glow p-6 text-center space-y-4"
@@ -1340,6 +1340,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <!-- Weitermachen? – zeigt das zuletzt gespielte Thema -->
                 <div id="continue-card" class="hidden"></div>
 
+                <!-- Letzte Online-Lobbies (Wiedereinstieg) -->
+                <div id="letzte-lobbies-card" class="hidden"></div>
+
                 <!-- Schwächen-Karte & zugewiesener Test -->
                 <div id="weakness-card" class="hidden"></div>
                 <div id="pending-test-card" class="hidden"></div>
@@ -1704,6 +1707,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">
                         <span class="font-bold text-white">🌓 Design</span>
                         <button onclick="toggleTheme()" class="btn-secondary text-sm py-2 px-4">Umschalten</button>
+                    </div>
+                    <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">
+                        <span class="font-bold text-white">🔔 Duelle</span>
+                        <button onclick="togglePushNotifications()" class="btn-secondary text-sm py-2 px-4">
+                            <span id="push-toggle-label">aus</span>
+                        </button>
                     </div>
                     <div class="pt-2 space-y-3">
                         <h3 class="text-sm font-black text-amber-400">🔑 Eltern-PIN</h3>
@@ -2113,7 +2122,7 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=9.1"></script>
+    <script src="app-config.js?v=9.5"></script>
     <script src="app-ui.js?v=9.1"></script>
     <script src="family-dashboard.js?v=9.0"></script>
     <script src="ui-common.js?v=9.0"></script>
@@ -2121,10 +2130,10 @@ VIEW: QUIZ SETUP
     <script src="vocab.js?v=8.8"></script>
     <script src="duel-scrabble.js?v=8.8"></script>
     <script src="wortraten.js?v=8.9"></script>
-    <script src="tv-cast.js?v=9.3"></script>
-    <script src="live-duel.js?v=9.3"></script>
+    <script src="tv-cast.js?v=9.4"></script>
+    <script src="live-duel.js?v=9.5"></script>
     <script src="app-misc.js?v=8.8"></script>
-    <script src="lobby-avatar.js?v=8.9"></script>
+    <script src="lobby-avatar.js?v=9.0"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
     <script src="email-bestaetigung.js?v=8.8"></script>
     <script src="fragen-vorladen.js?v=8.8"></script>

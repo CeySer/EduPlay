@@ -883,7 +883,7 @@
                 : "";
             const maxWrongForCounter = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
             const revealBtn = (!data.roundOver && isLiveDuelCreator)
-                ? `<button type="button" onclick="wrLiveRevealWord()" class="btn-secondary text-xs w-full py-2">🏳️ Aufgeben</button>`
+                ? `<button type="button" onclick="wrLiveRevealWord()" class="btn-secondary text-xs w-full py-2">🏳️ Wort auflösen</button>`
                 : "";
 
             document.getElementById("live-duel-play-content").innerHTML = `
@@ -1032,7 +1032,7 @@
         // bzw. Auto-Weiter nach 8s.
         async function wrLiveRevealWord() {
             if (!liveDuelRef || !isLiveDuelCreator) return;
-            if (!confirm("Wort aufgeben? Es gibt keine Punkte mehr für diese Runde.")) return;
+            if (!confirm("Wort auflösen? Es gibt keine Punkte mehr für diese Runde.")) return;
             try {
                 const snap = await liveDuelRef.get();
                 if (!snap.exists) return;
@@ -1990,6 +1990,16 @@
                 const typeName = isVokabel ? "Vokabel-Duell" : d.type === "scrabble" ? "Wort-Duell" : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
                 const who = esc(d.createdByName || "jemandem");
                 const state = running ? "läuft – einsteigen" : "offen – beitreten";
+                // Nicht den eigenen Host benachrichtigen
+                const binHost = d.createdBy && activePlayerKey && d.createdBy === activePlayerKey;
+                if (!binHost && typeof showDuelNotification === "function") {
+                    showDuelNotification(
+                        icon + " " + typeName,
+                        "von " + (d.createdByName || "Familie") + " – " + state,
+                        "duel:" + docSnap.id + ":" + (d.status || ""),
+                        "#spielen"
+                    );
+                }
                 html += `<button onclick="joinLiveDuelById('${docSnap.id}')" class="w-full p-5 glass-card text-white font-black rounded-2xl shadow-lg flex items-center justify-between gap-3 text-base transition-all border-2 ${running ? "border-amber-400/40" : "border-indigo-400/50 animate-pulse"}" style="min-height:4.5rem;">
                                 <span class="flex items-center gap-3 text-left"><span class="text-3xl">${icon}</span><span><span class="block">${typeName}</span><span class="block text-xs font-bold text-gray-400">von ${who}</span></span></span>
                                 <span class="text-xs text-indigo-200 shrink-0 text-right font-bold">🔥 ${state}<br>(${count} dabei)</span>
@@ -2025,6 +2035,9 @@
             const alreadyIn = d.players && d.players[activePlayerKey];
             if (d.status !== "waiting" || isTVHost || alreadyIn) { box.innerHTML = ""; return; }
             const typeName = d.mode === "scrabble" ? "TV-Wort-Duell" : d.mode === "wortraten" ? "TV-Wort-Rätsel" : "TV-Quiz";
+            if (typeof showDuelNotification === "function") {
+                showDuelNotification("📺 " + typeName, "TV-Lobby ist offen – beitreten?", "tv:" + (d.createdAt || "open"), "#spielen");
+            }
             const count = d.players ? Object.keys(d.players).length : 0;
             box.innerHTML =
                 `<button onclick="switchView('tv-quiz-player');joinTVGame()" class="w-full p-5 glass-card border-2 border-indigo-400/50 animate-pulse text-white font-black rounded-2xl shadow-lg flex items-center justify-between gap-3 text-base transition-all" style="min-height:4.5rem;">

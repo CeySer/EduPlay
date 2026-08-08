@@ -951,8 +951,19 @@ const geladen = _questionCounts[key] || 0;
             try { console.error("[EduPlay] " + context, err); } catch (e) { }
             if (opts.silent) return;
             let msg;
+            const code = String((err && err.code) || "").toLowerCase();
             if (isNetworkError(err)) {
-                msg = "📴 Keine Verbindung – probier es gleich noch einmal.";
+                msg = "📴 Keine Verbindung – prüfe WLAN/Mobilfunk und versuch es nochmal.";
+            } else if (code.includes("permission-denied") || code.includes("permission_denied")) {
+                msg = "🔒 Keine Berechtigung – bitte neu anmelden oder Lobby neu erstellen.";
+            } else if (code.includes("unauthenticated") || code.includes("auth/")) {
+                msg = "🔑 Sitzung abgelaufen – bitte erneut anmelden.";
+            } else if (code.includes("not-found") || code.includes("not_found")) {
+                msg = "🔍 Nicht gefunden – die Lobby existiert nicht mehr.";
+            } else if (code.includes("already-exists") || code.includes("already_exists")) {
+                msg = "⚠️ Eintrag existiert schon – bitte Code neu versuchen.";
+            } else if (code.includes("resource-exhausted") || code.includes("quota")) {
+                msg = "⏳ Zu viele Anfragen – kurz warten und erneut versuchen.";
             } else {
                 msg = friendly || "Hoppla, das hat nicht geklappt – versuch es gleich nochmal!";
             }
@@ -975,6 +986,95 @@ const geladen = _questionCounts[key] || 0;
             c.appendChild(t);
             while (c.children.length > 3) c.removeChild(c.firstElementChild);
             setTimeout(() => t.remove(), 3000);
+        }
+
+        // ============================================================
+        //  BROWSER-BENACHRICHTIGUNGEN (offene Duelle / TV)
+        //  Läuft, solange die App (oder ein Hintergrund-Tab) aktiv ist.
+        //  Echtes Push bei komplett geschlossener App braucht später FCM.
+        // ============================================================
+        let pushNotifOn = true;
+        try { pushNotifOn = localStorage.getItem("eduplayPush") !== "off"; } catch (e) { }
+        const _notifSeen = new Set();
+
+        function notificationsSupported() {
+            return typeof Notification !== "undefined";
+        }
+
+        function notificationsEnabled() {
+            return pushNotifOn && notificationsSupported() && Notification.permission === "granted";
+        }
+
+        async function enablePushNotifications() {
+            if (!notificationsSupported()) {
+                showToast("Dein Browser unterstützt keine Benachrichtigungen.", "error");
+                return false;
+            }
+            try {
+                const perm = await Notification.requestPermission();
+                pushNotifOn = (perm === "granted");
+                try { localStorage.setItem("eduplayPush", pushNotifOn ? "on" : "off"); } catch (e) { }
+                updatePushToggleUI();
+                if (pushNotifOn) showToast("🔔 Benachrichtigungen an", "success", "push");
+                else showToast("Benachrichtigungen abgelehnt.", "error", "push");
+                return pushNotifOn;
+            } catch (e) {
+                showToast("Berechtigung fehlgeschlagen.", "error");
+                return false;
+            }
+        }
+
+        function togglePushNotifications() {
+            if (!pushNotifOn) {
+                enablePushNotifications();
+                return;
+            }
+            pushNotifOn = false;
+            try { localStorage.setItem("eduplayPush", "off"); } catch (e) { }
+            updatePushToggleUI();
+            showToast("🔔 Benachrichtigungen aus", "success", "push");
+        }
+
+        function updatePushToggleUI() {
+            const el = document.getElementById("push-toggle-label");
+            if (!el) return;
+            if (!notificationsSupported()) { el.textContent = "nicht verfügbar"; return; }
+            if (Notification.permission === "denied") { el.textContent = "blockiert"; return; }
+            el.textContent = (pushNotifOn && Notification.permission === "granted") ? "an" : "aus";
+        }
+
+        function showDuelNotification(title, body, tag, urlHash) {
+            if (!notificationsEnabled()) return;
+            if (tag && _notifSeen.has(tag)) return;
+            if (tag) {
+                _notifSeen.add(tag);
+                if (_notifSeen.size > 40) {
+                    const first = _notifSeen.values().next().value;
+                    _notifSeen.delete(first);
+                }
+            }
+            // Im Vordergrund reicht oft der Menü-Banner – trotzdem kurz informieren,
+            // wenn Tab im Hintergrund.
+            if (!document.hidden && document.visibilityState === "visible") return;
+            const opts = {
+                body: body || "",
+                icon: "icons/icon-192.png",
+                badge: "icons/icon-192.png",
+                tag: tag || "eduplay-duel",
+                renotify: true,
+                data: { url: urlHash || "#spielen" }
+            };
+            try {
+                if (navigator.serviceWorker && navigator.serviceWorker.ready) {
+                    navigator.serviceWorker.ready.then(function (reg) {
+                        reg.showNotification(title, opts);
+                    }).catch(function () {
+                        new Notification(title, opts);
+                    });
+                } else {
+                    new Notification(title, opts);
+                }
+            } catch (e) { /* */ }
         }
 
         // ============================================================

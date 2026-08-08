@@ -42,64 +42,92 @@
         }
 
         // ============================================================
-        //  ZULETZT GENUTZTE ONLINE-LOBBY
-        //  Die Sicherheitsregeln verbieten das Auflisten von "lobbies"
-        //  (sonst könnte jeder in fremden Runden stöbern). Deshalb lässt
-        //  sich nicht suchen, in welcher Lobby jemand steckt – also merkt
-        //  sich das Gerät den Code selbst. Beim nächsten Start reicht ein
-        //  einzelner gezielter Lesevorgang.
+        //  ZULETZT GENUTZTE ONLINE-LOBBIES (Liste, max. 5)
+        //  Sicherheitsregeln verbieten das Auflisten von "lobbies" –
+        //  deshalb merkt das Gerät die Codes selbst.
         // ============================================================
-        const LOBBY_MERK_SCHLUESSEL = "eduplayLetzteLobby";
-        const LOBBY_MERK_DAUER_MS = 3 * 60 * 60 * 1000; // 3 Stunden
+        const LOBBY_MERK_SCHLUESSEL = "eduplayLetzteLobbies";
+        const LOBBY_MERK_ALT = "eduplayLetzteLobby";
+        const LOBBY_MERK_DAUER_MS = 3 * 60 * 60 * 1000;
+        const LOBBY_MERK_MAX = 5;
 
-        function merkeLobby(code) {
+        function _lobbyMerkLesen() {
             try {
-                localStorage.setItem(LOBBY_MERK_SCHLUESSEL, JSON.stringify({
-                    code: code,
-                    spielerKey: activePlayerKey,
-                    name: (currentPlayer && currentPlayer.name) || "",
-                    gast: !!isAnonGuest,
-                    ts: Date.now()
-                }));
-            } catch (e) { /* privater Modus o.ä. – dann eben ohne */ }
+                let roh = localStorage.getItem(LOBBY_MERK_SCHLUESSEL);
+                if (!roh) {
+                    const alt = localStorage.getItem(LOBBY_MERK_ALT);
+                    if (alt) {
+                        const d = JSON.parse(alt);
+                        if (d && d.code) {
+                            localStorage.setItem(LOBBY_MERK_SCHLUESSEL, JSON.stringify([d]));
+                            localStorage.removeItem(LOBBY_MERK_ALT);
+                            roh = localStorage.getItem(LOBBY_MERK_SCHLUESSEL);
+                        }
+                    }
+                }
+                if (!roh) return [];
+                const arr = JSON.parse(roh);
+                if (!Array.isArray(arr)) return [];
+                const now = Date.now();
+                return arr.filter(e => e && e.code && (now - (e.ts || 0)) < LOBBY_MERK_DAUER_MS);
+            } catch (e) { return []; }
         }
 
-        function vergissLobby() {
-            try { localStorage.removeItem(LOBBY_MERK_SCHLUESSEL); } catch (e) { }
+        function _lobbyMerkSchreiben(arr) {
+            try {
+                localStorage.setItem(LOBBY_MERK_SCHLUESSEL, JSON.stringify(arr.slice(0, LOBBY_MERK_MAX)));
+            } catch (e) { /* privater Modus */ }
+        }
+
+        function merkeLobby(code) {
+            if (!code) return;
+            const list = _lobbyMerkLesen().filter(e => e.code !== code);
+            list.unshift({
+                code: code,
+                spielerKey: activePlayerKey,
+                name: (currentPlayer && currentPlayer.name) || "Gastgeber",
+                gast: !!isAnonGuest,
+                ts: Date.now()
+            });
+            _lobbyMerkSchreiben(list);
+        }
+
+        function vergissLobby(code) {
+            if (!code) {
+                try { localStorage.removeItem(LOBBY_MERK_SCHLUESSEL); localStorage.removeItem(LOBBY_MERK_ALT); } catch (e) { }
+                return;
+            }
+            _lobbyMerkSchreiben(_lobbyMerkLesen().filter(e => e.code !== code));
         }
 
         function gemerkteLobby() {
-            try {
-                const roh = localStorage.getItem(LOBBY_MERK_SCHLUESSEL);
-                if (!roh) return null;
-                const d = JSON.parse(roh);
-                if (!d || !d.code) return null;
-                if (Date.now() - (d.ts || 0) > LOBBY_MERK_DAUER_MS) { vergissLobby(); return null; }
-                return d;
-            } catch (e) { return null; }
+            const list = _lobbyMerkLesen();
+            return list.length ? list[0] : null;
         }
 
-        // Prüft die gemerkte Lobby und bietet den Wiedereinstieg an.
-        // Ein einziger get – erlaubt, weil wir den Code kennen.
+        function gemerkteLobbies() {
+            return _lobbyMerkLesen();
+        }
+
         async function biteOnlineLobbyWiedereinstiegAn() {
-            if (liveDuelRef) return;                       // schon mittendrin
+            if (liveDuelRef) return;
+            renderLetzteLobbiesKarte();
             if (typeof appConfirm !== "function") return;
             const merk = gemerkteLobby();
             if (!merk) return;
-            // Nur anbieten, wenn dasselbe Profil aktiv ist wie beim Verlassen
             if (merk.spielerKey && activePlayerKey && merk.spielerKey !== activePlayerKey) return;
 
             try {
                 const snap = await codedLobbyRef(merk.code).get();
-                if (!snap.exists) { vergissLobby(); return; }
+                if (!snap.exists) { vergissLobby(merk.code); renderLetzteLobbiesKarte(); return; }
                 const d = snap.data() || {};
-                if (d.status === "finished") { vergissLobby(); return; }
+                if (d.status === "finished") { vergissLobby(merk.code); renderLetzteLobbiesKarte(); return; }
                 const ich = d.players && d.players[merk.spielerKey || activePlayerKey];
-                if (!ich) { vergissLobby(); return; }
+                if (!ich) { vergissLobby(merk.code); renderLetzteLobbiesKarte(); return; }
                 const now = Date.now();
                 const hostAlive = (now - (d.hostLastSeen || d.createdAt || 0)) < 90000;
                 const selfRecent = ich.lastSeen && (now - ich.lastSeen) < 15 * 60 * 1000;
-                if (!hostAlive && !selfRecent) { vergissLobby(); return; }
+                if (!hostAlive && !selfRecent) { vergissLobby(merk.code); renderLetzteLobbiesKarte(); return; }
 
                 const name = d.subject === "vokabel" ? "Vokabel-Duell"
                     : d.type === "scrabble" ? "Wort-Duell"
@@ -109,9 +137,8 @@
                     mid ? `${name} (${merk.code}) läuft noch. Weiterspielen?` : `${name} (${merk.code}) wartet. Zurück?`,
                     { titel: "Wieder einsteigen?", icon: "🔄", okText: "Ja", abbrechenText: "Nein" }
                 );
-                if (!ok) { vergissLobby(); return; }
+                if (!ok) return;
 
-                // Gast ohne Konto: Profil im Speicher wiederherstellen
                 if (isAnonGuest && !currentPlayer && merk.name) {
                     activePlayerKey = merk.spielerKey;
                     currentPlayer = {
@@ -124,6 +151,35 @@
                 if (inp) inp.value = merk.code;
                 await joinCodedLobby();
             } catch (e) { /* kein Netz – später nochmal */ }
+        }
+
+        async function rejoinLobbyByCode(code) {
+            if (!code || liveDuelRef) return;
+            if (!currentPlayer || !activePlayerKey) return showToast("Bitte zuerst einen Spieler wählen.", "error");
+            const inp = document.getElementById("coded-lobby-join-code");
+            if (inp) inp.value = code;
+            await joinCodedLobby();
+        }
+
+        function renderLetzteLobbiesKarte() {
+            const box = document.getElementById("letzte-lobbies-card");
+            if (!box) return;
+            const list = gemerkteLobbies();
+            if (!list.length) { box.classList.add("hidden"); box.innerHTML = ""; return; }
+            const rows = list.map(e => {
+                const nm = esc(e.name || "Spieler");
+                return `<button type="button" onclick="rejoinLobbyByCode('${esc(e.code)}')"
+                    class="w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 text-left transition">
+                    <span class="text-sm font-bold text-white truncate">🔄 ${nm}</span>
+                    <span class="text-xs font-black tracking-widest text-indigo-300 shrink-0">${esc(e.code)}</span>
+                </button>`;
+            }).join("");
+            box.innerHTML = `
+                <div class="glass-card p-3 space-y-2">
+                    <div class="text-[10px] font-bold text-gray-500 uppercase tracking-wide px-1">Letzte Lobbies</div>
+                    ${rows}
+                </div>`;
+            box.classList.remove("hidden");
         }
 
         function generateLobbyCode() {
@@ -303,9 +359,10 @@
                 };
                 liveDuelType = "quiz";
             }
-            lobbyData.createdByName = currentPlayer.name;
+            const hostDisplayName = (currentPlayer && currentPlayer.name && String(currentPlayer.name).trim()) || "Gastgeber";
+            lobbyData.createdByName = hostDisplayName;
             lobbyData.players[activePlayerKey] = {
-                name: currentPlayer.name, score: 0, hasAnswered: false,
+                name: hostDisplayName, score: 0, hasAnswered: false,
                 lastAnswer: null, word: "", coinsClaimed: false
             };
             if (typeof showGlobalLoading === "function") showGlobalLoading("Lobby wird erstellt …");
@@ -350,10 +407,11 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 const wasAlreadyIn = !!(data.players && data.players[activePlayerKey]);
                 const midGame = (data.status === "playing" || data.status === "reveal");
                 const me = wasAlreadyIn ? data.players[activePlayerKey] : null;
+                const joinName = (currentPlayer && currentPlayer.name && String(currentPlayer.name).trim()) || "Gastgeber";
                 if (!wasAlreadyIn) {
                     const joinUpdate = {
                         [`players.${activePlayerKey}`]: {
-                            name: currentPlayer.name, score: 0, hasAnswered: false,
+                            name: joinName, score: 0, hasAnswered: false,
                             lastAnswer: null, word: "", coinsClaimed: false, pending: midGame,
                             lastSeen: Date.now()
                         }
@@ -366,7 +424,7 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                     // Reload/Absturz: wieder anwesend
                     const reconnect = {
                         [`players.${activePlayerKey}.lastSeen`]: Date.now(),
-                        [`players.${activePlayerKey}.name`]: currentPlayer.name
+                        [`players.${activePlayerKey}.name`]: joinName
                     };
                     if (data.createdBy === activePlayerKey) reconnect.hostLastSeen = Date.now();
                     if (me && me.pending !== true) reconnect[`players.${activePlayerKey}.pending`] = false;
@@ -666,6 +724,7 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                     document.body.classList.add('dark-theme');
                 }
             } catch (e) { }
+            if (typeof updatePushToggleUI === "function") updatePushToggleUI();
             // QR-/Deep-Link: ?join=ABCD (Online) oder ?tv=ABCD (TV)
             try {
                 const params = new URLSearchParams(window.location.search || "");

@@ -77,6 +77,19 @@ function wrCountOccurrences(word, letter) {
     return word.split("").filter(ch => ch === letter).length;
 }
 
+// Kurz einblenden, welcher Buchstabe gerade angetippt wurde (Offline + Online).
+function wrFlashLetter(letter) {
+    const el = document.createElement("div");
+    el.className = "wr-letter-flash";
+    el.textContent = letter;
+    document.body.appendChild(el);
+    requestAnimationFrame(() => el.classList.add("show"));
+    setTimeout(() => {
+        el.classList.add("hide");
+        setTimeout(() => el.remove(), 250);
+    }, 450);
+}
+
 // ============================================================
 //  Freundliche Figur (SVG, baut sich in 7 Stufen auf)
 // ============================================================
@@ -255,6 +268,14 @@ function wrBeginRound() {
     wrRenderKeyboard();
     wrRenderScores();
     wrUpdateTurnBanner();
+    wrRenderWrongCounter();
+}
+
+function wrRenderWrongCounter() {
+    const s = wortratenState;
+    const el = document.getElementById("wortraten-wrong-counter");
+    if (!el || !s) return;
+    el.innerText = `${s.wrongCount}/${wrMaxWrong(s.wordmode)} Fehlversuche`;
 }
 
 function wrRenderWord() {
@@ -275,7 +296,7 @@ function wrRenderKeyboard() {
             : correct
                 ? "bg-emerald-500 border border-emerald-400 text-white opacity-90"
                 : "bg-rose-500/70 border border-rose-400/50 text-white opacity-50";
-        return `<button ${used ? 'disabled' : ''} onclick="wrGuessLetter('${letter}')"
+        return `<button ${used ? 'disabled' : ''} onclick="wrFlashLetter('${letter}');wrGuessLetter('${letter}')"
             class="h-10 rounded-lg font-black text-sm sm:text-base transition ${cls}">${letter}</button>`;
     }).join("");
 }
@@ -333,6 +354,7 @@ function wrGuessLetter(letter) {
         s.streaks[key] = 0;
         s.wrongCount++;
         wrRevealFigureStage(s.wrongCount);
+        wrRenderWrongCounter();
         if (typeof SFX !== "undefined") SFX.wrong();
         if (s.wrongCount >= wrMaxWrong(s.wordmode)) {
             wrEndRound(false, key);

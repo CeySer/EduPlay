@@ -825,7 +825,7 @@
                         ? "bg-emerald-500 border border-emerald-400 text-white opacity-90"
                         : "bg-rose-500/70 border border-rose-400/50 text-white opacity-50";
                 const disabled = used || !canTap;
-                return `<button ${disabled ? 'disabled' : ''} onclick="wrLiveGuessLetter('${letter}')"
+                return `<button ${disabled ? 'disabled' : ''} onclick="wrFlashLetter('${letter}');wrLiveGuessLetter('${letter}')"
                     class="h-9 rounded-lg font-black text-xs sm:text-sm transition ${cls}">${letter}</button>`;
             }).join("");
 
@@ -856,10 +856,14 @@
             const timerNote = (!data.roundOver && data.wordMode === "adult" && isMyTurn)
                 ? `<p class="text-center text-xs text-amber-300 font-bold">⏱️ ${typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 20} Sek. – Erwachsenen-Tempo</p>`
                 : "";
+            const maxWrongForCounter = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
+            const revealBtn = (!data.roundOver && isLiveDuelCreator)
+                ? `<button type="button" onclick="wrLiveRevealWord()" class="btn-secondary text-xs w-full py-2">🏳️ Aufgeben</button>`
+                : "";
 
             document.getElementById("live-duel-play-content").innerHTML = `
                 <div class="space-y-4">
-                    <div class="text-center text-xs font-bold text-gray-400">Runde ${data.currentRound}/${data.totalRounds} · ${data.wordMode === "adult" ? "🎓 Erwachsene" : "👶 Kinder"}</div>
+                    <div class="text-center text-xs font-bold text-gray-400">Runde ${data.currentRound}/${data.totalRounds} · ${data.wordMode === "adult" ? "🎓 Erwachsene" : "👶 Kinder"} · ${data.wrongCount || 0}/${maxWrongForCounter} Fehlversuche</div>
                     <div class="flex justify-center gap-2 overflow-x-auto py-1">${scoresHtml}</div>
                     <div class="glass-card p-4 flex items-center justify-center">
                         <div id="live-duel-wr-figure" class="w-32 h-36"></div>
@@ -868,6 +872,7 @@
                     ${banner}
                     ${timerNote}
                     <div class="grid grid-cols-7 sm:grid-cols-9 gap-1.5">${kbHtml}</div>
+                    ${revealBtn}
                     ${continueBtn}
                 </div>`;
 
@@ -947,6 +952,7 @@
                         const order = (data.order || []).filter(k => players[k] && !players[k].pending);
                         const curIdx = order.indexOf(key);
                         update.turnIndex = order.length > 0 ? (curIdx + 1) % order.length : 0;
+                        update.wrTurnDeadline = null; // neuer Zug -> Timer beim Rendern frisch setzen
                     }
                     txn.update(liveDuelRef, update);
                     outcome = { isHit, roundOver, roundSolved, points, parts, key };
@@ -991,6 +997,27 @@
                     txn.update(liveDuelRef, { turnIndex, wrTurnDeadline: null });
                 });
             } catch (e) { handleError("wrLiveSkipTurn", e, "Der Zug konnte nicht weitergegeben werden."); }
+        }
+
+        // Ersteller gibt die Runde auf: Wort wird für alle aufgedeckt, keine
+        // Punkte mehr für diese Runde. Danach wie gewohnt "Weiter"-Button
+        // bzw. Auto-Weiter nach 8s.
+        async function wrLiveRevealWord() {
+            if (!liveDuelRef || !isLiveDuelCreator) return;
+            if (!confirm("Wort aufgeben? Es gibt keine Punkte mehr für diese Runde.")) return;
+            try {
+                const snap = await liveDuelRef.get();
+                if (!snap.exists) return;
+                const data = snap.data();
+                if (data.status !== "playing" || data.type !== "wortraten" || data.roundOver) return;
+                const word = data.word || "";
+                await liveDuelRef.update({ guessed: word.split(""), roundOver: true, roundSolved: false, wrTurnDeadline: null });
+                if (wrLiveAutoAdvanceTimer) clearTimeout(wrLiveAutoAdvanceTimer);
+                wrLiveAutoAdvanceTimer = setTimeout(() => {
+                    wrLiveAutoAdvanceTimer = null;
+                    wrLiveAdvanceRound();
+                }, 8000);
+            } catch (e) { handleError("wrLiveRevealWord", e, "Konnte nicht aufgelöst werden."); }
         }
 
         async function wrLiveAdvanceRound() {

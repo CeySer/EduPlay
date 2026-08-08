@@ -834,12 +834,16 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div id="wortraten-play-area" class="hidden space-y-4">
                     <div class="flex justify-between items-center text-xs font-bold text-gray-400 px-1">
                         <span id="wortraten-progress">Runde 1/3</span>
+                        <span id="wortraten-wrong-counter"></span>
                     </div>
                     <div id="wortraten-figure" class="w-44 h-48 mx-auto"></div>
                     <div id="wortraten-word-tiles" class="flex flex-wrap justify-center gap-1.5"></div>
                     <div id="wortraten-turn-banner" class="text-center text-sm font-bold text-sky-300 h-5"></div>
                     <div id="wortraten-scores" class="flex gap-2 overflow-x-auto pb-1"></div>
                     <div id="wortraten-keyboard" class="grid grid-cols-6 sm:grid-cols-7 gap-1.5"></div>
+                    <button type="button"
+                        onclick="if(confirm('Wort aufgeben? Keine Punkte mehr für diese Runde.')) wrRevealWord()"
+                        class="btn-secondary text-xs w-full py-2">🏳️ Aufgeben</button>
                 </div>
 
                 <div id="wortraten-round-end" class="hidden glass-card-glow p-6 text-center space-y-4"

@@ -56,6 +56,12 @@ function toggleWortratenThemeRow() {
     if (row) row.classList.toggle("hidden", mode === "adult");
 }
 
+function toggleWrKidsThemeRow(modeId, rowId) {
+    const mode = (document.getElementById(modeId) || {}).value || "kids";
+    const row = document.getElementById(rowId);
+    if (row) row.classList.toggle("hidden", mode === "adult");
+}
+
 function wrPickWord(pool, minLen, maxLen, avoidSet) {
     const avoid = avoidSet || new Set();
     let filtered = pool.filter(w => w.length >= minLen && w.length <= maxLen && !avoid.has(w));
@@ -367,10 +373,65 @@ function wrGuessLetter(letter) {
     wrUpdateTurnBanner();
 }
 
+function wrNormalizeWordGuess(raw) {
+    return String(raw || "").trim().toUpperCase().replace(/\s+/g, "");
+}
+
+function wrPointsForFullSolve(word, guessedSet) {
+    let pts = 15;
+    word.split("").forEach(ch => {
+        if (!guessedSet.has(ch)) pts += 3;
+    });
+    return pts;
+}
+
+function wrPromptSolveWord() {
+    const s = wortratenState;
+    if (!s || !s.roundActive) return;
+    const tipp = prompt("Lösungswort eingeben:");
+    if (tipp === null) return;
+    wrTrySolveWord(tipp);
+}
+
+function wrTrySolveWord(raw) {
+    const s = wortratenState;
+    if (!s || !s.roundActive) return;
+    const guess = wrNormalizeWordGuess(raw);
+    if (!guess) return;
+    const key = s.playerKeys[s.turnIndex % s.playerKeys.length];
+    const target = wrNormalizeWordGuess(s.word);
+    if (guess === target) {
+        const points = wrPointsForFullSolve(s.word, s.guessed);
+        s.word.split("").forEach(ch => s.guessed.add(ch));
+        s.scores[key] = (s.scores[key] || 0) + points;
+        s.streaks[key] = (s.streaks[key] || 0) + 1;
+        wrRenderWord();
+        wrRenderKeyboard();
+        wrRenderScores();
+        if (typeof SFX !== "undefined") SFX.win();
+        if (typeof showPointsPopup === "function") showPointsPopup(points, "Wort gelöst! 🎉");
+        wrEndRound(true);
+        return;
+    }
+    // Falsch: zählt als Fehlversuch
+    s.streaks[key] = 0;
+    s.wrongCount++;
+    wrRevealFigureStage(s.wrongCount);
+    wrRenderWrongCounter();
+    if (typeof SFX !== "undefined") SFX.wrong();
+    showToast("Leider falsch!", "error");
+    if (s.wrongCount >= wrMaxWrong(s.wordmode)) {
+        wrEndRound(false);
+        return;
+    }
+    s.turnIndex = (s.turnIndex + 1) % s.playerKeys.length;
+    wrRenderScores();
+    wrUpdateTurnBanner();
+}
+
 function wrRevealWord() {
     const s = wortratenState;
     if (!s || !s.roundActive) return;
-    // Alle Buchstaben als geraten markieren, keine Punkte
     s.word.split("").forEach(ch => s.guessed.add(ch));
     wrRenderWord();
     wrRenderKeyboard();

@@ -291,6 +291,8 @@
                 const wordMode = (document.getElementById("coded-lobby-wr-wordmode") || {}).value || "kids";
                 const difficulty = (document.getElementById("coded-lobby-wr-difficulty") || {}).value || "mittel";
                 const theme = (document.getElementById("coded-lobby-wr-theme") || {}).value || "schneemann";
+                const wordTheme = wordMode === "adult" ? "gemischt"
+                    : ((document.getElementById("coded-lobby-wr-word-theme") || {}).value || "gemischt");
                 const totalRounds = parseInt((document.getElementById("coded-lobby-wr-rounds") || {}).value || "3");
                 lobbyData = {
                     type: "wortraten",
@@ -300,6 +302,7 @@
                     wordMode,
                     difficulty,
                     theme,
+                    wordTheme,
                     totalRounds,
                     currentRound: 0,
                     order: [activePlayerKey],

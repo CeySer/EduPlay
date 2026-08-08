@@ -1141,7 +1141,12 @@
                 }
             });
             const usedWords = Array.isArray(data.usedWords) ? data.usedWords.slice() : [];
-            const nextRound = wrLiveNewRoundFields({ wordMode: data.wordMode, difficulty: data.difficulty, usedWords });
+            const nextRound = wrLiveNewRoundFields({
+                wordMode: data.wordMode,
+                difficulty: data.difficulty,
+                wordTheme: data.wordTheme || "gemischt",
+                usedWords
+            });
             if (!nextRound.word) {
                 await liveDuelRef.update({ status: "finished" });
                 return;
@@ -1876,12 +1881,14 @@
                     const wordMode = (document.getElementById("switch-wr-wordmode") || {}).value || "kids";
                     const difficulty = (document.getElementById("switch-wr-difficulty") || {}).value || "mittel";
                     const theme = (document.getElementById("switch-wr-theme") || {}).value || "schneemann";
+                    const wordTheme = wordMode === "adult" ? "gemischt"
+                        : ((document.getElementById("switch-wr-word-theme") || {}).value || "gemischt");
                     const totalRounds = parseInt((document.getElementById("switch-wr-rounds") || {}).value) || 3;
                     const order = Object.keys(players);
-                    const round = wrLiveNewRoundFields({ wordMode, difficulty, usedWords: [] });
+                    const round = wrLiveNewRoundFields({ wordMode, difficulty, wordTheme, usedWords: [] });
                     if (!round.word) return showToast("Keine passenden Wörter für diese Einstellungen gefunden.", "error");
                     update = {
-                        type: "wortraten", subject: null, status: "playing", wordMode, difficulty, theme, totalRounds,
+                        type: "wortraten", subject: null, status: "playing", wordMode, difficulty, theme, wordTheme, totalRounds,
                         currentRound: 1, turnIndex: 0, order, players, word: round.word, guessed: [], wrongCount: 0,
                         roundOver: false, roundSolved: false, usedWords: [round.word]
                     };
@@ -2374,6 +2381,8 @@
                 const wordMode = (document.getElementById("live-duel-wr-wordmode") || {}).value || "kids";
                 const difficulty = (document.getElementById("live-duel-wr-difficulty") || {}).value || "mittel";
                 const theme = (document.getElementById("live-duel-wr-theme") || {}).value || "schneemann";
+                const wordTheme = wordMode === "adult" ? "gemischt"
+                    : ((document.getElementById("live-duel-wr-word-theme") || {}).value || "gemischt");
                 const totalRounds = parseInt((document.getElementById("live-duel-wr-rounds") || {}).value || "3");
                 lobbyData = {
                     type: "wortraten",
@@ -2381,6 +2390,7 @@
                     wordMode,
                     difficulty,
                     theme,
+                    wordTheme,
                     totalRounds,
                     currentRound: 0,
                     order: [activePlayerKey],
@@ -2600,15 +2610,18 @@
                     const wordMode = (document.getElementById("again-wr-wordmode") || {}).value || data.wordMode || "kids";
                     const difficulty = (document.getElementById("again-wr-difficulty") || {}).value || data.difficulty || "mittel";
                     const theme = (document.getElementById("again-wr-theme") || {}).value || data.theme || "schneemann";
+                    const wordTheme = wordMode === "adult" ? "gemischt"
+                        : ((document.getElementById("again-wr-word-theme") || {}).value || data.wordTheme || "gemischt");
                     const totalRounds = parseInt((document.getElementById("again-wr-rounds") || {}).value) || data.totalRounds || 3;
                     const order = (data.order && data.order.length ? data.order : Object.keys(players));
-                    const round = wrLiveNewRoundFields({ wordMode, difficulty, usedWords: [] });
+                    const round = wrLiveNewRoundFields({ wordMode, difficulty, wordTheme, usedWords: [] });
                     if (!round.word) return showToast("Keine passenden Wörter für diese Einstellungen gefunden.", "error");
                     await liveDuelRef.update({
                         status: "playing",
                         wordMode,
                         difficulty,
                         theme,
+                        wordTheme,
                         totalRounds,
                         currentRound: 1,
                         turnIndex: 0,

@@ -540,12 +540,15 @@
                     players: {}
                 };
             } else if (tvHostMode === 'wortraten') {
+                const tvWrMode = (document.getElementById("tv-wr-wordmode") || {}).value || "kids";
                 lobbyData = {
                     status: "waiting",
                     mode: "wortraten",
-                    wordMode: (document.getElementById("tv-wr-wordmode") || {}).value || "kids",
+                    wordMode: tvWrMode,
                     difficulty: (document.getElementById("tv-wr-difficulty") || {}).value || "mittel",
                     theme: (document.getElementById("tv-wr-theme") || {}).value || "schneemann",
+                    wordTheme: tvWrMode === "adult" ? "gemischt"
+                        : ((document.getElementById("tv-wr-word-theme") || {}).value || "gemischt"),
                     totalRounds: parseInt((document.getElementById("tv-wr-rounds") || {}).value || "3", 10),
                     currentRound: 0,
                     order: [],
@@ -1185,7 +1188,7 @@
             if (order.length === 0) return showToast("Noch keine Spieler in der Lobby.", "error");
             const usedWords = Array.isArray(data.usedWords) ? data.usedWords.slice() : [];
             const pool = typeof wrWordPool === "function"
-                ? wrWordPool(data.wordMode || "kids", data.difficulty || "mittel", "gemischt")
+                ? wrWordPool(data.wordMode || "kids", data.difficulty || "mittel", data.wordTheme || "gemischt")
                 : [];
             const cfg = (typeof WORTRAETSEL_DIFFICULTIES !== "undefined" && WORTRAETSEL_DIFFICULTIES[data.difficulty])
                 ? WORTRAETSEL_DIFFICULTIES[data.difficulty]
@@ -1215,6 +1218,7 @@
                 players,
                 theme: data.theme || "schneemann",
                 wordMode: data.wordMode || "kids",
+                wordTheme: data.wordTheme || "gemischt",
                 difficulty: data.difficulty || "mittel"
             });
         }
@@ -1284,7 +1288,7 @@
             }
             const usedWords = Array.isArray(data.usedWords) ? data.usedWords.slice() : [];
             const pool = typeof wrWordPool === "function"
-                ? wrWordPool(data.wordMode || "kids", data.difficulty || "mittel", "gemischt") : [];
+                ? wrWordPool(data.wordMode || "kids", data.difficulty || "mittel", data.wordTheme || "gemischt") : [];
             const cfg = (typeof WORTRAETSEL_DIFFICULTIES !== "undefined" && WORTRAETSEL_DIFFICULTIES[data.difficulty])
                 ? WORTRAETSEL_DIFFICULTIES[data.difficulty] : { minLen: 5, maxLen: 7 };
             const word = typeof wrPickWord === "function"

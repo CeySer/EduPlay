@@ -1844,37 +1844,91 @@ auth.createUserWithEmailAndPassword(e, p)
                         </div>`).join('');
         }
 
+        // QA-Checks laufen nur im Entwickler-Modus (Einstellungen)
         function runAnswerLengthAudit() {
-            const box = document.getElementById('dash-audit-result');
+            if (typeof runDevQuizAudits === "function") return runDevQuizAudits();
+        }
+
+        function runDevQuizAudits() {
+            const box = document.getElementById('dev-audit-result') || document.getElementById('dash-audit-result');
             if (!box) return;
             box.classList.remove('hidden');
-            if (typeof QUESTIONS_DATABASE === 'undefined') {
+            if (typeof QUESTIONS_DATABASE === 'undefined' || !Array.isArray(QUESTIONS_DATABASE)) {
                 box.innerHTML = '<div class="text-sm text-rose-300">Fragen-Datenbank nicht geladen.</div>';
                 return;
             }
-            let total = 0,
-                longestIncl = 0,
-                strict = 0;
+
+            let total = 0, longestIncl = 0, strict = 0;
+            let badAnswers = 0, badCorrect = 0, emptyQ = 0, emptyAns = 0, shortQ = 0;
+            const ids = new Map();
+            let dupIds = 0;
+            const lengthExamples = [];
+
             QUESTIONS_DATABASE.forEach(q => {
-                if (!Array.isArray(q.answers) || q.answers.length < 2) return;
-                if (typeof q.correct !== "number" || q.answers[q.correct] == null) return;
+                if (!q) return;
+                if (q.id) {
+                    if (ids.has(q.id)) dupIds++;
+                    else ids.set(q.id, true);
+                }
+                const qText = String(q.question || "").trim();
+                if (!qText) emptyQ++;
+                else if (qText.length < 8) shortQ++;
+
+                if (!Array.isArray(q.answers) || q.answers.length < 2) {
+                    badAnswers++;
+                    return;
+                }
+                if (q.answers.some(a => !String(a || "").trim())) emptyAns++;
+                if (typeof q.correct !== "number" || q.answers[q.correct] == null) {
+                    badCorrect++;
+                    return;
+                }
                 total++;
                 const lens = q.answers.map(a => String(a).length);
                 const max = Math.max.apply(null, lens);
                 if (lens[q.correct] === max) {
                     longestIncl++;
-                    if (lens.filter(l => l === max).length === 1) { strict++; }
+                    if (lens.filter(l => l === max).length === 1) {
+                        strict++;
+                        if (lengthExamples.length < 8) {
+                            lengthExamples.push((q.id || "?") + ": „" + String(q.answers[q.correct]).slice(0, 40) + "“");
+                        }
+                    }
                 }
             });
+
             const pct = total ? (longestIncl / total * 100) : 0;
             const pctStrict = total ? (strict / total * 100) : 0;
-            SFX.tap();
+
+            let wordsKids = (typeof GERMAN_WORDS_KIDS !== "undefined" && Array.isArray(GERMAN_WORDS_KIDS)) ? GERMAN_WORDS_KIDS.length : 0;
+            let wordsAdult = (typeof GERMAN_WORDS_ADULT !== "undefined" && Array.isArray(GERMAN_WORDS_ADULT)) ? GERMAN_WORDS_ADULT.length : 0;
+            let themeInfo = "";
+            if (typeof GERMAN_WORDS_KIDS_THEMES !== "undefined") {
+                const keys = Object.keys(GERMAN_WORDS_KIDS_THEMES).filter(k => k !== "gemischt");
+                themeInfo = keys.map(k => {
+                    const arr = GERMAN_WORDS_KIDS_THEMES[k];
+                    return k + ":" + (Array.isArray(arr) ? arr.length : 0);
+                }).join(" · ");
+            }
+
+            if (typeof SFX !== "undefined") SFX.tap();
             box.innerHTML = `
-                        <div class="text-sm text-gray-200">Geprüft: <b>${total}</b> Fragen</div>
-                        <div class="text-sm text-gray-200">Richtige = längste (inkl. Gleichstand): <b class="text-amber-300">${pct.toFixed(1)}&nbsp;%</b> (${longestIncl})</div>
-                        <div class="text-sm text-gray-200">Eindeutig längste (klarer Tipp): <b class="text-rose-300">${pctStrict.toFixed(1)}&nbsp;%</b> (${strict})</div>
-                        <div class="text-xs text-gray-400 pt-1">Diese ${strict} Fragen sind die Kandidaten zum Nachbessern.</div>
-                    `;
+                <div class="text-[11px] font-bold text-cyan-300 uppercase tracking-wide">Quiz-Daten-Checks</div>
+                <div class="text-sm text-gray-200">Fragen gesamt: <b>${QUESTIONS_DATABASE.length}</b> · geprüft: <b>${total}</b></div>
+                <div class="text-sm text-gray-200">Richtige = längste (inkl. Gleichstand): <b class="text-amber-300">${pct.toFixed(1)}%</b> (${longestIncl})</div>
+                <div class="text-sm text-gray-200">Eindeutig längste (Tipp-Kandidaten): <b class="text-rose-300">${pctStrict.toFixed(1)}%</b> (${strict})</div>
+                ${lengthExamples.length ? `<div class="text-[10px] text-gray-500 pt-1">${lengthExamples.map(e => esc(e)).join("<br>")}</div>` : ""}
+                <div class="border-t border-white/10 my-2"></div>
+                <div class="text-sm text-gray-200">Strukturfehler:</div>
+                <div class="text-xs text-gray-300">Doppelte IDs: <b class="${dupIds ? "text-rose-300" : "text-emerald-300"}">${dupIds}</b></div>
+                <div class="text-xs text-gray-300">Zu wenige Antworten (&lt;2): <b class="${badAnswers ? "text-rose-300" : "text-emerald-300"}">${badAnswers}</b></div>
+                <div class="text-xs text-gray-300">Ungültiger correct-Index: <b class="${badCorrect ? "text-rose-300" : "text-emerald-300"}">${badCorrect}</b></div>
+                <div class="text-xs text-gray-300">Leere Frage: <b class="${emptyQ ? "text-rose-300" : "text-emerald-300"}">${emptyQ}</b> · sehr kurz (&lt;8): <b>${shortQ}</b></div>
+                <div class="text-xs text-gray-300">Leere Antwort-Texte: <b class="${emptyAns ? "text-rose-300" : "text-emerald-300"}">${emptyAns}</b></div>
+                <div class="border-t border-white/10 my-2"></div>
+                <div class="text-xs text-gray-300">Wörter Kids: <b>${wordsKids}</b> · Adult: <b>${wordsAdult}</b></div>
+                ${themeInfo ? `<div class="text-[10px] text-gray-500">Themen: ${esc(themeInfo)}</div>` : ""}
+            `;
         }
 
         // ============================================================

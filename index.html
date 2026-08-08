@@ -853,9 +853,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="wortraten-turn-banner" class="text-center text-sm font-bold text-sky-300 h-5"></div>
                     <div id="wortraten-scores" class="flex gap-2 overflow-x-auto pb-1"></div>
                     <div id="wortraten-keyboard" class="grid grid-cols-6 sm:grid-cols-7 gap-1.5"></div>
-                    <button type="button"
-                        onclick="if(confirm('Wort auflösen? Keine Punkte mehr für diese Runde.')) wrRevealWord()"
-                        class="btn-secondary text-xs w-full py-2">🏳️ Wort auflösen</button>
+                    <button type="button" onclick="wrPromptSolveWord()"
+                        class="btn-primary text-xs w-full py-2"
+                        style="background:var(--gradient-cool);">💡 Ich kenne das Wort!</button>
                 </div>
 
                 <div id="wortraten-round-end" class="hidden glass-card-glow p-6 text-center space-y-4"
@@ -2129,9 +2129,9 @@ VIEW: QUIZ SETUP
     <script src="quiz-core.js?v=8.8"></script>
     <script src="vocab.js?v=8.8"></script>
     <script src="duel-scrabble.js?v=8.8"></script>
-    <script src="wortraten.js?v=8.9"></script>
-    <script src="tv-cast.js?v=9.4"></script>
-    <script src="live-duel.js?v=9.5"></script>
+    <script src="wortraten.js?v=9.0"></script>
+    <script src="tv-cast.js?v=9.6"></script>
+    <script src="live-duel.js?v=9.6"></script>
     <script src="app-misc.js?v=8.8"></script>
     <script src="lobby-avatar.js?v=9.0"></script>
     <script src="konto-loeschen.js?v=8.8"></script>

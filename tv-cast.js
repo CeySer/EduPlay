@@ -431,8 +431,15 @@
         function starteTVLebenszeichen() {
             stoppeTVLebenszeichen();
             const schlag = () => {
-                if (!tvGameRef || !activePlayerKey) return;
-                sendeLebenszeichen(tvGameRef, activePlayerKey, isTVHost ? "hostLastSeen" : null);
+                if (!tvGameRef) return;
+                // Host = Fernseher: nur hostLastSeen, NIE in players[] eintragen
+                // (sonst erscheint ein Geister-Spieler ohne Namen, der nicht antworten kann).
+                if (isTVHost) {
+                    tvGameRef.update({ hostLastSeen: Date.now() }).catch(() => { });
+                    return;
+                }
+                if (!activePlayerKey) return;
+                sendeLebenszeichen(tvGameRef, activePlayerKey, null);
             };
             schlag();
             tvLebenszeichen = setInterval(schlag, 12000);
@@ -445,9 +452,27 @@
         // Handy entsperrt oder Anruf beendet: sofort zurückmelden.
         document.addEventListener("visibilitychange", function () {
             if (document.visibilityState !== "visible") return;
-            if (!tvGameRef || !activePlayerKey) return;
-            sendeLebenszeichen(tvGameRef, activePlayerKey, isTVHost ? "hostLastSeen" : null);
+            if (!tvGameRef) return;
+            if (isTVHost) {
+                tvGameRef.update({ hostLastSeen: Date.now() }).catch(() => { });
+                return;
+            }
+            if (!activePlayerKey) return;
+            sendeLebenszeichen(tvGameRef, activePlayerKey, null);
         });
+
+        // Entfernt Geister-Einträge (z.B. Host ohne Namen) aus der players-Map.
+        function bereinigeTVPlayers(players) {
+            const clean = {};
+            Object.keys(players || {}).forEach(k => {
+                const p = players[k];
+                if (!p) return;
+                const name = (p.name && String(p.name).trim()) || "";
+                if (!name) return; // kein Name = kein echter Mitspieler
+                clean[k] = p;
+            });
+            return clean;
+        }
 
         function stoppeTVRundenTimer() {
             if (tvFristTicker) { clearInterval(tvFristTicker); tvFristTicker = null; }
@@ -663,7 +688,7 @@
         function renderTVPlayerList(players) {
             const list = document.getElementById("tv-player-list");
             if (!list) return;
-            const names = Object.values(players || {});
+            const names = Object.values(bereinigeTVPlayers(players || {}));
             list.innerHTML = names.length === 0 ?
                 `<p class="col-span-4 text-gray-500 font-bold">Noch niemand beigetreten...</p>` :
                 names.map(p => {
@@ -689,7 +714,7 @@
                     ? buildMixedQuestions(catKeys, 10)
                     : prepareQuestions(questionsForKey(catKeys[0]).sort(() => Math.random() - 0.5).slice(0, 10));
                 if (tvQuestions.length < 3) { showToast("Zu wenige Fragen für dieses Thema!", "error"); return; }
-                const playersData = data.players || {};
+                const playersData = bereinigeTVPlayers(data.players || {});
                 Object.keys(playersData).forEach(k => {
                     playersData[k].hasAnswered = false;
                     playersData[k].lastAnswer = null;
@@ -1155,7 +1180,7 @@
 
         // --- TV WORT-RÄTSEL ---
         function startTVWortratenRound(data) {
-            const players = data.players || {};
+            const players = bereinigeTVPlayers(data.players || {});
             const order = Object.keys(players);
             if (order.length === 0) return showToast("Noch keine Spieler in der Lobby.", "error");
             const usedWords = Array.isArray(data.usedWords) ? data.usedWords.slice() : [];
@@ -1325,6 +1350,65 @@
             }
         }
 
+        function promptTVWrSolveWord() {
+            if (!tvGameRef) return;
+            const tipp = prompt("Lösungswort eingeben:");
+            if (tipp === null) return;
+            submitTVWrSolveWord(tipp);
+        }
+
+        async function submitTVWrSolveWord(raw) {
+            if (!tvGameRef) return;
+            const guess = (typeof wrNormalizeWordGuess === "function")
+                ? wrNormalizeWordGuess(raw)
+                : String(raw || "").trim().toUpperCase().replace(/\s+/g, "");
+            if (!guess) return;
+            try {
+                await db.runTransaction(async (txn) => {
+                    const snap = await txn.get(tvGameRef);
+                    if (!snap.exists) return;
+                    const data = snap.data();
+                    if (data.status !== "playing" || data.mode !== "wortraten" || data.roundOver) return;
+                    const order = data.order || [];
+                    const key = order.length ? order[(data.turnIndex || 0) % order.length] : null;
+                    if (key !== activePlayerKey) return;
+                    const word = data.word || "";
+                    const target = (typeof wrNormalizeWordGuess === "function")
+                        ? wrNormalizeWordGuess(word)
+                        : String(word).trim().toUpperCase().replace(/\s+/g, "");
+                    const players = Object.assign({}, data.players || {});
+                    if (!players[key]) return;
+                    const guessedSet = new Set(data.guessed || []);
+                    if (guess === target) {
+                        const points = (typeof wrPointsForFullSolve === "function")
+                            ? wrPointsForFullSolve(word, guessedSet) : 15;
+                        players[key] = Object.assign({}, players[key], {
+                            score: (players[key].score || 0) + points,
+                            lastRoundPoints: points
+                        });
+                        txn.update(tvGameRef, {
+                            guessed: word.split(""),
+                            players,
+                            roundOver: true,
+                            roundSolved: true
+                        });
+                    } else {
+                        let wrongCount = (data.wrongCount || 0) + 1;
+                        let roundOver = false, roundSolved = false;
+                        const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
+                        if (wrongCount >= maxW) { roundOver = true; roundSolved = false; }
+                        const update = { wrongCount, players, roundOver, roundSolved };
+                        if (!roundOver && order.length) {
+                            update.turnIndex = ((data.turnIndex || 0) + 1) % order.length;
+                        }
+                        txn.update(tvGameRef, update);
+                    }
+                });
+            } catch (e) {
+                handleError("submitTVWrSolveWord", e, "Wort konnte nicht geprüft werden.");
+            }
+        }
+
         async function submitTVWrLetter(letter) {
             if (!tvGameRef || !letter) return;
             try {
@@ -1380,7 +1464,7 @@
             const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
             const letters = rack.letters;
             const round = (data.currentRound || 0) + 1;
-            const playersData = data.players || {};
+            const playersData = bereinigeTVPlayers(data.players || {});
 
             Object.keys(playersData).forEach(k => {
                 playersData[k].hasAnswered = false;
@@ -1684,7 +1768,10 @@
                                         const name = (turnKey && data.players[turnKey]) ? data.players[turnKey].name : "…";
                                         return `<p class="text-center text-gray-400 font-bold mb-2">⏳ ${esc(name)} ist dran…</p>`;
                                     })();
-                                body = `${banner}<div class="grid grid-cols-7 gap-1.5">${kb}</div>`;
+                                const solveBtn = isMyTurn
+                                    ? `<button type="button" onclick="promptTVWrSolveWord()" class="btn-primary text-xs w-full py-2 mt-2" style="background:var(--gradient-cool);">💡 Ich kenne das Wort!</button>`
+                                    : "";
+                                body = `${banner}<div class="grid grid-cols-7 gap-1.5">${kb}</div>${solveBtn}`;
                             }
                             setTVPlayerPlayHTML(`
                                 <div class="space-y-4 p-2">

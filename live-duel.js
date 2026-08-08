@@ -882,8 +882,8 @@
                 ? `<p class="text-center text-xs text-amber-300 font-bold">⏱️ ${typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 20} Sek. – Erwachsenen-Tempo</p>`
                 : "";
             const maxWrongForCounter = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
-            const revealBtn = (!data.roundOver && isLiveDuelCreator)
-                ? `<button type="button" onclick="wrLiveRevealWord()" class="btn-secondary text-xs w-full py-2">🏳️ Wort auflösen</button>`
+            const solveBtn = (!data.roundOver && isMyTurn)
+                ? `<button type="button" onclick="wrLivePromptSolveWord()" class="btn-primary text-xs w-full py-2" style="background:var(--gradient-cool);">💡 Ich kenne das Wort!</button>`
                 : "";
 
             document.getElementById("live-duel-play-content").innerHTML = `
@@ -897,7 +897,7 @@
                     ${banner}
                     ${timerNote}
                     <div class="grid grid-cols-7 sm:grid-cols-9 gap-1.5">${kbHtml}</div>
-                    ${revealBtn}
+                    ${solveBtn}
                     ${continueBtn}
                 </div>`;
 
@@ -1030,22 +1030,91 @@
         // Ersteller gibt die Runde auf: Wort wird für alle aufgedeckt, keine
         // Punkte mehr für diese Runde. Danach wie gewohnt "Weiter"-Button
         // bzw. Auto-Weiter nach 8s.
-        async function wrLiveRevealWord() {
-            if (!liveDuelRef || !isLiveDuelCreator) return;
-            if (!confirm("Wort auflösen? Es gibt keine Punkte mehr für diese Runde.")) return;
+        function wrLivePromptSolveWord() {
+            if (!liveDuelRef) return;
+            const tipp = prompt("Lösungswort eingeben:");
+            if (tipp === null) return;
+            wrLiveTrySolveWord(tipp);
+        }
+
+        async function wrLiveTrySolveWord(raw) {
+            if (!liveDuelRef) return;
+            const guess = (typeof wrNormalizeWordGuess === "function")
+                ? wrNormalizeWordGuess(raw)
+                : String(raw || "").trim().toUpperCase().replace(/\s+/g, "");
+            if (!guess) return;
+            let outcome = null;
             try {
-                const snap = await liveDuelRef.get();
-                if (!snap.exists) return;
-                const data = snap.data();
-                if (data.status !== "playing" || data.type !== "wortraten" || data.roundOver) return;
-                const word = data.word || "";
-                await liveDuelRef.update({ guessed: word.split(""), roundOver: true, roundSolved: false, wrTurnDeadline: null });
+                await db.runTransaction(async (txn) => {
+                    const snap = await txn.get(liveDuelRef);
+                    if (!snap.exists) return;
+                    const data = snap.data();
+                    if (data.status !== "playing" || data.type !== "wortraten" || data.roundOver) return;
+                    const key = wrLiveActivePlayerKey(data);
+                    if (key !== activePlayerKey) return;
+                    const word = data.word || "";
+                    const target = (typeof wrNormalizeWordGuess === "function")
+                        ? wrNormalizeWordGuess(word)
+                        : String(word).trim().toUpperCase().replace(/\s+/g, "");
+                    const players = data.players;
+                    const guessedSet = new Set(data.guessed || []);
+                    if (guess === target) {
+                        const points = (typeof wrPointsForFullSolve === "function")
+                            ? wrPointsForFullSolve(word, guessedSet)
+                            : 15;
+                        players[key].score = (players[key].score || 0) + points;
+                        players[key].lastRoundPoints = points;
+                        players[key].answerStreak = (players[key].answerStreak || 0) + 1;
+                        txn.update(liveDuelRef, {
+                            guessed: word.split(""),
+                            players,
+                            roundOver: true,
+                            roundSolved: true,
+                            wrTurnDeadline: null
+                        });
+                        outcome = { ok: true, points };
+                    } else {
+                        players[key].answerStreak = 0;
+                        let wrongCount = (data.wrongCount || 0) + 1;
+                        let roundOver = false, roundSolved = false;
+                        if (wrongCount >= (typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7)) {
+                            roundOver = true;
+                            roundSolved = false;
+                        }
+                        const order = (data.order || []).filter(k => players[k] && !players[k].pending);
+                        const curIdx = order.indexOf(key);
+                        const update = {
+                            wrongCount,
+                            players,
+                            roundOver,
+                            roundSolved,
+                            wrTurnDeadline: null
+                        };
+                        if (!roundOver && order.length) {
+                            update.turnIndex = (curIdx + 1) % order.length;
+                        }
+                        txn.update(liveDuelRef, update);
+                        outcome = { ok: false, roundOver };
+                    }
+                });
+            } catch (e) {
+                handleError("wrLiveTrySolveWord", e, "Wort konnte nicht geprüft werden.");
+                return;
+            }
+            if (!outcome) return;
+            if (outcome.ok) {
+                if (typeof SFX !== "undefined") SFX.win();
+                if (typeof showPointsPopup === "function") showPointsPopup(outcome.points, "Wort gelöst! 🎉");
+                try { if (typeof confetti === "function") confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } }); } catch (e) { }
                 if (wrLiveAutoAdvanceTimer) clearTimeout(wrLiveAutoAdvanceTimer);
                 wrLiveAutoAdvanceTimer = setTimeout(() => {
                     wrLiveAutoAdvanceTimer = null;
                     wrLiveAdvanceRound();
                 }, 8000);
-            } catch (e) { handleError("wrLiveRevealWord", e, "Konnte nicht aufgelöst werden."); }
+            } else {
+                if (typeof SFX !== "undefined") SFX.wrong();
+                showToast("Leider falsch!", "error");
+            }
         }
 
         async function wrLiveAdvanceRound() {

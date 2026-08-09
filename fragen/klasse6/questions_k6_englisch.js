@@ -3638,17 +3638,6 @@ const K6_ENGLISCH_QUESTIONS = [
   }
 ];
 
-// Einbindung für Browser
-if (typeof window !== 'undefined') {
-    window.K6_ENGLISCH2_QUESTIONS = K6_ENGLISCH2_QUESTIONS;
-}
-
-if (typeof window !== 'undefined') window.K6_ENGLISCH2_QUESTIONS = K6_ENGLISCH2_QUESTIONS;
-if (typeof registerQuestions === 'function') registerQuestions('K6_ENGLISCH2_QUESTIONS', K6_ENGLISCH2_QUESTIONS);
-
-
-
-
 
 
 

@@ -1840,15 +1840,49 @@ auth.createUserWithEmailAndPassword(e, p)
                     '<option value="">Kein Spieler</option>';
             }
 
+            fillDashTestCategoryUI();
+            if (typeof ladeAlleFragen === "function") {
+                ladeAlleFragen().then(function () { fillDashTestCategoryUI(); }).catch(function () { });
+            }
+            renderDashTestResults();
+        }
+
+        function fillDashTestCategoryUI() {
             const catBox = document.getElementById('dash-test-categories');
-            if (catBox && typeof QUESTIONS_DATABASE !== 'undefined') {
-                const cats = [...new Set(QUESTIONS_DATABASE.map(q => q.category))];
-                catBox.innerHTML = cats.map(c => `
-                            <label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
-                                <input type="checkbox" value="${c}" class="dash-test-cat w-4 h-4 accent-indigo-500">
-                                <span class="truncate">${labelFuerKategorie(c) || CATEGORY_LABELS[c] || c}</span>
-                            </label>
-                        `).join('');
+            if (catBox) {
+                let html = "";
+                // Strukturiert nach Klasse/Bereich (wie Lern-Menü), nicht flache Liste
+                if (typeof getAreas === "function") {
+                    const areas = getAreas("lernen");
+                    areas.forEach(a => {
+                        const subs = (a.subjects || []).filter(s => {
+                            const n = typeof questionCount === "function" ? questionCount(s.key) : 0;
+                            return n > 0;
+                        });
+                        if (!subs.length) return;
+                        html += `<div class="col-span-2 text-[10px] font-black text-indigo-300 uppercase tracking-wide mt-1 mb-0.5">${esc(a.label)}</div>`;
+                        subs.forEach(s => {
+                            const n = typeof questionCount === "function" ? questionCount(s.key) : 0;
+                            html += `<label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
+                                <input type="checkbox" value="${esc(s.key)}" class="dash-test-cat w-4 h-4 accent-indigo-500">
+                                <span class="truncate flex-1">${esc(s.label)}</span>
+                                <span class="text-[10px] text-gray-500">${n}</span>
+                            </label>`;
+                        });
+                    });
+                }
+                if (!html && typeof QUESTIONS_DATABASE !== "undefined" && Array.isArray(QUESTIONS_DATABASE)) {
+                    const cats = [...new Set(QUESTIONS_DATABASE.map(q => q.category).filter(Boolean))];
+                    html = cats.map(c => {
+                        const n = QUESTIONS_DATABASE.filter(q => q.category === c).length;
+                        return `<label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10">
+                            <input type="checkbox" value="${esc(c)}" class="dash-test-cat w-4 h-4 accent-indigo-500">
+                            <span class="truncate flex-1">${esc(labelFuerKategorie(c) || (typeof CATEGORY_LABELS !== "undefined" && CATEGORY_LABELS[c]) || c)}</span>
+                            <span class="text-[10px] text-gray-500">${n}</span>
+                        </label>`;
+                    }).join("");
+                }
+                catBox.innerHTML = html || '<div class="text-xs text-gray-500 col-span-2">Fragen werden geladen…</div>';
             }
 
             const vocBox = document.getElementById('dash-test-vocab');
@@ -1863,14 +1897,13 @@ auth.createUserWithEmailAndPassword(e, p)
                         html += `
                             <label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
                                 <input type="checkbox" value="vocab:${lang}:${level}" class="dash-test-cat w-4 h-4 accent-emerald-500">
-                                <span class="truncate">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
+                                <span class="truncate flex-1">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
+                                <span class="text-[10px] text-gray-500">${n}</span>
                             </label>`;
                     });
                 });
                 vocBox.innerHTML = html || '<div class="text-xs text-gray-500 col-span-2">Keine Vokabeln geladen</div>';
             }
-
-            renderDashTestResults();
         }
 
         function assignTestFromDashboard() {
@@ -1881,12 +1914,18 @@ auth.createUserWithEmailAndPassword(e, p)
             if (checked.length === 0) return showToast("Bitte mindestens ein Thema auswählen!", "error");
             const vocabDir = document.getElementById('dash-test-dir')?.value || 'de2f';
             const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, vocabDir, createdAt: new Date().toISOString() };
+            if (!ALL_PROFILES[profileKey]) return showToast("Spieler nicht gefunden!", "error");
             ALL_PROFILES[profileKey].pendingTest = pendingTest;
+            // Aktives Kind sofort aktualisieren – kein Seiten-Reload nötig
+            if (activePlayerKey === profileKey && currentPlayer) {
+                currentPlayer.pendingTest = pendingTest;
+            }
             db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
                 .update({ pendingTest })
                 .catch(e => handleError("assignTestFromDashboard", e, "Test konnte nicht zugewiesen werden."));
             showToast(`Test für ${esc(ALL_PROFILES[profileKey].name)} zugewiesen! ⏱️`, "success");
             renderDashAdminProgress();
+            if (typeof renderPendingTestCard === "function") renderPendingTestCard();
         }
 
         async function saveTestTemplate() {

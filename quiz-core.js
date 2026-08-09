@@ -491,9 +491,15 @@
             return out;
         }
 
-        function startAssignedTest() {
-            if (!currentPlayer || !currentPlayer.pendingTest) return;
-            // Pausierten Test desselben Kindes fortsetzen statt neu zu mischen
+        async function startAssignedTest() {
+            if (!currentPlayer || !currentPlayer.pendingTest) {
+                // Profil frisch aus Speicher ziehen (nach Zuweisung ohne Reload)
+                if (activePlayerKey && ALL_PROFILES[activePlayerKey] && ALL_PROFILES[activePlayerKey].pendingTest) {
+                    currentPlayer = ALL_PROFILES[activePlayerKey];
+                } else {
+                    return showToast("Kein offener Test gefunden.", "error");
+                }
+            }
             const tMerk = gemerkterTestFortschritt();
             if (tMerk && (!tMerk.spielerKey || tMerk.spielerKey === activePlayerKey)
                 && Array.isArray(tMerk.questions) && tMerk.questions.length
@@ -514,18 +520,39 @@
                 showToast("Test fortgesetzt ⏱", "success");
                 return;
             }
+            // Fragen ggf. nachladen (Lazy-Load)
+            if (typeof ladeAlleFragen === "function") {
+                try { await ladeAlleFragen(); } catch (e) { /* */ }
+            }
             const { categories, timeLimitSeconds, vocabDir } = currentPlayer.pendingTest;
-            const qCats = (categories || []).filter(c => !c.startsWith('vocab:'));
-            const vCats = (categories || []).filter(c => c.startsWith('vocab:'));
-            let pool = QUESTIONS_DATABASE.filter(q => qCats.includes(q.category));
+            const qCats = (categories || []).filter(c => !String(c).startsWith('vocab:'));
+            const vCats = (categories || []).filter(c => String(c).startsWith('vocab:'));
+            let pool = [];
+            qCats.forEach(key => {
+                if (typeof questionsForKey === "function") {
+                    pool = pool.concat(questionsForKey(key) || []);
+                } else if (typeof QUESTIONS_DATABASE !== "undefined") {
+                    pool = pool.concat(QUESTIONS_DATABASE.filter(q => q.category === key));
+                }
+            });
+            // Duplikate
+            const seen = new Set();
+            pool = pool.filter(q => {
+                const id = q && (q.id || q.question);
+                if (!id || seen.has(id)) return false;
+                seen.add(id);
+                return true;
+            });
             pool = pool.concat(buildVocabTestQuestions(vCats, vocabDir || 'de2f'));
+            if (pool.length === 0) {
+                return showToast("Keine Fragen für diesen Test gefunden. Anderes Thema wählen oder Fragen neu laden.", "error");
+            }
             currentQuestions = prepareQuestions(pool.sort(() => Math.random() - 0.5));
-            if (currentQuestions.length === 0) { showToast("Keine Fragen für diesen Test gefunden!", "error"); return; }
             testMode = true;
             testCorrectCount = 0;
             testAnsweredCount = 0;
-            testTimeRemaining = timeLimitSeconds;
-            testTimeLimitSeconds = timeLimitSeconds;
+            testTimeRemaining = timeLimitSeconds || 600;
+            testTimeLimitSeconds = testTimeRemaining;
             testStartedAt = Date.now();
             quizMode = 'mc';
             qIndex = 0;

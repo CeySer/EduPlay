@@ -121,7 +121,13 @@ auth.createUserWithEmailAndPassword(e, p)
                 ALL_PROFILES = {};
                 currentPlayer = null;
                 activePlayerKey = null;
-                switchView('auth');
+                // auth kann feuern, bevor lobby-avatar.js geladen ist
+                if (typeof switchView === "function") switchView('auth');
+                else {
+                    document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+                    const auth = document.getElementById('view-auth');
+                    if (auth) auth.classList.remove('hidden');
+                }
             }
         });
 
@@ -1702,6 +1708,7 @@ auth.createUserWithEmailAndPassword(e, p)
             } catch (e) { /* */ }
             const card = document.getElementById("weakness-card");
             if (card) { card.classList.add("hidden"); card.innerHTML = ""; }
+            if (typeof showToast === "function") showToast("Tipp ausgeblendet (bis morgen)", "info");
         }
 
         function renderWeaknessSuggestion() {
@@ -1717,13 +1724,14 @@ auth.createUserWithEmailAndPassword(e, p)
                 const label = labelFuerKategorie(weak.category) || CATEGORY_LABELS[weak.category] || weak.category;
                 const pct = Math.round(weak.pct * 100);
                 const n = 15;
+                const catSafe = String(weak.category).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
                 card.innerHTML =
                     `<div class="glass-card-glow p-4 relative" style="border-color:rgba(245,158,11,0.2);">
-                        <button type="button" onclick="dismissWeaknessSuggestion(true)" title="Heute ausblenden"
-                            class="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/5 text-gray-400 hover:text-white text-sm font-bold">✕</button>
+                        <button type="button" onclick="event.stopPropagation();dismissWeaknessSuggestion(true)" title="Heute ausblenden"
+                            class="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/40 border border-white/10 text-gray-300 hover:text-white text-base font-bold z-10">✕</button>
                         <div class="font-bold text-yellow-400 text-sm pr-8">⚡ Blitz-Übung</div>
                         <div class="text-xs text-gray-300 mt-1">${label}: nur ${pct}% richtig – ${n} Fragen, dann bist du durch.</div>
-                        <button onclick="startBlitzUebung('${weak.category}')" class="btn-primary text-xs py-2.5 px-4 mt-3 w-full" style="background:var(--gradient-amber);box-shadow:0 4px 16px rgba(245,158,11,0.3);">Los · ${n} Fragen →</button>
+                        <button type="button" onclick="startBlitzUebung('${catSafe}')" class="btn-primary text-xs py-2.5 px-4 mt-3 w-full" style="background:var(--gradient-amber);box-shadow:0 4px 16px rgba(245,158,11,0.3);">Los · ${n} Fragen →</button>
                     </div>`;
                 card.classList.remove("hidden");
             } else {
@@ -1732,15 +1740,42 @@ auth.createUserWithEmailAndPassword(e, p)
             }
         }
 
-        function startBlitzUebung(cat) {
-            const pool = (typeof questionsForKey === "function" ? questionsForKey(cat) : []).slice();
-            if (!pool.length) return showToast("Keine Fragen für dieses Thema!", "error");
-            const n = 15;
+        async function startBlitzUebung(cat) {
+            if (!cat) return showToast("Kein Thema gewählt.", "error");
+            if (typeof showToast === "function") showToast("Fragen werden geladen…", "info");
+            if (typeof ladeAlleFragen === "function") {
+                try { await ladeAlleFragen(); } catch (e) { /* */ }
+            }
+            let pool = [];
+            if (typeof questionsForKey === "function") pool = (questionsForKey(cat) || []).slice();
+            if (!pool.length && typeof QUESTIONS_DATABASE !== "undefined") {
+                pool = QUESTIONS_DATABASE.filter(q => q && q.category === cat);
+            }
+            // Klasse 1 u.ä.: Stats-Key manchmal nur Prefix (k1_mathe) – breiter matchen
+            if (!pool.length && typeof QUESTIONS_DATABASE !== "undefined" && cat) {
+                const prefix = String(cat).replace(/:$/, "");
+                pool = QUESTIONS_DATABASE.filter(q => q && (
+                    q.category === cat ||
+                    String(q.category || "").startsWith(prefix + "_") ||
+                    String(q.category || "").startsWith(prefix + ":") ||
+                    (q.grade === 1 && String(cat).indexOf("k1") === 0 && q.subject && String(cat).indexOf(q.subject) >= 0)
+                ));
+            }
+            if (!pool.length && currentPlayer && Array.isArray(currentPlayer.wrongQuestions) && currentPlayer.wrongQuestions.length) {
+                const db = (typeof QUESTIONS_DATABASE !== "undefined") ? QUESTIONS_DATABASE : [];
+                pool = currentPlayer.wrongQuestions
+                    .map(w => db.find(q => q.category === w.category && q.question === w.question))
+                    .filter(Boolean);
+            }
+            if (!pool.length) {
+                return showToast("Keine Fragen zu diesem Thema. Mit ✕ ausblenden oder anderes Fach üben.", "error");
+            }
+            const n = Math.min(15, pool.length);
             const qs = pool.sort(() => Math.random() - 0.5).slice(0, n);
             window.__eduplayBlitzCat = cat;
             window.__eduplayBlitzActive = true;
             if (typeof launchQuiz === "function") launchQuiz(qs);
-            else startQuizForCategory(cat);
+            else showToast("Quiz konnte nicht starten.", "error");
         }
 
         function renderPendingTestCard() {

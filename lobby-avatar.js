@@ -522,6 +522,9 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 clearInterval(scrabbleTimerInterval);
                 scrabbleTimerInterval = null;
             }
+            if (viewId !== 'suchsel-play' && typeof stopSuchselTimer === 'function') {
+                stopSuchselTimer();
+            }
             if (viewId !== 'wortraten-play' && typeof wortratenState !== 'undefined' && wortratenState) {
                 wortratenState.roundActive = false;
             }
@@ -558,6 +561,7 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
             }
 
             if (viewId === 'vokabeln') loadVocabSystem();
+            if (viewId === 'suchsel-setup' && typeof setupSuchselOptions === 'function') setupSuchselOptions();
             if (viewId === 'einstellungen' && typeof syncAudioSettingsUI === 'function') syncAudioSettingsUI();
             if (viewId === 'quiz-setup' && typeof setupCategorySelectors === 'function') {
                 setupCategorySelectors("quiz-area", "sub-category", "lernen");

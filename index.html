@@ -1525,6 +1525,16 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </span>
                 </button>
 
+                <button onclick="switchView('suchsel-setup')"
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
+                    style="background:linear-gradient(140deg,#0ea5e9,#22d3ee);">
+                    <span class="text-3xl shrink-0">🔍</span>
+                    <span>
+                        <span class="block text-base font-black">Suchsel</span>
+                        <span class="block text-xs font-bold text-cyan-100/80">Wörter im Buchstabengitter finden</span>
+                    </span>
+                </button>
+
                 <button onclick="switchView('fokus'); if (!focusTimerInterval) setFocusDuration(15);"
                     class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
                     style="background:linear-gradient(140deg,#06b6d4,#3b82f6);">
@@ -1979,6 +1989,78 @@ VIEW: QUIZ SETUP
     </div>
 
     <!-- ==========================================================
+            VIEW: SUCHSEL SETUP
+            ========================================================== -->
+    <div id="view-suchsel-setup" class="view hidden space-y-4">
+        <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('lernen')">Zurück</button>
+        <div class="glass-card p-6 space-y-4">
+            <h2 class="text-2xl font-black text-center text-cyan-400">🔍 Suchsel</h2>
+            <p class="text-xs text-gray-400 text-center -mt-2">Finde alle versteckten Wörter im Buchstabengitter –
+                zieh mit dem Finger über die Buchstaben.</p>
+
+            <div class="dash-sub-nav">
+                <button id="suchsel-src-wortschatz" class="active" onclick="setSuchselSource('wortschatz')">🔤
+                    Wortschatz</button>
+                <button id="suchsel-src-vokabeln" onclick="setSuchselSource('vokabeln')">📚 Vokabeln</button>
+            </div>
+
+            <div id="suchsel-panel-wortschatz" class="space-y-3">
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
+                    <select id="suchsel-wordmode" class="input-modern font-bold" onchange="toggleSuchselThemeRow()">
+                        <option value="kids" selected>👶 Kinder (einfache Wörter)</option>
+                        <option value="adult">🎓 Erwachsene (schwere Wörter)</option>
+                    </select>
+                </div>
+                <div id="suchsel-theme-row">
+                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Thema (nur Kinder)</label>
+                    <select id="suchsel-word-theme" class="input-modern font-bold"></select>
+                </div>
+            </div>
+
+            <div id="suchsel-panel-vokabeln" class="hidden space-y-3">
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Sprache</label>
+                    <select id="suchsel-lang" class="input-modern font-bold" onchange="fillSuchselVocabClasses(this.value)">
+                        <option value="en" selected>🇬🇧 Englisch</option>
+                        <option value="tr">🇹🇷 Türkisch</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse</label>
+                    <select id="suchsel-vocab-class" class="input-modern font-bold"></select>
+                </div>
+            </div>
+
+            <div>
+                <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeit</label>
+                <div class="dash-sub-nav">
+                    <button id="suchsel-diff-leicht" onclick="setSuchselDifficulty('leicht')">Leicht</button>
+                    <button id="suchsel-diff-mittel" class="active" onclick="setSuchselDifficulty('mittel')">Mittel</button>
+                    <button id="suchsel-diff-schwer" onclick="setSuchselDifficulty('schwer')">Schwer</button>
+                </div>
+            </div>
+
+            <button onclick="startSuchsel()" class="btn-primary w-full text-center">Los geht's! 🔍</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================
+            VIEW: SUCHSEL SPIEL
+            ========================================================== -->
+    <div id="view-suchsel-play" class="view hidden space-y-4">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-ghost text-sm py-2 px-3"
+                onclick="appConfirmSwitch('Fortschritt geht verloren.','Suchsel verlassen?','suchsel-setup', leaveSuchselPlay)">✕
+                Beenden</button>
+            <span class="badge-pill text-cyan-400 font-bold">⏱ <span id="suchsel-timer">00:00</span></span>
+            <span class="badge-pill text-emerald-400 font-bold"><span id="suchsel-found-count">0/0</span></span>
+        </div>
+        <div id="suchsel-wordlist" class="flex flex-wrap gap-1.5 justify-center"></div>
+        <div id="suchsel-grid" class="grid gap-1 mx-auto" style="max-width:420px;"></div>
+    </div>
+
+    <!-- ==========================================================
             VIEW: TV-QUIZ SETUP
             ========================================================== -->
 
@@ -2180,6 +2262,7 @@ VIEW: QUIZ SETUP
     <script src="ui-common.js?v=9.0"></script>
     <script src="quiz-core.js?v=9.2"></script>
     <script src="vocab.js?v=8.8"></script>
+    <script src="suchsel.js?v=1.0"></script>
     <script src="duel-scrabble.js?v=8.8"></script>
     <script src="wortraten.js?v=9.2"></script>
     <script src="tv-cast.js?v=9.8"></script>

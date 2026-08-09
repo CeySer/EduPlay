@@ -44,6 +44,7 @@
         }
 
         function showLessonResultScreen() {
+            endSoloStudySession();
             vergissSoloFortschritt();
             const total = testAnsweredCount || 0;
             const correct = testCorrectCount || 0;
@@ -81,15 +82,42 @@
             }
         }
 
+        let soloSessionStartedAt = null;
+
+        function trackStudySeconds(seconds) {
+            if (!currentPlayer || !activePlayerKey || !(seconds > 0)) return;
+            const day = new Date().toISOString().slice(0, 10);
+            if (!currentPlayer.studyLog) currentPlayer.studyLog = {};
+            currentPlayer.studyLog[day] = (currentPlayer.studyLog[day] || 0) + Math.round(seconds);
+            // nur letzte 60 Tage behalten
+            const keys = Object.keys(currentPlayer.studyLog).sort();
+            while (keys.length > 60) {
+                delete currentPlayer.studyLog[keys.shift()];
+            }
+            if (typeof savePlayerProgress === "function") savePlayerProgress();
+        }
+
+        function endSoloStudySession() {
+            if (soloSessionStartedAt) {
+                const sec = Math.round((Date.now() - soloSessionStartedAt) / 1000);
+                if (sec >= 15) trackStudySeconds(sec);
+                soloSessionStartedAt = null;
+            }
+            if (window.__eduplayBlitzActive) {
+                window.__eduplayBlitzActive = false;
+                if (typeof dismissWeaknessSuggestion === "function") dismissWeaknessSuggestion(true);
+            }
+        }
+
         function launchQuiz(questions) {
             if (!questions || questions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return false; }
             currentQuestions = prepareQuestions([...questions].sort(() => Math.random() - 0.5));
-
 
             testMode = false;
             testAnsweredCount = 0;
             testCorrectCount = 0;
             window.lastLessonQuestions = questions;
+            soloSessionStartedAt = Date.now();
             document.getElementById("test-timer-bar").classList.add("hidden");
             qIndex = 0;
             switchView('quiz');
@@ -161,16 +189,19 @@
 
         async function leaveQuiz(zielView) {
             if (testMode) {
-                if (!(await appConfirm("Dein bisheriger Fortschritt in diesem Test geht dabei verloren.", {
-                    titel: "Test abbrechen?", icon: "⚠️", okText: "Abbrechen", abbrechenText: "Weitermachen", gefahr: true
+                if (!(await appConfirm("Timer stoppt – du kannst den Test später fortsetzen.", {
+                    titel: "Test verlassen?", icon: "⏸", okText: "Verlassen", abbrechenText: "Weitermachen"
                 }))) return;
                 clearInterval(testTimerInterval);
+                testTimerInterval = null;
+                merkeTestFortschritt();
                 testMode = false;
-                document.getElementById("test-timer-bar").classList.add("hidden");
+                const bar = document.getElementById("test-timer-bar");
+                if (bar) bar.classList.add("hidden");
             } else {
+                endSoloStudySession();
                 vergissSoloFortschritt();
             }
-            // Gehe zur übergebenen View. Wenn nichts übergeben wurde, gehe standardmäßig zum 'family-hub'
             switchView(zielView || 'family-hub');
         }
         function showQuestion() {
@@ -263,18 +294,22 @@
         function triggerNextQuestion() {
             qIndex++;
             if (testMode) {
-                if (qIndex < currentQuestions.length && testTimeRemaining > 0) showQuestion();
-                else finishTest();
+                if (qIndex < currentQuestions.length && testTimeRemaining > 0) {
+                    showQuestion();
+                    merkeTestFortschritt();
+                } else finishTest();
             } else {
                 if (qIndex < currentQuestions.length) {
                     showQuestion();
                     merkeSoloFortschritt();
                 } else {
+                    endSoloStudySession();
                     vergissSoloFortschritt();
                     if (quizMode !== 'flashcards' && testAnsweredCount > 0) {
                         showLessonResultScreen();
                     } else {
-                        showToast("Fertig! 🎉");
+                        showToast(window.__eduplayBlitzActive === false || window.__eduplayBlitzCat
+                            ? "Blitz-Übung geschafft! ⚡" : "Fertig! 🎉");
                         switchView('menu');
                     }
                 }
@@ -288,7 +323,7 @@
         const SOLO_MERK_DAUER_MS = 3 * 60 * 60 * 1000; // 3 Stunden
 
         function merkeSoloFortschritt() {
-            if (testMode) return; // zeitlimitierte Tests hängen am Server, nicht hier
+            if (testMode) return; // Tests → merkeTestFortschritt()
             try {
                 localStorage.setItem(SOLO_MERK_SCHLUESSEL, JSON.stringify({
                     spielerKey: typeof activePlayerKey !== 'undefined' ? activePlayerKey : null,
@@ -299,7 +334,7 @@
                     testCorrectCount: testCorrectCount,
                     ts: Date.now()
                 }));
-            } catch (e) { /* privater Modus o.ä. – dann eben ohne */ }
+            } catch (e) { /* */ }
         }
 
         function vergissSoloFortschritt() {
@@ -318,11 +353,92 @@
             } catch (e) { return null; }
         }
 
-        // Prüft beim Profilwechsel, ob eine abgebrochene Solo-Runde wartet, und
-        // bietet den Wiedereinstieg an – gleiches Muster wie bei der Online-Lobby
-        // (siehe biteOnlineLobbyWiedereinstiegAn in lobby-avatar.js).
+        const TEST_MERK_SCHLUESSEL = "eduplayTestFortschritt";
+        const TEST_MERK_DAUER_MS = 24 * 60 * 60 * 1000; // 24h
+
+        let testStartedAt = null;
+        let testTimeLimitSeconds = 0;
+
+        function merkeTestFortschritt() {
+            try {
+                localStorage.setItem(TEST_MERK_SCHLUESSEL, JSON.stringify({
+                    spielerKey: typeof activePlayerKey !== 'undefined' ? activePlayerKey : null,
+                    questions: currentQuestions,
+                    qIndex: qIndex,
+                    quizMode: quizMode || 'mc',
+                    testAnsweredCount: testAnsweredCount,
+                    testCorrectCount: testCorrectCount,
+                    testTimeRemaining: Math.max(0, testTimeRemaining | 0),
+                    testStartedAt: testStartedAt || Date.now(),
+                    testTimeLimitSeconds: testTimeLimitSeconds || 0,
+                    ts: Date.now()
+                }));
+            } catch (e) { /* */ }
+        }
+
+        function vergissTestFortschritt() {
+            try { localStorage.removeItem(TEST_MERK_SCHLUESSEL); } catch (e) { }
+        }
+
+        function gemerkterTestFortschritt() {
+            try {
+                const roh = localStorage.getItem(TEST_MERK_SCHLUESSEL);
+                if (!roh) return null;
+                const d = JSON.parse(roh);
+                if (!d || !Array.isArray(d.questions) || !d.questions.length) return null;
+                if (typeof d.qIndex !== 'number' || d.qIndex >= d.questions.length) return null;
+                if (Date.now() - (d.ts || 0) > TEST_MERK_DAUER_MS) { vergissTestFortschritt(); return null; }
+                return d;
+            } catch (e) { return null; }
+        }
+
+        function starteTestTimer() {
+            clearInterval(testTimerInterval);
+            updateTestTimerDisplay();
+            testTimerInterval = setInterval(() => {
+                testTimeRemaining--;
+                updateTestTimerDisplay();
+                if (testTimeRemaining <= 0) {
+                    clearInterval(testTimerInterval);
+                    testTimerInterval = null;
+                    finishTest();
+                }
+            }, 1000);
+        }
+
         async function biteSoloWiedereinstiegAn() {
             if (typeof appConfirm !== "function") return;
+
+            // Zuerst pausierten Test anbieten
+            const tMerk = gemerkterTestFortschritt();
+            if (tMerk && (!tMerk.spielerKey || !activePlayerKey || tMerk.spielerKey === activePlayerKey)) {
+                const min = Math.max(0, Math.floor((tMerk.testTimeRemaining || 0) / 60));
+                const sec = Math.max(0, (tMerk.testTimeRemaining || 0) % 60);
+                const okT = await appConfirm(
+                    "Test pausiert · noch " + min + ":" + String(sec).padStart(2, "0") + " · Frage " +
+                    ((tMerk.qIndex || 0) + 1) + "/" + tMerk.questions.length + ". Weitermachen?",
+                    { titel: "Test fortsetzen?", icon: "📝", okText: "Weitermachen", abbrechenText: "Verwerfen" }
+                );
+                if (!okT) { vergissTestFortschritt(); }
+                else {
+                    currentQuestions = tMerk.questions;
+                    qIndex = tMerk.qIndex;
+                    quizMode = tMerk.quizMode || 'mc';
+                    testMode = true;
+                    testAnsweredCount = tMerk.testAnsweredCount || 0;
+                    testCorrectCount = tMerk.testCorrectCount || 0;
+                    testTimeRemaining = Math.max(1, tMerk.testTimeRemaining | 0);
+                    testStartedAt = tMerk.testStartedAt || Date.now();
+                    testTimeLimitSeconds = tMerk.testTimeLimitSeconds || testTimeRemaining;
+                    const bar = document.getElementById("test-timer-bar");
+                    if (bar) bar.classList.remove("hidden");
+                    switchView('quiz');
+                    showQuestion();
+                    starteTestTimer();
+                    return;
+                }
+            }
+
             const merk = gemerkterSoloFortschritt();
             if (!merk) return;
             if (merk.spielerKey && typeof activePlayerKey !== 'undefined' && activePlayerKey && merk.spielerKey !== activePlayerKey) return;
@@ -377,6 +493,27 @@
 
         function startAssignedTest() {
             if (!currentPlayer || !currentPlayer.pendingTest) return;
+            // Pausierten Test desselben Kindes fortsetzen statt neu zu mischen
+            const tMerk = gemerkterTestFortschritt();
+            if (tMerk && (!tMerk.spielerKey || tMerk.spielerKey === activePlayerKey)
+                && Array.isArray(tMerk.questions) && tMerk.questions.length
+                && (tMerk.testTimeRemaining | 0) > 0) {
+                currentQuestions = tMerk.questions;
+                qIndex = tMerk.qIndex || 0;
+                quizMode = tMerk.quizMode || 'mc';
+                testMode = true;
+                testAnsweredCount = tMerk.testAnsweredCount || 0;
+                testCorrectCount = tMerk.testCorrectCount || 0;
+                testTimeRemaining = tMerk.testTimeRemaining | 0;
+                testStartedAt = tMerk.testStartedAt || Date.now();
+                testTimeLimitSeconds = tMerk.testTimeLimitSeconds || testTimeRemaining;
+                document.getElementById("test-timer-bar").classList.remove("hidden");
+                switchView('quiz');
+                showQuestion();
+                starteTestTimer();
+                showToast("Test fortgesetzt ⏱", "success");
+                return;
+            }
             const { categories, timeLimitSeconds, vocabDir } = currentPlayer.pendingTest;
             const qCats = (categories || []).filter(c => !c.startsWith('vocab:'));
             const vCats = (categories || []).filter(c => c.startsWith('vocab:'));
@@ -388,21 +525,15 @@
             testCorrectCount = 0;
             testAnsweredCount = 0;
             testTimeRemaining = timeLimitSeconds;
+            testTimeLimitSeconds = timeLimitSeconds;
+            testStartedAt = Date.now();
             quizMode = 'mc';
             qIndex = 0;
+            vergissTestFortschritt();
             document.getElementById("test-timer-bar").classList.remove("hidden");
             switchView('quiz');
             showQuestion();
-            clearInterval(testTimerInterval);
-            updateTestTimerDisplay();
-            testTimerInterval = setInterval(() => {
-                testTimeRemaining--;
-                updateTestTimerDisplay();
-                if (testTimeRemaining <= 0) {
-                    clearInterval(testTimerInterval);
-                    finishTest();
-                }
-            }, 1000);
+            starteTestTimer();
         }
 
         function updateTestTimerDisplay() {
@@ -413,7 +544,12 @@
 
         function finishTest() {
             clearInterval(testTimerInterval);
+            testTimerInterval = null;
             testMode = false;
+            const durationSec = testTimeLimitSeconds > 0
+                ? Math.max(0, testTimeLimitSeconds - Math.max(0, testTimeRemaining | 0))
+                : (testStartedAt ? Math.round((Date.now() - testStartedAt) / 1000) : 0);
+            vergissTestFortschritt();
             document.getElementById("test-timer-bar").classList.add("hidden");
             const total = testAnsweredCount;
             const pct = total > 0 ? Math.round((testCorrectCount / total) * 100) : 0;
@@ -423,6 +559,7 @@
                     date: new Date().toISOString(),
                     correct: testCorrectCount,
                     total: total,
+                    durationSec: durationSec,
                     seenByParent: false
                 });
                 currentPlayer.testHistory = currentPlayer.testHistory.slice(0, 10);
@@ -431,12 +568,23 @@
                 savePlayerProgress();
                 updateMenuGamification();
             }
-            showTestResultScreen(testCorrectCount, total, pct);
+            showTestResultScreen(testCorrectCount, total, pct, durationSec);
+            testStartedAt = null;
+            testTimeLimitSeconds = 0;
         }
 
-        function showTestResultScreen(correct, total, pct) {
+        function formatDurationSec(sec) {
+            sec = Math.max(0, sec | 0);
+            const m = Math.floor(sec / 60);
+            const s = sec % 60;
+            if (m <= 0) return s + " Sek.";
+            return m + " Min. " + String(s).padStart(2, "0") + " Sek.";
+        }
+
+        function showTestResultScreen(correct, total, pct, durationSec) {
             const emoji = pct >= 80 ? "🏆" : pct >= 50 ? "👍" : "💪";
             const msg = pct >= 80 ? "Super gemacht!" : pct >= 50 ? "Gut gemacht, weiter so!" : "Dranbleiben, das wird noch!";
+            const dur = (durationSec != null) ? formatDurationSec(durationSec) : "";
 
             document.getElementById("test-result-content").innerHTML = `
         <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(99,102,241,0.2);">
@@ -444,9 +592,10 @@
             <h2 class="text-2xl font-black text-white">${msg}</h2>
             <div class="text-5xl font-black text-emerald-400">${correct} / ${total}</div>
             <div class="text-gray-400 font-bold">${pct}% richtig beantwortet</div>
+            ${dur ? `<div class="text-sm text-indigo-300 font-bold">⏱ Dauer: ${dur}</div>` : ""}
             <div class="flex gap-3 mt-4">
                 <button onclick="startAssignedTest()" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Nochmal</button>
-                <button onclick="goToMainMenu(); switchView('quiz-setup')" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Zurück</button>
+                <button onclick="goToMainMenu(); switchView('menu')" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Zurück</button>
             </div>
         </div>`;
             switchView('test-result');

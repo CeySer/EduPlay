@@ -597,17 +597,15 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 else stopWatchingForOpenTVLobby();
             }
 
-            // Dashboard initialisieren mit PIN-Abfrage.
-            // Die Abfrage läuft über den App-eigenen Dialog und damit
-            // asynchron: erst die Ansicht anzeigen, dann fragen, bei
-            // falscher PIN sofort wieder zurück.
+            // Dashboard: PIN nur wenn Session noch nicht freigeschaltet.
+            // Ansicht wird erst nach korrekter PIN befüllt – verhindert
+            // Flackern und Fehitoasts beim Öffnen.
             if (viewId === 'dashboard') {
-                console.log('📊 Dashboard geöffnet');
-                if (adminPin) {
+                if (adminPin && !window.__eduplayDashUnlocked) {
                     fragePinUndOeffneDashboard();
                 } else {
-                    debugDatabaseLoading();
-                    switchDashboardSection('inhalte');
+                    if (typeof debugDatabaseLoading === 'function') debugDatabaseLoading();
+                    switchDashboardSection(currentDashboardSection || 'inhalte');
                 }
             }
 
@@ -621,6 +619,11 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
         // ist in iOS-WebViews unzuverlässig und hätte den Eltern-Bereich
         // in der Store-Version unerreichbar machen können.
         async function fragePinUndOeffneDashboard(targetSection, targetPlayerKey) {
+            if (window.__eduplayDashUnlocked) {
+                if (targetPlayerKey && typeof selectedStatPlayer !== 'undefined') selectedStatPlayer = targetPlayerKey;
+                switchDashboardSection(targetSection || currentDashboardSection || 'inhalte');
+                return;
+            }
             const eingabe = await appPrompt("Bitte gib die PIN ein, um den Eltern-Bereich zu öffnen.", {
                 titel: "🔒 Eltern-Bereich",
                 icon: "🔒",
@@ -630,21 +633,26 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 okText: "Öffnen"
             });
             if (eingabe === null || cleanInput(eingabe, 12) === "") {
+                window.__eduplayDashUnlocked = false;
                 switchView('family-hub');
                 return;
             }
-            if (cleanInput(eingabe, 12) !== adminPin) {
+            const pinSoll = String(adminPin || "").trim();
+            const pinIst = cleanInput(eingabe, 12);
+            if (pinIst !== pinSoll) {
                 if (typeof SFX !== "undefined") SFX.wrong();
                 showToast("Die PIN stimmt nicht.", "error", "pin");
                 if (await appConfirm("Möchtest du die PIN zurücksetzen? Dafür bestätigst du dich mit deinem Account-Login.", {
-                    titel: "PIN vergessen?", icon: "🔑", okText: "Zurücksetzen"
+                    titel: "PIN vergessen?", icon: "🔑", okText: "Zurücksetzen", abbrechenText: "Abbrechen"
                 })) {
                     return resetAdminPinViaLogin();
                 }
+                window.__eduplayDashUnlocked = false;
                 switchView('family-hub');
                 return;
             }
-            debugDatabaseLoading();
+            window.__eduplayDashUnlocked = true;
+            if (typeof debugDatabaseLoading === 'function') debugDatabaseLoading();
             if (targetPlayerKey && typeof selectedStatPlayer !== 'undefined') selectedStatPlayer = targetPlayerKey;
             switchDashboardSection(targetSection || 'inhalte');
         }

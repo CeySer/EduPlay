@@ -19,6 +19,7 @@ auth.createUserWithEmailAndPassword(e, p)
         }
 
         function logoutParent() {
+            window.__eduplayDashUnlocked = false;
             auth.signOut();
         }
 
@@ -315,9 +316,12 @@ auth.createUserWithEmailAndPassword(e, p)
                 history.slice(0, 10).map(t => {
                     const pct = t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0;
                     const date = new Date(t.date);
-                    return `<div class="dash-stat-card flex justify-between items-center">
+                    const dur = (t.durationSec != null && typeof formatDurationSec === 'function')
+                        ? formatDurationSec(t.durationSec)
+                        : (t.durationSec != null ? Math.round(t.durationSec / 60) + " Min." : "");
+                    return `<div class="dash-stat-card flex justify-between items-center gap-2">
                                 <span class="text-white text-sm">${t.correct}/${t.total} (${pct}%)</span>
-                                <span class="text-gray-500 text-xs">${date.toLocaleDateString('de-DE')}</span>
+                                <span class="text-gray-500 text-xs text-right">${dur ? "⏱ " + dur + " · " : ""}${date.toLocaleDateString('de-DE')}</span>
                             </div>`;
                 }).join('') :
                 '<div class="text-gray-500 text-sm">Noch keine Tests absolviert</div>';
@@ -734,9 +738,44 @@ auth.createUserWithEmailAndPassword(e, p)
                 renderDashRewards();
             }
             if (section === 'statistiken') {
+                renderStudyLogOverview();
                 renderDashPlayerList();
                 if (selectedStatPlayer) renderPlayerStats(selectedStatPlayer);
             }
+        }
+
+        function renderStudyLogOverview() {
+            const box = document.getElementById("dash-study-log");
+            if (!box) return;
+            const days = [];
+            for (let i = 0; i < 14; i++) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                days.push(d.toISOString().slice(0, 10));
+            }
+            const rows = [];
+            days.forEach(day => {
+                const parts = [];
+                Object.keys(ALL_PROFILES || {}).forEach(k => {
+                    const p = ALL_PROFILES[k];
+                    if (!p || p.isGuest) return;
+                    const sec = (p.studyLog && p.studyLog[day]) || 0;
+                    if (sec >= 30) {
+                        const mins = Math.round(sec / 60);
+                        parts.push(`<span class="text-white font-bold">${esc(p.name)}</span> <span class="text-indigo-300">${mins} Min.</span>`);
+                    }
+                });
+                if (parts.length) {
+                    const label = new Date(day + "T12:00:00").toLocaleDateString("de-DE", { weekday: "short", day: "2-digit", month: "2-digit" });
+                    rows.push(`<div class="bg-white/5 rounded-xl px-3 py-2 flex flex-col gap-1">
+                        <div class="text-[11px] text-gray-500 font-bold">${label}</div>
+                        <div class="text-xs flex flex-wrap gap-x-3 gap-y-1">${parts.join(" · ")}</div>
+                    </div>`);
+                }
+            });
+            box.innerHTML = rows.length
+                ? rows.join("")
+                : `<div class="text-gray-500 text-xs py-2">Noch keine Lernzeiten erfasst. Ab jetzt zählt „Alleine lernen“.</div>`;
         }
 
         /**
@@ -1644,26 +1683,64 @@ auth.createUserWithEmailAndPassword(e, p)
             return (weakest && weakest.pct < 0.7) ? weakest : null;
         }
 
+        function weaknessDismissKey() {
+            return "eduplayWeakDismiss_" + (activePlayerKey || "x");
+        }
+        function isWeaknessDismissedToday() {
+            try {
+                const d = JSON.parse(localStorage.getItem(weaknessDismissKey()) || "null");
+                if (!d || !d.day) return false;
+                return d.day === new Date().toISOString().slice(0, 10);
+            } catch (e) { return false; }
+        }
+        function dismissWeaknessSuggestion(untilTomorrow) {
+            try {
+                localStorage.setItem(weaknessDismissKey(), JSON.stringify({
+                    day: untilTomorrow ? new Date().toISOString().slice(0, 10) : "forever",
+                    ts: Date.now()
+                }));
+            } catch (e) { /* */ }
+            const card = document.getElementById("weakness-card");
+            if (card) { card.classList.add("hidden"); card.innerHTML = ""; }
+        }
+
         function renderWeaknessSuggestion() {
             const card = document.getElementById("weakness-card");
             if (!card) return;
+            if (isWeaknessDismissedToday()) {
+                card.classList.add("hidden");
+                card.innerHTML = "";
+                return;
+            }
             const weak = getWeakestCategory(currentPlayer);
             if (weak) {
                 const label = labelFuerKategorie(weak.category) || CATEGORY_LABELS[weak.category] || weak.category;
                 const pct = Math.round(weak.pct * 100);
+                const n = 15;
                 card.innerHTML =
-                    `<div class="glass-card-glow p-4 flex items-center justify-between gap-3" style="border-color:rgba(245,158,11,0.2);">
-                                <div>
-                                    <div class="font-bold text-yellow-400 text-sm">💡 Tipp für dich</div>
-                                    <div class="text-xs text-gray-300 mt-1">${label}: nur ${pct}% richtig. Lohnt sich zu üben!</div>
-                                </div>
-                                <button onclick="startQuizForCategory('${weak.category}')" class="btn-primary text-xs py-2 px-4" style="background:var(--gradient-amber);box-shadow:0 4px 16px rgba(245,158,11,0.3);">Üben →</button>
-                            </div>`;
+                    `<div class="glass-card-glow p-4 relative" style="border-color:rgba(245,158,11,0.2);">
+                        <button type="button" onclick="dismissWeaknessSuggestion(true)" title="Heute ausblenden"
+                            class="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/5 text-gray-400 hover:text-white text-sm font-bold">✕</button>
+                        <div class="font-bold text-yellow-400 text-sm pr-8">⚡ Blitz-Übung</div>
+                        <div class="text-xs text-gray-300 mt-1">${label}: nur ${pct}% richtig – ${n} Fragen, dann bist du durch.</div>
+                        <button onclick="startBlitzUebung('${weak.category}')" class="btn-primary text-xs py-2.5 px-4 mt-3 w-full" style="background:var(--gradient-amber);box-shadow:0 4px 16px rgba(245,158,11,0.3);">Los · ${n} Fragen →</button>
+                    </div>`;
                 card.classList.remove("hidden");
             } else {
                 card.classList.add("hidden");
                 card.innerHTML = "";
             }
+        }
+
+        function startBlitzUebung(cat) {
+            const pool = (typeof questionsForKey === "function" ? questionsForKey(cat) : []).slice();
+            if (!pool.length) return showToast("Keine Fragen für dieses Thema!", "error");
+            const n = 15;
+            const qs = pool.sort(() => Math.random() - 0.5).slice(0, n);
+            window.__eduplayBlitzCat = cat;
+            window.__eduplayBlitzActive = true;
+            if (typeof launchQuiz === "function") launchQuiz(qs);
+            else startQuizForCategory(cat);
         }
 
         function renderPendingTestCard() {
@@ -1687,7 +1764,8 @@ auth.createUserWithEmailAndPassword(e, p)
         }
 
         function startQuizForCategory(cat) {
-            launchQuiz(questionsForKey(cat));
+            const pool = questionsForKey(cat) || [];
+            launchQuiz(pool);
         }
 
         // ============================================================

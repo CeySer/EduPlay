@@ -396,6 +396,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <button id="dash-sub-vokabeln" onclick="switchDashboardSubTab('vokabeln')">
                             📝 <span id="dash-vocab-count">0</span>
                         </button>
+                        <button id="dash-sub-woerter" onclick="switchDashboardSubTab('woerter')">
+                            🔤 <span id="dash-word-count">0</span>
+                        </button>
                     </div>
 
                     <!-- FILTER-LEISTE – kompakt -->
@@ -413,6 +416,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <!-- Vokabeln-View -->
                     <div id="dash-sub-vokabeln-view" class="hidden space-y-3">
                         <div id="dash-vocab-list" class="max-h-[400px] overflow-y-auto space-y-1.5"></div>
+                    </div>
+
+                    <!-- Wörter-View (Kinder-Themen) -->
+                    <div id="dash-sub-woerter-view" class="hidden space-y-3">
+                        <div id="dash-word-list" class="max-h-[400px] overflow-y-auto flex flex-wrap gap-1.5"></div>
                     </div>
 
 
@@ -433,11 +441,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 BEREICH: ELTERN
                 ========================================================== -->
                 <div id="dash-section-eltern" class="hidden space-y-4">
-                    <div class="flex justify-end">
-                        <button onclick="switchView('einstellungen')" title="Einstellungen"
-                            class="btn-ghost text-sm py-2 px-4">⚙️ Einstellungen</button>
-                    </div>
-
                     <!-- 3 Admin-Tabs -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div id="dash-admin-progress" class="dash-admin-tab active"
@@ -2165,22 +2168,22 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=9.6"></script>
+    <script src="app-config.js?v=9.9"></script>
     <script src="app-ui.js?v=9.1"></script>
-    <script src="family-dashboard.js?v=9.1"></script>
+    <script src="family-dashboard.js?v=9.2"></script>
     <script src="ui-common.js?v=9.0"></script>
     <script src="quiz-core.js?v=8.8"></script>
     <script src="vocab.js?v=8.8"></script>
     <script src="duel-scrabble.js?v=8.8"></script>
-    <script src="wortraten.js?v=9.1"></script>
-    <script src="tv-cast.js?v=9.7"></script>
-    <script src="live-duel.js?v=9.7"></script>
+    <script src="wortraten.js?v=9.2"></script>
+    <script src="tv-cast.js?v=9.8"></script>
+    <script src="live-duel.js?v=9.8"></script>
     <script src="app-misc.js?v=8.8"></script>
-    <script src="lobby-avatar.js?v=9.1"></script>
+    <script src="lobby-avatar.js?v=9.2"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
     <script src="email-bestaetigung.js?v=8.8"></script>
     <script src="fragen-vorladen.js?v=8.8"></script>
-    <script src="zurueck-knopf.js?v=8.8"></script>
+    <script src="zurueck-knopf.js?v=9.0"></script>
 
 
     <script>

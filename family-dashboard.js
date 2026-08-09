@@ -780,13 +780,12 @@ auth.createUserWithEmailAndPassword(e, p)
                 console.warn('⚠️ VOCABULARY_DATABASE nicht gefunden!');
             }
 
-            // 3. Wörter zählen
+            // 3. Wörter zählen (Kinder-Wortschatz)
             let wCount = 0;
-            if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
+            if (typeof GERMAN_WORDS_KIDS !== 'undefined' && Array.isArray(GERMAN_WORDS_KIDS)) {
+                wCount = GERMAN_WORDS_KIDS.length;
+            } else if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
                 wCount = GERMAN_WORDS.length;
-                console.log(`🔤 Wörter gefunden: ${wCount}`);
-            } else {
-                console.warn('⚠️ GERMAN_WORDS nicht gefunden oder kein Array!');
             }
 
             // 4. In HTML-Spans eintragen
@@ -1014,14 +1013,37 @@ auth.createUserWithEmailAndPassword(e, p)
                 document.getElementById('dash-vocab-search')?.addEventListener('input', renderDashVocab);
                 renderDashVocab();
             } else if (sub === 'woerter') {
+                let themeOpts = '<option value="gemischt">🎲 Alle Kinder-Wörter</option>';
+                if (typeof GERMAN_WORDS_KIDS_THEMES !== 'undefined') {
+                    Object.keys(GERMAN_WORDS_KIDS_THEMES).forEach(k => {
+                        if (k === 'gemischt') return;
+                        const n = Array.isArray(GERMAN_WORDS_KIDS_THEMES[k]) ? GERMAN_WORDS_KIDS_THEMES[k].length : 0;
+                        const labels = { tiere: '🐾 Tiere', schule: '📚 Schule', essen: '🍎 Essen', sport: '⚽ Sport', natur: '🌿 Natur', zuhause: '🏠 Zuhause', fahrzeuge: '🚗 Fahrzeuge' };
+                        themeOpts += `<option value="${k}">${labels[k] || k} (${n})</option>`;
+                    });
+                }
                 container.innerHTML = `
+            <select id="dash-word-theme" class="input-modern text-xs flex-1 min-w-[90px]">
+                ${themeOpts}
+            </select>
             <select id="dash-word-length" class="input-modern text-xs flex-1 min-w-[70px]">
                 <option value="">Alle Längen</option>
             </select>
             <input type="text" id="dash-word-search" placeholder="🔎 Suche..." class="input-modern text-xs flex-1 min-w-[80px]">
         `;
+                document.getElementById('dash-word-theme')?.addEventListener('change', renderDashWords);
                 document.getElementById('dash-word-length')?.addEventListener('change', renderDashWords);
                 document.getElementById('dash-word-search')?.addEventListener('input', renderDashWords);
+                // Längen aus Kinder-Wörter ableiten
+                const wLenSel = document.getElementById('dash-word-length');
+                const base = (typeof GERMAN_WORDS_KIDS !== 'undefined' && Array.isArray(GERMAN_WORDS_KIDS))
+                    ? GERMAN_WORDS_KIDS
+                    : ((typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) ? GERMAN_WORDS : []);
+                if (wLenSel && base.length) {
+                    const lengths = [...new Set(base.map(w => String(w).length))].sort((a, b) => a - b);
+                    wLenSel.innerHTML = '<option value="">Alle Längen</option>' +
+                        lengths.map(l => `<option value="${l}">${l} Buchstaben</option>`).join('');
+                }
                 renderDashWords();
             }
         }
@@ -1202,50 +1224,43 @@ auth.createUserWithEmailAndPassword(e, p)
         }
 
         function renderDashWords() {
-            console.log('🔤 renderDashWords wird ausgeführt...');
-
             const length = document.getElementById('dash-word-length')?.value || '';
-            const search = document.getElementById('dash-word-search')?.value.toUpperCase() || '';
+            const search = (document.getElementById('dash-word-search')?.value || '').toUpperCase();
+            const theme = document.getElementById('dash-word-theme')?.value || 'gemischt';
             const list = document.getElementById('dash-word-list');
+            if (!list) return;
 
-            if (!list) {
-                console.warn('⚠️ dash-word-list nicht gefunden!');
-                return;
-            }
-
-            if (typeof GERMAN_WORDS === 'undefined' || !Array.isArray(GERMAN_WORDS)) {
-                console.warn('⚠️ GERMAN_WORDS nicht definiert oder kein Array!');
+            let words = [];
+            if (theme && theme !== 'gemischt' && typeof GERMAN_WORDS_KIDS_THEMES !== 'undefined'
+                && Array.isArray(GERMAN_WORDS_KIDS_THEMES[theme])) {
+                words = GERMAN_WORDS_KIDS_THEMES[theme].slice();
+            } else if (typeof GERMAN_WORDS_KIDS !== 'undefined' && Array.isArray(GERMAN_WORDS_KIDS)) {
+                words = GERMAN_WORDS_KIDS.slice();
+            } else if (typeof GERMAN_WORDS !== 'undefined' && Array.isArray(GERMAN_WORDS)) {
+                words = GERMAN_WORDS.slice();
+            } else {
                 list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">⚠️ Wörter-Datenbank nicht geladen</div>';
                 return;
             }
 
-            console.log(`🔤 GERMAN_WORDS verfügbar: ${GERMAN_WORDS.length} Wörter`);
-
-            let words = [...GERMAN_WORDS];
-
-            if (length) {
-                const filtered = words.filter(w => w.length === parseInt(length));
-                console.log(`  Nach Länge ${length} gefiltert: ${filtered.length} Wörter`);
-                words = filtered;
-            }
-            if (search) {
-                const filtered = words.filter(w => w.toUpperCase().includes(search));
-                console.log(`  Nach Suche "${search}" gefiltert: ${filtered.length} Wörter`);
-                words = filtered;
-            }
+            if (length) words = words.filter(w => String(w).length === parseInt(length, 10));
+            if (search) words = words.filter(w => String(w).toUpperCase().includes(search));
+            words = [...new Set(words.map(w => String(w).toUpperCase()))].sort((a, b) => a.localeCompare(b, 'de'));
 
             if (words.length === 0) {
-                console.log('😕 Keine Wörter gefunden');
                 list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4 w-full">😕 Keine Wörter gefunden</div>';
                 return;
             }
 
-            const displayWords = words.slice(0, 100);
-            console.log(`🔤 Zeige ${displayWords.length} von ${words.length} Wörtern`);
+            const elW = document.getElementById('dash-word-count');
+            if (elW) elW.textContent = String(words.length);
 
-            list.innerHTML = displayWords.map(w => `
-        <span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm hover:bg-white/10 transition cursor-default">${esc(w)}</span>
-    `).join('');
+            const displayWords = words.slice(0, 200);
+            list.innerHTML = displayWords.map(w =>
+                `<span class="bg-white/5 border border-white/5 rounded-lg px-3 py-1.5 text-white text-sm hover:bg-white/10 transition cursor-default">${esc(w)}</span>`
+            ).join('') + (words.length > 200
+                ? `<div class="w-full text-center text-xs text-gray-500 py-2">… und ${words.length - 200} weitere</div>`
+                : '');
         }
 
         function performDashSearch() {

@@ -152,7 +152,8 @@
                 const questions = typeof buildMixedQuestions === "function"
                     ? buildMixedQuestions(keys, qCount)
                     : prepareQuestions(questionsForKey(keys[0]).sort(() => Math.random() - 0.5).slice(0, qCount));
-                if (questions.length < 3) return showToast("Zu wenige Fragen für diese Auswahl!", "error");
+                if (questions.length < 1) return showToast("Zu wenige Fragen für diese Auswahl – anderes Thema wählen!", "error");
+                if (questions.length < 3) showToast("Nur " + questions.length + " Fragen gefunden – Runde wird kürzer.", "error");
                 lobbyData = {
                     type: "quiz",
                     status: "waiting",
@@ -868,6 +869,11 @@
                 banner = data.roundSolved
                     ? `<p class="text-center text-sm font-bold text-emerald-400">🎉 Gelöst! Das Wort war "${esc(word)}"</p>`
                     : `<p class="text-center text-sm font-bold text-amber-400">${wrFigureEmoji(data.theme)} ${wrFigureName(data.theme)} ist fertig! Das Wort war "${esc(word)}"</p>`;
+            } else if (data.wrSolving && data.wrSolving.by) {
+                const who = esc(data.wrSolving.name || "Jemand");
+                banner = data.wrSolving.by === activePlayerKey
+                    ? `<p class="text-center text-sm font-bold text-amber-300">💡 Du tippst die Lösung…</p>`
+                    : `<p class="text-center text-sm font-bold text-amber-300 animate-pulse">💡 ${who} versucht, das Wort aufzulösen…</p>`;
             } else {
                 const activeName = data.players[key] ? esc(data.players[key].name) : "";
                 banner = isMyTurn
@@ -910,16 +916,21 @@
             // ob er selbst gerade dran ist, sonst bekommt ein Zug des
             // Mitspielers nie eine Deadline (vorher: "isMyTurn && isLiveDuelCreator",
             // das griff nur, wenn ausgerechnet der Ersteller selbst dran war).
-            if (!data.roundOver && data.wordMode === "adult" && isLiveDuelCreator) {
+            if (!data.roundOver && !data.wrSolving && data.wordMode === "adult" && isLiveDuelCreator) {
                 if (!data.wrTurnDeadline) {
                     const secs = typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 20;
                     liveDuelRef.update({ wrTurnDeadline: Date.now() + secs * 1000 }).catch(() => { });
                 }
             }
-            if (data.wrTurnDeadline && !data.roundOver) {
+            if (data.wrTurnDeadline && !data.roundOver && !data.wrSolving) {
                 startLiveDuelCountdown(data.wrTurnDeadline, () => {
                     wrLiveSkipTurn().finally(() => { liveDuelResolving = false; });
                 });
+            } else if (data.wrSolving && liveDuelTimerInterval) {
+                clearInterval(liveDuelTimerInterval);
+                liveDuelTimerInterval = null;
+                const tel = document.getElementById("live-duel-timer");
+                if (tel) tel.innerText = "";
             }
         }
 
@@ -1027,14 +1038,42 @@
             } catch (e) { handleError("wrLiveSkipTurn", e, "Der Zug konnte nicht weitergegeben werden."); }
         }
 
-        // Ersteller gibt die Runde auf: Wort wird für alle aufgedeckt, keine
-        // Punkte mehr für diese Runde. Danach wie gewohnt "Weiter"-Button
-        // bzw. Auto-Weiter nach 8s.
-        function wrLivePromptSolveWord() {
+        async function wrLivePromptSolveWord() {
             if (!liveDuelRef) return;
-            const tipp = prompt("Lösungswort eingeben:");
-            if (tipp === null) return;
-            wrLiveTrySolveWord(tipp);
+            // Timer stoppen + Mitspieler informieren
+            try {
+                const name = (currentPlayer && currentPlayer.name) || "Spieler";
+                await liveDuelRef.update({
+                    wrTurnDeadline: null,
+                    wrSolving: { by: activePlayerKey, name: name, ts: Date.now() }
+                });
+            } catch (e) { /* */ }
+            let tipp;
+            if (typeof appPrompt === "function") {
+                tipp = await appPrompt("Welches Wort ist gesucht?", {
+                    titel: "💡 Ich kenne das Wort!",
+                    icon: "💡",
+                    platzhalter: "Lösung eingeben",
+                    okText: "Prüfen"
+                });
+            } else {
+                tipp = prompt("Lösungswort eingeben:");
+            }
+            // Versuch beendet (abgebrochen oder geprüft) – Flag löschen
+            try { await liveDuelRef.update({ wrSolving: null }); } catch (e) { /* */ }
+            if (tipp === null || tipp === undefined) {
+                // Timer neu setzen, falls Runde noch läuft
+                try {
+                    const snap = await liveDuelRef.get();
+                    const d = snap.exists ? snap.data() : null;
+                    if (d && d.status === "playing" && !d.roundOver && d.wordMode === "adult" && isLiveDuelCreator) {
+                        const secs = typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 20;
+                        await liveDuelRef.update({ wrTurnDeadline: Date.now() + secs * 1000 });
+                    }
+                } catch (e) { /* */ }
+                return;
+            }
+            await wrLiveTrySolveWord(tipp);
         }
 
         async function wrLiveTrySolveWord(raw) {
@@ -1070,7 +1109,8 @@
                             players,
                             roundOver: true,
                             roundSolved: true,
-                            wrTurnDeadline: null
+                            wrTurnDeadline: null,
+                            wrSolving: null
                         });
                         outcome = { ok: true, points };
                     } else {
@@ -1088,7 +1128,8 @@
                             players,
                             roundOver,
                             roundSolved,
-                            wrTurnDeadline: null
+                            wrTurnDeadline: null,
+                            wrSolving: null
                         };
                         if (!roundOver && order.length) {
                             update.turnIndex = (curIdx + 1) % order.length;
@@ -1110,10 +1151,17 @@
                 wrLiveAutoAdvanceTimer = setTimeout(() => {
                     wrLiveAutoAdvanceTimer = null;
                     wrLiveAdvanceRound();
-                }, 8000);
+                }, 5000);
             } else {
                 if (typeof SFX !== "undefined") SFX.wrong();
                 showToast("Leider falsch!", "error");
+                if (outcome.roundOver) {
+                    if (wrLiveAutoAdvanceTimer) clearTimeout(wrLiveAutoAdvanceTimer);
+                    wrLiveAutoAdvanceTimer = setTimeout(() => {
+                        wrLiveAutoAdvanceTimer = null;
+                        wrLiveAdvanceRound();
+                    }, 5000);
+                }
             }
         }
 
@@ -1693,10 +1741,23 @@
                                         <select id="again-area" class="input-modern text-sm font-bold"></select>
                                         <select id="again-category" class="input-modern text-sm font-bold"></select>
                                     ` : data.type === "wortraten" ? `
-                                        <select id="again-wr-wordmode" class="input-modern text-sm font-bold">
-                                            <option value="kids" selected>👶 Kinder</option>
-                                            <option value="adult">🎓 Erwachsene</option>
+                                        <select id="again-wr-wordmode" class="input-modern text-sm font-bold"
+                                            onchange="toggleWrKidsThemeRow('again-wr-wordmode','again-wr-word-theme-row')">
+                                            <option value="kids" ${(data.wordMode || "kids") !== "adult" ? "selected" : ""}>👶 Kinder</option>
+                                            <option value="adult" ${data.wordMode === "adult" ? "selected" : ""}>🎓 Erwachsene</option>
                                         </select>
+                                        <div id="again-wr-word-theme-row" class="${data.wordMode === "adult" ? "hidden" : ""}">
+                                            <select id="again-wr-word-theme" class="input-modern text-sm font-bold">
+                                                <option value="gemischt" ${!data.wordTheme || data.wordTheme === "gemischt" ? "selected" : ""}>🎲 Gemischt</option>
+                                                <option value="tiere" ${data.wordTheme === "tiere" ? "selected" : ""}>🐾 Tiere</option>
+                                                <option value="schule" ${data.wordTheme === "schule" ? "selected" : ""}>📚 Schule</option>
+                                                <option value="essen" ${data.wordTheme === "essen" ? "selected" : ""}>🍎 Essen</option>
+                                                <option value="sport" ${data.wordTheme === "sport" ? "selected" : ""}>⚽ Sport</option>
+                                                <option value="natur" ${data.wordTheme === "natur" ? "selected" : ""}>🌿 Natur</option>
+                                                <option value="zuhause" ${data.wordTheme === "zuhause" ? "selected" : ""}>🏠 Zuhause</option>
+                                                <option value="fahrzeuge" ${data.wordTheme === "fahrzeuge" ? "selected" : ""}>🚗 Fahrzeuge</option>
+                                            </select>
+                                        </div>
                                         <select id="again-wr-difficulty" class="input-modern text-sm font-bold">
                                             <option value="leicht">🟢 Leicht (3-5 Buchstaben)</option>
                                             <option value="mittel" selected>🟡 Mittel (5-7 Buchstaben)</option>
@@ -1799,10 +1860,23 @@
                 box.innerHTML = html;
             } else if (type === "wortraten") {
                 html = `
-                    <select id="switch-wr-wordmode" class="input-modern text-sm font-bold">
+                    <select id="switch-wr-wordmode" class="input-modern text-sm font-bold"
+                        onchange="toggleWrKidsThemeRow('switch-wr-wordmode','switch-wr-word-theme-row')">
                         <option value="kids" selected>👶 Kinder</option>
                         <option value="adult">🎓 Erwachsene</option>
                     </select>
+                    <div id="switch-wr-word-theme-row">
+                        <select id="switch-wr-word-theme" class="input-modern text-sm font-bold">
+                            <option value="gemischt" selected>🎲 Gemischt</option>
+                            <option value="tiere">🐾 Tiere</option>
+                            <option value="schule">📚 Schule</option>
+                            <option value="essen">🍎 Essen</option>
+                            <option value="sport">⚽ Sport</option>
+                            <option value="natur">🌿 Natur</option>
+                            <option value="zuhause">🏠 Zuhause</option>
+                            <option value="fahrzeuge">🚗 Fahrzeuge</option>
+                        </select>
+                    </div>
                     <select id="switch-wr-difficulty" class="input-modern text-sm font-bold">
                         <option value="leicht">🟢 Leicht (3-5 Buchstaben)</option>
                         <option value="mittel" selected>🟡 Mittel (5-7 Buchstaben)</option>

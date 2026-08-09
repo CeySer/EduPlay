@@ -549,7 +549,16 @@ const geladen = _questionCounts[key] || 0;
 
         function buildMixedQuestions(keys, qCount) {
             let pool = [];
+            const expanded = [];
             (keys || []).forEach(k => {
+                expanded.push(k);
+                // Schmale Unterthemen aufstocken, falls zu wenige Fragen
+                if (String(k).startsWith("topic:")) {
+                    const parts = String(k).split(":");
+                    if (parts.length === 3 && parts[1]) expanded.push(parts[1]);
+                }
+            });
+            expanded.forEach(k => {
                 pool = pool.concat(questionsForKey(k) || []);
             });
             // Duplikate nach id entfernen
@@ -560,7 +569,10 @@ const geladen = _questionCounts[key] || 0;
                 seen.add(id);
                 return true;
             });
-            pool = pool.sort(() => Math.random() - 0.5).slice(0, qCount || 10);
+            // Wenn immer noch zu wenig: erst ohne Slice zurückgeben (Aufrufer entscheidet)
+            const want = qCount || 10;
+            pool = pool.sort(() => Math.random() - 0.5);
+            if (pool.length > want) pool = pool.slice(0, want);
             return prepareQuestions(pool);
         }
 
@@ -1192,18 +1204,15 @@ const geladen = _questionCounts[key] || 0;
         }
 
         // ============================================================
-        //  HINTERGRUNDMUSIK
-        //  Eigenständig vom SFX-Ton-Schalter oben ("Ton an/aus" betrifft nur
-        //  Klicks/Erfolgs-Sounds). Musik ist standardmäßig an, Lautstärke
-        //  wird über einen Regler in den Einstellungen geregelt - 0% = aus.
+        //  HINTERGRUNDMUSIK (Web-Audio, kein Asset)
+        //  Menü: weiche Ambient-Pads + leise Melodie (modern, neutral, edu)
+        //  Spiel: freundliche, klare Pulse – nicht dunkel, nicht kindisch
         // ============================================================
         let musicCtx = null;
         let musicGain = null;
-        let musicVolume = 0.25;
+        let musicVolume = 0.22;
         let musicTimer = null;
         let musicStep = 0;
-        // 'menu' = ruhige Dur-Melodie (Menü/Setup/Ergebnis), 'game' = treibende
-        // Moll-Arpeggios für aktive Spielrunden, siehe setMusicMode() unten.
         let musicMode = 'menu';
         let gameStep = 0;
         try {
@@ -1211,55 +1220,24 @@ const geladen = _questionCounts[key] || 0;
             if (savedVol !== null) musicVolume = Math.max(0, Math.min(1, parseFloat(savedVol)));
         } catch (e) { }
 
-        // Dur-Pentatonik (klingt für Kinder immer freundlich, nie schräg),
-        // Muster geht leicht auf und ab statt stur rauf/runter - etwas
-        // verspielter als eine reine Tonleiter.
-        const MUSIC_SCALE = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25];
-        const MUSIC_PATTERN = [0, 2, 4, 2, 5, 4, 2, 0, 3, 4, 5, 4, 2, 4, 0, 1];
+        // C-Dur / G-Dur – weich, modern (Hz)
+        const MENU_ROOT = 261.63; // C4
+        const MENU_CHORDS = [
+            [261.63, 329.63, 392.00], // C
+            [293.66, 349.23, 440.00], // Dm-ähnlich (freundlich)
+            [246.94, 311.13, 369.99], // G (tief)
+            [220.00, 277.18, 329.63]  // Am
+        ];
+        // Sanfte Melodie über den Pads (Index in C-Pentatonik)
+        const MENU_MELODY = [0, 2, 4, 7, 4, 2, 0, -1, 0, 2, 5, 4, 2, 0, 2, 4];
+        const MENU_PENTA = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25];
 
-        // Moll-Arpeggio für aktive Spielrunden - schneller, dunklerer,
-        // treibender Sound (Sägezahn + Tiefpass), Basspuls einmal pro Takt.
-        // In Anlehnung an Retro-Synth-Arpeggios (Stranger-Things-artig), aber
-        // weiterhin rein synthetisiert, kein Audio-Asset.
-        const GAME_SCALE = [220.00, 261.63, 329.63, 440.00, 392.00, 329.63, 261.63, 220.00];
-
-        function playMusicNoteGame() {
-            const ctx = ensureMusicAudio();
-            if (!ctx || musicVolume <= 0) return;
-            const t = ctx.currentTime;
-            const freq = GAME_SCALE[gameStep % GAME_SCALE.length];
-            const osc = ctx.createOscillator();
-            const filt = ctx.createBiquadFilter();
-            const g = ctx.createGain();
-            osc.type = "sawtooth";
-            osc.frequency.setValueAtTime(freq, t);
-            filt.type = "lowpass";
-            filt.frequency.setValueAtTime(1400, t);
-            filt.Q.value = 4;
-            g.gain.setValueAtTime(0, t);
-            g.gain.linearRampToValueAtTime(0.28, t + 0.02);
-            g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
-            osc.connect(filt);
-            filt.connect(g);
-            g.connect(musicGain);
-            osc.start(t);
-            osc.stop(t + 0.18);
-            // Basspuls einmal pro Takt (alle 8 Arpeggio-Schritte).
-            if (gameStep % 8 === 0) {
-                const bosc = ctx.createOscillator();
-                const bg = ctx.createGain();
-                bosc.type = "square";
-                bosc.frequency.setValueAtTime(freq / 4, t);
-                bg.gain.setValueAtTime(0, t);
-                bg.gain.linearRampToValueAtTime(0.35, t + 0.03);
-                bg.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
-                bosc.connect(bg);
-                bg.connect(musicGain);
-                bosc.start(t);
-                bosc.stop(t + 1.35);
-            }
-            gameStep++;
-        }
+        // Spiel: helles C-Mixolydian-Feeling, klar und motivierend
+        const GAME_NOTES = [
+            261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25,
+            392.00, 349.23, 329.63, 293.66
+        ];
+        const GAME_BASS = [130.81, 146.83, 164.81, 174.61, 196.00, 220.00];
 
         function ensureMusicAudio() {
             try {
@@ -1274,38 +1252,81 @@ const geladen = _questionCounts[key] || 0;
             } catch (e) { return null; }
         }
 
+        function _musicTone(ctx, type, freq, t, attack, peak, release, filterHz) {
+            const osc = ctx.createOscillator();
+            const g = ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, t);
+            g.gain.setValueAtTime(0, t);
+            g.gain.linearRampToValueAtTime(peak, t + attack);
+            g.gain.exponentialRampToValueAtTime(0.0001, t + release);
+            if (filterHz) {
+                const f = ctx.createBiquadFilter();
+                f.type = "lowpass";
+                f.frequency.setValueAtTime(filterHz, t);
+                f.Q.value = 0.7;
+                osc.connect(f);
+                f.connect(g);
+            } else {
+                osc.connect(g);
+            }
+            g.connect(musicGain);
+            osc.start(t);
+            osc.stop(t + release + 0.05);
+        }
+
+        // Menü: alle 4 Schritte ein weicher Akkord-Pad, dazwischen leise Melodie
         function playMusicNote() {
             const ctx = ensureMusicAudio();
             if (!ctx || musicVolume <= 0) return;
-            const idx = MUSIC_PATTERN[musicStep % MUSIC_PATTERN.length];
-            const freq = MUSIC_SCALE[idx];
             const t = ctx.currentTime;
-            const osc = ctx.createOscillator();
-            const g = ctx.createGain();
-            osc.type = "sine";
-            osc.frequency.setValueAtTime(freq, t);
-            g.gain.setValueAtTime(0, t);
-            g.gain.linearRampToValueAtTime(0.5, t + 0.25);
-            g.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
-            osc.connect(g);
-            g.connect(musicGain);
-            osc.start(t);
-            osc.stop(t + 1.35);
-            // Alle 4 Schritte ein leiser Unterton (Oktave drunter) für etwas Wärme.
-            if (musicStep % 4 === 0) {
-                const osc2 = ctx.createOscillator();
-                const g2 = ctx.createGain();
-                osc2.type = "sine";
-                osc2.frequency.setValueAtTime(freq / 2, t);
-                g2.gain.setValueAtTime(0, t);
-                g2.gain.linearRampToValueAtTime(0.22, t + 0.4);
-                g2.gain.exponentialRampToValueAtTime(0.0001, t + 1.8);
-                osc2.connect(g2);
-                g2.connect(musicGain);
-                osc2.start(t);
-                osc2.stop(t + 1.85);
+            const step = musicStep % 32;
+
+            // Pad alle 4 Steps
+            if (step % 4 === 0) {
+                const chord = MENU_CHORDS[Math.floor(step / 4) % MENU_CHORDS.length];
+                chord.forEach((freq, i) => {
+                    _musicTone(ctx, "sine", freq, t, 0.35, 0.07 - i * 0.012, 2.4, 1800);
+                    _musicTone(ctx, "triangle", freq * 0.5, t, 0.45, 0.04, 2.6, 900);
+                });
             }
+
+            // Melodie (sehr leise, modern)
+            const mIdx = MENU_MELODY[step % MENU_MELODY.length];
+            if (mIdx >= 0) {
+                const mf = MENU_PENTA[mIdx % MENU_PENTA.length];
+                _musicTone(ctx, "sine", mf, t, 0.08, 0.11, 0.9, 2200);
+                _musicTone(ctx, "triangle", mf * 2, t, 0.05, 0.03, 0.55, 3200);
+            }
+
             musicStep++;
+        }
+
+        // Spiel: leichte, klare Pulse – motivierend, nicht aggressiv
+        function playMusicNoteGame() {
+            const ctx = ensureMusicAudio();
+            if (!ctx || musicVolume <= 0) return;
+            const t = ctx.currentTime;
+            const step = gameStep % 24;
+            const note = GAME_NOTES[step % GAME_NOTES.length];
+
+            // Hauptnote (weich, gefiltert)
+            _musicTone(ctx, "triangle", note, t, 0.02, 0.14, 0.28, 2400);
+            _musicTone(ctx, "sine", note * 2, t, 0.015, 0.04, 0.18, 4000);
+
+            // Bass alle 6 Steps
+            if (step % 6 === 0) {
+                const bf = GAME_BASS[Math.floor(step / 6) % GAME_BASS.length];
+                _musicTone(ctx, "sine", bf, t, 0.04, 0.16, 0.9, 600);
+                _musicTone(ctx, "triangle", bf / 2, t, 0.05, 0.08, 1.0, 400);
+            }
+
+            // Sehr dezenter High-Tick (modern, nicht Retro-Beep)
+            if (step % 3 === 0) {
+                _musicTone(ctx, "sine", 880 + (step % 2) * 110, t, 0.005, 0.03, 0.06, 5000);
+            }
+
+            gameStep++;
         }
 
         function startBackgroundMusic() {
@@ -1313,15 +1334,14 @@ const geladen = _questionCounts[key] || 0;
             if (!ensureMusicAudio()) return;
             const tick = musicMode === 'game' ? playMusicNoteGame : playMusicNote;
             tick();
-            musicTimer = setInterval(tick, musicMode === 'game' ? 180 : 900);
+            // Menü langsam (Ambient), Spiel flüssig aber nicht hektisch
+            musicTimer = setInterval(tick, musicMode === 'game' ? 220 : 700);
         }
 
         function stopBackgroundMusic() {
             if (musicTimer) { clearInterval(musicTimer); musicTimer = null; }
         }
 
-        // Screens mit aktiver Spielrunde -> treibende Moll-Musik. Menü,
-        // Setup- und Ergebnis-Screens bleiben bei der ruhigen Dur-Melodie.
         const GAME_MUSIC_VIEWS = ['quiz', 'duel-play', 'scrabble-play', 'wortraten-play',
             'live-duel-play', 'tv-quiz-player', 'tv-quiz-host'];
 
@@ -1329,6 +1349,8 @@ const geladen = _questionCounts[key] || 0;
             const mode = GAME_MUSIC_VIEWS.includes(viewId) ? 'game' : 'menu';
             if (mode === musicMode) return;
             musicMode = mode;
+            musicStep = 0;
+            gameStep = 0;
             if (musicTimer) { stopBackgroundMusic(); startBackgroundMusic(); }
         }
 

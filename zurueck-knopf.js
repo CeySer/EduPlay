@@ -20,15 +20,42 @@
 (function () {
     'use strict';
 
-    // Ansichten, in denen die Zurück-Taste nichts tun soll, weil ein
-    // Verlassen Schaden anrichtet oder unsinnig ist.
-    const GESCHUETZT = ['quiz'];
+    // Laufende Spiele: Zurück fragt nach und beendet sauber (Firestore/Timer).
+    const SPIELANSICHTEN = [
+        'quiz', 'duel-play', 'scrabble-play', 'wortraten-play',
+        'live-duel-play', 'live-duel-lobby', 'live-duel-result',
+        'tv-quiz-host', 'tv-quiz-player', 'tv-quiz-setup'
+    ];
 
     // Was gilt als "ganz unten"? Von hier beendet Zurück die App.
     const STARTANSICHTEN = ['menu', 'family-hub', 'auth', 'guest-join'];
 
     let ausVerlauf = false;   // gerade läuft ein Zurück – nicht erneut merken
     let aktuelle = null;
+
+    async function beendeSpielWennNoetig(ansicht) {
+        if (SPIELANSICHTEN.indexOf(ansicht) === -1) return true;
+        const ok = (typeof window.confirmLeaveGame === 'function')
+            ? await window.confirmLeaveGame({ text: 'Fortschritt geht verloren.', titel: 'Spiel verlassen?' })
+            : confirm('Spiel wirklich verlassen? Der Fortschritt geht verloren.');
+        if (!ok) return false;
+        try {
+            if ((ansicht === 'live-duel-play' || ansicht === 'live-duel-lobby' || ansicht === 'live-duel-result')
+                && typeof window.leaveLiveDuel === 'function') {
+                await window.leaveLiveDuel(true);
+            } else if ((ansicht === 'tv-quiz-host' || ansicht === 'tv-quiz-player' || ansicht === 'tv-quiz-setup')
+                && typeof window.leaveTVGame === 'function') {
+                await window.leaveTVGame(true);
+            } else if (ansicht === 'quiz' && typeof window.leaveQuiz === 'function') {
+                await window.leaveQuiz('menu');
+            } else if (ansicht === 'scrabble-play' && typeof window.stopScrabbleTicker === 'function') {
+                window.stopScrabbleTicker();
+            } else if (ansicht === 'wortraten-play' && typeof wortratenState !== 'undefined' && wortratenState) {
+                wortratenState.roundActive = false;
+            }
+        } catch (e) { /* Cleanup best effort */ }
+        return true;
+    }
 
     function sichtbar(id) {
         const e = document.getElementById(id);
@@ -105,7 +132,7 @@
         return true;
     }
 
-    window.addEventListener('popstate', function (e) {
+    window.addEventListener('popstate', async function (e) {
         // 1. Offenes Fenster schließen und den Schritt zurückgeben
         if (schliesseOffenes()) {
             try { history.pushState({ eduplayAnsicht: aktuelle }, ''); } catch (e2) { }
@@ -113,12 +140,13 @@
         }
 
         const ziel = e.state && e.state.eduplayAnsicht;
+        const von = aktuelle;
 
-        // 2. Mitten im Quiz nicht einfach rausfallen
-        if (GESCHUETZT.indexOf(aktuelle) !== -1) {
-            const weiter = confirm('Quiz wirklich verlassen? Der Fortschritt dieser Runde geht verloren.');
+        // 2. Laufendes Spiel: nachfragen + sauber beenden
+        if (SPIELANSICHTEN.indexOf(von) !== -1) {
+            const weiter = await beendeSpielWennNoetig(von);
             if (!weiter) {
-                try { history.pushState({ eduplayAnsicht: aktuelle }, ''); } catch (e2) { }
+                try { history.pushState({ eduplayAnsicht: von }, ''); } catch (e2) { }
                 return;
             }
         }
@@ -135,8 +163,7 @@
             return;
         }
 
-        // 4. Kein Ziel bekannt: zur Startseite statt App schließen –
-        //    außer wir sind schon dort, dann darf sie sich schließen.
+        // 4. Kein Ziel bekannt: zur Startseite statt App schließen
         if (STARTANSICHTEN.indexOf(aktuelle) === -1 && typeof window.switchView === 'function') {
             ausVerlauf = true;
             aktuelle = 'menu';

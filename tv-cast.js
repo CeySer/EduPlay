@@ -264,6 +264,73 @@
             } catch (e) { return null; }
         }
 
+        function bindTVHostSnapshot() {
+            if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
+            if (!tvGameRef) return;
+            tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
+                if (!doc.exists) return;
+                const data = doc.data();
+                if (data.status === "waiting") {
+                    renderTVPlayerList(data.players);
+                    return;
+                }
+                if (data.status === "finished" && isTVHost) {
+                    showTVHostPodium(data.players);
+                    merkeTVHost(false);
+                    return;
+                }
+                if (data.status === "playing" && data.mode === "wortraten") {
+                    showTVHostWortraten(data);
+                    return;
+                }
+                if (data.status === "playing" && !data.showAnswer) {
+                    if (data.mode === "scrabble") {
+                        showTVHostScrabbleRound(
+                            data.currentLetters,
+                            data.currentRound,
+                            data.totalRounds || 0,
+                            data.currentRequired || ""
+                        );
+                    } else if (data.mode === "quiz" && typeof showTVHostQuestion === "function") {
+                        // Fragen aus Firestore sind auf dem Host ggf. lokal in tvQuestions
+                        if (Array.isArray(data.questions) && data.questions.length) {
+                            tvQuestions = data.questions;
+                        }
+                        if (typeof data.currentQuestionIndex === "number") {
+                            showTVHostQuestion(data.currentQuestionIndex);
+                        }
+                    }
+                    const alle = Object.values(data.players || {});
+                    const zaehlend = alle.filter(p => istAnwesend(p) || p.hasAnswered);
+                    const ansCount = zaehlend.filter(p => p.hasAnswered).length;
+                    const totalCount = zaehlend.length;
+                    const wegCount = alle.length - totalCount;
+                    if (!data.answerDeadline) {
+                        const secs = data.mode === "scrabble" ? 60 : 30;
+                        tvGameRef.update({ answerDeadline: Date.now() + secs * 1000 }).catch(() => { });
+                    }
+                    const restSek = data.answerDeadline
+                        ? Math.max(0, Math.ceil((data.answerDeadline - Date.now()) / 1000))
+                        : null;
+                    const counterEl = document.getElementById("tv-answer-counter");
+                    if (counterEl) {
+                        counterEl.innerText = `${ansCount} von ${totalCount} haben geantwortet`
+                            + (restSek !== null ? ` · noch ${restSek}s` : "")
+                            + (wegCount > 0 ? ` · ${wegCount} kurz weg` : "");
+                    }
+                    starteTVRundenTimer(data);
+                    const fristAbgelaufen = data.answerDeadline && Date.now() >= data.answerDeadline;
+                    if (totalCount > 0 && !isResolving && (ansCount >= totalCount || fristAbgelaufen)) {
+                        isResolving = true;
+                        stoppeTVRundenTimer();
+                        setTimeout(() => {
+                            data.mode === "scrabble" ? revealTVScrabbleRound(data) : revealTVAnswer(data);
+                        }, 800);
+                    }
+                }
+            });
+        }
+
         async function versucheTVHostWiedereinstieg() {
             if (isTVHost || tvGameRef) return;
             if (!currentParentUser) return;
@@ -284,27 +351,12 @@
                 isTVHost = true;
                 tvGameRef = ref;
                 if (merk.code) window._activeTVCode = merk.code;
+                merkeTVHost(true, merk.code || window._activeTVCode);
                 starteTVLebenszeichen();
-                if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
-                tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
-                    if (!doc.exists) return;
-                    const d = doc.data();
-                    if (d.status === "waiting") {
-                        renderTVPlayerList(d.players);
-                    } else if (d.status === "playing") {
-                        if (d.mode === "wortraten") showTVHostWortraten(d);
-                        else if (d.mode === "scrabble") { /* Host-UI via bestehende Snapshot-Logik */ }
-                        else { /* quiz */ }
-                    } else if (d.status === "finished") {
-                        merkeTVHost(false);
-                    }
-                    // Volle Host-UI läuft über die bestehende startTVHostLobby-Snapshot-Logik;
-                    // bei Resume triggern wir einen frischen Render über startTVGameLoop-Pfad.
-                });
-                // Snapshot der bestehenden Host-Logik wieder anbinden, indem wir
-                // die Lobby-Ansicht wie nach create neu aufbauen.
+                bindTVHostSnapshot();
+                switchView('tv-quiz-host');
                 if (data.status === "waiting") {
-                    const tvCode = merk.code || "";
+                    const tvCode = merk.code || window._activeTVCode || "";
                     const joinUrl = (window.location.origin || "") + (window.location.pathname || "/") + "?tv=" + encodeURIComponent(tvCode);
                     const qrSrc = tvCode ? "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(joinUrl) : "";
                     setTVHostPlayHTML(`
@@ -322,9 +374,11 @@
                     renderTVPlayerList(data.players);
                 } else if (data.status === "playing") {
                     if (data.mode === "wortraten") showTVHostWortraten(data);
-                    else if (typeof startTVGameLoop === "function") {
-                        // Fallback: einmaligen Render anstoßen
-                        showToast("TV-Spiel fortgesetzt", "success");
+                    else if (data.mode === "scrabble") {
+                        showTVHostScrabbleRound(data.currentLetters, data.currentRound, data.totalRounds || 0, data.currentRequired || "");
+                    } else if (Array.isArray(data.questions)) {
+                        tvQuestions = data.questions;
+                        showTVHostQuestion(data.currentQuestionIndex || 0);
                     }
                 }
                 showToast("📺 TV-Host wieder verbunden", "success");
@@ -617,72 +671,7 @@
                 `);
 
                 starteTVLebenszeichen();
-                if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
-                tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
-                    if (!doc.exists) return;
-                    const data = doc.data();
-
-                    if (data.status === "waiting") {
-                        renderTVPlayerList(data.players);
-                        return;
-                    }
-
-                    if (data.status === "finished" && isTVHost) {
-                        showTVHostPodium(data.players);
-                        return;
-                    }
-
-                    if (data.status === "playing" && data.mode === "wortraten") {
-                        showTVHostWortraten(data);
-                        return;
-                    }
-
-                    if (data.status === "playing" && !data.showAnswer) {
-                        if (data.mode === "scrabble") {
-                            showTVHostScrabbleRound(
-                                data.currentLetters,
-                                data.currentRound,
-                                data.totalRounds || 0,
-                                data.currentRequired || ""
-                            );
-                        }
-                        // Wer sein Handy weggelegt hat, blockiert die Runde nicht mehr.
-                        // Vorher zählte jeder mit, der je beigetreten war – das ganze
-                        // Wohnzimmer wartete dann auf ein Handy in der Hosentasche.
-                        const alle = Object.values(data.players || {});
-                        const zaehlend = alle.filter(p => istAnwesend(p) || p.hasAnswered);
-                        const ansCount = zaehlend.filter(p => p.hasAnswered).length;
-                        const totalCount = zaehlend.length;
-                        const wegCount = alle.length - totalCount;
-
-                        // Rundenfrist: Der Fernseher ist immer da und setzt sie
-                        // zuverlässig. Läuft sie ab, geht es auch ohne die Fehlenden weiter.
-                        if (!data.answerDeadline) {
-                            const secs = data.mode === "scrabble" ? 60 : 30;
-                            tvGameRef.update({ answerDeadline: Date.now() + secs * 1000 }).catch(() => { });
-                        }
-                        const restSek = data.answerDeadline
-                            ? Math.max(0, Math.ceil((data.answerDeadline - Date.now()) / 1000))
-                            : null;
-
-                        const counterEl = document.getElementById("tv-answer-counter");
-                        if (counterEl) {
-                            counterEl.innerText = `${ansCount} von ${totalCount} haben geantwortet`
-                                + (restSek !== null ? ` · noch ${restSek}s` : "")
-                                + (wegCount > 0 ? ` · ${wegCount} kurz weg` : "");
-                        }
-                        starteTVRundenTimer(data);
-
-                        const fristAbgelaufen = data.answerDeadline && Date.now() >= data.answerDeadline;
-                        if (totalCount > 0 && !isResolving && (ansCount >= totalCount || fristAbgelaufen)) {
-                            isResolving = true;
-                            stoppeTVRundenTimer();
-                            setTimeout(() => {
-                                data.mode === "scrabble" ? revealTVScrabbleRound(data) : revealTVAnswer(data);
-                            }, 800);
-                        }
-                    }
-                });
+                bindTVHostSnapshot();
             } catch (e) {
                 handleError("startTVHostLobby", e, "Die Lobby konnte nicht erstellt werden.");
             }

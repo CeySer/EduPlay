@@ -385,11 +385,21 @@ function wrPointsForFullSolve(word, guessedSet) {
     return pts;
 }
 
-function wrPromptSolveWord() {
+async function wrPromptSolveWord() {
     const s = wortratenState;
     if (!s || !s.roundActive) return;
-    const tipp = prompt("Lösungswort eingeben:");
-    if (tipp === null) return;
+    let tipp;
+    if (typeof appPrompt === "function") {
+        tipp = await appPrompt("Welches Wort ist gesucht?", {
+            titel: "💡 Ich kenne das Wort!",
+            icon: "💡",
+            platzhalter: "Lösung eingeben",
+            okText: "Prüfen"
+        });
+    } else {
+        tipp = prompt("Lösungswort eingeben:");
+    }
+    if (tipp === null || tipp === undefined) return;
     wrTrySolveWord(tipp);
 }
 
@@ -440,6 +450,8 @@ function wrRevealWord() {
     wrEndRound(false);
 }
 
+let wrOfflineAutoContinue = null;
+
 function wrEndRound(solved) {
     const s = wortratenState;
     s.roundActive = false;
@@ -457,12 +469,18 @@ function wrEndRound(solved) {
     document.getElementById("wortraten-round-end-title").innerText = solved
         ? `🎉 Gelöst! Das Wort war "${s.word}"`
         : `${wrFigureEmoji(s.theme)} ${wrFigureName(s.theme)} ist fertig gebaut! Das Wort war "${s.word}"`;
+    if (wrOfflineAutoContinue) clearTimeout(wrOfflineAutoContinue);
+    wrOfflineAutoContinue = setTimeout(() => {
+        wrOfflineAutoContinue = null;
+        if (wortratenState && !wortratenState.roundActive) wrContinueAfterRound();
+    }, 5000);
     document.getElementById("wortraten-round-end-btn").innerText = isLast ? "🏆 Zur Siegerehrung" : "Nächste Runde ➔";
     document.getElementById("wortraten-round-end").classList.remove("hidden");
 }
 
 function wrContinueAfterRound() {
     if (!wortratenState) return;
+    if (wrOfflineAutoContinue) { clearTimeout(wrOfflineAutoContinue); wrOfflineAutoContinue = null; }
     document.getElementById("wortraten-round-end").classList.add("hidden");
     wortratenState.round++;
     wortratenState.turnIndex = (wortratenState.turnIndex + 1) % wortratenState.playerKeys.length;

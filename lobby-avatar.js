@@ -345,10 +345,9 @@
                 if (categoryKeys.length === 0) return showToast("Bitte ein Thema wählen!", "error");
                 const category = categoryKeys[0];
                 const answerSeconds = parseInt((document.getElementById("coded-lobby-speed") || {}).value || "20");
-                const questions = categoryKeys.length > 1
-                    ? buildMixedQuestions(categoryKeys, 10)
-                    : prepareQuestions(questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10));
-                if (questions.length < 3) return showToast("Zu wenige Fragen fuer dieses Thema!", "error");
+                const questions = buildMixedQuestions(categoryKeys, 10);
+                if (questions.length < 1) return showToast("Zu wenige Fragen fuer dieses Thema!", "error");
+                if (questions.length < 3) showToast("Nur " + questions.length + " Fragen gefunden – Runde wird kuerzer.", "error");
                 lobbyData = {
                     type: "quiz",
                     mode: mode,

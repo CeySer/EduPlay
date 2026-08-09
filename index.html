@@ -13,7 +13,7 @@
          installierte App wirklich den neuesten Stand geladen hat. -->
     <script>window.EDUPLAY_BUILD = "08.08.2026 · 22:34";</script>
 
-    <link rel="stylesheet" href="styles.css?v=9.3">
+    <link rel="stylesheet" href="styles.css?v=9.4">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
 
     <script src="vendor/firebase-10.12.3/firebase-app-compat.js"></script>
@@ -250,11 +250,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             ========================================================== -->
             <div id="view-family-hub" class="view hidden space-y-5">
 
-                <div class="text-center">
-                    <div class="text-[10px] font-bold tracking-[0.14em] text-gray-500 uppercase mb-0.5">Wer lernt heute?
+                <div class="text-center pt-1">
+                    <div class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.16em] text-indigo-300/80 uppercase mb-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-400/15">
+                        <span>✨</span> Wer lernt heute?
                     </div>
-                    <h1
-                        class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">
+                    <h1 class="text-[1.7rem] leading-tight font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-fuchsia-300 to-pink-400">
                         Spieler auswählen
                     </h1>
                 </div>
@@ -264,11 +264,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
                 <!-- Toggle Alle Spieler -->
                 <button onclick="toggleProfileList()" id="profile-toggle-btn"
-                    class="w-full p-3.5 glass-card flex items-center justify-between">
+                    class="w-full p-3.5 glass-card flex items-center justify-between hub-soft-btn">
                     <span id="profile-toggle-label" class="font-bold text-[15px] text-slate-200">Alle Spieler</span>
                     <span class="flex items-center gap-2">
                         <span id="profile-count-badge"
-                            class="text-xs font-bold text-gray-400 bg-white/5 px-3 py-1 rounded-full">0</span>
+                            class="text-xs font-bold text-indigo-200 bg-indigo-500/15 border border-indigo-400/20 px-3 py-1 rounded-full">0</span>
                         <span id="profile-toggle-arrow" class="text-lg text-gray-400 transition-transform">▼</span>
                     </span>
                 </button>
@@ -283,12 +283,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <!-- Aktionen -->
                 <div class="grid grid-cols-2 gap-3">
                     <button onclick="switchView('create-profile')"
-                        class="p-3.5 border border-dashed border-gray-700 text-gray-400 font-bold rounded-2xl hover:border-indigo-400 hover:text-indigo-400 transition text-xs">
-                        + Neuer Spieler
+                        class="hub-action-btn hub-action-new">
+                        <span class="text-base">➕</span>
+                        <span>Neuer Spieler</span>
                     </button>
                     <button onclick="addGuestProfile()"
-                        class="p-3.5 border border-dashed border-gray-700 text-gray-400 font-bold rounded-2xl hover:border-emerald-400 hover:text-emerald-400 transition text-xs">
-                        + Gast (nur heute)
+                        class="hub-action-btn hub-action-guest">
+                        <span class="text-base">👋</span>
+                        <span>Gast (nur heute)</span>
                     </button>
                 </div>
 
@@ -2174,7 +2176,7 @@ VIEW: QUIZ SETUP
     ============================================================ -->
     <script src="app-config.js?v=9.9"></script>
     <script src="app-ui.js?v=9.1"></script>
-    <script src="family-dashboard.js?v=9.7"></script>
+    <script src="family-dashboard.js?v=9.8"></script>
     <script src="ui-common.js?v=9.0"></script>
     <script src="quiz-core.js?v=9.2"></script>
     <script src="vocab.js?v=8.8"></script>

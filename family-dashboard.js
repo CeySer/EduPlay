@@ -228,27 +228,34 @@ auth.createUserWithEmailAndPassword(e, p)
             const isActive = (key === activePlayerKey);
             const act = activityLabel(p.lastActive);
             const c = guest ? GUEST_COLOR : (color || PLAYER_COLORS[0]);
+            const desc = (typeof playerDescription === "function") ? playerDescription(p) : "";
 
             const wrap = document.createElement("div");
-            wrap.className = "relative";
+            wrap.className = "relative player-card-wrap";
 
             const btn = document.createElement("button");
-            btn.className = "player-card p-3 rounded-xl" + (isActive ? " is-active" : "");
+            btn.type = "button";
+            btn.className = "player-card" + (isActive ? " is-active" : "") + (guest ? " is-guest" : "");
+            if (!guest) btn.style.setProperty("--disc", c);
             if (isActive) btn.style.color = c;
             btn.innerHTML = `
-        ${guest ? '<span class="badge-guest text-[8px]">GAST</span>' : ''}
-        <div class="player-disc w-10 h-10 text-sm${guest ? ' player-disc-guest' : ''}"${guest ? '' : ` style="background:${c}"`}>
+        ${guest ? '<span class="badge-guest">GAST</span>' : ''}
+        ${isActive ? '<span class="badge-active">Du</span>' : ''}
+        <div class="player-disc${guest ? ' player-disc-guest' : ''}"${guest ? '' : ` style="background:${c}"`}>
             ${esc(initialsFor(p.name))}
         </div>
-        <div class="player-name text-xs font-bold">${esc(p.name)}</div>
-        <div class="player-coins text-[10px]">🪙 ${p.coins || 0}</div>
-        <div class="player-meta text-[9px]"><span class="dot ${act.dot} w-1.5 h-1.5"></span>${esc(act.text)}</div>
+        <div class="player-name">${esc(p.name)}</div>
+        ${desc ? `<div class="player-grade">${esc(desc)}</div>` : ''}
+        <div class="player-coins"><span class="coin-icon">🪙</span> ${p.coins || 0}</div>
+        <div class="player-meta"><span class="dot ${act.dot}"></span>${esc(act.text)}</div>
     `;
             btn.onclick = () => selectProfile(key);
             wrap.appendChild(btn);
 
             const edit = document.createElement("button");
-            edit.className = "edit-pin absolute bottom-1 right-1 w-5 h-5 text-[9px] rounded-lg bg-white/5 border border-white/5";
+            edit.type = "button";
+            edit.className = "edit-pin";
+            edit.title = "Bearbeiten";
             edit.innerText = "✎";
             edit.onclick = (ev) => {
                 ev.stopPropagation();

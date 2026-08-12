@@ -408,18 +408,6 @@
     "explanation": "Der Mensch hat 46 Chromosomen, wovon je 23 von der Mutter und 23 vom Vater stammen."
   },
   {
-    "id": "mix_mc_035",
-    "category": "natur_wissenschaft",
-    "area": "astronomie",
-    "subject": "wissen",
-    "question": "Welcher Planet unseres Sonnensystems ist der Sonne am nächsten?",
-    "answers": ["Venus", "Mars", "Merkur", "Jupiter"],
-    "correct": 2,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Merkur ist der innerste und zugleich kleinste Planet im Sonnensystem."
-  },
-  {
     "id": "mix_mc_036",
     "category": "natur_wissenschaft",
     "area": "geologie",

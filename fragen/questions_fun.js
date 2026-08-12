@@ -3,8 +3,6 @@ const FUN_CATEGORIES = [
     { key: "spass_allgemein", label: "🏆 Allgemeinwissen" },
     { key: "spass_kleine", label: "🧸 Für die Kleinen (ganz leicht)" },
     { key: "spass_wuerdest_du", label: "🤔 Schätzfragen & Würdest du eher" },
-    { key: "spass_nice_to_know", label: "✨ Nice to Know" },
-    { key: "spass_welt", label: "🌍 Ungewöhnliches aus der Welt" },
     { key: "spass_sport_film", label: "🎬 Sport & Film" },
     { key: "spass_musik", label: "🎵 Musik" },
     { key: "spass_essen", label: "🍕 Essen & Trinken" },
@@ -22,9 +20,9 @@ const FUN_CATEGORIES = [
     { key: "kinder_maerchen_disney", label: "🏰 Märchen & Disney" },
     { key: "kinder_tiere_natur", label: "🌿 Tiere & Natur (Kinder)" },
     { key: "kinder_erstes_wissen", label: "📘 Erstes Wissen" },
-    { key: "schaetzen_nice_to_know", label: "✨ Schätzen · Nice to Know" },
+    { key: "schaetzen_nice_to_know", label: "✨ Nice to Know" },
     { key: "schaetzen_mensch_koerper", label: "🧍 Schätzen · Mensch & Körper" },
-    { key: "schaetzen_ungewoehnlich_welt", label: "🌐 Schätzen · Ungewöhnliche Welt" },
+    { key: "schaetzen_ungewoehnlich_welt", label: "🌍 Ungewöhnliches aus der Welt" },
 ];
 
 if (typeof window !== "undefined") window.FUN_CATEGORIES = FUN_CATEGORIES;

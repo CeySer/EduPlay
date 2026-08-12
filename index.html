@@ -13,7 +13,7 @@
          installierte App wirklich den neuesten Stand geladen hat. -->
     <script>window.EDUPLAY_BUILD = "08.08.2026 · 22:34";</script>
 
-    <link rel="stylesheet" href="styles.css?v=9.4">
+    <link rel="stylesheet" href="styles.css?v=9.6">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
 
     <script src="vendor/firebase-10.12.3/firebase-app-compat.js"></script>
@@ -192,14 +192,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
                 <div class="glass-card p-5 mt-4 space-y-3" style="border-color:rgba(16,185,129,0.25);">
                     <div class="text-center">
-                        <div class="text-2xl mb-1">🎮</div>
-                        <h3 class="text-base font-black text-emerald-400">Nur mitspielen?</h3>
-                        <p class="text-[11px] text-gray-500 mt-1">Du hast einen 4-stelligen Code bekommen? Dann brauchst
-                            du kein Konto.</p>
+                        <div class="text-2xl mb-1">🔑</div>
+                        <h3 class="text-base font-black text-emerald-400">Lobby-Code eingeben</h3>
+                        <p class="text-[11px] text-gray-500 mt-1">Du hast einen 4-stelligen Code von der Familie?
+                            Ohne Konto – nur für diese eine Runde.</p>
                     </div>
                     <button onclick="loginAsGuest()" class="btn-primary w-full text-center py-3"
                         style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.35);">
-                        Als Gast beitreten
+                        Mit Code mitspielen
                     </button>
                 </div>
 
@@ -215,30 +215,26 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             <div id="view-guest-join" class="view hidden space-y-4">
                 <div class="text-center py-8">
                     <div
-                        class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 mb-1">
-                        Als Gast mitspielen
+                        class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 mb-1">
+                        Mit Code mitspielen
                     </div>
-                    <p class="text-xs text-gray-500 mt-2">Dein Name und deine Punkte gelten nur für diese Runde und
-                        werden nicht gespeichert.</p>
+                    <p class="text-xs text-gray-500 mt-2">Kein Konto, nichts wird gespeichert – nur Name für diese Runde.</p>
                 </div>
                 <div class="glass-card p-6 space-y-4" style="border-color:rgba(16,185,129,0.25);">
                     <div>
-                        <label for="guest-name" class="text-xs text-gray-400 font-bold block mb-1.5">Wie heißt
-                            du?</label>
-                        <input id="guest-name" maxlength="16" placeholder="Dein Name" autocomplete="off"
-                            class="input-modern font-bold">
-                    </div>
-                    <div>
-                        <label for="guest-code" class="text-xs text-gray-400 font-bold block mb-1.5">Code vom
-                            Gastgeber</label>
+                        <label for="guest-code" class="text-xs text-gray-400 font-bold block mb-1.5">Lobby-Code (4 Zeichen)</label>
                         <input id="guest-code" maxlength="4" placeholder="K7P2" autocomplete="off" inputmode="text"
                             autocapitalize="characters" enterkeyhint="go"
                             class="input-modern text-3xl font-black text-center uppercase py-4"
                             style="letter-spacing:0.35em;">
                     </div>
+                    <div>
+                        <label for="guest-name" class="text-xs text-gray-400 font-bold block mb-1.5">Anzeigename in der Runde</label>
+                        <input id="guest-name" maxlength="16" placeholder="z. B. Max" autocomplete="off"
+                            class="input-modern font-bold">
+                    </div>
                     <button onclick="guestEnterLobby()" class="btn-primary w-full text-center py-3.5"
-                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.35);">Mitspielen
-                        ✅</button>
+                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.35);">Runde beitreten ✅</button>
                 </div>
                 <button onclick="logoutParent()"
                     class="w-full text-center text-xs text-gray-500 hover:text-gray-300 underline py-2">Zurück zur
@@ -1271,7 +1267,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </div>
                     <p class="text-[11px] text-gray-400 mb-3">Freunde: Mit Freunden spielen → Code</p>
                     <button type="button" onclick="shareLobbyCode()" class="btn-primary w-full text-sm py-3"
-                        style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">👥 Freunde einladen</button>
+                        style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">👥 Freunden empfehlen</button>
                 </div>
                 <div id="live-duel-lobby-meta"
                     class="hidden glass-card p-3 text-center text-xs font-bold text-indigo-200"></div>
@@ -1521,7 +1517,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <span class="text-3xl shrink-0">🃏</span>
                     <span>
                         <span class="block text-base font-black">Vokabeln</span>
-                        <span class="block text-xs font-bold text-indigo-100/80">Englisch und Türkisch üben</span>
+                        <span class="block text-xs font-bold text-indigo-100/80">Englisch üben</span>
                     </span>
                 </button>
 
@@ -1737,6 +1733,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <span class="font-bold text-white">🔊 Ton</span>
                         <button onclick="toggleSound()" class="btn-secondary text-sm py-2 px-4"><span
                                 class="sound-toggle-icon">an/aus</span></button>
+                    </div>
+                    <div class="py-2 border-b border-white/5 space-y-2">
+                        <span class="font-bold text-white block">🎧 Sound-Pack</span>
+                        <div class="dash-sub-nav">
+                            <button type="button" data-sound-pack="soft" class="active" onclick="setSoundPack('soft')">Soft</button>
+                            <button type="button" data-sound-pack="crisp" onclick="setSoundPack('crisp')">Klar</button>
+                        </div>
+                        <p class="text-[11px] text-gray-500">Soft = weich · Klar = deutlich. Mit „Ton“ stummbar.</p>
                     </div>
                     <div class="py-2 border-b border-white/5 space-y-2">
                         <div class="flex items-center justify-between gap-3">
@@ -1965,9 +1969,8 @@ VIEW: QUIZ SETUP
         </div>
         <div class="glass-card p-5 text-center space-y-3">
             <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
-            <div id="lang-selector" class="dash-sub-nav">
+            <div id="lang-selector" class="dash-sub-nav hidden">
                 <button id="lang-btn-en" class="active" onclick="setLanguage('en')">🇬🇧 Englisch</button>
-                <button id="lang-btn-tr" onclick="setLanguage('tr')">🇹🇷 Türkisch</button>
             </div>
             <div class="dash-sub-nav">
                 <button id="vmode-flashcards" class="active" onclick="setVocabMode('flashcards')">🃏
@@ -2023,7 +2026,6 @@ VIEW: QUIZ SETUP
                     <label class="text-xs text-gray-400 font-bold block mb-1.5">Sprache</label>
                     <select id="suchsel-lang" class="input-modern font-bold" onchange="fillSuchselVocabClasses(this.value)">
                         <option value="en" selected>🇬🇧 Englisch</option>
-                        <option value="tr">🇹🇷 Türkisch</option>
                     </select>
                 </div>
                 <div>
@@ -2058,6 +2060,9 @@ VIEW: QUIZ SETUP
         </div>
         <div id="suchsel-wordlist" class="flex flex-wrap gap-1.5 justify-center"></div>
         <div id="suchsel-grid" class="grid gap-1 mx-auto" style="max-width:420px;"></div>
+        <button onclick="revealSuchsel()"
+            class="block mx-auto text-xs text-gray-500 hover:text-amber-400 font-bold transition">🏳️ Komme nicht
+            weiter – auflösen</button>
     </div>
 
     <!-- ==========================================================
@@ -2256,17 +2261,17 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=9.9"></script>
+    <script src="app-config.js?v=10.2"></script>
     <script src="app-ui.js?v=9.1"></script>
-    <script src="family-dashboard.js?v=9.8"></script>
+    <script src="family-dashboard.js?v=9.9"></script>
     <script src="ui-common.js?v=9.0"></script>
-    <script src="quiz-core.js?v=9.2"></script>
-    <script src="vocab.js?v=8.8"></script>
+    <script src="quiz-core.js?v=9.3"></script>
+    <script src="vocab.js?v=9.0"></script>
     <script src="suchsel.js?v=1.0"></script>
-    <script src="duel-scrabble.js?v=8.8"></script>
-    <script src="wortraten.js?v=9.2"></script>
-    <script src="tv-cast.js?v=9.8"></script>
-    <script src="live-duel.js?v=9.8"></script>
+    <script src="duel-scrabble.js?v=9.0"></script>
+    <script src="wortraten.js?v=9.4"></script>
+    <script src="tv-cast.js?v=9.9"></script>
+    <script src="live-duel.js?v=9.9"></script>
     <script src="app-misc.js?v=8.8"></script>
     <script src="lobby-avatar.js?v=9.3"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
@@ -2318,7 +2323,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
                 <span class="icon">🌓</span> Design umschalten
             </button>
             <button onclick="closeDrawer(); inviteFriends()" class="drawer-menu-item">
-                <span class="icon">👥</span> Freunde einladen
+                <span class="icon">👥</span> Freunden empfehlen
             </button>
             <button onclick="closeDrawer(); openAppRating('family-hub')" class="drawer-menu-item">
                 <span class="icon">⭐</span> App bewerten
@@ -2361,7 +2366,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                 <span class="icon">🌓</span> Design umschalten
             </button>
             <button onclick="closeDrawer(); inviteFriends()" class="drawer-menu-item">
-                <span class="icon">👥</span> Freunde einladen
+                <span class="icon">👥</span> Freunden empfehlen
             </button>
             <button onclick="closeDrawer(); openAppRating('menu')" class="drawer-menu-item">
                 <span class="icon">⭐</span> App bewerten

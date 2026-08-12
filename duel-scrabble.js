@@ -315,9 +315,16 @@
             box.innerHTML = keys.map((k, i) => `
                             <label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
                                 <input type="checkbox" class="scrabble-player-check w-5 h-5 accent-amber-500" value="${k}" ${i < 2 ? 'checked' : ''}>
-                                <span class="font-bold text-white text-sm">${esc(ALL_PROFILES[k].name)}</span>
+                                <span class="font-bold text-sm" style="color:var(--text-primary)">${esc(ALL_PROFILES[k].name)}</span>
                             </label>`).join("");
+            toggleScrabbleThemeRow();
             switchView('scrabble-setup');
+        }
+
+        function toggleScrabbleThemeRow() {
+            const mode = (document.getElementById("scrabble-wordmode") || {}).value || "kids";
+            const row = document.getElementById("scrabble-theme-row");
+            if (row) row.classList.toggle("hidden", mode === "adult");
         }
 
         function scrabbleTilesHTML(letters, big, required, selected, onTapFn) {

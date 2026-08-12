@@ -211,6 +211,10 @@
         function questionsForKey(key) {
             if (typeof QUESTIONS_DATABASE === 'undefined' || !key) return [];
 
+            // Aliase: zusammengeführte Fun-Kategorien
+            if (key === "spass_nice_to_know") key = "schaetzen_nice_to_know";
+            if (key === "spass_welt") key = "schaetzen_ungewoehnlich_welt";
+
             // Unterthema-Filter (z.B. "topic:k1_mathe:addition")
             if (String(key).startsWith("topic:")) {
                 const parts = key.split(":");
@@ -226,8 +230,14 @@
                 return QUESTIONS_DATABASE.filter(q => q.subject === sub && q.area === "schule");
             }
 
-            // Standard-Kategorie (z.B. "k1_mathe")
-            return QUESTIONS_DATABASE.filter(q => q.category === key);
+            // Standard-Kategorie (+ Aliase)
+            return QUESTIONS_DATABASE.filter(q => {
+                if (!q) return false;
+                if (q.category === key) return true;
+                if (key === "schaetzen_nice_to_know" && q.category === "spass_nice_to_know") return true;
+                if (key === "schaetzen_ungewoehnlich_welt" && q.category === "spass_welt") return true;
+                return false;
+            });
         }
 
         function questionsWhere(filter) {
@@ -547,12 +557,55 @@ const geladen = _questionCounts[key] || 0;
             return single && single.value ? [single.value] : [];
         }
 
+        const RECENT_Q_KEY = "eduplayRecentQIds";
+        const RECENT_Q_MAX = 80;
+
+        function loadRecentQuestionIds() {
+            try {
+                const a = JSON.parse(localStorage.getItem(RECENT_Q_KEY) || "[]");
+                return Array.isArray(a) ? a : [];
+            } catch (e) { return []; }
+        }
+        function rememberQuestionIds(qs) {
+            try {
+                let recent = loadRecentQuestionIds();
+                (qs || []).forEach(q => {
+                    const id = q && (q.id || q.question);
+                    if (!id) return;
+                    recent = recent.filter(x => x !== id);
+                    recent.push(id);
+                });
+                if (recent.length > RECENT_Q_MAX) recent = recent.slice(-RECENT_Q_MAX);
+                localStorage.setItem(RECENT_Q_KEY, JSON.stringify(recent));
+            } catch (e) { /* */ }
+        }
+        function shuffleArray(arr) {
+            const a = (arr || []).slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+        function pickPreferFresh(pool, want) {
+            const recent = new Set(loadRecentQuestionIds());
+            const fresh = [];
+            const old = [];
+            (pool || []).forEach(q => {
+                const id = q && (q.id || q.question);
+                if (id && recent.has(id)) old.push(q);
+                else fresh.push(q);
+            });
+            let picked = shuffleArray(fresh);
+            if (picked.length < want) picked = picked.concat(shuffleArray(old));
+            return picked.slice(0, want);
+        }
+
         function buildMixedQuestions(keys, qCount) {
             let pool = [];
             const expanded = [];
             (keys || []).forEach(k => {
                 expanded.push(k);
-                // Schmale Unterthemen aufstocken, falls zu wenige Fragen
                 if (String(k).startsWith("topic:")) {
                     const parts = String(k).split(":");
                     if (parts.length === 3 && parts[1]) expanded.push(parts[1]);
@@ -561,18 +614,20 @@ const geladen = _questionCounts[key] || 0;
             expanded.forEach(k => {
                 pool = pool.concat(questionsForKey(k) || []);
             });
-            // Duplikate nach id entfernen
             const seen = new Set();
             pool = pool.filter(q => {
-                const id = q && (q.id || q.question);
-                if (!id || seen.has(id)) return false;
-                seen.add(id);
+                if (!q) return false;
+                const id = q.id || "";
+                const qtext = String(q.question || "").trim().toLowerCase().replace(/\s+/g, " ");
+                const keyId = id || qtext;
+                if (!keyId || seen.has(keyId) || (qtext && seen.has("t:" + qtext))) return false;
+                seen.add(keyId);
+                if (qtext) seen.add("t:" + qtext);
                 return true;
             });
-            // Wenn immer noch zu wenig: erst ohne Slice zurückgeben (Aufrufer entscheidet)
             const want = qCount || 10;
-            pool = pool.sort(() => Math.random() - 0.5);
-            if (pool.length > want) pool = pool.slice(0, want);
+            pool = pickPreferFresh(pool, pool.length > want ? want : pool.length);
+            rememberQuestionIds(pool);
             return prepareQuestions(pool);
         }
 
@@ -1160,40 +1215,62 @@ const geladen = _questionCounts[key] || 0;
             ], "sine", 0.05);
         }
 
+        // Sound-Packs: soft (edu, weich) | crisp (klare Beeps)
+        let soundPack = "soft";
+        try {
+            const sp = localStorage.getItem("eduplaySoundPack");
+            if (sp === "soft" || sp === "crisp") soundPack = sp;
+        } catch (e) { /* */ }
+
+        const SFX_PACKS = {
+            soft: {
+                correct: () => playTones([[523, 0.08], [659, 0.12], [784, 0.14]], "sine", 0.11),
+                wrong: () => playTones([[247, 0.12], [196, 0.18]], "triangle", 0.08),
+                win: () => playTones([[523, 0.1], [659, 0.1], [784, 0.1], [988, 0.22]], "sine", 0.12),
+                levelUp: () => playTones([[392, 0.08], [523, 0.08], [659, 0.16]], "sine", 0.11),
+                coin: () => playTones([[784, 0.05], [1047, 0.1]], "sine", 0.07),
+                tick: () => playTones([[660, 0.035]], "sine", 0.04),
+                timeUp: () => playTones([[330, 0.14], [262, 0.14], [196, 0.22]], "triangle", 0.09)
+            },
+            crisp: {
+                correct: () => playTones([[660, 0.09], [880, 0.14]], "sine", 0.14),
+                wrong: () => playTones([[220, 0.14], [165, 0.20]], "sawtooth", 0.10),
+                win: () => playTones([[523, 0.11], [659, 0.11], [784, 0.11], [1047, 0.26]], "sine", 0.14),
+                levelUp: () => playTones([[587, 0.09], [740, 0.09], [988, 0.20]], "triangle", 0.13),
+                coin: () => playTones([[988, 0.06], [1319, 0.11]], "square", 0.07),
+                tick: () => playTones([[880, 0.04]], "square", 0.05),
+                timeUp: () => playTones([[392, 0.15], [330, 0.15], [262, 0.28]], "sawtooth", 0.11)
+            }
+        };
+
         const SFX = {
             tap: () => playModernClick(),
-            correct: () => playTones([
-                [660, 0.09],
-                [880, 0.14]
-            ], "sine", 0.14),
-            wrong: () => playTones([
-                [220, 0.14],
-                [165, 0.20]
-            ], "sawtooth", 0.10),
-            win: () => playTones([
-                [523, 0.11],
-                [659, 0.11],
-                [784, 0.11],
-                [1047, 0.26]
-            ], "sine", 0.14),
-            levelUp: () => playTones([
-                [587, 0.09],
-                [740, 0.09],
-                [988, 0.20]
-            ], "triangle", 0.13),
-            coin: () => playTones([
-                [988, 0.06],
-                [1319, 0.11]
-            ], "square", 0.07),
-            tick: () => playTones([
-                [880, 0.04]
-            ], "square", 0.05),
-            timeUp: () => playTones([
-                [392, 0.15],
-                [330, 0.15],
-                [262, 0.28]
-            ], "sawtooth", 0.11)
+            correct: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).correct(),
+            wrong: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).wrong(),
+            win: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).win(),
+            levelUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).levelUp(),
+            coin: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).coin(),
+            tick: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).tick(),
+            timeUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).timeUp()
         };
+
+        function setSoundPack(pack) {
+            if (pack !== "soft" && pack !== "crisp") return;
+            soundPack = pack;
+            try { localStorage.setItem("eduplaySoundPack", pack); } catch (e) { /* */ }
+            document.querySelectorAll("[data-sound-pack]").forEach(el => {
+                el.classList.toggle("active", el.getAttribute("data-sound-pack") === pack);
+            });
+            if (soundOn) SFX.correct();
+            showToast(pack === "soft" ? "🔊 Soft-Sounds" : "🔊 Klare Sounds", "success", "soundpack");
+        }
+
+        function syncSoundPackUI() {
+            document.querySelectorAll("[data-sound-pack]").forEach(el => {
+                el.classList.toggle("active", el.getAttribute("data-sound-pack") === soundPack);
+            });
+        }
+        try { document.addEventListener("DOMContentLoaded", syncSoundPackUI); } catch (e) { /* */ }
 
         function toggleSound() {
             soundOn = !soundOn;

@@ -29,13 +29,22 @@ let wortratenSetupTheme = "schneemann";
 // ============================================================
 //  Reine Logik-Helfer (ohne DOM-Zugriff – gut testbar)
 // ============================================================
+// Ungeeignete / komische / zu abstrakte Wörter für Kinder-Modus
+const WR_KIDS_BLOCK = new Set([
+    "ANWALT", "BILANZ", "BUDGET", "BORTE", "BRAUE", "BURSCHE", "BRANCHE", "BEWEIS", "BEZIRK",
+    "HAIN", "ILTIS", "IMPULS", "INDEX", "INGENIEUR", "INITIATIVE", "INTERVALL", "KOALITION",
+    "KADER", "KAUTION", "KNEIPE", "KOLONNE", "BIER", "BULLE", "BOT", "ART", "AUS", "ALT",
+    "GUT", "HART", "HELL", "HOCH", "JUNG", "KLAR", "KLUG", "KNAPP", "GROB", "BREIT", "BLASS",
+    "BLIND", "BITTER", "BILLIG", "BUNT", "GUDEL", "GUGEL", "GUINEE", "GROT"
+]);
+
 function wrWordPool(wordmode, difficulty, theme) {
     const kids = typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : [];
     const adult = typeof GERMAN_WORDS_ADULT !== "undefined" ? GERMAN_WORDS_ADULT : [];
     const themes = typeof GERMAN_WORDS_KIDS_THEMES !== "undefined" ? GERMAN_WORDS_KIDS_THEMES : {};
     let src;
     if (wordmode === "adult") {
-        src = adult;
+        src = adult.filter(w => !WR_KIDS_BLOCK.has(String(w).toUpperCase()) && w !== "GUDEL" && w !== "GUGEL" && w !== "GUINEE" && w !== "GROT");
     } else if (theme && theme !== "gemischt" && themes[theme] && themes[theme].length) {
         src = themes[theme];
         if (difficulty === "experte") {
@@ -47,7 +56,12 @@ function wrWordPool(wordmode, difficulty, theme) {
     } else {
         src = kids;
     }
-    return src.filter(w => !w.includes("ß") && !w.includes("ẞ"));
+    return src.filter(w => {
+        const u = String(w).toUpperCase();
+        if (u.includes("ß") || u.includes("ẞ")) return false;
+        if (wordmode !== "adult" && WR_KIDS_BLOCK.has(u)) return false;
+        return true;
+    });
 }
 
 function toggleWortratenThemeRow() {
@@ -180,7 +194,7 @@ function openWortratenSetup() {
     box.innerHTML = keys.map((k, i) => `
         <label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
             <input type="checkbox" class="wortraten-player-check w-5 h-5 accent-sky-500" value="${k}" ${i < 2 ? 'checked' : ''}>
-            <span class="font-bold text-white text-sm">${esc(ALL_PROFILES[k].name)}</span>
+            <span class="font-bold text-sm" style="color:var(--text-primary)">${esc(ALL_PROFILES[k].name)}</span>
         </label>`).join("");
     setWortratenTheme(wortratenSetupTheme);
     switchView('wortraten-setup');
@@ -356,6 +370,10 @@ function wrGuessLetter(letter) {
         s.scores[key] += points;
         wrRenderScores();
         if (typeof showPointsPopup === "function") showPointsPopup(points, b.parts.join(" · ") || "Treffer!");
+        // Treffer: gleicher Spieler bleibt dran
+        wrRenderScores();
+        wrUpdateTurnBanner();
+        return;
     } else {
         s.streaks[key] = 0;
         s.wrongCount++;
@@ -368,6 +386,7 @@ function wrGuessLetter(letter) {
         }
     }
 
+    // Nur bei Fehlversuch: nächster Spieler
     s.turnIndex = (s.turnIndex + 1) % s.playerKeys.length;
     wrRenderScores();
     wrUpdateTurnBanner();
@@ -420,10 +439,10 @@ function wrTrySolveWord(raw) {
         wrRenderScores();
         if (typeof SFX !== "undefined") SFX.win();
         if (typeof showPointsPopup === "function") showPointsPopup(points, "Wort gelöst! 🎉");
-        wrEndRound(true);
+        wrEndRound(true, key);
         return;
     }
-    // Falsch: zählt als Fehlversuch
+    // Falsch: zählt als Fehlversuch + Zugwechsel
     s.streaks[key] = 0;
     s.wrongCount++;
     wrRevealFigureStage(s.wrongCount);
@@ -431,7 +450,7 @@ function wrTrySolveWord(raw) {
     if (typeof SFX !== "undefined") SFX.wrong();
     showToast("Leider falsch!", "error");
     if (s.wrongCount >= wrMaxWrong(s.wordmode)) {
-        wrEndRound(false);
+        wrEndRound(false, key);
         return;
     }
     s.turnIndex = (s.turnIndex + 1) % s.playerKeys.length;
@@ -452,11 +471,14 @@ function wrRevealWord() {
 
 let wrOfflineAutoContinue = null;
 
-function wrEndRound(solved) {
+function wrEndRound(solved, solverKey) {
     const s = wortratenState;
     s.roundActive = false;
     wrRenderScores();
     const isLast = s.round >= s.rounds;
+    const solverName = (solverKey && ALL_PROFILES[solverKey] && ALL_PROFILES[solverKey].name)
+        ? ALL_PROFILES[solverKey].name
+        : null;
 
     if (solved) {
         if (typeof SFX !== "undefined") SFX.win();
@@ -467,8 +489,10 @@ function wrEndRound(solved) {
 
     document.getElementById("wortraten-play-area").classList.add("hidden");
     document.getElementById("wortraten-round-end-title").innerText = solved
-        ? `🎉 Gelöst! Das Wort war "${s.word}"`
-        : `${wrFigureEmoji(s.theme)} ${wrFigureName(s.theme)} ist fertig gebaut! Das Wort war "${s.word}"`;
+        ? (solverName
+            ? `🎉 ${solverName} hat gelöst! Das Wort war „${s.word}"`
+            : `🎉 Gelöst! Das Wort war „${s.word}"`)
+        : `${wrFigureEmoji(s.theme)} ${wrFigureName(s.theme)} ist fertig gebaut! Das Wort war „${s.word}"`;
     if (wrOfflineAutoContinue) clearTimeout(wrOfflineAutoContinue);
     wrOfflineAutoContinue = setTimeout(() => {
         wrOfflineAutoContinue = null;

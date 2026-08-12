@@ -111,7 +111,11 @@
 
         function launchQuiz(questions) {
             if (!questions || questions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return false; }
-            currentQuestions = prepareQuestions([...questions].sort(() => Math.random() - 0.5));
+            let pool = [...questions];
+            if (typeof pickPreferFresh === "function") pool = pickPreferFresh(pool, pool.length);
+            else pool = pool.sort(() => Math.random() - 0.5);
+            if (typeof rememberQuestionIds === "function") rememberQuestionIds(pool);
+            currentQuestions = prepareQuestions(pool);
 
             testMode = false;
             testAnsweredCount = 0;

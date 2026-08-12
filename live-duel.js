@@ -866,9 +866,10 @@
 
             let banner;
             if (data.roundOver) {
+                const solver = data.roundSolvedByName || (data.roundSolvedBy && data.players[data.roundSolvedBy] && data.players[data.roundSolvedBy].name) || "";
                 banner = data.roundSolved
-                    ? `<p class="text-center text-sm font-bold text-emerald-400">🎉 Gelöst! Das Wort war "${esc(word)}"</p>`
-                    : `<p class="text-center text-sm font-bold text-amber-400">${wrFigureEmoji(data.theme)} ${wrFigureName(data.theme)} ist fertig! Das Wort war "${esc(word)}"</p>`;
+                    ? `<p class="text-center text-sm font-bold text-emerald-400">🎉 ${solver ? esc(solver) + " hat gelöst!" : "Gelöst!"} Das Wort war „${esc(word)}"</p>`
+                    : `<p class="text-center text-sm font-bold text-amber-400">${wrFigureEmoji(data.theme)} ${wrFigureName(data.theme)} ist fertig! Das Wort war „${esc(word)}"</p>`;
             } else if (data.wrSolving && data.wrSolving.by) {
                 const who = esc(data.wrSolving.name || "Jemand");
                 banner = data.wrSolving.by === activePlayerKey
@@ -985,13 +986,22 @@
 
                     const update = {
                         guessed: newGuessed, wrongCount, players, roundOver, roundSolved,
-                        lastGuess: { letter: letter, by: key, ts: Date.now() } // fürs synchronisierte Aufblitzen beim Gegenspieler
+                        lastGuess: { letter: letter, by: key, ts: Date.now() }
                     };
+                    if (roundSolved) {
+                        update.roundSolvedBy = key;
+                        update.roundSolvedByName = (players[key] && players[key].name) || "";
+                    }
                     if (!roundOver) {
-                        const order = (data.order || []).filter(k => players[k] && !players[k].pending);
-                        const curIdx = order.indexOf(key);
-                        update.turnIndex = order.length > 0 ? (curIdx + 1) % order.length : 0;
-                        update.wrTurnDeadline = null; // neuer Zug -> Timer beim Rendern frisch setzen
+                        // Zugwechsel nur bei Fehlversuch – Treffer: gleicher Spieler bleibt dran
+                        if (!isHit) {
+                            const order = (data.order || []).filter(k => players[k] && !players[k].pending);
+                            const curIdx = order.indexOf(key);
+                            update.turnIndex = order.length > 0 ? (curIdx + 1) % order.length : 0;
+                            update.wrTurnDeadline = null;
+                        } else {
+                            update.wrTurnDeadline = null; // Timer neu für denselben Spieler
+                        }
                     }
                     txn.update(liveDuelRef, update);
                     outcome = { isHit, roundOver, roundSolved, points, parts, key };
@@ -1109,6 +1119,8 @@
                             players,
                             roundOver: true,
                             roundSolved: true,
+                            roundSolvedBy: key,
+                            roundSolvedByName: (players[key] && players[key].name) || "",
                             wrTurnDeadline: null,
                             wrSolving: null
                         });

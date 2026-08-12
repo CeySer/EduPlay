@@ -1050,7 +1050,6 @@ auth.createUserWithEmailAndPassword(e, p)
                 container.innerHTML = `
             <select id="dash-vocab-lang" class="input-modern text-xs flex-1 min-w-[70px]">
                 <option value="en">🇬🇧 Englisch</option>
-                <option value="tr">🇹🇷 Türkisch</option>
             </select>
             <select id="dash-vocab-level" class="input-modern text-xs flex-1 min-w-[70px]">
                 <option value="">Alle Niveaus</option>
@@ -1932,6 +1931,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 const langLabel = { en: 'EN', tr: 'TR' };
                 let html = '';
                 Object.keys(VOCABULARY_DATABASE).forEach(lang => {
+                    if (lang === 'tr') return; // Türkisch deaktiviert
                     Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
                         const set = VOCABULARY_DATABASE[lang][level];
                         const n = (set.words || []).length;

@@ -780,6 +780,40 @@
             background: rgba(15, 23, 42, 0.35);
         }
 
+        body:not(.dark-theme) .hub-action-btn {
+            color: #334155;
+            background: #ffffff;
+            border: 1px dashed #94a3b8;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+        }
+        body:not(.dark-theme) .hub-action-new:hover {
+            color: #4338ca;
+            border-color: #818cf8;
+            background: #eef2ff;
+        }
+        body:not(.dark-theme) .hub-action-guest:hover {
+            color: #047857;
+            border-color: #34d399;
+            background: #ecfdf5;
+        }
+        body:not(.dark-theme) .edit-pin {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+        }
+        body:not(.dark-theme) .player-grade {
+            color: #64748b;
+        }
+        body:not(.dark-theme) .player-name {
+            color: #0f172a;
+        }
+        body:not(.dark-theme) .player-meta {
+            color: #64748b;
+        }
+        body:not(.dark-theme) .player-card::before {
+            background: radial-gradient(120px 80px at 50% 0%, rgba(129, 140, 248, 0.12), transparent 70%);
+        }
+
         .hub-action-btn:hover {
             transform: translateY(-2px);
         }
@@ -2859,4 +2893,34 @@ body:not(.dark-theme) .app-rating-star {
 }
 body:not(.dark-theme) .app-rating-star.is-on {
     color: #d97706;
+}
+
+
+/* --- Hell-Modus Lesbarkeit Nachzug --- */
+body:not(.dark-theme) .text-white {
+    color: #0f172a !important;
+}
+body:not(.dark-theme) button[style*="linear-gradient"].text-white,
+body:not(.dark-theme) button[style*="var(--gradient"],
+body:not(.dark-theme) [style*="gradient"] .text-white,
+body:not(.dark-theme) .btn-primary,
+body:not(.dark-theme) .btn-primary * {
+    color: #ffffff !important;
+}
+body:not(.dark-theme) .text-gray-400,
+body:not(.dark-theme) .text-gray-500 {
+    color: #64748b !important;
+}
+body:not(.dark-theme) .text-gray-300 {
+    color: #475569 !important;
+}
+body:not(.dark-theme) .drawer-menu-item {
+    color: #1e293b;
+}
+body:not(.dark-theme) .glass-card .font-bold.text-white,
+body:not(.dark-theme) .glass-card-glow .font-bold.text-white {
+    color: #0f172a !important;
+}
+body:not(.dark-theme) .input-modern {
+    color: #0f172a;
 }

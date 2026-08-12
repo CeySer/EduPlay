@@ -661,7 +661,7 @@
                             ${qrSrc ? `<img alt="QR" class="mx-auto w-40 h-40 rounded-xl bg-white p-2" src="${qrSrc}">` : ""}
                             <p class="text-xs text-gray-400 mt-2">Familie: „Jetzt beitreten“ · Andere: QR oder Code</p>
                             <button type="button" onclick="shareTVCode()" class="btn-primary mt-3 text-base py-3 px-6"
-                                style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">👥 Freunde einladen</button>
+                                style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">👥 Freunden empfehlen</button>
                         </div>` : ""}
                         <p class="text-xl text-white mb-8">Auf dem Handy: <span class="text-emerald-400 font-bold">'Jetzt beitreten!'</span></p>
                         <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>
@@ -1232,8 +1232,9 @@
             ).join("");
             let footer = "";
             if (data.roundOver) {
+                const who = data.roundSolvedByName || "";
                 footer = data.roundSolved
-                    ? `<p class="text-3xl font-black text-emerald-400">🎉 Gelöst: ${esc(word)}</p>
+                    ? `<p class="text-3xl font-black text-emerald-400">🎉 ${who ? esc(who) + " hat gelöst!" : "Gelöst!"} ${esc(word)}</p>
                        <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">Weiter ➔</button>`
                     : `<p class="text-3xl font-black text-amber-400">${typeof wrFigureEmoji === "function" ? wrFigureEmoji(theme) : "⛄"} Fertig! Wort war: ${esc(word)}</p>
                        <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">Weiter ➔</button>`;
@@ -1441,7 +1442,11 @@
                         }
                     }
                     const update = { guessed: newGuessed, wrongCount, players, roundOver, roundSolved };
-                    if (!roundOver && order.length) {
+                    if (roundSolved && key) {
+                        update.roundSolvedBy = key;
+                        update.roundSolvedByName = (players[key] && players[key].name) || "";
+                    }
+                    if (!roundOver && !isHit && order.length) {
                         const cur = order.indexOf(key);
                         update.turnIndex = (cur + 1) % order.length;
                     }

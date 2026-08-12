@@ -812,40 +812,30 @@ auth.createUserWithEmailAndPassword(e, p)
          * und trägt die Summen in die Spans im Inhalte-Tab ein.
          */
         function updateDashCounts() {
-            console.log('📊 updateDashCounts wird ausgeführt...');
-
-            // 1. Fragen zählen
+            // 1. Fragen: geladen vs. Manifest-Summe
             let qCount = 0;
             if (typeof QUESTIONS_DATABASE !== 'undefined' && Array.isArray(QUESTIONS_DATABASE)) {
                 qCount = QUESTIONS_DATABASE.length;
-                console.log(`📖 Fragen gefunden: ${qCount}`);
-            } else {
-                console.warn('⚠️ QUESTIONS_DATABASE nicht gefunden oder kein Array!');
+            }
+            let qTotal = 0;
+            if (typeof window.FRAGEN_VERZEICHNIS !== 'undefined' && Array.isArray(window.FRAGEN_VERZEICHNIS)) {
+                qTotal = window.FRAGEN_VERZEICHNIS.reduce((s, e) => s + (e.n || 0), 0);
             }
 
-            // 2. Vokabeln zählen
+            // 2. Vokabeln
             let vCount = 0;
             if (typeof VOCABULARY_DATABASE !== 'undefined') {
-                console.log('📝 VOCABULARY_DATABASE gefunden, Schlüssel:', Object.keys(VOCABULARY_DATABASE));
                 Object.keys(VOCABULARY_DATABASE).forEach(lang => {
-                    console.log(`  Sprache: ${lang}`);
+                    if (lang === 'tr') return;
                     const langData = VOCABULARY_DATABASE[lang];
                     Object.keys(langData || {}).forEach(level => {
                         const words = langData[level]?.words;
-                        if (Array.isArray(words)) {
-                            vCount += words.length;
-                            console.log(`    Level ${level}: ${words.length} Wörter`);
-                        } else {
-                            console.log(`    Level ${level}: keine Wörter gefunden`);
-                        }
+                        if (Array.isArray(words)) vCount += words.length;
                     });
                 });
-                console.log(`📊 Vokabeln gesamt: ${vCount}`);
-            } else {
-                console.warn('⚠️ VOCABULARY_DATABASE nicht gefunden!');
             }
 
-            // 3. Wörter zählen (Kinder-Wortschatz)
+            // 3. Wörter (Kinder)
             let wCount = 0;
             if (typeof GERMAN_WORDS_KIDS !== 'undefined' && Array.isArray(GERMAN_WORDS_KIDS)) {
                 wCount = GERMAN_WORDS_KIDS.length;
@@ -853,23 +843,16 @@ auth.createUserWithEmailAndPassword(e, p)
                 wCount = GERMAN_WORDS.length;
             }
 
-            // 4. In HTML-Spans eintragen
             const elQ = document.getElementById('dash-question-count');
             const elV = document.getElementById('dash-vocab-count');
             const elW = document.getElementById('dash-word-count');
 
             if (elQ) {
-                elQ.textContent = qCount;
-                console.log(`✅ Frage-Zähler gesetzt: ${qCount}`);
+                elQ.textContent = qTotal > 0 ? `${qCount} / ~${qTotal}` : String(qCount);
+                elQ.title = `${qCount} geladen, ca. ${qTotal} laut Manifest (lazy)`;
             }
-            if (elV) {
-                elV.textContent = vCount;
-                console.log(`✅ Vokabel-Zähler gesetzt: ${vCount}`);
-            }
-            if (elW) {
-                elW.textContent = wCount;
-                console.log(`✅ Wort-Zähler gesetzt: ${wCount}`);
-            }
+            if (elV) elV.textContent = vCount;
+            if (elW) elW.textContent = wCount;
         }
 
         /**

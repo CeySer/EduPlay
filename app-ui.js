@@ -134,8 +134,8 @@
         box.classList.remove("hidden");
         box.innerHTML =
             '<div class="relative">' +
-            '<button onclick="weiterMitLetztemThema()" ' +
-            'class="w-full flex items-center gap-3 p-4 pr-10 rounded-2xl text-left transition hover:scale-[1.01]" ' +
+            '<button type="button" onclick="weiterMitLetztemThema()" ' +
+            'class="w-full flex items-center gap-3 p-4 pr-12 rounded-2xl text-left transition hover:scale-[1.01]" ' +
             'style="background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.3);">' +
             '<span class="text-2xl shrink-0">📚</span>' +
             '<span class="min-w-0">' +
@@ -143,9 +143,8 @@
             '<span class="block text-xs font-bold text-gray-400 truncate">' +
             (typeof esc === "function" ? esc(name) : name) + '</span>' +
             '</span>' +
-            '<span class="ml-auto text-gray-500 text-lg shrink-0">›</span>' +
             '</button>' +
-            '<button type="button" onclick="verwirfContinueCard()" aria-label="Weitermachen-Karte schließen" ' +
+            '<button type="button" onclick="event.stopPropagation();verwirfContinueCard()" aria-label="Weitermachen-Karte schließen" ' +
             'class="continue-card-close">✕</button>' +
             '</div>';
     };

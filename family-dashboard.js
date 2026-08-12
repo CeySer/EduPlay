@@ -1745,12 +1745,12 @@ auth.createUserWithEmailAndPassword(e, p)
                 const n = 15;
                 const catSafe = String(weak.category).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
                 card.innerHTML =
-                    `<div class="glass-card-glow p-4 relative" style="border-color:rgba(245,158,11,0.2);">
+                    `<div class="glass-card-glow p-4 relative pr-2" style="border-color:rgba(245,158,11,0.2);">
                         <button type="button" onclick="event.stopPropagation();dismissWeaknessSuggestion(true)" title="Heute ausblenden"
-                            class="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/40 border border-white/10 text-gray-300 hover:text-white text-base font-bold z-10">✕</button>
-                        <div class="font-bold text-yellow-400 text-sm pr-8">⚡ Blitz-Übung</div>
-                        <div class="text-xs text-gray-300 mt-1">${label}: nur ${pct}% richtig – ${n} Fragen, dann bist du durch.</div>
-                        <button type="button" onclick="startBlitzUebung('${catSafe}')" class="btn-primary text-xs py-2.5 px-4 mt-3 w-full" style="background:var(--gradient-amber);box-shadow:0 4px 16px rgba(245,158,11,0.3);">Los · ${n} Fragen →</button>
+                            class="continue-card-close" aria-label="Blitz-Übung ausblenden">✕</button>
+                        <div class="font-bold text-yellow-400 text-sm pr-10">⚡ Blitz-Übung</div>
+                        <div class="text-xs text-gray-300 mt-1 pr-2">${label}: nur ${pct}% richtig – ${n} Fragen, dann bist du durch.</div>
+                        <button type="button" onclick="startBlitzUebung('${catSafe}')" class="btn-primary text-xs py-2.5 px-4 mt-3 w-full" style="background:var(--gradient-amber);box-shadow:0 4px 16px rgba(245,158,11,0.3);">Los · ${n} Fragen</button>
                     </div>`;
                 card.classList.remove("hidden");
             } else {

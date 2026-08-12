@@ -148,6 +148,11 @@
                     ? collectLiveDuelCategoryKeys()
                     : [document.getElementById("live-duel-category").value];
                 if (!keys.length) return showToast("Bitte mindestens ein Thema wählen!", "error");
+                if (typeof ladeFragenFuer === "function") {
+                    try { await ladeFragenFuer(keys); } catch (e) { /* */ }
+                } else if (typeof ladeAlleFragen === "function") {
+                    try { await ladeAlleFragen(); } catch (e) { /* */ }
+                }
                 const qCount = parseInt((document.getElementById("live-duel-count") || {}).value) || 10;
                 const questions = typeof buildMixedQuestions === "function"
                     ? buildMixedQuestions(keys, qCount)
@@ -2513,13 +2518,27 @@
                     players: {}
                 };
             } else {
-                // Quiz-Modus
-                const category = document.getElementById("live-duel-category").value;
-                const questions = prepareQuestions(questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10)));
-                if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
+                // Quiz-Modus (auch Themen-Mix)
+                const keys = typeof collectLiveDuelCategoryKeys === "function"
+                    ? collectLiveDuelCategoryKeys()
+                    : [document.getElementById("live-duel-category").value].filter(Boolean);
+                if (!keys.length) return showToast("Bitte mindestens ein Thema wählen!", "error");
+                if (typeof ladeFragenFuer === "function") {
+                    try { await ladeFragenFuer(keys); } catch (e) { /* */ }
+                } else if (typeof ladeAlleFragen === "function") {
+                    try { await ladeAlleFragen(); } catch (e) { /* */ }
+                }
+                const qCount = parseInt((document.getElementById("live-duel-count") || {}).value) || 10;
+                const questions = typeof buildMixedQuestions === "function"
+                    ? buildMixedQuestions(keys, qCount)
+                    : prepareQuestions(questionsForKey(keys[0]).sort(() => Math.random() - 0.5).slice(0, qCount));
+                if (questions.length < 1) return showToast("Zu wenige Fragen für diese Auswahl – anderes Thema wählen!", "error");
+                if (questions.length < 3) showToast("Nur " + questions.length + " Fragen gefunden – Runde wird kürzer.", "error");
                 lobbyData = {
                     type: "quiz",
                     status: "waiting",
+                    category: keys[0],
+                    categories: keys,
                     questions,
                     currentIndex: 0,
                     answerSeconds: parseInt(document.getElementById("live-duel-speed").value) || 20,

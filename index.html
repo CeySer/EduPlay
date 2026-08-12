@@ -13,7 +13,7 @@
          installierte App wirklich den neuesten Stand geladen hat. -->
     <script>window.EDUPLAY_BUILD = "08.08.2026 · 22:34";</script>
 
-    <link rel="stylesheet" href="styles.css?v=9.6">
+    <link rel="stylesheet" href="styles.css?v=9.7">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
 
     <script src="vendor/firebase-10.12.3/firebase-app-compat.js"></script>
@@ -595,7 +595,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: DUELL SPIEL
             ========================================================== -->
             <div id="view-duel-play" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2 px-3"
+                <button class="btn-secondary btn-beenden text-sm py-2 px-3"
                     onclick="appConfirmSwitch('Fortschritt geht verloren.','Spiel verlassen?','duel-setup')">Beenden</button>
                 <div id="duel-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(244,63,94,0.15),rgba(236,72,153,0.1));border-color:rgba(244,63,94,0.2);">
@@ -702,7 +702,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: SCRABBLE SPIEL
             ========================================================== -->
             <div id="view-scrabble-play" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2 px-3"
+                <button class="btn-secondary btn-beenden text-sm py-2 px-3"
                     onclick="appConfirmSwitch('Fortschritt geht verloren.','Spiel verlassen?','scrabble-setup',stopScrabbleTicker)">Beenden</button>
                 <div id="scrabble-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(251,191,36,0.1));border-color:rgba(245,158,11,0.2);">
@@ -835,7 +835,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             VIEW: WORT-RÄTSEL SPIEL
             ========================================================== -->
             <div id="view-wortraten-play" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2 px-3"
+                <button class="btn-secondary btn-beenden text-sm py-2 px-3"
                     onclick="appConfirmSwitch('Fortschritt geht verloren.','Spiel verlassen?','wortraten-setup')">Beenden</button>
                 <div id="wortraten-turn-intro" class="glass-card-glow p-8 text-center space-y-4"
                     style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(56,189,248,0.1));border-color:rgba(14,165,233,0.2);">
@@ -872,7 +872,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             Runde ➔</button>
                         <button
                             onclick="appConfirmSwitch('Fortschritt geht verloren.','Spiel verlassen?','wortraten-setup')"
-                            class="btn-secondary flex-1 text-center">Beenden</button>
+                            class="btn-secondary btn-beenden flex-1 text-center">Beenden</button>
                     </div>
                 </div>
             </div>
@@ -1257,7 +1257,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
             <div id="view-live-duel-lobby" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveLiveDuel()">Beenden</button>
+                    <button class="btn-secondary btn-beenden text-sm py-2.5 px-4" onclick="leaveLiveDuel()">Beenden</button>
                     <span class="text-sm font-bold text-gray-400">Warteraum</span>
                     <span class="w-20"></span>
                 </div>
@@ -1406,9 +1406,13 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 </button>
 
                 <button onclick="switchView('rewards')"
-                    class="w-full flex items-center justify-center gap-2 p-4 rounded-2xl font-black text-sm transition hover:scale-[1.01]"
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-left shadow-lg transition hover:scale-[1.02]"
                     style="background:linear-gradient(140deg,#f59e0b,#fbbf24);color:#0b1020;">
-                    <span class="text-2xl">🎁</span> Belohnungen einlösen
+                    <span class="text-4xl shrink-0">🎁</span>
+                    <span>
+                        <span class="block text-lg font-black">Belohnungen einlösen</span>
+                        <span class="block text-xs font-bold" style="color:rgba(11,16,32,0.65)">Coins gegen Wünsche tauschen</span>
+                    </span>
                 </button>
 
                 <!-- Abzeichen -->
@@ -1427,7 +1431,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <span class="text-sm font-bold text-gray-400">⚔️ Gegeneinander</span>
                     <button onclick="toggleCast()" id="castButton" title="Mit Fernseher verbinden"
                         aria-label="Mit Fernseher verbinden"
-                        class="w-11 h-11 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
+                        class="hidden w-11 h-11 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
                 </div>
 
                 <div class="flex items-center gap-2 px-1">
@@ -1442,8 +1446,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <span class="text-xs font-bold text-indigo-200 -mt-1">Code teilen · auch für Gäste</span>
                 </button>
 
-                <button onclick="switchView('tv-quiz-setup')" data-needs-questions
-                    class="btn-primary w-full flex items-center justify-center gap-2 text-center">
+                <button onclick="switchView('tv-quiz-setup')" data-needs-questions id="menu-tv-quiz-btn"
+                    class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center">
                     <span class="text-xl">📺</span> TV-Quiz · alle am Fernseher
                 </button>
 
@@ -1825,14 +1829,21 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
             <div>
                 <label class="text-xs text-gray-400 font-bold block mb-2">Wie lange fokussiert bleiben?</label>
-                <div class="flex gap-2 justify-center">
-                    <button id="fokus-dur-10" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(10)">10
-                        Min.</button>
+                <div class="flex flex-wrap gap-2 justify-center">
+                    <button id="fokus-dur-5" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(5)">5 Min.</button>
+                    <button id="fokus-dur-10" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(10)">10 Min.</button>
                     <button id="fokus-dur-15" class="btn-primary text-sm py-2 px-3"
-                        style="background:var(--gradient-green);" onclick="setFocusDuration(15)">15
-                        Min.</button>
-                    <button id="fokus-dur-25" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(25)">25
-                        Min.</button>
+                        style="background:var(--gradient-green);" onclick="setFocusDuration(15)">15 Min.</button>
+                    <button id="fokus-dur-25" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(25)">25 Min.</button>
+                    <button id="fokus-dur-45" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(45)">45 Min.</button>
+                </div>
+                <div class="flex items-center justify-center gap-2 mt-3">
+                    <label for="fokus-custom-min" class="text-xs text-gray-400 font-bold">Eigene Min.</label>
+                    <input type="number" id="fokus-custom-min" min="1" max="180" value="15" inputmode="numeric"
+                        class="input-modern w-20 text-center font-bold text-sm py-2"
+                        onchange="setFocusDuration(parseInt(this.value,10)||15)">
+                    <button type="button" class="btn-secondary text-xs py-2 px-3"
+                        onclick="setFocusDuration(parseInt(document.getElementById('fokus-custom-min').value,10)||15)">OK</button>
                 </div>
                 <p id="fokus-reward-hint" class="text-xs text-gray-500 mt-2">Belohnung: +20 Coins</p>
             </div>
@@ -1936,7 +1947,7 @@ VIEW: QUIZ SETUP
             ========================================================== -->
     <div id="view-quiz" class="view hidden space-y-4">
         <div class="flex items-center justify-between gap-2">
-            <button class="btn-secondary text-sm py-2.5 px-4" onclick="endLesson()">Beenden</button>
+            <button class="btn-secondary btn-beenden text-sm py-2.5 px-4" onclick="endLesson()">Beenden</button>
             <button class="text-xs text-gray-500 hover:text-amber-400 font-bold" onclick="reportCurrentQuestion()"
                 title="Diese Frage melden">🚩 Melden</button>
         </div>
@@ -2056,7 +2067,7 @@ VIEW: QUIZ SETUP
             ========================================================== -->
     <div id="view-suchsel-play" class="view hidden space-y-4">
         <div class="flex items-center justify-between gap-2">
-            <button class="btn-ghost text-sm py-2 px-3"
+            <button class="btn-secondary btn-beenden text-sm py-2 px-3"
                 onclick="appConfirmSwitch('Fortschritt geht verloren.','Suchsel verlassen?','suchsel-setup', leaveSuchselPlay)">✕
                 Beenden</button>
             <span class="badge-pill text-cyan-400 font-bold">⏱ <span id="suchsel-timer">00:00</span></span>
@@ -2266,8 +2277,8 @@ VIEW: QUIZ SETUP
     JAVASCRIPT MODULE
     ============================================================ -->
     <script src="app-config.js?v=10.2"></script>
-    <script src="app-ui.js?v=9.1"></script>
-    <script src="family-dashboard.js?v=10.0"></script>
+    <script src="app-ui.js?v=9.2"></script>
+    <script src="family-dashboard.js?v=10.1"></script>
     <script src="ui-common.js?v=9.0"></script>
     <script src="quiz-core.js?v=9.3"></script>
     <script src="vocab.js?v=9.0"></script>
@@ -2275,7 +2286,7 @@ VIEW: QUIZ SETUP
     <script src="duel-scrabble.js?v=9.0"></script>
     <script src="wortraten.js?v=9.4"></script>
     <script src="tv-cast.js?v=9.9"></script>
-    <script src="live-duel.js?v=9.9"></script>
+    <script src="live-duel.js?v=10.0"></script>
     <script src="app-misc.js?v=8.8"></script>
     <script src="lobby-avatar.js?v=9.3"></script>
     <script src="konto-loeschen.js?v=8.8"></script>

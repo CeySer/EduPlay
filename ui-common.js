@@ -228,13 +228,16 @@
 
         function setFocusDuration(mins) {
             if (focusTimerInterval) return showToast("Zuerst Reset, dann Zeit wählen.", "error");
+            mins = Math.max(1, Math.min(180, parseInt(mins, 10) || 15));
             focusDurationMin = mins;
             focusTimeRemaining = mins * 60;
             const el = document.getElementById("timer-display");
             if (el) el.innerText = mins + ":00";
+            const custom = document.getElementById("fokus-custom-min");
+            if (custom) custom.value = String(mins);
             const hint = document.getElementById("fokus-reward-hint");
             if (hint) hint.innerText = "Belohnung: +" + focusRewardCoins(mins) + " Coins (" + focusMultiplier(mins) + "× Multiplikator)";
-            [10, 15, 25].forEach(m => {
+            [5, 10, 15, 25, 45].forEach(m => {
                 const btn = document.getElementById("fokus-dur-" + m);
                 if (!btn) return;
                 if (m === mins) {

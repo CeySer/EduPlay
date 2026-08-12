@@ -159,8 +159,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <input type="email" id="auth-email" placeholder="name@beispiel.de" class="input-modern"
                         autocomplete="email">
                     <label for="auth-password" class="text-xs text-gray-400 font-bold block mb-1.5">Passwort</label>
-                    <input type="password" id="auth-password" placeholder="mindestens 6 Zeichen" class="input-modern"
-                        autocomplete="current-password">
+                    <div class="relative">
+                        <input type="password" id="auth-password" placeholder="mindestens 6 Zeichen" class="input-modern pr-12"
+                            autocomplete="current-password">
+                        <button type="button" id="auth-password-toggle" onclick="togglePasswordVisibility('auth-password','auth-password-toggle')"
+                            class="password-toggle-btn" aria-label="Passwort anzeigen" title="Passwort anzeigen">👁</button>
+                    </div>
                     <div class="flex gap-2 pt-2">
                         <button onclick="loginParent()" class="flex-1 btn-primary text-center">Einloggen</button>
                         <button onclick="registerParent()"
@@ -2263,7 +2267,7 @@ VIEW: QUIZ SETUP
     ============================================================ -->
     <script src="app-config.js?v=10.2"></script>
     <script src="app-ui.js?v=9.1"></script>
-    <script src="family-dashboard.js?v=9.9"></script>
+    <script src="family-dashboard.js?v=10.0"></script>
     <script src="ui-common.js?v=9.0"></script>
     <script src="quiz-core.js?v=9.3"></script>
     <script src="vocab.js?v=9.0"></script>

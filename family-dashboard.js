@@ -37,6 +37,19 @@ auth.createUserWithEmailAndPassword(e, p)
                 .catch(err => showToast(err.message, "error"));
         }
 
+        function togglePasswordVisibility(inputId, btnId) {
+            const input = document.getElementById(inputId);
+            const btn = btnId ? document.getElementById(btnId) : null;
+            if (!input) return;
+            const show = input.type === "password";
+            input.type = show ? "text" : "password";
+            if (btn) {
+                btn.textContent = show ? "🙈" : "👁";
+                btn.setAttribute("aria-label", show ? "Passwort verbergen" : "Passwort anzeigen");
+                btn.title = show ? "Passwort verbergen" : "Passwort anzeigen";
+            }
+        }
+
         // ------------------------------------------------------------
         //  GAST-BEITRITT (ohne Konto)
         //  Meldet anonym bei Firebase an. Der Gast bekommt kein

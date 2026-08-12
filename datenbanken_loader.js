@@ -137,7 +137,36 @@
         if (geladeneDateien[pfad]) return Promise.resolve(true);
         if (laufendeLadungen[pfad]) return laufendeLadungen[pfad];
 
+        const isJson = /\.json$/i.test(pfad);
+
         const p = new Promise(function (fertig) {
+            if (isJson) {
+                // JSON-Fragen: fetch + als window[name] bereitstellen (wie .js-Globals)
+                fetch(pfad).then(function (r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.json();
+                }).then(function (data) {
+                    const arr = Array.isArray(data) ? data
+                        : (data && Array.isArray(data.questions) ? data.questions : []);
+                    const eintrag = verzeichnis().find(function (e) { return e.datei === pfad; });
+                    const name = eintrag && eintrag.name;
+                    if (name) {
+                        window[name] = arr;
+                    } else {
+                        console.warn('⚠️ JSON ohne Manifest-Name: ' + pfad + ' (' + arr.length + ' Fragen)');
+                    }
+                    geladeneDateien[pfad] = true;
+                    delete laufendeLadungen[pfad];
+                    fertig(!!name && arr.length > 0);
+                }).catch(function (err) {
+                    console.warn('⚠️ JSON nicht ladbar: ' + pfad, err);
+                    geladeneDateien[pfad] = true;
+                    delete laufendeLadungen[pfad];
+                    fertig(false);
+                });
+                return;
+            }
+
             const s = document.createElement('script');
             // Kein "?v=" mehr nötig: der Service Worker hält sich bei diesen
             // Dateien jetzt selbst aktuell (stale-while-revalidate, sw.js).

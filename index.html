@@ -904,6 +904,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <select id="live-duel-area" class="input-modern font-bold mb-3"></select>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema</label>
                             <select id="live-duel-category" class="input-modern font-bold"></select>
+                            <button type="button" onclick="pickRandomCategory('live-duel-area','live-duel-category')"
+                                class="mt-2 w-full text-xs font-bold py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10"
+                                style="color:var(--text-secondary)">🎲 Zufällige Kategorie</button>
                             <label class="flex items-center gap-2 mt-2 text-xs font-bold text-gray-400 cursor-pointer">
                                 <input type="checkbox" id="live-duel-mix-categories" class="w-4 h-4 accent-indigo-500"
                                     onchange="toggleLiveDuelCategoryMix()">
@@ -1747,8 +1750,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div class="dash-sub-nav">
                             <button type="button" data-sound-pack="soft" class="active" onclick="setSoundPack('soft')">Soft</button>
                             <button type="button" data-sound-pack="crisp" onclick="setSoundPack('crisp')">Klar</button>
+                            <button type="button" data-sound-pack="arcade" onclick="setSoundPack('arcade')">Arcade</button>
                         </div>
-                        <p class="text-[11px] text-gray-500">Soft = weich · Klar = deutlich. Mit „Ton“ stummbar.</p>
+                        <p class="text-[11px] text-gray-500">Soft · Klar · Arcade. Mit „Ton“ stummbar.</p>
                     </div>
                     <div class="py-2 border-b border-white/5 space-y-2">
                         <div class="flex items-center justify-between gap-3">
@@ -1937,6 +1941,9 @@ VIEW: QUIZ SETUP
                 <select id="quiz-area" class="input-modern font-bold mb-3"></select>
                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema:</label>
                 <select id="sub-category" class="input-modern font-bold"></select>
+                <button type="button" onclick="pickRandomCategory('quiz-area','sub-category')"
+                    class="mt-2 w-full text-xs font-bold py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10"
+                    style="color:var(--text-secondary)">🎲 Zufällige Kategorie</button>
             </div>
             <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
         </div>
@@ -2276,17 +2283,17 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=10.2"></script>
+    <script src="app-config.js?v=10.3"></script>
     <script src="app-ui.js?v=9.2"></script>
     <script src="family-dashboard.js?v=10.1"></script>
     <script src="ui-common.js?v=9.0"></script>
-    <script src="quiz-core.js?v=9.3"></script>
+    <script src="quiz-core.js?v=9.6"></script>
     <script src="vocab.js?v=9.0"></script>
     <script src="suchsel.js?v=1.0"></script>
-    <script src="duel-scrabble.js?v=9.0"></script>
+    <script src="duel-scrabble.js?v=9.1"></script>
     <script src="wortraten.js?v=9.4"></script>
     <script src="tv-cast.js?v=9.9"></script>
-    <script src="live-duel.js?v=10.0"></script>
+    <script src="live-duel.js?v=10.1"></script>
     <script src="app-misc.js?v=8.8"></script>
     <script src="lobby-avatar.js?v=9.3"></script>
     <script src="konto-loeschen.js?v=8.8"></script>

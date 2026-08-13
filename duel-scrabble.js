@@ -240,15 +240,53 @@
             }
         };
 
-        const WORD_SET = new Set([
-            ...(typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : []),
-            ...(typeof GERMAN_WORDS_ADULT !== "undefined" ? GERMAN_WORDS_ADULT : [])
-        ].map(w => w.toUpperCase()));
+        // Extra kindgerechte Kurz-Wörter (Wort-Duell Kinder)
+        const SCRABBLE_KIDS_EXTRA = [
+            "BALL", "BAUM", "BUCH", "BROT", "FISCH", "FROSCH", "HAND", "HAUS", "HUND", "KATZE",
+            "KIND", "MOND", "STERN", "SONNE", "TISCH", "STUHL", "SCHULE", "SPIEL", "AUTO", "ZUG",
+            "RAD", "BOOT", "BLUME", "APFEL", "BIRNE", "BANANE", "MILCH", "WASSER", "SAFT", "KUCHEN",
+            "TORTE", "EIS", "HUT", "SCHUH", "HOSE", "ROCK", "HEMD", "JACKE", "MAMA", "PAPA",
+            "OMA", "OPA", "BABY", "FUS", "FUSS", "ARM", "BEIN", "AUGE", "OHR", "NASE", "MUND",
+            "ZAHN", "HAAR", "HERZ", "LIEBE", "FREUND", "SPIEL", "BALLON", "PUPPE", "BAER", "BAER",
+            "LOEWE", "TIGER", "AFFE", "MAUS", "VOGEL", "ENTE", "GANS", "HUHN", "PFERD", "KUH",
+            "SCHAF", "ZIEGE", "HASE", "IGEL", "BIENE", "AMEISE", "KAEFER", "WURM", "BAUM", "BLATT",
+            "GRAS", "WALD", "WIESE", "BERG", "SEE", "FLUSS", "MEER", "INSEL", "STRAND", "SAND",
+            "STEIN", "FEUER", "LICHT", "LAMPE", "KERZE", "UHR", "TURM", "TOR", "WEG", "STRASSE",
+            "STADT", "DORF", "LAND", "WELT", "HIMMEL", "WOLKE", "REGEN", "SCHNEE", "WIND", "STURM",
+            "BLITZ", "DONNER", "NACHT", "TAG", "MORGEN", "ABEND", "JAHR", "WOCHE", "STUNDE", "ZEIT",
+            "FARBE", "ROT", "BLAU", "GRUEN", "GELB", "WEISS", "SCHWARZ", "BUNT", "GROSS", "KLEIN",
+            "LANG", "KURZ", "HOCH", "TIEF", "WARM", "KALT", "NASS", "TROCKEN", "SCHOEN", "LUSTIG",
+            "FREUDE", "LACHEN", "SINGEN", "TANZEN", "LESEN", "MALEN", "BAUEN", "RENNEN", "SPRINGEN", "SCHWIMMEN"
+        ];
 
-        async function isValidGermanWord(word) {
+        function buildScrabbleWordSet(wordMode) {
+            const block = (typeof WR_KIDS_BLOCK !== "undefined" && WR_KIDS_BLOCK instanceof Set)
+                ? WR_KIDS_BLOCK
+                : new Set(["ANWALT", "BIER", "BUDGET", "KNEIPE", "WAFFE", "BILANZ", "KOALITION"]);
+            const kidsRaw = [
+                ...(typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : []),
+                ...SCRABBLE_KIDS_EXTRA
+            ];
+            const kids = kidsRaw
+                .map(w => String(w).toUpperCase().normalize("NFC"))
+                .filter(w => w.length >= 3 && !block.has(w));
+            if (wordMode === "adult") {
+                const adult = (typeof GERMAN_WORDS_ADULT !== "undefined" ? GERMAN_WORDS_ADULT : [])
+                    .map(w => String(w).toUpperCase().normalize("NFC"));
+                return new Set([...kids, ...adult]);
+            }
+            // Kinder-Modus: nur Kinderliste
+            return new Set(kids);
+        }
+
+        async function isValidGermanWord(word, wordMode) {
             if (!word || word.length < 2) return { status: "invalid" };
-            const upper = word.toUpperCase();
-            if (WORD_SET.has(upper)) return { status: "valid" };
+            const upper = String(word).toUpperCase().normalize("NFC");
+            const mode = wordMode || "kids";
+            const set = buildScrabbleWordSet(mode);
+            if (set.has(upper)) return { status: "valid" };
+            // Kinder: keine externe Prüfung (sonst rutschen Erwachsenen-Wörter rein)
+            if (mode !== "adult") return { status: "invalid" };
             try {
                 const controller = new AbortController();
                 const timeout = setTimeout(() => controller.abort(), 4000);
@@ -274,10 +312,20 @@
         function generateScrabbleRack(difficulty, requireLetter, wordMode) {
             const cfg = SCRABBLE_DIFFICULTIES[difficulty] || SCRABBLE_DIFFICULTIES.mittel;
             const useAdult = (wordMode === "adult" || difficulty === "profi");
-            const wordSource = (useAdult && typeof GERMAN_WORDS_ADULT !== "undefined") ?
-                GERMAN_WORDS_ADULT :
-                (typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : []);
+            const block = (typeof WR_KIDS_BLOCK !== "undefined" && WR_KIDS_BLOCK instanceof Set)
+                ? WR_KIDS_BLOCK
+                : new Set(["ANWALT", "BIER", "BUDGET", "KNEIPE", "WAFFE"]);
+            let wordSource;
+            if (useAdult && typeof GERMAN_WORDS_ADULT !== "undefined") {
+                wordSource = GERMAN_WORDS_ADULT;
+            } else {
+                wordSource = [
+                    ...(typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : []),
+                    ...SCRABBLE_KIDS_EXTRA
+                ].filter(w => !block.has(String(w).toUpperCase()));
+            }
             const pool = wordSource
+                .map(w => String(w).toUpperCase().normalize("NFC"))
                 .filter(w => w.length >= cfg.targetMin && w.length <= cfg.targetMax && w.length <= cfg.letters);
 
             let letters;
@@ -476,8 +524,8 @@
 
         async function evaluateScrabbleWord(word, letters, opts) {
             const o = opts || {};
-            const w = (word || "").trim().toUpperCase();
-            const min = o.minWord || 2;
+            const w = (word || "").trim().toUpperCase().normalize("NFC");
+            const min = Math.max(3, o.minWord || 3);
             if (w.length < min) return { points: 0, status: "tooshort", word: w, min };
             if (o.required && !w.includes(o.required)) {
                 return { points: 0, status: "missing", word: w, required: o.required };
@@ -485,7 +533,7 @@
             if (o.used && o.used.has(w)) return { points: 0, status: "repeat", word: w };
             const tileResult = computeScrabbleWordScore(w, letters);
             if (!tileResult.valid) return { points: 0, status: "letters", word: w };
-            const check = await isValidGermanWord(w);
+            const check = await isValidGermanWord(w, o.wordMode || "kids");
             if (check.status === "valid") {
                 if (o.used && o.addToUsed !== false) o.used.add(w);
                 return { points: tileResult.score, status: "valid", bonus: tileResult.bonus, word: w };
@@ -712,9 +760,10 @@
             }
 
             const res = await evaluateScrabbleWord(word, scrabbleState.currentLetters, {
-                minWord: (SCRABBLE_DIFFICULTIES[scrabbleState.difficulty] || {}).minWord,
+                minWord: (SCRABBLE_DIFFICULTIES[scrabbleState.difficulty] || {}).minWord || 3,
                 required: scrabbleState.required,
-                used: scrabbleState.usedWords
+                used: scrabbleState.usedWords,
+                wordMode: scrabbleState.wordMode || "kids"
             });
             let points = res.points;
             const info = wordStatusInfo(res.status, res);
@@ -871,7 +920,7 @@
                 case "letters":
                     return { icon: "❌", text: "Buchstaben nicht vorhanden" };
                 case "tooshort":
-                    return { icon: "❌", text: `zu kurz (min. ${e.min || 2} Buchstaben)` };
+                    return { icon: "❌", text: `Zu kurz – mind. ${e.min || 3} Buchstaben nötig` };
                 case "missing":
                     return { icon: "❌", text: `Pflichtbuchstabe ${e.required || ""} fehlt` };
                 case "repeat":

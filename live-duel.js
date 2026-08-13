@@ -1323,10 +1323,11 @@
                         players[key].word,
                         letters,  // ← Individuelle Buchstaben pro Spieler!
                         {
-                            minWord: (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord,
+                            minWord: (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord || 3,
                             required: required,
                             used: liveDuelUsedWords,
-                            addToUsed: false
+                            addToUsed: false,
+                            wordMode: data.wordMode || "kids"
                         }
                     );
 

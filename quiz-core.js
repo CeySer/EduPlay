@@ -112,9 +112,9 @@
         function launchQuiz(questions) {
             if (!questions || questions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return false; }
             let pool = [...questions];
+            // Frische Fragen zuerst – IDs erst merken, wenn eine Frage wirklich gezeigt wird
             if (typeof pickPreferFresh === "function") pool = pickPreferFresh(pool, pool.length);
             else pool = pool.sort(() => Math.random() - 0.5);
-            if (typeof rememberQuestionIds === "function") rememberQuestionIds(pool);
             currentQuestions = prepareQuestions(pool);
 
             testMode = false;
@@ -159,7 +159,7 @@
             launchQuiz(questions);
         }
 
-        function startQuiz() {
+        async function startQuiz() {
             const formelView = document.getElementById('view-formel-setup');
             if (formelView && !formelView.classList.contains('hidden')) return startFormulaSession();
             if (typeof QUESTIONS_DATABASE === 'undefined') {
@@ -171,10 +171,19 @@
                 showToast("Bitte ein Thema auswählen!", "error");
                 return;
             }
-            const questions = questionsForKey(cat);
-            if (!questions || questions.length === 0) {
+            if (typeof ladeFragenFuer === "function") {
+                try { await ladeFragenFuer(cat); } catch (e) { /* */ }
+            }
+            let questions = questionsForKey(cat) || [];
+            if (!questions.length) {
                 showToast("Keine Fragen für dieses Thema gefunden!", "error");
                 return;
+            }
+            // Frische Mischung: nicht immer denselben Block von vorn
+            if (typeof pickPreferFresh === "function") {
+                questions = pickPreferFresh(questions, questions.length);
+            } else {
+                questions = questions.slice().sort(() => Math.random() - 0.5);
             }
             // Für die "Weitermachen?"-Karte auf der Startseite
             if (typeof merkeLetzteAktivitaet === "function") merkeLetzteAktivitaet(cat);
@@ -215,6 +224,8 @@
             optsContainer.innerHTML = "";
             expBox.classList.add("hidden");
             document.getElementById("next-question-btn").classList.add("hidden");
+            // Nur gezeigte Fragen als „kürzlich“ merken (nicht den ganzen Pool beim Start)
+            if (q && typeof rememberQuestionIds === "function") rememberQuestionIds([q]);
 
             if (quizMode === 'flashcards') {
                 const speakBtn0 = document.getElementById("question-speak-btn");
@@ -468,15 +479,49 @@
         //  TEST-MODUS
         // ============================================================
 
+        function vocabNorm(s) {
+            return String(s || "").trim().toLowerCase()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^\w\s]/g, "");
+        }
+        function vocabIsSameWord(w) {
+            const a = vocabNorm(w && w.de);
+            const b = vocabNorm(w && w.foreign);
+            return !!(a && b && a === b);
+        }
+        function loadSeenSameVocab() {
+            try {
+                const a = JSON.parse(localStorage.getItem("eduplaySeenSameVocab") || "[]");
+                return Array.isArray(a) ? a : [];
+            } catch (e) { return []; }
+        }
+        function markSeenSameVocab(key) {
+            try {
+                let a = loadSeenSameVocab().filter(x => x !== key);
+                a.push(key);
+                if (a.length > 500) a = a.slice(-500);
+                localStorage.setItem("eduplaySeenSameVocab", JSON.stringify(a));
+            } catch (e) { /* */ }
+        }
+
         function buildVocabTestQuestions(vocabKeys, dir) {
             const out = [];
             if (typeof VOCABULARY_DATABASE === 'undefined') return out;
+            const seenSame = new Set(loadSeenSameVocab());
             (vocabKeys || []).forEach(vk => {
                 const [, lang, level] = vk.split(':');
                 const set = VOCABULARY_DATABASE?.[lang]?.[level];
                 if (!set || !set.words) return;
                 const words = set.words;
                 words.forEach(w => {
+                    if (!w || !w.de || !w.foreign) return;
+                    const sameKey = vocabNorm(w.de) + "|" + vocabNorm(w.foreign) + "|" + (lang || "");
+                    // DE == EN (Hotel, Taxi …): höchstens einmal, danach ausblenden
+                    if (vocabIsSameWord(w)) {
+                        if (seenSame.has(sameKey)) return;
+                        markSeenSameVocab(sameKey);
+                        seenSame.add(sameKey);
+                    }
                     const thisDir = dir === 'mix' ? (Math.random() < 0.5 ? 'de2f' : 'f2de') : dir;
                     const askDe = thisDir !== 'f2de';
                     const prompt = askDe ? w.de : w.foreign;

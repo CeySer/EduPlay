@@ -558,7 +558,7 @@ const geladen = _questionCounts[key] || 0;
         }
 
         const RECENT_Q_KEY = "eduplayRecentQIds";
-        const RECENT_Q_MAX = 80;
+        const RECENT_Q_MAX = 200;
 
         function loadRecentQuestionIds() {
             try {
@@ -653,6 +653,28 @@ const geladen = _questionCounts[key] || 0;
             if (suggested && areas.some(a => a.value === suggested)) aSel.value = suggested;
             fillSubjectSelect(areaId, subjectId);
             aSel.onchange = () => fillSubjectSelect(areaId, subjectId);
+        }
+
+        /** Wählt zufällig Bereich + Thema in den angegebenen Selects. */
+        function pickRandomCategory(areaId, subjectId) {
+            const aSel = document.getElementById(areaId);
+            const sSel = document.getElementById(subjectId);
+            if (!aSel || !sSel) return;
+            const mode = aSel.dataset.mode || "alle";
+            const areas = (typeof getAreas === "function") ? getAreas(mode) : [];
+            if (!areas.length) return;
+            const area = areas[Math.floor(Math.random() * areas.length)];
+            aSel.value = area.value;
+            if (typeof fillSubjectSelect === "function") fillSubjectSelect(areaId, subjectId);
+            const opts = Array.from(sSel.options || []).filter(o => o.value);
+            if (opts.length) {
+                const pick = opts[Math.floor(Math.random() * opts.length)];
+                sSel.value = pick.value;
+            }
+            if (typeof showToast === "function") {
+                const label = (sSel.selectedOptions[0] && sSel.selectedOptions[0].text) || sSel.value || "Thema";
+                showToast("🎲 " + label, "success", "randomcat");
+            }
         }
 
         let testMode = false;
@@ -1219,7 +1241,7 @@ const geladen = _questionCounts[key] || 0;
         let soundPack = "soft";
         try {
             const sp = localStorage.getItem("eduplaySoundPack");
-            if (sp === "soft" || sp === "crisp") soundPack = sp;
+            if (sp === "soft" || sp === "crisp" || sp === "arcade") soundPack = sp;
         } catch (e) { /* */ }
 
         const SFX_PACKS = {
@@ -1240,6 +1262,15 @@ const geladen = _questionCounts[key] || 0;
                 coin: () => playTones([[988, 0.06], [1319, 0.11]], "square", 0.07),
                 tick: () => playTones([[880, 0.04]], "square", 0.05),
                 timeUp: () => playTones([[392, 0.15], [330, 0.15], [262, 0.28]], "sawtooth", 0.11)
+            },
+            arcade: {
+                correct: () => playTones([[523, 0.05], [784, 0.08], [1047, 0.12]], "square", 0.09),
+                wrong: () => playTones([[150, 0.18], [120, 0.22]], "sawtooth", 0.09),
+                win: () => playTones([[523, 0.08], [659, 0.08], [784, 0.08], [1047, 0.08], [1319, 0.2]], "square", 0.1),
+                levelUp: () => playTones([[440, 0.06], [554, 0.06], [659, 0.06], [880, 0.14]], "square", 0.1),
+                coin: () => playTones([[988, 0.04], [1319, 0.08]], "square", 0.08),
+                tick: () => playTones([[880, 0.03]], "square", 0.04),
+                timeUp: () => playTones([[200, 0.12], [150, 0.12], [100, 0.2]], "sawtooth", 0.1)
             }
         };
 
@@ -1255,14 +1286,14 @@ const geladen = _questionCounts[key] || 0;
         };
 
         function setSoundPack(pack) {
-            if (pack !== "soft" && pack !== "crisp") return;
+            if (pack !== "soft" && pack !== "crisp" && pack !== "arcade") return;
             soundPack = pack;
             try { localStorage.setItem("eduplaySoundPack", pack); } catch (e) { /* */ }
             document.querySelectorAll("[data-sound-pack]").forEach(el => {
                 el.classList.toggle("active", el.getAttribute("data-sound-pack") === pack);
             });
             if (soundOn) SFX.correct();
-            showToast(pack === "soft" ? "🔊 Soft-Sounds" : "🔊 Klare Sounds", "success", "soundpack");
+            showToast(pack === "soft" ? "🔊 Soft-Sounds" : (pack === "arcade" ? "🔊 Arcade-Sounds" : "🔊 Klare Sounds"), "success", "soundpack");
         }
 
         function syncSoundPackUI() {

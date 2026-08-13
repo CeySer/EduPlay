@@ -1,0 +1,47 @@
+{
+  "name": "EduPlay Hub – Familien Edition",
+  "short_name": "EduPlay",
+  "description": "Lernen und spielen für die ganze Familie: Quiz nach Klasse und Fach, Vokabeln, Wort-Duelle und TV-Quiz.",
+  "lang": "de",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#080c18",
+  "theme_color": "#6366f1",
+  "categories": ["education", "games", "kids"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Allein lernen",
+      "short_name": "Lernen",
+      "url": "./index.html#lernen",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Gegeneinander spielen",
+      "short_name": "Duell",
+      "url": "./index.html#spielen",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -544,6 +544,7 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
             }
 
             if (typeof setMusicMode === 'function') setMusicMode(viewId);
+            if (typeof onStudyViewChange === 'function') onStudyViewChange(viewId);
 
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
             const target = document.getElementById(`view-${viewId}`);
@@ -582,7 +583,10 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 renderLesenCategories();
             }
             if (viewId === 'rewards') renderRewardsShop();
-            if (viewId === 'menu' && typeof renderContinueCard === 'function') renderContinueCard();
+            if (viewId === 'menu') {
+                if (typeof renderContinueCard === 'function') renderContinueCard();
+                if (typeof renderStudyGoalCard === 'function') renderStudyGoalCard();
+            }
             if (viewId === 'family-hub' && typeof ALL_PROFILES !== 'undefined') renderFamilyHub();
             if (viewId === 'family-hub' && typeof maybeShowOnboarding === 'function') setTimeout(maybeShowOnboarding, 400);
 

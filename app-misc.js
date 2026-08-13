@@ -10,20 +10,27 @@
         }
 
         function renderOfflineBanner() {
-            if (!OFFLINE_MODUS_AKTIV) return;
             let bar = document.getElementById("offline-banner");
             if (!bar) {
                 bar = document.createElement("div");
                 bar.id = "offline-banner";
                 bar.className =
-                    "fixed top-0 left-0 right-0 z-50 bg-amber-600 text-slate-950 text-center text-xs font-black py-1.5 shadow-lg";
-                bar.innerText = "📴 Offline – Duelle über mehrere Handys pausieren. Ein-Gerät-Modi laufen weiter.";
+                    "fixed top-0 left-0 right-0 z-[10000] bg-amber-500 text-slate-950 text-center text-xs font-black py-2 px-3 shadow-lg";
+                bar.innerText = "📴 Keine Internetverbindung – Online-Duelle pausieren. Lokal gespeicherte Inhalte gehen weiter.";
                 document.body.appendChild(bar);
             }
-            bar.classList.toggle("hidden", !isOffline());
+            const offline = (typeof isOffline === "function") ? isOffline()
+                : (typeof navigator !== "undefined" && navigator.onLine === false);
+            bar.classList.toggle("hidden", !offline);
+            if (!offline && typeof showToast === "function" && bar.dataset.wasOffline === "1") {
+                showToast("🌐 Wieder online", "success", "online");
+                bar.dataset.wasOffline = "0";
+            }
+            if (offline) bar.dataset.wasOffline = "1";
         }
         window.addEventListener("online", renderOfflineBanner);
         window.addEventListener("offline", renderOfflineBanner);
+        try { document.addEventListener("DOMContentLoaded", renderOfflineBanner); } catch (e) { /* */ }
 
         // ============================================================
         //  LESEN LERNEN (aus lesen_in_index.js)

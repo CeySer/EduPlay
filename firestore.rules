@@ -2,7 +2,7 @@ rules_version = '2';
 
 // ============================================================
 //  EduPlay Hub – Firestore Sicherheitsregeln
-//  Stand: 06.08.2026
+//  Stand: 07.08.2026
 //
 //  Einspielen: Firebase Console → Firestore → Regeln →
 //  Inhalt ersetzen → „Veröffentlichen".
@@ -13,6 +13,12 @@ rules_version = '2';
 //   • lobbies/{code}  Online-Lobbys, Zugriff nur mit dem Code
 //   • tv_codes/{code} Code → parentId, für Beitritt fremder Konten
 //   • alles andere    zu
+//
+//  WICHTIG beim Lesen dieser Regeln: Gäste melden sich anonym an
+//  (signInAnonymously). "angemeldet()" heißt deshalb NICHT "hat ein
+//  Konto", sondern nur "hat die App geöffnet". Alles, was wirklich
+//  geschützt sein soll, muss an request.auth.uid hängen – nicht an
+//  angemeldet().
 // ============================================================
 
 service cloud.firestore {
@@ -45,6 +51,17 @@ service cloud.firestore {
              || request.time.toMillis() - resource.data.hostLastSeen > 14400000;
     }
 
+    // Gehört diese Lobby dem Anfragenden? Geprüft wird hostUid, nicht
+    // createdBy: createdBy enthält den Profil-Schlüssel (welches Kind),
+    // nicht das Konto – und wechselt außerdem bei der Host-Übergabe.
+    // Die Feldabfrage mit 'in' ist nötig, weil ein fehlendes Feld sonst
+    // die ganze Bedingung zum Fehler macht statt zu false.
+    function istLobbyHost() {
+      return angemeldet()
+             && 'hostUid' in resource.data
+             && resource.data.hostUid == request.auth.uid;
+    }
+
     // --------------------------------------------------------
     //  FAMILIENDATEN
     //  Profile, Coins, Fortschritt, Eltern-PIN, Belohnungen,
@@ -63,6 +80,13 @@ service cloud.firestore {
       //     hostCommand (Fernbedienung Richtung Handy).
       //  3. Mitspieler mit eigenem Konto – schreiben ihre
       //     Antworten und Lebenszeichen, während das Spiel läuft.
+      //
+      //  OFFENER PUNKT: 'allow get: if true' erlaubt das Lesen ohne
+      //  jede Anmeldung, sobald jemand die uid kennt – und an uids
+      //  kommt man über tv_codes. Sichtbar sind dabei Spitznamen und
+      //  Punktestände laufender Runden. Sauber zu schließen wäre das
+      //  nur, wenn receiver.html sich anonym anmeldet; das ändert den
+      //  Fernseher-Ablauf und gehört einzeln getestet.
       // ----------------------------------------------------
       match /tv_game/{doc} {
         // get statt read: der Fernseher braucht ein bestimmtes
@@ -109,26 +133,45 @@ service cloud.firestore {
       allow get: if angemeldet();
       allow list: if false;
 
+      // hostUid wird beim Anlegen mitgeschrieben (lobby-avatar.js) und
+      // ist die einzige verlässliche Spur, wem die Runde gehört.
       allow create: if angemeldet()
-                    && request.resource.data.keys().hasAll(['code', 'status', 'players', 'createdBy'])
+                    && request.resource.data.keys().hasAll(['code', 'status', 'players', 'createdBy', 'hostUid'])
                     && request.resource.data.code == code
+                    && request.resource.data.hostUid == request.auth.uid
                     && request.resource.data.players.size() <= 12;
 
       allow update: if angemeldet()
                     && request.resource.data.code == code
                     && request.resource.data.players.size() <= 12
                     && (
-                         // Normales Mitspielen: Spieltyp und Ersteller
-                         // bleiben, damit niemand mit dem Code eine
-                         // laufende Runde übernimmt.
-                         (bleibtGleich('type') && bleibtGleich('createdBy'))
+                         // Normales Mitspielen: Spieltyp, Ersteller und
+                         // Eigentümer bleiben, damit niemand mit dem Code
+                         // eine laufende Runde übernimmt. Die Fragen liegen
+                         // ebenfalls fest – sie werden nur beim Anlegen
+                         // gesetzt, ein Austausch mittendrin wäre immer ein
+                         // Angriff.
+                         (bleibtGleich('type')
+                          && bleibtGleich('createdBy')
+                          && bleibtGleich('hostUid')
+                          && bleibtGleich('questions'))
 
                          // Ausnahme: abgelaufene Lobby wird mit demselben
-                         // Code neu belegt.
+                         // Code neu belegt (reserveAndCreateLobby schreibt
+                         // per set, das zählt hier als update).
                          || lobbyIstLeiche()
                        );
 
-      allow delete: if angemeldet();
+      // Früher: 'if angemeldet()' – damit konnte jeder anonyme Gast jede
+      // fremde Runde löschen, ohne sie überhaupt lesen zu können.
+      // Jetzt: nur der Gastgeber, der letzte verbliebene Spieler
+      // (räumt beim Verlassen auf) oder eine ohnehin tote Lobby.
+      allow delete: if angemeldet()
+                    && (
+                         istLobbyHost()
+                         || resource.data.players.size() <= 1
+                         || lobbyIstLeiche()
+                       );
     }
 
     // --------------------------------------------------------
@@ -145,16 +188,23 @@ service cloud.firestore {
       allow get: if angemeldet();
       allow list: if false;
 
+      // createdAt ist Pflicht: ohne Zeitstempel greift die
+      // Ablauf-Regel unten nicht (tv-cast.js setzt ihn immer mit).
       allow create: if angemeldet()
-                    && request.resource.data.parentId == request.auth.uid;
+                    && request.resource.data.parentId == request.auth.uid
+                    && request.resource.data.createdAt is number;
 
       // Ändern und Löschen nur durch den Eigentümer – oder wenn der
       // Eintrag älter als 12 Stunden ist und der Code neu vergeben wird.
+      // Der frühere Zweig "kein createdAt vorhanden" ist entfallen: er
+      // hätte einen Eintrag ohne Zeitstempel für jeden freigegeben.
       allow update, delete: if angemeldet()
                             && (
                                  resource.data.parentId == request.auth.uid
-                                 || !('createdAt' in resource.data)
-                                 || request.time.toMillis() - resource.data.createdAt > 43200000
+                                 || (
+                                      'createdAt' in resource.data
+                                      && request.time.toMillis() - resource.data.createdAt > 43200000
+                                    )
                                );
     }
 

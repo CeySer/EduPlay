@@ -521,6 +521,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 disc.style.color = "#0b1020";
             }
             renderPendingTestCard();
+            renderStudyGoalCard();
             renderWeaknessSuggestion();
             updateMenuGamification();
             switchView('menu');
@@ -770,25 +771,46 @@ auth.createUserWithEmailAndPassword(e, p)
             }
         }
 
+        function formatStudyDuration(sec) {
+            sec = Math.max(0, Math.floor(sec || 0));
+            const m = Math.floor(sec / 60);
+            const s = sec % 60;
+            if (m <= 0) return s + " Sek.";
+            if (s === 0) return m + " Min.";
+            return m + " Min. " + String(s).padStart(2, "0") + " Sek.";
+        }
+
         function renderStudyLogOverview() {
             const box = document.getElementById("dash-study-log");
             if (!box) return;
-            const days = [];
-            for (let i = 0; i < 14; i++) {
+            const today = new Date().toISOString().slice(0, 10);
+            const profiles = Object.keys(ALL_PROFILES || {}).map(k => ALL_PROFILES[k]).filter(p => p && !p.isGuest);
+
+            // Heute – immer sichtbar, alle Profile
+            const todayParts = profiles.map(p => {
+                const sec = (p.studyLog && p.studyLog[today]) || 0;
+                const cls = sec >= 60 ? "text-indigo-300" : "text-gray-500";
+                return `<div class="flex justify-between items-center py-1 border-b border-white/5 last:border-0">
+                    <span class="text-white font-bold text-sm">${esc(p.name)}</span>
+                    <span class="font-black text-sm ${cls}">${formatStudyDuration(sec)}</span>
+                </div>`;
+            });
+            let html = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-xl px-3 py-2.5 space-y-1">
+                <div class="text-[11px] text-indigo-300 font-black uppercase tracking-wide">Heute</div>
+                ${todayParts.length ? todayParts.join("") : '<div class="text-gray-500 text-xs">Keine Profile</div>'}
+            </div>`;
+
+            // Letzte 13 Tage (ohne heute), nur Einträge ≥ 30 Sek.
+            const rows = [];
+            for (let i = 1; i < 14; i++) {
                 const d = new Date();
                 d.setDate(d.getDate() - i);
-                days.push(d.toISOString().slice(0, 10));
-            }
-            const rows = [];
-            days.forEach(day => {
+                const day = d.toISOString().slice(0, 10);
                 const parts = [];
-                Object.keys(ALL_PROFILES || {}).forEach(k => {
-                    const p = ALL_PROFILES[k];
-                    if (!p || p.isGuest) return;
+                profiles.forEach(p => {
                     const sec = (p.studyLog && p.studyLog[day]) || 0;
                     if (sec >= 30) {
-                        const mins = Math.round(sec / 60);
-                        parts.push(`<span class="text-white font-bold">${esc(p.name)}</span> <span class="text-indigo-300">${mins} Min.</span>`);
+                        parts.push(`<span class="text-white font-bold">${esc(p.name)}</span> <span class="text-indigo-300">${formatStudyDuration(sec)}</span>`);
                     }
                 });
                 if (parts.length) {
@@ -798,10 +820,11 @@ auth.createUserWithEmailAndPassword(e, p)
                         <div class="text-xs flex flex-wrap gap-x-3 gap-y-1">${parts.join(" · ")}</div>
                     </div>`);
                 }
-            });
-            box.innerHTML = rows.length
-                ? rows.join("")
-                : `<div class="text-gray-500 text-xs py-2">Noch keine Lernzeiten erfasst. Ab jetzt zählt „Alleine lernen“.</div>`;
+            }
+            if (rows.length) {
+                html += `<div class="text-[11px] text-gray-500 font-bold pt-1">Frühere Tage</div>` + rows.join("");
+            }
+            box.innerHTML = html;
         }
 
         /**
@@ -1837,7 +1860,7 @@ auth.createUserWithEmailAndPassword(e, p)
         function renderDashAdminProgress() {
             const container = document.getElementById('dash-admin-stats');
             if (!container) return;
-            const keys = Object.keys(ALL_PROFILES || {});
+            const keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
             if (keys.length === 0) {
                 container.innerHTML = '<div class="text-gray-500 text-sm text-center py-4">Noch keine Spieler angelegt</div>';
                 return;
@@ -1866,6 +1889,135 @@ auth.createUserWithEmailAndPassword(e, p)
                             </div>
                         `;
             }).join('');
+            renderStudyGoalAdmin();
+        }
+
+        const STUDY_GOAL_LABELS = {
+            any: "Alles lernen",
+            vokabeln: "Vokabeln",
+            wissen: "Wissen",
+            lesen: "Lesen",
+            suchsel: "Suchsel"
+        };
+
+        function renderStudyGoalAdmin() {
+            const sel = document.getElementById("dash-goal-profile");
+            const list = document.getElementById("dash-goal-list");
+            const keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
+            if (sel) {
+                const prev = sel.value;
+                sel.innerHTML = keys.length
+                    ? keys.map(k => `<option value="${k}">${esc(ALL_PROFILES[k].name)}</option>`).join("")
+                    : '<option value="">Kein Spieler</option>';
+                if (prev && keys.indexOf(prev) !== -1) sel.value = prev;
+            }
+            if (!list) return;
+            const today = new Date().toISOString().slice(0, 10);
+            const rows = keys.map(k => {
+                const p = ALL_PROFILES[k];
+                const g = p.studyGoal;
+                if (!g || !g.minutes) return "";
+                if (g.day && g.day !== today) return "";
+                const doneSec = (p.studyLog && p.studyLog[today]) || 0;
+                const needSec = (g.minutes || 0) * 60;
+                const done = doneSec >= needSec;
+                const label = STUDY_GOAL_LABELS[g.activity] || "Lernen";
+                const prog = (typeof formatStudyDuration === "function")
+                    ? formatStudyDuration(doneSec) + " / " + g.minutes + " Min."
+                    : Math.floor(doneSec / 60) + " / " + g.minutes + " Min.";
+                return `<div class="bg-white/5 border border-white/5 rounded-xl p-3 flex items-center justify-between gap-2">
+                    <div class="min-w-0">
+                        <div class="font-bold text-white text-sm">${esc(p.name)} · ${esc(label)}</div>
+                        <div class="text-[11px] ${done ? "text-emerald-400" : "text-amber-300"} font-bold">${done ? "✓ Erledigt · " : ""}${prog}</div>
+                        ${g.note ? `<div class="text-[11px] text-gray-500 truncate">${esc(g.note)}</div>` : ""}
+                    </div>
+                    <button type="button" onclick="clearStudyGoal('${k}')"
+                        class="shrink-0 text-xs font-bold py-1.5 px-2.5 rounded-lg bg-rose-500/20 text-rose-300 border border-rose-400/30 hover:bg-rose-500/30">Zurückziehen</button>
+                </div>`;
+            }).filter(Boolean);
+            list.innerHTML = rows.length
+                ? rows.join("")
+                : '<div class="text-gray-500 text-xs py-1">Kein aktiver Auftrag.</div>';
+        }
+
+        function assignStudyGoalFromDashboard() {
+            const profileKey = document.getElementById("dash-goal-profile")?.value;
+            const minutes = parseInt(document.getElementById("dash-goal-minutes")?.value, 10) || 0;
+            const activity = document.getElementById("dash-goal-activity")?.value || "any";
+            const noteRaw = (document.getElementById("dash-goal-note")?.value || "").trim();
+            const note = (typeof cleanInput === "function") ? cleanInput(noteRaw, 60) : noteRaw.slice(0, 60);
+            if (!profileKey || !ALL_PROFILES[profileKey]) return showToast("Kein Spieler ausgewählt!", "error");
+            if (minutes < 5 || minutes > 180) return showToast("Minuten: 5–180", "error");
+            const studyGoal = {
+                minutes,
+                activity,
+                note: note || "",
+                day: new Date().toISOString().slice(0, 10),
+                createdAt: new Date().toISOString()
+            };
+            ALL_PROFILES[profileKey].studyGoal = studyGoal;
+            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.studyGoal = studyGoal;
+            if (currentParentUser) {
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
+                    .update({ studyGoal })
+                    .catch(e => handleError("assignStudyGoal", e, "Auftrag konnte nicht gespeichert werden."));
+            }
+            showToast(`Auftrag für ${esc(ALL_PROFILES[profileKey].name)}: ${minutes} Min.`, "success");
+            renderStudyGoalAdmin();
+            if (typeof renderStudyGoalCard === "function") renderStudyGoalCard();
+        }
+
+        function clearStudyGoal(profileKey) {
+            if (!profileKey || !ALL_PROFILES[profileKey]) return;
+            ALL_PROFILES[profileKey].studyGoal = null;
+            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.studyGoal = null;
+            if (currentParentUser) {
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
+                    .update({ studyGoal: null })
+                    .catch(e => handleError("clearStudyGoal", e, "Auftrag konnte nicht gelöscht werden."));
+            }
+            showToast("Auftrag zurückgezogen.", "success");
+            renderStudyGoalAdmin();
+            if (typeof renderStudyGoalCard === "function") renderStudyGoalCard();
+        }
+
+        function renderStudyGoalCard() {
+            const card = document.getElementById("study-goal-card");
+            if (!card) return;
+            const g = currentPlayer && currentPlayer.studyGoal;
+            const today = new Date().toISOString().slice(0, 10);
+            if (!g || !g.minutes || (g.day && g.day !== today)) {
+                card.classList.add("hidden");
+                card.innerHTML = "";
+                return;
+            }
+            const doneSec = (currentPlayer.studyLog && currentPlayer.studyLog[today]) || 0;
+            const needSec = g.minutes * 60;
+            const pct = Math.min(100, Math.round((doneSec / needSec) * 100));
+            const done = doneSec >= needSec;
+            const label = STUDY_GOAL_LABELS[g.activity] || "Lernen";
+            const prog = (typeof formatStudyDuration === "function")
+                ? formatStudyDuration(doneSec)
+                : (Math.floor(doneSec / 60) + " Min.");
+            const startView = g.activity === "vokabeln" ? "vokabeln"
+                : g.activity === "lesen" ? "lesen"
+                : g.activity === "suchsel" ? "suchsel-setup"
+                : g.activity === "wissen" ? "quiz-setup"
+                : "lernen";
+            card.innerHTML =
+                `<div class="glass-card-glow p-4 text-white" style="background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(234,179,8,0.1));border-color:rgba(245,158,11,0.35);">
+                    <div class="font-black text-base mb-0.5">${done ? "🎉 Auftrag erledigt!" : "📋 Lernauftrag"}</div>
+                    <div class="text-xs opacity-90 mb-2">${esc(label)} · Ziel ${g.minutes} Min.${g.note ? " · " + esc(g.note) : ""}</div>
+                    <div class="flex justify-between text-[11px] font-bold mb-1">
+                        <span class="${done ? "text-emerald-300" : "text-amber-200"}">${prog} / ${g.minutes} Min.</span>
+                        <span class="text-gray-400">${pct}%</span>
+                    </div>
+                    <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden mb-3">
+                        <div class="h-2 rounded-full ${done ? "bg-emerald-400" : "bg-amber-400"}" style="width:${pct}%"></div>
+                    </div>
+                    ${done ? "" : `<button type="button" onclick="switchView('${startView}')" class="btn-primary w-full text-center text-sm" style="background:linear-gradient(135deg,#f59e0b,#eab308);">Jetzt üben 🚀</button>`}
+                </div>`;
+            card.classList.remove("hidden");
         }
 
         function renderDashAdminTest() {

@@ -81,10 +81,18 @@
         <div id="ausgabe" class="laden">Fragen werden geladen …</div>
     </div>
 
-    <script src="datenbanken_loader.js?v=8.8"></script>
+    <script src="datenbanken_loader.js?v=9.1"></script>
     <script>
+        // Seit dem Umbau auf Lazy Loading (v9.0) liefert 'datenbanken-geladen'
+        // nur noch den kleinen Start-Bestand (fürs Menü). Für die Prüfung
+        // hier brauchen wir wirklich alles – das lädt sonst nur nach, wenn
+        // im echten Spiel eine Kategorie gewählt wird.
         document.addEventListener('datenbanken-geladen', function () {
-            setTimeout(pruefen, 60);
+            if (typeof window.ladeAlleFragen === 'function') {
+                window.ladeAlleFragen().then(function () { setTimeout(pruefen, 60); });
+            } else {
+                setTimeout(pruefen, 60);
+            }
         });
         setTimeout(function () {
             const a = document.getElementById('ausgabe');

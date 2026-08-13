@@ -2977,3 +2977,146 @@ body:not(.dark-theme) .password-toggle-btn:hover { background: rgba(15, 23, 42, 
 body:not(.dark-theme) .btn-beenden {
     color: #fff !important;
 }
+
+
+/* --- Hell-Modus: Lesbarkeit Nachzug 2 --- */
+body:not(.dark-theme) .text-muted,
+body:not(.dark-theme) .placeholder\:text-gray-500::placeholder {
+    color: #64748b !important;
+}
+body:not(.dark-theme) .input-modern::placeholder {
+    color: #64748b !important;
+    opacity: 1;
+}
+body:not(.dark-theme) .drawer-menu-item {
+    color: #1e293b !important;
+}
+body:not(.dark-theme) .drawer-menu-item.danger {
+    color: #b91c1c !important;
+}
+body:not(.dark-theme) .drawer-footer {
+    color: #64748b !important;
+}
+body:not(.dark-theme) label.text-xs,
+body:not(.dark-theme) .text-xs.text-gray-400,
+body:not(.dark-theme) .text-\[11px\].text-gray-500 {
+    color: #475569 !important;
+}
+body:not(.dark-theme) #options-container button {
+    color: #0f172a !important;
+    background: #f1f5f9 !important;
+    border-color: #cbd5e1 !important;
+}
+body:not(.dark-theme) #options-container button:hover {
+    background: #e2e8f0 !important;
+}
+body:not(.dark-theme) #question-text {
+    color: #0f172a !important;
+}
+body:not(.dark-theme) .hub-action-btn,
+body:not(.dark-theme) .hub-soft-btn {
+    color: #0f172a !important;
+}
+body:not(.dark-theme) .continue-card-close {
+    background: rgba(15, 23, 42, 0.08);
+    color: #334155;
+    border-color: rgba(15, 23, 42, 0.12);
+}
+body:not(.dark-theme) #offline-banner {
+    background: #f59e0b;
+    color: #0f172a;
+}
+
+
+/* --- Hell-Modus: Lesbarkeit Nachzug 3 (stärker) --- */
+body:not(.dark-theme) {
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #475569;
+}
+body:not(.dark-theme) p,
+body:not(.dark-theme) span,
+body:not(.dark-theme) li,
+body:not(.dark-theme) label {
+    color: inherit;
+}
+body:not(.dark-theme) .text-white\/80,
+body:not(.dark-theme) .text-white\/70,
+body:not(.dark-theme) .text-white\/60,
+body:not(.dark-theme) [class*="text-white/"] {
+    color: #334155 !important;
+}
+body:not(.dark-theme) .text-gray-400,
+body:not(.dark-theme) .text-gray-500,
+body:not(.dark-theme) .text-slate-400,
+body:not(.dark-theme) .text-slate-500 {
+    color: #475569 !important;
+}
+body:not(.dark-theme) .text-gray-300,
+body:not(.dark-theme) .text-slate-300 {
+    color: #334155 !important;
+}
+body:not(.dark-theme) .opacity-60,
+body:not(.dark-theme) .opacity-50,
+body:not(.dark-theme) .opacity-40 {
+    opacity: 0.85 !important;
+}
+body:not(.dark-theme) #onboarding-overlay .glass-card {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+}
+body:not(.dark-theme) #onboard-title {
+    color: #0f172a !important;
+}
+body:not(.dark-theme) #onboard-body {
+    color: #334155 !important;
+}
+body:not(.dark-theme) .dash-sub-nav button {
+    color: #334155 !important;
+}
+body:not(.dark-theme) .dash-sub-nav button.active {
+    color: #0f172a !important;
+    background: rgba(99, 102, 241, 0.15) !important;
+}
+body:not(.dark-theme) select.input-modern,
+body:not(.dark-theme) option {
+    color: #0f172a !important;
+    background: #fff;
+}
+body:not(.dark-theme) .toast,
+body:not(.dark-theme) [id*="toast"] {
+    color: #0f172a;
+}
+body:not(.dark-theme) .bg-white\/5,
+body:not(.dark-theme) [class*="bg-white/5"],
+body:not(.dark-theme) [class*="bg-white\/5"] {
+    background: rgba(15, 23, 42, 0.04) !important;
+}
+body:not(.dark-theme) [class*="bg-white/10"] {
+    background: rgba(15, 23, 42, 0.07) !important;
+}
+body:not(.dark-theme) [class*="border-white/10"],
+body:not(.dark-theme) [class*="border-white/20"] {
+    border-color: #cbd5e1 !important;
+}
+body:not(.dark-theme) #view-menu .glass-card,
+body:not(.dark-theme) #view-spielen .glass-card,
+body:not(.dark-theme) #view-dashboard .glass-card {
+    color: #0f172a;
+}
+body:not(.dark-theme) h1, body:not(.dark-theme) h2, body:not(.dark-theme) h3 {
+    color: #0f172a;
+}
+body:not(.dark-theme) h1.text-pink-400,
+body:not(.dark-theme) h2.text-pink-400,
+body:not(.dark-theme) .text-pink-400 {
+    color: #be185d !important;
+}
+body:not(.dark-theme) h2.text-rose-400,
+body:not(.dark-theme) .text-rose-400 {
+    color: #e11d48 !important;
+}
+body:not(.dark-theme) .text-indigo-400 {
+    color: #4f46e5 !important;
+}

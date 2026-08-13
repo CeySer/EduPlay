@@ -83,6 +83,8 @@
         }
 
         let soloSessionStartedAt = null;
+        let soloStudyFlushTimer = null;
+        const STUDY_VIEWS = ["quiz", "vokabeln", "lesen", "suchsel-play"];
 
         function trackStudySeconds(seconds) {
             if (!currentPlayer || !activePlayerKey || !(seconds > 0)) return;
@@ -95,9 +97,29 @@
                 delete currentPlayer.studyLog[keys.shift()];
             }
             if (typeof savePlayerProgress === "function") savePlayerProgress();
+            if (typeof renderStudyGoalCard === "function") renderStudyGoalCard();
+        }
+
+        function startSoloStudySession() {
+            if (soloSessionStartedAt) return;
+            soloSessionStartedAt = Date.now();
+            if (soloStudyFlushTimer) clearInterval(soloStudyFlushTimer);
+            // alle 60s zwischenspeichern (App-Crash / Tab zu)
+            soloStudyFlushTimer = setInterval(function () {
+                if (!soloSessionStartedAt) return;
+                const sec = Math.round((Date.now() - soloSessionStartedAt) / 1000);
+                if (sec >= 15) {
+                    trackStudySeconds(sec);
+                    soloSessionStartedAt = Date.now();
+                }
+            }, 60000);
         }
 
         function endSoloStudySession() {
+            if (soloStudyFlushTimer) {
+                clearInterval(soloStudyFlushTimer);
+                soloStudyFlushTimer = null;
+            }
             if (soloSessionStartedAt) {
                 const sec = Math.round((Date.now() - soloSessionStartedAt) / 1000);
                 if (sec >= 15) trackStudySeconds(sec);
@@ -107,6 +129,24 @@
                 window.__eduplayBlitzActive = false;
                 if (typeof dismissWeaknessSuggestion === "function") dismissWeaknessSuggestion(true);
             }
+        }
+
+        function onStudyViewChange(viewId) {
+            if (STUDY_VIEWS.indexOf(viewId) !== -1) startSoloStudySession();
+            else endSoloStudySession();
+        }
+
+        // Tab/App verlassen → Zeit sichern
+        if (typeof document !== "undefined") {
+            document.addEventListener("visibilitychange", function () {
+                if (document.visibilityState === "hidden" && soloSessionStartedAt) {
+                    const sec = Math.round((Date.now() - soloSessionStartedAt) / 1000);
+                    if (sec >= 15) {
+                        trackStudySeconds(sec);
+                        soloSessionStartedAt = Date.now();
+                    }
+                }
+            });
         }
 
         function launchQuiz(questions) {
@@ -121,7 +161,6 @@
             testAnsweredCount = 0;
             testCorrectCount = 0;
             window.lastLessonQuestions = questions;
-            soloSessionStartedAt = Date.now();
             document.getElementById("test-timer-bar").classList.add("hidden");
             qIndex = 0;
             switchView('quiz');
@@ -166,27 +205,40 @@
                 showToast("Fehler: Datenbank nicht geladen!", "error");
                 return;
             }
-            const cat = document.getElementById("sub-category")?.value;
-            if (!cat) {
-                showToast("Bitte ein Thema auswählen!", "error");
+            const keys = (typeof collectCategoryKeysFor === "function")
+                ? collectCategoryKeysFor("quiz")
+                : [document.getElementById("sub-category")?.value].filter(Boolean);
+            if (!keys.length) {
+                showToast("Bitte mindestens ein Thema auswählen!", "error");
                 return;
             }
             if (typeof ladeFragenFuer === "function") {
-                try { await ladeFragenFuer(cat); } catch (e) { /* */ }
+                try {
+                    await ladeFragenFuer(keys);
+                } catch (e) {
+                    const offline = (typeof navigator !== "undefined" && navigator.onLine === false);
+                    showToast(offline
+                        ? "📴 Offline – Thema noch nicht geladen. WLAN prüfen oder anderes Thema wählen."
+                        : "Fragen konnten nicht geladen werden. Verbindung prüfen und erneut versuchen.", "error");
+                    return;
+                }
             }
-            let questions = questionsForKey(cat) || [];
+            let questions = (keys.length > 1 && typeof buildMixedQuestions === "function")
+                ? buildMixedQuestions(keys, 9999)
+                : (questionsForKey(keys[0]) || []);
             if (!questions.length) {
-                showToast("Keine Fragen für dieses Thema gefunden!", "error");
+                const offline = (typeof navigator !== "undefined" && navigator.onLine === false);
+                showToast(offline
+                    ? "📴 Offline und keine Fragen im Speicher. Einmal online das Thema öffnen."
+                    : "Keine Fragen für dieses Thema gefunden – anderes Thema wählen.", "error");
                 return;
             }
-            // Frische Mischung: nicht immer denselben Block von vorn
-            if (typeof pickPreferFresh === "function") {
+            if (keys.length === 1 && typeof pickPreferFresh === "function") {
                 questions = pickPreferFresh(questions, questions.length);
-            } else {
+            } else if (keys.length === 1) {
                 questions = questions.slice().sort(() => Math.random() - 0.5);
             }
-            // Für die "Weitermachen?"-Karte auf der Startseite
-            if (typeof merkeLetzteAktivitaet === "function") merkeLetzteAktivitaet(cat);
+            if (typeof merkeLetzteAktivitaet === "function") merkeLetzteAktivitaet(keys[0]);
             launchQuiz(questions);
         }
 

@@ -778,32 +778,30 @@
         // }
 
         function speakNatural(text) {
-            if (!('speechSynthesis' in window)) return;
-
-            // Bricht aktuelles Vorlesen ab
-            window.speechSynthesis.cancel();
-
-            // Nur den reinen Text vorlesen, ohne Emojis oder Sonderzeichen
-            const cleanText = String(text)
-                .replace(/[🔤👏🔊📖🖼️📗📕📝🧠🧩✅❌➔❓💡🎉🌟🏆👂👀📚]/g, '') // Emojis entfernen
-                .replace(/[^\w\s\.\,\!\?\-\u00C0-\u017F]/g, '') // Sonderzeichen entfernen (außer deutsche Umlaute)
-                .trim();
-
-            if (!cleanText) return;
-
-            const utterance = new SpeechSynthesisUtterance(cleanText);
-            utterance.lang = 'de-DE';
-            utterance.rate = 0.9;
-            utterance.pitch = 1.1;
-
-            const voices = window.speechSynthesis.getVoices();
-            const bestVoice = voices.find(v => v.lang.includes('de') && (v.name.includes('Natural') || v.name.includes('Premium') || v.name.includes('Google')))
-                || voices.find(v => v.lang.includes('de'));
-
-            if (bestVoice) {
-                utterance.voice = bestVoice;
+            if (typeof speakText === "function") {
+                speakText(text);
+                return;
             }
-
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            let cleanText = String(text || "")
+                .replace(/<u[^>]*>[\s\S]*?<\/u>/gi, " ")
+                .replace(/__+|_+/g, " ")
+                .replace(/\([^)]*\)/g, " ")
+                .replace(/[🔤👏🔊📖🖼️📗📕📝🧠🧩✅❌➔❓💡🎉🌟🏆👂👀📚]/g, "")
+                .replace(/[^\w\s\.\,\!\?\-\u00C0-\u017F]/g, "")
+                .replace(/\s+/g, " ")
+                .trim();
+            if (!cleanText) return;
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = "de-DE";
+            utterance.rate = 0.85;
+            utterance.pitch = 1.15;
+            const voices = window.speechSynthesis.getVoices() || [];
+            const bestVoice = voices.find(v => /de/i.test(v.lang) && /natural|neural|premium|google|anna|helena|katja/i.test(v.name))
+                || voices.find(v => /de-DE/i.test(v.lang))
+                || voices.find(v => /de/i.test(v.lang));
+            if (bestVoice) utterance.voice = bestVoice;
             window.speechSynthesis.speak(utterance);
         }
 

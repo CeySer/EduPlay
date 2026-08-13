@@ -237,8 +237,12 @@
             if (!box || !suchselState) return;
             box.innerHTML = suchselState.words.map(w => {
                 const found = suchselState.found.has(w);
+                const revealed = !found && suchselState.gaveUp;
                 const label = suchselState.clues[w] ? esc(suchselState.clues[w]) : esc(w);
-                return `<span class="badge-pill" style="${found ? 'text-decoration:line-through;opacity:.5;' : ''}">${label}</span>`;
+                let style = "";
+                if (found) style = "text-decoration:line-through;opacity:.5;";
+                else if (revealed) style = "text-decoration:line-through;opacity:.6;color:#fbbf24;";
+                return `<span class="badge-pill" style="${style}">${revealed ? "🏳️ " : ""}${label}</span>`;
             }).join("");
             const counter = document.getElementById("suchsel-found-count");
             if (counter) counter.innerText = `${suchselState.found.size}/${suchselState.words.length}`;
@@ -247,9 +251,11 @@
         function suchselSetCellState(el, state) {
             el.classList.remove("bg-white/5", "border-white/5", "text-gray-200",
                 "bg-indigo-500", "border-indigo-400", "text-white",
-                "bg-emerald-500/80", "border-emerald-400");
+                "bg-emerald-500/80", "border-emerald-400",
+                "bg-amber-500/70", "border-amber-400");
             if (state === "selecting") el.classList.add("bg-indigo-500", "border-indigo-400", "text-white");
             else if (state === "found") el.classList.add("bg-emerald-500/80", "border-emerald-400", "text-white");
+            else if (state === "revealed") el.classList.add("bg-amber-500/70", "border-amber-400", "text-white");
             else el.classList.add("bg-white/5", "border-white/5", "text-gray-200");
         }
 
@@ -396,6 +402,33 @@
             suchselState = null;
         }
 
+        // Für Kinder, die nicht weiterkommen: zeigt alle fehlenden Wörter
+        // im Gitter (amber statt grün) und beendet die Runde ohne weitere
+        // Coins für diese Wörter.
+        async function revealSuchsel() {
+            if (!suchselState || suchselState.finished) return;
+            const offen = suchselState.words.length - suchselState.found.size;
+            if (offen <= 0) return;
+            const ok = (typeof appConfirm === "function")
+                ? await appConfirm(`Die ${offen} restlichen Wörter werden im Gitter gezeigt. Dafür gibt's keine Coins mehr.`, {
+                    titel: "Suchsel auflösen?", icon: "🏳️", okText: "Auflösen", abbrechenText: "Weiter suchen", gefahr: true
+                })
+                : confirm("Suchsel auflösen? Für die restlichen Wörter gibt's keine Coins mehr.");
+            if (!ok || !suchselState || suchselState.finished) return;
+
+            suchselState.gaveUp = true;
+            suchselState.words.forEach(w => {
+                if (suchselState.found.has(w)) return;
+                (suchselState.placements[w] || []).forEach(([r, c]) => {
+                    suchselState.foundCellKeys.add(suchselCellKey(r, c));
+                    const el = document.querySelector(`#suchsel-grid [data-r="${r}"][data-c="${c}"]`);
+                    if (el) suchselSetCellState(el, "revealed");
+                });
+            });
+            renderSuchselWordlist();
+            finishSuchsel();
+        }
+
         // ------------------------------------------------------------
         //  ENDE
         // ------------------------------------------------------------
@@ -405,25 +438,30 @@
             stopSuchselTimer();
             const seconds = Math.max(1, Math.floor((Date.now() - suchselState.startedAt) / 1000));
             const total = suchselState.words.length;
-            const speedBonus = seconds <= total * 12 ? 5 : 0;
-            const coins = total * 3 + speedBonus;
+            const foundCount = suchselState.found.size;
+            const gaveUp = !!suchselState.gaveUp;
+            const speedBonus = (!gaveUp && seconds <= total * 12) ? 5 : 0;
+            const coins = foundCount * 3 + speedBonus;
 
             if (typeof addXP === "function") addXP(coins);
-            if (typeof trackStudySeconds === "function") trackStudySeconds(seconds);
-            if (typeof SFX !== "undefined") SFX.win();
-            if (typeof confetti === "function") confetti();
+            if (typeof SFX !== "undefined") SFX[gaveUp ? "tap" : "win"]();
+            if (!gaveUp && typeof confetti === "function") confetti();
 
             const m = String(Math.floor(seconds / 60)).padStart(2, "0");
             const s = String(seconds % 60).padStart(2, "0");
+
+            const title = gaveUp ? "Aufgelöst – nächstes Mal klappt's!" : "Alle Wörter gefunden!";
+            const emoji = gaveUp ? "🏳️" : "🔍";
+            const summary = gaveUp ? `${foundCount}/${total} selbst gefunden · +${coins} 🪙` : `${total} Wörter · +${coins} 🪙`;
 
             const box = document.getElementById("test-result-content");
             if (box) {
                 box.innerHTML = `
         <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(16,185,129,0.2);">
-            <div class="text-7xl">🔍</div>
-            <h2 class="text-2xl font-black text-white">Alle Wörter gefunden!</h2>
+            <div class="text-7xl">${emoji}</div>
+            <h2 class="text-2xl font-black text-white">${title}</h2>
             <div class="text-5xl font-black text-emerald-400">${m}:${s}</div>
-            <div class="text-gray-400 font-bold">${total} Wörter · +${coins} 🪙</div>
+            <div class="text-gray-400 font-bold">${summary}</div>
             <div class="flex gap-3 mt-4">
                 <button onclick="switchView('suchsel-setup')" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Neues Suchsel</button>
                 <button onclick="switchView('lernen')" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Beenden</button>

@@ -454,7 +454,7 @@ const geladen = _questionCounts[key] || 0;
             if (areaId === "live-duel-area" && typeof fillLiveDuelCategoryChecks === "function") {
                 fillLiveDuelCategoryChecks();
             }
-            const mixPrefixes = { "coded-lobby-area": "coded-lobby", "tv-area": "tv", "duel-area": "duel" };
+            const mixPrefixes = { "coded-lobby-area": "coded-lobby", "tv-area": "tv", "duel-area": "duel", "quiz-area": "quiz" };
             if (mixPrefixes[areaId] && typeof fillCategoryChecksFor === "function") {
                 fillCategoryChecksFor(mixPrefixes[areaId]);
             }
@@ -508,7 +508,8 @@ const geladen = _questionCounts[key] || 0;
         const CATEGORY_MIX_IDS = {
             "coded-lobby": { area: "coded-lobby-area", category: "coded-lobby-category", mix: "coded-lobby-mix-categories", checks: "coded-lobby-category-checks", cls: "coded-lobby-cat-check" },
             "tv": { area: "tv-area", category: "tv-quiz-category", mix: "tv-mix-categories", checks: "tv-category-checks", cls: "tv-cat-check" },
-            "duel": { area: "duel-area", category: "duel-category", mix: "duel-mix-categories", checks: "duel-category-checks", cls: "duel-cat-check" }
+            "duel": { area: "duel-area", category: "duel-category", mix: "duel-mix-categories", checks: "duel-category-checks", cls: "duel-cat-check" },
+            "quiz": { area: "quiz-area", category: "sub-category", mix: "quiz-mix-categories", checks: "quiz-category-checks", cls: "quiz-cat-check" }
         };
 
         function fillCategoryChecksFor(key) {
@@ -1312,13 +1313,13 @@ const geladen = _questionCounts[key] || 0;
         }
 
         // ============================================================
-        //  HINTERGRUNDMUSIK (Web-Audio, kein Asset)
-        //  Menü: weiche Ambient-Pads + leise Melodie (modern, neutral, edu)
-        //  Spiel: freundliche, klare Pulse – nicht dunkel, nicht kindisch
+        //  HINTERGRUNDMUSIK v2 (Web-Audio)
+        //  Menü: warmer Lo-fi-Ambient (F-Dur-ish, weiche 7er-Akkorde)
+        //  Spiel: leichter Bounce, motivierend, nicht nervig
         // ============================================================
         let musicCtx = null;
         let musicGain = null;
-        let musicVolume = 0.22;
+        let musicVolume = 0.18;
         let musicTimer = null;
         let musicStep = 0;
         let musicMode = 'menu';
@@ -1328,24 +1329,20 @@ const geladen = _questionCounts[key] || 0;
             if (savedVol !== null) musicVolume = Math.max(0, Math.min(1, parseFloat(savedVol)));
         } catch (e) { }
 
-        // C-Dur / G-Dur – weich, modern (Hz)
-        const MENU_ROOT = 261.63; // C4
+        // Warme Progressions (F – Dm – Bb – C), edu/lo-fi
         const MENU_CHORDS = [
-            [261.63, 329.63, 392.00], // C
-            [293.66, 349.23, 440.00], // Dm-ähnlich (freundlich)
-            [246.94, 311.13, 369.99], // G (tief)
-            [220.00, 277.18, 329.63]  // Am
+            [174.61, 220.00, 261.63, 349.23], // F
+            [146.83, 220.00, 261.63, 349.23], // Dm
+            [116.54, 174.61, 233.08, 349.23], // Bb
+            [130.81, 196.00, 261.63, 329.63]  // C
         ];
-        // Sanfte Melodie über den Pads (Index in C-Pentatonik)
-        const MENU_MELODY = [0, 2, 4, 7, 4, 2, 0, -1, 0, 2, 5, 4, 2, 0, 2, 4];
-        const MENU_PENTA = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25];
+        // F-Pentatonik Melodie (sparsam)
+        const MENU_PENTA = [349.23, 392.00, 440.00, 523.25, 587.33, 698.46];
+        const MENU_MELODY = [0, -1, 2, 4, 2, 0, 3, -1, 1, 3, 4, 2, 0, -1, 2, 0];
 
-        // Spiel: helles C-Mixolydian-Feeling, klar und motivierend
-        const GAME_NOTES = [
-            261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25,
-            392.00, 349.23, 329.63, 293.66
-        ];
-        const GAME_BASS = [130.81, 146.83, 164.81, 174.61, 196.00, 220.00];
+        // Spiel: G-Dur Bounce
+        const GAME_ARP = [196.00, 246.94, 293.66, 392.00, 493.88, 392.00, 293.66, 246.94];
+        const GAME_BASS = [98.00, 110.00, 123.47, 130.81];
 
         function ensureMusicAudio() {
             try {
@@ -1360,19 +1357,20 @@ const geladen = _questionCounts[key] || 0;
             } catch (e) { return null; }
         }
 
-        function _musicTone(ctx, type, freq, t, attack, peak, release, filterHz) {
+        function _musicTone(ctx, type, freq, t, attack, peak, release, filterHz, detune) {
             const osc = ctx.createOscillator();
             const g = ctx.createGain();
             osc.type = type;
             osc.frequency.setValueAtTime(freq, t);
-            g.gain.setValueAtTime(0, t);
-            g.gain.linearRampToValueAtTime(peak, t + attack);
+            if (detune) osc.detune.setValueAtTime(detune, t);
+            g.gain.setValueAtTime(0.0001, t);
+            g.gain.exponentialRampToValueAtTime(Math.max(0.0002, peak), t + Math.max(0.01, attack));
             g.gain.exponentialRampToValueAtTime(0.0001, t + release);
             if (filterHz) {
                 const f = ctx.createBiquadFilter();
                 f.type = "lowpass";
                 f.frequency.setValueAtTime(filterHz, t);
-                f.Q.value = 0.7;
+                f.Q.value = 0.55;
                 osc.connect(f);
                 f.connect(g);
             } else {
@@ -1380,58 +1378,89 @@ const geladen = _questionCounts[key] || 0;
             }
             g.connect(musicGain);
             osc.start(t);
-            osc.stop(t + release + 0.05);
+            osc.stop(t + release + 0.08);
         }
 
-        // Menü: alle 4 Schritte ein weicher Akkord-Pad, dazwischen leise Melodie
+        // Leises „Vinyl“-Rauschen für Lo-fi-Feeling (sehr dezent)
+        function _musicNoise(ctx, t, dur, peak) {
+            try {
+                const n = Math.max(1, Math.floor(ctx.sampleRate * dur));
+                const buf = ctx.createBuffer(1, n, ctx.sampleRate);
+                const data = buf.getChannelData(0);
+                for (let i = 0; i < n; i++) data[i] = (Math.random() * 2 - 1) * 0.4;
+                const src = ctx.createBufferSource();
+                src.buffer = buf;
+                const g = ctx.createGain();
+                const f = ctx.createBiquadFilter();
+                f.type = "bandpass";
+                f.frequency.value = 1800;
+                f.Q.value = 0.4;
+                g.gain.setValueAtTime(0.0001, t);
+                g.gain.linearRampToValueAtTime(peak, t + 0.05);
+                g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+                src.connect(f);
+                f.connect(g);
+                g.connect(musicGain);
+                src.start(t);
+                src.stop(t + dur + 0.02);
+            } catch (e) { /* */ }
+        }
+
         function playMusicNote() {
             const ctx = ensureMusicAudio();
             if (!ctx || musicVolume <= 0) return;
             const t = ctx.currentTime;
             const step = musicStep % 32;
 
-            // Pad alle 4 Steps
-            if (step % 4 === 0) {
-                const chord = MENU_CHORDS[Math.floor(step / 4) % MENU_CHORDS.length];
+            // Warme Pads alle 8 Steps (langsamer Wechsel)
+            if (step % 8 === 0) {
+                const chord = MENU_CHORDS[Math.floor(step / 8) % MENU_CHORDS.length];
                 chord.forEach((freq, i) => {
-                    _musicTone(ctx, "sine", freq, t, 0.35, 0.07 - i * 0.012, 2.4, 1800);
-                    _musicTone(ctx, "triangle", freq * 0.5, t, 0.45, 0.04, 2.6, 900);
+                    _musicTone(ctx, "sine", freq, t, 0.6, 0.055 - i * 0.008, 3.8, 1400, i * 3);
+                    _musicTone(ctx, "triangle", freq * 0.5, t, 0.7, 0.03, 4.0, 700, -i * 2);
                 });
+                _musicNoise(ctx, t, 2.2, 0.012);
             }
 
-            // Melodie (sehr leise, modern)
-            const mIdx = MENU_MELODY[step % MENU_MELODY.length];
-            if (mIdx >= 0) {
-                const mf = MENU_PENTA[mIdx % MENU_PENTA.length];
-                _musicTone(ctx, "sine", mf, t, 0.08, 0.11, 0.9, 2200);
-                _musicTone(ctx, "triangle", mf * 2, t, 0.05, 0.03, 0.55, 3200);
+            // Sparsame Melodie (nur manche Steps)
+            if (step % 2 === 0) {
+                const mIdx = MENU_MELODY[(step / 2) % MENU_MELODY.length];
+                if (mIdx >= 0) {
+                    const mf = MENU_PENTA[mIdx % MENU_PENTA.length];
+                    _musicTone(ctx, "sine", mf, t, 0.12, 0.07, 1.1, 2600, 4);
+                    _musicTone(ctx, "sine", mf * 2.01, t, 0.1, 0.02, 0.7, 4000, -6);
+                }
+            }
+
+            // Sanfter Sub-Bass-Puls
+            if (step % 4 === 0) {
+                const bf = MENU_CHORDS[Math.floor(step / 8) % MENU_CHORDS.length][0];
+                _musicTone(ctx, "sine", bf * 0.5, t, 0.2, 0.09, 1.6, 280);
             }
 
             musicStep++;
         }
 
-        // Spiel: leichte, klare Pulse – motivierend, nicht aggressiv
         function playMusicNoteGame() {
             const ctx = ensureMusicAudio();
             if (!ctx || musicVolume <= 0) return;
             const t = ctx.currentTime;
-            const step = gameStep % 24;
-            const note = GAME_NOTES[step % GAME_NOTES.length];
+            const step = gameStep % 16;
+            const note = GAME_ARP[step % GAME_ARP.length];
 
-            // Hauptnote (weich, gefiltert)
-            _musicTone(ctx, "triangle", note, t, 0.02, 0.14, 0.28, 2400);
-            _musicTone(ctx, "sine", note * 2, t, 0.015, 0.04, 0.18, 4000);
+            // Arpeggio (weich)
+            _musicTone(ctx, "triangle", note, t, 0.02, 0.09, 0.32, 2800, 2);
+            _musicTone(ctx, "sine", note * 2, t, 0.015, 0.025, 0.2, 4500);
 
-            // Bass alle 6 Steps
-            if (step % 6 === 0) {
-                const bf = GAME_BASS[Math.floor(step / 6) % GAME_BASS.length];
-                _musicTone(ctx, "sine", bf, t, 0.04, 0.16, 0.9, 600);
-                _musicTone(ctx, "triangle", bf / 2, t, 0.05, 0.08, 1.0, 400);
+            // Bass alle 4
+            if (step % 4 === 0) {
+                const bf = GAME_BASS[Math.floor(step / 4) % GAME_BASS.length];
+                _musicTone(ctx, "sine", bf, t, 0.03, 0.12, 0.7, 500);
             }
 
-            // Sehr dezenter High-Tick (modern, nicht Retro-Beep)
-            if (step % 3 === 0) {
-                _musicTone(ctx, "sine", 880 + (step % 2) * 110, t, 0.005, 0.03, 0.06, 5000);
+            // Offbeat-Click (sehr leise)
+            if (step % 2 === 1) {
+                _musicTone(ctx, "sine", 1200, t, 0.004, 0.02, 0.05, 6000);
             }
 
             gameStep++;
@@ -1442,8 +1471,7 @@ const geladen = _questionCounts[key] || 0;
             if (!ensureMusicAudio()) return;
             const tick = musicMode === 'game' ? playMusicNoteGame : playMusicNote;
             tick();
-            // Menü langsam (Ambient), Spiel flüssig aber nicht hektisch
-            musicTimer = setInterval(tick, musicMode === 'game' ? 220 : 700);
+            musicTimer = setInterval(tick, musicMode === 'game' ? 200 : 520);
         }
 
         function stopBackgroundMusic() {
@@ -1569,19 +1597,35 @@ const geladen = _questionCounts[key] || 0;
         // ============================================================
         //  ERSTSTART-TUTORIAL (einmalig, wegklickbar)
         // ============================================================
-        const ONBOARD_KEY = "eduplayOnboardV1";
+        const ONBOARD_KEY = "eduplayOnboardV2";
         const ONBOARD_STEPS = [
             {
                 title: "👋 Willkommen bei EduPlay!",
-                body: "Wähle zuerst ein Spieler-Profil. Eltern verwalten alles im Dashboard (PIN)."
+                body: "Hier lernt und spielt die ganze Familie. Wähle links/oben ein Spieler-Profil – jedes Kind hat eigene Punkte und Fortschritte."
             },
             {
-                title: "🎮 Spielen & Lernen",
-                body: "Im Menü findest du Quiz, Wortspiele und Online-Duelle. Bei Klasse 1/2 wird der Fragetext automatisch vorgelesen."
+                title: "👨‍👩‍👧‍👦 Eltern & Dashboard",
+                body: "Im Dashboard (PIN-geschützt) siehst du Lernzeiten, weist Tests zu und verwaltest Belohnungen. PIN einmal in den Einstellungen setzen."
             },
             {
-                title: "⚙️ Tipps",
-                body: "Ton & Design im Menü umschalten. „Zufällige Kategorie“ bringt Abwechslung. Viel Spaß!"
+                title: "📚 Allein lernen",
+                body: "Quiz, Vokabeln, Lesen und Formeln. Bei Klasse 1 und 2 wird der Text automatisch vorgelesen – Lücken und Lösungshinweise nicht mit."
+            },
+            {
+                title: "⚔️ Gegeneinander spielen",
+                body: "Wort-Duell, Quiz-Duell und Online-Lobby. Code teilen, Freunde treten bei. Offline gehen Ein-Gerät-Spiele weiter."
+            },
+            {
+                title: "🎲 Themen & Zufall",
+                body: "Viele Kategorien – mit „Zufällige Kategorie“ kommt Abwechslung. Fun-Fragen und Schätzen für die ganze Familie."
+            },
+            {
+                title: "🔊 Ton & Design",
+                body: "Im Menü: Ton an/aus, Sound-Pack (Soft/Klar/Arcade), Musik-Lautstärke und Hell/Dunkel-Design. Alles speichert sich automatisch."
+            },
+            {
+                title: "⭐ Belohnungen & Tipps",
+                body: "Coins und Abzeichen sammeln, Belohnungen einlösen. Blitz-Übung und „Weitermachen“ helfen beim Dranbleiben. Viel Spaß!"
             }
         ];
         let onboardStep = 0;

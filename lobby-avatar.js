@@ -584,6 +584,7 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
             if (viewId === 'rewards') renderRewardsShop();
             if (viewId === 'menu' && typeof renderContinueCard === 'function') renderContinueCard();
             if (viewId === 'family-hub' && typeof ALL_PROFILES !== 'undefined') renderFamilyHub();
+            if (viewId === 'family-hub' && typeof maybeShowOnboarding === 'function') setTimeout(maybeShowOnboarding, 400);
 
             if (typeof startHubWatch === 'function') {
                 if (viewId === 'family-hub') startHubWatch();

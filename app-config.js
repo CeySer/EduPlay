@@ -1493,13 +1493,56 @@ const geladen = _questionCounts[key] || 0;
         //  Audio-Asset). Button/Auto-Vorlesen tauchen nur auf, wenn die
         //  aktuelle Frage grade 1 oder 2 zugeordnet ist.
         // ============================================================
+        /** Text für Vorlesen: Lücken/Unterstriche/Lösungshinweise entfernen. */
+        function cleanTextForSpeech(text) {
+            let t = String(text || "");
+            t = t.replace(/<u[^>]*>[\s\S]*?<\/u>/gi, " ");           // HTML-Unterstrich
+            t = t.replace(/__+|_+/g, " ");                           // ____ / _atze
+            t = t.replace(/\([^)]*\)/g, " ");                        // (Katze) Lösungshinweis
+            t = t.replace(/\[[^\]]*\]/g, " ");
+            t = t.replace(/[„“"‘'‚‹›«»]/g, " ");
+            t = t.replace(/[🔤👏🔊📖🖼️📗📕📝🧠🧩✅❌➔❓💡🎉🌟🏆👂👀📚🚩]/g, " ");
+            t = t.replace(/\s+/g, " ").trim();
+            return t;
+        }
+
+        /** Kindgerechte DE-Stimme (weich, etwas langsamer). */
+        function pickKidGermanVoice() {
+            try {
+                const voices = window.speechSynthesis.getVoices() || [];
+                const de = voices.filter(v => /de(-|_)?DE|German|Deutsch/i.test(v.lang + " " + v.name));
+                const prefer = (list, re) => list.find(v => re.test(v.name));
+                return prefer(de, /natural|neural|premium|enhanced|google|siri|anna|helena|katja|petra|marlene|vicki/i)
+                    || prefer(de, /female|frau|woman|girl/i)
+                    || de.find(v => /de-DE/i.test(v.lang))
+                    || de[0]
+                    || null;
+            } catch (e) { return null; }
+        }
+
         function speakText(text) {
             try {
                 if (!('speechSynthesis' in window) || !text) return;
+                const clean = cleanTextForSpeech(text);
+                if (!clean) return;
                 window.speechSynthesis.cancel();
-                const u = new SpeechSynthesisUtterance(text);
+                const u = new SpeechSynthesisUtterance(clean);
                 u.lang = "de-DE";
-                u.rate = 0.9;
+                u.rate = 0.85;   // etwas langsamer für Klasse 1/2
+                u.pitch = 1.15;  // freundlicher
+                u.volume = 1;
+                const voice = pickKidGermanVoice();
+                if (voice) u.voice = voice;
+                // Stimmen laden asynchron in manchen Browsern
+                if (!voice && window.speechSynthesis.getVoices().length === 0) {
+                    window.speechSynthesis.onvoiceschanged = function () {
+                        const v2 = pickKidGermanVoice();
+                        if (v2) u.voice = v2;
+                        window.speechSynthesis.speak(u);
+                        window.speechSynthesis.onvoiceschanged = null;
+                    };
+                    return;
+                }
                 window.speechSynthesis.speak(u);
             } catch (e) { }
         }
@@ -1519,6 +1562,78 @@ const geladen = _questionCounts[key] || 0;
             if (btn) btn.classList.toggle("hidden", !isEarlyGrade);
             if (isEarlyGrade && q.question) speakText(q.question);
             else if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        }
+
+        
+
+        // ============================================================
+        //  ERSTSTART-TUTORIAL (einmalig, wegklickbar)
+        // ============================================================
+        const ONBOARD_KEY = "eduplayOnboardV1";
+        const ONBOARD_STEPS = [
+            {
+                title: "👋 Willkommen bei EduPlay!",
+                body: "Wähle zuerst ein Spieler-Profil. Eltern verwalten alles im Dashboard (PIN)."
+            },
+            {
+                title: "🎮 Spielen & Lernen",
+                body: "Im Menü findest du Quiz, Wortspiele und Online-Duelle. Bei Klasse 1/2 wird der Fragetext automatisch vorgelesen."
+            },
+            {
+                title: "⚙️ Tipps",
+                body: "Ton & Design im Menü umschalten. „Zufällige Kategorie“ bringt Abwechslung. Viel Spaß!"
+            }
+        ];
+        let onboardStep = 0;
+
+        function maybeShowOnboarding() {
+            try {
+                if (localStorage.getItem(ONBOARD_KEY) === "done") return;
+            } catch (e) { return; }
+            const ov = document.getElementById("onboarding-overlay");
+            if (!ov || !ov.classList.contains("hidden")) return;
+            onboardStep = 0;
+            renderOnboardingStep();
+            ov.classList.remove("hidden");
+        }
+
+        function renderOnboardingStep() {
+            const s = ONBOARD_STEPS[onboardStep] || ONBOARD_STEPS[0];
+            const title = document.getElementById("onboard-title");
+            const body = document.getElementById("onboard-body");
+            const next = document.getElementById("onboard-next");
+            const dots = document.getElementById("onboard-dots");
+            if (title) title.textContent = s.title;
+            if (body) body.textContent = s.body;
+            if (next) next.textContent = onboardStep >= ONBOARD_STEPS.length - 1 ? "Los geht's 🚀" : "Weiter";
+            if (dots) {
+                dots.innerHTML = ONBOARD_STEPS.map((_, i) =>
+                    `<span style="width:8px;height:8px;border-radius:50%;display:inline-block;background:${i === onboardStep ? '#818cf8' : 'rgba(255,255,255,0.25)'}"></span>`
+                ).join("");
+            }
+        }
+
+        function onboardingNext() {
+            if (onboardStep >= ONBOARD_STEPS.length - 1) {
+                dismissOnboarding(true);
+                return;
+            }
+            onboardStep++;
+            renderOnboardingStep();
+        }
+
+        function dismissOnboarding(save) {
+            const ov = document.getElementById("onboarding-overlay");
+            if (ov) ov.classList.add("hidden");
+            if (save) {
+                try { localStorage.setItem(ONBOARD_KEY, "done"); } catch (e) { /* */ }
+            }
+        }
+
+        function resetOnboarding() {
+            try { localStorage.removeItem(ONBOARD_KEY); } catch (e) { /* */ }
+            onboardStep = 0;
+            maybeShowOnboarding();
         }
 
         function getActiveInviteCode() {

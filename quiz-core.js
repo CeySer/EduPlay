@@ -297,6 +297,18 @@
                             <button onclick="triggerNextQuestion()" class="mt-4 btn-primary w-full text-center">Nächste Karte ➔</button>`;
             } else {
                 document.getElementById("question-text").innerText = q.question;
+                const imgWrap = document.getElementById("question-image-wrap");
+                const imgEl = document.getElementById("question-image");
+                if (imgWrap && imgEl) {
+                    if (q.image) {
+                        imgEl.src = q.image;
+                        imgEl.alt = q.imageAlt || "Rätselbild";
+                        imgWrap.classList.remove("hidden");
+                    } else {
+                        imgEl.removeAttribute("src");
+                        imgWrap.classList.add("hidden");
+                    }
+                }
                 if (typeof updateSpeakButtonForQuestion === 'function') updateSpeakButtonForQuestion(q);
                 q.answers.forEach((ans, i) => {
                     const b = document.createElement("button");

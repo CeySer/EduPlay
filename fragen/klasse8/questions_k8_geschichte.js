@@ -1799,18 +1799,35 @@ const questions_k8_geschichte = [
     "difficulty": "leicht",
     "points": 10,
     "explanation": "Mit dem Weltkriegsende 1918 brachen die Monarchenreiche des Deutschen Reiches, Österrreich-Ungarns, Russlands und des Osmanischen Reiches zusammen und die Landkarte Europas wurde neu gezeichnet."
-  }
+  },
+  {"id":"k8ge101","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Quellenkritik prüft …","answers":["Wetter","Autor/Absicht","Länge","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kritik."},
+  {"id":"k8ge102","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Athen Demokratie war …","answers":["universal","begrenzt","absolut","sozialistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"begrenzt."},
+  {"id":"k8ge103","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Industrialisierung start …","answers":["Antike","England","Steinzeit","1990"],"correct":1,"difficulty":"mittel","points":10,"explanation":"GB."},
+  {"id":"k8ge104","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"1914 Auslöser u. a. …","answers":["Mond","Sarajevo","Mauer","Euro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Attentat."},
+  {"id":"k8ge105","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"NS 1933: …","answers":["Demokratie","Diktatur","EU","Einheit"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Macht."},
+  {"id":"k8ge106","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Holocaust = …","answers":["Krise","Völkermord","Industrie","Aufklärung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Shoah."},
+  {"id":"k8ge107","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"1945 Ende Europa: …","answers":["Beginn","Kapitulation","Mauer","Euro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kapitulation."},
+  {"id":"k8ge108","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Kalter Krieg Blöcke …","answers":["Ost-West","Nord-Süd","Asien","keine"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Ost-West."},
+  {"id":"k8ge109","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"GG 1949 für …","answers":["DDR","BRD","Kaiserreich","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"BRD."},
+  {"id":"k8ge110","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Mauerbau …","answers":["1945","1961","1990","1918"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1961."},
+  {"id":"k8ge111","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Wiedervereinigung …","answers":["1945","1990","1961","1918"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1990."},
+  {"id":"k8ge112","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Revolution FR Motto …","answers":["König","Freiheit Gleichheit Brüderlichkeit","Steuern","Krieg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Devise."},
+  {"id":"k8ge113","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Luther gegen u. a. …","answers":["Wissenschaft","Ablass","Druck","Städte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ablass."},
+  {"id":"k8ge114","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Aufklärung betont …","answers":["Aberglaube","Vernunft","Krieg","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vernunft."},
+  {"id":"k8ge115","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Imperialismus: …","answers":["Ende Kolonien","Kolonien","EU","UNO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Expansion."},
+  {"id":"k8ge116","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Weimar war …","answers":["Kaiserreich","Demokratie","NS","DDR"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Republik."},
+  {"id":"k8ge117","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"UN 1945 Ziel …","answers":["Krieg","Frieden","Kolonien","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Frieden."},
+  {"id":"k8ge118","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Primärquelle = …","answers":["Schulbuch","aus der Zeit","Wiki","Film 2020"],"correct":1,"difficulty":"mittel","points":10,"explanation":"zeitgenössisch."},
+  {"id":"k8ge119","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Propaganda zielt auf …","answers":["Info neutral","Meinungslenkung","Kritik","Wissenschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Lenkung."},
+  {"id":"k8ge120","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"AEMR 1948 Anspruch …","answers":["Europa","universell","USA","DE"],"correct":1,"difficulty":"mittel","points":10,"explanation":"universal."},
+  {"id":"k8ge121","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Erinnerung dient …","answers":["Vergessen","Auseinandersetzung","Zensur","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gedenken."},
+  {"id":"k8ge122","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Römisches Recht → …","answers":["Sport","Europa","Asien isoliert","Mond"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rezeption."},
+  {"id":"k8ge123","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Industrie Folge …","answers":["keine Städte","soziale Frage","nur Adel","keine Technik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"sozial."},
+  {"id":"k8ge124","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"1989: …","answers":["Krieg","friedliche Revolutionen","Versailles","Industrie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wende."},
+  {"id":"k8ge125","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"EU Start u. a. …","answers":["EGKS","Versailles","Wien","UN"],"correct":0,"difficulty":"mittel","points":10,"explanation":"1950er."},
+  {"id":"k8ge126","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Polis = …","answers":["Königreich","Stadtstaat","Lager","Kirche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Polis."},
+  {"id":"k8ge127","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Absolutismus: Macht …","answers":["geteilt","unbeschränkt Anspruch","demokratisch","republikanisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"absolut."},
+  {"id":"k8ge128","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Versailles oft als …","answers":["Sieg","Diktat","neutral","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Diktat."},
+  {"id":"k8ge129","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"1929 Krise …","answers":["stabil","radikalisierte","Ende Industrie","UNO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Krise."},
+  {"id":"k8ge130","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Oral History: …","answers":["Akten","Zeitzeugen","Münzen","Karten"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mündlich."}
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-

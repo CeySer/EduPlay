@@ -3624,10 +3624,38 @@ const K7_PHYSIK_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Solarzellen wandeln einfallende Lichtstrahlung direkt in elektrische Energie um."
-  }
+  },
+  {"id":"k7ph101","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"a = Δv/Δt ist …","answers":["Geschwindigkeit","Beschleunigung","Kraft","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"a."},
+  {"id":"k7ph102","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"F = m·a","answers":["0","Newton 2","Newton 3","Energie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2. Gesetz."},
+  {"id":"k7ph103","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Eₖ = ½mv²","answers":["kein Ergebnis","kinetisch","Lage","Leistung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"kinetisch."},
+  {"id":"k7ph104","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Eₚ = mgh","answers":["kein Ergebnis","Lageenergie","kinetisch","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"potentiell."},
+  {"id":"k7ph105","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"p = m·v","answers":["Kraft","Impuls","Druck","Leistung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Impuls."},
+  {"id":"k7ph106","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"v = f·λ","answers":["kein Ergebnis","Welle","nur Schall","nur Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Welle."},
+  {"id":"k7ph107","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"U = R·I","answers":["kein Ergebnis","Ohm","Kirchhoff","Faraday"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ohm."},
+  {"id":"k7ph108","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"P = U·I","answers":["kein Ergebnis","Leistung","Energie","Ladung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Leistung."},
+  {"id":"k7ph109","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Einheit Kraft?","answers":["J","N","W","V"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Newton."},
+  {"id":"k7ph110","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"c ≈ …","answers":["340 m/s","3·10⁸ m/s","3 m/s","300 km/h"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Licht."},
+  {"id":"k7ph111","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Schall braucht …","answers":["Vakuum","Medium","Licht","Magnete"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Medium."},
+  {"id":"k7ph112","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"W = F·s","answers":["kein Ergebnis","Arbeit","Rotation","Gas"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Arbeit."},
+  {"id":"k7ph113","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"p = F/A","answers":["kein Ergebnis","Druck","F·A","A/F"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Druck."},
+  {"id":"k7ph114","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Ladung Einheit?","answers":["V","C","Ω","W"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Coulomb."},
+  {"id":"k7ph115","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Induktion erzeugt …","answers":["Masse","Spannung","Wärme ohne Feld","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Spannung."},
+  {"id":"k7ph116","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"α-Teilchen = …","answers":["Elektron","He-Kern","Photon","Neutron"],"correct":1,"difficulty":"mittel","points":10,"explanation":"α."},
+  {"id":"k7ph117","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Halbwertszeit bis …","answers":["alles","Hälfte","nichts","¾"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Hälfte."},
+  {"id":"k7ph118","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"η = Nutzen/Aufwand","answers":["kein Ergebnis","richtig","η>1","egal"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
+  {"id":"k7ph119","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Auftrieb = Gewicht …","answers":["Körpers","verdrängter Flüssigkeit","Luft 0","Behälters"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Archimedes."},
+  {"id":"k7ph120","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Zentripetal zum …","answers":["außen","Zentrum","tangential","zufällig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zentrum."},
+  {"id":"k7ph121","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"E = h·f","answers":["kein Ergebnis","Photon","Schall","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Photon."},
+  {"id":"k7ph122","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Brechung zum Lot in … Medium","answers":["dünner","dichter","gleich","Metall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"dichter."},
+  {"id":"k7ph123","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Kondensator speichert …","answers":["Impuls","Ladung","Neutronen","Masse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ladung."},
+  {"id":"k7ph124","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Trafo U ~ N","answers":["kein Ergebnis","richtig","unabhängig","nur I"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
+  {"id":"k7ph125","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"0 K ≈ …","answers":["0 °C","−273 °C","100 °C","−100 °C"],"correct":1,"difficulty":"mittel","points":10,"explanation":"−273."},
+  {"id":"k7ph126","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"f = 1/T","answers":["kein Ergebnis","richtig","f=T","f=2T"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
+  {"id":"k7ph127","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Reibung … Bewegung","answers":["fördert","hemmt","löscht Masse","erzeugt Weg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"hemmt."},
+  {"id":"k7ph128","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Sicherung gegen …","answers":["Unterspannung","Überstrom","Magnet","Schall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Überstrom."},
+  {"id":"k7ph129","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"LED wandelt in …","answers":["Wärme nur","Licht","Schall","Druck"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Licht."},
+  {"id":"k7ph130","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Energie wird …","answers":["vernichtet","umgewandelt","aus nichts","nur vernichtet"],"correct":1,"difficulty":"mittel","points":10,"explanation":"umgewandelt."}
 ];
-
-
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K7_PHYSIK_QUESTIONS = K7_PHYSIK_QUESTIONS;

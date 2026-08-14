@@ -3635,13 +3635,38 @@ const K6_ENGLISCH_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Standard polite greeting response in English conversation."
-  }
+  },
+  {"id":"k6en101","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Past perfect: I ___ eaten.","answers":["have","had","has","was"],"correct":1,"difficulty":"mittel","points":10,"explanation":"had eaten.","topic":"erweiterung"},
+  {"id":"k6en102","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Although“ / „despite“: despite + …","answers":["clause with verb always","noun/-ing","only adjective","past only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"despite the rain.","topic":"erweiterung"},
+  {"id":"k6en103","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Conditionals type 2: If I ___ rich …","answers":["am","was/were","will be","been"],"correct":1,"difficulty":"mittel","points":10,"explanation":"were.","topic":"erweiterung"},
+  {"id":"k6en104","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Passive present: English ___ here.","answers":["speak","is spoken","spoke","speaking"],"correct":1,"difficulty":"mittel","points":10,"explanation":"is spoken.","topic":"erweiterung"},
+  {"id":"k6en105","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Sustainable“ means …","answers":["kurzleb","nachhaltig","laut","teuer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nachhaltig.","topic":"erweiterung"},
+  {"id":"k6en106","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Reported: She said she ___ tired.","answers":["is","was","be","were"],"correct":1,"difficulty":"mittel","points":10,"explanation":"was.","topic":"erweiterung"},
+  {"id":"k6en107","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Gerund after „mind“: Do you mind ___?","answers":["to open","opening","opened","open"],"correct":1,"difficulty":"mittel","points":10,"explanation":"opening.","topic":"erweiterung"},
+  {"id":"k6en108","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"False friend „become“ = …","answers":["bekommen","werden","willkommen","bekommen falsch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"werden.","topic":"erweiterung"},
+  {"id":"k6en109","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Climate change“ = …","answers":["Wetter heute","Klimawandel","Kleidung","Klasse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Klimawandel.","topic":"erweiterung"},
+  {"id":"k6en110","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Relative: the book ___ I read","answers":["who","which/that","where","whose only person"],"correct":1,"difficulty":"mittel","points":10,"explanation":"which/that.","topic":"erweiterung"},
+  {"id":"k6en111","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Modal deduction: He ___ be home; lights on.","answers":["can’t","must","mustn’t as must","shouldn’t"],"correct":1,"difficulty":"mittel","points":10,"explanation":"must.","topic":"erweiterung"},
+  {"id":"k6en112","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Adjective → adverb: careful →","answers":["carefuly","carefully","carefull","care"],"correct":1,"difficulty":"mittel","points":10,"explanation":"carefully.","topic":"erweiterung"},
+  {"id":"k6en113","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Economy“ vs „economics“: economics is …","answers":["Wirtschaftssystem","Wirtschaftswissenschaft","Sparsamkeit","Geschäft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fach.","topic":"erweiterung"},
+  {"id":"k6en114","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Phrasal: look up a word = …","answers":["nachschlagen","hochschauen nur","suchen Person","löschen"],"correct":0,"difficulty":"mittel","points":10,"explanation":"nachschlagen.","topic":"erweiterung"},
+  {"id":"k6en115","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Future continuous: this time tomorrow we ___","answers":["fly","will be flying","flew","flying"],"correct":1,"difficulty":"mittel","points":10,"explanation":"will be flying.","topic":"erweiterung"},
+  {"id":"k6en116","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Equality“ means …","answers":["Ungleichheit","Gleichheit","Qualität","Menge"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gleichheit.","topic":"erweiterung"},
+  {"id":"k6en117","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Article: ___ university (you-sound)","answers":["an","a","the only","some"],"correct":1,"difficulty":"mittel","points":10,"explanation":"a university.","topic":"erweiterung"},
+  {"id":"k6en118","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Comparison: as … as","answers":["more","adj","er form","most"],"correct":1,"difficulty":"mittel","points":10,"explanation":"as big as.","topic":"erweiterung"},
+  {"id":"k6en119","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Invent“ vs „discover“: invent = …","answers":["finden was da war","erfinden","verlieren","messen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"erfinden.","topic":"erweiterung"},
+  {"id":"k6en120","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Question: How long ___ you studied?","answers":["do","have","has","are"],"correct":1,"difficulty":"mittel","points":10,"explanation":"have you studied.","topic":"erweiterung"},
+  {"id":"k6en121","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Responsible for“ + …","answers":["to-infinitive always","noun/-ing","past only","adjective only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"for the project.","topic":"erweiterung"},
+  {"id":"k6en122","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Synonym „help“?","answers":["assist","hinder","stop","break"],"correct":0,"difficulty":"mittel","points":10,"explanation":"assist.","topic":"erweiterung"},
+  {"id":"k6en123","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Democracy“ = …","answers":["Diktatur","Demokratie","Demo nur","Büro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Demokratie.","topic":"erweiterung"},
+  {"id":"k6en124","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Past simple irregular: teach →","answers":["teached","taught","thought","teecht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"taught.","topic":"erweiterung"},
+  {"id":"k6en125","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Countable: „advice“ is …","answers":["countable","uncountable","verb","plural only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"uncountable.","topic":"erweiterung"},
+  {"id":"k6en126","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„On the other hand“ signals …","answers":["addition","contrast","time","place"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gegensatz.","topic":"erweiterung"},
+  {"id":"k6en127","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Make/do: ___ a decision","answers":["do","make","does","making as main"],"correct":1,"difficulty":"mittel","points":10,"explanation":"make a decision.","topic":"erweiterung"},
+  {"id":"k6en128","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Global warming“ = …","answers":["Eiszeit","globale Erwärmung","Regen","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Erwärmung.","topic":"erweiterung"},
+  {"id":"k6en129","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Infinitive of purpose: I study ___ learn.","answers":["for","to","so","at"],"correct":1,"difficulty":"mittel","points":10,"explanation":"to learn.","topic":"erweiterung"},
+  {"id":"k6en130","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Who“ vs „which“: people →","answers":["which","who","where","when"],"correct":1,"difficulty":"mittel","points":10,"explanation":"who.","topic":"erweiterung"}
 ];
-
-
-
-
-
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K6_ENGLISCH_QUESTIONS = K6_ENGLISCH_QUESTIONS;

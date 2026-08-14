@@ -1809,9 +1809,38 @@ const K9_CHEMIE_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der Elektrolyt (oder Salzbrücke/Diaphragma) ermöglicht den Ionenstrom zum Ladungsausgleich zwischen den Halbzellen."
-  }
+  },
+  {"id":"k9ch101","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Ordnungszahl = Anzahl …","answers":["Neutronen","Protonen","Elektronen Ion","Nucleonen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Protonen."},
+  {"id":"k9ch102","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Ionenbindung typisch …","answers":["Non-Non","Metall-Nonmetall","Metall-Metall","Edelgas"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Salz."},
+  {"id":"k9ch103","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"pH 14 eher …","answers":["sauer","neutral","basisch","pH7"],"correct":2,"difficulty":"mittel","points":10,"explanation":"basisch."},
+  {"id":"k9ch104","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Neutralisation → …","answers":["Gas","Salz+Wasser","Metall","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Salz+Wasser."},
+  {"id":"k9ch105","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Oxidation: Elektronen…","answers":["Aufnahme","Abgabe","Neutron","Photon"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Abgabe."},
+  {"id":"k9ch106","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Mol misst …","answers":["kg","Stoffmenge","Liter","Kelvin"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stoffmenge."},
+  {"id":"k9ch107","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Katalysator … EA.","answers":["erhöht","senkt","löscht","ignoriert"],"correct":1,"difficulty":"mittel","points":10,"explanation":"senkt."},
+  {"id":"k9ch108","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Edelgase sind … reaktiv.","answers":["sehr","wenig","immer","mit Wasser"],"correct":1,"difficulty":"mittel","points":10,"explanation":"wenig."},
+  {"id":"k9ch109","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Säure gibt H⁺ ab.","answers":["kein Ergebnis","Brønsted","OH⁻","e⁻"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Brønsted."},
+  {"id":"k9ch110","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"c = n/V in …","answers":["kg/L","mol/L","m/s","Pa"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mol/L."},
+  {"id":"k9ch111","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Exotherm: Wärme …","answers":["aufgenommen","abgegeben","gelöscht","Masse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"abgegeben."},
+  {"id":"k9ch112","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Verbrennung C → …","answers":["CO","CO₂","C","O₂"],"correct":1,"difficulty":"mittel","points":10,"explanation":"CO₂."},
+  {"id":"k9ch113","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Elektrolyse braucht …","answers":["Druck","Strom","Magnet","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Strom."},
+  {"id":"k9ch114","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Massenerhaltung: Masse …","answers":["weg","bleibt","doppelt","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"bleibt."},
+  {"id":"k9ch115","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Wasser ist …","answers":["unpolar","polar","ionisch","metallisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"polar."},
+  {"id":"k9ch116","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"PSE Gruppe = …","answers":["Zeile","Spalte","Block","Ion"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Spalte."},
+  {"id":"k9ch117","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Isotope gleiche …","answers":["Massenzahl","Ordnungszahl","Neutronen","Dichte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Z."},
+  {"id":"k9ch118","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Reduktion: e⁻ …","answers":["Abgabe","Aufnahme","Neutron","Photon"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Aufnahme."},
+  {"id":"k9ch119","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Endotherm ΔH …","answers":["<0",">0","=0","∞"],"correct":1,"difficulty":"mittel","points":10,"explanation":">0."},
+  {"id":"k9ch120","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Kohlenwasserstoff: …","answers":["Fe","C und H","nur O","U"],"correct":1,"difficulty":"mittel","points":10,"explanation":"C/H."},
+  {"id":"k9ch121","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Indikator zeigt …","answers":["Masse","pH","Druck","Temp"],"correct":1,"difficulty":"mittel","points":10,"explanation":"pH."},
+  {"id":"k9ch122","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Ionengitter ist …","answers":["frei","starr","gasförmig","flüssig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"starr."},
+  {"id":"k9ch123","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"EN hoch bei …","answers":["Metallen","Nonmetallen","Edelgasen","Neutronen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"F/O."},
+  {"id":"k9ch124","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Le Chatelier: wirkt …","answers":["verstärkend","entgegen","ignorierend","löschend"],"correct":1,"difficulty":"mittel","points":10,"explanation":"entgegen."},
+  {"id":"k9ch125","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Organik Kern: …","answers":["Fe","C","U","He"],"correct":1,"difficulty":"mittel","points":10,"explanation":"C."},
+  {"id":"k9ch126","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Salz in Wasser → …","answers":["Moleküle","Ionen","Atome","Photonen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ionen."},
+  {"id":"k9ch127","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Aktivierungsenergie = …","answers":["Produkt","Schwelle","Temp","Druck"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schwelle."},
+  {"id":"k9ch128","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Gruppe 17 = …","answers":["Alkali","Halogene","Edelgase","Erdalkali"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Halogene."},
+  {"id":"k9ch129","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"pV=nRT für …","answers":["Festkörper","ideales Gas","Flüssigkeit","Plasma"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gas."},
+  {"id":"k9ch130","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"HCl dissoziiert zu …","answers":["Cl₂","H⁺ und Cl⁻","H₂","O₂"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ionen."}
 ];
-
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_CHEMIE_QUESTIONS = K9_CHEMIE_QUESTIONS;

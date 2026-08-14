@@ -11,12 +11,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Was gibt der Zähler eines Bruches an?",
     answers: [
-      "In wie viele Teile das Ganze geteilt wird",
       "Wie viele Teile vom Ganzen genommen werden",
+      "Das Ergebnis der Addition",
       "Die Gesamtzahl aller Brüche",
-      "Das Ergebnis der Addition"
+      "In wie viele Teile das Ganze geteilt wird"
     ],
-    correct: 1,
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "Der Zähler (oben) zählt, wie viele Anteile genommen werden."
@@ -32,8 +32,8 @@ const K6_MATHE_QUESTIONS = [
     answers: [
       "In wie viele gleich große Teile das Ganze geteilt ist",
       "Wie viele Teile vom Ganzen genommen werden",
-      "Den Wert nach dem Komma",
-      "Die Anzahl der Aufgaben"
+      "Die Anzahl der Aufgaben",
+      "Den Wert nach dem Komma"
     ],
     correct: 0,
     difficulty: "leicht",
@@ -62,7 +62,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie nennt man einen Bruch, bei dem der Zähler kleiner als der Nenner ist?",
-    answers: [ "Gemischte Zahl", "Stammbruch","Echter Bruch", "Unechter Bruch"],
+    answers: ["Gemischte Zahl", "Stammbruch", "Echter Bruch", "Unechter Bruch"],
     correct: 2,
     difficulty: "leicht",
     points: 5,
@@ -76,8 +76,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wandle den unechten Bruch 11/4 in eine gemischte Zahl um.",
-    answers: [ "2 1/2", "3 1/4","2 3/4", "2 1/4"],
-    correct: 2,
+    answers: ["2 3/4", "2 1/4", "3 1/4", "2 1/2"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "11 : 4 = 2 Rest 3, also 2 Ganzes und 3/4."
@@ -90,8 +90,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wandle die gemischte Zahl 3 1/2 in einen unechten Bruch um.",
-    answers: ["7/2", "8/2", "5/2", "6/2"],
-    correct: 0,
+    answers: ["6/2", "5/2", "7/2", "8/2"],
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "3 * 2 + 1 = 7, also 7/2."
@@ -123,8 +123,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Erweitere den Bruch 2/5 mit der Zahl 3.",
-    answers: [ "5/8","6/15", "6/5", "2/15"],
-    correct: 1,
+    answers: ["6/15", "2/15", "6/5", "5/8"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "2 * 3 = 6 und 5 * 3 = 15, also 6/15."
@@ -138,12 +138,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Was passiert beim Kürzen eines Bruches?",
     answers: [
-      "Vom Zähler wird der Nenner subtrahiert",
-      "Zähler und Nenner werden durch dieselbe Zahl dividiert",
       "Zähler und Nenner werden multipliziert",
-      "Der Bruch wird in eine Dezimalzahl verwandelt"
+      "Vom Zähler wird der Nenner subtrahiert",
+      "Der Bruch wird in eine Dezimalzahl verwandelt",
+      "Zähler und Nenner werden durch dieselbe Zahl dividiert"
     ],
-    correct: 1,
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "Kürzen macht die Zahlen in Zähler und Nenner kleiner, ohne den Gesamtwert zu verändern."
@@ -156,8 +156,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Kürze den Bruch 8/12 vollständig.",
-    answers: ["2/3", "1/2", "4/6", "3/4"],
-    correct: 0,
+    answers: ["3/4", "2/3", "1/2", "4/6"],
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "Teilt man Zähler und Nenner durch 4, erhält man 2/3."
@@ -170,8 +170,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welcher Bruch ist äquivalent (wertgleich) zu 1/2?",
-    answers: [ "4/6", "3/5","4/8", "2/3"],
-    correct: 2,
+    answers: ["2/3", "4/6", "3/5", "4/8"],
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "4/8 lässt sich durch 4 kürzen und ergibt 1/2."
@@ -184,8 +184,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 2/7 + 3/7",
-    answers: [ "1/7", "5/14","5/7", "6/7"],
-    correct: 2,
+    answers: ["5/14", "5/7", "1/7", "6/7"],
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "Bei gleichem Nenner werden nur die Zähler addiert: 2 + 3 = 5, Nenner bleibt 7."
@@ -198,8 +198,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 5/9 - 2/9",
-    answers: [ "3/18", "7/9", "3/0","3/9 (gekürtzt 1/3)"],
-    correct: 3,
+    answers: ["7/9", "3/0", "3/9 (gekürtzt 1/3)", "3/18"],
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "5 - 2 = 3. Das ergibt 3/9, gekürzt 1/3."
@@ -212,8 +212,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Was ist der kleinste gemeinsame Hauptnenner von 1/4 und 1/6?",
-    answers: [ "6", "10","12", "24"],
-    correct: 2,
+    answers: ["12", "10", "6", "24"],
+    correct: 0,
     difficulty: "mittel",
     points: 5,
     explanation: "Das kleinste gemeinsame Vielfache (kgV) von 4 und 6 ist 12."
@@ -226,7 +226,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 1/3 + 1/4",
-    answers: [ "2/7","7/12", "2/12", "5/12"],
+    answers: ["2/12", "7/12", "5/12", "2/7"],
     correct: 1,
     difficulty: "mittel",
     points: 5,
@@ -240,8 +240,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 3/4 - 1/2",
-    answers: [ "2/2","1/4", "2/4", "1/2"],
-    correct: 1,
+    answers: ["1/4", "2/4", "1/2", "2/2"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "1/2 erweitern zu 2/4. Dann 3/4 - 2/4 = 1/4."
@@ -255,12 +255,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Wie multipliziert man einen Bruch mit einer ganzen Zahl?",
     answers: [
-      "Man dividiert den Nenner durch die Zahl",
-      "Man addiert die Zahl zum Zähler",
+      "Man multipliziert Zähler und Nenner mit der Zahl",
       "Man multipliziert nur den Zähler mit der Zahl",
-      "Man multipliziert Zähler und Nenner mit der Zahl"
+      "Man dividiert den Nenner durch die Zahl",
+      "Man addiert die Zahl zum Zähler"
     ],
-    correct: 2,
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "Bruch mal ganze Zahl = (Zähler * Zahl) / Nenner."
@@ -273,8 +273,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 2/5 * 3",
-    answers: [ "6/15","6/5 (1 1/5)", "2/15", "5/5"],
-    correct: 1,
+    answers: ["6/5 (1 1/5)", "2/15", "5/5", "6/15"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "2 * 3 = 6, also 6/5 = 1 1/5."
@@ -287,8 +287,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 6/7 : 3",
-    answers: [ "2/21", "18/7","2/7", "6/21"],
-    correct: 2,
+    answers: ["2/21", "2/7", "18/7", "6/21"],
+    correct: 1,
     difficulty: "mittel",
     points: 5,
     explanation: "Man teilt den Zähler durch 3: 6 : 3 = 2, also 2/7."
@@ -302,12 +302,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Wie multipliziert man zwei Brüche miteinander?",
     answers: [
-      "Nenner gleichnamig machen",
-      "Nur Zähler mal Zähler rechnen",
       "Zähler mal Zähler und Nenner mal Nenner",
-      "Über Kreuz multiplizieren"
+      "Über Kreuz multiplizieren",
+      "Nur Zähler mal Zähler rechnen",
+      "Nenner gleichnamig machen"
     ],
-    correct: 2,
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "Die Merkregel lautet: Zähler mal Zähler, Nenner mal Nenner!"
@@ -320,8 +320,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 2/3 * 3/4",
-    answers: [ "6/7", "5/7", "1/4","1/2 (6/12)"],
-    correct: 3,
+    answers: ["1/4", "6/7", "1/2 (6/12)", "5/7"],
+    correct: 2,
     difficulty: "mittel",
     points: 5,
     explanation: "(2 * 3) / (3 * 4) = 6/12 = 1/2."
@@ -334,8 +334,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Was ist der Kehrwert von 3/5?",
-    answers: [ "1/5", "3/10", "-3/5","5/3"],
-    correct: 3,
+    answers: ["1/5", "5/3", "-3/5", "3/10"],
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "Beim Kehrwert vertauscht man Zähler und Nenner."
@@ -349,12 +349,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Wie dividiert man durch einen Bruch?",
     answers: [
-      "Man multipliziert mit dem Kehrwert des zweiten Bruches",
+      "Man zieht die Brüche voneinander ab",
       "Man addiert die Kehrwerte",
-      "Man dividiert Zähler durch Zähler und Nenner durch Nenner",
-      "Man zieht die Brüche voneinander ab"
+      "Man multipliziert mit dem Kehrwert des zweiten Bruches",
+      "Man dividiert Zähler durch Zähler und Nenner durch Nenner"
     ],
-    correct: 0,
+    correct: 2,
     difficulty: "mittel",
     points: 5,
     explanation: "Teilen durch einen Bruch bedeutet Vervielfachen mit seinem Kehrwert."
@@ -367,8 +367,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 1/2 : 1/4",
-    answers: [ "4","2", "1/2", "1/8"],
-    correct: 1,
+    answers: ["2", "4", "1/8", "1/2"],
+    correct: 0,
     difficulty: "mittel",
     points: 5,
     explanation: "1/2 * 4/1 = 4/2 = 2."
@@ -381,8 +381,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Ein Rezept benötigt 3/4 kg Mehl. Du möchtest die Hälfte der Menge machen. Wie viel Mehl brauchst du?",
-    answers: [ "3/2 kg","3/8 kg", "6/8 kg", "1/4 kg"],
-    correct: 1,
+    answers: ["1/4 kg", "6/8 kg", "3/2 kg", "3/8 kg"],
+    correct: 3,
     difficulty: "mittel",
     points: 5,
     explanation: "3/4 : 2 = 3/8 kg."
@@ -399,8 +399,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welcher Dezimalzahl entspricht der Bruch 1/2?",
-    answers: ["0,5", "0,05", "0,2", "0,12"],
-    correct: 0,
+    answers: ["0,2", "0,12", "0,05", "0,5"],
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "1/2 = 5/10 = 0,5."
@@ -413,7 +413,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welcher Dezimalzahl entspricht der Bruch 3/4?",
-    answers: [ "0,43", "0,3","0,75", "0,34"],
+    answers: ["0,3", "0,34", "0,75", "0,43"],
     correct: 2,
     difficulty: "leicht",
     points: 5,
@@ -427,8 +427,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welcher Bruch entspricht der Dezimalzahl 0,25?",
-    answers: ["1/4", "2/5", "1/25", "1/5"],
-    correct: 0,
+    answers: ["1/25", "1/5", "1/4", "2/5"],
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "0,25 = 25/100 = 1/4."
@@ -441,8 +441,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welche Stelle in der Stellenwerttafel steht direkt rechts vom Komma?",
-    answers: [ "Zehnerstelle (Z)","Zehntelstelle (z)", "Hundertstelstelle (h)", "Tausendstelstelle (t)"],
-    correct: 1,
+    answers: ["Zehntelstelle (z)", "Zehnerstelle (Z)", "Tausendstelstelle (t)", "Hundertstelstelle (h)"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "Die erste Nachkommastelle zeigt die Zehntel."
@@ -455,8 +455,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welche der folgenden Zahlen ist die größte?",
-    answers: [ "0,25", "0,299","0,3", "0,099"],
-    correct: 2,
+    answers: ["0,25", "0,299", "0,099", "0,3"],
+    correct: 3,
     difficulty: "mittel",
     points: 5,
     explanation: "0,3 entspricht 0,300 und ist somit größer als 0,299."
@@ -469,8 +469,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Runde die Zahl 4,837 auf Zehntel.",
-    answers: [ "5,0", "4,84","4,8", "4,9"],
-    correct: 2,
+    answers: ["4,8", "4,84", "5,0", "4,9"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "Die Hundertstelziffer ist 3 (abrunden), also bleibt es bei 4,8."
@@ -483,8 +483,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Runde die Zahl 12,658 auf Hundertstel.",
-    answers: [ "12,60","12,66", "12,70", "12,65"],
-    correct: 1,
+    answers: ["12,60", "12,65", "12,66", "12,70"],
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "Die Tausendstelziffer ist 8 (aufrunden), aus 5 wird 6 -> 12,66."
@@ -497,8 +497,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 3,4 + 2,15",
-    answers: ["5,55", "5,45", "6,05", "5,19"],
-    correct: 0,
+    answers: ["5,45", "5,19", "5,55", "6,05"],
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "3,40 + 2,15 = 5,55."
@@ -511,8 +511,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 7,8 - 2,35",
-    answers: ["5,45", "5,15", "5,55", "4,45"],
-    correct: 0,
+    answers: ["4,45", "5,55", "5,15", "5,45"],
+    correct: 3,
     difficulty: "mittel",
     points: 5,
     explanation: "7,80 - 2,35 = 5,45."
@@ -525,8 +525,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 0,4 * 100",
-    answers: ["40", "4", "0,04", "400"],
-    correct: 0,
+    answers: ["4", "400", "0,04", "40"],
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "Beim Multiplizieren mit 100 rückt das Komma um 2 Stellen nach rechts."
@@ -539,8 +539,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 3,5 * 0,2",
-    answers: [ "0,35","0,7", "0,07", "7"],
-    correct: 1,
+    answers: ["0,35", "7", "0,07", "0,7"],
+    correct: 3,
     difficulty: "mittel",
     points: 5,
     explanation: "35 * 2 = 70. Zusammen 2 Nachkommastellen -> 0,70 = 0,7."
@@ -553,7 +553,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 12,5 : 10",
-    answers: [ "125", "12,05","1,25", "0,125"],
+    answers: ["12,05", "0,125", "1,25", "125"],
     correct: 2,
     difficulty: "leicht",
     points: 5,
@@ -567,7 +567,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 4,8 : 0,6",
-    answers: ["8", "0,08", "0,8", "80"],
+    answers: ["8", "80", "0,8", "0,08"],
     correct: 0,
     difficulty: "mittel",
     points: 5,
@@ -583,11 +583,11 @@ const K6_MATHE_QUESTIONS = [
     question: "Was muss man bei der schriftlichen Addition von Dezimalzahlen dringend beachten?",
     answers: [
       "Kommas werden ignoriert und am Ende weggelassen",
+      "Man muss immer von links nach rechts rechnen",
       "Die Zahl mit den meisten Stellen steht unten",
-      "Die Kommas müssen genau untereinander stehen",
-      "Man muss immer von links nach rechts rechnen"
+      "Die Kommas müssen genau untereinander stehen"
     ],
-    correct: 2,
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "Komma unter Komma schreiben sichert die richtige Stellenwertzuordnung."
@@ -601,12 +601,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Wie verschiebt sich das Komma bei einer Division durch 1000?",
     answers: [
-      "Um 3 Stellen nach links",
+      "Um 2 Stellen nach links",
       "Gar nicht",
-      "Um 3 Stellen nach rechts",
-      "Um 2 Stellen nach links"
+      "Um 3 Stellen nach links",
+      "Um 3 Stellen nach rechts"
     ],
-    correct: 0,
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "Drei Nullen = drei Stellen nach links rücken."
@@ -619,8 +619,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wandle 0,08 in einen vollständig gekürzten Bruch um.",
-    answers: [ "8/10", "4/50", "1/8","2/25"],
-    correct: 3,
+    answers: ["8/10", "2/25", "4/50", "1/8"],
+    correct: 1,
     difficulty: "mittel",
     points: 5,
     explanation: "0,08 = 8/100. Kürzen durch 4 ergibt 2/25."
@@ -633,8 +633,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welcher Dezimalzahl entspricht der Bruch 1/8?",
-    answers: [ "0,8", "0,18", "0,25","0,125"],
-    correct: 3,
+    answers: ["0,18", "0,125", "0,8", "0,25"],
+    correct: 1,
     difficulty: "mittel",
     points: 5,
     explanation: "1 : 8 = 0,125."
@@ -648,12 +648,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Was bedeutet die Schreibweise 0,333... (0,3 mit Periode)?",
     answers: [
+      "Die Ziffer 3 wiederholt sich unendlich oft",
       "Die Zahl endet nach der dritten Drei",
       "Es ist ungefähr 0,34",
-      "Die Ziffer 3 wiederholt sich unendlich oft",
       "Man teilt durch 3"
     ],
-    correct: 2,
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "Eine periodische Dezimalzahl hat ein sich unendlich wiederholendes Muster."
@@ -666,8 +666,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie viel sind 2,5 kg umgerechnet in Gramm?",
-    answers: [ "25000 g", "250 g", "25 g","2500 g"],
-    correct: 3,
+    answers: ["2500 g", "250 g", "25 g", "25000 g"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "1 kg = 1000 g; 2,5 * 1000 = 2500 g."
@@ -680,8 +680,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Ein Buch kostet 14,95 €. Wie viel Rückgeld erhält man von einem 20-€-Schein?",
-    answers: [ "6,05 €", "4,05 €", "5,15 €","5,05 €"],
-    correct: 3,
+    answers: ["4,05 €", "5,15 €", "5,05 €", "6,05 €"],
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "20,00 € - 14,95 € = 5,05 €."
@@ -694,8 +694,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 0,05 * 0,04",
-    answers: [ "0,0002", "0,02","0,002", "0,2"],
-    correct: 2,
+    answers: ["0,002", "0,02", "0,0002", "0,2"],
+    correct: 0,
     difficulty: "schwer",
     points: 5,
     explanation: "5 * 4 = 20. Insgesamt 4 Nachkommastellen -> 0,0020 = 0,002."
@@ -708,8 +708,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 1,21 : 1,1",
-    answers: [ "11", "1,01","1,1", "0,11"],
-    correct: 2,
+    answers: ["0,11", "1,1", "1,01", "11"],
+    correct: 1,
     difficulty: "schwer",
     points: 5,
     explanation: "Verschiebe Komma um 1 Stelle: 12,1 : 11 = 1,1."
@@ -722,8 +722,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wandle 7/100 in eine Dezimalzahl um.",
-    answers: [ "7,0", "0,7", "0,007","0,07"],
-    correct: 3,
+    answers: ["0,007", "0,07", "0,7", "7,0"],
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "7 Hundertstel = 0,07."
@@ -736,8 +736,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 10 - 3,45",
-    answers: [ "6,65","6,55", "7,45", "7,55"],
-    correct: 1,
+    answers: ["7,55", "7,45", "6,55", "6,65"],
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "10,00 - 3,45 = 6,55."
@@ -750,8 +750,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welches Zeichen gehört in die Lücke: 0,405 ___ 0,45 ?",
-    answers: [ ">= (größer gleich)","< (kleiner als)", "= (gleich)", "> (größer als)"],
-    correct: 1,
+    answers: [">= (größer gleich)", "= (gleich)", "> (größer als)", "< (kleiner als)"],
+    correct: 3,
     difficulty: "mittel",
     points: 5,
     explanation: "0,405 verglichen mit 0,450: 405 ist kleiner als 450."
@@ -768,8 +768,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie nennt man einen Winkel, der kleiner als 90° ist?",
-    answers: [ "Gestreckter Winkel", "Rechter Winkel","Spitzer Winkel", "Stumpfer Winkel"],
-    correct: 2,
+    answers: ["Stumpfer Winkel", "Spitzer Winkel", "Rechter Winkel", "Gestreckter Winkel"],
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "Winkel zwischen 0° und 90° sind spitz."
@@ -782,8 +782,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie groß ist ein rechter Winkel?",
-    answers: [ "Genau 45°","Genau 90°", "Genau 360°", "Genau 180°"],
-    correct: 1,
+    answers: ["Genau 360°", "Genau 45°", "Genau 90°", "Genau 180°"],
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "Ein rechter Winkel misst exakt 90°."
@@ -796,8 +796,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie nennt man einen Winkel zwischen 90° und 180°?",
-    answers: [ "Vollwinkel", "Spitzer Winkel","Stumpfer Winkel", "Überstumpfer Winkel"],
-    correct: 2,
+    answers: ["Vollwinkel", "Stumpfer Winkel", "Überstumpfer Winkel", "Spitzer Winkel"],
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "Winkel größer als 90° und kleiner als 180° nennt man stumpf."
@@ -810,8 +810,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie groß ist ein gestreckter Winkel?",
-    answers: [ "Genau 270°", "Genau 360°", "Genau 90°","Genau 180°"],
-    correct: 3,
+    answers: ["Genau 180°", "Genau 90°", "Genau 270°", "Genau 360°"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "Ein gestreckter Winkel bildet eine gerade Linie und misst 180°."
@@ -824,8 +824,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie nennt man einen Winkel zwischen 180° und 360°?",
-    answers: ["Überstumpfer Winkel", "Stumpfer Winkel", "Gestreckter Winkel", "Vollwinkel"],
-    correct: 0,
+    answers: ["Stumpfer Winkel", "Überstumpfer Winkel", "Gestreckter Winkel", "Vollwinkel"],
+    correct: 1,
     difficulty: "mittel",
     points: 5,
     explanation: "Winkel, die größer als 180° sind, heißen überstumpf."
@@ -838,8 +838,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie hängen Radius r und Durchmesser d eines Kreises zusammen?",
-    answers: [ "d = r + 2","d = 2 * r", "r = 2 * d", "d = r * r"],
-    correct: 1,
+    answers: ["d = 2 * r", "d = r + 2", "r = 2 * d", "d = r * r"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "Der Durchmesser d geht durch die Mitte und ist doppelt so lang wie der Radius r."
@@ -852,8 +852,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Ein Kreis hat den Radius r = 4 cm. Wie groß ist sein Durchmesser?",
-    answers: ["8 cm", "2 cm", "4 cm", "16 cm"],
-    correct: 0,
+    answers: ["2 cm", "16 cm", "4 cm", "8 cm"],
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "d = 2 * 4 cm = 8 cm."
@@ -866,8 +866,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Ein Kreis hat den Durchmesser d = 14 cm. Wie lang ist sein Radius?",
-    answers: ["7 cm", "14 cm", "28 cm", "3,5 cm"],
-    correct: 0,
+    answers: ["3,5 cm", "7 cm", "14 cm", "28 cm"],
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "r = d : 2 = 14 : 2 = 7 cm."
@@ -880,7 +880,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie groß ist die Winkelsumme in jedem beliebigen Dreieck?",
-    answers: ["180°", "270°", "360°", "90°"],
+    answers: ["180°", "360°", "90°", "270°"],
     correct: 0,
     difficulty: "leicht",
     points: 5,
@@ -894,8 +894,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie groß ist die Winkelsumme in jedem Viereck?",
-    answers: [ "270°","360°", "180°", "540°"],
-    correct: 1,
+    answers: ["270°", "180°", "360°", "540°"],
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "Jedes Viereck lässt sich in zwei Dreiecke zerlegen: 2 * 180° = 360°."
@@ -909,12 +909,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Wie berechnet man den Flächeninhalt A eines Parallelogramms?",
     answers: [
-      "A = Seite a + Seite b",
+      "A = Grundseite g * Höhe h",
       "A = (g * h) / 2",
-      "A = 2 * g + 2 * h",
-      "A = Grundseite g * Höhe h"
+      "A = Seite a + Seite b",
+      "A = 2 * g + 2 * h"
     ],
-    correct: 3,
+    correct: 0,
     difficulty: "mittel",
     points: 5,
     explanation: "A = g * h."
@@ -928,9 +928,9 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Wie berechnet man den Flächeninhalt A eines Dreiecks?",
     answers: [
-      "A = (Grundseite g * Höhe h) / 2",
-      "A = a + b + c",
+      "A = / 2",
       "A = Grundseite g * Höhe h",
+      "A = a + b + c",
       "A = g * h * 2"
     ],
     correct: 0,
@@ -946,8 +946,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Ein Dreieck hat eine Grundseite g = 6 cm und eine Höhe h = 4 cm. Wie groß ist die Fläche?",
-    answers: [ "16 cm²", "24 cm²","12 cm²", "10 cm²"],
-    correct: 2,
+    answers: ["12 cm²", "16 cm²", "24 cm²", "10 cm²"],
+    correct: 0,
     difficulty: "mittel",
     points: 5,
     explanation: "A = (6 * 4) / 2 = 24 / 2 = 12 cm²."
@@ -960,8 +960,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Ein Parallelogramm hat g = 8 cm und h = 5 cm. Wie groß ist sein Flächeninhalt?",
-    answers: [ "20 cm²","40 cm²", "26 cm²", "13 cm²"],
-    correct: 1,
+    answers: ["40 cm²", "20 cm²", "26 cm²", "13 cm²"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "A = 8 * 5 = 40 cm²."
@@ -976,11 +976,11 @@ const K6_MATHE_QUESTIONS = [
     question: "Wie berechnet man das Volumen V (Rauminhalt) eines Quaders?",
     answers: [
       "V = a * b + c",
-      "V = Länge a * Breite b * Höhe c",
       "V = 6 * a * a",
-      "V = 2 * a + 2 * b + 2 * c"
+      "V = 2 * a + 2 * b + 2 * c",
+      "V = Länge a * Breite b * Höhe c"
     ],
-    correct: 1,
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "V = a * b * c."
@@ -993,8 +993,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Ein Würfel hat die Kantenlänge a = 3 cm. Wie groß ist sein Volumen V?",
-    answers: [ "54 cm³","27 cm³", "9 cm³", "18 cm³"],
-    correct: 1,
+    answers: ["27 cm³", "18 cm³", "9 cm³", "54 cm³"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "V = 3 * 3 * 3 = 27 cm³."
@@ -1007,8 +1007,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie berechnet man die Oberfläche O eines Würfels mit Kantenlänge a?",
-    answers: ["O = 6 * a²", "O = 4 * a²", "O = a³", "O = 12 * a"],
-    correct: 0,
+    answers: ["O = 4 * a²", "O = 6 * a²", "O = 12 * a", "O = a³"],
+    correct: 1,
     difficulty: "mittel",
     points: 5,
     explanation: "Der Würfel besitzt 6 quadratische Begrenzungsflächen."
@@ -1021,8 +1021,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Ein Würfel hat eine Kantenlänge von 2 cm. Wie groß ist seine Oberfläche O?",
-    answers: [ "16 cm²","24 cm²", "12 cm²", "8 cm²"],
-    correct: 1,
+    answers: ["12 cm²", "16 cm²", "8 cm²", "24 cm²"],
+    correct: 3,
     difficulty: "mittel",
     points: 5,
     explanation: "Eine Fläche = 2 * 2 = 4 cm². Sechs Flächen = 6 * 4 = 24 cm²."
@@ -1035,7 +1035,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie viele Kubikzentimeter (cm³) entsprechen genau 1 Liter?",
-    answers: [ "10000 cm³", "10 cm³","1000 cm³", "100 cm³"],
+    answers: ["10 cm³", "10000 cm³", "1000 cm³", "100 cm³"],
     correct: 2,
     difficulty: "leicht",
     points: 5,
@@ -1049,7 +1049,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie viele Flächen hat ein Quader?",
-    answers: [ "8 Flächen", "4 Flächen", "12 Flächen","6 Flächen"],
+    answers: ["12 Flächen", "8 Flächen", "4 Flächen", "6 Flächen"],
     correct: 3,
     difficulty: "leicht",
     points: 5,
@@ -1063,8 +1063,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie viele Ecken hat ein Quader?",
-    answers: [ "16 Ecken","8 Ecken", "12 Ecken", "6 Ecken"],
-    correct: 1,
+    answers: ["8 Ecken", "12 Ecken", "6 Ecken", "16 Ecken"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "Ein Quader besitzt 8 Ecken."
@@ -1077,8 +1077,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie viele Kanten hat ein Quader?",
-    answers: [ "10 Kanten","12 Kanten", "6 Kanten", "8 Kanten"],
-    correct: 1,
+    answers: ["10 Kanten", "6 Kanten", "12 Kanten", "8 Kanten"],
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "Ein Quader hat 12 Kanten."
@@ -1091,8 +1091,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Ein Quader hat a = 4 cm, b = 3 cm und c = 5 cm. Wie groß ist sein Volumen V?",
-    answers: [ "12 cm³","60 cm³", "30 cm³", "24 cm³"],
-    correct: 1,
+    answers: ["60 cm³", "24 cm³", "12 cm³", "30 cm³"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "V = 4 * 3 * 5 = 60 cm³."
@@ -1105,8 +1105,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welches Messgerät verwendet man zum Messen und Zeichnen von Winkeln?",
-    answers: [ "Zirkel","Geodreieck", "Taschenrechner", "Waage"],
-    correct: 1,
+    answers: ["Waage", "Taschenrechner", "Geodreieck", "Zirkel"],
+    correct: 2,
     difficulty: "leicht",
     points: 5,
     explanation: "Mit dem Geodreieck lassen sich Winkel gradgenau ablesen und zeichnen."
@@ -1119,8 +1119,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Zwei Winkel α und β ergänzen sich zu einem gestreckten Winkel (180°). Wenn α = 70° ist, wie groß ist β?",
-    answers: [ "90°","110°", "120°", "20°"],
-    correct: 1,
+    answers: ["20°", "90°", "120°", "110°"],
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "180° - 70° = 110°."
@@ -1137,8 +1137,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welches Vorzeichen steht vor einer negativen Zahl?",
-    answers: [ "Malzeichen (*)","Minuszeichen (-)", "Pluszeichen (+)", "Gleichheitszeichen (=)"],
-    correct: 1,
+    answers: ["Minuszeichen (-)", "Malzeichen (*)", "Pluszeichen (+)", "Gleichheitszeichen (=)"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "Negative Zahlen tragen ein Minuszeichen (-)."
@@ -1151,8 +1151,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welche Zahl liegt auf der Zahlengerade weiter links: -5 oder -2?",
-    answers: [ "0", "Beide liegen gleich","-5", "-2"],
-    correct: 2,
+    answers: ["-5", "0", "-2", "Beide liegen gleich"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "Je kleiner eine Zahl, desto weiter links liegt sie auf der Zahlengerade (-5 ist kleiner als -2)."
@@ -1165,7 +1165,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welche Aussage über negative Zahlen ist korrekt?",
-    answers: [ "-7 ist größer als -3","-3 ist größer als -7", "-3 ist kleiner als -10", "-5 ist gleich +5"],
+    answers: ["-3 ist kleiner als -10", "-3 ist größer als -7", "-7 ist größer als -3", "-5 ist gleich +5"],
     correct: 1,
     difficulty: "leicht",
     points: 5,
@@ -1179,8 +1179,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Die Temperatur beträgt morgens -4 °C und steigt tagsüber um 9 °C. Wie warm ist es am Nachmittag?",
-    answers: [ "+13 °C", "-5 °C","+5 °C", "-13 °C"],
-    correct: 2,
+    answers: ["-5 °C", "+5 °C", "+13 °C", "-13 °C"],
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "-4 + 9 = +5 °C."
@@ -1193,8 +1193,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Die Temperatur beträgt +3 °C und fällt in der Nacht um 8 °C. Wie kalt wird es?",
-    answers: [ "+5 °C", "-3 °C", "-11 °C","-5 °C"],
-    correct: 3,
+    answers: ["-11 °C", "-5 °C", "+5 °C", "-3 °C"],
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "3 - 8 = -5 °C."
@@ -1208,12 +1208,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Was versteht man unter dem Betrag einer Zahl (z. B. |-8|)?",
     answers: [
-      "Den Kehrwert der Zahl",
       "Das Quadrat der Zahl",
-      "Den Abstand der Zahl zur Null auf der Zahlengerade",
-      "Die Gegenzahl mit anderem Vorzeichen"
+      "Die Gegenzahl mit anderem Vorzeichen",
+      "Den Kehrwert der Zahl",
+      "Den Abstand der Zahl zur Null auf der Zahlengerade"
     ],
-    correct: 2,
+    correct: 3,
     difficulty: "mittel",
     points: 5,
     explanation: "Der Betrag ist nie negativ: |-8| = 8."
@@ -1226,7 +1226,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Was ist die Gegenzahl von -12?",
-    answers: [ "-1/12","+12", "0", "-12"],
+    answers: ["-1/12", "+12", "-12", "0"],
     correct: 1,
     difficulty: "leicht",
     points: 5,
@@ -1240,8 +1240,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: -4 + 7",
-    answers: [ "11", "-11", "-3","3"],
-    correct: 3,
+    answers: ["3", "-3", "-11", "11"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "-4 + 7 = 3."
@@ -1254,7 +1254,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: -3 - 5",
-    answers: [ "8", "-2", "2","-8"],
+    answers: ["-2", "2", "8", "-8"],
     correct: 3,
     difficulty: "leicht",
     points: 5,
@@ -1268,7 +1268,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "In welchem Quadranten des Koordinatensystems liegt der Punkt P(-3 | 4)?",
-    answers: [ "3. Quadrant (unten links)","2. Quadrant (oben links)", "1. Quadrant (oben rechts)", "4. Quadrant (unten rechts)"],
+    answers: ["3. Quadrant (unten links)", "2. Quadrant (oben links)", "4. Quadrant (unten rechts)", "1. Quadrant (oben rechts)"],
     correct: 1,
     difficulty: "mittel",
     points: 5,
@@ -1282,8 +1282,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welche Koordinate nennt man bei der Angabe eines Punktes P(x | y) zuerst?",
-    answers: [ "Nullwert","x-Koordinate (Rechtswert)", "Höhenwert", "y-Koordinate (Hochwert)"],
-    correct: 1,
+    answers: ["Nullwert", "Höhenwert", "y-Koordinate (Hochwert)", "x-Koordinate (Rechtswert)"],
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "Merkregel: Zuerst geht man auf der x-Achse entlang, dann auf der y-Achse."
@@ -1296,8 +1296,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wo liegt der Ursprung (Nullpunkt) des Koordinatensystems?",
-    answers: ["(0 | 0)", "(1 | 1)", "(0 | 1)", "(1 | 0)"],
-    correct: 0,
+    answers: ["(1 | 1)", "(0 | 1)", "(1 | 0)", "(0 | 0)"],
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "Der Schnittpunkt der Achsen hat die Koordinaten (0 | 0)."
@@ -1312,9 +1312,9 @@ const K6_MATHE_QUESTIONS = [
     question: "Was gibt die 'absolute Häufigkeit' bei einer Datenerhebung an?",
     answers: [
       "Die genaue Anzahl, wie oft ein Ereignis eingetreten ist",
+      "Den Prozentwert",
       "Den Durchschnittswert",
-      "Den Anteil im Vergleich zur Gesamtzahl",
-      "Den Prozentwert"
+      "Den Anteil im Vergleich zur Gesamtzahl"
     ],
     correct: 0,
     difficulty: "leicht",
@@ -1330,12 +1330,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Was gibt die 'relative Häufigkeit' an?",
     answers: [
-      "Die Gesamtzahl aller Versuche",
       "Den Anteil der absoluten Häufigkeit an der Gesamtzahl",
+      "Die Differenz von größtem und kleinstem Wert",
       "Nur die Anzahl der Fehler",
-      "Die Differenz von größtem und kleinstem Wert"
+      "Die Gesamtzahl aller Versuche"
     ],
-    correct: 1,
+    correct: 0,
     difficulty: "mittel",
     points: 5,
     explanation: "Relative Häufigkeit = Absolute Häufigkeit / Gesamtzahl."
@@ -1349,12 +1349,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Wie berechnet man das arithmetische Mittel (den Durchschnitt) mehrerer Zahlen?",
     answers: [
-      "Die Summe aller Werte mal zwei",
       "Der Wert, der genau in der Mitte steht",
       "Summe aller Werte geteilt durch die Anzahl der Werte",
+      "Die Summe aller Werte mal zwei",
       "Größter Wert minus kleinster Wert"
     ],
-    correct: 2,
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "Durchschnitt = Summe aller Werte / Anzahl der Werte."
@@ -1367,8 +1367,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne den Notendurchschnitt folgender fünf Arbeiten: 2, 3, 1, 4, 2.",
-    answers: ["2,4", "3,0", "2,5", "2,0"],
-    correct: 0,
+    answers: ["3,0", "2,0", "2,4", "2,5"],
+    correct: 2,
     difficulty: "mittel",
     points: 5,
     explanation: "Summe: 2 + 3 + 1 + 4 + 2 = 12. 12 : 5 = 2,4."
@@ -1382,12 +1382,12 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Was versteht man unter der Spannweite einer Datenreihe?",
     answers: [
-      "Den am häufigsten vorkommenden Wert",
       "Den Mittelwert aller Zahlen",
       "Die Differenz zwischen dem größten und dem kleinsten Wert",
-      "Die Anzahl aller Messwerte"
+      "Die Anzahl aller Messwerte",
+      "Den am häufigsten vorkommenden Wert"
     ],
-    correct: 2,
+    correct: 1,
     difficulty: "leicht",
     points: 5,
     explanation: "Spannweite = Maximum - Minimum."
@@ -1400,8 +1400,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Bestimme die Spannweite der Datenreihe: 3, 7, 2, 12, 5.",
-    answers: [ "5","10", "12", "9"],
-    correct: 1,
+    answers: ["9", "5", "12", "10"],
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "Größter Wert (12) - kleinster Wert (2) = 10."
@@ -1414,7 +1414,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie groß ist die Wahrscheinlichkeit, bei einem fairen 6-seitigen Würfel eine '4' zu würfeln?",
-    answers: ["1/6", "1/4", "1/2", "4/6"],
+    answers: ["1/6", "1/4", "4/6", "1/2"],
     correct: 0,
     difficulty: "leicht",
     points: 5,
@@ -1428,8 +1428,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie groß ist die Wahrscheinlichkeit, bei einem Würfel eine gerade Zahl (2, 4 oder 6) zu würfeln?",
-    answers: [ "5/6", "2/6", "1/6","3/6 (gekürtzt 1/2)"],
-    correct: 3,
+    answers: ["3/6 (gekürtzt 1/2)", "2/6", "5/6", "1/6"],
+    correct: 0,
     difficulty: "leicht",
     points: 5,
     explanation: "3 günstige Ergebnisse (2, 4, 6) von 6 möglichen -> 3/6 = 1/2."
@@ -1442,8 +1442,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie nennt man ein Zufallsexperiment, bei dem alle möglichen Ergebnisse gleich wahrscheinlich sind?",
-    answers: [ "Gauß-Experiment", "Symmetrie-Experiment","Laplace-Experiment", "Bruch-Experiment"],
-    correct: 2,
+    answers: ["Bruch-Experiment", "Gauß-Experiment", "Symmetrie-Experiment", "Laplace-Experiment"],
+    correct: 3,
     difficulty: "mittel",
     points: 5,
     explanation: "Ein ideales Experiment mit gleich korrekten Gewinnchancen heißt Laplace-Experiment."
@@ -1456,8 +1456,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: -10 + (-5)",
-    answers: [ "-5", "+15","-15", "+5"],
-    correct: 2,
+    answers: ["+5", "-15", "+15", "-5"],
+    correct: 1,
     difficulty: "mittel",
     points: 5,
     explanation: "-10 - 5 = -15."
@@ -1470,8 +1470,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: -8 - (-3)",
-    answers: [ "+5", "-11", "+11","-5"],
-    correct: 3,
+    answers: ["+5", "-5", "-11", "+11"],
+    correct: 1,
     difficulty: "schwer",
     points: 5,
     explanation: "Minus und Minus ergibt Plus: -8 + 3 = -5."
@@ -1484,7 +1484,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Bei 20 Würfen wurde 5-mal eine '6' gewürfelt. Wie hoch ist die relative Häufigkeit?",
-    answers: [ "6/20", "20/5","5/20 (gekürtzt 1/4 bzw. 25%)", "5/6"],
+    answers: ["6/20", "5/6", "5/20 (gekürtzt 1/4 bzw. 25%)", "20/5"],
     correct: 2,
     difficulty: "mittel",
     points: 5,
@@ -1498,8 +1498,8 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welcher der folgenden Punkte liegt direkt auf der x-Achse?",
-    answers: [ "(0 | 4)","(4 | 0)", "(1 | 1)", "(-2 | 3)"],
-    correct: 1,
+    answers: ["(1 | 1)", "(0 | 4)", "(-2 | 3)", "(4 | 0)"],
+    correct: 3,
     difficulty: "leicht",
     points: 5,
     explanation: "Wenn die y-Koordinate 0 ist, liegt der Punkt auf der x-Achse."
@@ -3318,10 +3318,37 @@ const K6_MATHE_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der Modalwert ist der Wert, der in einer Datenmenge am häufigsten vorkommt."
-  }
-
-
+  },
+  {"id":"k6ma101","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Was ist 2/3 + 1/3?","answers":["1/3","1","2/6","0"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1.","topic":"erweiterung"},
+  {"id":"k6ma102","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"0,125 als Bruch?","answers":["1/5","1/8","1/4","1/6"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1/8.","topic":"erweiterung"},
+  {"id":"k6ma103","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Was ist (−4) + 9?","answers":["−13","5","13","−5"],"correct":1,"difficulty":"mittel","points":10,"explanation":"5.","topic":"erweiterung"},
+  {"id":"k6ma104","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Was ist 3² × 2?","answers":["12","18","6","36"],"correct":1,"difficulty":"mittel","points":10,"explanation":"9×2=18.","topic":"erweiterung"},
+  {"id":"k6ma105","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"√64 = ?","answers":["6","8","7","32"],"correct":1,"difficulty":"mittel","points":10,"explanation":"8.","topic":"erweiterung"},
+  {"id":"k6ma106","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Prozent: 20% von 150?","answers":["20","30","40","15"],"correct":1,"difficulty":"mittel","points":10,"explanation":"30.","topic":"erweiterung"},
+  {"id":"k6ma107","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Gleichung: x + 7 = 15 → x=?","answers":["7","8","22","15"],"correct":1,"difficulty":"mittel","points":10,"explanation":"8.","topic":"erweiterung"},
+  {"id":"k6ma108","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Fläche Kreis Näherung r=1 (π≈3,14)?","answers":["3,14","6,28","1","0"],"correct":0,"difficulty":"mittel","points":10,"explanation":"πr²≈3,14.","topic":"erweiterung"},
+  {"id":"k6ma109","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Volumen Quader 2×3×4?","answers":["9","24","12","14"],"correct":1,"difficulty":"mittel","points":10,"explanation":"24.","topic":"erweiterung"},
+  {"id":"k6ma110","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Dreisatz: 5 kg kosten 10 € → 8 kg?","answers":["16 €","12 €","18 €","8 €"],"correct":0,"difficulty":"mittel","points":10,"explanation":"16 €.","topic":"erweiterung"},
+  {"id":"k6ma111","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"ggt(24,36)?","answers":["6","12","8","18"],"correct":1,"difficulty":"mittel","points":10,"explanation":"12.","topic":"erweiterung"},
+  {"id":"k6ma112","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"kgV(6,8)?","answers":["24","48","14","12"],"correct":0,"difficulty":"mittel","points":10,"explanation":"24.","topic":"erweiterung"},
+  {"id":"k6ma113","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Winkel Summe Viereck?","answers":["180°","360°","90°","270°"],"correct":1,"difficulty":"mittel","points":10,"explanation":"360°.","topic":"erweiterung"},
+  {"id":"k6ma114","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Negative: (−3)×(−2)?","answers":["−6","6","5","−5"],"correct":1,"difficulty":"mittel","points":10,"explanation":"6.","topic":"erweiterung"},
+  {"id":"k6ma115","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Bruch÷Bruch: 1/2 ÷ 1/4?","answers":["1/8","2","1/2","4"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2.","topic":"erweiterung"},
+  {"id":"k6ma116","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Mittelwert 2,4,6,8?","answers":["4","5","6","20"],"correct":1,"difficulty":"mittel","points":10,"explanation":"5.","topic":"erweiterung"},
+  {"id":"k6ma117","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Potenz: 10³?","answers":["30","1000","100","10000"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1000.","topic":"erweiterung"},
+  {"id":"k6ma118","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Umfang Kreis d=10, π≈3?","answers":["30","15","20","10"],"correct":0,"difficulty":"mittel","points":10,"explanation":"U≈πd≈30.","topic":"erweiterung"},
+  {"id":"k6ma119","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Ungleichung: x > 3, welche Zahl passt?","answers":["2","3","4","0"],"correct":2,"difficulty":"mittel","points":10,"explanation":"4.","topic":"erweiterung"},
+  {"id":"k6ma120","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Koordinaten Quadrant I: x und y …","answers":["beide negativ","x+, y+","x−,y+","x+,y−"],"correct":1,"difficulty":"mittel","points":10,"explanation":"positiv.","topic":"erweiterung"},
+  {"id":"k6ma121","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"1 m³ = ? Liter","answers":["10","100","1000","1"],"correct":2,"difficulty":"mittel","points":10,"explanation":"1000 l.","topic":"erweiterung"},
+  {"id":"k6ma122","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Zins: 5% von 200 €?","answers":["5","10","15","20"],"correct":1,"difficulty":"mittel","points":10,"explanation":"10 €.","topic":"erweiterung"},
+  {"id":"k6ma123","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Primfaktor 12?","answers":["2×2×3","3×4","2×6","12"],"correct":0,"difficulty":"mittel","points":10,"explanation":"2²×3.","topic":"erweiterung"},
+  {"id":"k6ma124","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Strahlensatz Idee: proportionale …","answers":["Winkel nur","Strecken","Farben","Massen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Strecken.","topic":"erweiterung"},
+  {"id":"k6ma125","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Was ist 7/8 − 1/8?","answers":["6/8","3/4","1","beide A und B"],"correct":3,"difficulty":"mittel","points":10,"explanation":"6/8=3/4.","topic":"erweiterung"},
+  {"id":"k6ma126","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Term: 2a+3a=?","answers":["5a","6a","2a3a","a⁵"],"correct":0,"difficulty":"mittel","points":10,"explanation":"5a.","topic":"erweiterung"},
+  {"id":"k6ma127","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Körper: Tetraeder Flächen?","answers":["3","4","6","8"],"correct":1,"difficulty":"mittel","points":10,"explanation":"4 Dreiecke.","topic":"erweiterung"},
+  {"id":"k6ma128","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Zufall: fairer Würfel P(6)?","answers":["1/2","1/6","1/3","1"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1/6.","topic":"erweiterung"},
+  {"id":"k6ma129","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Runden 3,14159 auf Hundertstel?","answers":["3,14","3,15","3,1","3,142"],"correct":0,"difficulty":"mittel","points":10,"explanation":"3,14.","topic":"erweiterung"},
+  {"id":"k6ma130","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Funktion linear: y=2x bei x=3?","answers":["5","6","8","2"],"correct":1,"difficulty":"mittel","points":10,"explanation":"6.","topic":"erweiterung"}
 ];
-
 if (typeof window !== 'undefined') window.K6_MATHE_QUESTIONS = K6_MATHE_QUESTIONS;
 if (typeof registerQuestions === 'function') registerQuestions('K6_MATHE_QUESTIONS', K6_MATHE_QUESTIONS);

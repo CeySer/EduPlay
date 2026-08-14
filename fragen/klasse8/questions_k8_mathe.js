@@ -1804,8 +1804,35 @@ const questions_k8_mathematik = [
     "difficulty": "schwer",
     "points": 20,
     "explanation": "$(x + 3)^2 - (x^2 + 9) = (x^2 + 6x + 9) - x^2 - 9 = 6x$."
-  }
+  },
+  {"id":"k8ma101","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Was ist √169?","answers":["12","13","14","15"],"correct":1,"difficulty":"mittel","points":10,"explanation":"13×13=169."},
+  {"id":"k8ma102","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Löse: 5x=35","answers":["5","6","7","8"],"correct":2,"difficulty":"mittel","points":10,"explanation":"x=7."},
+  {"id":"k8ma103","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"2³·2²=?","answers":["2⁵","2⁶","4⁵","2"],"correct":0,"difficulty":"mittel","points":10,"explanation":"2⁵."},
+  {"id":"k8ma104","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"15% von 200?","answers":["20","25","30","35"],"correct":2,"difficulty":"mittel","points":10,"explanation":"30."},
+  {"id":"k8ma105","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Steigung (0,0)→(4,8)?","answers":["1","2","3","4"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2."},
+  {"id":"k8ma106","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Fläche Rechteck 9×4?","answers":["13","36","26","18"],"correct":1,"difficulty":"mittel","points":10,"explanation":"36."},
+  {"id":"k8ma107","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"sin(0°)=?","answers":["0","1","0,5","−1"],"correct":0,"difficulty":"mittel","points":10,"explanation":"0."},
+  {"id":"k8ma108","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"log₁₀(100)=?","answers":["1","2","10","100"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2."},
+  {"id":"k8ma109","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"x²=36 → x=?","answers":["6","±6","36","−6"],"correct":1,"difficulty":"mittel","points":10,"explanation":"±6."},
+  {"id":"k8ma110","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"3-4-5 Dreieck: c=?","answers":["5","6","7","8"],"correct":0,"difficulty":"mittel","points":10,"explanation":"5."},
+  {"id":"k8ma111","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"P(Kopf) fair coin?","answers":["0","1/2","1/3","1"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1/2."},
+  {"id":"k8ma112","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Mittel 10,20,30?","answers":["15","20","25","60"],"correct":1,"difficulty":"mittel","points":10,"explanation":"20."},
+  {"id":"k8ma113","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"1 h = ? s","answers":["60","3600","600","1000"],"correct":1,"difficulty":"mittel","points":10,"explanation":"3600."},
+  {"id":"k8ma114","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"2/3 + 1/6=?","answers":["1/2","5/6","1","3/6"],"correct":1,"difficulty":"mittel","points":10,"explanation":"5/6."},
+  {"id":"k8ma115","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"a⁴/a²=?","answers":["a²","a⁶","a","2a"],"correct":0,"difficulty":"mittel","points":10,"explanation":"a²."},
+  {"id":"k8ma116","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Nullstelle y=x+5?","answers":["0","−5","5","1"],"correct":1,"difficulty":"mittel","points":10,"explanation":"−5."},
+  {"id":"k8ma117","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Würfel Volumen a=5?","answers":["25","125","15","100"],"correct":1,"difficulty":"mittel","points":10,"explanation":"125."},
+  {"id":"k8ma118","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Median 1,3,100?","answers":["1","3","100","34"],"correct":1,"difficulty":"mittel","points":10,"explanation":"3."},
+  {"id":"k8ma119","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"0,5 als Bruch?","answers":["1/5","1/2","2/5","1/4"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1/2."},
+  {"id":"k8ma120","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"3a+2a=?","answers":["5a","6a","a⁵","5"],"correct":0,"difficulty":"mittel","points":10,"explanation":"5a."},
+  {"id":"k8ma121","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Primzahl?","answers":["27","29","33","35"],"correct":1,"difficulty":"mittel","points":10,"explanation":"29."},
+  {"id":"k8ma122","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Runde 2,35 auf Zehntel?","answers":["2,3","2,4","2,35","2"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2,4."},
+  {"id":"k8ma123","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"f(x)=x+1, f(10)=?","answers":["9","11","10","12"],"correct":1,"difficulty":"mittel","points":10,"explanation":"11."},
+  {"id":"k8ma124","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"x−3>2 →","answers":["x>5","x<5","x>2","x=5"],"correct":0,"difficulty":"mittel","points":10,"explanation":"x>5."},
+  {"id":"k8ma125","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Dreisatz 2→6, 5→?","answers":["10","15","12","30"],"correct":1,"difficulty":"mittel","points":10,"explanation":"15."},
+  {"id":"k8ma126","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"U Kreis d=10 π≈3?","answers":["30","15","60","10"],"correct":0,"difficulty":"mittel","points":10,"explanation":"≈30."},
+  {"id":"k8ma127","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"(−2)×3=?","answers":["−6","6","−5","5"],"correct":0,"difficulty":"mittel","points":10,"explanation":"−6."},
+  {"id":"k8ma128","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"Quadrant III: x und y …","answers":["beide +","beide −","x+ y−","x− y+"],"correct":1,"difficulty":"mittel","points":10,"explanation":"beide negativ."},
+  {"id":"k8ma129","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"4²=?","answers":["8","16","32","2"],"correct":1,"difficulty":"mittel","points":10,"explanation":"16."},
+  {"id":"k8ma130","category":"k8_mathe","area":"schule","grade":8,"subject":"mathe","topic":"erweiterung","question":"5! =?","answers":["25","120","60","20"],"correct":1,"difficulty":"mittel","points":10,"explanation":"120."}
 ];
-
-
-

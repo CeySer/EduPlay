@@ -1800,11 +1800,35 @@ const questions_k8_erdkunde = [
     "difficulty": "mittel",
     "points": 15,
     "explanation": "Resilienz bezeichnet die Widerstandskraft und Anpassungsfähigkeit einer Gesellschaft gegenüber Extremereignissen."
-  }
+  },
+  {"id":"k8ek101","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Deutschland Kontinent?","answers":["Afrika","Europa","Asien","Australien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Europa."},
+  {"id":"k8ek102","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Hauptstadt FR?","answers":["Lyon","Paris","Marseille","Nizza"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Paris."},
+  {"id":"k8ek103","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Äquator Breite?","answers":["90°","0°","180°","45°"],"correct":1,"difficulty":"mittel","points":10,"explanation":"0°."},
+  {"id":"k8ek104","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Nachhaltigkeit: …","answers":["verbrauchen","schonend nutzen","nur Export","kein Wasser"],"correct":1,"difficulty":"mittel","points":10,"explanation":"schonen."},
+  {"id":"k8ek105","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Urbanisierung = …","answers":["Landwirtschaft","Verstädterung","Wald","Eiszeit"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stadt."},
+  {"id":"k8ek106","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Plattentektonik erklärt …","answers":["Wetter","Erdbeben/Vulkane","Mode","Sprache"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Platten."},
+  {"id":"k8ek107","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Migration pull?","answers":["Krieg","Jobs Ziel","Katastrophe","Verfolgung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Anziehung."},
+  {"id":"k8ek108","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Treibhausgas u. a. …","answers":["O₂","CO₂","N₂","He"],"correct":1,"difficulty":"mittel","points":10,"explanation":"CO₂."},
+  {"id":"k8ek109","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"1:100000 → 1 cm = …","answers":["1 m","1 km","100 km","10 m"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1 km."},
+  {"id":"k8ek110","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Rhein → …","answers":["Ostsee","Nordsee","Adria","Donau"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nordsee."},
+  {"id":"k8ek111","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Wüste: wenig …","answers":["Sand","Niederschlag","Sonne","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Regen."},
+  {"id":"k8ek112","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Globalisierung = …","answers":["Isolation","Verflechtung","Lokal","Autarkie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Netz."},
+  {"id":"k8ek113","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"HDI u. a. …","answers":["Militär","Bildung/Gesundheit/Einkommen","CO₂","nur BIP"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Entwicklung."},
+  {"id":"k8ek114","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Desertifikation = …","answers":["Aufforstung","Wüstenbildung","Gletscher","Stadt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Degradation."},
+  {"id":"k8ek115","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Alpen = …","answers":["Tiefland","Hochgebirge","Inseln","Wüste"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gebirge."},
+  {"id":"k8ek116","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"EU Binnenmarkt: freier …","answers":["Krieg","Warenverkehr","Zoll","Grenze überall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Waren."},
+  {"id":"k8ek117","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Legende erklärt …","answers":["Politik","Signaturen","Zeit","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zeichen."},
+  {"id":"k8ek118","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Süßwasser u. a. in …","answers":["Meer","Gletscher/Grundwasser","Asphalt","Hochhaus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Süßwasser."},
+  {"id":"k8ek119","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Strukturwandel → …","answers":["Kohle","Dienstleistungen","Wüste","Landwirtschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"tertiär."},
+  {"id":"k8ek120","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Geopolitik: Macht und …","answers":["Sport","Raum","Mode","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Raum."},
+  {"id":"k8ek121","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Tropen nah am …","answers":["Pol","Äquator","Mond","Mars"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Äquator."},
+  {"id":"k8ek122","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Bodenschatz?","answers":["Luft","Erz/Kohle","Wolke","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rohstoff."},
+  {"id":"k8ek123","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Versiegelung + Starkregen → …","answers":["weniger Risiko","mehr Hochwasser","kein Effekt","Schnee"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Risiko."},
+  {"id":"k8ek124","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Fair Trade → …","answers":["Dumping","faire Preise","Zwischenhandel max","Schwarzmarkt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fairness."},
+  {"id":"k8ek125","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Kompass → …","answers":["Osten","Norden","Süden","Westen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"N."},
+  {"id":"k8ek126","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Primärer Sektor = …","answers":["Industrie","Rohstoffe/Landwirtschaft","Dienstleistung","IT"],"correct":1,"difficulty":"mittel","points":10,"explanation":"primär."},
+  {"id":"k8ek127","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Bevölkerungsdichte = …","answers":["Zahl","Einwohner/Fläche","Geburten","Migration"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Dichte."},
+  {"id":"k8ek128","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Klimaschutz: mehr …","answers":["Kohle","Erneuerbare","Abholzung","Flüge"],"correct":1,"difficulty":"mittel","points":10,"explanation":"EE."},
+  {"id":"k8ek129","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Metropolregion = …","answers":["Dorf","Stadtregion","Wüste","Insel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Agglomeration."},
+  {"id":"k8ek130","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"SDGs sind …","answers":["Krieg","UN-Nachhaltigkeitsziele","nur DE","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"UN."}
 ];
-
-
-
-
-
-

@@ -1802,14 +1802,35 @@ const questions_k8_politik = [
     "difficulty": "leicht",
     "points": 10,
     "explanation": "Art. 20 Abs. 2 GG legt fest: 'Alle Staatsgewalt geht vom Volke aus.' Das Volk übt sie durch Wahlen, Abstimmungen und besondere Organe aus."
-  }
+  },
+  {"id":"k8po101","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Demokratie = Herrschaft des …","answers":["Königs","Volkes","Militärs","Zufalls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Volkes."},
+  {"id":"k8po102","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"GG ist …","answers":["Roman","Verfassung","Schulordnung","EU-Vertrag"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verfassung."},
+  {"id":"k8po103","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Bundestag = …","answers":["Regierung","Parlament","Gericht","Polizei"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Parlament."},
+  {"id":"k8po104","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Gewaltenteilung endet mit …","answers":["Medien","Judikative","Sport","Kirche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Judikative."},
+  {"id":"k8po105","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Grundrecht Beispiel?","answers":["Gebühr","Meinungsfreiheit","Steuern","Wehrpflicht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Meinung."},
+  {"id":"k8po106","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Wahlen u. a. …","answers":["öffentlich","geheim","online only","ungleich"],"correct":1,"difficulty":"mittel","points":10,"explanation":"geheim."},
+  {"id":"k8po107","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Opposition …","answers":["ersetzt","kontrolliert","verboten","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kontrolle."},
+  {"id":"k8po108","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Rechtsstaat: Bindung an …","answers":["Willkür","Recht","Macht","keine Gerichte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Recht."},
+  {"id":"k8po109","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"EU ist …","answers":["Militär","Staatenverbund","Bundesland","Stadt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verbund."},
+  {"id":"k8po110","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Pressefreiheit dient …","answers":["Geheimnis","Kontrolle","Werbung","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Freiheit."},
+  {"id":"k8po111","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Föderalismus: Bund und …","answers":["Gemeinden","Länder","EU","Parteien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Länder."},
+  {"id":"k8po112","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Art. 1 GG: …","answers":["Steuern","Menschenwürde","Sport","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Würde."},
+  {"id":"k8po113","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Petition an …","answers":["Zufall","Parlament","Strafgericht","Medien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bitten."},
+  {"id":"k8po114","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Sozialstaat → …","answers":["Reiche","Sicherung","keine Hilfe","Militär"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Sicherung."},
+  {"id":"k8po115","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Datenschutz schützt …","answers":["Staaten","personenbezogene Daten","Wetter","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Daten."},
+  {"id":"k8po116","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Demo oft …","answers":["geheim","friedlich/angemeldet","bewaffnet","ohne GG"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Versammlung."},
+  {"id":"k8po117","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Korruption schadet …","answers":["Sport","Gemeinwohl","Wetter","Tourismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vertrauen."},
+  {"id":"k8po118","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Politische Bildung → …","answers":["Indoktrination","Mündigkeit","Partei","Desinteresse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Mündigkeit."},
+  {"id":"k8po119","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"BVerfG prüft …","answers":["Sport","Verfassungsmäßigkeit","Steuern","Wetter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"GG."},
+  {"id":"k8po120","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Menschenrechte gegen …","answers":["Privat only","Willkür","Wetter","Wirtschaft only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schutz."},
+  {"id":"k8po121","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Medienkompetenz gegen …","answers":["Info","Desinformation","Pressefreiheit","Wahlen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fake News."},
+  {"id":"k8po122","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Integration = …","answers":["Ausgrenzung","Teilhabe","Zwang","Isolation"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Teilhabe."},
+  {"id":"k8po123","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Wehrhafte Demokratie schützt …","answers":["alles","fdGO","nichts","Zensur total"],"correct":1,"difficulty":"mittel","points":10,"explanation":"fdGO."},
+  {"id":"k8po124","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Kommunal: …","answers":["EU","Gemeinderat","UNO","NATO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kommune."},
+  {"id":"k8po125","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Lobbyismus …","answers":["illegal","Interessenvertretung","ersetzt Wahl","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Interessen."},
+  {"id":"k8po126","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Sozialversicherung …","answers":["Rüstung","Krankheit/Alter","Parteien","Kultur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Risiken."},
+  {"id":"k8po127","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"UN zielt auf …","answers":["Krieg","Frieden","DE-Handel","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Frieden."},
+  {"id":"k8po128","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Gleichstellung → …","answers":["Diskriminierung","gleiche Chancen","Ungleichheit","Quoten Spaß"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gleichheit."},
+  {"id":"k8po129","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Rechtsweg: Zugang zu …","answers":["Polizei","Gerichten","Medien","Parteien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gericht."},
+  {"id":"k8po130","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Digitalisierung Herausforderung …","answers":["Handwerk","Datenschutz/Demokratie","Sport","kein Feld"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Transform."}
 ];
-
-
-
-
-
-
-
-
-

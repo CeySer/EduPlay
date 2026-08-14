@@ -467,8 +467,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="dash-admin-progress-view" class="space-y-3">
                         <div id="dash-admin-stats" class="space-y-3"></div>
                         <div class="glass-card p-4 space-y-3">
-                            <div class="font-black text-amber-300 text-sm">📋 Lernauftrag</div>
-                            <p class="text-[11px] text-gray-500">Zielzeit für heute – Kind sieht Banner + Fortschritt. Jederzeit zurückziehbar.</p>
+                            <div class="font-black text-amber-300 text-sm">📋 Lernauftrag setzen</div>
+                            <p class="text-[11px] text-gray-500">Zielzeit für heute. Oben siehst du bei jedem Kind die bisherige Lernzeit; das Kind sieht sie im Menü.</p>
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Kind</label>
                                 <select id="dash-goal-profile" class="input-modern text-sm font-bold"></select>
@@ -1466,7 +1466,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <span class="text-sm font-bold text-gray-400">⚔️ Gegeneinander</span>
                     <button onclick="toggleCast()" id="castButton" title="Mit Fernseher verbinden"
                         aria-label="Mit Fernseher verbinden"
-                        class="hidden w-11 h-11 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
+                        class="w-11 h-11 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
                 </div>
 
                 <div class="flex items-center gap-2 px-1">
@@ -1482,7 +1482,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 </button>
 
                 <button onclick="switchView('tv-quiz-setup')" data-needs-questions id="menu-tv-quiz-btn"
-                    class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center">
+                    class="btn-primary w-full flex items-center justify-center gap-2 text-center">
                     <span class="text-xl">📺</span> TV-Quiz · alle am Fernseher
                 </button>
 

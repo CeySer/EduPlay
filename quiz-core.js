@@ -87,6 +87,7 @@
         const STUDY_VIEWS = ["quiz", "vokabeln", "lesen", "suchsel-play"];
 
         function trackStudySeconds(seconds) {
+            if (testMode) return; // Tests zählen nicht zur Lernzeit / zum Auftrag
             if (!currentPlayer || !activePlayerKey || !(seconds > 0)) return;
             const day = new Date().toISOString().slice(0, 10);
             if (!currentPlayer.studyLog) currentPlayer.studyLog = {};
@@ -132,7 +133,7 @@
         }
 
         function onStudyViewChange(viewId) {
-            if (STUDY_VIEWS.indexOf(viewId) !== -1) startSoloStudySession();
+            if (STUDY_VIEWS.indexOf(viewId) !== -1 && !testMode) startSoloStudySession();
             else endSoloStudySession();
         }
 

@@ -1865,19 +1865,42 @@ auth.createUserWithEmailAndPassword(e, p)
                 container.innerHTML = '<div class="text-gray-500 text-sm text-center py-4">Noch keine Spieler angelegt</div>';
                 return;
             }
+            const today = new Date().toISOString().slice(0, 10);
             container.innerHTML = keys.map(k => {
                 const p = ALL_PROFILES[k];
                 const totalCorrect = getTotalCorrect(p);
                 const totalAttempts = Object.values(p.stats || {}).reduce((sum, s) => sum + s.attempts, 0);
                 const accuracy = totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
                 const lvl = getLevelInfo(p.xp || 0);
+                const studySec = (p.studyLog && p.studyLog[today]) || 0;
+                const studyTxt = (typeof formatStudyDuration === "function")
+                    ? formatStudyDuration(studySec)
+                    : (Math.floor(studySec / 60) + " Min.");
+                const g = p.studyGoal;
+                const goalActive = g && g.minutes && (!g.day || g.day === today);
+                let goalLine = "";
+                if (goalActive) {
+                    const need = g.minutes * 60;
+                    const pct = Math.min(100, Math.round((studySec / need) * 100));
+                    const done = studySec >= need;
+                    goalLine = `<div class="mt-2">
+                        <div class="flex justify-between text-[11px] font-bold mb-1">
+                            <span class="${done ? "text-emerald-400" : "text-amber-300"}">📋 Auftrag ${done ? "✓" : ""} · ${studyTxt} / ${g.minutes} Min.</span>
+                            <span class="text-gray-500">${pct}%</span>
+                        </div>
+                        <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+                            <div class="h-1.5 rounded-full ${done ? "bg-emerald-400" : "bg-amber-400"}" style="width:${pct}%"></div>
+                        </div>
+                    </div>`;
+                }
                 return `
                             <div class="bg-white/5 border border-white/5 rounded-xl p-3">
                                 <div class="flex justify-between items-center">
                                     <span class="font-bold text-white">${esc(p.name)}</span>
                                     <span class="text-yellow-400 text-sm">${lvl.current.icon} ${lvl.current.name}</span>
                                 </div>
-                                <div class="flex gap-4 text-xs mt-1">
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs mt-1">
+                                    <span class="text-indigo-300 font-bold">⏱ Heute ${studyTxt}</span>
                                     <span class="text-gray-400">🪙 ${p.coins || 0}</span>
                                     <span class="text-gray-400">✅ ${totalCorrect}/${totalAttempts}</span>
                                     <span class="${accuracy >= 80 ? 'text-emerald-400' : accuracy >= 50 ? 'text-yellow-400' : 'text-rose-400'}">${accuracy}%</span>
@@ -1886,6 +1909,7 @@ auth.createUserWithEmailAndPassword(e, p)
                                 <div class="stat-bar mt-1">
                                     <div class="fill ${accuracy >= 80 ? 'good' : accuracy >= 50 ? 'ok' : 'bad'}" style="width:${accuracy}%"></div>
                                 </div>
+                                ${goalLine}
                             </div>
                         `;
             }).join('');
@@ -1984,21 +2008,36 @@ auth.createUserWithEmailAndPassword(e, p)
         function renderStudyGoalCard() {
             const card = document.getElementById("study-goal-card");
             if (!card) return;
-            const g = currentPlayer && currentPlayer.studyGoal;
-            const today = new Date().toISOString().slice(0, 10);
-            if (!g || !g.minutes || (g.day && g.day !== today)) {
+            if (!currentPlayer || currentPlayer.isGuest) {
                 card.classList.add("hidden");
                 card.innerHTML = "";
                 return;
             }
+            const today = new Date().toISOString().slice(0, 10);
             const doneSec = (currentPlayer.studyLog && currentPlayer.studyLog[today]) || 0;
+            const prog = (typeof formatStudyDuration === "function")
+                ? formatStudyDuration(doneSec)
+                : (Math.floor(doneSec / 60) + " Min.");
+            const g = currentPlayer.studyGoal;
+            const goalActive = g && g.minutes && (!g.day || g.day === today);
+
+            if (!goalActive) {
+                card.innerHTML =
+                    `<div class="glass-card p-3 flex items-center justify-between gap-3">
+                        <div>
+                            <div class="font-black text-indigo-300 text-sm">⏱ Lernzeit heute</div>
+                            <div class="text-[11px] text-gray-500">Alleine lernen (Wissen, Vokabeln, Lesen, Suchsel)</div>
+                        </div>
+                        <div class="font-black text-white text-lg shrink-0">${prog}</div>
+                    </div>`;
+                card.classList.remove("hidden");
+                return;
+            }
+
             const needSec = g.minutes * 60;
             const pct = Math.min(100, Math.round((doneSec / needSec) * 100));
             const done = doneSec >= needSec;
             const label = STUDY_GOAL_LABELS[g.activity] || "Lernen";
-            const prog = (typeof formatStudyDuration === "function")
-                ? formatStudyDuration(doneSec)
-                : (Math.floor(doneSec / 60) + " Min.");
             const startView = g.activity === "vokabeln" ? "vokabeln"
                 : g.activity === "lesen" ? "lesen"
                 : g.activity === "suchsel" ? "suchsel-setup"

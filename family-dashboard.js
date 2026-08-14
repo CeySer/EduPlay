@@ -741,17 +741,17 @@ auth.createUserWithEmailAndPassword(e, p)
          */
         function switchDashboardSection(section) {
             console.log(`📊 switchDashboardSection: ${section}`);
+            // Alte "statistiken"-Kachel → Eltern/Fortschritt
+            if (section === 'statistiken') section = 'eltern';
             currentDashboardSection = section;
 
-            const sections = ['inhalte', 'eltern', 'statistiken'];
+            const sections = ['inhalte', 'eltern'];
             sections.forEach(s => {
                 const el = document.getElementById('dash-section-' + s);
                 if (el) {
                     el.classList.toggle('hidden', s !== section);
                 }
             });
-
-            currentDashboardSection = section;
 
             if (section === 'inhalte') {
                 console.log('📊 Initialisiere Inhalte-Tab...');
@@ -760,14 +760,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 console.log('✅ Inhalte-Tab initialisiert');
             }
             if (section === 'eltern') {
-                renderDashAdminProgress();
-                renderDashAdminTest();
-                renderDashRewards();
-            }
-            if (section === 'statistiken') {
-                renderStudyLogOverview();
-                renderDashPlayerList();
-                if (selectedStatPlayer) renderPlayerStats(selectedStatPlayer);
+                switchDashAdminTab(currentDashAdminTab || 'aufgaben');
             }
         }
 
@@ -990,7 +983,7 @@ auth.createUserWithEmailAndPassword(e, p)
         function openParentArea() {
             // Keine PIN-Abfrage – das Dashboard fragt bereits nach dem PIN
             switchDashboardSection('eltern');
-            switchDashAdminTab('progress');
+            switchDashAdminTab('aufgaben');
         }
 
         function switchDashboardTab(tab) {
@@ -1831,11 +1824,13 @@ auth.createUserWithEmailAndPassword(e, p)
         // ============================================================
         //  DASHBOARD ADMIN
         // ============================================================
-        let currentDashAdminTab = 'progress';
+        let currentDashAdminTab = 'aufgaben';
 
         function switchDashAdminTab(tab) {
+            // Alt: 'test' → 'aufgaben'
+            if (tab === 'test') tab = 'aufgaben';
             currentDashAdminTab = tab;
-            ['progress', 'test', 'rewards'].forEach(t => {
+            ['aufgaben', 'progress', 'rewards'].forEach(t => {
                 const view = document.getElementById('dash-admin-' + t + '-view');
                 if (view) view.classList.toggle('hidden', t !== tab);
                 const btn = document.getElementById('dash-admin-' + t);
@@ -1843,15 +1838,22 @@ auth.createUserWithEmailAndPassword(e, p)
                     btn.classList.toggle('active', t === tab);
                 }
             });
-            if (tab === 'progress') renderDashAdminProgress();
-            if (tab === 'test') {
+            if (tab === 'aufgaben') {
+                renderStudyGoalAdmin();
                 renderDashAdminTest();
                 renderTestTemplatesList();
+            }
+            if (tab === 'progress') {
+                renderDashAdminProgress();
+                renderStudyLogOverview();
+                renderDashPlayerList();
+                if (selectedStatPlayer) renderPlayerStats(selectedStatPlayer);
             }
             if (tab === 'rewards') renderDashRewards();
         }
 
         function renderDashAdmin() {
+            renderStudyGoalAdmin();
             renderDashAdminProgress();
             renderDashAdminTest();
             renderDashRewards();

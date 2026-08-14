@@ -367,8 +367,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <span class="w-10"></span>
                 </div>
 
-                <!-- 3 große Kacheln -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <!-- 2 große Kacheln -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <button onclick="switchDashboardSection('inhalte')" class="dash-tile group">
                         <span class="icon">📚</span>
                         <div class="title">Inhalte</div>
@@ -379,13 +379,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         style="border-color:rgba(245,158,11,0.15);">
                         <span class="icon">👨‍👩‍👧‍👦</span>
                         <div class="title text-amber-400">Eltern-Bereich</div>
-                        <div class="desc">Fortschritt · Tests · Belohnungen</div>
-                    </button>
-
-                    <button onclick="switchDashboardSection('statistiken')" class="dash-tile group">
-                        <span class="icon">📊</span>
-                        <div class="title text-emerald-400">Statistiken</div>
-                        <div class="desc">Spielerübersicht · Fortschritt</div>
+                        <div class="desc">Aufgaben · Fortschritt · Belohnungen</div>
                     </button>
                 </div>
 
@@ -445,16 +439,17 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div id="dash-section-eltern" class="hidden space-y-4">
                     <!-- 3 Admin-Tabs -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div id="dash-admin-progress" class="dash-admin-tab active"
+                        <div id="dash-admin-aufgaben" class="dash-admin-tab active"
+                            onclick="switchDashAdminTab('aufgaben')">
+                            <span class="icon">📋</span>
+                            <div class="label">Aufgaben</div>
+                            <div class="sub">Auftrag · Tests</div>
+                        </div>
+                        <div id="dash-admin-progress" class="dash-admin-tab"
                             onclick="switchDashAdminTab('progress')">
                             <span class="icon">📊</span>
                             <div class="label">Fortschritt</div>
-                            <div class="sub">Übersicht aller Spieler</div>
-                        </div>
-                        <div id="dash-admin-test" class="dash-admin-tab" onclick="switchDashAdminTab('test')">
-                            <span class="icon">📝</span>
-                            <div class="label">Tests</div>
-                            <div class="sub">Tests zuweisen</div>
+                            <div class="sub">Lernzeit · Stats</div>
                         </div>
                         <div id="dash-admin-rewards" class="dash-admin-tab" onclick="switchDashAdminTab('rewards')">
                             <span class="icon">🎁</span>
@@ -463,12 +458,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         </div>
                     </div>
 
-                    <!-- Admin-Tab Inhalte -->
-                    <div id="dash-admin-progress-view" class="space-y-3">
-                        <div id="dash-admin-stats" class="space-y-3"></div>
+                    <!-- Tab: Aufgaben (Lernauftrag + Tests) -->
+                    <div id="dash-admin-aufgaben-view" class="space-y-3">
                         <div class="glass-card p-4 space-y-3">
                             <div class="font-black text-amber-300 text-sm">📋 Lernauftrag setzen</div>
-                            <p class="text-[11px] text-gray-500">Zielzeit für heute. Oben siehst du bei jedem Kind die bisherige Lernzeit; das Kind sieht sie im Menü.</p>
+                            <p class="text-[11px] text-gray-500">Zielzeit für heute. Fortschritt siehst du unter „Fortschritt“ und das Kind im Menü.</p>
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Kind</label>
                                 <select id="dash-goal-profile" class="input-modern text-sm font-bold"></select>
@@ -497,10 +491,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <button onclick="assignStudyGoalFromDashboard()" class="btn-primary w-full text-center">Auftrag setzen ✓</button>
                             <div id="dash-goal-list" class="space-y-2 pt-1"></div>
                         </div>
-                    </div>
 
-                    <div id="dash-admin-test-view" class="hidden space-y-3">
                         <div class="glass-card p-4 space-y-3">
+                            <div class="font-black text-indigo-300 text-sm">📝 Test zuweisen</div>
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Kind auswählen</label>
                                 <select id="dash-test-profile" class="input-modern"
@@ -508,7 +501,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             </div>
                         </div>
 
-                        <!-- Bisherige Testergebnisse + Stärken/Schwächen des ausgewählten Kindes -->
                         <div id="dash-test-results" class="space-y-3"></div>
 
                         <div class="glass-card p-4 space-y-3">
@@ -548,6 +540,27 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         </div>
                     </div>
 
+                    <!-- Tab: Fortschritt (Karten + Lernzeit + Detail-Stats) -->
+                    <div id="dash-admin-progress-view" class="hidden space-y-3">
+                        <div id="dash-admin-stats" class="space-y-3"></div>
+                        <div id="dash-study-overview" class="glass-card p-4 space-y-2">
+                            <div class="font-black text-indigo-300 text-sm">⏱ Lernzeit (Alleine lernen)</div>
+                            <p class="text-[11px] text-gray-500">Übungszeit pro Profil: Wissen, Vokabeln, Lesen, Suchsel. Tests zählen nicht.</p>
+                            <div id="dash-study-log" class="space-y-2 text-sm"></div>
+                        </div>
+                        <div class="glass-card overflow-hidden">
+                            <button onclick="toggleDashPlayerList()"
+                                class="w-full p-4 flex items-center justify-between hover:bg-white/5 transition">
+                                <span class="font-bold text-white">👥 Detail-Statistik</span>
+                                <span id="dash-player-arrow" class="text-gray-400 transition-transform">▼</span>
+                            </button>
+                            <div id="dash-player-list" class="hidden p-4 pt-0 grid grid-cols-2 gap-2"></div>
+                        </div>
+                        <div id="dash-stats-container" class="space-y-4">
+                            <div class="text-center text-gray-400 text-sm py-4">👆 Spieler wählen für Detail-Statistik.</div>
+                        </div>
+                    </div>
+
                     <div id="dash-admin-rewards-view" class="hidden space-y-3">
                         <div class="glass-card p-4 space-y-3">
                             <div class="flex gap-2">
@@ -560,29 +573,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 hinzufügen</button>
                             <div id="dash-reward-list" class="space-y-1.5"></div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- ==========================================================
-                BEREICH: STATISTIKEN
-                ========================================================== -->
-                <div id="dash-section-statistiken" class="hidden space-y-4">
-                    <div id="dash-study-overview" class="glass-card p-4 space-y-2">
-                        <div class="font-black text-indigo-300 text-sm">⏱ Lernzeit (Alleine lernen)</div>
-                        <p class="text-[11px] text-gray-500">Gemessene Übungszeit pro Profil: Wissen, Vokabeln, Lesen, Suchsel. Wird beim Verlassen gespeichert.</p>
-                        <div id="dash-study-log" class="space-y-2 text-sm"></div>
-                    </div>
-                    <div class="glass-card overflow-hidden">
-                        <button onclick="toggleDashPlayerList()"
-                            class="w-full p-4 flex items-center justify-between hover:bg-white/5 transition">
-                            <span class="font-bold text-white">👥 Spieler auswählen</span>
-                            <span id="dash-player-arrow" class="text-gray-400 transition-transform">▼</span>
-                        </button>
-                        <div id="dash-player-list" class="hidden p-4 pt-0 grid grid-cols-2 gap-2"></div>
-                    </div>
-                    <div id="dash-stats-container" class="space-y-4">
-                        <div class="text-center text-gray-400 text-sm py-8">👆 Wähle oben einen Spieler aus, um die
-                            Statistiken zu sehen.</div>
                     </div>
                 </div>
 

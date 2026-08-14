@@ -512,6 +512,7 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 if (mSlider) mSlider.value = pct;
                 if (mLabel) mLabel.innerText = pct + '%';
                 if (typeof renderDevPanel === 'function') renderDevPanel();
+                if (typeof renderSettingsLevelsBadges === 'function') renderSettingsLevelsBadges();
             }
             // Laufende Timer stoppen
             if (viewId !== 'fokus' && typeof focusTimerInterval !== 'undefined' && focusTimerInterval) {

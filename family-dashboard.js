@@ -316,6 +316,68 @@ auth.createUserWithEmailAndPassword(e, p)
             renderDashTestResults();
         }
 
+        function renderDashStrengthWeakness() {
+            const box = document.getElementById("dash-strength-weakness");
+            const sel = document.getElementById("dash-sw-profile");
+            if (!box) return;
+            const keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
+            if (sel) {
+                const prev = sel.value;
+                sel.innerHTML = keys.length
+                    ? keys.map(k => `<option value="${k}">${esc(ALL_PROFILES[k].name)}</option>`).join("")
+                    : '<option value="">Kein Spieler</option>';
+                if (prev && keys.indexOf(prev) !== -1) sel.value = prev;
+            }
+            const key = sel ? sel.value : null;
+            const p = key ? ALL_PROFILES[key] : null;
+            if (!p) {
+                box.innerHTML = '<div class="text-gray-500 text-sm">Kein Spieler ausgewählt</div>';
+                return;
+            }
+            const weak = getWeakestCategory(p);
+            const strong = getStrongestCategory(p);
+            let html = "";
+            if (strong) {
+                html += `<div class="dash-stat-card border-l-4 border-emerald-500">
+                    <div class="label">💪 Stärke</div>
+                    <div class="text-white font-bold text-sm">${labelFuerKategorie(strong.category) || (typeof CATEGORY_LABELS !== "undefined" && CATEGORY_LABELS[strong.category]) || strong.category}</div>
+                    <div class="text-gray-400 text-xs">${Math.round(strong.pct * 100)}% richtig (${strong.attempts} Versuche)</div>
+                </div>`;
+            }
+            if (weak) {
+                html += `<div class="dash-stat-card border-l-4 border-amber-500">
+                    <div class="label">💡 Schwäche</div>
+                    <div class="text-white font-bold text-sm">${labelFuerKategorie(weak.category) || (typeof CATEGORY_LABELS !== "undefined" && CATEGORY_LABELS[weak.category]) || weak.category}</div>
+                    <div class="text-gray-400 text-xs">${Math.round(weak.pct * 100)}% richtig (${weak.attempts} Versuche)</div>
+                </div>`;
+            }
+            if (!html) {
+                html = '<div class="dash-stat-card text-gray-400 text-sm">Noch nicht genug Übungen für eine Auswertung</div>';
+            }
+            html += `<button type="button" onclick="resetStrengthWeaknessStats('${key}')"
+                class="w-full mt-1 text-xs font-bold py-2 px-3 rounded-lg bg-rose-500/15 text-rose-300 border border-rose-400/25 hover:bg-rose-500/25">
+                Statistik für Auswertung zurücksetzen</button>`;
+            box.innerHTML = html;
+        }
+
+        async function resetStrengthWeaknessStats(profileKey) {
+            if (!profileKey || !ALL_PROFILES[profileKey]) return;
+            const ok = await appConfirm(
+                "Löscht die Kategorie-Statistik (Richtig/Versuche je Thema) für dieses Kind. Level, Coins, Tests und Lernzeit bleiben erhalten.",
+                { titel: "Auswertung zurücksetzen?", icon: "📊", okText: "Zurücksetzen", abbrechenText: "Abbrechen" }
+            );
+            if (!ok) return;
+            ALL_PROFILES[profileKey].stats = {};
+            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.stats = {};
+            if (currentParentUser) {
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
+                    .update({ stats: {} })
+                    .catch(e => handleError("resetStrengthWeaknessStats", e, "Statistik konnte nicht zurückgesetzt werden."));
+            }
+            showToast("Auswertung zurückgesetzt.", "success");
+            renderDashStrengthWeakness();
+        }
+
         function renderDashTestResults() {
             const container = document.getElementById("dash-test-results");
             if (!container) return;
@@ -338,47 +400,48 @@ auth.createUserWithEmailAndPassword(e, p)
                     </div>`;
             })() : "";
 
-            const historyHtml = history.length > 0 ?
-                history.slice(0, 10).map(t => {
-                    const pct = t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0;
-                    const date = new Date(t.date);
-                    const dur = (t.durationSec != null && typeof formatDurationSec === 'function')
-                        ? formatDurationSec(t.durationSec)
-                        : (t.durationSec != null ? Math.round(t.durationSec / 60) + " Min." : "");
-                    return `<div class="dash-stat-card flex justify-between items-center gap-2">
-                                <span class="text-white text-sm">${t.correct}/${t.total} (${pct}%)</span>
-                                <span class="text-gray-500 text-xs text-right">${dur ? "⏱ " + dur + " · " : ""}${date.toLocaleDateString('de-DE')}</span>
-                            </div>`;
-                }).join('') :
-                '<div class="text-gray-500 text-sm">Noch keine Tests absolviert</div>';
-
-            const weak = getWeakestCategory(p);
-            const strong = getStrongestCategory(p);
-            const weakHtml = weak ? `
-                        <div class="dash-stat-card border-l-4 border-amber-500">
-                            <div class="label">💡 Schwäche</div>
-                            <div class="text-white font-bold text-sm">${labelFuerKategorie(weak.category) || CATEGORY_LABELS[weak.category] || weak.category}</div>
-                            <div class="text-gray-400 text-xs">${Math.round(weak.pct * 100)}% richtig (${weak.attempts} Versuche)</div>
-                        </div>` : '';
-            const strongHtml = strong ? `
-                        <div class="dash-stat-card border-l-4 border-emerald-500">
-                            <div class="label">💪 Stärke</div>
-                            <div class="text-white font-bold text-sm">${labelFuerKategorie(strong.category) || CATEGORY_LABELS[strong.category] || strong.category}</div>
-                            <div class="text-gray-400 text-xs">${Math.round(strong.pct * 100)}% richtig (${strong.attempts} Versuche)</div>
-                        </div>` : '';
-            const strengthWeaknessHtml = (weakHtml || strongHtml) ?
-                `${strongHtml}${weakHtml}` :
-                '<div class="dash-stat-card text-gray-400 text-sm">Noch nicht genug Übungen für eine Auswertung</div>';
+            let historyHtml = "";
+            if (!history.length) {
+                historyHtml = '<div class="text-gray-500 text-sm px-3 py-2">Noch keine Tests absolviert</div>';
+            } else {
+                const first = history[0];
+                const pct0 = first.total > 0 ? Math.round((first.correct / first.total) * 100) : 0;
+                const date0 = new Date(first.date);
+                const dur0 = (first.durationSec != null && typeof formatDurationSec === 'function')
+                    ? formatDurationSec(first.durationSec)
+                    : (first.durationSec != null ? Math.round(first.durationSec / 60) + " Min." : "");
+                const col0 = pct0 >= 80 ? 'text-emerald-400' : pct0 >= 50 ? 'text-yellow-400' : 'text-rose-400';
+                historyHtml = `<div class="bg-white/5 rounded-xl px-3 py-2.5 space-y-1 border border-white/5">
+                    <div class="text-[10px] text-indigo-300 font-black uppercase tracking-wide">Letzter Test</div>
+                    <div class="flex justify-between items-center gap-2">
+                        <span class="${col0} font-black text-base">${first.correct}/${first.total} (${pct0}%)</span>
+                        <span class="text-gray-500 text-xs text-right">${dur0 ? "⏱ " + dur0 + "<br>" : ""}${date0.toLocaleDateString('de-DE')}</span>
+                    </div>
+                </div>`;
+                if (history.length > 1) {
+                    historyHtml += history.slice(1, 10).map(t => {
+                        const pct = t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0;
+                        const date = new Date(t.date);
+                        const dur = (t.durationSec != null && typeof formatDurationSec === 'function')
+                            ? formatDurationSec(t.durationSec)
+                            : (t.durationSec != null ? Math.round(t.durationSec / 60) + " Min." : "");
+                        return `<div class="dash-stat-card flex justify-between items-center gap-2">
+                                    <span class="text-white text-sm">${t.correct}/${t.total} (${pct}%)</span>
+                                    <span class="text-gray-500 text-xs text-right">${dur ? "⏱ " + dur + " · " : ""}${date.toLocaleDateString('de-DE')}</span>
+                                </div>`;
+                    }).join('');
+                }
+            }
 
             container.innerHTML = `
                         ${newBadge}
-                        <div>
-                            <div class="text-xs text-gray-400 font-bold mb-1.5">📝 Testergebnisse (${esc(p.name)})</div>
-                            <div class="space-y-1.5">${historyHtml}</div>
-                        </div>
-                        <div>
-                            <div class="text-xs text-gray-400 font-bold mb-1.5">📊 Stärken & Schwächen</div>
-                            <div class="space-y-1.5">${strengthWeaknessHtml}</div>
+                        <div class="glass-card overflow-hidden">
+                            <button type="button" onclick="toggleDashSection('aufgaben-tests')"
+                                class="w-full p-3 flex items-center justify-between hover:bg-white/5 transition">
+                                <span class="text-xs text-gray-300 font-bold">📝 Testergebnisse (${esc(p.name)})</span>
+                                <span id="dash-aufgaben-tests-arrow" class="text-gray-400 transition-transform text-xs">▼</span>
+                            </button>
+                            <div id="dash-aufgaben-tests-body" class="hidden px-3 pb-3 space-y-1.5">${historyHtml}</div>
                         </div>
                     `;
         }
@@ -777,10 +840,12 @@ auth.createUserWithEmailAndPassword(e, p)
             const box = document.getElementById("dash-study-log");
             if (!box) return;
             const today = new Date().toISOString().slice(0, 10);
-            const profiles = Object.keys(ALL_PROFILES || {}).map(k => ALL_PROFILES[k]).filter(p => p && !p.isGuest);
+            const profileEntries = Object.keys(ALL_PROFILES || {})
+                .filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest)
+                .map(k => ({ key: k, p: ALL_PROFILES[k] }));
 
             // Heute – immer sichtbar, alle Profile
-            const todayParts = profiles.map(p => {
+            const todayParts = profileEntries.map(({ p }) => {
                 const sec = (p.studyLog && p.studyLog[today]) || 0;
                 const cls = sec >= 60 ? "text-indigo-300" : "text-gray-500";
                 return `<div class="flex justify-between items-center py-1 border-b border-white/5 last:border-0">
@@ -793,29 +858,36 @@ auth.createUserWithEmailAndPassword(e, p)
                 ${todayParts.length ? todayParts.join("") : '<div class="text-gray-500 text-xs">Keine Profile</div>'}
             </div>`;
 
-            // Letzte 13 Tage (ohne heute), nur Einträge ≥ 30 Sek.
-            const rows = [];
-            for (let i = 1; i < 14; i++) {
-                const d = new Date();
-                d.setDate(d.getDate() - i);
-                const day = d.toISOString().slice(0, 10);
-                const parts = [];
-                profiles.forEach(p => {
+            // Frühere Tage: je Spieler aufklappbar
+            const playerBlocks = [];
+            profileEntries.forEach(({ key, p }) => {
+                const days = [];
+                for (let i = 1; i < 14; i++) {
+                    const d = new Date();
+                    d.setDate(d.getDate() - i);
+                    const day = d.toISOString().slice(0, 10);
                     const sec = (p.studyLog && p.studyLog[day]) || 0;
                     if (sec >= 30) {
-                        parts.push(`<span class="text-white font-bold">${esc(p.name)}</span> <span class="text-indigo-300">${formatStudyDuration(sec)}</span>`);
+                        const label = new Date(day + "T12:00:00").toLocaleDateString("de-DE", { weekday: "short", day: "2-digit", month: "2-digit" });
+                        days.push(`<div class="flex justify-between text-xs py-0.5">
+                            <span class="text-gray-400">${label}</span>
+                            <span class="text-indigo-300 font-bold">${formatStudyDuration(sec)}</span>
+                        </div>`);
                     }
-                });
-                if (parts.length) {
-                    const label = new Date(day + "T12:00:00").toLocaleDateString("de-DE", { weekday: "short", day: "2-digit", month: "2-digit" });
-                    rows.push(`<div class="bg-white/5 rounded-xl px-3 py-2 flex flex-col gap-1">
-                        <div class="text-[11px] text-gray-500 font-bold">${label}</div>
-                        <div class="text-xs flex flex-wrap gap-x-3 gap-y-1">${parts.join(" · ")}</div>
-                    </div>`);
                 }
-            }
-            if (rows.length) {
-                html += `<div class="text-[11px] text-gray-500 font-bold pt-1">Frühere Tage</div>` + rows.join("");
+                if (!days.length) return;
+                const safeId = 'study-player-' + key.replace(/[^a-zA-Z0-9_-]/g, '_');
+                playerBlocks.push(`<div class="bg-white/5 rounded-xl overflow-hidden">
+                    <button type="button" onclick="toggleDashPlayerBlock('${safeId}')"
+                        class="w-full px-3 py-2 flex items-center justify-between hover:bg-white/5 transition">
+                        <span class="font-bold text-white text-sm">${esc(p.name)} · ${days.length} Tag${days.length === 1 ? '' : 'e'}</span>
+                        <span id="${safeId}-arrow" class="text-gray-400 transition-transform text-xs">▼</span>
+                    </button>
+                    <div id="${safeId}" class="hidden px-3 pb-2 space-y-0.5">${days.join('')}</div>
+                </div>`);
+            });
+            if (playerBlocks.length) {
+                html += `<div class="text-[11px] text-gray-500 font-bold pt-1">Frühere Tage</div>` + playerBlocks.join("");
             }
             box.innerHTML = html;
         }
@@ -1533,6 +1605,43 @@ auth.createUserWithEmailAndPassword(e, p)
                     `).join('');
         }
 
+        function toggleSettingsInfo(which) {
+            const body = document.getElementById('settings-' + which + '-body');
+            const arrow = document.getElementById('settings-' + which + '-arrow');
+            if (!body) return;
+            const open = body.classList.contains('hidden');
+            body.classList.toggle('hidden', !open);
+            if (arrow) arrow.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+            if (open && which === 'levels') renderSettingsLevelsBadges();
+        }
+
+        function renderSettingsLevelsBadges() {
+            const lvlBox = document.getElementById('settings-levels-list');
+            const badgeBox = document.getElementById('settings-badges-list');
+            if (lvlBox && typeof LEVELS !== 'undefined') {
+                lvlBox.innerHTML = LEVELS.map((l, i) => {
+                    const next = LEVELS[i + 1];
+                    const range = next ? `${l.min}–${next.min - 1} XP` : `ab ${l.min} XP`;
+                    return `<div class="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1.5">
+                        <span class="text-lg">${l.icon}</span>
+                        <span class="text-white font-bold flex-1">${esc(l.name)}</span>
+                        <span class="text-[11px] text-gray-500">${range}</span>
+                    </div>`;
+                }).join('');
+            }
+            if (badgeBox && typeof BADGES !== 'undefined') {
+                badgeBox.innerHTML = BADGES.map(b =>
+                    `<div class="flex items-start gap-2 bg-white/5 rounded-lg px-2.5 py-1.5">
+                        <span class="text-lg shrink-0">${b.icon}</span>
+                        <div class="min-w-0">
+                            <div class="text-white font-bold text-sm">${esc(b.name)}</div>
+                            <div class="text-[11px] text-gray-500 leading-snug">${esc(b.desc || '')}</div>
+                        </div>
+                    </div>`
+                ).join('');
+            }
+        }
+
         function toggleDashPlayerList() {
             const list = document.getElementById('dash-player-list');
             const arrow = document.getElementById('dash-player-arrow');
@@ -1543,12 +1652,27 @@ auth.createUserWithEmailAndPassword(e, p)
         }
 
         function toggleDashSection(which) {
-            const body = document.getElementById(which === 'tests' ? 'dash-tests-body' : 'dash-study-body');
-            const arrow = document.getElementById(which === 'tests' ? 'dash-tests-arrow' : 'dash-study-arrow');
+            const map = {
+                tests: ['dash-tests-body', 'dash-tests-arrow'],
+                study: ['dash-study-body', 'dash-study-arrow'],
+                'aufgaben-tests': ['dash-aufgaben-tests-body', 'dash-aufgaben-tests-arrow']
+            };
+            const pair = map[which] || ['dash-study-body', 'dash-study-arrow'];
+            const body = document.getElementById(pair[0]);
+            const arrow = document.getElementById(pair[1]);
             if (!body || !arrow) return;
             const open = body.classList.contains('hidden');
             body.classList.toggle('hidden', !open);
             arrow.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        function toggleDashPlayerBlock(id) {
+            const body = document.getElementById(id);
+            const arrow = document.getElementById(id + '-arrow');
+            if (!body) return;
+            const open = body.classList.contains('hidden');
+            body.classList.toggle('hidden', !open);
+            if (arrow) arrow.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
         }
 
         function renderDashTestStatsOverview() {
@@ -1562,27 +1686,48 @@ auth.createUserWithEmailAndPassword(e, p)
             const rows = keys.map(k => {
                 const p = ALL_PROFILES[k];
                 const hist = p.testHistory || [];
+                const safeId = 'test-player-' + k.replace(/[^a-zA-Z0-9_-]/g, '_');
                 if (!hist.length) {
                     return `<div class="bg-white/5 rounded-xl px-3 py-2">
                         <div class="font-bold text-white text-sm">${esc(p.name)}</div>
                         <div class="text-[11px] text-gray-500">Noch keine Tests</div>
                     </div>`;
                 }
-                const items = hist.slice(0, 5).map(t => {
-                    const pct = t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0;
-                    const date = new Date(t.date);
-                    const dur = (t.durationSec != null && typeof formatDurationSec === 'function')
-                        ? formatDurationSec(t.durationSec)
-                        : (t.durationSec != null ? Math.round(t.durationSec / 60) + " Min." : "");
-                    const col = pct >= 80 ? 'text-emerald-400' : pct >= 50 ? 'text-yellow-400' : 'text-rose-400';
-                    return `<div class="flex justify-between gap-2 text-xs py-0.5">
-                        <span class="${col} font-bold">${t.correct}/${t.total} (${pct}%)</span>
-                        <span class="text-gray-500">${dur ? "⏱ " + dur + " · " : ""}${date.toLocaleDateString('de-DE')}</span>
-                    </div>`;
-                }).join('');
-                return `<div class="bg-white/5 rounded-xl px-3 py-2 space-y-1">
-                    <div class="font-bold text-white text-sm">${esc(p.name)} · ${hist.length} Test${hist.length === 1 ? '' : 's'}</div>
-                    ${items}
+                const first = hist[0];
+                const pct0 = first.total > 0 ? Math.round((first.correct / first.total) * 100) : 0;
+                const date0 = new Date(first.date);
+                const dur0 = (first.durationSec != null && typeof formatDurationSec === 'function')
+                    ? formatDurationSec(first.durationSec)
+                    : (first.durationSec != null ? Math.round(first.durationSec / 60) + " Min." : "");
+                const col0 = pct0 >= 80 ? 'text-emerald-400' : pct0 >= 50 ? 'text-yellow-400' : 'text-rose-400';
+                let detail = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-lg px-2.5 py-2 mb-1.5">
+                    <div class="text-[10px] text-indigo-300 font-black uppercase">Letzter Test</div>
+                    <div class="flex justify-between gap-2 items-center mt-0.5">
+                        <span class="${col0} font-black text-sm">${first.correct}/${first.total} (${pct0}%)</span>
+                        <span class="text-gray-500 text-[11px] text-right">${dur0 ? "⏱ " + dur0 + " · " : ""}${date0.toLocaleDateString('de-DE')}</span>
+                    </div>
+                </div>`;
+                if (hist.length > 1) {
+                    detail += hist.slice(1, 8).map(t => {
+                        const pct = t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0;
+                        const date = new Date(t.date);
+                        const dur = (t.durationSec != null && typeof formatDurationSec === 'function')
+                            ? formatDurationSec(t.durationSec)
+                            : (t.durationSec != null ? Math.round(t.durationSec / 60) + " Min." : "");
+                        const col = pct >= 80 ? 'text-emerald-400' : pct >= 50 ? 'text-yellow-400' : 'text-rose-400';
+                        return `<div class="flex justify-between gap-2 text-xs py-0.5">
+                            <span class="${col} font-bold">${t.correct}/${t.total} (${pct}%)</span>
+                            <span class="text-gray-500">${dur ? "⏱ " + dur + " · " : ""}${date.toLocaleDateString('de-DE')}</span>
+                        </div>`;
+                    }).join('');
+                }
+                return `<div class="bg-white/5 rounded-xl overflow-hidden">
+                    <button type="button" onclick="toggleDashPlayerBlock('${safeId}')"
+                        class="w-full px-3 py-2 flex items-center justify-between hover:bg-white/5 transition">
+                        <span class="font-bold text-white text-sm">${esc(p.name)} · ${hist.length} Test${hist.length === 1 ? '' : 's'}</span>
+                        <span id="${safeId}-arrow" class="text-gray-400 transition-transform text-xs">▼</span>
+                    </button>
+                    <div id="${safeId}" class="hidden px-3 pb-2 space-y-0.5">${detail}</div>
                 </div>`;
             });
             box.innerHTML = rows.join('');
@@ -1885,6 +2030,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 }
             });
             if (tab === 'aufgaben') {
+                renderDashStrengthWeakness();
                 renderStudyGoalAdmin();
                 renderDashAdminTest();
                 renderTestTemplatesList();
@@ -2146,10 +2292,10 @@ auth.createUserWithEmailAndPassword(e, p)
                         html += `<div class="col-span-2 text-[10px] font-black text-indigo-300 uppercase tracking-wide mt-1 mb-0.5">${esc(a.label)}</div>`;
                         subs.forEach(s => {
                             const n = typeof questionCount === "function" ? questionCount(s.key) : 0;
-                            html += `<label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
-                                <input type="checkbox" value="${esc(s.key)}" class="dash-test-cat w-4 h-4 accent-indigo-500">
-                                <span class="truncate flex-1">${esc(s.label)}</span>
-                                <span class="text-[10px] text-gray-500">${n}</span>
+                            html += `<label class="flex items-start gap-2 bg-white/5 border border-white/5 rounded-lg p-2.5 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
+                                <input type="checkbox" value="${esc(s.key)}" class="dash-test-cat w-4 h-4 accent-indigo-500 mt-0.5 shrink-0">
+                                <span class="flex-1 leading-snug break-words">${esc(s.label)}</span>
+                                <span class="text-[10px] text-gray-500 shrink-0">${n}</span>
                             </label>`;
                         });
                     });
@@ -2179,10 +2325,10 @@ auth.createUserWithEmailAndPassword(e, p)
                         const n = (set.words || []).length;
                         if (!n) return;
                         html += `
-                            <label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
-                                <input type="checkbox" value="vocab:${lang}:${level}" class="dash-test-cat w-4 h-4 accent-emerald-500">
-                                <span class="truncate flex-1">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
-                                <span class="text-[10px] text-gray-500">${n}</span>
+                            <label class="flex items-start gap-2 bg-white/5 border border-white/5 rounded-lg p-2.5 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
+                                <input type="checkbox" value="vocab:${lang}:${level}" class="dash-test-cat w-4 h-4 accent-emerald-500 mt-0.5 shrink-0">
+                                <span class="flex-1 leading-snug break-words">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
+                                <span class="text-[10px] text-gray-500 shrink-0">${n}</span>
                             </label>`;
                     });
                 });

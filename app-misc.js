@@ -205,7 +205,7 @@
             const labels = {
                 'menu': 'Hauptmenü',
                 'family-hub': 'Familien-Hub',
-                'dashboard': 'Dashboard',
+                'dashboard': 'Kontrollzentrum',
                 'quiz-setup': 'Quiz-Einstellungen',
                 'quiz': 'Quiz',
                 'vokabeln': 'Vokabel-Trainer',

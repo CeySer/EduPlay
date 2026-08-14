@@ -1604,8 +1604,8 @@ const geladen = _questionCounts[key] || 0;
                 body: "Hier lernt und spielt die ganze Familie. Wähle links/oben ein Spieler-Profil – jedes Kind hat eigene Punkte und Fortschritte."
             },
             {
-                title: "👨‍👩‍👧‍👦 Eltern & Dashboard",
-                body: "Im Dashboard (PIN-geschützt) siehst du Lernzeiten, weist Tests zu und verwaltest Belohnungen. PIN einmal in den Einstellungen setzen."
+                title: "👨‍👩‍👧‍👦 Eltern & Kontrollzentrum",
+                body: "Im Kontrollzentrum (PIN-geschützt) siehst du Lernzeiten, weist Tests zu und verwaltest Belohnungen. PIN einmal in den Einstellungen setzen."
             },
             {
                 title: "📚 Allein lernen",

@@ -388,62 +388,24 @@ auth.createUserWithEmailAndPassword(e, p)
 
             const history = p.testHistory || [];
             const newest = history[0];
-            const newBadge = (newest && !newest.seenByParent) ? (() => {
+            if (newest && !newest.seenByParent) {
                 const pct = newest.total > 0 ? Math.round((newest.correct / newest.total) * 100) : 0;
-                return `
+                const themen = (newest.categories || []).slice(0, 4).map(c =>
+                    esc((typeof labelFuerKategorie === 'function' ? labelFuerKategorie(c) : null) || c)
+                ).join(', ');
+                container.innerHTML = `
                     <div class="glass-card-glow p-3 flex items-center justify-between gap-2" style="border-color:rgba(16,185,129,0.35);">
-                        <div class="text-left">
+                        <div class="text-left min-w-0">
                             <div class="text-white font-bold text-sm">🎉 ${esc(p.name)} hat einen Test abgeschlossen</div>
                             <div class="text-emerald-400 font-black text-xs">${newest.correct}/${newest.total} (${pct}%)</div>
+                            ${themen ? `<div class="text-[11px] text-gray-400 truncate mt-0.5">${themen}</div>` : ''}
+                            <div class="text-[10px] text-gray-500 mt-1">Historie unter Fortschritt → Test-Statistiken</div>
                         </div>
                         <button onclick="markTestResultSeen('${key}')" class="text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1.5 rounded-lg shrink-0">Gesehen</button>
                     </div>`;
-            })() : "";
-
-            let historyHtml = "";
-            if (!history.length) {
-                historyHtml = '<div class="text-gray-500 text-sm px-3 py-2">Noch keine Tests absolviert</div>';
             } else {
-                const first = history[0];
-                const pct0 = first.total > 0 ? Math.round((first.correct / first.total) * 100) : 0;
-                const date0 = new Date(first.date);
-                const dur0 = (first.durationSec != null && typeof formatDurationSec === 'function')
-                    ? formatDurationSec(first.durationSec)
-                    : (first.durationSec != null ? Math.round(first.durationSec / 60) + " Min." : "");
-                const col0 = pct0 >= 80 ? 'text-emerald-400' : pct0 >= 50 ? 'text-yellow-400' : 'text-rose-400';
-                historyHtml = `<div class="bg-white/5 rounded-xl px-3 py-2.5 space-y-1 border border-white/5">
-                    <div class="text-[10px] text-indigo-300 font-black uppercase tracking-wide">Letzter Test</div>
-                    <div class="flex justify-between items-center gap-2">
-                        <span class="${col0} font-black text-base">${first.correct}/${first.total} (${pct0}%)</span>
-                        <span class="text-gray-500 text-xs text-right">${dur0 ? "⏱ " + dur0 + "<br>" : ""}${date0.toLocaleDateString('de-DE')}</span>
-                    </div>
-                </div>`;
-                if (history.length > 1) {
-                    historyHtml += history.slice(1, 10).map(t => {
-                        const pct = t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0;
-                        const date = new Date(t.date);
-                        const dur = (t.durationSec != null && typeof formatDurationSec === 'function')
-                            ? formatDurationSec(t.durationSec)
-                            : (t.durationSec != null ? Math.round(t.durationSec / 60) + " Min." : "");
-                        return `<div class="dash-stat-card flex justify-between items-center gap-2">
-                                    <span class="text-white text-sm">${t.correct}/${t.total} (${pct}%)</span>
-                                    <span class="text-gray-500 text-xs text-right">${dur ? "⏱ " + dur + " · " : ""}${date.toLocaleDateString('de-DE')}</span>
-                                </div>`;
-                    }).join('');
-                }
+                container.innerHTML = '';
             }
-
-            container.innerHTML = `
-                        ${newBadge}
-                        <div class="glass-card overflow-hidden">
-                            <button type="button" onclick="toggleDashSection('aufgaben-tests')"
-                                class="w-full p-3 flex items-center justify-between hover:bg-white/5 transition">
-                                <span class="text-xs text-gray-300 font-bold">📝 Testergebnisse (${esc(p.name)})</span>
-                                <span id="dash-aufgaben-tests-arrow" class="text-gray-400 transition-transform text-xs">▼</span>
-                            </button>
-                            <div id="dash-aufgaben-tests-body" class="hidden px-3 pb-3 space-y-1.5">${historyHtml}</div>
-                        </div>
-                    `;
         }
 
         function renderFamilyHub() {
@@ -853,9 +815,31 @@ auth.createUserWithEmailAndPassword(e, p)
                     <span class="font-black text-sm ${cls}">${formatStudyDuration(sec)}</span>
                 </div>`;
             });
+            // Woche (Mo–So der aktuellen Kalenderwoche)
+            const now = new Date();
+            const dayIdx = (now.getDay() + 6) % 7; // Mo=0
+            const weekParts = profileEntries.map(({ p }) => {
+                let sec = 0;
+                for (let i = 0; i <= dayIdx; i++) {
+                    const d = new Date(now);
+                    d.setDate(now.getDate() - (dayIdx - i));
+                    const day = d.toISOString().slice(0, 10);
+                    sec += (p.studyLog && p.studyLog[day]) || 0;
+                }
+                const cls = sec >= 60 ? "text-indigo-300" : "text-gray-500";
+                return `<div class="flex justify-between items-center py-1 border-b border-white/5 last:border-0">
+                    <span class="text-white font-bold text-sm">${esc(p.name)}</span>
+                    <span class="font-black text-sm ${cls}">${formatStudyDuration(sec)}</span>
+                </div>`;
+            });
+
             let html = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-xl px-3 py-2.5 space-y-1">
                 <div class="text-[11px] text-indigo-300 font-black uppercase tracking-wide">Heute</div>
                 ${todayParts.length ? todayParts.join("") : '<div class="text-gray-500 text-xs">Keine Profile</div>'}
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 space-y-1">
+                <div class="text-[11px] text-gray-400 font-black uppercase tracking-wide">Diese Woche</div>
+                ${weekParts.length ? weekParts.join("") : '<div class="text-gray-500 text-xs">Keine Profile</div>'}
             </div>`;
 
             // Frühere Tage: je Spieler aufklappbar
@@ -1055,7 +1039,89 @@ auth.createUserWithEmailAndPassword(e, p)
         function openParentArea() {
             // Keine PIN-Abfrage – das Dashboard fragt bereits nach dem PIN
             switchDashboardSection('eltern');
-            switchDashAdminTab('aufgaben');
+            let tab = 'aufgaben';
+            try {
+                const m = localStorage.getItem('eduplayDashAdminTab');
+                if (m === 'progress' || m === 'rewards' || m === 'aufgaben') tab = m;
+            } catch (e) { /* */ }
+            switchDashAdminTab(tab);
+        }
+
+        function fillDashFocusProfile() {
+            const sel = document.getElementById('dash-focus-profile');
+            if (!sel) return;
+            const keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
+            const prev = sel.value || (typeof localStorage !== 'undefined' ? localStorage.getItem('eduplayDashFocus') : '') || '';
+            sel.innerHTML = keys.length
+                ? keys.map(k => `<option value="${k}">${esc(ALL_PROFILES[k].name)}</option>`).join('')
+                : '<option value="">Kein Spieler</option>';
+            if (prev && keys.indexOf(prev) !== -1) sel.value = prev;
+            else if (keys.length) sel.value = keys[0];
+            syncDashFocusToSelects();
+        }
+
+        function syncDashFocusToSelects() {
+            const focus = document.getElementById('dash-focus-profile')?.value || '';
+            ['dash-sw-profile', 'dash-goal-profile', 'dash-test-profile'].forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                if (focus && el.querySelector(`option[value="${focus}"]`)) el.value = focus;
+                else if (focus) {
+                    // options may not be filled yet – set value after fill
+                    el.dataset.focusPending = focus;
+                }
+            });
+        }
+
+        function onDashFocusProfileChange() {
+            const focus = document.getElementById('dash-focus-profile')?.value || '';
+            try { localStorage.setItem('eduplayDashFocus', focus); } catch (e) { /* */ }
+            syncDashFocusToSelects();
+            renderDashStrengthWeakness();
+            renderStudyGoalAdmin();
+            renderDashTestResults();
+            renderOpenTasksBanner();
+        }
+
+        function applyGoalPreset(minutes, activity) {
+            const m = document.getElementById('dash-goal-minutes');
+            const a = document.getElementById('dash-goal-activity');
+            if (m) m.value = minutes;
+            if (a) a.value = activity;
+        }
+
+        function renderOpenTasksBanner() {
+            const box = document.getElementById('dash-open-tasks');
+            if (!box) return;
+            const today = new Date().toISOString().slice(0, 10);
+            const keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
+            const items = [];
+            keys.forEach(k => {
+                const p = ALL_PROFILES[k];
+                const g = p.studyGoal;
+                if (g && g.minutes && (!g.day || g.day === today)) {
+                    const doneSec = (p.studyLog && p.studyLog[today]) || 0;
+                    const need = g.minutes * 60;
+                    const done = doneSec >= need;
+                    if (!done) {
+                        items.push(`<div class="glass-card px-3 py-2 flex justify-between items-center gap-2 border border-amber-400/20">
+                            <div class="min-w-0">
+                                <div class="text-xs font-black text-amber-300">📋 Offener Auftrag · ${esc(p.name)}</div>
+                                <div class="text-[11px] text-gray-400">${Math.floor(doneSec / 60)} / ${g.minutes} Min.${g.note ? ' · ' + esc(g.note) : ''}</div>
+                            </div>
+                        </div>`);
+                    }
+                }
+                if (p.pendingTest) {
+                    items.push(`<div class="glass-card px-3 py-2 flex justify-between items-center gap-2 border border-indigo-400/20">
+                        <div class="min-w-0">
+                            <div class="text-xs font-black text-indigo-300">📝 Offener Test · ${esc(p.name)}</div>
+                            <div class="text-[11px] text-gray-400 truncate">${(p.pendingTest.categories || []).slice(0, 3).map(c => esc(labelFuerKategorie(c) || c)).join(', ')}</div>
+                        </div>
+                    </div>`);
+                }
+            });
+            box.innerHTML = items.length ? items.join('') : '';
         }
 
         function switchDashboardTab(tab) {
@@ -1700,12 +1766,16 @@ auth.createUserWithEmailAndPassword(e, p)
                     ? formatDurationSec(first.durationSec)
                     : (first.durationSec != null ? Math.round(first.durationSec / 60) + " Min." : "");
                 const col0 = pct0 >= 80 ? 'text-emerald-400' : pct0 >= 50 ? 'text-yellow-400' : 'text-rose-400';
+                const themen0 = (first.categories || []).slice(0, 5).map(c =>
+                    esc((typeof labelFuerKategorie === 'function' ? labelFuerKategorie(c) : null) || c)
+                ).join(', ');
                 let detail = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-lg px-2.5 py-2 mb-1.5">
                     <div class="text-[10px] text-indigo-300 font-black uppercase">Letzter Test</div>
                     <div class="flex justify-between gap-2 items-center mt-0.5">
                         <span class="${col0} font-black text-sm">${first.correct}/${first.total} (${pct0}%)</span>
                         <span class="text-gray-500 text-[11px] text-right">${dur0 ? "⏱ " + dur0 + " · " : ""}${date0.toLocaleDateString('de-DE')}</span>
                     </div>
+                    ${themen0 ? `<div class="text-[11px] text-gray-400 mt-1 leading-snug">${themen0}</div>` : ''}
                 </div>`;
                 if (hist.length > 1) {
                     detail += hist.slice(1, 8).map(t => {
@@ -1736,6 +1806,8 @@ auth.createUserWithEmailAndPassword(e, p)
         function selectStatPlayer(key) {
             selectedStatPlayer = key;
             renderDashPlayerList();
+            const sc = document.getElementById('dash-stats-container');
+            if (sc) sc.classList.remove('hidden');
             renderPlayerStats(key);
         }
 
@@ -2021,6 +2093,7 @@ auth.createUserWithEmailAndPassword(e, p)
             // Alt: 'test' → 'aufgaben'
             if (tab === 'test') tab = 'aufgaben';
             currentDashAdminTab = tab;
+            try { localStorage.setItem('eduplayDashAdminTab', tab); } catch (e) { /* */ }
             ['aufgaben', 'progress', 'rewards'].forEach(t => {
                 const view = document.getElementById('dash-admin-' + t + '-view');
                 if (view) view.classList.toggle('hidden', t !== tab);
@@ -2029,11 +2102,14 @@ auth.createUserWithEmailAndPassword(e, p)
                     btn.classList.toggle('active', t === tab);
                 }
             });
+            fillDashFocusProfile();
+            renderOpenTasksBanner();
             if (tab === 'aufgaben') {
                 renderDashStrengthWeakness();
                 renderStudyGoalAdmin();
                 renderDashAdminTest();
                 renderTestTemplatesList();
+                syncDashFocusToSelects();
             }
             if (tab === 'progress') {
                 renderStudyLogOverview();
@@ -2101,17 +2177,13 @@ auth.createUserWithEmailAndPassword(e, p)
                                     <span class="text-yellow-400 text-sm">${lvl.current.icon} ${lvl.current.name}</span>
                                 </div>
                                 <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs mt-1">
-                                    <span class="text-indigo-300 font-bold">⏱ Heute ${studyTxt}</span>
-                                    <span class="text-gray-400">🪙 ${p.coins || 0}</span>
-                                    <span class="text-gray-400">✅ ${totalCorrect}/${totalAttempts}</span>
-                                    <span class="${accuracy >= 80 ? 'text-emerald-400' : accuracy >= 50 ? 'text-yellow-400' : 'text-rose-400'}">${accuracy}%</span>
-                                    <span class="text-gray-400">🔥 ${p.streak ? p.streak.count : 0}d</span>
-                                </div>
-                                <div class="stat-bar mt-1">
-                                    <div class="fill ${accuracy >= 80 ? 'good' : accuracy >= 50 ? 'ok' : 'bad'}" style="width:${accuracy}%"></div>
+                                    <span class="text-yellow-400 font-bold">🪙 ${p.coins || 0}</span>
+                                    <span class="text-gray-400">🔥 ${p.streak ? p.streak.count : 0}d Streak</span>
+                                    <span class="${accuracy >= 80 ? 'text-emerald-400' : accuracy >= 50 ? 'text-yellow-400' : 'text-rose-400'}">${accuracy}% Treffer</span>
                                 </div>
                                 ${goalLine}
                                 ${badgeLine}
+                                ${(p.redeemedRewards && p.redeemedRewards.length) ? `<div class="mt-1.5 text-[11px] text-gray-500">🎁 ${p.redeemedRewards.length} Belohnung${p.redeemedRewards.length === 1 ? '' : 'en'} eingelöst</div>` : ''}
                             </div>
                         `;
             }).join('');
@@ -2268,6 +2340,7 @@ auth.createUserWithEmailAndPassword(e, p)
                     keys.map(k => `<option value="${k}">${esc(ALL_PROFILES[k].name)}</option>`).join('') :
                     '<option value="">Kein Spieler</option>';
             }
+            if (typeof syncDashFocusToSelects === 'function') syncDashFocusToSelects();
 
             fillDashTestCategoryUI();
             if (typeof ladeAlleFragen === "function") {

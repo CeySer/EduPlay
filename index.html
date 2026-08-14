@@ -363,7 +363,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <!-- Kopf -->
                 <div class="flex items-center justify-between gap-2 pt-2">
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Übersicht</button>
-                    <span class="text-sm font-bold text-gray-400">📊 Dashboard</span>
+                    <span class="text-sm font-bold text-gray-400">🎛️ Kontrollzentrum</span>
                     <span class="w-10"></span>
                 </div>
 
@@ -437,6 +437,13 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 BEREICH: ELTERN
                 ========================================================== -->
                 <div id="dash-section-eltern" class="hidden space-y-4">
+                    <div class="glass-card p-3 flex flex-col sm:flex-row sm:items-center gap-2">
+                        <label class="text-xs text-gray-400 font-bold shrink-0">Kind im Fokus</label>
+                        <select id="dash-focus-profile" class="input-modern text-sm font-bold flex-1"
+                            onchange="onDashFocusProfileChange()"></select>
+                    </div>
+                    <div id="dash-open-tasks" class="space-y-2"></div>
+
                     <!-- 3 Admin-Tabs -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div id="dash-admin-aufgaben" class="dash-admin-tab active"
@@ -449,7 +456,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             onclick="switchDashAdminTab('progress')">
                             <span class="icon">📊</span>
                             <div class="label">Fortschritt</div>
-                            <div class="sub">Lernzeit · Tests · Detail</div>
+                            <div class="sub">Lernzeit · Tests</div>
                         </div>
                         <div id="dash-admin-rewards" class="dash-admin-tab" onclick="switchDashAdminTab('rewards')">
                             <span class="icon">🎁</span>
@@ -462,21 +469,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="dash-admin-aufgaben-view" class="space-y-3">
                         <div class="glass-card p-4 space-y-3">
                             <div class="font-black text-emerald-300 text-sm">📊 Stärken &amp; Schwächen</div>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Kind</label>
-                                <select id="dash-sw-profile" class="input-modern text-sm font-bold"
-                                    onchange="renderDashStrengthWeakness()"></select>
-                            </div>
+                            <select id="dash-sw-profile" class="hidden" onchange="renderDashStrengthWeakness()"></select>
                             <div id="dash-strength-weakness" class="space-y-1.5"></div>
                         </div>
 
                         <div class="glass-card p-4 space-y-3">
                             <div class="font-black text-amber-300 text-sm">📋 Lernauftrag setzen</div>
-                            <p class="text-[11px] text-gray-500">Zielzeit für heute. Fortschritt siehst du unter „Fortschritt“ und das Kind im Menü.</p>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Kind</label>
-                                <select id="dash-goal-profile" class="input-modern text-sm font-bold"></select>
-                            </div>
+                            <p class="text-[11px] text-gray-500">Zielzeit für heute – gilt für das Kind im Fokus.</p>
+                            <select id="dash-goal-profile" class="hidden"></select>
                             <div class="grid grid-cols-2 gap-2">
                                 <div>
                                     <label class="text-xs text-gray-400 font-bold block mb-1.5">Minuten</label>
@@ -499,16 +499,18 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                     class="input-modern text-sm">
                             </div>
                             <button onclick="assignStudyGoalFromDashboard()" class="btn-primary w-full text-center">Auftrag setzen ✓</button>
+                            <div class="flex flex-wrap gap-1.5 pt-1">
+                                <button type="button" onclick="applyGoalPreset(20,'vokabeln')" class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10">20 Min. Vokabeln</button>
+                                <button type="button" onclick="applyGoalPreset(30,'wissen')" class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10">30 Min. Wissen</button>
+                                <button type="button" onclick="applyGoalPreset(15,'any')" class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10">15 Min. Alles</button>
+                            </div>
                             <div id="dash-goal-list" class="space-y-2 pt-1"></div>
                         </div>
 
                         <div class="glass-card p-4 space-y-3">
                             <div class="font-black text-indigo-300 text-sm">📝 Test zuweisen</div>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Kind auswählen</label>
-                                <select id="dash-test-profile" class="input-modern"
-                                    onchange="renderDashTestResults()"></select>
-                            </div>
+                            <select id="dash-test-profile" class="hidden" onchange="renderDashTestResults()"></select>
+                            <p class="text-[11px] text-gray-500 -mt-1">Für das Kind im Fokus. Ergebnisse unter Fortschritt.</p>
                         </div>
 
                         <div id="dash-test-results" class="space-y-3"></div>
@@ -578,14 +580,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div class="glass-card overflow-hidden">
                             <button type="button" onclick="toggleDashPlayerList()"
                                 class="w-full p-4 flex items-center justify-between hover:bg-white/5 transition">
-                                <span class="font-bold text-white">👥 Detail-Statistik</span>
+                                <span class="font-bold text-gray-400">👥 Detail-Statistik <span class="text-[10px] font-bold text-gray-500">(optional)</span></span>
                                 <span id="dash-player-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
                             <div id="dash-player-list" class="hidden p-4 pt-0 grid grid-cols-2 gap-2"></div>
                         </div>
-                        <div id="dash-stats-container" class="space-y-4">
-                            <div class="text-center text-gray-400 text-sm py-4">👆 Spieler wählen für Detail-Statistik.</div>
-                        </div>
+                        <div id="dash-stats-container" class="space-y-4 hidden"></div>
                     </div>
 
                     <!-- Tab: Belohnungen (Spieler-Karten + Shop) -->
@@ -2454,7 +2454,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                 <span class="icon">🔄</span> Spieler wechseln
             </div>
             <button onclick="closeDrawer(); switchView('dashboard')" class="drawer-menu-item">
-                <span class="icon">📊</span> Dashboard
+                <span class="icon">🎛️</span> Kontrollzentrum
             </button>
             <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
                 <span class="icon">🔊</span> <span>Ton <span class="sound-toggle-icon">an/aus</span></span>

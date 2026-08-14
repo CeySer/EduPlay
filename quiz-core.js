@@ -684,12 +684,16 @@
             const pct = total > 0 ? Math.round((testCorrectCount / total) * 100) : 0;
             if (currentPlayer) {
                 if (!currentPlayer.testHistory) currentPlayer.testHistory = [];
+                const cats = (currentPlayer.pendingTest && Array.isArray(currentPlayer.pendingTest.categories))
+                    ? currentPlayer.pendingTest.categories.slice()
+                    : [];
                 currentPlayer.testHistory.unshift({
                     date: new Date().toISOString(),
                     correct: testCorrectCount,
                     total: total,
                     durationSec: durationSec,
-                    seenByParent: false
+                    seenByParent: false,
+                    categories: cats
                 });
                 currentPlayer.testHistory = currentPlayer.testHistory.slice(0, 10);
                 currentPlayer.pendingTest = null;

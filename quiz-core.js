@@ -364,9 +364,35 @@
                 SFX.wrong();
                 showToast("Leider falsch!", "error");
                 expBox.innerHTML =
-                    `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/20 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp}</div>`;
+                    `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/20 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp || ""}</div><button type="button" id="ki-explain-btn" class="mt-3 w-full text-sm font-bold py-2.5 px-3 rounded-xl bg-indigo-600/80 hover:bg-indigo-500 text-white border border-indigo-400/30">💡 Mehr erklären (Lerncoach)</button><div id="ki-explain-out" class="hidden mt-2 text-sm text-indigo-100 bg-indigo-950/40 p-3 rounded-lg border border-indigo-500/20"></div>`;
                 expBox.className =
                     "p-4 bg-white/5 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block";
+                const kiBtn = document.getElementById("ki-explain-btn");
+                if (kiBtn) {
+                    kiBtn.onclick = async () => {
+                        const out = document.getElementById("ki-explain-out");
+                        if (!out) return;
+                        kiBtn.disabled = true;
+                        kiBtn.textContent = "⏳ Erklärt…";
+                        out.classList.remove("hidden");
+                        out.textContent = "Einen Moment…";
+                        const chosen = (q.answers && q.answers[sel] != null) ? q.answers[sel] : "";
+                        let text = exp || "";
+                        if (window.EduPlayCoach && typeof EduPlayCoach.explainWrong === "function") {
+                            text = await EduPlayCoach.explainWrong({
+                                question: q.question,
+                                answers: q.answers,
+                                chosen: chosen,
+                                correctText: correctAnswerText,
+                                explanation: exp,
+                                category: q.category
+                            });
+                        }
+                        out.textContent = text;
+                        kiBtn.textContent = "💡 Nochmal erklären";
+                        kiBtn.disabled = false;
+                    };
+                }
             }
             document.getElementById("next-question-btn").classList.remove("hidden");
         }

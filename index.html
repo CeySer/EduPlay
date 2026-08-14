@@ -1854,6 +1854,18 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             </div>
                         </div>
                     </div>
+                    <div class="pt-3 border-t border-white/5 space-y-2">
+                        <h3 class="text-sm font-black text-violet-400">🤖 KI-Lerncoach</h3>
+                        <p class="text-xs text-gray-400">Gemini-API-Key (Google AI Studio, optional). Ohne Key: Offline-Erklärung.</p>
+                        <input id="settings-gemini-key" type="password" autocomplete="off" placeholder="API-Key einfügen…"
+                            class="w-full bg-black/30 border border-white/10 rounded-xl px-3 py-2 text-sm text-white" />
+                        <div class="flex gap-2">
+                            <button type="button" onclick="(function(){ if(!window.EduPlayCoach) return; EduPlayCoach.setApiKey(document.getElementById('settings-gemini-key').value); if(typeof showToast==='function') showToast('KI-Key gespeichert','success'); })()"
+                                class="btn-primary flex-1 text-sm py-2">Speichern</button>
+                            <button type="button" onclick="(function(){ if(!window.EduPlayCoach) return; EduPlayCoach.setApiKey(''); var i=document.getElementById('settings-gemini-key'); if(i) i.value=''; if(typeof showToast==='function') showToast('KI-Key gelöscht','info'); })()"
+                                class="btn-secondary text-sm py-2 px-3">Löschen</button>
+                        </div>
+                    </div>
                     <!-- Entwickler-Modus: aktuell offen sichtbar zum Testen, kann später
                          wieder hinter einen Schalter/Long-Press versteckt werden. -->
                     <div class="pt-3 border-t border-white/5 space-y-2">
@@ -2365,7 +2377,8 @@ VIEW: QUIZ SETUP
     <script src="app-ui.js?v=9.2"></script>
     <script src="family-dashboard.js?v=10.1"></script>
     <script src="ui-common.js?v=9.0"></script>
-    <script src="quiz-core.js?v=9.6"></script>
+    <script src="ki-coach.js?v=1.1"></script>
+    <script src="quiz-core.js?v=9.7"></script>
     <script src="vocab.js?v=9.0"></script>
     <script src="suchsel.js?v=1.0"></script>
     <script src="duel-scrabble.js?v=9.1"></script>

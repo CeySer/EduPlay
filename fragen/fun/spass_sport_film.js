@@ -681,23 +681,6 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "explanation": "🥋 Der braune Gürtel ist der 1. Kyu (höchster Schülergrad) vor dem 1. Dan (Schwarzer Gürtel)."
     },
   {
-        "id": "q_sf_041",
-        "category": "spass_sport_film",
-        "area": "spass",
-        "subject": "sport_film",
-        "question": "Welcher Regisseur drehte Filmklassiker wie 'Der weiße Hai', 'E.T.' und 'Jurassic Park'?",
-        "answers": [
-            "Steven Spielberg",
-            "George Lucas",
-            "James Cameron",
-            "Christopher Nolan"
-        ],
-        "correct": 0,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "🎬 Steven Spielberg gilt als einer der erfolgreichsten Filmemacher der Hollywood-Geschichte."
-    },
-  {
         "id": "q_sf_042",
         "category": "spass_sport_film",
         "area": "spass",

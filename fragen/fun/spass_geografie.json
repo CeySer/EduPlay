@@ -5,7 +5,12 @@
     "area": "geografie",
     "subject": "wissen",
     "question": "Welches ist das flächenmäßig größte Land der Erde?",
-    "answers": ["China", "Kanada", "USA", "Russland"],
+    "answers": [
+      "China",
+      "Kanada",
+      "USA",
+      "Russland"
+    ],
     "correct": 3,
     "difficulty": "leicht",
     "points": 5,
@@ -17,7 +22,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "In welchem Jahr fiel die Berliner Mauer und läutete das Ende der Wiedervereinigung ein?",
-    "answers": ["1985", "1989", "1991", "1995"],
+    "answers": [
+      "1985",
+      "1989",
+      "1991",
+      "1995"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -29,7 +39,12 @@
     "area": "geografie",
     "subject": "wissen",
     "question": "Wie heißt die Hauptstadt von Australien?",
-    "answers": ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+    "answers": [
+      "Sydney",
+      "Melbourne",
+      "Canberra",
+      "Brisbane"
+    ],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -41,7 +56,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wer waren die Krieger im mittelalterlichen Japan, die dem Ehrenkodex Bushido folgten?",
-    "answers": ["Ritter", "Samurai", "Spartaner", "Wikinger"],
+    "answers": [
+      "Ritter",
+      "Samurai",
+      "Spartaner",
+      "Wikinger"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -53,7 +73,12 @@
     "area": "geografie",
     "subject": "wissen",
     "question": "Auf welchem Kontinent liegt Ägypten größtenteils?",
-    "answers": ["Asien", "Afrika", "Europa", "Südamerika"],
+    "answers": [
+      "Asien",
+      "Afrika",
+      "Europa",
+      "Südamerika"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -65,7 +90,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Welcher Vulkan verschüttete im Jahr 79 n. Chr. die antike römische Stadt Pompeji?",
-    "answers": ["Ätna", "Vesus", "Stromboli", "Krakatau"],
+    "answers": [
+      "Ätna",
+      "Vesus",
+      "Stromboli",
+      "Krakatau"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -77,7 +107,12 @@
     "area": "geografie",
     "subject": "wissen",
     "question": "Wie heisst die Hauptstadt von Japan?",
-    "answers": ["Kyoto", "Osaka", "Tokio", "Hiroshima"],
+    "answers": [
+      "Kyoto",
+      "Osaka",
+      "Tokio",
+      "Hiroshima"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -89,7 +124,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wer war der erste Kaiser des Römischen Reiches?",
-    "answers": ["Julius Cäsar", "Kaiser Augustus", "Nero", "Marc Anton"],
+    "answers": [
+      "Julius Cäsar",
+      "Kaiser Augustus",
+      "Nero",
+      "Marc Anton"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -101,7 +141,12 @@
     "area": "geografie",
     "subject": "wissen",
     "question": "Durch welches europäische Land fließt die Seine?",
-    "answers": ["Deutschland", "Frankreich", "Spanien", "Italien"],
+    "answers": [
+      "Deutschland",
+      "Frankreich",
+      "Spanien",
+      "Italien"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -113,23 +158,16 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wie nennt man die nordischen Seefahrer und Händler, die vom 8. bis 11. Jahrhundert Europa befuhren?",
-    "answers": ["Hunnen", "Mongolen", "Wikinger", "Kelten"],
+    "answers": [
+      "Hunnen",
+      "Mongolen",
+      "Wikinger",
+      "Kelten"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
     "explanation": "Die Wikinger stammten aus Skandinavien und segelten mit ihren Drachenbooten über die Meere."
-  },
-  {
-    "id": "geo_mc_011",
-    "category": "geografie_geschichte",
-    "area": "geografie",
-    "subject": "wissen",
-    "question": "Welches Gebirge bildet die natürliche Grenze zwischen Europa und Asien?",
-    "answers": ["Alpen", "Ural", "Kaukasus", "Pyrenäen"],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Der Ural erstreckt sich von Nord nach Süd durch Russland und teilt die Kontinente."
   },
   {
     "id": "geo_mc_012",
@@ -137,7 +175,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "In welchem Jahrhundert brach die Französische Revolution aus (1789)?",
-    "answers": ["16. Jahrhundert", "17. Jahrhundert", "18. Jahrhundert", "19. Jahrhundert"],
+    "answers": [
+      "16. Jahrhundert",
+      "17. Jahrhundert",
+      "18. Jahrhundert",
+      "19. Jahrhundert"
+    ],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -149,7 +192,12 @@
     "area": "geografie",
     "subject": "wissen",
     "question": "Zu welchem Land gehören die Kanarischen Inseln (z. B. Teneriffa, Gran Canaria)?",
-    "answers": ["Portugal", "Spanien", "Italien", "Griechenland"],
+    "answers": [
+      "Portugal",
+      "Spanien",
+      "Italien",
+      "Griechenland"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -161,7 +209,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Welche Erfindung revolutionierte im 15. Jahrhundert das Kopieren von Büchern (Johannes Gutenberg)?",
-    "answers": ["Der Buchdruck mit beweglichen Lettern", "Die Schreibmaschine", "Das Pergament", "Die Tinte"],
+    "answers": [
+      "Der Buchdruck mit beweglichen Lettern",
+      "Die Schreibmaschine",
+      "Das Pergament",
+      "Die Tinte"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -173,7 +226,12 @@
     "area": "geografie",
     "subject": "wissen",
     "question": "Wie heisst die Hauptstadt von Kanada?",
-    "answers": ["Toronto", "Vancouver", "Montreal", "Ottawa"],
+    "answers": [
+      "Toronto",
+      "Vancouver",
+      "Montreal",
+      "Ottawa"
+    ],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -185,7 +243,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Welches antike Weltwunder steht als einziges bis heute fast vollständig?",
-    "answers": ["Die Hängenden Gärten von Babylon", "Der Koloss von Rhodos", "Die Pyramiden von Gizeh", "Der Leuchtturm von Alexandria"],
+    "answers": [
+      "Die Hängenden Gärten von Babylon",
+      "Der Koloss von Rhodos",
+      "Die Pyramiden von Gizeh",
+      "Der Leuchtturm von Alexandria"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -197,7 +260,12 @@
     "area": "geografie",
     "subject": "wissen",
     "question": "Welches Land hat die größte Bevölkerung der Welt?",
-    "answers": ["Indien", "China", "USA", "Indonesien"],
+    "answers": [
+      "Indien",
+      "China",
+      "USA",
+      "Indonesien"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -209,7 +277,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Welche Hochkultur erbaute die Inka-Stadt Machu Picchu hoch in den Anden?",
-    "answers": ["Azteken", "Maya", "Inka", "Olmeken"],
+    "answers": [
+      "Azteken",
+      "Maya",
+      "Inka",
+      "Olmeken"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -221,7 +294,12 @@
     "area": "geografie",
     "subject": "wissen",
     "question": "An welchem Fluss liegt die italienische Hauptstadt Rom?",
-    "answers": ["Po", "Tiber", "Arno", "Etsch"],
+    "answers": [
+      "Po",
+      "Tiber",
+      "Arno",
+      "Etsch"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -233,10 +311,1477 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Welches Ereignis markiert historisch den Beginn des Ersten Weltkriegs im Jahr 1914?",
-    "answers": ["Der Einmarsch in Polen", "Das Attentat von Sarajevo auf Franz Ferdinand", "Der Börsenkrach in New York", "Die Russische Revolution"],
+    "answers": [
+      "Der Einmarsch in Polen",
+      "Das Attentat von Sarajevo auf Franz Ferdinand",
+      "Der Börsenkrach in New York",
+      "Die Russische Revolution"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Das Attentat auf den österreichischen Thronfolger am 28. Juni 1914 löste die Julikrise aus."
+  },
+  {
+    "id": "geo_ext_020",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Frankreich?",
+    "answers": [
+      "Paris",
+      "Lyon",
+      "Marseille",
+      "Bordeaux"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Paris."
+  },
+  {
+    "id": "geo_ext_021",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Italien?",
+    "answers": [
+      "Rom",
+      "Mailand",
+      "Neapel",
+      "Florenz"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Rom."
+  },
+  {
+    "id": "geo_ext_022",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Spanien?",
+    "answers": [
+      "Madrid",
+      "Barcelona",
+      "Sevilla",
+      "Valencia"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Madrid."
+  },
+  {
+    "id": "geo_ext_023",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Portugal?",
+    "answers": [
+      "Lissabon",
+      "Porto",
+      "Faro",
+      "Coimbra"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Lissabon."
+  },
+  {
+    "id": "geo_ext_024",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Griechenland?",
+    "answers": [
+      "Athen",
+      "Thessaloniki",
+      "Kreta",
+      "Rhodos"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Athen."
+  },
+  {
+    "id": "geo_ext_025",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Polen?",
+    "answers": [
+      "Warschau",
+      "Krakau",
+      "Danzig",
+      "Breslau"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Warschau."
+  },
+  {
+    "id": "geo_ext_026",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Österreich?",
+    "answers": [
+      "Wien",
+      "Salzburg",
+      "Innsbruck",
+      "Graz"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Wien."
+  },
+  {
+    "id": "geo_ext_027",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt der Schweiz?",
+    "answers": [
+      "Bern",
+      "Zürich",
+      "Genf",
+      "Basel"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Bern (Bundesstadt)."
+  },
+  {
+    "id": "geo_ext_028",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches ist der höchste Berg der Welt?",
+    "answers": [
+      "Mount Everest",
+      "K2",
+      "Kangchenjunga",
+      "Lhotse"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Mount Everest."
+  },
+  {
+    "id": "geo_ext_029",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Fluss fließt durch London?",
+    "answers": [
+      "Themse",
+      "Seine",
+      "Rhein",
+      "Donau"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Themse."
+  },
+  {
+    "id": "geo_ext_030",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Fluss fließt durch Paris?",
+    "answers": [
+      "Seine",
+      "Loire",
+      "Rhône",
+      "Garonne"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Seine."
+  },
+  {
+    "id": "geo_ext_031",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Fluss fließt durch Ägypten?",
+    "answers": [
+      "Nil",
+      "Kongo",
+      "Niger",
+      "Sambesi"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nil."
+  },
+  {
+    "id": "geo_ext_032",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Ozean liegt zwischen Europa und Amerika?",
+    "answers": [
+      "Atlantik",
+      "Pazifik",
+      "Indischer Ozean",
+      "Arktischer Ozean"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Atlantik."
+  },
+  {
+    "id": "geo_ext_033",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Ozean ist der größte?",
+    "answers": [
+      "Pazifik",
+      "Atlantik",
+      "Indischer Ozean",
+      "Südlicher Ozean"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Pazifik."
+  },
+  {
+    "id": "geo_ext_034",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches ist die größte Wüste der Welt (heiß)?",
+    "answers": [
+      "Sahara",
+      "Gobi",
+      "Kalahari",
+      "Arabische Wüste"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Sahara (Antarktis ist größer, aber kalt)."
+  },
+  {
+    "id": "geo_ext_035",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Auf welchem Kontinent liegt Brasilien?",
+    "answers": [
+      "Südamerika",
+      "Nordamerika",
+      "Afrika",
+      "Europa"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Südamerika."
+  },
+  {
+    "id": "geo_ext_036",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Auf welchem Kontinent liegt Ägypten?",
+    "answers": [
+      "Afrika",
+      "Asien",
+      "Europa",
+      "beide Afrika/Asien umstritten"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Hauptsächlich Afrika."
+  },
+  {
+    "id": "geo_ext_037",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land hat die Form eines Stiefels?",
+    "answers": [
+      "Italien",
+      "Griechenland",
+      "Spanien",
+      "Portugal"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Italien."
+  },
+  {
+    "id": "geo_ext_038",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land ist eine Insel und Teil des Vereinigten Königreichs?",
+    "answers": [
+      "Großbritannien (Insel)",
+      "Irland ganz",
+      "Island",
+      "Grönland"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Great Britain."
+  },
+  {
+    "id": "geo_ext_039",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Japan?",
+    "answers": [
+      "Tokio",
+      "Osaka",
+      "Kyoto",
+      "Hiroshima"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Tokio."
+  },
+  {
+    "id": "geo_ext_040",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von China?",
+    "answers": [
+      "Peking (Beijing)",
+      "Shanghai",
+      "Hongkong",
+      "Guangzhou"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Beijing."
+  },
+  {
+    "id": "geo_ext_041",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Indien?",
+    "answers": [
+      "Neu-Delhi",
+      "Mumbai",
+      "Kolkata",
+      "Bangalore"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "New Delhi."
+  },
+  {
+    "id": "geo_ext_042",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Australien?",
+    "answers": [
+      "Canberra",
+      "Sydney",
+      "Melbourne",
+      "Brisbane"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Canberra."
+  },
+  {
+    "id": "geo_ext_043",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Kanada?",
+    "answers": [
+      "Ottawa",
+      "Toronto",
+      "Vancouver",
+      "Montreal"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ottawa."
+  },
+  {
+    "id": "geo_ext_044",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt der USA?",
+    "answers": [
+      "Washington, D.C.",
+      "New York",
+      "Los Angeles",
+      "Chicago"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Washington, D.C."
+  },
+  {
+    "id": "geo_ext_045",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land grenzt nicht an Deutschland?",
+    "answers": [
+      "Spanien",
+      "Frankreich",
+      "Polen",
+      "Österreich"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Spanien."
+  },
+  {
+    "id": "geo_ext_046",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher See ist der größte in Afrika?",
+    "answers": [
+      "Victoriasee",
+      "Tanganjikasee",
+      "Malawisee",
+      "Tschadsee"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Victoriasee."
+  },
+  {
+    "id": "geo_ext_047",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Berg ist der höchste in Europa (Alpen-Üblich)?",
+    "answers": [
+      "Mont Blanc",
+      "Matterhorn",
+      "Zugspitze",
+      "Großglockner"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Mont Blanc oft als höchster Alpengipfel genannt."
+  },
+  {
+    "id": "geo_ext_048",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Meer liegt zwischen Europa und Afrika?",
+    "answers": [
+      "Mittelmeer",
+      "Nordsee",
+      "Ostsee",
+      "Schwarzes Meer"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Mittelmeer."
+  },
+  {
+    "id": "geo_ext_049",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land liegt auf der Iberischen Halbinsel neben Spanien?",
+    "answers": [
+      "Portugal",
+      "Frankreich",
+      "Italien",
+      "Marokko"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Portugal."
+  },
+  {
+    "id": "geo_ext_050",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt war die Hauptstadt des Römischen Reichs?",
+    "answers": [
+      "Rom",
+      "Athen",
+      "Karthago",
+      "Konstantinopel"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Rom."
+  },
+  {
+    "id": "geo_ext_051",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "In welchem Jahr fiel die Berliner Mauer?",
+    "answers": [
+      "1989",
+      "1990",
+      "1987",
+      "1991"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "9. November 1989."
+  },
+  {
+    "id": "geo_ext_052",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Wer war der erste Mensch auf dem Mond?",
+    "answers": [
+      "Neil Armstrong",
+      "Buzz Aldrin",
+      "Yuri Gagarin",
+      "John Glenn"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Neil Armstrong 1969."
+  },
+  {
+    "id": "geo_ext_053",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land entdeckte Kolumbus 1492 (aus europäischer Sicht)?",
+    "answers": [
+      "Amerika (Karibik)",
+      "Indien",
+      "China",
+      "Australien"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Er landete in der Karibik."
+  },
+  {
+    "id": "geo_ext_054",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Krieg endete 1945 in Europa?",
+    "answers": [
+      "Zweiter Weltkrieg",
+      "Erster Weltkrieg",
+      "Kalter Krieg",
+      "Korea-Krieg"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Zweiter Weltkrieg."
+  },
+  {
+    "id": "geo_ext_055",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Wann begann der Erste Weltkrieg?",
+    "answers": [
+      "1914",
+      "1918",
+      "1939",
+      "1900"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "1914."
+  },
+  {
+    "id": "geo_ext_056",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Mauer teilte Berlin?",
+    "answers": [
+      "Berliner Mauer",
+      "Chinesische Mauer",
+      "Hadrianswall",
+      "Limes"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Berliner Mauer."
+  },
+  {
+    "id": "geo_ext_057",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land baute die Chinesische Mauer?",
+    "answers": [
+      "China",
+      "Japan",
+      "Mongolei",
+      "Korea"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "China."
+  },
+  {
+    "id": "geo_ext_058",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Wo standen die Pyramiden von Gizeh?",
+    "answers": [
+      "Ägypten",
+      "Mexiko",
+      "Peru",
+      "Sudan"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ägypten."
+  },
+  {
+    "id": "geo_ext_059",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Zivilisation baute Machu Picchu?",
+    "answers": [
+      "Inka",
+      "Maya",
+      "Azteken",
+      "Olmeken"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Inka."
+  },
+  {
+    "id": "geo_ext_060",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Zivilisation baute Chichén Itzá?",
+    "answers": [
+      "Maya",
+      "Inka",
+      "Azteken",
+      "Olmeken"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Maya."
+  },
+  {
+    "id": "geo_ext_061",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Reich wurde von Julius Cäsar mitgeprägt?",
+    "answers": [
+      "Römisches Reich",
+      "Griechenland",
+      "Perserreich",
+      "Ägypten"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Rom."
+  },
+  {
+    "id": "geo_ext_062",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Wer war Napoleon?",
+    "answers": [
+      "Französischer Kaiser/General",
+      "Englischer König",
+      "Deutscher Kaiser",
+      "Russischer Zar"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Napoleon Bonaparte."
+  },
+  {
+    "id": "geo_ext_063",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "In welchem Land liegt die Stadt Istanbul?",
+    "answers": [
+      "Türkei",
+      "Griechenland",
+      "Bulgarien",
+      "Syrien"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Türkei."
+  },
+  {
+    "id": "geo_ext_064",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Kontinent hat die meisten Länder?",
+    "answers": [
+      "Afrika",
+      "Asien",
+      "Europa",
+      "Südamerika"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Afrika."
+  },
+  {
+    "id": "geo_ext_065",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches ist das kleinste Land der Welt?",
+    "answers": [
+      "Vatikanstadt",
+      "Monaco",
+      "San Marino",
+      "Liechtenstein"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Vatikanstadt."
+  },
+  {
+    "id": "geo_ext_066",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land hat die meisten Einwohner?",
+    "answers": [
+      "Indien (aktuell oft vor China)",
+      "China",
+      "USA",
+      "Indonesien"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Indien hat China überholt (Stand jüngere Jahre)."
+  },
+  {
+    "id": "geo_ext_067",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Fluss ist der längste der Welt (oft diskutiert)?",
+    "answers": [
+      "Nil oder Amazonas",
+      "Jangtse",
+      "Mississippi",
+      "Kongo"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nil und Amazonas konkurrieren je nach Messung."
+  },
+  {
+    "id": "geo_ext_068",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Wo liegt der Grand Canyon?",
+    "answers": [
+      "USA",
+      "Kanada",
+      "Mexiko",
+      "Australien"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Arizona, USA."
+  },
+  {
+    "id": "geo_ext_069",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Wo liegt das Great Barrier Reef?",
+    "answers": [
+      "Australien",
+      "USA",
+      "Brasilien",
+      "Indien"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Australien."
+  },
+  {
+    "id": "geo_ext_070",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist für den Eiffelturm bekannt?",
+    "answers": [
+      "Paris",
+      "London",
+      "Rom",
+      "Berlin"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Paris."
+  },
+  {
+    "id": "geo_ext_071",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist für Big Ben bekannt?",
+    "answers": [
+      "London",
+      "Paris",
+      "Dublin",
+      "Edinburgh"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "London."
+  },
+  {
+    "id": "geo_ext_072",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist für die Freiheitsstatue bekannt?",
+    "answers": [
+      "New York",
+      "Washington",
+      "Boston",
+      "Philadelphia"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "New York."
+  },
+  {
+    "id": "geo_ext_073",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist für den Kölner Dom bekannt?",
+    "answers": [
+      "Köln",
+      "Bonn",
+      "Düsseldorf",
+      "Aachen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Köln."
+  },
+  {
+    "id": "geo_ext_074",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist für den Brandenburger Tor bekannt?",
+    "answers": [
+      "Berlin",
+      "Potsdam",
+      "Hamburg",
+      "München"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Berlin."
+  },
+  {
+    "id": "geo_ext_075",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Bundesland ist München Hauptstadt?",
+    "answers": [
+      "Bayern",
+      "Baden-Württemberg",
+      "Hessen",
+      "Sachsen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Bayern."
+  },
+  {
+    "id": "geo_ext_076",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Bundesland ist Hamburg?",
+    "answers": [
+      "Stadtstaat Hamburg",
+      "Niedersachsen",
+      "Schleswig-Holstein",
+      "Bremen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Freie und Hansestadt Hamburg."
+  },
+  {
+    "id": "geo_ext_077",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Wie viele Bundesländer hat Deutschland?",
+    "answers": [
+      "16",
+      "15",
+      "14",
+      "18"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "16."
+  },
+  {
+    "id": "geo_ext_078",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Fluss fließt durch Köln?",
+    "answers": [
+      "Rhein",
+      "Elbe",
+      "Donau",
+      "Main"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Rhein."
+  },
+  {
+    "id": "geo_ext_079",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Fluss fließt durch Dresden?",
+    "answers": [
+      "Elbe",
+      "Rhein",
+      "Oder",
+      "Spree"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Elbe."
+  },
+  {
+    "id": "geo_ext_080",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welcher Fluss fließt durch Berlin?",
+    "answers": [
+      "Spree",
+      "Rhein",
+      "Elbe",
+      "Oder"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Spree."
+  },
+  {
+    "id": "geo_ext_081",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Wo liegt die Zugspitze?",
+    "answers": [
+      "Bayern / Grenze Österreich",
+      "Schweiz",
+      "Italien",
+      "Frankreich"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Höchster Berg Deutschlands."
+  },
+  {
+    "id": "geo_ext_082",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land liegt nördlich von Deutschland?",
+    "answers": [
+      "Dänemark",
+      "Niederlande",
+      "Polen",
+      "Schweden"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Dänemark."
+  },
+  {
+    "id": "geo_ext_083",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land liegt östlich von Deutschland?",
+    "answers": [
+      "Polen",
+      "Frankreich",
+      "Belgien",
+      "Niederlande"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Polen."
+  },
+  {
+    "id": "geo_ext_084",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land liegt westlich von Deutschland?",
+    "answers": [
+      "Frankreich / Benelux",
+      "Polen",
+      "Tschechien",
+      "Österreich"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Frankreich, Belgien, Niederlande, Luxemburg."
+  },
+  {
+    "id": "geo_ext_085",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Meer liegt nördlich von Deutschland?",
+    "answers": [
+      "Nordsee / Ostsee",
+      "Mittelmeer",
+      "Schwarzes Meer",
+      "Kaspisches Meer"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nord- und Ostsee."
+  },
+  {
+    "id": "geo_ext_086",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Schweden?",
+    "answers": [
+      "Stockholm",
+      "Oslo",
+      "Kopenhagen",
+      "Helsinki"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Stockholm."
+  },
+  {
+    "id": "geo_ext_087",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Norwegen?",
+    "answers": [
+      "Oslo",
+      "Bergen",
+      "Stockholm",
+      "Kopenhagen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Oslo."
+  },
+  {
+    "id": "geo_ext_088",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Dänemark?",
+    "answers": [
+      "Kopenhagen",
+      "Aarhus",
+      "Odense",
+      "Aalborg"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Kopenhagen."
+  },
+  {
+    "id": "geo_ext_089",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Finnland?",
+    "answers": [
+      "Helsinki",
+      "Tampere",
+      "Turku",
+      "Oulu"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Helsinki."
+  },
+  {
+    "id": "geo_ext_090",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Irland?",
+    "answers": [
+      "Dublin",
+      "Cork",
+      "Belfast",
+      "Galway"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Dublin."
+  },
+  {
+    "id": "geo_ext_091",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Belgien?",
+    "answers": [
+      "Brüssel",
+      "Antwerpen",
+      "Gent",
+      "Brügge"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Brüssel."
+  },
+  {
+    "id": "geo_ext_092",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt der Niederlande?",
+    "answers": [
+      "Amsterdam",
+      "Den Haag",
+      "Rotterdam",
+      "Utrecht"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Amsterdam (Regierungssitz Den Haag)."
+  },
+  {
+    "id": "geo_ext_093",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Tschechien?",
+    "answers": [
+      "Prag",
+      "Brünn",
+      "Ostrava",
+      "Pilsen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Prag."
+  },
+  {
+    "id": "geo_ext_094",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Ungarn?",
+    "answers": [
+      "Budapest",
+      "Debrecen",
+      "Szeged",
+      "Pécs"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Budapest."
+  },
+  {
+    "id": "geo_ext_095",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Rumänien?",
+    "answers": [
+      "Bukarest",
+      "Cluj",
+      "Timisoara",
+      "Iasi"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Bukarest."
+  },
+  {
+    "id": "geo_ext_096",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Ukraine?",
+    "answers": [
+      "Kiew",
+      "Lwiw",
+      "Odessa",
+      "Charkiw"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Kiew."
+  },
+  {
+    "id": "geo_ext_097",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Russland?",
+    "answers": [
+      "Moskau",
+      "Sankt Petersburg",
+      "Nowosibirsk",
+      "Kasan"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Moskau."
+  },
+  {
+    "id": "geo_ext_098",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Südkorea?",
+    "answers": [
+      "Seoul",
+      "Busan",
+      "Incheon",
+      "Daegu"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Seoul."
+  },
+  {
+    "id": "geo_ext_099",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Thailand?",
+    "answers": [
+      "Bangkok",
+      "Phuket",
+      "Chiang Mai",
+      "Pattaya"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Bangkok."
+  },
+  {
+    "id": "geo_ext_100",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Ägypten?",
+    "answers": [
+      "Kairo",
+      "Alexandria",
+      "Gizeh",
+      "Luxor"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Kairo."
+  },
+  {
+    "id": "geo_ext_101",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welche Stadt ist die Hauptstadt von Südafrika (Verwaltung)?",
+    "answers": [
+      "Pretoria",
+      "Kapstadt",
+      "Johannesburg",
+      "Durban"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Pretoria administrativ, Kapstadt legislativ."
+  },
+  {
+    "id": "geo_ext_102",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land hat die Pyramiden von Gizeh?",
+    "answers": [
+      "Ägypten",
+      "Mexiko",
+      "Sudan",
+      "Libyen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ägypten."
+  },
+  {
+    "id": "geo_ext_103",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land hat den Amazonas-Regenwald größtenteils?",
+    "answers": [
+      "Brasilien",
+      "Peru",
+      "Kolumbien",
+      "Venezuela"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Brasilien."
+  },
+  {
+    "id": "geo_ext_104",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land ist für die Safari in der Serengeti bekannt?",
+    "answers": [
+      "Tansania",
+      "Kenia",
+      "Südafrika",
+      "Uganda"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Tansania (Serengeti)."
+  },
+  {
+    "id": "geo_ext_105",
+    "category": "geografie_geschichte",
+    "area": "geografie",
+    "subject": "wissen",
+    "question": "Welches Land liegt auf zwei Kontinenten (Europa und Asien)?",
+    "answers": [
+      "Türkei / Russland",
+      "Ägypten",
+      "Kasachstan",
+      "alle drei teilweise"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Türkei und Russland u.a."
   }
 ]

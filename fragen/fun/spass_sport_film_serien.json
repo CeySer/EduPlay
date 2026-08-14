@@ -5,7 +5,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Aus welchem Filmklassiker stammt das berühmte Zitat: 'Ich mache ihm ein Angebot, das er nicht ablehnen kann'?",
-    "answers": ["GoodFellas", "Der Pate", "Scarface", "Pulp Fiction"],
+    "answers": [
+      "GoodFellas",
+      "Der Pate",
+      "Scarface",
+      "Pulp Fiction"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -17,7 +22,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Welcher Action-Held ruft im Kultfilm 'Stirb Langsam' den Spruch 'Yippie-ya-yay, Schweinebacke!'?",
-    "answers": ["Rambo (Sylvester Stallone)", "John McClane (Bruce Willis)", "The Terminator (Arnold Schwarzenegger)", "Ethan Hunt (Tom Cruise)"],
+    "answers": [
+      "Rambo (Sylvester Stallone)",
+      "John McClane (Bruce Willis)",
+      "The Terminator (Arnold Schwarzenegger)",
+      "Ethan Hunt (Tom Cruise)"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -29,7 +39,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "In welchem Film fällt der Satz: 'Möge die Macht mit dir sein'?",
-    "answers": ["Star Trek", "Star Wars", "Dune", "Avatar"],
+    "answers": [
+      "Star Trek",
+      "Star Wars",
+      "Dune",
+      "Avatar"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -41,7 +56,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Welche Figur sagt: 'Das Leben ist wie eine Schachtel Pralinen, man weiß nie, was man bekommt'?",
-    "answers": ["Forrest Gump", "Benjamin Button", "Truman Burbank", "Rain Man"],
+    "answers": [
+      "Forrest Gump",
+      "Benjamin Button",
+      "Truman Burbank",
+      "Rain Man"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -53,7 +73,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Aus welcher Serie stammt das Zitat: 'Winter is coming' (Der Winter naht)?",
-    "answers": ["Vikings", "The Witcher", "Game of Thrones", "Der Herr der Ringe"],
+    "answers": [
+      "Vikings",
+      "The Witcher",
+      "Game of Thrones",
+      "Der Herr der Ringe"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -65,7 +90,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Welcher Geheimagent stellt sich gewöhnlich mit 'Mein Name ist Bond. [...] Bond.' vor?",
-    "answers": ["James Bond", "Jason Bourne", "Jack Reacher", "Johnny English"],
+    "answers": [
+      "James Bond",
+      "Jason Bourne",
+      "Jack Reacher",
+      "Johnny English"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -77,7 +107,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "In welchem Pixar-Animationsfilm ruft die Hauptfigur 'Bis zum Unendlichen und noch viel weiter!'?",
-    "answers": ["Findet Nemo", "Toy Story", "Die Incredibles", "Cars"],
+    "answers": [
+      "Findet Nemo",
+      "Toy Story",
+      "Die Incredibles",
+      "Cars"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -89,7 +124,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Welches Zitat ist durch 'Herr der Ringe' und die Figur Gollum berühmt geworden?",
-    "answers": ["Mein Schaaaaatz!", "Du kannst nicht vorbei!", "Fly, you fools!", "Pippin, du Narr!"],
+    "answers": [
+      "Mein Schaaaaatz!",
+      "Du kannst nicht vorbei!",
+      "Fly, you fools!",
+      "Pippin, du Narr!"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -101,7 +141,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Wer spricht in der Serie 'Breaking Bad' den bedrohlichen Satz: 'I am the one who knocks!'?",
-    "answers": ["Jesse Pinkman", "Walter White (Heisenberg)", "Hank Schrader", "Gus Fring"],
+    "answers": [
+      "Jesse Pinkman",
+      "Walter White (Heisenberg)",
+      "Hank Schrader",
+      "Gus Fring"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -113,368 +158,29 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Aus welchem Film stammt das Zitat: 'Houston, wir haben ein Problem'?",
-    "answers": ["Interstellar", "Apollo 13", "Armageddon", "Der Marsianer"],
+    "answers": [
+      "Interstellar",
+      "Apollo 13",
+      "Armageddon",
+      "Der Marsianer"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
     "explanation": "Tom Hanks als Astronaut Jim Lovell funkelt diesen Satz im Drama 'Apollo 13'."
   },
   {
-    "id": "mix_mc_011",
-    "category": "werbung_marken",
-    "area": "slogans",
-    "subject": "wissen",
-    "question": "Welcher Möbelkonzern wirbt seit Jahren mit dem Slogan: 'Wohnst du noch oder lebst du schon?'",
-    "answers": ["Möbel Kraft", "IKEA", "XXXLutz", "Höffner"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Der schwedische Einrichtungsriese IKEA nutzt diesen bekannten Spruch im deutschsprachigen Raum."
-  },
-  {
-    "id": "mix_mc_012",
-    "category": "werbung_marken",
-    "area": "slogans",
-    "subject": "wissen",
-    "question": "Vervollständige den Slogan der Schokoladenmarke Ritter Sport: 'Quadratisch. Praktisch. [...]'",
-    "answers": ["Lecker.", "Gut.", "Süß.", "Frisch."],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "'Quadratisch. Praktisch. Gut.' bezieht sich auf die quadratische Form der Tafeln."
-  },
-  {
-    "id": "mix_mc_013",
-    "category": "werbung_marken",
-    "area": "slogans",
-    "subject": "wissen",
-    "question": "Welche Fruchtgummi-Marke verspricht: '[...] macht Kinder froh – und Erwachsene ebenso'?",
-    "answers": ["Katjes", "Haribo", "Trolli", "Nimm2"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Haribo erfand diesen weltbekannten Werbeslogan bereits Mitte des 20. Jahrhunderts."
-  },
-  {
-    "id": "mix_mc_014",
-    "category": "werbung_marken",
-    "area": "slogans",
-    "subject": "wissen",
-    "question": "Welcher Sportartikelhersteller nutzt das englische Motto 'Just Do It'?",
-    "answers": ["Adidas", "Puma", "Nike", "Under Armour"],
-    "correct": 2,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Nike nutzt den Slogan 'Just Do It' seit 1988 weltweit zusammen mit dem 'Swoosh'-Logo."
-  },
-  {
-    "id": "mix_mc_015",
-    "category": "werbung_marken",
-    "area": "slogans",
-    "subject": "wissen",
-    "question": "Zu welcher Marke gehört der Slogan 'Red Bull verleiht [...]'?",
-    "answers": ["Power", "Flügel", "Energie", "Speed"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Der Österreicher Energy-Drink-Hersteller wirbt seit Jahrzehnten mit 'Red Bull verleiht Flügel'."
-  },
-  {
-    "id": "mix_mc_016",
-    "category": "werbung_marken",
-    "area": "slogans",
-    "subject": "wissen",
-    "question": "Welcher Automobilhersteller nutzt den Marken-Claim 'Vorsprung durch Technik'?",
-    "answers": ["BMW", "Mercedes-Benz", "Audi", "Porsche"],
-    "correct": 2,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Audi führt den Slogan 'Vorsprung durch Technik' seit den 1970er-Jahren."
-  },
-  {
-    "id": "mix_mc_017",
-    "category": "werbung_marken",
-    "area": "slogans",
-    "subject": "wissen",
-    "question": "Welche Schokoladenmarke schmilzt laut Werbung 'im Mund, nicht in der Hand'?",
-    "answers": ["Milka", "M&M's", "KitKat", "Snickers"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Die bunten Zuckerlinsen von M&M's verhindern das schnelle Schmelzen der Schokolade an den Fingern."
-  },
-  {
-    "id": "mix_mc_018",
-    "category": "werbung_marken",
-    "area": "slogans",
-    "subject": "wissen",
-    "question": "Welcher Baumarkt warb jahrelang mit dem Spruch: 'Es gibt immer was zu tun'?",
-    "answers": ["Obi", "Hornbach", "Bauhaus", "Toom"],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Hornbach nutzt diesen prägnanten Heimwerker-Spruch in seinen Kampagnen."
-  },
-  {
-    "id": "mix_mc_019",
-    "category": "werbung_marken",
-    "area": "slogans",
-    "subject": "wissen",
-    "question": "Welche Kosmetikmarke sagt in ihren Spots seit Generationen: 'Weil ich es mir wert bin'?",
-    "answers": ["Nivea", "L'Oréal Paris", "Maybelline", "Balea"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "L'Oréal nutzt diesen Slogan zur Stärkung des Selbstbewusstseins ihrer Kundschaft."
-  },
-  {
-    "id": "mix_mc_020",
-    "category": "werbung_marken",
-    "area": "slogans",
-    "subject": "wissen",
-    "question": "Welche Fast-Food-Kette nutzt im Deutschen das Motto 'Ich liebe es'?",
-    "answers": ["Burger King", "McDonald's", "KFC", "Subway"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Das 'I'm lovin' it' (Ich liebe es) von McDonald's startete 2003 als weltweite Kampagne."
-  },
-  {
-    "id": "mix_mc_021",
-    "category": "musik_hits",
-    "area": "songtexte",
-    "subject": "wissen",
-    "question": "Aus welchem Kult-Song der Rockband Queen stammt die Textzeile 'Is this the real life? Is this just fantasy?'?",
-    "answers": ["We Will Rock You", "Bohemian Rhapsody", "Don't Stop Me Now", "Radio Ga Ga"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Bohemian Rhapsody erschien 1975 und gilt als eines der größten Meisterwerke der Pop-Geschichte."
-  },
-  {
-    "id": "mix_mc_022",
-    "category": "musik_hits",
-    "area": "songtexte",
-    "subject": "wissen",
-    "question": "Welcher Popsänger landete 1982 mit dem Album und dem Song 'Thriller' einen Weltrekord?",
-    "answers": ["Prince", "Michael Jackson", "George Michael", "Stevie Wonder"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Michael Jackson stellte mit dem Album 'Thriller' bis heute unerreichte Verkaufsrekorde auf."
-  },
-  {
-    "id": "mix_mc_023",
-    "category": "musik_hits",
-    "area": "songtexte",
-    "subject": "wissen",
-    "question": "Von welcher Band stammt der 90er-Jahre-Hit 'Smells Like Teen Spirit'?",
-    "answers": ["Green Day", "Nirvana", "Pearl Jam", "Red Hot Chili Peppers"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Kurt Cobain und Nirvana leiteten damit Anfang der 90er die 'Grunge'-Welle ein."
-  },
-  {
-    "id": "mix_mc_024",
-    "category": "musik_hits",
-    "area": "songtexte",
-    "subject": "wissen",
-    "question": "Wer sang den Titelsong 'My Heart Will Go On' zum Film 'Titanic'?",
-    "answers": ["Whitney Houston", "Céline Dion", "Mariah Carey", "Madonna"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Céline Dion landete mit der emotionalen Ballade einen weltweiten Nummer-1-Hit."
-  },
-  {
-    "id": "mix_mc_025",
-    "category": "musik_hits",
-    "area": "songtexte",
-    "subject": "wissen",
-    "question": "Welche schwedische Band sang 'Mama Mia', 'Dancing Queen' und 'Waterloo'?",
-    "answers": ["Roxette", "ABBA", "Ace of Base", "A-Ha"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "ABBA prägte die Popmusik der 1970er-Jahre wie kaum eine andere Gruppe."
-  },
-  {
-    "id": "mix_mc_026",
-    "category": "musik_hits",
-    "area": "songtexte",
-    "subject": "wissen",
-    "question": "Welche deutsche Sängerin hatte 1983 einen riesigen Hit mit '99 Luftballons'?",
-    "answers": ["Nena", "Sarah Connor", "Lena", "Blümchen"],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Nena feierte mit '99 Luftballons' sogar in den US-Billboard-Charts riesige Erfolge."
-  },
-  {
-    "id": "mix_mc_027",
-    "category": "musik_hits",
-    "area": "songtexte",
-    "subject": "wissen",
-    "question": "Aus welchem Hit der Band AC/DC stammt die Gitarren-Melodie 'Highway to [...]'?",
-    "answers": ["Heaven", "Hell", "Paradise", "Texas"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "'Highway to Hell' aus dem Jahr 1979 gehört zu den zeitlosen Klassikern der Hard-Rock-Geschichte."
-  },
-  {
-    "id": "mix_mc_028",
-    "category": "musik_hits",
-    "area": "songtexte",
-    "subject": "wissen",
-    "question": "Welcher Popstar singt in ihrem Hit 'Shake It Off'?",
-    "answers": ["Katy Perry", "Taylor Swift", "Lady Gaga", "Rihanna"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Taylor Swift stürmte 2014 mit 'Shake It Off' aus ihrem Album 1989 die weltweiten Charts."
-  },
-  {
-    "id": "mix_mc_029",
-    "category": "musik_hits",
-    "area": "songtexte",
-    "subject": "wissen",
-    "question": "Welcher Rap-Künstler verfasste den Song 'Lose Yourself' aus dem Film '8 Mile'?",
-    "answers": ["Tupac Shakur", "Eminem", "50 Cent", "Snoop Dogg"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Eminem gewann für 'Lose Yourself' als erster Rapper überhaupt einen Oscar für den Besten Song."
-  },
-  {
-    "id": "mix_mc_030",
-    "category": "musik_hits",
-    "area": "songtexte",
-    "subject": "wissen",
-    "question": "Wie heisst der Welthit von Metallicas schwarzem Album aus dem Jahr 1991?",
-    "answers": ["Enter Sandman", "Nothing Else Matters", "Master of Puppets", "One"],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "'Nothing Else Matters' ist die berühmteste Rockballade der US-Band Metallica."
-  },
-  {
-    "id": "mix_mc_031",
-    "category": "natur_wissenschaft",
-    "area": "chemie",
-    "subject": "wissen",
-    "question": "Welches chemische Symbol steht im Periodensystem für das Edelmetall Gold?",
-    "answers": ["Go", "Ag", "Au", "Fe"],
-    "correct": 2,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Au leitet sich vom lateinischen Wort 'Aurum' (Morgenrot / leuchtendes Gold) ab."
-  },
-  {
-    "id": "mix_mc_032",
-    "category": "natur_wissenschaft",
-    "area": "biologie",
-    "subject": "wissen",
-    "question": "Welcher Prozess beschreibt die Umwandlung von Sonnenlicht, Wasser und CO2 in Sauerstoff und Glukose durch Pflanzen?",
-    "answers": ["Respiration", "Gärung", "Fotosynthese", "Zellteilung"],
-    "correct": 2,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Die Fotosynthese ist die biologische Grundvoraussetzung für das Leben der meisten Organismen auf der Erde."
-  },
-  {
-    "id": "mix_mc_033",
-    "category": "natur_wissenschaft",
-    "area": "physik",
-    "subject": "wissen",
-    "question": "Wie lautet die ungefähre Lichtgeschwindigkeit im Vakuum?",
-    "answers": ["300 km/h", "300.000 km/s", "1.000.000 km/s", "Schallgeschwindigkeit"],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Licht legt im Vakuum rund 300.000 Kilometer pro Sekunde (299.792.458 m/s) zurück."
-  },
-  {
-    "id": "mix_mc_034",
-    "category": "natur_wissenschaft",
-    "area": "biologie",
-    "subject": "wissen",
-    "question": "Wie viele Chromosomen besitzt der Mensch in der Regel in jeder normalen Körperzelle?",
-    "answers": ["23 Chromosomen", "46 Chromosomen (23 Paare)", "12 Chromosomen", "96 Chromosomen"],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Der Mensch hat 46 Chromosomen, wovon je 23 von der Mutter und 23 vom Vater stammen."
-  },
-  {
-    "id": "mix_mc_036",
-    "category": "natur_wissenschaft",
-    "area": "geologie",
-    "subject": "wissen",
-    "question": "Welches ist das härteste natürlich vorkommende Mineral auf der Erde?",
-    "answers": ["Quarz", "Saphir", "Diamant", "Topas"],
-    "correct": 2,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Diamant erreicht auf der Mohs’schen Härteskala den Höchstwert von 10."
-  },
-  {
-    "id": "mix_mc_037",
-    "category": "natur_wissenschaft",
-    "area": "physik",
-    "subject": "wissen",
-    "question": "Was beschreibt die Einheit 'Pascal' (Pa) in der Physik?",
-    "answers": ["Elektrische Spannung", "Druck", "Lautstärke", "Kraft"],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "1 Pascal ist der Druck, den eine Kraft von 1 N auf eine Fläche von 1 m² ausübt."
-  },
-  {
-    "id": "mix_mc_038",
-    "category": "natur_wissenschaft",
-    "area": "chemie",
-    "subject": "wissen",
-    "question": "Welches Gas macht mit ca. 78 % den Hauptteil unserer Erdatmosphäre aus?",
-    "answers": ["Sauerstoff", "Kohlenstoffdioxid", "Stickstoff", "Helium"],
-    "correct": 2,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Unsere Luft besteht zu etwa 78 % aus Stickstoff, 21 % aus Sauerstoff und 1 % aus Edelgasen/CO2."
-  },
-  {
-    "id": "mix_mc_039",
-    "category": "natur_wissenschaft",
-    "area": "mensch",
-    "subject": "wissen",
-    "question": "Welches Organ im menschlichen Körper ist das einzige, das sich nach Teilentfernungen selbst regenerieren kann?",
-    "answers": ["Magen", "Niere", "Leber", "Lunge"],
-    "correct": 2,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Die Leber besitzt eine enorme Regenerationskraft und kann nach Verlust von Gewebe wieder nachwachsen."
-  },
-  {
-    "id": "mix_mc_040",
-    "category": "natur_wissenschaft",
-    "area": "astronomie",
-    "subject": "wissen",
-    "question": "Wie heißt der größte Planet in unserem Sonnensystem?",
-    "answers": ["Saturn", "Neptun", "Jupiter", "Uranus"],
-    "correct": 2,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Jupiter ist ein Gasriese und besitzt mehr als die doppelte Masse aller anderen Planeten zusammen."
-  },
-
-  {
     "id": "mix_mc_041",
     "category": "film_serien",
     "area": "zitate",
     "subject": "wissen",
     "question": "Welche Comic-Figur sagt in Marvels 'The Avengers' den berühmten Satz: 'Ich bin Batman'?",
-    "answers": ["Keine, Batman gehört zu DC Comics", "Iron Man", "Captain America", "Spiderman"],
+    "answers": [
+      "Keine, Batman gehört zu DC Comics",
+      "Iron Man",
+      "Captain America",
+      "Spiderman"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -486,7 +192,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Aus welchem Kultfilm stammt der Satz: 'Hasta la vista, baby'?",
-    "answers": ["Predator", "Terminator 2: Tag der Abrechnung", "Total Recall", "True Lies"],
+    "answers": [
+      "Predator",
+      "Terminator 2: Tag der Abrechnung",
+      "Total Recall",
+      "True Lies"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -498,7 +209,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Welcher Ermittler fragt am Ende seiner Fälle immer beiläufig: 'Eine Frage hätte ich da noch...'?",
-    "answers": ["Sherlock Holmes", "Inspector Clouseau", "Inspektor Columbo", "Hercule Poirot"],
+    "answers": [
+      "Sherlock Holmes",
+      "Inspector Clouseau",
+      "Inspektor Columbo",
+      "Hercule Poirot"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -510,7 +226,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Wer ruft im Zeichentrickklassiker 'Der König der Löwen' das berühmte Motto 'Hakuna Matata' aus?",
-    "answers": ["Mufasa und Sarabi", "Timon und Pumbaa", "Rafiki und Zazu", "Scar und Shenzi"],
+    "answers": [
+      "Mufasa und Sarabi",
+      "Timon und Pumbaa",
+      "Rafiki und Zazu",
+      "Scar und Shenzi"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -522,7 +243,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Aus welchem Sci-Fi-Film stammt das Zitat: 'E.T. nach Hause telefonieren'?",
-    "answers": ["E.T. – Der Außerirdische", "Unheimliche Begegnung der dritten Art", "Men in Black", "Alien"],
+    "answers": [
+      "E.T. – Der Außerirdische",
+      "Unheimliche Begegnung der dritten Art",
+      "Men in Black",
+      "Alien"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -534,7 +260,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "In welchem Kultfilm sagt Al Pacino als Tony Montana: 'Sagt Hallo zu meiner kleinen Freundin!'?",
-    "answers": ["Der Pate 2", "Scarface", "Carlito's Way", "Heat"],
+    "answers": [
+      "Der Pate 2",
+      "Scarface",
+      "Carlito's Way",
+      "Heat"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -546,7 +277,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Welche KI spricht im Sci-Fi-Klassiker '2001: Odyssee im Weltraum' den Satz: 'Es tut mir leid, Dave. Das kann ich nicht tun'?",
-    "answers": ["HAL 9000", "Skynet", "JARVIS", "Mother"],
+    "answers": [
+      "HAL 9000",
+      "Skynet",
+      "JARVIS",
+      "Mother"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -558,7 +294,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Wer offenbart Luke Skywalker in 'Das Imperium schlägt zurück' seine wahre Vaterschaft?",
-    "answers": ["Meister Yoda", "Obi-Wan Kenobi", "Darth Vader", "Kaiser Palpatine"],
+    "answers": [
+      "Meister Yoda",
+      "Obi-Wan Kenobi",
+      "Darth Vader",
+      "Kaiser Palpatine"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -570,7 +311,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Aus welcher Comedy-Serie stammt der berühmte Ausruf 'Bazinga!'?",
-    "answers": ["How I Met Your Mother", "The Big Bang Theory", "Friends", "Two and a Half Men"],
+    "answers": [
+      "How I Met Your Mother",
+      "The Big Bang Theory",
+      "Friends",
+      "Two and a Half Men"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -582,7 +328,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "In welchem Tanzfilm fällt der legendäre Satz: 'Mein Baby gehört zu mir!'?",
-    "answers": ["Grease", "Dirty Dancing", "Footloose", "Flashdance"],
+    "answers": [
+      "Grease",
+      "Dirty Dancing",
+      "Footloose",
+      "Flashdance"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -594,7 +345,12 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Welcher Comic-Schurke fragt im Film 'The Dark Knight' immer wieder: 'Why so serious?'?",
-    "answers": ["Bane", "Der Joker", "Two-Face", "Penguin"],
+    "answers": [
+      "Bane",
+      "Der Joker",
+      "Two-Face",
+      "Penguin"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -606,10 +362,2225 @@
     "area": "zitate",
     "subject": "wissen",
     "question": "Aus welchem Mafia-Meisterwerk stammt die Regel: 'Erste Regel des [...]: Ihr verliert kein Wort über den [...]'?",
-    "answers": ["Fight Club", "Snatch", "The Irishman", "Pulp Fiction"],
+    "answers": [
+      "Fight Club",
+      "Snatch",
+      "The Irishman",
+      "Pulp Fiction"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
     "explanation": "Brad Pitt verkündet als Tyler Durden die eisernen Regeln des geheimen Fight Clubs."
+  },
+  {
+    "id": "film_ext_023",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film handelt von einem Jungen und einem außerirdischen Freund, der nach Hause will?",
+    "answers": [
+      "E.T.",
+      "Close Encounters",
+      "Alien",
+      "Star Wars"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Steven Spielbergs Klassiker von 1982."
+  },
+  {
+    "id": "film_ext_024",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film sagt Forrest Gump: 'Das Leben ist wie eine Schachtel Pralinen'?",
+    "answers": [
+      "Forrest Gump",
+      "Green Mile",
+      "Cast Away",
+      "Big"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Tom Hanks in Forrest Gump."
+  },
+  {
+    "id": "film_ext_025",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Wie heißt die Zaubererschule in den Harry-Potter-Filmen?",
+    "answers": [
+      "Hogwarts",
+      "Beauxbatons",
+      "Durmstrang",
+      "Ilvermorny"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Hogwarts School of Witchcraft and Wizardry."
+  },
+  {
+    "id": "film_ext_026",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Superheld ist Bruce Wayne?",
+    "answers": [
+      "Batman",
+      "Superman",
+      "Iron Man",
+      "Spider-Man"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Bruce Wayne ist Batman."
+  },
+  {
+    "id": "film_ext_027",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welcher Serie geht es um einen Chemielehrer, der Drogen herstellt?",
+    "answers": [
+      "Breaking Bad",
+      "Narcos",
+      "Ozark",
+      "The Wire"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Walter White in Breaking Bad."
+  },
+  {
+    "id": "film_ext_028",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film spielt größtenteils auf dem Schiff Titanic?",
+    "answers": [
+      "Titanic",
+      "Poseidon",
+      "Das Boot",
+      "Master and Commander"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "James Camerons Titanic (1997)."
+  },
+  {
+    "id": "film_ext_029",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Wie heißt der Hauptdarsteller in 'Mission: Impossible'?",
+    "answers": [
+      "Tom Cruise",
+      "Brad Pitt",
+      "Matt Damon",
+      "Keanu Reeves"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ethan Hunt wird von Tom Cruise gespielt."
+  },
+  {
+    "id": "film_ext_030",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie spielt in Westeros und Essos?",
+    "answers": [
+      "Game of Thrones",
+      "The Witcher",
+      "Vikings",
+      "Outlander"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Game of Thrones basiert auf George R. R. Martin."
+  },
+  {
+    "id": "film_ext_031",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film beginnt mit dem Satz 'A long time ago in a galaxy far, far away'?",
+    "answers": [
+      "Star Wars",
+      "Star Trek",
+      "Dune",
+      "Avatar"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Der klassische Star-Wars-Vorspann."
+  },
+  {
+    "id": "film_ext_032",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film trainiert Rocky für einen Boxkampf?",
+    "answers": [
+      "Rocky",
+      "Creed",
+      "Raging Bull",
+      "Million Dollar Baby"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Rocky (1976) mit Sylvester Stallone."
+  },
+  {
+    "id": "film_ext_033",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Wie heißt die Detektivin in den Netflix-Serien mit dem Namen 'The Queen’s Gambit' thematisch?",
+    "answers": [
+      "Es ist eine Schach-Serie",
+      "Eine Krimi-Serie",
+      "Eine Koch-Serie",
+      "Eine Sport-Serie"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Queen's Gambit handelt von Schach."
+  },
+  {
+    "id": "film_ext_034",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt Dinosaurier in einem Freizeitpark?",
+    "answers": [
+      "Jurassic Park",
+      "King Kong",
+      "Godzilla",
+      "Avatar"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Jurassic Park von Spielberg."
+  },
+  {
+    "id": "film_ext_035",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welcher Serie arbeitet die Crew auf der USS Enterprise?",
+    "answers": [
+      "Star Trek",
+      "Battlestar Galactica",
+      "Firefly",
+      "The Expanse"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Star Trek."
+  },
+  {
+    "id": "film_ext_036",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Animationsfilm handelt von einem Koch-Ratten in Paris?",
+    "answers": [
+      "Ratatouille",
+      "Madagascar",
+      "Shrek",
+      "Finding Nemo"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Pixar: Ratatouille."
+  },
+  {
+    "id": "film_ext_037",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Wie heißt der Zauberer mit dem Blitznarbe?",
+    "answers": [
+      "Harry Potter",
+      "Frodo",
+      "Luke Skywalker",
+      "Percy Jackson"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Harry Potter."
+  },
+  {
+    "id": "film_ext_038",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film sucht Nemo seine Familie im Ozean?",
+    "answers": [
+      "Findet Nemo",
+      "Arielle",
+      "Shark Tale",
+      "Aquaman"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Findet Nemo (Pixar)."
+  },
+  {
+    "id": "film_ext_039",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie dreht sich um die Winchesters und Monster?",
+    "answers": [
+      "Supernatural",
+      "Buffy",
+      "Grimm",
+      "The X-Files"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Supernatural."
+  },
+  {
+    "id": "film_ext_040",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film hat die Hauptfigur Neo in einer simulierten Welt?",
+    "answers": [
+      "Matrix",
+      "Inception",
+      "Tron",
+      "Ready Player One"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Die Matrix."
+  },
+  {
+    "id": "film_ext_041",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film ist Elsa die Schneekönigin?",
+    "answers": [
+      "Die Eiskönigin",
+      "Rapunzel",
+      "Brave",
+      "Moana"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Frozen / Die Eiskönigin."
+  },
+  {
+    "id": "film_ext_042",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie spielt in Hawkins, Indiana, mit übernatürlichen Ereignissen?",
+    "answers": [
+      "Stranger Things",
+      "Dark",
+      "The OA",
+      "Riverdale"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Stranger Things."
+  },
+  {
+    "id": "film_ext_043",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film handelt von einem Clownfisch-Vater?",
+    "answers": [
+      "Findet Nemo",
+      "Shark Tale",
+      "Happy Feet",
+      "Ice Age"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Marlin sucht Nemo."
+  },
+  {
+    "id": "film_ext_044",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Wie heißt der Hobbit, der den Ring nach Mordor bringt?",
+    "answers": [
+      "Frodo",
+      "Sam",
+      "Bilbo",
+      "Pippin"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Frodo Beutlin."
+  },
+  {
+    "id": "film_ext_045",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film tanzt John Travolta in einem weißen Anzug?",
+    "answers": [
+      "Saturday Night Fever",
+      "Grease",
+      "Pulp Fiction",
+      "Face/Off"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Saturday Night Fever – berühmt auch die Pulp-Fiction-Szene, Klassiker ist SNF."
+  },
+  {
+    "id": "film_ext_046",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie folgt den Freunden Ross, Rachel, Monica und Chandler?",
+    "answers": [
+      "Friends",
+      "How I Met Your Mother",
+      "The Big Bang Theory",
+      "Seinfeld"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Friends."
+  },
+  {
+    "id": "film_ext_047",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt einen sprechenden Schneemann namens Olaf?",
+    "answers": [
+      "Die Eiskönigin",
+      "Shrek",
+      "Die Schlümpfe",
+      "Frozen 2 nur"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Olaf aus Die Eiskönigin."
+  },
+  {
+    "id": "film_ext_048",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film spielt Leonardo DiCaprio einen Betrüger?",
+    "answers": [
+      "Catch Me If You Can",
+      "Titanic",
+      "Inception",
+      "The Revenant"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Catch Me If You Can."
+  },
+  {
+    "id": "film_ext_049",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie handelt von Sheldon Cooper und Physikern?",
+    "answers": [
+      "The Big Bang Theory",
+      "Young Sheldon",
+      "Silicon Valley",
+      "Community"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Big Bang Theory."
+  },
+  {
+    "id": "film_ext_050",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film hat die Figur Jack Sparrow?",
+    "answers": [
+      "Fluch der Karibik",
+      "Hook",
+      "Treasure Island",
+      "Sinbad"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Pirates of the Caribbean."
+  },
+  {
+    "id": "film_ext_051",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film rettet ein Roboter namens WALL-E die Erde?",
+    "answers": [
+      "WALL-E",
+      "Robots",
+      "Big Hero 6",
+      "Transformers"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Pixar: WALL-E."
+  },
+  {
+    "id": "film_ext_052",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie spielt in einem Krankenhaus und heißt 'Grey’s …'?",
+    "answers": [
+      "Grey's Anatomy",
+      "House",
+      "ER",
+      "The Good Doctor"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Grey's Anatomy."
+  },
+  {
+    "id": "film_ext_053",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt die Avengers im Kampf gegen Thanos?",
+    "answers": [
+      "Avengers: Endgame",
+      "Justice League",
+      "X-Men",
+      "Guardians only"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Avengers: Endgame."
+  },
+  {
+    "id": "film_ext_054",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film lernt ein Dschinn in einer Lampe kennen (Aladdin)?",
+    "answers": [
+      "Aladdin",
+      "Prince of Persia",
+      "Sinbad",
+      "Mulan"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Disney: Aladdin."
+  },
+  {
+    "id": "film_ext_055",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie dreht sich um einen Zombie-Apokalypse-Überlebenskampf?",
+    "answers": [
+      "The Walking Dead",
+      "Z Nation",
+      "iZombie",
+      "Kingdom"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Walking Dead."
+  },
+  {
+    "id": "film_ext_056",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film hat die Musik 'My Heart Will Go On'?",
+    "answers": [
+      "Titanic",
+      "The Bodyguard",
+      "Pretty Woman",
+      "Ghost"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Celine Dion für Titanic."
+  },
+  {
+    "id": "film_ext_057",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film ist Shrek ein grüner Oger?",
+    "answers": [
+      "Shrek",
+      "Monsters Inc.",
+      "Brave",
+      "Tangled"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Shrek."
+  },
+  {
+    "id": "film_ext_058",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie handelt von einem Chemielabor und Albuquerque?",
+    "answers": [
+      "Breaking Bad",
+      "Better Call Saul",
+      "Narcos",
+      "El Camino"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Breaking Bad."
+  },
+  {
+    "id": "film_ext_059",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt Spider-Man in New York?",
+    "answers": [
+      "Spider-Man",
+      "Batman",
+      "Iron Man",
+      "Thor"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Spider-Man."
+  },
+  {
+    "id": "film_ext_060",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film reist Doc Brown mit einer DeLorean-Zeitmaschine?",
+    "answers": [
+      "Zurück in die Zukunft",
+      "Terminator",
+      "Looper",
+      "About Time"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Back to the Future."
+  },
+  {
+    "id": "film_ext_061",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie hat die Figuren Jon Snow und Daenerys?",
+    "answers": [
+      "Game of Thrones",
+      "The Witcher",
+      "Vikings",
+      "Shadow and Bone"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Game of Thrones."
+  },
+  {
+    "id": "film_ext_062",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film handelt von einem Löwenjungen namens Simba?",
+    "answers": [
+      "Der König der Löwen",
+      "Madagascar",
+      "Jungle Book",
+      "Zootopia"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Lion King."
+  },
+  {
+    "id": "film_ext_063",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film kämpft Luke Skywalker gegen Darth Vader?",
+    "answers": [
+      "Star Wars",
+      "Dune",
+      "Star Trek",
+      "Flash Gordon"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Star Wars."
+  },
+  {
+    "id": "film_ext_064",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie folgt Eleven und Mike in den 80ern?",
+    "answers": [
+      "Stranger Things",
+      "IT",
+      "Dark",
+      "Wednesday"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Stranger Things."
+  },
+  {
+    "id": "film_ext_065",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt einen Boxer aus Philadelphia namens Rocky?",
+    "answers": [
+      "Rocky",
+      "Creed",
+      "Southpaw",
+      "Warrior"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Rocky."
+  },
+  {
+    "id": "film_ext_066",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film ist der Joker Batmans Gegenspieler?",
+    "answers": [
+      "The Dark Knight",
+      "Joker (2019) auch",
+      "Suicide Squad",
+      "alle drei"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Unter anderem The Dark Knight."
+  },
+  {
+    "id": "film_ext_067",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie spielt auf einer Insel nach einem Flugzeugabsturz?",
+    "answers": [
+      "Lost",
+      "Survivor",
+      "The Wilds",
+      "Yellowjackets"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Lost."
+  },
+  {
+    "id": "film_ext_068",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film hat die Figur Buzz Lightyear?",
+    "answers": [
+      "Toy Story",
+      "Cars",
+      "Monsters Inc.",
+      "Incredibles"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Toy Story."
+  },
+  {
+    "id": "film_ext_069",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film tanzt ein Pinguin zu Happy Feet?",
+    "answers": [
+      "Happy Feet",
+      "Penguins of Madagascar",
+      "Surf's Up",
+      "March of the Penguins"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Happy Feet."
+  },
+  {
+    "id": "film_ext_070",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie handelt von einem Anwalt Saul Goodman?",
+    "answers": [
+      "Better Call Saul",
+      "Suits",
+      "Boston Legal",
+      "The Practice"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Better Call Saul."
+  },
+  {
+    "id": "film_ext_071",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt einen jungen Zauberer mit Brille und Narbe?",
+    "answers": [
+      "Harry Potter und der Stein der Weisen",
+      "Eragon",
+      "Percy Jackson",
+      "The Magicians"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Harry Potter."
+  },
+  {
+    "id": "film_ext_072",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film sagt Yoda: 'Do or do not, there is no try'?",
+    "answers": [
+      "Das Imperium schlägt zurück",
+      "Eine neue Hoffnung",
+      "Die Rückkehr der Jedi-Ritter",
+      "Phantom Menace"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Empire Strikes Back."
+  },
+  {
+    "id": "film_ext_073",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie folgt den Abenteuern von Rick und Morty?",
+    "answers": [
+      "Rick and Morty",
+      "Futurama",
+      "Solar Opposites",
+      "Final Space"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Rick and Morty."
+  },
+  {
+    "id": "film_ext_074",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film handelt von einem Riesenaffen auf dem Empire State Building?",
+    "answers": [
+      "King Kong",
+      "Godzilla",
+      "Pacific Rim",
+      "Kong: Skull Island"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "King Kong."
+  },
+  {
+    "id": "film_ext_075",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film ist der Held ein schwarzer Panther aus Wakanda?",
+    "answers": [
+      "Black Panther",
+      "Aquaman",
+      "Thor",
+      "Doctor Strange"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Black Panther."
+  },
+  {
+    "id": "film_ext_076",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie zeigt die Welt von Mandalorianern und Baby Yoda?",
+    "answers": [
+      "The Mandalorian",
+      "Andor",
+      "Obi-Wan",
+      "Ahsoka"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Mandalorian."
+  },
+  {
+    "id": "film_ext_077",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film hat die Lieder 'Let It Go'?",
+    "answers": [
+      "Die Eiskönigin",
+      "Moana",
+      "Encanto",
+      "Tangled"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Frozen."
+  },
+  {
+    "id": "film_ext_078",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film arbeitet ein Junge in einer Schokoladenfabrik mit goldenen Tickets?",
+    "answers": [
+      "Charlie und die Schokoladenfabrik",
+      "Wonka",
+      "James und der Riesenpfirsich",
+      "Matilda"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Charlie and the Chocolate Factory."
+  },
+  {
+    "id": "film_ext_079",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie spielt in einem fiktiven Krankenhaus mit Dr. House?",
+    "answers": [
+      "Dr. House",
+      "Scrubs",
+      "ER",
+      "Chicago Med"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "House M.D."
+  },
+  {
+    "id": "film_ext_080",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt die Reise von Miguel in die Welt der Toten?",
+    "answers": [
+      "Coco",
+      "Book of Life",
+      "Corpse Bride",
+      "Coraline"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Pixar: Coco."
+  },
+  {
+    "id": "film_ext_081",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film ist der Bösewicht ein Zauberer namens Voldemort?",
+    "answers": [
+      "Harry Potter",
+      "Lord of the Rings",
+      "The Chronicles of Narnia",
+      "His Dark Materials"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Harry Potter."
+  },
+  {
+    "id": "film_ext_082",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie handelt von einem Drogenkartell und Pablo Escobar?",
+    "answers": [
+      "Narcos",
+      "El Chapo",
+      "Queen of the South",
+      "Traffic"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Narcos."
+  },
+  {
+    "id": "film_ext_083",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film hat die Figuren Woody und Buzz?",
+    "answers": [
+      "Toy Story",
+      "A Bug's Life",
+      "Cars",
+      "Up"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Toy Story."
+  },
+  {
+    "id": "film_ext_084",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film fliegt ein Haus an Ballons zum Paradiessturz?",
+    "answers": [
+      "Oben (Up)",
+      "Peter Pan",
+      "Balloon",
+      "Mary Poppins"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Pixar: Up."
+  },
+  {
+    "id": "film_ext_085",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie folgt einem blinden Anwalt namens Matt Murdock?",
+    "answers": [
+      "Daredevil",
+      "Punisher",
+      "Jessica Jones",
+      "Luke Cage"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Daredevil."
+  },
+  {
+    "id": "film_ext_086",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt einen Killer-Hai vor Amity Island?",
+    "answers": [
+      "Der weiße Hai",
+      "Deep Blue Sea",
+      "Jaws 2",
+      "The Meg"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Jaws."
+  },
+  {
+    "id": "film_ext_087",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film ist die Hauptfigur ein Spielzeug-Cowboy?",
+    "answers": [
+      "Toy Story",
+      "Western Story",
+      "Rango",
+      "Spirit"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Woody in Toy Story."
+  },
+  {
+    "id": "film_ext_088",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie spielt in einem Café namens Central Perk?",
+    "answers": [
+      "Friends",
+      "Gilmore Girls",
+      "New Girl",
+      "How I Met Your Mother"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Friends."
+  },
+  {
+    "id": "film_ext_089",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film handelt von einem Jungen, der Hogwarts besucht?",
+    "answers": [
+      "Harry Potter",
+      "The Worst Witch",
+      "Matilda",
+      "A Series of Unfortunate Events"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Harry Potter."
+  },
+  {
+    "id": "film_ext_090",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film kämpfen die Minions für Gru?",
+    "answers": [
+      "Ich – Einfach unverbesserlich",
+      "Minions",
+      "Despicable Me 2",
+      "alle drei"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Despicable Me / Minions."
+  },
+  {
+    "id": "film_ext_091",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie zeigt Sherlock Holmes in modernem London?",
+    "answers": [
+      "Sherlock",
+      "Elementary",
+      "Watson",
+      "Luther"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Sherlock (BBC)."
+  },
+  {
+    "id": "film_ext_092",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film hat die Figur Darth Vader?",
+    "answers": [
+      "Star Wars",
+      "Star Trek",
+      "Battlestar",
+      "Dune"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Star Wars."
+  },
+  {
+    "id": "film_ext_093",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film lernt ein Oger eine Prinzessin kennen?",
+    "answers": [
+      "Shrek",
+      "Beauty and the Beast",
+      "Tangled",
+      "Brave"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Shrek."
+  },
+  {
+    "id": "film_ext_094",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie handelt von Vampiren in Mystic Falls?",
+    "answers": [
+      "The Vampire Diaries",
+      "True Blood",
+      "Buffy",
+      "Twilight Saga series"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Vampire Diaries."
+  },
+  {
+    "id": "film_ext_095",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt einen Astronauten, der auf dem Mars strandet?",
+    "answers": [
+      "Der Marsianer",
+      "Gravity",
+      "Interstellar",
+      "The Martian"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Martian / Der Marsianer."
+  },
+  {
+    "id": "film_ext_096",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film ist die Heldin eine Bogenschützin namens Merida?",
+    "answers": [
+      "Merida – Legende der Highlands",
+      "Brave",
+      "Tangled",
+      "Mulan"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Brave / Merida."
+  },
+  {
+    "id": "film_ext_097",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie folgt den Kardashians?",
+    "answers": [
+      "Keeping Up with the Kardashians",
+      "The Real Housewives",
+      "Jersey Shore",
+      "Love Island"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Keeping Up with the Kardashians."
+  },
+  {
+    "id": "film_ext_098",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film hat den Song 'Circle of Life' am Anfang?",
+    "answers": [
+      "Der König der Löwen",
+      "Tarzan",
+      "Jungle Book",
+      "Madagascar"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Lion King."
+  },
+  {
+    "id": "film_ext_099",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film trainiert ein Sensei einen Jungen im Karate?",
+    "answers": [
+      "Karate Kid",
+      "Kung Fu Panda",
+      "Enter the Dragon",
+      "Ip Man"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Karate Kid."
+  },
+  {
+    "id": "film_ext_100",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie spielt in einem Büro in Scranton?",
+    "answers": [
+      "The Office",
+      "Parks and Recreation",
+      "Brooklyn Nine-Nine",
+      "Superstore"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Office (US)."
+  },
+  {
+    "id": "film_ext_101",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt einen sprechenden Esel namens Donkey?",
+    "answers": [
+      "Shrek",
+      "Tangled",
+      "Brave",
+      "Encanto"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Shrek."
+  },
+  {
+    "id": "film_ext_102",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film ist Iron Man Tony Stark?",
+    "answers": [
+      "Iron Man",
+      "Thor",
+      "Captain America",
+      "Hulk"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Iron Man."
+  },
+  {
+    "id": "film_ext_103",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie handelt von einem Chemiker und seinem Partner Jesse?",
+    "answers": [
+      "Breaking Bad",
+      "Weeds",
+      "Snowfall",
+      "Ozark"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Breaking Bad."
+  },
+  {
+    "id": "film_ext_104",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Regisseur drehte 'Inception' und 'Interstellar'?",
+    "answers": [
+      "Christopher Nolan",
+      "Spielberg",
+      "Cameron",
+      "Tarantino"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Christopher Nolan."
+  },
+  {
+    "id": "film_ext_105",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film spielt Keanu Reeves einen Hacker namens Neo?",
+    "answers": [
+      "Matrix",
+      "John Wick",
+      "Speed",
+      "Constantine"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Matrix."
+  },
+  {
+    "id": "film_ext_106",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie folgt den Abenteuern von Geralt von Riva?",
+    "answers": [
+      "The Witcher",
+      "Game of Thrones",
+      "Shadow and Bone",
+      "His Dark Materials"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Witcher."
+  },
+  {
+    "id": "film_ext_107",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt einen Roboter, der Müll sammelt und Eva trifft?",
+    "answers": [
+      "WALL-E",
+      "Robots",
+      "I, Robot",
+      "Bicentennial Man"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "WALL-E."
+  },
+  {
+    "id": "film_ext_108",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film ist die Insel 'Isla Nublar' mit Dinosauriern?",
+    "answers": [
+      "Jurassic Park",
+      "King Kong",
+      "Lost World",
+      "Avatar"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Jurassic Park."
+  },
+  {
+    "id": "film_ext_109",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie hat die Figur Walter White?",
+    "answers": [
+      "Breaking Bad",
+      "Malcolm",
+      "The Shield",
+      "Sons of Anarchy"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Breaking Bad."
+  },
+  {
+    "id": "film_ext_110",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film beginnt mit dem Mord an den Eltern von Bruce Wayne?",
+    "answers": [
+      "Batman Begins",
+      "The Dark Knight",
+      "Joker",
+      "Batman 1989"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Oft in Batman Begins gezeigt."
+  },
+  {
+    "id": "film_ext_111",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film fliegen Kinder auf Besen in Quidditch?",
+    "answers": [
+      "Harry Potter",
+      "Hocus Pocus",
+      "The Craft",
+      "Practical Magic"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Harry Potter."
+  },
+  {
+    "id": "film_ext_112",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie spielt in einem Gefängnis und heißt 'Orange Is the New Black'?",
+    "answers": [
+      "Orange Is the New Black",
+      "Prison Break",
+      "Wentworth",
+      "Oz"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "OITNB."
+  },
+  {
+    "id": "film_ext_113",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film hat die Figur Mulan, die als Mann in die Armee geht?",
+    "answers": [
+      "Mulan",
+      "Mulan (Live)",
+      "Crouching Tiger",
+      "Hero"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Disney: Mulan."
+  },
+  {
+    "id": "film_ext_114",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film ist der Bösewicht ein grüner Kobold in New York?",
+    "answers": [
+      "Spider-Man",
+      "Green Lantern",
+      "Hulk",
+      "Thor"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Green Goblin in Spider-Man."
+  },
+  {
+    "id": "film_ext_115",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie folgt den Abenteuern von Aang dem Avatar?",
+    "answers": [
+      "Avatar – Der Herr der Elemente",
+      "Korre",
+      "Dragon Ball",
+      "Naruto"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Avatar: The Last Airbender."
+  },
+  {
+    "id": "film_ext_116",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt einen Clown in den Kanälen von Derry?",
+    "answers": [
+      "ES (It)",
+      "Clown",
+      "Pennywise",
+      "Horror Story"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Stephen Kings It."
+  },
+  {
+    "id": "film_ext_117",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film kämpft Wonder Woman im Ersten Weltkrieg?",
+    "answers": [
+      "Wonder Woman",
+      "Captain Marvel",
+      "Black Widow",
+      "Catwoman"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Wonder Woman (2017)."
+  },
+  {
+    "id": "film_ext_118",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie hat die Figuren Chandler und Joey?",
+    "answers": [
+      "Friends",
+      "Joey",
+      "How I Met Your Mother",
+      "Two and a Half Men"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Friends."
+  },
+  {
+    "id": "film_ext_119",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film zeigt einen Haiangriff an einem Strand?",
+    "answers": [
+      "Der weiße Hai",
+      "Open Water",
+      "The Shallows",
+      "47 Meters"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Jaws."
+  },
+  {
+    "id": "film_ext_120",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film ist der Held ein Zwerg namens Tyrion?",
+    "answers": [
+      "Game of Thrones (Serie)",
+      "Hobbit",
+      "Willow",
+      "Time Bandits"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Game of Thrones."
+  },
+  {
+    "id": "film_ext_121",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welche Serie folgt einem Teenager namens Wednesday Addams?",
+    "answers": [
+      "Wednesday",
+      "The Addams Family",
+      "Chilling Adventures",
+      "Sabrina"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Wednesday (Netflix)."
+  },
+  {
+    "id": "film_ext_122",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "Welcher Film hat die Figur Thanos mit dem Infinity Gauntlet?",
+    "answers": [
+      "Avengers: Infinity War",
+      "Guardians",
+      "Thor: Ragnarok",
+      "Doctor Strange"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Infinity War / Endgame."
+  },
+  {
+    "id": "film_ext_123",
+    "category": "film_serien",
+    "area": "film",
+    "subject": "wissen",
+    "question": "In welchem Film lernt ein Mädchen namens Moana die Ozeane kennen?",
+    "answers": [
+      "Vaiana (Moana)",
+      "Pocahontas",
+      "Mulan",
+      "Raya"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Moana / Vaiana."
+  },
+  {
+    "id": "mix_mc_011",
+    "category": "werbung_marken",
+    "area": "slogans",
+    "subject": "wissen",
+    "question": "Welcher Möbelkonzern wirbt seit Jahren mit dem Slogan: 'Wohnst du noch oder lebst du schon?'",
+    "answers": [
+      "Möbel Kraft",
+      "IKEA",
+      "XXXLutz",
+      "Höffner"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Der schwedische Einrichtungsriese IKEA nutzt diesen bekannten Spruch im deutschsprachigen Raum."
+  },
+  {
+    "id": "mix_mc_012",
+    "category": "werbung_marken",
+    "area": "slogans",
+    "subject": "wissen",
+    "question": "Vervollständige den Slogan der Schokoladenmarke Ritter Sport: 'Quadratisch. Praktisch. [...]'",
+    "answers": [
+      "Lecker.",
+      "Gut.",
+      "Süß.",
+      "Frisch."
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "'Quadratisch. Praktisch. Gut.' bezieht sich auf die quadratische Form der Tafeln."
+  },
+  {
+    "id": "mix_mc_013",
+    "category": "werbung_marken",
+    "area": "slogans",
+    "subject": "wissen",
+    "question": "Welche Fruchtgummi-Marke verspricht: '[...] macht Kinder froh – und Erwachsene ebenso'?",
+    "answers": [
+      "Katjes",
+      "Haribo",
+      "Trolli",
+      "Nimm2"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Haribo erfand diesen weltbekannten Werbeslogan bereits Mitte des 20. Jahrhunderts."
+  },
+  {
+    "id": "mix_mc_014",
+    "category": "werbung_marken",
+    "area": "slogans",
+    "subject": "wissen",
+    "question": "Welcher Sportartikelhersteller nutzt das englische Motto 'Just Do It'?",
+    "answers": [
+      "Adidas",
+      "Puma",
+      "Nike",
+      "Under Armour"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nike nutzt den Slogan 'Just Do It' seit 1988 weltweit zusammen mit dem 'Swoosh'-Logo."
+  },
+  {
+    "id": "mix_mc_015",
+    "category": "werbung_marken",
+    "area": "slogans",
+    "subject": "wissen",
+    "question": "Zu welcher Marke gehört der Slogan 'Red Bull verleiht [...]'?",
+    "answers": [
+      "Power",
+      "Flügel",
+      "Energie",
+      "Speed"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Der Österreicher Energy-Drink-Hersteller wirbt seit Jahrzehnten mit 'Red Bull verleiht Flügel'."
+  },
+  {
+    "id": "mix_mc_016",
+    "category": "werbung_marken",
+    "area": "slogans",
+    "subject": "wissen",
+    "question": "Welcher Automobilhersteller nutzt den Marken-Claim 'Vorsprung durch Technik'?",
+    "answers": [
+      "BMW",
+      "Mercedes-Benz",
+      "Audi",
+      "Porsche"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Audi führt den Slogan 'Vorsprung durch Technik' seit den 1970er-Jahren."
+  },
+  {
+    "id": "mix_mc_017",
+    "category": "werbung_marken",
+    "area": "slogans",
+    "subject": "wissen",
+    "question": "Welche Schokoladenmarke schmilzt laut Werbung 'im Mund, nicht in der Hand'?",
+    "answers": [
+      "Milka",
+      "M&M's",
+      "KitKat",
+      "Snickers"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Die bunten Zuckerlinsen von M&M's verhindern das schnelle Schmelzen der Schokolade an den Fingern."
+  },
+  {
+    "id": "mix_mc_018",
+    "category": "werbung_marken",
+    "area": "slogans",
+    "subject": "wissen",
+    "question": "Welcher Baumarkt warb jahrelang mit dem Spruch: 'Es gibt immer was zu tun'?",
+    "answers": [
+      "Obi",
+      "Hornbach",
+      "Bauhaus",
+      "Toom"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Hornbach nutzt diesen prägnanten Heimwerker-Spruch in seinen Kampagnen."
+  },
+  {
+    "id": "mix_mc_019",
+    "category": "werbung_marken",
+    "area": "slogans",
+    "subject": "wissen",
+    "question": "Welche Kosmetikmarke sagt in ihren Spots seit Generationen: 'Weil ich es mir wert bin'?",
+    "answers": [
+      "Nivea",
+      "L'Oréal Paris",
+      "Maybelline",
+      "Balea"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "L'Oréal nutzt diesen Slogan zur Stärkung des Selbstbewusstseins ihrer Kundschaft."
+  },
+  {
+    "id": "mix_mc_020",
+    "category": "werbung_marken",
+    "area": "slogans",
+    "subject": "wissen",
+    "question": "Welche Fast-Food-Kette nutzt im Deutschen das Motto 'Ich liebe es'?",
+    "answers": [
+      "Burger King",
+      "McDonald's",
+      "KFC",
+      "Subway"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Das 'I'm lovin' it' (Ich liebe es) von McDonald's startete 2003 als weltweite Kampagne."
+  },
+  {
+    "id": "mix_mc_021",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "question": "Aus welchem Kult-Song der Rockband Queen stammt die Textzeile 'Is this the real life? Is this just fantasy?'?",
+    "answers": [
+      "We Will Rock You",
+      "Bohemian Rhapsody",
+      "Don't Stop Me Now",
+      "Radio Ga Ga"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Bohemian Rhapsody erschien 1975 und gilt als eines der größten Meisterwerke der Pop-Geschichte."
+  },
+  {
+    "id": "mix_mc_022",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "question": "Welcher Popsänger landete 1982 mit dem Album und dem Song 'Thriller' einen Weltrekord?",
+    "answers": [
+      "Prince",
+      "Michael Jackson",
+      "George Michael",
+      "Stevie Wonder"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Michael Jackson stellte mit dem Album 'Thriller' bis heute unerreichte Verkaufsrekorde auf."
+  },
+  {
+    "id": "mix_mc_023",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "question": "Von welcher Band stammt der 90er-Jahre-Hit 'Smells Like Teen Spirit'?",
+    "answers": [
+      "Green Day",
+      "Nirvana",
+      "Pearl Jam",
+      "Red Hot Chili Peppers"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Kurt Cobain und Nirvana leiteten damit Anfang der 90er die 'Grunge'-Welle ein."
+  },
+  {
+    "id": "mix_mc_024",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "question": "Wer sang den Titelsong 'My Heart Will Go On' zum Film 'Titanic'?",
+    "answers": [
+      "Whitney Houston",
+      "Céline Dion",
+      "Mariah Carey",
+      "Madonna"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Céline Dion landete mit der emotionalen Ballade einen weltweiten Nummer-1-Hit."
+  },
+  {
+    "id": "mix_mc_025",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "question": "Welche schwedische Band sang 'Mama Mia', 'Dancing Queen' und 'Waterloo'?",
+    "answers": [
+      "Roxette",
+      "ABBA",
+      "Ace of Base",
+      "A-Ha"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "ABBA prägte die Popmusik der 1970er-Jahre wie kaum eine andere Gruppe."
+  },
+  {
+    "id": "mix_mc_026",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "question": "Welche deutsche Sängerin hatte 1983 einen riesigen Hit mit '99 Luftballons'?",
+    "answers": [
+      "Nena",
+      "Sarah Connor",
+      "Lena",
+      "Blümchen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nena feierte mit '99 Luftballons' sogar in den US-Billboard-Charts riesige Erfolge."
+  },
+  {
+    "id": "mix_mc_027",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "question": "Aus welchem Hit der Band AC/DC stammt die Gitarren-Melodie 'Highway to [...]'?",
+    "answers": [
+      "Heaven",
+      "Hell",
+      "Paradise",
+      "Texas"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "'Highway to Hell' aus dem Jahr 1979 gehört zu den zeitlosen Klassikern der Hard-Rock-Geschichte."
+  },
+  {
+    "id": "mix_mc_028",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "question": "Welcher Popstar singt in ihrem Hit 'Shake It Off'?",
+    "answers": [
+      "Katy Perry",
+      "Taylor Swift",
+      "Lady Gaga",
+      "Rihanna"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Taylor Swift stürmte 2014 mit 'Shake It Off' aus ihrem Album 1989 die weltweiten Charts."
+  },
+  {
+    "id": "mix_mc_029",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "question": "Welcher Rap-Künstler verfasste den Song 'Lose Yourself' aus dem Film '8 Mile'?",
+    "answers": [
+      "Tupac Shakur",
+      "Eminem",
+      "50 Cent",
+      "Snoop Dogg"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Eminem gewann für 'Lose Yourself' als erster Rapper überhaupt einen Oscar für den Besten Song."
+  },
+  {
+    "id": "mix_mc_030",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "question": "Wie heisst der Welthit von Metallicas schwarzem Album aus dem Jahr 1991?",
+    "answers": [
+      "Enter Sandman",
+      "Nothing Else Matters",
+      "Master of Puppets",
+      "One"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "'Nothing Else Matters' ist die berühmteste Rockballade der US-Band Metallica."
+  },
+  {
+    "id": "mix_mc_031",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "question": "Welches chemische Symbol steht im Periodensystem für das Edelmetall Gold?",
+    "answers": [
+      "Go",
+      "Ag",
+      "Au",
+      "Fe"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Au leitet sich vom lateinischen Wort 'Aurum' (Morgenrot / leuchtendes Gold) ab."
+  },
+  {
+    "id": "mix_mc_032",
+    "category": "natur_wissenschaft",
+    "area": "biologie",
+    "subject": "wissen",
+    "question": "Welcher Prozess beschreibt die Umwandlung von Sonnenlicht, Wasser und CO2 in Sauerstoff und Glukose durch Pflanzen?",
+    "answers": [
+      "Respiration",
+      "Gärung",
+      "Fotosynthese",
+      "Zellteilung"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Die Fotosynthese ist die biologische Grundvoraussetzung für das Leben der meisten Organismen auf der Erde."
+  },
+  {
+    "id": "mix_mc_033",
+    "category": "natur_wissenschaft",
+    "area": "physik",
+    "subject": "wissen",
+    "question": "Wie lautet die ungefähre Lichtgeschwindigkeit im Vakuum?",
+    "answers": [
+      "300 km/h",
+      "300.000 km/s",
+      "1.000.000 km/s",
+      "Schallgeschwindigkeit"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Licht legt im Vakuum rund 300.000 Kilometer pro Sekunde (299.792.458 m/s) zurück."
+  },
+  {
+    "id": "mix_mc_034",
+    "category": "natur_wissenschaft",
+    "area": "biologie",
+    "subject": "wissen",
+    "question": "Wie viele Chromosomen besitzt der Mensch in der Regel in jeder normalen Körperzelle?",
+    "answers": [
+      "23 Chromosomen",
+      "46 Chromosomen (23 Paare)",
+      "12 Chromosomen",
+      "96 Chromosomen"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Mensch hat 46 Chromosomen, wovon je 23 von der Mutter und 23 vom Vater stammen."
+  },
+  {
+    "id": "mix_mc_036",
+    "category": "natur_wissenschaft",
+    "area": "geologie",
+    "subject": "wissen",
+    "question": "Welches ist das härteste natürlich vorkommende Mineral auf der Erde?",
+    "answers": [
+      "Quarz",
+      "Saphir",
+      "Diamant",
+      "Topas"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Diamant erreicht auf der Mohs’schen Härteskala den Höchstwert von 10."
+  },
+  {
+    "id": "mix_mc_037",
+    "category": "natur_wissenschaft",
+    "area": "physik",
+    "subject": "wissen",
+    "question": "Was beschreibt die Einheit 'Pascal' (Pa) in der Physik?",
+    "answers": [
+      "Elektrische Spannung",
+      "Druck",
+      "Lautstärke",
+      "Kraft"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "1 Pascal ist der Druck, den eine Kraft von 1 N auf eine Fläche von 1 m² ausübt."
+  },
+  {
+    "id": "mix_mc_038",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "question": "Welches Gas macht mit ca. 78 % den Hauptteil unserer Erdatmosphäre aus?",
+    "answers": [
+      "Sauerstoff",
+      "Kohlenstoffdioxid",
+      "Stickstoff",
+      "Helium"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Unsere Luft besteht zu etwa 78 % aus Stickstoff, 21 % aus Sauerstoff und 1 % aus Edelgasen/CO2."
+  },
+  {
+    "id": "mix_mc_039",
+    "category": "natur_wissenschaft",
+    "area": "mensch",
+    "subject": "wissen",
+    "question": "Welches Organ im menschlichen Körper ist das einzige, das sich nach Teilentfernungen selbst regenerieren kann?",
+    "answers": [
+      "Magen",
+      "Niere",
+      "Leber",
+      "Lunge"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Leber besitzt eine enorme Regenerationskraft und kann nach Verlust von Gewebe wieder nachwachsen."
+  },
+  {
+    "id": "mix_mc_040",
+    "category": "natur_wissenschaft",
+    "area": "astronomie",
+    "subject": "wissen",
+    "question": "Wie heißt der größte Planet in unserem Sonnensystem?",
+    "answers": [
+      "Saturn",
+      "Neptun",
+      "Jupiter",
+      "Uranus"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Jupiter ist ein Gasriese und besitzt mehr als die doppelte Masse aller anderen Planeten zusammen."
   }
 ]

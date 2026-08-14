@@ -1,0 +1,1787 @@
+[
+  {
+    "id": "musik_sing_001",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt den Hit 'Shape of You'?",
+    "answers": [
+      "Ed Sheeran",
+      "Justin Bieber",
+      "Shawn Mendes",
+      "Sam Smith"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ed Sheeran."
+  },
+  {
+    "id": "musik_sing_002",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Billie Jean'?",
+    "answers": [
+      "Michael Jackson",
+      "Prince",
+      "Madonna",
+      "Whitney Houston"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Michael Jackson."
+  },
+  {
+    "id": "musik_sing_003",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Hello' (2015)?",
+    "answers": [
+      "Adele",
+      "Amy Winehouse",
+      "Beyoncé",
+      "Rihanna"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Adele."
+  },
+  {
+    "id": "musik_sing_004",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Bad Guy'?",
+    "answers": [
+      "Billie Eilish",
+      "Lorde",
+      "Dua Lipa",
+      "Olivia Rodrigo"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Billie Eilish."
+  },
+  {
+    "id": "musik_sing_005",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Blinding Lights'?",
+    "answers": [
+      "The Weeknd",
+      "Drake",
+      "Post Malone",
+      "Bruno Mars"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Weeknd."
+  },
+  {
+    "id": "musik_sing_006",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Thriller'?",
+    "answers": [
+      "Michael Jackson",
+      "Prince",
+      "Lionel Richie",
+      "Stevie Wonder"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Michael Jackson."
+  },
+  {
+    "id": "musik_sing_007",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Rolling in the Deep'?",
+    "answers": [
+      "Adele",
+      "Sia",
+      "Pink",
+      "Kelly Clarkson"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Adele."
+  },
+  {
+    "id": "musik_sing_008",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Uptown Funk' (mit Bruno Mars)?",
+    "answers": [
+      "Mark Ronson",
+      "Pharrell",
+      "Justin Timberlake",
+      "Robin Thicke"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Mark Ronson feat. Bruno Mars."
+  },
+  {
+    "id": "musik_sing_009",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Like a Virgin'?",
+    "answers": [
+      "Madonna",
+      "Cyndi Lauper",
+      "Whitney Houston",
+      "Cher"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Madonna."
+  },
+  {
+    "id": "musik_sing_010",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Smells Like Teen Spirit'?",
+    "answers": [
+      "Nirvana",
+      "Pearl Jam",
+      "Soundgarden",
+      "Foo Fighters"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nirvana."
+  },
+  {
+    "id": "musik_sing_011",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Bohemian Rhapsody'?",
+    "answers": [
+      "Queen",
+      "The Beatles",
+      "Led Zeppelin",
+      "Pink Floyd"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Queen."
+  },
+  {
+    "id": "musik_sing_012",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Shake It Off'?",
+    "answers": [
+      "Taylor Swift",
+      "Katy Perry",
+      "Ariana Grande",
+      "Selena Gomez"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Taylor Swift."
+  },
+  {
+    "id": "musik_sing_013",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Happy'?",
+    "answers": [
+      "Pharrell Williams",
+      "Bruno Mars",
+      "Justin Timberlake",
+      "Robin Thicke"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Pharrell Williams."
+  },
+  {
+    "id": "musik_sing_014",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Someone Like You'?",
+    "answers": [
+      "Adele",
+      "Sam Smith",
+      "Lewis Capaldi",
+      "James Blunt"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Adele."
+  },
+  {
+    "id": "musik_sing_015",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Despacito' (Original mit Luis Fonsi)?",
+    "answers": [
+      "Luis Fonsi & Daddy Yankee",
+      "Shakira",
+      "Enrique Iglesias",
+      "J Balvin"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Luis Fonsi feat. Daddy Yankee."
+  },
+  {
+    "id": "musik_sing_016",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Can't Stop the Feeling!'?",
+    "answers": [
+      "Justin Timberlake",
+      "Bruno Mars",
+      "Pharrell",
+      "Chris Brown"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Justin Timberlake."
+  },
+  {
+    "id": "musik_sing_017",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Poker Face'?",
+    "answers": [
+      "Lady Gaga",
+      "Katy Perry",
+      "Rihanna",
+      "Beyoncé"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Lady Gaga."
+  },
+  {
+    "id": "musik_sing_018",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Imagine'?",
+    "answers": [
+      "John Lennon",
+      "Paul McCartney",
+      "Bob Dylan",
+      "Elton John"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "John Lennon."
+  },
+  {
+    "id": "musik_sing_019",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Hotel California'?",
+    "answers": [
+      "Eagles",
+      "Fleetwood Mac",
+      "The Doors",
+      "Lynyrd Skynyrd"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Eagles."
+  },
+  {
+    "id": "musik_sing_020",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Hey Jude'?",
+    "answers": [
+      "The Beatles",
+      "The Rolling Stones",
+      "The Who",
+      "Queen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Beatles."
+  },
+  {
+    "id": "musik_sing_021",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Single Ladies'?",
+    "answers": [
+      "Beyoncé",
+      "Rihanna",
+      "Alicia Keys",
+      "Jennifer Hudson"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Beyoncé."
+  },
+  {
+    "id": "musik_sing_022",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Firework'?",
+    "answers": [
+      "Katy Perry",
+      "Kesha",
+      "P!nk",
+      "Lady Gaga"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Katy Perry."
+  },
+  {
+    "id": "musik_sing_023",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Stayin' Alive'?",
+    "answers": [
+      "Bee Gees",
+      "ABBA",
+      "Disco Tex",
+      "Earth Wind & Fire"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Bee Gees."
+  },
+  {
+    "id": "musik_sing_024",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Dancing Queen'?",
+    "answers": [
+      "ABBA",
+      "Bee Gees",
+      "Donna Summer",
+      "Gloria Gaynor"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "ABBA."
+  },
+  {
+    "id": "musik_sing_025",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Take On Me'?",
+    "answers": [
+      "a-ha",
+      "Depeche Mode",
+      "Pet Shop Boys",
+      "New Order"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "a-ha."
+  },
+  {
+    "id": "musik_sing_026",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Sweet Child O' Mine'?",
+    "answers": [
+      "Guns N' Roses",
+      "Aerosmith",
+      "Bon Jovi",
+      "Def Leppard"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Guns N' Roses."
+  },
+  {
+    "id": "musik_sing_027",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Wonderwall'?",
+    "answers": [
+      "Oasis",
+      "Blur",
+      "Radiohead",
+      "Coldplay"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Oasis."
+  },
+  {
+    "id": "musik_sing_028",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Yellow'?",
+    "answers": [
+      "Coldplay",
+      "Radiohead",
+      "U2",
+      "Keane"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Coldplay."
+  },
+  {
+    "id": "musik_sing_029",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Viva La Vida'?",
+    "answers": [
+      "Coldplay",
+      "U2",
+      "Keane",
+      "Travis"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Coldplay."
+  },
+  {
+    "id": "musik_sing_030",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Lose Yourself'?",
+    "answers": [
+      "Eminem",
+      "50 Cent",
+      "Jay-Z",
+      "Drake"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Eminem."
+  },
+  {
+    "id": "musik_sing_031",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Old Town Road'?",
+    "answers": [
+      "Lil Nas X",
+      "Post Malone",
+      "Travis Scott",
+      "Drake"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Lil Nas X."
+  },
+  {
+    "id": "musik_sing_032",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'drivers license'?",
+    "answers": [
+      "Olivia Rodrigo",
+      "Billie Eilish",
+      "Taylor Swift",
+      "Sabrina Carpenter"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Olivia Rodrigo."
+  },
+  {
+    "id": "musik_sing_033",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Levitating'?",
+    "answers": [
+      "Dua Lipa",
+      "Doja Cat",
+      "Ariana Grande",
+      "The Weeknd"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Dua Lipa."
+  },
+  {
+    "id": "musik_sing_034",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Peaches' (mit Justin Bieber)?",
+    "answers": [
+      "Justin Bieber",
+      "The Weeknd",
+      "Drake",
+      "Post Malone"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Justin Bieber."
+  },
+  {
+    "id": "musik_sing_035",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Anti-Hero'?",
+    "answers": [
+      "Taylor Swift",
+      "Olivia Rodrigo",
+      "Billie Eilish",
+      "Lana Del Rey"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Taylor Swift."
+  },
+  {
+    "id": "musik_sing_036",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'As It Was'?",
+    "answers": [
+      "Harry Styles",
+      "Ed Sheeran",
+      "Shawn Mendes",
+      "Niall Horan"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Harry Styles."
+  },
+  {
+    "id": "musik_sing_037",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Flowers'?",
+    "answers": [
+      "Miley Cyrus",
+      "Dua Lipa",
+      "Lady Gaga",
+      "Katy Perry"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Miley Cyrus."
+  },
+  {
+    "id": "musik_sing_038",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Espresso'?",
+    "answers": [
+      "Sabrina Carpenter",
+      "Olivia Rodrigo",
+      "Dua Lipa",
+      "Ariana Grande"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Sabrina Carpenter."
+  },
+  {
+    "id": "musik_sing_039",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Dance Monkey'?",
+    "answers": [
+      "Tones and I",
+      "Billie Eilish",
+      "Lorde",
+      "Sia"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Tones and I."
+  },
+  {
+    "id": "musik_sing_040",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Someone You Loved'?",
+    "answers": [
+      "Lewis Capaldi",
+      "Sam Smith",
+      "Ed Sheeran",
+      "James Arthur"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Lewis Capaldi."
+  },
+  {
+    "id": "musik_sing_041",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Shallow' (mit Bradley Cooper)?",
+    "answers": [
+      "Lady Gaga",
+      "Adele",
+      "Pink",
+      "Kelly Clarkson"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Lady Gaga & Bradley Cooper (A Star Is Born)."
+  },
+  {
+    "id": "musik_sing_042",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'All of Me'?",
+    "answers": [
+      "John Legend",
+      "Sam Smith",
+      "Ed Sheeran",
+      "Bruno Mars"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "John Legend."
+  },
+  {
+    "id": "musik_sing_043",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Thinking Out Loud'?",
+    "answers": [
+      "Ed Sheeran",
+      "John Legend",
+      "Sam Smith",
+      "James Blunt"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ed Sheeran."
+  },
+  {
+    "id": "musik_sing_044",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Perfect'?",
+    "answers": [
+      "Ed Sheeran",
+      "Justin Bieber",
+      "Shawn Mendes",
+      "Harry Styles"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ed Sheeran."
+  },
+  {
+    "id": "musik_sing_045",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Halo'?",
+    "answers": [
+      "Beyoncé",
+      "Rihanna",
+      "Alicia Keys",
+      "Whitney Houston"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Beyoncé."
+  },
+  {
+    "id": "musik_sing_046",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Umbrella'?",
+    "answers": [
+      "Rihanna",
+      "Beyoncé",
+      "Ciara",
+      "Alicia Keys"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Rihanna."
+  },
+  {
+    "id": "musik_sing_047",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Diamonds'?",
+    "answers": [
+      "Rihanna",
+      "Beyoncé",
+      "Sia",
+      "Adele"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Rihanna."
+  },
+  {
+    "id": "musik_sing_048",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Chandelier'?",
+    "answers": [
+      "Sia",
+      "Adele",
+      "Pink",
+      "Kesha"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Sia."
+  },
+  {
+    "id": "musik_sing_049",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Roar'?",
+    "answers": [
+      "Katy Perry",
+      "Kelly Clarkson",
+      "Pink",
+      "Lady Gaga"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Katy Perry."
+  },
+  {
+    "id": "musik_sing_050",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Tik Tok'?",
+    "answers": [
+      "Kesha",
+      "Katy Perry",
+      "Lady Gaga",
+      "Rihanna"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Kesha."
+  },
+  {
+    "id": "musik_sing_051",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Call Me Maybe'?",
+    "answers": [
+      "Carly Rae Jepsen",
+      "Taylor Swift",
+      "Katy Perry",
+      "Ariana Grande"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Carly Rae Jepsen."
+  },
+  {
+    "id": "musik_sing_052",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Gangnam Style'?",
+    "answers": [
+      "PSY",
+      "BTS",
+      "BigBang",
+      "BLACKPINK"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "PSY."
+  },
+  {
+    "id": "musik_sing_053",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Dynamite'?",
+    "answers": [
+      "BTS",
+      "BLACKPINK",
+      "PSY",
+      "Seventeen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "BTS."
+  },
+  {
+    "id": "musik_sing_054",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Waka Waka'?",
+    "answers": [
+      "Shakira",
+      "Jennifer Lopez",
+      "Beyoncé",
+      "Rihanna"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Shakira (WM 2010)."
+  },
+  {
+    "id": "musik_sing_055",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Hips Don't Lie'?",
+    "answers": [
+      "Shakira",
+      "Jennifer Lopez",
+      "Beyoncé",
+      "Rihanna"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Shakira."
+  },
+  {
+    "id": "musik_sing_056",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Livin' on a Prayer'?",
+    "answers": [
+      "Bon Jovi",
+      "Journey",
+      "Foreigner",
+      "REO Speedwagon"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Bon Jovi."
+  },
+  {
+    "id": "musik_sing_057",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Don't Stop Believin''?",
+    "answers": [
+      "Journey",
+      "Bon Jovi",
+      "Foreigner",
+      "Toto"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Journey."
+  },
+  {
+    "id": "musik_sing_058",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Africa'?",
+    "answers": [
+      "Toto",
+      "Journey",
+      "Foreigner",
+      "Chicago"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Toto."
+  },
+  {
+    "id": "musik_sing_059",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Billie Jean' nochmal – Jahrzehnt?",
+    "answers": [
+      "1980er",
+      "1970er",
+      "1990er",
+      "2000er"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "1983, Thriller-Ära."
+  },
+  {
+    "id": "musik_sing_060",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Yesterday'?",
+    "answers": [
+      "The Beatles",
+      "Paul McCartney solo",
+      "John Lennon solo",
+      "The Rolling Stones"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Beatles."
+  },
+  {
+    "id": "musik_sing_061",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Let It Be'?",
+    "answers": [
+      "The Beatles",
+      "Queen",
+      "Elton John",
+      "Billy Joel"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Beatles."
+  },
+  {
+    "id": "musik_sing_062",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Rocket Man'?",
+    "answers": [
+      "Elton John",
+      "David Bowie",
+      "Billy Joel",
+      "Queen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Elton John."
+  },
+  {
+    "id": "musik_sing_063",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Heroes'?",
+    "answers": [
+      "David Bowie",
+      "Elton John",
+      "Queen",
+      "U2"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "David Bowie."
+  },
+  {
+    "id": "musik_sing_064",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'With or Without You'?",
+    "answers": [
+      "U2",
+      "Coldplay",
+      "Radiohead",
+      "The Cure"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "U2."
+  },
+  {
+    "id": "musik_sing_065",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Creep'?",
+    "answers": [
+      "Radiohead",
+      "Nirvana",
+      "Oasis",
+      "Blur"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Radiohead."
+  },
+  {
+    "id": "musik_sing_066",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Zombie'?",
+    "answers": [
+      "The Cranberries",
+      "Sinéad O'Connor",
+      "Alanis Morissette",
+      "Sheryl Crow"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Cranberries."
+  },
+  {
+    "id": "musik_sing_067",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Torn'?",
+    "answers": [
+      "Natalie Imbruglia",
+      "Alanis",
+      "Fiona Apple",
+      "Sheryl Crow"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Natalie Imbruglia."
+  },
+  {
+    "id": "musik_sing_068",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Iris'?",
+    "answers": [
+      "Goo Goo Dolls",
+      "Matchbox Twenty",
+      "Nickelback",
+      "3 Doors Down"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Goo Goo Dolls."
+  },
+  {
+    "id": "musik_sing_069",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'How You Remind Me'?",
+    "answers": [
+      "Nickelback",
+      "Creed",
+      "3 Doors Down",
+      "Seether"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nickelback."
+  },
+  {
+    "id": "musik_sing_070",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Numb'?",
+    "answers": [
+      "Linkin Park",
+      "Korn",
+      "Limp Bizkit",
+      "System of a Down"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Linkin Park."
+  },
+  {
+    "id": "musik_sing_071",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'In the End'?",
+    "answers": [
+      "Linkin Park",
+      "Papa Roach",
+      "Evanescence",
+      "Disturbed"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Linkin Park."
+  },
+  {
+    "id": "musik_sing_072",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Bring Me to Life'?",
+    "answers": [
+      "Evanescence",
+      "Within Temptation",
+      "Nightwish",
+      "Lacuna Coil"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Evanescence."
+  },
+  {
+    "id": "musik_sing_073",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Seven Nation Army'?",
+    "answers": [
+      "The White Stripes",
+      "The Black Keys",
+      "Arctic Monkeys",
+      "Queens of the Stone Age"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The White Stripes."
+  },
+  {
+    "id": "musik_sing_074",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Mr. Brightside'?",
+    "answers": [
+      "The Killers",
+      "Franz Ferdinand",
+      "Arctic Monkeys",
+      "Kaiser Chiefs"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Killers."
+  },
+  {
+    "id": "musik_sing_075",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Take Me Out'?",
+    "answers": [
+      "Franz Ferdinand",
+      "The Killers",
+      "Arctic Monkeys",
+      "Bloc Party"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Franz Ferdinand."
+  },
+  {
+    "id": "musik_sing_076",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Do I Wanna Know?'?",
+    "answers": [
+      "Arctic Monkeys",
+      "The Strokes",
+      "The Killers",
+      "Franz Ferdinand"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Arctic Monkeys."
+  },
+  {
+    "id": "musik_sing_077",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Last Nite'?",
+    "answers": [
+      "The Strokes",
+      "The White Stripes",
+      "Interpol",
+      "Yeah Yeah Yeahs"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "The Strokes."
+  },
+  {
+    "id": "musik_sing_078",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Clocks'?",
+    "answers": [
+      "Coldplay",
+      "Keane",
+      "Travis",
+      "Snow Patrol"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Coldplay."
+  },
+  {
+    "id": "musik_sing_079",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Chasing Cars'?",
+    "answers": [
+      "Snow Patrol",
+      "Keane",
+      "Coldplay",
+      "Travis"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Snow Patrol."
+  },
+  {
+    "id": "musik_sing_080",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Hallelujah' (bekannte Cover-Version)?",
+    "answers": [
+      "Jeff Buckley (bekanntes Cover)",
+      "Leonard Cohen Original",
+      "beide bekannt",
+      "nur Rufus Wainwright"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Leonard Cohen Original, Buckley Cover sehr bekannt."
+  },
+  {
+    "id": "musik_sing_081",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Skyfall'?",
+    "answers": [
+      "Adele",
+      "Sam Smith",
+      "Billie Eilish",
+      "Tina Turner"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Adele (James Bond)."
+  },
+  {
+    "id": "musik_sing_082",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Writing's on the Wall'?",
+    "answers": [
+      "Sam Smith",
+      "Adele",
+      "Billie Eilish",
+      "Shirley Bassey"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Sam Smith (Bond)."
+  },
+  {
+    "id": "musik_sing_083",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'No Time to Die'?",
+    "answers": [
+      "Billie Eilish",
+      "Adele",
+      "Sam Smith",
+      "Lana Del Rey"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Billie Eilish (Bond)."
+  },
+  {
+    "id": "musik_sing_084",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt '99 Luftballons'?",
+    "answers": [
+      "Nena",
+      "Nina Hagen",
+      "Kim Wilde",
+      "Alphaville"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nena."
+  },
+  {
+    "id": "musik_sing_085",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Major Tom'?",
+    "answers": [
+      "Peter Schilling",
+      "Nena",
+      "Kraftwerk",
+      "Alphaville"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Peter Schilling."
+  },
+  {
+    "id": "musik_sing_086",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Big in Japan'?",
+    "answers": [
+      "Alphaville",
+      "Nena",
+      "Modern Talking",
+      "Camouflage"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Alphaville."
+  },
+  {
+    "id": "musik_sing_087",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Cheri Cheri Lady'?",
+    "answers": [
+      "Modern Talking",
+      "Blue System",
+      "C.C. Catch",
+      "Bad Boys Blue"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Modern Talking."
+  },
+  {
+    "id": "musik_sing_088",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Atemlos durch die Nacht'?",
+    "answers": [
+      "Helene Fischer",
+      "Andrea Berg",
+      "Sarah Connor",
+      "Anastacia"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Helene Fischer."
+  },
+  {
+    "id": "musik_sing_089",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Moskau'?",
+    "answers": [
+      "Dschinghis Khan",
+      "Boney M.",
+      "Modern Talking",
+      "Milli Vanilli"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Dschinghis Khan."
+  },
+  {
+    "id": "musik_sing_090",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Daddy Cool'?",
+    "answers": [
+      "Boney M.",
+      "ABBA",
+      "Bee Gees",
+      "Village People"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Boney M."
+  },
+  {
+    "id": "musik_sing_091",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Rasputin'?",
+    "answers": [
+      "Boney M.",
+      "ABBA",
+      "Dschinghis Khan",
+      "Village People"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Boney M."
+  },
+  {
+    "id": "musik_sing_092",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'YMCA'?",
+    "answers": [
+      "Village People",
+      "Boney M.",
+      "ABBA",
+      "Bee Gees"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Village People."
+  },
+  {
+    "id": "musik_sing_093",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'I Will Survive'?",
+    "answers": [
+      "Gloria Gaynor",
+      "Donna Summer",
+      "Diana Ross",
+      "Aretha Franklin"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Gloria Gaynor."
+  },
+  {
+    "id": "musik_sing_094",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Respect'?",
+    "answers": [
+      "Aretha Franklin",
+      "Tina Turner",
+      "Diana Ross",
+      "Whitney Houston"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Aretha Franklin."
+  },
+  {
+    "id": "musik_sing_095",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'I Will Always Love You' (berühmte Version)?",
+    "answers": [
+      "Whitney Houston",
+      "Dolly Parton Original",
+      "beide",
+      "Celine Dion"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Whitney Houston Cover, Dolly Parton Original."
+  },
+  {
+    "id": "musik_sing_096",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'My Heart Will Go On'?",
+    "answers": [
+      "Celine Dion",
+      "Whitney Houston",
+      "Mariah Carey",
+      "Barbra Streisand"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Celine Dion."
+  },
+  {
+    "id": "musik_sing_097",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'All I Want for Christmas Is You'?",
+    "answers": [
+      "Mariah Carey",
+      "Wham!",
+      "Brenda Lee",
+      "Bing Crosby"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Mariah Carey."
+  },
+  {
+    "id": "musik_sing_098",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Last Christmas'?",
+    "answers": [
+      "Wham!",
+      "Mariah Carey",
+      "George Michael solo",
+      "Band Aid"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Wham!"
+  },
+  {
+    "id": "musik_sing_099",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Do They Know It's Christmas?'?",
+    "answers": [
+      "Band Aid",
+      "Wham!",
+      "Queen",
+      "USA for Africa"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Band Aid."
+  },
+  {
+    "id": "musik_sing_100",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'We Are the World'?",
+    "answers": [
+      "USA for Africa",
+      "Band Aid",
+      "Queen",
+      "Live Aid"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "USA for Africa."
+  },
+  {
+    "id": "musik_sing_101",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Another One Bites the Dust'?",
+    "answers": [
+      "Queen",
+      "The Beatles",
+      "The Rolling Stones",
+      "AC/DC"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Queen."
+  },
+  {
+    "id": "musik_sing_102",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'We Will Rock You'?",
+    "answers": [
+      "Queen",
+      "AC/DC",
+      "Kiss",
+      "Aerosmith"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Queen."
+  },
+  {
+    "id": "musik_sing_103",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Highway to Hell'?",
+    "answers": [
+      "AC/DC",
+      "Metallica",
+      "Guns N' Roses",
+      "Iron Maiden"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "AC/DC."
+  },
+  {
+    "id": "musik_sing_104",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Enter Sandman'?",
+    "answers": [
+      "Metallica",
+      "Megadeth",
+      "Slayer",
+      "Anthrax"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Metallica."
+  },
+  {
+    "id": "musik_sing_105",
+    "category": "musik_wer_singt",
+    "area": "musik",
+    "subject": "wissen",
+    "question": "Wer singt 'Nothing Else Matters'?",
+    "answers": [
+      "Metallica",
+      "Guns N' Roses",
+      "Nirvana",
+      "Pearl Jam"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Metallica."
+  }
+]

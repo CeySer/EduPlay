@@ -5,7 +5,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Aus welchem Spiel stammt die berühmte Figur 'Lara Croft'?",
-    "answers": ["Uncharted", "Tomb Raider", "Resident Evil", "Far Cry"],
+    "answers": [
+      "Uncharted",
+      "Tomb Raider",
+      "Resident Evil",
+      "Far Cry"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -17,7 +22,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches ist das meistverkaufte Videospiel aller Zeiten?",
-    "answers": ["Tetris", "Grand Theft Auto V", "Minecraft", "Super Mario Bros."],
+    "answers": [
+      "Tetris",
+      "Grand Theft Auto V",
+      "Minecraft",
+      "Super Mario Bros."
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -29,7 +39,12 @@
     "area": "anime",
     "subject": "wissen",
     "question": "Wie heißt der Protagonist in der Anime- und Manga-Serie 'One Piece'?",
-    "answers": ["Roronoa Zoro", "Monkey D. Ruffy", "Portgas D. Ace", "Trafalgar Law"],
+    "answers": [
+      "Roronoa Zoro",
+      "Monkey D. Ruffy",
+      "Portgas D. Ace",
+      "Trafalgar Law"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -41,7 +56,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "In welchem Spiel baut man Ressourcen ab, um Schutzhütten vor 'Creepern' zu bauen?",
-    "answers": ["Terraria", "Minecraft", "Roblox", "Fortnite"],
+    "answers": [
+      "Terraria",
+      "Minecraft",
+      "Roblox",
+      "Fortnite"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -53,7 +73,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Unternehmen brachte 1989 den Handheld 'Game Boy' auf den Markt?",
-    "answers": ["Sega", "Sony", "Nintendo", "Atari"],
+    "answers": [
+      "Sega",
+      "Sony",
+      "Nintendo",
+      "Atari"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -65,7 +90,12 @@
     "area": "anime",
     "subject": "wissen",
     "question": "Was ist das Ziel des Pokémontrainers Ash Ketchum aus Alabastia?",
-    "answers": ["Alle Arenen zu zerstören", "Pokémon-Meister zu werden", "Ein Team Rocket Rüpel zu werden", "Eine Bäckerei zu eröffnen"],
+    "answers": [
+      "Alle Arenen zu zerstören",
+      "Pokémon-Meister zu werden",
+      "Ein Team Rocket Rüpel zu werden",
+      "Eine Bäckerei zu eröffnen"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -77,7 +107,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "In welcher fiktiven Stadt spielt das Videospiel 'GTA: Vice City'?",
-    "answers": ["Los Santos", "Liberty City", "Vice City", "San Fierro"],
+    "answers": [
+      "Los Santos",
+      "Liberty City",
+      "Vice City",
+      "San Fierro"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -89,7 +124,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welcher Beruf wird dem nintendo-Maskottchen 'Mario' zugeschrieben?",
-    "answers": ["Schreiner", "Klempner", "Elektriker", "Bäcker"],
+    "answers": [
+      "Schreiner",
+      "Klempner",
+      "Elektriker",
+      "Bäcker"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -101,7 +141,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Spielprinzip prägte das Game 'PUBG' und machte es weltberühmt?",
-    "answers": ["Battle Royale", "Turn-Based RPG", "Match-3 Puzzle", "Rennsimulation"],
+    "answers": [
+      "Battle Royale",
+      "Turn-Based RPG",
+      "Match-3 Puzzle",
+      "Rennsimulation"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -113,7 +158,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heißt der Protagonist aus 'The Witcher 3: Wild Hunt'?",
-    "answers": ["Ezio Auditore", "Geralt von Riva", "Kratos", "Arthur Morgan"],
+    "answers": [
+      "Ezio Auditore",
+      "Geralt von Riva",
+      "Kratos",
+      "Arthur Morgan"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -125,7 +175,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Objekt muss man in 'Pac-Man' vermeiden zu berühren?",
-    "answers": ["Kirschen", "Geister", "Punkte", "Wände"],
+    "answers": [
+      "Kirschen",
+      "Geister",
+      "Punkte",
+      "Wände"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -137,7 +192,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heisst die Heimatwelt von Link und Prinzessin Zelda?",
-    "answers": ["Hyrule", "Kanto", "Azeroth", "Midgard"],
+    "answers": [
+      "Hyrule",
+      "Kanto",
+      "Azeroth",
+      "Midgard"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -149,7 +209,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "In welchem E-Sport-Titel treten zwei Teams aus je 5 Champions an, um den gegnerischen 'Nexus' zu zerstören?",
-    "answers": ["CS:GO", "League of Legends", "Overwatch", "Valorant"],
+    "answers": [
+      "CS:GO",
+      "League of Legends",
+      "Overwatch",
+      "Valorant"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -161,7 +226,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welcher rote Igel ist das offizielle Maskottchen der Firma Sega?",
-    "answers": ["Knuckles", "Sonic", "Tails", "Shadow"],
+    "answers": [
+      "Knuckles",
+      "Sonic",
+      "Tails",
+      "Shadow"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -173,7 +243,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches superschnelle blaue Maskottchen gehört zur Firma Sega?",
-    "answers": ["Sonic the Hedgehog", "Mega Man", "Crash Bandicoot", "Spyro"],
+    "answers": [
+      "Sonic the Hedgehog",
+      "Mega Man",
+      "Crash Bandicoot",
+      "Spyro"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -185,7 +260,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heisst die Hauptfigur der 'God of War'-Reihe?",
-    "answers": ["Atreus", "Zeus", "Kratos", "Ares"],
+    "answers": [
+      "Atreus",
+      "Zeus",
+      "Kratos",
+      "Ares"
+    ],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -197,7 +277,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Aus welchem Spiel stammt der Satz 'Finish Him!'?",
-    "answers": ["Tekken", "Street Fighter", "Mortal Kombat", "Super Smash Bros."],
+    "answers": [
+      "Tekken",
+      "Street Fighter",
+      "Mortal Kombat",
+      "Super Smash Bros."
+    ],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -209,7 +294,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heisst die virtuelle Währung im Spiel Fortnite?",
-    "answers": ["V-Bucks", "Minecoins", "Riot Points", "Robux"],
+    "answers": [
+      "V-Bucks",
+      "Minecoins",
+      "Riot Points",
+      "Robux"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -221,7 +311,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welcher Entwickler erschuf das Open-World-Epos 'Red Dead Redemption 2'?",
-    "answers": ["Ubisoft", "EA Sports", "Rockstar Games", "CD Projekt Red"],
+    "answers": [
+      "Ubisoft",
+      "EA Sports",
+      "Rockstar Games",
+      "CD Projekt Red"
+    ],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -233,7 +328,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "In welcher berühmten Spielereihe schlüpft man in die Rolle von Assassinen im Kampf gegen Templer?",
-    "answers": ["Far Cry", "Assassin's Creed", "Hitman", "Watch Dogs"],
+    "answers": [
+      "Far Cry",
+      "Assassin's Creed",
+      "Hitman",
+      "Watch Dogs"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -245,20 +345,29 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Teil legst du bei 'Tetris' am liebsten an, um vier Zeilen auf einmal zu löschen?",
-    "answers": ["Das T-Stück", "Das quadratische O-Stück", "Das lange I-Stück (Line)", "Das Z-Stück"],
+    "answers": [
+      "Das T-Stück",
+      "Das quadratische O-Stück",
+      "Das lange I-Stück (Line)",
+      "Das Z-Stück"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
     "explanation": "Nur mit dem geraden Vierer-Längsstück (I-Block) schafft man ein 'Tetris' (4 Zeilen gleichzeitig)."
   },
-
   {
     "id": "gam_mc_021",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heißt die Prinzessin, die Mario ständig vor Bowser retten muss?",
-    "answers": ["Prinzessin Zelda", "Prinzessin Peach", "Prinzessin Daisy", "Prinzessin Rosalina"],
+    "answers": [
+      "Prinzessin Zelda",
+      "Prinzessin Peach",
+      "Prinzessin Daisy",
+      "Prinzessin Rosalina"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -270,7 +379,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Aus welchem Spiel stammt der gelbe Sternenschiff-Kapitän 'Kirby'?",
-    "answers": ["Nintendo / Hal Laboratory", "Sega", "Capcom", "Bandai Namco"],
+    "answers": [
+      "Nintendo / Hal Laboratory",
+      "Sega",
+      "Capcom",
+      "Bandai Namco"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -282,7 +396,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "In welchem Rennspiel nutzt man Schildkrötenpanzer und Bananenschalen?",
-    "answers": ["Need for Speed", "Mario Kart", "Gran Turismo", "Forza Horizon"],
+    "answers": [
+      "Need for Speed",
+      "Mario Kart",
+      "Gran Turismo",
+      "Forza Horizon"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -294,7 +413,12 @@
     "area": "anime",
     "subject": "wissen",
     "question": "Welches Schwert führt Kenshin Himura in 'Rurouni Kenshin'?",
-    "answers": ["Katana mit geschärfter Rückseite (Sakabatou)", "Doppelklinge", "Großschwert", "Holzschwert"],
+    "answers": [
+      "Katana mit geschärfter Rückseite (Sakabatou)",
+      "Doppelklinge",
+      "Großschwert",
+      "Holzschwert"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -306,7 +430,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heisst die Spieleserie, in der man als 'Dovahkiin' (Drachenblut) Skyrim erkundet?",
-    "answers": ["The Witcher", "The Elder Scrolls", "Dark Souls", "Dragon Age"],
+    "answers": [
+      "The Witcher",
+      "The Elder Scrolls",
+      "Dark Souls",
+      "Dragon Age"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -318,7 +447,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "In welchem Tanz- und Rhythmusspiel nutzt man eine Tanzmatte oder Bewegungssensoren?",
-    "answers": ["Just Dance", "Guitar Hero", "Beat Saber", "Rock Band"],
+    "answers": [
+      "Just Dance",
+      "Guitar Hero",
+      "Beat Saber",
+      "Rock Band"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -330,7 +464,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wer ist der Endboss im ersten 'Super Mario Bros.' auf dem NES?",
-    "answers": ["Wario", "Bowser", "Donkey Kong", "Waluigi"],
+    "answers": [
+      "Wario",
+      "Bowser",
+      "Donkey Kong",
+      "Waluigi"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -342,7 +481,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Aus welchem Spiel stammt das Zitat 'War. War never changes.'?",
-    "answers": ["Call of Duty", "Fallout", "Battlefield", "Halo"],
+    "answers": [
+      "Call of Duty",
+      "Fallout",
+      "Battlefield",
+      "Halo"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -354,7 +498,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welche Konsole verkaufte sich historisch weltweit am häufigsten?",
-    "answers": ["Nintendo DS", "PlayStation 2", "Nintendo Switch", "PlayStation 4"],
+    "answers": [
+      "Nintendo DS",
+      "PlayStation 2",
+      "Nintendo Switch",
+      "PlayStation 4"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -366,7 +515,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heißt der Grüne Dinosaurier, der Mario oft als Reittier dient?",
-    "answers": ["Yoshi", "Toad", "Koopa", "Rex"],
+    "answers": [
+      "Yoshi",
+      "Toad",
+      "Koopa",
+      "Rex"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -378,7 +532,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "In welchem Sci-Fi-Shooter steuert man den 'Master Chief' im Kampf gegen die Allianz?",
-    "answers": ["Mass Effect", "Halo", "Destiny", "Gears of War"],
+    "answers": [
+      "Mass Effect",
+      "Halo",
+      "Destiny",
+      "Gears of War"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -390,7 +549,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Indie-Game handelt von einem unterirdischen Abenteuer, bei dem man Monster nicht töten muss?",
-    "answers": ["Celeste", "Undertale", "Hollow Knight", "Hades"],
+    "answers": [
+      "Celeste",
+      "Undertale",
+      "Hollow Knight",
+      "Hades"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -402,7 +566,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heisst die geheimnisvolle Organisation in der 'Resident Evil'-Reihe?",
-    "answers": ["Abstergo", "Umbrella Corporation", "Aperture Science", "Vault-Tec"],
+    "answers": [
+      "Abstergo",
+      "Umbrella Corporation",
+      "Aperture Science",
+      "Vault-Tec"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -414,7 +583,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welche Farbe hat der Geist 'Blinky' in Pac-Man?",
-    "answers": ["Pink", "Rot", "Blau", "Orange"],
+    "answers": [
+      "Pink",
+      "Rot",
+      "Blau",
+      "Orange"
+    ],
     "correct": 1,
     "difficulty": "schwer",
     "points": 15,
@@ -426,7 +600,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Sandbox-Game wurde von Markus 'Notch' Persson erfunden?",
-    "answers": ["Roblox", "Minecraft", "Cube World", "Terraria"],
+    "answers": [
+      "Roblox",
+      "Minecraft",
+      "Cube World",
+      "Terraria"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -438,7 +617,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heißt die legendäre Stadt unter dem Meer im Spiel 'BioShock'?",
-    "answers": ["Columbia", "Rapture", "Atlantis", "Midgar"],
+    "answers": [
+      "Columbia",
+      "Rapture",
+      "Atlantis",
+      "Midgar"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -450,7 +634,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "In welchem Kartenspiel von Blizzard treten Helden aus dem Warcraft-Universum an?",
-    "answers": ["Gwent", "Hearthstone", "Magic: The Gathering", "Legends of Runeterra"],
+    "answers": [
+      "Gwent",
+      "Hearthstone",
+      "Magic: The Gathering",
+      "Legends of Runeterra"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -462,7 +651,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heisst die Hauptfigur in 'Final Fantasy VII' mit dem Riesenschwert?",
-    "answers": ["Squall Leonhart", "Cloud Strife", "Tidus", "Noctis"],
+    "answers": [
+      "Squall Leonhart",
+      "Cloud Strife",
+      "Tidus",
+      "Noctis"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -474,7 +668,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Wort rufen die Zwerge im Koop-Shooter 'Deep Rock Galactic' ständig?",
-    "answers": ["For the Horde!", "Rock and Stone!", "To the Moon!", "Hammer Time!"],
+    "answers": [
+      "For the Horde!",
+      "Rock and Stone!",
+      "To the Moon!",
+      "Hammer Time!"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -486,7 +685,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Aus welchem Land stammt das Entwicklerstudio CD Projekt Red (The Witcher, Cyberpunk 2077)?",
-    "answers": ["Deutschland", "Schweden", "Polen", "Tschechien"],
+    "answers": [
+      "Deutschland",
+      "Schweden",
+      "Polen",
+      "Tschechien"
+    ],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -498,7 +702,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "In welchem Spiel muss man als 'Crewmate' Schwindler ('Impostor') entlarven?",
-    "answers": ["Fall Guys", "Among Us", "Phasmophobia", "Dead by Daylight"],
+    "answers": [
+      "Fall Guys",
+      "Among Us",
+      "Phasmophobia",
+      "Dead by Daylight"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -510,7 +719,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heißt der bekannte Klempner-Bruder von Mario in den grünen Latzhosen?",
-    "answers": ["Wario", "Luigi", "Yoshi", "Toad"],
+    "answers": [
+      "Wario",
+      "Luigi",
+      "Yoshi",
+      "Toad"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -522,7 +736,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Spiel wird traditionell mit der 'Portal Gun' gelöst?",
-    "answers": ["Half-Life", "Portal", "Team Fortress 2", "Prey"],
+    "answers": [
+      "Half-Life",
+      "Portal",
+      "Team Fortress 2",
+      "Prey"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -534,7 +753,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welche Konsole führte das 'Motion Control' (Bewegungssteuerung) im Jahr 2006 im Massenmarkt ein?",
-    "answers": ["PlayStation Move", "Xbox Kinect", "Nintendo Wii", "Sega Dreamcast"],
+    "answers": [
+      "PlayStation Move",
+      "Xbox Kinect",
+      "Nintendo Wii",
+      "Sega Dreamcast"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -546,7 +770,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Game entwickelte Hideo Kojima, in dem man Pakete durch eine postapokalyptische Welt austrägt?",
-    "answers": ["Metal Gear Solid", "Death Stranding", "Silent Hills", "Zone of the Enders"],
+    "answers": [
+      "Metal Gear Solid",
+      "Death Stranding",
+      "Silent Hills",
+      "Zone of the Enders"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -558,7 +787,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Was ist die Höchststufe (Level) in der Ur-Version von Pac-Man vor dem Glitch-Screen?",
-    "answers": ["Level 99", "Level 100", "Level 256", "Level 500"],
+    "answers": [
+      "Level 99",
+      "Level 100",
+      "Level 256",
+      "Level 500"
+    ],
     "correct": 2,
     "difficulty": "schwer",
     "points": 15,
@@ -570,7 +804,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Aus welcher Spielereihe stammt die Fraktion der 'Bordbruderschaft' (Paladine in Powerrüstung)?",
-    "answers": ["Starcraft", "Fallout", "Warhammer 40k", "Cyberpunk"],
+    "answers": [
+      "Starcraft",
+      "Fallout",
+      "Warhammer 40k",
+      "Cyberpunk"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -582,7 +821,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heisst die Heimatstadt von Schatzsucher Nathan Drake in Uncharted?",
-    "answers": ["Er hat keine feste Heimatstadt", "New York", "Boston", "London"],
+    "answers": [
+      "Er hat keine feste Heimatstadt",
+      "New York",
+      "Boston",
+      "London"
+    ],
     "correct": 0,
     "difficulty": "schwer",
     "points": 15,
@@ -594,7 +838,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welcher Bosskampf in 'Dark Souls' verlangt Spielern das gleichzeitige Bekämpfen von zwei Bossen ab?",
-    "answers": ["Artorias & Sif", "Ornstein & Smough", "Gwyn & Seath", "Gargoyles"],
+    "answers": [
+      "Artorias & Sif",
+      "Ornstein & Smough",
+      "Gwyn & Seath",
+      "Gargoyles"
+    ],
     "correct": 1,
     "difficulty": "schwer",
     "points": 15,
@@ -606,7 +855,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heißt der Protagonist aus 'GTA San Andreas'?",
-    "answers": ["Tommy Vercetti", "Carl 'CJ' Johnson", "Niko Bellic", "Franklin Clinton"],
+    "answers": [
+      "Tommy Vercetti",
+      "Carl 'CJ' Johnson",
+      "Niko Bellic",
+      "Franklin Clinton"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -618,7 +872,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "In welchem Online-Spiel baut man mit Ressourcen Wände und Treppen im Kampf auf?",
-    "answers": ["PUBG", "Apex Legends", "Fortnite", "Call of Duty: Warzone"],
+    "answers": [
+      "PUBG",
+      "Apex Legends",
+      "Fortnite",
+      "Call of Duty: Warzone"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -630,7 +889,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Spiel wird oft als der geistige Nachfolger von 'Theme Hospital' bezeichnet?",
-    "answers": ["Two Point Hospital", "Planet Coaster", "Cities: Skylines", "SimCity"],
+    "answers": [
+      "Two Point Hospital",
+      "Planet Coaster",
+      "Cities: Skylines",
+      "SimCity"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -642,7 +906,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Aus welchem Spiel stammt das geflügelte Wort 'Praise the Sun!'?",
-    "answers": ["World of Warcraft", "Dark Souls", "Monster Hunter", "Skyrim"],
+    "answers": [
+      "World of Warcraft",
+      "Dark Souls",
+      "Monster Hunter",
+      "Skyrim"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -654,7 +923,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heißt das Kampfsport-Turnier im Prügelspiel 'Tekken'?",
-    "answers": ["Kumite", "King of Iron Fist Tournament", "Mortal Kombat", "World Warrior"],
+    "answers": [
+      "Kumite",
+      "King of Iron Fist Tournament",
+      "Mortal Kombat",
+      "World Warrior"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -666,7 +940,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches legendäre MMORPG erschien Ende 2004 und eroberte Abermillionen Spieler?",
-    "answers": ["Runescape", "Guild Wars", "World of Warcraft", "Metin2"],
+    "answers": [
+      "Runescape",
+      "Guild Wars",
+      "World of Warcraft",
+      "Metin2"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -678,7 +957,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Aus welchem Land stammt der Erfinder des Spiels 'Tetris' (Alexei Paschitnow)?",
-    "answers": ["USA", "Japan", "Sowjetunion (Russland)", "Deutschland"],
+    "answers": [
+      "USA",
+      "Japan",
+      "Sowjetunion (Russland)",
+      "Deutschland"
+    ],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -690,7 +974,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heisst die künstliche Intelligenz in Portal, die den Spieler testet und belügt?",
-    "answers": ["SHODAN", "GLaDOS", "HAL 9000", "Cortana"],
+    "answers": [
+      "SHODAN",
+      "GLaDOS",
+      "HAL 9000",
+      "Cortana"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -702,7 +991,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Studio entwickelte das düstere Action-Rollenspiel 'Bloodborne'?",
-    "answers": ["FromSoftware", "Capcom", "Square Enix", "Kojima Productions"],
+    "answers": [
+      "FromSoftware",
+      "Capcom",
+      "Square Enix",
+      "Kojima Productions"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -714,7 +1008,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heisst die treue Begleiter-Fee von Link in 'The Legend of Zelda: Ocarina of Time'?",
-    "answers": ["Tatl", "Navi", "Midna", "Fi"],
+    "answers": [
+      "Tatl",
+      "Navi",
+      "Midna",
+      "Fi"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -726,7 +1025,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welche Waffe nutzt Gordon Freeman in 'Half-Life' als Markenzeichen?",
-    "answers": ["Kettensäge", "Brecheisen (Brechstange)", "Machete", "Feuerwehraxt"],
+    "answers": [
+      "Kettensäge",
+      "Brecheisen (Brechstange)",
+      "Machete",
+      "Feuerwehraxt"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -738,7 +1042,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heißt der Planet, auf dem das Strategiespiel 'StarCraft' hauptsächlich im Erdenbereich beginnt?",
-    "answers": ["Mar Sara", "Aiur", "Chau Sara", "Korhal"],
+    "answers": [
+      "Mar Sara",
+      "Aiur",
+      "Chau Sara",
+      "Korhal"
+    ],
     "correct": 0,
     "difficulty": "schwer",
     "points": 15,
@@ -750,7 +1059,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welcher Drache ist der finale Endboss in Minecrafts 'End'-Dimension?",
-    "answers": ["Enderdrache", "Frostdrache", "Netherdrache", "Skelettdrache"],
+    "answers": [
+      "Enderdrache",
+      "Frostdrache",
+      "Netherdrache",
+      "Skelettdrache"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -762,7 +1076,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Aus welchem Spiel stammt der Spruch 'It's dangerous to go alone! Take this.'?",
-    "answers": ["The Legend of Zelda (1986)", "Final Fantasy I", "Metroid", "Castlevania"],
+    "answers": [
+      "The Legend of Zelda (1986)",
+      "Final Fantasy I",
+      "Metroid",
+      "Castlevania"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -774,7 +1093,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heißt die weibliche Hauptfigur in 'The Last of Us'?",
-    "answers": ["Tess", "Ellie", "Abby", "Sarah"],
+    "answers": [
+      "Tess",
+      "Ellie",
+      "Abby",
+      "Sarah"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -786,7 +1110,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "In welchem Spiel baut man eine Insel auf und lebt mit tierischen Nachbarn (z. B. Tom Nook)?",
-    "answers": ["Stardew Valley", "Animal Crossing", "Harvest Moon", "The Sims"],
+    "answers": [
+      "Stardew Valley",
+      "Animal Crossing",
+      "Harvest Moon",
+      "The Sims"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -798,7 +1127,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welches Auto-Fußball-Spiel kombiniert Raketenautos mit einem riesigen Ball?",
-    "answers": ["TrackMania", "Rocket League", "Need for Speed", "Burnout"],
+    "answers": [
+      "TrackMania",
+      "Rocket League",
+      "Need for Speed",
+      "Burnout"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -810,7 +1144,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wer ist der Erfinder der MGS-Reihe (Metal Gear Solid)?",
-    "answers": ["Shigeru Miyamoto", "Hideo Kojima", "Gabe Newell", "Yuji Naka"],
+    "answers": [
+      "Shigeru Miyamoto",
+      "Hideo Kojima",
+      "Gabe Newell",
+      "Yuji Naka"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -822,7 +1161,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welche Fraktion kämpft in 'World of Warcraft' gegen die Horde?",
-    "answers": ["Die Allianz", "Das Syndikat", "Die Geißel", "Die Brennende Legion"],
+    "answers": [
+      "Die Allianz",
+      "Das Syndikat",
+      "Die Geißel",
+      "Die Brennende Legion"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -834,7 +1178,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heißt der legendäre Schöpfer von Super Mario, Zelda und Donkey Kong?",
-    "answers": ["Satoru Iwata", "Shigeru Miyamoto", "Hironobu Sakaguchi", "Eiji Aonuma"],
+    "answers": [
+      "Satoru Iwata",
+      "Shigeru Miyamoto",
+      "Hironobu Sakaguchi",
+      "Eiji Aonuma"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -846,7 +1195,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welche Waffe ist das Markenzeichen des Hitman-Auftragsmörders 'Agent 47'?",
-    "answers": ["Silverballer (Pistolen)", "Scharfschützengewehr", "Klavierdraht (Garrotte)", "Alle genannten"],
+    "answers": [
+      "Silverballer (Pistolen)",
+      "Scharfschützengewehr",
+      "Klavierdraht (Garrotte)",
+      "Alle genannten"
+    ],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -858,7 +1212,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heisst die Währung im Klassiker 'Fallout'?",
-    "answers": ["Gold", "Kronkorken (Bottle Caps)", "Credits", "Dollar"],
+    "answers": [
+      "Gold",
+      "Kronkorken (Bottle Caps)",
+      "Credits",
+      "Dollar"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -870,7 +1229,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Aus welchem Spiel stammt die Map 'Dust II'?",
-    "answers": ["Call of Duty", "Counter-Strike", "Rainbow Six Siege", "Valorant"],
+    "answers": [
+      "Call of Duty",
+      "Counter-Strike",
+      "Rainbow Six Siege",
+      "Valorant"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -882,7 +1246,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Welcher 'Dark Souls'-Nachfolger gewann 2022 den Preis 'Game of the Year'?",
-    "answers": ["Sekiro", "Elden Ring", "Demon's Souls", "Armored Core VI"],
+    "answers": [
+      "Sekiro",
+      "Elden Ring",
+      "Demon's Souls",
+      "Armored Core VI"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -894,7 +1263,12 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heißt das Geisterjagd-Spiel, in dem man mit Thermometern und EMF-Messern Geister identifiziert?",
-    "answers": ["Phasmophobia", "Dead by Daylight", "Demonologist", "Pac-Man"],
+    "answers": [
+      "Phasmophobia",
+      "Dead by Daylight",
+      "Demonologist",
+      "Pac-Man"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -906,29 +1280,440 @@
     "area": "gaming",
     "subject": "wissen",
     "question": "Wie heisst das fliegende Rentier-Boot von Kratos in 'God of War Ragnarök'?",
-    "answers": ["Skíðblaðnir", "Naglfar", "Leviathan", "Jörmungandr"],
+    "answers": [
+      "Skíðblaðnir",
+      "Naglfar",
+      "Leviathan",
+      "Jörmungandr"
+    ],
     "correct": 0,
     "difficulty": "schwer",
     "points": 15,
     "explanation": "Skíðblaðnir ist das magische Schiff der Zwerge in der nordischen Mythologie."
+  },
+  {
+    "id": "gam_ext_077",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat Mario als Held?",
+    "answers": [
+      "Super Mario",
+      "Zelda",
+      "Pokemon",
+      "Sonic"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nintendo."
+  },
+  {
+    "id": "gam_ext_078",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat Pikachu?",
+    "answers": [
+      "Pokémon",
+      "Mario",
+      "Zelda",
+      "Sonic"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Pokémon."
+  },
+  {
+    "id": "gam_ext_079",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat den Triforce?",
+    "answers": [
+      "Zelda",
+      "Mario",
+      "Metroid",
+      "Kirby"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Zelda."
+  },
+  {
+    "id": "gam_ext_080",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Unternehmen macht die PlayStation?",
+    "answers": [
+      "Sony",
+      "Microsoft",
+      "Nintendo",
+      "Sega"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Sony."
+  },
+  {
+    "id": "gam_ext_081",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Unternehmen macht die Xbox?",
+    "answers": [
+      "Microsoft",
+      "Sony",
+      "Nintendo",
+      "Sega"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Microsoft."
+  },
+  {
+    "id": "gam_ext_082",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Unternehmen macht die Switch?",
+    "answers": [
+      "Nintendo",
+      "Sony",
+      "Microsoft",
+      "Sega"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nintendo."
+  },
+  {
+    "id": "gam_ext_083",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "In welchem Spiel baut man mit Blöcken?",
+    "answers": [
+      "Minecraft",
+      "Roblox",
+      "Fortnite",
+      "Terraria"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Minecraft."
+  },
+  {
+    "id": "gam_ext_084",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel ist bekannt für Battle Royale und Bau?",
+    "answers": [
+      "Fortnite",
+      "Minecraft",
+      "Among Us",
+      "Fall Guys"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Fortnite."
+  },
+  {
+    "id": "gam_ext_085",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat Crewmates und Impostor?",
+    "answers": [
+      "Among Us",
+      "Fortnite",
+      "Minecraft",
+      "Roblox"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Among Us."
+  },
+  {
+    "id": "gam_ext_086",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat Sonic the Hedgehog?",
+    "answers": [
+      "Sonic",
+      "Mario",
+      "Zelda",
+      "Pokemon"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Sonic."
+  },
+  {
+    "id": "gam_ext_087",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Genre ist FPS?",
+    "answers": [
+      "Ego-Shooter",
+      "Strategie",
+      "Puzzle",
+      "Sport"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "First Person Shooter."
+  },
+  {
+    "id": "gam_ext_088",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat den Charakter Master Chief?",
+    "answers": [
+      "Halo",
+      "Gears",
+      "Call of Duty",
+      "Doom"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Halo."
+  },
+  {
+    "id": "gam_ext_089",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat Pac-Man?",
+    "answers": [
+      "Pac-Man",
+      "Tetris",
+      "Space Invaders",
+      "Pong"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Pac-Man."
+  },
+  {
+    "id": "gam_ext_090",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel stapelt Blöcke (Klassiker)?",
+    "answers": [
+      "Tetris",
+      "Pac-Man",
+      "Pong",
+      "Breakout"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Tetris."
+  },
+  {
+    "id": "gam_ext_091",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat Link als Helden?",
+    "answers": [
+      "Zelda",
+      "Mario",
+      "Metroid",
+      "Kirby"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Zelda."
+  },
+  {
+    "id": "gam_ext_092",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel ist ein Fußball-Simulator von EA?",
+    "answers": [
+      "FIFA/EA FC",
+      "PES",
+      "Rocket League",
+      "NBA2K"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "EA FC/FIFA."
+  },
+  {
+    "id": "gam_ext_093",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat crouch-walking Creeper?",
+    "answers": [
+      "Minecraft",
+      "Terraria",
+      "Roblox",
+      "Fortnite"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Minecraft."
+  },
+  {
+    "id": "gam_ext_094",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Handheld von Nintendo war vor der Switch populär?",
+    "answers": [
+      "3DS/DS",
+      "PSP",
+      "Game Gear",
+      "Lynx"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nintendo DS/3DS."
+  },
+  {
+    "id": "gam_ext_095",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat den Ring Fit?",
+    "answers": [
+      "Ring Fit Adventure",
+      "Wii Fit",
+      "Just Dance",
+      "Zumba"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ring Fit."
+  },
+  {
+    "id": "gam_ext_096",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel ist bekannt für GTA?",
+    "answers": [
+      "Grand Theft Auto",
+      "Watch Dogs",
+      "Saints Row",
+      "Mafia"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "GTA."
+  },
+  {
+    "id": "gam_ext_097",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat den Charakter Lara Croft?",
+    "answers": [
+      "Tomb Raider",
+      "Uncharted",
+      "Indiana",
+      "Prince of Persia"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Tomb Raider."
+  },
+  {
+    "id": "gam_ext_098",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat den Charakter Kratos?",
+    "answers": [
+      "God of War",
+      "Devil May Cry",
+      "Bayonetta",
+      "Ninja Gaiden"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "God of War."
+  },
+  {
+    "id": "gam_ext_099",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel ist ein Kartenspiel digital von Blizzard (Hearthstone)?",
+    "answers": [
+      "Hearthstone",
+      "Magic Arena",
+      "Yu-Gi-Oh",
+      "Legends of Runeterra"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Hearthstone."
+  },
+  {
+    "id": "gam_ext_100",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat den Battle Pass populär gemacht mit Fortnite?",
+    "answers": [
+      "Fortnite",
+      "Warzone",
+      "Apex",
+      "PUBG"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Fortnite."
+  },
+  {
+    "id": "gam_ext_101",
+    "category": "gaming_popkultur",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Welches Spiel hat den Charakter Pikmin?",
+    "answers": [
+      "Pikmin",
+      "Mario",
+      "Zelda",
+      "Animal Crossing"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Pikmin."
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ]

@@ -137,23 +137,6 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "explanation": "Die Hauptstadt von Schweden ist Stockholm!"
     },
   {
-        "id": "q_europa_009",
-        "category": "spass_hauptstaedte_europa",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Norwegen?",
-        "answers": [
-            "Oslo",
-            "Bergen",
-            "Trondheim",
-            "Stavanger"
-        ],
-        "correct": 0,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Norwegen ist Oslo!"
-    },
-  {
         "id": "q_europa_010",
         "category": "spass_hauptstaedte_europa",
         "area": "spass",

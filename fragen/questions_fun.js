@@ -29,6 +29,11 @@ const FUN_CATEGORIES = [
     { key: "schaetzen_nice_to_know", label: "✨ Nice to Know" },
     { key: "schaetzen_mensch_koerper", label: "🧍 Schätzen · Mensch & Körper" },
     { key: "schaetzen_ungewoehnlich_welt", label: "🌍 Ungewöhnliches aus der Welt" },
+    { key: "spass_weltraum", label: "🚀 Weltraum & Sterne" },
+    { key: "spass_mythen", label: "⚡ Mythen & Sagen" },
+    { key: "spass_dinosaurier", label: "🦕 Dinosaurier & Urzeit" },
+    { key: "spass_superhelden", label: "🦸 Superhelden & Comics" },
+    { key: "spass_visuell", label: "👁️ Visuelle Rätsel (Demo)" },
 ];
 
 if (typeof window !== "undefined") window.FUN_CATEGORIES = FUN_CATEGORIES;

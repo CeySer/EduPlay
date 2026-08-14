@@ -449,12 +449,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             onclick="switchDashAdminTab('progress')">
                             <span class="icon">📊</span>
                             <div class="label">Fortschritt</div>
-                            <div class="sub">Lernzeit · Stats</div>
+                            <div class="sub">Lernzeit · Tests · Detail</div>
                         </div>
                         <div id="dash-admin-rewards" class="dash-admin-tab" onclick="switchDashAdminTab('rewards')">
                             <span class="icon">🎁</span>
                             <div class="label">Belohnungen</div>
-                            <div class="sub">Verwalten</div>
+                            <div class="sub">Level · Coins · Shop</div>
                         </div>
                     </div>
 
@@ -540,16 +540,33 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         </div>
                     </div>
 
-                    <!-- Tab: Fortschritt (Karten + Lernzeit + Detail-Stats) -->
+                    <!-- Tab: Fortschritt (Lernzeit + Tests + Detail) -->
                     <div id="dash-admin-progress-view" class="hidden space-y-3">
-                        <div id="dash-admin-stats" class="space-y-3"></div>
-                        <div id="dash-study-overview" class="glass-card p-4 space-y-2">
-                            <div class="font-black text-indigo-300 text-sm">⏱ Lernzeit (Alleine lernen)</div>
-                            <p class="text-[11px] text-gray-500">Übungszeit pro Profil: Wissen, Vokabeln, Lesen, Suchsel. Tests zählen nicht.</p>
-                            <div id="dash-study-log" class="space-y-2 text-sm"></div>
-                        </div>
                         <div class="glass-card overflow-hidden">
-                            <button onclick="toggleDashPlayerList()"
+                            <button type="button" onclick="toggleDashSection('study')"
+                                class="w-full p-4 flex items-center justify-between hover:bg-white/5 transition">
+                                <span class="font-bold text-indigo-300">⏱ Lernzeit</span>
+                                <span id="dash-study-arrow" class="text-gray-400 transition-transform">▼</span>
+                            </button>
+                            <div id="dash-study-body" class="hidden px-4 pb-4 space-y-2">
+                                <p class="text-[11px] text-gray-500">Übungszeit: Wissen, Vokabeln, Lesen, Suchsel. Tests zählen nicht.</p>
+                                <div id="dash-study-log" class="space-y-2 text-sm"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card overflow-hidden">
+                            <button type="button" onclick="toggleDashSection('tests')"
+                                class="w-full p-4 flex items-center justify-between hover:bg-white/5 transition">
+                                <span class="font-bold text-emerald-300">📝 Test-Statistiken</span>
+                                <span id="dash-tests-arrow" class="text-gray-400 transition-transform">▼</span>
+                            </button>
+                            <div id="dash-tests-body" class="hidden px-4 pb-4 space-y-2">
+                                <div id="dash-test-stats-overview" class="space-y-2 text-sm"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card overflow-hidden">
+                            <button type="button" onclick="toggleDashPlayerList()"
                                 class="w-full p-4 flex items-center justify-between hover:bg-white/5 transition">
                                 <span class="font-bold text-white">👥 Detail-Statistik</span>
                                 <span id="dash-player-arrow" class="text-gray-400 transition-transform">▼</span>
@@ -561,8 +578,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         </div>
                     </div>
 
+                    <!-- Tab: Belohnungen (Spieler-Karten + Shop) -->
                     <div id="dash-admin-rewards-view" class="hidden space-y-3">
+                        <div id="dash-admin-stats" class="space-y-3"></div>
                         <div class="glass-card p-4 space-y-3">
+                            <div class="font-black text-amber-300 text-sm">🎁 Belohnungs-Shop</div>
                             <div class="flex gap-2">
                                 <input type="text" id="dash-reward-name" placeholder="Belohnung (z.B. Extra-TV)"
                                     class="input-modern flex-1 text-sm">

@@ -1542,6 +1542,52 @@ auth.createUserWithEmailAndPassword(e, p)
             arrow.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
         }
 
+        function toggleDashSection(which) {
+            const body = document.getElementById(which === 'tests' ? 'dash-tests-body' : 'dash-study-body');
+            const arrow = document.getElementById(which === 'tests' ? 'dash-tests-arrow' : 'dash-study-arrow');
+            if (!body || !arrow) return;
+            const open = body.classList.contains('hidden');
+            body.classList.toggle('hidden', !open);
+            arrow.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        function renderDashTestStatsOverview() {
+            const box = document.getElementById('dash-test-stats-overview');
+            if (!box) return;
+            const keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
+            if (!keys.length) {
+                box.innerHTML = '<div class="text-gray-500 text-xs">Keine Profile</div>';
+                return;
+            }
+            const rows = keys.map(k => {
+                const p = ALL_PROFILES[k];
+                const hist = p.testHistory || [];
+                if (!hist.length) {
+                    return `<div class="bg-white/5 rounded-xl px-3 py-2">
+                        <div class="font-bold text-white text-sm">${esc(p.name)}</div>
+                        <div class="text-[11px] text-gray-500">Noch keine Tests</div>
+                    </div>`;
+                }
+                const items = hist.slice(0, 5).map(t => {
+                    const pct = t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0;
+                    const date = new Date(t.date);
+                    const dur = (t.durationSec != null && typeof formatDurationSec === 'function')
+                        ? formatDurationSec(t.durationSec)
+                        : (t.durationSec != null ? Math.round(t.durationSec / 60) + " Min." : "");
+                    const col = pct >= 80 ? 'text-emerald-400' : pct >= 50 ? 'text-yellow-400' : 'text-rose-400';
+                    return `<div class="flex justify-between gap-2 text-xs py-0.5">
+                        <span class="${col} font-bold">${t.correct}/${t.total} (${pct}%)</span>
+                        <span class="text-gray-500">${dur ? "⏱ " + dur + " · " : ""}${date.toLocaleDateString('de-DE')}</span>
+                    </div>`;
+                }).join('');
+                return `<div class="bg-white/5 rounded-xl px-3 py-2 space-y-1">
+                    <div class="font-bold text-white text-sm">${esc(p.name)} · ${hist.length} Test${hist.length === 1 ? '' : 's'}</div>
+                    ${items}
+                </div>`;
+            });
+            box.innerHTML = rows.join('');
+        }
+
         function selectStatPlayer(key) {
             selectedStatPlayer = key;
             renderDashPlayerList();
@@ -1844,12 +1890,15 @@ auth.createUserWithEmailAndPassword(e, p)
                 renderTestTemplatesList();
             }
             if (tab === 'progress') {
-                renderDashAdminProgress();
                 renderStudyLogOverview();
+                renderDashTestStatsOverview();
                 renderDashPlayerList();
                 if (selectedStatPlayer) renderPlayerStats(selectedStatPlayer);
             }
-            if (tab === 'rewards') renderDashRewards();
+            if (tab === 'rewards') {
+                renderDashAdminProgress();
+                renderDashRewards();
+            }
         }
 
         function renderDashAdmin() {
@@ -1895,6 +1944,10 @@ auth.createUserWithEmailAndPassword(e, p)
                         </div>
                     </div>`;
                 }
+                const badges = (p.badges || []).map(id => (typeof BADGES !== 'undefined' ? BADGES.find(b => b.id === id) : null)).filter(Boolean);
+                const badgeLine = badges.length
+                    ? `<div class="mt-1.5 flex flex-wrap gap-1">${badges.map(b => `<span class="text-base" title="${esc(b.name)}">${b.icon}</span>`).join('')}</div>`
+                    : '';
                 return `
                             <div class="bg-white/5 border border-white/5 rounded-xl p-3">
                                 <div class="flex justify-between items-center">
@@ -1912,10 +1965,10 @@ auth.createUserWithEmailAndPassword(e, p)
                                     <div class="fill ${accuracy >= 80 ? 'good' : accuracy >= 50 ? 'ok' : 'bad'}" style="width:${accuracy}%"></div>
                                 </div>
                                 ${goalLine}
+                                ${badgeLine}
                             </div>
                         `;
             }).join('');
-            renderStudyGoalAdmin();
         }
 
         const STUDY_GOAL_LABELS = {

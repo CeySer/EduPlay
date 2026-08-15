@@ -540,6 +540,13 @@
             const play = document.getElementById("tv-player-play");
             if (play) { play.classList.add("hidden"); play.innerHTML = ""; }
             if (setup) setup.classList.remove("hidden");
+            try {
+                const inp = document.getElementById("tv-join-code");
+                if (inp && !inp.value) {
+                    const last = (localStorage.getItem("eduplay_last_tv_code") || "").trim();
+                    if (last) inp.value = last;
+                }
+            } catch (_) {}
         }
         function setTVHostPlayHTML(html) {
             showTVHostPlay();
@@ -831,16 +838,46 @@
                 }).join('');
         }
 
+        function tvBuildQuestionPool(catKeys, want) {
+            want = want || 10;
+            let list = [];
+            try {
+                if (catKeys && catKeys.length > 1 && typeof buildMixedQuestions === "function") {
+                    list = buildMixedQuestions(catKeys, want) || [];
+                } else if (catKeys && catKeys[0] && typeof questionsForKey === "function") {
+                    const raw = questionsForKey(catKeys[0]) || [];
+                    list = (typeof prepareQuestions === "function" ? prepareQuestions(raw) : raw)
+                        .slice().sort(function () { return Math.random() - 0.5; }).slice(0, want);
+                }
+            } catch (e) { console.warn("tvBuildQuestionPool", e); }
+            if (list.length < 3 && typeof QUESTIONS_DATABASE !== "undefined" && QUESTIONS_DATABASE.length) {
+                const extra = QUESTIONS_DATABASE.slice()
+                    .sort(function () { return Math.random() - 0.5; })
+                    .slice(0, want);
+                const seen = {};
+                list.forEach(function (q) { seen[(q.id || q.question)] = true; });
+                extra.forEach(function (q) {
+                    const k = q.id || q.question;
+                    if (!seen[k] && list.length < want) {
+                        seen[k] = true;
+                        list.push(typeof shuffleAnswers === "function" ? shuffleAnswers(q) : q);
+                    }
+                });
+            }
+            return list;
+        }
+
         function startTVGameLoop() {
             tvGameRef.get().then(doc => {
                 const data = doc.data();
                 if (data.mode === "scrabble") { startTVScrabbleRound(data); return; }
                 if (data.mode === "wortraten") { startTVWortratenRound(data); return; }
                 const catKeys = (data.categoryKeys && data.categoryKeys.length) ? data.categoryKeys : [data.category];
-                tvQuestions = catKeys.length > 1
-                    ? buildMixedQuestions(catKeys, 10)
-                    : prepareQuestions(questionsForKey(catKeys[0]).sort(() => Math.random() - 0.5).slice(0, 10));
-                if (tvQuestions.length < 3) { showToast("Zu wenige Fragen für dieses Thema!", "error"); return; }
+                tvQuestions = tvBuildQuestionPool(catKeys, 10);
+                if (tvQuestions.length < 3) {
+                    showToast("Zu wenige Fragen – anderes Thema wählen oder Fragen laden.", "error");
+                    return;
+                }
                 const playersData = bereinigeTVPlayers(data.players || {});
                 Object.keys(playersData).forEach(k => {
                     playersData[k].hasAnswered = false;
@@ -1215,9 +1252,8 @@
                 const catSel = document.getElementById("tv-again-category");
                 const category = catSel ? catSel.value : null;
                 if (!category) return showToast("Bitte ein Thema wählen!", "error");
-                const fresh = questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10);
-                if (fresh.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
-                tvQuestions = prepareQuestions(fresh);
+                tvQuestions = tvBuildQuestionPool([category], 10);
+                if (tvQuestions.length < 3) return showToast("Zu wenige Fragen – anderes Thema wählen oder Fragen laden.", "error");
                 await tvGameRef.update({
                     status: "playing",
                     mode: "quiz",
@@ -1791,6 +1827,21 @@
         }
 
         // --- TV-QUIZ PLAYER (Handy) ---
+
+        function joinTVGameLast() {
+            let code = "";
+            try { code = (localStorage.getItem("eduplay_last_tv_code") || "").trim().toUpperCase(); } catch (_) {}
+            const inp = document.getElementById("tv-join-code");
+            if (code && code.length === 4) {
+                if (inp) inp.value = code;
+                return joinTVGame(code);
+            }
+            // Fallback: eigene Familien-Lobby (Host-Account)
+            if (inp) inp.value = "";
+            return joinTVGame("");
+        }
+        window.joinTVGameLast = joinTVGameLast;
+
         async function joinTVGame(codeOverride) {
             if (!currentParentUser || !currentPlayer) return showToast(
                 "Bitte wähle zuerst oben deinen Spieler aus.", "error", "noprofile");
@@ -1821,20 +1872,45 @@
 
             try {
                 const docSnap = await lobbyRef.get();
-                if (!docSnap.exists || docSnap.data().status !== "waiting") return showToast(
-                    "Aktuell ist keine Lobby offen!", "error");
+                if (!docSnap.exists) return showToast("Aktuell ist keine Lobby offen!", "error");
+                const lobbyData = docSnap.data() || {};
+                const st = lobbyData.status;
+                if (st === "finished") return showToast("Dieses TV-Spiel ist schon beendet.", "error");
+                if (st !== "waiting" && st !== "playing") {
+                    return showToast("Aktuell ist keine Lobby offen!", "error");
+                }
 
-                // Feldpfad statt ganzer players-Map: zwei Kinder, die gleichzeitig
-                // beitreten, überschreiben sich sonst gegenseitig.
-                await lobbyRef.update({
-                    [`players.${activePlayerKey}`]: {
-                        name: currentPlayer.name,
-                        score: 0,
-                        hasAnswered: false,
-                        lastAnswer: null,
-                        coinsClaimed: false
+                const already = lobbyData.players && lobbyData.players[activePlayerKey];
+                if (st === "waiting" || !already) {
+                    // Neu beitreten oder in laufende Runde (Punkte behalten falls schon da)
+                    await lobbyRef.update({
+                        [`players.${activePlayerKey}`]: {
+                            name: currentPlayer.name,
+                            score: (already && already.score) || 0,
+                            hasAnswered: !!(already && already.hasAnswered),
+                            lastAnswer: already ? already.lastAnswer : null,
+                            coinsClaimed: !!(already && already.coinsClaimed)
+                        }
+                    });
+                } else {
+                    // Nur Lebenszeichen / Name aktualisieren
+                    await lobbyRef.update({
+                        [`players.${activePlayerKey}.name`]: currentPlayer.name
+                    }).catch(function () {});
+                }
+
+                // Code merken für „Letzte Lobby erneut“
+                try {
+                    if (code && code.length === 4) {
+                        localStorage.setItem("eduplay_last_tv_code", code);
+                    } else if (window._activeTVCode) {
+                        localStorage.setItem("eduplay_last_tv_code", window._activeTVCode);
+                    } else if (currentParentUser) {
+                        // Familien-Lobby ohne Code: parent-eigene Lobby
+                        localStorage.setItem("eduplay_last_tv_parent", currentParentUser.uid);
                     }
-                });
+                } catch (_) {}
+
                 tvGameRef = lobbyRef;
                 isTVHost = false;
                 starteTVLebenszeichen();

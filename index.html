@@ -2352,13 +2352,19 @@ VIEW: QUIZ SETUP
     <div id="view-tv-quiz-player" class="view hidden space-y-4">
         <div id="tv-player-setup" class="space-y-4">
             <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame()">Zurück</button>
-            <div class="glass-card p-6 text-center">
-                <h2 class="text-2xl font-black text-white mb-4">Spiel beitreten</h2>
-                <p class="text-gray-400 text-sm mb-6">Warte, bis der Fernseher die Lobby eröffnet hat!</p>
-                <div id="player-waiting-area">
-                    <button onclick="joinTVGame()" class="btn-primary w-full text-2xl animate-pulse py-6"
-                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Jetzt
-                        beitreten! 🎮</button>
+            <div class="glass-card p-6 text-center space-y-4">
+                <h2 class="text-2xl font-black text-white mb-2">Spiel beitreten</h2>
+                <p class="text-gray-400 text-sm">Gleiche Familie: direkt beitreten. Andere / erneut: Code vom Fernseher.</p>
+                <div>
+                    <label class="block text-xs font-bold text-indigo-300 uppercase tracking-wider mb-1">Beitritts-Code</label>
+                    <input id="tv-join-code" type="text" maxlength="6" autocomplete="off" placeholder="z. B. K7M2"
+                        class="input-modern font-black text-center text-2xl tracking-[0.3em] uppercase w-full"
+                        style="letter-spacing:0.28em;" />
+                </div>
+                <div id="player-waiting-area" class="space-y-3">
+                    <button onclick="joinTVGame()" class="btn-primary w-full text-xl py-4"
+                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Mit Code / Familie beitreten 🎮</button>
+                    <button type="button" onclick="joinTVGameLast()" class="btn-secondary w-full text-sm py-3">🔄 Letzte Lobby erneut</button>
                 </div>
             </div>
         </div><!-- /tv-player-setup -->
@@ -2385,7 +2391,7 @@ VIEW: QUIZ SETUP
     <script src="suchsel.js?v=1.2"></script>
     <script src="duel-scrabble.js?v=9.1"></script>
     <script src="wortraten.js?v=9.4"></script>
-    <script src="tv-cast.js?v=10.5"></script>
+    <script src="tv-cast.js?v=10.6"></script>
     <script src="live-duel.js?v=10.1"></script>
     <script src="app-misc.js?v=8.8"></script>
     <script src="lobby-avatar.js?v=9.3"></script>

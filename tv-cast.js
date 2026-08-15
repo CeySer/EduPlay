@@ -407,6 +407,9 @@
                     return;
                 }
                 if (data.status === "finished" && isTVHost) {
+                    if (typeof clearTVWrTimers === "function") clearTVWrTimers();
+                    stopTVAutoAdvance();
+                    stopTVActionMode();
                     showTVHostPodium(data.players);
                     merkeTVHost(false);
                     return;
@@ -1087,6 +1090,8 @@
 
         function showTVHostPodium(playersData) {
             stopTVAutoAdvance();
+            if (typeof clearTVWrTimers === "function") clearTVWrTimers();
+            stopTVActionMode();
             const sorted = Object.values(playersData || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
             let html =
                 `<h1 class="text-6xl font-black text-yellow-400 mb-10 text-center">🏆 Siegerehrung 🏆</h1><div class="space-y-6 max-w-3xl mx-auto w-full">`;
@@ -1117,6 +1122,11 @@
                             <select id="tv-again-category" class="input-modern font-bold text-xl mt-2"></select>
                         </div>
                         <div id="tv-again-scrabble-opts" class="hidden text-left space-y-2">
+                            <select id="tv-again-scrabble-wordmode" class="input-modern font-bold text-lg">
+                                <option value="kids" selected>👶 Kinder-Wörter</option>
+                                <option value="adult">🎓 Erwachsenen-Wörter</option>
+                            </select>
+
                             <select id="tv-again-scrabble-diff" class="input-modern font-bold text-lg">
                                 <option value="leicht">🟢 Leicht</option>
                                 <option value="mittel" selected>🟡 Mittel</option>
@@ -1213,11 +1223,13 @@
                 if (tvAgainMode === "scrabble") {
                     const difficulty = (document.getElementById("tv-again-scrabble-diff") || {}).value || "mittel";
                     const totalRounds = parseInt((document.getElementById("tv-again-scrabble-rounds") || {}).value || "5", 10);
+                    const wordMode = (document.getElementById("tv-again-scrabble-wordmode") || {}).value || "kids";
                     tvUsedWords = new Set();
                     await tvGameRef.update({
                         status: "waiting",
                         mode: "scrabble",
                         difficulty,
+                        wordMode,
                         totalRounds,
                         currentRound: 0,
                         showAnswer: false,
@@ -1289,53 +1301,62 @@
 
 
 
+        // TV Action-Mode analog Live-Duell (Gegeneinander)
+        let tvActionChangeCount = 0;
+        let tvActionMaxChanges = 0;
+        let tvActionTimings = null;
+
         function startTVActionMode(data) {
-            if (!data || !data.actionMode) {
+            if (!data || !data.actionMode || !tvGameRef) {
                 console.log("TV: Action Mode nicht aktiv");
                 return;
             }
+            stopTVActionMode();
+            const timings = (typeof getActionTiming === "function")
+                ? getActionTiming(data.difficulty || "mittel")
+                : { firstChange: 12, maxChanges: 3, minGap: 8, maxGap: 14 };
+            tvActionTimings = timings;
+            tvActionChangeCount = 0;
+            tvActionMaxChanges = timings.maxChanges || 3;
+            console.log("📺 TV Action Mode wie Live-Duell", timings);
 
-            // Alten Timer stoppen
-            if (tvActionModeInterval) {
-                clearTimeout(tvActionModeInterval);
-                tvActionModeInterval = null;
-            }
-
-            const timing = getActionTiming(data.difficulty || "mittel");
-            let changeCount = 0;
-
-            console.log(`📺 TV Action Mode gestartet (${timing.maxChanges} Aenderungen, erste nach ${timing.firstChange}s)`);
-
-            function tvChange() {
-                if (changeCount >= timing.maxChanges) {
-                    tvActionModeInterval = null;
-                    console.log("📺 TV Action Mode beendet");
+            function doChange() {
+                if (!tvGameRef || !isTVHost) { stopTVActionMode(); return; }
+                if (tvActionChangeCount >= tvActionMaxChanges) {
+                    stopTVActionMode();
                     return;
                 }
-                const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
-                tvGameRef.update({
-                    currentLetters: rack.letters,
-                    currentSolution: rack.solution,
-                    currentRequired: rack.required || ""
-                });
-                changeCount++;
-                if (changeCount < timing.maxChanges) {
-                    // Abstand zufaellig, aber im festen Rahmen
-                    tvActionModeInterval = setTimeout(tvChange, actionRandomGap(timing) * 1000);
+                try {
+                    const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode || "kids");
+                    tvGameRef.update({
+                        currentLetters: rack.letters,
+                        currentSolution: rack.solution,
+                        currentRequired: rack.required || "",
+                        actionTick: Date.now()
+                    }).catch(function (e) { console.warn("TV action update", e); });
+                    if (typeof SFX !== "undefined" && SFX.tick) SFX.tick();
+                    tvActionChangeCount++;
+                } catch (e) {
+                    console.warn("TV action change", e);
+                }
+                if (tvActionChangeCount < tvActionMaxChanges) {
+                    const gap = (typeof actionRandomGap === "function")
+                        ? actionRandomGap(timings) : (timings.minGap || 8);
+                    tvActionModeInterval = setTimeout(doChange, gap * 1000);
                 } else {
-                    tvActionModeInterval = null;
-                    console.log("📺 TV Action Mode beendet");
+                    tvActionModeInterval = setTimeout(function () {
+                        stopTVActionMode();
+                    }, ((timings.maxGap || 12) * 1000) + 2000);
                 }
             }
 
-            // Erste Aenderung nach fester firstChange-Zeit
-            tvActionModeInterval = setTimeout(tvChange, timing.firstChange * 1000);
+            tvActionModeInterval = setTimeout(doChange, (timings.firstChange || 12) * 1000);
         }
 
         // Verbesserte stopTVActionMode
         function stopTVActionMode() {
             if (tvActionModeInterval) {
-                clearInterval(tvActionModeInterval);
+                clearTimeout(tvActionModeInterval);
                 tvActionModeInterval = null;
                 console.log("⏹ Action Mode gestoppt");
             }
@@ -1427,6 +1448,10 @@
                         <div id="tv-wr-figure" class="w-48 h-56 md:w-64 md:h-72"></div>
                     </div>
                     <div class="flex flex-wrap justify-center gap-1">${mask}</div>
+                    ${data.lastSolveAttempt && data.lastSolveAttempt.text
+                        ? `<div class="text-center text-lg text-amber-300 font-bold">💡 ${(data.lastSolveAttempt.name || "Jemand")}: „${String(data.lastSolveAttempt.text).slice(0, 24)}“</div>`
+                        : ""}
+                    <div id="tv-wr-turn-timer" class="text-center text-xl font-black text-sky-300"></div>
                     <div class="text-center">${footer}</div>
                 </div>`);
             if (typeof wrRenderFigureBase === "function") {
@@ -1435,6 +1460,54 @@
                     if (typeof wrRevealFigureStage === "function") wrRevealFigureStage(i, "tv-wr-figure");
                 }
             }
+            // Zug-Timer + Auto-Weiter (nur Host steuert)
+            if (isTVHost) {
+                if (data.roundOver) {
+                    scheduleTVWrAutoAdvance();
+                } else {
+                    startTVWrTurnTimer(data);
+                }
+            }
+        }
+
+        let tvWrTurnTimerId = null;
+        let tvWrAutoAdvanceId = null;
+
+        function clearTVWrTimers() {
+            if (tvWrTurnTimerId) { clearInterval(tvWrTurnTimerId); tvWrTurnTimerId = null; }
+            if (tvWrAutoAdvanceId) { clearInterval(tvWrAutoAdvanceId); tvWrAutoAdvanceId = null; }
+        }
+
+        function startTVWrTurnTimer(data) {
+            clearTVWrTimers();
+            const el = document.getElementById("tv-wr-turn-timer");
+            let left = 25;
+            if (el) el.textContent = "⏱ Zug: " + left + "s";
+            tvWrTurnTimerId = setInterval(function () {
+                left--;
+                if (el) el.textContent = left > 0 ? ("⏱ Zug: " + left + "s") : "⏱ Zeit um – nächster Spieler…";
+                if (left <= 0) {
+                    clearInterval(tvWrTurnTimerId);
+                    tvWrTurnTimerId = null;
+                    if (isTVHost && typeof skipTVWortratenTurn === "function") skipTVWortratenTurn();
+                }
+            }, 1000);
+        }
+
+        function scheduleTVWrAutoAdvance() {
+            clearTVWrTimers();
+            const el = document.getElementById("tv-wr-turn-timer");
+            let left = 6;
+            if (el) el.textContent = "Nächste Runde in " + left + "s…";
+            tvWrAutoAdvanceId = setInterval(function () {
+                left--;
+                if (el) el.textContent = left > 0 ? ("Nächste Runde in " + left + "s…") : "Weiter…";
+                if (left <= 0) {
+                    clearInterval(tvWrAutoAdvanceId);
+                    tvWrAutoAdvanceId = null;
+                    if (isTVHost) advanceTVWortraten();
+                }
+            }, 1000);
         }
 
         async function advanceTVWortraten() {
@@ -1528,15 +1601,23 @@
                 ? wrNormalizeWordGuess(raw)
                 : String(raw || "").trim().toUpperCase().replace(/\s+/g, "");
             if (!guess) return;
+            const key = activePlayerKey;
+            if (!key) return;
             try {
+                // Tipp für alle sichtbar machen
+                await tvGameRef.update({
+                    lastSolveAttempt: {
+                        by: key,
+                        name: (currentPlayer && currentPlayer.name) || "Spieler",
+                        text: guess,
+                        ts: Date.now()
+                    }
+                }).catch(function () {});
                 await db.runTransaction(async (txn) => {
                     const snap = await txn.get(tvGameRef);
                     if (!snap.exists) return;
                     const data = snap.data();
                     if (data.status !== "playing" || data.mode !== "wortraten" || data.roundOver) return;
-                    const order = data.order || [];
-                    const key = order.length ? order[(data.turnIndex || 0) % order.length] : null;
-                    if (key !== activePlayerKey) return;
                     const word = data.word || "";
                     const target = (typeof wrNormalizeWordGuess === "function")
                         ? wrNormalizeWordGuess(word)
@@ -1544,6 +1625,7 @@
                     const players = Object.assign({}, data.players || {});
                     if (!players[key]) return;
                     const guessedSet = new Set(data.guessed || []);
+                    // Jeder darf jederzeit lösen (nicht nur am Zug)
                     if (guess === target) {
                         const points = (typeof wrPointsForFullSolve === "function")
                             ? wrPointsForFullSolve(word, guessedSet) : 15;
@@ -1555,13 +1637,16 @@
                             guessed: word.split(""),
                             players,
                             roundOver: true,
-                            roundSolved: true
+                            roundSolved: true,
+                            roundSolvedBy: key,
+                            roundSolvedByName: (players[key] && players[key].name) || ""
                         });
                     } else {
                         let wrongCount = (data.wrongCount || 0) + 1;
                         let roundOver = false, roundSolved = false;
                         const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
                         if (wrongCount >= maxW) { roundOver = true; roundSolved = false; }
+                        const order = data.order || [];
                         const update = { wrongCount, players, roundOver, roundSolved };
                         if (!roundOver && order.length) {
                             update.turnIndex = ((data.turnIndex || 0) + 1) % order.length;
@@ -1717,8 +1802,13 @@
                     </div>`);
 
             for (const key of Object.keys(playersData)) {
+                const _cfgMin = (typeof SCRABBLE_DIFFICULTIES !== "undefined" && SCRABBLE_DIFFICULTIES[data.difficulty])
+                    ? (SCRABBLE_DIFFICULTIES[data.difficulty].minWord || 3) : 3;
+                // TV: etwas großzügiger – Kinder min. 2 Buchstaben
+                const _minW = (data.wordMode === "kids" || data.difficulty === "leicht")
+                    ? 2 : Math.max(2, _cfgMin - (data.difficulty === "mittel" ? 1 : 0));
                 const res = await evaluateScrabbleWord(playersData[key].word, letters, {
-                    minWord: (SCRABBLE_DIFFICULTIES[data.difficulty] || {}).minWord,
+                    minWord: _minW < 2 ? 2 : _minW,
                     required: currentRequired,
                     used: tvUsedWords,
                     addToUsed: false
@@ -1977,7 +2067,7 @@
                                         const name = (turnKey && data.players[turnKey]) ? data.players[turnKey].name : "…";
                                         return `<p class="text-center text-gray-400 font-bold mb-2">⏳ ${esc(name)} ist dran…</p>`;
                                     })();
-                                const solveBtn = isMyTurn
+                                const solveBtn = !data.roundOver
                                     ? `<button type="button" onclick="promptTVWrSolveWord()" class="btn-primary text-xs w-full py-2 mt-2" style="background:var(--gradient-cool);">💡 Ich kenne das Wort!</button>`
                                     : "";
                                 body = `${banner}<div class="grid grid-cols-7 gap-1.5">${kb}</div>${solveBtn}`;
@@ -2174,6 +2264,7 @@
 
         async function leaveTVGame(force) {
             if (typeof setTVMirrorDisplay === "function") setTVMirrorDisplay(false);
+            if (typeof clearTVWrTimers === "function") clearTVWrTimers();
 
             if (tvGameRef && typeof confirmLeaveGame === "function") {
                 const ok = await confirmLeaveGame({

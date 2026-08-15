@@ -602,6 +602,8 @@
                     savePlayerProgress();
                     liveDuelRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true }).catch(() => { });
                 }
+                clearLiveDuelTimers();
+                stopLiveDuelActionMode();
                 renderLiveDuelFinalResult(data);
                 switchView('live-duel-result');
             }
@@ -1026,7 +1028,7 @@
                     wrLiveAutoAdvanceTimer = setTimeout(() => {
                         wrLiveAutoAdvanceTimer = null;
                         wrLiveAdvanceRound();
-                    }, 8000);
+                    }, 14000);
                 }
             }
         }
@@ -1168,7 +1170,7 @@
                 wrLiveAutoAdvanceTimer = setTimeout(() => {
                     wrLiveAutoAdvanceTimer = null;
                     wrLiveAdvanceRound();
-                }, 5000);
+                }, 10000);
             } else {
                 if (typeof SFX !== "undefined") SFX.wrong();
                 showToast("Leider falsch!", "error");
@@ -1177,7 +1179,7 @@
                     wrLiveAutoAdvanceTimer = setTimeout(() => {
                         wrLiveAutoAdvanceTimer = null;
                         wrLiveAdvanceRound();
-                    }, 5000);
+                    }, 10000);
                 }
             }
         }

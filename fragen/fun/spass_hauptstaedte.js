@@ -128,13 +128,30 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "answers": [
             "Göteborg",
             "Malmö",
-            "Uppsala",
+            "Norrköping",
             "Stockholm"
         ],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,
         "explanation": "Die Hauptstadt von Schweden ist Stockholm!"
+    },
+  {
+        "id": "q_europa_009",
+        "category": "spass_hauptstaedte_europa",
+        "area": "spass",
+        "subject": "hauptstaedte",
+        "question": "Was ist die Hauptstadt von Norwegen?",
+        "answers": [
+            "Oslo",
+            "Bergen",
+            "Trondheim",
+            "Stavanger"
+        ],
+        "correct": 0,
+        "difficulty": "leicht",
+        "points": 10,
+        "explanation": "Die Hauptstadt von Norwegen ist Oslo!"
     },
   {
         "id": "q_europa_010",
@@ -146,7 +163,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
             "Aarhus",
             "Kopenhagen",
             "Odense",
-            "Aalborg"
+            "Frederiksberg"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -161,7 +178,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "question": "Was ist die Hauptstadt von Finnland?",
         "answers": [
             "Tampere",
-            "Turku",
+            "Jyväskylä",
             "Helsinki",
             "Espoo"
         ],
@@ -213,7 +230,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "answers": [
             "Porto",
             "Lissabon",
-            "Faro",
+            "Guimarães",
             "Coimbra"
         ],
         "correct": 1,
@@ -246,7 +263,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "question": "Was ist die Hauptstadt von Polen?",
         "answers": [
             "Krakau",
-            "Danzig",
+            "Kattowitz",
             "Breslau",
             "Warschau"
         ],
@@ -401,7 +418,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
             "Ljubljana",
             "Maribor",
             "Celje",
-            "Kranj"
+            "Novo Mesto"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -418,7 +435,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
             "Košice",
             "Bratislava",
             "Prešov",
-            "Žilina"
+            "Banská Bystrica"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -469,7 +486,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
             "Tallinn",
             "Tartu",
             "Narva",
-            "Pärnu"
+            "Viljandi"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -501,7 +518,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "question": "Was ist die Hauptstadt von den USA?",
         "answers": [
             "New York",
-            "Los Angeles",
+            "Philadelphia, PA",
             "Washington, D.C.",
             "Chicago"
         ],
@@ -554,7 +571,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
             "Córdoba",
             "Buenos Aires",
             "Rosario",
-            "Mendoza"
+            "Mar del Plata"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -671,7 +688,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "question": "Was ist die Hauptstadt von Mexiko?",
         "answers": [
             "Mexiko-Stadt",
-            "Cancún",
+            "Ciudad Juárez",
             "Guadalajara",
             "Monterrey"
         ],
@@ -775,7 +792,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
             "Valparaíso",
             "Concepción",
             "Santiago de Chile",
-            "Antofagasta"
+            "San Pedro de Atacama"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -894,7 +911,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
             "Tel Aviv",
             "Jerusalem",
             "Haifa",
-            "Eilat"
+            "Beer Sheva"
         ],
         "correct": 1,
         "difficulty": "mittel",

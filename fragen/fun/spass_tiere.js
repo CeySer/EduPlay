@@ -144,9 +144,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Welches Säugetier kann als einzige Art aktiv fliegen (nicht nur gleiten)?",
         "answers": [
             "Fledermaus / Flughund",
-            "Flughörnchen",
-            "Gleitbeutler",
-            "Kugelfisch"
+            "Riesengleithörnchen",
+            "Kurzkopf-Gleitbeutler",
+            "Gleitmakak (Colugo)"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -160,10 +160,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welche Farbe hat die Zunge der Giraffe überwiegend?",
         "answers": [
-            "Hellrosa",
+            "Kräftiges Dunkelorange",
             "Dunkelblau bis Schwarz",
-            "Grasgrün",
-            "Reinweiß"
+            "Sattes Purpurviolett",
+            "Helles Graubeige"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -177,10 +177,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welcher Vogel gilt als der größte lebende Vogel der Welt?",
         "answers": [
-            "Kondor",
-            "Kassowar",
+            "Kaiserpinguin (Vogel)",
+            "Trompeterschwan (Vogel)",
             "Afrikanischer Strauß",
-            "Emus"
+            "Andenkondor (Greifvogel)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -194,9 +194,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welcher Raubfisch besitzt mehrere Zahnreihen, die zeitlebens wie auf einem Förderband nachwachsen?",
         "answers": [
-            "Barrakuda",
-            "Piranha",
-            "Muräne",
+            "Barrakuda (Raubfisch-Art)",
+            "Piranha (Süßwasser)",
+            "Muräne (Aalfisch)",
             "Hai (z. B. Weißer Hai)"
         ],
         "correct": 3,
@@ -212,9 +212,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Was für eine Tierart ist der Orca (Schwertwal) botanisch/zoologisch betrachtet?",
         "answers": [
             "Die größte Delphinart",
-            "Ein Bartenwal",
-            "Ein Basking-Hai",
-            "Eine Seekuh-Art"
+            "Eine Art Bartenwal",
+            "Ein riesiger Basking-Hai",
+            "Eine seltene Seekuh-Art"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -228,10 +228,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Tier schläft von allen Säugetieren pro Tag am längsten (bis zu 22 Stunden)?",
         "answers": [
-            "Katze",
+            "Schläfrige Hauskatze",
             "Faultier / Koala",
-            "Löwe",
-            "Igel"
+            "Junger Löwe",
+            "Winterschlaf-Igel"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -245,10 +245,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Reptil ist bekannt für seine Fähigkeit, die Hautfarbe zur Kommunikation zu wechseln?",
         "answers": [
-            "Leguan",
-            "Gecko",
+            "Grüner Leguan",
+            "Leopardgecko",
             "Chamäleon",
-            "Agame"
+            "Bartagame"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -313,10 +313,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Säugetier hat den stärksten Kieferschlag im Verhältnis zur Körpergröße?",
         "answers": [
-            "Bär",
-            "Grizzly",
+            "Sibirischer Tiger",
+            "Amerikanischer Grizzly",
             "Hyäne / Flusspferd",
-            "Wolf"
+            "Grauer Timberwolf"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -330,9 +330,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches dieser Tiere gehört zu den eierlegenden Säugetieren (Kloakentiere)?",
         "answers": [
-            "Känguru",
-            "Tasmanischer Teufel",
-            "Ameisenbär",
+            "Rotes Riesenkänguru",
+            "Tasmanischer Beutelteufel",
+            "Großer Ameisenbär",
             "Schnabeltier (Platypus)"
         ],
         "correct": 3,
@@ -484,9 +484,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Welcher Giftfrosch gilt als eines der giftigsten Tiere der Welt (Gift reicht für 10 Menschen)?",
         "answers": [
             "Schrecklicher Pfeilgiftfrosch",
-            "Ochsenfrosch",
-            "Feuersalamander",
-            "Aga-Kröte"
+            "Nordamerikanischer Ochsenfrosch",
+            "Gefleckter Feuersalamander",
+            "Giftige Aga-Kröte (Riesenkröte)"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -500,10 +500,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Höchstalter kann die Galapagos-Riesenschildkröte erreichen?",
         "answers": [
-            "Ca. 50 Jahre",
+            "Etwa 90 bis 100 Jahre",
             "Über 150 bis 170 Jahre",
-            "80 Jahre",
-            "Genau 300 Jahre"
+            "Rund 60 bis 70 Jahre",
+            "Genau 250 bis 300 Jahre"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -517,10 +517,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Wie nennt man das Gebiss/die Zähne des Elefanten, die weit aus dem Maul herausragen?",
         "answers": [
-            "Eckzähne",
-            "Reißzähne",
+            "Eckzähne (stark verlängerte Fangzähne)",
+            "Reißzähne (scharfe Fleischzähne)",
             "Stoßzähne (vergrößerte Schneidezähne)",
-            "Backenzähne"
+            "Backenzähne (breite Mahlzähne)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -552,9 +552,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Welches Tier ist der Wappen-Vogel der Vereinigten Staaten von Amerika?",
         "answers": [
             "Weißkopfseeadler",
-            "Steinadler",
+            "Steinadler-Art",
             "Wanderfalke",
-            "Kondor"
+            "Andenkondor (Vogel)"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -620,9 +620,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Welche Vogelart kann im Flug schlafen und monatelang ununterbrochen in der Luft bleiben?",
         "answers": [
             "Mauersegler",
-            "Schwalbe",
-            "Albatros",
-            "Storch"
+            "Rauchschwalbe",
+            "Wanderalbatros",
+            "Weißstorch"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -670,9 +670,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Tier hat den längsten Migrationsweg aller Säugetiere (über 10.000 km pro Jahr)?",
         "answers": [
-            "Rentier",
-            "Gnu",
-            "Eisbär",
+            "Rentierherde",
+            "Streifengnu",
+            "Eisbär-Männchen",
             "Buckelwal"
         ],
         "correct": 3,
@@ -704,10 +704,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welche Giftchlange ist bekannt für ihre Nackenhaube und das 'Brillensymbol'?",
         "answers": [
-            "Schwarze Mamba",
+            "Afrikanische Schwarze Mamba",
             "Kobra (Brillenschlange)",
-            "Klapperschlange",
-            "Kreuzotter"
+            "Amerikanische Klapperschlange",
+            "Europäische Kreuzotter"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -721,10 +721,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welche Meeresbewohner bilden kilometerlange Riffe wie das 'Great Barrier Reef'?",
         "answers": [
-            "Schwämme",
-            "Anemonen",
+            "Schwämme (Kalkschwämme-Arten)",
+            "Anemonen (echte Seeanemonen-Arten)",
             "Korallen (Steinkorallen-Polypen)",
-            "Seesterne"
+            "Seesterne (Stachelhäuter-Arten)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -772,10 +772,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welcher Vogel nutzt Steine als Werkzeuge, um Straußeneier zu knacken?",
         "answers": [
-            "Rabe",
+            "Kolkrabe (Vogel)",
             "Schmutzgeier",
-            "Krähe",
-            "Kormoran"
+            "Nebelkrähe",
+            "Kormoran-Art"
         ],
         "correct": 1,
         "difficulty": "schwer",
@@ -824,9 +824,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Welche Huftierart speichert Fett (nicht Wasser) in ihren Höckern?",
         "answers": [
             "Kamel / Dromedar",
-            "Lama",
-            "Alpaka",
-            "Bison"
+            "Wolliges Lama",
+            "Peruanisches Alpaka",
+            "Amerikanischer Bison"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -857,10 +857,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches ist das schwerste Landsäugetier der Erde?",
         "answers": [
-            "Breitmaulnashorn",
-            "Flusspferd",
+            "Breitmaulnashorn (Rhino)",
+            "Nilpferd (Flusspferd)",
             "Afrikanischer Elefant",
-            "Grizzlybär"
+            "Großer Grizzlybär"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -925,10 +925,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Aus wie vielen Gliedern besteht der Körper eines Insekts grundlegend?",
         "answers": [
-            "2 Abschnitte",
-            "4 Abschnitte",
+            "2 Abschnitte (Kopf und Rumpf)",
+            "4 Abschnitte (Kopf, Hals, Brust, Bauch)",
             "3 Abschnitte (Kopf, Brust, Hinterleib)",
-            "5 Abschnitte"
+            "5 Abschnitte (Kopf, Brust, Bauch, Schwanz)"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -976,10 +976,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welche Spinne ist die größte Vogelspinnenart der Welt?",
         "answers": [
-            "Schwarze Witwe",
+            "Rote Schwarze Witwe",
             "Goliath-Vogelspinne",
-            "Tarantel",
-            "Kreuzspinne"
+            "Chilenische Tarantel",
+            "Europäische Kreuzspinne"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -993,10 +993,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Säugetier besitzt als einziges Schuppen aus Horn über dem gesamten Körper?",
         "answers": [
-            "Gürteltier",
-            "Ameisenbär",
+            "Neunbinden-Gürteltier",
+            "Großer Ameisenbär",
             "Schuppentier (Pangolin)",
-            "Schnabeltier"
+            "Australisches Schnabeltier"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1010,9 +1010,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Wie nennt man ein weibliches Rind, das noch kein Kalb geboren hat?",
         "answers": [
-            "Kuh",
-            "Ochse",
-            "Bulle",
+            "Milchkuh (Rind)",
+            "Kastrierter Ochse",
+            "Zuchtbulle",
             "Färse / Kalbin"
         ],
         "correct": 3,
@@ -1028,9 +1028,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Welches Tier gilt als der kleinste Vogel der Welt?",
         "answers": [
             "Bienenelfe (Hummelkolibri)",
-            "Zaunkönig",
-            "Sommergoldhähnchen",
-            "Kolibri"
+            "Zaunkönig (Kleinvogel)",
+            "Sommergoldhähnchen (Vogel)",
+            "Andenkolibri (Kolibriart)"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -1044,10 +1044,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Säugetier hat den längsten Schwanz im Verhältnis zum Körper?",
         "answers": [
-            "Gepard",
+            "Afrikanischer Gepard",
             "Känguru / Langschwanzmaki",
-            "Affe",
-            "Frettchen"
+            "Brüllaffe (Neuweltaffen-Art)",
+            "Zahmes Frettchen (Iltis)"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1078,9 +1078,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Wie nennt man die Behausung einer Wildbiene oder Wespe aus Erdmaterial?",
         "answers": [
-            "Bienenstock",
-            "Klotzbeute",
-            "Wabe",
+            "Alter Bienenstock",
+            "Hölzerne Klotzbeute",
+            "Sechseckige Wabe",
             "Nest / Erdnest"
         ],
         "correct": 3,
@@ -1112,10 +1112,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welcher Süßwasserfisch hat keine Schuppen und fühlt sich glatt und schleimig an?",
         "answers": [
-            "Hecht",
+            "Junger Hecht",
             "Aal / Wels",
-            "Karpfen",
-            "Zander"
+            "Großer Karpfen",
+            "Zanderfisch"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1146,9 +1146,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Wie lautet die wissenschaftliche Bezeichnung für Wechselwarme Tiere (Reptilien, Amphibien)?",
         "answers": [
-            "Endotherm",
-            "Homeotherm",
-            "Isotherm",
+            "Endotherm (Warmblütig)",
+            "Homeotherm (Gleichwarmblütig)",
+            "Isotherm (Gleichmäßig)",
             "Ektotherm / Poikilotherm"
         ],
         "correct": 3,
@@ -1197,10 +1197,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Tier ist die kleinste Raubkatze Europas?",
         "answers": [
-            "Luchs",
-            "Mane-Wolf",
+            "Eurasischer Luchs",
+            "Südamerikanischer Wolf",
             "Wildkatze / Marder",
-            "Gepard"
+            "Afrikanischer Gepard"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1214,9 +1214,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welcher Vogel baut gigantische Lauben und verziert sie mit blauen Gegenständen, um Weibchen anzulocken?",
         "answers": [
-            "Paradiesvogel",
-            "Webervogel",
-            "Specht",
+            "Großer Paradiesvogel",
+            "Bunter Webervogel",
+            "Bunter Buntspecht",
             "Seidenlaubenvogel"
         ],
         "correct": 3,
@@ -1248,10 +1248,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Tier stoßt bei Bedrohung eine übelriechende Flüssigkeit aus seinen Analdrüsen ab?",
         "answers": [
-            "Dachs",
+            "Europäischer Dachs",
             "Skunk (Stinktier)",
-            "Marder",
-            "Waschbär"
+            "Nordischer Steinmarder",
+            "Waschbär (Kleinbär)"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1265,10 +1265,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Aus welchem Grund schlagen Männliche Gorillas auf ihre Brust?",
         "answers": [
-            "Zur Verdauung",
-            "Um Fliegen abzuwehren",
+            "Zur Unterstützung der Verdauungsfunktion",
+            "Um lästige Fliegen und Insekten dauerhaft abzuwehren",
             "Zur Demonstration von Kraft und Revieranspruch",
-            "Aus Freude über Futter"
+            "Aus reiner Freude über frisches Futter"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1316,10 +1316,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Wie nennt man die Jungtiere eines Bären?",
         "answers": [
-            "Kitten",
+            "Katzenjunge (Kitten)",
             "Bärenjunge / Bärenwelpen",
-            "Fohlen",
-            "Frischlinge"
+            "Pferdefohlen (junges Fohlen)",
+            "Wildschwein-Frischlinge"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1333,10 +1333,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Nagetier hat Zähne, die zeitlebens stetig weiterwachsen und abgenutzt werden müssen?",
         "answers": [
-            "Nur Hunde",
-            "Nur Katzen",
+            "Nur domestizierte Hunde und Katzen",
+            "Ausschließlich domestizierte Haus- und Wildkatzen",
             "Alle Nagetiere (z. B. Biber, Eichhörnchen)",
-            "Nur Raubtiere"
+            "Nur fleischfressende Raubtierarten"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1350,9 +1350,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Tiefseetier besitzt die größten Augen im gesamten Tierreich (bis zu Tellergröße)?",
         "answers": [
-            "Pottwal",
-            "Blauwal",
-            "Riesen-Oktopus",
+            "Sehr großer Pazifischer Pottwal",
+            "Antarktischer Blauwal",
+            "Pazifischer Riesen-Oktopus",
             "Riesenkalmar / Koloss-Kalmar"
         ],
         "correct": 3,
@@ -1368,9 +1368,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Welche Tiergruppe atmet in jungen Jahren über Kiemen und als erwachsenes Tier über Lungen und Haut?",
         "answers": [
             "Amphibien (Lurche)",
-            "Reptilien",
-            "Fische",
-            "Insekten"
+            "Reptilien (Kriechtiere)",
+            "Fische (Wassertiere)",
+            "Insekten (Gliedertiere)"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -1452,10 +1452,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welcher Vogel hat die größte Spannweite aller lebenden Vögel (bis zu 3,5 Meter)?",
         "answers": [
-            "Kondor",
+            "Andenkondor (Vogel)",
             "Wanderalbatros",
-            "Seeadler",
-            "Pelikan"
+            "Nordischer Seeadler",
+            "Großer Pelikan"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1469,10 +1469,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches afrikanische Säugetier tötet statistisch gesehen die meisten Menschen pro Jahr?",
         "answers": [
-            "Löwe",
-            "Leopard",
+            "Afrikanischer Löwe",
+            "Gefleckter Leopard",
             "Flusspferd (Nilpferd)",
-            "Krokodil"
+            "Nilkrokodil (großes Reptil)"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1486,9 +1486,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welche Tierart nutzt Werkzeuge wie Stöcke, um Termiten aus Baumhöhlen zu angeln?",
         "answers": [
-            "Panda",
-            "Koala",
-            "Gepard",
+            "Großer Panda",
+            "Beutel-Koala",
+            "Schneller Gepard",
             "Schimpanse"
         ],
         "correct": 3,
@@ -1504,9 +1504,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Was für eine Haut haben Haie, wenn man sie vom Schwanz zum Kopf hin anfasst?",
         "answers": [
             "Rauh wie Schmirgelpapier (Placoidschuppen)",
-            "Völlig glatt und weich",
-            "Schleimig wie bei Aalen",
-            "Schuppig wie bei Forellen"
+            "Völlig glatt und seidig wie glänzende Fischhaut",
+            "Schleimig und glitschig wie bei Aalen",
+            "Schuppig und hart wie bei Forellen"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -1520,10 +1520,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Krustentier wirft bei Gefahr seine Schere ab, die später nachwachsen kann?",
         "answers": [
-            "Garnele",
+            "Kleine Garnele",
             "Krabbe / Hummer",
-            "Seeigel",
-            "Seestern"
+            "Stachliger Seeigel",
+            "Fünfarmiger Seestern"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1588,10 +1588,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches heimische Insekt erzeugt Töne, indem es seine Hinterbeine an den Vorderflügeln reibt?",
         "answers": [
-            "Marienkäfer",
+            "Bunter Marienkäfer",
             "Feldheuschrecke / Grille",
-            "Biene",
-            "Libelle"
+            "Große Blaue Prachtlibelle",
+            "Große Blaue Libelle"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1622,9 +1622,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Tier ist das kleinste Säugetier der Welt (gemessen am Gewicht von ca. 2 Gramm)?",
         "answers": [
-            "Zwergmaus",
-            "Siebenschläfer",
-            "Maulwurf",
+            "Eurasische Zwergmaus (Nagetier)",
+            "Europäischer Siebenschläfer (Nagetier-Art)",
+            "Europäischer Maulwurf (Grabtier)",
             "Etrusker-Spitzmaus / Hummelfledermaus"
         ],
         "correct": 3,
@@ -1640,9 +1640,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Wie nennt man die Kolonie-Anführerin in einem Bienenstock?",
         "answers": [
             "Bienenkönigin / Weisel",
-            "Oberbiene",
-            "Drohne",
-            "Arbeiterin"
+            "Leitbiene des Volkes",
+            "Männliche Drohnenbiene",
+            "Fleißige Arbeiterin"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -1656,10 +1656,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welcher Bär lebt im tropischen Regenwald Südostasiens und hat einen hellen Fleck auf der Brust?",
         "answers": [
-            "Brillenbär",
+            "Südamerikanischer Brillenbär",
             "Malaienbär (Sonnenbär)",
-            "Panda",
-            "Grizzly"
+            "Großer Panda (Bambusbär)",
+            "Nordamerikanischer Grizzly"
         ],
         "correct": 1,
         "difficulty": "schwer",
@@ -1690,9 +1690,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welcher Raubvogel besitzt ein extrem scharfes Sehvermögen und jagt Mäuse aus großer Höhe?",
         "answers": [
-            "Taube",
-            "Spatz",
-            "Amsel",
+            "Stadttaube (Straßenvogel)",
+            "Kleiner Haussperling (Spatz)",
+            "Schwarze Amsel (Singvogel)",
             "Mäusebussard / Turmfalke"
         ],
         "correct": 3,
@@ -1758,9 +1758,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Aus welchem Grund rollen sich Gürteltiere bei Gefahr nicht immer zur Kugel?",
         "answers": [
-            "Gürteltiere haben keine Panzerung",
-            "Sie laufen lieber weg",
-            "Sie graben sich sofort ein",
+            "Gürteltiere besitzen generell nur eine sehr dünne Panzerung",
+            "Sie flüchten lieber schnell in ihren unterirdischen Bau",
+            "Sie graben sich bei Gefahr sofort tief in den Boden ein",
             "Nur das Drei-Binden-Gürteltier kann sich komplett einrollen"
         ],
         "correct": 3,
@@ -1776,9 +1776,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Welches Nagetier sammelt im Herbst Nüsse und vergräbt sie als Wintervorrat?",
         "answers": [
             "Eichhörnchen",
-            "Maus",
-            "Ratte",
-            "Maulwurf"
+            "Waldmaus (Nager)",
+            "Braune Wanderratte",
+            "Blinder Maulwurf"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -1809,10 +1809,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welcher Meeresfisch ist bekannt für seine Symbiose mit Seeanemonen?",
         "answers": [
-            "Doktorfisch",
-            "Kugelfisch",
+            "Blauer Doktorfisch (Riff)",
+            "Giftiger Kugelfisch (Fugu)",
             "Clownfisch (Anemonenfisch)",
-            "Papageifisch"
+            "Bunter Papageifisch (Riff)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1860,10 +1860,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Tier hat den längsten Winterschlaf (bis zu 7 Monate am Stück)?",
         "answers": [
-            "Igel",
+            "Europäischer Igel",
             "Siebenschläfer",
-            "Bär",
-            "Murmeltier"
+            "Brauner Braunbär",
+            "Alpen-Murmeltier"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1877,10 +1877,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welcher Säugetier-Gehirnaufbau ist dem des Menschen von allen Tieren am ähnlichsten?",
         "answers": [
-            "Hund",
-            "Elefant",
+            "Treuer Haushund",
+            "Afrikanischer Elefant",
             "Schimpanse / Delphin",
-            "Pferd"
+            "Edles Reitpferd"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1928,10 +1928,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Wie nennt man die Schutzhülle, die eine Raupe vor dem Schlüpfen des Schmetterlings spinnt?",
         "answers": [
-            "Panzer",
+            "Harter Panzer",
             "Kokon / Puppe",
-            "Gehäuse",
-            "Larve"
+            "Schützendes Gehäuse",
+            "Junge Raupenlarve"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1945,10 +1945,10 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welcher Vogel nutzt Erschütterungen im Boden, um Regenwürmer anzulocken?",
         "answers": [
-            "Specht",
-            "Eule",
+            "Bunter Buntspecht",
+            "Nächtliche Waldohreule",
             "Amsel / Silbermöwe",
-            "Schwalbe"
+            "Schnelle Rauchschwalbe"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1962,9 +1962,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Säugetier bildet riesige Unterwasser-Labyrinthgänge im Schlamm von Teichen?",
         "answers": [
-            "Fischotter",
-            "Nutria",
-            "Wassermaus",
+            "Europäischer Fischotter",
+            "Südamerikanische Nutria",
+            "Kleine Wassermaus",
             "Bisamratte / Biber"
         ],
         "correct": 3,
@@ -1980,9 +1980,9 @@ const SPASS_TIERE_QUESTIONS = [
         "question": "Welcher Wal ist bekannt für seine komplexen Gesänge unter Wasser?",
         "answers": [
             "Buckelwal",
-            "Pottwal",
-            "Blauwal",
-            "Finnwal"
+            "Großer Pottwal",
+            "Großer Blauwal",
+            "Großer Finnwal"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -2030,9 +2030,9 @@ const SPASS_TIERE_QUESTIONS = [
         "subject": "tiere",
         "question": "Welches Raubtier hat ein geflecktes Fell, das als Tarnung im Licht- und Schattenspiel des Dschungels dient?",
         "answers": [
-            "Löwe",
-            "Gepard",
-            "Puma",
+            "Afrikanischer Löwe",
+            "Schneller Gepard",
+            "Amerikanischer Puma",
             "Leopard / Jaguar"
         ],
         "correct": 3,
@@ -2040,976 +2040,28 @@ const SPASS_TIERE_QUESTIONS = [
         "points": 10,
         "explanation": "🐆 Die Fleckenmuster (Rosetten) bieten hervorragende Tarnung auf Bäumen."
     },
-  { id: "q1412", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier kann seine Augen unabhängig voneinander bewegen?", answers: ["Hund", "Frosch", "Chamäleon", "Katze"], correct: 2, difficulty: "mittel", points: 10, explanation: "So kann es gleichzeitig in zwei Richtungen schauen." },
+  { id: "q1412", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier kann seine Augen unabhängig voneinander bewegen?", answers: ["Treuer Hund", "Grüner Frosch", "Chamäleon", "Getigerte Katze"], correct: 2, difficulty: "mittel", points: 10, explanation: "So kann es gleichzeitig in zwei Richtungen schauen." },
   { id: "q1413", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie lange ist ein Blauwal ungefähr maximal?", answers: ["Etwa 60 Meter", "Etwa 10 Meter", "Etwa 100 Meter", "Etwa 30 Meter"], correct: 3, difficulty: "mittel", points: 10, explanation: "Der Blauwal ist das größte Tier, das je auf der Erde gelebt hat." },
-  { id: "q1414", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier hat den stärksten Biss?", answers: ["Löwe", "Wolf", "Bär", "Krokodil"], correct: 3, difficulty: "mittel", points: 10, explanation: "Das Salzwasserkrokodil erreicht die höchste gemessene Beißkraft." },
+  { id: "q1414", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier hat den stärksten Biss?", answers: ["Afrikalöwe", "Grauer Wolf", "Braunbär", "Krokodil"], correct: 3, difficulty: "mittel", points: 10, explanation: "Das Salzwasserkrokodil erreicht die höchste gemessene Beißkraft." },
   { id: "q1415", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie nennt man ein Baby-Känguru?", answers: ["Ferkel", "Joey", "Welpe", "Kalb"], correct: 1, difficulty: "mittel", points: 10, explanation: "Ein Joey ist bei der Geburt nur etwa 2 cm groß." },
   { id: "q1416", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier schläft im Stehen?", answers: ["Katze", "Hund", "Pferd", "Hamster"], correct: 2, difficulty: "mittel", points: 10, explanation: "Pferde können dank eines Sperrmechanismus im Bein im Stehen dösen." },
   { id: "q1417", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie viele Beine hat ein Tausendfüßler tatsächlich meistens?", answers: ["Deutlich weniger als tausend", "Genau hundert in der Praxis", "Ziemlich genau eintausend", "Deutlich mehr als fünftausend"], correct: 0, difficulty: "mittel", points: 10, explanation: "Die meisten Arten haben zwischen 30 und 400 Beine." },
-  { id: "q1418", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welcher Vogel kann rückwärts fliegen?", answers: ["Spatz", "Taube", "Adler", "Kolibri"], correct: 3, difficulty: "mittel", points: 10, explanation: "Kolibris schlagen bis zu 80-mal pro Sekunde mit den Flügeln." },
+  { id: "q1418", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welcher Vogel kann rückwärts fliegen?", answers: ["Haussperling", "Stadttaube", "Steinadler", "Kolibri"], correct: 3, difficulty: "mittel", points: 10, explanation: "Kolibris schlagen bis zu 80-mal pro Sekunde mit den Flügeln." },
   { id: "q1419", category: "spass_tiere", area: "spass", subject: "tiere", question: "Was fressen Pandas fast ausschließlich?", answers: ["Fleisch", "Bambus", "Fisch", "Beeren"], correct: 1, difficulty: "mittel", points: 10, explanation: "Große Pandas fressen täglich bis zu 20 kg Bambus." },
   { id: "q1420", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier wechselt im Winter die Fellfarbe zu Weiß?", answers: ["Reh", "Schneehase", "Eichhörnchen", "Fuchs"], correct: 1, difficulty: "mittel", points: 10, explanation: "Auch Hermelin und Schneehuhn tarnen sich so im Schnee." },
   { id: "q1421", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie verständigen sich Bienen über Futterquellen?", answers: ["Mit einem Schwänzeltanz im Stock", "Mit unterschiedlich hohem Summen", "Mit farbigen Markierungen am Eingang", "Mit lautem Brummen im Chor"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Tanz verrät Richtung und Entfernung zur Blüte." },
-  { id: "q1422", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches ist das schnellste Tier der Welt (im Sturzflug)?", answers: ["Segelfisch", "Adler", "Wanderfalke", "Gepard"], correct: 2, difficulty: "mittel", points: 10, explanation: "Im Sturzflug erreicht der Wanderfalke über 300 km/h." },
+  { id: "q1422", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches ist das schnellste Tier der Welt (im Sturzflug)?", answers: ["Segelfisch-Art", "Steinadler-Art", "Wanderfalke", "Schneller Gepard"], correct: 2, difficulty: "mittel", points: 10, explanation: "Im Sturzflug erreicht der Wanderfalke über 300 km/h." },
   { id: "q1423", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie viele Zähne hat ein erwachsener Hund ungefähr?", answers: ["60", "20", "42", "78"], correct: 2, difficulty: "mittel", points: 10, explanation: "Hunde haben 42 bleibende Zähne, Katzen nur 30." },
   { id: "q1140", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie viele Beine hat eine Spinne im Durchschnitt?", answers: ["8", "6", "10", "12"], correct: 0, difficulty: "mittel", points: 10, explanation: "Spinnen haben acht Beine, Insekten nur sechs." },
   { id: "q1141", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier ist das lauteste der Welt?", answers: ["Elefant", "Löwe", "Pottwal", "Blaudrossel"], correct: 2, difficulty: "mittel", points: 10, explanation: "Pottwale erzeugen Laute bis zu 230 Dezibel – das sind die lautesten Tiere." },
-  { id: "q1142", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welcher Vogel ist der schnellste im Geradeausflug?", answers: ["Adler", "Wanderfalke", "Turmfalke", "Kolibri"], correct: 1, difficulty: "mittel", points: 10, explanation: "Der Wanderfalke erreicht im Sturzflug über 300 km/h – im Geradeausflug ist es der Mauersegler." },
+  { id: "q1142", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welcher Vogel ist der schnellste im Geradeausflug?", answers: ["Steinadler-Art", "Wanderfalke", "Kleiner Turmfalke", "Bunter Kolibri"], correct: 1, difficulty: "mittel", points: 10, explanation: "Der Wanderfalke erreicht im Sturzflug über 300 km/h – im Geradeausflug ist es der Mauersegler." },
   { id: "q1143", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie viele Zähne hat eine Schlange?", answers: ["100", "20", "0", "50"], correct: 2, difficulty: "mittel", points: 10, explanation: "Schlangen haben keine Zähne, sondern Kieferknochen mit Widerhaken." },
   { id: "q1144", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier ist das kleinste der Welt?", answers: ["Fledermaus", "Bienenelfe", "Wühlmaus", "Kolibri"], correct: 1, difficulty: "mittel", points: 10, explanation: "Die Bienenelfe ist mit 5 cm und 2 g der kleinste Vogel." },
   { id: "q1145", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier schläft am längsten?", answers: ["Löwe", "Elefant", "Hund", "Koala"], correct: 3, difficulty: "mittel", points: 10, explanation: "Koalas schlafen bis zu 20 Stunden am Tag – das ist Weltrekord." },
   { id: "q1146", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie viele Herzen hat ein Regenwurm?", answers: ["10", "5", "0", "7"], correct: 2, difficulty: "mittel", points: 10, explanation: "Regenwürmer haben kein Herz, sondern mehrere blutpulsierende Gefäße." },
   { id: "q1147", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier kann seinen Magen ausstülpen?", answers: ["Tintenfisch", "Schnecke", "Seestern", "Qualle"], correct: 2, difficulty: "mittel", points: 10, explanation: "Seesterne können ihren Magen ausstülpen, um Beute zu verdauen." },
   { id: "q1148", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier lebt am längsten?", answers: ["Elefant", "Mensch", "Schildkröte", "Grönlandhai"], correct: 3, difficulty: "mittel", points: 10, explanation: "Der Grönlandhai wird über 400 Jahre alt – das älteste Wirbeltier." },
-  { id: "q1149", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welcher Vogel kann nicht fliegen, aber schwimmen?", answers: ["Kiwi", "Flughuhn", "Pinguin", "Strauß"], correct: 2, difficulty: "mittel", points: 10, explanation: "Pinguine sind hervorragende Schwimmer, aber flugunfähige Vögel." },
-  {
-    id: "tier_ext_001",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier miaut?",
-    answers: ["Katze", "Hund", "Kuh", "Pferd"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Katze."
-  },
-  {
-    id: "tier_ext_002",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier bellt?",
-    answers: ["Hund", "Katze", "Maus", "Ente"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Hund."
-  },
-  {
-    id: "tier_ext_003",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat einen Rüssel?",
-    answers: ["Elefant", "Giraffe", "Zebra", "Löwe"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Elefant."
-  },
-  {
-    id: "tier_ext_004",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat einen langen Hals?",
-    answers: ["Giraffe", "Elefant", "Nilpferd", "Nashorn"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Giraffe."
-  },
-  {
-    id: "tier_ext_005",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist schwarz-weiß gestreift?",
-    answers: ["Zebra", "Tiger", "Leopard", "Gepard"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Zebra."
-  },
-  {
-    id: "tier_ext_006",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier macht 'Muh'?",
-    answers: ["Kuh", "Schaf", "Ziege", "Pferd"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kuh."
-  },
-  {
-    id: "tier_ext_007",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier legt Eier und kann fliegen?",
-    answers: ["Vogel", "Fisch", "Hund", "Katze"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Vogel."
-  },
-  {
-    id: "tier_ext_008",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier schwimmt und hat Flossen?",
-    answers: ["Fisch", "Vogel", "Hund", "Katze"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Fisch."
-  },
-  {
-    id: "tier_ext_009",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat acht Beine?",
-    answers: ["Spinne", "Insekt", "Hund", "Vogel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Spinne."
-  },
-  {
-    id: "tier_ext_010",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier summt und macht Honig?",
-    answers: ["Biene", "Fliege", "Mücke", "Wespe"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Biene."
-  },
-  {
-    id: "tier_ext_011",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist der König der Tiere oft genannt?",
-    answers: ["Löwe", "Tiger", "Bär", "Wolf"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Löwe."
-  },
-  {
-    id: "tier_ext_012",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hoppelt und hat lange Ohren?",
-    answers: ["Hase", "Maus", "Hund", "Katze"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Hase."
-  },
-  {
-    id: "tier_ext_013",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier trägt sein Haus auf dem Rücken?",
-    answers: ["Schnecke", "Schildkröte beides", "Hund", "Vogel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schnecke/Schildkröte."
-  },
-  {
-    id: "tier_ext_014",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist rosa und rollt sich im Schlamm?",
-    answers: ["Schwein", "Kuh", "Schaf", "Ziege"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schwein."
-  },
-  {
-    id: "tier_ext_015",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier gibt Wolle?",
-    answers: ["Schaf", "Kuh", "Schwein", "Pferd"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schaf."
-  },
-  {
-    id: "tier_ext_016",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier wiehert?",
-    answers: ["Pferd", "Kuh", "Schaf", "Schwein"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Pferd."
-  },
-  {
-    id: "tier_ext_017",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist schwarz-weiß und frisst Bambus?",
-    answers: ["Panda", "Zebra", "Pinguin", "Skunk"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Panda."
-  },
-  {
-    id: "tier_ext_018",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier lebt in der Antarktis und watschelt?",
-    answers: ["Pinguin", "Eisbär", "Robbe", "Wal"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Pinguin."
-  },
-  {
-    id: "tier_ext_019",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist der größte Fisch im Meer oft genannt (Hai vs Wal)?",
-    answers: ["Wal ist Säugetier", "Hai ist Fisch", "beide Fische", "beide Säuger"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Wal = Säugetier, Hai = Fisch."
-  },
-  {
-    id: "tier_ext_020",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat schwarz-orange Streifen?",
-    answers: ["Tiger", "Löwe", "Leopard", "Gepard"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Tiger."
-  },
-  {
-    id: "tier_ext_021",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier kann am schnellsten laufen?",
-    answers: ["Gepard", "Löwe", "Pferd", "Hund"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gepard."
-  },
-  {
-    id: "tier_ext_022",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier klettert auf Bäume und isst Bananen (Klischee)?",
-    answers: ["Affe", "Hund", "Katze", "Kuh"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Affe."
-  },
-  {
-    id: "tier_ext_023",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat Stacheln und rollt sich ein?",
-    answers: ["Igel", "Hase", "Maus", "Fuchs"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Igel."
-  },
-  {
-    id: "tier_ext_024",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier bellt nicht, miaut nicht, sondern quakt?",
-    answers: ["Frosch", "Hund", "Katze", "Kuh"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Frosch."
-  },
-  {
-    id: "tier_ext_025",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier fliegt nachts und hat Echoortung?",
-    answers: ["Fledermaus", "Vogel", "Schmetterling", "Biene"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Fledermaus."
-  },
-  {
-    id: "tier_ext_026",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist das größte Landraubtier?",
-    answers: ["Eisbär", "Löwe", "Tiger", "Wolf"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Eisbär oft genannt."
-  },
-  {
-    id: "tier_ext_027",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat einen Beutel für das Baby?",
-    answers: ["Känguru", "Hund", "Katze", "Pferd"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Känguru."
-  },
-  {
-    id: "tier_ext_028",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier lebt in Kolonien und baut Ameisenhügel?",
-    answers: ["Ameise", "Biene", "Wespe", "Fliege"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Ameise."
-  },
-  {
-    id: "tier_ext_029",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat Tentakeln und lebt im Meer?",
-    answers: ["Oktopus", "Fisch", "Hai", "Wal"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Oktopus."
-  },
-  {
-    id: "tier_ext_030",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist bekannt für sein Lachen (Schrei)?",
-    answers: ["Hyäne", "Löwe", "Tiger", "Wolf"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Hyäne."
-  },
-  {
-    id: "tier_ext_031",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat ein Horn auf der Nase?",
-    answers: ["Nashorn", "Elefant", "Nilpferd", "Giraffe"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Nashorn."
-  },
-  {
-    id: "tier_ext_032",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist rosa und hat Flügel (Flamingo)?",
-    answers: ["Flamingo", "Pinguin", "Adler", "Spatz"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Flamingo."
-  },
-  {
-    id: "tier_ext_033",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier baut Dämme?",
-    answers: ["Biber", "Fuchs", "Hase", "Maus"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Biber."
-  },
-  {
-    id: "tier_ext_034",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist das größte Tier der Erde?",
-    answers: ["Blauwal", "Elefant", "Hai", "Giraffe"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Blauwal."
-  },
-  {
-    id: "tier_ext_035",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat schwarz-weiße Federn und watschelt?",
-    answers: ["Pinguin", "Ente", "Schwan", "Gans"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Pinguin."
-  },
-  {
-    id: "tier_ext_036",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier legt die größten Eier unter Vögeln?",
-    answers: ["Strauß", "Huhn", "Spatz", "Adler"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Strauß."
-  },
-  {
-    id: "tier_ext_037",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier kann rückwärts fliegen?",
-    answers: ["Kolibri", "Adler", "Spatz", "Pinguin"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kolibri."
-  },
-  {
-    id: "tier_ext_038",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat einen Panzer?",
-    answers: ["Schildkröte", "Hase", "Maus", "Fuchs"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schildkröte."
-  },
-  {
-    id: "tier_ext_039",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist giftig und hat Ringe (Korallenotter-Stil)?",
-    answers: ["Manche Schlangen", "Hase", "Hund", "Katze"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Manche Schlangen."
-  },
-  {
-    id: "tier_ext_040",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist das Haustier Nr.1 in vielen Ländernern?",
-    answers: ["Hund/Katze", "Elefant", "Löwe", "Hai"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Hund oder Katze."
-  },
-  {
-    id: "tier_ext_041",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier summt und sticht?",
-    answers: ["Wespe/Biene", "Schmetterling", "Marienkäfer", "Ameise selten"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Wespe oder Biene."
-  },
-  {
-    id: "tier_ext_042",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat schwarze Punkte auf gelbem Fell?",
-    answers: ["Leopard/Gepard", "Tiger", "Löwe", "Zebra"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Leopard oder Gepard."
-  },
-  {
-    id: "tier_ext_043",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier lebt in der Wüste und speichert Wasser?",
-    answers: ["Kamel", "Pinguin", "Eisbär", "Frosch"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kamel."
-  },
-  {
-    id: "tier_ext_044",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist ein Beutegreifer mit Maske im Gesicht?",
-    answers: ["Waschbär", "Fuchs", "Wolf", "Hund"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Waschbär."
-  },
-  {
-    id: "tier_ext_045",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier kann Farben wechseln?",
-    answers: ["Chamäleon", "Hund", "Katze", "Kuh"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Chamäleon."
-  },
-  {
-    id: "tier_ext_046",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat einen Rüssel und ist klein (nicht Elefant)?",
-    answers: ["Ameisenbär/Tapir", "Hund", "Katze", "Maus"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "z.B. Ameisenbär."
-  },
-  {
-    id: "tier_ext_047",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist bekannt für Milch und ist schwarz-weiß gefleckt?",
-    answers: ["Kuh", "Schaf", "Ziege", "Pferd"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kuh."
-  },
-  {
-    id: "tier_ext_048",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier fliegt und ist bunt (Tagfalter)?",
-    answers: ["Schmetterling", "Fledermaus", "Pinguin", "Huhn"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schmetterling."
-  },
-  {
-    id: "tier_ext_049",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier lebt im Meer und hat ein Gehäuse?",
-    answers: ["Muschel/Schnecke", "Hund", "Katze", "Vogel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Muschel."
-  },
-  {
-    id: "tier_ext_050",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist das schnellste im Wasser unter Fischen oft?",
-    answers: ["Segelfisch/Marlin", "Goldfisch", "Karpfen", "Aal"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schnelle Raubfische."
-  },
-  {
-    id: "tier_ext_051",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat Hörner und klettert in den Bergen?",
-    answers: ["Steinbock", "Kuh", "Schwein", "Hund"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Steinbock."
-  },
-  {
-    id: "tier_ext_052",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist rosa und lebt im Wasser (Fluss)?",
-    answers: ["Nilpferd", "Schwein", "Hund", "Katze"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Nilpferd."
-  },
-  {
-    id: "tier_ext_053",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier jagt in Rudeln?",
-    answers: ["Wolf", "Katze", "Hase", "Maus"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Wolf."
-  },
-  {
-    id: "tier_ext_054",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat einen langen Schwanz und klettert?",
-    answers: ["Affe/Eichhörnchen", "Kuh", "Schwein", "Schaf"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Affe oder Eichhörnchen."
-  },
-  {
-    id: "tier_ext_055",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist bekannt für seinen Stachel?",
-    answers: ["Igel/Stachelschwein", "Hase", "Maus", "Fuchs"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Igel oder Stachelschwein."
-  },
-  {
-    id: "tier_ext_056",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier legt Eier und ist kein Vogel (Schnabeltier)?",
-    answers: ["Schnabeltier", "Hund", "Katze", "Kuh"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schnabeltier."
-  },
-  {
-    id: "tier_ext_057",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist ein Insekt mit Punkten?",
-    answers: ["Marienkäfer", "Biene", "Ameise", "Fliege"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Marienkäfer."
-  },
-  {
-    id: "tier_ext_058",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier lebt in Australien und hoppelt?",
-    answers: ["Känguru", "Panda", "Pinguin", "Eisbär"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Känguru."
-  },
-  {
-    id: "tier_ext_059",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat Federn und kann nicht fliegen (Strauß)?",
-    answers: ["Strauß", "Adler", "Spatz", "Schwalbe"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Strauß."
-  },
-  {
-    id: "tier_ext_060",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist giftig und lebt in Australien (bekannt)?",
-    answers: ["Manche Spinnen/Schlangen", "Hase", "Hund", "Katze"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "z.B. giftige Spinnen."
-  },
-  {
-    id: "tier_ext_061",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat schwarze Flügel und ist ein Vogel des Glücks (Klischee)?",
-    answers: ["Rabe/Krähe unterschiedlich", "Spatz", "Huhn", "Ente"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kulturabhängig."
-  },
-  {
-    id: "tier_ext_062",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier schwimmt mit Flossen und ist intelligent?",
-    answers: ["Delfin", "Goldfisch", "Karpfen", "Aal"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Delfin."
-  },
-  {
-    id: "tier_ext_063",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat ein Geweih?",
-    answers: ["Hirsch", "Kuh", "Schwein", "Pferd"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Hirsch."
-  },
-  {
-    id: "tier_ext_064",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist klein und piept?",
-    answers: ["Maus", "Elefant", "Löwe", "Wal"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Maus."
-  },
-  {
-    id: "tier_ext_065",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist ein Raubvogel?",
-    answers: ["Adler", "Spatz", "Huhn", "Ente"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Adler."
-  },
-  {
-    id: "tier_ext_066",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier lebt im Bau unter der Erde?",
-    answers: ["Maulwurf/Kaninchen", "Adler", "Hai", "Wal"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Maulwurf oder Kaninchen."
-  },
-  {
-    id: "tier_ext_067",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat Schuppen und kriecht?",
-    answers: ["Schlange/Eidechse", "Hund", "Katze", "Vogel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Reptilien."
-  },
-  {
-    id: "tier_ext_068",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist bekannt für seinen Gesang am Morgen?",
-    answers: ["Hahn/Vogel", "Hund", "Katze", "Kuh"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Hahn oder Singvögel."
-  },
-  {
-    id: "tier_ext_069",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier trägt Streifen und lebt in Afrika?",
-    answers: ["Zebra", "Panda", "Pinguin", "Eisbär"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Zebra."
-  },
-  {
-    id: "tier_ext_070",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist ein großer Menschenaffe?",
-    answers: ["Gorilla", "Hund", "Katze", "Maus"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gorilla."
-  },
-  {
-    id: "tier_ext_071",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat einen Rüssel und ist grau?",
-    answers: ["Elefant", "Giraffe", "Zebra", "Löwe"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Elefant."
-  },
-  {
-    id: "tier_ext_072",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist das Haustier, das schnurrt?",
-    answers: ["Katze", "Hund", "Kuh", "Pferd"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Katze."
-  },
-  {
-    id: "tier_ext_073",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hilft dem Menschen als Blindenhund?",
-    answers: ["Hund", "Katze", "Maus", "Vogel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Hund."
-  },
-  {
-    id: "tier_ext_074",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier produziert Seide?",
-    answers: ["Seidenspinner", "Biene", "Ameise", "Fliege"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Seidenspinner."
-  },
-  {
-    id: "tier_ext_075",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist ein Beuteltier in Australien mit Punkten?",
-    answers: ["Quokka/Beutelmarder u.a.", "Hund", "Katze", "Kuh"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Viele Beuteltiere."
-  },
-  {
-    id: "tier_ext_076",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier hat Tentakel und leuchtet manchmal?",
-    answers: ["Quallen", "Hund", "Katze", "Vogel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Quallen."
-  },
-  {
-    id: "tier_ext_077",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist bekannt für seinen Stinkspray?",
-    answers: ["Stinktier", "Hund", "Katze", "Maus"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Stinktier."
-  },
-  {
-    id: "tier_ext_078",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier lebt in Gruppen und ist schwarz-weiß (Panda)?",
-    answers: ["Panda", "Zebra", "Pinguin", "Skunk"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Panda."
-  },
-  {
-    id: "tier_ext_079",
-    category: "spass_tiere",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Tier ist ein Insekt mit sechs Beinen?",
-    answers: ["Käfer/Ameise", "Spinne", "Hund", "Vogel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Insekten haben 6 Beine."
-  }
+  { id: "q1149", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welcher Vogel kann nicht fliegen, aber schwimmen?", answers: ["Kiwi", "Flughuhn", "Pinguin", "Strauß"], correct: 2, difficulty: "mittel", points: 10, explanation: "Pinguine sind hervorragende Schwimmer, aber flugunfähige Vögel." }
 ];
 
 if (typeof window !== "undefined") window.SPASS_TIERE_QUESTIONS = SPASS_TIERE_QUESTIONS;

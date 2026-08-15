@@ -24,10 +24,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches Tasteninstrument besitzt standardmäßig 88 schwarze und weiße Tasten?",
         "answers": [
-            "Akkordeon",
+            
+            "Kirchenorgel (Pfeifen)",
             "Klavier (Flügel)",
-            "Cembalo",
-            "Synthesizer"
+            "Cembalo (Barock)",
+            "Keyboard (E-Piano)"
+        
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -41,10 +43,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Wie heißt die Person, die ein großes Symphonieorchester mit dem Taktstock leitet?",
         "answers": [
-            "Konzertmeister",
-            "Kapitän",
+            
+            "Konzertmeister (Geige)",
+            "Kapitän (Mannschaft)",
             "Dirigent / Dirigentin",
             "Orchesterdirektor"
+        
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -92,10 +96,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches dieser Instrumente gehört eindeutig zur Familie der Schlaginstrumente?",
         "answers": [
-            "Klarinette",
+            
+            "Klarinette (Holzblas)",
             "Schlagzeug / Trommel",
-            "Querflöte",
-            "Cello"
+            "Querflöte (Holzblas)",
+            "Cello (Streicher)"
+        
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -109,10 +115,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welcher berühmte Komponist schrieb das weltbekannte Werk 'Eine kleine Nachtmusik'?",
         "answers": [
-            "Ludwig van Beethoven",
+            
+            "Ludwig van Beethoven (Bonn)",
             "Johann Sebastian Bach",
             "Wolfgang Amadeus Mozart",
-            "Franz Schubert"
+            "Franz Peter Schubert"
+        
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -126,10 +134,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Was versteht man in der Pop- und Rockmusik unter dem Begriff 'Refrain' (Chorus)?",
         "answers": [
-            "Das Instrumental-Solo am Ende",
-            "Der allererste Ton der Strophe",
-            "Die Sprechgesang-Einlage",
+            
+            "Das Instrumental-Solo ganz am Ende des Stücks",
+            "Der allererste einzelne Ton der ersten Strophe",
+            "Die kurze Sprechgesang-Einlage im Mittelteil",
             "Der sich wiederholende Hauptteil des Liedes"
+        
         ],
         "correct": 3,
         "difficulty": "leicht",
@@ -143,10 +153,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches dieser Instrumente wird traditionell mit einem Bogen aus Rosshaar gestrichen?",
         "answers": [
+            
             "Violine (Geige)",
-            "Harfe",
-            "Gitarre",
-            "Trompete"
+            "Harfe (gezupft)",
+            "Gitarre (Zupf)",
+            "Trompete (Blech)"
+        
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -160,10 +172,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Wofür steht die Abkürzung 'BPM' in der Musikproduktion und bei DJs?",
         "answers": [
-            "Bass Per Meter",
+            
+            "Bass Per Meter (falsche Einheit)",
             "Beats Per Minute (Schläge pro Minute)",
-            "Band Power Music",
-            "Bit Rate Performance"
+            "Band Power Music (erfundener Begriff)",
+            "Bit Rate Performance (Audioformat-Wert)"
+        
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -194,10 +208,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Aus welchem südamerikanischen Land stammt der leidenschaftliche Tanz und Musikstil Tango?",
         "answers": [
-            "Brasilien",
+            
+            "Brasilien (Samba)",
             "Kolumbien",
-            "Chile",
+            "Chile (Cueca)",
             "Argentinien"
+        
         ],
         "correct": 3,
         "difficulty": "mittel",
@@ -330,10 +346,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "In welcher US-amerikanischen Stadt entstand Anfang des 20. Jahrhunderts die Musikrichtung Jazz?",
         "answers": [
-            "New York",
-            "Chicago",
-            "Memphis",
+            
+            "New York City",
+            "Chicago Illinois",
+            "Memphis Tennessee",
             "New Orleans"
+        
         ],
         "correct": 3,
         "difficulty": "mittel",
@@ -398,10 +416,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches Holzblasinstrument wird aus Ebenholz gefertigt und hat eine Einfachrohrblatt-Mechanik?",
         "answers": [
+            
             "Querflöte",
-            "Oboe",
-            "Fagott",
+            "Oboe (Rohrblatt)",
+            "Fagott (Holz)",
             "Klarinette"
+        
         ],
         "correct": 3,
         "difficulty": "mittel",
@@ -687,10 +707,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welche Künstlerin veröffentlichte mit 'Eras Tour' die umsatzstärkste Konzerttournee der Geschichte?",
         "answers": [
+            
             "Taylor Swift",
-            "Beyoncé",
-            "Madonna",
-            "P!nk"
+            "Beyoncé Knowles",
+            "Madonna Ciccone",
+            "P!nk (Sängerin)"
+        
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -738,10 +760,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches Stück von Antonio Vivaldi gehört zu den bekanntesten Kompositionen des Barock?",
         "answers": [
-            "Kaiserquartett",
-            "Zauberflöte",
-            "Boléro",
+            
+            "Kaiserquartett (Haydn)",
+            "Zauberflöte (Oper)",
+            "Boléro (Maurice R.)",
             "Die vier Jahreszeiten"
+        
         ],
         "correct": 3,
         "difficulty": "leicht",
@@ -789,10 +813,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welcher Komponist schuf die berühmte Oper 'Die Zauberflöte'?",
         "answers": [
+            
             "Gioachino Rossini",
-            "Giuseppe Verdi",
+            "Giuseppe Fortunino Verdi",
             "Wolfgang Amadeus Mozart",
-            "Giacomo Puccini"
+            "Giacomo Antonio Puccini"
+        
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -823,10 +849,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Wie heißt das größte Tasten- und Blasinstrument, das oft in Kirchen steht?",
         "answers": [
+            
             "Pfeifenorgel",
-            "Harmonium",
-            "Cembalo",
-            "Akkordeon"
+            "Harmonium (Pumpe)",
+            "Cembalo (Kiele)",
+            "Akkordeon (Balg)"
+        
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -857,10 +885,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Aus welchem Land stammt das traditionelle Instrument Dudelsack (Highland Bagpipe)?",
         "answers": [
-            "Schweden",
-            "Irland",
+            
+            "Schweden (Nord)",
+            "Irland (Kelten)",
             "Schottland",
-            "Wales"
+            "Wales (Cymru)"
+        
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -976,10 +1006,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welcher Komponist schrieb die 'Mondscheinsonate' und verlor im Alter sein Gehör?",
         "answers": [
-            "Franz Liszt",
+            
+            "Franz Liszt (Ungarn)",
             "Ludwig van Beethoven",
-            "Frederic Chopin",
-            "Robert Schumann"
+            "Frederic Chopin (Polen)",
+            "Robert Schumann (De.)"
+        
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1027,10 +1059,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches Zupfinstrument hat die Form einer Birne und besitzt typischerweise 4 Doppelsaiten?",
         "answers": [
+            
             "Mandoline",
-            "Ukulele",
-            "Banjo",
-            "Zither"
+            "Ukulele (klein)",
+            "Banjo (US-Folk)",
+            "Zither (flach)"
+        
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -1044,10 +1078,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welche schwedische Band feierte in den 1990ern Welterfolge mit Hits wie 'The Sign' und 'All That She Wants'?",
         "answers": [
-            "Roxette",
+            
+            "Roxette (Pop)",
             "Ace of Base",
-            "A-ha",
-            "Cardigans"
+            "A-ha (Norwegen)",
+            "Cardigans (Band)"
+        
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1061,10 +1097,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Wer komponierte den berühmten 'Radetzky-Marsch'?",
         "answers": [
-            "Johann Strauss (Sohn)",
-            "Joseph Haydn",
+            
+            "Johann Strauss (Sohn, Wien)",
+            "Joseph Haydn (Wien)",
             "Johann Strauss (Vater)",
-            "Franz Lehar"
+            "Franz Lehar (Wien)"
+        
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1129,10 +1167,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches Blasinstrument verändert seine Tonhöhe durch das Ausziehen eines U-förmigen Zuges?",
         "answers": [
-            "Tuba",
-            "Trompete",
+            
+            "Tuba (sehr großes Blech)",
+            "Trompete (Ventile)",
             "Posaune (Zugposaune)",
-            "Korne"
+            "Kornett (Ventile)"
+        
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1214,10 +1254,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welche Hard-Rock-Legende sang im Song 'Paradise City' und 'Sweet Child O' Mine'?",
         "answers": [
-            "Aerosmith",
-            "Bon Jovi",
-            "Motley Crue",
+            
+            "Aerosmith (US)",
+            "Bon Jovi (US)",
+            "Motley Crue (US)",
             "Guns N' Roses"
+        
         ],
         "correct": 3,
         "difficulty": "leicht",
@@ -1231,10 +1273,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Wie heißt das russische dreisaitige Zupfinstrument mit einem dreieckigen Korpus?",
         "answers": [
+            
             "Balalaika",
-            "Sitar",
-            "Gusli",
-            "Domra"
+            "Sitar (Indien)",
+            "Gusli (Russl.)",
+            "Domra (Russl.)"
+        
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -1282,10 +1326,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Wie nennt man die Pause oder den Abstand zwischen zwei Strophen im Hip-Hop, wenn der Beat allein weiterläuft?",
         "answers": [
-            "Bridge",
-            "Drop",
-            "Fadeout",
+            
+            "Bridge (Übergang)",
+            "Drop (EDM-Effekt)",
+            "Fadeout (Ausblende)",
             "Break / Beatbreak"
+        
         ],
         "correct": 3,
         "difficulty": "mittel",
@@ -1333,10 +1379,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Was versteht man unter dem Begriff 'Akkord' in der Musiklehre?",
         "answers": [
-            "Das schnellste Spiel auf einer Trommel",
-            "Ein einzelner lang gezogener Ton",
+            
+            "Das allerschnellste Solo-Spiel auf einer großen Trommel",
+            "Ein einzelner, sehr lang gezogener Ton auf der ganzen Bühne",
             "Das Zusammenklingen von mindestens drei verschiedenen Tönen",
-            "Ein Rhythmuswechsel im Takt"
+            "Ein plötzlicher Rhythmuswechsel mitten im ganzen Takt"
+        
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1435,10 +1483,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches Zupfinstrument hat gewöhnlich 47 Saiten und 7 Pedale zur Tonhöhenverstellung?",
         "answers": [
+            
             "Konzertharfe",
-            "Zither",
-            "Cembalo",
-            "Gitarre"
+            "Zither (Alpenl.)",
+            "Cembalo (Tasten)",
+            "Gitarre (Saiten)"
+        
         ],
         "correct": 0,
         "difficulty": "schwer",
@@ -1503,10 +1553,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches Lied der US-Band Linkin Park gehört zu den meistgehörten Rock-Songs der 2000er?",
         "answers": [
+            
             "In the End",
-            "Numb",
-            "Crawling",
-            "Faint"
+            "Numb (Song)",
+            "Crawling (Song)",
+            "Faint (Song)"
+        
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -1520,10 +1572,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches Instrument verwendet ein Toningenieur, um Frequenzen im Klangbild anzuheben oder abzusenken?",
         "answers": [
-            "Kompressor",
+            
+            "Kompressor (Dyn.)",
             "Equalizer (EQ)",
-            "Reverb",
-            "Limiter"
+            "Reverb (Hall)",
+            "Limiter (Peak)"
+        
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1588,10 +1642,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches Blechblasinstrument ist bekannt für seinen kreisrund gewundenen Rohrverlauf und Trichter nach hinten?",
         "answers": [
-            "Euphonium",
+            
+            "Euphonium (tief)",
             "Waldhorn (Horn)",
-            "Tuba",
-            "Flügelhorn"
+            "Tuba (Blech)",
+            "Flügelhorn (Blech)"
+        
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1639,10 +1695,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welcher finnische Komponist schuf die berühmte Dichtung 'Finlandia'?",
         "answers": [
+            
             "Jean Sibelius",
-            "Edvard Grieg",
-            "Carl Nielsen",
-            "Arvo Pärt"
+            "Edvard Grieg (No.)",
+            "Carl Nielsen (Dk.)",
+            "Arvo Pärt (Estl.)"
+        
         ],
         "correct": 0,
         "difficulty": "schwer",
@@ -1656,10 +1714,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welche Heavy-Metal-Pioniere aus Birmingham veröffentlichten 1970 den Klassiker 'Paranoid'?",
         "answers": [
-            "Deep Purple",
+            
+            "Deep Purple (UK)",
             "Black Sabbath",
-            "Judas Priest",
-            "Motörhead"
+            "Judas Priest (UK)",
+            "Motörhead (UK)"
+        
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1690,10 +1750,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches weltberühmte Musical erzählt die Geschichte der Katzen von Grizabella und Rum Tum Tugger?",
         "answers": [
-            "König der Löwen",
-            "Starlight Express",
-            "Phantom der Oper",
+            
+            "König der Löwen (Musical)",
+            "Starlight Express (Bochum)",
+            "Phantom der Oper (Webber)",
             "Cats (Andrew Lloyd Webber)"
+        
         ],
         "correct": 3,
         "difficulty": "leicht",
@@ -1707,10 +1769,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Wie heißt der bekannte Notenschlüssel, der den Ton G auf der zweiten Notenlinie festlegt?",
         "answers": [
+            
             "Violinschlüssel",
-            "Bassschlüssel",
-            "Altschlüssel",
-            "Tenorschlüssel"
+            "Bassschlüssel (F)",
+            "Altschlüssel (C)",
+            "Tenorschlüssel (C)"
+        
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -1758,10 +1822,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welcher Hip-Hop-Künstler brachte 2015 das von Kritikern gefeierte Album 'To Pimp a Butterfly' heraus?",
         "answers": [
-            "J. Cole",
-            "Drake",
-            "Kanye West",
+            
+            "J. Cole (Rapper)",
+            "Drake (Rapper)",
+            "Kanye West (Rap)",
             "Kendrick Lamar"
+        
         ],
         "correct": 3,
         "difficulty": "mittel",
@@ -1792,10 +1858,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Aus welchem Land stammt das Holzblasinstrument Didgeridoo?",
         "answers": [
-            "Neuseeland",
+            
+            "Neuseeland (Maori-Insel)",
             "Australien (Aborigines)",
-            "Südafrika",
-            "Brasilien"
+            "Südafrika (Zulus)",
+            "Brasilien (Regenwald)"
+        
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1826,10 +1894,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Was versteht man unter dem Begriff 'Sampling' in der Musikproduktion?",
         "answers": [
-            "Das Stimmen aller Gitarrensaiten auf E",
-            "Das Testen von Mikrofonen vor dem Konzert",
-            "Das direkte Mischen von Live-Gesang",
+            
+            "Das ganz exakte, wiederholte Stimmen aller sechs Gitarrensaiten genau auf den Ton E",
+            "Das kurze, routinemäßige Testen sämtlicher Mikrofone gleich vor dem Konzert",
+            "Das direkte, völlig unbearbeitete Live-Mischen des Gesangs am Mischpult",
             "Das Verwenden eines Ausschnitts einer bestehenden Tonaufnahme in einem neuen Song"
+        
         ],
         "correct": 3,
         "difficulty": "mittel",
@@ -1877,10 +1947,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Wie nennt man den Notenschlüssel, der vor allem für tiefe Instrumente wie Cello, E-Bass und Tuba genutzt wird?",
         "answers": [
-            "Violinschlüssel",
-            "Altschlüssel",
+            
+            "Violinschlüssel (G-Schl.)",
+            "Altschlüssel (C auf Mittellinie)",
             "Bassschlüssel (F-Schlüssel)",
-            "Tenorschlüssel"
+            "Tenorschlüssel (C-4)"
+        
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1945,10 +2017,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welcher Komponist schuf den berühmten 'Schwanensee' und das Ballett 'Der Nussknacker'?",
         "answers": [
-            "Sergei Rachmaninow",
-            "Igor Strawinsky",
+            
+            "Sergei Wassiljewitsch Rachmaninow",
+            "Igor Strawinsky (Russl.)",
             "Pjotr Iljitsch Tschaikowski",
             "Dmitri Schostakowitsch"
+        
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1962,10 +2036,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welches Instrument wird beim Flamenco oft von Tänzerinnen in den Händen geklappert?",
         "answers": [
-            "Maracas",
-            "Schellenring",
-            "Bongos",
+            
+            "Maracas (Rasselei)",
+            "Bongos (Handtrommeln)",
+            "Schellenring (Rundtamb.)",
             "Kastanien (Kastagnetten)"
+        
         ],
         "correct": 3,
         "difficulty": "leicht",
@@ -1996,10 +2072,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Welche Musikrichtung kombiniert Elemente von Blues, Country und Gospel und entstand in den 1950ern?",
         "answers": [
-            "Heavy Metal",
+            
+            "Heavy Metal (Rock)",
             "Rock 'n' Roll",
-            "Reggae",
-            "Punkrock"
+            "Reggae (Jamaika)",
+            "Punkrock (Genre)"
+        
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -2030,10 +2108,12 @@ const SPASS_MUSIK_QUESTIONS = [
         "subject": "musik",
         "question": "Was bezeichnet der Begriff 'Pitch' in der Audiotechnik?",
         "answers": [
-            "Die Lautstärke im Raum",
-            "Die Länge der Stille",
-            "Den Raumhall-Effekt",
+            
+            "Die Lautstärke des Signals im Raum",
+            "Die Länge der Stille zwischen Tönen",
+            "Den künstlichen Raumhall-Effekt",
             "Die Tonhöhe des Audiosignals"
+        
         ],
         "correct": 3,
         "difficulty": "mittel",
@@ -2046,12 +2126,12 @@ const SPASS_MUSIK_QUESTIONS = [
   { id: "q1377", category: "spass_musik", area: "spass", subject: "musik", question: "Aus welchem Land stammt die Musikrichtung Reggae?", answers: ["Irland", "Kuba", "Jamaika", "Brasilien"], correct: 2, difficulty: "mittel", points: 10, explanation: "Reggae entstand in den 1960er-Jahren in Jamaika." },
   { id: "q1378", category: "spass_musik", area: "spass", subject: "musik", question: "Wie viele Töne hat eine Tonleiter von C bis zum nächsten C?", answers: ["8", "12", "15", "5"], correct: 0, difficulty: "mittel", points: 10, explanation: "C-D-E-F-G-A-H-C – acht Töne, daher der Name Oktave." },
   { id: "q1379", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Instrument gehört zu den Schlaginstrumenten?", answers: ["Flöte", "Klarinette", "Trommel", "Cello"], correct: 2, difficulty: "mittel", points: 10, explanation: "Bei Schlaginstrumenten entsteht der Ton durch Schlagen oder Schütteln." },
-  { id: "q1380", category: "spass_musik", area: "spass", subject: "musik", question: "Wer komponierte die 'Kleine Nachtmusik'?", answers: ["Johann Sebastian Bach", "Ludwig van Beethoven", "Franz Schubert", "Wolfgang Amadeus Mozart"], correct: 3, difficulty: "mittel", points: 10, explanation: "Mozart schrieb sie 1787 – eines der bekanntesten klassischen Stücke." },
+  { id: "q1380", category: "spass_musik", area: "spass", subject: "musik", question: "Wer komponierte die 'Kleine Nachtmusik'?", answers: ["Johann Sebastian Bach", "Ludwig van Beethoven (Bonn)", "Franz Peter Schubert", "Wolfgang Amadeus Mozart"], correct: 3, difficulty: "mittel", points: 10, explanation: "Mozart schrieb sie 1787 – eines der bekanntesten klassischen Stücke." },
   { id: "q1381", category: "spass_musik", area: "spass", subject: "musik", question: "Was ist ein 'Refrain' in einem Lied?", answers: ["Der allererste Ton am Anfang des Stücks", "Der Text auf dem Cover in der Praxis", "Der wiederkehrende Teil zwischen den Strophen", "Das leise Instrument im Hintergrund im Alltag"], correct: 2, difficulty: "mittel", points: 10, explanation: "Der Refrain wiederholt sich und bleibt am besten im Ohr." },
   { id: "q1382", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Instrument spielt man mit einem Bogen?", answers: ["Trompete", "Geige", "Schlagzeug", "Klavier"], correct: 1, difficulty: "mittel", points: 10, explanation: "Streichinstrumente wie Geige, Bratsche und Cello werden mit dem Bogen gestrichen." },
-  { id: "q1383", category: "spass_musik", area: "spass", subject: "musik", question: "Was misst man in 'BPM'?", answers: ["Das Tempo eines Liedes", "Die Lautstärke", "Die Länge des Liedes", "Die Tonhöhe im Alltag"], correct: 0, difficulty: "mittel", points: 10, explanation: "BPM steht für 'beats per minute' – Schläge pro Minute." },
-  { id: "q1384", category: "spass_musik", area: "spass", subject: "musik", question: "Wie nennt man Musik ohne Gesang?", answers: ["Instrumental", "A cappella", "Karaoke", "Duett"], correct: 0, difficulty: "mittel", points: 10, explanation: "Umgekehrt bedeutet 'a cappella' Gesang ohne Instrumente." },
-  { id: "q1385", category: "spass_musik", area: "spass", subject: "musik", question: "Aus welchem Land kommt der Tango ursprünglich?", answers: ["Portugal", "Italien", "Argentinien", "Spanien"], correct: 2, difficulty: "mittel", points: 10, explanation: "Der Tango entstand rund um Buenos Aires und Montevideo." },
+  { id: "q1383", category: "spass_musik", area: "spass", subject: "musik", question: "Was misst man in 'BPM'?", answers: ["Das Tempo eines Liedes", "Die Lautstärke im Raum", "Die Länge des Liedes", "Die Tonhöhe im Alltag"], correct: 0, difficulty: "mittel", points: 10, explanation: "BPM steht für 'beats per minute' – Schläge pro Minute." },
+  { id: "q1384", category: "spass_musik", area: "spass", subject: "musik", question: "Wie nennt man Musik ohne Gesang?", answers: ["Instrumental", "A cappella (Chor)", "Karaoke (Mitsing)", "Duett (zu zweit)"], correct: 0, difficulty: "mittel", points: 10, explanation: "Umgekehrt bedeutet 'a cappella' Gesang ohne Instrumente." },
+  { id: "q1385", category: "spass_musik", area: "spass", subject: "musik", question: "Aus welchem Land kommt der Tango ursprünglich?", answers: ["Portugal (Fado)", "Italien (Tanz)", "Argentinien", "Spanien (Sevilla)"], correct: 2, difficulty: "mittel", points: 10, explanation: "Der Tango entstand rund um Buenos Aires und Montevideo." },
   { id: "q1386", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Lied wurde am häufigsten gecovert?", answers: ["Let It Be (Beatles)", "Imagine (John Lennon)", "My Way (Frank Sinatra)", "Yesterday (Beatles)"], correct: 3, difficulty: "mittel", points: 10, explanation: "'Yesterday' von den Beatles wurde über 2.000 Mal gecovert – kein Lied wurde öfter interpretiert." },
   { id: "q1387", category: "spass_musik", area: "spass", subject: "musik", question: "Wie viele Töne hat eine Dur-Tonleiter?", answers: ["8", "5", "9", "7"], correct: 3, difficulty: "mittel", points: 10, explanation: "Eine Dur-Tonleiter hat 7 Töne – die 8. ist die Oktave des ersten Tons." },
   { id: "q1388", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Instrument wurde in der Antike aus Lava hergestellt?", answers: ["Flöte", "Geige", "Trommel", "Harfe"], correct: 0, difficulty: "mittel", points: 10, explanation: "Die 'Die Dolomitenflöte' wurde tatsächlich aus vulkanischem Gestein hergestellt." },
@@ -2059,7 +2139,7 @@ const SPASS_MUSIK_QUESTIONS = [
   { id: "q1390", category: "spass_musik", area: "spass", subject: "musik", question: "Welches ist das älteste noch gespielte Instrument?", answers: ["Klavier", "Flöte", "Harfe", "Trommel"], correct: 1, difficulty: "mittel", points: 10, explanation: "Knochenflöten aus der Altsteinzeit sind über 40.000 Jahre alt." },
   { id: "q1391", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Lied wurde als erstes im All gesungen?", answers: ["Happy Birthday", "Stille Nacht", "Jingle Bells", "Rudolf the Red-Nosed Reindeer"], correct: 0, difficulty: "mittel", points: 10, explanation: "Die Apollo-11-Astronauten sangen 1969 'Happy Birthday' im All – das erste Lied." },
   { id: "q1392", category: "spass_musik", area: "spass", subject: "musik", question: "Wie viele Sänger hatte die Band 'ABBA'?", answers: ["5", "2", "4", "3"], correct: 2, difficulty: "mittel", points: 10, explanation: "ABBA hatte 4 Mitglieder: zwei Männer und zwei Frauen." },
-  { id: "q1393", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Lied wurde am längsten in den Charts gehalten?", answers: ["Yesterday", "Hey Jude", "Radio Ga Ga", "Bohemian Rhapsody"], correct: 3, difficulty: "mittel", points: 10, explanation: "'Bohemian Rhapsody' von Queen hielt über 14 Wochen auf Platz 1 – ein Rekord." },
+  { id: "q1393", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Lied wurde am längsten in den Charts gehalten?", answers: ["Yesterday (Beatles)", "Hey Jude (Beatles)", "Radio Ga Ga (Queen)", "Bohemian Rhapsody"], correct: 3, difficulty: "mittel", points: 10, explanation: "'Bohemian Rhapsody' von Queen hielt über 14 Wochen auf Platz 1 – ein Rekord." },
   { id: "q1394", category: "spass_musik", area: "spass", subject: "musik", question: "Wie viele Minuten hat 'The Well-Tempered Clavier' von Bach ungefähr?", answers: ["ca. 8 Stunden", "ca. 4 Stunden", "ca. 2 Stunden", "ca. 30 Minuten"], correct: 2, difficulty: "mittel", points: 10, explanation: "Das gesamte Werk dauert etwa 2 Stunden – ein Meisterwerk der Musikgeschichte." },
   { id: "q1395", category: "spass_musik", area: "spass", subject: "musik", question: "Welcher Popstar hat den längsten Songtitel?", answers: ["Frank Zappa", "Fiona Apple", "Paul McCartney", "Prince"], correct: 3, difficulty: "mittel", points: 10, explanation: "Prince hatte einen Songtitel mit über 40 Wörtern – 'The Most Beautiful Girl in the World' ist der bekannteste." },
   { id: "q1396", category: "spass_musik", area: "spass", subject: "musik", question: "Was ist das meistverkaufte Musikalbum aller Zeiten?", answers: ["Abbey Road (Beatles)", "Dark Side of the Moon (Pink Floyd)", "Thriller (Michael Jackson)", "Back in Black (AC/DC)"], correct: 2, difficulty: "mittel", points: 10, explanation: "'Thriller' von Michael Jackson hat etwa 66 Millionen Verkäufe – das meistverkaufte Album." },
@@ -2072,967 +2152,7 @@ const SPASS_MUSIK_QUESTIONS = [
   { id: "q1126", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Instrument wird oft mit dem Flamenco verbunden?", answers: ["Flöte", "Trompete", "Gitarre", "Cello"], correct: 2, difficulty: "mittel", points: 10, explanation: "Die Flamenco-Gitarre ist der Klassiker dieser spanischen Musik." },
   { id: "q1127", category: "spass_musik", area: "spass", subject: "musik", question: "Wie viele Notenlinien hat ein Notensystem?", answers: ["4", "5", "6", "3"], correct: 1, difficulty: "mittel", points: 10, explanation: "Ein Notensystem hat 5 Linien – das ist die Grundlage der Notenschrift." },
   { id: "q1128", category: "spass_musik", area: "spass", subject: "musik", question: "Welcher berühmte Musiker spielte oft in einem Kostüm?", answers: ["David Bowie", "Freddie Mercury", "Elton John", "Mick Jagger"], correct: 2, difficulty: "mittel", points: 10, explanation: "Elton John war bekannt für seine extravaganten Bühnenoutfits." },
-  { id: "q1129", category: "spass_musik", area: "spass", subject: "musik", question: "Was ist die längste Oper aller Zeiten?", answers: ["Die Meistersinger von Nürnberg", "Der Ring des Nibelungen", "Die Tristan und Isolde", "Die Don Giovanni in der Praxis"], correct: 0, difficulty: "mittel", points: 10, explanation: "Die Meistersinger von Nürnberg dauern rund 5 Stunden – ein Rekord." },
-  {
-    id: "mus_ext_001",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument hat 88 Tasten?",
-    answers: ["Klavier", "Gitarre", "Geige", "Flöte"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Klavier."
-  },
-  {
-    id: "mus_ext_002",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument wird mit einem Bogen gestrichen?",
-    answers: ["Geige", "Gitarre", "Klavier", "Trompete"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Geige."
-  },
-  {
-    id: "mus_ext_003",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument hat sechs Saiten typisch?",
-    answers: ["Gitarre", "Geige", "Harfe", "Klavier"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gitarre."
-  },
-  {
-    id: "mus_ext_004",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welche Note kommt nach C?",
-    answers: ["D", "E", "F", "G"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "D."
-  },
-  {
-    id: "mus_ext_005",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Dirigent?",
-    answers: ["Leitet das Orchester", "Spielt nur Geige", "Singt nur", "Tanzt nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Dirigent."
-  },
-  {
-    id: "mus_ext_006",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist eine Querflöte-Familie?",
-    answers: ["Flöte", "Trompete", "Posaune", "Tuba"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Flöte."
-  },
-  {
-    id: "mus_ext_007",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist aus Messing und hat Ventile?",
-    answers: ["Trompete", "Geige", "Gitarre", "Klavier"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Trompete."
-  },
-  {
-    id: "mus_ext_008",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Takt in der Musik?",
-    answers: ["Zeiteinheit/Zählmaß", "Nur Lautstärke", "Nur Tonhöhe", "Nur Text"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Takt."
-  },
-  {
-    id: "mus_ext_009",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was bedeutet forte (f)?",
-    answers: ["Laut", "Leise", "Schnell", "Langsam"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Laut."
-  },
-  {
-    id: "mus_ext_010",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was bedeutet piano (p)?",
-    answers: ["Leise", "Laut", "Schnell", "Langsam"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Leise."
-  },
-  {
-    id: "mus_ext_011",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument hat Tasten und Pfeifen in der Kirche?",
-    answers: ["Orgel", "Klavier", "Cembalo", "Akkordeon"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Orgel."
-  },
-  {
-    id: "mus_ext_012",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument wird getrommelt?",
-    answers: ["Schlagzeug", "Geige", "Flöte", "Gitarre"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schlagzeug."
-  },
-  {
-    id: "mus_ext_013",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Chor?",
-    answers: ["Gruppe von Sängern", "Nur Orchester", "Nur Band", "Nur Solo"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Chor."
-  },
-  {
-    id: "mus_ext_014",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Rock?",
-    answers: ["Gitarrenbetonte Populärmusik", "Nur Klassik", "Nur Jazz", "Nur Oper"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Rock."
-  },
-  {
-    id: "mus_ext_015",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Hip-Hop?",
-    answers: ["Rap/Beats", "Nur Klassik", "Nur Oper", "Nur Volksmusik"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Hip-Hop."
-  },
-  {
-    id: "mus_ext_016",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Refrain?",
-    answers: ["Wiederkehrender Teil", "Nur Strophe", "Nur Intro", "Nur Outro"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Refrain."
-  },
-  {
-    id: "mus_ext_017",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist eine Harfe?",
-    answers: ["Zupfinstrument mit vielen Saiten", "Blasinstrument", "Schlagzeug", "Elektronisch nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Harfe."
-  },
-  {
-    id: "mus_ext_018",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Tempo in der Musik?",
-    answers: ["Geschwindigkeit", "Lautstärke", "Tonhöhe", "Text"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Tempo."
-  },
-  {
-    id: "mus_ext_019",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist ein Saxophon?",
-    answers: ["Blasinstrument", "Streichinstrument", "Tasteninstrument", "Schlagzeug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Saxophon."
-  },
-  {
-    id: "mus_ext_020",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist eine Oktave?",
-    answers: ["Acht Tonstufen", "Vier Töne", "Zwei Töne", "Ein Ton"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Oktave."
-  },
-  {
-    id: "mus_ext_021",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Land ist für Oper bekannt (Italien)?",
-    answers: ["Italien", "Schweden", "Kanada", "Australien"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Italien."
-  },
-  {
-    id: "mus_ext_022",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein DJ?",
-    answers: ["Spielt/ mixt Musik", "Nur singt", "Nur tanzt", "Nur malt"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "DJ."
-  },
-  {
-    id: "mus_ext_023",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist eine Trommel?",
-    answers: ["Schlaginstrument", "Streichinstrument", "Tasteninstrument", "Blasinstrument"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Trommel."
-  },
-  {
-    id: "mus_ext_024",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was bedeutet Allegro?",
-    answers: ["Schnell/lebhaft", "Langsam", "Leise", "Laut"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Allegro."
-  },
-  {
-    id: "mus_ext_025",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was bedeutet Adagio?",
-    answers: ["Langsam", "Schnell", "Laut", "Leise"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Adagio."
-  },
-  {
-    id: "mus_ext_026",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist eine Klarinette?",
-    answers: ["Holzblasinstrument", "Streichinstrument", "Tasteninstrument", "Schlagzeug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Klarinette."
-  },
-  {
-    id: "mus_ext_027",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist eine Melodie?",
-    answers: ["Tonfolge", "Nur Rhythmus", "Nur Text", "Nur Lautstärke"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Melodie."
-  },
-  {
-    id: "mus_ext_028",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Rhythmus?",
-    answers: ["Zeitraster der Musik", "Nur Tonhöhe", "Nur Text", "Nur Farbe"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Rhythmus."
-  },
-  {
-    id: "mus_ext_029",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist eine Posaune?",
-    answers: ["Blechblasinstrument", "Streichinstrument", "Tasteninstrument", "Schlagzeug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Posaune."
-  },
-  {
-    id: "mus_ext_030",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Mikrofon?",
-    answers: ["Wandelt Schall in Signal", "Nur Lautsprecher", "Nur Kabel", "Nur Chip"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Mikrofon."
-  },
-  {
-    id: "mus_ext_031",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Jazz?",
-    answers: ["Improvisationsreiche Musik", "Nur Klassik", "Nur Rock", "Nur Pop"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Jazz."
-  },
-  {
-    id: "mus_ext_032",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist eine Band?",
-    answers: ["Musikgruppe", "Nur Orchester", "Nur Chor", "Nur Solo"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Band."
-  },
-  {
-    id: "mus_ext_033",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist eine Ukulele?",
-    answers: ["Kleine Gitarre-ähnlich", "Große Harfe", "Trompete", "Klavier"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Ukulele."
-  },
-  {
-    id: "mus_ext_034",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Notenschlüssel?",
-    answers: ["Bestimmt die Tonhöhen-Zuordnung", "Nur Lautstärke", "Nur Tempo", "Nur Text"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schlüssel."
-  },
-  {
-    id: "mus_ext_035",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist eine Tuba?",
-    answers: ["Tiefes Blechblasinstrument", "Geige", "Flöte", "Gitarre"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Tuba."
-  },
-  {
-    id: "mus_ext_036",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Pop-Musik?",
-    answers: ["Beliebte populäre Musik", "Nur Klassik", "Nur Oper", "Nur Volksmusik"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Pop."
-  },
-  {
-    id: "mus_ext_037",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist ein Cello?",
-    answers: ["Streichinstrument", "Blasinstrument", "Tasteninstrument", "Schlagzeug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Cello."
-  },
-  {
-    id: "mus_ext_038",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Konzert?",
-    answers: ["Aufführung vor Publikum", "Nur Probe", "Nur Aufnahme", "Nur Text"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Konzert."
-  },
-  {
-    id: "mus_ext_039",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist ein Akkordeon?",
-    answers: ["Ziehharmonika-ähnlich", "Geige", "Flöte", "Trompete"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Akkordeon."
-  },
-  {
-    id: "mus_ext_040",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist eine Strophe?",
-    answers: ["Text-/Melodieabschnitt", "Nur Refrain", "Nur Intro", "Nur Outro"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Strophe."
-  },
-  {
-    id: "mus_ext_041",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Klassik?",
-    answers: ["Kunstmusik europäischer Tradition", "Nur Pop", "Nur Rock", "Nur Hip-Hop"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Klassik."
-  },
-  {
-    id: "mus_ext_042",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Synthesizer?",
-    answers: ["Elektronisches Instrument", "Nur Geige", "Nur Flöte", "Nur Trommel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Synthesizer."
-  },
-  {
-    id: "mus_ext_043",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist eine Oboe?",
-    answers: ["Holzblasinstrument", "Streichinstrument", "Tasteninstrument", "Schlagzeug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Oboe."
-  },
-  {
-    id: "mus_ext_044",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Karaoke?",
-    answers: ["Mitsingen zu Playback", "Nur tanzen", "Nur malen", "Nur kochen"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Karaoke."
-  },
-  {
-    id: "mus_ext_045",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist eine Mandoline?",
-    answers: ["Zupfinstrument", "Blasinstrument", "Schlagzeug", "Tasteninstrument"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Mandoline."
-  },
-  {
-    id: "mus_ext_046",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Solo?",
-    answers: ["Allein gespielt/gesungen", "Nur Chor", "Nur Orchester", "Nur Band"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Solo."
-  },
-  {
-    id: "mus_ext_047",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Techno?",
-    answers: ["Elektronische Tanzmusik", "Nur Klassik", "Nur Jazz", "Nur Oper"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Techno."
-  },
-  {
-    id: "mus_ext_048",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Playlist?",
-    answers: ["Liste von Titeln", "Nur ein Song", "Nur ein Album", "Nur ein Künstler"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Playlist."
-  },
-  {
-    id: "mus_ext_049",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist eine Bratsche?",
-    answers: ["Streichinstrument (Viola)", "Blasinstrument", "Tasteninstrument", "Schlagzeug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Viola."
-  },
-  {
-    id: "mus_ext_050",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Beat?",
-    answers: ["Grundpuls/Rhythmus", "Nur Melodie", "Nur Text", "Nur Harmonie"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Beat."
-  },
-  {
-    id: "mus_ext_051",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Folk?",
-    answers: ["Volksmusik-Tradition", "Nur Techno", "Nur Metal", "Nur Oper"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Folk."
-  },
-  {
-    id: "mus_ext_052",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Album?",
-    answers: ["Sammlung von Titeln", "Nur ein Song", "Nur ein Konzert", "Nur ein Video"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Album."
-  },
-  {
-    id: "mus_ext_053",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist ein Banjo?",
-    answers: ["Zupfinstrument", "Blasinstrument", "Schlagzeug", "Tasteninstrument"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Banjo."
-  },
-  {
-    id: "mus_ext_054",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist eine Harmonie?",
-    answers: ["Zusammenklingende Töne", "Nur Rhythmus", "Nur Text", "Nur Tempo"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Harmonie."
-  },
-  {
-    id: "mus_ext_055",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Metal?",
-    answers: ["Harte Rock-Spielart", "Nur Pop", "Nur Jazz", "Nur Klassik"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Metal."
-  },
-  {
-    id: "mus_ext_056",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Sample?",
-    answers: ["Ausschnitt aus Audio", "Nur Foto", "Nur Text", "Nur Video"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Sample."
-  },
-  {
-    id: "mus_ext_057",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist eine Mundharmonika?",
-    answers: ["Blasinstrument klein", "Streichinstrument", "Tasteninstrument", "Schlagzeug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Mundharmonika."
-  },
-  {
-    id: "mus_ext_058",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Mixer (DJ)?",
-    answers: ["Mischt Audioquellen", "Nur singt", "Nur tanzt", "Nur malt"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Mixer."
-  },
-  {
-    id: "mus_ext_059",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Reggae?",
-    answers: ["Jamaikanisch geprägte Musik", "Nur Klassik", "Nur Oper", "Nur Metal"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Reggae."
-  },
-  {
-    id: "mus_ext_060",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Hook?",
-    answers: ["Eingängiger Teil eines Songs", "Nur Intro", "Nur Outro", "Nur Stille"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Hook."
-  },
-  {
-    id: "mus_ext_061",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist ein Xylophon?",
-    answers: ["Schlagwerk mit Holzplatten", "Streichinstrument", "Blasinstrument", "Tasteninstrument"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Xylophon."
-  },
-  {
-    id: "mus_ext_062",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Streaming-Dienst?",
-    answers: ["Musik online abspielen", "Nur CD", "Nur Vinyl", "Nur Kassette"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Streaming."
-  },
-  {
-    id: "mus_ext_063",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre is Country?",
-    answers: ["Amerikanische Folk/Pop-Spielart", "Nur Techno", "Nur Oper", "Nur Klassik"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Country."
-  },
-  {
-    id: "mus_ext_064",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Duett?",
-    answers: ["Zwei Stimmen/Instrumente", "Nur Solo", "Nur Chor", "Nur Orchester"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Duett."
-  },
-  {
-    id: "mus_ext_065",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist ein Fagott?",
-    answers: ["Holzblasinstrument tief", "Streichinstrument", "Tasteninstrument", "Schlagzeug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Fagott."
-  },
-  {
-    id: "mus_ext_066",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Intro?",
-    answers: ["Einleitung", "Nur Refrain", "Nur Strophe", "Nur Outro"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Intro."
-  },
-  {
-    id: "mus_ext_067",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Blues?",
-    answers: ["Afrikanisch-amerikanische Musikwurzel", "Nur Klassik", "Nur Oper", "Nur Techno"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Blues."
-  },
-  {
-    id: "mus_ext_068",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Outro?",
-    answers: ["Abschluss eines Stücks", "Nur Intro", "Nur Refrain", "Nur Strophe"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Outro."
-  },
-  {
-    id: "mus_ext_069",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument is ein Conga?",
-    answers: ["Handtrommel", "Geige", "Flöte", "Klavier"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Conga."
-  },
-  {
-    id: "mus_ext_070",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Remix?",
-    answers: ["Neue Version eines Tracks", "Nur Original", "Nur Cover live", "Nur Karaoke"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Remix."
-  },
-  {
-    id: "mus_ext_071",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Soul?",
-    answers: ["Gefühlvoller afroamerikanischer Stil", "Nur Metal", "Nur Techno", "Nur Oper"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Soul."
-  },
-  {
-    id: "mus_ext_072",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Cover?",
-    answers: ["Neue Interpretation eines Songs", "Nur Original", "Nur Remix", "Nur Sample"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Cover."
-  },
-  {
-    id: "mus_ext_073",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist ein Cajón?",
-    answers: ["Holzkistentrommel", "Geige", "Flöte", "Trompete"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Cajón."
-  },
-  {
-    id: "mus_ext_074",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist BPM?",
-    answers: ["Schläge pro Minute", "Nur Lautstärke", "Nur Tonhöhe", "Nur Text"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Beats per minute."
-  },
-  {
-    id: "mus_ext_075",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Gospel?",
-    answers: ["Geistliche afroamerikanische Musik", "Nur Techno", "Nur Metal", "Nur Oper nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gospel."
-  },
-  {
-    id: "mus_ext_076",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Loop?",
-    answers: ["Wiederholter Abschnitt", "Nur einmalig", "Nur Stille", "Nur Text"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Loop."
-  },
-  {
-    id: "mus_ext_077",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Instrument ist ein Marimba?",
-    answers: ["Schlagwerk mit Holzplatten", "Streichinstrument", "Blasinstrument", "Tasteninstrument"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Marimba."
-  },
-  {
-    id: "mus_ext_078",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Unplugged-Konzert?",
-    answers: ["Akustisch ohne Verstärkung stark", "Nur elektrisch", "Nur DJ", "Nur Karaoke"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Unplugged."
-  },
-  {
-    id: "mus_ext_079",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Genre ist Punk?",
-    answers: ["Schneller, roher Rock", "Nur Klassik", "Nur Jazz", "Nur Oper"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Punk."
-  },
-  {
-    id: "mus_ext_080",
-    category: "spass_musik",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Feature (feat.)?",
-    answers: ["Gastbeitrag eines Künstlers", "Nur Solo", "Nur Cover", "Nur Remix"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Feature."
-  }
+  { id: "q1129", category: "spass_musik", area: "spass", subject: "musik", question: "Was ist die längste Oper aller Zeiten?", answers: ["Die Meistersinger von Nürnberg", "Der Ring des Nibelungen", "Die Tristan und Isolde", "Die Don Giovanni in der Praxis"], correct: 0, difficulty: "mittel", points: 10, explanation: "Die Meistersinger von Nürnberg dauern rund 5 Stunden – ein Rekord." }
 ];
 
 if (typeof window !== "undefined") window.SPASS_MUSIK_QUESTIONS = SPASS_MUSIK_QUESTIONS;

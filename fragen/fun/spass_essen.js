@@ -58,9 +58,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Aus welchen Grundzutaten besteht eine klassische italienische Sauce Hollandaise vorwiegend?",
         "answers": [
-            "Sahne und Mehlschwitze",
-            "Olivenöl und Knoblauch",
-            "Milch und Frischkäse",
+            "Sahne, Mehl und Butterschmalz",
+            "Essig, Eigelb und Öl (Mayonnaise)",
+            "Milch, Käse und Muskatnuss",
             "Eigelb und flüssige Butter"
         ],
         "correct": 3,
@@ -109,10 +109,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Wie nennt man die Einheit, in der die Schärfe von Paprika- und Chilisorten gemessen wird?",
         "answers": [
-            "Brix",
-            "Joule",
+            "Brixgrad",
+            "Joulewert",
             "Scoville",
-            "Biqual"
+            "Biqualzahl"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -213,8 +213,8 @@ const SPASS_ESSEN_QUESTIONS = [
         "answers": [
             "Schwarzer Tee",
             "Grüner Tee",
-            "Weißer Tee",
-            "Kamillentee"
+            "Pfefferminztee",
+            "Kamillenblütentee"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -228,10 +228,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welches Lebensmittels schimmelt bei richtiger Lagerung niemals und verdirbt nicht?",
         "answers": [
-            "Vollmilch",
+            "Frische Vollmilch",
             "Echter Bienenhonig",
-            "Hartkäse",
-            "Marmelade"
+            "Reifer Hartkäse",
+            "Hausgemachte Marmelade"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -262,9 +262,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welche Geschmacksrichtung gilt neben süß, sauer, salzig und bitter als die 'fünfte' Geschmacksart?",
         "answers": [
-            "Scharf",
-            "Fettig",
-            "Aromatisch",
+            "Metallischer Nachgeschmack",
+            "Scharfe Geschmacksnote",
+            "Fettige Geschmacksnote",
             "Umami (würzig/herzhaft)"
         ],
         "correct": 3,
@@ -280,9 +280,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "question": "Aus welchem südamerikanischen Land stammte die Kartoffel ursprünglich, bevor sie nach Europa gebracht wurde?",
         "answers": [
             "Peru / den Anden",
-            "Brasilien",
-            "Argentinien",
-            "Mexiko"
+            "Brasilien / Amazonas",
+            "Argentinien / Pampa",
+            "Mexiko / Yucatán"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -330,9 +330,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Aus welcher Pflanze wird das feingemahlene grüne Matchapulver gewonnen?",
         "answers": [
-            "Mate-Strauch",
-            "Brennnessel",
-            "Ginkgo",
+            "Mate-Strauch, getrocknet",
+            "Getrocknete Brennnesselblätter",
+            "Ginkgoblätter, fein gemahlen",
             "Grüntee-Blättern (Tencha)"
         ],
         "correct": 3,
@@ -348,9 +348,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "question": "Welches Meeresgetier wird für das traditionelle Gericht 'Calamari Fritti' frittiert?",
         "answers": [
             "Tintenfisch",
-            "Garnelen",
-            "Muscheln",
-            "Hummer"
+            "Garnelenschwänze",
+            "Frische Muscheln",
+            "Hummerscheren"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -381,10 +381,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welches Getreide bildet die Hauptzutat für echtes Pumpernickel-Brot?",
         "answers": [
-            "Weizen",
-            "Dinkel",
+            "Weizen (fein gemahlen)",
+            "Dinkel und Vollkornhafer",
             "Roggen (Schrot & Vollkorn)",
-            "Gerste"
+            "Gerste (geschrotet, gemahlen)"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -449,10 +449,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welcher Fisch gilt in Japan als Delikatesse, kann aber bei falscher Zubereitung durch Toxin tödlich wirken?",
         "answers": [
-            "Thunfisch",
-            "Lachs",
+            "Roher Thunfischbauch",
+            "Gebratener Lachsfilet",
             "Kugelfisch (Fugu)",
-            "Aal"
+            "Geräucherter Aalfisch"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -466,9 +466,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welche Frucht wird wegen ihres extrem stechenden Geruchs in vielen asiatischen Hotels und U-Bahnen verboten?",
         "answers": [
-            "Jackfrucht",
-            "Papaya",
-            "Drachenfrucht",
+            "Reife Jackfrucht-Schale",
+            "Süß-saure Papayafrucht",
+            "Rote Drachenfruchtschale",
             "Durian (Stinkfrucht)"
         ],
         "correct": 3,
@@ -534,9 +534,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Was für eine Speise ist Kimchi, der kulinarische Stolz Koreas?",
         "answers": [
-            "Gedämpfter Reisfeingebäck",
-            "Scharfe Fischsuppe",
-            "Gebratenes Rindfleisch",
+            "Gedämpftes Reisfeingebäck mit Zucker",
+            "Scharfe Fischsuppe mit Algenstreifen",
+            "Gebratenes Rindfleisch mit Reisbeilage",
             "Fermentierter Chinakohl mit Gewürzen"
         ],
         "correct": 3,
@@ -568,10 +568,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welche Beere gibt dem alkoholischen Wacholdergetränk 'Gin' seinen charakteristischen Geschmack?",
         "answers": [
-            "Preiselbeere",
+            "Süße Preiselbeere",
             "Wacholderbeere",
-            "Johannisbeere",
-            "Hunderose"
+            "Rote Johannisbeere",
+            "Wilde Hundsrose"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -585,10 +585,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Was versteht man unter dem Vorgang des 'Flambierens' in der Küche?",
         "answers": [
-            "Einfrieren bei minus 80 Grad",
-            "Scharfes Anbraten in Erdnussöl",
+            "Einfrieren bei minus achtzig Grad Celsius",
+            "Scharfes Anbraten in reichlich heißem Erdnussöl",
             "Entzünden von hochprozentigem Alkohol auf Speisen",
-            "Garen in Salzkruste"
+            "Langsames Garen im geschlossenen Ofen in Salzkruste"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -636,10 +636,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welche Hauptzutat verleiht der marokkanischen Suppe 'Harira' und vielen indischen Dals ihre Konsistenz?",
         "answers": [
-            "Nudeln",
+            "Kartoffeln und Möhrenwürfel",
             "Linsen und Kichererbsen",
-            "Kartoffeln",
-            "Kürbis"
+            "Reisnudeln mit Kürbisstücken",
+            "Weißkohl mit roten Zwiebeln"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -688,9 +688,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "question": "Aus welcher Nuss wird der beliebte italienische Brotaufstrich 'Nutella' hauptsächlich gefertigt?",
         "answers": [
             "Haselnuss",
-            "Erdnuss",
-            "Mandel",
-            "Walnuss"
+            "Erdnusskerne",
+            "Mandelsplitter",
+            "Walnusshälften"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -721,10 +721,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welches Öl hat einen sehr hohen Rauchpunkt und eignet sich besonders gut zum scharfen Anbraten?",
         "answers": [
-            "Natives Olivenöl extra",
-            "Leinöl",
+            "Kaltgepresstes Olivenöl",
+            "Naturbelassenes Leinöl",
             "Erdnussöl / Raffiniertes Öl",
-            "Walnussöl"
+            "Geröstetes Walnussöl, dunkel"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -738,9 +738,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welches Gewürz verleiht indischem Gelb-Curry seine charakteristische leuchtend gelbe Farbe?",
         "answers": [
-            "Kreuzkümmel",
-            "Koriander",
-            "Cayennepfeffer",
+            "Gemahlener Kreuzkümmel",
+            "Frischer Koriander",
+            "Scharfer Cayennepfeffer",
             "Kurkuma (Gelbwurz)"
         ],
         "correct": 3,
@@ -756,9 +756,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "question": "Was beschreibt der Sommelier-Begriff 'Tannine' bei Rotwein?",
         "answers": [
             "Pflanzliche Gerbstoffe aus der Traubenschale",
-            "Der Gesamtzuckergehalt im Fass",
-            "Der Kohlensäuregehalt",
-            "Der Alkoholgehalt in Prozent"
+            "Der gesamte Zuckergehalt im Fass vor Abfüllung",
+            "Der Kohlensäuregehalt im offenen Glas",
+            "Der Alkoholgehalt in Volumenprozent"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -772,10 +772,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Aus welchem Getreide werden traditionell italienische Gnocchi NICHT hergestellt?",
         "answers": [
-            "Hartweizen",
+            "Hartweizengrieß aus Italien",
             "Gnocchi sind aus Kartoffeln",
-            "Maisgrieß",
-            "Dinkelmehl"
+            "Feiner Maisgrieß aus Polenta",
+            "Dinkelmehl aus der Bio-Mühle"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -789,10 +789,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welches alkoholfreie Erfrischungsgetränk erfand der Apotheker John Pemberton 1886 in Atlanta?",
         "answers": [
-            "Pepsi",
-            "Fanta",
+            "Pepsi Cola",
+            "Fanta Orange",
             "Coca-Cola",
-            "7Up"
+            "7Up Zitrone"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -824,9 +824,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "question": "Welcher Käse schmilzt hervorragend und wird traditionell für Schweizer Käsefondue genutzt?",
         "answers": [
             "Gruyère und Appenzeller",
-            "Gouda und Tilsiter",
-            "Camembert und Brie",
-            "Feta und Halloumi"
+            "Gouda und würziger Tilsiter",
+            "Camembert und feiner Brie",
+            "Feta und gegrillter Halloumi"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -840,10 +840,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Was für eine Speise ist ein Miso-Soup Hauptbestandteil der japanischen Küche?",
         "answers": [
-            "Gedämpfte Ente",
+            "Ein gedämpftes Entengericht mit Reis und Soja",
             "Suppe aus fermentierter Sojabohnenpaste",
-            "Ein Reis-Dessert",
-            "Ein roher Fischsalat"
+            "Ein süßes Dessert aus Klebreis",
+            "Ein roher, marinierter Fischsalat"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -874,9 +874,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Aus welcher Pflanze wird der mexikanische Schnaps Tequila gebrannt?",
         "answers": [
-            "Kaktus",
-            "Zuckerrohr",
-            "Mais",
+            "Kaktusfeige",
+            "Zuckerrohrsaft",
+            "Frischer Mais",
             "Blaue Agave"
         ],
         "correct": 3,
@@ -942,9 +942,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Was ist die Hauptzutat von Hummus, dem beliebten orientaIischen Brotaufstrich?",
         "answers": [
-            "Linsen",
+            "Grüne Linsen",
             "Ackerbohnen",
-            "Erdnüsse",
+            "Geröstete Erdnüsse",
             "Kichererbsen"
         ],
         "correct": 3,
@@ -993,10 +993,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welche Zutat verleiht dem Hefeteig beim Backen seine Elastizität und Gaskraft?",
         "answers": [
-            "Stärke",
-            "Laktose",
+            "Reine Kartoffelstärke",
+            "Milchzucker (Laktose)",
             "Gluten (Klebereiweiß)",
-            "Fruktose"
+            "Fruchtzucker (Fruktose)"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1112,10 +1112,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Was ist die Hauptzutat der griechischen Vorspeise 'Tzatziki' neben Knoblauch?",
         "answers": [
-            "Feta und Tomaten",
+            "Feta-Käse und reife Cocktailtomaten",
             "Griechischer Joghurt und Gurke",
-            "Kichererbsen und Öl",
-            "Aubergine und Zwiebeln"
+            "Kichererbsenpüree mit Öl",
+            "Auberginenmus mit Zwiebeln"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1164,9 +1164,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "question": "Was versteht man unter 'Blanchieren' in der Profiküche?",
         "answers": [
             "Kurzes Kochen in kochendem Wasser mit anschließendem Eisbad",
-            "Langes Schmoren im geschlossenen Topf",
-            "Überbacken im Ofen bei Oberhitze",
-            "Einlegen in Essigsud"
+            "Langes Schmoren im geschlossenen Topf bei Niedrigtemperatur",
+            "Überbacken im heißen Ofen bei starker Oberhitze",
+            "Einlegen in würzigem Essigsud über mehrere Tage"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -1214,9 +1214,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Aus welchem Land stammt das scharfe Fleischgericht 'Chili con Carne' ursprünglich?",
         "answers": [
-            "Mexiko",
-            "Brasilien",
-            "Spanien",
+            "Mexiko-Stadt",
+            "Süden Spaniens",
+            "Brasilien Nord",
             "USA (Texas)"
         ],
         "correct": 3,
@@ -1248,10 +1248,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welches Meeresgetränk oder -lebensmittel wird in Japan als 'Nori' bezeichnet?",
         "answers": [
-            "Gedämpfter Tintenfisch",
+            "Gedämpfte Tintenfischstücke",
             "Getrocknete Rotalgenblätter",
-            "Roher Thunfisch",
-            "Seetang-Essig"
+            "Roher Thunfischbauchlappen",
+            "Würziger Seetang-Essigsud"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1265,10 +1265,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Aus welchem Pflanzenteil wird echter Vanillezucker beziehungsweise das Vanillearoma gewonnen?",
         "answers": [
-            "Baumrinde",
-            "Blütenblatt",
+            "Rinde eines tropischen Baumes",
+            "Blütenblatt der Orchideenpflanze",
             "Orchideen-Kapselblatt (Schote)",
-            "Wurzelknolle"
+            "Wurzelknolle tief im Boden"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1333,10 +1333,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Aus welcher Bohne wird der beliebte Brotaufstrich Erdnussbutter gefertigt?",
         "answers": [
-            "Baumnuss",
-            "Cashewnuss",
+            "Baumnusskerne, geröstet",
+            "Cashewnüsse, gesalzen",
             "Erdnuss (Hülsenfrucht)",
-            "Kakaobohne"
+            "Kakaobohnenmasse, roh"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1350,9 +1350,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welches chemische Element sorgt beim Backen mit Backpulver für das Aufgehen des Teigs?",
         "answers": [
-            "Sauerstoff",
-            "Stickstoff",
-            "Wasserstoff",
+            "Reiner Sauerstoff",
+            "Reiner Stickstoff",
+            "Reiner Wasserstoff",
             "Kohlendioxid (CO2)"
         ],
         "correct": 3,
@@ -1368,9 +1368,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "question": "Aus welchem Land stammt das Gericht 'Haggis' (gefüllter Schafsmagen)?",
         "answers": [
             "Schottland",
-            "Irland",
-            "Wales",
-            "England"
+            "Irland-Nord",
+            "Wales-Süd",
+            "England-Ost"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -1418,9 +1418,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welches Öl wird traditionell für die Zubereitung von echtem Pesto Genovese verwendet?",
         "answers": [
-            "Sonnenblumenöl",
-            "Rapsöl",
-            "Sesamöl",
+            "Raffiniertes Sonnenblumenöl",
+            "Kaltgepresstes Rapsöl",
+            "Geröstetes, dunkles Sesamöl",
             "Olivenöl extra vergine"
         ],
         "correct": 3,
@@ -1486,9 +1486,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Aus welchem Land stammt das würzige Pfannengericht 'Nasi Goreng'?",
         "answers": [
-            "Indien",
-            "Japan",
-            "Vietnam",
+            "Indien-Nord",
+            "Japan-Insel",
+            "Vietnam-Süd",
             "Indonesien"
         ],
         "correct": 3,
@@ -1504,9 +1504,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "question": "Was beschreibt die 'Maillard-Reaktion' beim Kochen und Braten?",
         "answers": [
             "Die Bräunung und Komplexbildung von Aminosäuren und Zucker",
-            "Das Schmelzen von Fett bei niedriger Hitze",
-            "Das Gerinnen von Eiklar in kochendem Wasser",
-            "Die Gärung von Fruchtzucker zu Alkohol"
+            "Das langsame und stetige Schmelzen von Fett bei sehr niedriger Hitze",
+            "Das Gerinnen von Eiklar in kochend heißem Wasser",
+            "Die Gärung von reinem Fruchtzucker zu Alkohol"
         ],
         "correct": 0,
         "difficulty": "schwer",
@@ -1520,10 +1520,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welche Zutat verleiht dem italienischen Gericht 'Risotto al Nero di Seppia' seine schwarze Farbe?",
         "answers": [
-            "Schwarzer Sesam",
+            "Feiner schwarzer Sesam, geröstet",
             "Sepia-Tinte vom Tintenfisch",
-            "Aktivkohle",
-            "Dunkle Sojasauce"
+            "Zugesetzte Aktivkohle-Paste",
+            "Dunkle Sojasauce, unverdünnt"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1554,9 +1554,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Wie nennt man die Zubereitung von Milch, bei der Fküssigkeit unter Druck homgenisiert und keimfrei erhitzt wird?",
         "answers": [
-            "Fermentieren",
-            "Destillieren",
-            "Kondensieren",
+            "Fermentieren mit Milchsäurekulturen",
+            "Destillieren im kupfernen Kessel",
+            "Kondensieren durch starke Kälte",
             "Pasteurisieren / UHT-Erhitzung"
         ],
         "correct": 3,
@@ -1605,10 +1605,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Aus welchem Land stammt das süße Gebäck 'Trdelník' (Baumkuchen-Variante auf der Rolle)?",
         "answers": [
-            "Italien",
-            "Spanien",
+            "Norditalienische Bergregion",
+            "Ostspanische Küstenstadt",
             "Tschechien / Slowakei",
-            "Griechenland"
+            "Nordgriechische Provinz"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1656,10 +1656,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welcher Pflanzensaft gibt dem Trendgetränk 'Bubble Tea' seine perlenartige Textur (Tapioka)?",
         "answers": [
-            "Kartoffelstärke",
+            "Kartoffelstärkemehl",
             "Maniok-Wurzelstärke",
-            "Maisstärke",
-            "Sojamehl"
+            "Feine Maisstärke",
+            "Gemahlenes Sojamehl"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1673,10 +1673,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Aus welchem Pflanzenteil wird der aromatische Kümmel gewonnen?",
         "answers": [
-            "Wurzel",
-            "Blatt",
+            "Feine, dünne Wurzel",
+            "Grünes, breites Blatt",
             "Samen / Früchte",
-            "Rinde"
+            "Dünne, raue Rinde"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1792,10 +1792,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Was versteht man unter 'Sauerteig' beim Brotbacken?",
         "answers": [
-            "In Essig getränkter Hefeteig",
+            "In würzigem Essig getränkter, lange ruhender alter Hefeteig",
             "Teig mit einer Symbiose aus Milchsäurebakterien und Hefen",
-            "Teig aus reiner Zitronensäure",
-            "Abgestandener Brotteig"
+            "Teig aus reiner, kristalliner Zitronensäure",
+            "Abgestandener, hart gewordener, alter Brotteig"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1877,10 +1877,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welches fette Säureprofil zeichnet Olivenöl und Avocados besonders positiv aus?",
         "answers": [
-            "Gesättigte Transfettsäuren",
-            "Reine Cholesterinfette",
+            "Gesättigte Transfettsäuren pur",
+            "Reine Cholesterinfettablagerung",
             "Einfach ungesättigte Fettsäuren",
-            "Mehrfach gehärtete Fette"
+            "Mehrfach gehärtete Fette insgesamt"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1894,9 +1894,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Wie nennt man die feinen Fäden aus Eiklar und Puderzucker auf Kuchen wie dem Zitronenbaiser?",
         "answers": [
-            "Ganache",
-            "Fondant",
-            "Marzipan",
+            "Ganache-Creme, glänzend",
+            "Glatter Fondantguss",
+            "Marzipanrohmasse, süß",
             "Baiser (Meringue)"
         ],
         "correct": 3,
@@ -1962,9 +1962,9 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Was beschreibt der Begriff 'Sommelier'?",
         "answers": [
-            "Ein Chefkoch für Fischgerichte",
-            "Ein Patissier für Schokoladen",
-            "Ein Spezialist für Frischfleisch",
+            "Ein Chefkoch für feine Fischgerichte",
+            "Ein Patissier für edle Schokoladenkunst",
+            "Ein Spezialist für die Auswahl von frischem Fleisch",
             "Ein ausgebildeter Weinexperte in der Gastronomie"
         ],
         "correct": 3,
@@ -1996,10 +1996,10 @@ const SPASS_ESSEN_QUESTIONS = [
         "subject": "essen_trinken",
         "question": "Welches Gewürz gibt dem Glühwein und Pfefferkuchen seinen weihnachtlichen Duft?",
         "answers": [
-            "Koriander und Oregano",
+            "Koriander und Oreganoblätter",
             "Sternanis, Nelken und Zimt",
-            "Thymian und Rosmarin",
-            "Senfkörner und Dill"
+            "Thymian und frischer Rosmarin",
+            "Senfkörner und Dillspitzen"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -2047,993 +2047,21 @@ const SPASS_ESSEN_QUESTIONS = [
   { id: "q1404", category: "spass_essen", area: "spass", subject: "essen", question: "Welches Getränk wird aus Gerste, Hopfen, Hefe und Wasser gebraut?", answers: ["Limonade", "Saft", "Bier", "Wein"], correct: 2, difficulty: "mittel", points: 10, explanation: "Das deutsche Reinheitsgebot von 1516 nennt genau diese Zutaten." },
   { id: "q1405", category: "spass_essen", area: "spass", subject: "essen", question: "Woraus besteht Guacamole hauptsächlich?", answers: ["Brokkoli", "Erbsen", "Avocado", "Spinat"], correct: 2, difficulty: "mittel", points: 10, explanation: "Guacamole ist eine mexikanische Creme aus Avocado, Limette und Zwiebel." },
   { id: "q1406", category: "spass_essen", area: "spass", subject: "essen", question: "Welche Frucht ist botanisch gesehen eine Beere?", answers: ["Banane", "Erdbeere", "Himbeere", "Kirsche"], correct: 0, difficulty: "mittel", points: 10, explanation: "Kurios: Bananen sind botanisch Beeren, Erdbeeren dagegen Sammelnussfrüchte." },
-  { id: "q1407", category: "spass_essen", area: "spass", subject: "essen", question: "Was macht Chili scharf?", answers: ["Capsaicin", "Zucker", "Salz", "Koffein"], correct: 0, difficulty: "mittel", points: 10, explanation: "Capsaicin reizt die Wärmerezeptoren im Mund – daher das Brennen." },
+  { id: "q1407", category: "spass_essen", area: "spass", subject: "essen", question: "Was macht Chili scharf?", answers: ["Capsaicin", "Zuckergehalt", "Salzgehalt", "Koffeingehalt"], correct: 0, difficulty: "mittel", points: 10, explanation: "Capsaicin reizt die Wärmerezeptoren im Mund – daher das Brennen." },
   { id: "q1408", category: "spass_essen", area: "spass", subject: "essen", question: "Wie heißt das japanische Wort für grünen Pulvertee?", answers: ["Miso", "Mango", "Wasabi", "Matcha"], correct: 3, difficulty: "mittel", points: 10, explanation: "Matcha wird aus fein gemahlenen Grünteeblättern zubereitet." },
-  { id: "q1409", category: "spass_essen", area: "spass", subject: "essen", question: "Welches Lebensmittel besteht zu über 90 Prozent aus Wasser?", answers: ["Käse", "Reis", "Gurke", "Brot"], correct: 2, difficulty: "mittel", points: 10, explanation: "Gurken bestehen zu etwa 95 Prozent aus Wasser." },
+  { id: "q1409", category: "spass_essen", area: "spass", subject: "essen", question: "Welches Lebensmittel besteht zu über 90 Prozent aus Wasser?", answers: ["Käse pur", "Reiskorn", "Gurke", "Brotlaib"], correct: 2, difficulty: "mittel", points: 10, explanation: "Gurken bestehen zu etwa 95 Prozent aus Wasser." },
   { id: "q1410", category: "spass_essen", area: "spass", subject: "essen", question: "Was ist Hummus?", answers: ["Ein Nudelgericht im Alltag", "Ein Fleischgericht", "Eine Creme aus Kichererbsen", "Eine Süßspeise in der Praxis"], correct: 2, difficulty: "mittel", points: 10, explanation: "Hummus wird aus Kichererbsen, Sesampaste, Zitrone und Knoblauch gemacht." },
-  { id: "q1411", category: "spass_essen", area: "spass", subject: "essen", question: "Welcher Käse hat traditionell Löcher?", answers: ["Gouda", "Camembert", "Emmentaler", "Feta"], correct: 2, difficulty: "mittel", points: 10, explanation: "Die Löcher entstehen durch Gasbildung bestimmter Bakterien beim Reifen." },
+  { id: "q1411", category: "spass_essen", area: "spass", subject: "essen", question: "Welcher Käse hat traditionell Löcher?", answers: ["Gouda-Käse", "Camembert", "Emmentaler", "Fetakäse"], correct: 2, difficulty: "mittel", points: 10, explanation: "Die Löcher entstehen durch Gasbildung bestimmter Bakterien beim Reifen." },
   { id: "q1130", category: "spass_essen", area: "spass", subject: "essen", question: "Welches Essen wird traditionell am deutschen Weihnachtsmarkt verkauft?", answers: ["Lebkuchen", "Bratäpfel", "Bratwurst", "Glühwein"], correct: 3, difficulty: "mittel", points: 10, explanation: "Glühwein ist der absolute Klassiker auf jedem deutschen Weihnachtsmarkt." },
   { id: "q1131", category: "spass_essen", area: "spass", subject: "essen", question: "Wie viel Liter Bier trinkt jeder Deutsche im Jahr?", answers: ["ca. 200 Liter", "ca. 100 Liter", "ca. 400 Liter", "ca. 50 Liter"], correct: 1, difficulty: "mittel", points: 10, explanation: "Der Pro-Kopf-Konsum liegt bei etwa 100 Litern Bier pro Jahr." },
   { id: "q1132", category: "spass_essen", area: "spass", subject: "essen", question: "Welches Obst ist in Deutschland das beliebteste?", answers: ["Apfel", "Banane", "Traube", "Erdbeere"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Apfel ist das meistgegessene Obst in Deutschland." },
-  { id: "q1133", category: "spass_essen", area: "spass", subject: "essen", question: "Was ist ein typisch deutsches Abendessen?", answers: ["Sushi", "Spaghetti", "Steak", "Brot mit Käse"], correct: 3, difficulty: "mittel", points: 10, explanation: "Das klassische Abendbrot ist in Deutschland weit verbreitet." },
+  { id: "q1133", category: "spass_essen", area: "spass", subject: "essen", question: "Was ist ein typisch deutsches Abendessen?", answers: ["Sushi-Platte", "Spaghetti-Teller", "Steak vom Grill", "Brot mit Käse"], correct: 3, difficulty: "mittel", points: 10, explanation: "Das klassische Abendbrot ist in Deutschland weit verbreitet." },
   { id: "q1134", category: "spass_essen", area: "spass", subject: "essen", question: "Wie viele Kaffeetassen trinkt der Deutsche pro Jahr?", answers: ["ca. 200", "ca. 500", "ca. 100", "ca. 300"], correct: 0, difficulty: "mittel", points: 10, explanation: "Mit etwa 160 Litern pro Jahr ist Deutschland ein Kaffeeland." },
   { id: "q1135", category: "spass_essen", area: "spass", subject: "essen", question: "Welche Nudelsorte gibt es in Deutschland am häufigsten?", answers: ["Fusilli", "Tagliatelle", "Penne", "Spaghetti"], correct: 3, difficulty: "mittel", points: 10, explanation: "Spaghetti sind die beliebteste Nudelsorte in Deutschland." },
   { id: "q1136", category: "spass_essen", area: "spass", subject: "essen", question: "Was wird für die Herstellung von Bier nicht benötigt?", answers: ["Hopfen", "Malz", "Zucker", "Hefe"], correct: 2, difficulty: "mittel", points: 10, explanation: "Bier wird aus Wasser, Malz, Hopfen und Hefe gebraut – Zucker ist nur für Spezialbiere." },
   { id: "q1137", category: "spass_essen", area: "spass", subject: "essen", question: "Welches ist das meistgegessene Fleisch in Deutschland?", answers: ["Geflügel", "Rind", "Lamm", "Schwein"], correct: 3, difficulty: "mittel", points: 10, explanation: "Schweinefleisch ist mit Abstand das beliebteste Fleisch in Deutschland." },
   { id: "q1138", category: "spass_essen", area: "spass", subject: "essen", question: "Wie viele Eier isst ein Deutscher durchschnittlich pro Jahr?", answers: ["ca. 350", "ca. 150", "ca. 500", "ca. 250"], correct: 3, difficulty: "mittel", points: 10, explanation: "Der Pro-Kopf-Verbrauch liegt bei etwa 230 Eiern pro Jahr." },
-  { id: "q1139", category: "spass_essen", area: "spass", subject: "essen", question: "Welches Getränk wird aus fermentierten Trauben hergestellt?", answers: ["Wein", "Cidre", "Bier", "Sekt"], correct: 0, difficulty: "mittel", points: 10, explanation: "Wein wird durch Fermentierung von Trauben gewonnen." },
-  {
-    id: "ess_ext_001",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst ist gelb und gebogen?",
-    answers: ["Banane", "Apfel", "Traube", "Kirsche"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Banane."
-  },
-  {
-    id: "ess_ext_002",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Getränk kommt von Kühen?",
-    answers: ["Milch", "Saft", "Tee", "Cola"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Milch."
-  },
-  {
-    id: "ess_ext_003",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Woraus wird Brot hauptsächlich gemacht?",
-    answers: ["Mehl", "Zucker", "Salz", "Butter"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Mehl und Wasser/Hefe."
-  },
-  {
-    id: "ess_ext_004",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welche Pizza-Belag ist klassisch mit Tomate und Mozzarella?",
-    answers: ["Margherita", "Hawaii", "Salami", "Tonno"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Margherita."
-  },
-  {
-    id: "ess_ext_005",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gemüse ist orange und wächst in der Erde?",
-    answers: ["Karotte", "Gurke", "Salat", "Paprika"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Karotte."
-  },
-  {
-    id: "ess_ext_006",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist der Hauptbestandteil von Schokolade?",
-    answers: ["Kakao", "Vanille", "Erdbeere", "Zitrone"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kakao."
-  },
-  {
-    id: "ess_ext_007",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Getränk trinkt man oft heiß am Morgen?",
-    answers: ["Kaffee/Tee", "Cola", "Limo", "Bier"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kaffee oder Tee."
-  },
-  {
-    id: "ess_ext_008",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was isst man zum Frühstück oft mit Milch?",
-    answers: ["Müsli/Cornflakes", "Pizza", "Suppe", "Pommes"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Müsli oder Cornflakes."
-  },
-  {
-    id: "ess_ext_009",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst ist rot und hat Kerne innen?",
-    answers: ["Apfel", "Banane", "Ananas", "Kokosnuss"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Apfel."
-  },
-  {
-    id: "ess_ext_010",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist süß und kommt von Bienen?",
-    answers: ["Honig", "Salz", "Pfeffer", "Essig"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Honig."
-  },
-  {
-    id: "ess_ext_011",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gemüse macht weinen beim Schneiden?",
-    answers: ["Zwiebel", "Gurke", "Tomate", "Mais"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Zwiebel."
-  },
-  {
-    id: "ess_ext_012",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist die Hauptzutat von Pommes?",
-    answers: ["Kartoffel", "Reis", "Mais", "Brot"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kartoffel."
-  },
-  {
-    id: "ess_ext_013",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Land ist für Sushi bekannt?",
-    answers: ["Japan", "Italien", "Mexiko", "Frankreich"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Japan."
-  },
-  {
-    id: "ess_ext_014",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Land ist für Pasta bekannt?",
-    answers: ["Italien", "China", "Indien", "Spanien"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Italien."
-  },
-  {
-    id: "ess_ext_015",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Croissant?",
-    answers: ["Französisches Gebäck", "Italienische Pizza", "Deutsche Wurst", "Spanische Tapas"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Französisches Gebäck."
-  },
-  {
-    id: "ess_ext_016",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gewürz ist scharf und rot?",
-    answers: ["Chili/Paprika", "Zucker", "Vanille", "Zimt"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Chili oder Paprika."
-  },
-  {
-    id: "ess_ext_017",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was trinkt man aus Weintrauben?",
-    answers: ["Wein/Saft", "Milch", "Bier", "Wasser nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Traubensaft oder Wein."
-  },
-  {
-    id: "ess_ext_018",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst ist grün außen und rot innen (Wassermelone)?",
-    answers: ["Wassermelone", "Apfel", "Kiwi", "Limette"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Wassermelone."
-  },
-  {
-    id: "ess_ext_019",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Mozzarella?",
-    answers: ["Käse", "Fleisch", "Fisch", "Obst"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Käse."
-  },
-  {
-    id: "ess_ext_020",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Frühstücksei ist weich gekocht?",
-    answers: ["Weicheier", "Rührei hart", "Spiegelei verbrannt", "Pochiert nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Weicheier."
-  },
-  {
-    id: "ess_ext_021",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Woraus wird Orangensaft gemacht?",
-    answers: ["Orangen", "Äpfel", "Trauben", "Zitronen"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Orangen."
-  },
-  {
-    id: "ess_ext_022",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Tofu?",
-    answers: ["Sojaprodukt", "Fleisch", "Fisch", "Käse vom Rind"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Aus Sojabohnen."
-  },
-  {
-    id: "ess_ext_023",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Getreide braucht man für Reisgerichte?",
-    answers: ["Reis", "Weizen nur", "Hafer nur", "Mais nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Reis."
-  },
-  {
-    id: "ess_ext_024",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist eine Brezel?",
-    answers: ["Gebäck", "Obst", "Gemüse", "Fisch"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Laugengebäck."
-  },
-  {
-    id: "ess_ext_025",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst hat viele kleine Kerne außen?",
-    answers: ["Erdbeere", "Banane", "Mango", "Avocado"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Erdbeere."
-  },
-  {
-    id: "ess_ext_026",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Guacamole?",
-    answers: ["Avocado-Dip", "Tomatensuppe", "Käsesauce", "Fleischsoße"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Avocado-Dip."
-  },
-  {
-    id: "ess_ext_027",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Land ist für Tacos bekannt?",
-    answers: ["Mexiko", "Italien", "Japan", "Deutschland"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Mexiko."
-  },
-  {
-    id: "ess_ext_028",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist der Unterschied zwischen Tee und Kaffee hauptsächlich?",
-    answers: ["Pflanze/Bohne", "Farbe nur", "Temperatur nur", "Tasse nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Tee aus Blättern, Kaffee aus Bohnen."
-  },
-  {
-    id: "ess_ext_029",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gemüse ist lila und wird oft gebacken?",
-    answers: ["Aubergine", "Gurke", "Spinat", "Sellerie"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Aubergine."
-  },
-  {
-    id: "ess_ext_030",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Joghurt?",
-    answers: ["Milchprodukt", "Fleisch", "Fisch", "Obst"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Fermentiertes Milchprodukt."
-  },
-  {
-    id: "ess_ext_031",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst ist sauer und gelb?",
-    answers: ["Zitrone", "Banane", "Melone", "Mango"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Zitrone."
-  },
-  {
-    id: "ess_ext_032",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was isst man in Deutschland oft mit Senf?",
-    answers: ["Wurst/Bratwurst", "Eis", "Kuchen", "Salat nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Wurst."
-  },
-  {
-    id: "ess_ext_033",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Getränk ist sprudelnd und braun?",
-    answers: ["Cola", "Milch", "Tee", "Saft natur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Cola."
-  },
-  {
-    id: "ess_ext_034",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Nudeln auf Italienisch oft?",
-    answers: ["Pasta", "Sushi", "Tacos", "Curry"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Pasta."
-  },
-  {
-    id: "ess_ext_035",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gewürz duftet nach Weihnachten?",
-    answers: ["Zimt", "Salz", "Pfeffer", "Knoblauch"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Zimt."
-  },
-  {
-    id: "ess_ext_036",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Smoothie?",
-    answers: ["Gemixtes Obstgetränk", "Feste Pizza", "Gebratenes Fleisch", "Trockenes Brot"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gemixtes Getränk."
-  },
-  {
-    id: "ess_ext_037",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst ist behaart außen und grün innen?",
-    answers: ["Kiwi", "Banane", "Traube", "Pflaume"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kiwi."
-  },
-  {
-    id: "ess_ext_038",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Hummus?",
-    answers: ["Kichererbsen-Dip", "Käse", "Fleisch", "Fisch"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kichererbsencreme."
-  },
-  {
-    id: "ess_ext_039",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Land ist für Curry bekannt?",
-    answers: ["Indien", "Italien", "Schweden", "Kanada"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Indien."
-  },
-  {
-    id: "ess_ext_040",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist eine Lasagne?",
-    answers: ["Nudelschicht-Gericht", "Suppe", "Salat", "Brot"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Italienisches Schichtgericht."
-  },
-  {
-    id: "ess_ext_041",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gemüse ist grün und lang?",
-    answers: ["Gurke", "Tomate", "Kartoffel", "Zwiebel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gurke."
-  },
-  {
-    id: "ess_ext_042",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Eiscreme hauptsächlich?",
-    answers: ["Gefrorene Süßspeise", "Brot", "Fleisch", "Gemüse"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gefrorene Süßspeise."
-  },
-  {
-    id: "ess_ext_043",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst wächst in Trauben?",
-    answers: ["Weinbeeren/Trauben", "Äpfel", "Bananen", "Orangen"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Trauben."
-  },
-  {
-    id: "ess_ext_044",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Burger typischerweise?",
-    answers: ["Brötchen mit Patty", "Nur Salat", "Nur Suppe", "Nur Obst"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Brötchen mit Füllung."
-  },
-  {
-    id: "ess_ext_045",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Getränk macht wach durch Koffein?",
-    answers: ["Kaffee/Cola/Tee", "Wasser", "Milch", "Saft immer"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Koffeinhaltige Getränke."
-  },
-  {
-    id: "ess_ext_046",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Parmesan?",
-    answers: ["Hartkäse", "Weichkäse nur", "Fleisch", "Fisch"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Italienischer Hartkäse."
-  },
-  {
-    id: "ess_ext_047",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gemüse ist rot und rund oft in Salat?",
-    answers: ["Tomate", "Gurke", "Mais", "Erbse"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Tomate."
-  },
-  {
-    id: "ess_ext_048",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Waffel?",
-    answers: ["Gebäck", "Fleisch", "Fisch", "Gemüse"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Süßes Gebäck."
-  },
-  {
-    id: "ess_ext_049",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Land ist für Fondue bekannt?",
-    answers: ["Schweiz", "Japan", "Mexiko", "Indien"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schweiz."
-  },
-  {
-    id: "ess_ext_050",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was isst man mit Stäbchen oft?",
-    answers: ["Asiatische Gerichte", "Nur Pizza", "Nur Burger", "Nur Brot"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "z.B. asiatische Küche."
-  },
-  {
-    id: "ess_ext_051",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst ist braun außen und cremig innen?",
-    answers: ["Avocado", "Apfel", "Birne hart", "Kirsche"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Avocado."
-  },
-  {
-    id: "ess_ext_052",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Miso?",
-    answers: ["Japanische Paste", "Italienische Sauce", "Mexikanischer Dip", "Deutsches Brot"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Fermentierte Sojapaste."
-  },
-  {
-    id: "ess_ext_053",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Getreide für Haferflocken?",
-    answers: ["Hafer", "Reis", "Mais", "Roggen nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Hafer."
-  },
-  {
-    id: "ess_ext_054",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist eine Paella?",
-    answers: ["Spanisches Reisgericht", "Italienische Pasta", "Deutsche Suppe", "Französisches Brot"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Spanien."
-  },
-  {
-    id: "ess_ext_055",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gewürz ist schwarz und körnig?",
-    answers: ["Pfeffer", "Zucker", "Salz fein", "Vanille"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Pfeffer."
-  },
-  {
-    id: "ess_ext_056",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Donut?",
-    answers: ["Süßes Ringgebäck", "Brot", "Fleisch", "Gemüse"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Süßes Gebäck."
-  },
-  {
-    id: "ess_ext_057",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst ist orange und saftig?",
-    answers: ["Orange", "Banane", "Traube", "Kiwi"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Orange."
-  },
-  {
-    id: "ess_ext_058",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Tzatziki?",
-    answers: ["Joghurt-Gurken-Dip", "Fleischsoße", "Fisch", "Brot"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Griechischer Dip."
-  },
-  {
-    id: "ess_ext_059",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Land ist für Döner bekannt (populär in DE)?",
-    answers: ["Türkei/Deutschland-Kultur", "Japan", "Schweden", "Brasilien"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Türkische Küche, in DE sehr beliebt."
-  },
-  {
-    id: "ess_ext_060",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Quinoa?",
-    answers: ["Pseudo-Getreide", "Fleisch", "Fisch", "Käse"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Pflanzliche Körner."
-  },
-  {
-    id: "ess_ext_061",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gemüse ist grün und blättrig?",
-    answers: ["Spinat/Salat", "Kartoffel", "Karotte", "Zwiebel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Blattgemüse."
-  },
-  {
-    id: "ess_ext_062",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Muffin?",
-    answers: ["Kleines Kuchengebäck", "Suppe", "Salat", "Fleisch"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gebäck."
-  },
-  {
-    id: "ess_ext_063",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Getränk ist aus Äpfeln?",
-    answers: ["Apfelsaft", "Orangensaft", "Traubensaft", "Tomatensaft"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Apfelsaft."
-  },
-  {
-    id: "ess_ext_064",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Balsamico?",
-    answers: ["Essig", "Öl", "Milch", "Saft"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Essig aus Modena."
-  },
-  {
-    id: "ess_ext_065",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst hat einen Stein innen und ist orange?",
-    answers: ["Aprikose/Pfirsich", "Banane", "Traube", "Ananas"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Steinobst."
-  },
-  {
-    id: "ess_ext_066",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Wrap?",
-    answers: ["Gefüllte Fladenbrot-Rolle", "Suppe", "Salat nur", "Pizza"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gefüllter Fladen."
-  },
-  {
-    id: "ess_ext_067",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Land ist für Kimchi bekannt?",
-    answers: ["Korea", "Italien", "Mexiko", "Frankreich"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Korea."
-  },
-  {
-    id: "ess_ext_068",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Tahini?",
-    answers: ["Sesampaste", "Käse", "Fleisch", "Fisch"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Sesampaste."
-  },
-  {
-    id: "ess_ext_069",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gemüse ist weiß und hat Röschen?",
-    answers: ["Blumenkohl", "Brokkoli grün", "Spinat", "Gurke"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Blumenkohl."
-  },
-  {
-    id: "ess_ext_070",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Brownie?",
-    answers: ["Schokoladenkuchenstück", "Salat", "Suppe", "Brot"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schokoladengebäck."
-  },
-  {
-    id: "ess_ext_071",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gewürz färbt gelb (Curry)?",
-    answers: ["Kurkuma", "Salz", "Pfeffer", "Knoblauch"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kurkuma."
-  },
-  {
-    id: "ess_ext_072",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Falafel?",
-    answers: ["Frittierte Kichererbsenbällchen", "Käse", "Fleisch vom Rind", "Fisch"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Kichererbsen."
-  },
-  {
-    id: "ess_ext_073",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst ist klein und blau-schwarz?",
-    answers: ["Heidelbeere", "Banane", "Melone", "Ananas"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Heidelbeere."
-  },
-  {
-    id: "ess_ext_074",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Bagel?",
-    answers: ["Ringförmiges Gebäck", "Pizza", "Suppe", "Salat"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gebäck."
-  },
-  {
-    id: "ess_ext_075",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Getränk ist grün und aus Japan (Matcha)?",
-    answers: ["Matcha-Tee", "Cola", "Milch", "Saft"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Matcha."
-  },
-  {
-    id: "ess_ext_076",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Pesto?",
-    answers: ["Basilikum-Sauce", "Fleischsoße", "Fisch", "Käse nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Oft Basilikum, Öl, Pinienkerne."
-  },
-  {
-    id: "ess_ext_077",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Land ist für Paella bekannt?",
-    answers: ["Spanien", "Italien", "Griechenland", "Portugal"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Spanien."
-  },
-  {
-    id: "ess_ext_078",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Crêpe?",
-    answers: ["Dünner Pfannkuchen", "Dicker Burger", "Suppe", "Salat"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Französischer Pfannkuchen."
-  },
-  {
-    id: "ess_ext_079",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Gemüse ist lila-rot und knackig in Salat?",
-    answers: ["Rotkohl/Radicchio", "Kartoffel", "Mais", "Erbse"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Rotkohl o.Ä."
-  },
-  {
-    id: "ess_ext_080",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Mascarpone?",
-    answers: ["Italienischer Frischkäse", "Fleisch", "Fisch", "Brot"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Frischkäse."
-  },
-  {
-    id: "ess_ext_081",
-    category: "spass_essen",
-    area: "spass",
-    subject: "spass",
-    question: "Welches Obst ist tropisch und stachelig außen?",
-    answers: ["Ananas", "Apfel", "Birne", "Traube"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Ananas."
-  }
+  { id: "q1139", category: "spass_essen", area: "spass", subject: "essen", question: "Welches Getränk wird aus fermentierten Trauben hergestellt?", answers: ["Wein", "Cidre", "Bier", "Sekt"], correct: 0, difficulty: "mittel", points: 10, explanation: "Wein wird durch Fermentierung von Trauben gewonnen." }
 ];
 
 if (typeof window !== "undefined") window.SPASS_ESSEN_QUESTIONS = SPASS_ESSEN_QUESTIONS;

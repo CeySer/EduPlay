@@ -41,10 +41,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Wie heißt der bekannteste und begehrteste Filmpreis der USA?",
         "answers": [
-            "Grammy Award",
-            "Emmy Award",
+            "Golden Globe (HFPA-Preis)",
+            "Emmy Award (TV-Preis)",
             "Oscar (Academy Award)",
-            "Golden Globe"
+            "Grammy Award (Musikpreis)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -92,10 +92,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Was versteht man im Film- und Serienbereich unter einem 'Cliffhanger'?",
         "answers": [
-            "Eine besonders steile Klippenszene",
+            "Ein kurzer Werbeblock direkt im Abspann",
             "Ein hochspannendes, offenes Ende einer Episode",
-            "Der Abspann mit allen Schauspielern",
-            "Ein Stuntman auf einem Berg"
+            "Ein langes Interview mit dem Hauptdarsteller danach",
+            "Ein Blick hinter die Kulissen der ganzen Serie"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -144,9 +144,9 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "question": "Welches legendäre Autorennen dauert exakt 24 Stunden lang an?",
         "answers": [
             "24-Stunden-Rennen von Le Mans",
-            "Formel 1 GP Monaco",
-            "Rallye Dakar",
-            "Indy 500"
+            "Formel-1-Rennen von Monaco",
+            "Indy 500 auf dem Ovalkurs",
+            "Rallye Dakar quer durch die Wüste"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -228,10 +228,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Welche drei Filme teilen sich den Rekord von jeweils 11 gewonnenen Oscars?",
         "answers": [
-            "Avatar, Der Pate & Star Wars",
+            "Titanic, Avatar & die gesamte Star-Wars-Trilogie",
             "Ben Hur, Titanic & Der Herr der Ringe: Die Rückkehr des Königs",
-            "Gladiator, Matrix & Jurassic Park",
-            "Oppenheimer, Forrest Gump & Pulp Fiction"
+            "Gladiator, Matrix & die komplette Jurassic-World-Filmreihe zusammen",
+            "Oppenheimer, Forrest Gump & Barbie im Vergleich"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -296,10 +296,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Welche Sportart wird traditionell auf der знамениten Anlage in Wimbledon gespielt?",
         "answers": [
-            "Golf",
+            "Golfsport",
             "Rasentennis",
-            "Polo",
-            "Cricket"
+            "Polospiel",
+            "Cricketmatch"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -364,10 +364,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Wie nennt man die maximale Punktzahl von 180 Punkten bei 3 Darts im Dartsport?",
         "answers": [
-            "Triple Bullseye",
+            "Ein Bullseye-Volltreffer",
             "One Hundred and Eighty",
-            "Perfect Score",
-            "Maximum Checkouts"
+            "Eine perfekte Punktzahl",
+            "Der maximale Checkout-Wurf"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -381,10 +381,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "In welcher Disziplin ist Usain Bolt der Weltrekordhalter über 100 Meter (9,58 Sek.)?",
         "answers": [
-            "Marathon",
-            "Hürdenlauf",
+            "Ein Marathon über 42 km",
+            "Ein Hürdenlauf über 110 Meter",
             "Sprint (Leichtathletik)",
-            "Weitsprung"
+            "Ein Weitsprung in die Grube"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -568,10 +568,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Wie heißt der Schwimmstil, bei dem man sich auf dem Rücken durchs Wasser bewegt?",
         "answers": [
-            "Brustschwimmen",
+            "Brustschwimmstil",
             "Rückenschwimmen",
-            "Kraulen",
-            "Schmetterling"
+            "Kraulschwimmen",
+            "Schmetterlingsstil"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -602,9 +602,9 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Was bedeutet der Fachbegriff 'Birdie' beim Golfspielen?",
         "answers": [
-            "Ein Schlag über Par",
-            "Ein Schlag direkt ins Korbnetz",
-            "Der Abschlag vom Holz-Tee",
+            "Ein Schlag über dem Par-Wert des Lochs",
+            "Ein Fehlschlag direkt ins Rough hinein",
+            "Der erste Abschlag vom Holz-Tee aus",
             "Ein Schlag unter Par für ein Loch"
         ],
         "correct": 3,
@@ -670,15 +670,32 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Welche Farbe hat der Gürtel für den höchsten Schülergrad vor dem Schwarzen Gürtel im Judo?",
         "answers": [
-            "Blau",
             "Grün",
-            "Rot",
+            "Blau",
+            "Orange",
             "Braun"
         ],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
         "explanation": "🥋 Der braune Gürtel ist der 1. Kyu (höchster Schülergrad) vor dem 1. Dan (Schwarzer Gürtel)."
+    },
+  {
+        "id": "q_sf_041",
+        "category": "spass_sport_film",
+        "area": "spass",
+        "subject": "sport_film",
+        "question": "Welcher Regisseur drehte Filmklassiker wie 'Der weiße Hai', 'E.T.' und 'Jurassic Park'?",
+        "answers": [
+            "Steven Spielberg",
+            "George Lucas",
+            "James Cameron",
+            "Christopher Nolan"
+        ],
+        "correct": 0,
+        "difficulty": "leicht",
+        "points": 10,
+        "explanation": "🎬 Steven Spielberg gilt als einer der erfolgreichsten Filmemacher der Hollywood-Geschichte."
     },
   {
         "id": "q_sf_042",
@@ -891,10 +908,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Wie heißt der Schiedsrichter beim Eishockey, der die Hauptverantwortung auf dem Eis trägt?",
         "answers": [
-            "Linienrichter",
+            "Der Linienrichter am Spielfeldrand",
             "Hauptschiedsrichter (Referee)",
-            "Zeitnehmer",
-            "Torrichter"
+            "Der Zeitnehmer an der Bande",
+            "Der Torrichter hinter dem Tor"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -976,10 +993,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Welcher berühmte Filmheld führt Peitsche und Schlapphut als Markenzeichen?",
         "answers": [
-            "Zorro",
-            "Han Solo",
+            "Han Solo (Pilot)",
+            "Zorro (Held)",
             "Indiana Jones",
-            "Lara Croft"
+            "Lara Croft (Spiel)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1027,10 +1044,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Welche Farbe hat der Ball beim klassischen Snooker für den Wert von 7 Punkten?",
         "answers": [
-            "Pink",
+            "Blauer Ball",
             "Schwarz",
-            "Blau",
-            "Gelb"
+            "Brauner Ball",
+            "Grüner Ball"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1044,10 +1061,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Wie heißt der gelbe Schwamm aus der Zeichentrickserie, der in Bikini Bottom lebt?",
         "answers": [
-            "Patrick Star",
-            "Thaddäus Tentakel",
+            "Patrick Star (Freund)",
+            "Mr. Krabs (Chef)",
             "SpongeBob Schwammkopf",
-            "Mr. Krabs"
+            "Thaddäus Tentakel (Nachbar)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1061,9 +1078,9 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Welches Land erfand die moderne Sportart Golf?",
         "answers": [
-            "England",
-            "USA",
-            "Irland",
+            "Irland (Insel)",
+            "England (Reich)",
+            "USA (Land)",
             "Schottland"
         ],
         "correct": 3,
@@ -1112,10 +1129,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Welcher Marvel-Superheld besitzt einen Schild aus dem Metall Vibranium?",
         "answers": [
-            "Iron Man",
-            "Thor",
+            "Iron Man (Anzug)",
+            "Hawkeye (Pfeil)",
             "Captain America",
-            "Hawkeye"
+            "Thor (Mjölnir)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1333,9 +1350,9 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Wie heißt der schwerste Stein im Curling, der über das Eis geschoben wird?",
         "answers": [
-            "Eis-Puck",
-            "Sliding Disc",
-            "Grip-Puck",
+            "Eis-Puck aus gefrorenem Wasser",
+            "Grip-Puck aus Hartgummi",
+            "Sliding Disc aus Kunststoff",
             "Curling-Stein (Granitstein)"
         ],
         "correct": 3,
@@ -1351,8 +1368,8 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "question": "Welche deutsche Tennisspielerin gewann 2016 die Australian Open und US Open?",
         "answers": [
             "Angelique Kerber",
+            "Andrea Petković (GER)",
             "Sabine Lisicki",
-            "Andrea Petković",
             "Julia Görges"
         ],
         "correct": 0,
@@ -1367,10 +1384,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Wie lautet der Name der KI in Stanley Kubricks '2001: Odyssee im Weltraum'?",
         "answers": [
-            "JARVIS",
+            "JARVIS-KI",
             "HAL 9000",
-            "Skynet",
-            "R2-D2"
+            "Skynet-KI",
+            "R2-D2-Droide"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1401,9 +1418,9 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "In welchem Zeichentrickfilm singt der Bär Balu das Lied 'Probier’s mal mit Gemütlichkeit'?",
         "answers": [
-            "König der Löwen",
-            "Bärenbrüder",
-            "Aristocats",
+            "König der Löwen (Film)",
+            "Bärenbrüder (Trickfilm)",
+            "Aristocats (Musical)",
             "Das Dschungelbuch"
         ],
         "correct": 3,
@@ -1437,8 +1454,8 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "answers": [
             "Kendo",
             "Fechten",
-            "Karate",
-            "Aikido"
+            "Aikido",
+            "Taekwondo"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1452,10 +1469,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Wie heißt der Schauplatz und die Schule von Wednesday Addams in der Netflix-Serie 'Wednesday'?",
         "answers": [
-            "Hogwarts",
-            "Riverdale High",
+            "Hogwarts (Schule)",
+            "Brakebills (Uni)",
             "Nevermore Academy",
-            "Brakebills"
+            "Riverdale (Highschool)"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1469,9 +1486,9 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Welche Farbe hat das Trikot des führenden Fahrers bei der Tour de France?",
         "answers": [
-            "Grünes Trikot",
-            "Rosa Trikot",
-            "Rot-weißes Trikot",
+            "Grünes Trikot (Punktewertung)",
+            "Rosa Trikot (Bergwertung)",
+            "Rot-weißes Trikot (Sprint)",
             "Gelbes Trikot (Maillot Jaune)"
         ],
         "correct": 3,
@@ -1707,10 +1724,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Welche Disziplin gehört NICHT zum olympischen Biathlon?",
         "answers": [
-            "Sprint",
+            "Massenstart-Rennen",
             "Riesenslalom",
-            "Einzel",
-            "Massenstart"
+            "Sprintdisziplin",
+            "Einzelwettkampf"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1759,9 +1776,9 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "question": "Welche Schauspielerin spielte Katniss Everdeen in den 'Die Tribute von Panem'-Filmen?",
         "answers": [
             "Jennifer Lawrence",
-            "Emma Watson",
-            "Kristen Stewart",
-            "Shailene Woodley"
+            "Emma Watson (Rolle)",
+            "Kristen Stewart (Film)",
+            "Shailene Woodley (Star)"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -1792,10 +1809,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Wie heißt der treue Gefährte von Han Solo in Star Wars, der der Spezies Wookiee angehört?",
         "answers": [
-            "Yoda",
-            "Ewok",
+            "Yoda (Meister)",
+            "Ewok (Krieger)",
             "Chewbacca",
-            "Lando"
+            "Lando (Pilot)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1809,9 +1826,9 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "In welcher US-Stadt befindet sich der berühmte Madison Square Garden?",
         "answers": [
-            "Los Angeles",
-            "Chicago",
-            "Boston",
+            "Chicago (Stadium)",
+            "Boston (Garden)",
+            "Los Angeles (Arena)",
             "New York City"
         ],
         "correct": 3,
@@ -1843,10 +1860,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Was beschreibt ein 'Home Run' beim Baseball?",
         "answers": [
-            "Ein direkter Pass zum Torwart",
+            "Ein direkter Pass zurück zum eigenen Torwart im Tor",
             "Der Schlagmann läuft einmal um alle Basen zurück zur Home Plate",
-            "Ein Wurf außerhalb des Spielfelds",
-            "Ein Punktgewinn durch Fangen des Balls"
+            "Ein Wurf weit außerhalb des gesamten Spielfeldrands",
+            "Ein Punktgewinn durch das direkte Fangen des geworfenen Spielballs"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1911,10 +1928,10 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "subject": "sport_film",
         "question": "Welche beiden Farben bilden die Flagge beim Zieleinlauf von Motorsportrennen?",
         "answers": [
-            "Rot und Gelb gestreift",
+            "Rot und Gelb gestreiftes Tuch",
             "Schwarz und Weiß kariert",
-            "Blau und Gelb geteilt",
-            "Schwarz und Rot kariert"
+            "Blau und Gelb geteiltes Tuch",
+            "Schwarz und Rot kariertes Tuch"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -2034,12 +2051,12 @@ const SPASS_SPORT_FILM_QUESTIONS = [
   { id: "q1346", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Wie viel wiegt ein Golfball etwa?", answers: ["ca. 100 g", "ca. 30 g", "ca. 45 g", "ca. 60 g"], correct: 2, difficulty: "mittel", points: 10, explanation: "Ein Golfball wiegt exakt 45,93 g – das ist international vorgeschrieben." },
   { id: "q1347", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Welcher Film hatte den ersten Ton?", answers: ["Der Jazzsänger", "Vom Winde verweht", "Metropolis", "King Kong"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Jazzsänger (1927) war der erste abendfüllende Tonfilm – ein Meilenstein." },
   { id: "q1348", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Wie viele Schiedsrichter gibt es beim Fußball im Profibereich?", answers: ["3 Schiedsrichter + 2 Linienrichter", "2 Schiedsrichter + VAR", "1 Hauptschiedsrichter", "4 Schiedsrichter auf dem Feld"], correct: 2, difficulty: "mittel", points: 10, explanation: "Im Profifußball gibt es 1 Hauptschiedsrichter + 2 Linienrichter + 1 VAR – also 4-5 Personen." },
-  { id: "q1349", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Welcher Sport hat die längste Spieldauer?", answers: ["Tennis", "Test-Cricket", "Radrennen", "Baseball"], correct: 1, difficulty: "mittel", points: 10, explanation: "Ein Test-Cricket-Spiel kann 5 Tage dauern – das ist der längste Sport." },
+  { id: "q1349", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Welcher Sport hat die längste Spieldauer?", answers: ["Radrennsport", "Test-Cricket", "Baseballspiel", "Tennismatch"], correct: 1, difficulty: "mittel", points: 10, explanation: "Ein Test-Cricket-Spiel kann 5 Tage dauern – das ist der längste Sport." },
   { id: "q1350", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Welcher Film hat den meisten Rekord an gewonnenen Oscars?", answers: ["Avatar", "Titanic", "Ben Hur", "Der Pate"], correct: 1, difficulty: "mittel", points: 10, explanation: "Titanic (1997), Ben Hur (1959) und Der Herr der Ringe 3 haben je 11 Oscars." },
   { id: "q1351", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Wie viele Athleten nehmen an den Olympischen Spielen teil?", answers: ["ca. 10.000", "ca. 50.000", "ca. 20.000", "ca. 5.000"], correct: 0, difficulty: "mittel", points: 10, explanation: "Bei den Sommerspielen sind etwa 10.000 Athleten aus aller Welt dabei." },
   { id: "q1352", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Welches Land hat die meisten Olympischen Medaillen gewonnen?", answers: ["Russland", "China", "USA", "Deutschland"], correct: 2, difficulty: "mittel", points: 10, explanation: "Die USA haben die meisten Olympischen Medaillen aller Zeiten – etwa 3.000." },
   { id: "q1353", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Welcher Film hat das längste Drehbuch der Geschichte?", answers: ["Der Star Wars", "Der Titanic", "Gone with the Wind", "Der Herr der Ringe"], correct: 3, difficulty: "mittel", points: 10, explanation: "Die Herr-der-Ringe-Trilogie hat das längste Drehbuch – über 2.000 Seiten." },
-  { id: "q1354", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Welcher Sport war der erste, der kommerziell übertragen wurde?", answers: ["Boxen", "Baseball", "Fußball", "Tennis"], correct: 1, difficulty: "mittel", points: 10, explanation: "Baseball wurde bereits in den 1920er Jahren im Radio übertragen." },
+  { id: "q1354", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Welcher Sport war der erste, der kommerziell übertragen wurde?", answers: ["Fußballspiel", "Baseball", "Boxsport-Event", "Tennismatch"], correct: 1, difficulty: "mittel", points: 10, explanation: "Baseball wurde bereits in den 1920er Jahren im Radio übertragen." },
   { id: "q1355", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Wie lange dauert die längste Filmaufnahme ohne Schnitt?", answers: ["ca. 10 Minuten", "ca. 2 Stunden", "ca. 12 Stunden", "ca. 30 Sekunden"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der längste Film ohne Schnitt ist 'Russian Ark' (2002) – er wurde in einer einzigen Einstellung gedreht: 90 Minuten." },
   { id: "q1356", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Welcher Sport hat den höchsten Preis für einen Ball?", answers: ["Basketball", "Baseball", "Tennis (Wimbledon-Ball)", "Fußball (WM-Ball)"], correct: 3, difficulty: "mittel", points: 10, explanation: "Ein WM-Fußball kann bis zu 500 € kosten – das ist teurer als andere Bälle." },
   { id: "q1110", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Welcher Sport wird in Wimbledon gespielt?", answers: ["Tennis", "Fußball", "Rugby", "Golf"], correct: 0, difficulty: "mittel", points: 10, explanation: "Wimbledon ist das berühmteste Rasentennis-Turnier der Welt." },

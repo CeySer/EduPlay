@@ -41,10 +41,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Wer wird offiziell als Erfinder des Telefons patentiert (1876)?",
         "answers": [
-            "Philipp Reis",
-            "Thomas Edison",
+            "Philipp Reis (Physiklehrer)",
+            "Thomas Alva Edison",
             "Alexander Graham Bell",
-            "Nikola Tesla"
+            "Guglielmo Marconi (Italien)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -76,9 +76,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Wer entdeckte 1895 in Würzburg die nach ihm benannten Röntgenstrahlen?",
         "answers": [
             "Wilhelm Conrad Röntgen",
-            "Max Planck",
-            "Albert Einstein",
-            "Heinrich Hertz"
+            "Max Karl Ernst Planck",
+            "Albert Einstein (Physiker)",
+            "Heinrich Rudolf Hertz"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -109,10 +109,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche Brüder führten 1903 in Kitty Hawk den ersten gesteuerten Motorflug der Geschichte durch?",
         "answers": [
-            "Brüder Montgolfier",
-            "Brüder Lumière",
+            "Brüder Montgolfier (Ballonpioniere)",
+            "Brüder Lumière (Kinopioniere)",
             "Brüder Wright (Wilbur & Orville)",
-            "Brüder Dassault"
+            "Brüder Dassault (Flugzeugbauer)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -144,7 +144,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Wer entwickelte 1989 am Kernforschungszentrum CERN die Grundlagen für das World Wide Web (WWW)?",
         "answers": [
             "Tim Berners-Lee",
-            "Steve Jobs",
+            "Steve Jobs (Apple)",
             "Bill Gates",
             "Vint Cerf"
         ],
@@ -160,7 +160,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welcher schottische Bakteriologe entdeckte 1928 durch Zufall das Antibiotikum Penicillin?",
         "answers": [
-            "Robert Koch",
+            "Robert Koch (Berlin)",
             "Alexander Fleming",
             "Louis Pasteur",
             "Paul Ehrlich"
@@ -245,10 +245,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Wie heißt der Wikingerkönig, nach dessen Monogramm-Runen die Drahtlos-Technologie 'Bluetooth' benannt wurde?",
         "answers": [
-            "Ragnar Lodbrok",
-            "Erik der Rote",
+            "Ragnar Lodbrok (Sagenfigur)",
+            "Erik der Rote (Grönland)",
             "Harald Blauzahn (Blåtand)",
-            "Sven Gabelbart"
+            "Sven Gabelbart (König)"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -348,8 +348,8 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Wer erfand 1752 den Blitzableiter zum Schutz von Gebäuden?",
         "answers": [
             "Benjamin Franklin",
-            "Thomas Edison",
-            "Michael Faraday",
+            "Thomas Alva Edison",
+            "Michael Faraday (GB)",
             "Nikola Tesla"
         ],
         "correct": 0,
@@ -381,7 +381,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche Amerikanerin erfand 1903 den mechanischen Scheibenwischer für Automobile?",
         "answers": [
-            "Ada Lovelace",
+            "Ada Lovelace (GB)",
             "Bertha Benz",
             "Mary Anderson",
             "Marie Curie"
@@ -398,9 +398,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche berühmte Erfindung stammt von Ferdinand Graf von Zeppelin?",
         "answers": [
-            "Der Helikopter",
-            "Das Strahlflugzeug",
-            "Der Heißluftballon",
+            "Der lenkbare Zeppelin-Helikopter",
+            "Das erste deutsche Strahlflugzeug",
+            "Der große Zeppelin-Heißluftballon",
             "Das starrwandige Lenkluftschiff"
         ],
         "correct": 3,
@@ -432,10 +432,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche Brüder führten 1783 in Paris die erste bemannte Fahrt mit einem Heißluftballon durch?",
         "answers": [
-            "Brüder Wright",
+            "Brüder Wright (Wilbur & Orville, USA)",
             "Brüder Montgolfier (Joseph & Étienne)",
-            "Brüder Lumière",
-            "Brüder Grimm"
+            "Brüder Lumière (Kinopioniere)",
+            "Brüder Grimm (Märchensammler)"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -484,9 +484,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welche berühmte Erfindung von Emil Berliner löste den Edison-Phonographenwalzen-Standard ab?",
         "answers": [
             "Grammophon und Schallplatte",
-            "Tonbandgerät",
-            "Kompaktkassette",
-            "Radiogerät"
+            "Das Tonbandgerät (Magnetband)",
+            "Die Kompaktkassette (MC)",
+            "Das klassische Radiogerät"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -517,10 +517,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche Erfindung von Chester Carlson ermöglichte ab 1938 moderne Fotokopiergeräte?",
         "answers": [
-            "Offsetdruck",
-            "Thermodruck",
+            "Der klassische Offsetdruck",
+            "Der moderne Thermodruck",
             "Elektrofotografie (Xerografie)",
-            "Laser-Gravur"
+            "Die feine Laser-Gravur (Technik)"
         ],
         "correct": 2,
         "difficulty": "schwer",
@@ -552,9 +552,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welcher US-Computerpionier erfand 1964 die erste hölzerne Computer-Maus?",
         "answers": [
             "Douglas Engelbart",
-            "Alan Kay",
-            "Steve Wozniak",
-            "Bill Gates"
+            "Alan Kay (Informatiker)",
+            "Steve Wozniak (Apple)",
+            "Bill Gates (Microsoft)"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -620,7 +620,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welches Unternehmen brachte 1989 den legendären tragbaren 'Game Boy' auf den Markt?",
         "answers": [
             "Nintendo",
-            "Sega",
+            "Sega (Japan)",
             "Atari",
             "Sony"
         ],
@@ -653,10 +653,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welches Navigationssystem basiert auf einem Netz von mindestens 24 US-Satelliten im All?",
         "answers": [
-            "Galileo",
-            "Glonass",
+            "Galileo (europäisches System)",
+            "Glonass (russisches System)",
             "GPS (Global Positioning System)",
-            "BeiDou"
+            "BeiDou (chinesisches Navi-System)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -704,10 +704,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche Erfindung ermöglichte 1804 George Stephenson mit der Lokomotive 'Rocket'?",
         "answers": [
-            "Das Dampfschiff",
+            "Das erste seetaugliche Dampfschiff",
             "Die kommerzielle Dampfeisenbahn",
-            "Das Automobil",
-            "Die Seilbahn"
+            "Das moderne Automobil (PKW)",
+            "Die alte Bergseilbahnanlage"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -739,8 +739,8 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Wer meldete 1879 ein kohlefadenbasiertes Patent für die kommerziell nutzbare Glühbirne an?",
         "answers": [
             "Heinrich Goebel",
-            "Joseph Swan",
-            "Nikola Tesla",
+            "Joseph Swan (Erfinder)",
+            "Nikola Tesla (Erfinder)",
             "Thomas Alva Edison"
         ],
         "correct": 3,
@@ -772,7 +772,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welcher deutsche Physiker erfand 1904 das Telemobiloskop, den Vorläufer des Radars?",
         "answers": [
-            "Robert Watson-Watt",
+            "Robert Watson-Watt (GB)",
             "Christian Hülsmeyer",
             "Ferdinand Braun",
             "Heinrich Hertz"
@@ -789,10 +789,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche Erfindung verdanken wir den Chemikern Spencer Silver und Arthur Fry (3M) aus dem Jahr 1977?",
         "answers": [
-            "Tesafilm",
-            "Sekundenkleber",
+            "Tesafilm (Klebeband)",
+            "Sekundenkleber (Marke)",
             "Post-it Klebezettel",
-            "Uhu-Klebestift"
+            "Uhu-Klebestift (Marke)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -806,9 +806,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Wer erfand 1895 die Kinematografie (Filmkamera und Projektor) und veranstaltete die erste Kino-Vorführung?",
         "answers": [
-            "Thomas Edison",
-            "Georges Méliès",
-            "Max Skladanowsky",
+            "Thomas Edison (USA-Pionier)",
+            "Georges Méliès (Filmpionier)",
+            "Max Skladanowsky (Berliner Filmpionier)",
             "Brüder Lumière (Auguste & Louis)"
         ],
         "correct": 3,
@@ -824,9 +824,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welcher US-amerikanische Erfinder entwickelte den Sicherheitsrasierer mit auswechselbarer Klinge?",
         "answers": [
             "King Camp Gillette",
-            "Jacob Schick",
-            "Wilkinson",
-            "Braun"
+            "Jacob Schick (Erfinder)",
+            "Wilkinson (Klingen)",
+            "Braun (Elektrogeräte)"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -840,10 +840,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welches Bauteil entwickelte Felix Wankel in den 1950er-Jahren als kolbenlosen Verbrennungsmotor?",
         "answers": [
-            "Boxermotor",
+            "Der klassische Boxermotor (PKW)",
             "Rotationskolbenmotor (Wankelmotor)",
-            "Sternmotor",
-            "Gasmotor"
+            "Der schwere Sternmotor (Flugzeugbau)",
+            "Der einfache Gasmotor (Heizung)"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -857,10 +857,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Wer erfand 1809 die Konservendose zur Haltbarmachung von Verpflegung für Napoleons Armee?",
         "answers": [
-            "Louis Pasteur",
-            "Justus von Liebig",
+            "Louis Pasteur (Mikrobiologe)",
+            "Justus von Liebig (Chemiker, DE)",
             "Nicolas Appert / Peter Durand",
-            "Henri Nestlé"
+            "Henri Nestlé (Unternehmer)"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -874,9 +874,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welcher italienische Physiker erfand 1643 das Quecksilber-Barometer zur Luftdruckmessung?",
         "answers": [
-            "Galileo Galilei",
-            "Blaise Pascal",
-            "Christiaan Huygens",
+            "Galileo Galilei (Physiker)",
+            "Blaise Pascal (Mathematiker)",
+            "Christiaan Huygens (NL)",
             "Evangelista Torricelli"
         ],
         "correct": 3,
@@ -892,9 +892,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welches Verfahren zur industriellen Ammoniak-Herstellung erfanden Fritz Haber und Carl Bosch?",
         "answers": [
             "Haber-Bosch-Verfahren",
-            "Ostwald-Verfahren",
-            "Kontaktverfahren",
-            "Solvay-Verfahren"
+            "Ostwald-Verfahren (Säure)",
+            "Kontaktverfahren (Säure)",
+            "Solvay-Verfahren (Soda)"
         ],
         "correct": 0,
         "difficulty": "schwer",
@@ -908,10 +908,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche Erfindung revolutionierte ab 1984 das Prototyping und wird als '3D-Druck' bezeichnet?",
         "answers": [
-            "Faser-Laser",
+            "Der klassische Faser-Laser (Technik)",
             "Stereolithografie (Chuck Hull)",
-            "CNC-Fräsen",
-            "Spritzguss"
+            "Das übliche CNC-Fräsen",
+            "Der klassische Spritzguss"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -942,9 +942,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Wer erfand 1901 den elektrischen Staubsauger mit Saugmotor auf Rädern?",
         "answers": [
-            "James Dyson",
-            "William Hoover",
-            "Carl Miele",
+            "James Dyson (Ingenieur)",
+            "William Hoover (USA)",
+            "Carl Miele (Unternehmer)",
             "Hubert Cecil Booth"
         ],
         "correct": 3,
@@ -960,9 +960,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welche Erfindung von Robert Watson-Watt half Großbritannien 1940 bei der Luftschlacht um England?",
         "answers": [
             "Chain Home Radar-System",
-            "Sonar-System",
-            "Abhör-Enigma",
-            "Düsentriebwerk"
+            "Das Sonar-System (U-Boot)",
+            "Das Abhör-System Enigma",
+            "Das neue Düsentriebwerk"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -976,10 +976,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche US-Erfinderin patentierte 1886 die erste mechanische Geschirrspülmaschine?",
         "answers": [
-            "Melitta Bentz",
+            "Melitta Bentz (Filter)",
             "Josephine Cochrane",
-            "Ruth Handler",
-            "Ada Lovelace"
+            "Ruth Handler (Barbie)",
+            "Ada Lovelace (Mathe)"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -993,10 +993,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welcher Niederländer gilt durch die Verbesserung des Mikroskops als 'Vater der Mikrobiologie'?",
         "answers": [
-            "Robert Hooke",
-            "Zacharias Janssen",
+            "Robert Hooke (Physiker)",
+            "Zacharias Janssen (NL)",
             "Antoni van Leeuwenhoek",
-            "Christiaan Huygens"
+            "Christiaan Huygens (NL)"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1112,10 +1112,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welches optische Gerät erfand Hans Lippershey 1608 und Galileo Galilei nutzte es für Sternenbeobachtungen?",
         "answers": [
-            "Mikroskop",
+            "Das klassische Mikroskop",
             "Fernrohr (Teleskop)",
-            "Sextant",
-            "Prisma"
+            "Der nautische Sextant",
+            "Das optische Prisma"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1129,8 +1129,8 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welcher Erfinder baute 1900 das erste funktionstüchtige Hybridauto ('Lohner-Porsche')?",
         "answers": [
-            "Henry Ford",
-            "Ransom Eli Olds",
+            "Henry Ford (USA)",
+            "Ransom Eli Olds (USA)",
             "Ferdinand Porsche",
             "Gottlieb Daimler"
         ],
@@ -1146,9 +1146,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche französische Tiefsee-Legende erfand 1943 zusammen mit Émile Gagnan den Lungenautomaten (Aqua-Lung)?",
         "answers": [
-            "Auguste Piccard",
-            "Jules Verne",
-            "Robert Ballard",
+            "Auguste Piccard (Tiefsee)",
+            "Jules Verne (Autor)",
+            "Robert Ballard (USA)",
             "Jacques-Yves Cousteau"
         ],
         "correct": 3,
@@ -1180,7 +1180,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welcher US-Pionier erfand 1831 den mechanischen Mähdrescher / Balkenmäher?",
         "answers": [
-            "John Deere",
+            "John Deere (USA)",
             "Cyrus McCormick",
             "Eli Whitney",
             "Robert Fulton"
@@ -1197,10 +1197,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche Erfindung verdanken wir Eli Whitney aus dem Jahr 1793?",
         "answers": [
-            "Die Nähmaschine",
-            "Die Spinnmaschine",
+            "Die mechanische Steppstich-Nähmaschine (Singer)",
+            "Die mechanische Ringspinnmaschine (Spinning Jenny)",
             "Die Baumwoll-Entkernungsmaschine (Cotton Gin)",
-            "Die Dampfwebstuhlanlage"
+            "Die automatische Dampfwebstuhlanlage (Cartwright)"
         ],
         "correct": 2,
         "difficulty": "schwer",
@@ -1214,9 +1214,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Wer erfand 1846 die Doppelsteppstich-Nähmaschine mit Öhrnadel?",
         "answers": [
-            "Balthasar Krems",
-            "Josef Madersperger",
-            "Walter Hunt",
+            "Balthasar Krems (Ingenieur)",
+            "Josef Madersperger (Wien)",
+            "Walter Hunt (Erfinder)",
             "Elias Howe / Isaac Singer"
         ],
         "correct": 3,
@@ -1232,9 +1232,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welches Bauteil entwickelte Gabriel Fahrenheit 1714 zur präzisen Temperaturmessung?",
         "answers": [
             "Quecksilber-Thermometer",
-            "Alkohol-Thermometer",
-            "Bimetall-Streifen",
-            "Infrarot-Sensor"
+            "Das Alkohol-Thermometer",
+            "Der Bimetall-Streifen",
+            "Der Infrarot-Sensor (modern)"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -1248,10 +1248,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welches Kommunikationskabel wurde 1858 erstmals erfolgreich durch den Atlantik verlegt?",
         "answers": [
-            "Glaskabel für Telefon",
+            "Das Glaskabel für Telefonie (modern)",
             "Transatlantisches Telegrafenkabel",
-            "Koaxialkabel für TV",
-            "Stromkabel"
+            "Das Koaxialkabel für Fernsehen",
+            "Das übliche Stromkabel (Kupfer)"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1300,7 +1300,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welches Unternehmen erfand 1963 die Audio-Kompaktkassette (MC)?",
         "answers": [
             "Philips",
-            "Sony",
+            "Sony (Japan)",
             "Maxell",
             "TDK"
         ],
@@ -1316,10 +1316,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Wer erfand 1979 den legendären mobilen Kassettenabspieler 'Walkman'?",
         "answers": [
-            "Panasonic",
+            "Panasonic (japanischer Elektronikkonzern)",
             "Sony (Akio Morita & Nobutoshi Kihara)",
-            "Aiwa",
-            "Toshiba"
+            "Aiwa (japanischer Hersteller)",
+            "Toshiba (japanischer Konzern)"
         ],
         "correct": 1,
         "difficulty": "leicht",
@@ -1333,10 +1333,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche Wissenschaftlerinnen erhielten 2020 den Chemie-Nobelpreis für die CRISPR-Cas9 Gen-Schere?",
         "answers": [
-            "Rosalind Franklin & Marie Curie",
-            "Françoise Barré-Sinoussi",
+            "Rosalind Franklin & Marie Curie (DNA-Struktur)",
+            "Françoise Barré-Sinoussi (HIV)",
             "Emmanuelle Charpentier & Jennifer Doudna",
-            "Tu Youyou"
+            "Tu Youyou (Malariaforscherin, China)"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1368,9 +1368,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welche deutsche Erfindung verhinderte ab 1978 das Blockieren der Räder bei Vollbremsungen?",
         "answers": [
             "ABS (Anti-Blockier-System)",
-            "ESP",
-            "ASR",
-            "Airbag"
+            "Das ASR-Antriebssystem (Schlupf)",
+            "Das ESP-Stabilitätssystem",
+            "Der klassische Airbag"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -1401,10 +1401,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Wer baute 1939 das erste strahlgetriebene Flugzeug der Welt (Heinkel He 178)?",
         "answers": [
-            "Frank Whittle & Boeing",
-            "Messerschmitt & Junkers",
+            "Frank Whittle & Boeing (GB/USA)",
+            "Messerschmitt & Junkers (DE)",
             "Hans von Ohain & Ernst Heinkel",
-            "Igor Sikorsky"
+            "Igor Sikorsky (Hubschrauber)"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1418,9 +1418,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welches Erste-Hilfe-Gerät gibt bei Herzflimmern gezielte Stromstöße ab und rettet Leben?",
         "answers": [
-            "Herzschrittmacher",
+            "Herzschrittmacher (Puls)",
             "Beatmungsgerät",
-            "EKG-Gerät",
+            "Das EKG-Gerät",
             "Defibrillator (AED)"
         ],
         "correct": 3,
@@ -1436,9 +1436,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welche Technologie erfand Nick Holonyak 1962 als Halbleiter-Lichtquelle?",
         "answers": [
             "LED (Lichtemittierende Diode)",
-            "Laserdiode",
-            "OLED",
-            "Glimmlampe"
+            "Die klassische Laserdiode (Technik)",
+            "Die frühe OLED-Anzeigetechnik",
+            "Die alte Glimmlampe (Neon)"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -1452,10 +1452,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welcher Erfinder gilt durch sein Patent von 1893 als Erfinder des Reißverschlusses?",
         "answers": [
-            "Elias Howe",
+            "Elias Howe (Nähmaschine, USA)",
             "Whitcomb Judson / Gideon Sundbäck",
-            "Isaac Singer",
-            "Levi Strauss"
+            "Isaac Singer (Fabrikant, USA)",
+            "Levi Strauss (Jeans-Erfinder, USA)"
         ],
         "correct": 1,
         "difficulty": "mittel",
@@ -1486,9 +1486,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche deutsche Firma erfand 1936 den durchsichtigen Klebefilm 'Tesafilm'?",
         "answers": [
-            "Henkel",
-            "3M",
-            "Uhu",
+            "Henkel (deutscher Konzern)",
+            "3M (US-amerikanischer Konzern)",
+            "Uhu (deutsche Klebstoffmarke)",
             "Beiersdorf (Hugo Kirchberg)"
         ],
         "correct": 3,
@@ -1520,10 +1520,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Wer erfand 1958 den ersten implantierbaren Herzschrittmacher in Schweden?",
         "answers": [
-            "Wilson Greatbatch",
+            "Wilson Greatbatch (USA, Erfinder)",
             "Rune Elmqvist & Åke Senning",
-            "Paul Zoll",
-            "Willem Einthoven"
+            "Paul Zoll (Kardiologe)",
+            "Willem Einthoven (EKG)"
         ],
         "correct": 1,
         "difficulty": "schwer",
@@ -1554,8 +1554,8 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welcher Schotte erfand 1823 die wasserdichte Regenbekleidung aus Kautschuk?",
         "answers": [
-            "Thomas Burberry",
-            "John Barbour",
+            "Thomas Burberry (Mode)",
+            "John Barbour (Textil)",
             "Charles Goodyear",
             "Charles Macintosh"
         ],
@@ -1572,9 +1572,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welches Unternehmen stellte 1976 den ersten betriebsbereiten Personal Computer 'Apple I' vor?",
         "answers": [
             "Apple (Steve Wozniak & Steve Jobs)",
-            "IBM",
-            "Commodore",
-            "Microsoft"
+            "IBM (Großrechner-Konzern, USA-weit)",
+            "Commodore (Heimcomputer, USA)",
+            "Microsoft (Softwarekonzern)"
         ],
         "correct": 0,
         "difficulty": "leicht",
@@ -1605,10 +1605,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welches Standard-Schnittstellensystem erfanden Intel und andere Konzerne 1996 für Zubehör?",
         "answers": [
-            "FireWire",
-            "Thunderbolt",
+            "FireWire (Apple-Schnittstelle)",
+            "Thunderbolt (Intel-Norm)",
             "USB (Universal Serial Bus)",
-            "SCSI"
+            "SCSI (alte Schnittstelle)"
         ],
         "correct": 2,
         "difficulty": "leicht",
@@ -1741,10 +1741,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welches Schweizer Unternehmen erfand 1937 den löslich gemachten Pulverkaffee ('Nescafé')?",
         "answers": [
-            "Jacobs",
-            "Tchibo",
+            "Jacobs (Kaffeerösterei, DE)",
+            "Tchibo (Kaffeehandel)",
             "Nestlé (Max Morgenthaler)",
-            "Illy"
+            "Illy (Kaffeemarke, Italien)"
         ],
         "correct": 2,
         "difficulty": "mittel",
@@ -1758,9 +1758,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welches Werkzeug erfand der deutsche Chemiker Justus von Liebig zur Fleischextrakt-Nutzung?",
         "answers": [
-            "Maggi-Würze",
-            "Knorr-Suppenwürfel",
-            "Pektin",
+            "Maggi-Würze (Julius Maggi, Schweiz)",
+            "Knorr-Suppenwürfel (bekannte Traditionsmarke)",
+            "Pektin (Geliermittel aus Früchten)",
             "Liebigs Fleischextrakt / Brühwürfel-Vorläufer"
         ],
         "correct": 3,
@@ -1826,9 +1826,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welche deutsche Erfindung von Otto Hahn, Lise Meitner und Fritz Straßmann schütterte 1938 die Welt?",
         "answers": [
-            "Entdeckung der Radioaktivität",
-            "Erfindung des Lasers",
-            "Entdeckung der Röntgenstrahlung",
+            "Die Entdeckung der Radioaktivität",
+            "Die Erfindung des Lasers (1960)",
+            "Die Entdeckung der Röntgenstrahlung (1895)",
             "Entdeckung der Kernspaltung von Uran"
         ],
         "correct": 3,
@@ -1912,9 +1912,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welche deutsche Erfindung begründete 1847 die moderne Elektrotechnik (Zeigertelegraf)?",
         "answers": [
             "Werner von Siemens & Johann Georg Halske",
-            "Robert Bosch",
-            "Carl Zeiss",
-            "Emil Rathenau"
+            "Robert Bosch (Unternehmer aus Deutschland)",
+            "Carl Zeiss (Optische Werke in Jena)",
+            "Emil Rathenau (AEG-Mitgründer)"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -1928,7 +1928,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Wer erfand 1816 den Heißluftmotor (Stirlingmotor) als sichere Alternative zur Dampfmaschine?",
         "answers": [
-            "James Watt",
+            "James Watt (Erfinder)",
             "Robert Stirling",
             "Rudolf Diesel",
             "Sadi Carnot"
@@ -1945,7 +1945,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welcher US-Pionier erfand 1844 das Verfahren der Vulkanisation von Kautschuk?",
         "answers": [
-            "John Dunlop",
+            "John Dunlop (Reifen)",
             "Thomas Hancock",
             "Charles Goodyear",
             "B.F. Goodrich"
@@ -1980,9 +1980,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "question": "Welche Erfindung revolutionierte ab 1973 durch Paul Lauterbur und Peter Mansfield die strahlenfreie Körperdiagnostik?",
         "answers": [
             "Magnetresonanztomographie (MRT / Kernspin)",
-            "Computertomographie (CT)",
-            "Ultraschall",
-            "Röntgen"
+            "Die Computertomographie (CT-Röntgenverfahren)",
+            "Der klassische Ultraschall (Sonografie)",
+            "Das übliche klassische Röntgenverfahren"
         ],
         "correct": 0,
         "difficulty": "mittel",
@@ -2013,10 +2013,10 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Wer erfand 1908 das Glasverfahren zur Herstellung von durchsichtigem Cellophan?",
         "answers": [
-            "Leo Baekeland",
-            "Otto Bayer",
+            "Leo Baekeland (Bakelit)",
+            "Otto Bayer (Polyurethan)",
             "Jacques E. Brandenberger",
-            "Roy Plunkett"
+            "Roy Plunkett (Teflon)"
         ],
         "correct": 2,
         "difficulty": "schwer",
@@ -2030,9 +2030,9 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "subject": "erfindungen",
         "question": "Welches bahnbrechende Weltraumteleskop schickte die NASA 1990 in eine Erdumlaufbahn?",
         "answers": [
-            "James Webb-Teleskop",
-            "Kepler-Teleskop",
-            "Spitzer-Teleskop",
+            "James Webb-Teleskop (NASA)",
+            "Kepler-Teleskop (Exoplaneten)",
+            "Spitzer-Teleskop (Infrarot)",
             "Hubble-Weltraumteleskop"
         ],
         "correct": 3,
@@ -2040,976 +2040,28 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "points": 10,
         "explanation": "🔭 Hubble lieferte dank der Position außerhalb der Erdatmosphäre gestochen scharfe Bilder des Universums."
     },
-  { id: "q1434", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wer erfand den Buchdruck mit beweglichen Lettern in Europa?", answers: ["Thomas Edison", "Albert Einstein", "Johannes Gutenberg", "Karl Benz"], correct: 2, difficulty: "mittel", points: 10, explanation: "Um 1450 revolutionierte Gutenberg die Verbreitung von Wissen." },
+  { id: "q1434", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wer erfand den Buchdruck mit beweglichen Lettern in Europa?", answers: ["Thomas Edison", "Albert Einstein", "Johannes Gutenberg", "Karl Benz (Automobil)"], correct: 2, difficulty: "mittel", points: 10, explanation: "Um 1450 revolutionierte Gutenberg die Verbreitung von Wissen." },
   { id: "q1435", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wer baute das erste Automobil mit Verbrennungsmotor?", answers: ["Rudolf Diesel", "Carl Benz", "Henry Ford", "Nikolaus Otto"], correct: 1, difficulty: "mittel", points: 10, explanation: "1886 meldete Carl Benz seinen Motorwagen zum Patent an." },
   { id: "q1436", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wofür steht 'WWW'?", answers: ["Wireless Web World", "Web Work Widget", "World Web Window", "World Wide Web"], correct: 3, difficulty: "mittel", points: 10, explanation: "Tim Berners-Lee entwickelte es 1989 am CERN." },
-  { id: "q1437", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Was war der Zweck der ersten Glühbirne?", answers: ["Wärme für kalte Wohnräume erzeugen", "Elektrisches Licht ohne offene Flamme", "Töne über weite Strecken verstärken", "Getränke kühl halten in der Praxis"], correct: 1, difficulty: "mittel", points: 10, explanation: "Thomas Edison machte sie ab 1879 alltagstauglich." },
-  { id: "q1438", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Welches Gerät wandelt Sonnenlicht direkt in Strom um?", answers: ["Batterie", "Dynamo", "Turbine", "Solarzelle"], correct: 3, difficulty: "mittel", points: 10, explanation: "In der Photovoltaik entsteht Strom durch den photoelektrischen Effekt." },
-  { id: "q1439", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wofür steht 'GPS'?", answers: ["General Power Supply", "Global Positioning System", "Global Point Scanner", "Global Phone Service"], correct: 1, difficulty: "mittel", points: 10, explanation: "Satelliten bestimmen die Position über Laufzeitmessung." },
+  { id: "q1437", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Was war der Zweck der ersten Glühbirne?", answers: ["Wärme für kalte Wohnräume erzeugen", "Elektrisches Licht ohne offene Flamme", "Töne über weite Strecken hörbar verstärken", "Getränke kühl halten in der Praxis"], correct: 1, difficulty: "mittel", points: 10, explanation: "Thomas Edison machte sie ab 1879 alltagstauglich." },
+  { id: "q1438", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Welches Gerät wandelt Sonnenlicht direkt in Strom um?", answers: ["Die Batterie", "Der Dynamo", "Die Turbine", "Solarzelle"], correct: 3, difficulty: "mittel", points: 10, explanation: "In der Photovoltaik entsteht Strom durch den photoelektrischen Effekt." },
+  { id: "q1439", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wofür steht 'GPS'?", answers: ["General Power Supply System", "Global Positioning System", "Global Point Scanner", "Global Phone Service"], correct: 1, difficulty: "mittel", points: 10, explanation: "Satelliten bestimmen die Position über Laufzeitmessung." },
   { id: "q1440", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Was war die Aufgabe des ersten Computers ENIAC (1945)?", answers: ["Ballistische Berechnungen", "Wettervorhersagen im Fernsehen", "Musik abspielen im Alltag", "Videospiele in der Praxis"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der ENIAC füllte einen ganzen Raum und wog etwa 27 Tonnen." },
   { id: "q1441", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wer entwickelte die Theorie der Relativität?", answers: ["Galileo Galilei", "Nikola Tesla", "Isaac Newton", "Albert Einstein"], correct: 3, difficulty: "mittel", points: 10, explanation: "Einstein veröffentlichte die spezielle Relativitätstheorie 1905." },
-  { id: "q1442", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Was macht ein 3D-Drucker?", answers: ["Er baut Gegenstände Schicht für Schicht auf", "Er scannt Dokumente ein in der Praxis", "Er erfasst Vorlagen und speichert sie", "Er druckt besonders farbtreue Fotos"], correct: 0, difficulty: "mittel", points: 10, explanation: "Dieses Verfahren nennt man additive Fertigung." },
+  { id: "q1442", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Was macht ein 3D-Drucker?", answers: ["Er baut Gegenstände Schicht für Schicht auf", "Er erfasst Vorlagen und speichert sie digital", "Er scannt Dokumente ein in der Praxis", "Er druckt besonders farbtreue Fotos aus"], correct: 0, difficulty: "mittel", points: 10, explanation: "Dieses Verfahren nennt man additive Fertigung." },
   { id: "q1443", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wofür wurde Klettverschluss vorbildhaft nachgeahmt?", answers: ["Für Fischschuppen", "Für Spinnennetze", "Für Kletten aus der Natur", "Vogelfedern in der Praxis"], correct: 2, difficulty: "mittel", points: 10, explanation: "Ein Beispiel für Bionik: Natur als Vorbild für Technik." },
   { id: "q1444", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Was ist ein Akku im Unterschied zur Batterie?", answers: ["Er ist immer größer", "Er ist wiederaufladbar", "Er ist immer kleiner", "Er hält ewig im Alltag"], correct: 1, difficulty: "mittel", points: 10, explanation: "Batterien sind Primärzellen (einmalig), Akkus Sekundärzellen (wiederaufladbar)." },
   { id: "q1445", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wann startete die erste bemannte Mondlandung?", answers: ["1989", "1959", "1979", "1969"], correct: 3, difficulty: "mittel", points: 10, explanation: "Apollo 11 landete am 20. Juli 1969 auf dem Mond." },
   { id: "q1160", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wer erfand den ersten funktionierenden Dampfmotor?", answers: ["Thomas Newcomen", "James Watt", "Nikola Tesla", "George Stephenson"], correct: 0, difficulty: "mittel", points: 10, explanation: "Thomas Newcomen erfand den ersten Dampfmotor, aber Watt verbesserte ihn." },
   { id: "q1161", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Was erfand Alexander Graham Bell?", answers: ["Kamera", "Telegraf", "Radio", "Telefon"], correct: 3, difficulty: "mittel", points: 10, explanation: "Bell meldete 1876 sein Telefon zum Patent an." },
-  { id: "q1162", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Welches Gerät misst die Temperatur?", answers: ["Hydrometer", "Thermometer", "Barometer", "Tachometer"], correct: 1, difficulty: "mittel", points: 10, explanation: "Das Thermometer misst die Temperatur – das Barometer den Luftdruck." },
+  { id: "q1162", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Welches Gerät misst die Temperatur?", answers: ["Das Hydrometer", "Thermometer", "Das Barometer", "Das Tachometer"], correct: 1, difficulty: "mittel", points: 10, explanation: "Das Thermometer misst die Temperatur – das Barometer den Luftdruck." },
   { id: "q1163", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wie heißt der erste Computer der Welt?", answers: ["ENIAC", "Apple I", "IBM 360", "Commodore 64"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der ENIAC war 1945 der erste elektronische Universalrechner." },
   { id: "q1164", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Welches Material wird für die Herstellung von Glasfaser verwendet?", answers: ["Quarzsand", "Eisen", "Aluminium", "Kupfer"], correct: 0, difficulty: "mittel", points: 10, explanation: "Glasfaser besteht aus Quarzsand und wird für Datenübertragung genutzt." },
   { id: "q1165", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Was ist das schnellste Verkehrsmittel der Welt?", answers: ["Auto", "Flugzeug", "Rakete", "Hochgeschwindigkeitszug"], correct: 2, difficulty: "mittel", points: 10, explanation: "Raketen erreichen Geschwindigkeiten von über 40.000 km/h im All." },
   { id: "q1166", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wer erfand die Glühbirne (verbesserte Version)?", answers: ["Albert Einstein", "Nikola Tesla", "Benjamin Franklin", "Thomas Edison"], correct: 3, difficulty: "mittel", points: 10, explanation: "Edison machte die Glühbirne 1879 marktreif – er war nicht der Erste." },
   { id: "q1167", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wie viele Jahre brauchte das erste Auto für die Entwicklung?", answers: ["ca. 10 Jahre", "ca. 20 Jahre", "ca. 50 Jahre", "ca. 30 Jahre"], correct: 0, difficulty: "mittel", points: 10, explanation: "Das erste Auto von Carl Benz wurde 1885 entwickelt – es dauerte etwa 10 Jahre." },
-  { id: "q1168", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Was ist die sicherste Art zu reisen?", answers: ["Schiff", "Auto", "Flugzeug", "Zug"], correct: 2, difficulty: "mittel", points: 10, explanation: "Das Flugzeug ist statistisch das sicherste Verkehrsmittel." },
-  { id: "q1169", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Welche Erfindung ermöglicht das Internet?", answers: ["Router", "Modem", "Server", "Computer"], correct: 0, difficulty: "mittel", points: 10, explanation: "Router verbinden Netzwerke miteinander – sie sind das Rückgrat des Internets." },
-  {
-    id: "erf_ext_001",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Wer erfand die Glühbirne (bekannt)?",
-    answers: ["Thomas Edison (populär)", "Einstein", "Newton", "Galilei"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Edison popularisiert, andere Vorläufer."
-  },
-  {
-    id: "erf_ext_002",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Wer erfand das Telefon (bekannt)?",
-    answers: ["Alexander Graham Bell", "Edison", "Tesla", "Marconi"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Bell oft genannt."
-  },
-  {
-    id: "erf_ext_003",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Johannes Gutenberg?",
-    answers: ["Buchdruck mit beweglichen Lettern", "Telefon", "Auto", "Flugzeug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Buchdruck."
-  },
-  {
-    id: "erf_ext_004",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Wer flog als Erster motorisiert (Wright)?",
-    answers: ["Gebrüder Wright", "Lindbergh", "Earhart", "Santos-Dumont"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Wright 1903."
-  },
-  {
-    id: "erf_ext_005",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Karl Benz?",
-    answers: ["Automobil", "Fahrrad", "Zug", "Schiff"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Motorwagen."
-  },
-  {
-    id: "erf_ext_006",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist das Internet ursprünglich?",
-    answers: ["Computernetzwerk", "Fernseher", "Radio", "Zeitung"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Netzwerk."
-  },
-  {
-    id: "erf_ext_007",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Wer formulierte die Relativitätstheorie?",
-    answers: ["Einstein", "Newton", "Galilei", "Hawking"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Einstein."
-  },
-  {
-    id: "erf_ext_008",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Tim Berners-Lee?",
-    answers: ["World Wide Web", "E-Mail", "Telefon", "Radio"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "WWW."
-  },
-  {
-    id: "erf_ext_009",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Thermometer?",
-    answers: ["Temperatur", "Gewicht", "Länge", "Zeit"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Temperatur."
-  },
-  {
-    id: "erf_ext_010",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst eine Uhr?",
-    answers: ["Zeit", "Temperatur", "Gewicht", "Druck"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Zeit."
-  },
-  {
-    id: "erf_ext_011",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Alfred Nobel (Sprengstoff)?",
-    answers: ["Dynamit", "Atombombe", "Rakete", "Gewehr"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Dynamit."
-  },
-  {
-    id: "erf_ext_012",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist GPS?",
-    answers: ["Satellitennavigation", "Fernseher", "Radio", "Zeitung"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Global Positioning System."
-  },
-  {
-    id: "erf_ext_013",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Wer entdeckte die Schwerkraft-Geschichte mit Apfel (populär)?",
-    answers: ["Newton", "Einstein", "Galilei", "Kepler"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Newton."
-  },
-  {
-    id: "erf_ext_014",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand James Watt (verbessert)?",
-    answers: ["Dampfmaschine", "Auto", "Flugzeug", "Computer"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Dampfmaschine."
-  },
-  {
-    id: "erf_ext_015",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Mikroskop für?",
-    answers: ["Kleine Dinge vergrößern", "Sterne sehen", "Töne hören", "Düfte messen"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Vergrößern."
-  },
-  {
-    id: "erf_ext_016",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Teleskop für?",
-    answers: ["In die Ferne/Sterne schauen", "Mikroben sehen", "Töne messen", "Gewichte"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Astronomie."
-  },
-  {
-    id: "erf_ext_017",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Wer erfand den Buchdruck in Europa?",
-    answers: ["Gutenberg", "Leonardo", "Galilei", "Newton"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gutenberg."
-  },
-  {
-    id: "erf_ext_018",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist WLAN?",
-    answers: ["Drahtloses Netzwerk", "Kabel-TV", "Radio nur", "Zeitung"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Wireless LAN."
-  },
-  {
-    id: "erf_ext_019",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Steve Jobs mit mit?",
-    answers: ["iPhone/Apple-Produkte", "Auto", "Flugzeug", "Zug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Apple."
-  },
-  {
-    id: "erf_ext_020",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist eine Drohne?",
-    answers: ["Unbemanntes Fluggerät", "Auto", "Schiff", "Zug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "UAV."
-  },
-  {
-    id: "erf_ext_021",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst eine Waage?",
-    answers: ["Gewicht", "Zeit", "Temperatur", "Länge"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gewicht."
-  },
-  {
-    id: "erf_ext_022",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Bluetooth?",
-    answers: ["Kurzstrecken-Funk", "Internet-Kabel", "TV-Sender", "Zeitung"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Funkstandard."
-  },
-  {
-    id: "erf_ext_023",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Wer malte die Mona Lisa und erfand viel?",
-    answers: ["Leonardo da Vinci", "Michelangelo", "Raphael", "Donatello"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Leonardo."
-  },
-  {
-    id: "erf_ext_024",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Chip im Computer?",
-    answers: ["Mikroprozessor/Halbleiter", "Batterie", "Kabel", "Bildschirm"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Integrierter Schaltkreis."
-  },
-  {
-    id: "erf_ext_025",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Marie Curie mitentdeckt?",
-    answers: ["Radioaktivität-Forschung", "Telefon", "Auto", "Flugzeug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Radioaktivität."
-  },
-  {
-    id: "erf_ext_026",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Akku?",
-    answers: ["Wiederaufladbare Batterie", "Einweg-Batterie nur", "Kabel", "Chip"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Akkumulator."
-  },
-  {
-    id: "erf_ext_027",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist 3D-Druck?",
-    answers: ["Schichtweises Herstellen", "Malen", "Kochen", "Nähen"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Additive Fertigung."
-  },
-  {
-    id: "erf_ext_028",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Alexander Fleming?",
-    answers: ["Penicillin", "Aspirin", "Insulin", "Impfung"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Penicillin."
-  },
-  {
-    id: "erf_ext_029",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist eine Solarzelle?",
-    answers: ["Wandelt Licht in Strom", "Wind in Strom", "Wasser in Strom", "Wärme nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Photovoltaik."
-  },
-  {
-    id: "erf_ext_030",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Roboter?",
-    answers: ["Programmierbare Maschine", "Mensch", "Tier", "Pflanze"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Automatisierte Maschine."
-  },
-  {
-    id: "erf_ext_031",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Lineal?",
-    answers: ["Länge", "Gewicht", "Zeit", "Temperatur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Länge."
-  },
-  {
-    id: "erf_ext_032",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist E-Mail?",
-    answers: ["Elektronische Post", "Brief per Post", "Telefonanruf", "SMS nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Electronic Mail."
-  },
-  {
-    id: "erf_ext_033",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand die Gebrüder Lumière mit?",
-    answers: ["Kinematograph/Film", "Telefon", "Radio", "TV"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Filmvorführung."
-  },
-  {
-    id: "erf_ext_034",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Satellit?",
-    answers: ["Objekt im Orbit", "Flugzeug", "Auto", "Schiff"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Umlaufbahn."
-  },
-  {
-    id: "erf_ext_035",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist künstliche Intelligenz?",
-    answers: ["Computer lernen/entscheiden", "Nur Taschenrechner", "Nur Radio", "Nur TV"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "KI."
-  },
-  {
-    id: "erf_ext_036",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Otto Lilienthal?",
-    answers: ["Gleitflug-Pionier", "Auto", "Zug", "Schiff"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Flugpionier."
-  },
-  {
-    id: "erf_ext_037",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Elektromotor?",
-    answers: ["Wandelt Strom in Bewegung", "Nur Benzin", "Nur Dampf", "Nur Wind"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Elektrischer Antrieb."
-  },
-  {
-    id: "erf_ext_038",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Barometer?",
-    answers: ["Luftdruck", "Temperatur", "Gewicht", "Zeit"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Luftdruck."
-  },
-  {
-    id: "erf_ext_039",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist USB?",
-    answers: ["Daten/Strom-Anschluss", "Nur Strom", "Nur Audio", "Nur Video"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Universal Serial Bus."
-  },
-  {
-    id: "erf_ext_040",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Guglielmo Marconi mit?",
-    answers: ["Funk/Radio", "Telefon", "TV", "Internet"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Drahtlose Telegrafie."
-  },
-  {
-    id: "erf_ext_041",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist eine App?",
-    answers: ["Anwendungsprogramm", "Hardware", "Kabel", "Chip nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Application."
-  },
-  {
-    id: "erf_ext_042",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Kompass?",
-    answers: ["Richtung (Norden)", "Gewicht", "Zeit", "Temperatur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Magnetfeld."
-  },
-  {
-    id: "erf_ext_043",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist VR?",
-    answers: ["Virtuelle Realität", "Nur TV", "Nur Radio", "Nur Zeitung"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Virtual Reality."
-  },
-  {
-    id: "erf_ext_044",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Charles Babbage konzeptionell?",
-    answers: ["Rechenmaschine/Computer-Idee", "Auto", "Flugzeug", "Telefon"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Analytical Engine."
-  },
-  {
-    id: "erf_ext_045",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Algorithmus?",
-    answers: ["Rechenvorschrift", "Hardware", "Kabel", "Bildschirm"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schrittfolge."
-  },
-  {
-    id: "erf_ext_046",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Speedometer?",
-    answers: ["Geschwindigkeit", "Gewicht", "Zeit", "Temperatur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Tempo."
-  },
-  {
-    id: "erf_ext_047",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Cloud-Computing?",
-    answers: ["Rechnen/Speichern im Netz", "Nur lokaler PC", "Nur USB", "Nur CD"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Cloud."
-  },
-  {
-    id: "erf_ext_048",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Louis Pasteur mit?",
-    answers: ["Pasteurisierung/Impfungen", "Telefon", "Auto", "Flugzeug"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Mikrobiologie."
-  },
-  {
-    id: "erf_ext_049",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Sensor?",
-    answers: ["Misst physikalische Größen", "Nur Display", "Nur Lautsprecher", "Nur Kabel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Messfühler."
-  },
-  {
-    id: "erf_ext_050",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Blockchain bekannt für?",
-    answers: ["Verteilte Daten/Krypto", "Nur E-Mail", "Nur TV", "Nur Radio"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Dezentrale Datenstruktur."
-  },
-  {
-    id: "erf_ext_051",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand die Druckerpresse?",
-    answers: ["Gutenberg", "Edison", "Bell", "Tesla"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Gutenberg."
-  },
-  {
-    id: "erf_ext_052",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Touchscreen?",
-    answers: ["Berührungsbildschirm", "Nur Tastatur", "Nur Maus", "Nur Drucker"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Touch-Display."
-  },
-  {
-    id: "erf_ext_053",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Hygrometer?",
-    answers: ["Luftfeuchtigkeit", "Temperatur", "Gewicht", "Zeit"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Feuchte."
-  },
-  {
-    id: "erf_ext_054",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Prozessor?",
-    answers: ["Rechenkern des Computers", "Festplatte", "Monitor", "Tastatur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "CPU."
-  },
-  {
-    id: "erf_ext_055",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand Nikola Tesla mit?",
-    answers: ["Wechselstrom-Systeme", "Glühbirne allein", "Telefon", "Auto"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "AC u.a."
-  },
-  {
-    id: "erf_ext_056",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein QR-Code?",
-    answers: ["Schnell-Scan-Code", "Barcode alt nur", "Nur Passwort", "Nur PIN"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "2D-Code."
-  },
-  {
-    id: "erf_ext_057",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Odometer?",
-    answers: ["Kilometerstand", "Geschwindigkeit momentan", "Temperatur", "Gewicht"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Wegstrecke."
-  },
-  {
-    id: "erf_ext_058",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Server?",
-    answers: ["Bereitstellender Computer", "Nur Handy", "Nur TV", "Nur Radio"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Dienstrechner."
-  },
-  {
-    id: "erf_ext_059",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand die Glühbirne mit Kohlenstofffaden (populär Edison)?",
-    answers: ["Edison", "Tesla", "Bell", "Marconi"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Edison."
-  },
-  {
-    id: "erf_ext_060",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Algorithmus in der Küche vergleichbar mit?",
-    answers: ["Rezept", "Teller", "Herd", "Löffel"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schrittfolge."
-  },
-  {
-    id: "erf_ext_061",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Amperemeter?",
-    answers: ["Stromstärke", "Spannung", "Widerstand", "Leistung nur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Ampere."
-  },
-  {
-    id: "erf_ext_062",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Volt?",
-    answers: ["Einheit der Spannung", "Stromstärke", "Widerstand", "Leistung"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Spannung."
-  },
-  {
-    id: "erf_ext_063",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand das Fahrrad (Entwicklung)?",
-    answers: ["Mehrere Erfinder", "Nur ein Name", "Nur Benz", "Nur Wright"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Historisch mehrere."
-  },
-  {
-    id: "erf_ext_064",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Modem früher für?",
-    answers: ["Internet über Telefonleitung", "Nur TV", "Nur Radio", "Nur Zeitung"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Modulation."
-  },
-  {
-    id: "erf_ext_065",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Luxmeter?",
-    answers: ["Beleuchtungsstärke", "Lautstärke", "Gewicht", "Zeit"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Licht."
-  },
-  {
-    id: "erf_ext_066",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist Open Source?",
-    answers: ["Offener Quellcode", "Nur Geheimcode", "Nur Hardware", "Nur Papier"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Frei einsehbar."
-  },
-  {
-    id: "erf_ext_067",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand die Jeans (Levi Strauss mit)?",
-    answers: ["Robuste Hose", "Jacke", "Schuhe", "Hut"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Jeans."
-  },
-  {
-    id: "erf_ext_068",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Pixel?",
-    answers: ["Bildpunkt", "Ton", "Geruch", "Geschmack"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Bildpunkt."
-  },
-  {
-    id: "erf_ext_069",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Dezibel-Meter?",
-    answers: ["Lautstärke", "Helligkeit", "Gewicht", "Zeit"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Schallpegel."
-  },
-  {
-    id: "erf_ext_070",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Browser?",
-    answers: ["Programm zum Surfen", "Nur Texteditor", "Nur Spiel", "Nur Taschenrechner"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Webbrowser."
-  },
-  {
-    id: "erf_ext_071",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand die Glühwendel-Lampe populär?",
-    answers: ["Edison", "Bell", "Marconi", "Wright"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Edison."
-  },
-  {
-    id: "erf_ext_072",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Cache?",
-    answers: ["Zwischenspeicher", "Hauptspeicher nur", "Festplatte nur", "CD"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Cache."
-  },
-  {
-    id: "erf_ext_073",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Seismograph?",
-    answers: ["Erdbeben", "Temperatur", "Gewicht", "Zeit"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Erdbeben."
-  },
-  {
-    id: "erf_ext_074",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Firewall?",
-    answers: ["Sicherheitsfilter im Netz", "Feuerlöscher", "Herd", "Ofen"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Netzwerkschutz."
-  },
-  {
-    id: "erf_ext_075",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand das Papier (China historisch)?",
-    answers: ["China", "Griechenland", "Rom", "Ägypten Papyrus"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Papier in China."
-  },
-  {
-    id: "erf_ext_076",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Bit?",
-    answers: ["Kleinste Dateneinheit", "Byte immer", "Kilobyte", "Megabyte"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "0 oder 1."
-  },
-  {
-    id: "erf_ext_077",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was misst ein Altimeter?",
-    answers: ["Höhe", "Gewicht", "Zeit", "Temperatur"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Höhe."
-  },
-  {
-    id: "erf_ext_078",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was ist ein Podcast?",
-    answers: ["Audio-Serie digital", "Nur Radio live", "Nur TV", "Nur Zeitung"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "On-Demand-Audio."
-  },
-  {
-    id: "erf_ext_079",
-    category: "spass_erfindungen",
-    area: "spass",
-    subject: "spass",
-    question: "Was erfand die Glühbirne mit Vakuum populär?",
-    answers: ["Edison", "Tesla", "Bell", "Marconi"],
-    correct: 0,
-    difficulty: "leicht",
-    points: 5,
-    explanation: "Edison."
-  }
+  { id: "q1168", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Was ist die sicherste Art zu reisen?", answers: ["Das Schiff", "Das Auto", "Flugzeug", "Der Zug"], correct: 2, difficulty: "mittel", points: 10, explanation: "Das Flugzeug ist statistisch das sicherste Verkehrsmittel." },
+  { id: "q1169", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Welche Erfindung ermöglicht das Internet?", answers: ["Router", "Modem", "Server", "Computer"], correct: 0, difficulty: "mittel", points: 10, explanation: "Router verbinden Netzwerke miteinander – sie sind das Rückgrat des Internets." }
 ];
 
 if (typeof window !== "undefined") window.SPASS_ERFINDUNGEN_QUESTIONS = SPASS_ERFINDUNGEN_QUESTIONS;

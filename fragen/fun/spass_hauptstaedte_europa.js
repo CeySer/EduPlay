@@ -18,7 +18,7 @@ const SPASS_HAUPTSTAEDTE_EUROPA_QUESTIONS = [
         area: "spass",
         subject: "hauptstaedte_europa",
         question: "Welche Stadt ist die Regierungs- und Hauptstadt von Polen?",
-        answers: ["Krakau", "Danzig", "Warschau", "Breslau"],
+        answers: ["Bromberg", "Kattowitz", "Warschau", "Stettin"],
         correct: 2,
         difficulty: "mittel",
         points: 10,

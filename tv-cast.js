@@ -1406,6 +1406,7 @@
                 wrongCount: 0,
                 roundOver: false,
                 roundSolved: false,
+                wrTurnDeadline: Date.now() + 25000,
                 usedWords,
                 players,
                 theme: data.theme || "schneemann",
@@ -1436,16 +1437,20 @@
             let footer = "";
             if (data.roundOver) {
                 const who = data.roundSolvedByName || "";
+                const lastRound = (data.currentRound || 1) >= (data.totalRounds || 3);
+                const nextLabel = lastRound ? "🏆 Zur Siegerehrung" : "Weiter jetzt ➔";
                 footer = data.roundSolved
-                    ? `<p class="text-3xl font-black text-emerald-400">🎉 ${who ? esc(who) + " hat gelöst!" : "Gelöst!"} ${esc(word)}</p>
-                       <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">Weiter ➔</button>`
-                    : `<p class="text-3xl font-black text-amber-400">${typeof wrFigureEmoji === "function" ? wrFigureEmoji(theme) : "⛄"} Fertig! Wort war: ${esc(word)}</p>
-                       <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">Weiter ➔</button>`;
+                    ? `<p class="text-3xl font-black text-emerald-400">🎉 ${who ? esc(who) + " hat gelöst!" : "Gelöst!"} · ${esc(word)}</p>
+                       <p class="text-sm text-gray-400 mt-1">Automatisch weiter in wenigen Sekunden…</p>
+                       <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">${nextLabel}</button>`
+                    : `<p class="text-3xl font-black text-amber-400">${typeof wrFigureEmoji === "function" ? wrFigureEmoji(theme) : "⛄"} Runde aus – Wort: ${esc(word)}</p>
+                       <p class="text-sm text-gray-400 mt-1">Automatisch weiter in wenigen Sekunden…</p>
+                       <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">${nextLabel}</button>`;
             } else {
                 footer = `<p class="text-2xl font-bold text-sky-300">Dran: ${esc(turnName)} · Fehler ${data.wrongCount || 0}/${maxW}</p>
-                          <div class="flex flex-wrap justify-center gap-2 mt-2">
-                            <button onclick="skipTVWortratenTurn()" class="btn-secondary text-sm py-2 px-5">⏭️ Zug überspringen</button>
-                            <button onclick="if(confirm('Wort auflösen? Keine Punkte mehr für diese Runde.')) revealTVWortratenWord()" class="btn-secondary text-sm py-2 px-5">🏳️ Wort auflösen</button>
+                          <div class="flex flex-wrap justify-center gap-2 mt-3">
+                            <button onclick="skipTVWortratenTurn()" class="btn-secondary text-sm py-2.5 px-5">⏭️ Zug überspringen</button>
+                            <button onclick="forceTVWortratenReveal()" class="btn-secondary text-sm py-2.5 px-5" style="border-color:rgba(245,158,11,0.4);color:#fbbf24;">⏱️ Runde auswerten</button>
                           </div>`;
             }
             setTVHostPlayHTML(`
@@ -1471,18 +1476,20 @@
                     if (typeof wrRevealFigureStage === "function") wrRevealFigureStage(i, "tv-wr-figure");
                 }
             }
-            // Zug-Timer + Auto-Weiter (nur Host steuert)
-            if (isTVHost) {
-                if (data.roundOver) {
-                    scheduleTVWrAutoAdvance();
-                } else {
-                    startTVWrTurnTimer(data);
-                }
+            // Zug-Timer: Deadline in Firestore (überlebt Snapshots)
+            if (isTVHost && !data.roundOver && !data.wrTurnDeadline) {
+                tvGameRef.update({ wrTurnDeadline: Date.now() + 25000 }).catch(function () {});
+            }
+            if (data.roundOver) {
+                scheduleTVWrAutoAdvance(data);
+            } else {
+                startTVWrTurnTimer(data);
             }
         }
 
         let tvWrTurnTimerId = null;
         let tvWrAutoAdvanceId = null;
+        let tvWrTimerKey = "";
 
         function clearTVWrTimers() {
             if (tvWrTurnTimerId) { clearInterval(tvWrTurnTimerId); tvWrTurnTimerId = null; }
@@ -1490,25 +1497,41 @@
         }
 
         function startTVWrTurnTimer(data) {
+            const deadline = data.wrTurnDeadline || (Date.now() + 25000);
+            const key = "t:" + (data.turnIndex || 0) + ":" + deadline + ":" + (data.currentRound || 0);
+            // Gleicher Zug → Timer nicht neu starten (sonst nie Ablauf)
+            if (tvWrTimerKey === key && tvWrTurnTimerId) {
+                return;
+            }
             clearTVWrTimers();
+            tvWrTimerKey = key;
             const el = document.getElementById("tv-wr-turn-timer");
-            let left = 25;
-            if (el) el.textContent = "⏱ Zug: " + left + "s";
+            function paint() {
+                const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+                if (el) el.textContent = left > 0 ? ("⏱ Zug: " + left + "s") : "⏱ Zeit um…";
+                return left;
+            }
+            paint();
             tvWrTurnTimerId = setInterval(function () {
-                left--;
-                if (el) el.textContent = left > 0 ? ("⏱ Zug: " + left + "s") : "⏱ Zeit um – nächster Spieler…";
+                const left = paint();
                 if (left <= 0) {
                     clearInterval(tvWrTurnTimerId);
                     tvWrTurnTimerId = null;
-                    if (isTVHost && typeof skipTVWortratenTurn === "function") skipTVWortratenTurn();
+                    tvWrTimerKey = "";
+                    if (isTVHost && typeof skipTVWortratenTurn === "function") {
+                        skipTVWortratenTurn();
+                    }
                 }
-            }, 1000);
+            }, 250);
         }
 
-        function scheduleTVWrAutoAdvance() {
+        function scheduleTVWrAutoAdvance(data) {
+            const key = "a:" + (data && data.currentRound) + ":" + (data && data.roundSolved);
+            if (tvWrTimerKey === key && tvWrAutoAdvanceId) return;
             clearTVWrTimers();
+            tvWrTimerKey = key;
             const el = document.getElementById("tv-wr-turn-timer");
-            let left = 6;
+            let left = 5;
             if (el) el.textContent = "Nächste Runde in " + left + "s…";
             tvWrAutoAdvanceId = setInterval(function () {
                 left--;
@@ -1516,6 +1539,7 @@
                 if (left <= 0) {
                     clearInterval(tvWrAutoAdvanceId);
                     tvWrAutoAdvanceId = null;
+                    tvWrTimerKey = "";
                     if (isTVHost) advanceTVWortraten();
                 }
             }, 1000);
@@ -1552,6 +1576,7 @@
                 wrongCount: 0,
                 roundOver: false,
                 roundSolved: false,
+                wrTurnDeadline: Date.now() + 25000,
                 usedWords
             });
         }
@@ -1571,12 +1596,28 @@
                     const order = tvWrActiveOrder(data);
                     if (!order.length) return;
                     const cur = (data.turnIndex || 0) % order.length;
-                    txn.update(tvGameRef, { turnIndex: (cur + 1) % order.length, order: order });
+                    txn.update(tvGameRef, {
+                        turnIndex: (cur + 1) % order.length,
+                        order: order,
+                        wrTurnDeadline: Date.now() + 25000
+                    });
                 });
             } catch (e) {
                 handleError("skipTVWortratenTurn", e, "Zug konnte nicht übersprungen werden.");
             }
         }
+
+        async function forceTVWortratenReveal() {
+            if (!tvGameRef || !isTVHost) return;
+            const ok = (typeof appConfirm === "function")
+                ? await appConfirm("Wort aufdecken und Runde beenden? Keine weiteren Punkte in dieser Runde.", {
+                    titel: "Runde auswerten?", icon: "⏱️", okText: "Auswerten", abbrechenText: "Weiter spielen"
+                })
+                : confirm("Runde auswerten?");
+            if (!ok) return;
+            await revealTVWortratenWord();
+        }
+        window.forceTVWortratenReveal = forceTVWortratenReveal;
 
         async function revealTVWortratenWord() {
             if (!tvGameRef || !isTVHost) return;
@@ -1720,7 +1761,11 @@
                     if (!roundOver && !isHit && order.length) {
                         const cur = order.indexOf(key);
                         update.turnIndex = cur >= 0 ? (cur + 1) % order.length : 0;
+                        update.wrTurnDeadline = Date.now() + 25000;
+                    } else if (!roundOver && isHit) {
+                        update.wrTurnDeadline = Date.now() + 25000;
                     }
+                    if (roundOver) update.wrTurnDeadline = null;
                     txn.update(tvGameRef, update);
                 });
             } catch (e) {
@@ -2082,10 +2127,16 @@
                                         const name = (turnKey && data.players[turnKey]) ? data.players[turnKey].name : "…";
                                         return `<p class="text-center text-gray-400 font-bold mb-2">⏳ ${esc(name)} ist dran…</p>`;
                                     })();
+                                const _tl = data.wrTurnDeadline
+                                    ? Math.max(0, Math.ceil((data.wrTurnDeadline - Date.now()) / 1000))
+                                    : 0;
+                                const timerLine = (!data.roundOver && data.wrTurnDeadline)
+                                    ? `<p id="tv-wr-player-timer" class="text-center text-sky-300 font-black text-sm mb-1">⏱ ${_tl}s</p>`
+                                    : "";
                                 const solveBtn = !data.roundOver
                                     ? `<button type="button" onclick="promptTVWrSolveWord()" class="btn-primary text-xs w-full py-2 mt-2" style="background:var(--gradient-cool);">💡 Ich kenne das Wort!</button>`
                                     : "";
-                                body = `${banner}<div class="grid grid-cols-7 gap-1.5">${kb}</div>${solveBtn}`;
+                                body = `${timerLine}${banner}<div class="grid grid-cols-7 gap-1.5">${kb}</div>${solveBtn}`;
                             }
                             setTVPlayerPlayHTML(`
                                 <div class="space-y-4 p-2">

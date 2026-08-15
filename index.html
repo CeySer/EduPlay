@@ -13,7 +13,7 @@
          installierte App wirklich den neuesten Stand geladen hat. -->
     <script>window.EDUPLAY_BUILD = "08.08.2026 · 22:34";</script>
 
-    <link rel="stylesheet" href="styles.css?v=9.7">
+    <link rel="stylesheet" href="styles.css?v=9.8">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
 
     <script src="vendor/firebase-10.12.3/firebase-app-compat.js"></script>
@@ -1482,7 +1482,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div class="flex items-center justify-between gap-2">
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                     <span class="text-sm font-bold text-gray-400">⚔️ Gegeneinander</span>
-                    <button onclick="toggleCast()" id="castButton" title="TV-Quiz / Fernseher"
+                    <button onclick="toggleCast()" id="castButton" title="TV-Anzeige (später)"
                         aria-label="Mit Fernseher verbinden"
                         class="w-11 h-11 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
                 </div>
@@ -2183,15 +2183,15 @@ VIEW: QUIZ SETUP
         <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
         <div class="glass-card p-6 space-y-6 text-center">
             <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
-            <p class="text-gray-300 text-sm">Spielt alle zusammen! Ein Gerät ist der Fernseher (Host), die
-                anderen sind die Handys der Spieler.</p>
+            <p class="text-gray-300 text-sm">Ein Gerät = Fernseher-Anzeige (Host), die anderen antworten am Handy.
+                Am Host: „Fernseher-Ansicht“, dann Bildschirm auf den TV übertragen (Smart View / Spiegeln).</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <button onclick="switchView('tv-quiz-host')"
                     class="p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition hover:scale-[1.02]"
                     style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">
                     <span class="text-5xl">🖥️</span>
                     <span class="font-black text-white text-lg">Ich bin der Fernseher</span>
-                    <span class="text-xs text-indigo-200">Spiel erstellen & Fragen anzeigen</span>
+                    <span class="text-xs text-indigo-200">Anzeigen & streamen · Spiel steuern</span>
                 </button>
                 <button onclick="switchView('tv-quiz-player')"
                     class="p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition hover:scale-[1.02]"
@@ -2208,6 +2208,10 @@ VIEW: QUIZ SETUP
             VIEW: TV-QUIZ HOST
             ========================================================== -->
     <div id="view-tv-quiz-host" class="view hidden space-y-4">
+        <div id="tv-mirror-bar" class="hidden items-center justify-between gap-2 glass-card p-3 mb-2">
+            <span class="text-sm font-bold text-indigo-300">📺 Fernseher-Ansicht (für Bildschirmübertragung)</span>
+            <button type="button" onclick="setTVMirrorDisplay(false)" class="btn-secondary text-xs py-2 px-3">Normale Ansicht</button>
+        </div>
         <div id="tv-host-setup" class="space-y-4">
             <button class="btn-secondary text-sm py-2.5 px-4"
                 onclick="leaveTVGame(); switchView('tv-quiz-setup')">Zurück</button>
@@ -2381,7 +2385,7 @@ VIEW: QUIZ SETUP
     <script src="suchsel.js?v=1.2"></script>
     <script src="duel-scrabble.js?v=9.1"></script>
     <script src="wortraten.js?v=9.4"></script>
-    <script src="tv-cast.js?v=10.3"></script>
+    <script src="tv-cast.js?v=10.5"></script>
     <script src="live-duel.js?v=10.1"></script>
     <script src="app-misc.js?v=8.8"></script>
     <script src="lobby-avatar.js?v=9.3"></script>

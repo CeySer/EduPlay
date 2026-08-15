@@ -3120,3 +3120,42 @@ body:not(.dark-theme) .text-rose-400 {
 body:not(.dark-theme) .text-indigo-400 {
     color: #4f46e5 !important;
 }
+
+
+/* ============================================================
+   TV-Spiegel-Ansicht (Handy = Anzeige, per Screen-Stream am TV)
+   ============================================================ */
+body.tv-mirror-display #header-menu,
+body.tv-mirror-display #header-family,
+body.tv-mirror-display [id^="drawer"],
+body.tv-mirror-display #castControlPanel,
+body.tv-mirror-display #tv-player-exit {
+  display: none !important;
+}
+body.tv-mirror-display #app-shell {
+  max-width: none !important;
+  padding: 0.5rem 1rem 1.5rem !important;
+}
+body.tv-mirror-display #view-tv-quiz-host {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+body.tv-mirror-display #tv-host-setup .btn-secondary,
+body.tv-mirror-display #tv-host-setup h2 {
+  /* Setup bleibt bedienbar, etwas größer */
+}
+body.tv-mirror-display #tv-host-play {
+  font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+}
+body.tv-mirror-display #tv-host-play .text-5xl { font-size: 4.5rem !important; }
+body.tv-mirror-display #tv-host-play .text-4xl { font-size: 3.25rem !important; }
+body.tv-mirror-display #tv-host-play .text-3xl { font-size: 2.6rem !important; }
+body.tv-mirror-display #tv-host-play .text-2xl { font-size: 2rem !important; }
+body.tv-mirror-display #tv-host-play .text-xl { font-size: 1.5rem !important; }
+body.tv-mirror-display #tv-host-play .text-lg { font-size: 1.25rem !important; }
+body.tv-mirror-display #tv-host-play .min-h-\[120px\] { min-height: 140px !important; }
+body.tv-mirror-display #tv-mirror-bar {
+  display: flex !important;
+}
+#tv-mirror-bar { display: none; }
+

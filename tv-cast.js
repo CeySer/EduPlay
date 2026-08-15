@@ -28,26 +28,12 @@
         }
 
         function toggleCast() {
-            // Ein Einstieg: TV-Quiz. Wenn Lobby schon läuft → nur TV-Anzeige (Receiver) koppeln.
-            if (typeof isTVHost !== "undefined" && isTVHost && window._activeTVCode) {
-                const code = window._activeTVCode;
-                const fullUrl = buildReceiverUrlWithCode(code);
-                showCastQrOverlay(fullUrl, code);
-                castConnected = true;
-                updateCastButton();
-                return;
-            }
+            // TV-Cast / Receiver vorerst eingefroren – TV-Quiz (Menü) ist separat und bleibt aktiv.
             if (castConnected) {
                 disconnectCast();
                 return;
             }
-            // Keine parallele Cast-Lobby mehr – zum TV-Quiz-Setup
-            if (typeof switchView === "function") {
-                switchView("tv-quiz-setup");
-                showToast("TV-Quiz: Lobby starten, dann erscheint der Code für den Fernseher.", "info", "cast");
-            } else {
-                connectCast();
-            }
+            showToast("TV-Anzeige (Cast/Receiver) kommt später. Nutze vorerst „TV-Quiz“ im Menü.", "info", "cast");
         }
 
         function buildReceiverUrlWithCode(code) {
@@ -56,16 +42,10 @@
             return u.href;
         }
 
-        /** Nach Lobby-Start: gleichen Code für Receiver anbieten */
         function offerTvDisplay(code) {
-            if (!code) return;
-            const fullUrl = buildReceiverUrlWithCode(code);
-            showCastQrOverlay(fullUrl, code);
-            castConnected = true;
-            updateCastButton();
+            /* eingefroren */ 
         }
         window.offerTvDisplay = offerTvDisplay;
-
 
         function buildReceiverUrl(parentId, hostName) {
             const u = new URL("receiver.html", window.location.href);
@@ -322,6 +302,42 @@
 
 
         // ============================================================
+        //  FERNSEHER-ANSICHT (Screen-Mirror: Handy → TV)
+        // ============================================================
+        let tvMirrorDisplay = false;
+
+        function setTVMirrorDisplay(on) {
+            tvMirrorDisplay = !!on;
+            document.body.classList.toggle("tv-mirror-display", tvMirrorDisplay);
+            const bar = document.getElementById("tv-mirror-bar");
+            if (bar) {
+                bar.classList.toggle("hidden", !tvMirrorDisplay);
+                bar.classList.toggle("flex", tvMirrorDisplay);
+            }
+            try {
+                if (tvMirrorDisplay && document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen().catch(function () {});
+                } else if (!tvMirrorDisplay && document.fullscreenElement && document.exitFullscreen) {
+                    document.exitFullscreen().catch(function () {});
+                }
+            } catch (_) {}
+            if (typeof showToast === "function") {
+                showToast(
+                    tvMirrorDisplay
+                        ? "Fernseher-Ansicht an – jetzt Bildschirm auf den TV übertragen"
+                        : "Normale Ansicht",
+                    "info"
+                );
+            }
+        }
+        window.setTVMirrorDisplay = setTVMirrorDisplay;
+
+        function toggleTVMirrorDisplay() {
+            setTVMirrorDisplay(!tvMirrorDisplay);
+        }
+        window.toggleTVMirrorDisplay = toggleTVMirrorDisplay;
+
+        // ============================================================
         //  TV-QUIZ (KAHOOT-MODUS)
         // ============================================================
         let tvGameRef = null;
@@ -484,6 +500,7 @@
                                 ${qrSrc ? `<img alt="QR" class="mx-auto w-40 h-40 rounded-xl bg-white p-2" src="${qrSrc}">` : ""}
                             </div>` : ""}
                             <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>
+                            <button type="button" onclick="setTVMirrorDisplay(true)" class="mb-4 w-full max-w-md py-3 rounded-xl font-bold text-white" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">📺 Fernseher-Ansicht (für Stream)</button>
                             <button onclick="startTVGameLoop()" class="btn-primary text-3xl py-6 px-12" style="background:var(--gradient-amber);">Spiel starten! 🚀</button>
                             <button onclick="leaveTVGame()" class="mt-8 text-gray-500 text-lg font-bold underline">Lobby abbrechen</button>
                         </div>`);
@@ -762,7 +779,6 @@
                     window._activeTVCode = tvCode;
                 } catch (e) { console.warn("TV-Code konnte nicht angelegt werden", e); }
                 merkeTVHost(true, tvCode);
-                setTimeout(function () { if (typeof offerTvDisplay === "function") offerTvDisplay(tvCode); }, 400);
 
                 const joinUrl = (window.location.origin || "") + (window.location.pathname || "/") + "?tv=" + encodeURIComponent(tvCode);
                 const qrSrc = tvCode
@@ -777,6 +793,8 @@
                             <div class="text-5xl font-black tracking-[0.28em] text-white my-2">${tvCode}</div>
                             ${qrSrc ? `<img alt="QR" class="mx-auto w-40 h-40 rounded-xl bg-white p-2" src="${qrSrc}">` : ""}
                             <p class="text-xs text-gray-400 mt-2">Familie: „Jetzt beitreten“ · Andere: QR oder Code</p>
+                            <button type="button" onclick="setTVMirrorDisplay(true)" class="mt-4 w-full py-3 rounded-xl font-bold text-white text-base" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">📺 Fernseher-Ansicht (für Stream)</button>
+                            <p class="text-xs text-gray-500 mt-2">Danach: Bildschirmübertragung / Smart View / Spiegeln zum TV</p>
                             <button type="button" onclick="shareTVCode()" class="btn-primary mt-3 text-base py-3 px-6"
                                 style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">👥 Freunden empfehlen</button>
                         </div>` : ""}
@@ -2079,6 +2097,8 @@
         }
 
         async function leaveTVGame(force) {
+            if (typeof setTVMirrorDisplay === "function") setTVMirrorDisplay(false);
+
             if (tvGameRef && typeof confirmLeaveGame === "function") {
                 const ok = await confirmLeaveGame({
                     force: force === true,

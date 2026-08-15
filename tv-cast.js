@@ -35,6 +35,71 @@
             }
         }
 
+        function buildReceiverUrl(parentId, hostName) {
+            const u = new URL("receiver.html", window.location.href);
+            u.searchParams.set("mode", "cast");
+            u.searchParams.set("parentId", parentId);
+            if (hostName) u.searchParams.set("host", hostName);
+            return u.href;
+        }
+
+        function hideCastQrOverlay() {
+            const el = document.getElementById("castQrOverlay");
+            if (el) el.remove();
+        }
+
+        function showCastQrOverlay(fullUrl) {
+            hideCastQrOverlay();
+            const qrImg =
+                "https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&data=" +
+                encodeURIComponent(fullUrl);
+            const ov = document.createElement("div");
+            ov.id = "castQrOverlay";
+            ov.className = "fixed inset-0 z-[80] flex items-center justify-center p-4";
+            ov.style.cssText = "background:rgba(2,6,23,0.85);backdrop-filter:blur(8px);";
+            ov.innerHTML =
+                '<div class="glass-card max-w-sm w-full p-5 text-center space-y-3 shadow-2xl border border-indigo-500/30">' +
+                '<div class="text-3xl">📺</div>' +
+                '<h3 class="text-lg font-black text-indigo-300">TV verbinden</h3>' +
+                '<p class="text-sm text-gray-300 leading-snug">Am Fernseher den <b class="text-white">Browser</b> öffnen und diesen Code scannen – oder die Adresse eintippen.</p>' +
+                '<img src="' + qrImg + '" alt="QR-Code" width="220" height="220" class="mx-auto rounded-xl bg-white p-2" />' +
+                '<p class="text-[11px] text-gray-500 break-all px-1">' + fullUrl.replace(/</g, "") + "</p>" +
+                '<div class="grid grid-cols-2 gap-2">' +
+                '<button type="button" id="castQrCopy" class="btn-secondary text-sm py-2.5">Link kopieren</button>' +
+                '<button type="button" id="castQrTest" class="btn-secondary text-sm py-2.5">Testfenster</button>' +
+                "</div>" +
+                '<button type="button" id="castQrClose" class="btn-primary w-full text-sm py-2.5">Fertig – Steuerung anzeigen</button>' +
+                '<button type="button" id="castQrAbort" class="text-xs text-rose-400 font-bold py-1">Trennen</button>' +
+                "</div>";
+            document.body.appendChild(ov);
+            document.getElementById("castQrCopy").onclick = function () {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(fullUrl).then(function () {
+                        showToast("Link kopiert", "success", "cast");
+                    }).catch(function () {
+                        showToast("Kopieren fehlgeschlagen", "error", "cast");
+                    });
+                } else {
+                    showToast("Kopieren nicht unterstützt", "error", "cast");
+                }
+            };
+            document.getElementById("castQrTest").onclick = function () {
+                castWindow = window.open(
+                    fullUrl,
+                    "EduPlayTV",
+                    "width=1200,height=800,menubar=no,toolbar=no,location=no,status=no"
+                );
+                if (!castWindow) showToast("Popups erlauben!", "error", "cast");
+            };
+            document.getElementById("castQrClose").onclick = function () {
+                hideCastQrOverlay();
+                showCastPanel(true);
+            };
+            document.getElementById("castQrAbort").onclick = function () {
+                disconnectCast();
+            };
+        }
+
         async function connectCast() {
             if (!currentParentUser) {
                 showToast("Bitte zuerst als Elternteil anmelden!", "error", "cast");
@@ -46,32 +111,14 @@
             }
             const parentId = currentParentUser.uid;
             const playerName = currentPlayer.name || "Host";
-            const receiverUrl = new URL('receiver.html', window.location.href).href;
+            const fullUrl = buildReceiverUrl(parentId, playerName);
 
-            if (await appConfirm('Der Receiver wird in einem zweiten Fenster geöffnet. Auf dem Handy siehst du weiterhin die Steuerung.', {
-                titel: '📺 Fernseher-Modus starten?', icon: '📺', okText: 'Starten'
-            })) {
-                castWindow = window.open(
-                    receiverUrl + '?mode=cast&parentId=' + parentId + '&host=' + encodeURIComponent(playerName),
-                    'EduPlayTV',
-                    'width=1200,height=800,menubar=no,toolbar=no,location=no,status=no'
-                );
-                if (castWindow) {
-                    castConnected = true;
-                    updateCastButton();
-                    showToast('📺 Fernseher-Modus gestartet!', 'success', 'cast');
-                    castStatusCheck = setInterval(function () {
-                        if (castWindow && castWindow.closed) {
-                            disconnectCast();
-                        }
-                    }, 1000);
-                    createTVLobby(parentId, playerName);
-                    startCastLobbyListener();
-                    showCastPanel(true);
-                } else {
-                    showToast('⚠️ Bitte Popups erlauben für den Fernseher-Modus!', 'error', 'cast');
-                }
-            }
+            createTVLobby(parentId, playerName);
+            castConnected = true;
+            updateCastButton();
+            startCastLobbyListener();
+            showCastQrOverlay(fullUrl);
+            showToast("QR für den Fernseher bereit", "success", "cast");
         }
 
         function disconnectCast() {
@@ -82,10 +129,11 @@
             }
             if (castWindow && !castWindow.closed) { castWindow.close(); }
             castWindow = null;
+            hideCastQrOverlay();
             stopCastLobbyListener();
             showCastPanel(false);
             updateCastButton();
-            showToast('📺 Verbindung getrennt', 'info', 'cast');
+            showToast("📺 Verbindung getrennt", "info", "cast");
         }
 
         function updateCastButton() {

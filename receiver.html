@@ -683,6 +683,24 @@
         console.log('🧪 Für Test: testReceiver("DEINE_USER_ID")');
         console.log('ℹ️  Deine User-ID bekommst du mit: firebase.auth().currentUser.uid');
 
+
+        // URL: receiver.html?mode=cast&parentId=...&host=...
+        (function () {
+            try {
+                var sp = new URLSearchParams(window.location.search || "");
+                var pid = sp.get("parentId");
+                var host = sp.get("host");
+                if (pid) {
+                    state.parentId = pid;
+                    if (host) state.hostName = host;
+                    listenToLobby(pid);
+                    if (statusText) statusText.textContent = "Verbunden – warte auf Host";
+                }
+            } catch (e) {
+                console.warn("URL-Parameter:", e);
+            }
+        })();
+
         render();
     </script>
 </body>

@@ -1363,9 +1363,20 @@
         }
 
         // --- TV WORT-RÄTSEL ---
+        function tvWrActiveOrder(data) {
+            const players = (data && data.players) || {};
+            let order = Array.isArray(data.order) ? data.order.slice() : Object.keys(players);
+            order = order.filter(function (k) { return players[k] && !players[k].left; });
+            // fehlende Keys nachziehen (Beitritt mitten im Spiel)
+            Object.keys(players).forEach(function (k) {
+                if (!players[k].left && order.indexOf(k) < 0) order.push(k);
+            });
+            return order;
+        }
+
         function startTVWortratenRound(data) {
             const players = bereinigeTVPlayers(data.players || {});
-            const order = Object.keys(players);
+            const order = Object.keys(players).sort();
             if (order.length === 0) return showToast("Noch keine Spieler in der Lobby.", "error");
             const usedWords = Array.isArray(data.usedWords) ? data.usedWords.slice() : [];
             const pool = typeof wrWordPool === "function"
@@ -1408,7 +1419,7 @@
             const word = data.word || "";
             const guessed = new Set(data.guessed || []);
             const theme = data.theme || "schneemann";
-            const order = data.order || [];
+            const order = tvWrActiveOrder(data);
             const turnKey = order.length ? order[(data.turnIndex || 0) % order.length] : null;
             const turnName = (turnKey && data.players[turnKey] && data.players[turnKey].name)
                 ? data.players[turnKey].name
@@ -1557,10 +1568,10 @@
                     if (!snap.exists) return;
                     const data = snap.data();
                     if (data.status !== "playing" || data.mode !== "wortraten" || data.roundOver) return;
-                    const order = data.order || [];
+                    const order = tvWrActiveOrder(data);
                     if (!order.length) return;
                     const cur = (data.turnIndex || 0) % order.length;
-                    txn.update(tvGameRef, { turnIndex: (cur + 1) % order.length });
+                    txn.update(tvGameRef, { turnIndex: (cur + 1) % order.length, order: order });
                 });
             } catch (e) {
                 handleError("skipTVWortratenTurn", e, "Zug konnte nicht übersprungen werden.");
@@ -1667,7 +1678,7 @@
                     if (!snap.exists) return;
                     const data = snap.data();
                     if (data.status !== "playing" || data.mode !== "wortraten" || data.roundOver) return;
-                    const order = data.order || [];
+                    const order = tvWrActiveOrder(data);
                     const key = order.length ? order[(data.turnIndex || 0) % order.length] : null;
                     if (key !== activePlayerKey) return;
                     const guessed = data.guessed || [];
@@ -1675,7 +1686,7 @@
                     const word = data.word || "";
                     const isHit = word.includes(letter);
                     const newGuessed = guessed.concat([letter]);
-                    const players = data.players || {};
+                    const players = Object.assign({}, data.players || {});
                     let wrongCount = data.wrongCount || 0;
                     let roundOver = false, roundSolved = false;
                     let points = 0;
@@ -1687,8 +1698,12 @@
                             roundOver = true;
                             roundSolved = true;
                         }
-                        players[key].score = (players[key].score || 0) + points;
-                        players[key].lastRoundPoints = points;
+                        if (players[key]) {
+                            players[key] = Object.assign({}, players[key], {
+                                score: (players[key].score || 0) + points,
+                                lastRoundPoints: points
+                            });
+                        }
                     } else {
                         wrongCount++;
                         const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
@@ -1697,14 +1712,14 @@
                             roundSolved = false;
                         }
                     }
-                    const update = { guessed: newGuessed, wrongCount, players, roundOver, roundSolved };
+                    const update = { guessed: newGuessed, wrongCount, players, roundOver, roundSolved, order: order };
                     if (roundSolved && key) {
                         update.roundSolvedBy = key;
                         update.roundSolvedByName = (players[key] && players[key].name) || "";
                     }
                     if (!roundOver && !isHit && order.length) {
                         const cur = order.indexOf(key);
-                        update.turnIndex = (cur + 1) % order.length;
+                        update.turnIndex = cur >= 0 ? (cur + 1) % order.length : 0;
                     }
                     txn.update(tvGameRef, update);
                 });

@@ -167,43 +167,45 @@
         //  GITTER-GENERATOR
         // ------------------------------------------------------------
         function generateSuchselGrid(words, size, fillAlphabet) {
-            const grid = Array.from({ length: size }, () => Array(size).fill(null));
-            const placements = {};
-            const placed = [];
-            const order = [...words].sort((a, b) => b.length - a.length);
+            // Bis zu 6 Versuche: längere Wörter zuerst, alle legalen Positionen
+            // (nicht nur Zufall), Überlappungen bevorzugen → höhere Platzierungsquote.
+            const target = words.length;
+            let best = null;
 
-            order.forEach(word => {
-                let done = false;
-                for (let attempt = 0; attempt < 200 && !done; attempt++) {
-                    const dir = SUCHSEL_DIRS[Math.floor(Math.random() * SUCHSEL_DIRS.length)];
-                    const dr = dir[0], dc = dir[1];
-                    const len = word.length;
-                    let rMin = 0, rMax = size - 1, cMin = 0, cMax = size - 1;
-                    if (dr > 0) rMax = size - len;
-                    if (dc > 0) cMax = size - len;
-                    else if (dc < 0) cMin = len - 1;
-                    if (rMax < rMin || cMax < cMin) continue;
+            for (let round = 0; round < 6; round++) {
+                const grid = Array.from({ length: size }, () => Array(size).fill(null));
+                const placements = {};
+                const placed = [];
+                const order = [...words].sort(function (a, b) {
+                    if (b.length !== a.length) return b.length - a.length;
+                    return Math.random() - 0.5;
+                });
 
-                    const r0 = rMin + Math.floor(Math.random() * (rMax - rMin + 1));
-                    const c0 = cMin + Math.floor(Math.random() * (cMax - cMin + 1));
-
-                    let fits = true;
-                    const cells = [];
-                    for (let i = 0; i < len; i++) {
-                        const r = r0 + dr * i, c = c0 + dc * i;
-                        const existing = grid[r][c];
-                        if (existing !== null && existing !== word[i]) { fits = false; break; }
-                        cells.push([r, c]);
-                    }
-                    if (!fits) continue;
-
-                    cells.forEach(([r, c], i) => { grid[r][c] = word[i]; });
-                    placements[word] = cells;
+                order.forEach(function (word) {
+                    const candidates = suchselCollectPlacements(grid, word, size);
+                    if (!candidates.length) return;
+                    // score: mehr Überlappungen zuerst, leichte Zufallsmischung
+                    candidates.sort(function (a, b) {
+                        if (b.overlap !== a.overlap) return b.overlap - a.overlap;
+                        return Math.random() - 0.5;
+                    });
+                    // Top-Kandidaten zufällig wählen (nicht immer denselben)
+                    const top = candidates.slice(0, Math.min(8, candidates.length));
+                    const pick = top[Math.floor(Math.random() * top.length)];
+                    pick.cells.forEach(function (cell, i) {
+                        grid[cell[0]][cell[1]] = word[i];
+                    });
+                    placements[word] = pick.cells;
                     placed.push(word);
-                    done = true;
-                }
-            });
+                });
 
+                if (!best || placed.length > best.placed.length) {
+                    best = { grid: grid, placements: placements, placed: placed };
+                }
+                if (placed.length >= target) break;
+            }
+
+            const grid = best.grid;
             for (let r = 0; r < size; r++) {
                 for (let c = 0; c < size; c++) {
                     if (grid[r][c] === null) {
@@ -211,8 +213,40 @@
                     }
                 }
             }
+            return best;
+        }
 
-            return { grid, placements, placed };
+        /** Alle gültigen (Richtung, Start) für ein Wort im aktuellen Gitter. */
+        function suchselCollectPlacements(grid, word, size) {
+            const len = word.length;
+            const out = [];
+            for (let d = 0; d < SUCHSEL_DIRS.length; d++) {
+                const dr = SUCHSEL_DIRS[d][0], dc = SUCHSEL_DIRS[d][1];
+                let rMin = 0, rMax = size - 1, cMin = 0, cMax = size - 1;
+                if (dr > 0) rMax = size - len;
+                else if (dr < 0) rMin = len - 1;
+                if (dc > 0) cMax = size - len;
+                else if (dc < 0) cMin = len - 1;
+                if (rMax < rMin || cMax < cMin) continue;
+
+                for (let r0 = rMin; r0 <= rMax; r0++) {
+                    for (let c0 = cMin; c0 <= cMax; c0++) {
+                        let fits = true;
+                        let overlap = 0;
+                        const cells = [];
+                        for (let i = 0; i < len; i++) {
+                            const r = r0 + dr * i, c = c0 + dc * i;
+                            if (r < 0 || c < 0 || r >= size || c >= size) { fits = false; break; }
+                            const existing = grid[r][c];
+                            if (existing !== null && existing !== word[i]) { fits = false; break; }
+                            if (existing === word[i]) overlap++;
+                            cells.push([r, c]);
+                        }
+                        if (fits) out.push({ cells: cells, overlap: overlap });
+                    }
+                }
+            }
+            return out;
         }
 
         // ------------------------------------------------------------
@@ -419,14 +453,25 @@
             suchselState.gaveUp = true;
             suchselState.words.forEach(w => {
                 if (suchselState.found.has(w)) return;
-                (suchselState.placements[w] || []).forEach(([r, c]) => {
+                const cells = suchselState.placements[w] || [];
+                cells.forEach(([r, c]) => {
                     suchselState.foundCellKeys.add(suchselCellKey(r, c));
                     const el = document.querySelector(`#suchsel-grid [data-r="${r}"][data-c="${c}"]`);
-                    if (el) suchselSetCellState(el, "revealed");
+                    if (el) {
+                        suchselSetCellState(el, "revealed");
+                        // Inline-Fallback, falls Tailwind-Klassen fehlen
+                        el.style.background = "rgba(245,158,11,0.75)";
+                        el.style.borderColor = "rgb(251,191,36)";
+                        el.style.color = "#fff";
+                    }
                 });
             });
             renderSuchselWordlist();
-            finishSuchsel();
+            if (typeof showToast === "function") showToast("Restliche Wörter markiert (gelb)", "info");
+            // Kurz im Gitter lassen, sonst sieht man die Lösung nicht
+            setTimeout(function () {
+                if (suchselState && !suchselState.finished) finishSuchsel();
+            }, 2500);
         }
 
         // ------------------------------------------------------------

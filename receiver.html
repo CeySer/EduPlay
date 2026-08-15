@@ -357,25 +357,31 @@
         }
 
         function renderWaiting() {
-            statusText.textContent = '🔄 Warte auf Verbindung...';
+            statusText.textContent = '📺 TV-Anzeige (Cast/Receiver)';
             content.innerHTML = `
-            <div style="font-size: 3rem; color: #64748b; margin-top: 40px;">
-                Öffne die EduPlay-App auf deinem Handy<br>
-                und tippe auf das <strong style="color:#f1f5f9;">🖥️</strong>-Symbol.
-            </div>
-            <div style="margin-top: 30px; font-size: 1.4rem; color: #475569;">
-                Du siehst hier dann die Fragen auf dem großen Bildschirm.
-            </div>
-            <div style="margin-top: 40px; padding: 30px; background: #1e293b; border-radius: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                <p style="font-size: 1.2rem; color: #94a3b8;">🧪 <strong style="color: #fbbf24;">Test-Modus</strong></p>
-                <p style="font-size: 0.9rem; color: #64748b; margin-top: 8px;">
-                    Öffne die Browser-Konsole (F12) und gib ein:<br>
-                    <code style="background: #0b0f19; padding: 4px 12px; border-radius: 8px; display: inline-block; margin-top: 6px; color: #22c55e;">
-                        testReceiver("DEINE_USER_ID")
-                    </code>
-                </p>
-            </div>
-        `;
+            <div style="max-width:480px;margin:0 auto;">
+                <div style="font-size:1.4rem;color:#94a3b8;margin-bottom:18px;">
+                    Code vom Handy eingeben
+                </div>
+                <input id="tvCastCodeInput" maxlength="6" placeholder="z. B. K7M2"
+                    style="font-size:2.4rem;letter-spacing:0.25em;text-align:center;width:100%;padding:16px;
+                    border-radius:16px;border:2px solid #334155;background:#0f172a;color:#fff;text-transform:uppercase;" />
+                <button class="tv-btn tv-btn-success" style="margin-top:20px;width:100%;"
+                    onclick="joinByCastCode(document.getElementById('tvCastCodeInput').value)">
+                    Verbinden
+                </button>
+                <div style="margin-top:16px;font-size:1rem;color:#64748b;">
+                    Oder Link mit parentId öffnen / QR vom Handy scannen.
+                </div>
+            </div>`;
+            setTimeout(function () {
+                var inp = document.getElementById('tvCastCodeInput');
+                if (!inp) return;
+                inp.focus();
+                inp.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') joinByCastCode(inp.value);
+                });
+            }, 100);
         }
 
         function renderLobby() {
@@ -416,9 +422,15 @@
         }
 
         function renderPlaying() {
+            if (state.gameMode && state.gameMode !== 'quiz' && !(state.questions && state.questions.length)) {
+                statusText.textContent = 'Modus: ' + state.gameMode;
+                content.innerHTML = '<div style="font-size:2rem;color:#94a3b8;">Spiel läuft auf den Handys.<br>Modus: <b style="color:#fff;">'
+                    + state.gameMode + '</b></div>';
+                return;
+            }
             var q = state.questions[state.currentIndex];
             if (!q) {
-                content.innerHTML = '<div style="font-size: 3rem; color: #ef4444;">❌ Keine Fragen gefunden</div>';
+                content.innerHTML = '<div style="font-size: 2rem; color: #94a3b8;">Warte auf Frage…</div>';
                 return;
             }
 
@@ -577,9 +589,19 @@
 
                     state.players = data.players || {};
                     state.questions = data.questions || [];
-                    state.currentIndex = data.currentIndex || 0;
-                    state.mode = data.status || 'waiting';
-                    state.hostName = data.createdBy || 'Host';
+                    state.currentIndex = (typeof data.currentQuestionIndex === 'number')
+                        ? data.currentQuestionIndex
+                        : (data.currentIndex || 0);
+                    state.showAnswer = !!data.showAnswer;
+                    state.gameMode = data.mode || 'quiz';
+                    // status: waiting | playing | finished | lobby | reveal (Cast-alt)
+                    var st = data.status || 'waiting';
+                    if (st === 'waiting' || st === 'lobby') state.mode = 'lobby';
+                    else if (st === 'finished') state.mode = 'finished';
+                    else if (st === 'reveal' || (st === 'playing' && data.showAnswer)) state.mode = 'reveal';
+                    else if (st === 'playing') state.mode = 'playing';
+                    else state.mode = st;
+                    state.hostName = data.createdBy || data.hostName || 'Host';
 
                     if (data.hostCommand) {
                         handleHostCommand(data.hostCommand);
@@ -690,11 +712,14 @@
                 var sp = new URLSearchParams(window.location.search || "");
                 var pid = sp.get("parentId");
                 var host = sp.get("host");
+                var code = sp.get("code");
                 if (pid) {
                     state.parentId = pid;
                     if (host) state.hostName = host;
                     listenToLobby(pid);
                     if (statusText) statusText.textContent = "Verbunden – warte auf Host";
+                } else if (code) {
+                    joinByCastCode(code);
                 }
             } catch (e) {
                 console.warn("URL-Parameter:", e);

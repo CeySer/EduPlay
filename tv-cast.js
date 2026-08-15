@@ -28,12 +28,44 @@
         }
 
         function toggleCast() {
+            // Ein Einstieg: TV-Quiz. Wenn Lobby schon läuft → nur TV-Anzeige (Receiver) koppeln.
+            if (typeof isTVHost !== "undefined" && isTVHost && window._activeTVCode) {
+                const code = window._activeTVCode;
+                const fullUrl = buildReceiverUrlWithCode(code);
+                showCastQrOverlay(fullUrl, code);
+                castConnected = true;
+                updateCastButton();
+                return;
+            }
             if (castConnected) {
                 disconnectCast();
+                return;
+            }
+            // Keine parallele Cast-Lobby mehr – zum TV-Quiz-Setup
+            if (typeof switchView === "function") {
+                switchView("tv-quiz-setup");
+                showToast("TV-Quiz: Lobby starten, dann erscheint der Code für den Fernseher.", "info", "cast");
             } else {
                 connectCast();
             }
         }
+
+        function buildReceiverUrlWithCode(code) {
+            const u = new URL("receiver.html", window.location.href);
+            if (code) u.searchParams.set("code", code);
+            return u.href;
+        }
+
+        /** Nach Lobby-Start: gleichen Code für Receiver anbieten */
+        function offerTvDisplay(code) {
+            if (!code) return;
+            const fullUrl = buildReceiverUrlWithCode(code);
+            showCastQrOverlay(fullUrl, code);
+            castConnected = true;
+            updateCastButton();
+        }
+        window.offerTvDisplay = offerTvDisplay;
+
 
         function buildReceiverUrl(parentId, hostName) {
             const u = new URL("receiver.html", window.location.href);
@@ -48,11 +80,16 @@
             if (el) el.remove();
         }
 
-        function showCastQrOverlay(fullUrl) {
+        function showCastQrOverlay(fullUrl, castCode) {
             hideCastQrOverlay();
             const qrImg =
-                "https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&data=" +
+                "https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=8&data=" +
                 encodeURIComponent(fullUrl);
+            const codeBlock = castCode
+                ? ('<div class="py-2"><div class="text-xs text-gray-400 font-bold uppercase">TV-Code (Cast)</div>' +
+                   '<div class="text-5xl font-black tracking-[0.25em] text-white my-1">' + castCode + "</div>" +
+                   '<p class="text-xs text-gray-400">Am TV: eduplayhub.de/receiver.html → Code eingeben</p></div>')
+                : '<p class="text-xs text-amber-300">Kein Kurzcode (Firestore tv_codes). Nutze Link/QR.</p>';
             const ov = document.createElement("div");
             ov.id = "castQrOverlay";
             ov.className = "fixed inset-0 z-[80] flex items-center justify-center p-4";
@@ -60,9 +97,10 @@
             ov.innerHTML =
                 '<div class="glass-card max-w-sm w-full p-5 text-center space-y-3 shadow-2xl border border-indigo-500/30">' +
                 '<div class="text-3xl">📺</div>' +
-                '<h3 class="text-lg font-black text-indigo-300">TV verbinden</h3>' +
-                '<p class="text-sm text-gray-300 leading-snug">Am Fernseher den <b class="text-white">Browser</b> öffnen und diesen Code scannen – oder die Adresse eintippen.</p>' +
-                '<img src="' + qrImg + '" alt="QR-Code" width="220" height="220" class="mx-auto rounded-xl bg-white p-2" />' +
+                '<h3 class="text-lg font-black text-indigo-300">Cast / Receiver</h3>' +
+                '<p class="text-xs text-gray-400">Nicht der große TV-Quiz-Modus – nur die TV-Anzeige.</p>' +
+                codeBlock +
+                '<img src="' + qrImg + '" alt="QR-Code" width="200" height="200" class="mx-auto rounded-xl bg-white p-2" />' +
                 '<p class="text-[11px] text-gray-500 break-all px-1">' + fullUrl.replace(/</g, "") + "</p>" +
                 '<div class="grid grid-cols-2 gap-2">' +
                 '<button type="button" id="castQrCopy" class="btn-secondary text-sm py-2.5">Link kopieren</button>' +
@@ -113,12 +151,12 @@
             const playerName = currentPlayer.name || "Host";
             const fullUrl = buildReceiverUrl(parentId, playerName);
 
-            createTVLobby(parentId, playerName);
+            const castCode = await createTVLobby(parentId, playerName);
             castConnected = true;
             updateCastButton();
             startCastLobbyListener();
-            showCastQrOverlay(fullUrl);
-            showToast("QR für den Fernseher bereit", "success", "cast");
+            showCastQrOverlay(fullUrl, castCode || window._activeCastCode || "");
+            showToast(castCode ? ("TV-Code: " + castCode) : "Receiver-Link bereit", "success", "cast");
         }
 
         function disconnectCast() {
@@ -145,21 +183,51 @@
             }
         }
 
-        function createTVLobby(parentId, hostName) {
-            db.collection('parents')
-                .doc(parentId)
-                .collection('tv_game')
-                .doc('lobby')
-                .set({
-                    status: 'lobby',
-                    players: {},
+        async function createTVLobby(parentId, hostName) {
+            const hostKey = (typeof activePlayerKey !== "undefined" && activePlayerKey)
+                ? activePlayerKey
+                : ("host_" + String(Date.now()).slice(-6));
+            const players = {};
+            players[hostKey] = {
+                name: hostName || "Host",
+                score: 0,
+                hasAnswered: false,
+                lastAnswer: null,
+                isHost: true
+            };
+            // Kurzer Code nur für Cast/Receiver (nicht der große TV-Quiz-Modus)
+            let castCode = "";
+            const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+            for (let i = 0; i < 4; i++) castCode += alphabet[Math.floor(Math.random() * alphabet.length)];
+            try {
+                await db.collection("tv_codes").doc(castCode).set({
+                    parentId: parentId,
+                    kind: "cast",
+                    createdAt: Date.now()
+                });
+                window._activeCastCode = castCode;
+            } catch (e) {
+                console.warn("Cast-Code:", e);
+                castCode = "";
+                window._activeCastCode = "";
+            }
+            try {
+                await db.collection("parents").doc(parentId).collection("tv_game").doc("lobby").set({
+                    status: "lobby",
+                    kind: "cast",
+                    players: players,
                     questions: buildCastQuestions(),
                     currentIndex: 0,
-                    createdBy: hostName || 'Host',
+                    createdBy: hostName || "Host",
+                    castCode: castCode || null,
                     createdAt: Date.now()
-                })
-                .then(function () { console.log('✅ TV-Lobby erstellt für parentId:', parentId); })
-                .catch(function (err) { console.error('❌ Fehler beim Erstellen der TV-Lobby:', err); });
+                });
+                console.log("✅ Cast-Lobby erstellt", parentId, castCode);
+            } catch (err) {
+                console.error("❌ Cast-Lobby:", err);
+                showToast("Lobby konnte nicht erstellt werden", "error", "cast");
+            }
+            return castCode;
         }
 
         function checkCastStatus() {
@@ -694,6 +762,7 @@
                     window._activeTVCode = tvCode;
                 } catch (e) { console.warn("TV-Code konnte nicht angelegt werden", e); }
                 merkeTVHost(true, tvCode);
+                setTimeout(function () { if (typeof offerTvDisplay === "function") offerTvDisplay(tvCode); }, 400);
 
                 const joinUrl = (window.location.origin || "") + (window.location.pathname || "/") + "?tv=" + encodeURIComponent(tvCode);
                 const qrSrc = tvCode

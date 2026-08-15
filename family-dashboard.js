@@ -1124,37 +1124,6 @@ auth.createUserWithEmailAndPassword(e, p)
             box.innerHTML = items.length ? items.join('') : '';
         }
 
-        function switchDashboardTab(tab) {
-            currentDashTab = tab;
-            ['inhalte', 'schueler', 'admin'].forEach(t => {
-                const btn = document.getElementById('dash-tab-' + t);
-                const content = document.getElementById('dash-' + t);
-                if (!btn || !content) return;
-                if (t === tab) {
-                    btn.className =
-                        'flex-1 py-2.5 px-1 rounded-lg font-bold text-white bg-indigo-600 shadow-md transition-all text-sm';
-                    content.classList.remove('hidden');
-                } else {
-                    btn.className =
-                        'flex-1 py-2.5 px-1 rounded-lg font-bold text-gray-400 bg-gray-900 transition-all text-sm';
-                    content.classList.add('hidden');
-                }
-            });
-            if (tab === 'schueler') {
-                renderDashPlayerList();
-                if (selectedStatPlayer) renderPlayerStats(selectedStatPlayer);
-            }
-            if (tab === 'admin') {
-                renderDashAdmin();
-            }
-            if (tab === 'inhalte') {
-                updateDashCounts();
-                renderDashQuestions();
-                renderDashVocab();
-                renderDashWords();
-            }
-        }
-
         function renderDashFilters() {
             const container = document.getElementById('dash-filter-container');
             if (!container) return;

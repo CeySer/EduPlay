@@ -1689,8 +1689,7 @@ auth.createUserWithEmailAndPassword(e, p)
         function toggleDashSection(which) {
             const map = {
                 tests: ['dash-tests-body', 'dash-tests-arrow'],
-                study: ['dash-study-body', 'dash-study-arrow'],
-                'aufgaben-tests': ['dash-aufgaben-tests-body', 'dash-aufgaben-tests-arrow']
+                study: ['dash-study-body', 'dash-study-arrow']
             };
             const pair = map[which] || ['dash-study-body', 'dash-study-arrow'];
             const body = document.getElementById(pair[0]);

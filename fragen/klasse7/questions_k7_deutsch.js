@@ -1821,7 +1821,7 @@ const K7_DEUTSCH_QUESTIONS = [
 
   // --- INHALTSANGABE & TEXTANALYSE (001 - 025) ---
   {
-    "id": "k7_de_001",
+    "id": "k7_de_101",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -1839,7 +1839,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eine Inhaltsangabe wird immer im Präsens verfasst. Vorzeitige Handlungen stehen im Perfekt."
   },
   {
-    "id": "k7_de_002",
+    "id": "k7_de_102",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -1857,7 +1857,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der Basissatz nennt Autor, Titel, Textart, Erscheinungsjahr (wenn bekannt) u. das Hauptthema."
   },
   {
-    "id": "k7_de_003",
+    "id": "k7_de_103",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -1875,7 +1875,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Wörtliche Rede wird in Inhaltsangaben nicht zitiert, sondern in indirekter Rede (Konjunktiv) zusammengefasst."
   },
   {
-    "id": "k7_de_004",
+    "id": "k7_de_104",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -1893,7 +1893,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eine Inhaltsangabe informiert objektiv, sachlich u. verzichtet auf ausschmückende Adjektive u. Spannungselemente."
   },
   {
-    "id": "k7_de_005",
+    "id": "k7_de_105",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -1911,7 +1911,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Handlungen, die vor der eigentlichen Handlung geschehen sind, werden im Perfekt wiedergegeben."
   },
   {
-    "id": "k7_de_006",
+    "id": "k7_de_106",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -1929,7 +1929,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eigene Meinungen u. Wertungen haben in der Inhaltsangabe keinen Platz; sie gehören allenfalls in einen Schlusskommentar."
   },
   {
-    "id": "k7_de_007",
+    "id": "k7_de_107",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -1947,7 +1947,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der Basissatz verschafft dem Leser einen schnellen u. präzisen Erstüberblick über den literarischen Text."
   },
   {
-    "id": "k7_de_008",
+    "id": "k7_de_108",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -1965,7 +1965,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der Inhalt wird in der zeitlich korrekten Abfolge (chronologisch) geordnet dargestellt."
   },
   {
-    "id": "k7_de_009",
+    "id": "k7_de_109",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -1983,7 +1983,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Ziel ist es, jemanden, der den Text nicht kennt, knapp u. umfassend über den Inhalt zu informieren."
   },
   {
-    "id": "k7_de_010",
+    "id": "k7_de_110",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2001,7 +2001,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Sachlicher Stil bedeutet neutrale Wortwahl ohne emotionale Verstärkungen oder Umgangssprache."
   },
   {
-    "id": "k7_de_011",
+    "id": "k7_de_111",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2019,7 +2019,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Am Höhe- u. Wendepunkt (Klimax) erreicht die Spannung ihren Gipfel u. die Handlung schlägt um."
   },
   {
-    "id": "k7_de_012",
+    "id": "k7_de_112",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2037,7 +2037,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Die Exposition führt in Ort, Zeit, Personen u. Konflikt der Geschichte ein."
   },
   {
-    "id": "k7_de_013",
+    "id": "k7_de_113",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2055,7 +2055,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Das retardierende Moment verzögert die Entscheidung u. baut nochmals unerwartete Spannung auf."
   },
   {
-    "id": "k7_de_014",
+    "id": "k7_de_114",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2073,7 +2073,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eine Charakterisierung erfasst Aussehen, Verhalten, Eigenschaften u. Beziehungen einer Figur."
   },
   {
-    "id": "k7_de_015",
+    "id": "k7_de_115",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2091,7 +2091,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Direkt: Der Text nennt Eigenschaften ausdrücklich. Indirekt: Leser schließt aus dem Verhalten darauf."
   },
   {
-    "id": "k7_de_016",
+    "id": "k7_de_116",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2109,7 +2109,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der auktoriale Erzähler blickt von außen auf das Geschehen, kennt Gedanken u. Gefühle aller Figuren."
   },
   {
-    "id": "k7_de_017",
+    "id": "k7_de_117",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2127,7 +2127,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der personale Erzähler schlüpft in die Rolle einer Figur u. erzählt das Geschehen aus deren Sicht."
   },
   {
-    "id": "k7_de_018",
+    "id": "k7_de_118",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2145,7 +2145,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der neutrale Erzähler berichtet wie eine unbeteiligte Kamera ohne Einblick in Gefühle u. ohne Wertung."
   },
   {
-    "id": "k7_de_019",
+    "id": "k7_de_119",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2163,7 +2163,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Fiktionale Texte basieren auf Erfindung u. künstlerischer Freiheit des Autors."
   },
   {
-    "id": "k7_de_020",
+    "id": "k7_de_120",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2181,7 +2181,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Sachtexte informieren sachlich über reale Sachverhalte, Personen oder Ereignisse."
   },
   {
-    "id": "k7_de_021",
+    "id": "k7_de_121",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2199,7 +2199,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eine Analepse (Rückblende) unterbricht den chronologischen Verlauf u. erzählt Vergangenes."
   },
   {
-    "id": "k7_de_022",
+    "id": "k7_de_122",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2217,7 +2217,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Lange Zeiträume (z. B. 10 Jahre) werden in wenigen Sätzen kurz zusammengefasst."
   },
   {
-    "id": "k7_de_023",
+    "id": "k7_de_123",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2235,7 +2235,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Ein kurzer Moment (z. B. Sekunden eines Sturzes) wird sehr ausführlich beschrieben."
   },
   {
-    "id": "k7_de_024",
+    "id": "k7_de_124",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2253,7 +2253,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Die Dauer des Vortrags entspricht exakt der Dauer des Geschehens (z. B. bei Dialogen)."
   },
   {
-    "id": "k7_de_025",
+    "id": "k7_de_125",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2273,7 +2273,7 @@ const K7_DEUTSCH_QUESTIONS = [
 
   // --- BALLADEN & LYRIK (026 - 050) ---
   {
-    "id": "k7_de_026",
+    "id": "k7_de_126",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2291,7 +2291,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Balladen vereinen epische (erzählende), lyrische (Reim, Strophe) u. dramatische Elemente (Dialoge)."
   },
   {
-    "id": "k7_de_027",
+    "id": "k7_de_127",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2309,7 +2309,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Goethe nannte die Ballade wegen dieser Dreieinigkeit das 'Ur-Ei der Poesie'."
   },
   {
-    "id": "k7_de_028",
+    "id": "k7_de_128",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2327,7 +2327,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Goethe schrieb 'Der Erlkönig' im Jahr 1782 ('Wer reitet so spät durch Nacht und Wind...')."
   },
   {
-    "id": "k7_de_029",
+    "id": "k7_de_129",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2345,7 +2345,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Goethe schrieb die Ballade ('Walle! walle / Manche Strecke...')."
   },
   {
-    "id": "k7_de_030",
+    "id": "k7_de_130",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2363,7 +2363,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Otto Ernst dichtete 'Nis Randers' ('Krachen und Heulen und berstende Nacht...')."
   },
   {
-    "id": "k7_de_031",
+    "id": "k7_de_131",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2381,7 +2381,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Theodor Fontane verfasste das Gedicht über das Schiffsunglück auf dem Eriesee."
   },
   {
-    "id": "k7_de_032",
+    "id": "k7_de_132",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2399,7 +2399,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eine Strophe ist ein Sinnabschnitt aus mehreren Versen in einem Gedicht."
   },
   {
-    "id": "k7_de_033",
+    "id": "k7_de_133",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2417,7 +2417,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Als Vers bezeichnet man eine einzelne gedruckte Zeile innerhalb eines Gedichts."
   },
   {
-    "id": "k7_de_034",
+    "id": "k7_de_134",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2435,7 +2435,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Beim Paarreim reimen sich zwei aufeinanderfolgende Verszeilen (a auf a, b auf b)."
   },
   {
-    "id": "k7_de_035",
+    "id": "k7_de_135",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2453,7 +2453,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Beim Kreuzreim reimen sich Vers 1 u. 3 sowie Vers 2 u. 4 abwechselnd."
   },
   {
-    "id": "k7_de_036",
+    "id": "k7_de_136",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2471,7 +2471,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der umarmende Reim umschließt das innere Reimpaar (b-b) mit den äußeren Reimen (a-a)."
   },
   {
-    "id": "k7_de_037",
+    "id": "k7_de_137",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2489,7 +2489,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eine Metapher überträgt ein Wort aus seinem ursprünglichen Bedeutungszusammenhang in einen anderen ohne 'wie'."
   },
   {
-    "id": "k7_de_038",
+    "id": "k7_de_138",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2507,7 +2507,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Bei der Personifikation werden Gegenständen oder Tieren menschliche Eigenschaften zugeschrieben (z. B. 'Die Sonne lacht')."
   },
   {
-    "id": "k7_de_039",
+    "id": "k7_de_139",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2525,7 +2525,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eine Anapher ist die Wiederholung desselben Wortes oder derselben Wortgruppe am Anfang aufeinanderfolgender Sätze oder Verse."
   },
   {
-    "id": "k7_de_040",
+    "id": "k7_de_140",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2543,7 +2543,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Mehrere Wörter nacheinander beginnen mit demselben Anlaut (z. B. 'Milch macht müde Männer munter')."
   },
   {
-    "id": "k7_de_041",
+    "id": "k7_de_141",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2561,7 +2561,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Ein Satz setzt sich über das Ende eines Verses hinweg im folgenden Vers fort (Zeilensprung)."
   },
   {
-    "id": "k7_de_042",
+    "id": "k7_de_142",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2579,7 +2579,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der Jambus ist ein zweisilbiger Versfuß aus einer unbetonten u. einer betonten Silbe (x X)."
   },
   {
-    "id": "k7_de_043",
+    "id": "k7_de_143",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2597,7 +2597,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der Trochäus besteht aus einer betonten gefolgt von einer unbetonten Silbe (X x)."
   },
   {
-    "id": "k7_de_044",
+    "id": "k7_de_144",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2615,7 +2615,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der Anapäst ist dreisilbig u. steigt zur letzten Silbe hin an (x x X)."
   },
   {
-    "id": "k7_de_045",
+    "id": "k7_de_145",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2633,7 +2633,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der Daktylus beginnt betont u. fällt danach ab (X x x)."
   },
   {
-    "id": "k7_de_046",
+    "id": "k7_de_146",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2651,7 +2651,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Endet ein Vers auf eine betonte Silbe, spricht man von einer männlichen (stumpfen) Kadenz."
   },
   {
-    "id": "k7_de_047",
+    "id": "k7_de_147",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2669,7 +2669,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Endet ein Vers auf eine unbetonte Silbe, spricht man von einer weiblichen (klingenden) Kadenz."
   },
   {
-    "id": "k7_de_048",
+    "id": "k7_de_148",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2687,7 +2687,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Das Lyrische Ich ist die erfundene Stimme, die im Gedicht ihre Gefühle oder Eindrücke äußert (nicht identisch mit dem Autor)."
   },
   {
-    "id": "k7_de_049",
+    "id": "k7_de_149",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2705,7 +2705,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eine Hyperbel ist eine starke Übertreibung zur Veranschaulichung (z. B. 'ein Meer von Tränen')."
   },
   {
-    "id": "k7_de_050",
+    "id": "k7_de_150",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2725,7 +2725,7 @@ const K7_DEUTSCH_QUESTIONS = [
 
   // --- ARGUMENTIEREN, BERICHTEN & BESCHREIBUNG (051 - 075) ---
   {
-    "id": "k7_de_051",
+    "id": "k7_de_151",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2743,7 +2743,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Ein überzeugendes Argument besteht aus Behauptung (These), Begründung u. Beleg/Beispiel."
   },
   {
-    "id": "k7_de_052",
+    "id": "k7_de_152",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2761,7 +2761,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Die These ist die leitsatzartige Behauptung oder Ansicht, die bewiesen werden soll."
   },
   {
-    "id": "k7_de_053",
+    "id": "k7_de_153",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2779,7 +2779,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Die Begründung erklärt logisch, warum die Behauptung zutrifft u. wahr ist."
   },
   {
-    "id": "k7_de_054",
+    "id": "k7_de_154",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2797,7 +2797,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Das Beispiel konkretisiert u. veranschaulicht die abstrakte Begründung anhand von Praxisfällen."
   },
   {
-    "id": "k7_de_055",
+    "id": "k7_de_155",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2815,7 +2815,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Begründende Nebensätze oder Anschlüsse werden bevorzugt mit 'weil', 'da' oder 'denn' verknüpft."
   },
   {
-    "id": "k7_de_056",
+    "id": "k7_de_156",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2833,7 +2833,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Ein Zeitungsbericht informiert rein objektiv, knapp u. wahrheitsgetreu über Vorfälle."
   },
   {
-    "id": "k7_de_057",
+    "id": "k7_de_157",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2851,7 +2851,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Die W-Fragen (Wer, Was, Wann, Wo) klären sofort zu Beginn den Kern des Geschehens."
   },
   {
-    "id": "k7_de_058",
+    "id": "k7_de_158",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2869,7 +2869,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Berichte schildern bereits Geschehenes im Präteritum (gelegentlich Perfekt)."
   },
   {
-    "id": "k7_de_059",
+    "id": "k7_de_159",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2887,7 +2887,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eine Vorgangsbeschreibung (z. B. Rezept, Bastelanleitung) leitet zur exakten Wiederholung des Ablaufs an."
   },
   {
-    "id": "k7_de_060",
+    "id": "k7_de_160",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2905,7 +2905,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Da der Zustand aktuell beschrieben wird, steht die Beschreibung durchgehend im Präsens."
   },
   {
-    "id": "k7_de_061",
+    "id": "k7_de_161",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2923,7 +2923,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Erst werden alle Argumente der Gegenseite gebracht, danach alle Argumente der eigenen Position (vom schwächsten zum stärksten)."
   },
   {
-    "id": "k7_de_062",
+    "id": "k7_de_162",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2941,7 +2941,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Pro- u. Contra-Argumente wechseln sich laufend direkt ab."
   },
   {
-    "id": "k7_de_063",
+    "id": "k7_de_163",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2959,7 +2959,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Das überzeugendste u. stärkste Argument wird am Ende der eigenen Argumentation platziert."
   },
   {
-    "id": "k7_de_064",
+    "id": "k7_de_164",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2977,7 +2977,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der Schluss fasst die Ergebnisse abwägend zusammen u. mündet im begründeten eigenen Urteil."
   },
   {
-    "id": "k7_de_065",
+    "id": "k7_de_165",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -2995,7 +2995,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Ein Leserbrief ist eine veröffentlichte Meinungsäußerung zu einem bereits erschienenen Beitrag."
   },
   {
-    "id": "k7_de_066",
+    "id": "k7_de_166",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3013,7 +3013,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eine geordnete, sachliche Beschreibung von Größe, Statur, Gesicht, Kleidung u. Besonderheiten."
   },
   {
-    "id": "k7_de_067",
+    "id": "k7_de_167",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3031,7 +3031,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Systematisch von oben nach unten, von links nach rechts oder vom Vorder- zum Hintergrund."
   },
   {
-    "id": "k7_de_068",
+    "id": "k7_de_168",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3049,7 +3049,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Anträge u. Einsprüche sind sachliche, sachbezogene Schreiben mit klaren Begründungen."
   },
   {
-    "id": "k7_de_069",
+    "id": "k7_de_169",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3067,7 +3067,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Ein Faktum ist eine unumstößliche u. belegbare Tatsache."
   },
   {
-    "id": "k7_de_070",
+    "id": "k7_de_170",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3085,7 +3085,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Normative Argumente verweisen auf allgemein anerkannte Werte, Regeln u. Moralvorstellungen."
   },
   {
-    "id": "k7_de_071",
+    "id": "k7_de_171",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3103,7 +3103,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Man beruft sich auf eine anerkannte Fachkraft oder Studie, um die eigene These zu stärken."
   },
   {
-    "id": "k7_de_072",
+    "id": "k7_de_172",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3121,7 +3121,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Ein Scheinargument nutzt Denkfehler oder Ablenkungen u. hält logischer Prüfung nicht stand."
   },
   {
-    "id": "k7_de_073",
+    "id": "k7_de_173",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3139,7 +3139,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Formelle Schreiben erfordern höfliche, sachliche u. präzise Formulierungen trotz Kritik."
   },
   {
-    "id": "k7_de_074",
+    "id": "k7_de_174",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3157,7 +3157,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Vor dem Schreiben werden Ideen in Mindmaps oder Tabellen gesammelt u. strukturiert."
   },
   {
-    "id": "k7_de_075",
+    "id": "k7_de_175",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3177,7 +3177,7 @@ const K7_DEUTSCH_QUESTIONS = [
 
   // --- GRAMMATIK, RECHTSCHREIBUNG & ZEICHENSETZUNG (076 - 100) ---
   {
-    "id": "k7_de_076",
+    "id": "k7_de_176",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3195,7 +3195,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "'Dass' verbindet Nebensätze u. lässt sich NICHT durch 'dieses', 'jenes' oder 'welches' ersetzen."
   },
   {
-    "id": "k7_de_077",
+    "id": "k7_de_177",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3213,7 +3213,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "'Das' steht als Artikel, Demonstrativ- oder Relativpronomen u. lässt sich durch 'welches' ersetzen."
   },
   {
-    "id": "k7_de_078",
+    "id": "k7_de_178",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3231,7 +3231,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der Konjunktiv I dient der neutralen Wiedergabe von Fremdaussagen in der indirekten Rede."
   },
   {
-    "id": "k7_de_079",
+    "id": "k7_de_179",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3249,7 +3249,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Der Konjunktiv II drückt Unmögliches, Träume, Zweifel u. irreale Bedingungen aus."
   },
   {
-    "id": "k7_de_080",
+    "id": "k7_de_180",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3267,7 +3267,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Stamm + Endung -e: 'er sage'."
   },
   {
-    "id": "k7_de_081",
+    "id": "k7_de_181",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3285,7 +3285,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Präteritumsstamm mit Umlaut: 'kommen' -> 'kam' -> 'käme'."
   },
   {
-    "id": "k7_de_082",
+    "id": "k7_de_182",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3303,7 +3303,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Ein Satzgefüge (Hypotaxe) besteht aus mindestens einem übergeordneten Hauptsatz u. einem Nebensatz."
   },
   {
-    "id": "k7_de_083",
+    "id": "k7_de_183",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3321,7 +3321,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Eine Satzreihe (Parataxe) besteht aus zwei oder mehr gleichrangigen Hauptsätzen."
   },
   {
-    "id": "k7_de_084",
+    "id": "k7_de_184",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3339,7 +3339,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Kausalsätze nennen den Grund/die Ursache (eingeleitet durch 'weil', 'da')."
   },
   {
-    "id": "k7_de_085",
+    "id": "k7_de_185",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3357,7 +3357,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Konzessivsätze drückt einen Einwand/Gegengrund aus ('obwohl', 'obgleich')."
   },
   {
-    "id": "k7_de_086",
+    "id": "k7_de_186",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3375,7 +3375,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Konditionalsätze nennen eine Bedingung ('wenn', 'falls', 'sofern')."
   },
   {
-    "id": "k7_de_087",
+    "id": "k7_de_187",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3393,7 +3393,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Das Akkusativobjekt des Aktivsatzes wird im Passivsatz zum grammatikalischen Subjekt."
   },
   {
-    "id": "k7_de_088",
+    "id": "k7_de_188",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3411,7 +3411,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Präsens von 'werden' + Partizip II des Verbs (z. B. 'Das Haus wird gebaut')."
   },
   {
-    "id": "k7_de_089",
+    "id": "k7_de_189",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3429,7 +3429,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Präsens von 'sein' + Partizip II des Verbs (z. B. 'Das Haus ist gebaut')."
   },
   {
-    "id": "k7_de_090",
+    "id": "k7_de_190",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3447,7 +3447,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Infinitivgruppen mit den einleitenden Signalwörtern 'um', 'ohne', 'statt', 'ansatt', 'außer' müssen mit Komma abgetrennt werden."
   },
   {
-    "id": "k7_de_091",
+    "id": "k7_de_191",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3465,7 +3465,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Das Objekt im 3. Fall (Dativ) wird mit 'Wem?' erfragt."
   },
   {
-    "id": "k7_de_092",
+    "id": "k7_de_192",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3483,7 +3483,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Das Objekt im 4. Fall (Akkusativ) wird mit 'Wen oder was?' erfragt."
   },
   {
-    "id": "k7_de_093",
+    "id": "k7_de_193",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3501,7 +3501,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Das Objekt im 2. Fall (Genitiv) wird mit 'Wessen?' erfragt."
   },
   {
-    "id": "k7_de_094",
+    "id": "k7_de_194",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3519,7 +3519,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Verben werden großgeschrieben, wenn Artikel, Pronomen oder Präpositionen vorangehen (z. B. 'das Lesen', 'beim Schwimmen')."
   },
   {
-    "id": "k7_de_095",
+    "id": "k7_de_195",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3537,7 +3537,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Wörter mit den Endungen -ung, -heit, -keit, -schaft, -nis, -tum sind Nomen u. werden großgeschrieben."
   },
   {
-    "id": "k7_de_096",
+    "id": "k7_de_196",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3555,7 +3555,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "'Wieder' drückt Wiederholung aus (noch einmal); 'wider' drückt Widerstand aus (gegen)."
   },
   {
-    "id": "k7_de_097",
+    "id": "k7_de_197",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3573,7 +3573,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Aufzählungen werden durch Kommata getrennt, sofern sie nicht durch 'und' oder 'oder' verbunden sind."
   },
   {
-    "id": "k7_de_098",
+    "id": "k7_de_198",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3591,7 +3591,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Es beantwortet die Frage 'Wo?' u. ist somit eine Umstandsbestimmung des Ortes (Lokaladverbiale)."
   },
   {
-    "id": "k7_de_099",
+    "id": "k7_de_199",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,
@@ -3609,7 +3609,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "explanation": "Es beantwortet die Frage 'Wann?' u. ist somit eine Umstandsbestimmung der Zeit (Temporaladverbiale)."
   },
   {
-    "id": "k7_de_100",
+    "id": "k7_de_200",
     "category": "k7_deutsch",
     "area": "schule",
     "grade": 7,

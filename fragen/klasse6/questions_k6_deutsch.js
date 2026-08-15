@@ -13,9 +13,9 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Was ist das Hauptmerkmal einer Fabel?",
     "answers": [
       "Tiere handeln wie Menschen",
+      "Götter lenken das Schicksal",
       "Pflanzen erzählen Märchen",
-      "Ritter kämpfen um Burgen",
-      "Götter lenken das Schicksal"
+      "Ritter kämpfen um Burgen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -32,8 +32,8 @@ const K6_DEUTSCH_QUESTIONS = [
     "answers": [
       "Moral der Erzählung",
       "Pointe des Gedichtes",
-      "Prototyp der Fabeln",
-      "Kritik der Geschichte"
+      "Kritik der Geschichte",
+      "Prototyp der Fabeln"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -48,12 +48,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welche Eigenschaft schreibt man dem Fuchs in Fabeln zu?",
     "answers": [
-      "Schlauheit und List",
       "Stumpfsinn und Ruhe",
-      "Stärke und Frohsinn",
-      "Ängstlichkeit und Mut"
+      "Ängstlichkeit und Mut",
+      "Schlauheit und List",
+      "Stärke und Frohsinn"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der Fuchs Reineke gilt in Fabeln als hinterlistig und schlau."
@@ -66,12 +66,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was unterscheidet eine Sage von einem Märchen?",
     "answers": [
-      "Bezug zu echten Orten",
-      "Tiere die sprechen",
       "Erfundene Wunderwesen",
-      "Happy End am Schluss"
+      "Tiere die sprechen",
+      "Happy End am Schluss",
+      "Bezug zu echten Orten"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Sagen knüpfen oft an reale Orte oder Ereignisse an."
@@ -86,12 +86,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wie lautet die Zeitform 'Plusquamperfekt' auf Deutsch?",
     "answers": [
-      "Vollendete Vergangenheit",
       "Einfache Gegenwartssprache",
-      "Zukünftige Vergangenheit",
-      "Abgeschlossene Zukunft"
+      "Vollendete Vergangenheit",
+      "Abgeschlossene Zukunft",
+      "Zukünftige Vergangenheit"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Das Plusquamperfekt ist die Vorvergangenheit."
@@ -104,12 +104,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welcher Satz steht im Plusquamperfekt?",
     "answers": [
-      "Er hatte lange gewartet",
-      "Er hat lange gewartet",
       "Er wird lange warten",
-      "Er wartete sehr lange"
+      "Er wartete sehr lange",
+      "Er hatte lange gewartet",
+      "Er hat lange gewartet"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Plusquamperfekt wird mit hatte/war + Partizip II gebildet."
@@ -122,12 +122,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was kennzeichnet den grammatikalischen Passivsatz?",
     "answers": [
-      "Handlung steht im Zentrum",
       "Täter wird stark betont",
+      "Handlung steht im Zentrum",
       "Zeitform ist nur Futur I",
       "Nomen fällt komplett weg"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Im Passiv ist wichtig, WAS geschieht, nicht WER es tut."
@@ -140,12 +140,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wandle in Passiv um: 'Der Koch backt den Kuchen.'",
     "answers": [
+      "Koch wird backen heute",
       "Kuchen wird gebacken",
-      "Koch hat gebacken",
       "Kuchen backt der Koch",
-      "Koch wird backen heute"
+      "Koch hat gebacken"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Passiv Präsens: 'Der Kuchen wird (vom Koch) gebacken.'"
@@ -178,12 +178,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welcher Satz ist rechtschreiblich korrekt?",
     "answers": [
-      "Ich weiß, dass du kommst",
-      "Ich weiß, das du kommst",
+      "Ich weiß das, du kommst",
       "Ich weiß dass, du kommst",
-      "Ich weiß das, du kommst"
+      "Ich weiß, das du kommst",
+      "Ich weiß, dass du kommst"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Die Bindewort-Konjunktion 'dass' leitet den Nebensatz ein."
@@ -196,12 +196,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist ein Adverb im Satzbau?",
     "answers": [
-      "Umstandswort zur Angabe",
-      "Tätigkeitswort zur Tat",
       "Eigenschaftswort zur Art",
-      "Bindewort für Nebensätze"
+      "Tätigkeitswort zur Tat",
+      "Bindewort für Nebensätze",
+      "Umstandswort zur Angabe"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Adverbien beschreiben Umstände von Ort, Zeit, Grund oder Art."
@@ -214,12 +214,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Wort ist ein Temporaladverb (Zeit)?",
     "answers": [
-      "gestern",
-      "draußen",
       "deshalb",
+      "draußen",
+      "gestern",
       "sehr"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'gestern' beschreibt die zeitliche Komponente."
@@ -234,12 +234,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wie erfragt man das Präpositionalobjekt?",
     "answers": [
-      "Mit wem? / Worüber?",
-      "Wer oder was genau?",
+      "Wann und wo genau?",
       "Wen oder was genau?",
-      "Wann und wo genau?"
+      "Wer oder was genau?",
+      "Mit wem? / Worüber?"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Präpositionalobjekte hängen an einer Präposition (z. B. 'warten auf' -> 'Worauf?')."
@@ -254,8 +254,8 @@ const K6_DEUTSCH_QUESTIONS = [
     "answers": [
       "auf den Bus",
       "Er wartet",
-      "den Bus",
-      "wartet auf"
+      "wartet auf",
+      "den Bus"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -270,12 +270,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist ein Relativsatz?",
     "answers": [
-      "Erklärender Nebensatz",
-      "Satz ohne ein Subjekt",
       "Satz mit einem Ausruf",
+      "Satz ohne ein Subjekt",
+      "Erklärender Nebensatz",
       "Aufforderung an Leser"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Relativsätze beschreiben ein Nomen näher und werden mit Pronomen eingeleitet."
@@ -290,12 +290,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Reimschema hat die Form ABAB?",
     "answers": [
+      "Schweifreim im Text",
       "Kreuzreim im Gedicht",
-      "Paarreim im Gedicht",
       "Umarmender Reimstil",
-      "Schweifreim im Text"
+      "Paarreim im Gedicht"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Beim Kreuzreim reimen sich die Zeilen 1 und 3 sowie 2 und 4."
@@ -308,12 +308,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Reimschema zeigt das Muster ABBA?",
     "answers": [
-      "Umarmender Reimstil",
       "Kreuzreim im Gedicht",
       "Paarreim im Gedicht",
+      "Umarmender Reimstil",
       "Haufenreim im Text"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Beim umarmenden Reim umschließen die Reime A den Reim B."
@@ -326,12 +326,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was bedeutet das Stilmuster 'Personifikation'?",
     "answers": [
-      "Unbelebtes wird menschlich",
-      "Starke Übertreibung im Satz",
+      "Wiederholung gleicher Laute",
       "Satzvergleich mit dem Wort wie",
-      "Wiederholung gleicher Laute"
+      "Unbelebtes wird menschlich",
+      "Starke Übertreibung im Satz"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Beispiel: 'Die Sonne lacht'."
@@ -346,12 +346,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Wort ist ein Possessivpronomen?",
     "answers": [
-      "mein",
       "dieser",
       "welcher",
+      "mein",
       "niemand"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Possessivpronomen zeigen Besitz an."
@@ -366,8 +366,8 @@ const K6_DEUTSCH_QUESTIONS = [
     "answers": [
       "jener",
       "mein",
-      "etwas",
-      "welcher"
+      "welcher",
+      "etwas"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -385,8 +385,8 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Welche W-Frage gehört NICHT zum Bericht?",
     "answers": [
       "Wie gefällt mir das?",
-      "Wann geschah der Vorfall?",
       "Wo fand das Ereignis statt?",
+      "Wann geschah der Vorfall?",
       "Wer war daran beteiligt?"
     ],
     "correct": 0,
@@ -402,12 +402,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "In welcher Zeitform schreibt man Berichte?",
     "answers": [
-      "Präteritum als Grundzeit",
       "Futur I als Grundzeitform",
       "Perfekt als Grundzeitform",
-      "Präsens als Grundzeitform"
+      "Präsens als Grundzeitform",
+      "Präteritum als Grundzeit"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Berichte werden im Präteritum verfasst."
@@ -420,12 +420,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was kennzeichnet eine Personenbeschreibung?",
     "answers": [
-      "Sachliche äußere Merkmale",
       "Spannungsgeladene Handlung",
+      "Sachliche äußere Merkmale",
       "Reine Erfindung der Figur",
       "Witzige Pointe am Schluss"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Eine Personenbeschreibung erfasst das Aussehen sachlich und genau."
@@ -438,12 +438,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wie beschreibt man Gegenstände am besten?",
     "answers": [
-      "Systematisch von außen",
       "In einer erfundenen Story",
       "Mit vielen Gefühls-Wörtern",
+      "Systematisch von außen",
       "Durch plötzliche Pointen"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Eine Gegenstandsbeschreibung erfolgt geordnet und objektiv."
@@ -458,12 +458,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist ein Aktivsatz im Satzgefüge?",
     "answers": [
-      "Subjekt handelt aktiv",
       "Handlung steht im Fokus",
       "Verb steht ganz am Ende",
-      "Nomen wird weggelassen"
+      "Nomen wird weggelassen",
+      "Subjekt handelt aktiv"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Im Aktiv führt das Subjekt die Handlung selbst aus."
@@ -477,9 +477,9 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Wie bildet man das Zustandspassiv?",
     "answers": [
       "sein + Partizip II",
-      "werden + Partizip II",
       "haben + Partizip II",
-      "werden + Infinitiv"
+      "werden + Infinitiv",
+      "werden + Partizip II"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -494,12 +494,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welcher Satz steht im Zustandspassiv?",
     "answers": [
-      "Das Fenster ist geschlossen",
-      "Das Fenster wird geschlossen",
       "Er schließt gerade das Fenster",
-      "Er hat das Fenster geschlossen"
+      "Das Fenster ist geschlossen",
+      "Er hat das Fenster geschlossen",
+      "Das Fenster wird geschlossen"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'ist geschlossen' zeigt den Zustand nach der Handlung."
@@ -514,12 +514,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welche Zeitform ist: 'Ich werde laufen'?",
     "answers": [
+      "Futur II in der Grammatik",
       "Futur I in der Grammatik",
       "Präsens in der Grammatik",
-      "Perfekt in der Grammatik",
-      "Futur II in der Grammatik"
+      "Perfekt in der Grammatik"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "werden + Infinitiv bildet das Futur I."
@@ -533,8 +533,8 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Welche Zeitform ist: 'Ich werde gelaufen sein'?",
     "answers": [
       "Futur II in der Grammatik",
-      "Futur I in der Grammatik",
       "Plusquamperfekt im Satz",
+      "Futur I in der Grammatik",
       "Perfekt in der Grammatik"
     ],
     "correct": 0,
@@ -550,12 +550,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist das Prädikat in einem Hauptsatz?",
     "answers": [
-      "Die verbale Handlung",
+      "Die Zeit des Geschehens",
       "Die handelnde Person",
       "Der Ort des Geschehens",
-      "Die Zeit des Geschehens"
+      "Die verbale Handlung"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Das Prädikat wird durch Verben gebildet und sagt, was getan wird."
@@ -570,12 +570,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wie erfragt man das Dativobjekt?",
     "answers": [
+      "Mit der Frage: Was?",
       "Mit der Frage: Wem?",
       "Mit der Frage: Wen?",
-      "Mit der Frage: Was?",
       "Mit der Frage: Wo?"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Dativobjekt = 3. Fall, Fragewort 'Wem?'."
@@ -588,12 +588,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wie erfragt man das Akkusativobjekt?",
     "answers": [
-      "Wen oder was genau?",
-      "Wem oder was genau?",
+      "Wo oder wohin genau?",
       "Wer oder was genau?",
-      "Wo oder wohin genau?"
+      "Wen oder was genau?",
+      "Wem oder was genau?"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Akkusativobjekt = 4. Fall, Fragewort 'Wen oder was?'."
@@ -606,12 +606,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Satzglied ist 'dem Freund' in: 'Er hilft dem Freund'?",
     "answers": [
-      "Dativobjekt im Satz",
-      "Akkusativobjekt im Satz",
       "Genitivobjekt im Satz",
-      "Präpositionalobjekt"
+      "Dativobjekt im Satz",
+      "Präpositionalobjekt",
+      "Akkusativobjekt im Satz"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Wem hilft er? Dem Freund (Dativobjekt)."
@@ -642,12 +642,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wie erfragt man eine Lokaladverbiale?",
     "answers": [
-      "Wo / Wohin / Woher?",
+      "Wie / Auf welche Art?",
       "Wann / Wie lange?",
       "Warum / Weshalb?",
-      "Wie / Auf welche Art?"
+      "Wo / Wohin / Woher?"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Lokaladverbien bezeichnen Orte."
@@ -660,12 +660,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wie erfragt man eine Temporaladverbiale?",
     "answers": [
-      "Wann / Wie lange?",
       "Wo / Wohin genau?",
-      "Warum / Aus welchem Grund?",
-      "Wie / Auf welche Art?"
+      "Wie / Auf welche Art?",
+      "Wann / Wie lange?",
+      "Warum / Aus welchem Grund?"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Temporaladverbien bezeichnen Zeitangaben."
@@ -678,12 +678,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wie erfragt man eine Kausaladverbiale?",
     "answers": [
-      "Warum / Weshalb?",
       "Wo / Wohin genau?",
+      "Warum / Weshalb?",
       "Wann / Wie lange?",
       "Wie / Auf welche Weise?"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Kausaladverbien bezeichnen Gründe."
@@ -697,8 +697,8 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Wie erfragt man eine Modaladverbiale?",
     "answers": [
       "Wie / Auf welche Art?",
-      "Warum / Weshalb genau?",
       "Wo / Wohin überhaupt?",
+      "Warum / Weshalb genau?",
       "Wann / Wie lange schon?"
     ],
     "correct": 0,
@@ -716,12 +716,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist ein Hauptsatz im Satzgefüge?",
     "answers": [
-      "Kann alleine stehen",
-      "Braucht ein Komma stets",
+      "Leitet Nebensätze ein",
       "Verb steht ganz am Ende",
-      "Leitet Nebensätze ein"
+      "Kann alleine stehen",
+      "Braucht ein Komma stets"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Ein Hauptsatz bildet einen vollständigen Sinn ohne Nebensatz."
@@ -734,12 +734,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist ein Nebensatz im Satzbau?",
     "answers": [
-      "Verb steht ganz am Ende",
       "Kann alleine existieren",
+      "Enthält kein Subjekt",
       "Steht immer ganz vorne",
-      "Enthält kein Subjekt"
+      "Verb steht ganz am Ende"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Typisch für Nebensätze ist die Endstellung des finiten Verbs."
@@ -752,12 +752,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welche Konjunktion leitet Kausalsätze ein?",
     "answers": [
+      "während",
       "weil",
       "obwohl",
-      "damit",
-      "während"
+      "damit"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'weil' begründet das Geschehen."
@@ -770,12 +770,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welche Konjunktion leitet Konditionalsätze ein?",
     "answers": [
-      "wenn",
-      "obwohl",
       "weil",
-      "sodass"
+      "sodass",
+      "obwohl",
+      "wenn"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'wenn' drückt eine Bedingung aus."
@@ -788,12 +788,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welche Konjunktion leitet Konzessivsätze ein?",
     "answers": [
-      "obwohl",
-      "weil",
       "damit",
+      "weil",
+      "obwohl",
       "während"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'obwohl' drückt einen Gegengrund aus."
@@ -807,8 +807,8 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Welche Konjunktion leitet Finalsätze ein?",
     "answers": [
       "damit",
-      "weil",
       "obwohl",
+      "weil",
       "indem"
     ],
     "correct": 0,
@@ -827,9 +827,9 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Wann schreibt man Wörter mit 'ss'?",
     "answers": [
       "Nach kurzem Vokal",
+      "Nach jedem Konsonant",
       "Nach langem Vokal",
-      "Nach einem Zwielaut",
-      "Nach jedem Konsonant"
+      "Nach einem Zwielaut"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -844,12 +844,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wann schreibt man Wörter mit 'ß'?",
     "answers": [
-      "Nach langem Vokal",
       "Nach kurzem Vokal",
       "Vor zwei Konsonanten",
-      "Am Wortanfang immer"
+      "Am Wortanfang immer",
+      "Nach langem Vokal"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Nach langem Vokal oder Diphthong (Dauer/Ei) steht 'ß'."
@@ -863,9 +863,9 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Welches Wort ist orthografisch korrekt geschrieben?",
     "answers": [
       "Fluss",
-      "Fluß",
+      "Flussss",
       "Flus",
-      "Flussss"
+      "Fluß"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -880,12 +880,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Wort ist orthografisch korrekt geschrieben?",
     "answers": [
-      "Straße",
       "Strasse",
+      "Strahse",
       "Strasze",
-      "Strahse"
+      "Straße"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Langes a = Schreibweise mit ß."
@@ -898,12 +898,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Wort zeigt ein Dehnungs-h?",
     "answers": [
-      "fahren",
       "fallen",
-      "fangen",
-      "finden"
+      "fahren",
+      "finden",
+      "fangen"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Das h in 'fahren' dehnt den Vokal a."
@@ -916,12 +916,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wann werden Adjektive großgeschrieben?",
     "answers": [
-      "Nach einem Artikel",
-      "Vor einem Nomen stets",
+      "Am Satzende generell",
       "Nach jedem Komma immer",
-      "Am Satzende generell"
+      "Vor einem Nomen stets",
+      "Nach einem Artikel"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Substantivierte Adjektive mit Artikel/Pronomen werden großgeschrieben (z. B. 'das Schöne')."
@@ -936,12 +936,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Wort ist eine Präposition?",
     "answers": [
-      "unter",
+      "schnell",
       "laufen",
-      "schöne",
-      "schnell"
+      "unter",
+      "schöne"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'unter' ist ein Verhältniswort."
@@ -954,12 +954,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welche Präposition fordert den Genitiv?",
     "answers": [
-      "wegen",
       "mit",
       "durch",
+      "wegen",
       "aus"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "wegen des Wetters (Genitiv)."
@@ -972,12 +972,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welche Präposition fordert den Dativ?",
     "answers": [
-      "aus",
       "durch",
       "für",
-      "gegen"
+      "gegen",
+      "aus"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "aus dem Haus (Dativ)."
@@ -990,12 +990,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welche Präposition fordert den Akkusativ?",
     "answers": [
-      "durch",
       "mit",
+      "von",
       "nach",
-      "von"
+      "durch"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "durch den Wald (Akkusativ)."
@@ -1010,12 +1010,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was bedeutet Homonymie in der Sprachlehre?",
     "answers": [
-      "Ein Wort, zwei Bedeutungen",
       "Zwei Wörter, gleicher Sinn",
       "Wörter mit Gegenteil-Sinn",
-      "Wörter aus Fremdsprachen"
+      "Wörter aus Fremdsprachen",
+      "Ein Wort, zwei Bedeutungen"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Ein Homonym ist ein Teekesselchen (ein Wort für zwei Verschiedenes)."
@@ -1028,12 +1028,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was bedeutet Synonymie in der Sprachlehre?",
     "answers": [
-      "Bedeutungsähnliche Wörter",
       "Wörter mit Gegenteil-Sinn",
+      "Völlig erfundene Wörter",
       "Gleicher Klang, andere Form",
-      "Völlig erfundene Wörter"
+      "Bedeutungsähnliche Wörter"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Synonyme sind bedeutungsähnliche Wörter."
@@ -1046,12 +1046,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was bedeutet Antonymie in der Sprachlehre?",
     "answers": [
-      "Wörter mit Gegenteil-Sinn",
-      "Bedeutungsgleiche Wörter",
       "Wörter mit zwei Bedeutungen",
+      "Bedeutungsgleiche Wörter",
+      "Wörter mit Gegenteil-Sinn",
       "Fremdwörter aus dem Latein"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Antonyme sind gegensätzliche Wörter (z. B. warm – kalt)."
@@ -1064,12 +1064,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist ein Synonym für das Wort 'groß'?",
     "answers": [
-      "riesig",
       "klein",
+      "dunkel",
       "schmal",
-      "dunkel"
+      "riesig"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'riesig' hat eine sehr ähnliche Bedeutung wie 'groß'."
@@ -1082,12 +1082,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist ein Antonym zum Wort 'mutig'?",
     "answers": [
-      "ängstlich",
-      "tapfer",
       "kühn",
-      "stark"
+      "ängstlich",
+      "stark",
+      "tapfer"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'ängstlich' ist das genaue Gegenteil von 'mutig'."
@@ -1102,8 +1102,8 @@ const K6_DEUTSCH_QUESTIONS = [
     "answers": [
       "Schimmel",
       "Bleistift",
-      "Computer",
-      "Hausdach"
+      "Hausdach",
+      "Computer"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1120,12 +1120,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was charakterisiert Till Eulenspiegel?",
     "answers": [
-      "Nimmt Redensarten wörtlich",
-      "Ist ein ernster Ritterkönig",
       "Hilft Armen als lieber Prinz",
-      "Ist ein alter Zauberer im Wald"
+      "Ist ein alter Zauberer im Wald",
+      "Nimmt Redensarten wörtlich",
+      "Ist ein ernster Ritterkönig"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Till Eulenspiegel hält den Menschen den Spiegel vor, indem er Wendungen wörtlich nimmt."
@@ -1138,12 +1138,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was kennzeichnet Geschichten der Schildbürger?",
     "answers": [
-      "Absurde und dumme Streiche",
       "Heldengeschichten im Krieg",
+      "Absurde und dumme Streiche",
       "Schreckliche Gruselgeschichten",
       "Romantische Liebeserzählungen"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Die Schildbürger bauen z. B. ein Rathaus ohne Fenster."
@@ -1156,12 +1156,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welche Figur ist bekannt für Übertreibungen?",
     "answers": [
-      "Baron Münchhausen",
-      "Till Eulenspiegel",
       "Der Rattenfänger",
-      "Meister Reineke"
+      "Till Eulenspiegel",
+      "Meister Reineke",
+      "Baron Münchhausen"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Baron Münchhausen ist als 'Lügenbaron' berühmt."
@@ -1177,9 +1177,9 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Was ist eine Inhaltsangabe?",
     "answers": [
       "Sachliche Kurzzusammenfassung",
+      "Wörtliche Abschrift vom Buch",
       "Spannungsgeladene Fortsetzung",
-      "Erfundene Geschichte dazu",
-      "Wörtliche Abschrift vom Buch"
+      "Erfundene Geschichte dazu"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1212,12 +1212,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was gehört NICHT in eine Inhaltsangabe?",
     "answers": [
-      "Spannungselemente & Zitate",
-      "Die wichtigsten Ereignisse",
       "Name des Autors und Titel",
-      "Hauptfiguren der Erzählung"
+      "Hauptfiguren der Erzählung",
+      "Die wichtigsten Ereignisse",
+      "Spannungselemente & Zitate"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Wörtliche Zitate und künstliche Spannung gehören nicht hinein."
@@ -1230,12 +1230,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist direkte Rede in Erzählungen?",
     "answers": [
-      "Wörtlich gesprochener Satz",
-      "Zusammenfassung vom Sprechen",
+      "Erklärung durch den Erzähler",
       "Stille Gedanken der Figuren",
-      "Erklärung durch den Erzähler"
+      "Zusammenfassung vom Sprechen",
+      "Wörtlich gesprochener Satz"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Direkte Rede gibt Äußerungen genau im Wortlaut wieder."
@@ -1250,8 +1250,8 @@ const K6_DEUTSCH_QUESTIONS = [
     "answers": [
       "Anführungszeichen & Komma",
       "Nur zwei runde Klammern",
-      "Ausschließlich Bindestriche",
-      "Ausschließlich Semikolons"
+      "Ausschließlich Semikolons",
+      "Ausschließlich Bindestriche"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1266,12 +1266,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wo stehen die Anführungszeichen unten?",
     "answers": [
-      "Am Anfang der Rede",
+      "Vor dem Punkt oben",
       "Am Ende der Rede",
-      "Nach dem Komma stets",
-      "Vor dem Punkt oben"
+      "Am Anfang der Rede",
+      "Nach dem Komma stets"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Im Deutschen leiten untenstehende Anführungszeichen ein."
@@ -1284,12 +1284,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wo stehen die Anführungszeichen oben?",
     "answers": [
-      "Am Ende der Rede",
       "Am Anfang der Rede",
-      "Nach jedem Wort stets",
-      "Vor dem Doppelpunkt"
+      "Vor dem Doppelpunkt",
+      "Am Ende der Rede",
+      "Nach jedem Wort stets"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Obenstehende Anführungszeichen schließen das Gesprochene ab."
@@ -1304,12 +1304,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist ein Wortfeld in der Sprachlehre?",
     "answers": [
-      "Wörter ähnlicher Bedeutung",
       "Wörter gleicher Grammatik",
       "Wörter mit selbem Satzteil",
-      "Wörter aus einer Sprache"
+      "Wörter aus einer Sprache",
+      "Wörter ähnlicher Bedeutung"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Ein Wortfeld fasst sinnverwandte Wörter zusammen."
@@ -1322,12 +1322,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Wort gehört zum Wortfeld 'gehen'?",
     "answers": [
-      "schlendern",
       "rufen",
-      "sehen",
-      "denken"
+      "denken",
+      "schlendern",
+      "sehen"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'schlendern' beschreibt eine Fortbewegungsart zu Fuß."
@@ -1340,12 +1340,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Wort gehört zum Wortfeld 'sagen'?",
     "answers": [
-      "flüstern",
       "rennen",
-      "springen",
-      "schlafen"
+      "schlafen",
+      "flüstern",
+      "springen"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'flüstern' ist eine Art des Sprechens."
@@ -1358,12 +1358,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist eine Wortfamilie?",
     "answers": [
-      "Wörter mit selbem Stamm",
-      "Wörter gleicher Wortart",
       "Wörter mit selbem Vokal",
-      "Wörter in einer Zeile"
+      "Wörter gleicher Wortart",
+      "Wörter in einer Zeile",
+      "Wörter mit selbem Stamm"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Wörter einer Wortfamilie teilen sich den gleichen Wortstamm."
@@ -1376,12 +1376,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welcher Wortstamm steckt in 'Fahrrad, Fahrer, Fahrt'?",
     "answers": [
+      "fahrr",
       "fahr",
       "rad",
-      "er",
-      "fahrr"
+      "er"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der gemeinsame Wortstamm lautet 'fahr'."
@@ -1395,9 +1395,9 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Was ist ein Präfix bei der Wortbildung?",
     "answers": [
       "Vorsilbe vor dem Wortstamm",
+      "Die Endung für Fälle im Satz",
       "Nachsilbe nach dem Wortstamm",
-      "Der mittlere Teil des Wortes",
-      "Die Endung für Fälle im Satz"
+      "Der mittlere Teil des Wortes"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1412,12 +1412,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist ein Suffix bei der Wortbildung?",
     "answers": [
+      "Der Kern eines Hauptwortes",
       "Nachsilbe nach dem Wortstamm",
       "Vorsilbe vor dem Wortstamm",
-      "Der Kern eines Hauptwortes",
       "Der Bindestrich im Wortbau"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Ein Suffix steht nach dem Stamm (z. B. lehr-reich)."
@@ -1430,12 +1430,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Wort enthält ein Präfix?",
     "answers": [
-      "umbauen",
       "baubar",
       "Bauung",
-      "Bautyp"
+      "Bautyp",
+      "umbauen"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'um-' ist eine Vorsilbe vor 'bauen'."
@@ -1448,12 +1448,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Wort enthält ein Suffix?",
     "answers": [
-      "lesbar",
-      "vorlesen",
       "mitlesen",
-      "ablesen"
+      "lesbar",
+      "ablesen",
+      "vorlesen"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'-bar' ist eine Nachsilbe."
@@ -1466,12 +1466,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was bewirkt das Suffix '-heit' bei Adjektiven?",
     "answers": [
-      "Bildet ein abstraktes Nomen",
       "Macht das Wort zum Zeitwort",
-      "Bildet eine Steigerungsform",
-      "Verwandelt es in ein Adverb"
+      "Bildet ein abstraktes Nomen",
+      "Verwandelt es in ein Adverb",
+      "Bildet eine Steigerungsform"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Aus 'schön' wird das Nomen 'Schönheit'."
@@ -1484,12 +1484,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welche Wortart entsteht durch '-ung' an Verben?",
     "answers": [
-      "Nomen (Substantiv)",
       "Adjektiv (Wie-Wort)",
       "Adverb (Umstandswort)",
-      "Pronomen (Fürwort)"
+      "Pronomen (Fürwort)",
+      "Nomen (Substantiv)"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Aus 'bewegen' wird das Nomen 'Bewegung'."
@@ -1504,12 +1504,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welcher Fall ist der Genitiv?",
     "answers": [
-      "2. Fall (Wessen-Fall)",
+      "4. Fall (Wen-Fall)",
       "1. Fall (Wer-Fall)",
-      "3. Fall (Wem-Fall)",
-      "4. Fall (Wen-Fall)"
+      "2. Fall (Wessen-Fall)",
+      "3. Fall (Wem-Fall)"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der 2. Fall antwortet auf 'Wessen?'."
@@ -1523,8 +1523,8 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Welcher Fall ist der Dativ?",
     "answers": [
       "3. Fall (Wem-Fall)",
-      "1. Fall (Wer-Fall)",
       "2. Fall (Wessen-Fall)",
+      "1. Fall (Wer-Fall)",
       "4. Fall (Wen-Fall)"
     ],
     "correct": 0,
@@ -1540,12 +1540,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welcher Fall ist der Akkusativ?",
     "answers": [
-      "4. Fall (Wen-Fall)",
       "1. Fall (Wer-Fall)",
+      "3. Fall (Wem-Fall)",
       "2. Fall (Wessen-Fall)",
-      "3. Fall (Wem-Fall)"
+      "4. Fall (Wen-Fall)"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der 4. Fall antwortet auf 'Wen oder was?'."
@@ -1559,8 +1559,8 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Welcher Fall ist der Nominativ?",
     "answers": [
       "1. Fall (Wer-Fall)",
-      "2. Fall (Wessen-Fall)",
       "3. Fall (Wem-Fall)",
+      "2. Fall (Wessen-Fall)",
       "4. Fall (Wen-Fall)"
     ],
     "correct": 0,
@@ -1577,9 +1577,9 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Bestimme den Fall von 'des Vaters'?",
     "answers": [
       "Genitiv im Satzbau",
-      "Nominativ im Satz",
       "Dativ im Satzbau",
-      "Akkusativ im Satz"
+      "Akkusativ im Satz",
+      "Nominativ im Satz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1594,12 +1594,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Bestimme den Fall von 'dem Kind'?",
     "answers": [
-      "Dativ im Grammatiksatz",
       "Genitiv im Satzgefüge",
       "Akkusativ im Satzbau",
+      "Dativ im Grammatiksatz",
       "Nominativ im Satzbau"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Wem gibt er es? Dem Kind (Dativ)."
@@ -1612,12 +1612,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Bestimme den Fall von 'den Ball'?",
     "answers": [
-      "Akkusativ im Satzbau",
       "Dativ im Grammatiksatz",
-      "Genitiv im Satzgefüge",
-      "Nominativ im Satzbau"
+      "Nominativ im Satzbau",
+      "Akkusativ im Satzbau",
+      "Genitiv im Satzgefüge"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Wen sieht er? Den Ball (Akkusativ)."
@@ -1632,12 +1632,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist ein Indefinitpronomen?",
     "answers": [
-      "Unbestimmtes Fürwort",
-      "Besitzanzeigendes Wort",
       "Bezügliches Fürwort",
-      "Hinweisendes Fürwort"
+      "Hinweisendes Fürwort",
+      "Besitzanzeigendes Wort",
+      "Unbestimmtes Fürwort"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Indefinitpronomen bezeichnen etwas Unbestimmtes (z. B. etwas, jemand)."
@@ -1650,12 +1650,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Wort ist ein Indefinitpronomen?",
     "answers": [
-      "jemand",
-      "dieser",
       "welcher",
-      "meiner"
+      "jemand",
+      "meiner",
+      "dieser"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'jemand' verweist unbestimmt auf eine Person."
@@ -1668,12 +1668,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was kennzeichnet ein Gedicht?",
     "answers": [
-      "Verszeilen und Strophen",
-      "Absätze und Überschriften",
       "Bilder und Sprechblasen",
-      "Tabellen und Diagramme"
+      "Tabellen und Diagramme",
+      "Absätze und Überschriften",
+      "Verszeilen und Strophen"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Gedichte sind in Strophen und Verse gegliedert."
@@ -1686,12 +1686,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wie nennt man eine Zeile im Gedicht?",
     "answers": [
-      "Vers im Gedichtbau",
-      "Strophe im Gedicht",
+      "Reimzeile im Text",
       "Metrum im Satzbau",
-      "Reimzeile im Text"
+      "Strophe im Gedicht",
+      "Vers im Gedichtbau"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Eine einzelne Gedichtzeile nennt man Vers."
@@ -1704,12 +1704,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Wie nennt man eine Gruppe von Versen?",
     "answers": [
-      "Strophe im Gedicht",
-      "Kapitel im Buchbau",
       "Absatz im Textbild",
+      "Kapitel im Buchbau",
+      "Strophe im Gedicht",
       "Strophe im Sachtext"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Verse schließen sich zu Strophen zusammen."
@@ -1740,12 +1740,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welcher Ausdruck ist eine Metapher?",
     "answers": [
-      "Rabenvater im Text",
-      "Schnell wie der Wind",
       "Der Hund bellt laut",
-      "Er läuft sehr rasch"
+      "Er läuft sehr rasch",
+      "Rabenvater im Text",
+      "Schnell wie der Wind"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'Rabenvater' ist eine Metapher für einen lieblosen Vater."
@@ -1760,12 +1760,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist eine Ellipse in der Grammatik?",
     "answers": [
-      "Unvollständiger Satz",
       "Sehr langer Schachtelsatz",
-      "Doppelte Verneinung",
-      "Wiederholtes Nomen"
+      "Unvollständiger Satz",
+      "Wiederholtes Nomen",
+      "Doppelte Verneinung"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Bei einer Ellipse werden unwichtige Satzteile verkürzend weggelassen."
@@ -1779,9 +1779,9 @@ const K6_DEUTSCH_QUESTIONS = [
     "question": "Welcher Satz enthält eine Ellipse?",
     "answers": [
       "Erst die Arbeit, dann das Vergnügen!",
+      "Er hatte den ganzen Tag fleißig gelernt.",
       "Ich gehe heute nach der Schule schnell nach Hause.",
-      "Weil es regnete, blieb er drinnen sitzen.",
-      "Er hatte den ganzen Tag fleißig gelernt."
+      "Weil es regnete, blieb er drinnen sitzen."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1796,12 +1796,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist eine Alliteration?",
     "answers": [
+      "Gegenüberstellung von zwei Worten",
       "Gleicher Anfangslaut bei Wörtern",
       "Reim am Ende von zwei Versen",
-      "Gegenüberstellung von zwei Worten",
       "Frage ohne eine Echte Antwort"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Mehrere Wörter beginnen mit demselben Laut."
@@ -1814,12 +1814,12 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Welches Beispiel zeigt eine Alliteration?",
     "answers": [
-      "Wind und Wetter wehen",
       "Der Himmel ist hellblau",
-      "Er rennt schnell nach Hause",
-      "Der Hund schläft friedlich"
+      "Wind und Wetter wehen",
+      "Der Hund schläft friedlich",
+      "Er rennt schnell nach Hause"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Alle drei Hauptwörter beginnen mit dem Laut 'W'."
@@ -1832,46 +1832,46 @@ const K6_DEUTSCH_QUESTIONS = [
     "subject": "deutsch",
     "question": "Was ist ein Sachtext im Gegensatz zur Literatur?",
     "answers": [
-      "Informiert über reale Fakten",
-      "Erzählt erfundene Märchen",
       "Reimt sich in jeder Zeile",
-      "Besteht nur aus Dialogen"
+      "Besteht nur aus Dialogen",
+      "Erzählt erfundene Märchen",
+      "Informiert über reale Fakten"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Sachtexte dienen der objektiv-sachlichen Information über reale Themen."
   },
-  {"id":"k6de101","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Konjunktiv I oft für …","answers":["Befehle","indirekte Rede","Nur Lyrik","Zahlen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"indirekte Rede.","topic":"erweiterung"},
-  {"id":"k6de102","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Partizip I von „lachen“?","answers":["gelacht","lachend","lachte","lacht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"lachend.","topic":"erweiterung"},
-  {"id":"k6de103","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Metapher vs. Vergleich: Vergleich nutzt oft …","answers":["keine Worte","wie/als","nur Nomen","Kommas"],"correct":1,"difficulty":"mittel","points":10,"explanation":"wie/als.","topic":"erweiterung"},
-  {"id":"k6de104","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Erzähler allwissend = …","answers":["personal","auktorial","Ich-Erzähler","neutral kamera"],"correct":1,"difficulty":"mittel","points":10,"explanation":"auktorial.","topic":"erweiterung"},
-  {"id":"k6de105","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Rechtschreibung: „Standard“ richtig?","answers":["Standart","Standard","Standarth","Standartt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Standard.","topic":"erweiterung"},
-  {"id":"k6de106","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Passiv Vorgang: werden + …","answers":["Infinitiv","Partizip II","Präteritum nur","Nomen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Partizip II.","topic":"erweiterung"},
-  {"id":"k6de107","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Satzanalyse: Attribut …","answers":["ersetzt Verb","bestimmt Nomen näher","ist immer Prädikat","löscht Subjekt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nomen-Begleiter.","topic":"erweiterung"},
-  {"id":"k6de108","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Argumentation braucht …","answers":["nur Meinung","Belege/Begründungen","nur Gefühle","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Begründung.","topic":"erweiterung"},
-  {"id":"k6de109","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Ballade ist …","answers":["nur Sachtext","episch-lyrisches Erzählgedicht","Kochrezept","Tabelle"],"correct":1,"difficulty":"mittel","points":10,"explanation":"erzählendes Gedicht.","topic":"erweiterung"},
-  {"id":"k6de110","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Fremdwort „Struktur“ – Plural?","answers":["Strukture","Strukturen","Strukturs","Struktur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Strukturen.","topic":"erweiterung"},
-  {"id":"k6de111","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Nominalstil nutzt viele …","answers":["Verben","Nomen","Fragezeichen","Interjektionen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nomen.","topic":"erweiterung"},
-  {"id":"k6de112","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Ironie erkennt man oft an …","answers":["wörtlichem Ernst","Kontrast Kontext","Zahlen","Rechtschreibung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gegensatz.","topic":"erweiterung"},
-  {"id":"k6de113","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Tempus Futur I: werden + …","answers":["Partizip II","Infinitiv","Präteritum","Artikel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Infinitiv.","topic":"erweiterung"},
-  {"id":"k6de114","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Relativsatz beschreibt …","answers":["nur Verben","Bezugsnomen","den Autor immer","Seitenzahl"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nomen.","topic":"erweiterung"},
-  {"id":"k6de115","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Synonym „behaupten“?","answers":["bezweifeln","aussagen/meinen","schweigen","löschen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"etwas als wahr hinstellen.","topic":"erweiterung"},
-  {"id":"k6de116","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Antonym „optimistisch“?","answers":["hoffnungsvoll","pessimistisch","neutral","froh"],"correct":1,"difficulty":"mittel","points":10,"explanation":"pessimistisch.","topic":"erweiterung"},
-  {"id":"k6de117","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Textlupe: Intention fragen heißt …","answers":["Länge messen","Absicht des Textes","Schriftart","Preis"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zweck.","topic":"erweiterung"},
-  {"id":"k6de118","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Zitieren verlangt …","answers":["Geheimhaltung","Quellenangabe","Keine Anführungszeichen","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Beleg.","topic":"erweiterung"},
-  {"id":"k6de119","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Adverbiale Bestimmung der Zeit: Beispiel?","answers":["im Garten","gestern","den Ball","schnell als Adj. falsch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"gestern.","topic":"erweiterung"},
-  {"id":"k6de120","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Genitiv-Frage?","answers":["Wem?","Wessen?","Wen?","Wo?"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wessen?","topic":"erweiterung"},
-  {"id":"k6de121","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Komposita schreibt man …","answers":["immer klein","meist zusammen/groß als Nomen","nur mit Bindestrich","getrennt immer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"z. B. Bahnhof.","topic":"erweiterung"},
-  {"id":"k6de122","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Drama: Dialog ist …","answers":["Erzählung","Wechselrede","Gedichtreim nur","Statistik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Redewechsel.","topic":"erweiterung"},
-  {"id":"k6de123","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Rechtschreibung s/ss/ß: nach langem Vokal oft …","answers":["ss","ß","sss","x"],"correct":1,"difficulty":"mittel","points":10,"explanation":"ß (neue Regeln beachten).","topic":"erweiterung"},
-  {"id":"k6de124","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Konjunktion „denn“ leitet …","answers":["Nebensatz mit Verbende","Hauptsatzbegründung","Nur Fragen","Nur Lyrik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"beigordnet.","topic":"erweiterung"},
-  {"id":"k6de125","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Perspektive personal: Blick …","answers":["aller","einer Figur","nur Erzähler außen allwi","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Figur.","topic":"erweiterung"},
-  {"id":"k6de126","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Sachtext Merkmal?","answers":["Reimpflicht","Information/Fakten","nur Fiktion","nur Dialog"],"correct":1,"difficulty":"mittel","points":10,"explanation":"informativ.","topic":"erweiterung"},
-  {"id":"k6de127","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Stilmittel Alliteration: gleiche …","answers":["Endreime","Anlaute","Silbenzahl immer","Farbe"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Anlaute.","topic":"erweiterung"},
-  {"id":"k6de128","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Imperativ von „geben“ (du)?","answers":["gibst","gib","gebt","gegeben"],"correct":1,"difficulty":"mittel","points":10,"explanation":"gib.","topic":"erweiterung"},
-  {"id":"k6de129","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Kohärenz im Text = …","answers":["Unordnung","Zusammenhang","Zufälligkeit","nur Layout"],"correct":1,"difficulty":"mittel","points":10,"explanation":"roter Faden.","topic":"erweiterung"},
-  {"id":"k6de130","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"„dass“-Satz ist …","answers":["Hauptsatz immer","Nebensatz","Fragesatzzeichen","Nomen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nebensatz.","topic":"erweiterung"}
+  {"id":"k6de101","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Konjunktiv I oft für …","answers":["Nur Lyrik","indirekte Rede","Befehle","Zahlen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"indirekte Rede.","topic":"erweiterung"},
+  {"id":"k6de102","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Partizip I von „lachen“?","answers":["gelacht","lachend","lacht","lachte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"lachend.","topic":"erweiterung"},
+  {"id":"k6de103","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Metapher vs. Vergleich: Vergleich nutzt oft …","answers":["nur Nomen","wie/als","Kommas","keine Worte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"wie/als.","topic":"erweiterung"},
+  {"id":"k6de104","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Erzähler allwissend = …","answers":["personal","neutral kamera","auktorial","Ich-Erzähler"],"correct":2,"difficulty":"mittel","points":10,"explanation":"auktorial.","topic":"erweiterung"},
+  {"id":"k6de105","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Rechtschreibung: „Standard“ richtig?","answers":["Standart","Standard","Standartt","Standarth"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Standard.","topic":"erweiterung"},
+  {"id":"k6de106","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Passiv Vorgang: werden + …","answers":["Partizip II","Nomen","Präteritum nur","Infinitiv"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Partizip II.","topic":"erweiterung"},
+  {"id":"k6de107","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Satzanalyse: Attribut …","answers":["ist immer Prädikat","bestimmt Nomen näher","ersetzt Verb","löscht Subjekt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nomen-Begleiter.","topic":"erweiterung"},
+  {"id":"k6de108","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Argumentation braucht …","answers":["Zufall","nur Gefühle","nur Meinung","Belege/Begründungen"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Begründung.","topic":"erweiterung"},
+  {"id":"k6de109","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Ballade ist …","answers":["nur Sachtext","Kochrezept","Tabelle","episch-lyrisches Erzählgedicht"],"correct":3,"difficulty":"mittel","points":10,"explanation":"erzählendes Gedicht.","topic":"erweiterung"},
+  {"id":"k6de110","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Fremdwort „Struktur“ – Plural?","answers":["Strukturs","Strukture","Struktur","Strukturen"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Strukturen.","topic":"erweiterung"},
+  {"id":"k6de111","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Nominalstil nutzt viele …","answers":["Interjektionen","Fragezeichen","Verben","Nomen"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Nomen.","topic":"erweiterung"},
+  {"id":"k6de112","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Ironie erkennt man oft an …","answers":["Zahlen","Rechtschreibung","wörtlichem Ernst","Kontrast Kontext"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Gegensatz.","topic":"erweiterung"},
+  {"id":"k6de113","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Tempus Futur I: werden + …","answers":["Infinitiv","Partizip II","Präteritum","Artikel"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Infinitiv.","topic":"erweiterung"},
+  {"id":"k6de114","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Relativsatz beschreibt …","answers":["Seitenzahl","den Autor immer","nur Verben","Bezugsnomen"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Nomen.","topic":"erweiterung"},
+  {"id":"k6de115","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Synonym „behaupten“?","answers":["aussagen/meinen","schweigen","bezweifeln","löschen"],"correct":0,"difficulty":"mittel","points":10,"explanation":"etwas als wahr hinstellen.","topic":"erweiterung"},
+  {"id":"k6de116","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Antonym „optimistisch“?","answers":["pessimistisch","neutral","hoffnungsvoll","froh"],"correct":0,"difficulty":"mittel","points":10,"explanation":"pessimistisch.","topic":"erweiterung"},
+  {"id":"k6de117","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Textlupe: Intention fragen heißt …","answers":["Schriftart","Länge messen","Absicht des Textes","Preis"],"correct":2,"difficulty":"mittel","points":10,"explanation":"Zweck.","topic":"erweiterung"},
+  {"id":"k6de118","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Zitieren verlangt …","answers":["Quellenangabe","Geheimhaltung","Zufall","Keine Anführungszeichen"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Beleg.","topic":"erweiterung"},
+  {"id":"k6de119","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Adverbiale Bestimmung der Zeit: Beispiel?","answers":["schnell als Adj. falsch","gestern","im Garten","den Ball"],"correct":1,"difficulty":"mittel","points":10,"explanation":"gestern.","topic":"erweiterung"},
+  {"id":"k6de120","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Genitiv-Frage?","answers":["Wo?","Wessen?","Wem?","Wen?"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wessen?","topic":"erweiterung"},
+  {"id":"k6de121","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Komposita schreibt man …","answers":["nur mit Bindestrich","meist zusammen/groß als Nomen","getrennt immer","immer klein"],"correct":1,"difficulty":"mittel","points":10,"explanation":"z. B. Bahnhof.","topic":"erweiterung"},
+  {"id":"k6de122","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Drama: Dialog ist …","answers":["Gedichtreim nur","Wechselrede","Erzählung","Statistik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Redewechsel.","topic":"erweiterung"},
+  {"id":"k6de123","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Rechtschreibung s/ss/ß: nach langem Vokal oft …","answers":["ss","sss","x","ß"],"correct":3,"difficulty":"mittel","points":10,"explanation":"ß (neue Regeln beachten).","topic":"erweiterung"},
+  {"id":"k6de124","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Konjunktion „denn“ leitet …","answers":["Nur Fragen","Nebensatz mit Verbende","Nur Lyrik","Hauptsatzbegründung"],"correct":3,"difficulty":"mittel","points":10,"explanation":"beigordnet.","topic":"erweiterung"},
+  {"id":"k6de125","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Perspektive personal: Blick …","answers":["Zufall","einer Figur","nur Erzähler außen allwi","aller"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Figur.","topic":"erweiterung"},
+  {"id":"k6de126","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Sachtext Merkmal?","answers":["nur Fiktion","nur Dialog","Information/Fakten","Reimpflicht"],"correct":2,"difficulty":"mittel","points":10,"explanation":"informativ.","topic":"erweiterung"},
+  {"id":"k6de127","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Stilmittel Alliteration: gleiche …","answers":["Anlaute","Farbe","Silbenzahl immer","Endreime"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Anlaute.","topic":"erweiterung"},
+  {"id":"k6de128","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Imperativ von „geben“ (du)?","answers":["gibst","gib","gegeben","gebt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"gib.","topic":"erweiterung"},
+  {"id":"k6de129","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"Kohärenz im Text = …","answers":["Unordnung","Zusammenhang","nur Layout","Zufälligkeit"],"correct":1,"difficulty":"mittel","points":10,"explanation":"roter Faden.","topic":"erweiterung"},
+  {"id":"k6de130","category":"k6_deutsch","area":"schule","grade":6,"subject":"deutsch","question":"„dass“-Satz ist …","answers":["Nomen","Hauptsatz immer","Fragesatzzeichen","Nebensatz"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Nebensatz.","topic":"erweiterung"}
 ];
 // Einbindung für Browser
 if (typeof window !== 'undefined') {

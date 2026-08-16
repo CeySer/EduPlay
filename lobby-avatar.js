@@ -386,6 +386,10 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 merkeLobby(code);
                 subscribeLiveDuel();
                 showToast("Lobby erstellt! Code: " + code);
+                // Einladung teilen (kein Chat – Link/Code)
+                setTimeout(function () {
+                    if (typeof inviteFriends === "function") inviteFriends();
+                }, 400);
             } catch (e) {
                 handleError("createCodedLobby", e, "Die Lobby konnte nicht erstellt werden.");
             } finally {
@@ -551,6 +555,9 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
             const target = document.getElementById(`view-${viewId}`);
             if (target) target.classList.remove('hidden');
             if (typeof closeDrawer === 'function') closeDrawer();
+            if (viewId === 'menu' && typeof loadOpenChallenges === 'function') {
+                try { loadOpenChallenges(); } catch (e) {}
+            }
 
             const _tvExit = document.getElementById('tv-player-exit');
             if (_tvExit) _tvExit.classList.toggle('hidden', viewId !== 'tv-quiz-player');

@@ -49,7 +49,7 @@
             if (wrOpts) wrOpts.classList.toggle("hidden", type !== "wortraten");
             const vkOpts = document.getElementById("live-duel-vokabel-options");
             if (vkOpts) vkOpts.classList.toggle("hidden", type !== "vokabel");
-            if (type === "quiz") setupCategorySelectors("live-duel-area", "live-duel-category", "spass");
+            if (type === "quiz") setupCategorySelectors("live-duel-area", "live-duel-category", "lernen");
             if (type === "vokabel" && typeof renderVocabGroupCheckboxes === "function") {
                 renderVocabGroupCheckboxes("live-duel-vokabel-checkboxes");
             }
@@ -1799,9 +1799,26 @@
                     });
                 } else {
                     const catSel = document.getElementById("again-category");
-                    const category = (catSel && catSel.value) ? catSel.value : data.category;
+                    const areaSel = document.getElementById("again-area");
+                    let category = (catSel && catSel.value) ? catSel.value : data.category;
+                    // Nie Spaß-Quiz bei „Mit Freunden üben“ / Wissen
+                    if (!category || String(category).indexOf("spass") === 0 || (areaSel && areaSel.value === "spass")) {
+                        if (typeof suggestedArea === "function" && typeof getAreas === "function") {
+                            const areas = getAreas("lernen") || [];
+                            const sug = suggestedArea();
+                            const a = areas.find(x => x.value === sug) || areas[0];
+                            if (a && a.subjects && a.subjects[0]) category = a.subjects[0].key || a.subjects[0].value;
+                        }
+                    }
+                    let pool = questionsForKey(category) || [];
+                    pool = pool.filter(function (q) { return q && q.area !== "spass"; });
+                    if (pool.length < 3) {
+                        pool = (typeof QUESTIONS_DATABASE !== "undefined" ? QUESTIONS_DATABASE : [])
+                            .filter(function (q) { return q && q.area !== "spass"; });
+                    }
                     const questions = prepareQuestions(
-                        questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
+                        pool.slice().sort(function () { return Math.random() - 0.5; })
+                            .slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
                     );
                     if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
                     await liveDuelRef.update({
@@ -1957,11 +1974,9 @@
                                 </div>
                                 <div class="glass-card p-4 mt-3 space-y-3 text-left" style="border-color:rgba(168,85,247,0.15);">
                                     <p class="text-sm font-black text-purple-300 text-center">🔀 Anderes Spiel starten</p>
-                                    <div class="grid grid-cols-4 gap-2">
-                                        <button onclick="renderSwitchTypeOptions('quiz')" class="btn-secondary text-xs py-2 px-1">⚔️ Quiz</button>
-                                        <button onclick="renderSwitchTypeOptions('scrabble')" class="btn-secondary text-xs py-2 px-1">🔤 Wort</button>
-                                        <button onclick="renderSwitchTypeOptions('wortraten')" class="btn-secondary text-xs py-2 px-1">🧩 Rätsel</button>
-                                        <button onclick="renderSwitchTypeOptions('vokabel')" class="btn-secondary text-xs py-2 px-1">📚 Vokabeln</button>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <button onclick="renderSwitchTypeOptions('quiz')" class="btn-secondary text-xs py-2.5 px-1">🧠 Wissen</button>
+                                        <button onclick="renderSwitchTypeOptions('vokabel')" class="btn-secondary text-xs py-2.5 px-1">🃏 Vokabeln</button>
                                     </div>
                                     <div id="switch-type-options"></div>
                                 </div>`;
@@ -1975,7 +1990,7 @@
             document.getElementById("live-duel-result-content").innerHTML = html;
 
             if (isLiveDuelCreator && data.type === "quiz" && document.getElementById("again-area")) {
-                setupCategorySelectors("again-area", "again-category", "spass");
+                setupCategorySelectors("again-area", "again-category", "lernen");
             }
 
             liveDuelRenderKey = "";
@@ -1997,9 +2012,9 @@
                 html = `
                     <select id="switch-quiz-area" class="input-modern text-sm font-bold"></select>
                     <select id="switch-quiz-category" class="input-modern text-sm font-bold"></select>
-                    <button onclick="restartLiveDuelAsType('quiz')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">⚔️ Quiz starten 🚀</button>`;
+                    <button onclick="restartLiveDuelAsType('quiz')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">🧠 Wissen starten 🚀</button>`;
                 box.innerHTML = html;
-                setupCategorySelectors("switch-quiz-area", "switch-quiz-category", "spass");
+                setupCategorySelectors("switch-quiz-area", "switch-quiz-category", "lernen");
             } else if (type === "scrabble") {
                 html = `
                     <select id="switch-scrabble-wordmode" class="input-modern text-sm font-bold">
@@ -2955,9 +2970,26 @@
                     });
                 } else {
                     const catSel = document.getElementById("again-category");
-                    const category = (catSel && catSel.value) ? catSel.value : data.category;
+                    const areaSel = document.getElementById("again-area");
+                    let category = (catSel && catSel.value) ? catSel.value : data.category;
+                    // Nie Spaß-Quiz bei „Mit Freunden üben“ / Wissen
+                    if (!category || String(category).indexOf("spass") === 0 || (areaSel && areaSel.value === "spass")) {
+                        if (typeof suggestedArea === "function" && typeof getAreas === "function") {
+                            const areas = getAreas("lernen") || [];
+                            const sug = suggestedArea();
+                            const a = areas.find(x => x.value === sug) || areas[0];
+                            if (a && a.subjects && a.subjects[0]) category = a.subjects[0].key || a.subjects[0].value;
+                        }
+                    }
+                    let pool = questionsForKey(category) || [];
+                    pool = pool.filter(function (q) { return q && q.area !== "spass"; });
+                    if (pool.length < 3) {
+                        pool = (typeof QUESTIONS_DATABASE !== "undefined" ? QUESTIONS_DATABASE : [])
+                            .filter(function (q) { return q && q.area !== "spass"; });
+                    }
                     const questions = prepareQuestions(
-                        questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
+                        pool.slice().sort(function () { return Math.random() - 0.5; })
+                            .slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
                     );
                     if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
                     await liveDuelRef.update({

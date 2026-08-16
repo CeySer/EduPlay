@@ -219,6 +219,34 @@
             throw new Error("Kein freier Code gefunden - bitte nochmal versuchen.");
         }
 
+        function openLearnTogetherCode(kind) {
+            if (!currentPlayer || !activePlayerKey) {
+                return showToast("Bitte zuerst deinen Spieler wählen!", "error");
+            }
+            if (typeof openCodedLobbySetup === "function") openCodedLobbySetup();
+            // Nach UI-Aufbau: nur Wissen oder Vokabeln + Team-Modus
+            setTimeout(function () {
+                const isVocab = kind === "vokabel";
+                if (typeof setCodedLobbyType === "function") {
+                    setCodedLobbyType(isVocab ? "vokabel" : "quiz");
+                }
+                const mode = document.getElementById("coded-lobby-mode");
+                if (mode) {
+                    mode.value = "coop";
+                    mode.dispatchEvent(new Event("change"));
+                }
+                // Duell-Typen ausblenden für klaren Lern-Fokus
+                ["coded-type-scrabble", "coded-type-wortraten"].forEach(function (id) {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add("hidden");
+                });
+                const title = document.querySelector("#view-coded-lobby-setup h2, #view-coded-lobby-setup .text-xl");
+                // Hinweis
+                showToast(isVocab ? "Vokabeln-Lobby: Thema wählen & erstellen" : "Wissen-Lobby: Thema wählen & erstellen", "info");
+            }, 100);
+        }
+        window.openLearnTogetherCode = openLearnTogetherCode;
+
         function openCodedLobbySetup() {
             if (!currentPlayer || !activePlayerKey) {
                 return showToast("Bitte zuerst oben deinen Spieler auswaehlen!", "error");

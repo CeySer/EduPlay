@@ -1081,6 +1081,12 @@ auth.createUserWithEmailAndPassword(e, p)
             renderStudyGoalAdmin();
             renderDashTestResults();
             renderOpenTasksBanner();
+            // Fortschritt nur für Fokus-Kind
+            if (typeof renderStudyLogOverview === 'function') renderStudyLogOverview();
+            if (typeof renderDashTestStatsOverview === 'function') renderDashTestStatsOverview();
+            if (focus && typeof selectStatPlayer === 'function') {
+                try { selectStatPlayer(focus); } catch (e) { /* */ }
+            }
         }
 
         function applyGoalPreset(minutes, activity) {
@@ -1096,6 +1102,8 @@ auth.createUserWithEmailAndPassword(e, p)
             const today = new Date().toISOString().slice(0, 10);
             const keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
             const items = [];
+            const focusKey = (document.getElementById('dash-focus-profile') || {}).value || '';
+            keys.sort((a, b) => (a === focusKey ? -1 : b === focusKey ? 1 : 0));
             keys.forEach(k => {
                 const p = ALL_PROFILES[k];
                 const g = p.studyGoal;
@@ -1712,9 +1720,11 @@ auth.createUserWithEmailAndPassword(e, p)
         function renderDashTestStatsOverview() {
             const box = document.getElementById('dash-test-stats-overview');
             if (!box) return;
-            const keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
+            const focus = (document.getElementById('dash-focus-profile') || {}).value || '';
+            let keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
+            if (focus && ALL_PROFILES[focus]) keys = keys.filter(k => k === focus);
             if (!keys.length) {
-                box.innerHTML = '<div class="text-gray-500 text-xs">Keine Profile</div>';
+                box.innerHTML = '<div class="text-gray-500 text-xs">Kein Kind im Fokus / keine Profile</div>';
                 return;
             }
             const rows = keys.map(k => {

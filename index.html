@@ -437,12 +437,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 BEREICH: ELTERN
                 ========================================================== -->
                 <div id="dash-section-eltern" class="hidden space-y-4">
+                    <div id="dash-open-tasks" class="space-y-2"></div>
                     <div class="glass-card p-3 flex flex-col sm:flex-row sm:items-center gap-2">
                         <label class="text-xs text-gray-400 font-bold shrink-0">Kind im Fokus</label>
                         <select id="dash-focus-profile" class="input-modern text-sm font-bold flex-1"
                             onchange="onDashFocusProfileChange()"></select>
                     </div>
-                    <div id="dash-open-tasks" class="space-y-2"></div>
 
                     <!-- 3 Admin-Tabs -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -567,7 +567,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div class="glass-card overflow-hidden">
                             <button type="button" onclick="toggleDashSection('tests')"
                                 class="w-full p-4 flex items-center justify-between hover:bg-white/5 transition">
-                                <span class="font-bold text-emerald-300">📝 Test-Statistiken</span>
+                                <span class="font-bold text-indigo-300">📝 Test-Statistiken</span>
                                 <span id="dash-tests-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
                             <div id="dash-tests-body" class="hidden px-4 pb-4 space-y-2">
@@ -578,7 +578,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div class="glass-card overflow-hidden">
                             <button type="button" onclick="toggleDashPlayerList()"
                                 class="w-full p-4 flex items-center justify-between hover:bg-white/5 transition">
-                                <span class="font-bold text-gray-400">👥 Detail-Statistik <span class="text-[10px] font-bold text-gray-500">(optional)</span></span>
+                                <span class="font-bold text-indigo-300">👥 Detail-Statistik <span class="text-[10px] font-bold text-indigo-400/70">(optional)</span></span>
                                 <span id="dash-player-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
                             <div id="dash-player-list" class="hidden p-4 pt-0 grid grid-cols-2 gap-2"></div>
@@ -2384,7 +2384,7 @@ VIEW: QUIZ SETUP
     ============================================================ -->
     <script src="app-config.js?v=10.3"></script>
     <script src="app-ui.js?v=9.2"></script>
-    <script src="family-dashboard.js?v=10.1"></script>
+    <script src="family-dashboard.js?v=10.2"></script>
     <script src="ui-common.js?v=9.0"></script>
     <script src="ki-coach.js?v=1.1"></script>
     <script src="quiz-core.js?v=9.7"></script>

@@ -968,6 +968,9 @@ const geladen = _questionCounts[key] || 0;
             if (!ref || !spielerKey) return;
             const update = {};
             update["players." + spielerKey + ".lastSeen"] = Date.now();
+            if (window.DEVICE_SESSION_ID) {
+                update["players." + spielerKey + ".sessionId"] = window.DEVICE_SESSION_ID;
+            }
             if (hostFeld) update[hostFeld] = Date.now();
             ref.update(update).catch(() => { });
         }

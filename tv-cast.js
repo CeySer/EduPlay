@@ -2023,6 +2023,9 @@
         async function joinTVGame(codeOverride) {
             if (!currentParentUser || !currentPlayer) return showToast(
                 "Bitte wähle zuerst oben deinen Spieler aus.", "error", "noprofile");
+            if (typeof ensureProfileSessionLock === "function") {
+                if (!(await ensureProfileSessionLock(true))) return;
+            }
             // Der Fernseher (Host-Gerät) zeigt nur an - er kann nicht gleichzeitig
             // selbst mitspielen, sonst landet er als "Geister-Spieler" in der
             // Punkteliste, ohne je an der Reihe sein zu können (sein eigenes
@@ -2067,13 +2070,17 @@
                             score: (already && already.score) || 0,
                             hasAnswered: !!(already && already.hasAnswered),
                             lastAnswer: already ? already.lastAnswer : null,
-                            coinsClaimed: !!(already && already.coinsClaimed)
+                            coinsClaimed: !!(already && already.coinsClaimed),
+                            lastSeen: Date.now(),
+                            sessionId: window.DEVICE_SESSION_ID || null
                         }
                     });
                 } else {
                     // Nur Lebenszeichen / Name aktualisieren
                     await lobbyRef.update({
-                        [`players.${activePlayerKey}.name`]: currentPlayer.name
+                        [`players.${activePlayerKey}.name`]: currentPlayer.name,
+                        [`players.${activePlayerKey}.lastSeen`]: Date.now(),
+                        [`players.${activePlayerKey}.sessionId`]: window.DEVICE_SESSION_ID || null
                     }).catch(function () {});
                 }
 
@@ -2120,6 +2127,27 @@
                     const data = doc.data();
                     const myData = data.players[activePlayerKey];
                     if (!myData) return;
+                    // Profil auf anderem Gerät übernommen
+                    if (myData.sessionId && window.DEVICE_SESSION_ID
+                        && myData.sessionId !== window.DEVICE_SESSION_ID
+                        && data.status !== "finished") {
+                        if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
+                        stoppeTVLebenszeichen();
+                        stopTVActionMode();
+                        tvGameRef = null;
+                        showToast("Dieses Profil spielt auf einem anderen Gerät – hier beendet.", "error");
+                        switchView(currentPlayer ? "menu" : "family-hub");
+                        return;
+                    }
+                    if (data.lastEvent && data.lastEvent.type === "host_ended") {
+                        if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
+                        stoppeTVLebenszeichen();
+                        stopTVActionMode();
+                        tvGameRef = null;
+                        showToast("🚪 " + (data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
+                        switchView(currentPlayer ? "menu" : "family-hub");
+                        return;
+                    }
 
                     if (data.mode === "wortraten") {
                         if (data.status === "playing") {
@@ -2394,7 +2422,13 @@
             if (!ref) return;
             try {
                 if (wasHost) {
-                    try { await ref.set({ status: "finished" }, { merge: true }); } catch (e) { }
+                    try {
+                        await ref.set({
+                            status: "finished",
+                            lastEvent: { type: "host_ended", name: (currentPlayer && currentPlayer.name) || "Host", ts: Date.now() },
+                            finishedAt: Date.now()
+                        }, { merge: true });
+                    } catch (e) { }
                     try { await ref.delete(); } catch (e) { }
                     if (window._activeTVCode) {
                         try { await db.collection("tv_codes").doc(window._activeTVCode).delete(); } catch (e) { }

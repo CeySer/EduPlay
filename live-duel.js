@@ -87,6 +87,68 @@
             }
         }
 
+        function liveDuelSessionMismatch(playerData) {
+            if (!playerData || !playerData.sessionId || !window.DEVICE_SESSION_ID) return false;
+            return playerData.sessionId !== window.DEVICE_SESSION_ID;
+        }
+
+        async function kickLiveDuelSessionTaken() {
+            try {
+                if (liveDuelUnsubscribe) { try { liveDuelUnsubscribe(); } catch (e) {} liveDuelUnsubscribe = null; }
+                clearLiveDuelTimers();
+                stopHostHeartbeat();
+                stopLiveDuelActionMode();
+                liveDuelRef = null;
+                isLiveDuelCreator = false;
+                liveDuelResolving = false;
+                window._liveDuelOnResult = false;
+                if (typeof showToast === "function") {
+                    showToast("Dieses Profil spielt auf einem anderen Gerät – hier beendet.", "error");
+                }
+                if (typeof switchView === "function") {
+                    switchView(currentPlayer ? "menu" : "family-hub");
+                }
+            } catch (e) { console.warn(e); }
+        }
+
+        async function ensureProfileSessionLock(forMultiplayer) {
+            if (!currentParentUser || !activePlayerKey || isAnonGuest) return true;
+            try {
+                const ref = db.collection("parents").doc(currentParentUser.uid)
+                    .collection("profiles").doc(activePlayerKey);
+                const snap = await ref.get();
+                const as = snap.exists ? (snap.data() || {}).activeSession : null;
+                const otherActive = as && as.id && as.id !== window.DEVICE_SESSION_ID
+                    && as.ts && (Date.now() - as.ts) < 90000;
+                if (otherActive && forMultiplayer) {
+                    const ok = (typeof appConfirm === "function")
+                        ? await appConfirm(
+                            "Dieses Profil ist auf einem anderen Gerät aktiv. Dort wird das Spiel beendet, wenn du hier weitermachst. Trotzdem hier spielen?",
+                            { titel: "Profil belegt", icon: "📱", okText: "Hier übernehmen", abbrechenText: "Abbrechen" }
+                          )
+                        : true;
+                    if (!ok) return false;
+                }
+                // Session übernehmen
+                await ref.set({
+                    lastActive: Date.now(),
+                    activeSession: { id: window.DEVICE_SESSION_ID || null, ts: Date.now() }
+                }, { merge: true });
+                if (ALL_PROFILES[activePlayerKey]) {
+                    ALL_PROFILES[activePlayerKey].activeSession = {
+                        id: window.DEVICE_SESSION_ID || null,
+                        ts: Date.now()
+                    };
+                }
+                return true;
+            } catch (e) {
+                console.warn("ensureProfileSessionLock", e);
+                return true; // offline: nicht blockieren
+            }
+        }
+        window.ensureProfileSessionLock = ensureProfileSessionLock;
+
+
         // Kommt die App aus dem Hintergrund zurück (Handy entsperrt, Anruf
         // beendet, Tab gewechselt), friert iOS das JavaScript bis dahin ein.
         // Dann sofort ein Lebenszeichen senden statt bis zum nächsten
@@ -115,6 +177,7 @@
         async function createLiveDuel() {
             if (!currentPlayer || !activePlayerKey) return showToast(
                 "Bitte zuerst oben deinen Spieler auswählen!", "error");
+            if (!(await ensureProfileSessionLock(true))) return;
             const ref = liveDuelCollectionRef().doc();
             let lobbyData;
             if (liveDuelType === "scrabble") {
@@ -209,6 +272,7 @@
             if (!currentParentUser || !currentPlayer || !activePlayerKey) return showToast(
                 "Bitte zuerst deinen Spieler auswählen, dann beitreten!", "error");
             if (!lobbyId) return;
+            if (!(await ensureProfileSessionLock(true))) return;
             const ref = liveDuelCollectionRef().doc(lobbyId);
             try {
                 const snap = await ref.get();
@@ -365,6 +429,12 @@
             const myData = data.players[activePlayerKey];
             if (!myData) return;
 
+            // Anderes Gerät hat dieses Profil übernommen → hier raus
+            if (liveDuelSessionMismatch(myData) && data.status !== "finished") {
+                kickLiveDuelSessionTaken();
+                return;
+            }
+
             // Meldung, wenn jemand die Lobby/Runde verlassen oder der
             // Gastgeber beendet hat – einmal pro Ereignis.
             // Baseline erst beim ERSTEN Snapshot nach dem Beitreten setzen, egal ob
@@ -379,6 +449,17 @@
                 liveDuelLastShownEventTs = data.lastEvent.ts;
                 if (data.lastEvent.type === "host_ended") {
                     showToast("🚪 " + (data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
+                    // Host beendet → alle raus (nicht nur Toast)
+                    if (liveDuelUnsubscribe) { try { liveDuelUnsubscribe(); } catch (e) {} liveDuelUnsubscribe = null; }
+                    clearLiveDuelTimers();
+                    stopHostHeartbeat();
+                    if (typeof stopLiveDuelActionMode === "function") stopLiveDuelActionMode();
+                    liveDuelRef = null;
+                    isLiveDuelCreator = false;
+                    liveDuelResolving = false;
+                    window._liveDuelOnResult = false;
+                    switchView(currentPlayer ? "menu" : "family-hub");
+                    return;
                 } else if (data.lastEvent.type === "left") {
                     showToast("🚪 " + (data.lastEvent.name || "Ein Spieler") + " hat verlassen");
                 }
@@ -2098,8 +2179,27 @@
             clearLiveDuelTimers();
             stopHostHeartbeat();
             const ref = liveDuelRef;
-            const wasCreator = isLiveDuelCreator;
             const meName = (currentPlayer && currentPlayer.name) || "";
+
+            // Host-Status vom Server lesen (lokales Flag kann nach Übernahme falsch sein)
+            let wasCreator = isLiveDuelCreator;
+            if (ref) {
+                try {
+                    const s = await ref.get();
+                    if (s.exists && s.data().createdBy === activePlayerKey) wasCreator = true;
+                } catch (e) { /* */ }
+            }
+
+            // Zuerst Event für alle, DANN Listener trennen
+            if (ref && wasCreator) {
+                try {
+                    await ref.set({
+                        status: "finished",
+                        finishedAt: Date.now(),
+                        lastEvent: { type: "host_ended", name: meName, ts: Date.now() }
+                    }, { merge: true });
+                } catch (e) { }
+            }
 
             if (liveDuelUnsubscribe) { try { liveDuelUnsubscribe(); } catch (e) { } }
             liveDuelUnsubscribe = null;
@@ -2115,12 +2215,6 @@
             if (!ref) return;
             try {
                 if (wasCreator) {
-                    try {
-                        await ref.set({
-                            status: "finished",
-                            lastEvent: { type: "host_ended", name: meName, ts: Date.now() }
-                        }, { merge: true });
-                    } catch (e) { }
                     try { await ref.delete(); } catch (e) { }
                     return;
                 }

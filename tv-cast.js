@@ -825,20 +825,36 @@
         function renderTVPlayerList(players) {
             const list = document.getElementById("tv-player-list");
             if (!list) return;
-            const names = Object.values(bereinigeTVPlayers(players || {}));
-            list.innerHTML = names.length === 0 ?
-                `<p class="col-span-4 text-gray-500 font-bold">Noch niemand beigetreten...</p>` :
-                names.map(p => {
-                    const da = istAnwesend(p);
-                    const punkt = da
-                        ? '<span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 align-middle"></span>'
-                        : '<span class="inline-block w-2.5 h-2.5 rounded-full bg-gray-500 align-middle"></span>';
-                    return `<div class="bg-white/5 border border-white/5 rounded-xl p-4 text-center ${da ? '' : 'opacity-50'}">
-                        <div class="text-3xl">🙋</div>
-                        <div class="font-bold text-white mt-2">${esc(p.name)}</div>
-                        <div class="text-xs font-bold text-gray-400 mt-1">${punkt} ${da ? 'bereit' : 'kurz weg'}</div>
-                    </div>`;
-                }).join('');
+            const entries = Object.entries(bereinigeTVPlayers(players || {}) || {});
+            // bereinigeTVPlayers may return object or array-like values only
+            const vals = Array.isArray(entries[0]) ? entries : Object.entries(players || {}).filter(function (kv) {
+                return kv[1] && kv[1].name;
+            });
+            const cleaned = typeof bereinigeTVPlayers === "function" ? bereinigeTVPlayers(players || {}) : (players || {});
+            const keys = Object.keys(cleaned);
+            if (keys.length === 0) {
+                list.innerHTML = `<p class="col-span-4 text-gray-500 font-bold">Noch niemand beigetreten…</p>
+                    <p class="col-span-4 text-xs text-gray-500">📡 0 verbunden – warte auf Handys</p>`;
+                return;
+            }
+            let online = 0;
+            const cards = keys.map(function (k) {
+                const p = cleaned[k];
+                const da = typeof istAnwesend === "function" ? istAnwesend(p) : true;
+                if (da) online++;
+                const status = da
+                    ? '<span class="text-emerald-400">🟢 Online</span>'
+                    : '<span class="text-gray-500">⚪ Offline</span>';
+                return `<div class="bg-white/5 border ${da ? "border-emerald-500/30" : "border-white/5"} rounded-xl p-4 text-center ${da ? "" : "opacity-50"}">
+                    <div class="text-3xl">🙋</div>
+                    <div class="font-bold text-white mt-2">${esc(p.name)}</div>
+                    <div class="text-xs font-bold mt-1">${status}</div>
+                </div>`;
+            }).join("");
+            const bar = `<div class="col-span-2 md:col-span-4 mb-2 rounded-xl px-4 py-3 text-center text-sm font-bold ${online === keys.length ? "bg-emerald-500/15 text-emerald-300" : "bg-amber-500/10 text-amber-200"}">
+                📡 ${online}/${keys.length} verbunden${online < keys.length ? " · jemanden warten" : " · alle online"}
+            </div>`;
+            list.innerHTML = bar + cards;
         }
 
         function tvBuildQuestionPool(catKeys, want) {

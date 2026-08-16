@@ -268,15 +268,19 @@
             wrLiveFlashBaselined = false;
             liveDuelUnsubscribe = liveDuelRef.onSnapshot((doc) => {
                 if (!doc.exists) {
-                    // Dokument komplett weg (Gastgeber hat beendet und gelöscht).
-                    // Vorher lief das hier für alle außer dem Gastgeber lautlos
-                    // ins Leere - keine Meldung, kein Rücksprung ins Menü.
                     if (liveDuelUnsubscribe) { try { liveDuelUnsubscribe(); } catch (e) { } liveDuelUnsubscribe = null; }
                     clearLiveDuelTimers();
                     stopHostHeartbeat();
+                    const wasResult = !!(window._liveDuelOnResult);
                     liveDuelRef = null;
                     isLiveDuelCreator = false;
                     liveDuelResolving = false;
+                    window._liveDuelOnResult = false;
+                    // Siegerehrung nicht wegreißen, wenn sie gerade angezeigt wird
+                    if (wasResult) {
+                        const rv = document.getElementById("view-live-duel-result");
+                        if (rv && !rv.classList.contains("hidden")) return;
+                    }
                     if (typeof showToast === "function") showToast("🚪 Das Spiel wurde beendet");
                     switchView(currentPlayer ? 'menu' : 'family-hub');
                     return;
@@ -402,17 +406,37 @@
                     meta.classList.remove("hidden");
                 }
                 const list = document.getElementById("live-duel-player-list");
-                if (list) list.innerHTML = Object.values(data.players).map(p => {
-                    const da = istAnwesend(p);
-                    const punkt = da
-                        ? '<span class="inline-block w-2 h-2 rounded-full bg-emerald-400 align-middle"></span>'
-                        : '<span class="inline-block w-2 h-2 rounded-full bg-gray-500 align-middle"></span>';
-                    return `<div class="bg-white/5 border border-white/5 rounded-xl p-3 text-center ${da ? '' : 'opacity-50'}">
-                        <div class="text-2xl">🙋</div>
-                        <div class="font-bold text-white text-sm mt-1">${esc(p.name)}</div>
-                        <div class="text-[10px] font-bold text-gray-400 mt-0.5">${punkt} ${da ? 'da' : 'kurz weg'}</div>
+                if (list) {
+                    const entries = Object.entries(data.players || {});
+                    let online = 0;
+                    const cards = entries.map(([key, p]) => {
+                        const da = typeof istAnwesend === "function" ? istAnwesend(p) : true;
+                        if (da) online++;
+                        const isHost = (data.createdBy === key);
+                        const status = da
+                            ? '<span class="text-emerald-400">🟢 Online</span>'
+                            : '<span class="text-gray-500">⚪ Offline</span>';
+                        return `<div class="bg-white/5 border ${da ? "border-emerald-500/30" : "border-white/5"} rounded-xl p-3 text-center ${da ? "" : "opacity-50"}">
+                            <div class="text-2xl">${isHost ? "👑" : "🙋"}</div>
+                            <div class="font-bold text-white text-sm mt-1">${esc(p.name)}${isHost ? " <span class=\"text-[10px] text-amber-300\">Host</span>" : ""}</div>
+                            <div class="text-[10px] font-bold mt-0.5">${status}</div>
+                        </div>`;
+                    }).join("");
+                    const hostOk = data.hostLastSeen && (Date.now() - data.hostLastSeen < 45000);
+                    const bar = `<div class="col-span-2 mb-1 rounded-lg px-3 py-2 text-center text-xs font-bold ${online === entries.length && entries.length ? "bg-emerald-500/15 text-emerald-300" : "bg-white/5 text-gray-300"}">
+                        📡 ${online}/${entries.length || 0} verbunden${entries.length && online < entries.length ? " · warte auf Mitspieler" : ""}${isLiveDuelCreator ? "" : (hostOk ? " · Host online" : " · Host ?")}
                     </div>`;
-                }).join("");
+                    list.innerHTML = bar + (cards || `<p class="col-span-2 text-gray-500 text-sm text-center">Noch niemand…</p>`);
+                }
+                const _cs = document.getElementById("live-duel-conn-status");
+                if (_cs) {
+                    const _n = Object.keys(data.players || {}).length;
+                    const _on = Object.values(data.players || {}).filter(function (p) {
+                        return typeof istAnwesend === "function" ? istAnwesend(p) : true;
+                    }).length;
+                    _cs.textContent = "📡 " + _on + "/" + _n + " Spieler online" + (_n === 0 ? " – teile den Code" : "");
+                    _cs.className = "text-xs font-bold mt-2 " + (_on === _n && _n > 0 ? "text-emerald-300" : "text-indigo-300");
+                }
                 document.getElementById("live-duel-start-btn").classList.toggle("hidden", !isLiveDuelCreator);
                 document.getElementById("live-duel-wait-hint").classList.toggle("hidden", isLiveDuelCreator);
                 const _clWrap = document.getElementById("live-duel-lobby-code-wrap");
@@ -591,10 +615,9 @@
 
             if (data.status === "finished") {
                 clearLiveDuelTimers();
-                stopLiveDuelActionMode(); // <-- Action-Mode stoppen wenn beendet
+                stopLiveDuelActionMode();
+                if (wrLiveAutoAdvanceTimer) { clearTimeout(wrLiveAutoAdvanceTimer); wrLiveAutoAdvanceTimer = null; }
 
-                // Lokale Sperre zusätzlich zum Firestore-Flag: mehrere Snapshots können eintreffen,
-                // bevor der eigene coinsClaimed-Write beim Server angekommen ist (sonst Mehrfach-Gutschrift).
                 const _coinKey = liveDuelRef.id + ":" + activePlayerKey;
                 if (!myData.coinsClaimed && !liveDuelCoinsClaimedLocal.has(_coinKey)) {
                     liveDuelCoinsClaimedLocal.add(_coinKey);
@@ -602,10 +625,18 @@
                     savePlayerProgress();
                     liveDuelRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true }).catch(() => { });
                 }
-                clearLiveDuelTimers();
-                stopLiveDuelActionMode();
-                renderLiveDuelFinalResult(data);
-                switchView('live-duel-result');
+                try {
+                    window._liveDuelOnResult = true;
+                    renderLiveDuelFinalResult(data);
+                } catch (e) {
+                    console.error("Endergebnis", e);
+                    showToast("Spiel beendet!", "success");
+                }
+                switchView("live-duel-result");
+                const rv = document.getElementById("view-live-duel-result");
+                if (rv) rv.classList.remove("hidden");
+                const play = document.getElementById("view-live-duel-play");
+                if (play) play.classList.add("hidden");
             }
         }
         function renderLiveDuelPending(data) {
@@ -892,7 +923,7 @@
             const continueBtn = (data.roundOver && isLiveDuelCreator)
                 ? `<button type="button" onclick="wrLiveAdvanceRound()" class="btn-primary w-full text-center py-3.5 mt-2" style="background:var(--gradient-cool);">Weiter ➔</button>`
                 : "";
-            const timerNote = (!data.roundOver && data.wordMode === "adult" && isMyTurn)
+            const timerNote = (!data.roundOver && isMyTurn)
                 ? `<p class="text-center text-xs text-amber-300 font-bold">⏱️ ${typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 20} Sek. – Erwachsenen-Tempo</p>`
                 : "";
             const maxWrongForCounter = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
@@ -924,9 +955,9 @@
             // ob er selbst gerade dran ist, sonst bekommt ein Zug des
             // Mitspielers nie eine Deadline (vorher: "isMyTurn && isLiveDuelCreator",
             // das griff nur, wenn ausgerechnet der Ersteller selbst dran war).
-            if (!data.roundOver && !data.wrSolving && data.wordMode === "adult" && isLiveDuelCreator) {
+            if (!data.roundOver && !data.wrSolving && isLiveDuelCreator) {
                 if (!data.wrTurnDeadline) {
-                    const secs = typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 20;
+                    const secs = typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 25;
                     liveDuelRef.update({ wrTurnDeadline: Date.now() + secs * 1000 }).catch(() => { });
                 }
             }
@@ -1005,9 +1036,9 @@
                             const order = (data.order || []).filter(k => players[k] && !players[k].pending);
                             const curIdx = order.indexOf(key);
                             update.turnIndex = order.length > 0 ? (curIdx + 1) % order.length : 0;
-                            update.wrTurnDeadline = null;
+                            update.wrTurnDeadline = Date.now() + ((typeof WORTRAETSEL_TURN_SECONDS !== "undefined") ? WORTRAETSEL_TURN_SECONDS : 25) * 1000;
                         } else {
-                            update.wrTurnDeadline = null; // Timer neu für denselben Spieler
+                            update.wrTurnDeadline = Date.now() + ((typeof WORTRAETSEL_TURN_SECONDS !== "undefined") ? WORTRAETSEL_TURN_SECONDS : 25) * 1000;
                         }
                     }
                     txn.update(liveDuelRef, update);
@@ -1028,7 +1059,7 @@
                     wrLiveAutoAdvanceTimer = setTimeout(() => {
                         wrLiveAutoAdvanceTimer = null;
                         wrLiveAdvanceRound();
-                    }, 14000);
+                    }, 5000);
                 }
             }
         }
@@ -1050,7 +1081,7 @@
                     const key = wrLiveActivePlayerKey(data);
                     const curIdx = order.indexOf(key);
                     const turnIndex = (curIdx + 1) % order.length;
-                    txn.update(liveDuelRef, { turnIndex, wrTurnDeadline: null });
+                    txn.update(liveDuelRef, { turnIndex, wrTurnDeadline: Date.now() + ((typeof WORTRAETSEL_TURN_SECONDS !== "undefined") ? WORTRAETSEL_TURN_SECONDS : 25) * 1000 });
                 });
             } catch (e) { handleError("wrLiveSkipTurn", e, "Der Zug konnte nicht weitergegeben werden."); }
         }
@@ -1083,8 +1114,8 @@
                 try {
                     const snap = await liveDuelRef.get();
                     const d = snap.exists ? snap.data() : null;
-                    if (d && d.status === "playing" && !d.roundOver && d.wordMode === "adult" && isLiveDuelCreator) {
-                        const secs = typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 20;
+                    if (d && d.status === "playing" && !d.roundOver && isLiveDuelCreator) {
+                        const secs = typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 25;
                         await liveDuelRef.update({ wrTurnDeadline: Date.now() + secs * 1000 });
                     }
                 } catch (e) { /* */ }
@@ -1170,7 +1201,7 @@
                 wrLiveAutoAdvanceTimer = setTimeout(() => {
                     wrLiveAutoAdvanceTimer = null;
                     wrLiveAdvanceRound();
-                }, 10000);
+                }, 5000);
             } else {
                 if (typeof SFX !== "undefined") SFX.wrong();
                 showToast("Leider falsch!", "error");
@@ -1179,7 +1210,7 @@
                     wrLiveAutoAdvanceTimer = setTimeout(() => {
                         wrLiveAutoAdvanceTimer = null;
                         wrLiveAdvanceRound();
-                    }, 10000);
+                    }, 5000);
                 }
             }
         }
@@ -1195,7 +1226,15 @@
             if (data.status !== "playing" || data.type !== "wortraten" || !data.roundOver) return;
 
             if ((data.currentRound || 0) >= data.totalRounds) {
-                await liveDuelRef.update({ status: "finished" });
+                await liveDuelRef.update({ status: "finished", roundOver: true, wrTurnDeadline: null, finishedAt: Date.now() });
+                // Sofort lokal anzeigen (Snapshot kann verzögert sein)
+                try {
+                    const fresh = (await liveDuelRef.get()).data();
+                    if (fresh) {
+                        renderLiveDuelFinalResult(fresh);
+                        switchView("live-duel-result");
+                    }
+                } catch (e) { console.warn(e); }
                 return;
             }
 
@@ -1215,7 +1254,11 @@
                 usedWords
             });
             if (!nextRound.word) {
-                await liveDuelRef.update({ status: "finished" });
+                await liveDuelRef.update({ status: "finished", wrTurnDeadline: null, finishedAt: Date.now() });
+                try {
+                    renderLiveDuelFinalResult((await liveDuelRef.get()).data());
+                    switchView("live-duel-result");
+                } catch (e) {}
                 return;
             }
             usedWords.push(nextRound.word);
@@ -1230,7 +1273,7 @@
                 roundOver: false,
                 roundSolved: false,
                 usedWords,
-                wrTurnDeadline: null
+                wrTurnDeadline: Date.now() + ((typeof WORTRAETSEL_TURN_SECONDS !== "undefined") ? WORTRAETSEL_TURN_SECONDS : 25) * 1000
             });
         }
 
@@ -1464,7 +1507,7 @@
             const nextBtn = !isLiveDuelCreator ?
                 `<p class="text-center text-sm text-gray-400 font-bold py-2">⏳ Warte auf den Ersteller…</p>` :
                 (isLastStep ?
-                    `<button onclick="liveDuelRef.update({status:'finished'})" class="btn-primary w-full text-center text-lg" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
+                    `<button onclick="liveDuelRef.update({status:'finished',finishedAt:Date.now()})" class="btn-primary w-full text-center text-lg" style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>` :
                     `<button onclick="advanceLiveDuel()" class="btn-primary w-full text-center text-lg">Weiter ➔</button>`);
 
             document.getElementById("live-duel-play-content").innerHTML = `
@@ -2023,6 +2066,7 @@
         }
 
         async function leaveLiveDuel(force) {
+            window._liveDuelOnResult = false;
             if (liveDuelRef && typeof confirmLeaveGame === "function") {
                 const ok = await confirmLeaveGame({
                     force: force === true,
@@ -2149,7 +2193,17 @@
             snap.forEach(docSnap => {
                 const d = docSnap.data() || {};
                 const alive = (now - (d.hostLastSeen || d.createdAt || 0)) < STALE;
-                if (d.status === "finished" || !alive) {
+                // Fertige Spiele NICHT sofort löschen – sonst verschwindet die
+                // Siegerehrung (Snapshot: doc existiert nicht → Menü).
+                // Erst nach 10 Min. aufräumen, oder wenn niemand mehr online.
+                if (d.status === "finished") {
+                    const finishedAt = d.finishedAt || d.updatedAt || d.hostLastSeen || d.createdAt || 0;
+                    if (finishedAt && (now - finishedAt) > 10 * 60 * 1000) {
+                        docSnap.ref.delete().catch(() => { });
+                    }
+                    return;
+                }
+                if (!alive) {
                     docSnap.ref.delete().catch(() => { });
                     return;
                 }

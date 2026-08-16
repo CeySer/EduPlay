@@ -292,8 +292,8 @@ if (typeof CURRICULUM !== 'undefined') {
                 if (quer.length) {
                     areas.push({
                         value: "quer",
-                        label: "Fach über alle Klassen",
-                        stufe: "📚 Fachweise Wiederholung",
+                        label: "Fach · alle Klassen (1–10)",
+                        stufe: "📚 Quer durch die Klassen",
                         subjects: quer
                     });
                 }
@@ -768,14 +768,42 @@ const geladen = _questionCounts[key] || 0;
             }
         }
 
+        function isoDayOffset(daysBack) {
+            return new Date(Date.now() - daysBack * 86400000).toISOString().slice(0, 10);
+        }
+        function streakWeekKey() {
+            const d = new Date();
+            const day = (d.getDay() + 6) % 7;
+            const mon = new Date(d);
+            mon.setDate(d.getDate() - day);
+            return mon.toISOString().slice(0, 10);
+        }
+        /** Streak: 1 Schonfrist/Woche bei 1 Tag Pause */
+        function applyStreakDay(p) {
+            if (!p) return;
+            const today = new Date().toISOString().slice(0, 10);
+            if (!p.streak) p.streak = { count: 0, lastDate: null, freezesUsed: 0, freezeWeek: null };
+            if (p.streak.lastDate === today) return;
+            const yesterday = isoDayOffset(1);
+            const dayBefore = isoDayOffset(2);
+            const week = streakWeekKey();
+            if (p.streak.freezeWeek !== week) {
+                p.streak.freezeWeek = week;
+                p.streak.freezesUsed = 0;
+            }
+            if (p.streak.lastDate === yesterday) {
+                p.streak.count = (p.streak.count || 0) + 1;
+            } else if (p.streak.lastDate === dayBefore && (p.streak.freezesUsed || 0) < 1) {
+                // 1 Tag Pause verziehen – Zähler bleibt
+                p.streak.freezesUsed = (p.streak.freezesUsed || 0) + 1;
+            } else {
+                p.streak.count = 1;
+            }
+            p.streak.lastDate = today;
+        }
         function registerStreak() {
             if (!currentPlayer) return;
-            const today = new Date().toISOString().slice(0, 10);
-            if (!currentPlayer.streak) currentPlayer.streak = { count: 0, lastDate: null };
-            if (currentPlayer.streak.lastDate === today) return;
-            const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
-            currentPlayer.streak.count = (currentPlayer.streak.lastDate === yesterday) ? currentPlayer.streak.count + 1 : 1;
-            currentPlayer.streak.lastDate = today;
+            applyStreakDay(currentPlayer);
         }
 
         function addXP(amount) {
@@ -796,9 +824,7 @@ const geladen = _questionCounts[key] || 0;
             const today = new Date().toISOString().slice(0, 10);
             if (!p.streak) p.streak = { count: 0, lastDate: null };
             if (p.streak.lastDate !== today) {
-                const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
-                p.streak.count = (p.streak.lastDate === yesterday) ? p.streak.count + 1 : 1;
-                p.streak.lastDate = today;
+                applyStreakDay(p);
             }
             evaluateAndApplyBadges(p);
             // Gäste ohne Konto haben kein Profil in der Datenbank.
@@ -822,7 +848,13 @@ const geladen = _questionCounts[key] || 0;
                 "Höchstes Level erreicht! 🎉";
             document.getElementById("menu-level-bar").style.width = lvl.progressPct + "%";
             const streakCount = currentPlayer.streak ? currentPlayer.streak.count : 0;
-            document.getElementById("menu-streak").innerText = `🔥 ${streakCount} Tag${streakCount === 1 ? '' : 'e'} Streak`;
+            const stEl = document.getElementById("menu-streak");
+            if (stEl) {
+                const used = currentPlayer.streak && currentPlayer.streak.freezesUsed;
+                stEl.innerText = streakCount > 0
+                    ? (`🔥 ${streakCount} Tag${streakCount === 1 ? '' : 'e'}` + (used ? ' · Schonfrist' : ''))
+                    : '🔥 0 Tage';
+            }
             const badgesRow = document.getElementById("menu-badges-row");
             const earned = currentPlayer.badges || [];
             const badgeCount = document.getElementById("menu-badge-count");

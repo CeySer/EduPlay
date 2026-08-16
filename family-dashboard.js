@@ -664,7 +664,7 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!toKey || toKey === activePlayerKey) return;
             const to = ALL_PROFILES[toKey];
             if (!to) return showToast("Spieler nicht gefunden.", "error");
-            if (to.isGuest) return showToast("Gäste: bitte Code nutzen.", "error");
+            if (to.isGuest) return showToast("Per Code einladen.", "error");
             const kind = typeOverride || _learnTogetherType || "wissen";
             const type = (kind === "vokabel") ? "vokabel" : "quiz";
             try {

@@ -81,10 +81,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was besagt die 1. Mendelsche Regel (Uniformitätsregel)?",
     "answers": [
-      "Kreuzt man die F1-Generation untereinander, spalten sich die Merkmale in F2 in einem festen Zahlenverhältnis auf.",
+      "Kreuzt man die F1-Generation untereinander, entstehen in der F2-Generation immer nur wieder rein reinerbige, unveränderte Nachkommen.",
       "Kreuzt man zwei reinerbige Individuen, die sich in einem Merkmal unterscheiden, sind die Nachkommen in F1 alle gleich.",
-      "Die Erbanlagen von Mutter und Vater verschmelzen zu einem komplett neuen Mischgen.",
-      "Verschiedene Erbanlagen werden völlig unabhängig voneinander an die Nachkommen vererbt."
+      "Die Erbanlagen von Mutter und Vater vermischen sich unwiderruflich zu einem einzigen neuen Gen.",
+      "Verschiedene Erbanlagen werden immer gemeinsam als festes Paket an die Nachkommen weitervererbt."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -118,9 +118,9 @@ const questions_k8_biologie = [
     "question": "Was versteht man unter dem Begriff 'Phänotyp' in der Genetik?",
     "answers": [
       "Das äußere Erscheinungsbild eines Lebewesens.",
-      "Die Gesamtheit der Gene eines Lebewesens.",
-      "Die Art der geschlechtlichen Fortpflanzung.",
-      "Die Anzahl der Chromosomen im Zellkern."
+      "Die Gesamtheit aller Gene eines Lebewesens im Zellkern.",
+      "Die Art der geschlechtlichen Fortpflanzungsweise.",
+      "Die genaue Anzahl der Chromosomen im Zellkern."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -172,9 +172,9 @@ const questions_k8_biologie = [
     "question": "Welcher Zweck wird mit der Reifeteilung (Meiose) biologisch verfolgt?",
     "answers": [
       "Die Halbierung des Chromosomensatzes zur Entstehung haploider Zellen.",
-      "Die Regeneration von geschädigten Hautzellen nach Verletzungen.",
-      "Die Verdopplung aller Zellorgane vor der einfachen Zellteilung.",
-      "Das schnelle Wachstum von Knochen und Muskelgewebe."
+      "Die Regeneration von geschädigten Hautzellen im Körper nach einer Verletzung.",
+      "Die Verdopplung aller Zellorgane vor der normalen Zellteilung.",
+      "Das schnelle Wachstum von Knochen- und Muskelgewebe im Körper."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -261,10 +261,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was passiert bei einer 'aktiven Schutzimpfung' im menschlichen Körper?",
     "answers": [
-      "Fertige Antikörper werden injiziert, um die Erreger sofort abzutöten.",
+      "Fertige Antikörper werden direkt gespritzt, um Erreger sofort abzutöten.",
       "Geschwächte Erreger regen den Körper an, selbst Antikörper und Gedächtniszellen zu bilden.",
-      "Es werden Abwehrstoffe gespritzt, die für wenige Wochen wirksam bleiben.",
-      "Das Blut wird von allen Viren mechanisch gereinigt."
+      "Es werden vorgefertigte Abwehrstoffe verabreicht, die immer nur für wenige Wochen wirksam bleiben.",
+      "Das Blut wird mit einem speziellen Filtergerät von allen Viren gereinigt."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -279,9 +279,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Wann wird eine 'passive Schutzimpfung' medizinisch eingesetzt?",
     "answers": [
-      "Ausschließend bei Säuglingen direkt nach der Geburt.",
-      "Zur vorsorglichen Langzeitimpfung vor einer Urlaubsreise.",
-      "Zur dauerhaften Zerstörung von genetischen Erbkrankheiten.",
+      "Ausschließlich bei Säuglingen kurz nach der Geburt zur Vorsorge.",
+      "Zur vorsorglichen Langzeitimpfung stets kurz vor einer geplanten Urlaubsreise.",
+      "Zur dauerhaften Heilung von angeborenen genetischen Erbkrankheiten.",
       "Wenn eine Person bereits infiziert ist und sofortiger Schutz benötigt wird."
     ],
     "correct": 3,
@@ -297,10 +297,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was beschreibt das 'Schlüssel-Schloss-Prinzip' im Immunsystem?",
     "answers": [
-      "Das Verschließen der Wunde durch Blutplättchen nach Verletzungen.",
-      "Den Transport von Sauerstoff durch die Membran der Roten Blutkörperchen.",
+      "Das schnelle Verschließen einer offenen Wunde durch Blutplättchen nach einer Verletzung.",
+      "Den Transport von Sauerstoff durch die Membran roter Blutkörperchen.",
       "Die spezifische Passform zwischen einem Antikörper und dem Antigen des Erregers.",
-      "Die Verknüpfung von Nervenzellen im Gehirn beim Lernen."
+      "Die Verknüpfung von Nervenzellen im Gehirn beim Lernvorgang."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -333,10 +333,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Wie nennt man den langen Fortsatz einer Nervenzelle, der elektrische Signale weiterleitet?",
     "answers": [
-      "Dieser Fortsatz heißt Synapse.",
+      "Dieser Fortsatz nennt man den Synapsenspalt.",
       "Dieser Fortsatz heißt Axon (oder Neurit).",
-      "Dieser Fortsatz heißt Zellkern.",
-      "Dieser Fortsatz heißt Dendrit."
+      "Dieser Fortsatz heißt der Zellkern.",
+      "Dieser Fortsatz heißt kurzer Dendrit."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -352,9 +352,9 @@ const questions_k8_biologie = [
     "question": "Was versteht man unter einer 'Synapse' bei Nervenzellen?",
     "answers": [
       "Die Kontaktstelle zur Informationsübertragung zwischen zwei Nervenzellen.",
-      "Die Schutzhülle um den Zellkern der Nervenzelle.",
-      "Die Blutgefäße zur Versorgung des Gehirns.",
-      "Die Verästelung am Eingang der Dendriten."
+      "Die Schutzhülle um den Zellkern der Nervenzelle selbst.",
+      "Die feinen Blutgefäße zur Versorgung des gesamten Gehirns.",
+      "Die feine Verästelung am Eingang der kurzen Dendriten einer Nervenzelle selbst."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -369,10 +369,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Wie unterscheiden sich Reflexe von bewussten Bewegungshandlungen?",
     "answers": [
-      "Reflexe dauern immer mehrere Minuten und werden im Großhirn geplant.",
+      "Reflexe dauern immer mehrere Minuten lang und werden bewusst und ganz langsam im Großhirn geplant.",
       "Reflexe laufen unwillkürlich, extrem schnell und ohne Gehirnbeteiligung über das Rückenmark ab.",
-      "Reflexe können durch Willenskraft vollständig unterdrückt und verändert werden.",
-      "Reflexe treten ausschließlich im Schlaf oder bei Narkosen auf."
+      "Reflexe können durch reine Willenskraft vollständig unterdrückt werden.",
+      "Reflexe treten ausschließlich während des Schlafs oder bei Narkosen auf."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -441,10 +441,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welches Drüsenorgan im Gehirn gilt als übergeordnete Steuerdrüse und regelt viele andere Hormondrüsen im Körper?",
     "answers": [
-      "Die Zirbeldrüse.",
-      "Die Ohrspeicheldrüse.",
+      "Die Zirbeldrüse im Gehirn.",
+      "Die Ohrspeicheldrüse am Kieferknochen.",
       "Die Hypophyse (Hirnanhangdrüse).",
-      "Die Thymusdrüse."
+      "Die kleine Thymusdrüse im Brustkorb."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -477,9 +477,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Wirkung hat der Sympathikus als Teil des vegetativen Nervensystems?",
     "answers": [
-      "Er stoppt die Produktion von allen Botenstoffen im Rückenmark.",
-      "Er fördert Ruhe, Verdauung und die Erholung des Körpers.",
-      "Er steuert ausschließlich die bewussten Bewegungen der Skelettmuskeln.",
+      "Er stoppt sofort und vollständig alle Botenstoffe im gesamten Rückenmark selbst.",
+      "Er fördert Ruhe, Verdauung und die Erholung des ganzen Körpers.",
+      "Er steuert ausschließlich die bewussten Bewegungen der Muskeln.",
       "Er versetzt den Körper in Leistungs- und Fluchtbereitschaft (Fight or Flight)."
     ],
     "correct": 3,
@@ -495,10 +495,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was beschreibt der Begriff 'Diabetes mellitus' (Typ 1)?",
     "answers": [
-      "Eine Infektionskrankheit durch einzellige Darmbakterien.",
-      "Eine Entzündung der Herzkranzgefäße nach Sportübung.",
+      "Eine Infektionskrankheit durch winzige einzellige Darmbakterien.",
+      "Eine sehr schwere Entzündung der Herzkranzgefäße nach besonders starker Sportübung.",
       "Eine Autoimmunerkrankung, bei der die Bauchspeicheldrüse kein Insulin produziert.",
-      "Eine verminderte Anzahl von roten Blutkörperchen im Blut."
+      "Eine stark verminderte Anzahl von roten Blutkörperchen im Blut."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -513,10 +513,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Aufgabe haben T-Killerzellen im spezifischen Immunsystem?",
     "answers": [
-      "Sie stellen Antikörper her und geben diese direkt ins Blut ab.",
+      "Sie stellen Antikörper her und geben diese ins Blut ab.",
       "Sie nehmen Bakterien ungerichtet auf und verdauen sie.",
       "Sie erkennen und zerstören von Viren befallene eigene Körperzellen.",
-      "Sie stellen den Sauerstoffgehalt in den Lungenbläschen sicher."
+      "Sie stellen den Sauerstoffgehalt in den feinen Lungenbläschen sicher."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -531,9 +531,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Funktion erfüllen die T-Helferzellen im Abwehrsystem?",
     "answers": [
-      "Sie bilden die Hornschicht der äußeren Oberhaut.",
-      "Sie fressen verbrauchte Rote Blutkörperchen in der Milz ab.",
-      "Sie reduzieren die Körpertemperatur bei Fieber.",
+      "Sie bilden die feste Hornschicht der äußeren Oberhaut.",
+      "Sie fressen verbrauchte rote Blutkörperchen in der Milz.",
+      "Sie senken gezielt und schnell die Körpertemperatur bei hohem Fieber.",
       "Sie aktivieren andere Immunzellen wie B-Zellen und T-Killerzellen."
     ],
     "correct": 3,
@@ -549,7 +549,7 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was versteht man unter einer 'Allergie' in der Immunbiologie?",
     "answers": [
-      "Eine angeborene Schwäche der Roten Blutkörperchen beim Sauerstofftransport.",
+      "Eine angeborene Schwäche der roten Blutkörperchen beim Sauerstofftransport im Blut.",
       "Eine bakterielle Infektion im Bereich der oberen Atemwege.",
       "Eine überschießende Immunreaktion des Körpers auf harmlose Stoffe (Allergene).",
       "Eine chronische Entzündung der Magenschleimhaut durch Säuremangel."
@@ -585,7 +585,7 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welcher Farbstoff in den Chloroplasten fängt das Sonnenlicht für die Fotosynthese ein?",
     "answers": [
-      "Hämoglobin.",
+      "Das Hämoglobin.",
       "Chlorophyll.",
       "Melanin.",
       "Carotin."
@@ -603,10 +603,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was versteht man unter einer Mutation in der Biologie?",
     "answers": [
-      "Die Bildung von Antikörpern nach einer durchgemachten Infektion.",
-      "Die regelmäßige Teilung einer Körperzelle während des Wachstums.",
+      "Die Bildung von Antikörpern nach einer bereits durchgemachten Erkrankung im Körper.",
+      "Die regelmäßige Teilung einer Körperzelle beim normalen Wachstum.",
       "Eine spontane oder durch Einflüsse verursachte Veränderung der Erbanlage (DNA).",
-      "Die Ausdehnung von Muskelgewebe bei starker Beanspruchung."
+      "Die Ausdehnung von Muskelgewebe bei sehr starker Beanspruchung."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -641,9 +641,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Aus welchen drei Grundbausteinen ist ein Nukleotid als Baustein der DNA aufgebaut?",
     "answers": [
-      "Aus Calcium, einem Eiweißmolekül und einer Ribosegruppe.",
-      "Aus Glucose, einem Enzym und einer zellulären Fettsäure.",
-      "Aus einer Aminosäure, einem Lipidmolekül und einem Wasserstoffatom.",
+      "Aus Calcium, einem großen Eiweißmolekül und einer Ribosegruppe im Blut.",
+      "Aus Glucose, einem Verdauungsenzym und einer zellulären Fettsäure im Darm.",
+      "Aus einer Aminosäure, einem Lipidmolekül und einem einzelnen Wasserstoffatom.",
       "Aus einer organischen Base, dem Zucker Desoxyribose und einer Phosphatgruppe."
     ],
     "correct": 3,
@@ -697,8 +697,8 @@ const questions_k8_biologie = [
     "answers": [
       "Das Merkmal tritt nur auf, wenn das betroffene Allel doppelt (homozygot) vorliegt.",
       "Frauen sind von diesem Erbgang grundsätzlich niemals betroffen.",
-      "Das Merkmal setzt sich bereits durch, wenn ein einziges Allel betroffen ist.",
-      "Das Merkmal wird ausschließlich über das Y-Chromosom vererbt."
+      "Das Merkmal setzt sich bereits durch, sobald nur ein einziges Allel betroffen ist.",
+      "Das Merkmal wird ausschließlich über das Y-Chromosom weitervererbt."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -731,9 +731,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was unterscheidet ein 'Karyogramm' von einem Genotyp?",
     "answers": [
-      "Ein Karyogramm misst die Leitungsgeschwindigkeit von elektrischen Nervenimpulsen.",
-      "Ein Karyogramm zeigt ausschließlich die Menge an Chlorophyll in Pflanzenzellen.",
-      "Ein Karyogramm ist der Fachbegriff für die Zersetzung von Nährstoffen im Magen.",
+      "Ein Karyogramm misst die Leitungsgeschwindigkeit von elektrischen Nervenimpulsen im Körper.",
+      "Ein Karyogramm zeigt ausschließlich die Menge an Chlorophyll in Zellen.",
+      "Ein Karyogramm ist der Fachbegriff für die Zersetzung von Nährstoffen.",
       "Ein Karyogramm ist die geordnete mikroskopische Darstellung aller Chromosomen einer Zelle."
     ],
     "correct": 3,
@@ -750,9 +750,9 @@ const questions_k8_biologie = [
     "question": "Was versteht man unter einer 'Trisomie 21' (Down-Syndrom) auf Chromosomenebene?",
     "answers": [
       "Das Chromosom 21 liegt in den Körperzellen dreifach statt zweifach vor.",
-      "Das Chromosom 21 fehlt im Zellkern der betroffenen Person vollständig.",
-      "Das Chromosom 21 ist mit dem Geschlechtschromosom Y verschmolzen.",
-      "Die DNA auf Chromosom 21 besteht ausschließlich aus der Base Uracil."
+      "Das Chromosom 21 fehlt im Zellkern der Person vollständig.",
+      "Das Chromosom 21 ist dabei fest mit dem Geschlechtschromosom Y verschmolzen.",
+      "Die DNA auf Chromosom 21 besteht nur aus der Base Uracil."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -823,8 +823,8 @@ const questions_k8_biologie = [
     "answers": [
       "Diese Viren heißen Plasmodea.",
       "Diese Viren heißen Bakteriophagen.",
-      "Diese Viren heißen B-Zellen.",
-      "Diese Viren heißen Flechten."
+      "Diese Viren heißen die B-Zellen.",
+      "Diese Viren heißen einfach Flechten."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -857,10 +857,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Aufgabe erfüllen die sogenannten 'Riesenfresszellen' (Makrophagen) im Immunsystem?",
     "answers": [
-      "Sie stellen hochspezifische Antikörper für die Blutbahn her.",
+      "Sie stellen hochspezifische Antikörper direkt für die Blutbahn her.",
       "Sie nehmen Erreger ungerichtet auf und verdauen sie (Phagozytose).",
       "Sie leiten elektrische Reize vom Hirnstamm zu den Muskeln.",
-      "Sie transportieren Sauerstoff von der Lunge in das Gewebe."
+      "Sie transportieren Sauerstoff von der Lunge ins Gewebe."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -893,7 +893,7 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Wie nennt man die Übertragung von Erregern durch Tröpfchen beim Niesen oder Husten?",
     "answers": [
-      "Man nennt diesen Infektionsweg Wundinfektion.",
+      "Man nennt diesen Infektionsweg eine Wundinfektion.",
       "Man nennt diesen Infektionsweg Tröpfcheninfektion.",
       "Man nennt diesen Infektionsweg Schmierinfektion.",
       "Man nennt diesen Infektionsweg Kontaktinfektion."
@@ -929,9 +929,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was geschieht bei der Akkommodation des Auges?",
     "answers": [
-      "Die Pupille verengt sich bei sehr hellem Sonnenlicht automatisch.",
-      "Der Sehnerv leitet das Bild zur Wandlung ins Gehirn weiter.",
-      "Die Tränendrüsen reinigen die Hornhaut von feinen Staubpartikeln.",
+      "Die Pupille verengt sich automatisch bei sehr hellem Sonnenlicht.",
+      "Der Sehnerv leitet das Bild zur Wandlung direkt ins Gehirn weiter.",
+      "Die Tränendrüsen reinigen die Hornhaut regelmäßig von feinen Staubteilchen und Schmutz.",
       "Die Krümmung der Augenlinse wird verändert, um Nah- oder Fernobjekte scharf zu stellen."
     ],
     "correct": 3,
@@ -950,7 +950,7 @@ const questions_k8_biologie = [
       "Eine Zerstreuungslinse (Konkavlinse).",
       "Eine Sammellinse (Konvexlinse).",
       "Eine stark vergrößernde Lupe.",
-      "Eine gewöhnliche Flachglaslinse."
+      "Eine ganz gewöhnliche Flachglaslinse."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -986,7 +986,7 @@ const questions_k8_biologie = [
       "Die drei Bogengänge mit den Ohrsteinchenorganen.",
       "Der äußere Gehörgang mit Ohrenschmalz.",
       "Die Ohrtrompete (Eustachische Röhre).",
-      "Der Steigbügel im Mittelohr."
+      "Der kleine Steigbügel im Mittelohr des Menschen."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1004,7 +1004,7 @@ const questions_k8_biologie = [
       "Feder, Hebel und Stempel.",
       "Kranz, Welle und Schild.",
       "Hammer, Amboss und Steigbügel.",
-      "Bügel, Trommel und Schlägel."
+      "Bügel, Trommel und Schlägel im Ohr."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1019,10 +1019,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was versteht man unter 'Eigenreflexen' im Unterschied zu Fremdreflexen?",
     "answers": [
-      "Der Reflex wird ausschließlich durch akustische Reize ausgelöst.",
-      "Reiz und Reaktion liegen in völlig verschiedenen Körperregionen.",
+      "Der Reflex wird dabei ausschließlich durch akustische Reize ausgelöst.",
+      "Reiz und Reaktion liegen dabei in völlig verschiedenen Körperregionen.",
       "Reizaufnahme und Antwortreaktion finden im selben Organ statt (z. B. Kniescheibenreflex).",
-      "Der Reflex muss im Laufe des Lebens mühsam erlernt und geübt werden."
+      "Der Reflex muss im Laufe des gesamten Lebens erst mühsam erlernt und ständig geübt werden."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1091,10 +1091,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was versteht man unter 'Neurotransmittern' im Nervensystem?",
     "answers": [
-      "Elektrische Funken, die direkt von Zelle zu Zelle überspringen.",
+      "Elektrische Funken, die direkt von einer Zelle zur nächsten überspringen.",
       "Chemische Botenstoffe zur Signalübertragung am synaptischen Spalt.",
       "Nährstoffe, die das Gehirn mit Traubenzucker versorgen.",
-      "Schutzhüllen aus Fettgewebe um die langen Axone."
+      "Schutzhüllen aus Fettgewebe um die langen Axone herum."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1109,10 +1109,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Drüse im Halsbereich reguliert mit ihren Hormonen den Grundumsatz des Stoffwechsels?",
     "answers": [
-      "Die Hirnanhangdrüse.",
-      "Die Nebennierenrinde.",
+      "Die Hirnanhangdrüse im Gehirn.",
+      "Die Nebennierenrinde am Nierenpol.",
       "Die Schilddrüse (produziert Thyroxin).",
-      "Die Bauchspeicheldrüse."
+      "Die Bauchspeicheldrüse tief im Bauchraum."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1147,8 +1147,8 @@ const questions_k8_biologie = [
     "answers": [
       "Die Aufrechterhaltung eines dynamischen inneren Gleichgewichts im Körper.",
       "Die Bewegung von Pflanzenteilen in Richtung des Sonnenlichts.",
-      "Das unkontrollierte Wachstum von Bakterienkolonien auf Nährböden.",
-      "Die Entstehung einer spontanen Mutation im Erbmaterial."
+      "Das unkontrollierte Wachstum von Bakterien auf einem Nährboden.",
+      "Die Entstehung einer spontanen Mutation im Erbmaterial vieler lebender Zellen."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1163,8 +1163,8 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Aufgabe erfüllt die Myelinscheide (Mülle-Hülle) um das Axon einer Nervenzelle?",
     "answers": [
-      "Abwehr von bakteriellen Infektionen im Gehirn.",
-      "Speicherung von überschüssigem Glukose als Fett im Nerv.",
+      "Abwehr von bakteriellen Infektionen direkt im Gehirn und im gesamten Rückenmark.",
+      "Speicherung von überschüssiger Glukose als Fett im Nerv.",
       "Aufnahme von Lichtreizen zur Übertragung ins Sehzentrum.",
       "Elektrische Isolation für eine drastisch schnellere Impulsweiterleitung."
     ],
@@ -1181,10 +1181,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was bezeichnet man als 'Nerv' im anatomischen Sinn?",
     "answers": [
-      "Eine einzelne riesige Nervenzelle mit mehreren Zellkernen.",
+      "Eine einzelne, ungewöhnlich riesige Nervenzelle mit gleich mehreren eigenen Zellkernen.",
       "Ein Bündel aus vielen einzelnen Nervenfasern (Axonen) mit Bindegewebe und Blutgefäßen.",
-      "Der Übergang von der Schilddrüse zur Luftröhre.",
-      "Die Flüssigkeit, die im Inneren des Gehirns fließt."
+      "Der direkte anatomische Übergang von der Schilddrüse zur Luftröhre.",
+      "Die klare Flüssigkeit, die im Inneren des Gehirns ständig fließt."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1199,9 +1199,9 @@ const questions_k8_biologie = [
     "subject": "deutsch",
     "question": "Was unterscheidet 'sensorische' Nervenfasern von 'motorischen' Nervenfasern?",
     "answers": [
-      "Sensorische verlaufen nur im Rückenmark, motorische nur im Gehirn.",
+      "Sensorische Nervenfasern verlaufen ausschließlich im Rückenmark, motorische nur im ganzen Gehirn.",
       "Sensorische leiten Signale von den Sinnesorganen zum ZNS, motorische vom ZNS zu den Muskeln.",
-      "Sensorische transportieren Blut, motorische leiten elektrische Ströme.",
+      "Sensorische transportieren Blut, motorische leiten elektrische Ströme weiter.",
       "Sensorische versorgen die Verdauungsorgane, motorische steuern das Farbsehen."
     ],
     "correct": 1,
@@ -1235,9 +1235,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Warum gibt es auf der Netzhaut des Auges einen sogenannten 'Blinden Fleck'?",
     "answers": [
-      "Dort wird die Augenflüssigkeit einmal pro Tag neu gebildet.",
-      "Dort befinden sich ausschließlich Stäbchen für das Dämmerungssehen.",
-      "Dort trifft das Licht ungebrochen von der Augenlinse auf den Ciliarmuskel.",
+      "Dort wird die klare Augenflüssigkeit einmal am Tag komplett neu gebildet.",
+      "Dort befinden sich ausschließlich lichtempfindliche Stäbchen für das Dämmerungssehen.",
+      "Dort trifft das Licht ungebrochen auf den Ciliarmuskel direkt.",
       "Dort tritt der Sehnerv aus; es befinden sich an dieser Stelle keine Sinneszellen."
     ],
     "correct": 3,
@@ -1274,7 +1274,7 @@ const questions_k8_biologie = [
     "question": "Was beschreibt der Begriff 'Zellatmung' in den Mitochondrien menschlicher und pflanzlicher Zellen?",
     "answers": [
       "Die Wandlung von Sonnenlicht in Traubenzucker in den Chloroplasten.",
-      "Die Verfestigung von Eiweißen im Gewebe durch hohe Temperaturen.",
+      "Die Verfestigung von Eiweißen im gesamten Körpergewebe durch besonders hohe Temperaturen.",
       "Die Umwandlung von Glukose und Sauerstoff in Kohlenstoffdioxid, Wasser und Energie (ATP).",
       "Die reine Aufnahme von Sauerstoff über die Lungenbläschen ins Blut."
     ],
@@ -1291,7 +1291,7 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Organellen werden oft als 'Kraftwerke der Zelle' bezeichnet?",
     "answers": [
-      "Die Lysosomen.",
+      "Die kleinen Lysosomen.",
       "Die Mitochondrien.",
       "Die Vakuolen.",
       "Die Ribosomen."
@@ -1309,9 +1309,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was unterscheidet Produzenten von Konsumenten in einem Ökosystem?",
     "answers": [
-      "Produzenten sind Bakterien im Boden; Konsumenten sind ausschließlich grüne Pflanzen.",
-      "Produzenten benötigen keinen Sauerstoff; Konsumenten betreiben keine Zellatmung.",
-      "Produzenten fressen ausschließlich Fleisch; Konsumenten verwerten nur totes Pflanzenmaterial.",
+      "Produzenten sind Bodenbakterien; Konsumenten sind ausschließlich grüne Pflanzen im Wald.",
+      "Produzenten benötigen keinen Sauerstoff; Konsumenten betreiben grundsätzlich keine Zellatmung.",
+      "Produzenten fressen ausschließlich Fleisch anderer Tiere; Konsumenten verwerten dagegen nur totes Pflanzenmaterial.",
       "Produzenten erzeugen organische Stoffe durch Fotosynthese selbst; Konsumenten ernähren sich von anderen Lebewesen."
     ],
     "correct": 3,
@@ -1327,10 +1327,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Rolle spielen Destruenten (Zersetzer) wie Pilze und Bodenbakterien im Stoffkreislauf?",
     "answers": [
-      "Sie verhindern die Vermehrung aller Viren in Gewässern.",
+      "Sie verhindern die Vermehrung sämtlicher Viren in Gewässern.",
       "Sie fangen Sonnenlicht ein und wandeln es in Sauerstoff um.",
       "Sie bauen tote organische Substanzen zu anorganischen Mineralstoffen ab.",
-      "Sie regulieren die Körpertemperatur von Säugetieren im Winter."
+      "Sie regulieren die Körpertemperatur von wechselwarmen Tieren während des Winters."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1348,7 +1348,7 @@ const questions_k8_biologie = [
       "Das Geflecht aller Nervenbahnen im Gehirn von Raubtieren.",
       "Die lineare Abfolge von Lebewesen, bei der jedes Glied das vorherige frisst.",
       "Die Speicherung von Zuckerstärken in den Wurzeln von Bäumen.",
-      "Die chemische Struktur von Eiweißketten im Magen."
+      "Die genaue chemische Struktur von Eiweißketten im menschlichen Magen und Darm."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1364,9 +1364,9 @@ const questions_k8_biologie = [
     "question": "Warum spricht man in natürlichen Ökosystemen eher von einem 'Nahrungsnetz' als von einer einfachen Nahrungskette?",
     "answers": [
       "Weil Spinnen in jedem Ökosystem die oberste Konsumentenstufe bilden.",
-      "Weil Pflanzen ihre Nährstoffe nur aus dem Netz von Pilzhyphen beziehen.",
+      "Weil Pflanzen ihre Nährstoffe ausschließlich aus dem Netz von Pilzhyphen beziehen.",
       "Weil die meisten Tiere mehrere Nahrungsquellen nutzen und Verflechtungen bestehen.",
-      "Weil Nahrungsketten nach wenigen Tagen wieder zerfallen."
+      "Weil Nahrungsketten sich bereits nach wenigen Tagen wieder auflösen."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1382,9 +1382,9 @@ const questions_k8_biologie = [
     "question": "Was versteht man unter dem Begriff 'Ökologische Nische'?",
     "answers": [
       "Gesamtheit aller abiotischen und biotischen Umweltfaktoren, die eine Art zum Überleben nutzt.",
-      "Ein geschützter Hohlraum im Baum, in dem Vögel im Winter nisten.",
-      "Das kleinste Mikroskopbild einer einzelnen Zellwand.",
-      "Ein künstlich angelegtes Naturschutzgebiet ohne Raubtiere."
+      "Ein geschützter Hohlraum im alten Baum, in dem Vögel im Winter nisten.",
+      "Das kleinste Mikroskopbild einer ganz einzelnen pflanzlichen Zellwand.",
+      "Ein künstlich angelegtes Naturschutzgebiet vollkommen ohne jegliche Raubtiere oder Fressfeinde."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1399,10 +1399,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was beschreibt die 'Konkurrenzausschlussregel' in der Ökologie?",
     "answers": [
-      "Bakterien verdrängen Viren grundsätzlich aus jedem infizierten Wirt.",
+      "Bakterien verdrängen grundsätzlich und vollkommen dauerhaft alle Viren aus jedem infizierten Wirtskörper.",
       "Zwei Arten mit identischer ökologischer Nische können dauerhaft nicht im selben Lebensraum koexistieren.",
-      "Raubtiere fressen nur Beute, die schwächer als sie selbst ist.",
-      "Pflanzen konkurrieren niemals um Sonnenlicht oder Wasser im Wald."
+      "Raubtiere fressen ausschließlich Beutetiere, die schwächer als sie selbst sind.",
+      "Pflanzen konkurrieren im dichten Wald niemals um Sonnenlicht, Wasser oder Nährstoffe."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1418,9 +1418,9 @@ const questions_k8_biologie = [
     "question": "Was bezeichnet man als 'abiotische Umweltfaktoren'?",
     "answers": [
       "Unbelebte Einflüsse der Umwelt wie Licht, Temperatur, Wasser und Bodenbeschaffenheit.",
-      "Die Bakterienstämme auf der menschlichen Haut.",
-      "Einflüsse von Fressfeinden, Parasiten und Konkurrenten.",
-      "Die genetischen Mutationen in den Keimzellen einer Population."
+      "Die vielfältigen Bakterienstämme auf der Haut von Mensch und Tier.",
+      "Einflüsse von Fressfeinden, Parasiten und direkten Konkurrenten.",
+      "Die zufälligen genetischen Mutationen in den Keimzellen einer ganzen ausgewachsenen Population."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1435,9 +1435,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Umweltfaktoren fallen unter die Kategorie der 'biotischen Faktoren'?",
     "answers": [
-      "Klimatische Bedingungen wie Niederschlag, Wind und Sonnenstrahlung.",
-      "Der pH-Wert des Wassers in einem Süßwassersee.",
-      "Der Gehalt an Sauerstoff in verschiedenen Höhenlagen.",
+      "Klimatische Bedingungen wie starker Niederschlag, Windstärke und die tägliche Sonnenstrahlung.",
+      "Der genaue pH-Wert des Wassers in einem größeren heimischen Süßwassersee.",
+      "Der Gehalt an Sauerstoff in ganz unterschiedlichen Höhenlagen der Berge.",
       "Einflüsse, die von anderen Lebewesen ausgehen (z. B. Beute, Krankheitserreger, Konkurrenten)."
     ],
     "correct": 3,
@@ -1453,9 +1453,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was versteht man unter einer 'Symbiose' in der Biologie?",
     "answers": [
-      "Eine Gemeinschaft, bei der ein Partner den anderen schädigt.",
+      "Eine Gemeinschaft, bei der ein Partner den anderen stark schädigt.",
       "Das Zusammenleben zweier verschiedener Arten zum gegenseitigen Nutzen.",
-      "Die Vererbung von Genen über mehrere Generationen.",
+      "Die Vererbung von Genen über mehrere aufeinanderfolgende Generationen.",
       "Ein Verhältnis, bei dem eine Art eine andere tötet und frisst."
     ],
     "correct": 1,
@@ -1472,9 +1472,9 @@ const questions_k8_biologie = [
     "question": "Was unterscheidet Parasitismus von einer Symbiose?",
     "answers": [
       "Beim Parasitismus lebt ein Organismus auf Kosten eines Wirts und schädigt diesen.",
-      "Beim Parasitismus schließen sich zwei Arten zu einem neuen Organismus zusammen.",
-      "Beim Parasitismus profitieren beide Lebewesen in gleichem Maße.",
-      "Beim Parasitismus stirbt der Wirt immer innerhalb weniger Sekunden."
+      "Beim Parasitismus verschmelzen zwei verschiedene Arten zu einem völlig neuen Organismus.",
+      "Beim Parasitismus profitieren beide beteiligten Lebewesen in gleichem Maße.",
+      "Beim Parasitismus stirbt der Wirt praktisch immer innerhalb weniger Sekunden."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1490,9 +1490,9 @@ const questions_k8_biologie = [
     "question": "Was besagt die 1. Lotka-Volterra-Regel bezüglich Räuber-Beute-Beziehungen?",
     "answers": [
       "Die Populationsgrößen von Räuber und Beute schwanken periodisch, wobei die Höchststände zeitlich versetzt sind.",
-      "Die Zahl der Räuber ist immer genau doppelt so hoch wie die Zahl der Beutetiere.",
-      "Werden beide Populationen dezimiert, erholt sich die Räuberpopulation schneller als die Beute.",
-      "Die Beutepopulation stirbt nach wenigen Zyklen vollständig aus."
+      "Die Zahl der Räuber ist grundsätzlich immer doppelt so hoch wie die Zahl der Beutetiere.",
+      "Werden beide Populationen gleichzeitig dezimiert, erholt sich die Räuberpopulation stets deutlich schneller als die Beute.",
+      "Die Beutepopulation stirbt normalerweise bereits nach wenigen Zyklen vollständig aus."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1507,9 +1507,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was versteht man unter dem Begriff 'Eutrophierung' eines Gewässers?",
     "answers": [
-      "Das Einfrieren eines Teichs von der Oberfläche her im Winter.",
-      "Das vollständige Austrocknen eines Sees im heißen Sommer.",
-      "Die Reinigung von Wasser durch den Einsatz von UV-Filtern.",
+      "Das vollständige Einfrieren eines flachen Teichs von der Oberfläche her während des ganzen Winters.",
+      "Das komplette Austrocknen eines ganzen Sees im besonders heißen Sommer.",
+      "Die gründliche Reinigung von Trinkwasser durch den gezielten Einsatz von UV-Filtern.",
       "Die Überdüngung eines Gewässers mit Nährstoffen, die zu Algenblüte und Sauerstoffmangel führt."
     ],
     "correct": 3,
@@ -1525,9 +1525,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welcher Prozess findet in den Ribosomen einer Zelle statt?",
     "answers": [
-      "Die Vervielfältigung von Zellwänden.",
-      "Die Verdauung von aufgenommenen Fetttröpfchen.",
-      "Die Fotosynthese zur Sauerstoffgewinnung.",
+      "Die schnelle Vervielfältigung sämtlicher Zellwände einer einzelnen Pflanzenzelle.",
+      "Die Verdauung von aufgenommenen kleinen Fetttröpfchen.",
+      "Die Fotosynthese zur Gewinnung von reinem Sauerstoff.",
       "Die Proteinbiosynthese (Herstellung von Eiweißen nach der DNA-Vorlage)."
     ],
     "correct": 3,
@@ -1561,9 +1561,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Funktion erfüllen Enzyme im Stoffwechsel von Pflanzen und Tieren?",
     "answers": [
-      "Sie speichern die Erbinformation geschützt im Zellkern.",
+      "Sie speichern die gesamte Erbinformation sicher geschützt im Zellkern der Zelle.",
       "Sie wirken als Biokatalysatoren und beschleunigen chemische Reaktionen.",
-      "Sie leiten elektrische Reize entlang der Axone weiter.",
+      "Sie leiten elektrische Reize entlang der langen Axone weiter.",
       "Sie transportieren den Sauerstoff in den roten Blutkörperchen."
     ],
     "correct": 1,
@@ -1597,10 +1597,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was passiert mit Enzymen bei extrem hohen Temperaturen (z. B. über 60 °C)?",
     "answers": [
-      "Sie arbeiten unendlich schnell weiter ohne Pause.",
-      "Sie verwandeln sich in reine Stärkezucker.",
+      "Sie arbeiten unendlich schnell weiter, ohne jemals zu pausieren.",
+      "Sie verwandeln sich vollständig in reine Stärkezucker.",
       "Sie denaturieren (ihre Raumstruktur wird irreversibel zerstört).",
-      "Sie vermehren sich durch einfache Teilung im Blut."
+      "Sie vermehren sich durch einfache Teilung im Blutkreislauf."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1633,10 +1633,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was bedeutet der Begriff 'Gen' auf Molekularebene?",
     "answers": [
-      "Der gesamte Zellkern mit allen enthaltenen Organellen.",
-      "Ein Schutzprotein an den Enden der Chromosomen.",
+      "Der gesamte Zellkern mit sämtlichen darin enthaltenen Zellorganellen und Strukturen.",
+      "Ein kleines Schutzprotein an den beiden Enden der Chromosomen.",
       "Ein bestimmter Abschnitt auf der DNA, der die Information für ein Protein enthält.",
-      "Ein einzelnes Nukleotidpaar in einer RNA-Kette."
+      "Ein einzelnes Nukleotidpaar in einer besonders kurzen RNA-Kette."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1651,9 +1651,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Was bezeichnet man als 'Genom' eines Organismus?",
     "answers": [
-      "Die Summe aller Nährstoffe im Blutkreislauf.",
-      "Die Liste aller Eiweiße, die eine Zelle absondern kann.",
-      "Die Anzahl der Ribosomen im Zellplasma.",
+      "Die Summe aller Nährstoffe im gesamten Blutkreislauf.",
+      "Die vollständige Liste aller Eiweiße, die eine Zelle absondern kann.",
+      "Die Anzahl der Ribosomen im gesamten Zellplasma.",
       "Die Gesamtheit der Vererbungsinformationen (DNA) einer Zelle."
     ],
     "correct": 3,
@@ -1669,9 +1669,9 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Funktion erfüllt die Tränenflüssigkeit des menschlichen Auges?",
     "answers": [
-      "Sie färbt die Regenbogenhaut je nach Helligkeit um.",
-      "Sie reguliert die Krümmung der Augenlinse beim Scharfstellen.",
-      "Sie versorgt die Lichtsinneszellen mit Sauerstoff.",
+      "Sie färbt die Regenbogenhaut je nach Helligkeit leicht um.",
+      "Sie reguliert ganz allein die Krümmung der Augenlinse beim genauen Scharfstellen.",
+      "Sie versorgt die Lichtsinneszellen direkt mit Sauerstoff.",
       "Sie hält die Hornhaut feucht und enthält keimtötende Stoffe (z. B. Lysozym)."
     ],
     "correct": 3,
@@ -1687,10 +1687,10 @@ const questions_k8_biologie = [
     "subject": "biologie",
     "question": "Welche Aufgabe erfüllt die Pupille im Auge?",
     "answers": [
-      "Sie stützt die Kugelform des Augapfels von innen.",
+      "Sie stützt von innen her die runde Kugelform des gesamten Augapfels.",
       "Sie regelt als Sehloch die Menge des einfallenden Lichts (Pupillenreflex).",
       "Sie verwandelt das Bild in elektrische Signale für den Sehnerv.",
-      "Sie bündelt die Lichtstrahlen direkt auf die Hornhaut."
+      "Sie bündelt die einfallenden Lichtstrahlen direkt auf der äußeren Hornhaut."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1760,8 +1760,8 @@ const questions_k8_biologie = [
     "question": "Was versteht man unter der 'Biomagnifikation' von Schadstoffen in Nahrungsketten?",
     "answers": [
       "Der Abbau von Giftstoffen durch spezialisierte Bakterien im Fluss.",
-      "Die Ausscheidung von Schwermetallen über den Ausatemstrom von Fischen.",
-      "Die Zunahme der Pflanzenmasse durch gedüngtes Wasser.",
+      "Die vollständige Ausscheidung sämtlicher Schwermetalle über den Ausatemstrom von Fischen.",
+      "Die deutliche und schnelle Zunahme der Pflanzenmasse durch stark gedüngtes Wasser.",
       "Die Anreicherung von schwer abbaubaren Schadstoffen von Trophiestufe zu Trophiestufe."
     ],
     "correct": 3,
@@ -1804,35 +1804,6 @@ const questions_k8_biologie = [
     "difficulty": "leicht",
     "points": 10,
     "explanation": "Wechselwarme Tiere passen ihre Körpertemperatur der Umgebung an und verfallen bei Kälte in Kältestarre, aus der sie erst bei Erwärmung aufwachen."
-  },
-  {"id":"k8bi101","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Photosynthese in …","answers":["Mitochondrien","Chloroplasten","Zellkern","Ribosomen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Chloroplasten."},
-  {"id":"k8bi102","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"DNA-Base A paart mit …","answers":["G","T","C","U"],"correct":1,"difficulty":"mittel","points":10,"explanation":"T."},
-  {"id":"k8bi103","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Mitose erzeugt …","answers":["Gameten","Körperzellen diploid","Mutationen","Viren"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Körperzellen."},
-  {"id":"k8bi104","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Enzyme sind meist …","answers":["Lipide","Proteine","DNA","Zucker"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Proteine."},
-  {"id":"k8bi105","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Ökosystem = …","answers":["nur Tiere","Lebewesen + Umwelt","nur Klima","nur Boden"],"correct":1,"difficulty":"mittel","points":10,"explanation":"System."},
-  {"id":"k8bi106","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Antibiotika gegen …","answers":["Viren","Bakterien","Knochen","Allergie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bakterien."},
-  {"id":"k8bi107","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Selektion wirkt auf …","answers":["Genotyp immer sichtbar","Fitness","Mode","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fitness."},
-  {"id":"k8bi108","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Blut transportiert …","answers":["nur Wasser","O₂/Nährstoffe","Knochen","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stoffe."},
-  {"id":"k8bi109","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Nerven leiten …","answers":["Blut","Impulse","Luft","Knochen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Erregung."},
-  {"id":"k8bi110","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Biodiversität = …","answers":["eine Art","Vielfalt","Klima","Städte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vielfalt."},
-  {"id":"k8bi111","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Impfung aktiviert …","answers":["Verdauung","Immunsystem","Muskeln","Gehör"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Immun."},
-  {"id":"k8bi112","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Zellatmung in …","answers":["Chloroplast","Mitochondrien","Zellwand","Vakuole"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Mitochondrien."},
-  {"id":"k8bi113","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Art = …","answers":["beliebige Tiere","fortpflanzungsfähige Gruppe","Farbe","Größe"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Art."},
-  {"id":"k8bi114","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Parasit … dem Wirt.","answers":["nützt","schadet","neutral","ersetzt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schaden."},
-  {"id":"k8bi115","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Gene auf …","answers":["Blut","Chromosomen","Zähnen","Haaren"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Chromosomen."},
-  {"id":"k8bi116","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Nachhaltigkeit: …","answers":["erschöpfen","Tragfähigkeit achten","nur Konsum","nur Wachstum"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Grenzen."},
-  {"id":"k8bi117","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Haut schützt vor …","answers":["nur Kälte","Keimen u. a.","Schall","Magneten"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schutz."},
-  {"id":"k8bi118","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Bestäubung = …","answers":["Kernverschmelzung","Pollenübertragung","Keimung","Photosynthese"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Pollen."},
-  {"id":"k8bi119","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Population = …","answers":["alle Arten","Art im Gebiet","Pflanzen","Klima"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Population."},
-  {"id":"k8bi120","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Viren sind …","answers":["Zellen","keine vollständigen Zellen","Pflanzen","Bakterien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"akaryotisch."},
-  {"id":"k8bi121","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Nahrungskette start: …","answers":["Fleischfresser","Produzenten","Menschen","Pilze"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Pflanzen."},
-  {"id":"k8bi122","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Insulin beeinflusst …","answers":["Hören","Blutzucker","Knochenfarbe","Haare"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Glucose."},
-  {"id":"k8bi123","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Mutation = …","answers":["immer tödlich","DNA-Änderung","nur Phänotyp","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"DNA."},
-  {"id":"k8bi124","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Symbiose: beide …","answers":["schaden","profitieren","neutral","parasitär"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nutzen."},
-  {"id":"k8bi125","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Lunge nimmt … auf.","answers":["CO₂","O₂","N₂","He"],"correct":1,"difficulty":"mittel","points":10,"explanation":"O₂."},
-  {"id":"k8bi126","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Zellmembran ist …","answers":["starr","selektiv permeabel","dicht total","DNA"],"correct":1,"difficulty":"mittel","points":10,"explanation":"selektiv."},
-  {"id":"k8bi127","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Insektenbeine: …","answers":["4","6","8","10"],"correct":1,"difficulty":"mittel","points":10,"explanation":"6."},
-  {"id":"k8bi128","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Winterschlaf spart …","answers":["Licht","Energie","Wasser","Luft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Energie."},
-  {"id":"k8bi129","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Gentechnik greift in … ein.","answers":["Verhalten","Erbgut","Wetter","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Genom."},
-  {"id":"k8bi130","category":"k8_biologie","area":"schule","grade":8,"subject":"biologie","topic":"erweiterung","question":"Artenschutz in situ = …","answers":["Zoo","im Lebensraum","Labor","Museum"],"correct":1,"difficulty":"mittel","points":10,"explanation":"vor Ort."}
+  }
+
 ];

@@ -102,10 +102,10 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was versteht man unter einer sogenannten 'Schuldenfalle' bei Jugendlichen?",
     "answers": [
-      "Sparen auf ein Konto",
-      "Verzicht auf Werbung",
+      "Sparen auf ein Sparkonto",
+      "Verzicht auf Onlinewerbung",
       "Dauerhafte Überforderung",
-      "Kauf günstiger Ware"
+      "Kauf von günstiger Kleidung"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -138,10 +138,10 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was versteht man unter dem rechtlichen Begriff des Urheberrechts im digitalen Raum?",
     "answers": [
-      "Freigabe aller Medien",
-      "Recht auf Gratisnutz",
+      "Freigabe aller Medieninhalte",
+      "Recht auf kostenlose Nutzung",
       "Schutz geistigen Werts",
-      "Pflicht zu Uploads"
+      "Pflicht zu häufigen Uploads"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -174,10 +174,10 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Welchem Zweck dient die Europäische Datenschutz-Grundverordnung (DSGVO)?",
     "answers": [
-      "Löschung aller Konten",
-      "Zensur von Nachrichten",
+      "Löschung aller Nutzerkonten",
+      "Zensur von Onlinenachrichten",
       "Schutz persönlicher Daten",
-      "Förderung von Werbung"
+      "Förderung von Onlinewerbung"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -228,10 +228,10 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Welche Institution berät Verbraucher in Deutschland unabhängig bei rechtlichen Problemen?",
     "answers": [
-      "Die Handelskammer",
-      "Die Gewerbeaufsicht",
+      "Die örtliche Handelskammer",
+      "Die Gewerbeaufsicht im Land",
       "Die Verbraucherzentrale",
-      "Das Bundesfinanzamt"
+      "Das örtliche Bundesfinanzamt"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -267,7 +267,7 @@ const K7_POLITIK_QUESTIONS = [
       "Nichtig von Anfang an",
       "Wirksam nach Prüfung",
       "Schwebend unwirksam",
-      "Gültig ohne Ausnahme"
+      "Gültig ohne Ausnahmen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -318,10 +318,10 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was beschreibt der Begriff 'Sucht' im Zusammenhang mit Mediennutzung bei Jugendlichen?",
     "answers": [
-      "Freiwilliges Hobby",
+      "Ein freiwilliges Hobby",
       "Zwanghaftes Verhalten",
-      "Reine Neugierde",
-      "Regelmäßiges Lernen"
+      "Reine kindliche Neugierde",
+      "Intensives Lernen am PC"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -336,10 +336,10 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Welchen Zweck verfolgt der gesetzliche Jugendschutz (z. B. USK- oder FSK-Kennzeichnungen)?",
     "answers": [
-      "Zensur der Verlage",
-      "Verbot von Computern",
+      "Strenge Zensur der Verlage",
+      "Ein Verbot von Computern",
       "Schutz vor Gefährdung",
-      "Förderung von Umsatz"
+      "Steigerung des Umsatzes"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -484,7 +484,7 @@ const K7_POLITIK_QUESTIONS = [
     "answers": [
       "Der Deutsche Bundestag",
       "Der Stadt- / Gemeinderat",
-      "Der Europäische Rat",
+      "Das Europäische Parlament",
       "Die Landesregierung"
     ],
     "correct": 1,
@@ -501,8 +501,8 @@ const K7_POLITIK_QUESTIONS = [
     "question": "Welche Aufgabe zählt zu den sogenannten Pflichtaufgaben einer Gemeinde?",
     "answers": [
       "Unterhalt Grundschulen",
-      "Bau eines Sportbads",
-      "Anlegung eines Zoos",
+      "Bau eines neuen Sportbads",
+      "Anlegung eines Tierparks",
       "Bau eines Opernhauses"
     ],
     "correct": 0,
@@ -572,10 +572,10 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Welche drei unabhängigen Gewalten teilen sich die Staatsmacht in der Demokratie?",
     "answers": [
-      "Bund, Länder, Städte",
+      "Bund, Länder und Städte",
       "Gesetz, Ausführung, Recht",
-      "Kanzler, Rat, Gericht",
-      "Presse, Partei, Bürger"
+      "Kanzler, Rat und Gericht",
+      "Presse, Partei und Bürger"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -788,9 +788,9 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Welche Hauptaufgabe erfüllt die parlamentarische Opposition?",
     "answers": [
-      "Führung der Behörden",
-      "Erlass aller Gesetze",
-      "Ernennung von Richtern",
+      "Führung aller Behörden",
+      "Erlass sämtlicher Gesetze",
+      "Ernennung aller Richter",
       "Kontrolle der Regierung"
     ],
     "correct": 3,
@@ -824,9 +824,9 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was versteht man unter einer 'Bürgerinitiative' im politischen Raum?",
     "answers": [
-      "Feste Partei im Staat",
-      "Verein von Firmen",
-      "Behörde der Gemeinde",
+      "Eine feste Partei im Staat",
+      "Ein Verein von Unternehmen",
+      "Eine Behörde der Gemeinde",
       "Zusammenschluss Bürger"
     ],
     "correct": 3,
@@ -842,10 +842,10 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was beschreibt der Begriff 'Lobbyismus' in einer repräsentativen Demokratie?",
     "answers": [
-      "Arbeit von Gerichten",
+      "Arbeit der Gerichtsbarkeit",
       "Einfluss von Verbänden",
-      "Wahl durch das Volk",
-      "Dienst von Beamten"
+      "Wahl allein durch das Volk",
+      "Dienst von Staatsbeamten"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -862,7 +862,7 @@ const K7_POLITIK_QUESTIONS = [
     "answers": [
       "Macht beim Einzelnen",
       "Bindung an das Gesetz",
-      "Willkür der Polizei",
+      "Willkür der Geheimpolizei",
       "Fehlende Verfassung"
     ],
     "correct": 1,
@@ -1026,8 +1026,8 @@ const K7_POLITIK_QUESTIONS = [
     "answers": [
       "Dauerhafter Preisanstieg",
       "Erhebung neuer Steuern",
-      "Zunahme des Geldwerts",
-      "Sinken aller Preise"
+      "Zunahme des Geldwertes",
+      "Sinken aller Warenpreise"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1045,7 +1045,7 @@ const K7_POLITIK_QUESTIONS = [
       "Dauerhaftes Preis sinken",
       "Verlust an Geldwert",
       "Wachstum der Märkte",
-      "Steigen der Gehälter"
+      "Deutliches Steigen der Löhne"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1150,10 +1150,10 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was versteht man unter den Verhandlungen zu einem 'Tarifvertrag'?",
     "answers": [
-      "Mietvertrag Wohnraum",
+      "Mietvertrag für Wohnraum",
       "Vertrag über Steuern",
       "Vereinbarung Lohn/Arbeit",
-      "Kaufvertrag Geschäft"
+      "Kaufvertrag im Geschäft"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1204,10 +1204,10 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Wer finanziert die Beiträge zur gesetzlichen Kranken- u. Rentenversicherung in der Regel?",
     "answers": [
-      "Nur die Betroffenen",
+      "Nur die Betroffenen selbst",
       "Arbeitgeber u. -nehmer",
       "Private Bankinstitute",
-      "Der Staat zu 100%"
+      "Der Staat zu 100 Prozent"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1223,9 +1223,9 @@ const K7_POLITIK_QUESTIONS = [
     "question": "Was beschreibt das 'Solidaritätsprinzip' in den gesetzlichen Sozialversicherungen?",
     "answers": [
       "Starke helfen Schwachen",
-      "Sparen für die Rente",
-      "Jeder zahlt für sich",
-      "Leistung nach Gehalt"
+      "Sparen für die eigene Rente",
+      "Jeder zahlt nur für sich",
+      "Leistung nach dem Gehalt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1241,9 +1241,9 @@ const K7_POLITIK_QUESTIONS = [
     "question": "Was beschreibt das 'Äquivalenzprinzip' bei privaten Versicherungen?",
     "answers": [
       "Leistung entspricht Beitrag",
-      "Staat zahlt die Hälfte",
-      "Beitrag nach Alter frei",
-      "Hilfe ohne Einnahmen"
+      "Der Staat zahlt die Hälfte",
+      "Beitrag frei nach dem Alter",
+      "Hilfe ohne eigene Einnahmen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1312,10 +1312,10 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was beschreibt der Begriff der 'Arbeitsteilung' in einer modernen Fabrik?",
     "answers": [
-      "Halbierung der Zeit",
-      "Urlaub für Arbeiter",
+      "Halbierung der Arbeitszeit",
+      "Urlaub für alle Arbeiter",
       "Zerlegung in Teilschritte",
-      "Verteilung der Gewinne"
+      "Verteilung aller Gewinne"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1494,8 +1494,8 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Welches Organ der EU schlägt neue Gesetze vor u. überwacht deren Umsetzung als 'Hüterin der Verträge'?",
     "answers": [
-      "Die Europäische Bank",
-      "Der Europäische Rat",
+      "Die Europäische Zentralbank",
+      "Der Europäische Ministerrat",
       "Der Gerichtshof der EU",
       "Die Europäische Kommission"
     ],
@@ -1513,9 +1513,9 @@ const K7_POLITIK_QUESTIONS = [
     "question": "Aus wem setzt sich der 'Europäische Rat' bei seinen regelmäßigen Gipfeltreffen zusammen?",
     "answers": [
       "Staats- u. Regierungschefs",
-      "Gewählte Abgeordnete",
-      "Richter aller Länder",
-      "Finanzminister der EU"
+      "Gewählte Abgeordnete der EU",
+      "Richter aus allen Ländern",
+      "Finanzminister der EU-Staaten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1656,7 +1656,7 @@ const K7_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was bezeichnet man als 'ökologischen Rucksack' eines Konsumprodukts?",
     "answers": [
-      "Gewicht der Verpackung",
+      "Gewicht der gesamten Verpackung",
       "Kosten des Transports",
       "Menge des Plastikmülls",
       "Ressourcenverbrauch Aufw."
@@ -1693,9 +1693,9 @@ const K7_POLITIK_QUESTIONS = [
     "question": "Welchen Vorteil bietet das Recycling von Rohstoffen (z. B. Papier, Glas, Metalle)?",
     "answers": [
       "Schonung von Ressourcen",
-      "Erhöhung von Müllberg",
-      "Verstärkung CO2 Abgas",
-      "Verdopplung Energie"
+      "Erhöhung des Müllbergs",
+      "Verstärkung von CO2-Abgas",
+      "Verdoppelter Energiebedarf"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1713,7 +1713,7 @@ const K7_POLITIK_QUESTIONS = [
       "Reinigung von Abwasser",
       "Echter Umweltschutz",
       "Täuschende Werbung Umwelt",
-      "Recycling von Plastik"
+      "Recycling von Plastikmüll"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1784,7 +1784,7 @@ const K7_POLITIK_QUESTIONS = [
     "answers": [
       "Diktat der Minderheit",
       "Entscheid durch Losung",
-      "Einstimmigkeit Pflicht",
+      "Einstimmigkeit ist Pflicht",
       "Beschluss durch Mehrheit"
     ],
     "correct": 3,
@@ -1809,38 +1809,9 @@ const K7_POLITIK_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Zivilcourage bezeichnet den Mut, ohne Rücksicht auf eigene Nachteile für humanitäre Werte u. andere einzustehen."
-  },
-  {"id":"k7po101","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Demokratie = Herrschaft des …","answers":["Königs","Volkes","Militärs","Zufalls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Volkes."},
-  {"id":"k7po102","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"GG ist …","answers":["Roman","Verfassung","Schulordnung","EU-Vertrag"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verfassung."},
-  {"id":"k7po103","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Bundestag = …","answers":["Regierung","Parlament","Gericht","Polizei"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Parlament."},
-  {"id":"k7po104","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Gewaltenteilung endet mit …","answers":["Medien","Judikative","Sport","Kirche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Judikative."},
-  {"id":"k7po105","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Grundrecht Beispiel?","answers":["Gebühr","Meinungsfreiheit","Steuern","Wehrpflicht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Meinung."},
-  {"id":"k7po106","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Wahlen u. a. …","answers":["öffentlich","geheim","online only","ungleich"],"correct":1,"difficulty":"mittel","points":10,"explanation":"geheim."},
-  {"id":"k7po107","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Opposition …","answers":["ersetzt","kontrolliert","verboten","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kontrolle."},
-  {"id":"k7po108","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Rechtsstaat: Bindung an …","answers":["Willkür","Recht","Macht","keine Gerichte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Recht."},
-  {"id":"k7po109","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"EU ist …","answers":["Militär","Staatenverbund","Bundesland","Stadt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verbund."},
-  {"id":"k7po110","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Pressefreiheit dient …","answers":["Geheimnis","Kontrolle","Werbung","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Freiheit."},
-  {"id":"k7po111","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Föderalismus: Bund und …","answers":["Gemeinden","Länder","EU","Parteien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Länder."},
-  {"id":"k7po112","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Art. 1 GG: …","answers":["Steuern","Menschenwürde","Sport","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Würde."},
-  {"id":"k7po113","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Petition an …","answers":["Zufall","Parlament","Strafgericht","Medien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bitten."},
-  {"id":"k7po114","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Sozialstaat → …","answers":["Reiche","Sicherung","keine Hilfe","Militär"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Sicherung."},
-  {"id":"k7po115","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Datenschutz schützt …","answers":["Staaten","personenbezogene Daten","Wetter","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Daten."},
-  {"id":"k7po116","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Demo oft …","answers":["geheim","friedlich/angemeldet","bewaffnet","ohne GG"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Versammlung."},
-  {"id":"k7po117","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Korruption schadet …","answers":["Sport","Gemeinwohl","Wetter","Tourismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vertrauen."},
-  {"id":"k7po118","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Politische Bildung → …","answers":["Indoktrination","Mündigkeit","Partei","Desinteresse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Mündigkeit."},
-  {"id":"k7po119","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"BVerfG prüft …","answers":["Sport","Verfassungsmäßigkeit","Steuern","Wetter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"GG."},
-  {"id":"k7po120","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Menschenrechte gegen …","answers":["Privat only","Willkür","Wetter","Wirtschaft only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schutz."},
-  {"id":"k7po121","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Medienkompetenz gegen …","answers":["Info","Desinformation","Pressefreiheit","Wahlen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fake News."},
-  {"id":"k7po122","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Integration = …","answers":["Ausgrenzung","Teilhabe","Zwang","Isolation"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Teilhabe."},
-  {"id":"k7po123","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Wehrhafte Demokratie schützt …","answers":["alles","fdGO","nichts","Zensur total"],"correct":1,"difficulty":"mittel","points":10,"explanation":"fdGO."},
-  {"id":"k7po124","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Kommunal: …","answers":["EU","Gemeinderat","UNO","NATO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kommune."},
-  {"id":"k7po125","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Lobbyismus …","answers":["illegal","Interessenvertretung","ersetzt Wahl","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Interessen."},
-  {"id":"k7po126","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Sozialversicherung …","answers":["Rüstung","Krankheit/Alter","Parteien","Kultur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Risiken."},
-  {"id":"k7po127","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"UN zielt auf …","answers":["Krieg","Frieden","DE-Handel","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Frieden."},
-  {"id":"k7po128","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Gleichstellung → …","answers":["Diskriminierung","gleiche Chancen","Ungleichheit","Quoten Spaß"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gleichheit."},
-  {"id":"k7po129","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Rechtsweg: Zugang zu …","answers":["Polizei","Gerichten","Medien","Parteien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gericht."},
-  {"id":"k7po130","category":"k7_politik","area":"schule","grade":7,"subject":"politik","topic":"erweiterung","question":"Digitalisierung Herausforderung …","answers":["Handwerk","Datenschutz/Demokratie","Sport","kein Feld"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Transform."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K7_POLITIK_QUESTIONS = K7_POLITIK_QUESTIONS;

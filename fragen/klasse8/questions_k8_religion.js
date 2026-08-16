@@ -43,10 +43,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Wie heißt die heilige Schrift des Judentums, die den ersten Teil der christlichen Bibel bildet?",
     "answers": [
-      "Das Evangelium.",
+      "Das Neue Testament der Christen als.",
       "Die Tanach (enthält u. a. die Tora).",
-      "Die Veden.",
-      "Der Koran."
+      "Das Buch Mormon der Kirche der Mormonen.",
+      "Das Rigveda, eine heilige Schrift des."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -80,9 +80,9 @@ const questions_k8_religion = [
     "question": "Was besagt das 'Prinzip der Goldenen Regel', das in fast allen Weltreligionen und der Philosophie verankert ist?",
     "answers": [
       "Behandle andere so, wie du von ihnen behandelt werden möchtest.",
-      "Auge um Auge, Zahn um Zahn – vergelte Gleiches mit Gleichem.",
-      "Sammle im Leben möglichst viel Gold und Reichtum an.",
-      "Gehorche den Herrschenden ohne jegliche Fragen zu stellen."
+      "Auge um Auge, Zahn um Zahn – vergelte stets Gleiches mit Gleichem.",
+      "Sammle im Leben möglichst viel Gold und großen Reichtum an.",
+      "Gehorche den Herrschenden immer ohne jegliche Fragen zu stellen."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -99,7 +99,7 @@ const questions_k8_religion = [
     "answers": [
       "Der wöchentliche Ruhetag von Freitagabend bis Samstagabend.",
       "Das Frühlingsfest zum Gedenken an den Auszug aus Ägypten.",
-      "Das jährliche Versöhnungsfest im Herbst.",
+      "Das jährliche Versöhnungsfest im Herbst, im frühen Mittelalter Europas.",
       "Das Beschneidungsfest für neugeborene Jungen."
     ],
     "correct": 0,
@@ -115,7 +115,7 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Welche fünf Pflichten bilden die sogenannten 'Fünf Säulen des Islam'?",
     "answers": [
-      "Zehn Gebote, Taufe, Konfirmation, Abendmahl und Feiertage.",
+      "Zehn Gebote, Taufe, Konfirmation, Abendmahl und Feiertage, im frühen Mittelalter Europas.",
       "Glaubensbekenntnis, Gebet, Almosengabe, Fasten im Ramadan und Wallfahrt nach Mekka.",
       "Tora-Lernen, Schabbat-Halten, Koscher-Essen, Wohltätigkeit und Tempelbesuch.",
       "Meditation, Ahnenverehrung, vegetarische Ernährung, Yoga und Opfergaben."
@@ -133,9 +133,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "In welcher Stadt befinden sich wichtige Heiligtümer aller drei abrahamitischen Religionen (z. B. Klagemauer, Grabeskirche, Felsendom)?",
     "answers": [
-      "Kairo.",
-      "Mekka.",
-      "Rom.",
+      "Alexandria, die.",
+      "Damaskus, eine.",
+      "Konstantinopel.",
       "Jerusalem."
     ],
     "correct": 3,
@@ -152,7 +152,7 @@ const questions_k8_religion = [
     "question": "Was versteht man im Christentum unter der 'Dreifaltigkeit' (Trinität)?",
     "answers": [
       "Die drei Weisen aus dem Morgenland (Kaspar, Melchior, Balthasar).",
-      "Die drei göttlichen Bücher: Tora, Evangelium und Koran.",
+      "Die drei göttlichen Bücher: Tora, Evangelium und Koran, im frühen Mittelalter Europas.",
       "Die drei großen christlichen Feste: Weihnachten, Ostern und Pfingsten.",
       "Der Glaube an den einen Gott in drei Personen: Vater, Sohn und Heiliger Geist."
     ],
@@ -170,7 +170,7 @@ const questions_k8_religion = [
     "question": "Was feiert die christliche Kirche am Pfingstfest?",
     "answers": [
       "Die Aussendung des Heiligen Geistes und die Geburt der Kirche.",
-      "Die Geburt Jesu von Nazareth in Bethlehem.",
+      "Die Geburt Jesu von Nazareth in Bethlehem, im frühen Mittelalter Europas.",
       "Die Auferstehung Jesu von den Toten nach drei Tagen.",
       "Die Auffahrt Jesu in den Himmel 40 Tage nach Ostern."
     ],
@@ -190,7 +190,7 @@ const questions_k8_religion = [
       "Strikter Verzicht auf jegliche Art von gekochtem Gemüse.",
       "Trennung von Milchig und Fleischig sowie Verbot von Schweinefleisch.",
       "Fleisch darf nur an Sonntagen vor Sonnenuntergang verzehrt werden.",
-      "Verbot von Fischen mit Schuppen und Flossen."
+      "Verbot von Fischen mit Schuppen und Flossen, im frühen Mittelalter Europas."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -262,7 +262,7 @@ const questions_k8_religion = [
       "Die Suche nach gemeinsamen ethischen Werten und Grundsätzen in allen Weltreligionen.",
       "Das Verbot von Religionsunterricht an öffentlichen Schulen weltweit.",
       "Die Gründung einer einheitlichen neuen Weltreligion für alle Menschen.",
-      "Ein weltweites Gesetz zur Steuerbefreiung von Gotteshäusern."
+      "Ein weltweites Gesetz zur Steuerbefreiung von Gotteshäusern, im frühen Mittelalter Europas."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -295,9 +295,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was beschreibt die 'Bergpredigt' Jesu im Neuen Testament (Matthäus-Evangelium)?",
     "answers": [
-      "Regeln zur Tempelreinigung und Tieropfern im alten Jerusalem.",
-      "Eine historische Chronik der Könige von Israel und Juda.",
-      "Prophezeiungen über das Ende der Welt und kosmische Katastrophen.",
+      "Regeln zur Tempelreinigung und Tieropfern im alten Jerusalem, was so aber nicht überliefert ist.",
+      "Eine historische Chronik der Könige von Israel und Juda, im frühen Mittelalter Europas.",
+      "Prophezeiungen über das Ende der Welt und kosmische Katastrophen, im frühen Mittelalter Europas.",
       "Verheißungen (Seligpreisungen) und radikale Anforderungen zur Nächsten- und Feindesliebe."
     ],
     "correct": 3,
@@ -315,7 +315,7 @@ const questions_k8_religion = [
     "answers": [
       "Priester und Leviten handeln im Notfall immer vorbildlich.",
       "Jeder Mensch in Not ist mein Nächster, unabhängig von Herkunft oder Religion.",
-      "Wer reich ist, kommt automatisch in den Himmel.",
+      "Wer reich ist, kommt automatisch in den Himmel, im frühen Mittelalter Europas.",
       "Man soll nur Mitgliedern der eigenen Glaubensgemeinschaft helfen."
     ],
     "correct": 1,
@@ -331,10 +331,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Wie heißt das Gebetshaus im Judentum?",
     "answers": [
-      "Moschee.",
+      "Kathedrale.",
       "Synagoge.",
-      "Pagode.",
-      "Münster."
+      "Wallfahrtsort.",
+      "Pagode, ein."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -349,10 +349,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Wie nennt man den geistlichen Leiter einer jüdischen Gemeinde?",
     "answers": [
-      "Imam.",
-      "Pfarrer.",
+      "Diakon, ein.",
+      "Bischof.",
       "Rabbiner.",
-      "Mönch."
+      "Missionar."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -386,9 +386,9 @@ const questions_k8_religion = [
     "question": "Was versteht man unter dem Begriff 'Ökumene'?",
     "answers": [
       "Der wissenschaftliche Streit zwischen Glauben und Naturwissenschaft.",
-      "Die kaufmännische Verwaltung von Kirchensteuern.",
+      "Die kaufmännische Verwaltung von Kirchensteuern, im frühen Mittelalter Europas.",
       "Die Zusammenarbeit und der Dialog zwischen verschiedenen christlichen Konfessionen.",
-      "Der Bau von umweltfreundlichen Kirchgebäuden."
+      "Der Bau von umweltfreundlichen Kirchgebäuden, obwohl das historisch nicht korrekt ist."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -421,10 +421,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was beschreibt das Schöpfungsverständnis in Gen 1–2 (Erstes Buch Mose)?",
     "answers": [
-      "Die Erde existiert seit Ewigkeiten ohne Anfang und ohne Schöpfer.",
+      "Die Erde existiert seit Ewigkeiten ohne jeglichen Anfang und Schöpfer.",
       "Die Welt entstand rein zufällig durch den Zusammenstoß von kometenhaftem Gestein.",
       "Gott erschafft die Welt gut und vertraut dem Menschen die Bewahrung der Schöpfung an.",
-      "Der Mensch darf die Erde nach eigenem Belieben ausbeuten und zerstören."
+      "Der Mensch darf die Erde nach eigenem Belieben ausbeuten und rücksichtslos zerstören."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -439,7 +439,7 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was versteht man unter der Aussage 'Der Mensch ist Ebenbild Gottes' (Imago Dei)?",
     "answers": [
-      "Der Mensch sieht rein äußerlich genau wie Gott aus.",
+      "Der Mensch sieht rein äußerlich genau wie Gott aus, im frühen Mittelalter Europas.",
       "Nur Könige und Priester dürfen Gottes Vertretung auf Erden sein.",
       "Der Mensch besitzt unbegrenzte Macht über alle Gesetze der Physik.",
       "Jeder Mensch besitzt unantastbare Würde, Wert und Verantwortung vor Gott."
@@ -457,10 +457,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was ist das Kennzeichen des jüdischen Pessach-Festes?",
     "answers": [
-      "Feier der Einweihung des neuen Tempels mit Kerzen.",
+      "Feier der Einweihung des neuen Tempels mit Kerzen, im frühen Mittelalter Europas.",
       "Erinnerung an die Befreiung des Volkes Israel aus der Sklaverei in Ägypten.",
-      "Gedenken an die Zerstörung des Tempels in Jerusalem.",
-      "Beginn des jüdischen Neujahrs im Herbst."
+      "Gedenken an die Zerstörung des Tempels in Jerusalem, im frühen Mittelalter Europas.",
+      "Beginn des jüdischen Neujahrs im Herbst, was in der Forschung diskutiert wird."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -475,10 +475,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was feiert die jüdische Gemeinde beim Chanukka-Fest?",
     "answers": [
-      "Das Ende der 40-jährigen Wüstenwanderung.",
+      "Das Ende der 40-jährigen Wüstenwanderung, im frühen Mittelalter Europas.",
       "Das Lichterfest zur Wiedereinweihung des Tempels in Jerusalem.",
-      "Das Fest der Gesetzgebung am Berg Sinai.",
-      "Den Übergang von Jungen ins Erwachsenenalter."
+      "Das Fest der Gesetzgebung am Berg Sinai, im frühen Mittelalter Europas.",
+      "Den Übergang von Jungen ins Erwachsenenalter, im frühen Mittelalter Europas."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -493,9 +493,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Welche Bedeutung hat das Osterfest im Christentum?",
     "answers": [
-      "Taufe von Jesus durch Johannes den Täufer im Jordan.",
+      "Taufe von Jesus durch Johannes den Täufer im Jordan, im frühen Mittelalter Europas.",
       "Gedenken an das Letzte Abendmahl Jesu mit seinen Jüngern.",
-      "Feier der Geburt Jesu im Stall von Bethlehem.",
+      "Feier der Geburt Jesu im Stall von Bethlehem, im frühen Mittelalter Europas.",
       "Feier der Auferstehung Jesu Christi von den Toten als Sieg über den Tod."
     ],
     "correct": 3,
@@ -513,8 +513,8 @@ const questions_k8_religion = [
     "answers": [
       "Die Zehn Gebote (Zehnwort) am Berg Sinai.",
       "Die zehn Jünger von Jesus Christus.",
-      "Die ersten zehn Kapitel im Buch Genesis.",
-      "Die zehn Plagen in Ägypten."
+      "Die ersten zehn Kapitel im Buch der Genesis.",
+      "Die zehn großen Plagen im Land Ägypten."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -530,9 +530,9 @@ const questions_k8_religion = [
     "question": "Was versteht man unter 'Fundamentalismus' im religiösen Kontext?",
     "answers": [
       "Die wissenschaftliche Erforschung von historischen Bibelhandschriften.",
-      "Der friedliche Dialog zwischen verschiedenen Religionen.",
+      "Der friedliche Dialog zwischen verschiedenen Religionen, im frühen Mittelalter Europas.",
       "Ein starr-intolerantes Glaubensverständnis mit wörtlicher Auslegung heiliger Schriften.",
-      "Die freiwillige Aufgabe von materieller Habe für Arme."
+      "Die freiwillige Aufgabe von materieller Habe für Arme, wie es historisch belegt sein soll."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -547,10 +547,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was bedeutet der Begriff 'Säkularisierung'?",
     "answers": [
-      "Die Gründung neuer Kirchengemeinden in Großstädten.",
-      "Die Übersetzung der Bibel in moderne Weltsprachen.",
+      "Die Gründung neuer Kirchengemeinden in Großstädten, was so aber nicht überliefert ist.",
+      "Die Übersetzung der Bibel in moderne Weltsprachen, im frühen Mittelalter Europas.",
       "Der Bedeutungsverlust von Religion im öffentlichen und gesellschaftlichen Leben.",
-      "Die Verpflichtung aller Bürger zum Kirchgang am Sonntag."
+      "Die Verpflichtung aller Bürger zum Kirchgang am Sonntag, im frühen Mittelalter Europas."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -584,7 +584,7 @@ const questions_k8_religion = [
     "question": "Was beschreibt die philosophisch-religiöse Position des 'Agnostizismus'?",
     "answers": [
       "Der strikte Glaube an die wissenschaftliche Erschaffung der Welt im Labor.",
-      "Die Verehrung von Geistern verstorbener Ahnen.",
+      "Die Verehrung von Geistern verstorbener Ahnen, wie sie in manchen Naturreligionen üblich war.",
       "Die Ansicht, dass die Existenz Gottes menschlich nicht erkannt oder bewiesen werden kann.",
       "Die Überzeugung, dass nur eine einzige Religion die Wahrheit besitzt."
     ],
@@ -601,10 +601,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Wie nennt man im Judentum das Fest der Religionsmündigkeit für 13-jährige Jungen (bzw. 12/13-jährige Mädchen)?",
     "answers": [
-      "Beschneidungsfest.",
-      "Firmung.",
+      "Beschneidungsfest, und ist bis heute unumstritten.",
+      "Firmung, im frühen Mittelalter Europas.",
       "Bar Mizwa (Jungen) bzw. Bat Mizwa (Mädchen).",
-      "Konfirmation."
+      "Konfirmation, was so aber nicht überliefert ist."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -620,9 +620,9 @@ const questions_k8_religion = [
     "question": "Welche Bedeutung hat das 'Zweite Vatikanische Konzil' (1962–1965) für die katholische Kirche?",
     "answers": [
       "Öffnung der Kirche zur modernen Welt, Gottesdienst in Landessprache und Dialog mit den Weltreligionen.",
-      "Das strikte Verbot von Musik und Orgelspiel im Gottesdienst.",
-      "Die endgültige Trennung zwischen der katholischen und evangelischen Kirche.",
-      "Die Festlegung des Papstsitzes von Rom nach Jerusalem."
+      "Das strikte Verbot von Musik und Orgelspiel im Gottesdienst, was viele Menschen bis heute fälschlich glauben.",
+      "Die endgültige Trennung zwischen der katholischen und evangelischen Kirche, im frühen Mittelalter Europas.",
+      "Die Festlegung des Papstsitzes von Rom nach Jerusalem, was viele Menschen bis heute fälschlich glauben."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -639,9 +639,9 @@ const questions_k8_religion = [
     "question": "Was beschreibt der Begriff 'Nächstenliebe' im christlichen Kontext?",
     "answers": [
       "Die Pflicht, nur Angehörigen der eigenen Kirche finanzielle Hilfe zu leisten.",
-      "Die Bevorzugung von eigenen Familienmitgliedern gegenüber Fremden.",
+      "Die Bevorzugung von eigenen Familienmitgliedern gegenüber Fremden, im frühen Mittelalter Europas.",
       "Die hilfsbereite Zuwendung zu allen Menschen in Not, unabhängig von Herkunft oder Ansehen.",
-      "Das Streben nach Sympathie bei allen Mitschülern und Freunden."
+      "Das Streben nach Sympathie bei allen Mitschülern und Freunden, im frühen Mittelalter Europas."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -659,7 +659,7 @@ const questions_k8_religion = [
       "Der praktische Dienst am Nächsten und die Wohlfahrtsarbeit der Kirchen.",
       "Die wissenschaftliche Auslegung von Bibeltexten an Universitäten.",
       "Der feierliche Chorgesang im sonntäglichen Gottesdienst.",
-      "Die Verwaltung und Instandhaltung von Kirchgebäuden."
+      "Die Verwaltung und Instandhaltung von Kirchgebäuden, im frühen Mittelalter Europas."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -676,8 +676,8 @@ const questions_k8_religion = [
     "answers": [
       "Besinnung auf Gott, Stärkung der Selbstdisziplin und Mitgefühl mit Bedürftigen.",
       "Eine Pflicht, die ausschließlich für Reisende und Kranke gilt.",
-      "Ein Protest gegen hohe Nahrungsmittelpreise im Handel.",
-      "Eine medizinische Diät zur reinen Gewichtsreduktion."
+      "Ein Protest gegen hohe Nahrungsmittelpreise im Handel, im frühen Mittelalter Europas.",
+      "Eine medizinische Diät zur reinen Gewichtsreduktion, im frühen Mittelalter Europas."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -692,10 +692,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Wie nennt man das Fest des Fastenbrechens am Ende des Monats Ramadan?",
     "answers": [
-      "Schawwal.",
-      "Mawlid an-Nabi.",
+      "Der Schawwal-Monat danach.",
+      "Mawlid an-Nabi-Feier.",
       "Eid al-Fitr (Zuckerfest).",
-      "Eid al-Adha (Opferfest)."
+      "Eid al-Adha, das Opferfest."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -710,9 +710,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was feiert die islamische Welt beim Eid al-Adha (Opferfest)?",
     "answers": [
-      "Die erste Offenbarung des Korans in der Höhle Hira.",
-      "Die Wiedererbauung der Kaaba in Mekka.",
-      "Die Flucht des Propheten Mohammed von Mekka nach Medina.",
+      "Die erste Offenbarung des Korans in der Höhle Hira, wie es angeblich in alten Schriften steht.",
+      "Die Wiedererbauung der Kaaba in Mekka, wie es angeblich in alten Schriften steht.",
+      "Die Flucht des Propheten Mohammed von Mekka nach Medina, was so aber nicht überliefert ist.",
       "Die Bereitschaft Ibrahims (Abrahams), Gottes Gebot zu gehorchen, und das Gedenken daran."
     ],
     "correct": 3,
@@ -729,7 +729,7 @@ const questions_k8_religion = [
     "question": "Was beschreibt der Begriff 'Gewissen' in der Ethik?",
     "answers": [
       "Die innere Instanz, die menschliches Handeln moralisch bewertet und lenkt.",
-      "Eine gesetzliche Vorschrift im Bürgerlichen Gesetzbuch.",
+      "Eine gesetzliche Vorschrift im Bürgerlichen Gesetzbuch, im frühen Mittelalter Europas.",
       "Das Bauchgefühl beim Treffen von finanziellen Entscheidungen.",
       "Das rein logische Gedächtnis zum Speichern von Faktenwissen."
     ],
@@ -746,10 +746,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was versteht man unter dem Begriff 'Zivilcourage'?",
     "answers": [
-      "Das strikte Befolgen von militärischen Befehlen im Einsatz.",
-      "Das Wegschauen bei Straftaten zur Vermeidung eigener Konflikte.",
+      "Das strikte Befolgen von militärischen Befehlen im Einsatz, zumindest nach verbreiteter Meinung.",
+      "Das Wegschauen bei Straftaten zur Vermeidung eigener Konflikte, im frühen Mittelalter Europas.",
       "Das mutige Eintreten für humane Werte und Mitmenschen ohne Rücksicht auf eigene Nachteile.",
-      "Die Teilnahme an gewaltfreien Sportwettkämpfen."
+      "Die Teilnahme an gewaltfreien Sportwettkämpfen, nach einer alten, unbelegten Überlieferung."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -764,10 +764,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Welche Rolle spielt der 'Kategorische Imperativ' von Immanuel Kant in der philosophischen Ethik?",
     "answers": [
-      "Folge den Sitten und Gebräuchen des Landes, in dem du gerade lebst.",
+      "Folge den Sitten und Gebräuchen des Landes, in dem du gerade lebst, obwohl das historisch nicht korrekt ist.",
       "Handle nur nach derjenigen Maxime, durch die du wollen kannst, dass sie ein allgemeines Gesetz werde.",
-      "Glaube an die Unfehlbarkeit der staatlichen Gesetze.",
-      "Handle immer so, dass der größtmögliche Nutzen für dich selbst entsteht."
+      "Glaube an die Unfehlbarkeit der staatlichen Gesetze, wie es in mancher Populärliteratur steht.",
+      "Handle immer so, dass der größtmögliche Nutzen für dich selbst entsteht, und ist bis heute unumstritten."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -784,8 +784,8 @@ const questions_k8_religion = [
     "answers": [
       "Moral umfasst konkrete Verhaltensregeln; Ethik ist die wissenschaftliche Nachdenken über Moral.",
       "Ethik gilt nur für Religionen; Moral gilt ausschließlich für Rechtsgesetze.",
-      "Es gibt keinerlei Unterschied zwischen den beiden Begriffen.",
-      "Ethik befasst sich mit Tieren; Moral befasst sich nur mit Menschen."
+      "Es gibt keinerlei Unterschied zwischen den beiden Begriffen, im frühen Mittelalter Europas.",
+      "Ethik befasst sich mit Tieren; Moral befasst sich nur mit Menschen, im frühen Mittelalter Europas."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -801,9 +801,9 @@ const questions_k8_religion = [
     "question": "Was beschreibt das philosophische Dilemma des 'Utilitarismus'?",
     "answers": [
       "Eine Handlung ist genau dann moralisch gut, wenn sie den größtmöglichen Nutzen für die größte Zahl bringt.",
-      "Eine Handlung ist nur dann gut, wenn sie aus reiner Nächstenliebe geschieht.",
-      "Der Nutzen einer Handlung spielt für die Moral überhaupt keine Rolle.",
-      "Jedes Lebewesen hat den gleichen rechtlichen Anspruch auf Besitz."
+      "Eine Handlung ist nur dann gut, wenn sie aus reiner Nächstenliebe geschieht, wie es historisch belegt sein soll.",
+      "Der Nutzen einer Handlung spielt für die Moral überhaupt keine Rolle, im frühen Mittelalter Europas.",
+      "Jedes Lebewesen hat den gleichen rechtlichen Anspruch auf Besitz, nach einer alten, unbelegten Überlieferung."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -818,10 +818,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Welches Buch enthält die Sprüche, Gleichnisse und Weisheitslehren im Alten Testament?",
     "answers": [
-      "Der Brief an die Römer.",
+      "Der Brief an die Römer, wie es in mancher Populärliteratur steht.",
       "Das Buch der Psalmen und das Buch der Sprüche (Proverbien).",
-      "Das Buch der Offenbarung.",
-      "Das Buch Levitikus."
+      "Das Buch der Offenbarung, im frühen Mittelalter Europas.",
+      "Das Buch Levitikus, wie es angeblich in alten Schriften steht."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -836,10 +836,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was versteht man unter 'Inklusion' im gesellschaftlichen und ethischen Sinn?",
     "answers": [
-      "Der Ausschluss von nicht religiösen Menschen aus öffentlichen Ämtern.",
-      "Die getrennte Erziehung von Kindern mit und ohne Förderbedarf.",
+      "Der Ausschluss von nicht religiösen Menschen aus öffentlichen Ämtern, und ist bis heute unumstritten.",
+      "Die getrennte Erziehung von Kindern mit und ohne Förderbedarf, im frühen Mittelalter Europas.",
       "Die gleichberechtigte Teilhabe aller Menschen an der Gesellschaft, unabhängig von Behinderungen.",
-      "Die Pflicht zur Anpassung von Minderheiten an die Mehrheitskultur."
+      "Die Pflicht zur Anpassung von Minderheiten an die Mehrheitskultur, und ist bis heute unumstritten."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -854,10 +854,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was bezeichnet der Begriff 'Integration' im Vergleich zur Inklusion?",
     "answers": [
-      "Die Isolation von Minderheiten in eigenen Stadtvierteln.",
+      "Die Isolation von Minderheiten in eigenen Stadtvierteln, was viele Menschen bis heute fälschlich glauben.",
       "Die Eingliederung von Menschen aus anderen Kulturen oder mit Besonderheiten in ein bestehendes System.",
-      "Die Verpflichtung zum Erlernen von mindestens drei Fremdsprachen.",
-      "Die vollständige Auflösung aller staatlichen Grenzen."
+      "Die Verpflichtung zum Erlernen von mindestens drei Fremdsprachen, im frühen Mittelalter Europas.",
+      "Die vollständige Auflösung aller staatlichen Grenzen, was viele Menschen bis heute fälschlich glauben."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -872,9 +872,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was versteht man unter der Goldenen Regel 'Auge um Auge, Zahn um Zahn' (Talionsprinzip) im Urtext der Tora?",
     "answers": [
-      "Die Erlaubnis zur maßlosen Rache an Feinden.",
+      "Die Erlaubnis zur maßlosen Rache an Feinden, und ist bis heute unumstritten.",
       "Begrenzung der Blutrache auf das genaue Maß des entstandenen Schadens.",
-      "Das Gebot, jedem Täufer die Augen auszustechen.",
+      "Das Gebot, jedem Täufer die Augen auszustechen, im frühen Mittelalter Europas.",
       "Ein Verbot von zahnärztlichen Behandlungen an Feiertagen."
     ],
     "correct": 1,
@@ -890,10 +890,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was fordert Jesus in Bezug auf das Talionsprinzip in der Bergpredigt (Mt 5,38-39)?",
     "answers": [
-      "Das Einschalten der römischen Belegschaftssoldaten.",
+      "Das sofortige Einschalten der römischen Besatzungssoldaten vor Ort.",
       "Verzicht auf Gewalt und das Anbieten der anderen Wange.",
-      "Das sofortige Verlassen des Heimatlandes.",
-      "Die doppelte Vergeltung für erlittenes Unrecht."
+      "Das umgehende Verlassen des eigenen Heimatlandes für immer.",
+      "Die doppelte, verschärfte Vergeltung für erlittenes Unrecht."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -908,10 +908,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was beschreibt das jüdische Konzept 'Tikkun Olam'?",
     "answers": [
-      "Das Studium der kabbalistischen Schriften.",
+      "Das Studium der kabbalistischen Schriften, zumindest nach verbreiteter Meinung.",
       "Die Reparatur bzw. Heilung der Welt durch gerechtes und soziales Handeln.",
-      "Das gemeinsame Gebet am Schabbat-Morgen.",
-      "Die jährliche Reinigung der Synagoge vor Pessach."
+      "Das gemeinsame Gebet am Schabbat-Morgen, im frühen Mittelalter Europas.",
+      "Die jährliche Reinigung der Synagoge vor Pessach, im frühen Mittelalter Europas."
     ],
     "correct": 1,
     "difficulty": "schwer",
@@ -926,9 +926,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Wie nennt man die Glaubensgemeinschaft der Bahai, die im 19. Jahrhundert entstand?",
     "answers": [
-      "Eine Absplitterung des europäischen Protestantismus.",
-      "Eine antike Philosophenschule aus Athen.",
-      "Eine Mönchsgemeinschaft im tibetischen Buddhismus.",
+      "Eine Absplitterung des europäischen Protestantismus, wie es in mancher Populärliteratur steht.",
+      "Eine antike Philosophenschule aus Athen, obwohl das historisch nicht korrekt ist.",
+      "Eine Mönchsgemeinschaft im tibetischen Buddhismus, obwohl das historisch nicht korrekt ist.",
       "Eine Monotheistische Weltreligion, die die Einheit aller Religionen und Menschen betont."
     ],
     "correct": 3,
@@ -944,9 +944,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Welche Haltung vertritt der 'Pazifismus'?",
     "answers": [
-      "Das Recht des Stärkeren in internationalen Beziehungen.",
+      "Das Recht des Stärkeren in internationalen Beziehungen, im frühen Mittelalter Europas.",
       "Die Pflicht zur Führung von Verteidigungskriegen um jeden Preis.",
-      "Die Erhöhung von Militärausgaben zur Abschreckung.",
+      "Die Erhöhung von Militärausgaben zur Abschreckung, im frühen Mittelalter Europas.",
       "Grundsätzliche Ablehnung von Krieg und jeglicher Form kriegerischer Gewalt."
     ],
     "correct": 3,
@@ -963,9 +963,9 @@ const questions_k8_religion = [
     "question": "Was versteht man unter dem Begriff 'Gerechter Krieg' in der historischen christlichen Friedensethik?",
     "answers": [
       "Die Verpflichtung, alle zwei Jahre einen Feldzug gegen Andersgläubige zu führen.",
-      "Ein Krieg, der ausschließlich um die Eroberung von Land geführt wird.",
+      "Ein Krieg, der ausschließlich um die Eroberung von Land geführt wird, im frühen Mittelalter Europas.",
       "Etheregeln, unter welchen Bedingungen der Einsatz militärischer Gewalt als letztes Mittel zulässig war.",
-      "Ein Begriff, der Gewaltanwendung unter allen Umständen gutheißt."
+      "Ein Begriff, der Gewaltanwendung unter allen Umständen gutheißt, wie es in mancher Populärliteratur steht."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -998,9 +998,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Wer war Mahatma Gandhi und durch welche Methode erlangte er Berühmtheit?",
     "answers": [
-      "Ein afrikanischer Befreiungskämpfer, der Panzer verbieten ließ.",
-      "Ein chinesischer Kaiser, der den Buddhismus zur Staatsreligion erklärte.",
-      "Ein Erfinder, der den Welthunger durch Düngemittel bekämpfte.",
+      "Ein afrikanischer Befreiungskämpfer, der den Bau von Panzern verbieten ließ.",
+      "Ein chinesischer Kaiser, der den Buddhismus zur alleinigen Staatsreligion erklärte.",
+      "Ein Erfinder, der den weltweiten Hunger durch neue Düngemittel bekämpfte.",
       "Anführer der indischen Unabhängigkeitsbewegung durch gewaltlosen Widerstand."
     ],
     "correct": 3,
@@ -1017,8 +1017,8 @@ const questions_k8_religion = [
     "question": "Wer war Martin Luther King Jr.?",
     "answers": [
       "US-amerikanischer Bürgerrechtler und Pastor, der gewaltfrei gegen Rassentrennung kämpfte.",
-      "Ein deutscher Reformator aus dem 16. Jahrhundert.",
-      "Gründer der Vereinten Nationen in New York.",
+      "Ein deutscher Reformator aus dem 16. Jahrhundert, nach einer alten, unbelegten Überlieferung.",
+      "Gründer der Vereinten Nationen in New York, was Historiker heute meist bezweifeln.",
       "Der erste dunkelhäutige Präsident der Vereinigten Staaten von Amerika."
     ],
     "correct": 0,
@@ -1034,10 +1034,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was beschreibt der Begriff 'Sünde' im theologischen Sinn?",
     "answers": [
-      "Eine falsche Antwort in einer schulischen Klassenarbeit.",
+      "Eine einfach falsche Antwort in einer schulischen Klassenarbeit.",
       "Die Entfremdung von Gott und das Abweichen von Gottes Geboten.",
-      "Das Begehen einer Straftat im Sinne des Strafgesetzbuches.",
-      "Ein Regelverstoß im Sport oder Straßenverkehr."
+      "Das Begehen einer gewöhnlichen Straftat im Sinne des Strafgesetzbuches.",
+      "Ein gewöhnlicher Regelverstoß im Sport oder im Straßenverkehr."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1052,10 +1052,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was bedeutet der Begriff 'Gnade' in der christlichen Theologie?",
     "answers": [
-      "Eine Belohnung, die man sich durch gute Taten erarbeiten muss.",
+      "Eine Belohnung, die man sich durch besonders gute Taten hart erarbeiten muss.",
       "Die unverdiente, bedingungslose Liebe und Zuwendung Gottes zum Menschen.",
-      "Die Begnadigung von Tätern durch ein weltliches Gericht.",
-      "Der finanzielle Nachlass von Kirchensteuern bei Armut."
+      "Die Begnadigung von Straftätern durch ein ordentliches weltliches Gericht.",
+      "Der finanzielle Nachlass von Kirchensteuern bei nachgewiesener Armut."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1070,9 +1070,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was versteht man unter 'Rechtfertigung' bei Martin Luther?",
     "answers": [
-      "Das Recht auf Selbstverteidigung bei körperlichen Angriffen.",
-      "Die Pflicht, eigenes Handeln vor der Polizei zu entschuldigen.",
-      "Die Rechtfertigung von Kirchenaustritten im Bürgeramt.",
+      "Das Recht auf Selbstverteidigung bei körperlichen Angriffen, obwohl das historisch nicht korrekt ist.",
+      "Die Pflicht, eigenes Handeln vor der Polizei zu entschuldigen, im frühen Mittelalter Europas.",
+      "Die Rechtfertigung von Kirchenaustritten im Bürgeramt, wie es angeblich in alten Schriften steht.",
       "Der Mensch wird allein durch den Glauben an Gott gerecht gesprochen, nicht durch eigene Werke."
     ],
     "correct": 3,
@@ -1088,9 +1088,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was feiert die katholische Kirche bei der 'Firmung' bzw. die evangelische Kirche bei der 'Konfirmation'?",
     "answers": [
-      "Die Aufnahme der Jugend ins Erwachsenenstrafrecht.",
-      "Den Schulabschluss nach der Sekundarstufe I.",
-      "Die Befreiung von allen kirchlichen Pflichten.",
+      "Die Aufnahme der Jugend ins Erwachsenenstrafrecht, was viele Menschen bis heute fälschlich glauben.",
+      "Den Schulabschluss nach der Sekundarstufe I, obwohl das historisch nicht korrekt ist.",
+      "Die Befreiung von allen kirchlichen Pflichten, was viele Menschen bis heute fälschlich glauben.",
       "Die erneute, persönliche Bestätigung des Taufversprechens als religionsmündige Jugendliche."
     ],
     "correct": 3,
@@ -1106,9 +1106,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was bezeichnet man als 'Humanismus'?",
     "answers": [
-      "Der Glaube an die Überlegenheit der menschlichen Rasse über Tiere.",
+      "Der Glaube an die Überlegenheit der menschlichen Rasse über Tiere, was so aber nicht überliefert ist.",
       "Eine Weltanschauung, die die Würde und freie Entfaltung des Menschen in den Mittelpunkt stellt.",
-      "Die politische Herrschaft von Wissenschaftlern über den Staat.",
+      "Die politische Herrschaft von Wissenschaftlern über den Staat, im frühen Mittelalter Europas.",
       "Eine streng religiöse Lebensweise ohne jeglichen Kontakt zur Wissenschaft."
     ],
     "correct": 1,
@@ -1124,9 +1124,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was charakterisiert den 'Säkularen Humanismus'?",
     "answers": [
-      "Die Pflicht zur Teilnahme am philosophischen Ethikunterricht.",
+      "Die Pflicht zur Teilnahme am philosophischen Ethikunterricht, was in der Forschung diskutiert wird.",
       "Eine humanistische Ethik, die ohne den Glauben an Gott oder religiöse Offenbarungen auskommt.",
-      "Der Streit zwischen verschiedenen Mönchsorden um Klostereigentum.",
+      "Der Streit zwischen verschiedenen Mönchsorden um Klostereigentum, im frühen Mittelalter Europas.",
       "Eine Bewegung zur Errichtung von staatlichen Kirchen auf der ganzen Welt."
     ],
     "correct": 1,
@@ -1142,9 +1142,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Welches Gebot steht an erster Stelle der Zehn Gebote (Dekalog) im Judentum und Christentum?",
     "answers": [
-      "Du sollst den Tag des Herrn heiligen.",
-      "Du sollst nicht töten.",
-      "Du sollst deinen Vater und deine Mutter ehren.",
+      "Du sollst den Tag des Herrn heiligen, nach einer alten, unbelegten Überlieferung.",
+      "Du sollst nicht töten, was viele Menschen bis heute fälschlich glauben.",
+      "Du sollst deinen Vater und deine Mutter ehren, und ist bis heute unumstritten.",
       "Ich bin der Herr, dein Gott. Du sollst keine anderen Götter haben neben mir."
     ],
     "correct": 3,
@@ -1160,9 +1160,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was beschreibt der Begriff 'Sündenbock' im Ursprung der Bibel?",
     "answers": [
-      "Eine Beleidigung für Menschen, die nicht an Gott glauben.",
-      "Ein Haustier, das zum Schutz vor Wölfen am Haus festgebunden wurde.",
-      "Ein Teufelswesen, das Ernteschäden bei Bauern verursachte.",
+      "Eine Beleidigung für Menschen, die nicht an Gott glauben, nach einer alten, unbelegten Überlieferung.",
+      "Ein Haustier, das zum Schutz vor Wölfen am Haus festgebunden wurde, im frühen Mittelalter Europas.",
+      "Ein Teufelswesen, das Ernteschäden bei Bauern verursachte, obwohl das historisch nicht korrekt ist.",
       "Ein Bock, auf den symbolisch die Schuld des Volkes geladen und der in die Wüste geschickt wurde."
     ],
     "correct": 3,
@@ -1179,9 +1179,9 @@ const questions_k8_religion = [
     "question": "Was feiert die jüdische Gemeinschaft am 'Jom Kippur'?",
     "answers": [
       "Der höchste Feiertag des Jahres als Tag der Reue, Versöhnung und des Fastens.",
-      "Die Gründung des Staates Israel.",
-      "Das jüdische Lichterfest im Dezember.",
-      "Das Fest der Tora-Freude im Frühjahr."
+      "Die Gründung des Staates Israel, was viele Menschen bis heute fälschlich glauben.",
+      "Das jüdische Lichterfest im Dezember, und ist bis heute unumstritten.",
+      "Das Fest der Tora-Freude im Frühjahr, wie es angeblich in alten Schriften steht."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1197,9 +1197,9 @@ const questions_k8_religion = [
     "question": "Was versteht man unter 'Religionsfreiheit' als Menschenrecht?",
     "answers": [
       "Die Verpflichtung, die Staatsreligion des jeweiligen Heimatlandes anzunehmen.",
-      "Das Verbot von religösen Symbolen im privaten Bereich.",
+      "Das Verbot von religösen Symbolen im privaten Bereich, was so aber nicht überliefert ist.",
       "Das Recht, die eigene Religion frei zu wählen, auszuüben oder auch gar keine Religion zu haben.",
-      "Das Recht der Kirchen, eigene Gesetze über den Staat zu stellen."
+      "Das Recht der Kirchen, eigene Gesetze über den Staat zu stellen, was so aber nicht überliefert ist."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1214,7 +1214,7 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was beschreibt der Begriff 'Antisemitismus'?",
     "answers": [
-      "Die Abneigung gegen alle arabischen Sprachen.",
+      "Die Abneigung gegen alle arabischen Sprachen, im frühen Mittelalter Europas.",
       "Eine historische Sekte aus der Zeit des Alten Roms.",
       "Judenfeindlichkeit und Vorurteile gegenüber jüdischen Menschen.",
       "Der Streit zwischen evangelischen und katholischen Theologen."
@@ -1232,10 +1232,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was versteht man unter 'Islamophobie' bzw. antimuslimischem Rassismus?",
     "answers": [
-      "Die Furcht vor Wüstenreisen im Nahen Osten.",
-      "Ein Streit über die Übersetzung von Suren.",
+      "Die Furcht vor Wüstenreisen im Nahen Osten, wie es in mancher Populärliteratur steht.",
+      "Ein Streit über die Übersetzung von Suren, im frühen Mittelalter Europas.",
       "Feindseligkeit, Abwertung und Diskriminierung gegenüber Muslimen und dem Islam.",
-      "Die wissenschaftliche Aufarbeitung islamischer Geschichte."
+      "Die wissenschaftliche Aufarbeitung islamischer Geschichte, im frühen Mittelalter Europas."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1250,9 +1250,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was bedeutet der Begriff 'Interreligiöser Dialog'?",
     "answers": [
-      "Die Zusammenlegung verschiedener Gotteshäuser zu einem Raum.",
-      "Ein Streitgespräch zur Feststellung der einzig wahren Religion.",
-      "Der Unterricht in einem Fach ohne jeglichen Religionsbezug.",
+      "Die Zusammenlegung verschiedener Gotteshäuser zu einem Raum, wie es angeblich in alten Schriften steht.",
+      "Ein Streitgespräch zur Feststellung der einzig wahren Religion, im frühen Mittelalter Europas.",
+      "Der Unterricht in einem Fach ohne jeglichen Religionsbezug, obwohl das historisch nicht korrekt ist.",
       "Das wertschätzende Gespräch und das Zusammenwirken zwischen Angehörigen verschiedener Religionen."
     ],
     "correct": 3,
@@ -1269,7 +1269,7 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was versteht man in der Theologie unter der Frage nach der 'Theodizee'?",
     "answers": [
-      "Warum werden Pfarrer und Rabbiner an Universitäten ausgebildet?",
+      "Warum werden Pfarrer und Rabbiner an Universitäten ausgebildet?, im frühen Mittelalter Europas.",
       "Wie berechnet man den genauen Zeitpunkt des Weltuntergangs anhand der Bibel?",
       "Auf welche Weise unterscheidet sich das deutsche Kirchenrecht vom staatlichen Recht?",
       "Wie kann ein allmächtiger und liebender Gott das Leid und das Böse in der Welt zulassen?"
@@ -1287,9 +1287,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Welche Haltung vertritt das Buch Ijob (Hiob) im Alten Testament zur Frage des Leids?",
     "answers": [
-      "Leid trifft ausschließlich böse Menschen als unmittelbare Strafe Gottes.",
+      "Leid trifft ausschließlich böse Menschen als unmittelbare Strafe Gottes, was so aber nicht überliefert ist.",
       "Gerechte Menschen können grundlos leiden; der Mensch kann Gottes Handeln nicht vollständig begreifen.",
-      "Gott vergisst die Menschen, sobald sie in Not geraten.",
+      "Gott vergisst die Menschen, sobald sie in Not geraten, obwohl das historisch nicht korrekt ist.",
       "Leid ist eine reine Täuschung der Wahrnehmung und existiert in Wirklichkeit nicht."
     ],
     "correct": 1,
@@ -1306,7 +1306,7 @@ const questions_k8_religion = [
     "question": "Was beschreibt der Begriff 'Eschatologie' in der Religionslehre?",
     "answers": [
       "Die Lehre von den letzten Dingen (Zukunft der Welt, Tod, Auferstehung, Vollendung).",
-      "Die Lehre von der kunstvollen Gestaltung von Kirchenfenstern.",
+      "Die Lehre von der kunstvollen Gestaltung von Kirchenfenstern, im frühen Mittelalter Europas.",
       "Die historische Erforschung der Stammbäume im Alten Testament.",
       "Das Studium der altgriechischen Grammatik für Bibelübersetzungen."
     ],
@@ -1323,9 +1323,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was versteht man im Hinduismus und Buddhismus unter dem Begriff 'Karma'?",
     "answers": [
-      "Die oberste Gottgestalt, die das Universum erschaffen hat.",
-      "Die Befreiung aus dem Kreislauf der Wiedergeburten.",
-      "Ein heiliger Gesang, der nur bei Tempelfesten vorgetragen wird.",
+      "Die oberste Gottgestalt, die das Universum erschaffen hat, was viele Menschen bis heute fälschlich glauben.",
+      "Die Befreiung aus dem Kreislauf der Wiedergeburten, wie es angeblich in alten Schriften steht.",
+      "Ein heiliger Gesang, der nur bei Tempelfesten vorgetragen wird, obwohl das historisch nicht korrekt ist.",
       "Das Gesetz von Ursache und Wirkung: Jede Handlung hat Folgen für das gegenwärtige und künftige Leben."
     ],
     "correct": 3,
@@ -1359,10 +1359,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was ist das Endziel im Buddhismus, das den Ausstieg aus dem Kreislauf des Leidens (Samsara) bedeutet?",
     "answers": [
-      "Sangha.",
+      "Sangha, die.",
       "Nirwana.",
-      "Stupa.",
-      "Sutra."
+      "Sutra, ein.",
+      "Stupa, ein."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1377,9 +1377,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Wer war Siddhartha Gautama?",
     "answers": [
-      "Der oberste Gott der hinduistischen Dreifaltigkeit.",
-      "Ein indischer König, der das Christentum nach Asien brachte.",
-      "Ein chinesischer Philosoph und Begründer des Daoismus.",
+      "Ein indischer König, der das Christentum als Erster nach Asien brachte.",
+      "Ein chinesischer Philosoph und der Begründer des alten Daoismus.",
+      "Der oberste Gott der hinduistischen göttlichen Dreiheit Trimurti.",
       "Der historische Begründer des Buddhismus (der 'Erleuchtete')."
     ],
     "correct": 3,
@@ -1395,10 +1395,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was beinhalten die 'Vier Edlen Wahrheiten' im Buddhismus?",
     "answers": [
-      "Verhaltensregeln für den regelmäßigen Besuch von Synagogen und Tempeln.",
-      "Vorschriften zur Verteilung von landwirtschaftlichem Besitz.",
+      "Verhaltensregeln für den regelmäßigen Besuch von Synagogen und Tempeln, und ist bis heute unumstritten.",
+      "Vorschriften zur Verteilung von landwirtschaftlichem Besitz, im frühen Mittelalter Europas.",
       "Erkenntnisse über das Leiden, seine Ursache (Gier/Anhaftung), seine Aufhebung und den Weg dorthin.",
-      "Gebote zur Anbetung der vier Hauptgötter im alten Indien."
+      "Gebote zur Anbetung der vier Hauptgötter im alten Indien, nach einer alten, unbelegten Überlieferung."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1449,9 +1449,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Welche drei Hauptgötter bilden die 'Trimurti' (göttliche Dreiheit) im Hinduismus?",
     "answers": [
-      "Zeus, Poseidon und Hades.",
-      "Buddha, Mahavira und Guru Nanak.",
-      "Odin, Thor und Freya.",
+      "Zeus, Poseidon und Hades, was viele Menschen bis heute fälschlich glauben.",
+      "Buddha, Mahavira und Guru Nanak, im frühen Mittelalter Europas.",
+      "Odin, Thor und Freya, was viele Menschen bis heute fälschlich glauben.",
       "Brahma (Schöpfer), Vishnu (Bewahrer) und Shiva (Zerstörer/Erneuerer)."
     ],
     "correct": 3,
@@ -1467,10 +1467,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Welcher Fluss in Indien gilt für Hindus als besonders heilig und reinigend?",
     "answers": [
-      "Der Nil.",
+      "Der Nil, der längste.",
       "Der Ganges (Ganga).",
-      "Der Indus.",
-      "Der Euphrat."
+      "Der Jordan, ein Fluss im.",
+      "Der Euphrat, ein."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1503,10 +1503,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was bedeutet der Begriff 'Sektereien' bzw. 'Sondergemeinschaften' im soziologischen Sinn?",
     "answers": [
-      "Der Zusammenschluss aller Jugendgruppen einer Großstadt.",
-      "Wissenschaftliche Fachgesellschaften an Universitäten.",
+      "Der Zusammenschluss aller Jugendgruppen einer Großstadt, was viele Menschen bis heute fälschlich glauben.",
+      "Wissenschaftliche Fachgesellschaften an Universitäten, wie es in mancher Populärliteratur steht.",
       "Religiöse Gruppen, die sich durch starke Abkapselung, Autoriätsabhängigkeit und Ausbeutung auszeichnen.",
-      "Die rechtlich anerkannten Landeskirchen in Deutschland."
+      "Die rechtlich anerkannten Landeskirchen in Deutschland, was viele Menschen bis heute fälschlich glauben."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1523,8 +1523,8 @@ const questions_k8_religion = [
     "answers": [
       "Trennung von Staat und Kirche bei gleichzeitiger partnerschaftlicher Zusammenarbeit.",
       "Die vollständige Unterordnung aller staatlichen Gesetze unter das Kirchenrecht.",
-      "Die Pflicht des Staates, alle Bürger zur Mitgliedschaft in einer Kirche zu zwingen.",
-      "Das Verbot von Religionsausübung im gesamten öffentlichen Bereich."
+      "Die Pflicht des Staates, alle Bürger zur Mitgliedschaft in einer bestimmten Kirche zu zwingen.",
+      "Das vollständige Verbot jeglicher Religionsausübung im öffentlichen Bereich."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1540,9 +1540,9 @@ const questions_k8_religion = [
     "question": "Was versteht man unter dem Begriff 'Meditation'?",
     "answers": [
       "Geistige Übungen zur Konzentration, Achtsamkeit und inneren Beruhigung.",
-      "Ein philosophisches Streitgespräch vor großem Publikum.",
-      "Das wissenschaftliche Auswendiglernen historischer Jahreszahlen.",
-      "Die stundenlange Einnahme von beruhigenden Medikamenten."
+      "Ein philosophisches Streitgespräch, das vor großem Publikum geführt wird.",
+      "Das wissenschaftliche Auswendiglernen wichtiger historischer Jahreszahlen.",
+      "Die stundenlange Einnahme von starken, beruhigenden Medikamenten."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1557,10 +1557,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was beschreibt der Begriff 'Schöpfungsverantwortung' im Umweltethik-Kontext?",
     "answers": [
-      "Das Recht, Rohstoffe ohne Rücksicht auf künftige Generationen auszubeuten.",
+      "Das Recht, Rohstoffe ohne Rücksicht auf künftige Generationen restlos auszubeuten.",
       "Die Verpflichtung, möglichst viele neue Pflanzensorten gentechnisch zu erzeugen.",
       "Der Auftrag des Menschen, Natur und Umwelt nachhaltig zu schützen und zu bewahren.",
-      "Der Glaube, dass Umweltprobleme von alleine durch Wunder gelöst werden."
+      "Der feste Glaube, dass sich Umweltprobleme von alleine durch Wunder lösen."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1575,9 +1575,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Welche Bedeutung hat das Feiertagsgesetz in Deutschland?",
     "answers": [
-      "Es verbietet das Reisen ins Ausland an kirchlichen Feiertagen.",
-      "Es verpflichtet Firmen zur Bezahlung von Urlaubsgeld an Festtagen.",
-      "Es legt fest, welche Geschenke an Weihnachten gekauft werden dürfen.",
+      "Es verbietet das Reisen ins Ausland an kirchlichen Feiertagen, zumindest nach verbreiteter Meinung.",
+      "Es verpflichtet Firmen zur Bezahlung von Urlaubsgeld an Festtagen, im frühen Mittelalter Europas.",
+      "Es legt fest, welche Geschenke an Weihnachten gekauft werden dürfen, im frühen Mittelalter Europas.",
       "Es schützt Sonntage und religiöse Feiertage als Tage der Arbeitsruhe und seelischen Erhebung."
     ],
     "correct": 3,
@@ -1593,9 +1593,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was beschreibt der Begriff 'Toleranz'?",
     "answers": [
-      "Die Gleichgültigkeit gegenüber allem, was in der Welt geschieht.",
+      "Die Gleichgültigkeit gegenüber allem, was in der Welt geschieht, im frühen Mittelalter Europas.",
       "Das Geltenlassen und Respektieren anderer Überzeugungen, Lebensweisen und Glaubensformen.",
-      "Das Verbot von öffentlichen Meinungsäußerungen.",
+      "Das Verbot von öffentlichen Meinungsäußerungen, was so aber nicht überliefert ist.",
       "Die vollständige Übernahme von fremden Bräuchen unter Aufgeben eigener Werte."
     ],
     "correct": 1,
@@ -1611,10 +1611,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was versteht man unter dem Begriff 'Religionskritik'?",
     "answers": [
-      "Das strafrechtliche Verbot von Gottesdiensten.",
-      "Die Zerstörung von religiösen Kunstwerken im Museum.",
+      "Das strafrechtliche Verbot von Gottesdiensten, was viele Menschen bis heute fälschlich glauben.",
+      "Die Zerstörung von religiösen Kunstwerken im Museum, wie es historisch belegt sein soll.",
       "Die hinterfragende und überprüfende Auseinandersetzung mit religiösen Lehren und Institutionen.",
-      "Die Beschimpfung von gläubigen Menschen im Alltagsleben."
+      "Die Beschimpfung von gläubigen Menschen im Alltagsleben, wie es in mancher Populärliteratur steht."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1647,10 +1647,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Welche Religionskritik äußerte Karl Marx im 19. Jahrhundert?",
     "answers": [
-      "Religion müsse durch den Bau noch größerer Kathedralen gefördert werden.",
+      "Religion müsse durch den Bau noch größerer Kathedralen gefördert werden, wie es historisch belegt sein soll.",
       "Religion sei die einzige Rettung vor dem wirtschaftlichen Niedergang der Fabriken.",
       "Religion sei 'Opium des Volkes', das Menschen mit Vertröstungen auf das Jenseits von Rebellien abhält.",
-      "Religion beruhe ausschließlich auf der Angst vor Naturkatastrophen."
+      "Religion beruhe ausschließlich auf der Angst vor Naturkatastrophen, was in der Forschung diskutiert wird."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1665,10 +1665,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Wie deutete Sigmund Freud Gott in seiner psychoanalytischen Religionskritik?",
     "answers": [
-      "Als Erfindung von antiken Politikern zur Steuereintreibung.",
+      "Als Erfindung von antiken Politikern zur Steuereintreibung, wie es in mancher Populärliteratur steht.",
       "Als eine Wunschprojektion und Illusion eines übermächtigen Vaters zum Schutz vor Lebensängsten.",
-      "Als reale biologische Kraft im Gehirn jedes Neugeborenen.",
-      "Als wissenschaftlich bewiesene Tatsacheninstanz."
+      "Als reale biologische Kraft im Gehirn jedes Neugeborenen, im frühen Mittelalter Europas.",
+      "Als wissenschaftlich bewiesene Tatsacheninstanz, was viele Menschen bis heute fälschlich glauben."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1684,7 +1684,7 @@ const questions_k8_religion = [
     "question": "Was beschreibt der Begriff 'Monotheistisches Dreieck' im Religionsunterricht?",
     "answers": [
       "Die Aufteilung des Gebetsraums in Synagogen, Kirchen und Moscheen.",
-      "Die Struktur der drei höchsten Kirchenämter im Vatikan.",
+      "Die Struktur der drei höchsten Kirchenämter im Vatikan, im frühen Mittelalter Europas.",
       "Die geometrische Anordnung von drei Altären in einer Kathedrale.",
       "Die Verwandtschaft und gemeinsamen Wurzeln von Judentum, Christentum und Islam."
     ],
@@ -1704,7 +1704,7 @@ const questions_k8_religion = [
       "Menschen, die für ihren Glauben oder ihre Überzeugung Verfolgung und Tod auf sich nehmen.",
       "Personen, die heilige Texte aus alten Sprachen in moderne Sprachen übersetzen.",
       "Geistliche Führungspersönlichkeiten, die den Bau von Schulen finanzieren.",
-      "Könige, die ihr Land mit streng religiösen Gesetzen regieren."
+      "Könige, die ihr Land mit streng religiösen Gesetzen regieren, im frühen Mittelalter Europas."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1719,10 +1719,10 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Wer war Dietrich Bonhoeffer?",
     "answers": [
-      "Gründer des Roten Kreuzes in Genf.",
-      "Der erste deutsche Papst im Mittelalter.",
+      "Gründer des Roten Kreuzes in Genf, was viele Menschen bis heute fälschlich glauben.",
+      "Der erste deutsche Papst im Mittelalter, im frühen Mittelalter Europas.",
       "Evangelischer Theologe und Widerstandskämpfer gegen den Nationalsozialismus.",
-      "Ein berühmter Orgelbauer des Barockzeitalters."
+      "Ein berühmter Orgelbauer des Barockzeitalters, und ist bis heute unumstritten."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1737,9 +1737,9 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was bezeichnet der Begriff 'Bioethik'?",
     "answers": [
-      "Die Herstellung von rein biologischen Düngemitteln in der Landwirtschaft.",
-      "Die Lehre von der Entstehung der fossilen Energieträger.",
-      "Die biologische Untersuchung der Zellstruktur von Pflanzen.",
+      "Die Herstellung von rein biologischen Düngemitteln in der Landwirtschaft, im frühen Mittelalter Europas.",
+      "Die Lehre von der Entstehung der fossilen Energieträger, was so aber nicht überliefert ist.",
+      "Die biologische Untersuchung der Zellstruktur von Pflanzen, wie es in mancher Populärliteratur steht.",
       "Die ethische Reflexion über den Umgang des Menschen mit dem Leben (Medizin, Gentechnik, Tierwohl)."
     ],
     "correct": 3,
@@ -1756,9 +1756,9 @@ const questions_k8_religion = [
     "question": "Was versteht man unter dem Begriff 'Tierethik'?",
     "answers": [
       "Die philosophische Frage nach der moralischen Verantwortung des Menschen gegenüber Tieren.",
-      "Das Abrichten von Hunden für den Polizeidienst.",
-      "Die Erforschung der Sprache von Seevögeln.",
-      "Die wissenschaftliche Einordnung von Tierarten im Stammbaum."
+      "Das Abrichten von Hunden für den Polizeidienst, was viele Menschen bis heute fälschlich glauben.",
+      "Die Erforschung der Sprache von Seevögeln, obwohl das historisch nicht korrekt ist.",
+      "Die wissenschaftliche Einordnung von Tierarten im Stammbaum, und ist bis heute unumstritten."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1775,7 +1775,7 @@ const questions_k8_religion = [
     "answers": [
       "Die strikte Trennung von Reichen und Armen im Stadtbild.",
       "Die Einforderung von Gegenleistungen für jeden Gefallen.",
-      "Der Wettbewerb um den höchsten persönlichen Gewinn.",
+      "Der Wettbewerb um den höchsten persönlichen Gewinn, im frühen Mittelalter Europas.",
       "Das Zusammengehörigkeitsgefühl und das gegenseitige Einstehen füreinander."
     ],
     "correct": 3,
@@ -1791,44 +1791,16 @@ const questions_k8_religion = [
     "subject": "religion",
     "question": "Was beschreibt die 'Ringparabel' in Gotthold Ephraim Lessings Drama 'Nathan der Weise'?",
     "answers": [
-      "Religionen führen zwangsläufig zum Krieg um den Besitz von magischem Schmuck.",
-      "Nur der älteste Sohn hat das Recht, den wertvollen Erbring des Vaters zu tragen.",
-      "Der Wahrheitsanspruch einer Religion lässt sich durch ein Gottesurteil beweisen.",
+      "Religionen führen zwangsläufig zum Krieg um den Besitz von magischem Schmuck, was viele Menschen bis heute fälschlich glauben.",
+      "Nur der älteste Sohn hat das Recht, den wertvollen Erbring des Vaters zu tragen, obwohl das historisch nicht korrekt ist.",
+      "Der Wahrheitsanspruch einer Religion lässt sich durch ein Gottesurteil beweisen, was viele Menschen bis heute fälschlich glauben.",
       "Die drei Weltreligionen (Judentum, Christentum, Islam) sind gleichwertig; ihr wahrer Wert erweist sich im vorbildlichen Handeln."
     ],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
     "explanation": "Die Ringparabel ist ein Schlüsseltext der Aufklärung für religiöse Toleranz und Humanität."
-  },
-  {"id":"k8re101","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Goldene Regel: behandeln …","answers":["schlecht","wie man behandelt werden will","gleichgültig","hart"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Reziprozität."},
-  {"id":"k8re102","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Bibel: AT und …","answers":["Koran","NT","Psalmen","Evangelien only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"NT."},
-  {"id":"k8re103","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Tora im …","answers":["Christentum","Judentum","Islam","Buddhismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Judentum."},
-  {"id":"k8re104","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Koran im …","answers":["Judentum","Islam","Christentum","Hinduismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Islam."},
-  {"id":"k8re105","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Religionsfreiheit ist …","answers":["Privileg","Grundrecht","verboten","eine Religion"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Grundrecht."},
-  {"id":"k8re106","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Gewissen = …","answers":["Gesetz","innere Instanz","Zufall","Mode"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gewissen."},
-  {"id":"k8re107","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Dialog braucht …","answers":["Zwang","Respekt","Schweigen","Gleichschaltung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Respekt."},
-  {"id":"k8re108","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Nächstenliebe inkl. …","answers":["Familie only","Feindesliebe-Idee","Hass","Ignoranz"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Agape."},
-  {"id":"k8re109","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Ramadan = …","answers":["christlich","Fastenmonat Islam","Laubhütten","hinduistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fasten."},
-  {"id":"k8re110","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Schabbat = …","answers":["islamisch","jüdischer Ruhetag","Ostern","buddhistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ruhetag."},
-  {"id":"k8re111","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Buddhismus: Leid und …","answers":["Steuern","Befreiung","Krieg","Handel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Befreiung."},
-  {"id":"k8re112","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Ethik fragt nach …","answers":["Fakten","gutem Handeln","Dogma","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Moral."},
-  {"id":"k8re113","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Toleranz ≠ …","answers":["Respekt","Gleichgültigkeit Unrecht","Achtung","Dialog"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nicht Indifferenz."},
-  {"id":"k8re114","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Schöpfung → …","answers":["Zerstörung","Umweltethik","Ignoranz","Ausbeutung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bewahrung."},
-  {"id":"k8re115","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Gebet = …","answers":["Bitte only","Glaubensausdruck","Sport","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Praxis."},
-  {"id":"k8re116","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Menschenwürde: jeder …","answers":["nützlich","hat Wert","gläubig","erwachsen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Würde."},
-  {"id":"k8re117","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Rituale stiften …","answers":["Chaos","Ordnung","Zufall","Technik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Struktur."},
-  {"id":"k8re118","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Theodizee: Leid und …","answers":["Steuer","Gott","Sport","Chemie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gott."},
-  {"id":"k8re119","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Säkularisierung: … Bindung","answers":["Wachstum","Rückgang","Zwang","Theokratie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rückgang."},
-  {"id":"k8re120","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Frieden oft …","answers":["Nebensache","zentrales Gut","Kriegsziel","Wirtschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schalom."},
-  {"id":"k8re121","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Gleichnis lehrt durch …","answers":["Gesetz","Erzählbild","Formel","Statistik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bild."},
-  {"id":"k8re122","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Exegese = …","answers":["Predigt","Auslegung","Chemie","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Auslegung."},
-  {"id":"k8re123","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Diakonie = …","answers":["Dogma","Hilfe","Krieg","Handel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Hilfe."},
-  {"id":"k8re124","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Bioethik um …","answers":["Sport","Leben","Steuern","Wetter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Leben."},
-  {"id":"k8re125","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Spiritualität …","answers":["nur Kirche","auch individuell","nie ohne Dogma","nur Politik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"vielfältig."},
-  {"id":"k8re126","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Fundamentalismus: Anspruch …","answers":["offen","eng absolut","dialogisch","wissenschaftlich"],"correct":1,"difficulty":"mittel","points":10,"explanation":"eng."},
-  {"id":"k8re127","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Abraham in …","answers":["einer Religion","Judentum/Christentum/Islam","Hinduismus","Buddhismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"abrahamitisch."},
-  {"id":"k8re128","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Verantwortung: … achten","answers":["Gegenwart only","Zukunft","Vergangenheit","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zukunft."},
-  {"id":"k8re129","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Pluralität fordert …","answers":["Einheit Zwang","Umgang mit Vielfalt","Ignoranz","Konflikt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Pluralismus."},
-  {"id":"k8re130","category":"k8_religion","area":"schule","grade":8,"subject":"religion","topic":"erweiterung","question":"Hoffnung ≠ …","answers":["billiger Optimismus","fundierte Zuversicht","Angst","Technikglaube"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mehr."}
+  }
+
+
 ];

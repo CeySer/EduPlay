@@ -228,9 +228,9 @@ const K7_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Was bildete die Grundlage des mittelalterlichen Lehnswesens (Feudalismus)?",
     "answers": [
-      "Geld u. Festgehalt",
-      "Pachtvertrag Papier",
-      "Sklaverei u. Zwang",
+      "Geld und Lohnzahlung",
+      "Handel und Verträge",
+      "Sklaverei und Zwangsdienst",
       "Land u. Treuepflicht"
     ],
     "correct": 3,
@@ -301,9 +301,9 @@ const K7_GESCHICHTE_QUESTIONS = [
     "question": "Worum ging es im mittelalterlichen Investiturstreit im Kern?",
     "answers": [
       "Einsetzung der Bischöfe",
-      "Wahl der Marktherren",
-      "Besteuerung der Bürger",
-      "Einteilung von Äckern"
+      "Ernennung der Ordensritter",
+      "Verteilung der Bauernäcker",
+      "Wahl der Stadtrichter"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -319,8 +319,8 @@ const K7_GESCHICHTE_QUESTIONS = [
     "question": "Welche beiden historischen Persönlichkeiten standen sich im Investiturstreit gegenüber?",
     "answers": [
       "Heinrich IV. / Gregor VII.",
-      "Otto I. / Leo der Dritte",
-      "Barbarossa / Urban II.",
+      "Otto I. / Papst Leo III.",
+      "Barbarossa / Papst Urban II.",
       "Karl der Große / Papst"
     ],
     "correct": 0,
@@ -537,8 +537,8 @@ const K7_GESCHICHTE_QUESTIONS = [
     "question": "Warum galt die Ständeordnung im Mittelalter als nahezu unumstößlich?",
     "answers": [
       "Gottgegebene Ordnung",
-      "Regelmäßiges Wählen",
-      "Festes Gesetz Buch",
+      "Regelmäßige Wahlen",
+      "Geschriebenes Gesetz",
       "Reines Geldvermögen"
     ],
     "correct": 0,
@@ -554,9 +554,9 @@ const K7_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Was bedeutete die Abhängigkeit der abhängigen Bauern in der Grundherrschaft?",
     "answers": [
-      "Eigentum am Landgut",
-      "Steuerfreiheit Bauer",
-      "Freie Berufswahl Dorf",
+      "Eigentum am eigenen Landgut",
+      "Steuerfreiheit der Bauern",
+      "Freie Berufswahl im Dorf",
       "Hörigkeit / Leibeigenschaft"
     ],
     "correct": 3,
@@ -645,8 +645,8 @@ const K7_GESCHICHTE_QUESTIONS = [
     "question": "Was bewirkten Pflug-Neuerungen u. Dreifelderwirtschaft ab dem 11. Jahrhundert?",
     "answers": [
       "Rückgang der Ernten",
-      "Verarmung der Agrar",
-      "Aufgabe aller Äcker",
+      "Verarmung der Bauern",
+      "Aufgabe vieler Äcker",
       "Bevölkerungswachstum"
     ],
     "correct": 3,
@@ -699,8 +699,8 @@ const K7_GESCHICHTE_QUESTIONS = [
     "question": "Welche medizinische Leistung erbrachten die Mönche u. Nonnen im Mittelalter?",
     "answers": [
       "Kräutermedizin u. Pflege",
-      "Entwicklung Chemie",
-      "Operation am Gehirn",
+      "Entwicklung der Chemielehre",
+      "Operationen am Gehirn",
       "Erfindung von Impfungen"
     ],
     "correct": 0,
@@ -718,7 +718,7 @@ const K7_GESCHICHTE_QUESTIONS = [
     "answers": [
       "Knecht, Reiter, Lehnsherr",
       "Page, Knappe, Ritterschlag",
-      "Rekrut, Söldner, Offizier",
+      "Rekrut, Söldner, Offiziersrang",
       "Schüler, Meister, Ritter"
     ],
     "correct": 1,
@@ -752,7 +752,7 @@ const K7_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Welche Hauptfunktion erfüllte die mittelalterliche Höhenburg?",
     "answers": [
-      "Sommerfrische für Bauern",
+      "Sommerfrische für die Bauern",
       "Schutz- u. Herrschaftssitz",
       "Öffentlicher Marktplatz",
       "Reine Kornspeicherhalle"
@@ -843,7 +843,7 @@ const K7_GESCHICHTE_QUESTIONS = [
     "question": "Welche wirtschaftliche Folge hatte die dramatische Entvölkerung nach der Pestwelle?",
     "answers": [
       "Ende der Ständeordnung",
-      "Sinken aller Löhne",
+      "Sinken aller Löhne im Dorf",
       "Arbeitskräftemangel / Lohn",
       "Überfluss an Getreide"
     ],
@@ -934,8 +934,8 @@ const K7_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Was besagte das berühmte mittelalterliche Rechtsprinzip 'Stadtluft macht frei nach...'",
     "answers": [
-      "...fünf Jahren Arbeit",
-      "...einem Monat Zeit",
+      "...fünf Jahren treuer Arbeit",
+      "...zwei Monaten Zeit",
       "...Jahr und Tag (366 T.)",
       "...Zahlung von Gold"
     ],
@@ -1168,8 +1168,8 @@ const K7_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Welches Merkmal kennzeichnet den Architekturstil der Gotik (ab ca. 1200)?",
     "answers": [
-      "Flachdächer Holz",
-      "Niedrige Hallen",
+      "Flachdächer aus Holz",
+      "Niedrige dunkle Hallen",
       "Rundbögen u. Wände",
       "Spitzbögen u. Fenster"
     ],
@@ -1241,7 +1241,7 @@ const K7_GESCHICHTE_QUESTIONS = [
     "question": "Welche Folge hatte Gutenbergs Erfindung des Buchdrucks für Europa?",
     "answers": [
       "Schnelle Ausbreitung",
-      "Verteuerung Bücher",
+      "Verteuerung der Bücher",
       "Ende aller Schulen",
       "Verbot des Lesens"
     ],
@@ -1294,10 +1294,10 @@ const K7_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Welches wissenschaftliche Instrument nutzte Galileo Galilei zur Himmelsbeobachtung?",
     "answers": [
-      "Das Barometer Druck",
+      "Das Barometer für Druck",
       "Das Fernrohr (Teleskop)",
-      "Den Kompass Metall",
-      "Das Mikroskop Glas"
+      "Den Kompass aus Metall",
+      "Das Mikroskop aus Glas"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1313,9 +1313,9 @@ const K7_GESCHICHTE_QUESTIONS = [
     "question": "Warum wird Leonardo da Vinci als Paradebeispiel eines 'Universalgenies' bezeichnet?",
     "answers": [
       "Reiner Kirchenmaler",
-      "König u. Kaiser zugleich",
+      "König und Kaiser zugleich",
       "Maler, Forscher, Erfinder",
-      "Reiner Erfinder Waffen"
+      "Reiner Erfinder von Waffen"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1368,9 +1368,9 @@ const K7_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Warum suchten europäische Seefahrer Ende des 15. Jahrhunderts neue Seewege nach Asien?",
     "answers": [
-      "Angst vor Seemonstern",
+      "Angst vor den Seemonstern",
       "Befehl des Papstes",
-      "Wunsch nach Polareis",
+      "Wunsch nach mehr Polareis",
       "Sperrung Landwege Orient"
     ],
     "correct": 3,
@@ -1476,7 +1476,7 @@ const K7_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Welche historische Expedition bewies von 1519 bis 1522 praktisch die Kugelgestalt der Erde?",
     "answers": [
-      "Entdeckung Nordpol",
+      "Entdeckung des Nordpols",
       "Nordostpassage Fahrt",
       "Weltumsegelung Magellan",
       "Durchquerung Pazifik"
@@ -1567,7 +1567,7 @@ const K7_GESCHICHTE_QUESTIONS = [
     "question": "Welches Handelssystem verband Europa, Afrika u. Amerika über den Atlantik?",
     "answers": [
       "Atlantik-Dreieckshandel",
-      "Transsahara-Route",
+      "Transsahara-Karawanenweg",
       "Bernsteinstraße Nord",
       "Seidenstraße Asien"
     ],
@@ -1584,7 +1584,7 @@ const K7_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Was versteht man unter dem Begriff 'Kolonialismus'?",
     "answers": [
-      "Kulturaustausch frei",
+      "Kulturaustausch in Frieden",
       "Friedliche Hilfe Land",
       "Wissenschaftstausch",
       "Unterwerfung u. Ausbeut."
@@ -1677,7 +1677,7 @@ const K7_GESCHICHTE_QUESTIONS = [
       "Krieg der Kurfürsten",
       "Deutscher Bauernkrieg",
       "Rebellion der Städte",
-      "Aufstand der Ritter"
+      "Aufstand der Ritterschaft"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1764,7 +1764,7 @@ const K7_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Was kennzeichnete das Leiden der Zivilbevölkerung während des Dreißigjährigen Krieges?",
     "answers": [
-      "Sicherer Schutz auf Burg",
+      "Sicherer Schutz auf der Burg",
       "Steuerfreiheit Bürger",
       "Söldner, Plünderung, Pest",
       "Moderne Friedensabkommen"
@@ -1809,38 +1809,9 @@ const K7_GESCHICHTE_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Katholiken, Lutheraner u. Reformierte wurden im Heiligen Römischen Reich rechtlich völlig gleichgestellt."
-  },
-  {"id":"k7ge101","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Quellenkritik prüft …","answers":["Wetter","Autor/Absicht","Länge","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kritik."},
-  {"id":"k7ge102","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Athen Demokratie war …","answers":["universal","begrenzt","absolut","sozialistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"begrenzt."},
-  {"id":"k7ge103","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Industrialisierung start …","answers":["Antike","England","Steinzeit","1990"],"correct":1,"difficulty":"mittel","points":10,"explanation":"GB."},
-  {"id":"k7ge104","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"1914 Auslöser u. a. …","answers":["Mond","Sarajevo","Mauer","Euro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Attentat."},
-  {"id":"k7ge105","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"NS 1933: …","answers":["Demokratie","Diktatur","EU","Einheit"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Macht."},
-  {"id":"k7ge106","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Holocaust = …","answers":["Krise","Völkermord","Industrie","Aufklärung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Shoah."},
-  {"id":"k7ge107","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"1945 Ende Europa: …","answers":["Beginn","Kapitulation","Mauer","Euro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kapitulation."},
-  {"id":"k7ge108","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Kalter Krieg Blöcke …","answers":["Ost-West","Nord-Süd","Asien","keine"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Ost-West."},
-  {"id":"k7ge109","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"GG 1949 für …","answers":["DDR","BRD","Kaiserreich","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"BRD."},
-  {"id":"k7ge110","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Mauerbau …","answers":["1945","1961","1990","1918"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1961."},
-  {"id":"k7ge111","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Wiedervereinigung …","answers":["1945","1990","1961","1918"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1990."},
-  {"id":"k7ge112","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Revolution FR Motto …","answers":["König","Freiheit Gleichheit Brüderlichkeit","Steuern","Krieg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Devise."},
-  {"id":"k7ge113","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Luther gegen u. a. …","answers":["Wissenschaft","Ablass","Druck","Städte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ablass."},
-  {"id":"k7ge114","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Aufklärung betont …","answers":["Aberglaube","Vernunft","Krieg","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vernunft."},
-  {"id":"k7ge115","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Imperialismus: …","answers":["Ende Kolonien","Kolonien","EU","UNO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Expansion."},
-  {"id":"k7ge116","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Weimar war …","answers":["Kaiserreich","Demokratie","NS","DDR"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Republik."},
-  {"id":"k7ge117","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"UN 1945 Ziel …","answers":["Krieg","Frieden","Kolonien","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Frieden."},
-  {"id":"k7ge118","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Primärquelle = …","answers":["Schulbuch","aus der Zeit","Wiki","Film 2020"],"correct":1,"difficulty":"mittel","points":10,"explanation":"zeitgenössisch."},
-  {"id":"k7ge119","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Propaganda zielt auf …","answers":["Info neutral","Meinungslenkung","Kritik","Wissenschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Lenkung."},
-  {"id":"k7ge120","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"AEMR 1948 Anspruch …","answers":["Europa","universell","USA","DE"],"correct":1,"difficulty":"mittel","points":10,"explanation":"universal."},
-  {"id":"k7ge121","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Erinnerung dient …","answers":["Vergessen","Auseinandersetzung","Zensur","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gedenken."},
-  {"id":"k7ge122","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Römisches Recht → …","answers":["Sport","Europa","Asien isoliert","Mond"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rezeption."},
-  {"id":"k7ge123","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Industrie Folge …","answers":["keine Städte","soziale Frage","nur Adel","keine Technik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"sozial."},
-  {"id":"k7ge124","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"1989: …","answers":["Krieg","friedliche Revolutionen","Versailles","Industrie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wende."},
-  {"id":"k7ge125","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"EU Start u. a. …","answers":["EGKS","Versailles","Wien","UN"],"correct":0,"difficulty":"mittel","points":10,"explanation":"1950er."},
-  {"id":"k7ge126","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Polis = …","answers":["Königreich","Stadtstaat","Lager","Kirche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Polis."},
-  {"id":"k7ge127","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Absolutismus: Macht …","answers":["geteilt","unbeschränkt Anspruch","demokratisch","republikanisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"absolut."},
-  {"id":"k7ge128","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Versailles oft als …","answers":["Sieg","Diktat","neutral","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Diktat."},
-  {"id":"k7ge129","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"1929 Krise …","answers":["stabil","radikalisierte","Ende Industrie","UNO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Krise."},
-  {"id":"k7ge130","category":"k7_geschichte","area":"schule","grade":7,"subject":"geschichte","topic":"erweiterung","question":"Oral History: …","answers":["Akten","Zeitzeugen","Münzen","Karten"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mündlich."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K7_GESCHICHTE_QUESTIONS = K7_GESCHICHTE_QUESTIONS;

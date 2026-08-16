@@ -13,7 +13,7 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "question": "Was bedeutet das französische Nomen 'le collège' auf Deutsch?",
     "answers": [
       "Die Grundschule / Prim.",
-      "Die Universität / Hsch.",
+      "Die Universität / Hochsch.",
       "Die Sekundarschule / Gym.",
       "Der Kindergarten / Kita"
     ],
@@ -49,9 +49,9 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "question": "Was versteht man im französischen Schulalltag unter 'la cantine'?",
     "answers": [
       "Die Schulkantine Essen",
-      "Die Sporthalle Halle",
-      "Die Bibliothek Bücher",
-      "Das Lehrerzimmer Raum"
+      "Die Sporthalle / Halle",
+      "Die Bibliothek / Bücher",
+      "Das Lehrerzimmer / Raum"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -193,9 +193,9 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "question": "Wie lautet die französische Bezeichnung für 'das Frühstück'?",
     "answers": [
       "Le petit-déjeuner",
-      "Le goûter de 4h",
-      "Le dîner du soir",
-      "Le déjeuner midi"
+      "Le goûter, vers 4h",
+      "Le dîner en famille",
+      "Le déjeuner de midi"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -210,10 +210,10 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Was versteht man in Frankreich unter 'le goûter'?",
     "answers": [
-      "Das Mitternachtsbrot",
+      "Das Mitternachtsbrot spät",
       "Der Nachmittags-Snack",
-      "Das Mittagessen warm",
-      "Das Abendessen spät"
+      "Das warme Mittagessen",
+      "Das späte Abendessen"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -283,9 +283,9 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "question": "Wie übersetzt man das Verb 'regarder la télé'?",
     "answers": [
       "Fernsehen schauen",
-      "Radio hören da",
-      "Zeitung lesen",
-      "Musik abspielen"
+      "Radio im Zimmer hören",
+      "Zeitung am Morgen lesen",
+      "Musik laut abspielen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -318,8 +318,8 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Wie heißt der Ausdruck für 'einkaufen gehen'?",
     "answers": [
-      "Faire un voyage",
-      "Faire la fête",
+      "Faire un long voyage",
+      "Faire une grande fête",
       "Faire des courses",
       "Faire du sport"
     ],
@@ -408,9 +408,9 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Was bedeutet die Präposition 'à côté de'?",
     "answers": [
-      "Vor dem Gebäude",
-      "Gegenüber von mir",
-      "Hinter dem Hause",
+      "Vor dem großen Gebäude",
+      "Gegenüber von mir dort",
+      "Hinter dem alten Hause",
       "Neben / An der Seite"
     ],
     "correct": 3,
@@ -426,10 +426,10 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Wie heißt das Verkehrsmittel 'die U-Bahn' in Paris auf Französisch?",
     "answers": [
-      "Le train (Zug)",
-      "Le bus (Linie)",
+      "Le train rapide (Zug)",
+      "Le bus de la ligne",
       "Le métro (Bahn)",
-      "Le vélo (Rad)"
+      "Le vélo électrique"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -626,10 +626,10 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Welche Verben bilden das Passé composé mit dem Hilfsverb 'être'?",
     "answers": [
-      "Alle Verben immer",
+      "Alle Verben immer so",
       "Verben der Bewegung",
-      "Verben auf -ger",
-      "Verben auf -cer"
+      "Verben auf -ger, wie",
+      "Verben auf -cer, wie"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -699,9 +699,9 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "question": "Wie übersetzt man den Satz 'Marie ist gegangen' korrekt ins Französische?",
     "answers": [
       "Marie est allée",
-      "Marie est allé",
-      "Marie a allée",
-      "Marie a allé"
+      "Marie est allé hier",
+      "Marie a allée hier",
+      "Marie a allé, dit-on"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -718,7 +718,7 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "answers": [
       "Les garçons ont arrivé",
       "Les garçons sont arrivé",
-      "Les garçons ont arrivés",
+      "Les garçons ont arrivés hier",
       "Les garçons sont arrivés"
     ],
     "correct": 3,
@@ -1006,10 +1006,10 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Welches indirekte Objektpronomen bedeutet 'ihnen' (Plural mit à)?",
     "answers": [
-      "Das Pronomen lui",
-      "Das Pronomen les",
+      "Das Pronomen lui allein",
+      "Das Pronomen les davon",
       "Das Pronomen leur",
-      "Das Pronomen eux"
+      "Das Pronomen eux selbst"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1042,9 +1042,9 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Was ersetzt das Adverbialpronomen 'en' im Französischen?",
     "answers": [
-      "Direkte Personen Plural",
-      "Subjekte am Satzanfang",
-      "Ortsangaben mit à",
+      "Direkte Personen im Plural",
+      "Subjekte am Satzanfang da",
+      "Ortsangaben mit à dort",
       "Nomen mit Teilungsart. de"
     ],
     "correct": 3,
@@ -1060,10 +1060,10 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Wie bildet man den Teilungsartikel vor einem männlichen Wort im Singular (z. B. pain)?",
     "answers": [
-      "Artikel: des",
+      "Artikel: des, Plural von",
       "Artikel: du (de + le)",
-      "Artikel: de la",
-      "Artikel: de l'"
+      "Artikel: de la, weiblich",
+      "Artikel: de l', vor Vokal"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1150,9 +1150,9 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Welches Relativpronomen ersetzt das direkte Objekt im Relativsatz (den/die/das)?",
     "answers": [
-      "Das Pronomen qui",
-      "Das Pronomen quoi",
-      "Das Pronomen où",
+      "Das Pronomen qui, Subjekt",
+      "Das Pronomen quoi, allein",
+      "Das Pronomen où, für Ort",
       "Das Pronomen que / qu'"
     ],
     "correct": 3,
@@ -1276,10 +1276,10 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Welches Demonstrativpronomen steht vor einem weiblichen Nomen (z. B. maison)?",
     "answers": [
-      "Pronomen: ces",
+      "Pronomen: ces, Plural",
       "Pronomen: cette",
-      "Pronomen: ce",
-      "Pronomen: cet"
+      "Pronomen: ce, für ihn",
+      "Pronomen: cet, Vokal"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1441,9 +1441,9 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "question": "Wie übersetzt man die Frage 'Wie viel(e)' ins Französische?",
     "answers": [
       "Fragewort: combien (de)",
-      "Fragewort: quoi",
-      "Fragewort: comment",
-      "Fragewort: quel"
+      "Fragewort: quoi, informell",
+      "Fragewort: comment, wie",
+      "Fragewort: quel, welcher"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1530,10 +1530,10 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Wie lautet die Verneinung für 'niemand'?",
     "answers": [
-      "ne ... jamais",
-      "ne ... rien",
+      "ne ... jamais, nie",
+      "ne ... rien, nichts",
       "ne ... personne",
-      "ne ... pas"
+      "ne ... pas, Negation"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1620,10 +1620,10 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "An welchem Datum feiern die Franzosen ihren Nationalfeiertag (Fête nationale)?",
     "answers": [
-      "Am 3. Oktober",
+      "Am 3. Oktober jeden Jahres",
       "Am 14. Juli (14 juillet)",
-      "Am 1. Mai (1er mai)",
-      "Am 11. November"
+      "Am 1. Mai (1er mai) auch",
+      "Am 11. November jeweils"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1692,10 +1692,10 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "subject": "franzoesisch",
     "question": "Wie nennt man das bekannte französische Hörnchengebäck aus Plunderteig?",
     "answers": [
-      "La tarte",
-      "La baguette",
+      "La tarte au citron",
+      "La baguette dorée",
       "Le croissant",
-      "Le macaron"
+      "Le macaron sucré"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1809,38 +1809,9 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'Au revoir !' ist der Standard-Abschiedsgruß auf Französisch."
-  },
-  {"id":"k7fr101","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"Bonjour = …","answers":["Gute Nacht","Hallo","Danke","Bitte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Hallo."},
-  {"id":"k7fr102","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"Merci = …","answers":["Bitte","Danke","kein Ergebnis","andere Größe"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Danke."},
-  {"id":"k7fr103","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"le = Artikel …","answers":["fem.","mask.","plural","unbestimmt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mask."},
-  {"id":"k7fr104","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"Je suis = …","answers":["Du bist","Ich bin","Er ist","Wir sind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ich bin."},
-  {"id":"k7fr105","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"cinq = …","answers":["4","5","6","7"],"correct":1,"difficulty":"mittel","points":10,"explanation":"5."},
-  {"id":"k7fr106","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"où = …","answers":["wann","wo","warum","wie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"wo."},
-  {"id":"k7fr107","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"ne … pas","answers":["kein Ergebnis","richtig","nur pas","nur ne"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k7fr108","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"Futur avoir: j’___","answers":["aurai","ai","avais","avoir"],"correct":0,"difficulty":"mittel","points":10,"explanation":"aurai."},
-  {"id":"k7fr109","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"Adjektiv oft … Nomen","answers":["vor","nach","Zahl","nie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nach."},
-  {"id":"k7fr110","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"Liberté = …","answers":["Gleichheit","Freiheit","Brüderlichkeit","Gesetz"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Freiheit."},
-  {"id":"k7fr111","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"cheval Plural …","answers":["chevals","chevaux","chevales","cheveaux"],"correct":1,"difficulty":"mittel","points":10,"explanation":"chevaux."},
-  {"id":"k7fr112","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"Il y a = …","answers":["Es war","Es gibt","Er hat","Sie sind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Es gibt."},
-  {"id":"k7fr113","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"S’il vous plaît = …","answers":["Danke","Bitte","Sorry","Prost"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bitte."},
-  {"id":"k7fr114","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"à Paris = …","answers":["aus","in/nach","bei","über"],"correct":1,"difficulty":"mittel","points":10,"explanation":"à."},
-  {"id":"k7fr115","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"Nous sommes = …","answers":["Ihr seid","Wir sind","Sie sind","Ich bin"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wir sind."},
-  {"id":"k7fr116","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"bleu = …","answers":["rot","blau","grün","gelb"],"correct":1,"difficulty":"mittel","points":10,"explanation":"blau."},
-  {"id":"k7fr117","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"pourquoi = …","answers":["wann","warum","wer","wie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"warum."},
-  {"id":"k7fr118","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"j’ai mangé","answers":["être","avoir PC","est","avoir roh"],"correct":1,"difficulty":"mittel","points":10,"explanation":"PC avoir."},
-  {"id":"k7fr119","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"Parle! = …","answers":["Sprecht","Sprich","Sprechen Sie","Ich spreche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Sprich."},
-  {"id":"k7fr120","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"hier = …","answers":["morgen","gestern","heute","bald"],"correct":1,"difficulty":"mittel","points":10,"explanation":"gestern."},
-  {"id":"k7fr121","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"qui = Relativ …","answers":["Objekt","Subjekt","Zeit","Ort"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Subjekt."},
-  {"id":"k7fr122","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"travaux Plural von travail","answers":["kein Ergebnis","travaux","travails","trabal"],"correct":1,"difficulty":"mittel","points":10,"explanation":"travaux."},
-  {"id":"k7fr123","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"je voudrais = …","answers":["will","möchte","Perfekt","Futur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"möchte."},
-  {"id":"k7fr124","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"chez Marie = …","answers":["mit","bei","ohne","gegen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"bei."},
-  {"id":"k7fr125","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"lundi = …","answers":["Sonntag","Montag","Freitag","Samstag"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Montag."},
-  {"id":"k7fr126","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"C’est Paul","answers":["Il est üblich","c’est Vorstellung","Nous est","Tu est"],"correct":1,"difficulty":"mittel","points":10,"explanation":"c’est."},
-  {"id":"k7fr127","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"beaucoup de","answers":["mit Artikel Pflicht","ohne Artikel","nur Verben","nur Adj"],"correct":1,"difficulty":"mittel","points":10,"explanation":"ohne Art."},
-  {"id":"k7fr128","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"il/elle …","answers":["suis","es","est","sommes"],"correct":2,"difficulty":"mittel","points":10,"explanation":"est."},
-  {"id":"k7fr129","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"au revoir = …","answers":["Hallo","Auf Wiedersehen","Danke","Bitte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Tschüss."},
-  {"id":"k7fr130","category":"k7_franzoesisch","area":"schule","grade":7,"subject":"franzoesisch","topic":"erweiterung","question":"dix = …","answers":["9","10","11","12"],"correct":1,"difficulty":"mittel","points":10,"explanation":"10."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K7_FRANZOESISCH_QUESTIONS = K7_FRANZOESISCH_QUESTIONS;

@@ -80,9 +80,9 @@ const questions_k8_deutsch = [
     "question": "Wann weicht man bei der indirekten Rede vom Konjunktiv I auf den Konjunktiv II aus?",
     "answers": [
       "Wenn die Form des Konjunktivs I mit dem Indikativ identisch ist.",
-      "Wenn die Aussage in der Vergangenheitsform Präteritum steht.",
-      "Wenn der Sprecher eine Lüge oder Täuschung vermutet.",
-      "Wenn der Nebensatz mit der Konjunktion 'dass' eingeleitet wird."
+      "Wenn die Form des Konjunktivs I mit dem Präsens verwechselt wird.",
+      "Wenn die Aussage in der indirekten Rede besonders lang wird.",
+      "Wenn der Nebensatz durch die Konjunktion 'weil' eingeleitet wird."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -116,9 +116,9 @@ const questions_k8_deutsch = [
     "question": "Welches Merkmal unterscheidet eine Reportage von einem reinen Nachrichtentext?",
     "answers": [
       "Eine Reportage berichtet anschaulich und enthält subjektive Eindrücke.",
-      "Eine Reportage ist stets frei erfunden und lyrisch verfasst.",
-      "Eine Reportage verzichtet vollständig auf Fakten und Informationen.",
-      "Eine Reportage besteht nur aus Aufzählungen in Tabellenform."
+      "Eine Reportage besteht nur aus kurzen sachlichen Stichpunkten.",
+      "Eine Reportage verzichtet grundsätzlich auf Orte und Personen.",
+      "Eine Reportage wird ausschließlich in gereimter Versform verfasst dabei."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -134,9 +134,9 @@ const questions_k8_deutsch = [
     "question": "Welche Zeitungstextsorte ist eine meinungsbildende, kommentierende Darstellungsform des Chefredakteurs?",
     "answers": [
       "Ein Leitartikel (oder Kommentar).",
-      "Eine Kurzmeldung.",
-      "Eine dpa-Nachricht.",
-      "Ein Protokoll."
+      "Eine Wettermeldung im hinteren Teil.",
+      "Eine kurze Sportnotiz von gestern.",
+      "Ein amtlicher Hinweis der Stadt."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -152,9 +152,9 @@ const questions_k8_deutsch = [
     "question": "Wie nennt man den einleitenden, fett gedruckten Absatz eines Zeitungsartikels, der die Kernbotschaft zusammenfasst?",
     "answers": [
       "Diesen Absatz nennt man Lead (oder Vorspann).",
-      "Diesen Absatz nennt man Kolumne.",
-      "Diesen Absatz nennt man Schlagzeile.",
-      "Diesen Absatz nennt man Klappentext."
+      "Diesen Absatz nennt man Inhaltsverzeichnis der Zeitung.",
+      "Diesen Absatz nennt man Fußnote am Textende.",
+      "Diesen Absatz nennt man Impressum des Verlags."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -224,9 +224,9 @@ const questions_k8_deutsch = [
     "question": "Welche Konjunktion leitet einen Finalsatz (Absichtssatz) ein?",
     "answers": [
       "Die Konjunktion 'damit' (oder 'um zu').",
-      "Die Konjunktion 'sodass'.",
-      "Die Konjunktion 'nachdem'.",
-      "Die Konjunktion 'während'."
+      "Die Konjunktion 'obwohl' (oder 'obgleich').",
+      "Die Konjunktion 'seitdem' (oder 'sobald').",
+      "Die Konjunktion 'bevor' (oder 'ehe')."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -242,9 +242,9 @@ const questions_k8_deutsch = [
     "question": "Was unterscheidet ein Aktivsatz von einem Passivsatz?",
     "answers": [
       "Im Aktiv führt das Subjekt die Handlung aus; im Passiv geschieht etwas mit dem Subjekt.",
-      "Im Aktiv steht das Verb immer am Satzende; im Passiv steht es an erster Stelle.",
-      "Im Aktiv gibt es keine Nomen; im Passiv gibt es keine Verben.",
-      "Im Aktiv nutzt man nur den Konjunktiv; im Passiv nur den Indikativ."
+      "Im Aktiv steht das Verb im Präteritum; im Passiv im Futur dabei laut vieler Lehrkräfte.",
+      "Im Aktiv fehlt stets das Prädikat; im Passiv fehlt das Subjekt dabei nach dieser Regel.",
+      "Im Aktiv wird nur direkte Rede benutzt; im Passiv indirekte zumindest nach alter Regel."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -260,9 +260,9 @@ const questions_k8_deutsch = [
     "question": "Wie wird das Vorgangspassiv gebildet?",
     "answers": [
       "Mit dem Hilfsverb 'werden' und dem Partizip II des Verbs.",
-      "Mit dem Hilfsverb 'sein' und dem Partizip II des Verbs.",
-      "Mit dem Hilfsverb 'haben' und dem Infinitiv des Verbs.",
-      "Mit dem Hilfsverb 'lassen' und dem Reflexivpronomen."
+      "Mit dem Hilfsverb 'werden' und dem Präteritum des Verbs dabei.",
+      "Mit dem Modalverb 'müssen' und dem Partizip I des Verbs.",
+      "Mit dem Hilfsverb 'sein' und dem Infinitiv mit 'zu'."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -296,9 +296,9 @@ const questions_k8_deutsch = [
     "question": "Welche Regel gilt für die Schreibung von 'dass' mit Doppel-s?",
     "answers": [
       "Es ist eine Konjunktion und kann nicht durch 'dieses', 'jenes' oder 'welches' ersetzt werden.",
-      "Es ist ein Pronomen und verweist immer auf ein Nomen im vorherigen Satz.",
-      "Es steht ausschließlich am Ende von Fragen nach dem Komma.",
-      "Es wird immer dann verwendet, wenn davor ein Relativsatz endet."
+      "Es ist eine Präposition und steht immer direkt vor einem Verb meistens nach gängiger Meinung.",
+      "Es ist ein Adverb und beschreibt ausschließlich einen Ort im Unterricht im Deutschunterricht.",
+      "Es wird nur nach einem Ausrufezeichen im Satz verwendet so wird es oft in der Schule erklärt."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -314,9 +314,9 @@ const questions_k8_deutsch = [
     "question": "Welche Wortart liegt im Satz vor: 'Das Buch, DAS dort liegt, gehört mir.'?",
     "answers": [
       "Es handelt sich um ein Relativpronomen (bezügliches Fürwort).",
-      "Es handelt sich um eine unterordnende Konjunktion.",
-      "Es handelt sich um ein Demonstrativpronomen.",
-      "Es handelt sich um einen unbestimmten Artikel."
+      "Es handelt sich um ein nachgestelltes Attribut im Dativ dabei.",
+      "Es handelt sich um eine nebenordnende Konjunktion hier.",
+      "Es handelt sich um ein reflexives Personalpronomen dort."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -332,9 +332,9 @@ const questions_k8_deutsch = [
     "question": "Was beschreibt eine Ballade als literarische Gattung?",
     "answers": [
       "Ein mehrstrophiges Gedicht, das dramatische, epische und lyrische Elemente vereint.",
-      "Eine kurze, lehrreiche Fabel über sprechende Tiere mit einer Moral.",
-      "Ein langes sachliches Drama in Prosa ohne Reime oder Verse.",
-      "Eine rein wissenschaftliche Erörterung in Zeitschriften."
+      "Eine kurze Kurzgeschichte ganz ohne Reim und ohne Rhythmus dabei nach dieser Regel.",
+      "Ein sachlicher Zeitungsbericht über aktuelle Ereignisse heute.",
+      "Ein reines Bühnenstück ohne jede erzählende Grundstruktur dabei nach dieser Regel."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -350,9 +350,9 @@ const questions_k8_deutsch = [
     "question": "Wer verfasste die berühmte deutsche Ballade 'Der Zauberlehrling'?",
     "answers": [
       "Johann Wolfgang von Goethe.",
-      "Friedrich Schiller.",
-      "Theodor Fontane.",
-      "Heinrich Heine."
+      "Friedrich Schiller persönlich.",
+      "Theodor Fontane im Alter.",
+      "Heinrich Heine höchstselbst."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -368,9 +368,9 @@ const questions_k8_deutsch = [
     "question": "Wie nennt man die sprachliche Figur der menschlichen Belebung von leblosen Dingen (z. B. 'Die Sonne lacht')?",
     "answers": [
       "Diese Figur heißt Personifikation.",
-      "Diese Figur heißt Metapher.",
-      "Diese Figur heißt Alliteration.",
-      "Diese Figur heißt Hyperbel."
+      "Diese Figur heißt Vergleich ('wie').",
+      "Diese Figur heißt Antithese hier.",
+      "Diese Figur heißt Symbolik dabei."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -386,9 +386,9 @@ const questions_k8_deutsch = [
     "question": "Was bedeutet der Begriff 'Metapher' in der Sprachanalyse?",
     "answers": [
       "Ein bildhafter Ausdruck, bei dem ein Wort aus seinem gewohnten Bedeutungszusammenhang übertragen wird.",
-      "Die direkte Gegenüberstellung zweier Begriffe mit dem Vergleichswort 'wie'.",
-      "Die Wiederholung desselben Anfangsbuchstabens bei aufeinanderfolgenden Wörtern.",
-      "Eine starke maßlose Übertreibung eines Sachverhalts."
+      "Die wörtliche Übernahme eines fremden Satzes ohne Quelle nach dieser Regel zumindest nach alter Regel.",
+      "Die sachliche Beschreibung eines Gegenstands ohne Wertung zumindest laut einigen älteren Schulbüchern.",
+      "Die reine Wiederholung gleichbedeutender Wörter im Satz meistens so wird es oft in der Schule erklärt."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -404,9 +404,9 @@ const questions_k8_deutsch = [
     "question": "Welches Satzglied bildet die funktionale Satzkern-Verbindung aus Subjekt und Prädikat?",
     "answers": [
       "Der Subjekt-Prädikat-Komplex heißt Satzgegenstand und Satzaussage.",
-      "Der Subjekt-Prädikat-Komplex heißt Präpositionalobjekt.",
-      "Der Subjekt-Prädikat-Komplex heißt Adverbiale Bestimmung.",
-      "Der Subjekt-Prädikat-Komplex heißt Attribut."
+      "Der Subjekt-Prädikat-Komplex heißt Genitivobjekt im Satz.",
+      "Der Subjekt-Prädikat-Komplex heißt temporale Angabe hier.",
+      "Der Subjekt-Prädikat-Komplex heißt nachgestelltes Attribut meistens."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -458,9 +458,9 @@ const questions_k8_deutsch = [
     "question": "Wie schreibst du Paare von Adjektiven bei nominalisiertem Gebrauch (z. B. 'Alles Gute')?",
     "answers": [
       "Nominalisierte Adjektive nach Signalwörtern wie 'alles', 'etwas', 'viel' werden großgeschrieben.",
-      "Nominalisierte Adjektive werden grundsätzlich immer kleingeschrieben.",
-      "Nominalisierte Adjektive werden nur am Satzanfang großgeschrieben.",
-      "Nominalisierte Adjektive schreibt man mit Bindestrich zusammen."
+      "Nominalisierte Adjektive stehen stets in Anführungszeichen so wird es oft in der Schule erklärt.",
+      "Nominalisierte Adjektive werden ausschließlich im Plural benutzt meistens nach gängiger Meinung.",
+      "Nominalisierte Adjektive verlieren ihre Endung im ganzen Satz in der Grammatik in vielen Texten."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -476,9 +476,9 @@ const questions_k8_deutsch = [
     "question": "Welche Regel gilt für Kommata bei Infinitivgruppen mit 'um', 'ohne', 'statt', 'ansstatt', 'ausser'?",
     "answers": [
       "Infinitivgruppen mit diesen einleitenden Wörtern werden durch Komma abgetrennt.",
-      "Bei diesen Infinitivgruppen darf niemals ein Komma gesetzt werden.",
-      "Ein Komma steht nur, wenn der Infinitiv am Satzanfang steht.",
-      "Ein Komma steht nur, wenn das Hilfsverb 'werden' im Satz vorkommt."
+      "Bei diesen Infinitivgruppen entscheidet allein die Satzlänge.",
+      "Ein Komma steht nur, wenn davor kein Verb mehr folgt meistens in der Grammatik.",
+      "Ein Komma steht nur bei Sätzen mit vorangestellter Rede laut vieler Lehrkräfte."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -494,9 +494,9 @@ const questions_k8_deutsch = [
     "question": "Was versteht man unter einer Inhaltsangabe im Vergleich zu einer Zusammenfassung?",
     "answers": [
       "Inhaltsangaben folgen einer festen Struktur (TATTE) und fassen wesentliche Handlungsschritte präzise zusammen.",
-      "Inhaltsangaben enthalten persönliche Bewertungen und W-Fragen im Schlussteil.",
-      "Inhaltsangaben werden immer in der Ich-Form verfasst und wörtlich zitiert.",
-      "Inhaltsangaben sind lange Nacherzählungen mit allen Details."
+      "Inhaltsangaben bestehen ausschließlich aus wörtlichen Zitaten des Textes so wird es oft in der Schule erklärt.",
+      "Inhaltsangaben schildern die komplette Handlung aus mehreren Perspektiven meistens zumindest nach alter Regel.",
+      "Inhaltsangaben enthalten stets eine persönliche Meinung des Verfassers in der Grammatik nach gängiger Meinung."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -530,9 +530,9 @@ const questions_k8_deutsch = [
     "question": "Aus welchen drei Grundbausteinen besteht ein vollständiges Argument in einer Erörterung?",
     "answers": [
       "Behauptung (These), Begründung und Beispiel (Veranschaulichung).",
-      "Einleitung, Hauptteil und Schluss.",
-      "Pro-Argument, Kontra-Argument und Fazit.",
-      "Subjekt, Prädikat und Objekt."
+      "Einleitung, ausführlicher Hauptteil und ein langer Schluss dabei.",
+      "Eine Frage, eine passende Antwort und ein treffendes Zitat.",
+      "Ort, Zeitpunkt und alle handelnden Personen der Geschichte."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -548,9 +548,9 @@ const questions_k8_deutsch = [
     "question": "Welchen Aufbau wählt man bei einer 'dialektischen Erörterung'?",
     "answers": [
       "Sowohl Pro- als auch Kontra-Argumente werden gegeneinander abgewogen.",
-      "Es werden ausschließlich Argumente für die eigene Meinung gesammelt.",
-      "Der Text folgt chronologisch dem Handlungsablauf einer Geschichte.",
-      "Die Argumente werden nach dem Zufallsprinzip gemischt verfasst."
+      "Nur die eigenen Argumente werden gesammelt und aufgeschrieben meistens.",
+      "Die Handlung der Geschichte wird streng chronologisch erzählt.",
+      "Die Argumente werden völlig zufällig ohne Ordnung notiert."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -566,9 +566,9 @@ const questions_k8_deutsch = [
     "question": "Was beschreibt der Begriff 'Sanduhr-Prinzip' bei der Anordnung von Argumenten?",
     "answers": [
       "Erst die Gegenargumente (stark bis schwach), dann die eigenen Argumente (schwach bis stark).",
-      "Das wichtigste Argument steht immer direkt im ersten Satz des Textes.",
-      "Alle Argumente werden dreimal mit abnehmender Wortanzahl wiederholt.",
-      "Der Text beginnt mit dem Schluss und endet mit der Einleitung."
+      "Erst die eigenen Argumente, danach alle Gegenargumente dazu wie es oft im Unterricht heisst.",
+      "Alle Argumente werden streng nach dem Alphabet sortiert meistens zumindest nach alter Regel.",
+      "Der Text beginnt sofort mit dem abschließenden Fazit dazu in der Grammatik in vielen Texten."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -584,9 +584,9 @@ const questions_k8_deutsch = [
     "question": "Welche Wirkung erzielt eine Alliteration als stilistisches Mittel?",
     "answers": [
       "Sie prägt sich durch den gleichen Anlaut benachbarter Wörter gut ein.",
-      "Sie erzeugt ein Bild im Kopf durch das Weglassen von Verben.",
-      "Sie stellt zwei völlig gegensätzliche Begriffe nebeneinander.",
-      "Sie ahmt ein Geräusch aus der Natur lautmalerisch nach."
+      "Sie betont ein Wort durch besonders lange, gedehnte Vokale im Unterricht.",
+      "Sie verbindet zwei gegensätzliche Begriffe in einem Satz.",
+      "Sie ersetzt ein unschönes Wort durch ein schöneres Wort."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -640,9 +640,9 @@ const questions_k8_deutsch = [
     "question": "Wie nennt man ein Satzgefüge (Hypotaxe) im Unterschied zu einer Satzreihe (Parataxe)?",
     "answers": [
       "Eine Verbindung aus mindestens einem Hauptsatz und mindestens einem Nebensatz.",
-      "Die Aneinanderreihung von zwei oder mehreren gleichrangigen Hauptsätzen.",
-      "Ein unvollständiger Satz, bei dem das Prädikat vollständig weggelassen wird.",
-      "Ein Satz, der ausschließlich aus Aufzählungen von Substantiven besteht."
+      "Eine Reihung mehrerer gleichrangiger Hauptsätze ohne Komma dazwischen.",
+      "Ein Satz ganz ohne Subjekt, Prädikat oder Objekt darin laut vieler Lehrkräfte.",
+      "Ein Text, der komplett aus einzelnen Ausrufen besteht heute."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -676,9 +676,9 @@ const questions_k8_deutsch = [
     "question": "Wie bildet man die ersatzweise Würde-Form des Konjunktivs II?",
     "answers": [
       "Mit dem Konjunktiv II von 'werden' (würde) und dem Infinitiv des Verbs.",
-      "Mit dem Konjunktiv I von 'sein' (sei) und dem Partizip II des Verbs.",
-      "Mit dem Hilfsverb 'haben' im Präsens und dem Infinitiv mit 'zu'.",
-      "Mit dem Modalverb 'sollen' im Präteritum und dem Partizip I."
+      "Mit dem Konjunktiv I von 'haben' und dem Partizip II davon.",
+      "Mit dem Indikativ Präsens und einem angehängten Nebensatz dazu meistens.",
+      "Mit dem Imperativ des Verbs und einer festen Zeitangabe davor."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -712,9 +712,9 @@ const questions_k8_deutsch = [
     "question": "Welcher Adverbialsatz antwortet auf die Frage 'Wann?' oder 'Seit wann?'?",
     "answers": [
       "Der Temporalsatz.",
-      "Der Kausalsatz.",
-      "Der Modalsatz.",
-      "Der Finalsatz."
+      "Der Konditionalsatz.",
+      "Der Konzessivsatz.",
+      "Der Konsekutivsatz."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -730,9 +730,9 @@ const questions_k8_deutsch = [
     "question": "Mit welcher Konjunktion wird ein Konsekutivsatz (Folgesatz) üblicherweise eingeleitet?",
     "answers": [
       "Mit der Konjunktion 'sodass' (oder 'so ... dass').",
-      "Mit der Konjunktion 'obwohl'.",
-      "Mit der Konjunktion 'damit'.",
-      "Mit der Konjunktion 'während'."
+      "Mit der Konjunktion 'seitdem' (oder 'sobald') dabei.",
+      "Mit der Konjunktion 'bevor' (oder 'nachdem').",
+      "Mit der Konjunktion 'falls' (oder 'sofern')."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -766,9 +766,9 @@ const questions_k8_deutsch = [
     "question": "Was beschreibt der Begriff 'Sachtext' (pragmatischer Text) im Unterschied zu einem literarischen Text?",
     "answers": [
       "Ein Text, der sich auf reale Fakten, Informationen und die Wirklichkeit bezieht.",
-      "Ein frei erfundener Text mit magischen Wesen und dichterischer Sprache.",
-      "Ein Theaterstück, das ausschließlich aus Dialogen zwischen Figuren besteht.",
-      "Ein Gedicht, das Gefühle durch Metaphern und Reime ausdrückt."
+      "Ein Gedicht, das immer feste Reime und Rhythmus besitzt dabei nach dieser Regel.",
+      "Ein Theaterstück mit erfundenen Figuren und einem Konflikt im Deutschunterricht.",
+      "Ein Roman, der ausschließlich aus wörtlicher Rede besteht nach gängiger Meinung."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -802,9 +802,9 @@ const questions_k8_deutsch = [
     "question": "Was versteht man unter einer Anapher in der Lyrik- und Textanalyse?",
     "answers": [
       "Die Wiederholung desselben Wortes am Anfang aufeinanderfolgender Sätze oder Verse.",
-      "Die Wiederholung desselben Wortes am Ende aufeinanderfolgender Sätze.",
-      "Die Ersetzung eines unschönen Wortes durch einen beschönigenden Ausdruck.",
-      "Den Einschub eines kurzen Zusatzgedankens in Grammatikklammern."
+      "Die Wiederholung eines Reimwortes am Ende zweier Strophen dabei nach dieser Regel.",
+      "Die Verkürzung eines Satzes durch das Weglassen des Verbs dabei nach dieser Regel.",
+      "Den plötzlichen Wechsel von Präsens zu Präteritum im Text dabei nach dieser Regel."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -838,9 +838,9 @@ const questions_k8_deutsch = [
     "question": "Was versteht man unter dem 'Euphemismus' als Sprachmittel?",
     "answers": [
       "Eine beschönigende oder mildere Umschreibung eines negativen Sachverhalts.",
-      "Eine maßlose, absichtliche Übertreibung eines Sachverhalts.",
-      "Die Erfindung eines neuen Kunstwortes in der Jugendsprache.",
-      "Die spöttische Äußerung, bei der das Gegenteil gemeint ist."
+      "Eine bewusst grobe und beleidigende Wortwahl im Gespräch.",
+      "Die wörtliche Übersetzung eines fremdsprachigen Ausdrucks hier im Unterricht.",
+      "Die Verwendung vieler Fachbegriffe aus der Medizin allgemein."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -874,9 +874,9 @@ const questions_k8_deutsch = [
     "question": "Wann werden Ausdrücke wie 'des Weiteren', 'im Allgemeinen' oder 'vor Allem' groß- bzw. kleingeschrieben?",
     "answers": [
       "'des Weiteren' und 'im Allgemeinen' werden als Substantivierungen großgeschrieben.",
-      "Alle Wörter nach Präpositionen werden immer zwingend kleingeschrieben.",
-      "Diese Verbindungen werden ausschließlich zusammen und kleingeschrieben.",
-      "Die Schreibung richtet sich nach dem Alter des jeweiligen Autors."
+      "Diese Ausdrücke werden grundsätzlich immer getrennt geschrieben.",
+      "Diese Ausdrücke stehen ausschließlich am Satzanfang groß da nach gängiger Meinung.",
+      "Diese Verbindungen richten sich nach der Satzlänge davor dabei nach dieser Regel."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -892,9 +892,9 @@ const questions_k8_deutsch = [
     "question": "Welche Zeitform liegt im Satz vor: 'Nachdem sie gegessen hatte, ging sie spazieren.'?",
     "answers": [
       "Der Nebensatz steht im Plusquamperfekt, der Hauptsatz im Präteritum.",
-      "Der Nebensatz steht im Perfekt, der Hauptsatz im Präsens.",
-      "Der Nebensatz steht im Präteritum, der Hauptsatz im Futur I.",
-      "Beide Teilsätze stehen durchgehend im einfachen Perfekt."
+      "Der Nebensatz steht im Futur II, der Hauptsatz im Perfekt.",
+      "Der Nebensatz steht im Präsens, der Hauptsatz im Perfekt.",
+      "Beide Teilsätze stehen durchgehend im einfachen Präteritum meistens."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -928,9 +928,9 @@ const questions_k8_deutsch = [
     "question": "Welche Form der Argumentation verwendet man bei einer linearen Erörterung?",
     "answers": [
       "Man erörtert eine Streitfrage nur in eine Richtung (stärkende Argumente für eine Position).",
-      "Man wiegt abwechselnd Pro- und Kontra-Argumente im Zickzack-Muster ab.",
-      "Man beschreibt lediglich Personen und Gegenstände ohne eigene Meinung.",
-      "Man schreibt eine erfundene Geschichte mit verdeckter Botschaft."
+      "Man vergleicht abwechselnd zwei völlig verschiedene Themen miteinander.",
+      "Man stellt nur Fragen, ohne selbst dazu Stellung zu beziehen meistens im Deutschunterricht.",
+      "Man erzählt frei erfundene Ereignisse ganz ohne echten Bezug meistens im Deutschunterricht."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -946,9 +946,9 @@ const questions_k8_deutsch = [
     "question": "Wie ist eine klassische Fünf-Satz-Struktur im mündlichen Argumentieren aufgebaut?",
     "answers": [
       "Einleitungssatz, drei Kernargumente/Beispiele und ein Fazit/Appell.",
-      "Fünf Hauptsätze, die jeweils durch ein Komma getrennt sind.",
-      "Ein Gedicht aus exakt fünf Versen mit festem Paarreim.",
-      "Eine Inhaltsangabe in genau fünf kurzen Sätzen."
+      "Einleitungssatz, ein Argument und ein kurzer Schlusssatz dazu dabei.",
+      "Vier Beispiele, gefolgt von einer offenen Schlussfrage dazu.",
+      "Ein Zitat, eine Gegenrede und ein persönliches Fazit dazu."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -964,9 +964,9 @@ const questions_k8_deutsch = [
     "question": "Was ist das Ziel einer 'Inhaltsangabe einer Kurzgeschichte'?",
     "answers": [
       "Den wesentlichen Gehalt des Textes knapp, objektiv und strukturiert darzustellen.",
-      "Eine spannende, ausgeschmückte Nacherzählung in eigenen Worten zu schreiben.",
-      "Den Text Vers für Vers zu zitieren und eigene Erlebnisse einzubinden.",
-      "Ein neues Ende für die Geschichte zu erfinden und zu bewerten."
+      "Eine möglichst lange Nacherzählung mit vielen eigenen Ideen im Deutschunterricht.",
+      "Eine wörtliche Abschrift der wichtigsten Sätze aus dem Text im Deutschunterricht.",
+      "Eine Bewertung des Textes aus rein persönlicher Sicht dazu nach gängiger Meinung."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -982,9 +982,9 @@ const questions_k8_deutsch = [
     "question": "Wie unterscheidet sich Ironie von reinem Spott?",
     "answers": [
       "Bei Ironie meint der Sprecher das Gegenteil von dem, was er sagt.",
-      "Ironie wird nur in englischen Zeitungen als Stilmittel erlaubt.",
-      "Ironie verwendet grundsätzlich keine Adjektive in der Aussage.",
-      "Ironie ist ein ernster Bericht über historische Tatsachen."
+      "Ironie wird stets nur mit einem Ausrufezeichen gekennzeichnet.",
+      "Ironie beschreibt ausschließlich lustige Geschichten für Kinder dabei.",
+      "Ironie bedeutet, immer besonders laut und deutlich zu sprechen."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1054,9 +1054,9 @@ const questions_k8_deutsch = [
     "question": "Was beschreibt der Fachbegriff 'Syntax'?",
     "answers": [
       "Den Satzbau und die Regeln zur Zusammenstellung von Wörtern zu Sätzen.",
-      "Die korrekte Rechtschreibung von Fremdwörtern im Duden.",
-      "Die Lehre von den Reimen und Strophenformen in Gedichten.",
-      "Die Entstehung von Sprachen im Laufe der Jahrhunderte."
+      "Die Bedeutung einzelner Wörter losgelöst vom ganzen Satz.",
+      "Die Herkunft und Geschichte einzelner Fremdwörter im Duden im Unterricht.",
+      "Die richtige Zeichensetzung am Ende eines langen Satzes."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1072,9 +1072,9 @@ const questions_k8_deutsch = [
     "question": "Welche Konjunktion leitet einen Instrumental-Modalsatz ein?",
     "answers": [
       "Die Konjunktion 'indem' oder 'dadurch dass'.",
-      "Die Konjunktion 'weil' oder 'da'.",
-      "Die Konjunktion 'sofort als'.",
-      "Die Konjunktion 'wohingegen'."
+      "Die Konjunktion 'obgleich' oder 'wenngleich'.",
+      "Die Konjunktion 'bis dass' oder 'sooft'.",
+      "Die Konjunktion 'ohne dass' oder 'außer'."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1091,8 +1091,8 @@ const questions_k8_deutsch = [
     "answers": [
       "Auktorialer Erzähler (allwissender Erzähler).",
       "Personaler Erzähler (aus Sicht einer Figur).",
-      "Neutraler Erzähler (Kamera-Perspektive).",
-      "Ich-Erzähler im Erlebnishorizont."
+      "Neutraler Erzähler (reine Kamera-Perspektive).",
+      "Ich-Erzähler im engen Erlebnishorizont."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1108,9 +1108,9 @@ const questions_k8_deutsch = [
     "question": "Was kennzeichnet einen 'personalen Erzähler'?",
     "answers": [
       "Er erzählt das Geschehen aus der eingeschränkten Sicht einer einzelnen Figur.",
-      "Er kennt alle Gedanken aller Figuren im gesamten Werk gleichzeitig.",
-      "Er bewertet das Geschehen sachlich wie ein neutraler Zeitungsreporter.",
-      "Er wendet sich direkt mit Ratschlägen an den Leser."
+      "Er berichtet stets neutral wie ein reiner Nachrichtensprecher dabei meistens.",
+      "Er kennt die Gedanken sämtlicher Figuren im ganzen Buch genau.",
+      "Er spricht die Leser direkt mit persönlichen Ratschlägen an."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1162,9 +1162,9 @@ const questions_k8_deutsch = [
     "question": "Was versteht man unter einem 'Inhaltsverzeichnis' bei längeren Fachtexten?",
     "answers": [
       "Eine geordnete Übersicht über Kapitel, Abschnitte und Seitenzahlen.",
-      "Eine Zusammenfassung der Biographie des Autors am Textende.",
-      "Eine Liste aller schwierigen Wörter und deren Bedeutung.",
-      "Ein alphabetisches Verzeichnis aller im Text genutzten Zitate."
+      "Eine vollständige Liste aller im Buch vorkommenden Personen meistens.",
+      "Eine kurze Zusammenfassung des gesamten Inhalts am Anfang.",
+      "Ein Verzeichnis aller im Buch verwendeten Bilder und Karten."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1180,9 +1180,9 @@ const questions_k8_deutsch = [
     "question": "Welches Pronomen steht im Satz: 'Er gab IHM das Buch.'?",
     "answers": [
       "Ein Personalpronomen (persönliches Fürwort im Dativ).",
-      "Ein Possessivpronomen (besitzanzeigendes Fürwort).",
-      "Ein Demonstrativpronomen (hinweisendes Fürwort).",
-      "Ein Relativpronomen (bezügliches Fürwort)."
+      "Ein Reflexivpronomen (rückbezügliches Fürwort im Satz).",
+      "Ein Indefinitpronomen (unbestimmtes Fürwort im Satz).",
+      "Ein Interrogativpronomen (fragendes Fürwort im Satz)."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1198,9 +1198,9 @@ const questions_k8_deutsch = [
     "question": "Was drückt ein 'Possessivpronomen' aus?",
     "answers": [
       "Es zeigt ein Besitzverhältnis oder eine Zugehörigkeit an (z. B. 'mein', 'dein').",
-      "Es verweist auf eine Person, die nicht namentlich genannt werden möchte.",
-      "Es leitet einen Frage- oder Nebensatz zur Begründung ein.",
-      "Es beschreibt die Steigerung von Eigenschaftswörtern."
+      "Es beschreibt eine Handlung, die gerade jetzt geschieht dabei nach dieser Regel.",
+      "Es leitet stets einen Kausalsatz mit dem Wort 'weil' ein laut vieler Lehrkräfte.",
+      "Es steht immer anstelle eines vollständigen Hauptsatzes dabei nach dieser Regel."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1216,9 +1216,9 @@ const questions_k8_deutsch = [
     "question": "Wie nennt man die rhetorische Figur der 'Klimax'?",
     "answers": [
       "Eine stufenweise Steigerung von Begriffen (z. B. 'Ich kam, sah und siegte').",
-      "Die plötzliche Abschwächung einer Aussage am Satzende.",
-      "Die Verwechslung von zwei ähnlich klingenden Begriffen.",
-      "Den Einschub eines Ausrufs mitten in der Rede."
+      "Die plötzliche mehrfache Wiederholung eines einzelnen Lauts.",
+      "Die Übertragung menschlicher Gefühle auf einen Gegenstand.",
+      "Den einfachen Vergleich zweier Dinge mit dem Wort 'wie' dabei im Unterricht."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1234,9 +1234,9 @@ const questions_k8_deutsch = [
     "question": "Welche Funktion erfüllt das 'Fazit' am Ende einer Erörterung?",
     "answers": [
       "Es fasst die wichtigsten Argumente kurz zusammen und formuliert ein begründetes Urteil.",
-      "Es führt neue Argumente ein, die im Hauptteil noch gefehlt haben.",
-      "Es wiederholt wörtlich alle Beispiele aus dem ersten Absatz.",
-      "Es stellt dem Leser eine Fangfrage ohne Auflösung."
+      "Es stellt am Ende der Erörterung eine neue Streitfrage vor dabei nach gängiger Meinung.",
+      "Es wiederholt den kompletten Hauptteil noch einmal wörtlich zumindest nach alter Regel.",
+      "Es beginnt die ganze Erörterung mit einem passenden Zitat dabei laut vieler Lehrkräfte."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1271,9 +1271,9 @@ const questions_k8_deutsch = [
     "question": "Was versteht man unter einer 'Ellipse' als sprachlichem Stilmittel?",
     "answers": [
       "Die unvollständige Satzstruktur durch Auslassung leicht ergänzbarer Satzteile.",
-      "Die wörtliche Wiederholung desselben Satzes am Strophenende.",
-      "Die Anordnung von Wörtern in einer kreisförmigen Bildgestalt.",
-      "Die Aneinanderreihung von Hauptsätzen ohne Bindewörter."
+      "Die bewusste Wiederholung eines ganzen Satzes im Gedicht im Deutschunterricht.",
+      "Die Verbindung zweier Sätze durch ein einziges Ausrufezeichen.",
+      "Die auffällige Umstellung der Wortfolge in einem Aussagesatz."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1289,9 +1289,9 @@ const questions_k8_deutsch = [
     "question": "Welche Wirkung erzeugt die Verwendung von Lautmalerei (Onomatopoesie) in Texten?",
     "answers": [
       "Veranschaulichung von Geräuschen und Tönen durch ähnlich klingende Wörter.",
-      "Sachliche sachbezogene Information ohne jegliche Emotionen.",
-      "Logische Verknüpfung von zwei gegensätzlichen Argumenten.",
-      "Vermeidung von Wiederholungen desselben Substantivs."
+      "Erklärung eines schwierigen Fachbegriffs mit lateinischem Wort.",
+      "Aufzählung mehrerer Adjektive ohne erkennbaren inhaltlichen Grund meistens.",
+      "Betonung eines starken Gegensatzes durch zwei kurze Sätze."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1325,9 +1325,9 @@ const questions_k8_deutsch = [
     "question": "Was versteht man unter dem Begriff 'Exposition' im Theaterstück?",
     "answers": [
       "Die einleitende Einführung in Vorgeschichte, Figuren und Konflikt im 1. Akt.",
-      "Den plötzlichen umschlagenden Ausgang am Ende des Stücks.",
-      "Die künstliche Verzögerung der Handlung vor dem Finale.",
-      "Den Schlussmonolog der Hauptfigur vor dem Vorhang."
+      "Den überraschenden Wendepunkt mitten im zweiten Akt des Stücks.",
+      "Die Auflösung aller offenen Konflikte am Ende des Stücks.",
+      "Den kurzen abschließenden Dialog zweier Nebenfiguren am Schluss im Unterricht."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1343,9 +1343,9 @@ const questions_k8_deutsch = [
     "question": "Welche Funktion erfüllt das 'retardierende Moment' im Drama?",
     "answers": [
       "Es verzögert vor dem Ende scheinbar die Entscheidung und baut Spannung auf.",
-      "Es klärt zu Beginn alle offenen Fragen der Zuschauer auf.",
-      "Es führt neue Hauptfiguren mitten im Schlussteil ein.",
-      "Es übersetzt das Gespräch in eine andere Sprache."
+      "Es löst den zentralen Konflikt schon ganz zu Beginn auf.",
+      "Es stellt gleich am Anfang alle wichtigen Figuren vor im Deutschunterricht.",
+      "Es beendet das ganze Drama mit einem klaren Fazit dabei nach dieser Regel."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1361,9 +1361,9 @@ const questions_k8_deutsch = [
     "question": "Wie werden Zitiergebot und Quellenangabe im laufenden Text richtig umgesetzt?",
     "answers": [
       "Wörtliche Übernahmen stehen in Anführungszeichen mit genauer Zeilen- und Seitenangabe.",
-      "Wörtliche Zitate werden ohne Kennzeichnung frei in eigene Sätze umformuliert.",
-      "Zitate müssen am Satzanfang immer fett und kursiv gedruckt werden.",
-      "Quellenangaben genügen als reine Fußnote ohne Zeilennummer im Haupttext."
+      "Zitate werden grundsätzlich ohne Anführungszeichen eingebaut dabei nach dieser Regel.",
+      "Eine einzige Quellenangabe reicht am Ende des Buches dabei zumindest nach alter Regel.",
+      "Wörtliche Zitate stehen kursiv ohne genaue Seitenangabe meistens im Deutschunterricht."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1379,9 +1379,9 @@ const questions_k8_deutsch = [
     "question": "Was beschreibt der Begriff 'Sinnabschnitt' bei der Textarbeit?",
     "answers": [
       "Ein zusammenhängender Teilabschnitt eines Textes, der ein Teilthema behandelt.",
-      "Ein Satz, der exakt aus genau zehn Wörtern besteht.",
-      "Der erste und der letzte Absatz eines Buches zusammen.",
-      "Eine fett gedruckte Überschrift mitten im Text."
+      "Ein einzelnes Schlagwort, das den gesamten Text zusammenfasst.",
+      "Die fett gedruckte Überschrift über dem gesamten Text dabei nach dieser Regel.",
+      "Der allerletzte Satz eines Textes vor dem Schlusspunkt laut vieler Lehrkräfte."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1397,9 +1397,9 @@ const questions_k8_deutsch = [
     "question": "Welche Wortart leitet einen Relativsatz ein?",
     "answers": [
       "Ein Relativpronomen (z. B. der, die, das, welcher) oder Relativadverb.",
-      "Eine koordinierende Konjunktion (z. B. und, oder, aber).",
-      "Ein Hilfsverb (z. B. haben, sein, werden).",
-      "Ein Demonstrativpronomen im Akkusativ."
+      "Ein Fragepronomen ganz am Anfang eines Aussagesatzes.",
+      "Ein Zahladjektiv direkt vor einem bestimmten Artikel.",
+      "Eine nebenordnende Konjunktion wie 'und' oder 'aber' hier im Unterricht."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1415,9 +1415,9 @@ const questions_k8_deutsch = [
     "question": "Welche Regel gilt für das Komma zwischen gleichrangigen Adjektiven?",
     "answers": [
       "Steht zwischen zwei Adjektiven gedanklich ein 'und', gehört ein Komma dazwischen.",
-      "Zwischen zwei Adjektiven darf niemals ein Komma stehen.",
-      "Ein Komma steht nur, wenn das zweite Adjektiv großgeschrieben wird.",
-      "Ein Komma steht nur bei Adjektiven, die auf '-ig' enden."
+      "Zwischen zwei Adjektiven steht immer nur ein Bindestrich dabei nach dieser Regel.",
+      "Ein Komma steht nur bei genau drei Adjektiven hintereinander.",
+      "Ein Komma steht nur vor Adjektiven mit der Vorsilbe 'un-' laut vieler Lehrkräfte."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1433,9 +1433,9 @@ const questions_k8_deutsch = [
     "question": "Was kennzeichnet die Textsorte 'Kolumne' in Zeitungen oder Zeitschriften?",
     "answers": [
       "Ein regelmäßiger, persönlich gefärbter Meinungsbeitrag eines festen Autors.",
-      "Ein sachlich-neutraler Agenturbericht ohne jeglichen Autorennamen.",
-      "Eine detaillierte tabellarische Zusammenstellung von Wetterdaten.",
-      "Ein amtlicher Aufruf der Bundesregierung zu Gesetzesänderungen."
+      "Ein amtliches Schreiben ganz ohne persönliche Meinung darin.",
+      "Eine sachliche Übersicht über aktuelle Börsenkurse von heute im Unterricht.",
+      "Ein anonymer Leserbrief ohne erkennbaren echten Verfasser."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1541,9 +1541,9 @@ const questions_k8_deutsch = [
     "question": "Wie nennt man das Phänomen, wenn ein Satz über das Ende eines Verses in den nächsten Vers weiterläuft?",
     "answers": [
       "Diesen Zeilensprung nennt man Enjambement.",
-      "Diesen Zeilensprung nennt man Inversion.",
-      "Diesen Zeilensprung nennt man Zäsur.",
-      "Diesen Zeilensprung nennt man Kadenz."
+      "Diesen Zeilensprung nennt man Alliteration.",
+      "Diesen Zeilensprung nennt man Personifikation.",
+      "Diesen Zeilensprung nennt man Metapher dabei."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1559,9 +1559,9 @@ const questions_k8_deutsch = [
     "question": "Was bezeichnet der Begriff 'Kadenz' am Versende in der Lyrik?",
     "answers": [
       "Die metrische Ausgestaltung des Versschlusses (männlich/stumpf oder weiblich/klingend).",
-      "Die Anzahl aller Kommata innerhalb einer Gedichtstrophe.",
-      "Die Lautstärke, mit der das Gedicht vorgetragen werden muss.",
-      "Die historische Epoche, aus der das Gedicht stammt."
+      "Die genaue Reihenfolge der Strophen innerhalb eines Gedichts meistens in der Grammatik.",
+      "Die Anzahl der betonten Silben in der ersten Verszeile wie es oft im Unterricht heisst.",
+      "Die besondere Wortwahl des Dichters in der letzten Strophe dabei nach gängiger Meinung."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1577,9 +1577,9 @@ const questions_k8_deutsch = [
     "question": "Was kennzeichnet die Sprachform 'Jugendsprache'?",
     "answers": [
       "Dynamic Wandel, Anglizismen, Metaphern und Abweichungen von der Standardsprache.",
-      "Strikte Einhaltung veralteter grammatikalischer Sonderregeln.",
-      "Ausschließliche Verwendung von Fremdwörtern aus dem Lateinischen.",
-      "Vollständiger Verzicht auf Verben und Satzzeichen in Mitteilungen."
+      "Ausschließliche Nutzung veralteter Wörter aus alten Gedichten nach dieser Regel.",
+      "Strenge Beachtung aller klassischen Rechtschreibregeln stets.",
+      "Vollständiger Verzicht auf neue Wörter und moderne Ausdrücke."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1595,9 +1595,9 @@ const questions_k8_deutsch = [
     "question": "Was versteht man unter einem 'Soziolekt' in der Sprachwissenschaft?",
     "answers": [
       "Der Sprachgebrauch einer bestimmten gesellschaftlichen Gruppe.",
-      "Die regionale Dialektform eines einzelnen Dorfes.",
-      "Die offizielle Amtssprache eines staatlichen Parlaments.",
-      "Die wissenschaftliche Fachsprache von Medizinern."
+      "Die einheitliche Amtssprache eines gesamten Landes offiziell dabei.",
+      "Der typische Wortschatz einer einzelnen literarischen Epoche.",
+      "Die besondere Fachsprache innerhalb der Rechtswissenschaft."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1613,9 +1613,9 @@ const questions_k8_deutsch = [
     "question": "Welche Sprachschicht zeichnet sich durch sachliche, genaue und normgerechte Grammatik aus?",
     "answers": [
       "Die Standard- oder Hochsprache.",
-      "Umgangssprache.",
-      "Gassensprache.",
-      "Fachchinesisch."
+      "Die Umgangssprache im Alltag.",
+      "Der Dialekt eines Dorfes dort.",
+      "Die Kindersprache im Kindergarten."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1631,9 +1631,9 @@ const questions_k8_deutsch = [
     "question": "Was beschreibt der Begriff 'Dialekt' (Mundart)?",
     "answers": [
       "Eine regionale Sprachvariante mit eigenen lautlichen und grammatischen Besonderheiten.",
-      "Die Schriftsprache in Tageszeitungen.",
-      "Ein erfundener Geheimcode in Jugendgruppen.",
-      "Die Fachsprache von Informatikern."
+      "Die einheitliche Amtssprache in Behörden und öffentlichen Ämtern.",
+      "Eine künstliche Geheimsprache für den Chatverkehr im Netz dabei nach gängiger Meinung.",
+      "Die besondere Fachsprache von Ärzten und Juristen allgemein meistens in der Grammatik."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1649,9 +1649,9 @@ const questions_k8_deutsch = [
     "question": "Welcher Mängel liegt vor bei einer Aussage wie: 'Das ist der einzigste Grund'?",
     "answers": [
       "Ein unzulässiger Steigerungsfehler (Superlativ von nicht steigerbarem Wort).",
-      "Ein Fehler bei der Verbstellung im Hauptsatz.",
-      "Ein Verstoß gegen das Trennungsverbot von Präpositionen.",
-      "Ein falscher Gebrauch des Passivs."
+      "Ein Rechtschreibfehler bei der Groß- und Kleinschreibung dort im Unterricht.",
+      "Ein fehlendes Komma vor einem eingeschobenen Nebensatz dort.",
+      "Eine falsche Steigerung eines regelmäßigen Adjektivs im Satz."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1667,9 +1667,9 @@ const questions_k8_deutsch = [
     "question": "Wann wählt man beim Vergleichen die Partikel 'als' und wann 'wie'?",
     "answers": [
       "'als' bei Ungleichheit (Komparativ), 'wie' bei Gleichheit (Positiv).",
-      "'wie' bei Ungleichheit, 'als' bei absoluter Gleichheit.",
-      "Beide Partikeln können beliebig gegeneinander getauscht werden.",
-      "'als' steht nur am Satzanfang, 'wie' nur am Satzende."
+      "'wie' bei Ungleichheit, 'als' bei völliger Gleichheit dabei meistens.",
+      "Beide Wörter bedeuten in jedem Satz genau dasselbe immer.",
+      "'als' steht nie vor, 'wie' steht immer nach dem Verb dort."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1685,9 +1685,9 @@ const questions_k8_deutsch = [
     "question": "Was versteht man unter dem Begriff 'Pleonasmus'?",
     "answers": [
       "Die doppelnde Verknüpfung zweier Wörter gleicher Bedeutung (z. B. 'weißer Schnee').",
-      "Die Verknüpfung zweier gegensätzlicher Begriffe zu einer Einheit.",
-      "Das Weglassen von Bindewörtern in langen Aufzählungen.",
-      "Die Erfindung von Wörtern aus fremden Sprachen."
+      "Die Abkürzung eines langen zusammengesetzten Wortes im Satz laut vieler Lehrkräfte.",
+      "Das bewusste Weglassen eines wichtigen Satzgliedes im Text dabei nach dieser Regel.",
+      "Die Erfindung völlig neuer Wörter für schon bekannte Dinge dabei nach dieser Regel."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1703,9 +1703,9 @@ const questions_k8_deutsch = [
     "question": "Was beschreibt eine 'Tautologie' als rhetorisches Stilmittel?",
     "answers": [
       "Die Wiederholung eines Begriffs durch ein bedeutungsgleiches Wort (z. B. 'voll und ganz').",
-      "Die Steigerung von Argumenten nach Wichtigkeit.",
-      "Die Nachahmung von Tierlauten in der Natur.",
-      "Der plötzliche Wechsel der Erzählperspektive."
+      "Die stufenweise Steigerung mehrerer Adjektive in einer Reihe dabei laut vieler Lehrkräfte.",
+      "Die lautmalerische Nachahmung realer Geräusche durch Wörter meistens im Deutschunterricht.",
+      "Der bewusste Bruch mit der gewohnten normalen Satzstellung meistens nach gängiger Meinung."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1721,9 +1721,9 @@ const questions_k8_deutsch = [
     "question": "Wie wird der Begriff 'Anglizismus' in der deutschen Sprache definiert?",
     "answers": [
       "Ein aus dem Englischen übernommenes Wort im deutschen Sprachgebrauch.",
-      "Ein deutsches Wort, das im Englischen falsch übersetzt wurde.",
-      "Ein Rechtschreibfehler bei der Trennung von Fremdwörtern.",
-      "Ein lateinischer Fachbegriff in der Grammatik."
+      "Ein deutsches Wort mit englischer Aussprache im Alltag heute.",
+      "Ein Fremdwort, das ursprünglich aus dem Lateinischen stammt.",
+      "Ein umgangssprachlicher Ausdruck aus dem Ruhrgebiet allgemein meistens."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1739,9 +1739,9 @@ const questions_k8_deutsch = [
     "question": "Welche Aufgabe hat das 'Stichwortverzeichnis' (Index) am Ende eines Fachbuches?",
     "answers": [
       "Alphabetisches Nachschlagen von zentralen Begriffen mit Seitenangaben.",
-      "Auflistung aller Rechtschreibfehler des Autors.",
-      "Chronologische Zusammenfassung des Inhalts von Kapitel 1.",
-      "Gegenüberstellung von Pro- und Kontra-Argumenten."
+      "Auflistung aller im Buch verwendeten Bildquellen an einer Stelle dabei.",
+      "Zusammenfassung des ersten Kapitels in nur wenigen Sätzen.",
+      "Gegenüberstellung von Autor und Herausgeber des ganzen Buches."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1757,9 +1757,9 @@ const questions_k8_deutsch = [
     "question": "Was beschreibt der Begriff 'Gliederung' vor dem Schreiben einer Erörterung?",
     "answers": [
       "Die gedankliche Ordnung der Argumente in Einleitung, Hauptteil und Schluss.",
-      "Die saubere Trennung von Absätzen durch bunte Stifte.",
-      "Das Auszählen der Wörter im ersten Entwurf.",
-      "Das Korrigieren der Kommata mit dem Wörterbuch."
+      "Die zufällige Anordnung von Stichpunkten auf bunten Karteikarten im Unterricht.",
+      "Das genaue Zählen der Absätze im fertigen Erörterungstext.",
+      "Das Unterstreichen wichtiger Wörter mit einem geraden Lineal."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1802,34 +1802,9 @@ const questions_k8_deutsch = [
     "points": 15,
     "explanation": "Der 'Sturm und Drang' war die Jugend- und Protestbewegung um Goethe und Schiller, die Leidenschaft, Natur und das 'Originalgenie' feierte."
   },
-  {"id":"k8de101","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Konjunktiv II: Ich ___ gerne.","answers":["werde","würde","wurde","worden"],"correct":1,"difficulty":"mittel","points":10,"explanation":"würde."},
-  {"id":"k8de102","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Metapher ohne „wie“.","answers":["Zeit ist Geld","schnell wie der Wind","nur Nomen","nur Verb"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Metapher."},
-  {"id":"k8de103","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Inhaltsangabe Tempus meist …","answers":["Präteritum","Präsens","Futur","Perfekt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Präsens."},
-  {"id":"k8de104","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"„dass“ leitet oft … ein.","answers":["Hauptsatz","Nebensatz","Fragesatz","Nomen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nebensatz."},
-  {"id":"k8de105","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Antonym zu knapp (Stil)?","answers":["kurz","ausführlich","eng","wenig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"ausführlich."},
-  {"id":"k8de106","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Anapher wiederholt …","answers":["Enden","Anfänge","Reime","Zahlen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Anfänge."},
-  {"id":"k8de107","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Sachtext Ziel oft …","answers":["Fiktion","Information","Reim","Dialog"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Info."},
-  {"id":"k8de108","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Ironie meint oft …","answers":["wörtlich","das Gegenteil","nichts","Zahlen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gegenteil."},
-  {"id":"k8de109","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Bühnenanweisung steht …","answers":["nur Dialog","meist in Klammern","nirgends","nur Prolog"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Anweisung."},
-  {"id":"k8de110","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Rechtschreibung: interessant","answers":["interressant","interessant","interesant","interresant"],"correct":1,"difficulty":"mittel","points":10,"explanation":"ss."},
-  {"id":"k8de111","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Passiv: werden + …","answers":["Infinitiv","Partizip II","Nomen","Adjektiv"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Partizip II."},
-  {"id":"k8de112","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Erörterung braucht …","answers":["nur Meinung","Argumente","Zufallszitate","keine Gründe"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Argumente."},
-  {"id":"k8de113","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Strophe ist …","answers":["Verszeile","Versgruppe","Roman","Drama"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gruppe."},
-  {"id":"k8de114","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Synonym prüfen?","answers":["ignorieren","untersuchen","löschen","raten"],"correct":1,"difficulty":"mittel","points":10,"explanation":"untersuchen."},
-  {"id":"k8de115","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Appell zielt auf …","answers":["Darstellung","Handlung","Zufall","Reim"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Appell."},
-  {"id":"k8de116","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Komparativ gut?","answers":["guter","besser","am besten","mehr gut"],"correct":1,"difficulty":"mittel","points":10,"explanation":"besser."},
-  {"id":"k8de117","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Relativpronomen Person …","answers":["was","der/die","wo","welch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"der/die."},
-  {"id":"k8de118","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Nominalstil nutzt viele …","answers":["Verben","Nomen","Fragezeichen","Interjektionen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nomen."},
-  {"id":"k8de119","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Zitat braucht …","answers":["Geheimhaltung","Quelle","keine Zeichen","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Beleg."},
-  {"id":"k8de120","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Hypotaxe = …","answers":["nebengeordnet","untergeordnet","Wortart","Reim"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Unterordnung."},
-  {"id":"k8de121","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Satire kritisiert durch …","answers":["ernstes Lob","Übertreibung","nur Fakten","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Spott."},
-  {"id":"k8de122","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Kohärenz = …","answers":["Chaos","Sinnzusammenhang","Layout","Schrift"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zusammenhang."},
-  {"id":"k8de123","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Imperativ nehmen (du)?","answers":["nimmst","nimm","nehmt","genommen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nimm."},
-  {"id":"k8de124","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Metonymie: Berlin beschließt für …","answers":["Stadtmauern","Regierung","Fluss","Wetter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Institution."},
-  {"id":"k8de125","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Perspektive personal = …","answers":["allwissend","Figurensicht","Ich immer","Kamera Pflicht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Figur."},
-  {"id":"k8de126","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Plural Thema?","answers":["Themas","Themen","Themata Pflicht","Theme"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Themen."},
-  {"id":"k8de127","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Ballade ist …","answers":["Sachtext","Erzählgedicht","Tabelle","Brief"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Erzählgedicht."},
-  {"id":"k8de128","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Konnektor dennoch signalisiert …","answers":["Grund","Gegensatz","Zeit","Ort"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kontrast."},
-  {"id":"k8de129","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Rechtschreibung Standard","answers":["Standart","Standard","Standarth","Standartt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Standard."},
-  {"id":"k8de130","category":"k8_deutsch","area":"schule","grade":8,"subject":"deutsch","topic":"erweiterung","question":"Textintention = …","answers":["Länge","Absicht","Preis","Autoralter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Absicht."}
+
+
+
+
+
 ];

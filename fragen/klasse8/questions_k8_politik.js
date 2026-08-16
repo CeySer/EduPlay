@@ -115,10 +115,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was bezeichnet man im Wirtschaftskreislauf als 'Kaufkraft' der Verbraucher?",
     "answers": [
-      "Die Summe aller Steuern, die Bürger an den Staat abführen müssen.",
+      "Die Summe aller Ersparnisse, die private Haushalte jedes Jahr auf Banken anlegen.",
       "Die Menge an Waren, die mit einem bestimmten Einkommen erworben werden kann.",
-      "Die Höhe des Zinssatzes, den Banken für die Kreditvergabe verlangen.",
-      "Die Anzahl der verfügbaren Produkte im Regalsystem eines Supermarktes."
+      "Die Höhe der Löhne und Gehälter, die Unternehmen ihren Angestellten monatlich zahlen.",
+      "Die Anzahl der Geschäfte, die in einer größeren Stadt jährlich neu eröffnet werden."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -187,9 +187,9 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was beschreibt der Begriff der 'Sozialen Marktwirtschaft' in der Bundesrepublik Deutschland?",
     "answers": [
-      "Ein Wirtschaftssystem, in dem alle Betriebe dem Staat gehören müssen.",
-      "Eine reine Kapitalwirtschaft ohne jegliche staatliche Regeln und Gesetze.",
-      "Ein System, in dem der Staat alle Preise und Produktionsmengen zentral steuert.",
+      "Ein Wirtschaftssystem, in dem sämtliche Betriebe ausschließlich dem Staat gehören.",
+      "Eine reine Kapitalwirtschaft völlig ohne jegliche staatliche Regeln und Gesetze.",
+      "Ein System, in dem der Staat sämtliche Preise und Mengen zentral vorschreibt.",
       "Ein Wirtschaftssystem auf der Basis von freiem Wettbewerb mit sozialem Ausgleich."
     ],
     "correct": 3,
@@ -313,9 +313,9 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Welche Institution ist in der Euro-Zone für die Stabilität der Währung verantwortlich?",
     "answers": [
-      "Der Internationale Währungsfonds in Washington D.C.",
-      "Das Europäische Parlament im französischen Straßburg.",
-      "Die Europäische Kommission im belgischen Brüssel.",
+      "Der Internationale Währungsfonds mit Sitz in Washington D.C.",
+      "Das Europäische Parlament mit Sitz im französischen Straßburg.",
+      "Die Europäische Kommission mit Sitz im belgischen Brüssel.",
       "Die Europäische Zentralbank (EZB) mit Sitz in Frankfurt."
     ],
     "correct": 3,
@@ -367,9 +367,9 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was versteht man im Wahlrecht unter der sogenannten 5-Prozent-Hürde?",
     "answers": [
-      "Parteien müssen mindestens 5 % aller Mitglieder im Land vertreten.",
-      "Es dürfen nur maximal 5 % aller Bürger von der Wahl ausgeschlossen werden.",
-      "Die Wahlbeteiligung muss mindestens 5 % der Gesamtbevölkerung betragen.",
+      "Parteien müssen mindestens 5 % aller eingetragenen Mitglieder im Land vertreten.",
+      "Es dürfen höchstens 5 % aller wahlberechtigten Bürger von der Wahl ausgeschlossen sein.",
+      "Die Wahlbeteiligung muss landesweit mindestens 5 % der Gesamtbevölkerung betragen.",
       "Parteien müssen mindestens 5 % der Zweitstimmen erhalten, um ins Parlament einzuziehen."
     ],
     "correct": 3,
@@ -403,10 +403,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was beschreibt der Begriff der 'Lobbyarbeit' in der Bundespolitik?",
     "answers": [
-      "Die gezielte Ausbildung von Nachwuchspolitikern in den Parteizentralen.",
+      "Die gezielte und langjährige Ausbildung von Nachwuchspolitikern in den Parteizentralen.",
       "Die Einflussnahme von Interessengruppen auf Abgeordnete und Gesetzgebung.",
-      "Die Reinigung und Instandhaltung des Reichstagsgebäudes in Berlin.",
-      "Die Auszählung von Stimmen im Saal des Bundesrates durch Helfer."
+      "Die regelmäßige Reinigung und Instandhaltung des Reichstagsgebäudes durch Fachpersonal.",
+      "Die genaue Auszählung von Stimmen im Saal des Bundesrates durch geschulte Helfer."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -422,9 +422,9 @@ const questions_k8_politik = [
     "question": "Was versteht man unter dem Begriff der 'Nachhaltigkeit' im Konsumverhalten?",
     "answers": [
       "Ein Konsum, der Bedürfnisse deckt, ohne die Chancen künftiger Generationen zu gefährden.",
-      "Die Lagerung von Lebensmitteln für mindestens zehn Jahre in Vorratskellern.",
-      "Der Verzicht auf die Nutzung von elektrischem Strom in privaten Haushalten.",
-      "Der ausschließliche Kauf von möglichst billigen Importwaren im Supermarkt."
+      "Die Lagerung von haltbaren Lebensmitteln für mindestens zehn Jahre in Vorratskellern.",
+      "Der vollständige und dauerhafte Verzicht auf die Nutzung von elektrischem Strom zu Hause.",
+      "Der ausschließliche Kauf von möglichst billigen Importwaren in großen Supermärkten."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -457,10 +457,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Wie nennt man die bewusste Beeinflussung von Konsumenten durch Werbemaßnahmen?",
     "answers": [
-      "Subventionierte Preisgestaltung.",
+      "Eine staatlich gelenkte Preisgestaltung.",
       "Produktmarketing und Werbestrategie.",
-      "Staatliche Konsumregulierung.",
-      "Zwanghafte Marktüberwachung."
+      "Eine amtliche Konsumregulierung.",
+      "Eine strenge Marktüberwachung."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -565,9 +565,9 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was versteht man unter dem Begriff 'Cybermobbing' in den digitalen Medien?",
     "answers": [
-      "Der Verlust von vertraulichen Passwörtern beim Einkaufen im Netz.",
-      "Die Reparatur von beschädigten Computern durch externe Fachleute.",
-      "Die Verfehlung von Abgabefristen bei Online-Arbeitsaufträgen.",
+      "Der Verlust von vertraulichen Passwörtern beim Einkaufen in Online-Shops.",
+      "Die fachgerechte Reparatur von beschädigten Computern durch externe Dienstleister.",
+      "Die Verfehlung von wichtigen Abgabefristen bei schulischen Arbeitsaufträgen.",
       "Das absichtliche Beleidigen oder Bloßstellen von Personen im Internet."
     ],
     "correct": 3,
@@ -620,9 +620,9 @@ const questions_k8_politik = [
     "question": "Welchen Zweck erfüllen Steuern, die der Staat von Bürgern und Unternehmen erhebt?",
     "answers": [
       "Finanzierung öffentlicher Aufgaben wie Schulen, Straßen und Sicherheit.",
-      "Die direkte Auszahlung von Bargeld an alle Abgeordneten des Reiches.",
-      "Der Anauf von Goldreserven zur Verwahrung im Bundesrat.",
-      "Ausschließliche Vergabe von Krediten an ausländische Großkonzerne."
+      "Die direkte Auszahlung von Bargeld an alle gewählten Abgeordneten des Landes.",
+      "Der jährliche Ankauf von großen Goldreserven zur Verwahrung im Bundestag.",
+      "Die ausschließliche Vergabe von günstigen Krediten an ausländische Großkonzerne."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -783,10 +783,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Wie funktioniert das sogenannte Umlageverfahren in der gesetzlichen Rentenversicherung?",
     "answers": [
-      "Der Staat legt alle Beiträge am weltweiten Aktienmarkt zur Verzinsung an.",
+      "Der Staat legt sämtliche Beiträge gewinnbringend am weltweiten Aktienmarkt an.",
       "Die eingezahlten Beiträge werden direkt zur Auszahlung aktueller Renten verwendet.",
-      "Die Renten werden ausschließlich aus den Einnahmen der Mehrwertsteuer finanziert.",
-      "Jeder Bürger spart seine Beiträge auf einem persönlichen Sparkonto für später an."
+      "Die Renten werden ausschließlich aus den laufenden Mehrwertsteuereinnahmen finanziert.",
+      "Jeder Bürger spart seine eingezahlten Beiträge auf einem persönlichen Konto an."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -819,10 +819,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was versteht man unter dem Phänomen der 'Fake News' in Medien?",
     "answers": [
-      "Wissenschaftliche Berichte mit schwer verständlicher Fachsprache.",
+      "Wissenschaftliche Fachberichte mit besonders schwer verständlicher Fachsprache.",
       "Gezielt verbreitete Falschinformationen zur Täuschung oder Beeinflussung.",
-      "Tippfehler und Rechtschreibfehler in gedruckten Tageszeitungen.",
-      "Humorvolle Parodien über Politiker in Satirezeitschriften und Kabaretts."
+      "Häufige Tippfehler und Rechtschreibfehler in gedruckten Tageszeitungen.",
+      "Humorvolle Parodien über bekannte Politiker in Satirezeitschriften und Kabaretts."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -855,10 +855,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Wer wählt den Bundespräsidenten in Deutschland?",
     "answers": [
-      "Das Bundesvolk in einer direkten bundesweiten Wahl aller Bürger.",
+      "Das gesamte Bundesvolk in einer direkten bundesweiten Wahl aller Bürgerinnen.",
       "Die Bundesversammlung (bestehend aus Bundestagsabgeordneten und Ländervertretern).",
-      "Der Bundesrat im Rahmen einer geheimen Jahrestagung.",
-      "Die Gesamtheit aller Richter des Bundesverfassungsgerichts."
+      "Der Bundesrat im Rahmen einer geheimen und feierlichen Jahrestagung im Herbst.",
+      "Die Gesamtheit aller Richterinnen und Richter des Bundesverfassungsgerichts allein."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -873,10 +873,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was bedeutet das Prinzip der Rechtsstaatlichkeit in Deutschland?",
     "answers": [
-      "Die Polizei darf Gesetze je nach Situation eigenständig anpassen und auslegen.",
+      "Die Polizei darf geltende Gesetze je nach Situation eigenständig anpassen und auslegen.",
       "Staatliches Handeln ist an Verfassung und Gesetze gebunden, Bürger sind geschützt.",
-      "Politiker der Regierungskoalition stehen außerhalb der geltenden Strafgesetze.",
-      "Gerichte müssen Beschlüsse der Bundesregierung ohne Prüfung übernehmen."
+      "Politiker der jeweiligen Regierungskoalition stehen außerhalb der geltenden Strafgesetze.",
+      "Gerichte müssen jeden Beschluss der Bundesregierung ohne eigene Prüfung übernehmen."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -928,9 +928,9 @@ const questions_k8_politik = [
     "question": "Was versteht man unter dem Begriff der 'Konjunktur' in der Wirtschaft?",
     "answers": [
       "Die schwankende gesamtwirtschaftliche Entwicklung und Wirtschaftslage.",
-      "Die dauerhafte Stilllegung von Fabrikanlagen in einer Krisenregion.",
-      "Die tägliche Schwankung der Rohölpreise auf dem Weltmarkt.",
-      "Der ständige Anstieg der Aktienkurse an internationalen Börsen."
+      "Die dauerhafte und vollständige Stilllegung von Fabrikanlagen in einer Krisenregion.",
+      "Die tägliche kleine Schwankung der Rohölpreise auf dem internationalen Weltmarkt.",
+      "Der ständige, ununterbrochene Anstieg der Aktienkurse an internationalen Börsen."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -982,9 +982,9 @@ const questions_k8_politik = [
     "question": "Was beschreibt das Ziel des 'Magischen Vierecks' im Stabilitäts- und Wachstumsgesetz?",
     "answers": [
       "Gleichgewicht von Wachstum, Vollbeschäftigung, Preisstabilität und Außenhandel.",
-      "Die Aufteilung des Bundeshaushalts auf vier zentrale Arbeitsministerien.",
-      "Die vier Grundrechte der Bürger auf freie Arbeitsplatzwahl im Staat.",
-      "Die gleichmäßige Senkung aller vier Hauptsteuerarten für Unternehmen."
+      "Die gleichmäßige Aufteilung des Bundeshaushalts auf vier zentrale Arbeitsministerien.",
+      "Die vier grundlegenden Rechte der Bürger auf freie Arbeitsplatzwahl im Staat.",
+      "Die gleichmäßige Senkung aller vier wichtigen Hauptsteuerarten für Unternehmen."
     ],
     "correct": 0,
     "difficulty": "schwer",
@@ -999,10 +999,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Warum wird das 'Magische Viereck' der Wirtschaftspolitik als 'magisch' bezeichnet?",
     "answers": [
-      "Weil die Verwirklichung aller vier Ziele keine staatlichen Finanzmittel kostet.",
-      "Weil die Kennzahlen von vier unabhängigen Hexen-Professoren berechnet werden.",
+      "Weil die vollständige Verwirklichung aller vier Ziele überhaupt keine Finanzmittel kostet.",
+      "Weil die Kennzahlen angeblich von vier unabhängigen Hexen-Professoren berechnet werden.",
       "Weil die vier Ziele teils im Zielkonflikt stehen und schwer gleichzeitig erreichbar sind.",
-      "Weil der Staat die Ziele durch geheime Zaubergesetze durchsetzen kann."
+      "Weil der Staat die vier Ziele durch geheime Zaubergesetze einfach durchsetzen kann."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1036,9 +1036,9 @@ const questions_k8_politik = [
     "question": "Welche Aufgabe erfüllt ein Betriebstrat in einem deutschen Unternehmen?",
     "answers": [
       "Er vertritt die Interessen der Arbeitnehmer gegenüber der Geschäftsführung.",
-      "Er verteilt den Jahresgewinn des Unternehmens an die Aktionäre.",
-      "Er überprüft die Steuererklärungen der Führungskräfte im Betrieb.",
-      "Er legt die Preise für die im Betrieb hergestellten Produkte fest."
+      "Er verteilt jedes Jahr den kompletten Jahresgewinn des Unternehmens an die Aktionäre.",
+      "Er überprüft regelmäßig die Steuererklärungen der Führungskräfte im gesamten Betrieb.",
+      "Er legt eigenständig die Preise für die im Betrieb hergestellten Produkte fest."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1071,10 +1071,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was bedeutet das Prinzip des 'Wehrhaften Demokratie' im deutschen Grundgesetz?",
     "answers": [
-      "Parteien können nur aufgelöst werden, wenn das Bundesfinanzministerium dies anordnet.",
+      "Parteien können nur aufgelöst werden, wenn das Bundesfinanzministerium dies ausdrücklich anordnet.",
       "Der Staat kann Feinden der Freiheitlichen Demokratischen Grundordnung Grundrechte entziehen.",
-      "Die Bundeswehr ist verpflichtet, im Inneren polizeiliche Streifenfahrten durchzuführen.",
-      "Bürger dürfen bei Wahlen nur abstimmen, wenn sie einen Militärdienst absolviert haben."
+      "Die Bundeswehr ist gesetzlich verpflichtet, im Inneren regelmäßig polizeiliche Streifen zu fahren.",
+      "Bürger dürfen bei Wahlen nur abstimmen, wenn sie zuvor einen Militärdienst absolviert haben."
     ],
     "correct": 1,
     "difficulty": "schwer",
@@ -1179,9 +1179,9 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was beschreibt der Begriff des 'Öffentlich-rechtlichen Rundfunks' in Deutschland?",
     "answers": [
-      "Kostenlose Online-Blogs, die von Parteien für den Wahlkampf betrieben werden.",
+      "Kostenlose Online-Blogs und Webseiten, die von einzelnen Parteien für den Wahlkampf betrieben werden.",
       "Private Fernsehsender, die sich ausschließlich durch kommerzielle Werbung finanzieren.",
-      "Staatlich kontrollierte Nachrichtensender unter direkter Regie des Kanzleramtes.",
+      "Staatlich streng kontrollierte Nachrichtensender unter direkter Regie des Kanzleramtes.",
       "Durch Beiträge finanzierte Medien mit gesetzlichem Versorgungs- und Informationsauftrag."
     ],
     "correct": 3,
@@ -1197,10 +1197,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was versteht man unter dem Begriff 'Echokammer' in den Medien?",
     "answers": [
-      "Ein Förderprogramm des Bundes für junge Musiker in Deutschland.",
+      "Ein staatliches Förderprogramm des Bundes für junge Musikerinnen in Deutschland.",
       "Nutzer treffen vor allem auf Personen mit gleicher Meinung, was diese verstärkt.",
-      "Ein Tonstudio, in dem Nachrichtensprecher Aufnahmen für das Radio machen.",
-      "Eine Beschwerdestelle für Bürger beim Bundeskartellamt für Medien."
+      "Ein professionelles Tonstudio, in dem Nachrichtensprecher Aufnahmen für das Radio machen.",
+      "Eine offizielle Beschwerdestelle für Bürger beim Bundeskartellamt für Medienfragen."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1233,10 +1233,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was versteht man unter dem Prinzip der 'Tarifautonomie'?",
     "answers": [
-      "Unternehmen dürfen Mitarbeiter ohne Einhaltung von Fristen entlassen.",
-      "Verbraucher können Bus- und Bahntickets zu eigenen Wunschpreisen kaufen.",
+      "Unternehmen dürfen ihre Mitarbeiter ohne Einhaltung jeglicher Fristen sofort entlassen.",
+      "Verbraucher können ihre Bus- und Bahntickets zu ganz eigenen Wunschpreisen kaufen.",
       "Arbeitgeber und Gewerkschaften handeln Löhne ohne staatlichen Eingriff aus.",
-      "Der Staat legt die Gehälter für alle Angestellten im Land per Gesetz fest."
+      "Der Staat legt die Gehälter für alle Angestellten im ganzen Land per Gesetz fest."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1251,10 +1251,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Welche Funktion erfüllt die 'Erststimme' bei der Bundestagswahl?",
     "answers": [
-      "Mit der Erststimme stimmt man über verfassungsrechtliche Grundgesetze ab.",
-      "Mit der Erststimme wählt man die Landesliste einer bestimmten Partei.",
+      "Mit der Erststimme stimmt man über wichtige verfassungsrechtliche Grundgesetzfragen ab.",
+      "Mit der Erststimme wählt man die Landesliste einer bestimmten politischen Partei.",
       "Mit der Erststimme wählt man den Direktkandidaten des eigenen Wahlkreises.",
-      "Mit der Erststimme wählt man direkt den zukünftigen Bundespräsidenten."
+      "Mit der Erststimme wählt man direkt den zukünftigen deutschen Bundeskanzler."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1271,9 +1271,9 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was versteht man unter dem Begriff des 'Bruttoinlandsprodukts' (BIP)?",
     "answers": [
-      "Die Summe aller Steuereinnahmen, die dem Staat nach Abzug aller Schulden verbleiben.",
-      "Die durchschnittliche Menge an Bargeld, die private Haushalte monatlich auf Banken sparen.",
-      "Der Gesamtwert aller Güter, die von Bürgern aus dem Ausland im Jahr importiert werden.",
+      "Die Summe aller Steuereinnahmen, die dem Staat nach Abzug sämtlicher Schulden bleiben.",
+      "Die durchschnittliche Menge an Bargeld, die private Haushalte monatlich ansparen können.",
+      "Der Gesamtwert aller Güter, die von deutschen Bürgern jährlich aus dem Ausland eingeführt werden.",
       "Der Gesamtwert aller Waren und Dienstleistungen, die in einem Jahr im Land hergestellt werden."
     ],
     "correct": 3,
@@ -1380,9 +1380,9 @@ const questions_k8_politik = [
     "question": "Was versteht man unter dem Begriff 'Lohn-Preis-Spirale'?",
     "answers": [
       "Ein Prozess, bei dem sich höhere Löhne und steigende Preise wechselseitig antreiben.",
-      "Ein Zustand, in dem die Produktpreise trotz drastischer Lohnsteigerungen fallen.",
-      "Eine gesetzliche Regelung zur automatischen Absenkung der Mehrwertsteuer.",
-      "Die künstliche Anpassung von Gehältern an den monatlichen Aktienindex."
+      "Ein Zustand, in dem die Produktpreise trotz kräftiger Lohnsteigerungen kontinuierlich fallen.",
+      "Eine gesetzliche Regelung zur automatischen jährlichen Absenkung der Mehrwertsteuer.",
+      "Die künstliche Anpassung von Gehältern an den monatlichen internationalen Aktienindex."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1398,9 +1398,9 @@ const questions_k8_politik = [
     "question": "Was kennzeichnet die Rechtsform der Gesellschaft mit beschränkter Haftung (GmbH)?",
     "answers": [
       "Gesellschafter haften für Schulden grundsätzlich nur mit dem Gesellschaftsvermögen.",
-      "Eine GmbH erfordert kein Startkapital bei der Eintragung im Handelsregister.",
-      "Gesellschafter haften unbeschränkt mit ihrem gesamten privaten Vermögen.",
-      "Eine GmbH kann nur von mindestens 100 Personen gemeinsam gegründet werden."
+      "Eine GmbH erfordert grundsätzlich kein Startkapital bei der Eintragung ins Handelsregister.",
+      "Gesellschafter haften unbeschränkt mit ihrem gesamten privaten Vermögen für Schulden.",
+      "Eine GmbH kann ausschließlich von mindestens hundert Personen gemeinsam gegründet werden."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1415,9 +1415,9 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was versteht man unter dem Begriff 'Greenwashing' bei Unternehmen?",
     "answers": [
-      "Die spürbare Senkung der CO2-Emissionen in der gesamten Fertigungskette.",
-      "Der Bau von Solaranlagen auf den Dächern von sämtlichen Firmengebäuden.",
-      "Die gründliche Reinigung von Industrieanlagen mit biologischen Putzmitteln.",
+      "Die spürbare Senkung der CO2-Emissionen in der gesamten industriellen Fertigungskette.",
+      "Der Bau von großen Solaranlagen auf den Dächern sämtlicher Firmengebäude im Land.",
+      "Die gründliche Reinigung von Industrieanlagen mit rein biologischen Putzmitteln.",
       "Das gezielte Vermarkten eines Produkts als ökologisch, ohne dass dies zutrifft."
     ],
     "correct": 3,
@@ -1469,10 +1469,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was beschreibt der Begriff des 'Konstruktiven Misstrauensvotums' (Art. 67 GG)?",
     "answers": [
-      "Bürger können Abgeordnete durch eine Volksabstimmung vorzeitig aus dem Amt entfernen.",
+      "Bürger können ihre Abgeordneten durch eine Volksabstimmung vorzeitig aus dem Amt entfernen.",
       "Der Bundestag kann den Bundeskanzler nur stürzen, wenn er gleichzeitig einen Nachfolger wählt.",
-      "Der Bundesrat kann der Bundesregierung das Misstrauen aussprechen und den Bundestag auflösen.",
-      "Der Bundespräsident kann Minister ohne Zustimmung des Parlamentes direkt entlassen."
+      "Der Bundesrat kann der gesamten Bundesregierung offiziell misstrauen und den Bundestag auflösen.",
+      "Der Bundespräsident kann Minister ohne Zustimmung des Parlaments direkt entlassen lassen."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1524,9 +1524,9 @@ const questions_k8_politik = [
     "question": "Was versteht man unter dem Prinzip der 'Ewigkeitsklausel' in Artikel 79 Absatz 3 GG?",
     "answers": [
       "Bestimmte Grundsätze wie die Menschenwürde und Demokratie dürfen nie geändert werden.",
-      "Das Grundgesetz gilt ohne zeitliche Begrenzung auf ewige Zeiten im ganzen Land.",
-      "Einmal gewählte Bundeskanzler bleiben bis zu ihrem Rücktritt dauerhaft im Amt.",
-      "Gewerbesteuern dürfen von den Gemeinden niemals vollständig abgeschafft werden."
+      "Das Grundgesetz gilt vollkommen ohne zeitliche Begrenzung im gesamten Bundesgebiet.",
+      "Einmal gewählte Bundeskanzler bleiben grundsätzlich bis zu ihrem Rücktritt dauerhaft im Amt.",
+      "Gewerbesteuern dürfen von den einzelnen Gemeinden niemals vollständig abgeschafft werden."
     ],
     "correct": 0,
     "difficulty": "schwer",
@@ -1631,10 +1631,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was unterscheidet das Gesetzgebungsverfahren bei Zustimmungsgesetzen von Einspruchsgesetzen?",
     "answers": [
-      "Bei Zustimmungsgesetzen entscheidet der Bundespräsident ganz alleine.",
-      "Bei Zustimmungsgesetzen hat der Bundestag kein Recht zur Antragstellung.",
+      "Bei Zustimmungsgesetzen entscheidet ausschließlich der Bundespräsident ganz alleine darüber.",
+      "Bei Zustimmungsgesetzen hat der Bundestag überhaupt kein Recht zur Antragstellung.",
       "Bei Zustimmungsgesetzen muss der Bundesrat zwingend ausdrücklich zustimmen.",
-      "Bei Zustimmungsgesetzen können Bürger per Volksentscheid direkt abstimmen."
+      "Bei Zustimmungsgesetzen können alle Bürger direkt per Volksentscheid abstimmen."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1685,8 +1685,8 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Welche Wirkung erzeugt eine sogenannte 'Subventionsruine'?",
     "answers": [
-      "Eine historische Burg, die mit staatlichen Geldern für den Denkmalschutz saniert wurde.",
-      "Ein staatlich unterstützter Betrieb, der Rekordgewinne im Export erwirtschaftet.",
+      "Eine historische Burg, die mit umfangreichen staatlichen Geldern saniert und erhalten wurde.",
+      "Ein staatlich unterstützter Betrieb, der Rekordgewinne im internationalen Export erwirtschaftet.",
       "Ein vom Staat gefördertes Projekt, das sich dauerhaft als wirtschaftlich fehlgeschlagen erweist.",
       "Eine Steuervergünstigung, die allen Bürgerinnen und Bürgern gleichermaßen zugutekommt."
     ],
@@ -1704,9 +1704,9 @@ const questions_k8_politik = [
     "question": "Was regelt das Erneuerbare-Energien-Gesetz (EEG) im Kern?",
     "answers": [
       "Den bevorzugten Einspeisevorrang und die Förderung von klimafreundlichem Strom.",
-      "Das vollständige Verbot der Nutzung von fossilen Treibstoffen bei Flugzeugen.",
-      "Die Verpflichtung zur ausschließlichen Nutzung von Solarthermie im Altbau.",
-      "Die Festlegung von einheitlichen Preisen für Tankstellen im Bundesgebiet."
+      "Das vollständige Verbot der Nutzung von fossilen Treibstoffen bei allen Flugzeugen.",
+      "Die gesetzliche Verpflichtung zur ausschließlichen Nutzung von Solarthermie im Altbau.",
+      "Die einheitliche Festlegung von Preisen für sämtliche Tankstellen im Bundesgebiet."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1721,9 +1721,9 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was beschreibt der Begriff 'Schattenwirtschaft'?",
     "answers": [
-      "Wirtschaftszweige, die ausschließlich nachts in Fabriken arbeiten.",
-      "Der Verkauf von Produkten in kühlen Geschäftsräumen während des Sommers.",
-      "Der Handel mit Solaranlagen und Windkrafträdern in Entwicklungsländern.",
+      "Wirtschaftszweige, die ausschließlich nachts in großen Fabrikhallen arbeiten müssen.",
+      "Der Verkauf von Produkten in besonders kühlen Geschäftsräumen während des Sommers.",
+      "Der internationale Handel mit Solaranlagen und Windkrafträdern in Entwicklungsländern.",
       "Wirtschaftliche Aktivitäten, die am Staat vorbei ohne Steuern betrieben werden."
     ],
     "correct": 3,
@@ -1775,10 +1775,10 @@ const questions_k8_politik = [
     "subject": "politik",
     "question": "Was beschreibt der Begriff des 'Lobbyregisters' im Deutschen Bundestag?",
     "answers": [
-      "Ein Verzeichnis aller Abgeordneten, die Nebenbeschäftigungen ausüben.",
+      "Ein amtliches Verzeichnis aller Abgeordneten, die zusätzliche Nebenbeschäftigungen ausüben.",
       "Ein öffentliches Verzeichnis zur Schaffung von Transparenz bei Interessenvertretern.",
-      "Ein Ordner für vertrauliche Dokumente der Geheimdienste des Bundes.",
-      "Eine Liste von allen Unternehmen, die vom Staat Subventionen erhalten."
+      "Ein Ordner für streng vertrauliche Dokumente der Geheimdienste des Bundes.",
+      "Eine vollständige Liste von allen Unternehmen, die vom Staat Subventionen erhalten."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1802,35 +1802,14 @@ const questions_k8_politik = [
     "difficulty": "leicht",
     "points": 10,
     "explanation": "Art. 20 Abs. 2 GG legt fest: 'Alle Staatsgewalt geht vom Volke aus.' Das Volk übt sie durch Wahlen, Abstimmungen und besondere Organe aus."
-  },
-  {"id":"k8po101","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Demokratie = Herrschaft des …","answers":["Königs","Volkes","Militärs","Zufalls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Volkes."},
-  {"id":"k8po102","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"GG ist …","answers":["Roman","Verfassung","Schulordnung","EU-Vertrag"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verfassung."},
-  {"id":"k8po103","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Bundestag = …","answers":["Regierung","Parlament","Gericht","Polizei"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Parlament."},
-  {"id":"k8po104","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Gewaltenteilung endet mit …","answers":["Medien","Judikative","Sport","Kirche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Judikative."},
-  {"id":"k8po105","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Grundrecht Beispiel?","answers":["Gebühr","Meinungsfreiheit","Steuern","Wehrpflicht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Meinung."},
-  {"id":"k8po106","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Wahlen u. a. …","answers":["öffentlich","geheim","online only","ungleich"],"correct":1,"difficulty":"mittel","points":10,"explanation":"geheim."},
-  {"id":"k8po107","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Opposition …","answers":["ersetzt","kontrolliert","verboten","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kontrolle."},
-  {"id":"k8po108","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Rechtsstaat: Bindung an …","answers":["Willkür","Recht","Macht","keine Gerichte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Recht."},
-  {"id":"k8po109","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"EU ist …","answers":["Militär","Staatenverbund","Bundesland","Stadt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verbund."},
-  {"id":"k8po110","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Pressefreiheit dient …","answers":["Geheimnis","Kontrolle","Werbung","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Freiheit."},
-  {"id":"k8po111","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Föderalismus: Bund und …","answers":["Gemeinden","Länder","EU","Parteien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Länder."},
-  {"id":"k8po112","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Art. 1 GG: …","answers":["Steuern","Menschenwürde","Sport","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Würde."},
-  {"id":"k8po113","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Petition an …","answers":["Zufall","Parlament","Strafgericht","Medien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bitten."},
-  {"id":"k8po114","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Sozialstaat → …","answers":["Reiche","Sicherung","keine Hilfe","Militär"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Sicherung."},
-  {"id":"k8po115","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Datenschutz schützt …","answers":["Staaten","personenbezogene Daten","Wetter","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Daten."},
-  {"id":"k8po116","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Demo oft …","answers":["geheim","friedlich/angemeldet","bewaffnet","ohne GG"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Versammlung."},
-  {"id":"k8po117","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Korruption schadet …","answers":["Sport","Gemeinwohl","Wetter","Tourismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vertrauen."},
-  {"id":"k8po118","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Politische Bildung → …","answers":["Indoktrination","Mündigkeit","Partei","Desinteresse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Mündigkeit."},
-  {"id":"k8po119","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"BVerfG prüft …","answers":["Sport","Verfassungsmäßigkeit","Steuern","Wetter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"GG."},
-  {"id":"k8po120","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Menschenrechte gegen …","answers":["Privat only","Willkür","Wetter","Wirtschaft only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schutz."},
-  {"id":"k8po121","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Medienkompetenz gegen …","answers":["Info","Desinformation","Pressefreiheit","Wahlen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fake News."},
-  {"id":"k8po122","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Integration = …","answers":["Ausgrenzung","Teilhabe","Zwang","Isolation"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Teilhabe."},
-  {"id":"k8po123","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Wehrhafte Demokratie schützt …","answers":["alles","fdGO","nichts","Zensur total"],"correct":1,"difficulty":"mittel","points":10,"explanation":"fdGO."},
-  {"id":"k8po124","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Kommunal: …","answers":["EU","Gemeinderat","UNO","NATO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kommune."},
-  {"id":"k8po125","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Lobbyismus …","answers":["illegal","Interessenvertretung","ersetzt Wahl","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Interessen."},
-  {"id":"k8po126","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Sozialversicherung …","answers":["Rüstung","Krankheit/Alter","Parteien","Kultur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Risiken."},
-  {"id":"k8po127","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"UN zielt auf …","answers":["Krieg","Frieden","DE-Handel","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Frieden."},
-  {"id":"k8po128","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Gleichstellung → …","answers":["Diskriminierung","gleiche Chancen","Ungleichheit","Quoten Spaß"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gleichheit."},
-  {"id":"k8po129","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Rechtsweg: Zugang zu …","answers":["Polizei","Gerichten","Medien","Parteien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gericht."},
-  {"id":"k8po130","category":"k8_politik","area":"schule","grade":8,"subject":"politik","topic":"erweiterung","question":"Digitalisierung Herausforderung …","answers":["Handwerk","Datenschutz/Demokratie","Sport","kein Feld"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Transform."}
+  }
 ];
+
+
+
+
+
+
+
+
+

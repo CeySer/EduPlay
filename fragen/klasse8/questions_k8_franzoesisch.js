@@ -26,9 +26,9 @@ const questions_k8_franzoesisch = [
     "question": "Welches Hilfsverb benötigt das Verb 'aller' (gehen) im Passé composé?",
     "answers": [
       "être (z. B. 'je suis allé(e)').",
-      "avoir (z. B. 'j'ai allé').",
-      "faire (z. B. 'je fais allé').",
-      "venir (z. B. 'je viens allé')."
+      "avoir (z. B. 'j'ai allé(e)').",
+      "faire (z. B. 'je fais allé(e)').",
+      "venir (z. B. 'je viens allé(e)')."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -44,9 +44,9 @@ const questions_k8_franzoesisch = [
     "question": "Was passiert mit dem Partizip Passé, wenn das Passé composé mit 'être' gebildet wird?",
     "answers": [
       "Es gleicht sich in Geschlecht und Zahl an das Subjekt an (z. B. 'Elle est allée').",
-      "Es bleibt immer unverändert auf -é stehen.",
-      "Es erhält immer ein Apostroph vor dem Verb.",
-      "Es wird durch die Nennung von 'pas' am Satzende ersetzt."
+      "Es bleibt in jedem einzelnen Fall unverändert auf der Endung -é stehen, egal wer.",
+      "Es erhält grundsätzlich und immer ein Apostroph direkt vor dem konjugierten Verbe.",
+      "Es wird komplett durch die Nennung von 'pas' ganz am Ende des Satzes ersetzt."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -116,9 +116,9 @@ const questions_k8_franzoesisch = [
     "question": "Wann verwendet man im Französischen den Teilungsartikel (article partitif: du, de la, de l')?",
     "answers": [
       "Bei unbestimmten Mengen von nicht zählbaren Dingen (z. B. Wasser, Brot).",
-      "Ausschließlich bei Personen im Plural.",
-      "Nur nach Mengenangaben wie 'beaucoup' oder 'un kilo'.",
-      "Wenn eine Sache exakt gezählt werden kann (z. B. zwei Äpfel)."
+      "Ausschließlich bei Personen, die immer nur im Plural stehen, niemals im Singular.",
+      "Nur direkt nach festen Mengenangaben wie 'beaucoup' oder 'un kilo' davor.",
+      "Wenn eine Sache exakt gezählt werden kann, wie zum Beispiel zwei ganze Äpfel."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -134,9 +134,9 @@ const questions_k8_franzoesisch = [
     "question": "Was geschieht mit dem Teilungsartikel bei einer Verneinung (z. B. 'Je ne veux pas ... pain')?",
     "answers": [
       "Er wird durch 'de' (bzw. 'd'') ersetzt (z. B. 'Je ne veux pas de pain').",
-      "Er bleibt unverändert als 'du' erhalten.",
-      "Er verwandelt sich in 'des'.",
-      "Er wird ersatzlos gestrichen, ohne dass ein Wort folgt."
+      "Er bleibt in der Verneinung völlig unverändert als 'du' stehen, ohne Ausnahme.",
+      "Er verwandelt sich in der Verneinung immer automatisch in die Form 'des'.",
+      "Er wird komplett ersatzlos gestrichen, ohne dass ein weiteres Wort folgt."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -152,9 +152,9 @@ const questions_k8_franzoesisch = [
     "question": "Was folgt nach einer festen Mengenangabe wie 'un kilo de' oder 'beaucoup de'?",
     "answers": [
       "Nur die Präposition 'de'/'d'' ohne weiteren Artikel.",
-      "Immer der bestimmte Artikel 'le' oder 'la'.",
-      "Der Teilungsartikel 'du' oder 'de la'.",
-      "Keine Präposition, das Substantiv folgt direkt."
+      "Immer der bestimmte Artikel 'le' oder 'la' danach, nie 'de'.",
+      "Stets der Teilungsartikel 'du' oder 'de la' nach der Menge.",
+      "Gar keine Präposition, das Substantiv folgt sofort direkt."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -188,9 +188,9 @@ const questions_k8_franzoesisch = [
     "question": "Wo steht das Objektpronomen im Aussagesatz im Präsens?",
     "answers": [
       "Direkt vor dem konjugierten Verb (z. B. 'Je le vois').",
-      "Ganz am Ende des Satzes hinter dem Objekt.",
-      "Vor dem Subjekt des Satzes.",
-      "Zwischen dem Nomen und dem Adjektiv."
+      "Ganz am Ende des Satzes, hinter dem genannten Objekt selbst.",
+      "Vor dem Subjekt, ganz am Anfang des gesamten Satzes.",
+      "Zwischen dem Nomen und dem passenden Adjektiv im Satz."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -224,9 +224,9 @@ const questions_k8_franzoesisch = [
     "question": "Wo stehen die Verneinungswörter 'ne ... pas' im Satz, wenn ein Objektpronomen vorhanden ist?",
     "answers": [
       "Sie umschließen das Objektpronomen und das konjugierte Verb (z. B. 'Je ne le vois pas').",
-      "Sie stehen beide am Ende des Satzes hinter dem Objektpronomen.",
-      "Sie stehen vor dem Subjekt des Satzes.",
-      "'pas' steht vor dem Pronomen und 'ne' hinter dem Verb."
+      "Sie stehen beide zusammen ganz am Ende des Satzes, direkt hinter dem Objektpronomen selbst.",
+      "Sie stehen beide gemeinsam ganz vorne, noch vor dem Subjekt des Satzes.",
+      "'pas' steht dabei vor dem Pronomen, während 'ne' hinter dem Verb steht."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -278,9 +278,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie wird der Komparativ (die Steigerung) von Adjektiven im Französischen gebildet?",
     "answers": [
       "plus / moins / aussi + Adjektiv + que (z. B. 'plus grand que')",
-      "Adjektiv + -er (z. B. 'grander')",
-      "more + Adjektiv + than",
-      "très + Adjektiv + de"
+      "Mit dem Adjektiv plus der Endung -er, also zum Beispiel 'grander' als Form.",
+      "Mit more plus Adjektiv plus than, ganz wie im Englischen üblich gebildet.",
+      "Mit très plus Adjektiv plus de, also ganz ohne echtes Vergleichswort dabei."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -296,9 +296,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie lautet die unregelmäßige Steigerungsform von 'bon' (gut)?",
     "answers": [
       "meilleur (besser)",
-      "plus bon",
-      "bien",
-      "mauvais"
+      "plus bon (falsch)",
+      "bien (Adverb)",
+      "mauvais (falsch)"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -314,9 +314,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie bildet man den Superlativ (Höchststufe) bei Adjektiven?",
     "answers": [
       "le / la / les + plus (oder moins) + Adjektiv (z. B. 'le plus grand')",
-      "Adjektiv + -est",
-      "très + plus + Adjektiv",
-      "beaucoup + Adjektiv"
+      "Mit der Adjektiv-Endung -est, also ganz wie im Englischen üblich gebildet.",
+      "Mit très plus plus plus Adjektiv, also einer doppelten Steigerung zugleich.",
+      "Mit beaucoup plus Adjektiv, aber komplett ohne jeden Artikel davor."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -512,9 +512,9 @@ const questions_k8_franzoesisch = [
     "question": "Was bedeutet die Zeitangabe 'il est midi / il est minuit'?",
     "answers": [
       "Es ist 12 Uhr mittags / Es ist 12 Uhr nachts (Mitternacht).",
-      "Es ist 6 Uhr morgens / Es ist 18 Uhr abends.",
-      "Es ist halb drei / Es ist Viertel vor vier.",
-      "Es ist genau Sonnenaufgang / Sonnenuntergang."
+      "Es ist 6 Uhr morgens ganz früh / Es ist 18 Uhr abends spät.",
+      "Es ist halb drei am Nachmittag / Es ist Viertel vor vier Uhr.",
+      "Es ist genau Sonnenaufgang am Morgen / Sonnenuntergang am Abend heute."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -566,9 +566,9 @@ const questions_k8_franzoesisch = [
     "question": "Was bedeutet die Konjunktion 'pendant que'?",
     "answers": [
       "während",
-      "weil",
-      "obwohl",
-      "bevor"
+      "nachdem",
+      "sodass",
+      "trotzdem"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -584,9 +584,9 @@ const questions_k8_franzoesisch = [
     "question": "Welche Präposition nutzt man bei Ländernamen mit weiblichem Genus (z. B. la France, la L'Allemagne)?",
     "answers": [
       "en (z. B. 'en France', 'en Allemagne')",
-      "au (z. B. 'au France')",
-      "aux (z. B. 'aux France')",
-      "à la (z. B. 'à la France')"
+      "au (z. B. falsch gebildet: 'au France')",
+      "aux (z. B. falsch gebildet: 'aux France')",
+      "à la (z. B. falsch gebildet: 'à la France')"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -602,9 +602,9 @@ const questions_k8_franzoesisch = [
     "question": "Welche Präposition steht vor männlichen Ländernamen (z. B. le Japon, le Canada)?",
     "answers": [
       "au (z. B. 'au Japon', 'au Canada')",
-      "en (z. B. 'en Japon')",
-      "aux (z. B. 'aux Japon')",
-      "dans (z. B. 'dans Japon')"
+      "en (z. B. falsch gebildet: 'en Japon')",
+      "aux (z. B. falsch gebildet: 'aux Japon')",
+      "dans (z. B. falsch gebildet: 'dans Japon')"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -640,9 +640,9 @@ const questions_k8_franzoesisch = [
     "question": "Wann verwendet man das Relativpronomen 'qui'?",
     "answers": [
       "Wenn das Relativpronomen Subjekt des Relativsatzes ist (Subjektfunktion).",
-      "Wenn das Relativpronomen direktes Objekt des Relativsatzes ist.",
-      "Ausschließlich bei Orts- und Zeitangaben.",
-      "Nur nach Präpositionen wie 'avec' oder 'pour'."
+      "Wenn das Relativpronomen direktes Objekt des ganzen Relativsatzes darstellt.",
+      "Ausschließlich bei reinen Orts- und Zeitangaben innerhalb des Satzes.",
+      "Nur direkt nach Präpositionen wie 'avec' oder 'pour' im ganzen Satz."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -658,9 +658,9 @@ const questions_k8_franzoesisch = [
     "question": "Wann verwendet man das Relativpronomen 'que' (bzw. 'qu'' vor Vokal)?",
     "answers": [
       "Wenn das Relativpronomen direktes Objekt des Relativsatzes ist (Akkusativobjekt).",
-      "Wenn das Relativpronomen das Subjekt des Satzes ersetzt.",
-      "Ausschließlich nach Mengenangaben wie 'beaucoup'.",
-      "Wenn eine zeitliche Reihenfolge ausgedrückt wird."
+      "Wenn das Relativpronomen das Subjekt des Satzes komplett ersetzen soll und alles verändert.",
+      "Ausschließlich nach festen Mengenangaben wie 'beaucoup' davor im Satz.",
+      "Wenn dadurch eine rein zeitliche Reihenfolge ausgedrückt werden soll."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -676,9 +676,9 @@ const questions_k8_franzoesisch = [
     "question": "Welches Relativpronomen nutzt man für Orts- oder Zeitangaben (wo / in dem / als)?",
     "answers": [
       "où (z. B. 'La ville où j'habite')",
-      "qui",
-      "que",
-      "dont"
+      "qui (Subjektpronomen, keine Ortsangabe)",
+      "que (Objektpronomen, keine Ortsangabe)",
+      "dont (Genitivpronomen, keine Ortsangabe)"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -694,9 +694,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie wird das Imparfait (Vergangenheit für Beschreibungen/Zustände) grundsätzlich gebildet?",
     "answers": [
       "Stamm der 1. Person Plural Präsens (nous) + Endungen -ais, -ais, -ait, -ions, -iez, -aient.",
-      "Infinitiv des Verbs + -é, -ée, -és, -ées.",
-      "Hilfsverb 'avoir' + Präsensstamm.",
-      "Infinitiv + Endungen des Futur simple."
+      "Mit dem Infinitiv des Verbs plus den Endungen -é, -ée, -és, -ées ganz am Wortende dahinter angehängt.",
+      "Mit dem Hilfsverb 'avoir' kombiniert direkt mit dem passenden Präsensstamm.",
+      "Mit dem Infinitiv plus den passenden Endungen des Futur simple direkt."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -712,9 +712,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie lautet die einzige Ausnahme beim Stamm der Imparfait-Bildung?",
     "answers": [
       "être (Stamm: ét-, z. B. 'j'étais')",
-      "avoir (Stamm: av-)",
-      "faire (Stamm: fais-)",
-      "aller (Stamm: all-)"
+      "avoir (Stamm: av-, keine Ausnahme)",
+      "faire (Stamm: fais-, keine Ausnahme)",
+      "aller (Stamm: all-, keine Ausnahme)"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -730,9 +730,9 @@ const questions_k8_franzoesisch = [
     "question": "Wann verwendet man das Imparfait im Unterschied zum Passé composé?",
     "answers": [
       "Für Beschreibungen, Gewohnheiten, Hintergrundhandlungen und Zustände in der Vergangenheit.",
-      "Ausschließlich für neu eintretende, einmalige und abgeschlossene Handlungen.",
-      "Nur für Handlungen, die in der Zukunft stattfinden werden.",
-      "Für Befehle und Aufforderungen an Gruppen."
+      "Ausschließlich für neu eintretende, einmalige und plötzliche abgeschlossene Handlungen in der Vergangenheit.",
+      "Nur für Handlungen, die erst in der Zukunft stattfinden werden können.",
+      "Für Befehle und direkte Aufforderungen an ganze Gruppen von Personen."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -748,9 +748,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie bildet man das Passé composé von reflexiven Verben (verbes pronominaux, z. B. 'se laver')?",
     "answers": [
       "Immer mit dem Hilfsverb 'être' (z. B. 'Je me suis lavé(e)').",
-      "Immer mit dem Hilfsverb 'avoir' (z. B. 'Je m'ai lavé').",
-      "Ohne Hilfsverb, nur das Reflexivpronomen + Infinitiv.",
-      "Mit dem Hilfsverb 'faire' + Partizip."
+      "Immer mit dem Hilfsverb 'avoir', also zum Beispiel 'Je m'ai lavé' als Form.",
+      "Ganz ohne Hilfsverb, nur mit Reflexivpronomen und Infinitiv davor.",
+      "Mit dem Hilfsverb 'faire' plus dem passenden Partizip des Hauptverbs davor."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -784,9 +784,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie lautet das Futur composé (nahe Zukunft)?",
     "answers": [
       "aller (im Präsens) + Infinitiv des Hauptverbs (z. B. 'Je vais parler').",
-      "avoir (im Präsens) + Partizip Passé.",
-      "être (im Präsens) + Infinitiv des Hauptverbs.",
-      "venir de + Infinitiv des Hauptverbs."
+      "Mit avoir im Präsens plus dem Partizip Passé des jeweiligen Hauptverbs.",
+      "Mit être im Präsens plus dem reinen Infinitiv des jeweiligen Hauptverbs.",
+      "Mit venir de plus Infinitiv, was eigentlich Vergangenheit ausdrückt."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -802,9 +802,9 @@ const questions_k8_franzoesisch = [
     "question": "Was drückt die Wendung 'venir de + Infinitiv' aus (Passé récent)?",
     "answers": [
       "Eine Handlung, die gerade eben erst stattgefunden hat (z. B. 'Je viens de manger' = Ich habe gerade gegessen).",
-      "Einen Wunsch für die ferne Zukunft.",
-      "Eine Aufforderung, irgendwohin zu kommen.",
-      "Eine Bedingung im Konjunktiv."
+      "Einen Wunsch für die ferne Zukunft, der noch überhaupt nicht erfüllt wurde und aller Wahrscheinlichkeit nach wohl nie eintreten wird.",
+      "Eine höfliche Aufforderung an jemanden, bald irgendwohin zu kommen und dort zu bleiben, egal wann.",
+      "Eine unsichere Bedingung im Konjunktiv, die stark von einer anderen Handlung abhängt und offen bleibt."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -928,9 +928,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie nennt man die Mittagspause bzw. Kantine in der französischen Schule?",
     "answers": [
       "la cantine / le restaurant scolaire",
-      "la récréation",
-      "la salle de classe",
-      "le gymnase"
+      "la récréation, die kurze Hofpause.",
+      "la salle de classe, der Klassenraum.",
+      "le gymnase, die Sporthalle."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -946,9 +946,9 @@ const questions_k8_franzoesisch = [
     "question": "Was bedeutet das französische Wort 'la récréation' (oder kurz 'la récré')?",
     "answers": [
       "die Schulpause / Hofpause",
-      "die Schulaufgabe",
-      "der Sportunterricht",
-      "die Sommerferien"
+      "die Schulaufgabe zu Hause",
+      "der Sportunterricht dort",
+      "die Sommerferien danach"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -982,9 +982,9 @@ const questions_k8_franzoesisch = [
     "question": "Welche Notenskala ist an Schulen in Frankreich üblich?",
     "answers": [
       "Von 0 bis 20 Punkten (20 ist die beste Note).",
-      "Von 1 bis 6 (1 ist die beste Note).",
-      "Von A bis F.",
-      "Von 0 bis 100 Prozent."
+      "Von 1 bis 6, wobei die Note 1 die allerbeste ist.",
+      "Von A bis F, wie im englischen System.",
+      "Von 0 bis 100 Prozent, wie bei einem Test."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1000,9 +1000,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie heißt das französische Wort für 'Wohnung'?",
     "answers": [
       "l'appartement (m)",
-      "la maison",
-      "la chambre",
-      "le bâtiment"
+      "la maison (Haus)",
+      "la chambre (Zimmer)",
+      "le bâtiment (Gebäude)"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1018,9 +1018,9 @@ const questions_k8_franzoesisch = [
     "question": "Was bedeutet der Begriff 'la carte' im Restaurant?",
     "answers": [
       "die Speisekarte",
-      "die Postkarte",
-      "die Landkarte",
-      "die Fahrkarte"
+      "die Ansichtskarte",
+      "die Landkarte (Reise)",
+      "die Fahrkarte (Zug)"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1036,9 +1036,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie höflich bestellt man im Restaurant oder Café etwas zum Trinken ('Ich hätte gerne...')?",
     "answers": [
       "Je voudrais... s'il vous plaît.",
-      "Je veux... tout de suite.",
-      "Donne-moi...",
-      "J'ai besoin..."
+      "Je veux..., völlig ohne Höflichkeit.",
+      "Donne-moi..., direkte Aufforderung.",
+      "J'ai besoin..., reine Notwendigkeit."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1072,9 +1072,9 @@ const questions_k8_franzoesisch = [
     "question": "Was bedeutet die Wendung 'Ça coûte combien?'?",
     "answers": [
       "Wie viel kostet das?",
-      "Wie spät ist es?",
-      "Wie weit ist es?",
-      "Wie groß ist das?"
+      "Wie spät ist es jetzt?",
+      "Wie weit ist es bis dort?",
+      "Wie groß ist das dort?"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1090,9 +1090,9 @@ const questions_k8_franzoesisch = [
     "question": "Was ist der 'TGV' in Frankreich?",
     "answers": [
       "Der französische Hochgeschwindigkeitszug (Train à Grande Vitesse).",
-      "Ein bekannter Pariser Flughafen.",
-      "Der größte Fernsehsender Frankreichs.",
-      "Eine französische Jugendzeitschrift."
+      "Ein bekannter Pariser Flughafen für lange internationale Fernreisen.",
+      "Der größte Fernsehsender Frankreichs im ganzen Land landesweit.",
+      "Eine bekannte französische Jugendzeitschrift, die monatlich erscheint."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1162,9 +1162,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie heißt die zweitgrößte Stadt Frankreichs, die eine bedeutende Hafenstadt am Mittelmeer ist?",
     "answers": [
       "Marseille",
-      "Lyon",
-      "Bordeaux",
-      "Toulouse"
+      "Lyon (Stadt)",
+      "Bordeaux (Wein)",
+      "Toulouse (SW)"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1180,9 +1180,9 @@ const questions_k8_franzoesisch = [
     "question": "Welches Gebirge bildet die natürliche Grenze zwischen Frankreich und Spanien?",
     "answers": [
       "Les Pyrénées (die Pyrenäen)",
-      "Les Alpes (die Alpen)",
-      "Le Massif central",
-      "Les Vosges (die Vogesen)"
+      "Les Alpes (Grenze zu Italien)",
+      "Le Massif central (Mittelgebirge)",
+      "Les Vosges (Grenze zu Deutschland)"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1216,9 +1216,9 @@ const questions_k8_franzoesisch = [
     "question": "Welche Farben hat die französische Nationalflagge ('le drapeau tricolore') von links nach rechts?",
     "answers": [
       "Blau, Weiß, Rot (bleu, blanc, rouge)",
-      "Rot, Weiß, Blau",
-      "Grün, Weiß, Rot",
-      "Schwarz, Rot, Gold"
+      "Rot, Weiß, Blau (falsche Reihenfolge)",
+      "Grün, Weiß, Rot (falsche Farben)",
+      "Schwarz, Rot, Gold (deutsche Flagge)"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1252,9 +1252,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie lautet die deutsche Übersetzung für den Ausdruck 'Avoir besoin de'?",
     "answers": [
       "etwas brauchen / benötigen",
-      "Lust haben auf etwas",
-      "Angst haben vor etwas",
-      "Glück haben"
+      "Lust haben auf etwas Bestimmtes",
+      "Angst haben vor etwas Bestimmtem",
+      "Glück haben bei etwas im Leben"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1271,9 +1271,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie wird das Futur simple bei regelmäßigen Verben auf -er gebildet?",
     "answers": [
       "Infinitiv + Endungen -ai, -as, -a, -ons, -ez, -ont (z. B. 'je parlerai').",
-      "Stamm des Präsens + Endungen -ais, -ais, -ait.",
-      "Hilfsverb 'aller' + Partizip Perfekt.",
-      "Hilfsverb 'avoir' + Infinitiv."
+      "Mit dem Stamm des Präsens plus den Endungen -ais, -ais, -ait ganz am Ende davor angehängt.",
+      "Mit dem Hilfsverb 'aller' plus dem Partizip Perfekt des Hauptverbs.",
+      "Mit dem Hilfsverb 'avoir' plus dem reinen Infinitiv des Hauptverbs."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1325,9 +1325,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie bildet man das Conditionnel présent (Höflichkeitsform / Wunschform)?",
     "answers": [
       "Futur-Stamm + Imparfait-Endungen (-ais, -ais, -ait, -ions, -iez, -aient).",
-      "Infinitiv + Präsens-Endungen von avoir.",
-      "Stamm des Präsens + -é.",
-      "Hilfsverb 'être' im Imparfait + Infinitiv."
+      "Mit dem Infinitiv plus den Präsens-Endungen von avoir direkt am Wortende angehängt.",
+      "Mit dem Stamm des Präsens plus der einfachen Endung -é am Wortende.",
+      "Mit dem Hilfsverb 'être' im Imparfait plus dem reinen Infinitiv davor."
     ],
     "correct": 0,
     "difficulty": "schwer",
@@ -1361,9 +1361,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie bildet man im Allgemeinen ein Adverb aus einem Adjektiv im Französischen?",
     "answers": [
       "Weibliche Form des Adjektivs + Endung '-ment' (z. B. 'heureuse' $\\rightarrow$ 'heureusement').",
-      "Männliche Form des Adjektivs + Endung '-ly'.",
-      "Vorranganstellung von 'très' vor dem Adjektiv.",
-      "Verdopplung des letzten Konsonanten ohne Endung."
+      "Mit der männlichen Form des Adjektivs plus der englischen Endung -ly ganz am Wortende angehängt.",
+      "Mit einer Vorranganstellung von 'très' direkt vor dem jeweiligen Adjektiv.",
+      "Mit einer Verdopplung des letzten Konsonanten, ganz ohne weitere Endung."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1415,9 +1415,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie leitet man Aussagesätze in der indirekten Rede (discours indirect) ein?",
     "answers": [
       "Mit der Konjunktion 'que' / 'qu'' (z. B. 'Il dit qu'il vient').",
-      "Mit der Präposition 'pour'.",
-      "Mit dem Relativpronomen 'qui'.",
-      "Mit dem Fragewort 'pourquoi'."
+      "Mit der Präposition 'pour', gefolgt direkt vom Infinitiv des Verbs.",
+      "Mit dem Relativpronomen 'qui' ganz am Anfang des gesamten Satzes.",
+      "Mit dem Fragewort 'pourquoi' ganz am Anfang des gesamten Satzes."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1433,9 +1433,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie leitet man Entscheidungsfragen (Ja/Nein-Fragen) in der indirekten Rede ein?",
     "answers": [
       "Mit der Konjunktion 'si' (z. B. 'Il demande si tu viens').",
-      "Mit 'est-ce que'.",
-      "Mit 'que'.",
-      "Mit 'quand'."
+      "Mit der festen Wendung 'est-ce que' ganz am Anfang des Satzes.",
+      "Mit der einfachen Konjunktion 'que', ohne jeden weiteren Zusatz.",
+      "Mit dem einfachen Fragewort 'quand' ganz am Anfang des Satzes."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1631,9 +1631,9 @@ const questions_k8_franzoesisch = [
     "question": "Was bedeutet die Wendung 'Avoir l'intention de + Infinitiv'?",
     "answers": [
       "die Absicht haben, etwas zu tun",
-      "Angst haben vor etwas",
-      "in Eile sein",
-      "Recht haben"
+      "Angst haben vor etwas, das kommt.",
+      "in großer Eile sein, wenig Zeit haben.",
+      "Recht haben in einer Diskussion."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1685,9 +1685,9 @@ const questions_k8_franzoesisch = [
     "question": "Was bedeutet der Begriff 'un échange scolaire'?",
     "answers": [
       "ein Schüleraustausch",
-      "eine Schulaufgabe",
-      "ein Schulwechsel",
-      "ein Pausenverkauf"
+      "eine Schulaufgabe daheim",
+      "ein Schulwechsel im Jahr",
+      "ein Pausenverkauf dort"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1739,9 +1739,9 @@ const questions_k8_franzoesisch = [
     "question": "Welche französische Region ist weltweit bekannt für ihre Schlösser an der Loire (châteaux de la Loire)?",
     "answers": [
       "Le Centre-Val de Loire",
-      "La Bretagne",
-      "La Normandie",
-      "La Corse"
+      "La Bretagne (Nordwesten)",
+      "La Normandie (Küste)",
+      "La Corse (Mittelmeer)"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1757,9 +1757,9 @@ const questions_k8_franzoesisch = [
     "question": "Wie heißt die große französische Mittelmeerinsel, auf der Napoleon Bonaparte geboren wurde?",
     "answers": [
       "La Corse (Korsika)",
-      "La Guadeloupe",
-      "La Martinique",
-      "La Réunion"
+      "La Guadeloupe (Karibik)",
+      "La Martinique (Karibik)",
+      "La Réunion (Ozean)"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1775,9 +1775,9 @@ const questions_k8_franzoesisch = [
     "question": "Was bedeutet die Abkürzung 'DOM-TOM' in Bezug auf Frankreich?",
     "answers": [
       "Départements et Territoires d'Outre-Mer (Überseegebiete)",
-      "Direction des Organisations Maritimes",
-      "Division des Officiers Militaires",
-      "Domaine d'Organisation Moderne"
+      "Direction des Organisations Maritimes (erfundene Verwaltungsstelle)",
+      "Division des Officiers Militaires (erfundene militärische Einheit)",
+      "Domaine d'Organisation Moderne (frei erfundene Bezeichnung dafür)"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1801,35 +1801,5 @@ const questions_k8_franzoesisch = [
     "difficulty": "leicht",
     "points": 10,
     "explanation": "Die 'Francophonie' umfasst alle Länder und Regionen weltweit, in denen Französisch gesprochen wird."
-  },
-  {"id":"k8fr101","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"Bonjour = …","answers":["Gute Nacht","Hallo","Danke","Bitte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Hallo."},
-  {"id":"k8fr102","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"Merci = …","answers":["Bitte","Danke","kein Ergebnis","andere Größe"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Danke."},
-  {"id":"k8fr103","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"le = Artikel …","answers":["fem.","mask.","plural","unbestimmt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mask."},
-  {"id":"k8fr104","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"Je suis = …","answers":["Du bist","Ich bin","Er ist","Wir sind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ich bin."},
-  {"id":"k8fr105","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"cinq = …","answers":["4","5","6","7"],"correct":1,"difficulty":"mittel","points":10,"explanation":"5."},
-  {"id":"k8fr106","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"où = …","answers":["wann","wo","warum","wie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"wo."},
-  {"id":"k8fr107","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"ne … pas","answers":["kein Ergebnis","richtig","nur pas","nur ne"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k8fr108","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"Futur avoir: j’___","answers":["aurai","ai","avais","avoir"],"correct":0,"difficulty":"mittel","points":10,"explanation":"aurai."},
-  {"id":"k8fr109","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"Adjektiv oft … Nomen","answers":["vor","nach","Zahl","nie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nach."},
-  {"id":"k8fr110","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"Liberté = …","answers":["Gleichheit","Freiheit","Brüderlichkeit","Gesetz"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Freiheit."},
-  {"id":"k8fr111","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"cheval Plural …","answers":["chevals","chevaux","chevales","cheveaux"],"correct":1,"difficulty":"mittel","points":10,"explanation":"chevaux."},
-  {"id":"k8fr112","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"Il y a = …","answers":["Es war","Es gibt","Er hat","Sie sind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Es gibt."},
-  {"id":"k8fr113","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"S’il vous plaît = …","answers":["Danke","Bitte","Sorry","Prost"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bitte."},
-  {"id":"k8fr114","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"à Paris = …","answers":["aus","in/nach","bei","über"],"correct":1,"difficulty":"mittel","points":10,"explanation":"à."},
-  {"id":"k8fr115","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"Nous sommes = …","answers":["Ihr seid","Wir sind","Sie sind","Ich bin"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wir sind."},
-  {"id":"k8fr116","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"bleu = …","answers":["rot","blau","grün","gelb"],"correct":1,"difficulty":"mittel","points":10,"explanation":"blau."},
-  {"id":"k8fr117","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"pourquoi = …","answers":["wann","warum","wer","wie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"warum."},
-  {"id":"k8fr118","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"j’ai mangé","answers":["être","avoir PC","est","avoir roh"],"correct":1,"difficulty":"mittel","points":10,"explanation":"PC avoir."},
-  {"id":"k8fr119","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"Parle! = …","answers":["Sprecht","Sprich","Sprechen Sie","Ich spreche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Sprich."},
-  {"id":"k8fr120","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"hier = …","answers":["morgen","gestern","heute","bald"],"correct":1,"difficulty":"mittel","points":10,"explanation":"gestern."},
-  {"id":"k8fr121","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"qui = Relativ …","answers":["Objekt","Subjekt","Zeit","Ort"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Subjekt."},
-  {"id":"k8fr122","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"travaux Plural von travail","answers":["kein Ergebnis","travaux","travails","trabal"],"correct":1,"difficulty":"mittel","points":10,"explanation":"travaux."},
-  {"id":"k8fr123","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"je voudrais = …","answers":["will","möchte","Perfekt","Futur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"möchte."},
-  {"id":"k8fr124","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"chez Marie = …","answers":["mit","bei","ohne","gegen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"bei."},
-  {"id":"k8fr125","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"lundi = …","answers":["Sonntag","Montag","Freitag","Samstag"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Montag."},
-  {"id":"k8fr126","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"C’est Paul","answers":["Il est üblich","c’est Vorstellung","Nous est","Tu est"],"correct":1,"difficulty":"mittel","points":10,"explanation":"c’est."},
-  {"id":"k8fr127","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"beaucoup de","answers":["mit Artikel Pflicht","ohne Artikel","nur Verben","nur Adj"],"correct":1,"difficulty":"mittel","points":10,"explanation":"ohne Art."},
-  {"id":"k8fr128","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"il/elle …","answers":["suis","es","est","sommes"],"correct":2,"difficulty":"mittel","points":10,"explanation":"est."},
-  {"id":"k8fr129","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"au revoir = …","answers":["Hallo","Auf Wiedersehen","Danke","Bitte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Tschüss."},
-  {"id":"k8fr130","category":"k8_franzoesisch","area":"schule","grade":8,"subject":"franzoesisch","topic":"erweiterung","question":"dix = …","answers":["9","10","11","12"],"correct":1,"difficulty":"mittel","points":10,"explanation":"10."}
+  }
 ];

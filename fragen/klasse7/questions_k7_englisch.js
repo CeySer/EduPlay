@@ -48,9 +48,9 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Fill in the correct tense: 'While I ... a book, the telephone suddenly rang.'",
     "answers": [
-      "had read a long book",
-      "would read a long book",
-      "have read a long book",
+      "had already read the book",
+      "would have read a book",
+      "have read the whole book",
       "was reading a long book"
     ],
     "correct": 3,
@@ -138,10 +138,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which verb form correctly completes Conditional Sentence Type 2: 'If I had money, I ... a car.'?",
     "answers": [
-      "had bought a car",
-      "bought a new car",
+      "had already bought a car",
+      "will probably buy a car",
       "would buy a new car",
-      "will buy a new car"
+      "should buy a used car"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -336,10 +336,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which sentence uses an Adverb of Manner correctly?",
     "answers": [
-      "She sings very beautier.",
+      "She sang extremely beautifully.",
       "She sings very beautifully.",
-      "She sings very beautiful.",
-      "She sings very beauty."
+      "She sings quite beautifully now.",
+      "She sings really wonderfully."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -609,9 +609,9 @@ const K7_ENGLISCH_QUESTIONS = [
     "question": "Which phrasal verb means 'to take care of' a person or pet?",
     "answers": [
       "Verb: look after",
-      "Verb: look at",
-      "Verb: look into",
-      "Verb: look for"
+      "Verb: take away",
+      "Verb: give it back",
+      "Verb: hand over now"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -734,10 +734,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which term describes environmental contamination of air, water or soil?",
     "answers": [
-      "The term: weather",
+      "The term: recycling",
       "The term: pollution",
-      "The term: climate",
-      "The term: nature"
+      "The term: emissions",
+      "The term: greenhouse"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -860,10 +860,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "How do you make a polite suggestion to a group of friends?",
     "answers": [
-      "Go to the cinema immediately!",
+      "Shall we go to the cinema now?",
       "Why don't we go to the cinema?",
-      "We must go to the cinema now!",
-      "You have to go to the cinema!"
+      "How about going to the cinema?",
+      "Maybe we could go to the cinema?"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -878,10 +878,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "What is the polite phrase to order food in a restaurant?",
     "answers": [
-      "Give me immediately...",
+      "Could I please order...",
       "I would like to have...",
-      "Bring me a burger...",
-      "I want to eat now..."
+      "May I have a look at...",
+      "I'd like to order some..."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -916,8 +916,8 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "What is the capital city of Scotland?",
     "answers": [
-      "The city: Dundee",
-      "The city: Aberdeen",
+      "The city: Inverness",
+      "The city: Stirling",
       "The city: Glasgow",
       "The city: Edinburgh"
     ],
@@ -953,9 +953,9 @@ const K7_ENGLISCH_QUESTIONS = [
     "question": "What is the capital city of Northern Ireland?",
     "answers": [
       "The city: Belfast",
-      "The city: Cork",
-      "The city: Dublin",
-      "The city: Derry"
+      "The city: Newry",
+      "The city: Armagh",
+      "The city: Lisburn"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1114,10 +1114,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "What currency is officially used throughout the United Kingdom?",
     "answers": [
-      "The Euro (€)",
-      "Swiss Franc (CHF)",
+      "Irish Punt (IEP)",
+      "Scottish Pound (£S)",
       "Pound Sterling (£)",
-      "US Dollar ($)"
+      "British Franc (BF)"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1204,9 +1204,9 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Where does the British Parliament meet in London?",
     "answers": [
-      "St Paul Cathedral",
-      "Tower of London",
-      "Trafalgar Square",
+      "Buckingham Palace Hall",
+      "The Royal Parliament House",
+      "Westminster Abbey Hall",
       "Palace of Westminster"
     ],
     "correct": 3,
@@ -1404,9 +1404,9 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which construction shows a Gerund as the Subject of a sentence?",
     "answers": [
-      "Swam is good for health.",
-      "To swim is good for health.",
-      "Swim is good for health.",
+      "Swims is good for health.",
+      "Swimmed is good for health.",
+      "Being swim is good for health.",
       "Swimming is good for health."
     ],
     "correct": 3,
@@ -1476,10 +1476,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which linking word expresses a consequence or result ('deshalb/daher')?",
     "answers": [
-      "Linking word: although",
+      "Linking word: moreover",
       "Linking word: therefore",
-      "Linking word: whereas",
-      "Linking word: despite"
+      "Linking word: however",
+      "Linking word: meanwhile"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1512,10 +1512,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "What is the standard closing phrase for a formal letter starting with 'Dear Sir or Madam,'?",
     "answers": [
-      "Yours sincerely,",
+      "Yours truly always,",
       "Yours faithfully,",
-      "Best wishes,",
-      "Lots of love,"
+      "With kind regards,",
+      "Yours respectfully,"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1585,9 +1585,9 @@ const K7_ENGLISCH_QUESTIONS = [
     "question": "Which pair of homophones has identical pronunciation but different spelling u. meaning?",
     "answers": [
       "Pair: there / their",
-      "Pair: book / look",
-      "Pair: cat / hat",
-      "Pair: run / sun"
+      "Pair: hear / here",
+      "Pair: write / right",
+      "Pair: flour / flower"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1809,38 +1809,9 @@ const K7_ENGLISCH_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "In informellen Briefen oder E-Mails an Freunde schreibt man 'Best wishes', 'Warm regards' oder 'Love'."
-  },
-  {"id":"k7en101","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"Past of go?","answers":["goed","went","gone","goes"],"correct":1,"difficulty":"mittel","points":10,"explanation":"went."},
-  {"id":"k7en102","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"Although means …","answers":["weil","obwohl","und","oder"],"correct":1,"difficulty":"mittel","points":10,"explanation":"obwohl."},
-  {"id":"k7en103","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"If I ___ you, I would help.","answers":["am","were","was","be"],"correct":1,"difficulty":"mittel","points":10,"explanation":"were."},
-  {"id":"k7en104","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"Passive: The letter ___ yesterday.","answers":["wrote","was written","writes","writing"],"correct":1,"difficulty":"mittel","points":10,"explanation":"was written."},
-  {"id":"k7en105","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"Sustainable = …","answers":["kurzleb","nachhaltig","laut","teuer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nachhaltig."},
-  {"id":"k7en106","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"He said he ___ tired.","answers":["is","was","be","were"],"correct":1,"difficulty":"mittel","points":10,"explanation":"was."},
-  {"id":"k7en107","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"enjoy ___","answers":["to swim","swimming","swam","swim"],"correct":1,"difficulty":"mittel","points":10,"explanation":"swimming."},
-  {"id":"k7en108","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"become = …","answers":["bekommen","werden","willkommen","begin"],"correct":1,"difficulty":"mittel","points":10,"explanation":"werden."},
-  {"id":"k7en109","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"Climate = …","answers":["Wetter jetzt","Klima","Kleidung","Küche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Klima."},
-  {"id":"k7en110","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"the woman ___ called","answers":["which","who","where","what"],"correct":1,"difficulty":"mittel","points":10,"explanation":"who."},
-  {"id":"k7en111","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"You ___ see a doctor.","answers":["can","should","mustn’t","could"],"correct":1,"difficulty":"mittel","points":10,"explanation":"should."},
-  {"id":"k7en112","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"slow → adverb","answers":["slowy","slowly","slowely","slowful"],"correct":1,"difficulty":"mittel","points":10,"explanation":"slowly."},
-  {"id":"k7en113","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"Economy = …","answers":["Wirtschaft","Sparsamkeit","Ökologie","Energie"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Wirtschaft."},
-  {"id":"k7en114","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"look up = …","answers":["nachschlagen","hochschauen","löschen","aufgeben"],"correct":0,"difficulty":"mittel","points":10,"explanation":"nachschlagen."},
-  {"id":"k7en115","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"tomorrow at 5 we ___","answers":["work","will be working","worked","working"],"correct":1,"difficulty":"mittel","points":10,"explanation":"will be working."},
-  {"id":"k7en116","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"Equality = …","answers":["Ungleichheit","Gleichheit","Qualität","Menge"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gleichheit."},
-  {"id":"k7en117","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"___ hour","answers":["a","an","the","some"],"correct":1,"difficulty":"mittel","points":10,"explanation":"an."},
-  {"id":"k7en118","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"as ___ as","answers":["more","tall","taller","most"],"correct":1,"difficulty":"mittel","points":10,"explanation":"as tall as."},
-  {"id":"k7en119","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"Invent = …","answers":["entdecken","erfinden","verlieren","messen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"erfinden."},
-  {"id":"k7en120","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"How long ___ you lived here?","answers":["do","have","has","are"],"correct":1,"difficulty":"mittel","points":10,"explanation":"have."},
-  {"id":"k7en121","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"responsible ___ the project","answers":["to","for","at","on"],"correct":1,"difficulty":"mittel","points":10,"explanation":"for."},
-  {"id":"k7en122","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"Synonym begin?","answers":["end","start","stop","finish"],"correct":1,"difficulty":"mittel","points":10,"explanation":"start."},
-  {"id":"k7en123","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"Democracy = …","answers":["Diktatur","Demokratie","Demo","Büro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Demokratie."},
-  {"id":"k7en124","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"teach past","answers":["teached","taught","thought","teecht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"taught."},
-  {"id":"k7en125","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"advice is …","answers":["countable","uncountable","verb","plural"],"correct":1,"difficulty":"mittel","points":10,"explanation":"uncountable."},
-  {"id":"k7en126","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"In contrast shows …","answers":["example","contrast","cause","time"],"correct":1,"difficulty":"mittel","points":10,"explanation":"contrast."},
-  {"id":"k7en127","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"make a ___","answers":["homework","decision","research","shopping"],"correct":1,"difficulty":"mittel","points":10,"explanation":"decision."},
-  {"id":"k7en128","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"Global warming = …","answers":["Eiszeit","globale Erwärmung","Regen","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Erwärmung."},
-  {"id":"k7en129","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"I study ___ pass.","answers":["for","to","so","at"],"correct":1,"difficulty":"mittel","points":10,"explanation":"to."},
-  {"id":"k7en130","category":"k7_englisch","area":"schule","grade":7,"subject":"englisch","topic":"erweiterung","question":"people relative","answers":["which","who","where","when"],"correct":1,"difficulty":"mittel","points":10,"explanation":"who."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K7_ENGLISCH_QUESTIONS = K7_ENGLISCH_QUESTIONS;

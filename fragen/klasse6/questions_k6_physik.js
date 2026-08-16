@@ -87,7 +87,7 @@ const K6_PHYSIK_QUESTIONS = [
       "Strom verdoppeln",
       "Spannung erzeugen",
       "Kreis unterbrechen",
-      "Widerstand messen"
+      "Strom stärker machen"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -282,7 +282,7 @@ const K6_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Welche Teilchen bewegen sich beim Stromfluss in Metallen?",
     "answers": [
-      "Moleküle",
+      "Wassermoleküle",
       "Protonen",
       "Elektronen",
       "Neutronen"
@@ -520,7 +520,7 @@ const K6_PHYSIK_QUESTIONS = [
     "answers": [
       "Licht wird komplett aufgesaugt",
       "Einfallswinkel = Ausfallswinkel",
-      "Einfallswinkel doppelt so groß",
+      "Einfallswinkel ist doppelt so groß",
       "Ausfallswinkel ist immer 90°"
     ],
     "correct": 1,
@@ -810,7 +810,7 @@ const K6_PHYSIK_QUESTIONS = [
     "answers": [
       "Anzahl der Töne pro Sekunde",
       "Schwingungsweite (Amplitude)",
-      "Länge der Schallwelle Meter",
+      "Länge der Schallwelle in Meter",
       "Farbe des Schallerzeugers"
     ],
     "correct": 1,
@@ -863,7 +863,7 @@ const K6_PHYSIK_QUESTIONS = [
     "question": "In welcher Einheit gibt man den Schalldruckpegel (Lautstärke) an?",
     "answers": [
       "Pascal",
-      "Joule",
+      "Kilojoule",
       "Dezibel",
       "Hertz"
     ],
@@ -952,7 +952,7 @@ const K6_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Was passiert bei ständiger Lärmbelastung über 85 dB?",
     "answers": [
-      "Blutdruck fällt ab",
+      "Blutdruck sinkt stark ab",
       "Sehkraft steigt an",
       "Gehörschädigung droht",
       "Schall wird leiser"
@@ -1025,7 +1025,7 @@ const K6_PHYSIK_QUESTIONS = [
     "question": "Wie klingt eine lange dicke Saite im Vergleich zu einer kurzen dünnen?",
     "answers": [
       "Klingt wesentlich tiefer",
-      "Gibt gar keinen Ton ab",
+      "Gibt gar keinen Ton von sich",
       "Klingt wesentlich höher",
       "Beide klingen identisch"
     ],
@@ -1101,7 +1101,7 @@ const K6_PHYSIK_QUESTIONS = [
       "Mit einem Hygrometer",
       "Mit einem Voltmeter",
       "Mit einem Thermometer",
-      "Mit einem Barometer"
+      "Mit einem Luftdruckmesser"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1243,7 +1243,7 @@ const K6_PHYSIK_QUESTIONS = [
     "question": "Wie nennt man den Übergang von gasförmig zu flüssig?",
     "answers": [
       "Verdampfen",
-      "Gefrieren",
+      "Resublimieren",
       "Kondensieren",
       "Schmelzen"
     ],
@@ -1314,7 +1314,7 @@ const K6_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Wie gelangt die Wärme der Sonne zur Erde?",
     "answers": [
-      "Durch Wärmeströmung",
+      "Durch die Wärmeströmung",
       "Durch Wärmeleitung",
       "Durch Schallwellen",
       "Durch Wärmestrahlung"
@@ -1333,7 +1333,7 @@ const K6_PHYSIK_QUESTIONS = [
     "question": "Was versteht man unter Wärmeströmung (Konvektion)?",
     "answers": [
       "Wärmetransport mit Stoff",
-      "Strahlung ohne Teilchen",
+      "Strahlung ganz ohne Teilchen",
       "Wärme geht durch Metall",
       "Abkühlung im Vakuum"
     ],
@@ -1463,7 +1463,7 @@ const K6_PHYSIK_QUESTIONS = [
       "Aluminium u. Gummi",
       "Holz, Plastik, Glas",
       "Eisen, Nickel, Kobalt",
-      "Kupfer, Gold, Silber"
+      "Kupfer, Gold und Silber"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1811,38 +1811,9 @@ const K6_PHYSIK_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "An den Polen treten die Teilchen in die Atmosphäre u. erzeugen Polarlichter (Aurora)."
-  },
-  {"id":"k6ph101","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Geschwindigkeit v = …","answers":["s×t","s/t","t/s","s+t"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Weg/Zeit.","topic":"erweiterung"},
-  {"id":"k6ph102","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Einheit Kraft?","answers":["Joule","Newton","Watt","Ohm"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Newton.","topic":"erweiterung"},
-  {"id":"k6ph103","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Dichte = …","answers":["m×V","m/V","V/m","m+V"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Masse/Volumen.","topic":"erweiterung"},
-  {"id":"k6ph104","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Energieerhaltung: Energie wird …","answers":["vernichtet","umgewandelt","nur erzeugt aus nichts","nur vernichtet"],"correct":1,"difficulty":"mittel","points":10,"explanation":"umgewandelt.","topic":"erweiterung"},
-  {"id":"k6ph105","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Wärmeübertragung Leitung = …","answers":["Strahlung","Kontakt im Stoff","Konvektion Strömung","Schall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wärmeleitung.","topic":"erweiterung"},
-  {"id":"k6ph106","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Stromkreis: Spannung Einheit?","answers":["Ampere","Volt","Ohm","Watt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Volt.","topic":"erweiterung"},
-  {"id":"k6ph107","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Ohm‘sches Gesetz: U = …","answers":["R/I","R×I","I/R","R+I"],"correct":1,"difficulty":"mittel","points":10,"explanation":"U=R·I.","topic":"erweiterung"},
-  {"id":"k6ph108","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Magnet: Feldlinien verlaufen außerhalb …","answers":["S→N","N→S","zufällig","nur kreis"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nord nach Süd.","topic":"erweiterung"},
-  {"id":"k6ph109","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Licht: Reflexion Einfallswinkel = …","answers":["90° immer","Ausfallswinkel","0°","Brechung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"gleich.","topic":"erweiterung"},
-  {"id":"k6ph110","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Schall braucht …","answers":["Vakuum","Medium","nur Licht","nur Magnete"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Medium.","topic":"erweiterung"},
-  {"id":"k6ph111","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Arbeit W = …","answers":["F/s","F×s","F+s","s/F"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kraft×Weg.","topic":"erweiterung"},
-  {"id":"k6ph112","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Leistung P = …","answers":["W×t","W/t","t/W","W+t"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Arbeit/Zeit.","topic":"erweiterung"},
-  {"id":"k6ph113","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Druck p = …","answers":["F×A","F/A","A/F","F+A"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kraft/Fläche.","topic":"erweiterung"},
-  {"id":"k6ph114","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Aggregatzustand: verdampfen = …","answers":["fest→flüssig","flüssig→gasförmig","gas→fest","fest→gas direkt immer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Sieden/Verdampfen.","topic":"erweiterung"},
-  {"id":"k6ph115","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Trägheit: Körper bleibt …","answers":["immer beschleunigt","im Zustand ohne Kraft","ohne Masse","ohne Energie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Trägheitsgesetz.","topic":"erweiterung"},
-  {"id":"k6ph116","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Energie kinetisch hängt ab von …","answers":["nur Farbe","Masse und Geschwindigkeit","nur Volumen","nur Temperatur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"½mv².","topic":"erweiterung"},
-  {"id":"k6ph117","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Isolator Beispiel?","answers":["Kupfer","Kunststoff","Eisen","Silber"],"correct":1,"difficulty":"mittel","points":10,"explanation":"schlecht leitend.","topic":"erweiterung"},
-  {"id":"k6ph118","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Kurzschluss: Widerstand sehr …","answers":["groß","klein","unendlich","gleich Spannung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"sehr klein.","topic":"erweiterung"},
-  {"id":"k6ph119","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Linsentyp sammelnd: …","answers":["Zerstreuungslinse","Konvexlinse","Plane","Spiegel nur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Konvex.","topic":"erweiterung"},
-  {"id":"k6ph120","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Einheit Energie?","answers":["Newton","Joule","Ampere","Kelvin"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Joule.","topic":"erweiterung"},
-  {"id":"k6ph121","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Temperatur absolut 0 K ≈ …","answers":["0 °C","−273 °C","100 °C","−100 °C"],"correct":1,"difficulty":"mittel","points":10,"explanation":"−273,15 °C.","topic":"erweiterung"},
-  {"id":"k6ph122","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Schwingung Periode T ist …","answers":["Frequenz","Dauer einer Schwingung","Amplitude","Lautstärke"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Periodendauer.","topic":"erweiterung"},
-  {"id":"k6ph123","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Frequenz f = …","answers":["T","1/T","T²","2T"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1/T.","topic":"erweiterung"},
-  {"id":"k6ph124","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Gravitation wirkt …","answers":["nur auf Eisen","zwischen Massen","nur auf der Erde","nur im Wasser"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Massen.","topic":"erweiterung"},
-  {"id":"k6ph125","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Hebel: Last × Lastarm = …","answers":["Kraft nur","Kraft × Kraftarm","Masse","Zeit"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gleichgewicht.","topic":"erweiterung"},
-  {"id":"k6ph126","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Spiegelbild: links/rechts …","answers":["oben/unten vertauscht immer","scheint vertauscht","Farbe ändert","Größe immer 2×"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Spiegelung.","topic":"erweiterung"},
-  {"id":"k6ph127","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Elektrische Leistung P = …","answers":["U/I","U×I","U+I","I/U"],"correct":1,"difficulty":"mittel","points":10,"explanation":"U·I.","topic":"erweiterung"},
-  {"id":"k6ph128","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Reibung … Bewegung oft …","answers":["fördert immer","hemmt","löscht Masse","erzeugt Weg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"hemmt.","topic":"erweiterung"},
-  {"id":"k6ph129","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Aggregat: schmelzen bei …","answers":["Siedepunkt","Schmelzpunkt","0 K","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schmelzpunkt.","topic":"erweiterung"},
-  {"id":"k6ph130","category":"k6_physik","area":"schule","grade":6,"subject":"physik","question":"Sicherungen schützen vor …","answers":["zu kleiner Spannung","Überstrom","Magnetfeldern nützlich","Schall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Überstrom.","topic":"erweiterung"}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K6_PHYSIK_QUESTIONS = K6_PHYSIK_QUESTIONS;

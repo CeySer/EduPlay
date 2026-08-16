@@ -7,10 +7,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which tense is correctly used in the sentence: 'If I won the lottery, I would buy a big house.'?",
     "answers": [
-      "Zero Conditional (general scientific facts).",
+      "Zero Conditional (general scientific facts, no shift).",
       "Conditional Sentence Type 2 (unreal present possibility).",
-      "Conditional Sentence Type 3 (unreal past situation).",
-      "Conditional Sentence Type 1 (real future possibility)."
+      "Conditional Sentence Type 3 (unreal past situation now).",
+      "Conditional Sentence Type 1 (real future possibility now)."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -62,9 +62,9 @@ const questions_k8_englisch = [
     "question": "How do you correctly transform direct speech to reported speech: Tom said, 'I am watching a movie.'?",
     "answers": [
       "Tom said that he was watching a movie.",
-      "Tom said that I was watching a movie.",
-      "Tom said that he had watched a movie.",
-      "Tom said that he is watching a movie."
+      "Tom said that I am watching a movie now.",
+      "Tom said that he had been watching a movie.",
+      "Tom said that he is now watching a movie."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -97,9 +97,9 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which conditional sentence describes an impossible situation in the past (Conditional Type 3)?",
     "answers": [
-      "If he trains harder, he will win the match.",
-      "If he had trained harder, he will win the match.",
-      "If he trained harder, he would win the match.",
+      "If he trains harder, he will definitely win the match.",
+      "If he had trained harder, he will win the match anyway.",
+      "If he trained harder, he would probably win the match.",
       "If he had trained harder, he would have won the match."
     ],
     "correct": 3,
@@ -169,9 +169,9 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which relative pronoun is used to refer to people in relative clauses?",
     "answers": [
-      "Whose.",
-      "Which.",
-      "Where.",
+      "Whose, for people.",
+      "Which, for people.",
+      "Where, for people.",
       "Who (or that)."
     ],
     "correct": 3,
@@ -187,10 +187,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "What is the American English word for the British English term 'subway' or 'underground'?",
     "answers": [
-      "Pavement (BE: sidewalk).",
+      "Pavement (BE term for sidewalk).",
       "Subway (BE: underground / tube).",
-      "Highway (BE: motorway).",
-      "Elevator (BE: lift)."
+      "Highway (BE term for motorway).",
+      "Elevator (BE term for lift)."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -205,10 +205,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which sentence contains a correct contact clause (defining relative clause without relative pronoun)?",
     "answers": [
-      "This is the boy who won the race.",
-      "This is the house where I lived.",
+      "This is the boy who won the running race.",
+      "This is the house where I once lived.",
       "This is the movie I watched yesterday.",
-      "This is the girl whose dog ran away."
+      "This is the girl whose dog had run away."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -223,10 +223,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "What is the capital city of the United States of America?",
     "answers": [
-      "Los Angeles.",
-      "Chicago.",
+      "Los Angeles City.",
+      "Chicago, Illinois.",
       "Washington, D.C.",
-      "New York City."
+      "New York City, USA."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -277,10 +277,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "What is the meaning of the phrasal verb 'to give up'?",
     "answers": [
-      "To start a new hobby or sport.",
-      "To increase the volume of music.",
+      "To begin a brand new hobby or sport.",
+      "To turn up the volume of the music.",
       "To stop doing something or surrender.",
-      "To hand over a gift to a friend."
+      "To hand over a present to a close friend."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -296,9 +296,9 @@ const questions_k8_englisch = [
     "question": "Which historic document declared the independence of the 13 American colonies in 1776?",
     "answers": [
       "The Declaration of Independence.",
-      "The Emancipation Proclamation.",
-      "The Bill of Rights.",
-      "The US Constitution."
+      "The Emancipation Proclamation of 1863.",
+      "The Bill of Rights document.",
+      "The US Constitution itself."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -314,9 +314,9 @@ const questions_k8_englisch = [
     "question": "Which word is an adverb of manner in: 'She sang the song beautifully.'?",
     "answers": [
       "Beautifully.",
-      "Sang.",
-      "Song.",
-      "The."
+      "Very loudly.",
+      "Quite badly.",
+      "Really slowly."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -331,10 +331,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "How do you form the present perfect passive?",
     "answers": [
-      "is/are + being + 3rd form (Past Participle).",
-      "was/were + 3rd form (Past Participle).",
+      "is/are + being + the 3rd form (Past Participle).",
+      "was/were + 3rd form (Past Participle) used before.",
       "has/have + been + 3rd form (Past Participle).",
-      "will be + 3rd form (Past Participle)."
+      "will be + 3rd form (Past Participle) very soon."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -350,9 +350,9 @@ const questions_k8_englisch = [
     "question": "What is the American English word for British 'fries' / 'chips'?",
     "answers": [
       "French fries.",
-      "Crisps.",
-      "Pancakes.",
-      "Biscuits."
+      "Chips or crisps.",
+      "Sweet pancakes.",
+      "Tasty biscuits."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -385,9 +385,9 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "What is the main purpose of a 'persuasive text'?",
     "answers": [
-      "To explain how to build a machine.",
-      "To tell a funny fictional fairytale.",
-      "To list facts in a dictionary entry.",
+      "To explain step by step how a machine works.",
+      "To tell a funny and imaginative fairy tale now.",
+      "To simply list facts in a dictionary entry today.",
       "To convince the reader of a specific opinion."
     ],
     "correct": 3,
@@ -439,10 +439,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "What does the abbreviation 'Native Americans' refer to?",
     "answers": [
-      "Tourists who travel through North America every year.",
-      "British settlers who built the first colonies in Jamestown.",
+      "Tourists who travel through North America every single year.",
+      "British settlers who built the very first colonies in Jamestown itself.",
       "The indigenous peoples who lived in America before Europeans arrived.",
-      "People who were born in New York City in the 20th century."
+      "People who were born and raised in New York City in recent decades."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -566,9 +566,9 @@ const questions_k8_englisch = [
     "question": "What is the correct translation of: 'Ich bin es gewohnt, früh aufzustehen.'?",
     "answers": [
       "I am using to get up early.",
-      "I used to get up early.",
+      "I used to get up very early.",
       "I am used to getting up early.",
-      "I use to getting up early."
+      "I use to getting up early daily."
     ],
     "correct": 2,
     "difficulty": "schwer",
@@ -674,9 +674,9 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which famous national park in Wyoming is known for its geysers, such as 'Old Faithful'?",
     "answers": [
-      "Zion National Park.",
-      "Yosemite National Park.",
-      "Everglades National Park.",
+      "Zion National Park, Utah.",
+      "Yosemite Park in California.",
+      "Everglades Park, Florida.",
       "Yellowstone National Park."
     ],
     "correct": 3,
@@ -728,10 +728,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "What happens to the verb tense in Reported Speech when the introductory verb is in the past (e.g., 'He said')?",
     "answers": [
-      "The verb tense always changes to the Present Continuous.",
+      "The verb tense always changes into the Present Continuous form.",
       "The verb tense shifts one step back into the past (backshift of tenses).",
-      "The verb tense remains exactly the same under all circumstances.",
-      "The verb tense shifts one step forward into the future."
+      "The verb tense stays exactly the same in every single case, always.",
+      "The verb tense always shifts one full step forward into the future tense."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -837,9 +837,9 @@ const questions_k8_englisch = [
     "question": "What does the expression 'Native American Reservation' describe?",
     "answers": [
       "Areas of land managed by Native American tribes under the US Department of the Interior.",
-      "Private luxury holiday resorts located on the beaches of California.",
-      "Historical museums dedicated to early European settlement in North America.",
-      "Nature reserves where wild animals are strictly protected from hunters."
+      "Private luxury holiday resorts on the sunny beaches of California.",
+      "Historical museums dedicated to early European settlement in America.",
+      "Government-owned nature reserves where wild animals are strictly protected from hunters."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -854,10 +854,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Convert into Reported Speech: Sarah said, 'I bought a new bike yesterday.'",
     "answers": [
-      "Sarah said that she bought a new bike yesterday.",
+      "Sarah said that she bought a new bike yesterday morning.",
       "Sarah said that she had bought a new bike the day before.",
-      "Sarah said that I had bought a new bike the day before.",
-      "Sarah said that she has bought a new bike the next day."
+      "Sarah said that I had bought a new bike before that.",
+      "Sarah said that she has bought a brand new bike the next day."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -908,9 +908,9 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which passive sentence is in the Past Continuous passive?",
     "answers": [
-      "The house had been painted before.",
-      "The house is being painted right now.",
-      "The house was painted yesterday.",
+      "The house had been painted long before today.",
+      "The house is being painted right now outside.",
+      "The house was painted yesterday afternoon.",
       "The house was being painted when I arrived."
     ],
     "correct": 3,
@@ -945,9 +945,9 @@ const questions_k8_englisch = [
     "question": "Which clause is correct: 'If you had arrived on time, we ___ (not miss) the train.'?",
     "answers": [
       "would not have missed",
-      "will not miss",
-      "had not missed",
-      "would not miss"
+      "will not miss the train",
+      "had not missed the train",
+      "would not miss the train"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -963,9 +963,9 @@ const questions_k8_englisch = [
     "question": "What is the meaning of the phrasal verb 'to look forward to'?",
     "answers": [
       "To feel excited about something that is going to happen.",
-      "To inspect something carefully from the outside.",
-      "To search for a lost object on the ground.",
-      "To turn around and face backwards."
+      "To inspect something very carefully from the outside.",
+      "To search around slowly for a lost object on the ground.",
+      "To turn around quickly and face the other direction now."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1016,10 +1016,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which relative pronoun cannot be omitted in a defining relative clause?",
     "answers": [
-      "The relative pronoun when it follows a preposition.",
-      "The relative pronoun when it is used in American English.",
+      "The relative pronoun when it directly follows a preposition.",
+      "The relative pronoun when it is used in casual American English.",
       "The relative pronoun when it is the subject of the relative clause.",
-      "The relative pronoun when it is the object of the relative clause."
+      "The relative pronoun when it is the object of the whole relative clause."
     ],
     "correct": 2,
     "difficulty": "schwer",
@@ -1107,9 +1107,9 @@ const questions_k8_englisch = [
     "question": "What is the correct definition of an 'adverb of frequency'?",
     "answers": [
       "A word that indicates how often an action happens (e.g. always, often, never).",
-      "A word that describes where an action takes place (e.g. outdoors, inside).",
-      "A word that joins two main clauses together (e.g. because, but).",
-      "A word that modifies a noun to show color or size (e.g. blue, huge)."
+      "A word that describes exactly where an action takes place outside.",
+      "A word that joins two main clauses together, such as because or but.",
+      "A word that modifies a noun to describe its exact color, size, or shape in detail."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1161,9 +1161,9 @@ const questions_k8_englisch = [
     "question": "What is the correct passive sentence in Present Perfect?",
     "answers": [
       "The letters have been sent by the secretary.",
-      "The letters are sent by the secretary.",
-      "The letters will be sent by the secretary.",
-      "The letters were sent by the secretary."
+      "The letters are sent by the secretary now.",
+      "The letters will be sent by the secretary soon.",
+      "The letters were sent by the secretary before."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1270,10 +1270,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which sentence correctly uses a Gerund as the subject of the sentence?",
     "answers": [
-      "Swam in the ocean is my favorite summer activity.",
+      "Swam in the ocean is my most favorite summer activity.",
       "Swimming in the ocean is my favorite summer activity.",
-      "Swim in the ocean is my favorite summer activity.",
-      "To swim in the ocean is my favorite summer activity."
+      "Swim in the ocean is my most favorite summer activity.",
+      "To swim in the ocean is my favorite summer activity ever."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1414,9 +1414,9 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "What is the American English equivalent of the British word 'trash' or 'rubbish'?",
     "answers": [
-      "Junk or scrap.",
-      "Litter or dust.",
-      "Waste or sewage.",
+      "Junk or scrap metal.",
+      "Litter or dust bin.",
+      "Waste or sewage pipe.",
       "Garbage or trash."
     ],
     "correct": 3,
@@ -1486,9 +1486,9 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which famous suspension bridge connects San Francisco to Marin County in California?",
     "answers": [
-      "The Tower Bridge.",
+      "The Tower Bridge, London.",
       "The Golden Gate Bridge.",
-      "The Brooklyn Bridge.",
+      "The Brooklyn Bridge, NY.",
       "The Seven Mile Bridge."
     ],
     "correct": 1,
@@ -1540,10 +1540,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "What is the function of an 'adverbial clause of time'?",
     "answers": [
-      "It states a condition that must be fulfilled first.",
-      "It explains the reason why an action takes place.",
+      "It states a condition that must first be fulfilled.",
+      "It explains the exact reason why an action takes place.",
       "It indicates when an action in the main clause happens.",
-      "It describes the physical appearance of a noun."
+      "It describes the physical appearance of a certain noun."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1558,10 +1558,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which verb forms are used in a Conditional Type 3 sentence?",
     "answers": [
-      "If-clause: Simple Present; Main clause: will + Infinitive.",
-      "If-clause: Simple Past; Main clause: would + Infinitive.",
+      "If-clause: Simple Present; Main clause: will + Infinitive form.",
+      "If-clause: Simple Past tense; Main clause: would + Infinitive form.",
       "If-clause: Past Perfect; Main clause: would have + Past Participle.",
-      "If-clause: Past Continuous; Main clause: would + Infinitive."
+      "If-clause: Past Continuous tense; Main clause: would + Infinitive form."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1576,10 +1576,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "What is the American English term for British 'vacation' or 'holiday'?",
     "answers": [
-      "Trip.",
-      "Break.",
+      "Trip abroad.",
+      "Short break.",
       "Vacation.",
-      "Weekend."
+      "Long weekend."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1720,10 +1720,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which sentence is written in the correct Passive Voice in Future Perfect?",
     "answers": [
-      "The work had been completed by Monday.",
+      "The work had been completed early on Monday.",
       "The work will have been completed by Monday.",
-      "The work will be completed by Monday.",
-      "The work has been completed by Monday."
+      "The work will be completed sometime by Monday.",
+      "The work has been completed already on Monday."
     ],
     "correct": 1,
     "difficulty": "schwer",
@@ -1792,44 +1792,16 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "What is the main message of Martin Luther King Jr.'s famous 1963 speech 'I Have a Dream'?",
     "answers": [
-      "The independence of the American colonies from Britain.",
+      "The independence of the American colonies from Great Britain.",
       "An end to racism and equal civil rights for African Americans.",
-      "The establishment of new national parks in North America.",
-      "The exploration of the American West by pioneers."
+      "The establishment of new national parks across North America.",
+      "The exploration and settlement of the American West by pioneers."
     ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
     "explanation": "Martin Luther King Jr. forderte in seiner Rede Gleichberechtigung und ein Ende des Rassismus in den USA."
-  },
-  {"id":"k8en101","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"Past of go?","answers":["goed","went","gone","goes"],"correct":1,"difficulty":"mittel","points":10,"explanation":"went."},
-  {"id":"k8en102","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"Although means …","answers":["weil","obwohl","und","oder"],"correct":1,"difficulty":"mittel","points":10,"explanation":"obwohl."},
-  {"id":"k8en103","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"If I ___ you, I would help.","answers":["am","were","was","be"],"correct":1,"difficulty":"mittel","points":10,"explanation":"were."},
-  {"id":"k8en104","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"Passive: The letter ___ yesterday.","answers":["wrote","was written","writes","writing"],"correct":1,"difficulty":"mittel","points":10,"explanation":"was written."},
-  {"id":"k8en105","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"Sustainable = …","answers":["kurzleb","nachhaltig","laut","teuer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nachhaltig."},
-  {"id":"k8en106","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"He said he ___ tired.","answers":["is","was","be","were"],"correct":1,"difficulty":"mittel","points":10,"explanation":"was."},
-  {"id":"k8en107","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"enjoy ___","answers":["to swim","swimming","swam","swim"],"correct":1,"difficulty":"mittel","points":10,"explanation":"swimming."},
-  {"id":"k8en108","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"become = …","answers":["bekommen","werden","willkommen","begin"],"correct":1,"difficulty":"mittel","points":10,"explanation":"werden."},
-  {"id":"k8en109","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"Climate = …","answers":["Wetter jetzt","Klima","Kleidung","Küche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Klima."},
-  {"id":"k8en110","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"the woman ___ called","answers":["which","who","where","what"],"correct":1,"difficulty":"mittel","points":10,"explanation":"who."},
-  {"id":"k8en111","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"You ___ see a doctor.","answers":["can","should","mustn’t","could"],"correct":1,"difficulty":"mittel","points":10,"explanation":"should."},
-  {"id":"k8en112","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"slow → adverb","answers":["slowy","slowly","slowely","slowful"],"correct":1,"difficulty":"mittel","points":10,"explanation":"slowly."},
-  {"id":"k8en113","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"Economy = …","answers":["Wirtschaft","Sparsamkeit","Ökologie","Energie"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Wirtschaft."},
-  {"id":"k8en114","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"look up = …","answers":["nachschlagen","hochschauen","löschen","aufgeben"],"correct":0,"difficulty":"mittel","points":10,"explanation":"nachschlagen."},
-  {"id":"k8en115","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"tomorrow at 5 we ___","answers":["work","will be working","worked","working"],"correct":1,"difficulty":"mittel","points":10,"explanation":"will be working."},
-  {"id":"k8en116","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"Equality = …","answers":["Ungleichheit","Gleichheit","Qualität","Menge"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gleichheit."},
-  {"id":"k8en117","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"___ hour","answers":["a","an","the","some"],"correct":1,"difficulty":"mittel","points":10,"explanation":"an."},
-  {"id":"k8en118","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"as ___ as","answers":["more","tall","taller","most"],"correct":1,"difficulty":"mittel","points":10,"explanation":"as tall as."},
-  {"id":"k8en119","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"Invent = …","answers":["entdecken","erfinden","verlieren","messen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"erfinden."},
-  {"id":"k8en120","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"How long ___ you lived here?","answers":["do","have","has","are"],"correct":1,"difficulty":"mittel","points":10,"explanation":"have."},
-  {"id":"k8en121","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"responsible ___ the project","answers":["to","for","at","on"],"correct":1,"difficulty":"mittel","points":10,"explanation":"for."},
-  {"id":"k8en122","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"Synonym begin?","answers":["end","start","stop","finish"],"correct":1,"difficulty":"mittel","points":10,"explanation":"start."},
-  {"id":"k8en123","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"Democracy = …","answers":["Diktatur","Demokratie","Demo","Büro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Demokratie."},
-  {"id":"k8en124","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"teach past","answers":["teached","taught","thought","teecht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"taught."},
-  {"id":"k8en125","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"advice is …","answers":["countable","uncountable","verb","plural"],"correct":1,"difficulty":"mittel","points":10,"explanation":"uncountable."},
-  {"id":"k8en126","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"In contrast shows …","answers":["example","contrast","cause","time"],"correct":1,"difficulty":"mittel","points":10,"explanation":"contrast."},
-  {"id":"k8en127","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"make a ___","answers":["homework","decision","research","shopping"],"correct":1,"difficulty":"mittel","points":10,"explanation":"decision."},
-  {"id":"k8en128","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"Global warming = …","answers":["Eiszeit","globale Erwärmung","Regen","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Erwärmung."},
-  {"id":"k8en129","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"I study ___ pass.","answers":["for","to","so","at"],"correct":1,"difficulty":"mittel","points":10,"explanation":"to."},
-  {"id":"k8en130","category":"k8_englisch","area":"schule","grade":8,"subject":"englisch","topic":"erweiterung","question":"people relative","answers":["which","who","where","when"],"correct":1,"difficulty":"mittel","points":10,"explanation":"who."}
+  }
+
+
 ];

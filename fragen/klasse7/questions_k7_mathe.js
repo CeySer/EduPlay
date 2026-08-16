@@ -536,9 +536,9 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Wie verläuft der Graph einer proportionalen Zuordnung im Koordinatensystem?",
     "answers": [
-      "Beliebige Wellenlinie",
+      "Fallende Gerade ohne Ursprung",
       "Hyperbel im Quadranten",
-      "Parallele zur X-Achse",
+      "Waagerechte X-Parallele",
       "Ursprungsgerade durch O"
     ],
     "correct": 3,
@@ -662,10 +662,10 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Welche Zuordnung liegt vor: 'Geschwindigkeit eines Autos zu dessen Bremsweg'?",
     "answers": [
-      "Antiproportionale Z.",
+      "Antiproportionale Zuordnung",
       "Weder prop. noch antiprop.",
-      "Konstante Zuordnung",
-      "Rein proportionale Z."
+      "Konstante Zuordnung stets",
+      "Rein proportionale Zuord."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1042,8 +1042,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Was versteht man unter einer Äquivalenzumformung einer Gleichung?",
     "answers": [
-      "Änderung des Ergebnisses",
-      "Einsetzen einer Zahl",
+      "Änderung des Endergebnisses",
+      "Einsetzen einer Zahl ein",
       "Umformung gleicher Lösung",
       "Reine Vereinfachung oben"
     ],
@@ -1422,9 +1422,9 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Was zeichnet ein gleichschenkliges Dreieck mathematisch aus?",
     "answers": [
-      "Alle Winkel verschieden",
-      "Ein Rechter Winkel 90°",
-      "Drei gleiche Seiten",
+      "Alle drei Winkel verschieden",
+      "Ein Rechter Winkel von 90°",
+      "Drei gleich lange Seiten",
       "Zwei gleiche Seiten/Winkel"
     ],
     "correct": 3,
@@ -1657,8 +1657,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "question": "Wie lautet die Formel für den Flächeninhalt $A$ eines Trapezes mit den parallelen Seiten $a$ u. $c$?",
     "answers": [
       "Formel: A = ((a + c) / 2) * h",
-      "Formel: A = (a * c / 2) * h",
-      "Formel: A = (a - c) / 2 * h",
+      "Formel: A = ((a * c) / 2) * h",
+      "Formel: A = ((a - c) / 2) * h",
       "Formel: A = (a + c) * h"
     ],
     "correct": 0,
@@ -2475,9 +2475,9 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Wie nennt man den festen Quotienten k in der Formel y = k * x?",
     "answers": [
-      "Differenzenquotient",
+      "Differenzenquotient k",
       "Proportionalitätsfaktor",
-      "Absoluter Nullwert",
+      "Absoluter Nullwert stets",
       "Antiproportionalität"
     ],
     "correct": 1,
@@ -2619,10 +2619,10 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Eine Tabelle zeigt Wertepaare (2|6), (3|9), (5|15). Welche Zuordnung ist das?",
     "answers": [
-      "Keine Gesetzmäßigkeit",
+      "Keine feste Gesetzmäßigkeit",
       "Quadratische Zuordnung",
       "Proportionale Zuordnung",
-      "Antiproportionale Z."
+      "Antiproportionale Zuord."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -2747,9 +2747,9 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Was ergibt der Betrag einer negativen Zahl |-7|?",
     "answers": [
-      "Der Kehrwert der Zahl",
-      "Das Quadrat der Zahl",
-      "Die Gegenzahl (-7)",
+      "Der Kehrwert der Zahl -7",
+      "Das Quadrat der Zahl -7",
+      "Die Gegenzahl davon (-7)",
       "Abstand zur Null (ist 7)"
     ],
     "correct": 3,
@@ -2963,10 +2963,10 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Welches Gesetz regelt das Ausmultiplizieren: a * (b + c) = a * b + a * c?",
     "answers": [
-      "Das Assoziativgesetz",
+      "Das Assoziativgesetz gilt",
       "Das Distributivgesetz",
-      "Das Transitivgesetz",
-      "Das Kommutativgesetz"
+      "Das Transitivgesetz hier",
+      "Das Kommutativgesetz gilt"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -3017,9 +3017,9 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Welches Vergleichszeichen gehört in die Lücke: -5,4 ___ -5,2?",
     "answers": [
-      "Zeichen: > (größer)",
-      "Zeichen: + (plus)",
-      "Zeichen: = (gleich)",
+      "Zeichen: > (größer als)",
+      "Zeichen: + (einfach plus)",
+      "Zeichen: = (ist gleich)",
       "Zeichen: < (kleiner)"
     ],
     "correct": 3,
@@ -3089,10 +3089,10 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Was gehört zur Menge der ganzen Zahlen Z?",
     "answers": [
-      "Nur natürliche Zahlen",
-      "Nur Brüche u. Komma",
+      "Nur natürliche Zahlen ab 0",
+      "Nur Brüche und Kommazahlen",
       "Positive/negative Ganzz.",
-      "Nur Primzahlen über 0"
+      "Nur Primzahlen über null"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -3325,10 +3325,10 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Wann nennt man zwei geometrische Figuren zueinander kongruent?",
     "answers": [
-      "Nur gleiche Winkel",
+      "Nur gleiche Winkelgrößen",
       "Deckungsgleich in Form",
-      "Nur gleiche Fläche",
-      "Nur gleiche Farbe"
+      "Nur gleiche Flächengröße",
+      "Nur gleiche Farbe/Muster"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -3416,9 +3416,9 @@ const K7_MATHEMATIK_QUESTIONS = [
     "question": "Was ist eine Seitenhalbierende (Schwerlinie) im Dreieck?",
     "answers": [
       "Verbindung Mitte-Ecke",
-      "Halbiert den Winkel",
-      "Parallele zur Basis",
-      "Steht senkrecht 90°"
+      "Halbiert den Innenwinkel",
+      "Parallele zur Basisseite",
+      "Steht im rechten Winkel"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3451,10 +3451,10 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "In welchem Winkel steht die Höhe ha auf der Grundseite a?",
     "answers": [
-      "Im 60-Grad-Winkel",
-      "Parallel zur Seite a",
+      "Im 60-Grad-Winkel stets",
+      "Parallel zur Seite a hier",
       "Im rechten Winkel (90°)",
-      "Im 45-Grad-Winkel"
+      "Im 45-Grad-Winkel stets"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -3505,9 +3505,9 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Wie heißen Winkel, die sich an zwei schneidenden Geraden gegenüberliegen?",
     "answers": [
-      "Begriff: Wechselwinkel",
-      "Begriff: Stufenwinkel",
-      "Begriff: Nebenwinkel",
+      "Begriff: Wechselwinkel hier",
+      "Begriff: Stufenwinkel dort",
+      "Begriff: Nebenwinkel dabei",
       "Begriff: Scheitelwinkel"
     ],
     "correct": 3,
@@ -3541,10 +3541,10 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Ein Winkel alpha beträgt 40°. Wie groß ist sein Nebenwinkel beta?",
     "answers": [
-      "Winkel beträgt: 50°",
-      "Winkel beträgt: 40°",
+      "Winkel beträgt hier: 50°",
+      "Winkel beträgt hier: 40°",
       "Winkel beträgt: 140°",
-      "Winkel beträgt: 90°"
+      "Winkel beträgt hier: 90°"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -3577,9 +3577,9 @@ const K7_MATHEMATIK_QUESTIONS = [
     "subject": "mathematik",
     "question": "Welcher Zusammenhang gilt für Stufenwinkel an Parallelen?",
     "answers": [
-      "Winkel sind ungleich",
+      "Winkel sind stets ungleich",
       "Summe ergibt stets 90°",
-      "Summe ergibt 360°",
+      "Summe ergibt hierbei 360°",
       "Winkel sind gleich groß"
     ],
     "correct": 3,
@@ -3622,38 +3622,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "U = a + b + c = 6 + 8 + 10 = 24 cm."
-  },
-  {"id":"k7ma101","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Was ist √169?","answers":["12","13","14","15"],"correct":1,"difficulty":"mittel","points":10,"explanation":"13×13=169."},
-  {"id":"k7ma102","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Löse: 5x=35","answers":["5","6","7","8"],"correct":2,"difficulty":"mittel","points":10,"explanation":"x=7."},
-  {"id":"k7ma103","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"2³·2²=?","answers":["2⁵","2⁶","4⁵","2"],"correct":0,"difficulty":"mittel","points":10,"explanation":"2⁵."},
-  {"id":"k7ma104","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"15% von 200?","answers":["20","25","30","35"],"correct":2,"difficulty":"mittel","points":10,"explanation":"30."},
-  {"id":"k7ma105","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Steigung (0,0)→(4,8)?","answers":["1","2","3","4"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2."},
-  {"id":"k7ma106","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Fläche Rechteck 9×4?","answers":["13","36","26","18"],"correct":1,"difficulty":"mittel","points":10,"explanation":"36."},
-  {"id":"k7ma107","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"sin(0°)=?","answers":["0","1","0,5","−1"],"correct":0,"difficulty":"mittel","points":10,"explanation":"0."},
-  {"id":"k7ma108","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"log₁₀(100)=?","answers":["1","2","10","100"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2."},
-  {"id":"k7ma109","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"x²=36 → x=?","answers":["6","±6","36","−6"],"correct":1,"difficulty":"mittel","points":10,"explanation":"±6."},
-  {"id":"k7ma110","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"3-4-5 Dreieck: c=?","answers":["5","6","7","8"],"correct":0,"difficulty":"mittel","points":10,"explanation":"5."},
-  {"id":"k7ma111","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"P(Kopf) fair coin?","answers":["0","1/2","1/3","1"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1/2."},
-  {"id":"k7ma112","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Mittel 10,20,30?","answers":["15","20","25","60"],"correct":1,"difficulty":"mittel","points":10,"explanation":"20."},
-  {"id":"k7ma113","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"1 h = ? s","answers":["60","3600","600","1000"],"correct":1,"difficulty":"mittel","points":10,"explanation":"3600."},
-  {"id":"k7ma114","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"2/3 + 1/6=?","answers":["1/2","5/6","1","3/6"],"correct":1,"difficulty":"mittel","points":10,"explanation":"5/6."},
-  {"id":"k7ma115","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"a⁴/a²=?","answers":["a²","a⁶","a","2a"],"correct":0,"difficulty":"mittel","points":10,"explanation":"a²."},
-  {"id":"k7ma116","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Nullstelle y=x+5?","answers":["0","−5","5","1"],"correct":1,"difficulty":"mittel","points":10,"explanation":"−5."},
-  {"id":"k7ma117","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Würfel Volumen a=5?","answers":["25","125","15","100"],"correct":1,"difficulty":"mittel","points":10,"explanation":"125."},
-  {"id":"k7ma118","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Median 1,3,100?","answers":["1","3","100","34"],"correct":1,"difficulty":"mittel","points":10,"explanation":"3."},
-  {"id":"k7ma119","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"0,5 als Bruch?","answers":["1/5","1/2","2/5","1/4"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1/2."},
-  {"id":"k7ma120","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"3a+2a=?","answers":["5a","6a","a⁵","5"],"correct":0,"difficulty":"mittel","points":10,"explanation":"5a."},
-  {"id":"k7ma121","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Primzahl?","answers":["27","29","33","35"],"correct":1,"difficulty":"mittel","points":10,"explanation":"29."},
-  {"id":"k7ma122","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Runde 2,35 auf Zehntel?","answers":["2,3","2,4","2,35","2"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2,4."},
-  {"id":"k7ma123","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"f(x)=x+1, f(10)=?","answers":["9","11","10","12"],"correct":1,"difficulty":"mittel","points":10,"explanation":"11."},
-  {"id":"k7ma124","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"x−3>2 →","answers":["x>5","x<5","x>2","x=5"],"correct":0,"difficulty":"mittel","points":10,"explanation":"x>5."},
-  {"id":"k7ma125","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Dreisatz 2→6, 5→?","answers":["10","15","12","30"],"correct":1,"difficulty":"mittel","points":10,"explanation":"15."},
-  {"id":"k7ma126","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"U Kreis d=10 π≈3?","answers":["30","15","60","10"],"correct":0,"difficulty":"mittel","points":10,"explanation":"≈30."},
-  {"id":"k7ma127","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"(−2)×3=?","answers":["−6","6","−5","5"],"correct":0,"difficulty":"mittel","points":10,"explanation":"−6."},
-  {"id":"k7ma128","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"Quadrant III: x und y …","answers":["beide +","beide −","x+ y−","x− y+"],"correct":1,"difficulty":"mittel","points":10,"explanation":"beide negativ."},
-  {"id":"k7ma129","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"4²=?","answers":["8","16","32","2"],"correct":1,"difficulty":"mittel","points":10,"explanation":"16."},
-  {"id":"k7ma130","category":"k7_mathe","area":"schule","grade":7,"subject":"mathe","topic":"erweiterung","question":"5! =?","answers":["25","120","60","20"],"correct":1,"difficulty":"mittel","points":10,"explanation":"120."}
+  }
 ];
+
+
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K7_MATHEMATIK_QUESTIONS = K7_MATHEMATIK_QUESTIONS;

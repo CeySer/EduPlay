@@ -138,9 +138,9 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
     "subject": "religion_philosophie",
     "question": "Welche Haltung beschreibt der Begriff 'Egoismus'?",
     "answers": [
-      "Selbstlose Hilfe für Arme",
-      "Gleichbehandlung aller Wesen",
-      "Einsatz für die Gemeinschaft",
+      "Hilfsbereitschaft für andere",
+      "Gleichbehandlung aller Menschen",
+      "Engagement für die Gemeinschaft",
       "Ausrichtung nur auf Eigenwohl"
     ],
     "correct": 3,
@@ -519,9 +519,9 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
     "question": "Wie wird das jüdische Gotteshaus für Gottesdienst u. Lehre genannt?",
     "answers": [
       "Die Synagoge Haus",
-      "Die Kirche Haus",
       "Die Moschee Haus",
-      "Der Tempel Haus"
+      "Der Tempel Haus",
+      "Die Kathedrale Haus"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -539,7 +539,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
       "Der Sonntag Feiertag",
       "Der Freitag Feiertag",
       "Der Schabbat Feiertag",
-      "Das Pessach Fest"
+      "Das Chanukka Lichterfest"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -557,7 +557,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
       "Der Rabbiner Lehrer",
       "Der Mönch Brudern",
       "Der Priester Vater",
-      "Der Imam Gelehrter"
+      "Der Imam Rechtsgelehrter"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -629,7 +629,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
       "Koran u. Hadithen Buch",
       "Tora u. Evangelien Buch",
       "Altes u. Neues Testament",
-      "Veden u. Upanishaden"
+      "Veden u. Upanishaden Texte"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -665,7 +665,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
       "Geburt Jesu in Bethlehem",
       "Auferstehung Jesu Christi",
       "Ausschüttung des Geistes",
-      "Taufe Jesu im Jordan"
+      "Taufe Jesu im Fluss Jordan"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -755,7 +755,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
       "Katholisch u. Evangelisch",
       "Sunnitisch u. Schiitisch",
       "Orthodox u. Anglikanisch",
-      "Jüdisch u. Muslimisch"
+      "Jüdisch u. Muslimisch Glauben"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -771,7 +771,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
     "question": "Wer war die zentrale Figur bei der Durchführung der deutschen Reformation?",
     "answers": [
       "Reformator Martin Luther",
-      "Papst Franziskus Rom",
+      "Papst Franziskus aus Rom",
       "Kaiser Karl der Fünfte",
       "Apostel Paulus Tarsus"
     ],
@@ -860,7 +860,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
     "subject": "religion_philosophie",
     "question": "Welches Buch des Alten Testaments schildert die Schöpfung der Welt?",
     "answers": [
-      "Das Buch der Psalmen",
+      "Das Buch der Psalmen Davids",
       "Das Buch Exodus / 2. Mose",
       "Offenbarung des Johannes",
       "Das Buch Genesis / 1. Mose"
@@ -1043,7 +1043,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
     "question": "Welche Speise u. welches Getränk sind im Islam streng verboten (Haram)?",
     "answers": [
       "Schweinefleisch u. Alkohol",
-      "Fischfleisch u. Wasser",
+      "Fischfleisch u. kaltes Wasser",
       "Rindfleisch u. Fruchtsaft",
       "Geflügel u. schwarzer Tee"
     ],
@@ -1098,7 +1098,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
     "answers": [
       "Kreislauf Wiedergeburten",
       "Heiliger Fluss Ganges",
-      "Opfergabe an Götter",
+      "Opfergabe an die alten Götter",
       "Zustand absoluter Ruhe"
     ],
     "correct": 0,
@@ -1169,7 +1169,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
     "question": "Wer war der historische Begründer des Buddhismus?",
     "answers": [
       "Swami Vivekananda",
-      "Guru Nanak Dev",
+      "Guru Nanak Dev Sahib",
       "Mahatma Gandhi",
       "Siddhartha Gautama"
     ],
@@ -1442,7 +1442,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
     "answers": [
       "Käuflich u. übertragbar",
       "Nur für Erwachsene gültig",
-      "Abhängig von der Hautfarbe",
+      "Abhängig von Herkunft u. Hautfarbe",
       "Universell u. unveräußerlich"
     ],
     "correct": 3,
@@ -1459,7 +1459,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
     "question": "Was beschreibt das Prinzip der 'Kinderrechte' (UN-Kinderrechtskonvention)?",
     "answers": [
       "Verbot von Schulunterricht",
-      "Recht auf eigene Waffen",
+      "Recht auf eigene Waffen tragen",
       "Besonderer Schutz u. Förder.",
       "Pflicht zur Vollzeitarbeit"
     ],
@@ -1602,7 +1602,7 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
     "subject": "religion_philosophie",
     "question": "Was kennzeichnet den Begriff des 'Fairtrade' (Fairen Handels)?",
     "answers": [
-      "Kinderarbeit auf Plantagen",
+      "Kinderarbeit auf großen Plantagen",
       "Vermeidung aller Steuern",
       "Gerechte Preise für Erzeuger",
       "Möglichst billige Importe"
@@ -1809,38 +1809,9 @@ const K7_RELIGION_PHILOSOPHIE_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Mediation ist ein strukturiertes Verfahren, bei dem Konfliktparteien mit Hilfe Schlichtender eine einvernehmliche Lösung erarbeiten."
-  },
-  {"id":"k7re101","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Goldene Regel: behandeln …","answers":["schlecht","wie man behandelt werden will","gleichgültig","hart"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Reziprozität."},
-  {"id":"k7re102","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Bibel: AT und …","answers":["Koran","NT","Psalmen","Evangelien only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"NT."},
-  {"id":"k7re103","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Tora im …","answers":["Christentum","Judentum","Islam","Buddhismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Judentum."},
-  {"id":"k7re104","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Koran im …","answers":["Judentum","Islam","Christentum","Hinduismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Islam."},
-  {"id":"k7re105","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Religionsfreiheit ist …","answers":["Privileg","Grundrecht","verboten","eine Religion"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Grundrecht."},
-  {"id":"k7re106","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Gewissen = …","answers":["Gesetz","innere Instanz","Zufall","Mode"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gewissen."},
-  {"id":"k7re107","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Dialog braucht …","answers":["Zwang","Respekt","Schweigen","Gleichschaltung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Respekt."},
-  {"id":"k7re108","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Nächstenliebe inkl. …","answers":["Familie only","Feindesliebe-Idee","Hass","Ignoranz"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Agape."},
-  {"id":"k7re109","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Ramadan = …","answers":["christlich","Fastenmonat Islam","Laubhütten","hinduistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fasten."},
-  {"id":"k7re110","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Schabbat = …","answers":["islamisch","jüdischer Ruhetag","Ostern","buddhistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ruhetag."},
-  {"id":"k7re111","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Buddhismus: Leid und …","answers":["Steuern","Befreiung","Krieg","Handel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Befreiung."},
-  {"id":"k7re112","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Ethik fragt nach …","answers":["Fakten","gutem Handeln","Dogma","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Moral."},
-  {"id":"k7re113","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Toleranz ≠ …","answers":["Respekt","Gleichgültigkeit Unrecht","Achtung","Dialog"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nicht Indifferenz."},
-  {"id":"k7re114","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Schöpfung → …","answers":["Zerstörung","Umweltethik","Ignoranz","Ausbeutung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bewahrung."},
-  {"id":"k7re115","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Gebet = …","answers":["Bitte only","Glaubensausdruck","Sport","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Praxis."},
-  {"id":"k7re116","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Menschenwürde: jeder …","answers":["nützlich","hat Wert","gläubig","erwachsen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Würde."},
-  {"id":"k7re117","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Rituale stiften …","answers":["Chaos","Ordnung","Zufall","Technik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Struktur."},
-  {"id":"k7re118","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Theodizee: Leid und …","answers":["Steuer","Gott","Sport","Chemie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gott."},
-  {"id":"k7re119","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Säkularisierung: … Bindung","answers":["Wachstum","Rückgang","Zwang","Theokratie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rückgang."},
-  {"id":"k7re120","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Frieden oft …","answers":["Nebensache","zentrales Gut","Kriegsziel","Wirtschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schalom."},
-  {"id":"k7re121","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Gleichnis lehrt durch …","answers":["Gesetz","Erzählbild","Formel","Statistik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bild."},
-  {"id":"k7re122","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Exegese = …","answers":["Predigt","Auslegung","Chemie","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Auslegung."},
-  {"id":"k7re123","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Diakonie = …","answers":["Dogma","Hilfe","Krieg","Handel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Hilfe."},
-  {"id":"k7re124","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Bioethik um …","answers":["Sport","Leben","Steuern","Wetter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Leben."},
-  {"id":"k7re125","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Spiritualität …","answers":["nur Kirche","auch individuell","nie ohne Dogma","nur Politik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"vielfältig."},
-  {"id":"k7re126","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Fundamentalismus: Anspruch …","answers":["offen","eng absolut","dialogisch","wissenschaftlich"],"correct":1,"difficulty":"mittel","points":10,"explanation":"eng."},
-  {"id":"k7re127","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Abraham in …","answers":["einer Religion","Judentum/Christentum/Islam","Hinduismus","Buddhismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"abrahamitisch."},
-  {"id":"k7re128","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Verantwortung: … achten","answers":["Gegenwart only","Zukunft","Vergangenheit","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zukunft."},
-  {"id":"k7re129","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Pluralität fordert …","answers":["Einheit Zwang","Umgang mit Vielfalt","Ignoranz","Konflikt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Pluralismus."},
-  {"id":"k7re130","category":"k7_religion","area":"schule","grade":7,"subject":"religion","topic":"erweiterung","question":"Hoffnung ≠ …","answers":["billiger Optimismus","fundierte Zuversicht","Angst","Technikglaube"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mehr."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K7_RELIGION_PHILOSOPHIE_QUESTIONS = K7_RELIGION_PHILOSOPHIE_QUESTIONS;

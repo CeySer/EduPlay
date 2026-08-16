@@ -79,9 +79,9 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Welche Teilchen befinden sich in den Schalen der Atomhülle nach dem Schalenmodell?",
     "answers": [
-      "In der Atomhülle befinden sich positiv geladene Protonen.",
-      "In der Atomhülle befinden sich ungeladene Neutronen.",
-      "In der Atomhülle befinden sich neutrale Moleküle.",
+      "In der Atomhülle befinden sich die positiv geladenen Protonen.",
+      "In der Atomhülle befinden sich die elektrisch neutralen Neutronen.",
+      "In der Atomhülle befinden sich ungeladene, neutrale Moleküle.",
       "In der Atomhülle befinden sich negativ geladene Elektronen."
     ],
     "correct": 3,
@@ -97,10 +97,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was besagt die Oktettregel (Edelgasregel) für die Elektronenverteilung in Atomen?",
     "answers": [
-      "Atome besitzen im Kern immer exakt 8 Protonen und 8 Neutronen.",
-      "Atome können höchstens 8 Elektronenschalen in der Hülle ausbilden.",
+      "Atome besitzen im Atomkern immer exakt acht Protonen und Neutronen.",
+      "Atome können in ihrer Atomhülle höchstens acht Elektronenschalen bilden.",
       "Atome streben nach einer stabilen Außenschale mit 8 Valenzelektronen.",
-      "Atome verbinden sich immer im Verhältnis von 8 zu 1 miteinander."
+      "Atome verbinden sich chemisch stets im Verhältnis von acht zu eins."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -169,8 +169,8 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Welche Eigenschaft zeichnet die Elemente der VIII. Hauptgruppe (Edelgase) aus?",
     "answers": [
-      "Sie bilden sehr leicht positiv geladene Ionen durch Elektronenabgabe.",
-      "Sie reagieren heftig mit Wasser unter Bildung von Lauge und Wasserstoff.",
+      "Sie bilden dabei sehr leicht positiv geladene Ionen durch Elektronenabgabe ab.",
+      "Sie reagieren dabei heftig mit kaltem Wasser unter Bildung von Wasserstoffgas.",
       "Sie besitzen eine voll besetzte Außenschale und sind sehr reaktionsträge.",
       "Sie sind bei Raumtemperatur durchweg metallisch glänzende Feststoffe."
     ],
@@ -259,10 +259,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was ist die Aktivierungsenergie bei einer chemischen Reaktion?",
     "answers": [
-      "Die Wärmeenergie, die bei der vollständigen Abkühlung frei wird.",
+      "Die Wärmeenergie, die bei vollständiger Abkühlung frei wird und entweicht.",
       "Die gesamte Energiemenge, die bei einer exothermen Reaktion frei wird.",
       "Die Mindestenergie, die zugeführt werden muss, um die Reaktion zu starten.",
-      "Die Energie, die man benötigt, um ein Neutrons aus dem Kern zu lösen."
+      "Die Energie, die man benötigt, um ein Neutron aus dem Kern zu lösen."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -277,10 +277,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Welche Wirkung hat ein Katalysator auf eine chemische Reaktion?",
     "answers": [
-      "Er verhindert das Stattfinden von exothermen Reaktionen.",
-      "Er wird bei der chemischen Reaktion vollständig verbraucht.",
+      "Er verhindert vollständig das Stattfinden von exothermen Reaktionen.",
+      "Er wird bei der chemischen Reaktion selbst vollständig verbraucht.",
       "Er senkt die Aktivierungsenergie und beschleunigt die Reaktion.",
-      "Er erhöht die freigesetzte Reaktionsenergie der Verbindungen."
+      "Er erhöht deutlich die freigesetzte Reaktionsenergie der Verbindungen."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -421,10 +421,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was versteht man unter einer Reduktion im klassischen Sinne?",
     "answers": [
-      "Die Auflösung von Metallen in einer starken Säure.",
+      "Die vollständige Auflösung von Metallen in einer starken Säure.",
       "Der Entzug von Sauerstoff aus einer Sauerstoffverbindung.",
-      "Die chemische Aufnahme von freiem Sauerstoffgas.",
-      "Die Freisetzung von Kohlendioxid bei einer Verbrennung."
+      "Die chemische Aufnahme von freiem, gasförmigem Sauerstoffgas.",
+      "Die Freisetzung von Kohlendioxid bei einer heftigen Verbrennung."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -439,10 +439,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was bedeutet der Begriff 'Affinität zu Sauerstoff' bei unedlen Metallen?",
     "answers": [
-      "Sie reagieren ausschließlich unter Wasser mit Sauerstoff.",
+      "Sie reagieren ausschließlich unter Wasser mit gelöstem Sauerstoff.",
       "Sie besitzen ein starkes Bestreben, sich mit Sauerstoff zu verbinden.",
-      "Sie lassen sich durch Erhitzen leicht von Sauerstoff trennen.",
-      "Sie stoßen Sauerstoff bei Raumtemperatur vollständig ab."
+      "Sie lassen sich durch starkes Erhitzen leicht von Sauerstoff trennen.",
+      "Sie stoßen Sauerstoff bereits bei Raumtemperatur vollständig ab."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -475,8 +475,8 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was passiert bei der Thermit-Reaktion zwischen Aluminiumpulver und Eisenoxid?",
     "answers": [
-      "Es entsteht ausschließlich Kohlendioxid und Aluminiumhydroxid.",
-      "Aluminium und Eisen verbinden sich zu einer neuen festen Legierung.",
+      "Es entsteht dabei ausschließlich reines Kohlendioxid und festes Aluminiumhydroxid.",
+      "Aluminium und Eisen verbinden sich hierbei zu einer neuen, festen Legierung.",
       "Aluminium entzieht dem Eisenoxid den Sauerstoff; flüssiges Eisen entsteht.",
       "Eisen entzieht dem Aluminiumoxid den Sauerstoff unter starker Abkühlung."
     ],
@@ -547,8 +547,8 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was beschreibt das Rutherfordsche Atommodell im Vergleich zum Rosinenkuchenmodell?",
     "answers": [
-      "Atome sind unteilbare, kugelrunde Masseteilchen ohne Inneneinteilung.",
-      "Atome sind hohle Kugeln, die ausschließlich aus Neutronen bestehen.",
+      "Atome sind demnach unteilbare, kugelrunde Masseteilchen ohne Inneneinteilung.",
+      "Atome sind hohle Kugeln, die ausschließlich aus vielen Neutronen bestehen.",
       "Atome bestehen aus einem winzigen, positiven Kern und einer großen Hülle.",
       "Atome haben Elektronen, die fest im positiven Kern eingebacken sind."
     ],
@@ -747,8 +747,8 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Wie reagiert das Halogen Chlor mit dem Metall Natrium?",
     "answers": [
-      "Natrium löst sich in gasförmigem Chlor unter Kältebildung auf.",
-      "Es findet keine Reaktion statt, da beide Stoffe edel sind.",
+      "Natrium löst sich in gasförmigem Chlor unter starker Kältebildung auf.",
+      "Es findet gar keine Reaktion statt, da beide Stoffe edel sind.",
       "Unter stark endothermer Reaktion bildet sich flüssige Salzsäure.",
       "Unter stark exothermer Reaktion bildet sich weißes Natriumchlorid."
     ],
@@ -765,10 +765,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Warum ist das Halogen Fluor bei Raumtemperatur ein Gas?",
     "answers": [
-      "Weil Fluor-Atome sich bei Raumtemperatur in Ionen auflösen.",
+      "Weil sich Fluor-Atome bei Raumtemperatur einfach vollständig in Ionen auflösen.",
       "Weil es aus zweiatomigen Molekülen mit schwachen Wechselwirkungen besteht.",
-      "Weil Fluor keine Außenelektronen zur Bindungsbildung besitzt.",
-      "Weil Fluor das leichteste aller unedlen Alkalimetalle ist."
+      "Weil Fluor keine Außenelektronen zur chemischen Bindung besitzt.",
+      "Weil Fluor angeblich überhaupt keine Außenelektronen zur Bindung besitzt."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -837,8 +837,8 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Welche Ionen sind für die saure Wirkung einer Lösung verantwortlich?",
     "answers": [
-      "Für die saure Wirkung sind Hydroxid-Ionen ($\\text{OH}^-$) verantwortlich.",
-      "Für die saure Wirkung sind Chlorid-Ionen ($\\text{Cl}^-$) verantwortlich.",
+      "Für die saure Wirkung sind eigentlich Hydroxid-Ionen ($\\text{OH}^-$) verantwortlich.",
+      "Für die saure Wirkung sind Chlorid-Ionen ($\\text{Cl}^-$) hier verantwortlich.",
       "Für die saure Wirkung sind Sulfat-Ionen ($\\text{SO}_4^{2-}$) verantwortlich.",
       "Für die saure Wirkung sind Oxonium-Ionen ($\\text{H}_3\\text{O}^+$) verantwortlich."
     ],
@@ -945,8 +945,8 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was passiert bei der Oxidation eines Zinkatoms nach dem erweiterten Redoxbegriff?",
     "answers": [
-      "Das Zinkatom nimmt 2 Elektronen auf und wird zum Zink-Anion.",
-      "Das Zinkatom verbindet sich ohne Ladungsänderung fest mit Wasser.",
+      "Das Zinkatom nimmt dabei 2 Elektronen auf und wird so zum Zink-Anion umgewandelt.",
+      "Das Zinkatom verbindet sich dabei ohne jede Ladungsänderung fest mit Wasser.",
       "Das Zinkatom nimmt 2 Protonen aus dem Kern auf und wird geladen.",
       "Das Zinkatom gibt 2 Elektronen ab und wird zum Zink-Ion ($\\text{Zn}^{2+}$)."
     ],
@@ -964,7 +964,7 @@ const questions_k8_chemie = [
     "question": "Welche Eigenschaft zeichnet Metalle in ihrer chemischen Struktur aus (Metallbindung)?",
     "answers": [
       "Positiv geladene Metallatome liegen in einem 'Elektronengas' delokalisierter Elektronen.",
-      "Wasserstoffbrücken binden die Metallatome zu Schichten zusammen.",
+      "Wasserstoffbrücken binden dabei alle einzelnen Metallatome fest zu ganzen, dichten Schichten zusammen.",
       "Atome teilen sich feste Elektronenpaare zu geschlossenen Einzelmolekülen.",
       "Anionen und Kationen sind in einem starren, abwechselnden Ionengitter fixiert."
     ],
@@ -1000,9 +1000,9 @@ const questions_k8_chemie = [
     "question": "Was versteht man unter dem Roheisen im Hochofenprozess?",
     "answers": [
       "Das erste, noch kohlenstoffreiche und spröde flüssige Eisen aus dem Hochofen.",
-      "Eine Schlacke aus Calciumcarbonat und verbrannten Holzresten.",
-      "Den gereinigten, hochfesten Stahl zur Herstellung von Werkzeugen.",
-      "Das ungereinigte Eisenerz direkt nach dem Abbau im Bergwerk."
+      "Eine Schlacke aus reinem Calciumcarbonat und vielen verbrannten alten Holzresten.",
+      "Den bereits gereinigten, hochfesten Stahl zur Herstellung feiner Werkzeuge.",
+      "Das ungereinigte Eisenerz direkt nach dem Abbau im tiefen Bergwerk."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1018,8 +1018,8 @@ const questions_k8_chemie = [
     "question": "Welche Rolle spielt Koks (aufbereitete Kohle) im Hochofen?",
     "answers": [
       "Koks dient als Brennstoff und liefert das Reduktionsmittel Kohlenstoffmonoxid.",
-      "Koks kühlt den Hochofen ab, damit die Eisenrohre nicht schmelzen.",
-      "Koks dient ausschließlich dazu, die Schlacke auf der Oberfläche abzubinden.",
+      "Koks kühlt dabei den gesamten Hochofen ab, damit die Eisenrohre nicht schmelzen.",
+      "Koks dient ausschließlich dazu, die Schlacke an der Oberfläche zu binden.",
       "Koks gibt Sauerstoff an das Eisenerz ab, um die Oxidation zu starten."
     ],
     "correct": 0,
@@ -1035,9 +1035,9 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was unterscheidet Stahl von sprödem Roheisen?",
     "answers": [
-      "Stahl ist bei Raumtemperatur im Gegensatz zu Roheisen flüssig.",
-      "Stahl besitzt einen viel höheren Kohlenstoffgehalt als Roheisen.",
-      "Stahl enthält überhaupt keine Eisenatome mehr, sondern nur Chrom.",
+      "Stahl ist bereits bei Raumtemperatur im Gegensatz zu Roheisen flüssig.",
+      "Stahl besitzt einen deutlich höheren Kohlenstoffgehalt als Roheisen.",
+      "Stahl enthält überhaupt keine Eisenatome mehr, sondern nur reines Chrom.",
       "Stahl hat einen deutlich geringeren Kohlenstoffgehalt (unter 2 %)."
     ],
     "correct": 3,
@@ -1053,10 +1053,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Wie lautet die chemische Summenformel für Salzsäure in wässriger Lösung?",
     "answers": [
-      "Die Formel lautet $\\text{H}_2\\text{CO}_{3\\text{(aq)}}$.",
+      "Die Formel lautet eigentlich $\\text{H}_2\\text{CO}_{3\\text{(aq)}}$, die gelöste Kohlensäure.",
       "Die Formel lautet $\\text{HCl}_{\\text{(aq)}}$ bzw. $\\text{H}_3\\text{O}^+ + \\text{Cl}^-$.",
-      "Die Formel lautet $\\text{HNO}_{3\\text{(aq)}}$.",
-      "Die Formel lautet $\\text{H}_2\\text{SO}_{4\\text{(aq)}}$."
+      "Die Formel lautet eigentlich $\\text{HNO}_{3\\text{(aq)}}$, konzentrierte Salpetersäure.",
+      "Die Formel lautet $\\text{H}_2\\text{SO}_{4\\text{(aq)}}$, verdünnte Schwefelsäure."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1179,9 +1179,9 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Wie nennt man die Verbindungen aus Metall-Ionen und Hydroxid-Ionen im festen Zustand?",
     "answers": [
-      "Diese Stoffe werden als Metallnitrate bezeichnet.",
-      "Diese Stoffe werden als Metallsulfate bezeichnet.",
-      "Diese Stoffe werden als Metalloxide bezeichnet.",
+      "Diese Stoffe werden oft als Metallnitrate bezeichnet.",
+      "Diese Stoffe werden oft als Metallsulfate bezeichnet.",
+      "Diese Stoffe werden oft als Metalloxide bezeichnet.",
       "Diese Stoffe werden als Metallhydroxide bezeichnet."
     ],
     "correct": 3,
@@ -1215,10 +1215,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was entsteht bei der thermischen Zersetzung von Kalkstein (Calciumcarbonat) im Kalkofen?",
     "answers": [
-      "Es entsteht reines Calciummetall und gasförmiger Sauerstoff.",
+      "Es entsteht reines Calciummetall und gasförmiger, reiner Sauerstoff.",
       "Es entsteht gebrannter Kalk (Calciumoxid) und Kohlenstoffdioxid.",
-      "Es entsteht gelöschter Kalk (Calciumhydroxid) und Wasserstoff.",
-      "Es entsteht Gips (Calciumsulfat) unter Erwärmung."
+      "Es entsteht gelöschter Kalk (Calciumhydroxid) und Wasserstoffgas.",
+      "Es entsteht Gips (Calciumsulfat) unter starker Erwärmung des Ofens."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1252,9 +1252,9 @@ const questions_k8_chemie = [
     "question": "Welcher Stoff ist für das Abbinden von kalkhaltigem Mörtel an der Luft verantwortlich?",
     "answers": [
       "Das Kohlenstoffdioxid aus der Umgebungsluft.",
-      "Der Edelgasanteil Argon in der Luft.",
-      "Das reine Sauerstoffgas beim Lüften.",
-      "Der freie Stickstoff aus der Atmosphäre."
+      "Der seltene Edelgasanteil Argon in der Umgebungsluft.",
+      "Das reine Sauerstoffgas beim täglichen Lüften.",
+      "Der freie Stickstoff aus der umgebenden Atmosphäre."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1288,10 +1288,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Wie lauten die Namen der Salze der Kohlensäure?",
     "answers": [
-      "Die Salze der Kohlensäure heißen Chlorate.",
+      "Die Salze der Kohlensäure heißen fälschlich Chlorate.",
       "Die Salze der Kohlensäure heißen Carbonate.",
-      "Die Salze der Kohlensäure heißen Chromate.",
-      "Die Salze der Kohlensäure heißen Carbide."
+      "Die Salze der Kohlensäure heißen fälschlich Chromate.",
+      "Die Salze der Kohlensäure heißen fälschlich Carbide."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1307,8 +1307,8 @@ const questions_k8_chemie = [
     "question": "Was versteht man unter dem Begriff 'Dissoziation' beim Lösen von Salzen in Wasser?",
     "answers": [
       "Der Zerfall des Ionengitters in frei bewegliche, von Wasserhüllen umgebene Ionen.",
-      "Das Absinken der ungeladenen Salzpartikel auf den Grund des Wasserglases.",
-      "Die Spaltung der Atome in Protonen und Neutronen durch Einwirkung von Wasser.",
+      "Das langsame Absinken der ungeladenen Salzpartikel auf den Grund des Wasserglases.",
+      "Die Spaltung der Atome in Protonen und Neutronen durch Wasser.",
       "Die chemische Umwandlung von Salzmolekülen in brennbares Sauerstoffgas."
     ],
     "correct": 0,
@@ -1361,9 +1361,9 @@ const questions_k8_chemie = [
     "question": "Was beschreibt die Elektronegativität (EN) eines chemischen Elements?",
     "answers": [
       "Das Vermögen eines Atoms, Bindungselektronen in einer chemischen Bindung an sich zu ziehen.",
-      "Die Anzahl der freien Elektronen im Atomkern des Elements.",
-      "Die Geschwindigkeit, mit der ein Atom Elektronen nach außen abgibt.",
-      "Die elektrische Spannung, die beim Erhitzen eines Metalls entsteht."
+      "Die Anzahl der ganz frei beweglichen Elektronen tief im Inneren des Atomkerns des Elements.",
+      "Die Geschwindigkeit, mit der ein Atom seine Elektronen nach außen abgibt.",
+      "Die elektrische Spannung, die beim starken Erhitzen eines Metalls entsteht."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1396,9 +1396,9 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Welche Bindungsart liegt vor, wenn sich zwei Nichtmetallatome mit gleicher oder ähnlicher Elektronegativität verbinden?",
     "answers": [
-      "Eine klassische Ionenbindung mit Ionengitter.",
-      "Eine Van-der-Waals-Verbindung ohne Valenzelektronen.",
-      "Eine Metallbindung mit frei beweglichem Elektronengas.",
+      "Eine klassische Ionenbindung mit einem festen, starren Ionengitter.",
+      "Eine Van-der-Waals-Verbindung ganz ohne echte Valenzelektronen.",
+      "Eine Metallbindung mit einem frei beweglichen Elektronengas.",
       "Eine Elektronenpaarbindung (Atombindung / kovalente Bindung)."
     ],
     "correct": 3,
@@ -1415,8 +1415,8 @@ const questions_k8_chemie = [
     "question": "Warum ist das Wassermolekül ($\\text{H}_2\\text{O}$) ein gewinkeltes Dipol-Molekül?",
     "answers": [
       "Wegen des Bindungswinkels und der unterschiedlichen Elektronegativitäten von H und O.",
-      "Weil die H-Atome im Wassermolekül permanent Elektronen an den Kern abgeben.",
-      "Weil Wasserstoffe eine höhere Elektronegativität als Sauerstoff aufweisen.",
+      "Weil die einzelnen H-Atome im Wassermolekül dauerhaft alle ihre Elektronen an den Kern abgeben.",
+      "Weil Wasserstoff eine höhere Elektronegativität als Sauerstoff aufweist.",
       "Weil Sauerstoff und Wasserstoff positiv geladene Kationen im Molekül bilden."
     ],
     "correct": 0,
@@ -1540,9 +1540,9 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Welcher Stoff entsteht bei der Reaktion von Ammoniakgas ($\\text{NH}_3$) mit Chlorwasserstoffgas ($\\text{HCl}$)?",
     "answers": [
-      "Es bildet sich eine gelbe Flüssigkeit aus Salpetersäure.",
+      "Es bildet sich dabei eine leuchtend gelbe Flüssigkeit aus stark konzentrierter Salpetersäure.",
       "Es entsteht ein brennbares Gasgemisch aus Wasserstoff und Stickstoff.",
-      "Es fällt festes Natriumchlorid als Salz nieder.",
+      "Es fällt festes Natriumchlorid als weißes Salz sofort nieder.",
       "Es bildet sich ein weißer Rauch aus Ammoniumchlorid ($\\text{NH}_4\\text{Cl}$)."
     ],
     "correct": 3,
@@ -1594,7 +1594,7 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was beschreibt der Begriff 'Molekülgitter' bei Reinstoffen?",
     "answers": [
-      "Ein Metallgitter mit frei beweglichen Riesenmolekülen.",
+      "Ein Metallgitter mit vielen frei beweglichen, sehr riesigen Molekülen darin.",
       "Ein Gitter, das ausschließlich im gasförmigen Zustand vorkommt.",
       "Ein Kristallgitter, dessen Bausteine abgeschlossene Moleküle sind.",
       "Ein Salzgitter aus abwechselnd positiven und negativen Ionen."
@@ -1612,10 +1612,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was versteht man unter dem Begriff 'Sublimation' in der Chemie?",
     "answers": [
-      "Die Verflüssigung eines Gases unter sehr hohem Druck.",
-      "Der direkte Übergang von flüssig zu fest beim Verharzen.",
+      "Die Verflüssigung eines Gases unter sehr hohem äußerem Druck.",
+      "Der direkte Übergang von flüssig zu fest beim langsamen Verharzen.",
       "Der unmittelbare Übergang vom festen in den gasförmigen Aggregatzustand.",
-      "Die chemische Zersetzung eines Stoffes durch Licht."
+      "Die chemische Zersetzung eines festen Stoffes durch stark einfallendes Licht."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1667,9 +1667,9 @@ const questions_k8_chemie = [
     "question": "Wie reagieren Oxide von Metallen der I. und II. Hauptgruppe (z. B. $\\text{Na}_2\\text{O}$, $\\text{CaO}$) mit Wasser?",
     "answers": [
       "Sie reagieren mit Wasser unter Bildung von Laugen (alkalisch).",
-      "Sie reagieren mit Wasser unter Bildung harter Säuren.",
-      "Sie bilden brennbare Gase wie reines Methan.",
-      "Sie verhalten sich vollkommen neutral und unlöslich."
+      "Sie reagieren mit Wasser unter Bildung recht harter Säuren.",
+      "Sie bilden dabei brennbare Gase wie zum Beispiel reines Methan.",
+      "Sie verhalten sich vollkommen neutral und bleiben unlöslich."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1702,10 +1702,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Welche Reaktionsprodukte entstehen bei der vollständigen Verbrennung von Kohlenwasserstoffen wie Methan mit ausreichend Sauerstoff?",
     "answers": [
-      "Kohlenstoffmonoxid ($\\text{CO}$) und Wasserstoffgas ($\\text{H}_2$).",
+      "Kohlenstoffmonoxid ($\\text{CO}$) und Wasserstoffgas ($\\text{H}_2$) entstehen.",
       "Kohlenstoffdioxid ($\\text{CO}_2$) und Wasser ($\\text{H}_2\\text{O}$).",
-      "Methanolsäure und freier Stickstoff.",
-      "Reiner Kohlenstoff (Ruß) und Sauerstoffgas ($\\text{O}_2$)."
+      "Methanolsäure und freier Stickstoff bilden sich hierbei.",
+      "Reiner Kohlenstoff (Ruß) und Sauerstoffgas ($\\text{O}_2$) entstehen."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1720,10 +1720,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Was bildet sich bei einer unvollständigen Verbrennung von Kohlenwasserstoffen unter Sauerstoffmangel?",
     "answers": [
-      "Große Mengen an Ozon und Stickstoffoxiden.",
+      "Große Mengen an Ozon und verschiedenen Stickstoffoxiden entstehen.",
       "Das giftige Gas Kohlenstoffmonoxid ($\\text{CO}$) und Ruß (Kohlenstoff).",
-      "Salzsäure und brennbares Wasserstoffgas.",
-      "Ausschließlich ungiftiges Kohlendioxid und reiner Sauerstoff."
+      "Salzsäure und brennbares Wasserstoffgas bilden sich dabei.",
+      "Ausschließlich ungiftiges Kohlendioxid und reiner Sauerstoff entstehen."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1738,10 +1738,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Welche Eigenschaft zeichnet Kohlenstoffmonoxid ($\\text{CO}$) als Atemgift aus?",
     "answers": [
-      "Es riecht faulig und reizt sofort die Atemwege zum Husten.",
-      "Es ist ein stechend blaues Gas, das die Haut verätzt.",
+      "Es riecht extrem stark faulig und reizt sofort alle Atemwege sehr stark zum Husten und Würgen.",
+      "Es ist ein stechend blaues, sehr ätzendes Gas, das die Haut stark verätzt.",
       "Es ist geruchlos, geschmacklos und bindet viel stärkere an Hämoglobin als Sauerstoff.",
-      "Es lagert sich als fester Staub in den Lungenbläschen ab."
+      "Es lagert sich als feiner fester Staub in den Lungenbläschen ab."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1757,9 +1757,9 @@ const questions_k8_chemie = [
     "question": "Was versteht man unter dem Begriff 'Allotropie' am Beispiel des Kohlenstoffs?",
     "answers": [
       "Das Vorkommen desselben Elements in verschiedenen Erscheinungsformen (z. B. Diamant, Graphit).",
-      "Die Fähigkeit des Kohlenstoffs, sich in beliebigem Ausmaß in Wasser zu lösen.",
-      "Die Umwandlung von Kohlenstoffatomen in Sauerstoffatome unter Hitze.",
-      "Die Bildung von sauren Lösungen beim Mischen von Graphit mit Laugen."
+      "Die Fähigkeit des Kohlenstoffs, sich beliebig vollständig in reinem Wasser aufzulösen.",
+      "Die vollständige Umwandlung von einzelnen Kohlenstoffatomen in Sauerstoffatome unter sehr starker Hitze.",
+      "Die Bildung von recht sauren Lösungen beim Mischen von Graphit mit starken Laugen."
     ],
     "correct": 0,
     "difficulty": "schwer",
@@ -1774,10 +1774,10 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Warum leitet Graphit im Gegensatz zu Diamant den elektrischen Strom?",
     "answers": [
-      "Graphit nimmt beim Berühren Feuchtigkeit aus der Luft auf.",
+      "Graphit nimmt beim Berühren angeblich stets viel Feuchtigkeit aus der Luft auf.",
       "Graphit besteht im Gegensatz zu Diamant aus geladenen Metallionen.",
       "Graphit besitzt delokalisierte Elektronen zwischen seinen Kohlenstoffschichten.",
-      "Diamant ist zu dicht gepackt, um Elektronen aufzunehmen."
+      "Diamant ist einfach zu dicht gepackt, um Elektronen aufzunehmen."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1792,8 +1792,8 @@ const questions_k8_chemie = [
     "subject": "chemie",
     "question": "Welche Molekülgeometrie besitzt Diamant in seiner räumlichen Gitterstruktur?",
     "answers": [
-      "Eine kugelförmige Hohlkörperstruktur (Fulleren).",
-      "Eine ebene, sechseckige Schichtgitterstruktur.",
+      "Eine kugelförmige Hohlkörperstruktur, wie bei Fullerenen üblich.",
+      "Eine ebene, sechseckige Schichtstruktur ähnlich wie bei Graphit.",
       "Eine kettenförmige, eindimensionale Fadenstruktur.",
       "Eine dreidimensionale, tetraedrische Raumnetzstruktur."
     ],
@@ -1801,35 +1801,7 @@ const questions_k8_chemie = [
     "difficulty": "mittel",
     "points": 15,
     "explanation": "Im Diamant ist jedes Kohlenstoffatom tetraedrisch mit vier weiteren C-Atomen kovalent gebunden. Das ergibt ein extrem hartes, dreidimensionales Raumnetz."
-  },
-  {"id":"k8ch101","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Ordnungszahl = Anzahl …","answers":["Neutronen","Protonen","Elektronen Ion","Nucleonen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Protonen."},
-  {"id":"k8ch102","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Ionenbindung typisch …","answers":["Non-Non","Metall-Nonmetall","Metall-Metall","Edelgas"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Salz."},
-  {"id":"k8ch103","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"pH 14 eher …","answers":["sauer","neutral","basisch","pH7"],"correct":2,"difficulty":"mittel","points":10,"explanation":"basisch."},
-  {"id":"k8ch104","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Neutralisation → …","answers":["Gas","Salz+Wasser","Metall","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Salz+Wasser."},
-  {"id":"k8ch105","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Oxidation: Elektronen…","answers":["Aufnahme","Abgabe","Neutron","Photon"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Abgabe."},
-  {"id":"k8ch106","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Mol misst …","answers":["kg","Stoffmenge","Liter","Kelvin"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stoffmenge."},
-  {"id":"k8ch107","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Katalysator … EA.","answers":["erhöht","senkt","löscht","ignoriert"],"correct":1,"difficulty":"mittel","points":10,"explanation":"senkt."},
-  {"id":"k8ch108","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Edelgase sind … reaktiv.","answers":["sehr","wenig","immer","mit Wasser"],"correct":1,"difficulty":"mittel","points":10,"explanation":"wenig."},
-  {"id":"k8ch109","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Säure gibt H⁺ ab.","answers":["kein Ergebnis","Brønsted","OH⁻","e⁻"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Brønsted."},
-  {"id":"k8ch110","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"c = n/V in …","answers":["kg/L","mol/L","m/s","Pa"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mol/L."},
-  {"id":"k8ch111","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Exotherm: Wärme …","answers":["aufgenommen","abgegeben","gelöscht","Masse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"abgegeben."},
-  {"id":"k8ch112","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Verbrennung C → …","answers":["CO","CO₂","C","O₂"],"correct":1,"difficulty":"mittel","points":10,"explanation":"CO₂."},
-  {"id":"k8ch113","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Elektrolyse braucht …","answers":["Druck","Strom","Magnet","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Strom."},
-  {"id":"k8ch114","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Massenerhaltung: Masse …","answers":["weg","bleibt","doppelt","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"bleibt."},
-  {"id":"k8ch115","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Wasser ist …","answers":["unpolar","polar","ionisch","metallisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"polar."},
-  {"id":"k8ch116","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"PSE Gruppe = …","answers":["Zeile","Spalte","Block","Ion"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Spalte."},
-  {"id":"k8ch117","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Isotope gleiche …","answers":["Massenzahl","Ordnungszahl","Neutronen","Dichte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Z."},
-  {"id":"k8ch118","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Reduktion: e⁻ …","answers":["Abgabe","Aufnahme","Neutron","Photon"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Aufnahme."},
-  {"id":"k8ch119","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Endotherm ΔH …","answers":["<0",">0","=0","∞"],"correct":1,"difficulty":"mittel","points":10,"explanation":">0."},
-  {"id":"k8ch120","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Kohlenwasserstoff: …","answers":["Fe","C und H","nur O","U"],"correct":1,"difficulty":"mittel","points":10,"explanation":"C/H."},
-  {"id":"k8ch121","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Indikator zeigt …","answers":["Masse","pH","Druck","Temp"],"correct":1,"difficulty":"mittel","points":10,"explanation":"pH."},
-  {"id":"k8ch122","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Ionengitter ist …","answers":["frei","starr","gasförmig","flüssig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"starr."},
-  {"id":"k8ch123","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"EN hoch bei …","answers":["Metallen","Nonmetallen","Edelgasen","Neutronen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"F/O."},
-  {"id":"k8ch124","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Le Chatelier: wirkt …","answers":["verstärkend","entgegen","ignorierend","löschend"],"correct":1,"difficulty":"mittel","points":10,"explanation":"entgegen."},
-  {"id":"k8ch125","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Organik Kern: …","answers":["Fe","C","U","He"],"correct":1,"difficulty":"mittel","points":10,"explanation":"C."},
-  {"id":"k8ch126","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Salz in Wasser → …","answers":["Moleküle","Ionen","Atome","Photonen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ionen."},
-  {"id":"k8ch127","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Aktivierungsenergie = …","answers":["Produkt","Schwelle","Temp","Druck"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schwelle."},
-  {"id":"k8ch128","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"Gruppe 17 = …","answers":["Alkali","Halogene","Edelgase","Erdalkali"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Halogene."},
-  {"id":"k8ch129","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"pV=nRT für …","answers":["Festkörper","ideales Gas","Flüssigkeit","Plasma"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gas."},
-  {"id":"k8ch130","category":"k8_chemie","area":"schule","grade":8,"subject":"chemie","topic":"erweiterung","question":"HCl dissoziiert zu …","answers":["Cl₂","H⁺ und Cl⁻","H₂","O₂"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ionen."}
+  }
+
+
 ];

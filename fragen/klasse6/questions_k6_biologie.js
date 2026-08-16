@@ -120,9 +120,9 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was zeichnet das Skelett der Katze aus?",
     "answers": [
-      "Starre Wirbelsäule",
-      "Verwachsene Knochen",
-      "Fehlen von Rippen",
+      "Sehr starre Wirbelsäule",
+      "Stark verwachsene Knochen",
+      "Fehlen von allen Rippen",
       "Biegsame Wirbelsäule"
     ],
     "correct": 3,
@@ -319,9 +319,9 @@ const K6_BIOLOGIE_QUESTIONS = [
     "question": "Welches Tier gehört botanisch/zoologisch zu den Nagetieren?",
     "answers": [
       "Das Meerschweinchen",
-      "Der Rotfuchs Wald",
-      "Der Feldhase Feld",
-      "Der Maulwurf Erde"
+      "Der Rotfuchs im Wald",
+      "Der Feldhase im Feld",
+      "Der Maulwurf in der Erde"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -336,9 +336,9 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was charakterisiert das Gebiss von Nagetieren?",
     "answers": [
-      "Fehlen von Backenzähnen",
-      "Lange Eckzähne oben",
-      "Flache Reißzähne unten",
+      "Fehlen von allen Backenzähnen",
+      "Sehr lange Eckzähne oben",
+      "Flache Reißzähne unten im Kiefer",
       "Meißelartige Schneidezähne"
     ],
     "correct": 3,
@@ -392,10 +392,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Wo findet bei Pflanzen vorrangig die Fotosynthese statt?",
     "answers": [
-      "In den bunten Blüten",
+      "In den bunten Blütenblättern",
       "In den grünen Blättern",
-      "In den tiefen Wurzeln",
-      "In den festen Samen"
+      "In den braunen Wurzeln",
+      "In den festen kleinen Samen"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -428,10 +428,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welche Stoffe benötigt die Pflanze für die Fotosynthese?",
     "answers": [
-      "Sauerstoff + Stickstoff",
+      "Sauerstoff und reiner Stickstoff",
       "Wasser + Kohlenstoffdioxid",
-      "Wasserstoff + Ozonluft",
-      "Zucker + Kohlensäure"
+      "Wasserstoffgas und Ozonluft",
+      "Traubenzucker und Kohlensäure"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -537,9 +537,9 @@ const K6_BIOLOGIE_QUESTIONS = [
     "question": "Wie heißt der weibliche Teil der Blüte?",
     "answers": [
       "Das Stempelorgan",
-      "Das Staubblatt",
-      "Das Kronblatt",
-      "Der Blütenkelch"
+      "Das gelbe Staubblatt",
+      "Das bunte Kronblatt",
+      "Der grüne Blütenkelch"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -554,10 +554,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Aus welchen drei Teilen besteht der Stempel der Blüte?",
     "answers": [
-      "Kelch, Krone, Blütengrund",
-      "Staubbeutel, Faden, Polle",
+      "Kelch, Krone und Blütenboden",
+      "Staubbeutel, Faden und Pollen",
       "Narbe, Griffel, Fruchtknoten",
-      "Wurzel, Stängel, Keimling"
+      "Wurzel, Stängel und Keimling"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -680,10 +680,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was braucht ein Samen zwingend zum Keimen?",
     "answers": [
-      "Licht, Erde, Stickstoff",
+      "Viel Licht, Erde, Stickstoff",
       "Wasser, Wärme, Sauerstoff",
-      "Dünger, Licht, Kälte",
-      "Schatten, Eis, CO2"
+      "Dünger, Licht und starke Kälte",
+      "Schatten, Eis und viel CO2"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -716,10 +716,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was ist die Hauptaufgabe bunter Blütenblätter?",
     "answers": [
-      "Schutz vor dem Wind",
-      "Speicherung Stärke",
+      "Schutz vor starkem Wind",
+      "Speicherung von Stärke",
       "Anlocken von Insekten",
-      "Aufnahme von Wasser"
+      "Aufnahme von viel Wasser"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -754,9 +754,9 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welcher Knochen schützt das menschliche Gehirn?",
     "answers": [
-      "Das Schulterblatt",
-      "Das Becken unten",
-      "Der Brustkorb",
+      "Das große Schulterblatt",
+      "Das flache Becken unten",
+      "Der breite Brustkorb",
       "Der Schädelknochen"
     ],
     "correct": 3,
@@ -772,9 +772,9 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welche Aufgabe hat die Wirbelsäule beim Menschen?",
     "answers": [
-      "Blutreinigung im Körper",
-      "Verdauung der Nahrung",
-      "Sauerstoffaufnahme Luft",
+      "Blutreinigung im ganzen Körper",
+      "Verdauung der festen Nahrung",
+      "Sauerstoffaufnahme in der Luft",
       "Stützung + Beweglichkeit"
     ],
     "correct": 3,
@@ -790,9 +790,9 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was befindet sich zwischen den Wirbelkörpern als Puffer?",
     "answers": [
-      "Das Gelenkfett",
-      "Die Sehnenfaser",
-      "Die Knochenhaut",
+      "Das dicke Gelenkfett",
+      "Die feine Sehnenfaser",
+      "Die harte Knochenhaut",
       "Die Bandscheiben"
     ],
     "correct": 3,
@@ -844,10 +844,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welcher Gelenktyp befindet sich im Ellenbogen?",
     "answers": [
-      "Das Planargelenk",
+      "Das flache Planargelenk",
       "Das Scharniergelenk",
-      "Das Eigelenk Hand",
-      "Das Kugelgelenk"
+      "Das kleine Eigelenk",
+      "Das runde Kugelgelenk"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -989,9 +989,9 @@ const K6_BIOLOGIE_QUESTIONS = [
     "question": "Was verhindert Reibung an den Gelenkflächen?",
     "answers": [
       "Knorpelschicht",
-      "Hautschicht",
-      "Fettschicht",
-      "Muskelschicht"
+      "Glatte Hautschicht",
+      "Weiche Fettschicht",
+      "Feste Muskelschicht"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1026,10 +1026,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welcher Nährstoff ist für den Muskelaufbau nötig?",
     "answers": [
-      "Pflanzenfette",
-      "Traubenzucker",
+      "Gesunde Pflanzenfette",
+      "Süßer Traubenzucker",
       "Eiweiße (Proteine)",
-      "Ballaststoffe"
+      "Wichtige Ballaststoffe"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1080,10 +1080,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welche Funktion hat der Speichel im Mund?",
     "answers": [
-      "Abbau von Eiweißen",
+      "Abbau von allen Eiweißen",
       "Zersetzung von Stärke",
-      "Aufnahme von Wasser",
-      "Spaltung von Fetten"
+      "Aufnahme von reinem Wasser",
+      "Spaltung von allen Fetten"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1099,9 +1099,9 @@ const K6_BIOLOGIE_QUESTIONS = [
     "question": "Wie wird Nahrung in der Speiseröhre befördert?",
     "answers": [
       "Durch Muskelwellen",
-      "Durch Schwerkraft",
-      "Durch Luftdruck",
-      "Durch Flüssigkeit"
+      "Durch reine Schwerkraft",
+      "Durch starken Luftdruck",
+      "Durch dünne Flüssigkeit"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1225,9 +1225,9 @@ const K6_BIOLOGIE_QUESTIONS = [
     "question": "Was greift den Schmelz bei Kariesbildung an?",
     "answers": [
       "Bakteriensäuren",
-      "Reines Wasser",
-      "Frische Salze",
-      "Speichelenzyme"
+      "Nur reines Wasser",
+      "Frische Salze im Mund",
+      "Enzyme im Speichel"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1352,10 +1352,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Wer gehört zu den Produzenten im Wald?",
     "answers": [
-      "Der Waldkauz",
-      "Der Waldpilz",
+      "Der große Waldkauz",
+      "Der braune Waldpilz",
       "Die grüne Eiche",
-      "Der Rotfuchs"
+      "Der schlaue Rotfuchs"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1388,10 +1388,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Wer zersetzt Laub u. totes Holz im Wald zu Humus?",
     "answers": [
-      "Vögel u. Käfer",
+      "Vögel und kleine Käfer",
       "Pilze u. Bakterien",
-      "Eichen u. Buchen",
-      "Mäuse u. Hörnchen"
+      "Eichen und alte Buchen",
+      "Mäuse und Hörnchen"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1424,9 +1424,9 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was schützt Nadeln vor Austrocknung im Winter?",
     "answers": [
-      "Weiche Oberfläche",
-      "Große Blattfläche",
-      "Fehlen von Harz",
+      "Sehr weiche Oberfläche",
+      "Eine große Blattfläche",
+      "Fehlen von viel Harz",
       "Dicke Wachsschicht"
     ],
     "correct": 3,
@@ -1496,10 +1496,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Warum sind Mischwälder stabiler als Reineichenwälder?",
     "answers": [
-      "Gleicher Schädling",
-      "Schnellerer Schlag",
+      "Immer gleicher Schädling",
+      "Schnellerer Baumschlag",
       "Höhere Artenvielfalt",
-      "Weniger Wurzelraum"
+      "Weniger freier Wurzelraum"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1642,10 +1642,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Wie heißt der Wandel von der Raupe zum Schmetterling?",
     "answers": [
-      "Zellteilungsprozess",
-      "Keimungsentwicklung",
+      "Reiner Zellteilungsprozess",
+      "Langsame Keimungsentwicklung",
       "Vollständige Metamorphose",
-      "Einfaches Wachstum"
+      "Nur einfaches Wachstum"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1750,10 +1750,10 @@ const K6_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Wie teilen Bienen Entfernungen zu Futterquellen mit?",
     "answers": [
-      "Durch Zirpen",
-      "Durch Lautgesang",
+      "Durch lautes Zirpen",
+      "Durch einen Lautgesang",
       "Durch Schwänzeltanz",
-      "Durch Lichtsignale"
+      "Durch bunte Lichtsignale"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1805,46 +1805,17 @@ const K6_BIOLOGIE_QUESTIONS = [
     "question": "Wie schützen sich Landschnecken vor Vertrocknung?",
     "answers": [
       "Schleimabsonderung",
-      "Schnelles Rennen",
-      "Erdgrafen graben",
-      "Schalenabwurf"
+      "Sehr schnelles Rennen",
+      "Tiefe Erdlöcher graben",
+      "Abwurf der festen Schale"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Schleim u. das Schneckenhaus verringern den Wasserverlust extrem."
-  },
-  {"id":"k6bi101","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Zellatmung findet vor allem in … statt.","answers":["Zellkern","Mitochondrien","Vakuole","Zellwand"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Mitochondrien.","topic":"erweiterung"},
-  {"id":"k6bi102","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"DNA trägt …","answers":["Zucker nur","Erbinformation","Wasser","Eisen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gene.","topic":"erweiterung"},
-  {"id":"k6bi103","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Photosynthese Gleichung grob: CO₂ + H₂O + Licht →","answers":["nur CO₂","Zucker + O₂","N₂","Salz"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Glucose+Sauerstoff.","topic":"erweiterung"},
-  {"id":"k6bi104","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Ökosystem See: abiotischer Faktor?","answers":["Fisch","Temperatur","Alge","Bakterium"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Temperatur.","topic":"erweiterung"},
-  {"id":"k6bi105","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Verdauung Eiweiß beginnt im …","answers":["Mund stark","Magen","Dickdarm","Haut"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Magen.","topic":"erweiterung"},
-  {"id":"k6bi106","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Hormone steuern u. a. …","answers":["nur Haare","Körperfunktionen","nur Knochenfarbe","Wetter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Regulation.","topic":"erweiterung"},
-  {"id":"k6bi107","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Immunsystem: Antikörper gegen …","answers":["Nährstoffe","Erreger/Antigene","Wasser","Sauerstoff"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fremdstoffe.","topic":"erweiterung"},
-  {"id":"k6bi108","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Evolution: Selektion bedeutet …","answers":["Zufall ohne Wirkung","Auswahl angepasster Merkmale","nur Mutation ohne Folge","Züchtung immer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Auswahl.","topic":"erweiterung"},
-  {"id":"k6bi109","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Bakterien: Prokaryoten heißen …","answers":["mit Zellkern","ohne echten Zellkern","Pflanzen","Tiere"],"correct":1,"difficulty":"mittel","points":10,"explanation":"kein Zellkern.","topic":"erweiterung"},
-  {"id":"k6bi110","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Stoffkreislauf Kohlenstoff: CO₂ aus …","answers":["nur Steinen","Atmung/Verbrennung","nur Eis","nur Mond"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Atmung etc.","topic":"erweiterung"},
-  {"id":"k6bi111","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Auge: Lichtempfindliche Schicht?","answers":["Hornhaut","Netzhaut","Linse nur","Lid"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Retina.","topic":"erweiterung"},
-  {"id":"k6bi112","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Pubertät Hormone u. a. aus …","answers":["Leber nur","Keimdrüsen","Zähnen","Haaren"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gonaden.","topic":"erweiterung"},
-  {"id":"k6bi113","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Pilze: Zellwand oft mit …","answers":["Cellulose nur","Chitin","Knochen","Eisen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Chitin.","topic":"erweiterung"},
-  {"id":"k6bi114","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Symbiose Beispiel?","answers":["Räuber-Beute","Flechte (Pilz+Alge)","Konkurrenz","Parasit immer schädlich"],"correct":1,"difficulty":"mittel","points":10,"explanation":"gegenseitig.","topic":"erweiterung"},
-  {"id":"k6bi115","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Blut: rote Blutkörperchen transportieren …","answers":["Zucker nur","Sauerstoff","Knochen","Wasser nur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"O₂.","topic":"erweiterung"},
-  {"id":"k6bi116","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Genetik: dominantes Allel …","answers":["setzt sich phänotypisch durch","ist immer krank","verschwindet","ist DNA-frei"],"correct":0,"difficulty":"mittel","points":10,"explanation":"setzt sich durch.","topic":"erweiterung"},
-  {"id":"k6bi117","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Umwelt: Invasive Art kann …","answers":["nur nützen","Ökosystem stören","nur Wetter ändern","Magnete erzeugen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Störung.","topic":"erweiterung"},
-  {"id":"k6bi118","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Nervenzelle leitet …","answers":["Blut","elektrische Impulse","Luft","Knochen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Erregung.","topic":"erweiterung"},
-  {"id":"k6bi119","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Photosynthese Ort: …","answers":["Mitochondrien","Chloroplasten","Zellkern","Ribosom"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Chloroplasten.","topic":"erweiterung"},
-  {"id":"k6bi120","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Nahrungskette Länge begrenzt durch …","answers":["unendlich Energie","Energieverlust pro Stufe","nur Farbe","Mond"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Energieverlust.","topic":"erweiterung"},
-  {"id":"k6bi121","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Antibiotikaresistenzen entstehen durch …","answers":["nur Sport","Selektion von Bakterien","Photosynthese","Magnetismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Selektion.","topic":"erweiterung"},
-  {"id":"k6bi122","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Skelett: Gelenke ermöglichen …","answers":["nur Starrheit","Bewegung","Atmung nur","Verdauung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bewegung.","topic":"erweiterung"},
-  {"id":"k6bi123","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Bestäubung ≠ Befruchtung: Bestäubung ist …","answers":["Kernverschmelzung","Pollenübertragung","Keimung","Photosynthese"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Pollen.","topic":"erweiterung"},
-  {"id":"k6bi124","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Population = …","answers":["alle Arten","Individuen einer Art in Gebiet","nur Pflanzen","Klima"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Art in Raum.","topic":"erweiterung"},
-  {"id":"k6bi125","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Hautfunktionen u. a. …","answers":["nur Farbe","Schutz/Temperatur/Sinn","nur Photosynthese","Knochenbildung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schutz etc.","topic":"erweiterung"},
-  {"id":"k6bi126","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Viren: gelten als …","answers":["Zellen mit Kern","keine echten Zellen/obligat parasitär","Pflanzen","Bakterien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"akaryotisch.","topic":"erweiterung"},
-  {"id":"k6bi127","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Nachhaltige Fischerei achtet auf …","answers":["Überfischung","Bestandserhalt","nur Preis","nur Export"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bestände.","topic":"erweiterung"},
-  {"id":"k6bi128","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Zellteilung Mitose dient …","answers":["Geschlechtszellen meiosis","Wachstum/Erneuerung","nur Tod","nur Evolutionstheorie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"somatisch.","topic":"erweiterung"},
-  {"id":"k6bi129","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Sinnesorgan Zunge: …","answers":["Sehen","Schmecken","Hören","Gleichgewicht nur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Geschmack.","topic":"erweiterung"},
-  {"id":"k6bi130","category":"k6_biologie","area":"schule","grade":6,"subject":"biologie","question":"Biodiversität = …","answers":["eine Art","Vielfalt des Lebens","nur Klima","nur Städte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vielfalt.","topic":"erweiterung"}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K6_BIOLOGIE_QUESTIONS = K6_BIOLOGIE_QUESTIONS;

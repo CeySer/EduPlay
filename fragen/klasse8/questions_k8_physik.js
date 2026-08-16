@@ -7,9 +7,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "In welcher Basiseinheit des SI-Systems wird die elektrische Stromstärke gemessen?",
     "answers": [
-      "In der Einheit Ohm (Ω).",
-      "In der Einheit Watt (W).",
-      "In der Einheit Volt (V).",
+      "In der Einheit Kilowatt (kW).",
+      "In der Einheit Kiloohm (kΩ).",
+      "In der Einheit Millivolt (mV).",
       "In der Einheit Ampere (A)."
     ],
     "correct": 3,
@@ -43,9 +43,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie rechnet man eine Geschwindigkeit von $\\text{m/s}$ in $\\text{km/h}$ um?",
     "answers": [
-      "Man addiert den Festwert $36$ zum Messwert hinzu.",
-      "Man multipliziert den Wert in $\\text{m/s}$ mit dem Faktor $10$.",
-      "Man dividiert den Wert in $\\text{m/s}$ durch den Faktor $3{,}6$.",
+      "Man dividiert den Wert in $\\text{m/s}$ einfach durch den Faktor $10$.",
+      "Man addiert zum Wert in $\\text{m/s}$ immer die feste Zahl $3{,}6$ hinzu.",
+      "Man zieht aus dem Wert in $\\text{m/s}$ die Quadratwurzel und multipliziert mit $2$.",
       "Man multipliziert den Wert in $\\text{m/s}$ mit dem Faktor $3{,}6$."
     ],
     "correct": 3,
@@ -62,9 +62,9 @@ const questions_k8_physik = [
     "question": "Was besagt das Trägheitsgesetz (1. Newtonsches Axiom)?",
     "answers": [
       "Ein Körper verharrt in Ruhe oder gleichförmiger Bewegung, wenn keine Gesamtkraft wirkt.",
-      "Jede Kraft erzeugt eine gleich große Gegenkraft (Actio = Reactio).",
-      "Die Masse eines Körpers verändert sich mit seiner Geschwindigkeit.",
-      "Kraft ist gleich Masse mal Beschleunigung ($F = m \\cdot a$)."
+      "Ein Körper bewegt sich nur dann geradlinig weiter, wenn ständig eine Kraft auf ihn einwirkt.",
+      "Jeder ruhende Körper beginnt sich von selbst zu beschleunigen, sobald keine Reibung mehr wirkt.",
+      "Ein bewegter Körper kommt automatisch zur Ruhe, sobald genug Zeit vergangen ist."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -133,10 +133,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was besagt das Wechselwirkungsgesetz (3. Newtonsches Axiom)?",
     "answers": [
-      "Schwere Masse und träge Masse besitzen unterschiedliche physikalische Einheiten.",
+      "Ein Körper bleibt so lange in Ruhe, bis eine deutlich spürbare äußere Kraft auf ihn einwirkt und ihn stört.",
       "Übt Körper A eine Kraft auf Körper B aus, so wirkt eine gleich große, entgegengesetzte Kraft von B auf A.",
-      "Kräfte addieren sich immer vektoriell zu einer Gesamtkraft von null.",
-      "Die Beschleunigung eines Körpers ist direkt proportional zur verstrichenen Zeit."
+      "Die Beschleunigung eines Körpers ist stets direkt proportional zur wirkenden Gesamtkraft, die auf ihn einwirkt.",
+      "Zwei Körper üben nur dann Kräfte aufeinander aus, wenn sie sich unmittelbar berühren und aneinanderstoßen."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -152,9 +152,9 @@ const questions_k8_physik = [
     "question": "Wie ist der physikalische Druck $p$ definiert?",
     "answers": [
       "Als senkrecht auf eine Fläche wirkende Kraft pro Flächeninhalt ($p = \\frac{F}{A}$).",
-      "Als Masse eines Körpers bezogen auf sein Gesamtvolumen ($p = \\frac{m}{V}$).",
-      "Als Produkt aus der wirkenden Kraft und dem Weg ($p = F \\cdot s$).",
-      "Als Arbeit, die innerhalb einer Sekunde verrichtet wird ($p = \\frac{W}{t}$)."
+      "Als die Masse eines Körpers geteilt durch die Zeit seines freien Falls ($p = \\frac{m}{t}$).",
+      "Als eine Kraft, die parallel zu einer Fläche entlanggleitet ($p = F \\cdot A$).",
+      "Als die Energiemenge, die pro Sekunde auf eine Fläche trifft ($p = \\frac{E}{t}$)."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -205,10 +205,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was besagt das Gesetz von Archimedes über die Auftriebskraft $F_A$?",
     "answers": [
-      "Die Auftriebskraft wirkt immer waagerecht zur Strömungsrichtung des Wassers.",
-      "Die Auftriebskraft ist unabhängig von der Dichte des umgebenden Mediums.",
+      "Die Auftriebskraft entspricht immer genau der halben Gewichtskraft des eingetauchten Körpers.",
+      "Die Auftriebskraft hängt allein von der Farbe der eingetauchten Körperoberfläche ab.",
       "Die Auftriebskraft entspricht der Gewichtskraft der verdrängten Flüssigkeitsmenge.",
-      "Die Auftriebskraft steigt quadratisch mit der Masse des eingetauchten Körpers."
+      "Die Auftriebskraft wächst mit zunehmender Eintauchtiefe bis ins Unendliche an."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -295,10 +295,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie verhalten sich die Teilspannungen $U_1, U_2$ in einer Parallelschaltung?",
     "answers": [
-      "Die Gesamtspannung teilt sich proportional zu den Widerständen auf.",
-      "Die Teilspannung steigt mit jedem neu hinzugeschalteten Zweig an.",
+      "An allen parallelen Zweigen addieren sich die Teilspannungen stets zur vollen Gesamtspannung auf.",
+      "Die Spannung ist an dem Zweig mit dem größten Widerstand stets am kleinsten.",
       "An allen parallelen Zweigen liegt dieselbe Spannung an ($U_{\\text{ges}} = U_1 = U_2$).",
-      "Die Spannung am ersten Zweig ist immer doppelt so hoch wie am zweiten."
+      "Die Teilspannungen verhalten sich stets umgekehrt proportional zu den Widerständen."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -331,10 +331,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was passiert mit dem Gesamtwiderstand einer Parallelschaltung, wenn man einen weiteren Widerstand parallel hinzufügt?",
     "answers": [
-      "Der Gesamtwiderstand verdoppelt sich bei jedem zusätzlichen Zweig.",
+      "Der Gesamtwiderstand steigt an und wird größer als der größte Einzelwiderstand.",
       "Der Gesamtwiderstand sinkt und ist kleiner als der kleinste Einzelwiderstand.",
-      "Der Gesamtwiderstand bleibt genau gleich wie vor der Erweiterung.",
-      "Der Gesamtwiderstand steigt um den Wert des hinzugefügten Widerstands."
+      "Der Gesamtwiderstand bleibt gleich dem Durchschnittswert aller Einzelwiderstände.",
+      "Der Gesamtwiderstand entspricht genau der Summe aller einzelnen Widerstände."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -386,9 +386,9 @@ const questions_k8_physik = [
     "question": "Was beschreibt die spezifische Wärmekapazität $c$ eines Stoffes?",
     "answers": [
       "Die Energie, die nötig ist, um $1\\text{ kg}$ eines Stoffes um $1\\text{ K}$ (oder $1^\\circ\\text{C}$) zu erwärmen.",
-      "Die Zeit, die vergeht, bis $1\\text{ kg}$ eines Stoffes vollständig verdampft ist.",
-      "Die maximale Temperatur, die ein Stoff ohne Zustandsschmelze annehmen kann.",
-      "Den Druck, den ein Gas beim Erwärmen um $100^\\circ\\text{C}$ auf die Gefäßwand ausübt."
+      "Die Zeitspanne, die $1\\text{ kg}$ eines Stoffes braucht, um vollständig zu schmelzen und ganz flüssig zu werden.",
+      "Die Kraft, die nötig ist, um $1\\text{ kg}$ eines Stoffes anzuheben und dabei um $1\\text{ K}$ zu drehen.",
+      "Die Masse, die ein Stoff bei einer Temperaturänderung von $1\\text{ K}$ durch Verdampfung verliert."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -439,9 +439,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie unterscheiden sich Wärmeübertragung durch Wärmeleitung und Wärmeströmung (Konvektion)?",
     "answers": [
-      "Wärmeströmung benötigt Lichtwellen, Wärmeleitung erfordert elektrische Stromzufuhr.",
-      "Wärmeleitung funktioniert nur im Vakuum, Konvektion nur in Festkörpern.",
-      "Bei Wärmeleitung steigt warmer Stoff nach oben, bei Konvektion sinkt er stets ab.",
+      "Bei der Wärmeleitung wandert Materie mit, bei der Konvektion bleiben die Teilchen an festen Plätzen.",
+      "Beide Übertragungsarten funktionieren ausschließlich im nahezu luftleeren Raum ohne jede Materie.",
+      "Wärmeleitung findet nur in Flüssigkeiten statt, Konvektion dagegen nur in massiven Metallen.",
       "Bei Konvektion wandert Materie mit, bei Wärmeleitung verharren die Teilchen um feste Plätze."
     ],
     "correct": 3,
@@ -457,10 +457,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Auf welchem Mechanismus beruht der Energietransport der Sonne zur Erde durch das Weltall?",
     "answers": [
-      "Auf großräumiger Konvektion von heißen Plasma-Teilchen.",
+      "Auf Wärmeleitung durch die dünnen Gasteilchen zwischen Sonne und Erde.",
       "Ausschließlich auf Wärmestrahlung (elektromagnetische Wellen).",
-      "Auf Wärmeleitung durch dünne Gasschichten im Weltall.",
-      "Auf Schallellenausbreitung durch das Vakuum des Alls."
+      "Auf Konvektionsströmungen im nahezu luftleeren Raum zwischen den Planeten.",
+      "Auf Schallwellen, die sich durch das Vakuum des Weltalls ausbreiten."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -476,9 +476,9 @@ const questions_k8_physik = [
     "question": "Wie lautet der 1. Hauptsatz der Thermodynamik?",
     "answers": [
       "Energie kann weder erzeugt noch vernichtet, sondern nur umgewandelt werden (Energieerhaltung).",
-      "Der absolute Nullpunkt der Temperatur liegt bei exakt $0^\\circ\\text{C}$.",
-      "Wärme fließt von selbst immer nur vom kälteren zum wärmeren Körper.",
-      "Die Entropie eines geschlossenen Systems nimmt im Laufe der Zeit immer ab."
+      "Wärme fließt von selbst stets nur vom kälteren hin zum wärmeren Körper über und niemals zurück.",
+      "Die Entropie eines geschlossenen physikalischen Systems nimmt mit der Zeit immer weiter ab.",
+      "Der absolute Nullpunkt der Temperaturskala liegt genau bei $0^\\circ\\text{C}$ Celsius."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -511,9 +511,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was beschreibt die Schmelzwärme $q_s$ eines festen Stoffes?",
     "answers": [
-      "Die Temperatur, bei der ein fester Körper schlagartig gasförmig wird.",
-      "Die Druckzunahme beim Erwärmen eines Metallblocks am Siedepunkt.",
-      "Die Wärme, die beim Abkühlen einer Flüssigkeit um $1^\\circ\\text{C}$ freigesetzt wird.",
+      "Die Temperatur, bei der ein fester Stoff spontan seine Farbe vollständig ändert und dabei schmilzt.",
+      "Die Wärmemenge, die beim Gefrieren einer Flüssigkeit pro Sekunde wieder abgegeben wird.",
+      "Der Druckanstieg, der beim Erhitzen eines Metallblocks bis zum Siedepunkt entsteht.",
       "Die Energie, die benötigt wird, um $1\\text{ kg}$ eines Stoffes am Schmelzpunkt zu verflüssigen."
     ],
     "correct": 3,
@@ -583,9 +583,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Welcher physikalische Effekt ermöglicht das Funktionieren eines Bimetallstreifens?",
     "answers": [
-      "Unterschiedliche Schmelzpunkte der eingesetzten Metallverbindungen.",
-      "Unterschiedliche elektrische Leitfähigkeit bei tiefen Temperaturen.",
-      "Unterschiedliche magnetische Anziehungskräfte der Metalle im Vakuum.",
+      "Unterschiedliche elektrische Leitfähigkeit der beiden fest verbundenen Metallschichten.",
+      "Unterschiedliche Farbtönung der beiden Metalle bei intensiver Sonneneinstrahlung.",
+      "Unterschiedliche Magnetisierbarkeit der beiden Metalle bei normaler Zimmertemperatur.",
       "Unterschiedliche Längenausdehnung zweier fest verbundener Metalle bei Erwärmung."
     ],
     "correct": 3,
@@ -640,9 +640,9 @@ const questions_k8_physik = [
     "question": "Was beschreibt die 'Lichtbrechung' beim Übergang eines Lichtstrahls von Luft in Glas?",
     "answers": [
       "Die Richtungsänderung des Lichtstrahls aufgrund unterschiedlicher Ausbreitungsgeschwindigkeiten.",
-      "Das Abprallen des Lichtstrahls im exakt gleichen Winkel wie bei der Reflexion.",
-      "Die vollständige Auslöschung des Lichtstrahls durch Absorption im Glas.",
-      "Die Aufspaltung des Lichts in magnetische Impulswellen."
+      "Die vollständige Absorption des einfallenden Lichtstrahls beim Eintritt in dickes Glas ganz ohne Rest.",
+      "Die sofortige Aufspaltung des Lichtstrahls in mehrere getrennte, farbige Einzelstrahlen.",
+      "Die Verdopplung der Lichtgeschwindigkeit beim Übergang in ein dichteres Medium wie Glas."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -675,9 +675,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was versteht man in der Optik unter der 'Totalreflexion'?",
     "answers": [
-      "Die vollständige Umwandlung von Lichtenergie in Wärmeenergie in einer Solarzelle.",
-      "Das Brechen aller Spektralfarben in demselben Winkel am Prisma.",
-      "Die Reflexion von Licht an einem absolut ebenen und frisch geputzten Spiegel.",
+      "Das gleichmäßige Brechen aller Spektralfarben des Lichts im exakt selben Winkel an jedem beliebigen Prisma auf der Welt.",
+      "Die vollständige Umwandlung von Lichtenergie in Wärmeenergie beim Durchgang durch dickes Glas.",
+      "Die spiegelglatte Reflexion von Licht an einer absolut ebenen, frisch polierten Metallplatte im Freien.",
       "Das Phänomen, dass Licht beim Übergang ins dünnere Medium ab einem bestimmten Winkel vollständig reflektiert wird."
     ],
     "correct": 3,
@@ -711,10 +711,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie heißen die Linsen, die in der Mitte dünner sind als am Rand und parallel einfallendes Licht streuen?",
     "answers": [
-      "Prismenlinsen.",
+      "Sammellinsen, auch Konvexlinsen genannt.",
       "Zerstreuungslinsen (Konkavlinsen).",
-      "Sammellinsen (Konvexlinsen).",
-      "Zylinderlinsen."
+      "Bikonvexe Streulinsen mit Rand.",
+      "Planlinsen ohne jede Wölbung."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -730,9 +730,9 @@ const questions_k8_physik = [
     "question": "Was versteht man unter dem 'Brennpunkt' (Fokus) einer Sammellinse?",
     "answers": [
       "Der Punkt, in dem sich parallel zur optischen Achse einfallende Lichtstrahlen nach der Brechung schneiden.",
-      "Der Ort, an dem die Linse bei Sonnenlicht sofort Schmelztemperatur erreicht.",
-      "Der Schnittpunkt der Linse mit der äußeren Halterung.",
-      "Der Mittelpunkt des Glaskörpers der Linse."
+      "Der Ort, an dem sich zwei benachbarte Sammellinsen exakt berühren und dabei Wärme freisetzen.",
+      "Der Mittelpunkt der Linse, in dem sich angeblich alle Farben des einfallenden Sonnenlichts vollständig vermischen.",
+      "Der äußere Rand der Linse, an dem einfallendes Licht stets vollständig reflektiert wird."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -784,9 +784,9 @@ const questions_k8_physik = [
     "question": "Was beschreibt der Begriff 'Spektrum' des weißen Lichts beim Durchgang durch ein Glasprisma?",
     "answers": [
       "Die Aufspaltung des weißen Lichts in seine Spektralfarben (Regenbogenfarben).",
-      "Die Umwandlung von sichtbarem Licht in unsichtbare Röntgenstrahlung.",
-      "Das Auslöschen der Wellenbewegung durch Spiegelung im Glas.",
-      "Die Verdopplung der Lichtgeschwindigkeit innerhalb des Prismas."
+      "Die vollständige Auslöschung des weißen Lichts beim Durchgang durch das Prisma.",
+      "Die Umwandlung des weißen Lichts in unsichtbare Infrarotstrahlung im Prisma.",
+      "Die Verdopplung der Helligkeit des Lichts beim Durchgang durch das Glasprisma."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -801,10 +801,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Welche physikalische Größe gibt an, wie viele Ladungen pro Sekunde durch den Querschnitt eines Leiters fließen?",
     "answers": [
-      "Die elektrische Leistung $P$.",
+      "Der elektrische Widerstand $R$ im Draht.",
       "Die elektrische Stromstärke $I$.",
-      "Die elektrische Spannung $U$.",
-      "Der elektrische Widerstand $R$."
+      "Die elektrische Leistung $P$ im Kabel.",
+      "Die elektrische Spannung $U$ am Pol."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -837,9 +837,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was gibt die elektrische Spannung $U$ an?",
     "answers": [
-      "Der Widerstand gegen die Bewegung von Protonen.",
-      "Die Gesamtzahl aller Elektronen im gesamten Kabelbaum.",
-      "Die Temperaturerhöhung pro Minute im Stromkabel.",
+      "Die Anzahl der Elektronen, die insgesamt im gesamten Kabel vorhanden sind.",
+      "Die Wärme, die ein Kabel jede Minute an die umgebende Luft abgibt.",
+      "Die Kraft, mit der Protonen im Leiter gegeneinander stoßen und reiben.",
       "Der 'Druck' bzw. Antrieb des elektrischen Stroms zwischen zwei Punkten."
     ],
     "correct": 3,
@@ -855,10 +855,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie wird ein Spannungsmessgerät (Voltmeter) im Schaltplan korrekt angeschlossen?",
     "answers": [
-      "An eine unisolierte Masseleitung außerhalb des Gehäuses.",
+      "In Reihe direkt zwischen der Batterie und dem zu messenden Bauteil.",
       "Parallel zum Bauteil, dessen Spannung gemessen werden soll.",
-      "In Reihe direkt vor den Schalter.",
-      "In Reihe zwischen Batterie und Lampe."
+      "Immer außerhalb des vollständig geschlossenen Stromkreises am Kabelende.",
+      "Parallel zur Batterie, aber niemals zum eigentlichen Bauteil selbst."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -927,9 +927,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie verhält sich die Stromstärke $I$ in allen Bauteilen einer Reihenschaltung?",
     "answers": [
-      "Die Stromstärke nimmt vom Pluspol zum Minuspol kontinuierlich ab.",
-      "Die Stromstärke teilt sich an jedem Widerstand zu gleichen Teilen auf.",
-      "Die Stromstärke ist am größten Widerstand am kleinsten.",
+      "Die Stromstärke nimmt vom Pluspol zum Minuspol hin stetig immer weiter ab.",
+      "Die Stromstärke ist am Widerstand mit dem größten Wert stets am kleinsten.",
+      "Die Stromstärke teilt sich an jedem einzelnen Bauteil stets zu gleichen Teilen genau auf.",
       "Die Stromstärke ist an jeder Stelle im unverzweigten Stromkreis exakt gleich groß."
     ],
     "correct": 3,
@@ -946,9 +946,9 @@ const questions_k8_physik = [
     "question": "Welche Aussage gilt für die elektrische Spannung $U$ an parallel geschalteten Verbrauchern?",
     "answers": [
       "An allen parallelen Zweigen liegt dieselbe Spannung an: $U_{\\text{gesamt}} = U_1 = U_2$.",
-      "Die Spannung sinkt in dem Zweig mit dem dünnsten Draht auf null Volt.",
-      "Die Spannung verdoppelt sich bei jeder Abzweigung.",
-      "Die Spannung teilt sich proportional zu den Widerständen auf."
+      "Die Spannung teilt sich an jedem Zweig proportional zum jeweiligen Widerstand genau auf.",
+      "Die Spannung sinkt in dem Zweig mit dem dünnsten Draht sofort auf null Volt.",
+      "Die Spannung verdoppelt sich bei jedem zusätzlich hinzugefügten parallelen Zweig."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -963,9 +963,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was besagt die 1. Kirchhoffsche Regel (Knotenpunktregel) für elektrische Stromkreise?",
     "answers": [
-      "Der elektrischen Widerstand sinkt an jedem Knotenpunkt schlagartig ab.",
-      "An jedem Knotenpunkt im Stromkreis geht genau die Hälfte des Stroms als Wärme verloren.",
-      "Die Spannung an einem Knotenpunkt ist immer doppelt so hoch wie am Schalter.",
+      "An jedem Knotenpunkt im Stromkreis geht genau die Hälfte des Stroms als Wärme dauerhaft verloren.",
+      "Die Spannung an einem Knotenpunkt verdoppelt sich mit jedem zusätzlichen Zweig sofort.",
+      "Der elektrische Widerstand sinkt an jedem Knotenpunkt automatisch schlagartig auf null.",
       "Die Summe aller zufließenden Stromstärken ist gleich der Summe aller abfließenden Stromstärken."
     ],
     "correct": 3,
@@ -981,10 +981,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie verändert sich der Gesamtwiderstand $R_{\\text{gesamt}}$, wenn man zu einem Verbraucher einen weiteren Widerstand in Reihe schaltet?",
     "answers": [
-      "Der Gesamtwiderstand bleibt genau gleich groß.",
-      "Der Gesamtwiderstand fällt auf null Ohm ab.",
+      "Der Gesamtwiderstand bleibt trotz der Erweiterung völlig unverändert und gleich.",
+      "Der Gesamtwiderstand fällt durch die zusätzliche Reihenschaltung auf null Ohm.",
       "Der Gesamtwiderstand vergrößert sich ($R_{\\text{gesamt}} = R_1 + R_2$).",
-      "Der Gesamtwiderstand verringert sich."
+      "Der Gesamtwiderstand verringert sich um den Wert des neuen Widerstands."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -999,9 +999,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie verändert sich der Gesamtwiderstand einer Schaltung, wenn man weitere Verbraucher parallel hinzufügt?",
     "answers": [
-      "Der Gesamtwiderstand verdoppelt sich automatisch.",
-      "Der Gesamtwiderstand hängt nur von der Länge des Hauptkabels ab.",
-      "Der Gesamtwiderstand steigt mit jedem neuen Zweig an.",
+      "Der Gesamtwiderstand steigt mit jedem zusätzlich hinzugeschalteten parallelen Zweig an.",
+      "Der Gesamtwiderstand verdoppelt sich automatisch bei jedem neu hinzugefügten Verbraucher.",
+      "Der Gesamtwiderstand hängt ausschließlich von der Farbe der Kabelisolierung ab.",
       "Der Gesamtwiderstand sinkt (er ist kleiner als der kleinste Einzelwiderstand)."
     ],
     "correct": 3,
@@ -1018,9 +1018,9 @@ const questions_k8_physik = [
     "question": "Von welchen Materialeigenschaften hängt der elektrische Widerstand $R$ eines metallischen Drahtes ab?",
     "answers": [
       "Vom Werkstoff (spezifischer Widerstand), der Drahtlänge und der Querschnittsfläche.",
-      "Vom Alter der im Stromkreis eingesetzten Batterie.",
-      "Nur von der geografischen Himmelsrichtung der Leitung.",
-      "Ausschließlich von der Isolierfarbe des Plastikmantels."
+      "Nur vom Hersteller des Drahtes und der Farbe seiner äußeren Verpackung im Baumarktladen.",
+      "Ausschließlich von der genauen Uhrzeit, zu der der Draht gerade verwendet wird.",
+      "Nur von der Entfernung des Drahtes zum nächsten Fenster im selben Raum."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1054,9 +1054,9 @@ const questions_k8_physik = [
     "question": "Ein Wasserkocher wird an das Haushaltsnetz ($230\\,\\text{V}$) angeschlossen. Es fließt ein Strom von $10\\,\\text{A}$. Welche elektrische Leistung erbringt das Gerät?",
     "answers": [
       "$2300\\,\\text{Watt}$ ($2{,}3\\,\\text{kW}$).",
-      "$230\\,\\text{Watt}$.",
-      "$4600\\,\\text{Watt}$.",
-      "$23\\,\\text{Watt}$."
+      "$230\\,\\text{Watt}$ (ein Zehntel des Werts).",
+      "$4600\\,\\text{Watt}$ (das Doppelte).",
+      "$100\\,\\text{Watt}$ (viel zu wenig)."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1089,10 +1089,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Welche Schutzvorrichtung im Sicherungskasten schützt Haushaltsstromkreise vor Überlastung und Kurzschlüssen?",
     "answers": [
-      "Ein Transformator.",
-      "Ein Spannungsmessgerät.",
+      "Ein kleiner Spannungswandler im Sicherungskasten.",
+      "Ein zusätzlicher Generator im Sicherungskasten.",
       "Der Leitungsschutzschalter (Sicherung).",
-      "Ein Drehstromgenerator."
+      "Ein einfacher Transformator im Sicherungskasten."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1108,9 +1108,9 @@ const questions_k8_physik = [
     "question": "Was unterscheidet den Schutzleiter (grün-gelbes Kabel) von den anderen Leitungen im Haushaltsnetz?",
     "answers": [
       "Er leitet Fehlerströme bei defekten Metallgehäusen gefahrlos in die Erde ab.",
-      "Er erhöht die Spannung von 230 Volt auf 400 Volt.",
-      "Er schaltet das Gerät automatisch bei Inaktivität ab.",
-      "Er transportiert den normalen Betriebsstrom von der Steckdose zum Motor."
+      "Er verdoppelt automatisch die Spannung im gesamten Hausnetz sofort auf 400 Volt.",
+      "Er transportiert allein den normalen Betriebsstrom von der Steckdose zum Verbraucher.",
+      "Er schaltet Geräte bei längerer Inaktivität automatisch komplett vom Netz ab."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1125,9 +1125,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was geschieht bei einem 'Kurzschluss' in einem elektrischen Stromkreis?",
     "answers": [
-      "Die Ladungen fließen rückwärts durch die Messgeräte.",
-      "Der Widerstand steigt schlagartig an und lässt den Stromkreis erkalten.",
-      "Die Spannung der Batterie fällt auf einen negativen Wert ab.",
+      "Der Widerstand steigt plötzlich sehr stark an und der ganze Stromkreis erkaltet dabei völlig.",
+      "Die Spannung der angeschlossenen Batterie sinkt langsam auf einen negativen Wert ab und bleibt so.",
+      "Die Ladungen fließen für einen kurzen Moment plötzlich rückwärts durch sämtliche Messgeräte im gesamten Stromkreis und darüber hinaus.",
       "Hin- und Rückleiter berühren sich direkt, wodurch der Widerstand extrem fällt und die Stromstärke gefährlich ansteigt."
     ],
     "correct": 3,
@@ -1162,9 +1162,9 @@ const questions_k8_physik = [
     "question": "Auf welchem physikalischen Prinzip basiert die Funktion eines Elektromotors?",
     "answers": [
       "Die Kraftwirkung auf einen stromdurchflossenen Leiter im Magnetfeld (Lorentzkraft).",
-      "Die Wärmeausdehnung von Metallstäben beim Erhitzen.",
-      "Die Lichtbrechung an Sammellinsen.",
-      "Die chemische Zersetzung von Elektrolytlösungen."
+      "Die Wärmeausdehnung eines stromdurchflossenen Metallstabs innerhalb eines Magnetfeldes.",
+      "Die chemische Reaktion zweier verschiedener Elektrolytlösungen in einer Batteriezelle.",
+      "Die Lichtbrechung an einer stromdurchflossenen Glasoberfläche im elektrischen Feld."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1179,10 +1179,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was besagt die elektromagnetische Induktion?",
     "answers": [
-      "Durch Erwärmen eines Kabels bildet sich automatisch ein elektrischer Strom.",
-      "Durch Bestrahlung von Glasplatten bilden sich Elektronen.",
+      "Durch das bloße Erwärmen eines Kabels entsteht dort automatisch von selbst ein elektrischer Strom.",
+      "Durch das feste Zusammenpressen zweier Metalle entsteht sofort ein sehr starkes Magnetfeld.",
       "Durch zeitliche Änderung eines Magnetfeldes in einer Spule wird eine elektrische Spannung erzeugt.",
-      "Durch das Zusammenpressen von Festkörpern entsteht Magnetismus."
+      "Durch die Bestrahlung einer Spule mit hellem Licht entsteht darin eine sehr hohe Spannung."
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1198,9 +1198,9 @@ const questions_k8_physik = [
     "question": "Welches Gerät wandelt mechanische Bewegungsenergie mithilfe von Induktion in elektrische Energie um?",
     "answers": [
       "Ein Generator (z. B. Fahrrad-Dynamo).",
-      "Ein Tauchsieder.",
-      "Ein Bimetallschalter.",
-      "Ein Elektromotor."
+      "Ein gewöhnlicher elektrischer Tauchsieder.",
+      "Ein simpler Bimetallschalter zweier Metalle.",
+      "Ein einfacher Elektromotor mit Magnet."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1215,9 +1215,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie ist ein einfacher Transformator aufgebaut?",
     "answers": [
-      "Aus zwei parallel geschalteten Batterien mit einem Kondensator.",
-      "Aus einem Permanentmagneten zwischen zwei Kupferplatten.",
-      "Aus einer Glühlampe, die an eine Sammellinse gekoppelt ist.",
+      "Aus zwei parallel geschalteten Batterien, verbunden über einen einzelnen Kondensator.",
+      "Aus einer Glühlampe, die fest an eine gewölbte Sammellinse gekoppelt ist.",
+      "Aus einem starken Permanentmagneten zwischen zwei blanken Kupferplatten.",
       "Aus einem geschlossenen Eisenkern mit einer Primär- und einer Sekundärspule."
     ],
     "correct": 3,
@@ -1234,9 +1234,9 @@ const questions_k8_physik = [
     "question": "Wie verhalten sich die Spannungen $U_1$ und $U_2$ an den Spulen eines idealen Transformators zu den Windungszahlen $N_1$ und $N_2$?",
     "answers": [
       "Die Spannungen verhalten sich genau wie die Windungszahlen: $\\frac{U_1}{U_2} = \\frac{N_1}{N_2}$.",
-      "Die Spannung verhält sich umgekehrt proportional zu den Windungszahlen.",
-      "Die Windungszahlen spielen für die Ausgangsspannung keine Rolle.",
-      "Die Spannung an der Sekundärspule ist immer exakt halb so groß wie an der Primärspule."
+      "Die Spannung verhält sich stets genau umgekehrt proportional zu den beiden Windungszahlen der Spulen.",
+      "Die Windungszahlen der beiden Spulen haben keinerlei Einfluss auf die Ausgangsspannung.",
+      "Die Spannung an der Sekundärspule ist stets exakt doppelt so hoch wie an der Primärspule."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1270,10 +1270,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Warum wird elektrischer Strom über weite Strecken (Hochspannungsleitungen) mit sehr hohen Spannungen (z. B. 380 kV) transportiert?",
     "answers": [
-      "Weil Hochspannung in der Luft weniger Gegenwind erfährt als Niederspannung.",
+      "Damit die Elektronen in den langen Leitungen deutlich schneller fließen können als sonst üblich.",
       "Um die Stromstärke gering zu halten und dadurch Wärmeverluste in den Leitungen zu minimieren.",
-      "Damit die Elektronen schneller durch die Leitungen fliegen können.",
-      "Weil Generatoren im Kraftwerk nur Wechselspannung mit über 100.000 Volt erzeugen können."
+      "Weil Hochspannung in der Luft einen geringeren Luftwiderstand erfährt als Niederspannung.",
+      "Weil die großen Generatoren im Kraftwerk nur sehr hohe Wechselspannungen erzeugen können."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1289,9 +1289,9 @@ const questions_k8_physik = [
     "question": "Was versteht man unter dem Wirkungsgrad $\\eta$ einer Maschine oder einer Lampe?",
     "answers": [
       "Das Verhältnis von nutzbarer abgegebener Energie zur zugeführten Gesamtenergie.",
-      "Die Zeitdauer, die ein Gerät ohne Stromausfall betrieben werden kann.",
-      "Die Summe aus zugeführter Energie und entstehender Reibungswärme.",
-      "Die maximale Geschwindigkeit, mit der eine Maschine arbeiten kann."
+      "Die Summe aus der zugeführten Energie und der dabei entstehenden Reibungswärme.",
+      "Die Zeitspanne, die ein Gerät ohne jede Unterbrechung betrieben werden kann.",
+      "Die höchste Geschwindigkeit, mit der eine Maschine arbeiten kann, ohne zu überhitzen."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1324,9 +1324,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was besagt der Energieerhaltungssatz der Physik?",
     "answers": [
-      "Elektrische Energie kann ohne jegliche Verluste in mechanische Energie umgewandelt werden.",
-      "Energie kann aus dem Nichts entstehen, wenn man starke Magnete nutzt.",
-      "Die Gesamtenergie eines Systems nimmt mit der Zeit immer weiter ab.",
+      "Elektrische Energie lässt sich angeblich vollkommen verlustfrei in mechanische Bewegungsenergie umwandeln, ganz ohne Reibung.",
+      "Energie kann bei ausreichend starken Magnetfeldern angeblich spontan völlig neu entstehen.",
+      "Die Gesamtenergie eines abgeschlossenen Systems nimmt mit der Zeit stetig weiter ab.",
       "In einem abgeschlossenen System kann Energie weder erzeugt noch vernichtet, sondern nur umgewandelt werden."
     ],
     "correct": 3,
@@ -1363,7 +1363,7 @@ const questions_k8_physik = [
       "$E_{\\text{kin}} = m \\cdot g \\cdot h$",
       "$E_{\\text{kin}} = \\frac{m \\cdot v}{2}$",
       "$E_{\\text{kin}} = \\frac{1}{2} \\cdot m \\cdot v^2$",
-      "$E_{\\text{kin}} = m \\cdot v$"
+      "$E_{\\text{kin}} = m \\cdot v \\cdot 2$ (ohne das Quadrat)"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1415,9 +1415,9 @@ const questions_k8_physik = [
     "question": "Ein Beutel mit der Gewichtskraft $F = 50\\,\\text{N}$ wird vertikal um $2\\,\\text{m}$ angehoben. Welche Hubarbeit wird dabei verrichtet?",
     "answers": [
       "$100\\,\\text{Joule}$ ($100\\,\\text{Nm}$).",
-      "$25\\,\\text{Joule}$.",
-      "$200\\,\\text{Joule}$.",
-      "$52\\,\\text{Joule}$."
+      "$25\\,\\text{Joule}$ (nur ein Viertel davon).",
+      "$200\\,\\text{Joule}$ (das Doppelte).",
+      "$52\\,\\text{Joule}$ (falsch addiert)."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1433,9 +1433,9 @@ const questions_k8_physik = [
     "question": "Wie ist die physikalische Leistung $P$ allgemein definiert?",
     "answers": [
       "Leistung ist verrichtete Arbeit pro Zeitspanne ($P = \\frac{W}{t}$).",
-      "Leistung ist die Dauer, die ein Körper für eine Strecke benötigt.",
-      "Leistung ist das Produkt aus Masse und Weg ($P = m \\cdot s$).",
-      "Leistung ist Kraft mal Beschleunigung ($P = F \\cdot a$)."
+      "Leistung ist die Dauer, die ein Körper für eine bestimmte Strecke benötigt.",
+      "Leistung ist das Produkt aus Masse und Weg ($P = m \\cdot s$) eines Körpers.",
+      "Leistung ist Kraft mal Beschleunigung ($P = F \\cdot a$) bei jeder Bewegung."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1468,10 +1468,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie verändert sich die benötigte Zugkraft beim Heben einer Last mit einer festen Rolle?",
     "answers": [
-      "Die Zugkraft vervierfacht sich.",
-      "Die Zugkraft halbiert sich.",
+      "Die Zugkraft verringert sich bei einer festen Rolle deutlich auf ein Drittel des Wertes.",
+      "Die Zugkraft steigt bei einer festen Rolle stark auf das Doppelte des Ausgangswerts an.",
       "Die Betrag der Zugkraft bleibt gleich, nur die Richtung der Kraft wird umgelenkt.",
-      "Die benötigte Arbeit wird um die Hälfte reduziert."
+      "Die benötigte Zugkraft sinkt dabei, während sich der zurückgelegte Kraftweg verdoppelt."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1486,10 +1486,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Um welchen Faktor verringert sich die erforderliche Zugkraft bei Verwendung einer losen Rolle (vernachlässigbare Eigengewichte)?",
     "answers": [
-      "Die Zugkraft bleibt unverändert.",
+      "Die Zugkraft steigt bei Verwendung einer losen Rolle auf das Doppelte des Wertes an.",
       "Die Zugkraft halbiert sich auf $F_{\\text{Zug}} = \\frac{F_{\\text{Last}}}{2}$.",
-      "Die Zugkraft drittelt sich.",
-      "Die Zugkraft vervierfacht sich."
+      "Die Zugkraft bleibt bei einer losen Rolle völlig unverändert wie ohne jede Rolle.",
+      "Die Zugkraft sinkt bei der losen Rolle auf ein Viertel des ursprünglichen Wertes ab."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1504,9 +1504,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie berechnet man das Drehmoment $M$ an einem Hebel?",
     "answers": [
-      "$M = \\frac{F}{r}$",
-      "$M = \\frac{r}{F^2}$",
-      "$M = F + r$",
+      "$M = \\frac{r}{F}$ (Kraftarm durch Kraft)",
+      "$M = F - r$ (Kraft minus Kraftarm)",
+      "$M = F : r$ (Kraft durch Kraftarm)",
       "$M = F \\cdot r$ (Kraft mal Kraftarm)"
     ],
     "correct": 3,
@@ -1522,10 +1522,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie lautet das Hebelgesetz im Gleichgewichtsfall für einen zweiseitigen Hebel?",
     "answers": [
-      "$\\frac{F_1}{r_1} = \\frac{F_2}{r_2}$",
-      "$F_1 \\cdot F_2 = r_1 \\cdot r_2$",
+      "$F_1 - r_1 = F_2 - r_2$ (Differenz von Kraft und Kraftarm ist gleich)",
+      "$\\frac{F_1}{F_2} = r_1 \\cdot r_2$ (Kraftverhältnis gleich Produkt der Kraftarme)",
       "$F_1 \\cdot r_1 = F_2 \\cdot r_2$ (Kraft mal Kraftarm ist gleich Last mal Lastarm)",
-      "$F_1 + r_1 = F_2 + r_2$"
+      "$F_1 \\cdot r_2 = F_2 \\cdot r_1 \\cdot 2$ (mit doppeltem zweiten Kraftarm)"
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -1558,10 +1558,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was beschreibt der physikalische Begriff 'Druck' $p$?",
     "answers": [
-      "Die Beschleunigung eines Körpers beim freien Fall.",
+      "Die Geschwindigkeit eines frei fallenden Körpers zu einem Zeitpunkt ($v = g \\cdot t$).",
       "Das Verhältnis von senkrecht wirkender Kraft $F$ zur Fläche $A$ ($p = \\frac{F}{A}$).",
-      "Die Gesamtzahl aller Moleküle in einem Behälter.",
-      "Das Produkt aus Masse und Volumen eines Stoffs."
+      "Die Anzahl aller einzelnen Gasteilchen in einem vollständig geschlossenen Behälter.",
+      "Das Produkt aus der Masse und dem Volumen eines beliebigen festen Stoffs."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1576,10 +1576,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Warum sinkt eine Person mit Schneeschuhen im tiefen Schnee viel weniger tief ein als mit normalen Stiefeln?",
     "answers": [
-      "Der Schnee unter den Schneeschuhen erwärmt sich und wird dadurch schlagartig fest.",
+      "Der Schnee unter den Schneeschuhen schmilzt sofort und wird dadurch schlagartig hart und fest wie festes Eis.",
       "Die Schneeschuhe vergrößern die Auflagefläche $A$, wodurch sich der Druck $p$ auf den Schnee verringert.",
-      "Schneeschuhe erzeugen ein aufwärts gerichtetes Magnetfeld.",
-      "Schneeschuhe verringern die Masse und Gewichtskraft der Person."
+      "Die Schneeschuhe erzeugen ein aufwärts gerichtetes Magnetfeld, das die Person leicht trägt.",
+      "Schneeschuhe verringern durch ihr geringes Gewicht direkt die Masse der tragenden Person."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1594,10 +1594,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie lautet die Umrechnung zwischen der Druckeinheit Bar ($bar$) und Pascal ($Pa$)?",
     "answers": [
-      "$1\\,\\text{bar} = 1.000\\,\\text{Pa}$.",
+      "$1\\,\\text{bar} = 1.000\\,\\text{Pa}$ ($10^3\\,\\text{Pa}$).",
       "$1\\,\\text{bar} = 100.000\\,\\text{Pa}$ ($10^5\\,\\text{Pa}$).",
-      "$1\\,\\text{bar} = 100\\,\\text{Pa}$.",
-      "$1\\,\\text{bar} = 10\\,\\text{Pa}$."
+      "$1\\,\\text{bar} = 10.000\\,\\text{Pa}$ ($10^4\\,\\text{Pa}$).",
+      "$1\\,\\text{bar} = 100\\,\\text{Pa}$ ($10^2\\,\\text{Pa}$), viel zu wenig."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1612,9 +1612,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was besagt das Gesetz von Pascal für Flüssigkeiten in geschlossenen Gefäßen?",
     "answers": [
-      "Der Druck in einer Flüssigkeit nimmt nach unten hin ab.",
-      "Flüssigkeiten lassen sich beliebig stark zusammendrücken.",
-      "Der Druck in Flüssigkeiten wirkt ausschließlich in Richtung der Erdanziehung.",
+      "Der Druck in einer Flüssigkeit nimmt mit zunehmender Tiefe stetig immer weiter deutlich ab.",
+      "Flüssigkeiten lassen sich unter hohem Druck beliebig stark zusammendrücken.",
+      "Der Druck wirkt in Flüssigkeiten stets nur in Richtung der Erdanziehungskraft.",
       "Der auf eine Flüssigkeit ausgeübte Druck breitet sich nach allen Seiten gleichmäßig aus."
     ],
     "correct": 3,
@@ -1631,9 +1631,9 @@ const questions_k8_physik = [
     "question": "Auf welchem Prinzip basiert die Wirkung einer hydraulischen Presse?",
     "answers": [
       "Auf dem Pascalschen Prinzip: Gleicher Druck auf unterschiedlich große Kolbenflächen erzeugt Kraftübersetzung.",
-      "Auf der Reibung von Strömungen an den Rohrwänden.",
-      "Auf der thermischen Ausdehnung von Spezialöl.",
-      "Auf der magnetischen Abstoßung zweier Eisenkerne."
+      "Auf der Reibung zwischen dem strömenden Öl und den Innenwänden der engen Rohre selbst.",
+      "Auf der thermischen Ausdehnung von speziellem Hydrauliköl beim sehr starken Erwärmen der ganzen hydraulischen Presse.",
+      "Auf der magnetischen Abstoßung zweier sich gegenüberliegender massiver Eisenkerne im Gehäuse."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1649,9 +1649,9 @@ const questions_k8_physik = [
     "question": "Was beschreibt der 'Schweredruck' (hydrostatische Druck) in einer Flüssigkeit?",
     "answers": [
       "Der Druck, der durch das Eigengewicht der darüber stehenden Flüssigkeitssäule entsteht.",
-      "Die Reibungskraft beim Vorbeiströmen an Schiffsrümpfen.",
-      "Der Druck der Atmosphäre auf die Meeresoberfläche.",
-      "Der Druck, der beim Kochen von Wasser durch Dampfentwicklung erzeugt wird."
+      "Die Reibungskraft, die beim Vorbeiströmen des Wassers an Schiffsrümpfen stets entsteht.",
+      "Der Druck der Erdatmosphäre, der von oben ständig auf die Meeresoberfläche wirkt.",
+      "Der Druck, der beim Kochen von Wasser durch die starke Dampfentwicklung entsteht."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1666,9 +1666,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie hoch ist der durchschnittliche Luftdruck der Erdatmosphäre auf Meereshöhe?",
     "answers": [
-      "Ca. 100.000 bar.",
-      "Ca. 10 hPa.",
-      "Ca. 50 bar.",
+      "Ca. 100.000 bar auf Meereshöhe.",
+      "Ca. 10 hPa auf Meereshöhe.",
+      "Ca. 50 bar auf Meereshöhe.",
       "Ca. 1013 hPa (1,013 bar)."
     ],
     "correct": 3,
@@ -1684,10 +1684,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was besagt das Archimedische Prinzip für einen in eine Flüssigkeit eingetauchten Körper?",
     "answers": [
-      "Die Auftriebskraft ist immer exakt gleich der Masse des eintauchenden Körpers.",
+      "Die Auftriebskraft ist stets exakt gleich groß wie die Masse des eingetauchten Körpers.",
       "Die Auftriebskraft entspricht der Gewichtskraft der vom Körper verdrängten Flüssigkeitsmenge.",
-      "Ein Körper erfährt unter Wasser nur dann Auftrieb, wenn er aus Holz besteht.",
-      "Die Auftriebskraft nimmt mit zunehmender Eintauchtiefe unendlich zu."
+      "Ein Körper erfährt unter Wasser nur dann Auftrieb, wenn er ganz und gar aus Holz besteht.",
+      "Die Auftriebskraft nimmt mit zunehmender Eintauchtiefe stets unendlich stark weiter zu und zu."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1703,9 +1703,9 @@ const questions_k8_physik = [
     "question": "Wann schwimmt ein Körper auf einer Flüssigkeit?",
     "answers": [
       "Wenn seine mittlere Dichte kleiner ist als die Dichte der Flüssigkeit.",
-      "Wenn seine Dichte exakt doppelt so groß ist wie die der Flüssigkeit.",
-      "Wenn seine Form kreisrund ist.",
-      "Wenn seine Masse größer ist als 100 Kilogramm."
+      "Wenn seine Dichte genau doppelt so groß ist wie die Dichte der Flüssigkeit.",
+      "Wenn seine Form vollkommen rund und glatt ohne jede Ecke geformt ist.",
+      "Wenn seine Masse insgesamt mehr als hundert Kilogramm beträgt."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1720,10 +1720,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wann schwebt ein Körper vollständig untergetaucht in einer Flüssigkeit?",
     "answers": [
-      "Wenn die Flüssigkeit keine Reibung besitzt.",
+      "Wenn die umgebende Flüssigkeit vollständig frei von jeglicher Reibung ist.",
       "Wenn die Dichte des Körpers exakt gleich der Dichte der Flüssigkeit ist.",
-      "Wenn die Temperatur der Flüssigkeit am Gefäßboden am höchsten ist.",
-      "Wenn die Auftriebskraft kleiner ist als die Gewichtskraft."
+      "Wenn die Temperatur der Flüssigkeit am Gefäßboden deutlich am höchsten ist.",
+      "Wenn die Auftriebskraft insgesamt kleiner ist als die wirkende Gewichtskraft."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1738,10 +1738,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Warum kann ein riesiges Schiff aus Stahl auf dem Wasser schwimmen, obwohl Stahl eine viel höhere Dichte als Wasser hat?",
     "answers": [
-      "Weil der Schiffsantrieb das Wasser unter dem Rumpf zusammendrückt.",
+      "Weil der starke Schiffsantrieb das Wasser unter dem gesamten Rumpf ständig fest zusammendrückt und dauerhaft nach unten presst.",
       "Durch den hohlen Schiffskörper verdrängt das Schiff viel Wasser; seine mittlere Gesamtdichte ist kleiner als Wasser.",
-      "Weil Salzwasser eine unendlich hohe Dichte besitzt.",
-      "Weil die Schiffsfarbe das Wasser abstößt."
+      "Weil das Salzwasser im Meer angeblich eine unendlich hohe Dichte besitzt, egal wie tief man misst.",
+      "Weil die spezielle Schiffsfarbe das umgebende Wasser optisch stark abstößt und fernhält."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1756,10 +1756,10 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Was versteht man unter der 'Dichte' $\\rho$ eines Stoffes?",
     "answers": [
-      "Das Gewicht eines Körpers pro Meter Länge.",
+      "Das Gewicht eines Körpers geteilt durch seine gesamte Länge in Metern.",
       "Das Verhältnis von Masse $m$ zum Volumen $V$ ($ \\rho = \\frac{m}{V} $).",
-      "Das Produkt aus Gewichtskraft und Härte des Stoffes.",
-      "Die maximale Temperatur, bei der ein Stoff schmilzt."
+      "Das Produkt aus der Gewichtskraft und der Härte eines beliebigen Stoffes.",
+      "Die höchste Temperatur, bei der ein fester Stoff überhaupt schmelzen kann."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -1774,9 +1774,9 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Ein Würfel mit dem Volumen $V = 100\\,\\text{cm}^3$ hat eine Masse von $m = 780\\,\\text{g}$. Wie groß ist seine Dichte?",
     "answers": [
-      "$0{,}78\\,\\frac{\\text{g}}{\\text{cm}^3}$.",
-      "$78\\,\\frac{\\text{g}}{\\text{cm}^3}$.",
-      "$1{,}2\\,\\frac{\\text{g}}{\\text{cm}^3}$.",
+      "$0{,}78\\,\\frac{\\text{g}}{\\text{cm}^3}$ (verschoben).",
+      "$78\\,\\frac{\\text{g}}{\\text{cm}^3}$ (hundertfach zu groß).",
+      "$1{,}2\\,\\frac{\\text{g}}{\\text{cm}^3}$ (Dichte von Wasser).",
       "$7{,}8\\,\\frac{\\text{g}}{\\text{cm}^3}$ (Eisen)."
     ],
     "correct": 3,
@@ -1792,44 +1792,18 @@ const questions_k8_physik = [
     "subject": "physik",
     "question": "Wie lautet die SI-Einheit für die elektrische Ladung $Q$?",
     "answers": [
-      "Ohm ($\\Omega$).",
-      "Ampere ($A$).",
-      "Volt ($V$).",
+      "Ohm ($\\Omega$), der Widerstand.",
+      "Ampere ($A$), der Strom.",
+      "Volt ($V$), Einheit der Spannung.",
       "Coulomb ($C = A \\cdot s$)."
     ],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
     "explanation": "Die elektrische Ladung $Q$ wird in Coulomb ($C$) angegeben. 1 Coulomb entspricht der Ladung von etwa $6{,}24 \\cdot 10^{18}$ Elektronen."
-  },
-  {"id":"k8ph101","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"a = Δv/Δt ist …","answers":["Geschwindigkeit","Beschleunigung","Kraft","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"a."},
-  {"id":"k8ph102","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"F = m·a","answers":["0","Newton 2","Newton 3","Energie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2. Gesetz."},
-  {"id":"k8ph103","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Eₖ = ½mv²","answers":["kein Ergebnis","kinetisch","Lage","Leistung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"kinetisch."},
-  {"id":"k8ph104","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Eₚ = mgh","answers":["kein Ergebnis","Lageenergie","kinetisch","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"potentiell."},
-  {"id":"k8ph105","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"p = m·v","answers":["Kraft","Impuls","Druck","Leistung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Impuls."},
-  {"id":"k8ph106","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"v = f·λ","answers":["kein Ergebnis","Welle","nur Schall","nur Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Welle."},
-  {"id":"k8ph107","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"U = R·I","answers":["kein Ergebnis","Ohm","Kirchhoff","Faraday"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ohm."},
-  {"id":"k8ph108","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"P = U·I","answers":["kein Ergebnis","Leistung","Energie","Ladung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Leistung."},
-  {"id":"k8ph109","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Einheit Kraft?","answers":["J","N","W","V"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Newton."},
-  {"id":"k8ph110","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"c ≈ …","answers":["340 m/s","3·10⁸ m/s","3 m/s","300 km/h"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Licht."},
-  {"id":"k8ph111","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Schall braucht …","answers":["Vakuum","Medium","Licht","Magnete"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Medium."},
-  {"id":"k8ph112","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"W = F·s","answers":["kein Ergebnis","Arbeit","Rotation","Gas"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Arbeit."},
-  {"id":"k8ph113","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"p = F/A","answers":["kein Ergebnis","Druck","F·A","A/F"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Druck."},
-  {"id":"k8ph114","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Ladung Einheit?","answers":["V","C","Ω","W"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Coulomb."},
-  {"id":"k8ph115","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Induktion erzeugt …","answers":["Masse","Spannung","Wärme ohne Feld","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Spannung."},
-  {"id":"k8ph116","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"α-Teilchen = …","answers":["Elektron","He-Kern","Photon","Neutron"],"correct":1,"difficulty":"mittel","points":10,"explanation":"α."},
-  {"id":"k8ph117","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Halbwertszeit bis …","answers":["alles","Hälfte","nichts","¾"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Hälfte."},
-  {"id":"k8ph118","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"η = Nutzen/Aufwand","answers":["kein Ergebnis","richtig","η>1","egal"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k8ph119","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Auftrieb = Gewicht …","answers":["Körpers","verdrängter Flüssigkeit","Luft 0","Behälters"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Archimedes."},
-  {"id":"k8ph120","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Zentripetal zum …","answers":["außen","Zentrum","tangential","zufällig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zentrum."},
-  {"id":"k8ph121","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"E = h·f","answers":["kein Ergebnis","Photon","Schall","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Photon."},
-  {"id":"k8ph122","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Brechung zum Lot in … Medium","answers":["dünner","dichter","gleich","Metall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"dichter."},
-  {"id":"k8ph123","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Kondensator speichert …","answers":["Impuls","Ladung","Neutronen","Masse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ladung."},
-  {"id":"k8ph124","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Trafo U ~ N","answers":["kein Ergebnis","richtig","unabhängig","nur I"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k8ph125","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"0 K ≈ …","answers":["0 °C","−273 °C","100 °C","−100 °C"],"correct":1,"difficulty":"mittel","points":10,"explanation":"−273."},
-  {"id":"k8ph126","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"f = 1/T","answers":["kein Ergebnis","richtig","f=T","f=2T"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k8ph127","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Reibung … Bewegung","answers":["fördert","hemmt","löscht Masse","erzeugt Weg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"hemmt."},
-  {"id":"k8ph128","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Sicherung gegen …","answers":["Unterspannung","Überstrom","Magnet","Schall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Überstrom."},
-  {"id":"k8ph129","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"LED wandelt in …","answers":["Wärme nur","Licht","Schall","Druck"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Licht."},
-  {"id":"k8ph130","category":"k8_physik","area":"schule","grade":8,"subject":"physik","topic":"erweiterung","question":"Energie wird …","answers":["vernichtet","umgewandelt","aus nichts","nur vernichtet"],"correct":1,"difficulty":"mittel","points":10,"explanation":"umgewandelt."}
+  }
+
+
+
+
 ];

@@ -80,9 +80,9 @@ const questions_k8_geschichte = [
     "question": "Was war ein zentrales Ergebnis der Deutschen Revolution von 1848/49 in der Frankfurter Paulskirche?",
     "answers": [
       "Die ausgearbeitete Reichsverfassung trat vorerst nicht in Kraft.",
-      "Der preußische König nahm die angebotene Kaiserkrone sofort an.",
-      "Das Deutsche Reich wurde als demokratische Republik gegründet.",
-      "Österreich wurde als führende Macht im Reich eingegliedert."
+      "Der preußische König nahm die angebotene Kaiserkrone letztlich doch an.",
+      "Das Deutsche Reich wurde von Anfang an als Republik ausgerufen.",
+      "Österreich übernahm anschließend die Führung im neuen Reich."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -206,9 +206,9 @@ const questions_k8_geschichte = [
     "question": "Auf welcher Konferenz 1884/85 teilten die europäischen Mächte den afrikanischen Kontinent unter sich auf?",
     "answers": [
       "Auf der diplomatischen Berliner Afrika-Konferenz (Kongo-Konferenz).",
-      "Auf dem Wiener Kongress zur Neuordnung des Kontinents.",
-      "Auf der Friedenskonferenz im französischen Schloss Versailles.",
-      "Auf dem historischen Treffen im schweizerischen Genf."
+      "Auf dem Wiener Kongress zur politischen Neuordnung des Kontinents.",
+      "Auf der internationalen Friedenskonferenz im französischen Schloss Versailles.",
+      "Auf dem historischen Treffen im schweizerischen Genf im Jahr 1885."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -296,9 +296,9 @@ const questions_k8_geschichte = [
     "question": "Welches Ereignis im Jahr 1917 führte zum Eintritt der USA in den Ersten Weltkrieg?",
     "answers": [
       "Die Wiederaufnahme des unbeschränkten U-Boot-Krieges durch Deutschland.",
-      "Die Besetzung der Kanarischen Inseln durch deutsche Truppen.",
-      "Der direkte Angriff der deutschen Luftwaffe auf Washington D.C.",
-      "Die Unterzeichnung des Sonderfriedens von Brest-Litowsk."
+      "Die überraschende Besetzung der Kanarischen Inseln durch deutsche Truppen.",
+      "Der direkte Luftangriff der deutschen Luftstreitkräfte auf Washington D.C.",
+      "Die geheime Unterzeichnung des Sonderfriedens von Brest-Litowsk 1918."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -332,9 +332,9 @@ const questions_k8_geschichte = [
     "question": "Wie nennt man den Zusammenschluss von Arbeiterinnen und Arbeitern zur Vertretung ihrer Interessen?",
     "answers": [
       "Diese Interessengemeinschaften werden als Gewerkschaften bezeichnet.",
-      "Diese Interessengemeinschaften werden als Monopole bezeichnet.",
-      "Diese Interessengemeinschaften werden als Kartelle bezeichnet.",
-      "Diese Interessengemeinschaften werden als Zünfte bezeichnet."
+      "Diese Interessengemeinschaften werden als staatliche Monopole bezeichnet.",
+      "Diese Interessengemeinschaften werden als mittelalterliche Kartelle bezeichnet.",
+      "Diese Interessengemeinschaften werden als traditionelle Zünfte bezeichnet."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -368,9 +368,9 @@ const questions_k8_geschichte = [
     "question": "Welche Region in Deutschland entwickelte sich im 19. Jahrhundert zum Montanzentrum?",
     "answers": [
       "Das Ruhrgebiet in der preußischen Provinz Westfalen/Rheinland.",
-      "Das bayerische Voralpenland im südlichen Teil Deutschlands.",
-      "Die Lüneburger Heide in der Provinz Hannover.",
-      "Die Küstenregion an der Nord- und Ostsee im Norden."
+      "Das bayerische Voralpenland im südlichen Teil des Deutschen Reichs.",
+      "Die weite Lüneburger Heide in der preußischen Provinz Hannover.",
+      "Die Küstenregion an der Nord- und Ostsee im hohen Norden."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -566,9 +566,9 @@ const questions_k8_geschichte = [
     "question": "Was versteht man unter dem Begriff des 'Sozialdarwinismus' im Imperialismus?",
     "answers": [
       "Die Übertragung von Darwins Evolutionstheorie auf menschliche Rassen.",
-      "Ein soziales Unterstützungsprogramm für benachteiligte Familien.",
-      "Eine Philosophie zur Gleichberechtigung aller Völker auf der Erde.",
-      "Die wissenschaftliche Erforschung von Tierarten in Übersee."
+      "Ein staatliches Unterstützungsprogramm für sozial benachteiligte Familien.",
+      "Eine politische Philosophie zur Gleichberechtigung aller Völker der Erde.",
+      "Die wissenschaftliche Erforschung fremder Tierarten in Übersee-Gebieten."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -620,9 +620,9 @@ const questions_k8_geschichte = [
     "question": "Was versteht man unter dem Begriff 'Chauvinismus' im späten 19. Jahrhundert?",
     "answers": [
       "Einen übersteigerten, aggressiven Nationalismus gegenüber anderen Völkern.",
-      "Die friedliche Bewegung zur Pflege von lokalen Bräuchen und Traditionen.",
-      "Die wissenschaftliche Lehre vom geordneten Aufbau eines Staatswesens.",
-      "Die politische Forderung nach der Abschaffung aller Landesgrenzen."
+      "Die friedliche Bewegung zur Pflege von regionalen Bräuchen und Traditionen.",
+      "Die wissenschaftliche Lehre vom geordneten Aufbau eines modernen Staatswesens.",
+      "Die politische Forderung nach vollständiger Abschaffung aller Landesgrenzen."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -639,9 +639,9 @@ const questions_k8_geschichte = [
     "question": "Was versteht man unter dem Begriff 'Pauperismus' in der Vormärz- und Frühindustrialisierungszeit?",
     "answers": [
       "Die strukturelle, lang anhaltende Massenarmut breiter Bevölkerungsschichten.",
-      "Die schnelle Anreicherung von großem Kapital bei den Fabrikbesitzern.",
-      "Die plötzliche Abwanderung adliger Großgrundbesitzer in die Großstädte.",
-      "Die staatliche Vergabe von zinslosen Krediten an junge Handwerksmeister."
+      "Die rasche Anreicherung von großem Kapital bei den führenden Fabrikbesitzern.",
+      "Die plötzliche Abwanderung adliger Großgrundbesitzer in die wachsenden Großstädte.",
+      "Die staatliche Vergabe von zinslosen Krediten an junge angehende Handwerksmeister."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -657,9 +657,9 @@ const questions_k8_geschichte = [
     "question": "Welcher Industriezweig war der erste Schrittmacher der Industriellen Revolution in England?",
     "answers": [
       "Die maschinelle Textilindustrie (z. B. Baumwollverarbeitung).",
-      "Die chemische Industrie zur Herstellung von Kunstdünger.",
-      "Die Elektroindustrie zur Fertigung von Beleuchtungsmitteln.",
-      "Die Luftfahrtindustrie zum schnellen Transport von Gütern."
+      "Die aufstrebende chemische Industrie zur Herstellung von Kunstdünger.",
+      "Die moderne Elektroindustrie zur Fertigung von Beleuchtungsmitteln.",
+      "Die neu entstandene Luftfahrtindustrie zum schnellen Gütertransport."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -675,9 +675,9 @@ const questions_k8_geschichte = [
     "question": "Welches Transportmittel symbolisierte wie kein anderes den wirtschaftlichen Aufschwung im 19. Jahrhundert?",
     "answers": [
       "Die Eisenbahn als schnelles Massentransportmittel für Güter und Personen.",
-      "Das Motorrad zur individuellen Beförderung im städtischen Nahverkehr.",
-      "Das Zeppelin-Luftschiff für den zivilen Linienverkehr über dem Meer.",
-      "Das Kanuboot zum Binnentransport von Kohle auf kleinen Bächen."
+      "Das Motorrad zur individuellen Beförderung im wachsenden städtischen Nahverkehr.",
+      "Das Zeppelin-Luftschiff für den regelmäßigen zivilen Linienverkehr über dem Meer.",
+      "Das kleine Kanuboot zum Binnentransport von Kohle auf schmalen Bächen."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -729,8 +729,8 @@ const questions_k8_geschichte = [
     "question": "Welches zentrale Druckmittel nutzten Gewerkschaften, um Höchstarbeitszeiten und höhere Löhne durchzusetzen?",
     "answers": [
       "Der Streik als gemeinsame Arbeitsniederlegung der Belegschaft.",
-      "Der Boykott aller ausländischen Rohstoffimporte in den Häfen.",
-      "Die Klage beim Europäischen Gerichtshof für Menschenrechte.",
+      "Der Boykott sämtlicher ausländischer Rohstoffimporte in den Häfen.",
+      "Die Klage vor dem Europäischen Gerichtshof für Menschenrechte.",
       "Die Gründung eigener Banken zur Übernahme von Fabrikanteilen."
     ],
     "correct": 0,
@@ -801,9 +801,9 @@ const questions_k8_geschichte = [
     "question": "Welche städtebauliche Folge hatte das rasche Bevölkerungswachstum in den Industriestädten?",
     "answers": [
       "Die Entstehung von dicht bebauten Mietskasernen mit schlechten Hygieneverhältnissen.",
-      "Der Bau von weitläufigen Einfamilienhaus-Siedlungen für alle Fabrikarbeiter.",
-      "Die vollständige Verlegung von Wohnvierteln unter die Erdoberfläche.",
-      "Die künstliche Vergrößerung von Stadtgebieten durch das Aufschütten von Bergen."
+      "Der Bau von weitläufigen Einfamilienhaus-Siedlungen für sämtliche Fabrikarbeiterfamilien.",
+      "Die vollständige Verlegung ganzer Wohnviertel unter die städtische Erdoberfläche.",
+      "Die künstliche Vergrößerung von Stadtgebieten durch das massenhafte Aufschütten von Bergen."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -837,9 +837,9 @@ const questions_k8_geschichte = [
     "question": "Welches Parlament vertrat im Deutschen Kaiserreich die gewählte Volksvertretung?",
     "answers": [
       "Der Deutsche Reichstag, der nach dem allgemeinen Männerwahlrecht gewählt wurde.",
-      "Der Bundesrat als Vertretung der Regierungen der einzelnen Bundesstaaten.",
-      "Die Frankfurter Nationalversammlung als Vertretung der gewählten Akademiker.",
-      "Das Erfurter Unionsparlament als Vertretung der preußischen Adligen."
+      "Der Bundesrat als Vertretung der Regierungen der einzelnen deutschen Bundesstaaten.",
+      "Die Frankfurter Nationalversammlung als Vertretung der gewählten Akademikerschaft.",
+      "Das Erfurter Unionsparlament als Vertretung des gesamten preußischen Adels."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -855,7 +855,7 @@ const questions_k8_geschichte = [
     "question": "Was war das Drei-Klassen-Wahlrecht im Königreich Preußen?",
     "answers": [
       "Ein Wahlrecht, das Wählerstimmen nach der Höhe der gezahlten Steuern gewichtete.",
-      "Ein Wahlrecht, das die Bürger in drei Altersgruppen von Jung bis Alt einteilte.",
+      "Ein Wahlrecht, das die Bürger in drei feste Altersgruppen von Jung bis Alt einteilte.",
       "Ein Wahlrecht, das Männern, Frauen und Jugendlichen jeweils eigene Stimmen gab.",
       "Ein Wahlrecht, das ausschließlich Adligen und Geistlichen das Wählen erlaubte."
     ],
@@ -909,9 +909,9 @@ const questions_k8_geschichte = [
     "question": "Was verstand man unter dem 'Wettlauf um Afrika' in der Epoche des Imperialismus?",
     "answers": [
       "Die Kolonisierung fast des gesamten afrikanischen Kontinents durch europäische Mächte.",
-      "Ein internationales Sportereignis zur Eröffnung des Suezkanals in Ägypten.",
-      "Den Bau einer durchgehenden Eisenbahnlinie von Kairo bis nach Kapstadt.",
-      "Die wissenschaftliche Erforschung der Nilquellen durch afrikanische Entdecker."
+      "Ein großes internationales Sportereignis zur feierlichen Eröffnung des neuen Suezkanals in Ägypten.",
+      "Den geplanten Bau einer durchgehenden Eisenbahnlinie von Kairo bis nach Kapstadt.",
+      "Die wissenschaftliche Erforschung der geheimnisvollen Nilquellen durch Entdecker."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -999,9 +999,9 @@ const questions_k8_geschichte = [
     "question": "Warum verletzte Deutschland im August 1914 die Neutralität Belgiens?",
     "answers": [
       "Um im Zuge des Schlieffen-Plans die französische Grenze zu umgehen.",
-      "Um die belgischen Diamantenminen für die Rüstung zu erobern.",
-      "Um einen geplanten Angriff Belgiens auf Berlin zu verhindern.",
-      "Um englischen Truppen den Weg zur Nordseeküste zu versperren."
+      "Um die wertvollen belgischen Diamantenminen für die Rüstung zu erobern.",
+      "Um einen angeblich geplanten Angriff Belgiens auf Berlin zu verhindern.",
+      "Um englischen Truppen den direkten Weg zur Nordseeküste zu versperren."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1035,9 +1035,9 @@ const questions_k8_geschichte = [
     "question": "Welche Waffe kam 1916 in der Schlacht an der Somme durch die Briten erstmals zum Einsatz?",
     "answers": [
       "Der Panzer (im Englischen als 'Tank' bezeichnet).",
-      "Das Maschinengewehr mit Wasserkühlung.",
-      "Das motorisierte U-Boot mit Torpedos.",
-      "Der Heißluftballon zur Luftaufklärung."
+      "Das schwere Maschinengewehr mit spezieller Wasserkühlung.",
+      "Das neu entwickelte U-Boot mit modernen Torpedos.",
+      "Der Heißluftballon zur militärischen Luftaufklärung."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1197,8 +1197,8 @@ const questions_k8_geschichte = [
     "question": "Wer war der Anführer der Bolschewiki bei der Oktoberrevolution 1917 in Russland?",
     "answers": [
       "Wladimir Iljitsch Lenin.",
-      "Josef Stalin.",
-      "Leon Trotzki.",
+      "Josef Wissarionowitsch Stalin.",
+      "Leo Dawidowitsch Trotzki.",
       "Alexander Kerenski."
     ],
     "correct": 0,
@@ -1251,9 +1251,9 @@ const questions_k8_geschichte = [
     "question": "Was versteht man unter dem Begriff 'Kompensationspolitik' im Imperialismus?",
     "answers": [
       "Zugeständnisse von Land oder Vorteilen an rivalisierende Kolonialmächte.",
-      "Die direkte Entschädigung der indigenen Bevölkerung für Rohstoffraub.",
-      "Die Rückgabe aller eroberten Gebiete nach dem Ende einer Krise.",
-      "Die Auszahlung von Altersrenten an Veteranen von Kolonialkriegen."
+      "Die direkte finanzielle Entschädigung der indigenen Bevölkerung für Rohstoffraub.",
+      "Die vollständige Rückgabe aller eroberten Gebiete nach dem Ende einer Krise.",
+      "Die staatliche Auszahlung von Altersrenten an Veteranen der Kolonialkriege."
     ],
     "correct": 0,
     "difficulty": "schwer",
@@ -1287,9 +1287,9 @@ const questions_k8_geschichte = [
     "question": "Was bedeutete die Einführung der Fließbandarbeit durch Henry Ford zu Beginn des 20. Jahrhunderts?",
     "answers": [
       "Eine drastische Steigerung der Produktion bei Zerlegung der Arbeitsschritte.",
-      "Die vollständige Abschaffung aller menschlichen Arbeiter in der Fertigung.",
-      "Die Reduzierung der Arbeitszeit auf zwei Stunden bei verdoppeltem Lohn.",
-      "Die Pflicht zur handwerklichen Einzelanfertigung von Luxusfahrzeugen."
+      "Die vollständige Abschaffung aller menschlichen Arbeiter in der modernen Fertigung.",
+      "Die Reduzierung der täglichen Arbeitszeit auf zwei Stunden bei verdoppeltem Lohn.",
+      "Die strenge Pflicht zur handwerklichen Einzelanfertigung von teuren Luxusfahrzeugen."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1359,9 +1359,9 @@ const questions_k8_geschichte = [
     "question": "Was versteht man unter dem Begriff 'Kulturpessimismus' um die Jahrhundertwende (um 1900)?",
     "answers": [
       "Eine Skepsis gegenüber dem rasanten technischen Fortschritt und Großstadtleben.",
-      "Die Befürchtung, dass Theater und Musikvereine vom Staat verboten würden.",
-      "Die Ablehnung von Schulunterricht zugunsten von reiner Feldarbeit.",
-      "Die Überzeugung, dass Maschinen die Weltherrschaft übernehmen würden."
+      "Die Befürchtung, dass Theater und Musikvereine bald vom Staat verboten würden.",
+      "Die grundsätzliche Ablehnung von Schulunterricht zugunsten reiner Feldarbeit.",
+      "Die feste Überzeugung, dass Maschinen bald die Weltherrschaft übernehmen würden."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1395,9 +1395,9 @@ const questions_k8_geschichte = [
     "question": "Was regelte das 'Kanzlerparagraph'-Gesetz aus der Zeit des Kulturkampfes?",
     "answers": [
       "Es verbot Geistlichen, in ihren Predigten politische Angelegenheiten zu kritisieren.",
-      "Es verpflichtete den Reichskanzler zu täglichen Berichten vor dem Kaiser.",
-      "Es verbot den Beitritt von Kanzlern zu Parteien außerhalb des Parlaments.",
-      "Es entzog dem Kaiser das Recht zur Ernennung von neuen Ministern im Reich."
+      "Es verpflichtete den Reichskanzler zu täglichen schriftlichen Berichten vor dem Kaiser.",
+      "Es verbot den Beitritt von Kanzlern zu Parteien außerhalb des Reichsparlaments.",
+      "Es entzog dem Kaiser das Recht zur Ernennung von neuen Ministern im gesamten Reich."
     ],
     "correct": 0,
     "difficulty": "schwer",
@@ -1449,9 +1449,9 @@ const questions_k8_geschichte = [
     "question": "Welches Gesetz regelte im Kaiserreich die Abgabe der sogenannten 'Schutzzölle' ab 1879?",
     "answers": [
       "Die Einführung von Importzöllen auf Getreide und Eisen zur Heimatschutz-Förderung.",
-      "Ein Verbot von jeglichen Zollabgaben an den Reichsgrenzen zu den Nachbarländern.",
-      "Die Festlegung von Sondersteuern auf alle Produkte aus den eigenen Kolonien.",
-      "Eine Steuerbefreiung für alle ausländischen Industriewaren im deutschen Markt."
+      "Ein vollständiges Verbot von jeglichen Zollabgaben an den Grenzen zu Nachbarländern.",
+      "Die Festlegung von hohen Sondersteuern auf alle Produkte aus den eigenen Kolonien.",
+      "Eine dauerhafte Steuerbefreiung für alle ausländischen Industriewaren im Markt."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1503,9 +1503,9 @@ const questions_k8_geschichte = [
     "question": "Was war das Hauptthema des Erfurter Programms der SPD im Jahr 1891?",
     "answers": [
       "Die Verbindung von marxistischer Theorie mit konkreten Reformforderungen.",
-      "Die unmittelbare Vorbereitung eines bewaffneten Sturzes des Kaisers.",
-      "Die Unterstützung von Bismarcks kolonialer Machtpolitik in Afrika.",
-      "Die künftige Auflösung aller gewerkschaftlichen Streikorganisationen."
+      "Die unmittelbare Vorbereitung eines bewaffneten Sturzes des deutschen Kaisers.",
+      "Die offene Unterstützung von Bismarcks kolonialer Machtpolitik in Afrika.",
+      "Die geplante künftige Auflösung aller gewerkschaftlichen Streikorganisationen."
     ],
     "correct": 0,
     "difficulty": "schwer",
@@ -1557,9 +1557,9 @@ const questions_k8_geschichte = [
     "question": "Was verstand man unter der 'Faschoda-Krise' im Jahr 1898?",
     "answers": [
       "Ein Zusammentreffen britischer und französischer Truppen am Sudan-Fluss.",
-      "Ein Aufstand von einheimischen Bauern gegen die europäische Steuerlast.",
-      "Die militärische Blockade von italienischen Schiffen im Roten Meer.",
-      "Ein Grenzkonflikt zwischen dem Deutschen Reich und Belgisch-Kongo."
+      "Ein größerer Aufstand einheimischer Bauern gegen die europäische Steuerlast.",
+      "Die militärische Blockade sämtlicher italienischer Schiffe im Roten Meer.",
+      "Ein Grenzkonflikt zwischen dem Deutschen Reich und Belgisch-Kongo 1898."
     ],
     "correct": 0,
     "difficulty": "schwer",
@@ -1611,9 +1611,9 @@ const questions_k8_geschichte = [
     "question": "Was war die Kernaussage der berüchtigten 'Hunnenrede' Kaiser Wilhelms II. im Jahr 1900?",
     "answers": [
       "Eine Aufforderung zu rücksichtslosem Vorgehen bei der Niederwerfung in China.",
-      "Eine Friedensbotschaft an die Völker der europäischen Großmächte.",
-      "Eine Mahnung zur Einhaltung aller internationalen Gesetze des Seekriegs.",
-      "Ein Aufruf zur friedlichen Übergabe von allen deutschen Handelsvertretungen."
+      "Eine offizielle Friedensbotschaft an die Völker der europäischen Großmächte.",
+      "Eine ernste Mahnung zur Einhaltung aller internationalen Gesetze des Seekriegs.",
+      "Ein feierlicher Aufruf zur friedlichen Übergabe aller deutschen Handelsvertretungen."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1647,9 +1647,9 @@ const questions_k8_geschichte = [
     "question": "Welches südamerikanische Abkommen versuchte 1823 die Einmischung europäischer Mächte auf dem amerikanischen Kontinent zu stoppen?",
     "answers": [
       "Die Formulierung der amerikanischen Monroe-Doktrin ('Amerika den Amerikanern').",
-      "Der Beschluss der Charta der vereinten Nationen zur Dekolonisierung.",
-      "Die Verabschiedung des panamerikanischen Freihandelsabkommens.",
-      "Die Gründung des südamerikanischen Staatenbundes von Caracas."
+      "Der Beschluss der Charta der Vereinten Nationen zur weltweiten Dekolonisierung.",
+      "Die Verabschiedung des panamerikanischen Freihandelsabkommens von Washington.",
+      "Die feierliche Gründung des südamerikanischen Staatenbundes von Caracas 1823."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1665,9 +1665,9 @@ const questions_k8_geschichte = [
     "question": "Was verstand man unter der sogenannten 'Panik im Steckrübenwinter' 1916/17 in Deutschland?",
     "answers": [
       "Eine schwere Hungersnot der Zivilbevölkerung wegen Ernteausfällen und Seeblockade.",
-      "Eine plötzliche Viehseuche, die alle Schweinebestände im Reich vernichtete.",
-      "Ein politischer Streik aller Landarbeiter gegen die preußische Verwaltung.",
-      "Die künstliche Vergiftung von Gemüsefeldern durch feindliche Agenten."
+      "Eine plötzliche schwere Viehseuche, die fast alle Schweinebestände im ganzen Reich vernichtete.",
+      "Ein großer politischer Streik aller Landarbeiter gegen die preußische Verwaltung.",
+      "Die angebliche künstliche Vergiftung von Gemüsefeldern durch feindliche Agenten."
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1683,9 +1683,9 @@ const questions_k8_geschichte = [
     "question": "Welche deutsche Stadt erlebte im Ersten Weltkrieg eine gewaltige Explosion eines Munitionstransports im Hafen?",
     "answers": [
       "Der Vorfall betraf den Hafen von Halifax in Kanada (französisch-kanadischer Frachter).",
-      "Die Explosion zerstörte den gesamten Hafen der Hansestadt Hamburg.",
-      "Der Unfall trug sich im Kriegshafen von Wilhelmshaven an der Nordsee zu.",
-      "Die Katastrophe ereignete sich im Binnenhafen der Industriestadt Duisburg."
+      "Die gewaltige Explosion zerstörte weite Teile des Hafens der Hansestadt Hamburg.",
+      "Der schwere Unfall trug sich im Kriegshafen von Wilhelmshaven an der Nordsee zu.",
+      "Die verheerende Katastrophe ereignete sich im Binnenhafen der Industriestadt Duisburg."
     ],
     "correct": 0,
     "difficulty": "schwer",
@@ -1773,9 +1773,9 @@ const questions_k8_geschichte = [
     "question": "Was verstand man unter dem Stinnes-Legien-Abkommen von November 1918?",
     "answers": [
       "Ein Abkommen zwischen Arbeitgebern und Gewerkschaften über den 8-Stunden-Tag.",
-      "Ein Geheimabkommen zur militärischen Zerschlagung der Arbeiterräte.",
-      "Den Vertrag über die Reparationszahlungen an die Siegermächte.",
-      "Die Übereinkunft zur Verstaatlichung der gesamten Schwerindustrie."
+      "Ein geheimes Abkommen zur militärischen Zerschlagung sämtlicher Arbeiterräte.",
+      "Den offiziellen Vertrag über die Reparationszahlungen an die Siegermächte.",
+      "Die endgültige Übereinkunft zur Verstaatlichung der gesamten Schwerindustrie."
     ],
     "correct": 0,
     "difficulty": "schwer",
@@ -1791,43 +1791,26 @@ const questions_k8_geschichte = [
     "question": "Welche weltweite Epochenwende kennzeichnet das Jahr 1918 mit dem Ende des Ersten Weltkriegs?",
     "answers": [
       "Der Zusammenbruch von vier Großreichen (Deutschland, Österreich-Ungarn, Russland, Osmanisches Reich).",
-      "Die vollständige Abschaffung aller Monarchien auf dem gesamten Globus.",
-      "Der Beginn der friedlichen Ära ohne weitere militärische Konflikte in Europa.",
-      "Die sofortige Auflösung aller Kolonialreiche in Afrika und Asien."
+      "Die vollständige und dauerhafte Abschaffung sämtlicher Monarchien auf dem gesamten Erdball für immer.",
+      "Der Beginn einer angeblich friedlichen Ära ohne weitere militärische Konflikte in Europa.",
+      "Die sofortige und vollständige Auflösung aller Kolonialreiche in Afrika und Asien."
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
     "explanation": "Mit dem Weltkriegsende 1918 brachen die Monarchenreiche des Deutschen Reiches, Österrreich-Ungarns, Russlands und des Osmanischen Reiches zusammen und die Landkarte Europas wurde neu gezeichnet."
-  },
-  {"id":"k8ge101","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Quellenkritik prüft …","answers":["Wetter","Autor/Absicht","Länge","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kritik."},
-  {"id":"k8ge102","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Athen Demokratie war …","answers":["universal","begrenzt","absolut","sozialistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"begrenzt."},
-  {"id":"k8ge103","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Industrialisierung start …","answers":["Antike","England","Steinzeit","1990"],"correct":1,"difficulty":"mittel","points":10,"explanation":"GB."},
-  {"id":"k8ge104","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"1914 Auslöser u. a. …","answers":["Mond","Sarajevo","Mauer","Euro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Attentat."},
-  {"id":"k8ge105","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"NS 1933: …","answers":["Demokratie","Diktatur","EU","Einheit"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Macht."},
-  {"id":"k8ge106","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Holocaust = …","answers":["Krise","Völkermord","Industrie","Aufklärung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Shoah."},
-  {"id":"k8ge107","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"1945 Ende Europa: …","answers":["Beginn","Kapitulation","Mauer","Euro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kapitulation."},
-  {"id":"k8ge108","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Kalter Krieg Blöcke …","answers":["Ost-West","Nord-Süd","Asien","keine"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Ost-West."},
-  {"id":"k8ge109","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"GG 1949 für …","answers":["DDR","BRD","Kaiserreich","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"BRD."},
-  {"id":"k8ge110","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Mauerbau …","answers":["1945","1961","1990","1918"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1961."},
-  {"id":"k8ge111","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Wiedervereinigung …","answers":["1945","1990","1961","1918"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1990."},
-  {"id":"k8ge112","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Revolution FR Motto …","answers":["König","Freiheit Gleichheit Brüderlichkeit","Steuern","Krieg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Devise."},
-  {"id":"k8ge113","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Luther gegen u. a. …","answers":["Wissenschaft","Ablass","Druck","Städte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ablass."},
-  {"id":"k8ge114","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Aufklärung betont …","answers":["Aberglaube","Vernunft","Krieg","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vernunft."},
-  {"id":"k8ge115","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Imperialismus: …","answers":["Ende Kolonien","Kolonien","EU","UNO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Expansion."},
-  {"id":"k8ge116","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Weimar war …","answers":["Kaiserreich","Demokratie","NS","DDR"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Republik."},
-  {"id":"k8ge117","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"UN 1945 Ziel …","answers":["Krieg","Frieden","Kolonien","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Frieden."},
-  {"id":"k8ge118","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Primärquelle = …","answers":["Schulbuch","aus der Zeit","Wiki","Film 2020"],"correct":1,"difficulty":"mittel","points":10,"explanation":"zeitgenössisch."},
-  {"id":"k8ge119","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Propaganda zielt auf …","answers":["Info neutral","Meinungslenkung","Kritik","Wissenschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Lenkung."},
-  {"id":"k8ge120","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"AEMR 1948 Anspruch …","answers":["Europa","universell","USA","DE"],"correct":1,"difficulty":"mittel","points":10,"explanation":"universal."},
-  {"id":"k8ge121","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Erinnerung dient …","answers":["Vergessen","Auseinandersetzung","Zensur","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gedenken."},
-  {"id":"k8ge122","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Römisches Recht → …","answers":["Sport","Europa","Asien isoliert","Mond"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rezeption."},
-  {"id":"k8ge123","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Industrie Folge …","answers":["keine Städte","soziale Frage","nur Adel","keine Technik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"sozial."},
-  {"id":"k8ge124","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"1989: …","answers":["Krieg","friedliche Revolutionen","Versailles","Industrie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wende."},
-  {"id":"k8ge125","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"EU Start u. a. …","answers":["EGKS","Versailles","Wien","UN"],"correct":0,"difficulty":"mittel","points":10,"explanation":"1950er."},
-  {"id":"k8ge126","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Polis = …","answers":["Königreich","Stadtstaat","Lager","Kirche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Polis."},
-  {"id":"k8ge127","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Absolutismus: Macht …","answers":["geteilt","unbeschränkt Anspruch","demokratisch","republikanisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"absolut."},
-  {"id":"k8ge128","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Versailles oft als …","answers":["Sieg","Diktat","neutral","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Diktat."},
-  {"id":"k8ge129","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"1929 Krise …","answers":["stabil","radikalisierte","Ende Industrie","UNO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Krise."},
-  {"id":"k8ge130","category":"k8_geschichte","area":"schule","grade":8,"subject":"geschichte","topic":"erweiterung","question":"Oral History: …","answers":["Akten","Zeitzeugen","Münzen","Karten"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mündlich."}
+  }
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+

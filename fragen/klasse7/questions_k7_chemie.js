@@ -12,7 +12,7 @@ const K7_CHEMIE_QUESTIONS = [
     "subject": "chemie",
     "question": "Welche persönliche Schutzausrüstung muss bei jedem Experiment im Chemieraum getragen werden?",
     "answers": [
-      "Der Mundschutz Stoff",
+      "Der Gehörschutz Ohren",
       "Die Lederhandschuhe",
       "Der Kittel aus Wolle",
       "Die Schutzbrille Auge"
@@ -102,7 +102,7 @@ const K7_CHEMIE_QUESTIONS = [
     "subject": "chemie",
     "question": "Wohin darf die Öffnung eines Reagenzglases beim Erwärmen von Flüssigkeiten niemals zeigen?",
     "answers": [
-      "Zur Tischplatte hin",
+      "Nach schräg oben weg",
       "Auf Menschen im Raum",
       "Zur Raumdecke hin",
       "Zum Brennerfuß hin"
@@ -246,7 +246,7 @@ const K7_CHEMIE_QUESTIONS = [
     "subject": "chemie",
     "question": "Welches Hitzebeständige Gefäß nutzt man zum vollständigen Verdampfen von Lösungsmitteln?",
     "answers": [
-      "Das U-Rohr Glas",
+      "Der Erlenmeyerkolben",
       "Die Porzellanschale",
       "Der Messzylinder",
       "Der Trichter Glas"
@@ -354,7 +354,7 @@ const K7_CHEMIE_QUESTIONS = [
     "subject": "chemie",
     "question": "Welches GHS-Gefahrensymbol zeigt einen zerberstenden Ball mit Splittern?",
     "answers": [
-      "Entzündbarkeit",
+      "Umweltgefährdung",
       "Ätzende Wirkung",
       "Explosionsgefahr",
       "Akute Toxizität"
@@ -466,7 +466,7 @@ const K7_CHEMIE_QUESTIONS = [
     "answers": [
       "Vorgang: Kondensieren",
       "Vorgang: Resublimieren",
-      "Vorgang: Erstaren",
+      "Vorgang: Kristallisieren",
       "Vorgang: Sublimieren"
     ],
     "correct": 1,
@@ -519,7 +519,7 @@ const K7_CHEMIE_QUESTIONS = [
     "question": "Wie verhalten sich die Teilchen in einem Gas laut dem Teilchenmodell?",
     "answers": [
       "Weit weg u. rasch frei",
-      "Dicht am festen Ort",
+      "Dicht aneinander fixiert",
       "Verschiebbar geordnet",
       "Geordnet im Gitter"
     ],
@@ -644,7 +644,7 @@ const K7_CHEMIE_QUESTIONS = [
     "subject": "chemie",
     "question": "Welche drei Metalle besitzen ferromagnetische Eigenschaften u. werden von einem Magneten angezogen?",
     "answers": [
-      "Aluminium, Magnes.",
+      "Aluminium, Zink, Blei",
       "Kupfer, Silber, Gold",
       "Zink, Zinn, Blei",
       "Eisen, Nickel, Kobalt"
@@ -681,7 +681,7 @@ const K7_CHEMIE_QUESTIONS = [
     "question": "Wie nennt man Reinstoffe, die aus Atomen verschiedener Elemente in festem Zahlenverhältnis aufgebaut sind?",
     "answers": [
       "Chemisches Element",
-      "Legierung Metalle",
+      "Legierung der Metalle",
       "Heterogenes Gemenge",
       "Chemische Verbindung"
     ],
@@ -774,7 +774,7 @@ const K7_CHEMIE_QUESTIONS = [
     "answers": [
       "Gemisch: Emulsion",
       "Gemisch: Suspension",
-      "Gemisch: Lösung",
+      "Gemisch: Kolloidlösung",
       "Gemisch: Aerosol"
     ],
     "correct": 1,
@@ -901,7 +901,7 @@ const K7_CHEMIE_QUESTIONS = [
       "Auf der Löslichkeit",
       "Auf Verdunstungsrate",
       "Auf Dichteunterschied",
-      "Auf Siedetemperatur"
+      "Auf der Zähflüssigkeit"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -936,7 +936,7 @@ const K7_CHEMIE_QUESTIONS = [
     "answers": [
       "Elektrische Ladung",
       "Löslichkeit / Haftung",
-      "Schmelztemperatur",
+      "Magnetische Eigenschaft",
       "Dichte des Stoffes"
     ],
     "correct": 1,
@@ -988,7 +988,7 @@ const K7_CHEMIE_QUESTIONS = [
     "subject": "chemie",
     "question": "Wie bezeichnet man den festen Stoff, der nach dem Filtrieren im Filterpapier zurückbleibt?",
     "answers": [
-      "Begriff: Das Extrakt",
+      "Begriff: Der Bodensatz",
       "Begriff: Das Sediment",
       "Begriff: Das Filtrat",
       "Begriff: Der Rückstand"
@@ -1101,7 +1101,7 @@ const K7_CHEMIE_QUESTIONS = [
       "Geruch u. Explosion",
       "Schmelzen u. Sieden",
       "Stoff- u. Energieumstz",
-      "Farbwechsel u. Gas"
+      "Wärme u. Volumenwechsel"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1207,7 +1207,7 @@ const K7_CHEMIE_QUESTIONS = [
     "question": "Wie nennt man eine chemische Reaktion, die zum Ablaufen ständig Energie aus der Umgebung aufnehmen muss?",
     "answers": [
       "Exotherme Reaktion",
-      "Spontane Oxidation",
+      "Katalytische Reaktion",
       "Endotherme Reaktion",
       "Synthetische Phase"
     ],
@@ -1587,7 +1587,7 @@ const K7_CHEMIE_QUESTIONS = [
     "question": "Mit welchem Reagenz weist man Spuren von Wasser ($H_2O$) durch Farbwechsel von weiß nach blau nach?",
     "answers": [
       "Kupfersulfat wasserfrei",
-      "Silbernitrat lösung",
+      "Konzentrierte Salzsäure",
       "Universalindikator",
       "Kalkwasser lösung"
     ],
@@ -1640,10 +1640,10 @@ const K7_CHEMIE_QUESTIONS = [
     "subject": "chemie",
     "question": "Was beschreibt eine chemische 'Redoxreaktion' im Kern?",
     "answers": [
-      "Reine Kernspaltung",
+      "Nur eine Neutralisierung",
       "Oxid. u. Red. zeitgleich",
-      "Nur die Oxidation",
-      "Nur die Reduktion"
+      "Nur die reine Oxidation",
+      "Nur die reine Reduktion"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1787,7 +1787,7 @@ const K7_CHEMIE_QUESTIONS = [
       "Kohlenstoffmonoxid",
       "Reiner Stickstoff",
       "Kohlenstoffdioxid",
-      "Ozon Gas Schicht"
+      "Reines Wasserstoffgas"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1811,38 +1811,9 @@ const K7_CHEMIE_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Schwefeldioxid ($SO_2$) u. Stickstoffoxide ($NO_x$) bilden in der Atmosphäre Säuren (schweflige Säure, Salpetersäure)."
-  },
-  {"id":"k7ch101","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Ordnungszahl = Anzahl …","answers":["Neutronen","Protonen","Elektronen Ion","Nucleonen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Protonen."},
-  {"id":"k7ch102","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Ionenbindung typisch …","answers":["Non-Non","Metall-Nonmetall","Metall-Metall","Edelgas"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Salz."},
-  {"id":"k7ch103","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"pH 14 eher …","answers":["sauer","neutral","basisch","pH7"],"correct":2,"difficulty":"mittel","points":10,"explanation":"basisch."},
-  {"id":"k7ch104","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Neutralisation → …","answers":["Gas","Salz+Wasser","Metall","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Salz+Wasser."},
-  {"id":"k7ch105","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Oxidation: Elektronen…","answers":["Aufnahme","Abgabe","Neutron","Photon"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Abgabe."},
-  {"id":"k7ch106","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Mol misst …","answers":["kg","Stoffmenge","Liter","Kelvin"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stoffmenge."},
-  {"id":"k7ch107","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Katalysator … EA.","answers":["erhöht","senkt","löscht","ignoriert"],"correct":1,"difficulty":"mittel","points":10,"explanation":"senkt."},
-  {"id":"k7ch108","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Edelgase sind … reaktiv.","answers":["sehr","wenig","immer","mit Wasser"],"correct":1,"difficulty":"mittel","points":10,"explanation":"wenig."},
-  {"id":"k7ch109","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Säure gibt H⁺ ab.","answers":["kein Ergebnis","Brønsted","OH⁻","e⁻"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Brønsted."},
-  {"id":"k7ch110","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"c = n/V in …","answers":["kg/L","mol/L","m/s","Pa"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mol/L."},
-  {"id":"k7ch111","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Exotherm: Wärme …","answers":["aufgenommen","abgegeben","gelöscht","Masse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"abgegeben."},
-  {"id":"k7ch112","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Verbrennung C → …","answers":["CO","CO₂","C","O₂"],"correct":1,"difficulty":"mittel","points":10,"explanation":"CO₂."},
-  {"id":"k7ch113","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Elektrolyse braucht …","answers":["Druck","Strom","Magnet","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Strom."},
-  {"id":"k7ch114","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Massenerhaltung: Masse …","answers":["weg","bleibt","doppelt","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"bleibt."},
-  {"id":"k7ch115","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Wasser ist …","answers":["unpolar","polar","ionisch","metallisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"polar."},
-  {"id":"k7ch116","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"PSE Gruppe = …","answers":["Zeile","Spalte","Block","Ion"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Spalte."},
-  {"id":"k7ch117","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Isotope gleiche …","answers":["Massenzahl","Ordnungszahl","Neutronen","Dichte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Z."},
-  {"id":"k7ch118","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Reduktion: e⁻ …","answers":["Abgabe","Aufnahme","Neutron","Photon"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Aufnahme."},
-  {"id":"k7ch119","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Endotherm ΔH …","answers":["<0",">0","=0","∞"],"correct":1,"difficulty":"mittel","points":10,"explanation":">0."},
-  {"id":"k7ch120","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Kohlenwasserstoff: …","answers":["Fe","C und H","nur O","U"],"correct":1,"difficulty":"mittel","points":10,"explanation":"C/H."},
-  {"id":"k7ch121","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Indikator zeigt …","answers":["Masse","pH","Druck","Temp"],"correct":1,"difficulty":"mittel","points":10,"explanation":"pH."},
-  {"id":"k7ch122","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Ionengitter ist …","answers":["frei","starr","gasförmig","flüssig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"starr."},
-  {"id":"k7ch123","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"EN hoch bei …","answers":["Metallen","Nonmetallen","Edelgasen","Neutronen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"F/O."},
-  {"id":"k7ch124","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Le Chatelier: wirkt …","answers":["verstärkend","entgegen","ignorierend","löschend"],"correct":1,"difficulty":"mittel","points":10,"explanation":"entgegen."},
-  {"id":"k7ch125","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Organik Kern: …","answers":["Fe","C","U","He"],"correct":1,"difficulty":"mittel","points":10,"explanation":"C."},
-  {"id":"k7ch126","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Salz in Wasser → …","answers":["Moleküle","Ionen","Atome","Photonen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ionen."},
-  {"id":"k7ch127","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Aktivierungsenergie = …","answers":["Produkt","Schwelle","Temp","Druck"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schwelle."},
-  {"id":"k7ch128","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"Gruppe 17 = …","answers":["Alkali","Halogene","Edelgase","Erdalkali"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Halogene."},
-  {"id":"k7ch129","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"pV=nRT für …","answers":["Festkörper","ideales Gas","Flüssigkeit","Plasma"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gas."},
-  {"id":"k7ch130","category":"k7_chemie","area":"schule","grade":7,"subject":"chemie","topic":"erweiterung","question":"HCl dissoziiert zu …","answers":["Cl₂","H⁺ und Cl⁻","H₂","O₂"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ionen."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K7_CHEMIE_QUESTIONS = K7_CHEMIE_QUESTIONS;

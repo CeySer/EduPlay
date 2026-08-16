@@ -283,9 +283,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Welche optische Aufgabe erfüllt die Pupille im menschlichen Auge?",
     "answers": [
       "Reguliert den Lichteinfall",
-      "Bündelt Licht als Linse",
-      "Wandelt Licht in Signale",
-      "Schützt Auge vor Staub"
+      "Bündelt das einfallende Licht",
+      "Wandelt Licht in Nervensignale um",
+      "Schützt Auge vor Staubkörnern"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -318,10 +318,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Auf welcher Struktur des Auges entsteht bei gesunder Sicht ein scharfes Bild?",
     "answers": [
-      "Auf dem Sehnervenkopf",
-      "Auf der Regenbogenhaut",
+      "Auf dem gelben Blindenfleck",
+      "Auf der bunten Regenbogenhaut",
       "Auf der Netzhaut (Retina)",
-      "Auf der Hornhaut vorn"
+      "Auf der vorderen Hornhaut"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -372,9 +372,9 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Wie nennt man die Aufspaltung von weißem Licht in Spektralfarben am Glasprisma?",
     "answers": [
-      "Die Absorption der Farbe",
-      "Die Totalreflexion Licht",
-      "Die Polarisation Welle",
+      "Die Absorption der Lichtfarbe",
+      "Die Totalreflexion des Lichts",
+      "Die Polarisation der Lichtwelle",
       "Die Dispersion (Streuung)"
     ],
     "correct": 3,
@@ -393,7 +393,7 @@ const K7_PHYSIK_QUESTIONS = [
       "Die Farbe Rot",
       "Die Farbe Grün",
       "Die Farbe Violett",
-      "Die Farbe Gelb"
+      "Die Farbe Gelborange"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -663,9 +663,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Was besagt das Prinzip des Archimedes bezüglich der Auftriebskraft?",
     "answers": [
       "Auftrieb = verdrängte Masse",
-      "Auftrieb = doppelte Masse",
-      "Auftrieb = Druck am Boden",
-      "Auftrieb = halbes Gewicht"
+      "Auftrieb = verdrängtes Volumen",
+      "Auftrieb = Druck auf den Boden",
+      "Auftrieb = die Hälfte des Gewichts"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -752,9 +752,9 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Welche SI-Einheit wird für den physikalischen Druck genutzt?",
     "answers": [
-      "Das Joule (1 J = 1 Nm/s)",
-      "Das Watt (1 W = 1 J * s)",
-      "Das Newton (1 N = 1 kg/m)",
+      "Das Joule (1 J = 1 N x m)",
+      "Das Watt (1 W = 1 J pro s)",
+      "Das Newton (1 N = 1 kg m/s²)",
       "Das Pascal (1 Pa = 1 N/m²)"
     ],
     "correct": 3,
@@ -916,9 +916,9 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Was besagt die 'Goldene Regel der Mechanik'?",
     "answers": [
-      "Weg sparen spart Kraft",
-      "Arbeit wird verringert",
-      "Kraft sparen spart Weg",
+      "Weg sparen kostet Kraft",
+      "Arbeit wird dabei verringert",
+      "Kraft sparen spart auch Weg",
       "Kraft sparen kostet Weg"
     ],
     "correct": 3,
@@ -1096,10 +1096,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Welche Wirkung erzielt eine feste Rolle (Umlenkrolle)?",
     "answers": [
-      "Halbiert die Zuggkraft",
-      "Viertelt die Zugkraft",
+      "Halbiert die Zugkraft glatt",
+      "Viertelt die nötige Zugkraft",
       "Ändert nur Kraftrichtung",
-      "Halbiert den Seilweg"
+      "Halbiert den nötigen Seilweg"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1276,10 +1276,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Wie nennt man die aufgewendete Arbeit, um einen Körper zu beschleunigen?",
     "answers": [
-      "Die Verformungsarbeit",
+      "Die Verformungsarbeit am Körper",
       "Die Beschleunigungsarbeit",
-      "Die Reibungsarbeit Boden",
-      "Die Spannarbeit Feder"
+      "Die Reibungsarbeit am Boden",
+      "Die Spannarbeit der Feder"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1331,9 +1331,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Was besagt der Energieerhaltungssatz der Mechanik?",
     "answers": [
       "Gesamtenergie ist konstant",
-      "Energie wird verbraucht",
-      "Energie geht verloren",
-      "Energie entsteht aus Null"
+      "Energie wird stets verbraucht",
+      "Energie geht dabei verloren",
+      "Energie entsteht aus dem Nichts"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1440,9 +1440,9 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Was beschreibt der elektrische Widerstand $R$ eines Bauteils?",
     "answers": [
-      "Antrieb der Ladung",
-      "Geschwindigkeit Licht",
-      "Kapazität des Akkus",
+      "Antrieb der Ladung im Draht",
+      "Geschwindigkeit des Lichts",
+      "Kapazität des Akkumulators",
       "Hemmung des Stromflusses"
     ],
     "correct": 3,
@@ -1458,10 +1458,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Welche SI-Einheit nutzt man für den elektrischen Widerstand?",
     "answers": [
-      "Das Volt (Symbol: V)",
-      "Das Ampere (Symbol: A)",
+      "Das Volt (Symbol: V) genutzt",
+      "Das Ampere (Symbol: A) genutzt",
       "Das Ohm (Symbol: $\\Omega$)",
-      "Das Watt (Symbol: W)"
+      "Das Watt (Symbol: W) genutzt"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1585,9 +1585,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Was passiert mit dem Gesamtwiderstand $R_{\\text{ges}}$, wenn man Widerstände parallel schaltet?",
     "answers": [
       "Er wird kleiner als kleinst",
-      "Er entspricht der Summe",
-      "Er bleibt völlig gleich",
-      "Er wird größer als größt"
+      "Er entspricht der reinen Summe",
+      "Er bleibt dabei völlig gleich",
+      "Er wird größer als der größte"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1674,10 +1674,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Welches Material zählt zu den hervorragenden elektrischen Leitern?",
     "answers": [
-      "Dry-Kunststoff Hülle",
-      "Gummi am Isolator",
+      "Dünner Kunststoff als Hülle",
+      "Gummi als Isoliermaterial",
       "Kupfermetall im Kabel",
-      "Porzellan am Masten"
+      "Porzellan an den Masten"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1764,10 +1764,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Welche Schutzfunktion erfüllt eine Schmelzsicherung in Elektrogeräten?",
     "answers": [
-      "Kühlt den Verbraucher",
+      "Kühlt den Verbraucher stark",
       "Trennt Strom bei Überlast",
-      "Verdoppelt Stromstärke",
-      "Erhöht die Spannung V"
+      "Verdoppelt die Stromstärke",
+      "Erhöht die elektrische Spannung"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1862,10 +1862,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Welches Messgerät nutzt man im Schullabor zur Bestimmung von Kräften?",
     "answers": [
-      "Das Barometergerät",
+      "Das Barometer im Labor",
       "Der Federkraftmesser",
-      "Der Balkenwaagenarm",
-      "Das Messzylinglas"
+      "Der Arm der Balkenwaage",
+      "Das Messzylinderglas"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -2007,9 +2007,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Welche zwei grundlegenden Wirkungen kann eine Kraft auf einen Körper ausüben?",
     "answers": [
       "Verformung u. Bewegungsänderung",
-      "Gewichtsverlust u. Auflösung",
-      "Erwärmung u. Lichterscheinung",
-      "Dichtezunahme u. Schmelzen"
+      "Gewichtsverlust und völlige Auflösung",
+      "Erwärmung und Lichterscheinung",
+      "Dichtezunahme und Schmelzen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2133,7 +2133,7 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Wie lautet die internationale Einheit des physikalischen Drucks?",
     "answers": [
       "Das Newton (N)",
-      "Das Watt (W)",
+      "Das Watt (Symbol W)",
       "Das Pascal (Pa)",
       "Das Kelvin (K)"
     ],
@@ -2278,7 +2278,7 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Wie hoch ist die Lichtgeschwindigkeit im luftleeren Raum (Vakuum) etwa?",
     "answers": [
-      "Ca. 340 m/s",
+      "Ca. 340 m je Sek.",
       "Ca. 300.000 m/s",
       "Ca. 3.000 km/h",
       "Ca. 300.000 km/s"
@@ -2297,9 +2297,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Wie breitet sich Licht in einem homogenen Medium (z. B. ruhender Luft) aus?",
     "answers": [
       "Geradlinig nach allen Seiten",
-      "In kreisförmigen Bahnen",
-      "Wellenförmig gezackt",
-      "Stets nur nach oben"
+      "In kreisförmigen Lichtbahnen",
+      "Wellenförmig stark gezackt",
+      "Stets nur senkrecht nach oben"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2387,9 +2387,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Welche Eigenschaften besitzt das Spiegelbild in einem ebenen Spiegel?",
     "answers": [
       "Seitenvertauscht u. gleich groß",
-      "Seitenrichtig u. verkleinert",
-      "Auf dem Kopf u. vergrößert",
-      "Verzerrt u. unscharf immer"
+      "Seitenrichtig und stark verkleinert",
+      "Auf dem Kopf und vergrößert",
+      "Verzerrt und immer unscharf"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2405,9 +2405,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Wann tritt die physikalische Erscheinung der Lichtbrechung auf?",
     "answers": [
       "Beim Treffen auf Alufolie",
-      "Beim Schattenwurf Wand",
+      "Beim Schattenwurf an der Wand",
       "Beim Übergang zweier Medien",
-      "Im völlig leeren Vakuum"
+      "Im völlig leeren Weltraum"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -2567,10 +2567,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Mit welchem Brillenlinsentyp wird eine Kurzsichtigkeit korrigiert?",
     "answers": [
-      "Mit Sammellinsen",
+      "Mit starken Sammellinsen",
       "Mit Zerstreuungslinsen",
-      "Mit Fensterglaslinsen",
-      "Mit Vergrößerungsglas"
+      "Mit einfachem Fensterglas",
+      "Mit einem Vergrößerungsglas"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -2603,10 +2603,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Wie nennt man die Zerlegung des weißen Sonnenlichts in Spektralfarben durch ein Glasprisma?",
     "answers": [
-      "Die Absorption komplett",
-      "Die Beugung am Gitter",
+      "Die vollständige Absorption",
+      "Die Beugung am feinen Gitter",
       "Die Dispersion / Brechung",
-      "Die Reflexion an Wand"
+      "Die Reflexion an der Wand"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -2621,10 +2621,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Welche Farbe des sichtbaren Lichts wird beim Durchgang durch ein Prisma am stärksten gebrochen?",
     "answers": [
-      "Das rote Licht",
-      "Das gelbe Licht",
+      "Das rote Licht am Rand",
+      "Das gelbe Licht mittig",
       "Das violette Licht",
-      "Das grüne Licht"
+      "Das grüne Licht mittig"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -2658,9 +2658,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Welches Bild erzeugt eine Lochkamera (Camera obscura) auf der Mattscheibe?",
     "answers": [
       "Umgekehrt u. seitenvertauscht",
-      "Spiegelverkehrt u. riesig",
-      "Aufrecht u. seitenrichtig",
-      "Dreidimensional u. farblos"
+      "Spiegelverkehrt und riesig groß",
+      "Aufrecht und ganz seitenrichtig",
+      "Dreidimensional und farblos"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2768,9 +2768,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Wie lautet die internationale Einheit des elektrischen Widerstands $R$?",
     "answers": [
       "Das Ohm ($\\Omega$)",
-      "Das Hertz (Hz)",
-      "Das Ampere (A)",
-      "Das Volt (V)"
+      "Das Hertz (Hz) benutzt",
+      "Das Ampere (A) benutzt",
+      "Das Volt (V) benutzt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2893,9 +2893,9 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Wie wird ein Strommessgerät (Amperemeter) korrekt in den Stromkreis eingebaut?",
     "answers": [
-      "Parallelschaltung dazu",
-      "Direkt an Gegenpol",
-      "Ohne Verbindung dazu",
+      "Parallelschaltung dazu genutzt",
+      "Direkt an den Gegenpol",
+      "Ganz ohne Verbindung dazu",
       "Reihenschaltung im Kreis"
     ],
     "correct": 3,
@@ -3274,9 +3274,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Welche Art der Wärmeübertragung transportiert Wärme durch aufsteigende warme Luftschichten?",
     "answers": [
       "Die Wärmeströmung (Konvektion)",
-      "Die feste Sublimation",
-      "Die reine Wärmestrahlung",
-      "Die direkte Wärmeleitung"
+      "Die feste Sublimation der Luft",
+      "Die reine Wärmestrahlung allein",
+      "Die direkte Wärmeleitung im Stoff"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3291,10 +3291,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Auf welche Weise gelangt die Wärme der Sonne durch das luftleere All zur Erde?",
     "answers": [
-      "Durch Wärmeleitung",
-      "Durch Wärmeströmung",
+      "Durch reine Wärmeleitung",
+      "Durch starke Wärmeströmung",
       "Durch Wärmestrahlung",
-      "Durch Luftströmung"
+      "Durch normale Luftströmung"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -3345,10 +3345,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Wie nennt man den Phasenübergang von gasförmig zu flüssig (z. B. Tröpfchen am kalten Glas)?",
     "answers": [
-      "Das Verdampfen",
-      "Das Sublimieren",
+      "Verdampfen des Wassers",
+      "Das Sublimieren im Eis",
       "Das Kondensieren",
-      "Das Gefrieren"
+      "Gefrieren bei Kälte"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -3382,9 +3382,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Wie nennt man den direkten Phasenübergang von gasförmig zu fest (z. B. Entstehung von Raureif)?",
     "answers": [
       "Die Resublimation",
-      "Das Sieden",
-      "Die Kondensation",
-      "Die Sublimation"
+      "Das Sieden bei Hitze",
+      "Kondensation am Fenster",
+      "Die Sublimation im Eis"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3399,10 +3399,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Worin unterscheidet sich Verdunstung von Verdampfung?",
     "answers": [
-      "Geht stets mit Kochen einher",
-      "Benötigt extrem hohe Temperaturen",
+      "Geht stets mit starkem Kochen einher",
+      "Benötigt extrem hohe Temperaturen dafür",
       "Findet unterhalb des Siedepunkts statt",
-      "Tritt nur bei Metallen auf"
+      "Tritt ausschließlich bei Metallen auf"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -3471,10 +3471,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Welche Energieform besitzt ein auf einen Kran hochgezogener Betonblock?",
     "answers": [
-      "Strahlungsenergie",
+      "Strahlungsenergie der Sonne",
       "Potenzielle Lageenergie",
-      "Kinetische Energie",
-      "Thermische Energie"
+      "Kinetische Bewegungsenergie",
+      "Thermische Energie im Block"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -3507,9 +3507,9 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Wie lautet die mathematische Formel zur Berechnung der kinetischen Bewegungsenergie?",
     "answers": [
-      "Bewegungsenergie = F x s",
-      "Bewegungsenergie = P x t",
-      "Bewegungsenergie = m x g x h",
+      "Bewegungsenergie = F x s genau",
+      "Bewegungsenergie = P x t immer",
+      "Bewegungsenergie = m x g x h stets",
       "Bewegungsenergie = 0.5 x m x v^2"
     ],
     "correct": 3,
@@ -3543,10 +3543,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Auf welchem physikalischen Prinzip beruht ein Bimetallstreifen im Schalter?",
     "answers": [
-      "Gleiche Metalledrehung",
-      "Schmelzen einer Legierung",
+      "Gleiche Ausdehnung der Metalle",
+      "Schmelzen einer festen Legierung",
       "Unterschiedliche Metalledrehung",
-      "Verdampfung von Flüssigkeit"
+      "Verdampfung einer Flüssigkeit"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -3561,9 +3561,9 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "In welchem Alltagsgerät sorgt ein Bimetallstreifen für die automatische Temperaturregelung?",
     "answers": [
-      "Die Smartphone-Kamera",
-      "Der Mikrowellenherd Raum",
-      "Der LED-Fernseher Bild",
+      "Die Kamera des Smartphones",
+      "Der Raum im Mikrowellenherd",
+      "Das Bild im LED-Fernseher",
       "Das Bügeleisen Thermostat"
     ],
     "correct": 3,
@@ -3580,9 +3580,9 @@ const K7_PHYSIK_QUESTIONS = [
     "question": "Was beschreibt der Begriff des 'Wirkungsgrades' $\\eta$ einer Maschine?",
     "answers": [
       "Verhältnis Nutz- zu Zuenergie",
-      "Verhältnis Druck zu Kraft",
-      "Verhältnis Masse zu Volumen",
-      "Verhältnis Arbeit zu Weg"
+      "Verhältnis von Druck zu Kraft",
+      "Verhältnis von Masse zu Volumen",
+      "Verhältnis von Arbeit zu Weg"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3597,10 +3597,10 @@ const K7_PHYSIK_QUESTIONS = [
     "subject": "physik",
     "question": "Warum isoliert eine doppelwandige Thermoskanne mit evakuiertem Zwischenraum heiße Getränke hervorragend?",
     "answers": [
-      "Vakuum absorbiert jede Wärme",
-      "Luft im Vakuum leitet nicht",
+      "Vakuum absorbiert jede Wärme komplett",
+      "Luft im Vakuum leitet gar nicht",
       "Vakuum stoppt Leitung u. Strömung",
-      "Spiegelglas kühlt den Inhalt"
+      "Spiegelglas kühlt den Inhalt stark"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -3624,38 +3624,10 @@ const K7_PHYSIK_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Solarzellen wandeln einfallende Lichtstrahlung direkt in elektrische Energie um."
-  },
-  {"id":"k7ph101","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"a = Δv/Δt ist …","answers":["Geschwindigkeit","Beschleunigung","Kraft","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"a."},
-  {"id":"k7ph102","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"F = m·a","answers":["0","Newton 2","Newton 3","Energie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2. Gesetz."},
-  {"id":"k7ph103","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Eₖ = ½mv²","answers":["kein Ergebnis","kinetisch","Lage","Leistung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"kinetisch."},
-  {"id":"k7ph104","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Eₚ = mgh","answers":["kein Ergebnis","Lageenergie","kinetisch","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"potentiell."},
-  {"id":"k7ph105","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"p = m·v","answers":["Kraft","Impuls","Druck","Leistung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Impuls."},
-  {"id":"k7ph106","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"v = f·λ","answers":["kein Ergebnis","Welle","nur Schall","nur Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Welle."},
-  {"id":"k7ph107","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"U = R·I","answers":["kein Ergebnis","Ohm","Kirchhoff","Faraday"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ohm."},
-  {"id":"k7ph108","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"P = U·I","answers":["kein Ergebnis","Leistung","Energie","Ladung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Leistung."},
-  {"id":"k7ph109","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Einheit Kraft?","answers":["J","N","W","V"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Newton."},
-  {"id":"k7ph110","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"c ≈ …","answers":["340 m/s","3·10⁸ m/s","3 m/s","300 km/h"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Licht."},
-  {"id":"k7ph111","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Schall braucht …","answers":["Vakuum","Medium","Licht","Magnete"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Medium."},
-  {"id":"k7ph112","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"W = F·s","answers":["kein Ergebnis","Arbeit","Rotation","Gas"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Arbeit."},
-  {"id":"k7ph113","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"p = F/A","answers":["kein Ergebnis","Druck","F·A","A/F"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Druck."},
-  {"id":"k7ph114","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Ladung Einheit?","answers":["V","C","Ω","W"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Coulomb."},
-  {"id":"k7ph115","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Induktion erzeugt …","answers":["Masse","Spannung","Wärme ohne Feld","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Spannung."},
-  {"id":"k7ph116","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"α-Teilchen = …","answers":["Elektron","He-Kern","Photon","Neutron"],"correct":1,"difficulty":"mittel","points":10,"explanation":"α."},
-  {"id":"k7ph117","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Halbwertszeit bis …","answers":["alles","Hälfte","nichts","¾"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Hälfte."},
-  {"id":"k7ph118","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"η = Nutzen/Aufwand","answers":["kein Ergebnis","richtig","η>1","egal"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k7ph119","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Auftrieb = Gewicht …","answers":["Körpers","verdrängter Flüssigkeit","Luft 0","Behälters"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Archimedes."},
-  {"id":"k7ph120","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Zentripetal zum …","answers":["außen","Zentrum","tangential","zufällig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zentrum."},
-  {"id":"k7ph121","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"E = h·f","answers":["kein Ergebnis","Photon","Schall","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Photon."},
-  {"id":"k7ph122","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Brechung zum Lot in … Medium","answers":["dünner","dichter","gleich","Metall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"dichter."},
-  {"id":"k7ph123","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Kondensator speichert …","answers":["Impuls","Ladung","Neutronen","Masse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ladung."},
-  {"id":"k7ph124","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Trafo U ~ N","answers":["kein Ergebnis","richtig","unabhängig","nur I"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k7ph125","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"0 K ≈ …","answers":["0 °C","−273 °C","100 °C","−100 °C"],"correct":1,"difficulty":"mittel","points":10,"explanation":"−273."},
-  {"id":"k7ph126","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"f = 1/T","answers":["kein Ergebnis","richtig","f=T","f=2T"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k7ph127","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Reibung … Bewegung","answers":["fördert","hemmt","löscht Masse","erzeugt Weg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"hemmt."},
-  {"id":"k7ph128","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Sicherung gegen …","answers":["Unterspannung","Überstrom","Magnet","Schall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Überstrom."},
-  {"id":"k7ph129","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"LED wandelt in …","answers":["Wärme nur","Licht","Schall","Druck"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Licht."},
-  {"id":"k7ph130","category":"k7_physik","area":"schule","grade":7,"subject":"physik","topic":"erweiterung","question":"Energie wird …","answers":["vernichtet","umgewandelt","aus nichts","nur vernichtet"],"correct":1,"difficulty":"mittel","points":10,"explanation":"umgewandelt."}
+  }
 ];
+
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K7_PHYSIK_QUESTIONS = K7_PHYSIK_QUESTIONS;

@@ -228,10 +228,10 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Warum erfanden die Menschen der Jungsteinzeit Tongefäße?",
     "answers": [
-      "Transport von Schutt",
-      "Bauen von Wand-Rädern",
+      "Transport von Wasser",
+      "Schmuck für die Feste",
       "Vorratshaltung Getreide",
-      "Schutz vor Gegenwind"
+      "Herstellung von Werkzeugen"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -318,9 +318,9 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Nach welchem Fundort in Deutschland ist der Neandertaler benannt?",
     "answers": [
-      "Münsterland bei Borken",
-      "Sauerland bei Olpe",
-      "Ruhrgebiet bei Essen",
+      "Schwarzwald bei Freiburg",
+      "Harzgebirge bei Goslar",
+      "Eifelgebiet bei Trier",
       "Neandertal bei Mettmann"
     ],
     "correct": 3,
@@ -374,10 +374,10 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Warum verdankt das alte Ägypten seine Fruchtbarkeit dem Nil?",
     "answers": [
-      "Unterirdische Quellen",
+      "Künstliche Bewässerung",
       "Jährliche Überschwemmung",
-      "Künstliches Meerwasser",
-      "Tägliche Regengüsse"
+      "Regelmäßige Springfluten",
+      "Ständige Wolkenbrüche"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -573,9 +573,9 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Warum besaßen Schreiber im alten Ägypten hohes Ansehen?",
     "answers": [
-      "Sie bauten Pyramiden",
-      "Sie waren die Könige",
-      "Sie führten Kriege",
+      "Sie kannten die Götter",
+      "Sie sprachen viele Sprachen",
+      "Sie besaßen viel Gold",
       "Wenig konnten schreiben"
     ],
     "correct": 3,
@@ -755,10 +755,10 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Welche Regierungsform wurde im antiken Athen entwickelt?",
     "answers": [
-      "Die Diktatur",
-      "Die Anarchie",
+      "Die Republik",
+      "Die Aristokratie",
       "Die Demokratie",
-      "Die Monarchie"
+      "Die Theokratie"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -773,10 +773,10 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Wer hatte in der attischen Demokratie politische Stimmrechte?",
     "answers": [
-      "Frauen u. Kinder",
-      "Alle Einwohner",
+      "Alle Frauen im Staat",
+      "Nur die reichen Adligen",
       "Freie erwachs. Männer",
-      "Sklaven u. Fremde"
+      "Sklaven und Metöken"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -971,10 +971,10 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Mit welcher Kriegslist eroberten die Griechen die Stadt Troja?",
     "answers": [
-      "Angriff bei Nacht",
-      "Hunger-Blockade",
+      "Nächtlicher Überfall",
+      "Lange Hungerblockade",
       "Holz-Pferd Versteck",
-      "Tunnelbau Mauer"
+      "Geheimer Tunnelbau"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -989,9 +989,9 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Welche berühmte Schlacht von 490 v. Chr. gab dem Marathonlauf den Namen?",
     "answers": [
-      "Schlacht Thermopylen",
+      "Schlacht bei Plataiai",
       "Schlacht bei Issos",
-      "Schlacht Salamis",
+      "Schlacht bei Salamis",
       "Schlacht bei Marathon"
     ],
     "correct": 3,
@@ -1062,8 +1062,8 @@ const K6_GESCHICHTE_QUESTIONS = [
     "question": "Welcher König von Makedonien eroberte ein Weltreich bis nach Indien?",
     "answers": [
       "Alexander der Große",
-      "Pharao Ramses",
-      "König Leonidas",
+      "Pharao Ramses II.",
+      "König Leonidas von Sparta",
       "Kaiser Augustus"
     ],
     "correct": 0,
@@ -1243,10 +1243,10 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "An welchem Tag im Jahr 44 v. Chr. wurde Caesar im Senat ermordet?",
     "answers": [
-      "Am 1. Januar Tag",
+      "Am 1. April (Tag)",
       "Iden des März (15.3.)",
-      "Am 24. Dezember",
-      "Sommersonnenwende"
+      "Am 24. Dezember Tag",
+      "Zur Sommersonnenwende"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1497,9 +1497,9 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Welche berühmte Schlacht stoppte 9 n. Chr. die römische Expansion nach Germanien?",
     "answers": [
-      "Schlacht Alesia",
-      "Schlacht Cannae",
-      "Schlacht Zama",
+      "Die Schlacht bei Alesia",
+      "Die Schlacht bei Cannae",
+      "Die Schlacht bei Zama",
       "Die Varusschlacht"
     ],
     "correct": 3,
@@ -1515,9 +1515,9 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Wer vereinte die germanischen Stämme in der Varusschlacht?",
     "answers": [
-      "Chlodwig König",
+      "Chlodwig der König",
       "Arminius (Hermann)",
-      "Alarich König",
+      "Alarich der König",
       "Karl der Große"
     ],
     "correct": 1,
@@ -1535,7 +1535,7 @@ const K6_GESCHICHTE_QUESTIONS = [
     "answers": [
       "Nur in Erdhöhlen",
       "In Holzhäusern Dorf",
-      "In Steinstädten",
+      "In großen Steinstädten",
       "In Steinpalästen"
     ],
     "correct": 1,
@@ -1587,7 +1587,7 @@ const K6_GESCHICHTE_QUESTIONS = [
     "subject": "geschichte",
     "question": "Mit welcher Waffe wird der germanische Donnergott Thor dargestellt?",
     "answers": [
-      "Mit doppelter Axt",
+      "Mit doppelter Streitaxt",
       "Mit goldenem Schwert",
       "Mit langem Speer",
       "Mit dem Hammer Mjölnir"
@@ -1606,9 +1606,9 @@ const K6_GESCHICHTE_QUESTIONS = [
     "question": "Welcher Reitervolk-Einfall aus Asien löste die große Völkerwanderung aus?",
     "answers": [
       "Der Einfall der Hunnen",
-      "Der Einfall Wikinger",
-      "Der Einfall Gallier",
-      "Der Einfall Mongolen"
+      "Der Einfall der Wikinger",
+      "Der Einfall der Gallier",
+      "Der Einfall der Mongolen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1786,7 +1786,7 @@ const K6_GESCHICHTE_QUESTIONS = [
     "question": "Wie nennt man die von Unfreiheit geprägte Abhängigkeit der Bauern vom Grundherrn?",
     "answers": [
       "Die Leibeigenschaft",
-      "Das Bürgerrecht",
+      "Das strenge Bürgerrecht",
       "Der Zunftzwang",
       "Die Gildenpflicht"
     ],
@@ -1812,38 +1812,9 @@ const K6_GESCHICHTE_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Mit dem Untergang Roms u. der Völkerwanderung begann das Mittelalter."
-  },
-  {"id":"k6ge101","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Antike: Polis war …","answers":["Königreich immer","griechische Stadtstaat","römisches Lager","Kirche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stadtstaat.","topic":"erweiterung"},
-  {"id":"k6ge102","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Rom: Republik endete u. a. mit …","answers":["Caesar/Augustus Übergang Kaiserzeit","Mittelalter","Industrialisierung","EU"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Prinzipat.","topic":"erweiterung"},
-  {"id":"k6ge103","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Mittelalter: Lehnswesen basiert auf …","answers":["Gleichheit","Treuebindungen Land gegen Dienst","Demokratie","Industrie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Lehen.","topic":"erweiterung"},
-  {"id":"k6ge104","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Christianisierung Europas verlief …","answers":["in einem Tag","über Jahrhunderte","nur 20. Jh.","nie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"langfristig.","topic":"erweiterung"},
-  {"id":"k6ge105","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Kreuzzüge waren …","answers":["nur Handelsreisen","militärisch-religiöse Züge","nur Entdeckungen Amerika","nur Bauernkrieg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kreuzzüge.","topic":"erweiterung"},
-  {"id":"k6ge106","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Stadt im MA: Marktrecht bedeutete …","answers":["kein Handel","Recht Markt abzuhalten","nur Kirche","nur Burg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Markt.","topic":"erweiterung"},
-  {"id":"k6ge107","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Renaissance heißt wörtlich …","answers":["Untergang","Wiedergeburt","Krieg","Pest"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wiedergeburt.","topic":"erweiterung"},
-  {"id":"k6ge108","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Buchdruck (Gutenberg) förderte …","answers":["Geheimhaltung","Verbreitung von Wissen","nur Adelige Schreiben","Zensur total"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schriftkultur.","topic":"erweiterung"},
-  {"id":"k6ge109","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Reformation: Luther kritisierte u. a. …","answers":["Wissenschaft","Ablasshandel","Buchdruck","Städte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ablass.","topic":"erweiterung"},
-  {"id":"k6ge110","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Absolutismus: Herrscher Anspruch …","answers":["geteilt","unbeschränkt von Gottes Gnaden","demokratisch","republikanisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"absolut.","topic":"erweiterung"},
-  {"id":"k6ge111","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Aufklärung betonte …","answers":["Aberglaube","Vernunft und Kritik","nur Krieg","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vernunft.","topic":"erweiterung"},
-  {"id":"k6ge112","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Französische Revolution Motto u. a. …","answers":["Nur König","Freiheit, Gleichheit, Brüderlichkeit","Nur Steuern","Nur Krieg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Devise.","topic":"erweiterung"},
-  {"id":"k6ge113","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Industrialisierung begann stark in …","answers":["Antike","England","Steinzeit","nur DE 1990"],"correct":1,"difficulty":"mittel","points":10,"explanation":"GB.","topic":"erweiterung"},
-  {"id":"k6ge114","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Imperialismus 19. Jh.: …","answers":["Entkolonialisierung","Kolonien ausweiten","EU gründen","UNO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kolonien.","topic":"erweiterung"},
-  {"id":"k6ge115","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"1. Weltkrieg begann 1914 nach …","answers":["Mondlandung","Attentat Sarajevo u. a.","Mauerfall","EU-Beitritt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Julikrise.","topic":"erweiterung"},
-  {"id":"k6ge116","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Weimarer Republik war …","answers":["Kaiserreich","erste deutsche Demokratie nach 1918","NS-Staat","DDR"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1918/19–33.","topic":"erweiterung"},
-  {"id":"k6ge117","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Nationalsozialismus: 1933 …","answers":["Demokratie gestärkt","Machtübernahme/Diktatur","EU","Wiedervereinigung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Diktatur.","topic":"erweiterung"},
-  {"id":"k6ge118","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Holocaust bezeichnet …","answers":["Wirtschaftskrise","Völkermord an Juden u. a.","Industrialisierung","Aufklärung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Shoah.","topic":"erweiterung"},
-  {"id":"k6ge119","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"2. WK endete in Europa 1945 mit …","answers":["Kriegsbeginn","Kapitulation DE","Mauerbau","Euro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Mai 1945.","topic":"erweiterung"},
-  {"id":"k6ge120","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Kalter Krieg: Blöcke …","answers":["Ost-West","Nord-Süd nur Klima","nur Asien","keine"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Ost-West.","topic":"erweiterung"},
-  {"id":"k6ge121","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Grundgesetz 1949 für …","answers":["DDR","Bundesrepublik","Kaiserreich","EU allein"],"correct":1,"difficulty":"mittel","points":10,"explanation":"BRD.","topic":"erweiterung"},
-  {"id":"k6ge122","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Mauerbau 1961 in …","answers":["München","Berlin","Hamburg","Köln"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Berlin.","topic":"erweiterung"},
-  {"id":"k6ge123","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Wiedervereinigung Deutschland …","answers":["1945","1990","1961","1918"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1990.","topic":"erweiterung"},
-  {"id":"k6ge124","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Quelle primär = …","answers":["Schulbuch modern","aus der Zeit selbst","Wikipedia immer","Film 2020 über 1800"],"correct":1,"difficulty":"mittel","points":10,"explanation":"zeitgenössisch.","topic":"erweiterung"},
-  {"id":"k6ge125","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Perspektive in Quellen beachten wegen …","answers":["Langeweile","Interessengeleitetheit","Zufall","Wetter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Tendenz.","topic":"erweiterung"},
-  {"id":"k6ge126","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Menschenrechte historisch u. a. …","answers":["nie formuliert","Erklärung 1789/UN 1948","nur 2010","nur Antike ohne Text"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Meilensteine.","topic":"erweiterung"},
-  {"id":"k6ge127","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Feudalismus kennzeichnet …","answers":["Lohnarbeit Industrie","grundherrschaftliche Ordnung","Demokratie","Kapitalismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"MA.","topic":"erweiterung"},
-  {"id":"k6ge128","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Entdeckungen um 1500 veränderten …","answers":["nur Europa isoliert","Weltbild und Handel","nur Mond","nur Schrift"],"correct":1,"difficulty":"mittel","points":10,"explanation":"global.","topic":"erweiterung"},
-  {"id":"k6ge129","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Industrialisierung soziale Folge u. a. …","answers":["keine Städte","Arbeiterklasse/soziale Frage","nur Adel stärker","keine Technik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"soziale Frage.","topic":"erweiterung"},
-  {"id":"k6ge130","category":"k6_geschichte","area":"schule","grade":6,"subject":"geschichte","question":"Erinnerungskultur dient …","answers":["Vergessen","Auseinandersetzung mit Vergangenheit","Zensur","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gedenken/Lernen.","topic":"erweiterung"}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K6_GESCHICHTE_QUESTIONS = K6_GESCHICHTE_QUESTIONS;

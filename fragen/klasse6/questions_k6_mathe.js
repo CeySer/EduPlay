@@ -12,9 +12,9 @@ const K6_MATHE_QUESTIONS = [
     question: "Was gibt der Zähler eines Bruches an?",
     answers: [
       "Wie viele Teile vom Ganzen genommen werden",
-      "Das Ergebnis der Addition",
-      "Die Gesamtzahl aller Brüche",
-      "In wie viele Teile das Ganze geteilt wird"
+      "In wie viele Teile das Ganze geteilt wird",
+      "Das Ergebnis nach dem Kürzen des Bruches",
+      "Die Gesamtzahl aller Brüche in der Aufgabe"
     ],
     correct: 0,
     difficulty: "leicht",
@@ -31,9 +31,9 @@ const K6_MATHE_QUESTIONS = [
     question: "Was gibt der Nenner eines Bruches an?",
     answers: [
       "In wie viele gleich große Teile das Ganze geteilt ist",
-      "Wie viele Teile vom Ganzen genommen werden",
-      "Die Anzahl der Aufgaben",
-      "Den Wert nach dem Komma"
+      "Wie viele Teile insgesamt vom ganzen Bruch genommen werden",
+      "Die Gesamtzahl aller Aufgaben in der heutigen Übung",
+      "Der genaue Wert der Zahl direkt nach dem Komma"
     ],
     correct: 0,
     difficulty: "leicht",
@@ -105,9 +105,9 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Was passiert beim Erweitern eines Bruches?",
     answers: [
-      "Nur der Zähler wird addiert",
-      "Zähler und Nenner werden durch dieselbe Zahl dividiert",
-      "Der Nenner wird verdoppelt",
+      "Nur der Zähler wird mit einer Zahl multipliziert",
+      "Zähler und Nenner werden beide durch dieselbe Zahl dividiert",
+      "Nur der Nenner wird mit einer bestimmten Zahl multipliziert",
       "Zähler und Nenner werden mit derselben Zahl multipliziert"
     ],
     correct: 3,
@@ -138,9 +138,9 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Was passiert beim Kürzen eines Bruches?",
     answers: [
-      "Zähler und Nenner werden multipliziert",
-      "Vom Zähler wird der Nenner subtrahiert",
-      "Der Bruch wird in eine Dezimalzahl verwandelt",
+      "Zähler und Nenner werden hier beide miteinander multipliziert",
+      "Vom Zähler wird einfach der Nenner abgezogen",
+      "Der Bruch wird in eine Dezimalzahl umgewandelt",
       "Zähler und Nenner werden durch dieselbe Zahl dividiert"
     ],
     correct: 3,
@@ -198,7 +198,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 5/9 - 2/9",
-    answers: ["7/9", "3/0", "3/9 (gekürtzt 1/3)", "3/18"],
+    answers: ["7/9 (falsch gerechnet)", "3/0 (nicht erlaubt)", "3/9 (gekürtzt 1/3)", "3/18 (falsch gekürzt)"],
     correct: 2,
     difficulty: "leicht",
     points: 5,
@@ -273,7 +273,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 2/5 * 3",
-    answers: ["6/5 (1 1/5)", "2/15", "5/5", "6/15"],
+    answers: ["6/5 (1 1/5)", "2/15 (falsch)", "5/5 (falsch)", "6/15 (falsch)"],
     correct: 0,
     difficulty: "leicht",
     points: 5,
@@ -303,9 +303,9 @@ const K6_MATHE_QUESTIONS = [
     question: "Wie multipliziert man zwei Brüche miteinander?",
     answers: [
       "Zähler mal Zähler und Nenner mal Nenner",
-      "Über Kreuz multiplizieren",
-      "Nur Zähler mal Zähler rechnen",
-      "Nenner gleichnamig machen"
+      "Über Kreuz die Zahlen multiplizieren",
+      "Nur die beiden Zähler miteinander rechnen",
+      "Erst die Nenner gleichnamig machen"
     ],
     correct: 0,
     difficulty: "leicht",
@@ -320,7 +320,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 2/3 * 3/4",
-    answers: ["1/4", "6/7", "1/2 (6/12)", "5/7"],
+    answers: ["1/4 (falsch)", "6/7 (falsch)", "1/2 (6/12)", "5/7 (falsch)"],
     correct: 2,
     difficulty: "mittel",
     points: 5,
@@ -633,7 +633,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welcher Dezimalzahl entspricht der Bruch 1/8?",
-    answers: ["0,18", "0,125", "0,8", "0,25"],
+    answers: ["0,18", "0,125", "0,215", "0,25"],
     correct: 1,
     difficulty: "mittel",
     points: 5,
@@ -649,9 +649,9 @@ const K6_MATHE_QUESTIONS = [
     question: "Was bedeutet die Schreibweise 0,333... (0,3 mit Periode)?",
     answers: [
       "Die Ziffer 3 wiederholt sich unendlich oft",
-      "Die Zahl endet nach der dritten Drei",
-      "Es ist ungefähr 0,34",
-      "Man teilt durch 3"
+      "Die Zahl endet genau nach der dritten Drei",
+      "Es ist ungefähr der gerundete Wert 0,34",
+      "Man teilt die Zahl einfach durch drei"
     ],
     correct: 0,
     difficulty: "leicht",
@@ -824,7 +824,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie nennt man einen Winkel zwischen 180° und 360°?",
-    answers: ["Stumpfer Winkel", "Überstumpfer Winkel", "Gestreckter Winkel", "Vollwinkel"],
+    answers: ["Stumpfer Winkel (90-180°)", "Überstumpfer Winkel", "Gestreckter Winkel (180°)", "Vollwinkel (360°)"],
     correct: 1,
     difficulty: "mittel",
     points: 5,
@@ -910,9 +910,9 @@ const K6_MATHE_QUESTIONS = [
     question: "Wie berechnet man den Flächeninhalt A eines Parallelogramms?",
     answers: [
       "A = Grundseite g * Höhe h",
-      "A = (g * h) / 2",
-      "A = Seite a + Seite b",
-      "A = 2 * g + 2 * h"
+      "A = (g mal h) geteilt durch 2",
+      "A = Seite a plus Seite b",
+      "A = 2 mal g plus 2 mal h"
     ],
     correct: 0,
     difficulty: "mittel",
@@ -975,9 +975,9 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Wie berechnet man das Volumen V (Rauminhalt) eines Quaders?",
     answers: [
-      "V = a * b + c",
-      "V = 6 * a * a",
-      "V = 2 * a + 2 * b + 2 * c",
+      "V = a mal b plus c gerechnet",
+      "V = sechsmal die Fläche a mal a",
+      "V = 2 mal a plus 2 mal b plus 2 mal c",
       "V = Länge a * Breite b * Höhe c"
     ],
     correct: 3,
@@ -1208,9 +1208,9 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Was versteht man unter dem Betrag einer Zahl (z. B. |-8|)?",
     answers: [
-      "Das Quadrat der Zahl",
-      "Die Gegenzahl mit anderem Vorzeichen",
-      "Den Kehrwert der Zahl",
+      "Das Quadrat der Zahl, also die Zahl mal sich selbst",
+      "Die Gegenzahl mit dem umgekehrten Vorzeichen",
+      "Der Kehrwert der Zahl, also eins geteilt durch sie",
       "Den Abstand der Zahl zur Null auf der Zahlengerade"
     ],
     correct: 3,
@@ -1282,7 +1282,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Welche Koordinate nennt man bei der Angabe eines Punktes P(x | y) zuerst?",
-    answers: ["Nullwert", "Höhenwert", "y-Koordinate (Hochwert)", "x-Koordinate (Rechtswert)"],
+    answers: ["Der Nullpunkt (Ursprung)", "Der Höhenwert der Achse", "y-Koordinate (der Hochwert)", "x-Koordinate (Rechtswert)"],
     correct: 3,
     difficulty: "leicht",
     points: 5,
@@ -1312,9 +1312,9 @@ const K6_MATHE_QUESTIONS = [
     question: "Was gibt die 'absolute Häufigkeit' bei einer Datenerhebung an?",
     answers: [
       "Die genaue Anzahl, wie oft ein Ereignis eingetreten ist",
-      "Den Prozentwert",
-      "Den Durchschnittswert",
-      "Den Anteil im Vergleich zur Gesamtzahl"
+      "Den Prozentwert im Vergleich zu allen Versuchen",
+      "Den Durchschnittswert aller gemessenen Ergebnisse",
+      "Den Anteil im Vergleich zur gesamten Anzahl aller Versuche"
     ],
     correct: 0,
     difficulty: "leicht",
@@ -1332,8 +1332,8 @@ const K6_MATHE_QUESTIONS = [
     answers: [
       "Den Anteil der absoluten Häufigkeit an der Gesamtzahl",
       "Die Differenz von größtem und kleinstem Wert",
-      "Nur die Anzahl der Fehler",
-      "Die Gesamtzahl aller Versuche"
+      "Nur die Anzahl der im Test gemachten Fehler",
+      "Die Gesamtzahl aller in der Studie durchgeführten Versuche"
     ],
     correct: 0,
     difficulty: "mittel",
@@ -1349,10 +1349,10 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Wie berechnet man das arithmetische Mittel (den Durchschnitt) mehrerer Zahlen?",
     answers: [
-      "Der Wert, der genau in der Mitte steht",
+      "Der Wert, der ganz genau in der Mitte aller Zahlen steht",
       "Summe aller Werte geteilt durch die Anzahl der Werte",
-      "Die Summe aller Werte mal zwei",
-      "Größter Wert minus kleinster Wert"
+      "Die Summe aller Werte einfach nochmal verdoppelt",
+      "Größter Wert minus kleinster Wert der Reihe"
     ],
     correct: 1,
     difficulty: "leicht",
@@ -1382,10 +1382,10 @@ const K6_MATHE_QUESTIONS = [
     subject: "mathematik",
     question: "Was versteht man unter der Spannweite einer Datenreihe?",
     answers: [
-      "Den Mittelwert aller Zahlen",
+      "Den Mittelwert aller Zahlen der kompletten Datenreihe zusammen",
       "Die Differenz zwischen dem größten und dem kleinsten Wert",
-      "Die Anzahl aller Messwerte",
-      "Den am häufigsten vorkommenden Wert"
+      "Die Anzahl aller Messwerte in der gesamten Datenreihe",
+      "Den am häufigsten vorkommenden Wert in der Datenreihe"
     ],
     correct: 1,
     difficulty: "leicht",
@@ -1428,7 +1428,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie groß ist die Wahrscheinlichkeit, bei einem Würfel eine gerade Zahl (2, 4 oder 6) zu würfeln?",
-    answers: ["3/6 (gekürtzt 1/2)", "2/6", "5/6", "1/6"],
+    answers: ["3/6 (gekürtzt 1/2)", "2/6 (falsch gerechnet)", "5/6 (falsch)", "1/6 (falsch)"],
     correct: 0,
     difficulty: "leicht",
     points: 5,
@@ -1484,7 +1484,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Bei 20 Würfen wurde 5-mal eine '6' gewürfelt. Wie hoch ist die relative Häufigkeit?",
-    answers: ["6/20", "5/6", "5/20 (gekürtzt 1/4 bzw. 25%)", "20/5"],
+    answers: ["6/20 als falsches Ergebnis", "5/6 (falsch gerechnet)", "5/20 (gekürtzt 1/4 bzw. 25%)", "20/5 (Zähler und Nenner vertauscht)"],
     correct: 2,
     difficulty: "mittel",
     points: 5,
@@ -2133,8 +2133,8 @@ const K6_MATHE_QUESTIONS = [
     "subject": "mathematik",
     "question": "Wie nennt man eine Kommazahl, bei der sich Ziffern unendlich wiederholen?",
     "answers": [
-      "Runde Dezimalzahl",
-      "Unechte Kommazahl",
+      "Abgerundete Dezimalzahl",
+      "Unechte Kommazahl mit Rest",
       "Periodische Kommazahl",
       "Endliche Kommazahl"
     ],
@@ -2261,10 +2261,10 @@ const K6_MATHE_QUESTIONS = [
     "subject": "mathematik",
     "question": "Wie berechnet man den Flächeninhalt $A$ eines Rechtecks?",
     "answers": [
-      "Formel: $A = a : b$",
-      "Formel: $A = a + b$",
+      "Formel: $A = a : b$ geteilt",
+      "Formel: $A = a + b$ addiert",
       "Formel: $A = a \\cdot b$",
-      "Formel: $A = 2a + 2b$"
+      "Formel: $A = 2a + 2b$ Umfang"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -2388,9 +2388,9 @@ const K6_MATHE_QUESTIONS = [
     "question": "Wie berechnet man das Volumen $V$ eines Quaders mit Kanten $a, b, c$?",
     "answers": [
       "Formel: $V = a \\cdot b \\cdot c$",
-      "Formel: $V = (a \\cdot b) + c$",
-      "Formel: $V = a + b + c$",
-      "Formel: $V = 2a + 2b + 2c$"
+      "Formel: $V = (a \\cdot b) + c$ falsch",
+      "Formel: $V = a + b + c$ addiert",
+      "Formel: $V = 2a + 2b + 2c$ Kanten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2496,7 +2496,7 @@ const K6_MATHE_QUESTIONS = [
     "question": "Was beschreibt die 'Oberfläche' eines Quaders?",
     "answers": [
       "Fläche der Grundseite",
-      "Inhalt des Innenraums",
+      "Inhalt des leeren Innenraums",
       "Summe aller $6$ Flächen",
       "Länge der Kantensumme"
     ],
@@ -2534,7 +2534,7 @@ const K6_MATHE_QUESTIONS = [
       "Senkrecht zueinander",
       "Unterschiedlich groß",
       "Deckungsgleich u. parallel",
-      "Krumm gebogene Form"
+      "Haben eine krumm gebogene Form"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -2551,8 +2551,8 @@ const K6_MATHE_QUESTIONS = [
     "answers": [
       "Verkürzt im $45^\\circ$-Winkel",
       "Immer waagerecht gerade",
-      "Verdoppelt nach oben",
-      "Doppelt so lang senkrecht"
+      "Verdoppelt nach oben hin gezeichnet",
+      "Doppelt so lang senkrecht gezeichnet"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2569,7 +2569,7 @@ const K6_MATHE_QUESTIONS = [
     "answers": [
       "Als gestrichelte Linien",
       "Als Punkte ohne Linie",
-      "Besonders dick rot",
+      "Besonders dick rot markiert",
       "Gar nicht einzeichnen"
     ],
     "correct": 0,
@@ -2641,9 +2641,9 @@ const K6_MATHE_QUESTIONS = [
     "subject": "mathematik",
     "question": "Bei $20$ Würfen fällt $5$-mal die Sechs. Wie hoch ist die relative Häufigkeit?",
     "answers": [
-      "Ergibt $\\frac{1}{6}$ Anteil",
-      "Ergibt $\\frac{5}{6}$ Anteil",
-      "Ergibt $\\frac{6}{20}$ Anteil",
+      "Ergibt $\\frac{1}{6}$ als Anteil",
+      "Ergibt $\\frac{5}{6}$ als Anteil",
+      "Ergibt $\\frac{6}{20}$ als falscher Anteil",
       "Ergibt $\\frac{5}{20} = \\frac{1}{4}$"
     ],
     "correct": 3,
@@ -2659,9 +2659,9 @@ const K6_MATHE_QUESTIONS = [
     "subject": "mathematik",
     "question": "Was bedeutet das Prozentzeichen ($\\%$ ) übersetzt?",
     "answers": [
-      "Von Tausend Teile",
-      "Aus Zehn Einheiten",
-      "Mal Hundert Gerechnet",
+      "Von Tausend Teilen gerechnet",
+      "Aus Zehn gleichen Einheiten",
+      "Mal Hundert einfach gerechnet",
       "Von Hundert (Pro Hundert)"
     ],
     "correct": 3,
@@ -2857,9 +2857,9 @@ const K6_MATHE_QUESTIONS = [
     "subject": "mathematik",
     "question": "Was ist die Summe aller relativen Häufigkeiten eines Zufallsexperiments?",
     "answers": [
-      "Immer genau $0$",
-      "Abhängig von Zahl",
-      "Immer genau $10$",
+      "Immer genau $0$, nie erfüllt",
+      "Abhängig von der Anzahl",
+      "Immer genau $10$ Prozent",
       "Immer genau $1$ ($100\\%$)"
     ],
     "correct": 3,
@@ -3111,7 +3111,7 @@ const K6_MATHE_QUESTIONS = [
     "subject": "mathematik",
     "question": "Welches Diagramm stellt Verläufe (z. B. Temperaturen über Zeit) dar?",
     "answers": [
-      "Das Kreisdiagramm",
+      "Das Kreisdiagramm (rund)",
       "Das Liniendiagramm",
       "Das Streudiagramm",
       "Die Strichliste"
@@ -3318,37 +3318,10 @@ const K6_MATHE_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der Modalwert ist der Wert, der in einer Datenmenge am häufigsten vorkommt."
-  },
-  {"id":"k6ma101","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Was ist 2/3 + 1/3?","answers":["1/3","1","2/6","0"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1.","topic":"erweiterung"},
-  {"id":"k6ma102","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"0,125 als Bruch?","answers":["1/5","1/8","1/4","1/6"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1/8.","topic":"erweiterung"},
-  {"id":"k6ma103","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Was ist (−4) + 9?","answers":["−13","5","13","−5"],"correct":1,"difficulty":"mittel","points":10,"explanation":"5.","topic":"erweiterung"},
-  {"id":"k6ma104","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Was ist 3² × 2?","answers":["12","18","6","36"],"correct":1,"difficulty":"mittel","points":10,"explanation":"9×2=18.","topic":"erweiterung"},
-  {"id":"k6ma105","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"√64 = ?","answers":["6","8","7","32"],"correct":1,"difficulty":"mittel","points":10,"explanation":"8.","topic":"erweiterung"},
-  {"id":"k6ma106","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Prozent: 20% von 150?","answers":["20","30","40","15"],"correct":1,"difficulty":"mittel","points":10,"explanation":"30.","topic":"erweiterung"},
-  {"id":"k6ma107","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Gleichung: x + 7 = 15 → x=?","answers":["7","8","22","15"],"correct":1,"difficulty":"mittel","points":10,"explanation":"8.","topic":"erweiterung"},
-  {"id":"k6ma108","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Fläche Kreis Näherung r=1 (π≈3,14)?","answers":["3,14","6,28","1","0"],"correct":0,"difficulty":"mittel","points":10,"explanation":"πr²≈3,14.","topic":"erweiterung"},
-  {"id":"k6ma109","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Volumen Quader 2×3×4?","answers":["9","24","12","14"],"correct":1,"difficulty":"mittel","points":10,"explanation":"24.","topic":"erweiterung"},
-  {"id":"k6ma110","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Dreisatz: 5 kg kosten 10 € → 8 kg?","answers":["16 €","12 €","18 €","8 €"],"correct":0,"difficulty":"mittel","points":10,"explanation":"16 €.","topic":"erweiterung"},
-  {"id":"k6ma111","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"ggt(24,36)?","answers":["6","12","8","18"],"correct":1,"difficulty":"mittel","points":10,"explanation":"12.","topic":"erweiterung"},
-  {"id":"k6ma112","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"kgV(6,8)?","answers":["24","48","14","12"],"correct":0,"difficulty":"mittel","points":10,"explanation":"24.","topic":"erweiterung"},
-  {"id":"k6ma113","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Winkel Summe Viereck?","answers":["180°","360°","90°","270°"],"correct":1,"difficulty":"mittel","points":10,"explanation":"360°.","topic":"erweiterung"},
-  {"id":"k6ma114","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Negative: (−3)×(−2)?","answers":["−6","6","5","−5"],"correct":1,"difficulty":"mittel","points":10,"explanation":"6.","topic":"erweiterung"},
-  {"id":"k6ma115","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Bruch÷Bruch: 1/2 ÷ 1/4?","answers":["1/8","2","1/2","4"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2.","topic":"erweiterung"},
-  {"id":"k6ma116","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Mittelwert 2,4,6,8?","answers":["4","5","6","20"],"correct":1,"difficulty":"mittel","points":10,"explanation":"5.","topic":"erweiterung"},
-  {"id":"k6ma117","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Potenz: 10³?","answers":["30","1000","100","10000"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1000.","topic":"erweiterung"},
-  {"id":"k6ma118","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Umfang Kreis d=10, π≈3?","answers":["30","15","20","10"],"correct":0,"difficulty":"mittel","points":10,"explanation":"U≈πd≈30.","topic":"erweiterung"},
-  {"id":"k6ma119","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Ungleichung: x > 3, welche Zahl passt?","answers":["2","3","4","0"],"correct":2,"difficulty":"mittel","points":10,"explanation":"4.","topic":"erweiterung"},
-  {"id":"k6ma120","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Koordinaten Quadrant I: x und y …","answers":["beide negativ","x+, y+","x−,y+","x+,y−"],"correct":1,"difficulty":"mittel","points":10,"explanation":"positiv.","topic":"erweiterung"},
-  {"id":"k6ma121","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"1 m³ = ? Liter","answers":["10","100","1000","1"],"correct":2,"difficulty":"mittel","points":10,"explanation":"1000 l.","topic":"erweiterung"},
-  {"id":"k6ma122","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Zins: 5% von 200 €?","answers":["5","10","15","20"],"correct":1,"difficulty":"mittel","points":10,"explanation":"10 €.","topic":"erweiterung"},
-  {"id":"k6ma123","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Primfaktor 12?","answers":["2×2×3","3×4","2×6","12"],"correct":0,"difficulty":"mittel","points":10,"explanation":"2²×3.","topic":"erweiterung"},
-  {"id":"k6ma124","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Strahlensatz Idee: proportionale …","answers":["Winkel nur","Strecken","Farben","Massen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Strecken.","topic":"erweiterung"},
-  {"id":"k6ma125","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Was ist 7/8 − 1/8?","answers":["6/8","3/4","1","beide A und B"],"correct":3,"difficulty":"mittel","points":10,"explanation":"6/8=3/4.","topic":"erweiterung"},
-  {"id":"k6ma126","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Term: 2a+3a=?","answers":["5a","6a","2a3a","a⁵"],"correct":0,"difficulty":"mittel","points":10,"explanation":"5a.","topic":"erweiterung"},
-  {"id":"k6ma127","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Körper: Tetraeder Flächen?","answers":["3","4","6","8"],"correct":1,"difficulty":"mittel","points":10,"explanation":"4 Dreiecke.","topic":"erweiterung"},
-  {"id":"k6ma128","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Zufall: fairer Würfel P(6)?","answers":["1/2","1/6","1/3","1"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1/6.","topic":"erweiterung"},
-  {"id":"k6ma129","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Runden 3,14159 auf Hundertstel?","answers":["3,14","3,15","3,1","3,142"],"correct":0,"difficulty":"mittel","points":10,"explanation":"3,14.","topic":"erweiterung"},
-  {"id":"k6ma130","category":"k6_mathe","area":"schule","grade":6,"subject":"mathe","question":"Funktion linear: y=2x bei x=3?","answers":["5","6","8","2"],"correct":1,"difficulty":"mittel","points":10,"explanation":"6.","topic":"erweiterung"}
+  }
+
+
 ];
+
 if (typeof window !== 'undefined') window.K6_MATHE_QUESTIONS = K6_MATHE_QUESTIONS;
 if (typeof registerQuestions === 'function') registerQuestions('K6_MATHE_QUESTIONS', K6_MATHE_QUESTIONS);

@@ -229,9 +229,9 @@ const K7_ERDKUNDE_QUESTIONS = [
     "question": "Wie nennt man die traditionelle, nachhaltige Feldbauform der indigenen Regenwaldbewohner?",
     "answers": [
       "Wanderfeldbau (Shifting)",
-      "Intensiver Plantagenbau",
-      "Gewächshausanbau groß",
-      "Trockenfeldbau in Oasen"
+      "Intensiver Plantagenanbau",
+      "Bewässerter Terrassenbau",
+      "Mechanisierter Ackerbau"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -264,10 +264,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Welche Klima- u. Vegetationszone schließt nördlich an die gemäßigte Zone an?",
     "answers": [
-      "Die Tropische Waldzone",
+      "Die Subtropische Übergangszone",
       "Die Boreal- / Polarsektor",
-      "Der Wüstengürtel Süd",
-      "Die Subtropische Zone"
+      "Der Äquatoriale Feuchtgürtel",
+      "Die Mediterrane Klimazone"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -300,9 +300,9 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was bezeichnet man als 'Tundra' in der Geographie?",
     "answers": [
-      "Borealer Nadelwald",
-      "Trockene Wüstenzone",
-      "Feuchter Regenwald",
+      "Trockene Steppenzone",
+      "Feuchtwarmer Regenwald",
+      "Dichter Nadelwaldgürtel",
       "Baumlose Kältesteppe"
     ],
     "correct": 3,
@@ -662,9 +662,9 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was kennzeichnet einen Schichtvulkan (Stratovulkan) im Aussehen u. Verhalten?",
     "answers": [
-      "Flach u. dünnflüssig",
-      "Breit ohne jeden Krater",
-      "Rund wie eine Kugel",
+      "Flach u. sehr ruhig fließend",
+      "Breit ohne Kraterform",
+      "Rund wie eine Kuppel",
       "Steil u. explosionsartig"
     ],
     "correct": 3,
@@ -698,10 +698,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Wie nennt man den Pazifischen Vulkangürtel mit extrem vielen aktiven Vulkanen?",
     "answers": [
-      "Graben der Beben",
+      "Atlantischer Bebengraben",
       "Pazifischer Feuerring",
-      "Gürtel der Geysire",
-      "Vulkanring Atlantik"
+      "Gürtel der Geysirfelder",
+      "Alpiner Vulkanbogen Süd"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -788,10 +788,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Wie entsteht eine verheerende Flutwelle (Tsunami) im Ozean?",
     "answers": [
-      "Starker Sturm an Küste",
+      "Starker Orkan an der Küste",
       "Seebeben hebt Meeresboden",
-      "Ebbe u. Flut Wechsel",
-      "Schmelzen von Eisbergen"
+      "Ebbe- u. Flutwechsel im Meer",
+      "Schmelzendes Packeis Pol"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -806,10 +806,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was zählt zu den endogenen Kräften unseres Erdkörpers?",
     "answers": [
-      "Gletscherschliff Eis",
+      "Gletscherschliff im Eis",
       "Vulkanismus u. Tektonik",
-      "Temperaturverwitterung",
-      "Wind- u. Wassererosion"
+      "Starke Temperaturverwitterung",
+      "Wind- u. Wassererosion Tal"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -916,9 +916,9 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Welche Energieträger zählen zu den fossilen Brennstoffen?",
     "answers": [
-      "Wind, Sonne, Wasser",
-      "Biomasse u. Holz",
-      "Geothermie u. Uran",
+      "Wind, Sonne u. Wasser",
+      "Biomasse u. Brennholz",
+      "Geothermie u. Uranerz",
       "Kohle, Erdöl, Erdgas"
     ],
     "correct": 3,
@@ -970,10 +970,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was beschreibt der anthropogene Klimawandel?",
     "answers": [
-      "Kühlung durch Sonne",
+      "Kühlung durch die Sonne",
       "Menschlich verursacht",
-      "Natürlicher Zyklus",
-      "Vulkanischer Staub"
+      "Natürlicher Klimazyklus",
+      "Vulkanischer Ascheflug"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -989,9 +989,9 @@ const K7_ERDKUNDE_QUESTIONS = [
     "question": "Welches Gas entsteht vermehrt bei der Verdauung von Rinderbeständen u. in Reisfeldern?",
     "answers": [
       "Treibhausgas Methan",
-      "Reiner Sauerstoff",
-      "Kohlenmonoxid Gif",
-      "Edelgas Argon"
+      "Reiner Sauerstoffanteil",
+      "Giftiges Kohlenmonoxid",
+      "Seltenes Edelgas Argon"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1042,9 +1042,9 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was versteht man unter 'Virtuellem Wasser'?",
     "answers": [
-      "Eis im Kühlschrank",
-      "Regen in Wolken oben",
-      "Wasser im Videospiel",
+      "Eis aus dem Kühlschrank",
+      "Regenwasser in Wolken oben",
+      "Wasser im Computerspiel",
       "Verbrauch bei Produktion"
     ],
     "correct": 3,
@@ -1060,10 +1060,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Wie viel Liter virtuelles Wasser stecken etwa in der Herstellung einer einzigen Jeans?",
     "answers": [
-      "Ca. 10 bis 20 Liter",
+      "Ca. 15 bis 25 Liter",
       "Ca. 8.000 bis 10.000 L",
-      "Ca. 100 bis 200 Liter",
-      "Ca. 50.000 Liter"
+      "Ca. 150 bis 250 Liter",
+      "Ca. 40.000 bis 60.000 L"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1151,9 +1151,9 @@ const K7_ERDKUNDE_QUESTIONS = [
     "question": "Was versteht man unter der 'Rekultivierung' abgebaggerter Tagebauflächen?",
     "answers": [
       "Wiederherstellung Natur",
-      "Verkauf an Konzerne",
-      "Flutung mit Abfall",
-      "Bauen von Fabriken"
+      "Verkauf an Konzerne dort",
+      "Flutung mit Bauschutt",
+      "Bauen neuer Fabriken"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1168,10 +1168,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Welches Umweltproblem entsteht durch riesige Mengen Plastikmüll in Ozeanen?",
     "answers": [
-      "Kühlung der Meere",
+      "Starke Kühlung der Meere",
       "Bildung von Mikroplastik",
-      "Zunahme von Korallen",
-      "Reinigung des Wassers"
+      "Wachsende Korallenriffe",
+      "Reinigung des Meerwassers"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1186,9 +1186,9 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was beschreibt das Prinzip der Nachaltigkeit (Dreiecks-Modell)?",
     "answers": [
-      "Staat, Markt, Verbraucher",
-      "Geld, Macht, Reichtum",
-      "Wind, Sonne, Wasser",
+      "Staat, der Markt u. Verbraucher",
+      "Geld, Macht u. Reichtum",
+      "Wind, Sonne u. Wasserkraft",
       "Ökologie, Ökonomie, Soziales"
     ],
     "correct": 3,
@@ -1205,9 +1205,9 @@ const K7_ERDKUNDE_QUESTIONS = [
     "question": "Welche Energieform wandeln Photovoltaikanlagen auf Häuserdächern um?",
     "answers": [
       "Sonnenlicht in Strom",
-      "Biomasse in Gas",
-      "Erdwärme in Kälte",
-      "Windkraft in Wärme"
+      "Biomasse in Heizgas",
+      "Erdwärme in Kälteluft",
+      "Windkraft in Warmwasser"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1222,10 +1222,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Welche Energieform nutzen Solarthermieanlagen auf Hausdächern?",
     "answers": [
-      "Erdwärme für Licht",
-      "Sonnenlicht für Strom",
+      "Erdwärme für Kühlluft",
+      "Sonnenlicht für Strom pur",
       "Sonnenlicht für Warmwasser",
-      "Windenergie für Wasser"
+      "Windenergie für Warmwasser"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1241,9 +1241,9 @@ const K7_ERDKUNDE_QUESTIONS = [
     "question": "Warum bezeichnet man Erdöl u. Erdgas als endliche Ressourcen?",
     "answers": [
       "Neubildung dauert zu lang",
-      "Werden nie verbraucht",
-      "Entstehen täglich neu",
-      "Kommen aus der Sonne"
+      "Werden nie ganz verbraucht",
+      "Entstehen jeden Tag neu",
+      "Kommen direkt aus der Sonne"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1258,10 +1258,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was versteht man unter dem Begriff 'Synergie' beim Umweltschutz?",
     "answers": [
-      "Gegenseitige Blockade",
-      "Reine Verschwendung",
+      "Gegenseitige Behinderung",
+      "Reine Zeitverschwendung",
       "Positive Zusammenwirkung",
-      "Verlust aller Mittel"
+      "Verlust aller Ressourcen"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1312,10 +1312,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was versteht man unter der 'Versiegelung' von Böden?",
     "answers": [
-      "Bewässern mit Fluss",
-      "Pflügen des Ackers",
+      "Bewässern mit Flusswasser",
+      "Pflügen des Ackerbodens",
       "Bebauung mit Asphalt",
-      "Düngen mit Nitrat"
+      "Düngen mit viel Nitrat"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1440,9 +1440,9 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was bedeutet der Begriff 'Subsistenzwirtschaft' (Eigenbedarfswirtschaft)?",
     "answers": [
-      "Export von Rohstoffen",
+      "Export von Rohstoffen ins Ausland",
       "Verkauf auf dem Weltmarkt",
-      "Gewinnmaximierung Firma",
+      "Gewinnmaximierung der Firma",
       "Produktion zum Selbstbedarf"
     ],
     "correct": 3,
@@ -1620,10 +1620,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was beschreibt der Begriff 'Urbanisierung' in der Stadtgeographie?",
     "answers": [
-      "Wachstum der Wälder",
+      "Wachstum der Waldflächen",
       "Ausbreitung der Städte",
-      "Abbau aller Wohnungen",
-      "Rückzug aufs Dorf"
+      "Abbau aller alten Wohnungen",
+      "Rückzug der Leute aufs Dorf"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1710,10 +1710,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was versteht man unter Sonderwirtschaftszonen in Schwellenländern?",
     "answers": [
-      "Zonen ohne Strom",
+      "Zonen komplett ohne Strom",
       "Gebiete für Investoren",
-      "Geschützte Naturparks",
-      "Bereiche für Militär"
+      "Geschützte Naturparkgebiete",
+      "Bereiche nur fürs Militär"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1746,10 +1746,10 @@ const K7_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was beschreibt die 'Sonderkultur' in der Landwirtschaft?",
     "answers": [
-      "Viehhaltung im Stall",
+      "Viehhaltung im engen Stall",
       "Arbeitsintensiver Anbau",
-      "Getreideanbau groß",
-      "Forstwirtschaft Holz"
+      "Großer Getreideanbau eben",
+      "Forstwirtschaft im Wald"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1801,46 +1801,17 @@ const K7_ERDKUNDE_QUESTIONS = [
     "question": "Was ist das Hauptziel einer nachhaltigen Stadtentwicklung?",
     "answers": [
       "Lebensqualität u. Umwelt",
-      "Verdopplung von Lärm",
-      "Maximale Autostraßen",
-      "Abreiß historischer Bau"
+      "Verdopplung des Lärmpegels",
+      "Bau maximaler Autostraßen",
+      "Abriss historischer Bauten"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Nachhaltige Stadtplanung verbindet Grünflächen, öffentlichen Nahverkehr u. Energieeffizienz."
-  },
-  {"id":"k7ek101","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Deutschland Kontinent?","answers":["Afrika","Europa","Asien","Australien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Europa."},
-  {"id":"k7ek102","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Hauptstadt FR?","answers":["Lyon","Paris","Marseille","Nizza"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Paris."},
-  {"id":"k7ek103","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Äquator Breite?","answers":["90°","0°","180°","45°"],"correct":1,"difficulty":"mittel","points":10,"explanation":"0°."},
-  {"id":"k7ek104","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Nachhaltigkeit: …","answers":["verbrauchen","schonend nutzen","nur Export","kein Wasser"],"correct":1,"difficulty":"mittel","points":10,"explanation":"schonen."},
-  {"id":"k7ek105","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Urbanisierung = …","answers":["Landwirtschaft","Verstädterung","Wald","Eiszeit"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stadt."},
-  {"id":"k7ek106","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Plattentektonik erklärt …","answers":["Wetter","Erdbeben/Vulkane","Mode","Sprache"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Platten."},
-  {"id":"k7ek107","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Migration pull?","answers":["Krieg","Jobs Ziel","Katastrophe","Verfolgung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Anziehung."},
-  {"id":"k7ek108","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Treibhausgas u. a. …","answers":["O₂","CO₂","N₂","He"],"correct":1,"difficulty":"mittel","points":10,"explanation":"CO₂."},
-  {"id":"k7ek109","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"1:100000 → 1 cm = …","answers":["1 m","1 km","100 km","10 m"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1 km."},
-  {"id":"k7ek110","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Rhein → …","answers":["Ostsee","Nordsee","Adria","Donau"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nordsee."},
-  {"id":"k7ek111","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Wüste: wenig …","answers":["Sand","Niederschlag","Sonne","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Regen."},
-  {"id":"k7ek112","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Globalisierung = …","answers":["Isolation","Verflechtung","Lokal","Autarkie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Netz."},
-  {"id":"k7ek113","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"HDI u. a. …","answers":["Militär","Bildung/Gesundheit/Einkommen","CO₂","nur BIP"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Entwicklung."},
-  {"id":"k7ek114","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Desertifikation = …","answers":["Aufforstung","Wüstenbildung","Gletscher","Stadt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Degradation."},
-  {"id":"k7ek115","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Alpen = …","answers":["Tiefland","Hochgebirge","Inseln","Wüste"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gebirge."},
-  {"id":"k7ek116","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"EU Binnenmarkt: freier …","answers":["Krieg","Warenverkehr","Zoll","Grenze überall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Waren."},
-  {"id":"k7ek117","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Legende erklärt …","answers":["Politik","Signaturen","Zeit","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zeichen."},
-  {"id":"k7ek118","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Süßwasser u. a. in …","answers":["Meer","Gletscher/Grundwasser","Asphalt","Hochhaus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Süßwasser."},
-  {"id":"k7ek119","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Strukturwandel → …","answers":["Kohle","Dienstleistungen","Wüste","Landwirtschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"tertiär."},
-  {"id":"k7ek120","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Geopolitik: Macht und …","answers":["Sport","Raum","Mode","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Raum."},
-  {"id":"k7ek121","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Tropen nah am …","answers":["Pol","Äquator","Mond","Mars"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Äquator."},
-  {"id":"k7ek122","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Bodenschatz?","answers":["Luft","Erz/Kohle","Wolke","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rohstoff."},
-  {"id":"k7ek123","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Versiegelung + Starkregen → …","answers":["weniger Risiko","mehr Hochwasser","kein Effekt","Schnee"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Risiko."},
-  {"id":"k7ek124","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Fair Trade → …","answers":["Dumping","faire Preise","Zwischenhandel max","Schwarzmarkt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fairness."},
-  {"id":"k7ek125","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Kompass → …","answers":["Osten","Norden","Süden","Westen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"N."},
-  {"id":"k7ek126","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Primärer Sektor = …","answers":["Industrie","Rohstoffe/Landwirtschaft","Dienstleistung","IT"],"correct":1,"difficulty":"mittel","points":10,"explanation":"primär."},
-  {"id":"k7ek127","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Bevölkerungsdichte = …","answers":["Zahl","Einwohner/Fläche","Geburten","Migration"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Dichte."},
-  {"id":"k7ek128","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Klimaschutz: mehr …","answers":["Kohle","Erneuerbare","Abholzung","Flüge"],"correct":1,"difficulty":"mittel","points":10,"explanation":"EE."},
-  {"id":"k7ek129","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"Metropolregion = …","answers":["Dorf","Stadtregion","Wüste","Insel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Agglomeration."},
-  {"id":"k7ek130","category":"k7_erdkunde","area":"schule","grade":7,"subject":"erdkunde","topic":"erweiterung","question":"SDGs sind …","answers":["Krieg","UN-Nachhaltigkeitsziele","nur DE","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"UN."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K7_ERDKUNDE_QUESTIONS = K7_ERDKUNDE_QUESTIONS;

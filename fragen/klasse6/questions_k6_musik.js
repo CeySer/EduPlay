@@ -48,10 +48,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Wie nennt man den gebräuchlichsten Notenschlüssel für hohe Töne?",
     "answers": [
-      "Der Altschlüssel",
+      "Der Sopranschlüssel",
       "Der Violinschlüssel",
-      "Der Tenorschlüssel",
-      "Der Bassschlüssel"
+      "Der Baritonschlüssel",
+      "Der Mezzoschlüssel"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -157,9 +157,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "question": "Wie nennt man den Abstand zwischen zwei Tönen in der Musiklehre?",
     "answers": [
       "Das Intervall",
-      "Der Rhythmus",
-      "Der Akkord",
-      "Die Melodie"
+      "Der Kammerton",
+      "Die Tonleiter",
+      "Der Halbton"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -393,9 +393,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "question": "Wie nennt man Schlaginstrumente, die bestimmte Tonhöhen spielen können?",
     "answers": [
       "Stimmbare Percussion",
-      "Rhythmusgeräte",
-      "Unstimmbare Becken",
-      "Geräuscherzeuger"
+      "Ungestimmte Trommeln",
+      "Reine Rhythmusgeräte",
+      "Klanglose Rasseln"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -430,8 +430,8 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "answers": [
       "Die Kirchenorgel",
       "Das Klavier (Flügel)",
-      "Das Cembalo Zupf",
-      "Das Akkordeon"
+      "Das Cembalo (Kiel-Zupf)",
+      "Das Akkordeon (Balg)"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -465,9 +465,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "question": "Welches Holzblasinstrument nutzt ein Doppelrohrblatt zur Klangerzeugung?",
     "answers": [
       "Die Oboe (Fagott)",
-      "Die Klarinette",
-      "Das Saxophon",
-      "Die Blockflöte"
+      "Die Klarinette (Rohr)",
+      "Das Saxophon (Blech)",
+      "Die Blockflöte Holz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -756,9 +756,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Welcher taube Komponist schuf die 9. Sinfonie mit der 'Ode an die Freude'?",
     "answers": [
-      "Joseph Haydn",
-      "Franz Schubert",
-      "W. A. Mozart",
+      "Joseph Haydn Wien",
+      "Franz P. Schubert",
+      "Wolfgang A. Mozart",
       "L. van Beethoven"
     ],
     "correct": 3,
@@ -811,9 +811,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "question": "Welcher französische Komponist schuf 'Der Karneval der Tiere'?",
     "answers": [
       "Camille Saint-Saëns",
-      "Maurice Ravel",
-      "Claude Debussy",
-      "Georges Bizet"
+      "Maurice Ravel Werk",
+      "Claude Debussy Musik",
+      "Georges Bizet Oper"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -864,10 +864,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Wie nennt man den ersten Geiger eines Orchesters?",
     "answers": [
-      "Erster Solist",
-      "Bogenführer",
+      "Erster Solist Geige",
+      "Der Bogenführer",
       "Konzertmeister",
-      "Orchesterchef"
+      "Der Orchesterchef"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -882,10 +882,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Was versteht man unter 'Programmmusik'?",
     "answers": [
-      "Musik ohne Takt",
-      "Musik aus Computer",
+      "Musik ohne Taktart",
+      "Musik aus dem Computer",
       "Musik erzählt Story",
-      "Reine Tanzmusik"
+      "Reine Tanzmusik pur"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -900,10 +900,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Welcher Komponist schuf das Ballett 'Der Nussknacker'?",
     "answers": [
-      "Igor Strawinsky",
-      "Dmitri Schostakow",
+      "Igor Strawinsky Werk",
+      "Dmitri Schostakowitsch",
       "P. I. Tschaikowski",
-      "Modest Mussorgski"
+      "Modest Mussorgski Bild"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -974,10 +974,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Welche Sekundärfarbe entsteht beim Mischen von Blau und Rot?",
     "answers": [
-      "Die Farbe Orange",
-      "Die Farbe Grün",
+      "Die Farbe Orangerot",
+      "Die Farbe Grasgrün",
       "Die Farbe Violett",
-      "Die Farbe Braun"
+      "Die Farbe Kastanie"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1046,10 +1046,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Welche Farben empfindet man typischerweise als 'kalte Farben'?",
     "answers": [
-      "Rot, Orange, Gelb",
+      "Rot, Orange, Gelbton",
       "Blau, Cyan, Türkis",
-      "Braun u. Hellgelb",
-      "Rosa, Gold, Ocker"
+      "Braun und Hellgelb",
+      "Rosa, Gold und Ocker"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1192,10 +1192,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Wie nennt man die Trennlinie zwischen Erde u. Himmel im Bild?",
     "answers": [
-      "Die Vertikale",
+      "Die Vertikallinie",
       "Die Horizontlinie",
-      "Die Fluchtlinie",
-      "Die Grundlinie"
+      "Die Fluchtliniengruppe",
+      "Die Grundlinie unten"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1228,9 +1228,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Wie verändern sich Dinge im Bild, je weiter sie entfernt sind?",
     "answers": [
-      "Bleiben exakt gleich",
+      "Bleiben ganz genau gleich",
       "Werden größer dargestellt",
-      "Werden immer roter",
+      "Werden ständig viel größer",
       "Werden kleiner dargestellt"
     ],
     "correct": 3,
@@ -1246,9 +1246,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Was beschreibt das Raumprinzip der 'Überlappung' (Verdeckung)?",
     "answers": [
-      "Bilder werden gemalt",
-      "Dinge nebeneinander",
-      "Farben werden dunkler",
+      "Bilder werden nur gemalt",
+      "Dinge liegen nebeneinander",
+      "Farben werden viel dunkler",
       "Vorderes verdeckt Hintern"
     ],
     "correct": 3,
@@ -1264,9 +1264,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Wie nennt man eine Ansicht von sehr hoch oben?",
     "answers": [
-      "Die Zentralansicht",
-      "Augenhöhe Normal",
-      "Froschperspektive",
+      "Die Zentralperspektive",
+      "Die Froschperspektive",
+      "Die Normale Augenhöhe",
       "Die Vogelperspektive"
     ],
     "correct": 3,
@@ -1300,10 +1300,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Was verändert sich bei der 'Luft- u. Farbperspektive' im Hintergrund?",
     "answers": [
-      "Kontraste werden schärfer",
+      "Kontraste werden viel schärfer",
       "Farben verblassen / bläulich",
-      "Farben werden knallrot",
-      "Farben werden tiefschwarz"
+      "Farben werden ganz knallrot",
+      "Farben werden tiefschwarz alle"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1354,10 +1354,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Wie nennt man den Schatten, den ein Körper auf den Boden wirft?",
     "answers": [
-      "Der Halbschatten",
-      "Der Eigenschatten",
+      "Der Halbschatten sanft",
+      "Der Eigenschatten Form",
       "Der Schlagschatten",
-      "Der Kernschatten"
+      "Der Kernschatten dunkel"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1428,10 +1428,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Womit schneidet man Muster in die Linolplatte beim Linolschnitt?",
     "answers": [
-      "Mit Radiernadel",
+      "Mit einer Radiernadel",
       "Mit Linolschnitt-Messer",
-      "Mit Pinselstiel",
-      "Mit Scheren-Blatt"
+      "Mit dem Pinselstiel dick",
+      "Mit einer Scheren-Klinge"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1500,10 +1500,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Was versteht man unter einer 'Skizze'?",
     "answers": [
-      "Gedruckter Schnitt",
+      "Ein gedruckter Schnitt",
       "Flüchtige Vorzeichnung",
-      "Große Wandplastik",
-      "Fertig Ölgemälde"
+      "Eine große Wandplastik",
+      "Ein fertiges Ölgemälde"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1518,9 +1518,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Wozu dient Fixativ-Spray bei Kohle- oder Pastellzeichnungen?",
     "answers": [
-      "Macht Bild glänzend",
-      "Löscht Striche aus",
-      "Färbt Bild dunkel",
+      "Macht das Bild glänzend",
+      "Löscht die Striche aus",
+      "Färbt das Bild dunkel",
       "Verhindert Verwischen"
     ],
     "correct": 3,
@@ -1557,9 +1557,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "question": "Welcher Renaissance-Künstler malte das weltberühmte Bild der 'Mona Lisa'?",
     "answers": [
       "Leonardo da Vinci",
-      "Albrecht Dürer",
-      "Michelangelo",
-      "Raffael Sanzio"
+      "Albrecht Dürer Werk",
+      "Michelangelo Buonarroti",
+      "Raffael Sanzio Bilder"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1574,10 +1574,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Welcher Künstler malte die 'Sternennacht' u. 'Sonnenblumen' mit dickem Strich?",
     "answers": [
-      "Pablo Picasso",
+      "Pablo Picasso Werke",
       "Vincent van Gogh",
-      "Salvador Dalí",
-      "Claude Monet"
+      "Salvador Dalí Bilder",
+      "Claude Monet Gemälde"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1700,10 +1700,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Welche Epoche der Antike schuf ideale Marmorstatuen in Griechenland?",
     "answers": [
-      "Gotik Zeitalter",
+      "Das Gotik Zeitalter",
       "Griechische Klassik",
-      "Barock Zeitalter",
-      "Romanik Epoche"
+      "Das Barock Zeitalter",
+      "Die Romanik Epoche"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1736,10 +1736,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Welche Bauform kennzeichnet gotische Kathedralen im Mittelalter?",
     "answers": [
-      "Flache Holzdecken",
+      "Flache Holzdeckenbauten",
       "Runde Mosaikkuppeln",
       "Spitzbögen u. Fenster",
-      "Niedrige Erdwände"
+      "Niedrige Erdwallbauten"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1755,9 +1755,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'Pop-Art'?",
     "answers": [
       "Kunst aus Alltagskultur",
-      "Reine Altar-Malerei",
-      "Dunkle Höhlenkunst",
-      "Klassische Büsten"
+      "Reine Altar-Malerei alt",
+      "Dunkle Höhlenkunst früh",
+      "Klassische Marmorbüsten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1772,10 +1772,10 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "subject": "musik_kunst",
     "question": "Wie nennt man ein Kunstwerk, das direkt auf eine Wand gemalt wird?",
     "answers": [
-      "Die Miniatur",
+      "Eine kleine Miniatur",
       "Das Wandfresko",
-      "Das Tafelbild",
-      "Die Skulptur"
+      "Ein Tafelbild klein",
+      "Eine große Skulptur"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1817,38 +1817,9 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Eine Holzstaffelei trägt u. fixiert den Bildträger während des Malens."
-  },
-  {"id":"k6mu101","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Note mit 4 Schlägen oft …","answers":["Achtel","Ganze Note","Sechzehntel","Triole"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ganze.","topic":"erweiterung"},
-  {"id":"k6mu102","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Violinschlüssel zeigt …","answers":["Bass","hohe Lage","Schlagzeug nur","nur Pausen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Sopran/höhere.","topic":"erweiterung"},
-  {"id":"k6mu103","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Tempo „Allegro“ eher …","answers":["sehr langsam","schnell/lebhaft","ohne Puls","nur Pause"],"correct":1,"difficulty":"mittel","points":10,"explanation":"lebhaft.","topic":"erweiterung"},
-  {"id":"k6mu104","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Dur-Tonleiter Halbtonschritte bei …","answers":["1-2","3-4 und 7-8","nur am Anfang","nirgends"],"correct":1,"difficulty":"mittel","points":10,"explanation":"E-F, H-C.","topic":"erweiterung"},
-  {"id":"k6mu105","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Instrumentengruppe Geige = …","answers":["Holzbläser","Streichinstrument","Blech","Schlagzeug"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Streicher.","topic":"erweiterung"},
-  {"id":"k6mu106","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Dynamik „piano“ heißt …","answers":["laut","leise","sehr laut","mittel ohne Zeichen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"leise.","topic":"erweiterung"},
-  {"id":"k6mu107","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Taktart 3/4 oft …","answers":["Marsch","Walzer","nur Rock","nur Pausen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Walzer.","topic":"erweiterung"},
-  {"id":"k6mu108","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Akkord aus drei Tönen = …","answers":["Intervall","Dreiklang","Skala","Pause"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Dreiklang.","topic":"erweiterung"},
-  {"id":"k6mu109","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Komponist Beethoven Epoche eher …","answers":["Mittelalter","Klassik/Romantik Übergang","Barock nur Bach","Jazz"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wiener Klassik+.","topic":"erweiterung"},
-  {"id":"k6mu110","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Improvisation = …","answers":["Notenlesen streng","spontan gestalten","nur Dirigat","nur Pause"],"correct":1,"difficulty":"mittel","points":10,"explanation":"aus dem Moment.","topic":"erweiterung"},
-  {"id":"k6mu111","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Kanon: Stimmen setzen …","answers":["gleichzeitig immer","versetzt ein","nie","nur instrumental ohne Regel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nacheinander.","topic":"erweiterung"},
-  {"id":"k6mu112","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Bassschlüssel für …","answers":["hohe Flöte","tiefe Lage","nur Gesang Sopran","Schlagzeug Noten immer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bass.","topic":"erweiterung"},
-  {"id":"k6mu113","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Fermate bedeutet …","answers":["schneller","Halten/Pause länger","lauter","kürzer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"halten.","topic":"erweiterung"},
-  {"id":"k6mu114","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Intervalle: Oktave umfasst …","answers":["3 Töne","8 Stufen","12 nur Halbtöne Namen","1 Ton"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Oktave.","topic":"erweiterung"},
-  {"id":"k6mu115","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Orchester leitet der …","answers":["Solist immer","Dirigent","Publikum","Bühnenbild"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Dirigent.","topic":"erweiterung"},
-  {"id":"k6mu116","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Rhythmus ist …","answers":["nur Melodie","Zeitstruktur","nur Harmonie","nur Text"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zeit.","topic":"erweiterung"},
-  {"id":"k6mu117","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Forte = …","answers":["leise","laut","sehr leise","ohne Ton"],"correct":1,"difficulty":"mittel","points":10,"explanation":"laut.","topic":"erweiterung"},
-  {"id":"k6mu118","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Liedform Strophe-Refrain = …","answers":["durchkomponiert nur","Wiederkehr Refrain","nur Instrumental","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"strophisch+Refrain.","topic":"erweiterung"},
-  {"id":"k6mu119","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Klangfarbe unterscheidet …","answers":["nur Lautstärke","Instrumente/Stimmen","nur Tempo","nur Takt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Timbre.","topic":"erweiterung"},
-  {"id":"k6mu120","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Barock Merkmal u. a. …","answers":["Jazz-Swing","Basso continuo","Elektrosynth","Rap"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Generalbass.","topic":"erweiterung"},
-  {"id":"k6mu121","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Note Achtel ist … der Viertel.","answers":["doppelt so lang","halb so lang","gleich","vierfach"],"correct":1,"difficulty":"mittel","points":10,"explanation":"halb.","topic":"erweiterung"},
-  {"id":"k6mu122","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Pentatonik hat … Töne.","answers":["7","5","12","3"],"correct":1,"difficulty":"mittel","points":10,"explanation":"5.","topic":"erweiterung"},
-  {"id":"k6mu123","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Synkope verschiebt …","answers":["Tonart","Betonung","Instrument","Dirigent"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Akzent.","topic":"erweiterung"},
-  {"id":"k6mu124","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Kunstlied oft für …","answers":["Orchester Tutti nur","Singstimme+Klavier","nur Schlagzeug","nur Chor ohne Text"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Lied.","topic":"erweiterung"},
-  {"id":"k6mu125","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Crescendo bedeutet …","answers":["lauter werden","leiser","plötzlich laut","Tempo hoch"],"correct":0,"difficulty":"mittel","points":10,"explanation":"anschwellend.","topic":"erweiterung"},
-  {"id":"k6mu126","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Tonleiter Moll klingt oft …","answers":["immer fröhlich","dunkler/ernster","ohne Halbtöne","nur perkussiv"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Mollcharakter.","topic":"erweiterung"},
-  {"id":"k6mu127","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Partitur zeigt …","answers":["nur eine Stimme","alle Stimmen","nur Text","nur Tempo"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gesamt.","topic":"erweiterung"},
-  {"id":"k6mu128","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Ostinato ist …","answers":["einmalig","wiederholte Figur","nur Schluss","nur Intro Jazz"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wiederholung.","topic":"erweiterung"},
-  {"id":"k6mu129","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Kammermusik eher …","answers":["großes Orchester","kleine Besetzung","nur Elektronik","nur Chor 100"],"correct":1,"difficulty":"mittel","points":10,"explanation":"klein.","topic":"erweiterung"},
-  {"id":"k6mu130","category":"k6_musik_kunst","area":"schule","grade":6,"subject":"musik","question":"Auftakt beginnt …","answers":["auf 1","vor dem ersten Volltakt","nur am Ende","ohne Rhythmus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Auftakt.","topic":"erweiterung"}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K6_MUSIK_KUNST_QUESTIONS = K6_MUSIK_KUNST_QUESTIONS;

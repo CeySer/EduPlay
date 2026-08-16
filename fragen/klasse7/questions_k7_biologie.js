@@ -12,10 +12,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was versteht man unter der Biosphäre auf unserer Erde?",
     "answers": [
-      "Nur der Erdmantel",
+      "Nur das Erdmagnetfeld",
       "Gesamter Lebensraum",
-      "Nur die Ozeanwelt",
-      "Reine Atmosphäre"
+      "Nur der Meeresboden",
+      "Nur die Landmasse"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -103,9 +103,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "question": "Welche Waldschicht besteht vorwiegend aus Gebüschen u. Nachwuchsbäumen?",
     "answers": [
       "Die Strauchschicht",
-      "Die Moosschicht",
-      "Die Wurzelschicht",
-      "Die Krautschicht"
+      "Die Baumkronenschicht",
+      "Die Baumschicht",
+      "Die Bodenschicht"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -210,10 +210,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welcher Organismus gehört zu den Destruenten (Zersetzern)?",
     "answers": [
-      "Fichte im Forst",
+      "Fichte im Forstgrund",
       "Regenwurm im Boden",
-      "Reh auf der Wiese",
-      "Rotfuchs im Wald"
+      "Rothirsch im Wald",
+      "Rotfuchs in der Höhle"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -228,10 +228,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welcher Organismus zählt zu den Produzenten im Ökosystem?",
     "answers": [
-      "Waldameise Erde",
-      "Waldkauz Baum",
+      "Waldameise im Bau",
+      "Waldkauz im Baum",
       "Grüne Laubpflanze",
-      "Borkenkäfer Holz"
+      "Borkenkäfer im Holz"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -318,10 +318,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was unterscheidet die Winterruhe vom echten Winterschlaf?",
     "answers": [
-      "Monatelanges Koma",
-      "Kein Herzschlag mehr",
+      "Monatelanges Tiefkoma",
+      "Kein Herzschlag mehr da",
       "Regelmäßiges Erwachen",
-      "Starke Unterkühlung"
+      "Starke Unterkühlung pur"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -426,10 +426,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was besagt die Allensche Regel bei gleichwarmen Tieren?",
     "answers": [
-      "Klima ist egal",
-      "Kälter große Organe",
+      "Klima ist völlig egal",
+      "Kälter größere Organe",
       "Kälter kleine Organe",
-      "Wärmer kleine Ohren"
+      "Wärmer kleinere Ohren"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -482,8 +482,8 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welches grüne Pigment absorbiert die Sonnenenergie im Blatt?",
     "answers": [
-      "Pigment Carotinoid",
-      "Pigment Melanin",
+      "Pigment Carotinoide",
+      "Pigment Melanin pur",
       "Pigment Hämoglobin",
       "Pigment Chlorophyll"
     ],
@@ -537,8 +537,8 @@ const K7_BIOLOGIE_QUESTIONS = [
     "question": "Über welche Strukturen nehmen Pflanzen Kohlenstoffdioxid aus der Luft auf?",
     "answers": [
       "Über Spaltöffnungen",
-      "Über Wurzelhaare",
-      "Über die Blüten",
+      "Über die Wurzelhaare",
+      "Über die Blütenblätter",
       "Über die Baumrinde"
     ],
     "correct": 0,
@@ -646,7 +646,7 @@ const K7_BIOLOGIE_QUESTIONS = [
     "answers": [
       "Glucose u. Sauerstoff",
       "CO2, Wasser u. Energie",
-      "Ozon u. Mineralien",
+      "Stärke, Fett u. Eiweiß",
       "Stärke u. Stickstoff"
     ],
     "correct": 1,
@@ -970,10 +970,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Wer steht am Ende einer Nahrungskette u. hat in der Regel keine Fressfeinde?",
     "answers": [
-      "Der Krautfresser",
+      "Der Krautfresser hier",
       "Der Endverbraucher",
-      "Der Ersterzeuger",
-      "Der Pflanzenkeim"
+      "Der Ersterzeuger dort",
+      "Der Pflanzenkeimling"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1061,9 +1061,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "question": "Was versteht man unter einer ökologischen Nische?",
     "answers": [
       "Gesamtheit Ansprüche",
-      "Höhle im Felsen",
-      "Versteck im Laub",
-      "Schlafplatz Baum"
+      "Höhle im Felsspalt",
+      "Versteck im Laubhaufen",
+      "Schlafplatz im Baum"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1078,10 +1078,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was besagt das ökologische Konkurrenzausschlussprinzip?",
     "answers": [
-      "Gleiche Nische teilt",
-      "Beute frisst Jäger",
+      "Gleiche Nische teilt sich",
+      "Beute frisst den Jäger",
       "Gleiche Nische meidet",
-      "Alle Tiere siegen"
+      "Alle Tiere siegen stets"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1114,10 +1114,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welches Beispiel zeigt eine klassische Symbiose im Ökosystem Wald?",
     "answers": [
-      "Borkenkäfer Baum",
-      "Fuchs u. Feldmaus",
+      "Borkenkäfer u. Baum",
+      "Fuchs u. die Feldmaus",
       "Pilz u. Baumwurzel",
-      "Zecke u. Rehwild"
+      "Zecke u. das Rehwild"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1132,9 +1132,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was bezeichnet man als Parasitismus?",
     "answers": [
-      "Vorteil für beide",
-      "Gemeinsames Jagen",
-      "Freundliche Hilfe",
+      "Vorteil für beide Arten",
+      "Gemeinsame Jagd im Rudel",
+      "Freundliche Hilfe im Bau",
       "Einseitiger Nutzen"
     ],
     "correct": 3,
@@ -1150,10 +1150,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welches Tier ist ein typischer Ektoparasit (Außenparasit) bei Säugetieren?",
     "answers": [
-      "Die Waldbienenart",
-      "Der Waldregenwurm",
+      "Die Waldbienenart hier",
+      "Der Waldregenwurm dort",
       "Die Holzbock-Zecke",
-      "Der Marienkäfer"
+      "Der kleine Marienkäfer"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1204,10 +1204,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was versteht man unter Mimikry im Tierreich?",
     "answers": [
-      "Kältestarre Winter",
+      "Kältestarre im Winter",
       "Täuschung von Feinden",
-      "Samenverbreitung",
-      "Winterschlaf im Bau"
+      "Samenverbreitung im Wind",
+      "Winterschlaf im Erdbau"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1222,10 +1222,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welches Beispiel zeigt eine klassische Mimikry?",
     "answers": [
-      "Chamäleon im Baum",
+      "Chamäleon auf dem Ast",
       "Schwebfliege wie Wespe",
-      "Stabschrecke als Ast",
-      "Eule in der Nacht"
+      "Stabschrecke als ein Ast",
+      "Eule in dunkler Nacht"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1277,9 +1277,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "question": "Welcher Umweltfaktor begrenzt nach dem Liebigschen Minimumgesetz das Wachstum?",
     "answers": [
       "Der knappste Faktor",
-      "Der Lichtfaktor",
-      "Der meiste Faktor",
-      "Der Wärmefaktor"
+      "Der Lichtfaktor allein",
+      "Der meiste Faktor da",
+      "Der Wärmefaktor pur"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1294,10 +1294,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Was beschreibt die Toleranzkurve eines Organismus?",
     "answers": [
-      "Größe des Reviers",
+      "Größe des Reviers dort",
       "Vitalität bei Faktor",
-      "Alter des Tieres",
-      "Wachstum im Jahr"
+      "Alter des Tieres genau",
+      "Wachstum im ganzen Jahr"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1404,10 +1404,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Wozu dient die große Zentralvakuole in einer pflanzlichen Zelle?",
     "answers": [
-      "Erzeugt Glucose",
+      "Erzeugt Glucose stetig",
       "Speichert Zellsaft",
-      "Baut Proteine ab",
-      "Steuert Vererbung"
+      "Baut Proteine stets ab",
+      "Steuert die Vererbung"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1422,10 +1422,10 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welches Organell bezeichnet man als Kraftwerk der Zelle?",
     "answers": [
-      "Der Chloroplast",
+      "Der Chloroplast darin",
       "Das Mitochondrium",
-      "Der Zellkern",
-      "Die Zellmembran"
+      "Der Zellkern der Zelle",
+      "Die Zellmembran außen"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1477,9 +1477,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "question": "Welches einzellige Lebewesen bewegt sich im Wasser mithilfe vieler Wimpern fort?",
     "answers": [
       "Das Pantoffeltierchen",
-      "Die Bäckerhefe",
+      "Die kleine Bäckerhefe",
       "Die Amöbe im Teich",
-      "Das Augentierchen"
+      "Das grüne Augentierchen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1494,9 +1494,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Wie bewegt sich eine Amöbe (Wechseltierchen) im Wasser fort?",
     "answers": [
-      "Durch Geißeln lang",
-      "Durch Wimpernhaare",
-      "Durch Rückstoß",
+      "Durch lange Geißeln",
+      "Durch feine Wimpernhaare",
+      "Durch starken Rückstoß",
       "Durch Scheinfüßchen"
     ],
     "correct": 3,
@@ -1530,9 +1530,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welches Organell dient Süßwassereinzellern zur Ausscheidung von überschüssigem Wasser?",
     "answers": [
-      "Nahrungsvakuole",
-      "Zellmund Öffnung",
-      "Zellafter Punkt",
+      "Die Nahrungsvakuole",
+      "Der Zellmund als Öffnung",
+      "Der Zellafter als Punkt",
       "Pulsierende Vakuole"
     ],
     "correct": 3,
@@ -1567,9 +1567,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "question": "In welchen feinen Strukturen des Lungengewebes findet der Gasaustausch statt?",
     "answers": [
       "In den Lungenbläschen",
-      "In den Bronchien",
-      "Im Kehlkopfraum",
-      "In der Luftröhre"
+      "In den feinen Bronchien",
+      "Im engen Kehlkopfraum",
+      "In der langen Luftröhre"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1602,9 +1602,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welche Blutgefäße transportieren Blut vom Herzen weg in den Körper?",
     "answers": [
-      "Die Venen",
-      "Kapillaren",
-      "Lymphgefäße",
+      "Die dünnen Venen",
+      "Feine Kapillaren",
+      "Die Lymphgefäße",
       "Die Arterien"
     ],
     "correct": 3,
@@ -1657,9 +1657,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "question": "Welche Blutkörperchen dienen der Bekämpfung von Krankheitserregern?",
     "answers": [
       "Weiße Blutkörperchen",
-      "Das Hämoglobin",
-      "Die Blutplättchen",
-      "Rote Blutkörperchen"
+      "Das rote Hämoglobin",
+      "Die kleinen Blutplättchen",
+      "Rote Blutkörperchen hier"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1692,9 +1692,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "subject": "biologie",
     "question": "Welches Organ zerkleinert Nahrung mechanisch u. weicht sie enzymatisch ein?",
     "answers": [
-      "Der Magenraum",
-      "Der Dickdarm",
-      "Der Dünndarm",
+      "Der weite Magenraum",
+      "Der lange Dickdarm",
+      "Der enge Dünndarm",
       "Mundraum u. Zähne"
     ],
     "correct": 3,
@@ -1827,38 +1827,9 @@ const K7_BIOLOGIE_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Die Zelle ist die grundlegende Struktur- u. Funktionseinheit aller Lebewesen."
-  },
-  {"id":"k7bi101","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Photosynthese in …","answers":["Mitochondrien","Chloroplasten","Zellkern","Ribosomen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Chloroplasten."},
-  {"id":"k7bi102","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"DNA-Base A paart mit …","answers":["G","T","C","U"],"correct":1,"difficulty":"mittel","points":10,"explanation":"T."},
-  {"id":"k7bi103","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Mitose erzeugt …","answers":["Gameten","Körperzellen diploid","Mutationen","Viren"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Körperzellen."},
-  {"id":"k7bi104","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Enzyme sind meist …","answers":["Lipide","Proteine","DNA","Zucker"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Proteine."},
-  {"id":"k7bi105","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Ökosystem = …","answers":["nur Tiere","Lebewesen + Umwelt","nur Klima","nur Boden"],"correct":1,"difficulty":"mittel","points":10,"explanation":"System."},
-  {"id":"k7bi106","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Antibiotika gegen …","answers":["Viren","Bakterien","Knochen","Allergie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bakterien."},
-  {"id":"k7bi107","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Selektion wirkt auf …","answers":["Genotyp immer sichtbar","Fitness","Mode","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fitness."},
-  {"id":"k7bi108","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Blut transportiert …","answers":["nur Wasser","O₂/Nährstoffe","Knochen","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stoffe."},
-  {"id":"k7bi109","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Nerven leiten …","answers":["Blut","Impulse","Luft","Knochen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Erregung."},
-  {"id":"k7bi110","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Biodiversität = …","answers":["eine Art","Vielfalt","Klima","Städte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vielfalt."},
-  {"id":"k7bi111","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Impfung aktiviert …","answers":["Verdauung","Immunsystem","Muskeln","Gehör"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Immun."},
-  {"id":"k7bi112","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Zellatmung in …","answers":["Chloroplast","Mitochondrien","Zellwand","Vakuole"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Mitochondrien."},
-  {"id":"k7bi113","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Art = …","answers":["beliebige Tiere","fortpflanzungsfähige Gruppe","Farbe","Größe"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Art."},
-  {"id":"k7bi114","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Parasit … dem Wirt.","answers":["nützt","schadet","neutral","ersetzt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schaden."},
-  {"id":"k7bi115","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Gene auf …","answers":["Blut","Chromosomen","Zähnen","Haaren"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Chromosomen."},
-  {"id":"k7bi116","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Nachhaltigkeit: …","answers":["erschöpfen","Tragfähigkeit achten","nur Konsum","nur Wachstum"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Grenzen."},
-  {"id":"k7bi117","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Haut schützt vor …","answers":["nur Kälte","Keimen u. a.","Schall","Magneten"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schutz."},
-  {"id":"k7bi118","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Bestäubung = …","answers":["Kernverschmelzung","Pollenübertragung","Keimung","Photosynthese"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Pollen."},
-  {"id":"k7bi119","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Population = …","answers":["alle Arten","Art im Gebiet","Pflanzen","Klima"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Population."},
-  {"id":"k7bi120","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Viren sind …","answers":["Zellen","keine vollständigen Zellen","Pflanzen","Bakterien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"akaryotisch."},
-  {"id":"k7bi121","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Nahrungskette start: …","answers":["Fleischfresser","Produzenten","Menschen","Pilze"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Pflanzen."},
-  {"id":"k7bi122","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Insulin beeinflusst …","answers":["Hören","Blutzucker","Knochenfarbe","Haare"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Glucose."},
-  {"id":"k7bi123","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Mutation = …","answers":["immer tödlich","DNA-Änderung","nur Phänotyp","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"DNA."},
-  {"id":"k7bi124","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Symbiose: beide …","answers":["schaden","profitieren","neutral","parasitär"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nutzen."},
-  {"id":"k7bi125","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Lunge nimmt … auf.","answers":["CO₂","O₂","N₂","He"],"correct":1,"difficulty":"mittel","points":10,"explanation":"O₂."},
-  {"id":"k7bi126","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Zellmembran ist …","answers":["starr","selektiv permeabel","dicht total","DNA"],"correct":1,"difficulty":"mittel","points":10,"explanation":"selektiv."},
-  {"id":"k7bi127","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Insektenbeine: …","answers":["4","6","8","10"],"correct":1,"difficulty":"mittel","points":10,"explanation":"6."},
-  {"id":"k7bi128","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Winterschlaf spart …","answers":["Licht","Energie","Wasser","Luft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Energie."},
-  {"id":"k7bi129","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Gentechnik greift in … ein.","answers":["Verhalten","Erbgut","Wetter","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Genom."},
-  {"id":"k7bi130","category":"k7_biologie","area":"schule","grade":7,"subject":"biologie","topic":"erweiterung","question":"Artenschutz in situ = …","answers":["Zoo","im Lebensraum","Labor","Museum"],"correct":1,"difficulty":"mittel","points":10,"explanation":"vor Ort."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K7_BIOLOGIE_QUESTIONS = K7_BIOLOGIE_QUESTIONS;

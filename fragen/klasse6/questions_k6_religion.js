@@ -13,9 +13,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "question": "Was versteht man in der Ethik unter dem Begriff 'Gewissen'?",
     "answers": [
       "Innere Stimme für Gut / Böse",
-      "Gefühl von Hunger u. Durst",
-      "Wissen aus Büchern u. Text",
-      "Regel der Polizei im Staat"
+      "Gefühl von Hunger und Durst",
+      "Wissen aus vielen Büchern und Text",
+      "Vorschrift der Polizei im Staat"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -30,10 +30,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was beschreibt der Begriff 'Moral' in einer Gemeinschaft?",
     "answers": [
-      "Gesetze des Staates im Gesetzbuch",
-      "Vorschriften für Sport u. Spiele",
+      "Gesetze im dicken Gesetzbuch",
+      "Vorschriften für Sport im Vereinsheim",
       "Regeln u. Werte des Zusammenlebens",
-      "Grammatikregeln in der Sprache"
+      "Grammatikregeln der deutschen Sprache"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -121,9 +121,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "question": "Was bedeutet 'Toleranz' gegenüber anderen Überzeugungen?",
     "answers": [
       "Duldung u. Respekt vor Vielfalt",
-      "Abschaffung von eigenen Werten",
-      "Verbot von fremden Meinungen",
-      "Zwang zur gleichen Lebensweise"
+      "Abschaffung von allen eigenen Werten",
+      "Verbot von fremden Meinungen im Alltag",
+      "Zwang zu einer gleichen Lebensweise"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -156,10 +156,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was besagt Artikel 1 des deutschen Grundgesetzes?",
     "answers": [
-      "Freie Fahrt auf Autobahnen",
+      "Freie Fahrt auf allen Autobahnen",
       "Würde des Menschen unantastbar",
-      "Schulpflicht gilt für Kinder",
-      "Alle Bürger müssen arbeiten"
+      "Schulpflicht gilt für Kinder hier",
+      "Alle Bürger müssen arbeiten gehen"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -192,10 +192,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Wie entsteht ein Klischee oder 'Stereotyp' über Gruppen?",
     "answers": [
-      "Persönliche Freundschaft",
+      "Persönliche Freundschaft heute",
       "Verallgemeinerung Merkmal",
-      "Beweis durch Forschung",
-      "Genaue Einzelbeobachtung"
+      "Beweis durch genaue Forschung",
+      "Genaue Beobachtung im Detail"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -264,10 +264,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was versteht man unter 'Altruismus'?",
     "answers": [
-      "Einsames Leben im Wald",
-      "Streben nach Macht Vorteil",
+      "Einsames Leben tief im Wald allein",
+      "Streben nach großer Macht und Vorteil",
       "Uneigennützige Hilfsbereitschaft",
-      "Rücksichtsloser Egoismus"
+      "Rücksichtsloser purer Egoismus"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -319,9 +319,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "question": "Was versteht man unter 'Wahrhaftigkeit'?",
     "answers": [
       "Ehrlichkeit u. Verzicht Lügen",
-      "Aussagen nach eigenem Nutzen",
-      "Erfinden von Geschichten",
-      "Verschweigen böser Taten"
+      "Aussagen nach dem eigenen Nutzen",
+      "Erfinden von spannenden Geschichten",
+      "Verschweigen von bösen Taten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -354,9 +354,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was bedeutet 'Vergebung' nach einem bitteren Streit?",
     "answers": [
-      "Abbruch jeglichen Kontakts",
-      "Bestrafung des Täters Hart",
-      "Rache bei nächster Chance",
+      "Abbruch von jeglichem Kontakt",
+      "Bestrafung des Täters sehr hart",
+      "Rache bei der nächsten Chance",
       "Versöhnung u. Verzicht Groll"
     ],
     "correct": 3,
@@ -501,9 +501,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "question": "Was versteht man unter 'Solidarität'?",
     "answers": [
       "Gegenseitige Hilfe Gruppe",
-      "Ausgrenzen von Schwachen",
-      "Durchsetzen von Macht",
-      "Verlassen von Freunden"
+      "Ausgrenzen der schwachen Kinder",
+      "Durchsetzen der eigenen Macht",
+      "Verlassen von treuen Freunden"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -518,10 +518,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was bedeutet ein 'Kompromiss' im Streitfall?",
     "answers": [
-      "Sieg einer Seite allein",
-      "Abbruch des Gesprächs",
+      "Sieg der einen starken Seite",
+      "Abbruch von jedem Gespräch",
       "Einigung durch Nachgeben",
-      "Entscheidung per Gewalt"
+      "Entscheidung durch rohe Gewalt"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -536,10 +536,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was beschreibt 'Kritikfähigkeit'?",
     "answers": [
-      "Ignorieren von Fehlern",
-      "Wut bei jedem Hinweis",
+      "Ignorieren von eigenen Fehlern",
+      "Wut bei jedem kleinen Hinweis",
       "Konstruktive Rückmeldung",
-      "Beleidigen von anderen"
+      "Beleidigen von anderen Leuten"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -662,10 +662,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was beschreibt der Begriff 'Tradition'?",
     "answers": [
-      "Modetrend der Woche",
+      "Modetrend der ganzen Woche",
       "Überlieferte Bräuche Werte",
-      "Erfindung neuer Technik",
-      "Verbot von alten Dingen"
+      "Erfindung von neuer Technik",
+      "Verbot von alten Dingen sofort"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -698,9 +698,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was unterscheidet 'Einsamkeit' vom bewussten Alleinsein?",
     "answers": [
-      "Lustiges Spiel im Raum",
-      "Freiwillig gewählte Ruhe",
-      "Gemeinsames Lernen Gruppe",
+      "Lustiges Spiel im Klassenraum",
+      "Freiwillig gewählte innere Ruhe",
+      "Gemeinsames Lernen in Gruppe",
       "Schmerzhaft gefühlte Isolation"
     ],
     "correct": 3,
@@ -752,10 +752,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was versteht man unter 'Diskriminierung'?",
     "answers": [
-      "Gleiche Chancen für alle",
+      "Gleiche Chancen für alle Kinder",
       "Ungerechte Benachteiligung",
-      "Faire Notengebung Schule",
-      "Höfliche Begrüßung Alltag"
+      "Faire Notengebung in der Schule",
+      "Höfliche Begrüßung im Alltag"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -806,9 +806,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was versteht man unter dem Begriff 'Kulturaustausch'?",
     "answers": [
-      "Aufzwingen eigenen Bräuche",
-      "Abgrenzung von Nachbarn",
-      "Aufgabe aller Traditionen",
+      "Aufzwingen der eigenen Bräuche",
+      "Abgrenzung von allen Nachbarn",
+      "Aufgabe aller alten Traditionen",
       "Voneinander Lernen Kulturen"
     ],
     "correct": 3,
@@ -824,10 +824,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was bedeutet 'Chancengleichheit' im Bildungswesen?",
     "answers": [
-      "Gleicher Wohnort für alle",
+      "Gleicher Wohnort für alle Kinder",
       "Gleiche Entwicklungschancen",
-      "Gleiches Zeugnis für alle",
-      "Gleiches Geld für Schüler"
+      "Gleiches Zeugnis für alle Schüler",
+      "Gleiches Taschengeld für Schüler"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -843,9 +843,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "question": "Wozu dienen gesetzliche Jugendschutzbestimmungen?",
     "answers": [
       "Schutz vor Gefahren u. Reizen",
-      "Schikane von Jugendlichen",
-      "Verbot von allen Hobbys",
-      "Erhöhung der Staatseinnahmen"
+      "Schikane von jungen Jugendlichen",
+      "Verbot von allen liebsten Hobbys",
+      "Erhöhung der Staatseinnahmen stark"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -878,9 +878,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was versteht man unter 'Pflichtgefühl'?",
     "answers": [
-      "Erzwingen von Dankbarkeit",
-      "Verschieben von Aufgaben stets",
-      "Lustloses Verweigern Arbeit",
+      "Erzwingen von großer Dankbarkeit",
+      "Verschieben von Aufgaben immer",
+      "Lustloses Verweigern der Arbeit",
       "Zuverlässiges Erfüllen Aufgaben"
     ],
     "correct": 3,
@@ -1024,9 +1024,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Welcher Wochentag ist der jüdische Ruhetag (Sabbat)?",
     "answers": [
-      "Montag von früh an",
-      "Sonntag ganztägig",
-      "Mittwoch zur Mitte",
+      "Montag von ganz früh an",
+      "Sonntag den ganzen Tag lang",
+      "Mittwoch bis zur Mitte hin",
       "Freitagabend bis Samstag"
     ],
     "correct": 3,
@@ -1042,9 +1042,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Wie nennt man das jüdische Lichterfest im Winter?",
     "answers": [
-      "Das Sukkot-Fest",
-      "Das Pessach-Fest",
-      "Das Purim-Fest",
+      "Das schöne Sukkot-Fest",
+      "Das schöne Pessach-Fest",
+      "Das lustige Purim-Fest",
       "Das Chanukka-Fest"
     ],
     "correct": 3,
@@ -1150,9 +1150,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was feiert die Kirche am Pfingstfest?",
     "answers": [
-      "Geburt Christi Kind",
-      "Taufe am Jordan",
-      "Fastenzeit Ende",
+      "Geburt von Christi Kind",
+      "Taufe Jesu am Fluss Jordan",
+      "Ende der langen Fastenzeit",
       "Kommen Heiliger Geist"
     ],
     "correct": 3,
@@ -1169,9 +1169,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "question": "Welches ist das zentrale Symbol des Christentums?",
     "answers": [
       "Das christliche Kreuz",
-      "Der goldene Stern",
-      "Die weiße Taube",
-      "Die leuchtende Sonne"
+      "Der helle goldene Stern",
+      "Die weiße friedliche Taube",
+      "Die warme leuchtende Sonne"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1204,9 +1204,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Welche zwei großen christlichen Konfessionen gibt es in Deutschland?",
     "answers": [
-      "Sunnitisch u. Schiitisch",
-      "Jüdisch u. Buddhistisch",
-      "Orthodox u. Hinduisch",
+      "Sunnitisch und Schiitisch",
+      "Jüdisch und Buddhistisch",
+      "Orthodox und Hinduistisch",
       "Katholisch u. Evangelisch"
     ],
     "correct": 3,
@@ -1512,10 +1512,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Welches Symbol findet man häufig auf den Kuppeln von Moscheen?",
     "answers": [
-      "Das Rad des Lebens",
+      "Das runde Rad des Lebens",
       "Der Sichelmond (Halbmond)",
-      "Das goldene Kreuz",
-      "Der sechsstrahlige Stern"
+      "Das schwere goldene Kreuz",
+      "Der große sechsstrahlige Stern"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1548,10 +1548,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Welche Lebensmittel sind im Islam nach den Speisegeboten verboten?",
     "answers": [
-      "Geflügel u. Eier",
+      "Geflügel und rohe Eier",
       "Schweinefleisch u. Alkohol",
-      "Fisch u. Meeresfrüchte",
-      "Rindfleisch u. Milch"
+      "Fisch und frische Meeresfrüchte",
+      "Rindfleisch und warme Milch"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1602,10 +1602,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was bedeutet die Lehre von der 'Reinkarnation' im Hinduismus?",
     "answers": [
-      "Einmaliges Erdenleben",
+      "Nur ein einziges Erdenleben",
       "Seelen wanderung Wiedergeburt",
-      "Ewiger Schlaf im Grab",
-      "Leben nur im Himmel"
+      "Ewiger Schlaf im dunklen Grab",
+      "Ein Leben nur im hohen Himmel"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1656,9 +1656,9 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Wer begründete den Buddhismus im alten Indien?",
     "answers": [
-      "Guru Nanak Dev",
-      "Mahatma Gandhi",
-      "Konfuzius Meister",
+      "Guru Nanak Dev Ji",
+      "Mahatma Gandhi Ji",
+      "Konfuzius der Meister",
       "Siddhartha Gautama"
     ],
     "correct": 3,
@@ -1746,10 +1746,10 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Welches Symbol steht für die Lehre des Buddha?",
     "answers": [
-      "Der weiße Fisch",
-      "Der goldene Kelch",
+      "Der kleine weiße Fisch",
+      "Der goldene runde Kelch",
       "Rad der Lehre (Dharma)",
-      "Der grüne Zweig"
+      "Der frische grüne Zweig"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1800,47 +1800,18 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "subject": "philosophie_religion",
     "question": "Was ist das gemeinsame Ziel aller Weltreligionen u. Philosophien?",
     "answers": [
-      "Gewinn bei jedem Streit",
-      "Anhäufung von Reichtum",
+      "Gewinn bei jedem Streit sein",
+      "Anhäufung von großem Reichtum",
       "Frieden u. Nächstenliebe",
-      "Macht über alle Völker"
+      "Macht über alle Völker haben"
     ],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Trotz aller Unterschiede streben alle großen Ethiken u. Religionen nach menschlichem Frieden u. Mitgefühl."
-  },
-  {"id":"k6re101","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Goldene Regel fordert …","answers":["Rache","wechselseitige Achtung","Gleichgültigkeit","Gewalt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"wie du behandelt werden willst.","topic":"erweiterung"},
-  {"id":"k6re102","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Christentum: Bibel besteht aus …","answers":["nur Koran","AT und NT","nur Psalmen","nur Evangelien ohne AT"],"correct":1,"difficulty":"mittel","points":10,"explanation":"zwei Teile.","topic":"erweiterung"},
-  {"id":"k6re103","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Judentum: Tora ist …","answers":["NT","Weisung/Lehre","nur Gebete modern","Koran"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Tora.","topic":"erweiterung"},
-  {"id":"k6re104","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Islam: Koran gilt als …","answers":["Roman","Offenbarung","nur Gedicht","Gesetzbuch DE"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Offenbarung.","topic":"erweiterung"},
-  {"id":"k6re105","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Weltreligionen studieren fördert …","answers":["Intoleranz","Verständnis","Gleichgültigkeit","Konflikt nur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Dialog.","topic":"erweiterung"},
-  {"id":"k6re106","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Gewissen ist …","answers":["Gesetzbuch","innere Instanz moralisch","Zufall","Mode"],"correct":1,"difficulty":"mittel","points":10,"explanation":"moralisches Gefühl.","topic":"erweiterung"},
-  {"id":"k6re107","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Schöpfungserzählungen deuten …","answers":["Physikformeln","Sinn/Ursprung","nur Chemie","Statistik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Deutung.","topic":"erweiterung"},
-  {"id":"k6re108","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Nächstenliebe christlich u. a. …","answers":["nur Familie","Feindesliebe-Idee","Hass","Gleichgültigkeit"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Agape.","topic":"erweiterung"},
-  {"id":"k6re109","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Fasten praktizieren viele Religionen als …","answers":["Bestrafung immer","spirituelle Übung","Sport","Politik nur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Übung.","topic":"erweiterung"},
-  {"id":"k6re110","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Propheten gelten als …","answers":["Könige immer","Boten/Mahner","Wissenschaftler modern","Athleten"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Botschaft.","topic":"erweiterung"},
-  {"id":"k6re111","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Ethik fragt nach …","answers":["nur Fakten","gutem Handeln","nur Dogma ohne Frage","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Moral.","topic":"erweiterung"},
-  {"id":"k6re112","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Toleranz heißt …","answers":["Alles egal","Achtung trotz Differenz","Hass","Zwang"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Respekt.","topic":"erweiterung"},
-  {"id":"k6re113","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Rituale strukturieren …","answers":["nur Chaos ohne Sinn","Gemeinschaft/Übergänge","nur Politik","nur Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Übergänge.","topic":"erweiterung"},
-  {"id":"k6re114","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Abraham gilt traditionell …","answers":["nur Christentum","gemeinsame Figur Judentum/Christentum/Islam","nur Hinduismus","nur Buddhismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"abrahamitisch.","topic":"erweiterung"},
-  {"id":"k6re115","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Bergpredigt enthält u. a. …","answers":["Steuerrecht","Seligpreisungen","Physik","Kochrezepte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"ethische Weisungen.","topic":"erweiterung"},
-  {"id":"k6re116","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Ramadan ist …","answers":["christliche Fastenzeit","islamischer Fastenmonat","jüdisches Laubhüttenfest","hinduistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fastenmonat.","topic":"erweiterung"},
-  {"id":"k6re117","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Sabbath/Schabbat ist …","answers":["islamisch","jüdischer Ruhetag","christlicher nur Ostern","buddhistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ruhetag.","topic":"erweiterung"},
-  {"id":"k6re118","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Meditation im Buddhismus zielt oft auf …","answers":["Reichtum","Achtsamkeit/Erkenntnis","Krieg","Macht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Übung.","topic":"erweiterung"},
-  {"id":"k6re119","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Menschenwürde religiös-ethisch: jeder Mensch …","answers":["nur Nützliche","hat Wert","nur Gläubige","nur Erwachsene"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Würde.","topic":"erweiterung"},
-  {"id":"k6re120","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Dialog der Religionen braucht …","answers":["Zwang","Zuhören und Respekt","Bekehrungspflicht","Schweigen total"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Dialog.","topic":"erweiterung"},
-  {"id":"k6re121","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Gleichnis lehrt durch …","answers":["Gesetzestext nur","Erzählbild","Formel","Statistik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bildrede.","topic":"erweiterung"},
-  {"id":"k6re122","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Sterblichkeit und Hoffnung thematisieren Religionen …","answers":["nie","oft","nur Sport","nur Politik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Existenzfragen.","topic":"erweiterung"},
-  {"id":"k6re123","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Gerechtigkeit ethisch ≠ …","answers":["Fairness","Rache gleichsetzen","Rechte achten","Solidarität"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nicht Rache.","topic":"erweiterung"},
-  {"id":"k6re124","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Schöpfung bewahren → heute …","answers":["Umweltzerstörung","Schöpfungsverantwortung/Umweltethik","Gleichgültigkeit","Ausbeutung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bewahrung.","topic":"erweiterung"},
-  {"id":"k6re125","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Gebet ist …","answers":["nur Bitte material","Kommunikation/Ausdruck Glaube","Sport","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Praxis.","topic":"erweiterung"},
-  {"id":"k6re126","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Heilige Schriften auslegen heißt …","answers":["wörtlich nur immer","interpretieren","ignorieren","übersetzen ohne Sinn"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Hermeneutik.","topic":"erweiterung"},
-  {"id":"k6re127","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Identität und Glaube: Religion kann …","answers":["nur spalten","orientieren und verbinden","nur Staat ersetzen","Wissenschaft ersetzen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Orientierung.","topic":"erweiterung"},
-  {"id":"k6re128","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Konfirmation/Jugendweihe etc. sind …","answers":["Zufall","Übergangsriten","nur Prüfungen Schule","Sportabzeichen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Riten.","topic":"erweiterung"},
-  {"id":"k6re129","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Frieden religiös oft …","answers":["Nebensache","zentrales Gut","Kriegsziel","Wirtschaft nur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schalom/Salaam.","topic":"erweiterung"},
-  {"id":"k6re130","category":"k6_religion","area":"schule","grade":6,"subject":"religion","question":"Religionsfreiheit ist …","answers":["Privileg weniger","Grundrecht","verboten","nur für eine Religion"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Grundrecht.","topic":"erweiterung"}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K6_PHILOSOPHIE_RELIGION_QUESTIONS = K6_PHILOSOPHIE_RELIGION_QUESTIONS;

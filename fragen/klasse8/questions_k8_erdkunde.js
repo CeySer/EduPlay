@@ -116,10 +116,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter dem Prozess der Desertifikation?",
     "answers": [
       "Die Ausbreitung wüstenähnlicher Verhältnisse durch menschliche Übernutzung und Klima.",
-      "Die gezielte Begrünung von trockenen Wüstengebieten durch moderne Bewässerung.",
-      "Die plötzliche Überflutung arider Regionen infolge von Starkregenereignissen.",
-      "Die natürliche Verschiebung der Klimazonen vom Äquator in Richtung der Pole."
-    ],
+      "Die gezielte Wiederaufforstung von Wüstengebieten mit tropischen Baumarten nach Meinung vieler Experten.",
+      "Die plötzliche Überflutung trockener Landstriche nach Starkregenfällen.",
+      "Die natürliche Wanderung der Klimazonen vom Äquator zu den Polen hin."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -170,10 +170,10 @@ const questions_k8_erdkunde = [
     "question": "Wie entsteht eine Küstenwüste wie die Atacama in Südamerika?",
     "answers": [
       "Kalte Meeresströmungen kühlen die Luft ab, sodass Nebel entsteht, aber kein Regen fällt.",
-      "Warme Meeresströmungen verdunsten das Wasser zu schnell, bevor Wind die Küste erreicht.",
-      "Hohe Gebirge blockieren die Meereswinde vollständig von der Seeseite des Ozeans.",
-      "Übermäßige Grundwasserförderung an der Küste führt zum Zusammenbruch des Ökosystems."
-    ],
+      "Warme Meeresströmungen lassen das Küstenwasser schnell verdunsten und wegwehen.",
+      "Hohe Gebirgsketten blockieren die feuchten Winde vollständig vor der Küste.",
+      "Übermäßige Grundwasserentnahme an der Küste lässt das Ökosystem zusammenbrechen nach Meinung vieler Experten."
+],
     "correct": 0,
     "difficulty": "schwer",
     "points": 20,
@@ -368,10 +368,10 @@ const questions_k8_erdkunde = [
     "question": "Wie entstehen Zenitalregen in den inneren Tropen?",
     "answers": [
       "Starke Sonneneinstrahlung lässt feuchte Luft aufsteigen, die abkühlt und kondensiert.",
-      "Kalte Polarluft trifft am Nachmittag auf den warmen Erdboden und regnet ab.",
-      "Winde blasen Feuchtigkeit vom Meeresufer gegen Steilhänge hoher Vulkanberge.",
-      "Nebelbänke verdichten sich am Abend durch den Ausstoß von Pflanzengasen."
-    ],
+      "Kalte Polarluft trifft nachmittags auf warmen Boden und löst Regen aus.",
+      "Winde tragen Feuchtigkeit vom Meer gegen steile Hänge hoher Vulkane.",
+      "Nebelschwaden verdichten sich abends durch den Ausstoß von Pflanzengasen nach Meinung vieler Experten."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -404,10 +404,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter fossilem Grundwasser in Trockenräumen?",
     "answers": [
       "Grundwasservorkommen, die in vergangenen feuchteren Erdzeitaltern entstanden sind.",
-      "Wasser, das durch die Schmelze von unterirdischen Gletschern ständig nachfließt.",
-      "Wasser, das durch mikrobielle Zersetzung von Versteinerungen im Boden frei wird.",
-      "Grundwasser, das durch das Versickern heutiger Regengüsse jährlich erneuert wird."
-    ],
+      "Wasser, das durch die ständige Schmelze unterirdischer Gletscher nachfließt.",
+      "Wasser, das durch mikrobielle Zersetzung von Versteinerungen frei wird.",
+      "Grundwasser, das jährlich durch das Versickern heutiger Regengüsse vollständig erneuert wird."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -458,10 +458,10 @@ const questions_k8_erdkunde = [
     "question": "Ein Klimadiagramm zeigt 8 humide Monate. Was bedeutet die Eigenschaft 'humid'?",
     "answers": [
       "In diesen Monaten liegen die Niederschläge höher als die verdunstende Wassermenge.",
-      "In diesen Monaten ist die potentielle Verdunstung höher als der gemessene Regen.",
+      "In diesen Monaten ist die potentielle Verdunstung stets höher als der gemessene Niederschlag.",
       "In diesen Monaten sinken die Temperaturen durchgehend unter den Gefrierpunkt.",
-      "In diesen Monaten herrschen extrem starke Winde ohne jegliche Bewölkung."
-    ],
+      "In diesen Monaten herrschen extrem starke Winde ganz ohne Bewölkung."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -476,10 +476,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter dem ökologischen Fußabdruck eines Menschen?",
     "answers": [
       "Die biologisch produktive Fläche, die nötig ist, um seinen Lebensstil zu decken.",
-      "Die tatsächliche Schuhgröße in Relation zum Körpergewicht und zur Körpergröße.",
-      "Die Strecke, die ein Mensch im Laufe seines Lebens zu Fuß zurücklegt.",
-      "Die Menge an Sauerstoff, die ein Mensch pro Tag durch Atmen verbraucht."
-    ],
+      "Die tatsächliche Schuhgröße eines Menschen im Verhältnis zu Körpergewicht und Körpergröße.",
+      "Die Strecke, die ein Mensch im Leben insgesamt zu Fuß zurücklegt.",
+      "Die Menge an Sauerstoff, die ein Mensch täglich durch Atmen verbraucht."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -494,10 +494,10 @@ const questions_k8_erdkunde = [
     "question": "Welches Gas trägt als Hauptverursacher zum anthropogenen (vom Menschen gemachten) Treibhauseffekt bei?",
     "answers": [
       "Kohlendioxid ($CO_2$), das hauptsächlich durch die Verbrennung fossiler Stoffe entsteht.",
-      "Helium ($He$), das aus undichten Ballons in die obere Atmosphäre aufsteigt.",
-      "Stickstoff ($N_2$), der den Hauptbestandteil der natürlichen Atemluft bildet.",
-      "Sauerstoff ($O_2$), der von Pflanzen im Prozess der Photosynthese gebildet wird."
-    ],
+      "Helium ($He$), das aus undichten Luftballons in die Atmosphäre aufsteigt.",
+      "Stickstoff ($N_2$), der den Hauptbestandteil der natürlichen Atemluft bildet nach Meinung vieler Experten.",
+      "Sauerstoff ($O_2$), der von Pflanzen bei der Photosynthese gebildet wird."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -548,10 +548,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter dem informellen Sektor in den Städten von Entwicklungsländern?",
     "answers": [
       "Wirtschaftliche Aktivitäten, die nicht staatlich erfasst oder versteuert werden.",
-      "Der Bereich des öffentlichen Dienstes wie Schulen, Polizei und Behörden.",
-      "Moderne Industrieunternehmen, die High-Tech-Waren für den Export produzieren.",
+      "Der Bereich des öffentlichen Dienstes wie Schulen, Polizei und Ämter.",
+      "Moderne Industriebetriebe, die High-Tech-Waren für den Export herstellen in vielen Teilen der Welt.",
       "Das Banken- und Versicherungswesen im Zentrum der Großstadt (CBD)."
-    ],
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -567,9 +567,9 @@ const questions_k8_erdkunde = [
     "answers": [
       "Bedingungen auf dem Land wie Armut oder Dürre, die Menschen zum Wegzug bewegen.",
       "Attraktive Anreize in der Stadt wie bessere Schulen und Aufstiegschancen.",
-      "Staatliche Fördergelder, die Bauern gezielt für den Verbleib im Dorf erhalten.",
-      "Gesetzliche Verbote, die den Zuzug von Landarbeitern in Großstädte verhindern."
-    ],
+      "Staatliche Fördergelder, die Bauern gezielt für den dauerhaften Verbleib im Dorf erhalten.",
+      "Gesetzliche Verbote, die den Zuzug von Landarbeitern in Städte verhindern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -602,10 +602,10 @@ const questions_k8_erdkunde = [
     "question": "Welche Wüstenart entsteht durch die mechanische Zersetzung von Gestein und weist glatte Felsflächen auf?",
     "answers": [
       "Diese Form der Fels- und Steinwüste wird als Hamada bezeichnet.",
-      "Diese Form der Fels- und Steinwüste wird als Erg bezeichnet.",
-      "Diese Form der Fels- und Steinwüste wird als Serir bezeichnet.",
-      "Diese Form der Fels- und Steinwüste wird als Wadi bezeichnet."
-    ],
+      "Diese Form der Sandwüste wird als Erg bezeichnet.",
+      "Diese Form der Kieswüste wird als Serir genannt.",
+      "Diese Form der trockenen Flusslandschaft wird als Wadi bezeichnet."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -621,9 +621,9 @@ const questions_k8_erdkunde = [
     "answers": [
       "Ein ausgetrocknetes Flussbett, das sich nach Regenfällen Sturzbach-artig füllen kann.",
       "Eine tiefe Süßwasserquelle im Zentrum einer bewohnten Datteloase.",
-      "Ein isolierter Berg, der steil aus der flachen Wüstenebene herausragt.",
-      "Eine ringförmige Sanddüne, die durch wechselnde Windrichtungen entsteht."
-    ],
+      "Ein isolierter Berg, der steil aus der flachen Wüstenebene herausragt vor allem in den Industrieländern.",
+      "Eine ringförmige Sanddüne, die durch wechselnde Winde entsteht vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -640,9 +640,9 @@ const questions_k8_erdkunde = [
     "answers": [
       "Eigenschaften eines Ortes, die die Ansiedlung von Unternehmen beeinflussen.",
       "Die geografische Höhe eines Gebirges über dem Meeresspiegel.",
-      "Die durchschnittliche Regenmenge einer Region im Jahresverlauf.",
+      "Die durchschnittliche Regenmenge einer Region im Jahresverlauf nach Meinung vieler Experten.",
       "Die Anzahl der Einwohner in der Hauptstadt eines Landes."
-    ],
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -657,10 +657,10 @@ const questions_k8_erdkunde = [
     "question": "Was unterscheidet 'harte' von 'weichen' Standortfaktoren?",
     "answers": [
       "Harte Faktoren sind exakt messbar (z. B. Steuern), weiche sind subjektiver (z. B. Lebensqualität).",
-      "Harte Faktoren betreffen nur die Landwirtschaft, weiche Faktoren betreffen Industrieunternehmen.",
-      "Harte Faktoren verändern sich täglich, weiche Faktoren bleiben über Jahrhunderte konstant.",
-      "Harte Faktoren sind gesetzlich vorgeschrieben, weiche Faktoren sind völlig verboten."
-    ],
+      "Harte Faktoren betreffen nur die Landwirtschaft, weiche nur die Industrie.",
+      "Harte Faktoren ändern sich täglich, weiche bleiben über Jahrhunderte gleich vor allem in den Industrieländern.",
+      "Harte Faktoren sind gesetzlich vorgeschrieben, weiche sind völlig verboten."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -675,10 +675,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt der Begriff 'Globalisierung' in der Erdkunde?",
     "answers": [
       "Die zunehmende weltweite Verflechtung in Wirtschaft, Politik, Kultur und Umwelt.",
-      "Das weltweite Aussterben von seltenen Tier- und Pflanzenarten in den Wüsten.",
+      "Das weltweite Aussterben von seltenen Tier- und Pflanzenarten in Wüsten in vielen Teilen der Welt.",
       "Die Ausdehnung der polaren Eiskappen infolge globaler Abkühlung.",
-      "Der Bau von Schnellstraßen innerhalb einzelner kleinerer Landkreise."
-    ],
+      "Der Bau von Schnellstraßen innerhalb einzelner kleiner Landkreise."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -693,10 +693,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter dem Begriff 'Outsourcing' bei Industrieunternehmen?",
     "answers": [
       "Die Auslagerung von Unternehmensaufgaben oder Produktionsschritten an externe Partner.",
-      "Den ausschließlichen Verkauf von Produkten im eigenen Ursprungsland.",
-      "Die vollständige Stilllegung eines Unternehmens aufgrund von Insolvenz.",
-      "Die Einstellung von mehr Personal am Hauptstammsitz der Firma."
-    ],
+      "Den ausschließlichen Verkauf von Produkten im eigenen Ursprungsland vor allem in den Industrieländern.",
+      "Die vollständige Stilllegung eines Unternehmens wegen Insolvenz.",
+      "Die Einstellung von zusätzlichem Personal am Hauptsitz der Firma."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -729,10 +729,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter dem Begriff 'Strukturwandel' in einer Wirtschaftsregion?",
     "answers": [
       "Die langfristige Veränderung der relativen Bedeutung einzelner Wirtschaftssektoren.",
-      "Die tägliche Pendelbewegung von Arbeitnehmern zwischen Wohn- und Arbeitsort.",
-      "Der Bau von neuen Fußgängerzonen im Zentrum von historischen Altstädten.",
+      "Die tägliche Pendelbewegung von Arbeitnehmern zwischen Wohn- und Arbeitsort in vielen Teilen der Welt.",
+      "Der Bau von neuen Fußgängerzonen im Zentrum historischer Altstädte.",
       "Die jährliche Anpassung von gesetzlichen Feiertagen an den Kalender."
-    ],
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -747,10 +747,10 @@ const questions_k8_erdkunde = [
     "question": "Was bezeichnet der primäre Wirtschaftssektor?",
     "answers": [
       "Die Urproduktion von Rohstoffen (Landwirtschaft, Forstwirtschaft, Fischerei).",
-      "Die weiterverarbeitende Industrie und das produzierende Gewerbe.",
+      "Die weiterverarbeitende Industrie und das produzierende Gewerbe nach Meinung vieler Experten.",
       "Den Dienstleistungsbereich wie Handel, Banken und Gastronomie.",
       "Den Hochtechnologie- und Informationsbereich (IT und Forschung)."
-    ],
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -783,10 +783,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt der Begriff 'Monokultur' in der Landwirtschaft?",
     "answers": [
       "Der großflächige Anbau nur einer einzigen Nutzpflanzenart über Jahre hinweg.",
-      "Die Kombination von Viehzucht und Ackerbau auf demselben Feld.",
+      "Die Kombination von Viehzucht und Ackerbau auf demselben Feld nach Meinung vieler Experten.",
       "Der Verzicht auf jeglichen Einsatz von Pflanzenschutzmitteln.",
-      "Die Zucht von Fischen in geschlossenen Süßwasserbecken."
-    ],
+      "Die Zucht von Fischen in geschlossenen Süßwasserbecken vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -801,10 +801,10 @@ const questions_k8_erdkunde = [
     "question": "Welche Folge kann die übermäßige Bewässerung von Ackerflächen in trockenen Gebieten haben?",
     "answers": [
       "Die Bodenversalzung durch das Verdampfen des Wassers bei verbleibenden Salzen.",
-      "Die plötzliche Abkühlung des regionalen Gesamtklimas um mehrere Grad.",
-      "Die Bildung von dauerhaften Gletschern im Flachland.",
-      "Das vollständige Ausbleiben von Sonnenlicht durch Dauernebel."
-    ],
+      "Die plötzliche Abkühlung des regionalen Gesamtklimas um mehrere Grad nach Meinung vieler Experten.",
+      "Die Bildung von dauerhaften Gletschern im flachen Umland der Felder.",
+      "Das vollständige Ausbleiben von Sonnenlicht durch dauerhaften Nebel."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -819,10 +819,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter einer 'Sonderkultur' in der Landwirtschaft?",
     "answers": [
       "Der Anbau arbeits- und kapitalintensiver Pflanzen wie Wein, Obst oder Hopfen.",
-      "Der Anbau von Wildkräutern zur ausschließlichen Verfütterung an Rinder.",
+      "Der gezielte Anbau von Wildkräutern zur Verfütterung an Milchrinder im Stall.",
       "Pflanzen, die nur unter künstlichem UV-Licht in Höhlen wachsen.",
       "Der Versuch, Getreide im ewigen Eis der Nordpolregion anzubauen."
-    ],
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -855,10 +855,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt der Begriff 'Ökologische Landwirtschaft' im Vergleich zur konventionellen Landwirtschaft?",
     "answers": [
       "Verzicht auf chemisch-synthetische Pflanzenschutzmittel und leicht lösliche Mineraldünger.",
-      "Maximale Nutzung von Genmanipulation bei Saatgut und Tieren.",
-      "Ausschließlicher Anbau im Gewächshaus unter Einsatz von Computern.",
-      "Die Produktion von Nahrungsmitteln ohne jeglichen Wasserverbrauch."
-    ],
+      "Maximale Nutzung von Genmanipulation bei Saatgut und Nutztieren vor allem in den Industrieländern.",
+      "Ausschließlicher Anbau im Gewächshaus unter Einsatz von Computern vor allem in den Industrieländern.",
+      "Die Produktion von Nahrungsmitteln ganz ohne jeglichen Wasserverbrauch vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -874,9 +874,9 @@ const questions_k8_erdkunde = [
     "answers": [
       "Großflächige, hochmechanisierte Mastanlagen für die Rinderhaltung auf engem Raum.",
       "Ein spezielles Verfahren zur Trennung von Spreu und Weizen beim Mähdrescher.",
-      "Künstlich angelegte Wasserspeicher für den Reisanbau in Kalifornien.",
+      "Künstlich angelegte, sehr große Wasserspeicher für den Reisanbau in Kalifornien selbst.",
       "Ein Netzwerk von Schienen für den Getreidetransport nach Europa."
-    ],
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -891,10 +891,10 @@ const questions_k8_erdkunde = [
     "question": "Was bedeutet die Abkürzung 'GATT' bzw. 'WTO' im Zusammenhang mit dem Welthandel?",
     "answers": [
       "Welthandelsorganisation (World Trade Organization) zur Regelung internationaler Handelsbeziehungen.",
-      "Weltweiter Zusammenschluss aller ökologischen Landwirtschaftsbetriebe.",
-      "Internationale Organisation zur Überwachung von Erdöl-Exporten.",
-      "Europäischer Bündnispakt zur Verhinderung von Auswanderung."
-    ],
+      "Weltweiter Zusammenschluss aller ökologischen Landwirtschaftsbetriebe der Erde vor allem in den Industrieländern.",
+      "Internationale Organisation zur Überwachung von Erdöl-Exporten weltweit vor allem in den Industrieländern.",
+      "Europäischer Bündnispakt zur Verhinderung von Auswanderung nach Übersee vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -909,10 +909,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter 'Freihandelszonen'?",
     "answers": [
       "Gebiete, in denen Waren ohne Zölle und Handelshemmnisse ausgetauscht werden können.",
-      "Zonen in Städten, in denen Parkplätze für LKW kostenlos zur Verfügung stehen.",
-      "Regionen, in denen keine Gesetze und keine Polizei existieren.",
+      "Zonen in Städten, in denen Parkplätze für LKW kostenlos zur Verfügung stehen in vielen Teilen der Welt.",
+      "Regionen, in denen weder Gesetze noch eine Polizei existieren.",
       "Staaten, die ausschließlich Tauschhandel ohne Bargeld betreiben."
-    ],
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -927,10 +927,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt der Begriff 'Global City'?",
     "answers": [
       "Ein Metropolen-Zentrum mit steuernder Funktion in der Weltwirtschaft (z. B. New York, Tokio, London).",
-      "Eine Stadt, in der ausschließlich Menschen aus über 100 verschiedenen Ländern wohnen.",
-      "Ein riesiger Freizeitpark, der die Kontinente der Erde im Maßstab 1:100 nachbaut.",
-      "Eine antike Ruinenstadt, die ins UNESCO-Weltkulturerbe aufgenommen wurde."
-    ],
+      "Eine Stadt, in der ausschließlich Menschen aus über 100 Ländern wohnen vor allem in den Industrieländern.",
+      "Ein riesiger Freizeitpark, der alle Kontinente im Maßstab 1:100 nachbaut vor allem in den Industrieländern.",
+      "Eine antike Ruinenstadt, die ins UNESCO-Weltkulturerbe aufgenommen wurde vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -945,10 +945,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter dem Begriff 'Cluster' in der Industriegeographie?",
     "answers": [
       "Die räumliche Konzentration vernetzter Unternehmen und Institutionen einer Branche.",
-      "Ein ungeplanter Zusammenschluss von mehreren Armenvierteln am Stadtrand.",
-      "Der Bau von kreisförmigen Autobahnringen um Großstädte herum.",
-      "Ein Schiffskonvoi zur Überquerung von Weltmeeren."
-    ],
+      "Ein ungeplanter Zusammenschluss mehrerer Armenviertel am Stadtrand vor allem in den Industrieländern.",
+      "Der Bau von kreisförmigen Autobahnringen um große Städte herum.",
+      "Ein Schiffskonvoi zur gemeinsamen Überquerung von Weltmeeren vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -963,10 +963,10 @@ const questions_k8_erdkunde = [
     "question": "Welche Region in den USA ist weltweit als führendes Zentrum für Informationstechnologie und Software bekannt?",
     "answers": [
       "Das Silicon Valley in Kalifornien.",
-      "Der Rust Belt um Chicago.",
-      "Der Sunbelt in Florida.",
-      "Die Great Plains in Kansas."
-    ],
+      "Der Rust Belt um die Stadt Chicago.",
+      "Der Sunbelt im Süden von Florida.",
+      "Die Great Plains im Staat Kansas."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -981,10 +981,10 @@ const questions_k8_erdkunde = [
     "question": "Was charakterisiert den Begriff 'Rust Belt' in den USA?",
     "answers": [
       "Eine älteste Industrieregion im Nordosten der USA, von Niedergang der Schwerindustrie geprägt.",
-      "Ein landwirtschaftlicher Gürtel, in dem bevorzugt Weizen angebaut wird.",
-      "Eine Kette von Nationalparks in den Rocky Mountains.",
-      "Ein Gürtel von Wüstenstädten im Südwesten Amerikas."
-    ],
+      "Ein landwirtschaftlicher Gürtel, in dem bevorzugt Weizen angebaut wird vor allem in den Industrieländern.",
+      "Eine Kette von Nationalparks inmitten der Rocky Mountains im Westen vor allem in den Industrieländern.",
+      "Ein Gürtel von wachsenden Wüstenstädten im Südwesten Amerikas vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1000,9 +1000,9 @@ const questions_k8_erdkunde = [
     "answers": [
       "Der Anteil der Wertschöpfung, den ein Unternehmen selbst im eigenen Betrieb herstellt.",
       "Die maximale Tiefe, in der Rohstoffe aus der Erde abgebaggert werden.",
-      "Die Dicke des Fundaments einer Fabrik auf schlecht tragendem Baugrund.",
-      "Die Anzahl der Produktvarianten, die ein Supermarkt im Regal anbietet."
-    ],
+      "Die Dicke des Fundaments einer Fabrik auf schlecht tragendem Baugrund vor allem in den Industrieländern.",
+      "Die Anzahl der Produktvarianten, die ein Supermarkt im Regal führt."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1017,10 +1017,10 @@ const questions_k8_erdkunde = [
     "question": "Was bedeutet das Konzept der 'Just-in-Time'-Anlieferung in der modernen Produktion?",
     "answers": [
       "Bauteile werden exakt zum Zeitpunkt des Verbrauchs direkt ans Förderband geliefert.",
-      "Waren werden monatelang im eigenen Zentrallager auf Vorrat aufbewahrt.",
-      "Produkte werden erst dann geliefert, wenn der Kunde die Ware bezahlt hat.",
-      "LKW dürfen nur nachts zwischen 22 und 6 Uhr Fabriken beliefern."
-    ],
+      "Waren werden monatelang im eigenen Zentrallager auf Vorrat gehalten vor allem in den Industrieländern.",
+      "Produkte werden erst geliefert, wenn der Kunde die Ware bezahlt hat.",
+      "LKW dürfen Fabriken nur nachts zwischen 22 und 6 Uhr beliefern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1035,10 +1035,10 @@ const questions_k8_erdkunde = [
     "question": "Welcher Energieträger fossilen Ursprungs hat weltweit die höchsten CO2-Emissionen pro erzeugter Energieeinheit?",
     "answers": [
       "Die Kohle (insbesondere Braunkohle).",
-      "Das Erdgas.",
-      "Das Erdöl.",
-      "Das Biogas."
-    ],
+      "Das Erdgas aus unterirdischen Lagerstätten.",
+      "Das flüssige Erdöl aus Bohrfeldern.",
+      "Das klimafreundliche Biogas aus Gülle."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1071,10 +1071,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt der Begriff 'Peak Oil'?",
     "answers": [
       "Der Zeitpunkt, an dem das globale Fördermaximum von Erdöl erreicht ist.",
-      "Der höchste Preis, den ein Barrel Öl in der Geschichte erreicht hat.",
-      "Die Entdeckung der tiefsten Ölbohrung der Welt im Ozean.",
-      "Das Verbot von Ölheizungen in europäischen Großstädten."
-    ],
+      "Der höchste Preis, den ein Barrel Rohöl bislang in der Geschichte erreichte.",
+      "Die Entdeckung der tiefsten Ölbohrung der Welt im offenen Ozean.",
+      "Das Verbot von Ölheizungen in europäischen Großstädten ab morgen."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1089,10 +1089,10 @@ const questions_k8_erdkunde = [
     "question": "Welches ökologische Risiko birgt die Schiefergasgewinnung mittels 'Fracking'?",
     "answers": [
       "Verunreinigung des Grundwassers durch Chemikalien und Auslösung kleinerer Beben.",
-      "Extremes Sinken der weltweiten Meeresoberflächen durch Entzug von Meerwasser.",
-      "Zerstörung von Satelliten in der Umlaufbahn durch ausströmenden Wasserdampf.",
-      "Plötzliches Einfrieren der Böden im unmittelbaren Umkreis der Bohrstelle."
-    ],
+      "Extremes Sinken der weltweiten Meeresoberflächen durch Wasserentzug nach Meinung vieler Experten.",
+      "Zerstörung von Satelliten in der Umlaufbahn durch Wasserdampf.",
+      "Plötzliches Einfrieren der Böden im Umkreis der Bohrstelle vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1107,10 +1107,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter der 'Albedo' der Erdoberfläche?",
     "answers": [
       "Das Rückstrahlvermögen von Oberflächen für einfallendes Sonnenlicht.",
-      "Die Tiefe der Humusschicht in europäischen Nadelwäldern.",
-      "Die Geschwindigkeit von Passatwinden am Äquator.",
-      "Der Gehalt an Salz im Oberflächenwasser der Weltmeere."
-    ],
+      "Die Tiefe der Humusschicht in europäischen Nadelwäldern nach Meinung vieler Experten.",
+      "Die Geschwindigkeit von Passatwinden nahe dem Äquator.",
+      "Der Salzgehalt im Oberflächenwasser der Weltmeere vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1125,10 +1125,10 @@ const questions_k8_erdkunde = [
     "question": "Warum verstärkt das Schmelzen des arktischen Meereises die globale Erwärmung (positive Rückkopplung)?",
     "answers": [
       "Dunkles Meereswasser ersetzt helles Eis und absorbiert mehr Sonnenenergie.",
-      "Das Schmelzwasser setzt riesige Mengen an gebundenem Kohlenstoff frei.",
-      "Schmelzendes Eis stoppt die Erdrotation im Nordpolargebiet.",
-      "Die Meere werden durch das Eiswasser so warm, dass Methangas verdampft."
-    ],
+      "Das Schmelzwasser setzt riesige Mengen an gebundenem Kohlenstoff sofort frei.",
+      "Schmelzendes Eis verlangsamt die Erdrotation am Nordpol spürbar.",
+      "Die Meere werden durch Eiswasser so warm, dass Methan verdampft."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1162,9 +1162,9 @@ const questions_k8_erdkunde = [
     "answers": [
       "Das Wasser, das zur Herstellung eines Produkts über die gesamte Kette verbraucht wird.",
       "Wasser, das in Computeranimationen für Filme künstlich dargestellt wird.",
-      "Das Wasser, das in Form von Nebel in der Atmosphäre als Gas schwebt.",
-      "Gereinigtes Abwasser, das wieder in Trinkwasserleitungen eingespeist wird."
-    ],
+      "Das Wasser, das als feiner Nebel in der Atmosphäre schwebt vor allem in den Industrieländern.",
+      "Gereinigtes Abwasser, das wieder in Trinkwasserleitungen eingespeist wird vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1197,10 +1197,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt der Begriff 'Suburbanisierung'?",
     "answers": [
       "Die Verlagerung von Wohnbevölkerung und Betrieben aus der Kernstadt in das Umland.",
-      "Das rasche Wachstum von Hochhäusern im Zentrum von Megacities.",
-      "Die Zerstörung von Wäldern zur Schaffung von neuem Ackerland.",
-      "Die Rückwanderung von Menschen aus den Städten auf entlegene Bauernhöfe."
-    ],
+      "Das rasche Wachstum von Hochhäusern im Zentrum von Megacities vor allem in den Industrieländern.",
+      "Die Zerstörung von Wäldern zur Schaffung von neuem Ackerland vor allem in den Industrieländern.",
+      "Die Rückwanderung von Menschen aus Städten auf entlegene Höfe."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1215,10 +1215,10 @@ const questions_k8_erdkunde = [
     "question": "Was bedeutet 'Gentrifizierung' in der Stadtgeographie?",
     "answers": [
       "Die Aufwertung eines Stadtteils, oft verbunden mit Verdrängung einkommensschwächerer Gruppen.",
-      "Der Verfall von Altbauten im Zentrum durch Vernachlässigung der Eigentümer.",
-      "Die Umwandlung von Wohngebieten in reine Industriegebiete.",
-      "Die vollständige Begrünung aller Hausdächer in einer Innenstadt."
-    ],
+      "Der Verfall von Altbauten im Zentrum durch Vernachlässigung der Eigentümer vor allem in den Industrieländern.",
+      "Die Umwandlung ganzer Wohngebiete in reine Industrieflächen vor allem in den Industrieländern.",
+      "Die vollständige Begrünung aller Hausdächer in einer Innenstadt vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1233,10 +1233,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter einer 'Metropole'?",
     "answers": [
       "Eine Millionenstadt, die das wirtschaftliche, gesellschaftliche und politische Zentrum eines Landes bildet.",
-      "Jede Kleinstadt, die an einer internationalen Grenze liegt.",
-      "Eine Siedlung, die ausschließlich aus Industrie- und Hafenanlagen besteht.",
-      "Ein Dorf im Gebirge mit weniger als 1.000 Einwohnern."
-    ],
+      "Jede Kleinstadt, die direkt an einer internationalen Grenze liegt vor allem in den Industrieländern.",
+      "Eine Siedlung, die ausschließlich aus Industrie- und Hafenanlagen besteht vor allem in den Industrieländern.",
+      "Ein Dorf im Gebirge mit weniger als 1.000 Einwohnern insgesamt vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1251,10 +1251,10 @@ const questions_k8_erdkunde = [
     "question": "Was charakterisiert den Begriff 'Marginalsiedlung'?",
     "answers": [
       "Eine behelfsmäßige Siedlung ohne ausreichende Infrastruktur am Rand von Großstädten.",
-      "Ein luxussaniertes Wohnviertel mit eigener Sicherheitsbewachung.",
-      "Ein historisches Stadtzentrum mit Befestigungsanlagen aus dem Mittelalter.",
-      "Ein Neubaugebiet für staatliche Behörden und Botschaften."
-    ],
+      "Ein luxussaniertes Wohnviertel mit eigener privater Sicherheitsbewachung.",
+      "Ein historisches Stadtzentrum mit Befestigungsanlagen aus dem Mittelalter nach Meinung vieler Experten.",
+      "Ein Neubaugebiet für staatliche Behörden und ausländische Botschaften."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1270,10 +1270,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt das Phänomen der 'Demografischen Alterung' in vielen Industrieländern?",
     "answers": [
       "Der Anteil älterer Menschen an der Gesamtbevölkerung nimmt zu, während der Anteil Jüngerer sinkt.",
-      "Die durchschnittliche Lebenserwartung der Bevölkerung sinkt drastisch durch Krankheiten.",
-      "Die Zahl der jährlichen Neugeborenen steigt kontinuierlich auf Rekordwerte an.",
-      "Die Bevölkerung verlagert ihren Wohnsitz vom Land in ländliche Seniorenheime."
-    ],
+      "Die durchschnittliche Lebenserwartung der Bevölkerung sinkt drastisch vor allem in den Industrieländern.",
+      "Die Zahl der jährlichen Neugeborenen steigt kontinuierlich auf Rekordwerte vor allem in den Industrieländern.",
+      "Die Bevölkerung verlagert ihren Wohnsitz vom Land in ländliche Heime vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1324,10 +1324,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter dem Begriff 'Braindrain' in der Humangeographie?",
     "answers": [
       "Die Abwanderung von hochqualifizierten Arbeitskräften aus ihrem Heimatland ins Ausland.",
-      "Die Rückkehr von ausgebildeten Fachkräften in ihre ursprünglichen Heimatdörfer.",
-      "Der Bau von Schulen und Universitäten mit Geldern aus Entwicklungshilfe.",
+      "Die Rückkehr von ausgebildeten Fachkräften in ihre Heimatdörfer vor allem in den Industrieländern.",
+      "Der Bau von Schulen und Universitäten mit Geldern aus Entwicklungshilfe vor allem in den Industrieländern.",
       "Die Verringerung der Sprachkenntnisse bei Jugendlichen durch Migration."
-    ],
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1343,9 +1343,9 @@ const questions_k8_erdkunde = [
     "answers": [
       "Das Wachstum des Anteils der Stadtbevölkerung an der Gesamtbevölkerung eines Landes.",
       "Die Umwandlung von Wüstenflächen in landwirtschaftlich genutzte Äcker.",
-      "Der Bau von Solaranlagen auf den Dächern von Vorort-Einfamilienhäusern.",
-      "Das Aussterben von Pflanzen- und Tierarten in städtischen Parks."
-    ],
+      "Der Bau von Solaranlagen auf den Dächern von Vorort-Einfamilienhäusern vor allem in den Industrieländern.",
+      "Das Aussterben von Pflanzen- und Tierarten in innerstädtischen Parks."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1360,10 +1360,10 @@ const questions_k8_erdkunde = [
     "question": "Was ist das Hauptziel des 'Sanftem Tourismus' (Ökotourismus)?",
     "answers": [
       "Reisen so zu gestalten, dass Natur geschont und die lokale Bevölkerung fair einbezogen wird.",
-      "Möglichst billige Pauschalreisen mit großen Kreuzfahrtschiffen anzubieten.",
-      "Den Bau riesiger Beton-Bettenburgen an Sandstränden zu beschleunigen.",
-      "Ausschließend Tagesausflüge ohne Übernachtung in Freizeitparks zu organisieren."
-    ],
+      "Möglichst billige Pauschalreisen mit sehr großen Kreuzfahrtschiffen anzubieten.",
+      "Den Bau riesiger Beton-Bettenburgen direkt an Sandstränden zu beschleunigen.",
+      "Ausschließlich Tagesausflüge ohne Übernachtung in Freizeitparks zu organisieren vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1378,10 +1378,10 @@ const questions_k8_erdkunde = [
     "question": "Welche ökologische Auswirkung ist eng mit dem Massentourismus an Meeresküsten verbunden?",
     "answers": [
       "Zerstörung sensibler Ökosysteme (wie Dünen oder Korallenriffe) und hohes Müllaufkommen.",
-      "Plötzliche Zunahme von Meereisbildung in tropischen Gewässern.",
-      "Absinken der Wassertemperatur durch den Einsatz von Motorbooten.",
-      "Vollständiges Ausbleiben von Gezeiten im Küstenbereich."
-    ],
+      "Plötzliche Zunahme der Meereisbildung in warmen tropischen Gewässern.",
+      "Absinken der Wassertemperatur durch den vermehrten Einsatz von Motorbooten vor allem in den Industrieländern.",
+      "Vollständiges Ausbleiben der Gezeiten im gesamten Küstenbereich vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1396,10 +1396,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt der Begriff 'Monostruktur' im Zusammenhang mit regionaler Wirtschaft?",
     "answers": [
       "Die starke Ausrichtung einer Region auf nur einen einzigen Wirtschaftszweig oder Betrieb.",
-      "Die gleichmäßige Verteilung aller Industriearten über das gesamte Staatsgebiet.",
+      "Die gleichmäßige Verteilung aller Industriearten über das ganze Staatsgebiet vor allem in den Industrieländern.",
       "Die ausschließliche Nutzung von Sonnenenergie im Stromnetz einer Stadt.",
-      "Das Verbot von Importwaren aus anderen Ländern."
-    ],
+      "Das gesetzliche Verbot von Importwaren aus allen anderen Ländern vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1415,9 +1415,9 @@ const questions_k8_erdkunde = [
     "answers": [
       "Umfriedete und privat bewachte Wohnanlagen für wohlhabende Bevölkerungsschichten.",
       "Öffentliche Wohnviertel für einkommensschwache Familien ohne Steuern.",
-      "Sonderwirtschaftszonen für ausländische Industrieunternehmen am Hafen.",
+      "Sonderwirtschaftszonen für ausländische Industrieunternehmen am Hafen nach Meinung vieler Experten.",
       "Historische Altstadtbereiche, die nur für Fußgänger zugänglich sind."
-    ],
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1432,10 +1432,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter dem Begriff 'Sonderwirtschaftszone' (SWZ)?",
     "answers": [
       "Gebiete in einem Staat, in denen für Unternehmen besondere rechtliche und steuerliche Anreize gelten.",
-      "Regionen, in denen der Verkauf von Konsumgütern gesetzlich verboten ist.",
-      "Naturschutzgebiete, in denen keinerlei wirtschaftliche Aktivität stattfinden darf.",
-      "Städte, die ausschließlich von Universitäten und Forschungszentren betrieben werden."
-    ],
+      "Regionen, in denen der Verkauf von Konsumgütern gesetzlich verboten ist vor allem in den Industrieländern.",
+      "Naturschutzgebiete, in denen keinerlei wirtschaftliche Aktivität stattfindet vor allem in den Industrieländern.",
+      "Städte, die ausschließlich von Universitäten und Forschung betrieben werden."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1452,8 +1452,8 @@ const questions_k8_erdkunde = [
       "Shenzhen.",
       "Peking.",
       "Lhasa.",
-      "Harbin."
-    ],
+      "Chongqing."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1468,10 +1468,10 @@ const questions_k8_erdkunde = [
     "question": "Was bezeichnet man als 'Metropolisierung'?",
     "answers": [
       "Die Vergrößerung des Abstands zwischen einer überragenden Metropole und den restlichen Städten des Landes.",
-      "Die systematische Verkleinerung von Großstädten zugunsten ländlicher Dörfer.",
-      "Die Umbenennung von Kleinstädten in wissenschaftliche Forschungszentren.",
-      "Der Zusammenschluss aller europäischen Hauptstädte zu einem gemeinsamen Bundesstaat."
-    ],
+      "Die systematische Verkleinerung von Großstädten zugunsten ländlicher Dörfer vor allem in den Industrieländern.",
+      "Die Umbenennung von Kleinstädten in wissenschaftliche Forschungszentren vor allem in den Industrieländern.",
+      "Der Zusammenschluss aller europäischen Hauptstädte zu einem Bundesstaat vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "schwer",
     "points": 20,
@@ -1486,10 +1486,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt das Phänomen der 'Fragmentierung' von Städten?",
     "answers": [
       "Die räumliche und soziale Aufspaltung einer Stadt in gegensätzliche Teilbereiche (z. B. Armut vs. Reichtum).",
-      "Die Zerstörung von Straßenbelägen durch Frost im Winter.",
-      "Der Zusammenbau von vorgefertigten Häuserelementen aus Beton.",
-      "Die Begrünung von ungenutzten Bahntrassen im Stadtgebiet."
-    ],
+      "Die Zerstörung von Straßenbelägen durch Frost während der Wintermonate unter bestimmten klimatischen Bedingungen.",
+      "Der Zusammenbau von vorgefertigten Häuserelementen aus Beton vor Ort vor allem in den Industrieländern.",
+      "Die Begrünung von ungenutzten Bahntrassen mitten im Stadtgebiet vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1506,8 +1506,8 @@ const questions_k8_erdkunde = [
       "Ein Unternehmen, das weltweit mit Zweigniederlassungen und Produktionsstätten agiert.",
       "Ein lokaler Handwerksbetrieb mit Angestellten aus verschiedenen Staaten.",
       "Ein staatliches Museum, das Kunstwerke aus aller Welt ausstellt.",
-      "Eine internationale Hilfsorganisation zur Katastrophenbekämpfung."
-    ],
+      "Eine internationale Hilfsorganisation zur Katastrophenbekämpfung weltweit nach Meinung vieler Experten."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1522,10 +1522,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter dem 'Treibhauseffekt' der Erde?",
     "answers": [
       "Spurengase in der Atmosphäre lassen kurzwellige Sonnenstrahlung durch, halten langwellige Wärmestrahlung aber zurück.",
-      "Künstlich aufgebaute Gewächshäuser erwärmen die kontinentalen Luftmassen im Sommer.",
-      "Das Schmelzen der Gletscher führt zu ständigen Dampfwolken über den Meeren.",
-      "Die UV-Strahlung der Sonne wird durch Ozonmoleküle vollständig in Kälte umgewandelt."
-    ],
+      "Künstlich aufgebaute Gewächshäuser erwärmen die kontinentalen Luftmassen im Sommer stark vor allem in den Industrieländern.",
+      "Das Schmelzen der Gletscher führt zu ständigen Dampfwolken über den Meeren vor allem in den Industrieländern.",
+      "Die UV-Strahlung der Sonne wird durch Ozonmoleküle vollständig in Kälte umgewandelt vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1540,10 +1540,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter dem Begriff 'Meeresspiegelanstieg' infolge des Klimawandels?",
     "answers": [
       "Das Ansteigen des globalen Ozeanniveaus durch thermische Ausdehnung des Wassers und Schmelzen von Landeis.",
-      "Das tägliche Steigen des Wassers bei Flut an den Nordseeküsten.",
-      "Das Zunehmen der Wellenhöhe bei starken Winterstürmen auf dem Atlantik.",
-      "Die Zunahme der Süßwassermenge in Flüssen nach heftigen Sommergewittern."
-    ],
+      "Das tägliche Steigen des Wassers bei Flut an den Küsten der Nordsee vor allem in den Industrieländern.",
+      "Das Zunehmen der Wellenhöhe bei starken Winterstürmen auf dem Atlantik vor allem in den Industrieländern.",
+      "Die Zunahme der Süßwassermenge in Flüssen nach heftigen Sommergewittern vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1576,10 +1576,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt der Begriff 'Ökologisches Gleichgewicht'?",
     "answers": [
       "Ein Zustand in einem Ökosystem, bei dem sich Stoffkreisläufe und Artengemeinschaften stabilisieren.",
-      "Die exakte Verteilung von Land- und Wasserflächen auf der Erdoberfläche.",
-      "Das strikte Bauverbot für alle Städte in Küstennähe.",
-      "Der Ausgleich von Angebot und Nachfrage an der Rohstoffbörse."
-    ],
+      "Die exakte Verteilung von Land- und Wasserflächen auf der Erdoberfläche vor allem in den Industrieländern.",
+      "Das strikte Bauverbot für alle Städte und Dörfer in Küstennähe vor allem in den Industrieländern.",
+      "Der Ausgleich von Angebot und Nachfrage an der Rohstoffbörse weltweit vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1594,10 +1594,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter der 'Tragfähigkeit' eines Raumes?",
     "answers": [
       "Die maximale Anzahl an Menschen, die ein Raum bei nachhaltiger Nutzung ernähren und versorgen kann.",
-      "Das maximale Gewicht, das Brücken in einer Großstadt tragen können.",
-      "Die Dicke der Eisschicht, auf der Fahrzeuge im Winter fahren können.",
-      "Die Menge an Erzen, die ein Bergwerk vor dem Einsturz fördern kann."
-    ],
+      "Das maximale Gewicht, das Brücken in einer Großstadt tragen können vor allem in den Industrieländern.",
+      "Die Dicke der Eisschicht, auf der Fahrzeuge im Winter fahren können vor allem in den Industrieländern.",
+      "Die Menge an Erzen, die ein Bergwerk vor dem Einsturz noch fördern kann vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1612,10 +1612,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter 'Synergien' bei der Ansiedlung verwandter Industriezweige?",
     "answers": [
       "Positive Zusammenwirkungs- und Einspareffekte durch Zusammenarbeit und kurze Wege.",
-      "Gegenseitiges Blockieren von Gütertransporten auf den Hauptverkehrsachsen.",
+      "Gegenseitiges Blockieren von Gütertransporten auf den Hauptverkehrsachsen in vielen Teilen der Welt.",
       "Die behördliche Verpflichtung zur Absenkung der Löhne in einer Region.",
       "Der Verlust von Arbeitsplätzen durch die Einführung von Robotern."
-    ],
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1630,10 +1630,10 @@ const questions_k8_erdkunde = [
     "question": "Was bedeutet der Begriff 'Migration' im geographischen Kontext?",
     "answers": [
       "Der dauerhafte Wechsel des Wohnsitzes von Personen oder Gruppen über Raumgrenzen hinweg.",
-      "Die tägliche Bewegung von Tiefdruckgebieten über den Nordatlantik.",
-      "Die schrittweise Verschiebung der magnetischen Pole der Erde.",
-      "Der jahreszeitliche Wechsel von Laubbaumfarben im Herbst."
-    ],
+      "Die tägliche Bewegung von Tiefdruckgebieten über dem Nordatlantik.",
+      "Die schrittweise Verschiebung der magnetischen Pole der Erde vor allem in den Industrieländern.",
+      "Der jahreszeitliche Wechsel von Laubbaumfarben im Herbst insgesamt vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1648,10 +1648,10 @@ const questions_k8_erdkunde = [
     "question": "Was bezeichnet man als 'Binnenmigration'?",
     "answers": [
       "Wanderungen von Menschen innerhalb der Grenzen eines einzigen Staates.",
-      "Die Auswanderung von Küstenbewohnern auf Inseln im Ozean.",
+      "Die Auswanderung von Küstenbewohnern auf ferne Inseln im offenen Ozean.",
       "Die Migration von Seevögeln entlang der Flussläufe ins Landesinnere.",
-      "Die grenzüberschreitende Flucht in ein Nachbarland."
-    ],
+      "Die grenzüberschreitende Flucht von Menschen in ein Nachbarland."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1684,10 +1684,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt der Begriff 'Energiewende' in Deutschland?",
     "answers": [
       "Der Umbau der Energieversorgung von fossilen/nuklearen Energien hin zu Erneuerbaren Energien.",
-      "Die vollständige Verdopplung des Stromverbrauchs in Privathaushalten.",
-      "Der Import von Strom aus Kohlekraftwerken der außereuropäischen Staaten.",
-      "Die Abschaltung des gesamten nationalen Stromnetzes in den Nachtstunden."
-    ],
+      "Die vollständige Verdopplung des Stromverbrauchs in Privathaushalten vor allem in den Industrieländern.",
+      "Der Import von Strom aus Kohlekraftwerken außereuropäischer Staaten vor allem in den Industrieländern.",
+      "Die Abschaltung des gesamten nationalen Stromnetzes in den Nachtstunden vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1703,9 +1703,9 @@ const questions_k8_erdkunde = [
     "answers": [
       "Das Abdecken des Bodens mit wasserundurchlässigen Schichten wie Asphalt oder Beton.",
       "Die Anreicherung von fruchtbarem Mutterboden mit pflanzlichem Kompost.",
-      "Das Einzäunen von landwirtschaftlichen Feldern zum Schutz vor Wildtieren.",
-      "Die natürliche Gefrierung des Bodens in den Wintermonaten."
-    ],
+      "Das Einzäunen von landwirtschaftlichen Feldern zum Schutz vor Wildtieren nach Meinung vieler Experten.",
+      "Die natürliche Gefrierung des Bodens während der Wintermonate."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1720,10 +1720,10 @@ const questions_k8_erdkunde = [
     "question": "Was beschreibt der Begriff 'Flächenfraß'?",
     "answers": [
       "Die Umwandlung von naturnahen oder landwirtschaftlichen Flächen in Siedlungs- und Verkehrsflächen.",
-      "Der Verlust von Erntemengen durch den Befall von Heuschreckenplagen.",
-      "Die Erosion von Flussufern durch starke Strömungen bei Hochwasser.",
-      "Das Abtragen von Gestein in Steinbrüchen zur Zementherstellung."
-    ],
+      "Der Verlust von Erntemengen durch den Befall von Heuschreckenplagen vor allem in den Industrieländern.",
+      "Die Erosion von Flussufern durch starke Strömungen bei Hochwasser vor allem in den Industrieländern.",
+      "Das Abtragen von Gestein in Steinbrüchen zur Zementherstellung dort vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1738,10 +1738,10 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter 'Renaturierung' von Gewässern?",
     "answers": [
       "Die Rückführung von verbauten oder begradigten Flüssen in einen naturnahen Zustand.",
-      "Die Trockenlegung von Seen zur Gewinnung von neuem Bauland.",
-      "Das Betonieren von Flussufern zum Schutz vor schnellen Strömungen.",
-      "Der Bau von Wasserkraftwerken an großen Staudämmen."
-    ],
+      "Die Trockenlegung von Seen zur Gewinnung von neuem Bauland vor allem in den Industrieländern.",
+      "Das Betonieren von Flussufern zum Schutz vor schnellen Strömungen vor allem in den Industrieländern.",
+      "Der Bau von Wasserkraftwerken an großen Staudämmen im Gebirge."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1756,10 +1756,10 @@ const questions_k8_erdkunde = [
     "question": "Welcher Begriff beschreibt den Verlust biologischer Vielfalt durch das Aussterben von Arten?",
     "answers": [
       "Biodiversitätsverlust.",
-      "Desertifikation.",
-      "Eutrophierung.",
-      "Akkommodation."
-    ],
+      "Desertifikationsprozess.",
+      "Die Eutrophierung.",
+      "Die Akkommodation."
+],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1775,9 +1775,9 @@ const questions_k8_erdkunde = [
     "answers": [
       "Die Verschiebung von Arbeitsplätzen vom primären über den sekundären hin zum tertiären Sektor.",
       "Der Wechsel von fossilen Treibstoffen zu Wasserstoffmotoren im Verkehr.",
-      "Die jährliche Änderung der Anbauprodukte auf den Feldern eines Agrarbetriebs.",
-      "Der Wechsel der Regierungsverantwortung in demokratischen Staaten."
-    ],
+      "Die jährliche Änderung der Anbauprodukte auf Feldern eines Agrarbetriebs.",
+      "Der Wechsel der Regierungsverantwortung in demokratischen Staaten weltweit vor allem in den Industrieländern."
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1792,43 +1792,19 @@ const questions_k8_erdkunde = [
     "question": "Was versteht man unter dem Begriff 'Resilienz' eines Raumes gegenüber Naturkatastrophen?",
     "answers": [
       "Die Fähigkeit einer Region, Erschütterungen zu überstehen und sich schnell wieder zu erholen.",
-      "Die absolute Vorhersagegenauigkeit von Erdbeben auf die Minute genau.",
-      "Das vollständige Fehlen jeglicher Risiken für Naturgefahren in einem Gebiet.",
+      "Die absolute Vorhersagegenauigkeit von Erdbeben auf die Minute genau vor allem in den Industrieländern.",
+      "Das vollständige Fehlen jeglicher Risiken für Naturgefahren in einem Gebiet vor allem in den Industrieländern.",
       "Die Pflicht aller Einwohner, in bombensicheren Schutzkellern zu wohnen."
-    ],
+],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
     "explanation": "Resilienz bezeichnet die Widerstandskraft und Anpassungsfähigkeit einer Gesellschaft gegenüber Extremereignissen."
-  },
-  {"id":"k8ek101","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Deutschland Kontinent?","answers":["Afrika","Europa","Asien","Australien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Europa."},
-  {"id":"k8ek102","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Hauptstadt FR?","answers":["Lyon","Paris","Marseille","Nizza"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Paris."},
-  {"id":"k8ek103","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Äquator Breite?","answers":["90°","0°","180°","45°"],"correct":1,"difficulty":"mittel","points":10,"explanation":"0°."},
-  {"id":"k8ek104","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Nachhaltigkeit: …","answers":["verbrauchen","schonend nutzen","nur Export","kein Wasser"],"correct":1,"difficulty":"mittel","points":10,"explanation":"schonen."},
-  {"id":"k8ek105","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Urbanisierung = …","answers":["Landwirtschaft","Verstädterung","Wald","Eiszeit"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stadt."},
-  {"id":"k8ek106","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Plattentektonik erklärt …","answers":["Wetter","Erdbeben/Vulkane","Mode","Sprache"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Platten."},
-  {"id":"k8ek107","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Migration pull?","answers":["Krieg","Jobs Ziel","Katastrophe","Verfolgung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Anziehung."},
-  {"id":"k8ek108","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Treibhausgas u. a. …","answers":["O₂","CO₂","N₂","He"],"correct":1,"difficulty":"mittel","points":10,"explanation":"CO₂."},
-  {"id":"k8ek109","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"1:100000 → 1 cm = …","answers":["1 m","1 km","100 km","10 m"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1 km."},
-  {"id":"k8ek110","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Rhein → …","answers":["Ostsee","Nordsee","Adria","Donau"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nordsee."},
-  {"id":"k8ek111","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Wüste: wenig …","answers":["Sand","Niederschlag","Sonne","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Regen."},
-  {"id":"k8ek112","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Globalisierung = …","answers":["Isolation","Verflechtung","Lokal","Autarkie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Netz."},
-  {"id":"k8ek113","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"HDI u. a. …","answers":["Militär","Bildung/Gesundheit/Einkommen","CO₂","nur BIP"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Entwicklung."},
-  {"id":"k8ek114","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Desertifikation = …","answers":["Aufforstung","Wüstenbildung","Gletscher","Stadt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Degradation."},
-  {"id":"k8ek115","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Alpen = …","answers":["Tiefland","Hochgebirge","Inseln","Wüste"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gebirge."},
-  {"id":"k8ek116","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"EU Binnenmarkt: freier …","answers":["Krieg","Warenverkehr","Zoll","Grenze überall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Waren."},
-  {"id":"k8ek117","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Legende erklärt …","answers":["Politik","Signaturen","Zeit","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zeichen."},
-  {"id":"k8ek118","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Süßwasser u. a. in …","answers":["Meer","Gletscher/Grundwasser","Asphalt","Hochhaus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Süßwasser."},
-  {"id":"k8ek119","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Strukturwandel → …","answers":["Kohle","Dienstleistungen","Wüste","Landwirtschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"tertiär."},
-  {"id":"k8ek120","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Geopolitik: Macht und …","answers":["Sport","Raum","Mode","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Raum."},
-  {"id":"k8ek121","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Tropen nah am …","answers":["Pol","Äquator","Mond","Mars"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Äquator."},
-  {"id":"k8ek122","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Bodenschatz?","answers":["Luft","Erz/Kohle","Wolke","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rohstoff."},
-  {"id":"k8ek123","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Versiegelung + Starkregen → …","answers":["weniger Risiko","mehr Hochwasser","kein Effekt","Schnee"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Risiko."},
-  {"id":"k8ek124","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Fair Trade → …","answers":["Dumping","faire Preise","Zwischenhandel max","Schwarzmarkt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fairness."},
-  {"id":"k8ek125","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Kompass → …","answers":["Osten","Norden","Süden","Westen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"N."},
-  {"id":"k8ek126","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Primärer Sektor = …","answers":["Industrie","Rohstoffe/Landwirtschaft","Dienstleistung","IT"],"correct":1,"difficulty":"mittel","points":10,"explanation":"primär."},
-  {"id":"k8ek127","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Bevölkerungsdichte = …","answers":["Zahl","Einwohner/Fläche","Geburten","Migration"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Dichte."},
-  {"id":"k8ek128","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Klimaschutz: mehr …","answers":["Kohle","Erneuerbare","Abholzung","Flüge"],"correct":1,"difficulty":"mittel","points":10,"explanation":"EE."},
-  {"id":"k8ek129","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"Metropolregion = …","answers":["Dorf","Stadtregion","Wüste","Insel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Agglomeration."},
-  {"id":"k8ek130","category":"k8_erdkunde","area":"schule","grade":8,"subject":"erdkunde","topic":"erweiterung","question":"SDGs sind …","answers":["Krieg","UN-Nachhaltigkeitsziele","nur DE","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"UN."}
+  }
 ];
+
+
+
+
+
+

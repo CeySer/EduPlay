@@ -102,10 +102,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Wer trägt die primäre Verantwortung für das Wohl des Kindes?",
     "answers": [
-      "Der Bürgermeister im Ort",
-      "Die Polizei in der Stadt",
+      "Der Vereinstrainer im Sportclub",
+      "Der freundliche Nachbar im Haus",
       "Die Eltern / Sorgeberechtigte",
-      "Die Lehrer in der Schule"
+      "Das ganze Fußballteam Verein"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -120,10 +120,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Welches staatliche Amt schützt Kinder bei Notlagen in der Familie?",
     "answers": [
-      "Das Finanzamt der Stadt",
-      "Das Hauptzollamt Land",
+      "Das Bauamt in der Gemeinde",
+      "Das Standesamt der Stadt",
       "Das städtische Jugendamt",
-      "Das Bauamt im Rathaus"
+      "Das Ordnungsamt der Stadt"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -193,9 +193,9 @@ const K6_POLITIK_QUESTIONS = [
     "question": "Was versteht man unter Chancengleichheit in einer Gesellschaft?",
     "answers": [
       "Gleiche Bildungschancen",
-      "Gleicher Geldbeutel",
-      "Gleicher Wohnort immer",
-      "Gleiche Kleidung stets"
+      "Gleicher Kleiderschrank",
+      "Gleiches Taschengeld",
+      "Gleiche Schuhgröße"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -264,10 +264,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was versteht man unter dem Begriff 'Inklusion' in der Schule?",
     "answers": [
-      "Getrennte Sonderschule",
-      "Ausschluss von Kranken",
+      "Unterricht nur per Video",
+      "Getrennter Unterricht immer",
       "Gemeinsames Lernen aller",
-      "Lernen nur per Internet"
+      "Nur Lernen für die Starken"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -283,9 +283,9 @@ const K6_POLITIK_QUESTIONS = [
     "question": "Was beschreibt eine Patchwork-Familie?",
     "answers": [
       "Neue Partner mit Kindern",
-      "Familie mit zehn Elter",
-      "Leben im großen Heim",
-      "Wohnen ohne Erwachsene"
+      "Familie mit Roboterhund",
+      "Leben ganz ohne die Kinder",
+      "Wohnen bei fremden Leuten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -301,9 +301,9 @@ const K6_POLITIK_QUESTIONS = [
     "question": "Was versteht man unter einer Alleinerziehenden-Familie?",
     "answers": [
       "Ein Elternteil u. Kind",
-      "Pflegeeltern im Heim",
-      "Beide Eltern mit Kind",
-      "Großeltern u. Enkel"
+      "Kinder ohne Erwachsene",
+      "Nachbarn mit Hund und Katze",
+      "Onkel Tante und der Cousin"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -336,10 +336,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was bedeutet Integration in einer Gemeinschaft?",
     "answers": [
-      "Vollständiges Anpassen",
+      "Verbot aller fremden Sprachen",
       "Einbindung aller Menschen",
-      "Ausgrenzung von Fremden",
-      "Trennung der Gruppen"
+      "Trennung nach der Herkunft",
+      "Streit ohne jeden Grund hier"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -393,9 +393,9 @@ const K6_POLITIK_QUESTIONS = [
     "question": "Welche Geschäftsfähigkeit besitzen Kinder von 7 bis 17 Jahren?",
     "answers": [
       "Beschränkt geschäftsfähig",
-      "Voll geschäftsfähig",
-      "Gar nicht geschäftsfähig",
-      "Unbegrenzt fähig Kauf"
+      "Immer voll geschäftsfähig",
+      "Niemals geschäftsfähig",
+      "Nur mit Eltern einkaufen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -464,9 +464,9 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Wie nennt man unaufgeforderte Werbung im Internet u. E-Mail?",
     "answers": [
-      "Virus-Programme",
-      "Update-Signale",
-      "Cookie-Dateien",
+      "Wetterbericht heute",
+      "Hausaufgabenzettel",
+      "Geburtstagskarten",
       "Spam-Nachrichten"
     ],
     "correct": 3,
@@ -483,9 +483,9 @@ const K6_POLITIK_QUESTIONS = [
     "question": "Was bedeutet 'Produktplatzierung' in Filmen oder Videos?",
     "answers": [
       "Gezielte Schleichwerbung",
-      "Verbot von Markenware",
-      "Zufälliger Bildfehler",
-      "Spende an Schauspieler"
+      "Kostenlose Software fürs Handy",
+      "Verbot jeder Reklame",
+      "Zensur von Kinofilmen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -626,10 +626,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Wer schützt Verbraucher vor Täuschung u. Mängeln?",
     "answers": [
-      "Das Umweltministerium",
-      "Der Kriminaldienst",
+      "Das Straßenverkehrsamt",
+      "Der städtische Forstdienst",
       "Die Verbraucherzentrale",
-      "Das Stadtsportamt"
+      "Das Wetteramt der Stadt"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -644,10 +644,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Welche Bezahlform bucht Geld direkt vom Girokonto ab?",
     "answers": [
-      "Der Rabatt-Coupon",
+      "Der lange Handyvertrag",
       "Die Girocard (EC-Karte)",
-      "Der Geschenkgutschein",
-      "Die Kundenkarte Laden"
+      "Die Sparbüchse zu Hause",
+      "Das Bargeld im Portemonnaie"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -680,10 +680,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was zeigt das 'Fairtrade-Siegel' auf Lebensmitteln an?",
     "answers": [
-      "Frei von Kalorien Fett",
-      "Reine Handarbeit Werk",
+      "Bio-Anbau garantiert echt",
+      "Vegane Herstellung pur",
       "Faire Preise für Bauern",
-      "Hergestellt in Germany"
+      "Regionale Herkunft nur"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -698,10 +698,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was beschreibt der Begriff 'Garantie' bei Elektrogeräten?",
     "answers": [
-      "Pflicht zur Rückgabe",
+      "Kostenlose Lieferung stets",
       "Freiwilliges Versprechen",
-      "Preisnachlass im Laden",
-      "Verbot der Reparatur"
+      "Dauerhafter Preisrabatt",
+      "Pflicht zum Umtausch sofort"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -772,9 +772,9 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was kennzeichnet ein sicheres Passwort im Internet?",
     "answers": [
-      "Zahlenreihe 12345",
-      "Der eigene Vorname",
-      "Geburtsdatum kurz",
+      "Nur kleine Buchstaben",
+      "Der Name des Haustiers",
+      "Lieblingsfarbe kurz genannt",
       "Länge, Zeichen, Zahlen"
     ],
     "correct": 3,
@@ -827,9 +827,9 @@ const K6_POLITIK_QUESTIONS = [
     "question": "Warum sollte man im Internet keine persönlichen Daten preisgeben?",
     "answers": [
       "Gefahr von Datenmissbrauch",
-      "Bildschirm wird dunkel",
-      "Internet wird langsamer",
-      "Handy-Akku geht leerer"
+      "Bildschirm flackert kurz auf",
+      "Akku wird schneller leer",
+      "Handy wird etwas wärmer"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -934,10 +934,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was speichert eine 'Cookie'-Datei im Webbrowser?",
     "answers": [
-      "Neue Rezepte für Kuchen",
+      "Rezepte für den großen Kuchen",
       "Nutzungsdaten & Einstellungen",
-      "Komplette Computerspiele",
-      "Alle Fotos der Festplatte"
+      "Alte Schulnoten im Zeugnis",
+      "Lustige Katzenvideos online"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1006,10 +1006,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was schützt die 'Datenschutz-Grundverordnung' (DSGVO)?",
     "answers": [
-      "Feuerwehr vor Bränden",
-      "Die Preise in Läden",
+      "Regeln für den Verkehr",
+      "Preise im Supermarkt",
       "Personenbezogene Daten",
-      "Gekaufte Möbel daheim"
+      "Öffnungszeiten Amt"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1024,9 +1024,9 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was versteht man unter 'Öffentlich-rechtlichem Rundfunk'?",
     "answers": [
-      "Streaming-Apps privat",
-      "Private Werbesender",
-      "Kinosäle der Städte",
+      "Reine Musiksender privat",
+      "Kostenlose Kino-App online",
+      "Sportverein aus dem Ort",
       "Sender mit Staatsauftrag"
     ],
     "correct": 3,
@@ -1060,10 +1060,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was bezeichnet der Begriff 'Influencer' in sozialen Netzwerken?",
     "answers": [
-      "Programm gegen Viren",
-      "Mitarbeiter von Behörden",
+      "Programm zum Bearbeiten Fotos",
+      "Angestellter im Rathaus",
       "Person mit großer Reichweite",
-      "Herrsteller von Handys"
+      "Verkäufer im Handyladen"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1171,9 +1171,9 @@ const K6_POLITIK_QUESTIONS = [
     "question": "Wie heißt das Vertretungsorgan der Bürger auf Ebene der Stadt?",
     "answers": [
       "Der Stadtrat (Gemeinderat)",
-      "Das Europäische Parlament",
-      "Die Richterversammlung",
-      "Der Deutsche Bundestag"
+      "Das Landesparlament vom Land",
+      "Der Bezirkssportverein",
+      "Die städtische Bücherei"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1206,9 +1206,9 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Woraus finanziert eine Gemeinde Aufgaben wie Schulen u. Straßen?",
     "answers": [
-      "Rein durch Strafgelder",
-      "Aus Spenden von Vereinen",
-      "Durch Verkäufe im Laden",
+      "Durch Glück im Lotto Spiel",
+      "Nur durch Geschenke Onkel",
+      "Durch Tauschhandel Markt",
       "Durch Steuern u. Gebühren"
     ],
     "correct": 3,
@@ -1404,10 +1404,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was ist die Hausordnung an einer Schule?",
     "answers": [
-      "Dienstplan der Lehrer",
-      "Gesetz des Bundestags",
+      "Speiseplan der ganzen Schulküche",
+      "Stundenplan der Klasse",
       "Regeln für das Miteinander",
-      "Reine Notenverordnung"
+      "Ferienkalender der Schule"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1423,9 +1423,9 @@ const K6_POLITIK_QUESTIONS = [
     "question": "Was bedeutet der Begriff 'Toleranz'?",
     "answers": [
       "Respekt vor Andersartigkeit",
-      "Erhebung von Geldstrafe",
-      "Abwandlung von Meinung",
-      "Ablehnung aller Fremden"
+      "Streit um jeden Preis führen",
+      "Lob nur für gute Freunde",
+      "Strafe für jeden Fehler"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1460,10 +1460,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Wozu dient Mülltrennung im Haushalt?",
     "answers": [
-      "Sparen von Platz daheim",
-      "Verschönerung der Tonne",
+      "Vergrößern der Mülltonne",
+      "Verstecken von Müll im Wald",
       "Wiederverwertung Rohstoffe",
-      "Vermehrung des Mülls"
+      "Bemalen der bunten Tonne"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1478,10 +1478,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was gehört in die Bio-Tonne im Haushalt?",
     "answers": [
-      "Alte Batterien Gift",
+      "Kaputtes Spielzeug alt",
       "Obst- u. Gemüsereste",
-      "Kaputte Altkleider",
-      "Plastikverpackungen"
+      "Leere Getränkedosen",
+      "Alte Zeitungspapiere"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1497,9 +1497,9 @@ const K6_POLITIK_QUESTIONS = [
     "question": "Was gehört in die Gelbe Tonne / den Gelben Sack?",
     "answers": [
       "Verpackungen aus Plastik",
-      "Zeitungen u. Kartons",
-      "Glasflaschen weiß",
-      "Essensreste gekocht"
+      "Küchenabfälle gekocht warm",
+      "Alte Batterien sehr giftig",
+      "Kaputte Glühbirnen alt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1532,10 +1532,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was versteht man unter 'Recycling'?",
     "answers": [
-      "Ablagern im Meer",
-      "Verbrennen von Müll",
+      "Vergraben im Schulgarten",
+      "Verstecken im dunklen Keller",
       "Aufbereitung Wertstoff",
-      "Export von Alt-Müll"
+      "Wegwerfen in den Wald"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1551,9 +1551,9 @@ const K6_POLITIK_QUESTIONS = [
     "question": "Was unterscheidet Einwegflaschen von Mehrwegflaschen?",
     "answers": [
       "Mehrweg wird gereinigt",
-      "Mehrweg wirft man weg",
-      "Einweg ist aus Glas",
-      "Einweg hält 10 Jahre"
+      "Einweg wird oft gereinigt",
+      "Mehrweg wird meist zerstört",
+      "Mehrweg kostet niemals was"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1568,9 +1568,9 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was beschreibt der Begriff 'Ökologischer Fußabdruck'?",
     "answers": [
-      "Schuhgröße im Wald",
-      "Gewicht beim Gehen",
-      "Spuren am Sandstrand",
+      "Fußabdruck im tiefen Schnee",
+      "Größe der eigenen Schuhsohle",
+      "Spuren im nassen Sand",
       "Ressourcenverbrauch Mensch"
     ],
     "correct": 3,
@@ -1641,9 +1641,9 @@ const K6_POLITIK_QUESTIONS = [
     "question": "Wie spart man im Alltag effektiv Energie im Haushalt?",
     "answers": [
       "Geräte ganz ausschalten",
-      "Heizung u. Fenster auf",
-      "Licht brennen lassen",
-      "Standby dauerhaft an"
+      "Fenster dauernd weit offen",
+      "Heizung immer voll aufdrehen",
+      "Licht überall brennen lassen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1676,10 +1676,10 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was versteht man unter 'Mikroplastik'?",
     "answers": [
-      "Große Plastikflaschen",
-      "Müllbeutel aus Papier",
+      "Riesige Plastikflaschen groß",
+      "Kleine bunte Legosteine",
       "Winzige Plastikteilchen",
-      "Bauklötze für Kinder"
+      "Große volle Wasserflaschen"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1712,7 +1712,7 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was versteht man unter dem Begriff 'Upcycling'?",
     "answers": [
-      "Verbrennen von Holz",
+      "Verbrennen von altem Holz",
       "Kaufen im Supermarkt",
       "Neues aus Altmaterial",
       "Wegwerfen von Sachen"
@@ -1784,9 +1784,9 @@ const K6_POLITIK_QUESTIONS = [
     "subject": "politik",
     "question": "Was bedeutet 'Virtuelles Wasser' bei Konsumgütern?",
     "answers": [
-      "Wasser im Computer",
-      "Trinkwasser aus Hahn",
-      "Wasser im Regenschauer",
+      "Regenwasser im Garten",
+      "Wasser direkt aus dem Hahn",
+      "Wasser im Freibad Sommer",
       "Verbrauch bei Herstellung"
     ],
     "correct": 3,
@@ -1811,38 +1811,9 @@ const K6_POLITIK_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Wiederverwendbare Taschen u. Beutel vermeiden Einweg-Verpackungsmüll."
-  },
-  {"id":"k6po101","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Parlamentarische Demokratie: Regierung hängt ab von …","answers":["König allein","Parlamentsmehrheit","Zufall","Gericht allein"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vertrauen.","topic":"erweiterung"},
-  {"id":"k6po102","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Bundesrat vertritt …","answers":["Parteien nur","Länder","EU-Kommission","Gemeinden allein"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Länderkammer.","topic":"erweiterung"},
-  {"id":"k6po103","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Grundrechte binden …","answers":["nur Bürger","staatliche Gewalt","nur Firmen","nur Schulen privat"],"correct":1,"difficulty":"mittel","points":10,"explanation":"öffentliche Gewalt.","topic":"erweiterung"},
-  {"id":"k6po104","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Wahlgrundsätze u. a. …","answers":["öffentlich namentlich","allgemein, unmittelbar, frei, gleich, geheim","nur online","nur Männer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Art. 38.","topic":"erweiterung"},
-  {"id":"k6po105","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Föderalismus Vorteil u. a. …","answers":["Einheitszwang","Nähe/Vielfalt","keine Länder","Zentral willkür"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Dezentral.","topic":"erweiterung"},
-  {"id":"k6po106","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Rechtsweggarantie: Zugang zu …","answers":["nur Polizei","Gerichten","nur Medien","nur Parteien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gerichtsschutz.","topic":"erweiterung"},
-  {"id":"k6po107","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Sozialstaat zielt auf …","answers":["nur Reiche","soziale Sicherung/Gerechtigkeit","keine Hilfe","nur Militär"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Art. 20/28.","topic":"erweiterung"},
-  {"id":"k6po108","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"EU-Parlament wird …","answers":["ernannt","direkt gewählt","vom König bestimmt","gelost immer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"gewählt.","topic":"erweiterung"},
-  {"id":"k6po109","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Presse: vierte Gewalt meint …","answers":["Militär","Medienkontrolle Macht","Sport","Kirche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"öffentliche Kontrolle.","topic":"erweiterung"},
-  {"id":"k6po110","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Meinungsfreiheit Grenzen u. a. bei …","answers":["Kritik","Beleidigung/Volksverhetzung","Satire immer verboten","Wissenschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schranken.","topic":"erweiterung"},
-  {"id":"k6po111","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Jugendschutz schützt vor …","answers":["Bildung","gefährdenden Inhalten","Sport","Wahlen ab 18"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schutz.","topic":"erweiterung"},
-  {"id":"k6po112","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Datenschutz DSGVO schützt …","answers":["nur Staaten","Personenbezogene Daten","Wetter","Sportstatistik öffentlich"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Privatsphäre.","topic":"erweiterung"},
-  {"id":"k6po113","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Demonstration: friedlich und …","answers":["heimlich","angemeldet oft erforderlich","bewaffnet","ohne Grundgesetz"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Versammlungsrecht.","topic":"erweiterung"},
-  {"id":"k6po114","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Korruptionsbekämpfung stärkt …","answers":["Vetternwirtschaft","Vertrauen/Rechtsstaat","Schwarzmarkt","Zensur nützlich"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Integrität.","topic":"erweiterung"},
-  {"id":"k6po115","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Menschenrechte sind …","answers":["nur national","universell beansprucht","nur für Erwachsene","widerrufbar beliebig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"UN-Idee.","topic":"erweiterung"},
-  {"id":"k6po116","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Gewaltmonopol des Staates heißt …","answers":["jeder darf Gewalt","legitime physische Gewalt beim Staat","keine Polizei","nur Militär privat"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Weber.","topic":"erweiterung"},
-  {"id":"k6po117","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Petitionen gehen an …","answers":["Zufall","Parlament/Behörden","nur Gerichte Straf","nur Medien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bitten.","topic":"erweiterung"},
-  {"id":"k6po118","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Koalitionsvertrag regelt …","answers":["Gerichtsurteile","Zusammenarbeit der Regierungsparteien","EU-Recht allein","Schulnoten"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Regierungsbasis.","topic":"erweiterung"},
-  {"id":"k6po119","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Opposition Minderheitenrechte u. a. …","answers":["keine","Enqueterecht/Kontrolle","Regieren ohne Wahl","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kontrolle.","topic":"erweiterung"},
-  {"id":"k6po120","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Kommunale Selbstverwaltung: Themen wie …","answers":["Außenpolitik","Müll/Schulen lokal","Verteidigung","EU-Erweiterung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"örtlich.","topic":"erweiterung"},
-  {"id":"k6po121","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Rechtsstaatsprinzip: Verwaltung braucht …","answers":["Willkür","gesetzliche Grundlage","nur Anweisung mündlich","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gesetzmäßigkeit.","topic":"erweiterung"},
-  {"id":"k6po122","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Integration politische: Teilhabe an …","answers":["nur Sport","gesellschaftlich-politischem Leben","nur Sprache testen","Isolation"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Teilhabe.","topic":"erweiterung"},
-  {"id":"k6po123","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Lobbyismus transparent …","answers":["ist illegal immer","Interessenvertretung regelbar","ersetzt Wahlen","ist Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Interessen.","topic":"erweiterung"},
-  {"id":"k6po124","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Schulpflicht dient …","answers":["nur Notendruck","Bildung für alle","nur Sport","Selektion ohne Lernen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Chancengleichheit.","topic":"erweiterung"},
-  {"id":"k6po125","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"UN-Sicherheitsrat kann …","answers":["Steuern DE","Friedensmaßnahmen beschließen","GG ändern","Bundestag auflösen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"international.","topic":"erweiterung"},
-  {"id":"k6po126","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Verfassungswandel durch …","answers":["nur Revolution","Interpretation/Änderung","Zufall","Mode"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Entwicklung.","topic":"erweiterung"},
-  {"id":"k6po127","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Medienkompetenz gegen …","answers":["Information","Desinformation","Pressefreiheit","Wahlen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fake News.","topic":"erweiterung"},
-  {"id":"k6po128","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Gleichstellung zielt auf …","answers":["Diskriminierung","gleiche Rechte/Chancen","Ungleichheit festschreiben","nur Quoten Spaß"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gleichheit.","topic":"erweiterung"},
-  {"id":"k6po129","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Zivilgesellschaft umfasst …","answers":["nur Staat","Vereine/Initiativen etc.","nur Militär","nur Konzerne"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nichtstaatlich.","topic":"erweiterung"},
-  {"id":"k6po130","category":"k6_politik","area":"schule","grade":6,"subject":"politik","question":"Wehrhafte Demokratie darf …","answers":["alles verbieten","Verfassungsfeinde bekämpfen","keine Parteien prüfen","Zensur total"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schutz.","topic":"erweiterung"}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K6_POLITIK_QUESTIONS = K6_POLITIK_QUESTIONS;

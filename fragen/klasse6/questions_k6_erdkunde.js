@@ -85,9 +85,9 @@ const K6_ERDKUNDE_QUESTIONS = [
     "question": "Wozu dient der Maßstab auf einer Landkarte?",
     "answers": [
       "Verkleinerung Natur",
-      "Messung Temperatur",
-      "Suche von Städten",
-      "Zeigen von Höhen"
+      "Anzeigen der Wetterlage",
+      "Markierung der Grenzen",
+      "Angabe der Einwohnerzahl"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -174,10 +174,10 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Wie viele Kontinente gibt es auf der Erde?",
     "answers": [
-      "Sechs Kontinente",
-      "Fünf Kontinente",
+      "Nur fünf Kontinente",
+      "Sechs bewohnte Erdteile",
       "Sieben Kontinente",
-      "Acht Kontinente"
+      "Acht bekannte Erdteile"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -192,10 +192,10 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Welches ist der flächenmäßig größte Ozean der Erde?",
     "answers": [
-      "Indischer Ozean",
+      "Der Indische Ozean",
       "Pazifischer Ozean",
-      "Arktischer Ozean",
-      "Atlantik Ozean"
+      "Der Arktische Ozean",
+      "Der Atlantische Ozean"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -374,9 +374,9 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Welches Gebirge bildet die Grenze zwischen Europa u. Asien?",
     "answers": [
-      "Die Pyrenäen",
-      "Die Karpaten",
-      "Die Alpenkette",
+      "Die Pyrenäenkette",
+      "Die Karpatenkette",
+      "Das Kaukasusgebirge",
       "Das Uralgebirge"
     ],
     "correct": 3,
@@ -500,10 +500,10 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Wie heißt die Hauptstadt von Italien?",
     "answers": [
-      "Mailand",
+      "Mailand Stadt",
       "Rom Stadt",
-      "Venedig",
-      "Neapel"
+      "Venedig Stadt",
+      "Neapel Stadt"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -518,10 +518,10 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Wie heißt die Hauptstadt unseres Nachbarlandes Polen?",
     "answers": [
-      "Breslau",
+      "Stadt Breslau",
       "Warschau",
-      "Krakau",
-      "Danzig"
+      "Stadt Krakau",
+      "Stadt Danzig"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -844,10 +844,10 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Womit misst man in der Wetterstation den Luftdruck?",
     "answers": [
-      "Mit Hygrometer",
-      "Mit Anemometer",
+      "Mit dem Hygrometer",
+      "Mit dem Anemometer",
       "Mit dem Barometer",
-      "Mit Thermometer"
+      "Mit dem Thermometer"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -916,10 +916,10 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Warum regnet es an der Luv-Seite von Gebirgen öfter?",
     "answers": [
-      "Luft erwärmt sich",
+      "Wind dreht komplett um",
       "Luft steigt u. kühlt",
-      "Wind stoppt völlig",
-      "Wolken sinken ab"
+      "Wolken lösen sich auf",
+      "Berge blockieren die Sonne"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -988,10 +988,10 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Wie lautet die wissenschaftliche Bezeichnung für Wind?",
     "answers": [
-      "Warme Verdunstung",
-      "Hoher Luftdruck",
+      "Ungerichtete Wärmestrahlung",
+      "Starker Temperaturabfall",
       "Gerichtete Luftbewegung",
-      "Fallender Regen"
+      "Schnelle Wolkenbewegung"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1007,9 +1007,9 @@ const K6_ERDKUNDE_QUESTIONS = [
     "question": "Was zeichnet die Pflanzen im Mittelmeerraum aus?",
     "answers": [
       "Schutz vor Trockenheit",
-      "Dicke Weichblätter",
-      "Fehlen von Wurzeln",
-      "Wuchs nur im Schnee"
+      "Wachstum bei viel Regen",
+      "Sehr große weiche Blätter",
+      "Wachsen nur im tiefen Schnee"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1043,9 +1043,9 @@ const K6_ERDKUNDE_QUESTIONS = [
     "question": "Was passiert bei der Verdunstung von Oberflächenwasser?",
     "answers": [
       "Wasserdampf steigt auf",
-      "Wasser wird schwerer",
-      "Wasser friert sofort",
-      "Wasser wird zu Salz"
+      "Wasser sinkt sofort ab",
+      "Wasser wird zu festem Eis",
+      "Wasser bleibt konstant kalt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1060,10 +1060,10 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Woraus bestehen Wolken am Himmel im Wesentlichen?",
     "answers": [
-      "Feiner Rauchschaum",
+      "Feinste Sandkörner und Staub",
       "Tröpfchen / Eiskristalle",
-      "Gasschichten warm",
-      "Reiner Wasserdampf"
+      "Warme Gasschichten der Luft",
+      "Reiner unsichtbarer Dampf"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1079,9 +1079,9 @@ const K6_ERDKUNDE_QUESTIONS = [
     "question": "Wie nennt man die ständige Zirkulation des Wassers?",
     "answers": [
       "Wasserkreislauf",
-      "Meeresströmung",
-      "Regenprozess",
-      "Gletscherstrom"
+      "Die Meeresströmung",
+      "Der Regenprozess",
+      "Der Gletscherstrom"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1116,9 +1116,9 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was versteht man unter Sonderkulturen in der Landwirtschaft?",
     "answers": [
-      "Futterrüben Vieh",
-      "Korn u. Weizen",
-      "Gras u. Silage",
+      "Futterrüben und Vieh",
+      "Getreide und Weizen",
+      "Gras und Silage Heu",
       "Wein, Obst, Gemüse"
     ],
     "correct": 3,
@@ -1387,9 +1387,9 @@ const K6_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Strukturwandel' im Ruhrgebiet?",
     "answers": [
       "Industrie zu Service",
-      "Stadt zu Wüstenraum",
-      "Acker zu Waldgebiet",
-      "Dorf zu Großstadt"
+      "Von Kohle zu Technologie",
+      "Acker wird zu Waldgebiet",
+      "Dorf wächst zur Großstadt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1533,9 +1533,9 @@ const K6_ERDKUNDE_QUESTIONS = [
     "question": "Was versteht man unter der 'Baumgrenze' im Gebirge?",
     "answers": [
       "Kein Baumwachstum höher",
-      "Der Beginn des Waldes",
-      "Höhe der Schneekanonen",
-      "Schnittkante von Holz"
+      "Beginn des dichten Waldes",
+      "Höhe der Schneekanonen dort",
+      "Grenze zwischen Wald und Fels"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1550,10 +1550,10 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Wozu dienen Lawinenschutzverbauungen im Gebirge?",
     "answers": [
-      "Regenwasser Sammeln",
-      "Gletscher Schmelzen",
+      "Regenwasser im Tal Sammeln",
+      "Gletscher stark Schmelzen",
       "Schnee am Hang Halten",
-      "Skifahrer Anlocken"
+      "Mehr Skifahrer Anlocken"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1712,10 +1712,10 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Welche deutsche Ostseeinsel ist berühmt für ihre Kreidefelsen?",
     "answers": [
-      "Insel Borkum",
+      "Die Insel Borkum Nord",
       "Die Insel Rügen",
-      "Die Insel Sylt",
-      "Insel Usedom"
+      "Die schöne Insel Sylt",
+      "Die Insel Usedom Ost"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1730,10 +1730,10 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Was ist eine Hallig in Nordfriesland?",
     "answers": [
-      "Eingedeichter Polder",
+      "Ein Eingedeichter Polder",
       "Kleine Insel ohne Deich",
-      "Hoher Sandstrand",
-      "Riesige Felseninsel"
+      "Ein hoher Sandstrand dort",
+      "Eine riesige Felseninsel"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1802,47 +1802,18 @@ const K6_ERDKUNDE_QUESTIONS = [
     "subject": "erdkunde",
     "question": "Welches europäische Land besitzt die längste zerklüftete Küste?",
     "answers": [
-      "Griechenland",
+      "Griechenland Insel",
       "Norwegen Land",
-      "Italien Land",
-      "Spanien Land"
+      "Das Land Italien",
+      "Das Land Spanien"
     ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Inklusive aller Fjorde u. Inseln misst Norwegens Küste über 80.000 km."
-  },
-  {"id":"k6ek101","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Plattentektonik: Konvergenz kann …","answers":["nur Ebenen","Gebirge/Vulkane","nur Wüsten","nur Flüsse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Auffaltung.","topic":"erweiterung"},
-  {"id":"k6ek102","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Klimafaktor Höhe: mit Höhe wird es …","answers":["wärmer","kälter","immer feuchter","ohne Effekt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"kälter.","topic":"erweiterung"},
-  {"id":"k6ek103","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Wirtschaft: sekundärer Sektor = …","answers":["Landwirtschaft","Industrie","Dienstleistung","Rohstoffabbau"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verarbeitung.","topic":"erweiterung"},
-  {"id":"k6ek104","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Global City Merkmal?","answers":["nur Dorf","internationale Vernetzung","keine Flughäfen","nur Landwirtschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Weltstadt.","topic":"erweiterung"},
-  {"id":"k6ek105","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Desertifikation = …","answers":["Aufforstung","Wüstenbildung","Vergletscherung","Urbanisierung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Versteppung.","topic":"erweiterung"},
-  {"id":"k6ek106","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"EU-Binnenmarkt ermöglicht u. a. …","answers":["Grenzkontrollen überall","freien Warenverkehr","Krieg","Zölle intern hoch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Freizügigkeit Waren.","topic":"erweiterung"},
-  {"id":"k6ek107","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Kartenprojektion verzerrt immer …","answers":["nichts","Fläche/Winkel/Strecken teilweise","nur Farben","nur Namen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Projektion.","topic":"erweiterung"},
-  {"id":"k6ek108","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Monsun bringt …","answers":["nur Schnee","jahreszeitliche Winde/Regen","nur Trockenheit immer","Erdbeben"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Monsunregen.","topic":"erweiterung"},
-  {"id":"k6ek109","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Nachhaltiger Tourismus achtet auf …","answers":["Massenschäden","Umwelt und Kultur","nur Billigflüge","nur Selfies"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verträglichkeit.","topic":"erweiterung"},
-  {"id":"k6ek110","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Bevölkerungsdichte = …","answers":["absolute Zahl","Einwohner pro Fläche","nur Geburten","nur Migration"],"correct":1,"difficulty":"mittel","points":10,"explanation":"pro km².","topic":"erweiterung"},
-  {"id":"k6ek111","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Rohstoff „selten“: Beispiel Konflikt?","answers":["Luft","Coltan/seltene Erden","Wasser unbegrenzt","Sand nie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Konfliktressourcen.","topic":"erweiterung"},
-  {"id":"k6ek112","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Meeresströmung beeinflusst …","answers":["nur Monde","Klima/Küsten","nur Berge","nur Städte inland"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Klima.","topic":"erweiterung"},
-  {"id":"k6ek113","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Strukturwandel Ruhrgebiet: von … zu …","answers":["Dienst→Kohle","Kohle/Stahl→Dienst/Wissen","Land→Wüste","nur Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Strukturwandel.","topic":"erweiterung"},
-  {"id":"k6ek114","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"GIS ist …","answers":["Sport","Geoinformationssystem","Gericht","Gewerkschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"räumliche Daten.","topic":"erweiterung"},
-  {"id":"k6ek115","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Migration push-Faktor?","answers":["gute Jobs Ziel","Krieg/Armut Herkunft","Urlaub","Studium nur pull"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Druck zum Weggehen.","topic":"erweiterung"},
-  {"id":"k6ek116","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Tropischer Regenwald: Nährstoffe vor allem in …","answers":["tiefem Boden","Biomasse","Fels","Eis"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Pflanzenmasse.","topic":"erweiterung"},
-  {"id":"k6ek117","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Klimaschutz: CO₂-Reduktion durch …","answers":["mehr Kohle","erneuerbare Energien","Abholzung","mehr Flüge"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Energiewende.","topic":"erweiterung"},
-  {"id":"k6ek118","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Großkreis-Route Flugzeug folgt …","answers":["Zufall","kürzester Weg auf Kugel","nur Breitenkreis","nur Äquator immer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Orthodrome.","topic":"erweiterung"},
-  {"id":"k6ek119","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Metropolregion = …","answers":["Dorf","vernetzte Stadtregion","Wüste","Insel ohne Stadt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verdichtung.","topic":"erweiterung"},
-  {"id":"k6ek120","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Hochwasser: Retentionsflächen …","answers":["beschleunigen Abfluss","halten Wasser zurück","erhöhen Versiegelung","löschen Flüsse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rückhalt.","topic":"erweiterung"},
-  {"id":"k6ek121","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Handelsbilanz: Export > Import = …","answers":["Defizit","Überschuss","ausgeglichen immer","ohne Bedeutung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Aktivsaldo.","topic":"erweiterung"},
-  {"id":"k6ek122","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Lössboden ist oft …","answers":["unfruchtbar","fruchtbar","salzig immer","eisig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"fruchtbar.","topic":"erweiterung"},
-  {"id":"k6ek123","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Zeitumstellung folgt …","answers":["Mond","politischen/energiepolitischen Regeln","nur Äquator","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"gesetzlich.","topic":"erweiterung"},
-  {"id":"k6ek124","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Peripherie vs. Zentrum: Peripherie oft …","answers":["mächtig","strukturschwächer","Hauptstadt","Börse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Randlage.","topic":"erweiterung"},
-  {"id":"k6ek125","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Wasserkreislauf Antrieb vor allem …","answers":["Mondlicht","Sonnenenergie","Erdkern allein","Windräder"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Sonne.","topic":"erweiterung"},
-  {"id":"k6ek126","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Fairer Handel zielt auf …","answers":["Dumping","bessere Bedingungen Erzeuger","nur Zwischenhändler","Schwarzmarkt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gerechtigkeit.","topic":"erweiterung"},
-  {"id":"k6ek127","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Vulkan gießen: Magma an Oberfläche = …","answers":["Erdöl","Lava","Sandstein","Wolke nur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Lava.","topic":"erweiterung"},
-  {"id":"k6ek128","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Demografischer Wandel DE: …","answers":["immer mehr Junge","Alterung","keine Migration","keine Rente"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Alterung.","topic":"erweiterung"},
-  {"id":"k6ek129","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Raumordnung plant …","answers":["nur Mode","Nutzung des Raums","nur Sport","nur Werbung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Planung.","topic":"erweiterung"},
-  {"id":"k6ek130","category":"k6_erdkunde","area":"schule","grade":6,"subject":"erdkunde","question":"Ozeane speichern …","answers":["kein CO₂","viel Wärme/CO₂","nur Plastik nützlich","nur Salz ohne Klima"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Klimapuffer.","topic":"erweiterung"}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K6_ERDKUNDE_QUESTIONS = K6_ERDKUNDE_QUESTIONS;

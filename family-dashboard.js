@@ -802,11 +802,19 @@ auth.createUserWithEmailAndPassword(e, p)
             const box = document.getElementById("dash-study-log");
             if (!box) return;
             const today = new Date().toISOString().slice(0, 10);
-            const profileEntries = Object.keys(ALL_PROFILES || {})
+            const focus = (document.getElementById("dash-focus-profile") || {}).value || "";
+            let profileEntries = Object.keys(ALL_PROFILES || {})
                 .filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest)
                 .map(k => ({ key: k, p: ALL_PROFILES[k] }));
+            if (focus && ALL_PROFILES[focus]) {
+                profileEntries = profileEntries.filter(e => e.key === focus);
+            }
+            if (!profileEntries.length) {
+                box.innerHTML = '<div class="text-gray-500 text-xs py-2">Kein Kind im Fokus gewählt.</div>';
+                return;
+            }
 
-            // Heute – immer sichtbar, alle Profile
+            // Nur Fokus-Kind (oder alle, falls keines gewählt)
             const todayParts = profileEntries.map(({ p }) => {
                 const sec = (p.studyLog && p.studyLog[today]) || 0;
                 const cls = sec >= 60 ? "text-indigo-300" : "text-gray-500";
@@ -1633,7 +1641,9 @@ auth.createUserWithEmailAndPassword(e, p)
         function renderDashPlayerList() {
             const container = document.getElementById('dash-player-list');
             if (!container) return;
-            const keys = Object.keys(ALL_PROFILES || {});
+            const focus = (document.getElementById('dash-focus-profile') || {}).value || '';
+            let keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
+            if (focus && ALL_PROFILES[focus]) keys = [focus];
             if (keys.length === 0) {
                 container.innerHTML =
                     '<div class="text-gray-500 text-sm col-span-2 text-center py-2">Noch keine Spieler</div>';

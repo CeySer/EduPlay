@@ -175,9 +175,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Wofür entscheidet die 'Zweitstimme' bei der deutschen Bundestagswahl?",
     "answers": [
       "Sitzverteilung der Parteien im Parlament",
-      "Direktkandidat aus dem Wahlkreis",
-      "Wahl der Bundeskanzlerin persönlich",
-      "Zusammensetzung des Bundesrates"
+      "Direktmandat des jeweiligen Wahlkreises",
+      "Persönliche Wahl der Bundeskanzlerin",
+      "Zusammensetzung des Bundesrates insgesamt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -229,8 +229,8 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was versteht man unter dem Prinzip der 'Gewaltenteilung'?",
     "answers": [
       "Aufteilung staatlicher Macht auf 3 Gewalten",
-      "Trennung von Kirche und Politik",
-      "Verbot von Gewalt im Demonstrationsrecht",
+      "Strikte Trennung von Kirche und Staat",
+      "Grundsätzliches Verbot von Gewalt beim Demonstrieren",
       "Aufteilung der Armee in Heer und Marine"
     ],
     "correct": 0,
@@ -391,9 +391,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Wer hat im Gesetzgebungsverfahren des Bundes das Recht zur Gesetzesinitiative?",
     "answers": [
       "Bundesregierung, Bundesrat oder Mitte des Bundestages",
-      "Ausschließlich der Bundespräsident per Dekret",
-      "Jeder Bürger direkt per Online-Petition",
-      "Ausschließlich die Bundesverfassungsrichter"
+      "Ausschließlich der Bundespräsident per persönlichem Erlass",
+      "Jeder einzelne Bürger direkt per Online-Petition",
+      "Ausschließlich die Bundesverfassungsrichter im Land"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -427,9 +427,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was zeichnet eine 'Wehrhafte Demokratie' (Streitbare Demokratie) aus?",
     "answers": [
       "Schutz vor Feinden der Verfassung mit Rechtsmitteln",
-      "Einsatz der Bundeswehr bei allen Demonstrationen",
+      "Einsatz der Bundeswehr bei jeder einzelnen Demonstration",
       "Pflicht aller Bürger zum Tragen von Schutzkleidung",
-      "Verbot jeglicher Kritik an staatlichen Organen"
+      "Vollständiges Verbot jeglicher Kritik an Staatsorganen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -465,7 +465,7 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Wer gilt als gedanklicher Vater der 'Sozialen Marktwirtschaft' in der Bundesrepublik Deutschland?",
     "answers": [
       "Ludwig Erhard und Alfred Müller-Armack",
-      "Karl Marx und Friedrich Engels",
+      "Karl Marx und Friedrich Engels gemeinsam",
       "Adam Smith und John Maynard Keynes",
       "Konrad Adenauer und Walter Ulbricht"
     ],
@@ -627,8 +627,8 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was kennzeichnet eine 'Monopolstellung' auf einem Markt?",
     "answers": [
       "Ein einziger Anbieter beherrscht den Markt",
-      "Viele kleine Anbieter konkurrieren stark",
-      "Ein Produkt wird von allen gekauft",
+      "Viele kleine Anbieter konkurrieren stark miteinander",
+      "Ein Produkt wird von allen Kunden gekauft",
       "Der Staat stellt den Verkauf völlig ein"
     ],
     "correct": 0,
@@ -699,9 +699,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was beschreibt den 'Einfachen Wirtschaftskreislauf' im Modell der Ökonomie?",
     "answers": [
       "Tausch von Arbeit/Geld zwischen Haushalt u. Firma",
-      "Geldfluss zwischen Staat und den Geschäftsbanken",
+      "Geldfluss zwischen dem Staat und den Geschäftsbanken",
       "Warenaustausch zwischen zwei EU-Mitgliedsländern",
-      "Geldstrom von Rentnern zur gesetzlichen Kasse"
+      "Geldstrom von Rentnern zur gesetzlichen Rentenkasse"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -735,9 +735,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'Inflation'?",
     "answers": [
       "Anhaltende Steigerung des allgemeinen Preisniveaus",
-      "Plötzlicher Verfall aller Zinsen auf Bankkonten",
-      "Steigerung des Werts des Geldes über Zeit",
-      "Rückgang der Produktion in allen Fabriken"
+      "Plötzlicher Verfall aller Zinsen auf allen Bankkonten",
+      "Anhaltende Steigerung des Werts des Geldes",
+      "Deutlicher Rückgang der Produktion in den Fabriken"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -753,9 +753,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Welche Institution sichert die Stabilität der Währung Euro und steuert die Leitzinsen im Euroraum?",
     "answers": [
       "Die Europäische Zentralbank (EZB)",
-      "Die Deutsche Bundesbank allein",
-      "Der Europäische Gerichtshof",
-      "Das Europäische Parlament"
+      "Die Deutsche Bundesbank in Frankfurt",
+      "Der Europäische Gerichtshof in Luxemburg",
+      "Das Europäische Parlament in Straßburg"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -771,9 +771,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Welche vier Ziele fasst das 'Stabilitäts- und Wachstumsgesetz' (Magisches Viereck) zusammen?",
     "answers": [
       "Preiskonstanz, Vollbeschäftigung, Wachstum, Außenbeitrag",
-      "Steuersenkung, Umwelt, Rente, Arbeit für alle",
+      "Steuersenkung, Umweltschutz, Rente, Arbeit für alle",
       "Preissenkung, Mindestlohn, Freihandel, Umweltschutz",
-      "Gewinn, Export, Zinsfreiheit, hohe Steuern"
+      "Gewinnstreben, Exportförderung, Zinsfreiheit, hohe Steuern"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -789,9 +789,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Warum nennt man die Ziele des 'Magischen Vierecks' magisch?",
     "answers": [
       "Weil nicht alle Ziele gleichzeitig erreichbar sind",
-      "Weil sie von Wirtschaftsweisen gezaubert werden",
+      "Weil sie von Wirtschaftsweisen herbeigezaubert werden",
       "Weil ihre Einhaltung Wunder in Firmen auslöst",
-      "Weil der Staat sie ohne Geld durchsetzt"
+      "Weil der Staat sie völlig ohne Geld durchsetzt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -825,9 +825,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was versteht man unter direkten Steuern in Deutschland?",
     "answers": [
       "Steuern, die direkt vom Steuerzahler gezahlt werden",
-      "Steuern, die beim Kauf an der Kasse anfallen",
+      "Steuern, die beim täglichen Einkauf an der Kasse anfallen",
       "Abgaben für die Nutzung von Autobahnen und Brücken",
-      "Gebühren für das Ausstellen von Dokumenten"
+      "Gebühren für das Ausstellen amtlicher Dokumente"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -843,9 +843,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Welche Steuer ist das klassische Beispiel für eine indirekte Steuer beim täglichen Einkauf?",
     "answers": [
       "Die Mehrwertsteuer (Umsatzsteuer)",
-      "Die persönliche Einkommensteuer",
-      "Die jährliche Hundesteuer",
-      "Die Erbschaftsteuer auf Vermögen"
+      "Die persönliche Einkommensteuer jährlich",
+      "Die jährliche Hundesteuer im Wohnort",
+      "Die Erbschaftsteuer auf das Vermögen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -897,9 +897,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Wie nennt man die Phasen eines typischen Konjunkturzyklus in der richtigen Reihenfolge?",
     "answers": [
       "Aufschwung, Hochkonjunktur, Abschwung, Tiefphase",
-      "Tiefphase, Krise, Aufschwung, Stagnation",
-      "Hochkonjunktur, Boom, Krise, Auflösung",
-      "Aufschwung, Pause, Tiefphase, Zusammenbruch"
+      "Tiefphase, Krise, Aufschwung, Stagnation insgesamt",
+      "Hochkonjunktur, Boom, Krise, völlige Auflösung",
+      "Aufschwung, kurze Pause, Tiefphase, Zusammenbruch"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -973,7 +973,7 @@ const K9_POLITIK_QUESTIONS = [
       "EU greift nur ein, wenn Länder es nicht schaffen",
       "Alle Gesetze werden zentral in Brüssel gemacht",
       "Reiche Länder zahlen alle Kosten der ärmeren",
-      "Jeder Staat entscheidet ohne Rücksicht auf EU"
+      "Jeder Staat entscheidet ohne Rücksicht auf die EU"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -989,9 +989,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Wo befindet sich der Hauptsitz des Europäischen Parlaments, in dem plenare Tagungen stattfinden?",
     "answers": [
       "In Straßburg (Frankreich)",
-      "In Brüssel (Belgien)",
-      "In Luxemburg (Luxemburg)",
-      "In Frankfurt am Main"
+      "In Brüssel (Belgien) offiziell",
+      "In Luxemburg (Luxemburg Stadt)",
+      "In Frankfurt am Main Zentrum"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1007,8 +1007,8 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Wann wurde die 'Allgemeine Erklärung der Menschenrechte' von den Vereinten Nationen verabschiedet?",
     "answers": [
       "Am 10. Dezember 1948",
-      "Am 23. Mai 1949",
-      "Am 8. Mai 1945",
+      "Am 23. Mai 1949 exakt",
+      "Am 8. Mai 1945 exakt",
       "Am 3. Oktober 1990"
     ],
     "correct": 0,
@@ -1044,7 +1044,7 @@ const K9_POLITIK_QUESTIONS = [
     "answers": [
       "USA, Russland, China, Großbritannien, Frankreich",
       "USA, Deutschland, Japan, China, Großbritannien",
-      "Russland, China, Indien, Brasilien, Deutschland",
+      "Russland, China, Indien, Brasilien und Deutschland",
       "USA, Frankreich, Deutschland, Italien, Japan"
     ],
     "correct": 0,
@@ -1097,9 +1097,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was versteht man unter 'Protektionismus' in der Handelspolitik?",
     "answers": [
       "Schutz der heimischen Wirtschaft durch Zölle",
-      "Völliger Verzicht auf Zölle und Grenzen",
-      "Kostenlose Abgabe von Waren ins Ausland",
-      "Verbot der eigenen Industrieproduktion"
+      "Völliger Verzicht auf alle Zölle und Grenzen",
+      "Kostenlose Abgabe aller Waren ins Ausland",
+      "Vollständiges Verbot der eigenen Industrie"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1151,9 +1151,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Wo befindet sich der Sitz des Internationalen Strafgerichtshofs (IStGH)?",
     "answers": [
       "In Den Haag (Niederlande)",
-      "In Genf (Schweiz)",
-      "In New York (USA)",
-      "In Brüssel (Belgien)"
+      "In Genf, in der Schweiz",
+      "In New York City, USA",
+      "In Brüssel (Belgien) offiziell"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1205,8 +1205,8 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Welches Abkommen regelt das europäische Asylsystem und die Zuständigkeit für Asylanträge?",
     "answers": [
       "Die Dublin-Verordnung der EU",
-      "Der Vertrag von Schengen",
-      "Das Pariser Klimaabkommen",
+      "Der Vertrag von Schengen aus Europa",
+      "Das Pariser Klimaabkommen von 2015",
       "Die Genfer Abrüstungsakte"
     ],
     "correct": 0,
@@ -1224,8 +1224,8 @@ const K9_POLITIK_QUESTIONS = [
     "answers": [
       "Stabilität des weltweiten Finanzsystems",
       "Bau von Schulen in Entwicklungsländern",
-      "Regulierung von Flugpreisen weltweit",
-      "Schlichtung von Grenzkonflikten"
+      "Regulierung der Flugpreise weltweit",
+      "Schlichtung von internationalen Grenzkonflikten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1241,9 +1241,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Entwicklungszusammenarbeit'?",
     "answers": [
       "Unterstützung zur selbstständigen Entwicklung",
-      "Komplette Übernahme fremder Staaten",
-      "Ausbeutung von Rohstoffen in Übersee",
-      "Reiner Verkauf von Waffen in Krisenzonen"
+      "Vollständige Übernahme fremder Staatsgebiete",
+      "Ausbeutung von Rohstoffen in Übersee-Gebieten",
+      "Reiner Verkauf von Waffen in Krisenregionen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1259,9 +1259,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was kennzeichnet sogenannte 'Fragile Staaten' in der internationalen Politik?",
     "answers": [
       "Staat verliert Gewaltmonopol und Schutzfunktion",
-      "Land besitzt keine eigene Landeswährung",
+      "Land besitzt keine eigene, offizielle Landeswährung",
       "Staat ist kleiner als 1000 Quadratkilometer",
-      "Land hat keine schriftliche Verfassung"
+      "Land hat keine schriftlich fixierte Verfassung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1295,9 +1295,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was bedeutet der Begriff 'Hybrid-Kriegführung'?",
     "answers": [
       "Mischung aus Militär, Desinformation u. Cyberangriffen",
-      "Einsatz von Elektro-Panzern im Gefecht",
-      "Krieg ausschließlich auf dem Meeresgrund",
-      "Kampf zweier Bündnisse ohne Waffen"
+      "Einsatz von ferngesteuerten Elektro-Panzern im Gefecht",
+      "Krieg, der ausschließlich auf dem Meeresgrund stattfindet",
+      "Kampf zweier Bündnisse völlig ohne jede Waffe"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1313,9 +1313,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Welches Prinzip bestimmt das 'Völkerrecht' bezüglich der Grenzen von Staaten?",
     "answers": [
       "Souveränität und territoriale Unversehrtheit",
-      "Recht des Stärkeren auf Landgewinn",
-      "Pflicht zur Freigabe aller Bodenschätze",
-      "Regelmäßige Verlegung von Landesgrenzen"
+      "Recht des Stärkeren auf jeglichen Landgewinn",
+      "Pflicht zur Freigabe aller Bodenschätze im Land",
+      "Regelmäßige Verlegung der Landesgrenzen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1331,8 +1331,8 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was beschreibt das Phänomen des 'Cyberkriegs' (Cyberwarfare)?",
     "answers": [
       "Digitale Angriffe auf kritische Infrastruktur",
-      "Kampf von Schiffs-Robotern im Ozean",
-      "Verbot des Internets im Kriegszustand",
+      "Kampf von ferngesteuerten Robotern im Ozean",
+      "Vollständiges Verbot des Internets im Kriegsfall",
       "Ausstrahlung von Videospielen im Fernsehen"
     ],
     "correct": 0,
@@ -1349,9 +1349,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Welche Bedeutung hat das 'Genfer Flüchtlingsabkommen' von 1951?",
     "answers": [
       "Schutz und Rechtstatus für Schutzsuchende",
-      "Pflicht zur Aufnahme aller Auswanderer",
-      "Verbot von Grenzen in ganz Europa",
-      "Zulassung von Arbeit ohne Visum"
+      "Pflicht zur Aufnahme aller Auswanderer weltweit",
+      "Vollständiges Verbot von Grenzen in Europa",
+      "Zulassung von Arbeit völlig ohne jedes Visum"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1369,9 +1369,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Warum bezeichnet man freie Medien oft als 'Vierte Gewalt' im Staat?",
     "answers": [
       "Wegen ihrer Kontroll- und Informationsfunktion",
-      "Weil Journalisten eigene Gesetze beschließen",
-      "Weil Zeitungen Urteile vor Gericht fällen",
-      "Weil Sender Steuern direkt eintreiben"
+      "Weil Journalisten eigene Gesetze beschließen dürfen",
+      "Weil Zeitungen Gerichtsurteile selbst fällen",
+      "Weil Sender direkt Steuern eintreiben dürfen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1387,9 +1387,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was garantiert Artikel 5 des Grundgesetzes in Bezug auf Medien?",
     "answers": [
       "Meinungs-, Presse- und Informationsfreiheit",
-      "Recht auf kostenloses Internet für alle",
-      "Pflicht zum Kauf einer Tageszeitung",
-      "Verbot von ausländischer Berichterstattung"
+      "Recht auf kostenloses Internet für alle Bürger",
+      "Pflicht zum Kauf einer täglichen Tageszeitung",
+      "Verbot jeglicher ausländischer Berichterstattung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1423,9 +1423,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'Fake News'?",
     "answers": [
       "Gezielt verbreitete Falschinformationen",
-      "Satirische Beiträge in Comedy-Shows",
-      "Tippfehler in Zeitungsartikeln",
-      "Alte Nachrichten aus dem Vorjahr"
+      "Satirische Beiträge in Comedy-Sendungen",
+      "Kleine Tippfehler in Zeitungsartikeln",
+      "Alte Nachrichten aus dem letzten Jahr"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1459,7 +1459,7 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Welches Gesetz schützt in der EU die persönlichen Daten der Bürgerinnen und Bürger online?",
     "answers": [
       "Die Datenschutz-Grundverordnung (DSGVO)",
-      "Das Digitale-Medien-Gesetz (DMG)",
+      "Das Digitale-Medien-Gesetz (DMG) der EU",
       "Die Europäische Netzverordnung (ENV)",
       "Das Bundes-Telekommunikations-Gesetz"
     ],
@@ -1478,8 +1478,8 @@ const K9_POLITIK_QUESTIONS = [
     "answers": [
       "Absichtliches Beleidigen/Bloßstellen online",
       "Fehlerhafte Programmierung von Webseiten",
-      "Diebstahl von Bankdaten per E-Mail",
-      "Verbreitung von Werbenachrichten"
+      "Diebstahl von Bankdaten per gefälschter E-Mail",
+      "Verbreitung von unerwünschten Werbenachrichten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1495,9 +1495,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was bedeutet der Begriff 'Medienkompetenz'?",
     "answers": [
       "Fähigkeit zur kritischen und sicheren Mediennutzung",
-      "Besitz von möglichst vielen digitalen Geräten",
-      "Programmieren von eigenen Computerspielen",
-      "Ausbildung zum professionellen Journalisten"
+      "Besitz von möglichst vielen digitalen Endgeräten",
+      "Programmieren von eigenen Computerspielen selbst",
+      "Ausbildung zum professionellen Rundfunkjournalisten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1513,9 +1513,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was beschreibt das Konzept 'Arbeit 4.0'?",
     "answers": [
       "Wandel der Arbeitswelt durch Digitalisierung",
-      "Pflicht zu vier Arbeitstagen pro Woche",
-      "Einführung des Vier-Tage-Urlaubs im Monat",
-      "Verbot von Heimarbeit und Homeoffice"
+      "Gesetzliche Pflicht zu vier Arbeitstagen",
+      "Einführung eines Vier-Tage-Urlaubs pro Monat",
+      "Vollständiges Verbot von Heimarbeit und Homeoffice"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1567,9 +1567,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'Gender Pay Gap'?",
     "answers": [
       "Lohnunterschied zwischen Männern und Frauen",
-      "Gefälle der Gehälter zwischen Ost und West",
+      "Gehaltsgefälle zwischen Ost- und Westdeutschland",
       "Unterschied der Rente von Jung und Alt",
-      "Lohngefälle zwischen Stadt und Land"
+      "Lohngefälle zwischen Stadt und ländlicher Region"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1603,7 +1603,7 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Welche Vertretung der Arbeitnehmer wird in Firmen ab 5 Beschäftigten gewählt?",
     "answers": [
       "Der Betriebsrat im Unternehmen",
-      "Der Vorstand der Firma",
+      "Der Vorstand der gesamten Firma",
       "Die Vertretung der Aktionäre",
       "Die regionale Handwerkskammer"
     ],
@@ -1640,7 +1640,7 @@ const K9_POLITIK_QUESTIONS = [
     "answers": [
       "Leben unter der physischen Existenzgrenze",
       "Fehlen von Kabelfernsehen und Internet",
-      "Verdienst unterhalb des Mindestlohns",
+      "Verdienst unterhalb des gesetzlichen Mindestlohns",
       "Leben ohne eigene Eigentumswohnung"
     ],
     "correct": 0,
@@ -1675,8 +1675,8 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Welches Gesetz schützt Jugendliche in Deutschland vor Überlastung am Arbeitsplatz?",
     "answers": [
       "Das Jugendarbeitsschutzgesetz (JArbSchG)",
-      "Das Allgemeine Bürgerliche Gesetzbuch",
-      "Die Gewerbeordnung für Kleinbetriebe",
+      "Das Allgemeine Bürgerliche Gesetzbuch insgesamt",
+      "Die Gewerbeordnung für kleine Betriebe",
       "Das Bundesausbildungsförderungsgesetz"
     ],
     "correct": 0,
@@ -1729,9 +1729,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Welche Form des Vertrages ist beim Kauf von Brötchen beim Bäcker rechtlich bindend?",
     "answers": [
       "Der mündliche oder konkludente Kaufvertrag",
-      "Ein Notariell beglaubigter Schriftvertrag",
+      "Ein notariell beglaubigter Schriftvertrag",
       "Der schriftliche Vertrag mit Unterschrift",
-      "Ein Vertrag per Bestätigung per E-Mail"
+      "Ein Vertrag mit schriftlicher Bestätigung per E-Mail"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1765,9 +1765,9 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was versteht man unter 'Geplanter Obsoleszenz' bei Konsumgütern?",
     "answers": [
       "Bewusste Verkürzung der Lebensdauer von Produkten",
-      "Gesetzliche Garantie von mindestens 5 Jahren",
-      "Kostenfreie Reparatur durch den Hersteller",
-      "Recyclingfähiger Aufbau aller Bauteile"
+      "Gesetzliche Garantie von mindestens fünf Jahren",
+      "Kostenfreie Reparatur durch den Hersteller selbst",
+      "Recyclingfähiger Aufbau sämtlicher Bauteile"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1783,7 +1783,7 @@ const K9_POLITIK_QUESTIONS = [
     "question": "Was bedeutet der Begriff 'Demografischer Wandel' für die Sozialsysteme in Deutschland?",
     "answers": [
       "Immer mehr Ältere, immer weniger Beitragszahler",
-      "Plötzlicher Anstieg der Geburtenrate im Land",
+      "Plötzlicher Anstieg der Geburtenrate im ganzen Land",
       "Verdopplung der Zahl junger Auszubildender",
       "Absinkendes Durchschnittsalter der Bevölkerung"
     ],
@@ -1809,38 +1809,9 @@ const K9_POLITIK_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Inklusion bedeutet, dass jeder Mensch – mit oder ohne Behinderung – ganz natürlich dazugehört und überall teilhaben kann."
-  },
-  {"id":"k9po101","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Demokratie = Herrschaft des …","answers":["Königs","Volkes","Militärs","Zufalls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Volkes."},
-  {"id":"k9po102","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"GG ist …","answers":["Roman","Verfassung","Schulordnung","EU-Vertrag"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verfassung."},
-  {"id":"k9po103","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Bundestag = …","answers":["Regierung","Parlament","Gericht","Polizei"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Parlament."},
-  {"id":"k9po104","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Gewaltenteilung endet mit …","answers":["Medien","Judikative","Sport","Kirche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Judikative."},
-  {"id":"k9po105","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Grundrecht Beispiel?","answers":["Gebühr","Meinungsfreiheit","Steuern","Wehrpflicht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Meinung."},
-  {"id":"k9po106","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Wahlen u. a. …","answers":["öffentlich","geheim","online only","ungleich"],"correct":1,"difficulty":"mittel","points":10,"explanation":"geheim."},
-  {"id":"k9po107","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Opposition …","answers":["ersetzt","kontrolliert","verboten","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kontrolle."},
-  {"id":"k9po108","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Rechtsstaat: Bindung an …","answers":["Willkür","Recht","Macht","keine Gerichte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Recht."},
-  {"id":"k9po109","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"EU ist …","answers":["Militär","Staatenverbund","Bundesland","Stadt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verbund."},
-  {"id":"k9po110","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Pressefreiheit dient …","answers":["Geheimnis","Kontrolle","Werbung","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Freiheit."},
-  {"id":"k9po111","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Föderalismus: Bund und …","answers":["Gemeinden","Länder","EU","Parteien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Länder."},
-  {"id":"k9po112","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Art. 1 GG: …","answers":["Steuern","Menschenwürde","Sport","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Würde."},
-  {"id":"k9po113","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Petition an …","answers":["Zufall","Parlament","Strafgericht","Medien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bitten."},
-  {"id":"k9po114","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Sozialstaat → …","answers":["Reiche","Sicherung","keine Hilfe","Militär"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Sicherung."},
-  {"id":"k9po115","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Datenschutz schützt …","answers":["Staaten","personenbezogene Daten","Wetter","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Daten."},
-  {"id":"k9po116","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Demo oft …","answers":["geheim","friedlich/angemeldet","bewaffnet","ohne GG"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Versammlung."},
-  {"id":"k9po117","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Korruption schadet …","answers":["Sport","Gemeinwohl","Wetter","Tourismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vertrauen."},
-  {"id":"k9po118","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Politische Bildung → …","answers":["Indoktrination","Mündigkeit","Partei","Desinteresse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Mündigkeit."},
-  {"id":"k9po119","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"BVerfG prüft …","answers":["Sport","Verfassungsmäßigkeit","Steuern","Wetter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"GG."},
-  {"id":"k9po120","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Menschenrechte gegen …","answers":["Privat only","Willkür","Wetter","Wirtschaft only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schutz."},
-  {"id":"k9po121","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Medienkompetenz gegen …","answers":["Info","Desinformation","Pressefreiheit","Wahlen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fake News."},
-  {"id":"k9po122","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Integration = …","answers":["Ausgrenzung","Teilhabe","Zwang","Isolation"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Teilhabe."},
-  {"id":"k9po123","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Wehrhafte Demokratie schützt …","answers":["alles","fdGO","nichts","Zensur total"],"correct":1,"difficulty":"mittel","points":10,"explanation":"fdGO."},
-  {"id":"k9po124","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Kommunal: …","answers":["EU","Gemeinderat","UNO","NATO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kommune."},
-  {"id":"k9po125","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Lobbyismus …","answers":["illegal","Interessenvertretung","ersetzt Wahl","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Interessen."},
-  {"id":"k9po126","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Sozialversicherung …","answers":["Rüstung","Krankheit/Alter","Parteien","Kultur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Risiken."},
-  {"id":"k9po127","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"UN zielt auf …","answers":["Krieg","Frieden","DE-Handel","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Frieden."},
-  {"id":"k9po128","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Gleichstellung → …","answers":["Diskriminierung","gleiche Chancen","Ungleichheit","Quoten Spaß"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gleichheit."},
-  {"id":"k9po129","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Rechtsweg: Zugang zu …","answers":["Polizei","Gerichten","Medien","Parteien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gericht."},
-  {"id":"k9po130","category":"k9_politik","area":"schule","grade":9,"subject":"politik","topic":"erweiterung","question":"Digitalisierung Herausforderung …","answers":["Handwerk","Datenschutz/Demokratie","Sport","kein Feld"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Transform."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_POLITIK_QUESTIONS = K9_POLITIK_QUESTIONS;

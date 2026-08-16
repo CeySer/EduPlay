@@ -13,9 +13,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Was versteht man historisch unter der Epoche des 'Imperialismus' (ca. 1880–1914)?",
     "answers": [
       "Streben nach Weltmacht u. Kolonien",
-      "Friedliche Aufteilung von Weltgut",
-      "Rückzug auf die eigenen Grenzen",
-      "Bündnis europäischer Demokratien"
+      "Bündnis demokratischer Staaten Europas",
+      "Friedliches Teilen der Kolonialgebiete",
+      "Verzicht auf jede Form von Kolonialmacht"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -67,9 +67,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welches Bündnissystem baute Bismarck auf, um das Deutsche Reich nach 1871 vor Isolation u. Revanche zu schützen?",
     "answers": [
       "Ein Bündnissystem der Isolation Frankreichs",
-      "Eine Allianz aller Kolonialmächte Afrika",
-      "Ein reines Offensivbündnis mit England",
-      "Den Völkerbund zur globalen Abrüstung"
+      "Ein Verteidigungsbündnis mit Russland allein",
+      "Eine Freihandelszone der Kolonialmächte",
+      "Ein Bündnis zur Teilung Osteuropas"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -85,9 +85,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welcher Schlagwort-Begriff charakterisiert die aggressive imperialistische Außenpolitik Kaiser Wilhelms II. nach 1890?",
     "answers": [
       "Der 'Platz an der Sonne' Anspruch",
-      "Die 'Politik der ruhigen Hand'",
-      "Der 'Eiserne Vorhang' Politik",
-      "Die 'Pax Romana' Weltordnung"
+      "Die 'Politik des Gleichgewichts' Europa",
+      "Der 'Rückzug ins eigene Reich' Kurs",
+      "Die 'Bündnistreue ohne Grenzen' Idee"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -319,9 +319,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welcher Begriff beschreibt den Übergang von Bewegungskrieg zu eingegrabenen Stellungssystemen an der Westfront?",
     "answers": [
       "Der Grabenkrieg / Stellungsbau",
-      "Der Blitzkrieg durch Panzer",
-      "Der Bewegungskrieg Wüste",
-      "Der Guerillakrieg Wald"
+      "Der Bewegungskrieg an der Ostfront",
+      "Der Luftkrieg über den Kanalinseln",
+      "Der U-Boot-Krieg im Atlantik"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -337,9 +337,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Wer übernahm ab 1916 faktisch die Diktatur im Deutschen Reich über Militär u. Wirtschaft (3. OHL)?",
     "answers": [
       "Hindenburg und Ludendorff",
-      "Bismarck und Wilhelm II.",
-      "Ebert und Scheidemann",
-      "Bülow und Bethmann"
+      "Wilhelm II. und Bismarck allein",
+      "Ebert, Noske und Scheidemann",
+      "Bethmann-Hollweg und Bülow"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -409,9 +409,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Wohin floh Kaiser Wilhelm II. nach seiner Abdankung im November 1918 ins Exil?",
     "answers": [
       "In die neutralen Niederlande",
-      "Nach Großbritannien Insel",
-      "In die Schweiz Alpenraum",
-      "Nach Schweden im Norden"
+      "Ins neutrale Dänemark im Norden",
+      "Nach Österreich-Ungarn ins Exil",
+      "In die Schweiz an den Bodensee"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -717,9 +717,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Wer wurde nach dem Tod Friedrich Eberts 1925 zum zweiten Reichspräsidenten gewählt?",
     "answers": [
       "Paul von Hindenburg General",
-      "Wilhelm Marx Zelt-Partei",
-      "Ernst Thälmann KPD-Chef",
-      "Otto Braun Preußenminister"
+      "Wilhelm Marx vom Zentrum",
+      "Gustav Stresemann als Kanzler",
+      "Otto Braun, SPD-Minister"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -989,9 +989,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Unter welchem Vorwand ermordete die SS Ende Juni 1934 die Führung der eigenen SA u. interne Rivalen ('Röhm-Putsch')?",
     "answers": [
       "Angebliche Putschpläne Ernst Röhms",
-      "Spionage für französische Mächte",
-      "Diebstahl von Parteivermögen",
-      "Hochverrat mit der KPD-Führung"
+      "Angebliche Verschwörung der SA-Führung",
+      "Geheime Kontakte zur Sowjetunion",
+      "Unterschlagung von Staatsgeldern"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1007,9 +1007,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welcher Reichspropagandaleiter beherrschte Medien, Rundfunk, Film u. Presse im NS-Staat lückenlos?",
     "answers": [
       "Joseph Goebbels Propaganda",
-      "Hermann Göring Luftfahrt",
-      "Heinrich Himmler SS-Chef",
-      "Albert Speer Rüstung"
+      "Hermann Göring Wirtschaft",
+      "Rudolf Heß Parteikanzlei",
+      "Wilhelm Frick Innenpolitik"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1025,9 +1025,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welche staatlichen Gesetze von 1935 raubten deutschen Juden die Staatsbürgerrechte u. verboten Ehen mit 'Deutschblütigen'?",
     "answers": [
       "Die Nürnberger Rassegesetze",
-      "Die Weimarer Sondererlasse",
-      "Die Berliner Rassendekrete",
-      "Die Münchner Bürgergesetze"
+      "Die Berliner Notverordnung",
+      "Die Weimarer Bürgergesetze",
+      "Die Münchner Ausnahmeregeln"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1115,9 +1115,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Mit welchem fingierten Überfall u. Datum begann der Zweite Weltkrieg in Europa durch den deutschen Angriff auf Polen?",
     "answers": [
       "Am 1. September 1939 (Gleiwitz)",
-      "Am 1. August 1939 (Danzig)",
-      "Am 22. Juni 1941 (Barbarossa)",
-      "Am 10. Mai 1940 (Westfeldzug)"
+      "Am 17. September 1939 (Ostpolen)",
+      "Am 3. September 1939 (in Danzig)",
+      "Am 31. August 1939 (in Warschau)"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1151,9 +1151,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Unter welchem Decknamen startete die Deutsche Wehrmacht am 22. Juni 1941 den Überfall auf die Sowjetunion?",
     "answers": [
       "Unter 'Unternehmen Barbarossa'",
-      "Unter 'Unternehmen Seelöwe'",
-      "Unter 'Fall Gelb Frankreich'",
-      "Unter 'Operation Valkyrie'"
+      "Unter 'Fall Weiß' gegen Polen 1939",
+      "Unter 'Unternehmen Zitadelle' 1943",
+      "Unter 'Fall Rot' gegen Frankreich"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1259,9 +1259,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welcher Offizier verübte am 20. Juli 1944 im Führerhauptquartier 'Wolfsschanze' ein Bombenattentat auf Hitler?",
     "answers": [
       "Claus Schenk Graf von Stauffenberg",
-      "Henning von Tresckow General",
-      "Ludwig Beck Generaloberst",
-      "Carl Friedrich Goerdeler"
+      "Wilhelm Canaris, der Geheimdienstchef",
+      "Henning von Tresckow, der General",
+      "Carl Friedrich Goerdeler, Politiker"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1405,9 +1405,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welcher Begriff beschreibt die Flucht u. Vertreibung von Millionen Deutschen aus den Ostgebieten (Schlesien, Pommern, Ostpreußen) 1945–1947?",
     "answers": [
       "Die Flucht u. Vertreibung",
-      "Die Große Auswanderung",
-      "Der Demografische Wandel",
-      "Die Binnenmigration West"
+      "Die freiwillige Umsiedlung",
+      "Die geplante Zwangsarbeit",
+      "Die innere Emigration West"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1567,9 +1567,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welcher Volksaufstand gegen Arbeitsnormenerhöhungen u. Regierungsdiktatur wurde am 17. Juni 1953 in der DDR blutig niedergeschlagen?",
     "answers": [
       "Der Volksaufstand vom 17. Juni",
-      "Der Prager Frühling Protest",
-      "Der Ungarische Volksaufstand",
-      "Der Streik der Danziger Werft"
+      "Der Aufstand vom 13. August 1961",
+      "Der Berliner Blockade-Protest 1948",
+      "Der Streik vom 1. Mai 1953 Berlin"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1639,9 +1639,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welche gefährliche Weltkrise brachte die Menschheit im Oktober 1962 an den Rand eines atomaren Weltkriegs?",
     "answers": [
       "Die Kube-Krise (Raketen)",
-      "Die Korea-Krise 1950",
-      "Die Suez-Krise Ägypten",
-      "Die Vietnam-Krise Krieg"
+      "Die Berlin-Krise von 1961",
+      "Die Iran-Geisel-Krise 1979",
+      "Die Kongo-Krise von 1960"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1657,9 +1657,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welcher Stellvertreterkrieg im Asien der 1960er/70er Jahre wurde zum Trauma für die US-Militärmacht?",
     "answers": [
       "Der Vietnamkrieg Südostasien",
-      "Der Koreakrieg Ostasien",
-      "Der Afghanistankrieg Asien",
-      "Der Golfkrieg Nahost"
+      "Der Koreakrieg in Ostasien",
+      "Der Kaschmirkrieg in Südasien",
+      "Der Laoskrieg in Südostasien"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1675,9 +1675,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welche Kernidee prägte Ludwig Erhards Konzept der 'Sozialen Marktwirtschaft' in der BRD?",
     "answers": [
       "Freier Markt mit sozialem Ausgleich",
-      "Reiner unregulierter Kapitalismus",
-      "Staatliche Planwirtschaft Ost",
-      "Verbot von Privateigentum"
+      "Vollständige staatliche Zentralplanung",
+      "Reiner Kapitalismus ganz ohne Regeln",
+      "Kollektivierung aller Betriebe der DDR"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1729,9 +1729,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "question": "Welches berüchtigte Ministerium der DDR überwachte die eigene Bevölkerung mit Millionen Akten u. inoffiziellen Mitarbeitern (IM)?",
     "answers": [
       "Das Ministerium für Staatssicherheit (Stasi)",
-      "Die Nationale Volksarmee NVA",
-      "Die Volkspolizei Präsidium",
-      "Der Staatsrat der DDR Berlin"
+      "Das Ministerium für Auswärtige Angelegenheiten",
+      "Die Nationale Volksarmee der gesamten DDR",
+      "Der Ministerrat der Deutschen Demokrat. Rep."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1809,38 +1809,9 @@ const K9_GESCHICHTE_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der Vertrag zwischen BRD, DDR u. den vier Mächten (USA, UdSSR, GB, F) regelte die außenpolitischen Aspekte der Einheit."
-  },
-  {"id":"k9ge101","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Quellenkritik prüft …","answers":["Wetter","Autor/Absicht","Länge","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kritik."},
-  {"id":"k9ge102","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Athen Demokratie war …","answers":["universal","begrenzt","absolut","sozialistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"begrenzt."},
-  {"id":"k9ge103","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Industrialisierung start …","answers":["Antike","England","Steinzeit","1990"],"correct":1,"difficulty":"mittel","points":10,"explanation":"GB."},
-  {"id":"k9ge104","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"1914 Auslöser u. a. …","answers":["Mond","Sarajevo","Mauer","Euro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Attentat."},
-  {"id":"k9ge105","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"NS 1933: …","answers":["Demokratie","Diktatur","EU","Einheit"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Macht."},
-  {"id":"k9ge106","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Holocaust = …","answers":["Krise","Völkermord","Industrie","Aufklärung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Shoah."},
-  {"id":"k9ge107","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"1945 Ende Europa: …","answers":["Beginn","Kapitulation","Mauer","Euro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kapitulation."},
-  {"id":"k9ge108","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Kalter Krieg Blöcke …","answers":["Ost-West","Nord-Süd","Asien","keine"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Ost-West."},
-  {"id":"k9ge109","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"GG 1949 für …","answers":["DDR","BRD","Kaiserreich","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"BRD."},
-  {"id":"k9ge110","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Mauerbau …","answers":["1945","1961","1990","1918"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1961."},
-  {"id":"k9ge111","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Wiedervereinigung …","answers":["1945","1990","1961","1918"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1990."},
-  {"id":"k9ge112","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Revolution FR Motto …","answers":["König","Freiheit Gleichheit Brüderlichkeit","Steuern","Krieg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Devise."},
-  {"id":"k9ge113","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Luther gegen u. a. …","answers":["Wissenschaft","Ablass","Druck","Städte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ablass."},
-  {"id":"k9ge114","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Aufklärung betont …","answers":["Aberglaube","Vernunft","Krieg","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vernunft."},
-  {"id":"k9ge115","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Imperialismus: …","answers":["Ende Kolonien","Kolonien","EU","UNO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Expansion."},
-  {"id":"k9ge116","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Weimar war …","answers":["Kaiserreich","Demokratie","NS","DDR"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Republik."},
-  {"id":"k9ge117","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"UN 1945 Ziel …","answers":["Krieg","Frieden","Kolonien","Zensur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Frieden."},
-  {"id":"k9ge118","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Primärquelle = …","answers":["Schulbuch","aus der Zeit","Wiki","Film 2020"],"correct":1,"difficulty":"mittel","points":10,"explanation":"zeitgenössisch."},
-  {"id":"k9ge119","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Propaganda zielt auf …","answers":["Info neutral","Meinungslenkung","Kritik","Wissenschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Lenkung."},
-  {"id":"k9ge120","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"AEMR 1948 Anspruch …","answers":["Europa","universell","USA","DE"],"correct":1,"difficulty":"mittel","points":10,"explanation":"universal."},
-  {"id":"k9ge121","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Erinnerung dient …","answers":["Vergessen","Auseinandersetzung","Zensur","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gedenken."},
-  {"id":"k9ge122","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Römisches Recht → …","answers":["Sport","Europa","Asien isoliert","Mond"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rezeption."},
-  {"id":"k9ge123","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Industrie Folge …","answers":["keine Städte","soziale Frage","nur Adel","keine Technik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"sozial."},
-  {"id":"k9ge124","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"1989: …","answers":["Krieg","friedliche Revolutionen","Versailles","Industrie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wende."},
-  {"id":"k9ge125","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"EU Start u. a. …","answers":["EGKS","Versailles","Wien","UN"],"correct":0,"difficulty":"mittel","points":10,"explanation":"1950er."},
-  {"id":"k9ge126","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Polis = …","answers":["Königreich","Stadtstaat","Lager","Kirche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Polis."},
-  {"id":"k9ge127","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Absolutismus: Macht …","answers":["geteilt","unbeschränkt Anspruch","demokratisch","republikanisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"absolut."},
-  {"id":"k9ge128","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Versailles oft als …","answers":["Sieg","Diktat","neutral","EU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Diktat."},
-  {"id":"k9ge129","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"1929 Krise …","answers":["stabil","radikalisierte","Ende Industrie","UNO"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Krise."},
-  {"id":"k9ge130","category":"k9_geschichte","area":"schule","grade":9,"subject":"geschichte","topic":"erweiterung","question":"Oral History: …","answers":["Akten","Zeitzeugen","Münzen","Karten"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mündlich."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_GESCHICHTE_QUESTIONS = K9_GESCHICHTE_QUESTIONS;

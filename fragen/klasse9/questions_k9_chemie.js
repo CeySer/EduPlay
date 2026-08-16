@@ -85,9 +85,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Was bedeutet die Hauptgruppennummer für die Atome der jeweiligen Gruppe?",
     "answers": [
       "Anzahl Valenzelektronen",
-      "Anzahl aller Schalen",
-      "Gesamtzahl Neutronen",
-      "Masse der Elektronen"
+      "Zahl der Elektronenschalen",
+      "Ladung des Atomkerns",
+      "Masse der Atomkerne"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -139,9 +139,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Valenzelektronen' in der Chemie?",
     "answers": [
       "Elektronen auf Außenschale",
-      "Elektronen im Atomkern",
-      "Innere Paare Elektronen",
-      "Gesamtzahl der Teilchen"
+      "Protonen im Atomkern",
+      "Neutronen im Atomkern",
+      "Elektronen der Innenschale"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -229,9 +229,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Was unterscheidet Isotope eines chemischen Elements voneinander?",
     "answers": [
       "Verschiedene Neutronenzahl",
-      "Verschiedene Protonenzahl",
-      "Verschiedene Elektronen",
-      "Verschiedene Schalen"
+      "Verschiedene Massenzahl",
+      "Verschiedene Kernladung",
+      "Verschiedene Elektronenzahl"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -319,9 +319,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'Ionisationsenergie'?",
     "answers": [
       "Energie um Elektron abzuspalten",
-      "Energie um Proton aufzunehmen",
-      "Energie bei Kernverschmelzung",
-      "Wärme bei der Salzbildung"
+      "Energie bei der Kernverschmelzung",
+      "Energie zur Ionenbildung im Salz",
+      "Wärme bei der Neutralisation"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -465,9 +465,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Zwischen welchen Teilchenarten bildet sich typischerweise eine Ionenbindung aus?",
     "answers": [
       "Metall und Nichtmetall",
-      "Zwei Nichtmetallen",
-      "Zwei Metallen Stoff",
-      "Zwei Edelgasen Atom"
+      "Nichtmetall und Nichtmetall",
+      "Metall und Halbmetall",
+      "Zwei gleichen Metallen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -555,9 +555,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Was misst die Elektronegativität (EN) eines Atoms?",
     "answers": [
       "Fähigkeit Elektronen anzuziehen",
-      "Anzahl aller Neutronen",
-      "Geschwindigkeit der Elektronen",
-      "Masse des Atomkerns"
+      "Geschwindigkeit aller Elektronen",
+      "Anzahl aller Neutronen im Kern",
+      "Größe des gesamten Atomkerns"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -591,9 +591,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Wann spricht man von einer 'polaren Elektronenpaarbindung'?",
     "answers": [
       "EN-Differenz zw. 0.5 u. 1.7",
-      "EN-Differenz exakt Null",
-      "EN-Differenz größer 2.0",
-      "Keine Elektronen geteilt"
+      "EN-Differenz zw. 0 u. 0.4",
+      "EN-Differenz über 1.7 hinaus",
+      "Kaum Elektronen geteilt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -699,9 +699,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Wie nennt man die schwachen Anziehungskräfte zwischen unpolaren Molekülen?",
     "answers": [
       "Van-der-Waals-Kräfte",
-      "Wasserstoffbrücken",
-      "Ionenanziehung Salz",
-      "Metallische Bindung"
+      "Wasserstoffbrückenkräfte",
+      "Ionische Anziehungskraft",
+      "Metallische Bindungsart"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -843,9 +843,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Warum lässt sich ein Salzkristall unter Hammerschlag nicht verformen, sondern zerspringt?",
     "answers": [
       "Gleichgeladene Ionen treffen aufeinander",
-      "Elektronengas weicht sofort aus",
-      "Ionen wandeln sich in Gase um",
-      "Wasserstoffbrücken brechen ab"
+      "Elektronengas weicht sofort seitlich aus",
+      "Ionen wandeln sich spontan in Gase um",
+      "Wasserstoffbrücken brechen dabei ab"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -917,9 +917,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Was besagt das Gesetz von der Erhaltung der Masse bei chemischen Reaktionen?",
     "answers": [
       "Masse Edukte = Masse Produkte",
-      "Masse steigt bei Verbrennung",
-      "Masse halbiert sich immer",
-      "Masse wird zu reiner Wärme"
+      "Masse steigt bei Verbrennung stark",
+      "Masse halbiert sich immer wieder",
+      "Masse wird komplett zu Wärme"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -935,9 +935,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Wie nennt man die Stoffe, die Vor der chemischen Reaktion vorliegen?",
     "answers": [
       "Die Edukte / Ausgangsstoffe",
+      "Die Katalysatoren / Hilfsstoffe",
       "Die Produkte / Endstoffe",
-      "Die Katalysatoren Stoffe",
-      "Die Isotope Elemente"
+      "Die Isotope der Elemente"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1115,9 +1115,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Was kennzeichnet eine 'Redoxreaktion'?",
     "answers": [
       "Elektronenübertragung",
+      "Wasserstoffübertragung",
       "Protonenübertragung",
-      "Säure-Base-Reaktion",
-      "Reine Kernspaltung"
+      "Säure-Base-Reaktion"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1241,8 +1241,8 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Was beschreibt eine 'Kompression' oder Verbrennung von Kohlenwasserstoffen ($CH_4 + 2 O_2 \\rightarrow ?$)?",
     "answers": [
       "CO2 und 2 H2O",
-      "C und 2 H2O",
-      "CO und H2",
+      "2 CO und 2 H2O",
+      "CO und 2 H2O",
       "CO2 und H2"
     ],
     "correct": 0,
@@ -1495,9 +1495,9 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Welche Farbe nimmt der Indikator Phenolphthalein in einer alkalischen Lösung an?",
     "answers": [
       "Färbt sich Pink/Violett",
-      "Bleibt völlig farblos",
+      "Färbt sich Blau-Violett",
       "Färbt sich Knallgelb",
-      "Färbt sich Tiefblau"
+      "Bleibt völlig farblos"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1603,8 +1603,8 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Welches Gas entsteht, wenn unedle Metalle (z. B. Zink) mit sauren Lösungen reagieren?",
     "answers": [
       "Wasserstoff-Gas (H2)",
+      "Schwefeldioxid-Gas (SO2)",
       "Sauerstoff-Gas (O2)",
-      "Chlor-Gas (Cl2)",
       "Kohlenstoffdioxid"
     ],
     "correct": 0,
@@ -1711,7 +1711,7 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Aus welchen zwei Halbzellen besteht das klassische Daniell-Element?",
     "answers": [
       "Zink- und Kupferhalbzelle",
-      "Eisen- u. Aluminiumzelle",
+      "Eisen- und Aluminiumzelle",
       "Silber- u. Goldhalbzelle",
       "Blei- u. Nickelhalbzelle"
     ],
@@ -1747,7 +1747,7 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Was ordnet die 'Elektrochemische Spannungsreihe' der Metalle an?",
     "answers": [
       "Streben Elektronen abzugeben",
-      "Masse u. Dichte der Metalle",
+      "Masse und Dichte der Metalle",
       "Schmelztemperatur Metalle",
       "Härte nach der Mohs-Skala"
     ],
@@ -1801,46 +1801,17 @@ const K9_CHEMIE_QUESTIONS = [
     "question": "Was dient in Batterien u. Akkus als leitende Verbindung zwischen den Elektrodenraum-Halbzellen?",
     "answers": [
       "Der Elektrolyt / Diaphragma",
-      "Ein reiner Holzbalken",
-      "Eine Kumpferdrahtspule",
-      "Eine feine Plastikfolie"
+      "Ein dünner Kupferdraht-Ring",
+      "Eine feine Plastikfolie",
+      "Ein reiner Holzbalken"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der Elektrolyt (oder Salzbrücke/Diaphragma) ermöglicht den Ionenstrom zum Ladungsausgleich zwischen den Halbzellen."
-  },
-  {"id":"k9ch101","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Ordnungszahl = Anzahl …","answers":["Neutronen","Protonen","Elektronen Ion","Nucleonen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Protonen."},
-  {"id":"k9ch102","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Ionenbindung typisch …","answers":["Non-Non","Metall-Nonmetall","Metall-Metall","Edelgas"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Salz."},
-  {"id":"k9ch103","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"pH 14 eher …","answers":["sauer","neutral","basisch","pH7"],"correct":2,"difficulty":"mittel","points":10,"explanation":"basisch."},
-  {"id":"k9ch104","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Neutralisation → …","answers":["Gas","Salz+Wasser","Metall","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Salz+Wasser."},
-  {"id":"k9ch105","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Oxidation: Elektronen…","answers":["Aufnahme","Abgabe","Neutron","Photon"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Abgabe."},
-  {"id":"k9ch106","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Mol misst …","answers":["kg","Stoffmenge","Liter","Kelvin"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stoffmenge."},
-  {"id":"k9ch107","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Katalysator … EA.","answers":["erhöht","senkt","löscht","ignoriert"],"correct":1,"difficulty":"mittel","points":10,"explanation":"senkt."},
-  {"id":"k9ch108","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Edelgase sind … reaktiv.","answers":["sehr","wenig","immer","mit Wasser"],"correct":1,"difficulty":"mittel","points":10,"explanation":"wenig."},
-  {"id":"k9ch109","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Säure gibt H⁺ ab.","answers":["kein Ergebnis","Brønsted","OH⁻","e⁻"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Brønsted."},
-  {"id":"k9ch110","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"c = n/V in …","answers":["kg/L","mol/L","m/s","Pa"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mol/L."},
-  {"id":"k9ch111","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Exotherm: Wärme …","answers":["aufgenommen","abgegeben","gelöscht","Masse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"abgegeben."},
-  {"id":"k9ch112","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Verbrennung C → …","answers":["CO","CO₂","C","O₂"],"correct":1,"difficulty":"mittel","points":10,"explanation":"CO₂."},
-  {"id":"k9ch113","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Elektrolyse braucht …","answers":["Druck","Strom","Magnet","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Strom."},
-  {"id":"k9ch114","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Massenerhaltung: Masse …","answers":["weg","bleibt","doppelt","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"bleibt."},
-  {"id":"k9ch115","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Wasser ist …","answers":["unpolar","polar","ionisch","metallisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"polar."},
-  {"id":"k9ch116","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"PSE Gruppe = …","answers":["Zeile","Spalte","Block","Ion"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Spalte."},
-  {"id":"k9ch117","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Isotope gleiche …","answers":["Massenzahl","Ordnungszahl","Neutronen","Dichte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Z."},
-  {"id":"k9ch118","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Reduktion: e⁻ …","answers":["Abgabe","Aufnahme","Neutron","Photon"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Aufnahme."},
-  {"id":"k9ch119","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Endotherm ΔH …","answers":["<0",">0","=0","∞"],"correct":1,"difficulty":"mittel","points":10,"explanation":">0."},
-  {"id":"k9ch120","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Kohlenwasserstoff: …","answers":["Fe","C und H","nur O","U"],"correct":1,"difficulty":"mittel","points":10,"explanation":"C/H."},
-  {"id":"k9ch121","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Indikator zeigt …","answers":["Masse","pH","Druck","Temp"],"correct":1,"difficulty":"mittel","points":10,"explanation":"pH."},
-  {"id":"k9ch122","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Ionengitter ist …","answers":["frei","starr","gasförmig","flüssig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"starr."},
-  {"id":"k9ch123","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"EN hoch bei …","answers":["Metallen","Nonmetallen","Edelgasen","Neutronen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"F/O."},
-  {"id":"k9ch124","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Le Chatelier: wirkt …","answers":["verstärkend","entgegen","ignorierend","löschend"],"correct":1,"difficulty":"mittel","points":10,"explanation":"entgegen."},
-  {"id":"k9ch125","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Organik Kern: …","answers":["Fe","C","U","He"],"correct":1,"difficulty":"mittel","points":10,"explanation":"C."},
-  {"id":"k9ch126","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Salz in Wasser → …","answers":["Moleküle","Ionen","Atome","Photonen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ionen."},
-  {"id":"k9ch127","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Aktivierungsenergie = …","answers":["Produkt","Schwelle","Temp","Druck"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schwelle."},
-  {"id":"k9ch128","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"Gruppe 17 = …","answers":["Alkali","Halogene","Edelgase","Erdalkali"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Halogene."},
-  {"id":"k9ch129","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"pV=nRT für …","answers":["Festkörper","ideales Gas","Flüssigkeit","Plasma"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gas."},
-  {"id":"k9ch130","category":"k9_chemie","area":"schule","grade":9,"subject":"chemie","topic":"erweiterung","question":"HCl dissoziiert zu …","answers":["Cl₂","H⁺ und Cl⁻","H₂","O₂"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ionen."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_CHEMIE_QUESTIONS = K9_CHEMIE_QUESTIONS;

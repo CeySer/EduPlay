@@ -13,9 +13,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wann verwendet man im Französischen das Imparfait im Vergleich zum Passé composé?",
     "answers": [
       "Für Zustände u. Gewohnheiten",
-      "Für einmalige Handlungen",
-      "Für zukünftige Pläne",
-      "Für plötzliche Ereignisse"
+      "Für abgeschlossene Handlungen",
+      "Für höfliche Bitten im Satz",
+      "Für reine Zukunftsaussagen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -31,9 +31,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie bildet man die Form des Imparfait für die Person 'nous' bei Regelverben?",
     "answers": [
       "Stamm von 'nous' + Endung -ions",
-      "Infinitiv + Endung -ons",
-      "Stamm von 'nous' + Endung -ons",
-      "Participe passé + Endung -ions"
+      "Stamm von 'ils' + Endung -aient",
+      "Infinitivstamm + Endung -ez dort",
+      "Präsensstamm + Endung -ons hier"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -67,9 +67,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie bildet man das Futur simple für regelmäßige Verben auf -er (z. B. parler)?",
     "answers": [
       "Infinitiv + Endungen von 'avoir'",
-      "Form von 'aller' + Infinitiv",
-      "Präsensstamm + Endung -ais",
-      "Participe passé + Endung -ra"
+      "Präsensstamm + Endungen von 'être'",
+      "Participe passé + Hilfsverb avoir",
+      "Infinitivstamm ohne Endung -e"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -121,9 +121,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie wird das Conditionnel présent formal gebildet?",
     "answers": [
       "Futur-Stamm + Imparfait-Endung",
-      "Infinitiv + Präsens-Endungen",
-      "Präsens-Stamm + Futur-Endung",
-      "Participe passé + Imparfait"
+      "Präsensstamm + Futur-Endungen",
+      "Infinitiv + Imparfait-Endungen",
+      "Participe passé + être-Formen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -175,9 +175,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie lautet die Regel für den Bedingungssatz vom Typ 1 (realer Fall in der Gegenwart)?",
     "answers": [
       "Si + Présent -> Futur / Présent",
-      "Si + Imparfait -> Conditionnel",
-      "Si + Plus-que-parfait -> Cond.",
-      "Si + Futur -> Futur simple"
+      "Si + Imparfait -> Conditionnel I",
+      "Si + Passé composé -> Présent I",
+      "Si + Futur -> Conditionnel II"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -193,9 +193,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie lautet die Regel für den Bedingungssatz vom Typ 2 (hypothetischer Fall)?",
     "answers": [
       "Si + Imparfait -> Conditionnel I",
-      "Si + Présent -> Conditionnel I",
-      "Si + Conditionnel -> Imparfait",
-      "Si + Futur -> Conditionnel I"
+      "Si + Présent -> Futur simple II",
+      "Si + Plus-que-parfait -> Cond. I",
+      "Si + Subjonctif -> Conditionnel"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -229,9 +229,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Was löst die Verwendung des 'Subjonctif' im Nebensatz aus?",
     "answers": [
       "Gefühle, Wünsche u. Pflichten",
-      "Reine objektive Fakten",
-      "Zeenangaben der Zeit",
-      "Tatsachen der Geschichte"
+      "Sichere Fakten u. Beweise dort",
+      "Reine Vergangenheitsformen",
+      "Feste Zeitangaben im Satz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -465,9 +465,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Was bedeutet der französische Ausdruck 'faire du bénévolat'?",
     "answers": [
       "Ehrenamtliche Arbeit leisten",
-      "Einen Ferienjob ausüben",
-      "Eine Ausbildung beginnen",
-      "Einen Tanzkurs besuchen"
+      "Einen bezahlten Ferienjob ausüben",
+      "Eine Fortbildung dort besuchen",
+      "Einen Wettbewerb dort gewinnen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -555,9 +555,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Was bedeutet der Ausdruck 'avoir le coup de foudre'?",
     "answers": [
       "Sich auf den 1. Blick verlieben",
-      "Angst vor Gewittern haben",
-      "Einen plötzlichen Unfall haben",
-      "Sehr wütend auf jemanden sein"
+      "Sich sehr über etwas dort ärgern",
+      "Plötzlich krank werden dort",
+      "Einen Streit vom Zaun brechen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -609,9 +609,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie nennt man erneuerbare Energien auf Französisch?",
     "answers": [
       "Les énergies renouvelables",
-      "Les énergies fossiles",
-      "Les énergies nucléaires",
-      "Les énergies naturelles"
+      "Les énergies fossiles utilisées",
+      "Les énergies nucléaires ici",
+      "Les énergies naturelles diverses"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -753,9 +753,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie heißt die dreijährige Sekundarstufe II in Frankreich bis zum Abitur?",
     "answers": [
       "Le lycée (Seconde, 1ère, Tle)",
-      "Le collège supérieur",
-      "L'école primaire haute",
-      "La faculté des sciences"
+      "Le collège unique en France",
+      "L'école primaire haute dort",
+      "La faculté des lettres et arts"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -771,9 +771,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Was bedeutet die Wendung 'avoir du mal à faire quelque chose'?",
     "answers": [
       "Schwierigkeiten bei etwas haben",
-      "Schmerzen im Rücken spüren",
-      "Keine Lust auf etwas haben",
-      "Etwas sehr schnell erledigen"
+      "Schmerzen im Rücken dort spüren",
+      "Keine Lust auf etwas dort haben",
+      "Etwas sehr schnell dort erledigen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -789,9 +789,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie übersetzt man den Satz: 'Es lohnt sich nicht'?",
     "answers": [
       "Ça ne vaut pas la peine",
-      "Ça ne coûte rien ici",
-      "Ce n'est pas possible",
-      "Ça ne fait aucun sens"
+      "Ça ne coûte rien du tout ici",
+      "Ce n'est pas possible du tout",
+      "Ça ne fait aucun sens ici"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -825,9 +825,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie drückt man Zustimmung aus: 'Ich bin völlig einverstanden'?",
     "answers": [
       "Je suis tout à fait d'accord",
-      "Je ne suis pas d'accord",
-      "Je pense que c'est faux",
-      "Je suis désolé pour toi"
+      "Je ne suis pas d'accord du tout",
+      "Je pense que c'est faux ici",
+      "Je suis désolé pour toi ici"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -861,9 +861,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Was versteht man unter 'le commerce équitable'?",
     "answers": [
       "Der Faire Handel (Fairtrade)",
-      "Der freie Großhandel EU",
-      "Der Online-Handel im Netz",
-      "Der Schwarzmarkt in Städten"
+      "Der freie Großhandel in der EU",
+      "Der Online-Handel im Internet",
+      "Der Schwarzmarkt in den Städten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -897,9 +897,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Was bedeutet das Substantiv 'l'intégration' im gesellschaftlichen Kontext?",
     "answers": [
       "Eingliederung in Gesellschaft",
-      "Ausschluss von Ausländern",
-      "Rückkehr ins Heimatland",
-      "Gründung einer Partei"
+      "Ausschluss von Ausländern dort",
+      "Rückkehr ins Heimatland dort",
+      "Gründung einer neuen Partei"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -917,9 +917,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'la Francophonie'?",
     "answers": [
       "Gesamtheit französischsprachiger Länder",
-      "Der Dialekt der Stadt Paris",
-      "Ein französischer Musikstil",
-      "Vereinigung französischer Inseln"
+      "Der offizielle Dialekt der Stadt Paris",
+      "Ein bekannter französischer Musikstil weltweit",
+      "Vereinigung aller französischen Inseln dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -953,9 +953,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie heißen die französischen Überseegebiete abgekürzt?",
     "answers": [
       "Les DROM-COM",
-      "Les DOM-TOM",
-      "Les ZEE-DOM",
-      "Les TAF-COM"
+      "Les DOM-TOM Gebiet",
+      "Les ZEE-DOM Zonen",
+      "Les TAF-COM Zonen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -971,9 +971,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Welche karibische Insel ist ein französisches Überseedépartement (DROM)?",
     "answers": [
       "La Martinique (oder Guadeloupe)",
-      "La Jamaïque Karibik",
-      "L'île de Cuba Atlantique",
-      "La République Dominicaine"
+      "La Jamaïque in der Karibik",
+      "L'île de Cuba im Atlantik",
+      "La République Dominicaine dort ganz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1025,8 +1025,8 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Welches historische Ereignis wird in Frankreich am Nationalfeiertag (14. Juli) gefeiert?",
     "answers": [
       "Der Sturm auf die Bastille 1789",
-      "Das Ende des 1. Weltkriegs",
-      "Die Krönung von Napoléon",
+      "Das Ende des 1. Weltkriegs dort",
+      "Die Krönung von Napoléon dort",
       "Die Ausrufung der V. Republik"
     ],
     "correct": 0,
@@ -1061,9 +1061,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie heißt der Amtssitz des französischen Staatspräsidenten in Paris?",
     "answers": [
       "L'Élysée (Le Palais de l'Élysée)",
-      "Le Château de Versailles",
-      "Le Palais du Luxembourg",
-      "L'Hôtel de Ville Paris"
+      "Le Château de Versailles bei Paris",
+      "Le Palais du Luxembourg in Paris",
+      "L'Hôtel de Ville de Paris zentral"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1079,9 +1079,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie heißt das Pariser Künstler- u. Hügelviertel mit der Basilika Sacré-Cœur?",
     "answers": [
       "Le quartier de Montmartre",
-      "Le Quartier Latin Uni",
-      "Le Marais historique",
-      "La Défense quartier"
+      "Le Quartier Latin Uni dort",
+      "Le Marais historique Paris",
+      "La Défense Quartier Paris"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1115,9 +1115,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Für welches Naturphänomen u. welche Pflanzenfelder ist die Südregion Provence weltberühmt?",
     "answers": [
       "Champs de lavande (Lavendel)",
-      "Forêts de conifères",
-      "Champs de tulipes rouges",
-      "Cactus et déserts chauds"
+      "Forêts de conifères profondes",
+      "Champs de tulipes rouges dort",
+      "Cactus et déserts chauds dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1133,9 +1133,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Welcher Vertrag besiegelte 1963 die deutsch-französische Freundschaft (De Gaulle u. Adenauer)?",
     "answers": [
       "Le Traité de l'Élysée 1963",
-      "Le Traité de Versailles",
-      "Le Traité de Maastricht",
-      "Les Accords de Schengen"
+      "Le Traité de Versailles dort",
+      "Le Traité de Maastricht dort",
+      "Les Accords de Schengen dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1151,9 +1151,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie nennt man die deutsch-französische Jugendorganisation, die Austausche u. Begegnungen fördert?",
     "answers": [
       "L'OFAJ / DFJW Organisation",
-      "L'UNESCO Jeunesse",
-      "L'Erasmus Plus France",
-      "Le Conseil de l'Europe"
+      "L'UNESCO Jeunesse Organisation",
+      "L'Erasmus Plus France Europe",
+      "Le Conseil de l'Europe dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1205,9 +1205,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie heißt der bekannte französische Schnellzug?",
     "answers": [
       "Le TGV (Train à Grande Vitesse)",
-      "Le TER régional rapide",
-      "Le RER train parisien",
-      "Le Métro de France"
+      "Le TER régional rapide in France",
+      "Le RER train parisien sehr schnell",
+      "Le Métro de Paris ville dort ganz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1277,9 +1277,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Welches bekannte Radrennen führt drei Wochen lang durch Frankreich u. endet auf den Champs-Élysées?",
     "answers": [
       "La Tour de France cycliste",
-      "Le Paris-Dakar rallye",
-      "Le Marathon de Paris",
-      "Les 24 Heures du Mans"
+      "Le Paris-Dakar rallye dort",
+      "Le Marathon de Paris dort",
+      "Les 24 Heures du Mans dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1295,9 +1295,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Was beschreibt das französische Motto der Republik: 'Liberté, Égalité, Fraternité'?",
     "answers": [
       "Freiheit, Gleichheit, Brüderlichkeit",
-      "Glaube, Hoffnung, Liebe Staat",
-      "Friede, Freude, Eierkuchen",
-      "Ordnung, Disziplin, Arbeit"
+      "Glaube, Hoffnung, Liebe im Staate dort",
+      "Friede, Freude, Eierkuchen dabei ganz",
+      "Ordnung, Disziplin, Arbeitspflicht"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1477,9 +1477,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Was ersetzt das Adverbialpronomen 'en' im Satz?",
     "answers": [
       "Teilungsartikel u. 'de' + Sache",
-      "Ortsangaben mit Präposition à",
+      "Ortsangaben mit Präposition à dort",
       "Personen mit indirektem Objekt",
-      "Demonstrativbegleiter im Satz"
+      "Demonstrativbegleiter im Satz dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1495,9 +1495,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie drückt man die Verneinung 'niemand' aus?",
     "answers": [
       "Ne ... personne",
-      "Ne ... rien",
-      "Ne ... jamais",
-      "Ne ... plus"
+      "Ne ... rien du tout",
+      "Ne ... jamais plus",
+      "Ne ... plus jamais"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1549,7 +1549,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie lautet die korrekte Reihenfolge der Pronomen bei zwei Pronomen vor dem Verb (z. B. me + le)?",
     "answers": [
       "1. Personen (me, te, se) vor le/la",
-      "1. le/la/les IMMER ganz zuerst",
+      "1. le/la/les IMMER ganz zuerst dort",
       "1. lui/leur IMMER vor me/te/se",
       "1. y u. en stehen ganz am Anfang"
     ],
@@ -1568,8 +1568,8 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "answers": [
       "Am Ende aller anderen Pronomen",
       "Ganz am Anfang vor me/te/se",
-      "Zwischen le/la u. lui/leur",
-      "Hinter dem Participe passé"
+      "Zwischen le/la u. lui/leur dort",
+      "Hinter dem Participe passé stets"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1621,9 +1621,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Was drückt die Konjunktion 'pendant que' aus?",
     "answers": [
       "Gleichzeitigkeit (während)",
-      "Begründung (weil)",
-      "Bedingung (falls)",
-      "Gegensatz (obwohl)"
+      "Begründung dafür (weil) im Satz",
+      "Bedingung dafür (falls) im Satz",
+      "Gegensatz dazu (obwohl) im Satz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1693,9 +1693,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie bildet man den Komparativ (Steigerung) eines Adjektivs?",
     "answers": [
       "plus / moins / aussi + Adjektiv",
-      "très / fort + Adjektivform",
-      "Adjektiv + Endung -er/-est",
-      "beaucoup + Adjektivform"
+      "très / fort + Adjektivform dort",
+      "Adjektiv + Endung -er/-est dort",
+      "beaucoup + Adjektivform hier"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1711,9 +1711,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie bildet man den Superlativ (höchste Stufe)?",
     "answers": [
       "le / la / les plus + Adjektiv",
-      "beaucoup de + Adjektiv",
-      "très plus + Adjektivform",
-      "toujours + Adjektivform"
+      "beaucoup de + Adjektivform hier",
+      "très plus + Adjektivform dort",
+      "toujours + Adjektivform hier"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1783,9 +1783,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "question": "Wie übersetzt man 'was' in einer indirekten Frage (z. B. Er fragt, was passiert)?",
     "answers": [
       "Mit 'ce qui' (Subjekt) / 'ce que'",
-      "Ausschließlich mit 'que'",
-      "Ausschließlich mit 'quoi'",
-      "Mit der Konjunktion 'si'"
+      "Ausschließlich mit 'que' im Satz",
+      "Ausschließlich mit 'quoi' im Satz",
+      "Mit der Konjunktion 'si' im Satz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1809,38 +1809,9 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "'Ne ... que' ist eine Einschränkung u. bedeutet 'nur' (z. B. Je n'ai que 5 euros = Ich habe nur 5 Euro)."
-  },
-  {"id":"k9fr101","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"Bonjour = …","answers":["Gute Nacht","Hallo","Danke","Bitte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Hallo."},
-  {"id":"k9fr102","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"Merci = …","answers":["Bitte","Danke","kein Ergebnis","andere Größe"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Danke."},
-  {"id":"k9fr103","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"le = Artikel …","answers":["fem.","mask.","plural","unbestimmt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mask."},
-  {"id":"k9fr104","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"Je suis = …","answers":["Du bist","Ich bin","Er ist","Wir sind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ich bin."},
-  {"id":"k9fr105","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"cinq = …","answers":["4","5","6","7"],"correct":1,"difficulty":"mittel","points":10,"explanation":"5."},
-  {"id":"k9fr106","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"où = …","answers":["wann","wo","warum","wie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"wo."},
-  {"id":"k9fr107","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"ne … pas","answers":["kein Ergebnis","richtig","nur pas","nur ne"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k9fr108","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"Futur avoir: j’___","answers":["aurai","ai","avais","avoir"],"correct":0,"difficulty":"mittel","points":10,"explanation":"aurai."},
-  {"id":"k9fr109","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"Adjektiv oft … Nomen","answers":["vor","nach","Zahl","nie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nach."},
-  {"id":"k9fr110","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"Liberté = …","answers":["Gleichheit","Freiheit","Brüderlichkeit","Gesetz"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Freiheit."},
-  {"id":"k9fr111","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"cheval Plural …","answers":["chevals","chevaux","chevales","cheveaux"],"correct":1,"difficulty":"mittel","points":10,"explanation":"chevaux."},
-  {"id":"k9fr112","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"Il y a = …","answers":["Es war","Es gibt","Er hat","Sie sind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Es gibt."},
-  {"id":"k9fr113","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"S’il vous plaît = …","answers":["Danke","Bitte","Sorry","Prost"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bitte."},
-  {"id":"k9fr114","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"à Paris = …","answers":["aus","in/nach","bei","über"],"correct":1,"difficulty":"mittel","points":10,"explanation":"à."},
-  {"id":"k9fr115","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"Nous sommes = …","answers":["Ihr seid","Wir sind","Sie sind","Ich bin"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wir sind."},
-  {"id":"k9fr116","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"bleu = …","answers":["rot","blau","grün","gelb"],"correct":1,"difficulty":"mittel","points":10,"explanation":"blau."},
-  {"id":"k9fr117","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"pourquoi = …","answers":["wann","warum","wer","wie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"warum."},
-  {"id":"k9fr118","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"j’ai mangé","answers":["être","avoir PC","est","avoir roh"],"correct":1,"difficulty":"mittel","points":10,"explanation":"PC avoir."},
-  {"id":"k9fr119","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"Parle! = …","answers":["Sprecht","Sprich","Sprechen Sie","Ich spreche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Sprich."},
-  {"id":"k9fr120","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"hier = …","answers":["morgen","gestern","heute","bald"],"correct":1,"difficulty":"mittel","points":10,"explanation":"gestern."},
-  {"id":"k9fr121","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"qui = Relativ …","answers":["Objekt","Subjekt","Zeit","Ort"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Subjekt."},
-  {"id":"k9fr122","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"travaux Plural von travail","answers":["kein Ergebnis","travaux","travails","trabal"],"correct":1,"difficulty":"mittel","points":10,"explanation":"travaux."},
-  {"id":"k9fr123","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"je voudrais = …","answers":["will","möchte","Perfekt","Futur"],"correct":1,"difficulty":"mittel","points":10,"explanation":"möchte."},
-  {"id":"k9fr124","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"chez Marie = …","answers":["mit","bei","ohne","gegen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"bei."},
-  {"id":"k9fr125","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"lundi = …","answers":["Sonntag","Montag","Freitag","Samstag"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Montag."},
-  {"id":"k9fr126","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"C’est Paul","answers":["Il est üblich","c’est Vorstellung","Nous est","Tu est"],"correct":1,"difficulty":"mittel","points":10,"explanation":"c’est."},
-  {"id":"k9fr127","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"beaucoup de","answers":["mit Artikel Pflicht","ohne Artikel","nur Verben","nur Adj"],"correct":1,"difficulty":"mittel","points":10,"explanation":"ohne Art."},
-  {"id":"k9fr128","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"il/elle …","answers":["suis","es","est","sommes"],"correct":2,"difficulty":"mittel","points":10,"explanation":"est."},
-  {"id":"k9fr129","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"au revoir = …","answers":["Hallo","Auf Wiedersehen","Danke","Bitte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Tschüss."},
-  {"id":"k9fr130","category":"k9_franzoesisch","area":"schule","grade":9,"subject":"franzoesisch","topic":"erweiterung","question":"dix = …","answers":["9","10","11","12"],"correct":1,"difficulty":"mittel","points":10,"explanation":"10."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_FRANZOESISCH_QUESTIONS = K9_FRANZOESISCH_QUESTIONS;

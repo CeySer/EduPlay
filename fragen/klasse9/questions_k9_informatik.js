@@ -13,9 +13,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Algorithmus' in der Informatik?",
     "answers": [
       "Eindeutige Handlungsvorschrift zur Problemlösung",
-      "Reiner physikalischer Aufbau eines Prozessors",
-      "Spezielle Art von Computerspielen im Netz",
-      "Kabelverbindung zwischen zwei Computern"
+      "Rein zufällige Abfolge von Programmbefehlen",
+      "Fest einprogrammierter Text auf einer Webseite",
+      "Kabelverbindung zwischen zwei vernetzten Computern"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -67,9 +67,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Welcher Datentyp speichert logische Wahrheitswerte (true/false)?",
     "answers": [
       "Der Datentyp Boolean (bool)",
-      "Der Datentyp Integer (int)",
-      "Der Datentyp String (str)",
-      "Der Datentyp Float (float)"
+      "Der Datentyp Zeichenkette (String)",
+      "Der Datentyp Ganzzahl (Integer)",
+      "Der Datentyp Kommazahl (Float)"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -85,9 +85,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Welche Schleife wird verwendet, wenn die Anzahl der Durchläufe im Voraus bekannt ist?",
     "answers": [
       "Die zählergesteuerte For-Schleife",
-      "Die bedingte While-Schleife",
-      "Die unendliche Repeat-Schleife",
-      "Die rekursive Aufruf-Schleife"
+      "Die bedingungsgesteuerte While-Schleife",
+      "Die endlos laufende Repeat-Schleife",
+      "Die selbstaufrufende Rekursions-Schleife"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -103,9 +103,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was zeichnet eine Kopf-gesteuerte Schleife (while-Schleife) aus?",
     "answers": [
       "Prüfung der Bedingung VOR dem Durchlauf",
-      "Mindestens ein garantierter Durchlauf",
-      "Feste Anzahl von exakt 10 Durchläufen",
-      "Ausführung nur bei falscher Bedingung"
+      "Ein garantierter erster Durchlauf vorab",
+      "Eine feste Anzahl von zehn Durchläufen",
+      "Ausführung nur bei falscher Bedingung dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -121,9 +121,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Endlosschleife'?",
     "answers": [
       "Schleife, deren Abbruchbedingung nie eintritt",
-      "Schleife, die maximal einmal durchläuft",
-      "Schleife mit einer festen Zählvariable",
-      "Schleife zur Berechnung von Kreisflächen"
+      "Schleife, die höchstens einmal durchläuft",
+      "Schleife mit einer fest codierten Zählvariable",
+      "Schleife zur reinen Berechnung von Kreisflächen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -211,9 +211,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was bewirkt das Schlüsselwort 'return' am Ende einer Funktion?",
     "answers": [
       "Beendet Funktion u. gibt Wert zurück",
-      "Startet das gesamte Programm neu",
-      "Löscht alle Variablen im Speicher",
-      "Wiederholt die Funktion endlos"
+      "Startet das komplette Programm neu",
+      "Löscht sämtliche Variablen im Speicher",
+      "Wiederholt die Funktion dauerhaft endlos"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -284,8 +284,8 @@ const K9_INFORMATIK_QUESTIONS = [
     "answers": [
       "Programm läuft, liefert aber falsche Ergebnisse",
       "Der Compiler verweigert den Start komplett",
-      "Der Bildschirm bleibt von Beginn an schwarz",
-      "Tastatureingaben werden nicht erkannt"
+      "Der Bildschirm bleibt von Anfang an dunkel u. schwarz",
+      "Tastatureingaben werden vom System gar nicht erkannt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -301,9 +301,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'Debugging'?",
     "answers": [
       "Systematische Suche u. Behebung von Fehlern",
-      "Installieren eines neuen Betriebssystems",
-      "Reinigung der Lüfter im Computergehäuse",
-      "Übersetzen von Quellcode in Grafikdateien"
+      "Installieren eines komplett neuen Betriebssystems",
+      "Reinigung der Lüfter im gesamten Computergehäuse",
+      "Übersetzen von Quellcode in einfache Grafikdateien"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -319,9 +319,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was tut ein 'Compiler'?",
     "answers": [
       "Übersetzt Quellcode komplett in Maschinencode",
-      "Führt Zeile für Zeile direkt im Browser aus",
-      "Überprüft die Rechtschreibung in Dokumenten",
-      "Schützt den PC vor Viren aus dem Netzwerk"
+      "Führt jede Zeile des Codes direkt im Browser aus",
+      "Überprüft nur die Rechtschreibung von Texten dort",
+      "Schützt den Rechner nur vor Viren aus dem Netz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -427,9 +427,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was stellt ein Programmablaufplan (PAP / Flussdiagramm) dar?",
     "answers": [
       "Grafische Darstellung eines Algorithmus",
-      "Umsatzstatistik einer IT-Firma",
-      "Netzwerkverbindung aller Server",
-      "Schaltplan einer Computer-Platine"
+      "Eine Umsatzstatistik einer IT-Firma dort",
+      "Die Netzwerkverbindung aller Server dort",
+      "Ein Schaltplan einer Computer-Platine dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -465,9 +465,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was ist ein 'Bit' in der Informatik?",
     "answers": [
       "Kleinste Informationseinheit (0 oder 1)",
-      "Eine Gruppe von genau 8 Zeichen",
-      "Ein Bauteil auf der Grafikkarte",
-      "Ein Befehl zum Löschen von Dateien"
+      "Eine Gruppe von genau acht Zeichen",
+      "Ein Bauteil auf der Grafikkarte dort",
+      "Ein Befehl zum Löschen von Dateien dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -555,9 +555,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Welche Zahlenbasis verwendet das Hexadezimalsystem?",
     "answers": [
       "Basis 16 (Ziffern 0-9 u. A-F)",
-      "Basis 10 (Ziffern 0 bis 9)",
-      "Basis 2 (Ziffern 0 u. 1)",
-      "Basis 12 (Ziffern 0 bis B)"
+      "Basis 10 mit den Ziffern 0 bis 9",
+      "Basis 2 mit nur den Ziffern 0 u. 1",
+      "Basis 12 mit den Ziffern 0 bis B"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -609,9 +609,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Wofür steht die Abkürzung 'ASCII' bei der Textcodierung?",
     "answers": [
       "American Standard Code for Information Interchange",
-      "Advanced System Code for Internet Integration",
+      "Advanced System Code for Internet Integration Data",
       "Automated Standard Computer Interface Interchange",
-      "All Standard Characters In Information"
+      "American Basic Codepage for Text Information Only"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -645,9 +645,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Welcher moderne Standard ermöglicht die Codierung nahezu aller Schriftzeichen u. Emojis weltweit?",
     "answers": [
       "Der Unicode-Standard (z. B. UTF-8)",
-      "Der erweiterte ASCII-Code 8-Bit",
-      "Das globale Morse-Code-System",
-      "Das HTML-Farbcode-Raster"
+      "Der erweiterte ASCII-Code mit 8 Bit",
+      "Das globale Morse-Code-System dort",
+      "Das HTML-Farbcode-Raster im Browser"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -717,9 +717,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Welche Farbe ergibt sich bei der Mischung aller drei RGB-Kanäle auf Maximum (#FFFFFF)?",
     "answers": [
       "Ein leuchtendes Weiß",
-      "Ein tiefes Schwarz",
-      "Ein neutrales Grau",
-      "Ein dunkles Braun"
+      "Ein tiefes reines Schwarz",
+      "Ein neutrales helles Grau",
+      "Ein dunkles warmes Braun"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -753,9 +753,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was versteht man unter 'Abtastung' (Sampling) bei der Digitalisierung von Tonaufnahmen?",
     "answers": [
       "Messung der Ton-Schwingung in Intervallen",
-      "Löschen von Nebengeräuschen im Raum",
-      "Verstärkung des Basses bei Musik",
-      "Kompression der MP3-Datei auf Disc"
+      "Löschen von störenden Nebengeräuschen im Raum",
+      "Verstärkung des Basses bei lauter Musik",
+      "Kompression der fertigen MP3-Datei auf Disc"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -789,9 +789,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was unterscheidet 'verlustfreie' von 'verlustbehafteter' Kompression?",
     "answers": [
       "Verlustfrei stellt Original exakt wieder her",
-      "Verlustbehaftet vergrößert die Datei leicht",
-      "Verlustfrei funktioniert nur bei MP3s",
-      "Verlustbehaftet löscht den Dateinamen"
+      "Verlustbehaftet vergrößert die Datei etwas",
+      "Verlustfrei funktioniert nur bei MP3-Dateien",
+      "Verlustbehaftet löscht stets den Dateinamen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -807,9 +807,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Wie funktioniert die einfache Lauflängencodierung (Run-Length Encoding)?",
     "answers": [
       "Ersetzt gleiche Folgen durch Anzahl u. Wert",
-      "Löscht jedes zweite Zeichen im Text",
-      "Verschlüsselt Wörter mit einem Passwort",
-      "Ordnet Buchstaben nach dem Alphabet"
+      "Löscht einfach jedes zweite Zeichen im Text",
+      "Verschlüsselt einzelne Wörter mit Passwort",
+      "Ordnet alle Buchstaben nach dem Alphabet"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1026,8 +1026,8 @@ const K9_INFORMATIK_QUESTIONS = [
     "answers": [
       "Verbindung von Geräten zum Datenaustausch",
       "Eine Sammlung von Kabeln im PC-Gehäuse",
-      "Ein Antivirenprogramm für Netzwerke",
-      "Ein spezieller Typ von Hauptprozessor"
+      "Ein Antivirenprogramm für Netzwerke dort",
+      "Ein spezieller Typ von Hauptprozessor dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1043,9 +1043,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Wofür steht die Abkürzung 'LAN' bei Netzwerken?",
     "answers": [
       "Local Area Network (Lokales Netz)",
-      "Large Access Network (Großnetz)",
-      "Logical Application Node",
-      "Link Access Navigation"
+      "Large Access Network für Großnetze",
+      "Logical Application Node im System",
+      "Link Access Navigation im Netzwerk"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1187,9 +1187,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Wofür steht die Abkürzung 'URL'?",
     "answers": [
       "Uniform Resource Locator",
-      "Universal Router Link",
-      "United Resource Network",
-      "User Reception Language"
+      "Universal Router Link Adresse",
+      "United Resource Network Code",
+      "User Reception Language Format"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1241,9 +1241,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Welche Aufgabe erfüllt ein 'Router' im Heimnetzwerk?",
     "answers": [
       "Leitet Datenpakete zwischen Netzen weiter",
-      "Kühlt die Komponenten im Gehäuse ab",
-      "Speichert Dateien dauerhaft auf Disks",
-      "Erstellt Sicherungskopien von Fotos"
+      "Kühlt die Komponenten im Gehäuse aktiv ab",
+      "Speichert alle Dateien dauerhaft auf Disks",
+      "Erstellt automatisch Sicherungskopien von Fotos"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1259,9 +1259,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was versteht man unter 'Paketvermittlung' im Internet?",
     "answers": [
       "Daten werden in Pakete zerlegt u. gesendet",
-      "Verschicken von echten Paketen per Post",
-      "Gleichzeitiges Laden aller Webseiten",
-      "Speichern von Daten auf USB-Sticks"
+      "Verschicken von echten Paketen per Post dort",
+      "Gleichzeitiges Laden aller Webseiten im Browser",
+      "Speichern von Daten auf externen USB-Sticks"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1277,9 +1277,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Wofür steht die Abkürzung 'MAC-Adresse' bei einer Netzwerkkarte?",
     "answers": [
       "Eindeutige physikalische Hardware-Adresse",
-      "Spezielle IP-Adresse von Apple-Geräten",
-      "Name des angemeldeten Benutzers",
-      "Geschwindigkeit der Kabelverbindung"
+      "Eine spezielle IP-Adresse von Apple-Geräten",
+      "Der Name des gerade angemeldeten Benutzers",
+      "Die Geschwindigkeit der genutzten Kabelverbindung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1313,9 +1313,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'Cloud Computing'?",
     "answers": [
       "Nutzung von IT-Diensten über das Internet",
-      "Berechnung von Wetterdaten am PC",
-      "Kühlung von Rechenzentren durch Wasser",
-      "Drahtloser Datenversand via Bluetooth"
+      "Berechnung von aktuellen Wetterdaten am eigenen PC",
+      "Kühlung von großen Rechenzentren durch Wasser",
+      "Drahtloser Datenversand über Bluetooth-Funk"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1369,9 +1369,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Kryptographie'?",
     "answers": [
       "Wissenschaft von der Ver- u. Entschlüsselung",
-      "Erforschung der Geschichte von Rechnern",
-      "Programmierung von grafischen Spielen",
-      "Herstellung von Mikrochips aus Silizium"
+      "Erforschung der gesamten Geschichte von Rechnern",
+      "Programmierung von grafischen Spielen im Team",
+      "Herstellung von Mikrochips aus reinem Silizium"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1388,8 +1388,8 @@ const K9_INFORMATIK_QUESTIONS = [
     "answers": [
       "Verschiebt Buchstaben um festen Wert im Alphabet",
       "Vertauscht die Reihenfolge der Wörter im Satz",
-      "Ersetzt alle Konsonanten durch Binärzahlen",
-      "Kehrt den gesamten Text rückwärts um"
+      "Ersetzt alle Konsonanten durch feste Binärzahlen",
+      "Kehrt den kompletten Text einfach rückwärts um"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1405,9 +1405,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was kennzeichnet eine 'symmetrische Verschlüsselung'?",
     "answers": [
       "Gleicher Schlüssel zum Ver- u. Entschlüsseln",
-      "Zwei unterschiedliche Schlüssel im System",
-      "Funktioniert völlig ohne Schlüssel",
-      "Verschlüsselung nur für Zahlen gültig"
+      "Es gibt zwei unterschiedliche Schlüssel dabei",
+      "Funktioniert völlig ohne jeden Schlüssel",
+      "Gilt nur für die Verschlüsselung von Zahlen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1423,9 +1423,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Wie arbeitet ein 'asymmetrisches Verschlüsselungsverfahren' (Public-Key-Kryptographie)?",
     "answers": [
       "Öffentlicher Schlüssel zum Ver-, privater zum Entschlüsseln",
-      "Sender u. Empfänger nutzen exakt denselben Schlüssel",
-      "Schlüssel ändert sich alle 10 Sekunden automatisch",
-      "Entschlüsselung ist nur beim Anbieter möglich"
+      "Sender und Empfänger nutzen exakt denselben geheimen Schlüssel",
+      "Der Schlüssel ändert sich alle zehn Sekunden automatisch",
+      "Entschlüsselung ist ausschließlich beim Anbieter möglich"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1459,9 +1459,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was versteht man unter einer 'Hashfunktion' (z. B. SHA-256)?",
     "answers": [
       "Erzeugt eindeutigen Wert fester Länge (Prüfsumme)",
-      "Verschlüsselt Bilder in Text-Dateien",
-      "Löscht alte Daten sicher von der Festplatte",
-      "Überträgt Dateien per Kabel im Netzwerk"
+      "Verschlüsselt vorhandene Bilder in alte Text-Dateien",
+      "Löscht sicher alte Daten von der Festplatte",
+      "Überträgt Dateien komplett per Netzwerkkabel"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1477,9 +1477,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was beschreibt das Grundrecht auf 'Informationelle Selbstbestimmung'?",
     "answers": [
       "Recht selbst zu bestimmen, wer welche Daten erfährt",
-      "Pflicht zur Freigabe aller Daten an den Staat",
-      "Recht auf kostenlosen Internetzugang für alle",
-      "Erlaubnis zum Verkauf fremder Fotos online"
+      "Die Pflicht zur Freigabe aller eigenen Daten an den Staat",
+      "Das Recht auf kostenlosen Internetzugang für alle",
+      "Die Erlaubnis zum Verkauf fremder Fotos online"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1495,9 +1495,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Welche Daten gelten rechtlich als 'personenbezogene Daten'?",
     "answers": [
       "Alle Angaben, die sich auf eine Person beziehen",
-      "Ausschließlich das Geburtsdatum u. Gewicht",
-      "Nur geheime Passwörter u. PIN-Nummern",
-      "Ausschließlich die IP-Adresse des Servers"
+      "Ausschließlich das Geburtsdatum und das Gewicht",
+      "Nur geheime Passwörter und persönliche PIN-Nummern",
+      "Ausschließlich die IP-Adresse eines Servers"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1513,9 +1513,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was bezeichnet der Begriff 'Phishing'?",
     "answers": [
       "Betrügerischer Versuch, vertrauliche Daten zu erlangen",
-      "Suchen nach Dateien im Betriebssystem",
-      "Automatisches Herunterladen von Updates",
-      "Reinigung der Tastatur mit Spezial-Sprays"
+      "Das gezielte Suchen nach Dateien im Betriebssystem",
+      "Das automatische Herunterladen von neuen System-Updates",
+      "Die Reinigung der Tastatur mit speziellen Sprays"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1531,9 +1531,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was beschreibt eine 'Firewall' in einem Computernetzwerk?",
     "answers": [
       "Sicherheitsbarriere zur Filterung von Netzwerkdaten",
-      "Physikalischer Brandschutz im Serverraum",
-      "Spezielle Software zur Grafikbeschleunigung",
-      "Hardware-Kabel zur Hochgeschwindigkeitsübertragung"
+      "Ein physikalischer Brandschutz im Serverraum",
+      "Eine spezielle Software zur Grafikbeschleunigung",
+      "Ein Hardware-Kabel zur Hochgeschwindigkeitsübertragung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1549,9 +1549,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was versteht man unter 'Malware'?",
     "answers": [
       "Sammelbegriff für Schadsoftware (Viren, Trojaner)",
-      "Fehlerhafte Bauteile im Prozessor",
-      "Software zum Erstellen von Malereien",
-      "Kostenlose Testversionen von Programmen"
+      "Fehlerhafte elektronische Bauteile im Prozessor",
+      "Software zum digitalen Erstellen von echten Malereien",
+      "Kostenlose Testversionen von normalen Programmen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1567,9 +1567,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was ist die tückische Eigenschaft eines 'Trojanischen Pferdes' (Trojaner)?",
     "answers": [
       "Täuscht nützliche Funktion vor, schadet heimlich",
-      "Blockiert den Bildschirm durch echte Werbung",
-      "Löscht sich nach der Installation sofort selbst",
-      "Verdoppelt die Rechengeschwindigkeit des PCs"
+      "Blockiert den Bildschirm mit dauerhafter Werbung",
+      "Löscht sich direkt nach der Installation selbst",
+      "Verdoppelt spürbar die Rechengeschwindigkeit des PCs"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1603,9 +1603,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Welche Eigenschaften machen ein Passwort besonders sicher?",
     "answers": [
       "Länge, Kombination aus Groß/Klein, Zahlen u. Zeichen",
-      "Nutzung des eigenen Geburtsdatums mit Namen",
-      "Einfache Buchstabenfolgen wie 'abc12345'",
-      "Kurze Wörter aus dem Standard-Wörterbuch"
+      "Die Nutzung des eigenen Geburtsdatums mit vollem Namen",
+      "Einfache kurze Buchstabenfolgen wie 'abc12345'",
+      "Kurze Wörter direkt aus dem Standard-Wörterbuch"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1659,7 +1659,7 @@ const K9_INFORMATIK_QUESTIONS = [
       "Quellcode ist öffentlich einsehbar u. veränderbar",
       "Software darf nur von Behörden genutzt werden",
       "Software läuft ohne Betriebssystem direkt am PC",
-      "Quellcode ist als strenges Geheimnis geschützt"
+      "Quellcode ist als streng gehütetes Geheimnis geschützt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1675,9 +1675,9 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was versteht man unter 'Creative Commons'-Lizenzen (CC)?",
     "answers": [
       "Standardisierte Lizenzverträge zur Nutzung von Werken",
-      "Spezielle Steuergesetze für digitale Medienfirmen",
-      "Prüfzertifikate für besonders schnelle Server",
-      "Software zur Verwaltung von Kundenkonten"
+      "Spezielle Steuergesetze für digitale Medienfirmen weltweit",
+      "Prüfzertifikate für besonders schnelle Server dort",
+      "Software zur Verwaltung von Kundenkonten in Firmen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1695,7 +1695,7 @@ const K9_INFORMATIK_QUESTIONS = [
       "Überlastung eines Servers durch massenhafte Anfragen",
       "Löschen von Inhalten auf der Festplatte des Opfers",
       "Spionieren von Kameraaufnahmen über das Internet",
-      "Kopieren von Datenbanken ohne Berechtigung"
+      "Heimliches Kopieren von Datenbanken ohne Berechtigung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1801,46 +1801,17 @@ const K9_INFORMATIK_QUESTIONS = [
     "question": "Was versteht man unter 'Digitale Nachhaltigkeit' (Green IT)?",
     "answers": [
       "Ressourcenschonende Herstellung u. Nutzung von IT",
-      "Anpflanzen von Bäumen durch IT-Konzerne",
-      "Recycling von altem Papier in IT-Büros",
-      "Löschen von alten Dateien zur Stromeinsparung"
+      "Anpflanzen von zusätzlichen Bäumen durch IT-Konzerne",
+      "Recycling von altem Papier in großen IT-Büros",
+      "Löschen von alten Dateien zur reinen Stromeinsparung"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Green IT umfasst umwelt- u. ressourcenschonende Ansätze über den gesamten Lebenszyklus von IT-Systemen."
-  },
-  {"id":"k9in101","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Algorithmus = …","answers":["Zufall","Vorschrift","nur Code","Hardware"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vorschrift."},
-  {"id":"k9in102","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Bit = …","answers":["Byte","0/1","KB","Netz"],"correct":1,"difficulty":"mittel","points":10,"explanation":"0/1."},
-  {"id":"k9in103","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Schleife wiederholt …","answers":["nie","Anweisungen","Daten","Hardware"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Code."},
-  {"id":"k9in104","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"1010₂ = ?","answers":["8","10","12","5"],"correct":1,"difficulty":"mittel","points":10,"explanation":"10."},
-  {"id":"k9in105","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"TCP/IP ist …","answers":["HTTP","Protokollfamilie","USB","BT"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Netz."},
-  {"id":"k9in106","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Verschlüsselung schützt …","answers":["Öffentlichkeit","Vertraulichkeit","Speed","Staub"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Geheimnis."},
-  {"id":"k9in107","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"SQL SELECT …","answers":["löscht","fragt ab","Hardware","verschlüsselt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Abfrage."},
-  {"id":"k9in108","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Klasse OOP = …","answers":["Instanz","Bauplan","Variable","Schleife"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bauplan."},
-  {"id":"k9in109","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Rekursion: ruft …","answers":["andere Sprache","sich selbst","Schleife","Hardware"],"correct":1,"difficulty":"mittel","points":10,"explanation":"sich."},
-  {"id":"k9in110","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Bug = …","answers":["Feature","Fehler","Hardware","Protokoll"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fehler."},
-  {"id":"k9in111","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Usability = …","answers":["Server","Benutzerfreundlichkeit","Strom","Kabel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"UX."},
-  {"id":"k9in112","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"ML braucht …","answers":["keine Daten","Trainingsdaten","starre Regeln","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Daten."},
-  {"id":"k9in113","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Privacy by Design = …","answers":["nachrüsten","von Anfang","ignorieren","AGB"],"correct":1,"difficulty":"mittel","points":10,"explanation":"eingebaut."},
-  {"id":"k9in114","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Phishing will …","answers":["Hardware","Zugangsdaten","Werbung","Backup"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Betrug."},
-  {"id":"k9in115","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Array Index oft ab …","answers":["1","0","−1","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"0."},
-  {"id":"k9in116","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Boolean = …","answers":["Zahl","true/false","String","Bild"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wahrheit."},
-  {"id":"k9in117","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Latenz = …","answers":["Bandbreite","Verzögerung","Speicher","CPU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Delay."},
-  {"id":"k9in118","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Backup gegen …","answers":["Mode","Datenverlust","Kabel","CPU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schutz."},
-  {"id":"k9in119","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"HTML strukturiert …","answers":["Logik","Webinhalt","Index","CPU"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Markup."},
-  {"id":"k9in120","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"CSS gestaltet …","answers":["Logik","Darstellung","DB","TCP"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Style."},
-  {"id":"k9in121","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"JS oft für …","answers":["CSS only","Interaktivität","SQL","Compiler"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Dynamik."},
-  {"id":"k9in122","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"JPEG oft …","answers":["verlustfrei","verlustbehaftet","Text","ZIP"],"correct":1,"difficulty":"mittel","points":10,"explanation":"verlustbehaftet."},
-  {"id":"k9in123","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"O(n) wächst …","answers":["konstant","linear","quadratisch","log"],"correct":1,"difficulty":"mittel","points":10,"explanation":"linear."},
-  {"id":"k9in124","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Hash oft …","answers":["umkehrbar","Einweg","sinnlos","Bild"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fingerprint."},
-  {"id":"k9in125","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Open Source: Code …","answers":["geheim","einsehbar","unbenutzbar","Verkauf only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"offen."},
-  {"id":"k9in126","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Compiler → oft …","answers":["Bilder","Maschinencode","Pakete","SQL"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Übersetzung."},
-  {"id":"k9in127","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Prozess hat …","answers":["Bit","Kontext","Kabel","CSS"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Prozess."},
-  {"id":"k9in128","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"HTTP 404 = …","answers":["OK","nicht gefunden","500","Redirect"],"correct":1,"difficulty":"mittel","points":10,"explanation":"404."},
-  {"id":"k9in129","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Variable speichert …","answers":["Konstante","Wert","Funktion","Hardware"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Wert."},
-  {"id":"k9in130","category":"k9_informatik","area":"schule","grade":9,"subject":"informatik","topic":"erweiterung","question":"Ethik fragt nach …","answers":["Speed","Folgen","Syntax","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Verantwortung."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_INFORMATIK_QUESTIONS = K9_INFORMATIK_QUESTIONS;

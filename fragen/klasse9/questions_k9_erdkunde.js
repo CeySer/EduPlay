@@ -13,10 +13,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Globalisierung' in der Geographie?",
     "answers": [
       "Zunahme weltweiter Verflechtungen",
-      "Rückzug auf den nationalen Markt",
-      "Reiner Anstieg der Erderwärmung",
-      "Auflösung aller Landesgrenzen"
-    ],
+      "Abschottung der nationalen Wirtschaft",
+      "Rein regionaler Austausch von Waren",
+      "Beschränkung auf lokale Märkte"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -193,10 +193,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was versteht man unter 'Fairer Handel' (Fairtrade)?",
     "answers": [
       "Garantierte Mindestpreise für Bauern",
-      "Kostenlose Verteilung von Ernten",
-      "Abschaffung aller Zölle weltweit",
+      "Kostenlose Verteilung aller Ernten",
+      "Abschaffung sämtlicher Zölle weltweit",
       "Verbot von Importen aus dem Süden"
-    ],
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -247,10 +247,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welcher Kanal verbindet den Atlantischen Ozean direkt mit dem Pazifischen Ozean?",
     "answers": [
       "Der Panamakanal Mittelamerika",
-      "Der Suezkanal Ägypten",
-      "Der Eriekanal in den USA",
-      "Der Kaskadenkanal Kanada"
-    ],
+      "Der Suezkanal in Nordostafrika",
+      "Der Eriekanal in Nordamerika",
+      "Der Nord-Ostsee-Kanal Deutschland"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -283,10 +283,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was versteht man unter 'Land Grabbing' in Entwicklungsländern?",
     "answers": [
       "Großflächiger Aufkauf von Agrarland",
-      "Schutz von Wäldern durch den Staat",
-      "Vergabe von Bauland an Kleinbauern",
-      "Bau von Staudämmen durch die UN"
-    ],
+      "Förderung von Kleinbauern-Betrieben",
+      "Schutz von Regenwald durch Staaten",
+      "Bau von Stauseen durch die UNO"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -301,10 +301,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was kennzeichnet die sogenannte 'Monokultur' in der Landwirtschaft?",
     "answers": [
       "Anbau nur einer einzigen Nutzpflanze",
-      "Jährlich wechselnder Fruchtanbau",
+      "Jährlich wechselnder Fruchtanbauzyklus",
       "Mischkultur mehrerer Getreidearten",
-      "Reiner Anbau von Bio-Gemüse"
-    ],
+      "Reiner Anbau von Bio-Gemüsesorten"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -319,10 +319,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Verwüstung' (Desertifikation)?",
     "answers": [
       "Ausbreitung wüstenartiger Bedingungen",
+      "Bepflanzung sehr trockener Landstriche",
       "Bau von Wohnsiedlungen in Oasen",
-      "Bepflanzung von Trockengebieten",
-      "Überflutung von Küstengebieten"
-    ],
+      "Überflutung von tiefen Küstenzonen"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -337,10 +337,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welche Region Afrikas ist besonders stark von der Desertifikation betroffen?",
     "answers": [
       "Die Sahelzone südlich der Sahara",
-      "Das Kongobecken im Zentrum",
-      "Die Kap-Region im Süden",
-      "Das Atlasgebirge im Norden"
-    ],
+      "Das Kongobecken im Zentrum Afrikas",
+      "Die Kapregion im Süden Afrikas",
+      "Das Atlasgebirge im Norden Afrikas"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -374,9 +374,9 @@ const K9_ERDKUNDE_QUESTIONS = [
     "answers": [
       "Der Begriff 'Brain Drain'",
       "Der Begriff 'Brain Gain'",
-      "Die Binnenmigration Land",
-      "Die Remigration Heimat"
-    ],
+      "Die Binnenmigration im Land",
+      "Die Remigration in die Heimat"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -446,9 +446,9 @@ const K9_ERDKUNDE_QUESTIONS = [
     "answers": [
       "Primär, Sekundär, Tertiär, Quartär",
       "Lokal, Regional, National, Global",
-      "Agrar, Forst, Fischerei, Jagd",
+      "Agrar, Forst, Fischerei, Jagdwesen",
       "Handel, Verkehr, Konsum, Export"
-    ],
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -465,10 +465,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welcher deutsche Forscher begründete 1912 die Theorie der Kontinentalverschiebung?",
     "answers": [
       "Alfred Wegener Geowissenschaftler",
-      "Alexander von Humboldt",
-      "Carl Ritter Geograph",
-      "Wladimir Köppen Klimatologe"
-    ],
+      "Alexander von Humboldt der Forscher",
+      "Carl Ritter der Geograph Berlin",
+      "Wladimir Köppen Klimaforscher"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -483,10 +483,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Wie nennt man den gigantischen Urkontinent, der vor rund 250 Millionen Jahren existierte?",
     "answers": [
       "Der Urkontinent Pangaea",
-      "Der Erdteil Gondwana",
-      "Der Kontinent Laurasia",
-      "Die Landmasse Atlantis"
-    ],
+      "Der Erdteil Gondwana Süden",
+      "Der Kontinent Laurasia Norden",
+      "Die Landmasse Atlantis Mythos"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -537,10 +537,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was passiert an einer 'konvergierenden' Plattengrenze?",
     "answers": [
       "Platten bewegen sich aufeinander zu",
-      "Platten driftet auseinander weg",
-      "Platten stehen vollkommen still",
+      "Platten driften weit auseinander weg",
+      "Platten bleiben vollkommen stehen",
       "Platten schmelzen sofort komplett"
-    ],
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -555,10 +555,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was versteht man unter dem geologischen Prozess der 'Subduktion'?",
     "answers": [
       "Abtauchen einer schweren Ozeanplatte",
-      "Aufsteigen von Flusswasser im Thal",
+      "Aufsteigen von Flusswasser im tiefen Tal",
       "Entstehung von Dünen in der Wüste",
-      "Abbruch von Eisbergen am Pol"
-    ],
+      "Abbruch von Eisbergen am Nordpol"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -573,10 +573,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Wie entstand das Himalaya-Gebirge nach dem Modell der Plattentektonik?",
     "answers": [
       "Kollision Indiens mit Eurasien",
-      "Auseinanderdriften Asiens",
-      "Vulkanischer Hotspot im Meer",
-      "Einsturz einer Riesenhöhle"
-    ],
+      "Auseinanderdriften von Asien u. Afrika",
+      "Vulkanischer Hotspot mitten im Meer",
+      "Einsturz einer riesigen Höhle"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -627,10 +627,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welche Skala misst die Stärke (Energie) eines Erdbebens im Epizentrum?",
     "answers": [
       "Die Richter-Skala Magnitude",
-      "Die Beaufort-Skala Wind",
-      "Die Celsius-Skala Grad",
+      "Die Beaufort-Skala für Windstärke",
+      "Die Celsius-Skala für Gradzahlen",
       "Die Saffir-Simpson-Skala"
-    ],
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -645,10 +645,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Tsunami'?",
     "answers": [
       "Durch Seebeben erzeugte Flutwelle",
-      "Starker Wirbelsturm über Land",
-      "Plötzlicher Erdrutsch am Berg",
-      "Glutwolke aus einem Vulkan"
-    ],
+      "Starker Wirbelsturm über dem Land",
+      "Plötzlicher Erdrutsch am steilen Berg",
+      "Glutwolke aus einem Vulkankrater"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -699,10 +699,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Wie funktioniert der natürliche Treibhauseffekt unserer Erde?",
     "answers": [
       "Gase halten Wärmestrahlung zurück",
-      "Ozon stoppt kühle Winde völlig",
-      "Sonne heizt nur die Gase auf",
-      "Wolken saugen die Kälte ab"
-    ],
+      "Ozon stoppt kühle Winde vollständig",
+      "Die Sonne heizt nur die Gase auf",
+      "Wolken saugen die Kälte komplett ab"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -717,10 +717,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welches Treibhausgas wird maßgeblich durch die Verbrennung fossiler Energieträger (Kohle, Öl, Gas) freigesetzt?",
     "answers": [
       "Kohlenstoffdioxid (CO2)",
-      "Reiner Sauerstoff (O2)",
+      "Reiner Sauerstoff-Anteil (O2)",
       "Stickstoff-Gas (N2)",
       "Edelgas Argon (Ar)"
-    ],
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -753,10 +753,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Albedo-Effekt' in der Klimatologie?",
     "answers": [
       "Reflexionsvermögen von Flächen",
-      "Aufnahme von Wasser im Boden",
-      "Dichte von Nebel in Tälern",
-      "Stärke von Meeresströmungen"
-    ],
+      "Aufnahme von Regenwasser im Boden",
+      "Die Dichte von Nebel in Tälern",
+      "Stärke von Meeresströmungen weltweit"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -771,10 +771,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was versteht man unter Kipppunkten (Tipping Points) im Klimasystem?",
     "answers": [
       "Schwellenwerte für irreversible Folgen",
-      "Tägliche Temperaturschwankungen",
-      "Punkte mit maximalem Regenfall",
-      "Höchste Erhebungen im Gebirge"
-    ],
+      "Tägliche Temperaturschwankungen im Jahr",
+      "Punkte mit maximalem Regenfall weltweit",
+      "Die höchsten Erhebungen im Gebirge"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -789,10 +789,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welche Meeresströmung wirkt als 'Warmwasserheizung' für Nord- u. Westeuropa?",
     "answers": [
       "Der nordatlantische Golfstrom",
-      "Der kalte Humboldtstrom",
-      "Der Benguelastrom Afrika",
-      "Der Labradorstrom Amerika"
-    ],
+      "Der kalte Humboldtstrom vor Chile",
+      "Der Benguelastrom vor Südafrika",
+      "Der Labradorstrom vor Amerika"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -843,10 +843,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Permafrostboden'?",
     "answers": [
       "Dauerhaft gefrorener Untergrund",
-      "Boden mit hoher Humusschicht",
-      "Sandboden in Trockenwüsten",
-      "Sumpfboden im Flussdelta"
-    ],
+      "Boden mit einer hohen Humusschicht",
+      "Sandboden in heißen Trockenwüsten",
+      "Sumpfboden im tropischen Flussdelta"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -917,10 +917,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welche beiden Rohstoffe bildeten die historische Grundlage für die Industrialisierung des Ruhrgebiets?",
     "answers": [
       "Steinkohle und Eisenerz",
-      "Braunkohle und Erdöl",
-      "Torflager und Erdgas",
-      "Kupfererz und Uran"
-    ],
+      "Braunkohle und Erdgasfelder",
+      "Torflager und Erdgas im Moor",
+      "Kupfererz und Uranerz"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -935,10 +935,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Strukturwandel' im Ruhrgebiet?",
     "answers": [
       "Wandel von Schwerindustrie zu Dienstleistung",
-      "Rückbau aller Städte zu Naturlandschaften",
+      "Rückbau aller Städte hin zu Naturlandschaften",
       "Umstellung auf reine Landwirtschaft",
       "Auswanderung aller Einwohner ins Ausland"
-    ],
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -953,10 +953,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welche Krise traf das Ruhrgebiet ab Ende der 1950er-Jahre zuerst?",
     "answers": [
       "Die Kohlekrise durch Billigöl",
-      "Die Stahlkrise durch Importe",
-      "Die Autokrise durch Elektro",
-      "Die Bankenkrise im Revier"
-    ],
+      "Die Stahlkrise durch billige Importe",
+      "Die Autokrise durch Elektromobilität",
+      "Die Bankenkrise im ganzen Revier"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -971,10 +971,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was versteht man unter 'Industriekultur' im heutigen Ruhrgebiet?",
     "answers": [
       "Umnutzung alter Zechen für Kultur",
-      "Neubau hochmoderner Stahlwerke",
+      "Neubau vieler hochmoderner Stahlwerke",
       "Verbot aller Museen im Revier",
-      "Reine Stilllegung ohne Nutzung"
-    ],
+      "Reine Stilllegung ganz ohne Nutzung"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1007,10 +1007,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Montanindustrie'?",
     "answers": [
       "Bergbau u. Eisen/Stahl-Industrie",
-      "Herstellung von Mikrochips",
-      "Verarbeitung von Nahrungsgütern",
-      "Montage von Kraftfahrzeugen"
-    ],
+      "Herstellung von kleinen Mikrochips",
+      "Verarbeitung von vielen Nahrungsgütern",
+      "Montage von neuen Kraftfahrzeugen"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1026,9 +1026,9 @@ const K9_ERDKUNDE_QUESTIONS = [
     "answers": [
       "Im Dezember des Jahres 2018",
       "Im Januar des Jahres 2000",
-      "Im Mai des Jahres 1990",
+      "Im Mai des Jahres 1990 schon",
       "Im Oktober des Jahres 2010"
-    ],
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1043,10 +1043,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was versteht man unter 'Clusterbildung' in der Wirtschaftsgeographie?",
     "answers": [
       "Räumliche Ballung ähnlicher Firmen",
-      "Zerstörung alter Industriegebiete",
+      "Die Zerstörung alter Industriegebiete",
       "Verteilung von Werken weltweit",
-      "Vereinigung zweier Großbanken"
-    ],
+      "Vereinigung zweier großer Banken"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1061,10 +1061,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welche Region in den USA ist das weltbekannte Zentrum der Hightech- u. IT-Industrie?",
     "answers": [
       "Das Silicon Valley Kalifornien",
-      "Der Rust Belt im Nordosten",
-      "Der Sun Belt im Süden",
-      "Die Great Plains Mitte"
-    ],
+      "Der Rust Belt im Nordosten der USA",
+      "Der Sun Belt im Süden der USA",
+      "Die Great Plains in der Mitte"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1079,10 +1079,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Wie nennt man die alte Industrieregion im Nordosten der USA, die einen schweren Strukturwandel durchlebt?",
     "answers": [
       "Der Rust Belt (Rostgürtel)",
-      "Der Corn Belt Agrarzone",
-      "Der Cotton Belt Süden",
-      "Der Sun Belt Sonnenregion"
-    ],
+      "Der Corn Belt als Agrarzone",
+      "Der Cotton Belt im tiefen Süden",
+      "Der Sun Belt als Sonnenregion"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1115,10 +1115,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welche vier Grundfreiheiten garantiert der europäische Binnenmarkt?",
     "answers": [
       "Freier Waren-, Personen-, Dienstleistungs- u. Kapitalverkehr",
-      "Freie Wahl von Steuern, Gesetzen, Währung u. Pass",
-      "Freier Umzug, kostenlose Energie, freier Handel u. Funk",
-      "Gleiche Löhne, Rente, Arbeitszeit u. Schulbildung"
-    ],
+      "Freie Wahl von Steuern, Gesetzen, eigener Währung u. Reisepass",
+      "Freier Umzug, kostenlose Energie u. freier Funkverkehr",
+      "Gleiche Löhne, Rente, Arbeitszeit u. Schulbildung überall"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1169,10 +1169,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was bezeichnet man als 'Blaue Banane' in der europäischen Geographie?",
     "answers": [
       "Dicht besiedeltes Währungsband",
-      "Reines Bananen-Importareal",
-      "Landwirtschaftszone im Süden",
-      "Küstenschutzverband Nordsee"
-    ],
+      "Reines Bananen-Importareal Europas",
+      "Landwirtschaftszone im tiefen Süden",
+      "Küstenschutzverband an der Nordsee"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1187,10 +1187,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welcher europäische Staat gehört NICHT zur Europäischen Union, nimmt aber am Schengen-Raum teil?",
     "answers": [
       "Die Schweiz Alpenstaat",
-      "Das Land Frankreich",
-      "Das Land Polen Ost",
+      "Das Nachbarland Frankreich",
+      "Das Land Polen im Osten",
       "Das Land Österreich"
-    ],
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1205,10 +1205,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was versteht man unter 'Intensiver Landwirtschaft'?",
     "answers": [
       "Hoher Einsatz von Dünger/Technik",
-      "Anbau ohne jegliche Maschinen",
-      "Reine Viehhaltung auf Alpen",
-      "Verzicht auf chemischen Schutz"
-    ],
+      "Anbau ganz ohne jegliche Maschinen",
+      "Reine Viehhaltung auf den Alpen",
+      "Verzicht auf jeglichen chemischen Schutz"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1223,10 +1223,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was kennzeichnet die 'Extensive Landwirtschaft'?",
     "answers": [
       "Geringer Ertrag pro großer Fläche",
-      "Maximaler Einsatz von Chemie",
-      "Reiner Anbau in Gewächshäusern",
-      "Nutzung von Robotik im Feld"
-    ],
+      "Maximaler Einsatz von viel Chemie",
+      "Reiner Anbau in großen Gewächshäusern",
+      "Nutzung von moderner Robotik im Feld"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1241,10 +1241,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Ecological Footprint' (Ökologischer Fußabdruck)?",
     "answers": [
       "Fläche zur Deckung des Bedarfs",
-      "Schuhgröße der Bevölkerung",
-      "Menge an Müll im Ozean",
-      "Zahl der Bäume im Stadtpark"
-    ],
+      "Die Schuhgröße der Bevölkerung",
+      "Die Menge an Müll im weiten Ozean",
+      "Zahl der Bäume im örtlichen Stadtpark"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1277,10 +1277,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was ist das Ziel der sogenannten 'Sonderfördergebiets-Politik' der EU (Kohäsionspolitik)?",
     "answers": [
       "Abbau von regionalen Unterschieden",
-      "Förderung nur reicher Hauptstädte",
-      "Bau von Militärbasen im Osten",
+      "Förderung nur der reichen Hauptstädte",
+      "Bau von Militärbasen im fernen Osten",
       "Verdopplung von Zöllen im Handel"
-    ],
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1295,10 +1295,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Wie nennt man die intensiv bewirtschaftete Gewächshaus-Region in Südspanien (Almería)?",
     "answers": [
       "Das 'Plastikmeer' von Almería",
-      "Das grüne Thal von Murcia",
-      "Die Agrarwüste von Sevilla",
-      "Der Pflanzengarten Spaniens"
-    ],
+      "Das grüne fruchtbare Tal von Murcia",
+      "Die Agrarwüste von Sevilla im Süden",
+      "Der Pflanzengarten ganz Spaniens"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1313,10 +1313,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welche Umweltfolge hat der massive Gemüseanbau in trockenen Regionen wie Südspanien?",
     "answers": [
       "Sinkender Grundwasserspiegel",
-      "Zunahme von Regenfeldern",
-      "Vergletscherung der Berge",
-      "Überfluss an Süßwasser"
-    ],
+      "Die starke Zunahme von Regenfeldern",
+      "Vergletscherung der hohen Berge",
+      "Ein großer Überfluss an Süßwasser"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1331,10 +1331,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was versteht man unter 'Revitalisierung' von Industriebrachen?",
     "answers": [
       "Wiederbelebung verlassener Areale",
-      "Kompletter Abriss u. Begrünung",
-      "Verseuchung mit Chemikalien",
-      "Verkauf an ausländische Firmen"
-    ],
+      "Kompletter Abriss u. Begrünung der Fläche",
+      "Verseuchung mit gefährlichen Chemikalien",
+      "Verkauf an ausländische Investorenfirmen"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1369,10 +1369,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Urbanisierung'?",
     "answers": [
       "Ausbreitung städtischer Lebensformen",
-      "Rückzug von Städtern aufs Land",
-      "Bau von Bauernhöfen im Wald",
-      "Abbruch von Hochhäusern im Ort"
-    ],
+      "Rückzug vieler Städter aufs Land",
+      "Bau von neuen Bauernhöfen im Wald",
+      "Abbruch von Hochhäusern im alten Ort"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1388,9 +1388,9 @@ const K9_ERDKUNDE_QUESTIONS = [
     "answers": [
       "Stadt mit über 10 Mio. Einwohnern",
       "Hauptstadt eines kleinen Landes",
-      "Stadt mit historischem Kern",
-      "Stadt mit großem Flughafen"
-    ],
+      "Stadt mit einem historischen Kern",
+      "Stadt mit einem großen Flughafen"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1423,10 +1423,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Suburbanisierung'?",
     "answers": [
       "Mittel- u. Abwanderung ins Umland",
-      "Zuwanderung in die Innenstadt",
-      "Verfall des Umlands von Städten",
-      "Bau von Slums am Stadtrand"
-    ],
+      "Zuwanderung in die dichte Innenstadt",
+      "Verfall des Umlands von großen Städten",
+      "Bau von vielen Slums am Stadtrand"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1513,10 +1513,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt das Phänomen der 'Land-Flucht' (Land-Stadt-Wanderung)?",
     "answers": [
       "Zug von Landarbeitern in Städte",
-      "Flucht von Städtern aufs Land",
-      "Rückkehr von Auswanderern",
-      "Urlaubstourismus aufs Dorf"
-    ],
+      "Flucht vieler Städter aufs Land",
+      "Rückkehr von alten Auswanderern",
+      "Urlaubstourismus ins ländliche Dorf"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1585,10 +1585,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Gated Community'?",
     "answers": [
       "Bewachte u. umzäunte Wohnanlage",
-      "Öffentlicher Park für alle",
-      "Kostenloses Studentenwohnheim",
-      "Sozialer Wohnungsbau der Stadt"
-    ],
+      "Öffentlicher Park für alle Bürger",
+      "Kostenloses Studentenwohnheim Stadt",
+      "Sozialer Wohnungsbau der Kommune"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1622,9 +1622,9 @@ const K9_ERDKUNDE_QUESTIONS = [
     "answers": [
       "Einsatz digitaler Vernetzung u. Technik",
       "Verbot aller Computer im Stadtteil",
-      "Reiner Bau von Holzhäusern",
-      "Abschaffung des öffentlichen Verkehrs"
-    ],
+      "Reiner Bau von einfachen Holzhäusern",
+      "Abschaffung des öffentlichen Nahverkehrs"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1657,10 +1657,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Wie nennt man den Effekt, dass es im Zentrum von Großstädten spürbar wärmer ist als im Umland?",
     "answers": [
       "Städtische Wärmeinsel (Urban Heat)",
-      "Kaltluftschneise der Natur",
-      "Inversionswetterlage Tal",
-      "Föhneffekt am Berg"
-    ],
+      "Eine Kaltluftschneise der freien Natur",
+      "Inversionswetterlage im engen Tal",
+      "Ein Föhneffekt am hohen Berg"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1675,10 +1675,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Versiegelung' in der Stadtökologie?",
     "answers": [
       "Abdeckung von Boden durch Asphalt",
-      "Reinigung von verseuchtem Boden",
-      "Anpflanzung von Rasenflächen",
-      "Schutz von Quellen im Wald"
-    ],
+      "Reinigung von stark verseuchtem Boden",
+      "Anpflanzung von grünen Rasenflächen",
+      "Schutz von Quellen im tiefen Wald"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1711,10 +1711,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welche Pyramidenform kennzeichnet eine stark wachsende Bevölkerung mit hohem Kinderanteil?",
     "answers": [
       "Die Dreiecksform / Pyramide",
-      "Die Urnenform Schrumpfung",
-      "Die Pillenform Gleichheit",
-      "Die Zylinderform"
-    ],
+      "Die Urnenform der Schrumpfung",
+      "Die Pillenform der Gleichheit",
+      "Die Zylinderform der Statistik"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1729,10 +1729,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der 'Binnenwanderungssaldo' in der Demografie?",
     "answers": [
       "Differenz Zuwanderung u. Abwanderung",
-      "Zahl der Geburten minus Todesfälle",
-      "Verhältnis von Männern zu Frauen",
-      "Anzahl aller Umzüge im Ort"
-    ],
+      "Zahl der Geburten minus aller Todesfälle",
+      "Verhältnis von Männern zu Frauen im Land",
+      "Anzahl aller Umzüge im ganzen Ort"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1747,10 +1747,10 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Welche Zuwanderung prägte das Wirtschaftswachstum der BRD in den 1950er u. 1960er-Jahren?",
     "answers": [
       "Anwerbung von 'Gastarbeitern'",
-      "Flucht aus Südamerika",
-      "Einwanderung aus den USA",
-      "Zuzug von IT-Spezialisten"
-    ],
+      "Die große Flucht aus Südamerika",
+      "Einwanderung aus den USA damals",
+      "Zuzug von jungen IT-Spezialisten"
+      ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1801,46 +1801,17 @@ const K9_ERDKUNDE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Ecological Overtag' (Global Footprint Network)?",
     "answers": [
       "Erdüberlastungstag (Overshoot Day)",
-      "Tag der sauberen Umwelt UN",
+      "Der Tag der sauberen Umwelt der UN",
       "Beginn der weltweiten Regenzeit",
-      "Tag des höchsten Ölverbrauchs"
+      "Tag des höchsten Ölverbrauchs weltweit"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der Earth Overshoot Day markiert das Datum, an dem die Menschheit alle ökologischen Ressourcen aufgebraucht hat, die die Erde in einem Jahr regenerieren kann."
-  },
-  {"id":"k9ek101","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Deutschland Kontinent?","answers":["Afrika","Europa","Asien","Australien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Europa."},
-  {"id":"k9ek102","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Hauptstadt FR?","answers":["Lyon","Paris","Marseille","Nizza"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Paris."},
-  {"id":"k9ek103","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Äquator Breite?","answers":["90°","0°","180°","45°"],"correct":1,"difficulty":"mittel","points":10,"explanation":"0°."},
-  {"id":"k9ek104","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Nachhaltigkeit: …","answers":["verbrauchen","schonend nutzen","nur Export","kein Wasser"],"correct":1,"difficulty":"mittel","points":10,"explanation":"schonen."},
-  {"id":"k9ek105","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Urbanisierung = …","answers":["Landwirtschaft","Verstädterung","Wald","Eiszeit"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stadt."},
-  {"id":"k9ek106","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Plattentektonik erklärt …","answers":["Wetter","Erdbeben/Vulkane","Mode","Sprache"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Platten."},
-  {"id":"k9ek107","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Migration pull?","answers":["Krieg","Jobs Ziel","Katastrophe","Verfolgung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Anziehung."},
-  {"id":"k9ek108","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Treibhausgas u. a. …","answers":["O₂","CO₂","N₂","He"],"correct":1,"difficulty":"mittel","points":10,"explanation":"CO₂."},
-  {"id":"k9ek109","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"1:100000 → 1 cm = …","answers":["1 m","1 km","100 km","10 m"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1 km."},
-  {"id":"k9ek110","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Rhein → …","answers":["Ostsee","Nordsee","Adria","Donau"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nordsee."},
-  {"id":"k9ek111","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Wüste: wenig …","answers":["Sand","Niederschlag","Sonne","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Regen."},
-  {"id":"k9ek112","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Globalisierung = …","answers":["Isolation","Verflechtung","Lokal","Autarkie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Netz."},
-  {"id":"k9ek113","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"HDI u. a. …","answers":["Militär","Bildung/Gesundheit/Einkommen","CO₂","nur BIP"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Entwicklung."},
-  {"id":"k9ek114","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Desertifikation = …","answers":["Aufforstung","Wüstenbildung","Gletscher","Stadt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Degradation."},
-  {"id":"k9ek115","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Alpen = …","answers":["Tiefland","Hochgebirge","Inseln","Wüste"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gebirge."},
-  {"id":"k9ek116","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"EU Binnenmarkt: freier …","answers":["Krieg","Warenverkehr","Zoll","Grenze überall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Waren."},
-  {"id":"k9ek117","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Legende erklärt …","answers":["Politik","Signaturen","Zeit","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zeichen."},
-  {"id":"k9ek118","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Süßwasser u. a. in …","answers":["Meer","Gletscher/Grundwasser","Asphalt","Hochhaus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Süßwasser."},
-  {"id":"k9ek119","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Strukturwandel → …","answers":["Kohle","Dienstleistungen","Wüste","Landwirtschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"tertiär."},
-  {"id":"k9ek120","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Geopolitik: Macht und …","answers":["Sport","Raum","Mode","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Raum."},
-  {"id":"k9ek121","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Tropen nah am …","answers":["Pol","Äquator","Mond","Mars"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Äquator."},
-  {"id":"k9ek122","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Bodenschatz?","answers":["Luft","Erz/Kohle","Wolke","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rohstoff."},
-  {"id":"k9ek123","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Versiegelung + Starkregen → …","answers":["weniger Risiko","mehr Hochwasser","kein Effekt","Schnee"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Risiko."},
-  {"id":"k9ek124","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Fair Trade → …","answers":["Dumping","faire Preise","Zwischenhandel max","Schwarzmarkt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fairness."},
-  {"id":"k9ek125","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Kompass → …","answers":["Osten","Norden","Süden","Westen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"N."},
-  {"id":"k9ek126","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Primärer Sektor = …","answers":["Industrie","Rohstoffe/Landwirtschaft","Dienstleistung","IT"],"correct":1,"difficulty":"mittel","points":10,"explanation":"primär."},
-  {"id":"k9ek127","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Bevölkerungsdichte = …","answers":["Zahl","Einwohner/Fläche","Geburten","Migration"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Dichte."},
-  {"id":"k9ek128","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Klimaschutz: mehr …","answers":["Kohle","Erneuerbare","Abholzung","Flüge"],"correct":1,"difficulty":"mittel","points":10,"explanation":"EE."},
-  {"id":"k9ek129","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"Metropolregion = …","answers":["Dorf","Stadtregion","Wüste","Insel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Agglomeration."},
-  {"id":"k9ek130","category":"k9_erdkunde","area":"schule","grade":9,"subject":"erdkunde","topic":"erweiterung","question":"SDGs sind …","answers":["Krieg","UN-Nachhaltigkeitsziele","nur DE","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"UN."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_ERDKUNDE_QUESTIONS = K9_ERDKUNDE_QUESTIONS;

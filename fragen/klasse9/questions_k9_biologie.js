@@ -103,9 +103,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'Mitose'?",
     "answers": [
       "Einfache Kernteilung Körper",
-      "Reifung der Eizellen",
-      "Verschmelzung von Samen",
-      "Programmierter Zelltod"
+      "Reifeteilung der Keimzellen",
+      "Verschmelzung von Ei und Samen",
+      "Programmierter Tod der Zelle"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -139,9 +139,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was passiert während der Anaphase der Mitose?",
     "answers": [
       "Chromatiden getrennt Zelle",
-      "Kernhülle löst sich auf",
-      "DNA wird neu verdoppelt",
-      "Zellwand wird gebildet"
+      "Kernhülle löst sich früh auf",
+      "DNA wird komplett neu verdoppelt",
+      "Zellwand wird neu gebildet"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -157,9 +157,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was ist das Hauptziel der 'Meiose' (Reifeteilung) im Organismus?",
     "answers": [
       "Bildung haploider Keimzellen",
-      "Wachstum von Gewebeteilen",
-      "Reparatur von Hautwunden",
-      "Verdopplung des Chromosoms"
+      "Wachstum von neuem Gewebe im Körper",
+      "Reparatur verletzter Hautzellen",
+      "Verdopplung des Chromosomensatzes"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -193,9 +193,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was versteht man unter dem stochastischen Vorgang des 'Crossing-Over' während der Meiose I?",
     "answers": [
       "Stoffaustausch Chromatiden",
-      "Verlust von Zellkernen",
-      "Verdopplung der DNA-Masse",
-      "Verschmelzung zweier Ei"
+      "Verlust ganzer Zellkerne",
+      "Verschmelzung zweier Eizellen",
+      "Verdopplung der ganzen DNA-Masse"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -247,9 +247,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was bedeutet der Begriff 'homozygot' in der Genetik?",
     "answers": [
       "Reinerbig mit zwei gleichen Allelen",
-      "Mischerbig mit zwei Kontrasten",
-      "Besitz von nur einem Allel",
-      "Fehlen jeglicher Erbanlagen"
+      "Mischerbig mit zwei Kontrastallelen",
+      "Besitz von nur einem einzigen Allel",
+      "Fehlen jeglicher Erbanlagen ganz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -265,9 +265,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Heterozygot'?",
     "answers": [
       "Mischerbig mit zwei verschiedenen Allelen",
-      "Reinerbig mit doppelten Allelen",
-      "Besitz von drei Allelen zugleich",
-      "Ein vollkommen stummes Gen"
+      "Reinerbig mit zwei gleichen Allelen",
+      "Besitz von drei Allelen zugleich vorhanden",
+      "Vollkommen stummes ungenutztes Gen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -446,8 +446,8 @@ const K9_BIOLOGIE_QUESTIONS = [
     "answers": [
       "Gesunde Eltern haben kranke Kinder",
       "Krankheit bricht immer sofort aus",
-      "Nur Mütter übertragen Krankheit",
-      "Alle Nachkommen sind betroffen"
+      "Nur Mütter übertragen die Krankheit",
+      "Alle Nachkommen sind stets betroffen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -501,9 +501,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Wie nennt man die weißen Blutkörperchen, die Erreger ungerichtet umschließen u. verdauen (Phagozytose)?",
     "answers": [
       "Die Fresszellen / Makrophagen",
-      "Die Roten Blutkörperchen",
-      "Die Blutplättchen Zellen",
-      "Die Nervenzellen Gehirn"
+      "Die Roten Blutkörperchen im Blut",
+      "Die Blutplättchen zur Wundheilung",
+      "Die Nervenzellen im Gehirn"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -537,9 +537,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Welche Zellen des Immunsystems produzieren passgenaue Antikörper gegen spezifische Erreger?",
     "answers": [
       "B-Lymphozyten / Plasmazellen",
-      "T-Helferzellen Immunsystem",
-      "Erythrozyten Blutkreislauf",
-      "Thrombozyten Wundverschluss"
+      "T-Helferzellen im Immunsystem",
+      "Erythrozyten im Blutkreislauf",
+      "Thrombozyten beim Wundverschluss"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -555,9 +555,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Welche Form besitzen die Proteinstrukturen der Antikörper üblicherweise?",
     "answers": [
       "Eine charakteristische Y-Form",
-      "Eine Kugelgestalt Proteine",
-      "Eine lange Fadenstruktur",
-      "Einen geschlossenen Ring"
+      "Eine runde Kugelgestalt der Proteine",
+      "Eine lange dünne Fadenstruktur",
+      "Einen geschlossenen kreisrunden Ring"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -591,9 +591,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Welche Aufgabe haben T-Helferzellen im spezifischen Immunsystem?",
     "answers": [
       "Regulieren u. aktivieren Abwehr",
-      "Fressen Bakterien direkt auf",
-      "Produzieren Antikörper selbst",
-      "Transportieren Sauerstoff"
+      "Fressen Bakterien direkt selbst auf",
+      "Produzieren selbst Antikörper",
+      "Transportieren Sauerstoff im Blut"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -645,9 +645,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was wird bei einer 'Aktiven Schutzimpfung' (Vakzinierung) verabreicht?",
     "answers": [
       "Abgeschwächte Erreger/Antigene",
-      "Fertige fremde Antikörper",
-      "Starke Breitband-Antibiotika",
-      "Reines Vitamin-Serum"
+      "Fertige fremde Antikörperlösung",
+      "Starke Breitband-Antibiotika Gabe",
+      "Ein reines Vitaminpräparat"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -663,9 +663,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Wann kommt eine 'Passive Schutzimpfung' zum Einsatz?",
     "answers": [
       "Sofortschutz nach Ansteckung",
-      "Vorsorge für viele Jahre",
-      "Dauerhafte Immunisierung",
-      "Verhütung einer Wundrose"
+      "Vorsorge für viele lange Jahre",
+      "Eine dauerhafte Immunisierung",
+      "Verhütung einer leichten Wundrose"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -700,8 +700,8 @@ const K9_BIOLOGIE_QUESTIONS = [
     "answers": [
       "Der Botenstoff Histamin",
       "Das Hormon Insulin",
-      "Das Enzym Amylase",
-      "Das Pigment Melanin"
+      "Das Verdauungsenzym Amylase",
+      "Das Hautpigment Melanin"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -735,9 +735,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Welche Zellen des Immunsystems befallt u. zerstört das HI-Virus (HIV) gezielt?",
     "answers": [
       "T-Helferzellen des Körpers",
-      "Erythrozyten des Blutes",
-      "Nervenzellen des Gehirns",
-      "Hautzellen der Oberhaut"
+      "Erythrozyten im Blut",
+      "Die Nervenzellen im Gehirn",
+      "Die Hautzellen der Oberhaut"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -754,7 +754,7 @@ const K9_BIOLOGIE_QUESTIONS = [
     "answers": [
       "Acquired Immunodeficiency Synd.",
       "Acute Infections Disease State",
-      "Autoimmune Defense System",
+      "Autoimmune Defense System Failure",
       "Antigen Immunization Shield"
     ],
     "correct": 0,
@@ -772,7 +772,7 @@ const K9_BIOLOGIE_QUESTIONS = [
     "answers": [
       "Ungeschützter Geschlechtsverkehr",
       "Tröpfcheninfektion beim Niesen",
-      "Gemeinsame Handtuchnutzung",
+      "Gemeinsame Nutzung von Handtüchern",
       "Insektenstiche im Sommer"
     ],
     "correct": 0,
@@ -807,7 +807,7 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Welche Barriere gehört zur mechanisch-chemischen ersten Schutzlinie des Körpers?",
     "answers": [
       "Säureschutzmantel der Haut",
-      "B-Lymphozyten im Blut",
+      "B-Lymphozyten im Blutplasma",
       "Antikörper in der Milz",
       "T-Killerzellen im Gewebe"
     ],
@@ -861,9 +861,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Wie nennt man die Entzündungszeichen, die durch Histaminausschüttung im Gewebe entstehen?",
     "answers": [
       "Rötung, Wärme, Schwellung, Schmerz",
-      "Kälte, Blässe, Taubheit, Lähmung",
+      "Kälte, Blässe, Taubheit und Lähmung",
       "Verbleichung, Schrumpfung, Ruhe",
-      "Fieber, Husten, Heiserkeit"
+      "Fieber, Husten, Heiserkeit ganz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -897,8 +897,8 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was versteht man unter 'Herdenschutz' (Herdenimmunität)?",
     "answers": [
       "Schutz Geimpfter für Ungeimpfte",
-      "Verhinderung von Tierseuchen",
-      "Desinfektion von Ställen",
+      "Verhinderung gefährlicher Tierseuchen",
+      "Desinfektion aller Ställe",
       "Schutz vor Insektenstichen"
     ],
     "correct": 0,
@@ -917,7 +917,7 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Wie heißen die baulichen Grundeinheiten des Nervensystems?",
     "answers": [
       "Die Neuronen / Nervenzellen",
-      "Die Nephrone in der Niere",
+      "Die Nephrone tief in der Niere",
       "Die Alveolen in der Lunge",
       "Die Myozyten im Muskel"
     ],
@@ -1025,8 +1025,8 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was passiert bei der 'Depolarisation' während eines Aktionspotenzials?",
     "answers": [
       "Schlagartiger Natriumeinstrom",
-      "Ausstrom von Proteinen",
-      "Schließen aller Kanäle",
+      "Ausstrom von vielen Proteinen",
+      "Schließen aller Ionenkanäle",
       "Verstärkung des Minuspols"
     ],
     "correct": 0,
@@ -1043,8 +1043,8 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was beschreibt das 'Alles-oder-Nichts-Gesetz' bei Aktionspotenzialen?",
     "answers": [
       "Schwellenwert löst immer volles AP aus",
-      "Impuls wird je nach Reiz stärker",
-      "Nervenzelle teilt sich völlig",
+      "Impuls wird stets je nach Reiz stärker",
+      "Nervenzelle teilt sich dabei völlig",
       "Aktionspotenzial dauert ewig an"
     ],
     "correct": 0,
@@ -1063,7 +1063,7 @@ const K9_BIOLOGIE_QUESTIONS = [
       "Durch chemische Neurotransmitter",
       "Durch direkte Lichtstrahlen",
       "Durch elektrische Funken",
-      "Durch mechanischen Druck"
+      "Durch reinen mechanischen Druckreiz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1187,9 +1187,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Warum gibt es auf der Netzhaut einen 'Blinden Fleck'?",
     "answers": [
       "Austrittsstelle des Sehnervs",
-      "Schattenwurf der Linse",
-      "Fehlen von Blutgefäßen",
-      "Verdickung der Hornhaut"
+      "Schattenwurf der Augenlinse",
+      "Fehlen von Blutgefäßen dort",
+      "Verdickung der ganzen Hornhaut"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1242,8 +1242,8 @@ const K9_BIOLOGIE_QUESTIONS = [
     "answers": [
       "Mit einer Zerstreuungslinse (Konkav)",
       "Mit einer Sammellinse (Konvex)",
-      "Mit einer Zylinderlinse rein",
-      "Mit einer Farbfilterlinse"
+      "Mit einer Zylinderlinse allein",
+      "Mit einer speziellen Farbfilterlinse"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1259,9 +1259,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Mit welcher Linsenart korrigiert man Weitsichtigkeit (Augapfel zu kurz)?",
     "answers": [
       "Mit einer Sammellinse (Konvex)",
-      "Mit einer Zerstreuungslinse",
+      "Mit einer Zerstreuungslinse (Konkav)",
       "Mit einer flachen Glasplatte",
-      "Mit einer Dunkelbrille"
+      "Mit einer dunklen Sonnenbrille"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1278,8 +1278,8 @@ const K9_BIOLOGIE_QUESTIONS = [
     "answers": [
       "Das Großhirn (Cortex)",
       "Das Kleinhirn hinten",
-      "Das Nachhirn Stamm",
-      "Das Rückenmark Kanal"
+      "Das Nachhirn am Stamm",
+      "Das Rückenmark im Kanal"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1295,9 +1295,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Welche Hauptaufgabe hat das 'Kleinhirn' (Cerebellum)?",
     "answers": [
       "Koordination Bewegung u. Balance",
-      "Regulierung Körpertemperatur",
-      "Erzeugung von Sehbildern",
-      "Steuerung der Verdauung"
+      "Regulierung der Körpertemperatur",
+      "Erzeugung von scharfen Sehbildern",
+      "Steuerung der Verdauung im Bauch"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1313,9 +1313,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Welches Gehirnareal steuert lebenswichtige vegetative Reflexe wie Atmung, Herzschlag u. Schlucken?",
     "answers": [
       "Das Nachhirn / Hirnstamm",
-      "Das Großhirn vorne",
+      "Das Großhirn ganz vorne",
       "Der Balken im Zentrum",
-      "Das Kleinhirn hinten"
+      "Das Kleinhirn weiter hinten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1331,9 +1331,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Wie heißen die zwei Abschnitte des vegetativen Nervensystems, die als Gegenspieler wirken?",
     "answers": [
       "Sympathikus u. Parasympathikus",
-      "Zentral u. Peripher Nerven",
-      "Motorisch u. Sensorisch",
-      "Somatisch u. Autonom Teil"
+      "Zentrales u. Peripheres Nervensystem",
+      "Motorisches u. Sensorisches System",
+      "Somatischer u. Autonomer Teil"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1423,9 +1423,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was beschreiben 'homologe Organe' im Vergleich verschiedener Lebewesen?",
     "answers": [
       "Gleicher Grundbauplan durch Abstammung",
-      "Gleiche Funktion ohne Abstammung",
-      "Rückgebildete nutzlose Reste",
-      "Künstlich veränderte Gewebe"
+      "Gleiche Funktion völlig ganz ohne Abstammung",
+      "Rückgebildete nutzlose Restorgane",
+      "Künstlich veränderte Körpergewebe"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1477,9 +1477,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was sind 'Atavismen' beim Menschen?",
     "answers": [
       "Wiederauftreten ahnenalter Merkmale",
-      "Gefährliche Krebstumore",
-      "Verluste von Chromosomen",
-      "Neuentstandene Organe"
+      "Gefährliche bösartige Tumore im Körper",
+      "Verluste von ganzen Chromosomen",
+      "Neu entstandene Körperorgane"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1550,8 +1550,8 @@ const K9_BIOLOGIE_QUESTIONS = [
     "answers": [
       "Unbelebte Einflüsse wie Licht/Temp.",
       "Belebte Einflüsse wie Fressfeinde",
-      "Konkurrenz durch Artgenossen",
-      "Parasiten im Magen"
+      "Konkurrenz durch viele Artgenossen dort",
+      "Parasiten im Magen der Tiere"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1621,9 +1621,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was bezeichnet man als 'ökologische Nische' einer Art?",
     "answers": [
       "Gesamtheit aller Beziehungen zur Umwelt",
-      "Der konkrete Wohnort im Wald",
-      "Das Nest oder die Höhle",
-      "Ein geschütztes Territorium"
+      "Der genaue Wohnort mitten im Wald",
+      "Das Nest oder die Höhle allein",
+      "Ein festes streng geschütztes Wildrevier"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1639,8 +1639,8 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was besagt das 'Konkurrenzausschlussprinzip'?",
     "answers": [
       "Gleiche Nische -> eine Art weicht aus",
-      "Konkurrenten helfen sich stets",
-      "Arten teilen alle Ressourcen fest",
+      "Konkurrenten helfen sich stets aus",
+      "Arten teilen alle Ressourcen sich fest",
       "Raubtiere sterben vor der Beute"
     ],
     "correct": 0,
@@ -1657,9 +1657,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Wie nennt man das Zusammenleben zweier Arten zum gegenseitigen Vorteil?",
     "answers": [
       "Eine Symbiose Partnerschaft",
-      "Ein Parasitismus Befall",
-      "Räuber-Beute-Beziehung",
-      "Freie Konkurrenz"
+      "Ein Parasitismus mit Befall",
+      "Eine Räuber-Beute-Beziehung",
+      "Freie Konkurrenz um Nahrung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1675,9 +1675,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was charakterisiert den 'Parasitismus'?",
     "answers": [
       "Parasit nutzt Wirt u. schädigt",
-      "Beide Lebewesen profitieren",
-      "Wirt tötet den Parasit sofort",
-      "Keine Auswirkung auf Wirt"
+      "Beide Lebewesen profitieren stark",
+      "Der Wirt tötet den Parasit sofort",
+      "Keine Auswirkung auf den Wirt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1711,9 +1711,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Welche Organismengruppe bildet die Basis einer Nahrungspyramide (Produzenten)?",
     "answers": [
       "Grüne Pflanzen (Fotosynthese)",
-      "Pflanzenfressende Tiere",
-      "Fleischfressende Raubtiere",
-      "Zersetzer u. Bakterien"
+      "Pflanzenfressende Tiere im Feld",
+      "Fleischfressende Raubtiere oben",
+      "Zersetzer u. Bakterien im Boden"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1747,9 +1747,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Welche Rolle spielen 'Destruenten' (Zersetzer wie Pilze u. Bakterien) im Ökosystem?",
     "answers": [
       "Bauen organisches zu Mineralien ab",
-      "Erzeugen Sauerstoff durch Licht",
+      "Erzeugen reinen Sauerstoff durch Licht",
       "Fressen lebende Pflanzenfresser",
-      "Steuern das Klima im See"
+      "Steuern das ganze Klima am See"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1765,9 +1765,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was versteht man unter 'Biomagnifikation' in einer Nahrungskette?",
     "answers": [
       "Anreicherung von Giften nach oben",
-      "Zunahme der Tiergröße",
+      "Zunahme der Tiergröße insgesamt",
       "Verdopplung der Geburtenrate",
-      "Verlust von Pflanzenarten"
+      "Verlust von seltenen Pflanzenarten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1783,9 +1783,9 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Welcher anthropogene Prozess verstärkt den natürlichen Treibhauseffekt massiv?",
     "answers": [
       "Freisetzung von CO2 durch Verbrennung",
-      "Einsatz von Dünger in Feldern",
-      "Ausbau von Solaranlagen",
-      "Aufforstung von Mischwäldern"
+      "Einsatz von Dünger auf großen Feldern",
+      "Ausbau von neuen Solaranlagen",
+      "Aufforstung von großen Mischwäldern"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1801,46 +1801,17 @@ const K9_BIOLOGIE_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Biodiversität'?",
     "answers": [
       "Vielfalt des Lebens auf allen Ebenen",
-      "Anzahl aller Tiere im Zoo",
-      "Masse aller Algen im Ozean",
-      "Reine Dichte von Bäumen"
+      "Anzahl aller Tiere im Zoo dort",
+      "Masse aller Algen im tiefen Ozean",
+      "Reine Dichte von Bäumen im großen Wald"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Biodiversität umfasst die genetische Vielfalt, die Artenvielfalt u. die Vielfalt der Ökosysteme."
-  },
-  {"id":"k9bi101","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Photosynthese in …","answers":["Mitochondrien","Chloroplasten","Zellkern","Ribosomen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Chloroplasten."},
-  {"id":"k9bi102","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"DNA-Base A paart mit …","answers":["G","T","C","U"],"correct":1,"difficulty":"mittel","points":10,"explanation":"T."},
-  {"id":"k9bi103","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Mitose erzeugt …","answers":["Gameten","Körperzellen diploid","Mutationen","Viren"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Körperzellen."},
-  {"id":"k9bi104","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Enzyme sind meist …","answers":["Lipide","Proteine","DNA","Zucker"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Proteine."},
-  {"id":"k9bi105","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Ökosystem = …","answers":["nur Tiere","Lebewesen + Umwelt","nur Klima","nur Boden"],"correct":1,"difficulty":"mittel","points":10,"explanation":"System."},
-  {"id":"k9bi106","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Antibiotika gegen …","answers":["Viren","Bakterien","Knochen","Allergie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bakterien."},
-  {"id":"k9bi107","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Selektion wirkt auf …","answers":["Genotyp immer sichtbar","Fitness","Mode","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fitness."},
-  {"id":"k9bi108","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Blut transportiert …","answers":["nur Wasser","O₂/Nährstoffe","Knochen","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Stoffe."},
-  {"id":"k9bi109","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Nerven leiten …","answers":["Blut","Impulse","Luft","Knochen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Erregung."},
-  {"id":"k9bi110","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Biodiversität = …","answers":["eine Art","Vielfalt","Klima","Städte"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Vielfalt."},
-  {"id":"k9bi111","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Impfung aktiviert …","answers":["Verdauung","Immunsystem","Muskeln","Gehör"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Immun."},
-  {"id":"k9bi112","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Zellatmung in …","answers":["Chloroplast","Mitochondrien","Zellwand","Vakuole"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Mitochondrien."},
-  {"id":"k9bi113","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Art = …","answers":["beliebige Tiere","fortpflanzungsfähige Gruppe","Farbe","Größe"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Art."},
-  {"id":"k9bi114","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Parasit … dem Wirt.","answers":["nützt","schadet","neutral","ersetzt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schaden."},
-  {"id":"k9bi115","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Gene auf …","answers":["Blut","Chromosomen","Zähnen","Haaren"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Chromosomen."},
-  {"id":"k9bi116","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Nachhaltigkeit: …","answers":["erschöpfen","Tragfähigkeit achten","nur Konsum","nur Wachstum"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Grenzen."},
-  {"id":"k9bi117","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Haut schützt vor …","answers":["nur Kälte","Keimen u. a.","Schall","Magneten"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schutz."},
-  {"id":"k9bi118","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Bestäubung = …","answers":["Kernverschmelzung","Pollenübertragung","Keimung","Photosynthese"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Pollen."},
-  {"id":"k9bi119","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Population = …","answers":["alle Arten","Art im Gebiet","Pflanzen","Klima"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Population."},
-  {"id":"k9bi120","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Viren sind …","answers":["Zellen","keine vollständigen Zellen","Pflanzen","Bakterien"],"correct":1,"difficulty":"mittel","points":10,"explanation":"akaryotisch."},
-  {"id":"k9bi121","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Nahrungskette start: …","answers":["Fleischfresser","Produzenten","Menschen","Pilze"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Pflanzen."},
-  {"id":"k9bi122","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Insulin beeinflusst …","answers":["Hören","Blutzucker","Knochenfarbe","Haare"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Glucose."},
-  {"id":"k9bi123","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Mutation = …","answers":["immer tödlich","DNA-Änderung","nur Phänotyp","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"DNA."},
-  {"id":"k9bi124","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Symbiose: beide …","answers":["schaden","profitieren","neutral","parasitär"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nutzen."},
-  {"id":"k9bi125","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Lunge nimmt … auf.","answers":["CO₂","O₂","N₂","He"],"correct":1,"difficulty":"mittel","points":10,"explanation":"O₂."},
-  {"id":"k9bi126","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Zellmembran ist …","answers":["starr","selektiv permeabel","dicht total","DNA"],"correct":1,"difficulty":"mittel","points":10,"explanation":"selektiv."},
-  {"id":"k9bi127","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Insektenbeine: …","answers":["4","6","8","10"],"correct":1,"difficulty":"mittel","points":10,"explanation":"6."},
-  {"id":"k9bi128","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Winterschlaf spart …","answers":["Licht","Energie","Wasser","Luft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Energie."},
-  {"id":"k9bi129","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Gentechnik greift in … ein.","answers":["Verhalten","Erbgut","Wetter","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Genom."},
-  {"id":"k9bi130","category":"k9_biologie","area":"schule","grade":9,"subject":"biologie","topic":"erweiterung","question":"Artenschutz in situ = …","answers":["Zoo","im Lebensraum","Labor","Museum"],"correct":1,"difficulty":"mittel","points":10,"explanation":"vor Ort."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_BIOLOGIE_QUESTIONS = K9_BIOLOGIE_QUESTIONS;

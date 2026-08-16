@@ -49,9 +49,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "How many states make up the United States of America today?",
     "answers": [
       "Fifty federal states",
-      "Forty-eight states",
-      "Fifty-two states",
-      "Fifty-one states"
+      "Forty-nine federal states",
+      "Fifty-two total states",
+      "Forty-six member states"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -67,9 +67,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What do the 13 red and white stripes on the US flag represent?",
     "answers": [
       "The original colonies",
-      "The first presidents",
-      "The major US rivers",
-      "The founding states"
+      "The neighboring territories",
+      "The founding settlements",
+      "The early trade regions"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -139,9 +139,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "Which US city is famously known as the 'Big Apple'?",
     "answers": [
       "New York City Town",
-      "Los Angeles City",
-      "San Francisco Bay",
-      "New Orleans Delta"
+      "Los Angeles Beach Area",
+      "San Francisco Bay Town",
+      "Chicago Windy City Zone"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -337,9 +337,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "Which US school dance is held at the end of the final year of high school?",
     "answers": [
       "The High School Prom",
-      "Homecoming Game",
-      "Graduation Parade",
-      "Pep Rally Event"
+      "The Junior Class Dance",
+      "The Senior Formal Ball",
+      "The Homecoming Dance Night"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -427,9 +427,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What is the highest mountain peak in the United States (located in Alaska)?",
     "answers": [
       "Denali (Mt. McKinley)",
-      "Mount Rainier Peak",
-      "Mount Whitney Rock",
-      "Mount Hood Peak"
+      "Mount Rainier Volcano",
+      "Mount Whitney Summit",
+      "Mount Elbert Colorado"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -445,9 +445,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "Which Island in New York Harbor served as the primary immigration inspection station from 1892 to 1954?",
     "answers": [
       "Ellis Island Station",
-      "Alcatraz Island Bay",
-      "Staten Island Port",
-      "Rikers Island Area"
+      "Liberty Island Ferry",
+      "Governors Island Fort",
+      "Roosevelt Island Tram"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -465,9 +465,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "How do you form the Simple Present Passive in English?",
     "answers": [
       "am/is/are + past participle",
-      "was/were + past participle",
-      "have/has been + past Part.",
-      "will be + past participle"
+      "was/were + past participle used",
+      "have/has been + past participle",
+      "will be + being + p.p. form"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -663,9 +663,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "How does the time expression 'tomorrow' change in Reported Speech?",
     "answers": [
       "The following/next day",
-      "The day before then",
-      "That same day then",
-      "The previous day"
+      "The same day again, then",
+      "The day right before that",
+      "That very same day itself"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -753,9 +753,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "When is NO backshift of tenses required in Reported Speech?",
     "answers": [
       "Reporting verb in present",
-      "Reporting verb in past",
-      "Statement is a question",
-      "Sentence uses passive"
+      "When the sentence is negative",
+      "Question in reported form",
+      "When the sentence is passive"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -807,9 +807,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "Which tense describes an ongoing action in the past interrupted by a single action?",
     "answers": [
       "Past Progressive Tense",
-      "Simple Present Tense",
-      "Present Progressive",
-      "Future Progressive"
+      "Simple Past Tense Verb",
+      "Present Perfect Tense",
+      "Future Perfect Tense"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -843,9 +843,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "Which signal word strictly requires Simple Past tense?",
     "answers": [
       "The signal word 'yesterday'",
-      "The signal word 'since'",
-      "The signal word 'ever'",
-      "The signal word 'recently'"
+      "The signal word 'ever since'",
+      "The signal word 'so far now'",
+      "The signal word 'already now'"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -953,8 +953,8 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "How is a Conditional III sentence (unreal past/impossible) structured?",
     "answers": [
       "if + Past Perf., would have + p.p.",
-      "if + Simple Past, would + inf.",
-      "if + Simple Present, will + inf.",
+      "if + Simple Past, would + infinitive",
+      "if + Simple Present, will + infin.",
       "if + Past Perf., will have + p.p."
     ],
     "correct": 0,
@@ -989,9 +989,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "Complete the Conditional III sentence: 'If we had taken a taxi, we _____ missed the train.'",
     "answers": [
       "would not have missed",
-      "will not have missed",
-      "would not miss then",
-      "had not missed then"
+      "would not have caught",
+      "should not have missed",
+      "could not have missed"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1043,9 +1043,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "How can a relative clause be shortened using a Participle: 'The boy who is sitting there is my brother.'",
     "answers": [
       "The boy sitting there...",
-      "The boy sat there...",
-      "The boy sit there...",
-      "The boy to sit there..."
+      "The boy standing here...",
+      "The boy waiting there...",
+      "The boy walking along..."
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1079,9 +1079,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What is a 'Gerund' in English grammar?",
     "answers": [
       "Verb functioning as noun (-ing)",
-      "Adverb ending in -ly",
-      "Infinitive with to",
-      "Adjective in comparative"
+      "An adjective that describes a noun",
+      "An adverb modifying a verb here",
+      "A preposition before the noun"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1169,9 +1169,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "Which of these verbs is typically followed by a To-Infinitive?",
     "answers": [
       "The verb 'decide'",
-      "The verb 'enjoy'",
-      "The verb 'avoid'",
-      "The verb 'mind'"
+      "The verb 'suggest'",
+      "The verb 'finish'",
+      "The verb 'imagine'"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1295,9 +1295,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What is an 'Infinitive of Purpose'?",
     "answers": [
       "Expresses goal (in order to)",
-      "Replaces the main subject",
-      "Forms a past tense verb",
-      "Follows every preposition"
+      "Replaces the relative pronoun",
+      "Forms the past participle verb",
+      "Introduces a noun clause here"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1331,9 +1331,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "Which conjunction is used to express cause/reason?",
     "answers": [
       "Conjunction 'since/because'",
-      "Conjunction 'unless'",
-      "Conjunction 'although'",
-      "Conjunction 'whereas'"
+      "Conjunction 'although/though'",
+      "Conjunction 'unless/if not'",
+      "Conjunction 'whereas/while'"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1349,9 +1349,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What does the conjunction 'unless' mean?",
     "answers": [
       "Except if / If ... not",
-      "Because of the fact",
-      "In order to do",
-      "As soon as possible"
+      "Only if this happens now",
+      "As long as it's possible",
+      "Even though it's quite true"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1405,9 +1405,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What is the British English equivalent for the US word 'subway'?",
     "answers": [
       "Underground / Tube",
-      "Railway system",
-      "Overground line",
-      "Tramway network"
+      "Railway metro line",
+      "Overground transit",
+      "City transit system"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1495,9 +1495,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What is the main goal of a 'summary' of a written text?",
     "answers": [
       "Concise main points overview",
-      "Detailed word-by-word quote",
-      "Personal opinion essay",
-      "Creative continuation story"
+      "A detailed personal reaction",
+      "A word-for-word transcript",
+      "A creative alternate ending"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1567,9 +1567,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What does 'scanning' a text mean?",
     "answers": [
       "Looking for specific detail",
-      "Reading every single word",
-      "Summarizing each paragraph",
-      "Writing a critical review"
+      "Reading the text word by word",
+      "Summarizing every paragraph",
+      "Writing a personal review of it"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1603,9 +1603,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What is the primary purpose of a formal 'Letter to the Editor'?",
     "answers": [
       "Express view on published article",
-      "Apply for job vacancy at paper",
-      "Order newspaper subscription",
-      "Complain about delivery delays"
+      "To apply for a job at the paper",
+      "To complain about a late delivery",
+      "To order a magazine subscription now"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1657,9 +1657,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What does the abbreviation 'e.g.' stand for in English texts?",
     "answers": [
       "For example (exempli gratia)",
-      "That is to say (id est)",
-      "And so forth (et cetera)",
-      "Note well (nota bene)"
+      "That is to say, roughly put",
+      "And so on and so forth then",
+      "Please note this well, always"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1675,9 +1675,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What does the abbreviation 'i.e.' stand for in English texts?",
     "answers": [
       "That is / In other words",
-      "For example / Instance",
-      "In conclusion at last",
-      "Important notice note"
+      "For instance / An example",
+      "In conclusion, finally then",
+      "Please note this carefully"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1747,9 +1747,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What does the term 'media literacy' describe?",
     "answers": [
       "Ability to analyze media critically",
-      "Ability to program computer games",
-      "Owning multiple social accounts",
-      "Reading printed books only"
+      "Ability to create video content well",
+      "Skill of coding mobile apps daily",
+      "Habit of reading books every day"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1783,9 +1783,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What is 'cyberbullying' in modern digital communication?",
     "answers": [
       "Online harassment & bullying",
-      "A technical computer glitch",
-      "An online gaming contest",
-      "A viral comedy video clip"
+      "A funny viral video clip online",
+      "A minor technical glitch online",
+      "An online gaming event contest"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1801,46 +1801,17 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "What is the purpose of 'mediation' in foreign language learning?",
     "answers": [
       "Conveying meaning across languages",
-      "Translating texts word-for-word",
-      "Correcting grammatical mistakes",
-      "Reciting poems from memory"
+      "Translating word for word only, always",
+      "Correcting grammar mistakes made in class",
+      "Memorizing poems by heart every single day"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Language mediation means summarizing or conveying essential information from one language into another for a target audience."
-  },
-  {"id":"k9en101","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"Past of go?","answers":["goed","went","gone","goes"],"correct":1,"difficulty":"mittel","points":10,"explanation":"went."},
-  {"id":"k9en102","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"Although means …","answers":["weil","obwohl","und","oder"],"correct":1,"difficulty":"mittel","points":10,"explanation":"obwohl."},
-  {"id":"k9en103","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"If I ___ you, I would help.","answers":["am","were","was","be"],"correct":1,"difficulty":"mittel","points":10,"explanation":"were."},
-  {"id":"k9en104","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"Passive: The letter ___ yesterday.","answers":["wrote","was written","writes","writing"],"correct":1,"difficulty":"mittel","points":10,"explanation":"was written."},
-  {"id":"k9en105","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"Sustainable = …","answers":["kurzleb","nachhaltig","laut","teuer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nachhaltig."},
-  {"id":"k9en106","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"He said he ___ tired.","answers":["is","was","be","were"],"correct":1,"difficulty":"mittel","points":10,"explanation":"was."},
-  {"id":"k9en107","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"enjoy ___","answers":["to swim","swimming","swam","swim"],"correct":1,"difficulty":"mittel","points":10,"explanation":"swimming."},
-  {"id":"k9en108","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"become = …","answers":["bekommen","werden","willkommen","begin"],"correct":1,"difficulty":"mittel","points":10,"explanation":"werden."},
-  {"id":"k9en109","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"Climate = …","answers":["Wetter jetzt","Klima","Kleidung","Küche"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Klima."},
-  {"id":"k9en110","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"the woman ___ called","answers":["which","who","where","what"],"correct":1,"difficulty":"mittel","points":10,"explanation":"who."},
-  {"id":"k9en111","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"You ___ see a doctor.","answers":["can","should","mustn’t","could"],"correct":1,"difficulty":"mittel","points":10,"explanation":"should."},
-  {"id":"k9en112","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"slow → adverb","answers":["slowy","slowly","slowely","slowful"],"correct":1,"difficulty":"mittel","points":10,"explanation":"slowly."},
-  {"id":"k9en113","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"Economy = …","answers":["Wirtschaft","Sparsamkeit","Ökologie","Energie"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Wirtschaft."},
-  {"id":"k9en114","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"look up = …","answers":["nachschlagen","hochschauen","löschen","aufgeben"],"correct":0,"difficulty":"mittel","points":10,"explanation":"nachschlagen."},
-  {"id":"k9en115","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"tomorrow at 5 we ___","answers":["work","will be working","worked","working"],"correct":1,"difficulty":"mittel","points":10,"explanation":"will be working."},
-  {"id":"k9en116","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"Equality = …","answers":["Ungleichheit","Gleichheit","Qualität","Menge"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gleichheit."},
-  {"id":"k9en117","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"___ hour","answers":["a","an","the","some"],"correct":1,"difficulty":"mittel","points":10,"explanation":"an."},
-  {"id":"k9en118","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"as ___ as","answers":["more","tall","taller","most"],"correct":1,"difficulty":"mittel","points":10,"explanation":"as tall as."},
-  {"id":"k9en119","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"Invent = …","answers":["entdecken","erfinden","verlieren","messen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"erfinden."},
-  {"id":"k9en120","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"How long ___ you lived here?","answers":["do","have","has","are"],"correct":1,"difficulty":"mittel","points":10,"explanation":"have."},
-  {"id":"k9en121","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"responsible ___ the project","answers":["to","for","at","on"],"correct":1,"difficulty":"mittel","points":10,"explanation":"for."},
-  {"id":"k9en122","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"Synonym begin?","answers":["end","start","stop","finish"],"correct":1,"difficulty":"mittel","points":10,"explanation":"start."},
-  {"id":"k9en123","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"Democracy = …","answers":["Diktatur","Demokratie","Demo","Büro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Demokratie."},
-  {"id":"k9en124","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"teach past","answers":["teached","taught","thought","teecht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"taught."},
-  {"id":"k9en125","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"advice is …","answers":["countable","uncountable","verb","plural"],"correct":1,"difficulty":"mittel","points":10,"explanation":"uncountable."},
-  {"id":"k9en126","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"In contrast shows …","answers":["example","contrast","cause","time"],"correct":1,"difficulty":"mittel","points":10,"explanation":"contrast."},
-  {"id":"k9en127","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"make a ___","answers":["homework","decision","research","shopping"],"correct":1,"difficulty":"mittel","points":10,"explanation":"decision."},
-  {"id":"k9en128","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"Global warming = …","answers":["Eiszeit","globale Erwärmung","Regen","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Erwärmung."},
-  {"id":"k9en129","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"I study ___ pass.","answers":["for","to","so","at"],"correct":1,"difficulty":"mittel","points":10,"explanation":"to."},
-  {"id":"k9en130","category":"k9_englisch","area":"schule","grade":9,"subject":"englisch","topic":"erweiterung","question":"people relative","answers":["which","who","where","when"],"correct":1,"difficulty":"mittel","points":10,"explanation":"who."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_ENGLISCH_QUESTIONS = K9_ENGLISCH_QUESTIONS;

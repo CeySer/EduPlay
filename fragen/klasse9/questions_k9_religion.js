@@ -31,9 +31,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Wie heißt die heilige Schrift des Judentums, die dem Alten Testament der Christen entspricht?",
     "answers": [
       "Die jüdische Tanach (Thora)",
-      "Der Koran des Propheten",
-      "Die Veden der Weisheit",
-      "Das Buch des Aufwachsens"
+      "Der Koran im Islam (heilige Sure)",
+      "Die Veden des Hinduismus",
+      "Das Neue Testament Jesu"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -49,9 +49,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was beschreiben die 'Fünf Säulen' im Islam?",
     "answers": [
       "Grundpflichten des muslimischen Lebens",
-      "Fünf Hauptmoscheen in Mekka",
-      "Fünf Gebote des Propheten Moses",
-      "Fünf heilige Bücher der Scharia"
+      "Fünf Hauptmoscheen der Stadt Mekka Saudi",
+      "Fünf Gebote des Propheten Moses selbst",
+      "Fünf heilige Bücher der Scharia Recht"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -67,7 +67,7 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Wie nennt man die Wallfahrt nach Mekka, die jeder Muslim einmal im Leben nach Möglichkeit antreten sollte?",
     "answers": [
       "Die Pilgerfahrt Haddsch",
-      "Das Fastenfest Ramadan",
+      "Das Fastenfest im Ramadan",
       "Das Gebet Schahada",
       "Die Abgabe der Zakat"
     ],
@@ -85,9 +85,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welcher historische Religionsstifter lehrte den 'Achtfachen Pfad' zur Überwindung des Leidens?",
     "answers": [
       "Siddhartha Gautama (Buddha)",
-      "Mahavira der Jainist",
-      "Laozi der Philosoph",
-      "Konfuzius der Meister"
+      "Mahavira der Jainist Lehrer",
+      "Laozi der chinesische Philosoph",
+      "Konfuzius der weise Meister"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -157,9 +157,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welche Heilige Schrift gilt im Hinduismus als älteste u. grundlegendste Gesetzessammlung?",
     "answers": [
       "Die vier Veden Schriften",
-      "Die Sprüche der Thora",
-      "Das Evangelium Matthäus",
-      "Die Suren des Korans"
+      "Die Sprüche der Thora Gottes",
+      "Das Evangelium Matthäus Text",
+      "Die Suren des Korans Buch"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -265,9 +265,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welche Rolle nimmt Jesus von Nazaret im Islam (als 'Isa ibn Maryam') ein?",
     "answers": [
       "Ein hochverehrter Prophet Gottes",
-      "Der göttliche Sohn Allahs",
-      "Ein Gegner des Propheten",
-      "Keine Bedeutung im Koran"
+      "Der göttliche Sohn Allahs selbst",
+      "Ein Gegner des Propheten Mohammed",
+      "Keine Bedeutung im Koran Text"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -283,9 +283,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Wie heißt der jüdische Begriff für die Speisegesetze, die erlaubte u. verbotene Nahrung regeln?",
     "answers": [
       "Das Gebot der Kaschrut (koscher)",
-      "Die Pflicht Halal zu essen",
-      "Das Prinzip des Vegetarismus",
-      "Das Gebot der Abstinenz"
+      "Die Pflicht Halal zu essen stets",
+      "Das Prinzip des strengen Vegetarismus",
+      "Das Gebot der Abstinenz im Fasten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -319,9 +319,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welcher katholische Kirchenrat (1962–1965) öffnete die Kirche für den Dialog mit der modernen Welt u. anderen Religionen?",
     "answers": [
       "Das Zweite Vatikanische Konzil",
-      "Das Konzil von Trient 1545",
-      "Das Erste Vatikanische Konzil",
-      "Der Erlass von Nikaia 325"
+      "Das Konzil von Trient 1545 Rom",
+      "Das Erste Vatikanische Konzil 1870",
+      "Der Erlass von Nikaia 325 Jahr"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -355,9 +355,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was feiert das jüdische Pessach-Fest?",
     "answers": [
       "Befreiung des Volkes aus Ägypten",
-      "Empfang der zehn Gebote Sinai",
+      "Empfang der zehn Gebote am Sinai",
       "Erschaffung der Erde in 6 Tagen",
-      "Wiedereinweihung des Tempels"
+      "Wiedereinweihung des Tempels Roms"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -465,9 +465,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "In welchen Hauptsprachen wurden die Bücher des Alten u. Neuen Testaments ursprünglich verfasst?",
     "answers": [
       "Hebräisch u. Altgriechisch (Koine)",
-      "Latein u. Altarabisch",
-      "Aramäisch u. Altdeutsch",
-      "Ägyptisch u. Griechisch"
+      "Latein u. Altarabisch der Kirche",
+      "Aramäisch u. Altdeutsch der Mönche",
+      "Ägyptisch u. Griechisch der Antike"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -483,9 +483,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Historisch-kritische Methode' in der Bibelexegese?",
     "answers": [
       "Wissenschaftliche Auslegung der Texte",
-      "Wörtlicher Glaube an jeden Satz",
-      "Kritik an der Bibel als Lüge",
-      "Verbot des Lesens ohne Priester"
+      "Wörtlicher Glaube an jeden einzelnen Satz",
+      "Kritik an der Bibel als reine Lüge",
+      "Verbot des Lesens ohne den Priester"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -537,7 +537,7 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welche vier reformatorischen Grundsätze ('Solae') fassen Luthers Theologie zusammen?",
     "answers": [
       "Sola scriptura, fide, gratia, Christus",
-      "Sola ecclesia, papa, fide, scriptura",
+      "Sola ecclesia, papa, fide et scriptura",
       "Sola Maria, Christus, gratia, opera",
       "Sola ratio, natura, fide, scriptura"
     ],
@@ -555,9 +555,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Wo übersetzte Martin Luther 1522 das Neue Testament ins Deutsche?",
     "answers": [
       "Auf der Wartburg bei Eisenach",
-      "Im Kloster zum Heiligen Grab",
-      "Auf dem Reichstag zu Worms",
-      "In der Stadt Wittenberg"
+      "Im Kloster zum Heiligen Grab dort",
+      "Auf dem Reichstag zu Worms Stadt",
+      "In der Stadt Wittenberg direkt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -609,9 +609,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welcher evangelische Theologe u. Widerstandskämpfer wurde kurz vor Kriegsende 1945 im KZ Flossenbürg hingerichtet?",
     "answers": [
       "Dietrich Bonhoeffer Pfarrer",
-      "Martin Niemöller Pastor",
-      "Karl Barth Theologe",
-      "Paul Schneider Pfarrer"
+      "Martin Niemöller Pastor Bekenner",
+      "Karl Barth Theologe der Schweiz",
+      "Paul Schneider Pfarrer Bekenner"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -663,9 +663,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was beschreibt die 'Zwei-Reiche-Lehre' Martin Luthers?",
     "answers": [
       "Unterscheidung Welt u. Gottestreich",
-      "Trennung von Himmel u. Hölle",
+      "Trennung von Himmel u. Hölle Erde ganz",
       "Gleichheit aller Staaten der Erde",
-      "Herrschaft von Papst u. Kaiser"
+      "Herrschaft von Papst u. Kaiser Rom"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -843,7 +843,7 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was beschreibt die Pfingstgeschichte in der Apostelgeschichte der Bibel?",
     "answers": [
       "Ausschüttung des Heiligen Geistes",
-      "Auferstehung Jesu vom Tod",
+      "Auferstehung Jesu vom Tod am Grab",
       "Himmelfahrt Jesu in den Himmel",
       "Kreuzigung Jesu vor Jerusalem"
     ],
@@ -935,9 +935,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welches ethische Grundprinzip fordert die 'Goldene Regel'?",
     "answers": [
       "Behandle andere wie dich selbst",
-      "Auge um Auge, Zahn um Zahn",
-      "Der Stärkere setzt sich durch",
-      "Tue nur das, was dir nutzt"
+      "Auge um Auge, Zahn um Zahn stets",
+      "Der Stärkere setzt sich immer durch",
+      "Tue nur das, was dir selbst nutzt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -953,9 +953,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was beschreibt der christliche Begriff der 'Nächstenliebe' (Agape)?",
     "answers": [
       "Uneigennützige Zuwendung zum MENSCHEN",
-      "Liebe nur zu Freunden u. Familie",
-      "Romantische Gefühlsliebe Partner",
-      "Glaube an den eigenen Erfolg"
+      "Liebe nur zu Freunden u. der Familie sehr",
+      "Romantische Gefühlsliebe zum Partner",
+      "Glaube an den eigenen Erfolg allein"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -971,9 +971,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was versteht die christliche Ethik unter dem Auftrag zur 'Bewahrung der Schöpfung'?",
     "answers": [
       "Verantwortung für Umwelt u. Natur",
-      "Erforschung des Weltalls Technik",
-      "Ausbeutung aller Rohstoffe Erde",
-      "Bebauung der gesamten Erde"
+      "Erforschung des Weltalls u. Technik",
+      "Ausbeutung aller Rohstoffe der Erde",
+      "Bebauung der gesamten Erde total"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -989,9 +989,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was unterscheidet 'Aktive Sterbehilfe' von 'Passiver Sterbehilfe'?",
     "answers": [
       "Gezielte Tötung vs. Verzicht auf Behandlung",
-      "Gabe von Schmerzmitteln vs. Koma",
-      "Begleitung zu Hause vs. im Heim",
-      "Sterben im Alter vs. bei Unfall"
+      "Gabe von starken Schmerzmitteln vs. tiefem Koma",
+      "Begleitung zu Hause vs. im Pflegeheim",
+      "Sterben im Alter vs. bei einem Unfall"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1007,9 +1007,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was beschreibt die Arbeit von 'Hospizen' u. der 'Palliativmedizin'?",
     "answers": [
       "Würdevolles Leben bis zuletzt ermöglichen",
-      "Beschleunigung des Sterbeprozesses",
-      "Heilung unheilbarer Krankheiten",
-      "Isolierung von Schwerkranken"
+      "Beschleunigung des Sterbeprozesses gezielt",
+      "Heilung unheilbarer Krankheiten stets",
+      "Isolierung von Schwerkranken im Heim"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1061,9 +1061,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was beschreibt die 'Soziallehre' der katholischen Kirche?",
     "answers": [
       "Lehre von Gerechtigkeit u. Wohlfahrt",
-      "Vorschriften für den Gottesdienst",
-      "Geschichte des Papsttums in Rom",
-      "Regeln für die Mönchsorden"
+      "Vorschriften für den Gottesdienst Rom",
+      "Geschichte des Papsttums in Rom Stadt",
+      "Regeln für die Mönchsorden Klöster"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1115,9 +1115,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Vergebung' in der christlichen Beziehungsethik?",
     "answers": [
       "Neuanfang durch Erlassen von Schuld",
-      "Bestrafung des Täters vor Gericht",
-      "Vergessen der erlittenen Tat",
-      "Rechtfertigung des Unrechts"
+      "Bestrafung des Täters vor Gericht Recht",
+      "Vergessen der erlittenen Tat für immer",
+      "Rechtfertigung des begangenen Unrechts"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1151,9 +1151,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was versteht man unter 'Pazifismus'?",
     "answers": [
       "Grundsatzentscheidung gegen Gewalt",
-      "Recht auf Verteidigungskrieg",
-      "Bündnis von Militärstaaten",
-      "Aufrüstung zur Abschreckung"
+      "Recht auf einen Verteidigungskrieg",
+      "Bündnis von starken Militärstaaten",
+      "Aufrüstung zur militärischen Abschreckung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1187,9 +1187,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welcher Arzt u. Theologe prägte das ethische Prinzip der 'Ehrfurcht vor dem Leben'?",
     "answers": [
       "Albert Schweitzer Forscher",
-      "Maximilian Kolbe Pater",
-      "Martin Luther King Pastor",
-      "Romero Oscar Erzbischof"
+      "Maximilian Kolbe Pater Held",
+      "Martin Luther King Pastor USA",
+      "Romero Oscar Erzbischof Held"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1241,9 +1241,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was bedeutet der Begriff 'Konziliarer Prozess' für Frieden, Gerechtigkeit u. Bewahrung der Schöpfung?",
     "answers": [
       "Weltweite kirchliche Initiative",
-      "Prozess gegen Abtrünnige",
-      "Wahl des päpstlichen Stuhls",
-      "Bau von Öko-Kirchen weltweit"
+      "Prozess gegen Abtrünnige der Kirche",
+      "Wahl des päpstlichen Stuhls in Rom",
+      "Bau von Öko-Kirchen weltweit heute"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1259,7 +1259,7 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welche Haltung vertritt die 'Befreiungstheologie' in Lateinamerika?",
     "answers": [
       "Option für die Armen u. Unterdrückten",
-      "Unterstützung reicher Diktaturen",
+      "Unterstützung reicher Diktaturen Südens",
       "Rückzug aus allen weltlichen Fragen",
       "Reine Konzentration auf den Himmel"
     ],
@@ -1331,9 +1331,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welche Bedeutung hat das 'Sabbatjahr' (Schmita) im biblischen Recht?",
     "answers": [
       "Ruhejahr für Land u. Schuldenerlass",
-      "Jahr der Feierlichkeiten im Tempel",
-      "Fastenjahr für alle Bürger",
-      "Jahr des Krieges gegen Feinde"
+      "Jahr der großen Feierlichkeiten im Tempel",
+      "Fastenjahr für alle Bürger im Land",
+      "Jahr des Krieges gegen die Feinde"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1477,9 +1477,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welcher Religionskritiker erklärte Gott als eine Wunschprojektion des Menschen (Projektionstheorie)?",
     "answers": [
       "Ludwig Feuerbach Philosoph",
-      "Karl Marx Ökonom",
-      "Jean-Paul Sartre Denker",
-      "Charles Darwin Forscher"
+      "Karl Marx der bekannte Ökonom",
+      "Jean-Paul Sartre franz. Denker",
+      "Charles Darwin engl. Forscher"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1495,9 +1495,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Wie deutete Sigmund Freud den Gottesglauben aus psychoanalytischer Sicht?",
     "answers": [
       "Kindliche Wunsch- u. Vater-Illusion",
-      "Angeborener biologischer Reflex",
+      "Angeborener biologischer Reflex Trieb",
       "Höchste Stufe menschlicher Reife",
-      "Reine Täuschung durch Priester"
+      "Reine Täuschung durch die Priester"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1531,9 +1531,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was beschreibt das Bild vom 'mitleidenden Gott' (Dorothee Sölle) als Antwort auf die Auschwitz-Erfahrung?",
     "answers": [
       "Gott leidet mit den Opfern mit",
-      "Gott wollte die Vernichtung",
-      "Gott hat alle Macht verloren",
-      "Gott greift mit Wundern ein"
+      "Gott wollte die Vernichtung selbst",
+      "Gott hat alle seine Macht verloren",
+      "Gott greift stets mit Wundern ein"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1549,9 +1549,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was bedeutet die Aussage 'Gott ist dreifaltig' (Trinität) im christlichen Glauben?",
     "answers": [
       "Ein Gott in drei Personen",
-      "Drei verschiedene Götter",
-      "Gott in drei Welten",
-      "Gott, Engel u. Menschen"
+      "Drei verschiedene eigene Götter",
+      "Gott lebt in drei Welten fern",
+      "Gott, Engel u. alle Menschen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1567,9 +1567,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Anthropomorphismus' in Bezug auf Gottesbilder?",
     "answers": [
       "Menschgestaltige Vorstellung Gottes",
-      "Wissenschaftliche Gottesbeweise",
-      "Ablehnung jeglicher Bilder Gott",
-      "Verehrung von Gott in Tieren"
+      "Wissenschaftliche Beweise für Gott",
+      "Ablehnung jeglicher Bilder von Gott",
+      "Verehrung von Gott in Tierform"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1621,9 +1621,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was versteht die christliche Eschatologie unter dem Begriff 'Reich Gottes'?",
     "answers": [
       "Gottes gerechte Zukunft u. Gegenwart",
-      "Ein Staat auf der Landkarte",
-      "Das Gebäude der Kirche vor Ort",
-      "Ein Ort im Weltall hinter Sternen"
+      "Ein Staat auf der Landkarte Europas",
+      "Das Gebäude der Kirche vor Ort hier",
+      "Ein Ort im Weltall hinter den Sternen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1657,9 +1657,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was beschreibt das Phänomen des 'Sektenwesens' oder von 'Jugendreligionen'?",
     "answers": [
       "Totalitäre Führung u. Isolation",
-      "Offener Dialog mit der Welt",
-      "Freie Wahl der Bekenntnisse",
-      "Demokratische Wahl der Leiter"
+      "Offener Dialog mit der ganzen Welt",
+      "Freie Wahl der eigenen Bekenntnisse",
+      "Demokratische Wahl der Gruppenleiter"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1711,9 +1711,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was versteht man unter 'Panchronismus' oder 'Deismus'?",
     "answers": [
       "Gott erschuf Welt, greift nicht ein",
-      "Gott leitet jeden Tag direkt",
-      "Alles in der Natur ist Gott",
-      "Gott existiert nur im Gehirn"
+      "Gott leitet jeden Tag direkt ein",
+      "Alles in der Natur selbst ist Gott",
+      "Gott existiert nur im Gehirn allein"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1747,9 +1747,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welche Funktion haben 'Mythen' in den Religionen der Welt?",
     "answers": [
       "Deutung von Grundfragen des Lebens",
-      "Historisch genaue Berichte",
-      "Wissenschaftliche Erklärungen",
-      "Erfundene Lügengeschichten"
+      "Historisch ganz genaue Berichte",
+      "Wissenschaftliche exakte Erklärungen",
+      "Erfundene Lügengeschichten der Leute"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1765,9 +1765,9 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Was versteht man unter 'Fundamentaltheologie'?",
     "answers": [
       "Verantwortung des Glaubens vor Vernunft",
-      "Ausbildung von Kirchenvorständen",
-      "Bauen des Fundaments von Kirchen",
-      "Wörtliches Lesen aller Texte"
+      "Ausbildung von künftigen Kirchenvorständen",
+      "Bauen des Fundaments von neuen Kirchen",
+      "Wörtliches Lesen aller heiligen Texte"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1801,46 +1801,17 @@ const K9_RELIGION_QUESTIONS = [
     "question": "Welche Bedeutung hat die 'Eschatologie' in der christlichen Theologie?",
     "answers": [
       "Lehre von den letzten Dingen (Hoffnung)",
-      "Lehre von den Sakramenten Kirche",
-      "Erforschung der Urkirche Roms",
-      "Lehre von den Geboten Gottes"
+      "Lehre von den Sakramenten in der Kirche",
+      "Erforschung der frühen Urkirche Roms",
+      "Lehre von den zehn Geboten Gottes"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Eschatologie befasst sich mit den 'letzten Dingen' (Tod, Gericht, Vollendung der Welt u. Hoffnung auf das ewige Leben)."
-  },
-  {"id":"k9re101","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Goldene Regel: behandeln …","answers":["schlecht","wie man behandelt werden will","gleichgültig","hart"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Reziprozität."},
-  {"id":"k9re102","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Bibel: AT und …","answers":["Koran","NT","Psalmen","Evangelien only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"NT."},
-  {"id":"k9re103","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Tora im …","answers":["Christentum","Judentum","Islam","Buddhismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Judentum."},
-  {"id":"k9re104","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Koran im …","answers":["Judentum","Islam","Christentum","Hinduismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Islam."},
-  {"id":"k9re105","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Religionsfreiheit ist …","answers":["Privileg","Grundrecht","verboten","eine Religion"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Grundrecht."},
-  {"id":"k9re106","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Gewissen = …","answers":["Gesetz","innere Instanz","Zufall","Mode"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gewissen."},
-  {"id":"k9re107","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Dialog braucht …","answers":["Zwang","Respekt","Schweigen","Gleichschaltung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Respekt."},
-  {"id":"k9re108","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Nächstenliebe inkl. …","answers":["Familie only","Feindesliebe-Idee","Hass","Ignoranz"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Agape."},
-  {"id":"k9re109","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Ramadan = …","answers":["christlich","Fastenmonat Islam","Laubhütten","hinduistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fasten."},
-  {"id":"k9re110","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Schabbat = …","answers":["islamisch","jüdischer Ruhetag","Ostern","buddhistisch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ruhetag."},
-  {"id":"k9re111","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Buddhismus: Leid und …","answers":["Steuern","Befreiung","Krieg","Handel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Befreiung."},
-  {"id":"k9re112","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Ethik fragt nach …","answers":["Fakten","gutem Handeln","Dogma","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Moral."},
-  {"id":"k9re113","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Toleranz ≠ …","answers":["Respekt","Gleichgültigkeit Unrecht","Achtung","Dialog"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nicht Indifferenz."},
-  {"id":"k9re114","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Schöpfung → …","answers":["Zerstörung","Umweltethik","Ignoranz","Ausbeutung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bewahrung."},
-  {"id":"k9re115","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Gebet = …","answers":["Bitte only","Glaubensausdruck","Sport","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Praxis."},
-  {"id":"k9re116","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Menschenwürde: jeder …","answers":["nützlich","hat Wert","gläubig","erwachsen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Würde."},
-  {"id":"k9re117","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Rituale stiften …","answers":["Chaos","Ordnung","Zufall","Technik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Struktur."},
-  {"id":"k9re118","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Theodizee: Leid und …","answers":["Steuer","Gott","Sport","Chemie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gott."},
-  {"id":"k9re119","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Säkularisierung: … Bindung","answers":["Wachstum","Rückgang","Zwang","Theokratie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Rückgang."},
-  {"id":"k9re120","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Frieden oft …","answers":["Nebensache","zentrales Gut","Kriegsziel","Wirtschaft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Schalom."},
-  {"id":"k9re121","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Gleichnis lehrt durch …","answers":["Gesetz","Erzählbild","Formel","Statistik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Bild."},
-  {"id":"k9re122","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Exegese = …","answers":["Predigt","Auslegung","Chemie","Sport"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Auslegung."},
-  {"id":"k9re123","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Diakonie = …","answers":["Dogma","Hilfe","Krieg","Handel"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Hilfe."},
-  {"id":"k9re124","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Bioethik um …","answers":["Sport","Leben","Steuern","Wetter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Leben."},
-  {"id":"k9re125","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Spiritualität …","answers":["nur Kirche","auch individuell","nie ohne Dogma","nur Politik"],"correct":1,"difficulty":"mittel","points":10,"explanation":"vielfältig."},
-  {"id":"k9re126","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Fundamentalismus: Anspruch …","answers":["offen","eng absolut","dialogisch","wissenschaftlich"],"correct":1,"difficulty":"mittel","points":10,"explanation":"eng."},
-  {"id":"k9re127","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Abraham in …","answers":["einer Religion","Judentum/Christentum/Islam","Hinduismus","Buddhismus"],"correct":1,"difficulty":"mittel","points":10,"explanation":"abrahamitisch."},
-  {"id":"k9re128","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Verantwortung: … achten","answers":["Gegenwart only","Zukunft","Vergangenheit","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zukunft."},
-  {"id":"k9re129","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Pluralität fordert …","answers":["Einheit Zwang","Umgang mit Vielfalt","Ignoranz","Konflikt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Pluralismus."},
-  {"id":"k9re130","category":"k9_religion","area":"schule","grade":9,"subject":"religion","topic":"erweiterung","question":"Hoffnung ≠ …","answers":["billiger Optimismus","fundierte Zuversicht","Angst","Technikglaube"],"correct":1,"difficulty":"mittel","points":10,"explanation":"mehr."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_RELIGION_QUESTIONS = K9_RELIGION_QUESTIONS;

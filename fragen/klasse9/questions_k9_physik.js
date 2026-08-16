@@ -13,9 +13,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Welches Phänomen entdeckte Michael Faraday im Jahr 1831?",
     "answers": [
       "Die Elektromagnetische Induktion",
-      "Die Erfindung der Glühlampe",
-      "Die Entdeckung von Elektronen",
-      "Das Ohmsche Gesetz der Spannung"
+      "Die Entdeckung des Elektromagnetismus",
+      "Die Erfindung des Transformators",
+      "Die Entdeckung der Radioaktivität"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -319,9 +319,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Aus welchem Material besteht der Kern eines Transformators, um das Magnetfeld optimal zu bündeln?",
     "answers": [
       "Weicheisen / Eisenkern",
-      "Reines Kupfer Metall",
-      "Aluminium Baustoff",
-      "Kunststoff Isolator"
+      "Reines Kupfer und Zink",
+      "Aluminium und Kunststoff",
+      "Gehärtetes Glas Material"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -373,9 +373,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Wie lautet die Einheit der elektrischen Arbeit $W_el$ auf Stromabrechnungen im Alltag?",
     "answers": [
       "Kilowattstunde (kWh)",
-      "Kilowatt pro Stunde",
-      "Ampere pro Sekunde",
-      "Volt-Ampere pro Tag"
+      "Kilojoule pro Stunde",
+      "Ampere mal Sekunde",
+      "Volt mal Ohm pro Tag"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -391,9 +391,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Welche Schutzvorrichtung im Haushalt trennt bei zu hoher Stromstärke den Stromkreis automatisch ab?",
     "answers": [
       "Der Leitungsschutzschalter",
-      "Der Transformator Bauteil",
-      "Der Drehstromzähler Gerät",
-      "Der Gleichrichter Bauteil"
+      "Der Fehlerstromschutzschalter",
+      "Der Drehstromwandler Kasten",
+      "Der Hauptsicherungsautomat"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -409,9 +409,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Welcher Schutzschalter schützt Menschen vor lebensgefährlichen Körperströmen gegen Erde?",
     "answers": [
       "FI-Schutzschalter (RCD)",
-      "Schmelzsicherung alt",
-      "Hauptschalter Strom",
-      "Stromzähler Kasten"
+      "Leitungsschutzschalter (LS)",
+      "Die alte Schmelzsicherung",
+      "Der zentrale Hauptschalter"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -427,9 +427,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Wie nennt man die Polwender-Vorrichtung beim Gleichstrommotor, die die Stromrichtung im Rotor alle halbe Drehung umkehrt?",
     "answers": [
       "Der Kommutator Ring",
-      "Der Stator Gehäuse",
-      "Die Diode Bauteil",
-      "Der Kondensator"
+      "Der Rotor mit der Spule",
+      "Die feste Statorwicklung",
+      "Der Kondensator im Kreis"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -519,9 +519,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Wie lautet die Formel zur Berechnung der kinetischen Energie (Bewegungsenergie) $E_{kin}$?",
     "answers": [
       "E_kin = 0.5 * m * v^2",
-      "E_kin = m * g * h",
-      "E_kin = m * v",
-      "E_kin = 0.5 * m * g"
+      "E_kin = 0.5 * m^2 * v",
+      "E_kin = 0.5 * m * a",
+      "E_pot = 0.5 * m * g"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -591,9 +591,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Wie groß ist die Kraftersparnis bei einer einzelnen losen Rolle im Seilsystem?",
     "answers": [
       "Kraft wird halbiert (F/2)",
-      "Kraft wird geviertelt",
-      "Kraft bleibt unverändert",
-      "Kraft wird verdoppelt"
+      "Kraft wird geviertelt (F/4)",
+      "Kraft bleibt völlig gleich",
+      "Kraft wird verdoppelt (F*2)"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -897,9 +897,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Was beschreibt der Doppler-Effekt bei bewegten Schallquellen?",
     "answers": [
       "Frequenzänderung bei Bewegung",
-      "Verstärkung der Lautstärke",
-      "Echo an der Felswand",
-      "Verlangsamung des Schalls"
+      "Eine Verstärkung der Lautstärke",
+      "Ein Echo von einer Felswand",
+      "Verlangsamung der Schallwelle"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -917,9 +917,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Was beschreibt die Temperatur eines Stoffes mikroskopisch?",
     "answers": [
       "Mittlere kinetische Energie",
-      "Anzahl aller Elektronen",
-      "Gesamte Masse der Teilchen",
-      "Dichte der Atome im Gitter"
+      "Die Anzahl aller Elektronen",
+      "Gesamte Masse aller Teilchen",
+      "Dichte der Atome im Kristall"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -989,9 +989,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Welcher Stoff besitzt unter den alltäglichen Stoffen eine besonders hohe spezifische Wärmekapazität ($c \\approx 4,18\\,kJ/(kg\\cdot K)$)?",
     "answers": [
       "Flüssiges Wasser Stoff",
-      "Eisen Metall Block",
-      "Luft Gas Atmosphäre",
-      "Kupfer Metall Draht"
+      "Trockene Luft im Zimmer",
+      "Ein Block aus reinem Eisen",
+      "Ein Draht aus reinem Kupfer"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1043,9 +1043,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Schmelzwärme'?",
     "answers": [
       "Energie für Phase von fest zu flüssig",
-      "Energie zur Erwärmung um 1 Kelvin",
-      "Wärme beim Sieden der Flüssigkeit",
-      "Wärmeverlust beim Erstarren"
+      "Energie zur Erwärmung um genau 1 Kelvin",
+      "Der Wärmeverlust beim Erstarren des Stoffs",
+      "Die Wärme die beim Sieden frei wird"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1061,9 +1061,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Warum bleibt die Temperatur beim Sieden von Wasser trotz ständiger Wärmezufuhr bei $100^\\circ C$ konstant?",
     "answers": [
       "Energie wird für Phasenübergang genutzt",
-      "Wasser kann nicht heißer werden",
-      "Wärme entweicht sofort in die Luft",
-      "Das Thermometer stoppt am Limit"
+      "Das Wasser kann einfach nicht heißer werden",
+      "Die Wärme entweicht sofort in die Luft",
+      "Der Wasserdampf kühlt die Oberfläche ab"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1133,9 +1133,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Was bezeichnet man als 'Perpetuum Mobile zweiter Art'?",
     "answers": [
       "Unmögliche Maschine 100% Wärme umwandelt",
-      "Erzeuger von unendlich viel Energie",
-      "Maschine ohne jegliche Reibung",
-      "Uhr die mit Sonne angetrieben wird"
+      "Eine Maschine völlig ohne jegliche Reibung",
+      "Ein Erzeuger von unendlich viel Energie",
+      "Eine Uhr die nur mit Sonne angetrieben wird"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1151,9 +1151,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Welche vier Takt-Phasen durchläuft ein Viertakt-Ottomotor?",
     "answers": [
       "Ansaugen, Verdichten, Arbeiten, Ausstoßen",
-      "Zünden, Drücken, Kühlen, Ausstoßen",
-      "Einströmen, Heizen, Drehen, Kühlen",
-      "Einspritzen, Verbrennen, Saugen, Blasen"
+      "Zünden, Drücken, Kühlen und Ausstoßen",
+      "Einströmen, Erhitzen, Drehen und Kühlen",
+      "Einspritzen, Verbrennen, Saugen und Blasen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1169,9 +1169,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Was unterscheidet den Dieselmotor vom Ottomotor bezüglich der Zündung?",
     "answers": [
       "Selbstzündung durch hohe Kompression",
-      "Zündung durch elektrische Zündkerze",
-      "Zündung durch Dauerflamme außen",
-      "Keine Verbrennung im Zylinder"
+      "Zündung erfolgt durch eine Zündkerze",
+      "Zündung durch eine Dauerflamme außen",
+      "Es findet keine Verbrennung statt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1259,9 +1259,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Was beschreibt das Gay-Lussac-Gesetz für ein ideales Gas bei konstantem Druck ($p = const$)?",
     "answers": [
       "Volumen direkt proportional zu Temp",
-      "Druck umgekehrt zu Volumen",
-      "Volumen ist stets konstant",
-      "Temperatur sinkt bei Erwärmung"
+      "Druck ist umgekehrt proportional zu Vol",
+      "Das Volumen bleibt immer ganz konstant",
+      "Die Temperatur sinkt stark bei Erwärmung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1405,9 +1405,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Was unterscheidet Isotope desselben chemischen Elements voneinander?",
     "answers": [
       "Anzahl der Neutronen im Kern",
-      "Anzahl der Protonen im Kern",
-      "Anzahl der Elektronen Hülle",
-      "Eigene elektrische Ladung"
+      "Die Anzahl der Protonen im Kern",
+      "Anzahl der Elektronen in der Hülle",
+      "Die gesamte elektrische Ladung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1459,9 +1459,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Was für eine Natur besitzt die Gamma-Strahlung ($\\gamma$-Strahlung)?",
     "answers": [
       "Hochenergetische Elektromagnetische Welle",
-      "Strom aus geladenen Positronen",
-      "Strom aus schnellen Neutronen",
-      "Schallwelle sehr hoher Frequenz"
+      "Ein Strom aus schnell fliegenden Neutronen",
+      "Eine Schallwelle mit sehr hoher Frequenz",
+      "Ein Strom aus vielen geladenen Positronen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1477,9 +1477,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Womit lässt sich Alphastrahlung bereits wirksam abschirmen?",
     "answers": [
       "Ein einfaches Blatt Papier",
-      "Mehrere Zentimeter Blei",
-      "Eine dicke Betonschicht",
-      "Nur durch Vakuumkammer"
+      "Mehrere Zentimeter dickes Blei",
+      "Eine ziemlich dicke Betonschicht",
+      "Nur eine spezielle Vakuumkammer"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1495,9 +1495,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Welches Material eignet sich zur wirksamen Abschirmung von intensiver Gammastrahlung?",
     "answers": [
       "Dicke Schichten Blei / Beton",
-      "Ein normales Kleidungsstück",
-      "Eine dünne Alufolie Blatte",
-      "Ein Holzbrett zwei cm"
+      "Ein ganz normales Kleidungsstück",
+      "Eine sehr dünne Alufolienschicht",
+      "Ein einfaches Holzbrett von 2cm"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1549,9 +1549,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Welches Gerät dient zum Nachweis u. Zählen ionisierender Strahlungsvorgänge?",
     "answers": [
       "Das Geiger-Müller-Zählrohr",
-      "Das Elektrometer Statik",
-      "Das Barometer Luftdruck",
-      "Das Osziollograf Bild"
+      "Das elektrostatische Elektrometer",
+      "Das Barometer für den Luftdruck",
+      "Das Oszilloskop für die Spannung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1567,9 +1567,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Wie nennt man die Maßeinheit Becquerel (Bq) in der Kernphysik?",
     "answers": [
       "Einheit der Aktivität (Zerfall/s)",
-      "Einheit der Strahlendosis Körper",
-      "Einheit der Energie des Protons",
-      "Einheit der Halbwertszeit Jahre"
+      "Einheit der Strahlendosis im Körper",
+      "Einheit der Energie eines Protons",
+      "Einheit der Halbwertszeit in Jahren"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1657,9 +1657,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Welches Bauteil regelt die Kettenreaktion im Reaktor eines Kernkraftwerks durch Absorbieren von Neutronen?",
     "answers": [
       "Die Steuerstäbe / Regelstäbe",
-      "Der Kühlturm im Kraftwerk",
-      "Die Turbine im Wasserkreis",
-      "Der Generator Wechselstrom"
+      "Der Kühlturm des Kraftwerks",
+      "Die Turbine im Wasserkreislauf",
+      "Der Generator für Wechselstrom"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1675,9 +1675,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Welcher Stoff dient im Leichtwasserreaktor als Moderator zum Abbremsen schneller Neutronen?",
     "answers": [
       "Gewöhnliches Wasser (H2O)",
-      "Flüssiges Blei Metall",
-      "Heliumgas Hochdruck",
-      "Dicke Schichten Graphit"
+      "Flüssiges geschmolzenes Blei",
+      "Heliumgas unter hohem Druck",
+      "Dicke Schichten aus Graphit"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1747,9 +1747,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Welches Schutzprinzip besagt die '4A-Regel' im Strahlenschutz?",
     "answers": [
       "Abstand, Abschirmung, Aufenthaltszeit, Aktivität meiden",
-      "Atmen, Arbeiten, Abwarten, Ausruhen",
-      "Analyse, Auswertung, Anpassung, Abschaltung",
-      "Absaugen, Abspülen, Anziehen, Abtransport"
+      "Analyse, Auswertung, Anpassung und komplette Abschaltung",
+      "Absaugen, Abspülen, gründliches Anziehen, Abtransport",
+      "Atmen, Arbeiten, ausgiebiges Abwarten und langes Ausruhen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1783,9 +1783,9 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Mit welcher Methode kann man das Alter organischer Funde bis ca. 50.000 Jahre bestimmen?",
     "answers": [
       "Radiokohlenstoffmethode (C-14)",
-      "Uran-Bleisystem Analyse",
-      "Kalium-Argon-Methode alt",
-      "Röntgenstrukturanalyse"
+      "Die Uran-Blei-Methode zur Analyse",
+      "Die Kalium-Argon-Datierung",
+      "Eine genaue Röntgenstrukturanalyse"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1801,46 +1801,17 @@ const K9_PHYSIK_QUESTIONS = [
     "question": "Was beschreibt die 'Nulleffekt- bzw. Untergrundstrahlung' im Alltag?",
     "answers": [
       "Natürliche Umgebungsstrahlung",
-      "Strahlung durch Smartphones",
-      "Röntgenstrahlung beim Arzt",
-      "Wärmestrahlung der Sonne"
+      "Strahlung durch das Smartphone",
+      "Die Röntgenstrahlung beim Arzt",
+      "Die Wärmestrahlung der Sonne"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Die Nullexistenz/Untergrundstrahlung setzt sich aus kosmischer Strahlung u. terrestrischer Strahlung natürlicher Vorkommen zusammen."
-  },
-  {"id":"k9ph101","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"a = Δv/Δt ist …","answers":["Geschwindigkeit","Beschleunigung","Kraft","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"a."},
-  {"id":"k9ph102","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"F = m·a","answers":["0","Newton 2","Newton 3","Energie"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2. Gesetz."},
-  {"id":"k9ph103","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Eₖ = ½mv²","answers":["kein Ergebnis","kinetisch","Lage","Leistung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"kinetisch."},
-  {"id":"k9ph104","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Eₚ = mgh","answers":["kein Ergebnis","Lageenergie","kinetisch","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"potentiell."},
-  {"id":"k9ph105","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"p = m·v","answers":["Kraft","Impuls","Druck","Leistung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Impuls."},
-  {"id":"k9ph106","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"v = f·λ","answers":["kein Ergebnis","Welle","nur Schall","nur Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Welle."},
-  {"id":"k9ph107","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"U = R·I","answers":["kein Ergebnis","Ohm","Kirchhoff","Faraday"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ohm."},
-  {"id":"k9ph108","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"P = U·I","answers":["kein Ergebnis","Leistung","Energie","Ladung"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Leistung."},
-  {"id":"k9ph109","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Einheit Kraft?","answers":["J","N","W","V"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Newton."},
-  {"id":"k9ph110","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"c ≈ …","answers":["340 m/s","3·10⁸ m/s","3 m/s","300 km/h"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Licht."},
-  {"id":"k9ph111","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Schall braucht …","answers":["Vakuum","Medium","Licht","Magnete"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Medium."},
-  {"id":"k9ph112","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"W = F·s","answers":["kein Ergebnis","Arbeit","Rotation","Gas"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Arbeit."},
-  {"id":"k9ph113","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"p = F/A","answers":["kein Ergebnis","Druck","F·A","A/F"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Druck."},
-  {"id":"k9ph114","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Ladung Einheit?","answers":["V","C","Ω","W"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Coulomb."},
-  {"id":"k9ph115","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Induktion erzeugt …","answers":["Masse","Spannung","Wärme ohne Feld","Licht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Spannung."},
-  {"id":"k9ph116","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"α-Teilchen = …","answers":["Elektron","He-Kern","Photon","Neutron"],"correct":1,"difficulty":"mittel","points":10,"explanation":"α."},
-  {"id":"k9ph117","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Halbwertszeit bis …","answers":["alles","Hälfte","nichts","¾"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Hälfte."},
-  {"id":"k9ph118","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"η = Nutzen/Aufwand","answers":["kein Ergebnis","richtig","η>1","egal"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k9ph119","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Auftrieb = Gewicht …","answers":["Körpers","verdrängter Flüssigkeit","Luft 0","Behälters"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Archimedes."},
-  {"id":"k9ph120","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Zentripetal zum …","answers":["außen","Zentrum","tangential","zufällig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zentrum."},
-  {"id":"k9ph121","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"E = h·f","answers":["kein Ergebnis","Photon","Schall","Impuls"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Photon."},
-  {"id":"k9ph122","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Brechung zum Lot in … Medium","answers":["dünner","dichter","gleich","Metall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"dichter."},
-  {"id":"k9ph123","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Kondensator speichert …","answers":["Impuls","Ladung","Neutronen","Masse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Ladung."},
-  {"id":"k9ph124","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Trafo U ~ N","answers":["kein Ergebnis","richtig","unabhängig","nur I"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k9ph125","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"0 K ≈ …","answers":["0 °C","−273 °C","100 °C","−100 °C"],"correct":1,"difficulty":"mittel","points":10,"explanation":"−273."},
-  {"id":"k9ph126","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"f = 1/T","answers":["kein Ergebnis","richtig","f=T","f=2T"],"correct":1,"difficulty":"mittel","points":10,"explanation":"richtig."},
-  {"id":"k9ph127","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Reibung … Bewegung","answers":["fördert","hemmt","löscht Masse","erzeugt Weg"],"correct":1,"difficulty":"mittel","points":10,"explanation":"hemmt."},
-  {"id":"k9ph128","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Sicherung gegen …","answers":["Unterspannung","Überstrom","Magnet","Schall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Überstrom."},
-  {"id":"k9ph129","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"LED wandelt in …","answers":["Wärme nur","Licht","Schall","Druck"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Licht."},
-  {"id":"k9ph130","category":"k9_physik","area":"schule","grade":9,"subject":"physik","topic":"erweiterung","question":"Energie wird …","answers":["vernichtet","umgewandelt","aus nichts","nur vernichtet"],"correct":1,"difficulty":"mittel","points":10,"explanation":"umgewandelt."}
+  }
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_PHYSIK_QUESTIONS = K9_PHYSIK_QUESTIONS;

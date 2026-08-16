@@ -49,9 +49,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was beschreibt der Fachbegriff 'Peripetie' im Drama?",
     "answers": [
       "Plötzlicher Umschlag Handlung",
-      "Die Vorstellung der Figuren",
-      "Schlussrede aller Personen",
-      "Das Retardierende Moment"
+      "Die Vorstellung aller Figuren",
+      "Schlussrede aller Personen im Text",
+      "Das stark Retardierende Moment"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -103,9 +103,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was bezeichnet man im Dramentext als 'Regieanweisung'?",
     "answers": [
       "Hinweise für die Darstellung",
-      "Der gesprochene Haupttext",
-      "Die Kritik des Rezensenten",
-      "Das Inhaltsverzeichnis Werk"
+      "Der gesprochene Haupttext selbst",
+      "Die Kritik des Rezensenten dazu",
+      "Das Inhaltsverzeichnis des Werkes"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -121,9 +121,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welcher Erzähler kennt alle Gedanken, Gefühle u. die Zukunft aller Figuren?",
     "answers": [
       "Der Auktoriale Erzähler",
-      "Der Personale Erzähler",
-      "Der Ich-Erzähler Text",
-      "Der Neutrale Erzähler"
+      "Der ganz Personale Erzähler",
+      "Der Ich-Erzähler im Text",
+      "Der Neutrale Erzähler dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -193,9 +193,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welches Stilmittel liegt bei dem Ausdruck 'Rabenschwarz' oder 'Felsenfest' vor?",
     "answers": [
       "Eine Metapher Sprachbild",
-      "Eine Ellipse Satzteil",
-      "Eine Alliteration Klang",
-      "Eine reine Klimax Steig"
+      "Eine Metapher als Sprachbild",
+      "Eine Ellipse im Satzteil hier",
+      "Eine reine Klimax Steigerung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -211,9 +211,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welches Stilmittel beschreibt die Wendung 'Der stumme Schrei'?",
     "answers": [
       "Ein Oxymoron Widerspruch",
-      "Eine reine Alliteration",
-      "Ein Pleonasmus Wortpaar",
-      "Eine Klimax Steigerung"
+      "Eine reine Alliteration hier",
+      "Ein Pleonasmus als Wortpaar",
+      "Eine reine Klimax Steigerung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -265,9 +265,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welches Reimschema liegt bei der Struktur [a b a b] vor?",
     "answers": [
       "Der Kreuzreim Strophe",
-      "Der Paarreim Strophe",
-      "Der Umarmende Reim",
-      "Der Schweifreim Vers"
+      "Der Kreuzreim in Strophe",
+      "Der Paarreim in der Strophe",
+      "Der Schweifreim im Vers"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -483,9 +483,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was unterscheidet eine lineare von einer dialektischen Erörterung?",
     "answers": [
       "Dialektisch wiegt Pro/Contra ab",
-      "Lineare behandelt zwei Seiten",
-      "Dialektisch hat keine Lösung",
-      "Lineare ist stets ein Brief"
+      "Lineare behandelt nur eine Seite",
+      "Dialektisch hat keine klare Lösung",
+      "Lineare ist stets ein langer Brief"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -501,9 +501,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie nennt man die einleitende Ausgangsaussage einer Erörterung?",
     "answers": [
       "Die These / Behauptung",
-      "Die Synthese / Lösung",
-      "Das Beispiel / Beleg",
-      "Das Argument / Grund"
+      "Die Synthese als Lösung",
+      "Das Beispiel als Beleg dafür",
+      "Das Argument mit dem Grund"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -609,9 +609,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was bezeichnet man als 'normatives Argument'?",
     "answers": [
       "Berufung auf Werte u. Normen",
-      "Verweis auf Einzelbeispiel",
-      "Nennung von Statistiken",
-      "Anführung von Experten"
+      "Verweis auf ein Einzelbeispiel",
+      "Nennung von amtlichen Statistiken",
+      "Anführung von echten Experten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -645,9 +645,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was versteht man unter einem 'analogisierenden Argument'?",
     "answers": [
       "Vergleich mit anderem Bereich",
-      "Aufzählung von harten Zahlen",
-      "Widerlegung des Gegners",
-      "Gefühlsbetonter Appell Leser"
+      "Aufzählung von vielen harten Zahlen",
+      "Widerlegung der These des Gegners",
+      "Gefühlsbetonter Appell an den Leser"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -735,9 +735,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was beschreibt der Fachbegriff 'Muster der Gegenargumentation'?",
     "answers": [
       "Gegnerische These entkräften",
-      "Zustimmung zu allen Punkten",
-      "Erfindung von Märchen",
-      "Wiederholung eigener Thesen"
+      "Zustimmung zu allen seinen Punkten",
+      "Erfindung von neuen Märchen",
+      "Wiederholung der eigenen Thesen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -771,9 +771,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welche Konjunktion leitet einen eingeräumten Konzessivsatz ein?",
     "answers": [
       "Obwohl / Obgleich Satz",
-      "Weil / Da Satz",
-      "Damit / Dass Satz",
-      "Sodass / Deshalb Satz"
+      "Weil / Da im Kausalsatz",
+      "Damit / Dass im Finalsatz",
+      "Sodass / Deshalb im Satz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -861,9 +861,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was charakterisiert eine 'Reportage'?",
     "answers": [
       "Erlebnisbericht mit Fakten",
-      "Märchenhafte Phantasie",
-      "Reines Gedicht mit Reim",
-      "Gesetzesvorlage Minister"
+      "Märchenhafte reine Phantasie",
+      "Reines Gedicht mit festem Reim",
+      "Gesetzesvorlage des Ministers"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -897,9 +897,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie nennt man die Gegenüberstellung von Pro u. Contra im ersten Entwurf (Stichwortsammlung)?",
     "answers": [
       "Die Stoffsammlung / Liste",
-      "Das finale Skript Buch",
-      "Das Dingsymbol Drama",
-      "Die Metrik Analyse"
+      "Das finale Skript des Buches",
+      "Das Dingsymbol im Drama",
+      "Die Metrik in der Analyse"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -953,9 +953,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wann verwendet man den Konjunktiv II anstelle des Konjunktivs I in indirekter Rede?",
     "answers": [
       "Falls K1 mit Indikativ gleich",
-      "Wenn die Aussage wahr ist",
-      "Immer bei Höflichkeitsform",
-      "Sobald ein Komma fehlt"
+      "Wenn die Aussage klar wahr ist",
+      "Immer bei der Höflichkeitsform",
+      "Sobald im Satz ein Komma fehlt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1007,9 +1007,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie bildet man das 'Vorgangspassiv' im Präsens?",
     "answers": [
       "werden + Partizip II",
-      "sein + Partizip II",
-      "haben + Partizip II",
-      "werden + Infinitiv"
+      "sein + Partizip II im Satz",
+      "haben + Partizip II hier",
+      "werden + Infinitiv im Satz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1097,9 +1097,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie nennt man die drei Modi des Verbs im Deutschen?",
     "answers": [
       "Indikativ, Konjunktiv, Imperativ",
-      "Präsens, Präteritum, Perfekt",
-      "Genitiv, Dativ, Akkusativ",
-      "Aktiv, Passiv, Transitiv"
+      "Präsens, Präteritum und Perfekt hier",
+      "Genitiv, Dativ und der Akkusativ",
+      "Aktiv, Passiv und das Transitiv"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1241,9 +1241,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie nennt man die zeitliche Überinstimmung von Haupt- u. Nebensatz?",
     "answers": [
       "Gleichzeitigkeit Tempus",
-      "Vorzeitigkeit Tempus",
-      "Nachzeitigkeit Tempus",
-      "Unzeitigkeit Tempus"
+      "Vorzeitigkeit im Tempus hier",
+      "Nachzeitigkeit im Tempus dort",
+      "Unzeitigkeit im Tempus dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1277,9 +1277,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welche Zeitenfolge erfordert Vorzeitigkeit, wenn der Hauptsatz im Präteritum steht?",
     "answers": [
       "Nebensatz Plusquamperfekt",
-      "Nebensatz im Perfekt",
-      "Nebensatz im Präsens",
-      "Nebensatz im Futur II"
+      "Nebensatz steht im Perfekt",
+      "Nebensatz steht im Präsens",
+      "Nebensatz steht im Futur II"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1387,9 +1387,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welche Ersatzprobe zeigt, dass man das Wort mit einfachem 'das' schreibt?",
     "answers": [
       "Ersetzbarkeit durch dieses/welches",
-      "Ersetzbarkeit durch weil/da",
-      "Ersetzbarkeit durch obwohl",
-      "Ersetzbarkeit durch und/oder"
+      "Ersetzbarkeit durch weil oder da nur",
+      "Ersetzbarkeit durch obwohl allein hier",
+      "Ersetzbarkeit durch und oder oder nur"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1423,9 +1423,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wann schreibt man Verbindungen aus Nomen u. Verb getrennt (z. B. 'Rad fahren')?",
     "answers": [
       "Nomen behält Eigenständigkeit",
-      "Verb steht am Ende Satzes",
-      "Wenn ein Komma folgt",
-      "Ausnahmslos in allen Fällen"
+      "Verb steht am Ende des Satzes",
+      "Wenn im Satz ein Komma folgt",
+      "Ausnahmslos in allen Fällen so"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1513,9 +1513,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie kennzeichnet man Auslassungen innerhalb eines wörtlichen Zitats korrekt?",
     "answers": [
       "Durch drei Punkte in eckigen Klammern [...]",
-      "Durch ein Ausrufezeichen im Satz",
-      "Durch fette Schrift im Wort",
-      "Durch Unterstreichung des Textes"
+      "Durch drei Punkte in runden Klammern hier",
+      "Durch ein Ausrufezeichen mitten im Satz",
+      "Durch eine Unterstreichung des ganzen Textes"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1603,9 +1603,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'Algorithmus' bei Suchmaschinen?",
     "answers": [
       "Rechenregel zur Sortierung",
-      "Der Bildschirm des PCs",
-      "Ein Computervirus im Netz",
-      "Das Passwort des Nutzers"
+      "Der Bildschirm des PCs zu Hause",
+      "Ein Computervirus im Netz dort",
+      "Das Passwort des Nutzers dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1621,9 +1621,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was beschreibt das Phänomen der 'Filterblase' (Filter Bubble)?",
     "answers": [
       "Personalisierte Inhalte Netzes",
-      "Reinigen von Computer-Viren",
-      "Schutz vor Hacker-Angriffen",
-      "Sperrung von Nutzerkonten"
+      "Reinigen von alten Computer-Viren",
+      "Schutz vor üblen Hacker-Angriffen",
+      "Sperrung von aktiven Nutzerkonten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1693,9 +1693,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Steht vor entgegensetzenden Konjunktionen wie 'aber', 'sondern', 'jedoch' ein Komma?",
     "answers": [
       "Ja immer zwingend Komma",
-      "Nein niemals ein Komma",
-      "Nur im Nebensatz Komma",
-      "Nur bei Fragen Komma"
+      "Nein, niemals ein Komma dort",
+      "Nur im Nebensatz ein Komma",
+      "Nur bei Fragen ein Komma dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1729,9 +1729,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie schreibt man Wochentage mit Tageszeiten (z. B. dienstagabends)?",
     "answers": [
       "dienstagabends klein zusammen",
-      "Dienstag Abends getrennt",
-      "Dienstagabends groß zusammen",
-      "dienstag Abends gemischt"
+      "Dienstag Abends ganz getrennt",
+      "Dienstagabends groß und zusammen",
+      "dienstag Abends klein gemischt"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2008,9 +2008,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welche Regel gilt für Kommas bei Infinitivgruppen mit 'um zu', 'ohne zu' oder 'statt zu'?",
     "answers": [
       "Sie müssen durch Komma abgetrennt werden",
-      "Ein Komma ist in jedem Fall verboten",
-      "Komma steht nur bei mehr als 5 Wörtern",
-      "Komma hängt vom Genus des Nomens ab"
+      "Ein Komma ist in jedem Fall verboten hier",
+      "Komma steht nur bei mehr als fünf Wörtern",
+      "Komma hängt vom Genus des Nomens hier ab"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2080,8 +2080,8 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wann schreibt man Verbindungen aus Nomen u. Verb getrennt (z. B. 'Rad fahren')?",
     "answers": [
       "Wenn das Nomen seine Eigenständigkeit behält",
-      "Wenn das Verb im Infinitiv steht",
-      "Wenn die Verbindung am Satzanfang steht",
+      "Wenn das Nomen stets im Infinitiv steht",
+      "Wenn die Verbindung am Satzanfang selbst steht",
       "Wenn das Nomen im Akkusativ gebraucht wird"
     ],
     "correct": 0,
@@ -2116,9 +2116,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welches Satzglied erfragt man mit 'Wen oder Was?'",
     "answers": [
       "Das Akkusativobjekt (Direktes Objekt)",
-      "Das Dativobjekt (Indirektes Objekt)",
-      "Das Subjekt des Gesamtsatzes",
-      "Das Präpositionalobjekt mit Auf"
+      "Das Dativobjekt als Indirektes Objekt",
+      "Das Subjekt des gesamten Satzes hier",
+      "Das Präpositionalobjekt mit Auf davor"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2134,9 +2134,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welche Art von Adverbialbestimmung erfragt man mit 'Warum?' oder 'Aus welchem Grund?'",
     "answers": [
       "Adverbialbestimmung des Grundes (Kausal)",
-      "Adverbialbestimmung der Zeit (Temporal)",
-      "Adverbialbestimmung des Orts (Lokal)",
-      "Adverbialbestimmung der Art u. Weise"
+      "Adverbialbestimmung der Zeit als Temporal",
+      "Adverbialbestimmung des Orts als Lokal",
+      "Adverbialbestimmung der Art und Weise so"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2298,9 +2298,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welche Angaben gehören zwingend in den Einleitungssatz (BASAT) einer Textanalyse?",
     "answers": [
       "Titel, Autor, Textart, Thema, Erscheinungsjahr",
-      "Eigene Meinung u. Fazit zum Ausgang",
-      "Biografie des Autors u. Notenbild",
-      "Zusammenfassung aller Kapitel des Buchs"
+      "Eigene Meinung und ein ausführliches Fazit zum Ausgang",
+      "Biografie des Autors und sein gesamtes Notenbild dazu",
+      "Zusammenfassung aller Kapitel des ganzen Buches"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2352,9 +2352,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was versteht man unter dem 'retardierenden Moment' in einem Drama?",
     "answers": [
       "Handlungsverzögerung vor der Entscheidung",
-      "Einführung aller Personen im 1. Akt",
-      "Die finale Lösung des Hauptkonflikts",
-      "Den Zusammenstoß der Gegenspieler"
+      "Einführung aller Personen im ersten Akt",
+      "Die finale Lösung des Hauptkonflikts hier",
+      "Den Zusammenstoß der beiden Gegenspieler"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2370,9 +2370,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welche Erzielung beabsichtigte Friedrich Schiller mit dem 'Theater als moralische Anstalt'?",
     "answers": [
       "Erziehung u. Läuterung des Publikums",
-      "Reine Unterhaltung ohne tiefen Sinn",
-      "Kritik an den Schulformen der Zeit",
-      "Verkauf von möglichst vielen Karten"
+      "Reine Unterhaltung ganz ohne tiefen Sinn",
+      "Kritik an den Schulformen jener Zeit",
+      "Verkauf von möglichst vielen Karten dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2388,9 +2388,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was beschreibt ein 'auktorialer Erzähler' in epischen Werken?",
     "answers": [
       "Allwissender Erzähler außerhalb des Geschehens",
-      "Erzähler, der nur sichtbare Taten beschreibt",
-      "Hauptfigur, die in Ich-Form spricht",
-      "Neutraler Beobachter ohne Inneneinblick"
+      "Allwissender Erzähler mitten im Geschehen",
+      "Hauptfigur, die nur in Ich-Form erzählt",
+      "Neutraler Beobachter ganz ohne jeglichen Inneneinblick"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2406,9 +2406,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was zeichnet eine 'personale Erzählsituation' aus?",
     "answers": [
       "Erzähler schlüpft in Perspektive einer Figur",
-      "Erzähler weiß alles über die Zukunft",
-      "Geschehen wird komplett objektiv gefilmt",
-      "Erzähler spricht die Leser direkt an"
+      "Erzähler, der nur sichtbare Taten beschreibt",
+      "Hauptfigur, die stets nur Fragen stellt",
+      "Neutraler Beobachter ganz ohne Inneneinblick"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2460,9 +2460,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was bedeutet der Begriff 'Metapher' im literarischen Sprachgebrauch?",
     "answers": [
       "Bildhafter Vergleich ohne das Wort 'wie'",
-      "Krasse Übertreibung eines Sachverhalts",
-      "Vermenschlichung von abstrakten Dingen",
-      "Scheinbare Frage ohne erwartete Antwort"
+      "Krasse Übertreibung eines Sachverhalts hier",
+      "Vermenschlichung von abstrakten Dingen dort",
+      "Scheinbare Frage ohne erwartete Antwort hier"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2496,9 +2496,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was versteht man unter einer 'rhetorischen Frage'?",
     "answers": [
       "Frage, auf die keine Antwort erwartet wird",
-      "Komplizierte Grammatikfrage in Prüfungen",
-      "Frage nach dem Täter in einem Krimi",
-      "Frage zur Feststellung der Uhrzeit"
+      "Komplizierte Grammatikfrage in Prüfungen dort",
+      "Frage nach dem Täter in einem alten Krimi",
+      "Frage zur Feststellung der genauen Uhrzeit"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2514,9 +2514,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was zeichnet die Epoche des 'Sturm und Drang' (ca. 1765–1785) aus?",
     "answers": [
       "Gefühl, Geniekult u. Jugendliche Rebellion",
-      "Strenges Befolgen antiker Formregeln",
-      "Rein wissenschaftliche Welterklärung",
-      "Lobpreisung von Kirche u. Gottesgnadentum"
+      "Strenges Befolgen antiker Formregeln dort",
+      "Rein wissenschaftliche Welterklärung heute",
+      "Lobpreisung von Kirche und Gottesgnadentum"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2550,9 +2550,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was forderten die Vertreter der 'Aufklärung' (ca. 1720–1800)?",
     "answers": [
       "Gebrauch des eigenen Verstandes (Vernunft)",
-      "Rückkehr zu mittelalterlichen Werten",
-      "Ablehnung von Bildung u. Wissenschaft",
-      "Befolgung von Aberglauben u. Mythen"
+      "Rückkehr zu rein mittelalterlichen Werten",
+      "Ablehnung von Bildung und Wissenschaft dort",
+      "Befolgung von Aberglauben und alten Mythen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2604,9 +2604,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie nennt man das Reimschema abba?",
     "answers": [
       "Der Umarmende Reim (Blockreim)",
-      "Der Kreuzreim in Gedichten",
-      "Der Paarreim zweier Zeilen",
-      "Der Schweifreim in Strophen"
+      "Der Kreuzreim in vielen Gedichten",
+      "Der Paarreim von zwei Zeilen",
+      "Der Schweifreim in einer Strophe"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2622,9 +2622,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie nennt man den regelmäßigen Wechsel von betonten u. unbetonten Silben im Gedicht?",
     "answers": [
       "Das Metrum (Versmaß) des Gedichts",
-      "Das Strophenbild auf der Seite",
-      "Die Alliteration im Versbau",
-      "Den Zeilensprung (Enjambement)"
+      "Das Strophenbild auf der Seite hier",
+      "Die Alliteration im Versbau selbst",
+      "Den Zeilensprung als Enjambement"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2676,9 +2676,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was beschreibt ein 'Enjambement' in der Lyrik?",
     "answers": [
       "Zeilensprung über das Versende hinaus",
-      "Verwendung von Mundart im Gedicht",
-      "Vollkommener Verzicht auf Reime",
-      "Ein abruptes Ende einer Strophe"
+      "Verwendung von Mundart im Gedicht dort",
+      "Vollkommener Verzicht auf jeden Reim",
+      "Ein abruptes Ende einer ganzen Strophe"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2694,9 +2694,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'Lyrisches Ich'?",
     "answers": [
       "Fiktiver Sprecher innerhalb des Gedichts",
-      "Der reale Dichter in seinem Leben",
-      "Der Leser eines Gedichtbandes",
-      "Eine historische Figur des Dramas"
+      "Der reale Dichter in seinem eigenen Leben",
+      "Der Leser eines gesamten Gedichtbandes",
+      "Eine historische Figur im alten Drama"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2732,9 +2732,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Aus welchen drei Grundbausteinen besteht ein klassisches Argument?",
     "answers": [
       "Behauptung, Begründung u. Beispiel",
-      "Einleitung, Hauptteil u. Schluss",
-      "These, Gegenthese u. Kompromiss",
-      "Zitat, Beleg u. Zusammenfassung"
+      "Einleitung, Hauptteil und der Schluss",
+      "These, Gegenthese und ein Kompromiss",
+      "Zitat, Beleg und die Zusammenfassung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2840,9 +2840,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Welches W-Fragen-Schema deckt ein journalistischer 'Bericht' ab?",
     "answers": [
       "Wer, Was, Wann, Wo, Wie, Warum, Welche Folgen?",
-      "Wer, Wohin, Wie viel, Welcher Preis?",
-      "Warum, Wie oft, Wogegen, Welcher Sinn?",
-      "Wie lange, Welches Gefallen, Wer nicht?"
+      "Wer, Was, Wann, Wo und Wie genau dabei",
+      "Warum, Wie oft, Wogegen und Welcher Sinn",
+      "Wie lange, Welches Gefallen und wer nicht heute"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2876,9 +2876,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie kennzeichnet man Wörtliche Zitate im eigenen Analysetext korrekt?",
     "answers": [
       "Mit Anführungszeichen u. Zeilenangabe",
-      "Durch Kursivschrift ohne Nachweis",
-      "Durch Unterstreichung u. Ausruf",
-      "Durch Fett-Druck am Absatzende"
+      "Durch Kursivschrift ganz ohne Nachweis",
+      "Durch Unterstreichung und ein Ausrufezeichen",
+      "Durch Fett-Druck direkt am Absatzende"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2894,9 +2894,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was bedeutet die Abkürzung 'f.' bzw. 'ff.' bei Zeilenangaben (z. B. 'Z. 14f.')?",
     "answers": [
       "f. = folgende Zeile, ff. = folgende Zeilen",
-      "f. = fehlerhafte Zeile, ff. = fast alle",
-      "f. = fortlaufende Seite, ff. = Fußnote",
-      "f. = fremde Zeile, ff. = freie Zeilen"
+      "f. = fehlerhafte Zeile, ff. = fast alle Zeilen",
+      "f. = fortlaufende Seite, ff. = die Fußnote",
+      "f. = fremde Zeile, ff. = die freien Zeilen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2930,9 +2930,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was beschreibt der Begriff 'Fake News'?",
     "answers": [
       "Gezielt verbreitete Falschmeldungen",
-      "Veraltete Nachrichten vom Vortag",
-      "Kritische Berichte der Opposition",
-      "Satirische Theaterstücke im Funk"
+      "Veraltete Nachrichten vom letzten Vortag",
+      "Kritische Berichte der ganzen Opposition",
+      "Satirische Theaterstücke im Rundfunk"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2948,9 +2948,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was versteht man unter dem Begriff 'Boulevardpresse'?",
     "answers": [
       "Presse mit reißerischen Themen u. großen Bildern",
-      "Wissenschaftliche Fachzeitschriften",
-      "Amtliche Veröffentlichungen der Stadt",
-      "Kostenlose Zeitungen für Kulturforen"
+      "Presse mit reißerischen großen Themenbildern hier",
+      "Wissenschaftliche Fachzeitschriften der Uni",
+      "Amtliche Veröffentlichungen der Stadt dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2984,9 +2984,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was versteht man unter 'Framing' in der Berichterstattung?",
     "answers": [
       "Einbettung von Fakten in bestimmte Deutungsrahmen",
-      "Einrahmen von Zeitungsausschnitten an Wänden",
-      "Ausschneiden von Szenen aus Videos",
-      "Formatierung der Überschrift in Fett-Druck"
+      "Einrahmen von alten Zeitungsausschnitten an Wänden",
+      "Ausschneiden von einzelnen Szenen aus Videos",
+      "Formatierung der Überschrift in Fett-Druck hier"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3002,9 +3002,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie ist eine 'Rezension' aufgebaut?",
     "answers": [
       "Inhaltsüberblick u. kritische Bewertung des Werks",
-      "Reine Aufzählung der Darsteller u. Kosten",
-      "Vollständiger Nachdruck des Buchtextes",
-      "Eine Zusammenstellung von Kundenrechnungen"
+      "Reine Aufzählung der Darsteller und der Kosten",
+      "Vollständiger Nachdruck des ganzen Buchtextes",
+      "Eine Zusammenstellung von alten Kundenrechnungen dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3020,9 +3020,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was zeichnet den Texttyp 'Rede' aus?",
     "answers": [
       "Mündlicher Vortrag zur Überzeugung des Publikums",
-      "Geschriebener Brief an eine Behörde",
-      "Protokoll einer Vereinssitzung",
-      "Gedicht mit festem Reimschema"
+      "Geschriebener Brief an eine amtliche Behörde dort",
+      "Protokoll einer sehr wichtigen Vereinssitzung",
+      "Gedicht mit einem festen Reimschema dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3056,9 +3056,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Wie unterscheidet sich die 'Expressive Funktion' von der 'Informationsfunktion'?",
     "answers": [
       "Drückt Gefühle u. Haltung des Sprechers aus",
-      "Liefert nur neutrale Zahlen u. Daten",
-      "Fordert zum sofortigen Kauf auf",
-      "Dient der Kontaktaufnahme am Telefon"
+      "Liefert nur neutrale Zahlen und Daten hierbei",
+      "Fordert zum sofortigen Kauf einer Ware auf",
+      "Dient nur der Kontaktaufnahme am Telefon"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3110,9 +3110,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was versteht man unter 'Sachtextanalysen' im Deutschunterricht?",
     "answers": [
       "Untersuchung von Struktur, Argumenten u. Sprache",
-      "Kritik am Layout u. der Schriftgröße",
-      "Erfindung einer Fortsetzung des Textes",
-      "Auswendiglernen des gesamten Inhalts"
+      "Erfindung einer eigenen Fortsetzung des ganzen Textes",
+      "Kritik am Layout und an der Schriftgröße hier",
+      "Auswendiglernen des gesamten Inhalts davon"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3146,9 +3146,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was beschreibt ein 'Autoritätsargument'?",
     "answers": [
       "Stützung der These durch Meinung von Experten",
-      "Hinweis auf eigene persönliche Erfahrungen",
+      "Hinweis auf eigene persönliche Erfahrungen hier",
       "Verweis auf die allgemeine Mehrheitsmeinung",
-      "Nennung von unüberprüfbaren Gefühlen"
+      "Nennung von unüberprüfbaren Gefühlen dort"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3164,9 +3164,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was kennzeichnet ein 'normatives Argument'?",
     "answers": [
       "Berufung auf allgemein anerkannte Werte u. Normen",
-      "Nennung von statistischen Messwerten",
-      "Hinweis auf Einzelfälle im Freundeskreis",
-      "Nutzung von logischen Mathematik-Regeln"
+      "Nennung von statistischen Messwerten der Studie",
+      "Hinweis auf Einzelfälle im eigenen Freundeskreis dort",
+      "Nutzung von logischen Mathematik-Regeln dabei"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3184,9 +3184,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was bezeichnet man als 'Dialekt' (Mundart)?",
     "answers": [
       "Regionale Sprachvarietät mit Abweichungen",
-      "Die genormte deutsche Hochsprache",
-      "Die Fachsprache von Medizinern",
-      "Die reine Jugendsprache im Netz"
+      "Die genormte deutsche Hochsprache im Land",
+      "Die Fachsprache von Medizinern im Beruf",
+      "Die reine Jugendsprache im heutigen Netz"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3292,8 +3292,8 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was beschreibt ein 'Homonym'?",
     "answers": [
       "Wort mit gleicher Form, aber verschiedenen Bedeutungen",
-      "Wort mit zwei verschiedenen Schreibweisen",
-      "Wort, das ausschließlich in der Dichtung steht",
+      "Wort mit gleicher Form und ganz anderer Bedeutung dort",
+      "Wort mit zwei ganz verschiedenen Schreibweisen",
       "Wort aus einer fremden Sprache ohne Übersetzung"
     ],
     "correct": 0,
@@ -3364,9 +3364,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was versteht man unter 'Dysphemismus'?",
     "answers": [
       "Abwertende oder herabsetzende Umschreibung",
-      "Beschönigung von dramatischen Ereignissen",
-      "Erfindung von neuen Jugendbegriffen",
-      "Verwendung von Fachbegriffen im Alltag"
+      "Beschönigung von dramatischen Ereignissen dort",
+      "Erfindung von ganz neuen Jugendbegriffen",
+      "Verwendung von Fachbegriffen im Alltag hier"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3383,8 +3383,8 @@ const K9_DEUTSCH_QUESTIONS = [
     "answers": [
       "Ein sprachlicher Neuausdruck (Wortneuschöpfung)",
       "Ein Wort, das aus der Sprache verschwunden ist",
-      "Ein Rechtschreibfehler in alten Dokumenten",
-      "Eine grammatische Ausnahme bei Verben"
+      "Ein Rechtschreibfehler in alten Dokumenten dort",
+      "Eine grammatische Ausnahme bei den Verben"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3400,9 +3400,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was beschreibt ein 'Archaismus'?",
     "answers": [
       "Veraltetes Wort, das kaum noch genutzt wird",
-      "Ganz neu erfundenes Wort der Jugend",
-      "Fremdwort aus der englischen Werbewelt",
-      "Schlagwort in Zeitungsüberschriften"
+      "Ganz neu erfundenes Wort der heutigen Jugend",
+      "Fremdwort aus der englischen Werbewelt dort",
+      "Schlagwort in vielen Zeitungsüberschriften"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3418,9 +3418,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was zeichnet eine 'Ironie' aus?",
     "answers": [
       "Aussage, deren Gegenteil gemeint ist",
-      "Ernste Drohung bei Regelverstoß",
-      "Logische Schlussfolgerung aus Daten",
-      "Genaue Übersetzung eines Fachtextes"
+      "Ernste Drohung bei einem Regelverstoß hier",
+      "Logische Schlussfolgerung aus vielen Daten",
+      "Genaue Übersetzung eines schweren Fachtextes"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3454,9 +3454,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was kennzeichnet die literarische 'Satire'?",
     "answers": [
       "Spottende Darstellung von Missständen durch Übertreibung",
-      "Sachliche u. wertfreie Beschreibung der Politik",
-      "Traurige Schilderung von Katastrophen im Land",
-      "Romantische Liebesgeschichte mit gutem Ende"
+      "Sachliche und wertfreie Beschreibung der ganzen Politik dort",
+      "Traurige Schilderung von großen Katastrophen im ganzen Land",
+      "Romantische Liebesgeschichte mit einem guten Ende"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3562,9 +3562,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was beschreibt das Stilmittel 'Oxymoron'?",
     "answers": [
       "Verbindung zweier widersprüchlicher Begriffe",
-      "Wiederholung des gleichen Satzanfangs",
-      "Übertreibung von sachlichen Messwerten",
-      "Verwendung von englischen Fachbegriffen"
+      "Wiederholung des gleichen Satzanfangs stets",
+      "Übertreibung von rein sachlichen Messwerten",
+      "Verwendung von englischen Fachbegriffen hier"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3598,9 +3598,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "question": "Was beschreibt ein 'Tautologie'?",
     "answers": [
       "Zwei begriffsgleiche Wörter derselben Wortart",
-      "Eine grammatisch falsche Zeitform des Verbs",
-      "Ein Satzbau mit zu vielen Verschachtelungen",
-      "Ein Gedicht ohne Verse u. Strophen"
+      "Eine grammatisch falsche Zeitform des Verbs hier",
+      "Ein Satzbau mit zu vielen Verschachtelungen dort",
+      "Ein Gedicht ganz ohne Verse und Strophen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3625,37 +3625,9 @@ const K9_DEUTSCH_QUESTIONS = [
     "points": 10,
     "explanation": "Parataxe ist der verknüpfende Satzbau aus nebeneinandergestellten Hauptsätzen. (Im Gegensatz zur hypotaktischen Satzverschachtelung)."
   },
-  {"id":"k9de101","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Konjunktiv II: Ich ___ gerne.","answers":["werde","würde","wurde","worden"],"correct":1,"difficulty":"mittel","points":10,"explanation":"würde."},
-  {"id":"k9de102","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Metapher ohne „wie“.","answers":["Zeit ist Geld","schnell wie der Wind","nur Nomen","nur Verb"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Metapher."},
-  {"id":"k9de103","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Inhaltsangabe Tempus meist …","answers":["Präteritum","Präsens","Futur","Perfekt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Präsens."},
-  {"id":"k9de104","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"„dass“ leitet oft … ein.","answers":["Hauptsatz","Nebensatz","Fragesatz","Nomen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nebensatz."},
-  {"id":"k9de105","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Antonym zu knapp (Stil)?","answers":["kurz","ausführlich","eng","wenig"],"correct":1,"difficulty":"mittel","points":10,"explanation":"ausführlich."},
-  {"id":"k9de106","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Anapher wiederholt …","answers":["Enden","Anfänge","Reime","Zahlen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Anfänge."},
-  {"id":"k9de107","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Sachtext Ziel oft …","answers":["Fiktion","Information","Reim","Dialog"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Info."},
-  {"id":"k9de108","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Ironie meint oft …","answers":["wörtlich","das Gegenteil","nichts","Zahlen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gegenteil."},
-  {"id":"k9de109","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Bühnenanweisung steht …","answers":["nur Dialog","meist in Klammern","nirgends","nur Prolog"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Anweisung."},
-  {"id":"k9de110","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Rechtschreibung: interessant","answers":["interressant","interessant","interesant","interresant"],"correct":1,"difficulty":"mittel","points":10,"explanation":"ss."},
-  {"id":"k9de111","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Passiv: werden + …","answers":["Infinitiv","Partizip II","Nomen","Adjektiv"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Partizip II."},
-  {"id":"k9de112","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Erörterung braucht …","answers":["nur Meinung","Argumente","Zufallszitate","keine Gründe"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Argumente."},
-  {"id":"k9de113","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Strophe ist …","answers":["Verszeile","Versgruppe","Roman","Drama"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gruppe."},
-  {"id":"k9de114","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Synonym prüfen?","answers":["ignorieren","untersuchen","löschen","raten"],"correct":1,"difficulty":"mittel","points":10,"explanation":"untersuchen."},
-  {"id":"k9de115","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Appell zielt auf …","answers":["Darstellung","Handlung","Zufall","Reim"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Appell."},
-  {"id":"k9de116","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Komparativ gut?","answers":["guter","besser","am besten","mehr gut"],"correct":1,"difficulty":"mittel","points":10,"explanation":"besser."},
-  {"id":"k9de117","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Relativpronomen Person …","answers":["was","der/die","wo","welch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"der/die."},
-  {"id":"k9de118","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Nominalstil nutzt viele …","answers":["Verben","Nomen","Fragezeichen","Interjektionen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Nomen."},
-  {"id":"k9de119","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Zitat braucht …","answers":["Geheimhaltung","Quelle","keine Zeichen","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Beleg."},
-  {"id":"k9de120","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Hypotaxe = …","answers":["nebengeordnet","untergeordnet","Wortart","Reim"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Unterordnung."},
-  {"id":"k9de121","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Satire kritisiert durch …","answers":["ernstes Lob","Übertreibung","nur Fakten","Zufall"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Spott."},
-  {"id":"k9de122","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Kohärenz = …","answers":["Chaos","Sinnzusammenhang","Layout","Schrift"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Zusammenhang."},
-  {"id":"k9de123","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Imperativ nehmen (du)?","answers":["nimmst","nimm","nehmt","genommen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nimm."},
-  {"id":"k9de124","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Metonymie: Berlin beschließt für …","answers":["Stadtmauern","Regierung","Fluss","Wetter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Institution."},
-  {"id":"k9de125","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Perspektive personal = …","answers":["allwissend","Figurensicht","Ich immer","Kamera Pflicht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Figur."},
-  {"id":"k9de126","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Plural Thema?","answers":["Themas","Themen","Themata Pflicht","Theme"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Themen."},
-  {"id":"k9de127","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Ballade ist …","answers":["Sachtext","Erzählgedicht","Tabelle","Brief"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Erzählgedicht."},
-  {"id":"k9de128","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Konnektor dennoch signalisiert …","answers":["Grund","Gegensatz","Zeit","Ort"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Kontrast."},
-  {"id":"k9de129","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Rechtschreibung Standard","answers":["Standart","Standard","Standarth","Standartt"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Standard."},
-  {"id":"k9de130","category":"k9_deutsch","area":"schule","grade":9,"subject":"deutsch","topic":"erweiterung","question":"Textintention = …","answers":["Länge","Absicht","Preis","Autoralter"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Absicht."}
+
 ];
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_DEUTSCH_QUESTIONS = K9_DEUTSCH_QUESTIONS;

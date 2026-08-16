@@ -31,9 +31,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Wie lautet die p-q-Formel zur Lösung von $x^2 + px + q = 0$?",
     "answers": [
       "x = -(p/2) +- sqrt((p/2)^2 - q)",
-      "x = (p/2) +- sqrt((p/2)^2 + q)",
-      "x = -p +- sqrt(p^2 - 4*q)",
-      "x = -q +- sqrt((q/2)^2 - p)"
+      "x = -(p/2) +- sqrt((p/2)^2 + q)",
+      "x = p/2 +- sqrt((p/2)^2 - q)",
+      "x = -(p/2) +- sqrt(p^2 - q)"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -50,8 +50,8 @@ const K9_MATHEMATIK_QUESTIONS = [
     "answers": [
       "Die Diskriminante D",
       "Die Determinante D",
-      "Der Koeffizient K",
-      "Der Scheitelwert S"
+      "Der Diskriminanzwert K",
+      "Die Koeffizientensumme"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -175,9 +175,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Was bewirkt ein negativer Faktor $a$ vor dem Quadrat ($f(x) = -a*x^2$)?",
     "answers": [
       "Parabel ist nach unten geöffnet",
-      "Parabel ist nach oben geöffnet",
-      "Parabel wird zur Geraden",
-      "Parabel verschiebt sich rechts"
+      "Parabel öffnet sich nach oben",
+      "Parabel wird zur Geraden hin",
+      "Parabel verschiebt sich nach rechts"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -229,9 +229,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Mit welchem mathematischen Verfahren verwandelt man $x^2 + bx$ in eine Binomische Formel?",
     "answers": [
       "Quadratische Ergänzung",
-      "Polynomdivision Satz",
-      "Ausklammern von x",
-      "Substitutionsmethode"
+      "Polynomdivision anwenden",
+      "Ausklammern des Faktors x",
+      "Substitutionsmethode nutzen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -374,8 +374,8 @@ const K9_MATHEMATIK_QUESTIONS = [
     "answers": [
       "Nach unten geöffnete Parabel",
       "Nach oben geöffnete Parabel",
-      "Exakt kreisförmiger Bogen",
-      "Rein lineare Steigung"
+      "Exakt kreisförmiger Bogenweg",
+      "Eine rein lineare Steigung"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -427,7 +427,7 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Wie wandelt man $2x^2 + 8x + 6 = 0$ korrekt in die Normalform um?",
     "answers": [
       "Durch 2 teilen: x^2 + 4x + 3 = 0",
-      "Minus 6 rechnen auf Seiten",
+      "Minus 6 rechnen auf beiden Seiten",
       "Mal 2 nehmen auf allen Seiten",
       "Quadratwurzel sofort ziehen"
     ],
@@ -446,7 +446,7 @@ const K9_MATHEMATIK_QUESTIONS = [
     "answers": [
       "Keine reelle Nullstelle",
       "Genau eine Nullstelle",
-      "Genau zwei Nullstellen",
+      "Genau zwei reelle Nullstellen",
       "Genau drei Nullstellen"
     ],
     "correct": 0,
@@ -735,9 +735,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Was besagt der 1. Strahlensatz bei zwei durch Parallelen geschnittenen Strahlen mit Zentrum Z?",
     "answers": [
       "Verhältnis von Strahlenabschnitten",
-      "Verhältnis von Winkelmaßen",
-      "Verhältnis von Dreiecksflächen",
-      "Verhältnis von Höhenlinien"
+      "Verhältnis von Winkelmaßen dort",
+      "Verhältnis der Dreiecksflächen dabei",
+      "Verhältnis der Höhenlinien dabei"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -753,9 +753,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Was besagt der 2. Strahlensatz?",
     "answers": [
       "Parallelenabschnitte wie Strahlen",
-      "Strahlen wie Winkelhalbierende",
-      "Höhen wie Grundseiten",
-      "Radien wie Kreisumfänge"
+      "Strahlenabschnitte wie Winkelmaße",
+      "Höhenverhältnis wie Grundseite",
+      "Radienverhältnis wie der Umfang"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -807,9 +807,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Wie lang ist die Höhe $h$ in einem gleichseitigen Dreieck mit Seitenlänge $a$?",
     "answers": [
       "h = (a / 2) * sqrt(3)",
-      "h = a * sqrt(2)",
-      "h = a / 2",
-      "h = a * sqrt(3)"
+      "h = a * sqrt(2) / 2",
+      "h = (a / 3) * sqrt(3)",
+      "h = a * sqrt(3) / 4"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1007,9 +1007,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Wie drückt man die $n$-te Wurzel aus $a$ als Potenzschreibweise aus ($\\sqrt[n]{a}$)?",
     "answers": [
       "a^(1/n)",
-      "a^n",
+      "a^n genau",
       "a^(-n)",
-      "n^a"
+      "n^a Wert"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1043,9 +1043,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Welchen Wert hat $16^{-1/2}$?",
     "answers": [
       "Wert: 1/4 (0.25)",
-      "Wert: -4",
-      "Wert: -8",
-      "Wert: 4"
+      "Wert: 1/16 genau",
+      "Wert: -1/4 exakt",
+      "Wert: 0.4 genau"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1117,7 +1117,7 @@ const K9_MATHEMATIK_QUESTIONS = [
       "Zeit bis zur Hälfte des Stoffs",
       "Halbe Lebensdauer des Stoffs",
       "Zeit bis zum Zerfall von 25%",
-      "Zeitspanne nach 50 Jahren"
+      "Zeitspanne von genau 50 Jahren"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1169,8 +1169,8 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Welche grundlegende Frage beantwortet der Logarithmus $\\log_a(b)$?",
     "answers": [
       "Welche Hochzahl x löst a^x = b?",
-      "Wie viel ist a mal b?",
-      "Was ist die b-te Wurzel aus a?",
+      "Was ist die b-te Wurzel aus a genau?",
+      "Wie lautet a mal b berechnet?",
       "Wie lautet a geteilt durch b?"
     ],
     "correct": 0,
@@ -1370,8 +1370,8 @@ const K9_MATHEMATIK_QUESTIONS = [
     "answers": [
       "b = 2 * pi * r * (alpha / 360)",
       "b = pi * r^2 * (alpha / 360)",
-      "b = pi * r * (alpha / 180)",
-      "b = 2 * r * (alpha / 360)"
+      "b = 2 * pi * r * (alpha / 180)",
+      "b = 2 * r^2 * (alpha / 360)"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1423,9 +1423,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Wie berechnet man den Mantelflächeninhalt $M$ eines geraden Zylinders?",
     "answers": [
       "M = 2 * pi * r * h",
-      "M = pi * r^2 * h",
-      "M = pi * r * s",
-      "M = 2 * pi * r^2"
+      "M = pi * r^2 * h genau",
+      "M = pi * r * s genau",
+      "M = 2 * pi * r^2 genau"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1441,9 +1441,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Wie lautet die Formel für das Volumen $V$ eines geraden Kreiskegels?",
     "answers": [
       "V = (1/3) * pi * r^2 * h",
-      "V = pi * r^2 * h",
+      "V = pi * r^2 * h genau",
       "V = (4/3) * pi * r^3",
-      "V = (1/2) * pi * r * h"
+      "V = (1/2) * pi * r * h genau"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1459,9 +1459,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Wie berechnet man die Mantellinie $s$ eines Kegels aus Radius $r$ u. Höhe $h$?",
     "answers": [
       "s = sqrt(r^2 + h^2)",
-      "s = r + h",
-      "s = sqrt(r * h)",
-      "s = r^2 + h^2"
+      "s = r + h zusammen",
+      "s = sqrt(r * h) genau",
+      "s = r^2 + h^2 genau"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1551,7 +1551,7 @@ const K9_MATHEMATIK_QUESTIONS = [
       "Wahrscheinlichkeiten längs Pfad multiplizieren",
       "Wahrscheinlichkeiten längs Pfad addieren",
       "Wahrscheinlichkeiten längs Pfad dividieren",
-      "Pfadwahrscheinlichkeiten subtrahieren"
+      "Pfadwahrscheinlichkeiten voneinander subtrahieren"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1585,8 +1585,8 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Was ist der Vorteil der Gegenwahrscheinlichkeit $P(\\bar{E})$ bei der Berechnung von 'Mindestens einmal'?",
     "answers": [
       "P(E) = 1 - P(kein einziges Mal)",
-      "P(E) = 1 + P(alle Male)",
-      "P(E) = P(kein Mal) / 2",
+      "P(E) = 1 + P(alle Male) zusammen",
+      "P(E) = P(kein Mal) durch zwei",
       "P(E) = P(Gegenereignis) * 100"
     ],
     "correct": 0,
@@ -1639,9 +1639,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Wann nennt man ein Glücksspiel 'fair'?",
     "answers": [
       "Erwartungswert des Gewinns = Einsatz",
-      "Gewinnchance ist genau 50%",
-      "Einsatz beträgt stets 1 Euro",
-      "Bank gewinnt immer langfristig"
+      "Gewinnchance liegt genau bei 50%",
+      "Einsatz beträgt dabei stets 1 Euro",
+      "Bank gewinnt am Ende immer langfristig"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2302,7 +2302,7 @@ const K9_MATHEMATIK_QUESTIONS = [
       "Verhältnis der Strahlstücke ist gleich",
       "Verhältnis der Parallelen ist stets 1",
       "Summe der Abschnitte ergibt 180 Grad",
-      "Produkt der Strahlstücke ist null"
+      "Produkt der Strahlstücke ist stets null"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2374,9 +2374,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Wie ist der Sinus eines spitzen Winkels $\\alpha$ im rechtwinkligen Dreieck definiert?",
     "answers": [
       "Sinus = Gegenkathete / Hypotenuse",
-      "Sinus = Ankathete / Hypotenuse",
-      "Sinus = Gegenkathete / Ankathete",
-      "Sinus = Ankathete / Gegenkathete"
+      "Sinus = Ankathete / Hypotenuse genau",
+      "Sinus = Gegenkathete / Ankathete genau",
+      "Sinus = Ankathete / Gegenkathete genau"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2536,9 +2536,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Was besagt die 1. Pfadregel (Produktregel) bei Baumdiagrammen in der Wahrscheinlichkeitsrechnung?",
     "answers": [
       "Wahrscheinlichkeiten längs Pfad multiplizieren",
-      "Wahrscheinlichkeiten längs Pfad addieren",
-      "Wahrscheinlichkeiten voneinander subtrahieren",
-      "Wahrscheinlichkeiten durch Anzahl dividieren"
+      "Wahrscheinlichkeiten längs Pfad zusammen addieren",
+      "Wahrscheinlichkeiten voneinander stets subtrahieren",
+      "Wahrscheinlichkeiten durch die Anzahl dividieren"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2554,9 +2554,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Was besagt die 2. Pfadregel (Summenregel) bei Baumdiagrammen?",
     "answers": [
       "Pfadwahrscheinlichkeiten zusammengerechnet addieren",
-      "Pfadwahrscheinlichkeiten komplett multiplizieren",
-      "Kehrwerte aller Ergebnisse bilden",
-      "Nur den allerersten Pfad berücksichtigen"
+      "Pfadwahrscheinlichkeiten komplett miteinander multiplizieren",
+      "Kehrwerte aller Ergebnisse zusammen bilden",
+      "Nur den allerersten Pfad dabei berücksichtigen"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2572,8 +2572,8 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Was versteht man unter einem 'Laplace-Experiment'?",
     "answers": [
       "Zufallsexperiment mit gleich wahrscheinlichen Ausgängen",
-      "Experiment mit unendlich vielen Ausgängen",
-      "Physikalischer Test im Labor zur Messung",
+      "Zufallsexperiment mit sehr unterschiedlichen Wahrscheinlichkeiten",
+      "Physikalischer Test im Labor zur genauen Messung",
       "Zufallstest, der nur genau einmal durchgeführt wird"
     ],
     "correct": 0,
@@ -2752,9 +2752,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Wie nennt man die Abweichung vom Mittelwert, wenn man Daten statistisch auswertet?",
     "answers": [
       "Die Streuung (Varianz/Standardabw.)",
-      "Den Median der Stichprobe",
-      "Den absoluten Häufigkeitswert",
-      "Den Modalwert der Daten"
+      "Den Median der gesamten Stichprobe",
+      "Den absoluten Häufigkeitswert davon",
+      "Den Modalwert der erhobenen Daten"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2788,9 +2788,9 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Was ist die 'Spannweite' einer statistischen Erhebung?",
     "answers": [
       "Differenz zwischen Maximum u. Minimum",
-      "Summe aller erfassten Messwerte",
-      "Quotient aus Mittelwert u. Anzahl",
-      "Anzahl der Datenpunkte im Test"
+      "Summe aller erfassten Messwerte zusammen",
+      "Quotient aus Mittelwert und der Anzahl",
+      "Anzahl der Datenpunkte im gesamten Test"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -2806,46 +2806,18 @@ const K9_MATHEMATIK_QUESTIONS = [
     "question": "Wie verhält sich die relative Häufigkeit eines Ereignisses bei extrem vielen Versuchsdurchführungen?",
     "answers": [
       "Stabilisiert sich nahe der Wahrscheinlichkeit",
-      "Schwankt immer stärker hin u. her",
-      "Geht gegen den Wert Null",
-      "Wird genau doppelt so groß"
+      "Schwankt dabei immer stärker hin und her",
+      "Geht am Ende immer gegen den Wert Null zurück",
+      "Wird am Ende genau doppelt so groß dabei"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Das Gesetz der großen Zahlen besagt, dass sich die relative Häufigkeit bei steigender Versuchszahl der theoretischen Wahrscheinlichkeit annähert."
-  },
-  {"id":"k9ma101","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Was ist √169?","answers":["12","13","14","15"],"correct":1,"difficulty":"mittel","points":10,"explanation":"13×13=169."},
-  {"id":"k9ma102","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Löse: 5x=35","answers":["5","6","7","8"],"correct":2,"difficulty":"mittel","points":10,"explanation":"x=7."},
-  {"id":"k9ma103","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"2³·2²=?","answers":["2⁵","2⁶","4⁵","2"],"correct":0,"difficulty":"mittel","points":10,"explanation":"2⁵."},
-  {"id":"k9ma104","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"15% von 200?","answers":["20","25","30","35"],"correct":2,"difficulty":"mittel","points":10,"explanation":"30."},
-  {"id":"k9ma105","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Steigung (0,0)→(4,8)?","answers":["1","2","3","4"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2."},
-  {"id":"k9ma106","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Fläche Rechteck 9×4?","answers":["13","36","26","18"],"correct":1,"difficulty":"mittel","points":10,"explanation":"36."},
-  {"id":"k9ma107","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"sin(0°)=?","answers":["0","1","0,5","−1"],"correct":0,"difficulty":"mittel","points":10,"explanation":"0."},
-  {"id":"k9ma108","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"log₁₀(100)=?","answers":["1","2","10","100"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2."},
-  {"id":"k9ma109","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"x²=36 → x=?","answers":["6","±6","36","−6"],"correct":1,"difficulty":"mittel","points":10,"explanation":"±6."},
-  {"id":"k9ma110","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"3-4-5 Dreieck: c=?","answers":["5","6","7","8"],"correct":0,"difficulty":"mittel","points":10,"explanation":"5."},
-  {"id":"k9ma111","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"P(Kopf) fair coin?","answers":["0","1/2","1/3","1"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1/2."},
-  {"id":"k9ma112","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Mittel 10,20,30?","answers":["15","20","25","60"],"correct":1,"difficulty":"mittel","points":10,"explanation":"20."},
-  {"id":"k9ma113","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"1 h = ? s","answers":["60","3600","600","1000"],"correct":1,"difficulty":"mittel","points":10,"explanation":"3600."},
-  {"id":"k9ma114","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"2/3 + 1/6=?","answers":["1/2","5/6","1","3/6"],"correct":1,"difficulty":"mittel","points":10,"explanation":"5/6."},
-  {"id":"k9ma115","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"a⁴/a²=?","answers":["a²","a⁶","a","2a"],"correct":0,"difficulty":"mittel","points":10,"explanation":"a²."},
-  {"id":"k9ma116","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Nullstelle y=x+5?","answers":["0","−5","5","1"],"correct":1,"difficulty":"mittel","points":10,"explanation":"−5."},
-  {"id":"k9ma117","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Würfel Volumen a=5?","answers":["25","125","15","100"],"correct":1,"difficulty":"mittel","points":10,"explanation":"125."},
-  {"id":"k9ma118","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Median 1,3,100?","answers":["1","3","100","34"],"correct":1,"difficulty":"mittel","points":10,"explanation":"3."},
-  {"id":"k9ma119","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"0,5 als Bruch?","answers":["1/5","1/2","2/5","1/4"],"correct":1,"difficulty":"mittel","points":10,"explanation":"1/2."},
-  {"id":"k9ma120","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"3a+2a=?","answers":["5a","6a","a⁵","5"],"correct":0,"difficulty":"mittel","points":10,"explanation":"5a."},
-  {"id":"k9ma121","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Primzahl?","answers":["27","29","33","35"],"correct":1,"difficulty":"mittel","points":10,"explanation":"29."},
-  {"id":"k9ma122","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Runde 2,35 auf Zehntel?","answers":["2,3","2,4","2,35","2"],"correct":1,"difficulty":"mittel","points":10,"explanation":"2,4."},
-  {"id":"k9ma123","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"f(x)=x+1, f(10)=?","answers":["9","11","10","12"],"correct":1,"difficulty":"mittel","points":10,"explanation":"11."},
-  {"id":"k9ma124","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"x−3>2 →","answers":["x>5","x<5","x>2","x=5"],"correct":0,"difficulty":"mittel","points":10,"explanation":"x>5."},
-  {"id":"k9ma125","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Dreisatz 2→6, 5→?","answers":["10","15","12","30"],"correct":1,"difficulty":"mittel","points":10,"explanation":"15."},
-  {"id":"k9ma126","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"U Kreis d=10 π≈3?","answers":["30","15","60","10"],"correct":0,"difficulty":"mittel","points":10,"explanation":"≈30."},
-  {"id":"k9ma127","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"(−2)×3=?","answers":["−6","6","−5","5"],"correct":0,"difficulty":"mittel","points":10,"explanation":"−6."},
-  {"id":"k9ma128","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"Quadrant III: x und y …","answers":["beide +","beide −","x+ y−","x− y+"],"correct":1,"difficulty":"mittel","points":10,"explanation":"beide negativ."},
-  {"id":"k9ma129","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"4²=?","answers":["8","16","32","2"],"correct":1,"difficulty":"mittel","points":10,"explanation":"16."},
-  {"id":"k9ma130","category":"k9_mathe","area":"schule","grade":9,"subject":"mathe","topic":"erweiterung","question":"5! =?","answers":["25","120","60","20"],"correct":1,"difficulty":"mittel","points":10,"explanation":"120."}
+  }
 ];
+
+
 // Einbindung für Browser
 if (typeof window !== 'undefined') {
     window.K9_MATHEMATIK_QUESTIONS = K9_MATHEMATIK_QUESTIONS;

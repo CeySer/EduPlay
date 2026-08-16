@@ -416,7 +416,8 @@ async function wrPromptSolveWord() {
             okText: "Prüfen"
         });
     } else {
-        tipp = prompt("Lösungswort eingeben:");
+        tipp = null;
+        if (typeof showToast === "function") showToast("Eingabe nicht verfügbar.", "error");
     }
     if (tipp === null || tipp === undefined) return;
     wrTrySolveWord(tipp);

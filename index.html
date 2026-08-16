@@ -517,11 +517,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Themen (nach Klasse)</label>
                                 <div id="dash-test-categories"
-                                    class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 max-h-48 overflow-y-auto"></div>
+                                    class="flex flex-col gap-1.5 max-h-56 overflow-y-auto pr-1"></div>
                             </div>
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">🌍 Vokabeln</label>
-                                <div id="dash-test-vocab" class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 max-h-48 overflow-y-auto">
+                                <div id="dash-test-vocab" class="flex flex-col gap-1.5 max-h-56 overflow-y-auto pr-1">
                                 </div>
                             </div>
                             <div>
@@ -1421,6 +1421,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         </div>
                     </div>
                 </div>
+
+                <div id="today-status-card" class="hidden"></div>
 
                 <!-- Weitermachen? – zeigt das zuletzt gespielte Thema -->
                 <div id="continue-card" class="hidden"></div>
@@ -2382,18 +2384,18 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=10.3"></script>
+    <script src="app-config.js?v=10.4"></script>
     <script src="app-ui.js?v=9.2"></script>
-    <script src="family-dashboard.js?v=10.4"></script>
+    <script src="family-dashboard.js?v=10.6"></script>
     <script src="ui-common.js?v=9.0"></script>
     <script src="ki-coach.js?v=1.1"></script>
     <script src="quiz-core.js?v=9.7"></script>
     <script src="vocab.js?v=9.0"></script>
-    <script src="suchsel.js?v=1.2"></script>
+    <script src="suchsel.js?v=1.3"></script>
     <script src="duel-scrabble.js?v=9.1"></script>
-    <script src="wortraten.js?v=9.4"></script>
-    <script src="tv-cast.js?v=11.3"></script>
-    <script src="live-duel.js?v=10.6"></script>
+    <script src="wortraten.js?v=9.5"></script>
+    <script src="tv-cast.js?v=11.4"></script>
+    <script src="live-duel.js?v=10.7"></script>
     <script src="app-misc.js?v=8.8"></script>
     <script src="lobby-avatar.js?v=9.3"></script>
     <script src="konto-loeschen.js?v=8.8"></script>

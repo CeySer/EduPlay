@@ -1629,7 +1629,7 @@
                 ? await appConfirm("Wort aufdecken und Runde beenden? Keine weiteren Punkte in dieser Runde.", {
                     titel: "Runde auswerten?", icon: "⏱️", okText: "Auswerten", abbrechenText: "Weiter spielen"
                 })
-                : confirm("Runde auswerten?");
+                : true;
             if (!ok) return;
             await revealTVWortratenWord();
         }
@@ -1656,12 +1656,24 @@
             }
         }
 
-        function promptTVWrSolveWord() {
+        async function promptTVWrSolveWord() {
             if (!tvGameRef) return;
-            const tipp = prompt("Lösungswort eingeben:");
-            if (tipp === null) return;
+            let tipp;
+            if (typeof appPrompt === "function") {
+                tipp = await appPrompt("Welches Wort ist gesucht?", {
+                    titel: "💡 Ich kenne das Wort!",
+                    icon: "💡",
+                    platzhalter: "Lösung eingeben",
+                    okText: "Prüfen"
+                });
+            } else {
+                tipp = null;
+                if (typeof showToast === "function") showToast("Eingabe nicht verfügbar.", "error");
+            }
+            if (tipp === null || tipp === undefined) return;
             submitTVWrSolveWord(tipp);
         }
+        window.promptTVWrSolveWord = promptTVWrSolveWord;
 
         async function submitTVWrSolveWord(raw) {
             if (!tvGameRef) return;

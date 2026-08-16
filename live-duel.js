@@ -23,6 +23,16 @@
         let liveDuelEventBaselined = false; // erster Snapshot nach dem Beitreten setzt nur den Ausgangswert, zeigt nie eine Meldung
         // Synchronisiertes Buchstaben-Aufblitzen beim Wort-Rätsel (auch beim Gegenspieler sichtbar)
         let wrLiveLastFlashTs = 0;
+        // Gerät-Sitzung: gleiches Profil auf 2 Geräten → letzter Heartbeat gewinnt
+        if (typeof window.DEVICE_SESSION_ID === "undefined") {
+            try {
+                window.DEVICE_SESSION_ID = sessionStorage.getItem("eduplayDeviceSession") ||
+                    ("d" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36));
+                sessionStorage.setItem("eduplayDeviceSession", window.DEVICE_SESSION_ID);
+            } catch (e) {
+                window.DEVICE_SESSION_ID = "d" + Date.now();
+            }
+        }
         let wrLiveFlashBaselined = false;
 
         const SCRABBLE_ANSWER_SECONDS = { leicht: 30, mittel: 20, schwer: 15, experte: 12, profi: 35 };
@@ -62,6 +72,7 @@
                 if (!liveDuelRef || !activePlayerKey) return;
                 const update = {};
                 update["players." + activePlayerKey + ".lastSeen"] = Date.now();
+                if (window.DEVICE_SESSION_ID) update["players." + activePlayerKey + ".sessionId"] = window.DEVICE_SESSION_ID;
                 if (isLiveDuelCreator) update.hostLastSeen = Date.now();
                 liveDuelRef.update(update).catch(() => { });
             };
@@ -220,7 +231,8 @@
                             word: "",
                             coinsClaimed: false,
                             pending: midGame,
-                            lastSeen: Date.now()
+                            lastSeen: Date.now(),
+                            sessionId: window.DEVICE_SESSION_ID || null
                         }
                     };
                     if (data.type === "wortraten" && !midGame) {
@@ -231,8 +243,13 @@
                     // Mid-Game-Absturz / Reload: wieder anwesend melden
                     const reconnect = {
                         [`players.${activePlayerKey}.lastSeen`]: Date.now(),
-                        [`players.${activePlayerKey}.name`]: currentPlayer.name
+                        [`players.${activePlayerKey}.name`]: currentPlayer.name,
+                        [`players.${activePlayerKey}.sessionId`]: window.DEVICE_SESSION_ID || null
                     };
+                    if (me && me.sessionId && window.DEVICE_SESSION_ID && me.sessionId !== window.DEVICE_SESSION_ID
+                        && me.lastSeen && (Date.now() - me.lastSeen) < 45000) {
+                        showToast("Profil war auf anderem Gerät aktiv – hier weiter.", "info");
+                    }
                     // Host war weg → Host-Rolle wieder übernehmen
                     if (data.createdBy === activePlayerKey) {
                         reconnect.hostLastSeen = Date.now();
@@ -1105,7 +1122,8 @@
                     okText: "Prüfen"
                 });
             } else {
-                tipp = prompt("Lösungswort eingeben:");
+                tipp = null;
+                showToast("Eingabe nicht verfügbar.", "error");
             }
             // Versuch beendet (abgebrochen oder geprüft) – Flag löschen
             try { await liveDuelRef.update({ wrSolving: null }); } catch (e) { /* */ }

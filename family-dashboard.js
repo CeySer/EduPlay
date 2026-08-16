@@ -456,39 +456,100 @@ auth.createUserWithEmailAndPassword(e, p)
 
             const lbContainer = document.getElementById("leaderboard-container");
             const leaderBadge = document.getElementById("leaderboard-leader-badge");
-            const sortedProfiles = Object.values(ALL_PROFILES).filter(p => !p.isGuest).sort((a, b) => b.coins - a.coins);
-
             toggleLeaderboard(false);
             toggleFamilyDuel(false);
             if (typeof applyOfflineModusSichtbarkeit === 'function') applyOfflineModusSichtbarkeit();
-            if (leaderBadge) {
-                leaderBadge.innerText = sortedProfiles.length > 0 ?
-                    `🥇 ${esc(sortedProfiles[0].name)}` :
-                    "";
+            if (typeof renderFamilyLeaderboard === 'function') renderFamilyLeaderboard();
+            else if (lbContainer) {
+                const sortedProfiles = Object.values(ALL_PROFILES).filter(p => !p.isGuest).sort((a, b) => (b.coins || 0) - (a.coins || 0));
+                if (leaderBadge) leaderBadge.innerText = sortedProfiles[0] ? ("🥇 " + esc(sortedProfiles[0].name)) : "";
             }
+        }
 
+        function weekStudySeconds(p) {
+            const now = new Date();
+            const dayIdx = (now.getDay() + 6) % 7;
+            let sec = 0;
+            for (let i = 0; i <= dayIdx; i++) {
+                const d = new Date(now);
+                d.setDate(now.getDate() - (dayIdx - i));
+                const day = d.toISOString().slice(0, 10);
+                sec += (p.studyLog && p.studyLog[day]) || 0;
+            }
+            return sec;
+        }
+
+        function renderFamilyLeaderboard() {
+            const lbContainer = document.getElementById("leaderboard-container");
+            const leaderBadge = document.getElementById("leaderboard-leader-badge");
             if (!lbContainer) return;
-            if (sortedProfiles.length === 0) {
+            let hidden = false;
+            try { hidden = localStorage.getItem("eduplayLbHidden") === "1"; } catch (e) {}
+            let mode = "week";
+            try { mode = localStorage.getItem("eduplayLbMode") || "week"; } catch (e) {}
+            if (hidden) {
+                lbContainer.innerHTML = `<p class="text-xs text-gray-500 text-center py-2">Rangliste ausgeblendet.</p>
+                    <button type="button" onclick="setLeaderboardHidden(false)" class="btn-secondary w-full text-xs py-2">Wieder anzeigen</button>`;
+                if (leaderBadge) leaderBadge.innerText = "aus";
+                return;
+            }
+            const profiles = Object.values(ALL_PROFILES || {}).filter(p => p && !p.isGuest);
+            const sorted = profiles.slice().sort((a, b) => {
+                if (mode === "week") {
+                    const dw = weekStudySeconds(b) - weekStudySeconds(a);
+                    if (dw !== 0) return dw;
+                }
+                return (b.coins || 0) - (a.coins || 0);
+            });
+            if (leaderBadge) {
+                leaderBadge.innerText = sorted[0]
+                    ? ("🥇 " + esc(sorted[0].name) + (mode === "week" ? " · Woche" : ""))
+                    : "";
+            }
+            if (!sorted.length) {
                 lbContainer.innerHTML = "<p class='text-xs text-gray-500 text-center'>Noch keine Spieler vorhanden.</p>";
                 return;
             }
-
-            let lbHTML = "";
             const medals = ["🥇", "🥈", "🥉"];
-            sortedProfiles.forEach((p, index) => {
+            let lbHTML = `<div class="flex gap-2 mb-2">
+                <button type="button" onclick="setLeaderboardMode('week')" class="flex-1 text-[11px] font-bold py-1.5 rounded-lg ${mode === "week" ? "bg-amber-500/20 text-amber-300 border border-amber-400/30" : "bg-white/5 text-gray-400"}">Diese Woche</button>
+                <button type="button" onclick="setLeaderboardMode('all')" class="flex-1 text-[11px] font-bold py-1.5 rounded-lg ${mode === "all" ? "bg-amber-500/20 text-amber-300 border border-amber-400/30" : "bg-white/5 text-gray-400"}">Gesamt (Coins)</button>
+                <button type="button" onclick="setLeaderboardHidden(true)" class="text-[11px] font-bold py-1.5 px-2 rounded-lg bg-white/5 text-gray-500" title="Ausblenden">✕</button>
+            </div>`;
+            sorted.forEach((p, index) => {
                 const medal = index < 3 ? medals[index] :
                     `<span class="text-gray-500 font-bold w-6 inline-block text-center">${index + 1}.</span>`;
+                const right = mode === "week"
+                    ? (`⏱ ${Math.floor(weekStudySeconds(p) / 60)} Min.`)
+                    : (`🪙 ${p.coins || 0}`);
                 lbHTML += `
                         <div class="flex items-center justify-between bg-white/5 border border-white/5 p-3 rounded-xl shadow-sm">
                             <div class="flex items-center gap-3">
                                 <div class="text-xl">${medal}</div>
                                 <div class="font-bold text-white">${esc(p.name)}</div>
                             </div>
-                            <div class="text-yellow-400 font-black">🪙 ${p.coins || 0}</div>
+                            <div class="text-yellow-400 font-black text-sm">${right}</div>
                         </div>`;
             });
             lbContainer.innerHTML = lbHTML;
         }
+        function setLeaderboardMode(mode) {
+            try { localStorage.setItem("eduplayLbMode", mode === "all" ? "all" : "week"); } catch (e) {}
+            renderFamilyLeaderboard();
+        }
+        function setLeaderboardHidden(on) {
+            try { localStorage.setItem("eduplayLbHidden", on ? "1" : "0"); } catch (e) {}
+            renderFamilyLeaderboard();
+            if (!on) {
+                const w = document.getElementById("leaderboard-wrapper");
+                if (w) w.classList.remove("hidden");
+            }
+        }
+        window.setLeaderboardMode = setLeaderboardMode;
+        window.setLeaderboardHidden = setLeaderboardHidden;
+        window.renderFamilyLeaderboard = renderFamilyLeaderboard;
+
+
 
         function toggleProfileList(forceOpen) {
             const wrapper = document.getElementById("family-profiles-wrapper");
@@ -528,8 +589,9 @@ auth.createUserWithEmailAndPassword(e, p)
             if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
         }
 
-        function selectProfile(key) {
+        async function selectProfile(key) {
             SFX.tap();
+            await warnIfProfileOnOtherDevice(key);
             activePlayerKey = key;
             currentPlayer = ALL_PROFILES[key];
             touchPlayerActivity(key);
@@ -547,6 +609,7 @@ auth.createUserWithEmailAndPassword(e, p)
             }
             renderPendingTestCard();
             renderStudyGoalCard();
+            renderTodayStatusCard();
             renderWeaknessSuggestion();
             updateMenuGamification();
             switchView('menu');
@@ -690,14 +753,43 @@ auth.createUserWithEmailAndPassword(e, p)
             const now = Date.now();
             ALL_PROFILES[key].lastActive = now;
             if (currentPlayer && activePlayerKey === key) currentPlayer.lastActive = now;
+            const sessionPatch = {
+                lastActive: now,
+                activeSession: {
+                    id: window.DEVICE_SESSION_ID || null,
+                    ts: now
+                }
+            };
+            ALL_PROFILES[key].activeSession = sessionPatch.activeSession;
             try {
                 db.collection("parents").doc(currentParentUser.uid)
                     .collection("profiles").doc(key)
-                    .update({ lastActive: now })
+                    .set(sessionPatch, { merge: true })
                     .catch(e => console.warn("lastActive konnte nicht gespeichert werden:", e));
             } catch (e) {
                 console.warn("lastActive konnte nicht gespeichert werden:", e);
             }
+        }
+
+        async function warnIfProfileOnOtherDevice(key) {
+            try {
+                if (!currentParentUser || !key) return;
+                const snap = await db.collection("parents").doc(currentParentUser.uid)
+                    .collection("profiles").doc(key).get();
+                if (!snap.exists) return;
+                const as = (snap.data() || {}).activeSession;
+                if (!as || !as.id || !as.ts) return;
+                if (as.id === window.DEVICE_SESSION_ID) return;
+                if (Date.now() - as.ts > 90000) return; // älter als 90s → egal
+                if (typeof appConfirm === "function") {
+                    await appConfirm(
+                        "Dieses Profil war gerade auf einem anderen Gerät aktiv. Hier weitermachen? (Das andere Gerät bleibt eingeloggt, Fortschritt speichert das zuletzt aktive Gerät.)",
+                        { titel: "Mehrere Geräte", icon: "📱", okText: "Hier weiter", abbrechenText: "OK" }
+                    );
+                } else if (typeof showToast === "function") {
+                    showToast("Profil war auf anderem Gerät aktiv.", "info");
+                }
+            } catch (e) { /* offline */ }
         }
 
         function savePlayerProgress() {
@@ -725,6 +817,13 @@ auth.createUserWithEmailAndPassword(e, p)
         let currentDashTab = 'inhalte';
         let currentDashSubTab = 'fragen';
         let selectedStatPlayer = null;
+        if (typeof window.DEVICE_SESSION_ID === "undefined") {
+            try {
+                window.DEVICE_SESSION_ID = sessionStorage.getItem("eduplayDeviceSession") ||
+                    ("d" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36));
+                sessionStorage.setItem("eduplayDeviceSession", window.DEVICE_SESSION_ID);
+            } catch (e) { window.DEVICE_SESSION_ID = "d" + Date.now(); }
+        }
         let currentDashboardSection = null;
 
         function updateDashSubjectFilter() {
@@ -2100,10 +2199,16 @@ auth.createUserWithEmailAndPassword(e, p)
                 syncDashFocusToSelects();
             }
             if (tab === 'progress') {
+                const focus = (document.getElementById('dash-focus-profile') || {}).value || '';
+                if (focus && ALL_PROFILES[focus]) selectedStatPlayer = focus;
                 renderStudyLogOverview();
                 renderDashTestStatsOverview();
                 renderDashPlayerList();
-                if (selectedStatPlayer) renderPlayerStats(selectedStatPlayer);
+                if (selectedStatPlayer) {
+                    const sc = document.getElementById('dash-stats-container');
+                    if (sc) sc.classList.remove('hidden');
+                    renderPlayerStats(selectedStatPlayer);
+                }
             }
             if (tab === 'rewards') {
                 renderDashAdminProgress();
@@ -2250,6 +2355,7 @@ auth.createUserWithEmailAndPassword(e, p)
             showToast(`Auftrag für ${esc(ALL_PROFILES[profileKey].name)}: ${minutes} Min.`, "success");
             renderStudyGoalAdmin();
             if (typeof renderStudyGoalCard === "function") renderStudyGoalCard();
+            if (typeof renderTodayStatusCard === "function") renderTodayStatusCard();
         }
 
         function clearStudyGoal(profileKey) {
@@ -2264,7 +2370,53 @@ auth.createUserWithEmailAndPassword(e, p)
             showToast("Auftrag zurückgezogen.", "success");
             renderStudyGoalAdmin();
             if (typeof renderStudyGoalCard === "function") renderStudyGoalCard();
+            if (typeof renderTodayStatusCard === "function") renderTodayStatusCard();
         }
+
+
+        function renderTodayStatusCard() {
+            const card = document.getElementById("today-status-card");
+            if (!card || !currentPlayer) { if (card) card.classList.add("hidden"); return; }
+            const today = new Date().toISOString().slice(0, 10);
+            const sec = (currentPlayer.studyLog && currentPlayer.studyLog[today]) || 0;
+            const mins = Math.floor(sec / 60);
+            const g = currentPlayer.studyGoal;
+            const goalOk = g && g.minutes && (!g.day || g.day === today) && sec >= g.minutes * 60;
+            const goalOpen = g && g.minutes && (!g.day || g.day === today) && !goalOk;
+            const testOpen = !!currentPlayer.pendingTest;
+            let status, sub, color;
+            if (goalOk && !testOpen) {
+                status = "✓ Heute geschafft";
+                sub = "Auftrag erledigt" + (mins ? (" · " + mins + " Min. gelernt") : "");
+                color = "rgba(16,185,129,0.25)";
+            } else if (goalOk && testOpen) {
+                status = "✓ Auftrag fertig";
+                sub = "Test steht noch offen";
+                color = "rgba(245,158,11,0.2)";
+            } else if (goalOpen) {
+                status = "Noch offen heute";
+                sub = mins + " / " + g.minutes + " Min." + (testOpen ? " · + Test" : "");
+                color = "rgba(99,102,241,0.2)";
+            } else if (testOpen) {
+                status = "📝 Test offen";
+                sub = mins ? (mins + " Min. gelernt heute") : "Bereit, wenn du willst";
+                color = "rgba(99,102,241,0.2)";
+            } else if (mins > 0) {
+                status = "Heute schon " + mins + " Min.";
+                sub = "Weiter so!";
+                color = "rgba(16,185,129,0.15)";
+            } else {
+                status = "Noch nichts heute";
+                sub = "Kurze Einheit reicht schon";
+                color = "rgba(255,255,255,0.06)";
+            }
+            card.innerHTML = `<div class="rounded-2xl px-4 py-3 border border-white/10" style="background:${color}">
+                <div class="font-black text-white text-sm">${status}</div>
+                <div class="text-[11px] text-gray-300 mt-0.5">${esc(sub)}</div>
+            </div>`;
+            card.classList.remove("hidden");
+        }
+        window.renderTodayStatusCard = renderTodayStatusCard;
 
         function renderStudyGoalCard() {
             const card = document.getElementById("study-goal-card");
@@ -2350,13 +2502,13 @@ auth.createUserWithEmailAndPassword(e, p)
                             return n > 0;
                         });
                         if (!subs.length) return;
-                        html += `<div class="col-span-2 text-[10px] font-black text-indigo-300 uppercase tracking-wide mt-1 mb-0.5">${esc(a.label)}</div>`;
+                        html += `<div class="text-[10px] font-black text-indigo-300 uppercase tracking-wide mt-2 mb-0.5 first:mt-0">${esc(a.label)}</div>`;
                         subs.forEach(s => {
                             const n = typeof questionCount === "function" ? questionCount(s.key) : 0;
-                            html += `<label class="flex items-start gap-2 bg-white/5 border border-white/5 rounded-lg p-2.5 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
-                                <input type="checkbox" value="${esc(s.key)}" class="dash-test-cat w-4 h-4 accent-indigo-500 mt-0.5 shrink-0">
-                                <span class="flex-1 leading-snug break-words">${esc(s.label)}</span>
-                                <span class="text-[10px] text-gray-500 shrink-0">${n}</span>
+                            html += `<label class="dash-test-cat-row flex items-center gap-2.5 bg-white/5 border border-white/5 rounded-lg px-2.5 py-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
+                                <input type="checkbox" value="${esc(s.key)}" class="dash-test-cat w-4 h-4 accent-indigo-500 shrink-0">
+                                <span class="flex-1 leading-snug min-w-0 truncate">${esc(s.label)}</span>
+                                <span class="text-[10px] text-gray-500 shrink-0 tabular-nums">${n}</span>
                             </label>`;
                         });
                     });
@@ -2385,11 +2537,10 @@ auth.createUserWithEmailAndPassword(e, p)
                         const set = VOCABULARY_DATABASE[lang][level];
                         const n = (set.words || []).length;
                         if (!n) return;
-                        html += `
-                            <label class="flex items-start gap-2 bg-white/5 border border-white/5 rounded-lg p-2.5 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
-                                <input type="checkbox" value="vocab:${lang}:${level}" class="dash-test-cat w-4 h-4 accent-emerald-500 mt-0.5 shrink-0">
-                                <span class="flex-1 leading-snug break-words">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
-                                <span class="text-[10px] text-gray-500 shrink-0">${n}</span>
+                        html += `<label class="dash-test-cat-row flex items-center gap-2.5 bg-white/5 border border-white/5 rounded-lg px-2.5 py-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
+                                <input type="checkbox" value="vocab:${lang}:${level}" class="dash-test-cat w-4 h-4 accent-emerald-500 shrink-0">
+                                <span class="flex-1 leading-snug min-w-0 truncate">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
+                                <span class="text-[10px] text-gray-500 shrink-0 tabular-nums">${n}</span>
                             </label>`;
                     });
                 });

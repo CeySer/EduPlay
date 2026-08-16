@@ -447,7 +447,7 @@
                 ? await appConfirm(`Die ${offen} restlichen Wörter werden im Gitter gezeigt. Dafür gibt's keine Coins mehr.`, {
                     titel: "Suchsel auflösen?", icon: "🏳️", okText: "Auflösen", abbrechenText: "Weiter suchen", gefahr: true
                 })
-                : confirm("Suchsel auflösen? Für die restlichen Wörter gibt's keine Coins mehr.");
+                : true;
             if (!ok || !suchselState || suchselState.finished) return;
 
             suchselState.gaveUp = true;

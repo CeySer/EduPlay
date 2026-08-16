@@ -555,7 +555,7 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
             const target = document.getElementById(`view-${viewId}`);
             if (target) target.classList.remove('hidden');
             if (typeof closeDrawer === 'function') closeDrawer();
-            if (viewId === 'menu' && typeof loadOpenChallenges === 'function') {
+            if ((viewId === 'menu' || viewId === 'lernen') && typeof loadOpenChallenges === 'function') {
                 try { loadOpenChallenges(); } catch (e) {}
             }
 

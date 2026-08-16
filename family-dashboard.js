@@ -635,13 +635,27 @@ auth.createUserWithEmailAndPassword(e, p)
 
         function startLearnTogether(kind) {
             _learnTogetherType = (kind === "vokabel") ? "vokabel" : "wissen";
-            if (typeof loadOpenChallenges === "function") loadOpenChallenges();
-            // Externe Freunde: Code-Lobby für genau dieses Thema (Team)
-            if (typeof openLearnTogetherCode === "function") {
-                openLearnTogetherCode(_learnTogetherType);
+            window._learnTogetherType = _learnTogetherType;
+            // Markierung aktiv
+            const bw = document.getElementById("lernen-invite-wissen-btn");
+            const bv = document.getElementById("lernen-invite-vokabel-btn");
+            if (bw) bw.style.boxShadow = kind === "wissen" ? "0 0 0 2px #34d399" : "";
+            if (bv) bv.style.boxShadow = kind === "vokabel" ? "0 0 0 2px #818cf8" : "";
+            const hint = document.getElementById("lernen-invite-hint");
+            if (hint) {
+                hint.classList.remove("hidden");
+                hint.textContent = (kind === "vokabel" ? "🃏 Vokabeln" : "🧠 Wissen") + ": unten ein Kind einladen";
             }
+            const codeBtn = document.getElementById("lernen-invite-code-btn");
+            if (codeBtn) codeBtn.classList.remove("hidden");
+            if (typeof loadOpenChallenges === "function") loadOpenChallenges();
+            showToast(
+                kind === "vokabel" ? "Vokabeln gewählt – Kind einladen" : "Wissen gewählt – Kind einladen",
+                "success"
+            );
         }
         window.startLearnTogether = startLearnTogether;
+        window._learnTogetherType = _learnTogetherType;
 
         async function challengePlayer(toKey, typeOverride) {
             if (!currentParentUser || !activePlayerKey || !currentPlayer) {
@@ -764,16 +778,45 @@ auth.createUserWithEmailAndPassword(e, p)
                 const isVocab = (c.type === "vokabel" || c.subject === "vokabel");
                 let questions = [];
                 try {
-                    if (isVocab && typeof buildVocabQuestions === "function") {
-                        questions = buildVocabQuestions() || [];
-                    } else if (typeof buildMixedQuestions === "function") {
-                        questions = buildMixedQuestions(null, 10) || [];
-                    } else if (typeof QUESTIONS_DATABASE !== "undefined" && QUESTIONS_DATABASE.length) {
-                        questions = QUESTIONS_DATABASE.slice().sort(function () { return Math.random() - 0.5; }).slice(0, 10);
+                    if (isVocab) {
+                        if (typeof buildVocabTestQuestions === "function") {
+                            // Standard: erste verfügbare Gruppen
+                            const groups = [];
+                            if (typeof VOCABULARY_DATABASE !== "undefined" && VOCABULARY_DATABASE.en) {
+                                Object.keys(VOCABULARY_DATABASE.en).forEach(function (lv) {
+                                    groups.push("en:" + lv);
+                                });
+                            }
+                            questions = prepareQuestions(
+                                buildVocabTestQuestions(groups.slice(0, 3), "mix")
+                                    .sort(function () { return Math.random() - 0.5; })
+                                    .slice(0, 10)
+                            );
+                        }
+                    } else {
+                        // Schulwissen – kein Spaß-Quiz
+                        const grade = (typeof playerGrade === "function")
+                            ? playerGrade(currentPlayer)
+                            : (currentPlayer && currentPlayer.grade);
+                        let pool = [];
+                        if (typeof QUESTIONS_DATABASE !== "undefined" && Array.isArray(QUESTIONS_DATABASE)) {
+                            pool = QUESTIONS_DATABASE.filter(function (q) {
+                                if (!q || q.area === "spass") return false;
+                                if (grade && q.grade && Number(q.grade) !== Number(grade)) return false;
+                                return true;
+                            });
+                            if (pool.length < 5 && grade) {
+                                pool = QUESTIONS_DATABASE.filter(function (q) {
+                                    return q && q.area !== "spass";
+                                });
+                            }
+                        }
+                        questions = (typeof prepareQuestions === "function" ? prepareQuestions(pool) : pool)
+                            .slice().sort(function () { return Math.random() - 0.5; }).slice(0, 10);
                     }
                 } catch (e) { console.warn(e); }
-                if (!questions.length && typeof QUESTIONS_DATABASE !== "undefined") {
-                    questions = QUESTIONS_DATABASE.slice().sort(function () { return Math.random() - 0.5; }).slice(0, 10);
+                if (!questions.length) {
+                    return showToast("Keine Wissens-Fragen geladen. Bitte kurz warten und erneut versuchen.", "error");
                 }
 
                 const players = {};

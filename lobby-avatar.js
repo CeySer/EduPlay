@@ -224,26 +224,36 @@
                 return showToast("Bitte zuerst deinen Spieler wählen!", "error");
             }
             if (typeof openCodedLobbySetup === "function") openCodedLobbySetup();
-            // Nach UI-Aufbau: nur Wissen oder Vokabeln + Team-Modus
             setTimeout(function () {
                 const isVocab = kind === "vokabel";
                 if (typeof setCodedLobbyType === "function") {
                     setCodedLobbyType(isVocab ? "vokabel" : "quiz");
                 }
+                // Kategorie-Auswahl = Schulwissen (kein Spaß)
+                if (!isVocab && typeof setupCategorySelectors === "function") {
+                    setupCategorySelectors("coded-lobby-area", "coded-lobby-category", "lernen");
+                }
                 const mode = document.getElementById("coded-lobby-mode");
                 if (mode) {
-                    mode.value = "coop";
-                    mode.dispatchEvent(new Event("change"));
+                    // Coop-Wert je nach Optionen
+                    const hasCoop = Array.from(mode.options || []).some(function (o) {
+                        return o.value === "coop" || /zusammen|team|coop/i.test(o.text);
+                    });
+                    if (hasCoop) {
+                        for (let i = 0; i < mode.options.length; i++) {
+                            if (mode.options[i].value === "coop" || /zusammen|team/i.test(mode.options[i].text)) {
+                                mode.selectedIndex = i;
+                                break;
+                            }
+                        }
+                    }
                 }
-                // Duell-Typen ausblenden für klaren Lern-Fokus
                 ["coded-type-scrabble", "coded-type-wortraten"].forEach(function (id) {
                     const el = document.getElementById(id);
                     if (el) el.classList.add("hidden");
                 });
-                const title = document.querySelector("#view-coded-lobby-setup h2, #view-coded-lobby-setup .text-xl");
-                // Hinweis
-                showToast(isVocab ? "Vokabeln-Lobby: Thema wählen & erstellen" : "Wissen-Lobby: Thema wählen & erstellen", "info");
-            }, 100);
+                showToast(isVocab ? "Vokabeln: Gruppen wählen" : "Wissen: Klasse & Fach wählen (Schulstoff)", "info");
+            }, 150);
         }
         window.openLearnTogetherCode = openLearnTogetherCode;
 
@@ -252,7 +262,7 @@
                 return showToast("Bitte zuerst oben deinen Spieler auswaehlen!", "error");
             }
             if (typeof setupCategorySelectors === "function") {
-                setupCategorySelectors("coded-lobby-area", "coded-lobby-category", "spass");
+                setupCategorySelectors("coded-lobby-area", "coded-lobby-category", "lernen");
             }
             const inp = document.getElementById("coded-lobby-join-code");
             if (inp) inp.value = "";

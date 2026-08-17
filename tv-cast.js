@@ -933,8 +933,7 @@
             });
             setTVHostPlayHTML(`
                     <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-between items-center">
-                            <span id="tv-round-timer" class="text-2xl font-black text-amber-400">25s</span>
+                        <div class="flex justify-end items-center">
                             <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
                         </div>
                         <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(99,102,241,0.15);">
@@ -948,7 +947,10 @@
                         </div>
                     </div>
                 `);
-            startTVRoundTimer(25);
+            // Kein eigener lokaler Timer mehr hier – die Firestore-answerDeadline
+            // (siehe starteTVRundenTimer/bindTVHostSnapshot) ist die einzige Uhr,
+            // genau wie im normalen Gegeneinander-Duell. Vorher liefen hier zwei
+            // Timer parallel (dieser + der answerDeadline-Timer unten im Bild).
         }
 
         function revealTVAnswer(data) {
@@ -1336,21 +1338,32 @@
             tvActionMaxChanges = timings.maxChanges || 3;
             console.log("📺 TV Action Mode wie Live-Duell", timings);
 
-            function doChange() {
+            async function doChange() {
                 if (!tvGameRef || !isTVHost) { stopTVActionMode(); return; }
                 if (tvActionChangeCount >= tvActionMaxChanges) {
                     stopTVActionMode();
                     return;
                 }
                 try {
+                    // Genau wie im normalen Gegeneinander-Duell: wenn schon jemand
+                    // sein Wort abgeschickt hat, keine neuen Buchstaben mehr nachschieben.
+                    const snap = await tvGameRef.get();
+                    const frisch = snap.exists ? snap.data() : null;
+                    const hatSchonGeantwortet = frisch && Object.values(frisch.players || {}).some(p => p && p.hasAnswered === true);
+                    if (!frisch || frisch.status !== "playing" || hatSchonGeantwortet) {
+                        stopTVActionMode();
+                        if (typeof showToast === "function") showToast("⏸ Action-Modus pausiert (jemand hat schon geantwortet)", "info", "cast");
+                        return;
+                    }
                     const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode || "kids");
-                    tvGameRef.update({
+                    await tvGameRef.update({
                         currentLetters: rack.letters,
                         currentSolution: rack.solution,
                         currentRequired: rack.required || "",
                         actionTick: Date.now()
-                    }).catch(function (e) { console.warn("TV action update", e); });
+                    });
                     if (typeof SFX !== "undefined" && SFX.tick) SFX.tick();
+                    if (typeof showToast === "function") showToast("⚡ Die Buchstaben haben sich geändert!", "info", "cast");
                     tvActionChangeCount++;
                 } catch (e) {
                     console.warn("TV action change", e);
@@ -1362,6 +1375,7 @@
                 } else {
                     tvActionModeInterval = setTimeout(function () {
                         stopTVActionMode();
+                        if (typeof showToast === "function") showToast("⏰ Action-Modus beendet!", "info", "cast");
                     }, ((timings.maxGap || 12) * 1000) + 2000);
                 }
             }

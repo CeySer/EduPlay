@@ -1877,9 +1877,14 @@
                             <div class="text-6xl">🏆</div>
                             <h2 class="text-2xl font-black text-white mb-2">Duell beendet!</h2>
                             <div class="space-y-3 max-w-sm mx-auto">`;
-                sorted.forEach((p, i) => {
-                    const medal = i < 3 ? medals[i] : `${i + 1}.`;
-                    html += `<div class="flex items-center justify-between bg-white/5 border ${i === 0 ? 'border-yellow-400' : 'border-white/5'} rounded-xl p-3">
+                sorted.forEach((p) => {
+                    // Rang = Anzahl Spieler mit mehr Punkten (Gleichstand teilt sich den Rang).
+                    // Bei 0 Pkt. gibt's keinen "Gewinner" - dann nur Platzziffer, keine Medaille.
+                    const rank = sorted.filter(x => (x.score || 0) > (p.score || 0)).length;
+                    const hasScore = (p.score || 0) > 0;
+                    const medal = (rank < 3 && hasScore) ? medals[rank] : `${rank + 1}.`;
+                    const isWinner = rank === 0 && hasScore;
+                    html += `<div class="flex items-center justify-between bg-white/5 border ${isWinner ? 'border-yellow-400' : 'border-white/5'} rounded-xl p-3">
                                     <div class="flex items-center gap-3"><span class="text-2xl">${medal}</span><span class="font-bold text-white">${esc(p.name)}</span></div>
                                     <div class="font-black text-yellow-400">${p.score} Pkt.</div>
                                 </div>`;
@@ -1975,8 +1980,10 @@
                                 <div class="glass-card p-4 mt-3 space-y-3 text-left" style="border-color:rgba(168,85,247,0.15);">
                                     <p class="text-sm font-black text-purple-300 text-center">🔀 Anderes Spiel starten</p>
                                     <div class="grid grid-cols-2 gap-2">
-                                        <button onclick="renderSwitchTypeOptions('quiz')" class="btn-secondary text-xs py-2.5 px-1">🧠 Wissen</button>
-                                        <button onclick="renderSwitchTypeOptions('vokabel')" class="btn-secondary text-xs py-2.5 px-1">🃏 Vokabeln</button>
+                                        <button onclick="renderSwitchTypeOptions('quiz')" class="btn-secondary text-xs py-2.5 px-1">⚔️ Quiz-Duell</button>
+                                        <button onclick="renderSwitchTypeOptions('scrabble')" class="btn-secondary text-xs py-2.5 px-1">🔤 Wort-Duell</button>
+                                        <button onclick="renderSwitchTypeOptions('wortraten')" class="btn-secondary text-xs py-2.5 px-1">🧩 Wort-Rätsel</button>
+                                        <button onclick="renderSwitchTypeOptions('vokabel')" class="btn-secondary text-xs py-2.5 px-1">📚 Vokabel-Duell</button>
                                     </div>
                                     <div id="switch-type-options"></div>
                                 </div>`;

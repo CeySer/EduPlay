@@ -11,7 +11,7 @@
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
          (Einstellungen -> Entwickler-Modus -> "Build"), ob der Cache/die
          installierte App wirklich den neuesten Stand geladen hat. -->
-    <script>window.EDUPLAY_BUILD = "17.08.2026 · 20:07";</script>
+    <script>window.EDUPLAY_BUILD = "17.08.2026 · 20:22";</script>
 
     <link rel="stylesheet" href="styles.css?v=9.8">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
@@ -949,6 +949,10 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </p>
                     <div id="live-duel-quiz-options" class="space-y-3">
                         <div>
+                            <div class="dash-sub-nav mb-3">
+                                <button type="button" id="live-duel-topic-spass" class="active" onclick="setLiveDuelTopicMode('spass')">🎉 Spaß-Quiz</button>
+                                <button type="button" id="live-duel-topic-lernen" onclick="setLiveDuelTopicMode('lernen')">📚 Lern-Duell</button>
+                            </div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse / Bereich</label>
                             <select id="live-duel-area" class="input-modern font-bold mb-3"></select>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema</label>
@@ -1162,6 +1166,10 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </div>
                     <div id="coded-lobby-quiz-options" class="space-y-4">
                         <div>
+                            <div class="dash-sub-nav mb-3">
+                                <button type="button" id="coded-lobby-topic-spass" class="active" onclick="setCodedLobbyTopicMode('spass')">🎉 Spaß-Quiz</button>
+                                <button type="button" id="coded-lobby-topic-lernen" onclick="setCodedLobbyTopicMode('lernen')">📚 Lern-Duell</button>
+                            </div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse / Bereich</label>
                             <select id="coded-lobby-area" class="input-modern font-bold mb-3"></select>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema</label>

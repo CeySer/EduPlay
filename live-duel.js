@@ -37,6 +37,19 @@
 
         const SCRABBLE_ANSWER_SECONDS = { leicht: 30, mittel: 20, schwer: 15, experte: 12, profi: 35 };
 
+        // Spaß/Lernen-Umschalter für die Klasse/Bereich-Auswahl beim Quiz-Duell
+        // (gleiches Prinzip wie setTVTopicMode() beim TV-Modus) - Standard: Spaß.
+        let liveDuelTopicMode = "spass";
+        function setLiveDuelTopicMode(mode) {
+            mode = mode || liveDuelTopicMode || "spass";
+            liveDuelTopicMode = mode;
+            const s = document.getElementById("live-duel-topic-spass");
+            const l = document.getElementById("live-duel-topic-lernen");
+            if (s) s.classList.toggle("active", mode === "spass");
+            if (l) l.classList.toggle("active", mode === "lernen");
+            setupCategorySelectors("live-duel-area", "live-duel-category", mode);
+        }
+
         function openLiveDuelSetup(type) {
             liveDuelType = type;
             document.getElementById("live-duel-setup-title").innerText = type === "scrabble" ? "🔤 Live-Wortduell" :
@@ -49,7 +62,7 @@
             if (wrOpts) wrOpts.classList.toggle("hidden", type !== "wortraten");
             const vkOpts = document.getElementById("live-duel-vokabel-options");
             if (vkOpts) vkOpts.classList.toggle("hidden", type !== "vokabel");
-            if (type === "quiz") setupCategorySelectors("live-duel-area", "live-duel-category", "alle");
+            if (type === "quiz") setLiveDuelTopicMode(liveDuelTopicMode);
             if (type === "vokabel" && typeof renderVocabGroupCheckboxes === "function") {
                 renderVocabGroupCheckboxes("live-duel-vokabel-checkboxes");
             }

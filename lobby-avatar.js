@@ -230,8 +230,8 @@
                     setCodedLobbyType(isVocab ? "vokabel" : "quiz");
                 }
                 // Kategorie-Auswahl = Schulwissen (kein Spaß)
-                if (!isVocab && typeof setupCategorySelectors === "function") {
-                    setupCategorySelectors("coded-lobby-area", "coded-lobby-category", "lernen");
+                if (!isVocab && typeof setCodedLobbyTopicMode === "function") {
+                    setCodedLobbyTopicMode("lernen");
                 }
                 const mode = document.getElementById("coded-lobby-mode");
                 if (mode) {
@@ -257,13 +257,26 @@
         }
         window.openLearnTogetherCode = openLearnTogetherCode;
 
+        // Spaß/Lernen-Umschalter für die Klasse/Bereich-Auswahl in der Lobby
+        // (gleiches Prinzip wie setTVTopicMode() beim TV-Modus) - Standard: Spaß.
+        let codedLobbyTopicMode = "spass";
+        function setCodedLobbyTopicMode(mode) {
+            mode = mode || codedLobbyTopicMode || "spass";
+            codedLobbyTopicMode = mode;
+            const s = document.getElementById("coded-lobby-topic-spass");
+            const l = document.getElementById("coded-lobby-topic-lernen");
+            if (s) s.classList.toggle("active", mode === "spass");
+            if (l) l.classList.toggle("active", mode === "lernen");
+            if (typeof setupCategorySelectors === "function") {
+                setupCategorySelectors("coded-lobby-area", "coded-lobby-category", mode);
+            }
+        }
+
         function openCodedLobbySetup() {
             if (!currentPlayer || !activePlayerKey) {
                 return showToast("Bitte zuerst oben deinen Spieler auswaehlen!", "error");
             }
-            if (typeof setupCategorySelectors === "function") {
-                setupCategorySelectors("coded-lobby-area", "coded-lobby-category", "alle");
-            }
+            setCodedLobbyTopicMode(codedLobbyTopicMode);
             const inp = document.getElementById("coded-lobby-join-code");
             if (inp) inp.value = "";
             setCodedLobbyType('quiz');

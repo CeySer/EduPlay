@@ -11,7 +11,7 @@
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
          (Einstellungen -> Entwickler-Modus -> "Build"), ob der Cache/die
          installierte App wirklich den neuesten Stand geladen hat. -->
-    <script>window.EDUPLAY_BUILD = "17.08.2026 · 20:22";</script>
+    <script>window.EDUPLAY_BUILD = "17.08.2026 · 22:15";</script>
 
     <link rel="stylesheet" href="styles.css?v=9.8">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
@@ -626,6 +626,10 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <select id="duel-player-b" class="input-modern font-bold"></select>
                     </div>
                     <div>
+                        <div class="dash-sub-nav mb-3">
+                            <button type="button" id="duel-topic-spass" class="active" onclick="setDuelTopicMode('spass')">🎉 Spaß-Quiz</button>
+                            <button type="button" id="duel-topic-lernen" onclick="setDuelTopicMode('lernen')">📚 Lern-Duell</button>
+                        </div>
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Themenbereich</label>
                         <select id="duel-area" class="input-modern font-bold mb-2"></select>
                         <select id="duel-category" class="input-modern font-bold"></select>

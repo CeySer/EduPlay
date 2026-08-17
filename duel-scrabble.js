@@ -2,6 +2,16 @@
         //  DUELL-MODUS (1 gegen 1, gleiches Gerät)
         // ============================================================
         let duelState = null;
+        let duelTopicMode = "spass";
+        function setDuelTopicMode(mode) {
+            mode = mode || duelTopicMode || "spass";
+            duelTopicMode = mode;
+            const s = document.getElementById("duel-topic-spass");
+            const l = document.getElementById("duel-topic-lernen");
+            if (s) s.classList.toggle("active", mode === "spass");
+            if (l) l.classList.toggle("active", mode === "lernen");
+            setupCategorySelectors("duel-area", "duel-category", mode);
+        }
 
         function openDuelSetup() {
             if (Object.keys(ALL_PROFILES).length < 2) return showToast("Für ein Duell braucht ihr mindestens 2 Spieler!",
@@ -13,7 +23,7 @@
             selA.innerHTML = opts;
             selB.innerHTML = opts;
             selB.selectedIndex = 1;
-            setupCategorySelectors("duel-area", "duel-category");
+            setDuelTopicMode(duelTopicMode);
             switchView('duel-setup');
         }
 

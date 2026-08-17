@@ -49,7 +49,7 @@
             if (wrOpts) wrOpts.classList.toggle("hidden", type !== "wortraten");
             const vkOpts = document.getElementById("live-duel-vokabel-options");
             if (vkOpts) vkOpts.classList.toggle("hidden", type !== "vokabel");
-            if (type === "quiz") setupCategorySelectors("live-duel-area", "live-duel-category", "lernen");
+            if (type === "quiz") setupCategorySelectors("live-duel-area", "live-duel-category", "alle");
             if (type === "vokabel" && typeof renderVocabGroupCheckboxes === "function") {
                 renderVocabGroupCheckboxes("live-duel-vokabel-checkboxes");
             }
@@ -1997,7 +1997,7 @@
             document.getElementById("live-duel-result-content").innerHTML = html;
 
             if (isLiveDuelCreator && data.type === "quiz" && document.getElementById("again-area")) {
-                setupCategorySelectors("again-area", "again-category", "lernen");
+                setupCategorySelectors("again-area", "again-category", "alle");
             }
 
             liveDuelRenderKey = "";
@@ -2021,7 +2021,7 @@
                     <select id="switch-quiz-category" class="input-modern text-sm font-bold"></select>
                     <button onclick="restartLiveDuelAsType('quiz')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">🧠 Wissen starten 🚀</button>`;
                 box.innerHTML = html;
-                setupCategorySelectors("switch-quiz-area", "switch-quiz-category", "lernen");
+                setupCategorySelectors("switch-quiz-area", "switch-quiz-category", "alle");
             } else if (type === "scrabble") {
                 html = `
                     <select id="switch-scrabble-wordmode" class="input-modern text-sm font-bold">

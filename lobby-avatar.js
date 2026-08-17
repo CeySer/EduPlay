@@ -262,7 +262,7 @@
                 return showToast("Bitte zuerst oben deinen Spieler auswaehlen!", "error");
             }
             if (typeof setupCategorySelectors === "function") {
-                setupCategorySelectors("coded-lobby-area", "coded-lobby-category", "lernen");
+                setupCategorySelectors("coded-lobby-area", "coded-lobby-category", "alle");
             }
             const inp = document.getElementById("coded-lobby-join-code");
             if (inp) inp.value = "";

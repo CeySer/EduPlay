@@ -2639,6 +2639,16 @@ auth.createUserWithEmailAndPassword(e, p)
             renderDashTestResults();
         }
 
+        function toggleDashTestArea(id) {
+            const body = document.getElementById(id);
+            const arrow = document.getElementById(id + "-arrow");
+            if (!body) return;
+            const open = body.classList.contains("hidden");
+            body.classList.toggle("hidden", !open);
+            if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
+        }
+        window.toggleDashTestArea = toggleDashTestArea;
+
         function fillDashTestCategoryUI() {
             const catBox = document.getElementById('dash-test-categories');
             if (catBox) {
@@ -2646,13 +2656,25 @@ auth.createUserWithEmailAndPassword(e, p)
                 // Strukturiert nach Klasse/Bereich (wie Lern-Menü), nicht flache Liste
                 if (typeof getAreas === "function") {
                     const areas = getAreas("lernen");
+                    let areaIdx = 0;
                     areas.forEach(a => {
                         const subs = (a.subjects || []).filter(s => {
                             const n = typeof questionCount === "function" ? questionCount(s.key) : 0;
                             return n > 0;
                         });
                         if (!subs.length) return;
-                        html += `<div class="text-[10px] font-black text-indigo-300 uppercase tracking-wide mt-2 mb-0.5 first:mt-0">${esc(a.label)}</div>`;
+                        const aid = "dash-test-area-" + (areaIdx++);
+                        const countAll = subs.reduce((s, x) => s + (typeof questionCount === "function" ? questionCount(x.key) : 0), 0);
+                        html += `<div class="rounded-xl border border-white/10 overflow-hidden mt-1.5 first:mt-0">
+                            <button type="button" onclick="toggleDashTestArea('${aid}')"
+                                class="w-full px-2.5 py-2 flex items-center justify-between gap-2 bg-white/5 hover:bg-white/10 transition text-left">
+                                <span class="text-[11px] font-black text-indigo-300 uppercase tracking-wide">${esc(a.label)}</span>
+                                <span class="flex items-center gap-2 shrink-0">
+                                    <span class="text-[10px] text-gray-500">${subs.length} Themen · ${countAll}</span>
+                                    <span id="${aid}-arrow" class="text-gray-400 text-xs transition-transform">▼</span>
+                                </span>
+                            </button>
+                            <div id="${aid}" class="hidden px-1.5 pb-1.5 space-y-1">`;
                         subs.forEach(s => {
                             const n = typeof questionCount === "function" ? questionCount(s.key) : 0;
                             html += `<label class="dash-test-cat-row flex items-center gap-2.5 bg-white/5 border border-white/5 rounded-lg px-2.5 py-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
@@ -2661,6 +2683,7 @@ auth.createUserWithEmailAndPassword(e, p)
                                 <span class="text-[10px] text-gray-500 shrink-0 tabular-nums">${n}</span>
                             </label>`;
                         });
+                        html += `</div></div>`;
                     });
                 }
                 if (!html && typeof QUESTIONS_DATABASE !== "undefined" && Array.isArray(QUESTIONS_DATABASE)) {

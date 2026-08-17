@@ -174,7 +174,6 @@
             if (typeof CURRICULUM !== 'undefined') {
                 CURRICULUM.forEach(g => g.subjects.forEach(s => { m[s.key] = g.label + " · " + s.label; }));
             }
-            if (typeof BERUFSSCHULE !== 'undefined') BERUFSSCHULE.forEach(s => { m[s.key] = s.label; });
             if (typeof FUN_CATEGORIES !== 'undefined') FUN_CATEGORIES.forEach(s => { m[s.key] = s.label; });
             return m;
         })();

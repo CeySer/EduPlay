@@ -102,10 +102,6 @@
                 const f = FUN_CATEGORIES.find(s => s.key === key);
                 if (f) return f.label;
             }
-            if (typeof BERUFSSCHULE !== "undefined" && Array.isArray(BERUFSSCHULE)) {
-                const b = BERUFSSCHULE.find(s => s.key === key);
-                if (b) return b.label;
-            }
         } catch (e) { /* egal, dann eben ohne Namen */ }
         return "";
     };

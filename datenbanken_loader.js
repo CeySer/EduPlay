@@ -42,7 +42,6 @@
         'fragen/manifest.js',
         'fragen/questions_school.js',   // CURRICULUM – Menübaum
         'fragen/questions_fun.js',      // FUN_CATEGORIES
-        'fragen/questions_beruf.js',    // BERUFSSCHULE
         'fragen/words_kids.js',         // Wort-Rätsel
         'fragen/words_kids_themes.js',
         'fragen/words_adult.js',

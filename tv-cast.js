@@ -1481,7 +1481,7 @@
                     </div>
                     <div class="flex flex-wrap justify-center gap-1">${mask}</div>
                     ${data.lastSolveAttempt && data.lastSolveAttempt.text
-                        ? `<div class="text-center text-lg text-amber-300 font-bold">💡 ${(data.lastSolveAttempt.name || "Jemand")}: „${String(data.lastSolveAttempt.text).slice(0, 24)}“</div>`
+                        ? `<div class="text-center text-lg text-amber-300 font-bold">💡 ${esc(data.lastSolveAttempt.name || "Jemand")}: „${esc(String(data.lastSolveAttempt.text).slice(0, 24))}“</div>`
                         : ""}
                     <div id="tv-wr-turn-timer" class="text-center text-xl font-black text-sky-300"></div>
                     <div class="text-center">${footer}</div>

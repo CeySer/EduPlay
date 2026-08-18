@@ -11,7 +11,7 @@
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
          (Einstellungen -> Entwickler-Modus -> "Build"), ob der Cache/die
          installierte App wirklich den neuesten Stand geladen hat. -->
-    <script>window.EDUPLAY_BUILD = "18.08.2026 · 21:20";</script>
+    <script>window.EDUPLAY_BUILD = "19.08.2026 · 00:33";</script>
 
     <link rel="stylesheet" href="styles.css?v=9.8">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
@@ -160,12 +160,10 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         autocomplete="email">
                     <label for="auth-password" class="text-xs text-gray-400 font-bold block mb-1.5">Passwort</label>
                     <div class="relative">
-                        <input type="password" id="auth-password" placeholder="mindestens 6 Zeichen"
-                            class="input-modern pr-12" autocomplete="current-password">
-                        <button type="button" id="auth-password-toggle"
-                            onclick="togglePasswordVisibility('auth-password','auth-password-toggle')"
-                            class="password-toggle-btn" aria-label="Passwort anzeigen"
-                            title="Passwort anzeigen">👁</button>
+                        <input type="password" id="auth-password" placeholder="mindestens 6 Zeichen" class="input-modern pr-12"
+                            autocomplete="current-password">
+                        <button type="button" id="auth-password-toggle" onclick="togglePasswordVisibility('auth-password','auth-password-toggle')"
+                            class="password-toggle-btn" aria-label="Passwort anzeigen" title="Passwort anzeigen">👁</button>
                     </div>
                     <div class="flex gap-2 pt-2">
                         <button onclick="loginParent()" class="flex-1 btn-primary text-center">Einloggen</button>
@@ -224,27 +222,23 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 mb-1">
                         Mit Code mitspielen
                     </div>
-                    <p class="text-xs text-gray-500 mt-2">Kein Konto, nichts wird gespeichert – nur Name für diese
-                        Runde.</p>
+                    <p class="text-xs text-gray-500 mt-2">Kein Konto, nichts wird gespeichert – nur Name für diese Runde.</p>
                 </div>
                 <div class="glass-card p-6 space-y-4" style="border-color:rgba(16,185,129,0.25);">
                     <div>
-                        <label for="guest-code" class="text-xs text-gray-400 font-bold block mb-1.5">Lobby-Code (4
-                            Zeichen)</label>
+                        <label for="guest-code" class="text-xs text-gray-400 font-bold block mb-1.5">Lobby-Code (4 Zeichen)</label>
                         <input id="guest-code" maxlength="4" placeholder="K7P2" autocomplete="off" inputmode="text"
                             autocapitalize="characters" enterkeyhint="go"
                             class="input-modern text-3xl font-black text-center uppercase py-4"
                             style="letter-spacing:0.35em;">
                     </div>
                     <div>
-                        <label for="guest-name" class="text-xs text-gray-400 font-bold block mb-1.5">Anzeigename in der
-                            Runde</label>
+                        <label for="guest-name" class="text-xs text-gray-400 font-bold block mb-1.5">Anzeigename in der Runde</label>
                         <input id="guest-name" maxlength="16" placeholder="z. B. Max" autocomplete="off"
                             class="input-modern font-bold">
                     </div>
                     <button onclick="guestEnterLobby()" class="btn-primary w-full text-center py-3.5"
-                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.35);">Runde
-                        beitreten ✅</button>
+                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.35);">Runde beitreten ✅</button>
                 </div>
                 <button onclick="logoutParent()"
                     class="w-full text-center text-xs text-gray-500 hover:text-gray-300 underline py-2">Zurück zur
@@ -257,12 +251,10 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             <div id="view-family-hub" class="view hidden space-y-5">
 
                 <div class="text-center pt-1">
-                    <div
-                        class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.16em] text-indigo-300/80 uppercase mb-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-400/15">
+                    <div class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.16em] text-indigo-300/80 uppercase mb-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-400/15">
                         <span>✨</span> Wer lernt heute?
                     </div>
-                    <h1
-                        class="text-[1.7rem] leading-tight font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-fuchsia-300 to-pink-400">
+                    <h1 class="text-[1.7rem] leading-tight font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-fuchsia-300 to-pink-400">
                         Spieler auswählen
                     </h1>
                 </div>
@@ -290,11 +282,13 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
                 <!-- Aktionen -->
                 <div class="grid grid-cols-2 gap-3">
-                    <button onclick="switchView('create-profile')" class="hub-action-btn hub-action-new">
+                    <button onclick="switchView('create-profile')"
+                        class="hub-action-btn hub-action-new">
                         <span class="text-base">➕</span>
                         <span>Neuer Spieler</span>
                     </button>
-                    <button onclick="addGuestProfile()" class="hub-action-btn hub-action-guest">
+                    <button onclick="addGuestProfile()"
+                        class="hub-action-btn hub-action-guest">
                         <span class="text-base">👋</span>
                         <span>Gast (nur heute)</span>
                     </button>
@@ -458,7 +452,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <div class="label">Aufgaben</div>
                             <div class="sub">Auftrag · Tests</div>
                         </div>
-                        <div id="dash-admin-progress" class="dash-admin-tab" onclick="switchDashAdminTab('progress')">
+                        <div id="dash-admin-progress" class="dash-admin-tab"
+                            onclick="switchDashAdminTab('progress')">
                             <span class="icon">📊</span>
                             <div class="label">Fortschritt</div>
                             <div class="sub">Lernzeit · Tests</div>
@@ -474,8 +469,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="dash-admin-aufgaben-view" class="space-y-3">
                         <div class="glass-card p-4 space-y-3">
                             <div class="font-black text-emerald-300 text-sm">📊 Stärken &amp; Schwächen</div>
-                            <select id="dash-sw-profile" class="hidden"
-                                onchange="renderDashStrengthWeakness()"></select>
+                            <select id="dash-sw-profile" class="hidden" onchange="renderDashStrengthWeakness()"></select>
                             <div id="dash-strength-weakness" class="space-y-1.5"></div>
                         </div>
 
@@ -486,8 +480,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <div class="grid grid-cols-2 gap-2">
                                 <div>
                                     <label class="text-xs text-gray-400 font-bold block mb-1.5">Minuten</label>
-                                    <input type="number" id="dash-goal-minutes" value="30" min="5" max="180"
-                                        class="input-modern text-sm">
+                                    <input type="number" id="dash-goal-minutes" value="30" min="5" max="180" class="input-modern text-sm">
                                 </div>
                                 <div>
                                     <label class="text-xs text-gray-400 font-bold block mb-1.5">Bereich</label>
@@ -502,21 +495,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             </div>
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Notiz (optional)</label>
-                                <input type="text" id="dash-goal-note" maxlength="60"
-                                    placeholder="z.B. danach gibt’s den Test" class="input-modern text-sm">
+                                <input type="text" id="dash-goal-note" maxlength="60" placeholder="z.B. danach gibt’s den Test"
+                                    class="input-modern text-sm">
                             </div>
-                            <button onclick="assignStudyGoalFromDashboard()"
-                                class="btn-primary w-full text-center">Auftrag setzen ✓</button>
+                            <button onclick="assignStudyGoalFromDashboard()" class="btn-primary w-full text-center">Auftrag setzen ✓</button>
                             <div class="flex flex-wrap gap-1.5 pt-1">
-                                <button type="button" onclick="applyGoalPreset(20,'vokabeln')"
-                                    class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10">20
-                                    Min. Vokabeln</button>
-                                <button type="button" onclick="applyGoalPreset(30,'wissen')"
-                                    class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10">30
-                                    Min. Wissen</button>
-                                <button type="button" onclick="applyGoalPreset(15,'any')"
-                                    class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10">15
-                                    Min. Alles</button>
+                                <button type="button" onclick="applyGoalPreset(20,'vokabeln')" class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10">20 Min. Vokabeln</button>
+                                <button type="button" onclick="applyGoalPreset(30,'wissen')" class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10">30 Min. Wissen</button>
+                                <button type="button" onclick="applyGoalPreset(15,'any')" class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10">15 Min. Alles</button>
                             </div>
                             <div id="dash-goal-list" class="space-y-2 pt-1"></div>
                         </div>
@@ -573,8 +559,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <span id="dash-study-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
                             <div id="dash-study-body" class="hidden px-4 pb-4 space-y-2">
-                                <p class="text-[11px] text-gray-500">Übungszeit: Wissen, Vokabeln, Lesen, Suchsel. Tests
-                                    zählen nicht.</p>
+                                <p class="text-[11px] text-gray-500">Übungszeit: Wissen, Vokabeln, Lesen, Suchsel. Tests zählen nicht.</p>
                                 <div id="dash-study-log" class="space-y-2 text-sm"></div>
                             </div>
                         </div>
@@ -593,8 +578,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div class="glass-card overflow-hidden">
                             <button type="button" onclick="toggleDashPlayerList()"
                                 class="w-full p-4 flex items-center justify-between hover:bg-white/5 transition">
-                                <span class="font-bold text-indigo-300">👥 Detail-Statistik <span
-                                        class="text-[10px] font-bold text-indigo-400/70">(optional)</span></span>
+                                <span class="font-bold text-indigo-300">👥 Detail-Statistik <span class="text-[10px] font-bold text-indigo-400/70">(optional)</span></span>
                                 <span id="dash-player-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
                             <div id="dash-player-list" class="hidden p-4 pt-0 grid grid-cols-2 gap-2"></div>
@@ -643,10 +627,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </div>
                     <div>
                         <div class="dash-sub-nav mb-3">
-                            <button type="button" id="duel-topic-spass" class="active"
-                                onclick="setDuelTopicMode('spass')">🎉 Spaß-Quiz</button>
-                            <button type="button" id="duel-topic-lernen" onclick="setDuelTopicMode('lernen')">📚
-                                Lern-Duell</button>
+                            <button type="button" id="duel-topic-spass" class="active" onclick="setDuelTopicMode('spass')">🎉 Spaß-Quiz</button>
+                            <button type="button" id="duel-topic-lernen" onclick="setDuelTopicMode('lernen')">📚 Lern-Duell</button>
                         </div>
                         <label class="text-xs text-gray-400 font-bold block mb-1.5">Themenbereich</label>
                         <select id="duel-area" class="input-modern font-bold mb-2"></select>
@@ -656,9 +638,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 onchange="toggleCategoryMixFor('duel')">
                             Mehrere Themen mischen
                         </label>
-                        <div id="duel-category-checks"
-                            class="hidden mt-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10">
-                        </div>
+                        <div id="duel-category-checks" class="hidden mt-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10"></div>
                     </div>
                     <button onclick="startDuel()" class="btn-primary w-full text-center">Duell starten ⚔️</button>
                 </div>
@@ -930,7 +910,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="wortraten-turn-banner" class="text-center text-sm font-bold text-sky-300 h-5"></div>
                     <div id="wortraten-scores" class="flex gap-2 overflow-x-auto pb-1"></div>
                     <div id="wortraten-keyboard" class="grid grid-cols-6 sm:grid-cols-7 gap-1.5"></div>
-                    <button type="button" onclick="wrPromptSolveWord()" class="btn-primary text-xs w-full py-2"
+                    <button type="button" onclick="wrPromptSolveWord()"
+                        class="btn-primary text-xs w-full py-2"
                         style="background:var(--gradient-cool);">💡 Ich kenne das Wort!</button>
                 </div>
 
@@ -973,10 +954,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="live-duel-quiz-options" class="space-y-3">
                         <div>
                             <div class="dash-sub-nav mb-3">
-                                <button type="button" id="live-duel-topic-spass" class="active"
-                                    onclick="setLiveDuelTopicMode('spass')">🎉 Spaß-Quiz</button>
-                                <button type="button" id="live-duel-topic-lernen"
-                                    onclick="setLiveDuelTopicMode('lernen')">📚 Lern-Duell</button>
+                                <button type="button" id="live-duel-topic-spass" class="active" onclick="setLiveDuelTopicMode('spass')">🎉 Spaß-Quiz</button>
+                                <button type="button" id="live-duel-topic-lernen" onclick="setLiveDuelTopicMode('lernen')">📚 Lern-Duell</button>
                             </div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse / Bereich</label>
                             <select id="live-duel-area" class="input-modern font-bold mb-3"></select>
@@ -990,9 +969,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                     onchange="toggleLiveDuelCategoryMix()">
                                 Mehrere Themen mischen
                             </label>
-                            <div id="live-duel-category-checks"
-                                class="hidden mt-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10">
-                            </div>
+                            <div id="live-duel-category-checks" class="hidden mt-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10"></div>
                         </div>
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Tempo</label>
@@ -1194,10 +1171,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="coded-lobby-quiz-options" class="space-y-4">
                         <div>
                             <div class="dash-sub-nav mb-3">
-                                <button type="button" id="coded-lobby-topic-spass" class="active"
-                                    onclick="setCodedLobbyTopicMode('spass')">🎉 Spaß-Quiz</button>
-                                <button type="button" id="coded-lobby-topic-lernen"
-                                    onclick="setCodedLobbyTopicMode('lernen')">📚 Lern-Duell</button>
+                                <button type="button" id="coded-lobby-topic-spass" class="active" onclick="setCodedLobbyTopicMode('spass')">🎉 Spaß-Quiz</button>
+                                <button type="button" id="coded-lobby-topic-lernen" onclick="setCodedLobbyTopicMode('lernen')">📚 Lern-Duell</button>
                             </div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse / Bereich</label>
                             <select id="coded-lobby-area" class="input-modern font-bold mb-3"></select>
@@ -1208,9 +1183,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                     onchange="toggleCategoryMixFor('coded-lobby')">
                                 Mehrere Themen mischen
                             </label>
-                            <div id="coded-lobby-category-checks"
-                                class="hidden mt-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10">
-                            </div>
+                            <div id="coded-lobby-category-checks" class="hidden mt-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10"></div>
                         </div>
                         <div>
                             <label class="text-xs text-gray-400 font-bold block mb-1.5">Tempo</label>
@@ -1348,8 +1321,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
             <div id="view-live-duel-lobby" class="view hidden space-y-4">
                 <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary btn-beenden text-sm py-2.5 px-4"
-                        onclick="leaveLiveDuel()">Beenden</button>
+                    <button class="btn-secondary btn-beenden text-sm py-2.5 px-4" onclick="leaveLiveDuel()">Beenden</button>
                     <span class="text-sm font-bold text-gray-400">Warteraum</span>
                     <span class="w-20"></span>
                 </div>
@@ -1372,8 +1344,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div class="text-4xl mb-2">⏳</div>
                         <h2 class="text-xl font-black text-white">Warte auf Mitspieler</h2>
                         <p class="text-xs text-gray-400 mt-1">Sobald alle da sind, startet der Host</p>
-                        <p id="live-duel-conn-status" class="text-xs font-bold text-indigo-300 mt-2">📡 Verbindung wird
-                            geprüft…</p>
+                        <p id="live-duel-conn-status" class="text-xs font-bold text-indigo-300 mt-2">📡 Verbindung wird geprüft…</p>
                     </div>
                     <div id="live-duel-player-list" class="grid grid-cols-2 gap-2.5"></div>
                     <button id="live-duel-start-btn" onclick="startLiveDuelRound()"
@@ -1470,8 +1441,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <span class="text-xl">👥</span>
                     <span class="min-w-0">
                         <span class="block text-sm font-black text-indigo-300">Mit Freunden üben</span>
-                        <span class="block text-[11px] text-gray-500">Einladen unter Allein oder mit Freunden
-                            lernen</span>
+                        <span class="block text-[11px] text-gray-500">Einladen unter Allein und mit Freunden lernen</span>
                     </span>
                 </button>
 
@@ -1507,7 +1477,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     style="background:linear-gradient(140deg,#10b981,#34d399);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
                     <span class="text-4xl shrink-0">🎓</span>
                     <span>
-                        <span class="block text-lg font-black">Allein oder mit Freunden lernen</span>
+                        <span class="block text-lg font-black">Allein und mit Freunden lernen</span>
                         <span class="block text-xs font-bold text-emerald-100/80">Wissen, Vokabeln, Fokus-Timer</span>
                     </span>
                 </button>
@@ -1518,8 +1488,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <span class="text-4xl shrink-0">🎁</span>
                     <span>
                         <span class="block text-lg font-black">Belohnungen einlösen</span>
-                        <span class="block text-xs font-bold" style="color:rgba(11,16,32,0.65)">Coins gegen Wünsche
-                            tauschen</span>
+                        <span class="block text-xs font-bold" style="color:rgba(11,16,32,0.65)">Coins gegen Wünsche tauschen</span>
                     </span>
                 </button>
 
@@ -1613,13 +1582,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             <div id="view-lernen" class="view hidden space-y-3">
                 <div class="flex items-center justify-between gap-2">
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                    <span class="text-sm font-bold text-gray-400">🎓 Allein oder mit Freunden lernen</span>
+                    <span class="text-sm font-bold text-gray-400">🎓 Allein und mit Freunden lernen</span>
                     <span class="w-16"></span>
                 </div>
 
                 <!-- Mit Freunden üben – Wissen / Vokabeln -->
-                <div id="lernen-friends-card" class="glass-card p-4 space-y-3"
-                    style="border:1px solid rgba(99,102,241,0.4);">
+                <div id="lernen-friends-card" class="glass-card p-4 space-y-3" style="border:1px solid rgba(99,102,241,0.4);">
                     <div class="flex items-center gap-2">
                         <span class="text-2xl">👥</span>
                         <div>
@@ -1635,11 +1603,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             class="py-3 rounded-xl text-sm font-black text-white ring-2 ring-transparent"
                             style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">🃏 Vokabeln</button>
                     </div>
-                    <p id="lernen-invite-hint" class="text-xs font-bold text-indigo-200 hidden">Wähle unten ein Kind zum
-                        Einladen.</p>
+                    <p id="lernen-invite-hint" class="text-xs font-bold text-indigo-200 hidden">Wähle unten ein Kind zum Einladen.</p>
                     <div id="open-challenges-list" class="space-y-2"></div>
-                    <button type="button" id="lernen-invite-code-btn"
-                        onclick="openLearnTogetherCode(_learnTogetherType||'wissen')"
+                    <button type="button" id="lernen-invite-code-btn" onclick="openLearnTogetherCode(_learnTogetherType||'wissen')"
                         class="hidden w-full text-xs py-2.5 rounded-xl font-bold text-indigo-200 bg-white/5 border border-indigo-400/30">
                         🔗 Per Code einladen
                     </button>
@@ -1652,6 +1618,16 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <span>
                         <span class="block text-base font-black">Wissen</span>
                         <span class="block text-xs font-bold text-emerald-100/80">Quiz nach Klasse und Fach</span>
+                    </span>
+                </button>
+
+                <button onclick="showKurse()" data-needs-questions
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
+                    style="background:linear-gradient(140deg,#f59e0b,#ef4444);">
+                    <span class="text-3xl shrink-0">📘</span>
+                    <span>
+                        <span class="block text-base font-black">Kurse <span class="text-[10px] bg-white/20 rounded-full px-2 py-0.5 align-middle">NEU</span></span>
+                        <span class="block text-xs font-bold text-amber-100/80">Schritt für Schritt lernen</span>
                     </span>
                 </button>
 
@@ -1778,16 +1754,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div>
                         <label class="block text-xs font-bold text-gray-400 mb-1.5">App bewerten</label>
                         <div id="app-rating-stars" class="app-rating-stars" role="radiogroup" aria-label="Sterne">
-                            <button type="button" class="app-rating-star" data-stars="1" onclick="setAppRating(1)"
-                                aria-label="1 Stern">★</button>
-                            <button type="button" class="app-rating-star" data-stars="2" onclick="setAppRating(2)"
-                                aria-label="2 Sterne">★</button>
-                            <button type="button" class="app-rating-star" data-stars="3" onclick="setAppRating(3)"
-                                aria-label="3 Sterne">★</button>
-                            <button type="button" class="app-rating-star" data-stars="4" onclick="setAppRating(4)"
-                                aria-label="4 Sterne">★</button>
-                            <button type="button" class="app-rating-star" data-stars="5" onclick="setAppRating(5)"
-                                aria-label="5 Sterne">★</button>
+                            <button type="button" class="app-rating-star" data-stars="1" onclick="setAppRating(1)" aria-label="1 Stern">★</button>
+                            <button type="button" class="app-rating-star" data-stars="2" onclick="setAppRating(2)" aria-label="2 Sterne">★</button>
+                            <button type="button" class="app-rating-star" data-stars="3" onclick="setAppRating(3)" aria-label="3 Sterne">★</button>
+                            <button type="button" class="app-rating-star" data-stars="4" onclick="setAppRating(4)" aria-label="4 Sterne">★</button>
+                            <button type="button" class="app-rating-star" data-stars="5" onclick="setAppRating(5)" aria-label="5 Sterne">★</button>
                         </div>
                         <p id="app-rating-label" class="text-[11px] text-gray-500 mt-1">Tippe auf die Sterne</p>
                     </div>
@@ -1886,11 +1857,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div class="py-2 border-b border-white/5 space-y-2">
                         <span class="font-bold text-white block">🎧 Sound-Pack</span>
                         <div class="dash-sub-nav">
-                            <button type="button" data-sound-pack="soft" class="active"
-                                onclick="setSoundPack('soft')">Soft</button>
+                            <button type="button" data-sound-pack="soft" class="active" onclick="setSoundPack('soft')">Soft</button>
                             <button type="button" data-sound-pack="crisp" onclick="setSoundPack('crisp')">Klar</button>
-                            <button type="button" data-sound-pack="arcade"
-                                onclick="setSoundPack('arcade')">Arcade</button>
+                            <button type="button" data-sound-pack="arcade" onclick="setSoundPack('arcade')">Arcade</button>
                         </div>
                         <p class="text-[11px] text-gray-500">Soft · Klar · Arcade. Mit „Ton“ stummbar.</p>
                     </div>
@@ -1933,30 +1902,24 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         </button>
                         <div id="settings-levels-body" class="hidden space-y-3">
                             <div>
-                                <div class="text-[11px] text-gray-500 font-bold mb-1.5 uppercase tracking-wide">Level
-                                </div>
+                                <div class="text-[11px] text-gray-500 font-bold mb-1.5 uppercase tracking-wide">Level</div>
                                 <div id="settings-levels-list" class="space-y-1.5 text-sm"></div>
                             </div>
                             <div>
-                                <div class="text-[11px] text-gray-500 font-bold mb-1.5 uppercase tracking-wide">
-                                    Abzeichen</div>
+                                <div class="text-[11px] text-gray-500 font-bold mb-1.5 uppercase tracking-wide">Abzeichen</div>
                                 <div id="settings-badges-list" class="space-y-1.5 text-sm"></div>
                             </div>
                         </div>
                     </div>
                     <div class="pt-3 border-t border-white/5 space-y-2">
                         <h3 class="text-sm font-black text-violet-400">🤖 KI-Lerncoach</h3>
-                        <p class="text-xs text-gray-400">Gemini-API-Key (Google AI Studio, optional). Ohne Key:
-                            Offline-Erklärung.</p>
-                        <input id="settings-gemini-key" type="password" autocomplete="off"
-                            placeholder="API-Key einfügen…"
+                        <p class="text-xs text-gray-400">Gemini-API-Key (Google AI Studio, optional). Ohne Key: Offline-Erklärung.</p>
+                        <input id="settings-gemini-key" type="password" autocomplete="off" placeholder="API-Key einfügen…"
                             class="w-full bg-black/30 border border-white/10 rounded-xl px-3 py-2 text-sm text-white" />
                         <div class="flex gap-2">
-                            <button type="button"
-                                onclick="(function(){ if(!window.EduPlayCoach) return; EduPlayCoach.setApiKey(document.getElementById('settings-gemini-key').value); if(typeof showToast==='function') showToast('KI-Key gespeichert','success'); })()"
+                            <button type="button" onclick="(function(){ if(!window.EduPlayCoach) return; EduPlayCoach.setApiKey(document.getElementById('settings-gemini-key').value); if(typeof showToast==='function') showToast('KI-Key gespeichert','success'); })()"
                                 class="btn-primary flex-1 text-sm py-2">Speichern</button>
-                            <button type="button"
-                                onclick="(function(){ if(!window.EduPlayCoach) return; EduPlayCoach.setApiKey(''); var i=document.getElementById('settings-gemini-key'); if(i) i.value=''; if(typeof showToast==='function') showToast('KI-Key gelöscht','info'); })()"
+                            <button type="button" onclick="(function(){ if(!window.EduPlayCoach) return; EduPlayCoach.setApiKey(''); var i=document.getElementById('settings-gemini-key'); if(i) i.value=''; if(typeof showToast==='function') showToast('KI-Key gelöscht','info'); })()"
                                 class="btn-secondary text-sm py-2 px-3">Löschen</button>
                         </div>
                     </div>
@@ -2002,502 +1965,549 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             </div>
 
             <div id="view-fokus" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                <div class="glass-card p-8 text-center space-y-6 shadow-lg">
-                    <div class="text-6xl">⏱️</div>
-                    <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-2">Wie lange fokussiert bleiben?</label>
-                        <div class="flex flex-wrap gap-2 justify-center">
-                            <button id="fokus-dur-5" class="btn-secondary text-sm py-2 px-3"
-                                onclick="setFocusDuration(5)">5 Min.</button>
-                            <button id="fokus-dur-10" class="btn-secondary text-sm py-2 px-3"
-                                onclick="setFocusDuration(10)">10 Min.</button>
-                            <button id="fokus-dur-15" class="btn-primary text-sm py-2 px-3"
-                                style="background:var(--gradient-green);" onclick="setFocusDuration(15)">15
-                                Min.</button>
-                            <button id="fokus-dur-25" class="btn-secondary text-sm py-2 px-3"
-                                onclick="setFocusDuration(25)">25 Min.</button>
-                            <button id="fokus-dur-45" class="btn-secondary text-sm py-2 px-3"
-                                onclick="setFocusDuration(45)">45 Min.</button>
-                        </div>
-                        <div class="flex items-center justify-center gap-2 mt-3">
-                            <label for="fokus-custom-min" class="text-xs text-gray-400 font-bold">Eigene Min.</label>
-                            <input type="number" id="fokus-custom-min" min="1" max="180" value="15" inputmode="numeric"
-                                class="input-modern w-20 text-center font-bold text-sm py-2"
-                                onchange="setFocusDuration(parseInt(this.value,10)||15)">
-                            <button type="button" class="btn-secondary text-xs py-2 px-3"
-                                onclick="setFocusDuration(parseInt(document.getElementById('fokus-custom-min').value,10)||15)">OK</button>
-                        </div>
-                        <p id="fokus-reward-hint" class="text-xs text-gray-500 mt-2">Belohnung: +20 Coins</p>
-                    </div>
-                    <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
-                    <p id="fokus-status" class="hidden text-xs font-bold"></p>
-                    <div class="flex gap-2 justify-center">
-                        <button class="btn-primary"
-                            style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);"
-                            onclick="startFocusTimer()">Start</button>
-                        <button class="btn-secondary" onclick="resetFocusTimer()">Reset</button>
-                    </div>
-                    <p class="text-[10px] text-gray-600">Verlässt du die App während des Fokus-Timers, pausiert er
-                        automatisch. Zu oft verlassen kostet Belohnung.</p>
+        <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+        <div class="glass-card p-8 text-center space-y-6 shadow-lg">
+            <div class="text-6xl">⏱️</div>
+            <h2 class="text-2xl font-black text-yellow-400">Fokus-Timer</h2>
+            <div>
+                <label class="text-xs text-gray-400 font-bold block mb-2">Wie lange fokussiert bleiben?</label>
+                <div class="flex flex-wrap gap-2 justify-center">
+                    <button id="fokus-dur-5" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(5)">5 Min.</button>
+                    <button id="fokus-dur-10" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(10)">10 Min.</button>
+                    <button id="fokus-dur-15" class="btn-primary text-sm py-2 px-3"
+                        style="background:var(--gradient-green);" onclick="setFocusDuration(15)">15 Min.</button>
+                    <button id="fokus-dur-25" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(25)">25 Min.</button>
+                    <button id="fokus-dur-45" class="btn-secondary text-sm py-2 px-3" onclick="setFocusDuration(45)">45 Min.</button>
                 </div>
+                <div class="flex items-center justify-center gap-2 mt-3">
+                    <label for="fokus-custom-min" class="text-xs text-gray-400 font-bold">Eigene Min.</label>
+                    <input type="number" id="fokus-custom-min" min="1" max="180" value="15" inputmode="numeric"
+                        class="input-modern w-20 text-center font-bold text-sm py-2"
+                        onchange="setFocusDuration(parseInt(this.value,10)||15)">
+                    <button type="button" class="btn-secondary text-xs py-2 px-3"
+                        onclick="setFocusDuration(parseInt(document.getElementById('fokus-custom-min').value,10)||15)">OK</button>
+                </div>
+                <p id="fokus-reward-hint" class="text-xs text-gray-500 mt-2">Belohnung: +20 Coins</p>
             </div>
+            <div id="timer-display" class="text-6xl font-mono font-black text-white py-4">15:00</div>
+            <p id="fokus-status" class="hidden text-xs font-bold"></p>
+            <div class="flex gap-2 justify-center">
+                <button class="btn-primary"
+                    style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);"
+                    onclick="startFocusTimer()">Start</button>
+                <button class="btn-secondary" onclick="resetFocusTimer()">Reset</button>
+            </div>
+            <p class="text-[10px] text-gray-600">Verlässt du die App während des Fokus-Timers, pausiert er
+                automatisch. Zu oft verlassen kostet Belohnung.</p>
+        </div>
+    </div>
 
 
-            <!-- ==========================================================
+    <!-- ==========================================================
 VIEW: FORMELN SETUP (NEU & SEPARAT)
 ========================================================= -->
-            <div id="view-formel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+    <div id="view-formel-setup" class="view hidden space-y-4">
+        <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
 
-                <div class="glass-card p-6 space-y-4">
-                    <h2 class="text-2xl font-black text-center text-pink-400">Formeln üben</h2>
+        <div class="glass-card p-6 space-y-4">
+            <h2 class="text-2xl font-black text-center text-pink-400">Formeln üben</h2>
 
-                    <!-- Lern-Modus -->
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Lern-Modus:</label>
-                        <div class="dash-sub-nav">
-                            <button id="qmode-mc-formel" class="active" onclick="setQuizMode('mc')">🎯 Multiple
-                                Choice</button>
-                            <button id="qmode-flashcards-formel" onclick="setQuizMode('flashcards')">🃏
-                                Karteikarten</button>
-                        </div>
-                    </div>
-
-                    <!-- Nur Klasse wählen (kein Fach nötig) -->
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse wählen:</label>
-                        <select id="formel-area" class="input-modern font-bold w-full"></select>
-                    </div>
-
-                    <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
+            <!-- Lern-Modus -->
+            <div>
+                <label class="text-xs text-gray-400 font-bold block mb-1.5">Lern-Modus:</label>
+                <div class="dash-sub-nav">
+                    <button id="qmode-mc-formel" class="active" onclick="setQuizMode('mc')">🎯 Multiple
+                        Choice</button>
+                    <button id="qmode-flashcards-formel" onclick="setQuizMode('flashcards')">🃏
+                        Karteikarten</button>
                 </div>
             </div>
 
-            <!-- ==========================================================
+            <!-- Nur Klasse wählen (kein Fach nötig) -->
+            <div>
+                <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse wählen:</label>
+                <select id="formel-area" class="input-modern font-bold w-full"></select>
+            </div>
+
+            <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================
 VIEW: LESEN LERNEN
 ========================================================== -->
-            <div id="view-lesen" class="view hidden space-y-4">
-                <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                    <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
-                    <span class="w-20"></span>
-                </div>
+    <div id="view-lesen" class="view hidden space-y-4">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+            <span class="text-sm font-bold text-gray-400">📖 Lesen lernen</span>
+            <span class="w-20"></span>
+        </div>
 
-                <div class="glass-card p-5">
-                    <!-- NEU: Flex-Container gruppiert den Titel und den Vorlese-Button -->
-                    <div class="flex justify-between items-start mb-1">
-                        <h2 class="text-2xl font-black text-blue-400">📖 Lesen lernen</h2>
-                    </div>
-                    <p class="text-xs text-gray-400 mb-4">Buchstaben, Silben, Wörter und Sätze</p>
-                    <div id="lesen-categories" class="grid grid-cols-2 gap-3"></div>
-                    <div id="lesen-exercise" class="mt-6 hidden"></div>
-                </div>
+        <div class="glass-card p-5">
+            <!-- NEU: Flex-Container gruppiert den Titel und den Vorlese-Button -->
+            <div class="flex justify-between items-start mb-1">
+                <h2 class="text-2xl font-black text-blue-400">📖 Lesen lernen</h2>
             </div>
+            <p class="text-xs text-gray-400 mb-4">Buchstaben, Silben, Wörter und Sätze</p>
+            <div id="lesen-categories" class="grid grid-cols-2 gap-3"></div>
+            <div id="lesen-exercise" class="mt-6 hidden"></div>
+        </div>
+    </div>
 
 
-            <!-- ==========================================================
+    <!-- ==========================================================
 VIEW: QUIZ SETUP
 ========================================================= -->
-            <div id="view-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
-                    class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center"
-                    style="background:var(--gradient-rose);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
-                    🔁 Wiederholen (<span class="wq-count">0</span> Fragen, die noch nicht saßen)
-                </button>
-                <div class="glass-card p-6 space-y-4">
-                    <h2 class="text-2xl font-black text-center text-pink-400">Wissen</h2>
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Lern-Modus wählen:</label>
-                        <div class="dash-sub-nav">
-                            <button id="qmode-mc" class="active" onclick="setQuizMode('mc')">🎯 Multiple Choice</button>
-                            <button id="qmode-flashcards" onclick="setQuizMode('flashcards')">🃏 Karteikarten</button>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse / Bereich:</label>
-                        <select id="quiz-area" class="input-modern font-bold mb-3"></select>
-                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema:</label>
-                        <select id="sub-category" class="input-modern font-bold"></select>
-                        <button type="button" onclick="pickRandomCategory('quiz-area','sub-category')"
-                            class="mt-2 w-full text-xs font-bold py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10"
-                            style="color:var(--text-secondary)">🎲 Zufällige Kategorie</button>
-                        <label class="flex items-center gap-2 mt-2 text-xs font-bold text-gray-400 cursor-pointer">
-                            <input type="checkbox" id="quiz-mix-categories" class="w-4 h-4 accent-indigo-500"
-                                onchange="toggleCategoryMixFor('quiz')">
-                            Mehrere Themen mischen
-                        </label>
-                        <div id="quiz-category-checks"
-                            class="hidden mt-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10">
-                        </div>
-                    </div>
-                    <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
+    <div id="view-quiz-setup" class="view hidden space-y-4">
+        <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+        <button id="wrong-questions-btn" onclick="startWrongQuestionsQuiz()"
+            class="hidden btn-primary w-full flex items-center justify-center gap-2 text-center"
+            style="background:var(--gradient-rose);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
+            🔁 Wiederholen (<span class="wq-count">0</span> Fragen, die noch nicht saßen)
+        </button>
+        <div class="glass-card p-6 space-y-4">
+            <h2 class="text-2xl font-black text-center text-pink-400">Wissen</h2>
+            <div>
+                <label class="text-xs text-gray-400 font-bold block mb-1.5">Lern-Modus wählen:</label>
+                <div class="dash-sub-nav">
+                    <button id="qmode-mc" class="active" onclick="setQuizMode('mc')">🎯 Multiple Choice</button>
+                    <button id="qmode-flashcards" onclick="setQuizMode('flashcards')">🃏 Karteikarten</button>
                 </div>
             </div>
+            <div>
+                <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse / Bereich:</label>
+                <select id="quiz-area" class="input-modern font-bold mb-3"></select>
+                <label class="text-xs text-gray-400 font-bold block mb-1.5">Fach / Thema:</label>
+                <select id="sub-category" class="input-modern font-bold"></select>
+                <button type="button" onclick="pickRandomCategory('quiz-area','sub-category')"
+                    class="mt-2 w-full text-xs font-bold py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10"
+                    style="color:var(--text-secondary)">🎲 Zufällige Kategorie</button>
+                <label class="flex items-center gap-2 mt-2 text-xs font-bold text-gray-400 cursor-pointer">
+                    <input type="checkbox" id="quiz-mix-categories" class="w-4 h-4 accent-indigo-500"
+                        onchange="toggleCategoryMixFor('quiz')">
+                    Mehrere Themen mischen
+                </label>
+                <div id="quiz-category-checks" class="hidden mt-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10"></div>
+            </div>
+            <button onclick="startQuiz()" class="btn-primary w-full text-center">Starten 🚀</button>
+        </div>
+    </div>
 
-            <!-- ==========================================================
+    <!-- ==========================================================
             VIEW: QUIZ ARENA
             ========================================================== -->
-            <div id="view-quiz" class="view hidden space-y-4">
-                <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary btn-beenden text-sm py-2.5 px-4" onclick="endLesson()">Beenden</button>
-                    <button class="text-xs text-gray-500 hover:text-amber-400 font-bold"
-                        onclick="reportCurrentQuestion()" title="Diese Frage melden">🚩 Melden</button>
-                </div>
-                <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
-                    style="border-color:rgba(99,102,241,0.2);">
-                    ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
-                </div>
-                <div class="glass-card p-5 text-center space-y-4 shadow-lg">
-                    <div id="question-image-wrap" class="hidden mx-auto max-w-sm">
-                        <img id="question-image" alt="Rätselbild"
-                            class="w-full rounded-xl border border-white/10 bg-black/20 object-contain max-h-56" />
-                    </div>
-                    <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
-                    <button id="question-speak-btn" class="hidden btn-secondary text-sm py-2 px-4 mx-auto"
-                        onclick="speakCurrentQuestion()" title="Frage vorlesen">🔊 Vorlesen</button>
-                    <div id="options-container" class="flex flex-col gap-2.5"></div>
-                    <div id="explanation-box" class="hidden"></div>
-                    <button id="next-question-btn" class="btn-primary w-full hidden text-center"
-                        style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);"
-                        onclick="triggerNextQuestion()">Nächste Frage ➔</button>
-                </div>
+    <div id="view-quiz" class="view hidden space-y-4">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary btn-beenden text-sm py-2.5 px-4" onclick="endLesson()">Beenden</button>
+            <button class="text-xs text-gray-500 hover:text-amber-400 font-bold" onclick="reportCurrentQuestion()"
+                title="Diese Frage melden">🚩 Melden</button>
+        </div>
+        <div id="test-timer-bar" class="hidden glass-card-glow p-3 text-center font-black text-white"
+            style="border-color:rgba(99,102,241,0.2);">
+            ⏱️ Verbleibende Zeit: <span id="test-timer-display">10:00</span>
+        </div>
+        <div class="glass-card p-5 text-center space-y-4 shadow-lg">
+            <div id="question-image-wrap" class="hidden mx-auto max-w-sm">
+                <img id="question-image" alt="Rätselbild" class="w-full rounded-xl border border-white/10 bg-black/20 object-contain max-h-56" />
             </div>
+            <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
+            <button id="question-speak-btn" class="hidden btn-secondary text-sm py-2 px-4 mx-auto"
+                onclick="speakCurrentQuestion()" title="Frage vorlesen">🔊 Vorlesen</button>
+            <div id="options-container" class="flex flex-col gap-2.5"></div>
+            <div id="explanation-box" class="hidden"></div>
+            <button id="next-question-btn" class="btn-primary w-full hidden text-center"
+                style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);"
+                onclick="triggerNextQuestion()">Nächste Frage ➔</button>
+        </div>
+    </div>
 
-            <!-- ==========================================================
+    <!-- ==========================================================
             VIEW: TEST-ERGEBNIS
             ========================================================== -->
-            <div id="view-test-result" class="view hidden space-y-4">
-                <div id="test-result-content"></div>
-            </div>
+    <div id="view-test-result" class="view hidden space-y-4">
+        <div id="test-result-content"></div>
+    </div>
 
-            <!-- ==========================================================
+    <!-- ==========================================================
+            VIEW: KURSE (ÜBERSICHT)
+            ========================================================== -->
+    <div id="view-kurse" class="view hidden space-y-3">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('lernen')">Zurück</button>
+            <span class="text-sm font-bold text-gray-400">📘 Kurse</span>
+            <span class="w-16"></span>
+        </div>
+        <p class="text-xs text-gray-400 text-center -mt-1">Erklärung, gestufte Übung und ein kurzer Test – Schritt für Schritt.</p>
+        <div id="kurse-liste" class="space-y-3"></div>
+    </div>
+
+    <!-- ==========================================================
+            VIEW: KURS · LEKTIONEN-LISTE
+            ========================================================== -->
+    <div id="view-kurs-lektionen" class="view hidden space-y-3">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="showKurse()">Zurück</button>
+            <span id="kurs-lektionen-title" class="text-sm font-bold text-gray-400">Kurs</span>
+            <span class="w-16"></span>
+        </div>
+        <div id="kurs-lektionen-liste" class="space-y-2.5"></div>
+    </div>
+
+    <!-- ==========================================================
+            VIEW: LEKTION · ERKLÄRUNG
+            ========================================================== -->
+    <div id="view-lektion-intro" class="view hidden space-y-4">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('kurs-lektionen')">Zurück</button>
+            <span class="text-sm font-bold text-gray-400">📘 Erklärung</span>
+            <span class="w-16"></span>
+        </div>
+        <div class="glass-card-glow p-6 text-center space-y-4" style="border-color:rgba(245,158,11,0.25);">
+            <div id="lektion-intro-icon" class="text-5xl">📘</div>
+            <h2 id="lektion-intro-title" class="text-xl font-black text-amber-400">Lektion</h2>
+            <p id="lektion-intro-text" class="text-sm text-gray-200 leading-relaxed text-left"></p>
+            <div id="lektion-intro-beispiele" class="space-y-2"></div>
+            <div id="lektion-intro-merksatz" class="hidden p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-sm text-amber-200 text-left font-bold"></div>
+            <button onclick="startLektionUebung('leicht')" class="btn-primary w-full text-center mt-2"
+                style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Los geht's – leichte Übung ➔</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================
+            VIEW: LEKTION · ÜBERGANG ZWISCHEN STUFEN
+            ========================================================== -->
+    <div id="view-lektion-uebergang" class="view hidden space-y-4">
+        <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(16,185,129,0.25);">
+            <div id="lektion-uebergang-emoji" class="text-7xl">🎉</div>
+            <h2 id="lektion-uebergang-titel" class="text-2xl font-black text-white">Stark gemacht!</h2>
+            <div id="lektion-uebergang-ergebnis" class="text-lg font-bold text-emerald-400">0 von 0 richtig</div>
+            <button id="lektion-uebergang-weiter-btn" class="btn-primary w-full text-center mt-2">Weiter ➔</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================
+            VIEW: LEKTION · ERGEBNIS (ABSCHLUSSTEST)
+            ========================================================== -->
+    <div id="view-lektion-ergebnis" class="view hidden space-y-4">
+        <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(245,158,11,0.25);">
+            <div id="lektion-ergebnis-emoji" class="text-7xl">🏆</div>
+            <h2 id="lektion-ergebnis-titel" class="text-2xl font-black text-white">Lektion geschafft!</h2>
+            <div id="lektion-ergebnis-pct" class="text-3xl font-black text-amber-400">0% im Abschlusstest</div>
+            <p id="lektion-ergebnis-hinweis" class="text-sm text-gray-400"></p>
+            <div class="flex gap-3 mt-4">
+                <button id="lektion-ergebnis-retry-btn" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Nochmal</button>
+                <button onclick="showKurse()" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Zu den Kursen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================
             VIEW: VOKABEL-TRAINER
             ========================================================== -->
-            <div id="view-vokabeln" class="view hidden space-y-4">
-                <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                    <span id="vocab-streak-badge" class="hidden badge-pill text-amber-400 font-bold">🔥 0</span>
-                </div>
-                <div class="glass-card p-5 text-center space-y-3">
-                    <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
-                    <div id="lang-selector" class="dash-sub-nav hidden">
-                        <button id="lang-btn-en" class="active" onclick="setLanguage('en')">🇬🇧 Englisch</button>
-                    </div>
-                    <div class="dash-sub-nav">
-                        <button id="vmode-flashcards" class="active" onclick="setVocabMode('flashcards')">🃏
-                            Kärtchen</button>
-                        <button id="vmode-mc" onclick="setVocabMode('mc')">🎯 Auswahl</button>
-                        <button id="vmode-typing" onclick="setVocabMode('typing')">✍️ Tippen</button>
-                    </div>
-                    <select id="category-dropdown" class="input-modern text-sm font-bold"
-                        onchange="selectCategory(this.value)"></select>
-                    <div class="vocab-progress-track">
-                        <div id="vocab-progress-bar" class="vocab-progress-fill"></div>
-                    </div>
-                    <div class="text-xs font-bold" style="color:var(--text-muted)">Wort
-                        <span id="current-index-display" class="text-blue-400">1</span> /
-                        <span id="total-display">0</span>
-                    </div>
-                    <div id="vokabel-box" class="vocab-box relative"></div>
-                </div>
+    <div id="view-vokabeln" class="view hidden space-y-4">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+            <span id="vocab-streak-badge" class="hidden badge-pill text-amber-400 font-bold">🔥 0</span>
+        </div>
+        <div class="glass-card p-5 text-center space-y-3">
+            <h2 class="text-2xl font-black text-indigo-400" id="vocab-title">📖 Vokabel-Trainer</h2>
+            <div id="lang-selector" class="dash-sub-nav hidden">
+                <button id="lang-btn-en" class="active" onclick="setLanguage('en')">🇬🇧 Englisch</button>
             </div>
+            <div class="dash-sub-nav">
+                <button id="vmode-flashcards" class="active" onclick="setVocabMode('flashcards')">🃏
+                    Kärtchen</button>
+                <button id="vmode-mc" onclick="setVocabMode('mc')">🎯 Auswahl</button>
+                <button id="vmode-typing" onclick="setVocabMode('typing')">✍️ Tippen</button>
+            </div>
+            <select id="category-dropdown" class="input-modern text-sm font-bold"
+                onchange="selectCategory(this.value)"></select>
+            <div class="vocab-progress-track">
+                <div id="vocab-progress-bar" class="vocab-progress-fill"></div>
+            </div>
+            <div class="text-xs font-bold" style="color:var(--text-muted)">Wort
+                <span id="current-index-display" class="text-blue-400">1</span> /
+                <span id="total-display">0</span>
+            </div>
+            <div id="vokabel-box" class="vocab-box relative"></div>
+        </div>
+    </div>
 
-            <!-- ==========================================================
+    <!-- ==========================================================
             VIEW: SUCHSEL SETUP
             ========================================================== -->
-            <div id="view-suchsel-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('lernen')">Zurück</button>
-                <div class="glass-card p-6 space-y-4">
-                    <h2 class="text-2xl font-black text-center text-cyan-400">🔍 Suchsel</h2>
-                    <p class="text-xs text-gray-400 text-center -mt-2">Finde alle versteckten Wörter im Buchstabengitter
-                        –
-                        zieh mit dem Finger über die Buchstaben.</p>
+    <div id="view-suchsel-setup" class="view hidden space-y-4">
+        <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('lernen')">Zurück</button>
+        <div class="glass-card p-6 space-y-4">
+            <h2 class="text-2xl font-black text-center text-cyan-400">🔍 Suchsel</h2>
+            <p class="text-xs text-gray-400 text-center -mt-2">Finde alle versteckten Wörter im Buchstabengitter –
+                zieh mit dem Finger über die Buchstaben.</p>
 
-                    <div class="dash-sub-nav">
-                        <button id="suchsel-src-wortschatz" class="active" onclick="setSuchselSource('wortschatz')">🔤
-                            Wortschatz</button>
-                        <button id="suchsel-src-vokabeln" onclick="setSuchselSource('vokabeln')">📚 Vokabeln</button>
-                    </div>
+            <div class="dash-sub-nav">
+                <button id="suchsel-src-wortschatz" class="active" onclick="setSuchselSource('wortschatz')">🔤
+                    Wortschatz</button>
+                <button id="suchsel-src-vokabeln" onclick="setSuchselSource('vokabeln')">📚 Vokabeln</button>
+            </div>
 
-                    <div id="suchsel-panel-wortschatz" class="space-y-3">
-                        <div>
-                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
-                            <select id="suchsel-wordmode" class="input-modern font-bold"
-                                onchange="toggleSuchselThemeRow()">
-                                <option value="kids" selected>👶 Kinder (einfache Wörter)</option>
-                                <option value="adult">🎓 Erwachsene (schwere Wörter)</option>
-                            </select>
-                        </div>
-                        <div id="suchsel-theme-row">
-                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Thema (nur Kinder)</label>
-                            <select id="suchsel-word-theme" class="input-modern font-bold"></select>
-                        </div>
-                    </div>
-
-                    <div id="suchsel-panel-vokabeln" class="hidden space-y-3">
-                        <div>
-                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Sprache</label>
-                            <select id="suchsel-lang" class="input-modern font-bold"
-                                onchange="fillSuchselVocabClasses(this.value)">
-                                <option value="en" selected>🇬🇧 Englisch</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse</label>
-                            <select id="suchsel-vocab-class" class="input-modern font-bold"></select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeit</label>
-                        <div class="dash-sub-nav">
-                            <button id="suchsel-diff-leicht" onclick="setSuchselDifficulty('leicht')">Leicht</button>
-                            <button id="suchsel-diff-mittel" class="active"
-                                onclick="setSuchselDifficulty('mittel')">Mittel</button>
-                            <button id="suchsel-diff-schwer" onclick="setSuchselDifficulty('schwer')">Schwer</button>
-                        </div>
-                    </div>
-
-                    <button onclick="startSuchsel()" class="btn-primary w-full text-center">Los geht's! 🔍</button>
+            <div id="suchsel-panel-wortschatz" class="space-y-3">
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
+                    <select id="suchsel-wordmode" class="input-modern font-bold" onchange="toggleSuchselThemeRow()">
+                        <option value="kids" selected>👶 Kinder (einfache Wörter)</option>
+                        <option value="adult">🎓 Erwachsene (schwere Wörter)</option>
+                    </select>
+                </div>
+                <div id="suchsel-theme-row">
+                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Thema (nur Kinder)</label>
+                    <select id="suchsel-word-theme" class="input-modern font-bold"></select>
                 </div>
             </div>
 
-            <!-- ==========================================================
+            <div id="suchsel-panel-vokabeln" class="hidden space-y-3">
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Sprache</label>
+                    <select id="suchsel-lang" class="input-modern font-bold" onchange="fillSuchselVocabClasses(this.value)">
+                        <option value="en" selected>🇬🇧 Englisch</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 font-bold block mb-1.5">Klasse</label>
+                    <select id="suchsel-vocab-class" class="input-modern font-bold"></select>
+                </div>
+            </div>
+
+            <div>
+                <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeit</label>
+                <div class="dash-sub-nav">
+                    <button id="suchsel-diff-leicht" onclick="setSuchselDifficulty('leicht')">Leicht</button>
+                    <button id="suchsel-diff-mittel" class="active" onclick="setSuchselDifficulty('mittel')">Mittel</button>
+                    <button id="suchsel-diff-schwer" onclick="setSuchselDifficulty('schwer')">Schwer</button>
+                </div>
+            </div>
+
+            <button onclick="startSuchsel()" class="btn-primary w-full text-center">Los geht's! 🔍</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================
             VIEW: SUCHSEL SPIEL
             ========================================================== -->
-            <div id="view-suchsel-play" class="view hidden space-y-4">
-                <div class="flex items-center justify-between gap-2">
-                    <button class="btn-secondary btn-beenden text-sm py-2 px-3"
-                        onclick="appConfirmSwitch('Fortschritt geht verloren.','Suchsel verlassen?','suchsel-setup', leaveSuchselPlay)">✕
-                        Beenden</button>
-                    <span class="badge-pill text-cyan-400 font-bold">⏱ <span id="suchsel-timer">00:00</span></span>
-                    <span class="badge-pill text-emerald-400 font-bold"><span id="suchsel-found-count">0/0</span></span>
-                </div>
-                <div id="suchsel-wordlist" class="flex flex-wrap gap-1.5 justify-center"></div>
-                <div id="suchsel-grid" class="grid gap-1 mx-auto" style="max-width:420px;"></div>
-                <button onclick="revealSuchsel()"
-                    class="block mx-auto text-xs text-gray-500 hover:text-amber-400 font-bold transition">🏳️ Komme
-                    nicht
-                    weiter – auflösen</button>
-            </div>
+    <div id="view-suchsel-play" class="view hidden space-y-4">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary btn-beenden text-sm py-2 px-3"
+                onclick="appConfirmSwitch('Fortschritt geht verloren.','Suchsel verlassen?','suchsel-setup', leaveSuchselPlay)">✕
+                Beenden</button>
+            <span class="badge-pill text-cyan-400 font-bold">⏱ <span id="suchsel-timer">00:00</span></span>
+            <span class="badge-pill text-emerald-400 font-bold"><span id="suchsel-found-count">0/0</span></span>
+        </div>
+        <div id="suchsel-wordlist" class="flex flex-wrap gap-1.5 justify-center"></div>
+        <div id="suchsel-grid" class="grid gap-1 mx-auto" style="max-width:420px;"></div>
+        <button onclick="revealSuchsel()"
+            class="block mx-auto text-xs text-gray-500 hover:text-amber-400 font-bold transition">🏳️ Komme nicht
+            weiter – auflösen</button>
+    </div>
 
-            <!-- ==========================================================
+    <!-- ==========================================================
             VIEW: TV-QUIZ SETUP
             ========================================================== -->
 
-            <div id="view-tv-quiz-setup" class="view hidden space-y-4">
-                <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
-                <div class="glass-card p-6 space-y-6 text-center">
-                    <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
-                    <p class="text-gray-300 text-sm">Ein Gerät = Fernseher-Anzeige (Host), die anderen antworten am
-                        Handy.
-                        Am Host: „Fernseher-Ansicht“, dann Bildschirm auf den TV übertragen (Smart View / Spiegeln).</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                        <button onclick="switchView('tv-quiz-host')"
-                            class="p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition hover:scale-[1.02]"
-                            style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">
-                            <span class="text-5xl">🖥️</span>
-                            <span class="font-black text-white text-lg">Ich bin der Fernseher</span>
-                            <span class="text-xs text-indigo-200">Anzeigen & streamen · Spiel steuern</span>
-                        </button>
-                        <button onclick="switchView('tv-quiz-player')"
-                            class="p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition hover:scale-[1.02]"
-                            style="background:linear-gradient(135deg,#10b981,#34d399);">
-                            <span class="text-5xl">📱</span>
-                            <span class="font-black text-white text-lg">Ich spiele mit!</span>
-                            <span class="text-xs text-emerald-200">Am Handy antworten</span>
-                        </button>
-                    </div>
-                </div>
+    <div id="view-tv-quiz-setup" class="view hidden space-y-4">
+        <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
+        <div class="glass-card p-6 space-y-6 text-center">
+            <h2 class="text-3xl font-black text-yellow-400">📺 TV-Quiz</h2>
+            <p class="text-gray-300 text-sm">Ein Gerät = Fernseher-Anzeige (Host), die anderen antworten am Handy.
+                Am Host: „Fernseher-Ansicht“, dann Bildschirm auf den TV übertragen (Smart View / Spiegeln).</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <button onclick="switchView('tv-quiz-host')"
+                    class="p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition hover:scale-[1.02]"
+                    style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">
+                    <span class="text-5xl">🖥️</span>
+                    <span class="font-black text-white text-lg">Ich bin der Fernseher</span>
+                    <span class="text-xs text-indigo-200">Anzeigen & streamen · Spiel steuern</span>
+                </button>
+                <button onclick="switchView('tv-quiz-player')"
+                    class="p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 transition hover:scale-[1.02]"
+                    style="background:linear-gradient(135deg,#10b981,#34d399);">
+                    <span class="text-5xl">📱</span>
+                    <span class="font-black text-white text-lg">Ich spiele mit!</span>
+                    <span class="text-xs text-emerald-200">Am Handy antworten</span>
+                </button>
             </div>
+        </div>
+    </div>
 
-            <!-- ==========================================================
+    <!-- ==========================================================
             VIEW: TV-QUIZ HOST
             ========================================================== -->
-            <div id="view-tv-quiz-host" class="view hidden space-y-4">
-                <div id="tv-mirror-bar" class="hidden items-center justify-between gap-2 glass-card p-3 mb-2">
-                    <span class="text-sm font-bold text-indigo-300">📺 Fernseher-Ansicht (für
-                        Bildschirmübertragung)</span>
-                    <button type="button" onclick="setTVMirrorDisplay(false)"
-                        class="btn-secondary text-xs py-2 px-3">Normale Ansicht</button>
+    <div id="view-tv-quiz-host" class="view hidden space-y-4">
+        <div id="tv-mirror-bar" class="hidden items-center justify-between gap-2 glass-card p-3 mb-2">
+            <span class="text-sm font-bold text-indigo-300">📺 Fernseher-Ansicht (für Bildschirmübertragung)</span>
+            <button type="button" onclick="setTVMirrorDisplay(false)" class="btn-secondary text-xs py-2 px-3">Normale Ansicht</button>
+        </div>
+        <div id="tv-host-setup" class="space-y-4">
+            <button class="btn-secondary text-sm py-2.5 px-4"
+                onclick="leaveTVGame(); switchView('tv-quiz-setup')">Zurück</button>
+            <div class="glass-card p-6 text-center">
+                <h2 class="text-2xl font-black text-white mb-4">Spiel erstellen</h2>
+                <div class="dash-sub-nav mb-6">
+                    <button id="tvmode-quiz" class="active" onclick="setTVHostMode('quiz')">🧠 Quiz</button>
+                    <button id="tvmode-scrabble" onclick="setTVHostMode('scrabble')">🔤 Wort-Duell</button>
+                    <button id="tvmode-wortraten" onclick="setTVHostMode('wortraten')">🧩 Wort-Rätsel</button>
                 </div>
-                <div id="tv-host-setup" class="space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4"
-                        onclick="leaveTVGame(); switchView('tv-quiz-setup')">Zurück</button>
-                    <div class="glass-card p-6 text-center">
-                        <h2 class="text-2xl font-black text-white mb-4">Spiel erstellen</h2>
-                        <div class="dash-sub-nav mb-6">
-                            <button id="tvmode-quiz" class="active" onclick="setTVHostMode('quiz')">🧠 Quiz</button>
-                            <button id="tvmode-scrabble" onclick="setTVHostMode('scrabble')">🔤 Wort-Duell</button>
-                            <button id="tvmode-wortraten" onclick="setTVHostMode('wortraten')">🧩 Wort-Rätsel</button>
-                        </div>
-                        <div id="tv-quiz-mode-options">
-                            <p class="text-gray-400 text-sm mb-3">Worum soll es gehen?</p>
-                            <div class="dash-sub-nav mb-4">
-                                <button id="tvtopic-spass" class="active" onclick="setTVTopicMode('spass')">🎉
-                                    Spaß-Quiz</button>
-                                <button id="tvtopic-lernen" onclick="setTVTopicMode('lernen')">📚 Lern-Duell</button>
-                            </div>
-                            <select id="tv-area" class="input-modern font-bold text-lg mb-3"></select>
-                            <select id="tv-quiz-category" class="input-modern font-bold text-lg mb-2"></select>
-                            <label
-                                class="flex items-center gap-2 mt-1 mb-2 text-xs font-bold text-gray-400 cursor-pointer justify-center">
-                                <input type="checkbox" id="tv-mix-categories" class="w-4 h-4 accent-indigo-500"
-                                    onchange="toggleCategoryMixFor('tv')">
-                                Mehrere Themen mischen
-                            </label>
-                            <div id="tv-category-checks"
-                                class="hidden mb-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10 text-left">
-                            </div>
-                        </div>
-                        <div id="tv-scrabble-mode-options" class="hidden text-left space-y-3 mb-2">
-                            <p class="text-xs text-gray-400 text-center">Aus den Buchstaben ist immer mindestens ein
-                                echtes
-                                Wort möglich.</p>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
-                                <select id="tv-scrabble-wordmode" class="input-modern font-bold text-lg">
-                                    <option value="kids" selected>👶 Kinder</option>
-                                    <option value="adult">🎓 Erwachsene</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
-                                <select id="tv-scrabble-difficulty" class="input-modern font-bold text-lg">
-                                    <option value="leicht">🟢 Leicht · 6 Buchstaben · Wort ab 3 · 70 Sek.</option>
-                                    <option value="mittel" selected>🟡 Mittel · 7 Buchstaben · Wort ab 3 · 55 Sek.
-                                    </option>
-                                    <option value="schwer">🔴 Schwer · 8 Buchstaben · Wort ab 4 · 40 Sek.</option>
-                                    <option value="experte">🟣 Experte · 9 Buchstaben · Wort ab 5 · 30 Sek.</option>
-                                    <option value="profi">🔥 Profi · 14 Buchstaben · Wort ab 6 · nur schwere Wörter
-                                    </option>
-                                </select>
-                            </div>
-                            <label
-                                class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
-                                <input type="checkbox" id="tv-scrabble-require-letter"
-                                    class="w-5 h-5 accent-amber-500 mt-0.5">
-                                <span class="text-sm">
-                                    <span class="font-bold text-white">Pflichtbuchstabe</span>
-                                    <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss
-                                        im
-                                        Wort vorkommen.</span>
-                                </span>
-                            </label>
-                            <label
-                                class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
-                                <input type="checkbox" id="tv-scrabble-action-mode"
-                                    class="w-5 h-5 accent-red-500 mt-0.5">
-                                <span class="text-sm">
-                                    <span class="font-bold text-white">⚡ Action-Modus</span>
-                                    <span class="block text-[11px] text-gray-400">Das komplette Wort ändert sich
-                                        zufällig –
-                                        sei schnell!</span>
-                                </span>
-                            </label>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Anzahl Runden</label>
-                                <select id="tv-scrabble-rounds" class="input-modern font-bold text-lg">
-                                    <option value="3">3 Runden</option>
-                                    <option value="5" selected>5 Runden</option>
-                                    <option value="8">8 Runden</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="tv-wortraten-mode-options" class="hidden text-left space-y-3 mb-2">
-                            <p class="text-xs text-gray-400 text-center">Reihum Buchstaben raten · Figur wächst bei
-                                Fehlern · TV zeigt Wort & Figur</p>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
-                                <select id="tv-wr-wordmode" class="input-modern font-bold text-lg"
-                                    onchange="toggleWrKidsThemeRow('tv-wr-wordmode','tv-wr-word-theme-row')">
-                                    <option value="kids" selected>👶 Kinder</option>
-                                    <option value="adult">🎓 Erwachsene</option>
-                                </select>
-                            </div>
-                            <div id="tv-wr-word-theme-row">
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Thema (nur Kinder)</label>
-                                <select id="tv-wr-word-theme" class="input-modern font-bold text-lg">
-                                    <option value="gemischt" selected>🎲 Gemischt</option>
-                                    <option value="tiere">🐾 Tiere</option>
-                                    <option value="schule">📚 Schule</option>
-                                    <option value="essen">🍎 Essen</option>
-                                    <option value="sport">⚽ Sport</option>
-                                    <option value="natur">🌿 Natur</option>
-                                    <option value="zuhause">🏠 Zuhause</option>
-                                    <option value="fahrzeuge">🚗 Fahrzeuge</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeit</label>
-                                <select id="tv-wr-difficulty" class="input-modern font-bold text-lg">
-                                    <option value="leicht">🟢 Leicht (3-5)</option>
-                                    <option value="mittel" selected>🟡 Mittel (5-7)</option>
-                                    <option value="schwer">🔴 Schwer (7-10)</option>
-                                    <option value="experte">🟣 Experte (9+)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Figur</label>
-                                <select id="tv-wr-theme" class="input-modern font-bold text-lg">
-                                    <option value="schneemann" selected>⛄ Schneemann</option>
-                                    <option value="roboter">🤖 Roboter</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Runden</label>
-                                <select id="tv-wr-rounds" class="input-modern font-bold text-lg">
-                                    <option value="3" selected>3 Runden</option>
-                                    <option value="5">5 Runden</option>
-                                    <option value="8">8 Runden</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button onclick="startTVHostLobby()" class="btn-primary w-full text-center text-xl mt-4">Lobby
-                            eröffnen 🚀</button>
+                <div id="tv-quiz-mode-options">
+                    <p class="text-gray-400 text-sm mb-3">Worum soll es gehen?</p>
+                    <div class="dash-sub-nav mb-4">
+                        <button id="tvtopic-spass" class="active" onclick="setTVTopicMode('spass')">🎉
+                            Spaß-Quiz</button>
+                        <button id="tvtopic-lernen" onclick="setTVTopicMode('lernen')">📚 Lern-Duell</button>
                     </div>
-                </div><!-- /tv-host-setup -->
-                <div id="tv-host-play" class="hidden"></div>
+                    <select id="tv-area" class="input-modern font-bold text-lg mb-3"></select>
+                    <select id="tv-quiz-category" class="input-modern font-bold text-lg mb-2"></select>
+                    <label class="flex items-center gap-2 mt-1 mb-2 text-xs font-bold text-gray-400 cursor-pointer justify-center">
+                        <input type="checkbox" id="tv-mix-categories" class="w-4 h-4 accent-indigo-500"
+                            onchange="toggleCategoryMixFor('tv')">
+                        Mehrere Themen mischen
+                    </label>
+                    <div id="tv-category-checks" class="hidden mb-2 max-h-40 overflow-y-auto space-y-1.5 p-2 rounded-xl bg-white/5 border border-white/10 text-left"></div>
+                </div>
+                <div id="tv-scrabble-mode-options" class="hidden text-left space-y-3 mb-2">
+                    <p class="text-xs text-gray-400 text-center">Aus den Buchstaben ist immer mindestens ein
+                        echtes
+                        Wort möglich.</p>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
+                        <select id="tv-scrabble-wordmode" class="input-modern font-bold text-lg">
+                            <option value="kids" selected>👶 Kinder</option>
+                            <option value="adult">🎓 Erwachsene</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeitsgrad</label>
+                        <select id="tv-scrabble-difficulty" class="input-modern font-bold text-lg">
+                            <option value="leicht">🟢 Leicht · 6 Buchstaben · Wort ab 3 · 70 Sek.</option>
+                            <option value="mittel" selected>🟡 Mittel · 7 Buchstaben · Wort ab 3 · 55 Sek.
+                            </option>
+                            <option value="schwer">🔴 Schwer · 8 Buchstaben · Wort ab 4 · 40 Sek.</option>
+                            <option value="experte">🟣 Experte · 9 Buchstaben · Wort ab 5 · 30 Sek.</option>
+                            <option value="profi">🔥 Profi · 14 Buchstaben · Wort ab 6 · nur schwere Wörter
+                            </option>
+                        </select>
+                    </div>
+                    <label
+                        class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                        <input type="checkbox" id="tv-scrabble-require-letter" class="w-5 h-5 accent-amber-500 mt-0.5">
+                        <span class="text-sm">
+                            <span class="font-bold text-white">Pflichtbuchstabe</span>
+                            <span class="block text-[11px] text-gray-400">Ein Buchstabe wird markiert – er muss
+                                im
+                                Wort vorkommen.</span>
+                        </span>
+                    </label>
+                    <label
+                        class="flex items-start gap-3 bg-white/5 border border-white/5 rounded-xl p-3 cursor-pointer hover:bg-white/10 transition">
+                        <input type="checkbox" id="tv-scrabble-action-mode" class="w-5 h-5 accent-red-500 mt-0.5">
+                        <span class="text-sm">
+                            <span class="font-bold text-white">⚡ Action-Modus</span>
+                            <span class="block text-[11px] text-gray-400">Das komplette Wort ändert sich
+                                zufällig –
+                                sei schnell!</span>
+                        </span>
+                    </label>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Anzahl Runden</label>
+                        <select id="tv-scrabble-rounds" class="input-modern font-bold text-lg">
+                            <option value="3">3 Runden</option>
+                            <option value="5" selected>5 Runden</option>
+                            <option value="8">8 Runden</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="tv-wortraten-mode-options" class="hidden text-left space-y-3 mb-2">
+                    <p class="text-xs text-gray-400 text-center">Reihum Buchstaben raten · Figur wächst bei
+                        Fehlern · TV zeigt Wort & Figur</p>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Wortschatz</label>
+                        <select id="tv-wr-wordmode" class="input-modern font-bold text-lg"
+                            onchange="toggleWrKidsThemeRow('tv-wr-wordmode','tv-wr-word-theme-row')">
+                            <option value="kids" selected>👶 Kinder</option>
+                            <option value="adult">🎓 Erwachsene</option>
+                        </select>
+                    </div>
+                    <div id="tv-wr-word-theme-row">
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Thema (nur Kinder)</label>
+                        <select id="tv-wr-word-theme" class="input-modern font-bold text-lg">
+                            <option value="gemischt" selected>🎲 Gemischt</option>
+                            <option value="tiere">🐾 Tiere</option>
+                            <option value="schule">📚 Schule</option>
+                            <option value="essen">🍎 Essen</option>
+                            <option value="sport">⚽ Sport</option>
+                            <option value="natur">🌿 Natur</option>
+                            <option value="zuhause">🏠 Zuhause</option>
+                            <option value="fahrzeuge">🚗 Fahrzeuge</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Schwierigkeit</label>
+                        <select id="tv-wr-difficulty" class="input-modern font-bold text-lg">
+                            <option value="leicht">🟢 Leicht (3-5)</option>
+                            <option value="mittel" selected>🟡 Mittel (5-7)</option>
+                            <option value="schwer">🔴 Schwer (7-10)</option>
+                            <option value="experte">🟣 Experte (9+)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Figur</label>
+                        <select id="tv-wr-theme" class="input-modern font-bold text-lg">
+                            <option value="schneemann" selected>⛄ Schneemann</option>
+                            <option value="roboter">🤖 Roboter</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Runden</label>
+                        <select id="tv-wr-rounds" class="input-modern font-bold text-lg">
+                            <option value="3" selected>3 Runden</option>
+                            <option value="5">5 Runden</option>
+                            <option value="8">8 Runden</option>
+                        </select>
+                    </div>
+                </div>
+                <button onclick="startTVHostLobby()" class="btn-primary w-full text-center text-xl mt-4">Lobby
+                    eröffnen 🚀</button>
             </div>
+        </div><!-- /tv-host-setup -->
+        <div id="tv-host-play" class="hidden"></div>
+    </div>
 
-            <!-- ==========================================================
+    <!-- ==========================================================
             VIEW: TV-QUIZ PLAYER
             ========================================================== -->
-            <div id="view-tv-quiz-player" class="view hidden space-y-4">
-                <div id="tv-player-setup" class="space-y-4">
-                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame()">Zurück</button>
-                    <div class="glass-card p-6 text-center space-y-4">
-                        <h2 class="text-2xl font-black text-white mb-2">Spiel beitreten</h2>
-                        <p class="text-gray-400 text-sm">Gleiche Familie: direkt beitreten. Andere / erneut: Code vom
-                            Fernseher.</p>
-                        <div>
-                            <label
-                                class="block text-xs font-bold text-indigo-300 uppercase tracking-wider mb-1">Beitritts-Code</label>
-                            <input id="tv-join-code" type="text" maxlength="6" autocomplete="off"
-                                placeholder="z. B. K7M2"
-                                class="input-modern font-black text-center text-2xl tracking-[0.3em] uppercase w-full"
-                                style="letter-spacing:0.28em;" />
-                        </div>
-                        <div id="player-waiting-area" class="space-y-3">
-                            <button onclick="joinTVGame()" class="btn-primary w-full text-xl py-4"
-                                style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Mit
-                                Code / Familie beitreten 🎮</button>
-                            <button type="button" onclick="joinTVGameLast()"
-                                class="btn-secondary w-full text-sm py-3">🔄 Letzte Lobby erneut</button>
-                        </div>
-                    </div>
-                </div><!-- /tv-player-setup -->
-                <div id="tv-player-play" class="hidden"></div>
+    <div id="view-tv-quiz-player" class="view hidden space-y-4">
+        <div id="tv-player-setup" class="space-y-4">
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="leaveTVGame()">Zurück</button>
+            <div class="glass-card p-6 text-center space-y-4">
+                <h2 class="text-2xl font-black text-white mb-2">Spiel beitreten</h2>
+                <p class="text-gray-400 text-sm">Gleiche Familie: direkt beitreten. Andere / erneut: Code vom Fernseher.</p>
+                <div>
+                    <label class="block text-xs font-bold text-indigo-300 uppercase tracking-wider mb-1">Beitritts-Code</label>
+                    <input id="tv-join-code" type="text" maxlength="6" autocomplete="off" placeholder="z. B. K7M2"
+                        class="input-modern font-black text-center text-2xl tracking-[0.3em] uppercase w-full"
+                        style="letter-spacing:0.28em;" />
+                </div>
+                <div id="player-waiting-area" class="space-y-3">
+                    <button onclick="joinTVGame()" class="btn-primary w-full text-xl py-4"
+                        style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Mit Code / Familie beitreten 🎮</button>
+                    <button type="button" onclick="joinTVGameLast()" class="btn-secondary w-full text-sm py-3">🔄 Letzte Lobby erneut</button>
+                </div>
             </div>
+        </div><!-- /tv-player-setup -->
+        <div id="tv-player-play" class="hidden"></div>
+    </div>
 
-            <button id="tv-player-exit" onclick="leaveTVGame()" class="hidden"
-                style="position:fixed;top:12px;right:12px;z-index:60;background:rgba(225,29,72,0.92);color:#fff;font-weight:700;font-size:13px;padding:8px 14px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.3);">✕
-                Beenden</button>
+    <button id="tv-player-exit" onclick="leaveTVGame()" class="hidden"
+        style="position:fixed;top:12px;right:12px;z-index:60;background:rgba(225,29,72,0.92);color:#fff;font-weight:700;font-size:13px;padding:8px 14px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.3);">✕
+        Beenden</button>
 
-        </main>
+    </main>
     </div>
 
     <!-- ============================================================
@@ -2509,6 +2519,7 @@ VIEW: QUIZ SETUP
     <script src="ui-common.js?v=9.0"></script>
     <script src="ki-coach.js?v=1.1"></script>
     <script src="quiz-core.js?v=9.7"></script>
+    <script src="lektionen.js?v=1.0"></script>
     <script src="vocab.js?v=9.0"></script>
     <script src="suchsel.js?v=1.3"></script>
     <script src="duel-scrabble.js?v=9.1"></script>
@@ -2639,11 +2650,8 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
         style="background:rgba(0,0,0,0.55);backdrop-filter:blur(4px)">
         <div class="glass-card w-full max-w-md p-5 space-y-4 shadow-2xl" style="background:var(--card-bg,#1e1b4b)">
             <div class="flex items-center justify-between gap-2">
-                <h3 id="onboard-title" class="text-lg font-black" style="color:var(--text-primary,#fff)">👋 Willkommen!
-                </h3>
-                <button type="button" onclick="dismissOnboarding(true)"
-                    class="text-xs font-bold opacity-70 hover:opacity-100"
-                    style="color:var(--text-secondary)">Überspringen</button>
+                <h3 id="onboard-title" class="text-lg font-black" style="color:var(--text-primary,#fff)">👋 Willkommen!</h3>
+                <button type="button" onclick="dismissOnboarding(true)" class="text-xs font-bold opacity-70 hover:opacity-100" style="color:var(--text-secondary)">Überspringen</button>
             </div>
             <p id="onboard-body" class="text-sm leading-relaxed" style="color:var(--text-secondary)"></p>
             <div class="flex items-center justify-between gap-3">

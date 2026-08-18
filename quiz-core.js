@@ -46,6 +46,9 @@
         function showLessonResultScreen() {
             endSoloStudySession();
             vergissSoloFortschritt();
+            if (typeof currentLektion !== 'undefined' && currentLektion && typeof handleLektionStepEnd === 'function') {
+                if (handleLektionStepEnd()) return;
+            }
             const total = testAnsweredCount || 0;
             const correct = testCorrectCount || 0;
             const pct = total > 0 ? Math.round((correct / total) * 100) : 0;

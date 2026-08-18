@@ -1642,8 +1642,8 @@ const geladen = _questionCounts[key] || 0;
                 body: "Im Kontrollzentrum (PIN-geschützt) siehst du Lernzeiten, weist Tests zu und verwaltest Belohnungen. PIN einmal in den Einstellungen setzen."
             },
             {
-                title: "📚 Allein lernen",
-                body: "Quiz, Vokabeln, Lesen und Formeln. Bei Klasse 1 und 2 wird der Text automatisch vorgelesen – Lücken und Lösungshinweise nicht mit."
+                title: "📚 Allein und mit Freunden lernen",
+                body: "Quiz, Vokabeln, Lesen und Formeln – auch gemeinsam mit Freunden einladbar. Bei Klasse 1 und 2 wird der Text automatisch vorgelesen – Lücken und Lösungshinweise nicht mit."
             },
             {
                 title: "⚔️ Gegeneinander spielen",

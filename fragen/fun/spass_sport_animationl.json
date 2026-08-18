@@ -1,0 +1,682 @@
+[
+  {
+    "id": "anim_merged_001",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "Wie heißt die kleine Meerjungfrau im bekannten Disney-Klassiker?",
+    "answers": [
+      "Belle",
+      "Arielle",
+      "Jasmine",
+      "Aurora"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Arielle die Meerjungfrau feierte 1989 ihren Kinodurchbruch."
+  },
+  {
+    "id": "anim_merged_002",
+    "category": "kinder_anime_cartoons",
+    "area": "pixar",
+    "subject": "wissen",
+    "question": "Welche Art von Fisch ist der kleine 'Nemo' im Pixar-Film 'Findet Nemo'?",
+    "answers": [
+      "Doktorfisch",
+      "Clownfisch (Anemonenfisch)",
+      "Kugelfisch",
+      "Goldfisch"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Nemo und sein Vater Marlin sind leuchtend orange-weiß gestreifte Clownfische."
+  },
+  {
+    "id": "anim_merged_003",
+    "category": "kinder_anime_cartoons",
+    "area": "zeichentrick_serien",
+    "subject": "wissen",
+    "question": "In welcher fiktiven Unterwasserstadt wohnt SpongeBob Schwammkopf?",
+    "answers": [
+      "Bikini Bottom",
+      "Atlantis",
+      "Rock Bottom",
+      "Goo Lagoon"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "SpongeBob lebt in einer Ananas in Bikini Bottom."
+  },
+  {
+    "id": "anim_merged_004",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "Wie heisst der treue Schneemann im Disney-Erfolg 'Die Eiskönigin' (Frozen)?",
+    "answers": [
+      "Sven",
+      "Olaf",
+      "Kristoff",
+      "Hans"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Olaf ist der von Elsa erschaffene Schneemann, der den Sommer liebt."
+  },
+  {
+    "id": "anim_merged_005",
+    "category": "kinder_anime_cartoons",
+    "area": "anime",
+    "subject": "wissen",
+    "question": "Welcher Geist aus Studio Ghiblis 'Chihiros Reise ins Zauberland' trägt eine weiße Maske?",
+    "answers": [
+      "Totoro",
+      "Ohnegesicht (No-Face)",
+      "Kiki",
+      "Howl"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das 'Ohnegesicht' ist eine der bekanntesten Figuren von Regisseur Hayao Miyazaki."
+  },
+  {
+    "id": "anim_merged_006",
+    "category": "kinder_anime_cartoons",
+    "area": "pixar",
+    "subject": "wissen",
+    "question": "Was ist die Hauptaufgabe der Monster in 'Monster AG'?",
+    "answers": [
+      "Kinder zum Lachen zu bringen",
+      "Schreie von Kindern zu sammeln für Energie",
+      "Müll zu sortieren",
+      "Häuser zu bauen"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ursprünglich nutzen die Monster Kinderschreie als Stromquelle, bevor sie Lachen als viel stärker entdecken."
+  },
+  {
+    "id": "anim_merged_007",
+    "category": "kinder_anime_cartoons",
+    "area": "zeichentrick_serien",
+    "subject": "wissen",
+    "question": "Welche Farbe hat die Haut der Simpsons-Figuren in der Kultserie?",
+    "answers": [
+      "Rosa",
+      "Grün",
+      "Gelb",
+      "Blau"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Erfinder Matt Groening wählte Gelb, damit die Serie beim Zappen im TV sofort ins Auge fällt."
+  },
+  {
+    "id": "anim_merged_008",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "Wie heisst der Flaschengeist im Disney-Film 'Aladdin'?",
+    "answers": [
+      "Dschinni",
+      "Jafar",
+      "Iago",
+      "Abu"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Dschinni erfüllt dem Finder der Wunderlampe drei Wünsche."
+  },
+  {
+    "id": "anim_merged_009",
+    "category": "kinder_anime_cartoons",
+    "area": "pixar",
+    "subject": "wissen",
+    "question": "Welches Tier träumt im Pixar-Film 'Ratatouille' davon, ein Sternekoch in Paris zu werden?",
+    "answers": [
+      "Maus",
+      "Ratte (Rémy)",
+      "Waschbär",
+      "Meerschweinchen"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ratte Rémy steuert den Küchenjungen Linguini verdeckt unter der Kochmütze."
+  },
+  {
+    "id": "anim_merged_010",
+    "category": "kinder_anime_cartoons",
+    "area": "zeichentrick_serien",
+    "subject": "wissen",
+    "question": "Wie heißen die zwei ewigen Rivalen aus Kater und Maus in der Zeichentrickgeschichte?",
+    "answers": [
+      "Tom und Jerry",
+      "Sylvester und Tweety",
+      "Pinky und Brain",
+      "Bugs und Daffy"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Tom & Jerry jagten sich erstmals 1940 über die Bildschirme."
+  },
+  {
+    "id": "anim_merged_011",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "Welcher Holzjunge träumt im Disney-Klassiker davon, ein richtiger Junge aus Fleisch und Blut zu werden?",
+    "answers": [
+      "Peter Pan",
+      "Pinocchio",
+      "Bambi",
+      "Mogli"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Wenn Pinocchio lügt, wächst seine hölzerne Nase."
+  },
+  {
+    "id": "anim_merged_012",
+    "category": "kinder_anime_cartoons",
+    "area": "anime",
+    "subject": "wissen",
+    "question": "Welches Taschenmonster begleitet Ash Ketchum von Anfang an auf seinen Reisen?",
+    "answers": [
+      "Glurak",
+      "Pikachu",
+      "Schiggy",
+      "Bisasam"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Das Elektro-Pokémon Pikachu ist das weltweite Maskottchen der Pokémon-Reihe."
+  },
+  {
+    "id": "anim_merged_013",
+    "category": "kinder_anime_cartoons",
+    "area": "pixar",
+    "subject": "wissen",
+    "question": "Welches Rennauto hat die Startnummer 95 im Animationsfilm 'Cars'?",
+    "answers": [
+      "Lightning McQueen",
+      "King",
+      "Chick Hicks",
+      "Doc Hudson"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Lightning McQueen lernt im kleinen Örtchen Radiator Springs, was wahre Freundschaft bedeutet."
+  },
+  {
+    "id": "anim_merged_014",
+    "category": "kinder_anime_cartoons",
+    "area": "zeichentrick_serien",
+    "subject": "wissen",
+    "question": "Wie heisst der grüne Oger, der zusammen mit einem sprechenden Esel sein Sumpfreich verteidigt?",
+    "answers": [
+      "Shrek",
+      "Fiona",
+      "Farquaad",
+      "Gronkh"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "DreamWorks schuf mit Shrek 2001 einen riesigen Animationserfolg."
+  },
+  {
+    "id": "anim_merged_015",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "In welchem Disney-Film singt Bär Balu das Lied 'Probier’s mal mit Gemütlichkeit'?",
+    "answers": [
+      "Robin Hood",
+      "Das Dschungelbuch",
+      "Tarzan",
+      "Bärenbrüder"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Balu bringt dem Menschenjungen Mogli im Dschungelbuch bei, das Leben locker zu nehmen."
+  },
+  {
+    "id": "anim_merged_016",
+    "category": "kinder_anime_cartoons",
+    "area": "pixar",
+    "subject": "wissen",
+    "question": "Wie heißt der kleine Müllaufräum-Roter im gleichnamigen Pixar-Film auf der verlassenen Erde?",
+    "answers": [
+      "EVE",
+      "WALL-E",
+      "BAYMAX",
+      "ROB-N"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "WALL-E verfehlt auf der verlassenen Erde seine Aufgabe nicht und verliebt sich in Suchroboter EVE."
+  },
+  {
+    "id": "anim_merged_017",
+    "category": "kinder_anime_cartoons",
+    "area": "zeichentrick_serien",
+    "subject": "wissen",
+    "question": "In welcher Serie kämpfen vier Schildkröten mit Kampfsport-Kenntnissen aus der Kanalisation gegen Shredder?",
+    "answers": [
+      "Teenage Mutant Ninja Turtles",
+      "Transformers",
+      "Power Rangers",
+      "Gargoyles"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Leonardo, Donatello, Raphael und Michelangelo wurden nach Renaissance-Künstlern benannt."
+  },
+  {
+    "id": "anim_merged_018",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "Welche böse Stiefmutter verfüttert einen vergifteten Apfel an Schneewittchen?",
+    "answers": [
+      "Malefiz",
+      "Ursula",
+      "Die böse Königin",
+      "Cruella de Vil"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Die böse Königin fragt ihren Zauberspiegel: 'Spieglein, Spieglein an der Wand...'."
+  },
+  {
+    "id": "anim_merged_019",
+    "category": "kinder_anime_cartoons",
+    "area": "anime",
+    "subject": "wissen",
+    "question": "Wie heisst die berühmte Verwandlungs-Form von Son-Goku in 'Dragon Ball Z' mit goldenen Haaren?",
+    "answers": [
+      "Ultra Instinkt",
+      "Super-Saiyajin",
+      "Kaioken",
+      "Ozaroo"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Son-Goku verwandelt sich im Kampf gegen Freezer erstmals auf Namek in den Super-Saiyajin."
+  },
+  {
+    "id": "anim_merged_020",
+    "category": "kinder_anime_cartoons",
+    "area": "pixar",
+    "subject": "wissen",
+    "question": "Wie steigen die Tausenden Luftballons am Haus von Carl Fredricksen im Film 'Oben' in die Luft?",
+    "answers": [
+      "Er nutzt eine Kanone",
+      "Er bindet Helium-Ballons an das Dach",
+      "Durch einen riesigen Ventilator",
+      "Durch Magie"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Der Witwer Carl erfüllt sich damit den Traum, zu den Paradiesfällen in Südamerika zu reisen."
+  },
+  {
+    "id": "anim_merged_021",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "Welche Hunderasse steht im Mittelpunkt des Disney-Klassikers '101 Dalmatiner'?",
+    "answers": [
+      "Pudel",
+      "Dalmatiner",
+      "Schäferhund",
+      "Dogge"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Cruella de Vil versucht, die gepunkteten Welpen für einen Pelzmantel zu stehlen."
+  },
+  {
+    "id": "anim_merged_022",
+    "category": "kinder_anime_cartoons",
+    "area": "zeichentrick_serien",
+    "subject": "wissen",
+    "question": "Welcher schlaue Hund löst zusammen mit Fred, Daphne, Velma und Shaggy unheimliche Rätsel?",
+    "answers": [
+      "Scooby-Doo",
+      "Pluto",
+      "Goofy",
+      "Snoopy"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Scooby-Doo und die 'Mystery Inc.' entlarven am Ende immer verkleidete Schurken."
+  },
+  {
+    "id": "anim_merged_023",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "In welchem Königreich spielt der Disney-Erfolg 'Rapunzel – Neu verföhnt'?",
+    "answers": [
+      "Arendelle",
+      "Corona",
+      "Agrabah",
+      "Atlantica"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das Königreich heißt Corona, in dem die verschollene Prinzessin Rapunzel aufwächst."
+  },
+  {
+    "id": "anim_merged_024",
+    "category": "kinder_anime_cartoons",
+    "area": "pixar",
+    "subject": "wissen",
+    "question": "Welches Gefühl steuert im Animationsfilm 'Alles steht Kopf' (Inside Out) die Konsole im Kopf von Riley nicht?",
+    "answers": [
+      "Freude",
+      "Kummer",
+      "Wut",
+      "Hunger"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die 5 ursprünglichen Haupt-Emotionen sind Freude, Kummer, Wut, Angst und Ekel."
+  },
+  {
+    "id": "anim_merged_025",
+    "category": "kinder_anime_cartoons",
+    "area": "zeichentrick_serien",
+    "subject": "wissen",
+    "question": "Wer ist der beste Freund von Spongebob Schwammkopf?",
+    "answers": [
+      "Thaddäus Tentakel",
+      "Patrick Star (Seestern)",
+      "Mister Krabs",
+      "Plankton"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Der rosa Seestern Patrick wohnt unter einem Stein direkt neben SpongeBob."
+  },
+  {
+    "id": "anim_merged_026",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "Wie heißt der schwarze Panther im 'Dschungelbuch', der Mogli beschützt?",
+    "answers": [
+      "Balu",
+      "Baghira",
+      "Shir Khan",
+      "Kaa"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Baghira findet den kleinen Mogli im Korb und bringt ihn bei den Wölfen unter."
+  },
+  {
+    "id": "anim_merged_027",
+    "category": "kinder_anime_cartoons",
+    "area": "anime",
+    "subject": "wissen",
+    "question": "Aus welchem kultigen Wald-Geister-Film stammt das riesige kuschelige Wesen 'Totoro'?",
+    "answers": [
+      "Mein Nachbar Totoro",
+      "Prinzessin Mononoke",
+      "Das wandelnde Schloss",
+      "Ponyo"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Totoro ist das offizielle Maskottchen des japanischen Animationsstudios Ghibli."
+  },
+  {
+    "id": "anim_merged_028",
+    "category": "kinder_anime_cartoons",
+    "area": "pixar",
+    "subject": "wissen",
+    "question": "Welcher Vorname gehört der Familie 'Unglaublich' im Film 'Die Unglaublichen'?",
+    "answers": [
+      "Smith",
+      "Parr",
+      "Patterson",
+      "Johnson"
+    ],
+    "correct": 1,
+    "difficulty": "schwer",
+    "points": 15,
+    "explanation": "Mister Unglaublich heißt mit bürgerlichem Namen Bob Parr."
+  },
+  {
+    "id": "anim_merged_029",
+    "category": "kinder_anime_cartoons",
+    "area": "zeichentrick_serien",
+    "subject": "wissen",
+    "question": "Welche Zeichentrickfigur liebt Karotten und stellt die Frage: 'Mein Name ist Hase, ich weiß von nichts' / 'Eh, doc, was geht ab?'?",
+    "answers": [
+      "Daffy Duck",
+      "Bugs Bunny",
+      "Road Runner",
+      "Tweety"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Bugs Bunny ist der schlaue Hase der Looney Tunes von Warner Bros."
+  },
+  {
+    "id": "anim_merged_030",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "In welchem Jahr erschien der erste abendfüllende Disney-Zeichentrickfilm 'Schneewittchen und die sieben Zwerge'?",
+    "answers": [
+      "1928",
+      "1937",
+      "1950",
+      "1962"
+    ],
+    "correct": 1,
+    "difficulty": "schwer",
+    "points": 15,
+    "explanation": "Schneewittchen feierte im Dezember 1937 Premiere und revolutionierte das Kino."
+  },
+  {
+    "id": "anim_merged_031",
+    "category": "kinder_anime_cartoons",
+    "area": "zeichentrick_serien",
+    "subject": "wissen",
+    "question": "Wie heisst die Heimatstadt der Familie Griffin in 'Family Guy'?",
+    "answers": [
+      "Springfield",
+      "Quahog",
+      "South Park",
+      "Langley Falls"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Family Guy spielt im fiktiven Quahog im US-Bundesstaat Rhode Island."
+  },
+  {
+    "id": "anim_merged_032",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "Wie heisst die chinesische Kriegerin, die sich als Mann verkleidet, um anstelle ihres Vaters in den Krieg zu ziehen?",
+    "answers": [
+      "Mulan",
+      "Pocahontas",
+      "Moana",
+      "Raya"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Mulan kämpft zusammen mit dem kleinen Drachen Mushu gegen die Hunnen."
+  },
+  {
+    "id": "anim_merged_033",
+    "category": "kinder_anime_cartoons",
+    "area": "pixar",
+    "subject": "wissen",
+    "question": "Wie heißt der blaue vergessliche Fisch, der Marlin bei der Suche nach Nemo hilft?",
+    "answers": [
+      "Dory",
+      "Bella",
+      "Nia",
+      "Lilo"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Dory leidet unter Verlust des Kurzzeitgedächtnisses und erhielt später ihren eigenen Film 'Findet Dory'."
+  },
+  {
+    "id": "anim_merged_034",
+    "category": "kinder_anime_cartoons",
+    "area": "zeichentrick_serien",
+    "subject": "wissen",
+    "question": "Wie heißen die vier Grundschüler aus der US-Kultserie 'South Park'?",
+    "answers": [
+      "Stan, Kyle, Eric (Cartman) und Kenny",
+      "Bart, Milhouse, Nelson und Martin",
+      "Fred, Barney, Wilma und Betty",
+      "Tom, Dick, Harry und Bob"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Bekannt wurde die Serie u. a. durch den Dauerbrenner-Satz: 'Oh mein Gott, sie haben Kenny getötet!'."
+  },
+  {
+    "id": "anim_merged_035",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "Wie heisst der böse Löwe mit der Narbe im Gesicht in 'Der König der Löwen'?",
+    "answers": [
+      "Mufasa",
+      "Scar",
+      "Kovu",
+      "Zazu"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Scar stürzt seinen Bruder Mufasa vom Felsen, um selbst König zu werden."
+  },
+  {
+    "id": "anim_merged_036",
+    "category": "kinder_anime_cartoons",
+    "area": "anime",
+    "subject": "wissen",
+    "question": "Wie heisst das Ninja-Dorf, aus dem der blonde Held 'Naruto Uzumaki' stammt?",
+    "answers": [
+      "Konohagakure (Dorf hinter den Blättern)",
+      "Sunagakure",
+      "Kirigakure",
+      "Kumogakure"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Naruto träumt davon, der oberste Anführer (Hokage) von Konoha zu werden."
+  },
+  {
+    "id": "anim_merged_037",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "Welcher Gegenstand erweckt die Schlafende Schönheit (Dornröschen) aus ihrem Zauberschlaf?",
+    "answers": [
+      "Ein Zaubertrank",
+      "Der Kuss der wahren Liebe",
+      "Ein goldener Apfel",
+      "Ein Glockenschlag"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Prinz Phillip besiegt den Drachen und bricht den Fluch mit dem Kuss der wahren Liebe."
+  },
+  {
+    "id": "anim_merged_038",
+    "category": "kinder_anime_cartoons",
+    "area": "zeichentrick_serien",
+    "subject": "wissen",
+    "question": "Wie heißt der chaotische Wissenschaftler-Opa in der Sci-Fi-Animationsserie 'Rick and Morty'?",
+    "answers": [
+      "Rick Sanchez",
+      "Morty Smith",
+      "Jerry Smith",
+      "Birdperson"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Rick reist mit seinem Enkel Morty durch verschiedene Dimensionen und Universen."
+  },
+  {
+    "id": "anim_merged_039",
+    "category": "kinder_anime_cartoons",
+    "area": "disney",
+    "subject": "wissen",
+    "question": "Welches Experiment mit der Nummer 626 landet als blaues Ausserirdisches 'Lilo & Stitch' auf Hawaii?",
+    "answers": [
+      "Stitch",
+      "Jumba",
+      "Pleakley",
+      "Gantu"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Lilo nimmt den Zerstörungswütigen Stitch als Hund auf und lehrt ihn den Sinn von 'Ohana' (Familie)."
+  },
+  {
+    "id": "anim_merged_040",
+    "category": "kinder_anime_cartoons",
+    "area": "pixar",
+    "subject": "wissen",
+    "question": "Welcher Film war 1995 der allererste vollständig computeranimierte Spielfilm der Geschichte?",
+    "answers": [
+      "A Bug's Life (Das große Krabbeln)",
+      "Toy Story",
+      "Monster AG",
+      "Shrek"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Toy Story von Pixar setzte 1995 einen Meilenstein in der Animationstechnik."
+  }
+]

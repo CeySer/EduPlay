@@ -1,0 +1,1107 @@
+[
+  {
+    "id": "tech_mc_001",
+    "category": "technik_gadgets",
+    "area": "smartphones",
+    "subject": "wissen",
+    "question": "Welches Betriebssystem treibt weltweit die meisten Smartphones an?",
+    "answers": [
+      "iOS",
+      "Android",
+      "Windows Phone",
+      "Symbian"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Android (von Google) hält weltweit einen Marktanteil von über 70 %."
+  },
+  {
+    "id": "tech_mc_002",
+    "category": "technik_gadgets",
+    "area": "computer",
+    "subject": "wissen",
+    "question": "Wofür steht die Abkürzung 'RAM' beim Arbeitsspeicher eines Computers?",
+    "answers": [
+      "Random Access Memory",
+      "Read And Modify",
+      "Rapid Application Module",
+      "Run Access Main"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "RAM ist der flüchtige Zwischenspeicher, auf den der Prozessor extrem schnell zugreifen kann."
+  },
+  {
+    "id": "tech_mc_003",
+    "category": "technik_gadgets",
+    "area": "innovationen",
+    "subject": "wissen",
+    "question": "Welche drahtlose Funktechnik wurde nach einem dänischen Wikingerkönig benannt?",
+    "answers": [
+      "Wi-Fi",
+      "Bluetooth",
+      "NFC",
+      "Zigbee"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Bluetooth ist nach Harald Blauzahn (Harald Bluetooth) benannt, der skandinavische Stämme vereinte."
+  },
+  {
+    "id": "tech_mc_004",
+    "category": "technik_gadgets",
+    "area": "internet",
+    "subject": "wissen",
+    "question": "Was bedeutet das 'S' im Sicherheitsprotokoll 'HTTPS' bei Webseiten-Adressen?",
+    "answers": [
+      "Speed",
+      "Secure",
+      "System",
+      "Server"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "HTTPS steht für 'Hypertext Transfer Protocol Secure' und verschlüsselt die Datenübertragung."
+  },
+  {
+    "id": "tech_mc_005",
+    "category": "technik_gadgets",
+    "area": "hardware",
+    "subject": "wissen",
+    "question": "Welche Komponente wird oft als das 'Gehirn' eines Computers bezeichnet?",
+    "answers": [
+      "Grafikkarte (GPU)",
+      "Hauptprozessor (CPU)",
+      "Netzteil",
+      "Mainboard"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Die CPU (Central Processing Unit) führt alle Berechnungen und Befehle aus."
+  },
+  {
+    "id": "tech_mc_006",
+    "category": "technik_gadgets",
+    "area": "hardware",
+    "subject": "wissen",
+    "question": "Was ist der Hauptvorteil einer SSD-Festplatte gegenüber einer klassischen HDD-Festplatte?",
+    "answers": [
+      "Sie ist günstiger pro Gigabyte",
+      "Extrem schnelle Lese-/Schreibgeschwindigkeiten ohne mechanische Teile",
+      "Sie benötigt mehr Strom",
+      "Sie ist schwerer"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "SSDs nutzen Flash-Speicher, weshalb sie um ein Vielfaches schneller und stoßfester sind als rotierende HDDs."
+  },
+  {
+    "id": "tech_mc_007",
+    "category": "technik_gadgets",
+    "area": "ki",
+    "subject": "wissen",
+    "question": "Wofür steht die Abkürzung 'KI' bzw. im Englischen 'AI'?",
+    "answers": [
+      "Künstliche Intelligenz / Artificial Intelligence",
+      "Kombinierte Information / Advanced Information",
+      "Kabel-Infrastruktur / Automated Integration",
+      "Komplexe Informatik / Algorithmic Intelligence"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "KI bezeichnet Systeme, die menschenähnliche kognitive Fähigkeiten zur Problemlösung nutzen."
+  },
+  {
+    "id": "tech_mc_008",
+    "category": "technik_gadgets",
+    "area": "erfindungen",
+    "subject": "wissen",
+    "question": "Wer gilt als Erfinder des World Wide Web (WWW) im Jahr 1989 am CERN?",
+    "answers": [
+      "Steve Jobs",
+      "Tim Berners-Lee",
+      "Bill Gates",
+      "Alan Turing"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Sir Tim Berners-Lee entwickelte das Hypertext-Konzept, das das heutige Internet formte."
+  },
+  {
+    "id": "tech_mc_009",
+    "category": "technik_gadgets",
+    "area": "smartphones",
+    "subject": "wissen",
+    "question": "Was versteht man unter der Abkürzung 'NFC' bei modernen Smartphones?",
+    "answers": [
+      "Near Field Communication",
+      "New Fast Connection",
+      "Network Frequency Code",
+      "National Fiber Cable"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "NFC ermöglicht drahtlosen Datenaustausch auf kurze Distanz (z. B. für kontaktloses Bezahlen)."
+  },
+  {
+    "id": "tech_mc_010",
+    "category": "technik_gadgets",
+    "area": "gaming_hardware",
+    "subject": "wissen",
+    "question": "Welcher Grafikprozessor-Hersteller ist weltweit führend bei Grafikkarten der 'GeForce'-Reihe?",
+    "answers": [
+      "AMD",
+      "Intel",
+      "NVIDIA",
+      "Qualcomm"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "NVIDIA fertigt die beliebten GeForce RTX- und GTX-Grafikkarten."
+  },
+  {
+    "id": "tech_mc_011",
+    "category": "technik_gadgets",
+    "area": "display",
+    "subject": "wissen",
+    "question": "Was zeichnet ein OLED-Display im Vergleich zu einem herkömmlichen LCD-Display aus?",
+    "answers": [
+      "Jedes Pixel leuchtet selbstständig, was perfektes Schwarz ermöglicht",
+      "Es verbraucht immer mehr Strom",
+      "Es ist extrem dick",
+      "Es benötigt eine riesige Hintergrundbeleuchtung"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Bei OLED schalten sich schwarze Pixel komplett aus, was echten Kontrast und tiefe Schwarztöne bringt."
+  },
+  {
+    "id": "tech_mc_012",
+    "category": "technik_gadgets",
+    "area": "software",
+    "subject": "wissen",
+    "question": "Wie heisst das freie, quelloffene Betriebssystem, das von Linus Torvalds 1991 entwickelt wurde?",
+    "answers": [
+      "Windows",
+      "macOS",
+      "Linux",
+      "MS-DOS"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Linux bildet heute die Basis für Android, Server-Infrastrukturen und Supercomputer."
+  },
+  {
+    "id": "tech_mc_013",
+    "category": "technik_gadgets",
+    "area": "internet",
+    "subject": "wissen",
+    "question": "Was tut ein 'Router' im Heimnetzwerk?",
+    "answers": [
+      "Er speichert alle Passwörter",
+      "Er leitet Datenpakete zwischen dem Internet und den Geräten im Heimnetz weiter",
+      "Er kühlt den Computer",
+      "Er verstärkt den Sound"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Der Router verbindet das lokale Netzwerk (LAN/WLAN) mit dem externen Internet."
+  },
+  {
+    "id": "tech_mc_014",
+    "category": "technik_gadgets",
+    "area": "smartphones",
+    "subject": "wissen",
+    "question": "Welcher Anschluss-Standard wurde in der EU für neue Smartphones und Kleingeräte ab Ende 2024 verpflichtend?",
+    "answers": [
+      "Lightning",
+      "Micro-USB",
+      "USB-C",
+      "Mini-USB"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "USB-C wurde als einheitlicher Lade- und Datenstandard in der EU beschlossen."
+  },
+  {
+    "id": "tech_mc_015",
+    "category": "technik_gadgets",
+    "area": "computer",
+    "subject": "wissen",
+    "question": "Aus wie vielen Bits besteht exakt 1 Byte?",
+    "answers": [
+      "4 Bits",
+      "8 Bits",
+      "16 Bits",
+      "32 Bits"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "8 Bits bilden zusammen die Dateneinheit 1 Byte."
+  },
+  {
+    "id": "tech_mc_016",
+    "category": "technik_gadgets",
+    "area": "akku",
+    "subject": "wissen",
+    "question": "Welche Akku-Technologie kommt heute in fast allen Smartphones und Elektroautos zum Einsatz?",
+    "answers": [
+      "Blei-Säure-Akku",
+      "Nickel-Cadmium-Akku (NiCd)",
+      "Lithium-Ionen-Akku (Li-Ion)",
+      "Zink-Kohle-Akku"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Lithium-Ionen-Akkus bieten hohe Energiedichte bei geringem Gewicht und ohne Memory-Effekt."
+  },
+  {
+    "id": "tech_mc_017",
+    "category": "technik_gadgets",
+    "area": "geschichte",
+    "subject": "wissen",
+    "question": "Wer gilt als deutscher Erfinder des ersten funktionsfähigen digitalen Rechners (Z3) im Jahr 1941?",
+    "answers": [
+      "Konrad Zuse",
+      "Heinz Nixdorf",
+      "Gottfried Wilhelm Leibniz",
+      "Joseph Weizenbaum"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Konrad Zuse baute mit der Z3 den ersten frei programmierbaren, vollautomatischen Computer der Welt."
+  },
+  {
+    "id": "tech_mc_018",
+    "category": "technik_gadgets",
+    "area": "hardware",
+    "subject": "wissen",
+    "question": "Welche Tastatur-Anordnung ist im deutschsprachigen Raum der Standard?",
+    "answers": [
+      "QWERTY",
+      "QWERTZ",
+      "AZERTY",
+      "DVORAK"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "QWERTZ ist nach den ersten sechs Buchstaben der obersten Tastenreihe benannt."
+  },
+  {
+    "id": "tech_mc_019",
+    "category": "technik_gadgets",
+    "area": "drohnen",
+    "subject": "wissen",
+    "question": "Wie nennt man eine Drohne mit vier Rotoren?",
+    "answers": [
+      "Tricopter",
+      "Quadcopter",
+      "Hexacopter",
+      "Octocopter"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Quad = vier; Quadcopter nutzen vier Propeller für stabiles Schweben und Fliegen."
+  },
+  {
+    "id": "tech_mc_020",
+    "category": "technik_gadgets",
+    "area": "gaming",
+    "subject": "wissen",
+    "question": "Was versteht man unter 'VR' bei Headsets wie der Meta Quest oder PlayStation VR?",
+    "answers": [
+      "Virtual Reality (Virtuelle Realität)",
+      "Visual Resolution",
+      "Vector Rendering",
+      "Variable Refresh"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "VR entführt den Nutzer über geschlossene Brillen komplett in eine computergenerierte 3D-Welt."
+  },
+  {
+    "id": "tech_mc_021",
+    "category": "technik_gadgets",
+    "area": "internet",
+    "subject": "wissen",
+    "question": "Was misst der sogenannte 'Ping' (Latenz) bei einer Internetverbindung?",
+    "answers": [
+      "Die maximale Download-Geschwindigkeit",
+      "Die Antwortzeit der Datenverbindung in Millisekunden (ms)",
+      "Die Stärke des WLAN-Signals",
+      "Den Datenverbrauch pro Monat"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Je niedriger der Ping-Wert, desto schneller reagiert die Verbindung (besonders wichtig für Online-Gaming)."
+  },
+  {
+    "id": "tech_mc_022",
+    "category": "technik_gadgets",
+    "area": "smart_home",
+    "subject": "wissen",
+    "question": "Wie heißt der plattformübergreifende Smart-Home-Standard, den Apple, Google, Amazon und andere gemeinsam entwickelten?",
+    "answers": [
+      "Matter",
+      "Zigbee",
+      "Z-Wave",
+      "HomeKit"
+    ],
+    "correct": 0,
+    "difficulty": "schwer",
+    "points": 15,
+    "explanation": "Matter sorgt dafür, dass Smart-Home-Geräte herstellerübergreifend nahtlos zusammenarbeiten."
+  },
+  {
+    "id": "tech_mc_023",
+    "category": "technik_gadgets",
+    "area": "audio",
+    "subject": "wissen",
+    "question": "Was bedeutet die Funktion 'ANC' bei modernen Kopfhörern?",
+    "answers": [
+      "Active Noise Cancelling (Aktive Geräuschunterdrückung)",
+      "Auto Network Connection",
+      "Advanced Natural Clarity",
+      "Audio Night Control"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "ANC nutzt Mikrofone, um Umgebungsgeräusche durch Antischall (Gegenschall) auszulöschen."
+  },
+  {
+    "id": "tech_mc_024",
+    "category": "technik_gadgets",
+    "area": "drucker",
+    "subject": "wissen",
+    "question": "Welches Material nutzen die meisten handelsüblichen Hobby-3D-Drucker (FDM) als Filamente?",
+    "answers": [
+      "Flüssiges Metall",
+      "Kunststoff-Masse (z. B. PLA oder PETG)",
+      "Harz-Pulver",
+      "Ton"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "PLA (Polymilchsäure) wird geschmolzen und Schicht für Schicht aufgetragen."
+  },
+  {
+    "id": "tech_mc_025",
+    "category": "technik_gadgets",
+    "area": "ki",
+    "subject": "wissen",
+    "question": "Von welchem Unternehmen wurde der bekannte KI-Chatbot 'ChatGPT' entwickelt?",
+    "answers": [
+      "Google",
+      "Microsoft",
+      "OpenAI",
+      "Meta"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "OpenAI veröffentlichte ChatGPT Ende 2022 und startete damit einen weltweiten KI-Boom."
+  },
+  {
+    "id": "tech_mc_026",
+    "category": "technik_gadgets",
+    "area": "computer",
+    "subject": "wissen",
+    "question": "Wie nennt man die Hauptplatine eines Computers, auf der CPU, RAM und Grafikkarten verbaut werden?",
+    "answers": [
+      "Mainboard / Motherboard",
+      "Control Board",
+      "Power Card",
+      "Base Modul"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Das Mainboard verbindet alle elektronischen Komponenten des Rechners miteinander."
+  },
+  {
+    "id": "tech_mc_027",
+    "category": "technik_gadgets",
+    "area": "mobilfunk",
+    "subject": "wissen",
+    "question": "Wofür steht die Mobilfunkgeneration-Bezeichnung '5G'?",
+    "answers": [
+      "5 Gigabyte Speicher",
+      "5. Generation des Mobilfunks",
+      "5 GigaHertz Frequenz",
+      "5-fache Geschwindigkeit"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "5G folgt auf 4G (LTE) und bietet höhere Bandbreiten sowie minimale Latenzzeiten."
+  },
+  {
+    "id": "tech_mc_028",
+    "category": "technik_gadgets",
+    "area": "speicher",
+    "subject": "wissen",
+    "question": "Wie viele Megabyte (MB) entsprechen ungefähr 1 Gigabyte (GB)?",
+    "answers": [
+      "100 MB",
+      "500 MB",
+      "1.000 MB (exakt 1.024 MB)",
+      "10.000 MB"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Im Binärsystem gilt 1 GB = 1.024 MB (dezimal oft vereinfacht als 1.000 MB angegeben)."
+  },
+  {
+    "id": "tech_mc_029",
+    "category": "technik_gadgets",
+    "area": "wearables",
+    "subject": "wissen",
+    "question": "Wie nennt man intelligente Armbanduhren, die Puls messen, Benachrichtigungen anzeigen und Apps ausführen?",
+    "answers": [
+      "Smartwatch",
+      "Fitnessband",
+      "Pedometer",
+      "Digitaluhr"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Smartwatches wie die Apple Watch oder Samsung Galaxy Watch verbinden Smartphone-Funktionen mit Zeitanzeige."
+  },
+  {
+    "id": "tech_mc_030",
+    "category": "technik_gadgets",
+    "area": "software",
+    "subject": "wissen",
+    "question": "Was versteht man unter 'Open Source' bei Software?",
+    "answers": [
+      "Die Software ist extrem teuer",
+      "Der Quellcode ist öffentlich einsehbar und darf von jedem verändert werden",
+      "Die Software funktioniert nur ohne Internet",
+      "Die Software läuft nur auf Handys"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Open Source erlaubt transparente Einsicht, Freigabe und weltweite Weiterentwicklung durch Entwickler."
+  },
+  {
+    "id": "tech_mc_031",
+    "category": "technik_gadgets",
+    "area": "sicherheit",
+    "subject": "wissen",
+    "question": "Was bedeutet die Abkürzung '2FA' beim Anmelden in Benutzerkonten?",
+    "answers": [
+      "Two-Factor Authentication (Zwei-Faktor-Authentifizierung)",
+      "2-Fast-Access",
+      "Second-File-Access",
+      "Two-Frequency-Antenna"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "2FA schützt Konten durch zwei unabhängige Komponenten (z. B. Passwort + SMS-Code)."
+  },
+  {
+    "id": "tech_mc_032",
+    "category": "technik_gadgets",
+    "area": "hardware",
+    "subject": "wissen",
+    "question": "Welches Kabel dient heutzutage primär zur Bild- und Tonübertragung von Konsolen/PCs an Bildschirme?",
+    "answers": [
+      "VGA",
+      "HDMI",
+      "Scart",
+      "S-Video"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "HDMI überträgt hochauflösende digitale Video- und Audiosignale über ein einziges Kabel."
+  },
+  {
+    "id": "tech_mc_033",
+    "category": "technik_gadgets",
+    "area": "ebikes",
+    "subject": "wissen",
+    "question": "Bis zu welcher Geschwindigkeit unterstützt der Motor eines normalen Pedelecs (E-Bike) in Deutschland gesetzlich?",
+    "answers": [
+      "20 km/h",
+      "25 km/h",
+      "30 km/h",
+      "45 km/h"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ein Pedelec unterstützt die Tretkraft bis maximal 25 km/h führerschein- und helmpflichtfrei."
+  },
+  {
+    "id": "tech_mc_034",
+    "category": "technik_gadgets",
+    "area": "software",
+    "subject": "wissen",
+    "question": "Was ist ein 'Phishing'-Versuch im Internet?",
+    "answers": [
+      "Ein Test zur Internetgeschwindigkeit",
+      "Der Versuch von Betrügern, über gefälschte Mails/Webseiten sensible Daten wie Passwörter zu stehlen",
+      "Ein automatisches Backup",
+      "Ein Viren-Scan"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Beim Phishing 'angeln' Kriminelle mit gefälschten Nachrichten nach Nutzerdaten."
+  },
+  {
+    "id": "tech_mc_035",
+    "category": "technik_gadgets",
+    "area": "hardware",
+    "subject": "wissen",
+    "question": "Was schützt die Elektronik im Computer vor Überhitzung?",
+    "answers": [
+      "Kühlkörper und Lüfter (oder Wasserkühlung)",
+      "Ein größeres Gehäuse ohne Lüfter",
+      "Dessere Kabel",
+      "Geringerer Arbeitsspeicher"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Wärmeleitpaste, Kühlkörper aus Kupfer/Aluminium und Lüfter leiten die Hitze von Prozessor und Grafikkarte ab."
+  },
+  {
+    "id": "tech_mc_036",
+    "category": "technik_gadgets",
+    "area": "smartphones",
+    "subject": "wissen",
+    "question": "Was misst die Bildwiederholfrequenz eines Displays in Hertz (z. B. 90 Hz oder 120 Hz)?",
+    "answers": [
+      "Wie viele Farben dargestellt werden",
+      "Wie viele Bilder der Bildschirm pro Sekunde aktualisiert",
+      "Wie hell das Display leuchten kann",
+      "Die Diagonale des Bildschirms"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Mehr Bilder pro Sekunde (z. B. 120 Hz) sorgen für extrem flüssiges Scrollen und flüssige Animationen."
+  },
+  {
+    "id": "tech_mc_037",
+    "category": "technik_gadgets",
+    "area": "geschichte",
+    "subject": "wissen",
+    "question": "Welches legendäre Mobiltelefon von Nokia aus dem Jahr 2000 war bekannt für das Spiel 'Snake' und extreme Robusteheit?",
+    "answers": [
+      "Nokia 3310",
+      "Nokia N95",
+      "Nokia 8210",
+      "Nokia Communicator"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Das Nokia 3310 gilt als Kult-Handy schlechthin und genießt bis heute Unzerstörbarkeits-Status im Netz."
+  },
+  {
+    "id": "tech_mc_038",
+    "category": "technik_gadgets",
+    "area": "fotografie",
+    "subject": "wissen",
+    "question": "Wofür steht die Einheit 'Megapixel' bei Kamera-Sensoren?",
+    "answers": [
+      "100.000 Pixel",
+      "1 Million Pixel",
+      "10 Millionen Pixel",
+      "100 Pixel pro Zentimeter"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "1 Megapixel entspricht exakt 1.000.000 Bildpunkten."
+  },
+  {
+    "id": "tech_mc_039",
+    "category": "technik_gadgets",
+    "area": "ki",
+    "subject": "wissen",
+    "question": "Wie heißt der berühmte Test von 1950, der prüfen soll, ob eine Maschine ein dem Menschen gleichwertiges Denkvermögen zeigt?",
+    "answers": [
+      "Turing-Test",
+      "Voight-Kampff-Test",
+      "Captcha-Test",
+      "Binary-Test"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Alan Turing entwickelte den Test zur Frage, ob Maschinen denken können."
+  },
+  {
+    "id": "tech_mc_040",
+    "category": "technik_gadgets",
+    "area": "internet",
+    "subject": "wissen",
+    "question": "Was bewirkt ein 'VPN' (Virtual Private Network) auf dem PC oder Smartphone?",
+    "answers": [
+      "Es verdoppelt die Internet-Geschwindigkeit",
+      "Es verschlüsselt die Verbindung und verbirgt die eigene IP-Adresse",
+      "Es entfernt alle Viren automatisch",
+      "Es spart Akku beim Surfen"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Ein VPN leitet den Datenverkehr verschlüsselt über Server um und schützt die Privatsphäre im Netz."
+  },
+  {
+    "id": "tec_ext_041",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet CPU?",
+    "answers": [
+      "Central Processing Unit",
+      "Computer Power Unit",
+      "Central Program Utility",
+      "Core Processing User"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Prozessor."
+  },
+  {
+    "id": "tec_ext_042",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet RAM?",
+    "answers": [
+      "Arbeitsspeicher",
+      "Festplatte",
+      "Bildschirm",
+      "Tastatur"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Random Access Memory."
+  },
+  {
+    "id": "tec_ext_043",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist eine SSD?",
+    "answers": [
+      "Schnelle Festplatte (Flash)",
+      "Nur HDD",
+      "Nur CD",
+      "Nur USB-Stick immer"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Solid State Drive."
+  },
+  {
+    "id": "tec_ext_044",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet URL?",
+    "answers": [
+      "Webadresse",
+      "Nur E-Mail",
+      "Nur Passwort",
+      "Nur Dateiname"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Uniform Resource Locator."
+  },
+  {
+    "id": "tec_ext_045",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist ein Browser-Beispiel?",
+    "answers": [
+      "Chrome/Firefox/Safari",
+      "Nur Word",
+      "Nur Excel",
+      "Nur Photoshop"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Browser."
+  },
+  {
+    "id": "tec_ext_046",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet Wi-Fi?",
+    "answers": [
+      "Drahtloses Netzwerk",
+      "Kabel-Internet",
+      "Nur Bluetooth",
+      "Nur Radio"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "WLAN."
+  },
+  {
+    "id": "tec_ext_047",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist ein Passwort gut?",
+    "answers": [
+      "Lang und einzigartig",
+      "Nur 1234",
+      "Nur Name",
+      "Nur Geburtstag"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Sicherheit."
+  },
+  {
+    "id": "tec_ext_048",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet PDF?",
+    "answers": [
+      "Dokumentformat",
+      "Nur Bild",
+      "Nur Video",
+      "Nur Audio"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Portable Document Format."
+  },
+  {
+    "id": "tec_ext_049",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist Cloud-Speicher?",
+    "answers": [
+      "Daten online speichern",
+      "Nur USB",
+      "Nur CD",
+      "Nur Papier"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Cloud."
+  },
+  {
+    "id": "tec_ext_050",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet GPS im Handy?",
+    "answers": [
+      "Ortung per Satellit",
+      "Nur WLAN",
+      "Nur Bluetooth",
+      "Nur Kompass"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "GPS."
+  },
+  {
+    "id": "tec_ext_051",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist ein QR-Code?",
+    "answers": [
+      "Scanbarer 2D-Code",
+      "Nur Barcode 1D",
+      "Nur Passwort",
+      "Nur PIN"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "QR."
+  },
+  {
+    "id": "tec_ext_052",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet HTTP?",
+    "answers": [
+      "Web-Protokoll",
+      "Nur E-Mail",
+      "Nur FTP immer",
+      "Nur SSH"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Hypertext Transfer Protocol."
+  },
+  {
+    "id": "tec_ext_053",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist Phishing?",
+    "answers": [
+      "Betrug per gefälschter Nachricht",
+      "Nur Spam Werbung",
+      "Nur Virus",
+      "Nur Wurm"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Phishing."
+  },
+  {
+    "id": "tec_ext_054",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet LED?",
+    "answers": [
+      "Leuchtdiode",
+      "Nur Glühbirne",
+      "Nur Halogen",
+      "Nur Neon"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Light Emitting Diode."
+  },
+  {
+    "id": "tec_ext_055",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist ein Smartphone?",
+    "answers": [
+      "Handy mit Apps/Internet",
+      "Nur Tastenhandy",
+      "Nur Telefon fest",
+      "Nur Tablet"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Smartphone."
+  },
+  {
+    "id": "tec_ext_056",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet USB-C?",
+    "answers": [
+      "Moderner Anschluss",
+      "Nur alter USB-A",
+      "Nur HDMI",
+      "Nur VGA"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "USB Type-C."
+  },
+  {
+    "id": "tec_ext_057",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist ein Algorithmus im Alltag?",
+    "answers": [
+      "Schrittfolge wie Rezept",
+      "Nur Hardware",
+      "Nur Kabel",
+      "Nur Display"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Algorithmus."
+  },
+  {
+    "id": "tec_ext_058",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet AI/KI?",
+    "answers": [
+      "Künstliche Intelligenz",
+      "Nur Automatisierung simpel",
+      "Nur Roboter physisch",
+      "Nur Internet"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "AI."
+  },
+  {
+    "id": "tec_ext_059",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist ein Cookie im Web?",
+    "answers": [
+      "Kleine Speicherdatei der Website",
+      "Nur Gebäck",
+      "Nur Virus",
+      "Nur Werbung immer"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "HTTP-Cookie."
+  },
+  {
+    "id": "tec_ext_060",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet OLED?",
+    "answers": [
+      "Display-Technik",
+      "Nur CPU",
+      "Nur RAM",
+      "Nur SSD"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Organic LED."
+  },
+  {
+    "id": "tec_ext_061",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist Zwei-Faktor-Authentifizierung?",
+    "answers": [
+      "Zusätzliche Sicherheit (z.B. Code)",
+      "Nur Passwort",
+      "Nur Benutzername",
+      "Nur PIN allein"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "2FA."
+  },
+  {
+    "id": "tec_ext_062",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet IoT?",
+    "answers": [
+      "Internet of Things",
+      "Nur Intranet",
+      "Nur Offline",
+      "Nur TV"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Vernetzte Geräte."
+  },
+  {
+    "id": "tec_ext_063",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist ein Podcast-App?",
+    "answers": [
+      "Audio-Serien abspielen",
+      "Nur Musik-CD",
+      "Nur Radio UKW",
+      "Nur TV"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Podcast."
+  },
+  {
+    "id": "tec_ext_064",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was bedeutet NFC?",
+    "answers": [
+      "Nahfeldkommunikation (z.B. Bezahlen)",
+      "Nur WLAN weit",
+      "Nur Bluetooth weit",
+      "Nur GPS"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "NFC."
+  },
+  {
+    "id": "tec_ext_065",
+    "category": "technik_gadgets",
+    "area": "technik",
+    "subject": "wissen",
+    "question": "Was ist ein Emulator?",
+    "answers": [
+      "Software ahmt anderes System nach",
+      "Nur Spiel",
+      "Nur Browser",
+      "Nur Editor"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 5,
+    "explanation": "Emulator."
+  }
+]

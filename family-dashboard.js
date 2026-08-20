@@ -2002,7 +2002,9 @@ auth.createUserWithEmailAndPassword(e, p)
             const map = {
                 tests: ['dash-tests-body', 'dash-tests-arrow'],
                 study: ['dash-study-body', 'dash-study-arrow'],
-                kurse: ['dash-kurse-body', 'dash-kurse-arrow']
+                kurse: ['dash-kurse-body', 'dash-kurse-arrow'],
+                goal: ['dash-goal-body', 'dash-goal-arrow'],
+                assign: ['dash-assign-body', 'dash-assign-arrow']
             };
             const pair = map[which] || ['dash-study-body', 'dash-study-arrow'];
             const body = document.getElementById(pair[0]);
@@ -2457,7 +2459,6 @@ auth.createUserWithEmailAndPassword(e, p)
                 if (focus && ALL_PROFILES[focus]) selectedStatPlayer = focus;
                 renderStudyLogOverview();
                 renderDashTestStatsOverview();
-                renderDashPlayerList();
                 if (selectedStatPlayer) {
                     const sc = document.getElementById('dash-stats-container');
                     if (sc) sc.classList.remove('hidden');

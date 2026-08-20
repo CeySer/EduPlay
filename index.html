@@ -11,7 +11,7 @@
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
          (Einstellungen -> Entwickler-Modus -> "Build"), ob der Cache/die
          installierte App wirklich den neuesten Stand geladen hat. -->
-    <script>window.EDUPLAY_BUILD = "20.08.2026 · 20:50";</script>
+    <script>window.EDUPLAY_BUILD = "20.08.2026 · 21:10";</script>
 
     <link rel="stylesheet" href="styles.css?v=9.8">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
@@ -1327,6 +1327,71 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
             </div>
 
             <!-- ==========================================================
+            VIEW: LERNRAUM CODE-LOBBY (eigenständig, nicht Gegeneinander)
+            ========================================================== -->
+            <div id="view-lernen-lobby-setup" class="view hidden space-y-4">
+                <div class="flex items-center justify-between gap-2">
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('lernen')">Zurück</button>
+                    <span class="text-sm font-bold text-gray-400">🎓 Gemeinsam lernen</span>
+                    <span class="w-16"></span>
+                </div>
+                <div class="glass-card p-5 space-y-3" style="border-color:rgba(99,102,241,0.25);">
+                    <div class="text-center">
+                        <div class="text-3xl mb-1">🔗</div>
+                        <h3 class="text-lg font-black text-indigo-300">Mit Code beitreten</h3>
+                        <p class="text-[11px] text-gray-500">4-stelligen Code vom Host</p>
+                    </div>
+                    <input id="lernen-lobby-join-code" maxlength="4" placeholder="K7P2" autocomplete="off"
+                        inputmode="text" autocapitalize="characters" enterkeyhint="go"
+                        class="input-modern text-3xl font-black text-center uppercase py-4"
+                        style="letter-spacing:0.35em;">
+                    <button onclick="joinLernenLobby()" class="btn-primary w-full text-center py-3.5"
+                        style="background:var(--gradient-green);">Beitreten</button>
+                </div>
+                <div class="flex items-center gap-3 px-1">
+                    <div class="flex-1 h-px bg-white/10"></div>
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">oder erstellen</span>
+                    <div class="flex-1 h-px bg-white/10"></div>
+                </div>
+                <div class="glass-card p-5 space-y-4">
+                    <h2 class="text-xl font-black text-indigo-400 text-center">Lern-Lobby</h2>
+                    <p class="text-xs text-gray-400 text-center -mt-2">Immer zusammen · nur Lernraum</p>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Inhalt</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button type="button" id="lernen-lobby-type-wissen" class="py-2.5 rounded-xl text-sm font-black text-white" style="background:#10b981;" onclick="setLernenLobbyType('wissen')">🧠 Wissen</button>
+                            <button type="button" id="lernen-lobby-type-vokabel" class="py-2.5 rounded-xl text-sm font-black text-white" style="background:#6366f1;" onclick="setLernenLobbyType('vokabel')">🃏 Vokabeln</button>
+                            <button type="button" id="lernen-lobby-type-kurs" class="py-2.5 rounded-xl text-sm font-black text-white" style="background:#f59e0b;" onclick="setLernenLobbyType('kurs')">📘 Kurs</button>
+                            <button type="button" id="lernen-lobby-type-suchsel" class="py-2.5 rounded-xl text-sm font-black text-white" style="background:#0ea5e9;" onclick="setLernenLobbyType('suchsel')">🔍 Suchsel</button>
+                        </div>
+                    </div>
+                    <div id="lernen-lobby-wissen-options" class="space-y-3">
+                        <label class="text-xs text-gray-400 font-bold block">Klasse / Bereich</label>
+                        <select id="lernen-lobby-area" class="input-modern font-bold"></select>
+                        <label class="text-xs text-gray-400 font-bold block">Fach / Thema</label>
+                        <select id="lernen-lobby-category" class="input-modern font-bold"></select>
+                    </div>
+                    <div id="lernen-lobby-vokabel-options" class="hidden space-y-3">
+                        <div id="lernen-lobby-vokabel-checkboxes"></div>
+                        <select id="lernen-lobby-vokabel-dir" class="input-modern font-bold">
+                            <option value="mix">Gemischt</option>
+                            <option value="de2f">Deutsch → Fremdsprache</option>
+                            <option value="f2de">Fremdsprache → Deutsch</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 font-bold block mb-1.5">Tempo</label>
+                        <select id="lernen-lobby-speed" class="input-modern font-bold">
+                            <option value="30">Gemütlich (30 Sek.)</option>
+                            <option value="20" selected>Normal (20 Sek.)</option>
+                            <option value="15">Schnell (15 Sek.)</option>
+                        </select>
+                    </div>
+                    <button onclick="createLernenLobby()" class="btn-primary w-full text-center py-3.5">Lobby erstellen 🚀</button>
+                </div>
+            </div>
+
+            <!-- ==========================================================
             VIEW: LIVE-DUELL LOBBY
             ========================================================== -->
 
@@ -2551,7 +2616,7 @@ VIEW: QUIZ SETUP
     <script src="tv-cast.js?v=11.6"></script>
     <script src="live-duel.js?v=10.9"></script>
     <script src="app-misc.js?v=8.8"></script>
-    <script src="lobby-avatar.js?v=9.8"></script>
+    <script src="lobby-avatar.js?v=9.9"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
     <script src="email-bestaetigung.js?v=8.8"></script>
     <script src="fragen-vorladen.js?v=8.8"></script>

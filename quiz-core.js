@@ -436,6 +436,13 @@
         function merkeSoloFortschritt() {
             if (testMode) return; // Tests → merkeTestFortschritt()
             try {
+                // Lektion-Kontext mitspeichern (currentLektion ist nur eine RAM-Variable
+                // und geht sonst beim App-Neustart verloren – dann würde die Runde beim
+                // Wiedereinstieg zwar fertig gespielt, aber nicht als Lektion gewertet
+                // und nicht als bestanden gespeichert).
+                const lektion = (typeof currentLektion !== 'undefined' && currentLektion)
+                    ? { id: currentLektion.id, step: currentLektion.step }
+                    : null;
                 localStorage.setItem(SOLO_MERK_SCHLUESSEL, JSON.stringify({
                     spielerKey: typeof activePlayerKey !== 'undefined' ? activePlayerKey : null,
                     questions: currentQuestions,
@@ -443,6 +450,7 @@
                     quizMode: quizMode,
                     testAnsweredCount: testAnsweredCount,
                     testCorrectCount: testCorrectCount,
+                    lektion: lektion,
                     ts: Date.now()
                 }));
             } catch (e) { /* */ }
@@ -566,6 +574,12 @@
             testMode = false;
             testAnsweredCount = merk.testAnsweredCount || 0;
             testCorrectCount = merk.testCorrectCount || 0;
+            // Lektion-Kontext wiederherstellen, sonst zählt die fertig gespielte Runde
+            // nicht als Lektion (kein "bestanden", keine Freischaltung der nächsten).
+            if (merk.lektion && typeof LEKTIONEN !== 'undefined') {
+                const daten = LEKTIONEN.find(l => l.id === merk.lektion.id);
+                if (daten) currentLektion = { id: merk.lektion.id, data: daten, step: merk.lektion.step };
+            }
             document.getElementById("test-timer-bar").classList.add("hidden");
             switchView('quiz');
             showQuestion();

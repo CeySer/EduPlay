@@ -2042,14 +2042,44 @@ auth.createUserWithEmailAndPassword(e, p)
                     if (!liste.length) return '';
                     const fertig = liste.filter(l => doneMap[l.id] && doneMap[l.id].bestanden).length;
                     const pct = Math.round((fertig / liste.length) * 100);
-                    return `<div class="mt-1.5">
+                    const lektionRows = liste.map(l => {
+                        const eintrag = doneMap[l.id];
+                        const frei = (typeof istLektionFreigeschaltetFuer === 'function')
+                            ? istLektionFreigeschaltetFuer(l, liste, doneMap)
+                            : true;
+                        let statusIcon, ergebnis, ergebnisClass;
+                        if (eintrag && eintrag.bestanden) {
+                            statusIcon = '✅';
+                            const datum = eintrag.datum ? new Date(eintrag.datum).toLocaleDateString('de-DE') : '';
+                            ergebnis = `${eintrag.pct}%${datum ? ' · ' + datum : ''}`;
+                            ergebnisClass = 'text-emerald-400';
+                        } else if (eintrag) {
+                            statusIcon = '🔁';
+                            ergebnis = `${eintrag.pct}% – noch nicht bestanden`;
+                            ergebnisClass = 'text-amber-400';
+                        } else if (!frei) {
+                            statusIcon = '🔒';
+                            ergebnis = 'gesperrt';
+                            ergebnisClass = 'text-gray-500';
+                        } else {
+                            statusIcon = '▶️';
+                            ergebnis = 'noch nicht versucht';
+                            ergebnisClass = 'text-gray-500';
+                        }
+                        return `<div class="flex items-center justify-between gap-2 text-[11px] px-0.5">
+                            <span class="text-gray-300 truncate flex-1">${statusIcon} ${esc(l.title)}</span>
+                            <span class="${ergebnisClass} shrink-0 font-bold">${ergebnis}</span>
+                        </div>`;
+                    }).join('');
+                    return `<div class="mt-2 first:mt-0">
                         <div class="flex items-center justify-between gap-2 text-[11px] mb-0.5">
                             <span class="font-bold text-gray-200 truncate">${kurs.icon || '📘'} ${esc(kurs.title)}</span>
                             <span class="text-gray-500 shrink-0">${fertig}/${liste.length}</span>
                         </div>
-                        <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+                        <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden mb-1.5">
                             <div class="h-1.5 rounded-full ${pct >= 100 ? 'bg-emerald-400' : 'bg-amber-400'}" style="width:${pct}%"></div>
                         </div>
+                        <div class="space-y-0.5 pl-1">${lektionRows}</div>
                     </div>`;
                 }).join('');
                 return `<div class="bg-white/5 border border-white/5 rounded-xl px-3 py-2.5">
@@ -2057,6 +2087,15 @@ auth.createUserWithEmailAndPassword(e, p)
                     ${rows || '<div class="text-[11px] text-gray-500">Noch keine Lektion gestartet</div>'}
                 </div>`;
             }).join('');
+        }
+
+        // Freischalt-Status für ein beliebiges Kind (nicht nur currentPlayer) berechnen –
+        // gleiche Regel wie istLektionFreigeschaltet() in lektionen.js, nur ohne
+        // Abhängigkeit vom aktuell eingeloggten Profil.
+        function istLektionFreigeschaltetFuer(lektion, liste, doneMap) {
+            if (lektion.order <= 1) return true;
+            const vorherige = liste.find(l => l.order === lektion.order - 1);
+            return !vorherige || !!(doneMap[vorherige.id] && doneMap[vorherige.id].bestanden);
         }
 
         function toggleDashPlayerBlock(id) {

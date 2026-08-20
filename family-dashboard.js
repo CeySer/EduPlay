@@ -631,28 +631,38 @@ auth.createUserWithEmailAndPassword(e, p)
             return db.collection("parents").doc(currentParentUser.uid).collection("challenges");
         }
 
-        let _learnTogetherType = "wissen"; // wissen | vokabel
+        let _learnTogetherType = "wissen"; // wissen | vokabel | kurs | suchsel
+
+        function learnTogetherLabel(kind) {
+            if (kind === "vokabel") return "Vokabeln";
+            if (kind === "kurs") return "Kurs";
+            if (kind === "suchsel") return "Suchsel";
+            return "Wissen";
+        }
 
         function startLearnTogether(kind) {
-            _learnTogetherType = (kind === "vokabel") ? "vokabel" : "wissen";
+            if (kind !== "vokabel" && kind !== "kurs" && kind !== "suchsel") kind = "wissen";
+            _learnTogetherType = kind;
             window._learnTogetherType = _learnTogetherType;
-            // Markierung aktiv
-            const bw = document.getElementById("lernen-invite-wissen-btn");
-            const bv = document.getElementById("lernen-invite-vokabel-btn");
-            if (bw) bw.style.boxShadow = kind === "wissen" ? "0 0 0 2px #34d399" : "";
-            if (bv) bv.style.boxShadow = kind === "vokabel" ? "0 0 0 2px #818cf8" : "";
+            const marks = {
+                wissen: ["lernen-invite-wissen-btn", "#34d399"],
+                vokabel: ["lernen-invite-vokabel-btn", "#818cf8"],
+                kurs: ["lernen-invite-kurs-btn", "#f59e0b"],
+                suchsel: ["lernen-invite-suchsel-btn", "#22d3ee"]
+            };
+            Object.keys(marks).forEach(function (k) {
+                const el = document.getElementById(marks[k][0]);
+                if (el) el.style.boxShadow = (k === kind) ? ("0 0 0 2px " + marks[k][1]) : "";
+            });
             const hint = document.getElementById("lernen-invite-hint");
             if (hint) {
                 hint.classList.remove("hidden");
-                hint.textContent = (kind === "vokabel" ? "🃏 Vokabeln" : "🧠 Wissen") + ": unten ein Kind einladen";
+                hint.textContent = learnTogetherLabel(kind) + ": unten einladen";
             }
             const codeBtn = document.getElementById("lernen-invite-code-btn");
             if (codeBtn) codeBtn.classList.remove("hidden");
             if (typeof loadOpenChallenges === "function") loadOpenChallenges();
-            showToast(
-                kind === "vokabel" ? "Vokabeln gewählt – Kind einladen" : "Wissen gewählt – Kind einladen",
-                "success"
-            );
+            showToast(learnTogetherLabel(kind) + " gewählt – jetzt einladen", "success");
         }
         window.startLearnTogether = startLearnTogether;
         window._learnTogetherType = _learnTogetherType;
@@ -674,13 +684,12 @@ auth.createUserWithEmailAndPassword(e, p)
                     toKey,
                     toName: to.name,
                     type: type,
-                    subject: kind === "vokabel" ? "vokabel" : "wissen",
+                    subject: kind,
                     mode: "coop",
                     status: "pending",
                     createdAt: Date.now()
                 });
-                const label = kind === "vokabel" ? "Vokabeln" : "Wissen";
-                showToast("👥 " + label + "-Einladung an " + to.name, "success");
+                showToast("👥 " + learnTogetherLabel(kind) + "-Einladung an " + to.name, "success");
                 loadOpenChallenges();
             } catch (e) {
                 handleError("challengePlayer", e, "Einladung fehlgeschlagen.");
@@ -708,7 +717,7 @@ auth.createUserWithEmailAndPassword(e, p)
                         html += `<div class="glass-card p-3 flex items-center justify-between gap-2 border border-indigo-400/40">
                             <div class="min-w-0">
                                 <div class="text-sm font-black text-indigo-300">👥 Lern-Einladung</div>
-                                <div class="text-xs text-gray-400 truncate">${esc(c.fromName || "Jemand")} möchte mit dir üben</div>
+                                <div class="text-xs text-gray-400 truncate">${esc(c.fromName || "Jemand")} · ${learnTogetherLabel(c.subject || c.type)}</div>
                             </div>
                             <div class="flex gap-1.5 shrink-0">
                                 <button type="button" onclick="acceptChallenge('${id}')" class="btn-primary text-xs py-2 px-3">Mitmachen</button>
@@ -741,7 +750,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 });
                 if (others.length) {
                     const kind = _learnTogetherType || "wissen";
-                    const label = kind === "vokabel" ? "Vokabeln" : "Wissen";
+                    const label = learnTogetherLabel(kind);
                     html += `<div class="bg-white/5 rounded-xl p-3 space-y-2">
                         <div class="text-xs font-bold text-indigo-300">👥 ${label} – Familie einladen</div>
                         <div class="flex flex-wrap gap-2">`;
@@ -775,12 +784,12 @@ auth.createUserWithEmailAndPassword(e, p)
                 const toName = currentPlayer.name;
                 const duelRef = db.collection("parents").doc(currentParentUser.uid)
                     .collection("live_duel").doc();
-                const isVocab = (c.type === "vokabel" || c.subject === "vokabel");
+                const subject = c.subject || (c.type === "vokabel" ? "vokabel" : "wissen");
+                const isVocab = (subject === "vokabel");
                 let questions = [];
                 try {
                     if (isVocab) {
                         if (typeof buildVocabTestQuestions === "function") {
-                            // Standard: erste verfügbare Gruppen
                             const groups = [];
                             if (typeof VOCABULARY_DATABASE !== "undefined" && VOCABULARY_DATABASE.en) {
                                 Object.keys(VOCABULARY_DATABASE.en).forEach(function (lv) {
@@ -793,8 +802,44 @@ auth.createUserWithEmailAndPassword(e, p)
                                     .slice(0, 10)
                             );
                         }
+                    } else if (subject === "kurs" && typeof LEKTIONEN !== "undefined") {
+                        const grade = (typeof playerGrade === "function") ? playerGrade(currentPlayer) : null;
+                        let pool = [];
+                        LEKTIONEN.forEach(function (l) {
+                            const kurs = (typeof KURSE !== "undefined") ? KURSE.find(function (k) { return k.id === l.kurs; }) : null;
+                            if (grade && kurs && kurs.grade && Number(kurs.grade) !== Number(grade)) return;
+                            (l.test || []).forEach(function (q) { pool.push(q); });
+                            Object.keys(l.uebung || {}).forEach(function (st) {
+                                (l.uebung[st] || []).forEach(function (q) { pool.push(q); });
+                            });
+                        });
+                        if (pool.length < 6) {
+                            LEKTIONEN.forEach(function (l) {
+                                (l.test || []).forEach(function (q) { pool.push(q); });
+                            });
+                        }
+                        questions = (typeof prepareQuestions === "function" ? prepareQuestions(pool) : pool)
+                            .slice().sort(function () { return Math.random() - 0.5; }).slice(0, 10);
+                    } else if (subject === "suchsel") {
+                        let words = [];
+                        if (typeof GERMAN_WORDS_KIDS !== "undefined") words = GERMAN_WORDS_KIDS.slice();
+                        words = words.filter(function (w) { return w && w.length >= 3 && w.length <= 10; })
+                            .sort(function () { return Math.random() - 0.5; }).slice(0, 10);
+                        questions = words.map(function (w, i) {
+                            const distract = (GERMAN_WORDS_KIDS || []).filter(function (x) { return x !== w; })
+                                .sort(function () { return Math.random() - 0.5; }).slice(0, 3);
+                            const answers = [w].concat(distract).sort(function () { return Math.random() - 0.5; });
+                            return {
+                                id: "suchsel_coop_" + i,
+                                question: "Welches Wort suchst du im Gitter?",
+                                answers: answers,
+                                correct: answers.indexOf(w),
+                                explanation: "Das Wort lautet „" + w + "“.",
+                                category: "suchsel"
+                            };
+                        });
+                        if (typeof prepareQuestions === "function") questions = prepareQuestions(questions);
                     } else {
-                        // Schulwissen – kein Spaß-Quiz
                         const grade = (typeof playerGrade === "function")
                             ? playerGrade(currentPlayer)
                             : (currentPlayer && currentPlayer.grade);
@@ -836,7 +881,7 @@ auth.createUserWithEmailAndPassword(e, p)
                     type: isVocab ? "quiz" : "quiz",
                     mode: "coop",
                     status: "waiting",
-                    subject: isVocab ? "vokabel" : "wissen",
+                    subject: subject,
                     createdBy: fromKey,
                     createdByName: fromName,
                     createdAt: Date.now(),

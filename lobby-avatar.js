@@ -229,7 +229,6 @@
                 if (typeof setCodedLobbyType === "function") {
                     setCodedLobbyType(isVocab ? "vokabel" : "quiz");
                 }
-                // Kategorie-Auswahl = Schulwissen (kein Spaß)
                 if (!isVocab && typeof setCodedLobbyTopicMode === "function") {
                     setCodedLobbyTopicMode("lernen");
                 }
@@ -252,7 +251,11 @@
                     const el = document.getElementById(id);
                     if (el) el.classList.add("hidden");
                 });
-                showToast(isVocab ? "Vokabeln: Gruppen wählen" : "Wissen: Klasse & Fach wählen (Schulstoff)", "info");
+                const tip = kind === "vokabel" ? "Vokabeln: Gruppen wählen"
+                    : kind === "kurs" ? "Kurs: Schulstoff wählen"
+                    : kind === "suchsel" ? "Suchsel: Quiz-Lobby (gleiche Wörter)"
+                    : "Wissen: Klasse & Fach wählen";
+                showToast(tip, "info");
             }, 150);
         }
         window.openLearnTogetherCode = openLearnTogetherCode;

@@ -11,7 +11,7 @@
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
          (Einstellungen -> Entwickler-Modus -> "Build"), ob der Cache/die
          installierte App wirklich den neuesten Stand geladen hat. -->
-    <script>window.EDUPLAY_BUILD = "20.08.2026 · 20:30";</script>
+    <script>window.EDUPLAY_BUILD = "20.08.2026 · 20:50";</script>
 
     <link rel="stylesheet" href="styles.css?v=9.8">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
@@ -1603,7 +1603,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <span class="text-2xl">👥</span>
                         <div>
                             <div class="text-base font-black text-indigo-300">Mit Freunden üben</div>
-                            <div class="text-[11px] text-gray-400">Thema wählen → Familie einladen</div>
+                            <div class="text-[11px] text-gray-400">Inhalt wählen → einladen</div>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-2">
@@ -1613,6 +1613,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <button type="button" id="lernen-invite-vokabel-btn" onclick="startLearnTogether('vokabel')"
                             class="py-3 rounded-xl text-sm font-black text-white ring-2 ring-transparent"
                             style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">🃏 Vokabeln</button>
+                        <button type="button" id="lernen-invite-kurs-btn" onclick="startLearnTogether('kurs')"
+                            class="py-3 rounded-xl text-sm font-black text-white ring-2 ring-transparent"
+                            style="background:linear-gradient(135deg,#f59e0b,#ef4444);">📘 Kurs</button>
+                        <button type="button" id="lernen-invite-suchsel-btn" onclick="startLearnTogether('suchsel')"
+                            class="py-3 rounded-xl text-sm font-black text-white ring-2 ring-transparent"
+                            style="background:linear-gradient(135deg,#0ea5e9,#22d3ee);">🔍 Suchsel</button>
                     </div>
                     <p id="lernen-invite-hint" class="text-xs font-bold text-indigo-200 hidden">Wähle unten ein Kind zum Einladen.</p>
                     <div id="open-challenges-list" class="space-y-2"></div>
@@ -2533,7 +2539,7 @@ VIEW: QUIZ SETUP
     ============================================================ -->
     <script src="app-config.js?v=11.3"></script>
     <script src="app-ui.js?v=9.2"></script>
-    <script src="family-dashboard.js?v=11.3"></script>
+    <script src="family-dashboard.js?v=11.4"></script>
     <script src="ui-common.js?v=9.0"></script>
     <script src="ki-coach.js?v=1.1"></script>
     <script src="quiz-core.js?v=9.8"></script>
@@ -2545,7 +2551,7 @@ VIEW: QUIZ SETUP
     <script src="tv-cast.js?v=11.6"></script>
     <script src="live-duel.js?v=10.9"></script>
     <script src="app-misc.js?v=8.8"></script>
-    <script src="lobby-avatar.js?v=9.7"></script>
+    <script src="lobby-avatar.js?v=9.8"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
     <script src="email-bestaetigung.js?v=8.8"></script>
     <script src="fragen-vorladen.js?v=8.8"></script>

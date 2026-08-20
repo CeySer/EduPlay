@@ -2110,6 +2110,36 @@ auth.createUserWithEmailAndPassword(e, p)
                 }).join('') :
                 '<div class="text-gray-500 text-sm">Noch keine Tests absolviert</div>';
 
+            let kurseHtml = '<div class="text-gray-500 text-sm text-center py-2">Noch keine Kurse begonnen</div>';
+            if (typeof KURSE !== 'undefined' && typeof LEKTIONEN !== 'undefined' && KURSE.length > 0) {
+                const pLekt = p.lektionen || {};
+                const kurseCards = KURSE.map(k => {
+                    const lekts = LEKTIONEN.filter(l => l.kurs === k.id).sort((a, b) => a.order - b.order);
+                    if (lekts.length === 0 || !lekts.some(l => pLekt[l.id])) return '';
+                    const done = lekts.filter(l => pLekt[l.id] && pLekt[l.id].bestanden).length;
+                    const pct = Math.round((done / lekts.length) * 100);
+                    const barColor = pct >= 100 ? 'good' : pct > 0 ? 'ok' : 'bad';
+                    const lektRows = lekts.map(l => {
+                        const e = pLekt[l.id];
+                        if (!e) return `<div class="flex justify-between text-xs text-gray-500 py-0.5"><span>${esc(l.title)}</span><span>offen</span></div>`;
+                        const datum = e.datum ? new Date(e.datum).toLocaleDateString('de-DE') : '';
+                        const icon = e.bestanden ? '✅' : '🔁';
+                        return `<div class="flex justify-between text-xs py-0.5"><span class="text-gray-300">${icon} ${esc(l.title)}</span><span class="text-gray-500">${e.pct || 0}% · ${datum}</span></div>`;
+                    }).join('');
+                    return `
+                                <div class="dash-stat-card">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="label">${k.icon || '📘'} ${esc(k.title)}</span>
+                                        <span class="text-xs font-bold text-gray-300">${done}/${lekts.length} Lektionen</span>
+                                    </div>
+                                    <div class="stat-bar"><div class="fill ${barColor}" style="width:${pct}%"></div></div>
+                                    <div class="mt-2 space-y-0.5">${lektRows}</div>
+                                </div>
+                            `;
+                }).filter(Boolean).join('');
+                if (kurseCards) kurseHtml = kurseCards;
+            }
+
             const rewards = p.redeemedRewards || [];
             const rewardHtml = rewards.length > 0 ?
                 rewards.slice(0, 3).map(r =>
@@ -2175,6 +2205,12 @@ auth.createUserWithEmailAndPassword(e, p)
                             <div class="flex flex-wrap gap-2">${badgeHtml}</div>
                         </div>
                         
+                        <!-- Kurse & Lektionen -->
+                        <div class="glass-card p-4">
+                            <div class="label mb-2">📘 Kurse & Lektionen</div>
+                            ${kurseHtml}
+                        </div>
+
                         <!-- Letzte Tests -->
                         <div class="glass-card p-4">
                             <div class="label mb-2">📝 Letzte Tests</div>

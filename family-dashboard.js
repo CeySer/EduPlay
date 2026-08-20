@@ -1135,11 +1135,11 @@ auth.createUserWithEmailAndPassword(e, p)
                 </div>`;
             });
 
-            let html = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-xl px-3 py-2.5 space-y-1">
+            let html = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-xl px-3.5 py-3 space-y-1.5">
                 <div class="text-[11px] text-indigo-300 font-black uppercase tracking-wide">Heute</div>
                 ${todayParts.length ? todayParts.join("") : '<div class="text-gray-500 text-xs">Keine Profile</div>'}
             </div>
-            <div class="bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 space-y-1">
+            <div class="bg-white/5 border border-white/10 rounded-xl px-3.5 py-3 space-y-1.5">
                 <div class="text-[11px] text-gray-400 font-black uppercase tracking-wide">Diese Woche</div>
                 ${weekParts.length ? weekParts.join("") : '<div class="text-gray-500 text-xs">Keine Profile</div>'}
             </div>`;
@@ -1155,7 +1155,7 @@ auth.createUserWithEmailAndPassword(e, p)
                     const sec = (p.studyLog && p.studyLog[day]) || 0;
                     if (sec >= 30) {
                         const label = new Date(day + "T12:00:00").toLocaleDateString("de-DE", { weekday: "short", day: "2-digit", month: "2-digit" });
-                        days.push(`<div class="flex justify-between text-xs py-0.5">
+                        days.push(`<div class="flex justify-between text-xs py-1.5 border-b border-white/5 last:border-0">
                             <span class="text-gray-400">${label}</span>
                             <span class="text-indigo-300 font-bold">${formatStudyDuration(sec)}</span>
                         </div>`);
@@ -1163,17 +1163,17 @@ auth.createUserWithEmailAndPassword(e, p)
                 }
                 if (!days.length) return;
                 const safeId = 'study-player-' + key.replace(/[^a-zA-Z0-9_-]/g, '_');
-                playerBlocks.push(`<div class="bg-white/5 rounded-xl overflow-hidden">
+                playerBlocks.push(`<div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden">
                     <button type="button" onclick="toggleDashPlayerBlock('${safeId}')"
-                        class="w-full px-3 py-2 flex items-center justify-between hover:bg-white/5 transition">
+                        class="w-full px-3.5 py-3 flex items-center justify-between hover:bg-white/5 transition">
                         <span class="font-bold text-white text-sm">${esc(p.name)} · ${days.length} Tag${days.length === 1 ? '' : 'e'}</span>
                         <span id="${safeId}-arrow" class="text-gray-400 transition-transform text-xs">▼</span>
                     </button>
-                    <div id="${safeId}" class="hidden px-3 pb-2 space-y-0.5">${days.join('')}</div>
+                    <div id="${safeId}" class="hidden px-3.5 pb-3">${days.join('')}</div>
                 </div>`);
             });
             if (playerBlocks.length) {
-                html += `<div class="text-[11px] text-gray-500 font-bold pt-1">Frühere Tage</div>` + playerBlocks.join("");
+                html += `<div class="text-[11px] text-gray-500 font-bold pt-2 pb-0.5">Frühere Tage</div>` + playerBlocks.join("");
             }
             box.innerHTML = html;
         }
@@ -2066,24 +2066,24 @@ auth.createUserWithEmailAndPassword(e, p)
                             ergebnis = 'noch nicht versucht';
                             ergebnisClass = 'text-gray-500';
                         }
-                        return `<div class="flex items-center justify-between gap-2 text-[11px] px-0.5">
+                        return `<div class="flex items-center justify-between gap-2 text-xs py-1.5 border-b border-white/5 last:border-0">
                             <span class="text-gray-300 truncate flex-1">${statusIcon} ${esc(l.title)}</span>
                             <span class="${ergebnisClass} shrink-0 font-bold">${ergebnis}</span>
                         </div>`;
                     }).join('');
-                    return `<div class="mt-2 first:mt-0">
-                        <div class="flex items-center justify-between gap-2 text-[11px] mb-0.5">
-                            <span class="font-bold text-gray-200 truncate">${kurs.icon || '📘'} ${esc(kurs.title)}</span>
-                            <span class="text-gray-500 shrink-0">${fertig}/${liste.length}</span>
+                    return `<div class="rounded-xl bg-black/20 border border-white/5 px-3 py-2.5">
+                        <div class="flex items-center justify-between gap-2 text-xs mb-1.5">
+                            <span class="font-bold text-gray-100 truncate">${kurs.icon || '📘'} ${esc(kurs.title)}</span>
+                            <span class="text-gray-400 shrink-0">${fertig}/${liste.length}</span>
                         </div>
-                        <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden mb-1.5">
+                        <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden mb-1">
                             <div class="h-1.5 rounded-full ${pct >= 100 ? 'bg-emerald-400' : 'bg-amber-400'}" style="width:${pct}%"></div>
                         </div>
-                        <div class="space-y-0.5 pl-1">${lektionRows}</div>
+                        <div>${lektionRows}</div>
                     </div>`;
                 }).join('');
-                return `<div class="bg-white/5 border border-white/5 rounded-xl px-3 py-2.5">
-                    <div class="font-bold text-white text-sm mb-1">${esc(p.name)}</div>
+                return `<div class="space-y-2.5">
+                    <div class="font-bold text-white text-sm">${esc(p.name)}</div>
                     ${rows || '<div class="text-[11px] text-gray-500">Noch keine Lektion gestartet</div>'}
                 </div>`;
             }).join('');
@@ -2137,13 +2137,13 @@ auth.createUserWithEmailAndPassword(e, p)
                 const themen0 = (first.categories || []).slice(0, 5).map(c =>
                     esc((typeof labelFuerKategorie === 'function' ? labelFuerKategorie(c) : null) || c)
                 ).join(', ');
-                let detail = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-lg px-2.5 py-2 mb-1.5">
-                    <div class="text-[10px] text-indigo-300 font-black uppercase">Letzter Test</div>
-                    <div class="flex justify-between gap-2 items-center mt-0.5">
+                let detail = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-xl px-3 py-2.5 mb-2">
+                    <div class="text-[10px] text-indigo-300 font-black uppercase tracking-wide">Letzter Test</div>
+                    <div class="flex justify-between gap-2 items-center mt-1">
                         <span class="${col0} font-black text-sm">${first.correct}/${first.total} (${pct0}%)</span>
                         <span class="text-gray-500 text-[11px] text-right">${dur0 ? "⏱ " + dur0 + " · " : ""}${date0.toLocaleDateString('de-DE')}</span>
                     </div>
-                    ${themen0 ? `<div class="text-[11px] text-gray-400 mt-1 leading-snug">${themen0}</div>` : ''}
+                    ${themen0 ? `<div class="text-[11px] text-gray-400 mt-1.5 leading-snug">${themen0}</div>` : ''}
                 </div>`;
                 if (hist.length > 1) {
                     detail += hist.slice(1, 8).map(t => {
@@ -2153,19 +2153,19 @@ auth.createUserWithEmailAndPassword(e, p)
                             ? formatDurationSec(t.durationSec)
                             : (t.durationSec != null ? Math.round(t.durationSec / 60) + " Min." : "");
                         const col = pct >= 80 ? 'text-emerald-400' : pct >= 50 ? 'text-yellow-400' : 'text-rose-400';
-                        return `<div class="flex justify-between gap-2 text-xs py-0.5">
+                        return `<div class="flex justify-between gap-2 text-xs py-2 border-b border-white/5 last:border-0">
                             <span class="${col} font-bold">${t.correct}/${t.total} (${pct}%)</span>
                             <span class="text-gray-500">${dur ? "⏱ " + dur + " · " : ""}${date.toLocaleDateString('de-DE')}</span>
                         </div>`;
                     }).join('');
                 }
-                return `<div class="bg-white/5 rounded-xl overflow-hidden">
+                return `<div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden">
                     <button type="button" onclick="toggleDashPlayerBlock('${safeId}')"
-                        class="w-full px-3 py-2 flex items-center justify-between hover:bg-white/5 transition">
+                        class="w-full px-3.5 py-3 flex items-center justify-between hover:bg-white/5 transition">
                         <span class="font-bold text-white text-sm">${esc(p.name)} · ${hist.length} Test${hist.length === 1 ? '' : 's'}</span>
                         <span id="${safeId}-arrow" class="text-gray-400 transition-transform text-xs">▼</span>
                     </button>
-                    <div id="${safeId}" class="hidden px-3 pb-2 space-y-0.5">${detail}</div>
+                    <div id="${safeId}" class="hidden px-3.5 pb-3">${detail}</div>
                 </div>`;
             });
             box.innerHTML = rows.join('');

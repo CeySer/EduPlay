@@ -11,7 +11,7 @@
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
          (Einstellungen -> Entwickler-Modus -> "Build"), ob der Cache/die
          installierte App wirklich den neuesten Stand geladen hat. -->
-    <script>window.EDUPLAY_BUILD = "20.08.2026 · 22:35";</script>
+    <script>window.EDUPLAY_BUILD = "20.08.2026 · 22:55";</script>
 
     <link rel="stylesheet" href="styles.css?v=9.8">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
@@ -563,7 +563,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </div>
 
                     <!-- Tab: Fortschritt (Lernzeit + Kurse + Tests + Detail) -->
-                    <div id="dash-admin-progress-view" class="hidden space-y-4">
+                    <div id="dash-admin-progress-view" class="hidden space-y-5">
                         <div id="dash-stats-container" class="space-y-3"></div>
                         <div class="glass-card overflow-hidden">
                             <button type="button" onclick="toggleDashSection('study')"
@@ -571,9 +571,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <span class="text-base font-black text-indigo-300">⏱ Lernzeit</span>
                                 <span id="dash-study-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
-                            <div id="dash-study-body" class="hidden px-3.5 pb-3 space-y-2">
-                                <p class="text-[11px] text-gray-500">Übungszeit (ohne Tests).</p>
-                                <div id="dash-study-log" class="space-y-2 text-sm"></div>
+                            <div id="dash-study-body" class="hidden px-4 pt-1 pb-4 space-y-3">
+                                <p class="text-xs text-gray-500 leading-relaxed">Nur Übungszeit – Tests zählen nicht.</p>
+                                <div id="dash-study-log" class="space-y-3 text-sm"></div>
                             </div>
                         </div>
 
@@ -583,8 +583,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <span class="text-base font-black text-amber-300">📘 Kurse / Lektionen</span>
                                 <span id="dash-kurse-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
-                            <div id="dash-kurse-body" class="hidden px-3.5 pb-3 space-y-2">
-                                <div id="dash-kurse-overview" class="space-y-2 text-sm"></div>
+                            <div id="dash-kurse-body" class="hidden px-4 pt-1 pb-4 space-y-3">
+                                <div id="dash-kurse-overview" class="space-y-3 text-sm"></div>
                             </div>
                         </div>
 
@@ -594,8 +594,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <span class="text-base font-black text-indigo-300">📝 Test-Statistiken</span>
                                 <span id="dash-tests-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
-                            <div id="dash-tests-body" class="hidden px-3.5 pb-3 space-y-2">
-                                <div id="dash-test-stats-overview" class="space-y-2 text-sm"></div>
+                            <div id="dash-tests-body" class="hidden px-4 pt-1 pb-4 space-y-3">
+                                <div id="dash-test-stats-overview" class="space-y-3 text-sm"></div>
                             </div>
                         </div>
                     </div>
@@ -2607,7 +2607,7 @@ VIEW: QUIZ SETUP
     ============================================================ -->
     <script src="app-config.js?v=11.3"></script>
     <script src="app-ui.js?v=9.2"></script>
-    <script src="family-dashboard.js?v=11.5"></script>
+    <script src="family-dashboard.js?v=11.6"></script>
     <script src="ui-common.js?v=9.0"></script>
     <script src="ki-coach.js?v=1.1"></script>
     <script src="quiz-core.js?v=9.8"></script>

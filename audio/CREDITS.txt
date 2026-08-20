@@ -1,0 +1,12 @@
+EduPlay Hub – Audio
+===================
+
+SFX (audio/ui, audio/book)
+  Kenney Interface Sounds – CC0 1.0
+  https://kenney.nl/assets/interface-sounds
+
+BGM (audio/bgm)
+  menu.mp3  – "Chapter By Lamplight" from Open Lo-Fi (CC0 1.0)
+  quiz.mp3  – "Coffee Ring Notebook" from Open Lo-Fi (CC0 1.0)
+  https://github.com/btahir/open-lofi
+  No attribution required; credit optional and appreciated.

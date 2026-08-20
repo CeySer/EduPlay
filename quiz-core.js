@@ -168,6 +168,7 @@
             document.getElementById("test-timer-bar").classList.add("hidden");
             qIndex = 0;
             switchView('quiz');
+            if (typeof SFX !== "undefined" && SFX.bookOpen) SFX.bookOpen();
             showQuestion();
             merkeSoloFortschritt();
             return true;
@@ -402,6 +403,7 @@
 
         function triggerNextQuestion() {
             qIndex++;
+            if (typeof SFX !== "undefined" && SFX.pageFlip) SFX.pageFlip();
             if (testMode) {
                 if (qIndex < currentQuestions.length && testTimeRemaining > 0) {
                     showQuestion();

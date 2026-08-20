@@ -1202,11 +1202,60 @@ const geladen = _questionCounts[key] || 0;
         }
 
         // ============================================================
-        //  SOUND
+        //  SOUND – Datei-SFX (Kenney CC0) + Web-Audio-Fallback
+        //  audio/ui/*.ogg · audio/book/*.ogg · optional audio/bgm/*.mp3
         // ============================================================
         let audioCtx = null;
         let soundOn = true;
         try { soundOn = localStorage.getItem("eduplaySound") !== "off"; } catch (e) { }
+
+        const SFX_FILE_MAP = {
+            bookOpen: ["audio/book/book_open.ogg", "audio/book/book_open.wav"],
+            pageFlip: ["audio/book/page_flip.ogg", "audio/book/page_flip.wav"],
+            tap: ["audio/ui/click.ogg"],
+            correct: ["audio/ui/correct.ogg"],
+            wrong: ["audio/ui/wrong.ogg"],
+            switch: ["audio/ui/switch.ogg"],
+            open: ["audio/ui/open.ogg"]
+        };
+        const sfxPool = {};
+        const sfxReady = {};
+
+        function preloadSfxFiles() {
+            Object.keys(SFX_FILE_MAP).forEach(function (key) {
+                const paths = SFX_FILE_MAP[key];
+                let i = 0;
+                function tryPath() {
+                    if (i >= paths.length) return;
+                    const a = new Audio(paths[i]);
+                    a.preload = "auto";
+                    a.addEventListener("canplaythrough", function () {
+                        sfxPool[key] = a;
+                        sfxReady[key] = true;
+                    }, { once: true });
+                    a.addEventListener("error", function () {
+                        i++;
+                        tryPath();
+                    }, { once: true });
+                    try { a.load(); } catch (e) { i++; tryPath(); }
+                }
+                tryPath();
+            });
+        }
+        try { preloadSfxFiles(); } catch (e) { /* */ }
+
+        function playSfxFile(key, vol) {
+            if (!soundOn) return false;
+            const base = sfxPool[key];
+            if (!base || !sfxReady[key]) return false;
+            try {
+                const a = base.cloneNode();
+                a.volume = Math.max(0, Math.min(1, vol == null ? 0.55 : vol));
+                const p = a.play();
+                if (p && p.catch) p.catch(function () { /* Autoplay-Block */ });
+                return true;
+            } catch (e) { return false; }
+        }
 
         function ensureAudio() {
             if (!soundOn) return null;
@@ -1237,8 +1286,6 @@ const geladen = _questionCounts[key] || 0;
             });
         }
 
-        // Modernerer Klick: kurzer, gefilterter Noise-Burst statt eines reinen
-        // Sinuston-Blips - klingt eher wie ein Tastatur-/App-Klick als ein Piepsen.
         let clickNoiseBuffer = null;
         function getClickNoiseBuffer(ctx) {
             if (clickNoiseBuffer && clickNoiseBuffer._ctx === ctx) return clickNoiseBuffer;
@@ -1251,6 +1298,7 @@ const geladen = _questionCounts[key] || 0;
             return buf;
         }
         function playModernClick() {
+            if (playSfxFile("tap", 0.5)) return;
             const ctx = ensureAudio();
             if (!ctx) return;
             const t = ctx.currentTime;
@@ -1267,12 +1315,9 @@ const geladen = _questionCounts[key] || 0;
             gain.connect(ctx.destination);
             noise.start(t);
             noise.stop(t + 0.05);
-            playTones([
-                [1600, 0.03]
-            ], "sine", 0.05);
+            playTones([[1600, 0.03]], "sine", 0.05);
         }
 
-        // Sound-Packs: soft (edu, weich) | crisp (klare Beeps)
         let soundPack = "soft";
         try {
             const sp = localStorage.getItem("eduplaySoundPack");
@@ -1311,13 +1356,17 @@ const geladen = _questionCounts[key] || 0;
 
         const SFX = {
             tap: () => playModernClick(),
-            correct: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).correct(),
-            wrong: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).wrong(),
+            correct: () => { if (!playSfxFile("correct", 0.6)) (SFX_PACKS[soundPack] || SFX_PACKS.soft).correct(); },
+            wrong: () => { if (!playSfxFile("wrong", 0.55)) (SFX_PACKS[soundPack] || SFX_PACKS.soft).wrong(); },
             win: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).win(),
             levelUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).levelUp(),
             coin: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).coin(),
             tick: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).tick(),
-            timeUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).timeUp()
+            timeUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).timeUp(),
+            bookOpen: () => { if (!playSfxFile("bookOpen", 0.5)) playSfxFile("open", 0.45); },
+            pageFlip: () => { if (!playSfxFile("pageFlip", 0.45)) playSfxFile("switch", 0.4); },
+            switch: () => playSfxFile("switch", 0.45),
+            open: () => playSfxFile("open", 0.45)
         };
 
         function setSoundPack(pack) {
@@ -1347,9 +1396,9 @@ const geladen = _questionCounts[key] || 0;
         }
 
         // ============================================================
-        //  HINTERGRUNDMUSIK v2 (Web-Audio)
-        //  Menü: warmer Lo-fi-Ambient (F-Dur-ish, weiche 7er-Akkorde)
-        //  Spiel: leichter Bounce, motivierend, nicht nervig
+        //  HINTERGRUNDMUSIK
+        //  1) optional audio/bgm/menu.mp3 + quiz.mp3 (selbst ablegen)
+        //  2) sonst Web-Audio Lo-fi / Bounce
         // ============================================================
         let musicCtx = null;
         let musicGain = null;
@@ -1358,10 +1407,62 @@ const geladen = _questionCounts[key] || 0;
         let musicStep = 0;
         let musicMode = 'menu';
         let gameStep = 0;
+        let bgmEl = null;
+        let bgmFileMode = null; // 'menu' | 'quiz' | null wenn Datei fehlt
+        const BGM_PATHS = {
+            menu: ["audio/bgm/menu.mp3", "audio/bgm/menu.ogg"],
+            quiz: ["audio/bgm/quiz.mp3", "audio/bgm/quiz.ogg"]
+        };
         try {
             const savedVol = localStorage.getItem("eduplayMusicVolume");
             if (savedVol !== null) musicVolume = Math.max(0, Math.min(1, parseFloat(savedVol)));
         } catch (e) { }
+
+        function stopFileBgm() {
+            if (bgmEl) {
+                try { bgmEl.pause(); bgmEl.currentTime = 0; } catch (e) { /* */ }
+            }
+        }
+
+        function tryPlayFileBgm(mode) {
+            const paths = BGM_PATHS[mode === 'game' ? 'quiz' : 'menu'];
+            if (!paths || !paths.length) return false;
+            if (!bgmEl) {
+                bgmEl = new Audio();
+                bgmEl.loop = true;
+                bgmEl.preload = "auto";
+            }
+            const want = paths[0];
+            // schon diese Datei?
+            if (bgmFileMode === mode && bgmEl.src && bgmEl.src.indexOf(want.replace(/^audio\//, "")) !== -1) {
+                bgmEl.volume = musicVolume;
+                const p = bgmEl.play();
+                if (p && p.catch) p.catch(function () { });
+                return true;
+            }
+            let idx = 0;
+            function loadNext() {
+                if (idx >= paths.length) {
+                    bgmFileMode = null;
+                    return false;
+                }
+                const path = paths[idx++];
+                bgmEl.oncanplaythrough = function () {
+                    bgmFileMode = mode === 'game' ? 'quiz' : 'menu';
+                    bgmEl.volume = musicVolume;
+                    const p = bgmEl.play();
+                    if (p && p.catch) p.catch(function () { });
+                };
+                bgmEl.onerror = function () { loadNext(); };
+                try {
+                    bgmEl.src = path;
+                    bgmEl.load();
+                } catch (e) { return loadNext(); }
+                return true;
+            }
+            stopFileBgm();
+            return loadNext();
+        }
 
         // Warme Progressions (F – Dm – Bb – C), edu/lo-fi
         const MENU_CHORDS = [
@@ -1501,15 +1602,20 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function startBackgroundMusic() {
-            if (musicTimer || musicVolume <= 0) return;
+            if (musicVolume <= 0) return;
+            // Datei-BGM bevorzugen (wenn vorhanden)
+            stopBackgroundMusic(true);
+            if (tryPlayFileBgm(musicMode)) return;
+            if (musicTimer) return;
             if (!ensureMusicAudio()) return;
             const tick = musicMode === 'game' ? playMusicNoteGame : playMusicNote;
             tick();
             musicTimer = setInterval(tick, musicMode === 'game' ? 200 : 520);
         }
 
-        function stopBackgroundMusic() {
+        function stopBackgroundMusic(keepFile) {
             if (musicTimer) { clearInterval(musicTimer); musicTimer = null; }
+            if (!keepFile) stopFileBgm();
         }
 
         const GAME_MUSIC_VIEWS = ['quiz', 'duel-play', 'scrabble-play', 'wortraten-play',
@@ -1521,7 +1627,10 @@ const geladen = _questionCounts[key] || 0;
             musicMode = mode;
             musicStep = 0;
             gameStep = 0;
-            if (musicTimer) { stopBackgroundMusic(); startBackgroundMusic(); }
+            if (musicVolume > 0) {
+                stopBackgroundMusic();
+                startBackgroundMusic();
+            }
         }
 
         function setMusicVolume(pct) {
@@ -1530,6 +1639,7 @@ const geladen = _questionCounts[key] || 0;
             const label = document.getElementById("music-volume-label");
             if (label) label.innerText = Math.round(musicVolume * 100) + "%";
             if (musicGain && musicCtx) musicGain.gain.setTargetAtTime(musicVolume, musicCtx.currentTime, 0.05);
+            if (bgmEl) bgmEl.volume = musicVolume;
             if (musicVolume > 0) startBackgroundMusic();
             else stopBackgroundMusic();
         }

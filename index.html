@@ -11,7 +11,7 @@
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
          (Einstellungen -> Entwickler-Modus -> "Build"), ob der Cache/die
          installierte App wirklich den neuesten Stand geladen hat. -->
-    <script>window.EDUPLAY_BUILD = "20.08.2026 · 13:25";</script>
+    <script>window.EDUPLAY_BUILD = "20.08.2026 · 13:30";</script>
 
     <link rel="stylesheet" href="styles.css?v=9.9">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
@@ -35,7 +35,8 @@
 
 <body>
 
-    <div id="eduplay-splash" aria-hidden="true">
+    <div id="eduplay-splash" aria-hidden="true"
+        style="position:fixed;inset:0;z-index:20000;display:flex;align-items:center;justify-content:center;background:#080c18;">
         <div class="splash-mark">
             <div class="splash-ring"></div>
             <div class="splash-title">EduPlay</div>
@@ -44,17 +45,22 @@
     </div>
     <script>
         (function () {
-            var ready = false, minTime = false;
+            var ready = false, minTime = false, gone = false;
             function hide() {
-                if (!ready || !minTime) return;
+                if (!ready || !minTime || gone) return;
                 var el = document.getElementById("eduplay-splash");
-                if (!el || el.classList.contains("splash-out")) return;
+                if (!el) { gone = true; return; }
+                gone = true;
                 el.classList.add("splash-out");
-                setTimeout(function () { if (el && el.parentNode) el.parentNode.removeChild(el); }, 480);
+                el.style.opacity = "0";
+                el.style.pointerEvents = "none";
+                setTimeout(function () {
+                    if (el.parentNode) el.parentNode.removeChild(el);
+                }, 400);
             }
             window.hideEduPlaySplash = function () { ready = true; hide(); };
             setTimeout(function () { minTime = true; hide(); }, 1400);
-            setTimeout(function () { ready = true; minTime = true; hide(); }, 4500);
+            setTimeout(function () { ready = true; minTime = true; hide(); }, 4000);
         })();
     </script>
 

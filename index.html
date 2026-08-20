@@ -11,7 +11,7 @@
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
          (Einstellungen -> Entwickler-Modus -> "Build"), ob der Cache/die
          installierte App wirklich den neuesten Stand geladen hat. -->
-    <script>window.EDUPLAY_BUILD = "20.08.2026 · 20:20";</script>
+    <script>window.EDUPLAY_BUILD = "20.08.2026 · 20:30";</script>
 
     <link rel="stylesheet" href="styles.css?v=9.8">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
@@ -2531,7 +2531,7 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=11.2"></script>
+    <script src="app-config.js?v=11.3"></script>
     <script src="app-ui.js?v=9.2"></script>
     <script src="family-dashboard.js?v=11.3"></script>
     <script src="ui-common.js?v=9.0"></script>
@@ -2594,6 +2594,9 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
                 <span class="icon">🌓</span> Design umschalten
             </button>
+            <button onclick="closeDrawer(); resetOnboarding()" class="drawer-menu-item">
+                <span class="icon">📘</span> Tutorial
+            </button>
             <button onclick="closeDrawer(); inviteFriends()" class="drawer-menu-item">
                 <span class="icon">👥</span> Freunden empfehlen
             </button>
@@ -2636,6 +2639,9 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
             <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
                 <span class="icon">🌓</span> Design umschalten
+            </button>
+            <button onclick="closeDrawer(); resetOnboarding()" class="drawer-menu-item">
+                <span class="icon">📘</span> Tutorial
             </button>
             <button onclick="closeDrawer(); inviteFriends()" class="drawer-menu-item">
                 <span class="icon">👥</span> Freunden empfehlen

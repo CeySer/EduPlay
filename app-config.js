@@ -1391,7 +1391,13 @@ const geladen = _questionCounts[key] || 0;
             soundOn = !soundOn;
             try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
             document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
-            if (soundOn) SFX.tap();
+            // Ton aus = SFX + Musik komplett still
+            if (!soundOn) {
+                if (typeof stopBackgroundMusic === "function") stopBackgroundMusic();
+            } else {
+                if (typeof startBackgroundMusic === "function" && musicVolume > 0) startBackgroundMusic();
+                SFX.tap();
+            }
             showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
         }
 
@@ -1602,7 +1608,7 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function startBackgroundMusic() {
-            if (musicVolume <= 0) return;
+            if (!soundOn || musicVolume <= 0) return;
             // Datei-BGM bevorzugen (wenn vorhanden)
             stopBackgroundMusic(true);
             if (tryPlayFileBgm(musicMode)) return;

@@ -1745,41 +1745,57 @@ const geladen = _questionCounts[key] || 0;
         const ONBOARD_STEPS = [
             {
                 title: "👋 Willkommen bei EduPlay!",
-                body: "Hier lernt und spielt die ganze Familie. Wähle links/oben ein Spieler-Profil – jedes Kind hat eigene Punkte und Fortschritte."
+                body: "Lernen und spielen für die ganze Familie. Jedes Kind hat ein eigenes Profil mit Coins, Fortschritt und Lernserie."
             },
             {
-                title: "👨‍👩‍👧‍👦 Eltern & Kontrollzentrum",
-                body: "Im Kontrollzentrum (PIN-geschützt) siehst du Lernzeiten, weist Tests zu und verwaltest Belohnungen. PIN einmal in den Einstellungen setzen."
+                title: "👤 Spieler wählen",
+                body: "Im Familien-Hub tippst du auf ein Profil. Oben im Menü kannst du den Spieler wechseln oder einen Gast nur für heute anlegen."
             },
             {
                 title: "📚 Lernraum",
-                body: "Quiz, Kurse, Vokabeln, Lesen und Formeln – auch gemeinsam mit Freunden einladbar. Bei Klasse 1 und 2 wird der Text automatisch vorgelesen – Lücken und Lösungshinweise nicht mit."
+                body: "Quiz nach Klasse und Fach, Kurse, Vokabeln und Fokus-Timer. Klasse 1–2 wird vorgelesen. „Weitermachen“ nimmt das letzte Thema wieder auf."
             },
             {
-                title: "⚔️ Gegeneinander spielen",
-                body: "Wort-Duell, Quiz-Duell und Online-Lobby. Code teilen, Freunde treten bei. Offline gehen Ein-Gerät-Spiele weiter."
+                title: "⚡ Blitz-Übung",
+                body: "Kurze Einheit (15 Fragen) zum Thema, das noch nicht sitzt. Lässt sich für heute ausblenden – kommt später wieder."
             },
             {
-                title: "🎲 Themen & Zufall",
-                body: "Viele Kategorien – mit „Zufällige Kategorie“ kommt Abwechslung. Fun-Fragen und Schätzen für die ganze Familie."
+                title: "👥 Mit Freunden",
+                body: "Unter Gegeneinander: Code teilen, Quiz- oder Wort-Duell, auch als Gast ohne Konto. Ein Gerät reihum geht ohne Internet."
             },
             {
-                title: "🔊 Ton & Design",
-                body: "Im Menü: Ton an/aus, Sound-Pack (Soft/Klar/Arcade), Musik-Lautstärke und Hell/Dunkel-Design. Alles speichert sich automatisch."
+                title: "📺 TV-Quiz",
+                body: "Fragen auf dem Fernseher, Steuern vom Handy. Alle in der Runde tippen mit – gut für den Wohnzimmer-Abend."
             },
             {
-                title: "⭐ Belohnungen & Tipps",
-                body: "Coins und Abzeichen sammeln, Belohnungen einlösen. Blitz-Übung und „Weitermachen“ helfen beim Dranbleiben. Viel Spaß!"
+                title: "🎁 Coins & Belohnungen",
+                body: "Richtige Antworten bringen Coins. Eltern legen Wünsche an, Kinder lösen sie ein. Abzeichen kommen automatisch."
+            },
+            {
+                title: "👨‍👩‍👧 Eltern-Bereich",
+                body: "Im Kontrollzentrum (PIN): Aufgaben zuweisen, Lernzeit und Tests sehen, Belohnungen pflegen. PIN einmal in den Einstellungen setzen."
+            },
+            {
+                title: "⚙️ Einstellungen",
+                body: "Ton, Sound-Pack, Musik, Hell/Dunkel. Das Tutorial kannst du dort jederzeit nochmal starten."
             }
         ];
         let onboardStep = 0;
 
-        function maybeShowOnboarding() {
-            try {
-                if (localStorage.getItem(ONBOARD_KEY) === "done") return;
-            } catch (e) { return; }
+        function maybeShowOnboarding(force) {
+            if (!force) {
+                try {
+                    if (localStorage.getItem(ONBOARD_KEY) === "done") return;
+                } catch (e) { /* weiter */ }
+                try {
+                    if (typeof ALL_PROFILES === "object" && ALL_PROFILES && Object.keys(ALL_PROFILES).length) {
+                        localStorage.setItem(ONBOARD_KEY, "done");
+                        return;
+                    }
+                } catch (e) { /* */ }
+            }
             const ov = document.getElementById("onboarding-overlay");
-            if (!ov || !ov.classList.contains("hidden")) return;
+            if (!ov) return;
             onboardStep = 0;
             renderOnboardingStep();
             ov.classList.remove("hidden");
@@ -1790,10 +1806,12 @@ const geladen = _questionCounts[key] || 0;
             const title = document.getElementById("onboard-title");
             const body = document.getElementById("onboard-body");
             const next = document.getElementById("onboard-next");
+            const back = document.getElementById("onboard-back");
             const dots = document.getElementById("onboard-dots");
             if (title) title.textContent = s.title;
             if (body) body.textContent = s.body;
             if (next) next.textContent = onboardStep >= ONBOARD_STEPS.length - 1 ? "Los geht's 🚀" : "Weiter";
+            if (back) back.classList.toggle("invisible", onboardStep === 0);
             if (dots) {
                 dots.innerHTML = ONBOARD_STEPS.map((_, i) =>
                     `<span style="width:8px;height:8px;border-radius:50%;display:inline-block;background:${i === onboardStep ? '#818cf8' : 'rgba(255,255,255,0.25)'}"></span>`
@@ -1810,6 +1828,12 @@ const geladen = _questionCounts[key] || 0;
             renderOnboardingStep();
         }
 
+        function onboardingBack() {
+            if (onboardStep <= 0) return;
+            onboardStep--;
+            renderOnboardingStep();
+        }
+
         function dismissOnboarding(save) {
             const ov = document.getElementById("onboarding-overlay");
             if (ov) ov.classList.add("hidden");
@@ -1821,7 +1845,7 @@ const geladen = _questionCounts[key] || 0;
         function resetOnboarding() {
             try { localStorage.removeItem(ONBOARD_KEY); } catch (e) { /* */ }
             onboardStep = 0;
-            maybeShowOnboarding();
+            maybeShowOnboarding(true);
         }
 
         function getActiveInviteCode() {

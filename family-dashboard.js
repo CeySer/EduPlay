@@ -1956,7 +1956,8 @@ auth.createUserWithEmailAndPassword(e, p)
         function toggleDashSection(which) {
             const map = {
                 tests: ['dash-tests-body', 'dash-tests-arrow'],
-                study: ['dash-study-body', 'dash-study-arrow']
+                study: ['dash-study-body', 'dash-study-arrow'],
+                kurse: ['dash-kurse-body', 'dash-kurse-arrow']
             };
             const pair = map[which] || ['dash-study-body', 'dash-study-arrow'];
             const body = document.getElementById(pair[0]);
@@ -1965,6 +1966,50 @@ auth.createUserWithEmailAndPassword(e, p)
             const open = body.classList.contains('hidden');
             body.classList.toggle('hidden', !open);
             arrow.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+            if (open && which === 'kurse' && typeof renderDashKurseOverview === 'function') {
+                renderDashKurseOverview();
+            }
+        }
+
+        function renderDashKurseOverview() {
+            const box = document.getElementById('dash-kurse-overview');
+            if (!box) return;
+            if (typeof KURSE === 'undefined' || !Array.isArray(KURSE) || !KURSE.length) {
+                box.innerHTML = '<div class="text-gray-500 text-xs">Keine Kurse geladen.</div>';
+                return;
+            }
+            const focus = (document.getElementById('dash-focus-profile') || {}).value || '';
+            let keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
+            if (focus && ALL_PROFILES[focus]) keys = keys.filter(k => k === focus);
+            if (!keys.length) {
+                box.innerHTML = '<div class="text-gray-500 text-xs">Kein Kind im Fokus.</div>';
+                return;
+            }
+            box.innerHTML = keys.map(k => {
+                const p = ALL_PROFILES[k];
+                const doneMap = (p && p.lektionen) || {};
+                const rows = KURSE.map(kurs => {
+                    const liste = (typeof getLektionenForKurs === 'function')
+                        ? getLektionenForKurs(kurs.id)
+                        : [];
+                    if (!liste.length) return '';
+                    const fertig = liste.filter(l => doneMap[l.id] && doneMap[l.id].bestanden).length;
+                    const pct = Math.round((fertig / liste.length) * 100);
+                    return `<div class="mt-1.5">
+                        <div class="flex items-center justify-between gap-2 text-[11px] mb-0.5">
+                            <span class="font-bold text-gray-200 truncate">${kurs.icon || '📘'} ${esc(kurs.title)}</span>
+                            <span class="text-gray-500 shrink-0">${fertig}/${liste.length}</span>
+                        </div>
+                        <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+                            <div class="h-1.5 rounded-full ${pct >= 100 ? 'bg-emerald-400' : 'bg-amber-400'}" style="width:${pct}%"></div>
+                        </div>
+                    </div>`;
+                }).join('');
+                return `<div class="bg-white/5 border border-white/5 rounded-xl px-3 py-2.5">
+                    <div class="font-bold text-white text-sm mb-1">${esc(p.name)}</div>
+                    ${rows || '<div class="text-[11px] text-gray-500">Noch keine Lektion gestartet</div>'}
+                </div>`;
+            }).join('');
         }
 
         function toggleDashPlayerBlock(id) {
@@ -2110,36 +2155,6 @@ auth.createUserWithEmailAndPassword(e, p)
                 }).join('') :
                 '<div class="text-gray-500 text-sm">Noch keine Tests absolviert</div>';
 
-            let kurseHtml = '<div class="text-gray-500 text-sm text-center py-2">Noch keine Kurse begonnen</div>';
-            if (typeof KURSE !== 'undefined' && typeof LEKTIONEN !== 'undefined' && KURSE.length > 0) {
-                const pLekt = p.lektionen || {};
-                const kurseCards = KURSE.map(k => {
-                    const lekts = LEKTIONEN.filter(l => l.kurs === k.id).sort((a, b) => a.order - b.order);
-                    if (lekts.length === 0 || !lekts.some(l => pLekt[l.id])) return '';
-                    const done = lekts.filter(l => pLekt[l.id] && pLekt[l.id].bestanden).length;
-                    const pct = Math.round((done / lekts.length) * 100);
-                    const barColor = pct >= 100 ? 'good' : pct > 0 ? 'ok' : 'bad';
-                    const lektRows = lekts.map(l => {
-                        const e = pLekt[l.id];
-                        if (!e) return `<div class="flex justify-between text-xs text-gray-500 py-0.5"><span>${esc(l.title)}</span><span>offen</span></div>`;
-                        const datum = e.datum ? new Date(e.datum).toLocaleDateString('de-DE') : '';
-                        const icon = e.bestanden ? '✅' : '🔁';
-                        return `<div class="flex justify-between text-xs py-0.5"><span class="text-gray-300">${icon} ${esc(l.title)}</span><span class="text-gray-500">${e.pct || 0}% · ${datum}</span></div>`;
-                    }).join('');
-                    return `
-                                <div class="dash-stat-card">
-                                    <div class="flex justify-between items-center mb-1">
-                                        <span class="label">${k.icon || '📘'} ${esc(k.title)}</span>
-                                        <span class="text-xs font-bold text-gray-300">${done}/${lekts.length} Lektionen</span>
-                                    </div>
-                                    <div class="stat-bar"><div class="fill ${barColor}" style="width:${pct}%"></div></div>
-                                    <div class="mt-2 space-y-0.5">${lektRows}</div>
-                                </div>
-                            `;
-                }).filter(Boolean).join('');
-                if (kurseCards) kurseHtml = kurseCards;
-            }
-
             const rewards = p.redeemedRewards || [];
             const rewardHtml = rewards.length > 0 ?
                 rewards.slice(0, 3).map(r =>
@@ -2158,34 +2173,48 @@ auth.createUserWithEmailAndPassword(e, p)
                 '<div class="dash-stat-card text-gray-400 text-sm">🔹 Alle Kategorien sind gut!</div>';
 
             container.innerHTML = `
-                        <!-- Kopf: Name + Level -->
-                        <div class="glass-card p-4 text-center">
-                            <div class="text-3xl font-black text-white">${esc(p.name)}</div>
-                            <div class="text-yellow-400 font-bold">${lvl.current.icon} Level ${lvl.index + 1}: ${lvl.current.name}</div>
-                            <div class="w-full bg-white/5 rounded-full h-2 mt-2 overflow-hidden border border-white/5">
-                                <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full" style="width:${lvl.progressPct}%"></div>
+                        <!-- Kopf: kompakt, Schüler-Karte -->
+                        <div class="glass-card p-3.5">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-xl font-black shrink-0"
+                                    style="background:linear-gradient(135deg,#6366f1,#a855f7);">${esc((p.name || '?').charAt(0).toUpperCase())}</div>
+                                <div class="min-w-0 flex-1">
+                                    <div class="text-lg font-black text-white truncate leading-tight">${esc(p.name)}</div>
+                                    <div class="text-xs font-bold text-yellow-400">${lvl.current.icon} Level ${lvl.index + 1} · ${lvl.current.name}</div>
+                                    <div class="w-full bg-white/10 rounded-full h-1.5 mt-1.5 overflow-hidden">
+                                        <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-1.5 rounded-full" style="width:${lvl.progressPct}%"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex justify-center gap-6 mt-3 text-xs">
-                                <span class="text-gray-400">🔥 ${streak} Tage Streak</span>
-                                <span class="text-yellow-400">🪙 ${p.coins || 0} Coins</span>
-                                <span class="text-indigo-300">📚 ${vocabCount} Vokabeln</span>
+                            <div class="grid grid-cols-3 gap-1.5 mt-3">
+                                <div class="rounded-xl bg-white/5 border border-white/5 py-2 text-center">
+                                    <div class="text-[10px] text-gray-500 font-bold">Streak</div>
+                                    <div class="text-sm font-black text-orange-300">🔥 ${streak}</div>
+                                </div>
+                                <div class="rounded-xl bg-white/5 border border-white/5 py-2 text-center">
+                                    <div class="text-[10px] text-gray-500 font-bold">Coins</div>
+                                    <div class="text-sm font-black text-yellow-400">🪙 ${p.coins || 0}</div>
+                                </div>
+                                <div class="rounded-xl bg-white/5 border border-white/5 py-2 text-center">
+                                    <div class="text-[10px] text-gray-500 font-bold">Vokabeln</div>
+                                    <div class="text-sm font-black text-indigo-300">📚 ${vocabCount}</div>
+                                </div>
                             </div>
                         </div>
-                        
-                        <!-- Basis-Statistiken -->
-                        <div class="grid grid-cols-3 gap-3">
-                            <div class="dash-stat-card text-center">
+
+                        <div class="grid grid-cols-3 gap-2">
+                            <div class="dash-stat-card text-center py-2.5">
                                 <div class="label">Richtig</div>
-                                <div class="value">${totalCorrect}</div>
+                                <div class="value text-base">${totalCorrect}</div>
                                 <div class="sub">von ${totalAttempts}</div>
                             </div>
-                            <div class="dash-stat-card text-center">
-                                <div class="label">Trefferquote</div>
-                                <div class="value ${accuracy >= 80 ? 'text-emerald-400' : accuracy >= 50 ? 'text-yellow-400' : 'text-rose-400'}">${accuracy}%</div>
+                            <div class="dash-stat-card text-center py-2.5">
+                                <div class="label">Treffer</div>
+                                <div class="value text-base ${accuracy >= 80 ? 'text-emerald-400' : accuracy >= 50 ? 'text-yellow-400' : 'text-rose-400'}">${accuracy}%</div>
                             </div>
-                            <div class="dash-stat-card text-center">
+                            <div class="dash-stat-card text-center py-2.5">
                                 <div class="label">XP</div>
-                                <div class="value">${p.xp || 0}</div>
+                                <div class="value text-base">${p.xp || 0}</div>
                                 <div class="sub">${lvl.next ? `→ ${lvl.next.min}` : '🏆 Max'}</div>
                             </div>
                         </div>
@@ -2205,12 +2234,6 @@ auth.createUserWithEmailAndPassword(e, p)
                             <div class="flex flex-wrap gap-2">${badgeHtml}</div>
                         </div>
                         
-                        <!-- Kurse & Lektionen -->
-                        <div class="glass-card p-4">
-                            <div class="label mb-2">📘 Kurse & Lektionen</div>
-                            ${kurseHtml}
-                        </div>
-
                         <!-- Letzte Tests -->
                         <div class="glass-card p-4">
                             <div class="label mb-2">📝 Letzte Tests</div>
@@ -2738,22 +2761,40 @@ auth.createUserWithEmailAndPassword(e, p)
 
             const vocBox = document.getElementById('dash-test-vocab');
             if (vocBox && typeof VOCABULARY_DATABASE !== 'undefined') {
-                const langLabel = { en: 'EN', tr: 'TR' };
+                const langLabel = { en: 'Englisch', tr: 'Türkisch', fr: 'Französisch', es: 'Spanisch' };
                 let html = '';
+                let langIdx = 0;
                 Object.keys(VOCABULARY_DATABASE).forEach(lang => {
-                    if (lang === 'tr') return; // Türkisch deaktiviert
-                    Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
+                    if (lang === 'tr') return;
+                    const levels = Object.keys(VOCABULARY_DATABASE[lang] || {}).filter(level => {
+                        const set = VOCABULARY_DATABASE[lang][level];
+                        return set && (set.words || []).length;
+                    });
+                    if (!levels.length) return;
+                    const total = levels.reduce((s, level) => s + ((VOCABULARY_DATABASE[lang][level].words || []).length), 0);
+                    const vid = "dash-test-vocab-" + (langIdx++);
+                    html += `<div class="rounded-xl border border-white/10 overflow-hidden mt-1.5 first:mt-0">
+                        <button type="button" onclick="toggleDashTestArea('${vid}')"
+                            class="w-full px-2.5 py-2 flex items-center justify-between gap-2 bg-white/5 hover:bg-white/10 transition text-left">
+                            <span class="text-[11px] font-black text-emerald-300 uppercase tracking-wide">${esc(langLabel[lang] || lang.toUpperCase())}</span>
+                            <span class="flex items-center gap-2 shrink-0">
+                                <span class="text-[10px] text-gray-500">${levels.length} Gruppen · ${total}</span>
+                                <span id="${vid}-arrow" class="text-gray-400 text-xs transition-transform">▼</span>
+                            </span>
+                        </button>
+                        <div id="${vid}" class="hidden px-1.5 pb-1.5 space-y-1">`;
+                    levels.forEach(level => {
                         const set = VOCABULARY_DATABASE[lang][level];
                         const n = (set.words || []).length;
-                        if (!n) return;
                         html += `<label class="dash-test-cat-row flex items-center gap-2.5 bg-white/5 border border-white/5 rounded-lg px-2.5 py-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
                                 <input type="checkbox" value="vocab:${lang}:${level}" class="dash-test-cat w-4 h-4 accent-emerald-500 shrink-0">
-                                <span class="flex-1 leading-snug min-w-0 truncate">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
+                                <span class="flex-1 leading-snug min-w-0 truncate">${esc(set.label || level)}</span>
                                 <span class="text-[10px] text-gray-500 shrink-0 tabular-nums">${n}</span>
                             </label>`;
                     });
+                    html += `</div></div>`;
                 });
-                vocBox.innerHTML = html || '<div class="text-xs text-gray-500 col-span-2">Keine Vokabeln geladen</div>';
+                vocBox.innerHTML = html || '<div class="text-xs text-gray-500">Keine Vokabeln geladen</div>';
             }
         }
 

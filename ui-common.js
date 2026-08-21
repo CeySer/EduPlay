@@ -43,7 +43,6 @@
         //  FEEDBACK
         // ============================================================
         const FEEDBACK_MAIL = "cu.oezdemir@gmail.com";
-        const FEEDBACK_WHATSAPP = "491778744183";
         let feedbackReturnView = "menu";
         let appRatingStars = 0;
 
@@ -145,15 +144,34 @@
             }
             if (hint) hint.classList.add("hidden");
             SFX.tap();
+            if (channel === "app") {
+                const type = document.getElementById("feedback-type").value;
+                const name = cleanInput(document.getElementById("feedback-name").value, 24);
+                const text = cleanInput(document.getElementById("feedback-text").value, 1500);
+                db.collection("feedback").add({
+                    type: type,
+                    name: name || null,
+                    text: text,
+                    bewertung: appRatingStars || null,
+                    familyUid: (typeof currentParentUser !== "undefined" && currentParentUser) ? currentParentUser.uid : null,
+                    spieler: (typeof currentPlayer !== "undefined" && currentPlayer) ? currentPlayer.name : null,
+                    geraet: navigator.userAgent,
+                    erstellt: firebase.firestore.FieldValue.serverTimestamp()
+                }).then(function () {
+                    showToast("📮 Danke! Feedback wurde geschickt.", "success");
+                    document.getElementById("feedback-text").value = "";
+                    const c = document.getElementById("feedback-counter");
+                    if (c) c.innerText = "0";
+                    switchView(feedbackReturnView);
+                }).catch(function (e) {
+                    handleError("sendFeedback", e, "Das Senden hat nicht geklappt. Schreib uns gern direkt an " +
+                        FEEDBACK_MAIL + ".");
+                });
+                return;
+            }
             try {
-                if (channel === "whatsapp") {
-                    const url =
-                        `https://wa.me/${FEEDBACK_WHATSAPP}?text=${encodeURIComponent(msg.subject + "\n\n" + msg.body)}`;
-                    window.open(url, "_blank");
-                } else {
-                    window.location.href =
-                        `mailto:${FEEDBACK_MAIL}?subject=${encodeURIComponent(msg.subject)}&body=${encodeURIComponent(msg.body)}`;
-                }
+                window.location.href =
+                    `mailto:${FEEDBACK_MAIL}?subject=${encodeURIComponent(msg.subject)}&body=${encodeURIComponent(msg.body)}`;
                 document.getElementById("feedback-text").value = "";
                 const c = document.getElementById("feedback-counter");
                 if (c) c.innerText = "0";

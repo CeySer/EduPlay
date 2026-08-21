@@ -2521,6 +2521,10 @@ auth.createUserWithEmailAndPassword(e, p)
                 renderDashAdminProgress();
                 renderDashRewards();
             }
+            const target = document.getElementById('dash-admin-' + tab + '-view');
+            if (target) setTimeout(function () {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 60);
         }
 
         function renderDashAdmin() {
@@ -2822,9 +2826,9 @@ auth.createUserWithEmailAndPassword(e, p)
                         if (!subs.length) return;
                         const aid = "dash-test-area-" + (areaIdx++);
                         const countAll = subs.reduce((s, x) => s + (typeof questionCount === "function" ? questionCount(x.key) : 0), 0);
-                        html += `<div class="rounded-xl border border-white/10 overflow-hidden mt-1.5 first:mt-0">
+                        html += `<div class="rounded-xl border border-white/10 overflow-hidden">
                             <button type="button" onclick="toggleDashTestArea('${aid}')"
-                                class="w-full px-2.5 py-2 flex items-center justify-between gap-2 bg-white/5 hover:bg-white/10 transition text-left">
+                                class="w-full px-3 py-2.5 flex items-center justify-between gap-2 bg-white/5 hover:bg-white/10 transition text-left">
                                 <span class="text-[11px] font-black text-indigo-300 uppercase tracking-wide">${esc(a.label)}</span>
                                 <span class="flex items-center gap-2 shrink-0">
                                     <span class="text-[10px] text-gray-500">${subs.length} Themen · ${countAll}</span>
@@ -2871,9 +2875,9 @@ auth.createUserWithEmailAndPassword(e, p)
                     if (!levels.length) return;
                     const total = levels.reduce((s, level) => s + ((VOCABULARY_DATABASE[lang][level].words || []).length), 0);
                     const vid = "dash-test-vocab-" + (langIdx++);
-                    html += `<div class="rounded-xl border border-white/10 overflow-hidden mt-1.5 first:mt-0">
+                    html += `<div class="rounded-xl border border-white/10 overflow-hidden">
                         <button type="button" onclick="toggleDashTestArea('${vid}')"
-                            class="w-full px-2.5 py-2 flex items-center justify-between gap-2 bg-white/5 hover:bg-white/10 transition text-left">
+                            class="w-full px-3 py-2.5 flex items-center justify-between gap-2 bg-white/5 hover:bg-white/10 transition text-left">
                             <span class="text-[11px] font-black text-emerald-300 uppercase tracking-wide">${esc(langLabel[lang] || lang.toUpperCase())}</span>
                             <span class="flex items-center gap-2 shrink-0">
                                 <span class="text-[10px] text-gray-500">${levels.length} Gruppen · ${total}</span>

@@ -2051,6 +2051,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             style="border-color:rgba(244,63,94,0.3);">Konto endgültig löschen</button>
                     </div>
 
+                    <div id="dev-admin-entry" class="hidden pt-3 border-t border-white/5">
+                        <button type="button" onclick="openDevAdmin()" class="btn-secondary w-full text-sm text-cyan-300">🛠 Entwickler-Seite</button>
+                    </div>
                     <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.30
                     </div>
                 </div>
@@ -2611,6 +2614,49 @@ VIEW: QUIZ SETUP
         style="position:fixed;top:12px;right:12px;z-index:60;background:rgba(225,29,72,0.92);color:#fff;font-weight:700;font-size:13px;padding:8px 14px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.3);">✕
         Beenden</button>
 
+            <div id="view-dev-admin" class="view hidden space-y-4">
+                <div class="flex items-center justify-between gap-2">
+                    <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('einstellungen')">Zurück</button>
+                    <span class="text-sm font-bold text-cyan-400">🛠 Entwickler</span>
+                    <span class="w-16"></span>
+                </div>
+                <p class="text-xs text-gray-500">Nur dein Konto sieht diese Ansicht.</p>
+
+                <div class="glass-card p-4 space-y-3">
+                    <div class="font-black text-indigo-300">🔎 Fragen / Vokabeln</div>
+                    <select id="dev-browser-mode" class="input-modern text-sm font-bold">
+                        <option value="fragen">Fragen</option>
+                        <option value="vokabeln">Vokabeln</option>
+                    </select>
+                    <input id="dev-browser-q" class="input-modern text-sm" placeholder="Suche Text oder ID">
+                    <div class="grid grid-cols-2 gap-2">
+                        <select id="dev-filter-grade" class="input-modern text-sm"></select>
+                        <select id="dev-filter-cat" class="input-modern text-sm"></select>
+                    </div>
+                    <button type="button" onclick="runDevBrowser()" class="btn-primary w-full">Durchsuchen</button>
+                    <div id="dev-browser-out" class="space-y-2 max-h-80 overflow-y-auto"></div>
+                </div>
+
+                <div class="glass-card p-4 space-y-3">
+                    <div class="font-black text-amber-300">🧪 Fragen-Check</div>
+                    <p class="text-xs text-gray-500">Doppelte IDs, doppelte Antworten, kaputter Index, Längen-Bias.</p>
+                    <button type="button" onclick="runDevQuestionCheck()" class="btn-secondary w-full">Check starten</button>
+                    <div id="dev-check-out" class="space-y-2"></div>
+                </div>
+
+                <div class="glass-card p-4 space-y-3">
+                    <div class="font-black text-emerald-300">📮 Feedback</div>
+                    <button type="button" onclick="loadDevFeedback()" class="btn-secondary w-full">Liste laden</button>
+                    <div id="dev-feedback-out" class="space-y-2 max-h-80 overflow-y-auto"></div>
+                </div>
+
+                <div class="glass-card p-4 space-y-2">
+                    <div class="font-black text-white">👤 Anmeldungen</div>
+                    <div class="text-3xl font-black text-indigo-300" id="dev-signup-count">–</div>
+                    <button type="button" onclick="loadDevSignups()" class="btn-secondary w-full text-sm">Aktualisieren</button>
+                </div>
+            </div>
+
     </main>
     </div>
 
@@ -2620,6 +2666,7 @@ VIEW: QUIZ SETUP
     <script src="app-config.js?v=11.3"></script>
     <script src="app-ui.js?v=9.2"></script>
     <script src="family-dashboard.js?v=11.5"></script>
+    <script src="dev-admin.js?v=1.0"></script>
     <script src="ui-common.js?v=9.0"></script>
     <script src="ki-coach.js?v=1.1"></script>
     <script src="quiz-core.js?v=9.8"></script>

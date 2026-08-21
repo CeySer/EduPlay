@@ -21,6 +21,17 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
+        const DEV_ADMIN_EMAILS = ["ceyhun.oezdemir@outlook.com"];
+        const DEV_ADMIN_UIDS = []; // optional Firebase-UIDs
+        function isDevAdmin() {
+            const u = (typeof currentParentUser !== "undefined") ? currentParentUser : (auth.currentUser || null);
+            if (!u || u.isAnonymous) return false;
+            const mail = String(u.email || "").trim().toLowerCase();
+            if (mail && DEV_ADMIN_EMAILS.indexOf(mail) !== -1) return true;
+            return DEV_ADMIN_UIDS.indexOf(u.uid) !== -1;
+        }
+        window.isDevAdmin = isDevAdmin;
+
         // Lokaler Zwischenspeicher: Ohne Netz liest die App weiter aus dem
         // Gerät (Profile, Coins, laufende Duelle) und schickt Änderungen
         // nach, sobald wieder Empfang da ist. Wichtig für Autofahrten –

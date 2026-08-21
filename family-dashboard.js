@@ -154,6 +154,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 ALL_PROFILES = {};
                 snapshot.forEach(doc => { ALL_PROFILES[doc.id] = doc.data(); });
                 await loadFamilyRewards();
+                if (typeof bumpSignupIfNew === "function") bumpSignupIfNew();
                 renderFamilyHub();
                 switchView('family-hub');
             } catch (e) {
@@ -687,7 +688,7 @@ auth.createUserWithEmailAndPassword(e, p)
                     status: "pending",
                     createdAt: Date.now()
                 });
-                showToast("👥 " + learnTogetherLabel(kind) + "-Einladung an " + to.name, "success");
+                showToast("👥 " + learnTogetherLabel(kind) + "-Einladung an " + esc(to.name), "success");
                 watchChallengeAcceptance(ref);
                 loadOpenChallenges();
             } catch (e) {
@@ -724,7 +725,7 @@ auth.createUserWithEmailAndPassword(e, p)
                                         return;
                                     }
                                 }
-                                showToast("👥 " + (c.toName || "Dein Freund") + " ist bereit – du wirst verbunden …", "success");
+                                showToast("👥 " + esc(c.toName || "Dein Freund") + " ist bereit – du wirst verbunden …", "success");
                                 if (typeof joinLiveDuelById === "function") joinLiveDuelById(c.lobbyId);
                             } catch (e) { /* kein Netz - nichts tun */ }
                         })();

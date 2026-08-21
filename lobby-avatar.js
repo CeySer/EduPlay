@@ -568,6 +568,8 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 if (mLabel) mLabel.innerText = pct + '%';
                 if (typeof renderDevPanel === 'function') renderDevPanel();
                 if (typeof renderSettingsLevelsBadges === 'function') renderSettingsLevelsBadges();
+                const entry = document.getElementById('dev-admin-entry');
+                if (entry) entry.classList.toggle('hidden', !(typeof isDevAdmin === 'function' && isDevAdmin()));
             }
             // Laufende Timer stoppen
             if (viewId !== 'fokus' && typeof focusTimerInterval !== 'undefined' && focusTimerInterval) {

@@ -714,8 +714,22 @@ auth.createUserWithEmailAndPassword(e, p)
                     unsub();
                     delete _challengeWatchers[ref.id];
                     if (c.fromKey === activePlayerKey) {
-                        showToast("👥 " + (c.toName || "Dein Freund") + " ist bereit – du wirst verbunden …", "success");
-                        if (typeof joinLiveDuelById === "function") joinLiveDuelById(c.lobbyId);
+                        (async function () {
+                            try {
+                                if (typeof liveDuelCollectionRef === "function") {
+                                    const lobbySnap = await liveDuelCollectionRef().doc(c.lobbyId).get();
+                                    if (!lobbySnap.exists) {
+                                        // War zu lange niemand drin -> von der
+                                        // Geist-Aufräumung schon gelöscht.
+                                        await ref.update({ status: "expired" }).catch(function () { });
+                                        loadOpenChallenges();
+                                        return;
+                                    }
+                                }
+                                showToast("👥 " + (c.toName || "Dein Freund") + " ist bereit – du wirst verbunden …", "success");
+                                if (typeof joinLiveDuelById === "function") joinLiveDuelById(c.lobbyId);
+                            } catch (e) { /* kein Netz - nichts tun */ }
+                        })();
                     }
                     loadOpenChallenges();
                 } else if (c.status === "declined" || c.status === "expired") {
@@ -725,6 +739,12 @@ auth.createUserWithEmailAndPassword(e, p)
             });
             _challengeWatchers[ref.id] = unsub;
         }
+
+        // Wie lange eine Einladung ohne Reaktion offen bleibt, bevor sie als
+        // abgelaufen gilt (gleiches Prinzip wie die 4h-Geist-Erkennung bei
+        // "Gegeneinander"-Lobbys, nur kürzer - hier warten beide im selben
+        // Haushalt, nicht über einen geteilten Code).
+        const CHALLENGE_PENDING_STALE_MS = 15 * 60 * 1000;
 
         async function loadOpenChallenges() {
             const box = document.getElementById("open-challenges-list");
@@ -736,12 +756,36 @@ auth.createUserWithEmailAndPassword(e, p)
                 const snap = await challengesRef().get();
                 const now = Date.now();
                 let html = "";
-                snap.forEach(doc => {
+                for (const doc of snap.docs) {
                     const c = doc.data() || {};
                     const age = now - (c.createdAt || 0);
-                    if (age > 24 * 60 * 60 * 1000) return;
-                    if (c.status === "declined") return;
+                    if (age > 24 * 60 * 60 * 1000) continue;
+                    if (c.status === "declined" || c.status === "expired") continue;
                     const id = doc.id;
+
+                    // Ghost-Schutz: Niemand hat auf die Einladung reagiert ->
+                    // abgelaufen, statt für immer als "Warte auf ..." hängen
+                    // zu bleiben und eine neue Einladung an dieselbe Person
+                    // zu verwirren.
+                    if (c.status === "pending" && age > CHALLENGE_PENDING_STALE_MS) {
+                        doc.ref.update({ status: "expired" }).catch(function () { });
+                        continue;
+                    }
+
+                    // Angenommen, aber die Lobby dahinter gibt es nicht mehr
+                    // (z.B. von der Geist-Aufräumung in renderOpenDuelsList
+                    // gelöscht, weil niemand rechtzeitig reinging) -> auch
+                    // hier abgelaufen setzen statt einen toten "Beitreten"-
+                    // Knopf für immer anzuzeigen.
+                    if (c.status === "accepted" && c.lobbyId && typeof liveDuelCollectionRef === "function") {
+                        try {
+                            const lobbySnap = await liveDuelCollectionRef().doc(c.lobbyId).get();
+                            if (!lobbySnap.exists) {
+                                doc.ref.update({ status: "expired" }).catch(function () { });
+                                continue;
+                            }
+                        } catch (e) { /* kein Netz - beim naechsten Laden nochmal pruefen */ }
+                    }
 
                     if (c.status === "pending" && c.toKey === activePlayerKey) {
                         html += `<div class="glass-card p-3 flex items-center justify-between gap-2 border border-indigo-400/40">
@@ -776,7 +820,7 @@ auth.createUserWithEmailAndPassword(e, p)
                             <button type="button" onclick="joinChallengeLobby('${id}')" class="btn-primary text-xs py-2 px-3">Beitreten</button>
                         </div>`;
                     }
-                });
+                }
                 // Andere Familien-Profile zum Üben einladen
                 const others = Object.keys(ALL_PROFILES || {}).filter(k => {
                     const p = ALL_PROFILES[k];
@@ -947,10 +991,19 @@ auth.createUserWithEmailAndPassword(e, p)
         async function joinChallengeLobby(id) {
             if (!id || !currentParentUser) return;
             try {
-                const snap = await challengesRef().doc(id).get();
+                const ref = challengesRef().doc(id);
+                const snap = await ref.get();
                 if (!snap.exists) return showToast("Einladung weg.", "error");
                 const c = snap.data() || {};
                 if (!c.lobbyId) return showToast("Noch keine Lobby.", "error");
+                if (typeof liveDuelCollectionRef === "function") {
+                    const lobbySnap = await liveDuelCollectionRef().doc(c.lobbyId).get();
+                    if (!lobbySnap.exists) {
+                        await ref.update({ status: "expired" }).catch(function () { });
+                        loadOpenChallenges();
+                        return showToast("Die Lobby ist abgelaufen (niemand war rechtzeitig da). Bitte neu einladen.", "error");
+                    }
+                }
                 if (typeof joinLiveDuelById === "function") {
                     await joinLiveDuelById(c.lobbyId);
                 }

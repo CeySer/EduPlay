@@ -1935,10 +1935,6 @@
                                     <p class="text-sm font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
                                     <p class="text-[11px] text-gray-400 text-center -mt-2">Alle bleiben dabei: ${names}</p>
                                     ${data.type === "quiz" ? `
-                                        <div class="dash-sub-nav mb-2">
-                                            <button type="button" id="again-topic-spass" class="active" onclick="setAgainTopic('spass')">🎉 Spaß</button>
-                                            <button type="button" id="again-topic-lernen" onclick="setAgainTopic('lernen')">📚 Lernen</button>
-                                        </div>
                                         <select id="again-area" class="input-modern text-sm font-bold"></select>
                                         <select id="again-category" class="input-modern text-sm font-bold"></select>
                                     ` : data.type === "wortraten" ? `
@@ -2014,7 +2010,7 @@
             document.getElementById("live-duel-result-content").innerHTML = html;
 
             if (isLiveDuelCreator && data.type === "quiz" && document.getElementById("again-area")) {
-                setAgainTopic(liveDuelTopicMode || "spass");
+                setupCategorySelectors("again-area", "again-category", "alle");
             }
 
             liveDuelRenderKey = "";
@@ -2022,25 +2018,6 @@
             renderFamilyHub();
             try { if (typeof confetti === 'function') confetti(); } catch (e) { }
             SFX.win();
-        }
-
-        function setAgainTopic(mode) {
-            mode = mode || liveDuelTopicMode || "spass";
-            liveDuelTopicMode = mode;
-            const s = document.getElementById("again-topic-spass");
-            const l = document.getElementById("again-topic-lernen");
-            if (s) s.classList.toggle("active", mode === "spass");
-            if (l) l.classList.toggle("active", mode === "lernen");
-            setupCategorySelectors("again-area", "again-category", mode);
-        }
-
-        function setSwitchQuizTopic(mode) {
-            mode = mode || liveDuelTopicMode || "spass";
-            const s = document.getElementById("switch-quiz-topic-spass");
-            const l = document.getElementById("switch-quiz-topic-lernen");
-            if (s) s.classList.toggle("active", mode === "spass");
-            if (l) l.classList.toggle("active", mode === "lernen");
-            setupCategorySelectors("switch-quiz-area", "switch-quiz-category", mode);
         }
 
         // Zeigt im Endergebnis-Screen die Optionen zum gewählten Spieltyp an
@@ -2053,15 +2030,11 @@
             let html = "";
             if (type === "quiz") {
                 html = `
-                    <div class="dash-sub-nav mb-2">
-                        <button type="button" id="switch-quiz-topic-spass" class="active" onclick="setSwitchQuizTopic('spass')">🎉 Spaß</button>
-                        <button type="button" id="switch-quiz-topic-lernen" onclick="setSwitchQuizTopic('lernen')">📚 Lernen</button>
-                    </div>
                     <select id="switch-quiz-area" class="input-modern text-sm font-bold"></select>
                     <select id="switch-quiz-category" class="input-modern text-sm font-bold"></select>
                     <button onclick="restartLiveDuelAsType('quiz')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">🧠 Wissen starten 🚀</button>`;
                 box.innerHTML = html;
-                setSwitchQuizTopic(liveDuelTopicMode || "spass");
+                setupCategorySelectors("switch-quiz-area", "switch-quiz-category", "alle");
             } else if (type === "scrabble") {
                 html = `
                     <select id="switch-scrabble-wordmode" class="input-modern text-sm font-bold">
@@ -2366,7 +2339,17 @@
             let html = "";
             snap.forEach(docSnap => {
                 const d = docSnap.data() || {};
-                const alive = (now - (d.hostLastSeen || d.createdAt || 0)) < STALE;
+                // "Zuletzt gesehen" über ALLE Spieler bestimmen, nicht nur
+                // den Ersteller: Bei "Mit Freunden üben" (Familien-Coop-
+                // Einladung) ist der Ersteller beim Anlegen der Lobby oft
+                // noch gar nicht selbst drin - nur wer angenommen hat. Zählte
+                // bisher nur hostLastSeen, wurde eine aktiv genutzte Lobby
+                // als "Geist" gelöscht, während jemand noch drin wartete.
+                let lastAnySeen = d.hostLastSeen || d.createdAt || 0;
+                Object.values(d.players || {}).forEach(function (p) {
+                    if (p && p.lastSeen && p.lastSeen > lastAnySeen) lastAnySeen = p.lastSeen;
+                });
+                const alive = (now - lastAnySeen) < STALE;
                 // Fertige Spiele NICHT sofort löschen – sonst verschwindet die
                 // Siegerehrung (Snapshot: doc existiert nicht → Menü).
                 // Erst nach 10 Min. aufräumen, oder wenn niemand mehr online.

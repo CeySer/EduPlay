@@ -1119,7 +1119,7 @@ auth.createUserWithEmailAndPassword(e, p)
             const todayParts = profileEntries.map(({ p }) => {
                 const sec = (p.studyLog && p.studyLog[today]) || 0;
                 const cls = sec >= 60 ? "text-indigo-300" : "text-gray-500";
-                return `<div class="flex justify-between items-center py-1 border-b border-white/5 last:border-0">
+                return `<div class="flex justify-between items-center py-2">
                     <span class="text-white font-bold text-sm">${esc(p.name)}</span>
                     <span class="font-black text-sm ${cls}">${formatStudyDuration(sec)}</span>
                 </div>`;
@@ -1136,17 +1136,17 @@ auth.createUserWithEmailAndPassword(e, p)
                     sec += (p.studyLog && p.studyLog[day]) || 0;
                 }
                 const cls = sec >= 60 ? "text-indigo-300" : "text-gray-500";
-                return `<div class="flex justify-between items-center py-1 border-b border-white/5 last:border-0">
+                return `<div class="flex justify-between items-center py-2">
                     <span class="text-white font-bold text-sm">${esc(p.name)}</span>
                     <span class="font-black text-sm ${cls}">${formatStudyDuration(sec)}</span>
                 </div>`;
             });
 
-            let html = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-xl px-3.5 py-3 space-y-1.5">
+            let html = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-xl px-4 py-3.5 space-y-2">
                 <div class="text-[11px] text-indigo-300 font-black uppercase tracking-wide">Heute</div>
                 ${todayParts.length ? todayParts.join("") : '<div class="text-gray-500 text-xs">Keine Profile</div>'}
             </div>
-            <div class="bg-white/5 border border-white/10 rounded-xl px-3.5 py-3 space-y-1.5">
+            <div class="bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 space-y-2">
                 <div class="text-[11px] text-gray-400 font-black uppercase tracking-wide">Diese Woche</div>
                 ${weekParts.length ? weekParts.join("") : '<div class="text-gray-500 text-xs">Keine Profile</div>'}
             </div>`;
@@ -2144,9 +2144,9 @@ auth.createUserWithEmailAndPassword(e, p)
                 const themen0 = (first.categories || []).slice(0, 5).map(c =>
                     esc((typeof labelFuerKategorie === 'function' ? labelFuerKategorie(c) : null) || c)
                 ).join(', ');
-                let detail = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-xl px-3 py-2.5 mb-2">
+                let detail = `<div class="bg-indigo-500/10 border border-indigo-400/20 rounded-xl px-4 py-3.5 mb-3">
                     <div class="text-[10px] text-indigo-300 font-black uppercase tracking-wide">Letzter Test</div>
-                    <div class="flex justify-between gap-2 items-center mt-1">
+                    <div class="flex justify-between gap-2 items-center mt-1.5">
                         <span class="${col0} font-black text-sm">${first.correct}/${first.total} (${pct0}%)</span>
                         <span class="text-gray-500 text-[11px] text-right">${dur0 ? "⏱ " + dur0 + " · " : ""}${date0.toLocaleDateString('de-DE')}</span>
                     </div>
@@ -2160,15 +2160,15 @@ auth.createUserWithEmailAndPassword(e, p)
                             ? formatDurationSec(t.durationSec)
                             : (t.durationSec != null ? Math.round(t.durationSec / 60) + " Min." : "");
                         const col = pct >= 80 ? 'text-emerald-400' : pct >= 50 ? 'text-yellow-400' : 'text-rose-400';
-                        return `<div class="flex justify-between gap-2 text-xs py-2 border-b border-white/5 last:border-0">
+                        return `<div class="flex justify-between gap-2 text-xs py-2.5 border-b border-white/5 last:border-0 px-0.5">
                             <span class="${col} font-bold">${t.correct}/${t.total} (${pct}%)</span>
                             <span class="text-gray-500">${dur ? "⏱ " + dur + " · " : ""}${date.toLocaleDateString('de-DE')}</span>
                         </div>`;
                     }).join('');
                 }
                 if (keys.length === 1) {
-                    return `<div class="bg-white/5 border border-white/10 rounded-xl px-3.5 py-3">
-                        <div class="text-[11px] text-gray-500 font-bold mb-2">${hist.length} Test${hist.length === 1 ? '' : 's'}</div>
+                    return `<div class="bg-white/5 border border-white/10 rounded-xl px-4 py-3.5">
+                        <div class="text-[11px] text-gray-500 font-bold mb-2.5">${hist.length} Test${hist.length === 1 ? '' : 's'}</div>
                         <div>${detail}</div>
                     </div>`;
                 }

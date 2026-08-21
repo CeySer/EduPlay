@@ -631,24 +631,22 @@ auth.createUserWithEmailAndPassword(e, p)
             return db.collection("parents").doc(currentParentUser.uid).collection("challenges");
         }
 
-        let _learnTogetherType = "wissen"; // wissen | vokabel | kurs | suchsel
+        let _learnTogetherType = "wissen"; // wissen | vokabel | kurs
 
         function learnTogetherLabel(kind) {
             if (kind === "vokabel") return "Vokabeln";
             if (kind === "kurs") return "Kurs";
-            if (kind === "suchsel") return "Suchsel";
             return "Wissen";
         }
 
         function startLearnTogether(kind) {
-            if (kind !== "vokabel" && kind !== "kurs" && kind !== "suchsel") kind = "wissen";
+            if (kind !== "vokabel" && kind !== "kurs") kind = "wissen";
             _learnTogetherType = kind;
             window._learnTogetherType = _learnTogetherType;
             const marks = {
                 wissen: ["lernen-invite-wissen-btn", "#34d399"],
                 vokabel: ["lernen-invite-vokabel-btn", "#818cf8"],
-                kurs: ["lernen-invite-kurs-btn", "#f59e0b"],
-                suchsel: ["lernen-invite-suchsel-btn", "#22d3ee"]
+                kurs: ["lernen-invite-kurs-btn", "#f59e0b"]
             };
             Object.keys(marks).forEach(function (k) {
                 const el = document.getElementById(marks[k][0]);
@@ -898,25 +896,6 @@ auth.createUserWithEmailAndPassword(e, p)
                         }
                         questions = (typeof prepareQuestions === "function" ? prepareQuestions(pool) : pool)
                             .slice().sort(function () { return Math.random() - 0.5; }).slice(0, 10);
-                    } else if (subject === "suchsel") {
-                        let words = [];
-                        if (typeof GERMAN_WORDS_KIDS !== "undefined") words = GERMAN_WORDS_KIDS.slice();
-                        words = words.filter(function (w) { return w && w.length >= 3 && w.length <= 10; })
-                            .sort(function () { return Math.random() - 0.5; }).slice(0, 10);
-                        questions = words.map(function (w, i) {
-                            const distract = (GERMAN_WORDS_KIDS || []).filter(function (x) { return x !== w; })
-                                .sort(function () { return Math.random() - 0.5; }).slice(0, 3);
-                            const answers = [w].concat(distract).sort(function () { return Math.random() - 0.5; });
-                            return {
-                                id: "suchsel_coop_" + i,
-                                question: "Welches Wort suchst du im Gitter?",
-                                answers: answers,
-                                correct: answers.indexOf(w),
-                                explanation: "Das Wort lautet „" + w + "“.",
-                                category: "suchsel"
-                            };
-                        });
-                        if (typeof prepareQuestions === "function") questions = prepareQuestions(questions);
                     } else {
                         const grade = (typeof playerGrade === "function")
                             ? playerGrade(currentPlayer)

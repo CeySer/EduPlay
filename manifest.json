@@ -32,8 +32,8 @@
   ],
   "shortcuts": [
     {
-      "name": "Allein lernen",
-      "short_name": "Lernen",
+      "name": "Lernraum",
+      "short_name": "Lernraum",
       "url": "./index.html#lernen",
       "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
     },

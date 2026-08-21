@@ -220,157 +220,42 @@
         }
 
         function openLearnTogetherCode(kind) {
-            openLernenLobbySetup(kind);
-        }
-        window.openLearnTogetherCode = openLearnTogetherCode;
-
-        let _lernenLobbyType = "wissen";
-
-        function setLernenLobbyType(kind) {
-            if (kind !== "vokabel" && kind !== "kurs" && kind !== "suchsel") kind = "wissen";
-            _lernenLobbyType = kind;
-            ["wissen", "vokabel", "kurs", "suchsel"].forEach(function (k) {
-                const el = document.getElementById("lernen-lobby-type-" + k);
-                if (el) el.style.outline = (k === kind) ? "2px solid #fff" : "none";
-            });
-            const w = document.getElementById("lernen-lobby-wissen-options");
-            const v = document.getElementById("lernen-lobby-vokabel-options");
-            if (w) w.classList.toggle("hidden", kind !== "wissen" && kind !== "kurs");
-            if (v) v.classList.toggle("hidden", kind !== "vokabel");
-            if (kind === "vokabel" && typeof renderVocabGroupCheckboxes === "function") {
-                renderVocabGroupCheckboxes("lernen-lobby-vokabel-checkboxes");
-            }
-        }
-        window.setLernenLobbyType = setLernenLobbyType;
-
-        function openLernenLobbySetup(kind) {
             if (!currentPlayer || !activePlayerKey) {
                 return showToast("Bitte zuerst deinen Spieler wählen!", "error");
             }
-            const inp = document.getElementById("lernen-lobby-join-code");
-            if (inp) inp.value = "";
-            if (typeof setupCategorySelectors === "function") {
-                setupCategorySelectors("lernen-lobby-area", "lernen-lobby-category", "lernen");
-            }
-            setLernenLobbyType(kind || _learnTogetherType || "wissen");
-            switchView("lernen-lobby-setup");
-        }
-        window.openLernenLobbySetup = openLernenLobbySetup;
-
-        function questionsForLernenLobby(kind) {
-            if (kind === "vokabel") {
-                const checked = Array.from(document.querySelectorAll("#lernen-lobby-vokabel-checkboxes .vokabel-group-check:checked")).map(function (cb) { return cb.value; });
-                if (!checked.length) return { error: "Bitte mindestens eine Vokabelgruppe wählen." };
-                const dir = (document.getElementById("lernen-lobby-vokabel-dir") || {}).value || "mix";
-                const qs = (typeof buildVocabTestQuestions === "function")
-                    ? buildVocabTestQuestions(checked, dir).sort(function () { return Math.random() - 0.5; }).slice(0, 10)
-                    : [];
-                return { questions: typeof prepareQuestions === "function" ? prepareQuestions(qs) : qs };
-            }
-            if (kind === "kurs" && typeof LEKTIONEN !== "undefined") {
-                const grade = (typeof playerGrade === "function") ? playerGrade(currentPlayer) : null;
-                let pool = [];
-                LEKTIONEN.forEach(function (l) {
-                    const kurs = (typeof KURSE !== "undefined") ? KURSE.find(function (k) { return k.id === l.kurs; }) : null;
-                    if (grade && kurs && kurs.grade && Number(kurs.grade) !== Number(grade)) return;
-                    (l.test || []).forEach(function (q) { pool.push(q); });
-                    Object.keys(l.uebung || {}).forEach(function (st) {
-                        (l.uebung[st] || []).forEach(function (q) { pool.push(q); });
-                    });
-                });
-                if (pool.length < 6) {
-                    LEKTIONEN.forEach(function (l) { (l.test || []).forEach(function (q) { pool.push(q); }); });
+            if (typeof openCodedLobbySetup === "function") openCodedLobbySetup();
+            setTimeout(function () {
+                const isVocab = kind === "vokabel";
+                if (typeof setCodedLobbyType === "function") {
+                    setCodedLobbyType(isVocab ? "vokabel" : "quiz");
                 }
-                const qs = pool.sort(function () { return Math.random() - 0.5; }).slice(0, 10);
-                return { questions: typeof prepareQuestions === "function" ? prepareQuestions(qs) : qs };
-            }
-            if (kind === "suchsel") {
-                let words = (typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS.slice() : [])
-                    .filter(function (w) { return w && w.length >= 3 && w.length <= 10; })
-                    .sort(function () { return Math.random() - 0.5; }).slice(0, 10);
-                const qs = words.map(function (w, i) {
-                    const distract = (GERMAN_WORDS_KIDS || []).filter(function (x) { return x !== w; })
-                        .sort(function () { return Math.random() - 0.5; }).slice(0, 3);
-                    const answers = [w].concat(distract).sort(function () { return Math.random() - 0.5; });
-                    return {
-                        id: "ll_suchsel_" + i, question: "Welches Wort suchst du im Gitter?",
-                        answers: answers, correct: answers.indexOf(w),
-                        explanation: "Das Wort lautet „" + w + "“.", category: "suchsel"
-                    };
-                });
-                return { questions: typeof prepareQuestions === "function" ? prepareQuestions(qs) : qs };
-            }
-            const cat = (document.getElementById("lernen-lobby-category") || {}).value;
-            if (!cat) return { error: "Bitte ein Thema wählen." };
-            const qs = (typeof buildMixedQuestions === "function") ? buildMixedQuestions([cat], 10) : [];
-            return { questions: qs };
-        }
-
-        async function createLernenLobby() {
-            if (!currentParentUser) return showToast("Bitte zuerst einloggen.", "error");
-            if (!currentPlayer || !activePlayerKey) return showToast("Bitte zuerst deinen Spieler wählen!", "error");
-            const kind = _lernenLobbyType || "wissen";
-            const built = questionsForLernenLobby(kind);
-            if (built.error) return showToast(built.error, "error");
-            const questions = built.questions || [];
-            if (questions.length < 3) return showToast("Zu wenige Fragen für diese Auswahl.", "error");
-            const answerSeconds = parseInt((document.getElementById("lernen-lobby-speed") || {}).value || "20");
-            const hostDisplayName = (currentPlayer && currentPlayer.name && String(currentPlayer.name).trim()) || "Gastgeber";
-            const lobbyData = {
-                type: "quiz",
-                subject: kind,
-                mode: "coop",
-                fromLernen: true,
-                isCoded: true,
-                status: "waiting",
-                questions: questions,
-                currentIndex: 0,
-                answerSeconds: answerSeconds,
-                createdBy: activePlayerKey,
-                createdByName: hostDisplayName,
-                players: {}
-            };
-            lobbyData.players[activePlayerKey] = {
-                name: hostDisplayName, score: 0, hasAnswered: false,
-                lastAnswer: null, word: "", coinsClaimed: false
-            };
-            if (typeof showGlobalLoading === "function") showGlobalLoading("Lobby wird erstellt …");
-            try {
-                const { code, ref } = await reserveAndCreateLobby(function (code) {
-                    return Object.assign({}, lobbyData, {
-                        code: code,
-                        createdAt: Date.now(),
-                        hostLastSeen: Date.now(),
-                        hostUid: (auth.currentUser && auth.currentUser.uid) || null
+                // Kategorie-Auswahl = Schulwissen (kein Spaß)
+                if (!isVocab && typeof setCodedLobbyTopicMode === "function") {
+                    setCodedLobbyTopicMode("lernen");
+                }
+                const mode = document.getElementById("coded-lobby-mode");
+                if (mode) {
+                    // Coop-Wert je nach Optionen
+                    const hasCoop = Array.from(mode.options || []).some(function (o) {
+                        return o.value === "coop" || /zusammen|team|coop/i.test(o.text);
                     });
+                    if (hasCoop) {
+                        for (let i = 0; i < mode.options.length; i++) {
+                            if (mode.options[i].value === "coop" || /zusammen|team/i.test(mode.options[i].text)) {
+                                mode.selectedIndex = i;
+                                break;
+                            }
+                        }
+                    }
+                }
+                ["coded-type-scrabble", "coded-type-wortraten"].forEach(function (id) {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add("hidden");
                 });
-                liveDuelRef = ref;
-                liveDuelType = "quiz";
-                isLiveDuelCreator = true;
-                liveDuelResolving = false;
-                liveDuelRenderKey = "";
-                maybeStartHostHeartbeat();
-                merkeLobby(code);
-                subscribeLiveDuel();
-                showToast("Lern-Lobby: " + code);
-                setTimeout(function () {
-                    if (typeof inviteFriends === "function") inviteFriends();
-                }, 400);
-            } catch (e) {
-                handleError("createLernenLobby", e, "Die Lern-Lobby konnte nicht erstellt werden.");
-            } finally {
-                if (typeof hideGlobalLoading === "function") hideGlobalLoading(true);
-            }
+                showToast(isVocab ? "Vokabeln: Gruppen wählen" : "Wissen: Klasse & Fach wählen (Schulstoff)", "info");
+            }, 150);
         }
-        window.createLernenLobby = createLernenLobby;
-
-        async function joinLernenLobby() {
-            const src = document.getElementById("lernen-lobby-join-code");
-            const dest = document.getElementById("coded-lobby-join-code");
-            if (src && dest) dest.value = src.value;
-            return joinCodedLobby();
-        }
-        window.joinLernenLobby = joinLernenLobby;
+        window.openLearnTogetherCode = openLearnTogetherCode;
 
         // Spaß/Lernen-Umschalter für die Klasse/Bereich-Auswahl in der Lobby
         // (gleiches Prinzip wie setTVTopicMode() beim TV-Modus) - Standard: Spaß.
@@ -636,7 +521,7 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
         }
 
         // Ansichten, die einem anonymen Gast offen stehen. Alles andere
-        // (Familien-Hub, Menü, Eltern-Dashboard, Alleine-Lernen) gehört
+        // (Familien-Hub, Menü, Eltern-Dashboard, Lernraum) gehört
         // zum Familienkonto und ist für ihn gesperrt.
         const GUEST_ALLOWED_VIEWS = [
             'auth', 'guest-join',

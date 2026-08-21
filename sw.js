@@ -3,7 +3,7 @@
 //  Version: 1.0
 //
 //  Zweck: Die App startet und läuft auch ohne Netz. Gedacht für
-//  Autofahrten durch Funklöcher – Alleine-Lernen, Vokabeln und
+//  Autofahrten durch Funklöcher – Lernraum, Vokabeln und
 //  Wort-Rätsel funktionieren dann weiter.
 //
 //  Wichtig: Firestore und Firebase-Auth werden NICHT abgefangen.

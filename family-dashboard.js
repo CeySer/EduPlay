@@ -2816,7 +2816,7 @@ auth.createUserWithEmailAndPassword(e, p)
                     `<div class="glass-card p-3 flex items-center justify-between gap-3">
                         <div>
                             <div class="font-black text-indigo-300 text-sm">⏱ Lernzeit heute</div>
-                            <div class="text-[11px] text-gray-500">Alleine lernen (Wissen, Vokabeln, Lesen, Suchsel)</div>
+                            <div class="text-[11px] text-gray-500">Lernraum (Wissen, Vokabeln, Lesen, Suchsel)</div>
                         </div>
                         <div class="font-black text-white text-lg shrink-0">${prog}</div>
                     </div>`;

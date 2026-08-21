@@ -1202,60 +1202,11 @@ const geladen = _questionCounts[key] || 0;
         }
 
         // ============================================================
-        //  SOUND – Datei-SFX (Kenney CC0) + Web-Audio-Fallback
-        //  audio/ui/*.ogg · audio/book/*.ogg · optional audio/bgm/*.mp3
+        //  SOUND
         // ============================================================
         let audioCtx = null;
         let soundOn = true;
         try { soundOn = localStorage.getItem("eduplaySound") !== "off"; } catch (e) { }
-
-        const SFX_FILE_MAP = {
-            bookOpen: ["audio/book/book_open.ogg", "audio/book/book_open.wav"],
-            pageFlip: ["audio/book/page_flip.ogg", "audio/book/page_flip.wav"],
-            tap: ["audio/ui/click.ogg"],
-            correct: ["audio/ui/correct.ogg"],
-            wrong: ["audio/ui/wrong.ogg"],
-            switch: ["audio/ui/switch.ogg"],
-            open: ["audio/ui/open.ogg"]
-        };
-        const sfxPool = {};
-        const sfxReady = {};
-
-        function preloadSfxFiles() {
-            Object.keys(SFX_FILE_MAP).forEach(function (key) {
-                const paths = SFX_FILE_MAP[key];
-                let i = 0;
-                function tryPath() {
-                    if (i >= paths.length) return;
-                    const a = new Audio(paths[i]);
-                    a.preload = "auto";
-                    a.addEventListener("canplaythrough", function () {
-                        sfxPool[key] = a;
-                        sfxReady[key] = true;
-                    }, { once: true });
-                    a.addEventListener("error", function () {
-                        i++;
-                        tryPath();
-                    }, { once: true });
-                    try { a.load(); } catch (e) { i++; tryPath(); }
-                }
-                tryPath();
-            });
-        }
-        try { preloadSfxFiles(); } catch (e) { /* */ }
-
-        function playSfxFile(key, vol) {
-            if (!soundOn) return false;
-            const base = sfxPool[key];
-            if (!base || !sfxReady[key]) return false;
-            try {
-                const a = base.cloneNode();
-                a.volume = Math.max(0, Math.min(1, vol == null ? 0.55 : vol));
-                const p = a.play();
-                if (p && p.catch) p.catch(function () { /* Autoplay-Block */ });
-                return true;
-            } catch (e) { return false; }
-        }
 
         function ensureAudio() {
             if (!soundOn) return null;
@@ -1286,6 +1237,8 @@ const geladen = _questionCounts[key] || 0;
             });
         }
 
+        // Modernerer Klick: kurzer, gefilterter Noise-Burst statt eines reinen
+        // Sinuston-Blips - klingt eher wie ein Tastatur-/App-Klick als ein Piepsen.
         let clickNoiseBuffer = null;
         function getClickNoiseBuffer(ctx) {
             if (clickNoiseBuffer && clickNoiseBuffer._ctx === ctx) return clickNoiseBuffer;
@@ -1298,7 +1251,6 @@ const geladen = _questionCounts[key] || 0;
             return buf;
         }
         function playModernClick() {
-            if (playSfxFile("tap", 0.5)) return;
             const ctx = ensureAudio();
             if (!ctx) return;
             const t = ctx.currentTime;
@@ -1315,9 +1267,12 @@ const geladen = _questionCounts[key] || 0;
             gain.connect(ctx.destination);
             noise.start(t);
             noise.stop(t + 0.05);
-            playTones([[1600, 0.03]], "sine", 0.05);
+            playTones([
+                [1600, 0.03]
+            ], "sine", 0.05);
         }
 
+        // Sound-Packs: soft (edu, weich) | crisp (klare Beeps)
         let soundPack = "soft";
         try {
             const sp = localStorage.getItem("eduplaySoundPack");
@@ -1356,17 +1311,13 @@ const geladen = _questionCounts[key] || 0;
 
         const SFX = {
             tap: () => playModernClick(),
-            correct: () => { if (!playSfxFile("correct", 0.6)) (SFX_PACKS[soundPack] || SFX_PACKS.soft).correct(); },
-            wrong: () => { if (!playSfxFile("wrong", 0.55)) (SFX_PACKS[soundPack] || SFX_PACKS.soft).wrong(); },
+            correct: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).correct(),
+            wrong: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).wrong(),
             win: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).win(),
             levelUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).levelUp(),
             coin: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).coin(),
             tick: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).tick(),
-            timeUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).timeUp(),
-            bookOpen: () => { if (!playSfxFile("bookOpen", 0.5)) playSfxFile("open", 0.45); },
-            pageFlip: () => { if (!playSfxFile("pageFlip", 0.45)) playSfxFile("switch", 0.4); },
-            switch: () => playSfxFile("switch", 0.45),
-            open: () => playSfxFile("open", 0.45)
+            timeUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).timeUp()
         };
 
         function setSoundPack(pack) {
@@ -1391,20 +1342,14 @@ const geladen = _questionCounts[key] || 0;
             soundOn = !soundOn;
             try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
             document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
-            // Ton aus = SFX + Musik komplett still
-            if (!soundOn) {
-                if (typeof stopBackgroundMusic === "function") stopBackgroundMusic();
-            } else {
-                if (typeof startBackgroundMusic === "function" && musicVolume > 0) startBackgroundMusic();
-                SFX.tap();
-            }
+            if (soundOn) SFX.tap();
             showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
         }
 
         // ============================================================
-        //  HINTERGRUNDMUSIK
-        //  1) optional audio/bgm/menu.mp3 + quiz.mp3 (selbst ablegen)
-        //  2) sonst Web-Audio Lo-fi / Bounce
+        //  HINTERGRUNDMUSIK v2 (Web-Audio)
+        //  Menü: warmer Lo-fi-Ambient (F-Dur-ish, weiche 7er-Akkorde)
+        //  Spiel: leichter Bounce, motivierend, nicht nervig
         // ============================================================
         let musicCtx = null;
         let musicGain = null;
@@ -1413,62 +1358,10 @@ const geladen = _questionCounts[key] || 0;
         let musicStep = 0;
         let musicMode = 'menu';
         let gameStep = 0;
-        let bgmEl = null;
-        let bgmFileMode = null; // 'menu' | 'quiz' | null wenn Datei fehlt
-        const BGM_PATHS = {
-            menu: ["audio/bgm/menu.mp3", "audio/bgm/menu.ogg"],
-            quiz: ["audio/bgm/quiz.mp3", "audio/bgm/quiz.ogg"]
-        };
         try {
             const savedVol = localStorage.getItem("eduplayMusicVolume");
             if (savedVol !== null) musicVolume = Math.max(0, Math.min(1, parseFloat(savedVol)));
         } catch (e) { }
-
-        function stopFileBgm() {
-            if (bgmEl) {
-                try { bgmEl.pause(); bgmEl.currentTime = 0; } catch (e) { /* */ }
-            }
-        }
-
-        function tryPlayFileBgm(mode) {
-            const paths = BGM_PATHS[mode === 'game' ? 'quiz' : 'menu'];
-            if (!paths || !paths.length) return false;
-            if (!bgmEl) {
-                bgmEl = new Audio();
-                bgmEl.loop = true;
-                bgmEl.preload = "auto";
-            }
-            const want = paths[0];
-            // schon diese Datei?
-            if (bgmFileMode === mode && bgmEl.src && bgmEl.src.indexOf(want.replace(/^audio\//, "")) !== -1) {
-                bgmEl.volume = musicVolume;
-                const p = bgmEl.play();
-                if (p && p.catch) p.catch(function () { });
-                return true;
-            }
-            let idx = 0;
-            function loadNext() {
-                if (idx >= paths.length) {
-                    bgmFileMode = null;
-                    return false;
-                }
-                const path = paths[idx++];
-                bgmEl.oncanplaythrough = function () {
-                    bgmFileMode = mode === 'game' ? 'quiz' : 'menu';
-                    bgmEl.volume = musicVolume;
-                    const p = bgmEl.play();
-                    if (p && p.catch) p.catch(function () { });
-                };
-                bgmEl.onerror = function () { loadNext(); };
-                try {
-                    bgmEl.src = path;
-                    bgmEl.load();
-                } catch (e) { return loadNext(); }
-                return true;
-            }
-            stopFileBgm();
-            return loadNext();
-        }
 
         // Warme Progressions (F – Dm – Bb – C), edu/lo-fi
         const MENU_CHORDS = [
@@ -1608,20 +1501,15 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function startBackgroundMusic() {
-            if (!soundOn || musicVolume <= 0) return;
-            // Datei-BGM bevorzugen (wenn vorhanden)
-            stopBackgroundMusic(true);
-            if (tryPlayFileBgm(musicMode)) return;
-            if (musicTimer) return;
+            if (musicTimer || musicVolume <= 0) return;
             if (!ensureMusicAudio()) return;
             const tick = musicMode === 'game' ? playMusicNoteGame : playMusicNote;
             tick();
             musicTimer = setInterval(tick, musicMode === 'game' ? 200 : 520);
         }
 
-        function stopBackgroundMusic(keepFile) {
+        function stopBackgroundMusic() {
             if (musicTimer) { clearInterval(musicTimer); musicTimer = null; }
-            if (!keepFile) stopFileBgm();
         }
 
         const GAME_MUSIC_VIEWS = ['quiz', 'duel-play', 'scrabble-play', 'wortraten-play',
@@ -1633,10 +1521,7 @@ const geladen = _questionCounts[key] || 0;
             musicMode = mode;
             musicStep = 0;
             gameStep = 0;
-            if (musicVolume > 0) {
-                stopBackgroundMusic();
-                startBackgroundMusic();
-            }
+            if (musicTimer) { stopBackgroundMusic(); startBackgroundMusic(); }
         }
 
         function setMusicVolume(pct) {
@@ -1645,7 +1530,6 @@ const geladen = _questionCounts[key] || 0;
             const label = document.getElementById("music-volume-label");
             if (label) label.innerText = Math.round(musicVolume * 100) + "%";
             if (musicGain && musicCtx) musicGain.gain.setTargetAtTime(musicVolume, musicCtx.currentTime, 0.05);
-            if (bgmEl) bgmEl.volume = musicVolume;
             if (musicVolume > 0) startBackgroundMusic();
             else stopBackgroundMusic();
         }
@@ -1751,57 +1635,41 @@ const geladen = _questionCounts[key] || 0;
         const ONBOARD_STEPS = [
             {
                 title: "👋 Willkommen bei EduPlay!",
-                body: "Lernen und spielen für die ganze Familie. Jedes Kind hat ein eigenes Profil mit Coins, Fortschritt und Lernserie."
+                body: "Hier lernt und spielt die ganze Familie. Wähle links/oben ein Spieler-Profil – jedes Kind hat eigene Punkte und Fortschritte."
             },
             {
-                title: "👤 Spieler wählen",
-                body: "Im Familien-Hub tippst du auf ein Profil. Oben im Menü kannst du den Spieler wechseln oder einen Gast nur für heute anlegen."
+                title: "👨‍👩‍👧‍👦 Eltern & Kontrollzentrum",
+                body: "Im Kontrollzentrum (PIN-geschützt) siehst du Lernzeiten, weist Tests zu und verwaltest Belohnungen. PIN einmal in den Einstellungen setzen."
             },
             {
                 title: "📚 Lernraum",
-                body: "Quiz nach Klasse und Fach, Kurse, Vokabeln und Fokus-Timer. Klasse 1–2 wird vorgelesen. „Weitermachen“ nimmt das letzte Thema wieder auf."
+                body: "Quiz, Vokabeln, Lesen und Formeln. Bei Klasse 1 und 2 wird der Text automatisch vorgelesen – Lücken und Lösungshinweise nicht mit."
             },
             {
-                title: "⚡ Blitz-Übung",
-                body: "Kurze Einheit (15 Fragen) zum Thema, das noch nicht sitzt. Lässt sich für heute ausblenden – kommt später wieder."
+                title: "⚔️ Gegeneinander spielen",
+                body: "Wort-Duell, Quiz-Duell und Online-Lobby. Code teilen, Freunde treten bei. Offline gehen Ein-Gerät-Spiele weiter."
             },
             {
-                title: "👥 Mit Freunden",
-                body: "Unter Gegeneinander: Code teilen, Quiz- oder Wort-Duell, auch als Gast ohne Konto. Ein Gerät reihum geht ohne Internet."
+                title: "🎲 Themen & Zufall",
+                body: "Viele Kategorien – mit „Zufällige Kategorie“ kommt Abwechslung. Fun-Fragen und Schätzen für die ganze Familie."
             },
             {
-                title: "📺 TV-Quiz",
-                body: "Fragen auf dem Fernseher, Steuern vom Handy. Alle in der Runde tippen mit – gut für den Wohnzimmer-Abend."
+                title: "🔊 Ton & Design",
+                body: "Im Menü: Ton an/aus, Sound-Pack (Soft/Klar/Arcade), Musik-Lautstärke und Hell/Dunkel-Design. Alles speichert sich automatisch."
             },
             {
-                title: "🎁 Coins & Belohnungen",
-                body: "Richtige Antworten bringen Coins. Eltern legen Wünsche an, Kinder lösen sie ein. Abzeichen kommen automatisch."
-            },
-            {
-                title: "👨‍👩‍👧 Eltern-Bereich",
-                body: "Im Kontrollzentrum (PIN): Aufgaben zuweisen, Lernzeit und Tests sehen, Belohnungen pflegen. PIN einmal in den Einstellungen setzen."
-            },
-            {
-                title: "⚙️ Einstellungen",
-                body: "Ton, Sound-Pack, Musik, Hell/Dunkel. Das Tutorial kannst du dort jederzeit nochmal starten."
+                title: "⭐ Belohnungen & Tipps",
+                body: "Coins und Abzeichen sammeln, Belohnungen einlösen. Blitz-Übung und „Weitermachen“ helfen beim Dranbleiben. Viel Spaß!"
             }
         ];
         let onboardStep = 0;
 
-        function maybeShowOnboarding(force) {
-            if (!force) {
-                try {
-                    if (localStorage.getItem(ONBOARD_KEY) === "done") return;
-                } catch (e) { /* weiter */ }
-                try {
-                    if (typeof ALL_PROFILES === "object" && ALL_PROFILES && Object.keys(ALL_PROFILES).length) {
-                        localStorage.setItem(ONBOARD_KEY, "done");
-                        return;
-                    }
-                } catch (e) { /* */ }
-            }
+        function maybeShowOnboarding() {
+            try {
+                if (localStorage.getItem(ONBOARD_KEY) === "done") return;
+            } catch (e) { return; }
             const ov = document.getElementById("onboarding-overlay");
-            if (!ov) return;
+            if (!ov || !ov.classList.contains("hidden")) return;
             onboardStep = 0;
             renderOnboardingStep();
             ov.classList.remove("hidden");
@@ -1812,12 +1680,10 @@ const geladen = _questionCounts[key] || 0;
             const title = document.getElementById("onboard-title");
             const body = document.getElementById("onboard-body");
             const next = document.getElementById("onboard-next");
-            const back = document.getElementById("onboard-back");
             const dots = document.getElementById("onboard-dots");
             if (title) title.textContent = s.title;
             if (body) body.textContent = s.body;
             if (next) next.textContent = onboardStep >= ONBOARD_STEPS.length - 1 ? "Los geht's 🚀" : "Weiter";
-            if (back) back.classList.toggle("invisible", onboardStep === 0);
             if (dots) {
                 dots.innerHTML = ONBOARD_STEPS.map((_, i) =>
                     `<span style="width:8px;height:8px;border-radius:50%;display:inline-block;background:${i === onboardStep ? '#818cf8' : 'rgba(255,255,255,0.25)'}"></span>`
@@ -1834,12 +1700,6 @@ const geladen = _questionCounts[key] || 0;
             renderOnboardingStep();
         }
 
-        function onboardingBack() {
-            if (onboardStep <= 0) return;
-            onboardStep--;
-            renderOnboardingStep();
-        }
-
         function dismissOnboarding(save) {
             const ov = document.getElementById("onboarding-overlay");
             if (ov) ov.classList.add("hidden");
@@ -1851,7 +1711,7 @@ const geladen = _questionCounts[key] || 0;
         function resetOnboarding() {
             try { localStorage.removeItem(ONBOARD_KEY); } catch (e) { /* */ }
             onboardStep = 0;
-            maybeShowOnboarding(true);
+            maybeShowOnboarding();
         }
 
         function getActiveInviteCode() {

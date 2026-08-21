@@ -1539,10 +1539,21 @@ function istLektionFreigeschaltet(lektion, liste) {
 // ============================================================
 //  KURS-ÜBERSICHT
 // ============================================================
+// Reihenfolge + Anzeigename/Icon der Fächer in der Kurs-Übersicht.
+// Unbekannte subject-Werte (falls mal ein neues Fach dazukommt) landen
+// hinten dran, statt zu verschwinden.
+const KURS_FACH_ORDER = ["mathe", "deutsch", "englisch", "biologie"];
+const KURS_FACH_LABELS = {
+    mathe: { icon: "🧮", label: "Mathematik" },
+    deutsch: { icon: "📖", label: "Deutsch" },
+    englisch: { icon: "🇬🇧", label: "Englisch" },
+    biologie: { icon: "🌱", label: "Biologie" }
+};
+
 function showKurse() {
     const wrap = document.getElementById("kurse-liste");
     if (!wrap) return;
-    wrap.innerHTML = KURSE.map(k => {
+    const kursButton = (k) => {
         const lektionen = getLektionenForKurs(k.id);
         const fertig = lektionen.filter(l => istLektionAbgeschlossen(l.id)).length;
         return `<button type="button" onclick="openKurs('${k.id}')" class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">
@@ -1553,6 +1564,19 @@ function showKurse() {
             </span>
             <span class="text-xs font-black bg-black/20 rounded-full px-2.5 py-1 shrink-0">${fertig}/${lektionen.length}</span>
         </button>`;
+    };
+    const vorhandeneFaecher = [...new Set(KURSE.map(k => k.subject))];
+    const faecher = [
+        ...KURS_FACH_ORDER.filter(f => vorhandeneFaecher.includes(f)),
+        ...vorhandeneFaecher.filter(f => !KURS_FACH_ORDER.includes(f))
+    ];
+    wrap.innerHTML = faecher.map(fach => {
+        const label = KURS_FACH_LABELS[fach] || { icon: "📘", label: fach };
+        const kurseImFach = KURSE.filter(k => k.subject === fach);
+        return `<div class="space-y-2.5">
+            <p class="text-xs font-black text-gray-400 uppercase tracking-wider px-1">${label.icon} ${label.label}</p>
+            <div class="space-y-2.5">${kurseImFach.map(kursButton).join("")}</div>
+        </div>`;
     }).join("");
     switchView("kurse");
 }

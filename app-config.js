@@ -21,7 +21,7 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        const DEV_ADMIN_EMAILS = ["ceyhun.oezdemir@outlook.com"];
+        const DEV_ADMIN_EMAILS = ["cu.oezdemir@gmail.com"];
         const DEV_ADMIN_UIDS = []; // optional Firebase-UIDs
         function isDevAdmin() {
             const u = (typeof currentParentUser !== "undefined") ? currentParentUser : (auth.currentUser || null);

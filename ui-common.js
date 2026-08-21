@@ -158,11 +158,20 @@
                     geraet: navigator.userAgent,
                     erstellt: firebase.firestore.FieldValue.serverTimestamp()
                 }).then(function () {
-                    showToast("📮 Danke! Feedback wurde geschickt.", "success");
                     document.getElementById("feedback-text").value = "";
                     const c = document.getElementById("feedback-counter");
                     if (c) c.innerText = "0";
-                    switchView(feedbackReturnView);
+                    const go = function () { switchView(feedbackReturnView); };
+                    if (typeof appAlert === "function") {
+                        Promise.resolve(appAlert("Dein Feedback ist angekommen. Danke – wir schauen uns das an.", {
+                            titel: "📮 Geschickt",
+                            icon: "📮",
+                            okText: "Super"
+                        })).then(go).catch(go);
+                    } else {
+                        showToast("📮 Danke! Feedback wurde geschickt.", "success");
+                        go();
+                    }
                 }).catch(function (e) {
                     handleError("sendFeedback", e, "Das Senden hat nicht geklappt. Schreib uns gern direkt an " +
                         FEEDBACK_MAIL + ".");

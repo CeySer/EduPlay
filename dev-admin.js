@@ -10,82 +10,164 @@
         }
         window.openDevAdmin = openDevAdmin;
 
+        function funCategoryKeys() {
+            const set = {};
+            if (typeof FUN_CATEGORIES !== "undefined" && Array.isArray(FUN_CATEGORIES)) {
+                FUN_CATEGORIES.forEach(function (s) { if (s && s.key) set[s.key] = s.label || s.key; });
+            }
+            return set;
+        }
+        function curriculumMap() {
+            const byKey = {};
+            if (typeof CURRICULUM !== "undefined" && Array.isArray(CURRICULUM)) {
+                CURRICULUM.forEach(function (g) {
+                    (g.subjects || []).forEach(function (s) {
+                        byKey[s.key] = { grade: g.label || "", subject: s.label || s.key };
+                    });
+                });
+            }
+            return byKey;
+        }
+        function catLabel(key) {
+            const fun = funCategoryKeys();
+            if (fun[key]) return fun[key];
+            const cur = curriculumMap()[key];
+            if (cur) return cur.subject;
+            if (typeof CATEGORY_LABELS !== "undefined" && CATEGORY_LABELS[key]) return CATEGORY_LABELS[key];
+            if (typeof labelFuerKategorie === "function") return labelFuerKategorie(key) || key;
+            return key;
+        }
+        function isFunCategory(key) {
+            if (funCategoryKeys()[key]) return true;
+            return /^(spass_|kinder_|schaetzen_)/.test(key || "");
+        }
+
         function fillDevBrowserFilters() {
             const grade = document.getElementById("dev-filter-grade");
             const cat = document.getElementById("dev-filter-cat");
             if (!grade || !cat) return;
+            const mode = ((document.getElementById("dev-browser-mode") || {}).value || "wissen");
+            const cur = curriculumMap();
+            const fun = funCategoryKeys();
             const grades = new Set();
-            const cats = new Set();
-            (QUESTIONS_DATABASE || []).forEach(function (q) {
-                if (q.grade) grades.add(String(q.grade));
-                if (q.category) cats.add(q.category);
-            });
-            const gSel = ["<option value=\"\">Alle Klassen</option>"].concat(
+            const cats = [];
+            if (mode === "wissen") {
+                (QUESTIONS_DATABASE || []).forEach(function (q) {
+                    if (isFunCategory(q.category)) return;
+                    if (q.grade) grades.add(String(q.grade));
+                });
+                Object.keys(cur).forEach(function (k) { cats.push({ key: k, label: cur[k].grade + " · " + cur[k].subject }); });
+            } else if (mode === "spass") {
+                Object.keys(fun).forEach(function (k) { cats.push({ key: k, label: fun[k] }); });
+            }
+            cats.sort(function (a, b) { return a.label.localeCompare(b.label, "de"); });
+            grade.innerHTML = ["<option value=\"\">Alle Klassen</option>"].concat(
                 Array.from(grades).sort(function (a, b) { return Number(a) - Number(b); })
                     .map(function (g) { return "<option value=\"" + g + "\">Klasse " + g + "</option>"; })
-            );
-            grade.innerHTML = gSel.join("");
-            const labels = (typeof CATEGORY_LABELS !== "undefined") ? CATEGORY_LABELS : {};
-            const cSel = ["<option value=\"\">Alle Kategorien</option>"].concat(
-                Array.from(cats).sort().map(function (c) {
-                    return "<option value=\"" + esc(c) + "\">" + esc(labels[c] || c) + "</option>";
-                })
-            );
-            cat.innerHTML = cSel.join("");
+            ).join("");
+            grade.style.display = (mode === "wissen") ? "" : "none";
+            cat.innerHTML = ["<option value=\"\">Alle Kategorien</option>"].concat(
+                cats.map(function (c) { return "<option value=\"" + esc(c.key) + "\">" + esc(c.label) + "</option>"; })
+            ).join("");
+            cat.style.display = (mode === "wissen" || mode === "spass") ? "" : "none";
+        }
+
+        function devItemHtml(title, meta, raw) {
+            return "<details class=\"bg-black/20 rounded-lg px-2.5 py-1.5\">" +
+                "<summary class=\"cursor-pointer text-xs text-gray-200\">" + esc(String(title || "").slice(0, 110)) + "</summary>" +
+                (meta ? "<div class=\"text-[10px] text-gray-500 mt-1\">" + esc(meta) + "</div>" : "") +
+                "<pre class=\"text-[10px] text-gray-400 mt-1 overflow-x-auto whitespace-pre-wrap\">" +
+                esc(JSON.stringify(raw, null, 2)) + "</pre></details>";
+        }
+        function devGroupHtml(title, count, inner) {
+            return "<details class=\"bg-white/5 rounded-xl overflow-hidden\">" +
+                "<summary class=\"cursor-pointer px-3 py-2.5 font-black text-sm text-white flex justify-between\">" +
+                "<span>" + esc(title) + "</span><span class=\"text-gray-500 text-xs font-bold\">" + count + "</span></summary>" +
+                "<div class=\"px-2 pb-2 space-y-1\">" + inner + "</div></details>";
         }
 
         async function runDevBrowser() {
             const box = document.getElementById("dev-browser-out");
             if (!box) return;
+            box.classList.remove("hidden");
             box.innerHTML = "<div class=\"text-xs text-gray-500\">Lädt …</div>";
             if (typeof ladeAlleFragen === "function") {
                 try { await ladeAlleFragen(); } catch (e) { /* */ }
             }
-            fillDevBrowserFilters();
             const q = ((document.getElementById("dev-browser-q") || {}).value || "").trim().toLowerCase();
-            const grade = ((document.getElementById("dev-filter-grade") || {}).value || "");
-            const cat = ((document.getElementById("dev-filter-cat") || {}).value || "");
-            const mode = ((document.getElementById("dev-browser-mode") || {}).value || "fragen");
-            let rows = [];
+            const gradeF = ((document.getElementById("dev-filter-grade") || {}).value || "");
+            const catF = ((document.getElementById("dev-filter-cat") || {}).value || "");
+            const mode = ((document.getElementById("dev-browser-mode") || {}).value || "wissen");
+            const cur = curriculumMap();
+            const groups = {};
+            function add(group, title, meta, raw) {
+                if (!groups[group]) groups[group] = [];
+                groups[group].push({ title: title, meta: meta, raw: raw });
+            }
+            let total = 0;
+
             if (mode === "vokabeln" && typeof VOCABULARY_DATABASE !== "undefined") {
                 Object.keys(VOCABULARY_DATABASE).forEach(function (lang) {
                     Object.keys(VOCABULARY_DATABASE[lang] || {}).forEach(function (lv) {
                         const set = VOCABULARY_DATABASE[lang][lv];
                         (set.words || []).forEach(function (w, i) {
                             const de = String(w.de || "");
-                            const fo = String(w.foreign || "");
+                            const fo = String(w.foreign || w.en || w.tr || w.fr || "");
                             if (q && de.toLowerCase().indexOf(q) < 0 && fo.toLowerCase().indexOf(q) < 0) return;
-                            rows.push({
-                                title: fo + " → " + de,
-                                meta: lang + " · " + (set.label || lv),
-                                raw: { lang: lang, level: lv, i: i, de: de, foreign: fo }
-                            });
+                            total++;
+                            add((lang.toUpperCase() + " · " + (set.label || lv)), fo + " → " + de, lang + "/" + lv, w);
                         });
                     });
                 });
-            } else {
-                (QUESTIONS_DATABASE || []).forEach(function (item) {
-                    if (grade && String(item.grade) !== grade) return;
-                    if (cat && item.category !== cat) return;
-                    const t = String(item.question || "");
-                    if (q && t.toLowerCase().indexOf(q) < 0 && String(item.id || "").toLowerCase().indexOf(q) < 0) return;
-                    rows.push({
-                        title: t,
-                        meta: (item.id || "?") + " · " + (item.category || "") + (item.grade ? " · K" + item.grade : ""),
-                        raw: item
+            } else if (mode === "woerter") {
+                const themes = (typeof GERMAN_WORDS_KIDS_THEMES !== "undefined") ? GERMAN_WORDS_KIDS_THEMES : {};
+                Object.keys(themes).forEach(function (th) {
+                    (themes[th] || []).forEach(function (w) {
+                        const s = String(w);
+                        if (q && s.toLowerCase().indexOf(q) < 0) return;
+                        total++;
+                        add("Kinder · " + th, s, "Wort-Duell", w);
                     });
                 });
+                const adult = (typeof GERMAN_WORDS_ADULT !== "undefined") ? GERMAN_WORDS_ADULT : [];
+                adult.forEach(function (w) {
+                    const s = String(w);
+                    if (q && s.toLowerCase().indexOf(q) < 0) return;
+                    total++;
+                    add("Erwachsene", s, "Wort-Duell", w);
+                });
+            } else {
+                (QUESTIONS_DATABASE || []).forEach(function (item) {
+                    const key = item.category || "";
+                    const fun = isFunCategory(key);
+                    if (mode === "wissen" && fun) return;
+                    if (mode === "spass" && !fun) return;
+                    if (gradeF && String(item.grade) !== gradeF) return;
+                    if (catF && key !== catF) return;
+                    const t = String(item.question || "");
+                    if (q && t.toLowerCase().indexOf(q) < 0 && String(item.id || "").toLowerCase().indexOf(q) < 0) return;
+                    total++;
+                    let gname;
+                    if (fun) gname = catLabel(key);
+                    else if (cur[key]) gname = cur[key].grade + " · " + cur[key].subject;
+                    else gname = (item.grade ? "Klasse " + item.grade + " · " : "") + catLabel(key);
+                    add(gname, t, (item.id || "") + " · " + key, item);
+                });
             }
-            const max = 80;
-            box.innerHTML = "<div class=\"text-xs text-gray-400 mb-2\">" + rows.length + " Treffer" +
-                (rows.length > max ? " (zeige " + max + ")" : "") + "</div>" +
-                rows.slice(0, max).map(function (r, i) {
-                    return "<details class=\"bg-white/5 rounded-xl p-2.5\"><summary class=\"cursor-pointer text-sm font-bold text-white\">" +
-                        esc(r.title).slice(0, 120) +
-                        "</summary><div class=\"text-[11px] text-gray-400 mt-1\">" + esc(r.meta) +
-                        "</div><pre class=\"text-[10px] text-gray-300 mt-2 overflow-x-auto whitespace-pre-wrap\">" +
-                        esc(JSON.stringify(r.raw, null, 2)) + "</pre></details>";
-                }).join("");
+
+            const names = Object.keys(groups).sort(function (a, b) { return a.localeCompare(b, "de"); });
+            const perGroup = 40;
+            let html = "<div class=\"flex items-center justify-between mb-2\">" +
+                "<div class=\"text-xs text-gray-400\">" + total + " Treffer · " + names.length + " Gruppen</div>" +
+                "<button type=\"button\" class=\"text-[11px] font-bold text-indigo-300\" onclick=\"document.getElementById('dev-browser-out').classList.add('hidden')\">Liste ausblenden</button></div>";
+            names.forEach(function (name) {
+                const items = groups[name];
+                const shown = items.slice(0, perGroup);
+                let inner = shown.map(function (r) { return devItemHtml(r.title, r.meta, r.raw); }).join("");
+                if (items.length > perGroup) inner += "<div class=\"text-[10px] text-gray-500 px-2\">… +" + (items.length - perGroup) + "</div>";
+                html += devGroupHtml(name, items.length, inner);
+            });
+            box.innerHTML = html || "<div class=\"text-xs text-gray-500\">Keine Treffer.</div>";
         }
         window.runDevBrowser = runDevBrowser;
 
@@ -163,17 +245,32 @@
                     box.innerHTML = "<div class=\"text-xs text-gray-500\">Noch kein Feedback.</div>";
                     return;
                 }
-                let html = "";
+                const byType = {};
                 snap.forEach(function (doc) {
                     const d = doc.data() || {};
-                    const when = d.erstellt && d.erstellt.toDate ? d.erstellt.toDate().toLocaleString("de-DE") : "";
-                    html += "<div class=\"bg-white/5 rounded-xl p-3 space-y-1\">" +
-                        "<div class=\"text-xs font-black text-indigo-300\">" + esc(d.type || "Feedback") +
-                        (d.bewertung ? " · " + d.bewertung + "/5" : "") + "</div>" +
-                        "<div class=\"text-[11px] text-gray-400\">" + esc(d.name || "anonym") +
-                        (d.spieler ? " · " + esc(d.spieler) : "") + (when ? " · " + when : "") + "</div>" +
-                        "<div class=\"text-sm text-gray-200 whitespace-pre-wrap\">" + esc(d.text || "") + "</div></div>";
+                    const typ = d.type || "Feedback";
+                    if (!byType[typ]) byType[typ] = [];
+                    byType[typ].push(d);
                 });
+                let html = "<div class=\"flex justify-end mb-1\"><button type=\"button\" class=\"text-[11px] font-bold text-indigo-300\" onclick=\"document.getElementById('dev-feedback-out').classList.add('hidden')\">Liste ausblenden</button></div>";
+                Object.keys(byType).sort().forEach(function (typ) {
+                    const list = byType[typ];
+                    html += "<details class=\"bg-white/5 rounded-xl overflow-hidden\">" +
+                        "<summary class=\"cursor-pointer px-3 py-2.5 font-black text-sm text-white flex justify-between\">" +
+                        "<span>" + esc(typ) + "</span><span class=\"text-gray-500 text-xs\">" + list.length + "</span></summary>" +
+                        "<div class=\"px-2 pb-2 space-y-1.5\">";
+                    list.forEach(function (d) {
+                        const when = d.erstellt && d.erstellt.toDate ? d.erstellt.toDate().toLocaleString("de-DE") : "";
+                        const preview = String(d.text || "").replace(/\s+/g, " ").slice(0, 60);
+                        html += "<details class=\"bg-black/20 rounded-lg px-2.5 py-1.5\">" +
+                            "<summary class=\"cursor-pointer text-xs text-gray-200\">" +
+                            esc((d.name || "anonym") + (when ? " · " + when : "") + (preview ? " · " + preview : "")) +
+                            "</summary>" +
+                            "<div class=\"text-sm text-gray-200 whitespace-pre-wrap mt-1.5\">" + esc(d.text || "") + "</div></details>";
+                    });
+                    html += "</div></details>";
+                });
+                box.classList.remove("hidden");
                 box.innerHTML = html;
             } catch (e) {
                 box.innerHTML = "<div class=\"text-xs text-rose-400\">Lesen fehlgeschlagen. Firestore-Regel für Entwickler einspielen?</div>";

@@ -678,7 +678,7 @@ auth.createUserWithEmailAndPassword(e, p)
             const kind = typeOverride || _learnTogetherType || "wissen";
             const type = (kind === "vokabel") ? "vokabel" : "quiz";
             try {
-                await challengesRef().add({
+                const ref = await challengesRef().add({
                     fromKey: activePlayerKey,
                     fromName: currentPlayer.name,
                     toKey,
@@ -690,10 +690,40 @@ auth.createUserWithEmailAndPassword(e, p)
                     createdAt: Date.now()
                 });
                 showToast("👥 " + learnTogetherLabel(kind) + "-Einladung an " + to.name, "success");
+                watchChallengeAcceptance(ref);
                 loadOpenChallenges();
             } catch (e) {
                 handleError("challengePlayer", e, "Einladung fehlgeschlagen.");
             }
+        }
+
+        // Der Einladende (Host) landete bisher NICHT automatisch in der Lobby,
+        // wenn der Eingeladene "Mitmachen" klickte - loadOpenChallenges() ist
+        // nur ein einmaliges get(), kein Live-Listener. Der Eingeladene wurde
+        // in acceptChallenge() per joinLiveDuelById() sofort verbunden, der
+        // Host wartete auf der "Warte auf ..."-Karte, ohne dass sich je etwas
+        // aktualisierte. Jetzt hört der Host live auf seine eigene Einladung
+        // und wird automatisch mit reingeholt, sobald sie angenommen wird.
+        const _challengeWatchers = {};
+        function watchChallengeAcceptance(ref) {
+            if (!ref || _challengeWatchers[ref.id]) return;
+            const unsub = ref.onSnapshot(function (snap) {
+                if (!snap.exists) { unsub(); delete _challengeWatchers[ref.id]; return; }
+                const c = snap.data() || {};
+                if (c.status === "accepted" && c.lobbyId) {
+                    unsub();
+                    delete _challengeWatchers[ref.id];
+                    if (c.fromKey === activePlayerKey) {
+                        showToast("👥 " + (c.toName || "Dein Freund") + " ist bereit – du wirst verbunden …", "success");
+                        if (typeof joinLiveDuelById === "function") joinLiveDuelById(c.lobbyId);
+                    }
+                    loadOpenChallenges();
+                } else if (c.status === "declined" || c.status === "expired") {
+                    unsub();
+                    delete _challengeWatchers[ref.id];
+                }
+            });
+            _challengeWatchers[ref.id] = unsub;
         }
 
         async function loadOpenChallenges() {
@@ -725,6 +755,10 @@ auth.createUserWithEmailAndPassword(e, p)
                             </div>
                         </div>`;
                     } else if (c.status === "pending" && c.fromKey === activePlayerKey) {
+                        // Live-Listener neu aufsetzen, falls die App zwischendurch
+                        // neu geladen wurde (z.B. Tab-Wechsel) - sonst würde der
+                        // Host beim Annehmen nicht automatisch mitgeholt.
+                        if (typeof watchChallengeAcceptance === "function") watchChallengeAcceptance(doc.ref);
                         html += `<div class="glass-card p-3 flex items-center justify-between gap-2 border border-white/10">
                             <div class="min-w-0">
                                 <div class="text-sm font-bold text-gray-300">Warte auf ${esc(c.toName || "…")}</div>

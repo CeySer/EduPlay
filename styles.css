@@ -906,6 +906,7 @@
         }
 
         .dash-tile {
+            position: relative;
             background: rgba(20, 30, 51, 0.4);
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.04);
@@ -914,6 +915,33 @@
             text-align: center;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+        }
+
+        /* Pfeil unten in der Kachel – zeigt, dass sich beim Antippen etwas
+           darunter öffnet, statt dass man auf eine neue Seite wechselt. */
+        .dash-tile-caret {
+            position: absolute;
+            bottom: 10px;
+            right: 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .dash-tile.is-open {
+            border-color: rgba(99, 102, 241, 0.5) !important;
+            background: rgba(99, 102, 241, 0.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .dash-tile.dash-tile-amber.is-open {
+            border-color: rgba(245, 158, 11, 0.5) !important;
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .dash-tile.is-open .dash-tile-caret {
+            transform: rotate(180deg);
+            color: var(--text-primary);
         }
 
         .dash-tile:hover {

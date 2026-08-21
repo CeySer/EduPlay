@@ -1147,7 +1147,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 console.log('✅ Inhalte-Tab initialisiert');
             }
             if (section === 'eltern') {
-                switchDashAdminTab(currentDashAdminTab || 'aufgaben');
+                switchDashAdminTab(currentDashAdminTab || 'aufgaben', false);
             }
 
             // Deutlich machen, dass sich unten etwas geöffnet hat, statt dass
@@ -1419,7 +1419,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 const m = localStorage.getItem('eduplayDashAdminTab');
                 if (m === 'progress' || m === 'rewards' || m === 'aufgaben') tab = m;
             } catch (e) { /* */ }
-            switchDashAdminTab(tab);
+            switchDashAdminTab(tab, false);
         }
 
         function fillDashFocusProfile() {
@@ -2550,9 +2550,10 @@ auth.createUserWithEmailAndPassword(e, p)
         // ============================================================
         let currentDashAdminTab = 'aufgaben';
 
-        function switchDashAdminTab(tab) {
+        function switchDashAdminTab(tab, scroll) {
             // Alt: 'test' → 'aufgaben'
             if (tab === 'test') tab = 'aufgaben';
+            if (scroll === undefined) scroll = true;
             currentDashAdminTab = tab;
             try { localStorage.setItem('eduplayDashAdminTab', tab); } catch (e) { /* */ }
             ['aufgaben', 'progress', 'rewards'].forEach(t => {
@@ -2587,6 +2588,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 renderDashAdminProgress();
                 renderDashRewards();
             }
+            if (!scroll) return;
             const target = document.getElementById('dash-admin-' + tab + '-view');
             if (target) setTimeout(function () {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });

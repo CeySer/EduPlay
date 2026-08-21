@@ -11,7 +11,7 @@
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
          (Einstellungen -> Entwickler-Modus -> "Build"), ob der Cache/die
          installierte App wirklich den neuesten Stand geladen hat. -->
-    <script>window.EDUPLAY_BUILD = "21.08.2026 · 15:05";</script>
+    <script>window.EDUPLAY_BUILD = "21.08.2026 · 15:55";</script>
 
     <link rel="stylesheet" href="styles.css?v=9.8">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
@@ -2237,11 +2237,23 @@ VIEW: QUIZ SETUP
     </div>
 
     <!-- ==========================================================
+            VIEW: KURSE EINES FACHS
+            ========================================================== -->
+    <div id="view-kurs-fach" class="view hidden space-y-3">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('kurse')">Zurück</button>
+            <span id="kurs-fach-title" class="text-sm font-bold text-gray-400">Fach</span>
+            <span class="w-16"></span>
+        </div>
+        <div id="kurs-fach-liste" class="space-y-3"></div>
+    </div>
+
+    <!-- ==========================================================
             VIEW: KURS · LEKTIONEN-LISTE
             ========================================================== -->
     <div id="view-kurs-lektionen" class="view hidden space-y-3">
         <div class="flex items-center justify-between gap-2">
-            <button class="btn-secondary text-sm py-2.5 px-4" onclick="showKurse()">Zurück</button>
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="backToKursFach()">Zurück</button>
             <span id="kurs-lektionen-title" class="text-sm font-bold text-gray-400">Kurs</span>
             <span class="w-16"></span>
         </div>

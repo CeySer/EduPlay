@@ -14,7 +14,8 @@ const KURSE = [
     { id: "flaechen_umfang_k6", title: "Flächen & Umfang", icon: "📐", grade: 6, subject: "mathe", beschreibung: "Umfang und Fläche von Rechteck und Quadrat sicher berechnen." },
     { id: "satzglieder_k5", title: "Satzglieder", icon: "🧩", grade: 5, subject: "deutsch", beschreibung: "Subjekt, Prädikat und Objekt in Sätzen sicher erkennen." },
     { id: "geometrie_grundlagen_k5", title: "Geometrie Grundlagen", icon: "🔺", grade: 5, subject: "mathe", beschreibung: "Winkel und Vierecke kennenlernen und unterscheiden." },
-    { id: "plural_regeln_k5", title: "Plural-Regeln", icon: "📚", grade: 5, subject: "englisch", beschreibung: "Die Mehrzahl englischer Wörter richtig bilden." }
+    { id: "plural_regeln_k5", title: "Plural-Regeln", icon: "📚", grade: 5, subject: "englisch", beschreibung: "Die Mehrzahl englischer Wörter richtig bilden." },
+    { id: "wortarten_vertiefend_k5", title: "Wortarten vertiefend", icon: "🔤", grade: 5, subject: "deutsch", beschreibung: "Pronomen, Präpositionen und Konjunktionen genauer unter die Lupe nehmen." }
 ];
 
 const LEKTIONEN = [
@@ -1514,6 +1515,210 @@ const LEKTIONEN = [
                 explanation: "Der gebräuchliche Plural von 'person' ist 'people'." }
         ],
         bestehenAb: 0.8
+    },
+    {
+        id: "wort_k5_l1",
+        kurs: "wortarten_vertiefend_k5",
+        order: 1,
+        icon: "🔍",
+        title: "Pronomen genauer unterscheiden",
+        kurz: "Personal-, Possessiv-, Demonstrativ-, Reflexiv- & Interrogativpronomen",
+        erklaerung: {
+            intro: "<b>Pronomen</b> (Fürwörter) stehen anstelle eines Nomens oder begleiten es. Es gibt mehrere Arten: <b>Personalpronomen</b> (ich, du, er...), <b>Possessivpronomen</b> (mein, dein...), <b>Demonstrativpronomen</b> (dieser, jener...), <b>Reflexivpronomen</b> (sich, mich...) und <b>Interrogativpronomen</b> (wer, was, welcher...).",
+            beispiele: [
+                "👤 Personalpronomen vertreten eine Person: 'Ich rufe dich an.' → ich, dich",
+                "🏠 Possessivpronomen zeigen Besitz an: 'Das ist mein Fahrrad.' → mein",
+                "👉 Demonstrativpronomen zeigen genau auf etwas: 'Dieses Buch gehört mir, jenes nicht.' → dieses, jenes",
+                "🪞 Reflexivpronomen beziehen sich auf das Subjekt zurück: 'Er wäscht sich.' → sich",
+                "❓ Interrogativpronomen fragen: 'Wer hat das gemacht? Welches Buch meinst du?' → wer, welches"
+            ],
+            merksatz: "Vertritt das Wort eine Person → Personalpronomen. Zeigt es Besitz → Possessivpronomen. Zeigt es genau auf etwas → Demonstrativpronomen. Bezieht es sich auf das Subjekt zurück → Reflexivpronomen. Fragt es → Interrogativpronomen."
+        },
+        uebung: {
+            leicht: [
+                { id: "wortk5l1u_leicht_1", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    question: "Welche Pronomenart ist 'ich' in 'Ich gehe zur Schule.'?",
+                    answers: ["Personalpronomen", "Possessivpronomen", "Demonstrativpronomen", "Reflexivpronomen"], correct: 0,
+                    explanation: "'ich' vertritt die sprechende Person – ein Personalpronomen." },
+                { id: "wortk5l1u_leicht_2", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    question: "Welche Pronomenart ist 'mein' in 'Das ist mein Hund.'?",
+                    answers: ["Possessivpronomen", "Personalpronomen", "Interrogativpronomen", "Demonstrativpronomen"], correct: 0,
+                    explanation: "'mein' zeigt Besitz an – ein Possessivpronomen." },
+                { id: "wortk5l1u_leicht_3", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    question: "Welche Pronomenart fragt nach einer Person oder Sache, z. B. 'wer' oder 'was'?",
+                    answers: ["Interrogativpronomen", "Reflexivpronomen", "Possessivpronomen", "Personalpronomen"], correct: 0,
+                    explanation: "Interrogativpronomen wie 'wer', 'was', 'welcher' leiten Fragen ein." },
+                { id: "wortk5l1u_leicht_4", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    question: "Welche Pronomenart ist 'sich' in 'Sie freut sich.'?",
+                    answers: ["Reflexivpronomen", "Personalpronomen", "Demonstrativpronomen", "Possessivpronomen"], correct: 0,
+                    explanation: "'sich' bezieht sich auf das Subjekt zurück – ein Reflexivpronomen." }
+            ],
+            mittel: [
+                { id: "wortk5l1u_mittel_1", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    question: "Welches Wort ist in 'Dieses Auto gehört meinem Onkel.' ein Demonstrativpronomen?",
+                    answers: ["Dieses", "meinem", "Auto", "Onkel"], correct: 0,
+                    explanation: "'Dieses' zeigt genau auf ein bestimmtes Auto – ein Demonstrativpronomen." },
+                { id: "wortk5l1u_mittel_2", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    question: "Welches Wort ist in 'Er kämmt sich vor dem Spiegel.' das Reflexivpronomen?",
+                    answers: ["sich", "Er", "kämmt", "Spiegel"], correct: 0,
+                    explanation: "'sich' bezieht sich auf 'Er' zurück – ein Reflexivpronomen." },
+                { id: "wortk5l1u_mittel_3", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    question: "'Welches Buch hast du gelesen?' – Welche Pronomenart ist 'Welches'?",
+                    answers: ["Interrogativpronomen", "Demonstrativpronomen", "Possessivpronomen", "Personalpronomen"], correct: 0,
+                    explanation: "'Welches' fragt nach dem Buch – ein Interrogativpronomen." },
+                { id: "wortk5l1u_mittel_4", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    question: "Welches Wort ist in 'Unser Garten ist sehr groß.' ein Possessivpronomen?",
+                    answers: ["Unser", "Garten", "ist", "groß"], correct: 0,
+                    explanation: "'Unser' zeigt an, wem der Garten gehört – ein Possessivpronomen." }
+            ],
+            schwer: [
+                { id: "wortk5l1u_schwer_1", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    question: "'Er hat sich das selbst ausgesucht.' – Welche Pronomenart ist 'sich' hier?",
+                    answers: ["Reflexivpronomen, weil es sich auf 'Er' zurückbezieht", "Personalpronomen, weil es eine Person vertritt", "Possessivpronomen, weil es Besitz anzeigt", "Demonstrativpronomen, weil es auf etwas zeigt"], correct: 0,
+                    explanation: "'sich' bezieht sich auf das Subjekt 'Er' zurück – ein Reflexivpronomen." },
+                { id: "wortk5l1u_schwer_2", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    question: "Worin unterscheiden sich Possessiv- und Demonstrativpronomen vor allem?",
+                    answers: ["Possessivpronomen zeigen Besitz, Demonstrativpronomen zeigen genau auf etwas", "Possessivpronomen stehen nur im Plural, Demonstrativpronomen nur im Singular", "Possessivpronomen werden nie gebeugt, Demonstrativpronomen immer", "Es gibt zwischen beiden Pronomenarten keinen echten Unterschied"], correct: 0,
+                    explanation: "Possessiv = Besitz ('mein'), Demonstrativ = genaues Zeigen ('dieser, jener')." },
+                { id: "wortk5l1u_schwer_3", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    question: "'Wessen Fahrrad steht hier?' – Welche Pronomenart ist 'Wessen'?",
+                    answers: ["Interrogativpronomen, denn es fragt nach dem Besitzer", "Possessivpronomen, denn es zeigt direkt einen Besitzer an", "Personalpronomen, denn es vertritt eine bestimmte Person", "Reflexivpronomen, denn es bezieht sich auf das Subjekt zurück"], correct: 0,
+                    explanation: "'Wessen' fragt nach dem Besitzer – ein Interrogativpronomen, auch wenn es nach Besitz fragt." },
+                { id: "wortk5l1u_schwer_4", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    question: "In welchem Satz ist 'ihr' ein Possessivpronomen (nicht Personalpronomen)?",
+                    answers: ["Das ist ihr Fahrrad.", "Ich habe ihr geholfen.", "Wo wohnt ihr?", "Ich schreibe ihr einen Brief."], correct: 0,
+                    explanation: "'ihr Fahrrad' zeigt Besitz an – hier ist 'ihr' Possessivpronomen. In den anderen Sätzen ist 'ihr' Personalpronomen." }
+            ]
+        },
+        test: [
+            { id: "wortk5l1_test_1", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                question: "Welche Pronomenart ist 'du' in 'Du bist mein bester Freund.'?",
+                answers: ["Personalpronomen", "Possessivpronomen", "Interrogativpronomen", "Reflexivpronomen"], correct: 0,
+                explanation: "'du' vertritt die angesprochene Person – ein Personalpronomen." },
+            { id: "wortk5l1_test_2", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                question: "Welche Pronomenart zeigt Besitz an?",
+                answers: ["Possessivpronomen", "Interrogativpronomen", "Reflexivpronomen", "Demonstrativpronomen"], correct: 0,
+                explanation: "Possessivpronomen wie 'mein', 'dein', 'sein' zeigen Besitz an." },
+            { id: "wortk5l1_test_3", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                question: "Welches Wort ist in 'Jenes Haus dort ist unser Ferienhaus.' ein Demonstrativpronomen?",
+                answers: ["Jenes", "unser", "Haus", "Ferienhaus"], correct: 0,
+                explanation: "'Jenes' zeigt genau auf ein bestimmtes Haus – ein Demonstrativpronomen." },
+            { id: "wortk5l1_test_4", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                question: "Welches Wort ist in 'Die Kinder waschen sich die Hände.' das Reflexivpronomen?",
+                answers: ["sich", "Kinder", "waschen", "Hände"], correct: 0,
+                explanation: "'sich' bezieht sich auf 'Die Kinder' zurück – ein Reflexivpronomen." },
+            { id: "wortk5l1_test_5", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                question: "'Wer hat den Kuchen gebacken?' – Welche Pronomenart ist 'Wer'?",
+                answers: ["Interrogativpronomen, weil es nach einer Person fragt", "Personalpronomen, weil es eine Person vertritt", "Demonstrativpronomen, weil es auf jemanden zeigt", "Possessivpronomen, weil es Besitz anzeigt"], correct: 0,
+                explanation: "'Wer' fragt nach einer Person – ein Interrogativpronomen." },
+            { id: "wortk5l1_test_6", category: "kurs_wort_k5_l1", area: "schule", grade: 5, subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                question: "In welchem Satz ist 'sein' ein Possessivpronomen (nicht das Verb 'sein')?",
+                answers: ["Er putzt sein Fahrrad.", "Er will Lehrer sein.", "Das kann nicht sein.", "Morgen wird er müde sein."], correct: 0,
+                explanation: "'sein Fahrrad' zeigt Besitz an – hier ist 'sein' Possessivpronomen. In den anderen Sätzen ist 'sein' das Verb." }
+        ],
+        bestehenAb: 0.8
+    },
+    {
+        id: "wort_k5_l2",
+        kurs: "wortarten_vertiefend_k5",
+        order: 2,
+        icon: "🔗",
+        title: "Präpositionen und Konjunktionen genauer betrachtet",
+        kurz: "Fester Kasus, Wechselpräpositionen & Nebensätze",
+        erklaerung: {
+            intro: "<b>Präpositionen</b> (Verhältniswörter) bestimmen den Fall (Kasus) des folgenden Nomens. Manche verlangen immer den Akkusativ, manche immer den Dativ, manche (die <b>Wechselpräpositionen</b>) mal den einen, mal den anderen – je nachdem, ob eine Bewegung (Akkusativ, 'wohin?') oder ein Ort (Dativ, 'wo?') gemeint ist. <b>Konjunktionen</b> verbinden Sätze: nebenordnende (und, oder, aber) verbinden gleichrangige Sätze, unterordnende (weil, dass, obwohl) leiten einen Nebensatz ein und schicken das Verb ans Satzende.",
+            beispiele: [
+                "🎯 Feste Akkusativ-Präpositionen: für, durch, gegen, ohne, um → 'Das Geschenk ist für dich.'",
+                "📍 Feste Dativ-Präpositionen: aus, bei, mit, nach, seit, von, zu → 'Ich komme aus der Schule.'",
+                "🔄 Wechselpräposition 'in': 'Ich gehe in die Schule.' (Akkusativ, wohin?) vs. 'Ich bin in der Schule.' (Dativ, wo?)",
+                "🔗 Nebenordnende Konjunktion: 'Ich koche, und du deckst den Tisch.' (Verb bleibt an Position 2)",
+                "➡️ Unterordnende Konjunktion: 'Ich bleibe zu Hause, weil ich krank bin.' (Verb rückt ans Ende: 'bin')"
+            ],
+            merksatz: "Feste Akkusativ-Präpositionen: für, durch, gegen, ohne, um. Feste Dativ-Präpositionen: aus, bei, mit, nach, seit, von, zu. Wechselpräpositionen: Akkusativ bei Bewegung (wohin?), Dativ bei Ort (wo?). Nebenordnende Konjunktionen (und, oder, aber, denn) lassen das Verb an Position 2, unterordnende (weil, dass, obwohl, wenn) schicken es ans Satzende."
+        },
+        uebung: {
+            leicht: [
+                { id: "wortk5l2u_leicht_1", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "leicht", points: 10,
+                    question: "Welchen Fall verlangt die Präposition 'für' immer?",
+                    answers: ["Akkusativ", "Dativ", "Genitiv", "Nominativ"], correct: 0,
+                    explanation: "'für' ist eine feste Akkusativ-Präposition: 'für dich', 'für den Hund'." },
+                { id: "wortk5l2u_leicht_2", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "leicht", points: 10,
+                    question: "Welchen Fall verlangt die Präposition 'mit' immer?",
+                    answers: ["Dativ", "Akkusativ", "Genitiv", "Nominativ"], correct: 0,
+                    explanation: "'mit' ist eine feste Dativ-Präposition: 'mit dir', 'mit dem Hund'." },
+                { id: "wortk5l2u_leicht_3", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "leicht", points: 10,
+                    question: "Welche Konjunktion verbindet zwei gleichrangige Sätze (nebenordnend)?",
+                    answers: ["und", "weil", "dass", "obwohl"], correct: 0,
+                    explanation: "'und' ist eine nebenordnende Konjunktion, das Verb bleibt an Position 2." },
+                { id: "wortk5l2u_leicht_4", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "leicht", points: 10,
+                    question: "Welche Konjunktion leitet einen Nebensatz ein und schickt das Verb ans Ende?",
+                    answers: ["weil", "und", "oder", "aber"], correct: 0,
+                    explanation: "'weil' ist eine unterordnende Konjunktion – das Verb steht am Satzende." }
+            ],
+            mittel: [
+                { id: "wortk5l2u_mittel_1", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "mittel", points: 10,
+                    question: "'Ich gehe durch den Park.' – Welchen Fall verlangt 'durch'?",
+                    answers: ["Akkusativ, wie bei allen festen Akkusativ-Präpositionen", "Dativ, wie bei allen festen Dativ-Präpositionen", "Genitiv, wie bei einigen wenigen Präpositionen", "Es kommt hier ganz auf den Satz an"], correct: 0,
+                    explanation: "'durch' gehört zu den festen Akkusativ-Präpositionen: für, durch, gegen, ohne, um." },
+                { id: "wortk5l2u_mittel_2", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "mittel", points: 10,
+                    question: "'Ich lege das Buch auf den Tisch.' – Warum steht hier der Akkusativ nach 'auf'?",
+                    answers: ["Weil eine Bewegung/Richtung gemeint ist (wohin?)", "Weil 'auf' immer den Akkusativ verlangt", "Weil ein fester Ort gemeint ist (wo?)", "Weil 'Tisch' ein männliches Nomen ist"], correct: 0,
+                    explanation: "'auf' ist eine Wechselpräposition: Bei Bewegung (wohin?) steht der Akkusativ." },
+                { id: "wortk5l2u_mittel_3", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "mittel", points: 10,
+                    question: "'Das Buch liegt auf dem Tisch.' – Warum steht hier der Dativ nach 'auf'?",
+                    answers: ["Weil ein fester Ort gemeint ist (wo?)", "Weil eine Bewegung gemeint ist (wohin?)", "Weil 'auf' immer den Dativ verlangt", "Weil 'Tisch' ein Dativ-Nomen ist"], correct: 0,
+                    explanation: "Bei einem festen Ort (wo?) steht nach Wechselpräpositionen der Dativ." },
+                { id: "wortk5l2u_mittel_4", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "mittel", points: 10,
+                    question: "'Ich bleibe zu Hause, obwohl ich Zeit habe.' – Wo steht das Verb 'habe' und warum?",
+                    answers: ["Am Satzende, weil 'obwohl' eine unterordnende Konjunktion ist", "An Position 2, weil 'obwohl' eine nebenordnende Konjunktion ist", "Ganz am Satzanfang, weil es sich um einen Nebensatz handelt", "Direkt nach 'obwohl', das ist bei Nebensätzen immer so"], correct: 0,
+                    explanation: "'obwohl' ist unterordnend, deshalb rückt das Verb im Nebensatz ans Ende." }
+            ],
+            schwer: [
+                { id: "wortk5l2u_schwer_1", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "schwer", points: 10,
+                    question: "Welches Satzpaar zeigt den Unterschied zwischen Wechselpräposition mit Akkusativ und Dativ richtig?",
+                    answers: ["'Er geht in die Küche' (Akkusativ) vs. 'Er kocht in der Küche' (Dativ)", "'Er geht in die Küche' (Dativ) vs. 'Er kocht in der Küche' (Akkusativ)", "Beide Sätze stehen laut dieser Regel tatsächlich im Akkusativ", "Beide Sätze stehen laut dieser Regel tatsächlich im Dativ"], correct: 0,
+                    explanation: "Bewegung (wohin? → in die Küche) = Akkusativ, Ort (wo? → in der Küche) = Dativ." },
+                { id: "wortk5l2u_schwer_2", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "schwer", points: 10,
+                    question: "Welcher Satz enthält einen Fehler bei Präposition und Fall?",
+                    answers: ["Ich komme aus die Schule.", "Ich komme aus der Schule.", "Ich warte auf meinen Freund.", "Er wohnt bei seiner Oma."], correct: 0,
+                    explanation: "'aus' verlangt immer den Dativ: richtig wäre 'aus der Schule', nicht 'aus die Schule'." },
+                { id: "wortk5l2u_schwer_3", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "schwer", points: 10,
+                    question: "Wodurch unterscheiden sich nebenordnende und unterordnende Konjunktionen vor allem?",
+                    answers: ["Bei unterordnenden rückt das Verb ans Satzende, bei nebenordnenden nicht", "Nebenordnende Konjunktionen gibt es im Deutschen so gut wie gar nicht", "Unterordnende Konjunktionen verbinden ausschließlich zwei Hauptsätze", "Es gibt zwischen beiden Konjunktionsarten keinen Unterschied"], correct: 0,
+                    explanation: "Unterordnende Konjunktionen (weil, dass, obwohl...) leiten einen Nebensatz ein – das Verb steht am Ende." },
+                { id: "wortk5l2u_schwer_4", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "schwer", points: 10,
+                    question: "'Ich esse einen Apfel, weil ich Hunger habe.' – Welche Wortart ist 'weil' hier?",
+                    answers: ["Unterordnende Konjunktion", "Nebenordnende Konjunktion", "Präposition", "Pronomen"], correct: 0,
+                    explanation: "'weil' leitet einen Nebensatz ein und schickt 'habe' ans Satzende – eine unterordnende Konjunktion." }
+            ]
+        },
+        test: [
+            { id: "wortk5l2_test_1", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "leicht", points: 10,
+                question: "Welchen Fall verlangt die Präposition 'ohne' immer?",
+                answers: ["Akkusativ", "Dativ", "Genitiv", "Nominativ"], correct: 0,
+                explanation: "'ohne' gehört zu den festen Akkusativ-Präpositionen: für, durch, gegen, ohne, um." },
+            { id: "wortk5l2_test_2", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "leicht", points: 10,
+                question: "Welchen Fall verlangt die Präposition 'nach' immer?",
+                answers: ["Dativ", "Akkusativ", "Genitiv", "Nominativ"], correct: 0,
+                explanation: "'nach' gehört zu den festen Dativ-Präpositionen: aus, bei, mit, nach, seit, von, zu." },
+            { id: "wortk5l2_test_3", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "mittel", points: 10,
+                question: "'Die Katze springt auf den Schrank.' – Warum steht hier der Akkusativ?",
+                answers: ["Weil eine Bewegung/Richtung gemeint ist (wohin?)", "Weil ein fester Ort gemeint ist (wo?)", "Weil 'auf' immer den Akkusativ verlangt", "Weil 'Schrank' immer im Akkusativ steht"], correct: 0,
+                explanation: "Bewegung (wohin? → auf den Schrank) verlangt bei Wechselpräpositionen den Akkusativ." },
+            { id: "wortk5l2_test_4", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "mittel", points: 10,
+                question: "'Ich bleibe zu Hause, weil es regnet.' – An welcher Stelle steht das Verb 'regnet' und warum?",
+                answers: ["Am Satzende, weil 'weil' eine unterordnende Konjunktion ist", "An Position 2, weil 'weil' eine nebenordnende Konjunktion ist", "Ganz am Anfang des Satzes, direkt vor dem Subjekt", "Direkt nach dem Komma, noch vor dem Subjekt"], correct: 0,
+                explanation: "'weil' ist unterordnend – das Verb rückt im Nebensatz ans Satzende." },
+            { id: "wortk5l2_test_5", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "schwer", points: 10,
+                question: "Welcher Satz enthält einen Fehler bei Präposition und Fall?",
+                answers: ["Ich fahre mit den Bus.", "Ich fahre mit dem Bus.", "Ich warte auf den Bus.", "Ich komme mit dem Fahrrad."], correct: 0,
+                explanation: "'mit' verlangt immer den Dativ: richtig wäre 'mit dem Bus', nicht 'mit den Bus'." },
+            { id: "wortk5l2_test_6", category: "kurs_wort_k5_l2", area: "schule", grade: 5, subject: "deutsch", topic: "praepositionen_konjunktionen", difficulty: "schwer", points: 10,
+                question: "'Wir gehen ins Kino, obwohl es spät ist.' – Welche Wortart ist 'obwohl'?",
+                answers: ["Unterordnende Konjunktion", "Nebenordnende Konjunktion", "Präposition", "Adverb"], correct: 0,
+                explanation: "'obwohl' leitet einen Nebensatz ein (Verb 'ist' am Ende) – eine unterordnende Konjunktion." }
+        ],
+        bestehenAb: 0.8
     }
 ];
 
@@ -1550,21 +1755,25 @@ const KURS_FACH_LABELS = {
     biologie: { icon: "🌱", label: "Biologie" }
 };
 
+// Ein Kurs-Button (großformatig, orange) – wird sowohl für die Kurse
+// innerhalb eines Fachs als auch (in Button-Form) für die Fächer selbst
+// verwendet, damit beide Ebenen gleich aussehen.
+function kursButtonHtml(icon, title, beschreibung, fertig, gesamt, onclick) {
+    return `<button type="button" onclick="${onclick}" class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">
+        <span class="text-3xl shrink-0">${icon}</span>
+        <span class="flex-1">
+            <span class="block text-base font-black">${title}</span>
+            <span class="block text-xs font-bold text-amber-100/80">${beschreibung}</span>
+        </span>
+        <span class="text-xs font-black bg-black/20 rounded-full px-2.5 py-1 shrink-0">${fertig}/${gesamt}</span>
+    </button>`;
+}
+
+let currentKurseFach = null;
+
 function showKurse() {
     const wrap = document.getElementById("kurse-liste");
     if (!wrap) return;
-    const kursButton = (k) => {
-        const lektionen = getLektionenForKurs(k.id);
-        const fertig = lektionen.filter(l => istLektionAbgeschlossen(l.id)).length;
-        return `<button type="button" onclick="openKurs('${k.id}')" class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">
-            <span class="text-3xl shrink-0">${k.icon}</span>
-            <span class="flex-1">
-                <span class="block text-base font-black">${k.title}</span>
-                <span class="block text-xs font-bold text-amber-100/80">${k.beschreibung}</span>
-            </span>
-            <span class="text-xs font-black bg-black/20 rounded-full px-2.5 py-1 shrink-0">${fertig}/${lektionen.length}</span>
-        </button>`;
-    };
     const vorhandeneFaecher = [...new Set(KURSE.map(k => k.subject))];
     const faecher = [
         ...KURS_FACH_ORDER.filter(f => vorhandeneFaecher.includes(f)),
@@ -1573,17 +1782,40 @@ function showKurse() {
     wrap.innerHTML = faecher.map(fach => {
         const label = KURS_FACH_LABELS[fach] || { icon: "📘", label: fach };
         const kurseImFach = KURSE.filter(k => k.subject === fach);
-        return `<div class="space-y-2.5">
-            <p class="text-xs font-black text-gray-400 uppercase tracking-wider px-1">${label.icon} ${label.label}</p>
-            <div class="space-y-2.5">${kurseImFach.map(kursButton).join("")}</div>
-        </div>`;
+        const lektionenImFach = kurseImFach.flatMap(k => getLektionenForKurs(k.id));
+        const fertig = lektionenImFach.filter(l => istLektionAbgeschlossen(l.id)).length;
+        const kurseText = `${kurseImFach.length} Kurs${kurseImFach.length === 1 ? "" : "e"}`;
+        return kursButtonHtml(label.icon, label.label, kurseText, fertig, lektionenImFach.length, `openKursFach('${fach}')`);
     }).join("");
     switchView("kurse");
+}
+
+function openKursFach(fach) {
+    currentKurseFach = fach;
+    const label = KURS_FACH_LABELS[fach] || { icon: "📘", label: fach };
+    document.getElementById("kurs-fach-title").innerText = `${label.icon} ${label.label}`;
+    const wrap = document.getElementById("kurs-fach-liste");
+    const kurseImFach = KURSE.filter(k => k.subject === fach);
+    wrap.innerHTML = kurseImFach.map(k => {
+        const lektionen = getLektionenForKurs(k.id);
+        const fertig = lektionen.filter(l => istLektionAbgeschlossen(l.id)).length;
+        return kursButtonHtml(k.icon, k.title, k.beschreibung, fertig, lektionen.length, `openKurs('${k.id}')`);
+    }).join("");
+    switchView("kurs-fach");
+}
+
+function backToKursFach() {
+    if (currentKurseFach) {
+        openKursFach(currentKurseFach);
+    } else {
+        showKurse();
+    }
 }
 
 function openKurs(kursId) {
     const kurs = KURSE.find(k => k.id === kursId);
     if (!kurs) return;
+    currentKurseFach = kurs.subject;
     const lektionen = getLektionenForKurs(kursId);
     document.getElementById("kurs-lektionen-title").innerText = `${kurs.icon} ${kurs.title}`;
     const wrap = document.getElementById("kurs-lektionen-liste");

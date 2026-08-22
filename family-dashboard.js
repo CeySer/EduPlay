@@ -1239,15 +1239,16 @@ auth.createUserWithEmailAndPassword(e, p)
                 const safeId = 'study-player-' + key.replace(/[^a-zA-Z0-9_-]/g, '_');
                 playerBlocks.push(`<div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden">
                     <button type="button" onclick="toggleDashPlayerBlock('${safeId}')"
-                        class="w-full px-3.5 py-3 flex items-center justify-between hover:bg-white/5 transition">
+                        class="w-full px-4 py-3.5 flex items-center justify-between hover:bg-white/5 transition min-h-[52px]">
                         <span class="font-bold text-white text-sm">${esc(p.name)} · ${days.length} Tag${days.length === 1 ? '' : 'e'}</span>
                         <span id="${safeId}-arrow" class="text-gray-400 transition-transform text-xs">▼</span>
                     </button>
-                    <div id="${safeId}" class="hidden px-3.5 pb-3">${days.join('')}</div>
+                    <div id="${safeId}" class="hidden px-4 pb-3.5 pt-1 space-y-0.5">${days.join('')}</div>
                 </div>`);
             });
             if (playerBlocks.length) {
-                html += `<div class="text-[11px] text-gray-500 font-bold pt-2 pb-0.5">Frühere Tage</div>` + playerBlocks.join("");
+                html += `<div class="text-[11px] text-gray-500 font-bold pt-3 pb-1.5 px-0.5">Frühere Tage</div>` +
+                    `<div class="space-y-2.5">` + playerBlocks.join("") + `</div>`;
             }
             box.innerHTML = html;
         }
@@ -2140,23 +2141,23 @@ auth.createUserWithEmailAndPassword(e, p)
                             ergebnis = 'noch nicht versucht';
                             ergebnisClass = 'text-gray-500';
                         }
-                        return `<div class="flex items-center justify-between gap-2 text-xs py-1.5 border-b border-white/5 last:border-0">
+                        return `<div class="flex items-center justify-between gap-2 text-xs px-2.5 py-2.5 rounded-lg bg-white/[0.03]">
                             <span class="text-gray-300 truncate flex-1">${statusIcon} ${esc(l.title)}</span>
                             <span class="${ergebnisClass} shrink-0 font-bold">${ergebnis}</span>
                         </div>`;
                     }).join('');
-                    return `<div class="rounded-xl bg-black/20 border border-white/5 px-3 py-2.5">
-                        <div class="flex items-center justify-between gap-2 text-xs mb-1.5">
+                    return `<div class="rounded-xl bg-black/20 border border-white/5 px-3.5 py-3">
+                        <div class="flex items-center justify-between gap-2 text-xs mb-2">
                             <span class="font-bold text-gray-100 truncate">${kurs.icon || '📘'} ${esc(kurs.title)}</span>
                             <span class="text-gray-400 shrink-0">${fertig}/${liste.length}</span>
                         </div>
-                        <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden mb-1">
+                        <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden mb-2.5">
                             <div class="h-1.5 rounded-full ${pct >= 100 ? 'bg-emerald-400' : 'bg-amber-400'}" style="width:${pct}%"></div>
                         </div>
-                        <div>${lektionRows}</div>
+                        <div class="space-y-1.5">${lektionRows}</div>
                     </div>`;
                 }).join('');
-                return `<div class="space-y-2.5">
+                return `<div class="space-y-3">
                     ${keys.length > 1 ? `<div class="font-bold text-white text-sm">${esc(p.name)}</div>` : ''}
                     ${rows || '<div class="text-[11px] text-gray-500">Noch keine Lektion gestartet</div>'}
                 </div>`;

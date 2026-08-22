@@ -307,28 +307,16 @@
         let tvMirrorDisplay = false;
 
         function setTVMirrorDisplay(on) {
-            tvMirrorDisplay = !!on;
+            // Host bleibt immer in Fernseher-Ansicht (kein „Normale Ansicht“ mehr)
+            tvMirrorDisplay = on !== false;
             document.body.classList.toggle("tv-mirror-display", tvMirrorDisplay);
             const bar = document.getElementById("tv-mirror-bar");
-            if (bar) {
-                bar.classList.toggle("hidden", !tvMirrorDisplay);
-                bar.classList.toggle("flex", tvMirrorDisplay);
-            }
+            if (bar) bar.classList.add("hidden");
             try {
                 if (tvMirrorDisplay && document.documentElement.requestFullscreen) {
                     document.documentElement.requestFullscreen().catch(function () {});
-                } else if (!tvMirrorDisplay && document.fullscreenElement && document.exitFullscreen) {
-                    document.exitFullscreen().catch(function () {});
                 }
             } catch (_) {}
-            if (typeof showToast === "function") {
-                showToast(
-                    tvMirrorDisplay
-                        ? "Fernseher-Ansicht an – jetzt Bildschirm auf den TV übertragen"
-                        : "Normale Ansicht",
-                    "info"
-                );
-            }
         }
         window.setTVMirrorDisplay = setTVMirrorDisplay;
 
@@ -503,17 +491,19 @@
                     const joinUrl = (window.location.origin || "") + (window.location.pathname || "/") + "?tv=" + encodeURIComponent(tvCode);
                     const qrSrc = tvCode ? "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(joinUrl) : "";
                     setTVHostPlayHTML(`
-                        <div class="glass-card-glow h-[80vh] flex flex-col items-center justify-center p-8 text-center" style="border-color:rgba(99,102,241,0.15);">
-                            <h2 class="text-5xl font-black text-indigo-400 mb-4">TV-Lobby wiederhergestellt</h2>
-                            ${tvCode ? `<div class="mb-6">
-                                <p class="text-sm text-indigo-300 font-bold uppercase tracking-wider">Beitritts-Code</p>
-                                <div class="text-5xl font-black tracking-[0.28em] text-white my-2">${tvCode}</div>
-                                ${qrSrc ? `<img alt="QR" class="mx-auto w-40 h-40 rounded-xl bg-white p-2" src="${qrSrc}">` : ""}
+                        <div class="tv-lobby-stage">
+                            <h2 class="tv-lobby-title">TV-Lobby wiederhergestellt</h2>
+                            ${tvCode ? `<div class="tv-lobby-join-row">
+                                ${qrSrc ? `<div class="tv-lobby-qr"><img alt="QR" src="${qrSrc}"></div>` : ""}
+                                <div class="tv-lobby-code-block">
+                                    <p class="tv-lobby-code-label">Beitritts-Code</p>
+                                    <div class="tv-lobby-code">${tvCode}</div>
+                                </div>
+                                <button type="button" onclick="shareTVCode()" class="tv-lobby-share">📤 Code teilen</button>
                             </div>` : ""}
-                            <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>
-                            <button type="button" onclick="setTVMirrorDisplay(true)" class="mb-4 w-full max-w-md py-3 rounded-xl font-bold text-white" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">📺 Fernseher-Ansicht (für Stream)</button>
-                            <button onclick="startTVGameLoop()" class="btn-primary text-3xl py-6 px-12" style="background:var(--gradient-amber);">Spiel starten! 🚀</button>
-                            <button onclick="leaveTVGame()" class="mt-8 text-gray-500 text-lg font-bold underline">Lobby abbrechen</button>
+                            <div id="tv-player-list" class="tv-lobby-players"></div>
+                            <button onclick="startTVGameLoop()" class="tv-lobby-start">Spiel starten! 🚀</button>
+                            <button onclick="leaveTVGame()" class="tv-lobby-cancel">Lobby abbrechen</button>
                         </div>`);
                     renderTVPlayerList(data.players);
                 } else if (data.status === "playing") {
@@ -633,7 +623,10 @@
 
         function setTVHostPlayHTML(html) {
             showTVHostPlay();
-            if (isTVHost) startTVLandscapeGuard();
+            if (isTVHost) {
+                startTVLandscapeGuard();
+                setTVMirrorDisplay(true);
+            }
             const el = tvHostPlayEl();
             if (el) el.innerHTML = html;
             ensureTVLandscapeOverlay();
@@ -906,25 +899,26 @@
                     : "";
 
                 setTVHostPlayHTML(`
-                    <div class="glass-card-glow h-[80vh] flex flex-col items-center justify-center p-8 text-center" style="border-color:rgba(99,102,241,0.15);">
-                        <h2 class="text-5xl font-black text-indigo-400 mb-4 animate-pulse">Warte auf Spieler...</h2>
-                        ${tvCode ? `<div class="mb-6">
-                            <p class="text-sm text-indigo-300 font-bold uppercase tracking-wider">Beitritts-Code</p>
-                            <div class="text-5xl font-black tracking-[0.28em] text-white my-2">${tvCode}</div>
-                            ${qrSrc ? `<img alt="QR" class="mx-auto w-40 h-40 rounded-xl bg-white p-2" src="${qrSrc}">` : ""}
-                            <p class="text-xs text-gray-400 mt-2">Familie: „Jetzt beitreten“ · Andere: QR oder Code</p>
-                            <button type="button" onclick="setTVMirrorDisplay(true)" class="mt-4 w-full py-3 rounded-xl font-bold text-white text-base" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">📺 Fernseher-Ansicht (für Stream)</button>
-                            <p class="text-xs text-gray-500 mt-2">Danach: Bildschirmübertragung / Smart View / Spiegeln zum TV</p>
-                            <button type="button" onclick="shareTVCode()" class="btn-primary mt-3 text-base py-3 px-6"
-                                style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">👥 Freunden empfehlen</button>
+                    <div class="tv-lobby-stage">
+                        <h2 class="tv-lobby-title">Warte auf Spieler…</h2>
+                        ${tvCode ? `<div class="tv-lobby-join-row">
+                            ${qrSrc ? `<div class="tv-lobby-qr"><img alt="QR" src="${qrSrc}"></div>` : ""}
+                            <div class="tv-lobby-code-block">
+                                <p class="tv-lobby-code-label">Beitritts-Code</p>
+                                <div class="tv-lobby-code">${tvCode}</div>
+                                <p class="tv-lobby-hint">Familie: „Jetzt beitreten“ · Andere: QR / Code</p>
+                            </div>
+                            <button type="button" onclick="shareTVCode()" class="tv-lobby-share">📤 Code teilen</button>
                         </div>` : ""}
-                        <p class="text-xl text-white mb-8">Auf dem Handy: <span class="text-emerald-400 font-bold">'Jetzt beitreten!'</span></p>
-                        <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>
-                        <button onclick="startTVGameLoop()" class="btn-primary text-3xl py-6 px-12" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Spiel starten! 🚀</button>
-                        <button onclick="leaveTVGame()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Lobby abbrechen</button>
+                        <p class="tv-lobby-hint-center">Handy: <span class="text-emerald-400 font-bold">Jetzt beitreten</span> · TV: Bildschirm spiegeln</p>
+                        <div id="tv-player-list" class="tv-lobby-players"></div>
+                        <button onclick="startTVGameLoop()" class="tv-lobby-start">Spiel starten! 🚀</button>
+                        <button onclick="leaveTVGame()" class="tv-lobby-cancel">Lobby abbrechen</button>
                     </div>
                 `);
 
+                // Immer Fernseher-Ansicht (kein Umschalten mehr)
+                if (typeof setTVMirrorDisplay === "function") setTVMirrorDisplay(true);
                 starteTVLebenszeichen();
                 bindTVHostSnapshot();
             } catch (e) {

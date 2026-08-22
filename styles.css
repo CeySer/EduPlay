@@ -3193,10 +3193,129 @@ body.tv-mirror-display #tv-host-play .text-2xl { font-size: 2rem !important; }
 body.tv-mirror-display #tv-host-play .text-xl { font-size: 1.5rem !important; }
 body.tv-mirror-display #tv-host-play .text-lg { font-size: 1.25rem !important; }
 body.tv-mirror-display #tv-host-play .min-h-\[120px\] { min-height: 140px !important; }
-body.tv-mirror-display #tv-mirror-bar {
-  display: flex !important;
+#tv-mirror-bar { display: none !important; }
+
+/* TV-Lobby: QR · Code · Teilen nebeneinander (Querformat) */
+.tv-lobby-stage {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  text-align: center;
 }
-#tv-mirror-bar { display: none; }
+.tv-lobby-title {
+  font-size: clamp(1.5rem, 4vh, 2.4rem);
+  font-weight: 900;
+  color: #818cf8;
+  margin: 0;
+}
+.tv-lobby-join-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 52rem;
+}
+@media (orientation: landscape) {
+  .tv-lobby-join-row {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .tv-lobby-stage {
+    min-height: 100dvh;
+    padding: 0.5rem 1.25rem;
+    gap: 0.5rem;
+  }
+  .tv-lobby-qr img {
+    width: clamp(88px, 18vh, 140px) !important;
+    height: clamp(88px, 18vh, 140px) !important;
+  }
+  .tv-lobby-code {
+    font-size: clamp(1.75rem, 5vh, 2.75rem) !important;
+  }
+}
+.tv-lobby-qr img {
+  width: 140px;
+  height: 140px;
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 0.4rem;
+  display: block;
+}
+.tv-lobby-code-block { min-width: 8rem; }
+.tv-lobby-code-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a5b4fc;
+  margin: 0;
+}
+.tv-lobby-code {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  color: #fff;
+  margin: 0.15rem 0;
+}
+.tv-lobby-hint {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  margin: 0;
+}
+.tv-lobby-hint-center {
+  font-size: 0.85rem;
+  color: #d1d5db;
+  margin: 0;
+}
+.tv-lobby-share {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-weight: 800;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(99,102,241,0.35);
+}
+.tv-lobby-players {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 40rem;
+}
+@media (orientation: landscape) {
+  .tv-lobby-players {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 48rem;
+  }
+}
+.tv-lobby-start {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: #1f2937;
+  font-weight: 900;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.85rem 2rem;
+  font-size: clamp(1.1rem, 3vh, 1.6rem);
+  box-shadow: 0 6px 24px rgba(245,158,11,0.35);
+}
+.tv-lobby-cancel {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 0.95rem;
+}
 
 /* ============================================================
    TV-Quiz · EduPlay Show-Style (Querformat bevorzugt)
@@ -3253,20 +3372,30 @@ body.tv-mirror-display #tv-mirror-bar {
     flex: 1 1 auto;
     min-height: 0 !important;
     height: auto;
-    gap: 0.45rem !important;
+    width: 100%;
+    max-width: 96vw;
+    margin: 0 auto;
+    gap: 0.4rem 1.1rem !important; /* mehr Abstand horizontal */
     grid-template-rows: 1fr 1fr;
   }
   .tv-show-tile {
     min-height: 0 !important;
     height: 100%;
-    padding: 0.45rem 0.65rem !important;
+    max-height: 26vh;
+    padding: 0.35rem 0.55rem !important;
+    border-radius: 0.75rem !important;
   }
   .tv-show-question {
-    font-size: clamp(1rem, 3.4vh, 1.85rem) !important;
-    line-height: 1.25 !important;
+    font-size: clamp(0.95rem, 3.2vh, 1.7rem) !important;
+    line-height: 1.2 !important;
+    margin-top: 0 !important;
   }
   .tv-show-answer {
-    font-size: clamp(0.95rem, 2.8vh, 1.55rem) !important;
+    font-size: clamp(0.9rem, 2.6vh, 1.4rem) !important;
+  }
+  .tv-show-top {
+    max-height: 28vh !important;
+    padding-top: 0;
   }
   .tv-show-label {
     width: clamp(1.6rem, 3.5vh, 2.2rem) !important;
@@ -3295,8 +3424,16 @@ body.tv-host-active #tv-player-exit,
 body.tv-host-active #castButton,
 body.tv-host-active #ki-coach-fab,
 body.tv-host-active #coach-fab,
+body.tv-host-active #tv-mirror-bar,
 body.tv-host-active .fixed.bottom-20,
-body.tv-host-active .fixed.bottom-24 {
+body.tv-host-active .fixed.bottom-24,
+body.tv-mirror-display #header-menu,
+body.tv-mirror-display #header-family {
+  display: none !important;
+}
+/* Lila TV-FAB / Floating-Buttons während Host */
+body.tv-host-active button[style*="position:fixed"],
+body.tv-mirror-display button[style*="position:fixed"] {
   display: none !important;
 }
 body.tv-host-active #app-shell {

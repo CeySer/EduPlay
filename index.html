@@ -1697,6 +1697,23 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             class="py-3 rounded-xl text-sm font-black text-white ring-2 ring-transparent col-span-2"
                             style="background:linear-gradient(135deg,#f59e0b,#ef4444);">📘 Kurs</button>
                     </div>
+                    <div id="lernen-invite-options" class="hidden space-y-2 pt-1">
+                        <div id="lernen-opt-wissen" class="space-y-2 hidden">
+                            <select id="lernen-opt-grade" class="input-modern text-sm font-bold" onchange="fillLernenInviteCategories()"></select>
+                            <select id="lernen-opt-category" class="input-modern text-sm font-bold"></select>
+                        </div>
+                        <div id="lernen-opt-vokabel" class="space-y-2 hidden">
+                            <div id="lernen-opt-vokabel-groups" class="grid grid-cols-2 gap-1.5 max-h-36 overflow-y-auto text-xs"></div>
+                            <select id="lernen-opt-vokabel-dir" class="input-modern text-sm font-bold">
+                                <option value="mix">Richtung: Mix</option>
+                                <option value="de2f">Deutsch → Fremdsprache</option>
+                                <option value="f2de">Fremdsprache → Deutsch</option>
+                            </select>
+                        </div>
+                        <div id="lernen-opt-kurs" class="space-y-2 hidden">
+                            <select id="lernen-opt-kurs-id" class="input-modern text-sm font-bold"></select>
+                        </div>
+                    </div>
                     <p id="lernen-invite-hint" class="text-xs font-bold text-indigo-200 hidden">Wähle unten ein Kind zum Einladen.</p>
                     <div id="open-challenges-list" class="space-y-2"></div>
                     <button type="button" id="lernen-invite-code-btn" onclick="openLearnTogetherCode(_learnTogetherType||'wissen')"
@@ -2666,11 +2683,11 @@ VIEW: QUIZ SETUP
     ============================================================ -->
     <script src="app-config.js?v=11.7"></script>
     <script src="app-ui.js?v=9.4"></script>
-    <script src="family-dashboard.js?v=11.16"></script>
+    <script src="family-dashboard.js?v=11.17"></script>
     <script src="dev-admin.js?v=1.6"></script>
     <script src="ui-common.js?v=9.1"></script>
     <script src="ki-coach.js?v=1.1"></script>
-    <script src="quiz-core.js?v=9.8"></script>
+    <script src="quiz-core.js?v=9.9"></script>
     <script src="lektionen.js?v=1.1"></script>
     <script src="vocab.js?v=9.0"></script>
     <script src="suchsel.js?v=1.3"></script>

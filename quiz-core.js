@@ -619,7 +619,10 @@
             if (typeof VOCABULARY_DATABASE === 'undefined') return out;
             const seenSame = new Set(loadSeenSameVocab());
             (vocabKeys || []).forEach(vk => {
-                const [, lang, level] = vk.split(':');
+                // Format "en:k5" → lang=en, level=k5 (früher falsch destructured)
+                const parts = String(vk || "").split(":");
+                const lang = parts.length >= 2 ? parts[0] : "en";
+                const level = parts.length >= 2 ? parts[1] : parts[0];
                 const set = VOCABULARY_DATABASE?.[lang]?.[level];
                 if (!set || !set.words) return;
                 const words = set.words;

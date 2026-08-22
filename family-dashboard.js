@@ -640,6 +640,106 @@ auth.createUserWithEmailAndPassword(e, p)
             return "Wissen";
         }
 
+        function fillLernenInviteCategories() {
+            const gradeEl = document.getElementById("lernen-opt-grade");
+            const catEl = document.getElementById("lernen-opt-category");
+            if (!catEl) return;
+            const grade = gradeEl ? gradeEl.value : "";
+            const opts = ['<option value="">Alle Fächer</option>'];
+            const seen = {};
+            if (typeof CURRICULUM !== "undefined" && Array.isArray(CURRICULUM)) {
+                CURRICULUM.forEach(function (g) {
+                    const gNum = String(g.grade || (g.label || "").replace(/\D/g, "") || "");
+                    if (grade && gNum && gNum !== String(grade)) return;
+                    (g.subjects || []).forEach(function (s) {
+                        if (!s || !s.key || seen[s.key]) return;
+                        seen[s.key] = true;
+                        opts.push('<option value="' + esc(s.key) + '">' + esc(s.label || s.key) + '</option>');
+                    });
+                });
+            }
+            if (opts.length < 2 && typeof QUESTIONS_DATABASE !== "undefined") {
+                QUESTIONS_DATABASE.forEach(function (q) {
+                    if (!q || !q.category || seen[q.category]) return;
+                    if (grade && q.grade && String(q.grade) !== String(grade)) return;
+                    if (q.area === "spass") return;
+                    seen[q.category] = true;
+                    const lab = (typeof labelFuerKategorie === "function" ? labelFuerKategorie(q.category) : "") || q.category;
+                    opts.push('<option value="' + esc(q.category) + '">' + esc(lab) + '</option>');
+                });
+            }
+            catEl.innerHTML = opts.join("");
+        }
+        window.fillLernenInviteCategories = fillLernenInviteCategories;
+
+        function fillLernenInviteOptions(kind) {
+            const box = document.getElementById("lernen-invite-options");
+            const w = document.getElementById("lernen-opt-wissen");
+            const v = document.getElementById("lernen-opt-vokabel");
+            const k = document.getElementById("lernen-opt-kurs");
+            if (!box) return;
+            box.classList.remove("hidden");
+            if (w) w.classList.toggle("hidden", kind !== "wissen");
+            if (v) v.classList.toggle("hidden", kind !== "vokabel");
+            if (k) k.classList.toggle("hidden", kind !== "kurs");
+
+            if (kind === "wissen") {
+                const gradeEl = document.getElementById("lernen-opt-grade");
+                if (gradeEl && !gradeEl.options.length) {
+                    let html = '<option value="">Alle Klassen</option>';
+                    for (let g = 1; g <= 10; g++) html += '<option value="' + g + '">' + g + '. Klasse</option>';
+                    gradeEl.innerHTML = html;
+                    const pg = (typeof playerGrade === "function" && currentPlayer) ? playerGrade(currentPlayer) : null;
+                    if (pg) gradeEl.value = String(pg);
+                }
+                fillLernenInviteCategories();
+            }
+            if (kind === "vokabel") {
+                const groups = document.getElementById("lernen-opt-vokabel-groups");
+                if (groups && typeof VOCABULARY_DATABASE !== "undefined") {
+                    let html = "";
+                    Object.keys(VOCABULARY_DATABASE).forEach(function (lang) {
+                        Object.keys(VOCABULARY_DATABASE[lang] || {}).forEach(function (lv) {
+                            const set = VOCABULARY_DATABASE[lang][lv];
+                            const val = lang + ":" + lv;
+                            const n = (set.words || []).length;
+                            html += '<label class="flex items-center gap-1.5 bg-white/5 rounded-lg px-2 py-1.5">' +
+                                '<input type="checkbox" class="lernen-vokabel-check" value="' + esc(val) + '">' +
+                                '<span class="truncate">' + esc((set.label || lv) + " · " + n) + '</span></label>';
+                        });
+                    });
+                    groups.innerHTML = html || '<span class="text-gray-500">Keine Vokabeln geladen</span>';
+                    const first = groups.querySelector(".lernen-vokabel-check");
+                    if (first) first.checked = true;
+                }
+            }
+            if (kind === "kurs") {
+                const sel = document.getElementById("lernen-opt-kurs-id");
+                if (sel && typeof KURSE !== "undefined") {
+                    sel.innerHTML = (KURSE || []).map(function (kurs) {
+                        return '<option value="' + esc(kurs.id) + '">' + esc((kurs.icon || "📘") + " " + kurs.title +
+                            (kurs.grade ? " (K" + kurs.grade + ")" : "")) + '</option>';
+                    }).join("") || '<option value="">Keine Kurse</option>';
+                }
+            }
+        }
+
+        function getLernenInviteOpts() {
+            const kind = _learnTogetherType || "wissen";
+            const opts = { kind: kind };
+            if (kind === "wissen") {
+                opts.grade = (document.getElementById("lernen-opt-grade") || {}).value || "";
+                opts.category = (document.getElementById("lernen-opt-category") || {}).value || "";
+            } else if (kind === "vokabel") {
+                opts.vocabGroups = Array.from(document.querySelectorAll(".lernen-vokabel-check:checked"))
+                    .map(function (cb) { return cb.value; });
+                opts.vocabDir = (document.getElementById("lernen-opt-vokabel-dir") || {}).value || "mix";
+            } else if (kind === "kurs") {
+                opts.kursId = (document.getElementById("lernen-opt-kurs-id") || {}).value || "";
+            }
+            return opts;
+        }
+
         function startLearnTogether(kind) {
             if (kind !== "vokabel" && kind !== "kurs") kind = "wissen";
             _learnTogetherType = kind;
@@ -653,15 +753,16 @@ auth.createUserWithEmailAndPassword(e, p)
                 const el = document.getElementById(marks[k][0]);
                 if (el) el.style.boxShadow = (k === kind) ? ("0 0 0 2px " + marks[k][1]) : "";
             });
+            fillLernenInviteOptions(kind);
             const hint = document.getElementById("lernen-invite-hint");
             if (hint) {
                 hint.classList.remove("hidden");
-                hint.textContent = learnTogetherLabel(kind) + ": unten einladen";
+                hint.textContent = learnTogetherLabel(kind) + ": Inhalt wählen, dann einladen";
             }
             const codeBtn = document.getElementById("lernen-invite-code-btn");
             if (codeBtn) codeBtn.classList.remove("hidden");
             if (typeof loadOpenChallenges === "function") loadOpenChallenges();
-            showToast(learnTogetherLabel(kind) + " gewählt – jetzt einladen", "success");
+            showToast(learnTogetherLabel(kind) + " – bitte Inhalt wählen", "success");
         }
         window.startLearnTogether = startLearnTogether;
         window._learnTogetherType = _learnTogetherType;
@@ -676,6 +777,13 @@ auth.createUserWithEmailAndPassword(e, p)
             if (to.isGuest) return showToast("Per Code einladen.", "error");
             const kind = typeOverride || _learnTogetherType || "wissen";
             const type = (kind === "vokabel") ? "vokabel" : "quiz";
+            const inviteOpts = getLernenInviteOpts();
+            if (kind === "vokabel" && (!inviteOpts.vocabGroups || !inviteOpts.vocabGroups.length)) {
+                return showToast("Bitte mindestens eine Vokabel-Gruppe wählen.", "error");
+            }
+            if (kind === "kurs" && !inviteOpts.kursId) {
+                return showToast("Bitte einen Kurs wählen.", "error");
+            }
             try {
                 const ref = await challengesRef().add({
                     fromKey: activePlayerKey,
@@ -686,7 +794,8 @@ auth.createUserWithEmailAndPassword(e, p)
                     subject: kind,
                     mode: "coop",
                     status: "pending",
-                    createdAt: Date.now()
+                    createdAt: Date.now(),
+                    inviteOpts: inviteOpts
                 });
                 showToast("👥 " + learnTogetherLabel(kind) + "-Einladung an " + esc(to.name), "success");
                 watchChallengeAcceptance(ref);
@@ -882,54 +991,65 @@ auth.createUserWithEmailAndPassword(e, p)
                     .collection("live_duel").doc();
                 const subject = c.subject || (c.type === "vokabel" ? "vokabel" : "wissen");
                 const isVocab = (subject === "vokabel");
+                const iOpts = c.inviteOpts || {};
                 let questions = [];
                 try {
                     if (isVocab) {
                         if (typeof buildVocabTestQuestions === "function") {
-                            const groups = [];
-                            if (typeof VOCABULARY_DATABASE !== "undefined" && VOCABULARY_DATABASE.en) {
+                            let groups = Array.isArray(iOpts.vocabGroups) ? iOpts.vocabGroups.slice() : [];
+                            if (!groups.length && typeof VOCABULARY_DATABASE !== "undefined" && VOCABULARY_DATABASE.en) {
                                 Object.keys(VOCABULARY_DATABASE.en).forEach(function (lv) {
                                     groups.push("en:" + lv);
                                 });
                             }
+                            const dir = iOpts.vocabDir || "mix";
                             questions = prepareQuestions(
-                                buildVocabTestQuestions(groups.slice(0, 3), "mix")
+                                buildVocabTestQuestions(groups, dir)
                                     .sort(function () { return Math.random() - 0.5; })
                                     .slice(0, 10)
                             );
                         }
                     } else if (subject === "kurs" && typeof LEKTIONEN !== "undefined") {
-                        const grade = (typeof playerGrade === "function") ? playerGrade(currentPlayer) : null;
+                        const kursId = iOpts.kursId || "";
                         let pool = [];
                         LEKTIONEN.forEach(function (l) {
-                            const kurs = (typeof KURSE !== "undefined") ? KURSE.find(function (k) { return k.id === l.kurs; }) : null;
-                            if (grade && kurs && kurs.grade && Number(kurs.grade) !== Number(grade)) return;
+                            if (kursId && l.kurs !== kursId) return;
+                            if (!kursId) {
+                                const grade = (typeof playerGrade === "function") ? playerGrade(currentPlayer) : null;
+                                const kurs = (typeof KURSE !== "undefined") ? KURSE.find(function (k) { return k.id === l.kurs; }) : null;
+                                if (grade && kurs && kurs.grade && Number(kurs.grade) !== Number(grade)) return;
+                            }
                             (l.test || []).forEach(function (q) { pool.push(q); });
                             Object.keys(l.uebung || {}).forEach(function (st) {
                                 (l.uebung[st] || []).forEach(function (q) { pool.push(q); });
                             });
                         });
-                        if (pool.length < 6) {
+                        if (pool.length < 5 && kursId) {
                             LEKTIONEN.forEach(function (l) {
+                                if (l.kurs !== kursId) return;
                                 (l.test || []).forEach(function (q) { pool.push(q); });
                             });
                         }
                         questions = (typeof prepareQuestions === "function" ? prepareQuestions(pool) : pool)
                             .slice().sort(function () { return Math.random() - 0.5; }).slice(0, 10);
                     } else {
-                        const grade = (typeof playerGrade === "function")
+                        const grade = iOpts.grade || ((typeof playerGrade === "function")
                             ? playerGrade(currentPlayer)
-                            : (currentPlayer && currentPlayer.grade);
+                            : (currentPlayer && currentPlayer.grade));
+                        const category = iOpts.category || "";
                         let pool = [];
                         if (typeof QUESTIONS_DATABASE !== "undefined" && Array.isArray(QUESTIONS_DATABASE)) {
                             pool = QUESTIONS_DATABASE.filter(function (q) {
                                 if (!q || q.area === "spass") return false;
+                                if (category && q.category !== category) return false;
                                 if (grade && q.grade && Number(q.grade) !== Number(grade)) return false;
                                 return true;
                             });
                             if (pool.length < 5 && grade) {
                                 pool = QUESTIONS_DATABASE.filter(function (q) {
-                                    return q && q.area !== "spass";
+                                    if (!q || q.area === "spass") return false;
+                                    if (category && q.category !== category) return false;
+                                    return true;
                                 });
                             }
                         }
@@ -938,7 +1058,7 @@ auth.createUserWithEmailAndPassword(e, p)
                     }
                 } catch (e) { console.warn(e); }
                 if (!questions.length) {
-                    return showToast("Keine Wissens-Fragen geladen. Bitte kurz warten und erneut versuchen.", "error");
+                    return showToast("Keine Fragen geladen. Inhalt prüfen oder kurz warten und erneut versuchen.", "error");
                 }
 
                 const players = {};

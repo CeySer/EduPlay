@@ -1959,20 +1959,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     onclick="switchView(currentPlayer ? 'menu' : 'family-hub')">Zurück</button>
                 <div class="glass-card p-5 space-y-4">
                     <h2 class="text-xl font-black text-indigo-400">⚙️ Einstellungen</h2>
-                    <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">
-                        <span class="font-bold text-white">🔊 Ton</span>
-                        <button onclick="toggleSound()" class="btn-secondary text-sm py-2 px-4"><span
-                                class="sound-toggle-icon">an/aus</span></button>
-                    </div>
-                    <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">
-                        <span class="min-w-0">
-                            <span class="block font-bold text-white">🤫 Leise-Modus</span>
-                            <span class="block text-[11px] text-gray-500">Kein Ton – nur Vibration (Schule/Bibliothek)</span>
-                        </span>
-                        <button type="button" onclick="toggleQuietMode()" class="btn-secondary text-sm py-2 px-4">
-                            <span class="quiet-toggle-label">aus</span>
-                        </button>
-                    </div>
                     <div class="py-2 border-b border-white/5 space-y-2">
                         <span class="font-bold text-white block">🎧 Sound-Pack</span>
                         <div class="dash-sub-nav">
@@ -1980,7 +1966,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <button type="button" data-sound-pack="crisp" onclick="setSoundPack('crisp')">Klar</button>
                             <button type="button" data-sound-pack="arcade" onclick="setSoundPack('arcade')">Arcade</button>
                         </div>
-                        <p class="text-[11px] text-gray-500">Soft · Klar · Arcade. Mit „Ton“ stummbar.</p>
+                        <p class="text-[11px] text-gray-500">Soft · Klar · Arcade. Stumm über Leise-Modus im Menü.</p>
                     </div>
                     <div class="py-2 border-b border-white/5 space-y-2">
                         <div class="flex items-center justify-between gap-3">
@@ -2000,12 +1986,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <span class="block text-[11px] text-gray-500">Einführung nochmal anzeigen</span>
                         </span>
                         <button type="button" onclick="resetOnboarding()" class="btn-secondary text-sm py-2 px-4">Starten</button>
-                    </div>
-                    <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">
-                        <span class="font-bold text-white">🔔 Duelle</span>
-                        <button onclick="togglePushNotifications()" class="btn-secondary text-sm py-2 px-4">
-                            <span id="push-toggle-label">aus</span>
-                        </button>
                     </div>
                     <div class="pt-2 space-y-3">
                         <h3 class="text-sm font-black text-amber-400">🔑 Eltern-PIN</h3>
@@ -2695,7 +2675,7 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=11.6"></script>
+    <script src="app-config.js?v=11.7"></script>
     <script src="app-ui.js?v=9.4"></script>
     <script src="family-dashboard.js?v=11.13"></script>
     <script src="dev-admin.js?v=1.6"></script>
@@ -2753,8 +2733,11 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             <button class="close-btn" onclick="closeDrawer()" aria-label="Menü schließen">✕</button>
         </div>
         <div class="flex flex-col gap-1 drawer-items-container">
-            <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
-                <span class="icon">🔊</span> <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
+            <button onclick="closeDrawer(); toggleQuietMode()" class="drawer-menu-item">
+                <span class="icon">🤫</span> <span>Leise-Modus <span class="quiet-toggle-label">aus</span></span>
+            </button>
+            <button onclick="closeDrawer(); togglePushNotifications()" class="drawer-menu-item">
+                <span class="icon">🔔</span> <span>Duell-Benachrichtigung <span class="push-toggle-label">aus</span></span>
             </button>
             <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
                 <span class="icon">🌓</span> Design umschalten
@@ -2779,7 +2762,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.30<br>
+            EduPlay Hub · v2.31<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -2799,8 +2782,11 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             <button onclick="closeDrawer(); switchView('dashboard')" class="drawer-menu-item">
                 <span class="icon">🎛️</span> Kontrollzentrum
             </button>
-            <button onclick="closeDrawer(); toggleSound()" class="drawer-menu-item">
-                <span class="icon">🔊</span> <span>Ton <span class="sound-toggle-icon">an/aus</span></span>
+            <button onclick="closeDrawer(); toggleQuietMode()" class="drawer-menu-item">
+                <span class="icon">🤫</span> <span>Leise-Modus <span class="quiet-toggle-label">aus</span></span>
+            </button>
+            <button onclick="closeDrawer(); togglePushNotifications()" class="drawer-menu-item">
+                <span class="icon">🔔</span> <span>Duell-Benachrichtigung <span class="push-toggle-label">aus</span></span>
             </button>
             <button onclick="closeDrawer(); toggleTheme()" class="drawer-menu-item">
                 <span class="icon">🌓</span> Design umschalten

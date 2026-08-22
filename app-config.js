@@ -1178,11 +1178,13 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function updatePushToggleUI() {
-            const el = document.getElementById("push-toggle-label");
-            if (!el) return;
-            if (!notificationsSupported()) { el.textContent = "nicht verfügbar"; return; }
-            if (Notification.permission === "denied") { el.textContent = "blockiert"; return; }
-            el.textContent = (pushNotifOn && Notification.permission === "granted") ? "an" : "aus";
+            let label = "aus";
+            if (!notificationsSupported()) label = "n/v";
+            else if (Notification.permission === "denied") label = "blockiert";
+            else if (pushNotifOn && Notification.permission === "granted") label = "an";
+            document.querySelectorAll(".push-toggle-label, #push-toggle-label").forEach(function (el) {
+                el.textContent = label;
+            });
         }
 
         function showDuelNotification(title, body, tag, urlHash) {
@@ -1370,6 +1372,7 @@ const geladen = _questionCounts[key] || 0;
                 document.querySelectorAll(".quiet-toggle-label").forEach(function (el) {
                     el.textContent = quietMode ? "an" : "aus";
                 });
+                if (typeof updatePushToggleUI === "function") updatePushToggleUI();
             });
         } catch (e) { /* */ }
 
@@ -1388,12 +1391,16 @@ const geladen = _questionCounts[key] || 0;
                 el.textContent = quietMode ? "an" : "aus";
             });
             if (quietMode) {
+                soundOn = false;
+                try { localStorage.setItem("eduplaySound", "off"); } catch (e) { }
                 stopBackgroundMusic();
                 haptic([15, 40, 15]);
                 showToast("🤫 Leise-Modus: nur Vibration", "success", "quiet");
             } else {
-                if (soundOn && musicVolume > 0) startBackgroundMusic();
-                showToast("Leise-Modus aus", "success", "quiet");
+                soundOn = true;
+                try { localStorage.setItem("eduplaySound", "on"); } catch (e) { }
+                if (musicVolume > 0) startBackgroundMusic();
+                showToast("Leise-Modus aus – Ton wieder an", "success", "quiet");
             }
         }
         window.toggleQuietMode = toggleQuietMode;

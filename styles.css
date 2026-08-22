@@ -3227,24 +3227,90 @@ body.tv-mirror-display #tv-mirror-bar {
 }
 @media (orientation: landscape) {
   .tv-rotate-hint { display: none !important; }
+  /* Kahoot-ähnlich: alles in einer Viewport-Höhe, nichts abschneiden */
   .tv-show-stage {
-    min-height: 100vh;
-    gap: 0.5rem;
-    padding: 0.6rem 1.5rem 0.9rem;
+    height: 100dvh;
+    max-height: 100dvh;
+    min-height: 0;
+    gap: 0.35rem;
+    padding: 0.35rem 0.85rem 0.45rem;
+    border-radius: 0;
+    overflow: hidden;
+    box-sizing: border-box;
   }
+  .tv-show-top {
+    flex: 0 0 auto;
+    max-height: 34vh;
+    overflow: hidden;
+  }
+  .tv-show-timer-track {
+    margin: 0.25rem auto 0.35rem;
+    max-width: 90%;
+    height: 8px;
+  }
+  .tv-show-meta { margin-bottom: 0.15rem; }
   .tv-show-grid {
-    min-height: 48vh !important;
-    gap: 0.65rem !important;
+    flex: 1 1 auto;
+    min-height: 0 !important;
+    height: auto;
+    gap: 0.45rem !important;
+    grid-template-rows: 1fr 1fr;
   }
   .tv-show-tile {
-    min-height: clamp(88px, 20vh, 150px) !important;
+    min-height: 0 !important;
+    height: 100%;
+    padding: 0.45rem 0.65rem !important;
   }
   .tv-show-question {
-    font-size: clamp(1.35rem, 3.6vw, 2.6rem) !important;
+    font-size: clamp(1rem, 3.4vh, 1.85rem) !important;
+    line-height: 1.25 !important;
   }
   .tv-show-answer {
-    font-size: clamp(1.05rem, 2.6vw, 1.9rem) !important;
+    font-size: clamp(0.95rem, 2.8vh, 1.55rem) !important;
   }
+  .tv-show-label {
+    width: clamp(1.6rem, 3.5vh, 2.2rem) !important;
+    height: clamp(1.6rem, 3.5vh, 2.2rem) !important;
+    font-size: clamp(0.85rem, 2.2vh, 1.15rem) !important;
+  }
+  .tv-show-footer {
+    flex: 0 0 auto;
+    gap: 0.25rem;
+  }
+  .tv-show-force, .tv-show-next {
+    padding: 0.45rem 1.1rem !important;
+    font-size: clamp(0.85rem, 2.2vh, 1.15rem) !important;
+  }
+  .tv-show-counter {
+    font-size: clamp(0.75rem, 1.8vh, 1rem) !important;
+  }
+}
+
+/* TV-Host aktiv: App-Chrome weg, volle Fläche */
+body.tv-host-active #header-menu,
+body.tv-host-active #header-family,
+body.tv-host-active [id^="drawer"],
+body.tv-host-active #castControlPanel,
+body.tv-host-active #tv-player-exit,
+body.tv-host-active #castButton,
+body.tv-host-active #ki-coach-fab,
+body.tv-host-active #coach-fab,
+body.tv-host-active .fixed.bottom-20,
+body.tv-host-active .fixed.bottom-24 {
+  display: none !important;
+}
+body.tv-host-active #app-shell {
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+body.tv-host-active #view-tv-quiz-host {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+body.tv-host-active #tv-host-play {
+  padding: 0 !important;
 }
 .tv-show-top { text-align: center; }
 .tv-show-meta {

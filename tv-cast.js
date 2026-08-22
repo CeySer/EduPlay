@@ -420,19 +420,27 @@
                 }
                 if (data.status === "playing" && !data.showAnswer) {
                     if (data.mode === "scrabble") {
-                        showTVHostScrabbleRound(
-                            data.currentLetters,
-                            data.currentRound,
-                            data.totalRounds || 0,
-                            data.currentRequired || ""
-                        );
+                        const scKey = "sc:" + (data.currentRound || 0) + ":" + (data.currentLetters || []).join("");
+                        if (window._tvHostRenderKey !== scKey) {
+                            window._tvHostRenderKey = scKey;
+                            showTVHostScrabbleRound(
+                                data.currentLetters,
+                                data.currentRound,
+                                data.totalRounds || 0,
+                                data.currentRequired || ""
+                            );
+                        }
                     } else if (data.mode === "quiz" && typeof showTVHostQuestion === "function") {
-                        // Fragen aus Firestore sind auf dem Host ggf. lokal in tvQuestions
                         if (Array.isArray(data.questions) && data.questions.length) {
                             tvQuestions = data.questions;
                         }
                         if (typeof data.currentQuestionIndex === "number") {
-                            showTVHostQuestion(data.currentQuestionIndex);
+                            // Nur neu zeichnen, wenn die Frage wechselt – sonst springt der Zeitbalken
+                            const qKey = "q:" + data.currentQuestionIndex + ":" + (data.answerDeadline || 0);
+                            if (window._tvHostRenderKey !== qKey) {
+                                window._tvHostRenderKey = qKey;
+                                showTVHostQuestion(data.currentQuestionIndex);
+                            }
                         }
                     }
                     const alle = Object.values(data.players || {});
@@ -587,16 +595,32 @@
         }
         function startTVLandscapeGuard() {
             _tvLandscapeForced = true;
+            document.body.classList.add("tv-host-active");
             ensureTVLandscapeOverlay();
+            // Sobald quer: Fullscreen anbieten (Chrome/Android)
+            if (isTVLandscape()) {
+                try {
+                    const root = document.documentElement;
+                    if (!document.fullscreenElement && root.requestFullscreen) {
+                        root.requestFullscreen().catch(function () { /* Nutzer muss ggf. tippen */ });
+                    }
+                } catch (e) { /* */ }
+            }
         }
         function stopTVLandscapeGuard() {
             _tvLandscapeForced = false;
+            document.body.classList.remove("tv-host-active");
             ensureTVLandscapeOverlay();
             try {
                 if (screen.orientation && typeof screen.orientation.unlock === "function") {
                     screen.orientation.unlock();
                 }
             } catch (e) { /* */ }
+            try {
+                if (document.fullscreenElement && document.exitFullscreen) {
+                    document.exitFullscreen().catch(function () { });
+                }
+            } catch (e2) { /* */ }
         }
         window.startTVLandscapeGuard = startTVLandscapeGuard;
         window.stopTVLandscapeGuard = stopTVLandscapeGuard;
@@ -655,25 +679,39 @@
         // wenn kein neuer Snapshot mehr hereinkommt (niemand antwortet mehr).
         let tvFristTicker = null;
 
+        let _tvBarDeadlineKey = null;
         function starteTVRundenTimer(data) {
-            stoppeTVRundenTimer();
             if (!data || !data.answerDeadline) return;
-            // Kahoot-Timerbalken: von 100% auf 0% über die Restdauer
-            try {
-                const bar = document.getElementById("tv-kahoot-timer-bar");
-                if (bar) {
-                    const totalMs = Math.max(1000, data.answerDeadline - Date.now());
-                    bar.style.transition = "none";
-                    bar.style.width = "100%";
-                    // Reflow, dann animieren
-                    void bar.offsetWidth;
-                    bar.style.transition = "width " + totalMs + "ms linear";
-                    bar.style.width = "0%";
-                }
-            } catch (e) { /* */ }
+            const deadline = data.answerDeadline;
+            const barKey = String(deadline) + ":" + (data.currentQuestionIndex || data.currentRound || 0);
+
+            // Balken nur einmal pro Runde starten (sonst springt er bei jedem Snapshot zurück)
+            if (_tvBarDeadlineKey !== barKey) {
+                _tvBarDeadlineKey = barKey;
+                try {
+                    const bar = document.getElementById("tv-kahoot-timer-bar");
+                    if (bar) {
+                        // Gesamtdauer der Runde schätzen (Deadline war gerade gesetzt → ~30s/60s)
+                        // Gleichmäßig von jetzt bis Deadline – ein linearer Lauf, kein Neustart
+                        const remainMs = Math.max(200, deadline - Date.now());
+                        // Ursprüngliche Länge: wenn fast voll, von 100%; sonst proportional zur Restzeit
+                        // Annahme: Quiz 30s, Scrabble 60s
+                        const fullMs = (data.mode === "scrabble") ? 60000 : 30000;
+                        const startPct = Math.min(100, Math.max(2, (remainMs / fullMs) * 100));
+                        bar.style.transition = "none";
+                        bar.style.width = startPct + "%";
+                        void bar.offsetWidth;
+                        bar.style.transition = "width " + remainMs + "ms linear";
+                        bar.style.width = "0%";
+                    }
+                } catch (e) { /* */ }
+            }
+
+            // Sekunden-Ticker nur einmal laufen lassen
+            if (tvFristTicker) return;
             tvFristTicker = setInterval(() => {
                 if (!tvGameRef) return stoppeTVRundenTimer();
-                const rest = Math.max(0, Math.ceil((data.answerDeadline - Date.now()) / 1000));
+                const rest = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
                 const el = document.getElementById("tv-answer-counter");
                 if (el && el.innerText.indexOf("noch ") !== -1) {
                     el.innerText = el.innerText.replace(/noch \d+s/, "noch " + rest + "s");
@@ -744,6 +782,7 @@
 
         function stoppeTVRundenTimer() {
             if (tvFristTicker) { clearInterval(tvFristTicker); tvFristTicker = null; }
+            _tvBarDeadlineKey = null;
         }
 
         let tvUsedWords = new Set();
@@ -1028,17 +1067,21 @@
             `);
             // Kein eigener lokaler Timer – Firestore-answerDeadline bleibt führend.
             // Visueller Balken wird in starteTVRundenTimer / Snapshot mitgezogen.
+            // Balken startet erst mit answerDeadline (starteTVRundenTimer) – hier nur vorbereiten
             try {
                 const bar = document.getElementById("tv-kahoot-timer-bar");
                 if (bar) {
                     bar.style.transition = "none";
                     bar.style.width = "100%";
                 }
+                _tvBarDeadlineKey = null; // neue Frage → Balken darf neu anlaufen
             } catch (e) { /* */ }
         }
 
         function revealTVAnswer(data) {
             stopTVRoundTimer();
+            window._tvHostRenderKey = null;
+            _tvBarDeadlineKey = null;
             tvGameRef.update({ showAnswer: true });
             const correctIndex = data.correctAnswer;
             const playersData = data.players;

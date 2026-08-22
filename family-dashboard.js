@@ -625,12 +625,28 @@ auth.createUserWithEmailAndPassword(e, p)
             if (typeof versucheDeepLinkJoin === "function") versucheDeepLinkJoin();
             if (typeof versucheTVDeepLinkJoin === "function") versucheTVDeepLinkJoin();
             if (typeof loadOpenChallenges === "function") loadOpenChallenges();
+            if (typeof watchChallengesList === "function") watchChallengesList();
         }
 
         function challengesRef() {
             if (!currentParentUser) return null;
             return db.collection("parents").doc(currentParentUser.uid).collection("challenges");
         }
+
+        // Live-Liste: Einladungen ohne den Lernraum verlassen zu müssen
+        let _challengesListUnsub = null;
+        function watchChallengesList() {
+            if (_challengesListUnsub) {
+                try { _challengesListUnsub(); } catch (e) { /* */ }
+                _challengesListUnsub = null;
+            }
+            const ref = challengesRef();
+            if (!ref || !activePlayerKey) return;
+            _challengesListUnsub = ref.onSnapshot(function () {
+                if (typeof loadOpenChallenges === "function") loadOpenChallenges();
+            }, function () { /* offline */ });
+        }
+        window.watchChallengesList = watchChallengesList;
 
         let _learnTogetherType = "wissen"; // wissen | vokabel | kurs
 
@@ -676,12 +692,10 @@ auth.createUserWithEmailAndPassword(e, p)
             const box = document.getElementById("lernen-invite-options");
             const w = document.getElementById("lernen-opt-wissen");
             const v = document.getElementById("lernen-opt-vokabel");
-            const k = document.getElementById("lernen-opt-kurs");
             if (!box) return;
             box.classList.remove("hidden");
             if (w) w.classList.toggle("hidden", kind !== "wissen");
             if (v) v.classList.toggle("hidden", kind !== "vokabel");
-            if (k) k.classList.toggle("hidden", kind !== "kurs");
 
             if (kind === "wissen") {
                 const gradeEl = document.getElementById("lernen-opt-grade");
@@ -713,15 +727,6 @@ auth.createUserWithEmailAndPassword(e, p)
                     if (first) first.checked = true;
                 }
             }
-            if (kind === "kurs") {
-                const sel = document.getElementById("lernen-opt-kurs-id");
-                if (sel && typeof KURSE !== "undefined") {
-                    sel.innerHTML = (KURSE || []).map(function (kurs) {
-                        return '<option value="' + esc(kurs.id) + '">' + esc((kurs.icon || "📘") + " " + kurs.title +
-                            (kurs.grade ? " (K" + kurs.grade + ")" : "")) + '</option>';
-                    }).join("") || '<option value="">Keine Kurse</option>';
-                }
-            }
         }
 
         function getLernenInviteOpts() {
@@ -734,20 +739,17 @@ auth.createUserWithEmailAndPassword(e, p)
                 opts.vocabGroups = Array.from(document.querySelectorAll(".lernen-vokabel-check:checked"))
                     .map(function (cb) { return cb.value; });
                 opts.vocabDir = (document.getElementById("lernen-opt-vokabel-dir") || {}).value || "mix";
-            } else if (kind === "kurs") {
-                opts.kursId = (document.getElementById("lernen-opt-kurs-id") || {}).value || "";
             }
             return opts;
         }
 
         function startLearnTogether(kind) {
-            if (kind !== "vokabel" && kind !== "kurs") kind = "wissen";
+            if (kind !== "vokabel") kind = "wissen";
             _learnTogetherType = kind;
             window._learnTogetherType = _learnTogetherType;
             const marks = {
                 wissen: ["lernen-invite-wissen-btn", "#34d399"],
-                vokabel: ["lernen-invite-vokabel-btn", "#818cf8"],
-                kurs: ["lernen-invite-kurs-btn", "#f59e0b"]
+                vokabel: ["lernen-invite-vokabel-btn", "#818cf8"]
             };
             Object.keys(marks).forEach(function (k) {
                 const el = document.getElementById(marks[k][0]);
@@ -767,6 +769,93 @@ auth.createUserWithEmailAndPassword(e, p)
         window.startLearnTogether = startLearnTogether;
         window._learnTogetherType = _learnTogetherType;
 
+        let _coopLobbyId = null;
+        let _coopLobbyOptsKey = null;
+
+        async function buildCoopQuestions(subject, iOpts) {
+            iOpts = iOpts || {};
+            let questions = [];
+            if (subject === "vokabel" && typeof buildVocabTestQuestions === "function") {
+                let groups = Array.isArray(iOpts.vocabGroups) ? iOpts.vocabGroups.slice() : [];
+                if (!groups.length && typeof VOCABULARY_DATABASE !== "undefined" && VOCABULARY_DATABASE.en) {
+                    Object.keys(VOCABULARY_DATABASE.en).forEach(function (lv) {
+                        groups.push("en:" + lv);
+                    });
+                }
+                questions = (typeof prepareQuestions === "function" ? prepareQuestions : function (x) { return x; })(
+                    buildVocabTestQuestions(groups, iOpts.vocabDir || "mix")
+                        .sort(function () { return Math.random() - 0.5; })
+                        .slice(0, 10)
+                );
+                return questions;
+            }
+            const grade = iOpts.grade || "";
+            const category = iOpts.category || "";
+            if (category && typeof ladeFragenFuer === "function") {
+                try { await ladeFragenFuer(category); } catch (e) { console.warn(e); }
+            } else if (!category && typeof ladeAlleFragen === "function") {
+                try { await ladeAlleFragen(); } catch (e2) { console.warn(e2); }
+            }
+            let pool = [];
+            if (typeof QUESTIONS_DATABASE !== "undefined" && Array.isArray(QUESTIONS_DATABASE)) {
+                pool = QUESTIONS_DATABASE.filter(function (q) {
+                    if (!q || q.area === "spass") return false;
+                    if (category && q.category !== category) return false;
+                    if (grade && q.grade && Number(q.grade) !== Number(grade)) return false;
+                    return true;
+                });
+                if (pool.length < 5 && category) {
+                    pool = QUESTIONS_DATABASE.filter(function (q) {
+                        return q && q.area !== "spass" && q.category === category;
+                    });
+                }
+            }
+            questions = (typeof prepareQuestions === "function" ? prepareQuestions : function (x) { return x; })(pool)
+                .slice().sort(function () { return Math.random() - 0.5; }).slice(0, 10);
+            return questions;
+        }
+
+        async function ensureCoopLobby(kind, inviteOpts) {
+            const optsKey = JSON.stringify(inviteOpts || {});
+            if (_coopLobbyId && _coopLobbyOptsKey === optsKey && typeof liveDuelCollectionRef === "function") {
+                try {
+                    const snap = await liveDuelCollectionRef().doc(_coopLobbyId).get();
+                    if (snap.exists) {
+                        const st = (snap.data() || {}).status;
+                        if (st === "waiting" || st === "playing") return _coopLobbyId;
+                    }
+                } catch (e) { /* neu anlegen */ }
+            }
+            const questions = await buildCoopQuestions(kind, inviteOpts);
+            if (!questions.length) throw new Error("no-questions");
+            const duelRef = db.collection("parents").doc(currentParentUser.uid).collection("live_duel").doc();
+            const players = {};
+            players[activePlayerKey] = {
+                name: currentPlayer.name, score: 0, hasAnswered: false,
+                lastAnswer: null, word: "", coinsClaimed: false,
+                lastSeen: Date.now(), sessionId: window.DEVICE_SESSION_ID || null
+            };
+            await duelRef.set({
+                type: "quiz",
+                mode: "coop",
+                status: "waiting",
+                subject: kind,
+                createdBy: activePlayerKey,
+                createdByName: currentPlayer.name,
+                createdAt: Date.now(),
+                hostLastSeen: Date.now(),
+                currentIndex: 0,
+                answerSeconds: 25,
+                questions: questions,
+                players: players,
+                order: [activePlayerKey],
+                inviteOpts: inviteOpts || {}
+            });
+            _coopLobbyId = duelRef.id;
+            _coopLobbyOptsKey = optsKey;
+            return _coopLobbyId;
+        }
+
         async function challengePlayer(toKey, typeOverride) {
             if (!currentParentUser || !activePlayerKey || !currentPlayer) {
                 return showToast("Bitte zuerst deinen Spieler wählen.", "error");
@@ -776,15 +865,14 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!to) return showToast("Spieler nicht gefunden.", "error");
             if (to.isGuest) return showToast("Per Code einladen.", "error");
             const kind = typeOverride || _learnTogetherType || "wissen";
+            if (kind === "kurs") return showToast("Kurs-Team gibt es hier nicht – bitte Wissen oder Vokabeln.", "error");
             const type = (kind === "vokabel") ? "vokabel" : "quiz";
             const inviteOpts = getLernenInviteOpts();
             if (kind === "vokabel" && (!inviteOpts.vocabGroups || !inviteOpts.vocabGroups.length)) {
                 return showToast("Bitte mindestens eine Vokabel-Gruppe wählen.", "error");
             }
-            if (kind === "kurs" && !inviteOpts.kursId) {
-                return showToast("Bitte einen Kurs wählen.", "error");
-            }
             try {
+                const lobbyId = await ensureCoopLobby(kind, inviteOpts);
                 const ref = await challengesRef().add({
                     fromKey: activePlayerKey,
                     fromName: currentPlayer.name,
@@ -795,12 +883,20 @@ auth.createUserWithEmailAndPassword(e, p)
                     mode: "coop",
                     status: "pending",
                     createdAt: Date.now(),
-                    inviteOpts: inviteOpts
+                    inviteOpts: inviteOpts,
+                    lobbyId: lobbyId
                 });
-                showToast("👥 " + learnTogetherLabel(kind) + "-Einladung an " + esc(to.name), "success");
+                showToast("👥 Einladung an " + esc(to.name) + " – weitere Kinder kannst du gleich noch einladen", "success");
                 watchChallengeAcceptance(ref);
+                // Host in die Lobby
+                if (typeof joinLiveDuelById === "function") {
+                    try { await joinLiveDuelById(lobbyId); } catch (eJ) { /* */ }
+                }
                 loadOpenChallenges();
             } catch (e) {
+                if (e && e.message === "no-questions") {
+                    return showToast("Keine Fragen geladen. Inhalt prüfen.", "error");
+                }
                 handleError("challengePlayer", e, "Einladung fehlgeschlagen.");
             }
         }
@@ -984,122 +1080,66 @@ auth.createUserWithEmailAndPassword(e, p)
                 if (c.toKey !== activePlayerKey) return showToast("Nicht für dich.", "error");
                 if (c.status !== "pending") return showToast("Schon erledigt.", "error");
 
-                const fromKey = c.fromKey;
-                const fromName = c.fromName || "Spieler";
-                const toName = currentPlayer.name;
-                const duelRef = db.collection("parents").doc(currentParentUser.uid)
-                    .collection("live_duel").doc();
-                const subject = c.subject || (c.type === "vokabel" ? "vokabel" : "wissen");
-                const isVocab = (subject === "vokabel");
-                const iOpts = c.inviteOpts || {};
-                let questions = [];
-                try {
-                    if (isVocab) {
-                        if (typeof buildVocabTestQuestions === "function") {
-                            let groups = Array.isArray(iOpts.vocabGroups) ? iOpts.vocabGroups.slice() : [];
-                            if (!groups.length && typeof VOCABULARY_DATABASE !== "undefined" && VOCABULARY_DATABASE.en) {
-                                Object.keys(VOCABULARY_DATABASE.en).forEach(function (lv) {
-                                    groups.push("en:" + lv);
-                                });
-                            }
-                            const dir = iOpts.vocabDir || "mix";
-                            questions = prepareQuestions(
-                                buildVocabTestQuestions(groups, dir)
-                                    .sort(function () { return Math.random() - 0.5; })
-                                    .slice(0, 10)
-                            );
+                // Bevorzugt bestehende Team-Lobby (mehrere Geschwister)
+                let lobbyId = c.lobbyId || null;
+                if (lobbyId && typeof liveDuelCollectionRef === "function") {
+                    try {
+                        const lobbySnap = await liveDuelCollectionRef().doc(lobbyId).get();
+                        if (!lobbySnap.exists || (lobbySnap.data() || {}).status === "finished") {
+                            lobbyId = null;
                         }
-                    } else if (subject === "kurs" && typeof LEKTIONEN !== "undefined") {
-                        const kursId = iOpts.kursId || "";
-                        let pool = [];
-                        LEKTIONEN.forEach(function (l) {
-                            if (kursId && l.kurs !== kursId) return;
-                            if (!kursId) {
-                                const grade = (typeof playerGrade === "function") ? playerGrade(currentPlayer) : null;
-                                const kurs = (typeof KURSE !== "undefined") ? KURSE.find(function (k) { return k.id === l.kurs; }) : null;
-                                if (grade && kurs && kurs.grade && Number(kurs.grade) !== Number(grade)) return;
-                            }
-                            (l.test || []).forEach(function (q) { pool.push(q); });
-                            Object.keys(l.uebung || {}).forEach(function (st) {
-                                (l.uebung[st] || []).forEach(function (q) { pool.push(q); });
-                            });
-                        });
-                        if (pool.length < 5 && kursId) {
-                            LEKTIONEN.forEach(function (l) {
-                                if (l.kurs !== kursId) return;
-                                (l.test || []).forEach(function (q) { pool.push(q); });
-                            });
-                        }
-                        questions = (typeof prepareQuestions === "function" ? prepareQuestions(pool) : pool)
-                            .slice().sort(function () { return Math.random() - 0.5; }).slice(0, 10);
-                    } else {
-                        const grade = iOpts.grade || ((typeof playerGrade === "function")
-                            ? playerGrade(currentPlayer)
-                            : (currentPlayer && currentPlayer.grade));
-                        const category = iOpts.category || "";
-                        let pool = [];
-                        if (typeof QUESTIONS_DATABASE !== "undefined" && Array.isArray(QUESTIONS_DATABASE)) {
-                            pool = QUESTIONS_DATABASE.filter(function (q) {
-                                if (!q || q.area === "spass") return false;
-                                if (category && q.category !== category) return false;
-                                if (grade && q.grade && Number(q.grade) !== Number(grade)) return false;
-                                return true;
-                            });
-                            if (pool.length < 5 && grade) {
-                                pool = QUESTIONS_DATABASE.filter(function (q) {
-                                    if (!q || q.area === "spass") return false;
-                                    if (category && q.category !== category) return false;
-                                    return true;
-                                });
-                            }
-                        }
-                        questions = (typeof prepareQuestions === "function" ? prepareQuestions(pool) : pool)
-                            .slice().sort(function () { return Math.random() - 0.5; }).slice(0, 10);
-                    }
-                } catch (e) { console.warn(e); }
-                if (!questions.length) {
-                    return showToast("Keine Fragen geladen. Inhalt prüfen oder kurz warten und erneut versuchen.", "error");
+                    } catch (e) { lobbyId = null; }
                 }
 
-                const players = {};
-                players[fromKey] = {
-                    name: fromName, score: 0, hasAnswered: false,
-                    lastAnswer: null, word: "", coinsClaimed: false,
-                    lastSeen: Date.now(), sessionId: null
-                };
-                players[activePlayerKey] = {
-                    name: toName, score: 0, hasAnswered: false,
-                    lastAnswer: null, word: "", coinsClaimed: false,
-                    lastSeen: Date.now(),
-                    sessionId: window.DEVICE_SESSION_ID || null
-                };
-
-                await duelRef.set({
-                    type: isVocab ? "quiz" : "quiz",
-                    mode: "coop",
-                    status: "waiting",
-                    subject: subject,
-                    createdBy: fromKey,
-                    createdByName: fromName,
-                    createdAt: Date.now(),
-                    hostLastSeen: Date.now(),
-                    currentIndex: 0,
-                    answerSeconds: 25,
-                    questions: questions,
-                    players: players,
-                    order: [fromKey, activePlayerKey],
-                    fromChallenge: id
-                });
+                if (!lobbyId) {
+                    const subject = c.subject || (c.type === "vokabel" ? "vokabel" : "wissen");
+                    const iOpts = c.inviteOpts || {};
+                    const questions = await buildCoopQuestions(subject, iOpts);
+                    if (!questions.length) {
+                        return showToast("Keine Fragen geladen. Inhalt prüfen oder kurz warten und erneut versuchen.", "error");
+                    }
+                    const duelRef = db.collection("parents").doc(currentParentUser.uid)
+                        .collection("live_duel").doc();
+                    const players = {};
+                    players[c.fromKey] = {
+                        name: c.fromName || "Spieler", score: 0, hasAnswered: false,
+                        lastAnswer: null, word: "", coinsClaimed: false,
+                        lastSeen: Date.now(), sessionId: null
+                    };
+                    players[activePlayerKey] = {
+                        name: currentPlayer.name, score: 0, hasAnswered: false,
+                        lastAnswer: null, word: "", coinsClaimed: false,
+                        lastSeen: Date.now(),
+                        sessionId: window.DEVICE_SESSION_ID || null
+                    };
+                    await duelRef.set({
+                        type: "quiz",
+                        mode: "coop",
+                        status: "waiting",
+                        subject: subject,
+                        createdBy: c.fromKey,
+                        createdByName: c.fromName || "Spieler",
+                        createdAt: Date.now(),
+                        hostLastSeen: Date.now(),
+                        currentIndex: 0,
+                        answerSeconds: 25,
+                        questions: questions,
+                        players: players,
+                        order: [c.fromKey, activePlayerKey],
+                        fromChallenge: id
+                    });
+                    lobbyId = duelRef.id;
+                }
 
                 await ref.update({
                     status: "accepted",
                     acceptedAt: Date.now(),
-                    lobbyId: duelRef.id
+                    lobbyId: lobbyId
                 });
 
-                showToast("Einladung angenommen – Lobby ist offen!", "success");
+                showToast("Einladung angenommen – du bist in der Team-Lobby!", "success");
                 if (typeof joinLiveDuelById === "function") {
-                    await joinLiveDuelById(duelRef.id);
+                    await joinLiveDuelById(lobbyId);
                 }
                 loadOpenChallenges();
             } catch (e) {

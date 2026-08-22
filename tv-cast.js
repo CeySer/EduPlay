@@ -551,10 +551,68 @@
                 }
             } catch (_) {}
         }
+        // TV-Host: zwingend Querformat (Gameshow-Look)
+        let _tvLandscapeForced = false;
+        function isTVLandscape() {
+            try {
+                if (window.matchMedia && window.matchMedia("(orientation: landscape)").matches) return true;
+            } catch (e) { /* */ }
+            return (window.innerWidth || 0) > (window.innerHeight || 0);
+        }
+        function ensureTVLandscapeOverlay() {
+            let el = document.getElementById("tv-landscape-lock");
+            if (!el) {
+                el = document.createElement("div");
+                el.id = "tv-landscape-lock";
+                el.className = "tv-landscape-lock hidden";
+                el.innerHTML =
+                    '<div class="tv-landscape-lock-card">' +
+                    '<div class="tv-landscape-lock-icon">📱↻</div>' +
+                    '<h2>Querformat nötig</h2>' +
+                    '<p>Für den TV-Modus das Gerät <strong>quer</strong> drehen – dann sieht es wie eine echte Show aus.</p>' +
+                    '<p class="tv-landscape-lock-sub">Danach startet die Ansicht automatisch.</p>' +
+                    "</div>";
+                document.body.appendChild(el);
+            }
+            const need = _tvLandscapeForced && !isTVLandscape();
+            el.classList.toggle("hidden", !need);
+            document.body.classList.toggle("tv-need-landscape", !!need);
+            if (need) {
+                try {
+                    if (screen.orientation && typeof screen.orientation.lock === "function") {
+                        screen.orientation.lock("landscape").catch(function () { /* Browser erlaubt oft nur im Fullscreen */ });
+                    }
+                } catch (e2) { /* */ }
+            }
+        }
+        function startTVLandscapeGuard() {
+            _tvLandscapeForced = true;
+            ensureTVLandscapeOverlay();
+        }
+        function stopTVLandscapeGuard() {
+            _tvLandscapeForced = false;
+            ensureTVLandscapeOverlay();
+            try {
+                if (screen.orientation && typeof screen.orientation.unlock === "function") {
+                    screen.orientation.unlock();
+                }
+            } catch (e) { /* */ }
+        }
+        window.startTVLandscapeGuard = startTVLandscapeGuard;
+        window.stopTVLandscapeGuard = stopTVLandscapeGuard;
+        window.addEventListener("orientationchange", function () {
+            setTimeout(ensureTVLandscapeOverlay, 120);
+        });
+        window.addEventListener("resize", function () {
+            ensureTVLandscapeOverlay();
+        });
+
         function setTVHostPlayHTML(html) {
             showTVHostPlay();
+            if (isTVHost) startTVLandscapeGuard();
             const el = tvHostPlayEl();
             if (el) el.innerHTML = html;
+            ensureTVLandscapeOverlay();
         }
         function setTVPlayerPlayHTML(html) {
             showTVPlayerPlay();
@@ -930,9 +988,9 @@
             });
         }
 
-        // Kahoot-Farben: Rot, Blau, Gelb, Grün – hohe Sättigung für TV
-        const TV_KAHOOT_COLORS = ["#e21b3c", "#1368ce", "#d89e00", "#26890c"];
-        const TV_KAHOOT_SHAPES = ["▲", "◆", "●", "■"];
+        // EduPlay-TV-Palette (kein Kahoot-Klon): Indigo, Emerald, Amber, Fuchsia
+        const TV_SHOW_COLORS = ["#4f46e5", "#059669", "#d97706", "#c026d3"];
+        const TV_SHOW_LABELS = ["A", "B", "C", "D"];
 
         function showTVHostQuestion(index) {
             stopTVRoundTimer();
@@ -940,30 +998,31 @@
             tvCurrentQ = tvQuestions[index];
             let answersHtml = "";
             (tvCurrentQ.answers || []).forEach((ans, i) => {
-                const bg = TV_KAHOOT_COLORS[i % 4];
-                const shape = TV_KAHOOT_SHAPES[i % 4];
+                const bg = TV_SHOW_COLORS[i % 4];
+                const lab = TV_SHOW_LABELS[i % 4];
                 answersHtml += `
-                    <div class="tv-kahoot-tile" style="background:${bg}">
-                        <span class="tv-kahoot-shape">${shape}</span>
-                        <span class="tv-kahoot-answer">${esc(ans)}</span>
+                    <div class="tv-show-tile" style="background:${bg}">
+                        <span class="tv-show-label">${lab}</span>
+                        <span class="tv-show-answer">${esc(ans)}</span>
                     </div>`;
             });
             setTVHostPlayHTML(`
-                <div class="tv-kahoot-stage">
-                    <div class="tv-kahoot-top">
-                        <div class="tv-kahoot-meta">
-                            <span class="tv-kahoot-qnum">Frage ${index + 1} / ${tvQuestions.length}</span>
-                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-kahoot-exit">✕</button>
+                <div class="tv-show-stage">
+                    <div class="tv-rotate-hint" id="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
+                    <div class="tv-show-top">
+                        <div class="tv-show-meta">
+                            <span class="tv-show-qnum">Frage ${index + 1} / ${tvQuestions.length}</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
-                        <div class="tv-kahoot-timer-track" aria-hidden="true">
-                            <div id="tv-kahoot-timer-bar" class="tv-kahoot-timer-bar"></div>
+                        <div class="tv-show-timer-track" aria-hidden="true">
+                            <div id="tv-kahoot-timer-bar" class="tv-show-timer-bar"></div>
                         </div>
-                        <h1 class="tv-kahoot-question">${esc(tvCurrentQ.question)}</h1>
+                        <h1 class="tv-show-question">${esc(tvCurrentQ.question)}</h1>
                     </div>
-                    <div class="tv-kahoot-grid">${answersHtml}</div>
-                    <div class="tv-kahoot-footer">
-                        <span id="tv-answer-counter" class="tv-kahoot-counter">0 von 0 haben geantwortet</span>
-                        <button onclick="forceTVQuizReveal()" class="tv-kahoot-force">Runde auswerten ⏱️</button>
+                    <div class="tv-show-grid">${answersHtml}</div>
+                    <div class="tv-show-footer">
+                        <span id="tv-answer-counter" class="tv-show-counter">0 von 0 haben geantwortet</span>
+                        <button onclick="forceTVQuizReveal()" class="tv-show-force">Runde auswerten ⏱️</button>
                     </div>
                 </div>
             `);
@@ -1029,48 +1088,48 @@
 
             let answersHtml = "";
             (tvCurrentQ.answers || []).forEach((ans, i) => {
-                const bg = TV_KAHOOT_COLORS[i % 4];
-                const shape = TV_KAHOOT_SHAPES[i % 4];
+                const bg = TV_SHOW_COLORS[i % 4];
+                const lab = TV_SHOW_LABELS[i % 4];
                 const isOk = i === correctIndex;
                 answersHtml += `
-                    <div class="tv-kahoot-tile ${isOk ? "tv-kahoot-correct" : "tv-kahoot-wrong"}" style="background:${bg}">
-                        <span class="tv-kahoot-shape">${shape}</span>
-                        <span class="tv-kahoot-answer">${esc(ans)}</span>
-                        ${isOk ? '<span class="tv-kahoot-check">✓</span>' : ''}
+                    <div class="tv-show-tile ${isOk ? "tv-show-correct" : "tv-show-wrong"}" style="background:${bg}">
+                        <span class="tv-show-label">${lab}</span>
+                        <span class="tv-show-answer">${esc(ans)}</span>
+                        ${isOk ? '<span class="tv-show-check">✓</span>' : ''}
                     </div>`;
             });
 
-            // Kurzes Ranking nach der Runde (Kahoot-Feeling)
             const ranked = Object.values(playersData || {})
                 .sort(function (a, b) { return (b.score || 0) - (a.score || 0); })
                 .slice(0, 5)
                 .map(function (p, i) {
-                    return `<div class="tv-kahoot-rank-row">
-                        <span class="tv-kahoot-rank-pos">${i + 1}</span>
-                        <span class="tv-kahoot-rank-name">${esc(p.name)}</span>
-                        <span class="tv-kahoot-rank-score">${p.score || 0}</span>
+                    return `<div class="tv-show-rank-row">
+                        <span class="tv-show-rank-pos">${i + 1}</span>
+                        <span class="tv-show-rank-name">${esc(p.name)}</span>
+                        <span class="tv-show-rank-score">${p.score || 0}</span>
                     </div>`;
                 }).join("");
 
             setTVHostPlayHTML(`
-                <div class="tv-kahoot-stage">
-                    <div class="tv-kahoot-top">
-                        <div class="tv-kahoot-meta">
-                            <span class="tv-kahoot-qnum">Auflösung</span>
-                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="tv-kahoot-exit">✕</button>
+                <div class="tv-show-stage">
+                    <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
+                    <div class="tv-show-top">
+                        <div class="tv-show-meta">
+                            <span class="tv-show-qnum">Auflösung</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
-                        <h1 class="tv-kahoot-question">${esc(tvCurrentQ.question)}</h1>
+                        <h1 class="tv-show-question">${esc(tvCurrentQ.question)}</h1>
                         ${tvCurrentQ.explanation
-                            ? `<p class="tv-kahoot-explain">💡 ${esc(tvCurrentQ.explanation)}</p>`
+                            ? `<p class="tv-show-explain">💡 ${esc(tvCurrentQ.explanation)}</p>`
                             : ""}
                     </div>
-                    <div class="tv-kahoot-grid">${answersHtml}</div>
-                    <div class="tv-kahoot-scorestrip">${ranked || ""}</div>
-                    <div class="tv-kahoot-footer">
-                        <button onclick="nextTVQuestion()" class="tv-kahoot-next">Nächste Frage ➔</button>
-                        <div id="tv-auto-row" class="tv-kahoot-auto">
+                    <div class="tv-show-grid">${answersHtml}</div>
+                    <div class="tv-show-scorestrip">${ranked || ""}</div>
+                    <div class="tv-show-footer">
+                        <button onclick="nextTVQuestion()" class="tv-show-next">Nächste Frage ➔</button>
+                        <div id="tv-auto-row" class="tv-show-auto">
                             <span id="tv-auto-label"></span>
-                            <button onclick="toggleTVAutoAdvance()" id="tv-auto-btn" class="tv-kahoot-auto-btn"></button>
+                            <button onclick="toggleTVAutoAdvance()" id="tv-auto-btn" class="tv-show-auto-btn"></button>
                         </div>
                     </div>
                 </div>
@@ -1154,7 +1213,8 @@
             stopTVActionMode();
             const sorted = Object.values(playersData || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
             let html =
-                `<div class="tv-kahoot-stage" style="justify-content:center">
+                `<div class="tv-show-stage" style="justify-content:center">
+                    <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
                     <h1 class="text-5xl md:text-6xl font-black text-yellow-300 mb-8 text-center" style="text-shadow:0 4px 24px rgba(250,204,21,0.35)">🏆 Siegerehrung</h1>
                     <div class="space-y-4 max-w-3xl mx-auto w-full">`;
             const medals = ["🥇", "🥈", "🥉"];
@@ -2341,17 +2401,17 @@
                             } else { SFX.wrong(); }
                         } else if (!myData.hasAnswered) {
                             const q = tvQuestions[data.currentQuestionIndex];
-                            const colors = (typeof TV_KAHOOT_COLORS !== "undefined")
-                                ? TV_KAHOOT_COLORS
-                                : ["#e21b3c", "#1368ce", "#d89e00", "#26890c"];
-                            const shapes = (typeof TV_KAHOOT_SHAPES !== "undefined")
-                                ? TV_KAHOOT_SHAPES
-                                : ["▲", "◆", "●", "■"];
+                            const colors = (typeof TV_SHOW_COLORS !== "undefined")
+                                ? TV_SHOW_COLORS
+                                : ["#4f46e5", "#059669", "#d97706", "#c026d3"];
+                            const labels = (typeof TV_SHOW_LABELS !== "undefined")
+                                ? TV_SHOW_LABELS
+                                : ["A", "B", "C", "D"];
                             let btnHtml = `<div class="grid grid-cols-2 gap-4 h-[75vh]">`;
                             const count = (q && q.answers) ? q.answers.length : (data.answerCount || 3);
                             for (let i = 0; i < count; i++) {
                                 btnHtml +=
-                                    `<button onclick="submitTVAnswer(${i})" class="rounded-3xl shadow-xl flex items-center justify-center text-8xl text-white/95 active:scale-95 transition-transform" style="background:${colors[i % 4]}">${shapes[i % 4]}</button>`;
+                                    `<button onclick="submitTVAnswer(${i})" class="rounded-3xl shadow-xl flex items-center justify-center text-6xl font-black text-white active:scale-95 transition-transform" style="background:${colors[i % 4]}">${labels[i % 4]}</button>`;
                             }
                             setTVPlayerPlayHTML(btnHtml + `</div>`);
                         }
@@ -2478,6 +2538,7 @@
             tvGameRef = null;
             isTVHost = false;
             isResolving = false;
+            stopTVLandscapeGuard();
             if (wasHost) merkeTVHost(false);
             showTVHostSetup();
             showTVPlayerSetup();

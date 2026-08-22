@@ -734,6 +734,25 @@ auth.createUserWithEmailAndPassword(e, p)
                 } else if (c.status === "declined" || c.status === "expired") {
                     unsub();
                     delete _challengeWatchers[ref.id];
+                    // Nur dem Einladenden melden – und nur, wenn der andere abgelehnt hat
+                    // (nicht wenn man selbst „Zurücknehmen“ tippt).
+                    if (c.fromKey === activePlayerKey) {
+                        if (c.status === "declined" && c.declinedBy && c.declinedBy !== activePlayerKey) {
+                            const name = c.toName || "Dein Freund";
+                            showToast("🙅 " + esc(name) + " hat die Einladung abgelehnt.", "error");
+                            if (typeof showDuelNotification === "function") {
+                                showDuelNotification(
+                                    "Einladung abgelehnt",
+                                    name + " möchte gerade nicht mitüben.",
+                                    "challenge-declined-" + (ref.id || ""),
+                                    "#lernen"
+                                );
+                            }
+                        } else if (c.status === "expired") {
+                            showToast("⏱ Einladung an " + esc(c.toName || "…") + " ist abgelaufen.", "error");
+                        }
+                        loadOpenChallenges();
+                    }
                 }
             });
             _challengeWatchers[ref.id] = unsub;
@@ -995,7 +1014,11 @@ auth.createUserWithEmailAndPassword(e, p)
         async function declineChallenge(id) {
             if (!id || !currentParentUser) return;
             try {
-                await challengesRef().doc(id).update({ status: "declined", declinedAt: Date.now() });
+                await challengesRef().doc(id).update({
+                    status: "declined",
+                    declinedAt: Date.now(),
+                    declinedBy: activePlayerKey || null
+                });
                 loadOpenChallenges();
             } catch (e) {
                 try { await challengesRef().doc(id).delete(); } catch (_) { }

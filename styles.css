@@ -3195,84 +3195,64 @@ body.tv-mirror-display #tv-host-play .text-lg { font-size: 1.25rem !important; }
 body.tv-mirror-display #tv-host-play .min-h-\[120px\] { min-height: 140px !important; }
 #tv-mirror-bar { display: none !important; }
 
-/* TV-Lobby: QR · Code · Teilen nebeneinander (Querformat) */
+/* TV-Lobby – aufgeräumt */
 .tv-lobby-stage {
-  min-height: 85vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
+  gap: 0.85rem;
+  padding: 1rem 1.25rem;
   text-align: center;
+  box-sizing: border-box;
 }
 .tv-lobby-title {
-  font-size: clamp(1.5rem, 4vh, 2.4rem);
+  font-size: clamp(1.25rem, 3.5vh, 1.85rem);
   font-weight: 900;
-  color: #818cf8;
+  color: #a5b4fc;
   margin: 0;
+  letter-spacing: 0.04em;
+}
+.tv-lobby-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(129,140,248,0.25);
+  border-radius: 1.15rem;
+  padding: 0.85rem 1rem;
+  width: 100%;
+  max-width: 36rem;
 }
 .tv-lobby-join-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem;
-  width: 100%;
-  max-width: 52rem;
-}
-@media (orientation: landscape) {
-  .tv-lobby-join-row {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 1.25rem;
-  }
-  .tv-lobby-stage {
-    min-height: 100dvh;
-    padding: 0.5rem 1.25rem;
-    gap: 0.5rem;
-  }
-  .tv-lobby-qr img {
-    width: clamp(88px, 18vh, 140px) !important;
-    height: clamp(88px, 18vh, 140px) !important;
-  }
-  .tv-lobby-code {
-    font-size: clamp(1.75rem, 5vh, 2.75rem) !important;
-  }
+  justify-content: center;
+  gap: 0.85rem 1.1rem;
 }
 .tv-lobby-qr img {
-  width: 140px;
-  height: 140px;
-  border-radius: 0.75rem;
+  width: clamp(72px, 14vh, 110px);
+  height: clamp(72px, 14vh, 110px);
+  border-radius: 0.65rem;
   background: #fff;
-  padding: 0.4rem;
+  padding: 0.3rem;
   display: block;
 }
-.tv-lobby-code-block { min-width: 8rem; }
+.tv-lobby-code-block { min-width: 6.5rem; }
 .tv-lobby-code-label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: #a5b4fc;
   margin: 0;
 }
 .tv-lobby-code {
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 4.5vh, 2.35rem);
   font-weight: 900;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   color: #fff;
-  margin: 0.15rem 0;
-}
-.tv-lobby-hint {
-  font-size: 0.7rem;
-  color: #9ca3af;
-  margin: 0;
-}
-.tv-lobby-hint-center {
-  font-size: 0.85rem;
-  color: #d1d5db;
-  margin: 0;
+  margin: 0.1rem 0 0;
 }
 .tv-lobby-share {
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
@@ -3280,41 +3260,75 @@ body.tv-mirror-display #tv-host-play .min-h-\[120px\] { min-height: 140px !impor
   font-weight: 800;
   border: none;
   border-radius: 999px;
-  padding: 0.75rem 1.25rem;
-  font-size: 0.95rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
   white-space: nowrap;
-  box-shadow: 0 6px 20px rgba(99,102,241,0.35);
 }
 .tv-lobby-players {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
   width: 100%;
-  max-width: 40rem;
+  max-width: 36rem;
+  min-height: 2.5rem;
 }
-@media (orientation: landscape) {
-  .tv-lobby-players {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    max-width: 48rem;
-  }
+.tv-lobby-empty {
+  width: 100%;
+  color: #9ca3af;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+}
+.tv-lobby-status {
+  width: 100%;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #a5b4fc;
+  margin-bottom: 0.15rem;
+}
+.tv-lobby-player {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-weight: 800;
+  color: #fff;
+  font-size: 0.85rem;
+}
+.tv-lobby-player.is-off { opacity: 0.45; }
+.tv-lobby-player-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #34d399;
+}
+.tv-lobby-player.is-off .tv-lobby-player-dot { background: #6b7280; }
+.tv-lobby-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
 }
 .tv-lobby-start {
   background: linear-gradient(135deg, #f59e0b, #fbbf24);
   color: #1f2937;
   font-weight: 900;
   border: none;
-  border-radius: 1rem;
-  padding: 0.85rem 2rem;
-  font-size: clamp(1.1rem, 3vh, 1.6rem);
-  box-shadow: 0 6px 24px rgba(245,158,11,0.35);
+  border-radius: 999px;
+  padding: 0.7rem 1.75rem;
+  font-size: clamp(1rem, 2.8vh, 1.35rem);
+  box-shadow: 0 6px 20px rgba(245,158,11,0.3);
 }
 .tv-lobby-cancel {
   background: none;
   border: none;
   color: #9ca3af;
   font-weight: 700;
-  text-decoration: underline;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 
 /* ============================================================
@@ -3368,34 +3382,48 @@ body.tv-mirror-display #tv-host-play .min-h-\[120px\] { min-height: 140px !impor
     height: 8px;
   }
   .tv-show-meta { margin-bottom: 0.15rem; }
+  .tv-show-stage {
+    padding: 0.25rem 0.75rem 0.35rem !important;
+    gap: 0.25rem !important;
+  }
   .tv-show-grid {
     flex: 1 1 auto;
     min-height: 0 !important;
     height: auto;
-    width: 100%;
-    max-width: 96vw;
+    width: 88vw;
+    max-width: 52rem;
     margin: 0 auto;
-    gap: 0.4rem 1.1rem !important; /* mehr Abstand horizontal */
+    gap: 0.35rem 0.85rem !important;
     grid-template-rows: 1fr 1fr;
   }
   .tv-show-tile {
     min-height: 0 !important;
     height: 100%;
-    max-height: 26vh;
-    padding: 0.35rem 0.55rem !important;
-    border-radius: 0.75rem !important;
+    max-height: 20vh;
+    padding: 0.28rem 0.5rem !important;
+    border-radius: 0.65rem !important;
   }
   .tv-show-question {
-    font-size: clamp(0.95rem, 3.2vh, 1.7rem) !important;
-    line-height: 1.2 !important;
+    font-size: clamp(0.9rem, 2.9vh, 1.55rem) !important;
+    line-height: 1.18 !important;
     margin-top: 0 !important;
   }
   .tv-show-answer {
-    font-size: clamp(0.9rem, 2.6vh, 1.4rem) !important;
+    font-size: clamp(0.85rem, 2.4vh, 1.25rem) !important;
   }
   .tv-show-top {
-    max-height: 28vh !important;
+    max-height: 26vh !important;
     padding-top: 0;
+  }
+  .tv-show-timer-track {
+    margin: 0.15rem auto 0.25rem !important;
+  }
+  .tv-show-footer {
+    padding-bottom: 0.15rem;
+  }
+  .tv-show-force {
+    padding: 0.35rem 0.9rem !important;
+    font-size: 0.8rem !important;
   }
   .tv-show-label {
     width: clamp(1.6rem, 3.5vh, 2.2rem) !important;
@@ -3418,6 +3446,7 @@ body.tv-mirror-display #tv-host-play .min-h-\[120px\] { min-height: 140px !impor
 /* TV-Host aktiv: App-Chrome weg, volle Fläche */
 body.tv-host-active #header-menu,
 body.tv-host-active #header-family,
+body.tv-host-active #header-familyhub,
 body.tv-host-active [id^="drawer"],
 body.tv-host-active #castControlPanel,
 body.tv-host-active #tv-player-exit,
@@ -3425,15 +3454,14 @@ body.tv-host-active #castButton,
 body.tv-host-active #ki-coach-fab,
 body.tv-host-active #coach-fab,
 body.tv-host-active #tv-mirror-bar,
+body.tv-host-active #fabContainer,
+body.tv-host-active .fab-container,
 body.tv-host-active .fixed.bottom-20,
 body.tv-host-active .fixed.bottom-24,
 body.tv-mirror-display #header-menu,
-body.tv-mirror-display #header-family {
-  display: none !important;
-}
-/* Lila TV-FAB / Floating-Buttons während Host */
-body.tv-host-active button[style*="position:fixed"],
-body.tv-mirror-display button[style*="position:fixed"] {
+body.tv-mirror-display #header-family,
+body.tv-mirror-display #fabContainer,
+body.tv-mirror-display .fab-container {
   display: none !important;
 }
 body.tv-host-active #app-shell {

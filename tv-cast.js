@@ -900,20 +900,22 @@
 
                 setTVHostPlayHTML(`
                     <div class="tv-lobby-stage">
-                        <h2 class="tv-lobby-title">Warte auf Spieler…</h2>
-                        ${tvCode ? `<div class="tv-lobby-join-row">
-                            ${qrSrc ? `<div class="tv-lobby-qr"><img alt="QR" src="${qrSrc}"></div>` : ""}
-                            <div class="tv-lobby-code-block">
-                                <p class="tv-lobby-code-label">Beitritts-Code</p>
-                                <div class="tv-lobby-code">${tvCode}</div>
-                                <p class="tv-lobby-hint">Familie: „Jetzt beitreten“ · Andere: QR / Code</p>
+                        <h2 class="tv-lobby-title">TV-Lobby</h2>
+                        ${tvCode ? `<div class="tv-lobby-card">
+                            <div class="tv-lobby-join-row">
+                                ${qrSrc ? `<div class="tv-lobby-qr"><img alt="QR" src="${qrSrc}"></div>` : ""}
+                                <div class="tv-lobby-code-block">
+                                    <p class="tv-lobby-code-label">Code</p>
+                                    <div class="tv-lobby-code">${tvCode}</div>
+                                </div>
+                                <button type="button" onclick="shareTVCode()" class="tv-lobby-share">📤 Teilen</button>
                             </div>
-                            <button type="button" onclick="shareTVCode()" class="tv-lobby-share">📤 Code teilen</button>
                         </div>` : ""}
-                        <p class="tv-lobby-hint-center">Handy: <span class="text-emerald-400 font-bold">Jetzt beitreten</span> · TV: Bildschirm spiegeln</p>
                         <div id="tv-player-list" class="tv-lobby-players"></div>
-                        <button onclick="startTVGameLoop()" class="tv-lobby-start">Spiel starten! 🚀</button>
-                        <button onclick="leaveTVGame()" class="tv-lobby-cancel">Lobby abbrechen</button>
+                        <div class="tv-lobby-actions">
+                            <button onclick="startTVGameLoop()" class="tv-lobby-start">Spiel starten 🚀</button>
+                            <button onclick="leaveTVGame()" class="tv-lobby-cancel">Abbrechen</button>
+                        </div>
                     </div>
                 `);
 
@@ -937,8 +939,7 @@
             const cleaned = typeof bereinigeTVPlayers === "function" ? bereinigeTVPlayers(players || {}) : (players || {});
             const keys = Object.keys(cleaned);
             if (keys.length === 0) {
-                list.innerHTML = `<p class="col-span-4 text-gray-500 font-bold">Noch niemand beigetreten…</p>
-                    <p class="col-span-4 text-xs text-gray-500">📡 0 verbunden – warte auf Handys</p>`;
+                list.innerHTML = `<div class="tv-lobby-empty">Warte auf Mitspieler…</div>`;
                 return;
             }
             let online = 0;
@@ -946,18 +947,12 @@
                 const p = cleaned[k];
                 const da = typeof istAnwesend === "function" ? istAnwesend(p) : true;
                 if (da) online++;
-                const status = da
-                    ? '<span class="text-emerald-400">🟢 Online</span>'
-                    : '<span class="text-gray-500">⚪ Offline</span>';
-                return `<div class="bg-white/5 border ${da ? "border-emerald-500/30" : "border-white/5"} rounded-xl p-4 text-center ${da ? "" : "opacity-50"}">
-                    <div class="text-3xl">🙋</div>
-                    <div class="font-bold text-white mt-2">${esc(p.name)}</div>
-                    <div class="text-xs font-bold mt-1">${status}</div>
+                return `<div class="tv-lobby-player ${da ? "is-on" : "is-off"}">
+                    <span class="tv-lobby-player-dot"></span>
+                    <span class="tv-lobby-player-name">${esc(p.name)}</span>
                 </div>`;
             }).join("");
-            const bar = `<div class="col-span-2 md:col-span-4 mb-2 rounded-xl px-4 py-3 text-center text-sm font-bold ${online === keys.length ? "bg-emerald-500/15 text-emerald-300" : "bg-amber-500/10 text-amber-200"}">
-                📡 ${online}/${keys.length} verbunden${online < keys.length ? " · jemanden warten" : " · alle online"}
-            </div>`;
+            const bar = `<div class="tv-lobby-status">${online}/${keys.length} online</div>`;
             list.innerHTML = bar + cards;
         }
 

@@ -259,7 +259,7 @@ auth.createUserWithEmailAndPassword(e, p)
             ${esc(initialsFor(p.name))}
         </div>
         <div class="player-name">${esc(p.name)}</div>
-        ${desc ? `<div class="player-grade">${esc(desc)}</div>` : ''}
+        ${p.profileRole === "eltern" ? '<div class="player-grade">Eltern</div>' : (desc ? `<div class="player-grade">${esc(desc)}</div>` : '')}
         <div class="player-coins"><span class="coin-icon">🪙</span> ${p.coins || 0}</div>
         <div class="player-meta"><span class="dot ${act.dot}"></span>${esc(act.text)}</div>
     `;
@@ -2649,7 +2649,50 @@ auth.createUserWithEmailAndPassword(e, p)
             renderDashAdminProgress();
             renderDashAdminTest();
             renderDashRewards();
+            maybeShowParentWeeklyReport();
         }
+
+        function maybeShowParentWeeklyReport() {
+            if (!currentParentUser || currentParentUser.isAnonymous) return;
+            const uid = currentParentUser.uid;
+            const key = "eduplayParentReport_" + uid;
+            try {
+                const last = Number(localStorage.getItem(key) || 0);
+                if (last && (Date.now() - last) < 7 * 24 * 60 * 60 * 1000) return;
+            } catch (e) { return; }
+            const today = new Date().toISOString().slice(0, 10);
+            const keys = Object.keys(ALL_PROFILES || {}).filter(function (k) {
+                return ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest;
+            });
+            if (!keys.length) return;
+            const lines = keys.map(function (k) {
+                const p = ALL_PROFILES[k];
+                const sec = (p.studyLog && p.studyLog[today]) || 0;
+                const time = (typeof formatStudyDuration === "function")
+                    ? formatStudyDuration(sec) : (Math.floor(sec / 60) + " Min.");
+                const hist = p.testHistory || [];
+                const t = hist[0];
+                const testLine = t
+                    ? ("Test " + Math.round((t.correct / Math.max(1, t.total)) * 100) + "%")
+                    : "kein Test";
+                const g = p.studyGoal;
+                const goalOk = g && g.minutes && (!g.day || g.day === today);
+                const goalLine = goalOk
+                    ? ("Auftrag " + Math.min(100, Math.round((sec / (g.minutes * 60)) * 100)) + "%")
+                    : "kein Auftrag";
+                return "• " + (p.name || "Kind") + ": heute " + time + " · " + testLine + " · " + goalLine;
+            });
+            try { localStorage.setItem(key, String(Date.now())); } catch (e) { /* */ }
+            const text = "Kurzüberblick für diese Woche:\n\n" + lines.join("\n");
+            if (typeof appAlert === "function") {
+                setTimeout(function () {
+                    appAlert(text, { titel: "📊 Eltern-Bericht", icon: "📊", okText: "Alles klar" });
+                }, 600);
+            } else {
+                showToast("Eltern-Bericht bereit", "success");
+            }
+        }
+        window.maybeShowParentWeeklyReport = maybeShowParentWeeklyReport;
 
         function renderDashAdminProgress() {
             const container = document.getElementById('dash-admin-stats');
@@ -3282,6 +3325,7 @@ auth.createUserWithEmailAndPassword(e, p)
             editingPlayerKey = key;
             document.getElementById("edit-player-name").value = p.name || "";
             document.getElementById("edit-player-birthday").value = p.birthday || "";
+            setProfileRoleUi("edit", p.profileRole === "eltern" ? "eltern" : "kind");
             const sel = document.getElementById("edit-player-grade");
             sel.innerHTML = `<option value="">Noch keine / keine Angabe</option>`;
             for (let g = 1; g <= 13; g++) {
@@ -3321,6 +3365,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 name: name,
                 birthday: birthday,
                 grade: grade,
+                profileRole: getProfileRoleUi("edit"),
                 ageType: grade ? "klasse" : "alter",
                 age: grade ? String(grade) : (ageFromBirthday(birthday) !== null ? String(ageFromBirthday(birthday)) :
                     "-")
@@ -3419,11 +3464,27 @@ auth.createUserWithEmailAndPassword(e, p)
         // ============================================================
         //  NEUEN SPIELER ANLEGEN
         // ============================================================
+        function setProfileRoleUi(which, role) {
+            const box = document.getElementById(which === "edit" ? "edit-profile-role" : "new-profile-role");
+            if (!box) return;
+            box.querySelectorAll("[data-role]").forEach(function (btn) {
+                btn.classList.toggle("active", btn.getAttribute("data-role") === role);
+            });
+            box.dataset.selected = role === "eltern" ? "eltern" : "kind";
+        }
+        window.setProfileRoleUi = setProfileRoleUi;
+        function getProfileRoleUi(which) {
+            const box = document.getElementById(which === "edit" ? "edit-profile-role" : "new-profile-role");
+            if (!box) return "kind";
+            return box.dataset.selected === "eltern" ? "eltern" : "kind";
+        }
+
         async function saveNewProfile() {
             const name = cleanInput(document.getElementById("new-profile-name").value, 24);
             const birthday = document.getElementById("new-profile-birthday").value || "";
             const gradeRaw = document.getElementById("new-profile-grade").value;
             const grade = gradeRaw ? parseInt(gradeRaw) : null;
+            const profileRole = getProfileRoleUi("new");
             if (!name) return showToast("Bitte Namen eingeben!", "error");
             if (birthday && ageFromBirthday(birthday) === null) return showToast("Der Geburtstag sieht nicht richtig aus.",
                 "error");
@@ -3431,6 +3492,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 name: name,
                 birthday: birthday,
                 grade: grade,
+                profileRole: profileRole,
                 ageType: grade ? "klasse" : "alter",
                 age: grade ? String(grade) : (ageFromBirthday(birthday) !== null ? String(ageFromBirthday(birthday)) :
                     "-"),
@@ -3443,6 +3505,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 document.getElementById("new-profile-name").value = "";
                 document.getElementById("new-profile-birthday").value = "";
                 document.getElementById("new-profile-grade").value = "";
+                setProfileRoleUi("new", "kind");
                 showToast("Spieler angelegt!", "success");
                 renderFamilyHub();
                 switchView('family-hub');

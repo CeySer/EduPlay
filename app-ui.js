@@ -59,6 +59,17 @@
         const hinweis = document.getElementById("db-loading-hint");
         if (hinweis) hinweis.classList.add("hidden");
         try { console.log("🎬 UI freigegeben – " + anzahl + " Fragen"); } catch (_) { }
+        if (anzahl === 0) {
+            const offline = (typeof navigator !== "undefined" && navigator.onLine === false);
+            const msg = offline
+                ? "📴 Offline – keine Fragen geladen. Bitte online gehen und neu laden."
+                : "Keine Fragen geladen. Bitte Seite neu laden oder Verbindung prüfen.";
+            if (typeof appAlert === "function") {
+                appAlert(msg, { titel: "Fragen fehlen", icon: "📚", okText: "OK" });
+            } else if (typeof showToast === "function") {
+                showToast(msg, "error");
+            }
+        }
     });
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -74,8 +85,14 @@
             hideGlobalLoading(true);
             const h = document.getElementById("db-loading-hint");
             if (h) h.classList.add("hidden");
-            if (typeof showToast === "function") {
-                showToast("Die Fragen brauchen ungewöhnlich lange. Prüf mal deine Verbindung.", "error");
+            const offline = (typeof navigator !== "undefined" && navigator.onLine === false);
+            const msg = offline
+                ? "📴 Offline: Fragen konnten nicht geladen werden. WLAN prüfen und App neu laden."
+                : "Die Fragen brauchen ungewöhnlich lange. Verbindung prüfen und Seite neu laden.";
+            if (typeof appAlert === "function") {
+                appAlert(msg, { titel: offline ? "Keine Verbindung" : "Fragen laden", icon: "📴", okText: "OK" });
+            } else if (typeof showToast === "function") {
+                showToast(msg, "error");
             }
         }, 20000);
     });

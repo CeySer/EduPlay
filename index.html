@@ -113,7 +113,7 @@ HEADER FÜR FAMILY HUB
         <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.30</span>
+                <span class="version">v2.31</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -128,7 +128,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
                 <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
-                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.30</span>
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.31</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1801,6 +1801,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <input type="text" id="edit-player-name" maxlength="24" class="input-modern font-bold">
                     </div>
                     <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Profil-Hinweis</label>
+                        <div class="dash-sub-nav" id="edit-profile-role">
+                            <button type="button" data-role="kind" class="active" onclick="setProfileRoleUi('edit', 'kind')">Kind</button>
+                            <button type="button" data-role="eltern" onclick="setProfileRoleUi('edit', 'eltern')">Eltern</button>
+                        </div>
+                        <p class="text-[11px] text-gray-500 mt-1.5">Nur zur Orientierung – ändert nichts an den Rechten.</p>
+                    </div>
+                    <div>
                         <label class="block text-xs font-bold text-gray-400 mb-1.5">Geburtstag</label>
                         <input type="date" id="edit-player-birthday" onchange="updateAgePreview()"
                             class="input-modern font-bold">
@@ -1907,6 +1915,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <h2 class="text-xl font-black text-emerald-400">Neuen Spieler anlegen</h2>
                     <input type="text" id="new-profile-name" placeholder="Name" class="input-modern">
                     <div>
+                        <label class="block text-xs font-bold text-gray-400 mb-1.5">Profil-Hinweis</label>
+                        <div class="dash-sub-nav" id="new-profile-role">
+                            <button type="button" data-role="kind" class="active" onclick="setProfileRoleUi('new', 'kind')">Kind</button>
+                            <button type="button" data-role="eltern" onclick="setProfileRoleUi('new', 'eltern')">Eltern</button>
+                        </div>
+                        <p class="text-[11px] text-gray-500 mt-1.5">Nur zur Orientierung – ändert nichts an den Rechten.</p>
+                    </div>
+                    <div>
                         <label class="block text-xs font-bold text-gray-400 mb-1.5">Geburtstag (freiwillig)</label>
                         <input type="date" id="new-profile-birthday" class="input-modern font-bold">
                     </div>
@@ -1947,6 +1963,15 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <span class="font-bold text-white">🔊 Ton</span>
                         <button onclick="toggleSound()" class="btn-secondary text-sm py-2 px-4"><span
                                 class="sound-toggle-icon">an/aus</span></button>
+                    </div>
+                    <div class="flex items-center justify-between gap-3 py-2 border-b border-white/5">
+                        <span class="min-w-0">
+                            <span class="block font-bold text-white">🤫 Leise-Modus</span>
+                            <span class="block text-[11px] text-gray-500">Kein Ton – nur Vibration (Schule/Bibliothek)</span>
+                        </span>
+                        <button type="button" onclick="toggleQuietMode()" class="btn-secondary text-sm py-2 px-4">
+                            <span class="quiet-toggle-label">aus</span>
+                        </button>
                     </div>
                     <div class="py-2 border-b border-white/5 space-y-2">
                         <span class="font-bold text-white block">🎧 Sound-Pack</span>
@@ -2044,7 +2069,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="dev-admin-entry" class="hidden pt-3 border-t border-white/5">
                         <button type="button" onclick="openDevAdmin()" class="btn-secondary w-full text-sm text-cyan-300">🛠 Entwickler-Seite</button>
                     </div>
-                    <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.30
+                    <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.31
                     </div>
                 </div>
             </div>
@@ -2670,9 +2695,9 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=11.5"></script>
-    <script src="app-ui.js?v=9.3"></script>
-    <script src="family-dashboard.js?v=11.10"></script>
+    <script src="app-config.js?v=11.6"></script>
+    <script src="app-ui.js?v=9.4"></script>
+    <script src="family-dashboard.js?v=11.12"></script>
     <script src="dev-admin.js?v=1.6"></script>
     <script src="ui-common.js?v=9.1"></script>
     <script src="ki-coach.js?v=1.1"></script>

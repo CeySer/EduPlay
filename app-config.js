@@ -1091,8 +1091,15 @@ const geladen = _questionCounts[key] || 0;
                 msg = "📴 Keine Verbindung – prüfe WLAN/Mobilfunk und versuch es nochmal.";
             } else if (code.includes("permission-denied") || code.includes("permission_denied")) {
                 msg = "🔒 Keine Berechtigung – bitte neu anmelden oder Lobby neu erstellen.";
-            } else if (code.includes("unauthenticated") || code.includes("auth/")) {
+            } else if (code.includes("unauthenticated") || code.includes("auth/") ||
+                code.includes("requires-recent-login") || code.includes("user-token-expired") ||
+                code.includes("id-token-expired")) {
                 msg = "🔑 Sitzung abgelaufen – bitte erneut anmelden.";
+                if (typeof appAlert === "function") {
+                    Promise.resolve(appAlert("Deine Anmeldung ist abgelaufen. Bitte melde dich erneut an.", {
+                        titel: "Sitzung abgelaufen", icon: "🔑", okText: "Verstanden"
+                    })).catch(function () { /* */ });
+                }
             } else if (code.includes("not-found") || code.includes("not_found")) {
                 msg = "🔍 Nicht gefunden – die Lobby existiert nicht mehr.";
             } else if (code.includes("already-exists") || code.includes("already_exists")) {
@@ -1217,10 +1224,20 @@ const geladen = _questionCounts[key] || 0;
         // ============================================================
         let audioCtx = null;
         let soundOn = true;
+        let quietMode = false;
         try { soundOn = localStorage.getItem("eduplaySound") !== "off"; } catch (e) { }
+        try { quietMode = localStorage.getItem("eduplayQuiet") === "on"; } catch (e) { }
+
+        function haptic(pattern) {
+            if (!quietMode) return;
+            try {
+                if (navigator.vibrate) navigator.vibrate(pattern || 12);
+            } catch (e) { /* */ }
+        }
+        window.haptic = haptic;
 
         function ensureAudio() {
-            if (!soundOn) return null;
+            if (!soundOn || quietMode) return null;
             try {
                 if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 if (audioCtx.state === "suspended") audioCtx.resume();
@@ -1321,14 +1338,14 @@ const geladen = _questionCounts[key] || 0;
         };
 
         const SFX = {
-            tap: () => playModernClick(),
-            correct: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).correct(),
-            wrong: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).wrong(),
-            win: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).win(),
-            levelUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).levelUp(),
-            coin: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).coin(),
-            tick: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).tick(),
-            timeUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).timeUp()
+            tap: () => { if (quietMode) haptic(10); else playModernClick(); },
+            correct: () => { if (quietMode) haptic([12, 30, 12]); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).correct(); },
+            wrong: () => { if (quietMode) haptic([40, 40, 40]); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).wrong(); },
+            win: () => { if (quietMode) haptic([15, 40, 15, 40, 30]); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).win(); },
+            levelUp: () => { if (quietMode) haptic([20, 30, 20]); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).levelUp(); },
+            coin: () => { if (quietMode) haptic(8); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).coin(); },
+            tick: () => { if (quietMode) haptic(5); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).tick(); },
+            timeUp: () => { if (quietMode) haptic([50, 30, 50]); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).timeUp(); }
         };
 
         function setSoundPack(pack) {
@@ -1347,15 +1364,39 @@ const geladen = _questionCounts[key] || 0;
                 el.classList.toggle("active", el.getAttribute("data-sound-pack") === soundPack);
             });
         }
-        try { document.addEventListener("DOMContentLoaded", syncSoundPackUI); } catch (e) { /* */ }
+        try {
+            document.addEventListener("DOMContentLoaded", function () {
+                syncSoundPackUI();
+                document.querySelectorAll(".quiet-toggle-label").forEach(function (el) {
+                    el.textContent = quietMode ? "an" : "aus";
+                });
+            });
+        } catch (e) { /* */ }
 
         function toggleSound() {
             soundOn = !soundOn;
             try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
             document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
-            if (soundOn) SFX.tap();
+            if (soundOn && !quietMode) SFX.tap();
             showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
         }
+
+        function toggleQuietMode() {
+            quietMode = !quietMode;
+            try { localStorage.setItem("eduplayQuiet", quietMode ? "on" : "off"); } catch (e) { }
+            document.querySelectorAll(".quiet-toggle-label").forEach(function (el) {
+                el.textContent = quietMode ? "an" : "aus";
+            });
+            if (quietMode) {
+                stopBackgroundMusic();
+                haptic([15, 40, 15]);
+                showToast("🤫 Leise-Modus: nur Vibration", "success", "quiet");
+            } else {
+                if (soundOn && musicVolume > 0) startBackgroundMusic();
+                showToast("Leise-Modus aus", "success", "quiet");
+            }
+        }
+        window.toggleQuietMode = toggleQuietMode;
 
         // ============================================================
         //  HINTERGRUNDMUSIK v2 (Web-Audio)
@@ -1512,6 +1553,7 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function startBackgroundMusic() {
+            if (quietMode || !soundOn) return;
             if (musicTimer || musicVolume <= 0) return;
             if (!ensureMusicAudio()) return;
             const tick = musicMode === 'game' ? playMusicNoteGame : playMusicNote;
@@ -1726,6 +1768,33 @@ const geladen = _questionCounts[key] || 0;
             onboardStep = 0;
             maybeShowOnboarding();
         }
+
+        const APP_BUILD = "2.31";
+        const WHATS_NEW_TEXT =
+            "• Leise-Modus (nur Vibration, z. B. Schule)\n" +
+            "• Eltern-Wochenbericht im Elternbereich\n" +
+            "• Bessere Hinweise bei Offline & abgelaufener Sitzung\n" +
+            "• Tutorial liegt über Header und Buttons";
+
+        function maybeShowWhatsNew() {
+            try {
+                if (localStorage.getItem("eduplaySeenBuild") === APP_BUILD) return;
+                localStorage.setItem("eduplaySeenBuild", APP_BUILD);
+            } catch (e) { return; }
+            setTimeout(function () {
+                if (typeof appAlert === "function") {
+                    appAlert(WHATS_NEW_TEXT, { titel: "Was ist neu in v" + APP_BUILD, icon: "✨", okText: "Super" });
+                } else {
+                    showToast("Neu in v" + APP_BUILD, "success");
+                }
+            }, 900);
+        }
+        window.maybeShowWhatsNew = maybeShowWhatsNew;
+        try {
+            document.addEventListener("DOMContentLoaded", function () {
+                setTimeout(maybeShowWhatsNew, 1200);
+            });
+        } catch (e) { /* */ }
 
         function getActiveInviteCode() {
             const fromLobby = (document.getElementById("live-duel-lobby-code") || {}).innerText || "";

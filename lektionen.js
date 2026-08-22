@@ -2702,13 +2702,19 @@ function handleLektionStepEnd() {
     const step = currentLektion.step;
     const erwartet = step === "test"
         ? currentLektion.data.test.length
-        : (currentLektion.data.uebung[step] ? currentLektion.data.uebung[step].length : 0);
+        : step === "review"
+            ? ((window._lektionReviewQs || []).length)
+            : (currentLektion.data.uebung[step] ? currentLektion.data.uebung[step].length : 0);
     const total = testAnsweredCount || 0;
     const richtig = testCorrectCount || 0;
 
     // Vorzeitig über "Beenden" verlassen (nicht alle Fragen der Stufe beantwortet) →
     // sauber zurück zur Lektionen-Liste statt in den Übergangs-/Ergebnis-Screen.
     if (total < erwartet) {
+        if (step === "review") {
+            switchView("lektion-ergebnis");
+            return true;
+        }
         currentLektion = null;
         switchView("kurs-lektionen");
         return true;
@@ -2720,7 +2726,14 @@ function handleLektionStepEnd() {
         renderLektionUebergang(step, richtig, total, pct);
         switchView("lektion-uebergang");
     } else if (step === "test") {
+        currentLektion.reviewBase = { total: total, correct: richtig };
         finishLektion(pct);
+    } else if (step === "review") {
+        const base = currentLektion.reviewBase || { total: 0, correct: 0 };
+        const neuRichtig = base.correct + richtig;
+        const neuPct = base.total > 0 ? Math.round((neuRichtig / base.total) * 100) : pct;
+        currentLektion.reviewBase = { total: base.total, correct: neuRichtig };
+        finishLektion(neuPct);
     }
     return true;
 }
@@ -2761,7 +2774,10 @@ function finishLektion(pct) {
 
     document.getElementById("lektion-ergebnis-emoji").innerText = bestanden ? "🏆" : "💪";
     document.getElementById("lektion-ergebnis-titel").innerText = bestanden ? "Lektion geschafft!" : "Noch nicht ganz – versuch's nochmal!";
-    document.getElementById("lektion-ergebnis-pct").innerText = `${pct}% im Abschlusstest`;
+    const base = currentLektion && currentLektion.reviewBase;
+    document.getElementById("lektion-ergebnis-pct").innerText = base && currentLektion.step === "review"
+        ? `${pct}% insgesamt (${base.correct}/${base.total} nach Wiederholung)`
+        : `${pct}% im Abschlusstest`;
     document.getElementById("lektion-ergebnis-hinweis").innerText = bestanden
         ? "Die nächste Lektion ist jetzt freigeschaltet."
         : `Du brauchst mindestens ${bestehenAb}% zum Bestehen. Nicht schlimm – einfach nochmal probieren!`;
@@ -2802,7 +2818,10 @@ function finishLektion(pct) {
 function startLektionWiederholung() {
     const qs = (window._lektionReviewQs || []).slice();
     if (!qs.length) return showToast("Keine Fehler zum Wiederholen.", "success");
-    currentLektion = null;
+    if (!currentLektion || !currentLektion.data) {
+        return showToast("Lektion nicht mehr aktiv.", "error");
+    }
+    currentLektion.step = "review";
     if (typeof launchQuiz === "function") launchQuiz(qs);
 }
 window.startLektionWiederholung = startLektionWiederholung;

@@ -600,6 +600,19 @@
         function starteTVRundenTimer(data) {
             stoppeTVRundenTimer();
             if (!data || !data.answerDeadline) return;
+            // Kahoot-Timerbalken: von 100% auf 0% über die Restdauer
+            try {
+                const bar = document.getElementById("tv-kahoot-timer-bar");
+                if (bar) {
+                    const totalMs = Math.max(1000, data.answerDeadline - Date.now());
+                    bar.style.transition = "none";
+                    bar.style.width = "100%";
+                    // Reflow, dann animieren
+                    void bar.offsetWidth;
+                    bar.style.transition = "width " + totalMs + "ms linear";
+                    bar.style.width = "0%";
+                }
+            } catch (e) { /* */ }
             tvFristTicker = setInterval(() => {
                 if (!tvGameRef) return stoppeTVRundenTimer();
                 const rest = Math.max(0, Math.ceil((data.answerDeadline - Date.now()) / 1000));
@@ -917,47 +930,57 @@
             });
         }
 
+        // Kahoot-Farben: Rot, Blau, Gelb, Grün – hohe Sättigung für TV
+        const TV_KAHOOT_COLORS = ["#e21b3c", "#1368ce", "#d89e00", "#26890c"];
+        const TV_KAHOOT_SHAPES = ["▲", "◆", "●", "■"];
+
         function showTVHostQuestion(index) {
             stopTVRoundTimer();
             isResolving = false;
             tvCurrentQ = tvQuestions[index];
-            const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
-            const shapes = ["▲", "♦", "●", "◼"];
             let answersHtml = "";
-            tvCurrentQ.answers.forEach((ans, i) => {
+            (tvCurrentQ.answers || []).forEach((ans, i) => {
+                const bg = TV_KAHOOT_COLORS[i % 4];
+                const shape = TV_KAHOOT_SHAPES[i % 4];
                 answersHtml += `
-                        <div class="${colors[i]} p-4 rounded-2xl text-white shadow-xl flex items-center relative overflow-hidden min-h-[120px]">
-                            <span class="text-8xl opacity-20 absolute left-4">${shapes[i]}</span>
-                            <span class="text-3xl md:text-4xl font-black w-full text-center relative z-10 px-6 break-words">${ans}</span>
-                        </div>`;
+                    <div class="tv-kahoot-tile" style="background:${bg}">
+                        <span class="tv-kahoot-shape">${shape}</span>
+                        <span class="tv-kahoot-answer">${esc(ans)}</span>
+                    </div>`;
             });
             setTVHostPlayHTML(`
-                    <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end items-center">
-                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
+                <div class="tv-kahoot-stage">
+                    <div class="tv-kahoot-top">
+                        <div class="tv-kahoot-meta">
+                            <span class="tv-kahoot-qnum">Frage ${index + 1} / ${tvQuestions.length}</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-kahoot-exit">✕</button>
                         </div>
-                        <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(99,102,241,0.15);">
-                            <p class="text-indigo-400 font-black text-xl mb-2">Frage ${index + 1} / ${tvQuestions.length}</p>
-                            <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
+                        <div class="tv-kahoot-timer-track" aria-hidden="true">
+                            <div id="tv-kahoot-timer-bar" class="tv-kahoot-timer-bar"></div>
                         </div>
-                        <div class="grid grid-cols-2 gap-6 flex-1">${answersHtml}</div>
-                        <div class="mt-6 text-center space-y-3">
-                            <span id="tv-answer-counter" class="text-gray-400 font-bold text-xl block">0 von 0 haben geantwortet</span>
-                            <button onclick="forceTVQuizReveal()" class="btn-secondary text-lg py-3 px-8">Runde jetzt auswerten ⏱️</button>
-                        </div>
+                        <h1 class="tv-kahoot-question">${esc(tvCurrentQ.question)}</h1>
                     </div>
-                `);
-            // Kein eigener lokaler Timer mehr hier – die Firestore-answerDeadline
-            // (siehe starteTVRundenTimer/bindTVHostSnapshot) ist die einzige Uhr,
-            // genau wie im normalen Gegeneinander-Duell. Vorher liefen hier zwei
-            // Timer parallel (dieser + der answerDeadline-Timer unten im Bild).
+                    <div class="tv-kahoot-grid">${answersHtml}</div>
+                    <div class="tv-kahoot-footer">
+                        <span id="tv-answer-counter" class="tv-kahoot-counter">0 von 0 haben geantwortet</span>
+                        <button onclick="forceTVQuizReveal()" class="tv-kahoot-force">Runde auswerten ⏱️</button>
+                    </div>
+                </div>
+            `);
+            // Kein eigener lokaler Timer – Firestore-answerDeadline bleibt führend.
+            // Visueller Balken wird in starteTVRundenTimer / Snapshot mitgezogen.
+            try {
+                const bar = document.getElementById("tv-kahoot-timer-bar");
+                if (bar) {
+                    bar.style.transition = "none";
+                    bar.style.width = "100%";
+                }
+            } catch (e) { /* */ }
         }
 
         function revealTVAnswer(data) {
             stopTVRoundTimer();
             tvGameRef.update({ showAnswer: true });
-            const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
-            const shapes = ["▲", "♦", "●", "◼"];
             const correctIndex = data.correctAnswer;
             const playersData = data.players;
 
@@ -1005,34 +1028,53 @@
             } catch (e) { }
 
             let answersHtml = "";
-            tvCurrentQ.answers.forEach((ans, i) => {
-                const opacity = i === correctIndex ? "opacity-100 ring-8 ring-white scale-105" :
-                    "opacity-20 grayscale";
+            (tvCurrentQ.answers || []).forEach((ans, i) => {
+                const bg = TV_KAHOOT_COLORS[i % 4];
+                const shape = TV_KAHOOT_SHAPES[i % 4];
+                const isOk = i === correctIndex;
                 answersHtml += `
-                        <div class="${colors[i]} p-4 rounded-2xl text-white shadow-xl flex items-center relative overflow-hidden min-h-[120px] transition-all duration-500 ${opacity}">
-                            <span class="text-8xl opacity-20 absolute left-4">${shapes[i]}</span>
-                            <span class="text-3xl md:text-4xl font-black w-full text-center relative z-10 px-6 break-words">${ans}</span>
-                        </div>`;
+                    <div class="tv-kahoot-tile ${isOk ? "tv-kahoot-correct" : "tv-kahoot-wrong"}" style="background:${bg}">
+                        <span class="tv-kahoot-shape">${shape}</span>
+                        <span class="tv-kahoot-answer">${esc(ans)}</span>
+                        ${isOk ? '<span class="tv-kahoot-check">✓</span>' : ''}
+                    </div>`;
             });
 
+            // Kurzes Ranking nach der Runde (Kahoot-Feeling)
+            const ranked = Object.values(playersData || {})
+                .sort(function (a, b) { return (b.score || 0) - (a.score || 0); })
+                .slice(0, 5)
+                .map(function (p, i) {
+                    return `<div class="tv-kahoot-rank-row">
+                        <span class="tv-kahoot-rank-pos">${i + 1}</span>
+                        <span class="tv-kahoot-rank-name">${esc(p.name)}</span>
+                        <span class="tv-kahoot-rank-score">${p.score || 0}</span>
+                    </div>`;
+                }).join("");
+
             setTVHostPlayHTML(`
-                    <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
-                        <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(16,185,129,0.2);">
-                            <h1 class="text-4xl md:text-5xl font-black text-white leading-tight">${tvCurrentQ.question}</h1>
-                            <p class="text-emerald-400 font-black mt-6 text-3xl">💡 ${tvCurrentQ.explanation}</p>
+                <div class="tv-kahoot-stage">
+                    <div class="tv-kahoot-top">
+                        <div class="tv-kahoot-meta">
+                            <span class="tv-kahoot-qnum">Auflösung</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="tv-kahoot-exit">✕</button>
                         </div>
-                        <div class="grid grid-cols-2 gap-6 flex-1">${answersHtml}</div>
-                        <div class="mt-8 text-center space-y-3">
-                            <button onclick="nextTVQuestion()" class="btn-primary text-3xl py-6 px-16" style="box-shadow:0 4px 32px rgba(99,102,241,0.3);">Nächste Frage ➔</button>
-                            <div id="tv-auto-row" class="flex items-center justify-center gap-4 text-xl text-gray-400 font-bold">
-                                <span id="tv-auto-label"></span>
-                                <button onclick="toggleTVAutoAdvance()" id="tv-auto-btn"
-                                    class="btn-ghost text-base py-2 px-5"></button>
-                            </div>
+                        <h1 class="tv-kahoot-question">${esc(tvCurrentQ.question)}</h1>
+                        ${tvCurrentQ.explanation
+                            ? `<p class="tv-kahoot-explain">💡 ${esc(tvCurrentQ.explanation)}</p>`
+                            : ""}
+                    </div>
+                    <div class="tv-kahoot-grid">${answersHtml}</div>
+                    <div class="tv-kahoot-scorestrip">${ranked || ""}</div>
+                    <div class="tv-kahoot-footer">
+                        <button onclick="nextTVQuestion()" class="tv-kahoot-next">Nächste Frage ➔</button>
+                        <div id="tv-auto-row" class="tv-kahoot-auto">
+                            <span id="tv-auto-label"></span>
+                            <button onclick="toggleTVAutoAdvance()" id="tv-auto-btn" class="tv-kahoot-auto-btn"></button>
                         </div>
                     </div>
-                `);
+                </div>
+            `);
             startTVAutoAdvance();
         }
 
@@ -1112,12 +1154,15 @@
             stopTVActionMode();
             const sorted = Object.values(playersData || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
             let html =
-                `<h1 class="text-6xl font-black text-yellow-400 mb-10 text-center">🏆 Siegerehrung 🏆</h1><div class="space-y-6 max-w-3xl mx-auto w-full">`;
+                `<div class="tv-kahoot-stage" style="justify-content:center">
+                    <h1 class="text-5xl md:text-6xl font-black text-yellow-300 mb-8 text-center" style="text-shadow:0 4px 24px rgba(250,204,21,0.35)">🏆 Siegerehrung</h1>
+                    <div class="space-y-4 max-w-3xl mx-auto w-full">`;
             const medals = ["🥇", "🥈", "🥉"];
             sorted.forEach((p, i) => {
                 const medal = i < 3 ? medals[i] : `<span class="w-12 inline-block text-gray-500">${i + 1}.</span>`;
+                const border = i === 0 ? "border-yellow-400 bg-yellow-400/10" : (i === 1 ? "border-slate-300/40 bg-white/5" : (i === 2 ? "border-amber-700/50 bg-amber-900/20" : "border-white/5 bg-white/5"));
                 html +=
-                    `<div class="flex items-center justify-between bg-white/5 p-8 rounded-2xl border-2 ${i === 0 ? 'border-yellow-400' : 'border-white/5'} shadow-xl"><div class="text-4xl font-bold text-white flex items-center gap-6"><span class="text-5xl">${medal}</span> ${esc(p.name)}</div><div class="text-4xl font-black text-emerald-400">${p.score || 0} <span class="text-2xl text-emerald-600">Punkte</span></div></div>`;
+                    `<div class="flex items-center justify-between p-6 md:p-8 rounded-2xl border-2 ${border} shadow-xl"><div class="text-3xl md:text-4xl font-bold text-white flex items-center gap-5"><span class="text-5xl">${medal}</span> ${esc(p.name)}</div><div class="text-3xl md:text-4xl font-black text-emerald-300">${p.score || 0} <span class="text-lg md:text-2xl text-emerald-500">Pkt</span></div></div>`;
             });
             html += `</div>`;
 
@@ -1177,9 +1222,9 @@
                         <button onclick="restartTVGame()" class="btn-primary w-full text-center text-2xl py-6" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
                     </div>
                     <div class="text-center"><button onclick="leaveTVGame()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">⬅ Zurück ins Menü</button></div>
-                `;
+                </div>`;
 
-            setTVHostPlayHTML(`<div class="min-h-[90vh] flex flex-col items-center justify-center p-6">${html}</div>`);
+            setTVHostPlayHTML(html);
             setTVAgainMode("quiz");
             try {
                 if (typeof confetti === 'function') {
@@ -2158,7 +2203,7 @@
                         stoppeTVLebenszeichen();
                         stopTVActionMode();
                         tvGameRef = null;
-                        showToast("🚪 " + (data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
+                        showToast("🚪 " + esc(data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
                         switchView(currentPlayer ? "menu" : "family-hub");
                         return;
                     }
@@ -2296,13 +2341,17 @@
                             } else { SFX.wrong(); }
                         } else if (!myData.hasAnswered) {
                             const q = tvQuestions[data.currentQuestionIndex];
-                            const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
-                            const shapes = ["▲", "♦", "●", "◼"];
+                            const colors = (typeof TV_KAHOOT_COLORS !== "undefined")
+                                ? TV_KAHOOT_COLORS
+                                : ["#e21b3c", "#1368ce", "#d89e00", "#26890c"];
+                            const shapes = (typeof TV_KAHOOT_SHAPES !== "undefined")
+                                ? TV_KAHOOT_SHAPES
+                                : ["▲", "◆", "●", "■"];
                             let btnHtml = `<div class="grid grid-cols-2 gap-4 h-[75vh]">`;
                             const count = (q && q.answers) ? q.answers.length : (data.answerCount || 3);
                             for (let i = 0; i < count; i++) {
                                 btnHtml +=
-                                    `<button onclick="submitTVAnswer(${i})" class="${colors[i]} rounded-3xl shadow-xl flex items-center justify-center text-8xl text-white/90 active:scale-95 transition-transform">${shapes[i]}</button>`;
+                                    `<button onclick="submitTVAnswer(${i})" class="rounded-3xl shadow-xl flex items-center justify-center text-8xl text-white/95 active:scale-95 transition-transform" style="background:${colors[i % 4]}">${shapes[i % 4]}</button>`;
                             }
                             setTVPlayerPlayHTML(btnHtml + `</div>`);
                         }

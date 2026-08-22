@@ -13,7 +13,7 @@
          installierte App wirklich den neuesten Stand geladen hat. -->
     <script>window.EDUPLAY_BUILD = "21.08.2026 · 19:20";</script>
 
-    <link rel="stylesheet" href="styles.css?v=9.9">
+    <link rel="stylesheet" href="styles.css?v=10.0">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
 
     <script src="vendor/firebase-10.12.3/firebase-app-compat.js"></script>
@@ -1693,9 +1693,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <button type="button" id="lernen-invite-vokabel-btn" onclick="startLearnTogether('vokabel')"
                             class="py-3 rounded-xl text-sm font-black text-white ring-2 ring-transparent"
                             style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">🃏 Vokabeln</button>
-                        <button type="button" id="lernen-invite-kurs-btn" onclick="startLearnTogether('kurs')"
-                            class="py-3 rounded-xl text-sm font-black text-white ring-2 ring-transparent col-span-2"
-                            style="background:linear-gradient(135deg,#f59e0b,#ef4444);">📘 Kurs</button>
                     </div>
                     <div id="lernen-invite-options" class="hidden space-y-2 pt-1">
                         <div id="lernen-opt-wissen" class="space-y-2 hidden">
@@ -1710,10 +1707,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <option value="f2de">Fremdsprache → Deutsch</option>
                             </select>
                         </div>
-                        <div id="lernen-opt-kurs" class="space-y-2 hidden">
-                            <select id="lernen-opt-kurs-id" class="input-modern text-sm font-bold"></select>
-                        </div>
-                    </div>
+</div>
                     <p id="lernen-invite-hint" class="text-xs font-bold text-indigo-200 hidden">Wähle unten ein Kind zum Einladen.</p>
                     <div id="open-challenges-list" class="space-y-2"></div>
                     <button type="button" id="lernen-invite-code-btn" onclick="openLearnTogetherCode(_learnTogetherType||'wissen')"
@@ -2683,7 +2677,7 @@ VIEW: QUIZ SETUP
     ============================================================ -->
     <script src="app-config.js?v=11.7"></script>
     <script src="app-ui.js?v=9.4"></script>
-    <script src="family-dashboard.js?v=11.17"></script>
+    <script src="family-dashboard.js?v=11.19"></script>
     <script src="dev-admin.js?v=1.6"></script>
     <script src="ui-common.js?v=9.1"></script>
     <script src="ki-coach.js?v=1.1"></script>
@@ -2693,8 +2687,8 @@ VIEW: QUIZ SETUP
     <script src="suchsel.js?v=1.3"></script>
     <script src="duel-scrabble.js?v=9.1"></script>
     <script src="wortraten.js?v=9.5"></script>
-    <script src="tv-cast.js?v=11.6"></script>
-    <script src="live-duel.js?v=10.9"></script>
+    <script src="tv-cast.js?v=11.7"></script>
+    <script src="live-duel.js?v=10.2"></script>
     <script src="app-misc.js?v=8.8"></script>
     <script src="lobby-avatar.js?v=9.9"></script>
     <script src="konto-loeschen.js?v=8.8"></script>

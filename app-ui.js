@@ -102,6 +102,15 @@
                 const f = FUN_CATEGORIES.find(s => s.key === key);
                 if (f) return f.label;
             }
+            if (typeof LEKTIONEN !== "undefined" && Array.isArray(LEKTIONEN)) {
+                const id = String(key).replace(/^kurs_/, "");
+                const l = LEKTIONEN.find(function (x) { return x.id === id || ("kurs_" + x.id) === key; });
+                if (l) {
+                    const k = (typeof KURSE !== "undefined" && Array.isArray(KURSE))
+                        ? KURSE.find(function (c) { return c.id === l.kurs; }) : null;
+                    return (k ? k.title + " · " : "") + l.title;
+                }
+            }
         } catch (e) { /* egal, dann eben ohne Namen */ }
         return "";
     };

@@ -245,9 +245,13 @@
                     box.innerHTML = "<div class=\"text-xs text-gray-500\">Noch kein Feedback.</div>";
                     return;
                 }
+                let seen = [];
+                try { seen = JSON.parse(localStorage.getItem("eduplayFbSeen") || "[]"); } catch (e2) { seen = []; }
                 const byType = {};
                 snap.forEach(function (doc) {
                     const d = doc.data() || {};
+                    d._id = doc.id;
+                    d._seen = seen.indexOf(doc.id) !== -1;
                     const typ = d.type || "Feedback";
                     if (!byType[typ]) byType[typ] = [];
                     byType[typ].push(d);
@@ -262,11 +266,14 @@
                     list.forEach(function (d) {
                         const when = d.erstellt && d.erstellt.toDate ? d.erstellt.toDate().toLocaleString("de-DE") : "";
                         const preview = String(d.text || "").replace(/\s+/g, " ").slice(0, 60);
-                        html += "<details class=\"bg-black/20 rounded-lg px-2.5 py-1.5\">" +
+                        html += "<details class=\"bg-black/20 rounded-lg px-2.5 py-1.5" + (d._seen ? " opacity-60" : "") + "\">" +
                             "<summary class=\"cursor-pointer text-xs text-gray-200\">" +
+                            (d._seen ? "✓ " : "") +
                             esc((d.name || "anonym") + (when ? " · " + when : "") + (preview ? " · " + preview : "")) +
                             "</summary>" +
-                            "<div class=\"text-sm text-gray-200 whitespace-pre-wrap mt-1.5\">" + esc(d.text || "") + "</div></details>";
+                            "<div class=\"text-sm text-gray-200 whitespace-pre-wrap mt-1.5\">" + esc(d.text || "") + "</div>" +
+                            (d._seen ? "" : "<button type=\"button\" class=\"mt-2 text-[11px] font-bold text-indigo-300\" onclick=\"markFeedbackSeen('" + d._id + "')\">Als gelesen markieren</button>") +
+                            "</details>";
                     });
                     html += "</div></details>";
                 });
@@ -277,6 +284,16 @@
             }
         }
         window.loadDevFeedback = loadDevFeedback;
+
+        function markFeedbackSeen(id) {
+            if (!id) return;
+            let seen = [];
+            try { seen = JSON.parse(localStorage.getItem("eduplayFbSeen") || "[]"); } catch (e) { seen = []; }
+            if (seen.indexOf(id) === -1) seen.push(id);
+            try { localStorage.setItem("eduplayFbSeen", JSON.stringify(seen)); } catch (e) { /* */ }
+            loadDevFeedback();
+        }
+        window.markFeedbackSeen = markFeedbackSeen;
 
         async function loadDevSignups() {
             const el = document.getElementById("dev-signup-count");
@@ -291,6 +308,23 @@
             }
         }
         window.loadDevSignups = loadDevSignups;
+
+        async function recountSignups() {
+            if (!isDevAdmin()) return;
+            const el = document.getElementById("dev-signup-count");
+            if (el) el.textContent = "…";
+            try {
+                const snap = await db.collection("parents").get();
+                const n = snap.size;
+                await db.collection("stats").doc("signups").set({ count: n, updatedAt: Date.now() }, { merge: true });
+                if (el) el.textContent = String(n);
+                showToast("Zähler auf " + n + " gesetzt.", "success");
+            } catch (e) {
+                if (el) el.textContent = "–";
+                showToast("Nachzählen braucht die neue Firestore-Regel.", "error");
+            }
+        }
+        window.recountSignups = recountSignups;
 
         async function bumpSignupIfNew() {
             try {

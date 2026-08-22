@@ -2769,6 +2769,25 @@ function finishLektion(pct) {
     retryBtn.innerText = bestanden ? "🔄 Nochmal üben" : "🔄 Nochmal versuchen";
     retryBtn.onclick = () => openLektion(daten.id);
 
+    const reviewBtn = document.getElementById("lektion-ergebnis-review-btn");
+    const pool = [];
+    ["leicht", "mittel", "schwer"].forEach(function (s) {
+        (daten.uebung && daten.uebung[s] || []).forEach(function (q) { pool.push(q); });
+    });
+    (daten.test || []).forEach(function (q) { pool.push(q); });
+    const wrong = ((currentPlayer && currentPlayer.wrongQuestions) || [])
+        .map(function (w) { return pool.find(function (q) { return q.question === w.question; }); })
+        .filter(Boolean);
+    window._lektionReviewQs = wrong.slice(0, 3);
+    if (reviewBtn) {
+        if (window._lektionReviewQs.length) {
+            reviewBtn.classList.remove("hidden");
+            reviewBtn.innerText = "🔁 " + window._lektionReviewQs.length + " Fehler wiederholen";
+        } else {
+            reviewBtn.classList.add("hidden");
+        }
+    }
+
     switchView("lektion-ergebnis");
     if (typeof confetti === "function" && bestanden) {
         confetti();
@@ -2779,6 +2798,14 @@ function finishLektion(pct) {
         if (bestanden) { if (SFX.correct) SFX.correct(); } else { if (SFX.wrong) SFX.wrong(); }
     }
 }
+
+function startLektionWiederholung() {
+    const qs = (window._lektionReviewQs || []).slice();
+    if (!qs.length) return showToast("Keine Fehler zum Wiederholen.", "success");
+    currentLektion = null;
+    if (typeof launchQuiz === "function") launchQuiz(qs);
+}
+window.startLektionWiederholung = startLektionWiederholung;
 
 if (typeof window !== "undefined") {
     window.KURSE = KURSE;

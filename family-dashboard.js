@@ -2259,6 +2259,47 @@ auth.createUserWithEmailAndPassword(e, p)
             renderPlayerStats(key);
         }
 
+        function focusProfileForDash() {
+            const focus = (document.getElementById('dash-focus-profile') || {}).value || '';
+            return (focus && ALL_PROFILES[focus]) ? ALL_PROFILES[focus] : null;
+        }
+        function updateDashSectionPreviews(p) {
+            p = p || focusProfileForDash();
+            const today = new Date().toISOString().slice(0, 10);
+            const studyEl = document.getElementById('dash-study-preview');
+            if (studyEl) {
+                if (!p) studyEl.textContent = '';
+                else {
+                    const sec = (p.studyLog && p.studyLog[today]) || 0;
+                    studyEl.textContent = 'heute ' + (typeof formatStudyDuration === 'function' ? formatStudyDuration(sec) : (Math.floor(sec / 60) + ' Min.'));
+                }
+            }
+            const kurseEl = document.getElementById('dash-kurse-preview');
+            if (kurseEl) {
+                if (!p || typeof KURSE === 'undefined') kurseEl.textContent = '';
+                else {
+                    const doneMap = p.lektionen || {};
+                    let fertig = 0, total = 0;
+                    KURSE.forEach(function (kurs) {
+                        const liste = (typeof getLektionenForKurs === 'function') ? getLektionenForKurs(kurs.id) : [];
+                        total += liste.length;
+                        fertig += liste.filter(function (l) { return doneMap[l.id] && doneMap[l.id].bestanden; }).length;
+                    });
+                    kurseEl.textContent = total ? (fertig + '/' + total + ' Lektionen') : '';
+                }
+            }
+            const testEl = document.getElementById('dash-tests-preview');
+            if (testEl) {
+                const hist = (p && p.testHistory) || [];
+                if (!hist.length) testEl.textContent = 'noch kein Test';
+                else {
+                    const t = hist[0];
+                    const pct = t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0;
+                    testEl.textContent = 'letzter Test ' + pct + '%';
+                }
+            }
+        }
+
         function renderPlayerStats(key) {
             const p = ALL_PROFILES[key];
             const container = document.getElementById('dash-stats-container');
@@ -2328,7 +2369,11 @@ auth.createUserWithEmailAndPassword(e, p)
                 ).join('') :
                 '<div class="text-gray-500 text-sm">Noch keine Belohnungen eingelöst</div>';
 
+            updateDashSectionPreviews(p);
             const weak = getWeakestCategory(p);
+            const weakChip = weak
+                ? `<div class="mt-1 text-[11px] font-bold text-amber-300 truncate">💡 ${esc(labelFuerKategorie(weak.category) || weak.category)} · ${Math.round(weak.pct * 100)}%</div>`
+                : "";
             const weakHtml = weak ? `
                         <div class="dash-stat-card border-l-4 border-amber-500">
                             <div class="label">💡 Schwächste Kategorie</div>
@@ -2347,6 +2392,7 @@ auth.createUserWithEmailAndPassword(e, p)
                                 <div class="min-w-0 flex-1">
                                     <div class="text-lg font-black text-white truncate leading-tight">${esc(p.name)}</div>
                                     <div class="text-xs font-bold text-yellow-400">${lvl.current.icon} Level ${lvl.index + 1} · ${lvl.current.name}</div>
+                                    ${weakChip}
                                     <div class="w-full bg-white/10 rounded-full h-1.5 mt-1.5 overflow-hidden">
                                         <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-1.5 rounded-full" style="width:${lvl.progressPct}%"></div>
                                     </div>
@@ -2579,6 +2625,8 @@ auth.createUserWithEmailAndPassword(e, p)
                 if (focus && ALL_PROFILES[focus]) selectedStatPlayer = focus;
                 renderStudyLogOverview();
                 renderDashTestStatsOverview();
+                if (typeof renderDashKurseOverview === "function") renderDashKurseOverview();
+                updateDashSectionPreviews();
                 if (selectedStatPlayer) {
                     const sc = document.getElementById('dash-stats-container');
                     if (sc) sc.classList.remove('hidden');
@@ -2692,13 +2740,15 @@ auth.createUserWithEmailAndPassword(e, p)
                 const needSec = (g.minutes || 0) * 60;
                 const done = doneSec >= needSec;
                 const label = STUDY_GOAL_LABELS[g.activity] || "Lernen";
+                const pct = needSec ? Math.min(100, Math.round((doneSec / needSec) * 100)) : 0;
                 const prog = (typeof formatStudyDuration === "function")
                     ? formatStudyDuration(doneSec) + " / " + g.minutes + " Min."
                     : Math.floor(doneSec / 60) + " / " + g.minutes + " Min.";
                 return `<div class="bg-white/5 border border-white/5 rounded-xl p-3 flex items-center justify-between gap-2">
-                    <div class="min-w-0">
+                    <div class="min-w-0 flex-1">
                         <div class="font-bold text-white text-sm">${esc(p.name)} · ${esc(label)}</div>
-                        <div class="text-[11px] ${done ? "text-emerald-400" : "text-amber-300"} font-bold">${done ? "✓ Erledigt · " : ""}${prog}</div>
+                        <div class="text-[11px] ${done ? "text-emerald-400" : "text-amber-300"} font-bold">${done ? "✓ Erledigt · " : ""}${prog} · ${pct}%</div>
+                        <div class="w-full bg-white/10 rounded-full h-1.5 mt-1.5 overflow-hidden"><div class="h-1.5 rounded-full ${done ? "bg-emerald-400" : "bg-amber-400"}" style="width:${pct}%"></div></div>
                         ${g.note ? `<div class="text-[11px] text-gray-500 truncate">${esc(g.note)}</div>` : ""}
                     </div>
                     <button type="button" onclick="clearStudyGoal('${k}')"

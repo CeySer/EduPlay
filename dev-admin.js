@@ -312,16 +312,33 @@
         async function recountSignups() {
             if (!isDevAdmin()) return;
             const el = document.getElementById("dev-signup-count");
+            const hint = document.getElementById("dev-signup-hint");
             if (el) el.textContent = "…";
             try {
                 const snap = await db.collection("parents").get();
                 const n = snap.size;
-                await db.collection("stats").doc("signups").set({ count: n, updatedAt: Date.now() }, { merge: true });
+                try {
+                    await db.collection("stats").doc("signups").set({ count: n, updatedAt: Date.now() }, { merge: true });
+                } catch (writeErr) {
+                    if (el) el.textContent = String(n);
+                    if (hint) {
+                        hint.textContent = n + " in parents gefunden, Speichern blockiert: " +
+                            ((writeErr && writeErr.message) || writeErr);
+                    }
+                    showToast(n + " gefunden – Speichern fehlgeschlagen.", "error");
+                    return;
+                }
                 if (el) el.textContent = String(n);
+                if (hint) hint.textContent = n + " Dokumente in parents → Zähler aktualisiert.";
                 showToast("Zähler auf " + n + " gesetzt.", "success");
             } catch (e) {
                 if (el) el.textContent = "–";
-                showToast("Nachzählen braucht die neue Firestore-Regel.", "error");
+                const msg = (e && e.message) ? e.message : String(e);
+                if (hint) {
+                    hint.textContent = "Lesen von parents fehlgeschlagen: " + msg +
+                        " · Mit cu.oezdemir@gmail.com einloggen und firestore.rules neu veröffentlichen.";
+                }
+                showToast("Nachzählen fehlgeschlagen.", "error");
             }
         }
         window.recountSignups = recountSignups;

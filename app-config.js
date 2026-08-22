@@ -1684,6 +1684,7 @@ const geladen = _questionCounts[key] || 0;
             onboardStep = 0;
             renderOnboardingStep();
             ov.classList.remove("hidden");
+            document.body.classList.add("onboarding-open");
         }
 
         function renderOnboardingStep() {
@@ -1714,6 +1715,7 @@ const geladen = _questionCounts[key] || 0;
         function dismissOnboarding(save) {
             const ov = document.getElementById("onboarding-overlay");
             if (ov) ov.classList.add("hidden");
+            document.body.classList.remove("onboarding-open");
             if (save) {
                 try { localStorage.setItem(ONBOARD_KEY, "done"); } catch (e) { /* */ }
             }

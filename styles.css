@@ -3089,6 +3089,17 @@ body:not(.dark-theme) .opacity-50,
 body:not(.dark-theme) .opacity-40 {
     opacity: 0.85 !important;
 }
+/* Tutorial über Header, FAB und Drawer */
+body.onboarding-open .app-header,
+body.onboarding-open .fab-container,
+body.onboarding-open #castControlPanel {
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+#onboarding-overlay {
+    z-index: 10100 !important;
+}
+
 body:not(.dark-theme) #onboarding-overlay .glass-card {
     background: #ffffff !important;
     border: 1px solid #cbd5e1;

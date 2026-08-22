@@ -13,7 +13,7 @@
          installierte App wirklich den neuesten Stand geladen hat. -->
     <script>window.EDUPLAY_BUILD = "21.08.2026 · 19:20";</script>
 
-    <link rel="stylesheet" href="styles.css?v=9.8">
+    <link rel="stylesheet" href="styles.css?v=9.9">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
 
     <script src="vendor/firebase-10.12.3/firebase-app-compat.js"></script>
@@ -2658,8 +2658,9 @@ VIEW: QUIZ SETUP
                 <div class="glass-card p-4 space-y-2">
                     <div class="font-black text-white">👤 Anmeldungen</div>
                     <div class="text-3xl font-black text-indigo-300" id="dev-signup-count">–</div>
-                    <button type="button" onclick="loadDevSignups()" class="btn-secondary w-full text-sm">Aktualisieren</button>
-                    <button type="button" onclick="recountSignups()" class="btn-secondary w-full text-sm">Bestehende Familien nachzählen</button>
+                    <p id="dev-signup-hint" class="text-[11px] text-gray-500">Zähler steigt nur bei neuen Konten. Nachzählen setzt ihn auf die Zahl in parents.</p>
+                    <button type="button" onclick="loadDevSignups()" class="btn-secondary w-full text-sm">Zähler lesen</button>
+                    <button type="button" onclick="recountSignups()" class="btn-secondary w-full text-sm">Aus Firestore nachzählen</button>
                 </div>
             </div>
 
@@ -2669,10 +2670,10 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=11.4"></script>
+    <script src="app-config.js?v=11.5"></script>
     <script src="app-ui.js?v=9.3"></script>
     <script src="family-dashboard.js?v=11.10"></script>
-    <script src="dev-admin.js?v=1.4"></script>
+    <script src="dev-admin.js?v=1.6"></script>
     <script src="ui-common.js?v=9.1"></script>
     <script src="ki-coach.js?v=1.1"></script>
     <script src="quiz-core.js?v=9.8"></script>
@@ -2809,9 +2810,9 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
 
 
     <!-- Erststart-Tutorial -->
-    <div id="onboarding-overlay" class="hidden fixed inset-0 z-[9999] flex items-end sm:items-center justify-center p-4"
-        style="background:rgba(0,0,0,0.55);backdrop-filter:blur(4px)">
-        <div class="glass-card w-full max-w-md p-5 space-y-4 shadow-2xl" style="background:var(--card-bg,#1e1b4b)">
+    <div id="onboarding-overlay" class="hidden fixed inset-0 flex items-center justify-center p-4"
+        style="z-index:10100;background:rgba(0,0,0,0.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding-top:max(1.25rem,env(safe-area-inset-top));padding-bottom:max(1.25rem,env(safe-area-inset-bottom))">
+        <div class="glass-card w-full max-w-md p-5 space-y-4 shadow-2xl relative" style="background:var(--card-bg,#1e1b4b);max-height:min(85dvh,640px);overflow-y:auto">
             <div class="flex items-center justify-between gap-2">
                 <h3 id="onboard-title" class="text-lg font-black" style="color:var(--text-primary,#fff)">👋 Willkommen!</h3>
                 <button type="button" onclick="dismissOnboarding(true)" class="text-xs font-bold opacity-70 hover:opacity-100" style="color:var(--text-secondary)">Überspringen</button>

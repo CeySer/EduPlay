@@ -2011,9 +2011,9 @@
 
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
             setTVHostPlayHTML(`
-                <div class="tv-show-stage">
+                <div class="tv-show-stage tv-scrabble-stage">
                     <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
-                    <div class="tv-show-top">
+                    <div class="tv-show-top tv-scrabble-top">
                         <div class="tv-show-meta">
                             <span class="tv-show-qnum">Wort-Duell · Runde ${round} / ${totalRounds}</span>
                             <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
@@ -2021,7 +2021,7 @@
                         <div class="tv-show-timer-track" aria-hidden="true">
                             <div id="tv-kahoot-timer-bar" class="tv-show-timer-bar"></div>
                         </div>
-                        <h1 class="tv-show-question">🔤 Bestes Wort aus diesen Buchstaben!</h1>
+                        <h1 class="tv-scrabble-prompt">Bildet das beste Wort!</h1>
                     </div>
                     <div class="tv-scrabble-tiles">${scrabbleTilesHTML(letters, true, required)}</div>
                     <div class="tv-show-footer">

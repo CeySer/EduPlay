@@ -312,7 +312,8 @@
                             sessionId: window.DEVICE_SESSION_ID || null
                         }
                     };
-                    if (data.type === "wortraten" && !midGame) {
+                    // Reihenfolge für alle Quiz-/Team-Runden mitführen
+                    if (!midGame) {
                         joinUpdate.order = firebase.firestore.FieldValue.arrayUnion(activePlayerKey);
                     }
                     await ref.update(joinUpdate);
@@ -461,7 +462,7 @@
             } else if (data.lastEvent && data.lastEvent.ts && data.lastEvent.ts > liveDuelLastShownEventTs) {
                 liveDuelLastShownEventTs = data.lastEvent.ts;
                 if (data.lastEvent.type === "host_ended") {
-                    showToast("🚪 " + (data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
+                    showToast("🚪 " + esc(data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
                     // Host beendet → alle raus (nicht nur Toast)
                     if (liveDuelUnsubscribe) { try { liveDuelUnsubscribe(); } catch (e) {} liveDuelUnsubscribe = null; }
                     clearLiveDuelTimers();
@@ -474,7 +475,7 @@
                     switchView(currentPlayer ? "menu" : "family-hub");
                     return;
                 } else if (data.lastEvent.type === "left") {
-                    showToast("🚪 " + (data.lastEvent.name || "Ein Spieler") + " hat verlassen");
+                    showToast("🚪 " + esc(data.lastEvent.name || "Ein Spieler") + " hat verlassen");
                 }
             }
 
@@ -1930,7 +1931,27 @@
 
             const names = esc(Object.values(data.players).map(p => p.name).join(", "));
             if (isLiveDuelCreator) {
-                html += `
+                if (isCoop) {
+                    // Lernraum-Ende: weitermachen + andere Übung (kein Duell-Menü)
+                    html += `
+                                <div class="glass-card p-4 mt-6 space-y-3 text-left" style="border-color:rgba(16,185,129,0.2);">
+                                    <p class="text-sm font-black text-emerald-300 text-center">🔄 Nochmal zusammen üben</p>
+                                    <p class="text-[11px] text-gray-400 text-center -mt-2">Team bleibt: ${names}</p>
+                                    <select id="again-area" class="input-modern text-sm font-bold"></select>
+                                    <select id="again-category" class="input-modern text-sm font-bold"></select>
+                                    <button onclick="restartLiveDuel()" class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
+                                </div>
+                                <div class="glass-card p-4 mt-3 space-y-3 text-left" style="border-color:rgba(99,102,241,0.2);">
+                                    <p class="text-sm font-black text-indigo-300 text-center">📚 Andere Übung</p>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <button type="button" onclick="renderSwitchTypeOptions('quiz')" class="btn-secondary text-xs py-2.5 px-1">🧠 Wissen</button>
+                                        <button type="button" onclick="renderSwitchTypeOptions('vokabel')" class="btn-secondary text-xs py-2.5 px-1">🃏 Vokabeln</button>
+                                    </div>
+                                    <div id="switch-type-options"></div>
+                                    <button type="button" onclick="leaveLiveDuel();switchView('lernen')" class="w-full text-xs py-2.5 rounded-xl font-bold text-indigo-200 bg-white/5 border border-indigo-400/25">🎓 Zum Lernraum</button>
+                                </div>`;
+                } else {
+                    html += `
                                 <div class="glass-card p-4 mt-6 space-y-3 text-left" style="border-color:rgba(99,102,241,0.15);">
                                     <p class="text-sm font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
                                     <p class="text-[11px] text-gray-400 text-center -mt-2">Alle bleiben dabei: ${names}</p>
@@ -2000,8 +2021,11 @@
                                     </div>
                                     <div id="switch-type-options"></div>
                                 </div>`;
+                }
             } else {
-                html += `<p class="text-xs text-gray-400 font-bold mt-6">Bleib dran – ${sorted.length > 1 ? "die nächste Runde" : "eine neue Runde"} kann gleich starten.</p>`;
+                html += isCoop
+                    ? `<p class="text-xs text-gray-400 font-bold mt-6">Bleib dran – die nächste Übungsrunde kann gleich starten.</p>`
+                    : `<p class="text-xs text-gray-400 font-bold mt-6">Bleib dran – ${sorted.length > 1 ? "die nächste Runde" : "eine neue Runde"} kann gleich starten.</p>`;
             }
 
             html += `
@@ -2009,8 +2033,9 @@
                         </div>`;
             document.getElementById("live-duel-result-content").innerHTML = html;
 
-            if (isLiveDuelCreator && data.type === "quiz" && document.getElementById("again-area")) {
-                setupCategorySelectors("again-area", "again-category", "alle");
+            if (isLiveDuelCreator && document.getElementById("again-area")) {
+                // Coop/Lernraum: nur Lern-Themen; Duell: alle
+                setupCategorySelectors("again-area", "again-category", isCoop ? "lernen" : "alle");
             }
 
             liveDuelRenderKey = "";
@@ -2099,7 +2124,7 @@
                         <option value="mix" selected>🔀 Gemischt</option>
                     </select>
                     <div id="switch-vokabel-checkboxes" class="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto"></div>
-                    <button onclick="restartLiveDuelAsType('vokabel')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">📚 Vokabel-Duell starten 🚀</button>`;
+                    <button onclick="restartLiveDuelAsType('vokabel')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">🃏 Vokabeln starten 🚀</button>`;
                 box.innerHTML = html;
                 if (typeof renderVocabGroupCheckboxes === "function") renderVocabGroupCheckboxes("switch-vokabel-checkboxes");
             }
@@ -2318,9 +2343,11 @@
                 if (!treffer) return;
 
                 const d = treffer.data() || {};
-                const name = d.subject === "vokabel" ? "Vokabel-Duell"
-                    : d.type === "scrabble" ? "Wort-Duell"
-                        : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
+                const name = d.mode === "coop"
+                    ? (d.subject === "vokabel" ? "Vokabeln üben" : "Gemeinsam üben")
+                    : d.subject === "vokabel" ? "Vokabel-Duell"
+                        : d.type === "scrabble" ? "Wort-Duell"
+                            : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
                 const mid = (d.status === "playing" || d.status === "reveal");
                 const ok = await appConfirm(
                     mid ? `${name} läuft noch. Weiterspielen?` : `${name} wartet. Zurück in die Lobby?`,
@@ -2366,9 +2393,21 @@
                 }
                 const count = d.players ? Object.keys(d.players).length : 0;
                 const running = d.status !== "waiting";
+                const isCoop = d.mode === "coop";
                 const isVokabel = d.subject === "vokabel";
-                const icon = isVokabel ? "📚" : d.type === "scrabble" ? "🔤" : d.type === "wortraten" ? "🧩" : "⚔️";
-                const typeName = isVokabel ? "Vokabel-Duell" : d.type === "scrabble" ? "Wort-Duell" : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
+                let icon, typeName, borderCls, stateCls;
+                if (isCoop) {
+                    // Lernraum „Mit Freunden üben“ – eigenes Label, altes Duell-Design bleibt
+                    icon = "👥";
+                    typeName = isVokabel ? "Vokabeln üben" : "Gemeinsam üben";
+                    borderCls = running ? "border-emerald-400/50" : "border-emerald-400/60 animate-pulse";
+                    stateCls = "text-emerald-200";
+                } else {
+                    icon = isVokabel ? "📚" : d.type === "scrabble" ? "🔤" : d.type === "wortraten" ? "🧩" : "⚔️";
+                    typeName = isVokabel ? "Vokabel-Duell" : d.type === "scrabble" ? "Wort-Duell" : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
+                    borderCls = running ? "border-amber-400/40" : "border-indigo-400/50 animate-pulse";
+                    stateCls = "text-indigo-200";
+                }
                 const who = esc(d.createdByName || "jemandem");
                 const state = running ? "läuft – einsteigen" : "offen – beitreten";
                 // Nicht den eigenen Host benachrichtigen
@@ -2378,12 +2417,12 @@
                         icon + " " + typeName,
                         "von " + (d.createdByName || "Familie") + " – " + state,
                         "duel:" + docSnap.id + ":" + (d.status || ""),
-                        "#spielen"
+                        isCoop ? "#lernen" : "#spielen"
                     );
                 }
-                html += `<button onclick="joinLiveDuelById('${docSnap.id}')" class="w-full p-5 glass-card text-white font-black rounded-2xl shadow-lg flex items-center justify-between gap-3 text-base transition-all border-2 ${running ? "border-amber-400/40" : "border-indigo-400/50 animate-pulse"}" style="min-height:4.5rem;">
+                html += `<button onclick="joinLiveDuelById('${docSnap.id}')" class="w-full p-5 glass-card text-white font-black rounded-2xl shadow-lg flex items-center justify-between gap-3 text-base transition-all border-2 ${borderCls}" style="min-height:4.5rem;">
                                 <span class="flex items-center gap-3 text-left"><span class="text-3xl">${icon}</span><span><span class="block">${typeName}</span><span class="block text-xs font-bold text-gray-400">von ${who}</span></span></span>
-                                <span class="text-xs text-indigo-200 shrink-0 text-right font-bold">🔥 ${state}<br>(${count} dabei)</span>
+                                <span class="text-xs ${stateCls} shrink-0 text-right font-bold">🔥 ${state}<br>(${count} dabei)</span>
                             </button>`;
             });
             box.innerHTML = html;

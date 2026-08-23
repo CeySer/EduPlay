@@ -648,7 +648,7 @@ auth.createUserWithEmailAndPassword(e, p)
         }
         window.watchChallengesList = watchChallengesList;
 
-        let _learnTogetherType = "wissen"; // wissen | vokabel | kurs
+        let _learnTogetherType = null; // null | wissen | vokabel (muss gewählt werden)
 
         function learnTogetherLabel(kind) {
             if (kind === "vokabel") return "Vokabeln";
@@ -864,7 +864,10 @@ auth.createUserWithEmailAndPassword(e, p)
             const to = ALL_PROFILES[toKey];
             if (!to) return showToast("Spieler nicht gefunden.", "error");
             if (to.isGuest) return showToast("Per Code einladen.", "error");
-            const kind = typeOverride || _learnTogetherType || "wissen";
+            const kind = typeOverride || _learnTogetherType || null;
+            if (!kind || (kind !== "wissen" && kind !== "vokabel")) {
+                return showToast("Bitte zuerst Wissen oder Vokabeln wählen.", "error");
+            }
             if (kind === "kurs") return showToast("Kurs-Team gibt es hier nicht – bitte Wissen oder Vokabeln.", "error");
             const type = (kind === "vokabel") ? "vokabel" : "quiz";
             const inviteOpts = getLernenInviteOpts();
@@ -1044,13 +1047,13 @@ auth.createUserWithEmailAndPassword(e, p)
                         </div>`;
                     }
                 }
-                // Andere Familien-Profile zum Üben einladen
+                // Namen nur, wenn Wissen oder Vokabeln explizit gewählt wurde
                 const others = Object.keys(ALL_PROFILES || {}).filter(k => {
                     const p = ALL_PROFILES[k];
                     return p && !p.isGuest && k !== activePlayerKey;
                 });
-                if (others.length) {
-                    const kind = _learnTogetherType || "wissen";
+                if (others.length && _learnTogetherType) {
+                    const kind = _learnTogetherType;
                     const label = learnTogetherLabel(kind);
                     html += `<div class="bg-white/5 rounded-xl p-3 space-y-2">
                         <div class="text-xs font-bold text-indigo-300">👥 ${label} – Familie einladen</div>
@@ -1062,6 +1065,8 @@ auth.createUserWithEmailAndPassword(e, p)
                         </button>`;
                     });
                     html += `</div></div>`;
+                } else if (others.length && !_learnTogetherType) {
+                    html += `<div class="text-[11px] text-gray-500 text-center py-1">Zuerst <strong>Wissen</strong> oder <strong>Vokabeln</strong> wählen</div>`;
                 }
 
                 box.innerHTML = html;

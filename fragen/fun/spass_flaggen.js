@@ -1,5 +1,5 @@
 // Fun · Flaggen raten (MVP)
-// Bild: flagcdn.com (öffentliche Flaggen-CDN). Format wie spass_visuell (q.image).
+// Bilder lokal unter img/flags/*.png (offline-fähig).
 (function () {
     const LAENDER = [
         { code: "de", name: "Deutschland", kontinent: "Europa" },
@@ -64,7 +64,7 @@
     }
 
     function flagUrl(code) {
-        return "https://flagcdn.com/w320/" + code + ".png";
+        return "img/flags/" + code + ".png";
     }
 
     function buildQuestions() {

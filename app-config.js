@@ -21,17 +21,6 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        const DEV_ADMIN_EMAILS = ["cu.oezdemir@gmail.com"];
-        const DEV_ADMIN_UIDS = []; // optional Firebase-UIDs
-        function isDevAdmin() {
-            const u = (typeof currentParentUser !== "undefined") ? currentParentUser : (auth.currentUser || null);
-            if (!u || u.isAnonymous) return false;
-            const mail = String(u.email || "").trim().toLowerCase();
-            if (mail && DEV_ADMIN_EMAILS.indexOf(mail) !== -1) return true;
-            return DEV_ADMIN_UIDS.indexOf(u.uid) !== -1;
-        }
-        window.isDevAdmin = isDevAdmin;
-
         // Lokaler Zwischenspeicher: Ohne Netz liest die App weiter aus dem
         // Gerät (Profile, Coins, laufende Duelle) und schickt Änderungen
         // nach, sobald wieder Empfang da ist. Wichtig für Autofahrten –
@@ -298,8 +287,12 @@ if (typeof CURRICULUM !== 'undefined') {
                 }
                 // Berufsschule ausgeblendet: die Fragendateien liegen in
                 // _ausgliedern/beruf/, der Bereich wäre komplett leer.
+                // Für Klasse 1–4 ausgeblendet: der Quer-Modus mischt Fragen bis
+                // Klasse 10, dort können Themen auftauchen, die für jüngere
+                // Kinder nicht passen (z.B. Pubertät/Fortpflanzung in Bio).
+                const eigeneKlasse = playerGrade(currentPlayer);
                 const quer = subjectsAcrossGrades();
-                if (quer.length) {
+                if (quer.length && !(eigeneKlasse && eigeneKlasse <= 4)) {
                     areas.push({
                         value: "quer",
                         label: "Fach · alle Klassen (1–10)",
@@ -1091,15 +1084,8 @@ const geladen = _questionCounts[key] || 0;
                 msg = "📴 Keine Verbindung – prüfe WLAN/Mobilfunk und versuch es nochmal.";
             } else if (code.includes("permission-denied") || code.includes("permission_denied")) {
                 msg = "🔒 Keine Berechtigung – bitte neu anmelden oder Lobby neu erstellen.";
-            } else if (code.includes("unauthenticated") || code.includes("auth/") ||
-                code.includes("requires-recent-login") || code.includes("user-token-expired") ||
-                code.includes("id-token-expired")) {
+            } else if (code.includes("unauthenticated") || code.includes("auth/")) {
                 msg = "🔑 Sitzung abgelaufen – bitte erneut anmelden.";
-                if (typeof appAlert === "function") {
-                    Promise.resolve(appAlert("Deine Anmeldung ist abgelaufen. Bitte melde dich erneut an.", {
-                        titel: "Sitzung abgelaufen", icon: "🔑", okText: "Verstanden"
-                    })).catch(function () { /* */ });
-                }
             } else if (code.includes("not-found") || code.includes("not_found")) {
                 msg = "🔍 Nicht gefunden – die Lobby existiert nicht mehr.";
             } else if (code.includes("already-exists") || code.includes("already_exists")) {
@@ -1178,13 +1164,11 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function updatePushToggleUI() {
-            let label = "aus";
-            if (!notificationsSupported()) label = "n/v";
-            else if (Notification.permission === "denied") label = "blockiert";
-            else if (pushNotifOn && Notification.permission === "granted") label = "an";
-            document.querySelectorAll(".push-toggle-label, #push-toggle-label").forEach(function (el) {
-                el.textContent = label;
-            });
+            const el = document.getElementById("push-toggle-label");
+            if (!el) return;
+            if (!notificationsSupported()) { el.textContent = "nicht verfügbar"; return; }
+            if (Notification.permission === "denied") { el.textContent = "blockiert"; return; }
+            el.textContent = (pushNotifOn && Notification.permission === "granted") ? "an" : "aus";
         }
 
         function showDuelNotification(title, body, tag, urlHash) {
@@ -1222,24 +1206,63 @@ const geladen = _questionCounts[key] || 0;
         }
 
         // ============================================================
-        //  SOUND
+        //  SOUND – Datei-SFX (Kenney CC0) + Web-Audio-Fallback
+        //  audio/ui/*.ogg · audio/book/*.ogg · optional audio/bgm/*.mp3
         // ============================================================
         let audioCtx = null;
         let soundOn = true;
-        let quietMode = false;
         try { soundOn = localStorage.getItem("eduplaySound") !== "off"; } catch (e) { }
-        try { quietMode = localStorage.getItem("eduplayQuiet") === "on"; } catch (e) { }
 
-        function haptic(pattern) {
-            if (!quietMode) return;
-            try {
-                if (navigator.vibrate) navigator.vibrate(pattern || 12);
-            } catch (e) { /* */ }
+        const SFX_FILE_MAP = {
+            bookOpen: ["audio/book/book_open.ogg", "audio/book/book_open.wav"],
+            pageFlip: ["audio/book/page_flip.ogg", "audio/book/page_flip.wav"],
+            tap: ["audio/ui/click.ogg"],
+            correct: ["audio/ui/correct.ogg"],
+            wrong: ["audio/ui/wrong.ogg"],
+            switch: ["audio/ui/switch.ogg"],
+            open: ["audio/ui/open.ogg"]
+        };
+        const sfxPool = {};
+        const sfxReady = {};
+
+        function preloadSfxFiles() {
+            Object.keys(SFX_FILE_MAP).forEach(function (key) {
+                const paths = SFX_FILE_MAP[key];
+                let i = 0;
+                function tryPath() {
+                    if (i >= paths.length) return;
+                    const a = new Audio(paths[i]);
+                    a.preload = "auto";
+                    a.addEventListener("canplaythrough", function () {
+                        sfxPool[key] = a;
+                        sfxReady[key] = true;
+                    }, { once: true });
+                    a.addEventListener("error", function () {
+                        i++;
+                        tryPath();
+                    }, { once: true });
+                    try { a.load(); } catch (e) { i++; tryPath(); }
+                }
+                tryPath();
+            });
         }
-        window.haptic = haptic;
+        try { preloadSfxFiles(); } catch (e) { /* */ }
+
+        function playSfxFile(key, vol) {
+            if (!soundOn) return false;
+            const base = sfxPool[key];
+            if (!base || !sfxReady[key]) return false;
+            try {
+                const a = base.cloneNode();
+                a.volume = Math.max(0, Math.min(1, vol == null ? 0.55 : vol));
+                const p = a.play();
+                if (p && p.catch) p.catch(function () { /* Autoplay-Block */ });
+                return true;
+            } catch (e) { return false; }
+        }
 
         function ensureAudio() {
-            if (!soundOn || quietMode) return null;
+            if (!soundOn) return null;
             try {
                 if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 if (audioCtx.state === "suspended") audioCtx.resume();
@@ -1267,8 +1290,6 @@ const geladen = _questionCounts[key] || 0;
             });
         }
 
-        // Modernerer Klick: kurzer, gefilterter Noise-Burst statt eines reinen
-        // Sinuston-Blips - klingt eher wie ein Tastatur-/App-Klick als ein Piepsen.
         let clickNoiseBuffer = null;
         function getClickNoiseBuffer(ctx) {
             if (clickNoiseBuffer && clickNoiseBuffer._ctx === ctx) return clickNoiseBuffer;
@@ -1281,6 +1302,7 @@ const geladen = _questionCounts[key] || 0;
             return buf;
         }
         function playModernClick() {
+            if (playSfxFile("tap", 0.5)) return;
             const ctx = ensureAudio();
             if (!ctx) return;
             const t = ctx.currentTime;
@@ -1297,12 +1319,9 @@ const geladen = _questionCounts[key] || 0;
             gain.connect(ctx.destination);
             noise.start(t);
             noise.stop(t + 0.05);
-            playTones([
-                [1600, 0.03]
-            ], "sine", 0.05);
+            playTones([[1600, 0.03]], "sine", 0.05);
         }
 
-        // Sound-Packs: soft (edu, weich) | crisp (klare Beeps)
         let soundPack = "soft";
         try {
             const sp = localStorage.getItem("eduplaySoundPack");
@@ -1340,14 +1359,18 @@ const geladen = _questionCounts[key] || 0;
         };
 
         const SFX = {
-            tap: () => { if (quietMode) haptic(10); else playModernClick(); },
-            correct: () => { if (quietMode) haptic([12, 30, 12]); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).correct(); },
-            wrong: () => { if (quietMode) haptic([40, 40, 40]); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).wrong(); },
-            win: () => { if (quietMode) haptic([15, 40, 15, 40, 30]); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).win(); },
-            levelUp: () => { if (quietMode) haptic([20, 30, 20]); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).levelUp(); },
-            coin: () => { if (quietMode) haptic(8); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).coin(); },
-            tick: () => { if (quietMode) haptic(5); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).tick(); },
-            timeUp: () => { if (quietMode) haptic([50, 30, 50]); else (SFX_PACKS[soundPack] || SFX_PACKS.soft).timeUp(); }
+            tap: () => playModernClick(),
+            correct: () => { if (!playSfxFile("correct", 0.6)) (SFX_PACKS[soundPack] || SFX_PACKS.soft).correct(); },
+            wrong: () => { if (!playSfxFile("wrong", 0.55)) (SFX_PACKS[soundPack] || SFX_PACKS.soft).wrong(); },
+            win: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).win(),
+            levelUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).levelUp(),
+            coin: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).coin(),
+            tick: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).tick(),
+            timeUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).timeUp(),
+            bookOpen: () => { if (!playSfxFile("bookOpen", 0.5)) playSfxFile("open", 0.45); },
+            pageFlip: () => { if (!playSfxFile("pageFlip", 0.45)) playSfxFile("switch", 0.4); },
+            switch: () => playSfxFile("switch", 0.45),
+            open: () => playSfxFile("open", 0.45)
         };
 
         function setSoundPack(pack) {
@@ -1366,49 +1389,20 @@ const geladen = _questionCounts[key] || 0;
                 el.classList.toggle("active", el.getAttribute("data-sound-pack") === soundPack);
             });
         }
-        try {
-            document.addEventListener("DOMContentLoaded", function () {
-                syncSoundPackUI();
-                document.querySelectorAll(".quiet-toggle-label").forEach(function (el) {
-                    el.textContent = quietMode ? "an" : "aus";
-                });
-                if (typeof updatePushToggleUI === "function") updatePushToggleUI();
-            });
-        } catch (e) { /* */ }
+        try { document.addEventListener("DOMContentLoaded", syncSoundPackUI); } catch (e) { /* */ }
 
         function toggleSound() {
             soundOn = !soundOn;
             try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
             document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
-            if (soundOn && !quietMode) SFX.tap();
+            if (soundOn) SFX.tap();
             showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
         }
 
-        function toggleQuietMode() {
-            quietMode = !quietMode;
-            try { localStorage.setItem("eduplayQuiet", quietMode ? "on" : "off"); } catch (e) { }
-            document.querySelectorAll(".quiet-toggle-label").forEach(function (el) {
-                el.textContent = quietMode ? "an" : "aus";
-            });
-            if (quietMode) {
-                soundOn = false;
-                try { localStorage.setItem("eduplaySound", "off"); } catch (e) { }
-                stopBackgroundMusic();
-                haptic([15, 40, 15]);
-                showToast("🤫 Leise-Modus: nur Vibration", "success", "quiet");
-            } else {
-                soundOn = true;
-                try { localStorage.setItem("eduplaySound", "on"); } catch (e) { }
-                if (musicVolume > 0) startBackgroundMusic();
-                showToast("Leise-Modus aus – Ton wieder an", "success", "quiet");
-            }
-        }
-        window.toggleQuietMode = toggleQuietMode;
-
         // ============================================================
-        //  HINTERGRUNDMUSIK v2 (Web-Audio)
-        //  Menü: warmer Lo-fi-Ambient (F-Dur-ish, weiche 7er-Akkorde)
-        //  Spiel: leichter Bounce, motivierend, nicht nervig
+        //  HINTERGRUNDMUSIK
+        //  1) optional audio/bgm/menu.mp3 + quiz.mp3 (selbst ablegen)
+        //  2) sonst Web-Audio Lo-fi / Bounce
         // ============================================================
         let musicCtx = null;
         let musicGain = null;
@@ -1417,10 +1411,62 @@ const geladen = _questionCounts[key] || 0;
         let musicStep = 0;
         let musicMode = 'menu';
         let gameStep = 0;
+        let bgmEl = null;
+        let bgmFileMode = null; // 'menu' | 'quiz' | null wenn Datei fehlt
+        const BGM_PATHS = {
+            menu: ["audio/bgm/menu.mp3", "audio/bgm/menu.ogg"],
+            quiz: ["audio/bgm/quiz.mp3", "audio/bgm/quiz.ogg"]
+        };
         try {
             const savedVol = localStorage.getItem("eduplayMusicVolume");
             if (savedVol !== null) musicVolume = Math.max(0, Math.min(1, parseFloat(savedVol)));
         } catch (e) { }
+
+        function stopFileBgm() {
+            if (bgmEl) {
+                try { bgmEl.pause(); bgmEl.currentTime = 0; } catch (e) { /* */ }
+            }
+        }
+
+        function tryPlayFileBgm(mode) {
+            const paths = BGM_PATHS[mode === 'game' ? 'quiz' : 'menu'];
+            if (!paths || !paths.length) return false;
+            if (!bgmEl) {
+                bgmEl = new Audio();
+                bgmEl.loop = true;
+                bgmEl.preload = "auto";
+            }
+            const want = paths[0];
+            // schon diese Datei?
+            if (bgmFileMode === mode && bgmEl.src && bgmEl.src.indexOf(want.replace(/^audio\//, "")) !== -1) {
+                bgmEl.volume = musicVolume;
+                const p = bgmEl.play();
+                if (p && p.catch) p.catch(function () { });
+                return true;
+            }
+            let idx = 0;
+            function loadNext() {
+                if (idx >= paths.length) {
+                    bgmFileMode = null;
+                    return false;
+                }
+                const path = paths[idx++];
+                bgmEl.oncanplaythrough = function () {
+                    bgmFileMode = mode === 'game' ? 'quiz' : 'menu';
+                    bgmEl.volume = musicVolume;
+                    const p = bgmEl.play();
+                    if (p && p.catch) p.catch(function () { });
+                };
+                bgmEl.onerror = function () { loadNext(); };
+                try {
+                    bgmEl.src = path;
+                    bgmEl.load();
+                } catch (e) { return loadNext(); }
+                return true;
+            }
+            stopFileBgm();
+            return loadNext();
+        }
 
         // Warme Progressions (F – Dm – Bb – C), edu/lo-fi
         const MENU_CHORDS = [
@@ -1560,16 +1606,20 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function startBackgroundMusic() {
-            if (quietMode || !soundOn) return;
-            if (musicTimer || musicVolume <= 0) return;
+            if (musicVolume <= 0) return;
+            // Datei-BGM bevorzugen (wenn vorhanden)
+            stopBackgroundMusic(true);
+            if (tryPlayFileBgm(musicMode)) return;
+            if (musicTimer) return;
             if (!ensureMusicAudio()) return;
             const tick = musicMode === 'game' ? playMusicNoteGame : playMusicNote;
             tick();
             musicTimer = setInterval(tick, musicMode === 'game' ? 200 : 520);
         }
 
-        function stopBackgroundMusic() {
+        function stopBackgroundMusic(keepFile) {
             if (musicTimer) { clearInterval(musicTimer); musicTimer = null; }
+            if (!keepFile) stopFileBgm();
         }
 
         const GAME_MUSIC_VIEWS = ['quiz', 'duel-play', 'scrabble-play', 'wortraten-play',
@@ -1581,7 +1631,10 @@ const geladen = _questionCounts[key] || 0;
             musicMode = mode;
             musicStep = 0;
             gameStep = 0;
-            if (musicTimer) { stopBackgroundMusic(); startBackgroundMusic(); }
+            if (musicVolume > 0) {
+                stopBackgroundMusic();
+                startBackgroundMusic();
+            }
         }
 
         function setMusicVolume(pct) {
@@ -1590,6 +1643,7 @@ const geladen = _questionCounts[key] || 0;
             const label = document.getElementById("music-volume-label");
             if (label) label.innerText = Math.round(musicVolume * 100) + "%";
             if (musicGain && musicCtx) musicGain.gain.setTargetAtTime(musicVolume, musicCtx.currentTime, 0.05);
+            if (bgmEl) bgmEl.volume = musicVolume;
             if (musicVolume > 0) startBackgroundMusic();
             else stopBackgroundMusic();
         }
@@ -1703,7 +1757,7 @@ const geladen = _questionCounts[key] || 0;
             },
             {
                 title: "📚 Lernraum",
-                body: "Quiz, Vokabeln, Lesen und Formeln. Bei Klasse 1 und 2 wird der Text automatisch vorgelesen – Lücken und Lösungshinweise nicht mit."
+                body: "Quiz, Kurse, Vokabeln, Lesen und Formeln – auch gemeinsam mit Freunden einladbar. Bei Klasse 1 und 2 wird der Text automatisch vorgelesen – Lücken und Lösungshinweise nicht mit."
             },
             {
                 title: "⚔️ Gegeneinander spielen",
@@ -1733,7 +1787,6 @@ const geladen = _questionCounts[key] || 0;
             onboardStep = 0;
             renderOnboardingStep();
             ov.classList.remove("hidden");
-            document.body.classList.add("onboarding-open");
         }
 
         function renderOnboardingStep() {
@@ -1764,7 +1817,6 @@ const geladen = _questionCounts[key] || 0;
         function dismissOnboarding(save) {
             const ov = document.getElementById("onboarding-overlay");
             if (ov) ov.classList.add("hidden");
-            document.body.classList.remove("onboarding-open");
             if (save) {
                 try { localStorage.setItem(ONBOARD_KEY, "done"); } catch (e) { /* */ }
             }
@@ -1775,33 +1827,6 @@ const geladen = _questionCounts[key] || 0;
             onboardStep = 0;
             maybeShowOnboarding();
         }
-
-        const APP_BUILD = "2.31";
-        const WHATS_NEW_TEXT =
-            "• Leise-Modus (nur Vibration, z. B. Schule)\n" +
-            "• Eltern-Wochenbericht im Elternbereich\n" +
-            "• Bessere Hinweise bei Offline & abgelaufener Sitzung\n" +
-            "• Tutorial liegt über Header und Buttons";
-
-        function maybeShowWhatsNew() {
-            try {
-                if (localStorage.getItem("eduplaySeenBuild") === APP_BUILD) return;
-                localStorage.setItem("eduplaySeenBuild", APP_BUILD);
-            } catch (e) { return; }
-            setTimeout(function () {
-                if (typeof appAlert === "function") {
-                    appAlert(WHATS_NEW_TEXT, { titel: "Was ist neu in v" + APP_BUILD, icon: "✨", okText: "Super" });
-                } else {
-                    showToast("Neu in v" + APP_BUILD, "success");
-                }
-            }, 900);
-        }
-        window.maybeShowWhatsNew = maybeShowWhatsNew;
-        try {
-            document.addEventListener("DOMContentLoaded", function () {
-                setTimeout(maybeShowWhatsNew, 1200);
-            });
-        } catch (e) { /* */ }
 
         function getActiveInviteCode() {
             const fromLobby = (document.getElementById("live-duel-lobby-code") || {}).innerText || "";

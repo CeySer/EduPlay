@@ -3431,6 +3431,7 @@ body.tv-mirror-display .view {
    TV-Quiz · EduPlay Show-Style (Querformat bevorzugt)
    ============================================================ */
 .tv-show-stage {
+  position: relative;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -3439,6 +3440,30 @@ body.tv-mirror-display .view {
   padding: 0.85rem 1rem 1.25rem;
   background: radial-gradient(ellipse at top, #1a1040 0%, #0b1020 55%, #070a14 100%);
   border-radius: 1.25rem;
+}
+.tv-wr-flash {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  font-size: clamp(4rem, 16vw, 10rem);
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 8px 32px rgba(0,0,0,0.55);
+  z-index: 20;
+  opacity: 0;
+  animation: tvWrFlashPop 0.7s ease-out forwards;
+}
+.tv-wr-flash-hit { color: #34d399; }
+.tv-wr-flash-miss { color: #f87171; }
+@keyframes tvWrFlashPop {
+  0% { opacity: 0; transform: scale(0.5); }
+  15% { opacity: 1; transform: scale(1.15); }
+  30% { opacity: 1; transform: scale(1); }
+  75% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1); }
 }
 .tv-rotate-hint {
   display: none;

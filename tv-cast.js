@@ -1628,11 +1628,21 @@
                 ? data.players[turnKey].name
                 : (turnKey || "Spieler");
             const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
+            // Am Rundenende IMMER das ganze Wort zeigen (auch bei Verloren) -
+            // vorher blieben nicht erratene Buchstaben als "_" stehen.
+            const revealAll = !!data.roundOver;
             const mask = word.split("").map(ch =>
-                guessed.has(ch)
+                (revealAll || guessed.has(ch))
                     ? `<span class="tv-wr-letter is-open">${esc(ch)}</span>`
                     : `<span class="tv-wr-letter">_</span>`
             ).join("");
+            // Kurzer, großer Buchstaben-Flash beim letzten getippten Buchstaben
+            const guessedArr = data.guessed || [];
+            const flashKey = (data.currentRound || 0) + ":" + guessedArr.length;
+            const shouldFlash = guessedArr.length > 0 && tvWrLastFlashKey !== flashKey;
+            if (shouldFlash) tvWrLastFlashKey = flashKey;
+            const flashLetter = shouldFlash ? guessedArr[guessedArr.length - 1] : "";
+            const flashHit = flashLetter && word.includes(flashLetter);
             const scores = Object.values(data.players || {}).map(p =>
                 `<div class="tv-wr-score-chip"><span class="tv-wr-score-name">${esc(p.name)}</span><span class="tv-wr-score-pts">${p.score || 0}</span></div>`
             ).join("");
@@ -1653,6 +1663,7 @@
             }
             setTVHostPlayHTML(`
                 <div class="tv-show-stage tv-wr-stage">
+                    ${shouldFlash ? `<div class="tv-wr-flash ${flashHit ? 'tv-wr-flash-hit' : 'tv-wr-flash-miss'}">${esc(flashLetter)}</div>` : ""}
                     <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
                     <div class="tv-show-top">
                         <div class="tv-show-meta">
@@ -1695,6 +1706,7 @@
         let tvWrTurnTimerId = null;
         let tvWrAutoAdvanceId = null;
         let tvWrTimerKey = "";
+        let tvWrLastFlashKey = "";
 
         function clearTVWrTimers() {
             if (tvWrTurnTimerId) { clearInterval(tvWrTurnTimerId); tvWrTurnTimerId = null; }
@@ -1930,6 +1942,7 @@
 
         async function submitTVWrLetter(letter) {
             if (!tvGameRef || !letter) return;
+            if (typeof SFX !== "undefined" && SFX.tap) { try { SFX.tap(); } catch (e) { /* */ } }
             try {
                 await db.runTransaction(async (txn) => {
                     const snap = await txn.get(tvGameRef);

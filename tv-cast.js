@@ -1630,11 +1630,11 @@
             const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
             const mask = word.split("").map(ch =>
                 guessed.has(ch)
-                    ? `<span class="inline-flex items-center justify-center w-12 h-14 md:w-16 md:h-20 mx-1 rounded-xl bg-sky-500/30 border-2 border-sky-400 text-3xl md:text-4xl font-black text-white">${esc(ch)}</span>`
-                    : `<span class="inline-flex items-center justify-center w-12 h-14 md:w-16 md:h-20 mx-1 rounded-xl bg-white/5 border-2 border-white/20 text-3xl md:text-4xl font-black text-gray-500">_</span>`
+                    ? `<span class="tv-wr-letter is-open">${esc(ch)}</span>`
+                    : `<span class="tv-wr-letter">_</span>`
             ).join("");
             const scores = Object.values(data.players || {}).map(p =>
-                `<div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-center"><div class="font-bold text-white">${esc(p.name)}</div><div class="text-sky-300 font-black">${p.score || 0}</div></div>`
+                `<div class="tv-wr-score-chip"><span class="tv-wr-score-name">${esc(p.name)}</span><span class="tv-wr-score-pts">${p.score || 0}</span></div>`
             ).join("");
             let footer = "";
             if (data.roundOver) {
@@ -1652,7 +1652,7 @@
                           <button onclick="forceTVWortratenReveal()" class="tv-show-force">⏱️ Auswerten</button>`;
             }
             setTVHostPlayHTML(`
-                <div class="tv-show-stage">
+                <div class="tv-show-stage tv-wr-stage">
                     <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
                     <div class="tv-show-top">
                         <div class="tv-show-meta">
@@ -1662,12 +1662,16 @@
                         <div class="tv-wr-scores">${scores}</div>
                     </div>
                     <div class="tv-wr-body">
-                        <div id="tv-wr-figure" class="tv-wr-figure"></div>
-                        <div class="tv-wr-mask">${mask}</div>
-                        ${data.lastSolveAttempt && data.lastSolveAttempt.text
-                            ? `<div class="tv-show-explain">💡 ${esc(data.lastSolveAttempt.name || "Jemand")}: „${esc(String(data.lastSolveAttempt.text).slice(0, 24))}“</div>`
-                            : ""}
-                        <div id="tv-wr-turn-timer" class="tv-show-counter"></div>
+                        <div class="tv-wr-figure-wrap">
+                            <div id="tv-wr-figure" class="tv-wr-figure"></div>
+                        </div>
+                        <div class="tv-wr-side">
+                            <div class="tv-wr-mask">${mask || '<span class="tv-show-counter">Wort wird vorbereitet…</span>'}</div>
+                            ${data.lastSolveAttempt && data.lastSolveAttempt.text
+                                ? `<div class="tv-show-explain">💡 ${esc(data.lastSolveAttempt.name || "Jemand")}: „${esc(String(data.lastSolveAttempt.text).slice(0, 24))}“</div>`
+                                : ""}
+                            <div id="tv-wr-turn-timer" class="tv-show-counter"></div>
+                        </div>
                     </div>
                     <div class="tv-show-footer">${footer}</div>
                 </div>`);
@@ -2034,31 +2038,23 @@
 
 
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
+            // Stand wie zuvor (einfaches Layout) – schrittweise verbessern
             setTVHostPlayHTML(`
-                <div class="tv-show-stage">
-                    <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
-                    <div class="tv-show-top">
-                        <div class="tv-show-meta">
-                            <span class="tv-show-qnum">Wort-Duell · Runde ${round} / ${totalRounds}</span>
-                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
-                        </div>
-                        <div class="tv-show-timer-track" aria-hidden="true">
-                            <div id="tv-kahoot-timer-bar" class="tv-show-timer-bar"></div>
-                        </div>
-                        <h1 class="tv-show-question">🔤 Bestes Wort aus diesen Buchstaben!</h1>
+                <div class="h-[100dvh] flex flex-col justify-between p-4 md:p-6 overflow-hidden box-border">
+                    <div class="flex justify-between items-center">
+                        <p class="text-amber-400 font-black text-lg md:text-xl">Wort-Duell · Runde ${round} / ${totalRounds}</p>
+                        <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕</button>
                     </div>
-                    <div class="tv-scrabble-tiles">${scrabbleTilesHTML(letters, true, required)}</div>
-                    <div class="tv-show-footer">
-                        <span id="tv-answer-counter" class="tv-show-counter">0 von 0 haben geantwortet</span>
-                        <button onclick="forceTVScrabbleReveal()" class="tv-show-force">Runde auswerten ⏱️</button>
+                    <div class="glass-card-glow p-5 md:p-8 rounded-3xl text-center flex-1 flex flex-col justify-center min-h-0" style="border-color:rgba(245,158,11,0.15);">
+                        <h1 class="text-xl md:text-3xl font-black text-white leading-tight mb-4 md:mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
+                        <div class="flex flex-wrap justify-center gap-2 md:gap-3">${scrabbleTilesHTML(letters, true, required)}</div>
+                    </div>
+                    <div class="text-center pt-2 shrink-0">
+                        <span id="tv-answer-counter" class="text-gray-400 font-bold text-base md:text-xl block mb-2">0 von 0 haben geantwortet</span>
+                        <button onclick="forceTVScrabbleReveal()" class="btn-secondary text-base md:text-lg py-3 px-8 md:py-4 md:px-10">Runde jetzt auswerten ⏱️</button>
                     </div>
                 </div>
             `);
-            try {
-                const bar = document.getElementById("tv-kahoot-timer-bar");
-                if (bar) { bar.style.transition = "none"; bar.style.width = "100%"; }
-                _tvBarDeadlineKey = null;
-            } catch (e) { /* */ }
         }
 
         function forceTVScrabbleReveal() {

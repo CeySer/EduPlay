@@ -3486,8 +3486,6 @@ body.tv-mirror-display .view {
     line-height: 1.2 !important;
     margin: 0 auto 0.2rem !important;
     max-width: 94vw;
-    max-height: 20vh;
-    overflow: hidden;
   }
   .tv-show-grid {
     flex: 1 1 auto !important;
@@ -3849,7 +3847,7 @@ body.tv-host-active #tv-host-play {
   font-weight: 900;
   color: #fff;
   line-height: 1.2;
-  font-size: clamp(0.8rem, 1.8vw, 1.3rem);
+  font-size: clamp(0.7rem, 1.5vw, 1.05rem);
   margin: 0 auto;
   max-width: 56rem;
   text-shadow: 0 2px 18px rgba(0,0,0,0.35);
@@ -3870,6 +3868,13 @@ body.tv-host-active #tv-host-play {
   min-height: 0;
   max-height: 100%;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.tv-show-grid::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 .tv-show-tile {
   position: relative;
@@ -4012,7 +4017,7 @@ body.tv-mirror-display #view-tv-quiz-host {
   max-width: none;
 }
 body.tv-mirror-display .tv-show-question {
-  font-size: clamp(0.85rem, 1.7vw, 1.1rem) !important;
+  font-size: clamp(0.72rem, 1.4vw, 0.92rem) !important;
 }
 body.tv-mirror-display .tv-show-answer {
   font-size: clamp(0.9rem, 1.8vw, 1.15rem) !important;

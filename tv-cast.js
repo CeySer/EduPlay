@@ -307,28 +307,16 @@
         let tvMirrorDisplay = false;
 
         function setTVMirrorDisplay(on) {
-            tvMirrorDisplay = !!on;
+            // Host bleibt immer in Fernseher-Ansicht (kein „Normale Ansicht“ mehr)
+            tvMirrorDisplay = on !== false;
             document.body.classList.toggle("tv-mirror-display", tvMirrorDisplay);
             const bar = document.getElementById("tv-mirror-bar");
-            if (bar) {
-                bar.classList.toggle("hidden", !tvMirrorDisplay);
-                bar.classList.toggle("flex", tvMirrorDisplay);
-            }
+            if (bar) bar.classList.add("hidden");
             try {
                 if (tvMirrorDisplay && document.documentElement.requestFullscreen) {
                     document.documentElement.requestFullscreen().catch(function () {});
-                } else if (!tvMirrorDisplay && document.fullscreenElement && document.exitFullscreen) {
-                    document.exitFullscreen().catch(function () {});
                 }
             } catch (_) {}
-            if (typeof showToast === "function") {
-                showToast(
-                    tvMirrorDisplay
-                        ? "Fernseher-Ansicht an – jetzt Bildschirm auf den TV übertragen"
-                        : "Normale Ansicht",
-                    "info"
-                );
-            }
         }
         window.setTVMirrorDisplay = setTVMirrorDisplay;
 
@@ -420,19 +408,27 @@
                 }
                 if (data.status === "playing" && !data.showAnswer) {
                     if (data.mode === "scrabble") {
-                        showTVHostScrabbleRound(
-                            data.currentLetters,
-                            data.currentRound,
-                            data.totalRounds || 0,
-                            data.currentRequired || ""
-                        );
+                        const scKey = "sc:" + (data.currentRound || 0) + ":" + (data.currentLetters || []).join("");
+                        if (window._tvHostRenderKey !== scKey) {
+                            window._tvHostRenderKey = scKey;
+                            showTVHostScrabbleRound(
+                                data.currentLetters,
+                                data.currentRound,
+                                data.totalRounds || 0,
+                                data.currentRequired || ""
+                            );
+                        }
                     } else if (data.mode === "quiz" && typeof showTVHostQuestion === "function") {
-                        // Fragen aus Firestore sind auf dem Host ggf. lokal in tvQuestions
                         if (Array.isArray(data.questions) && data.questions.length) {
                             tvQuestions = data.questions;
                         }
                         if (typeof data.currentQuestionIndex === "number") {
-                            showTVHostQuestion(data.currentQuestionIndex);
+                            // Nur neu zeichnen, wenn die Frage wechselt – sonst springt der Zeitbalken
+                            const qKey = "q:" + data.currentQuestionIndex + ":" + (data.answerDeadline || 0);
+                            if (window._tvHostRenderKey !== qKey) {
+                                window._tvHostRenderKey = qKey;
+                                showTVHostQuestion(data.currentQuestionIndex);
+                            }
                         }
                     }
                     const alle = Object.values(data.players || {});
@@ -495,17 +491,19 @@
                     const joinUrl = (window.location.origin || "") + (window.location.pathname || "/") + "?tv=" + encodeURIComponent(tvCode);
                     const qrSrc = tvCode ? "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(joinUrl) : "";
                     setTVHostPlayHTML(`
-                        <div class="glass-card-glow h-[80vh] flex flex-col items-center justify-center p-8 text-center" style="border-color:rgba(99,102,241,0.15);">
-                            <h2 class="text-5xl font-black text-indigo-400 mb-4">TV-Lobby wiederhergestellt</h2>
-                            ${tvCode ? `<div class="mb-6">
-                                <p class="text-sm text-indigo-300 font-bold uppercase tracking-wider">Beitritts-Code</p>
-                                <div class="text-5xl font-black tracking-[0.28em] text-white my-2">${tvCode}</div>
-                                ${qrSrc ? `<img alt="QR" class="mx-auto w-40 h-40 rounded-xl bg-white p-2" src="${qrSrc}">` : ""}
+                        <div class="tv-lobby-stage">
+                            <h2 class="tv-lobby-title">TV-Lobby wiederhergestellt</h2>
+                            ${tvCode ? `<div class="tv-lobby-join-row">
+                                ${qrSrc ? `<div class="tv-lobby-qr"><img alt="QR" src="${qrSrc}"></div>` : ""}
+                                <div class="tv-lobby-code-block">
+                                    <p class="tv-lobby-code-label">Beitritts-Code</p>
+                                    <div class="tv-lobby-code">${tvCode}</div>
+                                </div>
+                                <button type="button" onclick="shareTVCode()" class="tv-lobby-share">📤 Code teilen</button>
                             </div>` : ""}
-                            <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>
-                            <button type="button" onclick="setTVMirrorDisplay(true)" class="mb-4 w-full max-w-md py-3 rounded-xl font-bold text-white" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">📺 Fernseher-Ansicht (für Stream)</button>
-                            <button onclick="startTVGameLoop()" class="btn-primary text-3xl py-6 px-12" style="background:var(--gradient-amber);">Spiel starten! 🚀</button>
-                            <button onclick="leaveTVGame()" class="mt-8 text-gray-500 text-lg font-bold underline">Lobby abbrechen</button>
+                            <div id="tv-player-list" class="tv-lobby-players"></div>
+                            <button onclick="startTVGameLoop()" class="tv-lobby-start">Spiel starten! 🚀</button>
+                            <button onclick="leaveTVGame()" class="tv-lobby-cancel">Lobby abbrechen</button>
                         </div>`);
                     renderTVPlayerList(data.players);
                 } else if (data.status === "playing") {
@@ -551,10 +549,122 @@
                 }
             } catch (_) {}
         }
+        // TV-Host: zwingend Querformat (Gameshow-Look)
+        let _tvLandscapeForced = false;
+        function isTVLandscape() {
+            try {
+                if (window.matchMedia && window.matchMedia("(orientation: landscape)").matches) return true;
+            } catch (e) { /* */ }
+            return (window.innerWidth || 0) > (window.innerHeight || 0);
+        }
+        function ensureTVLandscapeOverlay() {
+            let el = document.getElementById("tv-landscape-lock");
+            if (!el) {
+                el = document.createElement("div");
+                el.id = "tv-landscape-lock";
+                el.className = "tv-landscape-lock hidden";
+                el.innerHTML =
+                    '<div class="tv-landscape-lock-card">' +
+                    '<div class="tv-landscape-lock-icon">📱↻</div>' +
+                    '<h2>Querformat nötig</h2>' +
+                    '<p>Für den TV-Modus das Gerät <strong>quer</strong> drehen – dann sieht es wie eine echte Show aus.</p>' +
+                    '<p class="tv-landscape-lock-sub">Danach startet die Ansicht automatisch.</p>' +
+                    "</div>";
+                document.body.appendChild(el);
+            }
+            const need = _tvLandscapeForced && !isTVLandscape();
+            el.classList.toggle("hidden", !need);
+            document.body.classList.toggle("tv-need-landscape", !!need);
+            if (need) {
+                try {
+                    if (screen.orientation && typeof screen.orientation.lock === "function") {
+                        screen.orientation.lock("landscape").catch(function () { /* Browser erlaubt oft nur im Fullscreen */ });
+                    }
+                } catch (e2) { /* */ }
+            }
+        }
+        function requestTVFullscreenAndLock() {
+            try {
+                const root = document.documentElement;
+                if (!document.fullscreenElement && root.requestFullscreen) {
+                    root.requestFullscreen().catch(function () { /* */ });
+                }
+            } catch (e) { /* */ }
+            try {
+                if (screen.orientation && typeof screen.orientation.lock === "function") {
+                    screen.orientation.lock("landscape").catch(function () { /* oft nur im Fullscreen */ });
+                }
+            } catch (e2) { /* */ }
+        }
+        function startTVLandscapeGuard() {
+            _tvLandscapeForced = true;
+            document.body.classList.add("tv-host-active");
+            document.documentElement.classList.add("tv-host-lock");
+            ensureTVLandscapeOverlay();
+            // Immer erneut versuchen (auch nach Zurück / Tab-Wechsel)
+            requestTVFullscreenAndLock();
+            if (isTVLandscape()) {
+                // zweiter Versuch kurz danach (manche Browser brauchen User-Gesture + Delay)
+                setTimeout(requestTVFullscreenAndLock, 280);
+            }
+            setTimeout(function () {
+                const hint = document.getElementById("tv-rotate-hint");
+                if (hint) hint.classList.add("hidden");
+                if (isTVLandscape()) {
+                    const lock = document.getElementById("tv-landscape-lock");
+                    if (lock) lock.classList.add("hidden");
+                    document.body.classList.remove("tv-need-landscape");
+                    requestTVFullscreenAndLock();
+                }
+            }, 1800);
+        }
+        function stopTVLandscapeGuard() {
+            _tvLandscapeForced = false;
+            document.body.classList.remove("tv-host-active");
+            document.documentElement.classList.remove("tv-host-lock");
+            ensureTVLandscapeOverlay();
+            try {
+                if (screen.orientation && typeof screen.orientation.unlock === "function") {
+                    screen.orientation.unlock();
+                }
+            } catch (e) { /* */ }
+            try {
+                if (document.fullscreenElement && document.exitFullscreen) {
+                    document.exitFullscreen().catch(function () { });
+                }
+            } catch (e2) { /* */ }
+        }
+        window.startTVLandscapeGuard = startTVLandscapeGuard;
+        window.stopTVLandscapeGuard = stopTVLandscapeGuard;
+        window.addEventListener("orientationchange", function () {
+            setTimeout(function () {
+                ensureTVLandscapeOverlay();
+                if (_tvLandscapeForced) requestTVFullscreenAndLock();
+            }, 120);
+        });
+        window.addEventListener("resize", function () {
+            ensureTVLandscapeOverlay();
+        });
+        // Nach App-Wechsel / Zurück: Guard + Vollbild erneut
+        document.addEventListener("visibilitychange", function () {
+            if (document.visibilityState === "visible" && _tvLandscapeForced && isTVHost) {
+                startTVLandscapeGuard();
+            }
+        });
+        window.addEventListener("pageshow", function () {
+            if (_tvLandscapeForced && isTVHost) startTVLandscapeGuard();
+        });
+
         function setTVHostPlayHTML(html) {
             showTVHostPlay();
+            if (isTVHost) {
+                startTVLandscapeGuard();
+                setTVMirrorDisplay(true);
+            }
             const el = tvHostPlayEl();
             if (el) el.innerHTML = html;
+            ensureTVLandscapeOverlay();
+            if (isTVHost) requestTVFullscreenAndLock();
         }
         function setTVPlayerPlayHTML(html) {
             showTVPlayerPlay();
@@ -597,12 +707,39 @@
         // wenn kein neuer Snapshot mehr hereinkommt (niemand antwortet mehr).
         let tvFristTicker = null;
 
+        let _tvBarDeadlineKey = null;
         function starteTVRundenTimer(data) {
-            stoppeTVRundenTimer();
             if (!data || !data.answerDeadline) return;
+            const deadline = data.answerDeadline;
+            const barKey = String(deadline) + ":" + (data.currentQuestionIndex || data.currentRound || 0);
+
+            // Balken nur einmal pro Runde starten (sonst springt er bei jedem Snapshot zurück)
+            if (_tvBarDeadlineKey !== barKey) {
+                _tvBarDeadlineKey = barKey;
+                try {
+                    const bar = document.getElementById("tv-kahoot-timer-bar");
+                    if (bar) {
+                        // Gesamtdauer der Runde schätzen (Deadline war gerade gesetzt → ~30s/60s)
+                        // Gleichmäßig von jetzt bis Deadline – ein linearer Lauf, kein Neustart
+                        const remainMs = Math.max(200, deadline - Date.now());
+                        // Ursprüngliche Länge: wenn fast voll, von 100%; sonst proportional zur Restzeit
+                        // Annahme: Quiz 30s, Scrabble 60s
+                        const fullMs = (data.mode === "scrabble") ? 60000 : 30000;
+                        const startPct = Math.min(100, Math.max(2, (remainMs / fullMs) * 100));
+                        bar.style.transition = "none";
+                        bar.style.width = startPct + "%";
+                        void bar.offsetWidth;
+                        bar.style.transition = "width " + remainMs + "ms linear";
+                        bar.style.width = "0%";
+                    }
+                } catch (e) { /* */ }
+            }
+
+            // Sekunden-Ticker nur einmal laufen lassen
+            if (tvFristTicker) return;
             tvFristTicker = setInterval(() => {
                 if (!tvGameRef) return stoppeTVRundenTimer();
-                const rest = Math.max(0, Math.ceil((data.answerDeadline - Date.now()) / 1000));
+                const rest = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
                 const el = document.getElementById("tv-answer-counter");
                 if (el && el.innerText.indexOf("noch ") !== -1) {
                     el.innerText = el.innerText.replace(/noch \d+s/, "noch " + rest + "s");
@@ -673,6 +810,7 @@
 
         function stoppeTVRundenTimer() {
             if (tvFristTicker) { clearInterval(tvFristTicker); tvFristTicker = null; }
+            _tvBarDeadlineKey = null;
         }
 
         let tvUsedWords = new Set();
@@ -796,25 +934,28 @@
                     : "";
 
                 setTVHostPlayHTML(`
-                    <div class="glass-card-glow h-[80vh] flex flex-col items-center justify-center p-8 text-center" style="border-color:rgba(99,102,241,0.15);">
-                        <h2 class="text-5xl font-black text-indigo-400 mb-4 animate-pulse">Warte auf Spieler...</h2>
-                        ${tvCode ? `<div class="mb-6">
-                            <p class="text-sm text-indigo-300 font-bold uppercase tracking-wider">Beitritts-Code</p>
-                            <div class="text-5xl font-black tracking-[0.28em] text-white my-2">${tvCode}</div>
-                            ${qrSrc ? `<img alt="QR" class="mx-auto w-40 h-40 rounded-xl bg-white p-2" src="${qrSrc}">` : ""}
-                            <p class="text-xs text-gray-400 mt-2">Familie: „Jetzt beitreten“ · Andere: QR oder Code</p>
-                            <button type="button" onclick="setTVMirrorDisplay(true)" class="mt-4 w-full py-3 rounded-xl font-bold text-white text-base" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">📺 Fernseher-Ansicht (für Stream)</button>
-                            <p class="text-xs text-gray-500 mt-2">Danach: Bildschirmübertragung / Smart View / Spiegeln zum TV</p>
-                            <button type="button" onclick="shareTVCode()" class="btn-primary mt-3 text-base py-3 px-6"
-                                style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">👥 Freunden empfehlen</button>
+                    <div class="tv-lobby-stage">
+                        <h2 class="tv-lobby-title">TV-Lobby</h2>
+                        ${tvCode ? `<div class="tv-lobby-card">
+                            <div class="tv-lobby-join-row">
+                                ${qrSrc ? `<div class="tv-lobby-qr"><img alt="QR" src="${qrSrc}"></div>` : ""}
+                                <div class="tv-lobby-code-block">
+                                    <p class="tv-lobby-code-label">Code</p>
+                                    <div class="tv-lobby-code">${tvCode}</div>
+                                </div>
+                                <button type="button" onclick="shareTVCode()" class="tv-lobby-share">📤 Teilen</button>
+                            </div>
                         </div>` : ""}
-                        <p class="text-xl text-white mb-8">Auf dem Handy: <span class="text-emerald-400 font-bold">'Jetzt beitreten!'</span></p>
-                        <div id="tv-player-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 w-full max-w-4xl"></div>
-                        <button onclick="startTVGameLoop()" class="btn-primary text-3xl py-6 px-12" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Spiel starten! 🚀</button>
-                        <button onclick="leaveTVGame()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">Lobby abbrechen</button>
+                        <div id="tv-player-list" class="tv-lobby-players"></div>
+                        <div class="tv-lobby-actions">
+                            <button onclick="startTVGameLoop()" class="tv-lobby-start">Spiel starten 🚀</button>
+                            <button onclick="leaveTVGame()" class="tv-lobby-cancel">Abbrechen</button>
+                        </div>
                     </div>
                 `);
 
+                // Immer Fernseher-Ansicht (kein Umschalten mehr)
+                if (typeof setTVMirrorDisplay === "function") setTVMirrorDisplay(true);
                 starteTVLebenszeichen();
                 bindTVHostSnapshot();
             } catch (e) {
@@ -833,8 +974,7 @@
             const cleaned = typeof bereinigeTVPlayers === "function" ? bereinigeTVPlayers(players || {}) : (players || {});
             const keys = Object.keys(cleaned);
             if (keys.length === 0) {
-                list.innerHTML = `<p class="col-span-4 text-gray-500 font-bold">Noch niemand beigetreten…</p>
-                    <p class="col-span-4 text-xs text-gray-500">📡 0 verbunden – warte auf Handys</p>`;
+                list.innerHTML = `<div class="tv-lobby-empty">Warte auf Mitspieler…</div>`;
                 return;
             }
             let online = 0;
@@ -842,18 +982,12 @@
                 const p = cleaned[k];
                 const da = typeof istAnwesend === "function" ? istAnwesend(p) : true;
                 if (da) online++;
-                const status = da
-                    ? '<span class="text-emerald-400">🟢 Online</span>'
-                    : '<span class="text-gray-500">⚪ Offline</span>';
-                return `<div class="bg-white/5 border ${da ? "border-emerald-500/30" : "border-white/5"} rounded-xl p-4 text-center ${da ? "" : "opacity-50"}">
-                    <div class="text-3xl">🙋</div>
-                    <div class="font-bold text-white mt-2">${esc(p.name)}</div>
-                    <div class="text-xs font-bold mt-1">${status}</div>
+                return `<div class="tv-lobby-player ${da ? "is-on" : "is-off"}">
+                    <span class="tv-lobby-player-dot"></span>
+                    <span class="tv-lobby-player-name">${esc(p.name)}</span>
                 </div>`;
             }).join("");
-            const bar = `<div class="col-span-2 md:col-span-4 mb-2 rounded-xl px-4 py-3 text-center text-sm font-bold ${online === keys.length ? "bg-emerald-500/15 text-emerald-300" : "bg-amber-500/10 text-amber-200"}">
-                📡 ${online}/${keys.length} verbunden${online < keys.length ? " · jemanden warten" : " · alle online"}
-            </div>`;
+            const bar = `<div class="tv-lobby-status">${online}/${keys.length} online</div>`;
             list.innerHTML = bar + cards;
         }
 
@@ -917,47 +1051,62 @@
             });
         }
 
+        // EduPlay-TV-Palette (kein Kahoot-Klon): Indigo, Emerald, Amber, Fuchsia
+        const TV_SHOW_COLORS = ["#4f46e5", "#059669", "#d97706", "#c026d3"];
+        const TV_SHOW_LABELS = ["A", "B", "C", "D"];
+
         function showTVHostQuestion(index) {
             stopTVRoundTimer();
             isResolving = false;
             tvCurrentQ = tvQuestions[index];
-            const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
-            const letters = ["A", "B", "C", "D"];
             let answersHtml = "";
-            tvCurrentQ.answers.forEach((ans, i) => {
+            (tvCurrentQ.answers || []).forEach((ans, i) => {
+                const bg = TV_SHOW_COLORS[i % 4];
+                const lab = TV_SHOW_LABELS[i % 4];
                 answersHtml += `
-                        <div class="${colors[i]} p-3 rounded-2xl text-white shadow-xl flex items-center gap-3 overflow-hidden">
-                            <span class="shrink-0 w-9 h-9 rounded-full bg-black/25 border-2 border-white/40 flex items-center justify-center font-black text-sm">${letters[i]}</span>
-                            <span class="font-bold leading-tight break-words" style="font-size:clamp(0.95rem,3.2vw,1.4rem);">${ans}</span>
-                        </div>`;
+                    <div class="tv-show-tile" style="background:${bg}">
+                        <span class="tv-show-label">${lab}</span>
+                        <span class="tv-show-answer">${esc(ans)}</span>
+                    </div>`;
             });
             setTVHostPlayHTML(`
-                    <div class="h-[100dvh] flex flex-col justify-between p-3 overflow-hidden">
-                        <div class="flex justify-between items-center shrink-0">
-                            <p class="text-indigo-400 font-black text-sm">Frage ${index + 1} / ${tvQuestions.length}</p>
-                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="btn-ghost text-sm py-1 px-3 text-gray-400">✕</button>
+                <div class="tv-show-stage">
+                    <div class="tv-rotate-hint" id="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
+                    <div class="tv-show-top">
+                        <div class="tv-show-meta">
+                            <span class="tv-show-qnum">Frage ${index + 1} / ${tvQuestions.length}</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
-                        <div class="glass-card-glow p-3 rounded-2xl text-center my-2 shrink-0" style="border-color:rgba(99,102,241,0.15);">
-                            <h1 class="font-black text-white leading-snug" style="font-size:clamp(1.1rem,4vw,1.7rem);">${tvCurrentQ.question}</h1>
+                        <div class="tv-show-timer-track" aria-hidden="true">
+                            <div id="tv-kahoot-timer-bar" class="tv-show-timer-bar"></div>
                         </div>
-                        <div class="grid grid-cols-1 gap-2 flex-1 overflow-y-auto">${answersHtml}</div>
-                        <div class="mt-2 text-center space-y-1 shrink-0">
-                            <span id="tv-answer-counter" class="text-gray-400 font-bold text-xs block">0 von 0 haben geantwortet</span>
-                            <button onclick="forceTVQuizReveal()" class="btn-secondary text-sm py-2 px-6">Runde jetzt auswerten ⏱️</button>
-                        </div>
+                        <h1 class="tv-show-question">${esc(tvCurrentQ.question)}</h1>
                     </div>
-                `);
-            // Kein eigener lokaler Timer mehr hier – die Firestore-answerDeadline
-            // (siehe starteTVRundenTimer/bindTVHostSnapshot) ist die einzige Uhr,
-            // genau wie im normalen Gegeneinander-Duell. Vorher liefen hier zwei
-            // Timer parallel (dieser + der answerDeadline-Timer unten im Bild).
+                    <div class="tv-show-grid">${answersHtml}</div>
+                    <div class="tv-show-footer">
+                        <span id="tv-answer-counter" class="tv-show-counter">0 von 0 haben geantwortet</span>
+                        <button onclick="forceTVQuizReveal()" class="tv-show-force">Runde auswerten ⏱️</button>
+                    </div>
+                </div>
+            `);
+            // Kein eigener lokaler Timer – Firestore-answerDeadline bleibt führend.
+            // Visueller Balken wird in starteTVRundenTimer / Snapshot mitgezogen.
+            // Balken startet erst mit answerDeadline (starteTVRundenTimer) – hier nur vorbereiten
+            try {
+                const bar = document.getElementById("tv-kahoot-timer-bar");
+                if (bar) {
+                    bar.style.transition = "none";
+                    bar.style.width = "100%";
+                }
+                _tvBarDeadlineKey = null; // neue Frage → Balken darf neu anlaufen
+            } catch (e) { /* */ }
         }
 
         function revealTVAnswer(data) {
             stopTVRoundTimer();
+            window._tvHostRenderKey = null;
+            _tvBarDeadlineKey = null;
             tvGameRef.update({ showAnswer: true });
-            const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
-            const letters = ["A", "B", "C", "D"];
             const correctIndex = data.correctAnswer;
             const playersData = data.players;
 
@@ -1005,34 +1154,53 @@
             } catch (e) { }
 
             let answersHtml = "";
-            tvCurrentQ.answers.forEach((ans, i) => {
-                const opacity = i === correctIndex ? "opacity-100 ring-4 ring-white scale-[1.02]" :
-                    "opacity-30 grayscale";
+            (tvCurrentQ.answers || []).forEach((ans, i) => {
+                const bg = TV_SHOW_COLORS[i % 4];
+                const lab = TV_SHOW_LABELS[i % 4];
+                const isOk = i === correctIndex;
                 answersHtml += `
-                        <div class="${colors[i]} p-3 rounded-2xl text-white shadow-xl flex items-center gap-3 overflow-hidden transition-all duration-500 ${opacity}">
-                            <span class="shrink-0 w-9 h-9 rounded-full bg-black/25 border-2 border-white/40 flex items-center justify-center font-black text-sm">${letters[i]}</span>
-                            <span class="font-bold leading-tight break-words" style="font-size:clamp(0.95rem,3.2vw,1.4rem);">${ans}</span>
-                        </div>`;
+                    <div class="tv-show-tile ${isOk ? "tv-show-correct" : "tv-show-wrong"}" style="background:${bg}">
+                        <span class="tv-show-label">${lab}</span>
+                        <span class="tv-show-answer">${esc(ans)}</span>
+                        ${isOk ? '<span class="tv-show-check">✓</span>' : ''}
+                    </div>`;
             });
 
+            const ranked = Object.values(playersData || {})
+                .sort(function (a, b) { return (b.score || 0) - (a.score || 0); })
+                .slice(0, 5)
+                .map(function (p, i) {
+                    return `<div class="tv-show-rank-row">
+                        <span class="tv-show-rank-pos">${i + 1}</span>
+                        <span class="tv-show-rank-name">${esc(p.name)}</span>
+                        <span class="tv-show-rank-score">${p.score || 0}</span>
+                    </div>`;
+                }).join("");
+
             setTVHostPlayHTML(`
-                    <div class="h-[100dvh] flex flex-col justify-between p-3 overflow-hidden">
-                        <div class="flex justify-end shrink-0"><button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-sm py-1 px-3 text-gray-400">✕</button></div>
-                        <div class="glass-card-glow p-3 rounded-2xl text-center my-2 shrink-0" style="border-color:rgba(16,185,129,0.2);">
-                            <h1 class="font-black text-white leading-snug" style="font-size:clamp(1.1rem,4vw,1.7rem);">${tvCurrentQ.question}</h1>
-                            <p class="text-emerald-400 font-black mt-2" style="font-size:clamp(0.9rem,2.6vw,1.2rem);">💡 ${tvCurrentQ.explanation}</p>
+                <div class="tv-show-stage">
+                    <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
+                    <div class="tv-show-top">
+                        <div class="tv-show-meta">
+                            <span class="tv-show-qnum">Auflösung</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
-                        <div class="grid grid-cols-1 gap-2 flex-1 overflow-y-auto">${answersHtml}</div>
-                        <div class="mt-2 text-center space-y-1 shrink-0">
-                            <button onclick="nextTVQuestion()" class="btn-primary text-lg py-3 px-10" style="box-shadow:0 4px 32px rgba(99,102,241,0.3);">Nächste Frage ➔</button>
-                            <div id="tv-auto-row" class="flex items-center justify-center gap-3 text-sm text-gray-400 font-bold">
-                                <span id="tv-auto-label"></span>
-                                <button onclick="toggleTVAutoAdvance()" id="tv-auto-btn"
-                                    class="btn-ghost text-xs py-1.5 px-4"></button>
-                            </div>
+                        <h1 class="tv-show-question">${esc(tvCurrentQ.question)}</h1>
+                        ${tvCurrentQ.explanation
+                            ? `<p class="tv-show-explain">💡 ${esc(tvCurrentQ.explanation)}</p>`
+                            : ""}
+                    </div>
+                    <div class="tv-show-grid">${answersHtml}</div>
+                    <div class="tv-show-scorestrip">${ranked || ""}</div>
+                    <div class="tv-show-footer">
+                        <button onclick="nextTVQuestion()" class="tv-show-next">Nächste Frage ➔</button>
+                        <div id="tv-auto-row" class="tv-show-auto">
+                            <span id="tv-auto-label"></span>
+                            <button onclick="toggleTVAutoAdvance()" id="tv-auto-btn" class="tv-show-auto-btn"></button>
                         </div>
                     </div>
-                `);
+                </div>
+            `);
             startTVAutoAdvance();
         }
 
@@ -1111,82 +1279,86 @@
             if (typeof clearTVWrTimers === "function") clearTVWrTimers();
             stopTVActionMode();
             const sorted = Object.values(playersData || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
-            let html =
-                `<h1 class="text-4xl font-black text-yellow-400 mb-6 text-center">🏆 Siegerehrung 🏆</h1><div class="space-y-3 max-w-2xl mx-auto w-full">`;
             const medals = ["🥇", "🥈", "🥉"];
+            let ranks = "";
             sorted.forEach((p, i) => {
-                const medal = i < 3 ? medals[i] : `<span class="w-12 inline-block text-gray-500">${i + 1}.</span>`;
-                html +=
-                    `<div class="flex items-center justify-between bg-white/5 p-4 rounded-2xl border-2 ${i === 0 ? 'border-yellow-400' : 'border-white/5'} shadow-xl"><div class="text-2xl font-bold text-white flex items-center gap-4"><span class="text-3xl">${medal}</span> ${esc(p.name)}</div><div class="text-2xl font-black text-emerald-400">${p.score || 0} <span class="text-base text-emerald-600">Punkte</span></div></div>`;
+                const medal = i < 3 ? medals[i] : (i + 1) + ".";
+                const top = i === 0 ? " is-first" : "";
+                ranks += `<div class="tv-podium-row${top}"><span class="tv-podium-medal">${medal}</span><span class="tv-podium-name">${esc(p.name)}</span><span class="tv-podium-score">${p.score || 0} Pkt</span></div>`;
             });
-            html += `</div>`;
-
             const names = esc(sorted.map(p => p.name).join(", "));
-            html += `
-                    <div class="glass-card p-5 mt-6 max-w-2xl mx-auto w-full space-y-3" style="border-color:rgba(99,102,241,0.15);">
-                        <p class="text-xl font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
-                        <p class="text-sm text-gray-400 text-center">Alle bleiben dabei: ${names}</p>
-                        <div class="dash-sub-nav mb-2">
-                            <button id="againmode-quiz" onclick="setTVAgainMode('quiz')" class="active">🧠 Quiz</button>
-                            <button id="againmode-scrabble" onclick="setTVAgainMode('scrabble')">🔤 Wort-Duell</button>
-                            <button id="againmode-wortraten" onclick="setTVAgainMode('wortraten')">🧩 Wort-Rätsel</button>
+            const html =
+                `<div class="tv-show-stage tv-podium-stage">
+                    <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
+                    <div class="tv-podium-layout">
+                        <div class="tv-podium-left">
+                            <h1 class="tv-podium-title">🏆 Siegerehrung</h1>
+                            <div class="tv-podium-list">${ranks}</div>
                         </div>
-                        <div id="tv-again-quiz-opts">
-                            <div class="dash-sub-nav">
-                                <button id="againtopic-spass" onclick="setTVAgainTopic('spass')" class="active">🎉 Spaß</button>
-                                <button id="againtopic-lernen" onclick="setTVAgainTopic('lernen')">📚 Lernen</button>
+                        <div class="tv-podium-right">
+                            <p class="tv-podium-again-title">🔄 Gleich weiterspielen</p>
+                            <p class="tv-podium-again-sub">Team: ${names || "—"}</p>
+                            <div class="dash-sub-nav tv-podium-nav">
+                                <button id="againmode-quiz" onclick="setTVAgainMode('quiz')" class="active">🧠 Quiz</button>
+                                <button id="againmode-scrabble" onclick="setTVAgainMode('scrabble')">🔤 Wort-Duell</button>
+                                <button id="againmode-wortraten" onclick="setTVAgainMode('wortraten')">🧩 Wort-Rätsel</button>
                             </div>
-                            <select id="tv-again-area" class="input-modern font-bold text-sm mt-3"></select>
-                            <select id="tv-again-category" class="input-modern font-bold text-sm mt-2"></select>
+                            <div id="tv-again-quiz-opts">
+                                <div class="dash-sub-nav tv-podium-nav">
+                                    <button id="againtopic-spass" onclick="setTVAgainTopic('spass')" class="active">🎉 Spaß</button>
+                                    <button id="againtopic-lernen" onclick="setTVAgainTopic('lernen')">📚 Lernen</button>
+                                </div>
+                                <select id="tv-again-area" class="input-modern font-bold text-sm mt-2"></select>
+                                <select id="tv-again-category" class="input-modern font-bold text-sm mt-1.5"></select>
+                            </div>
+                            <div id="tv-again-scrabble-opts" class="hidden text-left space-y-1.5 mt-1">
+                                <select id="tv-again-scrabble-wordmode" class="input-modern font-bold text-sm">
+                                    <option value="kids" selected>👶 Kinder</option>
+                                    <option value="adult">🎓 Erwachsene</option>
+                                </select>
+                                <select id="tv-again-scrabble-diff" class="input-modern font-bold text-sm">
+                                    <option value="leicht">🟢 Leicht</option>
+                                    <option value="mittel" selected>🟡 Mittel</option>
+                                    <option value="schwer">🔴 Schwer</option>
+                                    <option value="experte">🟣 Experte</option>
+                                </select>
+                                <select id="tv-again-scrabble-rounds" class="input-modern font-bold text-sm">
+                                    <option value="3">3 Runden</option>
+                                    <option value="5" selected>5 Runden</option>
+                                    <option value="8">8 Runden</option>
+                                </select>
+                            </div>
+                            <div id="tv-again-wr-opts" class="hidden text-left space-y-1.5 mt-1">
+                                <select id="tv-again-wr-wordmode" class="input-modern font-bold text-sm">
+                                    <option value="kids" selected>👶 Kinder</option>
+                                    <option value="adult">🎓 Erwachsene</option>
+                                </select>
+                                <select id="tv-again-wr-diff" class="input-modern font-bold text-sm">
+                                    <option value="leicht">🟢 Leicht</option>
+                                    <option value="mittel" selected>🟡 Mittel</option>
+                                    <option value="schwer">🔴 Schwer</option>
+                                    <option value="experte">🟣 Experte</option>
+                                </select>
+                                <select id="tv-again-wr-rounds" class="input-modern font-bold text-sm">
+                                    <option value="3" selected>3 Runden</option>
+                                    <option value="5">5 Runden</option>
+                                    <option value="8">8 Runden</option>
+                                </select>
+                            </div>
+                            <button onclick="restartTVGame()" class="tv-podium-start">Neue Runde 🚀</button>
+                            <button onclick="leaveTVGame()" class="tv-podium-leave">⬅ Menü</button>
                         </div>
-                        <div id="tv-again-scrabble-opts" class="hidden text-left space-y-2">
-                            <select id="tv-again-scrabble-wordmode" class="input-modern font-bold text-sm">
-                                <option value="kids" selected>👶 Kinder-Wörter</option>
-                                <option value="adult">🎓 Erwachsenen-Wörter</option>
-                            </select>
-
-                            <select id="tv-again-scrabble-diff" class="input-modern font-bold text-sm">
-                                <option value="leicht">🟢 Leicht</option>
-                                <option value="mittel" selected>🟡 Mittel</option>
-                                <option value="schwer">🔴 Schwer</option>
-                                <option value="experte">🟣 Experte</option>
-                            </select>
-                            <select id="tv-again-scrabble-rounds" class="input-modern font-bold text-sm">
-                                <option value="3">3 Runden</option>
-                                <option value="5" selected>5 Runden</option>
-                                <option value="8">8 Runden</option>
-                            </select>
-                        </div>
-                        <div id="tv-again-wr-opts" class="hidden text-left space-y-2">
-                            <select id="tv-again-wr-wordmode" class="input-modern font-bold text-sm">
-                                <option value="kids" selected>👶 Kinder</option>
-                                <option value="adult">🎓 Erwachsene</option>
-                            </select>
-                            <select id="tv-again-wr-diff" class="input-modern font-bold text-sm">
-                                <option value="leicht">🟢 Leicht</option>
-                                <option value="mittel" selected>🟡 Mittel</option>
-                                <option value="schwer">🔴 Schwer</option>
-                                <option value="experte">🟣 Experte</option>
-                            </select>
-                            <select id="tv-again-wr-rounds" class="input-modern font-bold text-sm">
-                                <option value="3" selected>3 Runden</option>
-                                <option value="5">5 Runden</option>
-                                <option value="8">8 Runden</option>
-                            </select>
-                        </div>
-                        <button onclick="restartTVGame()" class="btn-primary w-full text-center text-lg py-4" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
                     </div>
-                    <div class="text-center"><button onclick="leaveTVGame()" class="mt-6 text-gray-500 text-sm font-bold underline hover:text-gray-400 transition">⬅ Zurück ins Menü</button></div>
-                `;
+                </div>`;
 
-            setTVHostPlayHTML(`<div class="min-h-[90vh] flex flex-col items-center justify-center p-6">${html}</div>`);
+            setTVHostPlayHTML(html);
             setTVAgainMode("quiz");
             try {
-                if (typeof confetti === 'function') {
+                if (typeof confetti === "function") {
                     confetti();
                     confetti();
                 }
-            } catch (e) { }
+            } catch (e) { /* */ }
             SFX.win();
         }
 
@@ -1458,47 +1630,50 @@
             const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
             const mask = word.split("").map(ch =>
                 guessed.has(ch)
-                    ? `<span class="inline-flex items-center justify-center w-12 h-14 md:w-16 md:h-20 mx-1 rounded-xl bg-sky-500/30 border-2 border-sky-400 text-3xl md:text-4xl font-black text-white">${esc(ch)}</span>`
-                    : `<span class="inline-flex items-center justify-center w-12 h-14 md:w-16 md:h-20 mx-1 rounded-xl bg-white/5 border-2 border-white/20 text-3xl md:text-4xl font-black text-gray-500">_</span>`
+                    ? `<span class="tv-wr-letter is-open">${esc(ch)}</span>`
+                    : `<span class="tv-wr-letter">_</span>`
             ).join("");
             const scores = Object.values(data.players || {}).map(p =>
-                `<div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-center"><div class="font-bold text-white">${esc(p.name)}</div><div class="text-sky-300 font-black">${p.score || 0}</div></div>`
+                `<div class="tv-wr-score-chip"><span class="tv-wr-score-name">${esc(p.name)}</span><span class="tv-wr-score-pts">${p.score || 0}</span></div>`
             ).join("");
             let footer = "";
             if (data.roundOver) {
                 const who = data.roundSolvedByName || "";
                 const lastRound = (data.currentRound || 1) >= (data.totalRounds || 3);
-                const nextLabel = lastRound ? "🏆 Zur Siegerehrung" : "Weiter jetzt ➔";
+                const nextLabel = lastRound ? "🏆 Siegerehrung" : "Weiter ➔";
                 footer = data.roundSolved
-                    ? `<p class="text-3xl font-black text-emerald-400">🎉 ${who ? esc(who) + " hat gelöst!" : "Gelöst!"} · ${esc(word)}</p>
-                       <p class="text-sm text-gray-400 mt-1">Automatisch weiter in wenigen Sekunden…</p>
-                       <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">${nextLabel}</button>`
-                    : `<p class="text-3xl font-black text-amber-400">${typeof wrFigureEmoji === "function" ? wrFigureEmoji(theme) : "⛄"} Runde aus – Wort: ${esc(word)}</p>
-                       <p class="text-sm text-gray-400 mt-1">Automatisch weiter in wenigen Sekunden…</p>
-                       <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">${nextLabel}</button>`;
+                    ? `<span class="tv-show-counter">🎉 ${who ? esc(who) + " hat gelöst!" : "Gelöst!"} · ${esc(word)}</span>
+                       <button onclick="advanceTVWortraten()" class="tv-show-next">${nextLabel}</button>`
+                    : `<span class="tv-show-counter">${typeof wrFigureEmoji === "function" ? wrFigureEmoji(theme) : "⛄"} Wort: ${esc(word)}</span>
+                       <button onclick="advanceTVWortraten()" class="tv-show-next">${nextLabel}</button>`;
             } else {
-                footer = `<p class="text-2xl font-bold text-sky-300">Dran: ${esc(turnName)} · Fehler ${data.wrongCount || 0}/${maxW}</p>
-                          <div class="flex flex-wrap justify-center gap-2 mt-3">
-                            <button onclick="skipTVWortratenTurn()" class="btn-secondary text-sm py-2.5 px-5">⏭️ Zug überspringen</button>
-                            <button onclick="forceTVWortratenReveal()" class="btn-secondary text-sm py-2.5 px-5" style="border-color:rgba(245,158,11,0.4);color:#fbbf24;">⏱️ Runde auswerten</button>
-                          </div>`;
+                footer = `<span class="tv-show-counter">Dran: ${esc(turnName)} · Fehler ${data.wrongCount || 0}/${maxW}</span>
+                          <button onclick="skipTVWortratenTurn()" class="tv-show-force" style="opacity:0.9">⏭️ Überspringen</button>
+                          <button onclick="forceTVWortratenReveal()" class="tv-show-force">⏱️ Auswerten</button>`;
             }
             setTVHostPlayHTML(`
-                <div class="h-[90vh] flex flex-col p-6 gap-4">
-                    <div class="flex justify-between items-center">
-                        <p class="text-amber-400 font-black text-xl">Runde ${data.currentRound || 1} / ${data.totalRounds || 3} · ${data.wordMode === "adult" ? "🎓" : "👶"}</p>
-                        <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
+                <div class="tv-show-stage tv-wr-stage">
+                    <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
+                    <div class="tv-show-top">
+                        <div class="tv-show-meta">
+                            <span class="tv-show-qnum">Wort-Rätsel · ${data.currentRound || 1}/${data.totalRounds || 3} · ${data.wordMode === "adult" ? "🎓" : "👶"}</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
+                        </div>
+                        <div class="tv-wr-scores">${scores}</div>
                     </div>
-                    <div class="flex justify-center gap-3 flex-wrap">${scores}</div>
-                    <div class="glass-card p-6 flex items-center justify-center flex-1">
-                        <div id="tv-wr-figure" class="w-48 h-56 md:w-64 md:h-72"></div>
+                    <div class="tv-wr-body">
+                        <div class="tv-wr-figure-wrap">
+                            <div id="tv-wr-figure" class="tv-wr-figure"></div>
+                        </div>
+                        <div class="tv-wr-side">
+                            <div class="tv-wr-mask">${mask || '<span class="tv-show-counter">Wort wird vorbereitet…</span>'}</div>
+                            ${data.lastSolveAttempt && data.lastSolveAttempt.text
+                                ? `<div class="tv-show-explain">💡 ${esc(data.lastSolveAttempt.name || "Jemand")}: „${esc(String(data.lastSolveAttempt.text).slice(0, 24))}“</div>`
+                                : ""}
+                            <div id="tv-wr-turn-timer" class="tv-show-counter"></div>
+                        </div>
                     </div>
-                    <div class="flex flex-wrap justify-center gap-1">${mask}</div>
-                    ${data.lastSolveAttempt && data.lastSolveAttempt.text
-                        ? `<div class="text-center text-lg text-amber-300 font-bold">💡 ${esc(data.lastSolveAttempt.name || "Jemand")}: „${esc(String(data.lastSolveAttempt.text).slice(0, 24))}“</div>`
-                        : ""}
-                    <div id="tv-wr-turn-timer" class="text-center text-xl font-black text-sky-300"></div>
-                    <div class="text-center">${footer}</div>
+                    <div class="tv-show-footer">${footer}</div>
                 </div>`);
             if (typeof wrRenderFigureBase === "function") {
                 wrRenderFigureBase(theme, "tv-wr-figure");
@@ -1863,18 +2038,23 @@
 
 
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
+            // Stand wie zuvor (einfaches Layout) – schrittweise verbessern
             setTVHostPlayHTML(`
-                    <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
-                        <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(245,158,11,0.15);">
-                            <p class="text-amber-400 font-black text-xl mb-4">Runde ${round} / ${totalRounds}</p>
-                            <h1 class="text-2xl md:text-3xl font-black text-white leading-tight mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
-                            <div class="flex flex-wrap justify-center gap-3">${scrabbleTilesHTML(letters, true, required)}</div>
-                        </div>
-                        <div class="text-center"><span id="tv-answer-counter" class="text-gray-400 font-bold text-xl">0 von 0 haben geantwortet</span></div>
-                        <div class="text-center mt-4"><button onclick="forceTVScrabbleReveal()" class="btn-secondary text-lg py-4 px-10">Runde jetzt auswerten ⏱️</button></div>
+                <div class="h-[100dvh] flex flex-col justify-between p-4 md:p-6 overflow-hidden box-border">
+                    <div class="flex justify-between items-center">
+                        <p class="text-amber-400 font-black text-lg md:text-xl">Wort-Duell · Runde ${round} / ${totalRounds}</p>
+                        <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕</button>
                     </div>
-                `);
+                    <div class="glass-card-glow p-5 md:p-8 rounded-3xl text-center flex-1 flex flex-col justify-center min-h-0" style="border-color:rgba(245,158,11,0.15);">
+                        <h1 class="text-xl md:text-3xl font-black text-white leading-tight mb-4 md:mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
+                        <div class="flex flex-wrap justify-center gap-2 md:gap-3">${scrabbleTilesHTML(letters, true, required)}</div>
+                    </div>
+                    <div class="text-center pt-2 shrink-0">
+                        <span id="tv-answer-counter" class="text-gray-400 font-bold text-base md:text-xl block mb-2">0 von 0 haben geantwortet</span>
+                        <button onclick="forceTVScrabbleReveal()" class="btn-secondary text-base md:text-lg py-3 px-8 md:py-4 md:px-10">Runde jetzt auswerten ⏱️</button>
+                    </div>
+                </div>
+            `);
         }
 
         function forceTVScrabbleReveal() {
@@ -1984,20 +2164,22 @@
             });
 
             setTVHostPlayHTML(`
-                    <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
-                        <div class="text-center mb-4">
-                            <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
-                            ${data.currentSolution ? `);<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war am Ende z.B.: ${data.currentSolution}</p>` : ""}
+                <div class="tv-show-stage">
+                    <div class="tv-show-top">
+                        <div class="tv-show-meta">
+                            <span class="tv-show-qnum">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
-                        <div class="space-y-3 flex-1 overflow-y-auto">${rowsHtml}</div>
-                        <div class="mt-6 text-center">
-                            ${isLastRound
-                                ? `<button onclick="tvGameRef.update({status:'finished'})" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>`
-                                : `<button onclick="nextTVScrabbleRound()" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2">Nächste Runde ➔</button>`}
-                        </div>
+                        ${data.currentSolution ? `<p class="tv-show-explain">💡 z.B. möglich: ${esc(data.currentSolution)}</p>` : ""}
                     </div>
-                `);
+                    <div class="tv-scrabble-results">${rowsHtml}</div>
+                    <div class="tv-show-footer">
+                        ${isLastRound
+                            ? `<button onclick="tvGameRef.update({status:'finished'})" class="tv-show-next" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1f2937;">Endergebnis 🏆</button>`
+                            : `<button onclick="nextTVScrabbleRound()" class="tv-show-next">Nächste Runde ➔</button>`}
+                    </div>
+                </div>
+            `);
         }
 
         function nextTVScrabbleRound() {
@@ -2296,13 +2478,17 @@
                             } else { SFX.wrong(); }
                         } else if (!myData.hasAnswered) {
                             const q = tvQuestions[data.currentQuestionIndex];
-                            const colors = ["bg-rose-600", "bg-blue-600", "bg-yellow-500", "bg-emerald-600"];
-                            const shapes = ["▲", "♦", "●", "◼"];
+                            const colors = (typeof TV_SHOW_COLORS !== "undefined")
+                                ? TV_SHOW_COLORS
+                                : ["#4f46e5", "#059669", "#d97706", "#c026d3"];
+                            const labels = (typeof TV_SHOW_LABELS !== "undefined")
+                                ? TV_SHOW_LABELS
+                                : ["A", "B", "C", "D"];
                             let btnHtml = `<div class="grid grid-cols-2 gap-4 h-[75vh]">`;
                             const count = (q && q.answers) ? q.answers.length : (data.answerCount || 3);
                             for (let i = 0; i < count; i++) {
                                 btnHtml +=
-                                    `<button onclick="submitTVAnswer(${i})" class="${colors[i]} rounded-3xl shadow-xl flex items-center justify-center text-8xl text-white/90 active:scale-95 transition-transform">${shapes[i]}</button>`;
+                                    `<button onclick="submitTVAnswer(${i})" class="rounded-3xl shadow-xl flex items-center justify-center text-6xl font-black text-white active:scale-95 transition-transform" style="background:${colors[i % 4]}">${labels[i % 4]}</button>`;
                             }
                             setTVPlayerPlayHTML(btnHtml + `</div>`);
                         }
@@ -2429,6 +2615,7 @@
             tvGameRef = null;
             isTVHost = false;
             isResolving = false;
+            stopTVLandscapeGuard();
             if (wasHost) merkeTVHost(false);
             showTVHostSetup();
             showTVPlayerSetup();

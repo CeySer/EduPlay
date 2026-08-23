@@ -3481,11 +3481,11 @@ body.tv-mirror-display .view {
     height: 8px;
   }
   .tv-show-question {
-    font-size: clamp(0.6rem, 1.6vh, 0.85rem) !important;
+    font-size: clamp(0.45rem, 1.05vh, 0.62rem) !important;
     line-height: 1.2 !important;
     margin: 0 auto 0.2rem !important;
     max-width: 94vw;
-    max-height: 16vh;
+    max-height: 20vh;
     overflow: hidden;
   }
   .tv-show-grid {
@@ -3496,17 +3496,18 @@ body.tv-mirror-display .view {
     max-width: 52rem !important;
     margin: 0 auto;
     gap: 0.25rem 0.45rem !important;
-    grid-template-rows: 1fr 1fr !important;
+    grid-template-rows: auto auto !important;
+    align-content: center !important;
   }
   .tv-show-tile {
     min-height: 0 !important;
-    height: 100% !important;
-    max-height: 17vh !important;
-    padding: 0.2rem 0.4rem !important;
+    height: auto !important;
+    max-height: 26vh !important;
+    padding: 0.15rem 0.4rem !important;
     border-radius: 0.6rem !important;
   }
   .tv-show-answer {
-    font-size: clamp(0.58rem, 1.4vh, 0.82rem) !important;
+    font-size: clamp(0.68rem, 1.5vh, 0.92rem) !important;
     line-height: 1.15 !important;
   }
   .tv-show-label {
@@ -3847,7 +3848,7 @@ body.tv-host-active #tv-host-play {
   font-weight: 900;
   color: #fff;
   line-height: 1.2;
-  font-size: clamp(1.05rem, 2.6vw, 1.85rem);
+  font-size: clamp(0.8rem, 1.8vw, 1.3rem);
   margin: 0 auto;
   max-width: 56rem;
   text-shadow: 0 2px 18px rgba(0,0,0,0.35);
@@ -3861,9 +3862,11 @@ body.tv-host-active #tv-host-play {
 .tv-show-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  align-content: center;
   gap: clamp(0.45rem, 1.1vw, 0.8rem);
   flex: 1;
-  min-height: 30vh;
+  min-height: 0;
 }
 .tv-show-tile {
   position: relative;
@@ -3872,8 +3875,8 @@ body.tv-host-active #tv-host-play {
   justify-content: center;
   gap: 0.5rem;
   border-radius: 1rem;
-  padding: clamp(0.4rem, 0.9vw, 0.75rem) clamp(0.65rem, 1.5vw, 1.2rem);
-  min-height: clamp(56px, 10vh, 92px);
+  padding: clamp(0.3rem, 0.7vw, 0.6rem) clamp(0.6rem, 1.3vw, 1rem);
+  min-height: clamp(44px, 7vh, 72px);
   box-shadow: 0 10px 28px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.18);
   overflow: hidden;
   transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
@@ -3898,7 +3901,7 @@ body.tv-host-active #tv-host-play {
   font-weight: 900;
   color: #fff;
   text-align: center;
-  font-size: clamp(0.9rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2.1vw, 1.6rem);
   line-height: 1.2;
   word-break: break-word;
   text-shadow: 0 1px 8px rgba(0,0,0,0.25);

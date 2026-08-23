@@ -1382,10 +1382,8 @@
             const l = document.getElementById("againtopic-lernen");
             if (!s || !l) return;
             tvTopicMode = mode;
-            s.className = "flex-1 py-3 rounded-lg font-bold text-xl transition-all " + (mode === 'spass' ?
-                "active" : "");
-            l.className = "flex-1 py-3 rounded-lg font-bold text-xl transition-all " + (mode === 'lernen' ?
-                "active" : "");
+            s.classList.toggle("active", mode === 'spass');
+            l.classList.toggle("active", mode === 'lernen');
             setupCategorySelectors("tv-again-area", "tv-again-category", mode);
         }
 

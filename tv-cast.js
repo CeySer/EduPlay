@@ -445,8 +445,10 @@
                         : null;
                     const counterEl = document.getElementById("tv-answer-counter");
                     if (counterEl) {
+                        // Scrabble hat den visuellen Zeitbalken (tv-show-timer-bar) –
+                        // die Sekunden im Text wären doppelt gemoppelt.
                         counterEl.innerText = `${ansCount} von ${totalCount} haben geantwortet`
-                            + (restSek !== null ? ` · noch ${restSek}s` : "")
+                            + (restSek !== null && data.mode !== "scrabble" ? ` · noch ${restSek}s` : "")
                             + (wegCount > 0 ? ` · ${wegCount} kurz weg` : "");
                     }
                     starteTVRundenTimer(data);
@@ -2036,23 +2038,32 @@
 
 
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
-            // Stand wie zuvor (einfaches Layout) – schrittweise verbessern
             setTVHostPlayHTML(`
-                <div class="h-[100dvh] flex flex-col justify-between p-4 md:p-6 overflow-hidden box-border">
-                    <div class="flex justify-between items-center">
-                        <p class="text-amber-400 font-black text-lg md:text-xl">Wort-Duell · Runde ${round} / ${totalRounds}</p>
-                        <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕</button>
+                <div class="tv-show-stage">
+                    <div class="tv-show-top">
+                        <div class="tv-show-meta">
+                            <span class="tv-show-qnum">Wort-Duell · Runde ${round} / ${totalRounds}</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
+                        </div>
+                        <div class="tv-show-timer-track" aria-hidden="true">
+                            <div id="tv-kahoot-timer-bar" class="tv-show-timer-bar"></div>
+                        </div>
+                        <h1 class="tv-show-question">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
                     </div>
-                    <div class="glass-card-glow p-5 md:p-8 rounded-3xl text-center flex-1 flex flex-col justify-center min-h-0" style="border-color:rgba(245,158,11,0.15);">
-                        <h1 class="text-xl md:text-3xl font-black text-white leading-tight mb-4 md:mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
-                        <div class="flex flex-wrap justify-center gap-2 md:gap-3">${scrabbleTilesHTML(letters, true, required)}</div>
-                    </div>
-                    <div class="text-center pt-2 shrink-0">
-                        <span id="tv-answer-counter" class="text-gray-400 font-bold text-base md:text-xl block mb-2">0 von 0 haben geantwortet</span>
-                        <button onclick="forceTVScrabbleReveal()" class="btn-secondary text-base md:text-lg py-3 px-8 md:py-4 md:px-10">Runde jetzt auswerten ⏱️</button>
+                    <div class="tv-show-scrabble-rack">${scrabbleTilesHTML(letters, true, required)}</div>
+                    <div class="tv-show-footer">
+                        <span id="tv-answer-counter" class="tv-show-counter">0 von 0 haben geantwortet</span>
+                        <button onclick="forceTVScrabbleReveal()" class="tv-show-force">Runde auswerten ⏱️</button>
                     </div>
                 </div>
             `);
+            try {
+                const bar = document.getElementById("tv-kahoot-timer-bar");
+                if (bar) {
+                    bar.style.transition = "none";
+                    bar.style.width = "100%";
+                }
+            } catch (e) { /* */ }
         }
 
         function forceTVScrabbleReveal() {

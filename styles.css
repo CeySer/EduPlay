@@ -3876,6 +3876,16 @@ body.tv-host-active #tv-host-play {
   width: 0;
   height: 0;
 }
+.tv-show-scrabble-rack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: clamp(0.35rem, 1vw, 0.6rem);
+  flex: 0 0 auto;
+  max-width: 46rem;
+  margin: 0 auto;
+}
 .tv-show-tile {
   position: relative;
   display: flex;

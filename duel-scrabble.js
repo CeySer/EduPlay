@@ -386,9 +386,9 @@
         }
 
         function scrabbleTilesHTML(letters, big, required, selected, onTapFn) {
-            const size = big ? "w-20 h-20" : "w-12 h-12";
-            const textSize = big ? "text-4xl" : "text-2xl";
-            const valSize = big ? "text-xs" : "text-[9px]";
+            const size = big ? "w-12 h-12 md:w-14 md:h-14" : "w-12 h-12";
+            const textSize = big ? "text-2xl md:text-3xl" : "text-2xl";
+            const valSize = big ? "text-[9px]" : "text-[9px]";
             const interactive = !!onTapFn;
             const selectedSet = new Set(selected || []);
             let marked = false;

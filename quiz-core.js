@@ -619,18 +619,26 @@
             if (typeof VOCABULARY_DATABASE === 'undefined') return out;
             const seenSame = new Set(loadSeenSameVocab());
             (vocabKeys || []).forEach(vk => {
-                // Format "en:k5" → lang=en, level=k5 (früher falsch destructured)
-                const parts = String(vk || "").split(":");
-                const lang = parts.length >= 2 ? parts[0] : "en";
-                const level = parts.length >= 2 ? parts[1] : parts[0];
+                const [, lang, level] = vk.split(':');
                 const set = VOCABULARY_DATABASE?.[lang]?.[level];
                 if (!set || !set.words) return;
                 const words = set.words;
+                // Sicherheitsnetz: die "DE==Fremdsprache nur einmal zeigen"-Regel
+                // darf eine Gruppe nicht leerlaufen lassen. Würde sie den Pool
+                // unter die Mindestmenge drücken, gilt sie diese Runde nicht.
+                const mindestPool = Math.max(3, Math.ceil(words.length / 2));
+                const nochVerfuegbar = words.filter(w => {
+                    if (!w || !w.de || !w.foreign) return false;
+                    if (!vocabIsSameWord(w)) return true;
+                    const k = vocabNorm(w.de) + "|" + vocabNorm(w.foreign) + "|" + (lang || "");
+                    return !seenSame.has(k);
+                }).length;
+                const regelAussetzen = nochVerfuegbar < mindestPool;
                 words.forEach(w => {
                     if (!w || !w.de || !w.foreign) return;
                     const sameKey = vocabNorm(w.de) + "|" + vocabNorm(w.foreign) + "|" + (lang || "");
                     // DE == EN (Hotel, Taxi …): höchstens einmal, danach ausblenden
-                    if (vocabIsSameWord(w)) {
+                    if (vocabIsSameWord(w) && !regelAussetzen) {
                         if (seenSame.has(sameKey)) return;
                         markSeenSameVocab(sameKey);
                         seenSame.add(sameKey);

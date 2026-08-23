@@ -3434,6 +3434,7 @@ body.tv-mirror-display .view {
   min-height: 90vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0.75rem;
   padding: 0.85rem 1rem 1.25rem;
   background: radial-gradient(ellipse at top, #1a1040 0%, #0b1020 55%, #070a14 100%);
@@ -3865,7 +3866,7 @@ body.tv-host-active #tv-host-play {
   grid-template-rows: auto auto;
   align-content: center;
   gap: clamp(0.45rem, 1.1vw, 0.8rem);
-  flex: 1;
+  flex: 0 1 auto;
   min-height: 0;
 }
 .tv-show-tile {
@@ -4008,13 +4009,13 @@ body.tv-mirror-display #view-tv-quiz-host {
   max-width: none;
 }
 body.tv-mirror-display .tv-show-question {
-  font-size: clamp(1.2rem, 2.6vw, 2rem);
+  font-size: clamp(0.85rem, 1.7vw, 1.1rem) !important;
 }
 body.tv-mirror-display .tv-show-answer {
-  font-size: clamp(1rem, 2vw, 1.6rem);
+  font-size: clamp(0.9rem, 1.8vw, 1.15rem) !important;
 }
 body.tv-mirror-display .tv-show-tile {
-  min-height: clamp(64px, 11vh, 105px);
+  min-height: clamp(46px, 7vh, 76px) !important;
 }
 
 /* Zwingendes Querformat für TV-Host */

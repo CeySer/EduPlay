@@ -304,12 +304,24 @@
                 const imgWrap = document.getElementById("question-image-wrap");
                 const imgEl = document.getElementById("question-image");
                 if (imgWrap && imgEl) {
-                    if (q.image) {
-                        imgEl.src = q.image;
+                    if (q.image || q.imageLocal) {
                         imgEl.alt = q.imageAlt || "Rätselbild";
+                        imgEl.onerror = function () {
+                            if (q.imageLocal && imgEl.src.indexOf("flagcdn") >= 0) {
+                                imgEl.onerror = function () { imgWrap.classList.add("hidden"); };
+                                imgEl.src = q.imageLocal;
+                            } else if (q.image && imgEl.src.indexOf("flagcdn") < 0) {
+                                imgEl.onerror = function () { imgWrap.classList.add("hidden"); };
+                                imgEl.src = q.image;
+                            } else {
+                                imgWrap.classList.add("hidden");
+                            }
+                        };
+                        imgEl.src = q.image || q.imageLocal;
                         imgWrap.classList.remove("hidden");
                     } else {
                         imgEl.removeAttribute("src");
+                        imgEl.onerror = null;
                         imgWrap.classList.add("hidden");
                     }
                 }

@@ -1255,86 +1255,86 @@
             if (typeof clearTVWrTimers === "function") clearTVWrTimers();
             stopTVActionMode();
             const sorted = Object.values(playersData || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
-            let html =
-                `<div class="tv-show-stage" style="justify-content:center">
-                    <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
-                    <h1 class="text-5xl md:text-6xl font-black text-yellow-300 mb-8 text-center" style="text-shadow:0 4px 24px rgba(250,204,21,0.35)">🏆 Siegerehrung</h1>
-                    <div class="space-y-4 max-w-3xl mx-auto w-full">`;
             const medals = ["🥇", "🥈", "🥉"];
+            let ranks = "";
             sorted.forEach((p, i) => {
-                const medal = i < 3 ? medals[i] : `<span class="w-12 inline-block text-gray-500">${i + 1}.</span>`;
-                const border = i === 0 ? "border-yellow-400 bg-yellow-400/10" : (i === 1 ? "border-slate-300/40 bg-white/5" : (i === 2 ? "border-amber-700/50 bg-amber-900/20" : "border-white/5 bg-white/5"));
-                html +=
-                    `<div class="flex items-center justify-between p-6 md:p-8 rounded-2xl border-2 ${border} shadow-xl"><div class="text-3xl md:text-4xl font-bold text-white flex items-center gap-5"><span class="text-5xl">${medal}</span> ${esc(p.name)}</div><div class="text-3xl md:text-4xl font-black text-emerald-300">${p.score || 0} <span class="text-lg md:text-2xl text-emerald-500">Pkt</span></div></div>`;
+                const medal = i < 3 ? medals[i] : (i + 1) + ".";
+                const top = i === 0 ? " is-first" : "";
+                ranks += `<div class="tv-podium-row${top}"><span class="tv-podium-medal">${medal}</span><span class="tv-podium-name">${esc(p.name)}</span><span class="tv-podium-score">${p.score || 0} Pkt</span></div>`;
             });
-            html += `</div>`;
-
             const names = esc(sorted.map(p => p.name).join(", "));
-            html += `
-                    <div class="glass-card p-8 mt-12 max-w-3xl mx-auto w-full space-y-4" style="border-color:rgba(99,102,241,0.15);">
-                        <p class="text-3xl font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
-                        <p class="text-xl text-gray-400 text-center">Alle bleiben dabei: ${names}</p>
-                        <div class="dash-sub-nav mb-2">
-                            <button id="againmode-quiz" onclick="setTVAgainMode('quiz')" class="active">🧠 Quiz</button>
-                            <button id="againmode-scrabble" onclick="setTVAgainMode('scrabble')">🔤 Wort-Duell</button>
-                            <button id="againmode-wortraten" onclick="setTVAgainMode('wortraten')">🧩 Wort-Rätsel</button>
+            const html =
+                `<div class="tv-show-stage tv-podium-stage">
+                    <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
+                    <div class="tv-podium-layout">
+                        <div class="tv-podium-left">
+                            <h1 class="tv-podium-title">🏆 Siegerehrung</h1>
+                            <div class="tv-podium-list">${ranks}</div>
                         </div>
-                        <div id="tv-again-quiz-opts">
-                            <div class="dash-sub-nav">
-                                <button id="againtopic-spass" onclick="setTVAgainTopic('spass')" class="active">🎉 Spaß</button>
-                                <button id="againtopic-lernen" onclick="setTVAgainTopic('lernen')">📚 Lernen</button>
+                        <div class="tv-podium-right">
+                            <p class="tv-podium-again-title">🔄 Gleich weiterspielen</p>
+                            <p class="tv-podium-again-sub">Team: ${names || "—"}</p>
+                            <div class="dash-sub-nav tv-podium-nav">
+                                <button id="againmode-quiz" onclick="setTVAgainMode('quiz')" class="active">🧠 Quiz</button>
+                                <button id="againmode-scrabble" onclick="setTVAgainMode('scrabble')">🔤 Wort-Duell</button>
+                                <button id="againmode-wortraten" onclick="setTVAgainMode('wortraten')">🧩 Wort-Rätsel</button>
                             </div>
-                            <select id="tv-again-area" class="input-modern font-bold text-xl mt-3"></select>
-                            <select id="tv-again-category" class="input-modern font-bold text-xl mt-2"></select>
+                            <div id="tv-again-quiz-opts">
+                                <div class="dash-sub-nav tv-podium-nav">
+                                    <button id="againtopic-spass" onclick="setTVAgainTopic('spass')" class="active">🎉 Spaß</button>
+                                    <button id="againtopic-lernen" onclick="setTVAgainTopic('lernen')">📚 Lernen</button>
+                                </div>
+                                <select id="tv-again-area" class="input-modern font-bold text-sm mt-2"></select>
+                                <select id="tv-again-category" class="input-modern font-bold text-sm mt-1.5"></select>
+                            </div>
+                            <div id="tv-again-scrabble-opts" class="hidden text-left space-y-1.5 mt-1">
+                                <select id="tv-again-scrabble-wordmode" class="input-modern font-bold text-sm">
+                                    <option value="kids" selected>👶 Kinder</option>
+                                    <option value="adult">🎓 Erwachsene</option>
+                                </select>
+                                <select id="tv-again-scrabble-diff" class="input-modern font-bold text-sm">
+                                    <option value="leicht">🟢 Leicht</option>
+                                    <option value="mittel" selected>🟡 Mittel</option>
+                                    <option value="schwer">🔴 Schwer</option>
+                                    <option value="experte">🟣 Experte</option>
+                                </select>
+                                <select id="tv-again-scrabble-rounds" class="input-modern font-bold text-sm">
+                                    <option value="3">3 Runden</option>
+                                    <option value="5" selected>5 Runden</option>
+                                    <option value="8">8 Runden</option>
+                                </select>
+                            </div>
+                            <div id="tv-again-wr-opts" class="hidden text-left space-y-1.5 mt-1">
+                                <select id="tv-again-wr-wordmode" class="input-modern font-bold text-sm">
+                                    <option value="kids" selected>👶 Kinder</option>
+                                    <option value="adult">🎓 Erwachsene</option>
+                                </select>
+                                <select id="tv-again-wr-diff" class="input-modern font-bold text-sm">
+                                    <option value="leicht">🟢 Leicht</option>
+                                    <option value="mittel" selected>🟡 Mittel</option>
+                                    <option value="schwer">🔴 Schwer</option>
+                                    <option value="experte">🟣 Experte</option>
+                                </select>
+                                <select id="tv-again-wr-rounds" class="input-modern font-bold text-sm">
+                                    <option value="3" selected>3 Runden</option>
+                                    <option value="5">5 Runden</option>
+                                    <option value="8">8 Runden</option>
+                                </select>
+                            </div>
+                            <button onclick="restartTVGame()" class="tv-podium-start">Neue Runde 🚀</button>
+                            <button onclick="leaveTVGame()" class="tv-podium-leave">⬅ Menü</button>
                         </div>
-                        <div id="tv-again-scrabble-opts" class="hidden text-left space-y-2">
-                            <select id="tv-again-scrabble-wordmode" class="input-modern font-bold text-lg">
-                                <option value="kids" selected>👶 Kinder-Wörter</option>
-                                <option value="adult">🎓 Erwachsenen-Wörter</option>
-                            </select>
-
-                            <select id="tv-again-scrabble-diff" class="input-modern font-bold text-lg">
-                                <option value="leicht">🟢 Leicht</option>
-                                <option value="mittel" selected>🟡 Mittel</option>
-                                <option value="schwer">🔴 Schwer</option>
-                                <option value="experte">🟣 Experte</option>
-                            </select>
-                            <select id="tv-again-scrabble-rounds" class="input-modern font-bold text-lg">
-                                <option value="3">3 Runden</option>
-                                <option value="5" selected>5 Runden</option>
-                                <option value="8">8 Runden</option>
-                            </select>
-                        </div>
-                        <div id="tv-again-wr-opts" class="hidden text-left space-y-2">
-                            <select id="tv-again-wr-wordmode" class="input-modern font-bold text-lg">
-                                <option value="kids" selected>👶 Kinder</option>
-                                <option value="adult">🎓 Erwachsene</option>
-                            </select>
-                            <select id="tv-again-wr-diff" class="input-modern font-bold text-lg">
-                                <option value="leicht">🟢 Leicht</option>
-                                <option value="mittel" selected>🟡 Mittel</option>
-                                <option value="schwer">🔴 Schwer</option>
-                                <option value="experte">🟣 Experte</option>
-                            </select>
-                            <select id="tv-again-wr-rounds" class="input-modern font-bold text-lg">
-                                <option value="3" selected>3 Runden</option>
-                                <option value="5">5 Runden</option>
-                                <option value="8">8 Runden</option>
-                            </select>
-                        </div>
-                        <button onclick="restartTVGame()" class="btn-primary w-full text-center text-2xl py-6" style="background:var(--gradient-green);box-shadow:0 4px 32px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
                     </div>
-                    <div class="text-center"><button onclick="leaveTVGame()" class="mt-8 text-gray-500 text-lg font-bold underline hover:text-gray-400 transition">⬅ Zurück ins Menü</button></div>
                 </div>`;
 
             setTVHostPlayHTML(html);
             setTVAgainMode("quiz");
             try {
-                if (typeof confetti === 'function') {
+                if (typeof confetti === "function") {
                     confetti();
                     confetti();
                 }
-            } catch (e) { }
+            } catch (e) { /* */ }
             SFX.win();
         }
 
@@ -1616,37 +1616,36 @@
             if (data.roundOver) {
                 const who = data.roundSolvedByName || "";
                 const lastRound = (data.currentRound || 1) >= (data.totalRounds || 3);
-                const nextLabel = lastRound ? "🏆 Zur Siegerehrung" : "Weiter jetzt ➔";
+                const nextLabel = lastRound ? "🏆 Siegerehrung" : "Weiter ➔";
                 footer = data.roundSolved
-                    ? `<p class="text-3xl font-black text-emerald-400">🎉 ${who ? esc(who) + " hat gelöst!" : "Gelöst!"} · ${esc(word)}</p>
-                       <p class="text-sm text-gray-400 mt-1">Automatisch weiter in wenigen Sekunden…</p>
-                       <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">${nextLabel}</button>`
-                    : `<p class="text-3xl font-black text-amber-400">${typeof wrFigureEmoji === "function" ? wrFigureEmoji(theme) : "⛄"} Runde aus – Wort: ${esc(word)}</p>
-                       <p class="text-sm text-gray-400 mt-1">Automatisch weiter in wenigen Sekunden…</p>
-                       <button onclick="advanceTVWortraten()" class="btn-primary text-2xl py-5 px-10 mt-4" style="background:var(--gradient-cool);">${nextLabel}</button>`;
+                    ? `<span class="tv-show-counter">🎉 ${who ? esc(who) + " hat gelöst!" : "Gelöst!"} · ${esc(word)}</span>
+                       <button onclick="advanceTVWortraten()" class="tv-show-next">${nextLabel}</button>`
+                    : `<span class="tv-show-counter">${typeof wrFigureEmoji === "function" ? wrFigureEmoji(theme) : "⛄"} Wort: ${esc(word)}</span>
+                       <button onclick="advanceTVWortraten()" class="tv-show-next">${nextLabel}</button>`;
             } else {
-                footer = `<p class="text-2xl font-bold text-sky-300">Dran: ${esc(turnName)} · Fehler ${data.wrongCount || 0}/${maxW}</p>
-                          <div class="flex flex-wrap justify-center gap-2 mt-3">
-                            <button onclick="skipTVWortratenTurn()" class="btn-secondary text-sm py-2.5 px-5">⏭️ Zug überspringen</button>
-                            <button onclick="forceTVWortratenReveal()" class="btn-secondary text-sm py-2.5 px-5" style="border-color:rgba(245,158,11,0.4);color:#fbbf24;">⏱️ Runde auswerten</button>
-                          </div>`;
+                footer = `<span class="tv-show-counter">Dran: ${esc(turnName)} · Fehler ${data.wrongCount || 0}/${maxW}</span>
+                          <button onclick="skipTVWortratenTurn()" class="tv-show-force" style="opacity:0.9">⏭️ Überspringen</button>
+                          <button onclick="forceTVWortratenReveal()" class="tv-show-force">⏱️ Auswerten</button>`;
             }
             setTVHostPlayHTML(`
-                <div class="h-[90vh] flex flex-col p-6 gap-4">
-                    <div class="flex justify-between items-center">
-                        <p class="text-amber-400 font-black text-xl">Runde ${data.currentRound || 1} / ${data.totalRounds || 3} · ${data.wordMode === "adult" ? "🎓" : "👶"}</p>
-                        <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button>
+                <div class="tv-show-stage">
+                    <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
+                    <div class="tv-show-top">
+                        <div class="tv-show-meta">
+                            <span class="tv-show-qnum">Wort-Rätsel · ${data.currentRound || 1}/${data.totalRounds || 3} · ${data.wordMode === "adult" ? "🎓" : "👶"}</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
+                        </div>
+                        <div class="tv-wr-scores">${scores}</div>
                     </div>
-                    <div class="flex justify-center gap-3 flex-wrap">${scores}</div>
-                    <div class="glass-card p-6 flex items-center justify-center flex-1">
-                        <div id="tv-wr-figure" class="w-48 h-56 md:w-64 md:h-72"></div>
+                    <div class="tv-wr-body">
+                        <div id="tv-wr-figure" class="tv-wr-figure"></div>
+                        <div class="tv-wr-mask">${mask}</div>
+                        ${data.lastSolveAttempt && data.lastSolveAttempt.text
+                            ? `<div class="tv-show-explain">💡 ${esc(data.lastSolveAttempt.name || "Jemand")}: „${esc(String(data.lastSolveAttempt.text).slice(0, 24))}“</div>`
+                            : ""}
+                        <div id="tv-wr-turn-timer" class="tv-show-counter"></div>
                     </div>
-                    <div class="flex flex-wrap justify-center gap-1">${mask}</div>
-                    ${data.lastSolveAttempt && data.lastSolveAttempt.text
-                        ? `<div class="text-center text-lg text-amber-300 font-bold">💡 ${esc(data.lastSolveAttempt.name || "Jemand")}: „${esc(String(data.lastSolveAttempt.text).slice(0, 24))}“</div>`
-                        : ""}
-                    <div id="tv-wr-turn-timer" class="text-center text-xl font-black text-sky-300"></div>
-                    <div class="text-center">${footer}</div>
+                    <div class="tv-show-footer">${footer}</div>
                 </div>`);
             if (typeof wrRenderFigureBase === "function") {
                 wrRenderFigureBase(theme, "tv-wr-figure");
@@ -2012,17 +2011,30 @@
 
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
             setTVHostPlayHTML(`
-                    <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
-                        <div class="glass-card-glow p-8 rounded-3xl text-center mb-8" style="border-color:rgba(245,158,11,0.15);">
-                            <p class="text-amber-400 font-black text-xl mb-4">Runde ${round} / ${totalRounds}</p>
-                            <h1 class="text-2xl md:text-3xl font-black text-white leading-tight mb-6">🔤 Bildet das beste Wort aus diesen Buchstaben!</h1>
-                            <div class="flex flex-wrap justify-center gap-3">${scrabbleTilesHTML(letters, true, required)}</div>
+                <div class="tv-show-stage">
+                    <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
+                    <div class="tv-show-top">
+                        <div class="tv-show-meta">
+                            <span class="tv-show-qnum">Wort-Duell · Runde ${round} / ${totalRounds}</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
-                        <div class="text-center"><span id="tv-answer-counter" class="text-gray-400 font-bold text-xl">0 von 0 haben geantwortet</span></div>
-                        <div class="text-center mt-4"><button onclick="forceTVScrabbleReveal()" class="btn-secondary text-lg py-4 px-10">Runde jetzt auswerten ⏱️</button></div>
+                        <div class="tv-show-timer-track" aria-hidden="true">
+                            <div id="tv-kahoot-timer-bar" class="tv-show-timer-bar"></div>
+                        </div>
+                        <h1 class="tv-show-question">🔤 Bestes Wort aus diesen Buchstaben!</h1>
                     </div>
-                `);
+                    <div class="tv-scrabble-tiles">${scrabbleTilesHTML(letters, true, required)}</div>
+                    <div class="tv-show-footer">
+                        <span id="tv-answer-counter" class="tv-show-counter">0 von 0 haben geantwortet</span>
+                        <button onclick="forceTVScrabbleReveal()" class="tv-show-force">Runde auswerten ⏱️</button>
+                    </div>
+                </div>
+            `);
+            try {
+                const bar = document.getElementById("tv-kahoot-timer-bar");
+                if (bar) { bar.style.transition = "none"; bar.style.width = "100%"; }
+                _tvBarDeadlineKey = null;
+            } catch (e) { /* */ }
         }
 
         function forceTVScrabbleReveal() {
@@ -2132,20 +2144,22 @@
             });
 
             setTVHostPlayHTML(`
-                    <div class="h-[90vh] flex flex-col justify-between p-6">
-                        <div class="flex justify-end"><button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="btn-ghost text-lg py-1.5 px-4 text-gray-400">✕ Beenden</button></div>
-                        <div class="text-center mb-4">
-                            <h1 class="text-3xl font-black text-white">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</h1>
-                            ${data.currentSolution ? `);<p class="text-amber-400 font-bold text-xl mt-2">💡 Möglich war am Ende z.B.: ${data.currentSolution}</p>` : ""}
+                <div class="tv-show-stage">
+                    <div class="tv-show-top">
+                        <div class="tv-show-meta">
+                            <span class="tv-show-qnum">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</span>
+                            <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
-                        <div class="space-y-3 flex-1 overflow-y-auto">${rowsHtml}</div>
-                        <div class="mt-6 text-center">
-                            ${isLastRound
-                                ? `<button onclick="tvGameRef.update({status:'finished'})" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2" style="background:var(--gradient-amber);box-shadow:0 4px 32px rgba(245,158,11,0.3);">Endergebnis zeigen 🏆</button>`
-                                : `<button onclick="nextTVScrabbleRound()" class="btn-primary text-2xl py-6 px-16 w-full md:w-1/2">Nächste Runde ➔</button>`}
-                        </div>
+                        ${data.currentSolution ? `<p class="tv-show-explain">💡 z.B. möglich: ${esc(data.currentSolution)}</p>` : ""}
                     </div>
-                `);
+                    <div class="tv-scrabble-results">${rowsHtml}</div>
+                    <div class="tv-show-footer">
+                        ${isLastRound
+                            ? `<button onclick="tvGameRef.update({status:'finished'})" class="tv-show-next" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1f2937;">Endergebnis 🏆</button>`
+                            : `<button onclick="nextTVScrabbleRound()" class="tv-show-next">Nächste Runde ➔</button>`}
+                    </div>
+                </div>
+            `);
         }
 
         function nextTVScrabbleRound() {

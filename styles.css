@@ -3808,7 +3808,7 @@ body.tv-host-active #tv-host-play {
   }
 }
 
-.tv-show-top { text-align: center; }
+.tv-show-top { text-align: center; flex-shrink: 0; }
 .tv-show-meta {
   display: flex;
   justify-content: space-between;
@@ -3866,8 +3866,10 @@ body.tv-host-active #tv-host-play {
   grid-template-rows: auto auto;
   align-content: center;
   gap: clamp(0.45rem, 1.1vw, 0.8rem);
-  flex: 0 1 auto;
+  flex: 0 0 auto;
   min-height: 0;
+  max-height: 100%;
+  overflow-y: auto;
 }
 .tv-show-tile {
   position: relative;
@@ -3930,6 +3932,7 @@ body.tv-host-active #tv-host-play {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-shrink: 0;
   gap: 0.55rem;
 }
 .tv-show-counter {

@@ -583,20 +583,30 @@
                 } catch (e2) { /* */ }
             }
         }
+        function requestTVFullscreenAndLock() {
+            try {
+                const root = document.documentElement;
+                if (!document.fullscreenElement && root.requestFullscreen) {
+                    root.requestFullscreen().catch(function () { /* */ });
+                }
+            } catch (e) { /* */ }
+            try {
+                if (screen.orientation && typeof screen.orientation.lock === "function") {
+                    screen.orientation.lock("landscape").catch(function () { /* oft nur im Fullscreen */ });
+                }
+            } catch (e2) { /* */ }
+        }
         function startTVLandscapeGuard() {
             _tvLandscapeForced = true;
             document.body.classList.add("tv-host-active");
             document.documentElement.classList.add("tv-host-lock");
             ensureTVLandscapeOverlay();
+            // Immer erneut versuchen (auch nach Zurück / Tab-Wechsel)
+            requestTVFullscreenAndLock();
             if (isTVLandscape()) {
-                try {
-                    const root = document.documentElement;
-                    if (!document.fullscreenElement && root.requestFullscreen) {
-                        root.requestFullscreen().catch(function () { /* */ });
-                    }
-                } catch (e) { /* */ }
+                // zweiter Versuch kurz danach (manche Browser brauchen User-Gesture + Delay)
+                setTimeout(requestTVFullscreenAndLock, 280);
             }
-            // Hinweise nach ~2s ausblenden (falls schon quer)
             setTimeout(function () {
                 const hint = document.getElementById("tv-rotate-hint");
                 if (hint) hint.classList.add("hidden");
@@ -604,6 +614,7 @@
                     const lock = document.getElementById("tv-landscape-lock");
                     if (lock) lock.classList.add("hidden");
                     document.body.classList.remove("tv-need-landscape");
+                    requestTVFullscreenAndLock();
                 }
             }, 1800);
         }
@@ -626,10 +637,22 @@
         window.startTVLandscapeGuard = startTVLandscapeGuard;
         window.stopTVLandscapeGuard = stopTVLandscapeGuard;
         window.addEventListener("orientationchange", function () {
-            setTimeout(ensureTVLandscapeOverlay, 120);
+            setTimeout(function () {
+                ensureTVLandscapeOverlay();
+                if (_tvLandscapeForced) requestTVFullscreenAndLock();
+            }, 120);
         });
         window.addEventListener("resize", function () {
             ensureTVLandscapeOverlay();
+        });
+        // Nach App-Wechsel / Zurück: Guard + Vollbild erneut
+        document.addEventListener("visibilitychange", function () {
+            if (document.visibilityState === "visible" && _tvLandscapeForced && isTVHost) {
+                startTVLandscapeGuard();
+            }
+        });
+        window.addEventListener("pageshow", function () {
+            if (_tvLandscapeForced && isTVHost) startTVLandscapeGuard();
         });
 
         function setTVHostPlayHTML(html) {
@@ -641,6 +664,7 @@
             const el = tvHostPlayEl();
             if (el) el.innerHTML = html;
             ensureTVLandscapeOverlay();
+            if (isTVHost) requestTVFullscreenAndLock();
         }
         function setTVPlayerPlayHTML(html) {
             showTVPlayerPlay();
@@ -2011,9 +2035,9 @@
 
         function showTVHostScrabbleRound(letters, round, totalRounds, required) {
             setTVHostPlayHTML(`
-                <div class="tv-show-stage tv-scrabble-stage">
+                <div class="tv-show-stage">
                     <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
-                    <div class="tv-show-top tv-scrabble-top">
+                    <div class="tv-show-top">
                         <div class="tv-show-meta">
                             <span class="tv-show-qnum">Wort-Duell · Runde ${round} / ${totalRounds}</span>
                             <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
@@ -2021,7 +2045,7 @@
                         <div class="tv-show-timer-track" aria-hidden="true">
                             <div id="tv-kahoot-timer-bar" class="tv-show-timer-bar"></div>
                         </div>
-                        <h1 class="tv-scrabble-prompt">Bildet das beste Wort!</h1>
+                        <h1 class="tv-show-question">🔤 Bestes Wort aus diesen Buchstaben!</h1>
                     </div>
                     <div class="tv-scrabble-tiles">${scrabbleTilesHTML(letters, true, required)}</div>
                     <div class="tv-show-footer">

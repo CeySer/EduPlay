@@ -539,6 +539,24 @@
                         📡 ${online}/${entries.length || 0} verbunden${entries.length && online < entries.length ? " · warte auf Mitspieler" : ""}${isLiveDuelCreator ? "" : (hostOk ? " · Host online" : " · Host ?")}
                     </div>`;
                     list.innerHTML = bar + (cards || `<p class="col-span-2 text-gray-500 text-sm text-center">Noch niemand…</p>`);
+                    // Team-Lobby: weitere Familienmitglieder nachladen
+                    if (data.mode === "coop" && isLiveDuelCreator && typeof ALL_PROFILES !== "undefined") {
+                        const missing = Object.keys(ALL_PROFILES).filter(function (k) {
+                            const p = ALL_PROFILES[k];
+                            return p && !p.isGuest && k !== activePlayerKey && !(data.players && data.players[k]);
+                        });
+                        if (missing.length) {
+                            const kind = (data.subject === "vokabel") ? "vokabel" : "wissen";
+                            let inv = `<div class="col-span-2 mt-2 rounded-xl p-3 bg-emerald-500/10 border border-emerald-400/25 text-left">
+                                <div class="text-[11px] font-bold text-emerald-300 mb-2">👥 Weitere einladen</div>
+                                <div class="flex flex-wrap gap-2">`;
+                            missing.forEach(function (k) {
+                                inv += `<button type="button" onclick="challengePlayer('${k}','${kind}')" class="btn-secondary text-xs py-2 px-3">${esc(ALL_PROFILES[k].name)}</button>`;
+                            });
+                            inv += `</div></div>`;
+                            list.innerHTML += inv;
+                        }
+                    }
                 }
                 const _cs = document.getElementById("live-duel-conn-status");
                 if (_cs) {

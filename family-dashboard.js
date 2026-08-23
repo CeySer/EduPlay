@@ -875,7 +875,35 @@ auth.createUserWithEmailAndPassword(e, p)
                 return showToast("Bitte mindestens eine Vokabel-Gruppe wählen.", "error");
             }
             try {
-                const lobbyId = await ensureCoopLobby(kind, inviteOpts);
+                // Schon in einer Team-Lobby? Dieselbe ID weiterbenutzen (mehrere Geschwister)
+                let lobbyId = null;
+                try {
+                    if (typeof liveDuelRef !== "undefined" && liveDuelRef) {
+                        const curSnap = await liveDuelRef.get();
+                        if (curSnap.exists) {
+                            const cur = curSnap.data() || {};
+                            if (cur.mode === "coop" && (cur.status === "waiting" || cur.status === "playing")) {
+                                lobbyId = liveDuelRef.id;
+                                _coopLobbyId = lobbyId;
+                                _coopLobbyOptsKey = JSON.stringify(inviteOpts || {});
+                            }
+                        }
+                    }
+                } catch (eReuse) { /* neu anlegen */ }
+                if (!lobbyId) lobbyId = await ensureCoopLobby(kind, inviteOpts);
+
+                // Schon eingeladen und noch offen?
+                try {
+                    const openSnap = await challengesRef().where("toKey", "==", toKey)
+                        .where("status", "==", "pending").limit(8).get();
+                    let already = false;
+                    openSnap.forEach(function (doc) {
+                        const x = doc.data() || {};
+                        if (x.mode === "coop" && x.fromKey === activePlayerKey && x.lobbyId === lobbyId) already = true;
+                    });
+                    if (already) return showToast(esc(to.name) + " ist schon eingeladen.", "info");
+                } catch (eDup) { /* Index fehlt ggf. – dann trotzdem senden */ }
+
                 const ref = await challengesRef().add({
                     fromKey: activePlayerKey,
                     fromName: currentPlayer.name,
@@ -889,9 +917,9 @@ auth.createUserWithEmailAndPassword(e, p)
                     inviteOpts: inviteOpts,
                     lobbyId: lobbyId
                 });
-                showToast("👥 Einladung an " + esc(to.name) + " – weitere Kinder kannst du gleich noch einladen", "success");
+                showToast("👥 Einladung an " + esc(to.name) + " – weitere Kinder kannst du noch einladen", "success");
                 watchChallengeAcceptance(ref);
-                // Host in die Lobby
+                // Host in die Lobby (Heartbeat hält die Lobby am Leben)
                 if (typeof joinLiveDuelById === "function") {
                     try { await joinLiveDuelById(lobbyId); } catch (eJ) { /* */ }
                 }
@@ -1134,6 +1162,26 @@ auth.createUserWithEmailAndPassword(e, p)
                         fromChallenge: id
                     });
                     lobbyId = duelRef.id;
+                } else {
+                    // Bestehende Team-Lobby: Spieler explizit eintragen (mehrere Geschwister)
+                    try {
+                        await liveDuelCollectionRef().doc(lobbyId).update({
+                            ["players." + activePlayerKey]: {
+                                name: currentPlayer.name,
+                                score: 0,
+                                hasAnswered: false,
+                                lastAnswer: null,
+                                word: "",
+                                coinsClaimed: false,
+                                pending: false,
+                                lastSeen: Date.now(),
+                                sessionId: window.DEVICE_SESSION_ID || null
+                            },
+                            order: firebase.firestore.FieldValue.arrayUnion(activePlayerKey)
+                        });
+                    } catch (eJoin) {
+                        console.warn("acceptChallenge lobby join", eJoin);
+                    }
                 }
 
                 await ref.update({

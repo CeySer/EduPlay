@@ -3401,91 +3401,73 @@ body.tv-mirror-display .view {
 }
 @media (orientation: landscape) {
   .tv-rotate-hint { display: none !important; }
-  /* Kahoot-ähnlich: alles in einer Viewport-Höhe, nichts abschneiden */
+  /* Kompakt: Frage oben, Antworten eng darunter, kein Stretch-Loch */
   .tv-show-stage {
     height: 100dvh;
     max-height: 100dvh;
     min-height: 0;
-    gap: 0.35rem;
-    padding: 0.35rem 0.85rem 0.45rem;
+    padding: 0.35rem 1rem 0.4rem !important;
+    gap: 0.4rem !important;
     border-radius: 0;
     overflow: hidden;
     box-sizing: border-box;
+    justify-content: flex-start;
   }
   .tv-show-top {
-    flex: 0 0 auto;
-    max-height: 34vh;
-    overflow: hidden;
+    flex: 0 0 auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding-top: 0.15rem;
   }
+  .tv-show-meta { margin-bottom: 0.1rem; }
   .tv-show-timer-track {
-    margin: 0.25rem auto 0.35rem;
-    max-width: 90%;
+    margin: 0.2rem auto 0.35rem !important;
+    max-width: 88%;
     height: 8px;
   }
-  .tv-show-meta { margin-bottom: 0.15rem; }
-  .tv-show-stage {
-    padding: 0.25rem 0.75rem 0.35rem !important;
-    gap: 0.25rem !important;
+  .tv-show-question {
+    font-size: clamp(1rem, 3vh, 1.55rem) !important;
+    line-height: 1.25 !important;
+    margin: 0 auto 0.35rem !important;
+    max-width: 92vw;
   }
   .tv-show-grid {
-    flex: 1 1 auto;
+    flex: 0 0 auto !important;
     min-height: 0 !important;
-    height: auto;
-    width: 88vw;
-    max-width: 52rem;
+    height: auto !important;
+    width: 88vw !important;
+    max-width: 48rem !important;
     margin: 0 auto;
-    gap: 0.35rem 0.85rem !important;
-    grid-template-rows: 1fr 1fr;
+    gap: 0.45rem 0.85rem !important;
+    grid-template-rows: auto auto !important;
   }
   .tv-show-tile {
     min-height: 0 !important;
     height: auto !important;
-    max-height: 13vh !important;
-    padding: 0.2rem 0.45rem !important;
-    border-radius: 0.55rem !important;
-  }
-  .tv-show-question {
-    font-size: clamp(0.85rem, 2.6vh, 1.4rem) !important;
-    line-height: 1.15 !important;
-    margin-top: 0 !important;
+    max-height: none !important;
+    padding: 0.55rem 0.75rem !important;
+    border-radius: 0.7rem !important;
   }
   .tv-show-answer {
-    font-size: clamp(0.8rem, 2.2vh, 1.15rem) !important;
-  }
-  .tv-show-top {
-    max-height: 22vh !important;
-    padding-top: 0;
-  }
-  .tv-show-grid {
-    width: 82vw !important;
-    max-width: 44rem !important;
-    gap: 0.28rem 0.7rem !important;
-  }
-  .tv-show-timer-track {
-    margin: 0.15rem auto 0.25rem !important;
-  }
-  .tv-show-footer {
-    padding-bottom: 0.15rem;
-  }
-  .tv-show-force {
-    padding: 0.35rem 0.9rem !important;
-    font-size: 0.8rem !important;
+    font-size: clamp(0.9rem, 2.4vh, 1.25rem) !important;
   }
   .tv-show-label {
-    width: clamp(1.6rem, 3.5vh, 2.2rem) !important;
-    height: clamp(1.6rem, 3.5vh, 2.2rem) !important;
-    font-size: clamp(0.85rem, 2.2vh, 1.15rem) !important;
+    width: 1.55rem !important;
+    height: 1.55rem !important;
+    font-size: 0.85rem !important;
   }
   .tv-show-footer {
     flex: 0 0 auto;
-    gap: 0.25rem;
+    gap: 0.3rem;
+    margin-top: 0.25rem;
+    padding-bottom: 0.2rem;
   }
   .tv-show-force, .tv-show-next {
-    padding: 0.45rem 1.1rem !important;
-    font-size: clamp(0.85rem, 2.2vh, 1.15rem) !important;
+    padding: 0.4rem 1rem !important;
+    font-size: 0.85rem !important;
   }
   .tv-show-counter {
-    font-size: clamp(0.75rem, 1.8vh, 1rem) !important;
+    font-size: clamp(0.75rem, 1.8vh, 0.95rem) !important;
   }
 }
 

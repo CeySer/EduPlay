@@ -66,6 +66,7 @@ window.FRAGEN_VERZEICHNIS = [
   { datei: "fragen/fun/spass_dinosaurier.js", name: "SPASS_DINOSAURIER_QUESTIONS", n: 50, kat: ["spass_dinosaurier"] },
   { datei: "fragen/fun/spass_superhelden.js", name: "SPASS_SUPERHELDEN_QUESTIONS", n: 50, kat: ["spass_superhelden"] },
   { datei: "fragen/fun/spass_visuell.js", name: "SPASS_VISUELL_QUESTIONS", n: 5, kat: ["spass_visuell"] },
+  { datei: "fragen/fun/spass_flaggen.js", name: "SPASS_FLAGGEN_QUESTIONS", n: 50, kat: ["spass_flaggen"] },
   { datei: "fragen/klasse1/questions_k1_deutsch.js", name: "K1_DEUTSCH_QUESTIONS", n: 130, kat: ["k1_deutsch"] },
   { datei: "fragen/klasse1/questions_k1_mathe.js", name: "K1_MATHE_QUESTIONS", n: 140, kat: ["k1_mathe"] },
   { datei: "fragen/klasse1/questions_k1_sachunterricht.js", name: "K1_SACHUNTERRICHT_QUESTIONS", n: 130, kat: ["k1_sachunterricht"] },

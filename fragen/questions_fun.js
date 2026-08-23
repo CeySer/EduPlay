@@ -38,6 +38,7 @@ const FUN_CATEGORIES = [
     { key: "spass_mythen", label: "🐉 Mythen & Sagen" },
     { key: "spass_superhelden", label: "🦸 Superhelden" },
     { key: "spass_weltraum", label: "🚀 Weltraum" },
+    { key: "spass_flaggen", label: "🚩 Flaggen raten" },
     { key: "musik_hits", label: "🎵 Musik-Hits" },
     { key: "werbung_marken", label: "📺 Werbung & Marken" },
 ];

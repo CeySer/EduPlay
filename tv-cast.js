@@ -586,20 +586,31 @@
         function startTVLandscapeGuard() {
             _tvLandscapeForced = true;
             document.body.classList.add("tv-host-active");
+            document.documentElement.classList.add("tv-host-lock");
             ensureTVLandscapeOverlay();
-            // Sobald quer: Fullscreen anbieten (Chrome/Android)
             if (isTVLandscape()) {
                 try {
                     const root = document.documentElement;
                     if (!document.fullscreenElement && root.requestFullscreen) {
-                        root.requestFullscreen().catch(function () { /* Nutzer muss ggf. tippen */ });
+                        root.requestFullscreen().catch(function () { /* */ });
                     }
                 } catch (e) { /* */ }
             }
+            // Hinweise nach ~2s ausblenden (falls schon quer)
+            setTimeout(function () {
+                const hint = document.getElementById("tv-rotate-hint");
+                if (hint) hint.classList.add("hidden");
+                if (isTVLandscape()) {
+                    const lock = document.getElementById("tv-landscape-lock");
+                    if (lock) lock.classList.add("hidden");
+                    document.body.classList.remove("tv-need-landscape");
+                }
+            }, 1800);
         }
         function stopTVLandscapeGuard() {
             _tvLandscapeForced = false;
             document.body.classList.remove("tv-host-active");
+            document.documentElement.classList.remove("tv-host-lock");
             ensureTVLandscapeOverlay();
             try {
                 if (screen.orientation && typeof screen.orientation.unlock === "function") {

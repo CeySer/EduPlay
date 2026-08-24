@@ -1393,7 +1393,20 @@
             if (!tvGameRef) return;
             try {
                 const snap = await tvGameRef.get();
-                if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
+                if (!snap.exists) {
+                    // Lobby-Dokument ist weg (z.B. Verbindungsaussetzer). Statt in einer
+                    // toten Siegerehrung hängen zu bleiben: sauber zurück zum
+                    // Einrichten-Bildschirm, von dort sofort neu erstellbar.
+                    showToast("Lobby ist weg – bitte neu erstellen.", "error", "round");
+                    if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
+                    if (typeof clearTVWrTimers === "function") clearTVWrTimers();
+                    stopTVAutoAdvance();
+                    tvGameRef = null;
+                    isTVHost = false;
+                    merkeTVHost(false);
+                    showTVHostSetup();
+                    return;
+                }
                 const playersData = snap.data().players || {};
                 if (Object.keys(playersData).length === 0) return showToast("Keine Spieler mehr in der Lobby.", "error");
 

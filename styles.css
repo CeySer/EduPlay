@@ -3507,10 +3507,14 @@ body.tv-mirror-display .view {
     height: 8px;
   }
   .tv-show-question {
-    font-size: clamp(0.45rem, 1.05vh, 0.62rem) !important;
+    font-size: clamp(0.4rem, 0.95vh, 0.54rem) !important;
     line-height: 1.2 !important;
     margin: 0 auto 0.2rem !important;
     max-width: 94vw;
+  }
+  .tv-show-explain {
+    font-size: clamp(0.42rem, 1vh, 0.58rem) !important;
+    margin-top: 0.25rem !important;
   }
   .tv-show-grid {
     flex: 1 1 auto !important;
@@ -3789,13 +3793,15 @@ body.tv-host-active #tv-host-play {
 .tv-podium-leave {
   display: block;
   width: 100%;
-  margin-top: 0.25rem;
-  background: none;
-  border: none;
-  color: #9ca3af;
+  margin-top: 0.4rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 0.75rem;
+  color: #cbd5e1;
   font-weight: 700;
-  font-size: 0.7rem;
-  text-decoration: underline;
+  font-size: clamp(0.7rem, 1.6vh, 0.85rem);
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
 }
 @media (orientation: landscape) {
   .tv-podium-layout {
@@ -3872,16 +3878,16 @@ body.tv-host-active #tv-host-play {
   font-weight: 900;
   color: #fff;
   line-height: 1.2;
-  font-size: clamp(0.7rem, 1.5vw, 1.05rem);
+  font-size: clamp(0.6rem, 1.3vw, 0.9rem);
   margin: 0 auto;
   max-width: 56rem;
   text-shadow: 0 2px 18px rgba(0,0,0,0.35);
 }
 .tv-show-explain {
-  margin-top: 0.6rem;
+  margin-top: 0.5rem;
   font-weight: 800;
   color: #6ee7b7;
-  font-size: clamp(1rem, 2.2vw, 1.55rem);
+  font-size: clamp(0.75rem, 1.6vw, 1.1rem);
 }
 .tv-show-grid {
   display: grid;
@@ -3959,8 +3965,7 @@ body.tv-host-active #tv-host-play {
   color: #fff;
 }
 .tv-show-correct {
-  transform: scale(1.03);
-  box-shadow: 0 0 0 5px rgba(255,255,255,0.85), 0 16px 40px rgba(0,0,0,0.4) !important;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.75), 0 10px 26px rgba(0,0,0,0.35) !important;
   z-index: 2;
 }
 .tv-show-wrong {
@@ -4052,7 +4057,10 @@ body.tv-mirror-display #view-tv-quiz-host {
   max-width: none;
 }
 body.tv-mirror-display .tv-show-question {
-  font-size: clamp(0.72rem, 1.4vw, 0.92rem) !important;
+  font-size: clamp(0.6rem, 1.2vw, 0.78rem) !important;
+}
+body.tv-mirror-display .tv-show-explain {
+  font-size: clamp(0.62rem, 1.2vw, 0.8rem) !important;
 }
 body.tv-mirror-display .tv-show-answer {
   font-size: clamp(0.9rem, 1.8vw, 1.15rem) !important;

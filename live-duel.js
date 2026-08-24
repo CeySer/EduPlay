@@ -312,8 +312,7 @@
                             sessionId: window.DEVICE_SESSION_ID || null
                         }
                     };
-                    // Reihenfolge für alle Quiz-/Team-Runden mitführen
-                    if (!midGame) {
+                    if (data.type === "wortraten" && !midGame) {
                         joinUpdate.order = firebase.firestore.FieldValue.arrayUnion(activePlayerKey);
                     }
                     await ref.update(joinUpdate);
@@ -462,7 +461,7 @@
             } else if (data.lastEvent && data.lastEvent.ts && data.lastEvent.ts > liveDuelLastShownEventTs) {
                 liveDuelLastShownEventTs = data.lastEvent.ts;
                 if (data.lastEvent.type === "host_ended") {
-                    showToast("🚪 " + esc(data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
+                    showToast("🚪 " + (data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
                     // Host beendet → alle raus (nicht nur Toast)
                     if (liveDuelUnsubscribe) { try { liveDuelUnsubscribe(); } catch (e) {} liveDuelUnsubscribe = null; }
                     clearLiveDuelTimers();
@@ -475,7 +474,7 @@
                     switchView(currentPlayer ? "menu" : "family-hub");
                     return;
                 } else if (data.lastEvent.type === "left") {
-                    showToast("🚪 " + esc(data.lastEvent.name || "Ein Spieler") + " hat verlassen");
+                    showToast("🚪 " + (data.lastEvent.name || "Ein Spieler") + " hat verlassen");
                 }
             }
 
@@ -539,24 +538,6 @@
                         📡 ${online}/${entries.length || 0} verbunden${entries.length && online < entries.length ? " · warte auf Mitspieler" : ""}${isLiveDuelCreator ? "" : (hostOk ? " · Host online" : " · Host ?")}
                     </div>`;
                     list.innerHTML = bar + (cards || `<p class="col-span-2 text-gray-500 text-sm text-center">Noch niemand…</p>`);
-                    // Team-Lobby: weitere Familienmitglieder nachladen
-                    if (data.mode === "coop" && isLiveDuelCreator && typeof ALL_PROFILES !== "undefined") {
-                        const missing = Object.keys(ALL_PROFILES).filter(function (k) {
-                            const p = ALL_PROFILES[k];
-                            return p && !p.isGuest && k !== activePlayerKey && !(data.players && data.players[k]);
-                        });
-                        if (missing.length) {
-                            const kind = (data.subject === "vokabel") ? "vokabel" : "wissen";
-                            let inv = `<div class="col-span-2 mt-2 rounded-xl p-3 bg-emerald-500/10 border border-emerald-400/25 text-left">
-                                <div class="text-[11px] font-bold text-emerald-300 mb-2">👥 Weitere einladen</div>
-                                <div class="flex flex-wrap gap-2">`;
-                            missing.forEach(function (k) {
-                                inv += `<button type="button" onclick="challengePlayer('${k}','${kind}')" class="btn-secondary text-xs py-2 px-3">${esc(ALL_PROFILES[k].name)}</button>`;
-                            });
-                            inv += `</div></div>`;
-                            list.innerHTML += inv;
-                        }
-                    }
                 }
                 const _cs = document.getElementById("live-duel-conn-status");
                 if (_cs) {
@@ -1831,10 +1812,10 @@
                     });
                 } else {
                     const catSel = document.getElementById("again-category");
-                    const areaSel = document.getElementById("again-area");
                     let category = (catSel && catSel.value) ? catSel.value : data.category;
-                    // Nie Spaß-Quiz bei „Mit Freunden üben“ / Wissen
-                    if (!category || String(category).indexOf("spass") === 0 || (areaSel && areaSel.value === "spass")) {
+                    // Nur ohne jede Auswahl auf eine Lern-Kategorie ausweichen –
+                    // eine bewusst gewählte Spaß-Kategorie bleibt jetzt erhalten.
+                    if (!category) {
                         if (typeof suggestedArea === "function" && typeof getAreas === "function") {
                             const areas = getAreas("lernen") || [];
                             const sug = suggestedArea();
@@ -1842,11 +1823,14 @@
                             if (a && a.subjects && a.subjects[0]) category = a.subjects[0].key || a.subjects[0].value;
                         }
                     }
+                    // Spaß-Fragendateien liegen separat und werden erst bei Bedarf
+                    // nachgeladen (anders als der Lernstoff, der schon beim Start da ist).
+                    if (typeof ladeFragenFuer === "function") {
+                        try { await ladeFragenFuer(category); } catch (e) { /* */ }
+                    }
                     let pool = questionsForKey(category) || [];
-                    pool = pool.filter(function (q) { return q && q.area !== "spass"; });
                     if (pool.length < 3) {
-                        pool = (typeof QUESTIONS_DATABASE !== "undefined" ? QUESTIONS_DATABASE : [])
-                            .filter(function (q) { return q && q.area !== "spass"; });
+                        pool = (typeof QUESTIONS_DATABASE !== "undefined" ? QUESTIONS_DATABASE : []);
                     }
                     const questions = prepareQuestions(
                         pool.slice().sort(function () { return Math.random() - 0.5; })
@@ -1949,31 +1933,15 @@
 
             const names = esc(Object.values(data.players).map(p => p.name).join(", "));
             if (isLiveDuelCreator) {
-                if (isCoop) {
-                    // Lernraum-Ende: weitermachen + andere Übung (kein Duell-Menü)
-                    html += `
-                                <div class="glass-card p-4 mt-6 space-y-3 text-left" style="border-color:rgba(16,185,129,0.2);">
-                                    <p class="text-sm font-black text-emerald-300 text-center">🔄 Nochmal zusammen üben</p>
-                                    <p class="text-[11px] text-gray-400 text-center -mt-2">Team bleibt: ${names}</p>
-                                    <select id="again-area" class="input-modern text-sm font-bold"></select>
-                                    <select id="again-category" class="input-modern text-sm font-bold"></select>
-                                    <button onclick="restartLiveDuel()" class="btn-primary w-full text-center" style="background:var(--gradient-green);box-shadow:0 4px 24px rgba(16,185,129,0.3);">Neue Runde starten 🚀</button>
-                                </div>
-                                <div class="glass-card p-4 mt-3 space-y-3 text-left" style="border-color:rgba(99,102,241,0.2);">
-                                    <p class="text-sm font-black text-indigo-300 text-center">📚 Andere Übung</p>
-                                    <div class="grid grid-cols-2 gap-2">
-                                        <button type="button" onclick="renderSwitchTypeOptions('quiz')" class="btn-secondary text-xs py-2.5 px-1">🧠 Wissen</button>
-                                        <button type="button" onclick="renderSwitchTypeOptions('vokabel')" class="btn-secondary text-xs py-2.5 px-1">🃏 Vokabeln</button>
-                                    </div>
-                                    <div id="switch-type-options"></div>
-                                    <button type="button" onclick="leaveLiveDuel();switchView('lernen')" class="w-full text-xs py-2.5 rounded-xl font-bold text-indigo-200 bg-white/5 border border-indigo-400/25">🎓 Zum Lernraum</button>
-                                </div>`;
-                } else {
-                    html += `
+                html += `
                                 <div class="glass-card p-4 mt-6 space-y-3 text-left" style="border-color:rgba(99,102,241,0.15);">
                                     <p class="text-sm font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
                                     <p class="text-[11px] text-gray-400 text-center -mt-2">Alle bleiben dabei: ${names}</p>
                                     ${data.type === "quiz" ? `
+                                        <div class="dash-sub-nav mb-2">
+                                            <button type="button" id="again-topic-spass" class="active" onclick="setAgainTopic('spass')">🎉 Spaß</button>
+                                            <button type="button" id="again-topic-lernen" onclick="setAgainTopic('lernen')">📚 Lernen</button>
+                                        </div>
                                         <select id="again-area" class="input-modern text-sm font-bold"></select>
                                         <select id="again-category" class="input-modern text-sm font-bold"></select>
                                     ` : data.type === "wortraten" ? `
@@ -2039,11 +2007,8 @@
                                     </div>
                                     <div id="switch-type-options"></div>
                                 </div>`;
-                }
             } else {
-                html += isCoop
-                    ? `<p class="text-xs text-gray-400 font-bold mt-6">Bleib dran – die nächste Übungsrunde kann gleich starten.</p>`
-                    : `<p class="text-xs text-gray-400 font-bold mt-6">Bleib dran – ${sorted.length > 1 ? "die nächste Runde" : "eine neue Runde"} kann gleich starten.</p>`;
+                html += `<p class="text-xs text-gray-400 font-bold mt-6">Bleib dran – ${sorted.length > 1 ? "die nächste Runde" : "eine neue Runde"} kann gleich starten.</p>`;
             }
 
             html += `
@@ -2051,9 +2016,8 @@
                         </div>`;
             document.getElementById("live-duel-result-content").innerHTML = html;
 
-            if (isLiveDuelCreator && document.getElementById("again-area")) {
-                // Coop/Lernraum: nur Lern-Themen; Duell: alle
-                setupCategorySelectors("again-area", "again-category", isCoop ? "lernen" : "alle");
+            if (isLiveDuelCreator && data.type === "quiz" && document.getElementById("again-area")) {
+                setAgainTopic(liveDuelTopicMode || "spass");
             }
 
             liveDuelRenderKey = "";
@@ -2061,6 +2025,25 @@
             renderFamilyHub();
             try { if (typeof confetti === 'function') confetti(); } catch (e) { }
             SFX.win();
+        }
+
+        function setAgainTopic(mode) {
+            mode = mode || liveDuelTopicMode || "spass";
+            liveDuelTopicMode = mode;
+            const s = document.getElementById("again-topic-spass");
+            const l = document.getElementById("again-topic-lernen");
+            if (s) s.classList.toggle("active", mode === "spass");
+            if (l) l.classList.toggle("active", mode === "lernen");
+            setupCategorySelectors("again-area", "again-category", mode);
+        }
+
+        function setSwitchQuizTopic(mode) {
+            mode = mode || liveDuelTopicMode || "spass";
+            const s = document.getElementById("switch-quiz-topic-spass");
+            const l = document.getElementById("switch-quiz-topic-lernen");
+            if (s) s.classList.toggle("active", mode === "spass");
+            if (l) l.classList.toggle("active", mode === "lernen");
+            setupCategorySelectors("switch-quiz-area", "switch-quiz-category", mode);
         }
 
         // Zeigt im Endergebnis-Screen die Optionen zum gewählten Spieltyp an
@@ -2073,11 +2056,15 @@
             let html = "";
             if (type === "quiz") {
                 html = `
+                    <div class="dash-sub-nav mb-2">
+                        <button type="button" id="switch-quiz-topic-spass" class="active" onclick="setSwitchQuizTopic('spass')">🎉 Spaß</button>
+                        <button type="button" id="switch-quiz-topic-lernen" onclick="setSwitchQuizTopic('lernen')">📚 Lernen</button>
+                    </div>
                     <select id="switch-quiz-area" class="input-modern text-sm font-bold"></select>
                     <select id="switch-quiz-category" class="input-modern text-sm font-bold"></select>
                     <button onclick="restartLiveDuelAsType('quiz')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">🧠 Wissen starten 🚀</button>`;
                 box.innerHTML = html;
-                setupCategorySelectors("switch-quiz-area", "switch-quiz-category", "alle");
+                setSwitchQuizTopic(liveDuelTopicMode || "spass");
             } else if (type === "scrabble") {
                 html = `
                     <select id="switch-scrabble-wordmode" class="input-modern text-sm font-bold">
@@ -2142,7 +2129,7 @@
                         <option value="mix" selected>🔀 Gemischt</option>
                     </select>
                     <div id="switch-vokabel-checkboxes" class="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto"></div>
-                    <button onclick="restartLiveDuelAsType('vokabel')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">🃏 Vokabeln starten 🚀</button>`;
+                    <button onclick="restartLiveDuelAsType('vokabel')" class="btn-primary w-full text-center" style="background:var(--gradient-green);">📚 Vokabel-Duell starten 🚀</button>`;
                 box.innerHTML = html;
                 if (typeof renderVocabGroupCheckboxes === "function") renderVocabGroupCheckboxes("switch-vokabel-checkboxes");
             }
@@ -2221,6 +2208,11 @@
                 } else {
                     const category = (document.getElementById("switch-quiz-category") || {}).value;
                     if (!category) return showToast("Bitte ein Thema wählen!", "error");
+                    // Spaß-Fragendateien liegen separat und werden erst bei Bedarf
+                    // nachgeladen (anders als der Lernstoff, der schon beim Start da ist).
+                    if (typeof ladeFragenFuer === "function") {
+                        try { await ladeFragenFuer(category); } catch (e) { /* */ }
+                    }
                     const questions = prepareQuestions(
                         questionsForKey(category).sort(() => Math.random() - 0.5).slice(0, 10)
                     );
@@ -2361,11 +2353,9 @@
                 if (!treffer) return;
 
                 const d = treffer.data() || {};
-                const name = d.mode === "coop"
-                    ? (d.subject === "vokabel" ? "Vokabeln üben" : "Gemeinsam üben")
-                    : d.subject === "vokabel" ? "Vokabel-Duell"
-                        : d.type === "scrabble" ? "Wort-Duell"
-                            : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
+                const name = d.subject === "vokabel" ? "Vokabel-Duell"
+                    : d.type === "scrabble" ? "Wort-Duell"
+                        : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
                 const mid = (d.status === "playing" || d.status === "reveal");
                 const ok = await appConfirm(
                     mid ? `${name} läuft noch. Weiterspielen?` : `${name} wartet. Zurück in die Lobby?`,
@@ -2384,17 +2374,7 @@
             let html = "";
             snap.forEach(docSnap => {
                 const d = docSnap.data() || {};
-                // "Zuletzt gesehen" über ALLE Spieler bestimmen, nicht nur
-                // den Ersteller: Bei "Mit Freunden üben" (Familien-Coop-
-                // Einladung) ist der Ersteller beim Anlegen der Lobby oft
-                // noch gar nicht selbst drin - nur wer angenommen hat. Zählte
-                // bisher nur hostLastSeen, wurde eine aktiv genutzte Lobby
-                // als "Geist" gelöscht, während jemand noch drin wartete.
-                let lastAnySeen = d.hostLastSeen || d.createdAt || 0;
-                Object.values(d.players || {}).forEach(function (p) {
-                    if (p && p.lastSeen && p.lastSeen > lastAnySeen) lastAnySeen = p.lastSeen;
-                });
-                const alive = (now - lastAnySeen) < STALE;
+                const alive = (now - (d.hostLastSeen || d.createdAt || 0)) < STALE;
                 // Fertige Spiele NICHT sofort löschen – sonst verschwindet die
                 // Siegerehrung (Snapshot: doc existiert nicht → Menü).
                 // Erst nach 10 Min. aufräumen, oder wenn niemand mehr online.
@@ -2411,21 +2391,9 @@
                 }
                 const count = d.players ? Object.keys(d.players).length : 0;
                 const running = d.status !== "waiting";
-                const isCoop = d.mode === "coop";
                 const isVokabel = d.subject === "vokabel";
-                let icon, typeName, borderCls, stateCls;
-                if (isCoop) {
-                    // Lernraum „Mit Freunden üben“ – eigenes Label, altes Duell-Design bleibt
-                    icon = "👥";
-                    typeName = isVokabel ? "Vokabeln üben" : "Gemeinsam üben";
-                    borderCls = running ? "border-emerald-400/50" : "border-emerald-400/60 animate-pulse";
-                    stateCls = "text-emerald-200";
-                } else {
-                    icon = isVokabel ? "📚" : d.type === "scrabble" ? "🔤" : d.type === "wortraten" ? "🧩" : "⚔️";
-                    typeName = isVokabel ? "Vokabel-Duell" : d.type === "scrabble" ? "Wort-Duell" : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
-                    borderCls = running ? "border-amber-400/40" : "border-indigo-400/50 animate-pulse";
-                    stateCls = "text-indigo-200";
-                }
+                const icon = isVokabel ? "📚" : d.type === "scrabble" ? "🔤" : d.type === "wortraten" ? "🧩" : "⚔️";
+                const typeName = isVokabel ? "Vokabel-Duell" : d.type === "scrabble" ? "Wort-Duell" : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
                 const who = esc(d.createdByName || "jemandem");
                 const state = running ? "läuft – einsteigen" : "offen – beitreten";
                 // Nicht den eigenen Host benachrichtigen
@@ -2435,12 +2403,12 @@
                         icon + " " + typeName,
                         "von " + (d.createdByName || "Familie") + " – " + state,
                         "duel:" + docSnap.id + ":" + (d.status || ""),
-                        isCoop ? "#lernen" : "#spielen"
+                        "#spielen"
                     );
                 }
-                html += `<button onclick="joinLiveDuelById('${docSnap.id}')" class="w-full p-5 glass-card text-white font-black rounded-2xl shadow-lg flex items-center justify-between gap-3 text-base transition-all border-2 ${borderCls}" style="min-height:4.5rem;">
+                html += `<button onclick="joinLiveDuelById('${docSnap.id}')" class="w-full p-5 glass-card text-white font-black rounded-2xl shadow-lg flex items-center justify-between gap-3 text-base transition-all border-2 ${running ? "border-amber-400/40" : "border-indigo-400/50 animate-pulse"}" style="min-height:4.5rem;">
                                 <span class="flex items-center gap-3 text-left"><span class="text-3xl">${icon}</span><span><span class="block">${typeName}</span><span class="block text-xs font-bold text-gray-400">von ${who}</span></span></span>
-                                <span class="text-xs ${stateCls} shrink-0 text-right font-bold">🔥 ${state}<br>(${count} dabei)</span>
+                                <span class="text-xs text-indigo-200 shrink-0 text-right font-bold">🔥 ${state}<br>(${count} dabei)</span>
                             </button>`;
             });
             box.innerHTML = html;
@@ -3057,10 +3025,10 @@
                     });
                 } else {
                     const catSel = document.getElementById("again-category");
-                    const areaSel = document.getElementById("again-area");
                     let category = (catSel && catSel.value) ? catSel.value : data.category;
-                    // Nie Spaß-Quiz bei „Mit Freunden üben“ / Wissen
-                    if (!category || String(category).indexOf("spass") === 0 || (areaSel && areaSel.value === "spass")) {
+                    // Nur ohne jede Auswahl auf eine Lern-Kategorie ausweichen –
+                    // eine bewusst gewählte Spaß-Kategorie bleibt jetzt erhalten.
+                    if (!category) {
                         if (typeof suggestedArea === "function" && typeof getAreas === "function") {
                             const areas = getAreas("lernen") || [];
                             const sug = suggestedArea();
@@ -3068,11 +3036,14 @@
                             if (a && a.subjects && a.subjects[0]) category = a.subjects[0].key || a.subjects[0].value;
                         }
                     }
+                    // Spaß-Fragendateien liegen separat und werden erst bei Bedarf
+                    // nachgeladen (anders als der Lernstoff, der schon beim Start da ist).
+                    if (typeof ladeFragenFuer === "function") {
+                        try { await ladeFragenFuer(category); } catch (e) { /* */ }
+                    }
                     let pool = questionsForKey(category) || [];
-                    pool = pool.filter(function (q) { return q && q.area !== "spass"; });
                     if (pool.length < 3) {
-                        pool = (typeof QUESTIONS_DATABASE !== "undefined" ? QUESTIONS_DATABASE : [])
-                            .filter(function (q) { return q && q.area !== "spass"; });
+                        pool = (typeof QUESTIONS_DATABASE !== "undefined" ? QUESTIONS_DATABASE : []);
                     }
                     const questions = prepareQuestions(
                         pool.slice().sort(function () { return Math.random() - 0.5; })

@@ -3440,6 +3440,14 @@ body.tv-mirror-display .view {
   padding: 0.85rem 1rem 1.25rem;
   background: radial-gradient(ellipse at top, #1a1040 0%, #0b1020 55%, #070a14 100%);
   border-radius: 1.25rem;
+  /* Spielfeld nicht über eine sinnvolle Breite hinaus strecken – sonst
+     wirkt Text auf sehr breiten Laptop-/Monitor-Fenstern winzig, obwohl
+     er am Handy passt. container-type macht die Breite dieser Box (statt
+     des nackten Browserfensters) zur Basis für cqw-Schriftgrößen. */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  container-type: inline-size;
 }
 .tv-wr-flash {
   position: absolute;
@@ -3880,7 +3888,7 @@ body.tv-host-active #tv-host-play {
   font-weight: 900;
   color: #fff;
   line-height: 1.2;
-  font-size: clamp(0.55rem, 1.15vw, 0.78rem);
+  font-size: clamp(0.55rem, 1.15cqw, 0.78rem);
   margin: 0 auto;
   max-width: 56rem;
   text-shadow: 0 2px 18px rgba(0,0,0,0.35);
@@ -3889,14 +3897,14 @@ body.tv-host-active #tv-host-play {
   margin-top: 0.5rem;
   font-weight: 800;
   color: #6ee7b7;
-  font-size: clamp(0.85rem, 1.8vw, 1.25rem);
+  font-size: clamp(0.85rem, 1.8cqw, 1.25rem);
 }
 .tv-show-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
   align-content: center;
-  gap: clamp(0.45rem, 1.1vw, 0.8rem);
+  gap: clamp(0.45rem, 1.1cqw, 0.8rem);
   flex: 0 0 auto;
   min-height: 0;
   max-height: 100%;
@@ -3914,7 +3922,7 @@ body.tv-host-active #tv-host-play {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  gap: clamp(0.35rem, 1vw, 0.6rem);
+  gap: clamp(0.35rem, 1cqw, 0.6rem);
   flex: 0 0 auto;
   max-width: 46rem;
   margin: 0 auto;
@@ -3926,7 +3934,7 @@ body.tv-host-active #tv-host-play {
   justify-content: center;
   gap: 0.5rem;
   border-radius: 1rem;
-  padding: clamp(0.3rem, 0.7vw, 0.6rem) clamp(0.6rem, 1.3vw, 1rem);
+  padding: clamp(0.3rem, 0.7cqw, 0.6rem) clamp(0.6rem, 1.3cqw, 1rem);
   min-height: clamp(44px, 7vh, 72px);
   box-shadow: 0 10px 28px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.18);
   overflow: hidden;
@@ -3934,8 +3942,8 @@ body.tv-host-active #tv-host-play {
 }
 .tv-show-label {
   flex-shrink: 0;
-  width: clamp(1.5rem, 3vw, 2.05rem);
-  height: clamp(1.5rem, 3vw, 2.05rem);
+  width: clamp(1.5rem, 3cqw, 2.05rem);
+  height: clamp(1.5rem, 3cqw, 2.05rem);
   border-radius: 999px;
   background: rgba(0,0,0,0.28);
   border: 2px solid rgba(255,255,255,0.45);
@@ -3944,7 +3952,7 @@ body.tv-host-active #tv-host-play {
   justify-content: center;
   font-weight: 900;
   color: #fff;
-  font-size: clamp(0.8rem, 1.7vw, 1.05rem);
+  font-size: clamp(0.8rem, 1.7cqw, 1.05rem);
 }
 .tv-show-answer {
   position: relative;
@@ -3952,7 +3960,7 @@ body.tv-host-active #tv-host-play {
   font-weight: 900;
   color: #fff;
   text-align: center;
-  font-size: clamp(1rem, 2.1vw, 1.6rem);
+  font-size: clamp(1rem, 2.1cqw, 1.6rem);
   line-height: 1.2;
   word-break: break-word;
   text-shadow: 0 1px 8px rgba(0,0,0,0.25);
@@ -3962,7 +3970,7 @@ body.tv-host-active #tv-host-play {
   right: 6%;
   top: 50%;
   transform: translateY(-50%);
-  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-size: clamp(1.75rem, 3.5cqw, 2.75rem);
   font-weight: 900;
   color: #fff;
 }
@@ -4059,13 +4067,13 @@ body.tv-mirror-display #view-tv-quiz-host {
   max-width: none;
 }
 body.tv-mirror-display .tv-show-question {
-  font-size: clamp(0.55rem, 1.05vw, 0.68rem) !important;
+  font-size: clamp(0.55rem, 1.05cqw, 0.68rem) !important;
 }
 body.tv-mirror-display .tv-show-explain {
-  font-size: clamp(0.7rem, 1.35vw, 0.92rem) !important;
+  font-size: clamp(0.7rem, 1.35cqw, 0.92rem) !important;
 }
 body.tv-mirror-display .tv-show-answer {
-  font-size: clamp(0.9rem, 1.8vw, 1.15rem) !important;
+  font-size: clamp(0.9rem, 1.8cqw, 1.15rem) !important;
 }
 body.tv-mirror-display .tv-show-tile {
   min-height: clamp(46px, 7vh, 76px) !important;

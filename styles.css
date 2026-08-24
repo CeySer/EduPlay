@@ -3480,9 +3480,11 @@ body.tv-mirror-display .view {
 @media (orientation: portrait) {
   .tv-rotate-hint { display: block; }
 }
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-height: 520px) {
   .tv-rotate-hint { display: none !important; }
   /* Kompakt: Frage oben, Antworten eng darunter, kein Stretch-Loch */
+  /* Nur für echte Handy-Querformate (kurze Bildschirmhöhe) – bei Laptop/
+     großem Monitor greift stattdessen die normale, zentrierte .tv-show-stage. */
   .tv-show-stage {
     height: 100dvh;
     max-height: 100dvh;

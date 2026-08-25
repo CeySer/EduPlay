@@ -580,6 +580,12 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 clearInterval(scrabbleTimerInterval);
                 scrabbleTimerInterval = null;
             }
+            // Der Action-Ticker des Familien-Duells haengt an keinem der Timer
+            // oben. Wer ueber Drawer oder FAB rausging statt ueber "Beenden",
+            // liess ihn im Hintergrund weiterlaufen - samt Tick-Ton.
+            if (viewId !== 'scrabble-play' && typeof stopActionMode === 'function') {
+                stopActionMode();
+            }
             if (viewId !== 'suchsel-play' && typeof stopSuchselTimer === 'function') {
                 stopSuchselTimer();
             }

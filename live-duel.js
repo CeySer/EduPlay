@@ -1507,6 +1507,13 @@
                     if (players[key].pending) return;
                     let pts = players[key]._basePoints || 0;
                     const parts = [];
+                    // Action-Bonus: gab es im Familien-Duell (bonusEarned) und am
+                    // Fernseher laengst, online fehlte er komplett - derselbe
+                    // Modus hat also je nach Spielart unterschiedlich gepunktet.
+                    if (data.actionMode && pts > 0 && players[key].word) {
+                        pts += 5;
+                        parts.push("Action +5");
+                    }
                     if (pts > 0) {
                         players[key].answerStreak = (players[key].answerStreak || 0) + 1;
                         const isFirst = (key === firstKey);
@@ -2600,13 +2607,12 @@
                 // ============================================================
                 // NEU: Prüfen ob schon jemand eingereicht hat
                 // ============================================================
-                const hasAnyAnswer = Object.values(data.players).some(p => p.hasAnswered === true);
+                const hasAnyAnswer = Object.values(data.players || {}).some(p => p && p.hasAnswered === true);
 
                 if (hasAnyAnswer) {
-                    console.log("⏸ Action-Mode pausiert - Spieler hat schon geantwortet");
-                    // Action-Mode komplett stoppen
+                    // Nicht "pausiert": der Modus wird hier endgueltig beendet.
                     stopLiveDuelActionMode();
-                    showLiveDuelActionFeedback("⏸ Action-Mode pausiert (jemand hat geantwortet)");
+                    showLiveDuelActionFeedback("⏹ Action-Modus beendet – es wurde schon eingereicht");
                     return;
                 }
 

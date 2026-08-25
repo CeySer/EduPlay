@@ -492,6 +492,12 @@
                 clearInterval(scrabbleState.changeInterval);
                 scrabbleState.changeInterval = null;
             }
+            // Auch die Rundenuhr anhalten. Vorher lief sie nach dem Verlassen
+            // weiter und reichte bei 0 noch ein Wort ein - mitten im Menue.
+            if (typeof scrabbleTimerInterval !== "undefined" && scrabbleTimerInterval) {
+                clearInterval(scrabbleTimerInterval);
+                scrabbleTimerInterval = null;
+            }
         }
 
         // Tipp-Knopf im Wort-Duell (ein Gerät). Verrät Anfangsbuchstabe und
@@ -749,6 +755,9 @@
 
         async function submitScrabbleWord() {
             if (scrabbleSubmitting) return;
+            // Kann durch die nachlaufende Rundenuhr auch nach dem Verlassen
+            // ausgeloest werden - dann gibt es nichts mehr einzureichen.
+            if (!scrabbleState || !scrabbleState.playerKeys) return;
             scrabbleSubmitting = true;
             clearInterval(scrabbleTimerInterval);
 
@@ -947,6 +956,9 @@
 
         function startActionMode() {
             if (!scrabbleState || !scrabbleState.actionMode) return;
+            // Alten Ticker sicher beenden: sonst laeuft er als Waise weiter und
+            // greift spaeter auf ein bereits geleertes scrabbleState zu.
+            stopActionMode();
 
             const timing = getActionTiming(scrabbleState.difficulty);
             // Erste Aenderung nach fester firstChange-Zeit
@@ -954,6 +966,7 @@
 
             // Alle 500ms pruefen ob Zeit fuer Aenderung gekommen ist
             scrabbleState.changeInterval = setInterval(() => {
+                if (!scrabbleState || !scrabbleState.actionMode) { stopActionMode(); return; }
                 if (Date.now() >= scrabbleState.nextChangeTime) {
                     changeLettersRandomly();
                     scheduleNextChange();

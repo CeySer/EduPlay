@@ -4126,6 +4126,175 @@ body.tv-mirror-display .tv-show-tile {
   }
 }
 
+/* ============================================================
+   TV-Modus: die uebrigen Bildschirme (Lobby, Siegerehrung,
+   Wort-Raetsel, Wort-Duell)
+
+   Dort standen die Groessen als feste rem-Werte - 0.65rem fuer die
+   Code-Beschriftung, 0.68rem fuer die Knoepfe der Siegerehrung, 0.85rem
+   fuer die Punktestaende. Auf einem Handy in der Hand geht das, auf einem
+   gespiegelten Fernseher sind das 10 bis 14 Pixel. Alles hier haengt
+   jetzt an der Bildschirmhoehe (vh) und waechst damit mit.
+   ============================================================ */
+
+/* --- Lobby ------------------------------------------------- */
+body.tv-mirror-display .tv-lobby-title {
+  font-size: clamp(1.35rem, 5.5vh, 2.6rem) !important;
+}
+body.tv-mirror-display .tv-lobby-code {
+  font-size: clamp(2rem, 8vh, 3.6rem) !important;
+}
+body.tv-mirror-display .tv-lobby-code-label {
+  font-size: clamp(0.7rem, 1.9vh, 1.05rem);
+}
+body.tv-mirror-display .tv-lobby-qr img {
+  width: clamp(64px, 17vh, 160px) !important;
+  height: clamp(64px, 17vh, 160px) !important;
+}
+body.tv-mirror-display .tv-lobby-share {
+  font-size: clamp(0.85rem, 2.2vh, 1.2rem);
+}
+body.tv-mirror-display .tv-lobby-status {
+  font-size: clamp(0.95rem, 3.2vh, 1.4rem);
+}
+body.tv-mirror-display .tv-lobby-player {
+  font-size: clamp(1.15rem, 5vh, 2rem);
+  padding: 0.45rem clamp(0.9rem, 2.2vh, 1.4rem);
+}
+body.tv-mirror-display .tv-lobby-player-dot {
+  width: clamp(0.55rem, 1.4vh, 0.85rem);
+  height: clamp(0.55rem, 1.4vh, 0.85rem);
+}
+body.tv-mirror-display .tv-lobby-empty {
+  font-size: clamp(1rem, 2.8vh, 1.5rem);
+}
+body.tv-mirror-display .tv-lobby-start {
+  font-size: clamp(1.1rem, 4.4vh, 1.9rem) !important;
+}
+body.tv-mirror-display .tv-lobby-cancel {
+  font-size: clamp(0.85rem, 2.1vh, 1.1rem);
+}
+
+/* --- Siegerehrung ------------------------------------------ */
+body.tv-mirror-display .tv-podium-title {
+  font-size: clamp(1.5rem, 6vh, 3rem) !important;
+}
+body.tv-mirror-display .tv-podium-name {
+  font-size: clamp(1.1rem, 4.6vh, 2rem) !important;
+}
+body.tv-mirror-display .tv-podium-score {
+  font-size: clamp(1.05rem, 4.2vh, 1.8rem) !important;
+}
+body.tv-mirror-display .tv-podium-medal {
+  font-size: clamp(1.35rem, 4.8vh, 2.4rem) !important;
+  width: clamp(1.9rem, 6vh, 3.2rem) !important;
+}
+body.tv-mirror-display .tv-podium-again-title {
+  font-size: clamp(1rem, 3vh, 1.6rem) !important;
+}
+body.tv-mirror-display .tv-podium-again-sub {
+  font-size: clamp(0.8rem, 2vh, 1.1rem);
+}
+body.tv-mirror-display .tv-podium-nav button {
+  font-size: clamp(0.85rem, 3vh, 1.25rem) !important;
+}
+body.tv-mirror-display .tv-podium-right select.input-modern {
+  font-size: clamp(0.9rem, 3vh, 1.25rem) !important;
+  padding: 0.4rem 1.75rem 0.4rem 0.6rem !important;
+}
+body.tv-mirror-display .tv-podium-start {
+  font-size: clamp(1.05rem, 4vh, 1.75rem) !important;
+}
+body.tv-mirror-display .tv-podium-leave {
+  font-size: clamp(0.8rem, 2.1vh, 1.1rem) !important;
+}
+
+/* --- Wort-Raetsel ------------------------------------------ */
+/* Das gesuchte Wort ist auf diesem Bildschirm die Hauptsache und stand
+   mit 1.25rem kleiner da als die Frage im Quiz. */
+body.tv-mirror-display .tv-wr-letter {
+  font-size: clamp(1.5rem, 6.5vh, 3rem) !important;
+  width: clamp(2.4rem, 8vh, 4rem) !important;
+  height: clamp(2.9rem, 9.6vh, 4.8rem) !important;
+}
+body.tv-mirror-display .tv-wr-score-name,
+body.tv-mirror-display .tv-wr-score-pts {
+  font-size: clamp(0.95rem, 3.4vh, 1.45rem);
+}
+body.tv-mirror-display .tv-wr-score-chip {
+  padding: 0.25rem clamp(0.65rem, 1.8vh, 1.1rem);
+}
+/* Die Rate-Figur ist die halbe Spannung des Spiels und war mit rund
+   110 Pixeln kaum zu erkennen. */
+body.tv-mirror-display .tv-wr-figure {
+  width: clamp(120px, 30vh, 260px) !important;
+  height: clamp(145px, 38vh, 320px) !important;
+}
+/* Figur links, Wort rechts - das galt bisher nur fuer flache
+   Handy-Querformate (max-height 520px). Auf einem Fernseher-Browser oder
+   per HDMI stapelte sich beides untereinander und rutschte unten aus dem
+   Bild. Im TV-Modus ist Querformat ohnehin Pflicht. */
+@media (orientation: landscape) {
+  body.tv-mirror-display .tv-wr-stage .tv-wr-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.75rem, 3vh, 2.5rem);
+  }
+  body.tv-mirror-display .tv-wr-figure-wrap { flex: 0 0 auto; }
+  body.tv-mirror-display .tv-wr-side {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+  }
+  body.tv-mirror-display .tv-wr-mask {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(0.25rem, 0.8vh, 0.5rem);
+  }
+}
+
+/* --- Wort-Duell: Buchstaben-Kacheln ------------------------- */
+/* Die Kacheln kommen aus duel-scrabble.js mit festen Tailwind-Klassen
+   (w-12/h-12), die am Fernseher nicht mitwachsen. */
+body.tv-mirror-display #tv-host-play .tv-show-scrabble-rack > div {
+  width: clamp(3rem, 10vh, 5.5rem) !important;
+  height: clamp(3rem, 10vh, 5.5rem) !important;
+}
+body.tv-mirror-display #tv-host-play .tv-show-scrabble-rack > div > span:first-child {
+  font-size: clamp(1.75rem, 6.5vh, 3.4rem) !important;
+}
+
+/* --- gemeinsame Fusszeile ----------------------------------- */
+/* Es gibt zwei .tv-show-footer-Regeln in dieser Datei; die zweite
+   (flex-direction: column) gewinnt. Am Fernseher stapelten sich Zaehler
+   und Knoepfe dadurch untereinander und frassen ein Drittel der Hoehe. */
+body.tv-mirror-display .tv-show-footer {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.4rem, 1.6vh, 1rem);
+}
+/* Lobby mittig statt oben angeklebt - die Spielerliste ist ohnehin auf
+   42vh gedeckelt, es kann also nichts aus dem Bild wachsen. */
+body.tv-mirror-display .tv-lobby-stage {
+  justify-content: center !important;
+  gap: clamp(0.5rem, 2vh, 1.25rem);
+}
+body.tv-mirror-display .tv-show-counter {
+  font-size: clamp(0.95rem, 3.2vh, 1.45rem) !important;
+}
+body.tv-mirror-display .tv-show-qnum {
+  font-size: clamp(0.85rem, 2.2vh, 1.3rem) !important;
+}
+
 /* Zwingendes Querformat für TV-Host */
 .tv-landscape-lock {
   position: fixed;

@@ -53,6 +53,7 @@
         let tvScrabbleSelected = [];
         let tvScrabbleCurrentLetters = [];
         let tvScrabbleCurrentRequired = "";
+        let tvScrabbleLetzteRunde = -1;
 
         function tvHostPlayEl() {
             return document.getElementById("tv-host-play") || document.getElementById("view-tv-quiz-host");
@@ -839,6 +840,21 @@
             } catch (e) { /* */ }
         }
 
+        // Schreibt ausschliesslich die ausgerechneten Felder pro Spieler statt der
+        // kompletten players-Map. Die Map stammt vom Rundenbeginn; wer in der
+        // Zwischenzeit beigetreten ist, wurde beim Zurueckschreiben wieder
+        // entfernt - und sein Handy stand danach stumm da.
+        function tvPunkteUpdate(playersData, felder, extra) {
+            const update = Object.assign({}, extra || {});
+            Object.keys(playersData || {}).forEach(function (k) {
+                felder.forEach(function (f) {
+                    const wert = playersData[k][f];
+                    update["players." + k + "." + f] = (wert === undefined ? null : wert);
+                });
+            });
+            return update;
+        }
+
         function revealTVAnswer(data) {
             stopTVRoundTimer();
             window._tvHostRenderKey = null;
@@ -886,7 +902,11 @@
             });
             // Ein Schreibvorgang statt zwei: showAnswer und Punkte kamen vorher
             // getrennt an, dazwischen sah der Spieler kurz die alte Punktzahl.
-            tvGameRef.update({ showAnswer: true, players: playersData });
+            tvGameRef.update(tvPunkteUpdate(
+                playersData,
+                ["score", "answerStreak", "lastRoundPoints", "lastRoundDetail"],
+                { showAnswer: true }
+            ));
 
             // Host-Anzeige: Erster + Streak
             try {
@@ -1011,14 +1031,17 @@
                     playersData[k].lastAnswer = null;
                 });
                 isResolving = false;
-                await tvGameRef.update({
-                    currentQuestionIndex: nextIndex,
-                    showAnswer: false,
-                    answerDeadline: null,
-                    players: playersData,
-                    correctAnswer: tvQuestions[nextIndex].correct,
-                    answerCount: tvQuestions[nextIndex].answers.length
-                });
+                await tvGameRef.update(tvPunkteUpdate(
+                    playersData,
+                    ["hasAnswered", "lastAnswer"],
+                    {
+                        currentQuestionIndex: nextIndex,
+                        showAnswer: false,
+                        answerDeadline: null,
+                        correctAnswer: tvQuestions[nextIndex].correct,
+                        answerCount: tvQuestions[nextIndex].answers.length
+                    }
+                ));
                 showTVHostQuestion(nextIndex);
             }
         }
@@ -1285,7 +1308,7 @@
                     const hatSchonGeantwortet = frisch && Object.values(frisch.players || {}).some(p => p && p.hasAnswered === true);
                     if (!frisch || frisch.status !== "playing" || hatSchonGeantwortet) {
                         stopTVActionMode();
-                        if (typeof showToast === "function") showToast("⏸ Action-Modus pausiert (jemand hat schon geantwortet)", "info", "cast");
+                        if (typeof showToast === "function") showToast("⏹ Action-Modus beendet - es wurde schon geantwortet", "info", "cast");
                         return;
                     }
                     const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode || "kids");
@@ -1369,6 +1392,9 @@
                 wrongCount: 0,
                 roundOver: false,
                 roundSolved: false,
+                roundSolvedBy: null,
+                roundSolvedByName: "",
+                lastSolveAttempt: null,
                 wrTurnDeadline: Date.now() + 25000,
                 usedWords,
                 players,
@@ -1483,8 +1509,14 @@
             }
             clearTVWrTimers();
             tvWrTimerKey = key;
-            const el = document.getElementById("tv-wr-turn-timer");
             function paint() {
+                // Das Element bei JEDEM Tick neu holen. Der Fernseher zeichnet die
+                // Buehne bei jedem Snapshot neu (und Snapshots kommen dauernd, weil
+                // jedes Handy alle 12 Sekunden ein Lebenszeichen schickt). Eine
+                // einmal gemerkte Referenz zeigt danach auf ein Element, das gar
+                // nicht mehr im Dokument steht - die Sekunden blieben stehen,
+                // waehrend der Zug im Hintergrund trotzdem ablief.
+                const el = document.getElementById("tv-wr-turn-timer");
                 const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
                 if (el) el.textContent = left > 0 ? ("⏱ Zug: " + left + "s") : "⏱ Zeit um…";
                 return left;
@@ -1508,12 +1540,15 @@
             if (tvWrTimerKey === key && tvWrAutoAdvanceId) return;
             clearTVWrTimers();
             tvWrTimerKey = key;
-            const el = document.getElementById("tv-wr-turn-timer");
             let left = 5;
-            if (el) el.textContent = "Nächste Runde in " + left + "s…";
+            const malen = function (txt) {
+                const el = document.getElementById("tv-wr-turn-timer");
+                if (el) el.textContent = txt;
+            };
+            malen("Nächste Runde in " + left + "s…");
             tvWrAutoAdvanceId = setInterval(function () {
                 left--;
-                if (el) el.textContent = left > 0 ? ("Nächste Runde in " + left + "s…") : "Weiter…";
+                malen(left > 0 ? ("Nächste Runde in " + left + "s…") : "Weiter…");
                 if (left <= 0) {
                     clearInterval(tvWrAutoAdvanceId);
                     tvWrAutoAdvanceId = null;
@@ -1545,18 +1580,32 @@
                 return;
             }
             usedWords.push(word);
-            const order = data.order || Object.keys(data.players || {});
-            await tvGameRef.update({
+            // Dieselbe Reihenfolge wie ueberall sonst (gefiltert, Nachzuegler
+            // angehaengt). Vorher stand hier die alte, ungefilterte data.order -
+            // dadurch konnte beim Rundenwechsel jemand anderes dran sein als der,
+            // den der Fernseher angezeigt hat.
+            const order = tvWrActiveOrder(data);
+            const update = {
                 currentRound: (data.currentRound || 0) + 1,
                 turnIndex: order.length ? (data.currentRound || 0) % order.length : 0,
+                order: order,
                 word,
                 guessed: [],
                 wrongCount: 0,
                 roundOver: false,
                 roundSolved: false,
+                roundSolvedBy: null,
+                roundSolvedByName: "",
+                // Alter Loesungsversuch muss weg, sonst steht der Tipp aus Runde 1
+                // noch in Runde 3 neben einem voellig anderen Wort.
+                lastSolveAttempt: null,
                 wrTurnDeadline: Date.now() + 25000,
                 usedWords
+            };
+            Object.keys(data.players || {}).forEach(function (k) {
+                update["players." + k + ".lastRoundPoints"] = 0;
             });
+            await tvGameRef.update(update);
         }
 
         // Manuelles Weiterschalten, falls der/die Spieler:in am Zug gerade nicht
@@ -1646,6 +1695,21 @@
             const key = activePlayerKey;
             if (!key) return;
             try {
+                // Nur wer am Zug ist, darf das ganze Wort raten. Vorher durfte das
+                // jeder jederzeit - jeder Fehlversuch zaehlte aber auf das
+                // gemeinsame Fehlerkonto, also konnte ein Kind die Runde fuer alle
+                // beenden, ohne je an der Reihe gewesen zu sein.
+                const vorabSnap = await tvGameRef.get();
+                const vorab = vorabSnap.exists ? vorabSnap.data() : null;
+                if (vorab && !vorab.roundOver) {
+                    const ordn = tvWrActiveOrder(vorab);
+                    const dran = ordn.length ? ordn[(vorab.turnIndex || 0) % ordn.length] : null;
+                    if (dran !== key) {
+                        const wer = (dran && vorab.players && vorab.players[dran] && vorab.players[dran].name) || "jemand anderes";
+                        showToast("Erst raten, wenn du dran bist - gerade ist " + wer + " an der Reihe.", "error", "wrsolve");
+                        return;
+                    }
+                }
                 // Tipp für alle sichtbar machen
                 await tvGameRef.update({
                     lastSolveAttempt: {
@@ -1667,7 +1731,9 @@
                     const players = Object.assign({}, data.players || {});
                     if (!players[key]) return;
                     const guessedSet = new Set(data.guessed || []);
-                    // Jeder darf jederzeit lösen (nicht nur am Zug)
+                    const ordnung = tvWrActiveOrder(data);
+                    const amZug = ordnung.length ? ordnung[(data.turnIndex || 0) % ordnung.length] : null;
+                    if (amZug !== key) return;
                     if (guess === target) {
                         const points = (typeof wrPointsForFullSolve === "function")
                             ? wrPointsForFullSolve(word, guessedSet) : 15;
@@ -1676,7 +1742,7 @@
                             lastRoundPoints: points
                         });
                         txn.update(tvGameRef, {
-                            guessed: word.split(""),
+                            guessed: word.split("").filter(function (ch, i, a) { return a.indexOf(ch) === i; }),
                             players,
                             roundOver: true,
                             roundSolved: true,
@@ -1688,11 +1754,14 @@
                         let roundOver = false, roundSolved = false;
                         const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
                         if (wrongCount >= maxW) { roundOver = true; roundSolved = false; }
-                        const order = data.order || [];
-                        const update = { wrongCount, players, roundOver, roundSolved };
-                        if (!roundOver && order.length) {
-                            update.turnIndex = ((data.turnIndex || 0) + 1) % order.length;
+                        const update = { wrongCount, players, roundOver, roundSolved, order: ordnung };
+                        if (!roundOver && ordnung.length) {
+                            update.turnIndex = ((data.turnIndex || 0) + 1) % ordnung.length;
+                            // Frist mitgeben: sonst erbt der Naechste die Restzeit des
+                            // Vorgaengers und wird nach zwei Sekunden uebersprungen.
+                            update.wrTurnDeadline = Date.now() + 25000;
                         }
+                        if (roundOver) update.wrTurnDeadline = null;
                         txn.update(tvGameRef, update);
                     }
                 });
@@ -1774,21 +1843,29 @@
             Object.keys(playersData).forEach(k => {
                 playersData[k].hasAnswered = false;
                 playersData[k].word = "";
+                playersData[k].submittedLetters = [];
+                playersData[k].submittedRequired = "";
                 playersData[k].score = playersData[k].score || 0;
             });
 
             isResolving = false;
 
-            tvGameRef.update({
-                status: "playing",
-                showAnswer: false,
-                answerDeadline: null,
-                currentLetters: letters,
-                currentSolution: rack.solution,
-                currentRequired: rack.required || "",
-                currentRound: round,
-                players: playersData
-            });
+            // Nur die eigenen Felder je Spieler zuruecksetzen. Frueher wurde die
+            // komplette Liste vom Rundenbeginn zurueckgeschrieben - wer waehrend
+            // der Auswertung beigetreten war, verschwand damit wieder.
+            tvGameRef.update(tvPunkteUpdate(
+                playersData,
+                ["hasAnswered", "word", "submittedLetters", "submittedRequired", "score"],
+                {
+                    status: "playing",
+                    showAnswer: false,
+                    answerDeadline: null,
+                    currentLetters: letters,
+                    currentSolution: rack.solution,
+                    currentRequired: rack.required || "",
+                    currentRound: round
+                }
+            ));
 
             // NICHT mehr showTVHostScrabbleRound() hier aufrufen - das macht der Listener!
             // showTVHostScrabbleRound(letters, round, data.totalRounds, rack.required || "");
@@ -1872,9 +1949,13 @@
                 // TV: etwas großzügiger – Kinder min. 2 Buchstaben
                 const _minW = (data.wordMode === "kids" || data.difficulty === "leicht")
                     ? 2 : Math.max(2, _cfgMin - (data.difficulty === "mittel" ? 1 : 0));
-                const res = await evaluateScrabbleWord(playersData[key].word, letters, {
+                // Buchstaben dieses Spielers, sonst die der Runde
+                const _sl = (playersData[key].submittedLetters && playersData[key].submittedLetters.length)
+                    ? playersData[key].submittedLetters : letters;
+                const _sr = playersData[key].submittedRequired || currentRequired;
+                const res = await evaluateScrabbleWord(playersData[key].word, _sl, {
                     minWord: _minW < 2 ? 2 : _minW,
-                    required: currentRequired,
+                    required: _sr,
                     used: tvUsedWords,
                     addToUsed: false
                 });
@@ -1922,7 +2003,11 @@
                     tvUsedWords.add(String(playersData[k].word).toUpperCase());
                 }
             });
-            tvGameRef.update({ showAnswer: true, players: playersData });
+            tvGameRef.update(tvPunkteUpdate(
+                playersData,
+                ["score", "answerStreak", "lastRoundPoints", "lastRoundDetail", "wordStatus"],
+                { showAnswer: true }
+            ));
 
             try {
                 const top = Object.entries(playersData)
@@ -2079,6 +2164,7 @@
 
                 tvGameRef = lobbyRef;
                 isTVHost = false;
+                tvPlayerRenderReset();
                 starteTVLebenszeichen();
 
                 setTVPlayerPlayHTML(`<div class="glass-card-glow p-12 text-center mt-12" style="border-color:rgba(16,185,129,0.15);"><div class="text-8xl mb-6 animate-bounce">🙌</div><h2 class="text-3xl font-black text-emerald-400 mb-4">Du bist drin!</h2><p class="text-lg text-white font-bold">Gleich geht's los. Schau auf den Fernseher!</p></div>`);
@@ -2106,8 +2192,22 @@
                         return;
                     }
                     const data = doc.data();
-                    const myData = data.players[activePlayerKey];
-                    if (!myData) return;
+                    const myData = (data.players || {})[activePlayerKey];
+                    if (!myData) {
+                        // Kann passieren, wenn die Auswertung eine aeltere Spielerliste
+                        // zurueckschreibt. Frueher stand das Handy hier einfach stumm.
+                        if (tvPlayerBrauchtNeu("weg")) {
+                            stoppeTVWrHandyTimer();
+                            setTVPlayerPlayHTML('<div class="glass-card p-8 text-center mt-12 space-y-4">'
+                                + '<div class="text-6xl">🔌</div>'
+                                + '<h2 class="text-xl font-black text-amber-300">Du bist gerade nicht in der Runde</h2>'
+                                + '<p class="text-sm text-gray-400">Das kann beim Rundenwechsel passieren. Tipp auf „Wieder mitspielen“, dann bist du sofort zurück.</p>'
+                                + '<button onclick="joinTVGameLast()" class="btn-primary w-full text-center">Wieder mitspielen</button>'
+                                + '<button onclick="leaveTVGame(true)" class="btn-secondary w-full text-center text-sm">Zurück ins Menü</button>'
+                                + '</div>');
+                        }
+                        return;
+                    }
                     // Profil auf anderem Gerät übernommen
                     if (myData.sessionId && window.DEVICE_SESSION_ID
                         && myData.sessionId !== window.DEVICE_SESSION_ID
@@ -2132,9 +2232,16 @@
 
                     if (data.mode === "wortraten") {
                         if (data.status === "playing") {
-                            const order = data.order || [];
+                            // Dieselbe Reihenfolge wie am Fernseher (gefiltert) - vorher
+                            // stand hier die rohe data.order, die davon abweichen kann.
+                            const order = tvWrActiveOrder(data);
                             const turnKey = order.length ? order[(data.turnIndex || 0) % order.length] : null;
                             const isMyTurn = turnKey === activePlayerKey && !data.roundOver;
+                            const _wrKey = "wr:" + (data.currentRound || 0) + ":" + (data.roundOver ? 1 : 0)
+                                + ":" + turnKey + ":" + (data.guessed || []).join("")
+                                + ":" + (data.wrongCount || 0) + ":" + (data.wrTurnDeadline || 0)
+                                + ":" + (myData.score || 0);
+                            if (!tvPlayerBrauchtNeu(_wrKey)) return;
                             const word = data.word || "";
                             const guessed = new Set(data.guessed || []);
                             const mask = word.split("").map(ch =>
@@ -2170,9 +2277,13 @@
                                 const timerLine = (!data.roundOver && data.wrTurnDeadline)
                                     ? `<p id="tv-wr-player-timer" class="text-center text-sky-300 font-black text-sm mb-1">⏱ ${_tl}s</p>`
                                     : "";
-                                const solveBtn = !data.roundOver
-                                    ? `<button type="button" onclick="promptTVWrSolveWord()" class="btn-primary text-xs w-full py-2 mt-2" style="background:var(--gradient-cool);">💡 Ich kenne das Wort!</button>`
-                                    : "";
+                                // Das ganze Wort darf nur raten, wer am Zug ist - ein
+                                // Fehlversuch zaehlt auf das gemeinsame Fehlerkonto.
+                                const solveBtn = data.roundOver
+                                    ? ""
+                                    : (isMyTurn
+                                        ? `<button type="button" onclick="promptTVWrSolveWord()" class="btn-primary text-xs w-full py-2 mt-2" style="background:var(--gradient-cool);">💡 Ich kenne das Wort!</button>`
+                                        : `<button type="button" disabled class="btn-primary text-xs w-full py-2 mt-2 opacity-40">💡 Wort raten – wenn du dran bist</button>`);
                                 body = `${timerLine}${banner}<div class="grid grid-cols-7 gap-1.5">${kb}</div>${solveBtn}`;
                             }
                             setTVPlayerPlayHTML(`
@@ -2182,7 +2293,11 @@
                                     ${body}
                                     <p class="text-center text-sm font-bold text-sky-200">Gesamt: ${myData.score || 0} Pkt.</p>
                                 </div>`);
+                            if (!data.roundOver && data.wrTurnDeadline) starteTVWrHandyTimer(data.wrTurnDeadline);
+                            else stoppeTVWrHandyTimer();
                         } else if (data.status === "finished") {
+                            if (!tvPlayerBrauchtNeu("wrfin:" + (myData.score || 0))) return;
+                            stoppeTVWrHandyTimer();
                             const _coinKey = tvGameRef.id + ":" + activePlayerKey;
                             if (!myData.coinsClaimed && !tvCoinsClaimedLocal.has(_coinKey)) {
                                 tvCoinsClaimedLocal.add(_coinKey);
@@ -2199,6 +2314,7 @@
                         if (data.status === "playing") {
                             if (data.showAnswer) {
                                 const points = myData.lastRoundPoints || 0;
+                                if (!tvPlayerBrauchtNeu("sca:" + (data.currentRound || 0) + ":" + points + ":" + (myData.wordStatus || ""))) return;
                                 const bg = points > 0 ? "bg-emerald-500" : "bg-gray-700";
                                 const pInfo = wordStatusInfo(myData.wordStatus, myData);
                                 const statusText = myData.wordStatus === "valid" ? "Erkannt! ✅" :
@@ -2210,6 +2326,15 @@
                                 } else { SFX.wrong(); }
                             } else if (!myData.hasAnswered) {
                                 const lettersKey = (data.currentLetters || []).join('');
+                                if (!tvPlayerBrauchtNeu("sc:" + (data.currentRound || 0) + ":" + lettersKey + ":" + (data.currentRequired || ""))) return;
+                                // Wechsel mitten in derselben Runde = Action-Modus.
+                                // Am Fernseher gab es dafuer schon einen Hinweis, am
+                                // Handy tauschten die Kacheln bisher wortlos.
+                                const _actionWechsel = !!data.actionMode
+                                    && tvScrabbleLetzteRunde === (data.currentRound || 0)
+                                    && tvScrabbleCurrentLetters.length > 0
+                                    && lettersKey !== tvScrabbleCurrentLetters.join('');
+                                tvScrabbleLetzteRunde = (data.currentRound || 0);
                                 if (lettersKey !== tvScrabbleCurrentLetters.join('')) {
                                     tvScrabbleSelected = [];
                                 }
@@ -2231,8 +2356,13 @@
                                         </div>
                                     </div>`);
                                 renderTVScrabblePreview();
+                                if (_actionWechsel) {
+                                    if (typeof showToast === "function") showToast("⚡ Neue Buchstaben! Dein Wort wurde zurückgesetzt.", "info", "action");
+                                    try { if (typeof SFX !== "undefined" && SFX.tick) SFX.tick(); } catch (e) { }
+                                }
                             }
                         } else if (data.status === "finished") {
+                            if (!tvPlayerBrauchtNeu("scfin:" + (myData.score || 0))) return;
                             const _coinKey = tvGameRef.id + ":" + activePlayerKey;
                             if (!myData.coinsClaimed && !tvCoinsClaimedLocal.has(_coinKey)) {
                                 tvCoinsClaimedLocal.add(_coinKey);
@@ -2249,6 +2379,8 @@
                         if (data.showAnswer) {
                             const isCorrect = myData.lastAnswer === data.correctAnswer;
                             const pts = myData.lastRoundPoints || (isCorrect ? 10 : 0);
+                            // Ohne Bremse liefen Konfetti und Ton bei jedem Lebenszeichen erneut.
+                            if (!tvPlayerBrauchtNeu("qa:" + (data.currentQuestionIndex || 0) + ":" + myData.lastAnswer + ":" + pts)) return;
                             const bg = isCorrect ? "bg-emerald-500" : "bg-rose-600";
                             const icon = isCorrect ? "✅" : "❌";
                             const text = isCorrect ? "Richtig!" : "Leider falsch!";
@@ -2262,6 +2394,7 @@
                                 }
                             } else { SFX.wrong(); }
                         } else if (!myData.hasAnswered) {
+                            if (!tvPlayerBrauchtNeu("q:" + (data.currentQuestionIndex || 0) + ":" + (data.answerCount || 0))) return;
                             if (Array.isArray(data.questions) && data.questions.length) tvQuestions = data.questions;
                             const q = tvQuestions[data.currentQuestionIndex];
                             const colors = (typeof TV_SHOW_COLORS !== "undefined")
@@ -2279,6 +2412,7 @@
                             setTVPlayerPlayHTML(btnHtml + `</div>`);
                         }
                     } else if (data.status === "finished") {
+                        if (!tvPlayerBrauchtNeu("fin:" + (myData.score || 0))) return;
                         const _coinKey = tvGameRef.id + ":" + activePlayerKey;
                         if (!myData.coinsClaimed && !tvCoinsClaimedLocal.has(_coinKey)) {
                             tvCoinsClaimedLocal.add(_coinKey);
@@ -2290,6 +2424,43 @@
                     }
                 });
             } catch (error) { handleError("joinTVGame", error, "Beitreten hat nicht geklappt."); }
+        }
+
+        // ============================================================
+        //  RENDER-BREMSE FUERS SPIELER-HANDY
+        //  Ohne sie ersetzte jeder Snapshot die komplette Oberflaeche - und
+        //  Snapshots kommen dauernd: jedes Handy sendet alle 12 Sekunden ein
+        //  Lebenszeichen, bei vier Mitspielern also im Schnitt alle 3 Sekunden.
+        //  Wer genau dann tippte, dessen Knopf verschwand unter dem Finger.
+        // ============================================================
+        let _tvPlayerRenderKey = "";
+        function tvPlayerBrauchtNeu(key) {
+            if (_tvPlayerRenderKey === key) return false;
+            _tvPlayerRenderKey = key;
+            return true;
+        }
+        function tvPlayerRenderReset() {
+            _tvPlayerRenderKey = "";
+            stoppeTVWrHandyTimer();
+        }
+
+        // Sekundenanzeige am Handy laeuft jetzt lokal weiter, statt bei jedem
+        // Snapshot neu gezeichnet zu werden.
+        let _tvWrHandyTimerId = null;
+        function stoppeTVWrHandyTimer() {
+            if (_tvWrHandyTimerId) { clearInterval(_tvWrHandyTimerId); _tvWrHandyTimerId = null; }
+        }
+        function starteTVWrHandyTimer(deadline) {
+            stoppeTVWrHandyTimer();
+            if (!deadline) return;
+            const malen = function () {
+                const el = document.getElementById("tv-wr-player-timer");
+                if (!el) return;
+                const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+                el.textContent = left > 0 ? ("⏱ " + left + "s") : "⏱ Zeit um…";
+            };
+            malen();
+            _tvWrHandyTimerId = setInterval(malen, 500);
         }
 
         function tvScrabbleCurrentWord() {
@@ -2353,15 +2524,23 @@
                 return;
             }
             tvScrabbleSelected = [];
+            tvPlayerRenderReset();
             setTVPlayerPlayHTML(`<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-amber-400 mb-4">Eingereicht!</h2><p class="text-lg font-bold text-gray-400">Warte auf die anderen...</p></div>`);
             await tvGameRef.update({
                 [`players.${activePlayerKey}.hasAnswered`]: true,
                 [`players.${activePlayerKey}.word`]: word,
-                [`players.${activePlayerKey}.answeredAt`]: Date.now()
+                [`players.${activePlayerKey}.answeredAt`]: Date.now(),
+                // Die Buchstaben mitschicken, die beim Einreichen auf dem Handy
+                // lagen. Im Action-Modus koennen sie sich im selben Moment
+                // aendern - gewertet wird dann trotzdem das, was der Spieler
+                // wirklich vor sich hatte. (Kniff aus dem Online-Duell.)
+                [`players.${activePlayerKey}.submittedLetters`]: tvScrabbleCurrentLetters.slice(),
+                [`players.${activePlayerKey}.submittedRequired`]: tvScrabbleCurrentRequired || ""
             });
         }
 
         async function submitTVAnswer(ansIndex) {
+            tvPlayerRenderReset();
             setTVPlayerPlayHTML(`<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-indigo-400 mb-4">Eingeloggt!</h2><p class="text-lg font-bold text-gray-400">Schau auf den Fernseher...</p></div>`);
             await tvGameRef.update({
                 [`players.${activePlayerKey}.hasAnswered`]: true,
@@ -2398,6 +2577,7 @@
             stoppeTVLebenszeichen();
             stoppeTVRundenTimer();
             stopTVActionMode();
+            tvPlayerRenderReset();
             tvGameRef = null;
             isTVHost = false;
             isResolving = false;

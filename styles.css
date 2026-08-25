@@ -3167,7 +3167,6 @@ body:not(.dark-theme) .text-indigo-400 {
 body.tv-mirror-display #header-menu,
 body.tv-mirror-display #header-family,
 body.tv-mirror-display [id^="drawer"],
-body.tv-mirror-display #castControlPanel,
 body.tv-mirror-display #tv-player-exit {
   display: none !important;
 }
@@ -3517,13 +3516,15 @@ body.tv-mirror-display .view {
     height: 8px;
   }
   .tv-show-question {
-    font-size: clamp(0.36rem, 0.85vh, 0.46rem) !important;
-    line-height: 1.2 !important;
-    margin: 0 auto 0.2rem !important;
+    /* Vorher clamp(0.36rem, 0.85vh, 0.46rem) - rund 6 Pixel. Auf einem
+       gespiegelten Fernseher war die Frage praktisch unlesbar. */
+    font-size: clamp(1rem, 3.6vh, 1.7rem) !important;
+    line-height: 1.15 !important;
+    margin: 0 auto 0.25rem !important;
     max-width: 94vw;
   }
   .tv-show-explain {
-    font-size: clamp(0.52rem, 1.2vh, 0.68rem) !important;
+    font-size: clamp(0.8rem, 2.5vh, 1.15rem) !important;
     margin-top: 0.25rem !important;
   }
   .tv-show-grid {
@@ -3540,18 +3541,18 @@ body.tv-mirror-display .view {
   .tv-show-tile {
     min-height: 0 !important;
     height: auto !important;
-    max-height: 26vh !important;
-    padding: 0.15rem 0.4rem !important;
+    max-height: 30vh !important;
+    padding: 0.35rem 0.5rem !important;
     border-radius: 0.6rem !important;
   }
   .tv-show-answer {
-    font-size: clamp(0.68rem, 1.5vh, 0.92rem) !important;
+    font-size: clamp(0.9rem, 3vh, 1.45rem) !important;
     line-height: 1.15 !important;
   }
   .tv-show-label {
-    width: 1.2rem !important;
-    height: 1.2rem !important;
-    font-size: 0.65rem !important;
+    width: clamp(1.4rem, 4vh, 1.9rem) !important;
+    height: clamp(1.4rem, 4vh, 1.9rem) !important;
+    font-size: clamp(0.75rem, 2.2vh, 1rem) !important;
   }
   .tv-show-footer {
     flex: 0 0 auto !important;
@@ -3852,8 +3853,22 @@ body.tv-host-active #tv-host-play {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
   margin-bottom: 0.35rem;
 }
+.tv-show-join {
+  margin-left: auto;
+  margin-right: 0.5rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.22);
+  border: 1px solid rgba(129, 140, 248, 0.4);
+  color: #c7d2fe;
+  font-weight: 800;
+  font-size: clamp(0.7rem, 1.4cqw, 1rem);
+  white-space: nowrap;
+}
+.tv-show-join b { color: #fff; letter-spacing: 0.12em; }
 .tv-show-qnum {
   font-weight: 900;
   letter-spacing: 0.06em;
@@ -3887,8 +3902,10 @@ body.tv-host-active #tv-host-play {
 .tv-show-question {
   font-weight: 900;
   color: #fff;
-  line-height: 1.2;
-  font-size: clamp(0.55rem, 1.15cqw, 0.78rem);
+  line-height: 1.15;
+  /* Frage ist die Hauptsache auf dem Fernseher - vorher war sie mit max.
+     0.78rem (rund 12px) kleiner als die Antworten darunter. */
+  font-size: clamp(1.5rem, 3.4cqw, 2.9rem);
   margin: 0 auto;
   max-width: 56rem;
   text-shadow: 0 2px 18px rgba(0,0,0,0.35);
@@ -3897,7 +3914,7 @@ body.tv-host-active #tv-host-play {
   margin-top: 0.5rem;
   font-weight: 800;
   color: #6ee7b7;
-  font-size: clamp(0.85rem, 1.8cqw, 1.25rem);
+  font-size: clamp(0.95rem, 2cqw, 1.5rem);
 }
 .tv-show-grid {
   display: grid;
@@ -3935,15 +3952,15 @@ body.tv-host-active #tv-host-play {
   gap: 0.5rem;
   border-radius: 1rem;
   padding: clamp(0.3rem, 0.7cqw, 0.6rem) clamp(0.6rem, 1.3cqw, 1rem);
-  min-height: clamp(44px, 7vh, 72px);
+  min-height: clamp(56px, 11vh, 118px);
   box-shadow: 0 10px 28px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.18);
   overflow: hidden;
   transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
 }
 .tv-show-label {
   flex-shrink: 0;
-  width: clamp(1.5rem, 3cqw, 2.05rem);
-  height: clamp(1.5rem, 3cqw, 2.05rem);
+  width: clamp(1.7rem, 3.4cqw, 2.5rem);
+  height: clamp(1.7rem, 3.4cqw, 2.5rem);
   border-radius: 999px;
   background: rgba(0,0,0,0.28);
   border: 2px solid rgba(255,255,255,0.45);
@@ -3960,8 +3977,8 @@ body.tv-host-active #tv-host-play {
   font-weight: 900;
   color: #fff;
   text-align: center;
-  font-size: clamp(1rem, 2.1cqw, 1.6rem);
-  line-height: 1.2;
+  font-size: clamp(1.15rem, 2.6cqw, 2.1rem);
+  line-height: 1.15;
   word-break: break-word;
   text-shadow: 0 1px 8px rgba(0,0,0,0.25);
 }
@@ -4066,17 +4083,47 @@ body.tv-mirror-display .tv-show-stage {
 body.tv-mirror-display #view-tv-quiz-host {
   max-width: none;
 }
+/* Diese vier Regeln greifen im TV-Modus IMMER (der Gastgeber laeuft dauerhaft
+   mit .tv-mirror-display) und standen mit !important am Ende der Datei - sie
+   haben jede andere Groessenangabe ueberschrieben. Die Frage landete dadurch
+   bei rund 11 Pixeln, also kleiner als die Antworten darunter. */
 body.tv-mirror-display .tv-show-question {
-  font-size: clamp(0.55rem, 1.05cqw, 0.68rem) !important;
+  font-size: clamp(1.5rem, 3.6cqw, 3.1rem) !important;
 }
 body.tv-mirror-display .tv-show-explain {
-  font-size: clamp(0.7rem, 1.35cqw, 0.92rem) !important;
+  font-size: clamp(1rem, 2cqw, 1.6rem) !important;
 }
 body.tv-mirror-display .tv-show-answer {
-  font-size: clamp(0.9rem, 1.8cqw, 1.15rem) !important;
+  font-size: clamp(1.15rem, 2.6cqw, 2.2rem) !important;
 }
 body.tv-mirror-display .tv-show-tile {
-  min-height: clamp(46px, 7vh, 76px) !important;
+  min-height: clamp(58px, 12vh, 130px) !important;
+}
+/* Handy im Querformat (das gespiegelte Bild am Fernseher): Hoehe ist knapp,
+   deshalb an der Bildschirmhoehe statt an der Breite ausrichten. */
+@media (orientation: landscape) and (max-height: 520px) {
+  body.tv-mirror-display .tv-show-question {
+    font-size: clamp(1.15rem, 5vh, 2rem) !important;
+  }
+  body.tv-mirror-display .tv-show-explain {
+    font-size: clamp(0.85rem, 2.8vh, 1.25rem) !important;
+  }
+  body.tv-mirror-display .tv-show-answer {
+    font-size: clamp(1rem, 4vh, 1.7rem) !important;
+  }
+  /* Die vier Antworten fuellen die Flaeche zwischen Frage und Fussleiste aus.
+     Vorher standen sie als schmale Streifen in der Mitte, oben und unten
+     blieb je ein Viertel des Fernsehers leer. */
+  body.tv-mirror-display .tv-show-grid {
+    grid-template-rows: 1fr 1fr !important;
+    align-content: stretch !important;
+    gap: 0.5rem 0.6rem !important;
+  }
+  body.tv-mirror-display .tv-show-tile {
+    min-height: 0 !important;
+    max-height: none !important;
+    height: auto !important;
+  }
 }
 
 /* Zwingendes Querformat für TV-Host */

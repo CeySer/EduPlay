@@ -1,305 +1,11 @@
         // ============================================================
-        //  CAST / FERNSEHER
+        //  TV-MODUS
+        //  Cast/Receiver (receiver.html, window.open-Popup) wurde am 25.08.2026
+        //  entfernt - es war eingefroren, nicht eingebunden und ein zweites,
+        //  halbfertiges System neben diesem hier. Der TV-Modus laeuft ueber
+        //  Screen-Mirroring: das Handy des Gastgebers ist der Fernseher,
+        //  Mitspieler kommen per 4-stelligem Code oder QR dazu.
         // ============================================================
-        let castConnected = false;
-        let castWindow = null;
-        let castStatusCheck = null;
-        let castLobbyUnsub = null;
-        const CAST_QUESTION_COUNT = 10;
-
-        function castLobbyRef() {
-            if (!currentParentUser) return null;
-            return db.collection('parents').doc(currentParentUser.uid).collection('tv_game').doc('lobby');
-        }
-
-        function buildCastQuestions() {
-            const grade = (typeof playerGrade === 'function') ? playerGrade(currentPlayer) : null;
-            let pool = (grade ? questionsByGrade(grade) : QUESTIONS_DATABASE) || [];
-            if (!pool.length) pool = QUESTIONS_DATABASE || [];
-            const picked = shuffleArray(pool).slice(0, CAST_QUESTION_COUNT).map(shuffleAnswers);
-            return picked.map(function (q) {
-                return {
-                    question: q.question,
-                    answers: q.answers,
-                    correct: q.correct,
-                    explanation: q.explanation || ''
-                };
-            });
-        }
-
-        function toggleCast() {
-            // TV-Cast / Receiver vorerst eingefroren – TV-Quiz (Menü) ist separat und bleibt aktiv.
-            if (castConnected) {
-                disconnectCast();
-                return;
-            }
-            showToast("TV-Anzeige (Cast/Receiver) kommt später. Nutze vorerst „TV-Quiz“ im Menü.", "info", "cast");
-        }
-
-        function buildReceiverUrlWithCode(code) {
-            const u = new URL("receiver.html", window.location.href);
-            if (code) u.searchParams.set("code", code);
-            return u.href;
-        }
-
-        function offerTvDisplay(code) {
-            /* eingefroren */ 
-        }
-        window.offerTvDisplay = offerTvDisplay;
-
-        function buildReceiverUrl(parentId, hostName) {
-            const u = new URL("receiver.html", window.location.href);
-            u.searchParams.set("mode", "cast");
-            u.searchParams.set("parentId", parentId);
-            if (hostName) u.searchParams.set("host", hostName);
-            return u.href;
-        }
-
-        function hideCastQrOverlay() {
-            const el = document.getElementById("castQrOverlay");
-            if (el) el.remove();
-        }
-
-        function showCastQrOverlay(fullUrl, castCode) {
-            hideCastQrOverlay();
-            const qrImg =
-                "https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=8&data=" +
-                encodeURIComponent(fullUrl);
-            const codeBlock = castCode
-                ? ('<div class="py-2"><div class="text-xs text-gray-400 font-bold uppercase">TV-Code (Cast)</div>' +
-                   '<div class="text-5xl font-black tracking-[0.25em] text-white my-1">' + castCode + "</div>" +
-                   '<p class="text-xs text-gray-400">Am TV: eduplayhub.de/receiver.html → Code eingeben</p></div>')
-                : '<p class="text-xs text-amber-300">Kein Kurzcode (Firestore tv_codes). Nutze Link/QR.</p>';
-            const ov = document.createElement("div");
-            ov.id = "castQrOverlay";
-            ov.className = "fixed inset-0 z-[80] flex items-center justify-center p-4";
-            ov.style.cssText = "background:rgba(2,6,23,0.85);backdrop-filter:blur(8px);";
-            ov.innerHTML =
-                '<div class="glass-card max-w-sm w-full p-5 text-center space-y-3 shadow-2xl border border-indigo-500/30">' +
-                '<div class="text-3xl">📺</div>' +
-                '<h3 class="text-lg font-black text-indigo-300">Cast / Receiver</h3>' +
-                '<p class="text-xs text-gray-400">Nicht der große TV-Quiz-Modus – nur die TV-Anzeige.</p>' +
-                codeBlock +
-                '<img src="' + qrImg + '" alt="QR-Code" width="200" height="200" class="mx-auto rounded-xl bg-white p-2" />' +
-                '<p class="text-[11px] text-gray-500 break-all px-1">' + fullUrl.replace(/</g, "") + "</p>" +
-                '<div class="grid grid-cols-2 gap-2">' +
-                '<button type="button" id="castQrCopy" class="btn-secondary text-sm py-2.5">Link kopieren</button>' +
-                '<button type="button" id="castQrTest" class="btn-secondary text-sm py-2.5">Testfenster</button>' +
-                "</div>" +
-                '<button type="button" id="castQrClose" class="btn-primary w-full text-sm py-2.5">Fertig – Steuerung anzeigen</button>' +
-                '<button type="button" id="castQrAbort" class="text-xs text-rose-400 font-bold py-1">Trennen</button>' +
-                "</div>";
-            document.body.appendChild(ov);
-            document.getElementById("castQrCopy").onclick = function () {
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(fullUrl).then(function () {
-                        showToast("Link kopiert", "success", "cast");
-                    }).catch(function () {
-                        showToast("Kopieren fehlgeschlagen", "error", "cast");
-                    });
-                } else {
-                    showToast("Kopieren nicht unterstützt", "error", "cast");
-                }
-            };
-            document.getElementById("castQrTest").onclick = function () {
-                castWindow = window.open(
-                    fullUrl,
-                    "EduPlayTV",
-                    "width=1200,height=800,menubar=no,toolbar=no,location=no,status=no"
-                );
-                if (!castWindow) showToast("Popups erlauben!", "error", "cast");
-            };
-            document.getElementById("castQrClose").onclick = function () {
-                hideCastQrOverlay();
-                showCastPanel(true);
-            };
-            document.getElementById("castQrAbort").onclick = function () {
-                disconnectCast();
-            };
-        }
-
-        async function connectCast() {
-            if (!currentParentUser) {
-                showToast("Bitte zuerst als Elternteil anmelden!", "error", "cast");
-                return;
-            }
-            if (!currentPlayer) {
-                showToast("Bitte zuerst einen Spieler auswählen!", "error", "cast");
-                return;
-            }
-            const parentId = currentParentUser.uid;
-            const playerName = currentPlayer.name || "Host";
-            const fullUrl = buildReceiverUrl(parentId, playerName);
-
-            const castCode = await createTVLobby(parentId, playerName);
-            castConnected = true;
-            updateCastButton();
-            startCastLobbyListener();
-            showCastQrOverlay(fullUrl, castCode || window._activeCastCode || "");
-            showToast(castCode ? ("TV-Code: " + castCode) : "Receiver-Link bereit", "success", "cast");
-        }
-
-        function disconnectCast() {
-            castConnected = false;
-            if (castStatusCheck) {
-                clearInterval(castStatusCheck);
-                castStatusCheck = null;
-            }
-            if (castWindow && !castWindow.closed) { castWindow.close(); }
-            castWindow = null;
-            hideCastQrOverlay();
-            stopCastLobbyListener();
-            showCastPanel(false);
-            updateCastButton();
-            showToast("📺 Verbindung getrennt", "info", "cast");
-        }
-
-        function updateCastButton() {
-            const btn = document.getElementById('castButton');
-            if (btn) {
-                btn.textContent = castConnected ? '📡' : '🖥️';
-                btn.classList.toggle('text-green-400', castConnected);
-                btn.classList.toggle('text-gray-400', !castConnected);
-            }
-        }
-
-        async function createTVLobby(parentId, hostName) {
-            const hostKey = (typeof activePlayerKey !== "undefined" && activePlayerKey)
-                ? activePlayerKey
-                : ("host_" + String(Date.now()).slice(-6));
-            const players = {};
-            players[hostKey] = {
-                name: hostName || "Host",
-                score: 0,
-                hasAnswered: false,
-                lastAnswer: null,
-                isHost: true
-            };
-            // Kurzer Code nur für Cast/Receiver (nicht der große TV-Quiz-Modus)
-            let castCode = "";
-            const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-            for (let i = 0; i < 4; i++) castCode += alphabet[Math.floor(Math.random() * alphabet.length)];
-            try {
-                await db.collection("tv_codes").doc(castCode).set({
-                    parentId: parentId,
-                    kind: "cast",
-                    createdAt: Date.now()
-                });
-                window._activeCastCode = castCode;
-            } catch (e) {
-                console.warn("Cast-Code:", e);
-                castCode = "";
-                window._activeCastCode = "";
-            }
-            try {
-                await db.collection("parents").doc(parentId).collection("tv_game").doc("lobby").set({
-                    status: "lobby",
-                    kind: "cast",
-                    players: players,
-                    questions: buildCastQuestions(),
-                    currentIndex: 0,
-                    createdBy: hostName || "Host",
-                    castCode: castCode || null,
-                    createdAt: Date.now()
-                });
-                console.log("✅ Cast-Lobby erstellt", parentId, castCode);
-            } catch (err) {
-                console.error("❌ Cast-Lobby:", err);
-                showToast("Lobby konnte nicht erstellt werden", "error", "cast");
-            }
-            return castCode;
-        }
-
-        function checkCastStatus() {
-            if (castConnected && castWindow && castWindow.closed) {
-                disconnectCast();
-            }
-        }
-        setInterval(checkCastStatus, 5000);
-
-        window.addEventListener('beforeunload', function () {
-            if (castConnected) { disconnectCast(); }
-        });
-
-        function showCastPanel(show) {
-            const p = document.getElementById('castControlPanel');
-            if (p) p.classList.toggle('hidden', !show);
-        }
-
-        function updateCastPanel(status, idx, total) {
-            const el = document.getElementById('castPanelStatus');
-            if (!el) return;
-            let txt = 'Lobby';
-            if (status === 'playing') txt = 'Frage ' + ((idx || 0) + 1) + '/' + (total || 0);
-            else if (status === 'reveal') txt = 'Loesung ' + ((idx || 0) + 1) + '/' + (total || 0);
-            else if (status === 'finished') txt = '🏆 Beendet';
-            else if (status === 'lobby') txt = 'Lobby – bereit';
-            el.textContent = txt;
-        }
-
-        function startCastLobbyListener() {
-            const ref = castLobbyRef();
-            if (!ref) return;
-            stopCastLobbyListener();
-            castLobbyUnsub = ref.onSnapshot(function (snap) {
-                const d = snap.data() || {};
-                updateCastPanel(d.status, d.currentIndex || 0, (d.questions || []).length);
-                if (d.hostCommand && d.hostCommand.type) {
-                    const t = d.hostCommand.type;
-                    ref.update({ hostCommand: null }).catch(function () { });
-                    if (t === 'START_QUIZ') castStartQuiz();
-                    else if (t === 'NEXT_QUESTION') castNext();
-                    else if (t === 'RESTART') castRestart();
-                }
-            });
-        }
-
-        function stopCastLobbyListener() {
-            if (castLobbyUnsub) {
-                castLobbyUnsub();
-                castLobbyUnsub = null;
-            }
-        }
-
-        function castStartQuiz() {
-            const ref = castLobbyRef();
-            if (!ref) { showToast('Bitte zuerst mit dem Fernseher verbinden.', 'error', 'cast'); return; }
-            const questions = buildCastQuestions();
-            if (!questions.length) { showToast('Keine Fragen fuer diese Klasse gefunden!', 'error', 'cast'); return; }
-            ref.set({ status: 'playing', currentIndex: 0, questions: questions, updatedAt: Date.now() }, { merge: true });
-        }
-
-        function castReveal() {
-            const ref = castLobbyRef();
-            if (!ref) return;
-            ref.set({ status: 'reveal', updatedAt: Date.now() }, { merge: true });
-        }
-
-        function castNext() {
-            const ref = castLobbyRef();
-            if (!ref) return;
-            ref.get().then(function (snap) {
-                const d = snap.data() || {};
-                const total = (d.questions || []).length;
-                const idx = (d.currentIndex || 0) + 1;
-                if (idx >= total) {
-                    ref.set({ status: 'finished', updatedAt: Date.now() }, { merge: true });
-                } else {
-                    ref.set({ status: 'playing', currentIndex: idx, updatedAt: Date.now() }, { merge: true });
-                }
-            });
-        }
-
-        function castRestart() {
-            const ref = castLobbyRef();
-            if (!ref) return;
-            ref.set({ status: 'playing', currentIndex: 0, questions: buildCastQuestions(), updatedAt: Date.now() }, { merge: true });
-        }
-
-
-
-
-
 
         // ============================================================
         //  FERNSEHER-ANSICHT (Screen-Mirror: Handy → TV)
@@ -968,12 +674,7 @@
         function renderTVPlayerList(players) {
             const list = document.getElementById("tv-player-list");
             if (!list) return;
-            const entries = Object.entries(bereinigeTVPlayers(players || {}) || {});
-            // bereinigeTVPlayers may return object or array-like values only
-            const vals = Array.isArray(entries[0]) ? entries : Object.entries(players || {}).filter(function (kv) {
-                return kv[1] && kv[1].name;
-            });
-            const cleaned = typeof bereinigeTVPlayers === "function" ? bereinigeTVPlayers(players || {}) : (players || {});
+            const cleaned = bereinigeTVPlayers(players || {});
             const keys = Object.keys(cleaned);
             if (keys.length === 0) {
                 list.innerHTML = `<div class="tv-lobby-empty">Warte auf Mitspieler…</div>`;
@@ -1022,6 +723,20 @@
             return list;
         }
 
+        // Fragen fuer Firestore abspecken: nur was der Fernseher zum
+        // Weiterspielen braucht. Verhindert undefined-Felder (die Firestore
+        // ablehnt) und haelt das Lobby-Dokument klein.
+        function tvSlimQuestions(list) {
+            return (list || []).map(function (q) {
+                return {
+                    question: String(q.question || ""),
+                    answers: (q.answers || []).map(function (a) { return String(a); }),
+                    correct: typeof q.correct === "number" ? q.correct : 0,
+                    explanation: String(q.explanation || "")
+                };
+            });
+        }
+
         function startTVGameLoop() {
             tvGameRef.get().then(doc => {
                 const data = doc.data();
@@ -1046,6 +761,7 @@
                     showAnswer: false,
                     answerDeadline: null,
                     players: playersData,
+                    questions: tvSlimQuestions(tvQuestions),
                     correctAnswer: tvQuestions[0].correct,
                     answerCount: tvQuestions[0].answers.length
                 });
@@ -1054,13 +770,31 @@
         }
 
         // EduPlay-TV-Palette (kein Kahoot-Klon): Indigo, Emerald, Amber, Fuchsia
-        const TV_SHOW_COLORS = ["#4f46e5", "#059669", "#d97706", "#c026d3"];
+        // Etwas dunklere Toene als vorher: weisse Schrift darauf ist aus
+        // drei Metern Abstand deutlich besser lesbar (vor allem das Gelb).
+        const TV_SHOW_COLORS = ["#4338ca", "#047857", "#b45309", "#a21caf"];
         const TV_SHOW_LABELS = ["A", "B", "C", "D"];
+
+        // Kleiner Hinweis oben im Bild: solange eine Runde laeuft, koennen
+        // Nachzuegler mit dem Code noch dazukommen (joinTVGame laesst auch
+        // status "playing" zu) - man sah den Code aber nur in der Lobby.
+        function tvJoinChipHTML() {
+            const code = window._activeTVCode || "";
+            if (!code || !isTVHost) return "";
+            return '<span class="tv-show-join">📲 Mitspielen: <b>' + esc(code) + '</b></span>';
+        }
 
         function showTVHostQuestion(index) {
             stopTVRoundTimer();
             isResolving = false;
             tvCurrentQ = tvQuestions[index];
+            if (!tvCurrentQ || !Array.isArray(tvCurrentQ.answers) || !tvCurrentQ.answers.length) {
+                // Kann nach einem Neuladen des Fernsehers passieren. Frueher lief
+                // die Funktion in einen Skriptfehler und das Bild blieb stehen.
+                console.warn("TV: Frage", index, "fehlt");
+                showToast("Die Fragen sind verloren gegangen - bitte neue Runde starten.", "error", "tvq");
+                return;
+            }
             let answersHtml = "";
             (tvCurrentQ.answers || []).forEach((ans, i) => {
                 const bg = TV_SHOW_COLORS[i % 4];
@@ -1077,6 +811,7 @@
                     <div class="tv-show-top">
                         <div class="tv-show-meta">
                             <span class="tv-show-qnum">Frage ${index + 1} / ${tvQuestions.length}</span>
+                            ${tvJoinChipHTML()}
                             <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
                         <div class="tv-show-timer-track" aria-hidden="true">
@@ -1108,9 +843,17 @@
             stopTVRoundTimer();
             window._tvHostRenderKey = null;
             _tvBarDeadlineKey = null;
-            tvGameRef.update({ showAnswer: true });
+            if (!tvCurrentQ && Array.isArray(data.questions) && data.questions.length) {
+                tvQuestions = data.questions;
+                tvCurrentQ = tvQuestions[data.currentQuestionIndex || 0];
+            }
+            if (!tvCurrentQ || !Array.isArray(tvCurrentQ.answers)) {
+                isResolving = false;
+                showToast("Die Fragen sind verloren gegangen - bitte neue Runde starten.", "error", "tvq");
+                return;
+            }
             const correctIndex = data.correctAnswer;
-            const playersData = data.players;
+            const playersData = data.players || {};
 
             // Erster Richtiger (frühestes answeredAt)
             let firstKey = null, firstAt = Infinity;
@@ -1141,7 +884,9 @@
                     p.lastRoundDetail = "";
                 }
             });
-            tvGameRef.update({ players: playersData });
+            // Ein Schreibvorgang statt zwei: showAnswer und Punkte kamen vorher
+            // getrennt an, dazwischen sah der Spieler kurz die alte Punktzahl.
+            tvGameRef.update({ showAnswer: true, players: playersData });
 
             // Host-Anzeige: Erster + Streak
             try {
@@ -1185,6 +930,7 @@
                     <div class="tv-show-top">
                         <div class="tv-show-meta">
                             <span class="tv-show-qnum">Auflösung</span>
+                            ${tvJoinChipHTML()}
                             <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
                         <h1 class="tv-show-question">${esc(tvCurrentQ.question)}</h1>
@@ -1253,7 +999,8 @@
             stopTVAutoAdvance();
             const docSnap = await tvGameRef.get();
             const data = docSnap.data();
-            let nextIndex = data.currentQuestionIndex + 1;
+            if (Array.isArray(data.questions) && data.questions.length) tvQuestions = data.questions;
+            let nextIndex = (data.currentQuestionIndex || 0) + 1;
             if (nextIndex >= tvQuestions.length) {
                 await tvGameRef.update({ status: "finished" });
                 showTVHostPodium(data.players);
@@ -1477,6 +1224,7 @@
                     showAnswer: false,
                     answerDeadline: null,
                     players: playersData,
+                    questions: tvSlimQuestions(tvQuestions),
                     correctAnswer: tvQuestions[0].correct,
                     answerCount: tvQuestions[0].answers.length
                 });
@@ -2230,9 +1978,11 @@
         async function versucheTVDeepLinkJoin() {
             const code = window._pendingTVCode;
             if (!code || !currentPlayer || isTVHost) return;
-            window._pendingTVCode = null;
             switchView('tv-quiz-player');
             await joinTVGame(code);
+            // Erst jetzt vergessen: klappt der Beitritt nicht (Lobby noch nicht
+            // offen, Profilwechsel), steht der Code beim naechsten Versuch noch da.
+            if (tvGameRef) window._pendingTVCode = null;
         }
 
         // --- TV-QUIZ PLAYER (Handy) ---
@@ -2512,6 +2262,7 @@
                                 }
                             } else { SFX.wrong(); }
                         } else if (!myData.hasAnswered) {
+                            if (Array.isArray(data.questions) && data.questions.length) tvQuestions = data.questions;
                             const q = tvQuestions[data.currentQuestionIndex];
                             const colors = (typeof TV_SHOW_COLORS !== "undefined")
                                 ? TV_SHOW_COLORS
@@ -2671,14 +2422,18 @@
                         window._activeTVCode = null;
                     }
                 } else if (activePlayerKey) {
-                    const snap = await ref.get();
-                    if (!snap.exists) return;
-                    const players = Object.assign({}, snap.data().players || {});
-                    delete players[activePlayerKey];
-                    if (Object.keys(players).length === 0) {
-                        try { await ref.delete(); } catch (e) { }
-                    } else {
-                        await ref.update({ players: players });
+                    // Nie das ganze Lobby-Dokument loeschen: der Fernseher steht
+                    // nicht in players[], also war die Lobby fuer ihn frueher weg,
+                    // sobald der letzte Mitspieler das Spiel verlassen hat.
+                    try {
+                        await ref.update({
+                            ["players." + activePlayerKey]: firebase.firestore.FieldValue.delete()
+                        });
+                    } catch (e) {
+                        // Gaeste duerfen laut Sicherheitsregeln niemanden aus der
+                        // Liste entfernen - dann nur abmelden, der Fernseher
+                        // wartet dank Lebenszeichen nicht auf ein Geraet, das weg ist.
+                        await ref.update({ ["players." + activePlayerKey + ".lastSeen"]: 0 }).catch(function () { });
                     }
                 }
             } catch (e) { /* Lobby evtl. schon weg */ }

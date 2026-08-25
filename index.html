@@ -13,7 +13,7 @@
          installierte App wirklich den neuesten Stand geladen hat. -->
     <script>window.EDUPLAY_BUILD = "24.08.2026 · 11:55";</script>
 
-    <link rel="stylesheet" href="styles.css?v=11.5">
+    <link rel="stylesheet" href="styles.css?v=11.6">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
 
     <script src="vendor/firebase-10.12.3/firebase-app-compat.js"></script>
@@ -42,33 +42,6 @@
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
-    </div>
-
-    <!-- ============================================================
-    FERNSEHER-STEUERUNG
-    ============================================================ -->
-    <div id="castControlPanel" class="hidden fixed bottom-0 left-0 right-0 z-50 p-3"
-        style="background:rgba(14,22,40,0.95);backdrop-filter:blur(12px);border-top:1px solid rgba(99,102,241,0.2);">
-        <div class="max-w-md mx-auto">
-            <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-indigo-300">📺 Fernseher-Steuerung</span>
-                <span id="castPanelStatus" class="text-xs text-gray-400">Lobby – bereit</span>
-            </div>
-            <div class="grid grid-cols-4 gap-2">
-                <button onclick="castStartQuiz()"
-                    class="py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all shadow-lg shadow-emerald-600/20">🚀
-                    Start</button>
-                <button onclick="castReveal()"
-                    class="py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-sm transition-all shadow-lg shadow-amber-500/20">💡
-                    Lösung</button>
-                <button onclick="castNext()"
-                    class="py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm transition-all shadow-lg shadow-indigo-600/20">➔
-                    Nächste</button>
-                <button onclick="castRestart()"
-                    class="py-2.5 rounded-xl bg-gray-700 hover:bg-gray-600 text-white font-bold text-sm transition-all shadow-lg shadow-gray-700/20">🔄
-                    Neu</button>
-            </div>
-        </div>
     </div>
 
     <!-- ============================================================
@@ -1597,9 +1570,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div class="flex items-center justify-between gap-2">
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                     <span class="text-sm font-bold text-gray-400">⚔️ Gegeneinander</span>
-                    <button onclick="toggleCast()" id="castButton" title="TV-Anzeige (später)"
-                        aria-label="Mit Fernseher verbinden"
-                        class="w-11 h-11 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
                 </div>
 
                 <div class="flex items-center gap-2 px-1">
@@ -2684,7 +2654,7 @@ VIEW: QUIZ SETUP
     <script src="suchsel.js?v=1.3"></script>
     <script src="duel-scrabble.js?v=9.1"></script>
     <script src="wortraten.js?v=9.5"></script>
-    <script src="tv-cast.js?v=12.9"></script>
+    <script src="tv-cast.js?v=13.0"></script>
     <script src="live-duel.js?v=10.5"></script>
     <script src="app-misc.js?v=8.8"></script>
     <script src="lobby-avatar.js?v=9.9"></script>

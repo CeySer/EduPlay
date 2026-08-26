@@ -867,9 +867,9 @@ const LEKTIONEN = [
         erklaerung: {
             intro: "Der <b>Umfang</b> ist die Länge der Außenlinie einer Figur – man addiert alle Seitenlängen. Bei einem <b>Rechteck</b> gibt es zwei Seitenpaare, deshalb: Umfang = 2 × (Länge + Breite). Bei einem <b>Quadrat</b> sind alle 4 Seiten gleich lang: Umfang = 4 × Seitenlänge.",
             beispiele: [
-                "📏 Rechteck mit 5 cm × 3 cm: Umfang = 2 × (5+3) = 2 × 8 = 16 cm",
-                "🔲 Quadrat mit 4 cm Seitenlänge: Umfang = 4 × 4 = 16 cm",
-                "💡 Der Umfang wird in derselben Einheit wie die Seiten angegeben (z.B. cm, m) – nicht in Quadrat-Einheiten!"
+                "📏 Rechteck 5 cm × 3 cm: Umfang = 2 × (5+3) = <b>16 cm</b><svg viewBox='0 0 220 130' style='width:100%;max-width:240px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='40' y='30' width='140' height='70' fill='rgba(99,102,241,0.15)' stroke='#818cf8' stroke-width='2.5'/><text x='110' y='20' text-anchor='middle' fill='#a5b4fc' font-size='12' font-family='sans-serif'>5 cm</text><text x='195' y='72' text-anchor='start' fill='#a5b4fc' font-size='12' font-family='sans-serif'>3 cm</text><path d='M 40 30 L 180 30 L 180 100 L 40 100 Z' fill='none' stroke='#34d399' stroke-width='2' stroke-dasharray='6 3'/><text x='110' y='122' text-anchor='middle' fill='#e5e7eb' font-size='12' font-family='sans-serif'>U = 2×(5+3) = 16 cm</text></svg>",
+                "🔲 Quadrat Seitenlänge 4 cm: Umfang = 4 × 4 = <b>16 cm</b><svg viewBox='0 0 180 140' style='width:100%;max-width:180px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='40' y='25' width='100' height='100' fill='rgba(245,158,11,0.15)' stroke='#f59e0b' stroke-width='2.5'/><text x='90' y='18' text-anchor='middle' fill='#fcd34d' font-size='12' font-family='sans-serif'>4 cm</text><text x='155' y='80' text-anchor='start' fill='#fcd34d' font-size='12' font-family='sans-serif'>4 cm</text><text x='90' y='138' text-anchor='middle' fill='#e5e7eb' font-size='12' font-family='sans-serif'>U = 4×4 = 16 cm</text></svg>",
+                "💡 Umfang in <b>cm / m</b> (Länge der Grenze) – nicht in cm²!"
             ],
             merksatz: "Rechteck: U = 2 × (Länge + Breite). Quadrat: U = 4 × Seitenlänge."
         },
@@ -881,6 +881,7 @@ const LEKTIONEN = [
                     explanation: "Ein Quadrat hat 4 gleich lange Seiten: Umfang = 4 × Seitenlänge." },
                 { id: "flumk6l1u_leicht_2", category: "kurs_flum_k6_l1", area: "schule", grade: 6, subject: "mathe", topic: "flaechen_umfang", difficulty: "leicht", points: 10,
                     question: "Ein Quadrat hat die Seitenlänge 5 cm. Wie groß ist der Umfang?",
+                    grafik: "<svg viewBox='0 0 160 130' style='width:100%;max-width:160px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='30' y='20' width='90' height='90' fill='rgba(245,158,11,0.18)' stroke='#f59e0b' stroke-width='2.5'/><text x='75' y='14' text-anchor='middle' fill='#fcd34d' font-size='12' font-family='sans-serif'>5 cm</text><text x='130' y='70' fill='#fcd34d' font-size='12' font-family='sans-serif'>5 cm</text></svg>",
                     answers: ["20 cm", "25 cm", "10 cm", "5 cm"], correct: 0,
                     explanation: "4 × 5 cm = 20 cm." },
                 { id: "flumk6l1u_leicht_3", category: "kurs_flum_k6_l1", area: "schule", grade: 6, subject: "mathe", topic: "flaechen_umfang", difficulty: "leicht", points: 10,
@@ -889,12 +890,14 @@ const LEKTIONEN = [
                     explanation: "Ein Rechteck hat zwei Seitenpaare: Umfang = 2 × (Länge + Breite)." },
                 { id: "flumk6l1u_leicht_4", category: "kurs_flum_k6_l1", area: "schule", grade: 6, subject: "mathe", topic: "flaechen_umfang", difficulty: "leicht", points: 10,
                     question: "Ein Rechteck ist 6 cm lang und 2 cm breit. Wie groß ist der Umfang?",
+                    grafik: "<svg viewBox='0 0 200 100' style='width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='25' y='25' width='150' height='50' fill='rgba(99,102,241,0.18)' stroke='#818cf8' stroke-width='2.5'/><text x='100' y='18' text-anchor='middle' fill='#a5b4fc' font-size='12' font-family='sans-serif'>6 cm</text><text x='185' y='55' fill='#a5b4fc' font-size='12' font-family='sans-serif'>2 cm</text></svg>",
                     answers: ["16 cm", "12 cm", "8 cm", "14 cm"], correct: 0,
                     explanation: "2 × (6+2) = 2 × 8 = 16 cm." }
             ],
             mittel: [
                 { id: "flumk6l1u_mittel_1", category: "kurs_flum_k6_l1", area: "schule", grade: 6, subject: "mathe", topic: "flaechen_umfang", difficulty: "mittel", points: 10,
                     question: "Ein Rechteck ist 9 m lang und 4 m breit. Wie groß ist der Umfang?",
+                    grafik: "<svg viewBox='0 0 220 110' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='20' y='25' width='170' height='60' fill='rgba(52,211,153,0.15)' stroke='#34d399' stroke-width='2.5'/><text x='105' y='18' text-anchor='middle' fill='#6ee7b7' font-size='12' font-family='sans-serif'>9 m</text><text x='200' y='60' fill='#6ee7b7' font-size='12' font-family='sans-serif'>4 m</text></svg>",
                     answers: ["26 m", "36 m", "13 m", "18 m"], correct: 0,
                     explanation: "2 × (9+4) = 2 × 13 = 26 m." },
                 { id: "flumk6l1u_mittel_2", category: "kurs_flum_k6_l1", area: "schule", grade: 6, subject: "mathe", topic: "flaechen_umfang", difficulty: "mittel", points: 10,
@@ -1783,8 +1786,8 @@ const LEKTIONEN = [
         erklaerung: {
             intro: "Beim Rechnen mit Dezimalzahlen schreibst du die Zahlen <b>untereinander – Komma unter Komma</b>. So bleiben Zehntel und Hundertstel in der richtigen Spalte.",
             beispiele: [
-                "➕ 2,5 + 1,3 = <b>3,8</b><svg viewBox='0 0 160 100' style='width:100%;max-width:160px;height:auto' xmlns='http://www.w3.org/2000/svg'><text x='80' y='28' text-anchor='middle' fill='#e5e7eb' font-size='16' font-family='monospace'>  2,5</text><text x='80' y='50' text-anchor='middle' fill='#e5e7eb' font-size='16' font-family='monospace'>+ 1,3</text><line x1='40' y1='58' x2='120' y2='58' stroke='#94a3b8'/><text x='80' y='80' text-anchor='middle' fill='#34d399' font-size='16' font-family='monospace'>  3,8</text></svg>",
-                "➖ 4,0 − 1,25 = <b>2,75</b> (Nullen ergänzen hilft)",
+                "➕ 2,5 + 1,3 = <b>3,8</b><svg viewBox='0 0 180 110' style='width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><!-- Spalten: Einer | Komma | Zehntel --><text x='70' y='28' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>2</text><text x='90' y='28' text-anchor='middle' fill='#94a3b8' font-size='18' font-family='ui-monospace,monospace'>,</text><text x='110' y='28' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>5</text><text x='40' y='54' text-anchor='middle' fill='#a5b4fc' font-size='16' font-family='ui-monospace,monospace'>+</text><text x='70' y='54' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>1</text><text x='90' y='54' text-anchor='middle' fill='#94a3b8' font-size='18' font-family='ui-monospace,monospace'>,</text><text x='110' y='54' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>3</text><line x1='30' y1='64' x2='130' y2='64' stroke='#64748b' stroke-width='1.5'/><text x='70' y='88' text-anchor='middle' fill='#34d399' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>3</text><text x='90' y='88' text-anchor='middle' fill='#34d399' font-size='18' font-family='ui-monospace,monospace'>,</text><text x='110' y='88' text-anchor='middle' fill='#34d399' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>8</text><line x1='90' y1='12' x2='90' y2='96' stroke='#f59e0b' stroke-width='1' stroke-dasharray='3 3' opacity='0.5'/><text x='90' y='108' text-anchor='middle' fill='#f59e0b' font-size='9' font-family='sans-serif'>Komma-Spalte</text></svg>",
+                "➖ 4,00 − 1,25 = <b>2,75</b> (Nullen ergänzen hilft)<svg viewBox='0 0 200 110' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><text x='70' y='28' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>4</text><text x='90' y='28' text-anchor='middle' fill='#94a3b8' font-size='18' font-family='ui-monospace,monospace'>,</text><text x='110' y='28' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>0</text><text x='130' y='28' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>0</text><text x='40' y='54' text-anchor='middle' fill='#a5b4fc' font-size='16' font-family='ui-monospace,monospace'>−</text><text x='70' y='54' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>1</text><text x='90' y='54' text-anchor='middle' fill='#94a3b8' font-size='18' font-family='ui-monospace,monospace'>,</text><text x='110' y='54' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>2</text><text x='130' y='54' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>5</text><line x1='30' y1='64' x2='150' y2='64' stroke='#64748b' stroke-width='1.5'/><text x='70' y='88' text-anchor='middle' fill='#34d399' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>2</text><text x='90' y='88' text-anchor='middle' fill='#34d399' font-size='18' font-family='ui-monospace,monospace'>,</text><text x='110' y='88' text-anchor='middle' fill='#34d399' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>7</text><text x='130' y='88' text-anchor='middle' fill='#34d399' font-size='18' font-family='ui-monospace,monospace' font-weight='700'>5</text><line x1='90' y1='12' x2='90' y2='96' stroke='#f59e0b' stroke-width='1' stroke-dasharray='3 3' opacity='0.5'/><text x='90' y='108' text-anchor='middle' fill='#f59e0b' font-size='9' font-family='sans-serif'>Komma-Spalte</text></svg>",
                 "✖️ 1,5 × 2 = <b>3,0</b> (erst ohne Komma rechnen, Komma nachträglich setzen)",
                 "💡 Tipp: 0,5 ist die Hälfte von 1 – und 0,25 ist ein Viertel."
             ],
@@ -2394,10 +2397,10 @@ const LEKTIONEN = [
         erklaerung: {
             intro: "Bei der <b>Prozentrechnung</b> geht es um drei Größen: den <b>Grundwert</b> (das Ganze, 100%), den <b>Prozentsatz</b> (wie viel Prozent) und den <b>Prozentwert</b> (der berechnete Anteil).",
             beispiele: [
-                "📊 Prozentwert berechnen: 20% von 150 = 150 × 0,20 = 30",
-                "🧮 Grundwert berechnen: 30 sind 20% von wie viel? 30 ÷ 0,20 = 150",
-                "📈 Prozentsatz berechnen: 30 von 150 sind wie viel Prozent? 30 ÷ 150 × 100 = 20%",
-                "💰 Beispiel: Ein Pullover kostet 40€, im Angebot 25% weniger: 40 × 0,25 = 10€ Rabatt, also 30€"
+                "📊 <b>20 % von 150</b> = 150 × 0,20 = <b>30</b><svg viewBox='0 0 220 70' style='width:100%;max-width:240px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='10' y='18' width='200' height='24' rx='4' fill='rgba(148,163,184,0.25)' stroke='#94a3b8'/><rect x='10' y='18' width='40' height='24' rx='4' fill='rgba(52,211,153,0.75)' stroke='#34d399'/><text x='110' y='58' text-anchor='middle' fill='#e5e7eb' font-size='11' font-family='sans-serif'>20 % = 30 von 150</text></svg>",
+                "🧮 30 sind 20 % → Grundwert = 30 ÷ 0,20 = <b>150</b>",
+                "📈 30 von 150 → Prozentsatz = 30 ÷ 150 = <b>20 %</b>",
+                "💰 40 € mit 25 % Rabatt: 40 × 0,25 = 10 € → Preis <b>30 €</b><svg viewBox='0 0 200 80' style='width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='20' y='15' width='160' height='28' rx='4' fill='rgba(248,113,113,0.25)' stroke='#f87171'/><text x='100' y='34' text-anchor='middle' fill='#fca5a5' font-size='12' font-family='sans-serif' text-decoration='line-through'>40 €</text><text x='100' y='68' text-anchor='middle' fill='#34d399' font-size='16' font-family='sans-serif' font-weight='700'>30 €</text></svg>"
             ],
             merksatz: "Prozentwert = Grundwert × Prozentsatz/100. Grundwert = Prozentwert ÷ (Prozentsatz/100). Prozentsatz = Prozentwert ÷ Grundwert × 100."
         },
@@ -2798,10 +2801,10 @@ const LEKTIONEN = [
         erklaerung: {
             intro: "<b>Zinsen</b> sind der Preis für geliehenes Geld. Wer Geld anlegt, bekommt Zinsen – wer Geld leiht, zahlt Zinsen. Das angelegte Geld heißt <b>Kapital (K)</b>, der Prozentsatz pro Jahr heißt <b>Zinssatz (p)</b>.",
             beispiele: [
-                "🏦 1000 € Kapital, 3 % Zinssatz: Z = 1000 · 3 ÷ 100 = <b>30 €</b> Zinsen im Jahr.",
-                "📅 Für 6 Monate nimmt man nur die Hälfte: 30 € · 6 ÷ 12 = <b>15 €</b>.",
-                "🗓️ Für Tage rechnet man mit 360 Tagen: 30 € · 90 ÷ 360 = <b>7,50 €</b>.",
-                "🔎 Zinssatz gesucht: 800 € bringen 32 € Zinsen → p = 32 · 100 ÷ 800 = <b>4 %</b>."
+                "🏦 Formel: <b>Z = K · p · t / 100</b><svg viewBox='0 0 240 70' style='width:100%;max-width:260px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='8' y='12' width='70' height='36' rx='6' fill='rgba(99,102,241,0.3)' stroke='#818cf8'/><text x='43' y='35' text-anchor='middle' fill='#e5e7eb' font-size='13' font-family='sans-serif'>K Kapital</text><rect x='85' y='12' width='70' height='36' rx='6' fill='rgba(52,211,153,0.3)' stroke='#34d399'/><text x='120' y='35' text-anchor='middle' fill='#e5e7eb' font-size='13' font-family='sans-serif'>p %</text><rect x='162' y='12' width='70' height='36' rx='6' fill='rgba(245,158,11,0.3)' stroke='#f59e0b'/><text x='197' y='35' text-anchor='middle' fill='#e5e7eb' font-size='13' font-family='sans-serif'>t Zeit</text></svg>",
+                "💰 1000 € · 3 % · 1 Jahr: Z = 1000 · 3 · 1 ÷ 100 = <b>30 €</b>",
+                "📅 6 Monate: 30 € · 6 ÷ 12 = <b>15 €</b> ·  Tage (360er-Jahr): 30 · 90 ÷ 360 = <b>7,50 €</b>",
+                "🔎 800 € → 32 € Zinsen: p = 32 · 100 ÷ 800 = <b>4 %</b>"
             ],
             merksatz: "Jahreszinsen: Z = K · p ÷ 100. Für Monate mal Monate ÷ 12, für Tage mal Tage ÷ 360. Umgestellt: p = Z · 100 ÷ K und K = Z · 100 ÷ p."
         },
@@ -2899,10 +2902,10 @@ const LEKTIONEN = [
         erklaerung: {
             intro: "Ein <b>Term</b> ist ein Rechenausdruck aus Zahlen, Variablen und Rechenzeichen – zum Beispiel 3a + 5. Ein Buchstabe wie a oder x heißt <b>Variable</b> und steht als Platzhalter für eine Zahl.",
             beispiele: [
-                "➕ Gleichartige Glieder haben dieselbe Variable: 3a + 5a = <b>8a</b>.",
-                "🚫 Verschiedene Variablen bleiben getrennt: 2x + 3y lässt sich <b>nicht</b> zusammenfassen.",
-                "📦 Klammer ausmultiplizieren: 4(a + 3) = 4 · a + 4 · 3 = <b>4a + 12</b>.",
-                "➖ Minus vor der Klammer dreht die Vorzeichen: -(x - 5) = <b>-x + 5</b>."
+                "➕ Gleichartige Glieder: 3a + 5a = <b>8a</b><svg viewBox='0 0 220 55' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='10' y='10' width='50' height='32' rx='6' fill='rgba(99,102,241,0.35)' stroke='#818cf8'/><text x='35' y='32' text-anchor='middle' fill='#e5e7eb' font-size='14'>3a</text><text x='70' y='32' fill='#94a3b8' font-size='16'>+</text><rect x='85' y='10' width='50' height='32' rx='6' fill='rgba(99,102,241,0.35)' stroke='#818cf8'/><text x='110' y='32' text-anchor='middle' fill='#e5e7eb' font-size='14'>5a</text><text x='145' y='32' fill='#94a3b8' font-size='16'>=</text><rect x='160' y='10' width='50' height='32' rx='6' fill='rgba(52,211,153,0.4)' stroke='#34d399'/><text x='185' y='32' text-anchor='middle' fill='#e5e7eb' font-size='14'>8a</text></svg>",
+                "🚫 2x + 3y bleibt getrennt (verschiedene Variablen)",
+                "📦 4(a + 3) = 4·a + 4·3 = <b>4a + 12</b>",
+                "➖ −(x − 5) = <b>−x + 5</b> (Vorzeichen drehen)"
             ],
             merksatz: "Nur gleichartige Glieder (gleiche Variable) darf man zusammenfassen. Beim Ausmultiplizieren wird jedes Glied in der Klammer mit dem Faktor multipliziert – ein Minus vor der Klammer dreht alle Vorzeichen um."
         },
@@ -3000,10 +3003,10 @@ const LEKTIONEN = [
         erklaerung: {
             intro: "Eine <b>Gleichung</b> hat ein Gleichheitszeichen: links und rechts steht gleich viel – wie bei einer Waage im Gleichgewicht. Gelöst ist sie, wenn die Variable allein auf einer Seite steht.",
             beispiele: [
-                "⚖️ x + 5 = 12 | -5 → x = <b>7</b> (auf beiden Seiten 5 abziehen).",
-                "✖️ 3x = 15 | ÷3 → x = <b>5</b> (beide Seiten durch 3 teilen).",
-                "🔁 2x + 3 = 11 | -3 → 2x = 8 | ÷2 → x = <b>4</b>.",
-                "↔️ Variable auf beiden Seiten: 4x + 2 = 2x + 10 | -2x → 2x + 2 = 10 | -2 → 2x = 8 → x = <b>4</b>."
+                "⚖️ Waage: was links passiert, muss rechts passieren<svg viewBox='0 0 240 90' style='width:100%;max-width:260px;height:auto' xmlns='http://www.w3.org/2000/svg'><line x1='120' y1='20' x2='120' y2='35' stroke='#94a3b8' stroke-width='3'/><line x1='40' y1='40' x2='200' y2='40' stroke='#f59e0b' stroke-width='3' stroke-linecap='round'/><rect x='45' y='45' width='60' height='28' rx='4' fill='rgba(99,102,241,0.35)' stroke='#818cf8'/><text x='75' y='64' text-anchor='middle' fill='#e5e7eb' font-size='12'>x + 5</text><rect x='135' y='45' width='60' height='28' rx='4' fill='rgba(52,211,153,0.35)' stroke='#34d399'/><text x='165' y='64' text-anchor='middle' fill='#e5e7eb' font-size='12'>12</text><text x='120' y='88' text-anchor='middle' fill='#94a3b8' font-size='10'>beide Seiten − 5 → x = 7</text></svg>",
+                "✖️ 3x = 15 | ÷3 → x = <b>5</b>",
+                "🔁 2x + 3 = 11 | −3 → 2x = 8 | ÷2 → x = <b>4</b>",
+                "↔️ 4x + 2 = 2x + 10 → zuerst −2x, dann −2 → x = <b>4</b>"
             ],
             merksatz: "Was du links machst, musst du auch rechts machen. Erst Zahlen wegschaffen (+/-), dann den Faktor vor der Variablen (·/÷). Zum Schluss die Probe machen: Lösung einsetzen und prüfen."
         },
@@ -3808,10 +3811,10 @@ const LEKTIONEN = [
         erklaerung: {
             intro: "Bei einer <b>proportionalen</b> Zuordnung gilt: je mehr, desto mehr – und zwar im gleichen Verhältnis. Bei einer <b>antiproportionalen</b> Zuordnung gilt: je mehr, desto weniger.",
             beispiele: [
-                "📈 Proportional: 3 Brötchen kosten 1,50 € → 6 Brötchen kosten <b>3,00 €</b> (doppelt so viele, doppelter Preis).",
-                "🔑 Bei proportional bleibt der Quotient gleich: 1,50 ÷ 3 = <b>0,50 € pro Brötchen</b>.",
-                "📉 Antiproportional: 2 Arbeiter brauchen 12 Stunden → 4 Arbeiter brauchen nur <b>6 Stunden</b>.",
-                "🔑 Bei antiproportional bleibt das Produkt gleich: 2 · 12 = 4 · 6 = <b>24</b>."
+                "📈 <b>Proportional</b>: mehr Menge → mehr Preis<svg viewBox='0 0 220 90' style='width:100%;max-width:240px;height:auto' xmlns='http://www.w3.org/2000/svg'><line x1='30' y1='70' x2='200' y2='70' stroke='#64748b'/><line x1='30' y1='70' x2='30' y2='15' stroke='#64748b'/><line x1='30' y1='70' x2='180' y2='20' stroke='#34d399' stroke-width='2.5'/><circle cx='80' cy='53' r='4' fill='#f59e0b'/><circle cx='130' cy='37' r='4' fill='#f59e0b'/><text x='110' y='88' text-anchor='middle' fill='#94a3b8' font-size='10'>3 → 1,50 € · 6 → 3,00 €</text></svg>",
+                "🔑 Quotient bleibt: 1,50 ÷ 3 = <b>0,50 € / Stück</b>",
+                "📉 <b>Antiproportional</b>: mehr Arbeiter → weniger Zeit<svg viewBox='0 0 220 90' style='width:100%;max-width:240px;height:auto' xmlns='http://www.w3.org/2000/svg'><line x1='30' y1='70' x2='200' y2='70' stroke='#64748b'/><line x1='30' y1='70' x2='30' y2='15' stroke='#64748b'/><path d='M 40 25 Q 100 20 180 65' fill='none' stroke='#f472b6' stroke-width='2.5'/><circle cx='55' cy='24' r='4' fill='#f59e0b'/><circle cx='160' cy='55' r='4' fill='#f59e0b'/><text x='110' y='88' text-anchor='middle' fill='#94a3b8' font-size='10'>2 Arb. · 12 h = 4 Arb. · 6 h</text></svg>",
+                "🔑 Produkt bleibt: 2 · 12 = 4 · 6 = <b>24</b>"
             ],
             merksatz: "Proportional: doppelt so viel → doppelt so viel, der Quotient y ÷ x bleibt gleich. Antiproportional: doppelt so viel → halb so viel, das Produkt x · y bleibt gleich."
         },

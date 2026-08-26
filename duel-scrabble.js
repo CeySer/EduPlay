@@ -62,6 +62,7 @@
             const q = duelState.questions[duelState.qIndex];
             document.getElementById("duel-progress").innerText = `Frage ${duelState.qIndex + 1}/${duelState.questions.length}`;
             document.getElementById("duel-question-text").innerText = q.question;
+            if (typeof renderFrageGrafik === "function") renderFrageGrafik(q, "duel-question-grafik");
             const opts = document.getElementById("duel-options-container");
             opts.innerHTML = "";
             q.answers.forEach((ans, i) => {

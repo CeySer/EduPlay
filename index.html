@@ -658,6 +658,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 </div>
                 <div id="duel-question-area" class="hidden glass-card p-5 text-center space-y-4 shadow-lg">
                     <div id="duel-progress" class="text-xs text-gray-400 font-bold">Frage 1/8</div>
+                    <div id="duel-question-grafik" class="hidden mx-auto max-w-xs"></div>
                     <h2 id="duel-question-text" class="text-lg font-bold text-pink-400 leading-snug">...</h2>
                     <div id="duel-options-container" class="flex flex-col gap-2.5"></div>
                 </div>
@@ -2170,6 +2171,7 @@ VIEW: QUIZ SETUP
             <div id="question-image-wrap" class="hidden mx-auto max-w-sm">
                 <img id="question-image" alt="Rätselbild" class="w-full rounded-xl border border-white/10 bg-black/20 object-contain max-h-56" />
             </div>
+            <div id="question-grafik" class="hidden mx-auto max-w-xs"></div>
             <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
             <button id="question-speak-btn" class="hidden btn-secondary text-sm py-2 px-4 mx-auto"
                 onclick="speakCurrentQuestion()" title="Frage vorlesen">🔊 Vorlesen</button>
@@ -2646,13 +2648,13 @@ VIEW: QUIZ SETUP
     <script src="app-ui.js?v=9.4"></script>
     <script src="family-dashboard.js?v=11.21"></script>
     <script src="dev-admin.js?v=1.6"></script>
-    <script src="ui-common.js?v=9.1"></script>
+    <script src="ui-common.js?v=9.2"></script>
     <script src="ki-coach.js?v=1.1"></script>
-    <script src="quiz-core.js?v=9.9"></script>
+    <script src="quiz-core.js?v=10.0"></script>
     <script src="lektionen.js?v=1.3"></script>
     <script src="vocab.js?v=9.0"></script>
     <script src="suchsel.js?v=1.3"></script>
-    <script src="duel-scrabble.js?v=9.2"></script>
+    <script src="duel-scrabble.js?v=9.3"></script>
     <script src="wortraten.js?v=9.5"></script>
     <script src="tv-cast.js?v=13.2"></script>
     <script src="live-duel.js?v=10.6"></script>

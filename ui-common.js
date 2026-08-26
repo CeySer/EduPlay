@@ -409,3 +409,24 @@
             }, 900);
         }
 
+
+// ============================================================
+//  FRAGEN-GRAFIK (optional)
+//  Ein Frage-Objekt kann ein Feld "grafik" mit einem kompletten
+//  <svg>...</svg>-String haben. Die Grafik wird über dem Fragetext
+//  angezeigt. Fehlt das Feld, bleibt der Bereich leer und versteckt.
+//  Bewusst nur SVG: der Fragetext selbst bleibt weiterhin innerText,
+//  damit Zeichen wie < und > in normalen Fragen nichts kaputt machen.
+// ============================================================
+function renderFrageGrafik(q, wrapId) {
+    const wrap = document.getElementById(wrapId || "question-grafik");
+    if (!wrap) return;
+    const svg = (q && typeof q.grafik === "string") ? q.grafik.trim() : "";
+    if (svg.slice(0, 4).toLowerCase() === "<svg") {
+        wrap.innerHTML = svg;
+        wrap.classList.remove("hidden");
+    } else {
+        wrap.innerHTML = "";
+        wrap.classList.add("hidden");
+    }
+}

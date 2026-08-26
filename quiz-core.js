@@ -283,6 +283,7 @@
             document.getElementById("next-question-btn").classList.add("hidden");
             // Nur gezeigte Fragen als „kürzlich“ merken (nicht den ganzen Pool beim Start)
             if (q && typeof rememberQuestionIds === "function") rememberQuestionIds([q]);
+            if (typeof renderFrageGrafik === "function") renderFrageGrafik(q, "question-grafik");
 
             if (quizMode === 'flashcards') {
                 const speakBtn0 = document.getElementById("question-speak-btn");

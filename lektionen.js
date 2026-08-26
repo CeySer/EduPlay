@@ -54,7 +54,8 @@ const KURSE = [
     { id: "adverbs_k6", title: "Adverbs of Manner", icon: "🏃", grade: 6, subject: "englisch", beschreibung: "Wie jemand etwas tut – die -ly-Formen." },
     { id: "there_is_k6", title: "there is & there are", icon: "🏠", grade: 6, subject: "englisch", beschreibung: "Es gibt … – Einzahl, Mehrzahl, Frage und Verneinung." },
     { id: "pronouns_k6", title: "Pronouns", icon: "👤", grade: 6, subject: "englisch", beschreibung: "I und me, my und mine sicher unterscheiden." },
-    { id: "word_order_k6", title: "Word Order", icon: "🧩", grade: 6, subject: "englisch", beschreibung: "Subjekt-Verb-Objekt und place before time." }
+    { id: "word_order_k6", title: "Word Order", icon: "🧩", grade: 6, subject: "englisch", beschreibung: "Subjekt-Verb-Objekt und place before time." },
+    { id: "lineare_funktionen_k8", title: "Lineare Funktionen", icon: "📉", grade: 8, subject: "mathe", beschreibung: "Steigung und y-Achsenabschnitt aus y = mx + b." }
 ];
 
 const LEKTIONEN = [
@@ -6507,6 +6508,108 @@ const LEKTIONEN = [
                 question: "Wo steht ein Häufigkeitsadverb bei einem Vollverb?",
                 answers: ["Direkt davor", "Direkt dahinter", "Ganz am Anfang", "Ganz am Ende"], correct: 0,
                 explanation: "I often play, she never drinks – das Adverb steht vor dem Vollverb." }
+        ],
+        bestehenAb: 0.8
+    },
+    {
+        id: "linf_k8_l1",
+        kurs: "lineare_funktionen_k8",
+        order: 1,
+        icon: "📉",
+        title: "Lineare Funktionen – m und b",
+        kurz: "Steigung und y-Achsenabschnitt ablesen",
+        erklaerung: {
+            intro: "Eine <b>lineare Funktion</b> hat die Form <b>y = m · x + b</b>. Ihr Graph ist immer eine <b>Gerade</b>. Dabei ist <b>m</b> die <b>Steigung</b> und <b>b</b> der <b>y-Achsenabschnitt</b> – also die Stelle, an der die Gerade die y-Achse schneidet.",
+            beispiele: [
+                "<div class='mb-2 font-bold'>y = 0,5x + 1 – Steigungsdreieck</div><svg viewBox='0 0 220 160' style='width:100%;max-width:280px;height:auto' xmlns='http://www.w3.org/2000/svg'><g stroke='#475569' stroke-width='0.6'><line x1='55' y1='30' x2='55' y2='130'/><line x1='80' y1='30' x2='80' y2='130'/><line x1='105' y1='30' x2='105' y2='130'/><line x1='130' y1='30' x2='130' y2='130'/><line x1='155' y1='30' x2='155' y2='130'/><line x1='180' y1='30' x2='180' y2='130'/><line x1='30' y1='105' x2='195' y2='105'/><line x1='30' y1='80' x2='195' y2='80'/><line x1='30' y1='55' x2='195' y2='55'/><line x1='30' y1='30' x2='195' y2='30'/></g><g stroke='#94a3b8' stroke-width='1.6'><line x1='30' y1='130' x2='200' y2='130'/><line x1='30' y1='135' x2='30' y2='22'/></g><polygon points='200,130 194,127 194,133' fill='#94a3b8'/><polygon points='30,22 27,28 33,28' fill='#94a3b8'/><line x1='30' y1='105' x2='180' y2='30' stroke='#f59e0b' stroke-width='2.5'/><g stroke='#4ade80' stroke-width='1.8' stroke-dasharray='3 2'><line x1='30' y1='105' x2='80' y2='105'/><line x1='80' y1='105' x2='80' y2='80'/></g><circle cx='30' cy='105' r='3.5' fill='#f59e0b'/><g fill='#e5e7eb' font-size='9' font-family='sans-serif'><text x='44' y='118'>+2</text><text x='85' y='97'>+1</text><text x='6' y='108'>b = 1</text><text x='186' y='143'>x</text><text x='14' y='26'>y</text></g></svg><div class='mt-2 text-xs text-gray-400'>2 nach rechts, 1 nach oben → m = 1 ÷ 2 = 0,5</div>",
+                "<div class='mb-2 font-bold'>Drei Steigungen im Vergleich</div><svg viewBox='0 0 220 160' style='width:100%;max-width:280px;height:auto' xmlns='http://www.w3.org/2000/svg'><g stroke='#94a3b8' stroke-width='1.6'><line x1='30' y1='130' x2='200' y2='130'/><line x1='30' y1='135' x2='30' y2='22'/></g><polygon points='200,130 194,127 194,133' fill='#94a3b8'/><polygon points='30,22 27,28 33,28' fill='#94a3b8'/><line x1='30' y1='130' x2='130' y2='30' stroke='#f59e0b' stroke-width='2.5'/><line x1='30' y1='30' x2='130' y2='130' stroke='#38bdf8' stroke-width='2.5'/><line x1='30' y1='80' x2='190' y2='80' stroke='#4ade80' stroke-width='2.5'/><g font-size='9' font-family='sans-serif'><text x='134' y='34' fill='#f59e0b'>m &gt; 0</text><text x='134' y='130' fill='#38bdf8'>m &lt; 0</text><text x='150' y='74' fill='#4ade80'>m = 0</text></g></svg><div class='mt-2 text-xs text-gray-400'>Positives m steigt, negatives m fällt, m = 0 verläuft waagerecht.</div>",
+                "🧮 Steigung aus zwei Punkten: m = (y₂ − y₁) ÷ (x₂ − x₁). Für A(0|1) und B(2|5): m = (5 − 1) ÷ (2 − 0) = <b>2</b>.",
+                "🔎 Punktprobe: Liegt P(2|5) auf y = 2x + 1? Einsetzen: 2 · 2 + 1 = 5 ✓ – der Punkt liegt auf der Geraden."
+            ],
+            merksatz: "y = mx + b. Das m ist die Steigung: wie viele Einheiten es nach oben geht, wenn man eine nach rechts geht. Das b ist der y-Achsenabschnitt – dort startet die Gerade auf der y-Achse. Negatives m bedeutet: die Gerade fällt."
+        },
+        uebung: {
+            leicht: [
+                { id: "linfk8l1u_leicht_1", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "leicht", points: 10,
+                    question: "Was gibt das m in der Gleichung y = mx + b an?",
+                    answers: ["Die Steigung der Geraden", "Den Schnittpunkt mit der y-Achse", "Den Abstand zum Nullpunkt", "Die Länge der Geraden"], correct: 0,
+                    explanation: "Das m ist die Steigung – es sagt, wie steil die Gerade verläuft." },
+                { id: "linfk8l1u_leicht_2", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "leicht", points: 10,
+                    question: "Was gibt das b in der Gleichung y = mx + b an?",
+                    answers: ["Den y-Achsenabschnitt", "Die Steigung der Geraden", "Die Anzahl der Punkte", "Den x-Wert am Anfang"], correct: 0,
+                    explanation: "Das b ist die Stelle, an der die Gerade die y-Achse schneidet." },
+                { id: "linfk8l1u_leicht_3", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "leicht", points: 10,
+                    question: "Wie groß ist die Steigung bei y = 3x + 2?",
+                    answers: ["3", "2", "5", "1"], correct: 0,
+                    explanation: "Die Zahl vor dem x ist die Steigung: m = 3." },
+                { id: "linfk8l1u_leicht_4", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "leicht", points: 10,
+                    question: "An welcher Stelle schneidet y = 3x + 2 die y-Achse?",
+                    answers: ["Bei 2", "Bei 3", "Bei 5", "Bei 0"], correct: 0,
+                    explanation: "Der y-Achsenabschnitt ist b = 2." }
+            ],
+            mittel: [
+                { id: "linfk8l1u_mittel_1", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "mittel", points: 10,
+                    question: "Wie groß ist die Steigung bei y = -2x + 5?",
+                    answers: ["-2", "2", "5", "-5"], correct: 0,
+                    explanation: "Das Vorzeichen gehört zur Steigung: m = -2, die Gerade fällt." },
+                { id: "linfk8l1u_mittel_2", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "mittel", points: 10,
+                    question: "Was bedeutet eine Steigung von m = 0?",
+                    answers: ["Die Gerade verläuft waagerecht", "Die Gerade verläuft senkrecht", "Die Gerade geht durch den Nullpunkt", "Es gibt gar keine Gerade"], correct: 0,
+                    explanation: "Bei m = 0 bleibt der y-Wert immer gleich – die Gerade ist waagerecht." },
+                { id: "linfk8l1u_mittel_3", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "mittel", points: 10,
+                    question: "Welchen y-Wert hat y = 2x + 1 an der Stelle x = 3?",
+                    answers: ["7", "6", "5", "9"], correct: 0,
+                    explanation: "Einsetzen: y = 2 · 3 + 1 = 7." },
+                { id: "linfk8l1u_mittel_4", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "mittel", points: 10,
+                    question: "Wie groß ist die Steigung durch A(0|1) und B(2|5)?",
+                    answers: ["2", "4", "3", "0,5"], correct: 0,
+                    explanation: "m = (5 − 1) ÷ (2 − 0) = 4 ÷ 2 = 2." }
+            ],
+            schwer: [
+                { id: "linfk8l1u_schwer_1", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "schwer", points: 10,
+                    question: "Wie groß ist die Steigung durch A(1|3) und B(3|9)?",
+                    answers: ["3", "6", "2", "1,5"], correct: 0,
+                    explanation: "m = (9 − 3) ÷ (3 − 1) = 6 ÷ 2 = 3." },
+                { id: "linfk8l1u_schwer_2", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "schwer", points: 10,
+                    question: "Liegt der Punkt P(2|5) auf der Geraden y = 2x + 1?",
+                    answers: ["Ja, denn 2 · 2 + 1 = 5", "Nein, denn 2 · 2 + 1 = 4", "Nein, denn 2 · 5 + 1 = 11", "Ja, denn 2 + 5 + 1 = 8"], correct: 0,
+                    explanation: "Den x-Wert einsetzen: 2 · 2 + 1 = 5 – das passt zum y-Wert." },
+                { id: "linfk8l1u_schwer_3", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "schwer", points: 10,
+                    question: "Welche Gleichung gehört zu der abgebildeten Geraden?",
+                    grafik: "<svg viewBox='0 0 220 160' style='width:100%;max-width:240px;height:auto' xmlns='http://www.w3.org/2000/svg'><g stroke='#475569' stroke-width='0.6'><line x1='55' y1='30' x2='55' y2='130'/><line x1='80' y1='30' x2='80' y2='130'/><line x1='105' y1='30' x2='105' y2='130'/><line x1='130' y1='30' x2='130' y2='130'/><line x1='30' y1='105' x2='160' y2='105'/><line x1='30' y1='80' x2='160' y2='80'/><line x1='30' y1='55' x2='160' y2='55'/><line x1='30' y1='30' x2='160' y2='30'/></g><g stroke='#94a3b8' stroke-width='1.6'><line x1='30' y1='130' x2='175' y2='130'/><line x1='30' y1='135' x2='30' y2='22'/></g><polygon points='175,130 169,127 169,133' fill='#94a3b8'/><polygon points='30,22 27,28 33,28' fill='#94a3b8'/><line x1='30' y1='30' x2='130' y2='130' stroke='#f59e0b' stroke-width='2.5'/><circle cx='30' cy='30' r='3.5' fill='#f59e0b'/><circle cx='130' cy='130' r='3.5' fill='#f59e0b'/><g fill='#e5e7eb' font-size='9' font-family='sans-serif'><text x='36' y='24'>(0|4)</text><text x='118' y='143'>(4|0)</text><text x='163' y='143'>x</text><text x='14' y='26'>y</text></g></svg>",
+                    answers: ["y = -x + 4", "y = x + 4", "y = -4x + 1", "y = -x - 4"], correct: 0,
+                    explanation: "Die Gerade schneidet die y-Achse bei 4 und fällt pro Schritt nach rechts um 1: y = -x + 4." },
+                { id: "linfk8l1u_schwer_4", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "schwer", points: 10,
+                    question: "Was bedeutet eine Steigung von m = 2 anschaulich?",
+                    answers: ["Eine nach rechts, zwei nach oben", "Zwei nach rechts, eine nach oben", "Zwei nach rechts, zwei nach oben", "Eine nach rechts, eine nach unten"], correct: 0,
+                    explanation: "m = 2 heißt: pro Schritt nach rechts geht es zwei Einheiten nach oben." }
+            ]
+        },
+        test: [
+            { id: "linfk8l1_test_1", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "leicht", points: 10,
+                question: "Wie groß ist der y-Achsenabschnitt bei y = 5x - 3?",
+                answers: ["-3", "5", "3", "-5"], correct: 0,
+                explanation: "b ist die Zahl ohne x – hier -3." },
+            { id: "linfk8l1_test_2", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "mittel", points: 10,
+                question: "Wie groß ist die Steigung durch A(0|2) und B(4|10)?",
+                answers: ["2", "8", "4", "0,5"], correct: 0,
+                explanation: "m = (10 − 2) ÷ (4 − 0) = 8 ÷ 4 = 2." },
+            { id: "linfk8l1_test_3", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "mittel", points: 10,
+                question: "Steigt oder fällt der Graph von y = -0,5x + 2?",
+                answers: ["Er fällt", "Er steigt", "Er ist waagerecht", "Er ist senkrecht"], correct: 0,
+                explanation: "Ein negatives m bedeutet: die Gerade fällt." },
+            { id: "linfk8l1_test_4", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "mittel", points: 10,
+                question: "Welchen y-Wert hat y = 4x - 1 an der Stelle x = 1?",
+                answers: ["3", "4", "5", "-1"], correct: 0,
+                explanation: "Einsetzen: y = 4 · 1 − 1 = 3." },
+            { id: "linfk8l1_test_5", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "schwer", points: 10,
+                question: "Wie groß ist b, wenn die Gerade durch den Nullpunkt geht?",
+                answers: ["0", "1", "-1", "2"], correct: 0,
+                explanation: "Geht die Gerade durch (0|0), ist der y-Achsenabschnitt b = 0." },
+            { id: "linfk8l1_test_6", category: "kurs_linf_k8_l1", area: "schule", grade: 8, subject: "mathe", topic: "lineare_funktionen", difficulty: "schwer", points: 10,
+                question: "Welche Gerade ist steiler: y = 2x + 1 oder y = 5x - 4?",
+                answers: ["y = 5x - 4", "y = 2x + 1", "Beide sind gleich steil", "Das kann man nicht sagen"], correct: 0,
+                explanation: "Je größer der Betrag von m, desto steiler – 5 ist mehr als 2." }
         ],
         bestehenAb: 0.8
     }

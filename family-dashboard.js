@@ -2404,6 +2404,7 @@ auth.createUserWithEmailAndPassword(e, p)
         // gleiche Regel wie istLektionFreigeschaltet() in lektionen.js, nur ohne
         // Abhängigkeit vom aktuell eingeloggten Profil.
         function istLektionFreigeschaltetFuer(lektion, liste, doneMap) {
+            if (typeof isDevAdmin === "function" && isDevAdmin()) return true;
             if (lektion.order <= 1) return true;
             const vorherige = liste.find(l => l.order === lektion.order - 1);
             return !vorherige || !!(doneMap[vorherige.id] && doneMap[vorherige.id].bestanden);

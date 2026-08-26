@@ -302,6 +302,23 @@
                             <button onclick="triggerNextQuestion()" class="mt-4 btn-primary w-full text-center">Nächste Karte ➔</button>`;
             } else {
                 document.getElementById("question-text").innerText = q.question;
+                // Lektions-SVG (q.grafik) – HTML, kein <img>
+                let grafikEl = document.getElementById("question-grafik");
+                if (!grafikEl) {
+                    grafikEl = document.createElement("div");
+                    grafikEl.id = "question-grafik";
+                    grafikEl.className = "mx-auto max-w-sm my-2 flex justify-center";
+                    const qt = document.getElementById("question-text");
+                    if (qt && qt.parentNode) qt.parentNode.insertBefore(grafikEl, qt.nextSibling);
+                }
+                if (q.grafik) {
+                    grafikEl.innerHTML = q.grafik;
+                    grafikEl.classList.remove("hidden");
+                } else {
+                    grafikEl.innerHTML = "";
+                    grafikEl.classList.add("hidden");
+                }
+
                 const imgWrap = document.getElementById("question-image-wrap");
                 const imgEl = document.getElementById("question-image");
                 if (imgWrap && imgEl) {

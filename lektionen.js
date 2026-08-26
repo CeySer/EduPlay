@@ -9,7 +9,6 @@ const KURSE = [
     { id: "bruchrechnen_k6", title: "Brüche vertiefend", icon: "✖️", grade: 6, subject: "mathe", beschreibung: "Brüche multiplizieren und dividieren." },
     { id: "woertliche_rede_k5", title: "Wörtliche Rede", icon: "💬", grade: 5, subject: "deutsch", beschreibung: "Anführungszeichen und Satzzeichen sicher setzen." },
     { id: "simple_present_k5", title: "Simple Present", icon: "🕐", grade: 5, subject: "englisch", beschreibung: "Regelmäßige Handlungen und Fakten auf Englisch ausdrücken." },
-    { id: "fotosynthese_k6", title: "Fotosynthese", icon: "🌱", grade: 6, subject: "biologie", beschreibung: "Wie Pflanzen aus Licht, Wasser und CO2 ihre Energie herstellen." },
     { id: "simple_past_k5", title: "Simple Past", icon: "⏳", grade: 5, subject: "englisch", beschreibung: "Regelmäßige Verben in der Vergangenheit richtig bilden." },
     { id: "flaechen_umfang_k6", title: "Flächen & Umfang", icon: "📐", grade: 6, subject: "mathe", beschreibung: "Umfang und Fläche von Rechteck und Quadrat sicher berechnen." },
     { id: "satzglieder_k5", title: "Satzglieder", icon: "🧩", grade: 5, subject: "deutsch", beschreibung: "Subjekt, Prädikat und Objekt in Sätzen sicher erkennen." },
@@ -758,105 +757,6 @@ const LEKTIONEN = [
         bestehenAb: 0.8
     },
     {
-        id: "foto_k6_l1",
-        kurs: "fotosynthese_k6",
-        order: 1,
-        icon: "🌱",
-        title: "Fotosynthese – wie Pflanzen Energie herstellen",
-        kurz: "Licht, Wasser, CO2 → Zucker & Sauerstoff",
-        erklaerung: {
-            intro: "Bei der <b>Fotosynthese</b> stellen Pflanzen mithilfe von <b>Sonnenlicht</b> ihre eigene Energie her. Sie nehmen <b>Wasser</b> (aus den Wurzeln) und <b>Kohlenstoffdioxid (CO2)</b> (aus der Luft) auf und wandeln beides in den Blättern in <b>Traubenzucker (Glukose)</b> um. Als Nebenprodukt entsteht <b>Sauerstoff</b>, den die Pflanze abgibt.",
-            beispiele: [
-                "🌞 Als Wortgleichung: Wasser + Kohlenstoffdioxid + Licht → Traubenzucker + Sauerstoff.",
-                "🍃 Die Fotosynthese findet in den Blättern statt, genauer im <b>Blattgrün (Chlorophyll)</b> – dem grünen Farbstoff, der das Sonnenlicht einfängt."
-            ],
-            merksatz: "Pflanzen atmen nicht nur wie wir – sie stellen mit der Fotosynthese auch ihre eigene Nahrung her, und dabei entsteht der Sauerstoff, den wir zum Atmen brauchen!"
-        },
-        uebung: {
-            leicht: [
-                { id: "fotk6l1u_leicht_1", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "leicht", points: 10,
-                    question: "Was braucht eine Pflanze für die Fotosynthese?",
-                    answers: ["Licht, Wasser und Kohlenstoffdioxid", "Nur Wasser und sonst nichts weiter", "Nur Licht und sonst nichts weiter", "Sauerstoff und Zucker aus der Luft"], correct: 0,
-                    explanation: "Für die Fotosynthese braucht die Pflanze Sonnenlicht, Wasser und Kohlenstoffdioxid (CO2)." },
-                { id: "fotk6l1u_leicht_2", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "leicht", points: 10,
-                    question: "Was stellt die Pflanze bei der Fotosynthese her?",
-                    answers: ["Traubenzucker und Sauerstoff", "Nur Wasser und sonst gar nichts", "Nur Kohlenstoffdioxid aus der Luft", "Nur Sonnenlicht ohne weitere Stoffe"], correct: 0,
-                    explanation: "Bei der Fotosynthese entstehen Traubenzucker (Glukose) und Sauerstoff." },
-                { id: "fotk6l1u_leicht_3", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "leicht", points: 10,
-                    question: "Wo findet die Fotosynthese hauptsächlich statt?",
-                    answers: ["In den Blättern", "In den Wurzeln", "Im Stamm", "In der Blüte"], correct: 0,
-                    explanation: "Die Fotosynthese findet vor allem in den grünen Blättern statt." },
-                { id: "fotk6l1u_leicht_4", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "leicht", points: 10,
-                    question: "Wie heißt der grüne Farbstoff, der Sonnenlicht einfängt?",
-                    answers: ["Chlorophyll (Blattgrün)", "Zellulose, der Stoff in Pflanzenwänden", "Glukose, der Traubenzucker der Pflanze", "Chitin, ein Stoff aus Insektenpanzern"], correct: 0,
-                    explanation: "Chlorophyll, auch Blattgrün genannt, fängt das Sonnenlicht ein." }
-            ],
-            mittel: [
-                { id: "fotk6l1u_mittel_1", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "mittel", points: 10,
-                    question: "Woher bekommt die Pflanze das Wasser für die Fotosynthese?",
-                    answers: ["Über die Wurzeln aus dem Boden", "Direkt aus der Luft um die Blätter", "Aus dem Sonnenlicht, das auf sie scheint", "Aus dem Sauerstoff, den sie selbst herstellt"], correct: 0,
-                    explanation: "Die Wurzeln nehmen Wasser aus dem Boden auf und leiten es zu den Blättern." },
-                { id: "fotk6l1u_mittel_2", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "mittel", points: 10,
-                    question: "Woher bekommt die Pflanze das Kohlenstoffdioxid (CO2)?",
-                    answers: ["Aus der Luft", "Aus dem Boden", "Aus dem Wasser", "Aus dem Sonnenlicht"], correct: 0,
-                    explanation: "Pflanzen nehmen CO2 aus der Luft über kleine Öffnungen in den Blättern auf." },
-                { id: "fotk6l1u_mittel_3", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "mittel", points: 10,
-                    question: "Was passiert mit dem Sauerstoff, der bei der Fotosynthese entsteht?",
-                    answers: ["Er wird von der Pflanze an die Luft abgegeben", "Er bleibt dauerhaft in den Wurzeln gespeichert", "Er verwandelt sich sofort wieder in Wasser", "Er verschwindet einfach spurlos ins Nichts"], correct: 0,
-                    explanation: "Der bei der Fotosynthese entstehende Sauerstoff wird über die Blätter an die Luft abgegeben." },
-                { id: "fotk6l1u_mittel_4", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "mittel", points: 10,
-                    question: "Warum ist die Fotosynthese für uns Menschen wichtig?",
-                    answers: ["Sie liefert den Sauerstoff, den wir zum Atmen brauchen", "Sie macht das Wetter draußen wärmer und viel sonniger", "Sie erzeugt sauberes Trinkwasser für uns alle Menschen", "Sie hat eigentlich gar keine Bedeutung für uns Menschen"], correct: 0,
-                    explanation: "Der bei der Fotosynthese freigesetzte Sauerstoff ist lebenswichtig für Menschen und Tiere." }
-            ],
-            schwer: [
-                { id: "fotk6l1u_schwer_1", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "schwer", points: 10,
-                    question: "Was ist die richtige Wortgleichung der Fotosynthese?",
-                    answers: ["Wasser + Kohlenstoffdioxid + Licht → Traubenzucker + Sauerstoff", "Traubenzucker + Sauerstoff → Wasser + Kohlenstoffdioxid", "Licht + Sauerstoff → Wasser + Zucker, ganz ohne CO2 dabei", "Wasser + Zucker → Licht + Kohlenstoffdioxid als Abfallprodukt"], correct: 0,
-                    explanation: "Die Fotosynthese wandelt Wasser, CO2 und Licht in Traubenzucker und Sauerstoff um." },
-                { id: "fotk6l1u_schwer_2", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "schwer", points: 10,
-                    question: "Was würde passieren, wenn eine Pflanze kein Sonnenlicht mehr bekommt?",
-                    answers: ["Sie könnte keine Fotosynthese mehr betreiben und würde langfristig absterben", "Nichts würde sich grundsätzlich verändern, die Pflanze bliebe weiterhin gesund", "Sie würde dabei sogar noch deutlich mehr Sauerstoff produzieren als vorher", "Sie würde dadurch sogar noch viel schneller wachsen als im Licht"], correct: 0,
-                    explanation: "Ohne Licht kann keine Fotosynthese stattfinden – der Pflanze fehlt dann die Energiequelle." },
-                { id: "fotk6l1u_schwer_3", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "schwer", points: 10,
-                    question: "Ben sagt: 'Pflanzen atmen nicht, nur Fotosynthese zählt.' Stimmt das?",
-                    answers: ["Nein, Pflanzen atmen zusätzlich auch – das sind zwei verschiedene Vorgänge", "Ja, das stimmt ganz genau, Pflanzen atmen tatsächlich überhaupt nicht", "Nein, Pflanzen betreiben eigentlich nur Atmung und niemals Fotosynthese", "Beide Vorgänge sind eigentlich genau dasselbe und laufen immer gleichzeitig"], correct: 0,
-                    explanation: "Pflanzen betreiben sowohl Fotosynthese (bei Licht) als auch Zellatmung (ständig) – das sind zwei unterschiedliche Vorgänge." },
-                { id: "fotk6l1u_schwer_4", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "schwer", points: 10,
-                    question: "Warum sind die meisten Blätter grün?",
-                    answers: ["Weil sie Chlorophyll enthalten, das grünes Licht reflektiert", "Weil sie eigentlich überhaupt kein Sonnenlicht zum Wachsen brauchen", "Weil sie hauptsächlich nur aus Wasser und Luft bestehen", "Weil sie keinen Sauerstoff, sondern nur reines CO2 produzieren"], correct: 0,
-                    explanation: "Chlorophyll absorbiert vor allem rotes und blaues Licht und reflektiert grünes Licht – deshalb erscheinen Blätter grün." }
-            ]
-        },
-        test: [
-            { id: "fotk6l1_test_1", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "leicht", points: 10,
-                question: "Welche drei Dinge braucht eine Pflanze für die Fotosynthese?",
-                answers: ["Licht, Wasser, Kohlenstoffdioxid", "Nur Licht und Sauerstoff, sonst nichts weiter", "Nur Wasser und Zucker, sonst nichts weiter", "Erde, Sand und Steine aus dem Boden"], correct: 0,
-                explanation: "Licht, Wasser und CO2 sind die drei Zutaten der Fotosynthese." },
-            { id: "fotk6l1_test_2", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "leicht", points: 10,
-                question: "Was entsteht bei der Fotosynthese?",
-                answers: ["Traubenzucker und Sauerstoff", "Nur Wasser, sonst entsteht nichts weiter", "Nur Kohlenstoffdioxid, sonst nichts weiter", "Erde und Steine aus dem Blumentopf"], correct: 0,
-                explanation: "Bei der Fotosynthese entstehen Traubenzucker und Sauerstoff." },
-            { id: "fotk6l1_test_3", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "mittel", points: 10,
-                question: "Wo in der Pflanze findet die Fotosynthese statt?",
-                answers: ["In den Blättern", "In den Wurzeln", "Im Stamm", "In der Erde"], correct: 0,
-                explanation: "Die Fotosynthese findet vor allem in den Blättern statt." },
-            { id: "fotk6l1_test_4", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "mittel", points: 10,
-                question: "Wie heißt der grüne Farbstoff in den Blättern?",
-                answers: ["Chlorophyll", "Glukose", "Zellulose", "Nektar"], correct: 0,
-                explanation: "Der grüne Farbstoff heißt Chlorophyll (Blattgrün)." },
-            { id: "fotk6l1_test_5", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "schwer", points: 10,
-                question: "Woher nimmt die Pflanze das CO2 auf?",
-                answers: ["Aus der Luft", "Aus dem Boden", "Aus dem Wasser", "Aus dem Licht"], correct: 0,
-                explanation: "Pflanzen nehmen CO2 aus der Luft auf." },
-            { id: "fotk6l1_test_6", category: "kurs_foto_k6_l1", area: "schule", grade: 6, subject: "biologie", topic: "fotosynthese", difficulty: "schwer", points: 10,
-                question: "Warum ist die Fotosynthese für Menschen wichtig?",
-                answers: ["Sie produziert den Sauerstoff zum Atmen", "Sie sorgt dafür, dass es öfter regnet", "Sie erzeugt Erdöl tief unter der Erde", "Sie hat eigentlich gar keine Bedeutung"], correct: 0,
-                explanation: "Der bei der Fotosynthese entstehende Sauerstoff ist lebenswichtig." }
-        ],
-        bestehenAb: 0.8
-    },
-    {
         id: "sppa_k5_l1",
         kurs: "simple_past_k5",
         order: 1,
@@ -1067,9 +967,9 @@ const LEKTIONEN = [
         erklaerung: {
             intro: "Der <b>Flächeninhalt</b> gibt an, wie groß eine Fläche ist – man rechnet in Quadrat-Einheiten (z.B. cm², m²). Bei einem <b>Rechteck</b>: Fläche = Länge × Breite. Bei einem <b>Quadrat</b>: Fläche = Seitenlänge × Seitenlänge.",
             beispiele: [
-                "🟦 Rechteck mit 5 cm × 3 cm: Fläche = 5 × 3 = 15 cm²",
-                "🔲 Quadrat mit 4 cm Seitenlänge: Fläche = 4 × 4 = 16 cm²",
-                "💡 Fläche wird immer in Quadrat-Einheiten angegeben (cm², m², ...), der Umfang dagegen in einfachen Einheiten (cm, m)."
+                "🟦 Rechteck 5×3: Fläche = 5 × 3 = <b>15 cm²</b><svg viewBox='0 0 200 120' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='30' y='25' width='140' height='70' fill='rgba(99,102,241,0.25)' stroke='#818cf8' stroke-width='2'/><text x='100' y='68' text-anchor='middle' fill='#e5e7eb' font-size='14' font-family='sans-serif'>5 × 3</text><text x='100' y='110' text-anchor='middle' fill='#a5b4fc' font-size='11' font-family='sans-serif'>A = 15</text></svg>",
+                "🔲 Quadrat Seitenlänge 4: Fläche = 4 × 4 = <b>16 cm²</b><svg viewBox='0 0 160 140' style='width:100%;max-width:160px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='30' y='20' width='100' height='100' fill='rgba(245,158,11,0.25)' stroke='#f59e0b' stroke-width='2'/><text x='80' y='78' text-anchor='middle' fill='#e5e7eb' font-size='14' font-family='sans-serif'>4 × 4</text></svg>",
+                "💡 Fläche in <b>cm² / m²</b>, Umfang in <b>cm / m</b> (ohne Hochzahl)."
             ],
             merksatz: "Rechteck: A = Länge × Breite. Quadrat: A = Seitenlänge × Seitenlänge. Einheit: immer hoch 2 (cm², m², ...)."
         },
@@ -1782,12 +1682,12 @@ const LEKTIONEN = [
         erklaerung: {
             intro: "<b>Dezimalzahlen</b> (Kommazahlen) erweitern das Stellenwertsystem hinter das Komma: die erste Nachkommastelle sind <b>Zehntel</b> (1/10), die zweite <b>Hundertstel</b> (1/100), die dritte <b>Tausendstel</b> (1/1000).",
             beispiele: [
-                "🔟 0,7 bedeutet 7 Zehntel = 7/10",
-                "💯 0,25 bedeutet 25 Hundertstel = 25/100",
-                "⚖️ Vergleichen: 0,7 ist größer als 0,65, weil 7 Zehntel mehr sind als 6 Zehntel",
-                "🔄 Runden: 3,47 wird auf eine Nachkommastelle gerundet zu 3,5 (die Ziffer danach ist 7, also ≥5)"
+                "🔢 Stellenwerte von <b>3,47</b>:<svg viewBox='0 0 260 90' style='width:100%;max-width:280px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='10' y='20' width='50' height='40' rx='6' fill='rgba(99,102,241,0.35)' stroke='#818cf8'/><text x='35' y='45' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='sans-serif'>3</text><text x='35' y='75' text-anchor='middle' fill='#a5b4fc' font-size='10' font-family='sans-serif'>Einer</text><text x='68' y='48' fill='#e5e7eb' font-size='20'>,</text><rect x='80' y='20' width='50' height='40' rx='6' fill='rgba(52,211,153,0.35)' stroke='#34d399'/><text x='105' y='45' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='sans-serif'>4</text><text x='105' y='75' text-anchor='middle' fill='#6ee7b7' font-size='10' font-family='sans-serif'>Zehntel</text><rect x='140' y='20' width='50' height='40' rx='6' fill='rgba(245,158,11,0.35)' stroke='#f59e0b'/><text x='165' y='45' text-anchor='middle' fill='#e5e7eb' font-size='18' font-family='sans-serif'>7</text><text x='165' y='75' text-anchor='middle' fill='#fcd34d' font-size='10' font-family='sans-serif'>Hundertstel</text></svg>",
+                "🔟 0,7 = 7 Zehntel = 7/10 ·  0,25 = 25 Hundertstel = 25/100",
+                "⚖️ Vergleich: 0,7 &gt; 0,65, weil die Zehntel 7 &gt; 6 sind",
+                "🔄 Runden: 3,47 → eine Nachkommastelle: nächste Ziffer 7 ≥ 5 → <b>3,5</b>"
             ],
-            merksatz: "1. Nachkommastelle = Zehntel, 2. = Hundertstel, 3. = Tausendstel. Zum Vergleichen erst die Stelle vor dem Komma, dann Zehntel, dann Hundertstel vergleichen. Zum Runden: Ziffer danach ≥5 → aufrunden, <5 → abrunden."
+            merksatz: "1. Nachkommastelle = Zehntel, 2. = Hundertstel, 3. = Tausendstel. Vergleichen: erst vor dem Komma, dann Zehntel, dann Hundertstel. Runden: nächste Ziffer ≥5 → aufrunden."
         },
         uebung: {
             leicht: [
@@ -1870,6 +1770,107 @@ const LEKTIONEN = [
                 question: "Runde 4,996 auf zwei Nachkommastellen.",
                 answers: ["5,00", "4,99", "4,90", "5,10"], correct: 0,
                 explanation: "Die Tausendstel-Ziffer ist 6 (≥5): 4,99 wird aufgerundet zu 5,00 (mit Übertrag)." }
+        ],
+        bestehenAb: 0.8
+    },
+    {
+        id: "dez_k6_l2",
+        kurs: "dezimalzahlen_k6",
+        order: 2,
+        icon: "🧮",
+        title: "Mit Dezimalzahlen rechnen (Grundlagen)",
+        kurz: "Addieren, Subtrahieren und Stellen richtig setzen",
+        erklaerung: {
+            intro: "Beim Rechnen mit Dezimalzahlen schreibst du die Zahlen <b>untereinander – Komma unter Komma</b>. So bleiben Zehntel und Hundertstel in der richtigen Spalte.",
+            beispiele: [
+                "➕ 2,5 + 1,3 = <b>3,8</b><svg viewBox='0 0 160 100' style='width:100%;max-width:160px;height:auto' xmlns='http://www.w3.org/2000/svg'><text x='80' y='28' text-anchor='middle' fill='#e5e7eb' font-size='16' font-family='monospace'>  2,5</text><text x='80' y='50' text-anchor='middle' fill='#e5e7eb' font-size='16' font-family='monospace'>+ 1,3</text><line x1='40' y1='58' x2='120' y2='58' stroke='#94a3b8'/><text x='80' y='80' text-anchor='middle' fill='#34d399' font-size='16' font-family='monospace'>  3,8</text></svg>",
+                "➖ 4,0 − 1,25 = <b>2,75</b> (Nullen ergänzen hilft)",
+                "✖️ 1,5 × 2 = <b>3,0</b> (erst ohne Komma rechnen, Komma nachträglich setzen)",
+                "💡 Tipp: 0,5 ist die Hälfte von 1 – und 0,25 ist ein Viertel."
+            ],
+            merksatz: "Immer Komma unter Komma. Beim Multiplizieren: Anzahl der Nachkommastellen in den Faktoren = Anzahl im Ergebnis."
+        },
+        uebung: {
+            leicht: [
+                { id: "dezk6l2u_leicht_1", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "leicht", points: 10,
+                    question: "Was ergibt 1,2 + 3,4?",
+                    answers: ["4,6", "4,5", "5,6", "3,6"], correct: 0,
+                    explanation: "1,2 + 3,4 = 4,6." },
+                { id: "dezk6l2u_leicht_2", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "leicht", points: 10,
+                    question: "Was ergibt 5,8 − 2,3?",
+                    answers: ["3,5", "3,6", "2,5", "4,5"], correct: 0,
+                    explanation: "5,8 − 2,3 = 3,5." },
+                { id: "dezk6l2u_leicht_3", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "leicht", points: 10,
+                    question: "Was ergibt 0,5 + 0,5?",
+                    answers: ["1,0", "0,10", "1,5", "0,25"], correct: 0,
+                    explanation: "Zwei Hälften ergeben 1." },
+                { id: "dezk6l2u_leicht_4", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "leicht", points: 10,
+                    question: "Was ergibt 2,0 × 3?",
+                    answers: ["6,0", "5,0", "6,3", "0,6"], correct: 0,
+                    explanation: "2 × 3 = 6, also 6,0." }
+            ],
+            mittel: [
+                { id: "dezk6l2u_mittel_1", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "mittel", points: 10,
+                    question: "Was ergibt 3,45 + 1,2?",
+                    answers: ["4,65", "4,47", "5,65", "3,57"], correct: 0,
+                    explanation: "3,45 + 1,20 = 4,65." },
+                { id: "dezk6l2u_mittel_2", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "mittel", points: 10,
+                    question: "Was ergibt 6,0 − 2,75?",
+                    answers: ["3,25", "3,75", "4,25", "2,25"], correct: 0,
+                    explanation: "6,00 − 2,75 = 3,25." },
+                { id: "dezk6l2u_mittel_3", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "mittel", points: 10,
+                    question: "Was ergibt 1,5 × 4?",
+                    answers: ["6,0", "5,5", "4,5", "7,0"], correct: 0,
+                    explanation: "15 × 4 = 60, eine Nachkommastelle → 6,0." },
+                { id: "dezk6l2u_mittel_4", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "mittel", points: 10,
+                    question: "Was ergibt 2,4 ÷ 2?",
+                    answers: ["1,2", "1,4", "0,12", "2,2"], correct: 0,
+                    explanation: "2,4 ÷ 2 = 1,2." }
+            ],
+            schwer: [
+                { id: "dezk6l2u_schwer_1", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "schwer", points: 10,
+                    question: "Was ergibt 4,56 + 2,7 − 1,06?",
+                    answers: ["6,20", "6,26", "5,20", "7,20"], correct: 0,
+                    explanation: "4,56 + 2,70 = 7,26; 7,26 − 1,06 = 6,20." },
+                { id: "dezk6l2u_schwer_2", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "schwer", points: 10,
+                    question: "Was ergibt 0,25 × 8?",
+                    answers: ["2,0", "2,5", "0,2", "1,5"], correct: 0,
+                    explanation: "0,25 ist ein Viertel von 1; 8 Viertel = 2." },
+                { id: "dezk6l2u_schwer_3", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "schwer", points: 10,
+                    question: "Was ergibt 9,6 ÷ 0,3?",
+                    answers: ["32", "30", "3,2", "28"], correct: 0,
+                    explanation: "9,6 ÷ 0,3 = 96 ÷ 3 = 32." },
+                { id: "dezk6l2u_schwer_4", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "schwer", points: 10,
+                    question: "Ein Band ist 2,5 m lang. Du schneidest 0,75 m ab. Wie viel bleibt?",
+                    answers: ["1,75 m", "1,25 m", "2,25 m", "1,85 m"], correct: 0,
+                    explanation: "2,50 − 0,75 = 1,75 m." }
+            ]
+        },
+        test: [
+            { id: "dezk6l2_test_1", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "leicht", points: 10,
+                question: "Was ergibt 2,3 + 4,1?",
+                answers: ["6,4", "6,5", "5,4", "7,4"], correct: 0,
+                explanation: "2,3 + 4,1 = 6,4." },
+            { id: "dezk6l2_test_2", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "leicht", points: 10,
+                question: "Was ergibt 7,5 − 3,2?",
+                answers: ["4,3", "4,2", "5,3", "3,3"], correct: 0,
+                explanation: "7,5 − 3,2 = 4,3." },
+            { id: "dezk6l2_test_3", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "mittel", points: 10,
+                question: "Was ergibt 1,25 + 0,75?",
+                answers: ["2,00", "1,90", "2,10", "1,50"], correct: 0,
+                explanation: "1,25 + 0,75 = 2,00." },
+            { id: "dezk6l2_test_4", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "mittel", points: 10,
+                question: "Was ergibt 0,5 × 6?",
+                answers: ["3,0", "2,5", "3,5", "0,3"], correct: 0,
+                explanation: "Halbe von 6 ist 3." },
+            { id: "dezk6l2_test_5", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "schwer", points: 10,
+                question: "Was ergibt 4,8 ÷ 0,4?",
+                answers: ["12", "10", "1,2", "14"], correct: 0,
+                explanation: "4,8 ÷ 0,4 = 48 ÷ 4 = 12." },
+            { id: "dezk6l2_test_6", category: "kurs_dez_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "dezimalzahlen", difficulty: "schwer", points: 10,
+                question: "Was ergibt 3,6 − 1,85?",
+                answers: ["1,75", "1,85", "2,75", "1,65"], correct: 0,
+                explanation: "3,60 − 1,85 = 1,75." }
         ],
         bestehenAb: 0.8
     },
@@ -1974,6 +1975,107 @@ const LEKTIONEN = [
                 question: "Welche Zahl ist am kleinsten: -20, -2, 0 oder -8?",
                 answers: ["-20", "-2", "0", "-8"], correct: 0,
                 explanation: "-20 liegt am weitesten links auf der Zahlengeraden." }
+        ],
+        bestehenAb: 0.8
+    },
+    {
+        id: "negz_k6_l2",
+        kurs: "negative_zahlen_k6",
+        order: 2,
+        icon: "🌡️",
+        title: "Rechnen mit negativen Zahlen",
+        kurz: "Addieren, Subtrahieren und Vergleichen sicher anwenden",
+        erklaerung: {
+            intro: "Beim Rechnen mit negativen Zahlen hilft die <b>Zahlengerade</b>: Plus = nach rechts, Minus = nach links. Besonders wichtig: <b>Minus einer negativen Zahl</b> wird zu Plus: a − (−b) = a + b.",
+            beispiele: [
+                "➕ -4 + 9 = <b>5</b> (von -4 neun Schritte nach rechts)",
+                "➖ 3 − 8 = <b>-5</b> (von 3 acht Schritte nach links)",
+                "🔄 6 − (−2) = 6 + 2 = <b>8</b>",
+                "📏 Vergleich: -1 &gt; -7, weil -1 näher an der Null liegt (weiter rechts)"
+            ],
+            merksatz: "Plus = rechts, Minus = links. Minus vor einer Klammer mit Minus dreht das Vorzeichen: −(−) wird +."
+        },
+        uebung: {
+            leicht: [
+                { id: "negzk6l2u_leicht_1", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "leicht", points: 10,
+                    question: "Was ergibt -3 + 5?",
+                    answers: ["2", "-2", "8", "-8"], correct: 0,
+                    explanation: "Von -3 fünf Schritte nach rechts: 2." },
+                { id: "negzk6l2u_leicht_2", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "leicht", points: 10,
+                    question: "Was ergibt 4 − 9?",
+                    answers: ["-5", "5", "-13", "13"], correct: 0,
+                    explanation: "Von 4 neun Schritte nach links: -5." },
+                { id: "negzk6l2u_leicht_3", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "leicht", points: 10,
+                    question: "Was ergibt -2 − 3?",
+                    answers: ["-5", "1", "5", "-1"], correct: 0,
+                    explanation: "Von -2 drei Schritte weiter nach links: -5." },
+                { id: "negzk6l2u_leicht_4", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "leicht", points: 10,
+                    question: "Welche Aussage stimmt?",
+                    answers: ["-1 ist größer als -4", "-4 ist größer als -1", "-1 ist gleich -4", "0 ist kleiner als -1"], correct: 0,
+                    explanation: "-1 liegt rechts von -4, ist also größer." }
+            ],
+            mittel: [
+                { id: "negzk6l2u_mittel_1", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "mittel", points: 10,
+                    question: "Was ergibt 7 − (−3)?",
+                    answers: ["10", "4", "-10", "-4"], correct: 0,
+                    explanation: "Minus einer negativen Zahl: 7 + 3 = 10." },
+                { id: "negzk6l2u_mittel_2", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "mittel", points: 10,
+                    question: "Was ergibt -6 + (-2)?",
+                    answers: ["-8", "-4", "8", "4"], correct: 0,
+                    explanation: "Beide negativ: -6 und noch 2 nach links → -8." },
+                { id: "negzk6l2u_mittel_3", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "mittel", points: 10,
+                    question: "Was ergibt -1 − (-6)?",
+                    answers: ["5", "-7", "7", "-5"], correct: 0,
+                    explanation: "-1 + 6 = 5." },
+                { id: "negzk6l2u_mittel_4", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "mittel", points: 10,
+                    question: "Ordne der Größe nach (klein → groß): -3, 2, -5",
+                    answers: ["-5, -3, 2", "-3, -5, 2", "2, -3, -5", "-5, 2, -3"], correct: 0,
+                    explanation: "Am weitesten links ist am kleinsten: -5 < -3 < 2." }
+            ],
+            schwer: [
+                { id: "negzk6l2u_schwer_1", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "schwer", points: 10,
+                    question: "Was ergibt -12 + 7 − 3?",
+                    answers: ["-8", "-2", "8", "2"], correct: 0,
+                    explanation: "-12 + 7 = -5; -5 − 3 = -8." },
+                { id: "negzk6l2u_schwer_2", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "schwer", points: 10,
+                    question: "Was ergibt 5 − (−4) − 9?",
+                    answers: ["0", "18", "-8", "8"], correct: 0,
+                    explanation: "5 + 4 = 9; 9 − 9 = 0." },
+                { id: "negzk6l2u_schwer_3", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "schwer", points: 10,
+                    question: "Die Temperatur steigt von -6 °C um 11 °C. Neue Temperatur?",
+                    answers: ["5 °C", "17 °C", "-17 °C", "6 °C"], correct: 0,
+                    explanation: "-6 + 11 = 5 °C." },
+                { id: "negzk6l2u_schwer_4", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "schwer", points: 10,
+                    question: "Was ergibt -8 − (−3) + (-2)?",
+                    answers: ["-7", "-13", "7", "-5"], correct: 0,
+                    explanation: "-8 + 3 = -5; -5 + (-2) = -7." }
+            ]
+        },
+        test: [
+            { id: "negzk6l2_test_1", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "leicht", points: 10,
+                question: "Was ergibt -5 + 8?",
+                answers: ["3", "-3", "13", "-13"], correct: 0,
+                explanation: "-5 + 8 = 3." },
+            { id: "negzk6l2_test_2", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "leicht", points: 10,
+                question: "Was ergibt 2 − 9?",
+                answers: ["-7", "7", "-11", "11"], correct: 0,
+                explanation: "2 − 9 = -7." },
+            { id: "negzk6l2_test_3", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "mittel", points: 10,
+                question: "Was ergibt 4 − (−6)?",
+                answers: ["10", "-2", "2", "-10"], correct: 0,
+                explanation: "4 + 6 = 10." },
+            { id: "negzk6l2_test_4", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "mittel", points: 10,
+                question: "Was ergibt -7 + (-4)?",
+                answers: ["-11", "-3", "11", "3"], correct: 0,
+                explanation: "-7 − 4 = -11." },
+            { id: "negzk6l2_test_5", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "schwer", points: 10,
+                question: "Was ergibt -3 − (−9) − 4?",
+                answers: ["2", "10", "-16", "-2"], correct: 0,
+                explanation: "-3 + 9 = 6; 6 − 4 = 2." },
+            { id: "negzk6l2_test_6", category: "kurs_negz_k6_l2", area: "schule", grade: 6, subject: "mathe", topic: "negative_zahlen", difficulty: "schwer", points: 10,
+                question: "Welcher Vergleich ist richtig?",
+                answers: ["-15 < -4", "-4 < -15", "-15 > -4", "-15 = -4"], correct: 0,
+                explanation: "-15 liegt weiter links als -4." }
         ],
         bestehenAb: 0.8
     },
@@ -2380,6 +2482,107 @@ const LEKTIONEN = [
                 question: "Ein Preis von 50€ sinkt um 10%. Wie hoch ist der neue Preis?",
                 answers: ["45 €", "40 €", "5 €", "55 €"], correct: 0,
                 explanation: "Rabatt: 50 × 0,10 = 5 €, also 50 € − 5 € = 45 €." }
+        ],
+        bestehenAb: 0.8
+    },
+    {
+        id: "proz_k7_l2",
+        kurs: "prozentrechnung_k7",
+        order: 2,
+        icon: "📈",
+        title: "Prozentwert, Prozentsatz & Rabatt",
+        kurz: "Drei Grundaufgaben sicher anwenden",
+        erklaerung: {
+            intro: "Bei Prozentaufgaben suchst du entweder den <b>Prozentwert</b> (Teil), den <b>Prozentsatz</b> (p %) oder den <b>Grundwert</b> (Ganze). Merkhilfe: <b>Prozentwert = Grundwert × Prozentsatz</b> (Prozentsatz als Dezimalzahl, z. B. 20 % = 0,20).",
+            beispiele: [
+                "📊 20 % von 80: 80 × 0,20 = <b>16</b><svg viewBox='0 0 200 90' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='20' y='30' width='160' height='28' rx='4' fill='rgba(148,163,184,0.2)' stroke='#94a3b8'/><rect x='20' y='30' width='32' height='28' rx='4' fill='rgba(52,211,153,0.7)' stroke='#34d399'/><text x='100' y='78' text-anchor='middle' fill='#e5e7eb' font-size='11' font-family='sans-serif'>20 % von 80 = 16</text></svg>",
+                "🧮 Anteil: 15 von 60 → Prozentsatz = 15 ÷ 60 = 0,25 → <b>25 %</b>",
+                "🏷️ Rabatt 15 % auf 40 €: 40 × 0,15 = 6 € Rabatt → neuer Preis <b>34 €</b>",
+                "📌 Erhöhung 10 % auf 50: 50 × 1,10 = <b>55</b>"
+            ],
+            merksatz: "Prozentwert = Grundwert × p (als Dezimal). Prozentsatz = Prozentwert ÷ Grundwert. Grundwert = Prozentwert ÷ p."
+        },
+        uebung: {
+            leicht: [
+                { id: "prozk7l2u_leicht_1", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "leicht", points: 10,
+                    question: "Wie viel sind 10 % von 90?",
+                    answers: ["9", "10", "19", "81"], correct: 0,
+                    explanation: "90 × 0,10 = 9." },
+                { id: "prozk7l2u_leicht_2", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "leicht", points: 10,
+                    question: "Wie schreibt man 25 % als Dezimalzahl?",
+                    answers: ["0,25", "2,5", "0,025", "25,0"], correct: 0,
+                    explanation: "25 % = 25/100 = 0,25." },
+                { id: "prozk7l2u_leicht_3", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "leicht", points: 10,
+                    question: "Wie viel sind 50 % von 64?",
+                    answers: ["32", "16", "48", "24"], correct: 0,
+                    explanation: "50 % ist die Hälfte: 64 ÷ 2 = 32." },
+                { id: "prozk7l2u_leicht_4", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "leicht", points: 10,
+                    question: "Ein T-Shirt kostet 20 €. 10 % Rabatt – wie viel sparst du?",
+                    answers: ["2 €", "1 €", "5 €", "10 €"], correct: 0,
+                    explanation: "20 × 0,10 = 2 €." }
+            ],
+            mittel: [
+                { id: "prozk7l2u_mittel_1", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "mittel", points: 10,
+                    question: "12 von 48 – wie viel Prozent ist das?",
+                    answers: ["25 %", "20 %", "30 %", "12 %"], correct: 0,
+                    explanation: "12 ÷ 48 = 0,25 → 25 %." },
+                { id: "prozk7l2u_mittel_2", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "mittel", points: 10,
+                    question: "Ein Preis von 80 € sinkt um 25 %. Neuer Preis?",
+                    answers: ["60 €", "55 €", "65 €", "70 €"], correct: 0,
+                    explanation: "80 × 0,25 = 20 Rabatt → 80 − 20 = 60 €." },
+                { id: "prozk7l2u_mittel_3", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "mittel", points: 10,
+                    question: "18 sind 20 % von welchem Grundwert?",
+                    answers: ["90", "80", "100", "72"], correct: 0,
+                    explanation: "18 ÷ 0,20 = 90." },
+                { id: "prozk7l2u_mittel_4", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "mittel", points: 10,
+                    question: "Ein Betrag von 40 € steigt um 15 %. Neuer Betrag?",
+                    answers: ["46 €", "45 €", "55 €", "48 €"], correct: 0,
+                    explanation: "40 × 1,15 = 46 €." }
+            ],
+            schwer: [
+                { id: "prozk7l2u_schwer_1", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "schwer", points: 10,
+                    question: "Nach 20 % Rabatt kostet etwas 48 €. Was war der Originalpreis?",
+                    answers: ["60 €", "58 €", "68 €", "52 €"], correct: 0,
+                    explanation: "48 ist 80 % vom Original: 48 ÷ 0,80 = 60 €." },
+                { id: "prozk7l2u_schwer_2", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "schwer", points: 10,
+                    question: "Von 200 Schülern fehlen 12 %. Wie viele sind anwesend?",
+                    answers: ["176", "188", "172", "180"], correct: 0,
+                    explanation: "12 % von 200 = 24 fehlen → 200 − 24 = 176." },
+                { id: "prozk7l2u_schwer_3", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "schwer", points: 10,
+                    question: "Ein Smartphone sinkt von 500 € auf 425 €. Wie viel Prozent Rabatt?",
+                    answers: ["15 %", "12 %", "18 %", "25 %"], correct: 0,
+                    explanation: "Rabatt 75 €; 75 ÷ 500 = 0,15 → 15 %." },
+                { id: "prozk7l2u_schwer_4", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "schwer", points: 10,
+                    question: "30 % von einer Zahl sind 27. Wie groß ist die Zahl?",
+                    answers: ["90", "81", "70", "100"], correct: 0,
+                    explanation: "27 ÷ 0,30 = 90." }
+            ]
+        },
+        test: [
+            { id: "prozk7l2_test_1", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "leicht", points: 10,
+                question: "Wie viel sind 20 % von 150?",
+                answers: ["30", "20", "40", "25"], correct: 0,
+                explanation: "150 × 0,20 = 30." },
+            { id: "prozk7l2_test_2", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "leicht", points: 10,
+                question: "8 von 40 – wie viel Prozent?",
+                answers: ["20 %", "15 %", "25 %", "10 %"], correct: 0,
+                explanation: "8 ÷ 40 = 0,20 → 20 %." },
+            { id: "prozk7l2_test_3", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "mittel", points: 10,
+                question: "Ein Artikel für 60 € hat 30 % Rabatt. Verkaufspreis?",
+                answers: ["42 €", "40 €", "48 €", "30 €"], correct: 0,
+                explanation: "60 × 0,30 = 18 Rabatt → 60 − 18 = 42 €." },
+            { id: "prozk7l2_test_4", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "mittel", points: 10,
+                question: "21 sind 35 % von welchem Grundwert?",
+                answers: ["60", "55", "70", "45"], correct: 0,
+                explanation: "21 ÷ 0,35 = 60." },
+            { id: "prozk7l2_test_5", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "schwer", points: 10,
+                question: "Nach 10 % Aufschlag kostet etwas 99 €. Alter Preis?",
+                answers: ["90 €", "89 €", "95 €", "100 €"], correct: 0,
+                explanation: "99 ÷ 1,10 = 90 €." },
+            { id: "prozk7l2_test_6", category: "kurs_proz_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "prozentrechnung", difficulty: "schwer", points: 10,
+                question: "Von 250 ml sind 40 % übrig. Wie viel ml sind übrig?",
+                answers: ["100 ml", "110 ml", "90 ml", "150 ml"], correct: 0,
+                explanation: "250 × 0,40 = 100 ml." }
         ],
         bestehenAb: 0.8
     },
@@ -4923,10 +5126,10 @@ const LEKTIONEN = [
         erklaerung: {
             intro: "Das <b>Volumen</b> sagt, wie viel in einen Körper hineinpasst. Die <b>Oberfläche</b> ist die Summe aller Außenflächen – also das, was man zum Einpacken bräuchte.",
             beispiele: [
-                "🧊 Volumen Quader: V = Länge · Breite · Höhe. Beispiel 5 · 3 · 2 = <b>30 cm³</b>.",
-                "🎲 Volumen Würfel: V = a · a · a. Bei a = 4 cm: <b>64 cm³</b>.",
-                "📄 Oberfläche Quader: O = 2 · (a·b + a·c + b·c). Bei 5 · 3 · 2: 2 · (15 + 10 + 6) = <b>62 cm²</b>.",
-                "📄 Oberfläche Würfel: O = 6 · a². Bei a = 4 cm: 6 · 16 = <b>96 cm²</b>."
+                "🧊 Volumen Quader: V = a · b · c. Beispiel 5 · 3 · 2 = <b>30 cm³</b><svg viewBox='0 0 200 130' style='width:100%;max-width:210px;height:auto' xmlns='http://www.w3.org/2000/svg'><polygon points='40,50 120,50 120,100 40,100' fill='rgba(99,102,241,0.2)' stroke='#818cf8' stroke-width='2'/><polygon points='120,50 155,30 155,80 120,100' fill='rgba(99,102,241,0.12)' stroke='#818cf8' stroke-width='2'/><polygon points='40,50 75,30 155,30 120,50' fill='rgba(99,102,241,0.28)' stroke='#818cf8' stroke-width='2'/><text x='80' y='120' text-anchor='middle' fill='#e5e7eb' font-size='11' font-family='sans-serif'>5×3×2 = 30</text></svg>",
+                "🎲 Volumen Würfel: V = a³. Bei a = 4 cm: <b>64 cm³</b>",
+                "📄 Oberfläche Quader: O = 2 · (ab + ac + bc). Bei 5·3·2: 2·(15+10+6) = <b>62 cm²</b>",
+                "📄 Oberfläche Würfel: O = 6 · a². Bei a = 4: 6·16 = <b>96 cm²</b>"
             ],
             merksatz: "Volumen misst man in cm³, dm³ oder m³ – 1 dm³ ist genau 1 Liter. Die Oberfläche misst man in cm² oder m², weil sie aus Flächen besteht."
         },
@@ -5216,6 +5419,107 @@ const LEKTIONEN = [
                 question: "In einer Strichliste stehen 12 Striche bei 'Fußball'. Was bedeutet das?",
                 answers: ["12 Kinder nannten Fußball", "Fußball dauert 12 Minuten", "Es gibt 12 Sportarten", "Fußball kostet 12 Euro"], correct: 0,
                 explanation: "Jeder Strich steht für eine Nennung – die Häufigkeit ist 12." }
+        ],
+        bestehenAb: 0.8
+    },
+    {
+        id: "datn_k5_l2",
+        kurs: "daten_diagramme_k5",
+        order: 2,
+        icon: "📈",
+        title: "Diagramme lesen und auswerten",
+        kurz: "Häufigkeit, Mittelwert und Spannweite am Diagramm",
+        erklaerung: {
+            intro: "Aus einem <b>Balkendiagramm</b> liest du ab, wie oft etwas vorkommt. Daraus kannst du <b>Mittelwert</b>, <b>Spannweite</b> und die <b>häufigste Kategorie</b> bestimmen.",
+            beispiele: [
+                "📊 Höchster Balken = häufigster Wert (Modalwert)",
+                "➗ Mittelwert: alle Häufigkeiten · Werte addieren, durch Gesamtzahl teilen",
+                "↔️ Spannweite: größter Wert − kleinster Wert",
+                "💡 Immer die Achsenbeschriftung lesen – sonst vergleichst du Äpfel mit Birnen."
+            ],
+            merksatz: "Diagramm lesen: Achsen prüfen → Häufigkeiten ablesen → Mittelwert/Spannweite/Modus berechnen."
+        },
+        uebung: {
+            leicht: [
+                { id: "datnk5l2u_leicht_1", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "leicht", points: 10,
+                    question: "Was ist die Spannweite der Werte 3, 7, 5 und 12?",
+                    answers: ["9", "7", "12", "5"], correct: 0,
+                    explanation: "12 − 3 = 9." },
+                { id: "datnk5l2u_leicht_2", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "leicht", points: 10,
+                    question: "Mittelwert von 4, 6 und 8?",
+                    answers: ["6", "5", "7", "18"], correct: 0,
+                    explanation: "(4+6+8) ÷ 3 = 18 ÷ 3 = 6." },
+                { id: "datnk5l2u_leicht_3", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "leicht", points: 10,
+                    question: "Welche Werte kommen am häufigsten vor: 2, 5, 2, 7, 2?",
+                    answers: ["2", "5", "7", "alle gleich oft"], correct: 0,
+                    explanation: "2 kommt dreimal vor – das ist der Modalwert." },
+                { id: "datnk5l2u_leicht_4", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "leicht", points: 10,
+                    question: "In einer Umfrage: 5× Fußball, 3× Tennis. Wie viele Antworten insgesamt?",
+                    answers: ["8", "5", "3", "15"], correct: 0,
+                    explanation: "5 + 3 = 8 Antworten." }
+            ],
+            mittel: [
+                { id: "datnk5l2u_mittel_1", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "mittel", points: 10,
+                    question: "Noten: 2, 3, 3, 4, 3. Mittelwert?",
+                    answers: ["3", "2", "4", "15"], correct: 0,
+                    explanation: "2+3+3+4+3 = 15; 15 ÷ 5 = 3." },
+                { id: "datnk5l2u_mittel_2", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "mittel", points: 10,
+                    question: "Werte 10, 14, 18, 22. Spannweite?",
+                    answers: ["12", "10", "14", "22"], correct: 0,
+                    explanation: "22 − 10 = 12." },
+                { id: "datnk5l2u_mittel_3", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "mittel", points: 10,
+                    question: "8 Kinder mögen Pizza, 4 Pasta. Welcher Anteil mag Pizza?",
+                    answers: ["2/3", "1/2", "3/4", "1/3"], correct: 0,
+                    explanation: "8 von 12 = 8/12 = 2/3." },
+                { id: "datnk5l2u_mittel_4", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "mittel", points: 10,
+                    question: "Temperaturen: 12, 15, 9, 18 °C. Mittelwert?",
+                    answers: ["13,5 °C", "12 °C", "15 °C", "14 °C"], correct: 0,
+                    explanation: "(12+15+9+18) ÷ 4 = 54 ÷ 4 = 13,5." }
+            ],
+            schwer: [
+                { id: "datnk5l2u_schwer_1", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "schwer", points: 10,
+                    question: "Punkte: 5, 8, 8, 9, 10. Mittelwert und Modalwert?",
+                    answers: ["Mittel 8, Modal 8", "Mittel 9, Modal 8", "Mittel 8, Modal 10", "Mittel 7, Modal 8"], correct: 0,
+                    explanation: "Summe 40 ÷ 5 = 8; 8 kommt am häufigsten vor." },
+                { id: "datnk5l2u_schwer_2", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "schwer", points: 10,
+                    question: "In einem Diagramm: A=6, B=4, C=10. Wie viel Prozent sind C (von allen)?",
+                    answers: ["50 %", "40 %", "60 %", "10 %"], correct: 0,
+                    explanation: "Gesamt 20; 10/20 = 50 %." },
+                { id: "datnk5l2u_schwer_3", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "schwer", points: 10,
+                    question: "Fünf Werte haben Mittelwert 6. Vier davon sind 4, 5, 7, 8. Der fünfte?",
+                    answers: ["6", "5", "7", "4"], correct: 0,
+                    explanation: "Summe muss 30 sein; 4+5+7+8=24 → fünfter = 6." },
+                { id: "datnk5l2u_schwer_4", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "schwer", points: 10,
+                    question: "Werte 2, 4, 6, 10. Neue Zahl 8 wird ergänzt. Neue Spannweite?",
+                    answers: ["8", "10", "6", "12"], correct: 0,
+                    explanation: "Min 2, Max bleibt 10 → Spannweite 8 (unverändert)." }
+            ]
+        },
+        test: [
+            { id: "datnk5l2_test_1", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "leicht", points: 10,
+                question: "Mittelwert von 5, 10 und 15?",
+                answers: ["10", "15", "5", "30"], correct: 0,
+                explanation: "30 ÷ 3 = 10." },
+            { id: "datnk5l2_test_2", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "leicht", points: 10,
+                question: "Spannweite von 3, 9, 6?",
+                answers: ["6", "9", "3", "12"], correct: 0,
+                explanation: "9 − 3 = 6." },
+            { id: "datnk5l2_test_3", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "mittel", points: 10,
+                question: "Werte 1, 2, 2, 3, 7. Modalwert?",
+                answers: ["2", "1", "3", "7"], correct: 0,
+                explanation: "2 kommt am häufigsten vor." },
+            { id: "datnk5l2_test_4", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "mittel", points: 10,
+                question: "6, 8, 10, 12. Mittelwert?",
+                answers: ["9", "8", "10", "36"], correct: 0,
+                explanation: "36 ÷ 4 = 9." },
+            { id: "datnk5l2_test_5", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "schwer", points: 10,
+                question: "A=5, B=15. Wie viel Prozent sind B von allen (A+B)?",
+                answers: ["75 %", "50 %", "25 %", "15 %"], correct: 0,
+                explanation: "15 von 20 = 75 %." },
+            { id: "datnk5l2_test_6", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "schwer", points: 10,
+                question: "Mittelwert von vier Zahlen ist 5. Summe der vier Zahlen?",
+                answers: ["20", "5", "15", "25"], correct: 0,
+                explanation: "Mittelwert × Anzahl = Summe → 5 × 4 = 20." }
         ],
         bestehenAb: 0.8
     },
@@ -6645,11 +6949,28 @@ function getLektionenForKurs(kursId) {
     return LEKTIONEN.filter(l => l.kurs === kursId).sort((a, b) => a.order - b.order);
 }
 
+// Entwickler: alle Lektionen freischalten (nur deine Accounts / manueller Schalter)
+function isDevAdmin() {
+    try {
+        if (window.__eduplayDevUnlock === true) return true;
+        const email = String(
+            (typeof currentParentUser !== "undefined" && currentParentUser && currentParentUser.email) ||
+            (typeof auth !== "undefined" && auth.currentUser && auth.currentUser.email) ||
+            ""
+        ).toLowerCase().trim();
+        return email === "cu.oezdemir@gmail.com" || email === "ceyhun.oezdemir@outlook.com";
+    } catch (e) {
+        return false;
+    }
+}
+window.isDevAdmin = isDevAdmin;
+
 function istLektionAbgeschlossen(id) {
     return !!(currentPlayer && currentPlayer.lektionen && currentPlayer.lektionen[id] && currentPlayer.lektionen[id].bestanden);
 }
 
 function istLektionFreigeschaltet(lektion, liste) {
+    if (typeof isDevAdmin === "function" && isDevAdmin()) return true;
     if (lektion.order <= 1) return true;
     const vorherige = liste.find(l => l.order === lektion.order - 1);
     return !vorherige || istLektionAbgeschlossen(vorherige.id);
@@ -6661,12 +6982,11 @@ function istLektionFreigeschaltet(lektion, liste) {
 // Reihenfolge + Anzeigename/Icon der Fächer in der Kurs-Übersicht.
 // Unbekannte subject-Werte (falls mal ein neues Fach dazukommt) landen
 // hinten dran, statt zu verschwinden.
-const KURS_FACH_ORDER = ["mathe", "deutsch", "englisch", "biologie"];
+const KURS_FACH_ORDER = ["mathe", "deutsch", "englisch"];
 const KURS_FACH_LABELS = {
     mathe: { icon: "🧮", label: "Mathematik" },
     deutsch: { icon: "📖", label: "Deutsch" },
-    englisch: { icon: "🇬🇧", label: "Englisch" },
-    biologie: { icon: "🌱", label: "Biologie" }
+    englisch: { icon: "🇬🇧", label: "Englisch" }
 };
 
 // Ein Kurs-Button (großformatig, orange) – wird sowohl für die Kurse

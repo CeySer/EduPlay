@@ -2296,10 +2296,10 @@ const LEKTIONEN = [
         erklaerung: {
             intro: "Größen wie Längen, Gewichte oder Zeit lassen sich in verschiedenen <b>Einheiten</b> angeben. Um sie zu vergleichen oder zu addieren, muss man sie oft in dieselbe Einheit umrechnen.",
             beispiele: [
-                "📏 Längen: 1 m = 100 cm, 1 km = 1000 m, 1 cm = 10 mm",
-                "⚖️ Gewichte: 1 kg = 1000 g, 1 t = 1000 kg",
-                "⏰ Zeit: 1 h = 60 min, 1 min = 60 s",
-                "💶 Geld: 1 € = 100 Cent"
+                "📏 Längen: 1 m = 100 cm, 1 km = 1000 m<svg viewBox='0 0 260 70' style='width:100%;max-width:280px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='10' y='22' width='240' height='16' rx='3' fill='rgba(148,163,184,0.25)' stroke='#94a3b8'/><rect x='10' y='22' width='24' height='16' fill='rgba(245,158,11,0.7)'/><text x='22' y='16' text-anchor='middle' fill='#fcd34d' font-size='9'>10 cm</text><text x='130' y='58' text-anchor='middle' fill='#e5e7eb' font-size='11'>1 m = 10 × 10 cm = 100 cm</text></svg>",
+                "⚖️ Gewicht: 1 kg = 1000 g · 1 t = 1000 kg",
+                "⏰ Zeit: 1 h = 60 min, 1 min = 60 s<svg viewBox='0 0 80 80' style='width:70px;height:auto' xmlns='http://www.w3.org/2000/svg'><circle cx='40' cy='40' r='28' fill='rgba(99,102,241,0.15)' stroke='#818cf8' stroke-width='2'/><line x1='40' y1='40' x2='40' y2='22' stroke='#e5e7eb' stroke-width='2'/><line x1='40' y1='40' x2='55' y2='40' stroke='#34d399' stroke-width='2'/><circle cx='40' cy='40' r='3' fill='#f59e0b'/></svg>",
+                "💶 Geld: 1 € = 100 Cent — Münzen und Scheine<svg viewBox='0 0 260 90' style='width:100%;max-width:280px;height:auto' xmlns='http://www.w3.org/2000/svg'><circle cx='28' cy='40' r='16' fill='#cd7f32' stroke='#b87333' stroke-width='2'/><text x='28' y='44' text-anchor='middle' fill='#fff' font-size='8'>1c</text><circle cx='62' cy='40' r='16' fill='#c0c0c0' stroke='#9ca3af' stroke-width='2'/><text x='62' y='44' text-anchor='middle' fill='#111' font-size='8'>10c</text><circle cx='98' cy='40' r='17' fill='#eab308' stroke='#ca8a04' stroke-width='2'/><text x='98' y='44' text-anchor='middle' fill='#111' font-size='8'>50c</text><circle cx='136' cy='40' r='18' fill='#eab308' stroke='#ca8a04' stroke-width='2'/><text x='136' y='44' text-anchor='middle' fill='#111' font-size='9'>1€</text><rect x='162' y='18' width='42' height='26' rx='3' fill='#22c55e' stroke='#16a34a'/><text x='183' y='35' text-anchor='middle' fill='#fff' font-size='9'>5€</text><rect x='210' y='18' width='42' height='26' rx='3' fill='#3b82f6' stroke='#2563eb'/><text x='231' y='35' text-anchor='middle' fill='#fff' font-size='9'>10€</text><rect x='162' y='50' width='42' height='26' rx='3' fill='#f59e0b' stroke='#d97706'/><text x='183' y='67' text-anchor='middle' fill='#fff' font-size='9'>20€</text><rect x='210' y='50' width='42' height='26' rx='3' fill='#ef4444' stroke='#dc2626'/><text x='231' y='67' text-anchor='middle' fill='#fff' font-size='9'>50€</text></svg>"
             ],
             merksatz: "Von einer größeren in eine kleinere Einheit umrechnen: multiplizieren (mal 10, 100, 1000 ...). Von klein nach groß: dividieren."
         },
@@ -2307,6 +2307,7 @@ const LEKTIONEN = [
             leicht: [
                 { id: "groek5l1u_leicht_1", category: "kurs_groe_k5_l1", area: "schule", grade: 5, subject: "mathe", topic: "groessen", difficulty: "leicht", points: 10,
                     question: "Wie viele cm sind 1 m?",
+                    grafik: "<svg viewBox='0 0 240 50' style='width:100%;max-width:240px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='8' y='16' width='224' height='14' rx='2' fill='rgba(148,163,184,0.2)' stroke='#94a3b8'/><rect x='8' y='16' width='22.4' height='14' fill='rgba(245,158,11,0.8)'/><text x='120' y='44' text-anchor='middle' fill='#e5e7eb' font-size='10'>1 m</text></svg>",
                     answers: ["100 cm", "10 cm", "1000 cm", "1 cm"], correct: 0,
                     explanation: "1 m = 100 cm." },
                 { id: "groek5l1u_leicht_2", category: "kurs_groe_k5_l1", area: "schule", grade: 5, subject: "mathe", topic: "groessen", difficulty: "leicht", points: 10,
@@ -2319,6 +2320,7 @@ const LEKTIONEN = [
                     explanation: "1 Stunde = 60 Minuten." },
                 { id: "groek5l1u_leicht_4", category: "kurs_groe_k5_l1", area: "schule", grade: 5, subject: "mathe", topic: "groessen", difficulty: "leicht", points: 10,
                     question: "Wie viele Cent sind 1 €?",
+                    grafik: "<svg viewBox='0 0 200 70' style='width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><circle cx='40' cy='32' r='20' fill='#eab308' stroke='#ca8a04' stroke-width='2'/><text x='40' y='36' text-anchor='middle' fill='#111' font-size='11' font-weight='700'>1€</text><text x='78' y='36' fill='#94a3b8' font-size='16'>=</text><circle cx='118' cy='32' r='14' fill='#c0c0c0' stroke='#9ca3af'/><circle cx='148' cy='32' r='14' fill='#c0c0c0' stroke='#9ca3af'/><text x='165' y='36' fill='#94a3b8' font-size='12'>… 100 c</text></svg>",
                     answers: ["100 Cent", "10 Cent", "1000 Cent", "60 Cent"], correct: 0,
                     explanation: "1 Euro = 100 Cent." }
             ],
@@ -2384,6 +2386,108 @@ const LEKTIONEN = [
                 question: "Wandle 2450 m in km um.",
                 answers: ["2,45 km", "24,5 km", "0,245 km", "245 km"], correct: 0,
                 explanation: "2450 m : 1000 = 2,45 km." }
+        ],
+        bestehenAb: 0.8
+    },
+    {
+        id: "groe_k5_l2",
+        kurs: "groessen_umrechnen_k5",
+        order: 2,
+        icon: "💶",
+        title: "Geld: Münzen und Scheine",
+        kurz: "Euro und Cent zählen, wechseln und vergleichen",
+        erklaerung: {
+            intro: "In Deutschland zahlst du mit <b>Euro (€)</b> und <b>Cent</b>. <b>1 € = 100 Cent</b>. Münzen gehen bis 2 €, Scheine ab 5 €.",
+            beispiele: [
+                "🪙 Münzen: 1 c, 2 c, 5 c, 10 c, 20 c, 50 c, 1 €, 2 €<svg viewBox='0 0 260 70' style='width:100%;max-width:280px;height:auto' xmlns='http://www.w3.org/2000/svg'><circle cx='22' cy='32' r='12' fill='#cd7f32'/><text x='22' y='36' text-anchor='middle' fill='#fff' font-size='7'>1c</text><circle cx='50' cy='32' r='12' fill='#cd7f32'/><text x='50' y='36' text-anchor='middle' fill='#fff' font-size='7'>2c</text><circle cx='80' cy='32' r='13' fill='#cd7f32'/><text x='80' y='36' text-anchor='middle' fill='#fff' font-size='7'>5c</text><circle cx='112' cy='32' r='13' fill='#c0c0c0'/><text x='112' y='36' text-anchor='middle' fill='#111' font-size='7'>10c</text><circle cx='146' cy='32' r='14' fill='#c0c0c0'/><text x='146' y='36' text-anchor='middle' fill='#111' font-size='7'>20c</text><circle cx='182' cy='32' r='15' fill='#eab308'/><text x='182' y='36' text-anchor='middle' fill='#111' font-size='8'>50c</text><circle cx='220' cy='32' r='16' fill='#eab308'/><text x='220' y='36' text-anchor='middle' fill='#111' font-size='8'>1€</text></svg>",
+                "💵 Scheine: 5 € (grün), 10 € (rot), 20 € (blau), 50 € (orange)<svg viewBox='0 0 240 70' style='width:100%;max-width:260px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='8' y='18' width='50' height='28' rx='3' fill='#22c55e'/><text x='33' y='36' text-anchor='middle' fill='#fff' font-size='10'>5€</text><rect x='66' y='18' width='50' height='28' rx='3' fill='#ef4444'/><text x='91' y='36' text-anchor='middle' fill='#fff' font-size='10'>10€</text><rect x='124' y='18' width='50' height='28' rx='3' fill='#3b82f6'/><text x='149' y='36' text-anchor='middle' fill='#fff' font-size='10'>20€</text><rect x='182' y='18' width='50' height='28' rx='3' fill='#f59e0b'/><text x='207' y='36' text-anchor='middle' fill='#fff' font-size='10'>50€</text></svg>",
+                "➕ 3 × 50 Cent = 1,50 € ·  2 × 2 € + 1 × 50 c = 4,50 €",
+                "🔄 Wechseln: 1 € = zwei 50-Cent-Münzen = zehn 10-Cent-Münzen"
+            ],
+            merksatz: "1 Euro = 100 Cent. Zum Rechnen alles in Cent umwandeln oder Komma unter Komma setzen."
+        },
+        uebung: {
+            leicht: [
+                { id: "groek5l2u_leicht_1", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "leicht", points: 10,
+                    question: "Wie viel Euro sind 200 Cent?",
+                    answers: ["2 €", "20 €", "0,20 €", "200 €"], correct: 0,
+                    explanation: "200 Cent ÷ 100 = 2 €." },
+                { id: "groek5l2u_leicht_2", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "leicht", points: 10,
+                    question: "Wie viel Cent sind 3 €?",
+                    answers: ["300 Cent", "30 Cent", "3 Cent", "330 Cent"], correct: 0,
+                    explanation: "3 × 100 = 300 Cent." },
+                { id: "groek5l2u_leicht_3", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "leicht", points: 10,
+                    question: "Zwei 50-Cent-Münzen – wie viel Euro?",
+                    grafik: "<svg viewBox='0 0 120 50' xmlns='http://www.w3.org/2000/svg'><circle cx='30' cy='25' r='16' fill='#eab308'/><text x='30' y='29' text-anchor='middle' fill='#111' font-size='9'>50c</text><circle cx='70' cy='25' r='16' fill='#eab308'/><text x='70' y='29' text-anchor='middle' fill='#111' font-size='9'>50c</text></svg>",
+                    answers: ["1 €", "0,50 €", "2 €", "100 €"], correct: 0,
+                    explanation: "50 + 50 = 100 Cent = 1 €." },
+                { id: "groek5l2u_leicht_4", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "leicht", points: 10,
+                    question: "Welcher Schein ist am kleinsten (Wert)?",
+                    answers: ["5-Euro-Schein", "10-Euro-Schein", "20-Euro-Schein", "50-Euro-Schein"], correct: 0,
+                    explanation: "Der 5-Euro-Schein hat den kleinsten Wert." }
+            ],
+            mittel: [
+                { id: "groek5l2u_mittel_1", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "mittel", points: 10,
+                    question: "Ein 5-Euro-Schein und drei 1-Euro-Münzen. Summe?",
+                    answers: ["8 €", "6 €", "9 €", "7 €"], correct: 0,
+                    explanation: "5 + 3 = 8 €." },
+                { id: "groek5l2u_mittel_2", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "mittel", points: 10,
+                    question: "4 × 20 Cent + 1 × 50 Cent = ?",
+                    answers: ["1,30 €", "1,20 €", "0,90 €", "2,00 €"], correct: 0,
+                    explanation: "80 Cent + 50 Cent = 130 Cent = 1,30 €." },
+                { id: "groek5l2u_mittel_3", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "mittel", points: 10,
+                    question: "Du zahlst 2,40 € mit einem 5-Euro-Schein. Wechselgeld?",
+                    answers: ["2,60 €", "2,40 €", "3,60 €", "1,60 €"], correct: 0,
+                    explanation: "5,00 − 2,40 = 2,60 €." },
+                { id: "groek5l2u_mittel_4", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "mittel", points: 10,
+                    question: "Wie viele 10-Cent-Münzen sind 2 €?",
+                    answers: ["20", "10", "2", "200"], correct: 0,
+                    explanation: "200 Cent ÷ 10 = 20 Münzen." }
+            ],
+            schwer: [
+                { id: "groek5l2u_schwer_1", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "schwer", points: 10,
+                    question: "2-Euro-Münze, 50-Cent, 20-Cent und 5-Cent. Summe?",
+                    answers: ["2,75 €", "2,70 €", "2,85 €", "3,75 €"], correct: 0,
+                    explanation: "200 + 50 + 20 + 5 = 275 Cent = 2,75 €." },
+                { id: "groek5l2u_schwer_2", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "schwer", points: 10,
+                    question: "Ein Heft kostet 1,85 €. Du hast 1 € und vier 20-Cent. Reicht das?",
+                    answers: ["Nein, es fehlen 5 Cent", "Ja, es reicht genau", "Ja, 15 Cent bleiben übrig", "Nein, es fehlen 25 Cent"], correct: 0,
+                    explanation: "100 + 80 = 180 Cent; 185 − 180 = 5 Cent fehlen." },
+                { id: "groek5l2u_schwer_3", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "schwer", points: 10,
+                    question: "Drei 10-Euro-Scheine und zwei 5-Euro-Scheine. Summe?",
+                    answers: ["40 €", "35 €", "45 €", "30 €"], correct: 0,
+                    explanation: "30 + 10 = 40 €." },
+                { id: "groek5l2u_schwer_4", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "schwer", points: 10,
+                    question: "Wechselgeld 3,20 € nur mit 1-€-Münzen und 20-Cent. Eine mögliche Kombination?",
+                    answers: ["3 × 1 € und 1 × 20 c", "2 × 1 € und 2 × 20 c", "1 × 1 € und 11 × 20 c", "4 × 1 € ohne Cent"], correct: 0,
+                    explanation: "3 € + 20 c = 3,20 €." }
+            ]
+        },
+        test: [
+            { id: "groek5l2_test_1", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "leicht", points: 10,
+                question: "Wie viel Euro sind 50 Cent?",
+                answers: ["0,50 €", "5 €", "50 €", "0,05 €"], correct: 0,
+                explanation: "50 Cent = 0,50 €." },
+            { id: "groek5l2_test_2", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "leicht", points: 10,
+                question: "Ein 10-Euro-Schein und zwei 2-Euro-Münzen?",
+                answers: ["14 €", "12 €", "16 €", "10 €"], correct: 0,
+                explanation: "10 + 4 = 14 €." },
+            { id: "groek5l2_test_3", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "mittel", points: 10,
+                question: "6 × 50 Cent = ?",
+                answers: ["3 €", "2 €", "6 €", "1,50 €"], correct: 0,
+                explanation: "300 Cent = 3 €." },
+            { id: "groek5l2_test_4", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "mittel", points: 10,
+                question: "Du kaufst für 4,70 € und zahlst mit 10 €. Wechselgeld?",
+                answers: ["5,30 €", "5,70 €", "6,30 €", "4,30 €"], correct: 0,
+                explanation: "10,00 − 4,70 = 5,30 €." },
+            { id: "groek5l2_test_5", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "schwer", points: 10,
+                question: "Zwei 20-Euro-Scheine minus ein 5-Euro-Schein?",
+                answers: ["35 €", "30 €", "25 €", "40 €"], correct: 0,
+                explanation: "40 − 5 = 35 €." },
+            { id: "groek5l2_test_6", category: "kurs_groe_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "geld", difficulty: "schwer", points: 10,
+                question: "Wie viele 5-Cent-Münzen sind 1 €?",
+                answers: ["20", "10", "5", "25"], correct: 0,
+                explanation: "100 ÷ 5 = 20 Münzen." }
         ],
         bestehenAb: 0.8
     },
@@ -2889,6 +2993,107 @@ const LEKTIONEN = [
                 question: "720 € werden für 60 Tage zu 5 % angelegt (Zinsjahr = 360 Tage). Wie viel Zinsen sind das?",
                 answers: ["6 €", "9 €", "12 €", "36 €"], correct: 0,
                 explanation: "Jahreszinsen: 720 · 5 ÷ 100 = 36 €. Für 60 Tage: 36 · 60 ÷ 360 = 6 €." }
+        ],
+        bestehenAb: 0.8
+    },
+    {
+        id: "zins_k7_l2",
+        kurs: "zinsrechnung_k7",
+        order: 2,
+        icon: "💹",
+        title: "Kapital, Zinssatz und Zeit berechnen",
+        kurz: "Die Formel umstellen – Z, K, p oder t gesucht",
+        erklaerung: {
+            intro: "Aus <b>Z = K · p · t / 100</b> kannst du jede Größe berechnen: Kapital K = Z · 100 / (p · t), Zinssatz p = Z · 100 / (K · t), Zeit t = Z · 100 / (K · p). t in Jahren (½ Jahr = 0,5; 3 Monate = 0,25).",
+            beispiele: [
+                "🔎 K gesucht: 40 € Zinsen bei 4 % in 1 Jahr → K = 40 · 100 / 4 = <b>1000 €</b>",
+                "📈 p gesucht: 600 € bringen 18 € in 1 Jahr → p = 18 · 100 / 600 = <b>3 %</b>",
+                "📅 t gesucht: 2000 € zu 5 % bringen 50 € → t = 50 · 100 / (2000 · 5) = <b>0,5 Jahre</b>",
+                "💡 Halbes Jahr: t = 0,5 ·  Drei Monate: t = 0,25"
+            ],
+            merksatz: "Z = K·p·t / 100. Gesuchte Größe isolieren: Zähler immer Z·100, Nenner das Produkt der übrigen Größen."
+        },
+        uebung: {
+            leicht: [
+                { id: "zinsk7l2u_leicht_1", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "leicht", points: 10,
+                    question: "Wie stellt man die Formel nach K um?",
+                    answers: ["K = Z · 100 / (p · t)", "K = Z · p · t / 100", "K = p · 100 / Z", "K = Z / 100 · p"], correct: 0,
+                    explanation: "Z = K·p·t/100 → K = Z·100/(p·t)." },
+                { id: "zinsk7l2u_leicht_2", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "leicht", points: 10,
+                    question: "20 € Zinsen bei 4 % in 1 Jahr. Wie groß war das Kapital?",
+                    answers: ["500 €", "400 €", "800 €", "200 €"], correct: 0,
+                    explanation: "K = 20 · 100 / 4 = 500 €." },
+                { id: "zinsk7l2u_leicht_3", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "leicht", points: 10,
+                    question: "Wie viele Jahre sind 6 Monate in der Zinsformel?",
+                    answers: ["0,5", "6", "0,6", "1,5"], correct: 0,
+                    explanation: "6 von 12 Monaten = 0,5 Jahre." },
+                { id: "zinsk7l2u_leicht_4", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "leicht", points: 10,
+                    question: "400 € bringen 16 € Zinsen in 1 Jahr. Zinssatz?",
+                    answers: ["4 %", "2 %", "6 %", "8 %"], correct: 0,
+                    explanation: "p = 16 · 100 / 400 = 4 %." }
+            ],
+            mittel: [
+                { id: "zinsk7l2u_mittel_1", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "mittel", points: 10,
+                    question: "36 € Zinsen bei 3 % in 2 Jahren. Kapital?",
+                    answers: ["600 €", "540 €", "720 €", "480 €"], correct: 0,
+                    explanation: "K = 36 · 100 / (3 · 2) = 3600 / 6 = 600 €." },
+                { id: "zinsk7l2u_mittel_2", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "mittel", points: 10,
+                    question: "1200 € zu 5 % bringen 30 €. Wie lange lag das Geld?",
+                    answers: ["0,5 Jahre", "1 Jahr", "2 Jahre", "0,25 Jahre"], correct: 0,
+                    explanation: "t = 30 · 100 / (1200 · 5) = 3000 / 6000 = 0,5." },
+                { id: "zinsk7l2u_mittel_3", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "mittel", points: 10,
+                    question: "900 € in einem halben Jahr: 18 € Zinsen. Zinssatz?",
+                    answers: ["4 %", "2 %", "8 %", "6 %"], correct: 0,
+                    explanation: "p = 18 · 100 / (900 · 0,5) = 1800 / 450 = 4 %." },
+                { id: "zinsk7l2u_mittel_4", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "mittel", points: 10,
+                    question: "Kapital 2500 €, p = 2 %, t = 3 Jahre. Zinsen?",
+                    answers: ["150 €", "125 €", "175 €", "200 €"], correct: 0,
+                    explanation: "Z = 2500 · 2 · 3 / 100 = 150 €." }
+            ],
+            schwer: [
+                { id: "zinsk7l2u_schwer_1", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "schwer", points: 10,
+                    question: "45 € Zinsen bei 3 % in 9 Monaten. Kapital?",
+                    answers: ["2000 €", "1500 €", "1800 €", "2250 €"], correct: 0,
+                    explanation: "t = 9/12 = 0,75; K = 45 · 100 / (3 · 0,75) = 4500 / 2,25 = 2000 €." },
+                { id: "zinsk7l2u_schwer_2", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "schwer", points: 10,
+                    question: "1600 € zu 4 % sollen 32 € Zinsen bringen. Wie viele Monate?",
+                    answers: ["6 Monate", "4 Monate", "8 Monate", "3 Monate"], correct: 0,
+                    explanation: "t = 32 · 100 / (1600 · 4) = 0,5 Jahre = 6 Monate." },
+                { id: "zinsk7l2u_schwer_3", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "schwer", points: 10,
+                    question: "Nach 2 Jahren sind 80 € Zinsen da, p = 5 %. Startkapital?",
+                    answers: ["800 €", "750 €", "850 €", "900 €"], correct: 0,
+                    explanation: "K = 80 · 100 / (5 · 2) = 8000 / 10 = 800 €." },
+                { id: "zinsk7l2u_schwer_4", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "schwer", points: 10,
+                    question: "K = 3600 €, Z = 54 €, t = 6 Monate. Zinssatz p?",
+                    answers: ["3 %", "2 %", "4 %", "6 %"], correct: 0,
+                    explanation: "t = 0,5; p = 54 · 100 / (3600 · 0,5) = 5400 / 1800 = 3 %." }
+            ]
+        },
+        test: [
+            { id: "zinsk7l2_test_1", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "leicht", points: 10,
+                question: "15 € Zinsen, 3 %, 1 Jahr. Kapital?",
+                answers: ["500 €", "450 €", "600 €", "300 €"], correct: 0,
+                explanation: "K = 15 · 100 / 3 = 500 €." },
+            { id: "zinsk7l2_test_2", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "leicht", points: 10,
+                question: "3 Monate als Jahresanteil t?",
+                answers: ["0,25", "0,3", "3", "0,5"], correct: 0,
+                explanation: "3/12 = 0,25." },
+            { id: "zinsk7l2_test_3", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "mittel", points: 10,
+                question: "800 €, 5 %, 2 Jahre. Zinsen?",
+                answers: ["80 €", "40 €", "100 €", "60 €"], correct: 0,
+                explanation: "Z = 800 · 5 · 2 / 100 = 80 €." },
+            { id: "zinsk7l2_test_4", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "mittel", points: 10,
+                question: "1000 € bringen 25 € in einem halben Jahr. p?",
+                answers: ["5 %", "2,5 %", "4 %", "10 %"], correct: 0,
+                explanation: "p = 25 · 100 / (1000 · 0,5) = 5 %." },
+            { id: "zinsk7l2_test_5", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "schwer", points: 10,
+                question: "24 € Zinsen bei 4 % in 3 Monaten. Kapital?",
+                answers: ["2400 €", "2000 €", "1800 €", "1200 €"], correct: 0,
+                explanation: "t = 0,25; K = 24 · 100 / (4 · 0,25) = 2400 / 1 = 2400 €." },
+            { id: "zinsk7l2_test_6", category: "kurs_zins_k7_l2", area: "schule", grade: 7, subject: "mathe", topic: "zinsrechnung", difficulty: "schwer", points: 10,
+                question: "K = 1500 €, p = 4 %, Z = 30 €. Zeit t in Jahren?",
+                answers: ["0,5", "1", "2", "0,25"], correct: 0,
+                explanation: "t = 30 · 100 / (1500 · 4) = 3000 / 6000 = 0,5." }
         ],
         bestehenAb: 0.8
     },
@@ -6996,11 +7201,15 @@ const KURS_FACH_LABELS = {
 // innerhalb eines Fachs als auch (in Button-Form) für die Fächer selbst
 // verwendet, damit beide Ebenen gleich aussehen.
 function kursButtonHtml(icon, title, beschreibung, fertig, gesamt, onclick) {
+    const pct = gesamt > 0 ? Math.round((fertig / gesamt) * 100) : 0;
     return `<button type="button" onclick="${onclick}" class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">
         <span class="text-3xl shrink-0">${icon}</span>
-        <span class="flex-1">
+        <span class="flex-1 min-w-0">
             <span class="block text-base font-black">${title}</span>
             <span class="block text-xs font-bold text-amber-100/80">${beschreibung}</span>
+            <span class="mt-2 block h-1.5 rounded-full bg-black/25 overflow-hidden">
+                <span class="block h-full rounded-full bg-white/80" style="width:${pct}%"></span>
+            </span>
         </span>
         <span class="text-xs font-black bg-black/20 rounded-full px-2.5 py-1 shrink-0">${fertig}/${gesamt}</span>
     </button>`;

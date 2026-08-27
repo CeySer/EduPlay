@@ -1546,6 +1546,8 @@ auth.createUserWithEmailAndPassword(e, p)
             }
             if (elV) elV.textContent = vCount;
             if (elW) elW.textContent = wCount;
+            const elK = document.getElementById('dash-kurs-count');
+            if (elK) elK.textContent = (typeof KURSE !== 'undefined' && Array.isArray(KURSE)) ? KURSE.length : 0;
         }
 
         /**
@@ -1844,13 +1846,63 @@ auth.createUserWithEmailAndPassword(e, p)
                         lengths.map(l => `<option value="${l}">${l} Buchstaben</option>`).join('');
                 }
                 renderDashWords();
+            } else if (sub === 'kurse') {
+                container.innerHTML = `
+            <select id="dash-kurs-grade" class="input-modern text-xs flex-1 min-w-[70px]">
+                <option value="">Alle Klassen</option>
+            </select>
+            <select id="dash-kurs-subject" class="input-modern text-xs flex-1 min-w-[70px]">
+                <option value="">Alle Fächer</option>
+            </select>
+        `;
+                const gSel = document.getElementById('dash-kurs-grade');
+                const sSel = document.getElementById('dash-kurs-subject');
+                if (typeof KURSE !== 'undefined' && Array.isArray(KURSE)) {
+                    const grades = [...new Set(KURSE.map(k => k.grade).filter(Boolean))].sort((a, b) => a - b);
+                    const subjects = [...new Set(KURSE.map(k => k.subject).filter(Boolean))];
+                    const subLab = { mathe: "Mathe", deutsch: "Deutsch", englisch: "Englisch" };
+                    if (gSel) gSel.innerHTML = '<option value="">Alle Klassen</option>' + grades.map(g => `<option value="${g}">Klasse ${g}</option>`).join("");
+                    if (sSel) sSel.innerHTML = '<option value="">Alle Fächer</option>' + subjects.map(s => `<option value="${s}">${subLab[s] || s}</option>`).join("");
+                }
+                if (gSel) gSel.addEventListener('change', renderDashKurse);
+                if (sSel) sSel.addEventListener('change', renderDashKurse);
+                renderDashKurse();
             }
+        }
+
+        function renderDashKurse() {
+            const list = document.getElementById('dash-kurs-list');
+            if (!list) return;
+            if (typeof KURSE === 'undefined' || !Array.isArray(KURSE)) {
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">Keine Kurse geladen</div>';
+                return;
+            }
+            const g = document.getElementById('dash-kurs-grade')?.value || '';
+            const s = document.getElementById('dash-kurs-subject')?.value || '';
+            const subLab = { mathe: "Mathe", deutsch: "Deutsch", englisch: "Englisch" };
+            let rows = KURSE.slice();
+            if (g) rows = rows.filter(k => String(k.grade) === String(g));
+            if (s) rows = rows.filter(k => k.subject === s);
+            rows.sort((a, b) => (a.grade || 0) - (b.grade || 0) || String(a.title).localeCompare(String(b.title), "de"));
+            if (!rows.length) {
+                list.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">Keine Kurse für diesen Filter</div>';
+                return;
+            }
+            list.innerHTML = rows.map(k => {
+                const nL = (typeof LEKTIONEN !== 'undefined' && Array.isArray(LEKTIONEN))
+                    ? LEKTIONEN.filter(l => l.kurs === k.id).length : 0;
+                return `<div class="bg-white/5 border border-white/5 rounded-xl p-3">
+                    <div class="font-bold text-white">${k.icon || "📘"} ${esc(k.title)}</div>
+                    <div class="text-xs text-gray-400 mt-1">Klasse ${k.grade || "?"} · ${subLab[k.subject] || k.subject || "?"} · ${nL} Lektion${nL === 1 ? "" : "en"}</div>
+                    ${k.beschreibung ? `<div class="text-xs text-gray-500 mt-1">${esc(k.beschreibung)}</div>` : ""}
+                </div>`;
+            }).join("");
         }
 
 
         function switchDashboardSubTab(sub) {
             currentDashSubTab = sub;
-            ['fragen', 'vokabeln', 'woerter'].forEach(s => {
+            ['fragen', 'vokabeln', 'woerter', 'kurse'].forEach(s => {
                 const btn = document.getElementById('dash-sub-' + s);
                 const view = document.getElementById('dash-sub-' + s + '-view');
                 if (!btn || !view) return;

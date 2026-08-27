@@ -156,15 +156,12 @@
             }
 
             const names = Object.keys(groups).sort(function (a, b) { return a.localeCompare(b, "de"); });
-            const perGroup = 40;
             let html = "<div class=\"flex items-center justify-between mb-2\">" +
-                "<div class=\"text-xs text-gray-400\">" + total + " Treffer · " + names.length + " Gruppen</div>" +
+                "<div class=\"text-xs text-gray-400\">" + total + " Treffer · " + names.length + " Gruppen · alle Fragen</div>" +
                 "<button type=\"button\" class=\"text-[11px] font-bold text-indigo-300\" onclick=\"document.getElementById('dev-browser-out').classList.add('hidden')\">Liste ausblenden</button></div>";
             names.forEach(function (name) {
                 const items = groups[name];
-                const shown = items.slice(0, perGroup);
-                let inner = shown.map(function (r) { return devItemHtml(r.title, r.meta, r.raw); }).join("");
-                if (items.length > perGroup) inner += "<div class=\"text-[10px] text-gray-500 px-2\">… +" + (items.length - perGroup) + "</div>";
+                const inner = items.map(function (r) { return devItemHtml(r.title, r.meta, r.raw); }).join("");
                 html += devGroupHtml(name, items.length, inner);
             });
             box.innerHTML = html || "<div class=\"text-xs text-gray-500\">Keine Treffer.</div>";

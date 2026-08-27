@@ -1576,10 +1576,13 @@
                 let icon, detail = "";
                 if (isQuiz) {
                     icon = p.lastRoundPoints > 0 ? "✅" : "❌";
+                    const labs = ["A", "B", "C", "D"];
                     if (qReveal && p.lastAnswer != null && qReveal.answers[p.lastAnswer] != null) {
-                        detail = `<div class="text-[11px] text-gray-400 font-normal mt-0.5">gewählt: ${esc(qReveal.answers[p.lastAnswer])}</div>`;
+                        const ok = p.lastAnswer === qReveal.correct;
+                        const lab = labs[p.lastAnswer] || "?";
+                        detail = `<div class="text-sm font-bold mt-1 ${ok ? "text-emerald-300" : "text-rose-300"}">${lab} · ${esc(qReveal.answers[p.lastAnswer])}${ok ? " ✓" : ""}</div>`;
                     } else if (p.hasAnswered === false || p.lastAnswer == null) {
-                        detail = `<div class="text-[11px] text-gray-500 font-normal mt-0.5">keine Antwort</div>`;
+                        detail = `<div class="text-xs text-gray-500 font-normal mt-1">keine Antwort</div>`;
                     }
                 } else {
                     const info = wordStatusInfo(p.wordStatus, p);
@@ -1619,8 +1622,11 @@
                     <div class="text-gray-300 text-xs">${q.explanation || ""}</div>
                 </div>`;
                 }
-            } else if (data.currentSolution) {
-                solutionHtml = `<p class="text-amber-400 font-bold text-center text-sm">💡 Möglich war z.B.: ${data.currentSolution}</p>`;
+            } else if (data.currentLetters || data.currentSolution) {
+                const rack = (data.currentLetters && data.currentLetters.length && typeof scrabbleTilesHTML === "function")
+                    ? `<div class="flex flex-wrap justify-center gap-1 my-2">${scrabbleTilesHTML(data.currentLetters, false, data.currentRequired || "")}</div>`
+                    : "";
+                solutionHtml = `${rack}${data.currentSolution ? `<p class="text-amber-400 font-bold text-center text-sm">💡 Möglich war z.B.: ${data.currentSolution}</p>` : ""}`;
             }
 
             const nextBtn = !isLiveDuelCreator ?

@@ -4074,6 +4074,19 @@ body.tv-host-active #tv-host-play {
   font-size: 0.75rem;
 }
 .tv-show-rank-score { color: #6ee7b7; }
+.tv-show-rank-name {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+.tv-show-rank-pick {
+  font-size: 0.72em;
+  font-weight: 700;
+  color: #cbd5e1;
+  margin-top: 0.12rem;
+}
+.tv-scrabble-review { margin: 0.35rem 0 0.5rem; }
 
 body.tv-mirror-display .tv-show-stage {
   min-height: 96vh;

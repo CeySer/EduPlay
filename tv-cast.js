@@ -935,11 +935,18 @@
 
             const ranked = Object.values(playersData || {})
                 .sort(function (a, b) { return (b.score || 0) - (a.score || 0); })
-                .slice(0, 5)
+                .slice(0, 6)
                 .map(function (p, i) {
+                    const ai = p.lastAnswer;
+                    let pick = "keine Antwort";
+                    if (ai != null && tvCurrentQ.answers && tvCurrentQ.answers[ai] != null) {
+                        const lab = TV_SHOW_LABELS[ai % 4] || "";
+                        const ok = ai === correctIndex ? " ✓" : "";
+                        pick = lab + " · " + tvCurrentQ.answers[ai] + ok;
+                    }
                     return `<div class="tv-show-rank-row">
                         <span class="tv-show-rank-pos">${i + 1}</span>
-                        <span class="tv-show-rank-name">${esc(p.name)}</span>
+                        <span class="tv-show-rank-name">${esc(p.name)}<span class="tv-show-rank-pick">${esc(pick)}</span></span>
                         <span class="tv-show-rank-score">${p.score || 0}</span>
                     </div>`;
                 }).join("");
@@ -995,24 +1002,28 @@
             }
         }
 
-        function startTVAutoAdvance() {
+        function startTVAutoAdvance(nextFn, seconds) {
             stopTVAutoAdvance();
-            let left = tvAutoSeconds();
+            window._tvAutoNextFn = (typeof nextFn === "function") ? nextFn : nextTVQuestion;
+            let left = (typeof seconds === "number") ? seconds : tvAutoSeconds();
+            window._tvAutoLeft = left;
             renderTVAutoControls(left);
             if (!tvAutoAdvanceOn) return;
             tvAutoAdvanceInterval = setInterval(() => {
                 left--;
+                window._tvAutoLeft = left;
                 renderTVAutoControls(left);
                 if (left <= 0) {
                     stopTVAutoAdvance();
-                    nextTVQuestion();
+                    const fn = window._tvAutoNextFn;
+                    if (typeof fn === "function") fn();
                 }
             }, 1000);
         }
 
         function toggleTVAutoAdvance() {
             tvAutoAdvanceOn = !tvAutoAdvanceOn;
-            startTVAutoAdvance();
+            startTVAutoAdvance(window._tvAutoNextFn, window._tvAutoLeft || tvAutoSeconds());
         }
 
         async function nextTVQuestion() {
@@ -2021,7 +2032,7 @@
             const isLastRound = data.currentRound >= data.totalRounds;
             let rowsHtml = "";
             Object.values(playersData).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
-                const sInfo = wordStatusInfo(p.wordStatus, p);
+                const sInfo = wordStatusInfo(p.wordStatus, { required: currentRequired, min: 2, word: p.word });
 
                 // Hinweis auf den Action-Bonus in der Auswertung
                 const bonusText = (data.actionMode && p.wordStatus === "valid") ? ' <span class="text-amber-400 text-xs font-bold">(+5 Action-Bonus)</span>' : '';
@@ -2031,6 +2042,9 @@
                     `<div class="flex justify-between items-start bg-white/5 border border-white/5 rounded-xl p-4 gap-3"><div class="font-bold text-white text-lg">${sInfo.icon} ${esc(p.name)}: <span class="text-amber-300">"${esc(p.word || "-")}"</span>${bonusText}${sDetail}</div><div class="font-black text-emerald-400 text-xl shrink-0">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
             });
 
+            const rackHtml = (typeof scrabbleTilesHTML === "function" && letters && letters.length)
+                ? `<div class="tv-show-scrabble-rack tv-scrabble-review">${scrabbleTilesHTML(letters, true, currentRequired)}</div>`
+                : "";
             setTVHostPlayHTML(`
                 <div class="tv-show-stage">
                     <div class="tv-show-top">
@@ -2038,6 +2052,8 @@
                             <span class="tv-show-qnum">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</span>
                             <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
+                        <p class="tv-show-question" style="font-size:clamp(0.9rem,2.4vh,1.3rem)">Diese Buchstaben galten:</p>
+                        ${rackHtml}
                         ${data.currentSolution ? `<p class="tv-show-explain">💡 z.B. möglich: ${esc(data.currentSolution)}</p>` : ""}
                     </div>
                     <div class="tv-scrabble-results">${rowsHtml}</div>
@@ -2045,9 +2061,17 @@
                         ${isLastRound
                             ? `<button onclick="tvGameRef.update({status:'finished'})" class="tv-show-next" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1f2937;">Endergebnis 🏆</button>`
                             : `<button onclick="nextTVScrabbleRound()" class="tv-show-next">Nächste Runde ➔</button>`}
+                        <div id="tv-auto-row" class="tv-show-auto">
+                            <span id="tv-auto-label"></span>
+                            <button onclick="toggleTVAutoAdvance()" id="tv-auto-btn" class="tv-show-auto-btn"></button>
+                        </div>
                     </div>
                 </div>
             `);
+            startTVAutoAdvance(function () {
+                if (isLastRound) tvGameRef.update({ status: "finished" });
+                else nextTVScrabbleRound();
+            }, 8);
         }
 
         function nextTVScrabbleRound() {

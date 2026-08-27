@@ -35,7 +35,8 @@
         }
         let wrLiveFlashBaselined = false;
 
-        const SCRABBLE_ANSWER_SECONDS = { leicht: 30, mittel: 20, schwer: 15, experte: 12, profi: 35 };
+        const SCRABBLE_ANSWER_SECONDS = { leicht: 70, mittel: 55, schwer: 40, experte: 30, profi: 50 };
+        let liveDuelAutoAdvanceOn = true;
 
         // Spaß/Lernen-Umschalter für die Klasse/Bereich-Auswahl beim Quiz-Duell
         // (gleiches Prinzip wie setTVTopicMode() beim TV-Modus) - Standard: Spaß.
@@ -186,6 +187,14 @@
                 liveDuelAutoAdvanceTimer = null;
             }
         }
+        function toggleLiveDuelAutoAdvance() {
+            liveDuelAutoAdvanceOn = !liveDuelAutoAdvanceOn;
+            const btnHint = document.querySelector("#live-duel-play-content button[onclick='toggleLiveDuelAutoAdvance()']");
+            if (btnHint) btnHint.textContent = liveDuelAutoAdvanceOn ? "Automatik aus" : "Automatik an";
+            const el = document.getElementById("live-duel-auto-countdown");
+            if (el && !liveDuelAutoAdvanceOn) el.innerText = "pausiert";
+        }
+        window.toggleLiveDuelAutoAdvance = toggleLiveDuelAutoAdvance;
 
         async function createLiveDuel() {
             if (!currentPlayer || !activePlayerKey) return showToast(
@@ -217,7 +226,9 @@
                 const dir = (document.getElementById("live-duel-vokabel-dir") || {}).value || "mix";
                 const mode = (document.getElementById("live-duel-vokabel-mode") || {}).value || "versus";
                 const qCount = parseInt((document.getElementById("live-duel-count") || {}).value) || 10;
-                const questions = prepareQuestions(buildVocabTestQuestions(checked, dir).sort(() => Math.random() - 0.5).slice(0, qCount));
+                const questions = (typeof pickFreshQuestions === "function")
+                    ? pickFreshQuestions(buildVocabTestQuestions(checked, dir), qCount)
+                    : prepareQuestions(buildVocabTestQuestions(checked, dir).sort(() => Math.random() - 0.5).slice(0, qCount));
                 if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
                 lobbyData = {
                     type: "quiz",
@@ -245,7 +256,9 @@
                     ? buildMixedQuestions(keys, qCount)
                     : prepareQuestions(questionsForKey(keys[0]).sort(() => Math.random() - 0.5).slice(0, qCount));
                 if (questions.length < 1) return showToast("Zu wenige Fragen für diese Auswahl – anderes Thema wählen!", "error");
+                if (typeof hinweisFragenPoolDuennt === "function") hinweisFragenPoolDuennt(questions.length, qCount);
                 if (questions.length < 3) showToast("Nur " + questions.length + " Fragen gefunden – Runde wird kürzer.", "error");
+                if (typeof merkeThemaStreak === "function" && keys) merkeThemaStreak(keys);
                 lobbyData = {
                     type: "quiz",
                     status: "waiting",
@@ -705,12 +718,14 @@
                 if (!isLastStep) {
                     const erkl = isQuiz && data.questions[data.currentIndex] ?
                         (data.questions[data.currentIndex].explanation || "") : "";
-                    let left = Math.round(Math.min(10, Math.max(5, 3 + erkl.length / 15)));
+                    let left = isQuiz
+                        ? Math.round(Math.min(10, Math.max(5, 3 + erkl.length / 15)))
+                        : 14;
                     const cdEl = () => document.getElementById("live-duel-auto-countdown");
                     const tick = () => {
                         const el = cdEl();
-
-                        if (el) el.innerText = left + "s";
+                        if (el) el.innerText = liveDuelAutoAdvanceOn ? (left + "s") : "pausiert";
+                        if (!liveDuelAutoAdvanceOn) return;
                         if (left <= 0) {
                             clearLiveDuelTimers();
                             if (isLiveDuelCreator) advanceLiveDuel();
@@ -777,9 +792,13 @@
                 optsHtml +=
                     `<button onclick="submitLiveDuelQuizAnswer(${i})" class="w-full p-4 bg-white/5 hover:bg-white/10 rounded-xl font-bold text-white border border-white/5 transition-colors">${ans}</button>`;
             });
+            const away = Object.values(data.players || {}).filter(p => p && !p.pending && typeof istAnwesend === "function" && !istAnwesend(p));
+            const awayHtml = away.length ? `<p class="text-xs text-amber-300 font-bold">⏳ ${away.map(p => esc(p.name)).join(", ")} kurz weg – Runde wartet nicht.</p>` : "";
+            const ruleHtml = (data.currentIndex === 0) ? `<p class="text-[11px] text-gray-500">Regel: Schnell und richtig tippen – Erster bekommt Bonus.</p>` : "";
             document.getElementById("live-duel-play-content").innerHTML = `
                             <div class="glass-card p-5 text-center space-y-4 shadow-lg">
                                 <div class="text-xs text-gray-400 font-bold">Frage ${data.currentIndex + 1}/${data.questions.length}</div>
+                                ${ruleHtml}${awayHtml}
                                 <h2 class="text-lg font-bold text-pink-400 leading-snug">${q.question}</h2>
                                 <div class="flex flex-col gap-2.5">${optsHtml}</div>
                             </div>`;
@@ -843,6 +862,7 @@
                 Runde ${data.currentRound}/${data.totalRounds}
                 ${data.actionMode ? ' ⚡ Action-Modus' : ''}
             </div>
+            ${(data.currentRound === 1) ? `<p class="text-[11px] text-gray-500 text-center">Regel: Längstes gültiges Wort aus den Buchstaben. Pflichtbuchstabe zählt extra.</p>` : ""}
             <div class="flex flex-wrap justify-center gap-2" id="live-duel-tiles-container">
                 ${scrabbleTilesHTML(letters, false, required, liveDuelSelected, "liveDuelTapTile")}
             </div>
@@ -1004,11 +1024,11 @@
                     class="h-9 rounded-lg font-black text-xs sm:text-sm transition ${cls}">${letter}</button>`;
             }).join("");
 
-            const scoresHtml = Object.keys(data.players).filter(k => !data.players[k].pending).map(k => {
+            const scoresHtml = Object.keys(data.players).filter(k => data.players[k] && !data.players[k].pending).sort().map(k => {
                 const p = data.players[k];
                 const active = k === key && !data.roundOver;
-                return `<div class="flex-shrink-0 px-3 py-2 rounded-xl border text-center ${active ? 'bg-sky-500/20 border-sky-400 ring-2 ring-sky-400' : 'bg-white/5 border-white/5'}">
-                    <div class="text-xs font-bold text-white whitespace-nowrap">${esc(p.name)}</div>
+                return `<div class="flex-shrink-0 px-3 py-2 rounded-xl border text-center ${active ? 'bg-sky-500/25 border-sky-400 ring-2 ring-sky-300 animate-pulse' : 'bg-white/5 border-white/5 opacity-60'}">
+                    <div class="${active ? 'text-base' : 'text-xs'} font-black text-white whitespace-nowrap">${esc(p.name)}${active ? " · dran" : ""}</div>
                     <div class="text-sm font-black text-sky-300">${p.score || 0} Pkt.</div>
                 </div>`;
             }).join("");
@@ -1019,6 +1039,8 @@
                 banner = data.roundSolved
                     ? `<p class="text-center text-sm font-bold text-emerald-400">🎉 ${solver ? esc(solver) + " hat gelöst!" : "Gelöst!"} Das Wort war „${esc(word)}"</p>`
                     : `<p class="text-center text-sm font-bold text-amber-400">${wrFigureEmoji(data.theme)} ${wrFigureName(data.theme)} ist fertig! Das Wort war „${esc(word)}"</p>`;
+            } else if (data.lastSolveAttempt && data.lastSolveAttempt.text && (Date.now() - (data.lastSolveAttempt.ts || 0) < 8000)) {
+                banner = `<p class="text-center text-sm font-bold text-amber-300">💡 ${esc(data.lastSolveAttempt.name || "Jemand")}: „${esc(String(data.lastSolveAttempt.text).slice(0, 24))}“</p>`;
             } else if (data.wrSolving && data.wrSolving.by) {
                 const who = esc(data.wrSolving.name || "Jemand");
                 banner = data.wrSolving.by === activePlayerKey
@@ -1045,6 +1067,7 @@
             document.getElementById("live-duel-play-content").innerHTML = `
                 <div class="space-y-4">
                     <div class="text-center text-xs font-bold text-gray-400">Runde ${data.currentRound}/${data.totalRounds} · ${data.wordMode === "adult" ? "🎓 Erwachsene" : "👶 Kinder"} · ${data.wrongCount || 0}/${maxWrongForCounter} Fehlversuche</div>
+                    ${(data.currentRound === 1 && !data.roundOver) ? `<p class="text-[11px] text-gray-500 text-center">Regel: Buchstabe tippen oder das ganze Wort wagen. Wer dran ist, sieht „dran“.</p>` : ""}
                     <div class="flex justify-center gap-2 overflow-x-auto py-1">${scoresHtml}</div>
                     <div class="glass-card p-4 flex items-center justify-center">
                         <div id="live-duel-wr-figure" class="w-32 h-36"></div>
@@ -1291,7 +1314,13 @@
                             roundOver,
                             roundSolved,
                             wrTurnDeadline: null,
-                            wrSolving: null
+                            wrSolving: null,
+                            lastSolveAttempt: {
+                                by: key,
+                                name: (players[key] && players[key].name) || "Spieler",
+                                text: guess,
+                                ts: Date.now()
+                            }
                         };
                         if (!roundOver && order.length) {
                             update.turnIndex = (curIdx + 1) % order.length;
@@ -1641,7 +1670,8 @@
             ${solutionHtml}
             <div class="space-y-2">${rowsHtml}</div>
             ${nextBtn}
-            ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in <span id="live-duel-auto-countdown" class="font-bold text-gray-400">…</span>${isLiveDuelCreator ? ` – oder jetzt auf "Weiter" tippen.` : ""}</p>`}
+            ${isLastStep ? "" : `<p class="text-[11px] text-gray-500 text-center">Weiter in <span id="live-duel-auto-countdown" class="font-bold text-gray-400">…</span>${isLiveDuelCreator ? ` – oder jetzt auf "Weiter" tippen.` : ""}
+                ${isLiveDuelCreator ? ` <button type="button" onclick="toggleLiveDuelAutoAdvance()" class="underline text-amber-300">${liveDuelAutoAdvanceOn ? "Automatik aus" : "Automatik an"}</button>` : ""}</p>`}
         </div>`;
         }
 
@@ -1809,10 +1839,10 @@
                         });
                     }
                 } else if (data.subject === "vokabel" && Array.isArray(data.vocabGroups) && data.vocabGroups.length) {
-                    const questions = prepareQuestions(
-                        buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix")
-                        .sort(() => Math.random() - 0.5).slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
-                    );
+                    const _vn = parseInt((document.getElementById("live-duel-count") || {}).value) || 10;
+                    const questions = (typeof pickFreshQuestions === "function")
+                        ? pickFreshQuestions(buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix"), _vn)
+                        : prepareQuestions(buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix").sort(() => Math.random() - 0.5).slice(0, _vn));
                     if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
                     await liveDuelRef.update({
                         status: "playing",
@@ -1902,9 +1932,12 @@
                 });
                 html += `</div>`;
             } else {
+                const topScore = (sorted[0] && sorted[0].score) || 0;
+                const tieCount = sorted.filter(p => (p.score || 0) === topScore && topScore > 0).length;
+                const title = tieCount > 1 ? "Unentschieden!" : "Duell beendet!";
                 html = `<div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(245,158,11,0.15);">
-                            <div class="text-6xl">🏆</div>
-                            <h2 class="text-2xl font-black text-white mb-2">Duell beendet!</h2>
+                            <div class="text-6xl">${tieCount > 1 ? "🤝" : "🏆"}</div>
+                            <h2 class="text-2xl font-black text-white mb-2">${title}</h2>
                             <div class="space-y-3 max-w-sm mx-auto">`;
                 sorted.forEach((p) => {
                     // Rang = Anzahl Spieler mit mehr Punkten (Gleichstand teilt sich den Rang).
@@ -2210,9 +2243,9 @@
                     const checked = Array.from(document.querySelectorAll("#switch-vokabel-checkboxes .vokabel-group-check:checked")).map(cb => cb.value);
                     if (checked.length === 0) return showToast("Bitte mindestens eine Vokabelgruppe auswählen!", "error");
                     const dir = (document.getElementById("switch-vokabel-dir") || {}).value || "mix";
-                    const questions = prepareQuestions(
-                        buildVocabTestQuestions(checked, dir).sort(() => Math.random() - 0.5).slice(0, 10)
-                    );
+                    const questions = (typeof pickFreshQuestions === "function")
+                        ? pickFreshQuestions(buildVocabTestQuestions(checked, dir), 10)
+                        : prepareQuestions(buildVocabTestQuestions(checked, dir).sort(() => Math.random() - 0.5).slice(0, 10));
                     if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
                     update = {
                         type: "quiz", subject: "vokabel", vocabGroups: checked, vocabDir: dir, status: "playing",
@@ -2753,7 +2786,9 @@
                 const vocabDir = (document.getElementById("live-duel-vokabel-dir") || {}).value || "mix";
                 const mode = (document.getElementById("live-duel-vokabel-mode") || {}).value || "versus";
                 const qCount = parseInt((document.getElementById("live-duel-count") || {}).value) || 10;
-                const questions = prepareQuestions(buildVocabTestQuestions(checked, vocabDir).sort(() => Math.random() - 0.5).slice(0, qCount));
+                const questions = (typeof pickFreshQuestions === "function")
+                    ? pickFreshQuestions(buildVocabTestQuestions(checked, vocabDir), qCount)
+                    : prepareQuestions(buildVocabTestQuestions(checked, vocabDir).sort(() => Math.random() - 0.5).slice(0, qCount));
                 if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
                 lobbyData = {
                     type: "quiz",
@@ -2784,7 +2819,9 @@
                     ? buildMixedQuestions(keys, qCount)
                     : prepareQuestions(questionsForKey(keys[0]).sort(() => Math.random() - 0.5).slice(0, qCount));
                 if (questions.length < 1) return showToast("Zu wenige Fragen für diese Auswahl – anderes Thema wählen!", "error");
+                if (typeof hinweisFragenPoolDuennt === "function") hinweisFragenPoolDuennt(questions.length, qCount);
                 if (questions.length < 3) showToast("Nur " + questions.length + " Fragen gefunden – Runde wird kürzer.", "error");
+                if (typeof merkeThemaStreak === "function" && keys) merkeThemaStreak(keys);
                 lobbyData = {
                     type: "quiz",
                     status: "waiting",
@@ -3021,10 +3058,10 @@
                         });
                     }
                 } else if (data.subject === "vokabel" && Array.isArray(data.vocabGroups) && data.vocabGroups.length) {
-                    const questions = prepareQuestions(
-                        buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix")
-                        .sort(() => Math.random() - 0.5).slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
-                    );
+                    const _vn = parseInt((document.getElementById("live-duel-count") || {}).value) || 10;
+                    const questions = (typeof pickFreshQuestions === "function")
+                        ? pickFreshQuestions(buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix"), _vn)
+                        : prepareQuestions(buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix").sort(() => Math.random() - 0.5).slice(0, _vn));
                     if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
                     await liveDuelRef.update({
                         status: "playing",

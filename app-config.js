@@ -562,11 +562,18 @@ const geladen = _questionCounts[key] || 0;
         }
 
         const RECENT_Q_KEY = "eduplayRecentQIds";
-        const RECENT_Q_MAX = 200;
+        const RECENT_Q_MAX = 400;
+        let _recentQCloudTimer = null;
 
+        function recentQStorageKey() {
+            try {
+                const uid = (typeof currentParentUser !== "undefined" && currentParentUser && currentParentUser.uid) || "";
+                return uid ? (RECENT_Q_KEY + "_" + uid) : RECENT_Q_KEY;
+            } catch (e) { return RECENT_Q_KEY; }
+        }
         function loadRecentQuestionIds() {
             try {
-                const a = JSON.parse(localStorage.getItem(RECENT_Q_KEY) || "[]");
+                const a = JSON.parse(localStorage.getItem(recentQStorageKey()) || "[]");
                 return Array.isArray(a) ? a : [];
             } catch (e) { return []; }
         }
@@ -580,7 +587,33 @@ const geladen = _questionCounts[key] || 0;
                     recent.push(id);
                 });
                 if (recent.length > RECENT_Q_MAX) recent = recent.slice(-RECENT_Q_MAX);
-                localStorage.setItem(RECENT_Q_KEY, JSON.stringify(recent));
+                localStorage.setItem(recentQStorageKey(), JSON.stringify(recent));
+                scheduleRecentQCloudSave(recent);
+            } catch (e) { /* */ }
+        }
+        function scheduleRecentQCloudSave(recent) {
+            try {
+                if (typeof currentParentUser === "undefined" || !currentParentUser || !currentParentUser.uid || typeof db === "undefined") return;
+                clearTimeout(_recentQCloudTimer);
+                const copy = (recent || []).slice(-RECENT_Q_MAX);
+                _recentQCloudTimer = setTimeout(function () {
+                    db.collection("parents").doc(currentParentUser.uid)
+                        .set({ recentQIds: copy, recentQAt: Date.now() }, { merge: true })
+                        .catch(function () { });
+                }, 800);
+            } catch (e) { /* */ }
+        }
+        function mergeFamilyRecentQuestionIds(cloudList) {
+            if (!Array.isArray(cloudList) || !cloudList.length) return;
+            try {
+                let recent = loadRecentQuestionIds();
+                cloudList.forEach(function (id) {
+                    if (!id) return;
+                    recent = recent.filter(x => x !== id);
+                    recent.push(id);
+                });
+                if (recent.length > RECENT_Q_MAX) recent = recent.slice(-RECENT_Q_MAX);
+                localStorage.setItem(recentQStorageKey(), JSON.stringify(recent));
             } catch (e) { /* */ }
         }
         function shuffleArray(arr) {
@@ -590,6 +623,12 @@ const geladen = _questionCounts[key] || 0;
                 [a[i], a[j]] = [a[j], a[i]];
             }
             return a;
+        }
+        function pickFreshQuestions(list, want) {
+            const n = want || 10;
+            const picked = pickPreferFresh(list || [], n);
+            rememberQuestionIds(picked);
+            return (typeof prepareQuestions === "function") ? prepareQuestions(picked) : picked;
         }
         function pickPreferFresh(pool, want) {
             const recent = new Set(loadRecentQuestionIds());
@@ -605,34 +644,43 @@ const geladen = _questionCounts[key] || 0;
             return picked.slice(0, want);
         }
 
+        function qIdentity(q) {
+            if (!q) return "";
+            if (q.id) return String(q.id);
+            return String(q.question || "").trim().toLowerCase().replace(/\s+/g, " ");
+        }
         function buildMixedQuestions(keys, qCount) {
-            let pool = [];
-            const expanded = [];
-            (keys || []).forEach(k => {
-                expanded.push(k);
-                if (String(k).startsWith("topic:")) {
-                    const parts = String(k).split(":");
-                    if (parts.length === 3 && parts[1]) expanded.push(parts[1]);
-                }
-            });
-            expanded.forEach(k => {
-                pool = pool.concat(questionsForKey(k) || []);
-            });
-            const seen = new Set();
-            pool = pool.filter(q => {
-                if (!q) return false;
-                const id = q.id || "";
-                const qtext = String(q.question || "").trim().toLowerCase().replace(/\s+/g, " ");
-                const keyId = id || qtext;
-                if (!keyId || seen.has(keyId) || (qtext && seen.has("t:" + qtext))) return false;
-                seen.add(keyId);
-                if (qtext) seen.add("t:" + qtext);
-                return true;
-            });
             const want = qCount || 10;
-            pool = pickPreferFresh(pool, pool.length > want ? want : pool.length);
-            rememberQuestionIds(pool);
-            return prepareQuestions(pool);
+            const uniqueKeys = [];
+            (keys || []).forEach(k => {
+                if (k && uniqueKeys.indexOf(k) < 0) uniqueKeys.push(k);
+            });
+            if (!uniqueKeys.length) return [];
+            const seen = new Set();
+            const picked = [];
+            const buckets = uniqueKeys.map(function (k) {
+                return pickPreferFresh(questionsForKey(k) || [], want);
+            });
+            let guard = 0;
+            while (picked.length < want && guard < 8000) {
+                guard++;
+                let added = false;
+                for (let i = 0; i < buckets.length && picked.length < want; i++) {
+                    const bucket = buckets[i];
+                    while (bucket.length) {
+                        const q = bucket.shift();
+                        const id = qIdentity(q);
+                        if (!id || seen.has(id) || seen.has("t:" + id)) continue;
+                        seen.add(id);
+                        picked.push(q);
+                        added = true;
+                        break;
+                    }
+                }
+                if (!added) break;
+            }
+            rememberQuestionIds(picked);
+            return prepareQuestions(shuffleArray(picked));
         }
 
         function setupCategorySelectors(areaId, subjectId, mode) {
@@ -980,6 +1028,46 @@ const geladen = _questionCounts[key] || 0;
 
         function isOffline() {
             return (typeof navigator !== "undefined" && navigator.onLine === false);
+        }
+
+        function hinweisFragenPoolDuennt(gefunden, erwartet) {
+            erwartet = erwartet || 10;
+            if (typeof isOffline === "function" && isOffline()) {
+                if (typeof showToast === "function") showToast("Offline – Fragenliste vielleicht unvollständig.", "error", "qpool");
+                return;
+            }
+            if ((gefunden || 0) < Math.min(3, erwartet)) {
+                if (typeof showToast === "function") showToast("Fragen konnten nicht vollständig geladen werden. Anderes Thema wählen oder Netz prüfen.", "error", "qpool");
+            }
+        }
+
+        const WHATS_NEW_ID = "2026-08-27d";
+        function maybeShowWhatsNew() {
+            try {
+                if (localStorage.getItem("eduplayWhatsNew") === WHATS_NEW_ID) return;
+                localStorage.setItem("eduplayWhatsNew", WHATS_NEW_ID);
+                const text = "Was ist neu: gemischte Fragen ohne Wiederholung, Wort-Duell mehr Zeit, Auflösung wer was gewählt hat, Unentschieden-Anzeige.";
+                if (typeof appConfirm === "function") {
+                    appConfirm(text, { titel: "Was ist neu", icon: "✨", okText: "Los geht’s", abbrechenText: "Später" });
+                } else if (typeof showToast === "function") {
+                    showToast(text, "info", "whatsnew");
+                }
+            } catch (e) { /* */ }
+        }
+
+        function merkeThemaStreak(keys) {
+            try {
+                const sig = (keys || []).slice().sort().join("|");
+                if (!sig) return;
+                const raw = JSON.parse(localStorage.getItem("eduplayTopicStreak") || "[]");
+                const arr = Array.isArray(raw) ? raw : [];
+                arr.push(sig);
+                const last = arr.slice(-3);
+                localStorage.setItem("eduplayTopicStreak", JSON.stringify(last));
+                if (last.length === 3 && last.every(x => x === sig) && typeof showToast === "function") {
+                    showToast("Schon 3× dasselbe Thema – nächstes Mal etwas anderes?", "info", "topic3");
+                }
+            } catch (e) { /* */ }
         }
 
         function isNetworkError(err) {

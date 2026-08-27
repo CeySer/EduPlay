@@ -153,10 +153,18 @@ auth.createUserWithEmailAndPassword(e, p)
                 const snapshot = await db.collection("parents").doc(currentParentUser.uid).collection("profiles").get();
                 ALL_PROFILES = {};
                 snapshot.forEach(doc => { ALL_PROFILES[doc.id] = doc.data(); });
+                try {
+                    const parentSnap = await db.collection("parents").doc(currentParentUser.uid).get();
+                    const rec = parentSnap.exists && parentSnap.data() && parentSnap.data().recentQIds;
+                    if (typeof mergeFamilyRecentQuestionIds === "function") mergeFamilyRecentQuestionIds(rec);
+                } catch (e) { /* */ }
                 await loadFamilyRewards();
                 if (typeof bumpSignupIfNew === "function") bumpSignupIfNew();
                 renderFamilyHub();
                 switchView('family-hub');
+                setTimeout(function () {
+                    if (typeof maybeShowWhatsNew === "function") maybeShowWhatsNew();
+                }, 600);
             } catch (e) {
                 handleError("loadFamilyProfiles", e, "Spieler konnten nicht geladen werden.");
             } finally {

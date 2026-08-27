@@ -144,7 +144,10 @@
                     const totalCount = zaehlend.length;
                     const wegCount = alle.length - totalCount;
                     if (!data.answerDeadline) {
-                        const secs = data.mode === "scrabble" ? 60 : 30;
+                        const scrSecs = (typeof SCRABBLE_ANSWER_SECONDS !== "undefined" && data.difficulty && SCRABBLE_ANSWER_SECONDS[data.difficulty])
+                            ? SCRABBLE_ANSWER_SECONDS[data.difficulty]
+                            : 55;
+                        const secs = data.mode === "scrabble" ? scrSecs : (data.answerSeconds || 30);
                         tvGameRef.update({ answerDeadline: Date.now() + secs * 1000 }).catch(() => { });
                     }
                     const restSek = data.answerDeadline
@@ -688,7 +691,7 @@
                 if (da) online++;
                 return `<div class="tv-lobby-player ${da ? "is-on" : "is-off"}">
                     <span class="tv-lobby-player-dot"></span>
-                    <span class="tv-lobby-player-name">${esc(p.name)}</span>
+                    <span class="tv-lobby-player-name">${esc(p.name)}${da ? "" : " · kurz weg"}</span>
                 </div>`;
             }).join("");
             const bar = `<div class="tv-lobby-status">${online}/${keys.length} online</div>`;
@@ -699,12 +702,16 @@
             want = want || 10;
             let list = [];
             try {
-                if (catKeys && catKeys.length > 1 && typeof buildMixedQuestions === "function") {
-                    list = buildMixedQuestions(catKeys, want) || [];
-                } else if (catKeys && catKeys[0] && typeof questionsForKey === "function") {
-                    const raw = questionsForKey(catKeys[0]) || [];
-                    list = (typeof prepareQuestions === "function" ? prepareQuestions(raw) : raw)
-                        .slice().sort(function () { return Math.random() - 0.5; }).slice(0, want);
+                const keys = (catKeys || []).filter(Boolean);
+                if (keys.length && typeof buildMixedQuestions === "function") {
+                    list = buildMixedQuestions(keys, want) || [];
+                } else if (keys[0] && typeof questionsForKey === "function") {
+                    const raw = questionsForKey(keys[0]) || [];
+                    const picked = (typeof pickPreferFresh === "function")
+                        ? pickPreferFresh(raw, want)
+                        : raw.slice().sort(function () { return Math.random() - 0.5; }).slice(0, want);
+                    if (typeof rememberQuestionIds === "function") rememberQuestionIds(picked);
+                    list = (typeof prepareQuestions === "function" ? prepareQuestions(picked) : picked);
                 }
             } catch (e) { console.warn("tvBuildQuestionPool", e); }
             if (list.length < 3 && typeof QUESTIONS_DATABASE !== "undefined" && QUESTIONS_DATABASE.length) {
@@ -745,6 +752,8 @@
                 if (data.mode === "wortraten") { startTVWortratenRound(data); return; }
                 const catKeys = (data.categoryKeys && data.categoryKeys.length) ? data.categoryKeys : [data.category];
                 tvQuestions = tvBuildQuestionPool(catKeys, 10);
+                if (typeof hinweisFragenPoolDuennt === "function") hinweisFragenPoolDuennt(tvQuestions.length, 10);
+                if (typeof merkeThemaStreak === "function") merkeThemaStreak(catKeys);
                 if (tvQuestions.length < 3) {
                     showToast("Zu wenige Fragen – anderes Thema wählen oder Fragen laden.", "error");
                     return;
@@ -1063,10 +1072,13 @@
             stopTVActionMode();
             const sorted = Object.values(playersData || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
             const medals = ["🥇", "🥈", "🥉"];
+            const topScore = (sorted[0] && sorted[0].score) || 0;
+            const tieCount = sorted.filter(p => (p.score || 0) === topScore && topScore > 0).length;
             let ranks = "";
             sorted.forEach((p, i) => {
-                const medal = i < 3 ? medals[i] : (i + 1) + ".";
-                const top = i === 0 ? " is-first" : "";
+                const rank = sorted.filter(x => (x.score || 0) > (p.score || 0)).length;
+                const medal = rank < 3 && (p.score || 0) > 0 ? medals[rank] : (rank + 1) + ".";
+                const top = rank === 0 && (p.score || 0) > 0 ? " is-first" : "";
                 ranks += `<div class="tv-podium-row${top}"><span class="tv-podium-medal">${medal}</span><span class="tv-podium-name">${esc(p.name)}</span><span class="tv-podium-score">${p.score || 0} Pkt</span></div>`;
             });
             const names = esc(sorted.map(p => p.name).join(", "));
@@ -1075,7 +1087,7 @@
                     <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
                     <div class="tv-podium-layout">
                         <div class="tv-podium-left">
-                            <h1 class="tv-podium-title">🏆 Siegerehrung</h1>
+                            <h1 class="tv-podium-title">${tieCount > 1 ? "🤝 Unentschieden" : "🏆 Siegerehrung"}</h1>
                             <div class="tv-podium-list">${ranks}</div>
                         </div>
                         <div class="tv-podium-right">
@@ -1441,9 +1453,12 @@
             if (shouldFlash) tvWrLastFlashKey = flashKey;
             const flashLetter = shouldFlash ? guessedArr[guessedArr.length - 1] : "";
             const flashHit = flashLetter && word.includes(flashLetter);
-            const scores = Object.values(data.players || {}).map(p =>
-                `<div class="tv-wr-score-chip"><span class="tv-wr-score-name">${esc(p.name)}</span><span class="tv-wr-score-pts">${p.score || 0}</span></div>`
-            ).join("");
+            const scores = Object.keys(data.players || {}).sort().map(function (k) {
+                const p = data.players[k];
+                if (!p) return "";
+                const active = !data.roundOver && k === turnKey;
+                return `<div class="tv-wr-score-chip${active ? " is-turn" : ""}"><span class="tv-wr-score-name">${esc(p.name)}${active ? " · dran" : ""}</span><span class="tv-wr-score-pts">${p.score || 0}</span></div>`;
+            }).join("");
             let footer = "";
             if (data.roundOver) {
                 const who = data.roundSolvedByName || "";
@@ -2071,7 +2086,7 @@
             startTVAutoAdvance(function () {
                 if (isLastRound) tvGameRef.update({ status: "finished" });
                 else nextTVScrabbleRound();
-            }, 8);
+            }, 14);
         }
 
         function nextTVScrabbleRound() {

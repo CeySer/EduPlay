@@ -1941,10 +1941,9 @@
                             <div class="space-y-3 max-w-sm mx-auto">`;
                 sorted.forEach((p) => {
                     // Rang = Anzahl Spieler mit mehr Punkten (Gleichstand teilt sich den Rang).
-                    // Bei 0 Pkt. gibt's keinen "Gewinner" - dann nur Platzziffer, keine Medaille.
                     const rank = sorted.filter(x => (x.score || 0) > (p.score || 0)).length;
                     const hasScore = (p.score || 0) > 0;
-                    const medal = (rank < 3 && hasScore) ? medals[rank] : `${rank + 1}.`;
+                    const medal = rank < 3 ? medals[rank] : `${rank + 1}.`;
                     const isWinner = rank === 0 && hasScore;
                     html += `<div class="flex items-center justify-between bg-white/5 border ${isWinner ? 'border-yellow-400' : 'border-white/5'} rounded-xl p-3">
                                     <div class="flex items-center gap-3"><span class="text-2xl">${medal}</span><span class="font-bold text-white">${esc(p.name)}</span></div>

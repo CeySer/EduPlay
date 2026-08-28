@@ -1447,9 +1447,9 @@ const geladen = _questionCounts[key] || 0;
         };
 
         const SFX = {
-            tap: () => playModernClick(),
-            correct: () => { if (!playSfxFile("correct", 0.6)) (SFX_PACKS[soundPack] || SFX_PACKS.soft).correct(); },
-            wrong: () => { if (!playSfxFile("wrong", 0.55)) (SFX_PACKS[soundPack] || SFX_PACKS.soft).wrong(); },
+            tap: () => { if (!soundOn) { hapticPulse("tap"); return; } playModernClick(); },
+            correct: () => { if (!soundOn) { hapticPulse("correct"); return; } if (!playSfxFile("correct", 0.6)) (SFX_PACKS[soundPack] || SFX_PACKS.soft).correct(); },
+            wrong: () => { if (!soundOn) { hapticPulse("wrong"); return; } if (!playSfxFile("wrong", 0.55)) (SFX_PACKS[soundPack] || SFX_PACKS.soft).wrong(); },
             win: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).win(),
             levelUp: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).levelUp(),
             coin: () => (SFX_PACKS[soundPack] || SFX_PACKS.soft).coin(),
@@ -1479,13 +1479,42 @@ const geladen = _questionCounts[key] || 0;
         }
         try { document.addEventListener("DOMContentLoaded", syncSoundPackUI); } catch (e) { /* */ }
 
-        function toggleSound() {
+        function hapticPulse(kind) {
+            try {
+                if (!navigator.vibrate) return;
+                if (kind === "wrong") navigator.vibrate([35, 40, 35]);
+                else if (kind === "correct") navigator.vibrate(22);
+                else navigator.vibrate(12);
+            } catch (e) { /* */ }
+        }
+
+        function updateQuietUI() {
+            const on = !soundOn;
+            document.querySelectorAll(".quiet-toggle-label").forEach(function (el) {
+                el.textContent = on ? "an" : "aus";
+            });
+            document.querySelectorAll(".sound-toggle-icon").forEach(function (el) {
+                el.innerText = soundOn ? "🔊" : "🔇";
+            });
+        }
+
+        function toggleQuietMode() {
             soundOn = !soundOn;
             try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
-            document.querySelectorAll(".sound-toggle-icon").forEach(el => el.innerText = soundOn ? "🔊" : "🔇");
-            if (soundOn) SFX.tap();
-            showToast(soundOn ? "🔊 Ton an" : "🔇 Ton aus", "success", "sound");
+            updateQuietUI();
+            if (!soundOn) {
+                stopBackgroundMusic();
+                try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) { }
+                hapticPulse("tap");
+                if (typeof showToast === "function") showToast("🤫 Leise-Modus an – kein Ton", "success", "sound");
+            } else {
+                if (musicVolume > 0) startBackgroundMusic();
+                SFX.tap();
+                if (typeof showToast === "function") showToast("🔊 Ton wieder an", "success", "sound");
+            }
         }
+        function toggleSound() { toggleQuietMode(); }
+        try { document.addEventListener("DOMContentLoaded", updateQuietUI); } catch (e) { /* */ }
 
         // ============================================================
         //  HINTERGRUNDMUSIK
@@ -1694,7 +1723,7 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function startBackgroundMusic() {
-            if (musicVolume <= 0) return;
+            if (!soundOn || musicVolume <= 0) return;
             // Datei-BGM bevorzugen (wenn vorhanden)
             stopBackgroundMusic(true);
             if (tryPlayFileBgm(musicMode)) return;
@@ -1719,7 +1748,7 @@ const geladen = _questionCounts[key] || 0;
             musicMode = mode;
             musicStep = 0;
             gameStep = 0;
-            if (musicVolume > 0) {
+            if (soundOn && musicVolume > 0) {
                 stopBackgroundMusic();
                 startBackgroundMusic();
             }
@@ -1732,19 +1761,19 @@ const geladen = _questionCounts[key] || 0;
             if (label) label.innerText = Math.round(musicVolume * 100) + "%";
             if (musicGain && musicCtx) musicGain.gain.setTargetAtTime(musicVolume, musicCtx.currentTime, 0.05);
             if (bgmEl) bgmEl.volume = musicVolume;
-            if (musicVolume > 0) startBackgroundMusic();
-            else stopBackgroundMusic();
+            if (soundOn && musicVolume > 0) startBackgroundMusic();
+            else if (musicVolume <= 0 || !soundOn) stopBackgroundMusic();
         }
 
         // Browser lassen Audio erst nach einer Nutzer-Geste zu - Musik daher
         // beim allerersten Klick/Tastendruck einmalig anstoßen. Läuft danach
-        // durch, unabhängig vom SFX-Ton-Schalter.
+        // durch, aber nicht im Leise-Modus.
         let musicStartBound = false;
         function bindMusicAutostart() {
             if (musicStartBound) return;
             musicStartBound = true;
             const starter = () => {
-                if (musicVolume > 0) startBackgroundMusic();
+                if (soundOn && musicVolume > 0) startBackgroundMusic();
             };
             document.addEventListener("pointerdown", starter, { once: true });
             document.addEventListener("keydown", starter, { once: true });
@@ -1785,6 +1814,7 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function speakText(text) {
+            if (!soundOn) return;
             try {
                 if (!('speechSynthesis' in window) || !text) return;
                 const clean = cleanTextForSpeech(text);

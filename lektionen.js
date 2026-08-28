@@ -5590,7 +5590,7 @@ const LEKTIONEN = [
                     answers: ["6", "5", "7", "18"], correct: 0,
                     explanation: "(4+6+8) ÷ 3 = 18 ÷ 3 = 6." },
                 { id: "datnk5l2u_leicht_3", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "leicht", points: 10,
-                    question: "Welche Werte kommen am häufigsten vor: 2, 5, 2, 7, 2?",
+                    question: "Welcher Wert kommt am häufigsten vor: 2, 5, 2, 7, 2?",
                     answers: ["2", "5", "7", "alle gleich oft"], correct: 0,
                     explanation: "2 kommt dreimal vor – das ist der Modalwert." },
                 { id: "datnk5l2u_leicht_4", category: "kurs_datn_k5_l2", area: "schule", grade: 5, subject: "mathe", topic: "daten", difficulty: "leicht", points: 10,

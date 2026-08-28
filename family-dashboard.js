@@ -2406,58 +2406,115 @@ auth.createUserWithEmailAndPassword(e, p)
             box.innerHTML = keys.map(k => {
                 const p = ALL_PROFILES[k];
                 const doneMap = (p && p.lektionen) || {};
-                const rows = KURSE.map(kurs => {
-                    const liste = (typeof getLektionenForKurs === 'function')
-                        ? getLektionenForKurs(kurs.id)
-                        : [];
-                    if (!liste.length) return '';
-                    const fertig = liste.filter(l => doneMap[l.id] && doneMap[l.id].bestanden).length;
-                    const pct = Math.round((fertig / liste.length) * 100);
-                    const lektionRows = liste.map(l => {
-                        const eintrag = doneMap[l.id];
-                        const frei = (typeof istLektionFreigeschaltetFuer === 'function')
-                            ? istLektionFreigeschaltetFuer(l, liste, doneMap)
-                            : true;
-                        let statusIcon, ergebnis, ergebnisClass;
-                        if (eintrag && eintrag.bestanden) {
-                            statusIcon = '✅';
-                            const datum = eintrag.datum ? new Date(eintrag.datum).toLocaleDateString('de-DE') : '';
-                            ergebnis = `${eintrag.pct}%${datum ? ' · ' + datum : ''}`;
-                            ergebnisClass = 'text-emerald-400';
-                        } else if (eintrag) {
-                            statusIcon = '🔁';
-                            ergebnis = `${eintrag.pct}% – noch nicht bestanden`;
-                            ergebnisClass = 'text-amber-400';
-                        } else if (!frei) {
-                            statusIcon = '🔒';
-                            ergebnis = 'gesperrt';
-                            ergebnisClass = 'text-gray-500';
-                        } else {
-                            statusIcon = '▶️';
-                            ergebnis = 'noch nicht versucht';
-                            ergebnisClass = 'text-gray-500';
-                        }
-                        return `<div class="flex items-center justify-between gap-2 text-xs px-2.5 py-2.5 rounded-lg bg-white/[0.03]">
-                            <span class="text-gray-300 truncate flex-1">${statusIcon} ${esc(l.title)}</span>
-                            <span class="${ergebnisClass} shrink-0 font-bold">${ergebnis}</span>
-                        </div>`;
-                    }).join('');
-                    return `<div class="rounded-xl bg-black/20 border border-white/5 px-3.5 py-3">
-                        <div class="flex items-center justify-between gap-2 text-xs mb-2">
-                            <span class="font-bold text-gray-100 truncate">${kurs.icon || '📘'} ${esc(kurs.title)}</span>
-                            <span class="text-gray-400 shrink-0">${fertig}/${liste.length}</span>
-                        </div>
-                        <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden mb-2.5">
-                            <div class="h-1.5 rounded-full ${pct >= 100 ? 'bg-emerald-400' : 'bg-amber-400'}" style="width:${pct}%"></div>
-                        </div>
-                        <div class="space-y-1.5">${lektionRows}</div>
-                    </div>`;
-                }).join('');
+                const rows = dashKurseGruppen(doneMap);
                 return `<div class="space-y-3">
                     ${keys.length > 1 ? `<div class="font-bold text-white text-sm">${esc(p.name)}</div>` : ''}
                     ${rows || '<div class="text-[11px] text-gray-500">Noch keine Lektion gestartet</div>'}
                 </div>`;
             }).join('');
+        }
+
+        // Kurse für die Eltern-Ansicht nach Fach und Klassenstufe gruppieren.
+        // Bei 80+ Kursen wäre eine flache Liste unbrauchbar – deshalb aufklappbare
+        // Abschnitte, die nur dort offen starten, wo das Kind schon etwas gemacht hat.
+        function dashKurseGruppen(doneMap) {
+            const faecher = [...new Set(KURSE.map(k => k.subject))];
+            const order = (typeof KURS_FACH_ORDER !== 'undefined') ? KURS_FACH_ORDER : [];
+            const sortiert = [
+                ...order.filter(f => faecher.includes(f)),
+                ...faecher.filter(f => !order.includes(f))
+            ];
+            return sortiert.map(fach => {
+                const label = (typeof KURS_FACH_LABELS !== 'undefined' && KURS_FACH_LABELS[fach])
+                    || { icon: '📘', label: fach };
+                const kurseFach = KURSE.filter(k => k.subject === fach);
+                const stufen = [...new Set(kurseFach.map(k => k.grade))].sort((a, b) => a - b);
+                let fachFertig = 0, fachGesamt = 0;
+                const stufenHtml = stufen.map(stufe => {
+                    const kurseStufe = kurseFach.filter(k => k.grade === stufe);
+                    let sFertig = 0, sGesamt = 0, aktiv = false;
+                    const kursHtml = kurseStufe.map(kurs => {
+                        const liste = (typeof getLektionenForKurs === 'function')
+                            ? getLektionenForKurs(kurs.id)
+                            : [];
+                        if (!liste.length) return '';
+                        const fertig = liste.filter(l => doneMap[l.id] && doneMap[l.id].bestanden).length;
+                        const begonnen = liste.some(l => doneMap[l.id]);
+                        sFertig += fertig;
+                        sGesamt += liste.length;
+                        if (begonnen) aktiv = true;
+                        return dashKursKarte(kurs, liste, doneMap, fertig, begonnen);
+                    }).join('');
+                    fachFertig += sFertig;
+                    fachGesamt += sGesamt;
+                    const pct = sGesamt ? Math.round((sFertig / sGesamt) * 100) : 0;
+                    const icon = (typeof KURS_STUFEN_ICONS !== 'undefined' && KURS_STUFEN_ICONS[stufe]) || '🎓';
+                    return `<details class="rounded-xl bg-black/20 border border-white/5"${aktiv ? ' open' : ''}>
+                        <summary class="cursor-pointer select-none px-3.5 py-2.5 text-xs font-bold text-gray-100 flex items-center justify-between gap-2">
+                            <span>${icon} Klasse ${stufe}</span>
+                            <span class="text-gray-400 font-normal shrink-0">${sFertig}/${sGesamt} · ${pct}%</span>
+                        </summary>
+                        <div class="px-2.5 pb-2.5 space-y-2">${kursHtml}</div>
+                    </details>`;
+                }).join('');
+                const fPct = fachGesamt ? Math.round((fachFertig / fachGesamt) * 100) : 0;
+                return `<details class="rounded-xl bg-white/[0.04] border border-white/10"${fachFertig > 0 ? ' open' : ''}>
+                    <summary class="cursor-pointer select-none px-3.5 py-3 text-sm font-bold text-white flex items-center justify-between gap-2">
+                        <span>${label.icon} ${label.label}</span>
+                        <span class="text-gray-400 text-xs font-normal shrink-0">${fachFertig}/${fachGesamt} · ${fPct}%</span>
+                    </summary>
+                    <div class="px-2.5 pb-2.5 space-y-2">${stufenHtml}</div>
+                </details>`;
+            }).join('');
+        }
+
+        // Eine Kurs-Karte. Noch nicht begonnene Kurse bleiben eine schmale Zeile,
+        // damit die Ansicht nicht von leeren Lektionslisten zugeschüttet wird.
+        function dashKursKarte(kurs, liste, doneMap, fertig, begonnen) {
+            const pct = Math.round((fertig / liste.length) * 100);
+            const kopf = `<div class="flex items-center justify-between gap-2 text-xs">
+                    <span class="font-bold text-gray-100 truncate">${kurs.icon || '📘'} ${esc(kurs.title)}</span>
+                    <span class="text-gray-400 shrink-0">${fertig}/${liste.length}</span>
+                </div>`;
+            if (!begonnen) {
+                return `<div class="rounded-lg bg-black/20 border border-white/5 px-3 py-2 opacity-60">${kopf}</div>`;
+            }
+            const lektionRows = liste.map(l => {
+                const eintrag = doneMap[l.id];
+                const frei = (typeof istLektionFreigeschaltetFuer === 'function')
+                    ? istLektionFreigeschaltetFuer(l, liste, doneMap)
+                    : true;
+                let statusIcon, ergebnis, ergebnisClass;
+                if (eintrag && eintrag.bestanden) {
+                    statusIcon = '✅';
+                    const datum = eintrag.datum ? new Date(eintrag.datum).toLocaleDateString('de-DE') : '';
+                    ergebnis = `${eintrag.pct}%${datum ? ' · ' + datum : ''}`;
+                    ergebnisClass = 'text-emerald-400';
+                } else if (eintrag) {
+                    statusIcon = '🔁';
+                    ergebnis = `${eintrag.pct}% – noch nicht bestanden`;
+                    ergebnisClass = 'text-amber-400';
+                } else if (!frei) {
+                    statusIcon = '🔒';
+                    ergebnis = 'gesperrt';
+                    ergebnisClass = 'text-gray-500';
+                } else {
+                    statusIcon = '▶️';
+                    ergebnis = 'noch nicht versucht';
+                    ergebnisClass = 'text-gray-500';
+                }
+                return `<div class="flex items-center justify-between gap-2 text-xs px-2.5 py-2.5 rounded-lg bg-white/[0.03]">
+                    <span class="text-gray-300 truncate flex-1">${statusIcon} ${esc(l.title)}</span>
+                    <span class="${ergebnisClass} shrink-0 font-bold">${ergebnis}</span>
+                </div>`;
+            }).join('');
+            return `<div class="rounded-xl bg-black/20 border border-white/5 px-3.5 py-3">
+                ${kopf}
+                <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden my-2.5">
+                    <div class="h-1.5 rounded-full ${pct >= 100 ? 'bg-emerald-400' : 'bg-amber-400'}" style="width:${pct}%"></div>
+                </div>
+                <div class="space-y-1.5">${lektionRows}</div>
+            </div>`;
         }
 
         // Freischalt-Status für ein beliebiges Kind (nicht nur currentPlayer) berechnen –

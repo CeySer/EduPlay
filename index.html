@@ -2650,7 +2650,7 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=12.1"></script>
+    <script src="app-config.js?v=12.2"></script>
     <script src="app-ui.js?v=9.4"></script>
     <script src="family-dashboard.js?v=11.26"></script>
     <script src="dev-admin.js?v=1.7"></script>
@@ -2708,7 +2708,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             <button class="close-btn" onclick="closeDrawer()" aria-label="Menü schließen">✕</button>
         </div>
         <div class="flex flex-col gap-1 drawer-items-container">
-            <button onclick="closeDrawer(); toggleQuietMode()" class="drawer-menu-item">
+            <button onclick="toggleQuietMode(); closeDrawer()" class="drawer-menu-item">
                 <span class="icon">🤫</span> <span>Leise-Modus <span class="quiet-toggle-label">aus</span></span>
             </button>
             <button onclick="closeDrawer(); togglePushNotifications()" class="drawer-menu-item">
@@ -2757,7 +2757,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             <button onclick="closeDrawer(); switchView('dashboard')" class="drawer-menu-item">
                 <span class="icon">🎛️</span> Kontrollzentrum
             </button>
-            <button onclick="closeDrawer(); toggleQuietMode()" class="drawer-menu-item">
+            <button onclick="toggleQuietMode(); closeDrawer()" class="drawer-menu-item">
                 <span class="icon">🤫</span> <span>Leise-Modus <span class="quiet-toggle-label">aus</span></span>
             </button>
             <button onclick="closeDrawer(); togglePushNotifications()" class="drawer-menu-item">

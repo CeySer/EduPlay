@@ -201,6 +201,7 @@
 
         function speakLesen(text) {
             try {
+                if (typeof soundOn !== "undefined" && !soundOn) return;
                 if (!('speechSynthesis' in window) || !text) return;
                 window.speechSynthesis.cancel();
                 const u = new SpeechSynthesisUtterance(String(text));
@@ -778,6 +779,7 @@
         // }
 
         function speakNatural(text) {
+            if (typeof soundOn !== "undefined" && !soundOn) return;
             if (typeof speakText === "function") {
                 speakText(text);
                 return;

@@ -1498,22 +1498,34 @@ const geladen = _questionCounts[key] || 0;
             });
         }
 
+        function silenceAllAudio() {
+            try { stopBackgroundMusic(); } catch (e) { /* */ }
+            try { stopFileBgm(); } catch (e) { /* */ }
+            try { if (bgmEl) { bgmEl.pause(); bgmEl.volume = 0; } } catch (e) { /* */ }
+            try { if (musicTimer) { clearInterval(musicTimer); musicTimer = null; } } catch (e) { /* */ }
+            try { if (musicGain && musicCtx) musicGain.gain.setValueAtTime(0, musicCtx.currentTime); } catch (e) { /* */ }
+            try { if (audioCtx && audioCtx.state === "running") audioCtx.suspend(); } catch (e) { /* */ }
+            try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) { /* */ }
+        }
+
         function toggleQuietMode() {
             soundOn = !soundOn;
             try { localStorage.setItem("eduplaySound", soundOn ? "on" : "off"); } catch (e) { }
             updateQuietUI();
             if (!soundOn) {
-                stopBackgroundMusic();
-                try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) { }
+                silenceAllAudio();
                 hapticPulse("tap");
                 if (typeof showToast === "function") showToast("🤫 Leise-Modus an – kein Ton", "success", "sound");
             } else {
+                try { if (audioCtx && audioCtx.state === "suspended") audioCtx.resume(); } catch (e) { /* */ }
+                try { if (musicGain && musicCtx) musicGain.gain.setValueAtTime(musicVolume, musicCtx.currentTime); } catch (e) { /* */ }
                 if (musicVolume > 0) startBackgroundMusic();
                 SFX.tap();
                 if (typeof showToast === "function") showToast("🔊 Ton wieder an", "success", "sound");
             }
         }
         function toggleSound() { toggleQuietMode(); }
+        try { window.toggleQuietMode = toggleQuietMode; window.toggleSound = toggleSound; } catch (e) { /* */ }
         try { document.addEventListener("DOMContentLoaded", updateQuietUI); } catch (e) { /* */ }
 
         // ============================================================
@@ -1546,6 +1558,7 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function tryPlayFileBgm(mode) {
+            if (!soundOn) return false;
             const paths = BGM_PATHS[mode === 'game' ? 'quiz' : 'menu'];
             if (!paths || !paths.length) return false;
             if (!bgmEl) {
@@ -1569,6 +1582,7 @@ const geladen = _questionCounts[key] || 0;
                 }
                 const path = paths[idx++];
                 bgmEl.oncanplaythrough = function () {
+                    if (!soundOn) { stopFileBgm(); return; }
                     bgmFileMode = mode === 'game' ? 'quiz' : 'menu';
                     bgmEl.volume = musicVolume;
                     const p = bgmEl.play();
@@ -1663,6 +1677,7 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function playMusicNote() {
+            if (!soundOn) return;
             const ctx = ensureMusicAudio();
             if (!ctx || musicVolume <= 0) return;
             const t = ctx.currentTime;
@@ -1698,6 +1713,7 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function playMusicNoteGame() {
+            if (!soundOn) return;
             const ctx = ensureMusicAudio();
             if (!ctx || musicVolume <= 0) return;
             const t = ctx.currentTime;

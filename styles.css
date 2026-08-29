@@ -3506,8 +3506,8 @@ body.tv-mirror-display .view {
     height: 100dvh;
     max-height: 100dvh;
     min-height: 0;
-    padding: 0.35rem 1rem 0.4rem !important;
-    gap: 0.4rem !important;
+    padding: 0.4rem 1.15rem calc(0.85rem + env(safe-area-inset-bottom, 0.35rem)) 1rem !important;
+    gap: 0.35rem !important;
     border-radius: 0;
     overflow: hidden;
     box-sizing: border-box;
@@ -3566,9 +3566,10 @@ body.tv-mirror-display .view {
   }
   .tv-show-footer {
     flex: 0 0 auto !important;
-    gap: 0.3rem;
-    margin-top: 0.15rem;
-    padding: 0.25rem 0.25rem 0.2rem;
+    gap: 0.35rem;
+    margin-top: 0.35rem;
+    margin-bottom: 0.15rem;
+    padding: 0.2rem 0.8rem 0.15rem;
     position: relative;
     z-index: 6;
     background: transparent;
@@ -3576,6 +3577,14 @@ body.tv-mirror-display .view {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+  }
+  .tv-show-scorestrip {
+    margin: 0.15rem 0.5rem 0.1rem;
+    gap: 0.3rem 0.4rem;
+  }
+  .tv-show-rank-row {
+    padding: 0.22rem 0.55rem;
+    font-size: 0.78rem;
   }
   .tv-show-force, .tv-show-next {
     padding: 0.45rem 1.1rem !important;
@@ -4146,7 +4155,7 @@ body.tv-mirror-display .tv-show-stage {
   min-height: 100dvh;
   max-height: 100dvh;
   border-radius: 0;
-  padding: 0.55rem 1.1rem 0.55rem;
+  padding: 0.55rem 1.35rem calc(0.9rem + env(safe-area-inset-bottom, 0.4rem)) 1.1rem;
   justify-content: flex-start;
   box-sizing: border-box;
 }
@@ -4352,8 +4361,8 @@ body.tv-mirror-display .tv-show-footer {
   flex-wrap: wrap;
   justify-content: center;
   gap: clamp(0.35rem, 1.2vh, 0.75rem);
-  margin-top: 0.45rem;
-  padding-bottom: env(safe-area-inset-bottom, 0.2rem);
+  margin-top: 0.4rem;
+  padding: 0.15rem 0.75rem 0.35rem;
 }
 /* Lobby mittig statt oben angeklebt - die Spielerliste ist ohnehin auf
    42vh gedeckelt, es kann also nichts aus dem Bild wachsen. */

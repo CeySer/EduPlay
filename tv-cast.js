@@ -105,6 +105,7 @@
                     if (typeof clearTVWrTimers === "function") clearTVWrTimers();
                     stopTVAutoAdvance();
                     stopTVActionMode();
+                    stoppeTVRundenTimer();
                     showTVHostPodium(data.players);
                     merkeTVHost(false);
                     return;
@@ -148,7 +149,10 @@
                             ? SCRABBLE_ANSWER_SECONDS[data.difficulty]
                             : 55;
                         const secs = data.mode === "scrabble" ? scrSecs : (data.answerSeconds || 30);
-                        tvGameRef.update({ answerDeadline: Date.now() + secs * 1000 }).catch(() => { });
+                        tvGameRef.update({
+                            answerDeadline: Date.now() + secs * 1000,
+                            answerDurationMs: secs * 1000
+                        }).catch(() => { });
                     }
                     const restSek = data.answerDeadline
                         ? Math.max(0, Math.ceil((data.answerDeadline - Date.now()) / 1000))
@@ -420,9 +424,11 @@
         let tvFristTicker = null;
 
         let _tvBarDeadlineKey = null;
+        let _tvLiveDeadline = 0;
         function starteTVRundenTimer(data) {
             if (!data || !data.answerDeadline) return;
             const deadline = data.answerDeadline;
+            _tvLiveDeadline = deadline;
             const barKey = String(deadline) + ":" + (data.currentQuestionIndex || data.currentRound || 0);
 
             // Balken nur einmal pro Runde starten (sonst springt er bei jedem Snapshot zurück)
@@ -431,13 +437,13 @@
                 try {
                     const bar = document.getElementById("tv-kahoot-timer-bar");
                     if (bar) {
-                        // Gesamtdauer der Runde schätzen (Deadline war gerade gesetzt → ~30s/60s)
-                        // Gleichmäßig von jetzt bis Deadline – ein linearer Lauf, kein Neustart
                         const remainMs = Math.max(200, deadline - Date.now());
-                        // Ursprüngliche Länge: wenn fast voll, von 100%; sonst proportional zur Restzeit
-                        // Annahme: Quiz 30s, Scrabble 60s
-                        const fullMs = (data.mode === "scrabble") ? 60000 : 30000;
-                        const startPct = Math.min(100, Math.max(2, (remainMs / fullMs) * 100));
+                        const fullMs = data.answerDurationMs
+                            || ((data.mode === "scrabble")
+                                ? ((typeof SCRABBLE_ANSWER_SECONDS !== "undefined" && data.difficulty && SCRABBLE_ANSWER_SECONDS[data.difficulty])
+                                    ? SCRABBLE_ANSWER_SECONDS[data.difficulty] * 1000 : 60000)
+                                : ((data.answerSeconds || 30) * 1000));
+                        const startPct = Math.min(100, Math.max(1, (remainMs / fullMs) * 100));
                         bar.style.transition = "none";
                         bar.style.width = startPct + "%";
                         void bar.offsetWidth;
@@ -445,25 +451,31 @@
                         bar.style.width = "0%";
                     }
                 } catch (e) { /* */ }
+                if (tvFristTicker) { clearInterval(tvFristTicker); tvFristTicker = null; }
             }
 
-            // Sekunden-Ticker nur einmal laufen lassen
             if (tvFristTicker) return;
             tvFristTicker = setInterval(() => {
                 if (!tvGameRef) return stoppeTVRundenTimer();
-                const rest = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+                const ende = _tvLiveDeadline || 0;
+                const rest = Math.max(0, Math.ceil((ende - Date.now()) / 1000));
                 const el = document.getElementById("tv-answer-counter");
                 if (el && el.innerText.indexOf("noch ") !== -1) {
                     el.innerText = el.innerText.replace(/noch \d+s/, "noch " + rest + "s");
                 }
-                if (rest <= 0) {
+                if (ende && rest <= 0) {
                     stoppeTVRundenTimer();
                     if (isResolving) return;
                     isResolving = true;
                     tvGameRef.get().then(d => {
-                        if (!d.exists) return;
+                        if (!d.exists) { isResolving = false; return; }
                         const frisch = d.data();
                         if (frisch.status !== "playing" || frisch.showAnswer) { isResolving = false; return; }
+                        if (frisch.answerDeadline && Date.now() < frisch.answerDeadline - 400) {
+                            isResolving = false;
+                            starteTVRundenTimer(frisch);
+                            return;
+                        }
                         frisch.mode === "scrabble" ? revealTVScrabbleRound(frisch) : revealTVAnswer(frisch);
                     }).catch(() => { isResolving = false; });
                 }
@@ -866,6 +878,7 @@
 
         function revealTVAnswer(data) {
             stopTVRoundTimer();
+            stoppeTVRundenTimer();
             window._tvHostRenderKey = null;
             _tvBarDeadlineKey = null;
             if (!tvCurrentQ && Array.isArray(data.questions) && data.questions.length) {
@@ -1037,6 +1050,7 @@
 
         async function nextTVQuestion() {
             stopTVAutoAdvance();
+            stoppeTVRundenTimer();
             const docSnap = await tvGameRef.get();
             const data = docSnap.data();
             if (Array.isArray(data.questions) && data.questions.length) tvQuestions = data.questions;
@@ -1068,6 +1082,12 @@
 
         function showTVHostPodium(playersData) {
             stopTVAutoAdvance();
+            const _podKey = Object.keys(playersData || {}).sort().map(function (k) {
+                const p = playersData[k] || {};
+                return k + ":" + (p.score || 0);
+            }).join("|");
+            if (window._tvPodiumKey === _podKey && document.getElementById("tv-again-area")) return;
+            window._tvPodiumKey = _podKey;
             if (typeof clearTVWrTimers === "function") clearTVWrTimers();
             stopTVActionMode();
             const sorted = Object.values(playersData || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
@@ -1215,6 +1235,7 @@
                     playersData[k].answeredAt = null;
                 });
                 isResolving = false;
+                window._tvPodiumKey = null;
 
                 if (tvAgainMode === "scrabble") {
                     const difficulty = (document.getElementById("tv-again-scrabble-diff") || {}).value || "mittel";
@@ -1328,10 +1349,8 @@
                     // sein Wort abgeschickt hat, keine neuen Buchstaben mehr nachschieben.
                     const snap = await tvGameRef.get();
                     const frisch = snap.exists ? snap.data() : null;
-                    const hatSchonGeantwortet = frisch && Object.values(frisch.players || {}).some(p => p && p.hasAnswered === true);
-                    if (!frisch || frisch.status !== "playing" || hatSchonGeantwortet) {
+                    if (!frisch || frisch.status !== "playing" || frisch.showAnswer) {
                         stopTVActionMode();
-                        if (typeof showToast === "function") showToast("⏹ Action-Modus beendet - es wurde schon geantwortet", "info", "cast");
                         return;
                     }
                     const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode || "kids");
@@ -1870,6 +1889,9 @@
                 playersData[k].hasAnswered = false;
                 playersData[k].word = "";
                 playersData[k].submittedLetters = [];
+                playersData[k].scoredThisRound = false;
+                playersData[k].lastRoundPoints = 0;
+                playersData[k].wordStatus = null;
                 playersData[k].submittedRequired = "";
                 playersData[k].score = playersData[k].score || 0;
             });
@@ -1881,7 +1903,7 @@
             // der Auswertung beigetreten war, verschwand damit wieder.
             tvGameRef.update(tvPunkteUpdate(
                 playersData,
-                ["hasAnswered", "word", "submittedLetters", "submittedRequired", "score"],
+                ["hasAnswered", "word", "submittedLetters", "submittedRequired", "score", "scoredThisRound", "lastRoundPoints", "wordStatus"],
                 {
                     status: "playing",
                     showAnswer: false,
@@ -1953,6 +1975,7 @@
         }
 
         async function revealTVScrabbleRound(data) {
+            stoppeTVRundenTimer();
             stopTVActionMode();
             const playersData = data.players;
 
@@ -1970,12 +1993,15 @@
                     </div>`);
 
             for (const key of Object.keys(playersData)) {
+                if (playersData[key].scoredThisRound) {
+                    playersData[key]._basePoints = 0;
+                    playersData[key]._alreadyScored = true;
+                    continue;
+                }
                 const _cfgMin = (typeof SCRABBLE_DIFFICULTIES !== "undefined" && SCRABBLE_DIFFICULTIES[data.difficulty])
                     ? (SCRABBLE_DIFFICULTIES[data.difficulty].minWord || 3) : 3;
-                // TV: etwas großzügiger – Kinder min. 2 Buchstaben
                 const _minW = (data.wordMode === "kids" || data.difficulty === "leicht")
                     ? 2 : Math.max(2, _cfgMin - (data.difficulty === "mittel" ? 1 : 0));
-                // Buchstaben dieses Spielers, sonst die der Runde
                 const _sl = (playersData[key].submittedLetters && playersData[key].submittedLetters.length)
                     ? playersData[key].submittedLetters : letters;
                 const _sr = playersData[key].submittedRequired || currentRequired;
@@ -2001,6 +2027,7 @@
 
             Object.keys(playersData).forEach(k => {
                 const p = playersData[k];
+                if (p._alreadyScored) return;
                 let finalPoints = p._basePoints || 0;
                 const parts = [];
                 if (data.actionMode && finalPoints > 0 && p.word) {
@@ -2363,6 +2390,14 @@
                                     try { if (typeof confetti === 'function') confetti(); } catch (
                                     e) { } SFX.correct();
                                 } else { SFX.wrong(); }
+                            } else if (myData.hasAnswered) {
+                                const points = myData.lastRoundPoints || 0;
+                                if (!tvPlayerBrauchtNeu("scwait:" + (data.currentRound || 0) + ":" + points + ":" + (myData.wordStatus || ""))) return;
+                                const bg = points > 0 ? "bg-emerald-500" : "bg-gray-700";
+                                const pInfo = (typeof wordStatusInfo === "function")
+                                    ? wordStatusInfo(myData.wordStatus, myData) : { icon: "", text: "" };
+                                const statusText = myData.wordStatus === "valid" ? "Erkannt! ✅" : `${pInfo.icon || ""} ${pInfo.text || ""}`.trim();
+                                setTVPlayerPlayHTML(`<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-7xl mb-6">${points > 0 ? "✅" : "😅"}</div><h2 class="text-2xl font-black mb-2">Dein Wort: "${esc(myData.word || "-")}"</h2><p class="text-sm opacity-70 mb-2">${statusText || "gewertet"}</p><p class="text-xl font-bold">+ ${points} Punkte</p><p class="text-sm opacity-80 mt-3">Die anderen spielen noch…</p></div>`);
                             } else if (!myData.hasAnswered) {
                                 const lettersKey = (data.currentLetters || []).join('');
                                 if (!tvPlayerBrauchtNeu("sc:" + (data.currentRound || 0) + ":" + lettersKey + ":" + (data.currentRequired || ""))) return;
@@ -2562,19 +2597,43 @@
                 showToast("Bitte zuerst Buchstaben antippen.", "error", "word");
                 return;
             }
+            const lettersNow = tvScrabbleCurrentLetters.slice();
+            const requiredNow = tvScrabbleCurrentRequired || "";
             tvScrabbleSelected = [];
             tvPlayerRenderReset();
-            setTVPlayerPlayHTML(`<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-amber-400 mb-4">Eingereicht!</h2><p class="text-lg font-bold text-gray-400">Warte auf die anderen...</p></div>`);
+            setTVPlayerPlayHTML(`<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-6xl mb-6 animate-spin">⏳</div><h2 class="text-2xl font-black text-amber-400 mb-3">Prüfe Wort…</h2></div>`);
+            let data = {};
+            try {
+                const snap = await tvGameRef.get();
+                data = snap.exists ? snap.data() : {};
+            } catch (e) { data = {}; }
+            if ((data.players || {})[activePlayerKey] && data.players[activePlayerKey].hasAnswered) return;
+            const _cfgMin = (typeof SCRABBLE_DIFFICULTIES !== "undefined" && SCRABBLE_DIFFICULTIES[data.difficulty])
+                ? (SCRABBLE_DIFFICULTIES[data.difficulty].minWord || 3) : 3;
+            const _minW = (data.wordMode === "kids" || data.difficulty === "leicht") ? 2 : Math.max(2, _cfgMin);
+            let res = { status: "invalid", points: 0 };
+            try {
+                res = await evaluateScrabbleWord(word, lettersNow, {
+                    minWord: _minW,
+                    required: requiredNow,
+                    used: tvUsedWords,
+                    addToUsed: false,
+                    wordMode: data.wordMode || "kids"
+                });
+            } catch (e) { /* */ }
+            let pts = res.points || 0;
+            if (data.actionMode && pts > 0) pts += 5;
+            const prev = ((data.players || {})[activePlayerKey] || {}).score || 0;
             await tvGameRef.update({
                 [`players.${activePlayerKey}.hasAnswered`]: true,
                 [`players.${activePlayerKey}.word`]: word,
                 [`players.${activePlayerKey}.answeredAt`]: Date.now(),
-                // Die Buchstaben mitschicken, die beim Einreichen auf dem Handy
-                // lagen. Im Action-Modus koennen sie sich im selben Moment
-                // aendern - gewertet wird dann trotzdem das, was der Spieler
-                // wirklich vor sich hatte. (Kniff aus dem Online-Duell.)
-                [`players.${activePlayerKey}.submittedLetters`]: tvScrabbleCurrentLetters.slice(),
-                [`players.${activePlayerKey}.submittedRequired`]: tvScrabbleCurrentRequired || ""
+                [`players.${activePlayerKey}.submittedLetters`]: lettersNow,
+                [`players.${activePlayerKey}.submittedRequired`]: requiredNow,
+                [`players.${activePlayerKey}.wordStatus`]: res.status,
+                [`players.${activePlayerKey}.lastRoundPoints`]: pts,
+                [`players.${activePlayerKey}.score`]: prev + pts,
+                [`players.${activePlayerKey}.scoredThisRound`]: true
             });
         }
 

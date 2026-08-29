@@ -290,34 +290,46 @@
             return new Set(kids);
         }
 
-        async function isValidGermanWord(word, wordMode) {
-            if (!word || word.length < 2) return { status: "invalid" };
-            const upper = String(word).toUpperCase().normalize("NFC");
-            const mode = wordMode || "kids";
-            const set = buildScrabbleWordSet(mode);
-            if (set.has(upper)) return { status: "valid" };
-            // Kinder: keine externe Prüfung (sonst rutschen Erwachsenen-Wörter rein)
-            if (mode !== "adult") return { status: "invalid" };
+        function scrabbleKidsBlock() {
+            return (typeof WR_KIDS_BLOCK !== "undefined" && WR_KIDS_BLOCK instanceof Set)
+                ? WR_KIDS_BLOCK
+                : new Set(["ANWALT", "BIER", "BUDGET", "KNEIPE", "WAFFE", "BILANZ", "KOALITION"]);
+        }
+
+        async function checkWithLanguageTool(word) {
+            const raw = String(word || "").trim();
+            if (!raw) return { status: "invalid" };
+            const pretty = raw.charAt(0).toUpperCase() + raw.slice(1).toLowerCase();
             try {
                 const controller = new AbortController();
                 const timeout = setTimeout(() => controller.abort(), 4000);
                 const response = await fetch("https://api.languagetool.org/v2/check", {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: `text=${encodeURIComponent(word)}&language=de-DE`,
+                    body: "text=" + encodeURIComponent(pretty) + "&language=de-DE&level=default",
                     signal: controller.signal
                 });
                 clearTimeout(timeout);
                 if (!response.ok) return { status: "unknown" };
                 const data = await response.json();
-                const hasSpellingError = (data.matches || []).some(m =>
-                    (m.rule && m.rule.issueType === "misspelling") ||
-                    (m.rule && m.rule.category && m.rule.category.id === "TYPOS")
-                );
+                const hasSpellingError = (data.matches || []).some(function (m) {
+                    return (m.rule && m.rule.issueType === "misspelling") ||
+                        (m.rule && m.rule.category && m.rule.category.id === "TYPOS");
+                });
                 return { status: hasSpellingError ? "invalid" : "valid" };
             } catch (e) {
                 return { status: "unknown" };
             }
+        }
+
+        async function isValidGermanWord(word, wordMode) {
+            if (!word || word.length < 2) return { status: "invalid" };
+            const upper = String(word).toUpperCase().normalize("NFC");
+            const mode = wordMode || "kids";
+            if (mode !== "adult" && scrabbleKidsBlock().has(upper)) return { status: "invalid" };
+            const set = buildScrabbleWordSet(mode);
+            if (set.has(upper)) return { status: "valid" };
+            return await checkWithLanguageTool(word);
         }
 
         function generateScrabbleRack(difficulty, requireLetter, wordMode) {

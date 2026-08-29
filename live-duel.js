@@ -948,12 +948,32 @@
             if (!data || data.status !== "playing") return;
             let players = data.players;
             if (!players[activePlayerKey] || players[activePlayerKey].hasAnswered) return;
+            const lettersNow = data.currentLetters || [];
+            const requiredNow = data.currentRequired || "";
+            let res = { status: "invalid", points: 0 };
+            try {
+                res = await evaluateScrabbleWord(word, lettersNow, {
+                    minWord: (typeof SCRABBLE_DIFFICULTIES !== "undefined" && SCRABBLE_DIFFICULTIES[data.difficulty])
+                        ? (SCRABBLE_DIFFICULTIES[data.difficulty].minWord || 3) : 3,
+                    required: requiredNow,
+                    used: typeof liveDuelUsedWords !== "undefined" ? liveDuelUsedWords : null,
+                    addToUsed: false,
+                    wordMode: data.wordMode || "kids"
+                });
+            } catch (e) { /* */ }
+            let pts = res.points || 0;
+            if (data.actionMode && pts > 0) pts += 5;
+            const prev = (players[activePlayerKey].score || 0);
             const update = {
                 [`players.${activePlayerKey}.hasAnswered`]: true,
                 [`players.${activePlayerKey}.word`]: word,
                 [`players.${activePlayerKey}.answeredAt`]: Date.now(),
-                [`players.${activePlayerKey}.submittedLetters`]: data.currentLetters || [],
-                [`players.${activePlayerKey}.submittedRequired`]: data.currentRequired || ""
+                [`players.${activePlayerKey}.submittedLetters`]: lettersNow,
+                [`players.${activePlayerKey}.submittedRequired`]: requiredNow,
+                [`players.${activePlayerKey}.wordStatus`]: res.status,
+                [`players.${activePlayerKey}.lastRoundPoints`]: pts,
+                [`players.${activePlayerKey}.score`]: prev + pts,
+                [`players.${activePlayerKey}.scoredThisRound`]: true
             };
             if (!data.answerDeadline) update.answerDeadline = Date.now() + (data.answerSeconds || 20) * 1000;
             await liveDuelRef.update(update);
@@ -1497,6 +1517,11 @@
                 // ============================================================
                 for (const key of Object.keys(players)) {
                     if (players[key].pending) continue;
+                    if (players[key].scoredThisRound) {
+                        players[key]._alreadyScored = true;
+                        players[key]._basePoints = 0;
+                        continue;
+                    }
 
                     // NEU: Die gespeicherten Buchstaben dieses Spielers verwenden
                     const letters = players[key].submittedLetters || data.currentLetters || [];
@@ -1534,6 +1559,7 @@
 
                 Object.keys(players).forEach(key => {
                     if (players[key].pending) return;
+                    if (players[key]._alreadyScored) return;
                     let pts = players[key]._basePoints || 0;
                     const parts = [];
                     // Action-Bonus: gab es im Familien-Duell (bonusEarned) und am
@@ -1694,6 +1720,7 @@
                 players[k].pending = false;
                 // NEU: Gespeicherte Buchstaben zurücksetzen
                 players[k].submittedLetters = [];
+                players[k].scoredThisRound = false;
                 players[k].submittedRequired = "";
                 players[k].submittedSolution = "";
                 players[k].wordStatus = null;
@@ -1742,6 +1769,7 @@
                         players[k].pending = false;
                         // NEU: Gespeicherte Buchstaben zurücksetzen
                         players[k].submittedLetters = [];
+                players[k].scoredThisRound = false;
                         players[k].submittedRequired = "";
                         players[k].submittedSolution = "";
                         players[k].wordStatus = null;
@@ -1803,6 +1831,7 @@
                 players[k].pending = false;
                 // NEU: Gespeicherte Buchstaben zurücksetzen
                 players[k].submittedLetters = [];
+                players[k].scoredThisRound = false;
                 players[k].submittedRequired = "";
                 players[k].submittedSolution = "";
             });
@@ -2204,6 +2233,7 @@
                 players[k].pending = false;
                 players[k].answerStreak = 0;
                 players[k].submittedLetters = [];
+                players[k].scoredThisRound = false;
                 players[k].submittedRequired = "";
                 players[k].submittedSolution = "";
             });
@@ -2515,11 +2545,11 @@
         // Zufall bleibt, aber gleicher Rahmen in JEDEM Spiel + Mindestabstand.
         // ============================================================
         const ACTION_TIMINGS = {
-            leicht: { firstChange: 8, minGap: 6, maxGap: 10, maxChanges: 4 },
-            mittel: { firstChange: 10, minGap: 8, maxGap: 12, maxChanges: 3 },
-            schwer: { firstChange: 12, minGap: 10, maxGap: 15, maxChanges: 3 },
-            experte: { firstChange: 15, minGap: 12, maxGap: 18, maxChanges: 2 },
-            profi: { firstChange: 18, minGap: 15, maxGap: 22, maxChanges: 2 }
+            leicht: { firstChange: 10, minGap: 10, maxGap: 16, maxChanges: 3 },
+            mittel: { firstChange: 10, minGap: 10, maxGap: 16, maxChanges: 3 },
+            schwer: { firstChange: 10, minGap: 10, maxGap: 18, maxChanges: 3 },
+            experte: { firstChange: 12, minGap: 10, maxGap: 18, maxChanges: 3 },
+            profi: { firstChange: 12, minGap: 10, maxGap: 20, maxChanges: 3 }
         };
         function getActionTiming(difficulty) {
             return ACTION_TIMINGS[difficulty] || ACTION_TIMINGS.mittel;
@@ -2645,15 +2675,6 @@
                 // ============================================================
                 // NEU: Prüfen ob schon jemand eingereicht hat
                 // ============================================================
-                const hasAnyAnswer = Object.values(data.players || {}).some(p => p && p.hasAnswered === true);
-
-                if (hasAnyAnswer) {
-                    // Nicht "pausiert": der Modus wird hier endgueltig beendet.
-                    stopLiveDuelActionMode();
-                    showLiveDuelActionFeedback("⏹ Action-Modus beendet – es wurde schon eingereicht");
-                    return;
-                }
-
                 // Neues Wort generieren
                 const difficulty = data.difficulty || "mittel";
                 const wordMode = data.wordMode || "kids";

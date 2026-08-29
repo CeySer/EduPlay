@@ -3549,10 +3549,10 @@ body.tv-mirror-display .view {
     align-content: center !important;
   }
   .tv-show-tile {
-    min-height: 0 !important;
+    min-height: 2.5em !important;
     height: auto !important;
-    max-height: 30vh !important;
-    padding: 0.35rem 0.5rem !important;
+    max-height: none !important;
+    padding: 0.35rem 0.55rem !important;
     border-radius: 0.6rem !important;
   }
   .tv-show-answer {
@@ -3585,13 +3585,14 @@ body.tv-mirror-display .view {
     font-size: clamp(0.75rem, 1.8vh, 0.95rem) !important;
   }
   .tv-scrabble-results {
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     min-height: 0;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    max-height: 55vh;
+    /* Rest unter Buchstaben, aber Footer (Nächste Runde) bleibt immer frei */
+    max-height: calc(100dvh - 10.5rem);
   }
   /* Wort-Rätsel: Querformat – Figur links, Wort rechts */
   .tv-wr-stage .tv-wr-body {
@@ -3857,6 +3858,48 @@ body.tv-host-active #tv-host-play {
     padding: 0.3rem 0.55rem;
   }
 }
+@media (orientation: landscape) and (max-height: 560px) {
+  .tv-podium-layout {
+    max-height: 100dvh;
+    height: 100dvh;
+    padding: 0.28rem 0.55rem calc(0.28rem + env(safe-area-inset-bottom, 0px));
+    gap: 0.4rem;
+    overflow: hidden;
+  }
+  .tv-podium-left,
+  .tv-podium-right {
+    max-height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tv-podium-right {
+    padding: 0.4rem 0.5rem 0.35rem;
+  }
+  .tv-podium-again-sub { margin: 0.05rem 0 0.3rem; }
+  .tv-podium-start { margin-top: 0.25rem; padding: 0.38rem 0.7rem; }
+  .tv-podium-leave { margin-top: 0.2rem; padding: 0.28rem 0.6rem; }
+  body.tv-mirror-display .tv-podium-title {
+    font-size: clamp(1rem, 5.2vh, 1.35rem) !important;
+    margin-bottom: 0.25rem;
+  }
+  body.tv-mirror-display .tv-podium-again-title {
+    font-size: clamp(0.85rem, 3.4vh, 1.05rem) !important;
+  }
+  body.tv-mirror-display .tv-podium-nav button {
+    font-size: 0.7rem !important;
+    padding: 0.22rem 0.32rem !important;
+  }
+  body.tv-mirror-display .tv-podium-right select.input-modern {
+    font-size: 0.72rem !important;
+    padding: 0.28rem 1.5rem 0.28rem 0.45rem !important;
+  }
+  body.tv-mirror-display .tv-podium-start {
+    font-size: 0.88rem !important;
+  }
+  body.tv-mirror-display .tv-podium-leave {
+    font-size: 0.75rem !important;
+  }
+}
 
 .tv-show-top { text-align: center; flex-shrink: 0; }
 .tv-show-meta {
@@ -3962,7 +4005,8 @@ body.tv-host-active #tv-host-play {
   gap: 0.5rem;
   border-radius: 1rem;
   padding: clamp(0.3rem, 0.7cqw, 0.6rem) clamp(0.6rem, 1.3cqw, 1rem);
-  min-height: clamp(56px, 11vh, 118px);
+  min-height: 2.6em;
+  height: auto;
   box-shadow: 0 10px 28px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.18);
   overflow: hidden;
   transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
@@ -4099,9 +4143,12 @@ body.tv-host-active #tv-host-play {
 .tv-scrabble-review { margin: 0.35rem 0 0.5rem; }
 
 body.tv-mirror-display .tv-show-stage {
-  min-height: 96vh;
+  min-height: 100dvh;
+  max-height: 100dvh;
   border-radius: 0;
-  padding: 1rem 1.75rem 1.25rem;
+  padding: 0.55rem 1.1rem 0.55rem;
+  justify-content: flex-start;
+  box-sizing: border-box;
 }
 body.tv-mirror-display #view-tv-quiz-host {
   max-width: none;
@@ -4120,7 +4167,9 @@ body.tv-mirror-display .tv-show-answer {
   font-size: clamp(1.15rem, 2.6cqw, 2.2rem) !important;
 }
 body.tv-mirror-display .tv-show-tile {
-  min-height: clamp(58px, 12vh, 130px) !important;
+  min-height: 2.65em !important;
+  height: auto !important;
+  max-height: none !important;
 }
 /* Handy im Querformat (das gespiegelte Bild am Fernseher): Hoehe ist knapp,
    deshalb an der Bildschirmhoehe statt an der Breite ausrichten. */
@@ -4134,18 +4183,17 @@ body.tv-mirror-display .tv-show-tile {
   body.tv-mirror-display .tv-show-answer {
     font-size: clamp(1rem, 4vh, 1.7rem) !important;
   }
-  /* Die vier Antworten fuellen die Flaeche zwischen Frage und Fussleiste aus.
-     Vorher standen sie als schmale Streifen in der Mitte, oben und unten
-     blieb je ein Viertel des Fernsehers leer. */
+  /* Flache Kacheln: Höhe folgt dem Text, kein Strecken auf die Restfläche. */
   body.tv-mirror-display .tv-show-grid {
-    grid-template-rows: 1fr 1fr !important;
-    align-content: stretch !important;
-    gap: 0.5rem 0.6rem !important;
+    grid-template-rows: auto auto !important;
+    align-content: start !important;
+    gap: 0.4rem 0.55rem !important;
   }
   body.tv-mirror-display .tv-show-tile {
-    min-height: 0 !important;
+    min-height: 2.5em !important;
     max-height: none !important;
     height: auto !important;
+    padding: 0.4rem 0.7rem !important;
   }
 }
 
@@ -4303,7 +4351,9 @@ body.tv-mirror-display .tv-show-footer {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: clamp(0.4rem, 1.6vh, 1rem);
+  gap: clamp(0.35rem, 1.2vh, 0.75rem);
+  margin-top: 0.45rem;
+  padding-bottom: env(safe-area-inset-bottom, 0.2rem);
 }
 /* Lobby mittig statt oben angeklebt - die Spielerliste ist ohnehin auf
    42vh gedeckelt, es kann also nichts aus dem Bild wachsen. */

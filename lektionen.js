@@ -36,7 +36,7 @@ const KURSE = [
     { id: "satzglieder_vertiefend_k7", title: "Satzglieder vertiefend", icon: "🧱", grade: 7, subject: "deutsch", beschreibung: "Adverbiale Bestimmungen und besondere Objekte erkennen." },
     { id: "future_k7", title: "will-future & going-to", icon: "🔮", grade: 7, subject: "englisch", beschreibung: "Spontan entschieden oder längst geplant?" },
     { id: "perfect_past_k7", title: "Present Perfect oder Simple Past?", icon: "⏱️", grade: 7, subject: "englisch", beschreibung: "Die beiden Vergangenheitsformen sicher auseinanderhalten." },
-    { id: "teiler_vielfache_k5", title: "Teiler, Vielfache & Primzahlen", icon: "🔢", grade: 5, subject: "mathe", beschreibung: "Teilbarkeitsregeln, ggT, kgV und Primfaktoren." },
+    { id: "teiler_vielfache_k5", title: "Teiler, Vielfache & Primzahlen", icon: "🔢", grade: 5, subject: "mathe", beschreibung: "Teilbarkeitsregeln (2, 3, 4, 5, 6, 8, 9, 10, 25), ggT, kgV und Primfaktoren." },
     { id: "das_dass_k6", title: "das oder dass", icon: "✏️", grade: 6, subject: "deutsch", beschreibung: "Die Ersatzprobe sicher anwenden." },
     { id: "vier_faelle_k5", title: "Die vier Fälle", icon: "4️⃣", grade: 5, subject: "deutsch", beschreibung: "Nominativ, Genitiv, Dativ und Akkusativ bestimmen." },
     { id: "be_havegot_k5", title: "to be & have got", icon: "🇬🇧", grade: 5, subject: "englisch", beschreibung: "Sein und haben – Grundformen, Fragen und Verneinung." },
@@ -4669,11 +4669,11 @@ const LEKTIONEN = [
             intro: "Ein <b>Teiler</b> einer Zahl teilt diese ohne Rest. Ein <b>Vielfaches</b> entsteht, wenn man eine Zahl mit 1, 2, 3, … multipliziert. Mit <b>Teilbarkeitsregeln</b> sieht man ohne Rechnen, ob eine Zahl teilbar ist.",
             beispiele: [
                 "➗ Teiler von 12: <b>1, 2, 3, 4, 6, 12</b> – jede dieser Zahlen teilt 12 ohne Rest.",
-                "✖️ Vielfache von 5: 5, 10, 15, 20, 25 … – immer 5 mal eine natürliche Zahl.",
-                "2️⃣ Durch 2 teilbar: letzte Ziffer ist 0, 2, 4, 6 oder 8. Durch <b>5</b>: Endziffer 0 oder 5. Durch <b>10</b>: Endziffer 0.",
-                "3️⃣ Durch 3 teilbar: die <b>Quersumme</b> ist durch 3 teilbar (234 → 2+3+4 = 9 → ja). Durch 9: Quersumme durch 9."
+                "2️⃣5️⃣🔟 Durch 2: letzte Ziffer gerade. Durch 5: Endziffer 0 oder 5. Durch 10: Endziffer 0. Durch 25: endet auf 00, 25, 50 oder 75.",
+                "3️⃣9️⃣ Quersumme: durch 3, wenn die Quersumme durch 3 teilbar ist (234 → 9). Durch 9, wenn die Quersumme durch 9 teilbar ist.",
+                "4️⃣6️⃣8️⃣ Durch 4: die letzten zwei Ziffern durch 4 (572 → 72). Durch 8: die letzten drei Ziffern durch 8. Durch 6: durch 2 und durch 3."
             ],
-            merksatz: "Teiler teilen ohne Rest, Vielfache entstehen durch Malnehmen. 1 und die Zahl selbst sind immer Teiler. Für 3 und 9 hilft die Quersumme, für 2, 5 und 10 die letzte Ziffer."
+            merksatz: "Ende: 2, 5, 10, 25. Quersumme: 3 und 9. Letzte zwei Ziffern: 4. Letzte drei Ziffern: 8. Durch 6 nur bei 2 und 3."
         },
         uebung: {
             leicht: [
@@ -4708,9 +4708,9 @@ const LEKTIONEN = [
                     answers: ["Endziffer ist 0 oder 5", "Endziffer ist 5 oder 6", "Quersumme ist durch 5 teilbar", "Die Zahl hat fünf Ziffern"], correct: 0,
                     explanation: "Nur Zahlen mit der Endziffer 0 oder 5 sind durch 5 teilbar." },
                 { id: "teilk5l1u_mittel_4", category: "kurs_teil_k5_l1", area: "schule", grade: 5, subject: "mathe", topic: "teiler", difficulty: "mittel", points: 10,
-                    question: "Was ist das kleinste gemeinsame Vielfache von 4 und 6?",
-                    answers: ["12", "24", "10", "18"], correct: 0,
-                    explanation: "Vielfache von 4: 4, 8, 12 … Vielfache von 6: 6, 12 … Das kleinste gemeinsame ist 12." }
+                    question: "Wann ist eine Zahl durch 6 teilbar?",
+                    answers: ["Wenn sie durch 2 und durch 3 teilbar ist", "Wenn nur die Endziffer eine 6 ist", "Wenn die Quersumme durch 6 teilbar ist", "Wenn die Zahl mit einer 3 beginnt"], correct: 0,
+                    explanation: "6 = 2 · 3. Die Zahl muss gerade sein und die Quersumme durch 3 gehen." }
             ],
             schwer: [
                 { id: "teilk5l1u_schwer_1", category: "kurs_teil_k5_l1", area: "schule", grade: 5, subject: "mathe", topic: "teiler", difficulty: "schwer", points: 10,
@@ -4722,9 +4722,9 @@ const LEKTIONEN = [
                     answers: ["Ja, die Quersumme ist 18", "Nein, sie endet auf eine 7", "Nein, sie ist eine ungerade Zahl", "Ja, sie ist auch durch 2 teilbar"], correct: 0,
                     explanation: "8 + 3 + 7 = 18, und 18 ist durch 9 teilbar – also ist 837 durch 9 teilbar." },
                 { id: "teilk5l1u_schwer_3", category: "kurs_teil_k5_l1", area: "schule", grade: 5, subject: "mathe", topic: "teiler", difficulty: "schwer", points: 10,
-                    question: "Welche Zahl hat genau die Teiler 1, 2, 4, 8 und 16?",
-                    answers: ["16", "24", "18", "32"], correct: 0,
-                    explanation: "Nur 16 hat genau diese fünf Teiler – 32 hätte zusätzlich die 32." },
+                    question: "Woran erkennt man Teilbarkeit durch 8?",
+                    answers: ["Die letzten drei Ziffern sind durch 8 teilbar", "Nur die letzte Ziffer muss eine 8 sein", "Die Quersumme muss durch 8 teilbar sein", "Die Zahl muss mit 8 beginnen"], correct: 0,
+                    explanation: "Bei 3512 prüft man 512 ÷ 8 = 64 – dann ist die ganze Zahl durch 8 teilbar." },
                 { id: "teilk5l1u_schwer_4", category: "kurs_teil_k5_l1", area: "schule", grade: 5, subject: "mathe", topic: "teiler", difficulty: "schwer", points: 10,
                     question: "Was ist der größte gemeinsame Teiler von 12 und 18?",
                     answers: ["6", "3", "9", "12"], correct: 0,
@@ -4749,9 +4749,9 @@ const LEKTIONEN = [
                 answers: ["Die Quersumme ist durch 3 teilbar", "Die letzte Ziffer ist durch 3 teilbar", "Die erste Ziffer muss eine 3 sein", "Die Zahl muss ungerade sein"], correct: 0,
                 explanation: "Man addiert alle Ziffern – ist diese Quersumme durch 3 teilbar, ist es die Zahl auch." },
             { id: "teilk5l1_test_5", category: "kurs_teil_k5_l1", area: "schule", grade: 5, subject: "mathe", topic: "teiler", difficulty: "schwer", points: 10,
-                question: "Was ist das kleinste gemeinsame Vielfache von 3 und 5?",
-                answers: ["15", "8", "30", "10"], correct: 0,
-                explanation: "3, 6, 9, 12, 15 … und 5, 10, 15 … – das kleinste gemeinsame Vielfache ist 15." },
+                question: "Welche Zahl ist durch 25 teilbar?",
+                answers: ["350", "305", "251", "130"], correct: 0,
+                explanation: "350 endet auf 50. Durch 25: Ende 00, 25, 50 oder 75." },
             { id: "teilk5l1_test_6", category: "kurs_teil_k5_l1", area: "schule", grade: 5, subject: "mathe", topic: "teiler", difficulty: "schwer", points: 10,
                 question: "Was ist der größte gemeinsame Teiler von 8 und 12?",
                 answers: ["4", "2", "6", "8"], correct: 0,

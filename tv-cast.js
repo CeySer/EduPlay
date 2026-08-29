@@ -1448,6 +1448,25 @@
         }
 
         function showTVHostWortraten(data) {
+            const wrKey = [
+                data.currentRound || 0,
+                data.turnIndex || 0,
+                data.word || "",
+                (data.guessed || []).join(""),
+                data.wrongCount || 0,
+                data.roundOver ? 1 : 0,
+                data.wrTurnDeadline || 0,
+                data.roundSolved ? 1 : 0,
+                Object.keys(data.players || {}).map(function (k) {
+                    const p = data.players[k] || {};
+                    return k + ":" + (p.score || 0);
+                }).join(",")
+            ].join("|");
+            if (window._tvWrHostKey === wrKey && document.getElementById("tv-wr-figure")) {
+                if (!data.roundOver) startTVWrTurnTimer(data);
+                return;
+            }
+            window._tvWrHostKey = wrKey;
             const word = data.word || "";
             const guessed = new Set(data.guessed || []);
             const theme = data.theme || "schneemann";
@@ -1503,6 +1522,7 @@
                             <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
                         <div class="tv-wr-scores">${scores}</div>
+                        ${data.roundOver ? "" : `<div class="tv-show-timer-track" aria-hidden="true"><div id="tv-wr-timer-bar" class="tv-show-timer-bar"></div></div>`}
                     </div>
                     <div class="tv-wr-body">
                         <div class="tv-wr-figure-wrap">
@@ -1526,7 +1546,7 @@
             }
             // Zug-Timer: Deadline in Firestore (überlebt Snapshots)
             if (isTVHost && !data.roundOver && !data.wrTurnDeadline) {
-                tvGameRef.update({ wrTurnDeadline: Date.now() + 25000 }).catch(function () {});
+                tvGameRef.update({ wrTurnDeadline: Date.now() + 25000, wrTurnDurationMs: 25000 }).catch(function () {});
             }
             if (data.roundOver) {
                 scheduleTVWrAutoAdvance(data);
@@ -1555,15 +1575,17 @@
             clearTVWrTimers();
             tvWrTimerKey = key;
             function paint() {
-                // Das Element bei JEDEM Tick neu holen. Der Fernseher zeichnet die
-                // Buehne bei jedem Snapshot neu (und Snapshots kommen dauernd, weil
-                // jedes Handy alle 12 Sekunden ein Lebenszeichen schickt). Eine
-                // einmal gemerkte Referenz zeigt danach auf ein Element, das gar
-                // nicht mehr im Dokument steht - die Sekunden blieben stehen,
-                // waehrend der Zug im Hintergrund trotzdem ablief.
                 const el = document.getElementById("tv-wr-turn-timer");
-                const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+                const bar = document.getElementById("tv-wr-timer-bar");
+                const leftMs = Math.max(0, deadline - Date.now());
+                const left = Math.ceil(leftMs / 1000);
                 if (el) el.textContent = left > 0 ? ("⏱ Zug: " + left + "s") : "⏱ Zeit um…";
+                if (bar) {
+                    const full = (data && data.wrTurnDurationMs) || 25000;
+                    const pct = Math.max(0, Math.min(100, (leftMs / full) * 100));
+                    bar.style.transition = "none";
+                    bar.style.width = pct + "%";
+                }
                 return left;
             }
             paint();

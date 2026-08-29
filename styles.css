@@ -4364,6 +4364,18 @@ body.tv-mirror-display .tv-show-footer {
   margin-top: 0.4rem;
   padding: 0.15rem 0.75rem 0.35rem;
 }
+body.tv-mirror-display .tv-wr-stage .tv-show-footer {
+  margin-top: 0.3rem;
+  padding-bottom: 0.45rem;
+}
+body.tv-mirror-display .tv-wr-scores {
+  padding-right: 3.2rem;
+  margin-bottom: 0.35rem;
+}
+body.tv-mirror-display .tv-wr-stage .tv-show-timer-track {
+  margin: 0.15rem auto 0.25rem;
+  max-width: 70%;
+}
 /* Lobby mittig statt oben angeklebt - die Spielerliste ist ohnehin auf
    42vh gedeckelt, es kann also nichts aus dem Bild wachsen. */
 body.tv-mirror-display .tv-lobby-stage {

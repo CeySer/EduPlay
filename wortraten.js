@@ -29,13 +29,18 @@ let wortratenSetupTheme = "schneemann";
 // ============================================================
 //  Reine Logik-Helfer (ohne DOM-Zugriff – gut testbar)
 // ============================================================
-// Ungeeignete / komische / zu abstrakte Wörter für Kinder-Modus
+// Rätsel/Kinder: ungeeignet, Müll, zu kurze/erratbare Adjektive
 const WR_KIDS_BLOCK = new Set([
     "ANWALT", "BILANZ", "BUDGET", "BORTE", "BRAUE", "BURSCHE", "BRANCHE", "BEWEIS", "BEZIRK",
     "HAIN", "ILTIS", "IMPULS", "INDEX", "INGENIEUR", "INITIATIVE", "INTERVALL", "KOALITION",
-    "KADER", "KAUTION", "KNEIPE", "KOLONNE", "BIER", "BULLE", "BOT", "ART", "AUS", "ALT",
+    "KADER", "KAUTION", "KOLONNE", "BOT", "ART", "AUS", "ALT",
     "GUT", "HART", "HELL", "HOCH", "JUNG", "KLAR", "KLUG", "KNAPP", "GROB", "BREIT", "BLASS",
     "BLIND", "BITTER", "BILLIG", "BUNT", "GUDEL", "GUGEL", "GUINEE", "GROT"
+]);
+// Duell (auch Erwachsene): Alkohol / Gewalt / derbe Treffer
+const WR_DUEL_HARD = new Set([
+    "BIER", "KNEIPE", "WAFFE", "BULLE", "GEWEHR", "PISTOLE", "BOMBE", "KRIEG", "MORTEL",
+    "SCHNAPS", "WEIN", "VODKA", "WHISKY"
 ]);
 
 function wrWordPool(wordmode, difficulty, theme) {
@@ -44,7 +49,7 @@ function wrWordPool(wordmode, difficulty, theme) {
     const themes = typeof GERMAN_WORDS_KIDS_THEMES !== "undefined" ? GERMAN_WORDS_KIDS_THEMES : {};
     let src;
     if (wordmode === "adult") {
-        src = adult.filter(w => !WR_KIDS_BLOCK.has(String(w).toUpperCase()) && w !== "GUDEL" && w !== "GUGEL" && w !== "GUINEE" && w !== "GROT");
+        src = adult.filter(w => !WR_DUEL_HARD.has(String(w).toUpperCase()) && w !== "GUDEL" && w !== "GUGEL" && w !== "GUINEE" && w !== "GROT");
     } else if (theme && theme !== "gemischt" && themes[theme] && themes[theme].length) {
         src = themes[theme];
         if (difficulty === "experte") {
@@ -59,7 +64,8 @@ function wrWordPool(wordmode, difficulty, theme) {
     return src.filter(w => {
         const u = String(w).toUpperCase();
         if (u.includes("ß") || u.includes("ẞ")) return false;
-        if (wordmode !== "adult" && WR_KIDS_BLOCK.has(u)) return false;
+        if (wordmode !== "adult" && (WR_KIDS_BLOCK.has(u) || WR_DUEL_HARD.has(u))) return false;
+        if (wordmode === "adult" && WR_DUEL_HARD.has(u)) return false;
         return true;
     });
 }

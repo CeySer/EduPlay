@@ -44,11 +44,53 @@
             showVocabQuestion();
         }
 
-        function selectCategory(c) {
-            activeCategory = c;
+        const VOCAB_TOPIC_BUCKETS = {
+            familie: { label: "Familie", words: ["mama","papa","mutter","vater","bruder","schwester","oma","opa","kind","baby","familie","onkel","tante"] },
+            schule: { label: "Schule", words: ["schule","lehrer","lehrerin","heft","bleistift","radierer","lineal","pause","klasse","tafel","hausaufgabe","stunde"] },
+            tiere: { label: "Tiere", words: ["hund","katze","fisch","vogel","pferd","kuh","schwein","maus","hase","bär","löwe","affe","ente"] },
+            alltag: { label: "Haus & Alltag", words: ["haus","tisch","stuhl","bett","brot","wasser","apfel","milch","tür","fenster","zimmer"] }
+        };
+        let activeVocabTopic = "";
+
+        function vocabWordsFor(cat, topic) {
+            const pack = VOCABULARY_DATABASE[activeLang] && VOCABULARY_DATABASE[activeLang][cat];
+            const all = (pack && pack.words) ? pack.words.slice() : [];
+            if (!topic || !VOCAB_TOPIC_BUCKETS[topic]) return all;
+            const set = new Set(VOCAB_TOPIC_BUCKETS[topic].words);
+            const hit = all.filter(w => set.has(String(w.de || "").toLowerCase()));
+            return hit.length >= 6 ? hit : all;
+        }
+
+        function fillVocabTopicFilter(cat) {
+            const sel = document.getElementById("vocab-topic-filter");
+            if (!sel) return;
+            let html = '<option value="">Alle Themen der Klasse</option>';
+            Object.keys(VOCAB_TOPIC_BUCKETS).forEach(function (k) {
+                const n = vocabWordsFor(cat, k).length;
+                const allN = vocabWordsFor(cat, "").length;
+                if (n >= 6 && n < allN) html += `<option value="${k}">└ ${VOCAB_TOPIC_BUCKETS[k].label} (${n})</option>`;
+            });
+            sel.innerHTML = html;
+            sel.value = "";
+            activeVocabTopic = "";
+            sel.classList.toggle("hidden", sel.options.length < 2);
+        }
+
+        function selectVocabTopic(t) {
+            activeVocabTopic = t || "";
             vIndex = 0;
             vocabAnswerStreak = 0;
-            currentVocabList = shuffleArray(VOCABULARY_DATABASE[activeLang][activeCategory].words);
+            currentVocabList = shuffleArray(vocabWordsFor(activeCategory, activeVocabTopic));
+            showVocabQuestion();
+        }
+
+        function selectCategory(c) {
+            activeCategory = c;
+            activeVocabTopic = "";
+            vIndex = 0;
+            vocabAnswerStreak = 0;
+            fillVocabTopicFilter(c);
+            currentVocabList = shuffleArray(vocabWordsFor(activeCategory, ""));
             showVocabQuestion();
         }
 
@@ -90,7 +132,8 @@
             activeCategory = preselect;
             vIndex = 0;
             vocabAnswerStreak = 0;
-            currentVocabList = shuffleArray(VOCABULARY_DATABASE[activeLang][activeCategory].words);
+            fillVocabTopicFilter(preselect);
+            currentVocabList = shuffleArray(vocabWordsFor(activeCategory, ""));
             showVocabQuestion();
         }
 

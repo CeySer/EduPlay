@@ -326,6 +326,9 @@
             if (!word || word.length < 2) return { status: "invalid" };
             const upper = String(word).toUpperCase().normalize("NFC");
             const mode = wordMode || "kids";
+            const hard = (typeof WR_DUEL_HARD !== "undefined" && WR_DUEL_HARD instanceof Set)
+                ? WR_DUEL_HARD : new Set(["BIER", "KNEIPE", "WAFFE"]);
+            if (hard.has(upper)) return { status: "invalid" };
             if (mode !== "adult" && scrabbleKidsBlock().has(upper)) return { status: "invalid" };
             const set = buildScrabbleWordSet(mode);
             if (set.has(upper)) return { status: "valid" };

@@ -799,6 +799,9 @@
                             <div class="glass-card p-5 text-center space-y-4 shadow-lg">
                                 <div class="text-xs text-gray-400 font-bold">Frage ${data.currentIndex + 1}/${data.questions.length}</div>
                                 ${ruleHtml}${awayHtml}
+                                ${(q.grafik && String(q.grafik).indexOf("<svg") === 0)
+                                    ? `<div class="mx-auto max-w-xs">${q.grafik}</div>`
+                                    : ""}
                                 <h2 class="text-lg font-bold text-pink-400 leading-snug">${q.question}</h2>
                                 <div class="flex flex-col gap-2.5">${optsHtml}</div>
                             </div>`;

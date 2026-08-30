@@ -1365,7 +1365,10 @@
 
         .flip-card-back {
             transform: rotateY(180deg);
+            pointer-events: none;
         }
+        .flip-card.flipped .flip-card-front { pointer-events: none; }
+        .flip-card.flipped .flip-card-back { pointer-events: auto; }
 
         /* ============================================================
            VOKABEL-KARTEN

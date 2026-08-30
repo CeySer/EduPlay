@@ -182,11 +182,15 @@
             const formulas = block.formulas.slice();
             let questions;
             if (quizMode === 'flashcards') {
-                questions = formulas.map(f => ({
-                    category: "formel_" + key, question: f.name,
-                    answers: [f.formula], correct: 0,
-                    explanation: f.explanation || "", noShuffle: true
-                }));
+                questions = formulas.map(function (f) {
+                    return {
+                        category: "formel_" + key,
+                        question: f.name,
+                        answers: [f.formula],
+                        correct: 0,
+                        explanation: f.explanation || f.formula
+                    };
+                });
             } else {
                 const pool = [...new Set(formulas.map(f => f.formula))];
                 questions = formulas.map(f => {
@@ -288,23 +292,22 @@
             if (quizMode === 'flashcards') {
                 const speakBtn0 = document.getElementById("question-speak-btn");
                 if (speakBtn0) speakBtn0.classList.add("hidden");
-                document.getElementById("question-text").innerText = q.question || "Karteikarte";
-                const loesung = (q.answers && q.answers[q.correct] != null) ? q.answers[q.correct] : "";
-                const expl = q.explanation ? `<p class="text-sm text-gray-300 mt-2">${q.explanation}</p>` : "";
+                document.getElementById("question-text").innerText = "Klicke zum Umdrehen";
+                const front = String(q.question || "").replace(/</g, "&lt;");
+                const backAns = String((q.answers && q.answers[q.correct]) || "").replace(/</g, "&lt;");
+                const backExp = String(q.explanation || "").replace(/</g, "&lt;");
                 optsContainer.innerHTML =
-                    `<button type="button" id="solo-flash" class="w-full min-h-[12rem] rounded-2xl border border-white/15 bg-white/5 p-5 text-center" onclick="toggleSoloFlashcard()">
-                        <div id="solo-flash-front">
-                            <p class="text-xs font-bold text-pink-400 mb-3">Tippe einmal zum Umdrehen</p>
-                            <p class="font-bold text-white text-lg leading-snug">${q.question || ""}</p>
-                        </div>
-                        <div id="solo-flash-back" class="hidden">
-                            <p class="text-xs font-bold text-yellow-400 mb-2">Lösung</p>
-                            <p class="font-black text-white text-xl">${loesung}</p>
-                            ${expl}
-                        </div>
-                    </button>
-                    <button type="button" onclick="triggerNextQuestion()" class="mt-4 btn-primary w-full text-center">Nächste Karte ➔</button>`;
-                window._soloFlashOpen = false;
+                    `<div class="flip-card w-full h-64 cursor-pointer" id="solo-flip-card">
+                                <div class="flip-card-inner shadow-lg">
+                                    <div class="flip-card-front glass-card-glow flex flex-col items-center justify-center font-bold text-xl text-white p-6 text-center" style="background:rgba(99,102,241,0.15);border-color:rgba(99,102,241,0.2);">${front}</div>
+                                    <div class="flip-card-back glass-card-glow flex flex-col items-center justify-center text-white p-6 text-center" style="background:rgba(236,72,153,0.15);border-color:rgba(236,72,153,0.2);">
+                                        <span class="text-yellow-400 font-black mb-3">Lösung: ${backAns}</span>
+                                        <span class="text-sm font-medium bg-black/20 p-3 rounded-lg leading-snug">${backExp}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" onclick="triggerNextQuestion()" class="mt-4 btn-primary w-full text-center">Nächste Karte ➔</button>`;
+                bindSoloFlipCard(document.getElementById("solo-flip-card"));
             } else {
                 document.getElementById("question-text").innerText = q.question;
                 // Lektions-SVG (q.grafik) – HTML, kein <img>
@@ -446,13 +449,21 @@
             document.getElementById("next-question-btn").classList.remove("hidden");
         }
 
-        function toggleSoloFlashcard() {
-            const front = document.getElementById("solo-flash-front");
-            const back = document.getElementById("solo-flash-back");
-            if (!front || !back) return;
-            window._soloFlashOpen = !window._soloFlashOpen;
-            front.classList.toggle("hidden", !!window._soloFlashOpen);
-            back.classList.toggle("hidden", !window._soloFlashOpen);
+
+        function bindSoloFlipCard(el) {
+            if (!el) return;
+            let lock = false;
+            function flipOnce(ev) {
+                if (ev) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                }
+                if (lock) return;
+                lock = true;
+                el.classList.toggle("flipped");
+                setTimeout(function () { lock = false; }, 650);
+            }
+            el.addEventListener("pointerup", flipOnce);
         }
 
         function triggerNextQuestion() {

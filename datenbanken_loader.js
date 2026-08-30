@@ -42,6 +42,7 @@
         'fragen/manifest.js',
         'fragen/questions_school.js',   // CURRICULUM – Menübaum
         'fragen/questions_fun.js',      // FUN_CATEGORIES
+        'fragen/fun/spass_flaggen.js',
         'fragen/words_kids.js',         // Wort-Rätsel
         'fragen/words_kids_themes.js',
         'fragen/words_adult.js',
@@ -50,7 +51,7 @@
     ];
 
     // Diese Namen liefern beim Start bereits Fragen mit.
-    const START_QUELLEN = ['SCHOOL_QUESTIONS'];
+    const START_QUELLEN = ['SCHOOL_QUESTIONS', 'SPASS_FLAGGEN_QUESTIONS'];
 
     // ------------------------------------------------------------
     //  Zustand

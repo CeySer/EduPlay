@@ -27,7 +27,7 @@
 (function () {
     'use strict';
 
-    const V = '9.1';
+    const V = '9.2';
     console.log('🔥 datenbanken_loader.js v' + V + ' (Laden bei Bedarf)');
 
     // ------------------------------------------------------------
@@ -120,7 +120,7 @@
         for (let i = 0; i < arr.length; i++) {
             const q = arr[i];
             if (!q) continue;
-            const schluessel = (q.question || '') + '|' + (q.category || '');
+            const schluessel = (q.id ? String(q.id) : '') || ((q.question || '') + '|' + (q.category || '') + '|' + (q.imageLocal || q.image || ''));
             if (bekannteFragen.has(schluessel)) continue;
             bekannteFragen.add(schluessel);
             zielArr.push(q);

@@ -288,18 +288,23 @@
             if (quizMode === 'flashcards') {
                 const speakBtn0 = document.getElementById("question-speak-btn");
                 if (speakBtn0) speakBtn0.classList.add("hidden");
-                document.getElementById("question-text").innerText = "Klicke zum Umdrehen";
+                document.getElementById("question-text").innerText = q.question || "Karteikarte";
+                const loesung = (q.answers && q.answers[q.correct] != null) ? q.answers[q.correct] : "";
+                const expl = q.explanation ? `<p class="text-sm text-gray-300 mt-2">${q.explanation}</p>` : "";
                 optsContainer.innerHTML =
-                    `<div class="flip-card w-full h-64 cursor-pointer" onclick="this.classList.toggle('flipped')">
-                                <div class="flip-card-inner shadow-lg">
-                                    <div class="flip-card-front glass-card-glow flex flex-col items-center justify-center font-bold text-xl text-white p-6 text-center" style="background:rgba(99,102,241,0.15);border-color:rgba(99,102,241,0.2);">${q.question}</div>
-                                    <div class="flip-card-back glass-card-glow flex flex-col items-center justify-center text-white p-6 text-center" style="background:rgba(236,72,153,0.15);border-color:rgba(236,72,153,0.2);">
-                                        <span class="text-yellow-400 font-black mb-3">Lösung: ${q.answers[q.correct]}</span>
-                                        <span class="text-sm font-medium bg-black/20 p-3 rounded-lg leading-snug">${q.explanation}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <button onclick="triggerNextQuestion()" class="mt-4 btn-primary w-full text-center">Nächste Karte ➔</button>`;
+                    `<button type="button" id="solo-flash" class="w-full min-h-[12rem] rounded-2xl border border-white/15 bg-white/5 p-5 text-center" onclick="toggleSoloFlashcard()">
+                        <div id="solo-flash-front">
+                            <p class="text-xs font-bold text-pink-400 mb-3">Tippe einmal zum Umdrehen</p>
+                            <p class="font-bold text-white text-lg leading-snug">${q.question || ""}</p>
+                        </div>
+                        <div id="solo-flash-back" class="hidden">
+                            <p class="text-xs font-bold text-yellow-400 mb-2">Lösung</p>
+                            <p class="font-black text-white text-xl">${loesung}</p>
+                            ${expl}
+                        </div>
+                    </button>
+                    <button type="button" onclick="triggerNextQuestion()" class="mt-4 btn-primary w-full text-center">Nächste Karte ➔</button>`;
+                window._soloFlashOpen = false;
             } else {
                 document.getElementById("question-text").innerText = q.question;
                 // Lektions-SVG (q.grafik) – HTML, kein <img>
@@ -324,18 +329,28 @@
                 if (imgWrap && imgEl) {
                     if (q.image || q.imageLocal) {
                         imgEl.alt = q.imageAlt || "Rätselbild";
+                        const local = q.imageLocal || "";
+                        const remote = q.image || "";
                         imgEl.onerror = function () {
-                            if (q.imageLocal && imgEl.src.indexOf("flagcdn") >= 0) {
-                                imgEl.onerror = function () { imgWrap.classList.add("hidden"); };
-                                imgEl.src = q.imageLocal;
-                            } else if (q.image && imgEl.src.indexOf("flagcdn") < 0) {
-                                imgEl.onerror = function () { imgWrap.classList.add("hidden"); };
-                                imgEl.src = q.image;
-                            } else {
-                                imgWrap.classList.add("hidden");
+                            const cur = imgEl.getAttribute("src") || "";
+                            const tried = imgEl.dataset.flagTry || "";
+                            const codeMatch = cur.match(/([a-z]{2})\.png/i);
+                            const code = codeMatch ? codeMatch[1].toLowerCase() : "";
+                            const alts = [];
+                            if (local) alts.push(local);
+                            if (code) {
+                                alts.push("img/flags/" + code + ".png");
+                                alts.push("IMG/flags/" + code + ".png");
+                                alts.push("IMG/Flags/" + code + ".png");
+                                alts.push("img/Flags/" + code + ".png");
                             }
+                            if (remote) alts.push(remote);
+                            const next = alts.find(function (u) { return u && tried.indexOf("|" + u + "|") < 0 && u !== cur; });
+                            imgEl.dataset.flagTry = tried + "|" + cur + "|";
+                            if (next) { imgEl.src = next; return; }
+                            imgWrap.classList.add("hidden");
                         };
-                        imgEl.src = q.image || q.imageLocal;
+                        imgEl.src = local || remote;
                         imgWrap.classList.remove("hidden");
                     } else {
                         imgEl.removeAttribute("src");
@@ -429,6 +444,15 @@
                 }
             }
             document.getElementById("next-question-btn").classList.remove("hidden");
+        }
+
+        function toggleSoloFlashcard() {
+            const front = document.getElementById("solo-flash-front");
+            const back = document.getElementById("solo-flash-back");
+            if (!front || !back) return;
+            window._soloFlashOpen = !window._soloFlashOpen;
+            front.classList.toggle("hidden", !!window._soloFlashOpen);
+            back.classList.toggle("hidden", !window._soloFlashOpen);
         }
 
         function triggerNextQuestion() {

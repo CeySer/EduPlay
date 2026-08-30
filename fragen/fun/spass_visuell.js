@@ -71,8 +71,100 @@ const SPASS_VISUELL_QUESTIONS = [
     difficulty: "leicht",
     points: 10,
     explanation: "Links rot, Mitte grün, rechts blau."
+  },
+  {
+    id: "vis_006",
+    category: "spass_visuell",
+    area: "spass",
+    subject: "visuell",
+    question: "Wie viele Quadrate siehst du?",
+    grafik: "<svg viewBox='0 0 240 120' xmlns='http://www.w3.org/2000/svg'><rect width='240' height='120' rx='12' fill='#0f172a'/><rect x='20' y='30' width='50' height='50' fill='#38bdf8'/><rect x='90' y='30' width='50' height='50' fill='#38bdf8'/><rect x='160' y='30' width='50' height='50' fill='#38bdf8'/></svg>",
+    answers: ["Zwei", "Drei", "Vier", "Fünf"],
+    correct: 1,
+    difficulty: "leicht",
+    points: 10,
+    explanation: "Drei gleich große Quadrate."
+  },
+  {
+    id: "vis_007",
+    category: "spass_visuell",
+    area: "spass",
+    subject: "visuell",
+    question: "Welche Figur ist die größte?",
+    grafik: "<svg viewBox='0 0 240 120' xmlns='http://www.w3.org/2000/svg'><rect width='240' height='120' rx='12' fill='#111827'/><circle cx='50' cy='60' r='16' fill='#f472b6'/><circle cx='120' cy='60' r='28' fill='#34d399'/><circle cx='190' cy='60' r='20' fill='#60a5fa'/></svg>",
+    answers: ["Der linke Kreis", "Der mittlere Kreis", "Der rechte Kreis", "Alle gleich"],
+    correct: 1,
+    difficulty: "leicht",
+    points: 10,
+    explanation: "Der grüne Kreis in der Mitte ist am größten."
+  },
+  {
+    id: "vis_008",
+    category: "spass_visuell",
+    area: "spass",
+    subject: "visuell",
+    question: "Wohin zeigt die Spitze?",
+    grafik: "<svg viewBox='0 0 200 120' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='120' rx='12' fill='#1e1b4b'/><polygon points='100,20 160,90 40,90' fill='#fbbf24'/></svg>",
+    answers: ["Nach unten", "Nach links", "Nach rechts", "Nach oben"],
+    correct: 3,
+    difficulty: "leicht",
+    points: 10,
+    explanation: "Das Dreieck zeigt nach oben."
+  },
+  {
+    id: "vis_009",
+    category: "spass_visuell",
+    area: "spass",
+    subject: "visuell",
+    question: "Wie viele Sterne sind zu sehen?",
+    grafik: "<svg viewBox='0 0 240 100' xmlns='http://www.w3.org/2000/svg'><rect width='240' height='100' rx='12' fill='#0b1220'/><text x='40' y='62' font-size='36'>⭐</text><text x='100' y='62' font-size='36'>⭐</text><text x='160' y='62' font-size='36'>⭐</text></svg>",
+    answers: ["Zwei", "Drei", "Vier", "Fünf"],
+    correct: 1,
+    difficulty: "leicht",
+    points: 10,
+    explanation: "Drei Sterne."
+  },
+  {
+    id: "vis_010",
+    category: "spass_visuell",
+    area: "spass",
+    subject: "visuell",
+    question: "Welche Reihe hat mehr Punkte?",
+    grafik: "<svg viewBox='0 0 240 120' xmlns='http://www.w3.org/2000/svg'><rect width='240' height='120' rx='12' fill='#0f172a'/><circle cx='40' cy='35' r='8' fill='#e5e7eb'/><circle cx='70' cy='35' r='8' fill='#e5e7eb'/><circle cx='100' cy='35' r='8' fill='#e5e7eb'/><circle cx='40' cy='80' r='8' fill='#e5e7eb'/><circle cx='70' cy='80' r='8' fill='#e5e7eb'/><circle cx='100' cy='80' r='8' fill='#e5e7eb'/><circle cx='130' cy='80' r='8' fill='#e5e7eb'/><circle cx='160' cy='80' r='8' fill='#e5e7eb'/></svg>",
+    answers: ["Die obere Reihe", "Beide gleich", "Man kann es nicht sehen", "Die untere Reihe"],
+    correct: 3,
+    difficulty: "leicht",
+    points: 10,
+    explanation: "Oben 3, unten 5."
+  },
+  {
+    id: "vis_011",
+    category: "spass_visuell",
+    area: "spass",
+    subject: "visuell",
+    question: "Welches Viertel ist ausgefüllt?",
+    grafik: "<svg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'><rect width='160' height='160' rx='12' fill='#111827'/><rect x='20' y='20' width='55' height='55' fill='#22c55e'/><rect x='85' y='20' width='55' height='55' fill='#1f2937' stroke='#334155'/><rect x='20' y='85' width='55' height='55' fill='#1f2937' stroke='#334155'/><rect x='85' y='85' width='55' height='55' fill='#1f2937' stroke='#334155'/></svg>",
+    answers: ["Unten rechts", "Unten links", "Oben rechts", "Oben links"],
+    correct: 3,
+    difficulty: "leicht",
+    points: 10,
+    explanation: "Nur oben links ist grün."
+  },
+  {
+    id: "vis_012",
+    category: "spass_visuell",
+    area: "spass",
+    subject: "visuell",
+    question: "Wie viele Seiten hat die Form in der Mitte?",
+    grafik: "<svg viewBox='0 0 200 140' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='140' rx='12' fill='#1e293b'/><polygon points='100,20 170,60 145,120 55,120 30,60' fill='#a78bfa'/></svg>",
+    answers: ["Vier", "Sechs", "Drei", "Fünf"],
+    correct: 3,
+    difficulty: "mittel",
+    points: 10,
+    explanation: "Ein Fünfeck."
   }
 ];
+
 
 if (typeof window !== "undefined") window.SPASS_VISUELL_QUESTIONS = SPASS_VISUELL_QUESTIONS;
 if (typeof registerQuestions === "function") registerQuestions("SPASS_VISUELL_QUESTIONS", SPASS_VISUELL_QUESTIONS);

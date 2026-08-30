@@ -849,7 +849,18 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
   "difficulty": "mittel",
   "points": 10,
   "explanation": "Die Fantastic Four."
-}
+},
+  {"id":"held_051","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Spider-Man heißt mit bürgerlichem Namen oft …","answers":["Bruce Wayne","Clark Kent","Tony Stark","Peter Parker"],"correct":3,"difficulty":"leicht","points":10,"explanation":"New York, Spinnensinn."},
+  {"id":"held_052","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Batman kämpft vor allem in …","answers":["Metropolis","Asgard","Wakanda","Gotham"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Dunkle Stadt."},
+  {"id":"held_053","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Superman kommt vom Planeten …","answers":["Mars","Erde zuerst","Tatooine","Krypton"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Kal-El."},
+  {"id":"held_054","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Wonder Woman kommt aus …","answers":["Asgard","Gotham","Krypton","Themyscira"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Amazoneninsel."},
+  {"id":"held_055","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Iron Man steckt in einer …","answers":["Spinnennetz-Kammer","Fledermaushöhle nur","unsichtbaren Kutte","Hightech-Rüstung"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Tony Stark."},
+  {"id":"held_056","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Die Avengers sind …","answers":["nur eine Schulklasse","nur ein Fußballteam","nur Detektive ohne Kräfte","ein Helden-Team"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Marvel."},
+  {"id":"held_057","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Black Panther ist König von …","answers":["Gotham","Asgard","Krypton","Wakanda"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Vibranium."},
+  {"id":"held_058","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Hulk wird stark, wenn …","answers":["er schläft","er rechnet","er singt","er wütend wird"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Bruce Banner."},
+  {"id":"held_059","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Captain Americas Schild ist oft …","answers":["eckig wie ein Buch","aus Holz","unsichtbar","rund und sehr fest"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Vibranium-Schild."},
+  {"id":"held_060","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Ein Alter Ego ist …","answers":["nur der Schurke","nur die Stadt","nur das Kostüm ohne Person","die zweite Identität"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Clark Kent / Superman."},
+
 ];
 
 if (typeof window !== "undefined") window.SPASS_SUPERHELDEN_QUESTIONS = SPASS_SUPERHELDEN_QUESTIONS;

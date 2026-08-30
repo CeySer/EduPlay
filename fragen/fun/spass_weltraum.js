@@ -849,7 +849,20 @@ const SPASS_WELTRAUM_QUESTIONS = [
   "difficulty": "mittel",
   "points": 10,
   "explanation": "Sputnik 1 startete 1957."
-}
+},
+  {"id":"wel_051","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Wie viele Planeten hat unser Sonnensystem?","answers":["Sieben","Acht","Neun","Zehn"],"correct":1,"difficulty":"leicht","points":10,"explanation":"Seit Pluto Zwergplanet ist: acht."},
+  {"id":"wel_052","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Welcher Planet ist für die Ringe berühmt?","answers":["Mars","Venus","Merkur","Saturn"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Saturn hat das auffälligste Ringsystem."},
+  {"id":"wel_053","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Was ist die Sonne?","answers":["Ein Planet","Ein Mond","Ein Komet","Ein Stern"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Ein leuchtender Stern."},
+  {"id":"wel_054","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Wie heißt der Erdmond offiziell meist?","answers":["Titan","Europa","Phobos","Mond"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Unser Trabant heißt einfach Mond."},
+  {"id":"wel_055","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Ein Lichtjahr misst …","answers":["Zeit auf der Erde","Temperatur von Sternen","Gewicht von Planeten","eine Strecke im All"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Weg, den Licht in einem Jahr schafft."},
+  {"id":"wel_056","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Warum schwebt man auf der ISS?","answers":["Es gibt keine Masse","Die ISS ist aus Holz","Es ist immer Nacht","freier Fall um die Erde"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Dauerndes Fallen = Schwerelosigkeit."},
+  {"id":"wel_057","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Welcher Planet ist der größte?","answers":["Erde","Neptun","Saturn","Jupiter"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Jupiter ist ein Gasriese."},
+  {"id":"wel_058","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Ein Komet besteht oft aus …","answers":["nur Eisen","nur Gas ohne Eis","nur Stein ohne Eis","Eis, Staub und Gestein"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Schmutziger Schneeball mit Schweif."},
+  {"id":"wel_059","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Der erste Mensch im All war …","answers":["Neil Armstrong","Buzz Aldrin","John Glenn","Juri Gagarin"],"correct":3,"difficulty":"mittel","points":10,"explanation":"1961, sowjetischer Kosmonaut."},
+  {"id":"wel_060","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Schwarze Löcher …","answers":["sind nur Löcher in der Erde","leuchten bunt wie Neon","sind kleine Monde","haben sehr starke Schwerkraft"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Selbst Licht kommt nicht heraus."},
+  {"id":"wel_061","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Mars erscheint oft …","answers":["blau","grün","gelb wie die Sonne","rötlich"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Eisenoxid im Boden."},
+  {"id":"wel_062","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Eine Sonnenfinsternis entsteht, wenn …","answers":["Mars die Sonne deckt","die ISS die Sonne deckt","ein Komet die Sonne deckt","der Mond vor der Sonne steht"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Mondschatten auf der Erde."},
+
 ];
 
 if (typeof window !== "undefined") window.SPASS_WELTRAUM_QUESTIONS = SPASS_WELTRAUM_QUESTIONS;

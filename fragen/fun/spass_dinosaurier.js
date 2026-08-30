@@ -849,7 +849,18 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Stego- bezieht sich auf die Platten."
-  }
+  },
+  {"id":"dino_051","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"T. rex war vor allem …","answers":["ein Fisch","ein Insekt","ein Vogel von heute","ein Fleischfresser"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Große Zähne, räuberisch."},
+  {"id":"dino_052","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Was bedeutet Dinosaurier ungefähr?","answers":["kleiner Eidechsenfreund","schneller Hase","weicher Schwamm","schreckliche Echse"],"correct":3,"difficulty":"mittel","points":10,"explanation":"aus dem Griechischen."},
+  {"id":"dino_053","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Triceratops hat am Kopf …","answers":["keine Hörner","Flügel","Kiemen","drei Hörner und einen Kragen"],"correct":3,"difficulty":"leicht","points":10,"explanation":"tri = drei."},
+  {"id":"dino_054","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Brachiosaurus fraß vor allem …","answers":["Fleisch","Fische","Insekten","Pflanzen"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Langhals-Pflanzenfresser."},
+  {"id":"dino_055","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Dinosaurier lebten vor allem im …","answers":["Mittelalter","20. Jahrhundert","Antike Rom","Mesozoikum"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Erdmittelalter."},
+  {"id":"dino_056","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Viele Forscher denken: Vögel stammen ab von …","answers":["Fischen","Haien","Insekten","Theropoden-Dinosauriern"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Federn und Knochenmerkmale."},
+  {"id":"dino_057","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Ein Fossil ist oft …","answers":["ein lebendes Tier","ein Plastikspielzeug","ein Meteor","versteinertes Lebewesen"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Knochen, Spuren, Abdrücke."},
+  {"id":"dino_058","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Stegosaurus hat auf dem Rücken …","answers":["Flügel","Kiemen","Hörner nur am Schwanz","Knochenplatten"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Platten und Schwanzstacheln."},
+  {"id":"dino_059","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Das große Sterben vor 66 Mio. Jahren hängt zusammen mit …","answers":["nur einem Gewitter","nur einem Vulkan in Europa","nur Menschen","einem Einschlag plus Klima"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Asteroid und Folgen."},
+  {"id":"dino_060","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Velociraptor war etwa so groß wie …","answers":["ein Elefant","ein Wal","ein Hochhaus","ein großer Hund"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Filme machen ihn oft zu groß."},
+
 ];
 
 if (typeof window !== "undefined") window.SPASS_DINOSAURIER_QUESTIONS = SPASS_DINOSAURIER_QUESTIONS;

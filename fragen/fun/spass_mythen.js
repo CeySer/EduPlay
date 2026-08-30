@@ -849,7 +849,18 @@ const SPASS_MYTHEN_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Ares steht für den Krieg."
-  }
+  },
+  {"id":"myth_051","category":"spass_mythen","area":"spass","subject":"mythen","question":"Zeus ist in der griechischen Sage …","answers":["Meergott","Kriegsgott nur","Sonnengott nur","Göttervater"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Olymp, Blitz."},
+  {"id":"myth_052","category":"spass_mythen","area":"spass","subject":"mythen","question":"Thor gehört zur Sage der …","answers":["Ägypter","Römer nur","Griechen nur","Nordländer / Germanen"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Hammer Mjölnir."},
+  {"id":"myth_053","category":"spass_mythen","area":"spass","subject":"mythen","question":"Anubis in Ägypten hat oft den Kopf eines …","answers":["Falken","Katze","Krokodils","Schakals"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Totengott."},
+  {"id":"myth_054","category":"spass_mythen","area":"spass","subject":"mythen","question":"Herkules / Herakles ist bekannt für …","answers":["zehn Minuten Schlaf","nur Singen","nur Kochen","große Aufgaben / Arbeiten"],"correct":3,"difficulty":"leicht","points":10,"explanation":"zwölf Arbeiten."},
+  {"id":"myth_055","category":"spass_mythen","area":"spass","subject":"mythen","question":"Odysseus braucht lange, um …","answers":["einen Berg zu malen","Schuhe zu kaufen","einen Brief zu schreiben","nach Hause nach Ithaka zu kommen"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Irrfahrten nach Troja."},
+  {"id":"myth_056","category":"spass_mythen","area":"spass","subject":"mythen","question":"Ein Einhorn hat typischerweise …","answers":["zwei Hörner","Flügel Pflicht","Kiemen","ein Horn auf der Stirn"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Sagenwesen."},
+  {"id":"myth_057","category":"spass_mythen","area":"spass","subject":"mythen","question":"Pegasus ist …","answers":["ein Drache ohne Flügel","ein Fisch","ein Riese","ein geflügeltes Pferd"],"correct":3,"difficulty":"leicht","points":10,"explanation":"griechische Sage."},
+  {"id":"myth_058","category":"spass_mythen","area":"spass","subject":"mythen","question":"Athena steht oft für …","answers":["nur das Meer","nur den Krieg ohne Kopf","nur die Nacht","Weisheit und Strategie"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Eule als Zeichen."},
+  {"id":"myth_059","category":"spass_mythen","area":"spass","subject":"mythen","question":"Ein Phönix …","answers":["schwimmt nur","isst nur Steine","schläft ewig","steigt aus der Asche neu auf"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Wiedergeburt."},
+  {"id":"myth_060","category":"spass_mythen","area":"spass","subject":"mythen","question":"Poseidon herrscht über …","answers":["den Himmel","die Unterwelt nur","die Wälder","das Meer"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Dreizack."},
+
 ];
 
 if (typeof window !== "undefined") window.SPASS_MYTHEN_QUESTIONS = SPASS_MYTHEN_QUESTIONS;

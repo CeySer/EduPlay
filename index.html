@@ -2179,8 +2179,7 @@ VIEW: QUIZ SETUP
             </div>
             <div id="question-grafik" class="hidden mx-auto max-w-xs"></div>
             <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
-            <button id="question-speak-btn" class="hidden btn-secondary text-sm py-2 px-4 mx-auto"
-                onclick="speakCurrentQuestion()" title="Frage vorlesen">🔊 Vorlesen</button>
+            <button id="question-speak-btn" class="hidden" hidden aria-hidden="true"></button>
             <div id="options-container" class="flex flex-col gap-2.5"></div>
             <div id="explanation-box" class="hidden"></div>
             <button id="next-question-btn" class="btn-primary w-full hidden text-center"
@@ -2654,7 +2653,7 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=13.0"></script>
+    <script src="app-config.js?v=13.1"></script>
     <script src="app-ui.js?v=9.4"></script>
     <script src="family-dashboard.js?v=11.27"></script>
     <script src="dev-admin.js?v=1.7"></script>
@@ -2668,7 +2667,7 @@ VIEW: QUIZ SETUP
     <script src="wortraten.js?v=9.6"></script>
     <script src="tv-cast.js?v=14.4"></script>
     <script src="live-duel.js?v=10.14"></script>
-    <script src="app-misc.js?v=8.8"></script>
+    <script src="app-misc.js?v=8.9"></script>
     <script src="lobby-avatar.js?v=10.0"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
     <script src="email-bestaetigung.js?v=8.8"></script>

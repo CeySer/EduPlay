@@ -2117,6 +2117,7 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function speakText(text) {
+            return; // Vorlesen vorerst aus
             if (!soundOn) return;
             try {
                 if (!('speechSynthesis' in window) || !text) return;
@@ -2144,21 +2145,14 @@ const geladen = _questionCounts[key] || 0;
             } catch (e) { }
         }
 
-        function speakCurrentQuestion() {
-            const q = (typeof currentQuestions !== 'undefined' && typeof qIndex !== 'undefined')
-                ? currentQuestions[qIndex] : null;
-            if (q && q.question) speakText(q.question);
-        }
+        function speakCurrentQuestion() { return; }
 
         // Zeigt/versteckt den 🔊-Button je nach Klassenstufe der Frage und
         // liest bei Klasse 1/2 automatisch vor, sobald eine neue Frage
         // angezeigt wird.
         function updateSpeakButtonForQuestion(q) {
             const btn = document.getElementById("question-speak-btn");
-            const isEarlyGrade = !!(q && (q.grade === 1 || q.grade === 2));
-            if (btn) btn.classList.toggle("hidden", !isEarlyGrade);
-            if (isEarlyGrade && q.question) speakText(q.question);
-            else if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+            if (btn) btn.classList.add("hidden");
         }
 
         

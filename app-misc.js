@@ -47,7 +47,7 @@
         // ============================================================
         // VORLESEFUNKTION FÜR LESEN LERNEN
         // ============================================================
-        function leseAktuelleAufgabeVor() {
+        function leseAktuelleAufgabeVor() { return;
             // Greift exakt auf den Container zu, in dem die Aufgabe angezeigt wird
             const exerciseContainer = document.getElementById('lesen-exercise');
 

@@ -369,6 +369,51 @@
                 .sort((a, b) => a.label.localeCompare(b.label, "de"));
         }
 
+        const FUN_CATEGORIES_FALLBACK = [
+            { key: "spass_allgemein", label: "🏆 Allgemeinwissen" },
+            { key: "spass_kleine", label: "🧸 Für die Kleinen (ganz leicht)" },
+            { key: "spass_wuerdest_du", label: "🤔 Schätzfragen & Würdest du eher" },
+            { key: "spass_nice_to_know", label: "✨ Nice to Know" },
+            { key: "spass_welt", label: "🌍 Ungewöhnliches aus der Welt" },
+            { key: "spass_sport_film", label: "🎬 Sport & Film" },
+            { key: "spass_musik", label: "🎵 Musik" },
+            { key: "spass_essen", label: "🍕 Essen & Trinken" },
+            { key: "spass_tiere", label: "🐾 Tiere" },
+            { key: "spass_laender", label: "🗺️ Länder & Flaggen" },
+            { key: "spass_erfindungen", label: "💡 Erfindungen & Technik" },
+            { key: "spass_raetsel", label: "🧩 Rätsel & Logik" },
+            { key: "spass_humor", label: "😂 Schul- & Alltagshumor" },
+            { key: "spass_beruf_humor", label: "🔧 Berufe mit Humor" },
+            { key: "spass_hauptstaedte_europa", label: "🏛️ Hauptstädte Europa" },
+            { key: "spass_hauptstaedte_welt", label: "🌍 Hauptstädte Welt" },
+            { key: "kinder_anime_cartoons", label: "🎬 Anime & Cartoons" },
+            { key: "kinder_maerchen_disney", label: "🏰 Märchen & Disney" },
+            { key: "kinder_tiere_natur", label: "🌿 Tiere & Natur (Kinder)" },
+            { key: "kinder_erstes_wissen", label: "📘 Erstes Wissen" },
+            { key: "film_serien", label: "🎬 Film & Serien" },
+            { key: "film_serien_zitate", label: "💬 Filmzitate" },
+            { key: "geografie_geschichte", label: "🗺️ Geografie & Geschichte" },
+            { key: "musik_wer_singt", label: "🎤 Musik: Wer singt das?" },
+            { key: "gaming_popkultur", label: "🎮 Gaming & Popkultur" },
+            { key: "beruehmtheiten", label: "⭐ Berühmtheiten" },
+            { key: "fussball_sport", label: "⚽ Fußball & Sport" },
+            { key: "technik_gadgets", label: "📱 Technik & Gadgets" },
+            { key: "spass_dinosaurier", label: "🦖 Dinosaurier" },
+            { key: "spass_mythen", label: "🐉 Mythen & Sagen" },
+            { key: "spass_superhelden", label: "🦸 Superhelden" },
+            { key: "spass_weltraum", label: "🚀 Weltraum" },
+            { key: "spass_flaggen", label: "🚩 Flaggen raten" },
+            { key: "spass_visuell", label: "👁️ Visuelle Rätsel" },
+            { key: "musik_hits", label: "🎵 Musik-Hits" },
+            { key: "werbung_marken", label: "📺 Werbung & Marken" }
+        ];
+        function funCategoryList() {
+            if (typeof FUN_CATEGORIES !== "undefined" && FUN_CATEGORIES && FUN_CATEGORIES.length) {
+                return FUN_CATEGORIES;
+            }
+            return FUN_CATEGORIES_FALLBACK;
+        }
+
         function getAreas(mode) {
             mode = mode || "alle";
             const areas = [];
@@ -400,12 +445,13 @@ if (typeof CURRICULUM !== 'undefined') {
                 }
             }
             if (mode !== "lernen") {
-                if (typeof FUN_CATEGORIES !== 'undefined' && FUN_CATEGORIES.length) {
+                const fun = funCategoryList();
+                if (fun.length) {
                     areas.push({
                         value: "spass",
                         label: "Spaß-Quiz",
                         stufe: "🎉 Spaß (kein Schulstoff)",
-                        subjects: FUN_CATEGORIES
+                        subjects: fun
                     });
                 }
             }
@@ -888,7 +934,8 @@ const geladen = _questionCounts[key] || 0;
                         const q = bucket.shift();
                         const id = qIdentity(q);
                         const text = qTextKey(q);
-                        if (!id || seen.has(id) || (text && seen.has("t:" + text))) continue;
+                        if (!id || seen.has(id)) continue;
+                        if (!q.id && text && seen.has("t:" + text)) continue;
                         seen.add(id);
                         if (text) seen.add("t:" + text);
                         picked.push(q);
@@ -927,6 +974,25 @@ const geladen = _questionCounts[key] || 0;
             fillSubjectSelect(areaId, subjectId);
             aSel.onchange = () => fillSubjectSelect(areaId, subjectId);
         }
+
+        function refillTopicSelectors() {
+            const pairs = [
+                ["tv-area", "tv-quiz-category"],
+                ["live-duel-area", "live-duel-category"],
+                ["coded-lobby-area", "coded-lobby-category"],
+                ["duel-area", "duel-category"],
+                ["quiz-area", "sub-category"]
+            ];
+            pairs.forEach(function (p) {
+                const aSel = document.getElementById(p[0]);
+                if (!aSel) return;
+                const mode = aSel.dataset.mode || "spass";
+                if (typeof setupCategorySelectors === "function") setupCategorySelectors(p[0], p[1], mode);
+            });
+        }
+        document.addEventListener("datenbanken-geladen", function () {
+            try { refillTopicSelectors(); } catch (e) { /* */ }
+        });
 
         /** Wählt zufällig Bereich + Thema in den angegebenen Selects. */
         function pickRandomCategory(areaId, subjectId) {

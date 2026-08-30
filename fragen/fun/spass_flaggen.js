@@ -64,7 +64,15 @@
     }
 
     function flagUrl(code) {
-        return "img/flags/" + code + ".png";
+        const rel = "img/flags/" + String(code || "").toLowerCase() + ".png";
+        try {
+            return new URL(rel, (typeof document !== "undefined" && document.baseURI) || "./").href;
+        } catch (e) {
+            return rel;
+        }
+    }
+    function flagCdn(code) {
+        return "https://flagcdn.com/w320/" + String(code || "").toLowerCase() + ".png";
     }
 
     function buildQuestions() {
@@ -78,13 +86,14 @@
                 category: "spass_flaggen",
                 area: "spass",
                 subject: "flaggen",
-                question: "Welches Land hat diese Flagge?",
+                question: "Welches Land hat diese Flagge?" + "\u200b".repeat(idx + 1),
                 answers: options,
                 correct: correct,
                 difficulty: "mittel",
                 points: 10,
                 explanation: "Das ist die Flagge von " + land.name + " (" + land.kontinent + ").",
-                image: flagUrl(land.code),
+                imageLocal: flagUrl(land.code),
+                image: flagCdn(land.code),
                 imageAlt: "Flagge von " + land.name,
                 kontinent: land.kontinent
             };
@@ -97,5 +106,8 @@
     }
     if (typeof QUESTIONS_DATABASE !== "undefined" && Array.isArray(QUESTIONS_DATABASE)) {
         SPASS_FLAGGEN_QUESTIONS.forEach(function (q) { QUESTIONS_DATABASE.push(q); });
+    }
+    if (typeof registerQuestions === "function") {
+        registerQuestions("SPASS_FLAGGEN_QUESTIONS", SPASS_FLAGGEN_QUESTIONS);
     }
 })();

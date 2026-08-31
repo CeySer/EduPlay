@@ -1,0 +1,423 @@
+// Bewerbung schreiben – Klasse 9 und 10
+(function () {
+    const extraKurse = [
+        { id: "bewerbung_k9", title: "Bewerbung schreiben", icon: "✉️", grade: 9, subject: "deutsch", beschreibung: "Anschreiben und tabellarischer Lebenslauf – der Aufbau." },
+        { id: "bewerbung_k10", title: "Bewerbung schreiben", icon: "📎", grade: 10, subject: "deutsch", beschreibung: "Überzeugen, Anlagen, PDF und formeller Stil." }
+    ];
+    const extraLektionen = [
+    {
+        id: "bewerbung_k9_l1",
+        kurs: "bewerbung_k9",
+        order: 1,
+        icon: "✉️",
+        title: "Das Anschreiben",
+        kurz: "Aufbau eines Bewerbungsbriefs",
+        erklaerung: {
+            intro: "Eine Bewerbung besteht mindestens aus <b>Anschreiben</b> und <b>Lebenslauf</b>. Das Anschreiben ist ein förmlicher Brief: Anschriften, Betreff, Anrede, Text, Gruß.",
+            beispiele: [
+                "📮 Oben: deine Adresse, darunter die der Firma, dann das Datum.",
+                "🏷️ Betreff: Bewerbung um ein Praktikum / eine Ausbildungsstelle.",
+                "👋 Anrede: Sehr geehrte Damen und Herren – oder mit Namen.",
+                "✍️ Schluss: Mit freundlichen Grüßen plus Vor- und Nachname."
+            ],
+            merksatz: "Anschreiben = warum diese Stelle. Lebenslauf = stationenweise Fakten."
+        },
+        uebung: {
+            leicht: [
+                { id: "bwk9l1_l1", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Was gehört in eine vollständige Bewerbung?",
+                    answers: ["Nur eine WhatsApp an den Chef", "Nur ein Foto ohne Text", "Nur der Stundenplan der Schule", "Anschreiben und Lebenslauf"], correct: 3,
+                    explanation: "Mindestens Anschreiben plus tabellarischer Lebenslauf." },
+                { id: "bwk9l1_l2", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Wozu dient das Anschreiben?",
+                    answers: ["Es listet alle Noten zeilenweise auf", "Es ersetzt den Personalausweis", "Es erzählt den ganzen Lebenslauf nochmal", "Es erklärt, warum du dich bewirbst"], correct: 3,
+                    explanation: "Das Anschreiben begründet Interesse und Eignung." },
+                { id: "bwk9l1_l3", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Welche Anrede ist im Anschreiben üblich?",
+                    answers: ["Hey zusammen!", "Hallo Leute", "Hi Chef", "Sehr geehrte Damen und Herren"], correct: 3,
+                    explanation: "Ohne Namen: Sehr geehrte Damen und Herren." },
+                { id: "bwk9l1_l4", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Wie schließt du ein formelles Anschreiben?",
+                    answers: ["LG und bis bald", "Ciao", "MfG ohne Namen", "Mit freundlichen Grüßen"], correct: 3,
+                    explanation: "Mit freundlichen Grüßen plus Unterschrift." }
+            ],
+            mittel: [
+                { id: "bwk9l1_m1", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Was steht oben links im Brief?",
+                    answers: ["Nur das heutige Datum", "Die Unterschrift", "Das Motivationsfoto", "Absender und Empfängeranschrift"], correct: 3,
+                    explanation: "Zuerst deine Adresse, darunter die der Firma." },
+                { id: "bwk9l1_m2", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Wozu dient die Betreffzeile?",
+                    answers: ["Als lockerer Gruß", "Als Platz für Emojis", "Als Ersatz für den Lebenslauf", "Sie sagt knapp, worum es geht"], correct: 3,
+                    explanation: "Beispiel: Bewerbung um einen Praktikumsplatz." },
+                { id: "bwk9l1_m3", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Was gehört nicht ins Anschreiben?",
+                    answers: ["Der Bezug zur Stelle", "Ein Satz zu Stärken", "Die Bitte um ein Gespräch", "Lange Privatgeschichten"], correct: 3,
+                    explanation: "Privatkram und Umgangssprache weglassen." },
+                { id: "bwk9l1_m4", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Welche Reihenfolge ist sinnvoll?",
+                    answers: ["Schluss – Lebenslauf – Betreff", "Foto – Chat – Noten", "Witz – Anrede – PS", "Anschrift, Betreff, Anrede, Text, Gruß"], correct: 3,
+                    explanation: "Klassischer Geschäftsbrief." }
+            ],
+            schwer: [
+                { id: "bwk9l1_s1", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Welche Einleitung ist passend?",
+                    answers: ["Ich brauche unbedingt Geld.", "Mein Kumpel sagt, das geht easy.", "Schickt mir mal den Vertrag.", "hiermit bewerbe ich mich um ein Praktikum."], correct: 3,
+                    explanation: "Sachlich und direkt zum Anlass." },
+                { id: "bwk9l1_s2", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Was machst du, wenn du den Namen kennst?",
+                    answers: ["Trotzdem nur Hallo schreiben", "Den Namen weglassen", "Sehr geehrte Damen und Herren lassen", "Sehr geehrte Frau Müller / Herrn …"], correct: 3,
+                    explanation: "Namen nutzen, wenn er bekannt ist." },
+                { id: "bwk9l1_s3", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Warum kein „Hi“ im Anschreiben?",
+                    answers: ["Es ist zu lang", "Firmen lesen kein Deutsch", "Hi ist ein Fachwort", "Es klingt zu locker und unhöflich"], correct: 3,
+                    explanation: "Bewerbung = förmliche Standardsprache." },
+                { id: "bwk9l1_s4", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Was kommt nach „Mit freundlichen Grüßen“?",
+                    answers: ["Nur drei Ausrufezeichen", "Ein Sticker", "Nichts weiter", "Dein Vor- und Nachname"], correct: 3,
+                    explanation: "Handschriftlich oder getippt: Vor- und Nachname." }
+            ]
+        },
+        test: [
+            { id: "bwk9l1_t1", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Pflichtteile einer Bewerbung?",
+                answers: ["Nur Selfie", "Nur Chatverlauf", "Nur Hobbyliste", "Anschreiben und Lebenslauf"], correct: 3,
+                explanation: "Beides gehört dazu." },
+            { id: "bwk9l1_t2", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Formelle Anrede ohne Namen?",
+                answers: ["Hey Team", "Hallo Firma", "Servus", "Sehr geehrte Damen und Herren"], correct: 3,
+                explanation: "Standardanrede." },
+            { id: "bwk9l1_t3", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Die Betreffzeile …",
+                answers: ["steht ganz unten", "ist ein Witz", "darf fehlen", "nennt knapp das Anliegen"], correct: 3,
+                explanation: "Betreff: Bewerbung um …" },
+            { id: "bwk9l1_t4", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Schlussformel?",
+                answers: ["CU", "LG", "Tschüss", "Mit freundlichen Grüßen"], correct: 3,
+                explanation: "Förmlich schließen." },
+            { id: "bwk9l1_t5", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Aufgabe des Anschreibens?",
+                answers: ["Alle Zeugnisse ersetzen", "Den Chef duzen", "Den Lebenslauf kopieren", "Interesse und Eignung zeigen"], correct: 3,
+                explanation: "Kurz begründen." },
+            { id: "bwk9l1_t6", category: "kurs_bewerbung_k9_l1", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Was kommt oben in den Brief?",
+                answers: ["Nur Hashtags", "Nur der Gruß", "Nur Hobbys", "Absender- und Firmenadresse"], correct: 3,
+                explanation: "Anschriften zuerst." }
+        ],
+        bestehenAb: 0.8
+    },
+    {
+        id: "bewerbung_k9_l2",
+        kurs: "bewerbung_k9",
+        order: 2,
+        icon: "📄",
+        title: "Der Lebenslauf",
+        kurz: "Tabellarisch und vollständig",
+        erklaerung: {
+            intro: "Der <b>tabellarische Lebenslauf</b> listet Schule, Praktika und Kenntnisse. Links der Zeitraum, rechts die Station. Oft steht das <b>Neueste oben</b>.",
+            beispiele: [
+                "👤 Kopf: Name, Adresse, Telefon, E-Mail.",
+                "📅 09/2024 – 07/2025 | Realschule …",
+                "💻 Extra-Block: Sprachen, Computer, Hobbys nur wenn passend.",
+                "🧹 Keine Chats, keine Geheimnisse, keine Romane."
+            ],
+            merksatz: "Lebenslauf = Tabelle. Anschreiben = Begründung."
+        },
+        uebung: {
+            leicht: [
+                { id: "bwk9l2_l1", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Was steht typischerweise im Lebenslauf?",
+                    answers: ["Nur Lieblingssongs", "Nur Chatnamen", "Nur Traumreisen", "Schule, Praktika, Kenntnisse"], correct: 3,
+                    explanation: "Werdegang sachlich in Stichpunkten." },
+                { id: "bwk9l2_l2", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Wie ist ein tabellarischer Lebenslauf aufgebaut?",
+                    answers: ["Als Gedicht", "Als langer Roman", "Als Chatverlauf", "In Spalten: Datum | Station"], correct: 3,
+                    explanation: "Links Zeitraum, rechts Station." },
+                { id: "bwk9l2_l3", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "In welcher Reihenfolge stehen Stationen oft?",
+                    answers: ["Zufällig", "Nur nach Farbe", "Ältestes zuerst immer Pflicht", "Häufig das Neueste oben"], correct: 3,
+                    explanation: "Antichronologisch ist heute üblich." },
+                { id: "bwk9l2_l4", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Was gehört in den Kopf des Lebenslaufs?",
+                    answers: ["Ein Meme", "Die PIN der Bank", "Geheime Passwörter", "Name, Adresse, Kontakt"], correct: 3,
+                    explanation: "Klare Kontaktdaten." }
+            ],
+            mittel: [
+                { id: "bwk9l2_m1", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Welche Angabe ist im Lebenslauf sinnvoll?",
+                    answers: ["Lieblingsfilter", "Geheimes Tagebuch", "Nachbarnamen", "Zeitraum der Schulzeit"], correct: 3,
+                    explanation: "Von–bis bei jeder Station." },
+                { id: "bwk9l2_m2", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Was lässt du im Lebenslauf weg?",
+                    answers: ["Schulabschluss", "Sprachkenntnisse", "IT-Kenntnisse", "Unwichtige Privatdetails"], correct: 3,
+                    explanation: "Nur berufsrelevante Infos." },
+                { id: "bwk9l2_m3", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Wie formulierst du Stationen?",
+                    answers: ["In Reimen", "In Umgangssprache", "In ganzen Romanen", "Kurz und sachlich"], correct: 3,
+                    explanation: "Stichpunkte, keine Geschichten." },
+                { id: "bwk9l2_m4", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Wo stehen Sprach- und Computerkenntnisse?",
+                    answers: ["Nur im Betreff", "Nur in der Anrede", "Gar nicht", "Eigener Block im Lebenslauf"], correct: 3,
+                    explanation: "Eigene Rubrik." }
+            ],
+            schwer: [
+                { id: "bwk9l2_s1", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Warum tabellarisch statt Aufsatz?",
+                    answers: ["Weil es bunter ist", "Weil man reimen muss", "Weil Lehrer das verbieten", "Damit man Stationen schnell findet"], correct: 3,
+                    explanation: "Übersicht vor Schönschreiberei." },
+                { id: "bwk9l2_s2", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Welche Datumsangabe ist klar?",
+                    answers: ["irgendwann 2024", "letztes Jahr halt", "vor den Ferien", "09/2024 – 07/2025"], correct: 3,
+                    explanation: "Monat und Jahr angeben." },
+                { id: "bwk9l2_s3", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Was ist ein lückenhafter Lebenslauf?",
+                    answers: ["Zu viele Abschnitte", "Zu viele Sprachen", "Zu viele Praktika", "Lange Zeiträume ohne Erklärung"], correct: 3,
+                    explanation: "Lücken kurz und ehrlich erklären." },
+                { id: "bwk9l2_s4", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Foto im Lebenslauf?",
+                    answers: ["Pflicht-Selfie mit Filter", "Immer ein Gruppenfoto", "Immer verboten", "Nur seriös, wenn gewünscht"], correct: 3,
+                    explanation: "In DE oft üblich, aber nicht überall Pflicht." }
+            ]
+        },
+        test: [
+            { id: "bwk9l2_t1", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Lebenslauf enthält vor allem …",
+                answers: ["Witze", "Chats", "Tagebuch", "Werdegang in Stichpunkten"], correct: 3,
+                explanation: "Sachlich und knapp." },
+            { id: "bwk9l2_t2", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Typisches Layout?",
+                answers: ["Gedichtform", "Chatblasen", "Comic", "Tabelle mit Zeitraum"], correct: 3,
+                explanation: "Tabellarisch." },
+            { id: "bwk9l2_t3", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Oben im Lebenslauf?",
+                answers: ["Nur Hobbys", "Nur Zitate", "Nur Hashtags", "Name und Kontakt"], correct: 3,
+                explanation: "Kontaktdaten." },
+            { id: "bwk9l2_t4", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Reihenfolge der Stationen oft?",
+                answers: ["Nur nach ABC", "Nur nach Farbe", "Zufällig", "Neueste oben"], correct: 3,
+                explanation: "Antichronologisch." },
+            { id: "bwk9l2_t5", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Weglassen solltest du …",
+                answers: ["Schule", "Praktika", "Kenntnisse", "irrelevante Privatdetails"], correct: 3,
+                explanation: "Fokus auf die Stelle." },
+            { id: "bwk9l2_t6", category: "kurs_bewerbung_k9_l2", area: "schule", grade: 9, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Datumsangabe besser so:",
+                answers: ["damals", "ferienzeit", "weiß nicht", "09/2025 – 10/2025"], correct: 3,
+                explanation: "Monat/Jahr." }
+        ],
+        bestehenAb: 0.8
+    },
+    {
+        id: "bewerbung_k10_l1",
+        kurs: "bewerbung_k10",
+        order: 1,
+        icon: "🎯",
+        title: "Überzeugen im Anschreiben",
+        kurz: "Konkret, höflich, ohne Floskel",
+        erklaerung: {
+            intro: "In Klasse 10 zählt die Qualität: <b>konkrete Beispiele</b> statt „ich bin motiviert“, Firma nennen, Siezen, Anlagen erwähnen.",
+            beispiele: [
+                "✅ Im Praktikum habe ich Termine organisiert.",
+                "🏢 Bezug: Warum genau diese Firma / dieser Beruf.",
+                "📎 Unter dem Brief: Anlagen: Lebenslauf, Zeugnis.",
+                "⚠️ Kein Chatslang, kein Du, keine leeren Superlative."
+            ],
+            merksatz: "Zeigen, nicht behaupten. Eine Stärke + ein Beispiel."
+        },
+        uebung: {
+            leicht: [
+                { id: "bwk10l1_l1", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Welcher Stil passt ins Anschreiben?",
+                    answers: ["Umgangssprache wie im Chat", "Dialekt ohne Erklärung", "Ironie und Slang", "Sachlich und höflich"], correct: 3,
+                    explanation: "Standarddeutsch, förmlich, klar." },
+                { id: "bwk10l1_l2", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Was vermeidest du in der Bewerbung?",
+                    answers: ["Konkrete Stärken", "Bezug zur Firma", "Korrekte Anrede", "Tippfehler und Floskeln ohne Inhalt"], correct: 3,
+                    explanation: "Fehler und leere Phrasen schaden." },
+                { id: "bwk10l1_l3", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "„Ich bin sehr motiviert“ allein ist …",
+                    answers: ["ein vollständiger Lebenslauf", "ein gültiger Vertrag", "eine Betreffzeile", "zu leer – brauchst ein Beispiel"], correct: 3,
+                    explanation: "Motivation an einer konkreten Aufgabe zeigen." },
+                { id: "bwk10l1_l4", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Welche Anrede ist falsch, wenn der Name bekannt ist?",
+                    answers: ["Sehr geehrte Frau Keller", "Sehr geehrter Herr Keller", "Sehr geehrte Frau Dr. Keller", "Hallo zusammen im Büro"], correct: 3,
+                    explanation: "Namen kennen = Namen nutzen, förmlich." }
+            ],
+            mittel: [
+                { id: "bwk10l1_m1", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Welche Formulierung ist am stärksten?",
+                    answers: ["Ich mach eh alles.", "Bin irgendwie fit.", "Schule nervt nicht so.", "Im Praktikum habe ich Termine organisiert."], correct: 3,
+                    explanation: "Konkrete Tätigkeit statt Leerphrase." },
+                { id: "bwk10l1_m2", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Was bedeutet „Anlage“ unter dem Brief?",
+                    answers: ["Ein Witz am Rand", "Ein zweiter Betreff", "Die Anrede nochmal", "Lebenslauf und Zeugnisse liegen bei"], correct: 3,
+                    explanation: "Du listest bei, was du mitschickst." },
+                { id: "bwk10l1_m3", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Welche Schlussbitte ist passend?",
+                    answers: ["Gebt mir sofort den Job.", "Meldet euch, sonst ruf ich dauernd an.", "Schreibt nur, wenn ich der Beste bin.", "Über eine Einladung zum Gespräch freue ich mich."], correct: 3,
+                    explanation: "Höflich und offen für das Gespräch." },
+                { id: "bwk10l1_m4", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Du oder Sie in der Bewerbung?",
+                    answers: ["Immer duzen", "Je nach Stimmung", "Nur bei Emojis wechseln", "Firma siezen, außer sie bietet du an"], correct: 3,
+                    explanation: "Standard: Sie." }
+            ],
+            schwer: [
+                { id: "bwk10l1_s1", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Warum die Firma im Text nennen?",
+                    answers: ["Damit der Brief länger wird", "Weil es Pflicht-Reim ist", "Damit man den Namen übt", "Es zeigt, dass du dich informiert hast"], correct: 3,
+                    explanation: "Bezug zur konkreten Stelle." },
+                { id: "bwk10l1_s2", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Welche Passage gehört eher in den Lebenslauf?",
+                    answers: ["Warum diese Firma", "Eine Stärke mit Beispiel", "Die Bitte um Gespräch", "Die komplette Jahresliste der Schulen"], correct: 3,
+                    explanation: "Daten ins CV, Begründung ins Anschreiben." },
+                { id: "bwk10l1_s3", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Was tun bei einer Lücke im Lebenslauf?",
+                    answers: ["Einfach erfinden", "Das Jahr löschen", "Die Stelle erfinden", "Kurz und wahr erklären"], correct: 3,
+                    explanation: "Ehrlich und knapp." },
+                { id: "bwk10l1_s4", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Welche E-Mail-Bewerbung ist richtig aufgebaut?",
+                    answers: ["Nur Foto, kein Text", "Nur „Hier Bewerbung“ ohne Datei", "Alles in Großbuchstaben", "Kurze Mail + PDF Anschreiben/Lebenslauf"], correct: 3,
+                    explanation: "Saubere Dateien, klare Betreffzeile." }
+            ]
+        },
+        test: [
+            { id: "bwk10l1_t1", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Stil im Anschreiben?",
+                answers: ["Chatslang", "Reime", "Ironie", "sachlich-höflich"], correct: 3,
+                explanation: "Förmlich." },
+            { id: "bwk10l1_t2", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Starke Formulierung?",
+                answers: ["Ich bin halt gut.", "Irgendwie motiviert.", "Macht ihr mal.", "Ich habe Kasse und Termine geführt."], correct: 3,
+                explanation: "Beispiel statt Phrase." },
+            { id: "bwk10l1_t3", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Anlage bedeutet?",
+                answers: ["Neue Anrede", "Zweiter Witz", "Leeres Blatt", "beigefügte Unterlagen"], correct: 3,
+                explanation: "CV, Zeugnisse …" },
+            { id: "bwk10l1_t4", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Anrede bei bekanntem Namen?",
+                answers: ["Hey", "Team", "Leute", "Sehr geehrte Frau …"], correct: 3,
+                explanation: "Namen förmlich nutzen." },
+            { id: "bwk10l1_t5", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Lücke im CV?",
+                answers: ["Erfinden", "Ignorieren", "Schönrechnen", "wahr und kurz erklären"], correct: 3,
+                explanation: "Ehrlich bleiben." },
+            { id: "bwk10l1_t6", category: "kurs_bewerbung_k10_l1", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "E-Mail-Bewerbung?",
+                answers: ["Nur Sticker", "Nur Voice-Message", "Text ohne Anhang", "kurze Mail plus PDF"], correct: 3,
+                explanation: "Dateien klar benennen." }
+        ],
+        bestehenAb: 0.8
+    },
+    {
+        id: "bewerbung_k10_l2",
+        kurs: "bewerbung_k10",
+        order: 2,
+        icon: "📎",
+        title: "Versand, Dateien, Foto",
+        kurz: "PDF, Betreff, Datenschutz",
+        erklaerung: {
+            intro: "Die Bewerbung muss auch <b>technisch</b> stimmen: PDF, klarer Dateiname, sinnvoller E-Mail-Betreff, passende Anlagen, keine unnötigen Daten.",
+            beispiele: [
+                "📁 Mustermann_Bewerbung.pdf",
+                "📧 Betreff: Bewerbung um ein Praktikum 2026 – Max Mustermann",
+                "📎 Reihenfolge: Anschreiben, Lebenslauf, Zeugnisse",
+                "🔒 Keine Ausweis- oder Kontonummer unnötig mitschicken."
+            ],
+            merksatz: "Inhalt überzeugt nur, wenn Form und Dateien stimmen."
+        },
+        uebung: {
+            leicht: [
+                { id: "bwk10l2_l1", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Welche Datei ist für eine Bewerbung üblich?",
+                    answers: ["Nur eine Sprachmemo", "Ein privates Chat-Export", "Ein ungeordnetes Fotoalbum", "PDF von Anschreiben und Lebenslauf"], correct: 3,
+                    explanation: "PDF bleibt auf jedem Gerät lesbar." },
+                { id: "bwk10l2_l2", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Wie nennst du die Datei sinnvoll?",
+                    answers: ["asdf.pdf", "neu2finalwirklich.pdf", "ich.pdf", "Mustermann_Bewerbung.pdf"], correct: 3,
+                    explanation: "Nachname plus Bewerbung." },
+                { id: "bwk10l2_l3", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Was prüfst du vor dem Absenden?",
+                    answers: ["Nur die Schriftfarbe", "Nur die Anzahl Emojis", "Nur den Klingelton", "Rechtschreibung, Anrede, Anlagen"], correct: 3,
+                    explanation: "Korrekturlesen ist Pflicht." },
+                { id: "bwk10l2_l4", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "leicht", points: 10,
+                    question: "Wohin gehört ein Bewerbungsfoto, wenn es dabei ist?",
+                    answers: ["Als Meme in den Betreff", "Unscharf in den Chat", "Als 20-MB-Anhang extra", "Seriös in den Lebenslauf"], correct: 3,
+                    explanation: "Ruhiges Portrait, kein Partyfoto." }
+            ],
+            mittel: [
+                { id: "bwk10l2_m1", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Welche Reihenfolge der PDFs ist klar?",
+                    answers: ["Zeugnisse, dann nichts", "Foto allein", "Chatverlauf zuerst", "Anschreiben, Lebenslauf, Zeugnisse"], correct: 3,
+                    explanation: "Vom Brief zu den Belegen." },
+                { id: "bwk10l2_m2", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Was steht in der E-Mail-Betreffzeile?",
+                    answers: ["wichtig!!!!", "lesen!!!", "kein Betreff", "Bewerbung Praktikum 2026, Name"], correct: 3,
+                    explanation: "Stelle plus Name." },
+                { id: "bwk10l2_m3", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Nach der Absage solltest du …",
+                    answers: ["beleidigt anrufen", "dasselbe Mail nochmal senden", "die Firma öffentlich bloßstellen", "höflich bleiben, evtl. nach Feedback fragen"], correct: 3,
+                    explanation: "Professionell bleiben." },
+                { id: "bwk10l2_m4", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                    question: "Datenschutz: Was schickst du nicht unnötig?",
+                    answers: ["Telefonnummer der Schule", "Eigene Mailadresse", "Zeitraum der Schule", "Ausweisnummer und Konto"], correct: 3,
+                    explanation: "Nur nötige Kontaktdaten." }
+            ],
+            schwer: [
+                { id: "bwk10l2_s1", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Warum eine PDF statt Word-Datei?",
+                    answers: ["Weil sie bunter ist", "Weil Lehrer Word verbieten", "Weil PDF mehr Emojis hat", "Layout bleibt überall gleich"], correct: 3,
+                    explanation: "Keine verrutschten Zeilen." },
+                { id: "bwk10l2_s2", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Was ist ein gutes Bewerbungsfoto?",
+                    answers: ["Gruppenfoto vom Fest", "Selfie im Liegen", "Stark gefiltertes Bild", "Helles Portrait, ruhiger Hintergrund"], correct: 3,
+                    explanation: "Seriös und erkennbar." },
+                { id: "bwk10l2_s3", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Wenn die Firma „nur online“ will?",
+                    answers: ["Trotzdem 20 Seiten per Post", "Ohne Text nur Foto", "Alles in den Betreff stopfen", "Portal nutzen, Dateinamen klar halten"], correct: 3,
+                    explanation: "Die Vorgabe der Firma gilt." },
+                { id: "bwk10l2_s4", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "schwer", points: 10,
+                    question: "Welche Aussage zum Zeugnis ist richtig?",
+                    answers: ["Immer alle Jahre anhängen, auch ohne Sinn", "Zeugnisse durch KI-Text ersetzen", "Noten im Anschreiben ausschreiben", "Letzte relevante Zeugnisse als Anlage"], correct: 3,
+                    explanation: "Passend und aktuell." }
+            ]
+        },
+        test: [
+            { id: "bwk10l2_t1", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Übliches Dateiformat?",
+                answers: ["Nur Voice", "Nur Chat", "Nur RAW-Fotos", "PDF"], correct: 3,
+                explanation: "PDF." },
+            { id: "bwk10l2_t2", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Guter Dateiname?",
+                answers: ["final.pdf", "neu.pdf", "aaa.pdf", "Nachname_Bewerbung.pdf"], correct: 3,
+                explanation: "Klar erkennbar." },
+            { id: "bwk10l2_t3", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "E-Mail-Betreff?",
+                answers: ["wichtig", "!!!", "leer", "Bewerbung + Stelle + Name"], correct: 3,
+                explanation: "Auffindbar." },
+            { id: "bwk10l2_t4", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Reihenfolge der Anlagen?",
+                answers: ["Zufällig", "Nur Foto", "Nur Chat", "Anschreiben, CV, Zeugnisse"], correct: 3,
+                explanation: "Vom Brief zu Belegen." },
+            { id: "bwk10l2_t5", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Vor dem Senden prüfen?",
+                answers: ["Nur Emojis", "Nur Lautstärke", "Nur Filter", "Rechtschreibung und Anlagen"], correct: 3,
+                explanation: "Korrektur." },
+            { id: "bwk10l2_t6", category: "kurs_bewerbung_k10_l2", area: "schule", grade: 10, subject: "deutsch", topic: "bewerbung", difficulty: "mittel", points: 10,
+                question: "Nicht mitschicken:",
+                answers: ["Kontaktmail", "Telefon", "Lebenslauf", "Konto- und Ausweisnummer"], correct: 3,
+                explanation: "Datensparsam." }
+        ],
+        bestehenAb: 0.8
+    }
+    ];
+    if (typeof KURSE !== "undefined" && Array.isArray(KURSE)) {
+        extraKurse.forEach(function (k) {
+            if (!KURSE.some(function (x) { return x.id === k.id; })) KURSE.push(k);
+        });
+    }
+    if (typeof LEKTIONEN !== "undefined" && Array.isArray(LEKTIONEN)) {
+        extraLektionen.forEach(function (l) {
+            if (!LEKTIONEN.some(function (x) { return x.id === l.id; })) LEKTIONEN.push(l);
+        });
+    }
+})();

@@ -324,7 +324,20 @@
             treffer = dateienFuerKategorien([s]);
         }
 
-        return treffer.reduce(function (summe, e) { return summe + (e.n || 0); }, 0);
+        return treffer.reduce(function (summe, e) {
+            if (e.nKat && e.nKat[s] != null) return summe + (e.nKat[s] || 0);
+            if (e.nKat && s.indexOf('subject:') !== 0) {
+                // Datei enthält mehrere Kategorien: nur den Anteil dieser Kategorie
+                const keys = e.kat || [];
+                if (keys.indexOf(s) !== -1 && e.nKat[s] != null) return summe + e.nKat[s];
+            }
+            // Mehrere Kategorien ohne nKat: n nicht voll auf jede zählen
+            const keys = e.kat || [];
+            if (keys.length > 1 && keys.indexOf(s) !== -1) {
+                return summe + Math.round((e.n || 0) / keys.length);
+            }
+            return summe + (e.n || 0);
+        }, 0);
     };
 
     window.istKategorieGeladen = function (kategorie) {
@@ -338,7 +351,12 @@
     function selbsttest() {
         const bestand = {};
         verzeichnis().forEach(function (e) {
-            (e.kat || []).forEach(function (k) { bestand[k] = (bestand[k] || 0) + (e.n || 0); });
+            (e.kat || []).forEach(function (k) {
+                const n = (e.nKat && e.nKat[k] != null)
+                    ? e.nKat[k]
+                    : ((e.kat || []).length > 1 ? Math.round((e.n || 0) / e.kat.length) : (e.n || 0));
+                bestand[k] = (bestand[k] || 0) + n;
+            });
         });
 
         const ohneFragen = [];

@@ -20,21 +20,34 @@
                 box.innerHTML = '<div class="text-xs text-gray-500 col-span-2">Keine Vokabeln geladen</div>';
                 return;
             }
+            const safe = (typeof esc === "function") ? esc : function (s) {
+                return String(s || "").replace(/[&<>"]/g, function (ch) {
+                    return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch];
+                });
+            };
             const langLabel = { en: 'EN', tr: 'TR' };
             let html = '';
+            let firstVal = "";
             Object.keys(VOCABULARY_DATABASE).forEach(lang => {
-                Object.keys(VOCABULARY_DATABASE[lang]).forEach(level => {
+                Object.keys(VOCABULARY_DATABASE[lang] || {}).forEach(level => {
                     const set = VOCABULARY_DATABASE[lang][level];
-                    const n = (set.words || []).length;
+                    const n = (set && set.words || []).length;
                     if (!n) return;
+                    const val = "vocab:" + lang + ":" + level;
+                    if (!firstVal) firstVal = val;
+                    const pref = (lang === "en" && (level === "k5" || level === "k6" || level === "k1"));
                     html += `
                         <label class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg p-2 text-xs font-bold text-gray-300 cursor-pointer hover:bg-white/10 transition">
-                            <input type="checkbox" value="vocab:${lang}:${level}" class="vokabel-group-check w-4 h-4 accent-emerald-500">
-                            <span class="truncate">${langLabel[lang] || lang.toUpperCase()} · ${esc(set.label || level)}</span>
+                            <input type="checkbox" value="${val}" class="vokabel-group-check w-4 h-4 accent-emerald-500"${pref ? " checked" : ""}>
+                            <span class="truncate">${langLabel[lang] || lang.toUpperCase()} · ${safe(set.label || level)}</span>
                         </label>`;
                 });
             });
             box.innerHTML = html || '<div class="text-xs text-gray-500 col-span-2">Keine Vokabeln geladen</div>';
+            if (firstVal && !box.querySelector(".vokabel-group-check:checked")) {
+                const first = box.querySelector(".vokabel-group-check");
+                if (first) first.checked = true;
+            }
         }
 
         function codedLobbyRef(code) {
@@ -317,11 +330,15 @@
                 (bv && bv.classList.contains("active")) ? "vokabel" : "quiz";
             let lobbyData;
             if (gameType === "vokabel") {
-                const checked = Array.from(document.querySelectorAll("#coded-lobby-vokabel-checkboxes .vokabel-group-check:checked")).map(cb => cb.value);
+                const checked = (typeof collectedVocabGroups === "function")
+                    ? collectedVocabGroups("#coded-lobby-vokabel-checkboxes .vokabel-group-check:checked")
+                    : Array.from(document.querySelectorAll("#coded-lobby-vokabel-checkboxes .vokabel-group-check:checked")).map(cb => cb.value);
                 if (checked.length === 0) return showToast("Bitte mindestens eine Vokabelgruppe auswaehlen!", "error");
                 const dir = (document.getElementById("coded-lobby-vokabel-dir") || {}).value || "mix";
                 const answerSeconds = parseInt((document.getElementById("coded-lobby-vokabel-speed") || {}).value || "20");
-                const questions = prepareQuestions(buildVocabTestQuestions(checked, dir).sort(() => Math.random() - 0.5).slice(0, 10));
+                const questions = (typeof buildLiveVocabQuestions === "function")
+                    ? buildLiveVocabQuestions(checked, dir, 10)
+                    : prepareQuestions(buildVocabTestQuestions(checked, dir).sort(() => Math.random() - 0.5).slice(0, 10));
                 if (questions.length < 3) return showToast("Zu wenige Vokabeln fuer diese Auswahl!", "error");
                 lobbyData = {
                     type: "quiz",

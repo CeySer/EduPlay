@@ -15706,11 +15706,17 @@ function istLektionAbgeschlossen(id) {
     return !!(currentPlayer && currentPlayer.lektionen && currentPlayer.lektionen[id] && currentPlayer.lektionen[id].bestanden);
 }
 
+function istLektionZugewiesen(id) {
+    return !!(currentPlayer && currentPlayer.pendingLesson && currentPlayer.pendingLesson.lektionId === id);
+}
+
 function istLektionFreigeschaltet(lektion, liste) {
     if (typeof isDevAdmin === "function" && isDevAdmin()) return true;
-    if (lektion.order <= 1) return true;
-    const vorherige = liste.find(l => l.order === lektion.order - 1);
-    return !vorherige || istLektionAbgeschlossen(vorherige.id);
+    if (istLektionZugewiesen(lektion.id)) return true;
+    if (istLektionAbgeschlossen(lektion.id)) return true;
+    const vorherige = (liste || []).find(l => l.order === lektion.order - 1);
+    if (!vorherige) return !!(typeof isAnonGuest !== "undefined" && isAnonGuest);
+    return istLektionAbgeschlossen(vorherige.id);
 }
 
 // ============================================================
@@ -15915,7 +15921,12 @@ function openKurs(kursId) {
 function openLektion(id) {
     const daten = LEKTIONEN.find(l => l.id === id);
     if (!daten || daten.locked) return;
-    currentLektion = { id, data: daten, step: "intro" };
+    const liste = (typeof getLektionenForKurs === "function") ? getLektionenForKurs(daten.kurs) : [];
+    if (!istLektionFreigeschaltet(daten, liste)) {
+        if (typeof showToast === "function") showToast("Diese Lektion ist noch gesperrt.", "error");
+        return;
+    }
+    currentLektion = { id, data: daten, step: "intro", passedStufen: {} };
     document.getElementById("lektion-intro-icon").innerText = daten.icon || "📘";
     document.getElementById("lektion-intro-title").innerText = daten.title;
     document.getElementById("lektion-intro-text").innerHTML = daten.erklaerung.intro;
@@ -15940,6 +15951,14 @@ function startLektionUebung(stufe) {
 
 function startLektionTest() {
     if (!currentLektion) return;
+    const need = LEKTION_STUFEN_REIHENFOLGE.filter(function (s) {
+        return currentLektion.data.uebung && currentLektion.data.uebung[s] && currentLektion.data.uebung[s].length;
+    });
+    const ok = need.every(function (s) { return currentLektion.passedStufen && currentLektion.passedStufen[s]; });
+    if (!ok) {
+        if (typeof showToast === "function") showToast("Erst die Übungen bestehen.", "error");
+        return;
+    }
     currentLektion.step = "test";
     launchQuiz(currentLektion.data.test);
 }
@@ -15977,6 +15996,8 @@ function handleLektionStepEnd() {
     const pct = total > 0 ? Math.round((richtig / total) * 100) : 0;
 
     if (LEKTION_STUFEN_REIHENFOLGE.includes(step)) {
+        if (!currentLektion.passedStufen) currentLektion.passedStufen = {};
+        if (pct >= 60) currentLektion.passedStufen[step] = true;
         renderLektionUebergang(step, richtig, total, pct);
         switchView("lektion-uebergang");
     } else if (step === "test") {
@@ -15997,10 +16018,13 @@ function renderLektionUebergang(stufe, richtig, total, pct) {
     const naechste = LEKTION_STUFEN_REIHENFOLGE[idx + 1];
     const gut = pct >= 60;
     document.getElementById("lektion-uebergang-emoji").innerText = gut ? "🎉" : "💪";
-    document.getElementById("lektion-uebergang-titel").innerText = gut ? "Stark gemacht!" : "Dranbleiben!";
+    document.getElementById("lektion-uebergang-titel").innerText = gut ? "Stark gemacht!" : "Noch nicht bestanden";
     document.getElementById("lektion-uebergang-ergebnis").innerText = `${richtig} von ${total} richtig (${pct}%)`;
     const btn = document.getElementById("lektion-uebergang-weiter-btn");
-    if (naechste) {
+    if (!gut) {
+        btn.innerText = "🔄 Übung nochmal";
+        btn.onclick = () => startLektionUebung(stufe);
+    } else if (naechste) {
         btn.innerText = `Weiter: ${naechste === "mittel" ? "Mittlere" : "Schwere"} Übung ➔`;
         btn.onclick = () => startLektionUebung(naechste);
     } else {

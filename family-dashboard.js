@@ -2376,6 +2376,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 study: ['dash-study-body', 'dash-study-arrow'],
                 kurse: ['dash-kurse-body', 'dash-kurse-arrow'],
                 goal: ['dash-goal-body', 'dash-goal-arrow'],
+                lesson: ['dash-lesson-body', 'dash-lesson-arrow'],
                 assign: ['dash-assign-body', 'dash-assign-arrow']
             };
             const pair = map[which] || ['dash-study-body', 'dash-study-arrow'];
@@ -2407,7 +2408,7 @@ auth.createUserWithEmailAndPassword(e, p)
             box.innerHTML = keys.map(k => {
                 const p = ALL_PROFILES[k];
                 const doneMap = (p && p.lektionen) || {};
-                const rows = dashKurseGruppen(doneMap);
+                const rows = dashKurseGruppen(doneMap, p && p.pendingLesson);
                 return `<div class="space-y-3">
                     ${keys.length > 1 ? `<div class="font-bold text-white text-sm">${esc(p.name)}</div>` : ''}
                     ${rows || '<div class="text-[11px] text-gray-500">Noch keine Lektion gestartet</div>'}
@@ -2418,7 +2419,7 @@ auth.createUserWithEmailAndPassword(e, p)
         // Kurse für die Eltern-Ansicht nach Fach und Klassenstufe gruppieren.
         // Bei 80+ Kursen wäre eine flache Liste unbrauchbar – deshalb aufklappbare
         // Abschnitte, die nur dort offen starten, wo das Kind schon etwas gemacht hat.
-        function dashKurseGruppen(doneMap) {
+        function dashKurseGruppen(doneMap, pendingLesson) {
             const faecher = [...new Set(KURSE.map(k => k.subject))];
             const order = (typeof KURS_FACH_ORDER !== 'undefined') ? KURS_FACH_ORDER : [];
             const sortiert = [
@@ -2444,7 +2445,7 @@ auth.createUserWithEmailAndPassword(e, p)
                         sFertig += fertig;
                         sGesamt += liste.length;
                         if (begonnen) aktiv = true;
-                        return dashKursKarte(kurs, liste, doneMap, fertig, begonnen);
+                        return dashKursKarte(kurs, liste, doneMap, fertig, begonnen, pendingLesson);
                     }).join('');
                     fachFertig += sFertig;
                     fachGesamt += sGesamt;
@@ -2471,7 +2472,7 @@ auth.createUserWithEmailAndPassword(e, p)
 
         // Eine Kurs-Karte. Noch nicht begonnene Kurse bleiben eine schmale Zeile,
         // damit die Ansicht nicht von leeren Lektionslisten zugeschüttet wird.
-        function dashKursKarte(kurs, liste, doneMap, fertig, begonnen) {
+        function dashKursKarte(kurs, liste, doneMap, fertig, begonnen, pendingLesson) {
             const pct = Math.round((fertig / liste.length) * 100);
             const kopf = `<div class="flex items-center justify-between gap-2 text-xs">
                     <span class="font-bold text-gray-100 truncate">${kurs.icon || '📘'} ${esc(kurs.title)}</span>
@@ -2483,7 +2484,7 @@ auth.createUserWithEmailAndPassword(e, p)
             const lektionRows = liste.map(l => {
                 const eintrag = doneMap[l.id];
                 const frei = (typeof istLektionFreigeschaltetFuer === 'function')
-                    ? istLektionFreigeschaltetFuer(l, liste, doneMap)
+                    ? istLektionFreigeschaltetFuer(l, liste, doneMap, pendingLesson)
                     : true;
                 let statusIcon, ergebnis, ergebnisClass;
                 if (eintrag && eintrag.bestanden) {
@@ -2521,11 +2522,13 @@ auth.createUserWithEmailAndPassword(e, p)
         // Freischalt-Status für ein beliebiges Kind (nicht nur currentPlayer) berechnen –
         // gleiche Regel wie istLektionFreigeschaltet() in lektionen.js, nur ohne
         // Abhängigkeit vom aktuell eingeloggten Profil.
-        function istLektionFreigeschaltetFuer(lektion, liste, doneMap) {
+        function istLektionFreigeschaltetFuer(lektion, liste, doneMap, pendingLesson) {
             if (typeof isDevAdmin === "function" && isDevAdmin()) return true;
-            if (lektion.order <= 1) return true;
+            if (pendingLesson && pendingLesson.lektionId === lektion.id) return true;
+            if (doneMap && doneMap[lektion.id] && doneMap[lektion.id].bestanden) return true;
             const vorherige = liste.find(l => l.order === lektion.order - 1);
-            return !vorherige || !!(doneMap[vorherige.id] && doneMap[vorherige.id].bestanden);
+            if (!vorherige) return false;
+            return !!(doneMap[vorherige.id] && doneMap[vorherige.id].bestanden);
         }
 
         function toggleDashPlayerBlock(id) {

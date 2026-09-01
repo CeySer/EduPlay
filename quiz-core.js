@@ -90,11 +90,20 @@
         const STUDY_VIEWS = ["quiz", "vokabeln", "lesen", "suchsel-play"];
 
         function trackStudySeconds(seconds) {
-            if (testMode) return; // Tests zählen nicht zur Lernzeit / zum Auftrag
+            if (testMode) return; // zugewiesene Tests zählen nicht zur Lernzeit
+            if (typeof currentLektion !== "undefined" && currentLektion && currentLektion.step === "test") return;
             if (!currentPlayer || !activePlayerKey || !(seconds > 0)) return;
             const day = new Date().toISOString().slice(0, 10);
             if (!currentPlayer.studyLog) currentPlayer.studyLog = {};
             currentPlayer.studyLog[day] = (currentPlayer.studyLog[day] || 0) + Math.round(seconds);
+            if (typeof currentLektion !== "undefined" && currentLektion && currentLektion.step !== "test") {
+                if (!currentPlayer.lessonStudyLog) currentPlayer.lessonStudyLog = {};
+                currentPlayer.lessonStudyLog[day] = (currentPlayer.lessonStudyLog[day] || 0) + Math.round(seconds);
+                const lkeys = Object.keys(currentPlayer.lessonStudyLog).sort();
+                while (lkeys.length > 60) {
+                    delete currentPlayer.lessonStudyLog[lkeys.shift()];
+                }
+            }
             // nur letzte 60 Tage behalten
             const keys = Object.keys(currentPlayer.studyLog).sort();
             while (keys.length > 60) {

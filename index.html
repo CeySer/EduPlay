@@ -495,6 +495,21 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         </div>
 
                         <div class="glass-card overflow-hidden">
+                            <button type="button" onclick="toggleDashSection('lesson')"
+                                class="w-full px-4 py-4 flex items-center justify-between hover:bg-white/5 transition">
+                                <span class="text-base font-black text-amber-300">📚 Lektion zuweisen</span>
+                                <span id="dash-lesson-arrow" class="text-gray-400 transition-transform">▼</span>
+                            </button>
+                            <div id="dash-lesson-body" class="hidden px-4 pb-4 space-y-3">
+                                <p class="text-[11px] text-gray-500">Lektionen sind gesperrt. Die zugewiesene Lektion wird frei, danach die nächste nach Bestehen.</p>
+                                <select id="dash-lesson-grade" class="input-modern text-sm" onchange="fillDashLessonSelect()"></select>
+                                <select id="dash-lesson-id" class="input-modern text-sm"></select>
+                                <button type="button" onclick="assignLessonFromDashboard()" class="btn-primary w-full text-center">Lektion zuweisen 📚</button>
+                                <div id="dash-lesson-notices" class="space-y-2"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card overflow-hidden">
                             <button type="button" onclick="toggleDashSection('assign')"
                                 class="w-full px-4 py-4 flex items-center justify-between hover:bg-white/5 transition">
                                 <span class="text-base font-black text-indigo-300">📝 Test zuweisen</span>
@@ -532,15 +547,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <button onclick="assignTestFromDashboard()" class="btn-primary w-full text-center">Test
                                 zuweisen 🚀</button>
 
-                            <div class="pt-3 border-t border-white/5 mt-2 space-y-2">
-                                <div class="text-sm font-black text-amber-300">📚 Lektion zuweisen</div>
-                                <p class="text-[11px] text-gray-500">Eine Lektion für das Kind im Fokus. Erscheint auf dem Startscreen.</p>
-                                <select id="dash-lesson-grade" class="input-modern text-sm" onchange="fillDashLessonSelect()"></select>
-                                <select id="dash-lesson-id" class="input-modern text-sm"></select>
-                                <button type="button" onclick="assignLessonFromDashboard()" class="btn-primary w-full text-center">Lektion zuweisen 📚</button>
-                                <div id="dash-lesson-notices" class="space-y-2"></div>
-                            </div>
-
                             <div class="pt-3 border-t border-white/5 mt-1">
                                 <label class="text-xs text-gray-400 font-bold block mb-2">💾 Gespeicherte
                                     Vorlagen</label>
@@ -564,7 +570,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <span id="dash-study-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
                             <div id="dash-study-body" class="hidden px-3.5 pb-4 pt-1 space-y-3">
-                                <p class="text-[11px] text-gray-500">Übungszeit (ohne Tests).</p>
+                                <p class="text-[11px] text-gray-500 leading-relaxed">Eine Uhr für alles Üben (Auftrag). Darunter siehst du, wie viel davon Lektionen waren. Tests zählen extra und nicht hier.</p>
                                 <div id="dash-study-log" class="space-y-2 text-sm"></div>
                             </div>
                         </div>
@@ -579,6 +585,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <span id="dash-kurse-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
                             <div id="dash-kurse-body" class="hidden px-3.5 pb-4 pt-1 space-y-3">
+                                <p class="text-[11px] text-gray-500 leading-relaxed">Hier zählt nur, welche Lektionen <b>bestanden</b> sind (Abschlusstest geschafft). Die Zeit dafür steckt in der Lernzeit oben, sobald geübt wurde.</p>
                                 <div id="dash-kurse-overview" class="space-y-3 text-sm"></div>
                             </div>
                         </div>
@@ -593,6 +600,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <span id="dash-tests-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
                             <div id="dash-tests-body" class="hidden px-3.5 pb-4 pt-1 space-y-3">
+                                <p class="text-[11px] text-gray-500 leading-relaxed">Nur von euch <b>zugewiesene Tests</b>. Die Zeit dafür zählt nicht zur Lernzeit oben.</p>
                                 <div id="dash-test-stats-overview" class="space-y-3 text-sm"></div>
                             </div>
                         </div>
@@ -2665,12 +2673,12 @@ VIEW: QUIZ SETUP
     ============================================================ -->
     <script src="app-config.js?v=13.1"></script>
     <script src="app-ui.js?v=9.4"></script>
-    <script src="family-dashboard.js?v=11.28"></script>
+    <script src="family-dashboard.js?v=11.30"></script>
     <script src="dev-admin.js?v=1.7"></script>
     <script src="ui-common.js?v=9.2"></script>
     <script src="ki-coach.js?v=1.1"></script>
-    <script src="quiz-core.js?v=10.7"></script>
-    <script src="lektionen.js?v=3.10"></script>
+    <script src="quiz-core.js?v=10.9"></script>
+    <script src="lektionen.js?v=3.11"></script>
     <script src="lektionen_formen_k1k2.js?v=1"></script>
     <script src="lektionen_grundschule_k1k4.js?v=1"></script>
     <script src="lektionen_grundschule_k1k4_teil2.js?v=1"></script>

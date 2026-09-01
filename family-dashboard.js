@@ -1430,10 +1430,12 @@ auth.createUserWithEmailAndPassword(e, p)
             // Nur Fokus-Kind (oder alle, falls keines gewählt)
             const todayParts = profileEntries.map(({ p }) => {
                 const sec = (p.studyLog && p.studyLog[today]) || 0;
+                const lek = (p.lessonStudyLog && p.lessonStudyLog[today]) || 0;
                 const cls = sec >= 60 ? "text-indigo-300" : "text-gray-500";
-                return `<div class="flex justify-between items-center py-2">
+                const extra = lek > 0 ? `<div class="text-[11px] text-amber-300/90 font-bold">davon Lektionen ${formatStudyDuration(lek)}</div>` : "";
+                return `<div class="flex justify-between items-start py-2 gap-3">
                     <span class="text-white font-bold text-sm">${esc(p.name)}</span>
-                    <span class="font-black text-sm ${cls}">${formatStudyDuration(sec)}</span>
+                    <span class="text-right"><span class="font-black text-sm ${cls}">${formatStudyDuration(sec)}</span>${extra}</span>
                 </div>`;
             });
             // Woche (Mo–So der aktuellen Kalenderwoche)
@@ -2630,7 +2632,10 @@ auth.createUserWithEmailAndPassword(e, p)
                 if (!p) studyEl.textContent = '';
                 else {
                     const sec = (p.studyLog && p.studyLog[today]) || 0;
-                    studyEl.textContent = 'heute ' + (typeof formatStudyDuration === 'function' ? formatStudyDuration(sec) : (Math.floor(sec / 60) + ' Min.'));
+                    const lek = (p.lessonStudyLog && p.lessonStudyLog[today]) || 0;
+                    let txt = 'heute ' + (typeof formatStudyDuration === 'function' ? formatStudyDuration(sec) : (Math.floor(sec / 60) + ' Min.'));
+                    if (lek > 0) txt += ' · davon Lektionen ' + (typeof formatStudyDuration === 'function' ? formatStudyDuration(lek) : (Math.floor(lek / 60) + ' Min.'));
+                    studyEl.textContent = txt;
                 }
             }
             const kurseEl = document.getElementById('dash-kurse-preview');

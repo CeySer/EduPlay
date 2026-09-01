@@ -2528,9 +2528,9 @@ auth.createUserWithEmailAndPassword(e, p)
             if (typeof isDevAdmin === "function" && isDevAdmin()) return true;
             if (pendingLesson && pendingLesson.lektionId === lektion.id) return true;
             if (doneMap && doneMap[lektion.id] && doneMap[lektion.id].bestanden) return true;
+            if (lektion.order <= 1) return true;
             const vorherige = liste.find(l => l.order === lektion.order - 1);
-            if (!vorherige) return false;
-            return !!(doneMap[vorherige.id] && doneMap[vorherige.id].bestanden);
+            return !vorherige || !!(doneMap[vorherige.id] && doneMap[vorherige.id].bestanden);
         }
 
         function toggleDashPlayerBlock(id) {

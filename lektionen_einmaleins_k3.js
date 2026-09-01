@@ -1,0 +1,188 @@
+// Kleines 1x1 – Lernpfad Klasse 3
+(function () {
+    const extraKurse = [
+        { id: "einmaleins_k3", title: "Kleines 1×1", icon: "🔢", grade: 3, subject: "mathe", beschreibung: "Reihen 2, 5, 10, dann 3 und 4, dann 6–9, zum Schluss Mischen und Teilen." }
+    ];
+    const extraLektionen = [
+    {
+        id: "1x1_k3_l1", kurs: "einmaleins_k3", order: 1, icon: "🔟",
+        title: "2er, 5er, 10er", kurz: "leichte Reihen",
+        erklaerung: {
+            intro: "Das <b>kleine Einmaleins</b> heißt: gleiche Zahl immer wieder addieren. Die <b>2er</b>, <b>5er</b> und <b>10er</b> Reihe merkt man schnell, weil sie einem Muster folgen.",
+            beispiele: [
+                "2, 4, 6, 8, 10 … immer +2",
+                "5, 10, 15, 20 … immer +5",
+                "10, 20, 30 … eine 0 anhängen"
+            ],
+            merksatz: "2er gerade, 5er endet auf 0 oder 5, 10er eine Null dran."
+        },
+        uebung: {
+            leicht: [
+                { id: "x1l1_l1", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "2 · 3 =", answers: ["6", "5", "8", "4"], correct: 0, explanation: "2+2+2=6." },
+                { id: "x1l1_l2", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "2 · 5 =", answers: ["10", "8", "12", "7"], correct: 0, explanation: "fünf Zweier sind 10." },
+                { id: "x1l1_l3", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "5 · 2 =", answers: ["10", "7", "12", "15"], correct: 0, explanation: "5+5=10." },
+                { id: "x1l1_l4", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "10 · 3 =", answers: ["30", "13", "20", "40"], correct: 0, explanation: "3 Zehner sind 30." }
+            ],
+            mittel: [
+                { id: "x1l1_m1", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "5 · 6 =", answers: ["30", "25", "35", "20"], correct: 0, explanation: "sechs Fünfer: 30." },
+                { id: "x1l1_m2", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "2 · 8 =", answers: ["16", "14", "18", "12"], correct: 0, explanation: "8+8=16." },
+                { id: "x1l1_m3", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "10 · 7 =", answers: ["70", "17", "60", "80"], correct: 0, explanation: "7 und eine 0: 70." },
+                { id: "x1l1_m4", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "5 · 9 =", answers: ["45", "40", "50", "35"], correct: 0, explanation: "9·5=45." }
+            ],
+            schwer: [
+                { id: "x1l1_s1", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "2 · 12 wäre schon großes 1x1. 2 · 9 im kleinen =", answers: ["18", "16", "20", "11"], correct: 0, explanation: "9+9=18." },
+                { id: "x1l1_s2", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "Welche Zahl fehlt: 5, 10, 15, __, 25?", answers: ["20", "18", "22", "30"], correct: 0, explanation: "immer +5." },
+                { id: "x1l1_s3", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "10 · 0 =", answers: ["0", "10", "1", "100"], correct: 0, explanation: "mal Null ist immer 0." },
+                { id: "x1l1_s4", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "5 · 8 = 40, also 8 · 5 =", answers: ["40", "45", "35", "48"], correct: 0, explanation: "mal darf man tauschen." }
+            ]
+        },
+        test: [
+                { id: "x1l1_t1", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "2 · 4 =", answers: ["8", "6", "10", "4"], correct: 0, explanation: "8." },
+                { id: "x1l1_t2", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "5 · 4 =", answers: ["20", "15", "25", "10"], correct: 0, explanation: "20." },
+                { id: "x1l1_t3", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "10 · 4 =", answers: ["40", "14", "30", "50"], correct: 0, explanation: "40." },
+                { id: "x1l1_t4", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "2 · 7 =", answers: ["14", "12", "16", "9"], correct: 0, explanation: "14." },
+                { id: "x1l1_t5", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "5 · 7 =", answers: ["35", "30", "40", "25"], correct: 0, explanation: "35." },
+                { id: "x1l1_t6", category: "kurs_1x1_k3_l1", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "10 · 8 =", answers: ["80", "18", "70", "90"], correct: 0, explanation: "80." }
+        ],
+        bestehenAb: 0.75
+    },
+    {
+        id: "1x1_k3_l2", kurs: "einmaleins_k3", order: 2, icon: "3️⃣",
+        title: "3er und 4er", kurz: "nächste Reihen",
+        erklaerung: {
+            intro: "Die <b>3er-Reihe</b>: 3, 6, 9, 12, 15 … Die <b>4er-Reihe</b> ist die 2er-Reihe noch einmal verdoppelt: 4, 8, 12, 16.",
+            beispiele: [
+                "3 · 4 = 12",
+                "4 · 5 = 20",
+                "3 · 7 = 21",
+                "4 · 8 = 32"
+            ],
+            merksatz: "3er: +3. 4er: +4 oder doppelte 2er-Reihe."
+        },
+        uebung: {
+            leicht: [
+                { id: "x1l2_l1", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "3 · 2 =", answers: ["6", "5", "9", "3"], correct: 0, explanation: "3+3=6." },
+                { id: "x1l2_l2", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "3 · 3 =", answers: ["9", "6", "12", "8"], correct: 0, explanation: "3+3+3=9." },
+                { id: "x1l2_l3", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "4 · 2 =", answers: ["8", "6", "4", "10"], correct: 0, explanation: "4+4=8." },
+                { id: "x1l2_l4", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "4 · 3 =", answers: ["12", "8", "16", "7"], correct: 0, explanation: "4+4+4=12." }
+            ],
+            mittel: [
+                { id: "x1l2_m1", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "3 · 5 =", answers: ["15", "12", "18", "10"], correct: 0, explanation: "fünf Dreier = 15." },
+                { id: "x1l2_m2", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "4 · 6 =", answers: ["24", "20", "28", "18"], correct: 0, explanation: "6·4=24." },
+                { id: "x1l2_m3", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "3 · 8 =", answers: ["24", "21", "27", "18"], correct: 0, explanation: "8·3=24." },
+                { id: "x1l2_m4", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "4 · 7 =", answers: ["28", "24", "32", "21"], correct: 0, explanation: "7·4=28." }
+            ],
+            schwer: [
+                { id: "x1l2_s1", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "3 · 9 =", answers: ["27", "24", "30", "18"], correct: 0, explanation: "9·3=27." },
+                { id: "x1l2_s2", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "4 · 9 =", answers: ["36", "32", "40", "27"], correct: 0, explanation: "9·4=36." },
+                { id: "x1l2_s3", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "Welche Zahl fehlt: 3, 6, 9, __, 15?", answers: ["12", "10", "11", "14"], correct: 0, explanation: "+3." },
+                { id: "x1l2_s4", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "4 · 5 und 5 · 4 sind …", answers: ["beide 20", "verschieden", "24 und 20", "nur 5·4 gilt"], correct: 0, explanation: "Tauschregel." }
+            ]
+        },
+        test: [
+                { id: "x1l2_t1", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "3 · 4 =", answers: ["12", "9", "16", "7"], correct: 0, explanation: "12." },
+                { id: "x1l2_t2", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "4 · 4 =", answers: ["16", "12", "20", "8"], correct: 0, explanation: "16." },
+                { id: "x1l2_t3", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "3 · 6 =", answers: ["18", "15", "21", "12"], correct: 0, explanation: "18." },
+                { id: "x1l2_t4", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "4 · 8 =", answers: ["32", "28", "36", "24"], correct: 0, explanation: "32." },
+                { id: "x1l2_t5", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "3 · 7 =", answers: ["21", "18", "24", "14"], correct: 0, explanation: "21." },
+                { id: "x1l2_t6", category: "kurs_1x1_k3_l2", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "4 · 5 =", answers: ["20", "16", "24", "15"], correct: 0, explanation: "20." }
+        ],
+        bestehenAb: 0.75
+    },
+    {
+        id: "1x1_k3_l3", kurs: "einmaleins_k3", order: 3, icon: "9️⃣",
+        title: "6er bis 9er", kurz: "die kniffligen",
+        erklaerung: {
+            intro: "6, 7, 8 und 9 braucht man öfter üben. Hilfen: <b>6 · n = 3 · n + 3 · n</b>. <b>9er</b>: Quersumme 9 (bis 9·10).",
+            beispiele: [
+                "6 · 4 = 24 (zwei mal 12)",
+                "7 · 5 = 35",
+                "8 · 8 = 64",
+                "9 · 6 = 54 (5+4=9)"
+            ],
+            merksatz: "Schwerere Reihen: in zwei leichtere zerlegen oder Muster nutzen."
+        },
+        uebung: {
+            leicht: [
+                { id: "x1l3_l1", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "6 · 2 =", answers: ["12", "8", "10", "14"], correct: 0, explanation: "6+6=12." },
+                { id: "x1l3_l2", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "7 · 2 =", answers: ["14", "12", "16", "9"], correct: 0, explanation: "7+7=14." },
+                { id: "x1l3_l3", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "8 · 2 =", answers: ["16", "14", "18", "10"], correct: 0, explanation: "8+8=16." },
+                { id: "x1l3_l4", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "9 · 2 =", answers: ["18", "16", "20", "11"], correct: 0, explanation: "9+9=18." }
+            ],
+            mittel: [
+                { id: "x1l3_m1", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "6 · 5 =", answers: ["30", "24", "36", "25"], correct: 0, explanation: "5·6=30." },
+                { id: "x1l3_m2", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "7 · 4 =", answers: ["28", "21", "32", "24"], correct: 0, explanation: "4·7=28." },
+                { id: "x1l3_m3", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "8 · 5 =", answers: ["40", "35", "45", "32"], correct: 0, explanation: "5·8=40." },
+                { id: "x1l3_m4", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "9 · 5 =", answers: ["45", "40", "54", "36"], correct: 0, explanation: "5·9=45." }
+            ],
+            schwer: [
+                { id: "x1l3_s1", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "7 · 7 =", answers: ["49", "42", "56", "48"], correct: 0, explanation: "7·7=49." },
+                { id: "x1l3_s2", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "8 · 8 =", answers: ["64", "56", "72", "48"], correct: 0, explanation: "8·8=64." },
+                { id: "x1l3_s3", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "9 · 8 =", answers: ["72", "63", "81", "64"], correct: 0, explanation: "8·9=72, 7+2=9." },
+                { id: "x1l3_s4", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "6 · 7 =", answers: ["42", "36", "48", "35"], correct: 0, explanation: "6·7=42." }
+            ]
+        },
+        test: [
+                { id: "x1l3_t1", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "6 · 6 =", answers: ["36", "30", "42", "24"], correct: 0, explanation: "36." },
+                { id: "x1l3_t2", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "7 · 6 =", answers: ["42", "36", "48", "35"], correct: 0, explanation: "42." },
+                { id: "x1l3_t3", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "8 · 6 =", answers: ["48", "42", "54", "40"], correct: 0, explanation: "48." },
+                { id: "x1l3_t4", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "9 · 6 =", answers: ["54", "45", "63", "48"], correct: 0, explanation: "54." },
+                { id: "x1l3_t5", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "7 · 8 =", answers: ["56", "48", "64", "49"], correct: 0, explanation: "56." },
+                { id: "x1l3_t6", category: "kurs_1x1_k3_l3", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "9 · 9 =", answers: ["81", "72", "90", "63"], correct: 0, explanation: "81." }
+        ],
+        bestehenAb: 0.75
+    },
+    {
+        id: "1x1_k3_l4", kurs: "einmaleins_k3", order: 4, icon: "➗",
+        title: "Mischen und Teilen", kurz: "umgekehrt",
+        erklaerung: {
+            intro: "Teilen ist die <b>Umkehrung</b> von Mal. Wenn 6 · 4 = 24, dann ist 24 : 4 = 6 und 24 : 6 = 4. So prüfst du das 1×1.",
+            beispiele: [
+                "3 · 8 = 24 → 24 : 8 = 3",
+                "5 · 7 = 35 → 35 : 5 = 7",
+                "9 · 4 = 36 → 36 : 9 = 4"
+            ],
+            merksatz: "Mal und Geteilt gehören zusammen."
+        },
+        uebung: {
+            leicht: [
+                { id: "x1l4_l1", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "12 : 2 =", answers: ["6", "4", "8", "3"], correct: 0, explanation: "2·6=12." },
+                { id: "x1l4_l2", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "20 : 5 =", answers: ["4", "5", "2", "10"], correct: 0, explanation: "5·4=20." },
+                { id: "x1l4_l3", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "30 : 10 =", answers: ["3", "10", "20", "2"], correct: 0, explanation: "10·3=30." },
+                { id: "x1l4_l4", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "leicht", points: 10, question: "16 : 4 =", answers: ["4", "8", "2", "6"], correct: 0, explanation: "4·4=16." }
+            ],
+            mittel: [
+                { id: "x1l4_m1", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "24 : 3 =", answers: ["8", "6", "9", "7"], correct: 0, explanation: "3·8=24." },
+                { id: "x1l4_m2", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "36 : 6 =", answers: ["6", "5", "9", "4"], correct: 0, explanation: "6·6=36." },
+                { id: "x1l4_m3", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "28 : 7 =", answers: ["4", "3", "5", "6"], correct: 0, explanation: "7·4=28." },
+                { id: "x1l4_m4", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "45 : 9 =", answers: ["5", "4", "6", "9"], correct: 0, explanation: "9·5=45." }
+            ],
+            schwer: [
+                { id: "x1l4_s1", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "56 : 8 =", answers: ["7", "6", "8", "9"], correct: 0, explanation: "8·7=56." },
+                { id: "x1l4_s2", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "63 : 9 =", answers: ["7", "6", "8", "9"], correct: 0, explanation: "9·7=63." },
+                { id: "x1l4_s3", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "Welche Probe stimmt? 6 · 8 = 48, also 48 : 6 =", answers: ["8", "6", "7", "9"], correct: 0, explanation: "Umkehrung." },
+                { id: "x1l4_s4", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "schwer", points: 10, question: "0 : 5 =", answers: ["0", "5", "1", "geht nicht so"], correct: 0, explanation: "0 geteilt durch 5 ist 0." }
+            ]
+        },
+        test: [
+                { id: "x1l4_t1", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "18 : 3 =", answers: ["6", "9", "3", "5"], correct: 0, explanation: "6." },
+                { id: "x1l4_t2", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "32 : 4 =", answers: ["8", "6", "4", "9"], correct: 0, explanation: "8." },
+                { id: "x1l4_t3", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "40 : 5 =", answers: ["8", "10", "5", "6"], correct: 0, explanation: "8." },
+                { id: "x1l4_t4", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "27 : 3 =", answers: ["9", "7", "8", "6"], correct: 0, explanation: "9." },
+                { id: "x1l4_t5", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "42 : 6 =", answers: ["7", "6", "8", "5"], correct: 0, explanation: "7." },
+                { id: "x1l4_t6", category: "kurs_1x1_k3_l4", area: "schule", grade: 3, subject: "mathe", topic: "einmaleins", difficulty: "mittel", points: 10, question: "81 : 9 =", answers: ["9", "8", "7", "6"], correct: 0, explanation: "9." }
+        ],
+        bestehenAb: 0.75
+    }
+    ];
+    if (typeof KURSE !== "undefined" && Array.isArray(KURSE)) {
+        extraKurse.forEach(function (k) {
+            if (!KURSE.some(function (x) { return x.id === k.id; })) KURSE.push(k);
+        });
+    }
+    if (typeof LEKTIONEN !== "undefined" && Array.isArray(LEKTIONEN)) {
+        extraLektionen.forEach(function (l) {
+            if (!LEKTIONEN.some(function (x) { return x.id === l.id; })) LEKTIONEN.push(l);
+        });
+    }
+})();

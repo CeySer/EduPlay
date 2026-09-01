@@ -16023,6 +16023,24 @@ function finishLektion(pct) {
             currentPlayer.lektionen[daten.id] = { bestanden, pct, datum: Date.now() };
         }
         if (bestanden && typeof addXP === "function") addXP(50);
+        if (bestanden) {
+            const notice = {
+                id: daten.id,
+                title: (daten.title || daten.id),
+                pct: pct,
+                at: Date.now(),
+                seen: false
+            };
+            if (!currentPlayer.lessonNotices) currentPlayer.lessonNotices = [];
+            currentPlayer.lessonNotices = currentPlayer.lessonNotices.filter(function (n) { return n.id !== daten.id; });
+            currentPlayer.lessonNotices.unshift(notice);
+            currentPlayer.lessonNotices = currentPlayer.lessonNotices.slice(0, 8);
+            if (currentPlayer.pendingLesson && currentPlayer.pendingLesson.lektionId === daten.id) {
+                currentPlayer.pendingLesson = null;
+            }
+            if (typeof showToast === "function") showToast("Lektion geschafft: " + (daten.title || ""), "success");
+            if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
+        }
         if (typeof savePlayerProgress === "function") savePlayerProgress();
     }
 

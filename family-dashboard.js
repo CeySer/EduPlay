@@ -617,6 +617,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 disc.style.color = "#0b1020";
             }
             renderPendingTestCard();
+            if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
             renderStudyGoalCard();
             renderTodayStatusCard();
             renderWeaknessSuggestion();
@@ -3315,6 +3316,8 @@ auth.createUserWithEmailAndPassword(e, p)
                 ladeAlleFragen().then(function () { fillDashTestCategoryUI(); }).catch(function () { });
             }
             renderDashTestResults();
+            if (typeof fillDashLessonSelect === "function") fillDashLessonSelect();
+            if (typeof renderDashLessonNotices === "function") renderDashLessonNotices();
         }
 
         function toggleDashTestArea(id) {
@@ -3448,6 +3451,116 @@ auth.createUserWithEmailAndPassword(e, p)
             showToast(`Test für ${esc(ALL_PROFILES[profileKey].name)} zugewiesen! ⏱️`, "success");
             renderDashAdminProgress();
             if (typeof renderPendingTestCard === "function") renderPendingTestCard();
+            if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
+        }
+
+        function fillDashLessonSelect() {
+            const gEl = document.getElementById("dash-lesson-grade");
+            const sEl = document.getElementById("dash-lesson-id");
+            if (!sEl) return;
+            const kurse = (typeof KURSE !== "undefined" && Array.isArray(KURSE)) ? KURSE : [];
+            const stufen = [...new Set(kurse.map(k => Number(k.grade)).filter(Boolean))].sort((a, b) => a - b);
+            if (gEl && !gEl.dataset.ready) {
+                gEl.innerHTML = stufen.map(g => `<option value="${g}">Klasse ${g}</option>`).join("") || '<option value="">Keine Kurse</option>';
+                gEl.dataset.ready = "1";
+                const pg = currentPlayer && currentPlayer.grade;
+                if (pg && stufen.includes(Number(pg))) gEl.value = String(pg);
+            }
+            const g = gEl ? Number(gEl.value) : 0;
+            const list = [];
+            kurse.filter(k => !g || Number(k.grade) === g).forEach(k => {
+                const ls = (typeof getLektionenForKurs === "function") ? getLektionenForKurs(k.id) : [];
+                ls.forEach(l => {
+                    list.push({ id: l.id, label: `${k.icon || ""} ${k.title}: ${l.title}` });
+                });
+            });
+            sEl.innerHTML = list.map(x => `<option value="${x.id}">${x.label}</option>`).join("") || '<option value="">Keine Lektion</option>';
+        }
+
+        function assignLessonFromDashboard() {
+            const profileKey = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
+            const lektionId = (document.getElementById("dash-lesson-id") || {}).value;
+            if (!profileKey) return showToast("Kein Spieler ausgewählt!", "error");
+            if (!lektionId) return showToast("Bitte eine Lektion wählen.", "error");
+            const lek = (typeof LEKTIONEN !== "undefined" && LEKTIONEN.find(l => l.id === lektionId)) || null;
+            const kurs = lek && typeof KURSE !== "undefined" ? KURSE.find(k => k.id === lek.kurs) : null;
+            const pendingLesson = {
+                lektionId,
+                kursId: lek ? lek.kurs : "",
+                title: lek ? ((kurs ? kurs.title + " · " : "") + lek.title) : lektionId,
+                createdAt: new Date().toISOString()
+            };
+            if (!ALL_PROFILES[profileKey]) return showToast("Spieler nicht gefunden!", "error");
+            ALL_PROFILES[profileKey].pendingLesson = pendingLesson;
+            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.pendingLesson = pendingLesson;
+            if (currentParentUser) {
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
+                    .update({ pendingLesson })
+                    .catch(e => handleError("assignLessonFromDashboard", e, "Lektion konnte nicht zugewiesen werden."));
+            }
+            showToast("Lektion zugewiesen.", "success");
+            if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
+            if (typeof renderDashLessonNotices === "function") renderDashLessonNotices();
+        }
+
+        function renderPendingLessonCard() {
+            const card = document.getElementById("pending-lesson-card");
+            if (!card) return;
+            if (currentPlayer && currentPlayer.pendingLesson && currentPlayer.pendingLesson.lektionId) {
+                const t = currentPlayer.pendingLesson;
+                card.innerHTML =
+                    `<div class="glass-card-glow p-5 text-white" style="background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(239,68,68,0.1));border-color:rgba(245,158,11,0.25);">
+                        <div class="font-black text-lg mb-1">📚 Lektion wartet auf dich!</div>
+                        <div class="text-xs opacity-80 mb-3">${esc(t.title || t.lektionId)}</div>
+                        <button onclick="startAssignedLesson()" class="btn-primary w-full text-center" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">Lektion starten</button>
+                    </div>`;
+                card.classList.remove("hidden");
+            } else {
+                card.classList.add("hidden");
+                card.innerHTML = "";
+            }
+        }
+
+        function startAssignedLesson() {
+            const t = currentPlayer && currentPlayer.pendingLesson;
+            if (!t || !t.lektionId) return;
+            if (typeof openLektion === "function") openLektion(t.lektionId);
+            else showToast("Lektion nicht gefunden.", "error");
+        }
+
+        function renderDashLessonNotices() {
+            const box = document.getElementById("dash-lesson-notices");
+            if (!box) return;
+            const key = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
+            const p = (key && ALL_PROFILES[key]) || currentPlayer;
+            const notes = (p && p.lessonNotices) || [];
+            const open = notes.filter(n => !n.seen);
+            const pend = p && p.pendingLesson;
+            let html = "";
+            if (pend && pend.lektionId) {
+                html += `<div class="text-[11px] font-bold text-amber-200 bg-white/5 rounded-lg px-2.5 py-2">Offen zugewiesen: ${esc(pend.title || pend.lektionId)}</div>`;
+            }
+            open.forEach(n => {
+                html += `<div class="flex items-start justify-between gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-2.5 py-2">
+                    <div class="text-[11px] font-bold text-emerald-200">Fertig: ${esc(n.title || n.id)} · ${n.pct || 0}%</div>
+                    <button type="button" class="text-[10px] font-black text-gray-400" onclick="dismissLessonNotice('${esc(n.id)}')">OK</button>
+                </div>`;
+            });
+            box.innerHTML = html;
+        }
+
+        function dismissLessonNotice(id) {
+            const key = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
+            const p = ALL_PROFILES[key] || currentPlayer;
+            if (!p || !p.lessonNotices) return;
+            p.lessonNotices = p.lessonNotices.map(n => n.id === id ? Object.assign({}, n, { seen: true }) : n);
+            if (currentPlayer && currentPlayer === p) currentPlayer.lessonNotices = p.lessonNotices;
+            if (currentParentUser && key) {
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key)
+                    .update({ lessonNotices: p.lessonNotices })
+                    .catch(function () {});
+            }
+            renderDashLessonNotices();
         }
 
         async function saveTestTemplate() {

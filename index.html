@@ -532,6 +532,15 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <button onclick="assignTestFromDashboard()" class="btn-primary w-full text-center">Test
                                 zuweisen 🚀</button>
 
+                            <div class="pt-3 border-t border-white/5 mt-2 space-y-2">
+                                <div class="text-sm font-black text-amber-300">📚 Lektion zuweisen</div>
+                                <p class="text-[11px] text-gray-500">Eine Lektion für das Kind im Fokus. Erscheint auf dem Startscreen.</p>
+                                <select id="dash-lesson-grade" class="input-modern text-sm" onchange="fillDashLessonSelect()"></select>
+                                <select id="dash-lesson-id" class="input-modern text-sm"></select>
+                                <button type="button" onclick="assignLessonFromDashboard()" class="btn-primary w-full text-center">Lektion zuweisen 📚</button>
+                                <div id="dash-lesson-notices" class="space-y-2"></div>
+                            </div>
+
                             <div class="pt-3 border-t border-white/5 mt-1">
                                 <label class="text-xs text-gray-400 font-bold block mb-2">💾 Gespeicherte
                                     Vorlagen</label>
@@ -1528,6 +1537,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div id="weakness-card" class="hidden"></div>
                 <div id="study-goal-card" class="hidden"></div>
                 <div id="pending-test-card" class="hidden"></div>
+                <div id="pending-lesson-card" class="hidden"></div>
                 <div id="open-duels-list" class="space-y-2"></div>
                 <div id="open-tv-list" class="space-y-2"></div>
 
@@ -2655,12 +2665,12 @@ VIEW: QUIZ SETUP
     ============================================================ -->
     <script src="app-config.js?v=13.1"></script>
     <script src="app-ui.js?v=9.4"></script>
-    <script src="family-dashboard.js?v=11.27"></script>
+    <script src="family-dashboard.js?v=11.28"></script>
     <script src="dev-admin.js?v=1.7"></script>
     <script src="ui-common.js?v=9.2"></script>
     <script src="ki-coach.js?v=1.1"></script>
     <script src="quiz-core.js?v=10.7"></script>
-    <script src="lektionen.js?v=3.8"></script>
+    <script src="lektionen.js?v=3.10"></script>
     <script src="lektionen_formen_k1k2.js?v=1"></script>
     <script src="lektionen_grundschule_k1k4.js?v=1"></script>
     <script src="lektionen_grundschule_k1k4_teil2.js?v=1"></script>

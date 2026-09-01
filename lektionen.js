@@ -15711,7 +15711,6 @@ function istLektionZugewiesen(id) {
 }
 
 function istLektionFreigeschaltet(lektion, liste) {
-    if (typeof isDevAdmin === "function" && isDevAdmin()) return true;
     if (istLektionZugewiesen(lektion.id)) return true;
     if (istLektionAbgeschlossen(lektion.id)) return true;
     if (lektion.order <= 1) return true;

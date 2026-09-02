@@ -104,9 +104,6 @@
     if (typeof window !== "undefined") {
         window.SPASS_FLAGGEN_QUESTIONS = SPASS_FLAGGEN_QUESTIONS;
     }
-    if (typeof QUESTIONS_DATABASE !== "undefined" && Array.isArray(QUESTIONS_DATABASE)) {
-        SPASS_FLAGGEN_QUESTIONS.forEach(function (q) { QUESTIONS_DATABASE.push(q); });
-    }
     if (typeof registerQuestions === "function") {
         registerQuestions("SPASS_FLAGGEN_QUESTIONS", SPASS_FLAGGEN_QUESTIONS);
     }

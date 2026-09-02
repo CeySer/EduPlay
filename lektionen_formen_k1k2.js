@@ -20,7 +20,8 @@
                 "🔺 <b>Dreieck</b> – drei Ecken, drei Seiten<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><polygon points='100,22 168,118 32,118' fill='rgba(251,191,36,0.28)' stroke='#fbbf24' stroke-width='4' stroke-linejoin='round'/></svg>",
                 "🟩 <b>Quadrat</b> – vier gleiche Seiten<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='52' y='22' width='96' height='96' rx='4' fill='rgba(52,211,153,0.28)' stroke='#34d399' stroke-width='4'/></svg>",
                 "🟪 <b>Rechteck</b> – vier Ecken, zwei Seiten länger<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='28' y='42' width='144' height='72' rx='4' fill='rgba(167,139,250,0.28)' stroke='#a78bfa' stroke-width='4'/></svg>"
-            ]
+            ],
+            merksatz: "Kreis = rund, keine Ecken. Dreieck = 3 Ecken. Quadrat und Rechteck = 4 Ecken."
         },
         uebung: {
             leicht: [
@@ -142,9 +143,9 @@
                     points: 10,
                     question: "Was passt zum Rechteck?",
                     grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='28' y='42' width='144' height='72' rx='4' fill='rgba(167,139,250,0.28)' stroke='#a78bfa' stroke-width='4'/></svg>",
-                    answers: ["Es hat genau drei Ecken", "Alle Seiten sind rund", "Gegenüberliegende Seiten sind gleich", "Es hat keine Ecken"],
-                    correct: 2,
-                    explanation: "Beim Rechteck sind gegenüberliegende Seiten gleich lang.",
+                    answers: ["Gegenüber gleich lang", "Es hat drei Ecken", "Alle Seiten sind rund", "Es hat keine Ecken"],
+                    correct: 0,
+                    explanation: "Beim Rechteck sind die gegenüberliegenden Seiten gleich lang.",
                 }
             ],
             schwer: [
@@ -317,7 +318,8 @@
                 "🔺 Dreieck: <b>3 Ecken</b><svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><polygon points='100,22 168,118 32,118' fill='rgba(251,191,36,0.28)' stroke='#fbbf24' stroke-width='4' stroke-linejoin='round'/></svg>",
                 "🟩 Quadrat: <b>4 Ecken</b><svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='52' y='22' width='96' height='96' rx='4' fill='rgba(52,211,153,0.28)' stroke='#34d399' stroke-width='4'/></svg>",
                 "🔵 Kreis: <b>0 Ecken</b><svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><circle cx='100' cy='70' r='48' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='4'/></svg>"
-            ]
+            ],
+            merksatz: "Ecken zählen hilft: Dreieck 3, Viereck 4, Kreis keine. So viele Ecken, so viele Seiten."
         },
         uebung: {
             leicht: [
@@ -615,7 +617,8 @@
                 "🟪 Rechteck – zwei Seiten länger<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='28' y='42' width='144' height='72' rx='4' fill='rgba(167,139,250,0.28)' stroke='#a78bfa' stroke-width='4'/></svg>",
                 "🔵 Kreis – überall gleich rund<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><circle cx='100' cy='70' r='48' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='4'/></svg>",
                 "💗 Oval – länglich rund<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><ellipse cx='100' cy='70' rx='70' ry='38' fill='rgba(244,114,182,0.22)' stroke='#f472b6' stroke-width='4'/></svg>"
-            ]
+            ],
+            merksatz: "Quadrat: vier gleiche Seiten. Rechteck: zwei lange und zwei kurze. Kreis rund, Oval länglich."
         },
         uebung: {
             leicht: [
@@ -767,11 +770,11 @@
                     topic: "formen",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Jedes Rechteck ist ein Quadrat?",
+                    question: "Ist jedes Rechteck ein Quadrat?",
                     grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='28' y='42' width='144' height='72' rx='4' fill='rgba(167,139,250,0.28)' stroke='#a78bfa' stroke-width='4'/></svg>",
-                    answers: ["Ja, immer", "Nur wenn es rund ist", "Nur wenn es drei Ecken hat", "Nein, nicht immer"],
-                    correct: 3,
-                    explanation: "Nur wenn alle Seiten gleich lang sind.",
+                    answers: ["Nein, nicht immer", "Ja, das stimmt", "Nur wenn es rund ist", "Nur bei drei Ecken"],
+                    correct: 0,
+                    explanation: "Ein Rechteck ist nur dann ein Quadrat, wenn alle vier Seiten gleich lang sind.",
                 },
                 {
                     id: "formk2l1_s3",
@@ -912,7 +915,8 @@
                 "🔺 3 Ecken = Dreieck<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><polygon points='100,22 168,118 32,118' fill='rgba(251,191,36,0.28)' stroke='#fbbf24' stroke-width='4' stroke-linejoin='round'/></svg>",
                 "🟩 4 Ecken = Viereck<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='52' y='22' width='96' height='96' rx='4' fill='rgba(52,211,153,0.28)' stroke='#34d399' stroke-width='4'/></svg>",
                 "🔵 0 Ecken = rund<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><circle cx='100' cy='70' r='48' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='4'/></svg>"
-            ]
+            ],
+            merksatz: "Erst fragen: rund oder eckig? Dann die Ecken zählen."
         },
         uebung: {
             leicht: [

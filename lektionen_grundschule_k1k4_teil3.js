@@ -43,8 +43,8 @@
                 {
                     id: "altk1l2_m1", category: "kurs_alltag_k1_l2", area: "schule", grade: 1,
                     subject: "sachunterricht", topic: "alltag", difficulty: "mittel", points: 10,
-                    question: "Am Zebrastreifen …", answers: ["stehen Autos oft, du schaust trotzdem", "rennst du immer ohne Blick", "ist die Ampel essbar", "zählst du nur Steine"], correct: 0,
-                    explanation: "Trotzdem schauen."
+                    question: "Was machst du am Zebrastreifen?", answers: ["Erst schauen, dann gehen", "Sofort losrennen", "Nur die Steine zählen", "Mit dem Rad drüberfahren"], correct: 0,
+                    explanation: "Autos halten meistens – aber du schaust trotzdem nach links und rechts."
                 },
                 {
                     id: "altk1l2_m2", category: "kurs_alltag_k1_l2", area: "schule", grade: 1,
@@ -55,14 +55,14 @@
                 {
                     id: "altk1l2_m3", category: "kurs_alltag_k1_l2", area: "schule", grade: 1,
                     subject: "sachunterricht", topic: "alltag", difficulty: "mittel", points: 10,
-                    question: "Die Feuerwehr kommt bei …", answers: ["Feuer", "Geburtstagskuchen nur", "Matheaufgaben", "Schlaf"], correct: 0,
-                    explanation: "Feuer."
+                    question: "Wann kommt die Feuerwehr?", answers: ["Bei einem Feuer", "Bei einer Party", "Bei den Hausaufgaben", "Beim Einkaufen"], correct: 0,
+                    explanation: "Die Feuerwehr rufst du bei Feuer – die Nummer ist 112."
                 },
                 {
                     id: "altk1l2_m4", category: "kurs_alltag_k1_l2", area: "schule", grade: 1,
                     subject: "sachunterricht", topic: "alltag", difficulty: "mittel", points: 10,
-                    question: "Im Dunkeln siehst du Autos besser mit …", answers: ["heller Kleidung oder Licht", "nur schwarzer Jacke", "geschlossenen Augen", "ohne Blick"], correct: 0,
-                    explanation: "Sichtbar sein."
+                    question: "Wie sieht man dich im Dunkeln besser?", answers: ["Mit heller Kleidung", "Mit dunkler Jacke", "Mit Mütze im Gesicht", "Mit geschlossenen Augen"], correct: 0,
+                    explanation: "Helle Sachen und Reflektoren fangen das Licht der Autos ein."
                 }
             ], schwer: [
                 {
@@ -74,8 +74,8 @@
                 {
                     id: "altk1l2_s2", category: "kurs_alltag_k1_l2", area: "schule", grade: 1,
                     subject: "sachunterricht", topic: "alltag", difficulty: "schwer", points: 10,
-                    question: "Wer darf dir über die Straße helfen?", answers: ["ein bekannter Erwachsener", "ein fremdes Auto anhalten und einsteigen", "niemand je", "nur der Mond"], correct: 0,
-                    explanation: "Vertraute Hilfe."
+                    question: "Wer darf dir über die Straße helfen?", answers: ["Ein Erwachsener, den du kennst", "Ein Fremder mit dem Auto", "Ein anderes kleines Kind", "Ein Hund an der Leine"], correct: 0,
+                    explanation: "Nur Menschen, die du kennst – niemals zu Fremden ins Auto steigen."
                 },
                 {
                     id: "altk1l2_s3", category: "kurs_alltag_k1_l2", area: "schule", grade: 1,
@@ -86,8 +86,8 @@
                 {
                     id: "altk1l2_s4", category: "kurs_alltag_k1_l2", area: "schule", grade: 1,
                     subject: "sachunterricht", topic: "alltag", difficulty: "schwer", points: 10,
-                    question: "Ein Fahrrad auf dem Gehweg: du …", answers: ["passt auf und gehst vorsichtig", "rennst dagegen", "schließt die Augen", "isst die Ampel"], correct: 0,
-                    explanation: "Vorsicht."
+                    question: "Auf dem Gehweg fährt ein Fahrrad. Was tust du?", answers: ["Aufpassen und Platz machen", "Einfach weiterrennen", "Die Augen zumachen", "Vor das Rad springen"], correct: 0,
+                    explanation: "Zur Seite gehen und schauen – so kommt ihr beide gut aneinander vorbei."
                 }
             ] },
         test: [
@@ -191,15 +191,15 @@
                 {
                     id: "anlk1l2_m4", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Oma und Ofen: gleich?", answers: ["O und O, ja ähnlich", "S und M", "T und B", "nie"], correct: 0,
-                    explanation: "O."
+                    question: "Oma und Ofen – gleicher Anlaut?", answers: ["Ja, beide mit O", "Nein, S und M", "Nein, T und B", "Nein, A und U"], correct: 0,
+                    explanation: "Beide Wörter fangen mit dem Laut O an."
                 }
             ], schwer: [
                 {
                     id: "anlk1l2_s1", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "schwer", points: 10,
-                    question: "Drei Wörter mit S?", answers: ["Sonne Saft See", "Maus Mond Mütze", "Ball Baum Bus", "Tisch Tür Tal – warte Tisch Tür und Tal sind T"], correct: 0,
-                    explanation: "S-Wörter: Sonne Saft See."
+                    question: "Welche drei Wörter beginnen mit S?", answers: ["Sonne, Saft, See", "Maus, Mond, Mütze", "Ball, Baum, Bus", "Tisch, Tür, Tal"], correct: 0,
+                    explanation: "Sonne, Saft und See fangen alle mit dem Laut S an."
                 },
                 {
                     id: "anlk1l2_s2", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
@@ -472,8 +472,8 @@
                 {
                     id: "enk2l2_s4", category: "kurs_enmini_k2_l2", area: "schule", grade: 2,
                     subject: "englisch", topic: "minisaetze", difficulty: "schwer", points: 10,
-                    question: "I can see a bird.", answers: ["Ich kann einen Vogel sehen", "Ich bin ein Vogel", "Danke Vogel", "Rot"], correct: 0,
-                    explanation: "can see."
+                    question: "I can see a bird.", answers: ["Ich kann einen Vogel sehen", "Ich bin ein kleiner Vogel", "Der Vogel kann mich sehen", "Ich habe einen Vogel gehabt"], correct: 0,
+                    explanation: "can see heißt sehen können: Ich kann einen Vogel sehen."
                 }
             ] },
         test: [
@@ -539,8 +539,8 @@
                 {
                     id: "uhrk2l2_l2", category: "kurs_uhr_k2_l2", area: "schule", grade: 2,
                     subject: "mathe", topic: "uhrzeit", difficulty: "leicht", points: 10,
-                    question: "Langer Zeiger auf 3 heißt …", answers: ["Viertel nach / 15 Min.", "halb", "genau", "Viertel vor"], correct: 0,
-                    explanation: "3×5=15.",
+                    question: "Der lange Zeiger steht auf 3. Wie spät ist es?", answers: ["Viertel nach", "Viertel vor", "Halb", "Punkt"], correct: 0,
+                    explanation: "3 mal 5 Minuten sind 15 Minuten – also Viertel nach.",
                     grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><circle cx='100' cy='70' r='52' fill='rgba(56,189,248,0.18)' stroke='#0ea5e9' stroke-width='4'/><line x1='100.0' y1='26.0' x2='100.0' y2='18.0' stroke='#334155' stroke-width='2'/><line x1='122.0' y1='31.9' x2='126.0' y2='25.0' stroke='#334155' stroke-width='2'/><line x1='138.1' y1='48.0' x2='145.0' y2='44.0' stroke='#334155' stroke-width='2'/><line x1='144.0' y1='70.0' x2='152.0' y2='70.0' stroke='#334155' stroke-width='2'/><line x1='138.1' y1='92.0' x2='145.0' y2='96.0' stroke='#334155' stroke-width='2'/><line x1='122.0' y1='108.1' x2='126.0' y2='115.0' stroke='#334155' stroke-width='2'/><line x1='100.0' y1='114.0' x2='100.0' y2='122.0' stroke='#334155' stroke-width='2'/><line x1='78.0' y1='108.1' x2='74.0' y2='115.0' stroke='#334155' stroke-width='2'/><line x1='61.9' y1='92.0' x2='55.0' y2='96.0' stroke='#334155' stroke-width='2'/><line x1='56.0' y1='70.0' x2='48.0' y2='70.0' stroke='#334155' stroke-width='2'/><line x1='61.9' y1='48.0' x2='55.0' y2='44.0' stroke='#334155' stroke-width='2'/><line x1='78.0' y1='31.9' x2='74.0' y2='25.0' stroke='#334155' stroke-width='2'/><line x1='100' y1='70' x2='125.8' y2='73.4' stroke='#1e293b' stroke-width='5' stroke-linecap='round'/><line x1='100' y1='70' x2='138.0' y2='70.0' stroke='#ef4444' stroke-width='3' stroke-linecap='round'/><circle cx='100' cy='70' r='4' fill='#1e293b'/></svg>"
                 },
                 {
@@ -553,8 +553,8 @@
                 {
                     id: "uhrk2l2_l4", category: "kurs_uhr_k2_l2", area: "schule", grade: 2,
                     subject: "mathe", topic: "uhrzeit", difficulty: "leicht", points: 10,
-                    question: "Langer Zeiger auf 9 heißt …", answers: ["Viertel vor / 45 Min.", "halb", "genau", "5 nach"], correct: 0,
-                    explanation: "9×5=45."
+                    question: "Der lange Zeiger steht auf 9. Wie spät ist es?", answers: ["Viertel vor", "Viertel nach", "Halb", "Punkt"], correct: 0,
+                    explanation: "9 mal 5 Minuten sind 45 Minuten – also Viertel vor der nächsten Stunde."
                 }
             ], mittel: [
                 {
@@ -588,14 +588,14 @@
                 {
                     id: "uhrk2l2_s1", category: "kurs_uhr_k2_l2", area: "schule", grade: 2,
                     subject: "mathe", topic: "uhrzeit", difficulty: "schwer", points: 10,
-                    question: "Warum halb 4 nicht halb 3?", answers: ["weil halb zur nächsten Stunde gehört", "weil 3 größer ist", "weil Rot Halt heißt", "weil Silben fehlen"], correct: 0,
-                    explanation: "halb + nächste."
+                    question: "Warum sagt man halb 4 und nicht halb 3?", answers: ["Halb zeigt zur nächsten Stunde", "Weil die 3 kleiner ist", "Weil 4 leichter klingt", "Weil der Zeiger fehlt"], correct: 0,
+                    explanation: "Um 3:30 ist die Hälfte des Weges zur 4 geschafft – deshalb halb 4."
                 },
                 {
                     id: "uhrk2l2_s2", category: "kurs_uhr_k2_l2", area: "schule", grade: 2,
                     subject: "mathe", topic: "uhrzeit", difficulty: "schwer", points: 10,
-                    question: "3:45 in Worten?", answers: ["Viertel vor 4", "Viertel nach 3 nur als 3:15", "halb 3", "genau 3"], correct: 0,
-                    explanation: ":45."
+                    question: "Wie sagt man 3:45?", answers: ["Viertel vor 4", "Viertel nach 3", "Halb 3", "Punkt 3"], correct: 0,
+                    explanation: "45 Minuten sind eine Viertelstunde vor der vollen Stunde."
                 },
                 {
                     id: "uhrk2l2_s3", category: "kurs_uhr_k2_l2", area: "schule", grade: 2,
@@ -715,16 +715,16 @@
                 {
                     id: "brk3l2_m4", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
                     subject: "mathe", topic: "brueche", difficulty: "mittel", points: 10,
-                    question: "Welcher Balken zeigt die Hälfte?", answers: ["2 gleiche Teile, eins dunkel", "4 Teile eins dunkel", "4 Teile drei dunkel", "0 Teile"], correct: 0,
-                    explanation: "1/2.",
+                    question: "Welcher Balken zeigt die Hälfte?", answers: ["2 Teile, eins dunkel", "4 Teile, eins dunkel", "4 Teile, drei dunkel", "3 Teile, eins dunkel"], correct: 0,
+                    explanation: "Bei der Hälfte ist genau eines von zwei gleichen Teilen gefärbt.",
                     grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40' width='76.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40' width='76.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>"
                 }
             ], schwer: [
                 {
                     id: "brk3l2_s1", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
                     subject: "mathe", topic: "brueche", difficulty: "schwer", points: 10,
-                    question: "Nenner ist …", answers: ["die Zahl unten / alle Teile", "nur die dunklen", "immer 0", "nur die Farbe"], correct: 0,
-                    explanation: "alle Teile."
+                    question: "Was ist der Nenner?", answers: ["Die Zahl unten", "Die Zahl oben", "Nur die dunklen", "Immer die Null"], correct: 0,
+                    explanation: "Der Nenner steht unten und sagt, in wie viele Teile das Ganze geteilt ist."
                 },
                 {
                     id: "brk3l2_s2", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
@@ -975,15 +975,15 @@
                 {
                     id: "zfk3l2_m4", category: "kurs_zeit_k3_l2", area: "schule", grade: 3,
                     subject: "deutsch", topic: "zeitform", difficulty: "mittel", points: 10,
-                    question: "Heute ___ sie ein Buch.", answers: ["liest", "las", "les", "gelesen hier nicht nötig"], correct: 0,
-                    explanation: "heute."
+                    question: "Heute ___ sie ein Buch.", answers: ["liest", "las", "lese", "lasen"], correct: 0,
+                    explanation: "Heute heißt jetzt – also Präsens: sie liest."
                 }
             ], schwer: [
                 {
                     id: "zfk3l2_s1", category: "kurs_zeit_k3_l2", area: "schule", grade: 3,
                     subject: "deutsch", topic: "zeitform", difficulty: "schwer", points: 10,
-                    question: "Welche Paarung stimmt?", answers: ["jetzt=Präsens, gestern=Präteritum", "jetzt=Präteritum immer", "gestern=Präsens immer", "beides Artikel"], correct: 0,
-                    explanation: "Signalwörter."
+                    question: "Welche Paarung stimmt?", answers: ["jetzt = Präsens", "jetzt = Präteritum", "gestern = Präsens", "morgen = Präteritum"], correct: 0,
+                    explanation: "Signalwörter helfen: jetzt und heute zeigen auf die Gegenwart."
                 },
                 {
                     id: "zfk3l2_s2", category: "kurs_zeit_k3_l2", area: "schule", grade: 3,
@@ -1090,20 +1090,20 @@
                 {
                     id: "afk4l2_m2", category: "kurs_auf_k4_l2", area: "schule", grade: 4,
                     subject: "deutsch", topic: "aufsatz", difficulty: "mittel", points: 10,
-                    question: "Zuerst planen heißt …", answers: ["Stichworte sammeln", "sofort den Schluss schreiben und fertig", "das Heft weglegen", "die Ampel essen"], correct: 0,
-                    explanation: "Plan."
+                    question: "Was heißt „zuerst planen“?", answers: ["Stichworte sammeln", "Den Schluss schreiben", "Das Heft weglegen", "Die Wörter zählen"], correct: 0,
+                    explanation: "Du notierst kurz, was in den Text soll – erst danach schreibst du los."
                 },
                 {
                     id: "afk4l2_m3", category: "kurs_auf_k4_l2", area: "schule", grade: 4,
                     subject: "deutsch", topic: "aufsatz", difficulty: "mittel", points: 10,
-                    question: "Ein Bericht erzählt …", answers: ["was passiert ist", "nur erfundene Drachen immer", "nur 1x1", "nur Farben"], correct: 0,
-                    explanation: "tatsächlich."
+                    question: "Was erzählt ein Bericht?", answers: ["Was passiert ist", "Was erfunden ist", "Was morgen kommt", "Was man sich wünscht"], correct: 0,
+                    explanation: "Ein Bericht hält Tatsachen fest, keine erfundenen Geschichten."
                 },
                 {
                     id: "afk4l2_m4", category: "kurs_auf_k4_l2", area: "schule", grade: 4,
                     subject: "deutsch", topic: "aufsatz", difficulty: "mittel", points: 10,
-                    question: "Ich-Erzähler spricht als …", answers: ["ich", "nur er immer", "nur die Überschrift", "nur der Bruch"], correct: 0,
-                    explanation: "ich."
+                    question: "Wie spricht ein Ich-Erzähler?", answers: ["Er sagt „ich“", "Er sagt „er“", "Er sagt „sie“", "Er sagt „man“"], correct: 0,
+                    explanation: "„Ich lief zur Tür“ – der Erzähler spricht von sich selbst."
                 }
             ], schwer: [
                 {
@@ -1159,8 +1159,8 @@
                 {
                     id: "afk4l2_t5", category: "kurs_auf_k4_l2", area: "schule", grade: 4,
                     subject: "deutsch", topic: "aufsatz", difficulty: "mittel", points: 10,
-                    question: "Planen?", answers: ["Stichworte", "sofort fertig ohne Idee", "Heft weg", "Ampel"], correct: 0,
-                    explanation: "Plan."
+                    question: "Was gehört zum Planen?", answers: ["Stichworte notieren", "Sofort abgeben", "Das Heft zumachen", "Die Zeilen zählen"], correct: 0,
+                    explanation: "Ein paar Stichworte reichen – sie geben dem Text die Reihenfolge."
                 },
                 {
                     id: "afk4l2_t6", category: "kurs_auf_k4_l2", area: "schule", grade: 4,
@@ -1219,8 +1219,8 @@
                 {
                     id: "euk4l2_m2", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Die Schweiz liegt eher … von DE.", answers: ["südlich", "nördlich am Meer", "ganz im Osten wie Polen nur", "auf Rügen"], correct: 0,
-                    explanation: "Süden."
+                    question: "Wo liegt die Schweiz von Deutschland aus?", answers: ["Südlich", "Nördlich", "Östlich", "Westlich"], correct: 0,
+                    explanation: "Die Schweiz grenzt im Süden an Deutschland."
                 },
                 {
                     id: "euk4l2_m3", category: "kurs_eu_k4_l2", area: "schule", grade: 4,

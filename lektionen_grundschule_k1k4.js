@@ -83,7 +83,7 @@
                     difficulty: "leicht",
                     points: 10,
                     question: "Heute scheint die Sonne – Zeichen?",
-                    answers: [".", "?", "!", "."],
+                    answers: [".", "?", "!", ","],
                     correct: 0,
                     explanation: "Das ist eine Aussage."
                 }
@@ -127,7 +127,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "Wir gehen nach Hause – Zeichen?",
-                    answers: [".", "?", "!", "?"],
+                    answers: [".", "?", "!", ","],
                     correct: 0,
                     explanation: "Ruhige Aussage → Punkt."
                 },
@@ -184,10 +184,10 @@
                     topic: "satzzeichen",
                     difficulty: "schwer",
                     points: 10,
-                    question: "„Bitte sei leise“ ist eher …",
-                    answers: ["ein Ausruf oder eine Bitte", "eine reine Frage", "ein Bruch", "eine Karte"],
+                    question: "„Bitte sei leise“ – was ist das?",
+                    answers: ["Eine Bitte", "Eine Frage", "Ein Name", "Eine Zahl"],
                     correct: 0,
-                    explanation: "Bitte/Befehl → oft !"
+                    explanation: "Wer bittet oder befiehlt, bekommt oft ein Ausrufezeichen: Bitte sei leise!"
                 },
                 {
                     id: "szk1l1_s4",
@@ -216,7 +216,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "Der Bus fährt – Zeichen?",
-                    answers: [".", "?", "!", "."],
+                    answers: [".", "?", "!", ","],
                     correct: 0,
                     explanation: "Aussage → Punkt."
                 },
@@ -258,7 +258,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "Ich heiße Mia – Zeichen?",
-                    answers: [".", "?", "!", "?"],
+                    answers: [".", "?", "!", ","],
                     correct: 0,
                     explanation: "Aussage → Punkt."
                 },
@@ -436,10 +436,10 @@
                     topic: "alltag",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Wenn du dich verlaufen hast, gehst du zu …",
-                    answers: ["einem bekannten Erwachsenen oder zur Polizei", "ins Auto von Fremden", "allein nachts in den Wald", "nirgendwohin immer"],
+                    question: "Du hast dich verlaufen. Zu wem gehst du?",
+                    answers: ["Zu einem Erwachsenen, den du kennst", "Mit einem Fremden im Auto mit", "Zu einem fremden Hund am Weg", "Allein in den dunklen Wald"],
                     correct: 0,
-                    explanation: "Hilfe bei vertrauten Personen."
+                    explanation: "Hilfe holst du bei Menschen, die du kennst – oder bei der Polizei. Nie zu Fremden ins Auto."
                 },
                 {
                     id: "altk1l1_s2",
@@ -537,10 +537,10 @@
                     topic: "alltag",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Im Winter ist es oft …",
-                    answers: ["kalt", "sehr heiß wie Wüste immer", "ohne Kleidung warm", "nur Nacht ohne Tag"],
+                    question: "Wie ist es im Winter oft?",
+                    answers: ["Kalt", "Heiß", "Nass", "Laut"],
                     correct: 0,
-                    explanation: "Winter = kalt."
+                    explanation: "Im Winter ist es kalt – deshalb braucht man Jacke, Mütze und Handschuhe."
                 },
                 {
                     id: "altk1l1_t5",
@@ -1247,9 +1247,9 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "1/2 + 1/2 =",
-                    answers: ["1 Ganzes", "1/4", "0", "3/2 hier nicht nötig"],
+                    answers: ["1 Ganzes", "1/4", "2/4", "0"],
                     correct: 0,
-                    explanation: "Zwei Hälften ergeben das Ganze."
+                    explanation: "Zwei Hälften ergeben zusammen ein Ganzes."
                 },
                 {
                     id: "brk3l1_m4",
@@ -1391,10 +1391,10 @@
                     topic: "brueche",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Größer ist …",
-                    answers: ["3/4", "1/4", "gleich", "keins von beiden immer"],
+                    question: "Was ist größer?",
+                    answers: ["3/4", "1/4", "2/4", "1/8"],
                     correct: 0,
-                    explanation: "3/4 > 1/4."
+                    explanation: "3/4 sind drei von vier Teilen, 1/4 nur eines. 3/4 ist größer."
                 },
                 {
                     id: "brk3l1_t6",
@@ -1837,9 +1837,9 @@
                     difficulty: "schwer",
                     points: 10,
                     question: "Welche Form ist Präsens?",
-                    answers: ["ich laufe", "ich lief", "gelaufen allein", "ich bin gelaufen hier nicht nötig"],
+                    answers: ["ich laufe", "ich lief", "ich bin gelaufen", "ich war gelaufen"],
                     correct: 0,
-                    explanation: "laufe = jetzt."
+                    explanation: "Präsens heißt Gegenwart: ich laufe – das passiert jetzt."
                 },
                 {
                     id: "zfk3l1_s2",
@@ -1864,10 +1864,10 @@
                     topic: "zeitform",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Sie trinkt Milch → Vergangenheit?",
-                    answers: ["Sie trank Milch.", "Sie die Milch.", "Sie trink.", "Sie trinken gestern falsch"],
+                    question: "Sie trinkt Milch. Wie heißt das in der Vergangenheit?",
+                    answers: ["Sie trank Milch.", "Sie trinkt Milch.", "Sie trinke Milch.", "Sie trinken Milch."],
                     correct: 0,
-                    explanation: "trank."
+                    explanation: "trinken – trank. Das ist die Vergangenheitsform, das Präteritum."
                 },
                 {
                     id: "zfk3l1_s4",
@@ -2086,10 +2086,10 @@
                     topic: "aufsatz",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Vor dem Schreiben hilft ein …",
-                    answers: ["Plan mit Stichworten", "sofortiger letzter Satz ohne Idee", "nur der Radiergummi", "nur die Ampel"],
+                    question: "Was hilft vor dem Schreiben?",
+                    answers: ["Ein Plan mit Stichworten", "Der letzte Satz zuerst", "Ein neuer Radiergummi", "Ein leeres Blatt Papier"],
                     correct: 0,
-                    explanation: "Erst planen."
+                    explanation: "Erst sammelst du Stichworte, dann schreibst du – so vergisst du nichts."
                 },
                 {
                     id: "afk4l1_m4",
@@ -2100,10 +2100,10 @@
                     topic: "aufsatz",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Nach dem Schreiben solltest du …",
-                    answers: ["überlesen", "sofort zerreißen", "nie wieder lesen", "nur die Überschrift löschen"],
+                    question: "Was machst du nach dem Schreiben?",
+                    answers: ["Den Text noch einmal lesen", "Das Blatt sofort abgeben", "Die Überschrift streichen", "Das Heft gleich zumachen"],
                     correct: 0,
-                    explanation: "Korrektur."
+                    explanation: "Beim Überlesen findest du Fehler, die dir beim Schreiben entgangen sind."
                 }
             ],
             schwer: [
@@ -2116,10 +2116,10 @@
                     topic: "aufsatz",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Ein Bericht erzählt eher …",
-                    answers: ["was wirklich passiert ist", "nur erfundene Drachen immer", "nur Witze ohne Anlass", "nur 1x1"],
+                    question: "Was erzählt ein Bericht?",
+                    answers: ["Was wirklich passiert ist", "Eine erfundene Geschichte", "Einen ausgedachten Witz", "Ein Gedicht mit Reimen"],
                     correct: 0,
-                    explanation: "Bericht = tatsächlich."
+                    explanation: "Ein Bericht hält fest, was tatsächlich geschehen ist – sachlich und der Reihe nach."
                 },
                 {
                     id: "afk4l1_s2",
@@ -2130,10 +2130,10 @@
                     topic: "aufsatz",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Ich-Form heißt: der Erzähler …",
-                    answers: ["steckt selbst in der Geschichte", "sieht alles nur von außen", "ist ein Bruch", "ist eine Karte"],
+                    question: "Was heißt Ich-Form?",
+                    answers: ["Der Erzähler ist selbst dabei", "Der Erzähler sieht nur zu", "Es gibt keinen Erzähler", "Alle Figuren erzählen"],
                     correct: 0,
-                    explanation: "Ich-Erzähler."
+                    explanation: "„Ich ging in den Garten“ – der Erzähler erlebt die Geschichte selbst mit."
                 },
                 {
                     id: "afk4l1_s3",
@@ -2217,10 +2217,10 @@
                     topic: "aufsatz",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Vor dem Schreiben?",
-                    answers: ["planen", "sofort fertig ohne Idee", "Heft weglegen immer", "Ampel essen"],
+                    question: "Was tust du vor dem Schreiben?",
+                    answers: ["Stichworte planen", "Sofort abgeben", "Das Heft weglegen", "Die Seiten zählen"],
                     correct: 0,
-                    explanation: "Plan."
+                    explanation: "Ein kurzer Plan spart später viel Arbeit."
                 },
                 {
                     id: "afk4l1_t5",
@@ -2690,10 +2690,10 @@
                     topic: "europa",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Dänemark liegt … von Deutschland.",
-                    answers: ["nördlich", "südlich", "nur östlich an Polen", "nur westlich an Frankreich"],
+                    question: "Wo liegt Dänemark von Deutschland aus?",
+                    answers: ["Nördlich", "Südlich", "Östlich", "Westlich"],
                     correct: 0,
-                    explanation: "Norden."
+                    explanation: "Dänemark grenzt im Norden an Deutschland."
                 },
                 {
                     id: "euk4l1_s3",
@@ -2718,10 +2718,10 @@
                     topic: "europa",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Die EU ist …",
-                    answers: ["ein Zusammenschluss von Staaten", "ein Berg", "ein Fluss", "eine Stadt in Bayern"],
+                    question: "Was ist die EU?",
+                    answers: ["Ein Bund von Staaten", "Ein hoher Berg", "Ein langer Fluss", "Eine Stadt in Bayern"],
                     correct: 0,
-                    explanation: "Europäische Union."
+                    explanation: "Die Europäische Union ist ein Zusammenschluss von europäischen Ländern."
                 }
             ]
         },
@@ -2777,10 +2777,10 @@
                     topic: "europa",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Rhein fließt durch …",
-                    answers: ["Köln", "München", "Freiburg nur als Donau", "Wien nur"],
+                    question: "Durch welche Stadt fließt der Rhein?",
+                    answers: ["Köln", "München", "Berlin", "Dresden"],
                     correct: 0,
-                    explanation: "Köln am Rhein."
+                    explanation: "Der Rhein fließt durch Köln. Durch München fließt die Isar."
                 },
                 {
                     id: "euk4l1_t5",

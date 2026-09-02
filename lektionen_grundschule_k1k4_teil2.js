@@ -418,7 +418,7 @@
                 {
                     id: "szk1l2_l4", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
-                    question: "Der Vogel fliegt – Zeichen?", answers: [".", "?", "!", "?"], correct: 0,
+                    question: "Der Vogel fliegt – Zeichen?", answers: [".", "?", "!", ","], correct: 0,
                     explanation: "Aussage."
                 }
             ], mittel: [
@@ -437,7 +437,7 @@
                 {
                     id: "szk1l2_m3", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Heute ist Montag – Zeichen?", answers: [".", "?", "!", "?"], correct: 0,
+                    question: "Heute ist Montag – Zeichen?", answers: [".", "?", "!", ","], correct: 0,
                     explanation: "Aussage."
                 },
                 {
@@ -476,7 +476,7 @@
                 {
                     id: "szk1l2_t1", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Papa liest – Zeichen?", answers: [".", "?", "!", "?"], correct: 0,
+                    question: "Papa liest – Zeichen?", answers: [".", "?", "!", ","], correct: 0,
                     explanation: "Punkt."
                 },
                 {
@@ -494,7 +494,7 @@
                 {
                     id: "szk1l2_t4", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Wir malen – Zeichen?", answers: [".", "?", "!", "?"], correct: 0,
+                    question: "Wir malen – Zeichen?", answers: [".", "?", "!", ","], correct: 0,
                     explanation: "Punkt."
                 },
                 {

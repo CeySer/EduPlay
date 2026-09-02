@@ -1430,12 +1430,10 @@ auth.createUserWithEmailAndPassword(e, p)
             // Nur Fokus-Kind (oder alle, falls keines gewählt)
             const todayParts = profileEntries.map(({ p }) => {
                 const sec = (p.studyLog && p.studyLog[today]) || 0;
-                const lek = (p.lessonStudyLog && p.lessonStudyLog[today]) || 0;
                 const cls = sec >= 60 ? "text-indigo-300" : "text-gray-500";
-                const extra = lek > 0 ? `<div class="text-[11px] text-amber-300/90 font-bold">davon Lektionen ${formatStudyDuration(lek)}</div>` : "";
-                return `<div class="flex justify-between items-start py-2 gap-3">
+                return `<div class="flex justify-between items-center py-2">
                     <span class="text-white font-bold text-sm">${esc(p.name)}</span>
-                    <span class="text-right"><span class="font-black text-sm ${cls}">${formatStudyDuration(sec)}</span>${extra}</span>
+                    <span class="font-black text-sm ${cls}">${formatStudyDuration(sec)}</span>
                 </div>`;
             });
             // Woche (Mo–So der aktuellen Kalenderwoche)
@@ -2396,7 +2394,21 @@ auth.createUserWithEmailAndPassword(e, p)
         function renderDashKurseOverview() {
             const box = document.getElementById('dash-kurse-overview');
             if (!box) return;
+            // Die Kurs-Dateien werden nachgeladen (lektionen-loader.js). Sind sie
+            // noch nicht da, kurz anfordern und danach erneut zeichnen.
             if (typeof KURSE === 'undefined' || !Array.isArray(KURSE) || !KURSE.length) {
+                if (typeof ladeLektionen === 'function' && !window._dashKurseWartet) {
+                    window._dashKurseWartet = true;
+                    box.innerHTML = '<div class="text-gray-500 text-xs">Kurse werden geladen …</div>';
+                    ladeLektionen().then(function () {
+                        window._dashKurseWartet = false;
+                        renderDashKurseOverview();
+                    })['catch'](function () {
+                        window._dashKurseWartet = false;
+                        box.innerHTML = '<div class="text-gray-500 text-xs">Kurse konnten nicht geladen werden.</div>';
+                    });
+                    return;
+                }
                 box.innerHTML = '<div class="text-gray-500 text-xs">Keine Kurse geladen.</div>';
                 return;
             }
@@ -2525,11 +2537,12 @@ auth.createUserWithEmailAndPassword(e, p)
         // gleiche Regel wie istLektionFreigeschaltet() in lektionen.js, nur ohne
         // Abhängigkeit vom aktuell eingeloggten Profil.
         function istLektionFreigeschaltetFuer(lektion, liste, doneMap, pendingLesson) {
+            if (typeof isDevAdmin === "function" && isDevAdmin()) return true;
             if (pendingLesson && pendingLesson.lektionId === lektion.id) return true;
             if (doneMap && doneMap[lektion.id] && doneMap[lektion.id].bestanden) return true;
-            if (lektion.order <= 1) return true;
             const vorherige = liste.find(l => l.order === lektion.order - 1);
-            return !vorherige || !!(doneMap[vorherige.id] && doneMap[vorherige.id].bestanden);
+            if (!vorherige) return false;
+            return !!(doneMap[vorherige.id] && doneMap[vorherige.id].bestanden);
         }
 
         function toggleDashPlayerBlock(id) {
@@ -2631,10 +2644,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 if (!p) studyEl.textContent = '';
                 else {
                     const sec = (p.studyLog && p.studyLog[today]) || 0;
-                    const lek = (p.lessonStudyLog && p.lessonStudyLog[today]) || 0;
-                    let txt = 'heute ' + (typeof formatStudyDuration === 'function' ? formatStudyDuration(sec) : (Math.floor(sec / 60) + ' Min.'));
-                    if (lek > 0) txt += ' · davon Lektionen ' + (typeof formatStudyDuration === 'function' ? formatStudyDuration(lek) : (Math.floor(lek / 60) + ' Min.'));
-                    studyEl.textContent = txt;
+                    studyEl.textContent = 'heute ' + (typeof formatStudyDuration === 'function' ? formatStudyDuration(sec) : (Math.floor(sec / 60) + ' Min.'));
                 }
             }
             const kurseEl = document.getElementById('dash-kurse-preview');

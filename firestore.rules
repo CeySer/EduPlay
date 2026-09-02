@@ -32,6 +32,12 @@ service cloud.firestore {
       return angemeldet() && request.auth.uid == uid;
     }
 
+    // Entwickler-Konto (E-Mail im Auth-Token). UID kannst du ergänzen.
+    function istEntwickler() {
+      return angemeldet()
+             && request.auth.token.email == 'cu.oezdemir@gmail.com';
+    }
+
     // Welche Felder ändert dieser Schreibvorgang?
     function nurFelder(felder) {
       return request.resource.data.diff(resource.data).affectedKeys().hasOnly(felder);
@@ -68,7 +74,9 @@ service cloud.firestore {
     //  Live-Duelle. Nur der eigene Eltern-Account.
     // --------------------------------------------------------
     match /parents/{uid} {
-      allow read, write: if istEigentuemer(uid);
+      // Eigentümer: alles. Entwickler: nur lesen (Nachzählen der Anmeldungen).
+      allow read: if istEigentuemer(uid) || istEntwickler();
+      allow write: if istEigentuemer(uid);
 
       // ----------------------------------------------------
       //  TV-LOBBY
@@ -206,6 +214,39 @@ service cloud.firestore {
                                       && request.time.toMillis() - resource.data.createdAt > 43200000
                                     )
                                );
+    }
+
+    // --------------------------------------------------------
+    //  FEEDBACK (In-App-Formular, ersetzt den WhatsApp-Link)
+    //  Jeder angemeldete Nutzer (auch Gäste) darf einen Eintrag
+    //  anlegen. Lesen/Ändern/Löschen bewusst für niemanden erlaubt –
+    //  Einsicht nur über die Firebase-Konsole (Projekt-Zugriff
+    //  umgeht die Client-Regeln).
+    // --------------------------------------------------------
+    match /feedback/{doc} {
+      allow create: if angemeldet()
+                    && request.resource.data.text is string
+                    && request.resource.data.text.size() <= 1500;
+      allow read, list: if istEntwickler();
+      allow update, delete: if istEntwickler();
+    }
+
+    // Anmeldungszähler: nur echte Konten (keine Gäste) dürfen +1 zählen,
+    // Lesen nur Entwickler. Ohne den Anonym-Ausschluss könnte jeder anonyme
+    // Gast den Zähler beliebig hochtreiben.
+    function istEchtesKonto() {
+      return angemeldet() && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
+    match /stats/{doc} {
+      allow get: if istEntwickler();
+      allow list: if istEntwickler();
+      allow create: if istEchtesKonto() && doc == 'signups';
+      allow update: if istEntwickler()
+                    || (istEchtesKonto()
+                        && doc == 'signups'
+                        && request.resource.data.count is number
+                        && (!('count' in resource.data)
+                            || request.resource.data.count == resource.data.count + 1));
     }
 
     // --------------------------------------------------------

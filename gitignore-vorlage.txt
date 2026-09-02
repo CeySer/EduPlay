@@ -1,0 +1,26 @@
+# ---- Betriebssystem / Editor ----
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# ---- Node ----
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# ---- Firebase ----
+.firebase/
+firebase-debug.log*
+*-debug.log
+
+# ---- Arbeits- und Altordner (gehoeren nicht auf die Website) ----
+_delete/
+_ausgliedern/
+_backup_kategorien/
+
+# ---- lokale Notizen ----
+*.local
+notizen-*.txt

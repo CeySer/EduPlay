@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
     <meta name="theme-color" content="#080c18">
-    <title>EduPlay Hub - Familien Edition v2.31</title>
+    <title>EduPlay Hub - Familien Edition v2.32</title>
 
     <!-- Build-Stempel fürs Entwickler-Modus-Panel: bei jeder gelieferten
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
@@ -86,7 +86,7 @@ HEADER FÜR FAMILY HUB
         <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.31</span>
+                <span class="version">v2.32</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -101,7 +101,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
                 <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
-                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.31</span>
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.32</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -123,7 +123,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.31</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.32</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -798,7 +798,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div id="scrabble-word-preview"
                             class="input-modern text-xl font-black text-center uppercase tracking-widest text-gray-500">
                             …</div>
-                        <div id="scrabble-live-feedback" class="text-center text-sm font-bold text-gray-400 h-5"></div>
+                        <div id="scrabble-live-feedback" class="text-center text-sm font-bold text-gray-400 wort-hinweis"></div>
                         <div class="grid grid-cols-2 gap-2">
                             <button id="scrabble-undo-btn" onclick="srUndoTile()" disabled
                                 class="btn-secondary w-full text-center disabled:opacity-30">⌫ Entfernen</button>
@@ -922,7 +922,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </div>
                     <div id="wortraten-figure" class="w-44 h-48 mx-auto"></div>
                     <div id="wortraten-word-tiles" class="flex flex-wrap justify-center gap-1.5"></div>
-                    <div id="wortraten-turn-banner" class="text-center text-sm font-bold text-sky-300 h-5"></div>
+                    <div id="wortraten-turn-banner" class="text-center text-sm font-bold text-sky-300 wort-hinweis"></div>
                     <div id="wortraten-scores" class="flex gap-2 overflow-x-auto pb-1"></div>
                     <div id="wortraten-keyboard" class="grid grid-cols-6 sm:grid-cols-7 gap-1.5"></div>
                     <button type="button" onclick="wrPromptSolveWord()"
@@ -2036,7 +2036,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="dev-admin-entry" class="hidden pt-3 border-t border-white/5">
                         <button type="button" onclick="openDevAdmin()" class="btn-secondary w-full text-sm text-cyan-300">🛠 Entwickler-Seite</button>
                     </div>
-                    <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.31
+                    <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.32
                     </div>
                 </div>
             </div>
@@ -2664,7 +2664,7 @@ VIEW: QUIZ SETUP
     JAVASCRIPT MODULE
     ============================================================ -->
     <script src="app-config.js?v=13.1"></script>
-    <script src="app-ui.js?v=9.4"></script>
+    <script src="app-ui.js?v=9.5"></script>
     <script src="family-dashboard.js?v=11.28"></script>
     <script src="dev-admin.js?v=1.7"></script>
     <script src="ui-common.js?v=9.2"></script>
@@ -2679,8 +2679,8 @@ VIEW: QUIZ SETUP
     <script src="suchsel.js?v=1.3"></script>
     <script src="duel-scrabble.js?v=9.5"></script>
     <script src="wortraten.js?v=9.6"></script>
-    <script src="tv-cast.js?v=14.4"></script>
-    <script src="live-duel.js?v=10.15"></script>
+    <script src="tv-cast.js?v=14.5"></script>
+    <script src="live-duel.js?v=10.16"></script>
     <script src="app-misc.js?v=8.9"></script>
     <script src="lobby-avatar.js?v=10.1"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
@@ -2754,7 +2754,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.31<br>
+            EduPlay Hub · v2.32<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -2803,7 +2803,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.31<br>
+            EduPlay Hub · v2.32<br>
             © 2026 · Familien Edition
         </div>
     </div>

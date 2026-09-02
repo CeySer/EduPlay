@@ -906,7 +906,7 @@
             <div class="text-center text-[11px] font-bold text-gray-500">Dein Wort braucht mindestens ${minLen} Buchstaben</div>
             <div class="glass-card p-5 space-y-3">
                 <div id="live-duel-word-preview" class="input-modern text-xl font-black text-center uppercase tracking-widest text-gray-500">…</div>
-                <div id="live-duel-live-feedback" class="text-center text-sm font-bold text-gray-400 h-5"></div>
+                <div id="live-duel-live-feedback" class="text-center text-sm font-bold text-gray-400 wort-hinweis"></div>
                 <div class="grid grid-cols-2 gap-2">
                     <button id="live-duel-undo-btn" onclick="liveDuelUndoTile()" disabled class="btn-secondary w-full text-center disabled:opacity-30">⌫ Entfernen</button>
                     <button onclick="liveDuelClearTiles()" class="btn-secondary w-full text-center">🗑 Neu anfangen</button>

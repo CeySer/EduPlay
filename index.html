@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
     <meta name="theme-color" content="#080c18">
-    <title>EduPlay Hub - Familien Edition v2.30</title>
+    <title>EduPlay Hub - Familien Edition v2.31</title>
 
     <!-- Build-Stempel fürs Entwickler-Modus-Panel: bei jeder gelieferten
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
@@ -111,7 +111,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         </header>
 
 
-        <main class="flex-grow p-4">
+        <main class="flex-grow p-4" style="padding-bottom:112px;">
 
             <!-- ==========================================================
             VIEW: AUTH
@@ -123,7 +123,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.30</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.31</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -1785,11 +1785,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
                         <!-- Buttons zum Ändern der Farbe -->
                         <div class="flex gap-3 mt-4">
-                            <button type="button" onclick="changeShirtColor('#f43f5e')"
+                            <button type="button" aria-label="T-Shirt rot" onclick="changeShirtColor('#f43f5e')"
                                 class="w-8 h-8 rounded-full bg-rose-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
-                            <button type="button" onclick="changeShirtColor('#3b82f6')"
+                            <button type="button" aria-label="T-Shirt blau" onclick="changeShirtColor('#3b82f6')"
                                 class="w-8 h-8 rounded-full bg-blue-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
-                            <button type="button" onclick="changeShirtColor('#10b981')"
+                            <button type="button" aria-label="T-Shirt grün" onclick="changeShirtColor('#10b981')"
                                 class="w-8 h-8 rounded-full bg-emerald-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
                         </div>
                     </div>
@@ -2803,7 +2803,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.30<br>
+            EduPlay Hub · v2.31<br>
             © 2026 · Familien Edition
         </div>
     </div>

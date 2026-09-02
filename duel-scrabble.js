@@ -474,7 +474,7 @@
                     fb.innerText = result.valid ?
                         `${result.score} Punkte möglich${result.bonus ? " (inkl. +50 Bonus!)" : ""} – wird beim Einreichen geprüft` :
                         "❌ Diese Buchstaben hast du nicht (oder zu oft benutzt)";
-                    fb.className = "text-center text-sm font-bold h-5 " + (result.valid ? "text-emerald-400" : "text-rose-400");
+                    fb.className = "text-center text-sm font-bold wort-hinweis " + (result.valid ? "text-emerald-400" : "text-rose-400");
                 }
             }
         }
@@ -791,7 +791,7 @@
             const fb = document.getElementById("scrabble-live-feedback");
             if (fb) {
                 fb.innerText = "🔍 Prüfe Wort...";
-                fb.className = "text-center text-sm font-bold h-5 text-gray-400";
+                fb.className = "text-center text-sm font-bold wort-hinweis text-gray-400";
             }
 
             const res = await evaluateScrabbleWord(word, scrabbleState.currentLetters, {
@@ -1033,10 +1033,10 @@
             const fb = document.getElementById("scrabble-live-feedback");
             if (fb) {
                 fb.innerText = text;
-                fb.className = "text-center text-sm font-bold h-5 text-amber-400 animate-pulse";
+                fb.className = "text-center text-sm font-bold wort-hinweis text-amber-400 animate-pulse";
                 setTimeout(() => {
                     if (fb && scrabbleState && scrabbleState.actionMode) {
-                        fb.className = "text-center text-sm font-bold h-5 text-gray-400";
+                        fb.className = "text-center text-sm font-bold wort-hinweis text-gray-400";
                         fb.innerText = "⚡ Action-Modus aktiv!";
                     }
                 }, 2500);

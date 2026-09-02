@@ -792,127 +792,127 @@
         id: "karte_k3_l2", kurs: "karte_k3", order: 2, icon: "🗺️",
         title: "Kompass", kurz: "N oben",
         erklaerung: {
-            intro: "Norden oben, Süden unten, Westen links, Osten rechts.",
+            intro: "Eine Karte kann mehr als Richtungen zeigen. Die <b>Kompassrose</b> sagt dir, wo Norden ist. Die <b>Legende</b> erklärt die Zeichen und Farben: blau ist Wasser, grün ist Wald, braun sind Berge. Der <b>Maßstab</b> verrät, wie weit es in Wirklichkeit ist.",
             beispiele: [
                 "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'> <circle cx='100' cy='70' r='48' fill='rgba(52,211,153,0.2)' stroke='#10b981' stroke-width='3'/> <text x='100' y='28' text-anchor='middle' font-size='14' font-weight='700' fill='#0f172a'>N</text> <text x='100' y='128' text-anchor='middle' font-size='14' font-weight='700' fill='#0f172a'>S</text> <text x='42' y='75' text-anchor='middle' font-size='14' font-weight='700' fill='#0f172a'>W</text> <text x='158' y='75' text-anchor='middle' font-size='14' font-weight='700' fill='#0f172a'>O</text> <polygon points='100,32 108,70 100,64 92,70' fill='#ef4444'/> </svg>",
                 "Sonne auf: Osten",
                 "Sonne unter: Westen"
             ],
-            merksatz: "N-S und W-O merken."
+            merksatz: "Karte nach Norden drehen, Legende lesen, Maßstab beachten. Mit dem Gesicht nach Norden: rechts Osten, links Westen, hinten Süden."
         },
         uebung: { leicht: [
                 {
                     id: "kak3l2_l1", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "leicht", points: 10,
-                    question: "Norden auf der Karte?", answers: ["oben", "unten", "links", "rechts"], correct: 0,
-                    explanation: "oben.",
+                    question: "Was ist eine Kompassrose?", answers: ["Das Richtungskreuz auf der Karte", "Eine Blume am Wegrand", "Ein Zeichen für einen Berg", "Ein Zeichen für eine Kirche"], correct: 0,
+                    explanation: "Die Kompassrose ist der kleine Stern auf der Karte, der zeigt, wo Norden ist.",
                     grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto' xmlns='http://www.w3.org/2000/svg'> <circle cx='100' cy='70' r='48' fill='rgba(52,211,153,0.2)' stroke='#10b981' stroke-width='3'/> <text x='100' y='28' text-anchor='middle' font-size='14' font-weight='700' fill='#0f172a'>N</text> <text x='100' y='128' text-anchor='middle' font-size='14' font-weight='700' fill='#0f172a'>S</text> <text x='42' y='75' text-anchor='middle' font-size='14' font-weight='700' fill='#0f172a'>W</text> <text x='158' y='75' text-anchor='middle' font-size='14' font-weight='700' fill='#0f172a'>O</text> <polygon points='100,32 108,70 100,64 92,70' fill='#ef4444'/> </svg>"
                 },
                 {
                     id: "kak3l2_l2", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "leicht", points: 10,
-                    question: "Süden?", answers: ["unten", "oben", "links", "rechts"], correct: 0,
-                    explanation: "unten."
+                    question: "Was zeigt die Legende einer Karte?", answers: ["Was die Zeichen bedeuten", "Wie alt die Karte ist", "Wer die Karte gemalt hat", "Wie schwer die Karte ist"], correct: 0,
+                    explanation: "In der Legende steht, wofür jedes Symbol steht – zum Beispiel ein Kreuz für eine Kirche."
                 },
                 {
                     id: "kak3l2_l3", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "leicht", points: 10,
-                    question: "Westen?", answers: ["links", "rechts", "oben", "unten"], correct: 0,
-                    explanation: "links."
+                    question: "Welche Farbe haben Wälder auf einer Karte?", answers: ["Grün", "Blau", "Braun", "Gelb"], correct: 0,
+                    explanation: "Grün heißt Wald oder Wiese, blau ist Wasser, braun sind Berge."
                 },
                 {
                     id: "kak3l2_l4", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "leicht", points: 10,
-                    question: "Osten?", answers: ["rechts", "links", "oben", "unten"], correct: 0,
-                    explanation: "rechts."
+                    question: "Wonach richtest du die Karte aus?", answers: ["Nach Norden", "Nach der Uhrzeit", "Nach dem Wetter", "Nach der Farbe"], correct: 0,
+                    explanation: "Dreh die Karte so, dass ihr Norden auch in der Wirklichkeit nach Norden zeigt. Dann stimmt alles."
                 }
             ], mittel: [
                 {
                     id: "kak3l2_m1", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
-                    question: "Gegenrichtung von Westen?", answers: ["Osten", "Norden", "Süden", "oben"], correct: 0,
-                    explanation: "W↔O."
+                    question: "Was ist die Gegenrichtung von Westen?", answers: ["Osten", "Norden", "Süden", "Nordwesten"], correct: 0,
+                    explanation: "Westen und Osten liegen sich gegenüber – wie Norden und Süden."
                 },
                 {
                     id: "kak3l2_m2", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
-                    question: "Kompassnadel zeigt oft nach …", answers: ["Norden", "nur Süden", "nur die Küche", "nur Rot"], correct: 0,
-                    explanation: "N."
+                    question: "Du hältst einen Kompass. Welche Richtung findest du zuerst?", answers: ["Norden", "Süden", "Westen", "Osten"], correct: 0,
+                    explanation: "Die Nadel zeigt nach Norden. Stehst du mit dem Gesicht nach Norden, ist rechts Osten und links Westen."
                 },
                 {
                     id: "kak3l2_m3", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
-                    question: "Sonnenaufgang?", answers: ["Osten", "Westen", "Norden", "Süden"], correct: 0,
-                    explanation: "Osten."
+                    question: "Am Morgen steht die Sonne links von dir. In welche Richtung schaust du?", answers: ["Nach Norden", "Nach Süden", "Nach Westen", "Nach Osten"], correct: 0,
+                    explanation: "Morgens steht die Sonne im Osten. Ist Osten links, dann schaust du nach Norden."
                 },
                 {
                     id: "kak3l2_m4", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
-                    question: "Sonnenuntergang?", answers: ["Westen", "Osten", "Norden", "Süden"], correct: 0,
-                    explanation: "Westen."
+                    question: "Was bedeutet ein blaues Band auf der Karte?", answers: ["Einen Fluss", "Eine Straße", "Eine Bahnlinie", "Eine Grenze"], correct: 0,
+                    explanation: "Blau ist immer Wasser. Ein schmales blaues Band ist ein Fluss oder Bach."
                 }
             ], schwer: [
                 {
                     id: "kak3l2_s1", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "schwer", points: 10,
-                    question: "Wenn du nach Norden gehst und dich umdrehst, gehst du …", answers: ["nach Süden", "weiter nach Norden", "nach Westen immer", "ins All"], correct: 0,
-                    explanation: "umdrehen = Süd."
+                    question: "Du gehst nach Norden und drehst dich um. Wohin gehst du jetzt?", answers: ["Nach Süden", "Weiter nach Norden", "Nach Westen", "Nach Osten"], correct: 0,
+                    explanation: "Beim Umdrehen läufst du in die Gegenrichtung – und die Gegenrichtung von Norden ist Süden."
                 },
                 {
                     id: "kak3l2_s2", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "schwer", points: 10,
-                    question: "Links auf vielen Karten ist …", answers: ["Westen", "Osten", "Norden", "Süden"], correct: 0,
-                    explanation: "Westen."
+                    question: "Wozu braucht eine Karte einen Maßstab?", answers: ["Er zeigt echte Entfernungen", "Er zeigt die Uhrzeit", "Er zeigt die Höhe", "Er zeigt das Wetter"], correct: 0,
+                    explanation: "Der Maßstab sagt dir, wie viele Meter in der Wirklichkeit einem Zentimeter auf der Karte entsprechen."
                 },
                 {
                     id: "kak3l2_s3", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "schwer", points: 10,
-                    question: "Deutschland liegt in …", answers: ["Europa", "Australien", "Antarktis", "Mond"], correct: 0,
-                    explanation: "Europa."
+                    question: "Was zeigt ein Stadtplan genauer als eine Landkarte?", answers: ["Einzelne Straßen", "Ganze Länder", "Alle Kontinente", "Die Meere"], correct: 0,
+                    explanation: "Je kleiner der Ausschnitt, desto mehr Einzelheiten passen darauf. Ein Stadtplan zeigt jede Straße."
                 },
                 {
                     id: "kak3l2_s4", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "schwer", points: 10,
-                    question: "Ein Plan der Schule ist eine …", answers: ["Karte", "Ampel", "Silbe", "Bruch"], correct: 0,
-                    explanation: "Karte."
+                    question: "Du willst von der Schule nach Hause. Was hilft dir?", answers: ["Ein Stadtplan", "Eine Weltkarte", "Ein Kalender", "Ein Lineal"], correct: 0,
+                    explanation: "Für kurze Wege im Ort brauchst du einen Stadtplan – die Weltkarte ist viel zu grob."
                 }
             ] },
         test: [
                 {
                     id: "kak3l2_t1", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
-                    question: "Norden?", answers: ["oben", "unten", "links", "rechts"], correct: 0,
-                    explanation: "oben."
+                    question: "Wo steht auf der Karte, was die Zeichen bedeuten?", answers: ["In der Legende", "Im Maßstab", "Im Titel", "Am Rand unten"], correct: 0,
+                    explanation: "Die Legende erklärt jedes Symbol."
                 },
                 {
                     id: "kak3l2_t2", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
-                    question: "Süden?", answers: ["unten", "oben", "links", "rechts"], correct: 0,
-                    explanation: "unten."
+                    question: "Welche Farbe hat Wasser auf der Karte?", answers: ["Blau", "Grün", "Braun", "Grau"], correct: 0,
+                    explanation: "Blau steht immer für Wasser."
                 },
                 {
                     id: "kak3l2_t3", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
-                    question: "Westen?", answers: ["links", "rechts", "oben", "unten"], correct: 0,
-                    explanation: "links."
+                    question: "Wonach zeigt die Kompassnadel?", answers: ["Nach Norden", "Nach Süden", "Nach Westen", "Nach Osten"], correct: 0,
+                    explanation: "Die rote Spitze zeigt immer nach Norden."
                 },
                 {
                     id: "kak3l2_t4", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
-                    question: "Osten?", answers: ["rechts", "links", "oben", "unten"], correct: 0,
-                    explanation: "rechts."
+                    question: "Was sagt dir der Maßstab?", answers: ["Die echte Entfernung", "Die Uhrzeit", "Die Himmelsrichtung", "Die Farbe"], correct: 0,
+                    explanation: "Er rechnet Zentimeter auf der Karte in Meter in der Wirklichkeit um."
                 },
                 {
                     id: "kak3l2_t5", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
-                    question: "Aufgang?", answers: ["Osten", "Westen", "Norden", "Süden"], correct: 0,
-                    explanation: "Osten."
+                    question: "Du schaust nach Norden. Was liegt rechts von dir?", answers: ["Osten", "Westen", "Süden", "Norden"], correct: 0,
+                    explanation: "Mit dem Gesicht nach Norden: rechts Osten, links Westen, hinten Süden."
                 },
                 {
                     id: "kak3l2_t6", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
-                    question: "Untergang?", answers: ["Westen", "Osten", "Norden", "Süden"], correct: 0,
-                    explanation: "Westen."
+                    question: "Wofür brauchst du eine Weltkarte statt eines Stadtplans?", answers: ["Für ganze Länder", "Für den Schulweg", "Für eine Straße", "Für ein Haus"], correct: 0,
+                    explanation: "Große Entfernungen passen nur auf eine Karte mit großem Ausschnitt."
                 }
         ],
         bestehenAb: 0.75
@@ -1188,33 +1188,33 @@
                 {
                     id: "euk4l2_l1", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "leicht", points: 10,
-                    question: "Nachbar im Osten?", answers: ["Polen", "Frankreich", "Dänemark", "Spanien"], correct: 0,
-                    explanation: "Polen."
+                    question: "Wie viele Nachbarn hat Deutschland im Osten?", answers: ["Zwei: Polen und Tschechien", "Nur eines, nämlich Polen", "Drei: Polen, Tschechien, Ungarn", "Keines, dort liegt das Meer"], correct: 0,
+                    explanation: "Polen grenzt an den Nordosten, Tschechien an den Südosten."
                 },
                 {
                     id: "euk4l2_l2", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "leicht", points: 10,
-                    question: "Nachbar im Norden?", answers: ["Dänemark", "Italien", "Spanien", "Griechenland"], correct: 0,
-                    explanation: "Dänemark."
+                    question: "Welches Land grenzt im Norden an Deutschland?", answers: ["Dänemark", "Italien", "Spanien", "Griechenland"], correct: 0,
+                    explanation: "Dänemark ist der einzige Nachbar im Norden. Rechts und links davon liegen Nordsee und Ostsee."
                 },
                 {
                     id: "euk4l2_l3", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "leicht", points: 10,
-                    question: "Hauptstadt DE?", answers: ["Berlin", "Paris", "Rom", "Wien"], correct: 0,
-                    explanation: "Berlin."
+                    question: "Wie viele Nachbarländer hat Deutschland?", answers: ["Neun", "Drei", "Fünf", "Fünfzehn"], correct: 0,
+                    explanation: "Neun: Dänemark, Polen, Tschechien, Österreich, Schweiz, Frankreich, Luxemburg, Belgien und die Niederlande."
                 },
                 {
                     id: "euk4l2_l4", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "leicht", points: 10,
-                    question: "Paris liegt in …", answers: ["Frankreich", "Polen", "Italien", "Dänemark"], correct: 0,
-                    explanation: "Frankreich."
+                    question: "Welches Land grenzt im Westen an Deutschland?", answers: ["Frankreich", "Polen", "Dänemark", "Tschechien"], correct: 0,
+                    explanation: "Im Westen liegen Frankreich, Luxemburg, Belgien und die Niederlande."
                 }
             ], mittel: [
                 {
                     id: "euk4l2_m1", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Nachbar im Süden (u. a.)?", answers: ["Österreich", "Dänemark", "Polen nur", "Schweden"], correct: 0,
-                    explanation: "Österreich."
+                    question: "Welches Land grenzt im Süden an Deutschland?", answers: ["Österreich", "Dänemark", "Polen", "Schweden"], correct: 0,
+                    explanation: "Im Süden grenzen Österreich und die Schweiz an Deutschland – dort liegen auch die Alpen."
                 },
                 {
                     id: "euk4l2_m2", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
@@ -1225,77 +1225,77 @@
                 {
                     id: "euk4l2_m3", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Niederlande liegen eher …", answers: ["nordwestlich", "ganz im Süden an den Alpen", "nur östlich", "in Australien"], correct: 0,
-                    explanation: "NW."
+                    question: "Wo liegen die Niederlande von Deutschland aus?", answers: ["Nordwestlich", "Südöstlich", "Weit im Osten", "Südlich der Alpen"], correct: 0,
+                    explanation: "Die Niederlande liegen an der Nordwestecke, direkt an der Nordsee."
                 },
                 {
                     id: "euk4l2_m4", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Fluss durch Köln?", answers: ["Rhein", "Donau", "Themse", "Nil"], correct: 0,
-                    explanation: "Rhein."
+                    question: "An welchen Meeren liegt Deutschland?", answers: ["An Nord- und Ostsee", "Nur am Mittelmeer", "Nur am Schwarzen Meer", "An gar keinem Meer"], correct: 0,
+                    explanation: "Zwei Meere: die Nordsee im Nordwesten, die Ostsee im Nordosten."
                 }
             ], schwer: [
                 {
                     id: "euk4l2_s1", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "schwer", points: 10,
-                    question: "Italien liegt … von Deutschland.", answers: ["südlich (mit Alpen dazwischen)", "nördlich am Meer DE", "nur östlich an Polen", "westlich an NL nur"], correct: 0,
-                    explanation: "Süden."
+                    question: "Wo liegt Italien von Deutschland aus?", answers: ["Südlich, hinter den Alpen", "Nördlich, an der Nordsee", "Östlich, hinter Polen", "Westlich, hinter Frankreich"], correct: 0,
+                    explanation: "Wer von Deutschland nach Italien fährt, muss die Alpen überqueren."
                 },
                 {
                     id: "euk4l2_s2", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "schwer", points: 10,
-                    question: "Die EU ist …", answers: ["ein Staatenbund", "ein Berg", "ein Fluss", "eine Stadt"], correct: 0,
-                    explanation: "Union."
+                    question: "Was ist die Europäische Union?", answers: ["Ein Bund von Ländern", "Ein einzelnes Land", "Ein hohes Gebirge", "Ein großer Fluss"], correct: 0,
+                    explanation: "In der EU arbeiten viele europäische Länder zusammen – zum Beispiel beim Handel und beim Reisen ohne Grenzkontrollen."
                 },
                 {
                     id: "euk4l2_s3", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "schwer", points: 10,
-                    question: "Wien ist Hauptstadt von …", answers: ["Österreich", "Polen", "Frankreich", "Dänemark"], correct: 0,
-                    explanation: "Österreich."
+                    question: "Welches Nachbarland Deutschlands ist das kleinste?", answers: ["Luxemburg", "Frankreich", "Polen", "Österreich"], correct: 0,
+                    explanation: "Luxemburg liegt im Westen und ist kleiner als das Saarland."
                 },
                 {
                     id: "euk4l2_s4", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "schwer", points: 10,
-                    question: "Bern ist Bundesstadt der …", answers: ["Schweiz", "Polen", "Italien", "Spanien"], correct: 0,
-                    explanation: "Schweiz."
+                    question: "Welches Land grenzt im Südosten an Deutschland?", answers: ["Tschechien", "Frankreich", "Dänemark", "Belgien"], correct: 0,
+                    explanation: "Tschechien grenzt an Bayern und Sachsen."
                 }
             ] },
         test: [
                 {
                     id: "euk4l2_t1", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Osten?", answers: ["Polen", "Frankreich", "Dänemark", "Spanien"], correct: 0,
-                    explanation: "Polen."
+                    question: "Welche zwei Länder grenzen im Süden an Deutschland?", answers: ["Österreich und die Schweiz", "Polen und Tschechien", "Dänemark und Schweden", "Belgien und Frankreich"], correct: 0,
+                    explanation: "Österreich und die Schweiz. Dahinter beginnen die Alpen."
                 },
                 {
                     id: "euk4l2_t2", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Norden?", answers: ["Dänemark", "Italien", "Spanien", "Griechenland"], correct: 0,
-                    explanation: "Dänemark."
+                    question: "Welches Meer liegt im Nordosten Deutschlands?", answers: ["Die Ostsee", "Die Nordsee", "Das Mittelmeer", "Der Atlantik"], correct: 0,
+                    explanation: "Die Ostsee liegt im Nordosten, die Nordsee im Nordwesten."
                 },
                 {
                     id: "euk4l2_t3", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Berlin?", answers: ["Hauptstadt DE", "Hauptstadt FR", "Fluss", "Berg"], correct: 0,
-                    explanation: "DE."
+                    question: "Was ist Berlin?", answers: ["Die Hauptstadt Deutschlands", "Die Hauptstadt Frankreichs", "Ein Fluss in Bayern", "Ein Berg im Harz"], correct: 0,
+                    explanation: "Berlin ist Hauptstadt und Regierungssitz Deutschlands."
                 },
                 {
                     id: "euk4l2_t4", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Paris?", answers: ["Frankreich", "Polen", "Italien", "CH"], correct: 0,
-                    explanation: "FR."
+                    question: "Welches Nachbarland liegt ganz im Nordwesten?", answers: ["Die Niederlande", "Die Schweiz", "Tschechien", "Österreich"], correct: 0,
+                    explanation: "Die Niederlande liegen an der Nordwestecke Deutschlands, direkt an der Nordsee."
                 },
                 {
                     id: "euk4l2_t5", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Wien?", answers: ["Österreich", "Polen", "FR", "DK"], correct: 0,
-                    explanation: "AT."
+                    question: "In welchem Land liegt Wien?", answers: ["In Österreich", "In Polen", "In Frankreich", "In Dänemark"], correct: 0,
+                    explanation: "Wien ist die Hauptstadt Österreichs und liegt an der Donau."
                 },
                 {
                     id: "euk4l2_t6", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
                     subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Rhein durch?", answers: ["Köln", "Rom", "Paris", "Wien nur Donau"], correct: 0,
-                    explanation: "Köln."
+                    question: "Welches Land liegt zwischen Deutschland und Belgien?", answers: ["Luxemburg", "Polen", "Dänemark", "Tschechien"], correct: 0,
+                    explanation: "Luxemburg ist ein kleines Land im Westen – zwischen Deutschland, Belgien und Frankreich."
                 }
         ],
         bestehenAb: 0.75

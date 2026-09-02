@@ -941,7 +941,7 @@
                     fb.innerText = result.valid ?
                         `${result.score} Punkte möglich${result.bonus ? " (inkl. +50 Bonus!)" : ""} – wird beim Einreichen geprüft` :
                         "❌ Diese Buchstaben hast du nicht (oder zu oft benutzt)";
-                    fb.className = "text-center text-sm font-bold h-5 " + (result.valid ? "text-emerald-400" : "text-rose-400");
+                    fb.className = "text-center text-sm font-bold wort-hinweis " + (result.valid ? "text-emerald-400" : "text-rose-400");
                 }
             }
         }

@@ -4443,3 +4443,13 @@ body.tv-need-landscape #tv-host-play {
   visibility: hidden;
 }
 
+
+
+/* Hinweiszeile im Wort-Duell ("11 Punkte möglich – wird beim Einreichen
+   geprüft"). Vorher stand hier h-5: bei zwei Zeilen lief der Text aus dem
+   Element heraus und über die Knöpfe darunter. min-height haelt den Platz
+   frei, ohne die Hoehe zu deckeln. */
+.wort-hinweis {
+    min-height: 20px;
+    line-height: 1.3;
+}

@@ -1440,10 +1440,10 @@
                     topic: "karte",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Norden liegt auf der Karte oft …",
-                    answers: ["oben", "unten", "links", "rechts"],
+                    question: "Wo liegt Norden auf der Karte meistens?",
+                    answers: ["Oben", "Unten", "Links", "Rechts"],
                     correct: 0,
-                    explanation: "Norden oben."
+                    explanation: "Fast alle Karten sind nach Norden ausgerichtet – deshalb liegt Norden oben am Kartenrand."
                 },
                 {
                     id: "kak3l1_l2",
@@ -1454,10 +1454,10 @@
                     topic: "karte",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Süden liegt oft …",
-                    answers: ["unten", "oben", "links", "rechts"],
+                    question: "Wo liegt Süden auf der Karte meistens?",
+                    answers: ["Unten", "Oben", "Links", "Rechts"],
                     correct: 0,
-                    explanation: "Süden unten."
+                    explanation: "Süden ist die Gegenrichtung von Norden. Weil Norden oben liegt, liegt Süden unten."
                 },
                 {
                     id: "kak3l1_l3",
@@ -1468,10 +1468,10 @@
                     topic: "karte",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Westen liegt oft …",
-                    answers: ["links", "rechts", "oben", "unten"],
+                    question: "Wo liegt Westen auf der Karte meistens?",
+                    answers: ["Links", "Rechts", "Oben", "Unten"],
                     correct: 0,
-                    explanation: "Westen links."
+                    explanation: "Schau nach Norden, dann ist Westen die linke Hand. Auf der Karte also die linke Seite."
                 },
                 {
                     id: "kak3l1_l4",
@@ -1482,10 +1482,10 @@
                     topic: "karte",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Osten liegt oft …",
-                    answers: ["rechts", "links", "oben", "unten"],
+                    question: "Wo liegt Osten auf der Karte meistens?",
+                    answers: ["Rechts", "Links", "Oben", "Unten"],
                     correct: 0,
-                    explanation: "Osten rechts."
+                    explanation: "Schau nach Norden, dann ist Osten die rechte Hand. Auf der Karte also die rechte Seite."
                 }
             ],
             mittel: [
@@ -1498,10 +1498,10 @@
                     topic: "karte",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Die Sonne geht auf im …",
-                    answers: ["Osten", "Westen", "Norden", "Süden"],
+                    question: "In welcher Richtung geht die Sonne auf?",
+                    answers: ["Im Osten", "Im Westen", "Im Norden", "Im Süden"],
                     correct: 0,
-                    explanation: "Aufgang Osten."
+                    explanation: "Die Sonne kommt morgens im Osten hoch. Wenn du weißt, wo sie aufgeht, kennst du alle vier Richtungen."
                 },
                 {
                     id: "kak3l1_m2",
@@ -1512,10 +1512,10 @@
                     topic: "karte",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Die Sonne geht unter im …",
-                    answers: ["Westen", "Osten", "Norden", "Süden"],
+                    question: "In welcher Richtung geht die Sonne unter?",
+                    answers: ["Im Westen", "Im Osten", "Im Norden", "Im Süden"],
                     correct: 0,
-                    explanation: "Untergang Westen."
+                    explanation: "Abends verschwindet die Sonne im Westen – genau gegenüber vom Sonnenaufgang."
                 },
                 {
                     id: "kak3l1_m3",
@@ -1526,10 +1526,10 @@
                     topic: "karte",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Ein Kompass zeigt vor allem …",
-                    answers: ["Norden", "nur die Uhr", "nur Farben", "nur Lieder"],
+                    question: "Was zeigt eine Kompassnadel an?",
+                    answers: ["Sie zeigt nach Norden", "Sie zeigt die Uhrzeit", "Sie zeigt die Höhe", "Sie zeigt das Wetter"],
                     correct: 0,
-                    explanation: "Nadel nach Norden."
+                    explanation: "Die rote Spitze der Nadel dreht sich immer nach Norden. Von dort aus findest du die anderen Richtungen."
                 },
                 {
                     id: "kak3l1_m4",
@@ -1540,10 +1540,10 @@
                     topic: "karte",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Hauptstadt von Deutschland?",
+                    question: "Wie heißt die Hauptstadt von Deutschland?",
                     answers: ["Berlin", "München", "Köln", "Hamburg"],
                     correct: 0,
-                    explanation: "Berlin."
+                    explanation: "Berlin ist die Hauptstadt und liegt im Osten von Deutschland."
                 }
             ],
             schwer: [
@@ -1556,10 +1556,10 @@
                     topic: "karte",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Deutschland liegt in …",
-                    answers: ["Europa", "Australien", "der Antarktis", "Südamerika"],
+                    question: "Auf welchem Kontinent liegt Deutschland?",
+                    answers: ["In Europa", "In Australien", "In der Antarktis", "In Südamerika"],
                     correct: 0,
-                    explanation: "Europa."
+                    explanation: "Deutschland liegt mitten in Europa und hat neun Nachbarländer."
                 },
                 {
                     id: "kak3l1_s2",
@@ -1570,10 +1570,10 @@
                     topic: "karte",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Flüsse sind auf Karten oft …",
-                    answers: ["blau", "nur gelb", "Gesichter", "Noten"],
+                    question: "Welche Farbe haben Flüsse und Seen auf Karten?",
+                    answers: ["Blau", "Grün", "Braun", "Gelb"],
                     correct: 0,
-                    explanation: "Blau = Wasser."
+                    explanation: "Wasser wird auf Karten blau gezeichnet, Wälder grün und Berge braun. So erkennst du sofort, was du siehst."
                 },
                 {
                     id: "kak3l1_s3",
@@ -1584,10 +1584,10 @@
                     topic: "karte",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Gegenrichtung von Norden ist …",
-                    answers: ["Süden", "Osten", "Westen", "oben nur"],
+                    question: "Was ist die Gegenrichtung von Norden?",
+                    answers: ["Süden", "Osten", "Westen", "Nordosten"],
                     correct: 0,
-                    explanation: "Nord ↔ Süd."
+                    explanation: "Norden und Süden liegen sich gegenüber, genau wie Westen und Osten."
                 },
                 {
                     id: "kak3l1_s4",
@@ -1598,10 +1598,10 @@
                     topic: "karte",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Ein Stadtplan hilft dir …",
-                    answers: ["Straßen zu finden", "zu backen", "zu singen", "Brüche zu malen"],
+                    question: "Wobei hilft dir ein Stadtplan?",
+                    answers: ["Straßen und Wege finden", "Kuchen backen", "Lieder lernen", "Brüche rechnen"],
                     correct: 0,
-                    explanation: "Straßen und Orte."
+                    explanation: "Ein Stadtplan zeigt Straßen, Plätze und wichtige Gebäude – damit findest du den Weg."
                 }
             ]
         },
@@ -1615,10 +1615,10 @@
                     topic: "karte",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Norden auf der Karte?",
+                    question: "Norden liegt auf der Karte …",
                     answers: ["oben", "unten", "links", "rechts"],
                     correct: 0,
-                    explanation: "oben."
+                    explanation: "Norden oben – so sind fast alle Karten gedruckt."
                 },
                 {
                     id: "kak3l1_t2",
@@ -1629,10 +1629,10 @@
                     topic: "karte",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Süden auf der Karte?",
+                    question: "Süden liegt auf der Karte …",
                     answers: ["unten", "oben", "links", "rechts"],
                     correct: 0,
-                    explanation: "unten."
+                    explanation: "Süden liegt Norden gegenüber, also unten."
                 },
                 {
                     id: "kak3l1_t3",
@@ -1643,10 +1643,10 @@
                     topic: "karte",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Sonnenaufgang?",
+                    question: "Die Sonne geht auf im …",
                     answers: ["Osten", "Westen", "Norden", "Süden"],
                     correct: 0,
-                    explanation: "Osten."
+                    explanation: "Morgens im Osten. Merksatz: Im Osten geht die Sonne auf."
                 },
                 {
                     id: "kak3l1_t4",
@@ -1657,10 +1657,10 @@
                     topic: "karte",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Sonnenuntergang?",
+                    question: "Die Sonne geht unter im …",
                     answers: ["Westen", "Osten", "Norden", "Süden"],
                     correct: 0,
-                    explanation: "Westen."
+                    explanation: "Abends im Westen – gegenüber vom Aufgang."
                 },
                 {
                     id: "kak3l1_t5",
@@ -1671,10 +1671,10 @@
                     topic: "karte",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Hauptstadt DE?",
+                    question: "Die Hauptstadt von Deutschland ist …",
                     answers: ["Berlin", "Paris", "Rom", "Wien"],
                     correct: 0,
-                    explanation: "Berlin."
+                    explanation: "Berlin. Paris gehört zu Frankreich, Rom zu Italien, Wien zu Österreich."
                 },
                 {
                     id: "kak3l1_t6",
@@ -1685,10 +1685,10 @@
                     topic: "karte",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Europa ist ein …",
-                    answers: ["Kontinent", "Fluss", "Berg", "Dorf"],
+                    question: "Was ist Europa?",
+                    answers: ["Ein Kontinent", "Ein Fluss", "Ein Berg", "Ein Dorf"],
                     correct: 0,
-                    explanation: "Kontinent."
+                    explanation: "Ein Kontinent ist ein großer Erdteil mit vielen Ländern. Europa ist einer davon."
                 }
         ],
         bestehenAb: 0.75
@@ -2560,10 +2560,10 @@
                     topic: "europa",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Hauptstadt von Deutschland?",
+                    question: "Wie heißt die Hauptstadt von Deutschland?",
                     answers: ["Berlin", "München", "Hamburg", "Köln"],
                     correct: 0,
-                    explanation: "Berlin."
+                    explanation: "Berlin liegt im Osten des Landes und ist zugleich die größte Stadt Deutschlands."
                 },
                 {
                     id: "euk4l1_l2",
@@ -2574,10 +2574,10 @@
                     topic: "europa",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Hauptstadt von Frankreich?",
-                    answers: ["Paris", "Lyon", "Rom", "Wien"],
+                    question: "Wie heißt die Hauptstadt von Frankreich?",
+                    answers: ["Paris", "Lyon", "Marseille", "Nizza"],
                     correct: 0,
-                    explanation: "Paris."
+                    explanation: "Paris liegt an der Seine. Bekannt ist die Stadt für den Eiffelturm."
                 },
                 {
                     id: "euk4l1_l3",
@@ -2588,10 +2588,10 @@
                     topic: "europa",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Hauptstadt von Italien?",
-                    answers: ["Rom", "Mailand", "Madrid", "Bern"],
+                    question: "Wie heißt die Hauptstadt von Italien?",
+                    answers: ["Rom", "Mailand", "Neapel", "Turin"],
                     correct: 0,
-                    explanation: "Rom."
+                    explanation: "Rom liegt in der Mitte von Italien. Mitten in Rom liegt ein eigener kleiner Staat: die Vatikanstadt."
                 },
                 {
                     id: "euk4l1_l4",
@@ -2602,10 +2602,10 @@
                     topic: "europa",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Deutschland liegt in …",
-                    answers: ["Europa", "Australien", "Antarktika", "Südamerika"],
+                    question: "Auf welchem Kontinent liegt Deutschland?",
+                    answers: ["In Europa", "In Asien", "In Afrika", "In Südamerika"],
                     correct: 0,
-                    explanation: "Europa."
+                    explanation: "Europa ist einer der Kontinente der Erde. Deutschland liegt mitten darin."
                 }
             ],
             mittel: [
@@ -2618,10 +2618,10 @@
                     topic: "europa",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Hauptstadt von Österreich?",
-                    answers: ["Wien", "Salzburg", "Graz", "Berlin"],
+                    question: "Wie heißt die Hauptstadt von Österreich?",
+                    answers: ["Wien", "Salzburg", "Graz", "Innsbruck"],
                     correct: 0,
-                    explanation: "Wien."
+                    explanation: "Wien liegt im Osten von Österreich, an der Donau."
                 },
                 {
                     id: "euk4l1_m2",
@@ -2632,10 +2632,10 @@
                     topic: "europa",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Bundesstadt der Schweiz?",
+                    question: "Welche Stadt ist der Regierungssitz der Schweiz?",
                     answers: ["Bern", "Zürich", "Genf", "Basel"],
                     correct: 0,
-                    explanation: "Bern."
+                    explanation: "Die Schweiz hat keine offizielle Hauptstadt. Regierung und Parlament sitzen in Bern – deshalb heißt sie Bundesstadt."
                 },
                 {
                     id: "euk4l1_m3",
@@ -2646,10 +2646,10 @@
                     topic: "europa",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Fluss durch Köln?",
-                    answers: ["Rhein", "Donau", "Elbe", "Spree nur"],
+                    question: "Durch welche deutsche Stadt fließt der Rhein?",
+                    answers: ["Köln", "München", "Berlin", "Dresden"],
                     correct: 0,
-                    explanation: "Rhein."
+                    explanation: "Der Rhein fließt von den Alpen bis in die Nordsee und kommt dabei durch Köln. Durch München fließt die Isar."
                 },
                 {
                     id: "euk4l1_m4",
@@ -2660,10 +2660,10 @@
                     topic: "europa",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Nachbarn im Osten von DE?",
-                    answers: ["Polen", "Frankreich", "Niederlande", "Belgien"],
+                    question: "Welches Land grenzt im Osten an Deutschland?",
+                    answers: ["Polen", "Frankreich", "Belgien", "Niederlande"],
                     correct: 0,
-                    explanation: "Polen."
+                    explanation: "Im Osten liegen Polen und Tschechien. Frankreich, Belgien und die Niederlande liegen im Westen."
                 }
             ],
             schwer: [
@@ -2676,10 +2676,10 @@
                     topic: "europa",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Die Alpen liegen vor allem im … von DE.",
-                    answers: ["Süden", "Norden", "ganz im Meer", "auf Rügen"],
+                    question: "In welchem Teil Deutschlands liegen die Alpen?",
+                    answers: ["Im Süden", "Im Norden", "Im Osten", "Im Westen"],
                     correct: 0,
-                    explanation: "Süden."
+                    explanation: "Die Alpen ziehen sich am südlichen Rand entlang, in Bayern. Im Norden liegt dagegen die Küste."
                 },
                 {
                     id: "euk4l1_s2",
@@ -2704,10 +2704,10 @@
                     topic: "europa",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Höchster Berg in DE?",
-                    answers: ["Zugspitze", "Brocken", "Feldberg nur", "Zug"],
+                    question: "Wie heißt der höchste Berg Deutschlands?",
+                    answers: ["Die Zugspitze", "Der Brocken", "Der Feldberg", "Der Watzmann"],
                     correct: 0,
-                    explanation: "Zugspitze."
+                    explanation: "Die Zugspitze in den Alpen ist knapp 3000 Meter hoch. Der Brocken im Harz ist der höchste Berg Norddeutschlands."
                 },
                 {
                     id: "euk4l1_s4",
@@ -2735,10 +2735,10 @@
                     topic: "europa",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Hauptstadt DE?",
-                    answers: ["Berlin", "Paris", "Rom", "Wien"],
+                    question: "Berlin ist die Hauptstadt von …",
+                    answers: ["Deutschland", "Österreich", "Polen", "Dänemark"],
                     correct: 0,
-                    explanation: "Berlin."
+                    explanation: "Berlin ist Hauptstadt und Regierungssitz Deutschlands."
                 },
                 {
                     id: "euk4l1_t2",
@@ -2749,10 +2749,10 @@
                     topic: "europa",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Paris liegt in …",
-                    answers: ["Frankreich", "Italien", "Polen", "Spanien"],
+                    question: "In welchem Land liegt Paris?",
+                    answers: ["In Frankreich", "In Italien", "In Polen", "In Spanien"],
                     correct: 0,
-                    explanation: "Frankreich."
+                    explanation: "Paris ist die Hauptstadt Frankreichs."
                 },
                 {
                     id: "euk4l1_t3",
@@ -2763,10 +2763,10 @@
                     topic: "europa",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Rom liegt in …",
-                    answers: ["Italien", "Spanien", "Deutschland", "Schweden"],
+                    question: "In welchem Land liegt Rom?",
+                    answers: ["In Italien", "In Spanien", "In Griechenland", "In Portugal"],
                     correct: 0,
-                    explanation: "Italien."
+                    explanation: "Rom ist die Hauptstadt Italiens."
                 },
                 {
                     id: "euk4l1_t4",
@@ -2791,10 +2791,10 @@
                     topic: "europa",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Europa ist ein …",
-                    answers: ["Kontinent", "Dorf", "Fluss", "Berg"],
+                    question: "Was ist Europa?",
+                    answers: ["Ein Kontinent", "Ein einzelnes Land", "Ein großer Fluss", "Ein Gebirge"],
                     correct: 0,
-                    explanation: "Kontinent."
+                    explanation: "Ein Kontinent ist ein großer Erdteil. Zu Europa gehören über 40 Länder."
                 },
                 {
                     id: "euk4l1_t6",
@@ -2805,10 +2805,10 @@
                     topic: "europa",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Alpen in DE eher im …",
-                    answers: ["Süden", "Norden", "Osten nur", "Westen nur am Meer"],
+                    question: "Wo liegen die Alpen in Deutschland?",
+                    answers: ["Im Süden", "Im Norden", "Im Osten", "Im Westen"],
                     correct: 0,
-                    explanation: "Süden."
+                    explanation: "Ganz im Süden, in Bayern. Dort steht auch die Zugspitze."
                 }
         ],
         bestehenAb: 0.75

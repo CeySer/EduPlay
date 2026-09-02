@@ -128,6 +128,28 @@
                     return (k ? k.title + " · " : "") + l.title;
                 }
             }
+            // Vokabel-Kategorien: "vocab:en:k4" -> "Vokabeln Englisch · Klasse 4".
+            // Ohne diesen Zweig stand im Eltern-Bereich der rohe Schluessel.
+            const v = String(key).match(/^vocab:([a-z]{2}):(.+)$/i);
+            if (v) {
+                const sprachen = { en: "Englisch", tr: "Türkisch", fr: "Französisch", es: "Spanisch" };
+                const sprache = sprachen[v[1].toLowerCase()] || v[1].toUpperCase();
+                let stufe = "";
+                if (typeof VOCABULARY_DATABASE !== "undefined" && VOCABULARY_DATABASE[v[1]]
+                    && VOCABULARY_DATABASE[v[1]][v[2]] && VOCABULARY_DATABASE[v[1]][v[2]].label) {
+                    stufe = VOCABULARY_DATABASE[v[1]][v[2]].label;
+                }
+                if (!stufe) {
+                    const k = String(v[2]).match(/^k(\d+)$/i);
+                    stufe = k ? "Klasse " + k[1] : v[2];
+                }
+                return "Vokabeln " + sprache + " · " + stufe;
+            }
+            // "topic:bruchrechnen" -> hinteren Teil aufloesen
+            if (String(key).indexOf("topic:") === 0) {
+                const rest = String(key).split(":").slice(1).join(":");
+                return labelFuerKategorie(rest) || rest;
+            }
         } catch (e) { /* egal, dann eben ohne Namen */ }
         return "";
     };

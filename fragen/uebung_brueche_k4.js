@@ -56,7 +56,8 @@ const BRUECHE_K4_QUESTIONS = [
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
-  "explanation": "Drei Viertel von 8 sind 6."
+  "explanation": "Drei Viertel von 8 sind 6.",
+  "grafik": "<svg viewBox='0 0 300 92' style='display:block;margin:8px auto;width:100%;max-width:300px;height:auto' xmlns='http://www.w3.org/2000/svg'><text x='6' y='16' font-size='13' font-weight='700' font-family='sans-serif' fill='#94a3b8'>das Ganze = 8 Äpfel</text><rect x='6.0' y='30' width='72.0' height='40' fill='rgba(245,158,11,0.80)' stroke='#f59e0b' stroke-width='2'/><rect x='78.0' y='30' width='72.0' height='40' fill='rgba(245,158,11,0.80)' stroke='#f59e0b' stroke-width='2'/><rect x='150.0' y='30' width='72.0' height='40' fill='rgba(245,158,11,0.80)' stroke='#f59e0b' stroke-width='2'/><rect x='222.0' y='30' width='72.0' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><text x='114.0' y='90' text-anchor='middle' font-size='15' font-weight='700' font-family='sans-serif' fill='#e5e7eb'>?</text></svg>"
  },
  {
   "id": "br_k4_004",
@@ -309,7 +310,8 @@ const BRUECHE_K4_QUESTIONS = [
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
-  "explanation": "Ein Zehntel von 20 ist 2."
+  "explanation": "Ein Zehntel von 20 ist 2.",
+  "grafik": "<svg viewBox='0 0 300 92' style='display:block;margin:8px auto;width:100%;max-width:300px;height:auto' xmlns='http://www.w3.org/2000/svg'><text x='6' y='16' font-size='13' font-weight='700' font-family='sans-serif' fill='#94a3b8'>das Ganze = 20</text><rect x='6.0' y='30' width='28.8' height='40' fill='rgba(245,158,11,0.80)' stroke='#f59e0b' stroke-width='2'/><rect x='34.8' y='30' width='28.8' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><rect x='63.6' y='30' width='28.8' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><rect x='92.4' y='30' width='28.8' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><rect x='121.2' y='30' width='28.8' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><rect x='150.0' y='30' width='28.8' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><rect x='178.8' y='30' width='28.8' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><rect x='207.6' y='30' width='28.8' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><rect x='236.4' y='30' width='28.8' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><rect x='265.2' y='30' width='28.8' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><text x='20.4' y='90' text-anchor='middle' font-size='15' font-weight='700' font-family='sans-serif' fill='#e5e7eb'>?</text></svg>"
  },
  {
   "id": "br_k4_017",
@@ -328,7 +330,8 @@ const BRUECHE_K4_QUESTIONS = [
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
-  "explanation": "Ein Fünftel von 10 ist 2, zwei Fünftel = 4."
+  "explanation": "Ein Fünftel von 10 ist 2, zwei Fünftel = 4.",
+  "grafik": "<svg viewBox='0 0 300 92' style='display:block;margin:8px auto;width:100%;max-width:300px;height:auto' xmlns='http://www.w3.org/2000/svg'><text x='6' y='16' font-size='13' font-weight='700' font-family='sans-serif' fill='#94a3b8'>das Ganze = 10</text><rect x='6.0' y='30' width='57.6' height='40' fill='rgba(245,158,11,0.80)' stroke='#f59e0b' stroke-width='2'/><rect x='63.6' y='30' width='57.6' height='40' fill='rgba(245,158,11,0.80)' stroke='#f59e0b' stroke-width='2'/><rect x='121.2' y='30' width='57.6' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><rect x='178.8' y='30' width='57.6' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><rect x='236.4' y='30' width='57.6' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><text x='63.6' y='90' text-anchor='middle' font-size='15' font-weight='700' font-family='sans-serif' fill='#e5e7eb'>?</text></svg>"
  },
  {
   "id": "br_k4_018",

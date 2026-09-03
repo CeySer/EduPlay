@@ -452,7 +452,8 @@ const BRUECHE_K3_QUESTIONS = [
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
-  "explanation": "Die Hälfte von 8 ist 4, mehr als die Hälfte also mindestens 5."
+  "explanation": "Die Hälfte von 8 ist 4, mehr als die Hälfte also mindestens 5.",
+  "grafik": "<svg viewBox='0 0 300 92' style='display:block;margin:8px auto;width:100%;max-width:300px;height:auto' xmlns='http://www.w3.org/2000/svg'><text x='6' y='16' font-size='13' font-weight='700' font-family='sans-serif' fill='#94a3b8'>das Ganze = 8 Äpfel</text><rect x='6.0' y='30' width='144.0' height='40' fill='rgba(245,158,11,0.80)' stroke='#f59e0b' stroke-width='2'/><rect x='150.0' y='30' width='144.0' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><text x='78.0' y='90' text-anchor='middle' font-size='15' font-weight='700' font-family='sans-serif' fill='#e5e7eb'>?</text></svg>"
  },
  {
   "id": "br_k3_024",
@@ -471,7 +472,8 @@ const BRUECHE_K3_QUESTIONS = [
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
-  "explanation": "Die Hälfte von 10 ist 5."
+  "explanation": "Die Hälfte von 10 ist 5.",
+  "grafik": "<svg viewBox='0 0 300 92' style='display:block;margin:8px auto;width:100%;max-width:300px;height:auto' xmlns='http://www.w3.org/2000/svg'><text x='6' y='16' font-size='13' font-weight='700' font-family='sans-serif' fill='#94a3b8'>das Ganze = 10 Murmeln</text><rect x='6.0' y='30' width='144.0' height='40' fill='rgba(245,158,11,0.80)' stroke='#f59e0b' stroke-width='2'/><rect x='150.0' y='30' width='144.0' height='40' fill='rgba(148,163,184,0.15)' stroke='#f59e0b' stroke-width='2'/><text x='78.0' y='90' text-anchor='middle' font-size='15' font-weight='700' font-family='sans-serif' fill='#e5e7eb'>?</text></svg>"
  }
 ];
 if (typeof window !== 'undefined') window.BRUECHE_K3_QUESTIONS = BRUECHE_K3_QUESTIONS;

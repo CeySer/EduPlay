@@ -17,23 +17,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "points": 10,
     "explanation": "Superman ist mit dem S-Symbol bekannt."
   },
-  {
-    "id": "sup_002",
-    "category": "spass_superhelden",
-    "area": "spass",
-    "subject": "superhelden",
-    "question": "Welcher Held kommt aus Gotham City?",
-    "answers": [
-      "Superman",
-      "Batman",
-      "Flash",
-      "Aquaman"
-    ],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Batman operiert in Gotham."
-  },
+  
   {
     "id": "sup_003",
     "category": "spass_superhelden",
@@ -66,7 +50,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Thor führt Mjölnir."
+    "explanation": "Mjölnir kann nur heben, wer als würdig gilt. In den Filmen schafft das außer Thor auch Captain America."
   },
   {
     "id": "sup_005",
@@ -100,7 +84,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bruce Wayne ist Batman."
+    "explanation": "Der Milliardär aus Gotham City hat keine Superkräfte – er arbeitet mit Technik, Training und Geld."
   },
   {
   "id": "sup_007",
@@ -168,25 +152,9 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das Vibranium-Schild."
+    "explanation": "Das Schild besteht aus Vibranium und nimmt Aufprallenergie auf, statt sie weiterzugeben."
   },
-  {
-    "id": "sup_011",
-    "category": "spass_superhelden",
-    "area": "spass",
-    "subject": "superhelden",
-    "question": "Welcher Held stammt vom Planeten Krypton?",
-    "answers": [
-      "Batman",
-      "Superman",
-      "Flash",
-      "Aquaman"
-    ],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Kal-El / Superman von Krypton."
-  },
+  
   {
     "id": "sup_012",
     "category": "spass_superhelden",
@@ -202,7 +170,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die X-Men sind Mutanten."
+    "explanation": "Mutanten haben ihre Kräfte von Geburt an. Gegründet wurde das Team von Professor Charles Xavier."
   },
   {
     "id": "sup_013",
@@ -236,7 +204,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Tony Stark ist Iron Man."
+    "explanation": "Stark baut den ersten Anzug in einer Höhle, um sich zu befreien – daraus wird später die Iron-Man-Rüstung."
   },
   {
     "id": "sup_015",
@@ -270,7 +238,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Flash ist der Speedster."
+    "explanation": "Der Speedster läuft schneller als der Schall und kann dabei durch feste Wände hindurchschwingen."
   },
   {
   "id": "sup_017",
@@ -287,7 +255,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
   "correct": 1,
   "difficulty": "mittel",
   "points": 10,
-  "explanation": "Der Power-Ring."
+  "explanation": "Der Ring formt alles, was der Träger sich vorstellt – solange dessen Willenskraft stark genug ist."
 },
   {
     "id": "sup_018",
@@ -304,7 +272,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Aquaman / Arthur Curry."
+    "explanation": "Arthur Curry ist Sohn eines Leuchtturmwärters und einer atlantischen Königin – deshalb steht er zwischen beiden Welten."
   },
   {
     "id": "sup_019",
@@ -338,7 +306,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Spider-Man."
+    "explanation": "Peter Parker wird von einer radioaktiv veränderten Spinne gebissen und bekommt dadurch seinen Spinnensinn."
   },
   {
   "id": "sup_021",
@@ -389,7 +357,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Sam Wilson / Falcon."
+    "explanation": "Sam Wilson übernimmt in den Comics später sogar das Schild von Captain America."
   },
   {
     "id": "sup_024",
@@ -423,7 +391,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Scott Lang / Ant-Man."
+    "explanation": "Der Anzug verkleinert den Träger, ohne seine Kraft zu verringern – deshalb schlägt Ant-Man härter, als er aussieht."
   },
   {
     "id": "sup_026",
@@ -440,7 +408,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Diana / Wonder Woman."
+    "explanation": "Diana wächst auf der Insel Themyscira unter Amazonen auf und kommt erst als Erwachsene in die Menschenwelt."
   },
   {
     "id": "sup_027",
@@ -474,7 +442,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ororo Munroe / Storm."
+    "explanation": "Ororo Munroe steuert Wind, Regen und Blitze. In Afrika wurde sie als Kind für eine Göttin gehalten."
   },
   {
     "id": "sup_029",
@@ -491,7 +459,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Iron Mans Kampfanzug."
+    "explanation": "Die Rüstung wird über Jahre weiterentwickelt – vom groben Metallanzug bis zur Nanotechnik."
   },
   {
     "id": "sup_030",
@@ -508,7 +476,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Clark Kent ist Superman."
+    "explanation": "Clark Kent arbeitet als Reporter beim Daily Planet – die Brille ist seine ganze Tarnung."
   },
   {
     "id": "sup_031",
@@ -542,7 +510,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Clint Barton / Hawkeye."
+    "explanation": "Clint Barton hat keine Superkräfte, trifft aber mit Spezialpfeilen praktisch jedes Ziel."
   },
   {
     "id": "sup_033",
@@ -559,7 +527,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Logan / Wolverine."
+    "explanation": "Adamantium ist ein unzerstörbares Metall. Logan heilt außerdem jede Wunde in kurzer Zeit."
   },
   {
   "id": "sup_034",
@@ -576,7 +544,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
   "correct": 1,
   "difficulty": "mittel",
   "points": 10,
-  "explanation": "Die Guardians."
+  "explanation": "Die bunt zusammengewürfelte Truppe um Star-Lord, Gamora, Rocket und Groot reist durch die Galaxie."
 },
   {
     "id": "sup_035",
@@ -593,7 +561,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Blade ist Daywalker."
+    "explanation": "Blade hat die Stärke eines Vampirs, verträgt aber Tageslicht – deshalb heißt er Daywalker."
   },
   {
     "id": "sup_036",
@@ -610,7 +578,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Batmans Fahrzeug."
+    "explanation": "Das Batmobil wurde in fast jedem Film neu entworfen – vom eleganten Sportwagen bis zum Panzerfahrzeug."
   },
   {
     "id": "sup_037",
@@ -627,7 +595,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Scott Summers / Cyclops."
+    "explanation": "Scott Summers kann die Strahlen nicht abschalten und trägt deshalb ständig eine Rubinquarz-Brille."
   },
   {
     "id": "sup_038",
@@ -678,7 +646,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Wade Wilson / Deadpool."
+    "explanation": "Wade Wilson heilt jede Verletzung und weiß, dass er in einem Comic vorkommt – er redet direkt zum Publikum."
   },
   {
     "id": "sup_041",
@@ -695,25 +663,9 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Thors Hammer."
+    "explanation": "Mjölnir wurde von Zwergen im Kern eines sterbenden Sterns geschmiedet."
   },
-  {
-    "id": "sup_042",
-    "category": "spass_superhelden",
-    "area": "spass",
-    "subject": "superhelden",
-    "question": "Welcher Held ist der „Dunkle Ritter“?",
-    "answers": [
-      "Superman",
-      "Batman",
-      "Green Lantern",
-      "Cyborg"
-    ],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Batman wird so genannt."
-  },
+  
   {
     "id": "sup_043",
     "category": "spass_superhelden",
@@ -763,7 +715,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
   "correct": 1,
   "difficulty": "mittel",
   "points": 10,
-  "explanation": "Stephen Strange."
+  "explanation": "Stephen Strange war Chirurg, bis seine Hände zerstört wurden. Danach lernte er Magie in Tibet."
 },
   {
     "id": "sup_046",
@@ -780,7 +732,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der weiße Stern."
+    "explanation": "Der weiße Stern auf blauem Grund stammt aus der Flagge der USA – die Figur entstand 1941."
   },
   {
     "id": "sup_047",
@@ -797,25 +749,9 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Swamp Thing."
+    "explanation": "Swamp Thing war einmal ein Wissenschaftler und ist heute eine Pflanze mit menschlichem Bewusstsein."
   },
-  {
-    "id": "sup_048",
-    "category": "spass_superhelden",
-    "area": "spass",
-    "subject": "superhelden",
-    "question": "Welcher Held ist der „Man of Steel“?",
-    "answers": [
-      "Batman",
-      "Superman",
-      "Iron Man",
-      "Colossus"
-    ],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Superman."
-  },
+  
   {
     "id": "sup_049",
     "category": "spass_superhelden",
@@ -831,7 +767,7 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Venom ist ein Symbiont."
+    "explanation": "Der Symbiont verstärkt seinen Träger, übernimmt aber allmählich die Kontrolle. Er verträgt weder Feuer noch laute Töne."
   },
   {
   "id": "sup_050",
@@ -848,18 +784,18 @@ const SPASS_SUPERHELDEN_QUESTIONS = [
   "correct": 1,
   "difficulty": "mittel",
   "points": 10,
-  "explanation": "Die Fantastic Four."
+  "explanation": "Reed Richards, Sue und Johnny Storm sowie Ben Grimm bekamen ihre Kräfte 1961 durch kosmische Strahlung."
 },
-  {"id":"held_051","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Spider-Man heißt mit bürgerlichem Namen oft …","answers":["Bruce Wayne","Clark Kent","Tony Stark","Peter Parker"],"correct":3,"difficulty":"leicht","points":10,"explanation":"New York, Spinnensinn."},
-  {"id":"held_052","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Batman kämpft vor allem in …","answers":["Metropolis","Asgard","Wakanda","Gotham"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Dunkle Stadt."},
-  {"id":"held_053","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Superman kommt vom Planeten …","answers":["Mars","Erde zuerst","Tatooine","Krypton"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Kal-El."},
-  {"id":"held_054","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Wonder Woman kommt aus …","answers":["Asgard","Gotham","Krypton","Themyscira"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Amazoneninsel."},
-  {"id":"held_055","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Iron Man steckt in einer …","answers":["Spinnennetz-Kammer","Fledermaushöhle nur","unsichtbaren Kutte","Hightech-Rüstung"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Tony Stark."},
-  {"id":"held_056","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Die Avengers sind …","answers":["nur eine Schulklasse","nur ein Fußballteam","nur Detektive ohne Kräfte","ein Helden-Team"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Marvel."},
-  {"id":"held_057","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Black Panther ist König von …","answers":["Gotham","Asgard","Krypton","Wakanda"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Vibranium."},
-  {"id":"held_058","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Hulk wird stark, wenn …","answers":["er schläft","er rechnet","er singt","er wütend wird"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Bruce Banner."},
-  {"id":"held_059","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Captain Americas Schild ist oft …","answers":["eckig wie ein Buch","aus Holz","unsichtbar","rund und sehr fest"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Vibranium-Schild."},
-  {"id":"held_060","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Ein Alter Ego ist …","answers":["nur der Schurke","nur die Stadt","nur das Kostüm ohne Person","die zweite Identität"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Clark Kent / Superman."},
+  {"id":"held_051","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Spider-Man heißt mit bürgerlichem Namen oft …","answers":["Bruce Wayne","Clark Kent","Tony Stark","Peter Parker"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Peter Parker lebt in New York bei seiner Tante May und arbeitet nebenbei als Fotograf."},
+  {"id":"held_052","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Batman kämpft vor allem in …","answers":["Metropolis","Asgard","Wakanda","Gotham"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Gotham City ist eine erfundene Großstadt an der US-Ostküste, düster gezeichnet und voller Verbrechen."},
+  {"id":"held_053","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Superman kommt vom Planeten …","answers":["Mars","Erde zuerst","Tatooine","Krypton"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Krypton wurde zerstört, seine Eltern schickten ihn als Baby zur Erde. Kryptonit macht ihn wehrlos."},
+  {"id":"held_054","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Wonder Woman kommt aus …","answers":["Asgard","Gotham","Krypton","Themyscira"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Themyscira ist eine Insel, die nur von Amazonen bewohnt wird und für Männer unsichtbar bleibt."},
+  {"id":"held_055","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Iron Man steckt in einer …","answers":["Spinnennetz-Kammer","Fledermaushöhle nur","unsichtbaren Kutte","Hightech-Rüstung"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Der Anzug fliegt, schießt Energiestrahlen und wird von einem Reaktor in Starks Brust angetrieben."},
+  {"id":"held_056","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Die Avengers sind …","answers":["ein Team von Superhelden", "ein Team von Wissenschaftlern", "eine Gruppe von Detektiven", "ein Orchester aus New York"],"correct":0,"difficulty":"leicht","points":10,"explanation":"Zu den Avengers gehören unter anderem Iron Man, Captain America, Thor, Hulk und Black Widow."},
+  {"id":"held_057","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Black Panther ist König von …","answers":["Gotham","Asgard","Krypton","Wakanda"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Wakanda gilt nach außen als armes Land, besitzt in Wahrheit aber das seltene Metall Vibranium."},
+  {"id":"held_058","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Hulk wird stark, wenn …","answers":["er schläft","er rechnet","er singt","er wütend wird"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Bruce Banner verwandelt sich bei Wut in den Hulk. Je wütender er wird, desto stärker wird er."},
+  {"id":"held_059","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Captain Americas Schild ist oft …","answers":["eckig wie ein Buch","aus Holz","unsichtbar","rund und sehr fest"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Das Vibranium-Schild lässt sich werfen und kehrt durch geschickte Abpraller zurück."},
+  {"id":"held_060","category":"spass_superhelden","area":"spass","subject":"superhelden","question":"Ein Alter Ego ist …","answers":["die zweite Identität", "der ständige Gegenspieler", "das Kostüm der Figur", "die Heimatstadt des Helden"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Clark Kent und Superman sind derselbe Mensch. Das Alter Ego schützt Familie und Freunde des Helden."},
 
 ];
 

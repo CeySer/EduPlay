@@ -1,22 +1,5 @@
 [
   {
-    "id": "anim_merged_001",
-    "category": "kinder_anime_cartoons",
-    "area": "disney",
-    "subject": "wissen",
-    "question": "Wie heißt die kleine Meerjungfrau im bekannten Disney-Klassiker?",
-    "answers": [
-      "Belle",
-      "Arielle",
-      "Jasmine",
-      "Aurora"
-    ],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Arielle die Meerjungfrau feierte 1989 ihren Kinodurchbruch."
-  },
-  {
     "id": "anim_merged_002",
     "category": "kinder_anime_cartoons",
     "area": "pixar",
@@ -236,23 +219,6 @@
     "difficulty": "leicht",
     "points": 5,
     "explanation": "DreamWorks schuf mit Shrek 2001 einen riesigen Animationserfolg."
-  },
-  {
-    "id": "anim_merged_015",
-    "category": "kinder_anime_cartoons",
-    "area": "disney",
-    "subject": "wissen",
-    "question": "In welchem Disney-Film singt Bär Balu das Lied 'Probier’s mal mit Gemütlichkeit'?",
-    "answers": [
-      "Robin Hood",
-      "Das Dschungelbuch",
-      "Tarzan",
-      "Bärenbrüder"
-    ],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Balu bringt dem Menschenjungen Mogli im Dschungelbuch bei, das Leben locker zu nehmen."
   },
   {
     "id": "anim_merged_016",

@@ -2040,7 +2040,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "points": 10,
         "explanation": "🟨🟥 Die zweite Gelbe Karte im selben Spiel führt automatisch zur Gelb-Roten Karte und damit zum Platzverweis."
     },
-  { id: "q1338", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Alle wie viele Jahre finden die Olympischen Sommerspiele statt?", answers: ["Alle 5 Jahre", "Jedes Jahr", "Alle 2 Jahre", "Alle 4 Jahre"], correct: 3, difficulty: "mittel", points: 10, explanation: "Sommer- und Winterspiele wechseln sich im Zwei-Jahres-Rhythmus ab." },
+  
   { id: "q1339", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Wie heißt der wichtigste Filmpreis der USA?", answers: ["Golden Globe", "Oscar", "Grammy", "Emmy"], correct: 1, difficulty: "mittel", points: 10, explanation: "Der Grammy ist für Musik, der Emmy für Fernsehen." },
   { id: "q1340", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "In welchem Sport gibt es den Begriff 'Strike'?", answers: ["Bowling", "Schwimmen", "Golf", "Tennis"], correct: 0, difficulty: "mittel", points: 10, explanation: "Ein Strike bedeutet: alle zehn Pins mit dem ersten Wurf." },
   { id: "q1341", category: "spass_sport_film", area: "spass", subject: "sport_film", question: "Wie viele Minuten dauert eine Halbzeit beim Profi-Fußball?", answers: ["60", "30", "75", "45"], correct: 3, difficulty: "mittel", points: 10, explanation: "Zwei Halbzeiten à 45 Minuten plus Nachspielzeit." },

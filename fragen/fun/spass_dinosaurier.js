@@ -74,16 +74,11 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "area": "spass",
     "subject": "dinosaurier",
     "question": "Welches Ereignis beendete die Dinosaurierzeit vor etwa 66 Mio. Jahren?",
-    "answers": [
-      "Eine Eiszeit nur",
-      "Ein Meteoriteneinschlag",
-      "Nur Vulkane",
-      "Nur Krankheiten"
-    ],
-    "correct": 1,
+    "answers": ["Ein Meteoriteneinschlag", "Eine sehr lange Eiszeit", "Eine weltweite Seuche", "Ein Absinken der Meere"],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Einschlag und Folgen am Ende der Kreide."
+    "explanation": "Der Einschlag vor 66 Millionen Jahren hinterließ einen 180 Kilometer breiten Krater vor Mexiko."
   },
   {
   "id": "din_006",
@@ -125,16 +120,11 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "area": "spass",
     "subject": "dinosaurier",
     "question": "Was frisst ein Herbivore?",
-    "answers": [
-      "Nur Fleisch",
-      "Pflanzen",
-      "Nur Insekten",
-      "Nur Aas"
-    ],
-    "correct": 1,
+    "answers": ["Pflanzen", "Fleisch", "Insekten", "Aas"],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Herbivoren sind Pflanzenfresser."
+    "explanation": "Herbivor kommt vom lateinischen herba für Kraut. Der Brachiosaurus fraß täglich mehrere hundert Kilo Pflanzen."
   },
   {
     "id": "din_009",
@@ -355,7 +345,7 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Trias – Jura – Kreide."
+    "explanation": "Die Trias begann vor rund 250 Millionen Jahren. In ihr tauchten die ersten Dinosaurier überhaupt auf."
   },
   {
     "id": "din_022",
@@ -363,16 +353,11 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "area": "spass",
     "subject": "dinosaurier",
     "question": "Was frisst ein Karnivore?",
-    "answers": [
-      "Nur Pflanzen",
-      "Fleisch",
-      "Nur Algen",
-      "Nur Samen"
-    ],
-    "correct": 1,
+    "answers": ["Fleisch", "Pflanzen", "Algen", "Samen"],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Karnivoren sind Fleischfresser."
+    "explanation": "Karnivor kommt von caro, lateinisch für Fleisch. Der bekannteste ist der Tyrannosaurus rex."
   },
   {
     "id": "din_023",
@@ -516,16 +501,11 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "area": "spass",
     "subject": "dinosaurier",
     "question": "Welche Feder-Funde zeigen Verwandtschaft zu Vögeln?",
-    "answers": [
-      "Nur Fußspuren",
-      "Gefiederte Theropoden",
-      "Nur Eierschalen",
-      "Nur Zähne"
-    ],
-    "correct": 1,
+    "answers": ["Gefiederte Theropoden", "Versteinerte Fußspuren", "Eierschalen aus Nestern", "Abgebrochene Zähne"],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Viele Theropoden trugen Federn."
+    "explanation": "In China wurden ganze Dinosaurier mit Federabdrücken gefunden. Vögel gelten heute als lebende Dinosaurier."
   },
   {
     "id": "din_032",
@@ -627,7 +607,7 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Solnhofener Plattenkalk."
+    "explanation": "Im Solnhofener Plattenkalk in Bayern wurde der Archaeopteryx gefunden – das bekannteste Bindeglied zwischen Dinosaurier und Vogel."
   },
   {
     "id": "din_038",
@@ -644,7 +624,7 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Theropode des Jura."
+    "explanation": "Der Allosaurus lebte im Jura, wurde etwa neun Meter lang und jagte auf zwei Beinen."
   },
   {
   "id": "din_039",
@@ -661,7 +641,7 @@ const SPASS_DINOSAURIER_QUESTIONS = [
   "correct": 1,
   "difficulty": "mittel",
   "points": 10,
-  "explanation": "Schwere Panzerung."
+  "explanation": "Knochenplatten lagen wie ein Pflaster auf dem Rücken. Manche Arten hatten zusätzlich eine Keule am Schwanzende."
 },
   {
     "id": "din_040",
@@ -685,17 +665,12 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "category": "spass_dinosaurier",
     "area": "spass",
     "subject": "dinosaurier",
-    "question": "Welcher Dinosaurier legte Eier in Gelegen?",
-    "answers": [
-      "Nur Fische",
-      "Viele Arten",
-      "Nur Säuger",
-      "Nur Insekten"
-    ],
-    "correct": 1,
+    "question": "Wie brachten Dinosaurier ihren Nachwuchs zur Welt?",
+    "answers": ["Sie legten Eier in Nestern", "Sie brachten lebende Junge zur Welt", "Sie legten Eier ins Wasser", "Sie trugen die Jungen im Beutel"],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Dinosaurier waren eierlegend."
+    "explanation": "Gefundene Nester zeigen kreisförmig gelegte Eier. Manche Arten bewachten das Gelege wie heutige Vögel."
   },
   {
     "id": "din_042",
@@ -720,16 +695,11 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "area": "spass",
     "subject": "dinosaurier",
     "question": "Welcher Zahn-Typ passt zu Fleischfressern eher?",
-    "answers": [
-      "Flache Mahlzähne",
-      "Scharfe spitze Zähne",
-      "Keine Zähne immer",
-      "Nur Stoßzähne"
-    ],
-    "correct": 1,
+    "answers": ["Scharfe spitze Zähne", "Flache Mahlzähne", "Breite Kauplatten", "Gebogene Stoßzähne"],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Reißzähne und spitze Kronen."
+    "explanation": "Fleischfresser brauchen Zähne zum Zerreißen. Pflanzenfresser mahlen mit flachen Zähnen – der Unterschied ist am Fossil sofort erkennbar."
   },
   {
     "id": "din_044",
@@ -754,16 +724,11 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "area": "spass",
     "subject": "dinosaurier",
     "question": "Welche Methode datiert Schichten relativ zueinander?",
-    "answers": [
-      "Nur Radiometrie",
-      "Stratigraphie",
-      "Nur DNA",
-      "Nur Magnetismus"
-    ],
-    "correct": 1,
+    "answers": ["Die Stratigraphie", "Die Radiometrie", "Die DNA-Analyse", "Die Magnetfeldmessung"],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Lagerung und Abfolge der Schichten."
+    "explanation": "Untere Gesteinsschichten sind älter als obere. Das gibt die Reihenfolge – das genaue Alter liefert erst die Radiometrie."
   },
   {
     "id": "din_046",
@@ -805,16 +770,11 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "area": "spass",
     "subject": "dinosaurier",
     "question": "Welcher Kontinent war Teil von Gondwana?",
-    "answers": [
-      "Nur Europa",
-      "Südamerika",
-      "Nur Grönland",
-      "Nur Japan"
-    ],
-    "correct": 1,
+    "answers": ["Südamerika", "Nordamerika", "Grönland", "Japan"],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Gondwana umfasste Südhemisphären-Landmassen."
+    "explanation": "Gondwana war der südliche Großkontinent aus Südamerika, Afrika, Indien, Australien und der Antarktis."
   },
   {
     "id": "din_049",
@@ -850,15 +810,15 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "points": 10,
     "explanation": "Stego- bezieht sich auf die Platten."
   },
-  {"id":"dino_051","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"T. rex war vor allem …","answers":["ein Fisch","ein Insekt","ein Vogel von heute","ein Fleischfresser"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Große Zähne, räuberisch."},
-  {"id":"dino_052","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Was bedeutet Dinosaurier ungefähr?","answers":["kleiner Eidechsenfreund","schneller Hase","weicher Schwamm","schreckliche Echse"],"correct":3,"difficulty":"mittel","points":10,"explanation":"aus dem Griechischen."},
-  {"id":"dino_053","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Triceratops hat am Kopf …","answers":["keine Hörner","Flügel","Kiemen","drei Hörner und einen Kragen"],"correct":3,"difficulty":"leicht","points":10,"explanation":"tri = drei."},
+  {"id":"dino_051","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"T. rex war vor allem …","answers":["ein Fisch","ein Insekt","ein Vogel von heute","ein Fleischfresser"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Seine Zähne wurden bis zu 30 Zentimeter lang – kräftig genug, um Knochen zu zerbeißen."},
+  {"id":"dino_052","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Was bedeutet Dinosaurier ungefähr?","answers":["kleiner Eidechsenfreund","schneller Hase","weicher Schwamm","schreckliche Echse"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Der Name kommt aus dem Griechischen: deinós heißt schrecklich, saúros Echse. Geprägt hat ihn 1842 Richard Owen."},
+  {"id":"dino_053","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Triceratops hat am Kopf …","answers":["keine Hörner","Flügel","Kiemen","drei Hörner und einen Kragen"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Zwei lange Hörner über den Augen, ein kurzes auf der Nase – dazu der breite Nackenschild aus Knochen."},
   {"id":"dino_054","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Brachiosaurus fraß vor allem …","answers":["Fleisch","Fische","Insekten","Pflanzen"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Langhals-Pflanzenfresser."},
-  {"id":"dino_055","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Dinosaurier lebten vor allem im …","answers":["Mittelalter","20. Jahrhundert","Antike Rom","Mesozoikum"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Erdmittelalter."},
+  {"id":"dino_055","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Dinosaurier lebten vor allem im …","answers":["Mittelalter","20. Jahrhundert","Antike Rom","Mesozoikum"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Das Erdmittelalter umfasst Trias, Jura und Kreide und dauerte etwa 180 Millionen Jahre."},
   {"id":"dino_056","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Viele Forscher denken: Vögel stammen ab von …","answers":["Fischen","Haien","Insekten","Theropoden-Dinosauriern"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Federn und Knochenmerkmale."},
   {"id":"dino_057","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Ein Fossil ist oft …","answers":["ein lebendes Tier","ein Plastikspielzeug","ein Meteor","versteinertes Lebewesen"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Knochen, Spuren, Abdrücke."},
   {"id":"dino_058","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Stegosaurus hat auf dem Rücken …","answers":["Flügel","Kiemen","Hörner nur am Schwanz","Knochenplatten"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Platten und Schwanzstacheln."},
-  {"id":"dino_059","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Das große Sterben vor 66 Mio. Jahren hängt zusammen mit …","answers":["nur einem Gewitter","nur einem Vulkan in Europa","nur Menschen","einem Einschlag plus Klima"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Asteroid und Folgen."},
+  {"id":"dino_059","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Das große Sterben vor 66 Mio. Jahren hängt zusammen mit …","answers":["einem Einschlag und dem Klima", "einem sehr starken Gewitter", "einem Vulkan mitten in Europa", "der Ankunft des Menschen"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Ein Asteroid schlug vor der Küste Mexikos ein. Staub verdunkelte die Sonne, Pflanzen starben, die Nahrungskette brach zusammen."},
   {"id":"dino_060","category":"spass_dinosaurier","area":"spass","subject":"dinosaurier","question":"Velociraptor war etwa so groß wie …","answers":["ein Elefant","ein Wal","ein Hochhaus","ein großer Hund"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Filme machen ihn oft zu groß."},
 
 ];

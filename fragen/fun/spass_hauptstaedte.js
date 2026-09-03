@@ -1,22 +1,6 @@
 // Fun · Hauptstaedte (Europa+Welt legacy)
 const SPASS_HAUPTSTAEDTE_QUESTIONS = [
-  {
-        "id": "q_europa_001",
-        "category": "spass_hauptstaedte_europa",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Deutschland?",
-        "answers": [
-            "Berlin",
-            "Hamburg",
-            "München",
-            "Frankfurt"
-        ],
-        "correct": 0,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Deutschland ist Berlin!"
-    },
+  
   {
         "id": "q_europa_002",
         "category": "spass_hauptstaedte_europa",
@@ -119,40 +103,8 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "points": 10,
         "explanation": "Die Hauptstadt von Was ist die Hauptstadt Schweiz ist Bern!"
     },
-  {
-        "id": "q_europa_008",
-        "category": "spass_hauptstaedte_europa",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Schweden?",
-        "answers": [
-            "Göteborg",
-            "Malmö",
-            "Norrköping",
-            "Stockholm"
-        ],
-        "correct": 3,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Schweden ist Stockholm!"
-    },
-  {
-        "id": "q_europa_009",
-        "category": "spass_hauptstaedte_europa",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Norwegen?",
-        "answers": [
-            "Oslo",
-            "Bergen",
-            "Trondheim",
-            "Stavanger"
-        ],
-        "correct": 0,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Norwegen ist Oslo!"
-    },
+  
+  
   {
         "id": "q_europa_010",
         "category": "spass_hauptstaedte_europa",
@@ -255,23 +207,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "points": 10,
         "explanation": "Die Hauptstadt von Griechenland ist Athen!"
     },
-  {
-        "id": "q_europa_016",
-        "category": "spass_hauptstaedte_europa",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Polen?",
-        "answers": [
-            "Krakau",
-            "Kattowitz",
-            "Breslau",
-            "Warschau"
-        ],
-        "correct": 3,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Polen ist Warschau!"
-    },
+  
   {
         "id": "q_europa_017",
         "category": "spass_hauptstaedte_europa",
@@ -306,40 +242,8 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "points": 10,
         "explanation": "Die Hauptstadt von Ungarn ist Budapest!"
     },
-  {
-        "id": "q_europa_019",
-        "category": "spass_hauptstaedte_europa",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Irland?",
-        "answers": [
-            "Cork",
-            "Galway",
-            "Dublin",
-            "Limerick"
-        ],
-        "correct": 2,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Irland ist Dublin!"
-    },
-  {
-        "id": "q_europa_020",
-        "category": "spass_hauptstaedte_europa",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Island?",
-        "answers": [
-            "Akureyri",
-            "Hafnarfjörður",
-            "Kópavogur",
-            "Reykjavík"
-        ],
-        "correct": 3,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Island ist Reykjavík!"
-    },
+  
+  
   {
         "id": "q_europa_021",
         "category": "spass_hauptstaedte_europa",
@@ -527,23 +431,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "points": 10,
         "explanation": "Die Hauptstadt von USA ist Washington, D.C.!"
     },
-  {
-        "id": "q_welt_102",
-        "category": "spass_hauptstaedte_welt",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Kanada?",
-        "answers": [
-            "Toronto",
-            "Vancouver",
-            "Montreal",
-            "Ottawa"
-        ],
-        "correct": 3,
-        "difficulty": "mittel",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Kanada ist Ottawa!"
-    },
+  
   {
         "id": "q_welt_103",
         "category": "spass_hauptstaedte_welt",
@@ -578,23 +466,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "points": 10,
         "explanation": "Die Hauptstadt von Argentinien ist Buenos Aires!"
     },
-  {
-        "id": "q_welt_105",
-        "category": "spass_hauptstaedte_welt",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Japan?",
-        "answers": [
-            "Kyoto",
-            "Osaka",
-            "Tokio",
-            "Sapporo"
-        ],
-        "correct": 2,
-        "difficulty": "mittel",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Japan ist Tokio!"
-    },
+  
   {
         "id": "q_welt_106",
         "category": "spass_hauptstaedte_welt",
@@ -629,23 +501,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "points": 10,
         "explanation": "Die Hauptstadt von Indien ist Neu-Delhi!"
     },
-  {
-        "id": "q_welt_108",
-        "category": "spass_hauptstaedte_welt",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Australien?",
-        "answers": [
-            "Sydney",
-            "Canberra",
-            "Melbourne",
-            "Brisbane"
-        ],
-        "correct": 1,
-        "difficulty": "mittel",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Australien ist Canberra!"
-    },
+  
   {
         "id": "q_welt_109",
         "category": "spass_hauptstaedte_welt",
@@ -714,23 +570,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "points": 10,
         "explanation": "Die Hauptstadt von Thailand ist Bangkok!"
     },
-  {
-        "id": "q_welt_113",
-        "category": "spass_hauptstaedte_welt",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Südkorea?",
-        "answers": [
-            "Busan",
-            "Incheon",
-            "Seoul",
-            "Daegu"
-        ],
-        "correct": 2,
-        "difficulty": "mittel",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Südkorea ist Seoul!"
-    },
+  
   {
         "id": "q_welt_114",
         "category": "spass_hauptstaedte_welt",
@@ -748,23 +588,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "points": 10,
         "explanation": "Die Hauptstadt von Vietnam ist Hanoi!"
     },
-  {
-        "id": "q_welt_115",
-        "category": "spass_hauptstaedte_welt",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von der Türkei?",
-        "answers": [
-            "Ankara",
-            "Istanbul",
-            "Izmir",
-            "Antalya"
-        ],
-        "correct": 0,
-        "difficulty": "mittel",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Türkei ist Ankara!"
-    },
+  
   {
         "id": "q_welt_116",
         "category": "spass_hauptstaedte_welt",
@@ -799,23 +623,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "points": 10,
         "explanation": "Die Hauptstadt von Chile ist Santiago de Chile!"
     },
-  {
-        "id": "q_welt_118",
-        "category": "spass_hauptstaedte_welt",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Neuseeland?",
-        "answers": [
-            "Auckland",
-            "Christchurch",
-            "Queenstown",
-            "Wellington"
-        ],
-        "correct": 3,
-        "difficulty": "mittel",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Neuseeland ist Wellington!"
-    },
+  
   {
         "id": "q_welt_119",
         "category": "spass_hauptstaedte_welt",
@@ -918,23 +726,7 @@ const SPASS_HAUPTSTAEDTE_QUESTIONS = [
         "points": 10,
         "explanation": "Die Hauptstadt von Israel ist Jerusalem!"
     },
-  {
-        "id": "q_welt_125",
-        "category": "spass_hauptstaedte_welt",
-        "area": "spass",
-        "subject": "hauptstaedte",
-        "question": "Was ist die Hauptstadt von Norwegen?",
-        "answers": [
-            "Bergen",
-            "Trondheim",
-            "Oslo",
-            "Stavanger"
-        ],
-        "correct": 2,
-        "difficulty": "mittel",
-        "points": 10,
-        "explanation": "Die Hauptstadt von Norwegen ist Oslo!"
-    },
+  
   {
         "id": "q_welt_126",
         "category": "spass_hauptstaedte_welt",

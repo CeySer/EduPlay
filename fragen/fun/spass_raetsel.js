@@ -1139,23 +1139,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "points": 10,
         "explanation": "🗣️ Klassisches Namensrätsel."
     },
-  {
-        "id": "q_ra_068",
-        "category": "spass_raetsel",
-        "area": "spass",
-        "subject": "raetsel",
-        "question": "Wie nennt man ein Mann, der in einem Haus ohne Fenster und Türen wohnt?",
-        "answers": [
-            "Ein Höhlenbewohner",
-            "Ein Astronaut",
-            "Ein U-Boot-Fahrer",
-            "Ein Kükenei / Pilz"
-        ],
-        "correct": 3,
-        "difficulty": "mittel",
-        "points": 10,
-        "explanation": "🥚 Das Küken im Ei."
-    },
+  
   {
         "id": "q_ra_069",
         "category": "spass_raetsel",
@@ -1241,23 +1225,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "points": 10,
         "explanation": "🦀 Krebse besitzen einen Kau-Magen (Magenmühle) mit Chitin-Zähnen."
     },
-  {
-        "id": "q_ra_074",
-        "category": "spass_raetsel",
-        "area": "spass",
-        "subject": "raetsel",
-        "question": "Was läuft den ganzen Tag und kommt nie vom Fleck?",
-        "answers": [
-            "Ein müder Marathonläufer",
-            "Die Uhr / Das Laufband",
-            "Ein rostiges Fahrrad",
-            "Ein plätschernder Fluss"
-        ],
-        "correct": 1,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "⏰ Die Uhr 'läuft'."
-    },
+  
   {
         "id": "q_ra_075",
         "category": "spass_raetsel",
@@ -1411,23 +1379,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "points": 10,
         "explanation": "🥽 Taucherbrillen schützen die Augen unter Wasser vor Reizungen."
     },
-  {
-        "id": "q_ra_084",
-        "category": "spass_raetsel",
-        "area": "spass",
-        "subject": "raetsel",
-        "question": "Welcher Saft schmeckt niemanden gut?",
-        "answers": [
-            "Der süße, dunkle Kirschsaft",
-            "Der saure, frische Zitronensaft",
-            "Der bittere, grüne Kohlsaft",
-            "Der Datensaft / Kazentat-Saft"
-        ],
-        "correct": 3,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "⚡ Ein Wortspiel."
-    },
+  
   {
         "id": "q_ra_085",
         "category": "spass_raetsel",
@@ -1479,40 +1431,8 @@ const SPASS_RAETSEL_QUESTIONS = [
         "points": 10,
         "explanation": "🤸‍♂️ Ein Purzelbaum ist eine sportliche Überroll-Bewegung."
     },
-  {
-        "id": "q_ra_088",
-        "category": "spass_raetsel",
-        "area": "spass",
-        "subject": "raetsel",
-        "question": "Was ist grün, klebrig und hüpft durch den Wald?",
-        "answers": [
-            "Ein hüpfender Baumfrosch",
-            "Ein grüner Ohrwurm",
-            "Ein flinker Gecko",
-            "Ein Kaugummi-Frosch"
-        ],
-        "correct": 3,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "🐸 Scherzrätsel."
-    },
-  {
-        "id": "q_ra_089",
-        "category": "spass_raetsel",
-        "area": "spass",
-        "subject": "raetsel",
-        "question": "Welcher Vogel hat das Hören im Namen?",
-        "answers": [
-            "Der Auerhahn ('Auer')",
-            "Der laut rufende Kuckuck",
-            "Der stille, nächtliche Uhu",
-            "Der schön singende Star"
-        ],
-        "correct": 0,
-        "difficulty": "mittel",
-        "points": 10,
-        "explanation": "🐦 Worträtsel."
-    },
+  
+  
   {
         "id": "q_ra_090",
         "category": "spass_raetsel",
@@ -1802,40 +1722,8 @@ const SPASS_RAETSEL_QUESTIONS = [
         "points": 10,
         "explanation": "🐘 Elefanten sind die einzigen Säugetiere, die nicht mit allen vier Beinen gleichzeitig vom Boden abheben können."
     },
-  {
-        "id": "q_ra_107",
-        "category": "spass_raetsel",
-        "area": "spass",
-        "subject": "raetsel",
-        "question": "Welcher Fisch braucht die meiste Kleidung?",
-        "answers": [
-            "Der schlüpfrige, glatte Aal",
-            "Der schuppige, silbrige Karpfen",
-            "Der Zander / Der Kaltfisch",
-            "Der frische, magere Kabeljau"
-        ],
-        "correct": 2,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "🐟 Wortspiel."
-    },
-  {
-        "id": "q_ra_108",
-        "category": "spass_raetsel",
-        "area": "spass",
-        "subject": "raetsel",
-        "question": "Wer baut Häuser für andere und hat selbst keines?",
-        "answers": [
-            "Der fleißige Zimmermann",
-            "Der geschickte Dachdecker",
-            "Der reisende arme Wanderarbeiter",
-            "Der Maurermeister / Bauarbeiter"
-        ],
-        "correct": 3,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "🧱 Berufsrätsel."
-    },
+  
+  
   {
         "id": "q_ra_109",
         "category": "spass_raetsel",
@@ -1904,40 +1792,8 @@ const SPASS_RAETSEL_QUESTIONS = [
         "points": 10,
         "explanation": "🎂 Das Alter nimmt im Laufe des Lebens stetig zu."
     },
-  {
-        "id": "q_ra_113",
-        "category": "spass_raetsel",
-        "area": "spass",
-        "subject": "raetsel",
-        "question": "Was fliegt ohne Flügel, weint ohne Tränen und vergeht im Wind?",
-        "answers": [
-            "Die Wolke",
-            "Der Rauch",
-            "Der Vogel",
-            "Das Blatt"
-        ],
-        "correct": 0,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "🌧️ Klassische Variante."
-    },
-  {
-        "id": "q_ra_114",
-        "category": "spass_raetsel",
-        "area": "spass",
-        "subject": "raetsel",
-        "question": "Welches Buch hat keine Seiten?",
-        "answers": [
-            "Das kurze, spannende Hörbuch",
-            "Das Taschenbuch / Malbuch",
-            "Das digitale bunte E-Book-Cover",
-            "Das karierte kleine Notizbuch"
-        ],
-        "correct": 1,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "💻 Ein digitales e-Book."
-    },
+  
+  
   {
         "id": "q_ra_115",
         "category": "spass_raetsel",
@@ -1972,23 +1828,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "points": 10,
         "explanation": "🪲 Das Glühwürmchen erzeugt kaltes Licht (Biolumineszenz)."
     },
-  {
-        "id": "q_ra_117",
-        "category": "spass_raetsel",
-        "area": "spass",
-        "subject": "raetsel",
-        "question": "Welcher Schlüssel öffnet jedes Herz?",
-        "answers": [
-            "Die Höflichkeit / Das Lächeln",
-            "Der seltene Generalschlüssel",
-            "Der versteckte Zweitschlüssel",
-            "Der passende Nachschlüssel"
-        ],
-        "correct": 0,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "❤️ Sprichwort."
-    },
+  
   {
         "id": "q_ra_118",
         "category": "spass_raetsel",
@@ -2006,23 +1846,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "points": 10,
         "explanation": "🫁 Den Atem anzuhalten ist physisch auf wenige Minuten begrenzt."
     },
-  {
-        "id": "q_ra_119",
-        "category": "spass_raetsel",
-        "area": "spass",
-        "subject": "raetsel",
-        "question": "Was wird trocken, wenn man es in Wasser legt?",
-        "answers": [
-            "Ein weiches Papiertaschentuch",
-            "Ein flauschiges großes Handtuch",
-            "Das Löschpapier / Das Handtuch",
-            "Ein weißer, runder Wattebausch"
-        ],
-        "correct": 2,
-        "difficulty": "leicht",
-        "points": 10,
-        "explanation": "🌊 Scherzfrage."
-    },
+  
   {
         "id": "q_ra_120",
         "category": "spass_raetsel",
@@ -2040,7 +1864,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "points": 10,
         "explanation": "🪞 Der Spiegel wirft Bilder lautlos zurück."
     },
-  { id: "q1446", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was wird nasser, je mehr es trocknet?", answers: ["Ein Regenschirm", "Ein Stein", "Ein Handtuch", "Ein Schuh"], correct: 2, difficulty: "mittel", points: 10, explanation: "Je mehr es abtrocknet, desto nasser wird es selbst." },
+  
   { id: "q1447", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Ein Bauer hat 17 Schafe. Alle bis auf 9 laufen weg. Wie viele bleiben?", answers: ["9", "17", "18", "8"], correct: 0, difficulty: "mittel", points: 10, explanation: "'Alle bis auf 9' heißt: genau 9 bleiben übrig." },
   { id: "q1448", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was hat Städte, aber keine Häuser, und Wasser, aber keine Fische?", answers: ["Ein gerahmtes Foto", "Ein Werbeposter", "Ein Wandkalender", "Eine Landkarte"], correct: 3, difficulty: "mittel", points: 10, explanation: "Auf einer Landkarte sind Städte und Flüsse eingezeichnet." },
   { id: "q1449", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Wie viele Monate haben 28 Tage?", answers: ["Nur einer", "Sechs", "Zwei", "Alle 12"], correct: 3, difficulty: "mittel", points: 10, explanation: "Jeder Monat hat mindestens 28 Tage." },
@@ -2059,17 +1883,17 @@ const SPASS_RAETSEL_QUESTIONS = [
   { id: "q1462", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was ist größer als die Ewigkeit, aber kleiner als ein Tropfen?", answers: ["Die Liebe", "Nichts", "Ein Gedanke", "Die Zeit"], correct: 1, difficulty: "mittel", points: 10, explanation: "Nichts ist größer als alles und kleiner als alles – ein klassisches Rätsel." },
   { id: "q1463", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was wird kürzer, wenn man es verlängert?", answers: ["Das Leben", "Ein Seil", "Eine Kerze", "Der Tag"], correct: 3, difficulty: "mittel", points: 10, explanation: "Wenn man den Tag verlängert, wird die Nacht kürzer – eine spielerische Antwort." },
   { id: "q1464", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was hat Schlüssel, aber keine Schlösser?", answers: ["Ein Klavierhocker", "Ein Keyboard", "Ein Kettenschloss", "Ein Zahlenschloss"], correct: 1, difficulty: "mittel", points: 10, explanation: "Ein Keyboard hat Tasten (Keys), aber keine Schlösser." },
-  { id: "q1465", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was ist immer vor dir, aber du kannst es nicht sehen?", answers: ["Das Licht", "Die Zukunft", "Der Wind", "Die Vergangenheit"], correct: 1, difficulty: "mittel", points: 10, explanation: "Die Zukunft ist immer vor dir – aber man kann sie nicht sehen." },
+  
   { id: "q1466", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was hat einen Kopf und einen Schwanz, aber keinen Körper?", answers: ["Eine Münze", "Ein Drachen", "Ein Goldfisch", "Ein Singvogel"], correct: 0, difficulty: "mittel", points: 10, explanation: "Eine Münze hat Kopf (Bild) und Zahl (Schwanz), aber keinen Körper." },
-  { id: "q1467", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was wird größer, je mehr man davon nimmt?", answers: ["Ein Berg", "Eine Schuld", "Ein Loch", "Ein Blatt"], correct: 2, difficulty: "mittel", points: 10, explanation: "Je mehr man von einem Loch wegnimmt, desto größer wird es." },
-  { id: "q1468", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was hat Zähne, aber kann nicht beißen?", answers: ["Ein Löwe", "Ein Säge", "Ein Reißverschluss", "Ein Kamm"], correct: 3, difficulty: "mittel", points: 10, explanation: "Ein Kamm hat Zähne, aber er kann nicht beißen." },
+  
+  
   { id: "q1170", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was kann man brechen, ohne es zu berühren?", answers: ["Ein Versprechen", "Einen knackenden Ast", "Einen dünnen Zweig", "Ein altes Bündnis"], correct: 0, difficulty: "mittel", points: 10, explanation: "Ein Versprechen kann man brechen, ohne es anzufassen." },
   { id: "q1171", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was ist immer vor dir, aber nie zu sehen?", answers: ["Dein Rücken", "Die Zeit", "Die Zukunft", "Die Vergangenheit"], correct: 2, difficulty: "mittel", points: 10, explanation: "Die Zukunft ist immer vor dir – aber sichtbar wird sie erst später." },
   { id: "q1173", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was geht durch die Wand, ohne einen Ton zu machen?", answers: ["Der Schall", "Das Licht", "Eine Nadel", "Ein Gedanke"], correct: 1, difficulty: "mittel", points: 10, explanation: "Licht dringt durch Wände – Schall macht Geräusche." },
   { id: "q1174", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was hat viele Blätter, aber ist kein Baum?", answers: ["Ein Salat", "Ein Buch", "Ein Kalender", "Eine Pflanze"], correct: 1, difficulty: "mittel", points: 10, explanation: "Ein Buch hat Blätter (Seiten), ist aber kein Baum." },
   { id: "q1175", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was kann fliegen, aber hat keine Flügel?", answers: ["Ein Vogel", "Ein Insekt", "Eine Rakete", "Ein Flugzeug"], correct: 2, difficulty: "mittel", points: 10, explanation: "Eine Rakete fliegt ohne Flügel – ein Vogel nicht." },
   { id: "q1176", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was ist rund, aber kein Ball?", answers: ["Ein Rad", "Eine Münze", "Ein Teller", "Ein Reifen"], correct: 1, difficulty: "mittel", points: 10, explanation: "Eine Münze ist rund, aber kein Ball." },
-  { id: "q1177", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was hat Zähne, aber kann nicht kauen?", answers: ["Ein Buch", "Ein Säge", "Ein Kamm", "Ein Brief"], correct: 2, difficulty: "mittel", points: 10, explanation: "Ein Kamm hat Zähne, aber er kann nicht kauen." },
+  
   { id: "q1178", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was steigt, wenn es fällt?", answers: ["Der schwankende Kurs", "Der dichte Nebel", "Der weiche Schnee", "Der Regenschirm"], correct: 3, difficulty: "mittel", points: 10, explanation: "Ein Regenschirm geht hoch, wenn es regnet – also wenn Wasser fällt." },
   { id: "q1179", category: "spass_raetsel", area: "spass", subject: "raetsel", question: "Was hat ein Ende, aber keinen Anfang?", answers: ["Ein Tag", "Ein Kreis", "Ein Leben", "Eine Reise"], correct: 2, difficulty: "mittel", points: 10, explanation: "Ein Leben hat ein Ende, aber der Anfang ist schwer zu fassen." }
 ];

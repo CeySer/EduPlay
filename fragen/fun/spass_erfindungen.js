@@ -2040,7 +2040,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "points": 10,
         "explanation": "🔭 Hubble lieferte dank der Position außerhalb der Erdatmosphäre gestochen scharfe Bilder des Universums."
     },
-  { id: "q1434", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wer erfand den Buchdruck mit beweglichen Lettern in Europa?", answers: ["Thomas Edison", "Albert Einstein", "Johannes Gutenberg", "Karl Benz (Automobil)"], correct: 2, difficulty: "mittel", points: 10, explanation: "Um 1450 revolutionierte Gutenberg die Verbreitung von Wissen." },
+  
   { id: "q1435", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wer baute das erste Automobil mit Verbrennungsmotor?", answers: ["Rudolf Diesel", "Carl Benz", "Henry Ford", "Nikolaus Otto"], correct: 1, difficulty: "mittel", points: 10, explanation: "1886 meldete Carl Benz seinen Motorwagen zum Patent an." },
   { id: "q1436", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Wofür steht 'WWW'?", answers: ["Wireless Web World", "Web Work Widget", "World Web Window", "World Wide Web"], correct: 3, difficulty: "mittel", points: 10, explanation: "Tim Berners-Lee entwickelte es 1989 am CERN." },
   { id: "q1437", category: "spass_erfindungen", area: "spass", subject: "erfindungen", question: "Was war der Zweck der ersten Glühbirne?", answers: ["Wärme für kalte Wohnräume erzeugen", "Elektrisches Licht ohne offene Flamme", "Töne über weite Strecken hörbar verstärken", "Getränke kühl halten in der Praxis"], correct: 1, difficulty: "mittel", points: 10, explanation: "Thomas Edison machte sie ab 1879 alltagstauglich." },

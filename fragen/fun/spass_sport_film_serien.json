@@ -142,12 +142,12 @@
     "subject": "wissen",
     "question": "Wer spricht in der Serie 'Breaking Bad' den bedrohlichen Satz: 'I am the one who knocks!'?",
     "answers": [
+      "Walter White",
       "Jesse Pinkman",
-      "Walter White (Heisenberg)",
       "Hank Schrader",
-      "Gus Fring"
+      "Gustavo Fring"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Walter White betont damit gegenüber seiner Frau Skyler seine neue Machtrolle im Drogenbusiness."
@@ -174,17 +174,17 @@
     "category": "film_serien",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Welche Comic-Figur sagt in Marvels 'The Avengers' den berühmten Satz: 'Ich bin Batman'?",
+    "question": "Zu welchem Comic-Verlag gehört Batman?",
     "answers": [
-      "Keine, Batman gehört zu DC Comics",
-      "Iron Man",
-      "Captain America",
-      "Spiderman"
+      "DC Comics",
+      "Marvel Comics",
+      "Dark Horse",
+      "Image Comics"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Batman ist der dunkle Ritter aus dem DC-Universum, nicht von Marvel."
+    "explanation": "Batman erschien 1939 bei DC. Zu Marvel gehören dagegen Spider-Man, Iron Man und die Avengers."
   },
   {
     "id": "mix_mc_042",
@@ -193,12 +193,12 @@
     "subject": "wissen",
     "question": "Aus welchem Kultfilm stammt der Satz: 'Hasta la vista, baby'?",
     "answers": [
-      "Predator",
-      "Terminator 2: Tag der Abrechnung",
+      "Terminator 2",
       "Total Recall",
-      "True Lies"
+      "True Lies",
+      "Predator"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
     "explanation": "Arnold Schwarzenegger nutzt diesen Spruch kurz bevor er den T-1000 einfriert und zerschießt."
@@ -340,23 +340,6 @@
     "explanation": "Patrick Swayze als Johnny Castle holt Baby (Jennifer Grey) für den Schlusstanz auf die Bühne."
   },
   {
-    "id": "mix_mc_051",
-    "category": "film_serien",
-    "area": "zitate",
-    "subject": "wissen",
-    "question": "Welcher Comic-Schurke fragt im Film 'The Dark Knight' immer wieder: 'Why so serious?'?",
-    "answers": [
-      "Bane",
-      "Der Joker",
-      "Two-Face",
-      "Penguin"
-    ],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Heath Ledger prägte als Joker diesen bedrohlichen Spruch im Batman-Meisterwerk von 2008."
-  },
-  {
     "id": "mix_mc_052",
     "category": "film_serien",
     "area": "zitate",
@@ -439,7 +422,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Bruce Wayne ist Batman."
+    "explanation": "Der Milliardär aus Gotham City hat keine Superkräfte – er arbeitet mit Technik, Training und Geld."
   },
   {
     "id": "film_ext_027",
@@ -493,40 +476,6 @@
     "explanation": "Ethan Hunt wird von Tom Cruise gespielt."
   },
   {
-    "id": "film_ext_030",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Welche Serie spielt in Westeros und Essos?",
-    "answers": [
-      "Game of Thrones",
-      "The Witcher",
-      "Vikings",
-      "Outlander"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Game of Thrones basiert auf George R. R. Martin."
-  },
-  {
-    "id": "film_ext_031",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Welcher Film beginnt mit dem Satz 'A long time ago in a galaxy far, far away'?",
-    "answers": [
-      "Star Wars",
-      "Star Trek",
-      "Dune",
-      "Avatar"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Der klassische Star-Wars-Vorspann."
-  },
-  {
     "id": "film_ext_032",
     "category": "film_serien",
     "area": "film",
@@ -548,17 +497,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Wie heißt die Detektivin in den Netflix-Serien mit dem Namen 'The Queen’s Gambit' thematisch?",
+    "question": "Worum geht es in der Netflix-Serie 'Das Damengambit'?",
     "answers": [
-      "Es ist eine Schach-Serie",
-      "Eine Krimi-Serie",
-      "Eine Koch-Serie",
-      "Eine Sport-Serie"
+      "Um Schach",
+      "Um Kochwettbewerbe",
+      "Um Pferderennen",
+      "Um Kartenspiele"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Queen's Gambit handelt von Schach."
+    "explanation": "Beth Harmon lernt im Waisenhaus Schach und spielt sich in den 1960ern an die Weltspitze. Der Titel ist eine Schacheröffnung."
   },
   {
     "id": "film_ext_034",
@@ -592,14 +541,14 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Star Trek."
+    "explanation": "Die Serie startete 1966. Das Schiff trägt die Kennung NCC-1701, Kommandant der ersten Serie war Captain Kirk."
   },
   {
     "id": "film_ext_036",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Animationsfilm handelt von einem Koch-Ratten in Paris?",
+    "question": "Welcher Animationsfilm handelt von einer kochenden Ratte in Paris?",
     "answers": [
       "Ratatouille",
       "Madagascar",
@@ -609,24 +558,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Pixar: Ratatouille."
-  },
-  {
-    "id": "film_ext_037",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Wie heißt der Zauberer mit dem Blitznarbe?",
-    "answers": [
-      "Harry Potter",
-      "Frodo",
-      "Luke Skywalker",
-      "Percy Jackson"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Harry Potter."
+    "explanation": "Pixar, 2007. Ratte Remy kocht heimlich über den Kopf eines ungeschickten Küchengehilfen hinweg."
   },
   {
     "id": "film_ext_038",
@@ -643,7 +575,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Findet Nemo (Pixar)."
+    "explanation": "Pixar, 2003. Der Vater schwimmt vom Great Barrier Reef bis nach Sydney, um seinen Sohn zu finden."
   },
   {
     "id": "film_ext_039",
@@ -660,7 +592,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Supernatural."
+    "explanation": "Die Brüder Sam und Dean Winchester jagen ab 2005 in 15 Staffeln Dämonen quer durch die USA."
   },
   {
     "id": "film_ext_040",
@@ -677,24 +609,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die Matrix."
-  },
-  {
-    "id": "film_ext_041",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "In welchem Film ist Elsa die Schneekönigin?",
-    "answers": [
-      "Die Eiskönigin",
-      "Rapunzel",
-      "Brave",
-      "Moana"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Frozen / Die Eiskönigin."
+    "explanation": "Von 1999. Neo erfährt, dass die Welt um ihn herum eine Computersimulation ist."
   },
   {
     "id": "film_ext_042",
@@ -704,14 +619,14 @@
     "question": "Welche Serie spielt in Hawkins, Indiana, mit übernatürlichen Ereignissen?",
     "answers": [
       "Stranger Things",
-      "Dark",
+      "Chilling Adventures",
       "The OA",
-      "Riverdale"
+      "Dark"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Stranger Things."
+    "explanation": "Ab 2016 auf Netflix. Die Serie spielt in den 1980ern und zitiert bewusst Filme jener Zeit."
   },
   {
     "id": "film_ext_043",
@@ -728,7 +643,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Marlin sucht Nemo."
+    "explanation": "Marlin ist der ängstliche Clownfisch-Vater. Auf der Suche hilft ihm die vergessliche Dory."
   },
   {
     "id": "film_ext_044",
@@ -745,7 +660,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Frodo Beutlin."
+    "explanation": "Frodo Beutlin bekommt den Ring von seinem Onkel Bilbo und trägt ihn bis zum Schicksalsberg."
   },
   {
     "id": "film_ext_045",
@@ -755,7 +670,7 @@
     "question": "In welchem Film tanzt John Travolta in einem weißen Anzug?",
     "answers": [
       "Saturday Night Fever",
-      "Grease",
+      "Grease – Schmiere",
       "Pulp Fiction",
       "Face/Off"
     ],
@@ -779,7 +694,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Friends."
+    "explanation": "Zehn Staffeln von 1994 bis 2004 über sechs Freunde in New York."
   },
   {
     "id": "film_ext_047",
@@ -796,7 +711,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Olaf aus Die Eiskönigin."
+    "explanation": "Olaf ist der Schneemann, den Elsa und Anna als Kinder gebaut haben – er träumt vom Sommer."
   },
   {
     "id": "film_ext_048",
@@ -806,14 +721,14 @@
     "question": "In welchem Film spielt Leonardo DiCaprio einen Betrüger?",
     "answers": [
       "Catch Me If You Can",
-      "Titanic",
+      "The Wolf of Wall Street",
       "Inception",
       "The Revenant"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Catch Me If You Can."
+    "explanation": "Von 2002, nach einer wahren Geschichte: Frank Abagnale gab sich als Pilot, Arzt und Anwalt aus."
   },
   {
     "id": "film_ext_049",
@@ -830,7 +745,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Big Bang Theory."
+    "explanation": "Zwölf Staffeln ab 2007. Sheldon Cooper wurde die Hauptfigur der eigenen Vorgeschichte 'Young Sheldon'."
   },
   {
     "id": "film_ext_050",
@@ -864,7 +779,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Pixar: WALL-E."
+    "explanation": "Pixar, 2008. Die erste halbe Stunde kommt fast ohne gesprochenes Wort aus."
   },
   {
     "id": "film_ext_052",
@@ -881,7 +796,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Grey's Anatomy."
+    "explanation": "Seit 2005 – eine der am längsten laufenden Krankenhausserien überhaupt."
   },
   {
     "id": "film_ext_053",
@@ -898,14 +813,14 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Avengers: Endgame."
+    "explanation": "Von 2019. Der Film löste Avatar als weltweit erfolgreichsten Kinofilm ab, bis dieser 2021 zurückkam."
   },
   {
     "id": "film_ext_054",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welchem Film lernt ein Dschinn in einer Lampe kennen (Aladdin)?",
+    "question": "In welchem Disney-Film findet ein Straßenjunge eine Wunderlampe?",
     "answers": [
       "Aladdin",
       "Prince of Persia",
@@ -915,7 +830,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Disney: Aladdin."
+    "explanation": "Disney, 1992. Robin Williams sprach den Dschinni im Original und improvisierte dabei viel."
   },
   {
     "id": "film_ext_055",
@@ -925,14 +840,14 @@
     "question": "Welche Serie dreht sich um einen Zombie-Apokalypse-Überlebenskampf?",
     "answers": [
       "The Walking Dead",
+      "Black Summer",
       "Z Nation",
-      "iZombie",
-      "Kingdom"
+      "iZombie"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Walking Dead."
+    "explanation": "Ab 2010, nach einer Comicreihe. Die Serie brachte mehrere Ableger hervor."
   },
   {
     "id": "film_ext_056",
@@ -949,24 +864,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Celine Dion für Titanic."
-  },
-  {
-    "id": "film_ext_057",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "In welchem Film ist Shrek ein grüner Oger?",
-    "answers": [
-      "Shrek",
-      "Monsters Inc.",
-      "Brave",
-      "Tangled"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Shrek."
+    "explanation": "Von 1997. Der Song von Celine Dion gewann den Oscar, der Film selbst elf weitere."
   },
   {
     "id": "film_ext_058",
@@ -983,7 +881,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Breaking Bad."
+    "explanation": "Ab 2008. Ein Chemielehrer in Albuquerque wird nach einer Diagnose zum Drogenhersteller."
   },
   {
     "id": "film_ext_059",
@@ -1000,7 +898,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Spider-Man."
+    "explanation": "Peter Parker wird von einer Spinne gebissen und klettert seitdem an Hochhäusern hoch."
   },
   {
     "id": "film_ext_060",
@@ -1010,14 +908,14 @@
     "question": "In welchem Film reist Doc Brown mit einer DeLorean-Zeitmaschine?",
     "answers": [
       "Zurück in die Zukunft",
-      "Terminator",
-      "Looper",
-      "About Time"
+      "Alles eine Frage der Zeit",
+      "Die Zeitmaschine",
+      "Looper"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Back to the Future."
+    "explanation": "Von 1985. Der DeLorean braucht 88 Meilen pro Stunde, um in der Zeit zu springen."
   },
   {
     "id": "film_ext_061",
@@ -1034,7 +932,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Game of Thrones."
+    "explanation": "Acht Staffeln ab 2011, nach den Romanen von George R. R. Martin."
   },
   {
     "id": "film_ext_062",
@@ -1044,14 +942,14 @@
     "question": "Welcher Film handelt von einem Löwenjungen namens Simba?",
     "answers": [
       "Der König der Löwen",
+      "Das Dschungelbuch",
       "Madagascar",
-      "Jungle Book",
-      "Zootopia"
+      "Zoomania"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Lion King."
+    "explanation": "Disney, 1994. Die Geschichte erinnert bewusst an Shakespeares Hamlet."
   },
   {
     "id": "film_ext_063",
@@ -1068,7 +966,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Star Wars."
+    "explanation": "Die Reihe startete 1977. Dass Vader Lukes Vater ist, erfährt man erst im zweiten Teil."
   },
   {
     "id": "film_ext_064",
@@ -1078,14 +976,14 @@
     "question": "Welche Serie folgt Eleven und Mike in den 80ern?",
     "answers": [
       "Stranger Things",
-      "IT",
-      "Dark",
-      "Wednesday"
+      "Es – Kapitel 1",
+      "Wednesday",
+      "Dark"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Stranger Things."
+    "explanation": "Eleven hat übernatürliche Kräfte und stammt aus einem geheimen Labor in Hawkins."
   },
   {
     "id": "film_ext_065",
@@ -1102,7 +1000,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Rocky."
+    "explanation": "Von 1976. Sylvester Stallone schrieb das Drehbuch selbst und bestand darauf, die Hauptrolle zu spielen."
   },
   {
     "id": "film_ext_066",
@@ -1136,31 +1034,14 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Lost."
-  },
-  {
-    "id": "film_ext_068",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Welcher Film hat die Figur Buzz Lightyear?",
-    "answers": [
-      "Toy Story",
-      "Cars",
-      "Monsters Inc.",
-      "Incredibles"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Toy Story."
+    "explanation": "Ab 2004. Die Überlebenden von Oceanic-Flug 815 stranden auf einer Insel mit eigenen Regeln."
   },
   {
     "id": "film_ext_069",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welchem Film tanzt ein Pinguin zu Happy Feet?",
+    "question": "In welchem Film steppt ein Kaiserpinguin, der nicht singen kann?",
     "answers": [
       "Happy Feet",
       "Penguins of Madagascar",
@@ -1170,7 +1051,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Happy Feet."
+    "explanation": "Von 2006. Mumble kann nicht singen wie die anderen Pinguine – dafür steppt er."
   },
   {
     "id": "film_ext_070",
@@ -1187,7 +1068,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Better Call Saul."
+    "explanation": "Ab 2015 – die Vorgeschichte zu Breaking Bad, sechs Jahre vor Walter Whites erstem Auftritt."
   },
   {
     "id": "film_ext_071",
@@ -1197,14 +1078,14 @@
     "question": "Welcher Film zeigt einen jungen Zauberer mit Brille und Narbe?",
     "answers": [
       "Harry Potter und der Stein der Weisen",
-      "Eragon",
-      "Percy Jackson",
-      "The Magicians"
+      "Percy Jackson – Diebe im Olymp der Götter",
+      "Die Chroniken von Narnia",
+      "Eragon"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Harry Potter."
+    "explanation": "Von 2001, der erste von acht Filmen nach den Büchern von J. K. Rowling."
   },
   {
     "id": "film_ext_072",
@@ -1221,7 +1102,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Empire Strikes Back."
+    "explanation": "Yoda sagt es 1980 im Sumpf von Dagobah, während Luke bei ihm trainiert."
   },
   {
     "id": "film_ext_073",
@@ -1238,7 +1119,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Rick and Morty."
+    "explanation": "Ab 2013. Ein trinkender Wissenschaftler nimmt seinen Enkel mit auf Reisen durch Paralleluniversen."
   },
   {
     "id": "film_ext_074",
@@ -1255,7 +1136,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "King Kong."
+    "explanation": "Von 1933. Der Kampf auf dem Empire State Building wurde mit Stop-Motion-Figuren gedreht."
   },
   {
     "id": "film_ext_075",
@@ -1272,7 +1153,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Black Panther."
+    "explanation": "Von 2018 – der erste Marvel-Film, der für den Oscar als bester Film nominiert wurde."
   },
   {
     "id": "film_ext_076",
@@ -1282,31 +1163,31 @@
     "question": "Welche Serie zeigt die Welt von Mandalorianern und Baby Yoda?",
     "answers": [
       "The Mandalorian",
+      "Obi-Wan Kenobi",
       "Andor",
-      "Obi-Wan",
       "Ahsoka"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Mandalorian."
+    "explanation": "Ab 2019. Die Figur Grogu heißt nur bei den Fans 'Baby Yoda'."
   },
   {
     "id": "film_ext_077",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Film hat die Lieder 'Let It Go'?",
+    "question": "Welcher Film enthält das Lied 'Let It Go'?",
     "answers": [
       "Die Eiskönigin",
-      "Moana",
+      "Rapunzel – Neu verföhnt",
       "Encanto",
-      "Tangled"
+      "Vaiana"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Frozen."
+    "explanation": "Von 2013. Das Lied gewann den Oscar für den besten Filmsong."
   },
   {
     "id": "film_ext_078",
@@ -1330,7 +1211,7 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie spielt in einem fiktiven Krankenhaus mit Dr. House?",
+    "question": "Welche Serie dreht sich um einen genialen, aber unausstehlichen Diagnostiker?",
     "answers": [
       "Dr. House",
       "Scrubs",
@@ -1340,7 +1221,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "House M.D."
+    "explanation": "Acht Staffeln ab 2004. Die Figur ist an Sherlock Holmes angelehnt – bis hin zum Namen des Assistenten Wilson."
   },
   {
     "id": "film_ext_080",
@@ -1357,7 +1238,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Pixar: Coco."
+    "explanation": "Pixar, 2017. Der Film spielt am mexikanischen Feiertag Día de los Muertos."
   },
   {
     "id": "film_ext_081",
@@ -1374,7 +1255,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Harry Potter."
+    "explanation": "Voldemort wird in den Büchern meist nur 'Du-weißt-schon-wer' genannt."
   },
   {
     "id": "film_ext_082",
@@ -1391,31 +1272,14 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Narcos."
-  },
-  {
-    "id": "film_ext_083",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Welcher Film hat die Figuren Woody und Buzz?",
-    "answers": [
-      "Toy Story",
-      "A Bug's Life",
-      "Cars",
-      "Up"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Toy Story."
+    "explanation": "Ab 2015 auf Netflix, über den Aufstieg des kolumbianischen Drogenhändlers."
   },
   {
     "id": "film_ext_084",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welchem Film fliegt ein Haus an Ballons zum Paradiessturz?",
+    "question": "In welchem Film fliegt ein Haus an Luftballons nach Südamerika?",
     "answers": [
       "Oben (Up)",
       "Peter Pan",
@@ -1425,7 +1289,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Pixar: Up."
+    "explanation": "Pixar, 2009. Der 78-jährige Carl erfüllt damit den alten Traum seiner verstorbenen Frau."
   },
   {
     "id": "film_ext_085",
@@ -1442,7 +1306,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Daredevil."
+    "explanation": "Matt Murdock ist als Anwalt blind, hört und riecht dafür aber übermenschlich gut."
   },
   {
     "id": "film_ext_086",
@@ -1459,7 +1323,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Jaws."
+    "explanation": "Von 1975. Weil der mechanische Hai ständig kaputtging, sieht man ihn kaum – das machte den Film erst spannend."
   },
   {
     "id": "film_ext_087",
@@ -1476,7 +1340,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Woody in Toy Story."
+    "explanation": "Woody ist die Lieblingspuppe von Andy und muss lernen, den neuen Buzz Lightyear zu akzeptieren."
   },
   {
     "id": "film_ext_088",
@@ -1493,24 +1357,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Friends."
-  },
-  {
-    "id": "film_ext_089",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Welcher Film handelt von einem Jungen, der Hogwarts besucht?",
-    "answers": [
-      "Harry Potter",
-      "The Worst Witch",
-      "Matilda",
-      "A Series of Unfortunate Events"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Harry Potter."
+    "explanation": "Das Café mit dem orangefarbenen Sofa ist neben Monicas Wohnung der zweite Hauptschauplatz."
   },
   {
     "id": "film_ext_090",
@@ -1520,14 +1367,14 @@
     "question": "In welchem Film kämpfen die Minions für Gru?",
     "answers": [
       "Ich – Einfach unverbesserlich",
-      "Minions",
-      "Despicable Me 2",
-      "alle drei"
+      "Pets – Kleine Tiere ganz groß",
+      "Die Monster-Uni",
+      "Die Croods"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Despicable Me / Minions."
+    "explanation": "Ab 2010. Die gelben Helfer sprechen eine erfundene Mischung aus mehreren Sprachen."
   },
   {
     "id": "film_ext_091",
@@ -1544,24 +1391,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Sherlock (BBC)."
-  },
-  {
-    "id": "film_ext_092",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Welcher Film hat die Figur Darth Vader?",
-    "answers": [
-      "Star Wars",
-      "Star Trek",
-      "Battlestar",
-      "Dune"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Star Wars."
+    "explanation": "Ab 2010 bei der BBC, mit Benedict Cumberbatch. Jede Folge ist fast so lang wie ein Spielfilm."
   },
   {
     "id": "film_ext_093",
@@ -1578,7 +1408,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Shrek."
+    "explanation": "Von 2001. Prinzessin Fiona verwandelt sich nachts selbst in eine Ogerin."
   },
   {
     "id": "film_ext_094",
@@ -1595,7 +1425,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Vampire Diaries."
+    "explanation": "Ab 2009, nach einer Romanreihe. Die Serie brachte zwei Ableger hervor."
   },
   {
     "id": "film_ext_095",
@@ -1622,14 +1452,14 @@
     "question": "In welchem Film ist die Heldin eine Bogenschützin namens Merida?",
     "answers": [
       "Merida – Legende der Highlands",
-      "Brave",
-      "Tangled",
+      "Pocahontas – Der Weg der Farben",
+      "Rapunzel – Neu verföhnt",
       "Mulan"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Brave / Merida."
+    "explanation": "Disney und Pixar, 2012. Merida weigert sich, den vom Clan bestimmten Mann zu heiraten."
   },
   {
     "id": "film_ext_097",
@@ -1639,7 +1469,7 @@
     "question": "Welche Serie folgt den Kardashians?",
     "answers": [
       "Keeping Up with the Kardashians",
-      "The Real Housewives",
+      "The Real Housewives of Beverly Hills",
       "Jersey Shore",
       "Love Island"
     ],
@@ -1656,14 +1486,14 @@
     "question": "Welcher Film hat den Song 'Circle of Life' am Anfang?",
     "answers": [
       "Der König der Löwen",
-      "Tarzan",
-      "Jungle Book",
-      "Madagascar"
+      "Das Dschungelbuch",
+      "Madagascar",
+      "Tarzan"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Lion King."
+    "explanation": "Der Song eröffnet den Film von 1994 mit dem Sonnenaufgang über der Savanne."
   },
   {
     "id": "film_ext_099",
@@ -1680,7 +1510,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Karate Kid."
+    "explanation": "Von 1984. Mister Miyagi lässt Daniel erst ein Auto polieren – 'wax on, wax off' war schon Training."
   },
   {
     "id": "film_ext_100",
@@ -1697,7 +1527,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Office (US)."
+    "explanation": "Ab 2005, gedreht wie eine Dokumentation. Vorbild war die britische Serie gleichen Namens."
   },
   {
     "id": "film_ext_101",
@@ -1714,14 +1544,14 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Shrek."
+    "explanation": "Der sprechende Esel wird im Original von Eddie Murphy gesprochen."
   },
   {
     "id": "film_ext_102",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welchem Film ist Iron Man Tony Stark?",
+    "question": "In welchem Film baut ein Waffenfabrikant in einer Höhle seinen ersten Panzeranzug?",
     "answers": [
       "Iron Man",
       "Thor",
@@ -1731,24 +1561,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Iron Man."
-  },
-  {
-    "id": "film_ext_103",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Welche Serie handelt von einem Chemiker und seinem Partner Jesse?",
-    "answers": [
-      "Breaking Bad",
-      "Weeds",
-      "Snowfall",
-      "Ozark"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Breaking Bad."
+    "explanation": "Von 2008 – der Film, mit dem das Marvel-Filmuniversum begann."
   },
   {
     "id": "film_ext_104",
@@ -1758,14 +1571,14 @@
     "question": "Welcher Regisseur drehte 'Inception' und 'Interstellar'?",
     "answers": [
       "Christopher Nolan",
-      "Spielberg",
-      "Cameron",
-      "Tarantino"
+      "Steven Spielberg",
+      "Quentin Tarantino",
+      "James Cameron"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Christopher Nolan."
+    "explanation": "Christopher Nolan drehte außerdem die Batman-Trilogie mit Christian Bale und Dunkirk."
   },
   {
     "id": "film_ext_105",
@@ -1782,7 +1595,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Matrix."
+    "explanation": "Keanu Reeves trainierte monatelang Kampfszenen, bevor der Film 1999 in die Kinos kam."
   },
   {
     "id": "film_ext_106",
@@ -1799,7 +1612,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Witcher."
+    "explanation": "Ab 2019 auf Netflix, nach den Romanen des polnischen Autors Andrzej Sapkowski."
   },
   {
     "id": "film_ext_107",
@@ -1816,7 +1629,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "WALL-E."
+    "explanation": "WALL-E sammelt seit 700 Jahren allein den Müll auf der verlassenen Erde, bis die Sonde Eve landet."
   },
   {
     "id": "film_ext_108",
@@ -1833,24 +1646,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Jurassic Park."
-  },
-  {
-    "id": "film_ext_109",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Welche Serie hat die Figur Walter White?",
-    "answers": [
-      "Breaking Bad",
-      "Malcolm",
-      "The Shield",
-      "Sons of Anarchy"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Breaking Bad."
+    "explanation": "Von 1993. Der Park liegt vor Costa Rica – Steven Spielberg mischte erstmals Computerbilder mit echten Modellen."
   },
   {
     "id": "film_ext_110",
@@ -1884,24 +1680,24 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Harry Potter."
+    "explanation": "Quidditch wird auf Besen mit vier Bällen gespielt. Der Fänger jagt den Goldenen Schnatz."
   },
   {
     "id": "film_ext_112",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie spielt in einem Gefängnis und heißt 'Orange Is the New Black'?",
+    "question": "Welche Serie beginnt mit dem Haftantritt von Piper Chapman in einem Frauengefängnis?",
     "answers": [
       "Orange Is the New Black",
-      "Prison Break",
-      "Wentworth",
-      "Oz"
+      "Prison Break – Ausbruch",
+      "Das Gefängnis Oz",
+      "Wentworth"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "OITNB."
+    "explanation": "Sieben Staffeln ab 2013 – eine der ersten großen Eigenproduktionen von Netflix."
   },
   {
     "id": "film_ext_113",
@@ -1918,7 +1714,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Disney: Mulan."
+    "explanation": "Disney, 1998. Mulan zieht anstelle ihres kranken Vaters in den Krieg gegen die Hunnen."
   },
   {
     "id": "film_ext_114",
@@ -1945,8 +1741,8 @@
     "question": "Welche Serie folgt den Abenteuern von Aang dem Avatar?",
     "answers": [
       "Avatar – Der Herr der Elemente",
-      "Korre",
-      "Dragon Ball",
+      "Die Legende von Korra – Buch 1",
+      "Dragon Ball Z",
       "Naruto"
     ],
     "correct": 0,
@@ -1969,7 +1765,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Stephen Kings It."
+    "explanation": "Nach dem Roman von Stephen King. Der Clown Pennywise taucht alle 27 Jahre in Derry auf."
   },
   {
     "id": "film_ext_117",
@@ -1986,24 +1782,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Wonder Woman (2017)."
-  },
-  {
-    "id": "film_ext_118",
-    "category": "film_serien",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Welche Serie hat die Figuren Chandler und Joey?",
-    "answers": [
-      "Friends",
-      "Joey",
-      "How I Met Your Mother",
-      "Two and a Half Men"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Friends."
+    "explanation": "Von 2017. Diana wächst auf der Insel Themyscira auf und kommt erst als Erwachsene in die Menschenwelt."
   },
   {
     "id": "film_ext_119",
@@ -2020,24 +1799,24 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Jaws."
+    "explanation": "Der Strand von Amity Island ist erfunden, gedreht wurde auf der Insel Martha's Vineyard."
   },
   {
     "id": "film_ext_120",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welchem Film ist der Held ein Zwerg namens Tyrion?",
+    "question": "In welcher Serie ist Tyrion Lennister eine der Hauptfiguren?",
     "answers": [
-      "Game of Thrones (Serie)",
-      "Hobbit",
-      "Willow",
-      "Time Bandits"
+      "Game of Thrones",
+      "Time Bandits",
+      "Der Hobbit",
+      "Willow"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Game of Thrones."
+    "explanation": "Tyrion ist der jüngste Sohn der Lennisters und verteidigt sich vor allem mit seinem Verstand."
   },
   {
     "id": "film_ext_121",
@@ -2054,7 +1833,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Wednesday (Netflix)."
+    "explanation": "Ab 2022 auf Netflix, mit Jenna Ortega. Die Figur stammt aus der Addams Family."
   },
   {
     "id": "film_ext_122",
@@ -2064,21 +1843,21 @@
     "question": "Welcher Film hat die Figur Thanos mit dem Infinity Gauntlet?",
     "answers": [
       "Avengers: Infinity War",
-      "Guardians",
+      "Guardians of the Galaxy",
       "Thor: Ragnarok",
       "Doctor Strange"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Infinity War / Endgame."
+    "explanation": "Von 2018. Thanos sammelt sechs Infinity-Steine – am Ende des Films verliert er nicht."
   },
   {
     "id": "film_ext_123",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welchem Film lernt ein Mädchen namens Moana die Ozeane kennen?",
+    "question": "In welchem Disney-Film sticht eine Häuptlingstochter allein in See?",
     "answers": [
       "Vaiana (Moana)",
       "Pocahontas",
@@ -2088,7 +1867,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Moana / Vaiana."
+    "explanation": "Disney, 2016. Im Deutschen heißt sie Vaiana, weil der Name Moana rechtlich geschützt war."
   },
   {
     "id": "mix_mc_011",
@@ -2488,12 +2267,12 @@
     "subject": "wissen",
     "question": "Wie viele Chromosomen besitzt der Mensch in der Regel in jeder normalen Körperzelle?",
     "answers": [
+      "46 Chromosomen",
       "23 Chromosomen",
-      "46 Chromosomen (23 Paare)",
       "12 Chromosomen",
       "96 Chromosomen"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der Mensch hat 46 Chromosomen, wovon je 23 von der Mutter und 23 vom Vater stammen."

@@ -1,22 +1,6 @@
 // Fun · spass_weltraum (50 Fragen)
 const SPASS_WELTRAUM_QUESTIONS = [
-  {
-    "id": "wel_001",
-    "category": "spass_weltraum",
-    "area": "spass",
-    "subject": "weltraum",
-    "question": "Welcher Planet ist der Sonne am nächsten?",
-    "answers": [
-      "Merkur",
-      "Venus",
-      "Erde",
-      "Mars"
-    ],
-    "correct": 0,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Merkur umkreist die Sonne am dichtesten."
-  },
+  
   {
     "id": "wel_002",
     "category": "spass_weltraum",
@@ -102,23 +86,7 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "points": 10,
     "explanation": "Die Mondanziehung prägt die Gezeiten."
   },
-  {
-    "id": "wel_007",
-    "category": "spass_weltraum",
-    "area": "spass",
-    "subject": "weltraum",
-    "question": "Welcher Planet wird „Roter Planet“ genannt?",
-    "answers": [
-      "Venus",
-      "Mars",
-      "Merkur",
-      "Saturn"
-    ],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Mars erscheint rötlich durch Eisenoxid."
-  },
+  
   {
     "id": "wel_008",
     "category": "spass_weltraum",
@@ -278,16 +246,11 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "area": "spass",
     "subject": "weltraum",
     "question": "Woraus besteht ein typischer Kometkern grob?",
-    "answers": [
-      "Nur Metall",
-      "Eis und Staub",
-      "Nur Gas",
-      "Nur Gestein"
-    ],
-    "correct": 1,
+    "answers": ["Eis und Staub", "Ausschließlich Metall", "Nur gefrorenes Gas", "Massives Gestein"],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Kometen sind oft „schmutzige Schneebälle“."
+    "explanation": "Nähert sich ein Komet der Sonne, verdampft das Eis – daraus entsteht der lange Schweif."
   },
   {
     "id": "wel_018",
@@ -389,7 +352,7 @@ const SPASS_WELTRAUM_QUESTIONS = [
   "correct": 1,
   "difficulty": "mittel",
   "points": 10,
-  "explanation": "Apollo 11 landete 1969."
+  "explanation": "Apollo 11 landete am 20. Juli 1969. Neil Armstrong und Buzz Aldrin blieben rund 21 Stunden auf dem Mond."
 },
   {
     "id": "wel_024",
@@ -491,7 +454,7 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Teleskope bündeln Licht."
+    "explanation": "Je größer der Spiegel, desto mehr Licht sammelt das Teleskop – und desto lichtschwächere Objekte werden sichtbar."
   },
   {
     "id": "wel_030",
@@ -525,7 +488,7 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Neptun ist ein Eisriese."
+    "explanation": "Neptun und Uranus heißen Eisriesen, weil sie neben Gas viel Wasser, Methan und Ammoniak enthalten."
   },
   {
     "id": "wel_032",
@@ -686,16 +649,11 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "area": "spass",
     "subject": "weltraum",
     "question": "Welchen Typ hat die Milchstraße?",
-    "answers": [
-      "Nur elliptisch",
-      "Spiralgalaxie",
-      "Nur irregulär",
-      "Nur Zwerg"
-    ],
-    "correct": 1,
+    "answers": ["Eine Spiralgalaxie", "Eine elliptische Galaxie", "Eine irreguläre Galaxie", "Eine kleine Zwerggalaxie"],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Milchstraße ist eine Balkenspirale."
+    "explanation": "Die Milchstraße hat einen Balken im Zentrum und mehrere Spiralarme. Unsere Sonne sitzt in einem der äußeren Arme."
   },
   {
     "id": "wel_042",
@@ -822,16 +780,11 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "area": "spass",
     "subject": "weltraum",
     "question": "Was beschreibt die absolute Helligkeit?",
-    "answers": [
-      "Nur Entfernung",
-      "Die Leuchtkraft",
-      "Nur Oberfläche",
-      "Nur das Alter"
-    ],
-    "correct": 1,
+    "answers": ["Die tatsächliche Leuchtkraft", "Die Entfernung zur Erde", "Die Größe der Oberfläche", "Das Alter eines Sterns"],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Sie bezieht sich auf die Eigenleuchtkraft."
+    "explanation": "Die absolute Helligkeit rechnet alle Sterne auf dieselbe Entfernung um – erst so lassen sie sich vergleichen."
   },
   {
   "id": "wel_050",
@@ -848,19 +801,19 @@ const SPASS_WELTRAUM_QUESTIONS = [
   "correct": 1,
   "difficulty": "mittel",
   "points": 10,
-  "explanation": "Sputnik 1 startete 1957."
+  "explanation": "Sputnik 1 startete am 4. Oktober 1957 und war eine Metallkugel mit vier Antennen, die ein Piepsen funkte."
 },
-  {"id":"wel_051","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Wie viele Planeten hat unser Sonnensystem?","answers":["Sieben","Acht","Neun","Zehn"],"correct":1,"difficulty":"leicht","points":10,"explanation":"Seit Pluto Zwergplanet ist: acht."},
-  {"id":"wel_052","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Welcher Planet ist für die Ringe berühmt?","answers":["Mars","Venus","Merkur","Saturn"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Saturn hat das auffälligste Ringsystem."},
-  {"id":"wel_053","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Was ist die Sonne?","answers":["Ein Planet","Ein Mond","Ein Komet","Ein Stern"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Ein leuchtender Stern."},
+  
+  
+  {"id":"wel_053","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Was ist die Sonne?","answers":["Ein Planet","Ein Mond","Ein Komet","Ein Stern"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Die Sonne ist ein mittelgroßer Stern. In ihrem Inneren verschmilzt Wasserstoff zu Helium – daher die Energie."},
   {"id":"wel_054","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Wie heißt der Erdmond offiziell meist?","answers":["Titan","Europa","Phobos","Mond"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Unser Trabant heißt einfach Mond."},
   {"id":"wel_055","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Ein Lichtjahr misst …","answers":["Zeit auf der Erde","Temperatur von Sternen","Gewicht von Planeten","eine Strecke im All"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Weg, den Licht in einem Jahr schafft."},
   {"id":"wel_056","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Warum schwebt man auf der ISS?","answers":["Es gibt keine Masse","Die ISS ist aus Holz","Es ist immer Nacht","freier Fall um die Erde"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Dauerndes Fallen = Schwerelosigkeit."},
-  {"id":"wel_057","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Welcher Planet ist der größte?","answers":["Erde","Neptun","Saturn","Jupiter"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Jupiter ist ein Gasriese."},
-  {"id":"wel_058","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Ein Komet besteht oft aus …","answers":["nur Eisen","nur Gas ohne Eis","nur Stein ohne Eis","Eis, Staub und Gestein"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Schmutziger Schneeball mit Schweif."},
+  
+  {"id":"wel_058","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Ein Komet besteht oft aus …","answers":["Eis, Staub und Gestein", "Ausschließlich Eisen", "Gas ohne jedes Eis", "Stein ohne jedes Eis"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Wegen dieser Mischung nennt man Kometen oft schmutzige Schneebälle."},
   {"id":"wel_059","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Der erste Mensch im All war …","answers":["Neil Armstrong","Buzz Aldrin","John Glenn","Juri Gagarin"],"correct":3,"difficulty":"mittel","points":10,"explanation":"1961, sowjetischer Kosmonaut."},
   {"id":"wel_060","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Schwarze Löcher …","answers":["sind nur Löcher in der Erde","leuchten bunt wie Neon","sind kleine Monde","haben sehr starke Schwerkraft"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Selbst Licht kommt nicht heraus."},
-  {"id":"wel_061","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Mars erscheint oft …","answers":["blau","grün","gelb wie die Sonne","rötlich"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Eisenoxid im Boden."},
+  {"id":"wel_061","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Mars erscheint oft …","answers":["blau","grün","gelb wie die Sonne","rötlich"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Der Boden enthält viel Eisenoxid, also Rost. Deshalb heißt der Mars auch der Rote Planet."},
   {"id":"wel_062","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Eine Sonnenfinsternis entsteht, wenn …","answers":["Mars die Sonne deckt","die ISS die Sonne deckt","ein Komet die Sonne deckt","der Mond vor der Sonne steht"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Mondschatten auf der Erde."},
 
 ];

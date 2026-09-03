@@ -122,7 +122,7 @@ const SPASS_VISUELL_QUESTIONS = [
     correct: 1,
     difficulty: "leicht",
     points: 10,
-    explanation: "Drei Sterne."
+    explanation: "Es sind drei Sterne – zwei nebeneinander, einer darüber versetzt."
   },
   {
     id: "vis_010",
@@ -135,7 +135,7 @@ const SPASS_VISUELL_QUESTIONS = [
     correct: 3,
     difficulty: "leicht",
     points: 10,
-    explanation: "Oben 3, unten 5."
+    explanation: "Oben liegen drei Punkte, unten fünf. Die untere Reihe wirkt außerdem breiter."
   },
   {
     id: "vis_011",
@@ -148,7 +148,7 @@ const SPASS_VISUELL_QUESTIONS = [
     correct: 3,
     difficulty: "leicht",
     points: 10,
-    explanation: "Nur oben links ist grün."
+    explanation: "Nur das Feld oben links ist ausgefüllt, die anderen drei bleiben leer."
   },
   {
     id: "vis_012",
@@ -161,7 +161,7 @@ const SPASS_VISUELL_QUESTIONS = [
     correct: 3,
     difficulty: "mittel",
     points: 10,
-    explanation: "Ein Fünfeck."
+    explanation: "Die Form in der Mitte hat fünf Ecken und fünf Seiten – ein Fünfeck."
   }
 ];
 

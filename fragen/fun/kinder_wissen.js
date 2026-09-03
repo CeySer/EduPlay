@@ -72,18 +72,7 @@ const KINDER_WISSEN_QUESTIONS = [
         points: 10,
         explanation: "Papier wird aus Holzfasern hergestellt."
     },
-  {
-        id: "k_ew_007",
-        category: "kinder_erstes_wissen",
-        area: "spass",
-        subject: "kinder",
-        question: "Womit misst man die Temperatur bei Fieber?",
-        answers: ["Personenwaage", "Stoppuhr", "Thermometer", "Lineal"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Das Thermometer zeigt die Körperwärme in Grad an."
-    },
+  
   {
         id: "k_ew_008",
         category: "kinder_erstes_wissen",

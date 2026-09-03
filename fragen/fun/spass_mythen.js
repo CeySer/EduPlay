@@ -49,7 +49,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Perseus tötete Medusa."
+    "explanation": "Perseus benutzte seinen blank polierten Schild als Spiegel, um Medusa nicht direkt ansehen zu müssen."
   },
   {
     "id": "myt_004",
@@ -151,7 +151,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Jupiter entspricht Zeus."
+    "explanation": "Die Römer übernahmen die griechischen Götter unter eigenen Namen: Zeus wurde Jupiter, Hera wurde Juno."
   },
   {
     "id": "myt_010",
@@ -219,7 +219,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Hermes ist Götterbote."
+    "explanation": "Hermes überbringt die Botschaften der Götter und geleitet die Toten in die Unterwelt. Bei den Römern heißt er Merkur."
   },
   {
     "id": "myt_014",
@@ -372,7 +372,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Lernäische Hydra."
+    "explanation": "Für jeden abgeschlagenen Kopf wuchsen zwei nach. Herakles ließ die Stümpfe deshalb ausbrennen."
   },
   {
     "id": "myt_023",
@@ -389,7 +389,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Sleipnir trägt Odin."
+    "explanation": "Sleipnir hat acht Beine und ist schneller als jedes andere Pferd. Sein Vater ist der Gott Loki."
   },
   {
     "id": "myt_024",
@@ -593,7 +593,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Persephone / Kore."
+    "explanation": "Hades entführte sie in die Unterwelt. Weil sie dort Granatapfelkerne aß, muss sie jedes Jahr einen Teil der Zeit unten bleiben – so entstand der Winter."
   },
   {
     "id": "myt_036",
@@ -678,7 +678,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Odin ist der Allvater."
+    "explanation": "Odin gab ein Auge her, um aus dem Brunnen der Weisheit trinken zu dürfen."
   },
   {
     "id": "myt_041",
@@ -695,7 +695,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das Orakel von Delphi."
+    "explanation": "Im Orakel von Delphi sprach die Priesterin Pythia. Ihre Sprüche waren oft so doppeldeutig, dass sie nie falsch sein konnten."
   },
   {
     "id": "myt_042",
@@ -850,16 +850,16 @@ const SPASS_MYTHEN_QUESTIONS = [
     "points": 10,
     "explanation": "Ares steht für den Krieg."
   },
-  {"id":"myth_051","category":"spass_mythen","area":"spass","subject":"mythen","question":"Zeus ist in der griechischen Sage …","answers":["Meergott","Kriegsgott nur","Sonnengott nur","Göttervater"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Olymp, Blitz."},
-  {"id":"myth_052","category":"spass_mythen","area":"spass","subject":"mythen","question":"Thor gehört zur Sage der …","answers":["Ägypter","Römer nur","Griechen nur","Nordländer / Germanen"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Hammer Mjölnir."},
-  {"id":"myth_053","category":"spass_mythen","area":"spass","subject":"mythen","question":"Anubis in Ägypten hat oft den Kopf eines …","answers":["Falken","Katze","Krokodils","Schakals"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Totengott."},
-  {"id":"myth_054","category":"spass_mythen","area":"spass","subject":"mythen","question":"Herkules / Herakles ist bekannt für …","answers":["zehn Minuten Schlaf","nur Singen","nur Kochen","große Aufgaben / Arbeiten"],"correct":3,"difficulty":"leicht","points":10,"explanation":"zwölf Arbeiten."},
-  {"id":"myth_055","category":"spass_mythen","area":"spass","subject":"mythen","question":"Odysseus braucht lange, um …","answers":["einen Berg zu malen","Schuhe zu kaufen","einen Brief zu schreiben","nach Hause nach Ithaka zu kommen"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Irrfahrten nach Troja."},
-  {"id":"myth_056","category":"spass_mythen","area":"spass","subject":"mythen","question":"Ein Einhorn hat typischerweise …","answers":["zwei Hörner","Flügel Pflicht","Kiemen","ein Horn auf der Stirn"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Sagenwesen."},
-  {"id":"myth_057","category":"spass_mythen","area":"spass","subject":"mythen","question":"Pegasus ist …","answers":["ein Drache ohne Flügel","ein Fisch","ein Riese","ein geflügeltes Pferd"],"correct":3,"difficulty":"leicht","points":10,"explanation":"griechische Sage."},
-  {"id":"myth_058","category":"spass_mythen","area":"spass","subject":"mythen","question":"Athena steht oft für …","answers":["nur das Meer","nur den Krieg ohne Kopf","nur die Nacht","Weisheit und Strategie"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Eule als Zeichen."},
-  {"id":"myth_059","category":"spass_mythen","area":"spass","subject":"mythen","question":"Ein Phönix …","answers":["schwimmt nur","isst nur Steine","schläft ewig","steigt aus der Asche neu auf"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Wiedergeburt."},
-  {"id":"myth_060","category":"spass_mythen","area":"spass","subject":"mythen","question":"Poseidon herrscht über …","answers":["den Himmel","die Unterwelt nur","die Wälder","das Meer"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Dreizack."},
+  {"id":"myth_051","category":"spass_mythen","area":"spass","subject":"mythen","question":"Zeus ist in der griechischen Sage …","answers":["der Göttervater", "der Meeresgott", "der Kriegsgott", "der Totengott"],"correct":0,"difficulty":"leicht","points":10,"explanation":"Zeus herrscht vom Olymp und wirft Blitze. Bei den Römern heißt er Jupiter."},
+  {"id":"myth_052","category":"spass_mythen","area":"spass","subject":"mythen","question":"Thor gehört zur Sage der …","answers":["Nordischen Sagen", "Griechischen Sagen", "Ägyptischen Sagen", "Römischen Sagen"],"correct":0,"difficulty":"leicht","points":10,"explanation":"Thor ist der Donnergott der Wikinger. Sein Hammer Mjölnir kehrt nach dem Wurf von selbst zurück."},
+  {"id":"myth_053","category":"spass_mythen","area":"spass","subject":"mythen","question":"Anubis in Ägypten hat oft den Kopf eines …","answers":["Falken","Katze","Krokodils","Schakals"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Anubis führt die Toten und wiegt ihr Herz gegen eine Feder auf. Der Schakal war das Tier der Friedhöfe."},
+  {"id":"myth_054","category":"spass_mythen","area":"spass","subject":"mythen","question":"Herkules / Herakles ist bekannt für …","answers":["seine zwölf Aufgaben", "seine Kochkunst", "seine Gesangsstimme", "seine Erfindungen"],"correct":0,"difficulty":"leicht","points":10,"explanation":"Zwölf Aufgaben musste er erledigen, darunter den Nemeischen Löwen töten und den Stall des Augias ausmisten."},
+  {"id":"myth_055","category":"spass_mythen","area":"spass","subject":"mythen","question":"Odysseus braucht lange, um …","answers":["einen Berg zu malen","Schuhe zu kaufen","einen Brief zu schreiben","nach Hause nach Ithaka zu kommen"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Nach dem Trojanischen Krieg braucht er zehn Jahre für den Heimweg. Homer erzählt das in der Odyssee."},
+  {"id":"myth_056","category":"spass_mythen","area":"spass","subject":"mythen","question":"Ein Einhorn hat typischerweise …","answers":["zwei Hörner","Flügel Pflicht","Kiemen","ein Horn auf der Stirn"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Das Einhorn kommt in keiner alten Sage als echtes Tier vor – es entstand aus Reiseberichten über Nashörner und Narwalzähne."},
+  {"id":"myth_057","category":"spass_mythen","area":"spass","subject":"mythen","question":"Pegasus ist …","answers":["ein Drache ohne Flügel","ein Fisch","ein Riese","ein geflügeltes Pferd"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Pegasus entsprang dem Blut der Medusa. Der Held Bellerophon zähmte ihn mit einem goldenen Zaum."},
+  {"id":"myth_058","category":"spass_mythen","area":"spass","subject":"mythen","question":"Athena steht oft für …","answers":["Weisheit und Strategie", "Ernte und Fruchtbarkeit", "Feuer und Schmiedekunst", "Meer und Stürme"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Athena wurde dem Kopf des Zeus entsprungen geboren. Die Stadt Athen ist nach ihr benannt."},
+  {"id":"myth_059","category":"spass_mythen","area":"spass","subject":"mythen","question":"Ein Phönix …","answers":["steigt aus der Asche neu auf", "lebt tief unten im Meer", "versteinert im Sonnenlicht", "schläft hundert Jahre lang"],"correct":0,"difficulty":"leicht","points":10,"explanation":"Der Phönix verbrennt am Ende seines Lebens und schlüpft aus der Asche neu – ein Bild für Neuanfang."},
+  {"id":"myth_060","category":"spass_mythen","area":"spass","subject":"mythen","question":"Poseidon herrscht über …","answers":["den Himmel","die Unterwelt nur","die Wälder","das Meer"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Mit seinem Dreizack löst Poseidon Stürme und Erdbeben aus. Bei den Römern heißt er Neptun."},
 
 ];
 

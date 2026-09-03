@@ -14,7 +14,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ed Sheeran."
+    "explanation": "Von 2017, aus dem Album ÷ (Divide). Jahrelang der meistgestreamte Song auf Spotify."
   },
   {
     "id": "musik_sing_002",
@@ -31,7 +31,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Michael Jackson."
+    "explanation": "Von 1983, aus Thriller. Bei der Fernsehshow zum Motown-Jubiläum zeigte er dazu erstmals den Moonwalk."
   },
   {
     "id": "musik_sing_003",
@@ -48,7 +48,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Adele."
+    "explanation": "Von 2015, aus dem Album 25. Das Video wurde mit einer IMAX-Kamera gedreht."
   },
   {
     "id": "musik_sing_004",
@@ -65,7 +65,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Billie Eilish."
+    "explanation": "Von 2019. Aufgenommen im Schlafzimmer ihres Bruders Finneas, der die meisten ihrer Songs mitschreibt."
   },
   {
     "id": "musik_sing_005",
@@ -82,7 +82,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Weeknd."
+    "explanation": "Von Ende 2019. Der Song hielt sich länger in den US-Charts als jeder andere zuvor."
   },
   {
     "id": "musik_sing_006",
@@ -99,7 +99,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Michael Jackson."
+    "explanation": "Von 1982. Das 14-minütige Video von Regisseur John Landis kostete mehr als manche Kinofilme."
   },
   {
     "id": "musik_sing_007",
@@ -116,7 +116,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Adele."
+    "explanation": "Von 2010, die erste Single aus dem Album 21."
   },
   {
     "id": "musik_sing_008",
@@ -133,7 +133,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Mark Ronson feat. Bruno Mars."
+    "explanation": "Von 2014. Mark Ronson ist Produzent – gesungen hat Bruno Mars. Der Song lief 14 Wochen auf Platz eins in den USA."
   },
   {
     "id": "musik_sing_009",
@@ -150,7 +150,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Madonna."
+    "explanation": "Von 1984. Ihr Auftritt damit bei den MTV Awards gilt als einer der berühmtesten der Sendung."
   },
   {
     "id": "musik_sing_010",
@@ -167,7 +167,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Nirvana."
+    "explanation": "Von 1991, aus Nevermind. Der Titel stammt von einem Deodorant, das eine Freundin der Band benutzte."
   },
   {
     "id": "musik_sing_011",
@@ -184,24 +184,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Queen."
-  },
-  {
-    "id": "musik_sing_012",
-    "category": "musik_wer_singt",
-    "area": "musik",
-    "subject": "wissen",
-    "question": "Wer singt 'Shake It Off'?",
-    "answers": [
-      "Taylor Swift",
-      "Katy Perry",
-      "Ariana Grande",
-      "Selena Gomez"
-    ],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Taylor Swift."
+    "explanation": "Von 1975, aus A Night at the Opera. Fast sechs Minuten lang und ohne echten Refrain."
   },
   {
     "id": "musik_sing_013",
@@ -218,7 +201,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Pharrell Williams."
+    "explanation": "Von 2013, geschrieben für den Film 'Ich – Einfach unverbesserlich 2'."
   },
   {
     "id": "musik_sing_014",
@@ -235,7 +218,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Adele."
+    "explanation": "Von 2011. Nur Klavier und Stimme – ungewöhnlich für einen weltweiten Nummer-eins-Hit."
   },
   {
     "id": "musik_sing_015",
@@ -245,9 +228,9 @@
     "question": "Wer singt 'Despacito' (Original mit Luis Fonsi)?",
     "answers": [
       "Luis Fonsi & Daddy Yankee",
-      "Shakira",
-      "Enrique Iglesias",
-      "J Balvin"
+      "Enrique Iglesias & Shakira",
+      "Ricky Martin & J Balvin",
+      "Maluma & Nicky Jam"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -262,14 +245,14 @@
     "question": "Wer singt 'Can't Stop the Feeling!'?",
     "answers": [
       "Justin Timberlake",
+      "Pharrell Williams",
       "Bruno Mars",
-      "Pharrell",
       "Chris Brown"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Justin Timberlake."
+    "explanation": "Von 2016, aus dem Zeichentrickfilm Trolls."
   },
   {
     "id": "musik_sing_017",
@@ -286,7 +269,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Lady Gaga."
+    "explanation": "Von 2008, aus ihrem Debütalbum The Fame."
   },
   {
     "id": "musik_sing_018",
@@ -303,7 +286,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "John Lennon."
+    "explanation": "Von 1971, kurz nach dem Ende der Beatles."
   },
   {
     "id": "musik_sing_019",
@@ -320,7 +303,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Eagles."
+    "explanation": "Von 1976. Über die Bedeutung des Textes streiten Fans bis heute."
   },
   {
     "id": "musik_sing_020",
@@ -337,7 +320,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Beatles."
+    "explanation": "Von 1968. Paul McCartney schrieb ihn für Julian, den Sohn von John Lennon."
   },
   {
     "id": "musik_sing_021",
@@ -354,7 +337,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Beyoncé."
+    "explanation": "Von 2008. Das Video in Schwarz-Weiß wurde in einer einzigen Einstellung gedreht."
   },
   {
     "id": "musik_sing_022",
@@ -371,7 +354,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Katy Perry."
+    "explanation": "Von 2010, aus dem Album Teenage Dream."
   },
   {
     "id": "musik_sing_023",
@@ -388,7 +371,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Bee Gees."
+    "explanation": "Von 1977, aus Saturday Night Fever. Der Takt liegt bei etwa 100 Schlägen pro Minute – deshalb dient er als Merkhilfe für die Herzdruckmassage."
   },
   {
     "id": "musik_sing_024",
@@ -405,7 +388,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "ABBA."
+    "explanation": "Von 1976. Die schwedische Gruppe hatte damit ihren einzigen Nummer-eins-Hit in den USA."
   },
   {
     "id": "musik_sing_025",
@@ -422,7 +405,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "a-ha."
+    "explanation": "Von 1985. Die norwegische Band wurde vor allem durch das Video im Bleistift-Zeichenstil berühmt."
   },
   {
     "id": "musik_sing_026",
@@ -439,7 +422,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Guns N' Roses."
+    "explanation": "Von 1987, aus Appetite for Destruction. Das berühmte Riff entstand aus einer Fingerübung von Gitarrist Slash."
   },
   {
     "id": "musik_sing_027",
@@ -456,7 +439,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Oasis."
+    "explanation": "Von 1995, aus (What's the Story) Morning Glory? der Britpop-Band aus Manchester."
   },
   {
     "id": "musik_sing_028",
@@ -473,7 +456,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Coldplay."
+    "explanation": "Von 2000, aus ihrem Debütalbum Parachutes."
   },
   {
     "id": "musik_sing_029",
@@ -490,7 +473,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Coldplay."
+    "explanation": "Von 2008. Der Titel ist Spanisch und heißt 'Es lebe das Leben'."
   },
   {
     "id": "musik_sing_030",
@@ -507,7 +490,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Eminem."
+    "explanation": "Von 2002, aus dem Film 8 Mile. Der erste Rap-Song, der den Oscar für den besten Filmsong gewann."
   },
   {
     "id": "musik_sing_031",
@@ -524,7 +507,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Lil Nas X."
+    "explanation": "Von 2019. Mit 19 Wochen auf Platz eins hält er den US-Rekord."
   },
   {
     "id": "musik_sing_032",
@@ -541,7 +524,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Olivia Rodrigo."
+    "explanation": "Von 2021 – ihre allererste Single, geschrieben mit 17."
   },
   {
     "id": "musik_sing_033",
@@ -558,14 +541,14 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Dua Lipa."
+    "explanation": "Von 2020, aus dem Album Future Nostalgia im Disco-Stil."
   },
   {
     "id": "musik_sing_034",
     "category": "musik_wer_singt",
     "area": "musik",
     "subject": "wissen",
-    "question": "Wer singt 'Peaches' (mit Justin Bieber)?",
+    "question": "Wer singt 'Peaches' zusammen mit Daniel Caesar und Giveon?",
     "answers": [
       "Justin Bieber",
       "The Weeknd",
@@ -575,7 +558,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Justin Bieber."
+    "explanation": "Von 2021, zusammen mit Daniel Caesar und Giveon."
   },
   {
     "id": "musik_sing_035",
@@ -592,7 +575,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Taylor Swift."
+    "explanation": "Von 2022, aus dem Album Midnights."
   },
   {
     "id": "musik_sing_036",
@@ -609,7 +592,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Harry Styles."
+    "explanation": "Von 2022, aus Harry's House. Vorher war er Mitglied von One Direction."
   },
   {
     "id": "musik_sing_037",
@@ -626,7 +609,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Miley Cyrus."
+    "explanation": "Von 2023. Der Text dreht Bruno Mars' 'When I Was Your Man' ins Gegenteil."
   },
   {
     "id": "musik_sing_038",
@@ -643,7 +626,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Sabrina Carpenter."
+    "explanation": "Von 2024 – der Sommerhit des Jahres."
   },
   {
     "id": "musik_sing_039",
@@ -660,7 +643,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Tones and I."
+    "explanation": "Von 2019. Die Australierin sang vorher als Straßenmusikerin in Byron Bay."
   },
   {
     "id": "musik_sing_040",
@@ -677,7 +660,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Lewis Capaldi."
+    "explanation": "Von 2018 vom schottischen Sänger, der auch für seinen Humor bekannt ist."
   },
   {
     "id": "musik_sing_041",
@@ -694,7 +677,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Lady Gaga & Bradley Cooper (A Star Is Born)."
+    "explanation": "Von 2018, aus dem Film A Star Is Born. Dafür gab es den Oscar für den besten Filmsong."
   },
   {
     "id": "musik_sing_042",
@@ -711,7 +694,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "John Legend."
+    "explanation": "Von 2013, geschrieben für seine Frau Chrissy Teigen."
   },
   {
     "id": "musik_sing_043",
@@ -728,7 +711,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ed Sheeran."
+    "explanation": "Von 2014, aus dem Album x (Multiply). Dafür gab es den Grammy als Song des Jahres."
   },
   {
     "id": "musik_sing_044",
@@ -745,7 +728,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ed Sheeran."
+    "explanation": "Von 2017, aus ÷. Es gibt eine Fassung im Duett mit Beyoncé."
   },
   {
     "id": "musik_sing_045",
@@ -762,7 +745,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Beyoncé."
+    "explanation": "Von 2008, aus I Am… Sasha Fierce. Mitgeschrieben von Ryan Tedder von OneRepublic."
   },
   {
     "id": "musik_sing_046",
@@ -779,7 +762,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Rihanna."
+    "explanation": "Von 2007, zusammen mit Jay-Z. Zehn Wochen auf Platz eins in Großbritannien."
   },
   {
     "id": "musik_sing_047",
@@ -796,7 +779,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Rihanna."
+    "explanation": "Von 2012. Sia schrieb den Text nach eigener Aussage in etwa 14 Minuten."
   },
   {
     "id": "musik_sing_048",
@@ -813,7 +796,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Sia."
+    "explanation": "Von 2014. Im Video tanzt die damals elfjährige Maddie Ziegler."
   },
   {
     "id": "musik_sing_049",
@@ -830,7 +813,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Katy Perry."
+    "explanation": "Von 2013, aus dem Album Prism."
   },
   {
     "id": "musik_sing_050",
@@ -847,7 +830,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Kesha."
+    "explanation": "Von 2009 – ihre erste Single, lange vor der gleichnamigen App."
   },
   {
     "id": "musik_sing_051",
@@ -864,7 +847,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Carly Rae Jepsen."
+    "explanation": "Von 2012. Die Kanadierin wurde bekannt, nachdem Justin Bieber den Song weiterempfahl."
   },
   {
     "id": "musik_sing_052",
@@ -881,7 +864,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "PSY."
+    "explanation": "Von 2012. Das erste Video auf YouTube, das die Milliarde Aufrufe knackte."
   },
   {
     "id": "musik_sing_053",
@@ -898,7 +881,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "BTS."
+    "explanation": "Von 2020 – der erste komplett englischsprachige Song der südkoreanischen Gruppe."
   },
   {
     "id": "musik_sing_054",
@@ -915,7 +898,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Shakira (WM 2010)."
+    "explanation": "Von 2010, der offizielle Song zur Fußball-WM in Südafrika."
   },
   {
     "id": "musik_sing_055",
@@ -932,7 +915,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Shakira."
+    "explanation": "Von 2006, zusammen mit Wyclef Jean."
   },
   {
     "id": "musik_sing_056",
@@ -949,7 +932,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Bon Jovi."
+    "explanation": "Von 1986, aus dem Album Slippery When Wet."
   },
   {
     "id": "musik_sing_057",
@@ -966,7 +949,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Journey."
+    "explanation": "Von 1981. Bekannt wurde er neu durch das Ende der Serie Die Sopranos und durch Glee."
   },
   {
     "id": "musik_sing_058",
@@ -983,14 +966,14 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Toto."
+    "explanation": "Von 1982. Kein Bandmitglied war zu dem Zeitpunkt je in Afrika gewesen."
   },
   {
     "id": "musik_sing_059",
     "category": "musik_wer_singt",
     "area": "musik",
     "subject": "wissen",
-    "question": "Wer singt 'Billie Jean' nochmal – Jahrzehnt?",
+    "question": "Aus welchem Jahrzehnt stammt 'Billie Jean'?",
     "answers": [
       "1980er",
       "1970er",
@@ -1000,7 +983,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "1983, Thriller-Ära."
+    "explanation": "Der Song erschien 1983 auf dem Album Thriller – also in den Achtzigern."
   },
   {
     "id": "musik_sing_060",
@@ -1017,7 +1000,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Beatles."
+    "explanation": "Von 1965. Es ist eines der am häufigsten gecoverten Lieder der Musikgeschichte."
   },
   {
     "id": "musik_sing_061",
@@ -1034,7 +1017,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Beatles."
+    "explanation": "Von 1970, vom letzten veröffentlichten Album der Band."
   },
   {
     "id": "musik_sing_062",
@@ -1051,7 +1034,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Elton John."
+    "explanation": "Von 1972. Den Text schrieb wie fast immer sein Partner Bernie Taupin."
   },
   {
     "id": "musik_sing_063",
@@ -1068,7 +1051,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "David Bowie."
+    "explanation": "Von 1977, aufgenommen in Berlin – ganz in der Nähe der Mauer."
   },
   {
     "id": "musik_sing_064",
@@ -1085,7 +1068,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "U2."
+    "explanation": "Von 1987, aus The Joshua Tree der irischen Band."
   },
   {
     "id": "musik_sing_065",
@@ -1102,7 +1085,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Radiohead."
+    "explanation": "Von 1992 – ihre erste Single. Die Band spielte sie später jahrelang nicht mehr."
   },
   {
     "id": "musik_sing_066",
@@ -1119,7 +1102,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Cranberries."
+    "explanation": "Von 1994. Die irische Band verarbeitet darin den Nordirland-Konflikt."
   },
   {
     "id": "musik_sing_067",
@@ -1129,14 +1112,14 @@
     "question": "Wer singt 'Torn'?",
     "answers": [
       "Natalie Imbruglia",
-      "Alanis",
+      "Alanis Morissette",
       "Fiona Apple",
       "Sheryl Crow"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Natalie Imbruglia."
+    "explanation": "Von 1997 – tatsächlich eine Coverversion, das Original stammt von der Band Ednaswap."
   },
   {
     "id": "musik_sing_068",
@@ -1153,7 +1136,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Goo Goo Dolls."
+    "explanation": "Von 1998, geschrieben für den Film Stadt der Engel."
   },
   {
     "id": "musik_sing_069",
@@ -1170,7 +1153,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Nickelback."
+    "explanation": "Von 2001 – der Durchbruch der kanadischen Band."
   },
   {
     "id": "musik_sing_070",
@@ -1187,7 +1170,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Linkin Park."
+    "explanation": "Von 2003, aus dem Album Meteora."
   },
   {
     "id": "musik_sing_071",
@@ -1204,7 +1187,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Linkin Park."
+    "explanation": "Von 2001, aus dem Debütalbum Hybrid Theory."
   },
   {
     "id": "musik_sing_072",
@@ -1221,7 +1204,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Evanescence."
+    "explanation": "Von 2003, bekannt aus dem Film Daredevil."
   },
   {
     "id": "musik_sing_073",
@@ -1238,7 +1221,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The White Stripes."
+    "explanation": "Von 2003. Das Riff wird bis heute in Fußballstadien mitgesungen."
   },
   {
     "id": "musik_sing_074",
@@ -1255,7 +1238,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Killers."
+    "explanation": "Von 2003, aus Hot Fuss. In Großbritannien taucht der Song bis heute regelmäßig in den Charts auf."
   },
   {
     "id": "musik_sing_075",
@@ -1272,7 +1255,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Franz Ferdinand."
+    "explanation": "Von 2004 von der schottischen Band. Nach etwa einer Minute wechselt das Tempo komplett."
   },
   {
     "id": "musik_sing_076",
@@ -1289,7 +1272,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Arctic Monkeys."
+    "explanation": "Von 2013, aus dem Album AM der Band aus Sheffield."
   },
   {
     "id": "musik_sing_077",
@@ -1306,7 +1289,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "The Strokes."
+    "explanation": "Von 2001, aus dem Debütalbum Is This It."
   },
   {
     "id": "musik_sing_078",
@@ -1323,7 +1306,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Coldplay."
+    "explanation": "Von 2002, aus A Rush of Blood to the Head. Dafür gab es den Grammy als Aufnahme des Jahres."
   },
   {
     "id": "musik_sing_079",
@@ -1340,24 +1323,24 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Snow Patrol."
+    "explanation": "Von 2006. Bekannt wurde er zusätzlich durch die Serie Grey's Anatomy."
   },
   {
     "id": "musik_sing_080",
     "category": "musik_wer_singt",
     "area": "musik",
     "subject": "wissen",
-    "question": "Wer singt 'Hallelujah' (bekannte Cover-Version)?",
+    "question": "Wer hat 'Hallelujah' geschrieben und zuerst aufgenommen?",
     "answers": [
-      "Jeff Buckley (bekanntes Cover)",
-      "Leonard Cohen Original",
-      "beide bekannt",
-      "nur Rufus Wainwright"
+      "Leonard Cohen",
+      "Jeff Buckley",
+      "Rufus Wainwright",
+      "Bob Dylan"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Leonard Cohen Original, Buckley Cover sehr bekannt."
+    "explanation": "Cohens Fassung von 1984 blieb erst unbeachtet. Weltbekannt wurde das Lied durch die Coverversion von Jeff Buckley aus dem Jahr 1994."
   },
   {
     "id": "musik_sing_081",
@@ -1374,7 +1357,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Adele (James Bond)."
+    "explanation": "Von 2012 – der erste James-Bond-Song, der den Oscar gewann."
   },
   {
     "id": "musik_sing_082",
@@ -1391,7 +1374,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Sam Smith (Bond)."
+    "explanation": "Von 2015, der Titelsong zum Bond-Film Spectre."
   },
   {
     "id": "musik_sing_083",
@@ -1408,7 +1391,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Billie Eilish (Bond)."
+    "explanation": "Von 2020. Sie war die jüngste Künstlerin, die je einen Bond-Titelsong schrieb."
   },
   {
     "id": "musik_sing_084",
@@ -1425,7 +1408,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Nena."
+    "explanation": "Von 1983. Die englische Fassung schaffte es sogar in die US-Charts."
   },
   {
     "id": "musik_sing_085",
@@ -1442,7 +1425,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Peter Schilling."
+    "explanation": "Von 1982. Der Song greift die Figur aus David Bowies Space Oddity auf."
   },
   {
     "id": "musik_sing_086",
@@ -1459,7 +1442,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Alphaville."
+    "explanation": "Von 1984 von der Band aus Münster."
   },
   {
     "id": "musik_sing_087",
@@ -1476,7 +1459,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Modern Talking."
+    "explanation": "Von 1985 vom Duo Dieter Bohlen und Thomas Anders."
   },
   {
     "id": "musik_sing_088",
@@ -1493,7 +1476,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Helene Fischer."
+    "explanation": "Von 2013, aus dem Album Farbenspiel – einer der erfolgreichsten deutschen Songs überhaupt."
   },
   {
     "id": "musik_sing_089",
@@ -1510,7 +1493,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Dschinghis Khan."
+    "explanation": "Von 1979. Die Gruppe wurde für den Grand Prix Eurovision zusammengestellt."
   },
   {
     "id": "musik_sing_090",
@@ -1527,7 +1510,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Boney M."
+    "explanation": "Von 1976, aus dem Studio von Produzent Frank Farian."
   },
   {
     "id": "musik_sing_091",
@@ -1544,7 +1527,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Boney M."
+    "explanation": "Von 1978 – über den russischen Wanderprediger Grigori Rasputin."
   },
   {
     "id": "musik_sing_092",
@@ -1554,14 +1537,14 @@
     "question": "Wer singt 'YMCA'?",
     "answers": [
       "Village People",
-      "Boney M.",
-      "ABBA",
-      "Bee Gees"
+      "Kool & the Gang",
+      "Bee Gees",
+      "Boney M."
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Village People."
+    "explanation": "Von 1978. Der Tanz mit den Buchstaben kam erst später bei Auftritten dazu."
   },
   {
     "id": "musik_sing_093",
@@ -1578,7 +1561,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Gloria Gaynor."
+    "explanation": "Von 1978. Der Song war zunächst nur die B-Seite einer Single."
   },
   {
     "id": "musik_sing_094",
@@ -1595,24 +1578,24 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Aretha Franklin."
+    "explanation": "Von 1967 – eine Coverversion von Otis Redding, die zur Hymne der Bürgerrechtsbewegung wurde."
   },
   {
     "id": "musik_sing_095",
     "category": "musik_wer_singt",
     "area": "musik",
     "subject": "wissen",
-    "question": "Wer singt 'I Will Always Love You' (berühmte Version)?",
+    "question": "Wer hatte 1992 den Welthit 'I Will Always Love You'?",
     "answers": [
       "Whitney Houston",
-      "Dolly Parton Original",
-      "beide",
-      "Celine Dion"
+      "Celine Dion",
+      "Mariah Carey",
+      "Tina Turner"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Whitney Houston Cover, Dolly Parton Original."
+    "explanation": "Geschrieben und zuerst gesungen hat es Dolly Parton im Jahr 1973. Whitneys Fassung aus dem Film Bodyguard wurde zur meistverkauften Single einer Sängerin."
   },
   {
     "id": "musik_sing_096",
@@ -1629,7 +1612,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Celine Dion."
+    "explanation": "Von 1997, der Titelsong zu Titanic. Dafür gab es den Oscar für den besten Filmsong."
   },
   {
     "id": "musik_sing_097",
@@ -1646,7 +1629,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Mariah Carey."
+    "explanation": "Von 1994. Der Song klettert bis heute jeden Dezember zurück in die Charts."
   },
   {
     "id": "musik_sing_098",
@@ -1663,7 +1646,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Wham!"
+    "explanation": "Von 1984. In Großbritannien reichte es erst 2021 zum ersten Platz."
   },
   {
     "id": "musik_sing_099",
@@ -1680,7 +1663,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Band Aid."
+    "explanation": "Von 1984 – ein Zusammenschluss britischer Stars für Spenden nach der Hungersnot in Äthiopien."
   },
   {
     "id": "musik_sing_100",
@@ -1690,14 +1673,14 @@
     "question": "Wer singt 'We Are the World'?",
     "answers": [
       "USA for Africa",
+      "Artists United",
       "Band Aid",
-      "Queen",
       "Live Aid"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "USA for Africa."
+    "explanation": "Von 1985. 45 US-Stars nahmen den Song in einer einzigen Nacht auf."
   },
   {
     "id": "musik_sing_101",
@@ -1714,7 +1697,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Queen."
+    "explanation": "Von 1980. Die Basslinie stammt von Bassist John Deacon."
   },
   {
     "id": "musik_sing_102",
@@ -1731,7 +1714,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Queen."
+    "explanation": "Von 1977. Stampfen, stampfen, klatschen – bewusst so gebaut, dass ein Publikum mitmachen kann."
   },
   {
     "id": "musik_sing_103",
@@ -1748,7 +1731,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "AC/DC."
+    "explanation": "Von 1979 – das letzte Album mit Sänger Bon Scott."
   },
   {
     "id": "musik_sing_104",
@@ -1765,7 +1748,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Metallica."
+    "explanation": "Von 1991, aus dem sogenannten Schwarzen Album."
   },
   {
     "id": "musik_sing_105",
@@ -1782,6 +1765,6 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Metallica."
+    "explanation": "Von 1991. James Hetfield schrieb die ersten Töne, während er mit seiner Freundin telefonierte."
   }
 ]

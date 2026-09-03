@@ -179,18 +179,7 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
         points: 10,
         explanation: "Beim Hallenvolleyball besteht eine Mannschaft aus sechs Spielern."
     },
-  {
-        id: "allg_016",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Amtssprache wird im südamerikanischen Land Brasilien gesprochen?",
-        answers: ["Französisch", "Portugiesisch", "Italienisch", "Niederländisch"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Brasilien ist das einzige portugiesischsprachige Land Amerikas."
-    },
+  
   {
         id: "allg_017",
         category: "spass_allgemein",
@@ -239,18 +228,7 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
         points: 10,
         explanation: "Das vollständige bleibende Gebiss hat 32 Zähne inklusive Weisheitszähne."
     },
-  {
-        id: "allg_021",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt die offizielle Hauptstadt von Australien?",
-        answers: ["Canberra", "Sydney", "Brisbane", "Melbourne"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Canberra wurde als Kompromiss zwischen Sydney und Melbourne bestimmt."
-    },
+  
   {
         id: "allg_022",
         category: "spass_allgemein",
@@ -347,18 +325,7 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
         points: 10,
         explanation: "Deutschland besteht aus 16 Bundesländern inklusive der Stadtstaaten."
     },
-  {
-        id: "allg_030",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Bundesland ist flächenmäßig das kleinste Flächenland Deutschlands?",
-        answers: ["Sachsen", "Thüringen", "Saarland", "Bremen"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das Saarland ist das kleinste deutsche Flächenland."
-    },
+  
   {
         id: "allg_031",
         category: "spass_allgemein",
@@ -575,18 +542,7 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
         points: 10,
         explanation: "Seit 2006 gilt Pluto als Zwergplanet, somit verbleiben 8 Planeten."
     },
-  {
-        id: "allg_049",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Aus welchem Land stammt das weltbekannte Gericht Sushi ursprünglich?",
-        answers: ["China", "Vietnam", "Thailand", "Japan"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Sushi entwickelte sich in seiner heutigen Form im Japan des 19. Jahrhunderts."
-    },
+  
   {
         id: "allg_050",
         category: "spass_allgemein",
@@ -983,18 +939,7 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
         points: 10,
         explanation: "Shakespeare schrieb die Tragödie Ende des 16. Jahrhunderts."
     },
-  {
-        id: "allg_083",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Vitamin bildet die menschliche Haut mithilfe von Sonnenlicht?",
-        answers: ["Vitamin K", "Vitamin C", "Vitamin D", "Vitamin A"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "UV-B-Strahlung regt die Bildung von Vitamin D in der Haut an."
-    },
+  
   {
         id: "allg_084",
         category: "spass_allgemein",
@@ -1800,17 +1745,17 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
         explanation: "Proxima Centauri ist mit etwa 4,24 Lichtjahren der sonnennächste Stern."
     },
   { id: "q0576", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Tage hat ein Schaltjahr?", answers: ["367", "366", "365", "364"], correct: 1, difficulty: "mittel", points: 10, explanation: "Ein Schaltjahr hat den 29. Februar zusätzlich." },
-  { id: "q0577", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welche Farbe entsteht aus Blau und Gelb?", answers: ["Braun", "Grün", "Orange", "Lila"], correct: 1, difficulty: "mittel", points: 10, explanation: "Blau und Gelb ergeben Grün." },
+  
   { id: "q0578", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Tier gilt als schnellstes Landtier?", answers: ["Gepard", "Antilope", "Löwe", "Pferd"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Gepard erreicht kurzzeitig über 100 km/h." },
   { id: "q0579", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Beine hat eine Spinne?", answers: ["8", "10", "6", "12"], correct: 0, difficulty: "mittel", points: 10, explanation: "Spinnen haben acht Beine, Insekten sechs." },
-  { id: "q0580", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "In welchem Land steht der Eiffelturm?", answers: ["Frankreich", "Spanien", "Italien", "Deutschland"], correct: 0, difficulty: "mittel", points: 10, explanation: "Er steht in Paris." },
+  
   { id: "q0581", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches ist das größte Tier der Welt?", answers: ["Blauwal", "Nashorn", "Elefant", "Giraffe"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Blauwal wird bis zu 30 Meter lang." },
   { id: "q0582", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Farben hat ein klassischer Regenbogen?", answers: ["7", "5", "9", "11"], correct: 0, difficulty: "mittel", points: 10, explanation: "Rot, Orange, Gelb, Grün, Blau, Indigo, Violett." },
   { id: "q0583", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Ringe hat das olympische Symbol?", answers: ["6", "7", "4", "5"], correct: 3, difficulty: "mittel", points: 10, explanation: "Die fünf Ringe stehen für die bewohnten Kontinente." },
-  { id: "q0584", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie heißt die Hauptstadt von Südkorea?", answers: ["Busan", "Incheon", "Seoul", "Daegu"], correct: 2, difficulty: "mittel", points: 10, explanation: "Seoul ist die größte Stadt des Landes." },
+  
   { id: "q0585", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Spieler stehen beim Fußball pro Mannschaft auf dem Feld?", answers: ["11", "10", "9", "12"], correct: 0, difficulty: "mittel", points: 10, explanation: "Elf Spieler inklusive Torwart." },
   { id: "q0586", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Saiten hat eine klassische Gitarre?", answers: ["6", "4", "10", "8"], correct: 0, difficulty: "mittel", points: 10, explanation: "Eine klassische Gitarre hat sechs Saiten." },
-  { id: "q0587", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Land ist flächenmäßig das größte der Welt?", answers: ["Kasachstan", "USA", "China", "Russland"], correct: 3, difficulty: "mittel", points: 10, explanation: "Russland umfasst rund 17 Millionen km²." },
+  
   { id: "q1276", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Bundesländer hat Österreich?", answers: ["9", "7", "18", "16"], correct: 0, difficulty: "mittel", points: 10, explanation: "Österreich besteht aus neun Bundesländern, Deutschland aus 16." },
   { id: "q1277", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Metall ist bei Zimmertemperatur flüssig?", answers: ["Quecksilber", "Nickel", "Titanlegierung", "Eisen"], correct: 0, difficulty: "mittel", points: 10, explanation: "Quecksilber schmilzt bereits bei etwa -39 °C." },
   { id: "q1278", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Spieler stehen bei einer Volleyball-Mannschaft auf dem Feld?", answers: ["7", "5", "8", "6"], correct: 3, difficulty: "mittel", points: 10, explanation: "Beim Hallenvolleyball spielen sechs pro Team, beim Beachvolleyball zwei." },
@@ -1818,7 +1763,7 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
   { id: "q1280", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie heißt der höchste Berg der Welt?", answers: ["Mount Everest", "K2", "Mont Blanc", "Kilimandscharo"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Mount Everest ist rund 8.849 Meter hoch." },
   { id: "q1281", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Kontinente hat die Erde im klassischen Modell (ohne Antarktis)?", answers: ["8", "7", "5", "6"], correct: 2, difficulty: "mittel", points: 10, explanation: "Im klassischen Modell gibt es 5 bewohnte Kontinente – Antarktis wird oft als eigener gezählt, dann wären es 6." },
   { id: "q1282", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Element ist das häufigste im Universum?", answers: ["Wasserstoff", "Sauerstoff", "Helium", "Kohlenstoff"], correct: 0, difficulty: "mittel", points: 10, explanation: "Wasserstoff macht etwa 75 % der gesamten Masse des Universums aus." },
-  { id: "q1283", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "In welchem Jahr fiel die Berliner Mauer?", answers: ["1987", "1991", "1989", "1993"], correct: 2, difficulty: "mittel", points: 10, explanation: "Die Berliner Mauer fiel am 9. November 1989." },
+  
   { id: "q1284", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Zähne hat ein erwachsener Mensch normalerweise?", answers: ["36", "32", "28", "40"], correct: 1, difficulty: "mittel", points: 10, explanation: "Ein erwachsener Mensch hat 32 Zähne, darunter die vier Weisheitszähne." },
   { id: "q1285", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Tier ist das schnellste Landtier der Welt?", answers: ["Gepard", "Löwe", "Strauß", "Antilope"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Gepard erreicht Spitzen von über 100 km/h – aber nur für kurze Strecken." },
   { id: "q1286", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie lautet die Hauptstadt von Australien?", answers: ["Perth", "Sydney", "Melbourne", "Canberra"], correct: 3, difficulty: "mittel", points: 10, explanation: "Canberra ist die Hauptstadt, nicht Sydney oder Melbourne – ein häufiger Irrtum." },
@@ -1841,11 +1786,11 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
   { id: "q1073", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches ist das kleinste Bundesland Deutschlands?", answers: ["Bremen", "Hamburger", "Berlin", "Saarland"], correct: 3, difficulty: "mittel", points: 10, explanation: "Das Saarland ist mit rund 2.570 km² das flächenkleinste Flächenland." },
   { id: "q1074", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welcher Fluss fließt durch die Stadt Wien?", answers: ["Elbe", "Rhein", "Donau", "Oder"], correct: 2, difficulty: "mittel", points: 10, explanation: "Die Donau durchfließt Wien und viele andere europäische Hauptstädte." },
   { id: "q1075", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie heißt der bekannteste Vulkanausbruch, der Pompeji verschüttete?", answers: ["Vesuv", "Ätna", "Stromboli", "Vulkan"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Ausbruch des Vesuvs im Jahr 79 n. Chr. begrub die Stadt Pompeji." },
-  { id: "q1076", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Zähne hat ein ausgewachsener Mensch üblicherweise?", answers: ["30", "34", "28", "32"], correct: 3, difficulty: "mittel", points: 10, explanation: "Ein Erwachsener hat 32 Zähne, inklusive der vier Weisheitszähne." },
+  
   { id: "q1077", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Organ pumpt Blut durch den Körper?", answers: ["Magen", "Herz", "Lunge", "Leber"], correct: 1, difficulty: "mittel", points: 10, explanation: "Das Herz ist die zentrale Pumpe für den Blutkreislauf." },
   { id: "q1078", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie heißt die Hauptstadt von Schweden?", answers: ["Kopenhagen", "Oslo", "Stockholm", "Helsinki"], correct: 2, difficulty: "mittel", points: 10, explanation: "Stockholm ist die Hauptstadt Schwedens und liegt auf 14 Inseln." },
   { id: "q1079", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welche Währung gibt es in der Schweiz?", answers: ["Schilling", "Pfund", "Euro", "Franken"], correct: 3, difficulty: "mittel", points: 10, explanation: "Die Schweiz verwendet den Schweizer Franken, nicht den Euro." },
-  { id: "q1080", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welcher Planet wird auch der 'Rote Planet' genannt?", answers: ["Jupiter", "Mars", "Venus", "Saturn"], correct: 1, difficulty: "mittel", points: 10, explanation: "Der Mars hat durch Eisenoxid eine rötliche Oberfläche." },
+  
 
   {
     "id": "mc_all_001",
@@ -1955,18 +1900,7 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "points": 15,
     "explanation": "Verdunstung an den Blättern erzeugt einen Unterdruck, der Wasser nach oben zieht."
   },
-  {
-    "id": "mc_all_010",
-    "category": "spass_allgemein",
-    "area": "astronomie",
-    "subject": "wissen",
-    "question": "Welcher Planet unseres Sonnensystems ist der Sonne am nächsten?",
-    "answers": ["Venus", "Mars", "Merkur", "Jupiter"],
-    "correct": 2,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Merkur ist der innerste Planet unseres Sonnensystems."
-  },
+  
   {
     "id": "mc_all_011",
     "category": "spass_allgemein",

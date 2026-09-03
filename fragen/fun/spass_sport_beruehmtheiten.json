@@ -5,7 +5,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Welcher Popstar wird weltweilt als 'King of Pop' bezeichnet?",
-    "answers": ["Elvis Presley", "Michael Jackson", "Prince", "Freddie Mercury"],
+    "answers": [
+      "Elvis Presley",
+      "Michael Jackson",
+      "Prince",
+      "Freddie Mercury"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -17,23 +22,16 @@
     "area": "wissenschaft",
     "subject": "wissen",
     "question": "Welcher Physiker entwickelte die berühmte Relativitätstheorie?",
-    "answers": ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Stephen Hawking"],
+    "answers": [
+      "Isaac Newton",
+      "Albert Einstein",
+      "Nikola Tesla",
+      "Stephen Hawking"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
     "explanation": "Albert Einstein veröffentlichte 1905 und 1915 seine Spezielle und Allgemeine Relativitätstheorie."
-  },
-  {
-    "id": "ber_mc_003",
-    "category": "beruehmtheiten",
-    "area": "kunst",
-    "subject": "wissen",
-    "question": "Wer malte das berühmte Kunstwerk der 'Mona Lisa'?",
-    "answers": ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"],
-    "correct": 2,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Leonardo da Vinci schuf das Gemälde im frühen 16. Jahrhundert."
   },
   {
     "id": "ber_mc_004",
@@ -41,7 +39,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Schauspieler spielte die Hauptrolle des Jack Sparrow in 'Fluch der Karibik'?",
-    "answers": ["Brad Pitt", "Johnny Depp", "Orlando Bloom", "Tom Cruise"],
+    "answers": [
+      "Brad Pitt",
+      "Johnny Depp",
+      "Orlando Bloom",
+      "Tom Cruise"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -53,7 +56,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wer war der erste Mensch, der 1969 den Mond betrat?",
-    "answers": ["Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "Michael Collins"],
+    "answers": [
+      "Buzz Aldrin",
+      "Yuri Gagarin",
+      "Neil Armstrong",
+      "Michael Collins"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -65,7 +73,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Wer war der legendäre Frontmann der britischen Rockband 'Queen'?",
-    "answers": ["Mick Jagger", "Freddie Mercury", "David Bowie", "Paul McCartney"],
+    "answers": [
+      "Mick Jagger",
+      "Freddie Mercury",
+      "David Bowie",
+      "Paul McCartney"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -77,7 +90,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welche Martial-Arts-Legende wurde durch Filme wie 'Todesgrüße aus Shanghai' berühmt?",
-    "answers": ["Jackie Chan", "Bruce Lee", "Jet Li", "Donnie Yen"],
+    "answers": [
+      "Jackie Chan",
+      "Bruce Lee",
+      "Jet Li",
+      "Donnie Yen"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -89,7 +107,12 @@
     "area": "literatur",
     "subject": "wissen",
     "question": "Welche Autorin erschuf das magische Universum von 'Harry Potter'?",
-    "answers": ["J.K. Rowling", "Agatha Christie", "Virginia Woolf", "Cornelia Funke"],
+    "answers": [
+      "J.K. Rowling",
+      "Agatha Christie",
+      "Virginia Woolf",
+      "Cornelia Funke"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -101,7 +124,12 @@
     "area": "technik",
     "subject": "wissen",
     "question": "Wer war der Mitbegründer von Apple und stellte 2007 das erste iPhone vor?",
-    "answers": ["Bill Gates", "Steve Jobs", "Mark Zuckerberg", "Jeff Bezos"],
+    "answers": [
+      "Bill Gates",
+      "Steve Jobs",
+      "Mark Zuckerberg",
+      "Jeff Bezos"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -113,7 +141,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Schauspieler verkörperte den 'Terminator' im gleichnamigen Kultfilm?",
-    "answers": ["Sylvester Stallone", "Arnold Schwarzenegger", "Bruce Willis", "Jean-Claude Van Damme"],
+    "answers": [
+      "Sylvester Stallone",
+      "Arnold Schwarzenegger",
+      "Bruce Willis",
+      "Jean-Claude Van Damme"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -125,7 +158,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wer war der berühmte Bürgerrechtler, der die Rede 'I Have a Dream' hielt?",
-    "answers": ["Malcolm X", "Martin Luther King Jr.", "Nelson Mandela", "Barack Obama"],
+    "answers": [
+      "Malcolm X",
+      "Martin Luther King Jr.",
+      "Nelson Mandela",
+      "Barack Obama"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -137,7 +175,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Aus welcher englischen Stadt stammte die Kult-Band 'The Beatles'?",
-    "answers": ["London", "Manchester", "Liverpool", "Birmingham"],
+    "answers": [
+      "London",
+      "Manchester",
+      "Liverpool",
+      "Birmingham"
+    ],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -149,7 +192,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Welche französische Nationalheldin führte die Truppen im Hundertjährigen Krieg an?",
-    "answers": ["Marie Antoinette", "Jeanne d'Arc (Johanna von Orleans)", "Coco Chanel", "Edith Piaf"],
+    "answers": [
+      "Marie Antoinette",
+      "Jeanne d'Arc (Johanna von Orleans)",
+      "Coco Chanel",
+      "Edith Piaf"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -161,23 +209,16 @@
     "area": "wissenschaft",
     "subject": "wissen",
     "question": "Welche Wissenschaftlerin entdeckte die Radioaktivität von Radium und Polonium?",
-    "answers": ["Rosalind Franklin", "Marie Curie", "Lise Meitner", "Ada Lovelace"],
+    "answers": [
+      "Rosalind Franklin",
+      "Marie Curie",
+      "Lise Meitner",
+      "Ada Lovelace"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Marie Curie erhielt als bisher einzige Frau zwei Nobelpreise in unterschiedlichen Disziplinen."
-  },
-  {
-    "id": "ber_mc_015",
-    "category": "beruehmtheiten",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Welcher Regisseur drehte Filmklassiker wie 'Der weiße Hai', 'E.T.' und 'Jurassic Park'?",
-    "answers": ["James Cameron", "Steven Spielberg", "Christopher Nolan", "Quentin Tarantino"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Steven Spielberg ist einer der erfolgreichsten und bekanntesten Regisseure Hollywoods."
   },
   {
     "id": "ber_mc_016",
@@ -185,7 +226,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Welcher Komponist war trotz fortschreitender Taubheit einer der größten Musiker der Klassik?",
-    "answers": ["Mozart", "Ludwig van Beethoven", "Bach", "Vivaldi"],
+    "answers": [
+      "Mozart",
+      "Ludwig van Beethoven",
+      "Bach",
+      "Vivaldi"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -197,7 +243,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wer war der erste Präsident der Vereinigten Staaten von Amerika?",
-    "answers": ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "Benjamin Franklin"],
+    "answers": [
+      "Abraham Lincoln",
+      "George Washington",
+      "Thomas Jefferson",
+      "Benjamin Franklin"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -209,7 +260,12 @@
     "area": "literatur",
     "subject": "wissen",
     "question": "Welcher englische Dichter verfasste Meisterwerke wie 'Romeo und Julia' und 'Hamlet'?",
-    "answers": ["Charles Dickens", "William Shakespeare", "Oscar Wilde", "Lord Byron"],
+    "answers": [
+      "Charles Dickens",
+      "William Shakespeare",
+      "Oscar Wilde",
+      "Lord Byron"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -221,7 +277,12 @@
     "area": "kunst",
     "subject": "wissen",
     "question": "Welcher niederländische Maler schnitt sich nach einem Streit ein Stück seines Ohrs ab?",
-    "answers": ["Rembrandt", "Vincent van Gogh", "Hieronymus Bosch", "Piet Mondrian"],
+    "answers": [
+      "Rembrandt",
+      "Vincent van Gogh",
+      "Hieronymus Bosch",
+      "Piet Mondrian"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -233,20 +294,29 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Welche Friedensnobelpreisträgerin verbrachte 27 Jahre im Gefängnis und wurde später Präsident Südafrikas?",
-    "answers": ["Kofi Annan", "Nelson Mandela", "Desmond Tutu", "Mahatma Gandhi"],
+    "answers": [
+      "Kofi Annan",
+      "Nelson Mandela",
+      "Desmond Tutu",
+      "Mahatma Gandhi"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Nelson Mandela kämpfte erfolgreich gegen das Apartheid-System in Südafrika."
   },
-
   {
     "id": "ber_mc_021",
     "category": "beruehmtheiten",
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Schauspieler spielte die Hauptrolle in 'Forrest Gump' und 'Cast Away'?",
-    "answers": ["Tom Hanks", "Robin Williams", "Jim Carrey", "Harrison Ford"],
+    "answers": [
+      "Tom Hanks",
+      "Robin Williams",
+      "Jim Carrey",
+      "Harrison Ford"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -258,7 +328,12 @@
     "area": "wissenschaft",
     "subject": "wissen",
     "question": "Welcher Naturforscher begründete die Evolutionstheorie durch natürliche Selektion?",
-    "answers": ["Charles Darwin", "Gregor Mendel", "Carl von Linné", "Alexander von Humboldt"],
+    "answers": [
+      "Charles Darwin",
+      "Gregor Mendel",
+      "Carl von Linné",
+      "Alexander von Humboldt"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -270,7 +345,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Welche Sängerin hat Hits wie 'Rolling in the Deep' und 'Hello' gesungen?",
-    "answers": ["Adele", "Beyoncé", "Rihanna", "Taylor Swift"],
+    "answers": [
+      "Adele",
+      "Beyoncé",
+      "Rihanna",
+      "Taylor Swift"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -282,7 +362,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Schauspieler verkörperte Iron Man / Tony Stark im Marvel Cinematic Universe?",
-    "answers": ["Chris Evans", "Robert Downey Jr.", "Chris Hemsworth", "Mark Ruffalo"],
+    "answers": [
+      "Chris Evans",
+      "Robert Downey Jr.",
+      "Chris Hemsworth",
+      "Mark Ruffalo"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -294,7 +379,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wer war der indische Freiheitskämpfer, der für gewaltlosen Widerstand gegen das Britische Empire eintrat?",
-    "answers": ["Jawaharlal Nehru", "Mahatma Gandhi", "Subhas Chandra Bose", "Indira Gandhi"],
+    "answers": [
+      "Jawaharlal Nehru",
+      "Mahatma Gandhi",
+      "Subhas Chandra Bose",
+      "Indira Gandhi"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -306,7 +396,12 @@
     "area": "literatur",
     "subject": "wissen",
     "question": "Welcher deutsche Dichter verfasste das Drama 'Faust'?",
-    "answers": ["Friedrich Schiller", "Johann Wolfgang von Goethe", "Heinrich Heine", "Gotthold Ephraim Lessing"],
+    "answers": [
+      "Friedrich Schiller",
+      "Johann Wolfgang von Goethe",
+      "Heinrich Heine",
+      "Gotthold Ephraim Lessing"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -318,7 +413,12 @@
     "area": "kunst",
     "subject": "wissen",
     "question": "Welcher spanische Maler begründete zusammen mit Georges Braque den Kubismus?",
-    "answers": ["Salvador Dalí", "Pablo Picasso", "Joan Miró", "Francisco de Goya"],
+    "answers": [
+      "Salvador Dalí",
+      "Pablo Picasso",
+      "Joan Miró",
+      "Francisco de Goya"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -330,7 +430,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Schauspieler spielte Han Solo in 'Star Wars' und Indiana Jones?",
-    "answers": ["Harrison Ford", "Mark Hamill", "Mel Gibson", "Kurt Russell"],
+    "answers": [
+      "Harrison Ford",
+      "Mark Hamill",
+      "Mel Gibson",
+      "Kurt Russell"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -342,7 +447,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Welche Country-Ikone schrieb den Welthit 'I Will Always Love You' (bekannt durch Whitney Houston)?",
-    "answers": ["Dolly Parton", "Shania Twain", "Carrie Underwood", "Loretta Lynn"],
+    "answers": [
+      "Dolly Parton",
+      "Shania Twain",
+      "Carrie Underwood",
+      "Loretta Lynn"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -354,7 +464,12 @@
     "area": "politik",
     "subject": "wissen",
     "question": "Wer war die erste weibliche Bundeskanzlerin der Bundesrepublik Deutschland?",
-    "answers": ["Annegret Kramp-Karrenbauer", "Angela Merkel", "Ursula von der Leyen", "Hannelore Kohl"],
+    "answers": [
+      "Annegret Kramp-Karrenbauer",
+      "Angela Merkel",
+      "Ursula von der Leyen",
+      "Hannelore Kohl"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -366,7 +481,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Schauspieler wurde durch Filme wie 'Matrix' (Neo) und 'John Wick' gefeiert?",
-    "answers": ["Keanu Reeves", "Nicolas Cage", "Tom Cruise", "Will Smith"],
+    "answers": [
+      "Keanu Reeves",
+      "Nicolas Cage",
+      "Tom Cruise",
+      "Will Smith"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -378,7 +498,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Welcher französische Feldherr krönte sich 1804 selbst zum Kaiser der Franzosen?",
-    "answers": ["Ludwig XIV.", "Napoleon Bonaparte", "Karl der Große", "Robespierre"],
+    "answers": [
+      "Ludwig XIV.",
+      "Napoleon Bonaparte",
+      "Karl der Große",
+      "Robespierre"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -390,23 +515,16 @@
     "area": "wissenschaft",
     "subject": "wissen",
     "question": "Welcher Astronom stellte das heliozentrische Weltbild (Sonne im Mittelpunkt) auf?",
-    "answers": ["Nikolaus Kopernikus", "Johannes Kepler", "Galileo Galilei", "Claudius Ptolemäus"],
+    "answers": [
+      "Nikolaus Kopernikus",
+      "Johannes Kepler",
+      "Galileo Galilei",
+      "Claudius Ptolemäus"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Kopernikus zeigte, dass sich die Erde um die Sonne dreht und nicht umgekehrt."
-  },
-  {
-    "id": "ber_mc_034",
-    "category": "beruehmtheiten",
-    "area": "musik",
-    "subject": "wissen",
-    "question": "Wer gilt als 'King of Rock 'n' Roll'?",
-    "answers": ["Johnny Cash", "Elvis Presley", "Chuck Berry", "Buddy Holly"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Elvis Presley prägte die Musik- und Jugendkultur der 1950er-Jahre nachhaltig."
   },
   {
     "id": "ber_mc_035",
@@ -414,7 +532,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Schauspieler gewann 2016 endlich seinen ersten Hauptdarsteller-Oscar für 'The Revenant'?",
-    "answers": ["Brad Pitt", "Leonardo DiCaprio", "Johnny Depp", "Christian Bale"],
+    "answers": [
+      "Brad Pitt",
+      "Leonardo DiCaprio",
+      "Johnny Depp",
+      "Christian Bale"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -426,7 +549,12 @@
     "area": "kunst",
     "subject": "wissen",
     "question": "Welcher Künstler malte die berühmte Decke der Sixtinischen Kapelle in Rom?",
-    "answers": ["Raffael", "Michelangelo", "Donatello", "Botticelli"],
+    "answers": [
+      "Raffael",
+      "Michelangelo",
+      "Donatello",
+      "Botticelli"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -438,7 +566,12 @@
     "area": "unternehmer",
     "subject": "wissen",
     "question": "Wer gründete das Weltunternehmen Microsoft zusammen mit Paul Allen?",
-    "answers": ["Steve Jobs", "Bill Gates", "Jeff Bezos", "Elon Musk"],
+    "answers": [
+      "Steve Jobs",
+      "Bill Gates",
+      "Jeff Bezos",
+      "Elon Musk"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -450,23 +583,16 @@
     "area": "literatur",
     "subject": "wissen",
     "question": "Welche Detektivfigur erschuf der britische Schriftsteller Sir Arthur Conan Doyle?",
-    "answers": ["Hercule Poirot", "Sherlock Holmes", "Miss Marple", "Philip Marlowe"],
+    "answers": [
+      "Hercule Poirot",
+      "Sherlock Holmes",
+      "Miss Marple",
+      "Philip Marlowe"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
     "explanation": "Sherlock Holmes löst mit seinem Partner Dr. Watson Fälle in der 221B Baker Street."
-  },
-  {
-    "id": "ber_mc_039",
-    "category": "beruehmtheiten",
-    "area": "film",
-    "subject": "wissen",
-    "question": "Welche Schauspielerin verkörperte Katniss Everdeen in 'Die Tribut von Panem'?",
-    "answers": ["Emma Watson", "Jennifer Lawrence", "Kristen Stewart", "Zendaya"],
-    "correct": 1,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Jennifer Lawrence feierte mit der Panem-Trilogie den Durchbruch als Action-Star."
   },
   {
     "id": "ber_mc_040",
@@ -474,7 +600,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Welche schwedische Popgruppe gewann 1974 den ESC mit dem Song 'Waterloo'?",
-    "answers": ["Roxette", "ABBA", "Ace of Base", "A-Teens"],
+    "answers": [
+      "Roxette",
+      "ABBA",
+      "Ace of Base",
+      "A-Teens"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -486,7 +617,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wer war die langjährige Königin von Großbritannien, die 2022 im Alter von 96 Jahren verstarb?",
-    "answers": ["Queen Victoria", "Queen Elizabeth I.", "Queen Elizabeth II.", "Queen Mary"],
+    "answers": [
+      "Queen Victoria",
+      "Queen Elizabeth I.",
+      "Queen Elizabeth II.",
+      "Queen Mary"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -498,7 +634,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Star spielte den Wrestler 'The Rock' vor seiner Hollywood-Karriere?",
-    "answers": ["John Cena", "Dwayne Johnson", "Dave Bautista", "Jason Statham"],
+    "answers": [
+      "John Cena",
+      "Dwayne Johnson",
+      "Dave Bautista",
+      "Jason Statham"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -510,7 +651,12 @@
     "area": "wissenschaft",
     "subject": "wissen",
     "question": "Welcher Physiker litt an ALS und verfasste das Buch 'Eine kurze Geschichte der Zeit'?",
-    "answers": ["Stephen Hawking", "Richard Feynman", "Carl Sagan", "Niels Bohr"],
+    "answers": [
+      "Stephen Hawking",
+      "Richard Feynman",
+      "Carl Sagan",
+      "Niels Bohr"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -522,7 +668,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Wer komponierte die Oper 'Die Zauberflöte'?",
-    "answers": ["Wolfgang Amadeus Mozart", "Ludwig van Beethoven", "Franz Schubert", "Richard Wagner"],
+    "answers": [
+      "Wolfgang Amadeus Mozart",
+      "Ludwig van Beethoven",
+      "Franz Schubert",
+      "Richard Wagner"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -534,7 +685,12 @@
     "area": "unternehmer",
     "subject": "wissen",
     "question": "Wer gründete den Online-Versandhändler Amazon in einer Garage?",
-    "answers": ["Elon Musk", "Jeff Bezos", "Mark Zuckerberg", "Jack Ma"],
+    "answers": [
+      "Elon Musk",
+      "Jeff Bezos",
+      "Mark Zuckerberg",
+      "Jack Ma"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -546,7 +702,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Regisseur drehte düstere Meisterwerke wie 'Pulp Fiction' und 'Kill Bill'?",
-    "answers": ["Quentin Tarantino", "Martin Scorsese", "Steven Spielberg", "David Fincher"],
+    "answers": [
+      "Quentin Tarantino",
+      "Martin Scorsese",
+      "Steven Spielberg",
+      "David Fincher"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -558,7 +719,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Welcher römische Diktator wurde an den Iden des März (44 v. Chr.) im Senat ermordet?",
-    "answers": ["Gaius Julius Cäsar", "Kaiser Nero", "Caligula", "Sulla"],
+    "answers": [
+      "Gaius Julius Cäsar",
+      "Kaiser Nero",
+      "Caligula",
+      "Sulla"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -570,7 +736,12 @@
     "area": "kunst",
     "subject": "wissen",
     "question": "Welcher surrealistische spanische Maler ist für schmelzende Uhren ('Die Beständigkeit der Erinnerung') bekannt?",
-    "answers": ["Salvador Dalí", "Pablo Picasso", "Joan Miró", "Rene Magritte"],
+    "answers": [
+      "Salvador Dalí",
+      "Pablo Picasso",
+      "Joan Miró",
+      "Rene Magritte"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -582,7 +753,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Wer war der legendäre Gitarrist, der die US-Nationalhymne in Woodstock 1969 verzerrt spielte?",
-    "answers": ["Jimi Hendrix", "Eric Clapton", "Jimmy Page", "Keith Richards"],
+    "answers": [
+      "Jimi Hendrix",
+      "Eric Clapton",
+      "Jimmy Page",
+      "Keith Richards"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -594,7 +770,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welche britische Schauspielerin spielte die Rolle der Hermine Granger in den Harry-Potter-Filmen?",
-    "answers": ["Emma Watson", "Keira Knightley", "Emma Stone", "Saoirse Ronan"],
+    "answers": [
+      "Emma Watson",
+      "Keira Knightley",
+      "Emma Stone",
+      "Saoirse Ronan"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -606,7 +787,12 @@
     "area": "literatur",
     "subject": "wissen",
     "question": "Welcher Autor erfand die Mittelerde-Saga 'Der Herr der Ringe'?",
-    "answers": ["C.S. Lewis", "J.R.R. Tolkien", "George R.R. Martin", "Christopher Paolini"],
+    "answers": [
+      "C.S. Lewis",
+      "J.R.R. Tolkien",
+      "George R.R. Martin",
+      "Christopher Paolini"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -618,7 +804,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Welche Königin von Ägypten ging eine Allianz mit Julius Cäsar und Marc Anton ein?",
-    "answers": ["Nofretete", "Kleopatra VII.", "Hatschepsut", "Nefertari"],
+    "answers": [
+      "Nofretete",
+      "Kleopatra VII.",
+      "Hatschepsut",
+      "Nefertari"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -630,23 +821,16 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Schauspieler spielte den Joker im Film 'The Dark Knight' (2008) und gewann posthum einen Oscar?",
-    "answers": ["Joaquin Phoenix", "Heath Ledger", "Jack Nicholson", "Jared Leto"],
+    "answers": [
+      "Joaquin Phoenix",
+      "Heath Ledger",
+      "Jack Nicholson",
+      "Jared Leto"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
     "explanation": "Heath Ledgers Darstellung des Jokers gilt als eine der besten der Filmgeschichte."
-  },
-  {
-    "id": "ber_mc_054",
-    "category": "beruehmtheiten",
-    "area": "wissenschaft",
-    "subject": "wissen",
-    "question": "Wer entdeckte 1928 durch Zufall das Schimmelpilz-Antibiotikum Penicillin?",
-    "answers": ["Alexander Fleming", "Louis Pasteur", "Robert Koch", "Edward Jenner"],
-    "correct": 0,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Fleming bemerkte, dass der Pilz Penicillium notatum Bakterienkulturen abtötete."
   },
   {
     "id": "ber_mc_055",
@@ -654,7 +838,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Welche Popstar-Sängerin hat die treue Fanbase namens 'Swifties'?",
-    "answers": ["Ariana Grande", "Taylor Swift", "Katy Perry", "Billie Eilish"],
+    "answers": [
+      "Ariana Grande",
+      "Taylor Swift",
+      "Katy Perry",
+      "Billie Eilish"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -666,7 +855,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welche deutsche Schauspielerin feierte Erfolge in Hollywood (z. B. 'Inglourious Basterds')?",
-    "answers": ["Diane Kruger", "Karoline Herfurth", "Veronica Ferres", "Iris Berben"],
+    "answers": [
+      "Diane Kruger",
+      "Karoline Herfurth",
+      "Veronica Ferres",
+      "Iris Berben"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -678,7 +872,12 @@
     "area": "unternehmer",
     "subject": "wissen",
     "question": "Wer ist der Kopf hinter Unternehmen wie Tesla und SpaceX?",
-    "answers": ["Mark Zuckerberg", "Elon Musk", "Tim Cook", "Larry Page"],
+    "answers": [
+      "Mark Zuckerberg",
+      "Elon Musk",
+      "Tim Cook",
+      "Larry Page"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -690,7 +889,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wer reformierte ab 1517 die Kirche durch den Anschlag von 95 Thesen in Wittenberg?",
-    "answers": ["Johannes Calvin", "Martin Luther", "Huldrych Zwingli", "Thomas Müntzer"],
+    "answers": [
+      "Johannes Calvin",
+      "Martin Luther",
+      "Huldrych Zwingli",
+      "Thomas Müntzer"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -702,7 +906,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Wie heisst der weltbekannte südkoreanische Rapper des Hits 'Gangnam Style'?",
-    "answers": ["PSY", "BTS", "G-Dragon", "Rain"],
+    "answers": [
+      "PSY",
+      "BTS",
+      "G-Dragon",
+      "Rain"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -714,7 +923,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Regisseur schuf das Science-Fiction-Epos 'Inception' und 'Interstellar'?",
-    "answers": ["Denis Villeneuve", "Christopher Nolan", "Ridley Scott", "James Cameron"],
+    "answers": [
+      "Denis Villeneuve",
+      "Christopher Nolan",
+      "Ridley Scott",
+      "James Cameron"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -726,7 +940,12 @@
     "area": "sport_legende",
     "subject": "wissen",
     "question": "Welche Schwergewichts-Boxlegende wurde mit dem Zitat 'Float like a butterfly, sting like a bee' berühmt?",
-    "answers": ["Mike Tyson", "Muhammad Ali", "Joe Frazier", "George Foreman"],
+    "answers": [
+      "Mike Tyson",
+      "Muhammad Ali",
+      "Joe Frazier",
+      "George Foreman"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -738,7 +957,12 @@
     "area": "literatur",
     "subject": "wissen",
     "question": "Welcher Schriftsteller schrieb die Fantasy-Saga 'Das Lied von Eis und Feuer' (Game of Thrones)?",
-    "answers": ["George R.R. Martin", "Brandon Sanderson", "Patrick Rothfuss", "Robert Jordan"],
+    "answers": [
+      "George R.R. Martin",
+      "Brandon Sanderson",
+      "Patrick Rothfuss",
+      "Robert Jordan"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -750,7 +974,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Schauspieler verkörpert den Zauberer Gandalf in 'Der Herr der Ringe'?",
-    "answers": ["Sir Ian McKellen", "Sir Christopher Lee", "Sir Patrick Stewart", "Richard Harris"],
+    "answers": [
+      "Sir Ian McKellen",
+      "Sir Christopher Lee",
+      "Sir Patrick Stewart",
+      "Richard Harris"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -762,7 +991,12 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wer war der erste Kanzler des Deutschen Reiches von 1871 ('Eiserner Kanzler')?",
-    "answers": ["Otto von Bismarck", "Friedrich III.", "Paul von Hindenburg", "Wilhelm I."],
+    "answers": [
+      "Otto von Bismarck",
+      "Friedrich III.",
+      "Paul von Hindenburg",
+      "Wilhelm I."
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -774,7 +1008,12 @@
     "area": "musik",
     "subject": "wissen",
     "question": "Wer gilt als Erfinder der elektrischen Gitarre 'Fender Stratocaster'?",
-    "answers": ["Leo Fender", "Les Paul", "Gibson", "Paul Reed Smith"],
+    "answers": [
+      "Leo Fender",
+      "Les Paul",
+      "Gibson",
+      "Paul Reed Smith"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -786,7 +1025,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Star spielte den Archäologen Indiana Jones im ersten Teil 'Jäger des verlorenen Schatzes'?",
-    "answers": ["Harrison Ford", "Sean Connery", "Tom Selleck", "Mel Gibson"],
+    "answers": [
+      "Harrison Ford",
+      "Sean Connery",
+      "Tom Selleck",
+      "Mel Gibson"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -798,7 +1042,12 @@
     "area": "kunst",
     "subject": "wissen",
     "question": "Welcher Streetart-Künstler hält seine Identität bis heute geheim und ist für Schablonen-Graffiti bekannt?",
-    "answers": ["Banksy", "Basquiat", "Keith Haring", "Invader"],
+    "answers": [
+      "Banksy",
+      "Basquiat",
+      "Keith Haring",
+      "Invader"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -810,7 +1059,12 @@
     "area": "wissenschaft",
     "subject": "wissen",
     "question": "Welcher Erfinder erfand die Glühbirne zur Marktreife und gründete General Electric?",
-    "answers": ["Thomas Alva Edison", "Nikola Tesla", "Alexander Graham Bell", "Samuel Morse"],
+    "answers": [
+      "Thomas Alva Edison",
+      "Nikola Tesla",
+      "Alexander Graham Bell",
+      "Samuel Morse"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -822,7 +1076,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welche Hollywood-Legende spielte in 'Spiderman' den grünen Goblin (Norman Osborn)?",
-    "answers": ["Willem Dafoe", "Michael Keaton", "Alfred Molina", "Christopher Walken"],
+    "answers": [
+      "Willem Dafoe",
+      "Michael Keaton",
+      "Alfred Molina",
+      "Christopher Walken"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -834,23 +1093,16 @@
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wer war die erste Frau im Weltall (1963)?",
-    "answers": ["Valentina Tereschkowa", "Sally Ride", "Svetlana Savitskaya", "Mae Jemison"],
+    "answers": [
+      "Valentina Tereschkowa",
+      "Sally Ride",
+      "Svetlana Savitskaya",
+      "Mae Jemison"
+    ],
     "correct": 0,
     "difficulty": "schwer",
     "points": 15,
     "explanation": "Die sowjetische Kosmonautin umkreiste die Erde 48 Mal an Bord von Wostok 6."
-  },
-  {
-    "id": "ber_mc_071",
-    "category": "beruehmtheiten",
-    "area": "musik",
-    "subject": "wissen",
-    "question": "Wie heisst die jamaikanische Reggae-Legende des Songs 'No Woman, No Cry'?",
-    "answers": ["Bob Marley", "Peter Tosh", "Jimmy Cliff", "Burning Spear"],
-    "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Bob Marley machte Reggae-Musik weltweit populär."
   },
   {
     "id": "ber_mc_072",
@@ -858,7 +1110,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Schauspieler wurde als 'Wolverine' in den X-Men-Filmen bekannt?",
-    "answers": ["Hugh Jackman", "Ryan Reynolds", "Chris Pratt", "Liev Schreiber"],
+    "answers": [
+      "Hugh Jackman",
+      "Ryan Reynolds",
+      "Chris Pratt",
+      "Liev Schreiber"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -870,7 +1127,12 @@
     "area": "politik",
     "subject": "wissen",
     "question": "Welcher US-Präsident beendete die Sklaverei in den USA im Sezessionskrieg?",
-    "answers": ["Abraham Lincoln", "Ulysses S. Grant", "Andrew Jackson", "Theodore Roosevelt"],
+    "answers": [
+      "Abraham Lincoln",
+      "Ulysses S. Grant",
+      "Andrew Jackson",
+      "Theodore Roosevelt"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -882,7 +1144,12 @@
     "area": "film",
     "subject": "wissen",
     "question": "Welcher Regisseur drehte das Film-Epos 'Titanic' und 'Avatar'?",
-    "answers": ["James Cameron", "Peter Jackson", "George Lucas", "Ridley Scott"],
+    "answers": [
+      "James Cameron",
+      "Peter Jackson",
+      "George Lucas",
+      "Ridley Scott"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -894,7 +1161,12 @@
     "area": "wissenschaft",
     "subject": "wissen",
     "question": "Welcher griechische Gelehrte rief legendär 'Heureka!' in der Badewanne?",
-    "answers": ["Archimedes", "Pythagoras", "Aristoteles", "Sokrates"],
+    "answers": [
+      "Archimedes",
+      "Pythagoras",
+      "Aristoteles",
+      "Sokrates"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

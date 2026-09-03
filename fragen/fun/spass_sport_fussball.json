@@ -1,4 +1,3 @@
-
 [
   {
     "id": "spo_mc_001",
@@ -6,7 +5,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Wie lange dauert ein reguläres Fußballspiel ohne Verlängerung?",
-    "answers": ["80 Minuten", "90 Minuten", "100 Minuten", "60 Minuten netto"],
+    "answers": [
+      "80 Minuten",
+      "90 Minuten",
+      "100 Minuten",
+      "60 Minuten netto"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -18,7 +22,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Aus wie vielen Metern Entfernung wird im Fußball ein Strafstoß (Elfmeter) ausgeführt?",
-    "answers": ["9 Meter", "11 Meter", "13 Meter", "15 Meter"],
+    "answers": [
+      "9 Meter",
+      "11 Meter",
+      "13 Meter",
+      "15 Meter"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -30,7 +39,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welche Nation hat bisher die meisten Fußball-Weltmeisterschaften der Herren gewonnen?",
-    "answers": ["Deutschland", "Italien", "Brasilien", "Argentinien"],
+    "answers": [
+      "Deutschland",
+      "Italien",
+      "Brasilien",
+      "Argentinien"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -42,11 +56,16 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Was zeigt der Schiedsrichter im Fußball bei einer 'Gelb-Roten Karte' an?",
-    "answers": ["Der Spieler darf nach 10 Minuten wieder mitspielen", "Feldverweis auf Dauer für das laufende Spiel", "Auswechselung ist erlaubt", "Verwarnung an den Trainer"],
-    "correct": 1,
+    "answers": [
+      "Feldverweis für den Rest des Spiels",
+      "Zehn Minuten Pause auf der Bank",
+      "Eine Verwarnung für den Trainer",
+      "Eine erzwungene Auswechselung"
+    ],
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Gelb-Rot bedeutet den Platzverweis nach der zweiten verwaschenden Aktion im Spiel."
+    "explanation": "Gelb-Rot folgt auf die zweite verwarnungswürdige Aktion. Der Spieler darf nicht ersetzt werden – das Team spielt in Unterzahl weiter."
   },
   {
     "id": "spo_mc_005",
@@ -54,7 +73,12 @@
     "area": "leichtathletik",
     "subject": "wissen",
     "question": "Welcher Sprinter hält den Weltrekord über 100 Meter mit 9,58 Sekunden?",
-    "answers": ["Tyson Gay", "Usain Bolt", "Yohan Blake", "Carl Lewis"],
+    "answers": [
+      "Tyson Gay",
+      "Usain Bolt",
+      "Yohan Blake",
+      "Carl Lewis"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -66,7 +90,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "In welchem Land fand die Fußball-Weltmeisterschaft im Jahr 2014 statt (Deutschland wurde Weltmeister)?",
-    "answers": ["Südafrika", "Brasilien", "Russland", "Katar"],
+    "answers": [
+      "Südafrika",
+      "Brasilien",
+      "Russland",
+      "Katar"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -78,11 +107,16 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Wann befindet sich ein Spieler im Fußball im 'Strafbaren Abseits'?",
-    "answers": ["Wenn er beim Pass der eigenen Mannschaft dem gegnerischen Tor näher ist als der vorletzte Abwehrspieler und aktiv eingreift", "Wenn er hinter der Mittellinie steht", "Bei einem Einwurf", "Bei einem Eckball"],
+    "answers": [
+      "Näher am Tor als der vorletzte Gegner",
+      "Hinter der Mittellinie der Gegner",
+      "Beim Einwurf in der gegnerischen Hälfte",
+      "Beim Eckball im Fünfmeterraum"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Entscheidend ist der Moment der Ballabgabe des Mitspielers und die aktive Teilnahme am Spiel."
+    "explanation": "Entscheidend ist der Moment der Ballabgabe – und der Spieler muss aktiv eingreifen. Bei Einwurf, Eckball und Abstoß gibt es kein Abseits."
   },
   {
     "id": "spo_mc_008",
@@ -90,7 +124,12 @@
     "area": "basketball",
     "subject": "wissen",
     "question": "Wie viele Punkte bringt ein erfolgreicher Wurf im Basketball außerhalb der Drei-Punkte-Linie?",
-    "answers": ["1 Punkt", "2 Punkte", "3 Punkte", "4 Punkte"],
+    "answers": [
+      "1 Punkt",
+      "2 Punkte",
+      "3 Punkte",
+      "4 Punkte"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -102,7 +141,12 @@
     "area": "tennis",
     "subject": "wissen",
     "question": "Auf welchem Belag wird das berühmte Tennisturnier in Wimbledon gespielt?",
-    "answers": ["Sand", "Hartplatz", "Rasen", "Teppich"],
+    "answers": [
+      "Sand",
+      "Hartplatz",
+      "Rasen",
+      "Teppich"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -114,7 +158,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Wie viele Spieler einer Mannschaft stehen beim Anpfiff auf dem Fußballfeld?",
-    "answers": ["10 Spieler", "11 Spieler", "12 Spieler", "9 Spieler"],
+    "answers": [
+      "10 Spieler",
+      "11 Spieler",
+      "12 Spieler",
+      "9 Spieler"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -126,7 +175,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welches Kürzel trägt der Videoschiedsrichter im modernen Profifußball?",
-    "answers": ["VAR", "VARO", "CEO", "DFC"],
+    "answers": [
+      "VAR",
+      "VARO",
+      "CEO",
+      "DFC"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -138,11 +192,16 @@
     "area": "formel1",
     "subject": "wissen",
     "question": "Welche Flagge wird in der Formel 1 geschwenkt, um das Ende des Rennens anzuzeigen?",
-    "answers": ["Gelbe Flagge", "Rote Flagge", "Schwarz-weiß karierte Flagge", "Blaue Flagge"],
-    "correct": 2,
+    "answers": [
+      "Die schwarz-weiß karierte",
+      "Die leuchtend gelbe Flagge",
+      "Die tiefrote Flagge",
+      "Die dunkelblaue Flagge"
+    ],
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die Ziel-Flagge informiert die Piloten über die Zielankunft."
+    "explanation": "Die Zielflagge weht ab dem Führenden für jeden Wagen einmal. Rot bedeutet Abbruch, Gelb Gefahr, Blau: schnelleres Auto kommt."
   },
   {
     "id": "spo_mc_013",
@@ -150,7 +209,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welche deutsche Legende wurde sowohl als Spieler (1974) als auch als Trainer (1990) Weltmeister?",
-    "answers": ["Lothar Matthäus", "Franz Beckenbauer", "Jupp Heynckes", "Gerd Müller"],
+    "answers": [
+      "Lothar Matthäus",
+      "Franz Beckenbauer",
+      "Jupp Heynckes",
+      "Gerd Müller"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -162,11 +226,16 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Darf ein Eckball direkt ohne Berührung eines anderen Spielers ins Tor verwandelt werden?",
-    "answers": ["Ja, das Tor zählt direkt", "Nein, es gibt Abstoß", "Nein, der Eckball muss wiederholt werden", "Nur wenn der Torwart den Ball berührt"],
+    "answers": [
+      "Ja, das Tor zählt sofort",
+      "Nein, es gibt Abstoß",
+      "Nein, der Eckball wird wiederholt",
+      "Nur nach Berührung des Torwarts"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Eckball ist ein direkter Freistoß aufs gegnerische Tor; ein direktes Tor ist nach Regelwerk gültig."
+    "explanation": "Der Eckball ist ein direkter Freistoß aufs Tor. Aus einem Einwurf dagegen kann kein direktes Tor fallen."
   },
   {
     "id": "spo_mc_015",
@@ -174,7 +243,12 @@
     "area": "american_football",
     "subject": "wissen",
     "question": "Wie heisst das Endspiel der American-Football-Liga NFL?",
-    "answers": ["Super Bowl", "World Series", "Stanley Cup", "NBA Finals"],
+    "answers": [
+      "Super Bowl",
+      "World Series",
+      "Stanley Cup",
+      "NBA Finals"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -186,11 +260,16 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welcher Verein wird auch als 'Die Fohlen' bezeichnet?",
-    "answers": ["1. FC Köln", "Borussia Mönchengladbach", "Eintracht Frankfurt", "VfB Stuttgart"],
-    "correct": 1,
+    "answers": [
+      "Borussia Mönchengladbach",
+      "Eintracht Braunschweig",
+      "Eintracht Frankfurt",
+      "1. FC Kaiserslautern"
+    ],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Gladbach erwarb in den 1970ern durch jungen, unbeschwerten Fußball den Spitznamen 'Fohlenelf'."
+    "explanation": "In den 1970ern spielte Gladbach mit einer auffallend jungen Mannschaft – daher 'Fohlenelf'."
   },
   {
     "id": "spo_mc_017",
@@ -198,7 +277,12 @@
     "area": "kampfsport",
     "subject": "wissen",
     "question": "Wie lang dauert eine reguläre Runde in einem Profi-Boxkampf der Herren?",
-    "answers": ["2 Minuten", "3 Minuten", "5 Minuten", "10 Minuten"],
+    "answers": [
+      "2 Minuten",
+      "3 Minuten",
+      "5 Minuten",
+      "10 Minuten"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -210,11 +294,16 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Was passiert, wenn ein Einwurf direkt im gegnerischen Tor landet, ohne dass jemand den Ball berührt?",
-    "answers": ["Tor zählt", "Kein Tor, es gibt Abstoß für den Gegner", "Wiederholung des Einwurfs", "Eckball"],
-    "correct": 1,
+    "answers": [
+      "Abstoß für die gegnerische Mannschaft",
+      "Das Tor zählt ganz normal",
+      "Der Einwurf wird wiederholt",
+      "Eckball für die eigene Mannschaft"
+    ],
+    "correct": 0,
     "difficulty": "schwer",
     "points": 15,
-    "explanation": "Aus einem Einwurf kann kein direktes Tor erzielt werden. Berührt niemand den Ball, gibt es Abstoß."
+    "explanation": "Aus einem Einwurf kann kein direktes Tor fallen. Landet er im eigenen Tor, gibt es sogar Eckball für den Gegner."
   },
   {
     "id": "spo_mc_019",
@@ -222,7 +311,12 @@
     "area": "olympia",
     "subject": "wissen",
     "question": "Wie viele farbige Ringe hat das offizielle Symbol der Olympischen Spiele?",
-    "answers": ["4 Ringe", "5 Ringe", "6 Ringe", "7 Ringe"],
+    "answers": [
+      "4 Ringe",
+      "5 Ringe",
+      "6 Ringe",
+      "7 Ringe"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -234,20 +328,29 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welcher argentinische Fußballer wird wegen des 'Hand Gottes'-Tors bei der WM 1986 verehrt?",
-    "answers": ["Lionel Messi", "Diego Maradona", "Mario Kempes", "Gabriel Batistuta"],
+    "answers": [
+      "Lionel Messi",
+      "Diego Maradona",
+      "Mario Kempes",
+      "Gabriel Batistuta"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
     "explanation": "Diego Maradona erzielte gegen England ein Tor mit der Hand und nannte es später die 'Hand Gottes'."
   },
-  
   {
     "id": "spo_mc_021",
     "category": "fussball_sport",
     "area": "fussball",
     "subject": "wissen",
     "question": "Welche Auszeichnung erhält der weltbeste Fußballer des Jahres von France Football?",
-    "answers": ["Golden Boy", "Ballon d'Or", "FIFA Ring", "European Boot"],
+    "answers": [
+      "Golden Boy",
+      "Ballon d'Or",
+      "FIFA Ring",
+      "European Boot"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -259,11 +362,16 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Was entscheidet der Schiedsrichter, wenn ein Abwehrspieler den Ball vorsätzlich mit der Hand auf der eigenen Torlinie blockt?",
-    "answers": ["Gelbe Karte und Indirekter Freistoß", "Rote Karte und Strafstoß (Elfmeter)", "Nur Strafstoß", "Wiederholung des Spielzuges"],
-    "correct": 1,
+    "answers": [
+      "Rote Karte und Strafstoß",
+      "Gelbe Karte und Freistoß",
+      "Nur Strafstoß ohne Karte",
+      "Wiederholung des Spielzugs"
+    ],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das Verhindern eines klaren Tors durch Handspiel führt zu einer Roten Karte und Elfmeter."
+    "explanation": "Wer ein klares Tor durch Handspiel verhindert, sieht Rot. Nur der Torwart darf im eigenen Strafraum zugreifen."
   },
   {
     "id": "spo_mc_023",
@@ -271,7 +379,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welcher deutsche Verein trägt seine Heimspiele im Signal Iduna Park (Westfalenstadion) aus?",
-    "answers": ["FC Schalke 04", "Borussia Dortmund", "VfL Bochum", "1. FC Köln"],
+    "answers": [
+      "FC Schalke 04",
+      "Borussia Dortmund",
+      "VfL Bochum",
+      "1. FC Köln"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -283,7 +396,12 @@
     "area": "formel1",
     "subject": "wissen",
     "question": "Welcher deutsche Rennfahrer gewann 7 Formel-1-Weltmeistertitel?",
-    "answers": ["Sebastian Vettel", "Michael Schumacher", "Nico Rosberg", "Ralf Schumacher"],
+    "answers": [
+      "Sebastian Vettel",
+      "Michael Schumacher",
+      "Nico Rosberg",
+      "Ralf Schumacher"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -295,7 +413,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "In welcher Stadt steht das berühmte Camp-Nou-Stadion?",
-    "answers": ["Madrid", "Barcelona", "Sevilla", "Valencia"],
+    "answers": [
+      "Madrid",
+      "Barcelona",
+      "Sevilla",
+      "Valencia"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -306,12 +429,17 @@
     "category": "fussball_sport",
     "area": "schiedsrichter",
     "subject": "wissen",
-    "question": "Darf ein Torwart den Ball mit der Hand aufnehmen, wenn ihm ein Mitspieler den Ball gezielt mit dem Fuß rückpasset?",
-    "answers": ["Ja, immer im eigenen Strafraum", "Nein, das ist verboten (Rückpassregel -> indirekter Freistoß)", "Nur wenn der Ball langsam rollt", "Ja, aber nur einmal pro Halbzeit"],
-    "correct": 1,
+    "question": "Darf ein Torwart den Ball aufnehmen, wenn ihm ein Mitspieler gezielt mit dem Fuß zurückspielt?",
+    "answers": [
+      "Nein, es gibt indirekten Freistoß",
+      "Ja, überall im eigenen Strafraum",
+      "Ja, aber nur einmal pro Halbzeit",
+      "Nur wenn der Ball langsam rollt"
+    ],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Rückpassregel untersagt das Handspiel des Torwarts bei gezieltem Fuß-Rückpass des Mitspielers."
+    "explanation": "Die Rückpassregel gilt seit 1992. Mit Kopf, Brust oder Knie darf der Mitspieler dagegen zurückspielen."
   },
   {
     "id": "spo_mc_027",
@@ -319,7 +447,12 @@
     "area": "tennis",
     "subject": "wissen",
     "question": "Wie nennt man im Tennis einen Aufschlag, den der Gegner nicht berühren kann und der direkt zum Punkt führt?",
-    "answers": ["Smash", "Ass", "Lob", "Slice"],
+    "answers": [
+      "Smash",
+      "Ass",
+      "Lob",
+      "Slice"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -331,7 +464,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welche Nationalmannschaft wird auch als 'Elftal' oder 'Oranje' bezeichnet?",
-    "answers": ["Belgien", "Niederlande", "Österreich", "Dänemark"],
+    "answers": [
+      "Belgien",
+      "Niederlande",
+      "Österreich",
+      "Dänemark"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -343,7 +481,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Wie viele Auswechslungen sind in den meisten Profi-Fußball-Ligen pro Spiel regulär erlaubt?",
-    "answers": ["3 Spieler", "5 Spieler", "6 Spieler", "Beliebig viele"],
+    "answers": [
+      "3 Spieler",
+      "5 Spieler",
+      "6 Spieler",
+      "Beliebig viele"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -355,7 +498,12 @@
     "area": "wintersport",
     "subject": "wissen",
     "question": "Aus welchen zwei Disziplinen setzt sich die 'Nordische Kombination' zusammen?",
-    "answers": ["Skispringen und Langlauf", "Biathlon und Abfahrt", "Slalom und Riesenslalom", "Eisschnelllauf und Rodeln"],
+    "answers": [
+      "Skispringen und Langlauf",
+      "Biathlon und Abfahrt",
+      "Slalom und Riesenslalom",
+      "Eisschnelllauf und Rodeln"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -367,7 +515,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welcher Spieler erzielte das berühmte Siegtor für Deutschland im WM-Finale 2014?",
-    "answers": ["Thomas Müller", "Mario Götze", "Bastian Schweinsteiger", "Toni Kroos"],
+    "answers": [
+      "Thomas Müller",
+      "Mario Götze",
+      "Bastian Schweinsteiger",
+      "Toni Kroos"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -379,7 +532,12 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Was zeigt der Schiedsrichter an, wenn er beide Arme waagerecht nach vorne streckt und weiterlaufen lässt?",
-    "answers": ["Abseits", "Vorteil", "Foulspiel", "Ausball"],
+    "answers": [
+      "Abseits",
+      "Vorteil",
+      "Foulspiel",
+      "Ausball"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -391,7 +549,12 @@
     "area": "basketball",
     "subject": "wissen",
     "question": "Welche deutsche Basketball-Legende führte die Dallas Mavericks 2011 zur NBA-Meisterschaft?",
-    "answers": ["Dennis Schröder", "Dirk Nowitzki", "Daniel Theis", "Franz Wagner"],
+    "answers": [
+      "Dennis Schröder",
+      "Dirk Nowitzki",
+      "Daniel Theis",
+      "Franz Wagner"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -403,7 +566,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welches Land gewann die Fußball-Europameisterschaft 2004 völlig überraschend?",
-    "answers": ["Portugal", "Griechenland", "Tschechien", "Dänemark"],
+    "answers": [
+      "Portugal",
+      "Griechenland",
+      "Tschechien",
+      "Dänemark"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -415,7 +583,12 @@
     "area": "darts",
     "subject": "wissen",
     "question": "Was ist die höchste Punktzahl, die man im Darts mit drei Pfeilen werfen kann?",
-    "answers": ["150 Punkte", "180 Punkte", "200 Punkte", "160 Punkte"],
+    "answers": [
+      "150 Punkte",
+      "180 Punkte",
+      "200 Punkte",
+      "160 Punkte"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -427,7 +600,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Wie nennt man das berühmte Derbyspiel zwischen Real Madrid und dem FC Barcelona?",
-    "answers": ["Der Klassiker", "El Clásico", "Superclásico", "Derby della Madonnina"],
+    "answers": [
+      "Der Klassiker",
+      "El Clásico",
+      "Superclásico",
+      "Derby della Madonnina"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -439,11 +617,16 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Darf ein Spieler den Ball beim Abstoß direkt aus dem eigenen Strafraum herausspielen?",
-    "answers": ["Ja, der Ball ist im Spiel, sobald er mit dem Fuß bewegt wurde", "Nein, er muss den Strafraum verlassen", "Nur wenn der Gegner zustimmt", "Nur der Torwart darf abstoßen"],
+    "answers": [
+      "Ja, der Ball ist sofort im Spiel",
+      "Nein, er muss den Strafraum verlassen",
+      "Nur wenn der Gegner zustimmt",
+      "Nur der Torwart darf abstoßen"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Seit einer Regeländerung muss der Ball beim Abstoß nicht mehr den Strafraum verlassen."
+    "explanation": "Seit 2019 ist der Ball beim Abstoß sofort im Spiel. Mitspieler dürfen ihn deshalb im Strafraum annehmen."
   },
   {
     "id": "spo_mc_038",
@@ -451,7 +634,12 @@
     "area": "radsport",
     "subject": "wissen",
     "question": "Welche Farbe hat das Trikot des Gesamtführenden bei der Tour de France?",
-    "answers": ["Rosa", "Gelb", "Grün", "Rot"],
+    "answers": [
+      "Rosa",
+      "Gelb",
+      "Grün",
+      "Rot"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -463,7 +651,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "In welchem Stadion spielt die deutsche Fußballnationalmannschaft meist ihre Berliner Heimspiele?",
-    "answers": ["An der Alten Försterei", "Olympiastadion Berlin", "Parkstadion", "Südstadion"],
+    "answers": [
+      "An der Alten Försterei",
+      "Olympiastadion Berlin",
+      "Parkstadion",
+      "Südstadion"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -475,7 +668,12 @@
     "area": "american_football",
     "subject": "wissen",
     "question": "Wie viele Punkte bringt ein erzielter Touchdown im American Football ohne Zusatzversuch?",
-    "answers": ["3 Punkte", "6 Punkte", "7 Punkte", "2 Punkte"],
+    "answers": [
+      "3 Punkte",
+      "6 Punkte",
+      "7 Punkte",
+      "2 Punkte"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -487,7 +685,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welcher Klub gewann 2020 das 'Sextuple' (6 Titel in einem Jahr) unter Hansi Flick?",
-    "answers": ["Real Madrid", "FC Bayern München", "FC Barcelona", "Manchester City"],
+    "answers": [
+      "Real Madrid",
+      "FC Bayern München",
+      "FC Barcelona",
+      "Manchester City"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -499,7 +702,12 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Wo muss sich der gegnerische Spieler bei der Ausführung eines Freistoßes mindestens befinden?",
-    "answers": ["5,50 Meter entfernt", "9,15 Meter entfernt", "11 Meter entfernt", "Außerhalb des Strafraums"],
+    "answers": [
+      "5,50 Meter entfernt",
+      "9,15 Meter entfernt",
+      "11 Meter entfernt",
+      "Außerhalb des Strafraums"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -511,7 +719,12 @@
     "area": "eishockey",
     "subject": "wissen",
     "question": "Wie heisst die Spielscheibe im Eishockey?",
-    "answers": ["Ball", "Puck", "Snitch", "Kugel"],
+    "answers": [
+      "Ball",
+      "Puck",
+      "Snitch",
+      "Kugel"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -523,7 +736,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Wer schoss im WM-Finale 1954 zwei Tore beim 'Wunder von Bern' für Deutschland?",
-    "answers": ["Fritz Walter", "Helmut Rahn", "Max Morlock", "Hans Schäfer"],
+    "answers": [
+      "Fritz Walter",
+      "Helmut Rahn",
+      "Max Morlock",
+      "Hans Schäfer"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -535,7 +753,12 @@
     "area": "formel1",
     "subject": "wissen",
     "question": "Welches Team wird in der Formel 1 wegen der roten Fahrzeuglackierung 'Scuderia' genannt?",
-    "answers": ["Mercedes", "Ferrari", "Red Bull", "McLaren"],
+    "answers": [
+      "Mercedes",
+      "Ferrari",
+      "Red Bull",
+      "McLaren"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -547,7 +770,12 @@
     "area": "golf",
     "subject": "wissen",
     "question": "Wie nennt man beim Golf das Einlochen mit einem Schlag unter dem Par-Wert des Lochs?",
-    "answers": ["Bogey", "Birdie", "Eagle", "Albatros"],
+    "answers": [
+      "Bogey",
+      "Birdie",
+      "Eagle",
+      "Albatros"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -559,11 +787,16 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Wie heißt der englische Begriff für einen Dreierpack eines Spielers in einer Halbzeit ohne Unterbrechung?",
-    "answers": ["Lupenreiner Hattrick", "Golden Goal", "Clean Sheet", "Bicycle Kick"],
+    "answers": [
+      "Lupenreiner Hattrick",
+      "Golden Goal Regel",
+      "Clean Sheet Bonus",
+      "Bicycle Kick Tor"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "In Deutschland spricht man vom lupenreinen Hattrick, wenn 3 Tore hintereinander in einer Halbzeit fallen."
+    "explanation": "Lupenrein heißt: drei Tore in einer Halbzeit, ohne dass ein anderer Spieler dazwischen trifft."
   },
   {
     "id": "spo_mc_048",
@@ -571,11 +804,16 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Was passiert, wenn ein Auswechselspieler ohne Erlaubnis den Platz betritt und aktiv ins Spiel eingreift?",
-    "answers": ["Gelbe Karte und Direkter Freistoß/Elfmeter wo der Eingriff stattfand", "Nur ermahnen", "Schiedsrichterball", "Spielabruch"],
+    "answers": [
+      "Gelbe Karte und Freistoß für den Gegner",
+      "Nur eine Ermahnung des Trainers",
+      "Schiedsrichterball an gleicher Stelle",
+      "Sofortiger Abbruch der Partie"
+    ],
     "correct": 0,
     "difficulty": "schwer",
     "points": 15,
-    "explanation": "Der Verstoß führt zur Verwarnung und einem direkten Freistoß (bzw. Elfmeter im Strafraum)."
+    "explanation": "Der Freistoß wird dort ausgeführt, wo eingegriffen wurde – im Strafraum also als Elfmeter."
   },
   {
     "id": "spo_mc_049",
@@ -583,7 +821,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Wer hält den Rekord für die meisten Tore in einer einzelnen Bundesliga-Saison (41 Tore)?",
-    "answers": ["Gerd Müller", "Robert Lewandowski", "Erling Haaland", "Harry Kane"],
+    "answers": [
+      "Gerd Müller",
+      "Robert Lewandowski",
+      "Erling Haaland",
+      "Harry Kane"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -595,7 +838,12 @@
     "area": "swimming",
     "subject": "wissen",
     "question": "Welcher US-Schwimmer gewann unglaubliche 23 olympische Goldmedaillen?",
-    "answers": ["Michael Phelps", "Ian Thorpe", "Ryan Lochte", "Mark Spitz"],
+    "answers": [
+      "Michael Phelps",
+      "Ian Thorpe",
+      "Ryan Lochte",
+      "Mark Spitz"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -607,7 +855,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Aus welchem Land stammt der Star-Trainer Pep Guardiola?",
-    "answers": ["Italien", "Spanien", "Portugal", "Argentina"],
+    "answers": [
+      "Italien",
+      "Spanien",
+      "Portugal",
+      "Argentina"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -619,11 +872,16 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Gilt ein Tor, wenn der Ball die Torlinie nur mit halbem Durchmesser überquert hat?",
-    "answers": ["Ja", "Nein, der Ball muss mit vollem Umfang über der Linie sein", "Liegt im Ermessen des Schiedsrichters", "Nur wenn der Torwart ihn berührt"],
-    "correct": 1,
+    "answers": [
+      "Nein, er muss vollständig drüber sein",
+      "Ja, die Hälfte genügt bereits",
+      "Das entscheidet der Schiedsrichter",
+      "Nur wenn der Torwart ihn berührt"
+    ],
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ein Tor ist erst erzielt, wenn der Ball die Torlinie in vollem Umfang überquert hat."
+    "explanation": "Der Ball muss mit vollem Umfang über der Linie sein. Genau dafür gibt es die Torlinientechnik."
   },
   {
     "id": "spo_mc_053",
@@ -631,7 +889,12 @@
     "area": "handball",
     "subject": "wissen",
     "question": "Wie viele Schritte darf ein Spieler im Handball mit dem Ball in den Händen machen, ohne zu prellen?",
-    "answers": ["2 Schritte", "3 Schritte", "5 Schritte", "1 Schritt"],
+    "answers": [
+      "2 Schritte",
+      "3 Schritte",
+      "5 Schritte",
+      "1 Schritt"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -642,12 +905,17 @@
     "category": "fussball_sport",
     "area": "fussball",
     "subject": "wissen",
-    "question": "Welche Farbe hat das Heimtrikots von Juventus Turin?",
-    "answers": ["Schwarz-Weiß gestreift", "Rot-Blau", "Ganz Gelb", "Himmelblau"],
+    "question": "Welche Farben hat das Heimtrikot von Juventus Turin?",
+    "answers": [
+      "Schwarz-weiß gestreift",
+      "Rot-blau gestreift",
+      "Himmelblau mit Weiß",
+      "Gelb mit Schwarz"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Juventus spielt seit 1903 in schwarz-weiß gestreiften Trikots."
+    "explanation": "Die Streifen kamen 1903 aus England: Ein Spieler besorgte Trikots von Notts County."
   },
   {
     "id": "spo_mc_055",
@@ -655,11 +923,16 @@
     "area": "wintersport",
     "subject": "wissen",
     "question": "Was passiert im Biathlon, wenn ein Athlet beim Schießen eine Scheibe verfehlt (im Einzelwettkampf)?",
-    "answers": ["1 Strafminute Zeitstrafe", "Strafrunde von 150m", "Disqualifikation", "Keine Auswirkung"],
+    "answers": [
+      "Eine Strafminute auf die Laufzeit",
+      "Eine Strafrunde von 150 Metern",
+      "Sofortige Disqualifikation",
+      "Gar keine Auswirkung"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Im klassischen Einzelrennen gibt es pro Fehlschuss 1 Minute Zeitstrafe auf die Laufzeit."
+    "explanation": "Das gilt nur im Einzelwettkampf. In Sprint, Verfolgung und Staffel läuft man stattdessen 150 Meter Strafrunde."
   },
   {
     "id": "spo_mc_056",
@@ -667,7 +940,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welches Stadion wird wegen seiner Atmosphäre 'Anfield' genannt?",
-    "answers": ["Stadion des FC Everton", "Stadion des FC Liverpool", "Stadion von Arsenal", "Stadion von Chelsea"],
+    "answers": [
+      "Stadion des FC Everton",
+      "Stadion des FC Liverpool",
+      "Stadion von Arsenal",
+      "Stadion von Chelsea"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -679,11 +957,16 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Wer darf den Anstoß zu Beginn einer Halbzeit ausführen?",
-    "answers": ["Nur der Spielführer", "Jeder beliebige Spieler der anstoßberechtigten Mannschaft", "Nur der Stürmer", "Der Schiedsrichter wirft den Ball hoch"],
-    "correct": 1,
+    "answers": [
+      "Jeder Spieler der anstoßenden Elf",
+      "Nur der Spielführer der Mannschaft",
+      "Nur ein Stürmer der Mannschaft",
+      "Der Schiedsrichter wirft den Ball"
+    ],
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Jeder gemeldete Spieler darf den Anstoß nach Freigabe ausführen."
+    "explanation": "Seit 2016 darf der Ball beim Anstoß auch nach hinten gespielt werden – vorher musste er nach vorn."
   },
   {
     "id": "spo_mc_058",
@@ -691,7 +974,12 @@
     "area": "volleyball",
     "subject": "wissen",
     "question": "Wie viele Ballberührungen pro Spielzug sind einem Team im Volleyball maximal erlaubt?",
-    "answers": ["2 Berührungen", "3 Berührungen", "4 Berührungen", "Unbegrenzt"],
+    "answers": [
+      "2 Berührungen",
+      "3 Berührungen",
+      "4 Berührungen",
+      "Unbegrenzt"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -703,7 +991,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welcher brasilianische Superstar wurde 2017 für die Rekordsumme von 222 Millionen Euro zu PSG transferiert?",
-    "answers": ["Ronaldinho", "Neymar Jr.", "Kaka", "Vinicius Jr."],
+    "answers": [
+      "Ronaldinho",
+      "Neymar Jr.",
+      "Kaka",
+      "Vinicius Jr."
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -715,7 +1008,12 @@
     "area": "formel1",
     "subject": "wissen",
     "question": "In welchem Fürstentum findet das berüchtigtste Stadtrennen der Formel 1 statt?",
-    "answers": ["Monaco", "Lichtenstein", "Andorra", "San Marino"],
+    "answers": [
+      "Monaco",
+      "Lichtenstein",
+      "Andorra",
+      "San Marino"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -727,7 +1025,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Was war der 'Ersatz-Klub' von Cristiano Ronaldo nach Real Madrid im Jahr 2018?",
-    "answers": ["Manchester United", "Juventus Turin", "Al-Nassr", "Sporting Lissabon"],
+    "answers": [
+      "Manchester United",
+      "Juventus Turin",
+      "Al-Nassr",
+      "Sporting Lissabon"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -739,11 +1042,16 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Darf ein Feldspieler beim Einwurf einspringen oder muss er Bodenkontakt halten?",
-    "answers": ["Ein Fuß muss den Boden berühren", "Beide Füße müssen mit einem Teil auf oder außerhalb der Seitenlinie auf dem Boden stehen", "Der Spieler darf hochspringen", "Es gibt keine Regelung"],
-    "correct": 1,
+    "answers": [
+      "Beide Füße müssen den Boden berühren",
+      "Ein Fuß muss den Boden berühren",
+      "Der Spieler darf frei hochspringen",
+      "Dazu gibt es keine feste Regel"
+    ],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Beim Einwurf müssen beide Füße den Boden berühren."
+    "explanation": "Dazu muss der Werfer den Ball mit beiden Händen über den Kopf führen – sonst gibt es Einwurf für den Gegner."
   },
   {
     "id": "spo_mc_063",
@@ -751,7 +1059,12 @@
     "area": "leichtathletik",
     "subject": "wissen",
     "question": "Wie lang ist eine Marathonschleife auf der Straße exakt?",
-    "answers": ["40,000 km", "42,195 km", "45,000 km", "50,000 km"],
+    "answers": [
+      "40,000 km",
+      "42,195 km",
+      "45,000 km",
+      "50,000 km"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -763,7 +1076,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welcher deutsche Trainer gewann mit Chelsea 2021 die UEFA Champions League?",
-    "answers": ["Jürgen Klopp", "Thomas Tuchel", "Julian Nagelsmann", "Ralf Rangnick"],
+    "answers": [
+      "Jürgen Klopp",
+      "Thomas Tuchel",
+      "Julian Nagelsmann",
+      "Ralf Rangnick"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -775,7 +1093,12 @@
     "area": "radsport",
     "subject": "wissen",
     "question": "Wie heißt das Gegenstück zur Tour de France in Italien?",
-    "answers": ["Vuelta a España", "Giro d'Italia", "Paris-Roubaix", "Mailand-Sanremo"],
+    "answers": [
+      "Vuelta a España",
+      "Giro d'Italia",
+      "Paris-Roubaix",
+      "Mailand-Sanremo"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -787,7 +1110,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welche Nation gewann die erste Fußball-Weltmeisterschaft der Geschichte im Jahr 1930?",
-    "answers": ["Argentinien", "Uruguay", "Brasilien", "Italien"],
+    "answers": [
+      "Argentinien",
+      "Uruguay",
+      "Brasilien",
+      "Italien"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -799,11 +1127,16 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Was passiert, wenn der Ball vom Schiedsrichter abgelenkt wird und dadurch ein Tor fällt?",
-    "answers": ["Das Tor zählt ganz normal", "Schiedsrichterball für das Team, das den Ball zuletzt berührte", "Wiederholung des Spielzughinweises", "Indirekter Freistoß"],
-    "correct": 1,
+    "answers": [
+      "Schiedsrichterball für das letzte Team",
+      "Das Tor zählt ganz normal",
+      "Indirekter Freistoß für den Gegner",
+      "Wiederholung des ganzen Spielzugs"
+    ],
+    "correct": 0,
     "difficulty": "schwer",
     "points": 15,
-    "explanation": "Seit einer Regelreform ist der Schiedsrichter nicht mehr 'Luft'. Wechselt der Ballbesitz oder fällt ein Tor, gibt es Schiedsrichterball."
+    "explanation": "Früher galt der Schiedsrichter als 'Luft'. Seit 2019 wird bei Ballbesitzwechsel oder Tor neu angespielt."
   },
   {
     "id": "spo_mc_068",
@@ -811,7 +1144,12 @@
     "area": "tennis",
     "subject": "wissen",
     "question": "Welcher Schweizer Tennisprofi gewann 20 Grand-Slam-Titel und beendete 2022 seine Karriere?",
-    "answers": ["Rafael Nadal", "Roger Federer", "Novak Djokovic", "Stan Wawrinka"],
+    "answers": [
+      "Rafael Nadal",
+      "Roger Federer",
+      "Novak Djokovic",
+      "Stan Wawrinka"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -823,7 +1161,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Wie heisst der Spitzname der englischen Fußballnationalmannschaft?",
-    "answers": ["Three Lions", "The Reds", "The Blues", "Bulldogs"],
+    "answers": [
+      "Three Lions",
+      "The Reds",
+      "The Blues",
+      "Bulldogs"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
@@ -835,11 +1178,16 @@
     "area": "tischtennis",
     "subject": "wissen",
     "question": "Wie viele Punkte benötigt man im Tischtennis mindestens, um einen Satz zu gewinnen?",
-    "answers": ["11 Punkte (mit 2 Punkten Vorsprung)", "21 Punkte", "15 Punkte", "10 Punkte"],
+    "answers": [
+      "Elf Punkte",
+      "Einundzwanzig",
+      "Fünfzehn",
+      "Zehn Punkte"
+    ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ein Satz geht bis 11 Punkte; bei 10:10 wird gespielt, bis ein Spieler 2 Punkte Vorsprung hat."
+    "explanation": "Bis 2001 ging ein Satz auf 21 Punkte. Bei 10:10 wird heute so lange gespielt, bis zwei Punkte Vorsprung stehen."
   },
   {
     "id": "spo_mc_071",
@@ -847,7 +1195,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welcher Klub wird wegen seiner Trikotfarben als 'Die Werkself' bezeichnet?",
-    "answers": ["VfL Wolfsburg", "Bayer 04 Leverkusen", "Carl Zeiss Jena", "RB Leipzig"],
+    "answers": [
+      "VfL Wolfsburg",
+      "Bayer 04 Leverkusen",
+      "Carl Zeiss Jena",
+      "RB Leipzig"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -859,11 +1212,16 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Muss ein Auswechselspieler das Spielfeld an der Mittellinie verlassen?",
-    "answers": ["Ja, das war schon immer so", "Nein, er muss das Feld an der nächstgelegenen Begrenzungslinie verlassen", "Nur bei Verletzung", "Ja, außer der Schiedsrichter ist müde"],
-    "correct": 1,
+    "answers": [
+      "Nein, an der nächstgelegenen Linie",
+      "Ja, immer an der Mittellinie",
+      "Nur bei einer Verletzung sofort",
+      "Ja, außer bei Nachspielzeit"
+    ],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Um Zeitspiel zu verhindern, müssen Spieler das Feld an der nächsten Linie verlassen."
+    "explanation": "Die Regel von 2019 soll Zeitspiel verhindern: Der Weg zur Bank darf das Spiel nicht künstlich verzögern."
   },
   {
     "id": "spo_mc_073",
@@ -871,7 +1229,12 @@
     "area": "basketball",
     "subject": "wissen",
     "question": "In welchem Team verbrachte Michael Jordan den Großteil seiner Karriere und gewann 6 Ringe?",
-    "answers": ["Los Angeles Lakers", "Chicago Bulls", "Boston Celtics", "Miami Heat"],
+    "answers": [
+      "Los Angeles Lakers",
+      "Chicago Bulls",
+      "Boston Celtics",
+      "Miami Heat"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -883,7 +1246,12 @@
     "area": "fussball",
     "subject": "wissen",
     "question": "Welches Stadion heisst 'La Bombonera' (Die Pralinenschachtel)?",
-    "answers": ["Stadion von River Plate", "Stadion von Boca Juniors", "Stadion von Santos", "Stadion von Flamengo"],
+    "answers": [
+      "Stadion von River Plate",
+      "Stadion von Boca Juniors",
+      "Stadion von Santos",
+      "Stadion von Flamengo"
+    ],
     "correct": 1,
     "difficulty": "schwer",
     "points": 15,
@@ -895,10 +1263,15 @@
     "area": "schiedsrichter",
     "subject": "wissen",
     "question": "Darf ein Spieler Trikotwerbung mit politischen Botschaften tragen?",
-    "answers": ["Ja, solange es friedlich ist", "Nein, politische, religiöse oder persönliche Botschaften sind streng verboten", "Nur in der zweiten Halbzeit", "Liegt im Ermessen des Kapitäns"],
-    "correct": 1,
+    "answers": [
+      "Nein, solche Botschaften sind verboten",
+      "Ja, solange sie friedlich bleiben",
+      "Nur während der zweiten Halbzeit",
+      "Das entscheidet der Mannschaftskapitän"
+    ],
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die IFAB-Regeln verbieten politische und religiöse Slogans auf der Ausrüstung."
+    "explanation": "Die IFAB-Regeln verbieten politische, religiöse und persönliche Slogans auf der gesamten Ausrüstung."
   }
 ]

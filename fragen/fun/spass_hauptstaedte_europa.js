@@ -1,17 +1,6 @@
 // Fun · Hauptstädte Europa
 const SPASS_HAUPTSTAEDTE_EUROPA_QUESTIONS = [
-  {
-        id: "eur_001",
-        category: "spass_hauptstaedte_europa",
-        area: "spass",
-        subject: "hauptstaedte_europa",
-        question: "Wie heißt die offizielle Hauptstadt der Schweiz?",
-        answers: ["Bern", "Zürich", "Genf", "Basel"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Bern ist der Sitz der Schweizer Eidgenossenschaft."
-    },
+  
   {
         id: "eur_002",
         category: "spass_hauptstaedte_europa",

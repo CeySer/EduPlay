@@ -91,15 +91,15 @@
     "subject": "wissen",
     "question": "Was ist der Hauptvorteil einer SSD-Festplatte gegenüber einer klassischen HDD-Festplatte?",
     "answers": [
+      "Sie arbeitet ohne bewegliche Teile",
       "Sie ist günstiger pro Gigabyte",
-      "Extrem schnelle Lese-/Schreibgeschwindigkeiten ohne mechanische Teile",
-      "Sie benötigt mehr Strom",
-      "Sie ist schwerer"
+      "Sie hält mehr Schreibzyklen aus",
+      "Sie braucht im Betrieb keinen Strom"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "SSDs nutzen Flash-Speicher, weshalb sie um ein Vielfaches schneller und stoßfester sind als rotierende HDDs."
+    "explanation": "SSDs speichern auf Flash-Chips statt auf rotierenden Scheiben – dadurch sind sie schneller und stoßfester."
   },
   {
     "id": "tech_mc_007",
@@ -117,23 +117,6 @@
     "difficulty": "leicht",
     "points": 5,
     "explanation": "KI bezeichnet Systeme, die menschenähnliche kognitive Fähigkeiten zur Problemlösung nutzen."
-  },
-  {
-    "id": "tech_mc_008",
-    "category": "technik_gadgets",
-    "area": "erfindungen",
-    "subject": "wissen",
-    "question": "Wer gilt als Erfinder des World Wide Web (WWW) im Jahr 1989 am CERN?",
-    "answers": [
-      "Steve Jobs",
-      "Tim Berners-Lee",
-      "Bill Gates",
-      "Alan Turing"
-    ],
-    "correct": 1,
-    "difficulty": "mittel",
-    "points": 10,
-    "explanation": "Sir Tim Berners-Lee entwickelte das Hypertext-Konzept, das das heutige Internet formte."
   },
   {
     "id": "tech_mc_009",
@@ -176,15 +159,15 @@
     "subject": "wissen",
     "question": "Was zeichnet ein OLED-Display im Vergleich zu einem herkömmlichen LCD-Display aus?",
     "answers": [
-      "Jedes Pixel leuchtet selbstständig, was perfektes Schwarz ermöglicht",
-      "Es verbraucht immer mehr Strom",
-      "Es ist extrem dick",
-      "Es benötigt eine riesige Hintergrundbeleuchtung"
+      "Jedes Pixel leuchtet für sich selbst",
+      "Es hat eine stärkere Hintergrundbeleuchtung",
+      "Es nutzt drei Farbfilter pro Pixel",
+      "Es arbeitet mit Flüssigkristallen"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei OLED schalten sich schwarze Pixel komplett aus, was echten Kontrast und tiefe Schwarztöne bringt."
+    "explanation": "Weil sich schwarze Pixel bei OLED ganz abschalten, entsteht echtes Schwarz statt dunkles Grau."
   },
   {
     "id": "tech_mc_012",
@@ -210,15 +193,15 @@
     "subject": "wissen",
     "question": "Was tut ein 'Router' im Heimnetzwerk?",
     "answers": [
-      "Er speichert alle Passwörter",
-      "Er leitet Datenpakete zwischen dem Internet und den Geräten im Heimnetz weiter",
-      "Er kühlt den Computer",
-      "Er verstärkt den Sound"
+      "Er leitet Datenpakete ins Internet weiter",
+      "Er speichert die Passwörter aller Geräte",
+      "Er verstärkt das Handysignal im Haus",
+      "Er prüft eingehende Dateien auf Viren"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Der Router verbindet das lokale Netzwerk (LAN/WLAN) mit dem externen Internet."
+    "explanation": "Der Router entscheidet für jedes Datenpaket, welchen Weg es zwischen Heimnetz und Internet nimmt."
   },
   {
     "id": "tech_mc_014",
@@ -329,7 +312,7 @@
     "subject": "wissen",
     "question": "Was versteht man unter 'VR' bei Headsets wie der Meta Quest oder PlayStation VR?",
     "answers": [
-      "Virtual Reality (Virtuelle Realität)",
+      "Virtual Reality",
       "Visual Resolution",
       "Vector Rendering",
       "Variable Refresh"
@@ -337,7 +320,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "VR entführt den Nutzer über geschlossene Brillen komplett in eine computergenerierte 3D-Welt."
+    "explanation": "Bei Virtual Reality ersetzt die geschlossene Brille das Sichtfeld komplett durch eine berechnete 3D-Welt."
   },
   {
     "id": "tech_mc_021",
@@ -346,15 +329,15 @@
     "subject": "wissen",
     "question": "Was misst der sogenannte 'Ping' (Latenz) bei einer Internetverbindung?",
     "answers": [
-      "Die maximale Download-Geschwindigkeit",
-      "Die Antwortzeit der Datenverbindung in Millisekunden (ms)",
+      "Die Antwortzeit der Verbindung",
+      "Die maximale Downloadrate",
       "Die Stärke des WLAN-Signals",
       "Den Datenverbrauch pro Monat"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Je niedriger der Ping-Wert, desto schneller reagiert die Verbindung (besonders wichtig für Online-Gaming)."
+    "explanation": "Der Ping misst in Millisekunden, wie lange ein Datenpaket zum Server und zurück braucht – beim Spielen wichtiger als die Bandbreite."
   },
   {
     "id": "tech_mc_022",
@@ -380,7 +363,7 @@
     "subject": "wissen",
     "question": "Was bedeutet die Funktion 'ANC' bei modernen Kopfhörern?",
     "answers": [
-      "Active Noise Cancelling (Aktive Geräuschunterdrückung)",
+      "Active Noise Cancelling",
       "Auto Network Connection",
       "Advanced Natural Clarity",
       "Audio Night Control"
@@ -388,7 +371,7 @@
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "ANC nutzt Mikrofone, um Umgebungsgeräusche durch Antischall (Gegenschall) auszulöschen."
+    "explanation": "Mikrofone messen den Umgebungslärm, der Kopfhörer erzeugt die gegenläufige Schallwelle und löscht ihn aus."
   },
   {
     "id": "tech_mc_024",
@@ -397,15 +380,15 @@
     "subject": "wissen",
     "question": "Welches Material nutzen die meisten handelsüblichen Hobby-3D-Drucker (FDM) als Filamente?",
     "answers": [
-      "Flüssiges Metall",
-      "Kunststoff-Masse (z. B. PLA oder PETG)",
-      "Harz-Pulver",
-      "Ton"
+      "Kunststoff aus PLA",
+      "Flüssiges UV-Harz",
+      "Feines Metallpulver",
+      "Weiche Keramikmasse"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "PLA (Polymilchsäure) wird geschmolzen und Schicht für Schicht aufgetragen."
+    "explanation": "Der FDM-Drucker schmilzt den PLA-Faden und legt ihn Schicht für Schicht ab. Harz und Metallpulver brauchen andere Druckverfahren."
   },
   {
     "id": "tech_mc_025",
@@ -431,15 +414,15 @@
     "subject": "wissen",
     "question": "Wie nennt man die Hauptplatine eines Computers, auf der CPU, RAM und Grafikkarten verbaut werden?",
     "answers": [
-      "Mainboard / Motherboard",
-      "Control Board",
-      "Power Card",
-      "Base Modul"
+      "Mainboard",
+      "Grafikkarte",
+      "Netzteil",
+      "Gehäuselüfter"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Das Mainboard verbindet alle elektronischen Komponenten des Rechners miteinander."
+    "explanation": "Auf dem Mainboard sitzen die Sockel und Steckplätze, über die alle Bauteile miteinander verbunden sind."
   },
   {
     "id": "tech_mc_027",
@@ -448,12 +431,12 @@
     "subject": "wissen",
     "question": "Wofür steht die Mobilfunkgeneration-Bezeichnung '5G'?",
     "answers": [
-      "5 Gigabyte Speicher",
       "5. Generation des Mobilfunks",
-      "5 GigaHertz Frequenz",
-      "5-fache Geschwindigkeit"
+      "Netz mit 5 Gigahertz Frequenz",
+      "Datenvolumen von 5 Gigabyte",
+      "Fünffache WLAN-Geschwindigkeit"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
     "explanation": "5G folgt auf 4G (LTE) und bietet höhere Bandbreiten sowie minimale Latenzzeiten."
@@ -463,17 +446,17 @@
     "category": "technik_gadgets",
     "area": "speicher",
     "subject": "wissen",
-    "question": "Wie viele Megabyte (MB) entsprechen ungefähr 1 Gigabyte (GB)?",
+    "question": "Wie viele Megabyte (MB) ergeben ungefähr 1 Gigabyte (GB)?",
     "answers": [
+      "1.000 MB",
       "100 MB",
       "500 MB",
-      "1.000 MB (exakt 1.024 MB)",
       "10.000 MB"
     ],
-    "correct": 2,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Im Binärsystem gilt 1 GB = 1.024 MB (dezimal oft vereinfacht als 1.000 MB angegeben)."
+    "explanation": "Festplattenhersteller rechnen dezimal mit 1.000 MB. Windows zeigt dagegen 1.024 an – daher wirkt eine 1-TB-Platte dort kleiner."
   },
   {
     "id": "tech_mc_029",
@@ -499,15 +482,15 @@
     "subject": "wissen",
     "question": "Was versteht man unter 'Open Source' bei Software?",
     "answers": [
-      "Die Software ist extrem teuer",
-      "Der Quellcode ist öffentlich einsehbar und darf von jedem verändert werden",
-      "Die Software funktioniert nur ohne Internet",
-      "Die Software läuft nur auf Handys"
+      "Der Quellcode ist frei einsehbar",
+      "Die Software kostet einmalig Geld",
+      "Die Software läuft nur offline",
+      "Die Software gehört einer Firma"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Open Source erlaubt transparente Einsicht, Freigabe und weltweite Weiterentwicklung durch Entwickler."
+    "explanation": "Jeder darf den Code lesen, prüfen und verändern. Linux, Firefox und VLC sind bekannte Beispiele."
   },
   {
     "id": "tech_mc_031",
@@ -516,15 +499,15 @@
     "subject": "wissen",
     "question": "Was bedeutet die Abkürzung '2FA' beim Anmelden in Benutzerkonten?",
     "answers": [
-      "Two-Factor Authentication (Zwei-Faktor-Authentifizierung)",
-      "2-Fast-Access",
-      "Second-File-Access",
-      "Two-Frequency-Antenna"
+      "Two-Factor Authentication",
+      "Two-Frequency Antenna Access",
+      "Total File Access",
+      "Twin Firewall Access"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "2FA schützt Konten durch zwei unabhängige Komponenten (z. B. Passwort + SMS-Code)."
+    "explanation": "Neben dem Passwort braucht es einen zweiten Nachweis, etwa einen Code aus einer App – ein gestohlenes Passwort allein reicht dann nicht."
   },
   {
     "id": "tech_mc_032",
@@ -567,15 +550,15 @@
     "subject": "wissen",
     "question": "Was ist ein 'Phishing'-Versuch im Internet?",
     "answers": [
-      "Ein Test zur Internetgeschwindigkeit",
-      "Der Versuch von Betrügern, über gefälschte Mails/Webseiten sensible Daten wie Passwörter zu stehlen",
-      "Ein automatisches Backup",
-      "Ein Viren-Scan"
+      "Das Abgreifen von Daten per Fake-Nachricht",
+      "Das Sperren von Dateien gegen Lösegeld",
+      "Das heimliche Schürfen fremder Kryptowährung",
+      "Das Überlasten einer Webseite mit Anfragen"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Beim Phishing 'angeln' Kriminelle mit gefälschten Nachrichten nach Nutzerdaten."
+    "explanation": "Phishing kommt von 'fishing': Die gefälschte Mail ist der Köder, das echte Passwort der Fang. Die anderen drei sind Ransomware, Cryptojacking und DDoS."
   },
   {
     "id": "tech_mc_035",
@@ -584,15 +567,15 @@
     "subject": "wissen",
     "question": "Was schützt die Elektronik im Computer vor Überhitzung?",
     "answers": [
-      "Kühlkörper und Lüfter (oder Wasserkühlung)",
-      "Ein größeres Gehäuse ohne Lüfter",
-      "Dessere Kabel",
-      "Geringerer Arbeitsspeicher"
+      "Kühlkörper und Lüfter",
+      "Ein Gehäuse ohne Lüftung",
+      "Ein stärkeres Netzteil",
+      "Mehr Arbeitsspeicher"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Wärmeleitpaste, Kühlkörper aus Kupfer/Aluminium und Lüfter leiten die Hitze von Prozessor und Grafikkarte ab."
+    "explanation": "Wärmeleitpaste gibt die Hitze an den Kühlkörper ab, der Lüfter trägt sie aus dem Gehäuse. Ohne das drosselt der Prozessor sich selbst."
   },
   {
     "id": "tech_mc_036",
@@ -601,22 +584,22 @@
     "subject": "wissen",
     "question": "Was misst die Bildwiederholfrequenz eines Displays in Hertz (z. B. 90 Hz oder 120 Hz)?",
     "answers": [
-      "Wie viele Farben dargestellt werden",
-      "Wie viele Bilder der Bildschirm pro Sekunde aktualisiert",
+      "Wie oft das Bild neu aufgebaut wird",
+      "Wie viele Farben darstellbar sind",
       "Wie hell das Display leuchten kann",
-      "Die Diagonale des Bildschirms"
+      "Wie groß die Bilddiagonale ist"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Mehr Bilder pro Sekunde (z. B. 120 Hz) sorgen für extrem flüssiges Scrollen und flüssige Animationen."
+    "explanation": "120 Hz heißt 120 neue Bilder pro Sekunde. Bewegungen wirken dadurch flüssiger als bei den üblichen 60 Hz."
   },
   {
     "id": "tech_mc_037",
     "category": "technik_gadgets",
     "area": "geschichte",
     "subject": "wissen",
-    "question": "Welches legendäre Mobiltelefon von Nokia aus dem Jahr 2000 war bekannt für das Spiel 'Snake' und extreme Robusteheit?",
+    "question": "Welches Nokia-Handy aus dem Jahr 2000 wurde durch das Spiel 'Snake' und seine Robustheit zur Legende?",
     "answers": [
       "Nokia 3310",
       "Nokia N95",
@@ -669,439 +652,439 @@
     "subject": "wissen",
     "question": "Was bewirkt ein 'VPN' (Virtual Private Network) auf dem PC oder Smartphone?",
     "answers": [
-      "Es verdoppelt die Internet-Geschwindigkeit",
-      "Es verschlüsselt die Verbindung und verbirgt die eigene IP-Adresse",
-      "Es entfernt alle Viren automatisch",
+      "Es verschlüsselt die Verbindung",
+      "Es verdoppelt die Internet-Datenrate",
+      "Es entfernt Viren vom Gerät",
       "Es spart Akku beim Surfen"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ein VPN leitet den Datenverkehr verschlüsselt über Server um und schützt die Privatsphäre im Netz."
+    "explanation": "Der Datenverkehr läuft verschlüsselt über einen fremden Server – Webseiten sehen dessen IP-Adresse statt der eigenen."
   },
   {
     "id": "tec_ext_041",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "alltag",
     "subject": "wissen",
-    "question": "Was bedeutet CPU?",
+    "question": "Wofür ist ein Backup da?",
     "answers": [
-      "Central Processing Unit",
-      "Computer Power Unit",
-      "Central Program Utility",
-      "Core Processing User"
+      "Um Daten nach einem Verlust zurückzuholen",
+      "Um den Rechner schneller zu machen",
+      "Um Speicherplatz auf dem Gerät zu sparen",
+      "Um Programme automatisch zu aktualisieren"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Prozessor."
+    "explanation": "Ein Backup ist eine zweite Kopie an einem anderen Ort. Erst dadurch übersteht man Diebstahl, Defekt oder Verschlüsselungstrojaner."
   },
   {
     "id": "tec_ext_042",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "internet",
     "subject": "wissen",
-    "question": "Was bedeutet RAM?",
+    "question": "Wozu dient eine IP-Adresse?",
     "answers": [
-      "Arbeitsspeicher",
-      "Festplatte",
-      "Bildschirm",
-      "Tastatur"
+      "Sie ist die Anschrift eines Geräts im Netz",
+      "Sie ist das Passwort des WLANs",
+      "Sie gibt die Internetgeschwindigkeit an",
+      "Sie speichert besuchte Webseiten"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Random Access Memory."
+    "explanation": "Ohne Adresse wüsste kein Server, wohin er die angeforderten Daten schicken soll – wie ein Brief ohne Empfänger."
   },
   {
     "id": "tec_ext_043",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "internet",
     "subject": "wissen",
-    "question": "Was ist eine SSD?",
+    "question": "Was macht ein Cookie im Browser?",
     "answers": [
-      "Schnelle Festplatte (Flash)",
-      "Nur HDD",
-      "Nur CD",
-      "Nur USB-Stick immer"
+      "Er speichert kleine Notizen einer Webseite",
+      "Er blockiert Werbung automatisch",
+      "Er beschleunigt den Seitenaufbau spürbar",
+      "Er verschlüsselt eingegebene Passwörter"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Solid State Drive."
+    "explanation": "Deshalb bleibt man nach dem Schließen des Tabs eingeloggt und der Warenkorb ist noch gefüllt."
   },
   {
     "id": "tec_ext_044",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "software",
     "subject": "wissen",
-    "question": "Was bedeutet URL?",
+    "question": "Was ist ein Algorithmus?",
     "answers": [
-      "Webadresse",
-      "Nur E-Mail",
-      "Nur Passwort",
-      "Nur Dateiname"
+      "Eine feste Schrittfolge zur Lösung",
+      "Ein Bauteil im Inneren des Rechners",
+      "Ein Kabel zwischen zwei Geräten",
+      "Ein Speicherplatz auf der Festplatte"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Uniform Resource Locator."
+    "explanation": "Ein Kochrezept ist ein Algorithmus: eine eindeutige Reihenfolge von Schritten, die zu einem festen Ergebnis führt."
   },
   {
     "id": "tec_ext_045",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "speicher",
     "subject": "wissen",
-    "question": "Was ist ein Browser-Beispiel?",
+    "question": "Was passiert beim Packen einer ZIP-Datei?",
     "answers": [
-      "Chrome/Firefox/Safari",
-      "Nur Word",
-      "Nur Excel",
-      "Nur Photoshop"
+      "Mehrere Dateien werden verkleinert gebündelt",
+      "Die Dateien werden dauerhaft gelöscht",
+      "Die Dateien werden in die Cloud hochgeladen",
+      "Die Dateien werden auf Viren untersucht"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Browser."
+    "explanation": "Das Format sucht Wiederholungen im Inhalt und ersetzt sie durch kürzere Verweise. Bei Texten spart das oft die Hälfte."
   },
   {
     "id": "tec_ext_046",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "internet",
     "subject": "wissen",
-    "question": "Was bedeutet Wi-Fi?",
+    "question": "Worin unterscheidet sich Streaming vom Download?",
     "answers": [
-      "Drahtloses Netzwerk",
-      "Kabel-Internet",
-      "Nur Bluetooth",
-      "Nur Radio"
+      "Die Daten laufen während des Abspielens",
+      "Die Daten sind besser verschlüsselt",
+      "Die Daten kommen ohne Internet aus",
+      "Die Daten bleiben dauerhaft gespeichert"
     ],
     "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "WLAN."
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Beim Streaming lädt immer nur das nächste Stück in einen Puffer. Bricht die Verbindung ab, stockt das Video."
   },
   {
     "id": "tec_ext_047",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "sicherheit",
     "subject": "wissen",
-    "question": "Was ist ein Passwort gut?",
+    "question": "Wozu dient ein Passwort-Manager?",
     "answers": [
-      "Lang und einzigartig",
-      "Nur 1234",
-      "Nur Name",
-      "Nur Geburtstag"
+      "Er merkt sich für jedes Konto ein eigenes",
+      "Er ändert alle Passwörter jede Woche",
+      "Er meldet gehackte Konten an die Polizei",
+      "Er ersetzt die Zwei-Faktor-Anmeldung"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Sicherheit."
+    "explanation": "Man merkt sich nur noch ein Hauptpasswort. Dadurch kann jedes Konto ein langes, einmaliges Passwort bekommen."
   },
   {
     "id": "tec_ext_048",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "hardware",
     "subject": "wissen",
-    "question": "Was bedeutet PDF?",
+    "question": "Was ist ein Pixel?",
     "answers": [
-      "Dokumentformat",
-      "Nur Bild",
-      "Nur Video",
-      "Nur Audio"
+      "Der kleinste Bildpunkt eines Displays",
+      "Die Maßeinheit für Bildschirmgröße",
+      "Die Helligkeit einer Lichtquelle",
+      "Der Abstand zwischen zwei Zeilen"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Portable Document Format."
+    "explanation": "Ein Full-HD-Bild besteht aus 1920 × 1080 Punkten, also rund zwei Millionen Pixeln."
   },
   {
     "id": "tec_ext_049",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "display",
     "subject": "wissen",
-    "question": "Was ist Cloud-Speicher?",
+    "question": "Was sagt die Angabe '4K' bei einem Fernseher aus?",
     "answers": [
-      "Daten online speichern",
-      "Nur USB",
-      "Nur CD",
-      "Nur Papier"
+      "Er zeigt rund 4000 Bildpunkte in der Breite",
+      "Er kostet mindestens 4000 Euro",
+      "Er wiederholt das Bild 4000-mal je Sekunde",
+      "Er stellt 4000 verschiedene Farben dar"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Cloud."
+    "explanation": "3840 Pixel in der Breite sind es genau – viermal so viele Bildpunkte insgesamt wie bei Full HD."
   },
   {
     "id": "tec_ext_050",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "software",
     "subject": "wissen",
-    "question": "Was bedeutet GPS im Handy?",
+    "question": "Was ist Firmware?",
     "answers": [
-      "Ortung per Satellit",
-      "Nur WLAN",
-      "Nur Bluetooth",
-      "Nur Kompass"
+      "Die feste Software im Inneren eines Geräts",
+      "Ein Programm zur Bildbearbeitung",
+      "Der Name für gekaufte Vollversionen",
+      "Eine besonders stabile Internetverbindung"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "GPS."
+    "explanation": "Router, Drucker und Waschmaschinen haben Firmware. Updates dafür schließen oft Sicherheitslücken."
   },
   {
     "id": "tec_ext_051",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "hardware",
     "subject": "wissen",
-    "question": "Was ist ein QR-Code?",
+    "question": "Wodurch lädt ein Handy kabellos auf einer Ladeschale?",
     "answers": [
-      "Scanbarer 2D-Code",
-      "Nur Barcode 1D",
-      "Nur Passwort",
-      "Nur PIN"
+      "Durch ein magnetisches Wechselfeld",
+      "Durch Funkwellen wie beim WLAN",
+      "Durch Licht auf der Geräterückseite",
+      "Durch Wärme aus der Ladeschale"
     ],
     "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "QR."
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Zwei Spulen liegen übereinander: Die Schale erzeugt ein Magnetfeld, im Handy entsteht daraus wieder Strom."
   },
   {
     "id": "tec_ext_052",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "internet",
     "subject": "wissen",
-    "question": "Was bedeutet HTTP?",
+    "question": "Was verbirgt sich hinter dem Begriff 'Cloud'?",
     "answers": [
-      "Web-Protokoll",
-      "Nur E-Mail",
-      "Nur FTP immer",
-      "Nur SSH"
+      "Fremde Rechner, auf denen Daten liegen",
+      "Ein besonders schnelles WLAN",
+      "Der Speicher direkt im eigenen Gerät",
+      "Ein Programm zum Wetterabruf"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Hypertext Transfer Protocol."
+    "explanation": "Die Wolke ist ein Rechenzentrum. Fällt dort der Strom aus oder das Internet zu Hause, kommt man nicht an die Daten."
   },
   {
     "id": "tec_ext_053",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "sicherheit",
     "subject": "wissen",
-    "question": "Was ist Phishing?",
+    "question": "Warum lohnt sich ein Sicherheitsupdate?",
     "answers": [
-      "Betrug per gefälschter Nachricht",
-      "Nur Spam Werbung",
-      "Nur Virus",
-      "Nur Wurm"
+      "Es schließt bekannt gewordene Lücken",
+      "Es macht das Gerät spürbar schneller",
+      "Es löscht alte Dateien automatisch",
+      "Es verlängert die Akkulaufzeit"
     ],
     "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Phishing."
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Sobald eine Lücke öffentlich ist, wird sie gezielt ausgenutzt. Wer nicht aktualisiert, ist genau dann angreifbar."
   },
   {
     "id": "tec_ext_054",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "computer",
     "subject": "wissen",
-    "question": "Was bedeutet LED?",
+    "question": "Was ist ein Server?",
     "answers": [
-      "Leuchtdiode",
-      "Nur Glühbirne",
-      "Nur Halogen",
-      "Nur Neon"
+      "Ein Rechner, der anderen Daten liefert",
+      "Ein besonders großer Bildschirm",
+      "Ein Kabel für besonders schnelle Netzwerke",
+      "Ein Programm zum Dateien öffnen"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Light Emitting Diode."
+    "explanation": "Beim Aufruf einer Webseite fragt der Browser einen Server – der schickt die Seite zurück."
   },
   {
     "id": "tec_ext_055",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "hardware",
     "subject": "wissen",
-    "question": "Was ist ein Smartphone?",
+    "question": "Worin unterscheiden sich Tintenstrahl- und Laserdrucker?",
     "answers": [
-      "Handy mit Apps/Internet",
-      "Nur Tastenhandy",
-      "Nur Telefon fest",
-      "Nur Tablet"
+      "Der eine spritzt Tinte, der andere Pulver",
+      "Der eine druckt farbig, der andere nie",
+      "Der eine braucht Strom, der andere nicht",
+      "Der eine druckt nur auf Fotopapier"
     ],
     "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Smartphone."
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Laserdrucker brennt Tonerpulver mit Hitze aufs Papier. Deshalb ist der Ausdruck sofort wischfest."
   },
   {
     "id": "tec_ext_056",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "software",
     "subject": "wissen",
-    "question": "Was bedeutet USB-C?",
+    "question": "Wann ist PNG das bessere Bildformat als JPG?",
     "answers": [
-      "Moderner Anschluss",
-      "Nur alter USB-A",
-      "Nur HDMI",
-      "Nur VGA"
+      "Wenn ein Bereich durchsichtig bleiben soll",
+      "Wenn das Bild möglichst klein sein soll",
+      "Wenn viele Farbverläufe vorkommen",
+      "Wenn es ein Foto vom Handy ist"
     ],
     "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "USB Type-C."
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "PNG kann Transparenz und verliert beim Speichern keine Details – dafür werden die Dateien deutlich größer."
   },
   {
     "id": "tec_ext_057",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "internet",
     "subject": "wissen",
-    "question": "Was ist ein Algorithmus im Alltag?",
+    "question": "Was bedeutet die Abkürzung IoT?",
     "answers": [
-      "Schrittfolge wie Rezept",
-      "Nur Hardware",
-      "Nur Kabel",
-      "Nur Display"
+      "Internet of Things",
+      "Input over Terminal",
+      "Internal Online Test",
+      "Instant Object Transfer"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Algorithmus."
+    "explanation": "Gemeint sind Alltagsgeräte mit Netzanschluss: Thermostat, Türklingel, Lichtschalter."
   },
   {
     "id": "tec_ext_058",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "computer",
     "subject": "wissen",
-    "question": "Was bedeutet AI/KI?",
+    "question": "Wozu dient ein Emulator?",
     "answers": [
-      "Künstliche Intelligenz",
-      "Nur Automatisierung simpel",
-      "Nur Roboter physisch",
-      "Nur Internet"
+      "Er ahmt ein anderes System nach",
+      "Er beschleunigt vorhandene Programme",
+      "Er sichert Dateien auf zwei Platten",
+      "Er übersetzt Texte in andere Sprachen"
     ],
     "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "AI."
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "So läuft alte Konsolensoftware auf einem heutigen PC – das Programm merkt nicht, dass die Hardware fehlt."
   },
   {
     "id": "tec_ext_059",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "mobilfunk",
     "subject": "wissen",
-    "question": "Was ist ein Cookie im Web?",
+    "question": "Was heißt Roaming beim Handy?",
     "answers": [
-      "Kleine Speicherdatei der Website",
-      "Nur Gebäck",
-      "Nur Virus",
-      "Nur Werbung immer"
+      "Die Nutzung eines fremden Mobilfunknetzes",
+      "Das Telefonieren über WLAN zu Hause",
+      "Der Wechsel zu einem anderen Mobilfunkanbieter",
+      "Das Aufladen einer Prepaidkarte"
     ],
     "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "HTTP-Cookie."
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Im Ausland bucht sich das Handy in ein fremdes Netz ein. Innerhalb der EU kostet das seit 2017 nichts extra."
   },
   {
     "id": "tec_ext_060",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "sicherheit",
     "subject": "wissen",
-    "question": "Was bedeutet OLED?",
+    "question": "Was macht eine Firewall?",
     "answers": [
-      "Display-Technik",
-      "Nur CPU",
-      "Nur RAM",
-      "Nur SSD"
+      "Sie filtert den Netzwerkverkehr nach Regeln",
+      "Sie löscht gefundene Viren vom Gerät",
+      "Sie verschlüsselt die Festplatte komplett",
+      "Sie sichert Daten auf einen Server"
     ],
     "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Organic LED."
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Sie entscheidet, welche Verbindungen erlaubt sind – anders als ein Virenscanner, der Dateien untersucht."
   },
   {
     "id": "tec_ext_061",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "software",
     "subject": "wissen",
-    "question": "Was ist Zwei-Faktor-Authentifizierung?",
+    "question": "Welche Programmiersprache wird oft zum Einstieg empfohlen?",
     "answers": [
-      "Zusätzliche Sicherheit (z.B. Code)",
-      "Nur Passwort",
-      "Nur Benutzername",
-      "Nur PIN allein"
+      "Python",
+      "Assembler",
+      "Fortran",
+      "Cobol"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "2FA."
+    "explanation": "Python kommt mit wenig Schreibarbeit aus und liest sich fast wie englischer Text."
   },
   {
     "id": "tec_ext_062",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "internet",
     "subject": "wissen",
-    "question": "Was bedeutet IoT?",
+    "question": "Was gibt die Angabe 250 Mbit/s bei einem Anschluss an?",
     "answers": [
-      "Internet of Things",
-      "Nur Intranet",
-      "Nur Offline",
-      "Nur TV"
+      "Die höchste erreichbare Datenrate",
+      "Den Preis pro übertragenem Gigabyte",
+      "Die Zahl gleichzeitig nutzbarer Geräte",
+      "Die Reichweite des WLAN-Signals"
     ],
     "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Vernetzte Geräte."
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Achtung beim Umrechnen: 250 Megabit sind rund 31 Megabyte pro Sekunde – acht Bit ergeben ein Byte."
   },
   {
     "id": "tec_ext_063",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "hardware",
     "subject": "wissen",
-    "question": "Was ist ein Podcast-App?",
+    "question": "Was ist ein Raspberry Pi?",
     "answers": [
-      "Audio-Serien abspielen",
-      "Nur Musik-CD",
-      "Nur Radio UKW",
-      "Nur TV"
+      "Ein Einplatinencomputer für Bastler",
+      "Ein Programm zum Video schneiden",
+      "Ein Anschluss für externe Monitore",
+      "Ein Speicherformat für Fotos"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Podcast."
+    "explanation": "Der Rechner ist etwa so groß wie eine Scheckkarte und wird gern für Smart Home, Retro-Spiele und Schulprojekte genutzt."
   },
   {
     "id": "tec_ext_064",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "hardware",
     "subject": "wissen",
-    "question": "Was bedeutet NFC?",
+    "question": "Wie funktioniert der Touchscreen eines Smartphones?",
     "answers": [
-      "Nahfeldkommunikation (z.B. Bezahlen)",
-      "Nur WLAN weit",
-      "Nur Bluetooth weit",
-      "Nur GPS"
+      "Er misst Änderungen im elektrischen Feld",
+      "Er erkennt den Druck der Fingerkuppe",
+      "Er nimmt die Körperwärme der Haut wahr",
+      "Er fotografiert den Finger von innen"
     ],
     "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "NFC."
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Deshalb reagiert das Display nicht auf normale Handschuhe – die leiten den Strom nicht weiter."
   },
   {
     "id": "tec_ext_065",
     "category": "technik_gadgets",
-    "area": "technik",
+    "area": "ki",
     "subject": "wissen",
-    "question": "Was ist ein Emulator?",
+    "question": "Warum sollte man Antworten einer KI nachprüfen?",
     "answers": [
-      "Software ahmt anderes System nach",
-      "Nur Spiel",
-      "Nur Browser",
-      "Nur Editor"
+      "Sie kann Falsches überzeugend formulieren",
+      "Sie antwortet immer sehr langsam",
+      "Sie darf keine Quellen verwenden",
+      "Sie versteht nur englischsprachige Fragen"
     ],
     "correct": 0,
-    "difficulty": "leicht",
-    "points": 5,
-    "explanation": "Emulator."
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Sprachmodelle sagen das wahrscheinlichste nächste Wort voraus. Klingt eine falsche Angabe plausibel, wird sie trotzdem ausgegeben."
   }
 ]

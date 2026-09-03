@@ -34,23 +34,7 @@ const SPASS_TIERE_QUESTIONS = [
         "points": 10,
         "explanation": "🐆 Der Gepard beschleunigt in wenigen Sekunden auf über 100 km/h."
     },
-  {
-        "id": "q_ti_003",
-        "category": "spass_tiere",
-        "area": "spass",
-        "subject": "tiere",
-        "question": "Wie viele Herzen besitzt ein Oktopus (Kraken)?",
-        "answers": [
-            "1 Herz",
-            "2 Herzen",
-            "3 Herzen",
-            "4 Herzen"
-        ],
-        "correct": 2,
-        "difficulty": "mittel",
-        "points": 10,
-        "explanation": "🐙 Ein Oktopus hat zwei Kiemenherzen und ein Hauptherz für den Körperkreislauf."
-    },
+  
   {
         "id": "q_ti_004",
         "category": "spass_tiere",
@@ -2046,11 +2030,11 @@ const SPASS_TIERE_QUESTIONS = [
   { id: "q1415", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie nennt man ein Baby-Känguru?", answers: ["Ferkel", "Joey", "Welpe", "Kalb"], correct: 1, difficulty: "mittel", points: 10, explanation: "Ein Joey ist bei der Geburt nur etwa 2 cm groß." },
   { id: "q1416", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier schläft im Stehen?", answers: ["Katze", "Hund", "Pferd", "Hamster"], correct: 2, difficulty: "mittel", points: 10, explanation: "Pferde können dank eines Sperrmechanismus im Bein im Stehen dösen." },
   { id: "q1417", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie viele Beine hat ein Tausendfüßler tatsächlich meistens?", answers: ["Deutlich weniger als tausend", "Genau hundert in der Praxis", "Ziemlich genau eintausend", "Deutlich mehr als fünftausend"], correct: 0, difficulty: "mittel", points: 10, explanation: "Die meisten Arten haben zwischen 30 und 400 Beine." },
-  { id: "q1418", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welcher Vogel kann rückwärts fliegen?", answers: ["Haussperling", "Stadttaube", "Steinadler", "Kolibri"], correct: 3, difficulty: "mittel", points: 10, explanation: "Kolibris schlagen bis zu 80-mal pro Sekunde mit den Flügeln." },
+  
   { id: "q1419", category: "spass_tiere", area: "spass", subject: "tiere", question: "Was fressen Pandas fast ausschließlich?", answers: ["Fleisch", "Bambus", "Fisch", "Beeren"], correct: 1, difficulty: "mittel", points: 10, explanation: "Große Pandas fressen täglich bis zu 20 kg Bambus." },
   { id: "q1420", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier wechselt im Winter die Fellfarbe zu Weiß?", answers: ["Reh", "Schneehase", "Eichhörnchen", "Fuchs"], correct: 1, difficulty: "mittel", points: 10, explanation: "Auch Hermelin und Schneehuhn tarnen sich so im Schnee." },
   { id: "q1421", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie verständigen sich Bienen über Futterquellen?", answers: ["Mit einem Schwänzeltanz im Stock", "Mit unterschiedlich hohem Summen", "Mit farbigen Markierungen am Eingang", "Mit lautem Brummen im Chor"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Tanz verrät Richtung und Entfernung zur Blüte." },
-  { id: "q1422", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches ist das schnellste Tier der Welt (im Sturzflug)?", answers: ["Segelfisch-Art", "Steinadler-Art", "Wanderfalke", "Schneller Gepard"], correct: 2, difficulty: "mittel", points: 10, explanation: "Im Sturzflug erreicht der Wanderfalke über 300 km/h." },
+  
   { id: "q1423", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie viele Zähne hat ein erwachsener Hund ungefähr?", answers: ["60", "20", "42", "78"], correct: 2, difficulty: "mittel", points: 10, explanation: "Hunde haben 42 bleibende Zähne, Katzen nur 30." },
   { id: "q1140", category: "spass_tiere", area: "spass", subject: "tiere", question: "Wie viele Beine hat eine Spinne im Durchschnitt?", answers: ["8", "6", "10", "12"], correct: 0, difficulty: "mittel", points: 10, explanation: "Spinnen haben acht Beine, Insekten nur sechs." },
   { id: "q1141", category: "spass_tiere", area: "spass", subject: "tiere", question: "Welches Tier ist das lauteste der Welt?", answers: ["Elefant", "Löwe", "Pottwal", "Blaudrossel"], correct: 2, difficulty: "mittel", points: 10, explanation: "Pottwale erzeugen Laute bis zu 230 Dezibel – das sind die lautesten Tiere." },

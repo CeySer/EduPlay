@@ -15725,11 +15725,12 @@ function istLektionFreigeschaltet(lektion, liste) {
 // Reihenfolge + Anzeigename/Icon der Fächer in der Kurs-Übersicht.
 // Unbekannte subject-Werte (falls mal ein neues Fach dazukommt) landen
 // hinten dran, statt zu verschwinden.
-const KURS_FACH_ORDER = ["mathe", "deutsch", "englisch"];
+const KURS_FACH_ORDER = ["mathe", "deutsch", "englisch", "sachunterricht"];
 const KURS_FACH_LABELS = {
     mathe: { icon: "🧮", label: "Mathematik" },
     deutsch: { icon: "📖", label: "Deutsch" },
-    englisch: { icon: "🇬🇧", label: "Englisch" }
+    englisch: { icon: "🇬🇧", label: "Englisch" },
+    sachunterricht: { icon: "🌍", label: "Sachunterricht" }
 };
 
 // Ein Kurs-Button (großformatig, orange) – wird sowohl für die Kurse
@@ -15751,66 +15752,50 @@ function kursButtonHtml(icon, title, beschreibung, fertig, gesamt, onclick) {
 }
 
 const KURS_STUFEN_ICONS = { 1: "1️⃣", 2: "2️⃣", 3: "3️⃣", 4: "4️⃣", 5: "5️⃣", 6: "6️⃣", 7: "7️⃣", 8: "8️⃣", 9: "9️⃣", 10: "🔟" };
-const KURS_KLASSE_MARKER = "__klasse__";
 
 let currentKurseFach = null;
 let currentKurseStufe = null;
 
+// Klassenstufen kurz schreiben: zusammenhängende Stufen als Spanne,
+// Lücken als eigene Gruppe. [1,3,4,5] wird zu "Klasse 1, 3–5".
+function klassenText(stufen) {
+    if (!stufen.length) return "";
+    const gruppen = [];
+    let von = stufen[0], bis = stufen[0];
+    for (const stufe of stufen.slice(1)) {
+        if (stufe === bis + 1) { bis = stufe; continue; }
+        gruppen.push([von, bis]);
+        von = bis = stufe;
+    }
+    gruppen.push([von, bis]);
+    return "Klasse " + gruppen.map(([a, b]) => (b > a ? `${a}–${b}` : `${a}`)).join(", ");
+}
+
 // Hilfsfunktion: alle Klassenstufen eines Fachs, aufsteigend sortiert
 function kursStufenFuerFach(fach) {
-    if (fach === KURS_KLASSE_MARKER) {
-        return [...new Set(KURSE.filter(k => Number(k.grade) <= 4).map(k => k.grade))].sort((a, b) => a - b);
-    }
-    return [...new Set(KURSE.filter(k => k.subject === fach && Number(k.grade) >= 5).map(k => k.grade))].sort((a, b) => a - b);
+    return [...new Set(KURSE.filter(k => k.subject === fach).map(k => Number(k.grade)))].sort((a, b) => a - b);
 }
 
 function showKurse() {
     const wrap = document.getElementById("kurse-liste");
     if (!wrap) return;
-    const gsStufen = [...new Set(KURSE.filter(k => Number(k.grade) >= 1 && Number(k.grade) <= 4).map(k => Number(k.grade)))].sort((a, b) => a - b);
-    const gsHtml = gsStufen.map(stufe => {
-        const kurseDerStufe = KURSE.filter(k => Number(k.grade) === stufe);
-        const lektionen = kurseDerStufe.flatMap(k => getLektionenForKurs(k.id));
-        const fertig = lektionen.filter(l => istLektionAbgeschlossen(l.id)).length;
-        const kurseText = `${kurseDerStufe.length} Thema${kurseDerStufe.length === 1 ? "" : "n"}`;
-        return kursButtonHtml(KURS_STUFEN_ICONS[stufe] || "🎒", `Klasse ${stufe}`, kurseText, fertig, lektionen.length, `openKursKlasse(${stufe})`);
-    }).join("");
 
-    const sekKurse = KURSE.filter(k => Number(k.grade) >= 5);
-    const vorhandeneFaecher = [...new Set(sekKurse.map(k => k.subject))];
+    const vorhandeneFaecher = [...new Set(KURSE.map(k => k.subject))];
     const faecher = [
         ...KURS_FACH_ORDER.filter(f => vorhandeneFaecher.includes(f)),
         ...vorhandeneFaecher.filter(f => !KURS_FACH_ORDER.includes(f))
     ];
-    const fachHtml = faecher.map(fach => {
+    wrap.innerHTML = faecher.map(fach => {
         const label = KURS_FACH_LABELS[fach] || { icon: "📘", label: fach };
-        const kurseImFach = sekKurse.filter(k => k.subject === fach);
+        const kurseImFach = KURSE.filter(k => k.subject === fach);
         const lektionenImFach = kurseImFach.flatMap(k => getLektionenForKurs(k.id));
         const fertig = lektionenImFach.filter(l => istLektionAbgeschlossen(l.id)).length;
         const stufen = kursStufenFuerFach(fach);
-        const stufenText = stufen.length > 1
-            ? `Klasse ${stufen[0]}–${stufen[stufen.length - 1]}`
-            : (stufen.length ? `Klasse ${stufen[0]}` : "");
+        const stufenText = klassenText(stufen);
         const kurseText = `${kurseImFach.length} Kurs${kurseImFach.length === 1 ? "" : "e"}${stufenText ? " · " + stufenText : ""}`;
         return kursButtonHtml(label.icon, label.label, kurseText, fertig, lektionenImFach.length, `openKursFach('${fach}')`);
     }).join("");
-
-    wrap.innerHTML = gsHtml + fachHtml;
     switchView("kurse");
-}
-
-function openKursKlasse(stufe) {
-    currentKurseFach = KURS_KLASSE_MARKER;
-    currentKurseStufe = stufe;
-    document.getElementById("kurs-fach-title").innerText = `🎒 Klasse ${stufe}`;
-    const wrap = document.getElementById("kurs-fach-liste");
-    const kurseDerStufe = KURSE.filter(k => Number(k.grade) === Number(stufe));
-    wrap.innerHTML = kurseDerStufe.map(k => {
-        const lektionen = getLektionenForKurs(k.id);
-        const fertig = lektionen.filter(l => istLektionAbgeschlossen(l.id)).length;
-        return kursButtonHtml(k.icon, k.title, k.beschreibung, fertig, lektionen.length, `openKurs('${k.id}')`);
-    }).join("");
-    switchView("kurs-fach");
 }
 
 // Ebene 2: Klassenstufen eines Fachs. Gibt es nur eine Stufe,
@@ -15827,7 +15812,7 @@ function openKursFach(fach) {
     document.getElementById("kurs-fach-title").innerText = `${label.icon} ${label.label}`;
     const wrap = document.getElementById("kurs-fach-liste");
     wrap.innerHTML = stufen.map(stufe => {
-        const kurseDerStufe = KURSE.filter(k => k.subject === fach && k.grade === stufe && Number(k.grade) >= 5);
+        const kurseDerStufe = KURSE.filter(k => k.subject === fach && Number(k.grade) === Number(stufe));
         const lektionen = kurseDerStufe.flatMap(k => getLektionenForKurs(k.id));
         const fertig = lektionen.filter(l => istLektionAbgeschlossen(l.id)).length;
         const kurseText = `${kurseDerStufe.length} Kurs${kurseDerStufe.length === 1 ? "" : "e"}`;
@@ -15846,7 +15831,7 @@ function openKursStufe(fach, stufe) {
         ? `${label.icon} ${label.label} · Klasse ${stufe}`
         : `${label.icon} ${label.label}`;
     const wrap = document.getElementById("kurs-fach-liste");
-    const kurseDerStufe = KURSE.filter(k => k.subject === fach && k.grade === stufe);
+    const kurseDerStufe = KURSE.filter(k => k.subject === fach && Number(k.grade) === Number(stufe));
     wrap.innerHTML = kurseDerStufe.map(k => {
         const lektionen = getLektionenForKurs(k.id);
         const fertig = lektionen.filter(l => istLektionAbgeschlossen(l.id)).length;
@@ -15858,10 +15843,6 @@ function openKursStufe(fach, stufe) {
 // Zurück-Button im Fach-View: von der Kursliste zur Stufenliste,
 // von der Stufenliste zur Fächerübersicht.
 function backFromKursFach() {
-    if (currentKurseFach === KURS_KLASSE_MARKER) {
-        showKurse();
-        return;
-    }
     const mehrereStufen = currentKurseFach ? kursStufenFuerFach(currentKurseFach).length > 1 : false;
     if (currentKurseStufe !== null && mehrereStufen) {
         openKursFach(currentKurseFach);
@@ -15872,10 +15853,6 @@ function backFromKursFach() {
 
 // Zurück aus der Lektionsliste: dorthin, wo man hergekommen ist.
 function backToKursFach() {
-    if (currentKurseFach === KURS_KLASSE_MARKER && currentKurseStufe !== null) {
-        openKursKlasse(currentKurseStufe);
-        return;
-    }
     if (currentKurseFach && currentKurseStufe !== null) {
         openKursStufe(currentKurseFach, currentKurseStufe);
     } else if (currentKurseFach) {
@@ -15888,12 +15865,8 @@ function backToKursFach() {
 function openKurs(kursId) {
     const kurs = KURSE.find(k => k.id === kursId);
     if (!kurs) return;
-    if (Number(kurs.grade) <= 4) {
-        currentKurseFach = KURS_KLASSE_MARKER;
-        currentKurseStufe = Number(kurs.grade);
-    } else {
-        currentKurseFach = kurs.subject;
-    }
+    currentKurseFach = kurs.subject;
+    currentKurseStufe = Number(kurs.grade);
     const lektionen = getLektionenForKurs(kursId);
     document.getElementById("kurs-lektionen-title").innerText = `${kurs.icon} ${kurs.title}`;
     const wrap = document.getElementById("kurs-lektionen-liste");

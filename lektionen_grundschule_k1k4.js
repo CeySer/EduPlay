@@ -580,15 +580,7 @@
         icon: "✖️",
         title: "Doppeltes und Hälfte",
         kurz: "mal 2 und : 2",
-        erklaerung: {
-            intro: "Das <b>Doppelte</b> heißt: die Zahl noch einmal dazu – oder mal 2. Die <b>Hälfte</b> heißt: in zwei gleiche Teile teilen.",
-            beispiele: [
-                "Doppeltes von 4 ist 8, weil 4+4=8.",
-                "Hälfte von 10 ist 5, weil 10:2=5.",
-                "Doppeltes von 7 ist 14."
-            ],
-            merksatz: "Doppelt = mal 2. Hälfte = geteilt durch 2."
-        },
+        erklaerung: {"intro": "Das <b>Doppelte</b> heißt: die Zahl noch einmal dazu – oder mal 2. Die <b>Hälfte</b> heißt: in zwei gleiche Teile teilen.", "beispiele": ["➕ Doppeltes von <b>4</b>: noch einmal 4 dazu<svg viewBox='0 0 120 82' style='width:100%;max-width:260px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><circle cx='24.0' cy='22.0' r='9' fill='#f59e0b'/><circle cx='48.0' cy='22.0' r='9' fill='#f59e0b'/><circle cx='72.0' cy='22.0' r='9' fill='#f59e0b'/><circle cx='96.0' cy='22.0' r='9' fill='#f59e0b'/><circle cx='24.0' cy='46.0' r='9' fill='#38bdf8'/><circle cx='48.0' cy='46.0' r='9' fill='#38bdf8'/><circle cx='72.0' cy='46.0' r='9' fill='#38bdf8'/><circle cx='96.0' cy='46.0' r='9' fill='#38bdf8'/><text x='60.0' y='76' fill='#e5e7eb' font-size='13' font-weight='bold' font-family='sans-serif' text-anchor='middle'>4 + 4 = 8</text></svg>", "➗ Hälfte von <b>10</b>: in zwei gleich große Teile<svg viewBox='0 0 276 58' style='width:100%;max-width:300px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><circle cx='24.0' cy='20' r='9' fill='#f59e0b'/><circle cx='48.0' cy='20' r='9' fill='#f59e0b'/><circle cx='72.0' cy='20' r='9' fill='#f59e0b'/><circle cx='96.0' cy='20' r='9' fill='#f59e0b'/><circle cx='120.0' cy='20' r='9' fill='#f59e0b'/><circle cx='156.0' cy='20' r='9' fill='#4ade80'/><circle cx='180.0' cy='20' r='9' fill='#4ade80'/><circle cx='204.0' cy='20' r='9' fill='#4ade80'/><circle cx='228.0' cy='20' r='9' fill='#4ade80'/><circle cx='252.0' cy='20' r='9' fill='#4ade80'/><line x1='138.0' y1='4' x2='138.0' y2='40' stroke='#64748b' stroke-width='2' stroke-dasharray='4 3'/><text x='138.0' y='52' fill='#e5e7eb' font-size='16' font-weight='bold' font-family='sans-serif' text-anchor='middle'>10 : 2 = 5</text></svg>", "🔁 Verdoppeln und Halbieren heben sich auf: 7 verdoppelt ist 14, davon die Hälfte ist wieder 7."], "merksatz": "Doppeltes = mal 2. Hälfte = geteilt durch 2."},
         uebung: {
             leicht: [
                 {

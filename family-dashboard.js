@@ -1351,17 +1351,34 @@ auth.createUserWithEmailAndPassword(e, p)
                 else filtered = filtered.filter(q => q.grade == qGradeVal);
             }
 
-            // 2. Einzigartige Fächer aus den gefilterten Fragen sammeln
-            const subjects = [...new Set(filtered.map(q => q.subject).filter(Boolean))].sort();
+            // 2. Auswahl aufbauen.
+            //    Spaß-Fragen sind nach KATEGORIE organisiert, nicht nach Fach.
+            //    "wissen" steckt in 13 Kategorien, und innerhalb einer Kategorie
+            //    stehen in "subject" und "area" gemischte Werte. Nach diesen
+            //    Feldern zu filtern zeigt andere Zahlen als das Quiz, das über
+            //    questionsForKey() nach category geht. Für Spaß listen wir hier
+            //    deshalb die Kategorien aus dem Menü, markiert mit "cat:".
+            let subjects;
+            if (qGradeVal === 'spass' && typeof funCategoryList === 'function'
+                && typeof questionsForKey === 'function') {
+                subjects = funCategoryList()
+                    .filter(c => c && c.key && (questionsForKey(c.key) || []).length > 0)
+                    .map(c => ({ wert: 'cat:' + c.key, text: c.label || c.key }))
+                    .sort((a, b) => a.text.localeCompare(b.text, 'de'));
+            } else {
+                subjects = [...new Set(filtered.map(q => q.subject).filter(Boolean))]
+                    .sort()
+                    .map(s => ({ wert: s, text: s }));
+            }
 
             // 3. Dropdown aktualisieren, bisherige Auswahl beibehalten, wenn sie
             // in der neu gewählten Klasse noch existiert.
-            let html = '<option value="">Alle Fächer</option>';
+            let html = `<option value="">${qGradeVal === 'spass' ? 'Alle Kategorien' : 'Alle Fächer'}</option>`;
             subjects.forEach(s => {
-                html += `<option value="${s}">${s}</option>`;
+                html += `<option value="${esc(s.wert)}">${esc(s.text)}</option>`;
             });
             qSubSel.innerHTML = html;
-            if (subjects.includes(bisherigerWert)) qSubSel.value = bisherigerWert;
+            if (subjects.some(s => s.wert === bisherigerWert)) qSubSel.value = bisherigerWert;
         }
         /**
          * =========================================================
@@ -2029,7 +2046,15 @@ auth.createUserWithEmailAndPassword(e, p)
                     questions = questions.filter(q => q.area === 'beruf');
                     console.log(`  Nach Bereich "Berufsschule" gefiltert: ${questions.length} Fragen`);
                 } else if (grade === 'spass') {
-                    questions = questions.filter(q => q.area === 'spass');
+                    // "area" ist in den Fun-Dateien uneinheitlich gefüllt – dort
+                    // stehen Unterthemen wie "biologie", "zitate" oder "fussball"
+                    // statt "spass". Wer nur nach area filtert, verliert rund ein
+                    // Viertel der Fun-Fragen. Deshalb zusätzlich alles, was in
+                    // einer Kategorie aus dem Spaß-Menü liegt.
+                    const funKeys = new Set(
+                        (typeof funCategoryList === 'function' ? funCategoryList() : [])
+                            .map(c => c && c.key).filter(Boolean));
+                    questions = questions.filter(q => q.area === 'spass' || funKeys.has(q.category));
                     console.log(`  Nach Bereich "Spaß" gefiltert: ${questions.length} Fragen`);
                 } else {
                     questions = questions.filter(q => q.grade == grade);
@@ -2038,8 +2063,20 @@ auth.createUserWithEmailAndPassword(e, p)
             }
 
             if (subject) {
-                questions = questions.filter(q => q.subject === subject);
-                console.log(`  Nach Fach ${subject} gefiltert: ${questions.length} Fragen`);
+                // "cat:..." kommt aus dem Spaß-Bereich. Dort nehmen wir exakt
+                // dieselbe Funktion wie das Quiz – damit können die beiden
+                // Zahlen gar nicht mehr auseinanderlaufen (auch Aliase wie
+                // spass_nice_to_know -> schaetzen_nice_to_know sind abgedeckt).
+                if (subject.indexOf('cat:') === 0) {
+                    const kat = subject.slice(4);
+                    questions = (typeof questionsForKey === 'function')
+                        ? (questionsForKey(kat) || [])
+                        : questions.filter(q => q.category === kat);
+                    console.log(`  Nach Kategorie ${kat} gefiltert: ${questions.length} Fragen`);
+                } else {
+                    questions = questions.filter(q => q.subject === subject);
+                    console.log(`  Nach Fach ${subject} gefiltert: ${questions.length} Fragen`);
+                }
             }
 
             if (search) {

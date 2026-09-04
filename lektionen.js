@@ -15715,7 +15715,8 @@ function istLektionFreigeschaltet(lektion, liste) {
     if (istLektionZugewiesen(lektion.id)) return true;
     if (istLektionAbgeschlossen(lektion.id)) return true;
     const vorherige = (liste || []).find(l => l.order === lektion.order - 1);
-    if (!vorherige) return !!(typeof isAnonGuest !== "undefined" && isAnonGuest);
+    // Die erste Lektion eines Kurses ist immer offen – sonst käme niemand hinein.
+    if (!vorherige) return true;
     return istLektionAbgeschlossen(vorherige.id);
 }
 

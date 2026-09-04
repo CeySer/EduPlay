@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
     <meta name="theme-color" content="#080c18">
-    <title>EduPlay Hub - Familien Edition v2.34</title>
+    <title>EduPlay Hub - Familien Edition v2.35</title>
 
     <!-- Build-Stempel fürs Entwickler-Modus-Panel: bei jeder gelieferten
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
@@ -15,6 +15,15 @@
 
     <link rel="stylesheet" href="styles.css?v=12.6">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
+
+    <!-- ==========================================================
+    SCHALTER: Bereiche, die vorerst nicht gezeigt werden.
+    Auf true setzen, um sie wieder einzublenden – sonst nichts zu tun.
+    ========================================================== -->
+    <script>
+        window.ZEIGE_SOUNDPACK = false;   // Einstellungen: Soft / Klar / Arcade
+        window.ZEIGE_KI_COACH = false;    // KI-Lerncoach: Key-Feld + Knopf im Quiz
+    </script>
 
     <script src="vendor/firebase-10.12.3/firebase-app-compat.js"></script>
     <script src="vendor/firebase-10.12.3/firebase-auth-compat.js"></script>
@@ -86,7 +95,7 @@ HEADER FÜR FAMILY HUB
         <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.34</span>
+                <span class="version">v2.35</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -101,7 +110,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
                 <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
-                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.34</span>
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.35</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -1957,7 +1966,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     onclick="switchView(currentPlayer ? 'menu' : 'family-hub')">Zurück</button>
                 <div class="glass-card p-5 space-y-4">
                     <h2 class="text-xl font-black text-indigo-400">⚙️ Einstellungen</h2>
-                    <div class="py-2 border-b border-white/5 space-y-2">
+                    <div id="block-soundpack" class="py-2 border-b border-white/5 space-y-2">
                         <span class="font-bold text-white block">🎧 Sound-Pack</span>
                         <div class="dash-sub-nav">
                             <button type="button" data-sound-pack="soft" class="active" onclick="setSoundPack('soft')">Soft</button>
@@ -2004,7 +2013,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             </div>
                         </div>
                     </div>
-                    <div class="pt-3 border-t border-white/5 space-y-2">
+                    <div id="block-ki-coach" class="pt-3 border-t border-white/5 space-y-2">
                         <h3 class="text-sm font-black text-violet-400">🤖 KI-Lerncoach</h3>
                         <p class="text-xs text-gray-400">Gemini-API-Key (Google AI Studio, optional). Ohne Key: Offline-Erklärung.</p>
                         <input id="settings-gemini-key" type="password" autocomplete="off" placeholder="API-Key einfügen…"
@@ -2036,7 +2045,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="dev-admin-entry" class="hidden pt-3 border-t border-white/5">
                         <button type="button" onclick="openDevAdmin()" class="btn-secondary w-full text-sm text-cyan-300">🛠 Entwickler-Seite</button>
                     </div>
-                    <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.34
+                    <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.35
                     </div>
                 </div>
             </div>
@@ -2669,7 +2678,7 @@ VIEW: QUIZ SETUP
     <script src="dev-admin.js?v=1.7"></script>
     <script src="ui-common.js?v=9.2"></script>
     <script src="ki-coach.js?v=1.1"></script>
-    <script src="quiz-core.js?v=10.7"></script>
+    <script src="quiz-core.js?v=10.8"></script>
     <!-- Die neun Kurs-Dateien (zusammen rund 2 MB) werden nicht mehr hier
          geladen, sondern von lektionen-loader.js im Leerlauf nachgeholt bzw.
          spaetestens beim ersten Antippen von "Kurse". Die Dateiliste und die
@@ -2687,6 +2696,21 @@ VIEW: QUIZ SETUP
     <script src="email-bestaetigung.js?v=8.8"></script>
     <script src="fragen-vorladen.js?v=8.8"></script>
     <script src="zurueck-knopf.js?v=9.0"></script>
+
+    <!-- Schalter anwenden: die Bereiche werden aus dem Dokument genommen,
+         nicht nur versteckt – so bleibt kein Eingabefeld im Hintergrund. -->
+    <script>
+        (function () {
+            if (!window.ZEIGE_SOUNDPACK) {
+                var sp = document.getElementById("block-soundpack");
+                if (sp) sp.remove();
+            }
+            if (!window.ZEIGE_KI_COACH) {
+                var ki = document.getElementById("block-ki-coach");
+                if (ki) ki.remove();
+            }
+        })();
+    </script>
 
 
     <script>
@@ -2754,7 +2778,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.34<br>
+            EduPlay Hub · v2.35<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -2803,7 +2827,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.34<br>
+            EduPlay Hub · v2.35<br>
             © 2026 · Familien Edition
         </div>
     </div>

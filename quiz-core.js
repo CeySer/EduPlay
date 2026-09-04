@@ -90,20 +90,11 @@
         const STUDY_VIEWS = ["quiz", "vokabeln", "lesen", "suchsel-play"];
 
         function trackStudySeconds(seconds) {
-            if (testMode) return; // zugewiesene Tests zählen nicht zur Lernzeit
-            if (typeof currentLektion !== "undefined" && currentLektion && currentLektion.step === "test") return;
+            if (testMode) return; // Tests zählen nicht zur Lernzeit / zum Auftrag
             if (!currentPlayer || !activePlayerKey || !(seconds > 0)) return;
             const day = new Date().toISOString().slice(0, 10);
             if (!currentPlayer.studyLog) currentPlayer.studyLog = {};
             currentPlayer.studyLog[day] = (currentPlayer.studyLog[day] || 0) + Math.round(seconds);
-            if (typeof currentLektion !== "undefined" && currentLektion && currentLektion.step !== "test") {
-                if (!currentPlayer.lessonStudyLog) currentPlayer.lessonStudyLog = {};
-                currentPlayer.lessonStudyLog[day] = (currentPlayer.lessonStudyLog[day] || 0) + Math.round(seconds);
-                const lkeys = Object.keys(currentPlayer.lessonStudyLog).sort();
-                while (lkeys.length > 60) {
-                    delete currentPlayer.lessonStudyLog[lkeys.shift()];
-                }
-            }
             // nur letzte 60 Tage behalten
             const keys = Object.keys(currentPlayer.studyLog).sort();
             while (keys.length > 60) {
@@ -425,7 +416,7 @@
                 SFX.wrong();
                 showToast("Leider falsch!", "error");
                 expBox.innerHTML =
-                    `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/20 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp || ""}</div><button type="button" id="ki-explain-btn" class="mt-3 w-full text-sm font-bold py-2.5 px-3 rounded-xl bg-indigo-600/80 hover:bg-indigo-500 text-white border border-indigo-400/30">💡 Mehr erklären (Lerncoach)</button><div id="ki-explain-out" class="hidden mt-2 text-sm text-indigo-100 bg-indigo-950/40 p-3 rounded-lg border border-indigo-500/20"></div>`;
+                    `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/20 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp || ""}</div>${window.ZEIGE_KI_COACH ? `<button type="button" id="ki-explain-btn" class="mt-3 w-full text-sm font-bold py-2.5 px-3 rounded-xl bg-indigo-600/80 hover:bg-indigo-500 text-white border border-indigo-400/30">💡 Mehr erklären (Lerncoach)</button><div id="ki-explain-out" class="hidden mt-2 text-sm text-indigo-100 bg-indigo-950/40 p-3 rounded-lg border border-indigo-500/20"></div>` : ""}`;
                 expBox.className =
                     "p-4 bg-white/5 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block";
                 const kiBtn = document.getElementById("ki-explain-btn");

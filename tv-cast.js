@@ -307,7 +307,12 @@
                 }
             } catch (e) { /* */ }
             try {
-                if (screen.orientation && typeof screen.orientation.lock === "function") {
+                // Nur sperren, wenn wirklich noetig - diese Funktion wird bei
+                // jedem Rundenwechsel neu aufgerufen. Ein wiederholtes Sperren,
+                // obwohl schon quer, hat manche TV-Browser wohl zum Neuladen
+                // der Seite gebracht (Verdacht, nicht bestaetigt).
+                const schonQuer = screen.orientation && String(screen.orientation.type || "").indexOf("landscape") === 0;
+                if (screen.orientation && typeof screen.orientation.lock === "function" && !schonQuer) {
                     screen.orientation.lock("landscape").catch(function () { /* oft nur im Fullscreen */ });
                 }
             } catch (e2) { /* */ }
@@ -1701,11 +1706,19 @@
                     const order = tvWrActiveOrder(data);
                     if (!order.length) return;
                     const cur = (data.turnIndex || 0) % order.length;
-                    txn.update(tvGameRef, {
-                        turnIndex: (cur + 1) % order.length,
-                        order: order,
-                        wrTurnDeadline: Date.now() + 25000
-                    });
+                    // Verstrichene Zeit zaehlt wie ein falscher Buchstabe - sonst
+                    // kostet Aussitzen nichts, anders als jeder andere Fehlversuch.
+                    const wrongCount = (data.wrongCount || 0) + 1;
+                    const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
+                    const roundOver = wrongCount >= maxW;
+                    const update = { order: order, wrongCount, roundOver, roundSolved: false };
+                    if (roundOver) {
+                        update.wrTurnDeadline = null;
+                    } else {
+                        update.turnIndex = (cur + 1) % order.length;
+                        update.wrTurnDeadline = Date.now() + 25000;
+                    }
+                    txn.update(tvGameRef, update);
                 });
             } catch (e) {
                 handleError("skipTVWortratenTurn", e, "Zug konnte nicht übersprungen werden.");
@@ -2150,6 +2163,10 @@
         }
 
         function nextTVScrabbleRound() {
+            // Ohne das hier laeuft der Auto-Weiter-Timer der vorigen Runde im
+            // Hintergrund weiter und feuert kurz nach diesem Klick nochmal -
+            // das ueberspringt dann die naechste Runde komplett.
+            stopTVAutoAdvance();
             tvGameRef.get().then(doc => startTVScrabbleRound(doc.data()));
         }
 

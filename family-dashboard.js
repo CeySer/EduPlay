@@ -618,6 +618,7 @@ auth.createUserWithEmailAndPassword(e, p)
             }
             renderPendingTestCard();
             if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
+            if (typeof renderPendingKursCard === "function") renderPendingKursCard();
             renderStudyGoalCard();
             renderTodayStatusCard();
             renderWeaknessSuggestion();
@@ -3372,6 +3373,8 @@ auth.createUserWithEmailAndPassword(e, p)
             renderDashTestResults();
             if (typeof fillDashLessonSelect === "function") fillDashLessonSelect();
             if (typeof renderDashLessonNotices === "function") renderDashLessonNotices();
+            if (typeof fillDashKursSelect === "function") fillDashKursSelect();
+            if (typeof renderDashKursNotices === "function") renderDashKursNotices();
         }
 
         function toggleDashTestArea(id) {
@@ -3555,6 +3558,92 @@ auth.createUserWithEmailAndPassword(e, p)
             showToast("Lektion zugewiesen.", "success");
             if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
             if (typeof renderDashLessonNotices === "function") renderDashLessonNotices();
+        }
+
+        // Wie fillDashLessonSelect(), aber pro Klasse ganze Kurse statt
+        // einzelner Lektionen - fuer die Kurs-Zuweisung weiter unten.
+        function fillDashKursSelect() {
+            const gEl = document.getElementById("dash-kurs-grade");
+            const sEl = document.getElementById("dash-kurs-id");
+            if (!sEl) return;
+            const kurse = (typeof KURSE !== "undefined" && Array.isArray(KURSE)) ? KURSE : [];
+            const stufen = [...new Set(kurse.map(k => Number(k.grade)).filter(Boolean))].sort((a, b) => a - b);
+            if (gEl && !gEl.dataset.ready) {
+                gEl.innerHTML = stufen.map(g => `<option value="${g}">Klasse ${g}</option>`).join("") || '<option value="">Keine Kurse</option>';
+                gEl.dataset.ready = "1";
+                const pg = currentPlayer && currentPlayer.grade;
+                if (pg && stufen.includes(Number(pg))) gEl.value = String(pg);
+            }
+            const g = gEl ? Number(gEl.value) : 0;
+            const list = kurse.filter(k => !g || Number(k.grade) === g).map(k => ({ id: k.id, label: `${k.icon || ""} ${k.title}` }));
+            sEl.innerHTML = list.map(x => `<option value="${x.id}">${x.label}</option>`).join("") || '<option value="">Keine Kurse</option>';
+        }
+
+        function assignKursFromDashboard() {
+            const profileKey = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
+            const kursId = (document.getElementById("dash-kurs-id") || {}).value;
+            if (!profileKey) return showToast("Kein Spieler ausgewählt!", "error");
+            if (!kursId) return showToast("Bitte einen Kurs wählen.", "error");
+            const kurs = (typeof KURSE !== "undefined") ? KURSE.find(k => k.id === kursId) : null;
+            const pendingKurs = {
+                kursId,
+                title: kurs ? kurs.title : kursId,
+                createdAt: new Date().toISOString()
+            };
+            if (!ALL_PROFILES[profileKey]) return showToast("Spieler nicht gefunden!", "error");
+            ALL_PROFILES[profileKey].pendingKurs = pendingKurs;
+            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.pendingKurs = pendingKurs;
+            if (currentParentUser) {
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
+                    .update({ pendingKurs })
+                    .catch(e => handleError("assignKursFromDashboard", e, "Kurs konnte nicht zugewiesen werden."));
+            }
+            showToast("Kurs zugewiesen.", "success");
+            if (typeof renderPendingKursCard === "function") renderPendingKursCard();
+            if (typeof renderDashKursNotices === "function") renderDashKursNotices();
+        }
+
+        function renderPendingKursCard() {
+            const card = document.getElementById("pending-kurs-card");
+            if (!card) return;
+            if (currentPlayer && currentPlayer.pendingKurs && currentPlayer.pendingKurs.kursId) {
+                const t = currentPlayer.pendingKurs;
+                card.innerHTML =
+                    `<div class="glass-card-glow p-5 text-white" style="background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(239,68,68,0.1));border-color:rgba(245,158,11,0.25);">
+                        <div class="font-black text-lg mb-1">🎓 Ein Kurs wartet auf dich!</div>
+                        <div class="text-xs opacity-80 mb-3">${esc(t.title || t.kursId)}</div>
+                        <button onclick="startAssignedKurs()" class="btn-primary w-full text-center" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">Kurs starten</button>
+                    </div>`;
+                card.classList.remove("hidden");
+            } else {
+                card.classList.add("hidden");
+                card.innerHTML = "";
+            }
+        }
+
+        function startAssignedKurs() {
+            const t = currentPlayer && currentPlayer.pendingKurs;
+            if (!t || !t.kursId) return;
+            if (typeof ladeLektionen === "function") {
+                ladeLektionen().then(function () {
+                    if (typeof openKurs === "function") openKurs(t.kursId);
+                });
+            } else if (typeof openKurs === "function") {
+                openKurs(t.kursId);
+            } else {
+                showToast("Kurs nicht gefunden.", "error");
+            }
+        }
+
+        function renderDashKursNotices() {
+            const box = document.getElementById("dash-kurs-notices");
+            if (!box) return;
+            const key = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
+            const p = (key && ALL_PROFILES[key]) || currentPlayer;
+            const pend = p && p.pendingKurs;
+            box.innerHTML = (pend && pend.kursId)
+                ? `<div class="text-[11px] font-bold text-amber-200 bg-white/5 rounded-lg px-2.5 py-2">Offen zugewiesen: ${esc(pend.title || pend.kursId)}</div>`
+                : "";
         }
 
         function renderPendingLessonCard() {

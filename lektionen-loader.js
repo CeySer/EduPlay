@@ -29,7 +29,8 @@
         "lektionen_bewerbung_k9k10.js?v=2",
         "lektionen_zahlen20_k1.js?v=1",
         "lektionen_zahlen100_k2.js?v=1",
-        "lektionen_zahlen1000_k3.js?v=1"
+        "lektionen_zahlen1000_k3.js?v=1",
+        "lektionen_zahlen1mio_k4.js?v=1"
     ];
 
     var laufend = null;

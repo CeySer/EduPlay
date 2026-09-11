@@ -12,7 +12,7 @@
 //  würde ihn nur stören.
 // ============================================================
 
-const CACHE = 'eduplay-v34';
+const CACHE = 'eduplay-v35';
 
 // Alles, was die App zum Starten braucht. Die Fragen-Dateien landen
 // beim ersten Laden automatisch im Cache (siehe unten), damit diese

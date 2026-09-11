@@ -2415,6 +2415,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 kurse: ['dash-kurse-body', 'dash-kurse-arrow'],
                 goal: ['dash-goal-body', 'dash-goal-arrow'],
                 lesson: ['dash-lesson-body', 'dash-lesson-arrow'],
+                kurszuw: ['dash-kurszuw-body', 'dash-kurszuw-arrow'],
                 assign: ['dash-assign-body', 'dash-assign-arrow']
             };
             const pair = map[which] || ['dash-study-body', 'dash-study-arrow'];

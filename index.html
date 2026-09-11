@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
     <meta name="theme-color" content="#080c18">
-    <title>EduPlay Hub - Familien Edition v2.36</title>
+    <title>EduPlay Hub - Familien Edition v2.38</title>
 
     <!-- Build-Stempel fürs Entwickler-Modus-Panel: bei jeder gelieferten
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
@@ -13,7 +13,7 @@
          installierte App wirklich den neuesten Stand geladen hat. -->
     <script>window.EDUPLAY_BUILD = "24.08.2026 · 11:55";</script>
 
-    <link rel="stylesheet" href="styles.css?v=12.6">
+    <link rel="stylesheet" href="styles.css?v=12.7">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
 
     <!-- ==========================================================
@@ -95,7 +95,7 @@ HEADER FÜR FAMILY HUB
         <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.36</span>
+                <span class="version">v2.38</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -110,7 +110,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
                 <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
-                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.36</span>
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.38</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -541,15 +541,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <button onclick="assignTestFromDashboard()" class="btn-primary w-full text-center">Test
                                 zuweisen 🚀</button>
 
-                            <div class="pt-3 border-t border-white/5 mt-2 space-y-2">
-                                <div class="text-sm font-black text-amber-300">📚 Lektion zuweisen</div>
-                                <p class="text-[11px] text-gray-500">Eine Lektion für das Kind im Fokus. Erscheint auf dem Startscreen.</p>
-                                <select id="dash-lesson-grade" class="input-modern text-sm" onchange="fillDashLessonSelect()"></select>
-                                <select id="dash-lesson-id" class="input-modern text-sm"></select>
-                                <button type="button" onclick="assignLessonFromDashboard()" class="btn-primary w-full text-center">Lektion zuweisen 📚</button>
-                                <div id="dash-lesson-notices" class="space-y-2"></div>
-                            </div>
-
                             <div class="pt-3 border-t border-white/5 mt-1">
                                 <label class="text-xs text-gray-400 font-bold block mb-2">💾 Gespeicherte
                                     Vorlagen</label>
@@ -557,6 +548,36 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <button onclick="saveTestTemplate()" class="btn-secondary w-full text-sm">Aktuelle
                                     Auswahl als Vorlage speichern</button>
                             </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card overflow-hidden">
+                            <button type="button" onclick="toggleDashSection('lesson')"
+                                class="w-full px-4 py-4 flex items-center justify-between hover:bg-white/5 transition">
+                                <span class="text-base font-black text-amber-300">📚 Lektion zuweisen</span>
+                                <span id="dash-lesson-arrow" class="text-gray-400 transition-transform">▼</span>
+                            </button>
+                            <div id="dash-lesson-body" class="hidden px-4 pb-4 space-y-2">
+                                <p class="text-[11px] text-gray-500">Eine Lektion für das Kind im Fokus. Erscheint auf dem Startscreen.</p>
+                                <select id="dash-lesson-grade" class="input-modern text-sm" onchange="fillDashLessonSelect()"></select>
+                                <select id="dash-lesson-id" class="input-modern text-sm"></select>
+                                <button type="button" onclick="assignLessonFromDashboard()" class="btn-primary w-full text-center">Lektion zuweisen 📚</button>
+                                <div id="dash-lesson-notices" class="space-y-2"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card overflow-hidden">
+                            <button type="button" onclick="toggleDashSection('kurszuw')"
+                                class="w-full px-4 py-4 flex items-center justify-between hover:bg-white/5 transition">
+                                <span class="text-base font-black text-amber-300">🎓 Kurs zuweisen</span>
+                                <span id="dash-kurszuw-arrow" class="text-gray-400 transition-transform">▼</span>
+                            </button>
+                            <div id="dash-kurszuw-body" class="hidden px-4 pb-4 space-y-2">
+                                <p class="text-[11px] text-gray-500">Ein ganzer Kurs (alle Lektionen darin) für das Kind im Fokus. Erscheint auf dem Startscreen.</p>
+                                <select id="dash-kurs-grade" class="input-modern text-sm" onchange="fillDashKursSelect()"></select>
+                                <select id="dash-kurs-id" class="input-modern text-sm"></select>
+                                <button type="button" onclick="assignKursFromDashboard()" class="btn-primary w-full text-center">Kurs zuweisen 🎓</button>
+                                <div id="dash-kurs-notices" class="space-y-2"></div>
                             </div>
                         </div>
                     </div>
@@ -1547,6 +1568,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div id="study-goal-card" class="hidden"></div>
                 <div id="pending-test-card" class="hidden"></div>
                 <div id="pending-lesson-card" class="hidden"></div>
+                <div id="pending-kurs-card" class="hidden"></div>
                 <div id="open-duels-list" class="space-y-2"></div>
                 <div id="open-tv-list" class="space-y-2"></div>
 
@@ -2045,7 +2067,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="dev-admin-entry" class="hidden pt-3 border-t border-white/5">
                         <button type="button" onclick="openDevAdmin()" class="btn-secondary w-full text-sm text-cyan-300">🛠 Entwickler-Seite</button>
                     </div>
-                    <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.36
+                    <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.38
                     </div>
                 </div>
             </div>
@@ -2674,7 +2696,7 @@ VIEW: QUIZ SETUP
     ============================================================ -->
     <script src="app-config.js?v=13.1"></script>
     <script src="app-ui.js?v=9.5"></script>
-    <script src="family-dashboard.js?v=11.29"></script>
+    <script src="family-dashboard.js?v=11.31"></script>
     <script src="dev-admin.js?v=1.7"></script>
     <script src="ui-common.js?v=9.2"></script>
     <script src="ki-coach.js?v=1.1"></script>
@@ -2778,7 +2800,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.36<br>
+            EduPlay Hub · v2.38<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -2827,7 +2849,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.36<br>
+            EduPlay Hub · v2.38<br>
             © 2026 · Familien Edition
         </div>
     </div>

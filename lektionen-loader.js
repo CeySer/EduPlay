@@ -26,7 +26,8 @@
         "lektionen_uhr_fuenf_k2.js?v=3",
         "lektionen_grundschule_k1k4_teil3.js?v=3",
         "lektionen_englisch_zeiten.js?v=2",
-        "lektionen_bewerbung_k9k10.js?v=2"
+        "lektionen_bewerbung_k9k10.js?v=2",
+        "lektionen_zahlen20_k1.js?v=1"
     ];
 
     var laufend = null;

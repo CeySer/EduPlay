@@ -15710,9 +15710,17 @@ function istLektionZugewiesen(id) {
     return !!(currentPlayer && currentPlayer.pendingLesson && currentPlayer.pendingLesson.lektionId === id);
 }
 
+// Ein zugewiesener KURS schaltet alle seine Lektionen frei - nicht nur die
+// erste. Das Kind kann dann frei im Kurs stoebern statt sich streng von
+// vorn durchzuarbeiten.
+function istKursZugewiesen(kursId) {
+    return !!(currentPlayer && currentPlayer.pendingKurs && currentPlayer.pendingKurs.kursId === kursId);
+}
+
 function istLektionFreigeschaltet(lektion, liste) {
     if (typeof isDevAdmin === "function" && isDevAdmin()) return true;
     if (istLektionZugewiesen(lektion.id)) return true;
+    if (istKursZugewiesen(lektion.kurs)) return true;
     if (istLektionAbgeschlossen(lektion.id)) return true;
     const vorherige = (liste || []).find(l => l.order === lektion.order - 1);
     // Die erste Lektion eines Kurses ist immer offen – sonst käme niemand hinein.
@@ -16036,8 +16044,24 @@ function finishLektion(pct) {
             if (currentPlayer.pendingLesson && currentPlayer.pendingLesson.lektionId === daten.id) {
                 currentPlayer.pendingLesson = null;
             }
-            if (typeof showToast === "function") showToast("Lektion geschafft: " + (daten.title || ""), "success");
+            // Zugewiesenen Kurs erst abhaken, wenn wirklich ALLE seine
+            // Lektionen bestanden sind - nicht schon bei der ersten.
+            let kursKomplett = false;
+            if (currentPlayer.pendingKurs && currentPlayer.pendingKurs.kursId === daten.kurs) {
+                const kursLektionen = (typeof getLektionenForKurs === "function") ? getLektionenForKurs(daten.kurs) : [];
+                if (kursLektionen.length && kursLektionen.every(l => istLektionAbgeschlossen(l.id))) {
+                    kursKomplett = true;
+                    var abgeschlossenerKursTitel = currentPlayer.pendingKurs.title;
+                    currentPlayer.pendingKurs = null;
+                }
+            }
+            if (typeof showToast === "function") {
+                showToast(kursKomplett
+                    ? "Kurs geschafft: " + (abgeschlossenerKursTitel || "")
+                    : "Lektion geschafft: " + (daten.title || ""), "success");
+            }
             if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
+            if (typeof renderPendingKursCard === "function") renderPendingKursCard();
         }
         if (typeof savePlayerProgress === "function") savePlayerProgress();
     }

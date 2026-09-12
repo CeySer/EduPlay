@@ -196,33 +196,45 @@
         function renderRewardsShop() {
             if (!currentPlayer) return;
             document.getElementById("rewards-coin-balance").innerText = currentPlayer.coins || 0;
+            const zBal = document.getElementById("rewards-zeit-balance");
+            if (zBal) zBal.innerText = currentPlayer.zeit || 0;
             const list = document.getElementById("rewards-list");
             if (!list) return;
-            const rewards = familyRewards || [];
+            const rewards = (familyRewards || []).filter(r => !r.forChild || r.forChild === activePlayerKey);
             list.innerHTML = rewards.length === 0 ?
                 `<p class="text-xs text-gray-500">Deine Eltern haben noch keine Belohnungen eingerichtet.</p>` :
-                rewards.map(r => `
+                rewards.map(r => {
+                    const istZeit = r.currency === "zeit";
+                    const icon = istZeit ? "⏳" : "🪙";
+                    const einheit = istZeit ? "Minuten" : "Coins";
+                    const guthaben = istZeit ? (currentPlayer.zeit || 0) : (currentPlayer.coins || 0);
+                    return `
                             <div class="flex justify-between items-center bg-white/5 border border-white/5 rounded-xl p-3">
                                 <div>
                                     <div class="font-bold text-white">${esc(r.name)}</div>
-                                    <div class="text-xs text-yellow-400 font-bold">🪙 ${r.cost} Coins</div>
+                                    <div class="text-xs text-yellow-400 font-bold">${icon} ${r.cost} ${einheit}</div>
                                 </div>
-                                <button onclick="redeemReward('${r.id}')" class="btn-primary text-sm py-2 px-4 ${(currentPlayer.coins || 0) < r.cost ? 'opacity-40 cursor-not-allowed' : ''}" ${(currentPlayer.coins || 0) < r.cost ? 'disabled' : ''}>
+                                <button onclick="redeemReward('${r.id}')" class="btn-primary text-sm py-2 px-4 ${guthaben < r.cost ? 'opacity-40 cursor-not-allowed' : ''}" ${guthaben < r.cost ? 'disabled' : ''}>
                                     Einlösen
                                 </button>
                             </div>
-                        `).join('');
+                        `;
+                }).join('');
         }
 
         async function redeemReward(id) {
             const r = familyRewards.find(x => x.id === id);
-            if (!r || !currentPlayer || (currentPlayer.coins || 0) < r.cost) return;
-            if (!(await appConfirm(`"${r.name}" kostet ${r.cost} Coins. Jetzt einlösen?`, {
+            if (!r || !currentPlayer) return;
+            const istZeit = r.currency === "zeit";
+            const guthaben = istZeit ? (currentPlayer.zeit || 0) : (currentPlayer.coins || 0);
+            if (guthaben < r.cost) return;
+            const einheit = istZeit ? "Minuten" : "Coins";
+            if (!(await appConfirm(`"${r.name}" kostet ${r.cost} ${einheit}. Jetzt einlösen?`, {
                 titel: "Belohnung einlösen", icon: "🎁", okText: "Einlösen"
             }))) return;
-            currentPlayer.coins -= r.cost;
+            if (istZeit) currentPlayer.zeit -= r.cost; else currentPlayer.coins -= r.cost;
             if (!currentPlayer.redeemedRewards) currentPlayer.redeemedRewards = [];
-            currentPlayer.redeemedRewards.unshift({ name: r.name, cost: r.cost, date: new Date().toISOString() });
+            currentPlayer.redeemedRewards.unshift({ name: r.name, cost: r.cost, currency: r.currency || "coins", date: new Date().toISOString() });
             currentPlayer.redeemedRewards = currentPlayer.redeemedRewards.slice(0, 20);
             savePlayerProgress();
             updateMenuGamification();

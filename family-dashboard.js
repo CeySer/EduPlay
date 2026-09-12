@@ -1309,6 +1309,8 @@ auth.createUserWithEmailAndPassword(e, p)
             if (isAnonGuest || !currentParentUser) {
                 const c = document.getElementById("menu-coins");
                 if (c) c.innerText = currentPlayer.coins || 0;
+                const zg = document.getElementById("menu-zeit");
+                if (zg) zg.innerText = currentPlayer.zeit || 0;
                 return;
             }
             // merge:true, damit parallele Änderungen der Eltern (z.B. zugewiesener Test,
@@ -1317,6 +1319,8 @@ auth.createUserWithEmailAndPassword(e, p)
                 .set(currentPlayer, { merge: true })
                 .catch(e => handleError("savePlayerProgress", e, "Fortschritt konnte nicht gespeichert werden."));
             document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
+            const z = document.getElementById("menu-zeit");
+            if (z) z.innerText = currentPlayer.zeit || 0;
         }
 
         // ============================================================
@@ -2777,7 +2781,7 @@ auth.createUserWithEmailAndPassword(e, p)
             const rewards = p.redeemedRewards || [];
             const rewardHtml = rewards.length > 0 ?
                 rewards.slice(0, 3).map(r =>
-                    `<div class="dash-stat-card flex justify-between items-center"><span class="text-white text-sm">${esc(r.name)}</span><span class="text-yellow-400 text-xs">🪙 ${r.cost}</span></div>`
+                    `<div class="dash-stat-card flex justify-between items-center"><span class="text-white text-sm">${esc(r.name)}</span><span class="text-yellow-400 text-xs">${r.currency === "zeit" ? "⏳" : "🪙"} ${r.cost}</span></div>`
                 ).join('') :
                 '<div class="text-gray-500 text-sm">Noch keine Belohnungen eingelöst</div>';
 
@@ -3047,6 +3051,7 @@ auth.createUserWithEmailAndPassword(e, p)
             }
             if (tab === 'rewards') {
                 renderDashAdminProgress();
+                if (typeof fillDashRewardChildSelect === "function") fillDashRewardChildSelect();
                 renderDashRewards();
             }
             if (!scroll) return;
@@ -3060,6 +3065,7 @@ auth.createUserWithEmailAndPassword(e, p)
             renderStudyGoalAdmin();
             renderDashAdminProgress();
             renderDashAdminTest();
+            if (typeof fillDashRewardChildSelect === "function") fillDashRewardChildSelect();
             renderDashRewards();
             maybeShowParentWeeklyReport();
         }
@@ -3154,6 +3160,7 @@ auth.createUserWithEmailAndPassword(e, p)
                                 </div>
                                 <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs mt-1">
                                     <span class="text-yellow-400 font-bold">🪙 ${p.coins || 0}</span>
+                                    <span class="text-indigo-300 font-bold">⏳ ${p.zeit || 0}</span>
                                     <span class="text-gray-400">🔥 ${p.streak ? p.streak.count : 0}d Streak</span>
                                     <span class="${accuracy >= 80 ? 'text-emerald-400' : accuracy >= 50 ? 'text-yellow-400' : 'text-rose-400'}">${accuracy}% Treffer</span>
                                 </div>
@@ -3256,6 +3263,49 @@ auth.createUserWithEmailAndPassword(e, p)
             renderStudyGoalAdmin();
             if (typeof renderStudyGoalCard === "function") renderStudyGoalCard();
             if (typeof renderTodayStatusCard === "function") renderTodayStatusCard();
+        }
+
+        function clearPendingLesson(profileKey) {
+            if (!profileKey || !ALL_PROFILES[profileKey]) return;
+            ALL_PROFILES[profileKey].pendingLesson = null;
+            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.pendingLesson = null;
+            if (currentParentUser) {
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
+                    .update({ pendingLesson: null })
+                    .catch(e => handleError("clearPendingLesson", e, "Lektion konnte nicht zurückgezogen werden."));
+            }
+            showToast("Lektion zurückgezogen.", "success");
+            if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
+            if (typeof renderDashLessonNotices === "function") renderDashLessonNotices();
+        }
+
+        function clearPendingKurs(profileKey) {
+            if (!profileKey || !ALL_PROFILES[profileKey]) return;
+            ALL_PROFILES[profileKey].pendingKurs = null;
+            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.pendingKurs = null;
+            if (currentParentUser) {
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
+                    .update({ pendingKurs: null })
+                    .catch(e => handleError("clearPendingKurs", e, "Kurs konnte nicht zurückgezogen werden."));
+            }
+            showToast("Kurs zurückgezogen.", "success");
+            if (typeof renderPendingKursCard === "function") renderPendingKursCard();
+            if (typeof renderDashKursNotices === "function") renderDashKursNotices();
+        }
+
+        function clearPendingTest(profileKey) {
+            if (!profileKey || !ALL_PROFILES[profileKey]) return;
+            ALL_PROFILES[profileKey].pendingTest = null;
+            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.pendingTest = null;
+            if (currentParentUser) {
+                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
+                    .update({ pendingTest: null })
+                    .catch(e => handleError("clearPendingTest", e, "Test konnte nicht zurückgezogen werden."));
+            }
+            showToast("Test zurückgezogen.", "success");
+            if (typeof renderPendingTestCard === "function") renderPendingTestCard();
+            if (typeof renderDashTestNotices === "function") renderDashTestNotices();
+            if (typeof renderDashAdminProgress === "function") renderDashAdminProgress();
         }
 
 
@@ -3372,6 +3422,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 ladeAlleFragen().then(function () { fillDashTestCategoryUI(); }).catch(function () { });
             }
             renderDashTestResults();
+            if (typeof renderDashTestNotices === "function") renderDashTestNotices();
             if (typeof fillDashLessonSelect === "function") fillDashLessonSelect();
             if (typeof renderDashLessonNotices === "function") renderDashLessonNotices();
             if (typeof fillDashKursSelect === "function") fillDashKursSelect();
@@ -3510,6 +3561,7 @@ auth.createUserWithEmailAndPassword(e, p)
             renderDashAdminProgress();
             if (typeof renderPendingTestCard === "function") renderPendingTestCard();
             if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
+            if (typeof renderDashTestNotices === "function") renderDashTestNotices();
         }
 
         function fillDashLessonSelect() {
@@ -3643,7 +3695,24 @@ auth.createUserWithEmailAndPassword(e, p)
             const p = (key && ALL_PROFILES[key]) || currentPlayer;
             const pend = p && p.pendingKurs;
             box.innerHTML = (pend && pend.kursId)
-                ? `<div class="text-[11px] font-bold text-amber-200 bg-white/5 rounded-lg px-2.5 py-2">Offen zugewiesen: ${esc(pend.title || pend.kursId)}</div>`
+                ? `<div class="flex items-center justify-between gap-2 bg-white/5 rounded-lg px-2.5 py-2">
+                    <div class="text-[11px] font-bold text-amber-200 min-w-0 truncate">Offen zugewiesen: ${esc(pend.title || pend.kursId)}</div>
+                    <button type="button" class="shrink-0 text-[10px] font-black text-rose-300 bg-rose-500/20 border border-rose-400/30 rounded-lg px-2 py-1 hover:bg-rose-500/30" onclick="clearPendingKurs('${esc(key)}')">Zurückziehen</button>
+                </div>`
+                : "";
+        }
+
+        function renderDashTestNotices() {
+            const box = document.getElementById("dash-test-notices");
+            if (!box) return;
+            const key = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
+            const p = (key && ALL_PROFILES[key]) || currentPlayer;
+            const pend = p && p.pendingTest;
+            box.innerHTML = (pend && pend.categories && pend.categories.length)
+                ? `<div class="flex items-center justify-between gap-2 bg-white/5 rounded-lg px-2.5 py-2">
+                    <div class="text-[11px] font-bold text-indigo-200 min-w-0 truncate">Offen zugewiesen: ${pend.categories.slice(0, 3).map(c => esc(labelFuerKategorie(c) || c)).join(', ')}</div>
+                    <button type="button" class="shrink-0 text-[10px] font-black text-rose-300 bg-rose-500/20 border border-rose-400/30 rounded-lg px-2 py-1 hover:bg-rose-500/30" onclick="clearPendingTest('${esc(key)}')">Zurückziehen</button>
+                </div>`
                 : "";
         }
 
@@ -3682,7 +3751,10 @@ auth.createUserWithEmailAndPassword(e, p)
             const pend = p && p.pendingLesson;
             let html = "";
             if (pend && pend.lektionId) {
-                html += `<div class="text-[11px] font-bold text-amber-200 bg-white/5 rounded-lg px-2.5 py-2">Offen zugewiesen: ${esc(pend.title || pend.lektionId)}</div>`;
+                html += `<div class="flex items-center justify-between gap-2 bg-white/5 rounded-lg px-2.5 py-2">
+                    <div class="text-[11px] font-bold text-amber-200 min-w-0 truncate">Offen zugewiesen: ${esc(pend.title || pend.lektionId)}</div>
+                    <button type="button" class="shrink-0 text-[10px] font-black text-rose-300 bg-rose-500/20 border border-rose-400/30 rounded-lg px-2 py-1 hover:bg-rose-500/30" onclick="clearPendingLesson('${esc(key)}')">Zurückziehen</button>
+                </div>`;
             }
             open.forEach(n => {
                 html += `<div class="flex items-start justify-between gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-2.5 py-2">

@@ -16564,6 +16564,7 @@ function finishLektion(pct) {
             currentPlayer.lektionen[daten.id] = { bestanden, pct, datum: Date.now() };
         }
         if (bestanden && typeof addXP === "function") addXP(50);
+        if (bestanden && typeof addZeit === "function") addZeit(5);
         if (bestanden) {
             const notice = {
                 id: daten.id,
@@ -16588,6 +16589,7 @@ function finishLektion(pct) {
                     kursKomplett = true;
                     var abgeschlossenerKursTitel = currentPlayer.pendingKurs.title;
                     currentPlayer.pendingKurs = null;
+                    if (typeof addZeit === "function") addZeit(15);
                 }
             }
             if (typeof showToast === "function") {

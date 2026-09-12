@@ -100,6 +100,14 @@
             while (keys.length > 60) {
                 delete currentPlayer.studyLog[keys.shift()];
             }
+            // Lernauftrag (Zeit-Ziel) gerade jetzt erreicht -> einmalig Bonus-Zeit
+            const goal = currentPlayer.studyGoal;
+            if (goal && goal.minutes && (!goal.day || goal.day === day) && !goal.rewarded
+                && currentPlayer.studyLog[day] >= goal.minutes * 60) {
+                goal.rewarded = true;
+                if (typeof addZeit === "function") addZeit(10);
+                if (typeof showToast === "function") showToast("Auftrag erledigt: +10 Bonus-Minuten ⏳", "success");
+            }
             if (typeof savePlayerProgress === "function") savePlayerProgress();
             if (typeof renderStudyGoalCard === "function") renderStudyGoalCard();
         }
@@ -830,6 +838,7 @@
                 });
                 currentPlayer.testHistory = currentPlayer.testHistory.slice(0, 10);
                 currentPlayer.pendingTest = null;
+                if (pct >= 80 && typeof addZeit === "function") addZeit(10);
                 checkAndAwardBadges();
                 savePlayerProgress();
                 updateMenuGamification();

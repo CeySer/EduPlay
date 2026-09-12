@@ -514,6 +514,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <p class="text-[11px] text-gray-500">Für das Kind im Fokus.</p>
 
                             <div id="dash-test-results" class="space-y-3"></div>
+                            <div id="dash-test-notices" class="space-y-2"></div>
 
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Themen (nach Klasse)</label>
@@ -638,9 +639,16 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <div class="flex gap-2">
                                 <input type="text" id="dash-reward-name" placeholder="Belohnung (z.B. Extra-TV)"
                                     class="input-modern flex-1 text-sm">
-                                <input type="number" id="dash-reward-cost" placeholder="Coins"
-                                    class="input-modern w-24 text-sm">
+                                <input type="number" id="dash-reward-cost" placeholder="Betrag"
+                                    class="input-modern w-20 text-sm">
+                                <select id="dash-reward-currency" class="input-modern w-28 text-sm">
+                                    <option value="coins">🪙 Coins</option>
+                                    <option value="zeit">⏳ Minuten</option>
+                                </select>
                             </div>
+                            <select id="dash-reward-child" class="input-modern text-sm w-full">
+                                <option value="">Alle Kinder</option>
+                            </select>
                             <button onclick="addRewardFromDashboard()" class="btn-primary w-full text-center">Belohnung
                                 hinzufügen</button>
                             <div id="dash-reward-list" class="space-y-1.5"></div>
@@ -1527,7 +1535,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-2 mt-4">
+                    <div class="grid grid-cols-4 gap-2 mt-4">
                         <div class="bg-white/5 rounded-xl py-2 text-center">
                             <div id="menu-streak" class="text-sm font-black text-orange-400">🔥 0 Tage</div>
                             <div class="text-[10px] font-bold text-gray-500">Lernserie</div>
@@ -1535,6 +1543,10 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div class="bg-white/5 rounded-xl py-2 text-center">
                             <div class="text-sm font-black text-amber-400">🪙 <span id="menu-coins">0</span></div>
                             <div class="text-[10px] font-bold text-gray-500">Coins</div>
+                        </div>
+                        <div class="bg-white/5 rounded-xl py-2 text-center">
+                            <div class="text-sm font-black text-indigo-300">⏳ <span id="menu-zeit">0</span></div>
+                            <div class="text-[10px] font-bold text-gray-500">Minuten</div>
                         </div>
                         <div class="bg-white/5 rounded-xl py-2 text-center">
                             <div class="text-sm font-black text-emerald-400">🏅 <span id="menu-badge-count">0</span>
@@ -1795,7 +1807,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div class="glass-card p-5">
                     <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen</h3>
                     <p class="text-xs text-gray-400 mb-4">Du hast <span id="rewards-coin-balance"
-                            class="text-yellow-400 font-bold">0</span> Coins.</p>
+                            class="text-yellow-400 font-bold">0</span> Coins und <span id="rewards-zeit-balance"
+                            class="text-indigo-300 font-bold">0</span> Bonus-Minuten.</p>
                     <div id="rewards-list" class="space-y-3"></div>
                 </div>
             </div>
@@ -2694,13 +2707,13 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=13.1"></script>
+    <script src="app-config.js?v=13.2"></script>
     <script src="app-ui.js?v=9.5"></script>
-    <script src="family-dashboard.js?v=11.32"></script>
+    <script src="family-dashboard.js?v=11.34"></script>
     <script src="dev-admin.js?v=1.7"></script>
-    <script src="ui-common.js?v=9.2"></script>
+    <script src="ui-common.js?v=9.3"></script>
     <script src="ki-coach.js?v=1.1"></script>
-    <script src="quiz-core.js?v=10.8"></script>
+    <script src="quiz-core.js?v=10.9"></script>
     <!-- Die neun Kurs-Dateien (zusammen rund 2 MB) werden nicht mehr hier
          geladen, sondern von lektionen-loader.js im Leerlauf nachgeholt bzw.
          spaetestens beim ersten Antippen von "Kurse". Die Dateiliste und die

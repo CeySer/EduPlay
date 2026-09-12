@@ -1154,6 +1154,16 @@ const geladen = _questionCounts[key] || 0;
             updateMenuGamification();
         }
 
+        // Zweite Waehrung neben Coins: "Zeit" (Minuten), die Kinder fuer
+        // bestandene Lektionen/Kurse/Tests und einen erledigten Lernauftrag
+        // bekommen und im Belohnungs-Shop gegen Zeit-Belohnungen eintauschen
+        // koennen (z.B. Bonus-Bildschirmzeit).
+        function addZeit(minutes) {
+            if (!currentPlayer || !(minutes > 0)) return;
+            currentPlayer.zeit = (currentPlayer.zeit || 0) + minutes;
+            savePlayerProgress();
+        }
+
         function awardXPToProfile(key, amount) {
             const p = ALL_PROFILES[key];
             if (!p) return;
@@ -1229,13 +1239,25 @@ const geladen = _questionCounts[key] || 0;
         function addRewardFromDashboard() {
             const name = cleanInput(document.getElementById("dash-reward-name").value, 40);
             const cost = parseInt(document.getElementById("dash-reward-cost").value);
-            if (!name || !cost || cost <= 0) return showToast("Bitte Name und Coins angeben!", "error");
-            familyRewards.push({ id: "r_" + Date.now(), name, cost });
+            if (!name || !cost || cost <= 0) return showToast("Bitte Name und Betrag angeben!", "error");
+            const currency = (document.getElementById("dash-reward-currency") || {}).value === "zeit" ? "zeit" : "coins";
+            const forChild = (document.getElementById("dash-reward-child") || {}).value || null;
+            familyRewards.push({ id: "r_" + Date.now(), name, cost, currency, forChild });
             saveFamilyRewards();
             document.getElementById("dash-reward-name").value = "";
             document.getElementById("dash-reward-cost").value = "";
             renderDashRewards();
             showToast("Belohnung hinzugefügt!", "success");
+        }
+
+        function fillDashRewardChildSelect() {
+            const sel = document.getElementById("dash-reward-child");
+            if (!sel) return;
+            const keys = Object.keys(ALL_PROFILES || {}).filter(k => ALL_PROFILES[k] && !ALL_PROFILES[k].isGuest);
+            const prev = sel.value;
+            sel.innerHTML = '<option value="">Alle Kinder</option>' +
+                keys.map(k => `<option value="${k}">${esc(ALL_PROFILES[k].name)}</option>`).join("");
+            if (prev && keys.indexOf(prev) !== -1) sel.value = prev;
         }
 
         function renderDashRewards() {
@@ -1244,13 +1266,18 @@ const geladen = _questionCounts[key] || 0;
             const rewards = familyRewards || [];
             list.innerHTML = rewards.length === 0 ?
                 '<div class="text-gray-500 text-sm text-center py-2">Noch keine Belohnungen angelegt</div>' :
-                rewards.map(r =>
-                    `<div class="flex justify-between items-center bg-white/5 border border-white/5 rounded-xl px-3 py-2">
-                        <span class="text-white text-sm">${esc(r.name)}</span>
-                        <span class="text-yellow-400 text-xs">🪙 ${r.cost}</span>
-                        <button onclick="deleteReward('${r.id}')" class="text-rose-400 font-bold text-xs hover:text-rose-300">❌</button>
-                    </div>`
-                ).join('');
+                rewards.map(r => {
+                    const icon = r.currency === "zeit" ? "⏳" : "🪙";
+                    const wem = (r.forChild && ALL_PROFILES[r.forChild]) ? esc(ALL_PROFILES[r.forChild].name) : "Alle Kinder";
+                    return `<div class="flex justify-between items-center gap-2 bg-white/5 border border-white/5 rounded-xl px-3 py-2">
+                        <div class="min-w-0 flex-1">
+                            <div class="text-white text-sm truncate">${esc(r.name)}</div>
+                            <div class="text-[10px] text-gray-500">${wem}</div>
+                        </div>
+                        <span class="text-yellow-400 text-xs shrink-0">${icon} ${r.cost}</span>
+                        <button onclick="deleteReward('${r.id}')" class="shrink-0 text-rose-400 font-bold text-xs hover:text-rose-300">❌</button>
+                    </div>`;
+                }).join('');
         }
 
         function deleteReward(id) {

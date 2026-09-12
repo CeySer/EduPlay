@@ -12,7 +12,7 @@
 //  würde ihn nur stören.
 // ============================================================
 
-const CACHE = 'eduplay-v51';
+const CACHE = 'eduplay-v52';
 
 // Alles, was die App zum Starten braucht. Die Fragen-Dateien landen
 // beim ersten Laden automatisch im Cache (siehe unten), damit diese
@@ -26,6 +26,7 @@ const GRUNDGERUEST = [
     './lektionen-loader.js',
     './fragen/manifest.js',
     './fragen-vorladen.js',
+        './confetti.js',
         './app-config.js',
     './app-ui.js',
     './family-dashboard.js',

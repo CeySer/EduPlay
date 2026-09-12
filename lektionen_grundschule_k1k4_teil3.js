@@ -683,6 +683,7 @@
                     id: "brk3l2_l4", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
                     subject: "mathe", topic: "brueche", difficulty: "leicht", points: 10,
                     question: "Vier von vier =", answers: ["1 Ganzes", "1/4", "nichts", "1/2"], correct: 0,
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/></svg>",
                     explanation: "alles."
                 }
             ], mittel: [
@@ -690,12 +691,14 @@
                     id: "brk3l2_m1", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
                     subject: "mathe", topic: "brueche", difficulty: "mittel", points: 10,
                     question: "Zwei von vier sind wie …", answers: ["1/2", "1/8", "3/4", "0"], correct: 0,
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     explanation: "2/4=1/2."
                 },
                 {
                     id: "brk3l2_m2", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
                     subject: "mathe", topic: "brueche", difficulty: "mittel", points: 10,
                     question: "Was ist mehr: 3/4 oder 1/4?", answers: ["3/4", "1/4", "gleich", "keins"], correct: 0,
+                    grafik: "<svg viewBox='0 0 100.0 46' style='width:100%;max-width:100px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='0.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='12.1' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='24.2' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='36.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='54.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='66.1' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='78.2' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='90.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/></svg>",
                     explanation: "mehr dunkle Teile."
                 },
                 {
@@ -716,12 +719,14 @@
                     id: "brk3l2_s1", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
                     subject: "mathe", topic: "brueche", difficulty: "schwer", points: 10,
                     question: "Was ist der Nenner?", answers: ["Die Zahl unten", "Die Zahl oben", "Nur die dunklen", "Immer die Null"], correct: 0,
+                    grafik: "<svg viewBox='0 0 120 130' style='width:100%;max-width:140px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='30' y='10' width='60' height='44' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><text x='60' y='38' text-anchor='middle' font-size='22' font-weight='800' font-family='sans-serif' fill='#1f2937'>3</text><line x1='16' y1='65' x2='104' y2='65' stroke='#64748b' stroke-width='4' stroke-linecap='round'/><rect x='30' y='76' width='60' height='44' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><text x='60' y='104' text-anchor='middle' font-size='22' font-weight='800' font-family='sans-serif' fill='#1f2937'>4</text></svg>",
                     explanation: "Der Nenner steht unten und sagt, in wie viele Teile das Ganze geteilt ist."
                 },
                 {
                     id: "brk3l2_s2", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
                     subject: "mathe", topic: "brueche", difficulty: "schwer", points: 10,
                     question: "Zähler ist …", answers: ["die dunklen Teile", "immer 10", "die Ampel", "Norden"], correct: 0,
+                    grafik: "<svg viewBox='0 0 120 130' style='width:100%;max-width:140px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='30' y='10' width='60' height='44' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><text x='60' y='38' text-anchor='middle' font-size='22' font-weight='800' font-family='sans-serif' fill='#1f2937'>3</text><line x1='16' y1='65' x2='104' y2='65' stroke='#64748b' stroke-width='4' stroke-linecap='round'/><rect x='30' y='76' width='60' height='44' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><text x='60' y='104' text-anchor='middle' font-size='22' font-weight='800' font-family='sans-serif' fill='#1f2937'>4</text></svg>",
                     explanation: "oben / genommen."
                 },
                 {
@@ -734,6 +739,7 @@
                     id: "brk3l2_s4", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
                     subject: "mathe", topic: "brueche", difficulty: "schwer", points: 10,
                     question: "Welcher Bruch ist am größten?", answers: ["3/4", "1/4", "1/2", "1/8"], correct: 0,
+                    grafik: "<svg viewBox='0 0 208.0 46' style='width:100%;max-width:208px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='0.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='12.1' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='24.2' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='36.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='54.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='66.1' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='78.2' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='90.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='108.0' y='6' width='21.8' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='132.2' y='6' width='21.8' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='162.0' y='6' width='3.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='168.1' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='174.1' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='180.2' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='186.2' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='192.3' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='198.4' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='204.4' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/></svg>",
                     explanation: "3/4."
                 }
             ] },
@@ -763,18 +769,21 @@
                     id: "brk3l2_t4", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
                     subject: "mathe", topic: "brueche", difficulty: "mittel", points: 10,
                     question: "2/4 =", answers: ["1/2", "1/8", "3/4", "0"], correct: 0,
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     explanation: "Hälfte."
                 },
                 {
                     id: "brk3l2_t5", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
                     subject: "mathe", topic: "brueche", difficulty: "mittel", points: 10,
                     question: "Größer?", answers: ["3/4", "1/4", "gleich", "keins"], correct: 0,
+                    grafik: "<svg viewBox='0 0 100.0 46' style='width:100%;max-width:100px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='0.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='12.1' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='24.2' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='36.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='54.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='66.1' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='78.2' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='90.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/></svg>",
                     explanation: "3/4."
                 },
                 {
                     id: "brk3l2_t6", category: "kurs_bruch_k3_l2", area: "schule", grade: 3,
                     subject: "mathe", topic: "brueche", difficulty: "mittel", points: 10,
                     question: "4/4 =", answers: ["1 Ganzes", "1/4", "1/2", "0"], correct: 0,
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/></svg>",
                     explanation: "Ganzes."
                 }
         ],

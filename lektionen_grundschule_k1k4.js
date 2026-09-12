@@ -1153,6 +1153,7 @@
                     difficulty: "leicht",
                     points: 10,
                     question: "1/2 ist …",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='76.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='76.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["die Hälfte", "ein Viertel", "das Ganze", "nichts"],
                     correct: 0,
                     explanation: "1 von 2 Teilen."
@@ -1167,6 +1168,7 @@
                     difficulty: "leicht",
                     points: 10,
                     question: "1/4 ist …",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["ein Viertel", "die Hälfte", "drei Ganze", "nichts"],
                     correct: 0,
                     explanation: "1 von 4 Teilen."
@@ -1181,6 +1183,7 @@
                     difficulty: "leicht",
                     points: 10,
                     question: "2 gleiche Teile vom Kuchen heißen …",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='76.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='76.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["Hälften", "Viertel", "Ganze drei", "Nenner nur"],
                     correct: 0,
                     explanation: "Zwei gleiche Teile = Hälften."
@@ -1195,6 +1198,7 @@
                     difficulty: "leicht",
                     points: 10,
                     question: "4/4 sind …",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["das Ganze", "ein Viertel", "nichts", "eine Hälfte"],
                     correct: 0,
                     explanation: "Alle Teile = 1 Ganzes."
@@ -1211,6 +1215,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "2/4 sind dasselbe wie …",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["1/2", "1/4", "3/4", "0"],
                     correct: 0,
                     explanation: "Zwei Viertel = eine Hälfte."
@@ -1225,6 +1230,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "Was ist größer: 1/2 oder 1/4?",
+                    grafik: "<svg viewBox='0 0 100.0 46' style='width:100%;max-width:100px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='0.0' y='6' width='21.8' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='24.2' y='6' width='21.8' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='54.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='66.1' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='78.2' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='90.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/></svg>",
                     answers: ["1/2", "1/4", "gleich", "keins"],
                     correct: 0,
                     explanation: "Die Hälfte ist mehr als ein Viertel."
@@ -1253,6 +1259,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "Drei Kinder teilen fair: jedes bekommt …",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='49.3' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='73.3' y='40.0' width='49.3' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><rect x='126.7' y='40.0' width='49.3' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["1/3", "1/2", "1/4", "das Ganze"],
                     correct: 0,
                     explanation: "Drei gleiche Teile = Drittel."
@@ -1269,6 +1276,7 @@
                     difficulty: "schwer",
                     points: 10,
                     question: "Nenner bei 3/4 ist …",
+                    grafik: "<svg viewBox='0 0 120 130' style='width:100%;max-width:140px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='30' y='10' width='60' height='44' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><text x='60' y='38' text-anchor='middle' font-size='22' font-weight='800' font-family='sans-serif' fill='#1f2937'>3</text><line x1='16' y1='65' x2='104' y2='65' stroke='#64748b' stroke-width='4' stroke-linecap='round'/><rect x='30' y='76' width='60' height='44' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><text x='60' y='104' text-anchor='middle' font-size='22' font-weight='800' font-family='sans-serif' fill='#1f2937'>4</text></svg>",
                     answers: ["4", "3", "7", "0"],
                     correct: 0,
                     explanation: "Unten steht der Nenner."
@@ -1283,6 +1291,7 @@
                     difficulty: "schwer",
                     points: 10,
                     question: "Zähler bei 3/4 ist …",
+                    grafik: "<svg viewBox='0 0 120 130' style='width:100%;max-width:140px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='30' y='10' width='60' height='44' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><text x='60' y='38' text-anchor='middle' font-size='22' font-weight='800' font-family='sans-serif' fill='#1f2937'>3</text><line x1='16' y1='65' x2='104' y2='65' stroke='#64748b' stroke-width='4' stroke-linecap='round'/><rect x='30' y='76' width='60' height='44' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><text x='60' y='104' text-anchor='middle' font-size='22' font-weight='800' font-family='sans-serif' fill='#1f2937'>4</text></svg>",
                     answers: ["3", "4", "1", "0"],
                     correct: 0,
                     explanation: "Oben steht der Zähler."
@@ -1311,6 +1320,7 @@
                     difficulty: "schwer",
                     points: 10,
                     question: "Welcher Bruch ist am kleinsten?",
+                    grafik: "<svg viewBox='0 0 208.0 46' style='width:100%;max-width:208px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='0.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='12.1' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='24.2' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='36.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='54.0' y='6' width='21.8' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='78.2' y='6' width='21.8' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='108.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='120.1' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='132.2' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='144.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='162.0' y='6' width='46.0' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/></svg>",
                     answers: ["1/4", "1/2", "3/4", "1/1"],
                     correct: 0,
                     explanation: "1/4 ist das kleinste Stück hier."
@@ -1328,6 +1338,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "1/2 bedeutet …",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='76.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='76.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["die Hälfte", "ein Viertel", "nichts", "drei Ganze"],
                     correct: 0,
                     explanation: "Hälfte."
@@ -1342,6 +1353,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "1/4 bedeutet …",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["ein Viertel", "die Hälfte", "das Ganze", "zwei Ganze"],
                     correct: 0,
                     explanation: "Viertel."
@@ -1356,6 +1368,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "2/4 =",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["1/2", "1/8", "3/4", "0"],
                     correct: 0,
                     explanation: "kürzen."
@@ -1370,6 +1383,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "4 von 4 Teilen =",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["1 Ganzes", "1/4", "1/2", "0"],
                     correct: 0,
                     explanation: "Alles."
@@ -1384,6 +1398,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "Was ist größer?",
+                    grafik: "<svg viewBox='0 0 208.0 46' style='width:100%;max-width:208px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='0.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='12.1' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='24.2' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='36.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='54.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='66.1' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='78.2' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='90.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='108.0' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='120.1' y='6' width='9.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='132.2' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='144.4' y='6' width='9.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='162.0' y='6' width='3.6' height='34' rx='3' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='1.3'/><rect x='168.1' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='174.1' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='180.2' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='186.2' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='192.3' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='198.4' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/><rect x='204.4' y='6' width='3.6' height='34' rx='3' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='1.3'/></svg>",
                     answers: ["3/4", "1/4", "2/4", "1/8"],
                     correct: 0,
                     explanation: "3/4 sind drei von vier Teilen, 1/4 nur eines. 3/4 ist größer."
@@ -2389,6 +2404,7 @@
                     difficulty: "schwer",
                     points: 10,
                     question: "2/4 gekürzt?",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["1/2", "1/4", "3/4", "2/2"],
                     correct: 0,
                     explanation: "durch 2 kürzen."
@@ -2403,6 +2419,7 @@
                     difficulty: "schwer",
                     points: 10,
                     question: "500 g von 1 kg sind …",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='76.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='76.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["die Hälfte", "ein Viertel", "das Ganze", "ein Zehntel"],
                     correct: 0,
                     explanation: "500/1000 = 1/2."
@@ -2504,6 +2521,7 @@
                     difficulty: "mittel",
                     points: 10,
                     question: "2/4 =",
+                    grafik: "<svg viewBox='0 0 200 140' style='width:100%;max-width:220px;height:auto;display:block;margin:6px auto' xmlns='http://www.w3.org/2000/svg'><rect x='20.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='60.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(244,114,182,0.85)' stroke='#64748b' stroke-width='2'/><rect x='100.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/><rect x='140.0' y='40.0' width='36.0' height='60' rx='6' fill='rgba(226,232,240,0.9)' stroke='#64748b' stroke-width='2'/></svg>",
                     answers: ["1/2", "1/8", "3/4", "0"],
                     correct: 0,
                     explanation: "Hälfte."

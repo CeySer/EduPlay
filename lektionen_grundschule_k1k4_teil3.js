@@ -813,7 +813,8 @@
                     id: "kak3l2_l2", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "leicht", points: 10,
                     question: "Was zeigt die Legende einer Karte?", answers: ["Was die Zeichen bedeuten", "Wie alt die Karte ist", "Wer die Karte gemalt hat", "Wie schwer die Karte ist"], correct: 0,
-                    explanation: "In der Legende steht, wofür jedes Symbol steht – zum Beispiel ein Kreuz für eine Kirche."
+                    explanation: "In der Legende steht, wofür jedes Symbol steht – zum Beispiel ein Kreuz für eine Kirche.",
+                    grafik: "<svg viewBox='0 0 124 100' style='width:100%;max-width:140px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='8' y='8' width='60' height='84' rx='4' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><path d='M16,70 Q30,50 44,66 T60,55' fill='none' stroke='#38bdf8' stroke-width='3'/><circle cx='30' cy='30' r='9' fill='#34d399' opacity='0.8'/><rect x='78' y='16' width='38' height='68' rx='4' fill='#1e293b' stroke='#94a3b8' stroke-width='2'/><rect x='86' y='26' width='10' height='10' fill='#a16207'/><line x1='100' y1='31' x2='110' y2='31' stroke='#94a3b8' stroke-width='2'/><rect x='86' y='44' width='10' height='10' fill='#34d399'/><line x1='100' y1='49' x2='110' y2='49' stroke='#94a3b8' stroke-width='2'/><rect x='86' y='62' width='10' height='10' fill='#a16207'/><line x1='100' y1='67' x2='110' y2='67' stroke='#94a3b8' stroke-width='2'/></svg>"
                 },
                 {
                     id: "kak3l2_l3", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
@@ -825,7 +826,8 @@
                     id: "kak3l2_l4", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "leicht", points: 10,
                     question: "Wonach richtest du die Karte aus?", answers: ["Nach Norden", "Nach der Uhrzeit", "Nach dem Wetter", "Nach der Farbe"], correct: 0,
-                    explanation: "Dreh die Karte so, dass ihr Norden auch in der Wirklichkeit nach Norden zeigt. Dann stimmt alles."
+                    explanation: "Dreh die Karte so, dass ihr Norden auch in der Wirklichkeit nach Norden zeigt. Dann stimmt alles.",
+                    grafik: "<svg viewBox='0 0 120 120' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><circle cx='60' cy='60' r='46' fill='#1e293b' stroke='#94a3b8' stroke-width='3'/><polygon points='60,20 68,60 60,54 52,60' fill='#ef4444'/><polygon points='60,100 68,60 60,66 52,60' fill='#e5e7eb'/><circle cx='60' cy='60' r='4' fill='#e5e7eb'/></svg>"
                 }
             ], mittel: [
                 {
@@ -838,44 +840,51 @@
                     id: "kak3l2_m2", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
                     question: "Du hältst einen Kompass. Welche Richtung findest du zuerst?", answers: ["Norden", "Süden", "Westen", "Osten"], correct: 0,
-                    explanation: "Die Nadel zeigt nach Norden. Stehst du mit dem Gesicht nach Norden, ist rechts Osten und links Westen."
+                    explanation: "Die Nadel zeigt nach Norden. Stehst du mit dem Gesicht nach Norden, ist rechts Osten und links Westen.",
+                    grafik: "<svg viewBox='0 0 120 120' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><circle cx='60' cy='60' r='46' fill='#1e293b' stroke='#94a3b8' stroke-width='3'/><polygon points='60,20 68,60 60,54 52,60' fill='#ef4444'/><polygon points='60,100 68,60 60,66 52,60' fill='#e5e7eb'/><circle cx='60' cy='60' r='4' fill='#e5e7eb'/></svg>"
                 },
                 {
                     id: "kak3l2_m3", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
                     question: "Am Morgen steht die Sonne links von dir. In welche Richtung schaust du?", answers: ["Nach Norden", "Nach Süden", "Nach Westen", "Nach Osten"], correct: 0,
-                    explanation: "Morgens steht die Sonne im Osten. Ist Osten links, dann schaust du nach Norden."
+                    explanation: "Morgens steht die Sonne im Osten. Ist Osten links, dann schaust du nach Norden.",
+                    grafik: "<svg viewBox='0 0 120 90' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><line x1='6' y1='72' x2='114' y2='72' stroke='#94a3b8' stroke-width='3'/><path d='M40,72 A20,20 0 0 1 80,72 Z' fill='rgba(245,158,11,0.32)' stroke='#f59e0b' stroke-width='2.5'/><line x1='60' y1='34' x2='60' y2='22' stroke='#f59e0b' stroke-width='3' stroke-linecap='round'/><line x1='38' y1='42' x2='29' y2='33' stroke='#f59e0b' stroke-width='3' stroke-linecap='round'/><line x1='82' y1='42' x2='91' y2='33' stroke='#f59e0b' stroke-width='3' stroke-linecap='round'/><polygon points='60,72 55,64 65,64' fill='#f59e0b'/></svg>"
                 },
                 {
                     id: "kak3l2_m4", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
                     question: "Was bedeutet ein blaues Band auf der Karte?", answers: ["Einen Fluss", "Eine Straße", "Eine Bahnlinie", "Eine Grenze"], correct: 0,
-                    explanation: "Blau ist immer Wasser. Ein schmales blaues Band ist ein Fluss oder Bach."
+                    explanation: "Blau ist immer Wasser. Ein schmales blaues Band ist ein Fluss oder Bach.",
+                    grafik: "<svg viewBox='0 0 100 80' style='width:100%;max-width:110px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><path d='M10,20 Q40,10 50,35 T90,45 Q100,55 90,70' fill='none' stroke='#38bdf8' stroke-width='7' stroke-linecap='round'/></svg>"
                 }
             ], schwer: [
                 {
                     id: "kak3l2_s1", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "schwer", points: 10,
                     question: "Du gehst nach Norden und drehst dich um. Wohin gehst du jetzt?", answers: ["Nach Süden", "Weiter nach Norden", "Nach Westen", "Nach Osten"], correct: 0,
-                    explanation: "Beim Umdrehen läufst du in die Gegenrichtung – und die Gegenrichtung von Norden ist Süden."
+                    explanation: "Beim Umdrehen läufst du in die Gegenrichtung – und die Gegenrichtung von Norden ist Süden.",
+                    grafik: "<svg viewBox='0 0 120 120' style='width:100%;max-width:120px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><circle cx='60' cy='60' r='10' fill='#e5e7eb'/><path d='M60,20 A40,40 0 1 1 20,60' fill='none' stroke='#f59e0b' stroke-width='6' stroke-linecap='round'/><polygon points='20,60 30,52 30,68' fill='#f59e0b'/><path d='M60,100 A40,40 0 1 1 100,60' fill='none' stroke='#94a3b8' stroke-width='6' stroke-linecap='round' opacity='0.4'/></svg>"
                 },
                 {
                     id: "kak3l2_s2", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "schwer", points: 10,
                     question: "Wozu braucht eine Karte einen Maßstab?", answers: ["Er zeigt echte Entfernungen", "Er zeigt die Uhrzeit", "Er zeigt die Höhe", "Er zeigt das Wetter"], correct: 0,
-                    explanation: "Der Maßstab sagt dir, wie viele Meter in der Wirklichkeit einem Zentimeter auf der Karte entsprechen."
+                    explanation: "Der Maßstab sagt dir, wie viele Meter in der Wirklichkeit einem Zentimeter auf der Karte entsprechen.",
+                    grafik: "<svg viewBox='0 0 140 90' style='width:100%;max-width:160px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='10' y='40' width='120' height='20' rx='3' fill='#1e293b' stroke='#94a3b8' stroke-width='2'/><line x1='10' y1='40' x2='10' y2='60' stroke='#e5e7eb' stroke-width='1.5'/><line x1='22' y1='40' x2='22' y2='52' stroke='#94a3b8' stroke-width='1.5'/><line x1='34' y1='40' x2='34' y2='60' stroke='#94a3b8' stroke-width='1.5'/><line x1='46' y1='40' x2='46' y2='52' stroke='#94a3b8' stroke-width='1.5'/><line x1='58' y1='40' x2='58' y2='60' stroke='#94a3b8' stroke-width='1.5'/><line x1='70' y1='40' x2='70' y2='52' stroke='#e5e7eb' stroke-width='1.5'/><line x1='82' y1='40' x2='82' y2='60' stroke='#94a3b8' stroke-width='1.5'/><line x1='94' y1='40' x2='94' y2='52' stroke='#94a3b8' stroke-width='1.5'/><line x1='106' y1='40' x2='106' y2='60' stroke='#94a3b8' stroke-width='1.5'/><line x1='118' y1='40' x2='118' y2='52' stroke='#94a3b8' stroke-width='1.5'/><line x1='130' y1='40' x2='130' y2='60' stroke='#e5e7eb' stroke-width='1.5'/><line x1='10' y1='76' x2='130' y2='76' stroke='#94a3b8' stroke-width='2'/><polygon points='10,76 18,71 18,81' fill='#f59e0b'/><polygon points='130,76 122,71 122,81' fill='#f59e0b'/><text x='70' y='72' text-anchor='middle' font-size='11' fill='#94a3b8' font-family='sans-serif'>in Wirklichkeit</text></svg>"
                 },
                 {
                     id: "kak3l2_s3", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "schwer", points: 10,
                     question: "Was zeigt ein Stadtplan genauer als eine Landkarte?", answers: ["Einzelne Straßen", "Ganze Länder", "Alle Kontinente", "Die Meere"], correct: 0,
-                    explanation: "Je kleiner der Ausschnitt, desto mehr Einzelheiten passen darauf. Ein Stadtplan zeigt jede Straße."
+                    explanation: "Je kleiner der Ausschnitt, desto mehr Einzelheiten passen darauf. Ein Stadtplan zeigt jede Straße.",
+                    grafik: "<svg viewBox='0 0 116 116' style='width:100%;max-width:126px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='90' height='90' rx='6' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><path d='M14,60 Q30,40 46,58 T80,44' fill='none' stroke='#38bdf8' stroke-width='2.5'/><circle cx='30' cy='24' r='8' fill='#34d399' opacity='0.7'/><circle cx='66' cy='70' r='24' fill='rgba(15,23,42,0.35)' stroke='#f59e0b' stroke-width='4'/><line x1='84' y1='88' x2='104' y2='108' stroke='#f59e0b' stroke-width='6' stroke-linecap='round'/></svg>"
                 },
                 {
                     id: "kak3l2_s4", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "schwer", points: 10,
                     question: "Du willst von der Schule nach Hause. Was hilft dir?", answers: ["Ein Stadtplan", "Eine Weltkarte", "Ein Kalender", "Ein Lineal"], correct: 0,
-                    explanation: "Für kurze Wege im Ort brauchst du einen Stadtplan – die Weltkarte ist viel zu grob."
+                    explanation: "Für kurze Wege im Ort brauchst du einen Stadtplan – die Weltkarte ist viel zu grob.",
+                    grafik: "<svg viewBox='0 0 120 105' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><path d='M14,20 L44,10 L74,20 L104,10 L104,90 L74,100 L44,90 L14,100 Z' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2.5'/><line x1='44' y1='10' x2='44' y2='90' stroke='#94a3b8' stroke-width='1.5' stroke-dasharray='4,3'/><line x1='74' y1='20' x2='74' y2='100' stroke='#94a3b8' stroke-width='1.5' stroke-dasharray='4,3'/><circle cx='60' cy='52' r='13' fill='rgba(245,158,11,0.32)' stroke='#f59e0b' stroke-width='2.5'/><polygon points='60,80 52,58 68,58' fill='#f59e0b'/><circle cx='60' cy='52' r='4' fill='#1e293b'/></svg>"
                 }
             ] },
         test: [
@@ -883,7 +892,8 @@
                     id: "kak3l2_t1", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
                     question: "Wo steht auf der Karte, was die Zeichen bedeuten?", answers: ["In der Legende", "Im Maßstab", "Im Titel", "Am Rand unten"], correct: 0,
-                    explanation: "Die Legende erklärt jedes Symbol."
+                    explanation: "Die Legende erklärt jedes Symbol.",
+                    grafik: "<svg viewBox='0 0 124 100' style='width:100%;max-width:140px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='8' y='8' width='60' height='84' rx='4' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><path d='M16,70 Q30,50 44,66 T60,55' fill='none' stroke='#38bdf8' stroke-width='3'/><circle cx='30' cy='30' r='9' fill='#34d399' opacity='0.8'/><rect x='78' y='16' width='38' height='68' rx='4' fill='#1e293b' stroke='#94a3b8' stroke-width='2'/><rect x='86' y='26' width='10' height='10' fill='#a16207'/><line x1='100' y1='31' x2='110' y2='31' stroke='#94a3b8' stroke-width='2'/><rect x='86' y='44' width='10' height='10' fill='#34d399'/><line x1='100' y1='49' x2='110' y2='49' stroke='#94a3b8' stroke-width='2'/><rect x='86' y='62' width='10' height='10' fill='#a16207'/><line x1='100' y1='67' x2='110' y2='67' stroke='#94a3b8' stroke-width='2'/></svg>"
                 },
                 {
                     id: "kak3l2_t2", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
@@ -895,13 +905,15 @@
                     id: "kak3l2_t3", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
                     question: "Wonach zeigt die Kompassnadel?", answers: ["Nach Norden", "Nach Süden", "Nach Westen", "Nach Osten"], correct: 0,
-                    explanation: "Die rote Spitze zeigt immer nach Norden."
+                    explanation: "Die rote Spitze zeigt immer nach Norden.",
+                    grafik: "<svg viewBox='0 0 120 120' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><circle cx='60' cy='60' r='46' fill='#1e293b' stroke='#94a3b8' stroke-width='3'/><polygon points='60,20 68,60 60,54 52,60' fill='#ef4444'/><polygon points='60,100 68,60 60,66 52,60' fill='#e5e7eb'/><circle cx='60' cy='60' r='4' fill='#e5e7eb'/></svg>"
                 },
                 {
                     id: "kak3l2_t4", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
                     question: "Was sagt dir der Maßstab?", answers: ["Die echte Entfernung", "Die Uhrzeit", "Die Himmelsrichtung", "Die Farbe"], correct: 0,
-                    explanation: "Er rechnet Zentimeter auf der Karte in Meter in der Wirklichkeit um."
+                    explanation: "Er rechnet Zentimeter auf der Karte in Meter in der Wirklichkeit um.",
+                    grafik: "<svg viewBox='0 0 140 90' style='width:100%;max-width:160px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='10' y='40' width='120' height='20' rx='3' fill='#1e293b' stroke='#94a3b8' stroke-width='2'/><line x1='10' y1='40' x2='10' y2='60' stroke='#e5e7eb' stroke-width='1.5'/><line x1='22' y1='40' x2='22' y2='52' stroke='#94a3b8' stroke-width='1.5'/><line x1='34' y1='40' x2='34' y2='60' stroke='#94a3b8' stroke-width='1.5'/><line x1='46' y1='40' x2='46' y2='52' stroke='#94a3b8' stroke-width='1.5'/><line x1='58' y1='40' x2='58' y2='60' stroke='#94a3b8' stroke-width='1.5'/><line x1='70' y1='40' x2='70' y2='52' stroke='#e5e7eb' stroke-width='1.5'/><line x1='82' y1='40' x2='82' y2='60' stroke='#94a3b8' stroke-width='1.5'/><line x1='94' y1='40' x2='94' y2='52' stroke='#94a3b8' stroke-width='1.5'/><line x1='106' y1='40' x2='106' y2='60' stroke='#94a3b8' stroke-width='1.5'/><line x1='118' y1='40' x2='118' y2='52' stroke='#94a3b8' stroke-width='1.5'/><line x1='130' y1='40' x2='130' y2='60' stroke='#e5e7eb' stroke-width='1.5'/><line x1='10' y1='76' x2='130' y2='76' stroke='#94a3b8' stroke-width='2'/><polygon points='10,76 18,71 18,81' fill='#f59e0b'/><polygon points='130,76 122,71 122,81' fill='#f59e0b'/><text x='70' y='72' text-anchor='middle' font-size='11' fill='#94a3b8' font-family='sans-serif'>in Wirklichkeit</text></svg>"
                 },
                 {
                     id: "kak3l2_t5", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
@@ -913,7 +925,8 @@
                     id: "kak3l2_t6", category: "kurs_karte_k3_l2", area: "schule", grade: 3,
                     subject: "sachunterricht", topic: "karte", difficulty: "mittel", points: 10,
                     question: "Wofür brauchst du eine Weltkarte statt eines Stadtplans?", answers: ["Für ganze Länder", "Für den Schulweg", "Für eine Straße", "Für ein Haus"], correct: 0,
-                    explanation: "Große Entfernungen passen nur auf eine Karte mit großem Ausschnitt."
+                    explanation: "Große Entfernungen passen nur auf eine Karte mit großem Ausschnitt.",
+                    grafik: "<svg viewBox='0 0 120 120' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><circle cx='60' cy='60' r='46' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><ellipse cx='60' cy='60' rx='46' ry='18' fill='none' stroke='#38bdf8' stroke-width='1.5'/><ellipse cx='60' cy='60' rx='18' ry='46' fill='none' stroke='#38bdf8' stroke-width='1.5'/><path d='M28,44 Q40,36 50,44 T74,42 Q84,46 80,56 Q70,58 66,68 Q56,74 46,68 Q34,64 28,44 Z' fill='#34d399' opacity='0.85'/><path d='M78,70 Q90,72 88,82 Q80,86 74,80 Q74,72 78,70 Z' fill='#34d399' opacity='0.85'/></svg>"
                 }
         ],
         bestehenAb: 0.75
@@ -1173,133 +1186,386 @@
         bestehenAb: 0.75
     },
     {
-        id: "eu_k4_l2", kurs: "europa_k4", order: 2, icon: "🇪🇺",
-        title: "Nachbarn", kurz: "wer grenzt an DE",
-        erklaerung: {
-            intro: "Nachbarn von Deutschland: u. a. <b>Frankreich, Polen, Österreich, Schweiz, Dänemark, Niederlande</b>.",
-            beispiele: [
-                "Westen oft: Frankreich, Niederlande, Belgien",
-                "Osten: Polen",
-                "Süden: Österreich, Schweiz",
-                "Norden: Dänemark"
-            ],
-            merksatz: "Himmelsrichtung + Nachbar zusammen merken."
+        "id": "bl_k4_l2",
+        "kurs": "bundeslaender_k4",
+        "order": 2,
+        "icon": "🧭",
+        "title": "Lage & Nachbarn",
+        "kurz": "Flächenländer, Stadtstaaten und wo die Bundesländer liegen",
+        "erklaerung": {
+            "intro": "Die meisten Bundesländer sind <b>Flächenländer</b> – große Gebiete mit vielen Städten. <b>Berlin, Hamburg und Bremen</b> sind <b>Stadtstaaten</b>: Stadt und Bundesland sind dort dasselbe. Manche Bundesländer grenzen ans Meer (Nordsee oder Ostsee), andere liegen mitten im Land.",
+            "beispiele": [
+                "Bayern ist ein Flächenland.<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Bayern</text></svg>",
+                "Hamburg ist ein Stadtstaat.<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Hamburg</text></svg>",
+                "Schleswig-Holstein grenzt an die Nordsee.<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Schleswig-Holstein</text></svg>"
+            ]
         },
-        uebung: { leicht: [
+        "uebung": {
+            "leicht": [
                 {
-                    id: "euk4l2_l1", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "leicht", points: 10,
-                    question: "Wie viele Nachbarn hat Deutschland im Osten?", answers: ["Zwei: Polen und Tschechien", "Nur eines, nämlich Polen", "Drei: Polen, Tschechien, Ungarn", "Keines, dort liegt das Meer"], correct: 0,
-                    explanation: "Polen grenzt an den Nordosten, Tschechien an den Südosten."
+                    "id": "blk4l2_l1",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "geografie",
+                    "difficulty": "leicht",
+                    "points": 10,
+                    "question": "Welches Bundesland liegt ganz im Norden, an der Grenze zu Dänemark?",
+                    "answers": [
+                        "Schleswig-Holstein",
+                        "Niedersachsen",
+                        "Brandenburg",
+                        "Sachsen-Anhalt"
+                    ],
+                    "correct": 0,
+                    "explanation": "Schleswig-Holstein ist das nördlichste Bundesland und grenzt direkt an Dänemark."
                 },
                 {
-                    id: "euk4l2_l2", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "leicht", points: 10,
-                    question: "Welches Land grenzt im Norden an Deutschland?", answers: ["Dänemark", "Italien", "Spanien", "Griechenland"], correct: 0,
-                    explanation: "Dänemark ist der einzige Nachbar im Norden. Rechts und links davon liegen Nordsee und Ostsee."
+                    "id": "blk4l2_l2",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "geografie",
+                    "difficulty": "leicht",
+                    "points": 10,
+                    "question": "Welches Bundesland liegt ganz im Süden Deutschlands?",
+                    "answers": [
+                        "Bayern",
+                        "Sachsen",
+                        "Saarland",
+                        "Hessen"
+                    ],
+                    "correct": 0,
+                    "explanation": "Bayern liegt im Süden, dort verlaufen auch die Alpen."
                 },
                 {
-                    id: "euk4l2_l3", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "leicht", points: 10,
-                    question: "Wie viele Nachbarländer hat Deutschland?", answers: ["Neun", "Drei", "Fünf", "Fünfzehn"], correct: 0,
-                    explanation: "Neun: Dänemark, Polen, Tschechien, Österreich, Schweiz, Frankreich, Luxemburg, Belgien und die Niederlande."
+                    "id": "blk4l2_l3",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "flaechenland_stadtstaat",
+                    "difficulty": "leicht",
+                    "points": 10,
+                    "question": "Ist Bayern ein Flächenland oder ein Stadtstaat?",
+                    "answers": [
+                        "Flächenland",
+                        "Stadtstaat",
+                        "Keins von beidem",
+                        "Beides gleichzeitig"
+                    ],
+                    "correct": 0,
+                    "explanation": "Bayern ist ein Flächenland.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Bayern</text></svg>"
                 },
                 {
-                    id: "euk4l2_l4", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "leicht", points: 10,
-                    question: "Welches Land grenzt im Westen an Deutschland?", answers: ["Frankreich", "Polen", "Dänemark", "Tschechien"], correct: 0,
-                    explanation: "Im Westen liegen Frankreich, Luxemburg, Belgien und die Niederlande."
+                    "id": "blk4l2_l4",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "flaechenland_stadtstaat",
+                    "difficulty": "leicht",
+                    "points": 10,
+                    "question": "Ist Hamburg ein Flächenland oder ein Stadtstaat?",
+                    "answers": [
+                        "Stadtstaat",
+                        "Flächenland",
+                        "Keins von beidem",
+                        "Beides gleichzeitig"
+                    ],
+                    "correct": 0,
+                    "explanation": "Hamburg ist ein Stadtstaat.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Hamburg</text></svg>"
                 }
-            ], mittel: [
+            ],
+            "mittel": [
                 {
-                    id: "euk4l2_m1", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Welches Land grenzt im Süden an Deutschland?", answers: ["Österreich", "Dänemark", "Polen", "Schweden"], correct: 0,
-                    explanation: "Im Süden grenzen Österreich und die Schweiz an Deutschland – dort liegen auch die Alpen."
+                    "id": "blk4l2_m1",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "flaechenland_stadtstaat",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "Ist Sachsen ein Flächenland oder ein Stadtstaat?",
+                    "answers": [
+                        "Flächenland",
+                        "Stadtstaat",
+                        "Keins von beidem",
+                        "Beides gleichzeitig"
+                    ],
+                    "correct": 0,
+                    "explanation": "Sachsen ist ein Flächenland.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Sachsen</text></svg>"
                 },
                 {
-                    id: "euk4l2_m2", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Wo liegt die Schweiz von Deutschland aus?", answers: ["Südlich", "Nördlich", "Östlich", "Westlich"], correct: 0,
-                    explanation: "Die Schweiz grenzt im Süden an Deutschland."
+                    "id": "blk4l2_m2",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "flaechenland_stadtstaat",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "Ist Bremen ein Flächenland oder ein Stadtstaat?",
+                    "answers": [
+                        "Stadtstaat",
+                        "Flächenland",
+                        "Keins von beidem",
+                        "Beides gleichzeitig"
+                    ],
+                    "correct": 0,
+                    "explanation": "Bremen ist ein Stadtstaat.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Bremen</text></svg>"
                 },
                 {
-                    id: "euk4l2_m3", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Wo liegen die Niederlande von Deutschland aus?", answers: ["Nordwestlich", "Südöstlich", "Weit im Osten", "Südlich der Alpen"], correct: 0,
-                    explanation: "Die Niederlande liegen an der Nordwestecke, direkt an der Nordsee."
+                    "id": "blk4l2_m3",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "geografie",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "An welches Meer grenzt Schleswig-Holstein?",
+                    "answers": [
+                        "Nordsee",
+                        "Ostsee",
+                        "Ostsee und Nordsee",
+                        "Kein Meer"
+                    ],
+                    "correct": 0,
+                    "explanation": "Schleswig-Holstein grenzt an die Nordsee.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Schleswig-Holstein</text></svg>"
                 },
                 {
-                    id: "euk4l2_m4", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "An welchen Meeren liegt Deutschland?", answers: ["An Nord- und Ostsee", "Nur am Mittelmeer", "Nur am Schwarzen Meer", "An gar keinem Meer"], correct: 0,
-                    explanation: "Zwei Meere: die Nordsee im Nordwesten, die Ostsee im Nordosten."
+                    "id": "blk4l2_m4",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "geografie",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "An welches Meer grenzt Mecklenburg-Vorpommern?",
+                    "answers": [
+                        "Ostsee",
+                        "Nordsee",
+                        "Ostsee und Nordsee",
+                        "Kein Meer"
+                    ],
+                    "correct": 0,
+                    "explanation": "Mecklenburg-Vorpommern grenzt an die Ostsee.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='12' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Mecklenburg-Vorpommern</text></svg>"
                 }
-            ], schwer: [
+            ],
+            "schwer": [
                 {
-                    id: "euk4l2_s1", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "schwer", points: 10,
-                    question: "Wo liegt Italien von Deutschland aus?", answers: ["Südlich, hinter den Alpen", "Nördlich, an der Nordsee", "Östlich, hinter Polen", "Westlich, hinter Frankreich"], correct: 0,
-                    explanation: "Wer von Deutschland nach Italien fährt, muss die Alpen überqueren."
+                    "id": "blk4l2_s1",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "geografie",
+                    "difficulty": "schwer",
+                    "points": 10,
+                    "question": "In welchem Bundesland liegt die Zugspitze, der höchste Berg Deutschlands?",
+                    "answers": [
+                        "Bayern",
+                        "Baden-Württemberg",
+                        "Sachsen",
+                        "Thüringen"
+                    ],
+                    "correct": 0,
+                    "explanation": "Die Zugspitze liegt in den bayerischen Alpen, an der Grenze zu Österreich."
                 },
                 {
-                    id: "euk4l2_s2", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "schwer", points: 10,
-                    question: "Was ist die Europäische Union?", answers: ["Ein Bund von Ländern", "Ein einzelnes Land", "Ein hohes Gebirge", "Ein großer Fluss"], correct: 0,
-                    explanation: "In der EU arbeiten viele europäische Länder zusammen – zum Beispiel beim Handel und beim Reisen ohne Grenzkontrollen."
+                    "id": "blk4l2_s2",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "geografie",
+                    "difficulty": "schwer",
+                    "points": 10,
+                    "question": "Welches Bundesland ist von der Fläche her das zweitgrößte?",
+                    "answers": [
+                        "Niedersachsen",
+                        "Nordrhein-Westfalen",
+                        "Hessen",
+                        "Sachsen"
+                    ],
+                    "correct": 0,
+                    "explanation": "Nach Bayern ist Niedersachsen das flächenmäßig zweitgrößte Bundesland."
                 },
                 {
-                    id: "euk4l2_s3", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "schwer", points: 10,
-                    question: "Welches Nachbarland Deutschlands ist das kleinste?", answers: ["Luxemburg", "Frankreich", "Polen", "Österreich"], correct: 0,
-                    explanation: "Luxemburg liegt im Westen und ist kleiner als das Saarland."
+                    "id": "blk4l2_s3",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "geografie",
+                    "difficulty": "schwer",
+                    "points": 10,
+                    "question": "Welches Bundesland liegt zwischen Bayern und Hessen?",
+                    "answers": [
+                        "Thüringen",
+                        "Sachsen-Anhalt",
+                        "Brandenburg",
+                        "Saarland"
+                    ],
+                    "correct": 0,
+                    "explanation": "Thüringen grenzt sowohl an Bayern im Süden als auch an Hessen im Westen."
                 },
                 {
-                    id: "euk4l2_s4", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "schwer", points: 10,
-                    question: "Welches Land grenzt im Südosten an Deutschland?", answers: ["Tschechien", "Frankreich", "Dänemark", "Belgien"], correct: 0,
-                    explanation: "Tschechien grenzt an Bayern und Sachsen."
+                    "id": "blk4l2_s4",
+                    "category": "kurs_bl_k4_l2",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "flaechenland_stadtstaat",
+                    "difficulty": "schwer",
+                    "points": 10,
+                    "question": "Was unterscheidet einen Stadtstaat von einem Flächenland?",
+                    "answers": [
+                        "Ein Stadtstaat ist eine einzelne Stadt",
+                        "Ein Stadtstaat hat keine Regierung",
+                        "Ein Stadtstaat liegt immer im Süden",
+                        "Ein Stadtstaat hat keine Einwohner"
+                    ],
+                    "correct": 0,
+                    "explanation": "Bei einem Stadtstaat sind Stadt und Bundesland dasselbe Gebiet – bei einem Flächenland gibt es viele Städte in einem großen Gebiet.",
+                    "grafik": "<svg viewBox='0 0 120 105' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='10' y='60' width='16' height='40' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='30' y='46' width='18' height='54' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='52' y='58' width='16' height='42' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><line x1='84' y1='100' x2='84' y2='30' stroke='#94a3b8' stroke-width='3'/><polygon points='84,30 110,38 84,46' fill='#f59e0b' stroke='#f59e0b' stroke-width='1.5'/><line x1='4' y1='100' x2='116' y2='100' stroke='#94a3b8' stroke-width='2'/></svg>"
                 }
-            ] },
-        test: [
-                {
-                    id: "euk4l2_t1", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Welche zwei Länder grenzen im Süden an Deutschland?", answers: ["Österreich und die Schweiz", "Polen und Tschechien", "Dänemark und Schweden", "Belgien und Frankreich"], correct: 0,
-                    explanation: "Österreich und die Schweiz. Dahinter beginnen die Alpen."
-                },
-                {
-                    id: "euk4l2_t2", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Welches Meer liegt im Nordosten Deutschlands?", answers: ["Die Ostsee", "Die Nordsee", "Das Mittelmeer", "Der Atlantik"], correct: 0,
-                    explanation: "Die Ostsee liegt im Nordosten, die Nordsee im Nordwesten."
-                },
-                {
-                    id: "euk4l2_t3", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Was ist Berlin?", answers: ["Die Hauptstadt Deutschlands", "Die Hauptstadt Frankreichs", "Ein Fluss in Bayern", "Ein Berg im Harz"], correct: 0,
-                    explanation: "Berlin ist Hauptstadt und Regierungssitz Deutschlands."
-                },
-                {
-                    id: "euk4l2_t4", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Welches Nachbarland liegt ganz im Nordwesten?", answers: ["Die Niederlande", "Die Schweiz", "Tschechien", "Österreich"], correct: 0,
-                    explanation: "Die Niederlande liegen an der Nordwestecke Deutschlands, direkt an der Nordsee."
-                },
-                {
-                    id: "euk4l2_t5", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "In welchem Land liegt Wien?", answers: ["In Österreich", "In Polen", "In Frankreich", "In Dänemark"], correct: 0,
-                    explanation: "Wien ist die Hauptstadt Österreichs und liegt an der Donau."
-                },
-                {
-                    id: "euk4l2_t6", category: "kurs_eu_k4_l2", area: "schule", grade: 4,
-                    subject: "sachunterricht", topic: "europa", difficulty: "mittel", points: 10,
-                    question: "Welches Land liegt zwischen Deutschland und Belgien?", answers: ["Luxemburg", "Polen", "Dänemark", "Tschechien"], correct: 0,
-                    explanation: "Luxemburg ist ein kleines Land im Westen – zwischen Deutschland, Belgien und Frankreich."
-                }
+            ]
+        },
+        "test": [
+            {
+                "id": "blk4l2_t1",
+                "category": "kurs_bl_k4_l2",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "flaechenland_stadtstaat",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Ist Berlin ein Flächenland oder ein Stadtstaat?",
+                "answers": [
+                    "Stadtstaat",
+                    "Flächenland",
+                    "Keins von beidem",
+                    "Beides gleichzeitig"
+                ],
+                "correct": 0,
+                "explanation": "Berlin ist ein Stadtstaat.",
+                "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Berlin</text></svg>"
+            },
+            {
+                "id": "blk4l2_t2",
+                "category": "kurs_bl_k4_l2",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "flaechenland_stadtstaat",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Ist Hessen ein Flächenland oder ein Stadtstaat?",
+                "answers": [
+                    "Flächenland",
+                    "Stadtstaat",
+                    "Keins von beidem",
+                    "Beides gleichzeitig"
+                ],
+                "correct": 0,
+                "explanation": "Hessen ist ein Flächenland.",
+                "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Hessen</text></svg>"
+            },
+            {
+                "id": "blk4l2_t3",
+                "category": "kurs_bl_k4_l2",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "geografie",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "An welches Meer grenzt Niedersachsen?",
+                "answers": [
+                    "Nordsee",
+                    "Ostsee",
+                    "Ostsee und Nordsee",
+                    "Kein Meer"
+                ],
+                "correct": 0,
+                "explanation": "Niedersachsen grenzt an die Nordsee.",
+                "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Niedersachsen</text></svg>"
+            },
+            {
+                "id": "blk4l2_t4",
+                "category": "kurs_bl_k4_l2",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "flaechenland_stadtstaat",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Was bedeutet 'Flächenland'?",
+                "answers": [
+                    "Ein großes Bundesland mit vielen Städten",
+                    "Ein Bundesland ohne Hauptstadt",
+                    "Ein Bundesland direkt am Meer",
+                    "Ein Bundesland ohne Einwohner"
+                ],
+                "correct": 0,
+                "explanation": "Ein Flächenland ist ein großes Gebiet mit vielen Städten – im Gegensatz zum Stadtstaat, der nur eine einzige Stadt ist.",
+                "grafik": "<svg viewBox='0 0 120 118' style='width:100%;max-width:120px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><path d='M60,10 L104,26 V60 Q104,90 60,108 Q16,90 16,60 V26 Z' fill='rgba(245,158,11,0.32)' stroke='#f59e0b' stroke-width='3'/><line x1='60' y1='30' x2='60' y2='86' stroke='#94a3b8' stroke-width='2' stroke-dasharray='4,4'/><line x1='34' y1='58' x2='86' y2='58' stroke='#94a3b8' stroke-width='2' stroke-dasharray='4,4'/></svg>"
+            },
+            {
+                "id": "blk4l2_t5",
+                "category": "kurs_bl_k4_l2",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "bundeslaender",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "In welchem Bundesland liegt die Landeshauptstadt Kiel?",
+                "answers": [
+                    "Schleswig-Holstein",
+                    "Niedersachsen",
+                    "Brandenburg",
+                    "Sachsen-Anhalt"
+                ],
+                "correct": 0,
+                "explanation": "Kiel ist die Landeshauptstadt von Schleswig-Holstein.",
+                "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Kiel</text></svg>"
+            },
+            {
+                "id": "blk4l2_t6",
+                "category": "kurs_bl_k4_l2",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "bundeslaender",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "In welchem Bundesland liegt die Landeshauptstadt Mainz?",
+                "answers": [
+                    "Rheinland-Pfalz",
+                    "Saarland",
+                    "Hessen",
+                    "Baden-Württemberg"
+                ],
+                "correct": 0,
+                "explanation": "Mainz ist die Landeshauptstadt von Rheinland-Pfalz.",
+                "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Mainz</text></svg>"
+            }
         ],
-        bestehenAb: 0.75
+        "bestehenAb": 0.75
     }
     ];
     if (typeof LEKTIONEN !== "undefined" && Array.isArray(LEKTIONEN)) {

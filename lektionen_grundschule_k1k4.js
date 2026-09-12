@@ -10,7 +10,7 @@
         { id: "zeitform_k3", title: "Jetzt und Früher", icon: "⏱️", grade: 3, subject: "deutsch", beschreibung: "Präsens und Präteritum unterscheiden." },
         { id: "aufsatz_k4", title: "Aufsatz-Baukasten", icon: "📝", grade: 4, subject: "deutsch", beschreibung: "Einleitung, Hauptteil, Schluss." },
         { id: "brueche_k4", title: "Brüche & Anteile", icon: "🍰", grade: 4, subject: "mathe", beschreibung: "Brüche mit Metern, Gramm und Litern." },
-        { id: "europa_k4", title: "Deutschland & Europa", icon: "🇪🇺", grade: 4, subject: "sachunterricht", beschreibung: "Hauptstädte, Nachbarn, Flüsse." }
+        { id: "bundeslaender_k4", title: "Bundesländer", icon: "🏛️", grade: 4, subject: "sachunterricht", beschreibung: "Die 16 Bundesländer, ihre Landeshauptstädte, Flächenländer und Stadtstaaten." }
     ];
     const extraLektionen = [
     {
@@ -1508,7 +1508,8 @@
                     question: "In welcher Richtung geht die Sonne auf?",
                     answers: ["Im Osten", "Im Westen", "Im Norden", "Im Süden"],
                     correct: 0,
-                    explanation: "Die Sonne kommt morgens im Osten hoch. Wenn du weißt, wo sie aufgeht, kennst du alle vier Richtungen."
+                    explanation: "Die Sonne kommt morgens im Osten hoch. Wenn du weißt, wo sie aufgeht, kennst du alle vier Richtungen.",
+                    grafik: "<svg viewBox='0 0 120 90' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><line x1='6' y1='72' x2='114' y2='72' stroke='#94a3b8' stroke-width='3'/><path d='M40,72 A20,20 0 0 1 80,72 Z' fill='rgba(245,158,11,0.32)' stroke='#f59e0b' stroke-width='2.5'/><line x1='60' y1='34' x2='60' y2='22' stroke='#f59e0b' stroke-width='3' stroke-linecap='round'/><line x1='38' y1='42' x2='29' y2='33' stroke='#f59e0b' stroke-width='3' stroke-linecap='round'/><line x1='82' y1='42' x2='91' y2='33' stroke='#f59e0b' stroke-width='3' stroke-linecap='round'/><polygon points='60,72 55,64 65,64' fill='#f59e0b'/></svg>"
                 },
                 {
                     id: "kak3l1_m2",
@@ -1522,7 +1523,8 @@
                     question: "In welcher Richtung geht die Sonne unter?",
                     answers: ["Im Westen", "Im Osten", "Im Norden", "Im Süden"],
                     correct: 0,
-                    explanation: "Abends verschwindet die Sonne im Westen – genau gegenüber vom Sonnenaufgang."
+                    explanation: "Abends verschwindet die Sonne im Westen – genau gegenüber vom Sonnenaufgang.",
+                    grafik: "<svg viewBox='0 0 120 90' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><line x1='6' y1='72' x2='114' y2='72' stroke='#94a3b8' stroke-width='3'/><path d='M40,72 A20,20 0 0 1 80,72 Z' fill='rgba(249,115,22,0.28)' stroke='#f97316' stroke-width='2.5'/><line x1='60' y1='56' x2='60' y2='46' stroke='#f97316' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='3,3'/><line x1='44' y1='60' x2='37' y2='53' stroke='#f97316' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='3,3'/><line x1='76' y1='60' x2='83' y2='53' stroke='#f97316' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='3,3'/><polygon points='60,72 55,80 65,80' fill='#f97316'/></svg>"
                 },
                 {
                     id: "kak3l1_m3",
@@ -1536,7 +1538,8 @@
                     question: "Was zeigt eine Kompassnadel an?",
                     answers: ["Sie zeigt nach Norden", "Sie zeigt die Uhrzeit", "Sie zeigt die Höhe", "Sie zeigt das Wetter"],
                     correct: 0,
-                    explanation: "Die rote Spitze der Nadel dreht sich immer nach Norden. Von dort aus findest du die anderen Richtungen."
+                    explanation: "Die rote Spitze der Nadel dreht sich immer nach Norden. Von dort aus findest du die anderen Richtungen.",
+                    grafik: "<svg viewBox='0 0 120 120' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><circle cx='60' cy='60' r='46' fill='#1e293b' stroke='#94a3b8' stroke-width='3'/><polygon points='60,20 68,60 60,54 52,60' fill='#ef4444'/><polygon points='60,100 68,60 60,66 52,60' fill='#e5e7eb'/><circle cx='60' cy='60' r='4' fill='#e5e7eb'/></svg>"
                 },
                 {
                     id: "kak3l1_m4",
@@ -1550,7 +1553,8 @@
                     question: "Wie heißt die Hauptstadt von Deutschland?",
                     answers: ["Berlin", "München", "Köln", "Hamburg"],
                     correct: 0,
-                    explanation: "Berlin ist die Hauptstadt und liegt im Osten von Deutschland."
+                    explanation: "Berlin ist die Hauptstadt und liegt im Osten von Deutschland.",
+                    grafik: "<svg viewBox='0 0 120 116' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><polygon points='60,14 66,30 83,30 69,40 74,57 60,47 46,57 51,40 37,30 54,30' fill='rgba(245,158,11,0.32)' stroke='#f59e0b' stroke-width='1.5'/><rect x='20' y='70' width='16' height='34' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='40' y='58' width='18' height='46' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='62' y='66' width='16' height='38' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='82' y='76' width='16' height='28' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><line x1='12' y1='104' x2='108' y2='104' stroke='#94a3b8' stroke-width='2'/></svg>"
                 }
             ],
             schwer: [
@@ -1566,7 +1570,8 @@
                     question: "Auf welchem Kontinent liegt Deutschland?",
                     answers: ["In Europa", "In Australien", "In der Antarktis", "In Südamerika"],
                     correct: 0,
-                    explanation: "Deutschland liegt mitten in Europa und hat neun Nachbarländer."
+                    explanation: "Deutschland liegt mitten in Europa und hat neun Nachbarländer.",
+                    grafik: "<svg viewBox='0 0 120 120' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><circle cx='60' cy='60' r='46' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><ellipse cx='60' cy='60' rx='46' ry='18' fill='none' stroke='#38bdf8' stroke-width='1.5'/><ellipse cx='60' cy='60' rx='18' ry='46' fill='none' stroke='#38bdf8' stroke-width='1.5'/><path d='M28,44 Q40,36 50,44 T74,42 Q84,46 80,56 Q70,58 66,68 Q56,74 46,68 Q34,64 28,44 Z' fill='#34d399' opacity='0.85'/><path d='M78,70 Q90,72 88,82 Q80,86 74,80 Q74,72 78,70 Z' fill='#34d399' opacity='0.85'/></svg>"
                 },
                 {
                     id: "kak3l1_s2",
@@ -1608,7 +1613,8 @@
                     question: "Wobei hilft dir ein Stadtplan?",
                     answers: ["Straßen und Wege finden", "Kuchen backen", "Lieder lernen", "Brüche rechnen"],
                     correct: 0,
-                    explanation: "Ein Stadtplan zeigt Straßen, Plätze und wichtige Gebäude – damit findest du den Weg."
+                    explanation: "Ein Stadtplan zeigt Straßen, Plätze und wichtige Gebäude – damit findest du den Weg.",
+                    grafik: "<svg viewBox='0 0 120 105' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><path d='M14,20 L44,10 L74,20 L104,10 L104,90 L74,100 L44,90 L14,100 Z' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2.5'/><line x1='44' y1='10' x2='44' y2='90' stroke='#94a3b8' stroke-width='1.5' stroke-dasharray='4,3'/><line x1='74' y1='20' x2='74' y2='100' stroke='#94a3b8' stroke-width='1.5' stroke-dasharray='4,3'/><circle cx='60' cy='52' r='13' fill='rgba(245,158,11,0.32)' stroke='#f59e0b' stroke-width='2.5'/><polygon points='60,80 52,58 68,58' fill='#f59e0b'/><circle cx='60' cy='52' r='4' fill='#1e293b'/></svg>"
                 }
             ]
         },
@@ -1653,7 +1659,8 @@
                     question: "Die Sonne geht auf im …",
                     answers: ["Osten", "Westen", "Norden", "Süden"],
                     correct: 0,
-                    explanation: "Morgens im Osten. Merksatz: Im Osten geht die Sonne auf."
+                    explanation: "Morgens im Osten. Merksatz: Im Osten geht die Sonne auf.",
+                    grafik: "<svg viewBox='0 0 120 90' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><line x1='6' y1='72' x2='114' y2='72' stroke='#94a3b8' stroke-width='3'/><path d='M40,72 A20,20 0 0 1 80,72 Z' fill='rgba(245,158,11,0.32)' stroke='#f59e0b' stroke-width='2.5'/><line x1='60' y1='34' x2='60' y2='22' stroke='#f59e0b' stroke-width='3' stroke-linecap='round'/><line x1='38' y1='42' x2='29' y2='33' stroke='#f59e0b' stroke-width='3' stroke-linecap='round'/><line x1='82' y1='42' x2='91' y2='33' stroke='#f59e0b' stroke-width='3' stroke-linecap='round'/><polygon points='60,72 55,64 65,64' fill='#f59e0b'/></svg>"
                 },
                 {
                     id: "kak3l1_t4",
@@ -1667,7 +1674,8 @@
                     question: "Die Sonne geht unter im …",
                     answers: ["Westen", "Osten", "Norden", "Süden"],
                     correct: 0,
-                    explanation: "Abends im Westen – gegenüber vom Aufgang."
+                    explanation: "Abends im Westen – gegenüber vom Aufgang.",
+                    grafik: "<svg viewBox='0 0 120 90' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><line x1='6' y1='72' x2='114' y2='72' stroke='#94a3b8' stroke-width='3'/><path d='M40,72 A20,20 0 0 1 80,72 Z' fill='rgba(249,115,22,0.28)' stroke='#f97316' stroke-width='2.5'/><line x1='60' y1='56' x2='60' y2='46' stroke='#f97316' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='3,3'/><line x1='44' y1='60' x2='37' y2='53' stroke='#f97316' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='3,3'/><line x1='76' y1='60' x2='83' y2='53' stroke='#f97316' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='3,3'/><polygon points='60,72 55,80 65,80' fill='#f97316'/></svg>"
                 },
                 {
                     id: "kak3l1_t5",
@@ -1681,7 +1689,8 @@
                     question: "Die Hauptstadt von Deutschland ist …",
                     answers: ["Berlin", "Paris", "Rom", "Wien"],
                     correct: 0,
-                    explanation: "Berlin. Paris gehört zu Frankreich, Rom zu Italien, Wien zu Österreich."
+                    explanation: "Berlin. Paris gehört zu Frankreich, Rom zu Italien, Wien zu Österreich.",
+                    grafik: "<svg viewBox='0 0 120 116' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><polygon points='60,14 66,30 83,30 69,40 74,57 60,47 46,57 51,40 37,30 54,30' fill='rgba(245,158,11,0.32)' stroke='#f59e0b' stroke-width='1.5'/><rect x='20' y='70' width='16' height='34' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='40' y='58' width='18' height='46' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='62' y='66' width='16' height='38' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='82' y='76' width='16' height='28' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><line x1='12' y1='104' x2='108' y2='104' stroke='#94a3b8' stroke-width='2'/></svg>"
                 },
                 {
                     id: "kak3l1_t6",
@@ -1695,7 +1704,8 @@
                     question: "Was ist Europa?",
                     answers: ["Ein Kontinent", "Ein Fluss", "Ein Berg", "Ein Dorf"],
                     correct: 0,
-                    explanation: "Ein Kontinent ist ein großer Erdteil mit vielen Ländern. Europa ist einer davon."
+                    explanation: "Ein Kontinent ist ein großer Erdteil mit vielen Ländern. Europa ist einer davon.",
+                    grafik: "<svg viewBox='0 0 120 120' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><circle cx='60' cy='60' r='46' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><ellipse cx='60' cy='60' rx='46' ry='18' fill='none' stroke='#38bdf8' stroke-width='1.5'/><ellipse cx='60' cy='60' rx='18' ry='46' fill='none' stroke='#38bdf8' stroke-width='1.5'/><path d='M28,44 Q40,36 50,44 T74,42 Q84,46 80,56 Q70,58 66,68 Q56,74 46,68 Q34,64 28,44 Z' fill='#34d399' opacity='0.85'/><path d='M78,70 Q90,72 88,82 Q80,86 74,80 Q74,72 78,70 Z' fill='#34d399' opacity='0.85'/></svg>"
                 }
         ],
         bestehenAb: 0.75
@@ -2544,284 +2554,391 @@
         bestehenAb: 0.75
     },
     {
-        id: "eu_k4_l1",
-        kurs: "europa_k4",
-        order: 1,
-        icon: "🇪🇺",
-        title: "Länder und Städte",
-        kurz: "DE und Nachbarn",
-        erklaerung: {
-            intro: "Deutschland liegt in <b>Mitteleuropa</b>. Hauptstadt ist <b>Berlin</b>. Nachbarn sind unter anderem Frankreich, Polen, Österreich und die Schweiz. Wichtige Flüsse: Rhein, Elbe, Donau.",
-            beispiele: [
-                "Berlin = Hauptstadt.",
-                "Paris = Frankreich, Rom = Italien, Wien = Österreich.",
-                "Alpen im Süden, Nordsee im Norden."
-            ],
-            merksatz: "Hauptstadt merken, dann Nachbarn und Flüsse."
+        "id": "bl_k4_l1",
+        "kurs": "bundeslaender_k4",
+        "order": 1,
+        "icon": "🏛️",
+        "title": "Bundesländer & Hauptstädte",
+        "kurz": "Die 16 Bundesländer und ihre Landeshauptstädte",
+        "erklaerung": {
+            "intro": "Deutschland besteht aus <b>16 Bundesländern</b>. Jedes Bundesland hat eine eigene <b>Landeshauptstadt</b>, in der die Landesregierung sitzt. Drei Bundesländer – <b>Berlin, Hamburg und Bremen</b> – sind gleichzeitig eine einzige Stadt. Man nennt sie <b>Stadtstaaten</b>.",
+            "beispiele": [
+                "Bayern → Landeshauptstadt München.<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Bayern</text></svg>",
+                "Nordrhein-Westfalen → Landeshauptstadt Düsseldorf.<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='12' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Nordrhein-Westfalen</text></svg>",
+                "Berlin, Hamburg und Bremen sind Stadtstaaten.<svg viewBox='0 0 120 105' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='10' y='60' width='16' height='40' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='30' y='46' width='18' height='54' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='52' y='58' width='16' height='42' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><line x1='84' y1='100' x2='84' y2='30' stroke='#94a3b8' stroke-width='3'/><polygon points='84,30 110,38 84,46' fill='#f59e0b' stroke='#f59e0b' stroke-width='1.5'/><line x1='4' y1='100' x2='116' y2='100' stroke='#94a3b8' stroke-width='2'/></svg>"
+            ]
         },
-        uebung: {
-            leicht: [
+        "uebung": {
+            "leicht": [
                 {
-                    id: "euk4l1_l1",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "leicht",
-                    points: 10,
-                    question: "Wie heißt die Hauptstadt von Deutschland?",
-                    answers: ["Berlin", "München", "Hamburg", "Köln"],
-                    correct: 0,
-                    explanation: "Berlin liegt im Osten des Landes und ist zugleich die größte Stadt Deutschlands."
+                    "id": "blk4l1_l1",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "leicht",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Bayern?",
+                    "answers": [
+                        "München",
+                        "Nürnberg",
+                        "Augsburg",
+                        "Regensburg"
+                    ],
+                    "correct": 0,
+                    "explanation": "München ist die Landeshauptstadt von Bayern.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Bayern</text></svg>"
                 },
                 {
-                    id: "euk4l1_l2",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "leicht",
-                    points: 10,
-                    question: "Wie heißt die Hauptstadt von Frankreich?",
-                    answers: ["Paris", "Lyon", "Marseille", "Nizza"],
-                    correct: 0,
-                    explanation: "Paris liegt an der Seine. Bekannt ist die Stadt für den Eiffelturm."
+                    "id": "blk4l1_l2",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "leicht",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Nordrhein-Westfalen?",
+                    "answers": [
+                        "Düsseldorf",
+                        "Köln",
+                        "Dortmund",
+                        "Essen"
+                    ],
+                    "correct": 0,
+                    "explanation": "Düsseldorf ist die Landeshauptstadt von Nordrhein-Westfalen.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='12' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Nordrhein-Westfalen</text></svg>"
                 },
                 {
-                    id: "euk4l1_l3",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "leicht",
-                    points: 10,
-                    question: "Wie heißt die Hauptstadt von Italien?",
-                    answers: ["Rom", "Mailand", "Neapel", "Turin"],
-                    correct: 0,
-                    explanation: "Rom liegt in der Mitte von Italien. Mitten in Rom liegt ein eigener kleiner Staat: die Vatikanstadt."
+                    "id": "blk4l1_l3",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "leicht",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Sachsen?",
+                    "answers": [
+                        "Dresden",
+                        "Leipzig",
+                        "Chemnitz",
+                        "Zwickau"
+                    ],
+                    "correct": 0,
+                    "explanation": "Dresden ist die Landeshauptstadt von Sachsen.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Sachsen</text></svg>"
                 },
                 {
-                    id: "euk4l1_l4",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "leicht",
-                    points: 10,
-                    question: "Auf welchem Kontinent liegt Deutschland?",
-                    answers: ["In Europa", "In Asien", "In Afrika", "In Südamerika"],
-                    correct: 0,
-                    explanation: "Europa ist einer der Kontinente der Erde. Deutschland liegt mitten darin."
+                    "id": "blk4l1_l4",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "leicht",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Baden-Württemberg?",
+                    "answers": [
+                        "Stuttgart",
+                        "Karlsruhe",
+                        "Mannheim",
+                        "Freiburg"
+                    ],
+                    "correct": 0,
+                    "explanation": "Stuttgart ist die Landeshauptstadt von Baden-Württemberg.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Baden-Württemberg</text></svg>"
                 }
             ],
-            mittel: [
+            "mittel": [
                 {
-                    id: "euk4l1_m1",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "mittel",
-                    points: 10,
-                    question: "Wie heißt die Hauptstadt von Österreich?",
-                    answers: ["Wien", "Salzburg", "Graz", "Innsbruck"],
-                    correct: 0,
-                    explanation: "Wien liegt im Osten von Österreich, an der Donau."
+                    "id": "blk4l1_m1",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Niedersachsen?",
+                    "answers": [
+                        "Hannover",
+                        "Braunschweig",
+                        "Osnabrück",
+                        "Oldenburg"
+                    ],
+                    "correct": 0,
+                    "explanation": "Hannover ist die Landeshauptstadt von Niedersachsen.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Niedersachsen</text></svg>"
                 },
                 {
-                    id: "euk4l1_m2",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "mittel",
-                    points: 10,
-                    question: "Welche Stadt ist der Regierungssitz der Schweiz?",
-                    answers: ["Bern", "Zürich", "Genf", "Basel"],
-                    correct: 0,
-                    explanation: "Die Schweiz hat keine offizielle Hauptstadt. Regierung und Parlament sitzen in Bern – deshalb heißt sie Bundesstadt."
+                    "id": "blk4l1_m2",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Rheinland-Pfalz?",
+                    "answers": [
+                        "Mainz",
+                        "Trier",
+                        "Koblenz",
+                        "Ludwigshafen"
+                    ],
+                    "correct": 0,
+                    "explanation": "Mainz ist die Landeshauptstadt von Rheinland-Pfalz.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Rheinland-Pfalz</text></svg>"
                 },
                 {
-                    id: "euk4l1_m3",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "mittel",
-                    points: 10,
-                    question: "Durch welche deutsche Stadt fließt der Rhein?",
-                    answers: ["Köln", "München", "Berlin", "Dresden"],
-                    correct: 0,
-                    explanation: "Der Rhein fließt von den Alpen bis in die Nordsee und kommt dabei durch Köln. Durch München fließt die Isar."
+                    "id": "blk4l1_m3",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Schleswig-Holstein?",
+                    "answers": [
+                        "Kiel",
+                        "Lübeck",
+                        "Flensburg",
+                        "Neumünster"
+                    ],
+                    "correct": 0,
+                    "explanation": "Kiel ist die Landeshauptstadt von Schleswig-Holstein.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Schleswig-Holstein</text></svg>"
                 },
                 {
-                    id: "euk4l1_m4",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "mittel",
-                    points: 10,
-                    question: "Welches Land grenzt im Osten an Deutschland?",
-                    answers: ["Polen", "Frankreich", "Belgien", "Niederlande"],
-                    correct: 0,
-                    explanation: "Im Osten liegen Polen und Tschechien. Frankreich, Belgien und die Niederlande liegen im Westen."
+                    "id": "blk4l1_m4",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Thüringen?",
+                    "answers": [
+                        "Erfurt",
+                        "Jena",
+                        "Gera",
+                        "Weimar"
+                    ],
+                    "correct": 0,
+                    "explanation": "Erfurt ist die Landeshauptstadt von Thüringen.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Thüringen</text></svg>"
                 }
             ],
-            schwer: [
+            "schwer": [
                 {
-                    id: "euk4l1_s1",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "schwer",
-                    points: 10,
-                    question: "In welchem Teil Deutschlands liegen die Alpen?",
-                    answers: ["Im Süden", "Im Norden", "Im Osten", "Im Westen"],
-                    correct: 0,
-                    explanation: "Die Alpen ziehen sich am südlichen Rand entlang, in Bayern. Im Norden liegt dagegen die Küste."
+                    "id": "blk4l1_s1",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "schwer",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Sachsen-Anhalt?",
+                    "answers": [
+                        "Magdeburg",
+                        "Halle",
+                        "Dessau",
+                        "Wittenberg"
+                    ],
+                    "correct": 0,
+                    "explanation": "Magdeburg ist die Landeshauptstadt von Sachsen-Anhalt.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='14' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Sachsen-Anhalt</text></svg>"
                 },
                 {
-                    id: "euk4l1_s2",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "schwer",
-                    points: 10,
-                    question: "Wo liegt Dänemark von Deutschland aus?",
-                    answers: ["Nördlich", "Südlich", "Östlich", "Westlich"],
-                    correct: 0,
-                    explanation: "Dänemark grenzt im Norden an Deutschland."
+                    "id": "blk4l1_s2",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "schwer",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Mecklenburg-Vorpommern?",
+                    "answers": [
+                        "Schwerin",
+                        "Rostock",
+                        "Stralsund",
+                        "Greifswald"
+                    ],
+                    "correct": 0,
+                    "explanation": "Schwerin ist die Landeshauptstadt von Mecklenburg-Vorpommern.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='12' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Mecklenburg-Vorpommern</text></svg>"
                 },
                 {
-                    id: "euk4l1_s3",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "schwer",
-                    points: 10,
-                    question: "Wie heißt der höchste Berg Deutschlands?",
-                    answers: ["Die Zugspitze", "Der Brocken", "Der Feldberg", "Der Watzmann"],
-                    correct: 0,
-                    explanation: "Die Zugspitze in den Alpen ist knapp 3000 Meter hoch. Der Brocken im Harz ist der höchste Berg Norddeutschlands."
+                    "id": "blk4l1_s3",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "schwer",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Brandenburg?",
+                    "answers": [
+                        "Potsdam",
+                        "Cottbus",
+                        "Frankfurt (Oder)",
+                        "Oranienburg"
+                    ],
+                    "correct": 0,
+                    "explanation": "Potsdam ist die Landeshauptstadt von Brandenburg.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Brandenburg</text></svg>"
                 },
                 {
-                    id: "euk4l1_s4",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "schwer",
-                    points: 10,
-                    question: "Was ist die EU?",
-                    answers: ["Ein Bund von Staaten", "Ein hoher Berg", "Ein langer Fluss", "Eine Stadt in Bayern"],
-                    correct: 0,
-                    explanation: "Die Europäische Union ist ein Zusammenschluss von europäischen Ländern."
+                    "id": "blk4l1_s4",
+                    "category": "kurs_bl_k4_l1",
+                    "area": "schule",
+                    "grade": 4,
+                    "subject": "sachunterricht",
+                    "topic": "bundeslaender",
+                    "difficulty": "schwer",
+                    "points": 10,
+                    "question": "Wie heißt die Hauptstadt von Saarland?",
+                    "answers": [
+                        "Saarbrücken",
+                        "Neunkirchen",
+                        "Homburg",
+                        "Völklingen"
+                    ],
+                    "correct": 0,
+                    "explanation": "Saarbrücken ist die Landeshauptstadt von Saarland.",
+                    "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Saarland</text></svg>"
                 }
             ]
         },
-        test: [
-                {
-                    id: "euk4l1_t1",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "mittel",
-                    points: 10,
-                    question: "Berlin ist die Hauptstadt von …",
-                    answers: ["Deutschland", "Österreich", "Polen", "Dänemark"],
-                    correct: 0,
-                    explanation: "Berlin ist Hauptstadt und Regierungssitz Deutschlands."
-                },
-                {
-                    id: "euk4l1_t2",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "mittel",
-                    points: 10,
-                    question: "In welchem Land liegt Paris?",
-                    answers: ["In Frankreich", "In Italien", "In Polen", "In Spanien"],
-                    correct: 0,
-                    explanation: "Paris ist die Hauptstadt Frankreichs."
-                },
-                {
-                    id: "euk4l1_t3",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "mittel",
-                    points: 10,
-                    question: "In welchem Land liegt Rom?",
-                    answers: ["In Italien", "In Spanien", "In Griechenland", "In Portugal"],
-                    correct: 0,
-                    explanation: "Rom ist die Hauptstadt Italiens."
-                },
-                {
-                    id: "euk4l1_t4",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "mittel",
-                    points: 10,
-                    question: "Durch welche Stadt fließt der Rhein?",
-                    answers: ["Köln", "München", "Berlin", "Dresden"],
-                    correct: 0,
-                    explanation: "Der Rhein fließt durch Köln. Durch München fließt die Isar."
-                },
-                {
-                    id: "euk4l1_t5",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "mittel",
-                    points: 10,
-                    question: "Was ist Europa?",
-                    answers: ["Ein Kontinent", "Ein einzelnes Land", "Ein großer Fluss", "Ein Gebirge"],
-                    correct: 0,
-                    explanation: "Ein Kontinent ist ein großer Erdteil. Zu Europa gehören über 40 Länder."
-                },
-                {
-                    id: "euk4l1_t6",
-                    category: "kurs_eu_k4_l1",
-                    area: "schule",
-                    grade: 4,
-                    subject: "sachunterricht",
-                    topic: "europa",
-                    difficulty: "mittel",
-                    points: 10,
-                    question: "Wo liegen die Alpen in Deutschland?",
-                    answers: ["Im Süden", "Im Norden", "Im Osten", "Im Westen"],
-                    correct: 0,
-                    explanation: "Ganz im Süden, in Bayern. Dort steht auch die Zugspitze."
-                }
+        "test": [
+            {
+                "id": "blk4l1_t1",
+                "category": "kurs_bl_k4_l1",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "bundeslaender",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Wie heißt die Hauptstadt von Hessen?",
+                "answers": [
+                    "Wiesbaden",
+                    "Frankfurt",
+                    "Kassel",
+                    "Darmstadt"
+                ],
+                "correct": 0,
+                "explanation": "Wiesbaden ist die Landeshauptstadt von Hessen.",
+                "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Hessen</text></svg>"
+            },
+            {
+                "id": "blk4l1_t2",
+                "category": "kurs_bl_k4_l1",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "bundeslaender",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "In welchem Bundesland liegt Dresden?",
+                "answers": [
+                    "Sachsen",
+                    "Thüringen",
+                    "Brandenburg",
+                    "Bayern"
+                ],
+                "correct": 0,
+                "explanation": "Dresden liegt im Bundesland Sachsen.",
+                "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Dresden</text></svg>"
+            },
+            {
+                "id": "blk4l1_t3",
+                "category": "kurs_bl_k4_l1",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "bundeslaender",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "In welchem Bundesland liegt Stuttgart?",
+                "answers": [
+                    "Baden-Württemberg",
+                    "Bayern",
+                    "Hessen",
+                    "Saarland"
+                ],
+                "correct": 0,
+                "explanation": "Stuttgart liegt im Bundesland Baden-Württemberg.",
+                "grafik": "<svg viewBox='0 0 200 70' style='width:100%;max-width:220px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='6' width='188' height='58' rx='10' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3'/><rect x='16' y='16' width='10' height='38' fill='#f59e0b'/><text x='108' y='42' text-anchor='middle' dominant-baseline='middle' font-size='17' font-weight='700' fill='#e5e7eb' font-family='sans-serif'>Stuttgart</text></svg>"
+            },
+            {
+                "id": "blk4l1_t4",
+                "category": "kurs_bl_k4_l1",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "bundeslaender",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Wie viele Bundesländer hat Deutschland?",
+                "answers": [
+                    "16",
+                    "13",
+                    "20",
+                    "9"
+                ],
+                "correct": 0,
+                "explanation": "Deutschland besteht aus 16 Bundesländern.",
+                "grafik": "<svg viewBox='0 0 120 118' style='width:100%;max-width:120px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><path d='M60,10 L104,26 V60 Q104,90 60,108 Q16,90 16,60 V26 Z' fill='rgba(245,158,11,0.32)' stroke='#f59e0b' stroke-width='3'/><line x1='60' y1='30' x2='60' y2='86' stroke='#94a3b8' stroke-width='2' stroke-dasharray='4,4'/><line x1='34' y1='58' x2='86' y2='58' stroke='#94a3b8' stroke-width='2' stroke-dasharray='4,4'/></svg>"
+            },
+            {
+                "id": "blk4l1_t5",
+                "category": "kurs_bl_k4_l1",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "bundeslaender",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Welche drei Bundesländer sind gleichzeitig eine einzige Stadt?",
+                "answers": [
+                    "Berlin, Hamburg und Bremen",
+                    "Bayern, Sachsen und Hessen",
+                    "Köln, München und Mainz",
+                    "Nur Berlin und München"
+                ],
+                "correct": 0,
+                "explanation": "Berlin, Hamburg und Bremen heißen Stadtstaaten – sie sind Stadt und Bundesland zugleich.",
+                "grafik": "<svg viewBox='0 0 120 105' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><rect x='10' y='60' width='16' height='40' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='30' y='46' width='18' height='54' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='52' y='58' width='16' height='42' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><line x1='84' y1='100' x2='84' y2='30' stroke='#94a3b8' stroke-width='3'/><polygon points='84,30 110,38 84,46' fill='#f59e0b' stroke='#f59e0b' stroke-width='1.5'/><line x1='4' y1='100' x2='116' y2='100' stroke='#94a3b8' stroke-width='2'/></svg>"
+            },
+            {
+                "id": "blk4l1_t6",
+                "category": "kurs_bl_k4_l1",
+                "area": "schule",
+                "grade": 4,
+                "subject": "sachunterricht",
+                "topic": "bundeslaender",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Was ist eine Landeshauptstadt?",
+                "answers": [
+                    "Die Hauptstadt eines Bundeslandes",
+                    "Die größte Stadt Deutschlands",
+                    "Ein Dorf auf dem Land",
+                    "Ein Fluss in Deutschland"
+                ],
+                "correct": 0,
+                "explanation": "Jedes Bundesland hat seine eigene Landeshauptstadt, in der die Landesregierung sitzt.",
+                "grafik": "<svg viewBox='0 0 120 116' style='width:100%;max-width:130px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><polygon points='60,14 66,30 83,30 69,40 74,57 60,47 46,57 51,40 37,30 54,30' fill='rgba(245,158,11,0.32)' stroke='#f59e0b' stroke-width='1.5'/><rect x='20' y='70' width='16' height='34' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='40' y='58' width='18' height='46' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='62' y='66' width='16' height='38' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><rect x='82' y='76' width='16' height='28' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='2'/><line x1='12' y1='104' x2='108' y2='104' stroke='#94a3b8' stroke-width='2'/></svg>"
+            }
         ],
-        bestehenAb: 0.75
+        "bestehenAb": 0.75
     }
     ];
     if (typeof KURSE !== "undefined" && Array.isArray(KURSE)) {

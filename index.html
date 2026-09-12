@@ -539,6 +539,10 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <input type="number" id="dash-test-time" value="10" min="1" max="90"
                                     class="input-modern">
                             </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Fällig bis (optional)</label>
+                                <input type="date" id="dash-test-deadline" class="input-modern">
+                            </div>
                             <button onclick="assignTestFromDashboard()" class="btn-primary w-full text-center">Test
                                 zuweisen 🚀</button>
 
@@ -562,6 +566,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <p class="text-[11px] text-gray-500">Eine Lektion für das Kind im Fokus. Erscheint auf dem Startscreen.</p>
                                 <select id="dash-lesson-grade" class="input-modern text-sm" onchange="fillDashLessonSelect()"></select>
                                 <select id="dash-lesson-id" class="input-modern text-sm"></select>
+                                <label class="text-[11px] text-gray-500 font-bold block mb-1">Fällig bis (optional)</label>
+                                <input type="date" id="dash-lesson-deadline" class="input-modern text-sm">
                                 <button type="button" onclick="assignLessonFromDashboard()" class="btn-primary w-full text-center">Lektion zuweisen 📚</button>
                                 <div id="dash-lesson-notices" class="space-y-2"></div>
                             </div>
@@ -577,6 +583,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <p class="text-[11px] text-gray-500">Ein ganzer Kurs (alle Lektionen darin) für das Kind im Fokus. Erscheint auf dem Startscreen.</p>
                                 <select id="dash-kurs-grade" class="input-modern text-sm" onchange="fillDashKursSelect()"></select>
                                 <select id="dash-kurs-id" class="input-modern text-sm"></select>
+                                <label class="text-[11px] text-gray-500 font-bold block mb-1">Fällig bis (optional)</label>
+                                <input type="date" id="dash-kurs-deadline" class="input-modern text-sm">
                                 <button type="button" onclick="assignKursFromDashboard()" class="btn-primary w-full text-center">Kurs zuweisen 🎓</button>
                                 <div id="dash-kurs-notices" class="space-y-2"></div>
                             </div>
@@ -2709,7 +2717,7 @@ VIEW: QUIZ SETUP
     ============================================================ -->
     <script src="app-config.js?v=13.2"></script>
     <script src="app-ui.js?v=9.5"></script>
-    <script src="family-dashboard.js?v=11.34"></script>
+    <script src="family-dashboard.js?v=11.36"></script>
     <script src="dev-admin.js?v=1.7"></script>
     <script src="ui-common.js?v=9.3"></script>
     <script src="ki-coach.js?v=1.1"></script>

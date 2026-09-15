@@ -660,7 +660,7 @@
                     points: 10,
                     question: "Kreis oder Oval?",
                     grafik: "<svg viewBox='0 0 232 138' style='display:block;margin:8px auto;width:100%;max-width:360px;height:auto' xmlns='http://www.w3.org/2000/svg'><circle cx='58.0' cy='62.0' r='31.0' fill='rgba(52,211,153,0.28)' stroke='#34d399' stroke-width='4'/><ellipse cx='174.0' cy='62.0' rx='38.4' ry='21.1' fill='rgba(244,114,182,0.22)' stroke='#f472b6' stroke-width='4' stroke-linejoin='round' transform='rotate(-16.0 174.0 62.0)'/></svg>",
-                    answers: ["das Quadrat", "das Dreieck", "das Rechteck", "der Kreis"],
+                    answers: ["das Oval", "das Dreieck", "das Rechteck", "der Kreis"],
                     correct: 3,
                     explanation: "Überall gleich weit vom Mittelpunkt: Kreis.",
                 },

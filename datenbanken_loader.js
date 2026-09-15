@@ -27,7 +27,7 @@
 (function () {
     'use strict';
 
-    const V = '9.4';
+    const V = '9.6';
     console.log('🔥 datenbanken_loader.js v' + V + ' (Laden bei Bedarf)');
 
     // ------------------------------------------------------------
@@ -48,16 +48,30 @@
         'fragen/words_adult.js',
         'fragen/vocabulary.js',         // Vokabel-Duell
         'formula.js',
-        // Pilot Themen-Auswahl (Mathe Klasse 5/6): schon getaggte Fragen
-        // vorab laden, damit "Fach/Thema" im Wissen-Modus die Unterthemen
-        // sofort anzeigen kann (sonst wären sie erst nach dem Laden der
-        // ganzen Kategorie bekannt).
+        // Themen-Auswahl (Mathe/Deutsch/Englisch, Klasse 5-10): schon
+        // getaggte Fragen vorab laden, damit "Fach/Thema" im Wissen-Modus
+        // die Unterthemen sofort anzeigen kann (sonst wären sie erst nach
+        // dem Laden der ganzen Kategorie bekannt).
         'fragen/klasse5/questions_k5_themen.js',
-        'fragen/klasse6/questions_k6_themen.js'
+        'fragen/klasse6/questions_k6_themen.js',
+        'fragen/klasse7/questions_k7_themen.js',
+        'fragen/klasse8/questions_k8_themen.js',
+        'fragen/klasse9/questions_k9_themen.js',
+        'fragen/klasse10/questions_k10_themen.js',
+        // Klasse 1-4 Mathe: hier steckt das topic-Feld direkt im
+        // Haupt-Fragenpool (keine eigene themen.js), deshalb hier
+        // die ganze (kleine) Datei statt nur eines Auszugs.
+        'fragen/klasse1/questions_k1_mathe.js',
+        'fragen/klasse2/questions_k2_mathe.js',
+        'fragen/klasse3/questions_k3_mathe.js',
+        'fragen/klasse4/questions_k4_mathe.js'
     ];
 
     // Diese Namen liefern beim Start bereits Fragen mit.
-    const START_QUELLEN = ['SCHOOL_QUESTIONS', 'SPASS_FLAGGEN_QUESTIONS'];
+    const START_QUELLEN = [
+        'SCHOOL_QUESTIONS', 'SPASS_FLAGGEN_QUESTIONS',
+        'K1_MATHE_QUESTIONS', 'K2_MATHE_QUESTIONS', 'K3_MATHE_QUESTIONS', 'K4_MATHE_QUESTIONS'
+    ];
 
     // ------------------------------------------------------------
     //  Zustand

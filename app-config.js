@@ -211,7 +211,13 @@
             brueche: "bruchrechnen",
             bruchrechnen: "bruchrechnen",
             teiler: "teilbarkeit",
-            teilbarkeit: "teilbarkeit"
+            teilbarkeit: "teilbarkeit",
+            nebensatzarten: "nebensaetze",
+            winkelsaetze: "winkel",
+            sprachmittel: "sprachliche_mittel",
+            erorterung: "eroerterung",
+            exponential: "exponentialfunktionen",
+            present_perfect_prog: "present_perfect_progressive"
         };
         const TOPIC_BLOCKED = {
             pubertaet: 1, sexualitaet: 1, fortpflanzung: 1,
@@ -557,6 +563,14 @@ const geladen = _questionCounts[key] || 0;
             "schriftliche_addition_subtraktion": "➕➖ Schriftlich Plus & Minus",
             "multiplikation_division_k3": "✖️➗ Halbschriftlich Mal & Geteilt",
             "groessen_geometrie_k3": "⚖️ Längen, Gewichte, Uhrzeit & Würfelnetze",
+
+            // ================================================================
+            // KLASSE 4 - Mathematik
+            // ================================================================
+            "millionenraum": "🔢 Millionenraum & Orientierung",
+            "schriftliche_multiplikation_division": "✖️➗ Schriftlich Mal & Geteilt",
+            "geometrie_k4": "📐 Geometrie",
+            "groessen_daten_k4": "📊 Größen & Daten",
 
             // Sachunterricht
             "wald_natur": "🌲 Ökosystem Wald, Bäume & Naturschutz",

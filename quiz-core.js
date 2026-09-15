@@ -143,7 +143,7 @@
             }
             if (window.__eduplayBlitzActive) {
                 window.__eduplayBlitzActive = false;
-                if (typeof dismissWeaknessSuggestion === "function") dismissWeaknessSuggestion(true);
+                if (typeof dismissWeaknessSuggestion === "function") dismissWeaknessSuggestion(true, window.__eduplayBlitzCat);
             }
         }
 

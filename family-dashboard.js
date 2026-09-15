@@ -2876,6 +2876,7 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!p || !p.stats) return null;
             let weakest = null;
             Object.keys(p.stats).forEach(cat => {
+                if (isWeaknessDismissedToday(cat)) return; // weggeklickte Kategorie ausschließen, damit ein neues schwaches Thema trotzdem durchkommt
                 const s = p.stats[cat];
                 if (s.attempts >= 3) {
                     const pct = s.correct / s.attempts;
@@ -2893,19 +2894,22 @@ auth.createUserWithEmailAndPassword(e, p)
         function weaknessDismissKey() {
             return "eduplayWeakDismiss_" + (activePlayerKey || "x");
         }
-        function isWeaknessDismissedToday() {
+        // Wegklicken gilt nur für die eine Kategorie/das eine Thema für den Rest
+        // des Tages - nicht global -, damit ein neues Problem in einem anderen
+        // Fach sofort noch eine eigene Karte bekommt.
+        function isWeaknessDismissedToday(cat) {
             try {
                 const d = JSON.parse(localStorage.getItem(weaknessDismissKey()) || "null");
-                if (!d || !d.day) return false;
-                return d.day === new Date().toISOString().slice(0, 10);
+                if (!d || !cat || !d[cat]) return false;
+                return d[cat] === "forever" || d[cat] === new Date().toISOString().slice(0, 10);
             } catch (e) { return false; }
         }
-        function dismissWeaknessSuggestion(untilTomorrow) {
+        function dismissWeaknessSuggestion(untilTomorrow, cat) {
             try {
-                localStorage.setItem(weaknessDismissKey(), JSON.stringify({
-                    day: untilTomorrow ? new Date().toISOString().slice(0, 10) : "forever",
-                    ts: Date.now()
-                }));
+                const key = weaknessDismissKey();
+                const d = JSON.parse(localStorage.getItem(key) || "null") || {};
+                if (cat) d[cat] = untilTomorrow ? new Date().toISOString().slice(0, 10) : "forever";
+                localStorage.setItem(key, JSON.stringify(d));
             } catch (e) { /* */ }
             const card = document.getElementById("weakness-card");
             if (card) { card.classList.add("hidden"); card.innerHTML = ""; }
@@ -2936,12 +2940,8 @@ auth.createUserWithEmailAndPassword(e, p)
             }
 
             // Rückfall: allgemeine Blitz-Übung (schwache Kategorie insgesamt) –
-            // greift auch dort, wo es (noch) keinen passenden Kurs gibt.
-            if (isWeaknessDismissedToday()) {
-                card.classList.add("hidden");
-                card.innerHTML = "";
-                return;
-            }
+            // greift auch dort, wo es (noch) keinen passenden Kurs gibt. Der
+            // Dismiss-Check steckt in getWeakestCategory() (pro Kategorie).
             const weak = getWeakestCategory(currentPlayer);
             if (weak) {
                 const label = labelFuerKategorie(weak.category) || CATEGORY_LABELS[weak.category] || weak.category;
@@ -2950,7 +2950,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 const catSafe = String(weak.category).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
                 card.innerHTML =
                     `<div class="glass-card-glow p-4 relative pr-2" style="border-color:rgba(245,158,11,0.2);">
-                        <button type="button" onclick="event.stopPropagation();dismissWeaknessSuggestion(true)" title="Heute ausblenden"
+                        <button type="button" onclick="event.stopPropagation();dismissWeaknessSuggestion(true,'${catSafe}')" title="Heute ausblenden"
                             class="continue-card-close" aria-label="Blitz-Übung ausblenden">✕</button>
                         <div class="font-bold text-yellow-400 text-sm pr-10">⚡ Blitz-Übung</div>
                         <div class="text-xs text-gray-300 mt-1 pr-2">${label}: nur ${pct}% richtig – ${n} Fragen, dann bist du durch.</div>

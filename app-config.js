@@ -209,7 +209,9 @@
 
         const TOPIC_CANON = {
             brueche: "bruchrechnen",
-            bruchrechnen: "bruchrechnen"
+            bruchrechnen: "bruchrechnen",
+            teiler: "teilbarkeit",
+            teilbarkeit: "teilbarkeit"
         };
         const TOPIC_BLOCKED = {
             pubertaet: 1, sexualitaet: 1, fortpflanzung: 1,

@@ -27,7 +27,7 @@
 (function () {
     'use strict';
 
-    const V = '9.2';
+    const V = '9.4';
     console.log('🔥 datenbanken_loader.js v' + V + ' (Laden bei Bedarf)');
 
     // ------------------------------------------------------------
@@ -47,7 +47,13 @@
         'fragen/words_kids_themes.js',
         'fragen/words_adult.js',
         'fragen/vocabulary.js',         // Vokabel-Duell
-        'formula.js'
+        'formula.js',
+        // Pilot Themen-Auswahl (Mathe Klasse 5/6): schon getaggte Fragen
+        // vorab laden, damit "Fach/Thema" im Wissen-Modus die Unterthemen
+        // sofort anzeigen kann (sonst wären sie erst nach dem Laden der
+        // ganzen Kategorie bekannt).
+        'fragen/klasse5/questions_k5_themen.js',
+        'fragen/klasse6/questions_k6_themen.js'
     ];
 
     // Diese Namen liefern beim Start bereits Fragen mit.

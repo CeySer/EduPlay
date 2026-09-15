@@ -1285,6 +1285,10 @@ auth.createUserWithEmailAndPassword(e, p)
                 const snap = await db.collection("parents").doc(currentParentUser.uid)
                     .collection("profiles").doc(key).get();
                 if (!snap.exists) return;
+                // Frischen Stand übernehmen: ALL_PROFILES[key] kommt sonst nur einmal
+                // beim App-Start rein - Zuweisungen/Fortschritt von einem anderen
+                // Gerät kämen sonst erst nach komplettem Neustart hier an.
+                if (typeof ALL_PROFILES !== "undefined" && ALL_PROFILES) ALL_PROFILES[key] = snap.data();
                 const as = (snap.data() || {}).activeSession;
                 if (!as || !as.id || !as.ts) return;
                 if (as.id === window.DEVICE_SESSION_ID) return;

@@ -17252,7 +17252,6 @@ function pruefeUndEmpfiehlKurs() {
 }
 
 function istLektionFreigeschaltet(lektion, liste) {
-    if (typeof isDevAdmin === "function" && isDevAdmin()) return true;
     if (istLektionZugewiesen(lektion.id)) return true;
     if (istKursZugewiesen(lektion.kurs)) return true;
     if (istLektionAbgeschlossen(lektion.id)) return true;

@@ -2337,6 +2337,8 @@ VIEW: QUIZ SETUP
             <p id="lektion-ergebnis-hinweis" class="text-sm text-gray-400"></p>
             <button id="lektion-ergebnis-review-btn" type="button" onclick="startLektionWiederholung()"
                 class="hidden w-full p-3 rounded-xl font-bold text-white bg-amber-600 hover:bg-amber-500">🔁 3 Fehler wiederholen</button>
+            <button id="lektion-ergebnis-wissen-btn" type="button"
+                class="hidden w-full p-3 rounded-xl font-bold text-white" style="background:linear-gradient(140deg,#6366f1,#10b981);">🧠 Im Wissen-Modus üben</button>
             <div class="flex gap-3 mt-4">
                 <button id="lektion-ergebnis-retry-btn" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Nochmal</button>
                 <button onclick="showKurse()" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Zu den Kursen</button>
@@ -2716,13 +2718,13 @@ VIEW: QUIZ SETUP
     JAVASCRIPT MODULE
     ============================================================ -->
     <script src="confetti.js?v=1"></script>
-    <script src="app-config.js?v=13.5"></script>
+    <script src="app-config.js?v=13.12"></script>
     <script src="app-ui.js?v=9.5"></script>
-    <script src="family-dashboard.js?v=11.36"></script>
+    <script src="family-dashboard.js?v=11.37"></script>
     <script src="dev-admin.js?v=1.7"></script>
     <script src="ui-common.js?v=9.3"></script>
     <script src="ki-coach.js?v=1.1"></script>
-    <script src="quiz-core.js?v=10.10"></script>
+    <script src="quiz-core.js?v=10.11"></script>
     <!-- Die neun Kurs-Dateien (zusammen rund 2 MB) werden nicht mehr hier
          geladen, sondern von lektionen-loader.js im Leerlauf nachgeholt bzw.
          spaetestens beim ersten Antippen von "Kurse". Die Dateiliste und die

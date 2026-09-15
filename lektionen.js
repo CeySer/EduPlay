@@ -9467,82 +9467,82 @@ const LEKTIONEN = [
         },
         uebung: {
             leicht: [
-                { id: "cond3k9l1u_leicht_1", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l1u_leicht_1", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "Wofür braucht man Conditional Typ III?",
                     answers: ["Für die irreale Vergangenheit", "Für die wahrscheinliche Zukunft", "Für gegenwärtige Gewohnheiten", "Für Befehle und Bitten"], correct: 0,
                     explanation: "Typ III beschreibt, was hätte sein können: If I had studied, I would have passed." },
-                { id: "cond3k9l1u_leicht_2", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l1u_leicht_2", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "Zeitform im if-Satz bei Typ III?",
                     answers: ["Past Perfect", "will-future", "Present Simple", "going-to"], correct: 0,
                     explanation: "If + had + Past Participle." },
-                { id: "cond3k9l1u_leicht_3", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l1u_leicht_3", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "Hauptsatz bei Typ III?",
                     answers: ["would have + 3. Form", "will + Infinitiv", "would + Infinitiv", "have + Infinitiv"], correct: 0,
                     explanation: "would have done." },
-                { id: "cond3k9l1u_leicht_4", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l1u_leicht_4", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "If I ___ harder, I would have passed.",
                     answers: ["had studied", "studied", "study", "would study"], correct: 0,
                     explanation: "had studied = Past Perfect." }
             ],
             mittel: [
-                { id: "cond3k9l1u_mittel_1", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l1u_mittel_1", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "If they had left earlier, they ___ the train.",
                     answers: ["would have caught", "will catch", "would catch", "caught"], correct: 0,
                     explanation: "would have + 3. Form." },
-                { id: "cond3k9l1u_mittel_2", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l1u_mittel_2", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "Welche Aussage ist Typ III?",
                     answers: ["If I had seen her, I would have said hi.", "If I see her, I will say hi.", "If I saw her, I would say hi.", "If I would see her, I say hi."], correct: 0,
                     explanation: "had seen + would have said." },
-                { id: "cond3k9l1u_mittel_3", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l1u_mittel_3", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "Falsch ist:",
                     answers: ["If I would have known, I had helped.", "If I had known, I would have helped.", "Had I known, I would have helped.", "If she had called, we would have come."], correct: 0,
                     explanation: "Kein would have im if-Satz." },
-                { id: "cond3k9l1u_mittel_4", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l1u_mittel_4", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "Typ II statt III wäre?",
                     answers: ["If I knew, I would tell you.", "If I had known, I would have told you.", "If I know, I will tell you.", "If I had know, I will told you."], correct: 0,
                     explanation: "knew / would tell = Gegenwart irreal." }
             ],
             schwer: [
-                { id: "cond3k9l1u_schwer_1", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "schwer", points: 10,
+                { id: "cond3k9l1u_schwer_1", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "schwer", points: 10,
                     question: "If we ___ the map, we wouldn't have got lost.",
                     answers: ["had taken", "took", "would take", "have taken"], correct: 0,
                     explanation: "had taken." },
-                { id: "cond3k9l1u_schwer_2", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "schwer", points: 10,
+                { id: "cond3k9l1u_schwer_2", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "schwer", points: 10,
                     question: "He ___ the exam if he had slept enough.",
                     answers: ["wouldn't have failed", "won't fail", "wouldn't fail", "didn't fail"], correct: 0,
                     explanation: "wouldn't have failed." },
-                { id: "cond3k9l1u_schwer_3", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "schwer", points: 10,
+                { id: "cond3k9l1u_schwer_3", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "schwer", points: 10,
                     question: "Kurzform: If I'd gone =",
                     answers: ["If I had gone", "If I would gone", "If I have gone", "If I did gone"], correct: 0,
                     explanation: "'d = had im if-Satz von Typ III." },
-                { id: "cond3k9l1u_schwer_4", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "schwer", points: 10,
+                { id: "cond3k9l1u_schwer_4", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "schwer", points: 10,
                     question: "Mischtyp oft so:",
                     answers: ["If I had studied (III), I would be confident now (II)", "If I study, I would have been confident", "If I would study, I had been confident", "If I studied, I will have been confident"], correct: 0,
                     explanation: "Vergangenheit im if, Gegenwart im Hauptsatz." }
             ]
         },
         test: [
-                { id: "cond3k9l1_test_1", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l1_test_1", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "would have gone gehört zu?",
                     answers: ["Typ III", "Typ I", "Simple Present", "Imperativ"], correct: 0,
                     explanation: "would have + 3. Form = Typ III." },
-                { id: "cond3k9l1_test_2", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l1_test_2", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "If she had asked, I ___ her.",
                     answers: ["would have helped", "will help", "would help", "helped"], correct: 0,
                     explanation: "would have helped." },
-                { id: "cond3k9l1_test_3", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l1_test_3", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "Bedeutung von Typ III?",
                     answers: ["Es ist vorbei und kam anders", "Es passiert sicher morgen", "Es passiert jede Woche", "Es ist ein Befehl"], correct: 0,
                     explanation: "Kontrafaktische Vergangenheit." },
-                { id: "cond3k9l1_test_4", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "schwer", points: 10,
+                { id: "cond3k9l1_test_4", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "schwer", points: 10,
                     question: "Richtige Reihenfolge?",
                     answers: ["If + Past Perfect, would have + PP", "If + will, would have + PP", "If + Present, would + PP", "If + would have, had + PP"], correct: 0,
                     explanation: "Klassisches Typ-III-Muster." },
-                { id: "cond3k9l1_test_5", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l1_test_5", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "If I had been there, …",
                     answers: ["I would have seen it.", "I will see it.", "I see it.", "I would see it tomorrow."], correct: 0,
                     explanation: "would have seen." },
-                { id: "cond3k9l1_test_6", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l1_test_6", category: "kurs_cond3_k9_l1", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "3. Form von go?",
                     answers: ["gone", "goed", "went", "going"], correct: 0,
                     explanation: "go – went – gone." }
@@ -11992,82 +11992,82 @@ const LEKTIONEN = [
         },
         uebung: {
             leicht: [
-                { id: "cond3k9l2u_leicht_1", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l2u_leicht_1", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "had + 3. Form im if-Satz zeigt?",
                     answers: ["Vergangenheit", "Zukunft will", "Gewohnheit jede Woche", "Passiv ohne be"], correct: 0,
                     explanation: "Typ III-Bedingung." },
-                { id: "cond3k9l2u_leicht_2", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l2u_leicht_2", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "„… would be happy now“ zeigt was?",
                     answers: ["Eine Folge in der Gegenwart", "Eine abgeschlossene Vergangenheit", "Einen Befehl an das Gegenüber", "Eine Gerund-Konstruktion"], correct: 0,
                     explanation: "would + Infinitiv beschreibt die Folge im Jetzt – typisch für Typ II und für den Mischtyp." },
-                { id: "cond3k9l2u_leicht_3", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l2u_leicht_3", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "would have gone zeigt?",
                     answers: ["vergangene Folge", "nur Gegenwart", "Typ I", "whose"], correct: 0,
                     explanation: "Typ III-Folge." },
-                { id: "cond3k9l2u_leicht_4", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l2u_leicht_4", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "Wie sieht der Mischtyp meist aus?",
                     answers: ["Bedingung damals, Folge jetzt", "will im if und will danach", "Present in beiden Satzteilen", "Ein Satz ganz ohne if"], correct: 0,
                     explanation: "If I had studied, I would be a doctor now. Der if-Satz steht im Typ III, die Folge im Typ II." }
             ],
             mittel: [
-                { id: "cond3k9l2u_mittel_1", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l2u_mittel_1", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "If I had trained, I ___ fitter now.",
                     answers: ["would be", "will be", "would have be", "am"], correct: 0,
                     explanation: "Jetzt-Folge." },
-                { id: "cond3k9l2u_mittel_2", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l2u_mittel_2", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "If he were nicer, he ___ yesterday.",
                     answers: ["wouldn’t have shouted", "won’t shout", "wouldn’t shouts", "hadn’t will"], correct: 0,
                     explanation: "II-Bedingung, III-Folge." },
-                { id: "cond3k9l2u_mittel_3", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l2u_mittel_3", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "If we had left earlier, we ___ there now.",
                     answers: ["would be", "will be", "are", "had been now only"], correct: 0,
                     explanation: "jetzt dort." },
-                { id: "cond3k9l2u_mittel_4", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l2u_mittel_4", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "Wann bleibt es reines Typ III?",
                     answers: ["Wenn beides vorbei ist", "Wenn eine Seite jetzt gilt", "Wenn kein had vorkommt", "Wenn will im if steht"], correct: 0,
                     explanation: "If I had left earlier, I would have caught the train – Bedingung und Folge liegen beide in der Vergangenheit." }
             ],
             schwer: [
-                { id: "cond3k9l2u_schwer_1", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "schwer", points: 10,
+                { id: "cond3k9l2u_schwer_1", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "schwer", points: 10,
                     question: "If I were you, I would have told her. Was heißt das?",
                     answers: ["Charakter jetzt, Handlung damals", "Beide Teile in der Zukunft", "Eine Bedingung vom Typ I", "Eine reine Passivform"], correct: 0,
                     explanation: "were = Zustand in der Gegenwart (Typ II), would have told = Handlung in der Vergangenheit (Typ III)." },
-                { id: "cond3k9l2u_schwer_2", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "schwer", points: 10,
+                { id: "cond3k9l2u_schwer_2", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "schwer", points: 10,
                     question: "Falsch gemischt?",
                     answers: ["If I would have known, I am happy now.", "If I had known, I would be happy now.", "If I were ready, I would have gone.", "If she had called, I would answer now."], correct: 0,
                     explanation: "would have gehört nicht in den if-Satz." },
-                { id: "cond3k9l2u_schwer_3", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "schwer", points: 10,
+                { id: "cond3k9l2u_schwer_3", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "schwer", points: 10,
                     question: "Was signalisiert „now“ nach would?",
                     answers: ["Einen Mischtyp mit Folge jetzt", "Ein reines Conditional Typ I", "Eine Gerund-Konstruktion", "Einen defining relative clause"], correct: 0,
                     explanation: "„now“ zieht die Folge in die Gegenwart – die Bedingung kann trotzdem in der Vergangenheit liegen." },
-                { id: "cond3k9l2u_schwer_4", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "schwer", points: 10,
+                { id: "cond3k9l2u_schwer_4", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "schwer", points: 10,
                     question: "If it hadn’t rained, the pitch ___ dry now.",
                     answers: ["would be", "will be", "would have be", "is being will"], correct: 0,
                     explanation: "Boden jetzt." }
             ]
         },
         test: [
-                { id: "cond3k9l2_test_1", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l2_test_1", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "Zwei Zeiten markieren hilft weil?",
                     answers: ["man den Typ nicht rät", "if verboten ist", "had immer will braucht", "Kommas Pflicht sind"], correct: 0,
                     explanation: "Logik zuerst." },
-                { id: "cond3k9l2_test_2", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l2_test_2", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "If I had seen it, I would have said so. Typ?",
                     answers: ["reines III", "reines I", "nur II", "wish ohne if"], correct: 0,
                     explanation: "beides Vergangenheit." },
-                { id: "cond3k9l2_test_3", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l2_test_3", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "would + Infinitiv nach if-Satz mit had?",
                     answers: ["Folge jetzt", "Folge immer damals", "Typ I", "Passiv"], correct: 0,
                     explanation: "Mischung." },
-                { id: "cond3k9l2_test_4", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "schwer", points: 10,
+                { id: "cond3k9l2_test_4", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "schwer", points: 10,
                     question: "If she didn’t live so far, she would have come. Lesart?",
                     answers: ["Wohnort jetzt, Besuch damals", "Beide Teile in der Zukunft", "Der Satz ergibt keinen Sinn", "Eine Gerund-Konstruktion"], correct: 0,
                     explanation: "didn’t live = dauerhafter Zustand jetzt (Typ II), would have come = verpasste Handlung (Typ III)." },
-                { id: "cond3k9l2_test_5", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "mittel", points: 10,
+                { id: "cond3k9l2_test_5", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "mittel", points: 10,
                     question: "if I would have – Korrektur?",
                     answers: ["if I had", "if I will have", "if I have would", "if I would had"], correct: 0,
                     explanation: "kein would im if." },
-                { id: "cond3k9l2_test_6", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditionals", difficulty: "leicht", points: 10,
+                { id: "cond3k9l2_test_6", category: "kurs_cond3_k9_l2", area: "schule", grade: 9, subject: "englisch", topic: "conditional_3", difficulty: "leicht", points: 10,
                     question: "would have + 3. Form = ?",
                     answers: ["irreal vergangen", "sicher morgen", "Present Simple", "Imperativ"], correct: 0,
                     explanation: "Typ-III-Hauptsatz." }
@@ -17163,6 +17163,94 @@ function istKursZugewiesen(kursId) {
     return !!(currentPlayer && currentPlayer.pendingKurs && currentPlayer.pendingKurs.kursId === kursId);
 }
 
+// ============================================================
+//  VERKNÜPFUNG WISSEN-MODUS <-> KURS-MODUS
+// ============================================================
+
+// Liefert das (kanonische) Thema einer Lektion. Lektionen selbst tragen
+// kein eigenes topic-Feld, nur ihre Übungs-/Testfragen - deshalb wird das
+// Thema aus der ersten gefundenen Frage abgeleitet.
+function topicFuerLektion(daten) {
+    if (!daten) return null;
+    const pool = [];
+    ["leicht", "mittel", "schwer"].forEach(function (s) {
+        (daten.uebung && daten.uebung[s] || []).forEach(function (q) { pool.push(q); });
+    });
+    (daten.test || []).forEach(function (q) { pool.push(q); });
+    const q = pool.find(function (q) { return q.topic; });
+    if (!q) return null;
+    return (typeof canonTopic === "function") ? canonTopic(q.topic) : q.topic;
+}
+
+// Findet den Kurs (Klasse+Fach+Thema), der zu einem Wissen-Thema passt.
+function kursFuerThema(grade, subject, topic) {
+    if (!topic || typeof KURSE === "undefined" || typeof LEKTIONEN === "undefined") return null;
+    const canonT = (typeof canonTopic === "function") ? canonTopic(topic) : topic;
+    const kurse = KURSE.filter(function (k) { return Number(k.grade) === Number(grade) && k.subject === subject; });
+    for (let i = 0; i < kurse.length; i++) {
+        const lektionen = getLektionenForKurs(kurse[i].id);
+        for (let j = 0; j < lektionen.length; j++) {
+            if (topicFuerLektion(lektionen[j]) === canonT) return kurse[i];
+        }
+    }
+    return null;
+}
+
+// Schwelle, ab der ein Thema als "schwach" gilt und ein Kurs vorgeschlagen
+// wird: mindestens 5 beantwortete Fragen zu dem Thema (über beliebig viele
+// Runden/Sessions hinweg, damit eine einzelne knappe Runde nicht überbewertet
+// wird) und weniger als 60% davon richtig.
+const SCHWACHES_THEMA_MIN_VERSUCHE = 5;
+const SCHWACHES_THEMA_MAX_QUOTE = 0.6;
+
+// Wertet currentPlayer.topicStats komplett neu aus und setzt ggf.
+// currentPlayer.suggestedKurs auf das schwächste Thema, zu dem es einen
+// noch nicht komplett bestandenen Kurs gibt. Wird nach jeder Wissen-Quiz-
+// Runde und nach jeder bestandenen Kurs-Lektion aufgerufen.
+function pruefeUndEmpfiehlKurs() {
+    if (!currentPlayer || !currentPlayer.topicStats) return;
+    let bester = null;
+    Object.keys(currentPlayer.topicStats).forEach(function (key) {
+        const stat = currentPlayer.topicStats[key];
+        if (!stat || stat.attempts < SCHWACHES_THEMA_MIN_VERSUCHE) return;
+        const quote = stat.correct / stat.attempts;
+        if (quote >= SCHWACHES_THEMA_MAX_QUOTE) return;
+        const sepIdx = key.indexOf("::");
+        if (sepIdx < 0) return;
+        const catKey = key.slice(0, sepIdx);
+        const topic = key.slice(sepIdx + 2);
+        const parsed = (typeof parseSchoolCat === "function") ? parseSchoolCat(catKey) : null;
+        if (!parsed) return;
+        const kurs = kursFuerThema(parsed.grade, parsed.subject, topic);
+        if (!kurs) return;
+        const lektionen = getLektionenForKurs(kurs.id);
+        if (lektionen.length && lektionen.every(function (l) { return istLektionAbgeschlossen(l.id); })) return;
+        // Erst kürzlich weggeklickt? Dann nicht sofort wieder mit demselben
+        // Kurs nerven (7 Tage Pause), auch wenn das Thema weiterhin schwach ist.
+        const abgelehnt = currentPlayer.dismissedKursSuggestion;
+        if (abgelehnt && abgelehnt.kursId === kurs.id && (Date.now() - abgelehnt.at) < 7 * 24 * 60 * 60 * 1000) return;
+        if (!bester || quote < bester.quote) {
+            bester = { topic: topic, quote: quote, kurs: kurs };
+        }
+    });
+    const vorher = currentPlayer.suggestedKurs;
+    if (bester) {
+        const label = (typeof TOPIC_LABELS !== "undefined" && TOPIC_LABELS[bester.topic]) ? TOPIC_LABELS[bester.topic] : bester.topic;
+        currentPlayer.suggestedKurs = {
+            kursId: bester.kurs.id,
+            kursTitle: bester.kurs.title,
+            topic: bester.topic,
+            topicLabel: label,
+            createdAt: Date.now()
+        };
+    } else {
+        currentPlayer.suggestedKurs = null;
+    }
+    const geaendert = JSON.stringify(vorher) !== JSON.stringify(currentPlayer.suggestedKurs);
+    if (typeof renderWeaknessSuggestion === "function") renderWeaknessSuggestion();
+    if (geaendert && typeof savePlayerProgress === "function") savePlayerProgress();
+}
+
 function istLektionFreigeschaltet(lektion, liste) {
     if (typeof isDevAdmin === "function" && isDevAdmin()) return true;
     if (istLektionZugewiesen(lektion.id)) return true;
@@ -17325,17 +17413,30 @@ function openKurs(kursId) {
     const lektionen = getLektionenForKurs(kursId);
     document.getElementById("kurs-lektionen-title").innerText = `${kurs.icon} ${kurs.title}`;
     const wrap = document.getElementById("kurs-lektionen-liste");
+    const catKey = "k" + kurs.grade + "_" + kurs.subject;
+    const schwelle = (typeof TOPIC_MIN_QUESTIONS !== "undefined") ? TOPIC_MIN_QUESTIONS : 8;
     wrap.innerHTML = lektionen.map(l => {
         const fertig = istLektionAbgeschlossen(l.id);
         const frei = istLektionFreigeschaltet(l, lektionen);
         const disabled = l.locked || !frei;
         const statusIcon = fertig ? "✅" : (disabled ? "🔒" : "▶️");
+        // Passiver Hinweis (nicht klickbar, nur Info): wie viele Fragen insgesamt
+        // (Kurs + Wissen-Modus zusammen) es zum Thema dieser Lektion gibt.
+        let wissenHinweis = "";
+        const topic = topicFuerLektion(l);
+        if (topic) {
+            const anzahl = (typeof questionsForTopic === "function") ? questionsForTopic(catKey, topic).length : 0;
+            if (anzahl >= schwelle) {
+                wissenHinweis = `<span class="block text-[10px] text-indigo-300 mt-0.5">🧠 ${anzahl} Fragen im Wissen-Modus</span>`;
+            }
+        }
         return `<button type="button" ${disabled ? "disabled" : `onclick="openLektion('${l.id}')"`}
             class="w-full flex items-center gap-3 p-4 rounded-2xl text-left transition ${disabled ? "opacity-50 cursor-not-allowed bg-white/5" : "bg-white/5 hover:bg-white/10 hover:scale-[1.01]"} border border-white/10">
             <span class="text-2xl shrink-0">${l.icon || "📘"}</span>
             <span class="flex-1">
                 <span class="block font-black text-white text-sm">${l.title}</span>
                 <span class="block text-xs text-gray-400">${l.kurz || ""}</span>
+                ${wissenHinweis}
             </span>
             <span class="text-lg shrink-0">${statusIcon}</span>
         </button>`;
@@ -17545,6 +17646,33 @@ function finishLektion(pct) {
             reviewBtn.classList.add("hidden");
         }
     }
+
+    // Verknüpfung mit dem Wissen-Modus: bei bestandener Lektion einen Direktstart
+    // ins passende Thema anbieten (Kurs-Übungsfragen + Wissen-Fragen gemischt).
+    const wissenBtn = document.getElementById("lektion-ergebnis-wissen-btn");
+    if (wissenBtn) {
+        const kurs = (typeof KURSE !== "undefined") ? KURSE.find(function (k) { return k.id === daten.kurs; }) : null;
+        const topic = topicFuerLektion(daten);
+        let anzahl = 0, catKey = null;
+        if (bestanden && kurs && topic) {
+            catKey = "k" + kurs.grade + "_" + kurs.subject;
+            anzahl = (typeof questionsForTopic === "function") ? questionsForTopic(catKey, topic).length : 0;
+        }
+        const schwelle = (typeof TOPIC_MIN_QUESTIONS !== "undefined") ? TOPIC_MIN_QUESTIONS : 8;
+        if (bestanden && anzahl >= schwelle) {
+            const label = (typeof TOPIC_LABELS !== "undefined" && TOPIC_LABELS[topic]) ? TOPIC_LABELS[topic] : topic;
+            wissenBtn.innerText = "🧠 " + label + " im Wissen-Modus üben";
+            wissenBtn.classList.remove("hidden");
+            wissenBtn.onclick = function () {
+                currentLektion = null;
+                const fragen = questionsForKey("topic:" + catKey + ":" + topic);
+                launchQuiz(fragen);
+            };
+        } else {
+            wissenBtn.classList.add("hidden");
+        }
+    }
+    if (typeof pruefeUndEmpfiehlKurs === "function") pruefeUndEmpfiehlKurs();
 
     switchView("lektion-ergebnis");
     if (typeof confetti === "function" && bestanden) {

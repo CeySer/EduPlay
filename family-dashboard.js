@@ -161,13 +161,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 await loadFamilyRewards();
                 if (typeof bumpSignupIfNew === "function") bumpSignupIfNew();
                 renderFamilyHub();
-                let letztesProfil = null;
-                try { letztesProfil = localStorage.getItem("eduplayLastProfile_" + currentParentUser.uid); } catch (e) { /* */ }
-                if (letztesProfil && ALL_PROFILES[letztesProfil] && !ALL_PROFILES[letztesProfil].isGuest) {
-                    await selectProfile(letztesProfil);
-                } else {
-                    switchView('family-hub');
-                }
+                switchView('family-hub');
                 setTimeout(function () {
                     if (typeof maybeShowWhatsNew === "function") maybeShowWhatsNew();
                 }, 600);
@@ -609,11 +603,6 @@ auth.createUserWithEmailAndPassword(e, p)
             await warnIfProfileOnOtherDevice(key);
             activePlayerKey = key;
             currentPlayer = ALL_PROFILES[key];
-            try {
-                if (currentParentUser && !currentPlayer.isGuest) {
-                    localStorage.setItem("eduplayLastProfile_" + currentParentUser.uid, key);
-                }
-            } catch (e) { /* */ }
             touchPlayerActivity(key);
             sessionLearnedWords = new Set(currentPlayer.learnedWords || []);
             document.getElementById("welcome-text").innerText = `Hallo, ${esc(currentPlayer.name)}!`;
@@ -1320,8 +1309,6 @@ auth.createUserWithEmailAndPassword(e, p)
             if (isAnonGuest || !currentParentUser) {
                 const c = document.getElementById("menu-coins");
                 if (c) c.innerText = currentPlayer.coins || 0;
-                const zg = document.getElementById("menu-zeit");
-                if (zg) zg.innerText = currentPlayer.zeit || 0;
                 return;
             }
             // merge:true, damit parallele Änderungen der Eltern (z.B. zugewiesener Test,
@@ -1330,8 +1317,6 @@ auth.createUserWithEmailAndPassword(e, p)
                 .set(currentPlayer, { merge: true })
                 .catch(e => handleError("savePlayerProgress", e, "Fortschritt konnte nicht gespeichert werden."));
             document.getElementById("menu-coins").innerText = currentPlayer.coins || 0;
-            const z = document.getElementById("menu-zeit");
-            if (z) z.innerText = currentPlayer.zeit || 0;
         }
 
         // ============================================================
@@ -2792,7 +2777,7 @@ auth.createUserWithEmailAndPassword(e, p)
             const rewards = p.redeemedRewards || [];
             const rewardHtml = rewards.length > 0 ?
                 rewards.slice(0, 3).map(r =>
-                    `<div class="dash-stat-card flex justify-between items-center"><span class="text-white text-sm">${esc(r.name)}</span><span class="text-yellow-400 text-xs">${r.currency === "zeit" ? "⏳" : "🪙"} ${r.cost}</span></div>`
+                    `<div class="dash-stat-card flex justify-between items-center"><span class="text-white text-sm">${esc(r.name)}</span><span class="text-yellow-400 text-xs">🪙 ${r.cost}</span></div>`
                 ).join('') :
                 '<div class="text-gray-500 text-sm">Noch keine Belohnungen eingelöst</div>';
 
@@ -2930,6 +2915,28 @@ auth.createUserWithEmailAndPassword(e, p)
         function renderWeaknessSuggestion() {
             const card = document.getElementById("weakness-card");
             if (!card) return;
+
+            // Kurs-Tipp (schwaches THEMA, siehe pruefeUndEmpfiehlKurs() in
+            // lektionen.js) hat Vorrang vor der Blitz-Übung: konkreter Kurs statt
+            // gemischtem Quiz. Eigenes Feld, damit eine von den Eltern zugewiesene
+            // pendingKurs-Karte nie überschrieben oder damit verwechselt wird.
+            const s = currentPlayer && currentPlayer.suggestedKurs;
+            const dismissedKurs = currentPlayer && currentPlayer.dismissedKursSuggestion;
+            if (s && s.kursId && !(dismissedKurs && dismissedKurs.kursId === s.kursId)) {
+                card.innerHTML =
+                    `<div class="glass-card-glow p-4 relative pr-2" style="border-color:rgba(99,102,241,0.25);background:linear-gradient(135deg,rgba(99,102,241,0.18),rgba(16,185,129,0.1));">
+                        <button type="button" onclick="event.stopPropagation();dismissSuggestedKurs()" title="Ausblenden"
+                            class="continue-card-close" aria-label="Kurs-Tipp ausblenden">✕</button>
+                        <div class="font-bold text-indigo-300 text-sm pr-10">💡 Kurs-Tipp für dich</div>
+                        <div class="text-xs text-gray-300 mt-1 pr-2">${esc(s.topicLabel || s.topic)}: ${esc(s.kursTitle || s.kursId)}</div>
+                        <button type="button" onclick="startSuggestedKurs()" class="btn-primary text-xs py-2.5 px-4 mt-3 w-full" style="background:linear-gradient(140deg,#6366f1,#10b981);">Kurs ansehen</button>
+                    </div>`;
+                card.classList.remove("hidden");
+                return;
+            }
+
+            // Rückfall: allgemeine Blitz-Übung (schwache Kategorie insgesamt) –
+            // greift auch dort, wo es (noch) keinen passenden Kurs gibt.
             if (isWeaknessDismissedToday()) {
                 card.classList.add("hidden");
                 card.innerHTML = "";
@@ -3001,11 +3008,10 @@ auth.createUserWithEmailAndPassword(e, p)
                 const t = currentPlayer.pendingTest;
                 const labels = t.categories.map(c => labelFuerKategorie(c) || CATEGORY_LABELS[c] || c).join(", ");
                 const minutes = Math.round(t.timeLimitSeconds / 60);
-                const ueberf = istUeberfaellig(t.faelligBis);
                 card.innerHTML =
-                    `<div class="glass-card-glow p-5 text-white" style="background:${ueberf ? "linear-gradient(135deg,rgba(244,63,94,0.22),rgba(239,68,68,0.12))" : "linear-gradient(135deg,rgba(99,102,241,0.15),rgba(139,92,246,0.1))"};border-color:${ueberf ? "rgba(244,63,94,0.35)" : "rgba(99,102,241,0.2)"};">
+                    `<div class="glass-card-glow p-5 text-white" style="background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(139,92,246,0.1));border-color:rgba(99,102,241,0.2);">
                                 <div class="font-black text-lg mb-1">📝 Neuer Test wartet auf dich!</div>
-                                <div class="text-xs opacity-80 mb-3">Themen: ${labels} · ⏱️ ${minutes} Min.${t.faelligBis ? ` · ${ueberf ? "⚠️ überfällig seit" : "Fällig bis"} ${formatFaellig(t.faelligBis)}` : ""}</div>
+                                <div class="text-xs opacity-80 mb-3">Themen: ${labels} · ⏱️ ${minutes} Min.</div>
                                 <button onclick="startAssignedTest()" class="btn-primary w-full text-center" style="background:var(--gradient-cool);">Test jetzt starten 🚀</button>
                             </div>`;
                 card.classList.remove("hidden");
@@ -3063,7 +3069,6 @@ auth.createUserWithEmailAndPassword(e, p)
             }
             if (tab === 'rewards') {
                 renderDashAdminProgress();
-                if (typeof fillDashRewardChildSelect === "function") fillDashRewardChildSelect();
                 renderDashRewards();
             }
             if (!scroll) return;
@@ -3077,7 +3082,6 @@ auth.createUserWithEmailAndPassword(e, p)
             renderStudyGoalAdmin();
             renderDashAdminProgress();
             renderDashAdminTest();
-            if (typeof fillDashRewardChildSelect === "function") fillDashRewardChildSelect();
             renderDashRewards();
             maybeShowParentWeeklyReport();
         }
@@ -3172,7 +3176,6 @@ auth.createUserWithEmailAndPassword(e, p)
                                 </div>
                                 <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs mt-1">
                                     <span class="text-yellow-400 font-bold">🪙 ${p.coins || 0}</span>
-                                    <span class="text-indigo-300 font-bold">⏳ ${p.zeit || 0}</span>
                                     <span class="text-gray-400">🔥 ${p.streak ? p.streak.count : 0}d Streak</span>
                                     <span class="${accuracy >= 80 ? 'text-emerald-400' : accuracy >= 50 ? 'text-yellow-400' : 'text-rose-400'}">${accuracy}% Treffer</span>
                                 </div>
@@ -3275,63 +3278,6 @@ auth.createUserWithEmailAndPassword(e, p)
             renderStudyGoalAdmin();
             if (typeof renderStudyGoalCard === "function") renderStudyGoalCard();
             if (typeof renderTodayStatusCard === "function") renderTodayStatusCard();
-        }
-
-        function clearPendingLesson(profileKey) {
-            if (!profileKey || !ALL_PROFILES[profileKey]) return;
-            ALL_PROFILES[profileKey].pendingLesson = null;
-            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.pendingLesson = null;
-            if (currentParentUser) {
-                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
-                    .update({ pendingLesson: null })
-                    .catch(e => handleError("clearPendingLesson", e, "Lektion konnte nicht zurückgezogen werden."));
-            }
-            showToast("Lektion zurückgezogen.", "success");
-            if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
-            if (typeof renderDashLessonNotices === "function") renderDashLessonNotices();
-        }
-
-        function clearPendingKurs(profileKey) {
-            if (!profileKey || !ALL_PROFILES[profileKey]) return;
-            ALL_PROFILES[profileKey].pendingKurs = null;
-            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.pendingKurs = null;
-            if (currentParentUser) {
-                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
-                    .update({ pendingKurs: null })
-                    .catch(e => handleError("clearPendingKurs", e, "Kurs konnte nicht zurückgezogen werden."));
-            }
-            showToast("Kurs zurückgezogen.", "success");
-            if (typeof renderPendingKursCard === "function") renderPendingKursCard();
-            if (typeof renderDashKursNotices === "function") renderDashKursNotices();
-        }
-
-        function clearPendingTest(profileKey) {
-            if (!profileKey || !ALL_PROFILES[profileKey]) return;
-            ALL_PROFILES[profileKey].pendingTest = null;
-            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.pendingTest = null;
-            if (currentParentUser) {
-                db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
-                    .update({ pendingTest: null })
-                    .catch(e => handleError("clearPendingTest", e, "Test konnte nicht zurückgezogen werden."));
-            }
-            showToast("Test zurückgezogen.", "success");
-            if (typeof renderPendingTestCard === "function") renderPendingTestCard();
-            if (typeof renderDashTestNotices === "function") renderDashTestNotices();
-            if (typeof renderDashAdminProgress === "function") renderDashAdminProgress();
-        }
-
-        // Faelligkeit: faelligBis ist ein ISO-Datum "YYYY-MM-DD". Lexikalischer
-        // Vergleich mit heute reicht (gleiches Format, keine Zeitzone noetig).
-        function istUeberfaellig(faelligBis) {
-            if (!faelligBis) return false;
-            const heute = new Date().toISOString().slice(0, 10);
-            return faelligBis < heute;
-        }
-
-        function formatFaellig(faelligBis) {
-            if (!faelligBis) return "";
-            const d = new Date(faelligBis + "T12:00:00");
-            return d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit" });
         }
 
 
@@ -3448,7 +3394,6 @@ auth.createUserWithEmailAndPassword(e, p)
                 ladeAlleFragen().then(function () { fillDashTestCategoryUI(); }).catch(function () { });
             }
             renderDashTestResults();
-            if (typeof renderDashTestNotices === "function") renderDashTestNotices();
             if (typeof fillDashLessonSelect === "function") fillDashLessonSelect();
             if (typeof renderDashLessonNotices === "function") renderDashLessonNotices();
             if (typeof fillDashKursSelect === "function") fillDashKursSelect();
@@ -3573,8 +3518,7 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!profileKey) return showToast("Kein Spieler ausgewählt!", "error");
             if (checked.length === 0) return showToast("Bitte mindestens ein Thema auswählen!", "error");
             const vocabDir = document.getElementById('dash-test-dir')?.value || 'de2f';
-            const faelligBis = document.getElementById('dash-test-deadline')?.value || null;
-            const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, vocabDir, faelligBis, createdAt: new Date().toISOString() };
+            const pendingTest = { categories: checked, timeLimitSeconds: minutes * 60, vocabDir, createdAt: new Date().toISOString() };
             if (!ALL_PROFILES[profileKey]) return showToast("Spieler nicht gefunden!", "error");
             ALL_PROFILES[profileKey].pendingTest = pendingTest;
             // Aktives Kind sofort aktualisieren – kein Seiten-Reload nötig
@@ -3588,7 +3532,6 @@ auth.createUserWithEmailAndPassword(e, p)
             renderDashAdminProgress();
             if (typeof renderPendingTestCard === "function") renderPendingTestCard();
             if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
-            if (typeof renderDashTestNotices === "function") renderDashTestNotices();
         }
 
         function fillDashLessonSelect() {
@@ -3621,12 +3564,10 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!lektionId) return showToast("Bitte eine Lektion wählen.", "error");
             const lek = (typeof LEKTIONEN !== "undefined" && LEKTIONEN.find(l => l.id === lektionId)) || null;
             const kurs = lek && typeof KURSE !== "undefined" ? KURSE.find(k => k.id === lek.kurs) : null;
-            const faelligBisLesson = document.getElementById('dash-lesson-deadline')?.value || null;
             const pendingLesson = {
                 lektionId,
                 kursId: lek ? lek.kurs : "",
                 title: lek ? ((kurs ? kurs.title + " · " : "") + lek.title) : lektionId,
-                faelligBis: faelligBisLesson,
                 createdAt: new Date().toISOString()
             };
             if (!ALL_PROFILES[profileKey]) return showToast("Spieler nicht gefunden!", "error");
@@ -3667,11 +3608,9 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!profileKey) return showToast("Kein Spieler ausgewählt!", "error");
             if (!kursId) return showToast("Bitte einen Kurs wählen.", "error");
             const kurs = (typeof KURSE !== "undefined") ? KURSE.find(k => k.id === kursId) : null;
-            const faelligBisKurs = document.getElementById('dash-kurs-deadline')?.value || null;
             const pendingKurs = {
                 kursId,
                 title: kurs ? kurs.title : kursId,
-                faelligBis: faelligBisKurs,
                 createdAt: new Date().toISOString()
             };
             if (!ALL_PROFILES[profileKey]) return showToast("Spieler nicht gefunden!", "error");
@@ -3692,11 +3631,10 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!card) return;
             if (currentPlayer && currentPlayer.pendingKurs && currentPlayer.pendingKurs.kursId) {
                 const t = currentPlayer.pendingKurs;
-                const ueberf = istUeberfaellig(t.faelligBis);
                 card.innerHTML =
                     `<div class="glass-card-glow p-5 text-white" style="background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(239,68,68,0.1));border-color:rgba(245,158,11,0.25);">
                         <div class="font-black text-lg mb-1">🎓 Ein Kurs wartet auf dich!</div>
-                        <div class="text-xs opacity-80 mb-3">${esc(t.title || t.kursId)}${t.faelligBis ? ` · <span class="${ueberf ? "text-rose-300 font-bold" : ""}">${ueberf ? "⚠️ überfällig seit" : "Fällig bis"} ${formatFaellig(t.faelligBis)}</span>` : ""}</div>
+                        <div class="text-xs opacity-80 mb-3">${esc(t.title || t.kursId)}</div>
                         <button onclick="startAssignedKurs()" class="btn-primary w-full text-center" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">Kurs starten</button>
                     </div>`;
                 card.classList.remove("hidden");
@@ -3720,33 +3658,39 @@ auth.createUserWithEmailAndPassword(e, p)
             }
         }
 
+        // Automatische Kurs-Empfehlung bei schwachem Thema im Wissen-Modus
+        // (siehe pruefeUndEmpfiehlKurs() in lektionen.js). Wird zusammen mit der
+        // Blitz-Übung im #weakness-card-Slot gerendert, siehe renderWeaknessSuggestion().
+        function startSuggestedKurs() {
+            const s = currentPlayer && currentPlayer.suggestedKurs;
+            if (!s || !s.kursId) return;
+            if (typeof ladeLektionen === "function") {
+                ladeLektionen().then(function () {
+                    if (typeof openKurs === "function") openKurs(s.kursId);
+                });
+            } else if (typeof openKurs === "function") {
+                openKurs(s.kursId);
+            } else {
+                showToast("Kurs nicht gefunden.", "error");
+            }
+        }
+
+        function dismissSuggestedKurs() {
+            if (!currentPlayer || !currentPlayer.suggestedKurs) return;
+            currentPlayer.dismissedKursSuggestion = { kursId: currentPlayer.suggestedKurs.kursId, at: Date.now() };
+            currentPlayer.suggestedKurs = null;
+            if (typeof savePlayerProgress === "function") savePlayerProgress();
+            renderWeaknessSuggestion();
+        }
+
         function renderDashKursNotices() {
             const box = document.getElementById("dash-kurs-notices");
             if (!box) return;
             const key = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
             const p = (key && ALL_PROFILES[key]) || currentPlayer;
             const pend = p && p.pendingKurs;
-            const ueberf = pend && istUeberfaellig(pend.faelligBis);
             box.innerHTML = (pend && pend.kursId)
-                ? `<div class="flex items-center justify-between gap-2 bg-white/5 rounded-lg px-2.5 py-2">
-                    <div class="text-[11px] font-bold ${ueberf ? "text-rose-300" : "text-amber-200"} min-w-0 truncate">Offen zugewiesen: ${esc(pend.title || pend.kursId)}${pend.faelligBis ? ` · ${ueberf ? "⚠️ überfällig" : "Fällig bis"} ${formatFaellig(pend.faelligBis)}` : ""}</div>
-                    <button type="button" class="shrink-0 text-[10px] font-black text-rose-300 bg-rose-500/20 border border-rose-400/30 rounded-lg px-2 py-1 hover:bg-rose-500/30" onclick="clearPendingKurs('${esc(key)}')">Zurückziehen</button>
-                </div>`
-                : "";
-        }
-
-        function renderDashTestNotices() {
-            const box = document.getElementById("dash-test-notices");
-            if (!box) return;
-            const key = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
-            const p = (key && ALL_PROFILES[key]) || currentPlayer;
-            const pend = p && p.pendingTest;
-            const ueberfT = pend && istUeberfaellig(pend.faelligBis);
-            box.innerHTML = (pend && pend.categories && pend.categories.length)
-                ? `<div class="flex items-center justify-between gap-2 bg-white/5 rounded-lg px-2.5 py-2">
-                    <div class="text-[11px] font-bold ${ueberfT ? "text-rose-300" : "text-indigo-200"} min-w-0 truncate">Offen zugewiesen: ${pend.categories.slice(0, 3).map(c => esc(labelFuerKategorie(c) || c)).join(', ')}${pend.faelligBis ? ` · ${ueberfT ? "⚠️ überfällig" : "Fällig bis"} ${formatFaellig(pend.faelligBis)}` : ""}</div>
-                    <button type="button" class="shrink-0 text-[10px] font-black text-rose-300 bg-rose-500/20 border border-rose-400/30 rounded-lg px-2 py-1 hover:bg-rose-500/30" onclick="clearPendingTest('${esc(key)}')">Zurückziehen</button>
-                </div>`
+                ? `<div class="text-[11px] font-bold text-amber-200 bg-white/5 rounded-lg px-2.5 py-2">Offen zugewiesen: ${esc(pend.title || pend.kursId)}</div>`
                 : "";
         }
 
@@ -3755,11 +3699,10 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!card) return;
             if (currentPlayer && currentPlayer.pendingLesson && currentPlayer.pendingLesson.lektionId) {
                 const t = currentPlayer.pendingLesson;
-                const ueberf = istUeberfaellig(t.faelligBis);
                 card.innerHTML =
                     `<div class="glass-card-glow p-5 text-white" style="background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(239,68,68,0.1));border-color:rgba(245,158,11,0.25);">
                         <div class="font-black text-lg mb-1">📚 Lektion wartet auf dich!</div>
-                        <div class="text-xs opacity-80 mb-3">${esc(t.title || t.lektionId)}${t.faelligBis ? ` · <span class="${ueberf ? "text-rose-300 font-bold" : ""}">${ueberf ? "⚠️ überfällig seit" : "Fällig bis"} ${formatFaellig(t.faelligBis)}</span>` : ""}</div>
+                        <div class="text-xs opacity-80 mb-3">${esc(t.title || t.lektionId)}</div>
                         <button onclick="startAssignedLesson()" class="btn-primary w-full text-center" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">Lektion starten</button>
                     </div>`;
                 card.classList.remove("hidden");
@@ -3786,11 +3729,7 @@ auth.createUserWithEmailAndPassword(e, p)
             const pend = p && p.pendingLesson;
             let html = "";
             if (pend && pend.lektionId) {
-                const ueberfL = istUeberfaellig(pend.faelligBis);
-                html += `<div class="flex items-center justify-between gap-2 bg-white/5 rounded-lg px-2.5 py-2">
-                    <div class="text-[11px] font-bold ${ueberfL ? "text-rose-300" : "text-amber-200"} min-w-0 truncate">Offen zugewiesen: ${esc(pend.title || pend.lektionId)}${pend.faelligBis ? ` · ${ueberfL ? "⚠️ überfällig" : "Fällig bis"} ${formatFaellig(pend.faelligBis)}` : ""}</div>
-                    <button type="button" class="shrink-0 text-[10px] font-black text-rose-300 bg-rose-500/20 border border-rose-400/30 rounded-lg px-2 py-1 hover:bg-rose-500/30" onclick="clearPendingLesson('${esc(key)}')">Zurückziehen</button>
-                </div>`;
+                html += `<div class="text-[11px] font-bold text-amber-200 bg-white/5 rounded-lg px-2.5 py-2">Offen zugewiesen: ${esc(pend.title || pend.lektionId)}</div>`;
             }
             open.forEach(n => {
                 html += `<div class="flex items-start justify-between gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-2.5 py-2">

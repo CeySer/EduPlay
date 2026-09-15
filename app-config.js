@@ -217,7 +217,9 @@
             sprachmittel: "sprachliche_mittel",
             erorterung: "eroerterung",
             exponential: "exponentialfunktionen",
-            present_perfect_prog: "present_perfect_progressive"
+            present_perfect_prog: "present_perfect_progressive",
+            terme: "terme_gleichungen",
+            gleichungen: "terme_gleichungen"
         };
         const TOPIC_BLOCKED = {
             pubertaet: 1, sexualitaet: 1, fortpflanzung: 1,
@@ -522,7 +524,7 @@ const geladen = _questionCounts[key] || 0;
             "lesen": "📖 Erstes Lesen",
             "tiere_pflanzen": "🦊 Tiere & Pflanzen",
             "jahreszeiten": "🍂 Jahreszeiten & Wetter",
-            "koerper": "👁️ Körper & Gesundheit",
+            "koerper": "📦 Körper (Geometrie)",
             "verkehr": "🚦 Verkehr & Sicherheit",
 
             // Klasse 2 - Deutsch
@@ -592,6 +594,15 @@ const geladen = _questionCounts[key] || 0;
             "geometrie": "📐 Geometrie",
             "winkel": "📐 Winkel",
             "flaechen_umfang": "📏 Fläche & Umfang",
+            "flaechen": "📐 Flächenformeln",
+            "prozent_wachstum": "📈 Prozentuales Wachstum",
+            "prisma_zylinder": "🥫 Prisma & Zylinder",
+            "attribute": "🧩 Attribute",
+            "apposition": "🧩 Apposition",
+            "past_perfect": "⏮️ Past Perfect",
+            "gerund": "➰ Gerund (-ing)",
+            "aehnlichkeit": "📐 Ähnlichkeit & Strahlensatz",
+            "prosatexte": "📖 Erzählperspektive",
             "wortarten": "🏷️ Wortarten",
             "rechtschreibung": "✏️ Rechtschreibung",
             "satzglieder": "🧩 Satzglieder",
@@ -604,6 +615,32 @@ const geladen = _questionCounts[key] || 0;
             "negative_zahlen": "➖ Negative Zahlen",
             "prozentrechnung": "📊 Prozentrechnung",
             "zinsrechnung": "💰 Zinsrechnung",
+            // ================================================================
+            // KLASSE 5 - Zusätzliche Themen (Wissen-Fragen ergänzt)
+            // ================================================================
+            "daten": "📊 Daten & Diagramme",
+            "geld": "💶 Geld & Rechnen",
+            "primzahlen": "🔢 Primzahlen",
+            "symmetrie": "🦋 Symmetrie",
+            "vierecke": "🔷 Vierecke",
+            "beschreiben": "📝 Beschreibung",
+            "diagramme_texte": "📊 Diagramme & Texte",
+            "faelle": "🔤 Die vier Fälle",
+            "meinung_begruenden": "💬 Meinung begründen",
+            "praepositionen_konjunktionen": "🔗 Präpositionen & Konjunktionen",
+            "textknacker": "🔍 Textknacker",
+            "woertliche_rede": "💬 Wörtliche Rede",
+            "zeichensetzung": "✍️ Zeichensetzung",
+            "have_got": "🐶 have got",
+            "modals": "🧠 Modalverben",
+            "plural": "➕ Plural",
+            "possessive": "🔑 Possessive",
+            "question_words": "❓ Question Words",
+            "some_any": "🔤 some / any",
+            "themenwortschatz": "📚 Themenwortschatz",
+            "to_be": "🔤 to be",
+            "wortschatz": "📚 Wortfelder & Wortfamilien",
+
             "nebensaetze": "🔗 Nebensätze",
             "das_dass": "📝 das oder dass",
             "zeitformen": "⏱️ Zeitformen",

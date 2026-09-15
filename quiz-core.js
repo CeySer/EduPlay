@@ -49,6 +49,10 @@
             if (typeof currentLektion !== 'undefined' && currentLektion && typeof handleLektionStepEnd === 'function') {
                 if (handleLektionStepEnd()) return;
             }
+            // Nur nach einer echten Wissen-Quiz-Runde (nicht innerhalb einer Kurs-Lektion,
+            // die endet oben per return) neu bewerten, ob ein Kurs zu einem schwachen Thema
+            // vorgeschlagen werden soll.
+            if (typeof pruefeUndEmpfiehlKurs === "function") pruefeUndEmpfiehlKurs();
             const total = testAnsweredCount || 0;
             const correct = testCorrectCount || 0;
             const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
@@ -406,6 +410,17 @@
                         category: q.category,
                         question: q.question
                     });
+                }
+                // Themen-Statistik (über Kategorie+Thema, damit derselbe Topic-Schlüssel
+                // in verschiedenen Klassen/Fächern nicht vermischt wird) - Basis für die
+                // Kurs-Empfehlung bei schwachen Themen, siehe pruefeUndEmpfiehlKurs().
+                if (q.topic) {
+                    const canonT = (typeof canonTopic === "function") ? canonTopic(q.topic) : q.topic;
+                    const topicKey = q.category + "::" + canonT;
+                    if (!currentPlayer.topicStats) currentPlayer.topicStats = {};
+                    if (!currentPlayer.topicStats[topicKey]) currentPlayer.topicStats[topicKey] = { attempts: 0, correct: 0 };
+                    currentPlayer.topicStats[topicKey].attempts++;
+                    if (sel === cor) currentPlayer.topicStats[topicKey].correct++;
                 }
             }
             testAnsweredCount++; if (sel === cor) testCorrectCount++;

@@ -341,8 +341,8 @@
                     explanation: "Yesterday I went." },
                 { id: "dfk5l2_l4", category: "kurs_dreiformen_k5_l2", area: "schule", grade: 5, subject: "englisch", topic: "irregular_verbs", difficulty: "leicht", points: 10,
                     question: "Wo steht die 3. Form?",
-                    answers: ["Nach have oder has", "Nach did im Satz", "Nach do im Satz", "Ganz allein ohne Hilfsverb"], correct: 0,
-                    explanation: "I have gone. Nach have und has steht immer die dritte Form." }
+                    answers: ["allein als Präteritum", "immer direkt nach did", "immer direkt nach do", "nach have/has"], correct: 3,
+                    explanation: "I have gone." }
             ],
             mittel: [
                 { id: "dfk5l2_m1", category: "kurs_dreiformen_k5_l2", area: "schule", grade: 5, subject: "englisch", topic: "irregular_verbs", difficulty: "mittel", points: 10,
@@ -364,9 +364,9 @@
             ],
             schwer: [
                 { id: "dfk5l2_s1", category: "kurs_dreiformen_k5_l2", area: "schule", grade: 5, subject: "englisch", topic: "irregular_verbs", difficulty: "schwer", points: 10,
-                    question: "Was ist falsch an: I have went there?",
-                    answers: ["went ist die 2. Form", "have darf nie stehen", "there gehört ans Ende", "I braucht immer always"], correct: 0,
-                    explanation: "Nach have steht die 3. Form: I have gone there." },
+                    question: "Was ist falsch: I have went there.?",
+                    answers: ["have ist in diesem Satz verboten", "there darf hier gar nicht stehen", "I braucht immer ein always dabei", "went ist 2. Form, nach have kommt gone"], correct: 3,
+                    explanation: "have + gone." },
                 { id: "dfk5l2_s2", category: "kurs_dreiformen_k5_l2", area: "schule", grade: 5, subject: "englisch", topic: "irregular_verbs", difficulty: "schwer", points: 10,
                     question: "Yesterday + go →",
                     answers: ["gone", "goed", "have gone", "went"], correct: 3,
@@ -570,9 +570,9 @@
                     answers: ["went", "goed", "going", "gone"], correct: 3,
                     explanation: "just → have gone." },
                 { id: "dfk6l2_s2", category: "kurs_dreiformen_k6_l2", area: "schule", grade: 6, subject: "englisch", topic: "irregular_verbs", difficulty: "schwer", points: 10,
-                    question: "Was ist falsch an: She has wrote it?",
-                    answers: ["wrote ist die 2. Form", "has darf nie stehen", "She müsste They sein", "it braucht einen Artikel"], correct: 0,
-                    explanation: "Nach has steht die 3. Form: She has written it." },
+                    question: "Was ist falsch: She has wrote it.?",
+                    answers: ["has darf hier gar nicht stehen", "She müsste hier They heißen", "it braucht immer ein the davor", "wrote ist 2. Form, richtig written"], correct: 3,
+                    explanation: "has + written." },
                 { id: "dfk6l2_s3", category: "kurs_dreiformen_k6_l2", area: "schule", grade: 6, subject: "englisch", topic: "irregular_verbs", difficulty: "schwer", points: 10,
                     question: "They have never _____ that jacket.",
                     answers: ["wore", "weared", "wear", "worn"], correct: 3,

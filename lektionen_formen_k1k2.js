@@ -15,6 +15,7 @@
         kurz: "Kreis, Dreieck, Quadrat, Rechteck",
         erklaerung: {
             intro: "Es gibt <b>runde</b> und <b>eckige</b> Formen. Ein <b>Kreis</b> ist rund und hat keine Ecken. Ein <b>Dreieck</b> hat drei Ecken. Ein <b>Quadrat</b> und ein <b>Rechteck</b> haben vier Ecken.",
+            merksatz: "Kreis = rund, keine Ecken. Dreieck = 3 Ecken. Quadrat und Rechteck = 4 Ecken.",
             beispiele: [
                 "🔵 <b>Kreis</b> – rund, ohne Ecken<svg viewBox='0 0 200 150' style='display:block;margin:8px auto;width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><circle cx='100.0' cy='75.0' r='39.0' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='4'/></svg>",
                 "🔺 <b>Dreieck</b> – drei Ecken, drei Seiten<svg viewBox='0 0 200 150' style='display:block;margin:8px auto;width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><polygon points='100.0,39.1 143.7,110.9 56.3,110.9' fill='rgba(251,191,36,0.28)' stroke='#fbbf24' stroke-width='4' stroke-linejoin='round'/></svg>",
@@ -142,7 +143,7 @@
                     points: 10,
                     question: "Was passt zum Rechteck?",
                     grafik: "<svg viewBox='0 0 200 150' style='display:block;margin:8px auto;width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='50.1' y='49.3' width='99.8' height='51.5' rx='3' fill='rgba(74,222,128,0.25)' stroke='#4ade80' stroke-width='4' stroke-linejoin='round' transform='rotate(15.0 100.0 75.0)'/></svg>",
-                    answers: ["Es hat genau drei Ecken", "Alle Seiten sind rund", "Gegenüberliegende Seiten sind gleich", "Es hat keine Ecken"],
+                    answers: ["Es hat genau drei spitze Ecken", "Alle Seiten sind rund gebogen", "Gegenüberliegende Seiten sind gleich", "Es hat überhaupt keine Ecken"],
                     correct: 2,
                     explanation: "Beim Rechteck sind gegenüberliegende Seiten gleich lang.",
                 }
@@ -313,6 +314,7 @@
         kurz: "Zählen und vergleichen",
         erklaerung: {
             intro: "Bei eckigen Formen kannst du <b>Ecken</b> und <b>Seiten</b> zählen. Ein Dreieck: 3 und 3. Ein Quadrat: 4 und 4. Ein Kreis hat <b>keine Ecken</b>.",
+            merksatz: "Bei eckigen Formen gilt: so viele Ecken wie Seiten. Der Kreis hat beides nicht.",
             beispiele: [
                 "🔺 Dreieck: <b>3 Ecken</b><svg viewBox='0 0 200 150' style='display:block;margin:8px auto;width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><polygon points='100.0,39.1 143.7,110.9 56.3,110.9' fill='rgba(251,191,36,0.28)' stroke='#fbbf24' stroke-width='4' stroke-linejoin='round'/></svg>",
                 "🟩 Quadrat: <b>4 Ecken</b><svg viewBox='0 0 200 150' style='display:block;margin:8px auto;width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='61.0' y='36.0' width='78.0' height='78.0' rx='3' fill='rgba(52,211,153,0.28)' stroke='#34d399' stroke-width='4' stroke-linejoin='round'/></svg>",
@@ -610,6 +612,7 @@
         kurz: "Quadrat, Rechteck, Kreis, Oval",
         erklaerung: {
             intro: "In Klasse 2 schaust du genauer hin: Ein <b>Quadrat</b> hat vier <b>gleiche</b> Seiten. Ein <b>Rechteck</b> hat zwei lange und zwei kurze Seiten. Ein <b>Kreis</b> ist gleichmäßig rund, ein <b>Oval</b> ist länglich rund.",
+            merksatz: "Quadrat = vier gleiche Seiten. Rechteck = zwei lange, zwei kurze. Kreis rund, Oval länglich.",
             beispiele: [
                 "🟩 Quadrat – alle Seiten gleich<svg viewBox='0 0 200 150' style='display:block;margin:8px auto;width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='61.0' y='36.0' width='78.0' height='78.0' rx='3' fill='rgba(52,211,153,0.28)' stroke='#34d399' stroke-width='4' stroke-linejoin='round'/></svg>",
                 "🟪 Rechteck – zwei Seiten länger<svg viewBox='0 0 200 150' style='display:block;margin:8px auto;width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='50.1' y='49.3' width='99.8' height='51.5' rx='3' fill='rgba(167,139,250,0.28)' stroke='#a78bfa' stroke-width='4' stroke-linejoin='round'/></svg>",
@@ -769,7 +772,7 @@
                     points: 10,
                     question: "Jedes Rechteck ist ein Quadrat?",
                     grafik: "<svg viewBox='0 0 232 158' style='display:block;margin:8px auto;width:100%;max-width:360px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='27.0' y='31.0' width='62.0' height='62.0' rx='3' fill='rgba(74,222,128,0.25)' stroke='#4ade80' stroke-width='4' stroke-linejoin='round' transform='rotate(-16.0 58.0 62.0)'/><text x='58.0' y='146' text-anchor='middle' font-size='13' font-weight='700' font-family='sans-serif' fill='#cbd5e1'>Quadrat</text><rect x='134.3' y='41.5' width='79.4' height='40.9' rx='3' fill='rgba(251,191,36,0.28)' stroke='#fbbf24' stroke-width='4' stroke-linejoin='round'/><text x='174.0' y='146' text-anchor='middle' font-size='13' font-weight='700' font-family='sans-serif' fill='#cbd5e1'>Rechteck</text></svg>",
-                    answers: ["Ja, immer", "Nur wenn es rund ist", "Nur wenn es drei Ecken hat", "Nein, nicht immer"],
+                    answers: ["Ja, immer genau so", "Nur wenn es rund ist", "Nur mit drei Ecken", "Nein, nicht immer"],
                     correct: 3,
                     explanation: "Nur wenn alle Seiten gleich lang sind.",
                 },
@@ -908,6 +911,7 @@
         kurz: "Sicher zählen",
         erklaerung: {
             intro: "Rund oder eckig? Zähle die Ecken. <b>Vierecke</b> (Quadrat und Rechteck) haben vier Ecken. Das Dreieck hat drei. Kreis und Oval haben keine.",
+            merksatz: "Erst fragen: rund oder eckig? Dann die Ecken zählen – 3 = Dreieck, 4 = Viereck.",
             beispiele: [
                 "🔺 3 Ecken = Dreieck<svg viewBox='0 0 200 150' style='display:block;margin:8px auto;width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><polygon points='100.0,39.1 143.7,110.9 56.3,110.9' fill='rgba(251,191,36,0.28)' stroke='#fbbf24' stroke-width='4' stroke-linejoin='round'/></svg>",
                 "🟩 4 Ecken = Viereck<svg viewBox='0 0 200 150' style='display:block;margin:8px auto;width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='61.0' y='36.0' width='78.0' height='78.0' rx='3' fill='rgba(52,211,153,0.28)' stroke='#34d399' stroke-width='4' stroke-linejoin='round'/></svg>",

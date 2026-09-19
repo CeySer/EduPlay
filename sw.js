@@ -12,7 +12,7 @@
 //  würde ihn nur stören.
 // ============================================================
 
-const CACHE = 'eduplay-v70';
+const CACHE = 'eduplay-v72';
 
 // Alles, was die App zum Starten braucht. Die Fragen-Dateien landen
 // beim ersten Laden automatisch im Cache (siehe unten), damit diese
@@ -95,6 +95,7 @@ self.addEventListener('fetch', function (event) {
     // Änderung an einer Datei spätestens beim zweiten Laden automatisch an –
     // ganz ohne manuell gepflegte "?v="-Nummer, die man vergessen kann.
     const istDatenDatei = url.indexOf('/fragen/') !== -1
+        || url.indexOf('/audio/') !== -1
         || url.indexOf('formula.js') !== -1;
 
     if (istDatenDatei) {

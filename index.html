@@ -13,7 +13,7 @@
          installierte App wirklich den neuesten Stand geladen hat. -->
     <script>window.EDUPLAY_BUILD = "24.08.2026 · 11:55";</script>
 
-    <link rel="stylesheet" href="styles.css?v=12.8">
+    <link rel="stylesheet" href="styles.css?v=12.9">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
 
     <!-- ==========================================================
@@ -2026,6 +2026,19 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <input type="range" id="music-volume-slider" min="0" max="100" value="25"
                             oninput="setMusicVolume(this.value)" class="w-full accent-indigo-500">
                     </div>
+                    <div class="py-2 border-b border-white/5 space-y-2">
+                        <div class="flex items-center justify-between gap-3">
+                            <span class="font-bold text-white">🔊 Vorlesen</span>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <span id="vorlesen-status" class="text-xs text-gray-400 font-bold">an</span>
+                                <input type="checkbox" id="vorlesen-schalter" checked
+                                    onchange="setVorlesen(this.checked)" class="w-5 h-5 accent-indigo-500">
+                            </label>
+                        </div>
+                        <p class="text-[11px] text-gray-500">Liest in Klasse 1 und 2 die Frage und alle Antworten
+                            automatisch vor. In allen Klassen gibt es zusätzlich den 🔊-Knopf über den Antworten.
+                            Die Stimme kommt vom Gerät – im Leise-Modus bleibt alles still.</p>
+                    </div>
                     <div class="pt-2 space-y-3">
                         <h3 class="text-sm font-black text-amber-400">🔑 Eltern-PIN</h3>
                         <p class="text-xs text-gray-400">Schützt den Eltern-Bereich. Mindestens 4 Zeichen.</p>
@@ -2241,7 +2254,9 @@ VIEW: QUIZ SETUP
             </div>
             <div id="question-grafik" class="hidden mx-auto max-w-xs"></div>
             <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
-            <button id="question-speak-btn" class="hidden" hidden aria-hidden="true"></button>
+            <button id="question-speak-btn" type="button" onclick="speakCurrentQuestion()"
+                class="hidden mx-auto flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-bold text-indigo-300 transition"
+                aria-label="Frage und Antworten vorlesen">🔊 Vorlesen</button>
             <div id="options-container" class="flex flex-col gap-2.5"></div>
             <div id="explanation-box" class="hidden"></div>
             <button id="next-question-btn" class="btn-primary w-full hidden text-center"
@@ -2718,13 +2733,13 @@ VIEW: QUIZ SETUP
     JAVASCRIPT MODULE
     ============================================================ -->
     <script src="confetti.js?v=1"></script>
-    <script src="app-config.js?v=13.12"></script>
+    <script src="app-config.js?v=13.14"></script>
     <script src="app-ui.js?v=9.5"></script>
     <script src="family-dashboard.js?v=11.39"></script>
     <script src="dev-admin.js?v=1.7"></script>
     <script src="ui-common.js?v=9.3"></script>
     <script src="ki-coach.js?v=1.1"></script>
-    <script src="quiz-core.js?v=10.12"></script>
+    <script src="quiz-core.js?v=10.13"></script>
     <!-- Die neun Kurs-Dateien (zusammen rund 2 MB) werden nicht mehr hier
          geladen, sondern von lektionen-loader.js im Leerlauf nachgeholt bzw.
          spaetestens beim ersten Antippen von "Kurse". Die Dateiliste und die
@@ -2737,7 +2752,7 @@ VIEW: QUIZ SETUP
     <script src="tv-cast.js?v=14.6"></script>
     <script src="live-duel.js?v=10.16"></script>
     <script src="app-misc.js?v=8.9"></script>
-    <script src="lobby-avatar.js?v=10.1"></script>
+    <script src="lobby-avatar.js?v=10.2"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
     <script src="email-bestaetigung.js?v=8.8"></script>
     <script src="fragen-vorladen.js?v=8.8"></script>

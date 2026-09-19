@@ -2169,71 +2169,376 @@ const geladen = _questionCounts[key] || 0;
         //  Audio-Asset). Button/Auto-Vorlesen tauchen nur auf, wenn die
         //  aktuelle Frage grade 1 oder 2 zugeordnet ist.
         // ============================================================
-        /** Text für Vorlesen: Lücken/Unterstriche/Lösungshinweise entfernen. */
-        function cleanTextForSpeech(text) {
-            let t = String(text || "");
-            t = t.replace(/<u[^>]*>[\s\S]*?<\/u>/gi, " ");           // HTML-Unterstrich
-            t = t.replace(/__+|_+/g, " ");                           // ____ / _atze
-            t = t.replace(/\([^)]*\)/g, " ");                        // (Katze) Lösungshinweis
-            t = t.replace(/\[[^\]]*\]/g, " ");
-            t = t.replace(/[„“"‘'‚‹›«»]/g, " ");
-            t = t.replace(/[🔤👏🔊📖🖼️📗📕📝🧠🧩✅❌➔❓💡🎉🌟🏆👂👀📚🚩]/g, " ");
-            t = t.replace(/\s+/g, " ").trim();
+        /** Einzelne Satzzeichen bekommen einen Namen – im Satzzeichen-Kurs
+         *  sind „.", „?", „!" die Antwortmöglichkeiten, stumm wären sie nutzlos. */
+        const SPRICH_ZEICHEN = {
+            ".": "Punkt", "?": "Fragezeichen", "!": "Ausrufezeichen", ",": "Komma",
+            ":": "Doppelpunkt", ";": "Strichpunkt", "-": "Bindestrich", "–": "Gedankenstrich",
+            "+": "plus", "=": "ist gleich", "<": "kleiner als", ">": "größer als"
+        };
+
+        const SPRICH_BRUECHE = {
+            "1/2": "ein halb", "1/3": "ein Drittel", "2/3": "zwei Drittel",
+            "1/4": "ein Viertel", "3/4": "drei Viertel", "1/5": "ein Fünftel",
+            "1/8": "ein Achtel", "3/8": "drei Achtel"
+        };
+
+        /** Rechenzeichen aussprechbar machen: „8 − 3 = ?" wird sonst als
+         *  „acht Bindestrich drei Gleichheitszeichen Fragezeichen" vorgelesen. */
+        function rechenzeichenAussprechen(t) {
+            // Brüche zuerst, sonst zerlegt die Division-Regel sie
+            Object.keys(SPRICH_BRUECHE).forEach(function (b) {
+                t = t.split(b).join(" " + SPRICH_BRUECHE[b] + " ");
+            });
+            t = t.replace(/(\d)\s*\+\s*(?=\d)/g, "$1 plus ");
+            t = t.replace(/(\d)\s*[−–-]\s*(?=\d)/g, "$1 minus ");
+            t = t.replace(/(\d)\s*[·×*]\s*(?=\d)/g, "$1 mal ");
+            // Doppelpunkt: in Texten mit „Uhr" ist es eine Uhrzeit, sonst geteilt
+            if (/\bUhr\b/i.test(t)) {
+                t = t.replace(/(\d{1,2})\s*:\s*(\d{2})/g, "$1 Uhr $2");
+                t = t.replace(/(\d{1,2} Uhr \d{2})\s*Uhr\b/g, "$1");   // kein doppeltes „Uhr"
+            } else {
+                t = t.replace(/(\d)\s*[:÷]\s*(?=\d)/g, "$1 geteilt durch ");
+            }
+            t = t.replace(/(\d)\s*\/\s*(?=\d)/g, "$1 durch ");
+            t = t.replace(/\s*=\s*/g, " ist gleich ");
+            t = t.replace(/\s*<\s*/g, " ist kleiner als ");
+            t = t.replace(/\s*>\s*/g, " ist größer als ");
+            t = t.replace(/(\d)\s*%/g, "$1 Prozent");
+            t = t.replace(/(\d)\s*€/g, "$1 Euro");
+            t = t.replace(/(\d)\s*ct\b/gi, "$1 Cent");
             return t;
         }
 
-        /** Kindgerechte DE-Stimme (weich, etwas langsamer). */
+        /** Text für Vorlesen aufbereiten.
+         *  opts.istAntwort: Klammerinhalte bleiben stehen (bei Fragen sind sie
+         *  meist der Lösungshinweis und müssen weg). */
+        function cleanTextForSpeech(text, opts) {
+            const roh = String(text == null ? "" : text).trim();
+            if (!roh) return "";
+            // Einzelnes Zeichen: Namen sprechen statt Stille
+            if (roh.length <= 2 && SPRICH_ZEICHEN[roh]) return SPRICH_ZEICHEN[roh];
+            let t = roh;
+            t = t.replace(/<[^>]*>/g, " ");                           // HTML/SVG raus
+            t = t.replace(/_{2,}/g, " Lücke ");                       // ____ als Lückenwort
+            t = t.replace(/_/g, "");                                  // _atze → atze
+            if (opts && opts.istAntwort) t = t.replace(/[()]/g, " "); // Klammern behalten
+            else t = t.replace(/\([^)]*\)/g, " ");                    // (Katze) Lösungshinweis
+            t = t.replace(/\[[^\]]*\]/g, " ");
+            t = t.replace(/[„“"‘'‚‹›«»]/g, " ");
+            t = t.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}]/gu, " ");
+            t = rechenzeichenAussprechen(t);
+            t = t.replace(/\s+/g, " ").trim();
+            t = t.replace(/\s*\?\s*$/, "");                           // Fragezeichen nicht mitsprechen
+            return t;
+        }
+
+        /** Kindgerechte DE-Stimme. Neuronale/Netz-Stimmen zuerst – die klingen
+         *  auf aktuellen Android-Geräten deutlich natürlicher. */
         function pickKidGermanVoice() {
             try {
                 const voices = window.speechSynthesis.getVoices() || [];
-                const de = voices.filter(v => /de(-|_)?DE|German|Deutsch/i.test(v.lang + " " + v.name));
-                const prefer = (list, re) => list.find(v => re.test(v.name));
-                return prefer(de, /natural|neural|premium|enhanced|google|siri|anna|helena|katja|petra|marlene|vicki/i)
-                    || prefer(de, /female|frau|woman|girl/i)
+                const de = voices.filter(v => /de(-|_)?(DE|AT|CH)|German|Deutsch/i.test(v.lang + " " + v.name));
+                if (!de.length) return null;
+                const bevorzugt = (re) => de.find(v => re.test(v.name));
+                return bevorzugt(/network|neural|natural|premium|enhanced|wavenet/i)
+                    || bevorzugt(/google/i)
+                    || bevorzugt(/anna|helena|katja|petra|marlene|vicki|female|frau/i)
                     || de.find(v => /de-DE/i.test(v.lang))
-                    || de[0]
-                    || null;
+                    || de[0];
             } catch (e) { return null; }
         }
 
-        function speakText(text) {
-            return; // Vorlesen vorerst aus
-            if (!soundOn) return;
-            try {
-                if (!('speechSynthesis' in window) || !text) return;
-                const clean = cleanTextForSpeech(text);
-                if (!clean) return;
-                window.speechSynthesis.cancel();
-                const u = new SpeechSynthesisUtterance(clean);
-                u.lang = "de-DE";
-                u.rate = 0.85;   // etwas langsamer für Klasse 1/2
-                u.pitch = 1.15;  // freundlicher
-                u.volume = 1;
-                const voice = pickKidGermanVoice();
-                if (voice) u.voice = voice;
-                // Stimmen laden asynchron in manchen Browsern
-                if (!voice && window.speechSynthesis.getVoices().length === 0) {
+        let _sprichStimme = null;
+        let _sprichStimmeGesucht = false;
+        function sprichStimme() {
+            if (_sprichStimme) return _sprichStimme;
+            _sprichStimme = pickKidGermanVoice();
+            if (!_sprichStimme && !_sprichStimmeGesucht) {
+                _sprichStimmeGesucht = true;
+                try {
                     window.speechSynthesis.onvoiceschanged = function () {
-                        const v2 = pickKidGermanVoice();
-                        if (v2) u.voice = v2;
-                        window.speechSynthesis.speak(u);
-                        window.speechSynthesis.onvoiceschanged = null;
+                        _sprichStimme = pickKidGermanVoice();
                     };
+                } catch (e) { /* */ }
+            }
+            return _sprichStimme;
+        }
+
+        // Vorlesen an/aus (Eltern-Einstellung, gilt geräteweit)
+        let vorlesenAn = true;
+        try { vorlesenAn = localStorage.getItem("eduplayVorlesen") !== "off"; } catch (e) { }
+        function setVorlesen(an) {
+            vorlesenAn = !!an;
+            try { localStorage.setItem("eduplayVorlesen", vorlesenAn ? "on" : "off"); } catch (e) { }
+            if (!vorlesenAn) stopSpeaking();
+            const s = document.getElementById("vorlesen-schalter");
+            if (s) s.checked = vorlesenAn;
+            const l = document.getElementById("vorlesen-status");
+            if (l) l.innerText = vorlesenAn ? "an" : "aus";
+            if (typeof showToast === "function") showToast(vorlesenAn ? "Vorlesen ist an." : "Vorlesen ist aus.", "info");
+        }
+        window.setVorlesen = setVorlesen;
+
+        function vorlesenVerfuegbar() {
+            return typeof window !== "undefined" && "speechSynthesis" in window && vorlesenAn && soundOn;
+        }
+
+        // Laufende Ausgabe abbrechen: jeder Auftrag bekommt eine Nummer,
+        // beim Abbruch wird sie erhöht und alte Rückrufe verfallen.
+        let _sprichAuftrag = 0;
+        let _sprichWachhund = null;
+        function stopSpeaking() {
+            _sprichAuftrag++;
+            if (_sprichWachhund) { clearInterval(_sprichWachhund); _sprichWachhund = null; }
+            if (typeof voStoppen === "function") voStoppen();
+            try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) { /* */ }
+            document.querySelectorAll(".spricht-gerade").forEach(el => el.classList.remove("spricht-gerade"));
+        }
+        window.stopSpeaking = stopSpeaking;
+
+        // ============================================================
+        //  ECHTE SPRACHAUFNAHMEN (Klasse 1/2)
+        //  Liegen als kleine Audiodateien unter audio/vo/. Gefunden werden
+        //  sie über den Hash des GESPROCHENEN Textes – dieselbe Aufnahme
+        //  gilt damit für jede Frage, in der der Satz vorkommt ("4" kommt
+        //  allein in Klasse 1 über 30× als Antwort vor).
+        //  Fehlt eine Aufnahme, springt die Gerätestimme ein.
+        // ============================================================
+        const VO_PFAD = "audio/vo/";
+        let _voIndex = null;        // { key: "webm", ... } oder {} wenn keine Aufnahmen da sind
+        let _voGeladen = false;
+
+        /** Muss zeichengleich mit der Fassung im Aufnahme-Werkzeug bleiben. */
+        function voKey(text) {
+            const s = String(text == null ? "" : text).toLowerCase().replace(/\s+/g, " ").trim();
+            let h1 = 0x811c9dc5, h2 = 0x01000193;
+            for (let i = 0; i < s.length; i++) {
+                const c = s.charCodeAt(i);
+                h1 ^= c; h1 = Math.imul(h1, 0x01000193) >>> 0;
+                h2 = (h2 + c) >>> 0; h2 = Math.imul(h2, 0x85ebca6b) >>> 0;
+            }
+            return ("000000" + h1.toString(36)).slice(-6) + ("000000" + h2.toString(36)).slice(-6);
+        }
+        window.voKey = voKey;
+
+        function voIndexLaden() {
+            if (_voGeladen) return Promise.resolve(_voIndex);
+            _voGeladen = true;
+            return fetch(VO_PFAD + "index.json", { cache: "no-store" })
+                .then(function (a) { return a.ok ? a.json() : null; })
+                .then(function (j) { _voIndex = (j && j.clips) || {}; return _voIndex; })
+                .catch(function () { _voIndex = {}; return _voIndex; });
+        }
+        // Früh anstoßen, damit beim ersten Vorlesen schon klar ist, was da ist
+        try { voIndexLaden(); } catch (e) { /* */ }
+
+        function voDatei(gesprochenerText) {
+            if (!_voIndex) return null;
+            const k = voKey(gesprochenerText);
+            const endung = _voIndex[k];
+            return endung ? (VO_PFAD + k + "." + endung) : null;
+        }
+
+        let _voAudio = null;
+        /** Spielt die Aufnahme ab. fertig(true) = lief, fertig(false) = bitte
+         *  auf die Gerätestimme ausweichen. */
+        function voAbspielen(datei, fertig) {
+            try {
+                if (_voAudio) { _voAudio.onended = null; _voAudio.onerror = null; _voAudio.pause(); }
+                _voAudio = new Audio(datei);
+                _voAudio.preload = "auto";
+                let erledigt = false;
+                const einmal = function (lief) { if (!erledigt) { erledigt = true; fertig(lief); } };
+                _voAudio.onended = function () { einmal(true); };
+                _voAudio.onerror = function () { einmal(false); };
+                const p = _voAudio.play();
+                if (p && p.catch) p.catch(function () { einmal(false); });
+            } catch (e) { fertig(false); }
+        }
+
+        function voStoppen() {
+            try { if (_voAudio) { _voAudio.onended = null; _voAudio.onerror = null; _voAudio.pause(); _voAudio = null; } }
+            catch (e) { /* */ }
+        }
+
+        function baueUtterance(text, istAntwort) {
+            const clean = cleanTextForSpeech(text, { istAntwort: !!istAntwort });
+            if (!clean) return null;
+            const u = new SpeechSynthesisUtterance(clean);
+            u.lang = "de-DE";
+            u.rate = 0.82;   // langsamer für Leseanfänger
+            u.pitch = 1.1;   // etwas freundlicher
+            u.volume = 1;
+            const st = sprichStimme();
+            if (st) u.voice = st;
+            return u;
+        }
+
+        /** Spricht mehrere Teile nacheinander mit Pausen dazwischen.
+         *  teile: [{ text, pause, el }] – el wird währenddessen hervorgehoben. */
+        function speakSequence(teile) {
+            if (!vorlesenVerfuegbar()) return;
+            stopSpeaking();
+            const auftrag = ++_sprichAuftrag;
+            let i = 0;
+            // Chrome stoppt lange Ausgaben nach ~15 s – resume() hält sie wach.
+            _sprichWachhund = setInterval(function () {
+                try {
+                    if (auftrag !== _sprichAuftrag) return;
+                    if (window.speechSynthesis.speaking) window.speechSynthesis.resume();
+                } catch (e) { /* */ }
+            }, 8000);
+            function weiter() {
+                if (auftrag !== _sprichAuftrag) return;
+                if (i >= teile.length) {
+                    if (_sprichWachhund) { clearInterval(_sprichWachhund); _sprichWachhund = null; }
                     return;
                 }
-                window.speechSynthesis.speak(u);
-            } catch (e) { }
+                const teil = teile[i++];
+                const gesprochen = cleanTextForSpeech(teil.text, { istAntwort: !!teil.istAntwort });
+                if (!gesprochen) { weiter(); return; }
+
+                const hervorheben = function () {
+                    if (auftrag === _sprichAuftrag && teil.el) teil.el.classList.add("spricht-gerade");
+                };
+                const fertig = function () {
+                    if (teil.el) teil.el.classList.remove("spricht-gerade");
+                    if (auftrag !== _sprichAuftrag) return;
+                    setTimeout(weiter, teil.pause == null ? 140 : teil.pause);
+                };
+
+                // 1. Wahl: echte Aufnahme. Fehlt sie oder lässt sie sich nicht
+                //    abspielen, übernimmt die Gerätestimme denselben Teil.
+                const datei = voDatei(gesprochen);
+                const gerätestimme = function () {
+                    if (auftrag !== _sprichAuftrag) return;
+                    const u = baueUtterance(teil.text, teil.istAntwort);
+                    if (!u) { fertig(); return; }
+                    u.onstart = hervorheben;
+                    u.onend = fertig;
+                    u.onerror = fertig;
+                    try { window.speechSynthesis.speak(u); } catch (e) { fertig(); }
+                };
+                if (datei) {
+                    hervorheben();
+                    voAbspielen(datei, function (lief) {
+                        if (auftrag !== _sprichAuftrag) return;
+                        if (lief) fertig();
+                        else gerätestimme();     // Datei kaputt/nicht abspielbar
+                    });
+                } else {
+                    gerätestimme();
+                }
+            }
+            weiter();
         }
 
-        function speakCurrentQuestion() { return; }
+        function speakText(text) {
+            if (!vorlesenVerfuegbar()) return;
+            speakSequence([{ text: text }]);
+        }
+        window.speakText = speakText;
 
-        // Zeigt/versteckt den 🔊-Button je nach Klassenstufe der Frage und
-        // liest bei Klasse 1/2 automatisch vor, sobald eine neue Frage
-        // angezeigt wird.
+        // Auf welchen Klassenstufen wird automatisch vorgelesen?
+        const VORLESEN_AUTO_KLASSEN = [1, 2];
+
+        function frageKlasse(q) {
+            if (!q) return null;
+            if (q.grade) return Number(q.grade);
+            const m = String(q.category || "").match(/^k(\d+)_/);
+            return m ? Number(m[1]) : null;
+        }
+
+        /** Wird diese Frage vorgelesen? Steuert auch die kleinen 🔊 an den
+         *  Antworten – bei älteren Klassen bleibt die Ansicht aufgeräumt. */
+        function istVorleseFrage(q) {
+            if (!vorlesenVerfuegbar()) return false;
+            const k = frageKlasse(q);
+            return !!k && VORLESEN_AUTO_KLASSEN.indexOf(k) !== -1;
+        }
+        window.istVorleseFrage = istVorleseFrage;
+
+        /** Frage + alle Antwortmöglichkeiten am Stück vorlesen.
+         *  Ohne die Antworten nützt das Vorlesen einem Leseanfänger nichts –
+         *  er hört die Frage und sieht dann vier Wörter, die er nicht lesen kann. */
+        function speakQuestionWithAnswers(q) {
+            if (!q || !vorlesenVerfuegbar()) return;
+            const teile = [{ text: q.question, pause: 400, istAntwort: false }];
+            const container = document.getElementById("options-container");
+            (q.answers || []).forEach(function (a, i) {
+                const el = container ? container.children[i] : null;
+                teile.push({ text: a, pause: 320, el: el, istAntwort: true });
+            });
+            speakSequence(teile);
+        }
+        window.speakQuestionWithAnswers = speakQuestionWithAnswers;
+
+        /** Eine einzelne Antwort nachhören (kleiner Lautsprecher am Knopf). */
+        function speakAnswerOption(i) {
+            const q = (typeof currentQuestions !== "undefined" && typeof qIndex !== "undefined")
+                ? currentQuestions[qIndex] : null;
+            if (!q || !q.answers) return;
+            const container = document.getElementById("options-container");
+            const el = container ? container.children[i] : null;
+            speakSequence([{ text: q.answers[i], el: el, istAntwort: true }]);
+        }
+        window.speakAnswerOption = speakAnswerOption;
+
+        /** 🔊-Knopf: Frage und Antworten noch einmal vorlesen. */
+        function speakCurrentQuestion() {
+            const q = (typeof currentQuestions !== "undefined" && typeof qIndex !== "undefined")
+                ? currentQuestions[qIndex] : null;
+            if (!q) return;
+            if (!vorlesenAn) { if (typeof showToast === "function") showToast("Vorlesen ist in den Einstellungen aus.", "info"); return; }
+            speakQuestionWithAnswers(q);
+        }
+        window.speakCurrentQuestion = speakCurrentQuestion;
+
+        /** Zeigt den 🔊-Knopf, sobald Vorlesen möglich ist, und liest bei
+         *  Klasse 1/2 automatisch vor, sobald eine neue Frage erscheint. */
         function updateSpeakButtonForQuestion(q) {
             const btn = document.getElementById("question-speak-btn");
-            if (btn) btn.classList.add("hidden");
+            const moeglich = q && typeof window !== "undefined" && "speechSynthesis" in window;
+            if (btn) {
+                if (moeglich) {
+                    btn.classList.remove("hidden");
+                    btn.removeAttribute("hidden");
+                    btn.removeAttribute("aria-hidden");
+                } else {
+                    btn.classList.add("hidden");
+                    btn.setAttribute("hidden", "");
+                    btn.setAttribute("aria-hidden", "true");
+                }
+            }
+            if (!moeglich) return;
+            const klasse = frageKlasse(q);
+            if (vorlesenVerfuegbar() && klasse && VORLESEN_AUTO_KLASSEN.indexOf(klasse) !== -1) {
+                // kurz warten, bis die Antwort-Knöpfe im DOM stehen
+                setTimeout(function () { speakQuestionWithAnswers(q); }, 260);
+            } else {
+                stopSpeaking();
+            }
         }
+
+        /** Manche Browser verwerfen die allererste Ausgabe nach dem Laden.
+         *  Einmal stumm „aufwärmen", sobald der Nutzer etwas antippt. */
+        (function warmUpSpeech() {
+            let getan = false;
+            const start = function () {
+                if (getan) return;
+                getan = true;
+                try {
+                    if (!("speechSynthesis" in window)) return;
+                    sprichStimme();
+                    const u = new SpeechSynthesisUtterance(" ");
+                    u.volume = 0; u.lang = "de-DE";
+                    window.speechSynthesis.speak(u);
+                } catch (e) { /* */ }
+            };
+            document.addEventListener("pointerdown", start, { once: true });
+            document.addEventListener("keydown", start, { once: true });
+        })();
 
         
 

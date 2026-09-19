@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPlay Hub – Sprachaufnahmen</title>
+    <!--
+        Aufnahme-Werkzeug für die echten Sprachaufnahmen (Klasse 1/2).
+        Nicht aus index.html verlinkt – wie pruefung.html ein eigenständiges
+        Hilfsmittel. Muss über einen Webserver oder die Live-Seite geöffnet
+        werden (https oder localhost), sonst gibt der Browser das Mikrofon
+        nicht frei.
+
+        Ablauf: Satz erscheint groß → Leertaste gedrückt halten und sprechen →
+        loslassen → Aufnahme wird sofort vorgespielt → weiter zum nächsten.
+        Der Fortschritt liegt im Browser (IndexedDB), man kann jederzeit
+        zumachen und später weitermachen. Am Ende alles als ZIP exportieren.
+    -->
+    <style>
+        :root { color-scheme: dark; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; min-height: 100vh; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            background: #0b1020; color: #e2e8f0; display: flex; flex-direction: column;
+        }
+        header {
+            padding: 14px 18px; border-bottom: 1px solid rgba(255, 255, 255, .08);
+            display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
+        }
+        h1 { font-size: 1rem; margin: 0; font-weight: 800; color: #a5b4fc; }
+        .fortschritt-zeile { display: flex; align-items: center; gap: 10px; font-size: .8rem; color: #94a3b8; }
+        .balken { width: 160px; height: 8px; border-radius: 99px; background: rgba(255, 255, 255, .08); overflow: hidden; }
+        .balken > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #6366f1, #10b981); transition: width .25s; }
+        main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; gap: 18px; }
+        .karte {
+            width: 100%; max-width: 640px; background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .09); border-radius: 22px; padding: 28px 24px; text-align: center;
+        }
+        .zaehler { font-size: .78rem; color: #64748b; font-weight: 700; letter-spacing: .04em; }
+        .satz { font-size: 2rem; font-weight: 800; line-height: 1.3; margin: 16px 0 8px; color: #fff; word-break: break-word; }
+        .meta { font-size: .76rem; color: #64748b; }
+        .meta b { color: #a5b4fc; }
+        .aufnahme-knopf {
+            margin: 22px auto 8px; display: block; width: 100%; max-width: 340px; padding: 22px;
+            border-radius: 18px; border: 2px solid rgba(99, 102, 241, .5); background: rgba(99, 102, 241, .16);
+            color: #fff; font-size: 1.05rem; font-weight: 800; cursor: pointer; user-select: none;
+            -webkit-user-select: none; touch-action: none; transition: transform .08s, background .15s;
+        }
+        .aufnahme-knopf:active, .aufnahme-knopf.laeuft { background: rgba(244, 63, 94, .3); border-color: #fb7185; transform: scale(.98); }
+        .aufnahme-knopf.laeuft::after { content: " ● läuft"; color: #fb7185; }
+        .pegel { height: 10px; border-radius: 99px; background: rgba(255, 255, 255, .07); overflow: hidden; max-width: 340px; margin: 0 auto 6px; }
+        .pegel > i { display: block; height: 100%; width: 0%; background: #34d399; transition: width .06s linear; }
+        .knopfreihe { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+        button.klein {
+            padding: 10px 16px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .05); color: #e2e8f0; font-weight: 700; cursor: pointer; font-size: .85rem;
+        }
+        button.klein:hover { background: rgba(255, 255, 255, .1); }
+        button.klein:disabled { opacity: .35; cursor: not-allowed; }
+        button.gruen { background: linear-gradient(140deg, #6366f1, #10b981); border: none; color: #fff; }
+        .hinweis { font-size: .8rem; color: #94a3b8; max-width: 640px; text-align: center; line-height: 1.55; }
+        .warnung { color: #fbbf24; font-weight: 700; font-size: .8rem; min-height: 1.2em; }
+        .fertig { color: #34d399; font-weight: 700; }
+        footer { padding: 14px 18px; border-top: 1px solid rgba(255, 255, 255, .08); display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; }
+        select, input[type=search] {
+            padding: 8px 10px; border-radius: 10px; background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .12); color: #e2e8f0; font-size: .82rem;
+        }
+        label.schalter { display: flex; align-items: center; gap: 6px; font-size: .8rem; color: #94a3b8; }
+        .liste { max-width: 640px; width: 100%; max-height: 210px; overflow: auto; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .08); }
+        .liste div {
+            padding: 7px 12px; font-size: .82rem; display: flex; gap: 10px; cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, .04); align-items: center;
+        }
+        .liste div:hover { background: rgba(255, 255, 255, .05); }
+        .liste div.aktiv { background: rgba(99, 102, 241, .2); }
+        .liste .status { width: 18px; text-align: center; }
+        .liste .txt { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .liste .anz { color: #64748b; font-size: .72rem; }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🎙️ EduPlay Hub – Sprachaufnahmen</h1>
+        <div class="fortschritt-zeile">
+            <span id="fortschritt-text">lädt …</span>
+            <span class="balken"><i id="fortschritt-balken"></i></span>
+        </div>
+    </header>
+
+    <main>
+        <div class="karte">
+            <div class="zaehler" id="zaehler">–</div>
+            <div class="satz" id="satz">…</div>
+            <div class="meta" id="meta"></div>
+
+            <div class="pegel"><i id="pegel"></i></div>
+            <button class="aufnahme-knopf" id="aufnahme-knopf" type="button">🎤 Halten und sprechen</button>
+            <div class="warnung" id="warnung"></div>
+
+            <div class="knopfreihe">
+                <button class="klein" id="btn-zurueck" type="button">← Zurück</button>
+                <button class="klein" id="btn-anhoeren" type="button">▶ Anhören</button>
+                <button class="klein" id="btn-ueberspringen" type="button">Überspringen</button>
+                <button class="klein gruen" id="btn-weiter" type="button">Weiter →</button>
+            </div>
+        </div>
+
+        <p class="hinweis">
+            <b>Leertaste</b> gedrückt halten und sprechen, dann loslassen. <b>Enter</b> = weiter,
+            <b>P</b> = anhören. Ruhiger Raum, gleicher Abstand zum Mikrofon, nach dem Satz kurz warten
+            vor dem Loslassen. Verbraucht keine Daten – alles bleibt bis zum Export im Browser.
+        </p>
+
+        <div class="liste" id="liste"></div>
+    </main>
+
+    <footer>
+        <label class="schalter"><input type="checkbox" id="auto-weiter" checked> automatisch weiter</label>
+        <label class="schalter"><input type="checkbox" id="auto-anhoeren" checked> nach Aufnahme anhören</label>
+        <select id="mikrofon" title="Mikrofon"></select>
+        <input type="search" id="suche" placeholder="Satz suchen …">
+        <button class="klein" id="btn-naechste-luecke" type="button">Zur nächsten Lücke</button>
+        <button class="klein gruen" id="btn-export" type="button">⬇ Alles exportieren (ZIP)</button>
+        <button class="klein" id="btn-loeschen" type="button">Alle Aufnahmen löschen</button>
+    </footer>
+
+    <script>
+        "use strict";
+
+        // ============================================================
+        //  Satzliste + Fortschritt
+        // ============================================================
+        let SAETZE = [];
+        let pos = 0;
+        let gefiltert = null;          // Indizes bei aktiver Suche
+        const aufnahmen = new Map();   // key -> { blob, typ, dauer }
+
+        // ---- IndexedDB (Blobs überleben kein localStorage) ----
+        let db = null;
+        function dbOeffnen() {
+            return new Promise(function (ok, fehler) {
+                const a = indexedDB.open("eduplay-aufnahmen", 1);
+                a.onupgradeneeded = function () { a.result.createObjectStore("clips"); };
+                a.onsuccess = function () { db = a.result; ok(db); };
+                a.onerror = function () { fehler(a.error); };
+            });
+        }
+        function dbSchreiben(key, wert) {
+            return new Promise(function (ok, fehler) {
+                const t = db.transaction("clips", "readwrite");
+                t.objectStore("clips").put(wert, key);
+                t.oncomplete = ok; t.onerror = function () { fehler(t.error); };
+            });
+        }
+        function dbLoeschenAlle() {
+            return new Promise(function (ok, fehler) {
+                const t = db.transaction("clips", "readwrite");
+                t.objectStore("clips").clear();
+                t.oncomplete = ok; t.onerror = function () { fehler(t.error); };
+            });
+        }
+        function dbAllesLesen() {
+            return new Promise(function (ok, fehler) {
+                const t = db.transaction("clips", "readonly");
+                const store = t.objectStore("clips");
+                const keys = store.getAllKeys(), werte = store.getAll();
+                t.oncomplete = function () {
+                    const m = new Map();
+                    keys.result.forEach(function (k, i) { m.set(k, werte.result[i]); });
+                    ok(m);
+                };
+                t.onerror = function () { fehler(t.error); };
+            });
+        }
+
+        // ============================================================
+        //  Mikrofon
+        // ============================================================
+        let strom = null, rekorder = null, teile = [], analyse = null, pegelLaeuft = false;
+        let audioCtx = null;
+
+        async function mikroStarten(geraetId) {
+            if (strom) strom.getTracks().forEach(function (t) { t.stop(); });
+            strom = await navigator.mediaDevices.getUserMedia({
+                audio: {
+                    deviceId: geraetId ? { exact: geraetId } : undefined,
+                    channelCount: 1,
+                    echoCancellation: false,
+                    noiseSuppression: true,
+                    autoGainControl: true
+                }
+            });
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const quelle = audioCtx.createMediaStreamSource(strom);
+            analyse = audioCtx.createAnalyser();
+            analyse.fftSize = 512;
+            quelle.connect(analyse);
+            if (!pegelLaeuft) { pegelLaeuft = true; pegelZeichnen(); }
+            await mikrofoneAuflisten();
+        }
+
+        function pegelZeichnen() {
+            const daten = new Uint8Array(analyse ? analyse.fftSize : 256);
+            const bar = document.getElementById("pegel");
+            (function tick() {
+                if (analyse) {
+                    analyse.getByteTimeDomainData(daten);
+                    let max = 0;
+                    for (let i = 0; i < daten.length; i++) max = Math.max(max, Math.abs(daten[i] - 128));
+                    bar.style.width = Math.min(100, Math.round(max / 128 * 180)) + "%";
+                    bar.style.background = max < 6 ? "#64748b" : (max > 110 ? "#fb7185" : "#34d399");
+                }
+                requestAnimationFrame(tick);
+            })();
+        }
+
+        async function mikrofoneAuflisten() {
+            const sel = document.getElementById("mikrofon");
+            const aktuell = sel.value;
+            const geraete = await navigator.mediaDevices.enumerateDevices();
+            sel.innerHTML = "";
+            geraete.filter(function (g) { return g.kind === "audioinput"; }).forEach(function (g, i) {
+                const o = document.createElement("option");
+                o.value = g.deviceId;
+                o.textContent = g.label || ("Mikrofon " + (i + 1));
+                sel.appendChild(o);
+            });
+            if (aktuell) sel.value = aktuell;
+        }
+
+        function besterTyp() {
+            const kandidaten = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/ogg;codecs=opus"];
+            for (let i = 0; i < kandidaten.length; i++) {
+                if (window.MediaRecorder && MediaRecorder.isTypeSupported(kandidaten[i])) return kandidaten[i];
+            }
+            return "";
+        }
+
+        let startZeit = 0;
+        function aufnahmeStarten() {
+            if (!strom || rekorder) return;
+            const typ = besterTyp();
+            teile = [];
+            rekorder = new MediaRecorder(strom, typ ? { mimeType: typ, audioBitsPerSecond: 64000 } : undefined);
+            rekorder.ondataavailable = function (e) { if (e.data && e.data.size) teile.push(e.data); };
+            rekorder.onstop = aufnahmeFertig;
+            rekorder.start();
+            startZeit = Date.now();
+            document.getElementById("aufnahme-knopf").classList.add("laeuft");
+            document.getElementById("warnung").textContent = "";
+        }
+
+        function aufnahmeStoppen() {
+            if (!rekorder) return;
+            try { rekorder.stop(); } catch (e) { /* */ }
+            document.getElementById("aufnahme-knopf").classList.remove("laeuft");
+        }
+
+        async function aufnahmeFertig() {
+            const dauer = Date.now() - startZeit;
+            const typ = rekorder.mimeType || "audio/webm";
+            rekorder = null;
+            if (!teile.length) return;
+            const blob = new Blob(teile, { type: typ });
+            const eintrag = aktuellerSatz();
+            if (!eintrag) return;
+            const warnung = document.getElementById("warnung");
+            if (dauer < 350) { warnung.textContent = "Sehr kurz – nochmal versuchen?"; }
+            else if (blob.size < 900) { warnung.textContent = "Fast nichts aufgenommen – Mikrofon prüfen."; }
+            else { warnung.textContent = ""; }
+            const wert = { blob: blob, typ: typ, dauer: dauer, text: eintrag.text };
+            aufnahmen.set(eintrag.key, wert);
+            await dbSchreiben(eintrag.key, wert);
+            zeichnen();
+            if (document.getElementById("auto-anhoeren").checked) {
+                anhoeren(function () { if (document.getElementById("auto-weiter").checked) setTimeout(weiter, 350); });
+            } else if (document.getElementById("auto-weiter").checked) {
+                setTimeout(weiter, 250);
+            }
+        }
+
+        let abspieler = null;
+        function anhoeren(danach) {
+            const e = aktuellerSatz();
+            if (!e) return;
+            const a = aufnahmen.get(e.key);
+            if (!a) return;
+            if (abspieler) { abspieler.pause(); URL.revokeObjectURL(abspieler.src); }
+            abspieler = new Audio(URL.createObjectURL(a.blob));
+            abspieler.onended = function () { if (danach) danach(); };
+            abspieler.play().catch(function () { if (danach) danach(); });
+        }
+
+        // ============================================================
+        //  Navigation
+        // ============================================================
+        function sichtbareIndizes() {
+            return gefiltert || SAETZE.map(function (_, i) { return i; });
+        }
+        function aktuellerSatz() {
+            const idx = sichtbareIndizes();
+            return SAETZE[idx[Math.min(pos, idx.length - 1)]];
+        }
+        function weiter() {
+            const idx = sichtbareIndizes();
+            if (pos < idx.length - 1) { pos++; zeichnen(); }
+            else { document.getElementById("warnung").textContent = "Das war der letzte Satz."; }
+        }
+        function zurueck() { if (pos > 0) { pos--; zeichnen(); } }
+        function naechsteLuecke() {
+            const idx = sichtbareIndizes();
+            for (let i = pos + 1; i < idx.length; i++) {
+                if (!aufnahmen.has(SAETZE[idx[i]].key)) { pos = i; zeichnen(); return; }
+            }
+            for (let i = 0; i < idx.length; i++) {
+                if (!aufnahmen.has(SAETZE[idx[i]].key)) { pos = i; zeichnen(); return; }
+            }
+            document.getElementById("warnung").textContent = "Alles aufgenommen 🎉";
+        }
+
+        // ============================================================
+        //  Anzeige
+        // ============================================================
+        function zeichnen() {
+            const idx = sichtbareIndizes();
+            if (pos > idx.length - 1) pos = Math.max(0, idx.length - 1);
+            const e = aktuellerSatz();
+            document.getElementById("zaehler").textContent =
+                "Satz " + (pos + 1) + " von " + idx.length + (gefiltert ? " (gefiltert)" : "");
+            document.getElementById("satz").textContent = e ? e.text : "–";
+            const schon = e && aufnahmen.has(e.key);
+            document.getElementById("meta").innerHTML = e
+                ? ("wird <b>" + e.anzahl + "×</b> gebraucht · " + (e.art === "frage" ? "Frage" : e.art === "antwort" ? "Antwort" : "Frage &amp; Antwort")
+                    + (e.kurse && e.kurse.length ? " · " + e.kurse.join(", ") : "")
+                    + (schon ? " · <span class='fertig'>✓ aufgenommen</span>" : ""))
+                : "";
+            document.getElementById("btn-anhoeren").disabled = !schon;
+            document.getElementById("btn-zurueck").disabled = pos === 0;
+
+            const fertig = aufnahmen.size;
+            const gesamtVorkommen = SAETZE.reduce(function (s, x) { return s + x.anzahl; }, 0);
+            let gedeckt = 0;
+            SAETZE.forEach(function (x) { if (aufnahmen.has(x.key)) gedeckt += x.anzahl; });
+            const proz = gesamtVorkommen ? Math.round(gedeckt / gesamtVorkommen * 100) : 0;
+            document.getElementById("fortschritt-text").textContent =
+                fertig + " / " + SAETZE.length + " Sätze · " + proz + "% abgedeckt";
+            document.getElementById("fortschritt-balken").style.width = (SAETZE.length ? fertig / SAETZE.length * 100 : 0) + "%";
+            listeZeichnen();
+        }
+
+        function listeZeichnen() {
+            const box = document.getElementById("liste");
+            const idx = sichtbareIndizes();
+            const von = Math.max(0, pos - 3), bis = Math.min(idx.length, von + 40);
+            let html = "";
+            for (let i = von; i < bis; i++) {
+                const e = SAETZE[idx[i]];
+                html += "<div class='" + (i === pos ? "aktiv" : "") + "' data-pos='" + i + "'>"
+                    + "<span class='status'>" + (aufnahmen.has(e.key) ? "✓" : "·") + "</span>"
+                    + "<span class='txt'>" + e.text.replace(/</g, "&lt;") + "</span>"
+                    + "<span class='anz'>" + e.anzahl + "×</span></div>";
+            }
+            box.innerHTML = html;
+            const aktiv = box.querySelector(".aktiv");
+            if (aktiv) aktiv.scrollIntoView({ block: "nearest" });
+        }
+
+        // ============================================================
+        //  ZIP-Export (nur speichern, kein Komprimieren – Audio ist schon komprimiert)
+        // ============================================================
+        const crcTabelle = (function () {
+            const t = new Uint32Array(256);
+            for (let n = 0; n < 256; n++) {
+                let c = n;
+                for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+                t[n] = c >>> 0;
+            }
+            return t;
+        })();
+        function crc32(bytes) {
+            let c = 0xFFFFFFFF;
+            for (let i = 0; i < bytes.length; i++) c = crcTabelle[(c ^ bytes[i]) & 0xFF] ^ (c >>> 8);
+            return (c ^ 0xFFFFFFFF) >>> 0;
+        }
+        function zahl(n, bytes) {
+            const a = [];
+            for (let i = 0; i < bytes; i++) a.push((n >>> (i * 8)) & 0xFF);
+            return a;
+        }
+        async function zipBauen(dateien) {
+            const kopfStuecke = [], zentral = [];
+            let versatz = 0;
+            const enc = new TextEncoder();
+            for (const d of dateien) {
+                const name = enc.encode(d.name);
+                const inhalt = new Uint8Array(await d.blob.arrayBuffer());
+                const crc = crc32(inhalt);
+                const lokal = [].concat(
+                    zahl(0x04034b50, 4), zahl(20, 2), zahl(0, 2), zahl(0, 2), zahl(0, 2), zahl(0, 2),
+                    zahl(crc, 4), zahl(inhalt.length, 4), zahl(inhalt.length, 4),
+                    zahl(name.length, 2), zahl(0, 2)
+                );
+                kopfStuecke.push(new Uint8Array(lokal), name, inhalt);
+                zentral.push({ name: name, crc: crc, groesse: inhalt.length, versatz: versatz });
+                versatz += lokal.length + name.length + inhalt.length;
+            }
+            const zentralStuecke = [];
+            let zentralLaenge = 0;
+            zentral.forEach(function (z) {
+                const kopf = [].concat(
+                    zahl(0x02014b50, 4), zahl(20, 2), zahl(20, 2), zahl(0, 2), zahl(0, 2), zahl(0, 2), zahl(0, 2),
+                    zahl(z.crc, 4), zahl(z.groesse, 4), zahl(z.groesse, 4),
+                    zahl(z.name.length, 2), zahl(0, 2), zahl(0, 2), zahl(0, 2), zahl(0, 2), zahl(0, 4), zahl(z.versatz, 4)
+                );
+                zentralStuecke.push(new Uint8Array(kopf), z.name);
+                zentralLaenge += kopf.length + z.name.length;
+            });
+            const ende = new Uint8Array([].concat(
+                zahl(0x06054b50, 4), zahl(0, 2), zahl(0, 2),
+                zahl(zentral.length, 2), zahl(zentral.length, 2),
+                zahl(zentralLaenge, 4), zahl(versatz, 4), zahl(0, 2)
+            ));
+            return new Blob(kopfStuecke.concat(zentralStuecke, [ende]), { type: "application/zip" });
+        }
+
+        function endungFuer(typ) {
+            if (/mp4/.test(typ)) return "m4a";
+            if (/ogg/.test(typ)) return "ogg";
+            return "webm";
+        }
+
+        async function exportieren() {
+            if (!aufnahmen.size) { alert("Noch nichts aufgenommen."); return; }
+            const knopf = document.getElementById("btn-export");
+            knopf.disabled = true; knopf.textContent = "packt …";
+            const dateien = [];
+            const verzeichnis = [];
+            aufnahmen.forEach(function (a, key) {
+                const name = key + "." + endungFuer(a.typ);
+                dateien.push({ name: name, blob: a.blob });
+                verzeichnis.push({ key: key, datei: name, text: a.text, dauer: a.dauer });
+            });
+            verzeichnis.sort(function (a, b) { return a.key.localeCompare(b.key); });
+            dateien.push({
+                name: "verzeichnis.json",
+                blob: new Blob([JSON.stringify({
+                    erzeugt: new Date().toISOString(),
+                    umfang: (window.__UMFANG || ""),
+                    anzahl: verzeichnis.length,
+                    clips: verzeichnis
+                }, null, 1)], { type: "application/json" })
+            });
+            const zip = await zipBauen(dateien);
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(zip);
+            a.download = "eduplay-aufnahmen-" + new Date().toISOString().slice(0, 10) + ".zip";
+            a.click();
+            setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+            knopf.disabled = false; knopf.textContent = "⬇ Alles exportieren (ZIP)";
+        }
+
+        // ============================================================
+        //  Start
+        // ============================================================
+        (async function start() {
+            try {
+                const antwort = await fetch("audio/vo/saetze.json", { cache: "no-store" });
+                const daten = await antwort.json();
+                SAETZE = daten.saetze || [];
+                window.__UMFANG = daten.umfang || "";
+                document.querySelector("h1").textContent = "🎙️ Sprachaufnahmen – " + (daten.umfang || "");
+            } catch (e) {
+                document.getElementById("satz").textContent = "saetze.json nicht gefunden";
+                document.getElementById("meta").textContent =
+                    "Die Seite muss über einen Webserver geöffnet werden, nicht per Doppelklick.";
+                return;
+            }
+            await dbOeffnen();
+            const gespeichert = await dbAllesLesen();
+            gespeichert.forEach(function (v, k) { aufnahmen.set(k, v); });
+            zeichnen();
+            naechsteLuecke();
+
+            try { await mikroStarten(); }
+            catch (e) {
+                document.getElementById("warnung").textContent =
+                    "Kein Mikrofonzugriff: " + (e && e.message ? e.message : e);
+            }
+
+            // ---- Bedienung ----
+            const knopf = document.getElementById("aufnahme-knopf");
+            knopf.addEventListener("pointerdown", function (e) { e.preventDefault(); aufnahmeStarten(); });
+            knopf.addEventListener("pointerup", aufnahmeStoppen);
+            knopf.addEventListener("pointerleave", aufnahmeStoppen);
+            knopf.addEventListener("pointercancel", aufnahmeStoppen);
+
+            let leerGedrueckt = false;
+            document.addEventListener("keydown", function (e) {
+                if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+                if (e.code === "Space") { e.preventDefault(); if (!leerGedrueckt) { leerGedrueckt = true; aufnahmeStarten(); } }
+                else if (e.key === "Enter") { e.preventDefault(); weiter(); }
+                else if (e.key.toLowerCase() === "p") { anhoeren(); }
+            });
+            document.addEventListener("keyup", function (e) {
+                if (e.code === "Space") { e.preventDefault(); leerGedrueckt = false; aufnahmeStoppen(); }
+            });
+
+            document.getElementById("btn-weiter").onclick = weiter;
+            document.getElementById("btn-zurueck").onclick = zurueck;
+            document.getElementById("btn-ueberspringen").onclick = weiter;
+            document.getElementById("btn-anhoeren").onclick = function () { anhoeren(); };
+            document.getElementById("btn-naechste-luecke").onclick = naechsteLuecke;
+            document.getElementById("btn-export").onclick = exportieren;
+            document.getElementById("btn-loeschen").onclick = async function () {
+                if (!confirm("Wirklich ALLE Aufnahmen löschen? Das lässt sich nicht rückgängig machen.")) return;
+                await dbLoeschenAlle();
+                aufnahmen.clear();
+                zeichnen();
+            };
+            document.getElementById("mikrofon").onchange = function () { mikroStarten(this.value); };
+            document.getElementById("liste").onclick = function (e) {
+                const z = e.target.closest("[data-pos]");
+                if (z) { pos = Number(z.dataset.pos); zeichnen(); }
+            };
+            document.getElementById("suche").oninput = function () {
+                const s = this.value.trim().toLowerCase();
+                gefiltert = s ? SAETZE.map(function (_, i) { return i; })
+                    .filter(function (i) { return SAETZE[i].text.toLowerCase().includes(s); }) : null;
+                pos = 0; zeichnen();
+            };
+            // Kein beforeunload-Warnhinweis nötig: die Aufnahmen liegen in
+            // IndexedDB und sind nach dem Neuladen alle wieder da.
+        })();
+    </script>
+</body>
+
+</html>

@@ -81,6 +81,8 @@
         }
 
         function endLesson() {
+            // Sofort still sein, noch vor Ergebnisbildschirm und Ansichtswechsel.
+            if (typeof stopSpeaking === "function") stopSpeaking();
             if (testMode) { leaveQuiz('menu'); return; }
             if (quizMode !== 'flashcards' && testAnsweredCount > 0) {
                 showLessonResultScreen();
@@ -274,6 +276,9 @@
         }
 
         async function leaveQuiz(zielView) {
+            // Vor der Rückfrage stoppen – sonst redet die App weiter,
+            // während der Dialog offen steht.
+            if (typeof stopSpeaking === "function") stopSpeaking();
             if (testMode) {
                 if (!(await appConfirm("Timer stoppt – du kannst den Test später fortsetzen.", {
                     titel: "Test verlassen?", icon: "⏸", okText: "Verlassen", abbrechenText: "Weitermachen"
@@ -373,15 +378,37 @@
                         imgWrap.classList.add("hidden");
                     }
                 }
-                if (typeof updateSpeakButtonForQuestion === 'function') updateSpeakButtonForQuestion(q);
+                // Kleiner Lautsprecher je Antwort, solange vorgelesen wird –
+                // ein Leseanfänger kann damit jede Möglichkeit einzeln nachhören.
+                const vorleseKlasse = (typeof istVorleseFrage === 'function') ? istVorleseFrage(q) : false;
                 q.answers.forEach((ans, i) => {
                     const b = document.createElement("button");
                     b.className =
-                        "w-full p-4 bg-white/5 hover:bg-white/10 rounded-xl font-bold text-white mt-2 border border-white/5 transition-colors";
-                    b.innerText = ans;
+                        "w-full p-4 bg-white/5 hover:bg-white/10 rounded-xl font-bold text-white mt-2 border border-white/5 transition-colors"
+                        + (vorleseKlasse ? " flex items-center gap-3 text-left" : "");
+                    if (vorleseKlasse) {
+                        const txt = document.createElement("span");
+                        txt.className = "flex-1";
+                        txt.innerText = ans;
+                        const hoer = document.createElement("span");
+                        hoer.className = "shrink-0 text-lg opacity-60 hover:opacity-100 px-2 py-1 rounded-lg bg-white/5";
+                        hoer.innerText = "🔊";
+                        hoer.setAttribute("role", "button");
+                        hoer.setAttribute("aria-label", "Antwort vorlesen");
+                        hoer.onclick = (ev) => {
+                            ev.stopPropagation();
+                            if (typeof speakAnswerOption === 'function') speakAnswerOption(i);
+                        };
+                        b.appendChild(txt);
+                        b.appendChild(hoer);
+                    } else {
+                        b.innerText = ans;
+                    }
                     b.onclick = () => checkQuiz(i, q.correct, q.explanation, q.answers[q.correct]);
                     optsContainer.appendChild(b);
                 });
+                // Erst NACH den Antwort-Knöpfen: das Vorlesen hebt sie einzeln hervor.
+                if (typeof updateSpeakButtonForQuestion === 'function') updateSpeakButtonForQuestion(q);
             }
         }
 
@@ -892,7 +919,8 @@
 
         function goToMainMenu() {
             try {
-                if (window.speechSynthesis) window.speechSynthesis.cancel();
+                if (typeof stopSpeaking === "function") stopSpeaking();
+                else if (window.speechSynthesis) window.speechSynthesis.cancel();
             } catch (e) { }
 
             // Alle offenen Timer stoppen

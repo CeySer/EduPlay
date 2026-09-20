@@ -1856,9 +1856,10 @@ const geladen = _questionCounts[key] || 0;
         }
 
         function updateQuietUI() {
-            const on = !soundOn;
+            // Der Menüpunkt heißt „Musik & Töne" – die Beschriftung zeigt also
+            // den Zustand des TONS, nicht den der Stille.
             document.querySelectorAll(".quiet-toggle-label").forEach(function (el) {
-                el.textContent = on ? "an" : "aus";
+                el.textContent = soundOn ? "an" : "aus";
             });
             document.querySelectorAll(".sound-toggle-icon").forEach(function (el) {
                 el.innerText = soundOn ? "🔊" : "🔇";
@@ -1872,7 +1873,8 @@ const geladen = _questionCounts[key] || 0;
             try { if (musicTimer) { clearInterval(musicTimer); musicTimer = null; } } catch (e) { /* */ }
             try { if (musicGain && musicCtx) musicGain.gain.setValueAtTime(0, musicCtx.currentTime); } catch (e) { /* */ }
             try { if (audioCtx && audioCtx.state === "running") audioCtx.suspend(); } catch (e) { /* */ }
-            try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) { /* */ }
+            // Das Vorlesen wird hier NICHT abgebrochen – es hängt am eigenen
+            // Schalter, nicht am Leise-Modus (siehe vorlesenVerfuegbar).
         }
 
         function toggleQuietMode() {
@@ -1882,13 +1884,13 @@ const geladen = _questionCounts[key] || 0;
             if (!soundOn) {
                 silenceAllAudio();
                 hapticPulse("tap");
-                if (typeof showToast === "function") showToast("🤫 Leise-Modus an – kein Ton", "success", "sound");
+                if (typeof showToast === "function") showToast("🔇 Musik & Töne aus – Vorlesen läuft weiter", "success", "sound");
             } else {
                 try { if (audioCtx && audioCtx.state === "suspended") audioCtx.resume(); } catch (e) { /* */ }
                 try { if (musicGain && musicCtx) musicGain.gain.setValueAtTime(musicVolume, musicCtx.currentTime); } catch (e) { /* */ }
                 if (musicVolume > 0) startBackgroundMusic();
                 SFX.tap();
-                if (typeof showToast === "function") showToast("🔊 Ton wieder an", "success", "sound");
+                if (typeof showToast === "function") showToast("🔊 Musik & Töne an", "success", "sound");
             }
         }
         function toggleSound() { toggleQuietMode(); }
@@ -2280,8 +2282,13 @@ const geladen = _questionCounts[key] || 0;
         }
         window.setVorlesen = setVorlesen;
 
+        // Bewusst unabhängig vom Leise-Modus: Der Leise-Modus schaltet Spiel-
+        // geräusche und Musik ab. Das Vorlesen ist für Klasse 1/2 aber keine
+        // Spielerei, sondern die Bedienhilfe – ohne sie kommt ein Kind, das
+        // noch nicht liest, gar nicht durch die Frage. Abschalten geht über
+        // den eigenen Schalter in den Einstellungen.
         function vorlesenVerfuegbar() {
-            return typeof window !== "undefined" && "speechSynthesis" in window && vorlesenAn && soundOn;
+            return typeof window !== "undefined" && "speechSynthesis" in window && vorlesenAn;
         }
 
         // Laufende Ausgabe abbrechen: jeder Auftrag bekommt eine Nummer,
@@ -2499,9 +2506,12 @@ const geladen = _questionCounts[key] || 0;
          *  Klasse 1/2 automatisch vor, sobald eine neue Frage erscheint. */
         function updateSpeakButtonForQuestion(q) {
             const btn = document.getElementById("question-speak-btn");
-            const moeglich = q && typeof window !== "undefined" && "speechSynthesis" in window;
+            // Knopf, kleine 🔊 an den Antworten und Auto-Vorlesen hängen an
+            // derselben Bedingung: Klasse 1/2, Vorlesen an, nicht im Leise-Modus.
+            // Ab Klasse 3 bleibt der Frage-Bildschirm aufgeräumt.
+            const vorlesen = istVorleseFrage(q);
             if (btn) {
-                if (moeglich) {
+                if (vorlesen) {
                     btn.classList.remove("hidden");
                     btn.removeAttribute("hidden");
                     btn.removeAttribute("aria-hidden");
@@ -2511,14 +2521,17 @@ const geladen = _questionCounts[key] || 0;
                     btn.setAttribute("aria-hidden", "true");
                 }
             }
-            if (!moeglich) return;
-            const klasse = frageKlasse(q);
-            if (vorlesenVerfuegbar() && klasse && VORLESEN_AUTO_KLASSEN.indexOf(klasse) !== -1) {
-                // kurz warten, bis die Antwort-Knöpfe im DOM stehen
-                setTimeout(function () { speakQuestionWithAnswers(q); }, 260);
-            } else {
-                stopSpeaking();
-            }
+            // Immer erst abbrechen: hier hängt sonst noch die vorige Frage nach.
+            stopSpeaking();
+            if (!vorlesen) return;
+            // Kurz warten, bis die Antwort-Knöpfe im DOM stehen. Den Auftragsstand
+            // dabei merken – wird in der Zwischenzeit beendet oder weitergeklickt,
+            // darf dieser Start nicht mehr zünden.
+            const auftrag = _sprichAuftrag;
+            setTimeout(function () {
+                if (_sprichAuftrag !== auftrag) return;
+                speakQuestionWithAnswers(q);
+            }, 260);
         }
 
         /** Manche Browser verwerfen die allererste Ausgabe nach dem Laden.

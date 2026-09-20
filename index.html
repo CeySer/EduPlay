@@ -565,7 +565,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <div id="dash-lesson-body" class="hidden px-4 pb-4 space-y-2">
                                 <p class="text-[11px] text-gray-500">Eine Lektion für das Kind im Fokus. Erscheint auf dem Startscreen.</p>
                                 <select id="dash-lesson-grade" class="input-modern text-sm" onchange="fillDashLessonSelect()"></select>
-                                <select id="dash-lesson-id" class="input-modern text-sm"></select>
+                                <input type="hidden" id="dash-lesson-id" value="">
+                                <div id="dash-lesson-list" class="flex flex-col gap-1.5 max-h-72 overflow-y-auto pr-1"></div>
                                 <label class="text-[11px] text-gray-500 font-bold block mb-1">Fällig bis (optional)</label>
                                 <input type="date" id="dash-lesson-deadline" class="input-modern text-sm">
                                 <button type="button" onclick="assignLessonFromDashboard()" class="btn-primary w-full text-center">Lektion zuweisen 📚</button>
@@ -582,7 +583,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <div id="dash-kurszuw-body" class="hidden px-4 pb-4 space-y-2">
                                 <p class="text-[11px] text-gray-500">Ein ganzer Kurs (alle Lektionen darin) für das Kind im Fokus. Erscheint auf dem Startscreen.</p>
                                 <select id="dash-kurs-grade" class="input-modern text-sm" onchange="fillDashKursSelect()"></select>
-                                <select id="dash-kurs-id" class="input-modern text-sm"></select>
+                                <input type="hidden" id="dash-kurs-id" value="">
+                                <div id="dash-kurs-list" class="flex flex-col gap-1.5 max-h-72 overflow-y-auto pr-1"></div>
                                 <label class="text-[11px] text-gray-500 font-bold block mb-1">Fällig bis (optional)</label>
                                 <input type="date" id="dash-kurs-deadline" class="input-modern text-sm">
                                 <button type="button" onclick="assignKursFromDashboard()" class="btn-primary w-full text-center">Kurs zuweisen 🎓</button>
@@ -2016,7 +2018,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <button type="button" data-sound-pack="crisp" onclick="setSoundPack('crisp')">Klar</button>
                             <button type="button" data-sound-pack="arcade" onclick="setSoundPack('arcade')">Arcade</button>
                         </div>
-                        <p class="text-[11px] text-gray-500">Soft · Klar · Arcade. Stumm über Leise-Modus im Menü.</p>
+                        <p class="text-[11px] text-gray-500">Soft · Klar · Arcade. Ganz aus über „Musik &amp; Töne" im Menü.</p>
                     </div>
                     <div class="py-2 border-b border-white/5 space-y-2">
                         <div class="flex items-center justify-between gap-3">
@@ -2035,9 +2037,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                     onchange="setVorlesen(this.checked)" class="w-5 h-5 accent-indigo-500">
                             </label>
                         </div>
-                        <p class="text-[11px] text-gray-500">Liest in Klasse 1 und 2 die Frage und alle Antworten
-                            automatisch vor. In allen Klassen gibt es zusätzlich den 🔊-Knopf über den Antworten.
-                            Die Stimme kommt vom Gerät – im Leise-Modus bleibt alles still.</p>
+                        <p class="text-[11px] text-gray-500">Gilt nur für Klasse 1 und 2: Frage und alle Antworten
+                            werden automatisch vorgelesen, dazu gibt es den 🔊-Knopf zum Wiederholen und ein 🔊 an
+                            jeder Antwort. Ab Klasse 3 bleibt der Bildschirm ohne Vorlesen.
+                            Die Stimme kommt vom Gerät und läuft weiter, auch wenn „Musik &amp; Töne" aus ist –
+                            das schaltet nur Musik und Spielgeräusche ab. Ausschalten nur hier mit diesem Schalter.</p>
                     </div>
                     <div class="pt-2 space-y-3">
                         <h3 class="text-sm font-black text-amber-400">🔑 Eltern-PIN</h3>
@@ -2733,13 +2737,13 @@ VIEW: QUIZ SETUP
     JAVASCRIPT MODULE
     ============================================================ -->
     <script src="confetti.js?v=1"></script>
-    <script src="app-config.js?v=13.14"></script>
+    <script src="app-config.js?v=13.18"></script>
     <script src="app-ui.js?v=9.5"></script>
-    <script src="family-dashboard.js?v=11.39"></script>
+    <script src="family-dashboard.js?v=11.41"></script>
     <script src="dev-admin.js?v=1.7"></script>
     <script src="ui-common.js?v=9.3"></script>
     <script src="ki-coach.js?v=1.1"></script>
-    <script src="quiz-core.js?v=10.13"></script>
+    <script src="quiz-core.js?v=10.14"></script>
     <!-- Die neun Kurs-Dateien (zusammen rund 2 MB) werden nicht mehr hier
          geladen, sondern von lektionen-loader.js im Leerlauf nachgeholt bzw.
          spaetestens beim ersten Antippen von "Kurse". Die Dateiliste und die
@@ -2811,7 +2815,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
         </div>
         <div class="flex flex-col gap-1 drawer-items-container">
             <button onclick="toggleQuietMode(); closeDrawer()" class="drawer-menu-item">
-                <span class="icon">🤫</span> <span>Leise-Modus <span class="quiet-toggle-label">aus</span></span>
+                <span class="icon sound-toggle-icon">🔊</span> <span>Musik &amp; Töne <span class="quiet-toggle-label">an</span></span>
             </button>
             <button onclick="closeDrawer(); togglePushNotifications()" class="drawer-menu-item">
                 <span class="icon">🔔</span> <span>Duell-Benachr. <span class="push-toggle-label">aus</span></span>
@@ -2860,7 +2864,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                 <span class="icon">🎛️</span> Kontrollzentrum
             </button>
             <button onclick="toggleQuietMode(); closeDrawer()" class="drawer-menu-item">
-                <span class="icon">🤫</span> <span>Leise-Modus <span class="quiet-toggle-label">aus</span></span>
+                <span class="icon sound-toggle-icon">🔊</span> <span>Musik &amp; Töne <span class="quiet-toggle-label">an</span></span>
             </button>
             <button onclick="closeDrawer(); togglePushNotifications()" class="drawer-menu-item">
                 <span class="icon">🔔</span> <span>Duell-Benachr. <span class="push-toggle-label">aus</span></span>

@@ -17153,14 +17153,14 @@ function istLektionAbgeschlossen(id) {
 }
 
 function istLektionZugewiesen(id) {
-    return !!(currentPlayer && currentPlayer.pendingLesson && currentPlayer.pendingLesson.lektionId === id);
+    return offeneLektionen(currentPlayer).some(x => x.lektionId === id);
 }
 
 // Ein zugewiesener KURS schaltet alle seine Lektionen frei - nicht nur die
 // erste. Das Kind kann dann frei im Kurs stoebern statt sich streng von
 // vorn durchzuarbeiten.
 function istKursZugewiesen(kursId) {
-    return !!(currentPlayer && currentPlayer.pendingKurs && currentPlayer.pendingKurs.kursId === kursId);
+    return offeneKurse(currentPlayer).some(x => x.kursId === kursId);
 }
 
 // ============================================================
@@ -17588,18 +17588,23 @@ function finishLektion(pct) {
             currentPlayer.lessonNotices = currentPlayer.lessonNotices.filter(function (n) { return n.id !== daten.id; });
             currentPlayer.lessonNotices.unshift(notice);
             currentPlayer.lessonNotices = currentPlayer.lessonNotices.slice(0, 8);
-            if (currentPlayer.pendingLesson && currentPlayer.pendingLesson.lektionId === daten.id) {
-                currentPlayer.pendingLesson = null;
+            // Nur den erledigten Eintrag aus der Liste nehmen - andere
+            // zugewiesene Lektionen bleiben stehen.
+            const offLek = offeneLektionen(currentPlayer);
+            if (offLek.some(x => x.lektionId === daten.id)) {
+                setzeOffeneLektionen(currentPlayer, offLek.filter(x => x.lektionId !== daten.id));
             }
             // Zugewiesenen Kurs erst abhaken, wenn wirklich ALLE seine
             // Lektionen bestanden sind - nicht schon bei der ersten.
             let kursKomplett = false;
-            if (currentPlayer.pendingKurs && currentPlayer.pendingKurs.kursId === daten.kurs) {
+            const offKurse = offeneKurse(currentPlayer);
+            const zugKurs = offKurse.find(x => x.kursId === daten.kurs);
+            if (zugKurs) {
                 const kursLektionen = (typeof getLektionenForKurs === "function") ? getLektionenForKurs(daten.kurs) : [];
                 if (kursLektionen.length && kursLektionen.every(l => istLektionAbgeschlossen(l.id))) {
                     kursKomplett = true;
-                    var abgeschlossenerKursTitel = currentPlayer.pendingKurs.title;
-                    currentPlayer.pendingKurs = null;
+                    var abgeschlossenerKursTitel = zugKurs.title;
+                    setzeOffeneKurse(currentPlayer, offKurse.filter(x => x.kursId !== daten.kurs));
                     if (typeof addZeit === "function") addZeit(15);
                 }
             }

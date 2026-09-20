@@ -1771,8 +1771,29 @@ auth.createUserWithEmailAndPassword(e, p)
                         </div>`);
                     }
                 }
+                const kSafe0 = String(k).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+                offeneLektionen(p).forEach(t => {
+                    items.push(`<div class="glass-card px-3 py-2 flex justify-between items-center gap-2 border border-amber-400/20">
+                        <div class="min-w-0">
+                            <div class="text-xs font-black text-amber-300">📖 Offene Lektion · ${esc(p.name)}</div>
+                            <div class="text-[11px] text-gray-400 truncate">${esc(t.title || t.lektionId)}${faelligText(t)}</div>
+                        </div>
+                        <button type="button" onclick="zuweisungZuruecknehmen('pendingLesson','${kSafe0}','${esc(t.lektionId)}')"
+                            class="text-[10px] font-black text-gray-400 hover:text-white shrink-0">✕ Zurücknehmen</button>
+                    </div>`);
+                });
+                offeneKurse(p).forEach(t => {
+                    items.push(`<div class="glass-card px-3 py-2 flex justify-between items-center gap-2 border border-amber-400/20">
+                        <div class="min-w-0">
+                            <div class="text-xs font-black text-amber-300">🎓 Offener Kurs · ${esc(p.name)}</div>
+                            <div class="text-[11px] text-gray-400 truncate">${esc(t.title || t.kursId)}${faelligText(t)}</div>
+                        </div>
+                        <button type="button" onclick="zuweisungZuruecknehmen('pendingKurs','${kSafe0}','${esc(t.kursId)}')"
+                            class="text-[10px] font-black text-gray-400 hover:text-white shrink-0">✕ Zurücknehmen</button>
+                    </div>`);
+                });
                 if (p.pendingTest) {
-                    const kSafe = String(k).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+                    const kSafe = kSafe0;
                     items.push(`<div class="glass-card px-3 py-2 flex justify-between items-center gap-2 border border-indigo-400/20">
                         <div class="min-w-0">
                             <div class="text-xs font-black text-indigo-300">📝 Offener Test · ${esc(p.name)}</div>
@@ -2473,7 +2494,7 @@ auth.createUserWithEmailAndPassword(e, p)
             box.innerHTML = keys.map(k => {
                 const p = ALL_PROFILES[k];
                 const doneMap = (p && p.lektionen) || {};
-                const rows = dashKurseGruppen(doneMap, p && p.pendingLesson);
+                const rows = dashKurseGruppen(doneMap, p);
                 return `<div class="space-y-3">
                     ${keys.length > 1 ? `<div class="font-bold text-white text-sm">${esc(p.name)}</div>` : ''}
                     ${rows || '<div class="text-[11px] text-gray-500">Noch keine Lektion gestartet</div>'}
@@ -2484,7 +2505,7 @@ auth.createUserWithEmailAndPassword(e, p)
         // Kurse für die Eltern-Ansicht nach Fach und Klassenstufe gruppieren.
         // Bei 80+ Kursen wäre eine flache Liste unbrauchbar – deshalb aufklappbare
         // Abschnitte, die nur dort offen starten, wo das Kind schon etwas gemacht hat.
-        function dashKurseGruppen(doneMap, pendingLesson) {
+        function dashKurseGruppen(doneMap, profil) {
             const faecher = [...new Set(KURSE.map(k => k.subject))];
             const order = (typeof KURS_FACH_ORDER !== 'undefined') ? KURS_FACH_ORDER : [];
             const sortiert = [
@@ -2510,7 +2531,7 @@ auth.createUserWithEmailAndPassword(e, p)
                         sFertig += fertig;
                         sGesamt += liste.length;
                         if (begonnen) aktiv = true;
-                        return dashKursKarte(kurs, liste, doneMap, fertig, begonnen, pendingLesson);
+                        return dashKursKarte(kurs, liste, doneMap, fertig, begonnen, profil);
                     }).join('');
                     fachFertig += sFertig;
                     fachGesamt += sGesamt;
@@ -2537,7 +2558,7 @@ auth.createUserWithEmailAndPassword(e, p)
 
         // Eine Kurs-Karte. Noch nicht begonnene Kurse bleiben eine schmale Zeile,
         // damit die Ansicht nicht von leeren Lektionslisten zugeschüttet wird.
-        function dashKursKarte(kurs, liste, doneMap, fertig, begonnen, pendingLesson) {
+        function dashKursKarte(kurs, liste, doneMap, fertig, begonnen, profil) {
             const pct = Math.round((fertig / liste.length) * 100);
             const kopf = `<div class="flex items-center justify-between gap-2 text-xs">
                     <span class="font-bold text-gray-100 truncate">${kurs.icon || '📘'} ${esc(kurs.title)}</span>
@@ -2549,7 +2570,7 @@ auth.createUserWithEmailAndPassword(e, p)
             const lektionRows = liste.map(l => {
                 const eintrag = doneMap[l.id];
                 const frei = (typeof istLektionFreigeschaltetFuer === 'function')
-                    ? istLektionFreigeschaltetFuer(l, liste, doneMap, pendingLesson)
+                    ? istLektionFreigeschaltetFuer(l, liste, doneMap, profil)
                     : true;
                 let statusIcon, ergebnis, ergebnisClass;
                 if (eintrag && eintrag.bestanden) {
@@ -2591,8 +2612,10 @@ auth.createUserWithEmailAndPassword(e, p)
         // beliebiges Kind statt für das gerade aktive. Kein Dev-Admin-Bypass –
         // der ist im Spiel ebenfalls raus, sonst zeigte das Kontrollzentrum
         // alles als offen, was beim Kind gesperrt ist.
-        function istLektionFreigeschaltetFuer(lektion, liste, doneMap, pendingLesson) {
-            if (pendingLesson && pendingLesson.lektionId === lektion.id) return true;
+        function istLektionFreigeschaltetFuer(lektion, liste, doneMap, profil) {
+            if (offeneLektionen(profil).some(x => x.lektionId === lektion.id)) return true;
+            // Ein zugewiesener Kurs oeffnet alle seine Lektionen (wie im Spiel).
+            if (offeneKurse(profil).some(x => x.kursId === lektion.kurs)) return true;
             if (doneMap && doneMap[lektion.id] && doneMap[lektion.id].bestanden) return true;
             const vorherige = (liste || []).find(l => l.order === lektion.order - 1);
             // Die erste Lektion eines Kurses ist immer offen – sonst käme
@@ -3574,16 +3597,38 @@ auth.createUserWithEmailAndPassword(e, p)
         }
 
         /** Status einer Lektion für dieses Kind: Symbol + Kurztext. */
-        function dashLektionStatus(l, liste, doneMap, pendingLesson) {
+        function dashLektionStatus(l, liste, doneMap, profil) {
             const e = doneMap[l.id];
             if (e && e.bestanden) {
                 const datum = e.datum ? new Date(e.datum).toLocaleDateString("de-DE") : "";
                 return { icon: "✅", text: e.pct + "%" + (datum ? " · " + datum : ""), klasse: "text-emerald-400", fertig: true };
             }
             if (e) return { icon: "🔁", text: e.pct + "% – nicht bestanden", klasse: "text-amber-400" };
-            const frei = istLektionFreigeschaltetFuer(l, liste, doneMap, pendingLesson);
+            const frei = istLektionFreigeschaltetFuer(l, liste, doneMap, profil);
             if (frei) return { icon: "▶", text: "als Nächstes dran", klasse: "text-indigo-300", dran: true };
             return { icon: "🔒", text: "noch gesperrt", klasse: "text-gray-500" };
+        }
+
+        // ---- Mehrfachauswahl: die versteckten Felder halten jetzt eine
+        //      kommagetrennte Liste statt einer einzelnen ID. ----
+        function dashAuswahlIds(feldId) {
+            const v = (document.getElementById(feldId) || {}).value || "";
+            return v.split(",").map(x => x.trim()).filter(Boolean);
+        }
+        function dashAuswahlUmschalten(feldId, id) {
+            const ids = dashAuswahlIds(feldId);
+            const i = ids.indexOf(id);
+            if (i >= 0) ids.splice(i, 1); else ids.push(id);
+            const f = document.getElementById(feldId);
+            if (f) f.value = ids.join(",");
+            return ids;
+        }
+        function dashZuweisenKnopf(btnId, anzahl, ein, mehr, icon) {
+            const b = document.getElementById(btnId);
+            if (!b) return;
+            b.innerText = (anzahl <= 1 ? ein : anzahl + " " + mehr) + " zuweisen " + icon;
+            b.disabled = anzahl === 0;
+            b.classList.toggle("opacity-40", anzahl === 0);
         }
 
         /** Aufklappbare Kurs-Gruppen statt einer langen Auswahlliste.
@@ -3593,8 +3638,9 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!box) return;
             const { p } = dashFokusProfil();
             const doneMap = (p && p.lektionen) || {};
-            const pendingLesson = p && p.pendingLesson;
-            const gewaehlt = (document.getElementById("dash-lesson-id") || {}).value || "";
+            const gewaehlt = dashAuswahlIds("dash-lesson-id");
+            const schonOffen = offeneLektionen(p).map(x => x.lektionId);
+            dashZuweisenKnopf("dash-lesson-assign-btn", gewaehlt.length, "Lektion", "Lektionen", "\u{1F4DA}");
             const kurse = (typeof KURSE !== "undefined" && Array.isArray(KURSE)) ? KURSE : [];
             const gefiltert = kurse.filter(k => !grade || Number(k.grade) === grade);
 
@@ -3604,12 +3650,12 @@ auth.createUserWithEmailAndPassword(e, p)
                 if (!liste.length) return;
                 const fertig = liste.filter(l => doneMap[l.id] && doneMap[l.id].bestanden).length;
                 const gid = "dash-lekgrp-" + (idx++);
-                const zeilen = liste.map(l => dashLektionStatus(l, liste, doneMap, pendingLesson));
+                const zeilen = liste.map(l => dashLektionStatus(l, liste, doneMap, p));
                 // Die Gruppe aufklappen, in der das Kind gerade steht – oder die
-                // mit der bereits gewählten Lektion.
-                const hatGewaehlt = liste.some(l => l.id === gewaehlt);
+                // mit einer bereits gewählten Lektion.
+                const hatGewaehlt = liste.some(l => gewaehlt.includes(l.id));
                 const hatDran = zeilen.some(z => z.dran);
-                const auf = hatGewaehlt || (!offenGesetzt && hatDran && !gewaehlt);
+                const auf = hatGewaehlt || (!offenGesetzt && hatDran && !gewaehlt.length);
                 if (auf) offenGesetzt = true;
 
                 html += `<div class="rounded-xl border border-white/10 overflow-hidden">
@@ -3625,17 +3671,19 @@ auth.createUserWithEmailAndPassword(e, p)
                     <div id="${gid}" class="${auf ? "" : "hidden"} px-1.5 pb-1.5 space-y-1">`;
                 liste.forEach((l, i) => {
                     const st = zeilen[i];
-                    const aktiv = l.id === gewaehlt;
+                    const aktiv = gewaehlt.includes(l.id);
+                    const offen = schonOffen.includes(l.id);
                     html += `<button type="button" onclick="waehleDashLektion('${esc(l.id)}')"
                         class="dash-lek-row w-full flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition border ${aktiv
                             ? "bg-amber-500/20 border-amber-400/50"
                             : "bg-white/5 border-white/5 hover:bg-white/10"}">
+                        <span class="shrink-0 text-sm ${aktiv ? "text-amber-300" : "text-gray-500"}">${aktiv ? "\u2611" : "\u2610"}</span>
                         <span class="shrink-0 text-sm">${st.icon}</span>
                         <span class="flex-1 min-w-0">
                             <span class="block text-[11px] font-bold text-gray-200 truncate">${esc(l.title)}</span>
                             <span class="block text-[10px] ${st.klasse}">${esc(st.text)}</span>
                         </span>
-                        ${aktiv ? '<span class="shrink-0 text-[10px] font-black text-amber-300">gewählt</span>' : ""}
+                        ${offen ? '<span class="shrink-0 text-[10px] font-black text-amber-300">zugewiesen</span>' : ""}
                     </button>`;
                 });
                 html += `</div></div>`;
@@ -3644,8 +3692,7 @@ auth.createUserWithEmailAndPassword(e, p)
         }
 
         function waehleDashLektion(id) {
-            const feld = document.getElementById("dash-lesson-id");
-            if (feld) feld.value = id;
+            dashAuswahlUmschalten("dash-lesson-id", id);
             const gEl = document.getElementById("dash-lesson-grade");
             renderDashLektionsauswahl(gEl ? Number(gEl.value) : 0);
         }
@@ -3653,36 +3700,52 @@ auth.createUserWithEmailAndPassword(e, p)
 
         function assignLessonFromDashboard() {
             const profileKey = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
-            const lektionId = (document.getElementById("dash-lesson-id") || {}).value;
+            const ids = dashAuswahlIds("dash-lesson-id");
             if (!profileKey) return showToast("Kein Spieler ausgewählt!", "error");
-            if (!lektionId) return showToast("Bitte eine Lektion wählen.", "error");
-            const lek = (typeof LEKTIONEN !== "undefined" && LEKTIONEN.find(l => l.id === lektionId)) || null;
-            const kurs = lek && typeof KURSE !== "undefined" ? KURSE.find(k => k.id === lek.kurs) : null;
-            const pendingLesson = {
-                lektionId,
-                kursId: lek ? lek.kurs : "",
-                title: lek ? ((kurs ? kurs.title + " · " : "") + lek.title) : lektionId,
-                createdAt: new Date().toISOString()
-            };
-            if (!ALL_PROFILES[profileKey]) return showToast("Spieler nicht gefunden!", "error");
-            ALL_PROFILES[profileKey].pendingLesson = pendingLesson;
-            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.pendingLesson = pendingLesson;
+            if (!ids.length) return showToast("Bitte mindestens eine Lektion wählen.", "error");
+            const profil = ALL_PROFILES[profileKey];
+            if (!profil) return showToast("Spieler nicht gefunden!", "error");
+            const faellig = (document.getElementById("dash-lesson-deadline") || {}).value || "";
+
+            const bestand = offeneLektionen(profil);
+            let neu = 0;
+            ids.forEach(lektionId => {
+                if (bestand.some(x => x.lektionId === lektionId)) return;
+                const lek = (typeof LEKTIONEN !== "undefined" && LEKTIONEN.find(l => l.id === lektionId)) || null;
+                const kurs = lek && typeof KURSE !== "undefined" ? KURSE.find(k => k.id === lek.kurs) : null;
+                bestand.push({
+                    lektionId,
+                    kursId: lek ? lek.kurs : "",
+                    title: lek ? ((kurs ? kurs.title + " · " : "") + lek.title) : lektionId,
+                    faellig: faellig,
+                    createdAt: new Date().toISOString()
+                });
+                neu++;
+            });
+            const patch = setzeOffeneLektionen(profil, bestand);
+            if (activePlayerKey === profileKey && currentPlayer && currentPlayer !== profil) {
+                setzeOffeneLektionen(currentPlayer, bestand);
+            }
             if (currentParentUser) {
                 db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
-                    .update({ pendingLesson })
+                    .update(patch)
                     .catch(e => handleError("assignLessonFromDashboard", e, "Lektion konnte nicht zugewiesen werden."));
             }
-            showToast("Lektion zugewiesen.", "success");
+            const feld = document.getElementById("dash-lesson-id");
+            if (feld) feld.value = "";
+            showToast(neu === 0 ? "War schon zugewiesen."
+                : neu === 1 ? "Lektion zugewiesen." : neu + " Lektionen zugewiesen.", "success");
             if (typeof renderPendingLessonCard === "function") renderPendingLessonCard();
             if (typeof renderDashLessonNotices === "function") renderDashLessonNotices();
             if (typeof fillDashLessonSelect === "function") fillDashLessonSelect();
+            if (typeof renderOpenTasksBanner === "function") renderOpenTasksBanner();
         }
 
         // Wie fillDashLessonSelect(), aber pro Klasse ganze Kurse statt
         // einzelner Lektionen - fuer die Kurs-Zuweisung weiter unten.
         function fillDashKursSelect() {
-            const gEl = document.getElementById("dash-kurs-grade");
-            const sEl = document.getElementById("dash-kurs-id");
+            const gEl = document.getElementById("dash-kurszuw-grade");
+            const sEl = document.getElementById("dash-kurszuw-id");
             if (!sEl) return;
             const kurse = (typeof KURSE !== "undefined" && Array.isArray(KURSE)) ? KURSE : [];
             const stufen = [...new Set(kurse.map(k => Number(k.grade)).filter(Boolean))].sort((a, b) => a - b);
@@ -3698,11 +3761,13 @@ auth.createUserWithEmailAndPassword(e, p)
 
         /** Kurse als Zeilen mit Fortschrittsbalken statt Auswahlliste. */
         function renderDashKursauswahl(grade) {
-            const box = document.getElementById("dash-kurs-list");
+            const box = document.getElementById("dash-kurszuw-list");
             if (!box) return;
             const { p } = dashFokusProfil();
             const doneMap = (p && p.lektionen) || {};
-            const gewaehlt = (document.getElementById("dash-kurs-id") || {}).value || "";
+            const gewaehlt = dashAuswahlIds("dash-kurszuw-id");
+            const schonOffen = offeneKurse(p).map(x => x.kursId);
+            dashZuweisenKnopf("dash-kurs-assign-btn", gewaehlt.length, "Kurs", "Kurse", "\u{1F393}");
             const kurse = (typeof KURSE !== "undefined" && Array.isArray(KURSE)) ? KURSE : [];
             const gefiltert = kurse.filter(k => !grade || Number(k.grade) === grade);
 
@@ -3712,7 +3777,8 @@ auth.createUserWithEmailAndPassword(e, p)
                 if (!liste.length) return;
                 const fertig = liste.filter(l => doneMap[l.id] && doneMap[l.id].bestanden).length;
                 const pct = Math.round(fertig / liste.length * 100);
-                const aktiv = k.id === gewaehlt;
+                const aktiv = gewaehlt.includes(k.id);
+                const offen = schonOffen.includes(k.id);
                 const stand = fertig === 0 ? "noch nicht begonnen"
                     : fertig === liste.length ? "komplett geschafft"
                         : fertig + " von " + liste.length + " geschafft";
@@ -3720,6 +3786,7 @@ auth.createUserWithEmailAndPassword(e, p)
                     class="w-full flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition border ${aktiv
                         ? "bg-amber-500/20 border-amber-400/50"
                         : "bg-white/5 border-white/5 hover:bg-white/10"}">
+                    <span class="shrink-0 text-sm ${aktiv ? "text-amber-300" : "text-gray-500"}">${aktiv ? "\u2611" : "\u2610"}</span>
                     <span class="shrink-0 text-base">${k.icon || "📘"}</span>
                     <span class="flex-1 min-w-0">
                         <span class="block text-[11px] font-bold text-gray-200 truncate">${esc(k.title)}</span>
@@ -3728,65 +3795,140 @@ auth.createUserWithEmailAndPassword(e, p)
                             <span class="block h-full rounded-full bg-amber-400" style="width:${pct}%"></span>
                         </span>
                     </span>
-                    ${aktiv ? '<span class="shrink-0 text-[10px] font-black text-amber-300">gewählt</span>' : ""}
+                    ${offen ? '<span class="shrink-0 text-[10px] font-black text-amber-300">zugewiesen</span>' : ""}
                 </button>`;
             });
             box.innerHTML = html || `<p class="text-[11px] text-gray-500">Für diese Klasse gibt es keine Kurse.</p>`;
         }
 
         function waehleDashKurs(id) {
-            const feld = document.getElementById("dash-kurs-id");
-            if (feld) feld.value = id;
-            const gEl = document.getElementById("dash-kurs-grade");
+            dashAuswahlUmschalten("dash-kurszuw-id", id);
+            const gEl = document.getElementById("dash-kurszuw-grade");
             renderDashKursauswahl(gEl ? Number(gEl.value) : 0);
         }
         window.waehleDashKurs = waehleDashKurs;
 
         function assignKursFromDashboard() {
             const profileKey = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
-            const kursId = (document.getElementById("dash-kurs-id") || {}).value;
+            const ids = dashAuswahlIds("dash-kurszuw-id");
             if (!profileKey) return showToast("Kein Spieler ausgewählt!", "error");
-            if (!kursId) return showToast("Bitte einen Kurs wählen.", "error");
-            const kurs = (typeof KURSE !== "undefined") ? KURSE.find(k => k.id === kursId) : null;
-            const pendingKurs = {
-                kursId,
-                title: kurs ? kurs.title : kursId,
-                createdAt: new Date().toISOString()
-            };
-            if (!ALL_PROFILES[profileKey]) return showToast("Spieler nicht gefunden!", "error");
-            ALL_PROFILES[profileKey].pendingKurs = pendingKurs;
-            if (activePlayerKey === profileKey && currentPlayer) currentPlayer.pendingKurs = pendingKurs;
+            if (!ids.length) return showToast("Bitte mindestens einen Kurs wählen.", "error");
+            const profil = ALL_PROFILES[profileKey];
+            if (!profil) return showToast("Spieler nicht gefunden!", "error");
+            const faellig = (document.getElementById("dash-kurs-deadline") || {}).value || "";
+
+            const bestand = offeneKurse(profil);
+            let neu = 0;
+            ids.forEach(kursId => {
+                if (bestand.some(x => x.kursId === kursId)) return;
+                const kurs = (typeof KURSE !== "undefined") ? KURSE.find(k => k.id === kursId) : null;
+                bestand.push({
+                    kursId,
+                    title: kurs ? kurs.title : kursId,
+                    faellig: faellig,
+                    createdAt: new Date().toISOString()
+                });
+                neu++;
+            });
+            const patch = setzeOffeneKurse(profil, bestand);
+            if (activePlayerKey === profileKey && currentPlayer && currentPlayer !== profil) {
+                setzeOffeneKurse(currentPlayer, bestand);
+            }
             if (currentParentUser) {
                 db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(profileKey)
-                    .update({ pendingKurs })
+                    .update(patch)
                     .catch(e => handleError("assignKursFromDashboard", e, "Kurs konnte nicht zugewiesen werden."));
             }
-            showToast("Kurs zugewiesen.", "success");
+            const feld = document.getElementById("dash-kurszuw-id");
+            if (feld) feld.value = "";
+            showToast(neu === 0 ? "War schon zugewiesen."
+                : neu === 1 ? "Kurs zugewiesen." : neu + " Kurse zugewiesen.", "success");
             if (typeof renderPendingKursCard === "function") renderPendingKursCard();
             if (typeof renderDashKursNotices === "function") renderDashKursNotices();
             if (typeof fillDashKursSelect === "function") fillDashKursSelect();
+            if (typeof renderOpenTasksBanner === "function") renderOpenTasksBanner();
         }
 
-        function renderPendingKursCard() {
-            const card = document.getElementById("pending-kurs-card");
+        // ============================================================
+        //  SAMMELKARTE "AUFGABEN FUER DICH"
+        //  Es koennen mehrere Lektionen UND Kurse gleichzeitig zugewiesen
+        //  sein. Statt fuer jede eine eigene Karte (der Startbildschirm
+        //  waere zugestellt) gibt es EINE Karte mit Liste. Gerendert wird
+        //  in #pending-lesson-card; #pending-kurs-card bleibt leer, damit
+        //  alle bisherigen Aufrufer unveraendert funktionieren.
+        // ============================================================
+        function faelligText(t) {
+            if (!t || !t.faellig) return "";
+            const d = new Date(t.faellig + "T12:00:00");
+            if (isNaN(d)) return "";
+            return " · bis " + d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit" });
+        }
+
+        function renderAufgabenKarte() {
+            const kursCard = document.getElementById("pending-kurs-card");
+            if (kursCard) { kursCard.classList.add("hidden"); kursCard.innerHTML = ""; }
+            const card = document.getElementById("pending-lesson-card");
             if (!card) return;
-            if (currentPlayer && currentPlayer.pendingKurs && currentPlayer.pendingKurs.kursId) {
-                const t = currentPlayer.pendingKurs;
-                card.innerHTML =
-                    `<div class="glass-card-glow p-5 text-white" style="background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(239,68,68,0.1));border-color:rgba(245,158,11,0.25);">
-                        <div class="font-black text-lg mb-1">🎓 Ein Kurs wartet auf dich!</div>
-                        <div class="text-xs opacity-80 mb-3">${esc(t.title || t.kursId)}</div>
-                        <button onclick="startAssignedKurs()" class="btn-primary w-full text-center" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">Kurs starten</button>
-                    </div>`;
-                card.classList.remove("hidden");
-            } else {
+            const lek = offeneLektionen(currentPlayer);
+            const kur = offeneKurse(currentPlayer);
+            const gesamt = lek.length + kur.length;
+            if (!gesamt) {
                 card.classList.add("hidden");
                 card.innerHTML = "";
+                return;
             }
-        }
+            const stil = "background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(239,68,68,0.1));border-color:rgba(245,158,11,0.25);";
 
-        function startAssignedKurs() {
-            const t = currentPlayer && currentPlayer.pendingKurs;
+            if (gesamt === 1) {
+                const istLek = lek.length === 1;
+                const t = istLek ? lek[0] : kur[0];
+                const start = istLek
+                    ? "startAssignedLesson('" + esc(t.lektionId) + "')"
+                    : "startAssignedKurs('" + esc(t.kursId) + "')";
+                card.innerHTML =
+                    `<div class="glass-card-glow p-5 text-white" style="${stil}">
+                        <div class="font-black text-lg mb-1">${istLek ? "📚 Lektion wartet auf dich!" : "🎓 Ein Kurs wartet auf dich!"}</div>
+                        <div class="text-xs opacity-80 mb-3">${esc(t.title || t.lektionId || t.kursId)}${faelligText(t)}</div>
+                        <button onclick="${start}" class="btn-primary w-full text-center" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">${istLek ? "Lektion starten" : "Kurs starten"}</button>
+                    </div>`;
+                card.classList.remove("hidden");
+                return;
+            }
+
+            const zeile = (icon, titel, unten, start) =>
+                `<button type="button" onclick="${start}"
+                    class="w-full flex items-center gap-2.5 rounded-xl bg-white/10 hover:bg-white/20 active:bg-white/25 px-3 py-2.5 text-left transition">
+                    <span class="shrink-0 text-base">${icon}</span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-[12px] font-bold truncate">${esc(titel)}</span>
+                        <span class="block text-[10px] opacity-70">${unten}</span>
+                    </span>
+                    <span class="shrink-0 text-[11px] font-black text-amber-200">Start ›</span>
+                </button>`;
+
+            const zeilen = []
+                .concat(lek.map(t => zeile("📖", t.title || t.lektionId, "Lektion" + faelligText(t),
+                    "startAssignedLesson('" + esc(t.lektionId) + "')")))
+                .concat(kur.map(t => zeile("🎓", t.title || t.kursId, "Kurs" + faelligText(t),
+                    "startAssignedKurs('" + esc(t.kursId) + "')")))
+                .join("");
+
+            card.innerHTML =
+                `<div class="glass-card-glow p-5 text-white" style="${stil}">
+                    <div class="font-black text-lg mb-1">📚 ${gesamt} Aufgaben für dich</div>
+                    <div class="text-xs opacity-80 mb-3">Tippe an, womit du anfangen möchtest.</div>
+                    <div class="space-y-1.5">${zeilen}</div>
+                </div>`;
+            card.classList.remove("hidden");
+        }
+        window.renderAufgabenKarte = renderAufgabenKarte;
+
+        // Beide alten Namen zeigen jetzt auf dieselbe Sammelkarte.
+        function renderPendingKursCard() { renderAufgabenKarte(); }
+
+        function startAssignedKurs(kursId) {
+            const liste = offeneKurse(currentPlayer);
+            const t = kursId ? liste.find(x => x.kursId === kursId) : liste[0];
             if (!t || !t.kursId) return;
             if (typeof ladeLektionen === "function") {
                 ladeLektionen().then(function () {
@@ -3798,6 +3940,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 showToast("Kurs nicht gefunden.", "error");
             }
         }
+        window.startAssignedKurs = startAssignedKurs;
 
         // Automatische Kurs-Empfehlung bei schwachem Thema im Wissen-Modus
         // (siehe pruefeUndEmpfiehlKurs() in lektionen.js). Wird zusammen mit der
@@ -3829,40 +3972,24 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!box) return;
             const key = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
             const p = (key && ALL_PROFILES[key]) || currentPlayer;
-            const pend = p && p.pendingKurs;
-            box.innerHTML = (pend && pend.kursId)
-                ? `<div class="flex items-center justify-between gap-2 bg-white/5 rounded-lg px-2.5 py-2">
-                    <span class="text-[11px] font-bold text-amber-200 min-w-0 truncate">Offen zugewiesen: ${esc(pend.title || pend.kursId)}</span>
-                    <button type="button" onclick="zuweisungZuruecknehmen('pendingKurs')"
+            box.innerHTML = offeneKurse(p).map(pend =>
+                `<div class="flex items-center justify-between gap-2 bg-white/5 rounded-lg px-2.5 py-2">
+                    <span class="text-[11px] font-bold text-amber-200 min-w-0 truncate">Offen zugewiesen: ${esc(pend.title || pend.kursId)}${faelligText(pend)}</span>
+                    <button type="button" onclick="zuweisungZuruecknehmen('pendingKurs','','${esc(pend.kursId)}')"
                         class="text-[10px] font-black text-gray-400 hover:text-white shrink-0">✕ Zurücknehmen</button>
-                </div>`
-                : "";
+                </div>`).join("");
         }
 
-        function renderPendingLessonCard() {
-            const card = document.getElementById("pending-lesson-card");
-            if (!card) return;
-            if (currentPlayer && currentPlayer.pendingLesson && currentPlayer.pendingLesson.lektionId) {
-                const t = currentPlayer.pendingLesson;
-                card.innerHTML =
-                    `<div class="glass-card-glow p-5 text-white" style="background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(239,68,68,0.1));border-color:rgba(245,158,11,0.25);">
-                        <div class="font-black text-lg mb-1">📚 Lektion wartet auf dich!</div>
-                        <div class="text-xs opacity-80 mb-3">${esc(t.title || t.lektionId)}</div>
-                        <button onclick="startAssignedLesson()" class="btn-primary w-full text-center" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">Lektion starten</button>
-                    </div>`;
-                card.classList.remove("hidden");
-            } else {
-                card.classList.add("hidden");
-                card.innerHTML = "";
-            }
-        }
+        function renderPendingLessonCard() { renderAufgabenKarte(); }
 
-        function startAssignedLesson() {
-            const t = currentPlayer && currentPlayer.pendingLesson;
+        function startAssignedLesson(lektionId) {
+            const liste = offeneLektionen(currentPlayer);
+            const t = lektionId ? liste.find(x => x.lektionId === lektionId) : liste[0];
             if (!t || !t.lektionId) return;
             if (typeof openLektion === "function") openLektion(t.lektionId);
             else showToast("Lektion nicht gefunden.", "error");
         }
+        window.startAssignedLesson = startAssignedLesson;
 
         function renderDashLessonNotices() {
             const box = document.getElementById("dash-lesson-notices");
@@ -3871,15 +3998,12 @@ auth.createUserWithEmailAndPassword(e, p)
             const p = (key && ALL_PROFILES[key]) || currentPlayer;
             const notes = (p && p.lessonNotices) || [];
             const open = notes.filter(n => !n.seen);
-            const pend = p && p.pendingLesson;
-            let html = "";
-            if (pend && pend.lektionId) {
-                html += `<div class="flex items-center justify-between gap-2 bg-white/5 rounded-lg px-2.5 py-2">
-                    <span class="text-[11px] font-bold text-amber-200 min-w-0 truncate">Offen zugewiesen: ${esc(pend.title || pend.lektionId)}</span>
-                    <button type="button" onclick="zuweisungZuruecknehmen('pendingLesson')"
+            let html = offeneLektionen(p).map(pend =>
+                `<div class="flex items-center justify-between gap-2 bg-white/5 rounded-lg px-2.5 py-2">
+                    <span class="text-[11px] font-bold text-amber-200 min-w-0 truncate">Offen zugewiesen: ${esc(pend.title || pend.lektionId)}${faelligText(pend)}</span>
+                    <button type="button" onclick="zuweisungZuruecknehmen('pendingLesson','','${esc(pend.lektionId)}')"
                         class="text-[10px] font-black text-gray-400 hover:text-white shrink-0">✕ Zurücknehmen</button>
-                </div>`;
-            }
+                </div>`).join("");
             open.forEach(n => {
                 html += `<div class="flex items-start justify-between gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-2.5 py-2">
                     <div class="text-[11px] font-bold text-emerald-200">Fertig: ${esc(n.title || n.id)} · ${n.pct || 0}%</div>
@@ -3916,13 +4040,21 @@ auth.createUserWithEmailAndPassword(e, p)
 
         /** feld: pendingTest | pendingLesson | pendingKurs
          *  profilKey: nur nötig, wenn die Anzeige mehrere Kinder listet
-         *  (Banner „Offene Aufträge"); sonst zählt das gewählte Profil. */
-        async function zuweisungZuruecknehmen(feld, profilKey) {
+         *  (Banner „Offene Aufträge"); sonst zählt das gewählte Profil.
+         *  eintragId: bei Lektionen/Kursen die konkrete ID aus der Liste –
+         *  ohne sie werden alle dieser Art zurückgenommen. */
+        async function zuweisungZuruecknehmen(feld, profilKey, eintragId) {
             const art = ZUWEISUNG_ARTEN[feld];
             if (!art) return;
             const key = profilKey || (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
             const p = (key && ALL_PROFILES[key]) || currentPlayer;
-            if (!p || !p[feld]) return;
+            if (!p) return;
+            const istListe = feld === "pendingLesson" || feld === "pendingKurs";
+            if (!istListe && !p[feld]) return;
+            if (istListe) {
+                const vorhanden = feld === "pendingLesson" ? offeneLektionen(p) : offeneKurse(p);
+                if (!vorhanden.length) return;
+            }
 
             const name = p.name ? " bei " + p.name : "";
             if (typeof appConfirm === "function") {
@@ -3933,11 +4065,21 @@ auth.createUserWithEmailAndPassword(e, p)
                 if (!ok) return;
             }
 
-            p[feld] = null;
-            if (currentPlayer && activePlayerKey === key) currentPlayer[feld] = null;
-            if (currentParentUser && key) {
-                const patch = {};
+            let patch = {};
+            if (feld === "pendingLesson") {
+                const rest = offeneLektionen(p).filter(x => eintragId && x.lektionId !== eintragId);
+                patch = setzeOffeneLektionen(p, rest);
+                if (currentPlayer && activePlayerKey === key && currentPlayer !== p) setzeOffeneLektionen(currentPlayer, rest);
+            } else if (feld === "pendingKurs") {
+                const rest = offeneKurse(p).filter(x => eintragId && x.kursId !== eintragId);
+                patch = setzeOffeneKurse(p, rest);
+                if (currentPlayer && activePlayerKey === key && currentPlayer !== p) setzeOffeneKurse(currentPlayer, rest);
+            } else {
+                p[feld] = null;
+                if (currentPlayer && activePlayerKey === key) currentPlayer[feld] = null;
                 patch[feld] = null;
+            }
+            if (currentParentUser && key) {
                 db.collection("parents").doc(currentParentUser.uid).collection("profiles").doc(key)
                     .update(patch)
                     .catch(e => handleError("zuweisungZuruecknehmen", e, "Zurücknehmen hat nicht geklappt."));

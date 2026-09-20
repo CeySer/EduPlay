@@ -6,6 +6,44 @@
 
 
         // ============================================================
+        //  OFFENE ZUWEISUNGEN (mehrere gleichzeitig moeglich)
+        //  Frueher gab es nur pendingLesson / pendingKurs - je genau eine.
+        //  Jetzt sind es die Listen pendingLessons / pendingKurse. Die alten
+        //  Einzelfelder werden weiter gelesen UND beim Speichern mitgefuehrt,
+        //  damit ein Handy mit aeltererm Stand nichts verliert.
+        // ============================================================
+        function offeneLektionen(p) {
+            if (!p) return [];
+            if (Array.isArray(p.pendingLessons)) return p.pendingLessons.filter(x => x && x.lektionId);
+            return (p.pendingLesson && p.pendingLesson.lektionId) ? [p.pendingLesson] : [];
+        }
+        function offeneKurse(p) {
+            if (!p) return [];
+            if (Array.isArray(p.pendingKurse)) return p.pendingKurse.filter(x => x && x.kursId);
+            return (p.pendingKurs && p.pendingKurs.kursId) ? [p.pendingKurs] : [];
+        }
+        /** Setzt Liste + Altfeld im Profilobjekt und liefert den Firestore-Patch. */
+        function setzeOffeneLektionen(p, liste) {
+            if (!p) return {};
+            const l = (liste || []).filter(x => x && x.lektionId);
+            p.pendingLessons = l;
+            p.pendingLesson = l.length ? l[0] : null;
+            return { pendingLessons: l, pendingLesson: p.pendingLesson };
+        }
+        function setzeOffeneKurse(p, liste) {
+            if (!p) return {};
+            const l = (liste || []).filter(x => x && x.kursId);
+            p.pendingKurse = l;
+            p.pendingKurs = l.length ? l[0] : null;
+            return { pendingKurse: l, pendingKurs: p.pendingKurs };
+        }
+        window.offeneLektionen = offeneLektionen;
+        window.offeneKurse = offeneKurse;
+        window.setzeOffeneLektionen = setzeOffeneLektionen;
+        window.setzeOffeneKurse = setzeOffeneKurse;
+
+
+        // ============================================================
         //  FIREBASE INITIALISIERUNG
         // ============================================================
         const firebaseConfig = {

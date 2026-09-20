@@ -563,13 +563,13 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <span id="dash-lesson-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
                             <div id="dash-lesson-body" class="hidden px-4 pb-4 space-y-2">
-                                <p class="text-[11px] text-gray-500">Eine Lektion für das Kind im Fokus. Erscheint auf dem Startscreen.</p>
+                                <p class="text-[11px] text-gray-500">Eine oder mehrere Lektionen für das Kind im Fokus. Erscheinen auf dem Startscreen.</p>
                                 <select id="dash-lesson-grade" class="input-modern text-sm" onchange="fillDashLessonSelect()"></select>
                                 <input type="hidden" id="dash-lesson-id" value="">
                                 <div id="dash-lesson-list" class="flex flex-col gap-1.5 max-h-72 overflow-y-auto pr-1"></div>
                                 <label class="text-[11px] text-gray-500 font-bold block mb-1">Fällig bis (optional)</label>
                                 <input type="date" id="dash-lesson-deadline" class="input-modern text-sm">
-                                <button type="button" onclick="assignLessonFromDashboard()" class="btn-primary w-full text-center">Lektion zuweisen 📚</button>
+                                <button type="button" id="dash-lesson-assign-btn" onclick="assignLessonFromDashboard()" class="btn-primary w-full text-center">Lektion zuweisen 📚</button>
                                 <div id="dash-lesson-notices" class="space-y-2"></div>
                             </div>
                         </div>
@@ -581,13 +581,13 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <span id="dash-kurszuw-arrow" class="text-gray-400 transition-transform">▼</span>
                             </button>
                             <div id="dash-kurszuw-body" class="hidden px-4 pb-4 space-y-2">
-                                <p class="text-[11px] text-gray-500">Ein ganzer Kurs (alle Lektionen darin) für das Kind im Fokus. Erscheint auf dem Startscreen.</p>
-                                <select id="dash-kurs-grade" class="input-modern text-sm" onchange="fillDashKursSelect()"></select>
-                                <input type="hidden" id="dash-kurs-id" value="">
-                                <div id="dash-kurs-list" class="flex flex-col gap-1.5 max-h-72 overflow-y-auto pr-1"></div>
+                                <p class="text-[11px] text-gray-500">Ein oder mehrere ganze Kurse (alle Lektionen darin) für das Kind im Fokus. Erscheinen auf dem Startscreen.</p>
+                                <select id="dash-kurszuw-grade" class="input-modern text-sm" onchange="fillDashKursSelect()"></select>
+                                <input type="hidden" id="dash-kurszuw-id" value="">
+                                <div id="dash-kurszuw-list" class="flex flex-col gap-1.5 max-h-72 overflow-y-auto pr-1"></div>
                                 <label class="text-[11px] text-gray-500 font-bold block mb-1">Fällig bis (optional)</label>
                                 <input type="date" id="dash-kurs-deadline" class="input-modern text-sm">
-                                <button type="button" onclick="assignKursFromDashboard()" class="btn-primary w-full text-center">Kurs zuweisen 🎓</button>
+                                <button type="button" id="dash-kurs-assign-btn" onclick="assignKursFromDashboard()" class="btn-primary w-full text-center">Kurs zuweisen 🎓</button>
                                 <div id="dash-kurs-notices" class="space-y-2"></div>
                             </div>
                         </div>
@@ -2737,9 +2737,9 @@ VIEW: QUIZ SETUP
     JAVASCRIPT MODULE
     ============================================================ -->
     <script src="confetti.js?v=1"></script>
-    <script src="app-config.js?v=13.18"></script>
+    <script src="app-config.js?v=13.19"></script>
     <script src="app-ui.js?v=9.5"></script>
-    <script src="family-dashboard.js?v=11.41"></script>
+    <script src="family-dashboard.js?v=11.42"></script>
     <script src="dev-admin.js?v=1.7"></script>
     <script src="ui-common.js?v=9.3"></script>
     <script src="ki-coach.js?v=1.1"></script>

@@ -2305,19 +2305,64 @@ const geladen = _questionCounts[key] || 0;
             return _sprichStimme;
         }
 
-        // Vorlesen an/aus (Eltern-Einstellung, gilt geräteweit)
-        let vorlesenAn = true;
-        try { vorlesenAn = localStorage.getItem("eduplayVorlesen") !== "off"; } catch (e) { }
-        function setVorlesen(an) {
-            vorlesenAn = !!an;
-            try { localStorage.setItem("eduplayVorlesen", vorlesenAn ? "on" : "off"); } catch (e) { }
-            if (!vorlesenAn) stopSpeaking();
-            const s = document.getElementById("vorlesen-schalter");
-            if (s) s.checked = vorlesenAn;
-            const l = document.getElementById("vorlesen-status");
-            if (l) l.innerText = vorlesenAn ? "an" : "aus";
-            if (typeof showToast === "function") showToast(vorlesenAn ? "Vorlesen ist an." : "Vorlesen ist aus.", "info");
+        // ============================================================
+        //  VORLESEN: drei Stufen statt an/aus
+        //    "aus"   - kein Knopf, keine Stimme
+        //    "knopf" - der Lautsprecher-Knopf ist da, liest aber nur auf Tippen
+        //    "auto"  - liest jede neue Frage von allein vor
+        //  Eltern-Einstellung, gilt geräteweit und nur für Klasse 1/2.
+        // ============================================================
+        const VORLESE_MODI = ["aus", "knopf", "auto"];
+        let vorleseModus = "auto";
+        try {
+            const vmNeu = localStorage.getItem("eduplayVorleseModus");
+            const vmAlt = localStorage.getItem("eduplayVorlesen");   // alter Schlüssel on/off
+            if (vmNeu && VORLESE_MODI.indexOf(vmNeu) !== -1) vorleseModus = vmNeu;
+            else if (vmAlt === "off") vorleseModus = "aus";
+        } catch (e) { }
+        // Altname: wird in lobby-avatar.js und weiter unten noch gelesen.
+        let vorlesenAn = vorleseModus !== "aus";
+
+        function vorleseModusText(m) {
+            if (m === "aus") return { kurz: "aus", toast: "Vorlesen ist aus." };
+            if (m === "knopf") return { kurz: "nur auf Knopf", toast: "Vorlesen nur noch auf Knopfdruck." };
+            return { kurz: "automatisch", toast: "Vorlesen startet automatisch." };
         }
+
+        function setVorleseModus(m, ohneToast) {
+            vorleseModus = (VORLESE_MODI.indexOf(m) !== -1) ? m : "auto";
+            vorlesenAn = vorleseModus !== "aus";
+            try {
+                localStorage.setItem("eduplayVorleseModus", vorleseModus);
+                localStorage.setItem("eduplayVorlesen", vorlesenAn ? "on" : "off");
+            } catch (e) { }
+            if (vorleseModus !== "auto") stopSpeaking();
+            updateVorleseUI();
+            if (!ohneToast && typeof showToast === "function") showToast(vorleseModusText(vorleseModus).toast, "info");
+        }
+        window.setVorleseModus = setVorleseModus;
+
+        /** Hebt die gewählte Stufe in den Einstellungen hervor. */
+        function updateVorleseUI() {
+            VORLESE_MODI.forEach(function (m) {
+                const b = document.getElementById("vorlese-modus-" + m);
+                if (!b) return;
+                const aktiv = (m === vorleseModus);
+                b.classList.toggle("bg-indigo-500", aktiv);
+                b.classList.toggle("text-white", aktiv);
+                b.classList.toggle("bg-white/5", !aktiv);
+                b.classList.toggle("text-gray-400", !aktiv);
+                b.setAttribute("aria-pressed", aktiv ? "true" : "false");
+            });
+            const l = document.getElementById("vorlesen-status");
+            if (l) l.innerText = vorleseModusText(vorleseModus).kurz;
+            const s = document.getElementById("vorlesen-schalter");   // alter Schalter, falls noch da
+            if (s) s.checked = vorlesenAn;
+        }
+        window.updateVorleseUI = updateVorleseUI;
+
+        /** Altname: true schaltet auf "auto", false auf "aus". */
+        function setVorlesen(an) { setVorleseModus(an ? "auto" : "aus"); }
         window.setVorlesen = setVorlesen;
 
         // Bewusst unabhängig vom Leise-Modus: Der Leise-Modus schaltet Spiel-
@@ -2504,20 +2549,26 @@ const geladen = _questionCounts[key] || 0;
         }
         window.istVorleseFrage = istVorleseFrage;
 
-        /** Frage + alle Antwortmöglichkeiten am Stück vorlesen.
-         *  Ohne die Antworten nützt das Vorlesen einem Leseanfänger nichts –
-         *  er hört die Frage und sieht dann vier Wörter, die er nicht lesen kann. */
-        function speakQuestionWithAnswers(q) {
-            if (!q || !vorlesenVerfuegbar()) return;
-            const teile = [{ text: q.question, pause: 400, istAntwort: false }];
-            const container = document.getElementById("options-container");
-            (q.answers || []).forEach(function (a, i) {
-                const el = container ? container.children[i] : null;
-                teile.push({ text: a, pause: 320, el: el, istAntwort: true });
-            });
-            speakSequence(teile);
+        /** Startet die Stimme bei dieser Frage von allein? Nur in Stufe "auto".
+         *  Der Knopf und die kleinen Lautsprecher an den Antworten hängen
+         *  dagegen an istVorleseFrage(), sind also auch in Stufe "knopf" da. */
+        function istAutoVorleseFrage(q) {
+            return vorleseModus === "auto" && istVorleseFrage(q);
         }
-        window.speakQuestionWithAnswers = speakQuestionWithAnswers;
+        window.istAutoVorleseFrage = istAutoVorleseFrage;
+
+        /** NUR die Frage vorlesen - die Antworten absichtlich nicht.
+         *  Vier Antworten am Stück kann sich ein Erstklässler nicht merken,
+         *  und die Lösung wäre mitgesprochen. Jede Antwort hat ihr eigenes
+         *  Lautsprecher-Symbol zum einzelnen Nachhören (speakAnswerOption). */
+        function speakQuestion(q) {
+            if (!q || !vorlesenVerfuegbar()) return;
+            speakSequence([{ text: q.question, pause: 300, istAntwort: false }]);
+        }
+        window.speakQuestion = speakQuestion;
+        // Altname, damit bestehende Aufrufe weiter funktionieren.
+        const speakQuestionWithAnswers = speakQuestion;
+        window.speakQuestionWithAnswers = speakQuestion;
 
         /** Eine einzelne Antwort nachhören (kleiner Lautsprecher am Knopf). */
         function speakAnswerOption(i) {
@@ -2530,23 +2581,22 @@ const geladen = _questionCounts[key] || 0;
         }
         window.speakAnswerOption = speakAnswerOption;
 
-        /** 🔊-Knopf: Frage und Antworten noch einmal vorlesen. */
+        /** Lautsprecher-Knopf: die Frage noch einmal vorlesen. */
         function speakCurrentQuestion() {
             const q = (typeof currentQuestions !== "undefined" && typeof qIndex !== "undefined")
                 ? currentQuestions[qIndex] : null;
             if (!q) return;
-            if (!vorlesenAn) { if (typeof showToast === "function") showToast("Vorlesen ist in den Einstellungen aus.", "info"); return; }
-            speakQuestionWithAnswers(q);
+            if (vorleseModus === "aus") { if (typeof showToast === "function") showToast("Vorlesen ist in den Einstellungen aus.", "info"); return; }
+            speakQuestion(q);
         }
         window.speakCurrentQuestion = speakCurrentQuestion;
 
-        /** Zeigt den 🔊-Knopf, sobald Vorlesen möglich ist, und liest bei
-         *  Klasse 1/2 automatisch vor, sobald eine neue Frage erscheint. */
+        /** Zeigt den Lautsprecher-Knopf in Klasse 1/2 (Stufe "knopf" oder "auto")
+         *  und liest die neue Frage nur in Stufe "auto" von allein vor. */
         function updateSpeakButtonForQuestion(q) {
             const btn = document.getElementById("question-speak-btn");
-            // Knopf, kleine 🔊 an den Antworten und Auto-Vorlesen hängen an
-            // derselben Bedingung: Klasse 1/2, Vorlesen an, nicht im Leise-Modus.
-            // Ab Klasse 3 bleibt der Frage-Bildschirm aufgeräumt.
+            // Knopf und die kleinen Lautsprecher an den Antworten: Klasse 1/2 und
+            // Vorlesen nicht aus. Ab Klasse 3 bleibt der Bildschirm aufgeräumt.
             const vorlesen = istVorleseFrage(q);
             if (btn) {
                 if (vorlesen) {
@@ -2561,14 +2611,14 @@ const geladen = _questionCounts[key] || 0;
             }
             // Immer erst abbrechen: hier hängt sonst noch die vorige Frage nach.
             stopSpeaking();
-            if (!vorlesen) return;
+            if (!istAutoVorleseFrage(q)) return;
             // Kurz warten, bis die Antwort-Knöpfe im DOM stehen. Den Auftragsstand
             // dabei merken – wird in der Zwischenzeit beendet oder weitergeklickt,
             // darf dieser Start nicht mehr zünden.
             const auftrag = _sprichAuftrag;
             setTimeout(function () {
                 if (_sprichAuftrag !== auftrag) return;
-                speakQuestionWithAnswers(q);
+                speakQuestion(q);
             }, 260);
         }
 

@@ -583,6 +583,8 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 const pct = Math.round((typeof musicVolume !== 'undefined' ? musicVolume : 0.25) * 100);
                 if (mSlider) mSlider.value = pct;
                 if (mLabel) mLabel.innerText = pct + '%';
+                // Vorlese-Stufe aus dem gespeicherten Stand hervorheben
+                if (typeof updateVorleseUI === 'function') updateVorleseUI();
                 if (typeof renderDevPanel === 'function') renderDevPanel();
                 if (typeof renderSettingsLevelsBadges === 'function') renderSettingsLevelsBadges();
                 const entry = document.getElementById('dev-admin-entry');
@@ -613,7 +615,10 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
             // sonst läuft die Sprachausgabe im Hintergrund weiter, egal wie man
             // rausgeht (Beenden-Knopf, Zurück, Fertig).
             if (viewId !== 'quiz' && 'speechSynthesis' in window) {
-                try { window.speechSynthesis.cancel(); } catch (e) { }
+                // stopSpeaking() bricht zusätzlich die Warteschlange ab, sonst
+                // spricht der nächste Teil nach dem cancel() einfach weiter.
+                if (typeof stopSpeaking === "function") stopSpeaking();
+                else { try { window.speechSynthesis.cancel(); } catch (e) { } }
             }
             // Live-Duell-Listener stoppen, wenn wir die Duell-Ansichten verlassen
             // (z.B. über FAB/Drawer). Der Firestore-Eintrag bleibt bestehen, ein

@@ -2031,17 +2031,22 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div class="py-2 border-b border-white/5 space-y-2">
                         <div class="flex items-center justify-between gap-3">
                             <span class="font-bold text-white">🔊 Vorlesen</span>
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <span id="vorlesen-status" class="text-xs text-gray-400 font-bold">an</span>
-                                <input type="checkbox" id="vorlesen-schalter" checked
-                                    onchange="setVorlesen(this.checked)" class="w-5 h-5 accent-indigo-500">
-                            </label>
+                            <span id="vorlesen-status" class="text-xs text-gray-400 font-bold">automatisch</span>
                         </div>
-                        <p class="text-[11px] text-gray-500">Gilt nur für Klasse 1 und 2: Frage und alle Antworten
-                            werden automatisch vorgelesen, dazu gibt es den 🔊-Knopf zum Wiederholen und ein 🔊 an
-                            jeder Antwort. Ab Klasse 3 bleibt der Bildschirm ohne Vorlesen.
-                            Die Stimme kommt vom Gerät und läuft weiter, auch wenn „Musik &amp; Töne" aus ist –
-                            das schaltet nur Musik und Spielgeräusche ab. Ausschalten nur hier mit diesem Schalter.</p>
+                        <div class="grid grid-cols-3 gap-1.5" role="group" aria-label="Vorlesen">
+                            <button type="button" id="vorlese-modus-aus" onclick="setVorleseModus('aus')"
+                                class="rounded-lg px-2 py-2.5 text-[11px] font-black bg-white/5 text-gray-400 transition">Aus</button>
+                            <button type="button" id="vorlese-modus-knopf" onclick="setVorleseModus('knopf')"
+                                class="rounded-lg px-2 py-2.5 text-[11px] font-black bg-white/5 text-gray-400 transition">Nur auf Knopf</button>
+                            <button type="button" id="vorlese-modus-auto" onclick="setVorleseModus('auto')"
+                                class="rounded-lg px-2 py-2.5 text-[11px] font-black bg-white/5 text-gray-400 transition">Automatisch</button>
+                        </div>
+                        <p class="text-[11px] text-gray-500">Gilt nur für Klasse 1 und 2. Vorgelesen wird nur die
+                            <strong class="text-gray-400">Frage</strong> – die Antworten nicht, sonst wäre die Lösung
+                            mitgesprochen. Jede Antwort hat ihr eigenes 🔊 zum Nachhören.
+                            „Automatisch" liest jede neue Frage von allein vor, „Nur auf Knopf" erst beim Tippen auf 🔊.
+                            Ab Klasse 3 bleibt der Bildschirm ohne Vorlesen.
+                            Die Stimme kommt vom Gerät und läuft weiter, auch wenn „Musik &amp; Töne" aus ist.</p>
                     </div>
                     <div class="pt-2 space-y-3">
                         <h3 class="text-sm font-black text-amber-400">🔑 Eltern-PIN</h3>
@@ -2737,7 +2742,7 @@ VIEW: QUIZ SETUP
     JAVASCRIPT MODULE
     ============================================================ -->
     <script src="confetti.js?v=1"></script>
-    <script src="app-config.js?v=13.19"></script>
+    <script src="app-config.js?v=13.20"></script>
     <script src="app-ui.js?v=9.5"></script>
     <script src="family-dashboard.js?v=11.42"></script>
     <script src="dev-admin.js?v=1.7"></script>
@@ -2748,7 +2753,7 @@ VIEW: QUIZ SETUP
          geladen, sondern von lektionen-loader.js im Leerlauf nachgeholt bzw.
          spaetestens beim ersten Antippen von "Kurse". Die Dateiliste und die
          ?v=-Nummern stehen jetzt in lektionen-loader.js. -->
-    <script src="lektionen-loader.js?v=1.2"></script>
+    <script src="lektionen-loader.js?v=1.3"></script>
     <script src="vocab.js?v=9.1"></script>
     <script src="suchsel.js?v=1.3"></script>
     <script src="duel-scrabble.js?v=9.5"></script>
@@ -2756,7 +2761,7 @@ VIEW: QUIZ SETUP
     <script src="tv-cast.js?v=14.6"></script>
     <script src="live-duel.js?v=10.16"></script>
     <script src="app-misc.js?v=8.9"></script>
-    <script src="lobby-avatar.js?v=10.2"></script>
+    <script src="lobby-avatar.js?v=10.3"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
     <script src="email-bestaetigung.js?v=8.8"></script>
     <script src="fragen-vorladen.js?v=8.8"></script>

@@ -35,7 +35,8 @@
         "lektionen_schriftlich_k4.js?v=2",
         "lektionen_groessen_k2.js?v=2",
         "lektionen_groessen_k3k4.js?v=2",
-        "lektionen_briefe_email_k7k8.js?v=1"
+        "lektionen_briefe_email_k7k8.js?v=1",
+        "lektionen_deutsch_k2.js?v=1"
     ];
 
     var laufend = null;

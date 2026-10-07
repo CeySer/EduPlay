@@ -2256,18 +2256,27 @@ const geladen = _questionCounts[key] || 0;
         function cleanTextForSpeech(text, opts) {
             const roh = String(text == null ? "" : text).trim();
             if (!roh) return "";
-            // Einzelnes Zeichen: Namen sprechen statt Stille
-            if (roh.length <= 2 && SPRICH_ZEICHEN[roh]) return SPRICH_ZEICHEN[roh];
+            const en = !!(opts && opts.sprache === "en");
+            // Einzelnes Zeichen: Namen sprechen statt Stille (nur Deutsch)
+            if (!en && roh.length <= 2 && SPRICH_ZEICHEN[roh]) return SPRICH_ZEICHEN[roh];
             let t = roh;
             t = t.replace(/<[^>]*>/g, " ");                           // HTML/SVG raus
-            t = t.replace(/_{2,}/g, " Lücke ");                       // ____ als Lückenwort
+            t = t.replace(/_{2,}/g, en ? " " : " Lücke ");            // ____ als Lückenwort
             t = t.replace(/_/g, "");                                  // _atze → atze
             if (opts && opts.istAntwort) t = t.replace(/[()]/g, " "); // Klammern behalten
             else t = t.replace(/\([^)]*\)/g, " ");                    // (Katze) Lösungshinweis
             t = t.replace(/\[[^\]]*\]/g, " ");
-            t = t.replace(/[„“"‘'‚‹›«»]/g, " ");
-            t = t.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}]/gu, " ");
-            t = rechenzeichenAussprechen(t);
+            if (en) {
+                // Apostroph zwischen Buchstaben bleibt (What's, I'm), Anführungszeichen fliegen raus
+                t = t.replace(/([A-Za-z])['’]([A-Za-z])/g, "$1\u0001$2");
+                t = t.replace(/[„“"‘'’‚‹›«»]/g, " ").replace(/\u0001/g, "'");
+            } else {
+                t = t.replace(/[„“"‘'‚‹›«»]/g, " ");
+            }
+            // Alle Bildzeichen raus - nicht nur zwei Unicode-Bereiche: ⭐ und ⏰
+            // lagen ausserhalb und wurden vorgelesen ("Stern Stern Stern ...").
+            t = t.replace(/[\p{Extended_Pictographic}\u{FE0F}\u{200D}\u{20E3}]/gu, " ");
+            if (!en) t = rechenzeichenAussprechen(t);
             t = t.replace(/\s+/g, " ").trim();
             t = t.replace(/\s*\?\s*$/, "");                           // Fragezeichen nicht mitsprechen
             return t;
@@ -2304,6 +2313,62 @@ const geladen = _questionCounts[key] || 0;
             }
             return _sprichStimme;
         }
+
+        /** Englische Stimme für Englischfragen in Klasse 1/2. Mit der deutschen
+         *  Stimme klängen „eyes" oder „Thank you" falsch – und das Kind lernt es
+         *  so. Britisches Englisch zuerst, das ist in Deutschland Schulenglisch. */
+        function pickKidEnglishVoice() {
+            try {
+                const voices = window.speechSynthesis.getVoices() || [];
+                const en = voices.filter(v => /^en(-|_|$)/i.test(v.lang || "") || /English/i.test(v.name || ""));
+                if (!en.length) return null;
+                const gb = en.filter(v => /GB/i.test(v.lang || "") || /\bUK\b|British/i.test(v.name || ""));
+                const pool = gb.length ? gb : en;
+                const bevorzugt = (re) => pool.find(v => re.test(v.name || ""));
+                return bevorzugt(/network|neural|natural|premium|enhanced|wavenet/i)
+                    || bevorzugt(/google/i)
+                    || bevorzugt(/female|kate|serena|libby|sonia|amy|emma/i)
+                    || pool[0];
+            } catch (e) { return null; }
+        }
+        let _sprichStimmeEn = null;
+        function sprichStimmeEn() {
+            if (!_sprichStimmeEn) _sprichStimmeEn = pickKidEnglishVoice();   // Stimmen laden oft verzögert
+            return _sprichStimmeEn;
+        }
+
+        /** Gehört die Frage zum Fach Englisch? */
+        function istEnglischFrage(q) {
+            return !!q && (String(q.subject || "") === "englisch" || /_englisch$/.test(String(q.category || "")));
+        }
+        /** Antworten sind englisch, wenn nach dem englischen Wort gefragt wird
+         *  („Wie heißt 'Hund' auf Englisch?"), sonst deutsch („Was heißt 'dog'?"). */
+        function antwortSprache(q) {
+            return istEnglischFrage(q) && /auf Englisch/i.test(String((q && q.question) || "")) ? "en" : "de";
+        }
+        /** Zerlegt eine Englischfrage in Abschnitte je Sprache. Das 'Zitat' ist
+         *  englisch – außer bei „auf Englisch", dann ist es das deutsche Wort.
+         *  Schließendes ' nur, wenn kein Buchstabe folgt: What's/I'm bleiben ganz.
+         *  Bewusst ohne Lookbehind – den kennen ältere iPhones nicht. */
+        function frageTeile(q) {
+            const text = String((q && q.question) || "");
+            if (!istEnglischFrage(q)) return [{ text: text, sprache: "de" }];
+            const zitatSprache = antwortSprache(q) === "en" ? "de" : "en";
+            const re = /(^|[\s(„"])['‘]([\s\S]+?)['’](?![A-Za-zÄÖÜäöüß])/g;
+            const teile = [];
+            let pos = 0, m;
+            while ((m = re.exec(text))) {
+                const start = m.index + m[1].length;
+                if (start > pos) teile.push({ text: text.slice(pos, start), sprache: "de" });
+                teile.push({ text: m[2], sprache: zitatSprache });
+                pos = re.lastIndex;
+            }
+            if (pos < text.length) teile.push({ text: text.slice(pos), sprache: "de" });
+            // Reste ohne Buchstaben nicht sprechen – ein einzelnes "?" hieße sonst "Fragezeichen"
+            const mitText = teile.filter(t => /[A-Za-zÄÖÜäöüß0-9]/.test(t.text));
+            return mitText.length ? mitText : [{ text: text, sprache: "de" }];
+        }
+        window.frageTeile = frageTeile;
 
         // ============================================================
         //  VORLESEN: drei Stufen statt an/aus
@@ -2452,15 +2517,16 @@ const geladen = _questionCounts[key] || 0;
             catch (e) { /* */ }
         }
 
-        function baueUtterance(text, istAntwort) {
-            const clean = cleanTextForSpeech(text, { istAntwort: !!istAntwort });
+        function baueUtterance(text, istAntwort, sprache) {
+            const en = sprache === "en";
+            const clean = cleanTextForSpeech(text, { istAntwort: !!istAntwort, sprache: sprache });
             if (!clean) return null;
             const u = new SpeechSynthesisUtterance(clean);
-            u.lang = "de-DE";
-            u.rate = 0.82;   // langsamer für Leseanfänger
-            u.pitch = 1.1;   // etwas freundlicher
+            u.lang = en ? "en-GB" : "de-DE";
+            u.rate = en ? 0.8 : 0.82;   // langsamer für Leseanfänger
+            u.pitch = 1.1;              // etwas freundlicher
             u.volume = 1;
-            const st = sprichStimme();
+            const st = en ? sprichStimmeEn() : sprichStimme();
             if (st) u.voice = st;
             return u;
         }
@@ -2486,7 +2552,7 @@ const geladen = _questionCounts[key] || 0;
                     return;
                 }
                 const teil = teile[i++];
-                const gesprochen = cleanTextForSpeech(teil.text, { istAntwort: !!teil.istAntwort });
+                const gesprochen = cleanTextForSpeech(teil.text, { istAntwort: !!teil.istAntwort, sprache: teil.sprache });
                 if (!gesprochen) { weiter(); return; }
 
                 const hervorheben = function () {
@@ -2500,10 +2566,11 @@ const geladen = _questionCounts[key] || 0;
 
                 // 1. Wahl: echte Aufnahme. Fehlt sie oder lässt sie sich nicht
                 //    abspielen, übernimmt die Gerätestimme denselben Teil.
-                const datei = voDatei(gesprochen);
+                // Familien-Aufnahmen sind deutsch – englische Teile immer per Gerätestimme
+                const datei = teil.sprache === "en" ? null : voDatei(gesprochen);
                 const gerätestimme = function () {
                     if (auftrag !== _sprichAuftrag) return;
-                    const u = baueUtterance(teil.text, teil.istAntwort);
+                    const u = baueUtterance(teil.text, teil.istAntwort, teil.sprache);
                     if (!u) { fertig(); return; }
                     u.onstart = hervorheben;
                     u.onend = fertig;
@@ -2563,7 +2630,10 @@ const geladen = _questionCounts[key] || 0;
          *  Lautsprecher-Symbol zum einzelnen Nachhören (speakAnswerOption). */
         function speakQuestion(q) {
             if (!q || !vorlesenVerfuegbar()) return;
-            speakSequence([{ text: q.question, pause: 300, istAntwort: false }]);
+            const teile = frageTeile(q);
+            speakSequence(teile.map(function (t, i) {
+                return { text: t.text, sprache: t.sprache, pause: i === teile.length - 1 ? 300 : 120, istAntwort: false };
+            }));
         }
         window.speakQuestion = speakQuestion;
         // Altname, damit bestehende Aufrufe weiter funktionieren.
@@ -2577,7 +2647,7 @@ const geladen = _questionCounts[key] || 0;
             if (!q || !q.answers) return;
             const container = document.getElementById("options-container");
             const el = container ? container.children[i] : null;
-            speakSequence([{ text: q.answers[i], el: el, istAntwort: true }]);
+            speakSequence([{ text: q.answers[i], el: el, istAntwort: true, sprache: antwortSprache(q) }]);
         }
         window.speakAnswerOption = speakAnswerOption;
 

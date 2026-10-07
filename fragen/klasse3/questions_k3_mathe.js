@@ -1380,7 +1380,7 @@ const K3_MATHE_QUESTIONS = [
     grade: 3,
     subject: "mathe",
     question: "Welches Arbeitsmittel nutzt man im Geometrieunterricht besonders zum Zeichnen von rechten Winkeln und geraden Linien?",
-    answers: ["Schere in der Praxis", "Klebestift", "Zirkel in der Praxis", "Geodreieck / Lineal"],
+    answers: ["Schere", "Klebestift", "Zirkel", "Geodreieck"],
     correct: 3,
     difficulty: "leicht",
     points: 5,

@@ -463,12 +463,7 @@ const K6_POLITIK_QUESTIONS = [
     "grade": 6,
     "subject": "politik",
     "question": "Wie nennt man unaufgeforderte Werbung im Internet u. E-Mail?",
-    "answers": [
-      "Wetterbericht heute",
-      "Hausaufgabenzettel",
-      "Geburtstagskarten",
-      "Spam-Nachrichten"
-    ],
+    "answers": ["Wetterbericht", "Hausaufgabenzettel", "Geburtstagskarten", "Spam-Nachrichten"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,

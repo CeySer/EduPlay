@@ -139,12 +139,7 @@ const K6_DEUTSCH_QUESTIONS = [
     "grade": 6,
     "subject": "deutsch",
     "question": "Wandle in Passiv um: 'Der Koch backt den Kuchen.'",
-    "answers": [
-      "Kuchen wird gebacken",
-      "Koch hat gebacken",
-      "Kuchen backt der Koch",
-      "Koch wird backen heute"
-    ],
+    "answers": ["Kuchen wird gebacken", "Koch hat gebacken", "Kuchen backt der Koch", "Koch wird backen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -159,12 +154,7 @@ const K6_DEUTSCH_QUESTIONS = [
     "grade": 6,
     "subject": "deutsch",
     "question": "Wann schreibt man 'das' mit einfachem 's'?",
-    "answers": [
-      "Ersetzbar durch 'dieses'",
-      "Nach einem Komma immer",
-      "Am Satzanfang grundsätzlich",
-      "Vor jedem Adjektiv immer"
-    ],
+    "answers": ["Ersetzbar durch 'dieses'", "Nach einem Komma immer", "Am Satzanfang", "Vor jedem Adjektiv immer"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

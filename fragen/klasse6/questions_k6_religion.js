@@ -119,12 +119,7 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "grade": 6,
     "subject": "philosophie_religion",
     "question": "Was bedeutet 'Toleranz' gegenüber anderen Überzeugungen?",
-    "answers": [
-      "Duldung u. Respekt vor Vielfalt",
-      "Abschaffung von allen eigenen Werten",
-      "Verbot von fremden Meinungen im Alltag",
-      "Zwang zu einer gleichen Lebensweise"
-    ],
+    "answers": ["Duldung u. Respekt vor Vielfalt", "Abschaffung von allen eigenen Werten", "Verbot von fremden Meinungen", "Zwang zu einer gleichen Lebensweise"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -191,12 +186,7 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "grade": 6,
     "subject": "philosophie_religion",
     "question": "Wie entsteht ein Klischee oder 'Stereotyp' über Gruppen?",
-    "answers": [
-      "Persönliche Freundschaft heute",
-      "Verallgemeinerung Merkmal",
-      "Beweis durch genaue Forschung",
-      "Genaue Beobachtung im Detail"
-    ],
+    "answers": ["Persönliche Freundschaft", "Verallgemeinerung Merkmal", "Beweis durch genaue Forschung", "Genaue Beobachtung im Detail"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -481,12 +471,7 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "grade": 6,
     "subject": "philosophie_religion",
     "question": "Was unterscheidet 'Freundschaft' von einer reinen Bekanntschaft?",
-    "answers": [
-      "Gleiche Kleidung im Alltag",
-      "Tiefe Vertrautheit Hilfe",
-      "Zufälliges Treffen Bus",
-      "Gemeinsamer Schulweg Ort"
-    ],
+    "answers": ["Gleiche Kleidung", "Vertrauen und Hilfe", "Zufälliges Treffen", "Gemeinsamer Schulweg"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -643,12 +628,7 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "grade": 6,
     "subject": "philosophie_religion",
     "question": "Welche Funktion erfüllen 'Rituale' im Zusammenleben?",
-    "answers": [
-      "Erzeugen Verwirrung Geist",
-      "Geben Halt u. Struktur",
-      "Ersetzen alle Gesetze",
-      "Sparen Zeit im Alltag"
-    ],
+    "answers": ["Erzeugen Verwirrung", "Geben Halt und Struktur", "Ersetzen alle Gesetze", "Sparen viel Zeit"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -751,12 +731,7 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "grade": 6,
     "subject": "philosophie_religion",
     "question": "Was versteht man unter 'Diskriminierung'?",
-    "answers": [
-      "Gleiche Chancen für alle Kinder",
-      "Ungerechte Benachteiligung",
-      "Faire Notengebung in der Schule",
-      "Höfliche Begrüßung im Alltag"
-    ],
+    "answers": ["Gleiche Chancen für alle Kinder", "Ungerechte Benachteiligung", "Faire Notengebung in der Schule", "Höfliche Begrüßung"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,

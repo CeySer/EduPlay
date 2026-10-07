@@ -3391,12 +3391,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "grade": 6,
     "subject": "englisch",
     "question": "What does 'Have a nice day' mean in German?",
-    "answers": [
-      "Guten Morgen zusammen",
-      "Einen schönen Tag noch",
-      "Auf Wiedersehen bald",
-      "Schöne Träume heute"
-    ],
+    "answers": ["Guten Morgen zusammen", "Einen schönen Tag noch", "Auf Wiedersehen bald", "Schöne Träume"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -3644,7 +3639,7 @@ const K6_ENGLISCH_QUESTIONS = [
   {"id":"k6en106","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Reported: She said she ___ tired.","answers":["is","was","be","were"],"correct":1,"difficulty":"mittel","points":10,"explanation":"was.","topic":"erweiterung"},
   {"id":"k6en107","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Gerund after „mind“: Do you mind ___?","answers":["to open","opening","opened","open"],"correct":1,"difficulty":"mittel","points":10,"explanation":"opening.","topic":"erweiterung"},
   {"id":"k6en108","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"False friend „become“ = …","answers":["bekommen","werden","willkommen","bekommen falsch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"werden.","topic":"erweiterung"},
-  {"id":"k6en109","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Climate change“ = …","answers":["Wetter heute","Klimawandel","Kleidung","Klasse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Klimawandel.","topic":"erweiterung"},
+  {"id":"k6en109","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Climate change“ = …","answers":["Wetter", "Klimawandel", "Kleidung", "Klasse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Klimawandel.","topic":"erweiterung"},
   {"id":"k6en110","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Relative: the book ___ I read","answers":["who","which/that","where","whose only person"],"correct":1,"difficulty":"mittel","points":10,"explanation":"which/that.","topic":"erweiterung"},
   {"id":"k6en111","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Modal deduction: He ___ be home; lights on.","answers":["can’t","must","mustn’t as must","shouldn’t"],"correct":1,"difficulty":"mittel","points":10,"explanation":"must.","topic":"erweiterung"},
   {"id":"k6en112","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Adjective → adverb: careful →","answers":["carefuly","carefully","carefull","care"],"correct":1,"difficulty":"mittel","points":10,"explanation":"carefully.","topic":"erweiterung"},

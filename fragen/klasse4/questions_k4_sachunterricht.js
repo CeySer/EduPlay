@@ -872,7 +872,7 @@ const K4_SACHUNTERRICHT_QUESTIONS = [
     grade: 4,
     subject: "sachunterricht",
     question: "Was ist Mitose?",
-    answers: ["Eine seltene Erkrankung der Knochen im ganzen Körper eines kleinen Kindes und Babys", "Der gleichmäßige, regelmäßige Schlag des kleinen Herzens im Körper", "Zellteilung, bei der aus einer Zelle zwei identische Tochterzellen entstehen", "Die langsame Verdauung der Nahrung im Magen und im Darm insgesamt"],
+    answers: ["Eine seltene Erkrankung der Knochen im ganzen Körper eines kleinen Kindes und Babys", "Der gleichmäßige, regelmäßige Schlag des kleinen Herzens im Körper", "Zellteilung, bei der aus einer Zelle zwei identische Tochterzellen entstehen", "Die langsame Verdauung der Nahrung im Magen und im Darm"],
     correct: 2,
     difficulty: "schwer",
     points: 5,

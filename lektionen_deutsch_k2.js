@@ -25,25 +25,25 @@
             leicht: [
                 {
                     id: "wortk2l1_l1", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Nomen?", answers: ["Hund", "laufen", "schnell", "und"], correct: 0,
                     explanation: "Man kann der Hund sagen."
                 },
                 {
                     id: "wortk2l1_l2", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Nomen?", answers: ["Blume", "singen", "grün", "weil"], correct: 0,
                     explanation: "Man kann die Blume sagen."
                 },
                 {
                     id: "wortk2l1_l3", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Nomen?", answers: ["Haus", "springen", "leise", "aber"], correct: 0,
                     explanation: "Man kann das Haus sagen."
                 },
                 {
                     id: "wortk2l1_l4", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Nomen?", answers: ["Tisch", "essen", "groß", "oder"], correct: 0,
                     explanation: "Man kann der Tisch sagen."
                 }
@@ -51,25 +51,25 @@
             mittel: [
                 {
                     id: "wortk2l1_m1", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "mittel", points: 10,
                     question: "Welches Wort schreibt man groß?", answers: ["Baum", "gehen", "rot", "dann"], correct: 0,
                     explanation: "Baum ist ein Nomen."
                 },
                 {
                     id: "wortk2l1_m2", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "mittel", points: 10,
                     question: "Welches Wort schreibt man groß?", answers: ["Schule", "lesen", "nett", "heute"], correct: 0,
                     explanation: "Schule ist ein Nomen."
                 },
                 {
                     id: "wortk2l1_m3", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "mittel", points: 10,
                     question: "Wie heißt es richtig?", answers: ["Das Auto ist rot.", "das Auto ist rot.", "Das auto ist rot.", "das auto ist rot."], correct: 0,
                     explanation: "Satzanfang groß und Auto ist ein Nomen."
                 },
                 {
                     id: "wortk2l1_m4", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "mittel", points: 10,
                     question: "Wie heißt es richtig?", answers: ["Die Blume ist gelb.", "die Blume ist gelb.", "Die blume ist gelb.", "die blume ist gelb."], correct: 0,
                     explanation: "Satzanfang groß und Blume ist ein Nomen."
                 }
@@ -77,25 +77,25 @@
             schwer: [
                 {
                     id: "wortk2l1_s1", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist KEIN Nomen?", answers: ["schnell", "Auto", "Katze", "Tisch"], correct: 0,
                     explanation: "Schnell sagt, wie etwas ist."
                 },
                 {
                     id: "wortk2l1_s2", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist KEIN Nomen?", answers: ["springen", "Ball", "Hund", "Baum"], correct: 0,
                     explanation: "Springen ist etwas, das man macht."
                 },
                 {
                     id: "wortk2l1_s3", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "schwer", points: 10,
                     question: "Wie viele Nomen: Der Hund frisst den Knochen.", answers: ["2", "1", "3", "0"], correct: 0,
                     explanation: "Hund und Knochen."
                 },
                 {
                     id: "wortk2l1_s4", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "schwer", points: 10,
                     question: "Wie viele Nomen: Die Katze schläft im Korb.", answers: ["2", "1", "3", "4"], correct: 0,
                     explanation: "Katze und Korb."
                 }
@@ -104,37 +104,37 @@
         test: [
                 {
                     id: "wortk2l1_t1", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist ein Nomen?", answers: ["Fenster", "singen", "blau", "schon"], correct: 0,
                     explanation: "Man kann das Fenster sagen."
                 },
                 {
                     id: "wortk2l1_t2", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "mittel", points: 10,
                     question: "Welches Wort schreibt man groß?", answers: ["Apfel", "trinken", "süß", "gleich"], correct: 0,
                     explanation: "Apfel ist ein Nomen."
                 },
                 {
                     id: "wortk2l1_t3", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "mittel", points: 10,
                     question: "Welcher Satz ist richtig?", answers: ["Der Ball ist rund.", "der Ball ist rund.", "Der ball ist rund.", "der ball ist rund."], correct: 0,
                     explanation: "Satzanfang groß und Ball ist ein Nomen."
                 },
                 {
                     id: "wortk2l1_t4", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist KEIN Nomen?", answers: ["leise", "Stuhl", "Lampe", "Fenster"], correct: 0,
                     explanation: "Leise sagt, wie etwas ist."
                 },
                 {
                     id: "wortk2l1_t5", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "mittel", points: 10,
                     question: "Wie viele Nomen: Die Oma backt einen Kuchen.", answers: ["2", "1", "3", "4"], correct: 0,
                     explanation: "Oma und Kuchen."
                 },
                 {
                     id: "wortk2l1_t6", category: "kurs_wort_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "nomen", difficulty: "mittel", points: 10,
                     question: "Nomen oder nicht: Sonne?", answers: ["Nomen", "kein Nomen", "ein Verb", "ein Adjektiv"], correct: 0,
                     explanation: "Die Sonne – also ein Nomen."
                 }
@@ -155,25 +155,25 @@
             leicht: [
                 {
                     id: "wortk2l2_l1", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Verb?", answers: ["laufen", "Hund", "schnell", "und"], correct: 0,
                     explanation: "Laufen kann man machen."
                 },
                 {
                     id: "wortk2l2_l2", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Verb?", answers: ["singen", "Lied", "laut", "weil"], correct: 0,
                     explanation: "Singen kann man machen."
                 },
                 {
                     id: "wortk2l2_l3", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Verb?", answers: ["schlafen", "Bett", "müde", "dann"], correct: 0,
                     explanation: "Schlafen kann man machen."
                 },
                 {
                     id: "wortk2l2_l4", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Verb?", answers: ["trinken", "Milch", "kalt", "aber"], correct: 0,
                     explanation: "Trinken kann man machen."
                 }
@@ -181,25 +181,25 @@
             mittel: [
                 {
                     id: "wortk2l2_m1", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Was tut Mia: Mia malt ein Bild.", answers: ["malt", "Bild", "Mia", "ein"], correct: 0,
                     explanation: "Malen ist das Verb."
                 },
                 {
                     id: "wortk2l2_m2", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Was tut der Hund: Der Hund bellt laut.", answers: ["bellt", "Hund", "laut", "der"], correct: 0,
                     explanation: "Bellen ist das Verb."
                 },
                 {
                     id: "wortk2l2_m3", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Ich ___ zur Schule.", answers: ["gehe", "geht", "gehen", "gehst"], correct: 0,
                     explanation: "Ich gehe."
                 },
                 {
                     id: "wortk2l2_m4", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Du ___ einen Apfel.", answers: ["isst", "esse", "essen", "esst"], correct: 0,
                     explanation: "Du isst."
                 }
@@ -207,25 +207,25 @@
             schwer: [
                 {
                     id: "wortk2l2_s1", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist KEIN Verb?", answers: ["Blume", "lesen", "springen", "malen"], correct: 0,
                     explanation: "Blume ist ein Nomen."
                 },
                 {
                     id: "wortk2l2_s2", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "schwer", points: 10,
                     question: "Wie viele Verben: Tom liest und schreibt.", answers: ["2", "1", "3", "0"], correct: 0,
                     explanation: "Liest und schreibt."
                 },
                 {
                     id: "wortk2l2_s3", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "schwer", points: 10,
                     question: "Wir ___ im Garten.", answers: ["spielen", "spielt", "spielst", "spiele"], correct: 0,
                     explanation: "Wir spielen."
                 },
                 {
                     id: "wortk2l2_s4", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "schwer", points: 10,
                     question: "Welches Wort schreibt man klein?", answers: ["rennen", "Katze", "Haus", "Baum"], correct: 0,
                     explanation: "Rennen ist ein Verb."
                 }
@@ -234,37 +234,37 @@
         test: [
                 {
                     id: "wortk2l2_t1", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist ein Verb?", answers: ["springen", "Ball", "hoch", "heute"], correct: 0,
                     explanation: "Springen kann man machen."
                 },
                 {
                     id: "wortk2l2_t2", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Was tut Papa: Papa kocht Suppe.", answers: ["kocht", "Suppe", "Papa", "die"], correct: 0,
                     explanation: "Kochen ist das Verb."
                 },
                 {
                     id: "wortk2l2_t3", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Er ___ ein Buch.", answers: ["liest", "lese", "lesen", "lest"], correct: 0,
                     explanation: "Er liest."
                 },
                 {
                     id: "wortk2l2_t4", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist KEIN Verb?", answers: ["Fenster", "putzen", "wischen", "räumen"], correct: 0,
                     explanation: "Fenster ist ein Nomen."
                 },
                 {
                     id: "wortk2l2_t5", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Wie viele Verben: Oma backt und singt.", answers: ["2", "1", "3", "4"], correct: 0,
                     explanation: "Backt und singt."
                 },
                 {
                     id: "wortk2l2_t6", category: "kurs_wort_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Verben schreibt man …", answers: ["klein", "groß", "mit ck", "mit ß"], correct: 0,
                     explanation: "Nur Nomen werden groß geschrieben."
                 }
@@ -285,25 +285,25 @@
             leicht: [
                 {
                     id: "wortk2l3_l1", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Adjektiv?", answers: ["rot", "Ball", "rollen", "und"], correct: 0,
                     explanation: "Rot sagt, wie der Ball ist."
                 },
                 {
                     id: "wortk2l3_l2", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Adjektiv?", answers: ["groß", "Haus", "bauen", "weil"], correct: 0,
                     explanation: "Groß sagt, wie das Haus ist."
                 },
                 {
                     id: "wortk2l3_l3", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Adjektiv?", answers: ["kalt", "Eis", "essen", "dann"], correct: 0,
                     explanation: "Kalt sagt, wie das Eis ist."
                 },
                 {
                     id: "wortk2l3_l4", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "leicht", points: 10,
                     question: "Welches Wort ist ein Adjektiv?", answers: ["leise", "Musik", "hören", "aber"], correct: 0,
                     explanation: "Leise sagt, wie die Musik ist."
                 }
@@ -311,25 +311,25 @@
             mittel: [
                 {
                     id: "wortk2l3_m1", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Wie ist der Ball: Der Ball ist rund.", answers: ["rund", "Ball", "ist", "der"], correct: 0,
                     explanation: "Rund ist das Adjektiv."
                 },
                 {
                     id: "wortk2l3_m2", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Wie ist die Nacht: Die Nacht ist dunkel.", answers: ["dunkel", "Nacht", "ist", "die"], correct: 0,
                     explanation: "Dunkel ist das Adjektiv."
                 },
                 {
                     id: "wortk2l3_m3", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Was ist das Gegenteil von groß?", answers: ["klein", "dick", "lang", "weit"], correct: 0,
                     explanation: "Groß und klein sind Gegenteile."
                 },
                 {
                     id: "wortk2l3_m4", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Was ist das Gegenteil von kalt?", answers: ["warm", "nass", "hart", "leer"], correct: 0,
                     explanation: "Kalt und warm sind Gegenteile."
                 }
@@ -337,25 +337,25 @@
             schwer: [
                 {
                     id: "wortk2l3_s1", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist KEIN Adjektiv?", answers: ["Blume", "bunt", "weich", "spitz"], correct: 0,
                     explanation: "Blume ist ein Nomen."
                 },
                 {
                     id: "wortk2l3_s2", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "schwer", points: 10,
                     question: "Wie viele Adjektive: Der kleine Hund ist müde.", answers: ["2", "1", "3", "0"], correct: 0,
                     explanation: "Kleine und müde."
                 },
                 {
                     id: "wortk2l3_s3", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "schwer", points: 10,
                     question: "Was ist das Gegenteil von schnell?", answers: ["langsam", "leise", "dunkel", "schwer"], correct: 0,
                     explanation: "Schnell und langsam sind Gegenteile."
                 },
                 {
                     id: "wortk2l3_s4", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "schwer", points: 10,
                     question: "Nomen, Verb oder Adjektiv: springen?", answers: ["Verb", "Nomen", "Adjektiv", "Artikel"], correct: 0,
                     explanation: "Springen kann man machen."
                 }
@@ -364,37 +364,37 @@
         test: [
                 {
                     id: "wortk2l3_t1", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist ein Adjektiv?", answers: ["nass", "Regen", "regnen", "oft"], correct: 0,
                     explanation: "Nass sagt, wie etwas ist."
                 },
                 {
                     id: "wortk2l3_t2", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Wie ist die Suppe: Die Suppe ist heiß.", answers: ["heiß", "Suppe", "ist", "die"], correct: 0,
                     explanation: "Heiß ist das Adjektiv."
                 },
                 {
                     id: "wortk2l3_t3", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Was ist das Gegenteil von hell?", answers: ["dunkel", "leise", "weich", "leer"], correct: 0,
                     explanation: "Hell und dunkel sind Gegenteile."
                 },
                 {
                     id: "wortk2l3_t4", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist KEIN Adjektiv?", answers: ["Tasche", "alt", "neu", "sauber"], correct: 0,
                     explanation: "Tasche ist ein Nomen."
                 },
                 {
                     id: "wortk2l3_t5", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Nomen, Verb oder Adjektiv: Fenster?", answers: ["Nomen", "Verb", "Adjektiv", "Artikel"], correct: 0,
                     explanation: "Das Fenster – also ein Nomen."
                 },
                 {
                     id: "wortk2l3_t6", category: "kurs_wort_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "wortarten", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "verben_adjektive", difficulty: "mittel", points: 10,
                     question: "Wie viele Adjektive: Das rote Auto ist schnell.", answers: ["2", "1", "3", "4"], correct: 0,
                     explanation: "Rote und schnell."
                 }
@@ -415,25 +415,25 @@
             leicht: [
                 {
                     id: "satzk2l1_l1", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Welches Zeichen fehlt: Der Hund schläft___", answers: ["Punkt", "Fragezeichen", "Ausrufezeichen", "Komma"], correct: 0,
                     explanation: "Das ist eine Aussage."
                 },
                 {
                     id: "satzk2l1_l2", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Welches Zeichen fehlt: Wo ist mein Ball___", answers: ["Fragezeichen", "Punkt", "Ausrufezeichen", "Komma"], correct: 0,
                     explanation: "Das ist eine Frage."
                 },
                 {
                     id: "satzk2l1_l3", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Welches Zeichen fehlt: Hilf mir schnell___", answers: ["Ausrufezeichen", "Punkt", "Fragezeichen", "Komma"], correct: 0,
                     explanation: "Das ist ein Ausruf."
                 },
                 {
                     id: "satzk2l1_l4", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Welches Zeichen fehlt: Ich heiße Mia___", answers: ["Punkt", "Fragezeichen", "Ausrufezeichen", "Komma"], correct: 0,
                     explanation: "Das ist eine Aussage."
                 }
@@ -441,25 +441,25 @@
             mittel: [
                 {
                     id: "satzk2l1_m1", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Was ist das: Wie heißt du?", answers: ["eine Frage", "eine Aussage", "ein Ausruf", "kein Satz"], correct: 0,
                     explanation: "Es endet mit einem Fragezeichen."
                 },
                 {
                     id: "satzk2l1_m2", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Was ist das: Es regnet heute.", answers: ["eine Aussage", "eine Frage", "ein Ausruf", "kein Satz"], correct: 0,
                     explanation: "Es endet mit einem Punkt."
                 },
                 {
                     id: "satzk2l1_m3", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Was ist das: Komm sofort her!", answers: ["ein Ausruf", "eine Frage", "eine Aussage", "kein Satz"], correct: 0,
                     explanation: "Es endet mit einem Ausrufezeichen."
                 },
                 {
                     id: "satzk2l1_m4", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welcher Satz ist eine Frage?", answers: ["Wann kommst du?", "Ich komme gleich.", "Komm her!", "Es ist spät."], correct: 0,
                     explanation: "Nur dieser Satz endet mit einem Fragezeichen."
                 }
@@ -467,25 +467,25 @@
             schwer: [
                 {
                     id: "satzk2l1_s1", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Welches Zeichen passt: Wer hat mein Heft___", answers: ["?", ".", "!", ","], correct: 0,
                     explanation: "Wer fragt, braucht ein Fragezeichen."
                 },
                 {
                     id: "satzk2l1_s2", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Welches Zeichen passt: Räum dein Zimmer auf___", answers: ["!", ".", "?", ","], correct: 0,
                     explanation: "Das ist eine Aufforderung."
                 },
                 {
                     id: "satzk2l1_s3", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Welcher Satz ist falsch?", answers: ["Wo bist du.", "Wo bist du?", "Ich bin hier.", "Komm her!"], correct: 0,
                     explanation: "Eine Frage braucht ein Fragezeichen."
                 },
                 {
                     id: "satzk2l1_s4", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Wie viele Sätze: Es regnet. Ich bleibe hier.", answers: ["2", "1", "3", "0"], correct: 0,
                     explanation: "Zwei Punkte, also zwei Sätze."
                 }
@@ -494,37 +494,37 @@
         test: [
                 {
                     id: "satzk2l1_t1", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welches Zeichen fehlt: Hast du Hunger___", answers: ["Fragezeichen", "Punkt", "Ausrufezeichen", "Komma"], correct: 0,
                     explanation: "Das ist eine Frage."
                 },
                 {
                     id: "satzk2l1_t2", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Was ist das: Der Ball ist rot.", answers: ["eine Aussage", "eine Frage", "ein Ausruf", "kein Satz"], correct: 0,
                     explanation: "Es endet mit einem Punkt."
                 },
                 {
                     id: "satzk2l1_t3", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welches Zeichen passt: Lauf schnell___", answers: ["!", ".", "?", ","], correct: 0,
                     explanation: "Das ist ein Ausruf."
                 },
                 {
                     id: "satzk2l1_t4", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welcher Satz ist eine Frage?", answers: ["Warum weinst du?", "Ich weine nicht.", "Hör auf!", "Mir geht es gut."], correct: 0,
                     explanation: "Nur dieser Satz endet mit einem Fragezeichen."
                 },
                 {
                     id: "satzk2l1_t5", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Eine Aussage endet mit …", answers: ["einem Punkt", "einem Fragezeichen", "einem Ausrufezeichen", "einem Komma"], correct: 0,
                     explanation: "Aussage und Punkt gehören zusammen."
                 },
                 {
                     id: "satzk2l1_t6", category: "kurs_satz_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Wie viele Sätze: Ich spiele. Du liest.", answers: ["2", "1", "3", "4"], correct: 0,
                     explanation: "Zwei Punkte, also zwei Sätze."
                 }
@@ -545,25 +545,25 @@
             leicht: [
                 {
                     id: "satzk2l2_l1", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Wie viele Kommas fehlen: Ich mag Brot Käse und Wurst.", answers: ["1", "2", "0", "3"], correct: 0,
                     explanation: "Brot, Käse und Wurst."
                 },
                 {
                     id: "satzk2l2_l2", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Wie viele Kommas fehlen: Tom Lena und Ali spielen.", answers: ["1", "2", "0", "3"], correct: 0,
                     explanation: "Tom, Lena und Ali."
                 },
                 {
                     id: "satzk2l2_l3", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Wie viele Kommas fehlen: Heft Stift Buch und Block.", answers: ["3", "2", "1", "4"], correct: 0,
                     explanation: "Heft, Stift, Buch und Block."
                 },
                 {
                     id: "satzk2l2_l4", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Steht vor und ein Komma?", answers: ["nein", "ja", "manchmal", "immer"], correct: 0,
                     explanation: "Vor und steht kein Komma."
                 }
@@ -571,25 +571,25 @@
             mittel: [
                 {
                     id: "satzk2l2_m1", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welcher Satz ist richtig?", answers: ["Ich mag Eis, Kuchen und Saft.", "Ich mag Eis Kuchen und Saft.", "Ich mag Eis, Kuchen, und Saft.", "Ich mag, Eis Kuchen und Saft."], correct: 0,
                     explanation: "Ein Komma dazwischen, vor und keins."
                 },
                 {
                     id: "satzk2l2_m2", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welcher Satz ist richtig?", answers: ["Mia, Tom und Ali lachen.", "Mia Tom und Ali lachen.", "Mia, Tom, und Ali lachen.", "Mia Tom, und Ali lachen."], correct: 0,
                     explanation: "Ein Komma dazwischen, vor und keins."
                 },
                 {
                     id: "satzk2l2_m3", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Wo fehlt das Komma: Ich kaufe Milch Eier und Mehl.", answers: ["nach Milch", "nach Eier", "vor und", "nach Mehl"], correct: 0,
                     explanation: "Milch, Eier und Mehl."
                 },
                 {
                     id: "satzk2l2_m4", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Wie viele Kommas fehlen: Der Hund die Katze und ich.", answers: ["1", "2", "0", "3"], correct: 0,
                     explanation: "Der Hund, die Katze und ich."
                 }
@@ -597,25 +597,25 @@
             schwer: [
                 {
                     id: "satzk2l2_s1", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Wie viele Kommas fehlen: Rot blau gelb und grün.", answers: ["3", "2", "1", "4"], correct: 0,
                     explanation: "Rot, blau, gelb und grün."
                 },
                 {
                     id: "satzk2l2_s2", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Welcher Satz ist falsch?", answers: ["Ich mag Birnen, und Äpfel.", "Ich mag Birnen und Äpfel.", "Ich mag Nüsse und Äpfel.", "Ich mag Birnen, Äpfel und Nüsse."], correct: 0,
                     explanation: "Vor und steht kein Komma."
                 },
                 {
                     id: "satzk2l2_s3", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Wie viele Dinge: Papier, Schere, Kleber und Stift?", answers: ["4", "3", "5", "2"], correct: 0,
                     explanation: "Papier, Schere, Kleber, Stift."
                 },
                 {
                     id: "satzk2l2_s4", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Zwei Dinge mit und – braucht es ein Komma?", answers: ["nein", "ja", "nur bei Nomen", "nur bei Verben"], correct: 0,
                     explanation: "Bei zwei Dingen steht nur und."
                 }
@@ -624,37 +624,37 @@
         test: [
                 {
                     id: "satzk2l2_t1", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Wie viele Kommas fehlen: Bücher Comics und Briefe.", answers: ["1", "2", "0", "3"], correct: 0,
                     explanation: "Bücher, Comics und Briefe."
                 },
                 {
                     id: "satzk2l2_t2", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welcher Satz ist richtig?", answers: ["Rot, gelb und blau.", "Rot gelb und blau.", "Rot, gelb, und blau.", "Rot, gelb und, blau."], correct: 0,
                     explanation: "Ein Komma dazwischen, vor und keins."
                 },
                 {
                     id: "satzk2l2_t3", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Steht vor und ein Komma?", answers: ["nein", "ja", "immer", "meistens"], correct: 0,
                     explanation: "Vor und steht kein Komma."
                 },
                 {
                     id: "satzk2l2_t4", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Wie viele Kommas fehlen: Oma Opa Mama und Papa kommen.", answers: ["2", "1", "3", "0"], correct: 0,
                     explanation: "Oma, Opa, Mama und Papa."
                 },
                 {
                     id: "satzk2l2_t5", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Wo fehlt das Komma: Ich brauche Stift Heft und Buch.", answers: ["nach Stift", "nach Heft", "vor und", "nach Buch"], correct: 0,
                     explanation: "Stift, Heft und Buch."
                 },
                 {
                     id: "satzk2l2_t6", category: "kurs_satz_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Wie viele Dinge: Hund, Katze und Maus?", answers: ["3", "2", "4", "1"], correct: 0,
                     explanation: "Hund, Katze, Maus."
                 }
@@ -675,25 +675,25 @@
             leicht: [
                 {
                     id: "satzk2l3_l1", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Welcher Satz ist richtig?", answers: ["Der Baum ist groß.", "der Baum ist groß.", "Der baum ist groß.", "der baum ist groß."], correct: 0,
                     explanation: "Satzanfang groß, Baum ist ein Nomen."
                 },
                 {
                     id: "satzk2l3_l2", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Welcher Satz ist richtig?", answers: ["Die Katze schläft.", "die Katze schläft.", "Die katze schläft.", "die katze schläft."], correct: 0,
                     explanation: "Satzanfang groß, Katze ist ein Nomen."
                 },
                 {
                     id: "satzk2l3_l3", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Welches Wort wird groß geschrieben?", answers: ["Fenster", "gehen", "klein", "heute"], correct: 0,
                     explanation: "Fenster ist ein Nomen."
                 },
                 {
                     id: "satzk2l3_l4", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "leicht", points: 10,
                     question: "Welches Wort bleibt klein?", answers: ["laufen", "Hund", "Haus", "Blume"], correct: 0,
                     explanation: "Laufen ist ein Verb."
                 }
@@ -701,25 +701,25 @@
             mittel: [
                 {
                     id: "satzk2l3_m1", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Wie viele Wörter sind groß: Der Hund frisst Knochen.", answers: ["3", "2", "4", "1"], correct: 0,
                     explanation: "Der, Hund und Knochen."
                 },
                 {
                     id: "satzk2l3_m2", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Wie viele Wörter sind groß: Mia malt ein Bild.", answers: ["2", "1", "3", "4"], correct: 0,
                     explanation: "Mia und Bild."
                 },
                 {
                     id: "satzk2l3_m3", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist falsch: Die blume ist rot.", answers: ["blume", "Die", "ist", "rot"], correct: 0,
                     explanation: "Blume ist ein Nomen."
                 },
                 {
                     id: "satzk2l3_m4", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist falsch: der Ball rollt weg.", answers: ["der", "Ball", "rollt", "weg"], correct: 0,
                     explanation: "Der steht am Satzanfang."
                 }
@@ -727,25 +727,25 @@
             schwer: [
                 {
                     id: "satzk2l3_s1", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Wie viele Fehler: der hund bellt.", answers: ["2", "1", "3", "0"], correct: 0,
                     explanation: "Der und Hund müssen groß sein."
                 },
                 {
                     id: "satzk2l3_s2", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Wie viele Fehler: Die Sonne Scheint hell.", answers: ["1", "2", "0", "3"], correct: 0,
                     explanation: "Scheint ist ein Verb und bleibt klein."
                 },
                 {
                     id: "satzk2l3_s3", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Welcher Satz ist ganz richtig?", answers: ["Am Montag gehe ich schwimmen.", "am Montag gehe ich schwimmen.", "Am montag gehe ich schwimmen.", "Am Montag Gehe ich schwimmen."], correct: 0,
                     explanation: "Satzanfang groß, Montag ist ein Nomen."
                 },
                 {
                     id: "satzk2l3_s4", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "schwer", points: 10,
                     question: "Namen von Menschen schreibt man …", answers: ["groß", "klein", "mit ck", "mit ß"], correct: 0,
                     explanation: "Namen sind Nomen."
                 }
@@ -754,37 +754,37 @@
         test: [
                 {
                     id: "satzk2l3_t1", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welcher Satz ist richtig?", answers: ["Das Buch ist dick.", "das Buch ist dick.", "Das buch ist dick.", "das buch ist dick."], correct: 0,
                     explanation: "Satzanfang groß, Buch ist ein Nomen."
                 },
                 {
                     id: "satzk2l3_t2", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welches Wort wird groß geschrieben?", answers: ["Schule", "lesen", "nett", "gleich"], correct: 0,
                     explanation: "Schule ist ein Nomen."
                 },
                 {
                     id: "satzk2l3_t3", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist falsch: Die tasche ist voll.", answers: ["tasche", "Die", "ist", "voll"], correct: 0,
                     explanation: "Tasche ist ein Nomen."
                 },
                 {
                     id: "satzk2l3_t4", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Wie viele Wörter sind groß: Der Vogel singt.", answers: ["2", "1", "3", "4"], correct: 0,
                     explanation: "Der und Vogel."
                 },
                 {
                     id: "satzk2l3_t5", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Wie viele Fehler: mein bruder schläft.", answers: ["2", "1", "3", "0"], correct: 0,
                     explanation: "Mein und Bruder müssen groß sein."
                 },
                 {
                     id: "satzk2l3_t6", category: "kurs_satz_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "satzarten", difficulty: "mittel", points: 10,
                     question: "Nomen schreibt man …", answers: ["groß", "klein", "manchmal groß", "nie groß"], correct: 0,
                     explanation: "Nomen werden immer groß geschrieben."
                 }
@@ -805,25 +805,25 @@
             leicht: [
                 {
                     id: "rsk2l1_l1", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Zucker", "Zukker", "Zuker", "Zucer"], correct: 0,
                     explanation: "Kurzes u, also ck."
                 },
                 {
                     id: "rsk2l1_l2", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Katze", "Kazze", "Katse", "Kace"], correct: 0,
                     explanation: "Kurzes a, also tz."
                 },
                 {
                     id: "rsk2l1_l3", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Brücke", "Brükke", "Brüke", "Brücce"], correct: 0,
                     explanation: "Kurzes ü, also ck."
                 },
                 {
                     id: "rsk2l1_l4", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Mütze", "Müzze", "Mütse", "Müce"], correct: 0,
                     explanation: "Kurzes ü, also tz."
                 }
@@ -831,25 +831,25 @@
             mittel: [
                 {
                     id: "rsk2l1_m1", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat ck?", answers: ["Decke", "Dose", "Daumen", "Dach"], correct: 0,
                     explanation: "Decke – kurzes e, also ck."
                 },
                 {
                     id: "rsk2l1_m2", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat tz?", answers: ["Platz", "Pilz", "Palme", "Post"], correct: 0,
                     explanation: "Platz – kurzes a, also tz."
                 },
                 {
                     id: "rsk2l1_m3", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "ck oder k: Ba___en (Brot)?", answers: ["ck", "k", "kk", "c"], correct: 0,
                     explanation: "Backen – kurzes a, also ck."
                 },
                 {
                     id: "rsk2l1_m4", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "tz oder z: Sal___ (zum Essen)?", answers: ["z", "tz", "zz", "ts"], correct: 0,
                     explanation: "Nach l steht nur z: Salz."
                 }
@@ -857,25 +857,25 @@
             schwer: [
                 {
                     id: "rsk2l1_s1", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist falsch geschrieben?", answers: ["Kazze", "Katze", "Platz", "Mütze"], correct: 0,
                     explanation: "Nach kurzem Selbstlaut steht tz."
                 },
                 {
                     id: "rsk2l1_s2", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist falsch geschrieben?", answers: ["Zukker", "Zucker", "Decke", "Brücke"], correct: 0,
                     explanation: "Nach kurzem Selbstlaut steht ck."
                 },
                 {
                     id: "rsk2l1_s3", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Warum schreibt man Katze mit tz?", answers: ["kurzer Selbstlaut", "langer Selbstlaut", "es ist ein Nomen", "es ist ein Verb"], correct: 0,
                     explanation: "Das a ist kurz."
                 },
                 {
                     id: "rsk2l1_s4", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Nach l, m, n, r steht …", answers: ["kein ck", "immer ck", "immer tz", "kein z"], correct: 0,
                     explanation: "Zum Beispiel Salz und Herz."
                 }
@@ -884,37 +884,37 @@
         test: [
                 {
                     id: "rsk2l1_t1", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Decke", "Dekke", "Deke", "Decce"], correct: 0,
                     explanation: "Kurzes e, also ck."
                 },
                 {
                     id: "rsk2l1_t2", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Platz", "Plazz", "Plats", "Plaz"], correct: 0,
                     explanation: "Kurzes a, also tz."
                 },
                 {
                     id: "rsk2l1_t3", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat ck?", answers: ["Zucker", "Zahl", "Zelt", "Zaun"], correct: 0,
                     explanation: "Zucker – kurzes u, also ck."
                 },
                 {
                     id: "rsk2l1_t4", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Müzze", "Mütze", "Katze", "Platz"], correct: 0,
                     explanation: "Nach kurzem Selbstlaut steht tz."
                 },
                 {
                     id: "rsk2l1_t5", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "ck oder k: Ro___ (Kleid)?", answers: ["ck", "k", "kk", "c"], correct: 0,
                     explanation: "Rock – kurzes o, also ck."
                 },
                 {
                     id: "rsk2l1_t6", category: "kurs_rs_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Nach einem kurzen Selbstlaut schreibt man …", answers: ["ck oder tz", "kk oder zz", "k oder z", "c oder s"], correct: 0,
                     explanation: "Zum Beispiel Decke und Mütze."
                 }
@@ -935,25 +935,25 @@
             leicht: [
                 {
                     id: "rsk2l2_l1", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Sonne", "Sone", "Sonnne", "Soonne"], correct: 0,
                     explanation: "Kurzes o, also zwei n."
                 },
                 {
                     id: "rsk2l2_l2", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Ball", "Bal", "Balll", "Baall"], correct: 0,
                     explanation: "Kurzes a, also zwei l."
                 },
                 {
                     id: "rsk2l2_l3", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Mutter", "Muter", "Muttter", "Muuter"], correct: 0,
                     explanation: "Kurzes u, also zwei t."
                 },
                 {
                     id: "rsk2l2_l4", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Wasser", "Waser", "Wassser", "Waaser"], correct: 0,
                     explanation: "Kurzes a, also zwei s."
                 }
@@ -961,25 +961,25 @@
             mittel: [
                 {
                     id: "rsk2l2_m1", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat zwei l?", answers: ["Halle", "Hase", "Haus", "Hand"], correct: 0,
                     explanation: "Halle – kurzes a, also zwei l."
                 },
                 {
                     id: "rsk2l2_m2", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat zwei m?", answers: ["Hammer", "Hase", "Hafen", "Hügel"], correct: 0,
                     explanation: "Hammer – kurzes a, also zwei m."
                 },
                 {
                     id: "rsk2l2_m3", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Wie viele n hat Sonne?", answers: ["2", "1", "3", "0"], correct: 0,
                     explanation: "So-nn-e: zwei n."
                 },
                 {
                     id: "rsk2l2_m4", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat zwei t?", answers: ["Butter", "Bube", "Buch", "Busch"], correct: 0,
                     explanation: "Butter – kurzes u, also zwei t."
                 }
@@ -987,25 +987,25 @@
             schwer: [
                 {
                     id: "rsk2l2_s1", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Sone", "Sonne", "Butter", "Wasser"], correct: 0,
                     explanation: "Kurzes o, also zwei n."
                 },
                 {
                     id: "rsk2l2_s2", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Bal", "Ball", "Halle", "Hammer"], correct: 0,
                     explanation: "Kurzes a, also zwei l."
                 },
                 {
                     id: "rsk2l2_s3", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Warum hat Sonne zwei n?", answers: ["kurzes o", "langes o", "es ist ein Nomen", "es ist ein Verb"], correct: 0,
                     explanation: "Das o wird kurz gesprochen."
                 },
                 {
                     id: "rsk2l2_s4", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Wie viele t hat Mutter?", answers: ["2", "1", "3", "0"], correct: 0,
                     explanation: "Mu-tt-er: zwei t."
                 }
@@ -1014,37 +1014,37 @@
         test: [
                 {
                     id: "rsk2l2_t1", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Wetter", "Weter", "Wettter", "Weeter"], correct: 0,
                     explanation: "Kurzes e, also zwei t."
                 },
                 {
                     id: "rsk2l2_t2", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat zwei s?", answers: ["Tasse", "Tage", "Tante", "Tanz"], correct: 0,
                     explanation: "Tasse – kurzes a, also zwei s."
                 },
                 {
                     id: "rsk2l2_t3", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Wie viele l hat Ball?", answers: ["2", "1", "3", "0"], correct: 0,
                     explanation: "Ba-ll: zwei l."
                 },
                 {
                     id: "rsk2l2_t4", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Muter", "Mutter", "Butter", "Wetter"], correct: 0,
                     explanation: "Kurzes u, also zwei t."
                 },
                 {
                     id: "rsk2l2_t5", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Treppe", "Trepe", "Trepppe", "Treeppe"], correct: 0,
                     explanation: "Kurzes e, also zwei p."
                 },
                 {
                     id: "rsk2l2_t6", category: "kurs_rs_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Nach einem kurzen Selbstlaut wird der Mitlaut …", answers: ["doppelt", "einfach", "weggelassen", "groß"], correct: 0,
                     explanation: "Zum Beispiel Sonne und Ball."
                 }
@@ -1065,25 +1065,25 @@
             leicht: [
                 {
                     id: "rsk2l3_l1", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Wiese", "Wise", "Wiiese", "Wiehse"], correct: 0,
                     explanation: "Langes i, also ie."
                 },
                 {
                     id: "rsk2l3_l2", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["spielen", "spilen", "spiielen", "spiehlen"], correct: 0,
                     explanation: "Langes i, also ie."
                 },
                 {
                     id: "rsk2l3_l3", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Brief", "Brif", "Briief", "Briehf"], correct: 0,
                     explanation: "Langes i, also ie."
                 },
                 {
                     id: "rsk2l3_l4", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Biene", "Bine", "Biiene", "Biehne"], correct: 0,
                     explanation: "Langes i, also ie."
                 }
@@ -1091,25 +1091,25 @@
             mittel: [
                 {
                     id: "rsk2l3_m1", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat ie?", answers: ["Ziege", "Zimmer", "Zirkus", "Zinn"], correct: 0,
                     explanation: "Ziege – das i ist lang."
                 },
                 {
                     id: "rsk2l3_m2", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat ie?", answers: ["Riese", "Ring", "Rind", "Risse"], correct: 0,
                     explanation: "Riese – das i ist lang."
                 },
                 {
                     id: "rsk2l3_m3", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Hörst du bei Wiese ein …", answers: ["langes i", "kurzes i", "langes e", "kurzes e"], correct: 0,
                     explanation: "Darum schreibt man ie."
                 },
                 {
                     id: "rsk2l3_m4", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat KEIN ie?", answers: ["Kind", "Liebe", "Wiese", "Biene"], correct: 0,
                     explanation: "Bei Kind ist das i kurz."
                 }
@@ -1117,25 +1117,25 @@
             schwer: [
                 {
                     id: "rsk2l3_s1", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Bine", "Biene", "Wiese", "Riese"], correct: 0,
                     explanation: "Langes i, also ie."
                 },
                 {
                     id: "rsk2l3_s2", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["spilen", "spielen", "fliegen", "ziehen"], correct: 0,
                     explanation: "Langes i, also ie."
                 },
                 {
                     id: "rsk2l3_s3", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Ein langes i schreibt man meist …", answers: ["ie", "i", "ih", "ieh"], correct: 0,
                     explanation: "Zum Beispiel Wiese und Biene."
                 },
                 {
                     id: "rsk2l3_s4", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort hat KEIN ie?", answers: ["Winter", "Wiese", "Biene", "Ziege"], correct: 0,
                     explanation: "Bei Winter ist das i kurz."
                 }
@@ -1144,37 +1144,37 @@
         test: [
                 {
                     id: "rsk2l3_t1", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["fliegen", "fligen", "fliiegen", "fliehgen"], correct: 0,
                     explanation: "Langes i, also ie."
                 },
                 {
                     id: "rsk2l3_t2", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat ie?", answers: ["Liebe", "Licht", "Linde", "Lippe"], correct: 0,
                     explanation: "Liebe – das i ist lang."
                 },
                 {
                     id: "rsk2l3_t3", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Wise", "Wiese", "Brief", "Ziege"], correct: 0,
                     explanation: "Langes i, also ie."
                 },
                 {
                     id: "rsk2l3_t4", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Hörst du bei Kind ein …", answers: ["kurzes i", "langes i", "langes e", "kurzes e"], correct: 0,
                     explanation: "Darum steht nur ein i."
                 },
                 {
                     id: "rsk2l3_t5", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Wie schreibt man es richtig?", answers: ["Riese", "Rise", "Riiese", "Riehse"], correct: 0,
                     explanation: "Langes i, also ie."
                 },
                 {
                     id: "rsk2l3_t6", category: "kurs_rs_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat KEIN ie?", answers: ["Finger", "Spiegel", "Fliege", "Wiese"], correct: 0,
                     explanation: "Bei Finger ist das i kurz."
                 }
@@ -1195,25 +1195,25 @@
             leicht: [
                 {
                     id: "umlk2l1_l1", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Welchen Umlaut hörst du in Bär?", answers: ["ä", "ö", "ü", "a"], correct: 0,
                     explanation: "Bär wird mit ä geschrieben."
                 },
                 {
                     id: "umlk2l1_l2", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Welchen Umlaut hörst du in Löwe?", answers: ["ö", "ä", "ü", "o"], correct: 0,
                     explanation: "Löwe wird mit ö geschrieben."
                 },
                 {
                     id: "umlk2l1_l3", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Welchen Umlaut hörst du in Tür?", answers: ["ü", "ä", "ö", "u"], correct: 0,
                     explanation: "Tür wird mit ü geschrieben."
                 },
                 {
                     id: "umlk2l1_l4", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Wie viele Punkte hat ein Umlaut?", answers: ["2", "1", "3", "0"], correct: 0,
                     explanation: "ä, ö und ü haben zwei Punkte."
                 }
@@ -1221,25 +1221,25 @@
             mittel: [
                 {
                     id: "umlk2l1_m1", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat einen Umlaut?", answers: ["Käse", "Kanne", "Korb", "Kuchen"], correct: 0,
                     explanation: "Käse wird mit ä geschrieben."
                 },
                 {
                     id: "umlk2l1_m2", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat einen Umlaut?", answers: ["Öl", "Ofen", "Obst", "Oma"], correct: 0,
                     explanation: "Öl wird mit ö geschrieben."
                 },
                 {
                     id: "umlk2l1_m3", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat KEINEN Umlaut?", answers: ["Hand", "Hände", "Füße", "Bücher"], correct: 0,
                     explanation: "Hand hat ein einfaches a."
                 },
                 {
                     id: "umlk2l1_m4", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welcher Umlaut passt: B___cher?", answers: ["ü", "u", "ö", "ä"], correct: 0,
                     explanation: "Bücher wird mit ü geschrieben."
                 }
@@ -1247,25 +1247,25 @@
             schwer: [
                 {
                     id: "umlk2l1_s1", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welcher Buchstabe passt: M___tze?", answers: ["ü", "u", "ö", "ä"], correct: 0,
                     explanation: "Mütze wird mit ü geschrieben."
                 },
                 {
                     id: "umlk2l1_s2", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Lowe", "Löwe", "Bär", "Tür"], correct: 0,
                     explanation: "Löwe braucht ein ö."
                 },
                 {
                     id: "umlk2l1_s3", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Wie viele Umlaute hat Bücher?", answers: ["1", "2", "0", "3"], correct: 0,
                     explanation: "Nur das ü."
                 },
                 {
                     id: "umlk2l1_s4", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort hat KEINEN Umlaut?", answers: ["Baum", "Bäume", "Bücher", "Böden"], correct: 0,
                     explanation: "Baum hat au, keinen Umlaut."
                 }
@@ -1274,37 +1274,37 @@
         test: [
                 {
                     id: "umlk2l1_t1", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welchen Umlaut hörst du in Kühe?", answers: ["ü", "ä", "ö", "u"], correct: 0,
                     explanation: "Kühe wird mit ü geschrieben."
                 },
                 {
                     id: "umlk2l1_t2", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat einen Umlaut?", answers: ["Ärmel", "Arm", "Auto", "Apfel"], correct: 0,
                     explanation: "Ärmel wird mit ä geschrieben."
                 },
                 {
                     id: "umlk2l1_t3", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welcher Buchstabe passt: H___nde (viele Hand)?", answers: ["ä", "a", "ö", "ü"], correct: 0,
                     explanation: "Hände wird mit ä geschrieben."
                 },
                 {
                     id: "umlk2l1_t4", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Tur", "Tür", "Bär", "Löwe"], correct: 0,
                     explanation: "Tür braucht ein ü."
                 },
                 {
                     id: "umlk2l1_t5", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hat KEINEN Umlaut?", answers: ["Nase", "Nähe", "Nüsse", "Röcke"], correct: 0,
                     explanation: "Nase hat ein einfaches a."
                 },
                 {
                     id: "umlk2l1_t6", category: "kurs_uml_k2_l1", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Umlaute sind …", answers: ["ä, ö, ü", "a, o, u", "b, d, g", "e, i, o"], correct: 0,
                     explanation: "Nur ä, ö und ü haben zwei Punkte."
                 }
@@ -1325,25 +1325,25 @@
             leicht: [
                 {
                     id: "umlk2l2_l1", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Von welchem Wort kommt Hände?", answers: ["Hand", "Hund", "Held", "Haut"], correct: 0,
                     explanation: "Hand – darum ä."
                 },
                 {
                     id: "umlk2l2_l2", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Von welchem Wort kommt Bäcker?", answers: ["backen", "bauen", "beten", "bieten"], correct: 0,
                     explanation: "Backen – darum ä."
                 },
                 {
                     id: "umlk2l2_l3", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Von welchem Wort kommt kälter?", answers: ["kalt", "klar", "kurz", "krumm"], correct: 0,
                     explanation: "Kalt – darum ä."
                 },
                 {
                     id: "umlk2l2_l4", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Von welchem Wort kommt Gärtner?", answers: ["Garten", "Gurke", "Gabel", "Geige"], correct: 0,
                     explanation: "Garten – darum ä."
                 }
@@ -1351,25 +1351,25 @@
             mittel: [
                 {
                     id: "umlk2l2_m1", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "a oder ä: Z___hne (von Zahn)?", answers: ["ä", "a", "e", "ö"], correct: 0,
                     explanation: "Zahn wird zu Zähne."
                 },
                 {
                     id: "umlk2l2_m2", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "a oder ä: W___lder (von Wald)?", answers: ["ä", "a", "e", "ö"], correct: 0,
                     explanation: "Wald wird zu Wälder."
                 },
                 {
                     id: "umlk2l2_m3", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Wie heißt die Mehrzahl von Hand?", answers: ["Hände", "Handen", "Hands", "Händer"], correct: 0,
                     explanation: "Eine Hand, viele Hände."
                 },
                 {
                     id: "umlk2l2_m4", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Wie heißt die Mehrzahl von Ball?", answers: ["Bälle", "Ballen", "Balls", "Bälls"], correct: 0,
                     explanation: "Ein Ball, viele Bälle."
                 }
@@ -1377,25 +1377,25 @@
             schwer: [
                 {
                     id: "umlk2l2_s1", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort hilft bei Männer?", answers: ["Mann", "Mond", "Mund", "Mauer"], correct: 0,
                     explanation: "Mann – darum ä."
                 },
                 {
                     id: "umlk2l2_s2", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "a oder ä: st___rker (von stark)?", answers: ["ä", "a", "e", "ö"], correct: 0,
                     explanation: "Stark wird zu stärker."
                 },
                 {
                     id: "umlk2l2_s3", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Hende", "Hände", "Bälle", "Zähne"], correct: 0,
                     explanation: "Hand wird zu Hände."
                 },
                 {
                     id: "umlk2l2_s4", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Warum schreibt man Gärtner mit ä?", answers: ["von Garten", "von Gurke", "es ist ein Nomen", "es ist Mehrzahl"], correct: 0,
                     explanation: "Garten hat ein a."
                 }
@@ -1404,37 +1404,37 @@
         test: [
                 {
                     id: "umlk2l2_t1", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Von welchem Wort kommt Zähne?", answers: ["Zahn", "Zaun", "Zelt", "Zug"], correct: 0,
                     explanation: "Zahn – darum ä."
                 },
                 {
                     id: "umlk2l2_t2", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "a oder ä: B___lle (von Ball)?", answers: ["ä", "a", "e", "ö"], correct: 0,
                     explanation: "Ball wird zu Bälle."
                 },
                 {
                     id: "umlk2l2_t3", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Wie heißt die Mehrzahl von Wald?", answers: ["Wälder", "Walder", "Wälde", "Waldes"], correct: 0,
                     explanation: "Ein Wald, viele Wälder."
                 },
                 {
                     id: "umlk2l2_t4", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort hilft bei kälter?", answers: ["kalt", "klug", "kurz", "klein"], correct: 0,
                     explanation: "Kalt – darum ä."
                 },
                 {
                     id: "umlk2l2_t5", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Belle", "Bälle", "Zähne", "Wälder"], correct: 0,
                     explanation: "Ball wird zu Bälle."
                 },
                 {
                     id: "umlk2l2_t6", category: "kurs_uml_k2_l2", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Bei ä hilft ein verwandtes Wort mit …", answers: ["a", "e", "i", "o"], correct: 0,
                     explanation: "Zum Beispiel Hand und Hände."
                 }
@@ -1455,25 +1455,25 @@
             leicht: [
                 {
                     id: "umlk2l3_l1", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Von welchem Wort kommt Häuser?", answers: ["Haus", "Hose", "Heu", "Hut"], correct: 0,
                     explanation: "Haus – darum äu."
                 },
                 {
                     id: "umlk2l3_l2", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Von welchem Wort kommt Bäume?", answers: ["Baum", "Beule", "Besen", "Bein"], correct: 0,
                     explanation: "Baum – darum äu."
                 },
                 {
                     id: "umlk2l3_l3", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Von welchem Wort kommt Mäuse?", answers: ["Maus", "Moos", "Messer", "Mond"], correct: 0,
                     explanation: "Maus – darum äu."
                 },
                 {
                     id: "umlk2l3_l4", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "leicht", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "leicht", points: 10,
                     question: "Von welchem Wort kommt Träume?", answers: ["Traum", "Trommel", "Treppe", "Tropfen"], correct: 0,
                     explanation: "Traum – darum äu."
                 }
@@ -1481,25 +1481,25 @@
             mittel: [
                 {
                     id: "umlk2l3_m1", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "äu oder eu: H___ser?", answers: ["äu", "eu", "oi", "ai"], correct: 0,
                     explanation: "Häuser kommt von Haus."
                 },
                 {
                     id: "umlk2l3_m2", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "äu oder eu: h___te (der Tag)?", answers: ["eu", "äu", "oi", "ai"], correct: 0,
                     explanation: "Es gibt kein Wort mit au dazu."
                 },
                 {
                     id: "umlk2l3_m3", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "äu oder eu: Fr___nd?", answers: ["eu", "äu", "oi", "ai"], correct: 0,
                     explanation: "Es gibt kein Wort mit au dazu."
                 },
                 {
                     id: "umlk2l3_m4", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "äu oder eu: B___me?", answers: ["äu", "eu", "oi", "ai"], correct: 0,
                     explanation: "Bäume kommt von Baum."
                 }
@@ -1507,25 +1507,25 @@
             schwer: [
                 {
                     id: "umlk2l3_s1", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Heuser", "Häuser", "heute", "Freund"], correct: 0,
                     explanation: "Häuser kommt von Haus."
                 },
                 {
                     id: "umlk2l3_s2", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Meuse", "Mäuse", "Bäume", "Freund"], correct: 0,
                     explanation: "Mäuse kommt von Maus."
                 },
                 {
                     id: "umlk2l3_s3", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Warum schreibt man Mäuse mit äu?", answers: ["von Maus", "von Moos", "es ist ein Nomen", "es ist Mehrzahl"], correct: 0,
                     explanation: "Maus hat au."
                 },
                 {
                     id: "umlk2l3_s4", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "schwer", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "schwer", points: 10,
                     question: "Gibt es kein Wort mit au, schreibt man …", answers: ["eu", "äu", "au", "ou"], correct: 0,
                     explanation: "Zum Beispiel heute und Freund."
                 }
@@ -1534,37 +1534,37 @@
         test: [
                 {
                     id: "umlk2l3_t1", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Von welchem Wort kommt Läufer?", answers: ["laufen", "leuchten", "lesen", "legen"], correct: 0,
                     explanation: "Laufen – darum äu."
                 },
                 {
                     id: "umlk2l3_t2", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "äu oder eu: M___se (die Tiere)?", answers: ["äu", "eu", "oi", "ai"], correct: 0,
                     explanation: "Mäuse kommt von Maus."
                 },
                 {
                     id: "umlk2l3_t3", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "äu oder eu: L___te (die Menschen)?", answers: ["eu", "äu", "oi", "ai"], correct: 0,
                     explanation: "Es gibt kein Wort mit au dazu."
                 },
                 {
                     id: "umlk2l3_t4", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Welches Wort ist falsch?", answers: ["Treume", "Träume", "Häuser", "heute"], correct: 0,
                     explanation: "Träume kommt von Traum."
                 },
                 {
                     id: "umlk2l3_t5", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Von welchem Wort kommt Bäume?", answers: ["Baum", "Bein", "Besen", "Beule"], correct: 0,
                     explanation: "Baum – darum äu."
                 },
                 {
                     id: "umlk2l3_t6", category: "kurs_uml_k2_l3", area: "schule", grade: 2,
-                    subject: "deutsch", topic: "rechtschreibung", difficulty: "mittel", points: 10,
+                    subject: "deutsch", topic: "abc_rechtschreibung", difficulty: "mittel", points: 10,
                     question: "Bei äu gibt es ein verwandtes Wort mit …", answers: ["au", "eu", "ei", "ai"], correct: 0,
                     explanation: "Zum Beispiel Haus und Häuser."
                 }

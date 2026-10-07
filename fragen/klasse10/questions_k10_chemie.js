@@ -332,7 +332,7 @@ const K10_CHEMIE_QUESTIONS = [
     grade: 10,
     subject: "chemie",
     question: "Was ist Elektronegativität?",
-    answers: ["Die Fähigkeit eines Atoms, in einer Bindung stets Elektronen abzugeben", "Die Anzahl der Protonen im Atomkern eines Elements insgesamt", "Die Fähigkeit eines Atoms, in einer Bindung Elektronen anzuziehen", "Die Ordnungszahl eines Elements im Periodensystem der Elemente"],
+    answers: ["Die Fähigkeit eines Atoms, in einer Bindung stets Elektronen abzugeben", "Die Anzahl der Protonen im Atomkern eines Elements", "Die Fähigkeit eines Atoms, in einer Bindung Elektronen anzuziehen", "Die Ordnungszahl eines Elements im Periodensystem der Elemente"],
     correct: 2,
     difficulty: "mittel",
     points: 5,

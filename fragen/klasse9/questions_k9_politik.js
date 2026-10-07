@@ -173,12 +173,7 @@ const K9_POLITIK_QUESTIONS = [
     "grade": 9,
     "subject": "politik",
     "question": "Wofür entscheidet die 'Zweitstimme' bei der deutschen Bundestagswahl?",
-    "answers": [
-      "Sitzverteilung der Parteien im Parlament",
-      "Direktmandat des jeweiligen Wahlkreises",
-      "Persönliche Wahl der Bundeskanzlerin",
-      "Zusammensetzung des Bundesrates insgesamt"
-    ],
+    "answers": ["Sitzverteilung der Parteien im Parlament", "Direktmandat des jeweiligen Wahlkreises", "Persönliche Wahl der Bundeskanzlerin", "Zusammensetzung des Bundesrates"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -895,12 +890,7 @@ const K9_POLITIK_QUESTIONS = [
     "grade": 9,
     "subject": "politik",
     "question": "Wie nennt man die Phasen eines typischen Konjunkturzyklus in der richtigen Reihenfolge?",
-    "answers": [
-      "Aufschwung, Hochkonjunktur, Abschwung, Tiefphase",
-      "Tiefphase, Krise, Aufschwung, Stagnation insgesamt",
-      "Hochkonjunktur, Boom, Krise, völlige Auflösung",
-      "Aufschwung, kurze Pause, Tiefphase, Zusammenbruch"
-    ],
+    "answers": ["Aufschwung, Hochkonjunktur, Abschwung, Tiefphase", "Tiefphase, Krise, Aufschwung, Stagnation", "Hochkonjunktur, Boom, Krise, völlige Auflösung", "Aufschwung, kurze Pause, Tiefphase, Zusammenbruch"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1673,12 +1663,7 @@ const K9_POLITIK_QUESTIONS = [
     "grade": 9,
     "subject": "politik",
     "question": "Welches Gesetz schützt Jugendliche in Deutschland vor Überlastung am Arbeitsplatz?",
-    "answers": [
-      "Das Jugendarbeitsschutzgesetz (JArbSchG)",
-      "Das Allgemeine Bürgerliche Gesetzbuch insgesamt",
-      "Die Gewerbeordnung für kleine Betriebe",
-      "Das Bundesausbildungsförderungsgesetz"
-    ],
+    "answers": ["Das Jugendarbeitsschutzgesetz (JArbSchG)", "Das Allgemeine Bürgerliche Gesetzbuch", "Die Gewerbeordnung für kleine Betriebe", "Das Bundesausbildungsförderungsgesetz"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

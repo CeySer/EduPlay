@@ -1146,7 +1146,7 @@ const K10_MATHEMATIK_QUESTIONS = [
     grade: 10,
     subject: "mathematik",
     question: "Was ist die relative Häufigkeit eines Ereignisses?",
-    answers: ["Anzahl der günstigen Fälle geteilt durch Gesamtzahl der Versuche", "Differenz der günstigen und ungünstigen Fälle im gesamten Versuch", "Nur die absolute Anzahl der günstigen Fälle im Versuch insgesamt", "Die theoretische Wahrscheinlichkeit direkt in Prozent umgerechnet"],
+    answers: ["Anzahl der günstigen Fälle geteilt durch Gesamtzahl der Versuche", "Differenz der günstigen und ungünstigen Fälle im gesamten Versuch", "Nur die absolute Anzahl der günstigen Fälle im Versuch", "Die theoretische Wahrscheinlichkeit direkt in Prozent umgerechnet"],
     correct: 0,
     difficulty: "leicht",
     points: 5,

@@ -1022,7 +1022,7 @@ const K10_INFORMATIK_QUESTIONS = [
     grade: 10,
     subject: "informatik",
     question: "Was ist Scratch?",
-    answers: ["Eine visuelle Programmiersprache für Einsteiger mit Bausteinen", "Nur eine textbasierte Programmiersprache für Profis", "Nur eine Datenbank zur Speicherung von Lernfortschritten", "Nur ein spezielles Betriebssystem für Schulcomputer im Unterricht"],
+    answers: ["Eine visuelle Programmiersprache für Einsteiger mit Bausteinen", "Nur eine textbasierte Programmiersprache für Profis", "Nur eine Datenbank zur Speicherung von Lernfortschritten", "Nur ein spezielles Betriebssystem für Schulcomputer"],
     correct: 0,
     difficulty: "leicht",
     points: 5,

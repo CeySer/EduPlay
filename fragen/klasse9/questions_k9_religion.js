@@ -1095,12 +1095,7 @@ const K9_RELIGION_QUESTIONS = [
     "grade": 9,
     "subject": "religion",
     "question": "Was bedeutet der Begriff 'Sünde' im ursprünglichen theologischen Sinn?",
-    "answers": [
-      "Getrenntsein von Gott u. Nächsten",
-      "Verstoß gegen staatliche Gesetze",
-      "Ein ungeschickter Fehler im Alltag",
-      "Böse Gedanken ohne Folgen"
-    ],
+    "answers": ["Getrenntsein von Gott u. Nächsten", "Verstoß gegen staatliche Gesetze", "Ein ungeschickter Fehler", "Böse Gedanken ohne Folgen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1239,12 +1234,7 @@ const K9_RELIGION_QUESTIONS = [
     "grade": 9,
     "subject": "religion",
     "question": "Was bedeutet der Begriff 'Konziliarer Prozess' für Frieden, Gerechtigkeit u. Bewahrung der Schöpfung?",
-    "answers": [
-      "Weltweite kirchliche Initiative",
-      "Prozess gegen Abtrünnige der Kirche",
-      "Wahl des päpstlichen Stuhls in Rom",
-      "Bau von Öko-Kirchen weltweit heute"
-    ],
+    "answers": ["Weltweite kirchliche Initiative", "Prozess gegen Abtrünnige der Kirche", "Wahl des päpstlichen Stuhls in Rom", "Bau von Öko-Kirchen weltweit"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

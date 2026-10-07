@@ -26,12 +26,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Wie viele Chromosomen enthält eine normale menschliche Körperzelle in ihrem Zellkern?",
-    "answers": [
-      "Exakt 12 Chromosomen insgesamt.",
-      "Exakt 46 Chromosomen (23 Paare).",
-      "Exakt 23 Chromosomen insgesamt.",
-      "Exakt 92 Chromosomen (46 Paare)."
-    ],
+    "answers": ["Exakt 12 Chromosomen.", "Exakt 46 Chromosomen (23 Paare).", "Exakt 23 Chromosomen.", "Exakt 92 Chromosomen (46 Paare)."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,

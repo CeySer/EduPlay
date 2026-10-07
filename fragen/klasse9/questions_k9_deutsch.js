@@ -987,12 +987,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Wozu dient der Konjunktiv II primär?",
-    "answers": [
-      "Irreale Wünsche u. Träume",
-      "Feststellung harter Tatsachen",
-      "Aufforderungen im Unterricht",
-      "Wiedergabe von Zitaten"
-    ],
+    "answers": ["Irreale Wünsche u. Träume", "Feststellung harter Tatsachen", "Aufforderungen", "Wiedergabe von Zitaten"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1952,12 +1947,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Wann verwendet man den Konjunktiv I in der deutschen Sprache primär?",
-    "answers": [
-      "Bei der Kennzeichnung indirekter Rede",
-      "Bei unmöglichen Wünschen u. Irrealität",
-      "Bei höflichen Aufforderungen im Alltag",
-      "Bei Befehlen an mehreren Personen"
-    ],
+    "answers": ["Bei der Kennzeichnung indirekter Rede", "Bei unmöglichen Wünschen u. Irrealität", "Bei höflichen Aufforderungen", "Bei Befehlen an mehreren Personen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2512,12 +2502,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Was zeichnet die Epoche des 'Sturm und Drang' (ca. 1765–1785) aus?",
-    "answers": [
-      "Gefühl, Geniekult u. Jugendliche Rebellion",
-      "Strenges Befolgen antiker Formregeln dort",
-      "Rein wissenschaftliche Welterklärung heute",
-      "Lobpreisung von Kirche und Gottesgnadentum"
-    ],
+    "answers": ["Gefühl, Geniekult u. Jugendliche Rebellion", "Strenges Befolgen antiker Formregeln dort", "Rein wissenschaftliche Welterklärung", "Lobpreisung von Kirche und Gottesgnadentum"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2838,12 +2823,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Welches W-Fragen-Schema deckt ein journalistischer 'Bericht' ab?",
-    "answers": [
-      "Wer, Was, Wann, Wo, Wie, Warum, Welche Folgen?",
-      "Wer, Was, Wann, Wo und Wie genau dabei",
-      "Warum, Wie oft, Wogegen und Welcher Sinn",
-      "Wie lange, Welches Gefallen und wer nicht heute"
-    ],
+    "answers": ["Wer, Was, Wann, Wo, Wie, Warum, Welche Folgen?", "Wer, Was, Wann, Wo und Wie genau", "Warum, Wie oft, Wogegen und Welcher Sinn", "Wie lange, Welches Gefallen und wer nicht"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

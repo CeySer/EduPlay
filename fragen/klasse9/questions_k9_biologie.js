@@ -1763,12 +1763,7 @@ const K9_BIOLOGIE_QUESTIONS = [
     "grade": 9,
     "subject": "biologie",
     "question": "Was versteht man unter 'Biomagnifikation' in einer Nahrungskette?",
-    "answers": [
-      "Anreicherung von Giften nach oben",
-      "Zunahme der Tiergröße insgesamt",
-      "Verdopplung der Geburtenrate",
-      "Verlust von seltenen Pflanzenarten"
-    ],
+    "answers": ["Anreicherung von Giften nach oben", "Zunahme der Tiergröße", "Verdopplung der Geburtenrate", "Verlust von seltenen Pflanzenarten"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

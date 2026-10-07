@@ -83,12 +83,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Welcher Schlagwort-Begriff charakterisiert die aggressive imperialistische Außenpolitik Kaiser Wilhelms II. nach 1890?",
-    "answers": [
-      "Der 'Platz an der Sonne' Anspruch",
-      "Die 'Politik des Gleichgewichts' Europa",
-      "Der 'Rückzug ins eigene Reich' Kurs",
-      "Die 'Bündnistreue ohne Grenzen' Idee"
-    ],
+    "answers": ["'Platz an der Sonne'", "'Politik des Gleichgewichts'", "'Rückzug ins eigene Reich'", "'Bündnistreue ohne Grenzen'"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -950,13 +945,8 @@ const K9_GESCHICHTE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "geschichte",
-    "question": "Wie nannten die Nationalsozialisten die systematische Aushebung der Demokratie u. Gleichschaltung aller staatlichen Institutionen?",
-    "answers": [
-      "Die 'Gleichschaltung' Staat",
-      "Die 'Demokratisierung' Volk",
-      "Die 'Verfassungserneuerung'",
-      "Die 'Föderale Umstrukturierung'"
-    ],
+    "question": "Wie nannten die Nationalsozialisten das Ausschalten von Ländern, Parteien und Verbänden 1933/34?",
+    "answers": ["Gleichschaltung", "Demokratisierung", "Verfassungserneuerung", "Föderalisierung"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1239,12 +1229,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Welche studentische Widerstandsgruppe in München verteilte Flugblätter gegen das NS-Regime u. wurde 1943 hingerichtet?",
-    "answers": [
-      "Die 'Weiße Rose' (Scholl)",
-      "Der 'Edelweißpiraten' Kreis",
-      "Der 'Rote Frontkämpfer' Bund",
-      "Die 'Kreisauer Kreis' Gruppe"
-    ],
+    "answers": ["Die Weiße Rose", "Die Edelweißpiraten", "Der Rote Frontkämpferbund", "Der Kreisauer Kreis"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

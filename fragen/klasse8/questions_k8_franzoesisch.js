@@ -505,12 +505,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Was bedeutet die Zeitangabe 'il est midi / il est minuit'?",
-    "answers": [
-      "Es ist 12 Uhr mittags / Es ist 12 Uhr nachts (Mitternacht).",
-      "Es ist 6 Uhr morgens ganz früh / Es ist 18 Uhr abends spät.",
-      "Es ist halb drei am Nachmittag / Es ist Viertel vor vier Uhr.",
-      "Es ist genau Sonnenaufgang am Morgen / Sonnenuntergang am Abend heute."
-    ],
+    "answers": ["Es ist 12 Uhr mittags / Es ist 12 Uhr nachts (Mitternacht).", "Es ist 6 Uhr morgens ganz früh / Es ist 18 Uhr abends spät.", "Es ist halb drei am Nachmittag / Es ist Viertel vor vier Uhr.", "Es ist genau Sonnenaufgang am Morgen / Sonnenuntergang am Abend."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,

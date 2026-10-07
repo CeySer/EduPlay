@@ -41,6 +41,9 @@ const FUN_CATEGORIES = [
     { key: "spass_flaggen", label: "🚩 Flaggen raten" },
     { key: "musik_hits", label: "🎵 Musik-Hits" },
     { key: "werbung_marken", label: "📺 Werbung & Marken" },
+    // 03.09.2026: waren im Spiel nicht erreichbar, obwohl Fragen vorhanden
+    { key: "spass_visuell", label: "👁️ Bilder-Rätsel" },
+    { key: "natur_wissenschaft", label: "🔬 Natur & Wissenschaft" },
 ];
 
 if (typeof window !== "undefined") window.FUN_CATEGORIES = FUN_CATEGORIES;

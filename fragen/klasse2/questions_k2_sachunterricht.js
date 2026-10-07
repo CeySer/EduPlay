@@ -1310,11 +1310,11 @@ const K2_SACHUNTERRICHT_QUESTIONS = [
     grade: 2,
     subject: "sachunterricht",
     question: "Warum soll man am Bordstein stehen bleiben, bevor man über die Straße geht?",
-    answers: ["Damit man kurz verschnaufen und ausruhen kann", "Damit man das Gleichgewicht behält und Autos in Ruhe sieht", "Weil der Schuh sonst aufgeht und man stolpern könnte", "Wegen plötzlicher Müdigkeit mitten auf der belebten Straße"],
+    answers: ["Um kurz auszuruhen", "Um nach Autos zu schauen", "Um die Schuhe zu binden", "Weil er bunt bemalt ist"],
     correct: 1,
     difficulty: "leicht",
     points: 5,
-    explanation: "Am Bordstein stoppen schützt vor überraschenden Autos."
+    explanation: "Am Bordstein stoppen: erst links, rechts, links schauen, dann gehen."
   },
   {
     id: "q2_s_094",
@@ -1413,5 +1413,76 @@ const K2_SACHUNTERRICHT_QUESTIONS = [
     difficulty: "leicht",
     points: 5,
     explanation: "Hinten leuchtet ein Fahrrad immer rot, vorne weiß."
+  },
+  // Obst & Gemüse (aus K3-Datei umgezogen)
+  {
+    id: "q2_s_101",
+    category: "k2_sachunterricht",
+    topic: "tiere_pflanzen_k2",
+    area: "schule",
+    grade: 2,
+    subject: "sachunterricht",
+    question: "Welches ist ein Obst (eine Frucht)?",
+    answers: ["Kartoffel", "Apfel", "Kohl", "Möhre"],
+    correct: 1,
+    difficulty: "leicht",
+    points: 5,
+    explanation: "Der Apfel wächst an einem Baum und ist ein Obst."
+  },
+  {
+    id: "q2_s_102",
+    category: "k2_sachunterricht",
+    topic: "tiere_pflanzen_k2",
+    area: "schule",
+    grade: 2,
+    subject: "sachunterricht",
+    question: "Welches ist ein Gemüse?",
+    answers: ["Banane", "Kirsche", "Tomate", "Orange"],
+    correct: 2,
+    difficulty: "leicht",
+    points: 5,
+    explanation: "Die Tomate ist ein Gemüse, auch wenn sie botanisch eine Frucht ist. Im Alltag zählt sie zum Gemüse."
+  },
+  {
+    id: "q2_s_103",
+    category: "k2_sachunterricht",
+    topic: "tiere_pflanzen_k2",
+    area: "schule",
+    grade: 2,
+    subject: "sachunterricht",
+    question: "Welches Obst wächst in Deutschland oft auf Bäumen?",
+    answers: ["Melone", "Mango", "Ananas", "Apfel"],
+    correct: 3,
+    difficulty: "leicht",
+    points: 5,
+    explanation: "Äpfel wachsen bei uns auf Obstbäumen."
+  },
+  {
+    id: "q2_s_104",
+    category: "k2_sachunterricht",
+    topic: "tiere_pflanzen_k2",
+    area: "schule",
+    grade: 2,
+    subject: "sachunterricht",
+    question: "Was ist eine Zwiebel?",
+    answers: ["Ein Getreide", "Ein Gemüse", "Ein Obst", "Ein Pilz"],
+    correct: 1,
+    difficulty: "leicht",
+    points: 5,
+    explanation: "Die Zwiebel ist ein Gemüse, das unter der Erde wächst."
+  },
+  {
+    id: "q2_s_105",
+    category: "k2_sachunterricht",
+    topic: "tiere_pflanzen_k2",
+    area: "schule",
+    grade: 2,
+    subject: "sachunterricht",
+    question: "Welches dieser Lebensmittel ist KEIN Obst?",
+    answers: ["Pfirsich", "Traube", "Banane", "Gurke"],
+    correct: 3,
+    difficulty: "mittel",
+    points: 5,
+    explanation: "Die Gurke ist ein Gemüse, Banane, Traube und Pfirsich sind Obst."
   }
 ];

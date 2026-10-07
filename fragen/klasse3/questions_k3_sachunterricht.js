@@ -212,20 +212,7 @@ const K3_SACHUNTERRICHT_QUESTIONS = [
     points: 5,
     explanation: "Totholz ist voller Leben und dient Hunderten Käfer- und Pilzarten als Lebensraum."
   },
-{
-  id: "q3_s_016",
-  category: "k2_sachunterricht",
-  topic: "tiere_pflanzen_k2",
-  area: "schule",
-  grade: 2,
-  subject: "sachunterricht",
-  question: "Wie nennt man das männliche Rind auf dem Bauernhof?",
-  answers: ["Kuh", "Stier", "Hahn", "Kalb"],
-  correct: 1,
-  difficulty: "mittel",
-  points: 5,
-  explanation: "Das männliche Rind nennt man Stier oder Bulle."
-},
+
   {
     id: "q3_s_017",
     category: "k3_sachunterricht",
@@ -892,20 +879,7 @@ const K3_SACHUNTERRICHT_QUESTIONS = [
     points: 5,
     explanation: "An einer kalten Fensterscheibe beschlägt Wasserdampf und kondensiert zu Tropfen."
   },
-{
-  id: "q3_s_064",
-  category: "k2_sachunterricht",
-  topic: "zeit_orientierung",
-  area: "schule",
-  grade: 2,
-  subject: "sachunterricht",
-  question: "Was bedeutet die Abkürzung NRW?",
-  answers: ["Niedersachsen-Reich-West", "Norden-Rechts-Westen", "Neuer Regenbogen Wald", "Nordrhein-Westfalen"],
-  correct: 3,
-  difficulty: "leicht",
-  points: 5,
-  explanation: "NRW steht für unser Bundesland Nordrhein-Westfalen."
-},
+
   {
     id: "q3_s_065",
     category: "k3_sachunterricht",
@@ -1316,20 +1290,7 @@ const K3_SACHUNTERRICHT_QUESTIONS = [
     points: 5,
     explanation: "Ein Pflaster deckt kleine Wunden sauber ab und stoppt leichte Blutung."
   },
-{
-  id: "q3_s_094",
-  category: "k2_sachunterricht",
-  topic: "verkehr_koerper_k2",
-  area: "schule",
-  grade: 2,
-  subject: "sachunterricht",
-  question: "Warum soll man am Bordstein stehen bleiben, bevor man über die Straße geht?",
-  answers: ["Damit man ganz in Ruhe seine Schuhe binden kann", "Damit man das Gleichgewicht behält und Autos in Ruhe sieht", "Weil der Bordstein dort besonders bunt bemalt ist", "Aus lauter Müdigkeit nach einem sehr langen und anstrengenden Schultag"],
-  correct: 1,
-  difficulty: "leicht",
-  points: 5,
-  explanation: "Am Bordstein stoppen schützt vor überraschenden Autos."
-},
+
 
   {
     id: "q3_s_095",
@@ -1428,79 +1389,5 @@ const K3_SACHUNTERRICHT_QUESTIONS = [
     difficulty: "leicht",
     points: 5,
     explanation: "Adern durchziehen den ganzen Körper wie kleine Leitungsrohre."
-  },
-  // ================================================================
-// ZUSÄTZLICHE SACHUNTERRICHT-FRAGEN (Obst & Gemüse)
-// ================================================================
-
-{
-  id: "q3_s_102",
-  category: "k2_sachunterricht",
-  topic: "tiere_pflanzen_k2",
-  area: "schule",
-  grade: 2,
-  subject: "sachunterricht",
-  question: "Welches ist ein Obst (eine Frucht)?",
-  answers: ["Kartoffel", "Apfel", "Kohl", "Möhre"],
-  correct: 1,
-  difficulty: "leicht",
-  points: 5,
-  explanation: "Der Apfel wächst an einem Baum und ist ein Obst."
-},
-{
-  id: "q3_s_103",
-  category: "k2_sachunterricht",
-  topic: "tiere_pflanzen_k2",
-  area: "schule",
-  grade: 2,
-  subject: "sachunterricht",
-  question: "Welches ist ein Gemüse?",
-  answers: ["Banane", "Kirsche", "Tomate", "Orange"],
-  correct: 2,
-  difficulty: "leicht",
-  points: 5,
-  explanation: "Die Tomate ist ein Gemüse, auch wenn sie botanisch eine Frucht ist. Im Alltag zählt sie zum Gemüse."
-},
-{
-  id: "q3_s_104",
-  category: "k2_sachunterricht",
-  topic: "tiere_pflanzen_k2",
-  area: "schule",
-  grade: 2,
-  subject: "sachunterricht",
-  question: "Welches Obst wächst in Deutschland oft auf Bäumen?",
-  answers: ["Melone", "Mango", "Ananas", "Apfel"],
-  correct: 3,
-  difficulty: "leicht",
-  points: 5,
-  explanation: "Äpfel wachsen bei uns auf Obstbäumen."
-},
-{
-  id: "q3_s_105",
-  category: "k2_sachunterricht",
-  topic: "tiere_pflanzen_k2",
-  area: "schule",
-  grade: 2,
-  subject: "sachunterricht",
-  question: "Was ist eine Zwiebel?",
-  answers: ["Ein Getreide", "Ein Gemüse", "Ein Obst", "Ein Pilz"],
-  correct: 1,
-  difficulty: "leicht",
-  points: 5,
-  explanation: "Die Zwiebel ist ein Gemüse, das unter der Erde wächst."
-},
-{
-  id: "q3_s_106",
-  category: "k2_sachunterricht",
-  topic: "tiere_pflanzen_k2",
-  area: "schule",
-  grade: 2,
-  subject: "sachunterricht",
-  question: "Welches dieser Lebensmittel ist KEIN Obst?",
-  answers: ["Pfirsich", "Traube", "Banane", "Gurke"],
-  correct: 3,
-  difficulty: "mittel",
-  points: 5,
-  explanation: "Die Gurke ist ein Gemüse, Banane, Traube und Pfirsich sind Obst."
-}
+  }
 ];

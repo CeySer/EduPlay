@@ -148,51 +148,51 @@
                 {
                     id: "anlk1l2_l1", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "leicht", points: 10,
-                    question: "Saft beginnt wie …", answers: ["Sonne", "Maus", "Ball", "Tisch"], correct: 0,
-                    explanation: "S."
+                    question: "Welches Wort beginnt wie Saft?", answers: ["Sonne", "Maus", "Ball", "Tisch"], correct: 0,
+                    explanation: "Saft und Sonne beginnen mit S."
                 },
                 {
                     id: "anlk1l2_l2", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "leicht", points: 10,
-                    question: "Mond beginnt wie …", answers: ["Maus", "Sonne", "Ball", "Auto"], correct: 0,
-                    explanation: "M."
+                    question: "Welches Wort beginnt wie Mond?", answers: ["Maus", "Sonne", "Ball", "Auto"], correct: 0,
+                    explanation: "Mond und Maus beginnen mit M."
                 },
                 {
                     id: "anlk1l2_l3", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "leicht", points: 10,
-                    question: "Baum beginnt wie …", answers: ["Ball", "Sonne", "Nase", "Ofen"], correct: 0,
-                    explanation: "B."
+                    question: "Welches Wort beginnt wie Baum?", answers: ["Ball", "Sonne", "Nase", "Ofen"], correct: 0,
+                    explanation: "Baum und Ball beginnen mit B."
                 },
                 {
                     id: "anlk1l2_l4", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "leicht", points: 10,
-                    question: "Tür beginnt wie …", answers: ["Tisch", "Maus", "Sonne", "Ball"], correct: 0,
-                    explanation: "T."
+                    question: "Welches Wort beginnt wie Tür?", answers: ["Tisch", "Maus", "Sonne", "Ball"], correct: 0,
+                    explanation: "Tür und Tisch beginnen mit T."
                 }
             ], mittel: [
                 {
                     id: "anlk1l2_m1", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Welches Wort passt nicht zu Maus?", answers: ["Sonne", "Mond", "Mütze", "Mama"], correct: 0,
-                    explanation: "Sonne = S."
+                    question: "Welches Wort beginnt nicht wie Maus?", answers: ["Sonne", "Mond", "Mütze", "Mama"], correct: 0,
+                    explanation: "Sonne beginnt mit S, die anderen mit M."
                 },
                 {
                     id: "anlk1l2_m2", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Fisch beginnt mit …", answers: ["F", "S", "M", "T"], correct: 0,
-                    explanation: "F."
+                    question: "Welcher Anlaut steckt in Fisch?", answers: ["F", "S", "M", "T"], correct: 0,
+                    explanation: "Fisch beginnt mit F."
                 },
                 {
                     id: "anlk1l2_m3", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Kuchen beginnt mit …", answers: ["K", "S", "M", "A"], correct: 0,
-                    explanation: "K."
+                    question: "Welcher Anlaut steckt in Kuchen?", answers: ["K", "S", "M", "A"], correct: 0,
+                    explanation: "Kuchen beginnt mit K."
                 },
                 {
                     id: "anlk1l2_m4", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Oma und Ofen – gleicher Anlaut?", answers: ["Ja, beide mit O", "Nein, S und M", "Nein, T und B", "Nein, A und U"], correct: 0,
-                    explanation: "Beide Wörter fangen mit dem Laut O an."
+                    question: "Beginnen Oma und Ofen gleich?", answers: ["Ja, beide mit O", "Nein, ganz anders", "Ja, beide mit A", "Ja, beide mit U"], correct: 0,
+                    explanation: "Oma und Ofen beginnen mit O."
                 }
             ], schwer: [
                 {
@@ -204,58 +204,58 @@
                 {
                     id: "anlk1l2_s2", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "schwer", points: 10,
-                    question: "Welches startet mit A?", answers: ["Apfel", "Sonne", "Ball", "Mond"], correct: 0,
-                    explanation: "Apfel."
+                    question: "Welches Wort beginnt mit A?", answers: ["Apfel", "Sonne", "Ball", "Mond"], correct: 0,
+                    explanation: "Apfel beginnt mit A."
                 },
                 {
                     id: "anlk1l2_s3", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "schwer", points: 10,
-                    question: "Nuss und Nase haben …", answers: ["gleichen Anlaut N", "verschiedene Anlaute", "beide S", "beide T"], correct: 0,
-                    explanation: "N."
+                    question: "Nuss und Nase beginnen beide mit …", answers: ["N", "M", "S", "U"], correct: 0,
+                    explanation: "Nuss und Nase beginnen mit N."
                 },
                 {
                     id: "anlk1l2_s4", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "schwer", points: 10,
-                    question: "Welches startet nicht mit B?", answers: ["Sonne", "Ball", "Baum", "Bus"], correct: 0,
-                    explanation: "Sonne."
+                    question: "Welches Wort beginnt nicht mit B?", answers: ["Sonne", "Ball", "Baum", "Bus"], correct: 0,
+                    explanation: "Sonne beginnt mit S."
                 }
             ] },
         test: [
                 {
                     id: "anlk1l2_t1", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Saft wie?", answers: ["Sonne", "Maus", "Ball", "Tisch"], correct: 0,
-                    explanation: "S."
+                    question: "Welches Wort beginnt wie Sand?", answers: ["Sofa", "Maus", "Ball", "Tisch"], correct: 0,
+                    explanation: "Sand und Sofa beginnen mit S."
                 },
                 {
                     id: "anlk1l2_t2", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Mond wie?", answers: ["Maus", "Sonne", "Tisch", "Auto"], correct: 0,
-                    explanation: "M."
+                    question: "Welches Wort beginnt wie Milch?", answers: ["Maus", "Sonne", "Tisch", "Auto"], correct: 0,
+                    explanation: "Milch und Mond beginnen mit M."
                 },
                 {
                     id: "anlk1l2_t3", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Baum wie?", answers: ["Ball", "Sonne", "Nase", "Ofen"], correct: 0,
-                    explanation: "B."
+                    question: "Welches Wort beginnt wie Bein?", answers: ["Ball", "Sonne", "Nase", "Ofen"], correct: 0,
+                    explanation: "Bein und Ball beginnen mit B."
                 },
                 {
                     id: "anlk1l2_t4", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Fisch Anlaut?", answers: ["F", "S", "M", "K"], correct: 0,
-                    explanation: "F."
+                    question: "Mit welchem Laut beginnt Feder?", answers: ["F", "W", "S", "M"], correct: 0,
+                    explanation: "Feder beginnt mit F."
                 },
                 {
                     id: "anlk1l2_t5", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Apfel Anlaut?", answers: ["A", "O", "E", "I"], correct: 0,
-                    explanation: "A."
+                    question: "Mit welchem Laut beginnt Igel?", answers: ["I", "E", "A", "O"], correct: 0,
+                    explanation: "Igel beginnt mit I."
                 },
                 {
                     id: "anlk1l2_t6", category: "kurs_anl_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Kuchen Anlaut?", answers: ["K", "S", "M", "T"], correct: 0,
-                    explanation: "K."
+                    question: "Mit welchem Laut beginnt Kamm?", answers: ["K", "G", "T", "M"], correct: 0,
+                    explanation: "Kamm beginnt mit K."
                 }
         ],
         bestehenAb: 0.75
@@ -265,125 +265,121 @@
         title: "Mehr Silben", kurz: "3 Schläge",
         erklaerung: {
             intro: "Lange Wörter haben oft <b>drei Silben</b>. Klatsch langsam: Ba-na-ne.",
-            beispiele: [
-                "Banane = 3",
-                "Computer = 3",
-                "Schokolade = 4"
-            ],
+            beispiele: ["Ba-na-ne = 3", "Com-pu-ter = 3", "Scho-ko-la-de = 4"],
             merksatz: "Ein Klatscher pro Silbe."
         },
         uebung: { leicht: [
                 {
                     id: "silk1l2_l1", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "leicht", points: 10,
-                    question: "Banane?", answers: ["3", "1", "2", "5"], correct: 0,
-                    explanation: "Ba-na-ne."
+                    question: "Wie viele Silben hat Ananas?", answers: ["3", "1", "2", "5"], correct: 0,
+                    explanation: "A-na-nas: 3 Silben."
                 },
                 {
                     id: "silk1l2_l2", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "leicht", points: 10,
-                    question: "Auto?", answers: ["2", "1", "3", "4"], correct: 0,
-                    explanation: "Au-to."
+                    question: "Wie viele Silben hat Löwe?", answers: ["2", "1", "3", "4"], correct: 0,
+                    explanation: "Lö-we: 2 Silben."
                 },
                 {
                     id: "silk1l2_l3", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "leicht", points: 10,
-                    question: "Hut?", answers: ["1", "2", "3", "4"], correct: 0,
-                    explanation: "Hut."
+                    question: "Wie viele Silben hat Hut?", answers: ["1", "2", "3", "4"], correct: 0,
+                    explanation: "Hut: 1 Silbe."
                 },
                 {
                     id: "silk1l2_l4", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "leicht", points: 10,
-                    question: "Schule?", answers: ["2", "1", "3", "4"], correct: 0,
-                    explanation: "Schu-le."
+                    question: "Wie viele Silben hat Blume?", answers: ["2", "1", "3", "4"], correct: 0,
+                    explanation: "Blu-me: 2 Silben."
                 }
             ], mittel: [
                 {
                     id: "silk1l2_m1", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Tomate?", answers: ["3", "2", "1", "4"], correct: 0,
-                    explanation: "To-ma-te."
+                    question: "Wie viele Silben hat Tomate?", answers: ["3", "2", "1", "4"], correct: 0,
+                    explanation: "To-ma-te: 3 Silben."
                 },
                 {
                     id: "silk1l2_m2", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Elefant?", answers: ["3", "2", "1", "4"], correct: 0,
-                    explanation: "E-le-fant."
+                    question: "Wie viele Silben hat Elefant?", answers: ["3", "2", "1", "4"], correct: 0,
+                    explanation: "E-le-fant: 3 Silben."
                 },
                 {
                     id: "silk1l2_m3", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Fenster?", answers: ["2", "1", "3", "4"], correct: 0,
-                    explanation: "Fens-ter."
+                    question: "Wie viele Silben hat Kinder?", answers: ["2", "1", "3", "4"], correct: 0,
+                    explanation: "Kin-der: 2 Silben."
                 },
                 {
                     id: "silk1l2_m4", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Schokolade?", answers: ["4", "2", "3", "1"], correct: 0,
-                    explanation: "Scho-ko-la-de."
+                    question: "Wie viele Silben hat Schokolade?", answers: ["4", "2", "3", "1"], correct: 0,
+                    explanation: "Scho-ko-la-de: 4 Silben."
                 }
             ], schwer: [
                 {
                     id: "silk1l2_s1", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "schwer", points: 10,
-                    question: "Welches hat 4 Silben?", answers: ["Schokolade", "Mama", "Bus", "Tisch"], correct: 0,
-                    explanation: "4."
+                    question: "Welches Wort hat 4 Silben?", answers: ["Marmelade", "Banane", "Hase", "Brot"], correct: 0,
+                    explanation: "Mar-me-la-de: 4 Silben."
                 },
                 {
                     id: "silk1l2_s2", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "schwer", points: 10,
-                    question: "Welches hat 1 Silbe?", answers: ["Brot", "Banane", "Schule", "Auto"], correct: 0,
-                    explanation: "Brot."
+                    question: "Welches Wort hat genau 1 Silbe?", answers: ["Brot", "Banane", "Schule", "Auto"], correct: 0,
+                    explanation: "Brot: 1 Silbe."
                 },
                 {
                     id: "silk1l2_s3", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "schwer", points: 10,
-                    question: "Kamera?", answers: ["3", "1", "2", "4"], correct: 0,
-                    explanation: "Ka-me-ra."
+                    question: "Wie viele Silben hat Kamera?", answers: ["3", "1", "2", "4"], correct: 0,
+                    explanation: "Ka-me-ra: 3 Silben."
                 },
                 {
                     id: "silk1l2_s4", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "schwer", points: 10,
-                    question: "Oma + Opa zusammen Silben?", answers: ["4", "2", "3", "1"], correct: 0,
-                    explanation: "2+2=4."
+                    question: "Oma und Opa – wie viele Silben zusammen?", answers: ["4", "2", "3", "1"], correct: 0,
+                    explanation: "O-ma und O-pa: 2 + 2 = 4 Silben."
                 }
             ] },
         test: [
                 {
                     id: "silk1l2_t1", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Banane?", answers: ["3", "2", "1", "4"], correct: 0,
-                    explanation: "3."
+                    question: "Wie viele Silben hat Giraffe?", answers: ["3", "2", "1", "4"], correct: 0,
+                    explanation: "Gi-raf-fe: 3 Silben."
                 },
                 {
                     id: "silk1l2_t2", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Hut?", answers: ["1", "2", "3", "4"], correct: 0,
-                    explanation: "1."
+                    question: "Wie viele Silben hat Zug?", answers: ["1", "2", "3", "4"], correct: 0,
+                    explanation: "Zug: 1 Silbe."
                 },
                 {
                     id: "silk1l2_t3", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Schule?", answers: ["2", "1", "3", "4"], correct: 0,
-                    explanation: "2."
+                    question: "Wie viele Silben hat Tasche?", answers: ["2", "1", "3", "4"], correct: 0,
+                    explanation: "Ta-sche: 2 Silben."
                 },
                 {
                     id: "silk1l2_t4", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Tomate?", answers: ["3", "2", "1", "4"], correct: 0,
-                    explanation: "3."
+                    question: "Wie viele Silben hat Kartoffel?", answers: ["3", "2", "1", "4"], correct: 0,
+                    explanation: "Kar-tof-fel: 3 Silben."
                 },
                 {
                     id: "silk1l2_t5", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Brot?", answers: ["1", "2", "3", "4"], correct: 0,
-                    explanation: "1."
+                    question: "Wie viele Silben hat Haus?", answers: ["1", "2", "3", "4"], correct: 0,
+                    explanation: "Haus: 1 Silbe."
                 },
                 {
                     id: "silk1l2_t6", category: "kurs_sil_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Elefant?", answers: ["3", "2", "1", "4"], correct: 0,
-                    explanation: "3."
+                    question: "Wie viele Silben hat Krokodil?", answers: ["3", "2", "1", "4"], correct: 0,
+                    explanation: "Kro-ko-dil: 3 Silben."
                 }
         ],
         bestehenAb: 0.75

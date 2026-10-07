@@ -45,13 +45,13 @@
                 {
                     id: "anlk1_m1", category: "kurs_anl_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Auto beginnt mit …", answers: ["Au", "M", "O allein", "T"], correct: 0,
-                    explanation: "Au wie Auto."
+                    question: "Welcher Anlaut steckt in Lampe?", answers: ["L", "N", "M", "R"], correct: 0,
+                    explanation: "Lampe beginnt mit L."
                 },
                 {
                     id: "anlk1_m2", category: "kurs_anl_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Apfel und Ameise haben denselben Anlaut …", answers: ["A", "M", "P", "S"], correct: 0,
+                    question: "Apfel und Ameise beginnen beide mit …", answers: ["A", "M", "P", "E"], correct: 0,
                     explanation: "Beide mit A."
                 },
                 {
@@ -88,46 +88,46 @@
                 {
                     id: "anlk1_s4", category: "kurs_anl_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "schwer", points: 10,
-                    question: "Ente und Esel: Anlaut?", answers: ["E", "A", "I", "O"], correct: 0,
-                    explanation: "Beide mit E."
+                    question: "Ente und Esel beginnen beide mit …", answers: ["E", "A", "I", "O"], correct: 0,
+                    explanation: "Ente und Esel beginnen mit E."
                 }
             ] },
         test: [
                 {
                     id: "anlk1_t1", category: "kurs_anl_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Maus Anlaut?", answers: ["M", "S", "T", "B"], correct: 0,
-                    explanation: "M."
+                    question: "Mit welchem Laut beginnt Mond?", answers: ["M", "N", "W", "B"], correct: 0,
+                    explanation: "Mond beginnt mit M."
                 },
                 {
                     id: "anlk1_t2", category: "kurs_anl_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Sonne Anlaut?", answers: ["S", "M", "N", "T"], correct: 0,
-                    explanation: "S."
+                    question: "Mit welchem Laut beginnt Seil?", answers: ["S", "Z", "F", "T"], correct: 0,
+                    explanation: "Seil beginnt mit S."
                 },
                 {
                     id: "anlk1_t3", category: "kurs_anl_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Ball Anlaut?", answers: ["B", "P", "M", "L"], correct: 0,
-                    explanation: "B."
+                    question: "Mit welchem Laut beginnt Bett?", answers: ["B", "P", "D", "M"], correct: 0,
+                    explanation: "Bett beginnt mit B."
                 },
                 {
                     id: "anlk1_t4", category: "kurs_anl_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Tisch Anlaut?", answers: ["T", "D", "S", "K"], correct: 0,
-                    explanation: "T."
+                    question: "Mit welchem Laut beginnt Tor?", answers: ["T", "D", "K", "P"], correct: 0,
+                    explanation: "Tor beginnt mit T."
                 },
                 {
                     id: "anlk1_t5", category: "kurs_anl_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Nase Anlaut?", answers: ["N", "M", "S", "A"], correct: 0,
-                    explanation: "N."
+                    question: "Mit welchem Laut beginnt Nudel?", answers: ["N", "M", "L", "R"], correct: 0,
+                    explanation: "Nudel beginnt mit N."
                 },
                 {
                     id: "anlk1_t6", category: "kurs_anl_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "anlaute", difficulty: "mittel", points: 10,
-                    question: "Mond und Mütze?", answers: ["gleicher Anlaut M", "verschiedene Anlaute", "beide S", "beide T"], correct: 0,
-                    explanation: "M und M."
+                    question: "Beginnen Rose und Rad gleich?", answers: ["Ja, beide mit R", "Nein, ganz anders", "Ja, beide mit S", "Ja, beide mit D"], correct: 0,
+                    explanation: "Rose und Rad beginnen mit R."
                 }
         ],
         bestehenAb: 0.75
@@ -209,52 +209,52 @@
                 {
                     id: "silk1_s3", category: "kurs_sil_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "schwer", points: 10,
-                    question: "Computer hat …", answers: ["3 Silben", "1 Silbe", "2 Silben", "5 Silben"], correct: 0,
-                    explanation: "Com-pu-ter."
+                    question: "Wie viele Silben hat Computer?", answers: ["3 Silben", "1 Silbe", "2 Silben", "5 Silben"], correct: 0,
+                    explanation: "Com-pu-ter: 3 Silben."
                 },
                 {
                     id: "silk1_s4", category: "kurs_sil_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "schwer", points: 10,
-                    question: "Oma und Opa haben je …", answers: ["2 Silben", "1 Silbe", "3 Silben", "4 Silben"], correct: 0,
-                    explanation: "O-ma, O-pa."
+                    question: "Wie viele Silben haben Oma und Opa je?", answers: ["2 Silben", "1 Silbe", "3 Silben", "4 Silben"], correct: 0,
+                    explanation: "O-ma und O-pa: je 2 Silben."
                 }
             ] },
         test: [
                 {
                     id: "silk1_t1", category: "kurs_sil_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Mama Silben?", answers: ["2", "1", "3", "4"], correct: 0,
-                    explanation: "2."
+                    question: "Wie viele Silben hat Papa?", answers: ["2", "1", "3", "4"], correct: 0,
+                    explanation: "Pa-pa: 2 Silben."
                 },
                 {
                     id: "silk1_t2", category: "kurs_sil_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Bus Silben?", answers: ["1", "2", "3", "4"], correct: 0,
-                    explanation: "1."
+                    question: "Wie viele Silben hat Ball?", answers: ["1", "2", "3", "4"], correct: 0,
+                    explanation: "Ball: 1 Silbe."
                 },
                 {
                     id: "silk1_t3", category: "kurs_sil_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Sonne Silben?", answers: ["2", "1", "3", "4"], correct: 0,
-                    explanation: "2."
+                    question: "Wie viele Silben hat Hase?", answers: ["2", "1", "3", "4"], correct: 0,
+                    explanation: "Ha-se: 2 Silben."
                 },
                 {
                     id: "silk1_t4", category: "kurs_sil_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Banane Silben?", answers: ["3", "2", "1", "4"], correct: 0,
-                    explanation: "3."
+                    question: "Wie viele Silben hat Rakete?", answers: ["3", "2", "1", "4"], correct: 0,
+                    explanation: "Ra-ke-te: 3 Silben."
                 },
                 {
                     id: "silk1_t5", category: "kurs_sil_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Tisch Silben?", answers: ["1", "2", "3", "4"], correct: 0,
-                    explanation: "1."
+                    question: "Wie viele Silben hat Stuhl?", answers: ["1", "2", "3", "4"], correct: 0,
+                    explanation: "Stuhl: 1 Silbe."
                 },
                 {
                     id: "silk1_t6", category: "kurs_sil_k1_l1", area: "schule", grade: 1,
                     subject: "deutsch", topic: "silben", difficulty: "mittel", points: 10,
-                    question: "Schule Silben?", answers: ["2", "1", "3", "4"], correct: 0,
-                    explanation: "2."
+                    question: "Wie viele Silben hat Katze?", answers: ["2", "1", "3", "4"], correct: 0,
+                    explanation: "Kat-ze: 2 Silben."
                 }
         ],
         bestehenAb: 0.75
@@ -393,113 +393,113 @@
                 {
                     id: "szk1l2_l1", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
-                    question: "Oma backt Kuchen – Zeichen?", answers: [".", "?", "!", ","], correct: 0,
+                    question: "Oma backt Kuchen – welches Zeichen?", answers: [".", "?", "!", ","], correct: 0,
                     explanation: "Aussage → Punkt."
                 },
                 {
                     id: "szk1l2_l2", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
-                    question: "Hast du Hunger – Zeichen?", answers: ["?", "!", ".", ","], correct: 0,
+                    question: "Hast du Hunger – welches Zeichen?", answers: ["?", "!", ".", ","], correct: 0,
                     explanation: "Frage."
                 },
                 {
                     id: "szk1l2_l3", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
-                    question: "Hilfe – Zeichen?", answers: ["!", "?", ".", ","], correct: 0,
+                    question: "Hilfe – welches Zeichen?", answers: ["!", "?", ".", ","], correct: 0,
                     explanation: "Ruf."
                 },
                 {
                     id: "szk1l2_l4", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "leicht", points: 10,
-                    question: "Der Vogel fliegt – Zeichen?", answers: [".", "?", "!", ","], correct: 0,
+                    question: "Der Vogel fliegt – welches Zeichen?", answers: [".", "?", "!", ","], correct: 0,
                     explanation: "Aussage."
                 }
             ], mittel: [
                 {
                     id: "szk1l2_m1", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Darf ich mitspielen – Zeichen?", answers: ["?", "!", ".", ","], correct: 0,
+                    question: "Darf ich mitspielen – welches Zeichen?", answers: ["?", "!", ".", ","], correct: 0,
                     explanation: "Frage."
                 },
                 {
                     id: "szk1l2_m2", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Raum das Zimmer auf – Zeichen?", answers: ["!", "?", ".", ","], correct: 0,
+                    question: "Räum das Zimmer auf – welches Zeichen?", answers: ["!", "?", ".", ","], correct: 0,
                     explanation: "Aufforderung."
                 },
                 {
                     id: "szk1l2_m3", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Heute ist Montag – Zeichen?", answers: [".", "?", "!", ","], correct: 0,
+                    question: "Heute ist Montag – welches Zeichen?", answers: [".", "?", "!", ","], correct: 0,
                     explanation: "Aussage."
                 },
                 {
                     id: "szk1l2_m4", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Wie schön – Zeichen?", answers: ["!", "?", ".", ","], correct: 0,
+                    question: "Wie schön – welches Zeichen?", answers: ["!", "?", ".", ","], correct: 0,
                     explanation: "Ausruf."
                 }
             ], schwer: [
                 {
                     id: "szk1l2_s1", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
-                    question: "Sätze mit wer/wie/wo/was sind oft …", answers: ["Fragen", "nur Aussagen", "nur Brüche", "nur Nomen"], correct: 0,
-                    explanation: "W-Wörter oft Frage."
+                    question: "Sätze mit wer, wie, wo oder was sind oft …", answers: ["Fragen", "Aussagen", "Befehle", "Ausrufe"], correct: 0,
+                    explanation: "Mit wer, wie, wo und was fragt man."
                 },
                 {
                     id: "szk1l2_s2", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
-                    question: "Ein Punkt sagt: der Satz ist …", answers: ["fertig und eine Aussage", "eine Frage", "immer ein Befehl", "ohne Sinn"], correct: 0,
-                    explanation: "Aussage zu Ende."
+                    question: "Ein Punkt zeigt: Der Satz ist …", answers: ["eine Aussage", "eine Frage", "ein Ausruf", "ein Befehl"], correct: 0,
+                    explanation: "Der Punkt steht nach einer Aussage."
                 },
                 {
                     id: "szk1l2_s3", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
-                    question: "Zwei richtige Paare sind …", answers: ["Aussage=. und Frage=?", "Frage=. und Aussage=?", "Ruf=. nur", "alles Kommas"], correct: 0,
-                    explanation: "Die Grundregel."
+                    question: "Welches Zeichen gehört zu einem Ausruf?", answers: ["!", "?", ".", ","], correct: 0,
+                    explanation: "Ausruf → Ausrufezeichen !"
                 },
                 {
                     id: "szk1l2_s4", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "schwer", points: 10,
-                    question: "„Komm her“ ohne Zeichen ist eher …", answers: ["ein Befehl", "eine Zahl", "ein Bruch", "eine Karte"], correct: 0,
-                    explanation: "Aufforderung → !"
+                    question: "„Komm her“ – was ist das?", answers: ["ein Befehl", "eine Frage", "eine Aussage", "ein Name"], correct: 0,
+                    explanation: "Komm her! ist ein Befehl."
                 }
             ] },
         test: [
                 {
                     id: "szk1l2_t1", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Papa liest – Zeichen?", answers: [".", "?", "!", ","], correct: 0,
+                    question: "Papa liest – welches Zeichen?", answers: [".", "?", "!", ","], correct: 0,
                     explanation: "Punkt."
                 },
                 {
                     id: "szk1l2_t2", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Kommst du mit – Zeichen?", answers: ["?", "!", ".", ","], correct: 0,
+                    question: "Kommst du mit – welches Zeichen?", answers: ["?", "!", ".", ","], correct: 0,
                     explanation: "Frage."
                 },
                 {
                     id: "szk1l2_t3", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Vorsicht – Zeichen?", answers: ["!", "?", ".", ","], correct: 0,
+                    question: "Vorsicht – welches Zeichen?", answers: ["!", "?", ".", ","], correct: 0,
                     explanation: "Ruf."
                 },
                 {
                     id: "szk1l2_t4", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Wir malen – Zeichen?", answers: [".", "?", "!", ","], correct: 0,
+                    question: "Wir malen – welches Zeichen?", answers: [".", "?", "!", ","], correct: 0,
                     explanation: "Punkt."
                 },
                 {
                     id: "szk1l2_t5", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Wo ist der Ball – Zeichen?", answers: ["?", "!", ".", ","], correct: 0,
+                    question: "Wo ist der Ball – welches Zeichen?", answers: ["?", "!", ".", ","], correct: 0,
                     explanation: "Frage."
                 },
                 {
                     id: "szk1l2_t6", category: "kurs_satzz_k1_l2", area: "schule", grade: 1,
                     subject: "deutsch", topic: "satzzeichen", difficulty: "mittel", points: 10,
-                    question: "Sei vorsichtig – Zeichen?", answers: ["!", "?", ".", ","], correct: 0,
+                    question: "Sei vorsichtig – welches Zeichen?", answers: ["!", "?", ".", ","], correct: 0,
                     explanation: "Aufforderung."
                 }
         ],

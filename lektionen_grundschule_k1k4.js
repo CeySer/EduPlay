@@ -4,7 +4,7 @@
         { id: "satzzeichen_k1", title: "Satzzeichen . ? !", icon: "❗", grade: 1, subject: "deutsch", beschreibung: "Punkt, Fragezeichen und Ausrufezeichen sicher setzen." },
         { id: "alltag_k1", title: "Alltag & Welt", icon: "🏠", grade: 1, subject: "sachunterricht", beschreibung: "Ampel, Wetter, Körper und Hilfe im Alltag." },
         { id: "verdoppeln_k2", title: "Verdoppeln & Halbieren", icon: "✖️", grade: 2, subject: "mathe", beschreibung: "Das Doppelte und die Hälfte sicher finden." },
-        { id: "mini_english_k2", title: "Englisch Mini-Sätze", icon: "🇬🇧", grade: 2, subject: "englisch", beschreibung: "Hello, I see, I can – erste Sätze." },
+        { id: "mini_english_k2", title: "Englisch Mini-Sätze", icon: "🇬🇧", grade: 2, subject: "englisch", beschreibung: "I see, I can, I like – erste Sätze." },
         { id: "brueche_k3", title: "Brüche anbahnen", icon: "🍰", grade: 3, subject: "mathe", beschreibung: "Hälfte, Viertel und Drittel verstehen." },
         { id: "karte_k3", title: "Karte & Himmel", icon: "🗺️", grade: 3, subject: "sachunterricht", beschreibung: "Norden, Süden, Westen, Osten und einfache Karten." },
         { id: "zeitform_k3", title: "Jetzt und Früher", icon: "⏱️", grade: 3, subject: "deutsch", beschreibung: "Präsens und Präteritum unterscheiden." },
@@ -68,7 +68,7 @@
                     topic: "satzzeichen",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Stopp – welches Zeichen passt oft?",
+                    question: "Stopp – welches Zeichen passt?",
                     answers: ["!", "?", ".", ","],
                     correct: 0,
                     explanation: "Ein Ruf oder Befehl: Ausrufezeichen."
@@ -82,7 +82,7 @@
                     topic: "satzzeichen",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Heute scheint die Sonne – Zeichen?",
+                    question: "Heute scheint die Sonne – welches Zeichen?",
                     answers: [".", "?", "!", ","],
                     correct: 0,
                     explanation: "Das ist eine Aussage."
@@ -98,8 +98,8 @@
                     topic: "satzzeichen",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Komm schnell her – eher welches Zeichen?",
-                    answers: ["!", "?", ".", ";"],
+                    question: "Komm schnell her – welches Zeichen?",
+                    answers: ["!", "?", ".", ","],
                     correct: 0,
                     explanation: "Ein Befehl klingt nach Ausrufezeichen."
                 },
@@ -112,7 +112,7 @@
                     topic: "satzzeichen",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Ist das dein Buch – Zeichen?",
+                    question: "Ist das dein Buch – welches Zeichen?",
                     answers: ["?", "!", ".", ","],
                     correct: 0,
                     explanation: "Es wird gefragt."
@@ -126,7 +126,7 @@
                     topic: "satzzeichen",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Wir gehen nach Hause – Zeichen?",
+                    question: "Wir gehen nach Hause – welches Zeichen?",
                     answers: [".", "?", "!", ","],
                     correct: 0,
                     explanation: "Ruhige Aussage → Punkt."
@@ -140,7 +140,7 @@
                     topic: "satzzeichen",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Juhu wir haben frei – Zeichen?",
+                    question: "Juhu, wir haben frei – welches Zeichen?",
                     answers: ["!", "?", ".", ","],
                     correct: 0,
                     explanation: "Freude / Ausruf → !"
@@ -157,9 +157,9 @@
                     difficulty: "schwer",
                     points: 10,
                     question: "Welche Satzart braucht ein Fragezeichen?",
-                    answers: ["eine Frage", "eine ruhige Aussage", "nur ein Nomen", "ein Artikel"],
+                    answers: ["eine Frage", "eine Aussage", "ein Ausruf", "ein Befehl"],
                     correct: 0,
-                    explanation: "Nur Fragen bekommen ?"
+                    explanation: "Nur Fragen bekommen ein Fragezeichen."
                 },
                 {
                     id: "szk1l1_s2",
@@ -171,7 +171,7 @@
                     difficulty: "schwer",
                     points: 10,
                     question: "Punkt, Fragezeichen und Ausrufezeichen stehen …",
-                    answers: ["am Satzende", "nur in der Mitte", "nur vor dem ersten Wort", "nirgends"],
+                    answers: ["am Satzende", "am Satzanfang", "mitten im Satz", "nach jedem Wort"],
                     correct: 0,
                     explanation: "Satzschlusszeichen stehen am Ende."
                 },
@@ -185,7 +185,7 @@
                     difficulty: "schwer",
                     points: 10,
                     question: "„Bitte sei leise“ – was ist das?",
-                    answers: ["Eine Bitte", "Eine Frage", "Ein Name", "Eine Zahl"],
+                    answers: ["Eine Bitte", "Eine Frage", "Eine Aussage", "Ein Gruß"],
                     correct: 0,
                     explanation: "Wer bittet oder befiehlt, bekommt oft ein Ausrufezeichen: Bitte sei leise!"
                 },
@@ -199,7 +199,7 @@
                     difficulty: "schwer",
                     points: 10,
                     question: "„Wer kommt mit“ ohne Zeichen – was fehlt?",
-                    answers: ["ein Fragezeichen", "ein Komma in der Mitte", "ein Artikel", "ein Bruch"],
+                    answers: ["ein Fragezeichen", "ein Punkt", "ein Ausrufezeichen", "ein Komma"],
                     correct: 0,
                     explanation: "Wer … ist eine Frage."
                 }
@@ -215,7 +215,7 @@
                     topic: "satzzeichen",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Der Bus fährt – Zeichen?",
+                    question: "Der Bus fährt – welches Zeichen?",
                     answers: [".", "?", "!", ","],
                     correct: 0,
                     explanation: "Aussage → Punkt."
@@ -229,7 +229,7 @@
                     topic: "satzzeichen",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Wohin gehst du – Zeichen?",
+                    question: "Wohin gehst du – welches Zeichen?",
                     answers: ["?", "!", ".", ","],
                     correct: 0,
                     explanation: "Frage → ?"
@@ -243,7 +243,7 @@
                     topic: "satzzeichen",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Achtung – Zeichen?",
+                    question: "Achtung – welches Zeichen?",
                     answers: ["!", "?", ".", ","],
                     correct: 0,
                     explanation: "Warnruf → !"
@@ -257,7 +257,7 @@
                     topic: "satzzeichen",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Ich heiße Mia – Zeichen?",
+                    question: "Ich heiße Mia – welches Zeichen?",
                     answers: [".", "?", "!", ","],
                     correct: 0,
                     explanation: "Aussage → Punkt."
@@ -271,7 +271,7 @@
                     topic: "satzzeichen",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Kannst du schwimmen – Zeichen?",
+                    question: "Kannst du schwimmen – welches Zeichen?",
                     answers: ["?", "!", ".", ","],
                     correct: 0,
                     explanation: "Frage → ?"
@@ -285,7 +285,7 @@
                     topic: "satzzeichen",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Lauf nicht auf die Straße – Zeichen?",
+                    question: "Lauf nicht auf die Straße – welches Zeichen?",
                     answers: ["!", "?", ".", ","],
                     correct: 0,
                     explanation: "Aufforderung → !"
@@ -850,16 +850,12 @@
         kurs: "mini_english_k2",
         order: 1,
         icon: "🇬🇧",
-        title: "I see / I can",
+        title: "I see, I can, I like",
         kurz: "Erste Sätze",
         erklaerung: {
-            intro: "Viele Mini-Sätze starten mit <b>I</b> (ich). <b>I see</b> heißt ich sehe. <b>I can</b> heißt ich kann. <b>Hello</b> ist Hallo, <b>thank you</b> ist Danke.",
-            beispiele: [
-                "I see a cat. = Ich sehe eine Katze.",
-                "I can ride a bike. = Ich kann Rad fahren.",
-                "My name is Mia. = Ich heiße Mia."
-            ],
-            merksatz: "I see = ich sehe. I can = ich kann. Hello / thank you merken."
+            intro: "Viele Mini-Sätze starten mit <b>I</b> (ich): <b>I see</b> heißt ich sehe, <b>I can</b> heißt ich kann, <b>I like</b> heißt ich mag, <b>I am</b> heißt ich bin. Mit <b>My name is</b> sagst du deinen Namen.",
+            beispiele: ["I see a cat. = Ich sehe eine Katze.", "I can ride a bike. = Ich kann Rad fahren.", "I like ice cream. = Ich mag Eis.", "My name is Mia. = Ich heiße Mia."],
+            merksatz: "I see = ich sehe · I can = ich kann · I like = ich mag · I am = ich bin."
         },
         uebung: {
             leicht: [
@@ -872,10 +868,10 @@
                     topic: "minisaetze",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Was heißt Hello?",
-                    answers: ["Hallo", "Danke", "Bitte", "Tschüss"],
+                    question: "Was heißt 'I see a cow'?",
+                    answers: ["Ich sehe eine Kuh", "Ich bin eine Kuh", "Ich male eine Kuh", "Ich habe eine Kuh"],
                     correct: 0,
-                    explanation: "Hello = Hallo."
+                    explanation: "I see = ich sehe. cow = Kuh."
                 },
                 {
                     id: "enk2l1_l2",
@@ -886,10 +882,10 @@
                     topic: "minisaetze",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Was heißt Thank you?",
-                    answers: ["Danke", "Hallo", "Stopp", "Rot"],
+                    question: "Was heißt 'I can swim'?",
+                    answers: ["Ich kann schwimmen", "Ich mag schwimmen", "Ich gehe schwimmen", "Ich sehe ein Schiff"],
                     correct: 0,
-                    explanation: "Thank you = Danke."
+                    explanation: "I can = ich kann. swim = schwimmen."
                 },
                 {
                     id: "enk2l1_l3",
@@ -900,10 +896,10 @@
                     topic: "minisaetze",
                     difficulty: "leicht",
                     points: 10,
-                    question: "I see a cat heißt …",
-                    answers: ["Ich sehe eine Katze", "Ich esse eine Katze", "Ich bin eine Katze", "Die Katze sieht"],
+                    question: "Was heißt 'My name is Tom'?",
+                    answers: ["Ich heiße Tom", "Ich bin bei Tom", "Ich sehe Tom", "Tom ist mein Freund"],
                     correct: 0,
-                    explanation: "see = sehen."
+                    explanation: "My name is = ich heiße."
                 },
                 {
                     id: "enk2l1_l4",
@@ -914,10 +910,10 @@
                     topic: "minisaetze",
                     difficulty: "leicht",
                     points: 10,
-                    question: "Bye heißt oft …",
-                    answers: ["Tschüss", "Bitte", "Danke", "Rot"],
+                    question: "Was heißt 'I like dogs'?",
+                    answers: ["Ich mag Hunde", "Ich sehe Hunde", "Ich male Hunde", "Ich habe Hunde"],
                     correct: 0,
-                    explanation: "Bye = Tschüss."
+                    explanation: "I like = ich mag. dogs = Hunde."
                 }
             ],
             mittel: [
@@ -930,10 +926,10 @@
                     topic: "minisaetze",
                     difficulty: "mittel",
                     points: 10,
-                    question: "My name is Tom. heißt …",
-                    answers: ["Ich heiße Tom", "Tom sieht mich", "Tom isst", "Tom läuft"],
+                    question: "Was heißt 'I can run'?",
+                    answers: ["Ich kann rennen", "Ich kann lesen", "Ich kann singen", "Ich kann malen"],
                     correct: 0,
-                    explanation: "My name is = ich heiße."
+                    explanation: "run = rennen."
                 },
                 {
                     id: "enk2l1_m2",
@@ -944,10 +940,10 @@
                     topic: "minisaetze",
                     difficulty: "mittel",
                     points: 10,
-                    question: "I can swim heißt …",
-                    answers: ["Ich kann schwimmen", "Ich sehe schwimmen", "Ich esse", "Ich danke"],
+                    question: "Was heißt 'I see a red ball'?",
+                    answers: ["Ich sehe einen roten Ball", "Ich sehe einen blauen Ball", "Ich habe einen roten Ball", "Ich sehe einen roten Hut"],
                     correct: 0,
-                    explanation: "can = können."
+                    explanation: "red = rot. ball = Ball."
                 },
                 {
                     id: "enk2l1_m3",
@@ -958,10 +954,10 @@
                     topic: "minisaetze",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Good morning heißt …",
-                    answers: ["Guten Morgen", "Gute Nacht", "Danke", "Bitte"],
+                    question: "Was heißt 'I am seven'?",
+                    answers: ["Ich bin sieben", "Ich bin sauer", "Ich habe sieben", "Ich sehe sieben"],
                     correct: 0,
-                    explanation: "Good morning = Guten Morgen."
+                    explanation: "I am = ich bin. seven = sieben."
                 },
                 {
                     id: "enk2l1_m4",
@@ -972,10 +968,10 @@
                     topic: "minisaetze",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Please heißt …",
-                    answers: ["Bitte", "Danke", "Hallo", "Tschüss"],
+                    question: "Was heißt 'I like apples'?",
+                    answers: ["Ich mag Äpfel", "Ich esse Äpfel", "Ich mag Birnen", "Ich male Äpfel"],
                     correct: 0,
-                    explanation: "Please = Bitte."
+                    explanation: "I like = ich mag. apples = Äpfel."
                 }
             ],
             schwer: [
@@ -988,10 +984,10 @@
                     topic: "minisaetze",
                     difficulty: "schwer",
                     points: 10,
-                    question: "This is an apple – warum an?",
-                    answers: ["apple beginnt mit Selbstlaut", "apple ist ein Verb", "apple ist eine Zahl", "apple heißt Danke"],
+                    question: "Wie heißt 'Ich kann singen' auf Englisch?",
+                    answers: ["I can sing", "I can swim", "I can see", "I like songs"],
                     correct: 0,
-                    explanation: "an vor a, e, i, o, u."
+                    explanation: "Ich kann = I can. singen = sing."
                 },
                 {
                     id: "enk2l1_s2",
@@ -1002,10 +998,10 @@
                     topic: "minisaetze",
                     difficulty: "schwer",
                     points: 10,
-                    question: "We are friends. are steht bei …",
-                    answers: ["we / you / they", "nur I", "nur he", "nur it immer"],
+                    question: "Wie heißt 'Ich sehe einen Hund' auf Englisch?",
+                    answers: ["I see a dog", "I see a cat", "I am a dog", "I have a dog"],
                     correct: 0,
-                    explanation: "we are, not we is."
+                    explanation: "Ich sehe = I see. Hund = dog."
                 },
                 {
                     id: "enk2l1_s3",
@@ -1016,10 +1012,10 @@
                     topic: "minisaetze",
                     difficulty: "schwer",
                     points: 10,
-                    question: "She ___ a book.",
-                    answers: ["has", "have", "am", "are"],
+                    question: "Wie heißt 'Ich heiße Lena' auf Englisch?",
+                    answers: ["My name is Lena", "My mum is Lena", "I like Lena", "I see Lena"],
                     correct: 0,
-                    explanation: "he/she/it → has."
+                    explanation: "Ich heiße = My name is."
                 },
                 {
                     id: "enk2l1_s4",
@@ -1030,10 +1026,10 @@
                     topic: "minisaetze",
                     difficulty: "schwer",
                     points: 10,
-                    question: "Where is the cat? – ___ the box.",
-                    answers: ["in", "eat", "hello", "two"],
+                    question: "Was heißt 'I can see the sun'?",
+                    answers: ["Ich kann die Sonne sehen", "Ich kann den Mond sehen", "Ich sehe den Sohn", "Ich mag die Sonne"],
                     correct: 0,
-                    explanation: "in the box = in der Kiste."
+                    explanation: "sun = Sonne. I can see = ich kann sehen."
                 }
             ]
         },
@@ -1047,10 +1043,10 @@
                     topic: "minisaetze",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Hello =",
-                    answers: ["Hallo", "Danke", "Bitte", "Rot"],
+                    question: "Was heißt 'I see a bird'?",
+                    answers: ["Ich sehe einen Vogel", "Ich bin ein Vogel", "Ich male einen Vogel", "Ich sehe einen Bären"],
                     correct: 0,
-                    explanation: "Hello = Hallo."
+                    explanation: "bird = Vogel."
                 },
                 {
                     id: "enk2l1_t2",
@@ -1061,10 +1057,10 @@
                     topic: "minisaetze",
                     difficulty: "mittel",
                     points: 10,
-                    question: "I see a dog =",
-                    answers: ["Ich sehe einen Hund", "Ich bin ein Hund", "Ich esse", "Danke Hund"],
+                    question: "Was heißt 'I can jump'?",
+                    answers: ["Ich kann springen", "Ich kann laufen", "Ich kann tanzen", "Ich mag springen"],
                     correct: 0,
-                    explanation: "see = sehen."
+                    explanation: "jump = springen."
                 },
                 {
                     id: "enk2l1_t3",
@@ -1075,10 +1071,10 @@
                     topic: "minisaetze",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Thank you =",
-                    answers: ["Danke", "Hallo", "Stopp", "Nacht"],
+                    question: "Was heißt 'My name is Ben'?",
+                    answers: ["Ich heiße Ben", "Ich sehe Ben", "Ben ist mein Bruder", "Ich mag Ben"],
                     correct: 0,
-                    explanation: "Thank you = Danke."
+                    explanation: "My name is = ich heiße."
                 },
                 {
                     id: "enk2l1_t4",
@@ -1089,10 +1085,10 @@
                     topic: "minisaetze",
                     difficulty: "mittel",
                     points: 10,
-                    question: "I can run =",
-                    answers: ["Ich kann rennen", "Ich sehe rennen", "Ich heiße Run", "Bye"],
+                    question: "Was heißt 'I like cake'?",
+                    answers: ["Ich mag Kuchen", "Ich backe Kuchen", "Ich esse Kuchen", "Ich mag Kekse"],
                     correct: 0,
-                    explanation: "can = können."
+                    explanation: "I like = ich mag. cake = Kuchen."
                 },
                 {
                     id: "enk2l1_t5",
@@ -1103,10 +1099,10 @@
                     topic: "minisaetze",
                     difficulty: "mittel",
                     points: 10,
-                    question: "Good night =",
-                    answers: ["Gute Nacht", "Guten Morgen", "Bitte", "Danke"],
+                    question: "Wie heißt 'Ich bin acht' auf Englisch?",
+                    answers: ["I am eight", "I am late", "I see eight", "I like eight"],
                     correct: 0,
-                    explanation: "Good night."
+                    explanation: "Ich bin = I am. acht = eight."
                 },
                 {
                     id: "enk2l1_t6",
@@ -1117,10 +1113,10 @@
                     topic: "minisaetze",
                     difficulty: "mittel",
                     points: 10,
-                    question: "My name is Lea =",
-                    answers: ["Ich heiße Lea", "Lea sieht", "Lea dankt", "Lea ist ein Hund"],
+                    question: "Wie heißt 'Ich mag Katzen' auf Englisch?",
+                    answers: ["I like cats", "I see cats", "I like hats", "I am a cat"],
                     correct: 0,
-                    explanation: "My name is."
+                    explanation: "Ich mag = I like. Katzen = cats."
                 }
         ],
         bestehenAb: 0.75

@@ -1183,7 +1183,7 @@ const KINDER_WISSEN_QUESTIONS = [
         area: "spass",
         subject: "kinder",
         question: "Was schnallt man im Auto immer zu Beginn der Fahrt fest?",
-        answers: ["Schuhe", "Jacke im Alltag", "Sicherheitsgurt", "Helm im Alltag"],
+        answers: ["Die Schuhe", "Die Jacke", "Den Sicherheitsgurt", "Den Fahrradhelm"],
         correct: 2,
         difficulty: "leicht",
         points: 10,

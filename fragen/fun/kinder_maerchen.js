@@ -449,7 +449,7 @@ const KINDER_MAERCHEN_QUESTIONS = [
         area: "spass",
         subject: "kinder",
         question: "Wer wohnt in einer Ananas ganz tief unten im Meer?",
-        answers: ["Patrick Star", "SpongeBob Schwammkopf", "Thaddäus Tentakel", "Mr. Krabs zur Auswahl"],
+        answers: ["Patrick Star", "SpongeBob Schwammkopf", "Thaddäus Tentakel", "Mr. Krabs"],
         correct: 1,
         difficulty: "leicht",
         points: 10,
@@ -653,7 +653,7 @@ const KINDER_MAERCHEN_QUESTIONS = [
         area: "spass",
         subject: "kinder",
         question: "Was sammelt die kleine Meerjungfrau Arielle in ihrer Höhle?",
-        answers: ["Fische zur Auswahl", "Perlen zur Auswahl", "Menschliche Sachen", "Muscheln im Alltag"],
+        answers: ["Lauter bunte Fische", "Echte Perlen", "Menschliche Sachen", "Glitzernde Muscheln"],
         correct: 2,
         difficulty: "leicht",
         points: 10,
@@ -688,12 +688,12 @@ const KINDER_MAERCHEN_QUESTIONS = [
         category: "kinder_maerchen_disney",
         area: "spass",
         subject: "kinder",
-        question: "Was schenkt die Fee der Prinzessin Vaiana auf dem Ozean?",
-        answers: ["Eine Zauberkette", "Das Herz von Te Fiti", "Ein magisches Segelboot", "Das Einen Kompass"],
+        question: "Was gibt der Ozean der kleinen Vaiana?",
+        answers: ["Eine Zauberkette", "Das Herz von Te Fiti", "Ein magisches Segelboot", "Einen Kompass"],
         correct: 1,
         difficulty: "leicht",
         points: 10,
-        explanation: "Der Ozean wählt Vaiana aus, um das Herz von Te Fiti zurückzugeben."
+        explanation: "Der Ozean wählt Vaiana aus und schenkt ihr das Herz von Te Fiti."
     },
   {
         id: "k_dis_059",
@@ -749,7 +749,7 @@ const KINDER_MAERCHEN_QUESTIONS = [
         area: "spass",
         subject: "kinder",
         question: "Wie heißt der große Schneeroboter, den Elsa zum Schutz baut?",
-        answers: ["Schneemann Olaf in der Praxis", "Frostie Bär in der Praxis", "Schnee-Ungeheuer Marshmallow", "Eisriese Goliath zur Auswahl"],
+        answers: ["Olaf", "Kristoff", "Marshmallow", "Schneeriese Bob"],
         correct: 2,
         difficulty: "leicht",
         points: 10,
@@ -881,7 +881,7 @@ const KINDER_MAERCHEN_QUESTIONS = [
         area: "spass",
         subject: "kinder",
         question: "Was vergisst die vergessliche Fischdame Dorie dauernd?",
-        answers: ["Das Schwimmen", "Ihren Namen im Alltag", "Wo sie wohnt im Alltag", "Alles nach kurzer Zeit"],
+        answers: ["Wie man schwimmt", "Ihren eigenen Namen", "Wo ihr Zuhause ist", "Alles nach kurzer Zeit"],
         correct: 3,
         difficulty: "leicht",
         points: 10,
@@ -952,12 +952,12 @@ const KINDER_MAERCHEN_QUESTIONS = [
         category: "kinder_maerchen_disney",
         area: "spass",
         subject: "kinder",
-        question: "Welche Fee zieht Maleficent im Realfilm auf?",
-        answers: ["Die Dunkelelfin Maleficent", "Die Waldfee in der Praxis", "Die gute Waldfee im Alltag", "Die feine Feenkönigin"],
+        question: "Wen verflucht die Fee Maleficent im gleichnamigen Film?",
+        answers: ["Prinzessin Aurora", "Schneewittchen", "Prinzessin Arielle", "Cinderella"],
         correct: 0,
         difficulty: "leicht",
         points: 10,
-        explanation: "Maleficent schützt die Moore und kümmert sich um Aurora."
+        explanation: "Maleficent verflucht die kleine Aurora – und kümmert sich später heimlich um sie."
     },
   {
         id: "k_dis_081",
@@ -1096,12 +1096,12 @@ const KINDER_MAERCHEN_QUESTIONS = [
         category: "kinder_maerchen_disney",
         area: "spass",
         subject: "kinder",
-        question: "Wie heißen die drei kleinen Drachen aus Drachenzähmen leicht gemacht?",
-        answers: ["Ohnezahn, Tagschatten, Sturmpfeil", "Schatten, Licht, Glut zur Auswahl", "Drago, Hicks, Astrid in der Praxis", "Nacht, Feuer, Sturm in der Praxis"],
+        question: "Wie heißt der Drache von Hicks in 'Drachenzähmen leicht gemacht'?",
+        answers: ["Ohnezahn", "Sturmpfeil", "Hakenzahn", "Fleischklops"],
         correct: 0,
         difficulty: "leicht",
         points: 10,
-        explanation: "Ohnezahn ist der berühmte Nachtschatten-Drache."
+        explanation: "Hicks' Drache ist der Nachtschatten Ohnezahn. Sturmpfeil gehört Astrid, Hakenzahn Rotzbakke und Fleischklops Fischbein."
     },
   {
         id: "k_dis_093",

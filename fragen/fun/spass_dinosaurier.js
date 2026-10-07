@@ -149,12 +149,7 @@ const SPASS_DINOSAURIER_QUESTIONS = [
     "area": "spass",
     "subject": "dinosaurier",
     "question": "Was untersucht die Paläontologie vor allem?",
-    "answers": [
-      "Sterne",
-      "Fossilien",
-      "Wetter",
-      "Vulkane heute"
-    ],
+    "answers": ["Sterne", "Fossilien", "Wetter", "Vulkane"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,

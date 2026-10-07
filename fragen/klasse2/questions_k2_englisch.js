@@ -862,7 +862,7 @@ const K2_ENGLISCH_QUESTIONS = [
   grade: 2,
   subject: "englisch",
   question: "Was bedeutet 'I'm sorry.' auf Deutsch?",
-  answers: ["Hallo! im Alltag", "Danke schön.", "Bitte schön.", "Es tut mir leid."],
+  answers: ["Hallo!", "Danke schön.", "Bitte schön.", "Es tut mir leid."],
   correct: 3,
   difficulty: "leicht",
   points: 5,

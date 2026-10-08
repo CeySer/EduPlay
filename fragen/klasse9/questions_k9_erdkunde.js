@@ -697,16 +697,11 @@ const K9_ERDKUNDE_QUESTIONS = [
     "grade": 9,
     "subject": "erdkunde",
     "question": "Wie funktioniert der natürliche Treibhauseffekt unserer Erde?",
-    "answers": [
-      "Gase halten Wärmestrahlung zurück",
-      "Ozon stoppt kühle Winde vollständig",
-      "Die Sonne heizt nur die Gase auf",
-      "Wolken saugen die Kälte komplett ab"
-      ],
+    "answers": ["Gase halten Wärmestrahlung zurück", "Ozon stoppt kühle Winde vollständig", "Die Sonne heizt nur die Gase auf", "Wolken saugen die Kälte komplett ab"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Treibhausgase (z. B. $CO_2$, $H_2O$) lassen kurzwellige Sonnenstrahlen durch, reflektieren aber langwellige Wärmestrahlung zur Erde."
+    "explanation": "Treibhausgase (z. B. CO₂, H₂O) lassen kurzwellige Sonnenstrahlen durch, reflektieren aber langwellige Wärmestrahlung zur Erde."
   },
   {
     "id": "k9_erd_040",
@@ -715,16 +710,11 @@ const K9_ERDKUNDE_QUESTIONS = [
     "grade": 9,
     "subject": "erdkunde",
     "question": "Welches Treibhausgas wird maßgeblich durch die Verbrennung fossiler Energieträger (Kohle, Öl, Gas) freigesetzt?",
-    "answers": [
-      "Kohlenstoffdioxid (CO2)",
-      "Reiner Sauerstoff-Anteil (O2)",
-      "Stickstoff-Gas (N2)",
-      "Edelgas Argon (Ar)"
-      ],
+    "answers": ["Kohlenstoffdioxid (CO₂)", "Reiner Sauerstoff-Anteil (O₂)", "Stickstoff-Gas (N₂)", "Edelgas Argon (Ar)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$CO_2$ entsteht bei jeder Verbrennung kohlenstoffhaltiger Stoffe u. ist der Haupttreiber des anthropogenen Klimawandels."
+    "explanation": "CO₂ entsteht bei jeder Verbrennung kohlenstoffhaltiger Stoffe u. ist der Haupttreiber des anthropogenen Klimawandels."
   },
   {
     "id": "k9_erd_041",
@@ -733,16 +723,11 @@ const K9_ERDKUNDE_QUESTIONS = [
     "grade": 9,
     "subject": "erdkunde",
     "question": "Welches Treibhausgas entsteht besonders in der Rinderhaltung u. im Reisanbau?",
-    "answers": [
-      "Das Gas Methan (CH4)",
-      "Fluorchlorkohlenwasserstoff",
-      "Ozon-Gas in der Luft",
-      "Kohlenmonoxid (CO)"
-    ],
+    "answers": ["Das Gas Methan (CH₄)", "Fluorchlorkohlenwasserstoff", "Ozon-Gas in der Luft", "Kohlenmonoxid (CO)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Methan ($CH_4$) hat eine vielfach stärkere Treibhauswirkung als $CO_2$ u. stammt u. a. aus der Viehhaltung."
+    "explanation": "Methan (CH₄) hat eine vielfach stärkere Treibhauswirkung als CO₂ u. stammt u. a. aus der Viehhaltung."
   },
   {
     "id": "k9_erd_042",
@@ -895,12 +880,7 @@ const K9_ERDKUNDE_QUESTIONS = [
     "grade": 9,
     "subject": "erdkunde",
     "question": "Welches Gremium der UN fasst den wissenschaftlichen Forschungsstand zum Klimawandel zusammen?",
-    "answers": [
-      "Der Weltklimarat (IPCC)",
-      "Die Weltgesundheitsorg. WHO",
-      "Der Weltsicherheitsrat UN",
-      "Die UNESCO Organisation"
-    ],
+    "answers": ["Der Weltklimarat", "Die Weltgesundheitsorg. WHO", "Der Weltsicherheitsrat UN", "Die UNESCO Organisation"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1077,12 +1057,7 @@ const K9_ERDKUNDE_QUESTIONS = [
     "grade": 9,
     "subject": "erdkunde",
     "question": "Wie nennt man die alte Industrieregion im Nordosten der USA, die einen schweren Strukturwandel durchlebt?",
-    "answers": [
-      "Der Rust Belt (Rostgürtel)",
-      "Der Corn Belt als Agrarzone",
-      "Der Cotton Belt im tiefen Süden",
-      "Der Sun Belt als Sonnenregion"
-      ],
+    "answers": ["Der Rust Belt", "Der Corn Belt als Agrarzone", "Der Cotton Belt im tiefen Süden", "Der Sun Belt als Sonnenregion"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1655,12 +1630,7 @@ const K9_ERDKUNDE_QUESTIONS = [
     "grade": 9,
     "subject": "erdkunde",
     "question": "Wie nennt man den Effekt, dass es im Zentrum von Großstädten spürbar wärmer ist als im Umland?",
-    "answers": [
-      "Städtische Wärmeinsel (Urban Heat)",
-      "Eine Kaltluftschneise der freien Natur",
-      "Inversionswetterlage im engen Tal",
-      "Ein Föhneffekt am hohen Berg"
-      ],
+    "answers": ["Städtische Wärmeinsel", "Eine Kaltluftschneise der freien Natur", "Inversionswetterlage im engen Tal", "Ein Föhneffekt am hohen Berg"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1799,12 +1769,7 @@ const K9_ERDKUNDE_QUESTIONS = [
     "grade": 9,
     "subject": "erdkunde",
     "question": "Was beschreibt der Begriff 'Ecological Overtag' (Global Footprint Network)?",
-    "answers": [
-      "Erdüberlastungstag (Overshoot Day)",
-      "Der Tag der sauberen Umwelt der UN",
-      "Beginn der weltweiten Regenzeit",
-      "Tag des höchsten Ölverbrauchs weltweit"
-    ],
+    "answers": ["Erdüberlastungstag", "Der Tag der sauberen Umwelt der UN", "Beginn der weltweiten Regenzeit", "Tag des höchsten Ölverbrauchs weltweit"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

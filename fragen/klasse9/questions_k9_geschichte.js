@@ -476,12 +476,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Wer wurde 1919 von der Nationalversammlung zum ersten Reichspräsidenten der Weimarer Republik gewählt?",
-    "answers": [
-      "Friedrich Ebert (SPD)",
-      "Paul von Hindenburg General",
-      "Gustav Stresemann Kanzler",
-      "Matthias Erzberger Zentrum"
-    ],
+    "answers": ["Friedrich Ebert", "Paul von Hindenburg General", "Gustav Stresemann Kanzler", "Matthias Erzberger Zentrum"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -638,12 +633,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Wo versuchte Adolf Hitler am 8./9. November 1923 erstmals, die Macht im Staat gewaltsam an sich zu reißen?",
-    "answers": [
-      "In München (Bürgerbräukeller)",
-      "In Berlin auf dem Gendarmenmarkt",
-      "In Nürnberg auf dem Luitpoldhain",
-      "In Weimar am Nationaltheater"
-    ],
+    "answers": ["In München", "In Berlin auf dem Gendarmenmarkt", "In Nürnberg auf dem Luitpoldhain", "In Weimar am Nationaltheater"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -692,12 +682,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Welcher deutsche Außenminister erwarb sich durch die Verträge von Locarno (1925) den Friedensnobelpreis?",
-    "answers": [
-      "Gustav Stresemann (DVP)",
-      "Walther Rathenau Außenminister",
-      "Heinrich Brüning Kanzler",
-      "Franz von Papen Politiker"
-    ],
+    "answers": ["Gustav Stresemann", "Walther Rathenau Außenminister", "Heinrich Brüning Kanzler", "Franz von Papen Politiker"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -782,12 +767,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Welche radikale Schutztruppe der NSDAP terrorisierte politische Gegner in den Straßenkämpfen der Endphase Weimars?",
-    "answers": [
-      "Die SA (Sturmabteilung)",
-      "Der Rotfrontkämpferbund",
-      "Das Reichsbanner Schwarz-Rot",
-      "Die Freikorps Marine"
-    ],
+    "answers": ["Die SA", "Der Rotfrontkämpferbund", "Das Reichsbanner Schwarz-Rot", "Die Freikorps Marine"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1424,12 +1404,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Welches wirtschaftliche Hilfsprogramm der USA half Westeuropa u. Westdeutschland ab 1948 beim Wiederaufbau?",
-    "answers": [
-      "Der Marshall-Plan (ERP)",
-      "Die Truman-Doktrin Hilfen",
-      "Der Morgenthau-Plan USA",
-      "Das Hoover-Speise-Projekt"
-    ],
+    "answers": ["Der Marshall-Plan", "Die Truman-Doktrin Hilfen", "Der Morgenthau-Plan USA", "Das Hoover-Speise-Projekt"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1442,12 +1417,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Welcher Schritt der Westalliierten im Juni 1948 löste die sowjetische Berlin-Blockade aus?",
-    "answers": [
-      "Währungsreform (D-Mark)",
-      "Gründung der NATO Allianz",
-      "Beitritt zur Europäischen Union",
-      "Bau der Berliner Flugplätze"
-    ],
+    "answers": ["Währungsreform", "Gründung der NATO Allianz", "Beitritt zur Europäischen Union", "Bau der Berliner Flugplätze"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1568,12 +1538,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Welches westliche Militärbündnis wurde 1949 zur Abschreckung gegen die Sowjetunion gegründet?",
-    "answers": [
-      "Die NATO (Nordatlantikpakt)",
-      "Der Warschauer Pakt Allianz",
-      "Die Westeuropäische Union WEU",
-      "Die SEATO Allianz Asien"
-    ],
+    "answers": ["Die NATO", "Der Warschauer Pakt Allianz", "Die Westeuropäische Union WEU", "Die SEATO Allianz Asien"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1622,12 +1587,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Welche gefährliche Weltkrise brachte die Menschheit im Oktober 1962 an den Rand eines atomaren Weltkriegs?",
-    "answers": [
-      "Die Kube-Krise (Raketen)",
-      "Die Berlin-Krise von 1961",
-      "Die Iran-Geisel-Krise 1979",
-      "Die Kongo-Krise von 1960"
-    ],
+    "answers": ["Die Kube-Krise", "Die Berlin-Krise von 1961", "Die Iran-Geisel-Krise 1979", "Die Kongo-Krise von 1960"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1676,12 +1636,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Welcher Bundeskanzler leitete ab 1969 mit der Parole 'Mehr Demokratie wagen' die Neue Ostpolitik ein?",
-    "answers": [
-      "Willy Brandt (SPD)",
-      "Helmut Schmidt Kanzler",
-      "Kurt Georg Kiesinger CDU",
-      "Helmut Kohl Kanzler"
-    ],
+    "answers": ["Willy Brandt", "Helmut Schmidt Kanzler", "Kurt Georg Kiesinger CDU", "Helmut Kohl Kanzler"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1712,12 +1667,7 @@ const K9_GESCHICHTE_QUESTIONS = [
     "grade": 9,
     "subject": "geschichte",
     "question": "Welches berüchtigte Ministerium der DDR überwachte die eigene Bevölkerung mit Millionen Akten u. inoffiziellen Mitarbeitern (IM)?",
-    "answers": [
-      "Das Ministerium für Staatssicherheit (Stasi)",
-      "Das Ministerium für Auswärtige Angelegenheiten",
-      "Die Nationale Volksarmee der gesamten DDR",
-      "Der Ministerrat der Deutschen Demokrat. Rep."
-    ],
+    "answers": ["Das Ministerium für Staatssicherheit", "Das Ministerium für Auswärtige Angelegenheiten", "Die Nationale Volksarmee der gesamten DDR", "Der Ministerrat der Deutschen Demokrat. Rep."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

@@ -261,12 +261,7 @@ const BRUECHE_K4_QUESTIONS = [
   "subject": "mathe",
   "topic": "brueche",
   "question": "Ein Schokoriegel 8 Stücke, du isst 2: welcher Bruch bleibt?",
-  "answers": [
-   "6/8 = 3/4",
-   "2/8",
-   "1/2",
-   "0"
-  ],
+  "answers": ["6/8 = 3/4", "2/8", "1/2", "1/8"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -454,12 +449,7 @@ const BRUECHE_K4_QUESTIONS = [
   "subject": "mathe",
   "topic": "brueche",
   "question": "4/8 + 2/8 =",
-  "answers": [
-   "6/8 = 3/4",
-   "8/8 nur",
-   "1/8",
-   "2/8"
-  ],
+  "answers": ["6/8 = 3/4", "8/8", "2/8", "6/16"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,

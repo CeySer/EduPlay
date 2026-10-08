@@ -425,12 +425,7 @@ const K9_ENGLISCH_QUESTIONS = [
     "grade": 9,
     "subject": "englisch",
     "question": "What is the highest mountain peak in the United States (located in Alaska)?",
-    "answers": [
-      "Denali (Mt. McKinley)",
-      "Mount Rainier Volcano",
-      "Mount Whitney Summit",
-      "Mount Elbert Colorado"
-    ],
+    "answers": ["Denali", "Mount Rainier Volcano", "Mount Whitney Summit", "Mount Elbert Colorado"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1077,12 +1072,7 @@ const K9_ENGLISCH_QUESTIONS = [
     "grade": 9,
     "subject": "englisch",
     "question": "What is a 'Gerund' in English grammar?",
-    "answers": [
-      "Verb functioning as noun (-ing)",
-      "An adjective that describes a noun",
-      "An adverb modifying a verb here",
-      "A preposition before the noun"
-    ],
+    "answers": ["Verb functioning as noun", "An adjective that describes a noun", "An adverb modifying a verb here", "A preposition before the noun"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1113,12 +1103,7 @@ const K9_ENGLISCH_QUESTIONS = [
     "grade": 9,
     "subject": "englisch",
     "question": "Which structure follows prepositions like 'instead of', 'before', and 'after'?",
-    "answers": [
-      "A Gerund (-ing form)",
-      "Infinitive with to",
-      "Bare Infinitive without to",
-      "Past Participle form"
-    ],
+    "answers": ["A Gerund", "Infinitive with to", "Bare Infinitive without to", "Past Participle form"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1293,12 +1278,7 @@ const K9_ENGLISCH_QUESTIONS = [
     "grade": 9,
     "subject": "englisch",
     "question": "What is an 'Infinitive of Purpose'?",
-    "answers": [
-      "Expresses goal (in order to)",
-      "Replaces the relative pronoun",
-      "Forms the past participle verb",
-      "Introduces a noun clause here"
-    ],
+    "answers": ["Expresses goal", "Replaces the relative pronoun", "Forms the past participle verb", "Introduces a noun clause here"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1655,12 +1635,7 @@ const K9_ENGLISCH_QUESTIONS = [
     "grade": 9,
     "subject": "englisch",
     "question": "What does the abbreviation 'e.g.' stand for in English texts?",
-    "answers": [
-      "For example (exempli gratia)",
-      "That is to say, roughly put",
-      "And so on and so forth then",
-      "Please note this well, always"
-    ],
+    "answers": ["For example", "That is to say, roughly put", "And so on and so forth then", "Please note this well, always"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

@@ -88,7 +88,7 @@ window.FRAGEN_VERZEICHNIS = [
   { datei: "fragen/klasse5/questions_k5_erdkunde.js", name: "K5_ERDKUNDE_QUESTIONS", n: 130, kat: ["k5_erdkunde"] },
   { datei: "fragen/klasse5/questions_k5_mathe.js", name: "K5_MATHE_QUESTIONS", n: 130, kat: ["k5_mathe"] },
     { datei: "fragen/questions_themen_plus_a.js", name: "THEMEN_PLUS_A_QUESTIONS", n: 71, kat: ["k5_mathe","k5_deutsch","k5_englisch","k6_mathe","k6_deutsch","k6_englisch"] , nKat: {k5_mathe: 5, k5_deutsch: 20, k5_englisch: 20, k6_mathe: 6, k6_deutsch: 11, k6_englisch: 9} },
-  { datei: "fragen/questions_themen_plus_b.js", name: "THEMEN_PLUS_B_QUESTIONS", n: 44, kat: ["k7_mathe","k8_mathe","k9_mathe","k10_mathe"] , nKat: {k7_mathe: 10, k8_mathe: 8, k9_mathe: 5, k10_mathe: 4} },
+  { datei: "fragen/questions_themen_plus_b.js", name: "THEMEN_PLUS_B_QUESTIONS", n: 44, kat: ["k7_mathe","k7_deutsch","k7_englisch","k8_mathe","k8_deutsch","k9_mathe","k9_physik","k9_chemie","k9_biologie","k9_erdkunde","k9_geschichte","k10_mathe","k10_physik","k10_chemie","k10_biologie","k10_erdkunde","k10_geschichte"] , nKat: {k7_mathe: 10, k7_deutsch: 4, k7_englisch: 2, k8_mathe: 8, k8_deutsch: 1, k9_mathe: 5, k9_physik: 1, k9_chemie: 1, k9_biologie: 1, k9_erdkunde: 1, k9_geschichte: 1, k10_mathe: 4, k10_physik: 1, k10_chemie: 1, k10_biologie: 1, k10_erdkunde: 1, k10_geschichte: 1} },
   { datei: "fragen/questions_themen_grafik.js", name: "THEMEN_GRAFIK_QUESTIONS", n: 35, kat: ["k5_mathe","k6_mathe","k7_mathe","k8_mathe"] , nKat: {k5_mathe: 16, k6_mathe: 8, k7_mathe: 6, k8_mathe: 5} },
 { datei: "fragen/klasse5/questions_k5_themen.js", name: "K5_THEMEN_QUESTIONS", n: 351, kat: ["k5_mathe","k5_deutsch","k5_englisch"] , nKat: {k5_mathe: 117, k5_deutsch: 110, k5_englisch: 124} },
   { datei: "fragen/klasse5/questions_k5_politik.js", name: "K5_POLITIK_QUESTIONS", n: 130, kat: ["k5_politik"] },
@@ -154,4 +154,14 @@ window.FRAGEN_VERZEICHNIS = [
   { datei: "fragen/klasse10/questions_k10_physik.js", name: "K10_PHYSIK_QUESTIONS", n: 150, kat: ["k10_physik"] },
   { datei: "fragen/klasse10/questions_k10_politik.js", name: "K10_POLITIK_QUESTIONS", n: 150, kat: ["k10_politik"] },
   { datei: "fragen/klasse10/questions_k10_religion_ethik.js", name: "K10_RELIGION_ETHIK_QUESTIONS", n: 150, kat: ["k10_religion"] },
+  { datei: "fragen/uebung_alltag_k1.js", name: "ALLTAG_K1_QUESTIONS", n: 24, kat: ["k1_sach_alltag"] },
+  { datei: "fragen/uebung_formen_k1.js", name: "FORMEN_K1_QUESTIONS", n: 24, kat: ["k1_mathe_formen"] },
+  { datei: "fragen/uebung_englisch_saetze_k2.js", name: "ENGLISCH_SAETZE_K2_QUESTIONS", n: 24, kat: ["k2_englisch_saetze"] },
+  { datei: "fragen/uebung_verdoppeln_k2.js", name: "VERDOPPELN_K2_QUESTIONS", n: 27, kat: ["k2_mathe_verdoppeln"] },
+  { datei: "fragen/uebung_brueche_k3.js", name: "BRUECHE_K3_QUESTIONS", n: 24, kat: ["k3_mathe_brueche"] },
+  { datei: "fragen/uebung_karte_k3.js", name: "KARTE_K3_QUESTIONS", n: 24, kat: ["k3_sach_karte"] },
+  { datei: "fragen/uebung_zeitform_k3.js", name: "ZEITFORM_K3_QUESTIONS", n: 24, kat: ["k3_deutsch_zeitform"] },
+  { datei: "fragen/uebung_brueche_k4.js", name: "BRUECHE_K4_QUESTIONS", n: 24, kat: ["k4_mathe_brueche"] },
+  { datei: "fragen/uebung_aufsatz_k4.js", name: "AUFSATZ_K4_QUESTIONS", n: 24, kat: ["k4_deutsch_aufsatz"] },
+  { datei: "fragen/uebung_europa_k4.js", name: "EUROPA_K4_QUESTIONS", n: 24, kat: ["k4_sach_europa"] }
 ];

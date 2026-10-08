@@ -7,12 +7,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Welches ist ein Kreis?",
-  "answers": [
-   "○ Kreis",
-   "Dreieck",
-   "Quadrat",
-   "Rechteck"
-  ],
+  "answers": ["Kreis", "Dreieck", "Quadrat", "Rechteck"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -26,13 +21,8 @@ const FORMEN_K1_QUESTIONS = [
   "grade": 1,
   "subject": "mathe",
   "topic": "formen",
-  "question": "Welches ist ein Dreieck?",
-  "answers": [
-   "hat 3 Ecken",
-   "Kreis",
-   "hat 4 gleiche Seiten",
-   "Kugel"
-  ],
+  "question": "Wie viele Ecken hat ein Dreieck?",
+  "answers": ["3", "4", "2", "0"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -87,12 +77,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Welche Form hat ein Ball?",
-  "answers": [
-   "Kugel / rund",
-   "Würfel",
-   "Dreieck",
-   "Linie"
-  ],
+  "answers": ["Kugel", "Würfel", "Dreieck", "Quadrat"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -125,12 +110,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Welche Form hat ein Stück Pizza oft?",
-  "answers": [
-   "Dreieck",
-   "Kreis",
-   "Quadrat",
-   "Linie"
-  ],
+  "answers": ["Dreieck", "Kreis", "Quadrat", "Rechteck"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -143,13 +123,8 @@ const FORMEN_K1_QUESTIONS = [
   "grade": 1,
   "subject": "mathe",
   "topic": "formen",
-  "question": "Was liegt oben?",
-  "answers": [
-   "Decke / Himmel",
-   "Fußboden",
-   "Keller",
-   "Schuhe"
-  ],
+  "question": "Was ist im Zimmer oben?",
+  "answers": ["die Decke", "der Fußboden", "der Teppich", "die Schuhe"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -163,12 +138,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Was liegt unten?",
-  "answers": [
-   "Fußboden",
-   "Dach",
-   "Wolke",
-   "Deckenlampe"
-  ],
+  "answers": ["der Fußboden", "das Dach", "die Wolke", "die Deckenlampe"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -182,12 +152,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Die Sonne steht am Tag …",
-  "answers": [
-   "oben am Himmel",
-   "unter der Erde",
-   "im Schuh",
-   "im Kühlschrank"
-  ],
+  "answers": ["oben am Himmel", "unter der Erde", "im Wasser", "hinter dem Haus"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -200,13 +165,8 @@ const FORMEN_K1_QUESTIONS = [
   "grade": 1,
   "subject": "mathe",
   "topic": "formen",
-  "question": "Links ist …",
-  "answers": [
-   "die andere Seite von rechts",
-   "immer oben",
-   "immer unten",
-   "ein Kreis"
-  ],
+  "question": "Was ist das Gegenteil von rechts?",
+  "answers": ["links", "oben", "unten", "hinten"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -220,12 +180,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Wenn du zur Tür schaust: die Wand hinter dir ist …",
-  "answers": [
-   "hinten",
-   "vorne",
-   "oben",
-   "ein Dreieck"
-  ],
+  "answers": ["hinten", "vorne", "oben", "unten"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -238,17 +193,12 @@ const FORMEN_K1_QUESTIONS = [
   "grade": 1,
   "subject": "mathe",
   "topic": "formen",
-  "question": "Ein Würfel hat …",
-  "answers": [
-   "6 Seiten",
-   "1 Seite",
-   "3 Ecken",
-   "0 Kanten"
-  ],
+  "question": "Wie viele Flächen hat ein Würfel?",
+  "answers": ["6", "4", "8", "12"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
-  "explanation": "Ein Würfel hat sechs quadratische Seiten.",
+  "explanation": "Ein Würfel hat sechs quadratische Flächen.",
   "grafik": "<svg viewBox='0 0 160 140' style='display:block;margin:8px auto;width:100%;max-width:170px;height:auto' xmlns='http://www.w3.org/2000/svg'><polygon points='40,44 100,44 130,20 70,20' fill='rgba(56,189,248,0.42)' stroke='#38bdf8' stroke-width='3' stroke-linejoin='round'/><polygon points='40,44 100,44 100,110 40,110' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='3' stroke-linejoin='round'/><polygon points='100,44 130,20 130,86 100,110' fill='rgba(56,189,248,0.35)' stroke='#38bdf8' stroke-width='3' stroke-linejoin='round'/></svg>"
  },
  {
@@ -259,12 +209,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Welche Form hat ein Fenster oft?",
-  "answers": [
-   "Rechteck",
-   "Kugel",
-   "Stern",
-   "Mond"
-  ],
+  "answers": ["Rechteck", "Kreis", "Dreieck", "Stern"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -278,12 +223,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Ein Stoppschild in Deutschland ist …",
-  "answers": [
-   "achteckig",
-   "ein Kreis",
-   "ein Dreieck",
-   "ein Strich"
-  ],
+  "answers": ["achteckig", "rund", "dreieckig", "viereckig"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -297,12 +237,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Ein Vorfahrt-achten-Schild ist …",
-  "answers": [
-   "ein Dreieck",
-   "ein Quadrat",
-   "eine Kugel",
-   "ein Strich"
-  ],
+  "answers": ["ein Dreieck", "ein Kreis", "ein Quadrat", "ein Achteck"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -316,16 +251,11 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Was rollt am besten?",
-  "answers": [
-   "Kreis / Kugel",
-   "Dreieck",
-   "Quadrat auf der Kante",
-   "Würfel ohne Rundung"
-  ],
+  "answers": ["Kugel", "Würfel", "Quader", "Pyramide"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
-  "explanation": "Runde Dinge rollen gut."
+  "explanation": "Eine Kugel ist überall rund und rollt am besten."
  },
  {
   "id": "form_k1_018",
@@ -334,17 +264,12 @@ const FORMEN_K1_QUESTIONS = [
   "grade": 1,
   "subject": "mathe",
   "topic": "formen",
-  "question": "Neben der Tür steht der Schrank. Der Schrank ist …",
-  "answers": [
-   "neben der Tür",
-   "über der Sonne",
-   "unter der Erde",
-   "im Kreis"
-  ],
+  "question": "Der Schrank steht neben der Tür. Wo ist die Tür?",
+  "answers": ["neben dem Schrank", "auf dem Schrank", "unter dem Schrank", "im Schrank"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
-  "explanation": "Neben bedeutet direkt daneben."
+  "explanation": "Die Tür steht neben dem Schrank."
  },
  {
   "id": "form_k1_019",
@@ -354,12 +279,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Der Vogel fliegt …",
-  "answers": [
-   "oben in der Luft",
-   "unter dem Teppich",
-   "im Schuh",
-   "im Keller immer"
-  ],
+  "answers": ["oben in der Luft", "unten im Keller", "unter dem Teppich", "im Wasser"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -393,16 +313,11 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Ein Rechteck hat …",
-  "answers": [
-   "4 Ecken, nicht alle Seiten gleich lang",
-   "3 Ecken",
-   "0 Ecken",
-   "8 Ecken"
-  ],
+  "answers": ["4 Ecken", "3 Ecken", "0 Ecken", "8 Ecken"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
-  "explanation": "Beim Rechteck sind gegenüberliegende Seiten gleich.",
+  "explanation": "Ein Rechteck hat 4 Ecken. Gegenüberliegende Seiten sind gleich lang.",
   "grafik": "<svg viewBox='0 0 200 150' style='display:block;margin:8px auto;width:100%;max-width:200px;height:auto' xmlns='http://www.w3.org/2000/svg'><rect x='38.6' y='43.3' width='122.9' height='63.4' rx='3' fill='rgba(56,189,248,0.28)' stroke='#38bdf8' stroke-width='4' stroke-linejoin='round'/></svg>"
  },
  {
@@ -413,12 +328,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Die Lampe hängt …",
-  "answers": [
-   "oben",
-   "unten am Boden",
-   "links im Schuh",
-   "im Kreis"
-  ],
+  "answers": ["oben an der Decke", "unten am Boden", "unter dem Tisch", "im Schrank"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -432,12 +342,7 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Dein Gesicht ist … deinem Rücken.",
-  "answers": [
-   "vor",
-   "hinter",
-   "unter",
-   "über der Erde"
-  ],
+  "answers": ["vor", "hinter", "unter", "über"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -451,16 +356,11 @@ const FORMEN_K1_QUESTIONS = [
   "subject": "mathe",
   "topic": "formen",
   "question": "Ein Buch lag unter dem Heft. Das Heft ist …",
-  "answers": [
-   "oben auf dem Buch",
-   "unter der Erde",
-   "im Kreis",
-   "hinten im Mond"
-  ],
+  "answers": ["auf dem Buch", "unter dem Buch", "neben dem Buch", "hinter dem Buch"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
-  "explanation": "Unter = das Buch ist darunter."
+  "explanation": "Das Buch liegt unten, das Heft liegt auf dem Buch."
  }
 ];
 if (typeof window !== 'undefined') window.FORMEN_K1_QUESTIONS = FORMEN_K1_QUESTIONS;

@@ -83,12 +83,7 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Aus welchen zwei Hauptkomponenten besteht ein einfacher Elektromotor oder Generator?",
-    "answers": [
-      "Stator und Rotor (Läufer)",
-      "Anode und Kathode Polen",
-      "Primär- und Sekundärspule",
-      "Kondensator und Diode Bauteil"
-    ],
+    "answers": ["Stator und Rotor", "Anode und Kathode Polen", "Primär- und Sekundärspule", "Kondensator und Diode Bauteil"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -119,16 +114,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie lautet die Gleichung für das Spannungsverhältnis am idealen Transformator?",
-    "answers": [
-      "U1 / U2 = N1 / N2",
-      "U1 / U2 = N2 / N1",
-      "U1 * U2 = N1 * N2",
-      "U1 - U2 = N1 - N2"
-    ],
+    "answers": ["U₁ / U₂ = N₁ / N₂", "U₁ / U₂ = N₂ / N₁", "U₁ · U₂ = N₁ · N₂", "U₁ - U₂ = N₁ - N₂"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das Spannungsverhältnis ist direkt proportional zum Windungsverhältnis der Spulen ($U_1 / U_2 = N_1 / N_2$)."
+    "explanation": "Das Spannungsverhältnis ist direkt proportional zum Windungsverhältnis der Spulen (U₁ / U₂ = N₁ / N₂)."
   },
   {
     "id": "k9_phy_008",
@@ -136,17 +126,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie verhalten sich die Stromstärken $I_1$ u. $I_2$ am idealen Transformator im Verhältnis zu den Windungszahlen?",
-    "answers": [
-      "I1 / I2 = N2 / N1",
-      "I1 / I2 = N1 / N2",
-      "I1 * I2 = N1 * N2",
-      "I1 - I2 = N2 - N1"
-    ],
+    "question": "Wie verhalten sich die Stromstärken I₁ u. I₂ am idealen Transformator im Verhältnis zu den Windungszahlen?",
+    "answers": ["I₁ / I₂ = N₂ / N₁", "I₁ / I₂ = N₁ / N₂", "I₁ · I₂ = N₁ · N₂", "I₁ - I₂ = N₂ - N₁"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Wegen der Leistungserhaltung ($P_1 = P_2 \\Rightarrow U_1 I_1 = U_2 I_2$) verhalten sich Stromstärken umgekehrt proportional zu Windungszahlen."
+    "explanation": "Wegen der Leistungserhaltung (P₁ = P₂ ⇒ U₁ I₁ = U₂ I₂) verhalten sich Stromstärken umgekehrt proportional zu Windungszahlen."
   },
   {
     "id": "k9_phy_009",
@@ -173,16 +158,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Warum wird elektrischer Strom über weite Strecken mit Hochspannung transportiert?",
-    "answers": [
-      "Verlustleistung im Draht sinkt",
-      "Spannung wird dadurch sicherer",
-      "Gleichstrom fließt schneller da",
-      "Kabel werden dadurch leichter"
-    ],
+    "answers": ["Verlustleistung im Draht sinkt", "Spannung wird dadurch sicherer", "Gleichstrom fließt schneller da", "Kabel werden dadurch leichter"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei höherer Spannung sinkt die Stromstärke $I$. Wegen $P_{Verlust} = R I^2$ sinkt der Wärme-Verlust in den Leitungen drastisch."
+    "explanation": "Bei höherer Spannung sinkt die Stromstärke I. Wegen PVerlust = R I² sinkt der Wärme-Verlust in den Leitungen drastisch."
   },
   {
     "id": "k9_phy_011",
@@ -191,16 +171,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Welche Frequenz besitzt die Wechselspannung im europäischen Stromnetz?",
-    "answers": [
-      "Frequenz: 50 Hertz (Hz)",
-      "Frequenz: 60 Hertz (Hz)",
-      "Frequenz: 100 Hertz (Hz)",
-      "Frequenz: 12 Hertz (Hz)"
-    ],
+    "answers": ["Frequenz: 50 Hertz (Hz)", "Frequenz: 60 Hertz (Hz)", "Frequenz: 100 Hertz (Hz)", "Frequenz: 12 Hertz (Hz)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das europäische Stromnetz arbeitet mit einer Netzfrequenz von $50\\,Hz$ (50 Schwingungen pro Sekunde)."
+    "explanation": "Das europäische Stromnetz arbeitet mit einer Netzfrequenz von 50 Hz (50 Schwingungen pro Sekunde)."
   },
   {
     "id": "k9_phy_012",
@@ -209,16 +184,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie groß ist der Effektivwert der Netzwechselspannung in deutschen Haushalten?",
-    "answers": [
-      "Spannung: 230 Volt",
-      "Spannung: 110 Volt",
-      "Spannung: 400 Volt",
-      "Spannung: 12 Volt"
-    ],
+    "answers": ["Spannung: 230 Volt", "Spannung: 110 Volt", "Spannung: 400 Volt", "Spannung: 12 Volt"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Standard-Wechselspannung an der Haushaltssteckdose hat einen Effektivwert von $230\\,V$."
+    "explanation": "Die Standard-Wechselspannung an der Haushaltssteckdose hat einen Effektivwert von 230 V."
   },
   {
     "id": "k9_phy_013",
@@ -227,16 +197,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Was beschreibt die Drei-Finger-Regel (Rechte-Hand-Regel) der Lorentzkraft?",
-    "answers": [
-      "Daumen=I, Zeigef.=B, Mittelf.=F",
-      "Daumen=F, Zeigef.=I, Mittelf.=B",
-      "Daumen=B, Zeigef.=F, Mittelf.=I",
-      "Daumen=U, Zeigef.=R, Mittelf.=I"
-    ],
+    "answers": ["Daumen=I, Zeigef.=B, Mittelf.=F", "Daumen=F, Zeigef.=I, Mittelf.=B", "Daumen=B, Zeigef.=F, Mittelf.=I", "Daumen=U, Zeigef.=R, Mittelf.=I"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ursache-Vermittlung-Wirkung: Daumen = Stromrichtung $I$, Zeigefinger = Magnetfeld $B$, Mittelfinger = Lorentzkraft $F$."
+    "explanation": "Ursache-Vermittlung-Wirkung: Daumen = Stromrichtung I, Zeigefinger = Magnetfeld B, Mittelfinger = Lorentzkraft F."
   },
   {
     "id": "k9_phy_014",
@@ -263,16 +228,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Was passiert mit der Lorentzkraft, wenn sich eine Ladung PARALLEL zu den Magnetfeldlinien bewegt?",
-    "answers": [
-      "Kraft ist genau Null",
-      "Kraft erreicht Maximum",
-      "Ladung stoppt sofort ab",
-      "Ladung kehrt Richtung um"
-    ],
+    "answers": ["Kraft ist genau Null", "Kraft erreicht Maximum", "Ladung stoppt sofort ab", "Ladung kehrt Richtung um"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bewegen sich Ladungen parallel zum Magnetfeld, wirkt keine Lorentzkraft ($F_L = 0$)."
+    "explanation": "Bewegen sich Ladungen parallel zum Magnetfeld, wirkt keine Lorentzkraft (FL = 0)."
   },
   {
     "id": "k9_phy_016",
@@ -352,17 +312,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie berechnet man die elektrische Leistung $P$ im Gleichstromkreis aus Spannung $U$ u. Stromstärke $I$?",
-    "answers": [
-      "Leistung: P = U * I",
-      "Leistung: P = U / I",
-      "Leistung: P = I^2 * U",
-      "Leistung: P = U + I"
-    ],
+    "question": "Wie berechnet man die elektrische Leistung P im Gleichstromkreis aus Spannung U u. Stromstärke I?",
+    "answers": ["Leistung: P = U · I", "Leistung: P = U / I", "Leistung: P = I² · U", "Leistung: P = U + I"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die elektrische Leistung berechnet sich durch $P = U \\cdot I$ (Einheit Watt)."
+    "explanation": "Die elektrische Leistung berechnet sich durch P = U · I (Einheit Watt)."
   },
   {
     "id": "k9_phy_021",
@@ -370,17 +325,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie lautet die Einheit der elektrischen Arbeit $W_el$ auf Stromabrechnungen im Alltag?",
-    "answers": [
-      "Kilowattstunde (kWh)",
-      "Kilojoule pro Stunde",
-      "Ampere mal Sekunde",
-      "Volt mal Ohm pro Tag"
-    ],
+    "question": "Wie lautet die Einheit der elektrischen Arbeit auf Stromabrechnungen im Alltag?",
+    "answers": ["Kilowattstunde", "Kilojoule pro Stunde", "Ampere mal Sekunde", "Volt mal Ohm pro Tag"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Elektrische Energie/Arbeit wird im Alltag in Kilowattstunden ($1\\,kWh = 3,6 \\cdot 10^6\\,J$) gemessen."
+    "explanation": "Elektrische Energie/Arbeit wird im Alltag in Kilowattstunden (1 kWh = 3,6 · 10⁶ J) gemessen."
   },
   {
     "id": "k9_phy_022",
@@ -462,17 +412,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie ist die physikalische Arbeit $W$ bei konstanter Kraft in Wegrichtung definiert?",
-    "answers": [
-      "Arbeit = Kraft * Weg",
-      "Arbeit = Masse * Weg",
-      "Arbeit = Kraft / Zeit",
-      "Arbeit = Masse * Beschleunigung"
-    ],
+    "question": "Wie ist die physikalische Arbeit W bei konstanter Kraft in Wegrichtung definiert?",
+    "answers": ["Arbeit = Kraft · Weg", "Arbeit = Masse · Weg", "Arbeit = Kraft / Zeit", "Arbeit = Masse · Beschleunigung"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Arbeit ist das Produkt aus Kraft in Wegrichtung u. Wegstrecke ($W = F \\cdot s$)."
+    "explanation": "Arbeit ist das Produkt aus Kraft in Wegrichtung u. Wegstrecke (W = F · s)."
   },
   {
     "id": "k9_phy_027",
@@ -481,16 +426,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie lautet die SI-Einheit der mechanischen Energie u. Arbeit?",
-    "answers": [
-      "Einheit: Joule (J)",
-      "Einheit: Watt (W)",
-      "Einheit: Newton (N)",
-      "Einheit: Pascal (Pa)"
-    ],
+    "answers": ["Einheit: Joule (J)", "Einheit: Watt (W)", "Einheit: Newton (N)", "Einheit: Pascal (Pa)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Energie u. Arbeit werden in der SI-Einheit Joule ($1\\,J = 1\\,N \\cdot m = 1\\,Ws$) angegeben."
+    "explanation": "Energie u. Arbeit werden in der SI-Einheit Joule (1 J = 1 N · m = 1 Ws) angegeben."
   },
   {
     "id": "k9_phy_028",
@@ -498,17 +438,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie berechnet man die potenziellen Energie (Hubenergie) $E_{pot}$ eines Körpers der Masse $m$ in Höhe $h$?",
-    "answers": [
-      "E_pot = m * g * h",
-      "E_pot = 0.5 * m * v^2",
-      "E_pot = F * v",
-      "E_pot = m * h / g"
-    ],
+    "question": "Wie berechnet man die potenziellen Energie (Hubenergie) Epot eines Körpers der Masse m in Höhe h?",
+    "answers": ["Epot = m · g · h", "Epot = 0.5 · m · v²", "Epot = F · v", "Epot = m · h / g"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Höhenenergie beträgt $E_{pot} = m \\cdot g \\cdot h$ ($g \\approx 9,81\\,m/s^2$)."
+    "explanation": "Die Höhenenergie beträgt Epot = m · g · h (g ≈ 9,81 m/s²)."
   },
   {
     "id": "k9_phy_029",
@@ -516,17 +451,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie lautet die Formel zur Berechnung der kinetischen Energie (Bewegungsenergie) $E_{kin}$?",
-    "answers": [
-      "E_kin = 0.5 * m * v^2",
-      "E_kin = 0.5 * m^2 * v",
-      "E_kin = 0.5 * m * a",
-      "E_pot = 0.5 * m * g"
-    ],
+    "question": "Wie lautet die Formel zur Berechnung der kinetischen Energie (Bewegungsenergie) Ekin?",
+    "answers": ["Ekin = 0.5 · m · v²", "Ekin = 0.5 · m² · v", "Ekin = 0.5 · m · a", "Epot = 0.5 · m · g"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Bewegungsenergie eines Körpers berechnet sich nach der Formel $E_{kin} = \\frac{1}{2} m v^2$."
+    "explanation": "Die Bewegungsenergie eines Körpers berechnet sich nach der Formel Ekin = 1/2 m v²."
   },
   {
     "id": "k9_phy_030",
@@ -535,12 +465,7 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Was besagt der Energieerhaltungssatz der Mechanik für abgeschlossene Systeme ohne Reibung?",
-    "answers": [
-      "Gesamtenergie ist konstant",
-      "E_kin wird stets vernichtet",
-      "E_pot wächst unendlich an",
-      "Energie wird zu neuer Masse"
-    ],
+    "answers": ["Gesamtenergie ist konstant", "Ekin wird stets vernichtet", "Epot wächst unendlich an", "Energie wird zu neuer Masse"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -552,17 +477,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie ist die mechanische Leistung $P$ definiert?",
-    "answers": [
-      "Leistung = Arbeit / Zeit",
-      "Leistung = Arbeit * Zeit",
-      "Leistung = Kraft * Weg",
-      "Leistung = Masse / Zeit"
-    ],
+    "question": "Wie ist die mechanische Leistung P definiert?",
+    "answers": ["Leistung = Arbeit / Zeit", "Leistung = Arbeit · Zeit", "Leistung = Kraft · Weg", "Leistung = Masse / Zeit"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Leistung ist die pro Zeiteinheit verrichtete Arbeit ($P = \\frac{W}{t}$, Einheit Watt)."
+    "explanation": "Leistung ist die pro Zeiteinheit verrichtete Arbeit (P = W/t, Einheit Watt)."
   },
   {
     "id": "k9_phy_032",
@@ -571,16 +491,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie lautet die Goldene Regel der Mechanik?",
-    "answers": [
-      "Was an Kraft gespart wird...",
-      "Was an Weg gespart wird...",
-      "Arbeit wächst mit dem Weg...",
-      "Kraft verdoppelt die Zeit..."
-    ],
+    "answers": ["Was an Kraft gespart wird...", "Was an Weg gespart wird...", "Arbeit wächst mit dem Weg...", "Kraft verdoppelt die Zeit..."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Goldene Regel besagt: 'Was man an Kraft spart, muss man an Weg zusetzen.' (Das Produkt $W = F \\cdot s$ bleibt konstant)."
+    "explanation": "Die Goldene Regel besagt: 'Was man an Kraft spart, muss man an Weg zusetzen.' (Das Produkt W = F · s bleibt konstant)."
   },
   {
     "id": "k9_phy_033",
@@ -589,12 +504,7 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie groß ist die Kraftersparnis bei einer einzelnen losen Rolle im Seilsystem?",
-    "answers": [
-      "Kraft wird halbiert (F/2)",
-      "Kraft wird geviertelt (F/4)",
-      "Kraft bleibt völlig gleich",
-      "Kraft wird verdoppelt (F*2)"
-    ],
+    "answers": ["Kraft wird halbiert (F/2)", "Kraft wird geviertelt (F/4)", "Kraft bleibt völlig gleich", "Kraft wird verdoppelt (F·2)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -607,16 +517,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie lautet das Hebelgesetz für einen zweiseitigen Hebel im Gleichgewicht?",
-    "answers": [
-      "F1 * r1 = F2 * r2",
-      "F1 / r1 = F2 / r2",
-      "F1 + r1 = F2 + r2",
-      "F1 * F2 = r1 * r2"
-    ],
+    "answers": ["F₁ · r₁ = F₂ · r₂", "F₁ / r₁ = F₂ / r₂", "F₁ + r₁ = F₂ + r₂", "F₁ · F₂ = r₁ · r₂"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Gleichgewicht herrscht, wenn die Drehmomente links u. rechts gleich groß sind: $F_1 \\cdot r_1 = F_2 \\cdot r_2$."
+    "explanation": "Gleichgewicht herrscht, wenn die Drehmomente links u. rechts gleich groß sind: F₁ · r₁ = F₂ · r₂."
   },
   {
     "id": "k9_phy_035",
@@ -624,17 +529,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie berechnet man den Wirkungsgrad $\\eta$ einer Maschine?",
-    "answers": [
-      "eta = E_nutz / E_zufuhr",
-      "eta = E_zufuhr / E_nutz",
-      "eta = E_nutz * E_zufuhr",
-      "eta = E_zufuhr - E_nutz"
-    ],
+    "question": "Wie berechnet man den Wirkungsgrad η einer Maschine?",
+    "answers": ["η = Enutz / Ezufuhr", "η = Ezufuhr / Enutz", "η = Enutz · Ezufuhr", "η = Ezufuhr - Enutz"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Wirkungsgrad ist das Verhältnis von nutzbarer Energie zu zugeführter Energie (stets $\\eta \\le 1$ bzw. $\\le 100\\%$)."
+    "explanation": "Der Wirkungsgrad ist das Verhältnis von nutzbarer Energie zu zugeführter Energie (stets η ≤ 1 bzw. ≤ 100%)."
   },
   {
     "id": "k9_phy_036",
@@ -642,13 +542,8 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Warum ist der Wirkungsgrad reeller Maschinen immer kleiner als 1 ($100\\%$)?",
-    "answers": [
-      "Verluste durch Reibung",
-      "Energie wird vernichtet",
-      "Masse geht verloren",
-      "Schwerkraft wirkt entgegen"
-    ],
+    "question": "Warum ist der Wirkungsgrad reeller Maschinen immer kleiner als 1 (100%)?",
+    "answers": ["Verluste durch Reibung", "Energie wird vernichtet", "Masse geht verloren", "Schwerkraft wirkt entgegen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -660,17 +555,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie ist der physikalische Impuls $p$ eines Körpers definiert?",
-    "answers": [
-      "Impuls: p = m * v",
-      "Impuls: p = m * a",
-      "Impuls: p = 0.5 * m * v^2",
-      "Impuls: p = F * t^2"
-    ],
+    "question": "Wie ist der physikalische Impuls p eines Körpers definiert?",
+    "answers": ["Impuls: p = m · v", "Impuls: p = m · a", "Impuls: p = 0.5 · m · v²", "Impuls: p = F · t²"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Impuls (Bewegungsmenge) ist das Produkt aus Masse u. Geschwindigkeit ($p = m \\cdot v$, Einheit $kg \\cdot m/s$)."
+    "explanation": "Der Impuls (Bewegungsmenge) ist das Produkt aus Masse u. Geschwindigkeit (p = m · v, Einheit kg · m/s)."
   },
   {
     "id": "k9_phy_038",
@@ -697,16 +587,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Was unterscheidet einen elastischen von einem unelastischen Stoß?",
-    "answers": [
-      "Elastisch verformt nicht dauerhaft",
-      "Unelastisch erhält E_kin vollständig",
-      "Elastisch verklebt beide Körper",
-      "Unelastisch kennt keine Erhaltung"
-    ],
+    "answers": ["Elastisch verformt nicht dauerhaft", "Unelastisch erhält Ekin vollständig", "Elastisch verklebt beide Körper", "Unelastisch kennt keine Erhaltung"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Beim elastischen Stoß bleibt die kinetische Energie erhalten; beim unelastischen Stoß wird $E_{kin}$ teilweise in Verformungs- u. Wärmeenergie umgewandelt."
+    "explanation": "Beim elastischen Stoß bleibt die kinetische Energie erhalten; beim unelastischen Stoß wird Ekin teilweise in Verformungs- u. Wärmeenergie umgewandelt."
   },
   {
     "id": "k9_phy_040",
@@ -714,17 +599,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie berechnet man den Druck $p$ einer Kraft $F$ auf die Fläche $A$?",
-    "answers": [
-      "Druck: p = F / A",
-      "Druck: p = F * A",
-      "Druck: p = A / F",
-      "Druck: p = F * g * A"
-    ],
+    "question": "Wie berechnet man den Druck p einer Kraft F auf die Fläche A?",
+    "answers": ["Druck: p = F / A", "Druck: p = F · A", "Druck: p = A / F", "Druck: p = F · g · A"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Druck ist Kraft pro Flächeneinheit ($p = \\frac{F}{A}$, Einheit Pascal $1\\,Pa = 1\\,N/m^2$)."
+    "explanation": "Druck ist Kraft pro Flächeneinheit (p = F/A, Einheit Pascal 1 Pa = 1 N/m²)."
   },
   {
     "id": "k9_phy_041",
@@ -732,17 +612,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie lautet die Schweredruck-Formel für den Druck in einer Flüssigkeit der Dichte $\\rho$ in Tiefe $h$?",
-    "answers": [
-      "p = rho * g * h",
-      "p = rho * V * g",
-      "p = m * g / h",
-      "p = 0.5 * rho * h^2"
-    ],
+    "question": "Wie lautet die Schweredruck-Formel für den Druck in einer Flüssigkeit der Dichte ρ in Tiefe h?",
+    "answers": ["p = ρ · g · h", "p = ρ · V · g", "p = m · g / h", "p = 0.5 · ρ · h²"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der hydrostatische Druck beträgt $p = \\rho \\cdot g \\cdot h$."
+    "explanation": "Der hydrostatische Druck beträgt p = ρ · g · h."
   },
   {
     "id": "k9_phy_042",
@@ -750,17 +625,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Was besagt das Archimedische Prinzip für den Auftrieb $F_A$ in Flüssigkeiten?",
-    "answers": [
-      "Auftrieb = Gewicht der Verdrängung",
-      "Auftrieb = Tiefe des Körpers",
-      "Auftrieb = Gesamtmasse des Körpers",
-      "Auftrieb = Fläche der Grundseite"
-    ],
+    "question": "Was besagt das Archimedische Prinzip für den Auftrieb FA in Flüssigkeiten?",
+    "answers": ["Auftrieb = Gewicht der Verdrängung", "Auftrieb = Tiefe des Körpers", "Auftrieb = Gesamtmasse des Körpers", "Auftrieb = Fläche der Grundseite"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Auftriebskraft auf einen Körper ist genau so groß wie die Gewichtskraft der von ihm verdrängten Flüssigkeitsmenge ($F_A = \\rho_{Fl} \\cdot V_{Kör} \\cdot g$)."
+    "explanation": "Die Auftriebskraft auf einen Körper ist genau so groß wie die Gewichtskraft der von ihm verdrängten Flüssigkeitsmenge (FA = ρFl · VKör · g)."
   },
   {
     "id": "k9_phy_043",
@@ -804,17 +674,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie lautet die Grundgleichung der Wellenlehre für die Ausbreitungsgeschwindigkeit $c$?",
-    "answers": [
-      "c = Lambda * f",
-      "c = Lambda / f",
-      "c = f / Lambda",
-      "c = Lambda + f"
-    ],
+    "question": "Wie lautet die Grundgleichung der Wellenlehre für die Ausbreitungsgeschwindigkeit c?",
+    "answers": ["c = Lambda · f", "c = Lambda / f", "c = f / Lambda", "c = Lambda + f"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Ausbreitungsgeschwindigkeit ist das Produkt aus Wellenlänge $\\lambda$ u. Frequenz $f$ ($c = \\lambda \\cdot f$)."
+    "explanation": "Die Ausbreitungsgeschwindigkeit ist das Produkt aus Wellenlänge λ u. Frequenz f (c = λ · f)."
   },
   {
     "id": "k9_phy_046",
@@ -859,16 +724,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie groß ist die Schallgeschwindigkeit in Luft bei Raumtemperatur etwa?",
-    "answers": [
-      "Geschwindigkeit: 340 m/s",
-      "Geschwindigkeit: 300.000 km/s",
-      "Geschwindigkeit: 1200 m/s",
-      "Geschwindigkeit: 50 m/s"
-    ],
+    "answers": ["Geschwindigkeit: 340 m/s", "Geschwindigkeit: 300.000 km/s", "Geschwindigkeit: 1200 m/s", "Geschwindigkeit: 50 m/s"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Schallgeschwindigkeit in Luft beträgt bei $20^\\circ C$ etwa $343\\,m/s$ (ca. $1235\\,km/h$)."
+    "explanation": "Die Schallgeschwindigkeit in Luft beträgt bei 20° C etwa 343 m/s (ca. 1235 km/h)."
   },
   {
     "id": "k9_phy_049",
@@ -933,16 +793,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wo liegt der absolute Nullpunkt der Temperatur auf der Celsius-Skala?",
-    "answers": [
-      "Temperatur: -273.15 Grad C",
-      "Temperatur: 0 Grad C",
-      "Temperatur: -100 Grad C",
-      "Temperatur: -459.67 Grad C"
-    ],
+    "answers": ["Temperatur: -273.15 Grad C", "Temperatur: 0 Grad C", "Temperatur: -100 Grad C", "Temperatur: -459.67 Grad C"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der absolute Nullpunkt ($0\\,K$) liegt exakt bei $-273,15^\\circ C$. Tiefer kann keine Temperatur sinken."
+    "explanation": "Der absolute Nullpunkt (0 K) liegt exakt bei -273,15° C. Tiefer kann keine Temperatur sinken."
   },
   {
     "id": "k9_phy_053",
@@ -950,17 +805,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie rechnet man eine Temperatur von Celsius ($t$) in Kelvin ($T$) um?",
-    "answers": [
-      "T = t + 273.15",
-      "T = t - 273.15",
-      "T = t * 1.8 + 32",
-      "T = t / 273.15"
-    ],
+    "question": "Wie rechnet man eine Temperatur von Celsius (t) in Kelvin (T) um?",
+    "answers": ["T = t + 273.15", "T = t - 273.15", "T = t · 1.8 + 32", "T = t / 273.15"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Zur Umrechnung addiert man $273,15$ zur Celsius-Temperatur ($T(K) = t(^\\circ C) + 273,15$)."
+    "explanation": "Zur Umrechnung addiert man 273,15 zur Celsius-Temperatur (T(K) = t(° C) + 273,15)."
   },
   {
     "id": "k9_phy_054",
@@ -968,17 +818,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie berechnet man die Wärmeenergie $Q$, die zur Erwärmung der Masse $m$ um $\\Delta T$ nötig ist?",
-    "answers": [
-      "Q = c * m * Delta_T",
-      "Q = c * m / Delta_T",
-      "Q = m * g * Delta_T",
-      "Q = c / (m * Delta_T)"
-    ],
+    "question": "Wie berechnet man die Wärmeenergie Q, die zur Erwärmung der Masse m um ΔT nötig ist?",
+    "answers": ["Q = c · m · ΔT", "Q = c · m / ΔT", "Q = m · g · ΔT", "Q = c / (m · ΔT)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Grundgleichung der Wärmelehre lautet $Q = c \\cdot m \\cdot \\Delta T$ ($c = $ spezifische Wärmekapazität)."
+    "explanation": "Die Grundgleichung der Wärmelehre lautet Q = c · m · ΔT (c = spezifische Wärmekapazität)."
   },
   {
     "id": "k9_phy_055",
@@ -986,13 +831,8 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Welcher Stoff besitzt unter den alltäglichen Stoffen eine besonders hohe spezifische Wärmekapazität ($c \\approx 4,18\\,kJ/(kg\\cdot K)$)?",
-    "answers": [
-      "Flüssiges Wasser Stoff",
-      "Trockene Luft im Zimmer",
-      "Ein Block aus reinem Eisen",
-      "Ein Draht aus reinem Kupfer"
-    ],
+    "question": "Welcher Stoff besitzt unter den alltäglichen Stoffen eine besonders hohe spezifische Wärmekapazität (c ≈ 4,18 kJ/(kg· K))?",
+    "answers": ["Flüssiges Wasser Stoff", "Trockene Luft im Zimmer", "Ein Block aus reinem Eisen", "Ein Draht aus reinem Kupfer"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1058,13 +898,8 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Warum bleibt die Temperatur beim Sieden von Wasser trotz ständiger Wärmezufuhr bei $100^\\circ C$ konstant?",
-    "answers": [
-      "Energie wird für Phasenübergang genutzt",
-      "Das Wasser kann einfach nicht heißer werden",
-      "Die Wärme entweicht sofort in die Luft",
-      "Der Wasserdampf kühlt die Oberfläche ab"
-    ],
+    "question": "Warum bleibt die Temperatur beim Sieden von Wasser trotz ständiger Wärmezufuhr bei 100° C konstant?",
+    "answers": ["Energie wird für Phasenübergang genutzt", "Das Wasser kann einfach nicht heißer werden", "Die Wärme entweicht sofort in die Luft", "Der Wasserdampf kühlt die Oberfläche ab"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1077,16 +912,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie nennt man den direkten Phasenübergang von fest zu gasförmig unter Überspringen des flüssigen Zustands?",
-    "answers": [
-      "Die Sublimation Phase",
-      "Die Resublimation Phase",
-      "Die Kondensation Phase",
-      "Die Verdampfung Phase"
-    ],
+    "answers": ["Die Sublimation Phase", "Die Resublimation Phase", "Die Kondensation Phase", "Die Verdampfung Phase"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Sublimation ist der Übergang von fest direkt zu gasförmig (z. B. Trockeneis $CO_2$)."
+    "explanation": "Sublimation ist der Übergang von fest direkt zu gasförmig (z. B. Trockeneis CO₂)."
   },
   {
     "id": "k9_phy_061",
@@ -1095,16 +925,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Was besagt der 1. Hauptsatz der Thermodynamik?",
-    "answers": [
-      "Satz der Energieerhaltung",
-      "Wärme fließt nur von kalt zu heiß",
-      "Der Nullpunkt ist erreichbar",
-      "Entropie nimmt immer ab"
-    ],
+    "answers": ["Satz der Energieerhaltung", "Wärme fließt nur von kalt zu heiß", "Der Nullpunkt ist erreichbar", "Entropie nimmt immer ab"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der 1. Hauptsatz entspricht dem allgemeinen Energieerhaltungssatz: $\\Delta U = Q + W$."
+    "explanation": "Der 1. Hauptsatz entspricht dem allgemeinen Energieerhaltungssatz: ΔU = Q + W."
   },
   {
     "id": "k9_phy_062",
@@ -1185,16 +1010,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Was versteht man unter der Dichteanomalie des Wassers?",
-    "answers": [
-      "Größte Dichte bei 4 Grad C",
-      "Gefriert erst bei minus 10 Grad",
-      "Verkleinert Volumen beim Eis",
-      "Dichte wächst linear mit Hitze"
-    ],
+    "answers": ["Größte Dichte bei 4 Grad C", "Gefriert erst bei minus 10 Grad", "Verkleinert Volumen beim Eis", "Dichte wächst linear mit Hitze"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Wasser besitzt seine höchste Dichte bei $4^\\circ C$. Eis hat wegen der Kristallstruktur eine geringere Dichte u. schwimmt oben."
+    "explanation": "Wasser besitzt seine höchste Dichte bei 4° C. Eis hat wegen der Kristallstruktur eine geringere Dichte u. schwimmt oben."
   },
   {
     "id": "k9_phy_067",
@@ -1203,16 +1023,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Warum frieren tiefere Seen im Winter von oben nach unten zu?",
-    "answers": [
-      "4 Grad C Wasser sinkt zum Grund",
-      "Eis sinkt an den Boden ab",
-      "Fische erwärmen das Grundwasser",
-      "Sonne heizt den Seegrund auf"
-    ],
+    "answers": ["4 Grad C Wasser sinkt zum Grund", "Eis sinkt an den Boden ab", "Fische erwärmen das Grundwasser", "Sonne heizt den Seegrund auf"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das schwerste Wasser ($4^\\circ C$) sammelt sich am Grund, während kälteres Wasser u. Eis ($0^\\circ C$) oben schwimmen."
+    "explanation": "Das schwerste Wasser (4° C) sammelt sich am Grund, während kälteres Wasser u. Eis (0° C) oben schwimmen."
   },
   {
     "id": "k9_phy_068",
@@ -1220,17 +1035,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie lautet die thermische Längenausdehnungsformel für feste Stäbe der Länge $L_0$?",
-    "answers": [
-      "Delta_L = alpha * L0 * Delta_T",
-      "Delta_L = alpha * L0 / Delta_T",
-      "Delta_L = L0 * Delta_T / alpha",
-      "Delta_L = alpha + L0 + Delta_T"
-    ],
+    "question": "Wie lautet die thermische Längenausdehnungsformel für feste Stäbe der Länge L₀?",
+    "answers": ["ΔL = α · L₀ · ΔT", "ΔL = α · L₀ / ΔT", "ΔL = L₀ · ΔT / α", "ΔL = α + L₀ + ΔT"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Längenänderung ist proportional zur Ursprungslänge $L_0$, Temperaturänderung $\\Delta T$ u. Längenausdehnungskoeffizienten $\\alpha$."
+    "explanation": "Die Längenänderung ist proportional zur Ursprungslänge L₀, Temperaturänderung ΔT u. Längenausdehnungskoeffizienten α."
   },
   {
     "id": "k9_phy_069",
@@ -1256,17 +1066,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Was beschreibt das Gay-Lussac-Gesetz für ein ideales Gas bei konstantem Druck ($p = const$)?",
-    "answers": [
-      "Volumen direkt proportional zu Temp",
-      "Druck ist umgekehrt proportional zu Vol",
-      "Das Volumen bleibt immer ganz konstant",
-      "Die Temperatur sinkt stark bei Erwärmung"
-    ],
+    "question": "Was beschreibt das Gay-Lussac-Gesetz für ein ideales Gas bei konstantem Druck (p = const)?",
+    "answers": ["Volumen direkt proportional zu Temp", "Druck ist umgekehrt proportional zu Vol", "Das Volumen bleibt immer ganz konstant", "Die Temperatur sinkt stark bei Erwärmung"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei konstantem Druck dehnt sich ein Gas proportional zur Kelvin-Temperatur aus ($V / T = const$)."
+    "explanation": "Bei konstantem Druck dehnt sich ein Gas proportional zur Kelvin-Temperatur aus (V / T = const)."
   },
   {
     "id": "k9_phy_071",
@@ -1274,17 +1079,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Was beschreibt das Gesetz von Boyle-Mariotte bei konstanter Temperatur ($T = const$)?",
-    "answers": [
-      "p * V = constant",
-      "p / V = constant",
-      "p + V = constant",
-      "p * T = constant"
-    ],
+    "question": "Was beschreibt das Gesetz von Boyle-Mariotte bei konstanter Temperatur (T = const)?",
+    "answers": ["p · V = constant", "p / V = constant", "p + V = constant", "p · T = constant"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei isothermer Zustandsänderung verhalten sich Druck u. Volumen umgekehrt proportional zueinander ($p \\cdot V = const$)."
+    "explanation": "Bei isothermer Zustandsänderung verhalten sich Druck u. Volumen umgekehrt proportional zueinander (p · V = const)."
   },
   {
     "id": "k9_phy_072",
@@ -1293,16 +1093,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie lautet die allgemeine thermische Zustandsgleichung idealer Gase?",
-    "answers": [
-      "p * V = n * R * T",
-      "p * T = n * R * V",
-      "p * V * T = R",
-      "p / V = R * T"
-    ],
+    "answers": ["p · V = n · R · T", "p · T = n · R · V", "p · V · T = R", "p / V = R · T"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die ideale Gasgleichung lautet $p \\cdot V = n \\cdot R \\cdot T$ ($R =$ universelle Gaskonstante)."
+    "explanation": "Die ideale Gasgleichung lautet p · V = n · R · T (R = universelle Gaskonstante)."
   },
   {
     "id": "k9_phy_073",
@@ -1329,16 +1124,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie nennt man die Wärmemenge, die ein brennbarer Stoff pro Masseneinheit bei vollständiger Verbrennung abgibt?",
-    "answers": [
-      "Der Heizwert / Brennwert",
-      "Die spezifische Kapazität",
-      "Die Verdampfungswärme",
-      "Der Wirkungsgrad Kraft"
-    ],
+    "answers": ["Der Heizwert / Brennwert", "Die spezifische Kapazität", "Die Verdampfungswärme", "Der Wirkungsgrad Kraft"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Heizwert $H_i$ beschreibt die freigesetzte Energie pro Masse (z. B. in $MJ/kg$)."
+    "explanation": "Der Heizwert Hi beschreibt die freigesetzte Energie pro Masse (z. B. in MJ/kg)."
   },
   {
     "id": "k9_phy_075",
@@ -1384,17 +1174,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Was gibt die Ordnungszahl (Kernladungszahl) $Z$ eines Elements im Periodensystem an?",
-    "answers": [
-      "Anzahl der Protonen",
-      "Anzahl aller Neutronen",
-      "Summe Protonen u. Neutronen",
-      "Masse des Atoms in Gramm"
-    ],
+    "question": "Was gibt die Ordnungszahl (Kernladungszahl) Z eines Elements im Periodensystem an?",
+    "answers": ["Anzahl der Protonen", "Anzahl aller Neutronen", "Summe Protonen u. Neutronen", "Masse des Atoms in Gramm"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Ordnungszahl $Z$ entspricht exakt der Anzahl der Protonen im Atomkern u. bestimmt das Element."
+    "explanation": "Die Ordnungszahl Z entspricht exakt der Anzahl der Protonen im Atomkern u. bestimmt das Element."
   },
   {
     "id": "k9_phy_078",
@@ -1420,17 +1205,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Aus welchen Teilchen besteht ein Alpha-Strahlungsteilchen ($\\alpha$-Strahlung)?",
-    "answers": [
-      "Helium-4-Kern (2 p + 2 n)",
-      "Ein schnelles Elektron e-",
-      "Ein hochenergetisches Photon",
-      "Ein einzelnes Neutron n"
-    ],
+    "question": "Aus welchen Teilchen besteht ein Alpha-Strahlungsteilchen (α-Strahlung)?",
+    "answers": ["Helium-4-Kern (2 p + 2 n)", "Ein schnelles Elektron e-", "Ein hochenergetisches Photon", "Ein einzelnes Neutron n"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Alpha-Strahlung besteht aus zweifach positiv geladenen Helium-4-Kernen ($2$ Protonen + $2$ Neutronen)."
+    "explanation": "Alpha-Strahlung besteht aus zweifach positiv geladenen Helium-4-Kernen (2 Protonen + 2 Neutronen)."
   },
   {
     "id": "k9_phy_080",
@@ -1438,13 +1218,8 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Was sendet ein Atomkern bei der Beta-Minus-Strahlung ($\\beta^-$-Strahlung) aus?",
-    "answers": [
-      "Ein schnelles Elektron e-",
-      "Ein Helium-4-Nukleid Kern",
-      "Ein reines Lichtquant Photon",
-      "Ein schweres Protonenpaar"
-    ],
+    "question": "Was sendet ein Atomkern bei der Beta-Minus-Strahlung (β⁻-Strahlung) aus?",
+    "answers": ["Ein schnelles Elektron e-", "Ein Helium-4-Nukleid Kern", "Ein reines Lichtquant Photon", "Ein schweres Protonenpaar"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1456,13 +1231,8 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Was für eine Natur besitzt die Gamma-Strahlung ($\\gamma$-Strahlung)?",
-    "answers": [
-      "Hochenergetische Elektromagnetische Welle",
-      "Ein Strom aus schnell fliegenden Neutronen",
-      "Eine Schallwelle mit sehr hoher Frequenz",
-      "Ein Strom aus vielen geladenen Positronen"
-    ],
+    "question": "Was für eine Natur besitzt die Gamma-Strahlung (γ-Strahlung)?",
+    "answers": ["Hochenergetische Elektromagnetische Welle", "Ein Strom aus schnell fliegenden Neutronen", "Eine Schallwelle mit sehr hoher Frequenz", "Ein Strom aus vielen geladenen Positronen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1510,13 +1280,8 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie lautet die Definition der physikalischen Halbwertszeit $T_{1/2}$?",
-    "answers": [
-      "Zeit in der Hälfte zerfällt",
-      "Zeit bis alle Kerne zerfallen",
-      "Halbe Lebensdauer der Erde",
-      "Zeitraum für 25% Zerfall"
-    ],
+    "question": "Wie lautet die Definition der physikalischen Halbwertszeit T½?",
+    "answers": ["Zeit in der Hälfte zerfällt", "Zeit bis alle Kerne zerfallen", "Halbe Lebensdauer der Erde", "Zeitraum für 25% Zerfall"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1529,16 +1294,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie viel Prozent einer radioaktiven Stoffmenge ist nach ZWEI Halbwertszeiten noch vorhanden?",
-    "answers": [
-      "Anteil: 25 Prozent (1/4)",
-      "Anteil: 50 Prozent (1/2)",
-      "Anteil: 12.5 Prozent (1/8)",
-      "Anteil: 0 Prozent völlig"
-    ],
+    "answers": ["Anteil: 25 Prozent (1/4)", "Anteil: 50 Prozent (1/2)", "Anteil: 12.5 Prozent (1/8)", "Anteil: 0 Prozent völlig"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Nach 1 Halbwertszeit verbleiben $50\\%$, nach 2 Halbwertszeiten zerfällt wiederum die Hälfte: $50\\% / 2 = 25\\%$."
+    "explanation": "Nach 1 Halbwertszeit verbleiben 50%, nach 2 Halbwertszeiten zerfällt wiederum die Hälfte: 50% / 2 = 25%."
   },
   {
     "id": "k9_phy_086",
@@ -1565,16 +1325,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Wie nennt man die Maßeinheit Becquerel (Bq) in der Kernphysik?",
-    "answers": [
-      "Einheit der Aktivität (Zerfall/s)",
-      "Einheit der Strahlendosis im Körper",
-      "Einheit der Energie eines Protons",
-      "Einheit der Halbwertszeit in Jahren"
-    ],
+    "answers": ["Einheit der Aktivität", "Einheit der Strahlendosis im Körper", "Einheit der Energie eines Protons", "Einheit der Halbwertszeit in Jahren"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$1\\,Becquerel (Bq) = 1\\,\\text{Kernzerfall pro Sekunde}$ misst die Aktivität einer radioaktiven Probe."
+    "explanation": "1 Becquerel (Bq) = 1 Kernzerfall pro Sekunde misst die Aktivität einer radioaktiven Probe."
   },
   {
     "id": "k9_phy_088",
@@ -1583,16 +1338,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Welche Maßeinheit misst die biologische Äquivalentdosis der Strahlungswirkung auf den Menschen?",
-    "answers": [
-      "Einheit: Sievert (Sv)",
-      "Einheit: Becquerel (Bq)",
-      "Einheit: Gray (Gy)",
-      "Einheit: Tesla (T)"
-    ],
+    "answers": ["Einheit: Sievert (Sv)", "Einheit: Becquerel (Bq)", "Einheit: Gray (Gy)", "Einheit: Tesla (T)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das Sievert ($Sv$ bzw. $mSv$) gewichtet die absorbierte Strahlendosis mit der biologischen Schadwirkung der jeweiligen Strahlungsart."
+    "explanation": "Das Sievert (Sv bzw. mSv) gewichtet die absorbierte Strahlendosis mit der biologischen Schadwirkung der jeweiligen Strahlungsart."
   },
   {
     "id": "k9_phy_089",
@@ -1673,12 +1423,7 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Welcher Stoff dient im Leichtwasserreaktor als Moderator zum Abbremsen schneller Neutronen?",
-    "answers": [
-      "Gewöhnliches Wasser (H2O)",
-      "Flüssiges geschmolzenes Blei",
-      "Heliumgas unter hohem Druck",
-      "Dicke Schichten aus Graphit"
-    ],
+    "answers": ["Gewöhnliches Wasser (H₂O)", "Flüssiges geschmolzenes Blei", "Heliumgas unter hohem Druck", "Dicke Schichten aus Graphit"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1690,17 +1435,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie lautet Einsteins berühmte Gleichung zur Äquivalenz von Masse $m$ u. Energie $E$?",
-    "answers": [
-      "E = m * c^2",
-      "E = 0.5 * m * c",
-      "E = m * g * c",
-      "E = m / c^2"
-    ],
+    "question": "Wie lautet Einsteins berühmte Gleichung zur Äquivalenz von Masse m u. Energie E?",
+    "answers": ["E = m · c²", "E = 0.5 · m · c", "E = m · g · c", "E = m / c²"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Einsteins Formel $E = m \\cdot c^2$ besagt, dass Masse u. Energie ineinander umgewandelt werden können ($c = $ Lichtgeschwindigkeit)."
+    "explanation": "Einsteins Formel E = m · c² besagt, dass Masse u. Energie ineinander umgewandelt werden können (c = Lichtgeschwindigkeit)."
   },
   {
     "id": "k9_phy_095",
@@ -1762,17 +1502,12 @@ const K9_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "physik",
-    "question": "Wie verhält sich die Dosisleistung einer Punktstrahlenquelle im Verhältnis zum Abstand $r$ (Abstandsgesetz)?",
-    "answers": [
-      "Sinkt mit 1 / r^2",
-      "Sinkt linear mit 1 / r",
-      "Bleibt völlig konstant",
-      "Steigt quadratisch mit r^2"
-    ],
+    "question": "Wie verhält sich die Dosisleistung einer Punktstrahlenquelle im Verhältnis zum Abstand r (Abstandsgesetz)?",
+    "answers": ["Sinkt mit 1 / r²", "Sinkt linear mit 1 / r", "Bleibt völlig konstant", "Steigt quadratisch mit r²"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Doppelter Abstand bedeutet ein Viertel der Dosisleistung ($1/r^2$-Gesetz)."
+    "explanation": "Doppelter Abstand bedeutet ein Viertel der Dosisleistung (1/r²-Gesetz)."
   },
   {
     "id": "k9_phy_099",
@@ -1781,16 +1516,11 @@ const K9_PHYSIK_QUESTIONS = [
     "grade": 9,
     "subject": "physik",
     "question": "Mit welcher Methode kann man das Alter organischer Funde bis ca. 50.000 Jahre bestimmen?",
-    "answers": [
-      "Radiokohlenstoffmethode (C-14)",
-      "Die Uran-Blei-Methode zur Analyse",
-      "Die Kalium-Argon-Datierung",
-      "Eine genaue Röntgenstrukturanalyse"
-    ],
+    "answers": ["Radiokohlenstoffmethode (C-14)", "Die Uran-Blei-Methode zur Analyse", "Die Kalium-Argon-Datierung", "Eine genaue Röntgenstrukturanalyse"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die C-14-Methode nutzt den Zerfall des radioaktiven Kohlenstoffisotops $C-14$ (Halbwertszeit 5730 Jahre) in gestorbenen Organismen."
+    "explanation": "Die C-14-Methode nutzt den Zerfall des radioaktiven Kohlenstoffisotops C-14 (Halbwertszeit 5730 Jahre) in gestorbenen Organismen."
   },
   {
     "id": "k9_phy_0100",

@@ -679,12 +679,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Was gehört ZWINGEND in die Einleitung einer Sachtextanalyse?",
-    "answers": [
-      "TATTE-Satz (Titel u. a.)",
-      "Eigene Meinung zum Thema",
-      "Ausführliches Zitat Ende",
-      "Dramatische Übertreibung"
-    ],
+    "answers": ["TATTE-Satz", "Eigene Meinung zum Thema", "Ausführliches Zitat Ende", "Dramatische Übertreibung"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -751,12 +746,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Welche Konjunktion leitet einen begründenden Kausalsatz ein?",
-    "answers": [
-      "Weil / Da (Kausalsatz)",
-      "Obwohl / Obgleich Satz",
-      "Damit / Dass Satz",
-      "Wenn / Falls Satz"
-    ],
+    "answers": ["Weil / Da", "Obwohl / Obgleich Satz", "Damit / Dass Satz", "Wenn / Falls Satz"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2104,12 +2094,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Welches Satzglied erfragt man mit 'Wen oder Was?'",
-    "answers": [
-      "Das Akkusativobjekt (Direktes Objekt)",
-      "Das Dativobjekt als Indirektes Objekt",
-      "Das Subjekt des gesamten Satzes hier",
-      "Das Präpositionalobjekt mit Auf davor"
-    ],
+    "answers": ["Das Akkusativobjekt", "Das Dativobjekt als Indirektes Objekt", "Das Subjekt des gesamten Satzes hier", "Das Präpositionalobjekt mit Auf davor"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2122,12 +2107,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Welche Art von Adverbialbestimmung erfragt man mit 'Warum?' oder 'Aus welchem Grund?'",
-    "answers": [
-      "Adverbialbestimmung des Grundes (Kausal)",
-      "Adverbialbestimmung der Zeit als Temporal",
-      "Adverbialbestimmung des Orts als Lokal",
-      "Adverbialbestimmung der Art und Weise so"
-    ],
+    "answers": ["Adverbialbestimmung des Grundes", "Adverbialbestimmung der Zeit als Temporal", "Adverbialbestimmung des Orts als Lokal", "Adverbialbestimmung der Art und Weise so"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2212,12 +2192,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Was kennzeichnet ein 'Genitivattribut'?",
-    "answers": [
-      "Attribut in der Genitivform (Wessen?)",
-      "Attribut mit der Präposition 'von'",
-      "Ein Adjektiv vor dem Nomen im Dativ",
-      "Ein eingeschobener Relativsatz im Satz"
-    ],
+    "answers": ["Attribut in der Genitivform", "Attribut mit der Präposition 'von'", "Ein Adjektiv vor dem Nomen im Dativ", "Ein eingeschobener Relativsatz im Satz"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2248,12 +2223,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Wann schreibt man 'ß' (Eszett) nach den Rechtschreibregeln?",
-    "answers": [
-      "Nach langen Vokalen u. Zwielauten (ei, au)",
-      "Nach jedem Konsonanten im Wortstamm",
-      "Ausschließlich am Ende von Nomen im Plural",
-      "Nach kurz gesprochenen Vokalen"
-    ],
+    "answers": ["Nach langen Vokalen u. Zwielauten (ei, au)", "Nach jedem Konsonanten im Wortstamm", "Ausschließlich am Ende von Nomen im Plural", "Nach kurz gesprochenen Vokalen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2322,12 +2292,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Wie nennt man den Wendepunkt im klassischen 5-Akt-Schema des Dramas (nach Freytag)?",
-    "answers": [
-      "Peripetie (Höhe- u. Wendepunkt)",
-      "Exposition im ersten Akt",
-      "Retardierendes Moment im vierten Akt",
-      "Katastrophe im letzten Abschnitt"
-    ],
+    "answers": ["Peripetie", "Exposition im ersten Akt", "Retardierendes Moment im vierten Akt", "Katastrophe im letzten Abschnitt"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2533,12 +2498,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Was forderten die Vertreter der 'Aufklärung' (ca. 1720–1800)?",
-    "answers": [
-      "Gebrauch des eigenen Verstandes (Vernunft)",
-      "Rückkehr zu rein mittelalterlichen Werten",
-      "Ablehnung von Bildung und Wissenschaft dort",
-      "Befolgung von Aberglauben und alten Mythen"
-    ],
+    "answers": ["Gebrauch des eigenen Verstandes", "Rückkehr zu rein mittelalterlichen Werten", "Ablehnung von Bildung und Wissenschaft dort", "Befolgung von Aberglauben und alten Mythen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2569,12 +2529,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Wie nennt man das Reimschema abab?",
-    "answers": [
-      "Das Schema des Kreuzreims",
-      "Das Schema des Paarreims (aabb)",
-      "Das Schema des Umarmenden Reims (abba)",
-      "Das Schema des Haufenreims (aaaa)"
-    ],
+    "answers": ["Das Schema des Kreuzreims", "Das Schema des Paarreims", "Das Schema des Umarmenden Reims", "Das Schema des Haufenreims"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2587,12 +2542,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Wie nennt man das Reimschema abba?",
-    "answers": [
-      "Der Umarmende Reim (Blockreim)",
-      "Der Kreuzreim in vielen Gedichten",
-      "Der Paarreim von zwei Zeilen",
-      "Der Schweifreim in einer Strophe"
-    ],
+    "answers": ["Der Umarmende Reim", "Der Kreuzreim in vielen Gedichten", "Der Paarreim von zwei Zeilen", "Der Schweifreim in einer Strophe"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -3360,12 +3310,7 @@ const K9_DEUTSCH_QUESTIONS = [
     "grade": 9,
     "subject": "deutsch",
     "question": "Was kennzeichnet ein 'Neologismus'?",
-    "answers": [
-      "Ein sprachlicher Neuausdruck (Wortneuschöpfung)",
-      "Ein Wort, das aus der Sprache verschwunden ist",
-      "Ein Rechtschreibfehler in alten Dokumenten dort",
-      "Eine grammatische Ausnahme bei den Verben"
-    ],
+    "answers": ["Ein sprachlicher Neuausdruck", "Ein Wort, das aus der Sprache verschwunden ist", "Ein Rechtschreibfehler in alten Dokumenten dort", "Eine grammatische Ausnahme bei den Verben"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

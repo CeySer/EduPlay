@@ -710,12 +710,7 @@ const K9_POLITIK_QUESTIONS = [
     "grade": 9,
     "subject": "politik",
     "question": "Welche vierte Akteurstyp ergänzt den Wirtschaftskreislauf neben Haushalten, Firmen und Staat?",
-    "answers": [
-      "Die Banken (Kapitalsammelstellen)",
-      "Die Parteien und Vereine im Land",
-      "Die Kirchen und Religionsgemeinschaften",
-      "Die Gerichte und Polizeibehörden"
-    ],
+    "answers": ["Die Banken", "Die Parteien und Vereine im Land", "Die Kirchen und Religionsgemeinschaften", "Die Gerichte und Polizeibehörden"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -746,12 +741,7 @@ const K9_POLITIK_QUESTIONS = [
     "grade": 9,
     "subject": "politik",
     "question": "Welche Institution sichert die Stabilität der Währung Euro und steuert die Leitzinsen im Euroraum?",
-    "answers": [
-      "Die Europäische Zentralbank (EZB)",
-      "Die Deutsche Bundesbank in Frankfurt",
-      "Der Europäische Gerichtshof in Luxemburg",
-      "Das Europäische Parlament in Straßburg"
-    ],
+    "answers": ["Die Europäische Zentralbank", "Die Deutsche Bundesbank in Frankfurt", "Der Europäische Gerichtshof in Luxemburg", "Das Europäische Parlament in Straßburg"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -836,12 +826,7 @@ const K9_POLITIK_QUESTIONS = [
     "grade": 9,
     "subject": "politik",
     "question": "Welche Steuer ist das klassische Beispiel für eine indirekte Steuer beim täglichen Einkauf?",
-    "answers": [
-      "Die Mehrwertsteuer (Umsatzsteuer)",
-      "Die persönliche Einkommensteuer jährlich",
-      "Die jährliche Hundesteuer im Wohnort",
-      "Die Erbschaftsteuer auf das Vermögen"
-    ],
+    "answers": ["Die Mehrwertsteuer", "Die persönliche Einkommensteuer jährlich", "Die jährliche Hundesteuer im Wohnort", "Die Erbschaftsteuer auf das Vermögen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1139,12 +1124,7 @@ const K9_POLITIK_QUESTIONS = [
     "grade": 9,
     "subject": "politik",
     "question": "Wo befindet sich der Sitz des Internationalen Strafgerichtshofs (IStGH)?",
-    "answers": [
-      "In Den Haag (Niederlande)",
-      "In Genf, in der Schweiz",
-      "In New York City, USA",
-      "In Brüssel (Belgien) offiziell"
-    ],
+    "answers": ["In Den Haag", "In Genf, in der Schweiz", "In New York City, USA", "In Brüssel (Belgien) offiziell"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1663,7 +1643,7 @@ const K9_POLITIK_QUESTIONS = [
     "grade": 9,
     "subject": "politik",
     "question": "Welches Gesetz schützt Jugendliche in Deutschland vor Überlastung am Arbeitsplatz?",
-    "answers": ["Das Jugendarbeitsschutzgesetz (JArbSchG)", "Das Allgemeine Bürgerliche Gesetzbuch", "Die Gewerbeordnung für kleine Betriebe", "Das Bundesausbildungsförderungsgesetz"],
+    "answers": ["Das Jugendarbeitsschutzgesetz", "Das Allgemeine Bürgerliche Gesetzbuch", "Die Gewerbeordnung für kleine Betriebe", "Das Bundesausbildungsförderungsgesetz"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

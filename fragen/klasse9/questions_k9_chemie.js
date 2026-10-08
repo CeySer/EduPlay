@@ -101,16 +101,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Wie viele Elektronen passen maximal auf die innerste Elektronenschale (K-Schale)?",
-    "answers": [
-      "Maximal 2 Elektronen",
-      "Maximal 8 Elektronen",
-      "Maximal 18 Elektronen",
-      "Maximal 32 Elektronen"
-    ],
+    "answers": ["Maximal 2 Elektronen", "Maximal 8 Elektronen", "Maximal 18 Elektronen", "Maximal 32 Elektronen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die K-Schale fasst nach der Formel $2n^2$ höchstens 2 Elektronen."
+    "explanation": "Die K-Schale fasst nach der Formel 2n² höchstens 2 Elektronen."
   },
   {
     "id": "k9_che_007",
@@ -443,16 +438,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Was beschreibt die Massenzahl eines Atoms?",
-    "answers": [
-      "Protonen plus Neutronen",
-      "Protonen plus Elektronen",
-      "Nutronen plus Elektronen",
-      "Anzahl der Schalen"
-    ],
+    "answers": ["Protonen plus Neutronen", "Protonen plus Elektronen", "Nutronen plus Elektronen", "Anzahl der Schalen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Massenzahl $A$ ist die Gesamtzahl der schweren Kernbausteine (Protonen + Neutronen)."
+    "explanation": "Die Massenzahl A ist die Gesamtzahl der schweren Kernbausteine (Protonen + Neutronen)."
   },
 
   // --- CHEMISCHE BINDUNGEN (026 - 050) ---
@@ -516,13 +506,8 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Wann leitet Kochsalz ($NaCl$) den elektrischen Strom?",
-    "answers": [
-      "In Schmelze u. Lösung",
-      "Nur im festen Zustand",
-      "Nur unter hohem Druck",
-      "Niemals unter Kälte"
-    ],
+    "question": "Wann leitet Kochsalz (NaCl) den elektrischen Strom?",
+    "answers": ["In Schmelze u. Lösung", "Nur im festen Zustand", "Nur unter hohem Druck", "Niemals unter Kälte"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -534,13 +519,8 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Welche Bindungsart liegt in einem Wasserstoff-Molekül ($H_2$) oder Methan ($CH_4$) vor?",
-    "answers": [
-      "Elektronenpaarbindung",
-      "Eine reine Ionenbindung",
-      "Eine feste Metallbindung",
-      "Eine Van-der-Waals-Kraft"
-    ],
+    "question": "Welche Bindungsart liegt in einem Wasserstoff-Molekül (H₂) oder Methan (CH₄) vor?",
+    "answers": ["Elektronenpaarbindung", "Eine reine Ionenbindung", "Eine feste Metallbindung", "Eine Van-der-Waals-Kraft"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -589,16 +569,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Wann spricht man von einer 'polaren Elektronenpaarbindung'?",
-    "answers": [
-      "EN-Differenz zw. 0.5 u. 1.7",
-      "EN-Differenz zw. 0 u. 0.4",
-      "EN-Differenz über 1.7 hinaus",
-      "Kaum Elektronen geteilt"
-    ],
+    "answers": ["EN-Differenz zw. 0.5 u. 1.7", "EN-Differenz zw. 0 u. 0.4", "EN-Differenz über 1.7 hinaus", "Kaum Elektronen geteilt"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei einer EN-Differenz von etwa $0,5$ bis $1,7$ ziehen die Bindungspartner das Elektronenpaar unterschiedlich stark an."
+    "explanation": "Bei einer EN-Differenz von etwa 0,5 bis 1,7 ziehen die Bindungspartner das Elektronenpaar unterschiedlich stark an."
   },
   {
     "id": "k9_che_034",
@@ -606,13 +581,8 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Warum ist das Wasser-Molekül ($H_2O$) ein Dipol-Molekül?",
-    "answers": [
-      "Gewinkelt u. polare Bindung",
-      "Linear u. unpolare Bindung",
-      "Besteht aus Metallionen",
-      "Hat keine Ladungsschwerpunkte"
-    ],
+    "question": "Warum ist das Wasser-Molekül (H₂O) ein Dipol-Molekül?",
+    "answers": ["Gewinkelt u. polare Bindung", "Linear u. unpolare Bindung", "Besteht aus Metallionen", "Hat keine Ladungsschwerpunkte"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -678,13 +648,8 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Welche zwischenmolekulare Kraft bewirkt den hohen Siedepunkt von Wasser ($100^\\circ C$)?",
-    "answers": [
-      "Wasserstoffbrücken",
-      "Van-der-Waals-Kräfte",
-      "Ionen-Anziehungskraft",
-      "Kovalente Hauptbindung"
-    ],
+    "question": "Welche zwischenmolekulare Kraft bewirkt den hohen Siedepunkt von Wasser (100° C)?",
+    "answers": ["Wasserstoffbrücken", "Van-der-Waals-Kräfte", "Ionen-Anziehungskraft", "Kovalente Hauptbindung"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -750,17 +715,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Welche Bindungsart liegt im Kochsalzkristall ($NaCl$) vor?",
-    "answers": [
-      "Eine reine Ionenbindung",
-      "Eine kovalente Bindung",
-      "Eine flüssige Metallbindung",
-      "Eine Van-der-Waals-Kraft"
-    ],
+    "question": "Welche Bindungsart liegt im Kochsalzkristall (NaCl) vor?",
+    "answers": ["Eine reine Ionenbindung", "Eine kovalente Bindung", "Eine flüssige Metallbindung", "Eine Van-der-Waals-Kraft"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$NaCl$ besteht aus $Na^+$-Kationen u. $Cl^-$-Anionen, die durch elektrostatische Ionenbindung zusammengehalten werden."
+    "explanation": "NaCl besteht aus Na⁺-Kationen u. Cl⁻-Anionen, die durch elektrostatische Ionenbindung zusammengehalten werden."
   },
   {
     "id": "k9_che_043",
@@ -769,16 +729,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Welches Gas liegt in der Luft als zweiatomiges Molekül mit Dreifachbindung vor?",
-    "answers": [
-      "Stickstoff-Gas (N2)",
-      "Sauerstoff-Gas (O2)",
-      "Wasserstoff-Gas (H2)",
-      "Chlor-Gas (Cl2)"
-    ],
+    "answers": ["Stickstoff-Gas (N₂)", "Sauerstoff-Gas (O₂)", "Wasserstoff-Gas (H₂)", "Chlor-Gas (Cl₂)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das Stickstoffmolekül $N_2$ besitzt eine sehr stabile Dreifachbindung ($N \\equiv N$)."
+    "explanation": "Das Stickstoffmolekül N₂ besitzt eine sehr stabile Dreifachbindung (N ≡ N)."
   },
   {
     "id": "k9_che_044",
@@ -805,16 +760,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Wie lautet die Summenformel von Magnesiumchlorid?",
-    "answers": [
-      "Formel MgCl2",
-      "Formel MgCl",
-      "Formel Mg2Cl",
-      "Formel Mg3Cl2"
-    ],
+    "answers": ["Formel MgCl₂", "Formel MgCl", "Formel Mg₂Cl", "Formel Mg₃Cl₂"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$Mg^{2+}$ erfordert zwei $Cl^-$-Ionen zum Ladungsausgleich: $MgCl_2$."
+    "explanation": "Mg²⁺ erfordert zwei Cl⁻-Ionen zum Ladungsausgleich: MgCl₂."
   },
   {
     "id": "k9_che_046",
@@ -823,16 +773,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Wie lautet die Summenformel von Aluminiumoxid?",
-    "answers": [
-      "Formel Al2O3",
-      "Formel AlO",
-      "Formel AlO2",
-      "Formel Al3O2"
-    ],
+    "answers": ["Formel Al₂O₃", "Formel AlO", "Formel AlO₂", "Formel Al₃O₂"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Zwei $Al^{3+}$-Ionen ($+6$) u. drei $O^{2-}$-Ionen ($-6$) ergeben neutrales $Al_2O_3$."
+    "explanation": "Zwei Al³⁺-Ionen (+6) u. drei O²⁻-Ionen (-6) ergeben neutrales Al₂O₃."
   },
   {
     "id": "k9_che_047",
@@ -876,17 +821,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Welche räumliche Struktur besitzt das Methan-Molekül ($CH_4$)?",
-    "answers": [
-      "Tetraedrische Struktur",
-      "Gewinkelte Struktur",
-      "Lineare Kettenstruktur",
-      "Ebener Quadratbau"
-    ],
+    "question": "Welche räumliche Struktur besitzt das Methan-Molekül (CH₄)?",
+    "answers": ["Tetraedrische Struktur", "Gewinkelte Struktur", "Lineare Kettenstruktur", "Ebener Quadratbau"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die 4 Elektronenpaare stoßen sich maximal ab u. bilden eine Tetraederform (Winkel $109,5^\circ$)."
+    "explanation": "Die 4 Elektronenpaare stoßen sich maximal ab u. bilden eine Tetraederform (Winkel 109,5°)."
   },
   {
     "id": "k9_che_050",
@@ -894,17 +834,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Welche Molekülgestalt hat Kohlenstoffdioxid ($CO_2$)?",
-    "answers": [
-      "Lineare Struktur",
-      "Gewinkelte Struktur",
-      "Pyramidale Struktur",
-      "Tetraedrische Form"
-    ],
+    "question": "Welche Molekülgestalt hat Kohlenstoffdioxid (CO₂)?",
+    "answers": ["Lineare Struktur", "Gewinkelte Struktur", "Pyramidale Struktur", "Tetraedrische Form"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die beiden Doppelbindungen ordnen sich im Winkel von $180^\circ$ linear an ($O=C=O$)."
+    "explanation": "Die beiden Doppelbindungen ordnen sich im Winkel von 180° linear an (O=C=O)."
   },
 
   // --- CHEMISCHE REAKTIONEN & STÖCHIOMETRIE (051 - 075) ---
@@ -951,16 +886,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Wie nennt man eine chemische Reaktion, bei der Wärmeenergie an die Umgebung ABGEGEBEN wird?",
-    "answers": [
-      "Exotherme Reaktion",
-      "Endotherme Reaktion",
-      "Katalytische Reaktion",
-      "Isotherme Reaktion"
-    ],
+    "answers": ["Exotherme Reaktion", "Endotherme Reaktion", "Katalytische Reaktion", "Isotherme Reaktion"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Exotherme Reaktionen setzen Energie (Wärme, Licht) frei ($\\Delta H < 0$)."
+    "explanation": "Exotherme Reaktionen setzen Energie (Wärme, Licht) frei (ΔH < 0)."
   },
   {
     "id": "k9_che_054",
@@ -969,16 +899,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Wie nennt man eine chemische Reaktion, die ständig Energie aus der Umgebung AUFNEHMEN muss?",
-    "answers": [
-      "Endotherme Reaktion",
-      "Exotherme Reaktion",
-      "Synthetische Reaktion",
-      "Spontane Explosion"
-    ],
+    "answers": ["Endotherme Reaktion", "Exotherme Reaktion", "Synthetische Reaktion", "Spontane Explosion"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Endotherme Reaktionen verbrauchen Energie aus der Umgebung ($\\Delta H > 0$)."
+    "explanation": "Endotherme Reaktionen verbrauchen Energie aus der Umgebung (ΔH > 0)."
   },
   {
     "id": "k9_che_055",
@@ -1004,17 +929,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Was beschreibt die Stoffmenge $n$ in der Chemie u. was ist ihre SI-Einheit?",
-    "answers": [
-      "Einheit: Mol (mol)",
-      "Einheit: Gramm (g)",
-      "Einheit: Liter (l)",
-      "Einheit: Pascal (Pa)"
-    ],
+    "question": "Was beschreibt die Stoffmenge n in der Chemie u. was ist ihre SI-Einheit?",
+    "answers": ["Einheit: Mol (mol)", "Einheit: Gramm (g)", "Einheit: Liter (l)", "Einheit: Pascal (Pa)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Stoffmenge $n$ misst die Teilchenanzahl in der Einheit Mol."
+    "explanation": "Die Stoffmenge n misst die Teilchenanzahl in der Einheit Mol."
   },
   {
     "id": "k9_che_057",
@@ -1022,17 +942,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Wie viele Teilchen befinden sich in genau 1 Mol eines Stoffes (Avogadro-Konstante $N_A$)?",
-    "answers": [
-      "6.022 * 10^23 Teilchen",
-      "3.000 * 10^10 Teilchen",
-      "1.000 * 10^12 Teilchen",
-      "6.022 * 10^15 Teilchen"
-    ],
+    "question": "Wie viele Teilchen befinden sich in genau 1 Mol eines Stoffes (Avogadro-Konstante NA)?",
+    "answers": ["6.022 · 10²³ Teilchen", "3.000 · 10¹⁰ Teilchen", "1.000 · 10¹² Teilchen", "6.022 · 10¹⁵ Teilchen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$1\\,mol$ enthält exakt $6,022 \\cdot 10^{23}$ Teilchen ($N_A$)."
+    "explanation": "1 mol enthält exakt 6,022 · 10²³ Teilchen (NA)."
   },
   {
     "id": "k9_che_058",
@@ -1040,17 +955,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Wie berechnet man die molare Masse $M$ aus Masse $m$ u. Stoffmenge $n$?",
-    "answers": [
-      "M = m / n",
-      "M = m * n",
-      "M = n / m",
-      "M = m + n"
-    ],
+    "question": "Wie berechnet man die molare Masse M aus Masse m u. Stoffmenge n?",
+    "answers": ["M = m / n", "M = m · n", "M = n / m", "M = m + n"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Molare Masse ist Masse pro Stoffmenge ($M = \\frac{m}{n}$, Einheit $g/mol$)."
+    "explanation": "Molare Masse ist Masse pro Stoffmenge (M = m/n, Einheit g/mol)."
   },
   {
     "id": "k9_che_059",
@@ -1058,17 +968,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Wie groß ist das molare Normvolumen $V_m$ eines idealen Gases bei $0^\circ C$ u. $1013\,hPa$?",
-    "answers": [
-      "Volumen: 22.4 l/mol",
-      "Volumen: 24.0 l/mol",
-      "Volumen: 10.0 l/mol",
-      "Volumen: 100 l/mol"
-    ],
+    "question": "Wie groß ist das molare Normvolumen Vm eines idealen Gases bei 0° C u. 1013,hPa?",
+    "answers": ["Volumen: 22.4 l/mol", "Volumen: 24.0 l/mol", "Volumen: 10.0 l/mol", "Volumen: 100 l/mol"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "1 Mol jedes idealen Gases nimmt unter Normbedingungen $22,4\\,l$ Volumen ein."
+    "explanation": "1 Mol jedes idealen Gases nimmt unter Normbedingungen 22,4 l Volumen ein."
   },
   {
     "id": "k9_che_060",
@@ -1166,17 +1071,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Gleiche die Gleichung aus: $2 H_2 + O_2 \\rightarrow ?$",
-    "answers": [
-      "Produkt: 2 H2O",
-      "Produkt: H2O2",
-      "Produkt: H2O",
-      "Produkt: 4 H2O"
-    ],
+    "question": "Gleiche die Gleichung aus: 2 H₂ + O₂ → ?",
+    "answers": ["Produkt: 2 H₂O", "Produkt: H₂O₂", "Produkt: H₂O", "Produkt: 4 H₂O"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Zwei Wasserstoffmoleküle u. ein Sauerstoffmolekül reagieren zu zwei Wassermolekülen ($2 H_2 O$)."
+    "explanation": "Zwei Wasserstoffmoleküle u. ein Sauerstoffmolekül reagieren zu zwei Wassermolekülen (2 H₂ O)."
   },
   {
     "id": "k9_che_066",
@@ -1184,13 +1084,8 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Welche Oxidationszahl besitzt ein elementarer Stoff (z. B. $Fe$, $O_2$, $N_2$)?",
-    "answers": [
-      "Oxidationszahl Null",
-      "Oxidationszahl Plus 1",
-      "Oxidationszahl Minus 1",
-      "Hängt vom Druck ab"
-    ],
+    "question": "Welche Oxidationszahl besitzt ein elementarer Stoff (z. B. Fe, O₂, N₂)?",
+    "answers": ["Oxidationszahl Null", "Oxidationszahl Plus 1", "Oxidationszahl Minus 1", "Hängt vom Druck ab"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1238,17 +1133,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Was beschreibt eine 'Kompression' oder Verbrennung von Kohlenwasserstoffen ($CH_4 + 2 O_2 \\rightarrow ?$)?",
-    "answers": [
-      "CO2 und 2 H2O",
-      "2 CO und 2 H2O",
-      "CO und 2 H2O",
-      "CO2 und H2"
-    ],
+    "question": "Was beschreibt eine 'Kompression' oder Verbrennung von Kohlenwasserstoffen (CH₄ + 2 O₂ → ?)?",
+    "answers": ["CO₂ und 2 H₂O", "2 CO und 2 H₂O", "CO und 2 H₂O", "CO₂ und H₂"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Vollständige Verbrennung von Methan ergibt Kohlenstoffdioxid u. Wasser ($CO_2 + 2 H_2O$)."
+    "explanation": "Vollständige Verbrennung von Methan ergibt Kohlenstoffdioxid u. Wasser (CO₂ + 2 H₂O)."
   },
   {
     "id": "k9_che_070",
@@ -1275,16 +1165,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Was versteht man unter dem Begriff 'Thermit-Reaktion' im Eisenbahnbau?",
-    "answers": [
-      "Reduktion von Eisenoxid durch Al",
-      "Oxidation von Eisen durch Wasser",
-      "Verbindung von Kupfer u. Zink",
-      "Elektrolyse von Aluminium"
-    ],
+    "answers": ["Reduktion von Eisenoxid durch Al", "Oxidation von Eisen durch Wasser", "Verbindung von Kupfer u. Zink", "Elektrolyse von Aluminium"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Aluminium reduziert Eisenoxid exotherm zu flüssigem Eisen u. Aluminiumoxid ($Fe_2O_3 + 2 Al \\rightarrow 2 Fe + Al_2O_3$)."
+    "explanation": "Aluminium reduziert Eisenoxid exotherm zu flüssigem Eisen u. Aluminiumoxid (Fe₂O₃ + 2 Al → 2 Fe + Al₂O₃)."
   },
   {
     "id": "k9_che_072",
@@ -1311,16 +1196,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Was gibt die kleine tiefergestellte Zahl (Index) IN einer chemischen Formel an?",
-    "answers": [
-      "Anzahl Atome im Molekül",
-      "Anzahl aller Moleküle",
-      "Molare Masse des Stoffs",
-      "Temperatur der Reaktion"
-    ],
+    "answers": ["Anzahl Atome im Molekül", "Anzahl aller Moleküle", "Molare Masse des Stoffs", "Temperatur der Reaktion"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Index (z. B. 2 in $H_2O$) gibt das genaue Atomanzahl-Verhältnis im Molekül an."
+    "explanation": "Der Index (z. B. 2 in H₂O) gibt das genaue Atomanzahl-Verhältnis im Molekül an."
   },
   {
     "id": "k9_che_074",
@@ -1328,17 +1208,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Wie lautet die molare Masse von Wasser ($H_2O$) gerundet ($H \\approx 1\\,g/mol, O \\approx 16\\,g/mol$)?",
-    "answers": [
-      "Masse: 18 g/mol",
-      "Masse: 17 g/mol",
-      "Masse: 33 g/mol",
-      "Masse: 16 g/mol"
-    ],
+    "question": "Wie lautet die molare Masse von Wasser (H₂O) gerundet (H ≈ 1 g/mol, O ≈ 16 g/mol)?",
+    "answers": ["Masse: 18 g/mol", "Masse: 17 g/mol", "Masse: 33 g/mol", "Masse: 16 g/mol"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$M(H_2O) = 2 \\cdot 1 + 16 = 18\\,g/mol$."
+    "explanation": "M(H₂O) = 2 · 1 + 16 = 18 g/mol."
   },
   {
     "id": "k9_che_075",
@@ -1346,17 +1221,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Wie lautet die molare Masse von Kohlenstoffdioxid ($CO_2$) ($C \\approx 12\\,g/mol, O \\approx 16\\,g/mol$)?",
-    "answers": [
-      "Masse: 44 g/mol",
-      "Masse: 28 g/mol",
-      "Masse: 32 g/mol",
-      "Masse: 56 g/mol"
-    ],
+    "question": "Wie lautet die molare Masse von Kohlenstoffdioxid (CO₂) (C ≈ 12 g/mol, O ≈ 16 g/mol)?",
+    "answers": ["Masse: 44 g/mol", "Masse: 28 g/mol", "Masse: 32 g/mol", "Masse: 56 g/mol"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$M(CO_2) = 12 + 2 \\cdot 16 = 44\\,g/mol$."
+    "explanation": "M(CO₂) = 12 + 2 · 16 = 44 g/mol."
   },
 
   // --- SÄUREN, LAUGEN, SALZE & ELEKTROCHEMIE (076 - 100) ---
@@ -1367,16 +1237,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Wie ist eine Säure nach der Definition von Johannes Brønsted definiert?",
-    "answers": [
-      "Ein Protonendonator",
-      "Ein Protonenakzeptor",
-      "Ein Elektronenpaar-Spender",
-      "Ein reines Hydroxid-Ion"
-    ],
+    "answers": ["Ein Protonendonator", "Ein Protonenakzeptor", "Ein Elektronenpaar-Spender", "Ein reines Hydroxid-Ion"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Säuren sind Teilchen, die Wasserstoff-Ionen (Protonen $H^+$) abgeben können (Protonendonatoren)."
+    "explanation": "Säuren sind Teilchen, die Wasserstoff-Ionen (Protonen H⁺) abgeben können (Protonendonatoren)."
   },
   {
     "id": "k9_che_077",
@@ -1385,16 +1250,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Wie ist eine Base/Lauge nach Brønsted definiert?",
-    "answers": [
-      "Ein Protonenakzeptor",
-      "Ein Protonendonator",
-      "Ein Elektronenpaar-Empfänger",
-      "Ein reines Gasmolekül"
-    ],
+    "answers": ["Ein Protonenakzeptor", "Ein Protonendonator", "Ein Elektronenpaar-Empfänger", "Ein reines Gasmolekül"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Basen sind Teilchen, die Protonen ($H^+$) aufnehmen können (Protonenakzeptoren)."
+    "explanation": "Basen sind Teilchen, die Protonen (H⁺) aufnehmen können (Protonenakzeptoren)."
   },
   {
     "id": "k9_che_078",
@@ -1403,16 +1263,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Welche Ionen sind für die saure Wirkung einer wässrigen Lösung verantwortlich?",
-    "answers": [
-      "Oxonium-Ionen (H3O+)",
-      "Hydroxid-Ionen (OH-)",
-      "Natrium-Ionen (Na+)",
-      "Chlorid-Ionen (Cl-)"
-    ],
+    "answers": ["Oxonium-Ionen (H₃O⁺)", "Hydroxid-Ionen (OH⁻)", "Natrium-Ionen (Na⁺)", "Chlorid-Ionen (Cl⁻)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Oxonium-Ionen ($H_3O^+$ bzw. vereinfacht $H^+$) verursachen saure Eigenschaften."
+    "explanation": "Oxonium-Ionen (H₃O⁺ bzw. vereinfacht H⁺) verursachen saure Eigenschaften."
   },
   {
     "id": "k9_che_079",
@@ -1421,16 +1276,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Welche Ionen sind für die alkalische (basische) Wirkung verantwortlich?",
-    "answers": [
-      "Hydroxid-Ionen (OH-)",
-      "Oxonium-Ionen (H3O+)",
-      "Sulfat-Ionen (SO4 2-)",
-      "Nitrat-Ionen (NO3-)"
-    ],
+    "answers": ["Hydroxid-Ionen (OH⁻)", "Oxonium-Ionen (H₃O⁺)", "Sulfat-Ionen (SO₄²⁻)", "Nitrat-Ionen (NO₃⁻)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Hydroxid-Ionen ($OH^-$) bewirken den alkalischen/basischen Charakter einer Lösung."
+    "explanation": "Hydroxid-Ionen (OH⁻) bewirken den alkalischen/basischen Charakter einer Lösung."
   },
   {
     "id": "k9_che_080",
@@ -1438,13 +1288,8 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Welchen Wert hat der pH-Wert einer exakt neutralen wässrigen Lösung bei $25^\circ C$?",
-    "answers": [
-      "Exakter pH-Wert 7",
-      "Exakter pH-Wert 0",
-      "Exakter pH-Wert 14",
-      "Exakter pH-Wert 1"
-    ],
+    "question": "Welchen Wert hat der pH-Wert einer exakt neutralen wässrigen Lösung bei 25° C?",
+    "answers": ["Exakter pH-Wert 7", "Exakter pH-Wert 0", "Exakter pH-Wert 14", "Exakter pH-Wert 1"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1457,16 +1302,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "In welchem Bereich liegt der pH-Wert saurer Lösungen?",
-    "answers": [
-      "pH-Wert kleiner als 7",
-      "pH-Wert größer als 7",
-      "pH-Wert exakt 7.0",
-      "pH-Wert stets negativ"
-    ],
+    "answers": ["pH-Wert kleiner als 7", "pH-Wert größer als 7", "pH-Wert exakt 7.0", "pH-Wert stets negativ"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Saure Lösungen weisen pH-Werte von unter 7 auf (0 bis $<7$)."
+    "explanation": "Saure Lösungen weisen pH-Werte von unter 7 auf (0 bis <7)."
   },
   {
     "id": "k9_che_082",
@@ -1493,16 +1333,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Welche Farbe nimmt der Indikator Phenolphthalein in einer alkalischen Lösung an?",
-    "answers": [
-      "Färbt sich Pink/Violett",
-      "Färbt sich Blau-Violett",
-      "Färbt sich Knallgelb",
-      "Bleibt völlig farblos"
-    ],
+    "answers": ["Färbt sich Pink/Violett", "Färbt sich Blau-Violett", "Färbt sich Knallgelb", "Bleibt völlig farblos"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Phenolphthalein ist im Sauren farblos u. färbt sich im Basischen (pH $> 8,2$) intensitiv pink/magenta."
+    "explanation": "Phenolphthalein ist im Sauren farblos u. färbt sich im Basischen (pH > 8,2) intensitiv pink/magenta."
   },
   {
     "id": "k9_che_084",
@@ -1511,16 +1346,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Welche Produkte entstehen bei der vollständigen Neutralisation von Salzsäure mit Natronlauge?",
-    "answers": [
-      "Wasser und Kochsalz",
-      "Wasserstoff u. Sauerstoff",
-      "Chlor gas u. Natrium",
-      "Säure u. reines Gas"
-    ],
+    "answers": ["Wasser und Kochsalz", "Wasserstoff u. Sauerstoff", "Chlor gas u. Natrium", "Säure u. reines Gas"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$HCl + NaOH \\rightarrow H_2O + NaCl$. Es entstehen Wasser u. gelöstes Salz."
+    "explanation": "HCl + NaOH → H₂O + NaCl. Es entstehen Wasser u. gelöstes Salz."
   },
   {
     "id": "k9_che_085",
@@ -1529,16 +1359,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Wie lautet die chemische Formel der Salzsäure?",
-    "answers": [
-      "Formel HCl",
-      "Formel H2SO4",
-      "Formel HNO3",
-      "Formel CH3COOH"
-    ],
+    "answers": ["Formel HCl", "Formel H₂SO₄", "Formel HNO₃", "Formel CH₃COOH"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Salzsäure ist die wässrige Lösung von Chlorwasserstoff ($HCl$)."
+    "explanation": "Salzsäure ist die wässrige Lösung von Chlorwasserstoff (HCl)."
   },
   {
     "id": "k9_che_086",
@@ -1547,16 +1372,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Wie lautet die chemische Formel der Schwefelsäure?",
-    "answers": [
-      "Formel H2SO4",
-      "Formel HCl",
-      "Formel HNO3",
-      "Formel H2CO3"
-    ],
+    "answers": ["Formel H₂SO₄", "Formel HCl", "Formel HNO₃", "Formel H₂CO₃"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Schwefelsäure besitzt die Summenformel $H_2SO_4$."
+    "explanation": "Schwefelsäure besitzt die Summenformel H₂SO₄."
   },
   {
     "id": "k9_che_087",
@@ -1565,16 +1385,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Wie lautet die chemische Formel der Salpetersäure?",
-    "answers": [
-      "Formel HNO3",
-      "Formel H2SO4",
-      "Formel HCl",
-      "Formel H3PO4"
-    ],
+    "answers": ["Formel HNO₃", "Formel H₂SO₄", "Formel HCl", "Formel H₃PO₄"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Salpetersäure hat die Summenformel $HNO_3$."
+    "explanation": "Salpetersäure hat die Summenformel HNO₃."
   },
   {
     "id": "k9_che_088",
@@ -1582,17 +1397,12 @@ const K9_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "chemie",
-    "question": "Wie heißt die Base $NaOH$ mit chemischem Namen?",
-    "answers": [
-      "Natriumhydroxid Base",
-      "Kaliumhydroxid Base",
-      "Calciumhydroxid Base",
-      "Ammoniumhydroxid"
-    ],
+    "question": "Wie heißt die Base NaOH mit chemischem Namen?",
+    "answers": ["Natriumhydroxid Base", "Kaliumhydroxid Base", "Calciumhydroxid Base", "Ammoniumhydroxid"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$NaOH$ heißt Natriumhydroxid (wässrig: Natronlauge)."
+    "explanation": "NaOH heißt Natriumhydroxid (wässrig: Natronlauge)."
   },
   {
     "id": "k9_che_089",
@@ -1601,16 +1411,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Welches Gas entsteht, wenn unedle Metalle (z. B. Zink) mit sauren Lösungen reagieren?",
-    "answers": [
-      "Wasserstoff-Gas (H2)",
-      "Schwefeldioxid-Gas (SO2)",
-      "Sauerstoff-Gas (O2)",
-      "Kohlenstoffdioxid"
-    ],
+    "answers": ["Wasserstoff-Gas (H₂)", "Schwefeldioxid-Gas (SO₂)", "Sauerstoff-Gas (O₂)", "Kohlenstoffdioxid"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Unedle Metalle werden durch Säuren unter Bildung von Wasserstoffgas oxidiert ($Zn + 2 H^+ \\rightarrow Zn^{2+} + H_2$)."
+    "explanation": "Unedle Metalle werden durch Säuren unter Bildung von Wasserstoffgas oxidiert (Zn + 2 H⁺ → Zn²⁺ + H₂)."
   },
   {
     "id": "k9_che_090",
@@ -1619,16 +1424,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Welcher Stoff entsteht bei der Nachweisreaktion von Kohlenstoffdioxid mit Kalkwasser?",
-    "answers": [
-      "Calciumcarbonat Trüb",
-      "Natriumchlorid Salz",
-      "Calciumhydroxid Lauge",
-      "Schwefelsäure Lösung"
-    ],
+    "answers": ["Calciumcarbonat Trüb", "Natriumchlorid Salz", "Calciumhydroxid Lauge", "Schwefelsäure Lösung"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$CO_2$ bildet mit Kalkwasser $Ca(OH)_2$ schwerlösliches Calciumcarbonat ($CaCO_3$), das als weißer Niederschlag trübt."
+    "explanation": "CO₂ bildet mit Kalkwasser Ca(OH)₂ schwerlösliches Calciumcarbonat (CaCO₃), das als weißer Niederschlag trübt."
   },
   {
     "id": "k9_che_091",
@@ -1709,16 +1509,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Aus welchen zwei Halbzellen besteht das klassische Daniell-Element?",
-    "answers": [
-      "Zink- und Kupferhalbzelle",
-      "Eisen- und Aluminiumzelle",
-      "Silber- u. Goldhalbzelle",
-      "Blei- u. Nickelhalbzelle"
-    ],
+    "answers": ["Zink- und Kupferhalbzelle", "Eisen- und Aluminiumzelle", "Silber- u. Goldhalbzelle", "Blei- u. Nickelhalbzelle"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das Daniell-Element besteht aus einer $Zn/Zn^{2+}$-Halbzelle u. einer $Cu/Cu^{2+}$-Halbzelle."
+    "explanation": "Das Daniell-Element besteht aus einer Zn/Zn²⁺-Halbzelle u. einer Cu/Cu²⁺-Halbzelle."
   },
   {
     "id": "k9_che_096",
@@ -1727,16 +1522,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Welches Metall bildet im Daniell-Element die Anode (Elektronenquelle/Donator)?",
-    "answers": [
-      "Das unedlere Zink (Zn)",
-      "Das edlere Kupfer (Cu)",
-      "Die Platin-Elektrode",
-      "Der Kohlenstoffstab"
-    ],
+    "answers": ["Das unedlere Zink (Zn)", "Das edlere Kupfer (Cu)", "Die Platin-Elektrode", "Der Kohlenstoffstab"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das unedlere Zink wird oxidiert ($Zn \\rightarrow Zn^{2+} + 2e^-$) u. bildet den Minuspol (Anode)."
+    "explanation": "Das unedlere Zink wird oxidiert (Zn → Zn²⁺ + 2e⁻) u. bildet den Minuspol (Anode)."
   },
   {
     "id": "k9_che_097",
@@ -1763,16 +1553,11 @@ const K9_CHEMIE_QUESTIONS = [
     "grade": 9,
     "subject": "chemie",
     "question": "Welche Metalle bezeichnet man als 'unedle Metalle'?",
-    "answers": [
-      "Geben leicht Elektronen ab",
-      "Geben schwer Elektronen ab",
-      "Reagieren nie mit Säuren",
-      "Kommen nur gediegen vor"
-    ],
+    "answers": ["Geben leicht Elektronen ab", "Geben schwer Elektronen ab", "Reagieren nie mit Säuren", "Kommen nur gediegen vor"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Unedle Metalle (z. B. $Na$, $Mg$, $Zn$, $Fe$) oxidieren leicht u. reagieren mit Säuren unter $H_2$-Entwicklung."
+    "explanation": "Unedle Metalle (z. B. Na, Mg, Zn, Fe) oxidieren leicht u. reagieren mit Säuren unter H₂-Entwicklung."
   },
   {
     "id": "k9_che_099",

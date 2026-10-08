@@ -425,12 +425,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Was ist das Kennzeichen reflexiver Verben (les verbes pronominaux)?",
-    "answers": [
-      "Stehen mit Reflexivpronomen (se)",
-      "Werden immer mit avoir konjugiert",
-      "Haben keine Formen im Imparfait",
-      "Enden alle zwingend auf -ir"
-    ],
+    "answers": ["Stehen mit Reflexivpronomen (se)", "Werden immer mit avoir konjugiert", "Haben keine Formen im Imparfait", "Enden alle zwingend auf -ir"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -535,12 +530,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Wie nennt man den Lebenslauf auf Französisch?",
-    "answers": [
-      "Le curriculum vitae (CV)",
-      "La lettre de recommandation",
-      "Le diplôme de baccalauréat",
-      "Le certificat de travail"
-    ],
+    "answers": ["Le curriculum vitae (CV)", "La lettre de recommandation", "Le diplôme de baccalauréat", "Le certificat de travail"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -697,12 +687,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Was beschreibt der Ausdruck 'le cyberharcèlement'?",
-    "answers": [
-      "Mobbing im Internet (Cyber)",
-      "Programmieren von Spielen",
-      "Einkaufen in Online-Shops",
-      "Lernen mit digitalen Medien"
-    ],
+    "answers": ["Mobbing im Internet", "Programmieren von Spielen", "Einkaufen in Online-Shops", "Lernen mit digitalen Medien"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -715,12 +700,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Wie nennt man die Matura / das Abitur in Frankreich?",
-    "answers": [
-      "Le baccalauréat (le bac)",
-      "Le brevet des collèges",
-      "La licence universitaire",
-      "Le certificat d'études"
-    ],
+    "answers": ["Le baccalauréat", "Le brevet des collèges", "La licence universitaire", "Le certificat d'études"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -751,12 +731,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Wie heißt die dreijährige Sekundarstufe II in Frankreich bis zum Abitur?",
-    "answers": [
-      "Le lycée (Seconde, 1ère, Tle)",
-      "Le collège unique en France",
-      "L'école primaire haute dort",
-      "La faculté des lettres et arts"
-    ],
+    "answers": ["Le lycée", "Le collège unique en France", "L'école primaire haute dort", "La faculté des lettres et arts"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -859,12 +834,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Was versteht man unter 'le commerce équitable'?",
-    "answers": [
-      "Der Faire Handel (Fairtrade)",
-      "Der freie Großhandel in der EU",
-      "Der Online-Handel im Internet",
-      "Der Schwarzmarkt in den Städten"
-    ],
+    "answers": ["Der Faire Handel", "Der freie Großhandel in der EU", "Der Online-Handel im Internet", "Der Schwarzmarkt in den Städten"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -969,12 +939,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Welche karibische Insel ist ein französisches Überseedépartement (DROM)?",
-    "answers": [
-      "La Martinique (oder Guadeloupe)",
-      "La Jamaïque in der Karibik",
-      "L'île de Cuba im Atlantik",
-      "La République Dominicaine dort ganz"
-    ],
+    "answers": ["La Martinique", "La Jamaïque in der Karibik", "L'île de Cuba im Atlantik", "La République Dominicaine dort ganz"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1059,12 +1024,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Wie heißt der Amtssitz des französischen Staatspräsidenten in Paris?",
-    "answers": [
-      "L'Élysée (Le Palais de l'Élysée)",
-      "Le Château de Versailles bei Paris",
-      "Le Palais du Luxembourg in Paris",
-      "L'Hôtel de Ville de Paris zentral"
-    ],
+    "answers": ["L'Élysée", "Le Château de Versailles bei Paris", "Le Palais du Luxembourg in Paris", "L'Hôtel de Ville de Paris zentral"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1113,12 +1073,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Für welches Naturphänomen u. welche Pflanzenfelder ist die Südregion Provence weltberühmt?",
-    "answers": [
-      "Champs de lavande (Lavendel)",
-      "Forêts de conifères profondes",
-      "Champs de tulipes rouges dort",
-      "Cactus et déserts chauds dort"
-    ],
+    "answers": ["Champs de lavande", "Forêts de conifères profondes", "Champs de tulipes rouges dort", "Cactus et déserts chauds dort"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1203,12 +1158,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Wie heißt der bekannte französische Schnellzug?",
-    "answers": [
-      "Le TGV (Train à Grande Vitesse)",
-      "Le TER régional rapide in France",
-      "Le RER train parisien sehr schnell",
-      "Le Métro de Paris ville dort ganz"
-    ],
+    "answers": ["Le TGV", "Le TER régional rapide in France", "Le RER train parisien sehr schnell", "Le Métro de Paris ville dort ganz"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1367,12 +1317,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Welches Relativpronomen ersetzt ein direktes Objekt im Nebensatz?",
-    "answers": [
-      "Das Pronomen 'que' (qu')",
-      "Das Pronomen 'qui' Subjekt",
-      "Das Pronomen 'où' Ort",
-      "Das Pronomen 'dont' de"
-    ],
+    "answers": ["Das Pronomen 'que' (qu')", "Das Pronomen 'qui' Subjekt", "Das Pronomen 'où' Ort", "Das Pronomen 'dont' de"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1619,12 +1564,7 @@ const K9_FRANZOESISCH_QUESTIONS = [
     "grade": 9,
     "subject": "franzoesisch",
     "question": "Was drückt die Konjunktion 'pendant que' aus?",
-    "answers": [
-      "Gleichzeitigkeit (während)",
-      "Begründung dafür (weil) im Satz",
-      "Bedingung dafür (falls) im Satz",
-      "Gegensatz dazu (obwohl) im Satz"
-    ],
+    "answers": ["Gleichzeitigkeit", "Begründung dafür (weil) im Satz", "Bedingung dafür (falls) im Satz", "Gegensatz dazu (obwohl) im Satz"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

@@ -443,12 +443,7 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Welche Form hat das Entscheidungssymbol (für Verzweigungen) in einem Flussdiagramm?",
-    "answers": [
-      "Eine Raute (Rhombus)",
-      "Ein einfaches Rechteck",
-      "Ein perfekter Kreis",
-      "Ein spitzes Dreieck"
-    ],
+    "answers": ["Eine Raute", "Ein einfaches Rechteck", "Ein perfekter Kreis", "Ein spitzes Dreieck"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -463,12 +458,7 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Was ist ein 'Bit' in der Informatik?",
-    "answers": [
-      "Kleinste Informationseinheit (0 oder 1)",
-      "Eine Gruppe von genau acht Zeichen",
-      "Ein Bauteil auf der Grafikkarte dort",
-      "Ein Befehl zum Löschen von Dateien dort"
-    ],
+    "answers": ["Kleinste Informationseinheit", "Eine Gruppe von genau acht Zeichen", "Ein Bauteil auf der Grafikkarte dort", "Ein Befehl zum Löschen von Dateien dort"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -481,16 +471,11 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Aus wie vielen Bits besteht exakt ein 'Byte'?",
-    "answers": [
-      "Aus exakt 8 Bits",
-      "Aus exakt 10 Bits",
-      "Aus exakt 16 Bits",
-      "Aus exakt 100 Bits"
-    ],
+    "answers": ["Aus exakt 8 Bits", "Aus exakt 10 Bits", "Aus exakt 16 Bits", "Aus exakt 100 Bits"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Byte fasst 8 Bits zusammen u. kann $2^8 = 256$ verschiedene Zustände darstellen."
+    "explanation": "Ein Byte fasst 8 Bits zusammen u. kann 2⁸ = 256 verschiedene Zustände darstellen."
   },
   {
     "id": "k9_inf_028",
@@ -517,16 +502,11 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Welcher Dezimalzahl entspricht die Binärzahl 1011?",
-    "answers": [
-      "Der Dezimalzahl 11",
-      "Der Dezimalzahl 9",
-      "Der Dezimalzahl 13",
-      "Der Dezimalzahl 7"
-    ],
+    "answers": ["Der Dezimalzahl 11", "Der Dezimalzahl 9", "Der Dezimalzahl 13", "Der Dezimalzahl 7"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$1 \cdot 8 + 0 \cdot 4 + 1 \cdot 2 + 1 \cdot 1 = 8 + 0 + 2 + 1 = 11$."
+    "explanation": "1 · 8 + 0 · 4 + 1 · 2 + 1 · 1 = 8 + 0 + 2 + 1 = 11."
   },
   {
     "id": "k9_inf_030",
@@ -535,16 +515,11 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Wie wird die Dezimalzahl 6 im Binärsystem dargestellt?",
-    "answers": [
-      "Als Binärzahl 110",
-      "Als Binärzahl 101",
-      "Als Binärzahl 011",
-      "Als Binärzahl 111"
-    ],
+    "answers": ["Als Binärzahl 110", "Als Binärzahl 101", "Als Binärzahl 011", "Als Binärzahl 111"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$4 + 2 + 0 = 1 \cdot 4 + 1 \cdot 2 + 0 \cdot 1 \rightarrow 110_2$."
+    "explanation": "4 + 2 + 0 = 1 · 4 + 1 · 2 + 0 · 1 → 110₂."
   },
   {
     "id": "k9_inf_031",
@@ -553,12 +528,7 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Welche Zahlenbasis verwendet das Hexadezimalsystem?",
-    "answers": [
-      "Basis 16 (Ziffern 0-9 u. A-F)",
-      "Basis 10 mit den Ziffern 0 bis 9",
-      "Basis 2 mit nur den Ziffern 0 u. 1",
-      "Basis 12 mit den Ziffern 0 bis B"
-    ],
+    "answers": ["Basis 16", "Basis 10 mit den Ziffern 0 bis 9", "Basis 2 mit nur den Ziffern 0 u. 1", "Basis 12 mit den Ziffern 0 bis B"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -625,16 +595,11 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Warum reicht der klassische ASCII-Code für weltweiten Text nicht aus?",
-    "answers": [
-      "Kann nur 128 Zeichen darstellen",
-      "Funktioniert nur auf Apple-Geräten",
-      "Kann keine Zahlen u. Kommas speichern",
-      "Ist für moderne Monitore zu langsam"
-    ],
+    "answers": ["Kann nur 128 Zeichen darstellen", "Funktioniert nur auf Apple-Geräten", "Kann keine Zahlen u. Kommas speichern", "Ist für moderne Monitore zu langsam"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Mit 7 Bit ($2^7 = 128$) fehlen Sonderzeichen, Umlaute (ä, ö, ü) u. nicht-lateinische Schriften (Chinesisch, Arabisch)."
+    "explanation": "Mit 7 Bit (2⁷ = 128) fehlen Sonderzeichen, Umlaute (ä, ö, ü) u. nicht-lateinische Schriften (Chinesisch, Arabisch)."
   },
   {
     "id": "k9_inf_036",
@@ -643,12 +608,7 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Welcher moderne Standard ermöglicht die Codierung nahezu aller Schriftzeichen u. Emojis weltweit?",
-    "answers": [
-      "Der Unicode-Standard (z. B. UTF-8)",
-      "Der erweiterte ASCII-Code mit 8 Bit",
-      "Das globale Morse-Code-System dort",
-      "Das HTML-Farbcode-Raster im Browser"
-    ],
+    "answers": ["Der Unicode-Standard", "Der erweiterte ASCII-Code mit 8 Bit", "Das globale Morse-Code-System dort", "Das HTML-Farbcode-Raster im Browser"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -661,12 +621,7 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Wie wird eine Pixelgrafik (Rastergrafik) im Speicher dargestellt?",
-    "answers": [
-      "Raster aus Farbpunkten (Pixeln)",
-      "Mathematische Vektoren u. Linien",
-      "Sammlung von Text-Dateien",
-      "3D-Modelle aus Dreiecken"
-    ],
+    "answers": ["Raster aus Farbpunkten", "Mathematische Vektoren u. Linien", "Sammlung von Text-Dateien", "3D-Modelle aus Dreiecken"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -822,17 +777,12 @@ const K9_INFORMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "informatik",
-    "question": "Welches Präfix steht für $1024$ Bytes (bzw. $1000$ Bytes im Dezimalsystem)?",
-    "answers": [
-      "Das Präfix Kilo (KiloByte / KB)",
-      "Das Präfix Mega (MegaByte / MB)",
-      "Das Präfix Giga (GigaByte / GB)",
-      "Das Präfix Tera (TeraByte / TB)"
-    ],
+    "question": "Welches Präfix steht für 1024 Bytes (bzw. 1000 Bytes im Dezimalsystem)?",
+    "answers": ["Das Präfix Kilo (KiloByte / KB)", "Das Präfix Mega (MegaByte / MB)", "Das Präfix Giga (GigaByte / GB)", "Das Präfix Tera (TeraByte / TB)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "1 KiloByte (KB) entspricht 1.000 Bytes (in Binärpräfixen $1 \text{ KiB} = 1024 \text{ Bytes}$)."
+    "explanation": "1 KiloByte (KB) entspricht 1.000 Bytes (in Binärpräfixen 1 KiB = 1024 Bytes)."
   },
   {
     "id": "k9_inf_047",
@@ -841,16 +791,11 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Wie viele MegaByte (MB) ergeben ungefähr einen GigaByte (GB)?",
-    "answers": [
-      "Ungefähr 1000 MegaByte",
-      "Ungefähr 100 MegaByte",
-      "Ungefähr 10 MegaByte",
-      "Ungefähr 10000 MegaByte"
-    ],
+    "answers": ["Ungefähr 1000 MegaByte", "Ungefähr 100 MegaByte", "Ungefähr 10 MegaByte", "Ungefähr 10000 MegaByte"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$1 \text{ GB} = 1000 \text{ MB}$ (bzw. $1024 \text{ MiB}$ im Binärsystem)."
+    "explanation": "1 GB = 1000 MB (bzw. 1024 MiB im Binärsystem)."
   },
   {
     "id": "k9_inf_048",
@@ -859,16 +804,11 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Was beschreibt der Begriff 'Abtastrate' (Hz) bei Audioaufnahmen?",
-    "answers": [
-      "Anzahl der Messungen pro Sekunde",
-      "Maximale Lautstärke des Mikrofons",
-      "Länge des aufgenommenen Musikstücks",
-      "Anzahl der Lautsprecher im Raum"
-    ],
+    "answers": ["Anzahl der Messungen pro Sekunde", "Maximale Lautstärke des Mikrofons", "Länge des aufgenommenen Musikstücks", "Anzahl der Lautsprecher im Raum"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Abtastrate (z. B. $44,1 \text{ kHz}$ bei CDs) gibt an, wie oft pro Sekunde das Audiosignal gemessen wird."
+    "explanation": "Die Abtastrate (z. B. 44,1 kHz bei CDs) gibt an, wie oft pro Sekunde das Audiosignal gemessen wird."
   },
   {
     "id": "k9_inf_049",
@@ -1041,12 +981,7 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Wofür steht die Abkürzung 'LAN' bei Netzwerken?",
-    "answers": [
-      "Local Area Network (Lokales Netz)",
-      "Large Access Network für Großnetze",
-      "Logical Application Node im System",
-      "Link Access Navigation im Netzwerk"
-    ],
+    "answers": ["Local Area Network", "Large Access Network für Großnetze", "Logical Application Node im System", "Link Access Navigation im Netzwerk"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1221,12 +1156,7 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Wofür nutzt man 'CSS' bei der Entwicklung von Webseiten?",
-    "answers": [
-      "Gestaltung u. Layout (Design)",
-      "Speicherung in Datenbanken",
-      "Sicherheitsübermittlung der IP",
-      "Berechnung von komplexen Formeln"
-    ],
+    "answers": ["Gestaltung u. Layout", "Speicherung in Datenbanken", "Sicherheitsübermittlung der IP", "Berechnung von komplexen Formeln"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1457,12 +1387,7 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Was versteht man unter einer 'Hashfunktion' (z. B. SHA-256)?",
-    "answers": [
-      "Erzeugt eindeutigen Wert fester Länge (Prüfsumme)",
-      "Verschlüsselt vorhandene Bilder in alte Text-Dateien",
-      "Löscht sicher alte Daten von der Festplatte",
-      "Überträgt Dateien komplett per Netzwerkkabel"
-    ],
+    "answers": ["Erzeugt eindeutigen Wert fester Länge", "Verschlüsselt vorhandene Bilder in alte Text-Dateien", "Löscht sicher alte Daten von der Festplatte", "Überträgt Dateien komplett per Netzwerkkabel"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1547,12 +1472,7 @@ const K9_INFORMATIK_QUESTIONS = [
     "grade": 9,
     "subject": "informatik",
     "question": "Was versteht man unter 'Malware'?",
-    "answers": [
-      "Sammelbegriff für Schadsoftware (Viren, Trojaner)",
-      "Fehlerhafte elektronische Bauteile im Prozessor",
-      "Software zum digitalen Erstellen von echten Malereien",
-      "Kostenlose Testversionen von normalen Programmen"
-    ],
+    "answers": ["Sammelbegriff für Schadsoftware", "Fehlerhafte elektronische Bauteile im Prozessor", "Software zum digitalen Erstellen von echten Malereien", "Kostenlose Testversionen von normalen Programmen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

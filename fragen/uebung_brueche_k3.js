@@ -47,12 +47,7 @@ const BRUECHE_K3_QUESTIONS = [
   "subject": "mathe",
   "topic": "brueche",
   "question": "Zwei von vier gleichen Teilen sind …",
-  "answers": [
-   "eine Hälfte",
-   "nichts",
-   "drei Ganze",
-   "ein Achtel immer"
-  ],
+  "answers": ["eine Hälfte", "ein Viertel", "drei Viertel", "ein Ganzes"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -86,12 +81,7 @@ const BRUECHE_K3_QUESTIONS = [
   "subject": "mathe",
   "topic": "brueche",
   "question": "Welche Zahl beschreibt die Hälfte?",
-  "answers": [
-   "1/2",
-   "1/4",
-   "3/4",
-   "2/2 immer als klein"
-  ],
+  "answers": ["1/2", "1/4", "3/4", "2/2"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -106,12 +96,7 @@ const BRUECHE_K3_QUESTIONS = [
   "subject": "mathe",
   "topic": "brueche",
   "question": "1/4 + 1/4 =",
-  "answers": [
-   "1/2",
-   "1/8",
-   "2/8 nur falsch gedacht ohne Kürzen",
-   "0"
-  ],
+  "answers": ["1/2", "1/8", "2/8", "1/4"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -185,12 +170,7 @@ const BRUECHE_K3_QUESTIONS = [
   "subject": "mathe",
   "topic": "brueche",
   "question": "Ein Schokoriegel in 2 Hälften. Du isst 1 Hälfte. Übrig ist …",
-  "answers": [
-   "1/2",
-   "das Ganze",
-   "1/4 immer",
-   "nichts immer"
-  ],
+  "answers": ["1/2", "das Ganze", "1/4", "nichts"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -225,12 +205,7 @@ const BRUECHE_K3_QUESTIONS = [
   "subject": "mathe",
   "topic": "brueche",
   "question": "1/3 ist … als 1/2 (gleicher Kuchen).",
-  "answers": [
-   "kleiner",
-   "größer",
-   "gleich",
-   "kein Bruch"
-  ],
+  "answers": ["kleiner", "größer", "gleich groß", "doppelt so groß"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -244,12 +219,7 @@ const BRUECHE_K3_QUESTIONS = [
   "subject": "mathe",
   "topic": "brueche",
   "question": "Zwei Drittel sind …",
-  "answers": [
-   "2 von 3 gleichen Teilen",
-   "das Ganze",
-   "1 von 4",
-   "nichts"
-  ],
+  "answers": ["2 von 3 gleichen Teilen", "3 von 2 Teilen", "2 von 4 Teilen", "1 von 3 Teilen"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,
@@ -443,12 +413,7 @@ const BRUECHE_K3_QUESTIONS = [
   "subject": "mathe",
   "topic": "brueche",
   "question": "Mehr als die Hälfte von 8 Äpfeln ist mindestens …",
-  "answers": [
-   "5",
-   "3",
-   "4 genau die Hälfte",
-   "1"
-  ],
+  "answers": ["5", "3", "4", "1"],
   "correct": 0,
   "difficulty": "leicht",
   "points": 10,

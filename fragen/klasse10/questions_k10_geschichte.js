@@ -630,7 +630,7 @@ const K10_GESCHICHTE_QUESTIONS = [
     grade: 10,
     subject: "geschichte",
     question: "Was war die Landung in der Normandie 1944?",
-    answers: ["Ein gezielter Luftangriff auf deutsche Städte", "Die Invasion der Alliierten in Frankreich („D-Day“)", "Ein einzelnes Seegefecht im Atlantik im Dritten Reich", "Ein geordneter Rückzug der Alliierten im Dritten Reich"],
+    answers: ["Ein gezielter Luftangriff auf deutsche Städte", "Die Invasion der Alliierten in Frankreich", "Ein einzelnes Seegefecht im Atlantik im Dritten Reich", "Ein geordneter Rückzug der Alliierten im Dritten Reich"],
     correct: 1,
     difficulty: "leicht",
     points: 5,

@@ -173,16 +173,11 @@ const K9_BIOLOGIE_QUESTIONS = [
     "grade": 9,
     "subject": "biologie",
     "question": "Wie viele Chromosomen enthält eine menschliche Eizelle oder Samenzelle (haploider Satz)?",
-    "answers": [
-      "Exakt 23 Chromosomen",
-      "Exakt 46 Chromosomen",
-      "Exakt 12 Chromosomen",
-      "Exakt 92 Chromosomen"
-    ],
+    "answers": ["Exakt 23 Chromosomen", "Exakt 46 Chromosomen", "Exakt 12 Chromosomen", "Exakt 92 Chromosomen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Keimzellen besitzen nur einen einfachen (haploiden) Chromosomensatz mit $n = 23$ Chromosomen."
+    "explanation": "Keimzellen besitzen nur einen einfachen (haploiden) Chromosomensatz mit n = 23 Chromosomen."
   },
   {
     "id": "k9_bio_011",
@@ -443,16 +438,11 @@ const K9_BIOLOGIE_QUESTIONS = [
     "grade": 9,
     "subject": "biologie",
     "question": "Was ist das Hauptmerkmal eines autosomal-rezessiven Erbgangs?",
-    "answers": [
-      "Gesunde Eltern haben kranke Kinder",
-      "Krankheit bricht immer sofort aus",
-      "Nur Mütter übertragen die Krankheit",
-      "Alle Nachkommen sind stets betroffen"
-    ],
+    "answers": ["Gesunde Eltern haben kranke Kinder", "Krankheit bricht immer sofort aus", "Nur Mütter übertragen die Krankheit", "Alle Nachkommen sind stets betroffen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Zwei heterozygot gesunde Anlageträger (Aa) können mit $25\\%$ Wahrscheinlichkeit ein homozygotes krankes Kind (aa) bekommen."
+    "explanation": "Zwei heterozygot gesunde Anlageträger (Aa) können mit 25% Wahrscheinlichkeit ein homozygotes krankes Kind (aa) bekommen."
   },
 
   // --- IMMUNBIOLOGIE & INFEKTIONSKRANKHEITEN (026 - 050) ---
@@ -987,16 +977,11 @@ const K9_BIOLOGIE_QUESTIONS = [
     "grade": 9,
     "subject": "biologie",
     "question": "Wie hoch liegt das Ruhepotenzial einer unerregten Nervenzelle etwa?",
-    "answers": [
-      "Spannung: ca. -70 Millivolt",
-      "Spannung: ca. +30 Millivolt",
-      "Spannung: ca. 0 Millivolt",
-      "Spannung: ca. -230 Volt"
-    ],
+    "answers": ["Spannung: ca. -70 Millivolt", "Spannung: ca. +30 Millivolt", "Spannung: ca. 0 Millivolt", "Spannung: ca. -230 Volt"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Im Unerregten Zustand beträgt die elektrische Spannung an der Axonmembran im Inneren etwa $-70\\,mV$."
+    "explanation": "Im Unerregten Zustand beträgt die elektrische Spannung an der Axonmembran im Inneren etwa -70 mV."
   },
   {
     "id": "k9_bio_056",
@@ -1005,16 +990,11 @@ const K9_BIOLOGIE_QUESTIONS = [
     "grade": 9,
     "subject": "biologie",
     "question": "Welche Ionen sind für die Aufrechterhaltung des Ruhepotenzials von zentraler Bedeutung?",
-    "answers": [
-      "Natrium- und Kalium-Ionen",
-      "Calcium- und Eisen-Ionen",
-      "Magnesium- und Chlor-Ionen",
-      "Kupfer- und Zink-Ionen"
-    ],
+    "answers": ["Natrium- und Kalium-Ionen", "Calcium- und Eisen-Ionen", "Magnesium- und Chlor-Ionen", "Kupfer- und Zink-Ionen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die ungleiche Verteilung von $Na^+$-Ionen (außen hoch) u. $K^+$-Ionen (innen hoch) wird durch die $Na^+/K^+$-Pumpe aufrechterhalten."
+    "explanation": "Die ungleiche Verteilung von Na⁺-Ionen (außen hoch) u. K⁺-Ionen (innen hoch) wird durch die Na⁺/K⁺-Pumpe aufrechterhalten."
   },
   {
     "id": "k9_bio_057",
@@ -1023,16 +1003,11 @@ const K9_BIOLOGIE_QUESTIONS = [
     "grade": 9,
     "subject": "biologie",
     "question": "Was passiert bei der 'Depolarisation' während eines Aktionspotenzials?",
-    "answers": [
-      "Schlagartiger Natriumeinstrom",
-      "Ausstrom von vielen Proteinen",
-      "Schließen aller Ionenkanäle",
-      "Verstärkung des Minuspols"
-    ],
+    "answers": ["Schlagartiger Natriumeinstrom", "Ausstrom von vielen Proteinen", "Schließen aller Ionenkanäle", "Verstärkung des Minuspols"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Spannungsgesteuerte $Na^+$-Kanäle öffnen sich; der massive Einstrom positiver Natriumionen polart die Membran auf ca. $+30\\,mV$ um."
+    "explanation": "Spannungsgesteuerte Na⁺-Kanäle öffnen sich; der massive Einstrom positiver Natriumionen polart die Membran auf ca. +30 mV um."
   },
   {
     "id": "k9_bio_058",
@@ -1041,16 +1016,11 @@ const K9_BIOLOGIE_QUESTIONS = [
     "grade": 9,
     "subject": "biologie",
     "question": "Was beschreibt das 'Alles-oder-Nichts-Gesetz' bei Aktionspotenzialen?",
-    "answers": [
-      "Schwellenwert löst immer volles AP aus",
-      "Impuls wird stets je nach Reiz stärker",
-      "Nervenzelle teilt sich dabei völlig",
-      "Aktionspotenzial dauert ewig an"
-    ],
+    "answers": ["Schwellenwert löst immer volles AP aus", "Impuls wird stets je nach Reiz stärker", "Nervenzelle teilt sich dabei völlig", "Aktionspotenzial dauert ewig an"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Wird der Schwellenwert (ca. $-50\\,mV$) erreicht, entsteht immer ein volles Aktionspotenzial fester Amplitude; wird er verfehlt, entsteht keines."
+    "explanation": "Wird der Schwellenwert (ca. -50 mV) erreicht, entsteht immer ein volles Aktionspotenzial fester Amplitude; wird er verfehlt, entsteht keines."
   },
   {
     "id": "k9_bio_059",
@@ -1275,12 +1245,7 @@ const K9_BIOLOGIE_QUESTIONS = [
     "grade": 9,
     "subject": "biologie",
     "question": "Welches Gehirnareal steuert übergeordnete Denkprozesse, Sprache u. Persönlichkeit?",
-    "answers": [
-      "Das Großhirn (Cortex)",
-      "Das Kleinhirn hinten",
-      "Das Nachhirn am Stamm",
-      "Das Rückenmark im Kanal"
-    ],
+    "answers": ["Das Großhirn", "Das Kleinhirn hinten", "Das Nachhirn am Stamm", "Das Rückenmark im Kanal"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1709,16 +1674,11 @@ const K9_BIOLOGIE_QUESTIONS = [
     "grade": 9,
     "subject": "biologie",
     "question": "Welche Organismengruppe bildet die Basis einer Nahrungspyramide (Produzenten)?",
-    "answers": [
-      "Grüne Pflanzen (Fotosynthese)",
-      "Pflanzenfressende Tiere im Feld",
-      "Fleischfressende Raubtiere oben",
-      "Zersetzer u. Bakterien im Boden"
-    ],
+    "answers": ["Grüne Pflanzen", "Pflanzenfressende Tiere im Feld", "Fleischfressende Raubtiere oben", "Zersetzer u. Bakterien im Boden"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Autotrophe Produzenten (Pflanzen/Algen) erzeugen aus Sonnenlicht u. CO2 Biomasse für alle Konsumenten."
+    "explanation": "Autotrophe Produzenten (Pflanzen/Algen) erzeugen aus Sonnenlicht u. CO₂ Biomasse für alle Konsumenten."
   },
   {
     "id": "k9_bio_096",
@@ -1727,16 +1687,11 @@ const K9_BIOLOGIE_QUESTIONS = [
     "grade": 9,
     "subject": "biologie",
     "question": "Wie viel Prozent der Energie wird grob von einer Trophieebene zur nächsten weitergegeben?",
-    "answers": [
-      "Etwa 10 Prozent der Energie",
-      "Etwa 50 Prozent der Energie",
-      "Etwa 90 Prozent der Energie",
-      "Exakt 100 Prozent Energie"
-    ],
+    "answers": ["Etwa 10 Prozent der Energie", "Etwa 50 Prozent der Energie", "Etwa 90 Prozent der Energie", "Exakt 100 Prozent Energie"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Rund $90\\%$ der Energie gehen auf jeder Stufe durch Baustoffwechsel, Bewegung u. Wärme verloren; nur ca. $10\\%$ werden als Biomasse weitergegeben."
+    "explanation": "Rund 90% der Energie gehen auf jeder Stufe durch Baustoffwechsel, Bewegung u. Wärme verloren; nur ca. 10% werden als Biomasse weitergegeben."
   },
   {
     "id": "k9_bio_097",
@@ -1776,16 +1731,11 @@ const K9_BIOLOGIE_QUESTIONS = [
     "grade": 9,
     "subject": "biologie",
     "question": "Welcher anthropogene Prozess verstärkt den natürlichen Treibhauseffekt massiv?",
-    "answers": [
-      "Freisetzung von CO2 durch Verbrennung",
-      "Einsatz von Dünger auf großen Feldern",
-      "Ausbau von neuen Solaranlagen",
-      "Aufforstung von großen Mischwäldern"
-    ],
+    "answers": ["Freisetzung von CO₂ durch Verbrennung", "Einsatz von Dünger auf großen Feldern", "Ausbau von neuen Solaranlagen", "Aufforstung von großen Mischwäldern"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Verbrennung fossiler Energieträger (Kohle, Öl, Gas) erhöht den $CO_2$-Gehalt der Atmosphäre u. treibt die globale Erwärmung an."
+    "explanation": "Die Verbrennung fossiler Energieträger (Kohle, Öl, Gas) erhöht den CO₂-Gehalt der Atmosphäre u. treibt die globale Erwärmung an."
   },
   {
     "id": "k9_bio_0100",

@@ -83,12 +83,7 @@ const K9_RELIGION_QUESTIONS = [
     "grade": 9,
     "subject": "religion",
     "question": "Welcher historische Religionsstifter lehrte den 'Achtfachen Pfad' zur Überwindung des Leidens?",
-    "answers": [
-      "Siddhartha Gautama (Buddha)",
-      "Mahavira der Jainist Lehrer",
-      "Laozi der chinesische Philosoph",
-      "Konfuzius der weise Meister"
-    ],
+    "answers": ["Siddhartha Gautama", "Mahavira der Jainist Lehrer", "Laozi der chinesische Philosoph", "Konfuzius der weise Meister"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -281,12 +276,7 @@ const K9_RELIGION_QUESTIONS = [
     "grade": 9,
     "subject": "religion",
     "question": "Wie heißt der jüdische Begriff für die Speisegesetze, die erlaubte u. verbotene Nahrung regeln?",
-    "answers": [
-      "Das Gebot der Kaschrut (koscher)",
-      "Die Pflicht Halal zu essen stets",
-      "Das Prinzip des strengen Vegetarismus",
-      "Das Gebot der Abstinenz im Fasten"
-    ],
+    "answers": ["Das Gebot der Kaschrut", "Die Pflicht Halal zu essen stets", "Das Prinzip des strengen Vegetarismus", "Das Gebot der Abstinenz im Fasten"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -463,12 +453,7 @@ const K9_RELIGION_QUESTIONS = [
     "grade": 9,
     "subject": "religion",
     "question": "In welchen Hauptsprachen wurden die Bücher des Alten u. Neuen Testaments ursprünglich verfasst?",
-    "answers": [
-      "Hebräisch u. Altgriechisch (Koine)",
-      "Latein u. Altarabisch der Kirche",
-      "Aramäisch u. Altdeutsch der Mönche",
-      "Ägyptisch u. Griechisch der Antike"
-    ],
+    "answers": ["Hebräisch u. Altgriechisch", "Latein u. Altarabisch der Kirche", "Aramäisch u. Altdeutsch der Mönche", "Ägyptisch u. Griechisch der Antike"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -589,12 +574,7 @@ const K9_RELIGION_QUESTIONS = [
     "grade": 9,
     "subject": "religion",
     "question": "Welche protestantische Bewegung leistete im Nationalsozialismus Widerstand gegen die Gleichschaltung der Kirche ('Deutsche Christen')?",
-    "answers": [
-      "Die Bekennende Kirche (BK)",
-      "Der Bund Evangelischer Jugend",
-      "Die Christliche Volksfront",
-      "Der Ökumenische Rat Berlin"
-    ],
+    "answers": ["Die Bekennende Kirche (BK)", "Der Bund Evangelischer Jugend", "Die Christliche Volksfront", "Der Ökumenische Rat Berlin"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1393,12 +1373,7 @@ const K9_RELIGION_QUESTIONS = [
     "grade": 9,
     "subject": "religion",
     "question": "Welche biblische Gestalt im Alten Testament leidet ohne eigene Schuld u. hadert mit Gott?",
-    "answers": [
-      "Der Dulder Hiob (Ijob)",
-      "König David von Israel",
-      "Der Prophet Jona im Fisch",
-      "Der Stammvater Abraham"
-    ],
+    "answers": ["Der Dulder Hiob", "König David von Israel", "Der Prophet Jona im Fisch", "Der Stammvater Abraham"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1789,12 +1764,7 @@ const K9_RELIGION_QUESTIONS = [
     "grade": 9,
     "subject": "religion",
     "question": "Welche Bedeutung hat die 'Eschatologie' in der christlichen Theologie?",
-    "answers": [
-      "Lehre von den letzten Dingen (Hoffnung)",
-      "Lehre von den Sakramenten in der Kirche",
-      "Erforschung der frühen Urkirche Roms",
-      "Lehre von den zehn Geboten Gottes"
-    ],
+    "answers": ["Lehre von den letzten Dingen", "Lehre von den Sakramenten in der Kirche", "Erforschung der frühen Urkirche Roms", "Lehre von den zehn Geboten Gottes"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

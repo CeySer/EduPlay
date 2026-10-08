@@ -66,7 +66,7 @@ const K10_INFORMATIK_QUESTIONS = [
     grade: 10,
     subject: "informatik",
     question: "Was ist das Hexadezimalsystem?",
-    answers: ["Ein Zahlensystem mit der Basis 2, also den Ziffern 0 und 1", "Ein Zahlensystem mit der Basis 10, den Ziffern 0 bis 9", "Ein Zahlensystem mit der Basis 8, den Ziffern 0 bis 7", "Ein Zahlensystem mit der Basis 16 (0–9 und A–F)"],
+    answers: ["Ein Zahlensystem mit der Basis 2, also den Ziffern 0 und 1", "Ein Zahlensystem mit der Basis 10, den Ziffern 0 bis 9", "Ein Zahlensystem mit der Basis 8, den Ziffern 0 bis 7", "Ein Zahlensystem mit der Basis 16"],
     correct: 3,
     difficulty: "leicht",
     points: 5,

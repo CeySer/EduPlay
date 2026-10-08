@@ -93,8 +93,8 @@ const K10_MATHEMATIK_QUESTIONS = [
     area: "schule",
     grade: 10,
     subject: "mathematik",
-    question: "Was gilt für a^0 (a ungleich 0)?",
-    answers: ["a^0 ist gleich 1", "a^0 ist nicht definiert", "a^0 ist gleich 0", "a^0 ist gleich a"],
+    question: "Was gilt für a⁰ (a ungleich 0)?",
+    answers: ["a⁰ ist gleich 1", "a⁰ ist nicht definiert", "a⁰ ist gleich 0", "a⁰ ist gleich a"],
     correct: 0,
     difficulty: "leicht",
     points: 5,
@@ -107,8 +107,8 @@ const K10_MATHEMATIK_QUESTIONS = [
     area: "schule",
     grade: 10,
     subject: "mathematik",
-    question: "Wie rechnet man (a^m) · (a^n)?",
-    answers: ["a^(m+n)", "a^(m/n)", "a^(m-n)", "a^(m·n)"],
+    question: "Wie rechnet man (aᵐ) · (aⁿ)?",
+    answers: ["aᵐ⁺ⁿ", "a^(m/n)", "aᵐ⁻ⁿ", "a^(m·n)"],
     correct: 0,
     difficulty: "leicht",
     points: 5,
@@ -121,12 +121,12 @@ const K10_MATHEMATIK_QUESTIONS = [
     area: "schule",
     grade: 10,
     subject: "mathematik",
-    question: "Was ist 2^(-3)?",
+    question: "Was ist 2⁻³?",
     answers: ["1/8", "1/6", "-8", "8"],
     correct: 0,
     difficulty: "mittel",
     points: 5,
-    explanation: "2^(-3) = 1 / 2^3 = 1/8."
+    explanation: "2⁻³ = 1 / 2³ = 1/8."
   },
   {
     id: "q10_m_010",
@@ -150,11 +150,11 @@ const K10_MATHEMATIK_QUESTIONS = [
     grade: 10,
     subject: "mathematik",
     question: "Wie lautet die Zehnerpotenzschreibweise von 0,00034?",
-    answers: ["3,4 · 10^(-4)", "0,34 · 10^(-3)", "3,4 · 10^4", "34 · 10^(-3)"],
+    answers: ["3,4 · 10⁻⁴", "0,34 · 10⁻³", "3,4 · 10⁴", "34 · 10⁻³"],
     correct: 0,
     difficulty: "mittel",
     points: 5,
-    explanation: "0,00034 = 3,4 · 10^(-4)."
+    explanation: "0,00034 = 3,4 · 10⁻⁴."
   },
   {
     id: "q10_m_012",
@@ -177,8 +177,8 @@ const K10_MATHEMATIK_QUESTIONS = [
     area: "schule",
     grade: 10,
     subject: "mathematik",
-    question: "Wie vereinfacht man (√a)^2 für a ≥ 0?",
-    answers: ["2a", "√a", "a^2", "a"],
+    question: "Wie vereinfacht man (√a)² für a ≥ 0?",
+    answers: ["2a", "√a", "a²", "a"],
     correct: 3,
     difficulty: "leicht",
     points: 5,
@@ -196,7 +196,7 @@ const K10_MATHEMATIK_QUESTIONS = [
     correct: 0,
     difficulty: "schwer",
     points: 5,
-    explanation: "8^(2/3) = (8^(1/3))^2 = 2^2 = 4."
+    explanation: "8^(2/3) = (8^(1/3))² = 2² = 4."
   },
   {
     id: "q10_m_015",
@@ -1952,7 +1952,7 @@ const K10_MATHEMATIK_QUESTIONS = [
     correct: 3,
     difficulty: "schwer",
     points: 5,
-    explanation: "(16^(1/4))^3 = 2^3 = 8."
+    explanation: "(16^(1/4))³ = 2³ = 8."
   },
   {
     id: "q10_m_139",
@@ -1962,11 +1962,11 @@ const K10_MATHEMATIK_QUESTIONS = [
     grade: 10,
     subject: "mathematik",
     question: "0,000056 in wissenschaftlicher Schreibweise?",
-    answers: ["5,6 · 10^(−5)", "0,56 · 10^(−4)", "5,6 · 10^5", "56 · 10^(−6)"],
+    answers: ["5,6 · 10⁻⁵", "0,56 · 10⁻⁴", "5,6 · 10⁵", "56 · 10⁻⁶"],
     correct: 0,
     difficulty: "mittel",
     points: 5,
-    explanation: "5,6 · 10^(−5)."
+    explanation: "5,6 · 10⁻⁵."
   },
   {
     id: "q10_m_140",
@@ -1980,7 +1980,7 @@ const K10_MATHEMATIK_QUESTIONS = [
     correct: 1,
     difficulty: "leicht",
     points: 5,
-    explanation: "3^6 = 729."
+    explanation: "3⁶ = 729."
   },
   {
     id: "q10_m_141",
@@ -2102,7 +2102,7 @@ const K10_MATHEMATIK_QUESTIONS = [
     grade: 10,
     subject: "mathematik",
     question: "Welche Funktion wächst exponentiell?",
-    answers: ["f(x) = x² + 2", "f(x) = 2x + 1", "f(x) = 2^x", "f(x) = √(x+2)"],
+    answers: ["f(x) = x² + 2", "f(x) = 2x + 1", "f(x) = 2ˣ", "f(x) = √(x+2)"],
     correct: 2,
     difficulty: "leicht",
     points: 5,
@@ -2115,11 +2115,11 @@ const K10_MATHEMATIK_QUESTIONS = [
     area: "schule",
     grade: 10,
     subject: "mathematik",
-    question: "y-Achsenabschnitt von f(x) = 3^x?",
+    question: "y-Achsenabschnitt von f(x) = 3ˣ?",
     answers: ["1", "0", "3", "Unendlich"],
     correct: 0,
     difficulty: "leicht",
     points: 5,
-    explanation: "3^0 = 1."
+    explanation: "3⁰ = 1."
   }
 ];

@@ -261,12 +261,7 @@ const SPASS_ESSEN_QUESTIONS = [
         "area": "spass",
         "subject": "essen_trinken",
         "question": "Welche Geschmacksrichtung gilt neben süß, sauer, salzig und bitter als die 'fünfte' Geschmacksart?",
-        "answers": [
-            "Metallischer Nachgeschmack",
-            "Scharfe Geschmacksnote",
-            "Fettige Geschmacksnote",
-            "Umami (würzig/herzhaft)"
-        ],
+        "answers": ["Metallischer Nachgeschmack", "Scharfe Geschmacksnote", "Fettige Geschmacksnote", "Umami"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -329,12 +324,7 @@ const SPASS_ESSEN_QUESTIONS = [
         "area": "spass",
         "subject": "essen_trinken",
         "question": "Aus welcher Pflanze wird das feingemahlene grüne Matchapulver gewonnen?",
-        "answers": [
-            "Mate-Strauch, getrocknet",
-            "Getrocknete Brennnesselblätter",
-            "Ginkgoblätter, fein gemahlen",
-            "Grüntee-Blättern (Tencha)"
-        ],
+        "answers": ["Mate-Strauch, getrocknet", "Getrocknete Brennnesselblätter", "Ginkgoblätter, fein gemahlen", "Grüntee-Blättern"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -448,12 +438,7 @@ const SPASS_ESSEN_QUESTIONS = [
         "area": "spass",
         "subject": "essen_trinken",
         "question": "Welcher Fisch gilt in Japan als Delikatesse, kann aber bei falscher Zubereitung durch Toxin tödlich wirken?",
-        "answers": [
-            "Roher Thunfischbauch",
-            "Gebratener Lachsfilet",
-            "Kugelfisch (Fugu)",
-            "Geräucherter Aalfisch"
-        ],
+        "answers": ["Roher Thunfischbauch", "Gebratener Lachsfilet", "Kugelfisch", "Geräucherter Aalfisch"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -465,12 +450,7 @@ const SPASS_ESSEN_QUESTIONS = [
         "area": "spass",
         "subject": "essen_trinken",
         "question": "Welche Frucht wird wegen ihres extrem stechenden Geruchs in vielen asiatischen Hotels und U-Bahnen verboten?",
-        "answers": [
-            "Reife Jackfrucht-Schale",
-            "Süß-saure Papayafrucht",
-            "Rote Drachenfruchtschale",
-            "Durian (Stinkfrucht)"
-        ],
+        "answers": ["Reife Jackfrucht-Schale", "Süß-saure Papayafrucht", "Rote Drachenfruchtschale", "Durian"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,
@@ -737,12 +717,7 @@ const SPASS_ESSEN_QUESTIONS = [
         "area": "spass",
         "subject": "essen_trinken",
         "question": "Welches Gewürz verleiht indischem Gelb-Curry seine charakteristische leuchtend gelbe Farbe?",
-        "answers": [
-            "Gemahlener Kreuzkümmel",
-            "Frischer Koriander",
-            "Scharfer Cayennepfeffer",
-            "Kurkuma (Gelbwurz)"
-        ],
+        "answers": ["Gemahlener Kreuzkümmel", "Frischer Koriander", "Scharfer Cayennepfeffer", "Kurkuma"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,
@@ -1213,12 +1188,7 @@ const SPASS_ESSEN_QUESTIONS = [
         "area": "spass",
         "subject": "essen_trinken",
         "question": "Aus welchem Land stammt das scharfe Fleischgericht 'Chili con Carne' ursprünglich?",
-        "answers": [
-            "Mexiko-Stadt",
-            "Süden Spaniens",
-            "Brasilien Nord",
-            "USA (Texas)"
-        ],
+        "answers": ["Mexiko-Stadt", "Süden Spaniens", "Brasilien Nord", "USA"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -1264,12 +1234,7 @@ const SPASS_ESSEN_QUESTIONS = [
         "area": "spass",
         "subject": "essen_trinken",
         "question": "Aus welchem Pflanzenteil wird echter Vanillezucker beziehungsweise das Vanillearoma gewonnen?",
-        "answers": [
-            "Rinde eines tropischen Baumes",
-            "Blütenblatt der Orchideenpflanze",
-            "Orchideen-Kapselblatt (Schote)",
-            "Wurzelknolle tief im Boden"
-        ],
+        "answers": ["Rinde eines tropischen Baumes", "Blütenblatt der Orchideenpflanze", "Orchideen-Kapselblatt", "Wurzelknolle tief im Boden"],
         "correct": 2,
         "difficulty": "mittel",
         "points": 10,
@@ -1332,12 +1297,7 @@ const SPASS_ESSEN_QUESTIONS = [
         "area": "spass",
         "subject": "essen_trinken",
         "question": "Aus welcher Bohne wird der beliebte Brotaufstrich Erdnussbutter gefertigt?",
-        "answers": [
-            "Baumnusskerne, geröstet",
-            "Cashewnüsse, gesalzen",
-            "Erdnuss (Hülsenfrucht)",
-            "Kakaobohnenmasse, roh"
-        ],
+        "answers": ["Baumnusskerne, geröstet", "Cashewnüsse, gesalzen", "Erdnuss", "Kakaobohnenmasse, roh"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -1349,16 +1309,11 @@ const SPASS_ESSEN_QUESTIONS = [
         "area": "spass",
         "subject": "essen_trinken",
         "question": "Welches chemische Element sorgt beim Backen mit Backpulver für das Aufgehen des Teigs?",
-        "answers": [
-            "Reiner Sauerstoff",
-            "Reiner Stickstoff",
-            "Reiner Wasserstoff",
-            "Kohlendioxid (CO2)"
-        ],
+        "answers": ["Reiner Sauerstoff", "Reiner Stickstoff", "Reiner Wasserstoff", "Kohlendioxid (CO₂)"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
-        "explanation": "🍰 Natron reagiert mit Säure im Backpulver zu CO2-Gasbläschen."
+        "explanation": "🍰 Natron reagiert mit Säure im Backpulver zu CO₂-Gasbläschen."
     },
   {
         "id": "q_es_081",
@@ -1888,12 +1843,7 @@ const SPASS_ESSEN_QUESTIONS = [
         "area": "spass",
         "subject": "essen_trinken",
         "question": "Wie nennt man die feinen Fäden aus Eiklar und Puderzucker auf Kuchen wie dem Zitronenbaiser?",
-        "answers": [
-            "Ganache-Creme, glänzend",
-            "Glatter Fondantguss",
-            "Marzipanrohmasse, süß",
-            "Baiser (Meringue)"
-        ],
+        "answers": ["Ganache-Creme, glänzend", "Glatter Fondantguss", "Marzipanrohmasse, süß", "Baiser"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,

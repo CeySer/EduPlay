@@ -160,12 +160,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Welcher Vogel gilt als der größte lebende Vogel der Welt?",
-        "answers": [
-            "Kaiserpinguin (Vogel)",
-            "Trompeterschwan (Vogel)",
-            "Afrikanischer Strauß",
-            "Andenkondor (Greifvogel)"
-        ],
+        "answers": ["Kaiserpinguin", "Trompeterschwan", "Afrikanischer Strauß", "Andenkondor"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -313,12 +308,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Welches dieser Tiere gehört zu den eierlegenden Säugetieren (Kloakentiere)?",
-        "answers": [
-            "Rotes Riesenkänguru",
-            "Tasmanischer Beutelteufel",
-            "Großer Ameisenbär",
-            "Schnabeltier (Platypus)"
-        ],
+        "answers": ["Rotes Riesenkänguru", "Tasmanischer Beutelteufel", "Großer Ameisenbär", "Schnabeltier"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -687,12 +677,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Welche Giftchlange ist bekannt für ihre Nackenhaube und das 'Brillensymbol'?",
-        "answers": [
-            "Afrikanische Schwarze Mamba",
-            "Kobra (Brillenschlange)",
-            "Amerikanische Klapperschlange",
-            "Europäische Kreuzotter"
-        ],
+        "answers": ["Afrikanische Schwarze Mamba", "Kobra", "Amerikanische Klapperschlange", "Europäische Kreuzotter"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -840,12 +825,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Welches ist das schwerste Landsäugetier der Erde?",
-        "answers": [
-            "Breitmaulnashorn (Rhino)",
-            "Nilpferd (Flusspferd)",
-            "Afrikanischer Elefant",
-            "Großer Grizzlybär"
-        ],
+        "answers": ["Breitmaulnashorn", "Nilpferd", "Afrikanischer Elefant", "Großer Grizzlybär"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -976,12 +956,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Welches Säugetier besitzt als einziges Schuppen aus Horn über dem gesamten Körper?",
-        "answers": [
-            "Neunbinden-Gürteltier",
-            "Großer Ameisenbär",
-            "Schuppentier (Pangolin)",
-            "Australisches Schnabeltier"
-        ],
+        "answers": ["Neunbinden-Gürteltier", "Großer Ameisenbär", "Schuppentier", "Australisches Schnabeltier"],
         "correct": 2,
         "difficulty": "mittel",
         "points": 10,
@@ -1027,12 +1002,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Welches Säugetier hat den längsten Schwanz im Verhältnis zum Körper?",
-        "answers": [
-            "Afrikanischer Gepard",
-            "Känguru / Langschwanzmaki",
-            "Brüllaffe (Neuweltaffen-Art)",
-            "Zahmes Frettchen (Iltis)"
-        ],
+        "answers": ["Afrikanischer Gepard", "Känguru / Langschwanzmaki", "Brüllaffe", "Zahmes Frettchen"],
         "correct": 1,
         "difficulty": "mittel",
         "points": 10,
@@ -1129,12 +1099,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Wie lautet die wissenschaftliche Bezeichnung für Wechselwarme Tiere (Reptilien, Amphibien)?",
-        "answers": [
-            "Endotherm (Warmblütig)",
-            "Homeotherm (Gleichwarmblütig)",
-            "Isotherm (Gleichmäßig)",
-            "Ektotherm / Poikilotherm"
-        ],
+        "answers": ["Endotherm", "Homeotherm", "Isotherm", "Ektotherm / Poikilotherm"],
         "correct": 3,
         "difficulty": "schwer",
         "points": 10,
@@ -1299,12 +1264,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Wie nennt man die Jungtiere eines Bären?",
-        "answers": [
-            "Katzenjunge (Kitten)",
-            "Bärenjunge / Bärenwelpen",
-            "Pferdefohlen (junges Fohlen)",
-            "Wildschwein-Frischlinge"
-        ],
+        "answers": ["Katzenjunge", "Bärenjunge / Bärenwelpen", "Pferdefohlen", "Wildschwein-Frischlinge"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -1316,12 +1276,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Welches Nagetier hat Zähne, die zeitlebens stetig weiterwachsen und abgenutzt werden müssen?",
-        "answers": [
-            "Nur domestizierte Hunde und Katzen",
-            "Ausschließlich domestizierte Haus- und Wildkatzen",
-            "Alle Nagetiere (z. B. Biber, Eichhörnchen)",
-            "Nur fleischfressende Raubtierarten"
-        ],
+        "answers": ["Nur domestizierte Hunde und Katzen", "Ausschließlich domestizierte Haus- und Wildkatzen", "Alle Nagetiere", "Nur fleischfressende Raubtierarten"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -1486,12 +1441,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Was für eine Haut haben Haie, wenn man sie vom Schwanz zum Kopf hin anfasst?",
-        "answers": [
-            "Rauh wie Schmirgelpapier (Placoidschuppen)",
-            "Völlig glatt und seidig wie glänzende Fischhaut",
-            "Schleimig und glitschig wie bei Aalen",
-            "Schuppig und hart wie bei Forellen"
-        ],
+        "answers": ["Rauh wie Schmirgelpapier", "Völlig glatt und seidig wie glänzende Fischhaut", "Schleimig und glitschig wie bei Aalen", "Schuppig und hart wie bei Forellen"],
         "correct": 0,
         "difficulty": "mittel",
         "points": 10,
@@ -1605,12 +1555,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Welches Tier ist das kleinste Säugetier der Welt (gemessen am Gewicht von ca. 2 Gramm)?",
-        "answers": [
-            "Eurasische Zwergmaus (Nagetier)",
-            "Europäischer Siebenschläfer (Nagetier-Art)",
-            "Europäischer Maulwurf (Grabtier)",
-            "Etrusker-Spitzmaus / Hummelfledermaus"
-        ],
+        "answers": ["Eurasische Zwergmaus", "Europäischer Siebenschläfer", "Europäischer Maulwurf", "Etrusker-Spitzmaus / Hummelfledermaus"],
         "correct": 3,
         "difficulty": "schwer",
         "points": 10,
@@ -1673,12 +1618,7 @@ const SPASS_TIERE_QUESTIONS = [
         "area": "spass",
         "subject": "tiere",
         "question": "Welcher Raubvogel besitzt ein extrem scharfes Sehvermögen und jagt Mäuse aus großer Höhe?",
-        "answers": [
-            "Stadttaube (Straßenvogel)",
-            "Kleiner Haussperling (Spatz)",
-            "Schwarze Amsel (Singvogel)",
-            "Mäusebussard / Turmfalke"
-        ],
+        "answers": ["Stadttaube", "Kleiner Haussperling", "Schwarze Amsel", "Mäusebussard / Turmfalke"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,

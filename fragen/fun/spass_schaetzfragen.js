@@ -1037,12 +1037,12 @@ const SPASS_SCHAETZFRAGEN_QUESTIONS = [
         category: "schaetzen_mensch_koerper",
         area: "spass",
         subject: "schaetzen",
-        question: "Wie hoch ist der Kohlendioxid-Anteil (CO2) in der normalen Ausatemluft des Menschen?",
+        question: "Wie hoch ist der Kohlendioxid-Anteil (CO₂) in der normalen Ausatemluft des Menschen?",
         answers: ["ca. 6 Prozent", "ca. 2 Prozent", "ca. 4 Prozent", "ca. 8 Prozent"],
         correct: 2,
         difficulty: "mittel",
         points: 10,
-        explanation: "Die Einatemluft enthält 0,04 % CO2, während die Ausatemluft ca. 4 % Kohlendioxid enthält."
+        explanation: "Die Einatemluft enthält 0,04 % CO₂, während die Ausatemluft ca. 4 % Kohlendioxid enthält."
     },
   {
         id: "sch_mko_091",
@@ -1379,7 +1379,7 @@ const SPASS_SCHAETZFRAGEN_QUESTIONS = [
     "correct": 3,
     "difficulty": "schwer",
     "points": 15,
-    "explanation": "Wissenschaftler schätzen die jährliche Flockenmenge auf rund 1 Septillion (10^24)."
+    "explanation": "Wissenschaftler schätzen die jährliche Flockenmenge auf rund 1 Septillion (10²⁴)."
   },
   {
     "id": "sch_ugw_119",

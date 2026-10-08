@@ -42,14 +42,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Wie heißt die Person, die ein großes Symphonieorchester mit dem Taktstock leitet?",
-        "answers": [
-            
-            "Konzertmeister (Geige)",
-            "Kapitän (Mannschaft)",
-            "Dirigent / Dirigentin",
-            "Orchesterdirektor"
-        
-        ],
+        "answers": ["Konzertmeister", "Kapitän", "Dirigent / Dirigentin", "Orchesterdirektor"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -95,14 +88,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welches dieser Instrumente gehört eindeutig zur Familie der Schlaginstrumente?",
-        "answers": [
-            
-            "Klarinette (Holzblas)",
-            "Schlagzeug / Trommel",
-            "Querflöte (Holzblas)",
-            "Cello (Streicher)"
-        
-        ],
+        "answers": ["Klarinette", "Schlagzeug / Trommel", "Querflöte", "Cello"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -171,14 +157,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Wofür steht die Abkürzung 'BPM' in der Musikproduktion und bei DJs?",
-        "answers": [
-            
-            "Bass Per Meter (falsche Einheit)",
-            "Beats Per Minute (Schläge pro Minute)",
-            "Band Power Music (erfundener Begriff)",
-            "Bit Rate Performance (Audioformat-Wert)"
-        
-        ],
+        "answers": ["Bass Per Meter", "Beats Per Minute", "Band Power Music", "Bit Rate Performance"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -207,14 +186,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Aus welchem südamerikanischen Land stammt der leidenschaftliche Tanz und Musikstil Tango?",
-        "answers": [
-            
-            "Brasilien (Samba)",
-            "Kolumbien",
-            "Chile (Cueca)",
-            "Argentinien"
-        
-        ],
+        "answers": ["Brasilien", "Kolumbien", "Chile", "Argentinien"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -415,14 +387,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welches Holzblasinstrument wird aus Ebenholz gefertigt und hat eine Einfachrohrblatt-Mechanik?",
-        "answers": [
-            
-            "Querflöte",
-            "Oboe (Rohrblatt)",
-            "Fagott (Holz)",
-            "Klarinette"
-        
-        ],
+        "answers": ["Querflöte", "Oboe", "Fagott", "Klarinette"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -759,14 +724,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welches Stück von Antonio Vivaldi gehört zu den bekanntesten Kompositionen des Barock?",
-        "answers": [
-            
-            "Kaiserquartett (Haydn)",
-            "Zauberflöte (Oper)",
-            "Boléro (Maurice R.)",
-            "Die vier Jahreszeiten"
-        
-        ],
+        "answers": ["Kaiserquartett", "Zauberflöte", "Boléro", "Die vier Jahreszeiten"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,
@@ -848,14 +806,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Wie heißt das größte Tasten- und Blasinstrument, das oft in Kirchen steht?",
-        "answers": [
-            
-            "Pfeifenorgel",
-            "Harmonium (Pumpe)",
-            "Cembalo (Kiele)",
-            "Akkordeon (Balg)"
-        
-        ],
+        "answers": ["Pfeifenorgel", "Harmonium", "Cembalo", "Akkordeon"],
         "correct": 0,
         "difficulty": "leicht",
         "points": 10,
@@ -884,14 +835,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Aus welchem Land stammt das traditionelle Instrument Dudelsack (Highland Bagpipe)?",
-        "answers": [
-            
-            "Schweden (Nord)",
-            "Irland (Kelten)",
-            "Schottland",
-            "Wales (Cymru)"
-        
-        ],
+        "answers": ["Schweden", "Irland", "Schottland", "Wales"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -1005,14 +949,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welcher Komponist schrieb die 'Mondscheinsonate' und verlor im Alter sein Gehör?",
-        "answers": [
-            
-            "Franz Liszt (Ungarn)",
-            "Ludwig van Beethoven",
-            "Frederic Chopin (Polen)",
-            "Robert Schumann (De.)"
-        
-        ],
+        "answers": ["Franz Liszt", "Ludwig van Beethoven", "Frederic Chopin", "Robert Schumann (De.)"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -1058,14 +995,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welches Zupfinstrument hat die Form einer Birne und besitzt typischerweise 4 Doppelsaiten?",
-        "answers": [
-            
-            "Mandoline",
-            "Ukulele (klein)",
-            "Banjo (US-Folk)",
-            "Zither (flach)"
-        
-        ],
+        "answers": ["Mandoline", "Ukulele", "Banjo", "Zither"],
         "correct": 0,
         "difficulty": "mittel",
         "points": 10,
@@ -1077,14 +1007,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welche schwedische Band feierte in den 1990ern Welterfolge mit Hits wie 'The Sign' und 'All That She Wants'?",
-        "answers": [
-            
-            "Roxette (Pop)",
-            "Ace of Base",
-            "A-ha (Norwegen)",
-            "Cardigans (Band)"
-        
-        ],
+        "answers": ["Roxette", "Ace of Base", "A-ha", "Cardigans"],
         "correct": 1,
         "difficulty": "mittel",
         "points": 10,
@@ -1253,14 +1176,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welche Hard-Rock-Legende sang im Song 'Paradise City' und 'Sweet Child O' Mine'?",
-        "answers": [
-            
-            "Aerosmith (US)",
-            "Bon Jovi (US)",
-            "Motley Crue (US)",
-            "Guns N' Roses"
-        
-        ],
+        "answers": ["Aerosmith (US)", "Bon Jovi (US)", "Motley Crue (US)", "Guns N' Roses"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,
@@ -1272,14 +1188,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Wie heißt das russische dreisaitige Zupfinstrument mit einem dreieckigen Korpus?",
-        "answers": [
-            
-            "Balalaika",
-            "Sitar (Indien)",
-            "Gusli (Russl.)",
-            "Domra (Russl.)"
-        
-        ],
+        "answers": ["Balalaika", "Sitar", "Gusli", "Domra"],
         "correct": 0,
         "difficulty": "mittel",
         "points": 10,
@@ -1325,14 +1234,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Wie nennt man die Pause oder den Abstand zwischen zwei Strophen im Hip-Hop, wenn der Beat allein weiterläuft?",
-        "answers": [
-            
-            "Bridge (Übergang)",
-            "Drop (EDM-Effekt)",
-            "Fadeout (Ausblende)",
-            "Break / Beatbreak"
-        
-        ],
+        "answers": ["Bridge", "Drop", "Fadeout", "Break / Beatbreak"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -1482,14 +1384,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welches Zupfinstrument hat gewöhnlich 47 Saiten und 7 Pedale zur Tonhöhenverstellung?",
-        "answers": [
-            
-            "Konzertharfe",
-            "Zither (Alpenl.)",
-            "Cembalo (Tasten)",
-            "Gitarre (Saiten)"
-        
-        ],
+        "answers": ["Konzertharfe", "Zither", "Cembalo", "Gitarre"],
         "correct": 0,
         "difficulty": "schwer",
         "points": 10,
@@ -1552,14 +1447,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welches Lied der US-Band Linkin Park gehört zu den meistgehörten Rock-Songs der 2000er?",
-        "answers": [
-            
-            "In the End",
-            "Numb (Song)",
-            "Crawling (Song)",
-            "Faint (Song)"
-        
-        ],
+        "answers": ["In the End", "Numb", "Crawling", "Faint"],
         "correct": 0,
         "difficulty": "leicht",
         "points": 10,
@@ -1694,14 +1582,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welcher finnische Komponist schuf die berühmte Dichtung 'Finlandia'?",
-        "answers": [
-            
-            "Jean Sibelius",
-            "Edvard Grieg (No.)",
-            "Carl Nielsen (Dk.)",
-            "Arvo Pärt (Estl.)"
-        
-        ],
+        "answers": ["Jean Sibelius", "Edvard Grieg (No.)", "Carl Nielsen (Dk.)", "Arvo Pärt"],
         "correct": 0,
         "difficulty": "schwer",
         "points": 10,
@@ -1713,14 +1594,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welche Heavy-Metal-Pioniere aus Birmingham veröffentlichten 1970 den Klassiker 'Paranoid'?",
-        "answers": [
-            
-            "Deep Purple (UK)",
-            "Black Sabbath",
-            "Judas Priest (UK)",
-            "Motörhead (UK)"
-        
-        ],
+        "answers": ["Deep Purple (UK)", "Black Sabbath", "Judas Priest (UK)", "Motörhead (UK)"],
         "correct": 1,
         "difficulty": "mittel",
         "points": 10,
@@ -1768,14 +1642,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Wie heißt der bekannte Notenschlüssel, der den Ton G auf der zweiten Notenlinie festlegt?",
-        "answers": [
-            
-            "Violinschlüssel",
-            "Bassschlüssel (F)",
-            "Altschlüssel (C)",
-            "Tenorschlüssel (C)"
-        
-        ],
+        "answers": ["Violinschlüssel", "Bassschlüssel (F)", "Altschlüssel (C)", "Tenorschlüssel (C)"],
         "correct": 0,
         "difficulty": "leicht",
         "points": 10,
@@ -1821,14 +1688,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welcher Hip-Hop-Künstler brachte 2015 das von Kritikern gefeierte Album 'To Pimp a Butterfly' heraus?",
-        "answers": [
-            
-            "J. Cole (Rapper)",
-            "Drake (Rapper)",
-            "Kanye West (Rap)",
-            "Kendrick Lamar"
-        
-        ],
+        "answers": ["J. Cole", "Drake", "Kanye West", "Kendrick Lamar"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -2071,14 +1931,7 @@ const SPASS_MUSIK_QUESTIONS = [
         "area": "spass",
         "subject": "musik",
         "question": "Welche Musikrichtung kombiniert Elemente von Blues, Country und Gospel und entstand in den 1950ern?",
-        "answers": [
-            
-            "Heavy Metal (Rock)",
-            "Rock 'n' Roll",
-            "Reggae (Jamaika)",
-            "Punkrock (Genre)"
-        
-        ],
+        "answers": ["Heavy Metal", "Rock 'n' Roll", "Reggae", "Punkrock"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -2130,7 +1983,7 @@ const SPASS_MUSIK_QUESTIONS = [
   { id: "q1381", category: "spass_musik", area: "spass", subject: "musik", question: "Was ist ein 'Refrain' in einem Lied?", answers: ["Der allererste Ton am Anfang des Stücks", "Der Text auf dem Cover", "Der wiederkehrende Teil zwischen den Strophen", "Das leise Instrument im Hintergrund"], correct: 2, difficulty: "mittel", points: 10, explanation: "Der Refrain wiederholt sich und bleibt am besten im Ohr." },
   { id: "q1382", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Instrument spielt man mit einem Bogen?", answers: ["Trompete", "Geige", "Schlagzeug", "Klavier"], correct: 1, difficulty: "mittel", points: 10, explanation: "Streichinstrumente wie Geige, Bratsche und Cello werden mit dem Bogen gestrichen." },
   { id: "q1383", category: "spass_musik", area: "spass", subject: "musik", question: "Was misst man in 'BPM'?", answers: ["Das Tempo eines Liedes", "Die Lautstärke im Raum", "Die Länge des Liedes", "Die Tonhöhe"], correct: 0, difficulty: "mittel", points: 10, explanation: "BPM steht für 'beats per minute' – Schläge pro Minute." },
-  { id: "q1384", category: "spass_musik", area: "spass", subject: "musik", question: "Wie nennt man Musik ohne Gesang?", answers: ["Instrumental", "A cappella (Chor)", "Karaoke (Mitsing)", "Duett (zu zweit)"], correct: 0, difficulty: "mittel", points: 10, explanation: "Umgekehrt bedeutet 'a cappella' Gesang ohne Instrumente." },
+  { id: "q1384", category: "spass_musik", area: "spass", subject: "musik", question: "Wie nennt man Musik ohne Gesang?", answers: ["Instrumental", "A cappella", "Karaoke", "Duett"], correct: 0, difficulty: "mittel", points: 10, explanation: "Umgekehrt bedeutet 'a cappella' Gesang ohne Instrumente." },
   
   { id: "q1386", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Lied wurde am häufigsten gecovert?", answers: ["Let It Be (Beatles)", "Imagine (John Lennon)", "My Way (Frank Sinatra)", "Yesterday (Beatles)"], correct: 3, difficulty: "mittel", points: 10, explanation: "'Yesterday' von den Beatles wurde über 2.000 Mal gecovert – kein Lied wurde öfter interpretiert." },
   { id: "q1387", category: "spass_musik", area: "spass", subject: "musik", question: "Wie viele Töne hat eine Dur-Tonleiter?", answers: ["8", "5", "9", "7"], correct: 3, difficulty: "mittel", points: 10, explanation: "Eine Dur-Tonleiter hat 7 Töne – die 8. ist die Oktave des ersten Tons." },
@@ -2139,7 +1992,7 @@ const SPASS_MUSIK_QUESTIONS = [
   { id: "q1390", category: "spass_musik", area: "spass", subject: "musik", question: "Welches ist das älteste noch gespielte Instrument?", answers: ["Klavier", "Flöte", "Harfe", "Trommel"], correct: 1, difficulty: "mittel", points: 10, explanation: "Knochenflöten aus der Altsteinzeit sind über 40.000 Jahre alt." },
   { id: "q1391", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Lied wurde als erstes im All gesungen?", answers: ["Happy Birthday", "Stille Nacht", "Jingle Bells", "Rudolf the Red-Nosed Reindeer"], correct: 0, difficulty: "mittel", points: 10, explanation: "Die Apollo-11-Astronauten sangen 1969 'Happy Birthday' im All – das erste Lied." },
   { id: "q1392", category: "spass_musik", area: "spass", subject: "musik", question: "Wie viele Sänger hatte die Band 'ABBA'?", answers: ["5", "2", "4", "3"], correct: 2, difficulty: "mittel", points: 10, explanation: "ABBA hatte 4 Mitglieder: zwei Männer und zwei Frauen." },
-  { id: "q1393", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Lied wurde am längsten in den Charts gehalten?", answers: ["Yesterday (Beatles)", "Hey Jude (Beatles)", "Radio Ga Ga (Queen)", "Bohemian Rhapsody"], correct: 3, difficulty: "mittel", points: 10, explanation: "'Bohemian Rhapsody' von Queen hielt über 14 Wochen auf Platz 1 – ein Rekord." },
+  { id: "q1393", category: "spass_musik", area: "spass", subject: "musik", question: "Welches Lied wurde am längsten in den Charts gehalten?", answers: ["Yesterday", "Hey Jude", "Radio Ga Ga", "Bohemian Rhapsody"], correct: 3, difficulty: "mittel", points: 10, explanation: "'Bohemian Rhapsody' von Queen hielt über 14 Wochen auf Platz 1 – ein Rekord." },
   { id: "q1394", category: "spass_musik", area: "spass", subject: "musik", question: "Wie viele Minuten hat 'The Well-Tempered Clavier' von Bach ungefähr?", answers: ["ca. 8 Stunden", "ca. 4 Stunden", "ca. 2 Stunden", "ca. 30 Minuten"], correct: 2, difficulty: "mittel", points: 10, explanation: "Das gesamte Werk dauert etwa 2 Stunden – ein Meisterwerk der Musikgeschichte." },
   { id: "q1395", category: "spass_musik", area: "spass", subject: "musik", question: "Welcher Popstar hat den längsten Songtitel?", answers: ["Frank Zappa", "Fiona Apple", "Paul McCartney", "Prince"], correct: 3, difficulty: "mittel", points: 10, explanation: "Prince hatte einen Songtitel mit über 40 Wörtern – 'The Most Beautiful Girl in the World' ist der bekannteste." },
   { id: "q1396", category: "spass_musik", area: "spass", subject: "musik", question: "Was ist das meistverkaufte Musikalbum aller Zeiten?", answers: ["Abbey Road (Beatles)", "Dark Side of the Moon (Pink Floyd)", "Thriller (Michael Jackson)", "Back in Black (AC/DC)"], correct: 2, difficulty: "mittel", points: 10, explanation: "'Thriller' von Michael Jackson hat etwa 66 Millionen Verkäufe – das meistverkaufte Album." },

@@ -380,12 +380,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "In welcher Disziplin ist Usain Bolt der Weltrekordhalter über 100 Meter (9,58 Sek.)?",
-        "answers": [
-            "Ein Marathon über 42 km",
-            "Ein Hürdenlauf über 110 Meter",
-            "Sprint (Leichtathletik)",
-            "Ein Weitsprung in die Grube"
-        ],
+        "answers": ["Ein Marathon über 42 km", "Ein Hürdenlauf über 110 Meter", "Sprint", "Ein Weitsprung in die Grube"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -754,12 +749,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "Welche Automarke stellt die Zeitmaschine im Kultfilm 'Zurück in die Zukunft' dar?",
-        "answers": [
-            "DeLorean (DMC-12)",
-            "Ford Mustang",
-            "Chevrolet Corvette",
-            "Porsche 911"
-        ],
+        "answers": ["DeLorean", "Ford Mustang", "Chevrolet Corvette", "Porsche 911"],
         "correct": 0,
         "difficulty": "mittel",
         "points": 10,
@@ -907,12 +897,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "Wie heißt der Schiedsrichter beim Eishockey, der die Hauptverantwortung auf dem Eis trägt?",
-        "answers": [
-            "Der Linienrichter am Spielfeldrand",
-            "Hauptschiedsrichter (Referee)",
-            "Der Zeitnehmer an der Bande",
-            "Der Torrichter hinter dem Tor"
-        ],
+        "answers": ["Der Linienrichter am Spielfeldrand", "Hauptschiedsrichter", "Der Zeitnehmer an der Bande", "Der Torrichter hinter dem Tor"],
         "correct": 1,
         "difficulty": "mittel",
         "points": 10,
@@ -992,12 +977,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "Welcher berühmte Filmheld führt Peitsche und Schlapphut als Markenzeichen?",
-        "answers": [
-            "Han Solo (Pilot)",
-            "Zorro (Held)",
-            "Indiana Jones",
-            "Lara Croft (Spiel)"
-        ],
+        "answers": ["Han Solo", "Zorro", "Indiana Jones", "Lara Croft"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -1060,12 +1040,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "Wie heißt der gelbe Schwamm aus der Zeichentrickserie, der in Bikini Bottom lebt?",
-        "answers": [
-            "Patrick Star (Freund)",
-            "Mr. Krabs (Chef)",
-            "SpongeBob Schwammkopf",
-            "Thaddäus Tentakel (Nachbar)"
-        ],
+        "answers": ["Patrick Star", "Mr. Krabs", "SpongeBob Schwammkopf", "Thaddäus Tentakel"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -1077,12 +1052,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "Welches Land erfand die moderne Sportart Golf?",
-        "answers": [
-            "Irland (Insel)",
-            "England (Reich)",
-            "USA (Land)",
-            "Schottland"
-        ],
+        "answers": ["Irland", "England", "USA", "Schottland"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -1128,12 +1098,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "Welcher Marvel-Superheld besitzt einen Schild aus dem Metall Vibranium?",
-        "answers": [
-            "Iron Man (Anzug)",
-            "Hawkeye (Pfeil)",
-            "Captain America",
-            "Thor (Mjölnir)"
-        ],
+        "answers": ["Iron Man", "Hawkeye", "Captain America", "Thor"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -1349,12 +1314,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "Wie heißt der schwerste Stein im Curling, der über das Eis geschoben wird?",
-        "answers": [
-            "Eis-Puck aus gefrorenem Wasser",
-            "Grip-Puck aus Hartgummi",
-            "Sliding Disc aus Kunststoff",
-            "Curling-Stein (Granitstein)"
-        ],
+        "answers": ["Eis-Puck aus gefrorenem Wasser", "Grip-Puck aus Hartgummi", "Sliding Disc aus Kunststoff", "Curling-Stein"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -1417,12 +1377,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "In welchem Zeichentrickfilm singt der Bär Balu das Lied 'Probier’s mal mit Gemütlichkeit'?",
-        "answers": [
-            "König der Löwen (Film)",
-            "Bärenbrüder (Trickfilm)",
-            "Aristocats (Musical)",
-            "Das Dschungelbuch"
-        ],
+        "answers": ["König der Löwen", "Bärenbrüder", "Aristocats", "Das Dschungelbuch"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,
@@ -1468,12 +1423,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "Wie heißt der Schauplatz und die Schule von Wednesday Addams in der Netflix-Serie 'Wednesday'?",
-        "answers": [
-            "Hogwarts (Schule)",
-            "Brakebills (Uni)",
-            "Nevermore Academy",
-            "Riverdale (Highschool)"
-        ],
+        "answers": ["Hogwarts", "Brakebills", "Nevermore Academy", "Riverdale"],
         "correct": 2,
         "difficulty": "mittel",
         "points": 10,
@@ -1774,12 +1724,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "Welche Schauspielerin spielte Katniss Everdeen in den 'Die Tribute von Panem'-Filmen?",
-        "answers": [
-            "Jennifer Lawrence",
-            "Emma Watson (Rolle)",
-            "Kristen Stewart (Film)",
-            "Shailene Woodley (Star)"
-        ],
+        "answers": ["Jennifer Lawrence", "Emma Watson", "Kristen Stewart", "Shailene Woodley"],
         "correct": 0,
         "difficulty": "leicht",
         "points": 10,
@@ -1808,12 +1753,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "Wie heißt der treue Gefährte von Han Solo in Star Wars, der der Spezies Wookiee angehört?",
-        "answers": [
-            "Yoda (Meister)",
-            "Ewok (Krieger)",
-            "Chewbacca",
-            "Lando (Pilot)"
-        ],
+        "answers": ["Yoda", "Ewok", "Chewbacca", "Lando"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -1825,12 +1765,7 @@ const SPASS_SPORT_FILM_QUESTIONS = [
         "area": "spass",
         "subject": "sport_film",
         "question": "In welcher US-Stadt befindet sich der berühmte Madison Square Garden?",
-        "answers": [
-            "Chicago (Stadium)",
-            "Boston (Garden)",
-            "Los Angeles (Arena)",
-            "New York City"
-        ],
+        "answers": ["Chicago", "Boston", "Los Angeles", "New York City"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,

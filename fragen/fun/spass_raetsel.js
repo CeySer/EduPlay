@@ -227,12 +227,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Wenn ein Elektrozug nach Süden fährt, in welche Richtung weht der Rauch?",
-        "answers": [
-            "Nur bei ziemlich starkem Gegenwind",
-            "Gar nicht (Elektrozüge erzeugen keinen Rauch)",
-            "Nur bei sehr starkem Gegenwind draußen",
-            "Immer ganz genau senkrecht nach oben weg davon"
-        ],
+        "answers": ["Nur bei ziemlich starkem Gegenwind", "Gar nicht", "Nur bei sehr starkem Gegenwind draußen", "Immer ganz genau senkrecht nach oben weg davon"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -261,12 +256,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Wie viele Erbsen passen in ein leeres Glas?",
-        "answers": [
-            "Etwa 50 kleine grüne Erbsen passen rein",
-            "Höchstens 20 harte grüne Erbsen im Topf",
-            "So viele Erbsen, wie am Ende ganz genau hineinpassen würden",
-            "Keine einzige (danach ist das Glas nicht mehr leer)"
-        ],
+        "answers": ["Etwa 50 kleine grüne Erbsen passen rein", "Höchstens 20 harte grüne Erbsen im Topf", "So viele Erbsen, wie am Ende ganz genau hineinpassen würden", "Keine einzige"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,
@@ -278,12 +268,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Was geht am Morgen auf vier Beinen, am Mittag auf zwei Beinen und am Abend auf drei Beinen?",
-        "answers": [
-            "Der Mensch (Rätsel der Sphinx)",
-            "Der freche Affe im Zoogehege nebenan",
-            "Ein Krebs am Sandstrand",
-            "Ein Käfer im hohen Gras"
-        ],
+        "answers": ["Der Mensch", "Der freche Affe im Zoogehege nebenan", "Ein Krebs am Sandstrand", "Ein Käfer im hohen Gras"],
         "correct": 0,
         "difficulty": "mittel",
         "points": 10,
@@ -329,12 +314,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Was wird größer, je mehr man es umdreht?",
-        "answers": [
-            "Ein Papierflieger",
-            "Ein rollender Kreisel",
-            "Ein schmelzender Schneeball",
-            "Die Zahl 6 (wird zur 9)"
-        ],
+        "answers": ["Ein Papierflieger", "Ein rollender Kreisel", "Ein schmelzender Schneeball", "Die Zahl 6"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -363,12 +343,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Welche Hand ist die beste zum Umrühren von Tee?",
-        "answers": [
-            "Nur die eigene linke Hand",
-            "Keine (man nimmt einen Löffel)",
-            "Nur die eigene rechte Hand",
-            "Ein kleines Rührstäbchen aus Holz"
-        ],
+        "answers": ["Nur die eigene linke Hand", "Keine", "Nur die eigene rechte Hand", "Ein kleines Rührstäbchen aus Holz"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -431,12 +406,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Wer baut Häuser, ohne Werkzeug zu benutzen?",
-        "answers": [
-            "Der fleißige, grabende Maulwurf",
-            "Die Schnecke (Schneckenhaus)",
-            "Der klopfende Specht am Baum",
-            "Die emsige, tragende Ameise"
-        ],
+        "answers": ["Der fleißige, grabende Maulwurf", "Die Schnecke", "Der klopfende Specht am Baum", "Die emsige, tragende Ameise"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -448,12 +418,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Ein Flugzeug stürzt genau auf der Grenze zwischen Deutschland und Österreich ab. Wo werden die Überlebenden begraben?",
-        "answers": [
-            "Auf dem Grenzfriedhof mittendrin begraben",
-            "Genau je zur Hälfte im jeweiligen Land",
-            "Gar nicht (Überlebende begräbt man nicht)",
-            "Im jeweiligen Nachbarland begraben"
-        ],
+        "answers": ["Auf dem Grenzfriedhof mittendrin begraben", "Genau je zur Hälfte im jeweiligen Land", "Gar nicht", "Im jeweiligen Nachbarland begraben"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -652,12 +617,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Ein Haus hat vier Wände, und jede Wand zeigt nach Süden. Ein Bär läuft am Haus vorbei. Welche Farbe hat der Bär?",
-        "answers": [
-            "Rotbraun wie ein Grizzlybär",
-            "Gescheckt in Schwarz und Weiß",
-            "Weiß (Polarbär am Nordpol)",
-            "Honiggelb wie ein Braunbär"
-        ],
+        "answers": ["Rotbraun wie ein Grizzlybär", "Gescheckt in Schwarz und Weiß", "Weiß", "Honiggelb wie ein Braunbär"],
         "correct": 2,
         "difficulty": "mittel",
         "points": 10,
@@ -788,12 +748,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Zwei Väter und zwei Söhne gehen angeln. Sie fangen insgesamt 3 Fische, und jeder bekommt genau einen ganzen Fisch. Wie ist das möglich?",
-        "answers": [
-            "Zwillinge mit ihrem Vater zusammen",
-            "Zwei Brüder mit ihrem Onkel am See",
-            "Es sind Großvater, Vater und Sohn (3 Personen)",
-            "Vier ganz fremde Personen ohne ein eigenes Boot dabei"
-        ],
+        "answers": ["Zwillinge mit ihrem Vater zusammen", "Zwei Brüder mit ihrem Onkel am See", "Es sind Großvater, Vater und Sohn", "Vier ganz fremde Personen ohne ein eigenes Boot dabei"],
         "correct": 2,
         "difficulty": "mittel",
         "points": 10,
@@ -890,12 +845,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Was haben ein Elefant und eine Bäckerei gemeinsam?",
-        "answers": [
-            "Beide haben Tuten (Tüten / Tuten)",
-            "Beide haben lange, krumme Rüssel dran",
-            "Beide duften süß und warm und frisch",
-            "Beide sind angenehm rund und weich"
-        ],
+        "answers": ["Beide haben Tuten", "Beide haben lange, krumme Rüssel dran", "Beide duften süß und warm und frisch", "Beide sind angenehm rund und weich"],
         "correct": 0,
         "difficulty": "mittel",
         "points": 10,
@@ -907,12 +857,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Was macht das Pferd, wenn es die Schaufel sieht?",
-        "answers": [
-            "Es scharrt kurz mit dem Huf am Boden nervös",
-            "Es macht einen Schritt zur Seite (oder gar nichts)",
-            "Es legt sich einfach sofort hin auf den Boden",
-            "Es wiehert dreimal ganz laut auf und läuft dann schnell davon"
-        ],
+        "answers": ["Es scharrt kurz mit dem Huf am Boden nervös", "Es macht einen Schritt zur Seite", "Es legt sich einfach sofort hin auf den Boden", "Es wiehert dreimal ganz laut auf und läuft dann schnell davon"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -958,12 +903,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Wenn ein rotes Haus links steht und ein blaues Haus rechts steht, wo steht das weiße Haus?",
-        "answers": [
-            "In Washington D.C. (USA)",
-            "Mitten in New York City",
-            "Direkt am Stadtrand",
-            "Genau dazwischen im Feld"
-        ],
+        "answers": ["In Washington D.C.", "Mitten in New York City", "Direkt am Stadtrand", "Genau dazwischen im Feld"],
         "correct": 0,
         "difficulty": "leicht",
         "points": 10,
@@ -1026,12 +966,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Wie kann man Wasser in einem Sieb tragen?",
-        "answers": [
-            "Wenn das Wasser gefroren ist (Eis)",
-            "Wenn man es vorher einfriert",
-            "Mit einer festen Plastiktüte darin",
-            "Nur mit einem kleinen Trichter"
-        ],
+        "answers": ["Wenn das Wasser gefroren ist", "Wenn man es vorher einfriert", "Mit einer festen Plastiktüte darin", "Nur mit einem kleinen Trichter"],
         "correct": 0,
         "difficulty": "leicht",
         "points": 10,
@@ -1163,12 +1098,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Welche Insel klingt wie ein Kleidungsstück?",
-        "answers": [
-            "Malta, wegen des Mantels",
-            "Rügen (oder Ärmelkanal)",
-            "Rhodos wie ein Kleid",
-            "Ibiza wie ein Hut"
-        ],
+        "answers": ["Malta, wegen des Mantels", "Rügen", "Rhodos wie ein Kleid", "Ibiza wie ein Hut"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -1660,12 +1590,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Was wird immer billiger, je mehr man kauft?",
-        "answers": [
-            "Regionales frisches Bio-Gemüse",
-            "Zertifiziertes teures Bio-Fleisch",
-            "Großpackungen (Mengenrabatt)",
-            "Reine, langwierige Handwerksarbeit"
-        ],
+        "answers": ["Regionales frisches Bio-Gemüse", "Zertifiziertes teures Bio-Fleisch", "Großpackungen", "Reine, langwierige Handwerksarbeit"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -1747,12 +1672,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Was ist weicher als Butter, kann aber Steine spalten?",
-        "answers": [
-            "Ein weicher, feuchter Schwamm",
-            "Das Wasser (Frostsprengung)",
-            "Ein flauschiges großes Kissen",
-            "Ein feuchtes, weißes Handtuch"
-        ],
+        "answers": ["Ein weicher, feuchter Schwamm", "Das Wasser", "Ein flauschiges großes Kissen", "Ein feuchtes, weißes Handtuch"],
         "correct": 1,
         "difficulty": "mittel",
         "points": 10,
@@ -1764,12 +1684,7 @@ const SPASS_RAETSEL_QUESTIONS = [
         "area": "spass",
         "subject": "raetsel",
         "question": "Wo kommt der Donnerstag vor dem Mittwoch?",
-        "answers": [
-            "Im Traum letzte Nacht",
-            "In der fernen Vergangenheit",
-            "Im Wörterbuch (Lexikon)",
-            "Nur an manchen Samstagen"
-        ],
+        "answers": ["Im Traum letzte Nacht", "In der fernen Vergangenheit", "Im Wörterbuch", "Nur an manchen Samstagen"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,

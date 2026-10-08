@@ -40,12 +40,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Wer wird offiziell als Erfinder des Telefons patentiert (1876)?",
-        "answers": [
-            "Philipp Reis (Physiklehrer)",
-            "Thomas Alva Edison",
-            "Alexander Graham Bell",
-            "Guglielmo Marconi (Italien)"
-        ],
+        "answers": ["Philipp Reis", "Thomas Alva Edison", "Alexander Graham Bell", "Guglielmo Marconi"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -482,12 +477,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welche berühmte Erfindung von Emil Berliner löste den Edison-Phonographenwalzen-Standard ab?",
-        "answers": [
-            "Grammophon und Schallplatte",
-            "Das Tonbandgerät (Magnetband)",
-            "Die Kompaktkassette (MC)",
-            "Das klassische Radiogerät"
-        ],
+        "answers": ["Grammophon und Schallplatte", "Das Tonbandgerät", "Die Kompaktkassette (MC)", "Das klassische Radiogerät"],
         "correct": 0,
         "difficulty": "mittel",
         "points": 10,
@@ -550,12 +540,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welcher US-Computerpionier erfand 1964 die erste hölzerne Computer-Maus?",
-        "answers": [
-            "Douglas Engelbart",
-            "Alan Kay (Informatiker)",
-            "Steve Wozniak (Apple)",
-            "Bill Gates (Microsoft)"
-        ],
+        "answers": ["Douglas Engelbart", "Alan Kay", "Steve Wozniak", "Bill Gates"],
         "correct": 0,
         "difficulty": "mittel",
         "points": 10,
@@ -737,12 +722,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Wer meldete 1879 ein kohlefadenbasiertes Patent für die kommerziell nutzbare Glühbirne an?",
-        "answers": [
-            "Heinrich Goebel",
-            "Joseph Swan (Erfinder)",
-            "Nikola Tesla (Erfinder)",
-            "Thomas Alva Edison"
-        ],
+        "answers": ["Heinrich Goebel", "Joseph Swan", "Nikola Tesla", "Thomas Alva Edison"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,
@@ -788,12 +768,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welche Erfindung verdanken wir den Chemikern Spencer Silver und Arthur Fry (3M) aus dem Jahr 1977?",
-        "answers": [
-            "Tesafilm (Klebeband)",
-            "Sekundenkleber (Marke)",
-            "Post-it Klebezettel",
-            "Uhu-Klebestift (Marke)"
-        ],
+        "answers": ["Tesafilm", "Sekundenkleber", "Post-it Klebezettel", "Uhu-Klebestift"],
         "correct": 2,
         "difficulty": "leicht",
         "points": 10,
@@ -822,12 +797,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welcher US-amerikanische Erfinder entwickelte den Sicherheitsrasierer mit auswechselbarer Klinge?",
-        "answers": [
-            "King Camp Gillette",
-            "Jacob Schick (Erfinder)",
-            "Wilkinson (Klingen)",
-            "Braun (Elektrogeräte)"
-        ],
+        "answers": ["King Camp Gillette", "Jacob Schick", "Wilkinson", "Braun"],
         "correct": 0,
         "difficulty": "leicht",
         "points": 10,
@@ -856,12 +826,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Wer erfand 1809 die Konservendose zur Haltbarmachung von Verpflegung für Napoleons Armee?",
-        "answers": [
-            "Louis Pasteur (Mikrobiologe)",
-            "Justus von Liebig (Chemiker, DE)",
-            "Nicolas Appert / Peter Durand",
-            "Henri Nestlé (Unternehmer)"
-        ],
+        "answers": ["Louis Pasteur", "Justus von Liebig", "Nicolas Appert / Peter Durand", "Henri Nestlé"],
         "correct": 2,
         "difficulty": "mittel",
         "points": 10,
@@ -873,12 +838,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welcher italienische Physiker erfand 1643 das Quecksilber-Barometer zur Luftdruckmessung?",
-        "answers": [
-            "Galileo Galilei (Physiker)",
-            "Blaise Pascal (Mathematiker)",
-            "Christiaan Huygens (NL)",
-            "Evangelista Torricelli"
-        ],
+        "answers": ["Galileo Galilei", "Blaise Pascal", "Christiaan Huygens (NL)", "Evangelista Torricelli"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -890,12 +850,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welches Verfahren zur industriellen Ammoniak-Herstellung erfanden Fritz Haber und Carl Bosch?",
-        "answers": [
-            "Haber-Bosch-Verfahren",
-            "Ostwald-Verfahren (Säure)",
-            "Kontaktverfahren (Säure)",
-            "Solvay-Verfahren (Soda)"
-        ],
+        "answers": ["Haber-Bosch-Verfahren", "Ostwald-Verfahren", "Kontaktverfahren", "Solvay-Verfahren"],
         "correct": 0,
         "difficulty": "schwer",
         "points": 10,
@@ -941,12 +896,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Wer erfand 1901 den elektrischen Staubsauger mit Saugmotor auf Rädern?",
-        "answers": [
-            "James Dyson (Ingenieur)",
-            "William Hoover (USA)",
-            "Carl Miele (Unternehmer)",
-            "Hubert Cecil Booth"
-        ],
+        "answers": ["James Dyson", "William Hoover", "Carl Miele", "Hubert Cecil Booth"],
         "correct": 3,
         "difficulty": "schwer",
         "points": 10,
@@ -975,12 +925,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welche US-Erfinderin patentierte 1886 die erste mechanische Geschirrspülmaschine?",
-        "answers": [
-            "Melitta Bentz (Filter)",
-            "Josephine Cochrane",
-            "Ruth Handler (Barbie)",
-            "Ada Lovelace (Mathe)"
-        ],
+        "answers": ["Melitta Bentz", "Josephine Cochrane", "Ruth Handler", "Ada Lovelace"],
         "correct": 1,
         "difficulty": "mittel",
         "points": 10,
@@ -992,12 +937,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welcher Niederländer gilt durch die Verbesserung des Mikroskops als 'Vater der Mikrobiologie'?",
-        "answers": [
-            "Robert Hooke (Physiker)",
-            "Zacharias Janssen (NL)",
-            "Antoni van Leeuwenhoek",
-            "Christiaan Huygens (NL)"
-        ],
+        "answers": ["Robert Hooke", "Zacharias Janssen (NL)", "Antoni van Leeuwenhoek", "Christiaan Huygens (NL)"],
         "correct": 2,
         "difficulty": "mittel",
         "points": 10,
@@ -1111,12 +1051,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welches optische Gerät erfand Hans Lippershey 1608 und Galileo Galilei nutzte es für Sternenbeobachtungen?",
-        "answers": [
-            "Das klassische Mikroskop",
-            "Fernrohr (Teleskop)",
-            "Der nautische Sextant",
-            "Das optische Prisma"
-        ],
+        "answers": ["Das klassische Mikroskop", "Fernrohr", "Der nautische Sextant", "Das optische Prisma"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -1128,12 +1063,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welcher Erfinder baute 1900 das erste funktionstüchtige Hybridauto ('Lohner-Porsche')?",
-        "answers": [
-            "Henry Ford (USA)",
-            "Ransom Eli Olds (USA)",
-            "Ferdinand Porsche",
-            "Gottlieb Daimler"
-        ],
+        "answers": ["Henry Ford", "Ransom Eli Olds", "Ferdinand Porsche", "Gottlieb Daimler"],
         "correct": 2,
         "difficulty": "schwer",
         "points": 10,
@@ -1145,12 +1075,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welche französische Tiefsee-Legende erfand 1943 zusammen mit Émile Gagnan den Lungenautomaten (Aqua-Lung)?",
-        "answers": [
-            "Auguste Piccard (Tiefsee)",
-            "Jules Verne (Autor)",
-            "Robert Ballard (USA)",
-            "Jacques-Yves Cousteau"
-        ],
+        "answers": ["Auguste Piccard", "Jules Verne", "Robert Ballard", "Jacques-Yves Cousteau"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -1213,12 +1138,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Wer erfand 1846 die Doppelsteppstich-Nähmaschine mit Öhrnadel?",
-        "answers": [
-            "Balthasar Krems (Ingenieur)",
-            "Josef Madersperger (Wien)",
-            "Walter Hunt (Erfinder)",
-            "Elias Howe / Isaac Singer"
-        ],
+        "answers": ["Balthasar Krems", "Josef Madersperger", "Walter Hunt", "Elias Howe / Isaac Singer"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -1247,12 +1167,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welches Kommunikationskabel wurde 1858 erstmals erfolgreich durch den Atlantik verlegt?",
-        "answers": [
-            "Das Glaskabel für Telefonie (modern)",
-            "Transatlantisches Telegrafenkabel",
-            "Das Koaxialkabel für Fernsehen",
-            "Das übliche Stromkabel (Kupfer)"
-        ],
+        "answers": ["Das Glaskabel für Telefonie", "Transatlantisches Telegrafenkabel", "Das Koaxialkabel für Fernsehen", "Das übliche Stromkabel"],
         "correct": 1,
         "difficulty": "mittel",
         "points": 10,
@@ -1332,12 +1247,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welche Wissenschaftlerinnen erhielten 2020 den Chemie-Nobelpreis für die CRISPR-Cas9 Gen-Schere?",
-        "answers": [
-            "Rosalind Franklin & Marie Curie (DNA-Struktur)",
-            "Françoise Barré-Sinoussi (HIV)",
-            "Emmanuelle Charpentier & Jennifer Doudna",
-            "Tu Youyou (Malariaforscherin, China)"
-        ],
+        "answers": ["Rosalind Franklin & Marie Curie", "Ada Yonath & Frances Arnold", "Emmanuelle Charpentier & Jennifer Doudna", "Donna Strickland & Andrea Ghez"],
         "correct": 2,
         "difficulty": "mittel",
         "points": 10,
@@ -1400,12 +1310,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Wer baute 1939 das erste strahlgetriebene Flugzeug der Welt (Heinkel He 178)?",
-        "answers": [
-            "Frank Whittle & Boeing (GB/USA)",
-            "Messerschmitt & Junkers (DE)",
-            "Hans von Ohain & Ernst Heinkel",
-            "Igor Sikorsky (Hubschrauber)"
-        ],
+        "answers": ["Frank Whittle & Boeing", "Messerschmitt & Junkers (DE)", "Hans von Ohain & Ernst Heinkel", "Igor Sikorsky"],
         "correct": 2,
         "difficulty": "mittel",
         "points": 10,
@@ -1451,12 +1356,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welcher Erfinder gilt durch sein Patent von 1893 als Erfinder des Reißverschlusses?",
-        "answers": [
-            "Elias Howe (Nähmaschine, USA)",
-            "Whitcomb Judson / Gideon Sundbäck",
-            "Isaac Singer (Fabrikant, USA)",
-            "Levi Strauss (Jeans-Erfinder, USA)"
-        ],
+        "answers": ["Elias Howe", "Whitcomb Judson / Gideon Sundbäck", "Isaac Singer", "Levi Strauss"],
         "correct": 1,
         "difficulty": "mittel",
         "points": 10,
@@ -1519,12 +1419,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Wer erfand 1958 den ersten implantierbaren Herzschrittmacher in Schweden?",
-        "answers": [
-            "Wilson Greatbatch (USA, Erfinder)",
-            "Rune Elmqvist & Åke Senning",
-            "Paul Zoll (Kardiologe)",
-            "Willem Einthoven (EKG)"
-        ],
+        "answers": ["Wilson Greatbatch & William Chardack", "Rune Elmqvist & Åke Senning", "Paul Zoll & Earl Bakken", "Willem Einthoven & Hans Berger"],
         "correct": 1,
         "difficulty": "schwer",
         "points": 10,
@@ -1553,12 +1448,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welcher Schotte erfand 1823 die wasserdichte Regenbekleidung aus Kautschuk?",
-        "answers": [
-            "Thomas Burberry (Mode)",
-            "John Barbour (Textil)",
-            "Charles Goodyear",
-            "Charles Macintosh"
-        ],
+        "answers": ["Thomas Burberry", "John Barbour", "Charles Goodyear", "Charles Macintosh"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,
@@ -1587,12 +1477,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welches Heimcomputer-Modell von Commodore wurde ab 1982 der meistverkaufte Computer der Welt?",
-        "answers": [
-            "Amiga 500",
-            "Commodore 64 (C64)",
-            "Atari 2600",
-            "Sinclair ZX Spectrum"
-        ],
+        "answers": ["Amiga 500", "Commodore 64 (C64)", "Atari 2600", "Sinclair ZX Spectrum"],
         "correct": 1,
         "difficulty": "leicht",
         "points": 10,
@@ -1621,12 +1506,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welches Erste-Hilfe-Mittel erfand der Amerikaner Earle Dickson 1920 für Johnson & Johnson?",
-        "answers": [
-            "Der Wundverband",
-            "Desinfektionsspray",
-            "Heftpflaster ohne Wundauflage",
-            "Das Pflaster (BAND-AID)"
-        ],
+        "answers": ["Der Wundverband", "Desinfektionsspray", "Heftpflaster ohne Wundauflage", "Das Pflaster"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,
@@ -1757,12 +1637,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welches Werkzeug erfand der deutsche Chemiker Justus von Liebig zur Fleischextrakt-Nutzung?",
-        "answers": [
-            "Maggi-Würze (Julius Maggi, Schweiz)",
-            "Knorr-Suppenwürfel (bekannte Traditionsmarke)",
-            "Pektin (Geliermittel aus Früchten)",
-            "Liebigs Fleischextrakt / Brühwürfel-Vorläufer"
-        ],
+        "answers": ["Maggi-Würze", "Knorr-Suppenwürfel", "Pektin", "Liebigs Fleischextrakt / Brühwürfel-Vorläufer"],
         "correct": 3,
         "difficulty": "schwer",
         "points": 10,
@@ -1825,12 +1700,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welche deutsche Erfindung von Otto Hahn, Lise Meitner und Fritz Straßmann schütterte 1938 die Welt?",
-        "answers": [
-            "Die Entdeckung der Radioaktivität",
-            "Die Erfindung des Lasers (1960)",
-            "Die Entdeckung der Röntgenstrahlung (1895)",
-            "Entdeckung der Kernspaltung von Uran"
-        ],
+        "answers": ["Die Entdeckung der Radioaktivität", "Die Erfindung des Lasers", "Die Entdeckung der Röntgenstrahlung", "Entdeckung der Kernspaltung von Uran"],
         "correct": 3,
         "difficulty": "mittel",
         "points": 10,
@@ -1910,12 +1780,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welche deutsche Erfindung begründete 1847 die moderne Elektrotechnik (Zeigertelegraf)?",
-        "answers": [
-            "Werner von Siemens & Johann Georg Halske",
-            "Robert Bosch (Unternehmer aus Deutschland)",
-            "Carl Zeiss (Optische Werke in Jena)",
-            "Emil Rathenau (AEG-Mitgründer)"
-        ],
+        "answers": ["Werner von Siemens & Johann Georg Halske", "Robert Bosch & Gottlieb Daimler", "Carl Zeiss & Ernst Abbe", "Emil Rathenau & Oskar von Miller"],
         "correct": 0,
         "difficulty": "mittel",
         "points": 10,
@@ -2012,12 +1877,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Wer erfand 1908 das Glasverfahren zur Herstellung von durchsichtigem Cellophan?",
-        "answers": [
-            "Leo Baekeland (Bakelit)",
-            "Otto Bayer (Polyurethan)",
-            "Jacques E. Brandenberger",
-            "Roy Plunkett (Teflon)"
-        ],
+        "answers": ["Leo Baekeland", "Otto Bayer", "Jacques E. Brandenberger", "Roy Plunkett"],
         "correct": 2,
         "difficulty": "schwer",
         "points": 10,
@@ -2029,12 +1889,7 @@ const SPASS_ERFINDUNGEN_QUESTIONS = [
         "area": "spass",
         "subject": "erfindungen",
         "question": "Welches bahnbrechende Weltraumteleskop schickte die NASA 1990 in eine Erdumlaufbahn?",
-        "answers": [
-            "James Webb-Teleskop (NASA)",
-            "Kepler-Teleskop (Exoplaneten)",
-            "Spitzer-Teleskop (Infrarot)",
-            "Hubble-Weltraumteleskop"
-        ],
+        "answers": ["James Webb-Teleskop", "Kepler-Teleskop", "Spitzer-Teleskop", "Hubble-Weltraumteleskop"],
         "correct": 3,
         "difficulty": "leicht",
         "points": 10,

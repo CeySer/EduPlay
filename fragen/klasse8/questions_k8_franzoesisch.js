@@ -42,12 +42,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Was passiert mit dem Partizip Passé, wenn das Passé composé mit 'être' gebildet wird?",
-    "answers": [
-      "Es gleicht sich in Geschlecht und Zahl an das Subjekt an (z. B. 'Elle est allée').",
-      "Es bleibt in jedem einzelnen Fall unverändert auf der Endung -é stehen, egal wer.",
-      "Es erhält grundsätzlich und immer ein Apostroph direkt vor dem konjugierten Verbe.",
-      "Es wird komplett durch die Nennung von 'pas' ganz am Ende des Satzes ersetzt."
-    ],
+    "answers": ["Es gleicht sich in Geschlecht und Zahl an das Subjekt an.", "Es bleibt in jedem einzelnen Fall unverändert auf der Endung -é stehen, egal wer.", "Es erhält grundsätzlich und immer ein Apostroph direkt vor dem konjugierten Verbe.", "Es wird komplett durch die Nennung von 'pas' ganz am Ende des Satzes ersetzt."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -114,12 +109,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wann verwendet man im Französischen den Teilungsartikel (article partitif: du, de la, de l')?",
-    "answers": [
-      "Bei unbestimmten Mengen von nicht zählbaren Dingen (z. B. Wasser, Brot).",
-      "Ausschließlich bei Personen, die immer nur im Plural stehen, niemals im Singular.",
-      "Nur direkt nach festen Mengenangaben wie 'beaucoup' oder 'un kilo' davor.",
-      "Wenn eine Sache exakt gezählt werden kann, wie zum Beispiel zwei ganze Äpfel."
-    ],
+    "answers": ["Bei unbestimmten Mengen von nicht zählbaren Dingen.", "Ausschließlich bei Personen, die immer nur im Plural stehen, niemals im Singular.", "Nur direkt nach festen Mengenangaben wie 'beaucoup' oder 'un kilo' davor.", "Wenn eine Sache exakt gezählt werden kann, wie zum Beispiel zwei ganze Äpfel."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -132,12 +122,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Was geschieht mit dem Teilungsartikel bei einer Verneinung (z. B. 'Je ne veux pas ... pain')?",
-    "answers": [
-      "Er wird durch 'de' (bzw. 'd'') ersetzt (z. B. 'Je ne veux pas de pain').",
-      "Er bleibt in der Verneinung völlig unverändert als 'du' stehen, ohne Ausnahme.",
-      "Er verwandelt sich in der Verneinung immer automatisch in die Form 'des'.",
-      "Er wird komplett ersatzlos gestrichen, ohne dass ein weiteres Wort folgt."
-    ],
+    "answers": ["Er wird durch 'de' (bzw. 'd'') ersetzt.", "Er bleibt in der Verneinung völlig unverändert als 'du' stehen, ohne Ausnahme.", "Er verwandelt sich in der Verneinung immer automatisch in die Form 'des'.", "Er wird komplett ersatzlos gestrichen, ohne dass ein weiteres Wort folgt."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -186,12 +171,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wo steht das Objektpronomen im Aussagesatz im Präsens?",
-    "answers": [
-      "Direkt vor dem konjugierten Verb (z. B. 'Je le vois').",
-      "Ganz am Ende des Satzes, hinter dem genannten Objekt selbst.",
-      "Vor dem Subjekt, ganz am Anfang des gesamten Satzes.",
-      "Zwischen dem Nomen und dem passenden Adjektiv im Satz."
-    ],
+    "answers": ["Direkt vor dem konjugierten Verb.", "Ganz am Ende des Satzes, hinter dem genannten Objekt selbst.", "Vor dem Subjekt, ganz am Anfang des gesamten Satzes.", "Zwischen dem Nomen und dem passenden Adjektiv im Satz."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -222,12 +202,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wo stehen die Verneinungswörter 'ne ... pas' im Satz, wenn ein Objektpronomen vorhanden ist?",
-    "answers": [
-      "Sie umschließen das Objektpronomen und das konjugierte Verb (z. B. 'Je ne le vois pas').",
-      "Sie stehen beide zusammen ganz am Ende des Satzes, direkt hinter dem Objektpronomen selbst.",
-      "Sie stehen beide gemeinsam ganz vorne, noch vor dem Subjekt des Satzes.",
-      "'pas' steht dabei vor dem Pronomen, während 'ne' hinter dem Verb steht."
-    ],
+    "answers": ["Sie umschließen das Objektpronomen und das konjugierte Verb.", "Sie stehen beide zusammen ganz am Ende des Satzes, direkt hinter dem Objektpronomen selbst.", "Sie stehen beide gemeinsam ganz vorne, noch vor dem Subjekt des Satzes.", "'pas' steht dabei vor dem Pronomen, während 'ne' hinter dem Verb steht."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -240,16 +215,11 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Welches Pronomen ersetzt Ortsangaben mit 'à', 'dans', 'en' oder 'sur' (z. B. 'Je vais à Paris')?",
-    "answers": [
-      "y (z. B. 'J'y vais')",
-      "en (z. B. 'J'en vais')",
-      "lui (z. B. 'Je lui vais')",
-      "le (z. B. 'Je le vais')"
-    ],
+    "answers": ["y (z. B. 'J'y vais')", "en (z. B. 'J'en vais')", "lui (z. B. 'Je lui vais')", "le (z. B. 'Je le vais')"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Das Adverbialpronomen 'y' ersetzt Ortsangaben ('dort/dorthin'): 'Je vais à Paris' $\\rightarrow$ 'J'y vais'."
+    "explanation": "Das Adverbialpronomen 'y' ersetzt Ortsangaben ('dort/dorthin'): 'Je vais à Paris' → 'J'y vais'."
   },
   {
     "id": "k8_fr_015",
@@ -276,12 +246,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wie wird der Komparativ (die Steigerung) von Adjektiven im Französischen gebildet?",
-    "answers": [
-      "plus / moins / aussi + Adjektiv + que (z. B. 'plus grand que')",
-      "Mit dem Adjektiv plus der Endung -er, also zum Beispiel 'grander' als Form.",
-      "Mit more plus Adjektiv plus than, ganz wie im Englischen üblich gebildet.",
-      "Mit très plus Adjektiv plus de, also ganz ohne echtes Vergleichswort dabei."
-    ],
+    "answers": ["plus / moins / aussi + Adjektiv + que", "Mit dem Adjektiv plus der Endung -er, also zum Beispiel 'grander' als Form.", "Mit more plus Adjektiv plus than, ganz wie im Englischen üblich gebildet.", "Mit très plus Adjektiv plus de, also ganz ohne echtes Vergleichswort dabei."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -294,16 +259,11 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wie lautet die unregelmäßige Steigerungsform von 'bon' (gut)?",
-    "answers": [
-      "meilleur (besser)",
-      "plus bon (falsch)",
-      "bien (Adverb)",
-      "mauvais (falsch)"
-    ],
+    "answers": ["meilleur", "plus bon", "bien", "mieux"],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der Komparativ von 'bon' heißt 'meilleur' (nicht 'plus bon')."
+    "explanation": "Der Komparativ von 'bon' heißt 'meilleur' (nicht 'plus bon'). 'mieux' ist die Steigerung von 'bien'."
   },
   {
     "id": "k8_fr_018",
@@ -312,12 +272,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wie bildet man den Superlativ (Höchststufe) bei Adjektiven?",
-    "answers": [
-      "le / la / les + plus (oder moins) + Adjektiv (z. B. 'le plus grand')",
-      "Mit der Adjektiv-Endung -est, also ganz wie im Englischen üblich gebildet.",
-      "Mit très plus plus plus Adjektiv, also einer doppelten Steigerung zugleich.",
-      "Mit beaucoup plus Adjektiv, aber komplett ohne jeden Artikel davor."
-    ],
+    "answers": ["le / la / les + plus (oder moins) + Adjektiv", "Mit der Adjektiv-Endung -est, also ganz wie im Englischen üblich gebildet.", "Mit très plus plus plus Adjektiv, also einer doppelten Steigerung zugleich.", "Mit beaucoup plus Adjektiv, aber komplett ohne jeden Artikel davor."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -487,12 +442,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wie nennt man den französischen Nationalfeiertag am 14. Juli ('la fête nationale') im Gedenken an welches historische Ereignis?",
-    "answers": [
-      "Den Sturm auf die Bastille (1789).",
-      "Die Krönung von Napoleon Bonaparte.",
-      "Das Ende des Zweiten Weltkriegs.",
-      "Die Befreiung von Paris durch Jeanne d'Arc."
-    ],
+    "answers": ["Den Sturm auf die Bastille.", "Die Krönung von Napoleon Bonaparte.", "Das Ende des Zweiten Weltkriegs.", "Die Befreiung von Paris durch Jeanne d'Arc."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -505,7 +455,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Was bedeutet die Zeitangabe 'il est midi / il est minuit'?",
-    "answers": ["Es ist 12 Uhr mittags / Es ist 12 Uhr nachts (Mitternacht).", "Es ist 6 Uhr morgens ganz früh / Es ist 18 Uhr abends spät.", "Es ist halb drei am Nachmittag / Es ist Viertel vor vier Uhr.", "Es ist genau Sonnenaufgang am Morgen / Sonnenuntergang am Abend."],
+    "answers": ["Es ist 12 Uhr mittags / Es ist 12 Uhr nachts.", "Es ist 6 Uhr morgens ganz früh / Es ist 18 Uhr abends spät.", "Es ist halb drei am Nachmittag / Es ist Viertel vor vier Uhr.", "Es ist genau Sonnenaufgang am Morgen / Sonnenuntergang am Abend."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -628,12 +578,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wann verwendet man das Relativpronomen 'qui'?",
-    "answers": [
-      "Wenn das Relativpronomen Subjekt des Relativsatzes ist (Subjektfunktion).",
-      "Wenn das Relativpronomen direktes Objekt des ganzen Relativsatzes darstellt.",
-      "Ausschließlich bei reinen Orts- und Zeitangaben innerhalb des Satzes.",
-      "Nur direkt nach Präpositionen wie 'avec' oder 'pour' im ganzen Satz."
-    ],
+    "answers": ["Wenn das Relativpronomen Subjekt des Relativsatzes ist.", "Wenn das Relativpronomen direktes Objekt des ganzen Relativsatzes darstellt.", "Ausschließlich bei reinen Orts- und Zeitangaben innerhalb des Satzes.", "Nur direkt nach Präpositionen wie 'avec' oder 'pour' im ganzen Satz."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -646,12 +591,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wann verwendet man das Relativpronomen 'que' (bzw. 'qu'' vor Vokal)?",
-    "answers": [
-      "Wenn das Relativpronomen direktes Objekt des Relativsatzes ist (Akkusativobjekt).",
-      "Wenn das Relativpronomen das Subjekt des Satzes komplett ersetzen soll und alles verändert.",
-      "Ausschließlich nach festen Mengenangaben wie 'beaucoup' davor im Satz.",
-      "Wenn dadurch eine rein zeitliche Reihenfolge ausgedrückt werden soll."
-    ],
+    "answers": ["Wenn das Relativpronomen direktes Objekt des Relativsatzes ist.", "Wenn das Relativpronomen das Subjekt des Satzes komplett ersetzen soll und alles verändert.", "Ausschließlich nach festen Mengenangaben wie 'beaucoup' davor im Satz.", "Wenn dadurch eine rein zeitliche Reihenfolge ausgedrückt werden soll."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -772,12 +712,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wie lautet das Futur composé (nahe Zukunft)?",
-    "answers": [
-      "aller (im Präsens) + Infinitiv des Hauptverbs (z. B. 'Je vais parler').",
-      "Mit avoir im Präsens plus dem Partizip Passé des jeweiligen Hauptverbs.",
-      "Mit être im Präsens plus dem reinen Infinitiv des jeweiligen Hauptverbs.",
-      "Mit venir de plus Infinitiv, was eigentlich Vergangenheit ausdrückt."
-    ],
+    "answers": ["aller (im Präsens) + Infinitiv des Hauptverbs.", "Mit avoir im Präsens plus dem Partizip Passé des jeweiligen Hauptverbs.", "Mit être im Präsens plus dem reinen Infinitiv des jeweiligen Hauptverbs.", "Mit venir de plus Infinitiv, was eigentlich Vergangenheit ausdrückt."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -790,12 +725,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Was drückt die Wendung 'venir de + Infinitiv' aus (Passé récent)?",
-    "answers": [
-      "Eine Handlung, die gerade eben erst stattgefunden hat (z. B. 'Je viens de manger' = Ich habe gerade gegessen).",
-      "Einen Wunsch für die ferne Zukunft, der noch überhaupt nicht erfüllt wurde und aller Wahrscheinlichkeit nach wohl nie eintreten wird.",
-      "Eine höfliche Aufforderung an jemanden, bald irgendwohin zu kommen und dort zu bleiben, egal wann.",
-      "Eine unsichere Bedingung im Konjunktiv, die stark von einer anderen Handlung abhängt und offen bleibt."
-    ],
+    "answers": ["Eine Handlung, die gerade eben erst stattgefunden hat (z. B. 'Je viens de manger' = Ich habe gerade gegessen).", "Einen Wunsch für die ferne Zukunft, der noch überhaupt nicht erfüllt wurde und aller Wahrscheinlichkeit nach wohl nie eintreten wird.", "Eine höfliche Aufforderung an jemanden, bald irgendwohin zu kommen und dort zu bleiben, egal wann.", "Eine unsichere Bedingung im Konjunktiv, die stark von einer anderen Handlung abhängt und offen bleibt."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -970,12 +900,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Welche Notenskala ist an Schulen in Frankreich üblich?",
-    "answers": [
-      "Von 0 bis 20 Punkten (20 ist die beste Note).",
-      "Von 1 bis 6, wobei die Note 1 die allerbeste ist.",
-      "Von A bis F, wie im englischen System.",
-      "Von 0 bis 100 Prozent, wie bei einem Test."
-    ],
+    "answers": ["Von 0 bis 20 Punkten.", "Von 1 bis 6, wobei die Note 1 die allerbeste ist.", "Von A bis F, wie im englischen System.", "Von 0 bis 100 Prozent, wie bei einem Test."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1006,12 +931,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Was bedeutet der Begriff 'la carte' im Restaurant?",
-    "answers": [
-      "die Speisekarte",
-      "die Ansichtskarte",
-      "die Landkarte (Reise)",
-      "die Fahrkarte (Zug)"
-    ],
+    "answers": ["die Speisekarte", "die Ansichtskarte", "die Landkarte", "die Fahrkarte"],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1078,12 +998,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Was ist der 'TGV' in Frankreich?",
-    "answers": [
-      "Der französische Hochgeschwindigkeitszug (Train à Grande Vitesse).",
-      "Ein bekannter Pariser Flughafen für lange internationale Fernreisen.",
-      "Der größte Fernsehsender Frankreichs im ganzen Land landesweit.",
-      "Eine bekannte französische Jugendzeitschrift, die monatlich erscheint."
-    ],
+    "answers": ["Der französische Hochgeschwindigkeitszug.", "Ein bekannter Pariser Flughafen für lange internationale Fernreisen.", "Der größte Fernsehsender Frankreichs im ganzen Land landesweit.", "Eine bekannte französische Jugendzeitschrift, die monatlich erscheint."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1150,12 +1065,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wie heißt die zweitgrößte Stadt Frankreichs, die eine bedeutende Hafenstadt am Mittelmeer ist?",
-    "answers": [
-      "Marseille",
-      "Lyon (Stadt)",
-      "Bordeaux (Wein)",
-      "Toulouse (SW)"
-    ],
+    "answers": ["Marseille", "Lyon", "Bordeaux", "Toulouse (SW)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1204,16 +1114,11 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Welche Farben hat die französische Nationalflagge ('le drapeau tricolore') von links nach rechts?",
-    "answers": [
-      "Blau, Weiß, Rot (bleu, blanc, rouge)",
-      "Rot, Weiß, Blau (falsche Reihenfolge)",
-      "Grün, Weiß, Rot (falsche Farben)",
-      "Schwarz, Rot, Gold (deutsche Flagge)"
-    ],
+    "answers": ["Blau, Weiß, Rot", "Rot, Weiß, Blau", "Grün, Weiß, Rot", "Schwarz, Rot, Gold"],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die 'Tricolore' besteht aus drei vertikalen Streifen in Blau, Weiß und Rot."
+    "explanation": "Die 'Tricolore' hat drei senkrechte Streifen: bleu, blanc, rouge (Blau, Weiß, Rot)."
   },
   {
     "id": "k8_fr_069",
@@ -1259,12 +1164,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wie wird das Futur simple bei regelmäßigen Verben auf -er gebildet?",
-    "answers": [
-      "Infinitiv + Endungen -ai, -as, -a, -ons, -ez, -ont (z. B. 'je parlerai').",
-      "Mit dem Stamm des Präsens plus den Endungen -ais, -ais, -ait ganz am Ende davor angehängt.",
-      "Mit dem Hilfsverb 'aller' plus dem Partizip Perfekt des Hauptverbs.",
-      "Mit dem Hilfsverb 'avoir' plus dem reinen Infinitiv des Hauptverbs."
-    ],
+    "answers": ["Infinitiv + Endungen -ai, -as, -a, -ons, -ez, -ont.", "Mit dem Stamm des Präsens plus den Endungen -ais, -ais, -ait ganz am Ende davor angehängt.", "Mit dem Hilfsverb 'aller' plus dem Partizip Perfekt des Hauptverbs.", "Mit dem Hilfsverb 'avoir' plus dem reinen Infinitiv des Hauptverbs."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1313,12 +1213,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wie bildet man das Conditionnel présent (Höflichkeitsform / Wunschform)?",
-    "answers": [
-      "Futur-Stamm + Imparfait-Endungen (-ais, -ais, -ait, -ions, -iez, -aient).",
-      "Mit dem Infinitiv plus den Präsens-Endungen von avoir direkt am Wortende angehängt.",
-      "Mit dem Stamm des Präsens plus der einfachen Endung -é am Wortende.",
-      "Mit dem Hilfsverb 'être' im Imparfait plus dem reinen Infinitiv davor."
-    ],
+    "answers": ["Futur-Stamm + Imparfait-Endungen.", "Mit dem Infinitiv plus den Präsens-Endungen von avoir direkt am Wortende angehängt.", "Mit dem Stamm des Präsens plus der einfachen Endung -é am Wortende.", "Mit dem Hilfsverb 'être' im Imparfait plus dem reinen Infinitiv davor."],
     "correct": 0,
     "difficulty": "schwer",
     "points": 20,
@@ -1349,12 +1244,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wie bildet man im Allgemeinen ein Adverb aus einem Adjektiv im Französischen?",
-    "answers": [
-      "Weibliche Form des Adjektivs + Endung '-ment' (z. B. 'heureuse' $\\rightarrow$ 'heureusement').",
-      "Mit der männlichen Form des Adjektivs plus der englischen Endung -ly ganz am Wortende angehängt.",
-      "Mit einer Vorranganstellung von 'très' direkt vor dem jeweiligen Adjektiv.",
-      "Mit einer Verdopplung des letzten Konsonanten, ganz ohne weitere Endung."
-    ],
+    "answers": ["Weibliche Form des Adjektivs + Endung '-ment'.", "Mit der männlichen Form des Adjektivs plus der englischen Endung -ly ganz am Wortende angehängt.", "Mit einer Vorranganstellung von 'très' direkt vor dem jeweiligen Adjektiv.", "Mit einer Verdopplung des letzten Konsonanten, ganz ohne weitere Endung."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1403,12 +1293,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wie leitet man Aussagesätze in der indirekten Rede (discours indirect) ein?",
-    "answers": [
-      "Mit der Konjunktion 'que' / 'qu'' (z. B. 'Il dit qu'il vient').",
-      "Mit der Präposition 'pour', gefolgt direkt vom Infinitiv des Verbs.",
-      "Mit dem Relativpronomen 'qui' ganz am Anfang des gesamten Satzes.",
-      "Mit dem Fragewort 'pourquoi' ganz am Anfang des gesamten Satzes."
-    ],
+    "answers": ["Mit der Konjunktion 'que' / 'qu''.", "Mit der Präposition 'pour', gefolgt direkt vom Infinitiv des Verbs.", "Mit dem Relativpronomen 'qui' ganz am Anfang des gesamten Satzes.", "Mit dem Fragewort 'pourquoi' ganz am Anfang des gesamten Satzes."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1421,12 +1306,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Wie leitet man Entscheidungsfragen (Ja/Nein-Fragen) in der indirekten Rede ein?",
-    "answers": [
-      "Mit der Konjunktion 'si' (z. B. 'Il demande si tu viens').",
-      "Mit der festen Wendung 'est-ce que' ganz am Anfang des Satzes.",
-      "Mit der einfachen Konjunktion 'que', ohne jeden weiteren Zusatz.",
-      "Mit dem einfachen Fragewort 'quand' ganz am Anfang des Satzes."
-    ],
+    "answers": ["Mit der Konjunktion 'si'.", "Mit der festen Wendung 'est-ce que' ganz am Anfang des Satzes.", "Mit der einfachen Konjunktion 'que', ohne jeden weiteren Zusatz.", "Mit dem einfachen Fragewort 'quand' ganz am Anfang des Satzes."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1727,12 +1607,7 @@ const questions_k8_franzoesisch = [
     "grade": 8,
     "subject": "franzoesisch",
     "question": "Welche französische Region ist weltweit bekannt für ihre Schlösser an der Loire (châteaux de la Loire)?",
-    "answers": [
-      "Le Centre-Val de Loire",
-      "La Bretagne (Nordwesten)",
-      "La Normandie (Küste)",
-      "La Corse (Mittelmeer)"
-    ],
+    "answers": ["Le Centre-Val de Loire", "La Bretagne", "La Normandie", "La Corse"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,

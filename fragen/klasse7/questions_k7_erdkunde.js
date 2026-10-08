@@ -227,12 +227,7 @@ const K7_ERDKUNDE_QUESTIONS = [
     "grade": 7,
     "subject": "erdkunde",
     "question": "Wie nennt man die traditionelle, nachhaltige Feldbauform der indigenen Regenwaldbewohner?",
-    "answers": [
-      "Wanderfeldbau (Shifting)",
-      "Intensiver Plantagenanbau",
-      "Bewässerter Terrassenbau",
-      "Mechanisierter Ackerbau"
-    ],
+    "answers": ["Wanderfeldbau", "Intensiver Plantagenanbau", "Bewässerter Terrassenbau", "Mechanisierter Ackerbau"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -987,16 +982,11 @@ const K7_ERDKUNDE_QUESTIONS = [
     "grade": 7,
     "subject": "erdkunde",
     "question": "Welches Gas entsteht vermehrt bei der Verdauung von Rinderbeständen u. in Reisfeldern?",
-    "answers": [
-      "Treibhausgas Methan",
-      "Reiner Sauerstoffanteil",
-      "Giftiges Kohlenmonoxid",
-      "Seltenes Edelgas Argon"
-    ],
+    "answers": ["Treibhausgas Methan", "Reiner Sauerstoffanteil", "Giftiges Kohlenmonoxid", "Seltenes Edelgas Argon"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Methan ($CH_4$) ist ein besonders wirksames Treibhausgas in der Erdatmosphäre."
+    "explanation": "Methan (CH₄) ist ein besonders wirksames Treibhausgas in der Erdatmosphäre."
   },
   {
     "id": "k7_ek_056",
@@ -1059,16 +1049,11 @@ const K7_ERDKUNDE_QUESTIONS = [
     "grade": 7,
     "subject": "erdkunde",
     "question": "Wie viel Liter virtuelles Wasser stecken etwa in der Herstellung einer einzigen Jeans?",
-    "answers": [
-      "Ca. 15 bis 25 Liter",
-      "Ca. 8.000 bis 10.000 L",
-      "Ca. 150 bis 250 Liter",
-      "Ca. 40.000 bis 60.000 L"
-    ],
+    "answers": ["Ca. 15 bis 25 Liter", "Ca. 8.000 bis 10.000 L", "Ca. 150 bis 250 Liter", "Ca. 40.000 bis 60.000 L"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Baumwollanbau u. Jeansfärbung erfordern rund $8.000$ bis $10.000\\text{ Liter}$ Wasser pro Stück."
+    "explanation": "Baumwollanbau u. Jeansfärbung erfordern rund 8.000 bis 10.000 Liter Wasser pro Stück."
   },
   {
     "id": "k7_ek_060",
@@ -1275,16 +1260,11 @@ const K7_ERDKUNDE_QUESTIONS = [
     "grade": 7,
     "subject": "erdkunde",
     "question": "Was beschreibt die Treibhausgassenke in der Geographie?",
-    "answers": [
-      "Schlot eines Vulkans",
-      "Quelle von CO2 Gas",
-      "Speicher von CO2 Gas",
-      "Fabrik für Abgase"
-    ],
+    "answers": ["Schlot eines Vulkans", "Quelle von CO₂ Gas", "Speicher von CO₂ Gas", "Fabrik für Abgase"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ökosysteme wie Wälder oder Moore nehmen $CO_2$ auf u. binden den Kohlenstoff langfristig."
+    "explanation": "Ökosysteme wie Wälder oder Moore nehmen CO₂ auf u. binden den Kohlenstoff langfristig."
   },
   {
     "id": "k7_ek_072",
@@ -1329,16 +1309,11 @@ const K7_ERDKUNDE_QUESTIONS = [
     "grade": 7,
     "subject": "erdkunde",
     "question": "Welche Auswirkung hat die Abholzung der tropischen Regenwälder auf das Erdklima?",
-    "answers": [
-      "Zunahme von Eisschild",
-      "Freisetzung von CO2",
-      "Abkühlung der Luft",
-      "Senkung von CO2 Wert"
-    ],
+    "answers": ["Zunahme von Eisschild", "Freisetzung von CO₂", "Abkühlung der Luft", "Senkung von CO₂ Wert"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Brandrodung u. Verrottung setzen im Holz gebundenen Kohlenstoff als $CO_2$ frei."
+    "explanation": "Brandrodung u. Verrottung setzen im Holz gebundenen Kohlenstoff als CO₂ frei."
   },
   {
     "id": "k7_ek_075",
@@ -1529,12 +1504,7 @@ const K7_ERDKUNDE_QUESTIONS = [
     "grade": 7,
     "subject": "erdkunde",
     "question": "Mit welchem Kennwert (Index) misst die UN den Entwicklungsstand von Ländern?",
-    "answers": [
-      "Der Gini-Koeffizient rein",
-      "Der HDI (Human Dev Index)",
-      "Der Big-Mac-Index Geld",
-      "Der KOF-Globalisierungsindex"
-    ],
+    "answers": ["Der Gini-Koeffizient rein", "Der HDI", "Der Big-Mac-Index Geld", "Der KOF-Globalisierungsindex"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,

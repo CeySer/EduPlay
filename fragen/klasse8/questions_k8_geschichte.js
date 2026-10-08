@@ -150,12 +150,7 @@ const questions_k8_geschichte = [
     "grade": 8,
     "subject": "geschichte",
     "question": "Welches Gesetz zur Linderung der Sozialen Frage führte Bismarck in den 1880er-Jahren in Deutschland ein?",
-    "answers": [
-      "Die staatliche Sozialgesetzgebung (Kranken- und Unfallversicherung).",
-      "Das allgemeine Recht auf bezahlten Jahresurlaub für alle Fabrikarbeiter.",
-      "Das gesetzliche Verbot von Kinderarbeit in allen Wirtschaftsbereichen.",
-      "Die Einführung der Fünf-Tage-Woche bei vollem Lohnausgleich."
-    ],
+    "answers": ["Die staatliche Sozialgesetzgebung.", "Das allgemeine Recht auf bezahlten Jahresurlaub für alle Fabrikarbeiter.", "Das gesetzliche Verbot von Kinderarbeit in allen Wirtschaftsbereichen.", "Die Einführung der Fünf-Tage-Woche bei vollem Lohnausgleich."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -204,12 +199,7 @@ const questions_k8_geschichte = [
     "grade": 8,
     "subject": "geschichte",
     "question": "Auf welcher Konferenz 1884/85 teilten die europäischen Mächte den afrikanischen Kontinent unter sich auf?",
-    "answers": [
-      "Auf der diplomatischen Berliner Afrika-Konferenz (Kongo-Konferenz).",
-      "Auf dem Wiener Kongress zur politischen Neuordnung des Kontinents.",
-      "Auf der internationalen Friedenskonferenz im französischen Schloss Versailles.",
-      "Auf dem historischen Treffen im schweizerischen Genf im Jahr 1885."
-    ],
+    "answers": ["Auf der diplomatischen Berliner Afrika-Konferenz.", "Auf dem Wiener Kongress zur politischen Neuordnung des Kontinents.", "Auf der internationalen Friedenskonferenz im französischen Schloss Versailles.", "Auf dem historischen Treffen im schweizerischen Genf im Jahr 1885."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -312,12 +302,7 @@ const questions_k8_geschichte = [
     "grade": 8,
     "subject": "geschichte",
     "question": "Welche Revolution beendete 1917 die Herrschaft des Zaren in Russland?",
-    "answers": [
-      "Die Russische Revolution (Februar- und Oktoberrevolution).",
-      "Die Französische Revolution zur Durchsetzung von Bürgermacht.",
-      "Die Industrielle Revolution im östlichen Teil Europas.",
-      "Die Nelkenrevolution zur friedlichen Demokratisierung."
-    ],
+    "answers": ["Die Russische Revolution.", "Die Französische Revolution zur Durchsetzung von Bürgermacht.", "Die Industrielle Revolution im östlichen Teil Europas.", "Die Nelkenrevolution zur friedlichen Demokratisierung."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -655,12 +640,7 @@ const questions_k8_geschichte = [
     "grade": 8,
     "subject": "geschichte",
     "question": "Welcher Industriezweig war der erste Schrittmacher der Industriellen Revolution in England?",
-    "answers": [
-      "Die maschinelle Textilindustrie (z. B. Baumwollverarbeitung).",
-      "Die aufstrebende chemische Industrie zur Herstellung von Kunstdünger.",
-      "Die moderne Elektroindustrie zur Fertigung von Beleuchtungsmitteln.",
-      "Die neu entstandene Luftfahrtindustrie zum schnellen Gütertransport."
-    ],
+    "answers": ["Die maschinelle Textilindustrie.", "Die aufstrebende chemische Industrie zur Herstellung von Kunstdünger.", "Die moderne Elektroindustrie zur Fertigung von Beleuchtungsmitteln.", "Die neu entstandene Luftfahrtindustrie zum schnellen Gütertransport."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -925,12 +905,7 @@ const questions_k8_geschichte = [
     "grade": 8,
     "subject": "geschichte",
     "question": "Welches Kolonialgebiet war als 'Krone der britischen Kolonien' bekannt?",
-    "answers": [
-      "Das heutige Indien (Britisch-Indien).",
-      "Das Kolonialgebiet Deutsch-Südwestafrika.",
-      "Die Insel Madagaskar vor der Küste Afrikas.",
-      "Die Region Algerien im Norden des Kontinents."
-    ],
+    "answers": ["Das heutige Indien.", "Das Kolonialgebiet Deutsch-Südwestafrika.", "Die Insel Madagaskar vor der Küste Afrikas.", "Die Region Algerien im Norden des Kontinents."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1033,12 +1008,7 @@ const questions_k8_geschichte = [
     "grade": 8,
     "subject": "geschichte",
     "question": "Welche Waffe kam 1916 in der Schlacht an der Somme durch die Briten erstmals zum Einsatz?",
-    "answers": [
-      "Der Panzer (im Englischen als 'Tank' bezeichnet).",
-      "Das schwere Maschinengewehr mit spezieller Wasserkühlung.",
-      "Das neu entwickelte U-Boot mit modernen Torpedos.",
-      "Der Heißluftballon zur militärischen Luftaufklärung."
-    ],
+    "answers": ["Der Panzer.", "Das schwere Maschinengewehr mit spezieller Wasserkühlung.", "Das neu entwickelte U-Boot mit modernen Torpedos.", "Der Heißluftballon zur militärischen Luftaufklärung."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1645,12 +1615,7 @@ const questions_k8_geschichte = [
     "grade": 8,
     "subject": "geschichte",
     "question": "Welches südamerikanische Abkommen versuchte 1823 die Einmischung europäischer Mächte auf dem amerikanischen Kontinent zu stoppen?",
-    "answers": [
-      "Die Formulierung der amerikanischen Monroe-Doktrin ('Amerika den Amerikanern').",
-      "Der Beschluss der Charta der Vereinten Nationen zur weltweiten Dekolonisierung.",
-      "Die Verabschiedung des panamerikanischen Freihandelsabkommens von Washington.",
-      "Die feierliche Gründung des südamerikanischen Staatenbundes von Caracas 1823."
-    ],
+    "answers": ["Die Formulierung der amerikanischen Monroe-Doktrin.", "Der Beschluss der Charta der Vereinten Nationen zur weltweiten Dekolonisierung.", "Die Verabschiedung des panamerikanischen Freihandelsabkommens von Washington.", "Die feierliche Gründung des südamerikanischen Staatenbundes von Caracas 1823."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1681,12 +1646,7 @@ const questions_k8_geschichte = [
     "grade": 8,
     "subject": "geschichte",
     "question": "Welche deutsche Stadt erlebte im Ersten Weltkrieg eine gewaltige Explosion eines Munitionstransports im Hafen?",
-    "answers": [
-      "Der Vorfall betraf den Hafen von Halifax in Kanada (französisch-kanadischer Frachter).",
-      "Die gewaltige Explosion zerstörte weite Teile des Hafens der Hansestadt Hamburg.",
-      "Der schwere Unfall trug sich im Kriegshafen von Wilhelmshaven an der Nordsee zu.",
-      "Die verheerende Katastrophe ereignete sich im Binnenhafen der Industriestadt Duisburg."
-    ],
+    "answers": ["Der Vorfall betraf den Hafen von Halifax in Kanada.", "Die gewaltige Explosion zerstörte weite Teile des Hafens der Hansestadt Hamburg.", "Der schwere Unfall trug sich im Kriegshafen von Wilhelmshaven an der Nordsee zu.", "Die verheerende Katastrophe ereignete sich im Binnenhafen der Industriestadt Duisburg."],
     "correct": 0,
     "difficulty": "schwer",
     "points": 20,
@@ -1789,12 +1749,7 @@ const questions_k8_geschichte = [
     "grade": 8,
     "subject": "geschichte",
     "question": "Welche weltweite Epochenwende kennzeichnet das Jahr 1918 mit dem Ende des Ersten Weltkriegs?",
-    "answers": [
-      "Der Zusammenbruch von vier Großreichen (Deutschland, Österreich-Ungarn, Russland, Osmanisches Reich).",
-      "Die vollständige und dauerhafte Abschaffung sämtlicher Monarchien auf dem gesamten Erdball für immer.",
-      "Der Beginn einer angeblich friedlichen Ära ohne weitere militärische Konflikte in Europa.",
-      "Die sofortige und vollständige Auflösung aller Kolonialreiche in Afrika und Asien."
-    ],
+    "answers": ["Der Zusammenbruch von vier Großreichen.", "Die vollständige und dauerhafte Abschaffung sämtlicher Monarchien auf dem gesamten Erdball für immer.", "Der Beginn einer angeblich friedlichen Ära ohne weitere militärische Konflikte in Europa.", "Die sofortige und vollständige Auflösung aller Kolonialreiche in Afrika und Asien."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,

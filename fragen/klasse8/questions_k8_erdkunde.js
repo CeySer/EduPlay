@@ -60,12 +60,7 @@ const questions_k8_erdkunde = [
     "grade": 8,
     "subject": "erdkunde",
     "question": "Welche traditionelle Landnutzungsform nutzen Indigene im Tropischen Regenwald nachhaltig?",
-    "answers": [
-      "Das System der Brandrodung mit anschaffendem Wanderfeldbau (Shifting Cultivation).",
-      "Das System der großflächigen Monokultur zur Produktion von Soja und Rindfleisch.",
-      "Das System der tiefgründigen Bewässerungslandwirtschaft mithilfe von Brunnen.",
-      "Das System der mechanisierten Terrassenlandwirtschaft an Steilhängen des Gebirges."
-    ],
+    "answers": ["Das System der Brandrodung mit anschaffendem Wanderfeldbau.", "Das System der großflächigen Monokultur zur Produktion von Soja und Rindfleisch.", "Das System der tiefgründigen Bewässerungslandwirtschaft mithilfe von Brunnen.", "Das System der mechanisierten Terrassenlandwirtschaft an Steilhängen des Gebirges."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -222,12 +217,7 @@ const questions_k8_erdkunde = [
     "grade": 8,
     "subject": "erdkunde",
     "question": "Welche Indikatoren werden zur Berechnung des Human Development Index (HDI) herangezogen?",
-    "answers": [
-      "Lebenserwartung, Bildungsdauer sowie das Pro-Kopf-Einkommen eines Landes.",
-      "Einwohnerzahl, Staatsverschuldung sowie die Anzahl der Krankenhäuser im Land.",
-      "Militärausgaben, Exportvolumen sowie die Anzahl der verfügbaren Arbeitsplätze.",
-      "Flächengröße, CO2-Ausstoß sowie die Dichte des ausgebauten Straßennetzes."
-    ],
+    "answers": ["Lebenserwartung, Bildungsdauer sowie das Pro-Kopf-Einkommen eines Landes.", "Einwohnerzahl, Staatsverschuldung sowie die Anzahl der Krankenhäuser im Land.", "Militärausgaben, Exportvolumen sowie die Anzahl der verfügbaren Arbeitsplätze.", "Flächengröße, CO₂-Ausstoß sowie die Dichte des ausgebauten Straßennetzes."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -492,16 +482,11 @@ const questions_k8_erdkunde = [
     "grade": 8,
     "subject": "erdkunde",
     "question": "Welches Gas trägt als Hauptverursacher zum anthropogenen (vom Menschen gemachten) Treibhauseffekt bei?",
-    "answers": [
-      "Kohlendioxid ($CO_2$), das hauptsächlich durch die Verbrennung fossiler Stoffe entsteht.",
-      "Helium ($He$), das aus undichten Luftballons in die Atmosphäre aufsteigt.",
-      "Stickstoff ($N_2$), der den Hauptbestandteil der natürlichen Atemluft bildet nach Meinung vieler Experten.",
-      "Sauerstoff ($O_2$), der von Pflanzen bei der Photosynthese gebildet wird."
-],
+    "answers": ["Kohlendioxid (CO₂), das hauptsächlich durch die Verbrennung fossiler Stoffe entsteht.", "Helium (He), das aus undichten Luftballons in die Atmosphäre aufsteigt.", "Stickstoff (N₂), der den Hauptbestandteil der natürlichen Atemluft bildet nach Meinung vieler Experten.", "Sauerstoff (O₂), der von Pflanzen bei der Photosynthese gebildet wird."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Durch die Verbrennung fossiler Energieträger (Kohle, Öl, Gas) steigt der $CO_2$-Gehalt in der Atmosphäre, was zur globalen Erwärmung beiträgt."
+    "explanation": "Durch die Verbrennung fossiler Energieträger (Kohle, Öl, Gas) steigt der CO₂-Gehalt in der Atmosphäre, was zur globalen Erwärmung beiträgt."
   },
   {
     "id": "k8_ek_029",
@@ -655,12 +640,7 @@ const questions_k8_erdkunde = [
     "grade": 8,
     "subject": "erdkunde",
     "question": "Was unterscheidet 'harte' von 'weichen' Standortfaktoren?",
-    "answers": [
-      "Harte Faktoren sind exakt messbar (z. B. Steuern), weiche sind subjektiver (z. B. Lebensqualität).",
-      "Harte Faktoren betreffen nur die Landwirtschaft, weiche nur die Industrie.",
-      "Harte Faktoren ändern sich täglich, weiche bleiben über Jahrhunderte gleich vor allem in den Industrieländern.",
-      "Harte Faktoren sind gesetzlich vorgeschrieben, weiche sind völlig verboten."
-],
+    "answers": ["Harte Faktoren sind exakt messbar (z. B. Steuern), weiche sind subjektiver.", "Harte Faktoren betreffen nur die Landwirtschaft, weiche nur die Industrie.", "Harte Faktoren ändern sich täglich, weiche bleiben über Jahrhunderte gleich vor allem in den Industrieländern.", "Harte Faktoren sind gesetzlich vorgeschrieben, weiche sind völlig verboten."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -925,12 +905,7 @@ const questions_k8_erdkunde = [
     "grade": 8,
     "subject": "erdkunde",
     "question": "Was beschreibt der Begriff 'Global City'?",
-    "answers": [
-      "Ein Metropolen-Zentrum mit steuernder Funktion in der Weltwirtschaft (z. B. New York, Tokio, London).",
-      "Eine Stadt, in der ausschließlich Menschen aus über 100 Ländern wohnen vor allem in den Industrieländern.",
-      "Ein riesiger Freizeitpark, der alle Kontinente im Maßstab 1:100 nachbaut vor allem in den Industrieländern.",
-      "Eine antike Ruinenstadt, die ins UNESCO-Weltkulturerbe aufgenommen wurde vor allem in den Industrieländern."
-],
+    "answers": ["Ein Metropolen-Zentrum mit steuernder Funktion in der Weltwirtschaft.", "Eine Stadt, in der ausschließlich Menschen aus über 100 Ländern wohnen vor allem in den Industrieländern.", "Ein riesiger Freizeitpark, der alle Kontinente im Maßstab 1:100 nachbaut vor allem in den Industrieländern.", "Eine antike Ruinenstadt, die ins UNESCO-Weltkulturerbe aufgenommen wurde vor allem in den Industrieländern."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1032,17 +1007,12 @@ const questions_k8_erdkunde = [
     "area": "schule",
     "grade": 8,
     "subject": "erdkunde",
-    "question": "Welcher Energieträger fossilen Ursprungs hat weltweit die höchsten CO2-Emissionen pro erzeugter Energieeinheit?",
-    "answers": [
-      "Die Kohle (insbesondere Braunkohle).",
-      "Das Erdgas aus unterirdischen Lagerstätten.",
-      "Das flüssige Erdöl aus Bohrfeldern.",
-      "Das klimafreundliche Biogas aus Gülle."
-],
+    "question": "Welcher Energieträger fossilen Ursprungs hat weltweit die höchsten CO₂-Emissionen pro erzeugter Energieeinheit?",
+    "answers": ["Die Kohle.", "Das Erdgas aus unterirdischen Lagerstätten.", "Das flüssige Erdöl aus Bohrfeldern.", "Das klimafreundliche Biogas aus Gülle."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Braunkohle setzt bei der Verbrennung bezogen auf den Energiegewinn den höchsten Anteil an Treibhausgasen (CO2) frei."
+    "explanation": "Braunkohle setzt bei der Verbrennung bezogen auf den Energiegewinn den höchsten Anteil an Treibhausgasen (CO₂) frei."
   },
   {
     "id": "k8_ek_059",
@@ -1484,12 +1454,7 @@ const questions_k8_erdkunde = [
     "grade": 8,
     "subject": "erdkunde",
     "question": "Was beschreibt das Phänomen der 'Fragmentierung' von Städten?",
-    "answers": [
-      "Die räumliche und soziale Aufspaltung einer Stadt in gegensätzliche Teilbereiche (z. B. Armut vs. Reichtum).",
-      "Die Zerstörung von Straßenbelägen durch Frost während der Wintermonate unter bestimmten klimatischen Bedingungen.",
-      "Der Zusammenbau von vorgefertigten Häuserelementen aus Beton vor Ort vor allem in den Industrieländern.",
-      "Die Begrünung von ungenutzten Bahntrassen mitten im Stadtgebiet vor allem in den Industrieländern."
-],
+    "answers": ["Die räumliche und soziale Aufspaltung einer Stadt in gegensätzliche Teilbereiche.", "Die Zerstörung von Straßenbelägen durch Frost während der Wintermonate unter bestimmten klimatischen Bedingungen.", "Der Zusammenbau von vorgefertigten Häuserelementen aus Beton vor Ort vor allem in den Industrieländern.", "Die Begrünung von ungenutzten Bahntrassen mitten im Stadtgebiet vor allem in den Industrieländern."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1520,16 +1485,11 @@ const questions_k8_erdkunde = [
     "grade": 8,
     "subject": "erdkunde",
     "question": "Was versteht man unter dem 'Treibhauseffekt' der Erde?",
-    "answers": [
-      "Spurengase in der Atmosphäre lassen kurzwellige Sonnenstrahlung durch, halten langwellige Wärmestrahlung aber zurück.",
-      "Künstlich aufgebaute Gewächshäuser erwärmen die kontinentalen Luftmassen im Sommer stark vor allem in den Industrieländern.",
-      "Das Schmelzen der Gletscher führt zu ständigen Dampfwolken über den Meeren vor allem in den Industrieländern.",
-      "Die UV-Strahlung der Sonne wird durch Ozonmoleküle vollständig in Kälte umgewandelt vor allem in den Industrieländern."
-],
+    "answers": ["Spurengase in der Atmosphäre lassen kurzwellige Sonnenstrahlung durch, halten langwellige Wärmestrahlung aber zurück.", "Künstlich aufgebaute Gewächshäuser erwärmen die kontinentalen Luftmassen im Sommer stark vor allem in den Industrieländern.", "Das Schmelzen der Gletscher führt zu ständigen Dampfwolken über den Meeren vor allem in den Industrieländern.", "Die UV-Strahlung der Sonne wird durch Ozonmoleküle vollständig in Kälte umgewandelt vor allem in den Industrieländern."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Treibhausgase ($CO_2$, Methan etc.) wirken wie ein Glasdach: Sie absorbieren die Wärmerückstrahlung der Erde und erwärmen die Atmosphäre."
+    "explanation": "Treibhausgase (CO₂, Methan etc.) wirken wie ein Glasdach: Sie absorbieren die Wärmerückstrahlung der Erde und erwärmen die Atmosphäre."
   },
   {
     "id": "k8_ek_086",
@@ -1555,13 +1515,8 @@ const questions_k8_erdkunde = [
     "area": "schule",
     "grade": 8,
     "subject": "erdkunde",
-    "question": "Welcher Sektor verursacht weltweit erhebliche Methan-Emissionen ($CH_4$)?",
-    "answers": [
-      "Die Viehhaltung (insbesondere Rinder) und der Reisanbau.",
-      "Der Betrieb von elektrischen Eisenbahnen im Fernverkehr.",
-      "Die Nutzung von Solaranlagen auf Hausdächern.",
-      "Der Papier- und Buchdruck in modernen Druckereien."
-    ],
+    "question": "Welcher Sektor verursacht weltweit erhebliche Methan-Emissionen (CH₄)?",
+    "answers": ["Die Viehhaltung (insbesondere Rinder) und der Reisanbau.", "Der Betrieb von elektrischen Eisenbahnen im Fernverkehr.", "Die Nutzung von Solaranlagen auf Hausdächern.", "Der Papier- und Buchdruck in modernen Druckereien."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,

@@ -10,17 +10,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie lautet der mathematische Zusammenhang zwischen Grundwert $G$, Prozentwert $W$ u. Prozentsatz $p\\%$?",
-    "answers": [
-      "Formel: W = G + p / 100",
-      "Formel: W = G * p / 100",
-      "Formel: W = p * 100 / G",
-      "Formel: W = G * 100 / p"
-    ],
+    "question": "Wie lautet der mathematische Zusammenhang zwischen Grundwert G, Prozentwert W u. Prozentsatz p%?",
+    "answers": ["Formel: W = G + p / 100", "Formel: W = G · p / 100", "Formel: W = p · 100 / G", "Formel: W = G · 100 / p"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Prozentwert $W$ berechnet sich durch Multiplikation von Grundwert $G$ mit dem Prozentsatz $p\\% = p/100$."
+    "explanation": "Der Prozentwert W berechnet sich durch Multiplikation von Grundwert G mit dem Prozentsatz p% = p/100."
   },
   {
     "id": "k7_ma_002",
@@ -29,16 +24,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Buch kostet 80 € u. wird um 15 % reduziert. Wie viel Euro beträgt der Rabatt?",
-    "answers": [
-      "Rabatt beträgt: 12,00 €",
-      "Rabatt beträgt: 68,00 €",
-      "Rabatt beträgt: 18,00 €",
-      "Rabatt beträgt: 15,00 €"
-    ],
+    "answers": ["Rabatt beträgt: 12,00 €", "Rabatt beträgt: 68,00 €", "Rabatt beträgt: 18,00 €", "Rabatt beträgt: 15,00 €"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$W = 80\\text{ €} \\cdot 0{,}15 = 12\\text{ €}$ Rabatt."
+    "explanation": "W = 80 € · 0,15 = 12 € Rabatt."
   },
   {
     "id": "k7_ma_003",
@@ -46,17 +36,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Ein Fahrrad kostet nach einer Rabattierung von 20 % genau 400 €. Wie hoch war der ursprüngliche Grundwert $G$?",
-    "answers": [
-      "Grundwert: 480,00 €",
-      "Grundwert: 500,00 €",
-      "Grundwert: 420,00 €",
-      "Grundwert: 520,00 €"
-    ],
+    "question": "Ein Fahrrad kostet nach einer Rabattierung von 20 % genau 400 €. Wie hoch war der ursprüngliche Grundwert G?",
+    "answers": ["Grundwert: 480,00 €", "Grundwert: 500,00 €", "Grundwert: 420,00 €", "Grundwert: 520,00 €"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "400 € entsprechen 80 % (0,8). Grundwert $G = 400 / 0{,}8 = 500\\text{ €}$."
+    "explanation": "400 € entsprechen 80 % (0,8). Grundwert G = 400 / 0,8 = 500 €."
   },
   {
     "id": "k7_ma_004",
@@ -65,16 +50,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "In einer Klasse von 25 Schülern spielen 10 Fußball. Wie viel Prozent der Schüler sind das?",
-    "answers": [
-      "Prozentsatz: 40,0 %",
-      "Prozentsatz: 35,0 %",
-      "Prozentsatz: 25,0 %",
-      "Prozentsatz: 50,0 %"
-    ],
+    "answers": ["Prozentsatz: 40,0 %", "Prozentsatz: 35,0 %", "Prozentsatz: 25,0 %", "Prozentsatz: 50,0 %"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$p\\% = (10 / 25) \\cdot 100\\% = 0{,}40 \\cdot 100\\% = 40\\%$."
+    "explanation": "p% = (10 / 25) · 100% = 0,40 · 100% = 40%."
   },
   {
     "id": "k7_ma_005",
@@ -83,16 +63,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Welchem Dezimalbruch entspricht der Prozentwert von 0,5 % exakt?",
-    "answers": [
-      "Wert: 0,0005 als Bruch",
-      "Wert: 0,500 als Bruch",
-      "Wert: 0,005 als Bruch",
-      "Wert: 0,050 als Bruch"
-    ],
+    "answers": ["Wert: 0,0005 als Bruch", "Wert: 0,500 als Bruch", "Wert: 0,005 als Bruch", "Wert: 0,050 als Bruch"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$0{,}5\\% = 0{,}5 / 100 = 0{,}005$."
+    "explanation": "0,5% = 0,5 / 100 = 0,005."
   },
   {
     "id": "k7_ma_006",
@@ -101,16 +76,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Welchem Bruch in einfachster Form entspricht der Prozentsatz von 35 %?",
-    "answers": [
-      "Gekürzt: 7 / 20",
-      "Gekürzt: 35 / 50",
-      "Gekürzt: 3 / 10",
-      "Gekürzt: 7 / 25"
-    ],
+    "answers": ["Gekürzt: 7 / 20", "Gekürzt: 35 / 50", "Gekürzt: 3 / 10", "Gekürzt: 7 / 25"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$35\\% = 35 / 100 = 7 / 20$ (durch 5 gekürzt)."
+    "explanation": "35% = 35 / 100 = 7 / 20 (durch 5 gekürzt)."
   },
   {
     "id": "k7_ma_007",
@@ -119,16 +89,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Preis von 120 € wird zuerst um 10 % erhöht u. danach der neue Preis um 10 % gesenkt. Wie viel kostet der Artikel?",
-    "answers": [
-      "Endpreis: 116,00 €",
-      "Endpreis: 120,00 €",
-      "Endpreis: 118,80 €",
-      "Endpreis: 121,20 €"
-    ],
+    "answers": ["Endpreis: 116,00 €", "Endpreis: 120,00 €", "Endpreis: 118,80 €", "Endpreis: 121,20 €"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$120 \\cdot 1{,}10 = 132\\text{ €}$. Dann $132 \\cdot 0{,}90 = 118{,}80\\text{ €}$."
+    "explanation": "120 · 1,10 = 132 €. Dann 132 · 0,90 = 118,80 €."
   },
   {
     "id": "k7_ma_008",
@@ -137,16 +102,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie lautet der Multiplikationsfaktor für eine Erhöhung eines Wertes um 4,5 %?",
-    "answers": [
-      "Faktor: 1,450",
-      "Faktor: 0,045",
-      "Faktor: 1,0045",
-      "Faktor: 1,045"
-    ],
+    "answers": ["Faktor: 1,450", "Faktor: 0,045", "Faktor: 1,0045", "Faktor: 1,045"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$100\\% + 4{,}5\\% = 104{,}5\\% = 1{,}045$ als Vervielfachungsfaktor."
+    "explanation": "100% + 4,5% = 104,5% = 1,045 als Vervielfachungsfaktor."
   },
   {
     "id": "k7_ma_009",
@@ -155,16 +115,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie lautet der Multiplikationsfaktor für eine Verminderung eines Wertes um 12 %?",
-    "answers": [
-      "Faktor: 0,880",
-      "Faktor: 0,120",
-      "Faktor: 1,120",
-      "Faktor: 0,820"
-    ],
+    "answers": ["Faktor: 0,880", "Faktor: 0,120", "Faktor: 1,120", "Faktor: 0,820"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$100\\% - 12\\% = 88\\% = 0{,}88$ als Minderungsfaktor."
+    "explanation": "100% - 12% = 88% = 0,88 als Minderungsfaktor."
   },
   {
     "id": "k7_ma_010",
@@ -172,17 +127,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie nennt man in der Zinsrechnung das angelegte Geld, das dem Grundwert $G$ entspricht?",
-    "answers": [
-      "Die Zinsen Z",
-      "Der Zinssatz p%",
-      "Das Kapital K",
-      "Die Zinslaufzeit t"
-    ],
+    "question": "Wie nennt man in der Zinsrechnung das angelegte Geld, das dem Grundwert G entspricht?",
+    "answers": ["Die Zinsen Z", "Der Zinssatz p%", "Das Kapital K", "Die Zinslaufzeit t"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "In der Zinsrechnung entspricht das Kapital $K$ dem Grundwert $G$ der Prozentrechnung."
+    "explanation": "In der Zinsrechnung entspricht das Kapital K dem Grundwert G der Prozentrechnung."
   },
   {
     "id": "k7_ma_011",
@@ -190,17 +140,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie berechnet man die Jahreszinsen $Z$ für ein Kapital $K$ bei einem Zinssatz von $p\\%$?",
-    "answers": [
-      "Formel: Z = K + p / 100",
-      "Formel: Z = K * 100 / p",
-      "Formel: Z = K * p / 100",
-      "Formel: Z = p * 100 / K"
-    ],
+    "question": "Wie berechnet man die Jahreszinsen Z für ein Kapital K bei einem Zinssatz von p%?",
+    "answers": ["Formel: Z = K + p / 100", "Formel: Z = K · 100 / p", "Formel: Z = K · p / 100", "Formel: Z = p · 100 / K"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Jahreszinsen errechnen sich analog zum Prozentwert: $Z = K \\cdot (p / 100)$."
+    "explanation": "Die Jahreszinsen errechnen sich analog zum Prozentwert: Z = K · (p / 100)."
   },
   {
     "id": "k7_ma_012",
@@ -209,16 +154,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Kapital von 2.000 € wird für ein Jahr zu 2,5 % Zinsen angelegt. Wie viel Euro Zinsen bringt das?",
-    "answers": [
-      "Jahreszins: 500,00 €",
-      "Jahreszins: 20,00 €",
-      "Jahreszins: 25,00 €",
-      "Jahreszins: 50,00 €"
-    ],
+    "answers": ["Jahreszins: 500,00 €", "Jahreszins: 20,00 €", "Jahreszins: 25,00 €", "Jahreszins: 50,00 €"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$Z = 2000\\text{ €} \\cdot 0{,}025 = 50\\text{ €}$ Zinsen."
+    "explanation": "Z = 2000 € · 0,025 = 50 € Zinsen."
   },
   {
     "id": "k7_ma_013",
@@ -226,17 +166,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Für ein Kapital von 4.000 € zahlt die Bank nach einem Jahr 120 € Zinsen. Wie hoch ist der Zinssatz $p\\%$?",
-    "answers": [
-      "Zinssatz: 3,5 %",
-      "Zinssatz: 2,5 %",
-      "Zinssatz: 3,0 %",
-      "Zinssatz: 4,0 %"
-    ],
+    "question": "Für ein Kapital von 4.000 € zahlt die Bank nach einem Jahr 120 € Zinsen. Wie hoch ist der Zinssatz p%?",
+    "answers": ["Zinssatz: 3,5 %", "Zinssatz: 2,5 %", "Zinssatz: 3,0 %", "Zinssatz: 4,0 %"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$p\\% = (120 / 4000) \\cdot 100\\% = 0{,}03 \\cdot 100\\% = 3{,}0\\%$."
+    "explanation": "p% = (120 / 4000) · 100% = 0,03 · 100% = 3,0%."
   },
   {
     "id": "k7_ma_014",
@@ -262,17 +197,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie berechnet man die Tageszinsen $Z_t$ für $t$ Tage im kaufmännischen Jahr?",
-    "answers": [
-      "Formel: Zt = Z * t / 365",
-      "Formel: Zt = Z * t / 360",
-      "Formel: Zt = Z + t / 360",
-      "Formel: Zt = Z * 360 / t"
-    ],
+    "question": "Wie berechnet man die Tageszinsen Zt für t Tage im kaufmännischen Jahr?",
+    "answers": ["Formel: Zt = Z · t / 365", "Formel: Zt = Z · t / 360", "Formel: Zt = Z + t / 360", "Formel: Zt = Z · 360 / t"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Tageszinsen entsprechen den Jahreszinsen gewichtet mit der Tagesanzahl: $Z_t = Z \\cdot (t / 360)$."
+    "explanation": "Tageszinsen entsprechen den Jahreszinsen gewichtet mit der Tagesanzahl: Zt = Z · (t / 360)."
   },
   {
     "id": "k7_ma_016",
@@ -281,16 +211,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Guthaben von 6.000 € wird für 90 Tage zu 4 % Jahreszins angelegt. Wie viel Zinsen ergeben sich?",
-    "answers": [
-      "Tageszins: 240,00 €",
-      "Tageszins: 80,00 €",
-      "Tageszins: 120,00 €",
-      "Tageszins: 60,00 €"
-    ],
+    "answers": ["Tageszins: 240,00 €", "Tageszins: 80,00 €", "Tageszins: 120,00 €", "Tageszins: 60,00 €"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Jahreszins $Z = 6000 \\cdot 0{,}04 = 240\\text{ €}$. Für 90 Tage: $240 \\cdot (90 / 360) = 60\\text{ €}$."
+    "explanation": "Jahreszins Z = 6000 · 0,04 = 240 €. Für 90 Tage: 240 · (90 / 360) = 60 €."
   },
   {
     "id": "k7_ma_017",
@@ -317,16 +242,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Betrag steigt von 80 € auf 100 €. Um wie viel Prozent hat sich der Betrag erhöht?",
-    "answers": [
-      "Steigerung: 15,0 %",
-      "Steigerung: 20,0 %",
-      "Steigerung: 30,0 %",
-      "Steigerung: 25,0 %"
-    ],
+    "answers": ["Steigerung: 15,0 %", "Steigerung: 20,0 %", "Steigerung: 30,0 %", "Steigerung: 25,0 %"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Zunahme $= 20\\text{ €}$. Bezogen auf den Grundwert $80\\text{ €}$: $(20 / 80) \\cdot 100\\% = 25\\%$."
+    "explanation": "Zunahme = 20 €. Bezogen auf den Grundwert 80 €: (20 / 80) · 100% = 25%."
   },
   {
     "id": "k7_ma_019",
@@ -335,16 +255,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Preis sinkt von 150 € auf 120 €. Um wie viel Prozent wurde der Preis verringert?",
-    "answers": [
-      "Senkung um: 25,0 %",
-      "Senkung um: 30,0 %",
-      "Senkung um: 20,0 %",
-      "Senkung um: 15,0 %"
-    ],
+    "answers": ["Senkung um: 25,0 %", "Senkung um: 30,0 %", "Senkung um: 20,0 %", "Senkung um: 15,0 %"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Abnahme $= 30\\text{ €}$. Bezogen auf den Ausgangswert $150\\text{ €}$: $(30 / 150) \\cdot 100\\% = 20\\%$."
+    "explanation": "Abnahme = 30 €. Bezogen auf den Ausgangswert 150 €: (30 / 150) · 100% = 20%."
   },
   {
     "id": "k7_ma_020",
@@ -353,16 +268,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Bruttopreis enthält 19 % Mehrwertsteuer u. beträgt 119 €. Wie viel Euro beträgt die reine Steuer?",
-    "answers": [
-      "Steuerbetrag: 22,61 €",
-      "Steuerbetrag: 19,00 €",
-      "Steuerbetrag: 15,00 €",
-      "Steuerbetrag: 20,00 €"
-    ],
+    "answers": ["Steuerbetrag: 22,61 €", "Steuerbetrag: 19,00 €", "Steuerbetrag: 15,00 €", "Steuerbetrag: 20,00 €"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Brutto entspricht 119 % ($1{,}19$). Nettowert $= 119 / 1{,}19 = 100\\text{ €}$. Steuer $= 19\\text{ €}$."
+    "explanation": "Brutto entspricht 119 % (1,19). Nettowert = 119 / 1,19 = 100 €. Steuer = 19 €."
   },
   {
     "id": "k7_ma_021",
@@ -370,17 +280,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Was beschreibt ein Promillewert (Symbol $\\text{‰}$) mathematisch?",
-    "answers": [
-      "Zwei von Tausend (2/1000)",
-      "Eins von Zehn (1/10)",
-      "Eins von Tausend (1/1000)",
-      "Eins von Hundert (1/100)"
-    ],
+    "question": "Was beschreibt ein Promillewert (Symbol ‰) mathematisch?",
+    "answers": ["Zwei von Tausend (2/1000)", "Eins von Zehn (1/10)", "Eins von Tausend (1/1000)", "Eins von Hundert (1/100)"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Promille bedeutet 'pro tausend' ($1\\text{‰} = 1 / 1000 = 0{,}001$)."
+    "explanation": "Promille bedeutet 'pro tausend' (1‰ = 1 / 1000 = 0,001)."
   },
   {
     "id": "k7_ma_022",
@@ -389,16 +294,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie viel Euro sind 3 ‰ von einer Gesamtsumme von 50.000 €?",
-    "answers": [
-      "Promillewert: 1.500,00 €",
-      "Promillewert: 50,00 €",
-      "Promillewert: 150,00 €",
-      "Promillewert: 15,00 €"
-    ],
+    "answers": ["Promillewert: 1.500,00 €", "Promillewert: 50,00 €", "Promillewert: 150,00 €", "Promillewert: 15,00 €"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$50.000 \\cdot (3 / 1000) = 50.000 \\cdot 0{,}003 = 150\\text{ €}$."
+    "explanation": "50.000 · (3 / 1000) = 50.000 · 0,003 = 150 €."
   },
   {
     "id": "k7_ma_023",
@@ -407,16 +307,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Händler gewährt bei Barzahlung 2 % Skonto auf eine Rechnung von 450 €. Wie viel zahlt der Kunde?",
-    "answers": [
-      "Zahlbetrag: 448,00 €",
-      "Zahlbetrag: 440,00 €",
-      "Zahlbetrag: 441,00 €",
-      "Zahlbetrag: 432,00 €"
-    ],
+    "answers": ["Zahlbetrag: 448,00 €", "Zahlbetrag: 440,00 €", "Zahlbetrag: 441,00 €", "Zahlbetrag: 432,00 €"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Skonto $= 450 \\cdot 0{,}02 = 9\\text{ €}$. Zahlbetrag $= 450 - 9 = 441\\text{ €}$."
+    "explanation": "Skonto = 450 · 0,02 = 9 €. Zahlbetrag = 450 - 9 = 441 €."
   },
   {
     "id": "k7_ma_024",
@@ -424,17 +319,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie lautet die umgestellte Formel zur Berechnung des Grundwerts $G$, wenn $W$ u. $p\\%$ bekannt sind?",
-    "answers": [
-      "Formel: G = p * 100 / W",
-      "Formel: G = W / (100 * p)",
-      "Formel: G = W * 100 / p",
-      "Formel: G = W * p / 100"
-    ],
+    "question": "Wie lautet die umgestellte Formel zur Berechnung des Grundwerts G, wenn W u. p% bekannt sind?",
+    "answers": ["Formel: G = p · 100 / W", "Formel: G = W / (100 · p)", "Formel: G = W · 100 / p", "Formel: G = W · p / 100"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Aus $W = G \\cdot (p / 100)$ folgt durch Umstellung $G = (W \\cdot 100) / p$."
+    "explanation": "Aus W = G · (p / 100) folgt durch Umstellung G = (W · 100) / p."
   },
   {
     "id": "k7_ma_025",
@@ -443,16 +333,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Auf einem Konto liegen 10.000 € Guthaben. Der Überziehungszins (Dispo) beträgt 9 % pro Jahr. Wie viel Zinsen kosten 30 Tage?",
-    "answers": [
-      "Dispozinsen: 900,00 €",
-      "Dispozinsen: 90,00 €",
-      "Dispozinsen: 75,00 €",
-      "Dispozinsen: 150,00 €"
-    ],
+    "answers": ["Dispozinsen: 900,00 €", "Dispozinsen: 90,00 €", "Dispozinsen: 75,00 €", "Dispozinsen: 150,00 €"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Jahreszins $= 10.000 \\cdot 0{,}09 = 900\\text{ €}$. Für 30 Tage: $900 \\cdot (30 / 360) = 75\\text{ €}$."
+    "explanation": "Jahreszins = 10.000 · 0,09 = 900 €. Für 30 Tage: 900 · (30 / 360) = 75 €."
   },
 
   // --- ZUORDNUNGEN, DREISATZ & PROPORTIONALITÄT (026 - 050) ---
@@ -481,12 +366,7 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Was kennzeichnet eine antiproportionale (umgekehrt proportionale) Zuordnung?",
-    "answers": [
-      "Produkt X * Y sinkt konstant",
-      "Quotient Y / X ist konstant",
-      "Verdopplung X -> Halb Y",
-      "Verdopplung X -> Doppel Y"
-    ],
+    "answers": ["Produkt X · Y sinkt konstant", "Quotient Y / X ist konstant", "Verdopplung X -> Halb Y", "Verdopplung X -> Doppel Y"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -498,17 +378,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Welche rechnerische Eigenschaft besitzen alle Wertepaare $(x, y)$ einer proportionalen Zuordnung?",
-    "answers": [
-      "Summe x + y ist konstant",
-      "Produkt x * y ist konstant",
-      "Quotient y / x konstant",
-      "Differenz y - x konstant"
-    ],
+    "question": "Welche rechnerische Eigenschaft besitzen alle Wertepaare (x, y) einer proportionalen Zuordnung?",
+    "answers": ["Summe x + y ist konstant", "Produkt x · y ist konstant", "Quotient y / x konstant", "Differenz y - x konstant"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Proportionale Zuordnungen sind quotientengleich ($y / x = k$ = Proportionalitätsfaktor)."
+    "explanation": "Proportionale Zuordnungen sind quotientengleich (y / x = k = Proportionalitätsfaktor)."
   },
   {
     "id": "k7_ma_029",
@@ -516,17 +391,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Welche rechnerische Eigenschaft besitzen alle Wertepaare $(x, y)$ einer antiproportionalen Zuordnung?",
-    "answers": [
-      "Summe x + y ist konstant",
-      "Produkt x * y konstant",
-      "Quotient y / x ist konstant",
-      "Differenz x - y konstant"
-    ],
+    "question": "Welche rechnerische Eigenschaft besitzen alle Wertepaare (x, y) einer antiproportionalen Zuordnung?",
+    "answers": ["Summe x + y ist konstant", "Produkt x · y konstant", "Quotient y / x ist konstant", "Differenz x - y konstant"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Antiproportionale Zuordnungen sind produktgleich ($x \\cdot y = c$ = Gesamtgröße)."
+    "explanation": "Antiproportionale Zuordnungen sind produktgleich (x · y = c = Gesamtgröße)."
   },
   {
     "id": "k7_ma_030",
@@ -535,16 +405,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie verläuft der Graph einer proportionalen Zuordnung im Koordinatensystem?",
-    "answers": [
-      "Fallende Gerade ohne Ursprung",
-      "Hyperbel im Quadranten",
-      "Waagerechte X-Parallele",
-      "Ursprungsgerade durch O"
-    ],
+    "answers": ["Fallende Gerade ohne Ursprung", "Hyperbel im Quadranten", "Waagerechte X-Parallele", "Ursprungsgerade durch O"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Graph einer proportionalen Zuordnung ist eine Gerade, die durch den Koordinatenursprung $(0|0)$ verläuft."
+    "explanation": "Der Graph einer proportionalen Zuordnung ist eine Gerade, die durch den Koordinatenursprung (0|0) verläuft."
   },
   {
     "id": "k7_ma_031",
@@ -571,16 +436,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "5 kg Äpfel kosten 12,50 €. Wie viel Euro kosten 8 kg derselben Äpfel?",
-    "answers": [
-      "Kosten betragen: 22,50 €",
-      "Kosten betragen: 20,00 €",
-      "Kosten betragen: 18,00 €",
-      "Kosten betragen: 16,00 €"
-    ],
+    "answers": ["Kosten betragen: 22,50 €", "Kosten betragen: 20,00 €", "Kosten betragen: 18,00 €", "Kosten betragen: 16,00 €"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Dreisatz proportional: $1\\text{ kg} = 12{,}50 / 5 = 2{,}50\\text{ €}$. Für $8\\text{ kg}: 8 \\cdot 2{,}50 = 20{,}00\\text{ €}$."
+    "explanation": "Dreisatz proportional: 1 kg = 12,50 / 5 = 2,50 €. Für 8 kg: 8 · 2,50 = 20,00 €."
   },
   {
     "id": "k7_ma_033",
@@ -589,16 +449,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "4 Arbeiter benötigen für eine Aufgabe 6 Stunden. Wie viele Stunden brauchen 3 Arbeiter bei gleicher Leistung?",
-    "answers": [
-      "Zeitbedarf: 9 Stunden",
-      "Zeitbedarf: 7 Stunden",
-      "Zeitbedarf: 4,5 Stunden",
-      "Zeitbedarf: 8 Stunden"
-    ],
+    "answers": ["Zeitbedarf: 9 Stunden", "Zeitbedarf: 7 Stunden", "Zeitbedarf: 4,5 Stunden", "Zeitbedarf: 8 Stunden"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Dreisatz antiproportional: Gesamtaufwand $= 4 \\cdot 6 = 24$ Arbeiterstunden. Für 3 Arbeiter: $24 / 3 = 8\\text{ Stunden}$."
+    "explanation": "Dreisatz antiproportional: Gesamtaufwand = 4 · 6 = 24 Arbeiterstunden. Für 3 Arbeiter: 24 / 3 = 8 Stunden."
   },
   {
     "id": "k7_ma_034",
@@ -606,17 +461,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Ein Lkw fährt mit $60\\text{ km/h}$ u. benötigt 4 Stunden. Wie schnell muss er fahren, um die Strecke in 3 Stunden zu schaffen?",
-    "answers": [
-      "Geschwindigkeit: 80 km/h",
-      "Geschwindigkeit: 70 km/h",
-      "Geschwindigkeit: 75 km/h",
-      "Geschwindigkeit: 90 km/h"
-    ],
+    "question": "Ein Lkw fährt mit 60 km/h u. benötigt 4 Stunden. Wie schnell muss er fahren, um die Strecke in 3 Stunden zu schaffen?",
+    "answers": ["Geschwindigkeit: 80 km/h", "Geschwindigkeit: 70 km/h", "Geschwindigkeit: 75 km/h", "Geschwindigkeit: 90 km/h"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Strecke $= 60 \\cdot 4 = 240\\text{ km}$. Für 3 Stunden Dauer: $v = 240 / 3 = 80\\text{ km/h}$."
+    "explanation": "Strecke = 60 · 4 = 240 km. Für 3 Stunden Dauer: v = 240 / 3 = 80 km/h."
   },
   {
     "id": "k7_ma_035",
@@ -624,17 +474,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie lautet die allgemeine Funktionsgleichung einer proportionalen Zuordnung mit der Steigung $m$?",
-    "answers": [
-      "Gleichung: y = m / x",
-      "Gleichung: y = x^m",
-      "Gleichung: y = m * x",
-      "Gleichung: y = m + x"
-    ],
+    "question": "Wie lautet die allgemeine Funktionsgleichung einer proportionalen Zuordnung mit der Steigung m?",
+    "answers": ["Gleichung: y = m / x", "Gleichung: y = xᵐ", "Gleichung: y = m · x", "Gleichung: y = m + x"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Eine proportionale Zuordnung hat stets die Form $y = m \\cdot x$ ohne Achsenabschnitt."
+    "explanation": "Eine proportionale Zuordnung hat stets die Form y = m · x ohne Achsenabschnitt."
   },
   {
     "id": "k7_ma_036",
@@ -642,17 +487,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie lautet die allgemeine Funktionsgleichung einer antiproportionalen Zuordnung mit der Konstanten $c$?",
-    "answers": [
-      "Gleichung: y = c * x",
-      "Gleichung: y = x / c",
-      "Gleichung: y = c / x",
-      "Gleichung: y = c - x"
-    ],
+    "question": "Wie lautet die allgemeine Funktionsgleichung einer antiproportionalen Zuordnung mit der Konstanten c?",
+    "answers": ["Gleichung: y = c · x", "Gleichung: y = x / c", "Gleichung: y = c / x", "Gleichung: y = c - x"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Aus der Produktgleichheit $x \\cdot y = c$ folgt umgestellt $y = c / x$."
+    "explanation": "Aus der Produktgleichheit x · y = c folgt umgestellt y = c / x."
   },
   {
     "id": "k7_ma_037",
@@ -661,16 +501,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Welche Zuordnung liegt vor: 'Geschwindigkeit eines Autos zu dessen Bremsweg'?",
-    "answers": [
-      "Antiproportionale Zuordnung",
-      "Weder prop. noch antiprop.",
-      "Konstante Zuordnung stets",
-      "Rein proportionale Zuord."
-    ],
+    "answers": ["Antiproportionale Zuordnung", "Weder prop. noch antiprop.", "Konstante Zuordnung stets", "Rein proportionale Zuord."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Bremsweg wächst quadratisch mit der Geschwindigkeit ($s \\sim v^2$), ist also weder proportional noch antiproportional."
+    "explanation": "Der Bremsweg wächst quadratisch mit der Geschwindigkeit (s ~ v²), ist also weder proportional noch antiproportional."
   },
   {
     "id": "k7_ma_038",
@@ -697,16 +532,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Aus einem Rohr fließen pro Minute 15 Liter Wasser. Nach wie vielen Minuten ist ein 450-Liter-Becken voll?",
-    "answers": [
-      "Dauer: 35 Minuten",
-      "Dauer: 30 Minuten",
-      "Dauer: 40 Minuten",
-      "Dauer: 25 Minuten"
-    ],
+    "answers": ["Dauer: 35 Minuten", "Dauer: 30 Minuten", "Dauer: 40 Minuten", "Dauer: 25 Minuten"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Proportionale Zuordnung: $t = 450 / 15 = 30\\text{ Minuten}$."
+    "explanation": "Proportionale Zuordnung: t = 450 / 15 = 30 Minuten."
   },
   {
     "id": "k7_ma_040",
@@ -715,16 +545,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Futtervorrat reicht für 12 Kühe exakt 20 Tage. Wie lange reicht derselbe Vorrat für 15 Kühe?",
-    "answers": [
-      "Dauer: 25 Tage",
-      "Dauer: 16 Tage",
-      "Dauer: 18 Tage",
-      "Dauer: 15 Tage"
-    ],
+    "answers": ["Dauer: 25 Tage", "Dauer: 16 Tage", "Dauer: 18 Tage", "Dauer: 15 Tage"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Gesamtration $= 12 \\cdot 20 = 240$ Tagesrationen. Für 15 Kühe: $240 / 15 = 16\\text{ Tage}$."
+    "explanation": "Gesamtration = 12 · 20 = 240 Tagesrationen. Für 15 Kühe: 240 / 15 = 16 Tage."
   },
   {
     "id": "k7_ma_041",
@@ -732,17 +557,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Der Proportionalitätsfaktor einer Zuordnung $y = m \\cdot x$ beträgt $m = 3{,}5$. Welcher Wert $y$ gehört zu $x = 6$?",
-    "answers": [
-      "Wert y beträgt: 21",
-      "Wert y beträgt: 18",
-      "Wert y beträgt: 24",
-      "Wert y beträgt: 20"
-    ],
+    "question": "Der Proportionalitätsfaktor einer Zuordnung y = m · x beträgt m = 3,5. Welcher Wert y gehört zu x = 6?",
+    "answers": ["Wert y beträgt: 21", "Wert y beträgt: 18", "Wert y beträgt: 24", "Wert y beträgt: 20"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$y = 3{,}5 \\cdot 6 = 21$."
+    "explanation": "y = 3,5 · 6 = 21."
   },
   {
     "id": "k7_ma_042",
@@ -750,17 +570,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Gegeben ist die antiproportionale Zuordnung $y = 48 / x$. Welcher Wert $x$ gehört zu $y = 12$?",
-    "answers": [
-      "Wert x beträgt: 4",
-      "Wert x beträgt: 6",
-      "Wert x beträgt: 3",
-      "Wert x beträgt: 8"
-    ],
+    "question": "Gegeben ist die antiproportionale Zuordnung y = 48 / x. Welcher Wert x gehört zu y = 12?",
+    "answers": ["Wert x beträgt: 4", "Wert x beträgt: 6", "Wert x beträgt: 3", "Wert x beträgt: 8"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$12 = 48 / x \\implies x = 48 / 12 = 4$."
+    "explanation": "12 = 48 / x ⇒ x = 48 / 12 = 4."
   },
   {
     "id": "k7_ma_043",
@@ -768,17 +583,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Was versteht man unter dem Maßstab $1 : 25.000$ auf einer Landkarte?",
-    "answers": [
-      "1 cm Karte = 2,5 km Natur",
-      "1 cm Karte = 25 m Natur",
-      "1 cm Karte = 250 km Natur",
-      "1 cm Karte = 250 m Natur"
-    ],
+    "question": "Was versteht man unter dem Maßstab 1 : 25.000 auf einer Landkarte?",
+    "answers": ["1 cm Karte = 2,5 km Natur", "1 cm Karte = 25 m Natur", "1 cm Karte = 250 km Natur", "1 cm Karte = 250 m Natur"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$1\\text{ cm} = 25.000\\text{ cm} = 250\\text{ m}$ in der Realität."
+    "explanation": "1 cm = 25.000 cm = 250 m in der Realität."
   },
   {
     "id": "k7_ma_044",
@@ -786,17 +596,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Eine Strecke misst auf einer Karte im Maßstab $1 : 50.000$ genau $6\\text{ cm}$. Wie lang ist sie in der Natur?",
-    "answers": [
-      "Länge in Natur: 30 km",
-      "Länge in Natur: 15 km",
-      "Länge in Natur: 3 km",
-      "Länge in Natur: 300 m"
-    ],
+    "question": "Eine Strecke misst auf einer Karte im Maßstab 1 : 50.000 genau 6 cm. Wie lang ist sie in der Natur?",
+    "answers": ["Länge in Natur: 30 km", "Länge in Natur: 15 km", "Länge in Natur: 3 km", "Länge in Natur: 300 m"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$6\\text{ cm} \\cdot 50.000 = 300.000\\text{ cm} = 3.000\\text{ m} = 3\\text{ km}$."
+    "explanation": "6 cm · 50.000 = 300.000 cm = 3.000 m = 3 km."
   },
   {
     "id": "k7_ma_045",
@@ -805,16 +610,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "3 Bagger heben eine Baugrube in 10 Stunden aus. Wie lange brauchen 5 Bagger gleicher Leistung?",
-    "answers": [
-      "Zeitbedarf: 16 Stunden",
-      "Zeitbedarf: 4 Stunden",
-      "Zeitbedarf: 6 Stunden",
-      "Zeitbedarf: 8 Stunden"
-    ],
+    "answers": ["Zeitbedarf: 16 Stunden", "Zeitbedarf: 4 Stunden", "Zeitbedarf: 6 Stunden", "Zeitbedarf: 8 Stunden"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Antiproportional: Gesamtstunden $= 3 \\cdot 10 = 30$. Für 5 Bagger: $30 / 5 = 6\\text{ Stunden}$."
+    "explanation": "Antiproportional: Gesamtstunden = 3 · 10 = 30. Für 5 Bagger: 30 / 5 = 6 Stunden."
   },
   {
     "id": "k7_ma_046",
@@ -822,17 +622,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Für $250\\text{ g}$ Käse zahlt man 3,75 €. Wie viel kosten $400\\text{ g}$ desselben Käses?",
-    "answers": [
-      "Preis beträgt: 5,50 €",
-      "Preis beträgt: 5,00 €",
-      "Preis beträgt: 6,00 €",
-      "Preis beträgt: 6,25 €"
-    ],
+    "question": "Für 250 g Käse zahlt man 3,75 €. Wie viel kosten 400 g desselben Käses?",
+    "answers": ["Preis beträgt: 5,50 €", "Preis beträgt: 5,00 €", "Preis beträgt: 6,00 €", "Preis beträgt: 6,25 €"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$100\\text{ g} = 3{,}75 / 2{,}5 = 1{,}50\\text{ €}$. Für $400\\text{ g}: 4 \\cdot 1{,}50 = 6{,}00\\text{ €}$."
+    "explanation": "100 g = 3,75 / 2,5 = 1,50 €. Für 400 g: 4 · 1,50 = 6,00 €."
   },
   {
     "id": "k7_ma_047",
@@ -840,17 +635,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Was beschreibt der Begriff 'Quotientengleichheit' bei Tabellenwerten $(x, y)$?",
-    "answers": [
-      "y - x für alle gleich",
-      "x + y für alle gleich",
-      "y / x für alle gleich",
-      "x * y für alle gleich"
-    ],
+    "question": "Was beschreibt der Begriff 'Quotientengleichheit' bei Tabellenwerten (x, y)?",
+    "answers": ["y - x für alle gleich", "x + y für alle gleich", "y / x für alle gleich", "x · y für alle gleich"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Liefert die Division $y / x$ für jedes Wertepaar denselben Wert $k$, ist die Zuordnung proportional."
+    "explanation": "Liefert die Division y / x für jedes Wertepaar denselben Wert k, ist die Zuordnung proportional."
   },
   {
     "id": "k7_ma_048",
@@ -858,17 +648,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Was beschreibt der Begriff 'Produktgleichheit' bei Tabellenwerten $(x, y)$?",
-    "answers": [
-      "x * y für alle gleich",
-      "x - y für alle gleich",
-      "y / x für alle gleich",
-      "x + y für alle gleich"
-    ],
+    "question": "Was beschreibt der Begriff 'Produktgleichheit' bei Tabellenwerten (x, y)?",
+    "answers": ["x · y für alle gleich", "x - y für alle gleich", "y / x für alle gleich", "x + y für alle gleich"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Liefert die Multiplikation $x \\cdot y$ für jedes Wertepaar das gleiche Produkt $c$, liegt Antiproportionalität vor."
+    "explanation": "Liefert die Multiplikation x · y für jedes Wertepaar das gleiche Produkt c, liegt Antiproportionalität vor."
   },
   {
     "id": "k7_ma_049",
@@ -876,17 +661,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie ändert sich der Flächeninhalt eines Quadrat, wenn man die Seitenlänge $a$ verdoppelt?",
-    "answers": [
-      "Verdreifachung Fläche",
-      "Vierfachung der Fläche",
-      "Verdopplung der Fläche",
-      "Achtfachung der Fläche"
-    ],
+    "question": "Wie ändert sich der Flächeninhalt eines Quadrat, wenn man die Seitenlänge a verdoppelt?",
+    "answers": ["Verdreifachung Fläche", "Vierfachung der Fläche", "Verdopplung der Fläche", "Achtfachung der Fläche"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$A = a^2$. Bei $2a$ wird der Flächeninhalt $A' = (2a)^2 = 4a^2$ (Vervierfachung)."
+    "explanation": "A = a². Bei 2a wird der Flächeninhalt A' = (2a)² = 4a² (Vervierfachung)."
   },
   {
     "id": "k7_ma_050",
@@ -894,17 +674,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Beim dreifachen Dreisatz arbeiten 4 Arbeiter an 5 Tagen je 8 Stunden. Was berechnet das Produkt $4 \\cdot 5 \\cdot 8$?",
-    "answers": [
-      "Anzahl der Pausen",
-      "Leistung pro Minute",
-      "Gesamte Arbeitsstunden",
-      "Stundenlohn der Arbeiter"
-    ],
+    "question": "Beim dreifachen Dreisatz arbeiten 4 Arbeiter an 5 Tagen je 8 Stunden. Was berechnet das Produkt 4 · 5 · 8?",
+    "answers": ["Anzahl der Pausen", "Leistung pro Minute", "Gesamte Arbeitsstunden", "Stundenlohn der Arbeiter"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das Produkt ergibt die insgesamt aufgewendeten Personenstunden ($160$ Arbeitsstunden)."
+    "explanation": "Das Produkt ergibt die insgesamt aufgewendeten Personenstunden (160 Arbeitsstunden)."
   },
 
   // --- TERME, GLEICHUNGEN & UMFORMUNGEN (051 - 075) ---
@@ -914,17 +689,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Vereinfache den Term $3x + 5y - 7x + 2y$ so weit wie möglich.",
-    "answers": [
-      "Term lautet: 4x + 7y",
-      "Term lautet: -4x - 7y",
-      "Term lautet: -4x + 7y",
-      "Term lautet: 10x - 3y"
-    ],
+    "question": "Vereinfache den Term 3x + 5y - 7x + 2y so weit wie möglich.",
+    "answers": ["Term lautet: 4x + 7y", "Term lautet: -4x - 7y", "Term lautet: -4x + 7y", "Term lautet: 10x - 3y"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Gleichartige Glieder zusammenfassen: $(3x - 7x) + (5y + 2y) = -4x + 7y$."
+    "explanation": "Gleichartige Glieder zusammenfassen: (3x - 7x) + (5y + 2y) = -4x + 7y."
   },
   {
     "id": "k7_ma_052",
@@ -932,17 +702,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Multipliziere das Produkt u. vereinfache den Term: $4 \\cdot (2a - 3b)$.",
-    "answers": [
-      "Ergebnis: 8a - 3b",
-      "Ergebnis: 6a - 7b",
-      "Ergebnis: 8a + 12b",
-      "Ergebnis: 8a - 12b"
-    ],
+    "question": "Multipliziere das Produkt u. vereinfache den Term: 4 · (2a - 3b).",
+    "answers": ["Ergebnis: 8a - 3b", "Ergebnis: 6a - 7b", "Ergebnis: 8a + 12b", "Ergebnis: 8a - 12b"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Distributivgesetz anwenden: $4 \\cdot 2a - 4 \\cdot 3b = 8a - 12b$."
+    "explanation": "Distributivgesetz anwenden: 4 · 2a - 4 · 3b = 8a - 12b."
   },
   {
     "id": "k7_ma_053",
@@ -950,17 +715,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Klammere den größtmöglichen gemeinsamen Faktor im Term $12x + 18y$ aus.",
-    "answers": [
-      "Ausgeklammert: 6(2x + 3y)",
-      "Ausgeklammert: 3(4x + 6y)",
-      "Ausgeklammert: 2(6x + 9y)",
-      "Ausgeklammert: 12(x + 1,5y)"
-    ],
+    "question": "Klammere den größtmöglichen gemeinsamen Faktor im Term 12x + 18y aus.",
+    "answers": ["Ausgeklammert: 6(2x + 3y)", "Ausgeklammert: 3(4x + 6y)", "Ausgeklammert: 2(6x + 9y)", "Ausgeklammert: 12(x + 1,5y)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der ggT von 12 u. 18 ist 6. Also $12x + 18y = 6 \\cdot (2x + 3y)$."
+    "explanation": "Der ggT von 12 u. 18 ist 6. Also 12x + 18y = 6 · (2x + 3y)."
   },
   {
     "id": "k7_ma_054",
@@ -968,17 +728,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Multipliziere die beiden Klammerausdrücke aus: $(x + 3) \\cdot (y - 4)$.",
-    "answers": [
-      "Ergebnis: xy - 4x - 12",
-      "Ergebnis: xy + 4x - 3y - 12",
-      "Ergebnis: xy - 4x + 3y - 12",
-      "Ergebnis: xy + 3y - 12"
-    ],
+    "question": "Multipliziere die beiden Klammerausdrücke aus: (x + 3) · (y - 4).",
+    "answers": ["Ergebnis: xy - 4x - 12", "Ergebnis: xy + 4x - 3y - 12", "Ergebnis: xy - 4x + 3y - 12", "Ergebnis: xy + 3y - 12"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Jedes Glied der ersten Klammer mit jedem der zweiten multiplizieren: $x \\cdot y - 4x + 3y - 12$."
+    "explanation": "Jedes Glied der ersten Klammer mit jedem der zweiten multiplizieren: x · y - 4x + 3y - 12."
   },
   {
     "id": "k7_ma_055",
@@ -986,17 +741,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Löse die lineare Gleichung nach $x$ auf: $5x - 8 = 22$.",
-    "answers": [
-      "Lösung: x = 4",
-      "Lösung: x = 6",
-      "Lösung: x = 7",
-      "Lösung: x = 5"
-    ],
+    "question": "Löse die lineare Gleichung nach x auf: 5x - 8 = 22.",
+    "answers": ["Lösung: x = 4", "Lösung: x = 6", "Lösung: x = 7", "Lösung: x = 5"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$5x - 8 = 22 \\implies 5x = 30 \\implies x = 6$."
+    "explanation": "5x - 8 = 22 ⇒ 5x = 30 ⇒ x = 6."
   },
   {
     "id": "k7_ma_056",
@@ -1004,17 +754,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Löse die lineare Gleichung nach $x$ auf: $3x + 14 = 7x - 6$.",
-    "answers": [
-      "Lösung: x = 6",
-      "Lösung: x = 4",
-      "Lösung: x = 5",
-      "Lösung: x = 2"
-    ],
+    "question": "Löse die lineare Gleichung nach x auf: 3x + 14 = 7x - 6.",
+    "answers": ["Lösung: x = 6", "Lösung: x = 4", "Lösung: x = 5", "Lösung: x = 2"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$3x + 14 = 7x - 6 \\implies 20 = 4x \\implies x = 5$."
+    "explanation": "3x + 14 = 7x - 6 ⇒ 20 = 4x ⇒ x = 5."
   },
   {
     "id": "k7_ma_057",
@@ -1022,17 +767,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Löse die Gleichung mit Klammerausdruck: $2 \\cdot (3x - 4) = 16$.",
-    "answers": [
-      "Lösung: x = 6",
-      "Lösung: x = 5",
-      "Lösung: x = 4",
-      "Lösung: x = 3"
-    ],
+    "question": "Löse die Gleichung mit Klammerausdruck: 2 · (3x - 4) = 16.",
+    "answers": ["Lösung: x = 6", "Lösung: x = 5", "Lösung: x = 4", "Lösung: x = 3"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$6x - 8 = 16 \\implies 6x = 24 \\implies x = 4$."
+    "explanation": "6x - 8 = 16 ⇒ 6x = 24 ⇒ x = 4."
   },
   {
     "id": "k7_ma_058",
@@ -1059,16 +799,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Welche der folgenden Operationen ist KEINE allgemeine Äquivalenzumformung?",
-    "answers": [
-      "Subtraktion des Terms",
-      "Addition einer Zahl",
-      "Multiplikation mit 0",
-      "Division durch 4"
-    ],
+    "answers": ["Subtraktion des Terms", "Addition einer Zahl", "Multiplikation mit 0", "Division durch 4"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Multiplikation einer Gleichung mit $0$ vernichtet Informationen u. ist keine Äquivalenzumformung."
+    "explanation": "Die Multiplikation einer Gleichung mit 0 vernichtet Informationen u. ist keine Äquivalenzumformung."
   },
   {
     "id": "k7_ma_060",
@@ -1076,17 +811,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Löse die Bruchgleichung nach $x$ auf: $x / 4 = 9 / 12$.",
-    "answers": [
-      "Lösung: x = 2",
-      "Lösung: x = 4",
-      "Lösung: x = 6",
-      "Lösung: x = 3"
-    ],
+    "question": "Löse die Bruchgleichung nach x auf: x / 4 = 9 / 12.",
+    "answers": ["Lösung: x = 2", "Lösung: x = 4", "Lösung: x = 6", "Lösung: x = 3"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$x / 4 = 3 / 4 \\implies x = 3$."
+    "explanation": "x / 4 = 3 / 4 ⇒ x = 3."
   },
   {
     "id": "k7_ma_061",
@@ -1094,17 +824,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Die Summe aus einer Zahl $x$ u. ihrem Dreifachen beträgt 48. Wie lautet die Zahl?",
-    "answers": [
-      "Zahl beträgt: 14",
-      "Zahl beträgt: 10",
-      "Zahl beträgt: 16",
-      "Zahl beträgt: 12"
-    ],
+    "question": "Die Summe aus einer Zahl x u. ihrem Dreifachen beträgt 48. Wie lautet die Zahl?",
+    "answers": ["Zahl beträgt: 14", "Zahl beträgt: 10", "Zahl beträgt: 16", "Zahl beträgt: 12"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Gleichung: $x + 3x = 48 \\implies 4x = 48 \\implies x = 12$."
+    "explanation": "Gleichung: x + 3x = 48 ⇒ 4x = 48 ⇒ x = 12."
   },
   {
     "id": "k7_ma_062",
@@ -1113,16 +838,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Vater ist 3-mal so alt wie sein Sohn. Zusammen sind sie 52 Jahre alt. Wie alt ist der Sohn?",
-    "answers": [
-      "Alter Sohn: 13 Jahre",
-      "Alter Sohn: 15 Jahre",
-      "Alter Sohn: 14 Jahre",
-      "Alter Sohn: 12 Jahre"
-    ],
+    "answers": ["Alter Sohn: 13 Jahre", "Alter Sohn: 15 Jahre", "Alter Sohn: 14 Jahre", "Alter Sohn: 12 Jahre"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Gleichung: $x + 3x = 52 \\implies 4x = 52 \\implies x = 13$ Jahre."
+    "explanation": "Gleichung: x + 3x = 52 ⇒ 4x = 52 ⇒ x = 13 Jahre."
   },
   {
     "id": "k7_ma_063",
@@ -1130,17 +850,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Vereinfache das Produkt zweier Terme: $(-3a) \\cdot (-4b)$.",
-    "answers": [
-      "Produkt: -12ab",
-      "Produkt: 7ab",
-      "Produkt: -7ab",
-      "Produkt: 12ab"
-    ],
+    "question": "Vereinfache das Produkt zweier Terme: (-3a) · (-4b).",
+    "answers": ["Produkt: -12ab", "Produkt: 7ab", "Produkt: -7ab", "Produkt: 12ab"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Minus mal Minus ergibt Plus: $(-3) \\cdot (-4) \\cdot a \\cdot b = 12ab$."
+    "explanation": "Minus mal Minus ergibt Plus: (-3) · (-4) · a · b = 12ab."
   },
   {
     "id": "k7_ma_064",
@@ -1148,17 +863,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Löse die Minusklammer korrekt auf: $15 - (4x - 7)$.",
-    "answers": [
-      "Ergebnis: 22 + 4x",
-      "Ergebnis: 22 - 4x",
-      "Ergebnis: 15 - 4x - 7",
-      "Ergebnis: 8 - 4x"
-    ],
+    "question": "Löse die Minusklammer korrekt auf: 15 - (4x - 7).",
+    "answers": ["Ergebnis: 22 + 4x", "Ergebnis: 22 - 4x", "Ergebnis: 15 - 4x - 7", "Ergebnis: 8 - 4x"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Minuszeichen vor der Klammer dreht alle Vorzeichen in der Klammer um: $15 - 4x + 7 = 22 - 4x$."
+    "explanation": "Minuszeichen vor der Klammer dreht alle Vorzeichen in der Klammer um: 15 - 4x + 7 = 22 - 4x."
   },
   {
     "id": "k7_ma_065",
@@ -1166,17 +876,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Berechne den Wert des Terms $T(a, b) = 2a^2 - 3b$ für $a = 3$ u. $b = 4$.",
-    "answers": [
-      "Wert des Terms: 6",
-      "Wert des Terms: 24",
-      "Wert des Terms: 12",
-      "Wert des Terms: 18"
-    ],
+    "question": "Berechne den Wert des Terms T(a, b) = 2a² - 3b für a = 3 u. b = 4.",
+    "answers": ["Wert des Terms: 6", "Wert des Terms: 24", "Wert des Terms: 12", "Wert des Terms: 18"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$T(3, 4) = 2 \\cdot (3^2) - 3 \\cdot 4 = 2 \\cdot 9 - 12 = 18 - 12 = 6$."
+    "explanation": "T(3, 4) = 2 · (3²) - 3 · 4 = 2 · 9 - 12 = 18 - 12 = 6."
   },
   {
     "id": "k7_ma_066",
@@ -1184,17 +889,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Löse die Gleichung $4x + 7 = 4x + 12$. Wie viele Lösungen existieren in der Grundmenge?",
-    "answers": [
-      "Exakt Null Lösungen",
-      "Exakt eine Lösung x=5",
-      "Unendlich viele Lös.",
-      "Exakt zwei Lösungen"
-    ],
+    "question": "Löse die Gleichung 4x + 7 = 4x + 12. Wie viele Lösungen existieren in der Grundmenge?",
+    "answers": ["Exakt Null Lösungen", "Exakt eine Lösung x=5", "Unendlich viele Lös.", "Exakt zwei Lösungen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$4x + 7 = 4x + 12 \\implies 7 = 12$ (falsche Aussage), daher gibt es keine Lösung ($L = \\emptyset$)."
+    "explanation": "4x + 7 = 4x + 12 ⇒ 7 = 12 (falsche Aussage), daher gibt es keine Lösung (L = ∅)."
   },
   {
     "id": "k7_ma_067",
@@ -1202,17 +902,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Löse die Gleichung $2 \\cdot (x + 3) = 2x + 6$. Wie viele Lösungen existieren?",
-    "answers": [
-      "Exakt Null Lösungen",
-      "Exakt eine Lösung x=6",
-      "Exakt eine Lösung x=0",
-      "Unendlich viele Lös."
-    ],
+    "question": "Löse die Gleichung 2 · (x + 3) = 2x + 6. Wie viele Lösungen existieren?",
+    "answers": ["Exakt Null Lösungen", "Exakt eine Lösung x=6", "Exakt eine Lösung x=0", "Unendlich viele Lös."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$2x + 6 = 2x + 6 \\implies 0 = 0$ (allgemeingültige Aussage), also sind alle reellen Zahlen Lösung."
+    "explanation": "2x + 6 = 2x + 6 ⇒ 0 = 0 (allgemeingültige Aussage), also sind alle reellen Zahlen Lösung."
   },
   {
     "id": "k7_ma_068",
@@ -1220,17 +915,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Dividiere den Term durch den Faktor: $(15x - 25y) / 5$.",
-    "answers": [
-      "Ergebnis: 3x - 25y",
-      "Ergebnis: 3x - 5y",
-      "Ergebnis: 5x - 3y",
-      "Ergebnis: 15x - 5y"
-    ],
+    "question": "Dividiere den Term durch den Faktor: (15x - 25y) / 5.",
+    "answers": ["Ergebnis: 3x - 25y", "Ergebnis: 3x - 5y", "Ergebnis: 5x - 3y", "Ergebnis: 15x - 5y"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Jedes Glied durch 5 dividieren: $(15x / 5) - (25y / 5) = 3x - 5y$."
+    "explanation": "Jedes Glied durch 5 dividieren: (15x / 5) - (25y / 5) = 3x - 5y."
   },
   {
     "id": "k7_ma_069",
@@ -1238,17 +928,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Forme die Ungleichung um: $2x + 5 < 13$. Welche Lösungsmenge gilt für natürliche Zahlen $\\mathbb{N} = \\{1, 2, 3...\\}$?",
-    "answers": [
-      "Lösungsmenge: {1, 2, 3, 4}",
-      "Lösungsmenge: {1, 2, 3}",
-      "Lösungsmenge: {1, 2}",
-      "Lösungsmenge: {0, 1, 2, 3}"
-    ],
+    "question": "Forme die Ungleichung um: 2x + 5 < 13. Welche Lösungsmenge gilt für natürliche Zahlen ℕ = {1, 2, 3...}?",
+    "answers": ["Lösungsmenge: {1, 2, 3, 4}", "Lösungsmenge: {1, 2, 3}", "Lösungsmenge: {1, 2}", "Lösungsmenge: {0, 1, 2, 3}"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$2x < 8 \\implies x < 4$. In $\\mathbb{N}$ ohne 0 sind das die Zahlen $\{1, 2, 3\}$."
+    "explanation": "2x < 8 ⇒ x < 4. In ℕ ohne 0 sind das die Zahlen 1, 2, 3."
   },
   {
     "id": "k7_ma_070",
@@ -1257,16 +942,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Was passiert mit dem Vergleichszeichen einer Ungleichung bei Multiplikation mit einer negativen Zahl?",
-    "answers": [
-      "Zeichen bleibt gleich",
-      "Ungleichung entfällt",
-      "Zeichen dreht sich um",
-      "Zeichen wird zu ="
-    ],
+    "answers": ["Zeichen bleibt gleich", "Ungleichung entfällt", "Zeichen dreht sich um", "Zeichen wird zu ="],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei Multiplikation oder Division mit einer negativen Zahl kehrt sich das Inequationszeichen um ($<$ wird zu $>$)."
+    "explanation": "Bei Multiplikation oder Division mit einer negativen Zahl kehrt sich das Ungleichheitszeichen um (< wird zu >)."
   },
   {
     "id": "k7_ma_071",
@@ -1274,17 +954,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Ein Rechteck hat den Umfang $U = 36\\text{ cm}$. Die Länge $a$ ist doppelt so lang wie die Breite $b$. Wie lang ist $b$?",
-    "answers": [
-      "Breite b beträgt: 8 cm",
-      "Breite b beträgt: 4 cm",
-      "Breite b beträgt: 6 cm",
-      "Breite b beträgt: 12 cm"
-    ],
+    "question": "Ein Rechteck hat den Umfang U = 36 cm. Die Länge a ist doppelt so lang wie die Breite b. Wie lang ist b?",
+    "answers": ["Breite b beträgt: 8 cm", "Breite b beträgt: 4 cm", "Breite b beträgt: 6 cm", "Breite b beträgt: 12 cm"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$U = 2a + 2b = 2(2b) + 2b = 6b = 36\\text{ cm} \\implies b = 6\\text{ cm}$."
+    "explanation": "U = 2a + 2b = 2(2b) + 2b = 6b = 36 cm ⇒ b = 6 cm."
   },
   {
     "id": "k7_ma_072",
@@ -1292,17 +967,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Vereinfache die Potenzrechnung im Term $x^3 \\cdot x^4$ zu einer einzigen Potenz.",
-    "answers": [
-      "Potenz lautet: 2x^7",
-      "Potenz lautet: x^12",
-      "Potenz lautet: x^7",
-      "Potenz lautet: x^1"
-    ],
+    "question": "Vereinfache die Potenzrechnung im Term x³ · x⁴ zu einer einzigen Potenz.",
+    "answers": ["Potenz lautet: 2x⁷", "Potenz lautet: x¹²", "Potenz lautet: x⁷", "Potenz lautet: x¹"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei gleicher Basis werden die Exponenten addiert: $x^3 \\cdot x^4 = x^{3+4} = x^7$."
+    "explanation": "Bei gleicher Basis werden die Exponenten addiert: x³ · x⁴ = x³⁺⁴ = x⁷."
   },
   {
     "id": "k7_ma_073",
@@ -1310,17 +980,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Vereinfache den Quotienten von Potenzen: $y^8 / y^5$.",
-    "answers": [
-      "Potenz lautet: y^13",
-      "Potenz lautet: y^3",
-      "Potenz lautet: y^1,6",
-      "Potenz lautet: y^40"
-    ],
+    "question": "Vereinfache den Quotienten von Potenzen: y⁸ / y⁵.",
+    "answers": ["Potenz lautet: y¹³", "Potenz lautet: y³", "Potenz lautet: y¹,6", "Potenz lautet: y⁴⁰"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei gleicher Basis werden die Exponenten subtrahiert: $y^8 / y^5 = y^{8-5} = y^3$."
+    "explanation": "Bei gleicher Basis werden die Exponenten subtrahiert: y⁸ / y⁵ = y⁸⁻⁵ = y³."
   },
   {
     "id": "k7_ma_074",
@@ -1328,17 +993,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Löse den Doppelklammerausdruck auf: $(2x + 1) \\cdot (x + 4)$.",
-    "answers": [
-      "Ergebnis: 2x² + 4x + 4",
-      "Ergebnis: 2x² + 9x + 4",
-      "Ergebnis: 2x² + 8x + 4",
-      "Ergebnis: 2x² + 9x + 5"
-    ],
+    "question": "Löse den Doppelklammerausdruck auf: (2x + 1) · (x + 4).",
+    "answers": ["Ergebnis: 2x² + 4x + 4", "Ergebnis: 2x² + 9x + 4", "Ergebnis: 2x² + 8x + 4", "Ergebnis: 2x² + 9x + 5"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$2x \\cdot x + 2x \\cdot 4 + 1 \\cdot x + 1 \\cdot 4 = 2x^2 + 8x + x + 4 = 2x^2 + 9x + 4$."
+    "explanation": "2x · x + 2x · 4 + 1 · x + 1 · 4 = 2x² + 8x + x + 4 = 2x² + 9x + 4."
   },
   {
     "id": "k7_ma_075",
@@ -1346,17 +1006,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Forme die Formel zur Flächeninhaltsberechnung des Trapezes $A = ((a + c) / 2) \\cdot h$ nach der Höhe $h$ um.",
-    "answers": [
-      "Formel: h = 2A / (a + c)",
-      "Formel: h = 2A * (a + c)",
-      "Formel: h = A / (2(a + c))",
-      "Formel: h = A * (a + c) / 2"
-    ],
+    "question": "Forme die Formel zur Flächeninhaltsberechnung des Trapezes A = ((a + c) / 2) · h nach der Höhe h um.",
+    "answers": ["Formel: h = 2A / (a + c)", "Formel: h = 2A · (a + c)", "Formel: h = A / (2(a + c))", "Formel: h = A · (a + c) / 2"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Beide Seiten mit 2 multiplizieren u. durch $(a + c)$ dividieren: $h = 2A / (a + c)$."
+    "explanation": "Beide Seiten mit 2 multiplizieren u. durch (a + c) dividieren: h = 2A / (a + c)."
   },
 
   // --- GEOMETRIE & STOCHASTIK (076 - 100) ---
@@ -1367,16 +1022,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie groß ist die Innenwinkelsumme in jedem beliebigen ebenen Dreieck?",
-    "answers": [
-      "Winkelsumme: 360 Grad",
-      "Winkelsumme: 180 Grad",
-      "Winkelsumme: 90 Grad",
-      "Winkelsumme: 270 Grad"
-    ],
+    "answers": ["Winkelsumme: 360 Grad", "Winkelsumme: 180 Grad", "Winkelsumme: 90 Grad", "Winkelsumme: 270 Grad"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Summe der drei Innenwinkel $\\alpha + \\beta + \\gamma$ im Dreieck beträgt stets exakt 180°."
+    "explanation": "Die Summe der drei Innenwinkel α + β + γ im Dreieck beträgt stets exakt 180°."
   },
   {
     "id": "k7_ma_077",
@@ -1385,16 +1035,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie groß ist die Innenwinkelsumme in jedem konvexen Viereck?",
-    "answers": [
-      "Winkelsumme: 720 Grad",
-      "Winkelsumme: 540 Grad",
-      "Winkelsumme: 360 Grad",
-      "Winkelsumme: 180 Grad"
-    ],
+    "answers": ["Winkelsumme: 720 Grad", "Winkelsumme: 540 Grad", "Winkelsumme: 360 Grad", "Winkelsumme: 180 Grad"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Jedes Viereck lässt sich in zwei Dreiecke zerlegen ($2 \\cdot 180^\\circ = 360^\\circ$)."
+    "explanation": "Jedes Viereck lässt sich in zwei Dreiecke zerlegen (2 · 180° = 360°)."
   },
   {
     "id": "k7_ma_078",
@@ -1402,17 +1047,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "In einem Dreieck sind zwei Winkel mit $\\alpha = 55^\\circ$ u. $\\beta = 65^\\circ$ bekannt. Wie groß ist Winkel $\\gamma$?",
-    "answers": [
-      "Winkel gamma: 65 Grad",
-      "Winkel gamma: 60 Grad",
-      "Winkel gamma: 70 Grad",
-      "Winkel gamma: 50 Grad"
-    ],
+    "question": "In einem Dreieck sind zwei Winkel mit α = 55° u. β = 65° bekannt. Wie groß ist Winkel γ?",
+    "answers": ["Winkel γ: 65 Grad", "Winkel γ: 60 Grad", "Winkel γ: 70 Grad", "Winkel γ: 50 Grad"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\gamma = 180^\\circ - 55^\\circ - 65^\\circ = 180^\\circ - 120^\\circ = 60^\\circ$."
+    "explanation": "γ = 180° - 55° - 65° = 180° - 120° = 60°."
   },
   {
     "id": "k7_ma_079",
@@ -1439,16 +1079,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie groß ist jeder einzelne Innenwinkel in einem gleichseitigen Dreieck?",
-    "answers": [
-      "Winkel beträgt: 90 Grad",
-      "Winkel beträgt: 30 Grad",
-      "Winkel beträgt: 60 Grad",
-      "Winkel beträgt: 45 Grad"
-    ],
+    "answers": ["Winkel beträgt: 90 Grad", "Winkel beträgt: 30 Grad", "Winkel beträgt: 60 Grad", "Winkel beträgt: 45 Grad"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Alle 3 Winkel sind gleich groß: $180^\\circ / 3 = 60^\\circ$."
+    "explanation": "Alle 3 Winkel sind gleich groß: 180° / 3 = 60°."
   },
   {
     "id": "k7_ma_081",
@@ -1456,17 +1091,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie nennt man zwei Winkel, die sich zu exakt $180^\\circ$ ergänzen?",
-    "answers": [
-      "Die Stufenwinkel",
-      "Die Scheitelwinkel",
-      "Die Nebenwinkel",
-      "Die Wechselwinkel"
-    ],
+    "question": "Wie nennt man zwei Winkel, die sich zu exakt 180° ergänzen?",
+    "answers": ["Die Stufenwinkel", "Die Scheitelwinkel", "Die Nebenwinkel", "Die Wechselwinkel"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Nebenwinkel liegen an einer Geraden u. ergänzen sich zu einer gestreckten Lage von $180^\\circ$."
+    "explanation": "Nebenwinkel liegen an einer Geraden u. ergänzen sich zu einer gestreckten Lage von 180°."
   },
   {
     "id": "k7_ma_082",
@@ -1528,13 +1158,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Was besagt die Dreiecksungleichung bezüglich der Seitenlängen $a, b, c$?",
-    "answers": [
-      "Produkt zweier = Dritte",
-      "Summe zweier > Dritte",
-      "Differenz zweier = 0",
-      "Summe zweier < Dritte"
-    ],
+    "question": "Was besagt die Dreiecksungleichung bezüglich der Seitenlängen a, b, c?",
+    "answers": ["Produkt zweier = Dritte", "Summe zweier > Dritte", "Differenz zweier = 0", "Summe zweier < Dritte"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1546,13 +1171,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Was bezeichnet man als die 'Mittelsenkrechte' einer Strecke $[AB]$?",
-    "answers": [
-      "Verbindung Mitte zu C",
-      "Parallele durch Punkt A",
-      "Winkelhalbierende im Ort",
-      "Senkrechte in der Mitte"
-    ],
+    "question": "Was bezeichnet man als die 'Mittelsenkrechte' einer Strecke [AB]?",
+    "answers": ["Verbindung Mitte zu C", "Parallele durch Punkt A", "Winkelhalbierende im Ort", "Senkrechte in der Mitte"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -1600,17 +1220,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie berechnet man den Flächeninhalt $A$ eines beliebigen Dreiecks?",
-    "answers": [
-      "Formel: A = (g * h) / 2",
-      "Formel: A = (g + h) / 2",
-      "Formel: A = g^2 / 2",
-      "Formel: A = g * h"
-    ],
+    "question": "Wie berechnet man den Flächeninhalt A eines beliebigen Dreiecks?",
+    "answers": ["Formel: A = (g · h) / 2", "Formel: A = (g + h) / 2", "Formel: A = g² / 2", "Formel: A = g · h"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Flächeninhalt Dreieck $= 0{,}5 \\cdot \\text{Grundseite} \\cdot \\text{Zugehörige Höhe}$."
+    "explanation": "Flächeninhalt Dreieck = 0,5 · Grundseite · Zugehörige Höhe."
   },
   {
     "id": "k7_ma_090",
@@ -1618,17 +1233,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Ein Dreieck hat eine Grundseite von $g = 8\\text{ cm}$ u. die Höhe $h = 5\\text{ cm}$. Wie groß ist der Flächeninhalt?",
-    "answers": [
-      "Fläche beträgt: 20 cm²",
-      "Fläche beträgt: 13 cm²",
-      "Fläche beträgt: 40 cm²",
-      "Fläche beträgt: 26 cm²"
-    ],
+    "question": "Ein Dreieck hat eine Grundseite von g = 8 cm u. die Höhe h = 5 cm. Wie groß ist der Flächeninhalt?",
+    "answers": ["Fläche beträgt: 20 cm²", "Fläche beträgt: 13 cm²", "Fläche beträgt: 40 cm²", "Fläche beträgt: 26 cm²"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$A = (8 \\cdot 5) / 2 = 40 / 2 = 20\\text{ cm}^2$."
+    "explanation": "A = (8 · 5) / 2 = 40 / 2 = 20 cm²."
   },
   {
     "id": "k7_ma_091",
@@ -1636,17 +1246,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie berechnet man den Flächeninhalt $A$ eines Parallelogramms?",
-    "answers": [
-      "Formel: A = a + ha",
-      "Formel: A = 2a * ha",
-      "Formel: A = a * ha",
-      "Formel: A = (a * ha) / 2"
-    ],
+    "question": "Wie berechnet man den Flächeninhalt A eines Parallelogramms?",
+    "answers": ["Formel: A = a + ha", "Formel: A = 2a · ha", "Formel: A = a · ha", "Formel: A = (a · ha) / 2"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Parallelogrammfläche $=$ Grundseite mal zugehörige Höhe ($A = a \\cdot h_a$)."
+    "explanation": "Parallelogrammfläche = Grundseite mal zugehörige Höhe (A = a · ha)."
   },
   {
     "id": "k7_ma_092",
@@ -1654,17 +1259,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie lautet die Formel für den Flächeninhalt $A$ eines Trapezes mit den parallelen Seiten $a$ u. $c$?",
-    "answers": [
-      "Formel: A = ((a + c) / 2) * h",
-      "Formel: A = ((a * c) / 2) * h",
-      "Formel: A = ((a - c) / 2) * h",
-      "Formel: A = (a + c) * h"
-    ],
+    "question": "Wie lautet die Formel für den Flächeninhalt A eines Trapezes mit den parallelen Seiten a u. c?",
+    "answers": ["Formel: A = ((a + c) / 2) · h", "Formel: A = ((a · c) / 2) · h", "Formel: A = ((a - c) / 2) · h", "Formel: A = (a + c) · h"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Trapezfläche $=$ Arithmetisches Mittel der Parallelen mal Höhe ($A = m \\cdot h = ((a + c) / 2) \\cdot h$)."
+    "explanation": "Trapezfläche = Arithmetisches Mittel der Parallelen mal Höhe (A = m · h = ((a + c) / 2) · h)."
   },
   {
     "id": "k7_ma_093",
@@ -1672,17 +1272,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie lautet die Formel für den Flächeninhalt $A$ eines Drachenvierecks mit den Diagonalen $e$ u. $f$?",
-    "answers": [
-      "Formel: A = (e * f) / 2",
-      "Formel: A = e * f",
-      "Formel: A = 2 * e * f",
-      "Formel: A = (e + f) / 2"
-    ],
+    "question": "Wie lautet die Formel für den Flächeninhalt A eines Drachenvierecks mit den Diagonalen e u. f?",
+    "answers": ["Formel: A = (e · f) / 2", "Formel: A = e · f", "Formel: A = 2 · e · f", "Formel: A = (e + f) / 2"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Beim Drachen stehen die Diagonalen senkrecht aufeinander; $A = 0{,}5 \\cdot e \\cdot f$."
+    "explanation": "Beim Drachen stehen die Diagonalen senkrecht aufeinander; A = 0,5 · e · f."
   },
   {
     "id": "k7_ma_094",
@@ -1708,17 +1303,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie berechnet man die Laplace-Wahrscheinlichkeit $P(E)$ für ein Ereignis $E$?",
-    "answers": [
-      "P = Mögliche / Günstige",
-      "P = Günstige - Mögliche",
-      "P = Günstige * Mögliche",
-      "P = Günstige / Mögliche"
-    ],
+    "question": "Wie berechnet man die Laplace-Wahrscheinlichkeit P(E) für ein Ereignis E?",
+    "answers": ["P = Mögliche / Günstige", "P = Günstige - Mögliche", "P = Günstige · Mögliche", "P = Günstige / Mögliche"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$P(E) = \\frac{\\text{Anzahl der günstigen Ergebnisse}}{\\text{Anzahl aller möglichen Ergebnisse}}$."
+    "explanation": "P(E) = (Anzahl der günstigen Ergebnisse)/(Anzahl aller möglichen Ergebnisse)."
   },
   {
     "id": "k7_ma_096",
@@ -1727,16 +1317,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie groß ist die Wahrscheinlichkeit, mit einem fairen 6-seitigen Würfel eine Zahl größer als 4 zu würfeln?",
-    "answers": [
-      "Wahrscheinlichk.: 1 / 6",
-      "Wahrscheinlichk.: 1 / 2",
-      "Wahrscheinlichk.: 1 / 3",
-      "Wahrscheinlichk.: 2 / 3"
-    ],
+    "answers": ["Wahrscheinlichk.: 1 / 6", "Wahrscheinlichk.: 1 / 2", "Wahrscheinlichk.: 1 / 3", "Wahrscheinlichk.: 2 / 3"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Günstig sind $\{5, 6\}$ (2 Ergebnisse). Mögliche sind 6. $P = 2 / 6 = 1 / 3$."
+    "explanation": "Günstig sind 5, 6 (2 Ergebnisse). Mögliche sind 6. P = 2 / 6 = 1 / 3."
   },
   {
     "id": "k7_ma_097",
@@ -1745,16 +1330,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "In einer Urne liegen 3 rote u. 7 blaue Kugeln. Wie groß ist die Wahrscheinlichkeit, eine rote Kugel zu ziehen?",
-    "answers": [
-      "Wahrscheinlichk.: 30 %",
-      "Wahrscheinlichk.: 33 %",
-      "Wahrscheinlichk.: 40 %",
-      "Wahrscheinlichk.: 70 %"
-    ],
+    "answers": ["Wahrscheinlichk.: 30 %", "Wahrscheinlichk.: 33 %", "Wahrscheinlichk.: 40 %", "Wahrscheinlichk.: 70 %"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$P(\\text{rot}) = 3 / (3 + 7) = 3 / 10 = 0{,}30 = 30\\%$."
+    "explanation": "P(rot) = 3 / (3 + 7) = 3 / 10 = 0,30 = 30%."
   },
   {
     "id": "k7_ma_098",
@@ -1799,16 +1379,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Eine Münze wird zweimal nacheinander geworfen. Wie groß ist die Wahrscheinlichkeit für das Ereignis 'zweimal Kopf'?",
-    "answers": [
-      "Wahrscheinlichk.: 12,5 %",
-      "Wahrscheinlichk.: 25 %",
-      "Wahrscheinlichk.: 75 %",
-      "Wahrscheinlichk.: 50 %"
-    ],
+    "answers": ["Wahrscheinlichk.: 12,5 %", "Wahrscheinlichk.: 25 %", "Wahrscheinlichk.: 75 %", "Wahrscheinlichk.: 50 %"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Pfadregel: $P(\\text{Kopf, Kopf}) = (1/2) \\cdot (1/2) = 1/4 = 0{,}25 = 25\\%$."
+    "explanation": "Pfadregel: P(Kopf, Kopf) = (1/2) · (1/2) = 1/4 = 0,25 = 25%."
   },
 
 
@@ -1824,16 +1399,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie viel Euro sind 20 % von 250 Euro?",
-    "answers": [
-      "Ergebnis: 45 Euro",
-      "Ergebnis: 50 Euro",
-      "Ergebnis: 60 Euro",
-      "Ergebnis: 40 Euro"
-    ],
+    "answers": ["Ergebnis: 45 Euro", "Ergebnis: 50 Euro", "Ergebnis: 60 Euro", "Ergebnis: 40 Euro"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "250 * 0,20 = 50 Euro."
+    "explanation": "250 · 0,20 = 50 Euro."
   },
   {
     "id": "k7_ma_102",
@@ -1842,16 +1412,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Gegeben sind G = 300 € u. W = 60 €. Wie viel Prozent sind das?",
-    "answers": [
-      "Satz beträgt: 20 %",
-      "Satz beträgt: 25 %",
-      "Satz beträgt: 30 %",
-      "Satz beträgt: 15 %"
-    ],
+    "answers": ["Satz beträgt: 20 %", "Satz beträgt: 25 %", "Satz beträgt: 30 %", "Satz beträgt: 15 %"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "p = (60 / 300) * 100 = 20 %."
+    "explanation": "p = (60 / 300) · 100 = 20 %."
   },
   {
     "id": "k7_ma_103",
@@ -1878,12 +1443,7 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Was beschreibt der Grundwert G in der Prozentrechnung?",
-    "answers": [
-      "Ausgangsmenge (100 %)",
-      "Prozentualer Teilsatz",
-      "Anteiliger Geldbetrag",
-      "Gewinnspanne in Euro"
-    ],
+    "answers": ["Ausgangsmenge (100 %)", "Prozentualer Teilsatz", "Anteiliger Geldbetrag", "Gewinnspanne in Euro"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1932,16 +1492,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie lautet die Formel zur Berechnung des Prozentwerts W?",
-    "answers": [
-      "Formel: W = p * 100 / G",
-      "Formel: W = G * 100 / p",
-      "Formel: W = G * p / 100",
-      "Formel: W = G + p / 100"
-    ],
+    "answers": ["Formel: W = p · 100 / G", "Formel: W = G · 100 / p", "Formel: W = G · p / 100", "Formel: W = G + p / 100"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "W = G * p / 100."
+    "explanation": "W = G · p / 100."
   },
   {
     "id": "k7_ma_108",
@@ -1950,16 +1505,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie lautet die Formel zur Berechnung des Grundwerts G?",
-    "answers": [
-      "Formel: G = W * p / 100",
-      "Formel: G = p * 100 / W",
-      "Formel: G = W + p * 100",
-      "Formel: G = W * 100 / p"
-    ],
+    "answers": ["Formel: G = W · p / 100", "Formel: G = p · 100 / W", "Formel: G = W + p · 100", "Formel: G = W · 100 / p"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "G = W * 100 / p."
+    "explanation": "G = W · 100 / p."
   },
   {
     "id": "k7_ma_109",
@@ -1968,16 +1518,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie lautet die Formel zur Berechnung des Prozentsatzes p?",
-    "answers": [
-      "Formel: p = W * 100 / G",
-      "Formel: p = G * 100 / W",
-      "Formel: p = W * G / 100",
-      "Formel: p = W / (G * 100)"
-    ],
+    "answers": ["Formel: p = W · 100 / G", "Formel: p = G · 100 / W", "Formel: p = W · G / 100", "Formel: p = W / (G · 100)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "p = W * 100 / G."
+    "explanation": "p = W · 100 / G."
   },
   {
     "id": "k7_ma_110",
@@ -2004,16 +1549,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Fahrrad kostet netto 400 €. Wie viel kostet es brutto inkl. 19 % MwSt.?",
-    "answers": [
-      "Neuer Preis: 496 Euro",
-      "Neuer Preis: 450 Euro",
-      "Neuer Preis: 476 Euro",
-      "Neuer Preis: 480 Euro"
-    ],
+    "answers": ["Neuer Preis: 496 Euro", "Neuer Preis: 450 Euro", "Neuer Preis: 476 Euro", "Neuer Preis: 480 Euro"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "400 * 1,19 = 476 €."
+    "explanation": "400 · 1,19 = 476 €."
   },
   {
     "id": "k7_ma_112",
@@ -2022,16 +1562,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Sparguthaben 1.000 € bringt bei 2 % Zinssatz p.a. wie viel Zinsen im 1. Jahr?",
-    "answers": [
-      "Zinsen betragen: 15 €",
-      "Zinsen betragen: 30 €",
-      "Zinsen betragen: 25 €",
-      "Zinsen betragen: 20 €"
-    ],
+    "answers": ["Zinsen betragen: 15 €", "Zinsen betragen: 30 €", "Zinsen betragen: 25 €", "Zinsen betragen: 20 €"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Z = K * p / 100 = 1000 * 0,02 = 20 €."
+    "explanation": "Z = K · p / 100 = 1000 · 0,02 = 20 €."
   },
   {
     "id": "k7_ma_113",
@@ -2058,16 +1593,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie berechnet man Tageszinsen für t Tage (Finanzjahr: 360 Tage)?",
-    "answers": [
-      "Formel: Z = K * p * t / 36000",
-      "Formel: Z = K * t / (p * 360)",
-      "Formel: Z = K * p * 360 / t",
-      "Formel: Z = K * p * t / 36500"
-    ],
+    "answers": ["Formel: Z = K · p · t / 36000", "Formel: Z = K · t / (p · 360)", "Formel: Z = K · p · 360 / t", "Formel: Z = K · p · t / 36500"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Z = K * (p / 100) * (t / 360) = K * p * t / 36000."
+    "explanation": "Z = K · (p / 100) · (t / 360) = K · p · t / 36000."
   },
   {
     "id": "k7_ma_115",
@@ -2076,16 +1606,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie berechnet man Monatszinsen für m Monate?",
-    "answers": [
-      "Formel: Z = K * p * 12 / m",
-      "Formel: Z = K * p * m / 1200",
-      "Formel: Z = K * m / (p * 12)",
-      "Formel: Z = K * p * m / 3600"
-    ],
+    "answers": ["Formel: Z = K · p · 12 / m", "Formel: Z = K · p · m / 1200", "Formel: Z = K · m / (p · 12)", "Formel: Z = K · p · m / 3600"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Z = K * (p / 100) * (m / 12) = K * p * m / 1200."
+    "explanation": "Z = K · (p / 100) · (m / 12) = K · p · m / 1200."
   },
   {
     "id": "k7_ma_116",
@@ -2130,16 +1655,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Sparguthaben 500 € zu 3 % p.a. Zinsen nach genau 6 Monaten?",
-    "answers": [
-      "Zinsen betragen: 6,50 €",
-      "Zinsen betragen: 8,50 €",
-      "Zinsen betragen: 9,00 €",
-      "Zinsen betragen: 7,50 €"
-    ],
+    "answers": ["Zinsen betragen: 6,50 €", "Zinsen betragen: 8,50 €", "Zinsen betragen: 9,00 €", "Zinsen betragen: 7,50 €"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Z = 500 * 0,03 * (6/12) = 15 * 0,5 = 7,50 €."
+    "explanation": "Z = 500 · 0,03 · (6/12) = 15 · 0,5 = 7,50 €."
   },
   {
     "id": "k7_ma_119",
@@ -2184,16 +1704,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie viel Euro sind 5 % von 1.200 Euro?",
-    "answers": [
-      "Ergebnis: 55 Euro",
-      "Ergebnis: 70 Euro",
-      "Ergebnis: 60 Euro",
-      "Ergebnis: 50 Euro"
-    ],
+    "answers": ["Ergebnis: 55 Euro", "Ergebnis: 70 Euro", "Ergebnis: 60 Euro", "Ergebnis: 50 Euro"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "1200 * 0,05 = 60 €."
+    "explanation": "1200 · 0,05 = 60 €."
   },
   {
     "id": "k7_ma_122",
@@ -2312,12 +1827,7 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Welcher Rechenwert ist bei einer proportionalen Zuordnung konstant?",
-    "answers": [
-      "Die Summe aus x + y",
-      "Das Produkt y * x",
-      "Der Quotient y / x",
-      "Die Differenz y - x"
-    ],
+    "answers": ["Die Summe aus x + y", "Das Produkt y · x", "Der Quotient y / x", "Die Differenz y - x"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -2330,16 +1840,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Welcher Rechenwert ist bei einer antiproportionalen Zuordnung konstant?",
-    "answers": [
-      "Die Summe aus x + y",
-      "Das Produkt y * x",
-      "Der Quotient y / x",
-      "Die Differenz y - x"
-    ],
+    "answers": ["Die Summe aus x + y", "Das Produkt y · x", "Der Quotient y / x", "Die Differenz y - x"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Antiproportionale Zuordnungen sind produktgleich (k = x * y)."
+    "explanation": "Antiproportionale Zuordnungen sind produktgleich (k = x · y)."
   },
   {
     "id": "k7_ma_130",
@@ -2456,16 +1961,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "2 Arbeiter benötigen 12 Tage. Wie viele Tage brauchen 3 Arbeiter?",
-    "answers": [
-      "Dauer beträgt: 6 Tage",
-      "Dauer beträgt: 10 Tage",
-      "Dauer beträgt: 8 Tage",
-      "Dauer beträgt: 9 Tage"
-    ],
+    "answers": ["Dauer beträgt: 6 Tage", "Dauer beträgt: 10 Tage", "Dauer beträgt: 8 Tage", "Dauer beträgt: 9 Tage"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Gesamtarbeit: 2 * 12 = 24 Tage. Bei 3 Arbeitern: 24 / 3 = 8 Tage."
+    "explanation": "Gesamtarbeit: 2 · 12 = 24 Tage. Bei 3 Arbeitern: 24 / 3 = 8 Tage."
   },
   {
     "id": "k7_ma_137",
@@ -2473,13 +1973,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Wie nennt man den festen Quotienten k in der Formel y = k * x?",
-    "answers": [
-      "Differenzenquotient k",
-      "Proportionalitätsfaktor",
-      "Absoluter Nullwert stets",
-      "Antiproportionalität"
-    ],
+    "question": "Wie nennt man den festen Quotienten k in der Formel y = k · x?",
+    "answers": ["Differenzenquotient k", "Proportionalitätsfaktor", "Absoluter Nullwert stets", "Antiproportionalität"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -2491,17 +1986,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Gegeben ist y = 3,5 * x. Welcher y-Wert gehört zu x = 4?",
-    "answers": [
-      "Ergebnis beträgt: 15",
-      "Ergebnis beträgt: 14",
-      "Ergebnis beträgt: 12",
-      "Ergebnis beträgt: 16"
-    ],
+    "question": "Gegeben ist y = 3,5 · x. Welcher y-Wert gehört zu x = 4?",
+    "answers": ["Ergebnis beträgt: 15", "Ergebnis beträgt: 14", "Ergebnis beträgt: 12", "Ergebnis beträgt: 16"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "3,5 * 4 = 14."
+    "explanation": "3,5 · 4 = 14."
   },
   {
     "id": "k7_ma_139",
@@ -2509,13 +1999,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Gegeben ist y * x = 24. Welcher y-Wert gehört zu x = 6?",
-    "answers": [
-      "Ergebnis beträgt: 6",
-      "Ergebnis beträgt: 4",
-      "Ergebnis beträgt: 5",
-      "Ergebnis beträgt: 3"
-    ],
+    "question": "Gegeben ist y · x = 24. Welcher y-Wert gehört zu x = 6?",
+    "answers": ["Ergebnis beträgt: 6", "Ergebnis beträgt: 4", "Ergebnis beträgt: 5", "Ergebnis beträgt: 3"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -2564,16 +2049,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "10 kg Kartoffeln kosten 12 €. Wie viel kosten 15 kg Kartoffeln?",
-    "answers": [
-      "Kosten betragen: 18,00 €",
-      "Kosten betragen: 16,00 €",
-      "Kosten betragen: 20,00 €",
-      "Kosten betragen: 17,50 €"
-    ],
+    "answers": ["Kosten betragen: 18,00 €", "Kosten betragen: 16,00 €", "Kosten betragen: 20,00 €", "Kosten betragen: 17,50 €"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "1 kg kostet 1,20 €. 15 kg kosten 15 * 1,20 = 18,00 €."
+    "explanation": "1 kg kostet 1,20 €. 15 kg kosten 15 · 1,20 = 18,00 €."
   },
   {
     "id": "k7_ma_143",
@@ -2582,16 +2062,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "6 Bagger heben eine Grube in 10 Std. aus. Wie lange brauchen 5 Bagger?",
-    "answers": [
-      "Dauer beträgt: 14 Std.",
-      "Dauer beträgt: 10 Std.",
-      "Dauer beträgt: 15 Std.",
-      "Dauer beträgt: 12 Std."
-    ],
+    "answers": ["Dauer beträgt: 14 Std.", "Dauer beträgt: 10 Std.", "Dauer beträgt: 15 Std.", "Dauer beträgt: 12 Std."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Gesamtdauer: 6 * 10 = 60 Stunden. Bei 5 Baggern: 60 / 5 = 12 Std."
+    "explanation": "Gesamtdauer: 6 · 10 = 60 Stunden. Bei 5 Baggern: 60 / 5 = 12 Std."
   },
   {
     "id": "k7_ma_144",
@@ -2636,16 +2111,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Eine Tabelle zeigt Wertepaare (2|12), (3|8), (4|6). Welche Zuordnung ist das?",
-    "answers": [
-      "Proportionale Zuordnung",
-      "Exponentielle Zuordnung",
-      "Antiproportionale Z.",
-      "Lineare Zuordnung k"
-    ],
+    "answers": ["Proportionale Zuordnung", "Exponentielle Zuordnung", "Antiproportionale Z.", "Lineare Zuordnung k"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Alle Produkte x * y ergeben konstant 24 (produktgleich)."
+    "explanation": "Alle Produkte x · y ergeben konstant 24 (produktgleich)."
   },
   {
     "id": "k7_ma_147",
@@ -2654,16 +2124,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Ein Fahrzeug fährt konstant 80 km/h. Wie weit kommt es in 2,5 Stunden?",
-    "answers": [
-      "Strecke: 220 km",
-      "Strecke: 160 km",
-      "Strecke: 200 km",
-      "Strecke: 180 km"
-    ],
+    "answers": ["Strecke: 220 km", "Strecke: 160 km", "Strecke: 200 km", "Strecke: 180 km"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Strecke s = v * t = 80 * 2,5 = 200 km."
+    "explanation": "Strecke s = v · t = 80 · 2,5 = 200 km."
   },
   {
     "id": "k7_ma_148",
@@ -2672,16 +2137,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Für 8 Personen reicht ein Vorrat 15 Tage. Wie lange reicht er für 10 Personen?",
-    "answers": [
-      "Dauer beträgt: 12 Tage",
-      "Dauer beträgt: 14 Tage",
-      "Dauer beträgt: 10 Tage",
-      "Dauer beträgt: 15 Tage"
-    ],
+    "answers": ["Dauer beträgt: 12 Tage", "Dauer beträgt: 14 Tage", "Dauer beträgt: 10 Tage", "Dauer beträgt: 15 Tage"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "8 * 15 = 120 Portionstage. 120 / 10 = 12 Tage."
+    "explanation": "8 · 15 = 120 Portionstage. 120 / 10 = 12 Tage."
   },
   {
     "id": "k7_ma_149",
@@ -2690,16 +2150,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Maßstab 1 : 50.000. 4 cm auf der Karte entsprechen in der Realität wie viel km?",
-    "answers": [
-      "Strecke beträgt: 50 km",
-      "Strecke beträgt: 2 km",
-      "Strecke beträgt: 5 km",
-      "Strecke beträgt: 20 km"
-    ],
+    "answers": ["Strecke beträgt: 50 km", "Strecke beträgt: 2 km", "Strecke beträgt: 5 km", "Strecke beträgt: 20 km"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "4 * 50.000 = 200.000 cm = 2.000 m = 2 km."
+    "explanation": "4 · 50.000 = 200.000 cm = 2.000 m = 2 km."
   },
   {
     "id": "k7_ma_150",
@@ -2708,16 +2163,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "3 Liter Saft kosten 4,50 €. Wie viel kosten 7 Liter Saft?",
-    "answers": [
-      "Kosten: 9,50 Euro",
-      "Kosten: 12,00 Euro",
-      "Kosten: 10,50 Euro",
-      "Kosten: 11,50 Euro"
-    ],
+    "answers": ["Kosten: 9,50 Euro", "Kosten: 12,00 Euro", "Kosten: 10,50 Euro", "Kosten: 11,50 Euro"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "1 Liter = 1,50 €. 7 Liter = 7 * 1,50 = 10,50 €."
+    "explanation": "1 Liter = 1,50 €. 7 Liter = 7 · 1,50 = 10,50 €."
   },
 
   // --- RATIONALE ZAHLEN & ARITHMETIK (051 - 075) ---
@@ -2817,13 +2267,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Berechne das Produkt zweier negativer Zahlen: (-4) * (-6)",
-    "answers": [
-      "Ergebnis lautet: -10",
-      "Ergebnis lautet: -24",
-      "Ergebnis lautet: +24",
-      "Ergebnis lautet: +10"
-    ],
+    "question": "Berechne das Produkt zweier negativer Zahlen: (-4) · (-6)",
+    "answers": ["Ergebnis lautet: -10", "Ergebnis lautet: -24", "Ergebnis lautet: +24", "Ergebnis lautet: +10"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -2835,13 +2280,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Berechne das Produkt: (+3) * (-7)",
-    "answers": [
-      "Ergebnis lautet: +4",
-      "Ergebnis lautet: -4",
-      "Ergebnis lautet: -21",
-      "Ergebnis lautet: +21"
-    ],
+    "question": "Berechne das Produkt: (+3) · (-7)",
+    "answers": ["Ergebnis lautet: +4", "Ergebnis lautet: -4", "Ergebnis lautet: -21", "Ergebnis lautet: +21"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -2889,17 +2329,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Berechne die Potenz: (-2)^3",
-    "answers": [
-      "Ergebnis lautet: -6",
-      "Ergebnis lautet: +8",
-      "Ergebnis lautet: +6",
-      "Ergebnis lautet: -8"
-    ],
+    "question": "Berechne die Potenz: (-2)³",
+    "answers": ["Ergebnis lautet: -6", "Ergebnis lautet: +8", "Ergebnis lautet: +6", "Ergebnis lautet: -8"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "(-2) * (-2) * (-2) = -8 (ungerader Exponent bleibt negativ)."
+    "explanation": "(-2) · (-2) · (-2) = -8 (ungerader Exponent bleibt negativ)."
   },
   {
     "id": "k7_ma_161",
@@ -2907,17 +2342,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Berechne die Potenz: (-3)^2",
-    "answers": [
-      "Ergebnis lautet: +6",
-      "Ergebnis lautet: -6",
-      "Ergebnis lautet: -9",
-      "Ergebnis lautet: +9"
-    ],
+    "question": "Berechne die Potenz: (-3)²",
+    "answers": ["Ergebnis lautet: +6", "Ergebnis lautet: -6", "Ergebnis lautet: -9", "Ergebnis lautet: +9"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "(-3) * (-3) = +9 (gerader Exponent wird positiv)."
+    "explanation": "(-3) · (-3) = +9 (gerader Exponent wird positiv)."
   },
   {
     "id": "k7_ma_162",
@@ -2961,13 +2391,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Welches Gesetz regelt das Ausmultiplizieren: a * (b + c) = a * b + a * c?",
-    "answers": [
-      "Das Assoziativgesetz gilt",
-      "Das Distributivgesetz",
-      "Das Transitivgesetz hier",
-      "Das Kommutativgesetz gilt"
-    ],
+    "question": "Welches Gesetz regelt das Ausmultiplizieren: a · (b + c) = a · b + a · c?",
+    "answers": ["Das Assoziativgesetz gilt", "Das Distributivgesetz", "Das Transitivgesetz hier", "Das Kommutativgesetz gilt"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -2979,17 +2404,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Berechne vorteilhaft: 7 * 19 + 7 * 1",
-    "answers": [
-      "Ergebnis lautet: 140",
-      "Ergebnis lautet: 147",
-      "Ergebnis lautet: 133",
-      "Ergebnis lautet: 150"
-    ],
+    "question": "Berechne vorteilhaft: 7 · 19 + 7 · 1",
+    "answers": ["Ergebnis lautet: 140", "Ergebnis lautet: 147", "Ergebnis lautet: 133", "Ergebnis lautet: 150"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ausklammern: 7 * (19 + 1) = 7 * 20 = 140."
+    "explanation": "Ausklammern: 7 · (19 + 1) = 7 · 20 = 140."
   },
   {
     "id": "k7_ma_166",
@@ -2997,17 +2417,12 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Berechne: (-3) * (+4) * (-2)",
-    "answers": [
-      "Ergebnis lautet: +24",
-      "Ergebnis lautet: -14",
-      "Ergebnis lautet: -24",
-      "Ergebnis lautet: +14"
-    ],
+    "question": "Berechne: (-3) · (+4) · (-2)",
+    "answers": ["Ergebnis lautet: +24", "Ergebnis lautet: -14", "Ergebnis lautet: -24", "Ergebnis lautet: +14"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "-3 * 4 = -12; -12 * (-2) = +24."
+    "explanation": "-3 · 4 = -12; -12 · (-2) = +24."
   },
   {
     "id": "k7_ma_167",
@@ -3033,13 +2448,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Was ergibt der Potenzausdruck (-1)^100?",
-    "answers": [
-      "Ergebnis lautet: -1",
-      "Ergebnis lautet: +1",
-      "Ergebnis lautet: 100",
-      "Ergebnis lautet: 0"
-    ],
+    "question": "Was ergibt der Potenzausdruck (-1)¹⁰⁰?",
+    "answers": ["Ergebnis lautet: -1", "Ergebnis lautet: +1", "Ergebnis lautet: 100", "Ergebnis lautet: 0"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -3051,13 +2461,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Was ergibt der Potenzausdruck (-1)^101?",
-    "answers": [
-      "Ergebnis lautet: +1",
-      "Ergebnis lautet: -1",
-      "Ergebnis lautet: -101",
-      "Ergebnis lautet: 0"
-    ],
+    "question": "Was ergibt der Potenzausdruck (-1)¹⁰¹?",
+    "answers": ["Ergebnis lautet: +1", "Ergebnis lautet: -1", "Ergebnis lautet: -101", "Ergebnis lautet: 0"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -3141,13 +2546,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Berechne den Term: (-4) * (-5) - 30",
-    "answers": [
-      "Ergebnis lautet: +50",
-      "Ergebnis lautet: -10",
-      "Ergebnis lautet: +10",
-      "Ergebnis lautet: -50"
-    ],
+    "question": "Berechne den Term: (-4) · (-5) - 30",
+    "answers": ["Ergebnis lautet: +50", "Ergebnis lautet: -10", "Ergebnis lautet: +10", "Ergebnis lautet: -50"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -3198,16 +2598,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie groß ist die Innenwinkelsumme in jedem beliebigen Viereck?",
-    "answers": [
-      "Summe beträgt: 270°",
-      "Summe beträgt: 540°",
-      "Summe beträgt: 360°",
-      "Summe beträgt: 180°"
-    ],
+    "answers": ["Summe beträgt: 270°", "Summe beträgt: 540°", "Summe beträgt: 360°", "Summe beträgt: 180°"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Viereck lässt sich in zwei Dreiecke zerlegen (2 * 180° = 360°)."
+    "explanation": "Ein Viereck lässt sich in zwei Dreiecke zerlegen (2 · 180° = 360°)."
   },
   {
     "id": "k7_ma_178",
@@ -3450,12 +2845,7 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "In welchem Winkel steht die Höhe ha auf der Grundseite a?",
-    "answers": [
-      "Im 60-Grad-Winkel stets",
-      "Parallel zur Seite a hier",
-      "Im rechten Winkel (90°)",
-      "Im 45-Grad-Winkel stets"
-    ],
+    "answers": ["Im 60-Grad-Winkel stets", "Parallel zur Seite a hier", "Im rechten Winkel (90°)", "Im 45-Grad-Winkel stets"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -3468,16 +2858,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Wie berechnet man den Flächeninhalt A eines Dreiecks?",
-    "answers": [
-      "Formel: A = (g * h) / 2",
-      "Formel: A = g * h",
-      "Formel: A = 2 * g * h",
-      "Formel: A = (g + h) / 2"
-    ],
+    "answers": ["Formel: A = (g · h) / 2", "Formel: A = g · h", "Formel: A = 2 · g · h", "Formel: A = (g + h) / 2"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "A = 1/2 * Grundseite * Höhe."
+    "explanation": "A = 1/2 · Grundseite · Höhe."
   },
   {
     "id": "k7_ma_193",
@@ -3486,16 +2871,11 @@ const K7_MATHEMATIK_QUESTIONS = [
     "grade": 7,
     "subject": "mathematik",
     "question": "Berechne die Fläche eines Dreiecks mit Grundseite g = 8 cm u. Höhe h = 5 cm.",
-    "answers": [
-      "Fläche: 20 cm²",
-      "Fläche: 40 cm²",
-      "Fläche: 26 cm²",
-      "Fläche: 13 cm²"
-    ],
+    "answers": ["Fläche: 20 cm²", "Fläche: 40 cm²", "Fläche: 26 cm²", "Fläche: 13 cm²"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "A = (8 * 5) / 2 = 20 cm²."
+    "explanation": "A = (8 · 5) / 2 = 20 cm²."
   },
   {
     "id": "k7_ma_194",
@@ -3539,13 +2919,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Ein Winkel alpha beträgt 40°. Wie groß ist sein Nebenwinkel beta?",
-    "answers": [
-      "Winkel beträgt hier: 50°",
-      "Winkel beträgt hier: 40°",
-      "Winkel beträgt: 140°",
-      "Winkel beträgt hier: 90°"
-    ],
+    "question": "Ein Winkel α beträgt 40°. Wie groß ist sein Nebenwinkel β?",
+    "answers": ["Winkel beträgt hier: 50°", "Winkel beträgt hier: 40°", "Winkel beträgt: 140°", "Winkel beträgt hier: 90°"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -3557,13 +2932,8 @@ const K7_MATHEMATIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "mathematik",
-    "question": "Ein Winkel alpha beträgt 65°. Wie groß ist sein Scheitelwinkel gamma?",
-    "answers": [
-      "Winkel beträgt: 65°",
-      "Winkel beträgt: 180°",
-      "Winkel beträgt: 90°",
-      "Winkel beträgt: 115°"
-    ],
+    "question": "Ein Winkel α beträgt 65°. Wie groß ist sein Scheitelwinkel γ?",
+    "answers": ["Winkel beträgt: 65°", "Winkel beträgt: 180°", "Winkel beträgt: 90°", "Winkel beträgt: 115°"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

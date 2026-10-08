@@ -245,12 +245,7 @@ const K6_POLITIK_QUESTIONS = [
     "grade": 6,
     "subject": "politik",
     "question": "Wie nennt man das oberste Grundgesetz der Bundesrepublik Deutschland?",
-    "answers": [
-      "Die Schulordnung NRW",
-      "Das Bundes-Regelwerk",
-      "Der Verfassungsbrief",
-      "Das Grundgesetz (GG)"
-    ],
+    "answers": ["Die Schulordnung NRW", "Das Bundes-Regelwerk", "Der Verfassungsbrief", "Das Grundgesetz (GG)"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -638,12 +633,7 @@ const K6_POLITIK_QUESTIONS = [
     "grade": 6,
     "subject": "politik",
     "question": "Welche Bezahlform bucht Geld direkt vom Girokonto ab?",
-    "answers": [
-      "Der lange Handyvertrag",
-      "Die Girocard (EC-Karte)",
-      "Die Sparbüchse zu Hause",
-      "Das Bargeld im Portemonnaie"
-    ],
+    "answers": ["Der lange Handyvertrag", "Die Girocard", "Die Sparbüchse zu Hause", "Das Bargeld im Portemonnaie"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1164,12 +1154,7 @@ const K6_POLITIK_QUESTIONS = [
     "grade": 6,
     "subject": "politik",
     "question": "Wie heißt das Vertretungsorgan der Bürger auf Ebene der Stadt?",
-    "answers": [
-      "Der Stadtrat (Gemeinderat)",
-      "Das Landesparlament vom Land",
-      "Der Bezirkssportverein",
-      "Die städtische Bücherei"
-    ],
+    "answers": ["Der Stadtrat", "Das Landesparlament vom Land", "Der Bezirkssportverein", "Die städtische Bücherei"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1580,16 +1565,11 @@ const K6_POLITIK_QUESTIONS = [
     "grade": 6,
     "subject": "politik",
     "question": "Was ist das Hauptziel von Maßnahmen zum Klimaschutz?",
-    "answers": [
-      "Erderwärmung Bremsen",
-      "Bau von Autobahnen",
-      "Steigerung Stromverbrauch",
-      "Herstellung von Plastik"
-    ],
+    "answers": ["Erderwärmung Bremsen", "Bau von Autobahnen", "Steigerung Stromverbrauch", "Herstellung von Plastik"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Verringerung von Treibhausgasen (z. B. $CO_2$) zur Begrenzung des Klimawandels."
+    "explanation": "Verringerung von Treibhausgasen (z. B. CO₂) zur Begrenzung des Klimawandels."
   },
   {
     "id": "k6_pol_089",
@@ -1597,13 +1577,8 @@ const K6_POLITIK_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "politik",
-    "question": "Welche Energiequelle schädigt das Klima durch hohe $CO_2$-Emissionen?",
-    "answers": [
-      "Nutzung von Sonnenlicht",
-      "Vergrennen von Kohle",
-      "Nutzung von Wasserkraft",
-      "Nutzung von Windkraft"
-    ],
+    "question": "Welche Energiequelle schädigt das Klima durch hohe CO₂-Emissionen?",
+    "answers": ["Nutzung von Sonnenlicht", "Vergrennen von Kohle", "Nutzung von Wasserkraft", "Nutzung von Windkraft"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1742,16 +1717,11 @@ const K6_POLITIK_QUESTIONS = [
     "grade": 6,
     "subject": "politik",
     "question": "Warum ist das Abholzen von Regenwäldern schlecht fürs Klima?",
-    "answers": [
-      "Wälder machen Kälte",
-      "Bäume speichern $CO_2$",
-      "Regen schadet Pflanzen",
-      "Bäume verbrauchen Sauerstoff"
-    ],
+    "answers": ["Wälder machen Kälte", "Bäume speichern CO₂", "Regen schadet Pflanzen", "Bäume verbrauchen Sauerstoff"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bäume nehmen $CO_2$ auf. Werden sie gerodet, wird das Treibhausgas wieder frei."
+    "explanation": "Bäume nehmen CO₂ auf. Werden sie gerodet, wird das Treibhausgas wieder frei."
   },
   {
     "id": "k6_pol_098",

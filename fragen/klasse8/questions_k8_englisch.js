@@ -168,12 +168,7 @@ const questions_k8_englisch = [
     "grade": 8,
     "subject": "englisch",
     "question": "Which relative pronoun is used to refer to people in relative clauses?",
-    "answers": [
-      "Whose, for people.",
-      "Which, for people.",
-      "Where, for people.",
-      "Who (or that)."
-    ],
+    "answers": ["Whose, for people.", "Which, for people.", "Where, for people.", "Who."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -727,12 +722,7 @@ const questions_k8_englisch = [
     "grade": 8,
     "subject": "englisch",
     "question": "What happens to the verb tense in Reported Speech when the introductory verb is in the past (e.g., 'He said')?",
-    "answers": [
-      "The verb tense always changes into the Present Continuous form.",
-      "The verb tense shifts one step back into the past (backshift of tenses).",
-      "The verb tense stays exactly the same in every single case, always.",
-      "The verb tense always shifts one full step forward into the future tense."
-    ],
+    "answers": ["The verb tense always changes into the Present Continuous form.", "The verb tense shifts one step back into the past.", "The verb tense stays exactly the same in every single case, always.", "The verb tense always shifts one full step forward into the future tense."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -1105,12 +1095,7 @@ const questions_k8_englisch = [
     "grade": 8,
     "subject": "englisch",
     "question": "What is the correct definition of an 'adverb of frequency'?",
-    "answers": [
-      "A word that indicates how often an action happens (e.g. always, often, never).",
-      "A word that describes exactly where an action takes place outside.",
-      "A word that joins two main clauses together, such as because or but.",
-      "A word that modifies a noun to describe its exact color, size, or shape in detail."
-    ],
+    "answers": ["A word that indicates how often an action happens.", "A word that describes exactly where an action takes place outside.", "A word that joins two main clauses together, such as because or but.", "A word that modifies a noun to describe its exact color, size, or shape in detail."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,

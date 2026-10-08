@@ -96,16 +96,11 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Wie lautet die korrekte Konjunktiv-I-Form von 'er weiß' im Präsens?",
-    "answers": [
-      "Die korrekte Form lautet 'er wisse'.",
-      "Die korrekte Form lautet 'er wüsste'.",
-      "Die korrekte Form lautet 'er weiß'.",
-      "Die korrekte Form lautet 'er werde wissen'."
-    ],
+    "answers": ["Die korrekte Form lautet 'er wisse'.", "Die korrekte Form lautet 'er wüsste'.", "Die korrekte Form lautet 'er weiß'.", "Die korrekte Form lautet 'er werde wissen'."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Der Konjunktiv I wird vom Präsensstamm gebildet: wissen $\\rightarrow$ 'er wisse' (Konjunktiv II wäre 'er wüsste')."
+    "explanation": "Der Konjunktiv I wird vom Präsensstamm gebildet: wissen → 'er wisse' (Konjunktiv II wäre 'er wüsste')."
   },
   {
     "id": "k8_de_007",
@@ -132,12 +127,7 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Welche Zeitungstextsorte ist eine meinungsbildende, kommentierende Darstellungsform des Chefredakteurs?",
-    "answers": [
-      "Ein Leitartikel (oder Kommentar).",
-      "Eine Wettermeldung im hinteren Teil.",
-      "Eine kurze Sportnotiz von gestern.",
-      "Ein amtlicher Hinweis der Stadt."
-    ],
+    "answers": ["Ein Leitartikel.", "Eine Wettermeldung im hinteren Teil.", "Eine kurze Sportnotiz von gestern.", "Ein amtlicher Hinweis der Stadt."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -150,12 +140,7 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Wie nennt man den einleitenden, fett gedruckten Absatz eines Zeitungsartikels, der die Kernbotschaft zusammenfasst?",
-    "answers": [
-      "Diesen Absatz nennt man Lead (oder Vorspann).",
-      "Diesen Absatz nennt man Inhaltsverzeichnis der Zeitung.",
-      "Diesen Absatz nennt man Fußnote am Textende.",
-      "Diesen Absatz nennt man Impressum des Verlags."
-    ],
+    "answers": ["Diesen Absatz nennt man Lead.", "Diesen Absatz nennt man Inhaltsverzeichnis der Zeitung.", "Diesen Absatz nennt man Fußnote am Textende.", "Diesen Absatz nennt man Impressum des Verlags."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -307,12 +292,7 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Welche Wortart liegt im Satz vor: 'Das Buch, DAS dort liegt, gehört mir.'?",
-    "answers": [
-      "Es handelt sich um ein Relativpronomen (bezügliches Fürwort).",
-      "Es handelt sich um ein nachgestelltes Attribut im Dativ dabei.",
-      "Es handelt sich um eine nebenordnende Konjunktion hier.",
-      "Es handelt sich um ein reflexives Personalpronomen dort."
-    ],
+    "answers": ["Es handelt sich um ein Relativpronomen.", "Es handelt sich um ein nachgestelltes Attribut im Dativ dabei.", "Es handelt sich um eine nebenordnende Konjunktion hier.", "Es handelt sich um ein reflexives Personalpronomen dort."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -441,16 +421,11 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Wie schreibst du Paare von Adjektiven bei nominalisiertem Gebrauch (z. B. 'Alles Gute')?",
-    "answers": [
-      "Nominalisierte Adjektive nach Signalwörtern wie 'alles', 'etwas', 'viel' werden großgeschrieben.",
-      "Nominalisierte Adjektive stehen stets in Anführungszeichen so wird es oft in der Schule erklärt.",
-      "Nominalisierte Adjektive werden ausschließlich im Plural benutzt meistens nach gängiger Meinung.",
-      "Nominalisierte Adjektive verlieren ihre Endung im ganzen Satz in der Grammatik in vielen Texten."
-    ],
+    "answers": ["Nominalisierte Adjektive nach Signalwörtern wie 'alles', 'etwas', 'viel' werden großgeschrieben.", "Nominalisierte Adjektive stehen stets in Anführungszeichen so wird es oft in der Schule erklärt.", "Nominalisierte Adjektive werden ausschließlich im Plural benutzt meistens nach gängiger Meinung.", "Nominalisierte Adjektive verlieren ihre Endung im ganzen Satz in der Grammatik in vielen Texten."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Mengenwörter ('alles', 'etwas', 'nichts', 'viel') signalisieren die Nominalisierung des nachfolgenden Adjektivs $\\rightarrow$ Großschreibung ('etwas Schönes')."
+    "explanation": "Mengenwörter ('alles', 'etwas', 'nichts', 'viel') signalisieren die Nominalisierung des nachfolgenden Adjektivs → Großschreibung ('etwas Schönes')."
   },
   {
     "id": "k8_de_027",
@@ -513,12 +488,7 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Aus welchen drei Grundbausteinen besteht ein vollständiges Argument in einer Erörterung?",
-    "answers": [
-      "Behauptung (These), Begründung und Beispiel (Veranschaulichung).",
-      "Einleitung, ausführlicher Hauptteil und ein langer Schluss dabei.",
-      "Eine Frage, eine passende Antwort und ein treffendes Zitat.",
-      "Ort, Zeitpunkt und alle handelnden Personen der Geschichte."
-    ],
+    "answers": ["Behauptung (These), Begründung und Beispiel.", "Einleitung, ausführlicher Hauptteil und ein langer Schluss dabei.", "Eine Frage, eine passende Antwort und ein treffendes Zitat.", "Ort, Zeitpunkt und alle handelnden Personen der Geschichte."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -544,12 +514,7 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Was beschreibt der Begriff 'Sanduhr-Prinzip' bei der Anordnung von Argumenten?",
-    "answers": [
-      "Erst die Gegenargumente (stark bis schwach), dann die eigenen Argumente (schwach bis stark).",
-      "Erst die eigenen Argumente, danach alle Gegenargumente dazu wie es oft im Unterricht heisst.",
-      "Alle Argumente werden streng nach dem Alphabet sortiert meistens zumindest nach alter Regel.",
-      "Der Text beginnt sofort mit dem abschließenden Fazit dazu in der Grammatik in vielen Texten."
-    ],
+    "answers": ["Erst die Gegenargumente (stark bis schwach), dann die eigenen Argumente.", "Erst die eigenen Argumente, danach alle Gegenargumente dazu wie es oft im Unterricht heisst.", "Alle Argumente werden streng nach dem Alphabet sortiert meistens zumindest nach alter Regel.", "Der Text beginnt sofort mit dem abschließenden Fazit dazu in der Grammatik in vielen Texten."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1121,12 +1086,7 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Was drückt ein 'Possessivpronomen' aus?",
-    "answers": [
-      "Es zeigt ein Besitzverhältnis oder eine Zugehörigkeit an (z. B. 'mein', 'dein').",
-      "Es beschreibt eine Handlung, die gerade jetzt geschieht dabei nach dieser Regel.",
-      "Es leitet stets einen Kausalsatz mit dem Wort 'weil' ein laut vieler Lehrkräfte.",
-      "Es steht immer anstelle eines vollständigen Hauptsatzes dabei nach dieser Regel."
-    ],
+    "answers": ["Es zeigt ein Besitzverhältnis oder eine Zugehörigkeit an.", "Es beschreibt eine Handlung, die gerade jetzt geschieht dabei nach dieser Regel.", "Es leitet stets einen Kausalsatz mit dem Wort 'weil' ein laut vieler Lehrkräfte.", "Es steht immer anstelle eines vollständigen Hauptsatzes dabei nach dieser Regel."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1351,17 +1311,12 @@ const questions_k8_deutsch = [
     "area": "schule",
     "grade": 8,
     "subject": "deutsch",
-    "question": "Wie nennt man den Versfuss aus einer unbetonten und einer betonten Silbe ($v -$)?",
-    "answers": [
-      "Diesen Versfuss nennt man Jambus.",
-      "Diesen Versfuss nennt man Trochäus.",
-      "Diesen Versfuss nennt man Daktylus.",
-      "Diesen Versfuss nennt man Anapäst."
-    ],
+    "question": "Wie nennt man den Versfuss aus einer unbetonten und einer betonten Silbe (v -)?",
+    "answers": ["Diesen Versfuss nennt man Jambus.", "Diesen Versfuss nennt man Trochäus.", "Diesen Versfuss nennt man Daktylus.", "Diesen Versfuss nennt man Anapäst."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Jambus = unbetont - betont ($v -$, z. B. 'Gedicht'). Trochäus ist betont - unbetont ($- v$)."
+    "explanation": "Jambus = unbetont - betont (v -, z. B. 'Gedicht'). Trochäus ist betont - unbetont (- v)."
   },
   {
     "id": "k8_de_083",
@@ -1370,16 +1325,11 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Wie ist der dreisilbige Versfuss 'Daktylus' aufgebaut?",
-    "answers": [
-      "Eine betonte Silbe gefolgt von zwei unbetonten Silben ($- v v$).",
-      "Zwei unbetonte Silben gefolgt von einer betonten Silbe ($v v -$).",
-      "Drei durchgehend betonte Silben hintereinander ($- - -$).",
-      "Eine unbetonte Silbe zwischen zwei betonten Silben ($- v -$)."
-    ],
+    "answers": ["Eine betonte Silbe gefolgt von zwei unbetonten Silben (- v v).", "Zwei unbetonte Silben gefolgt von einer betonten Silbe (v v -).", "Drei durchgehend betonte Silben hintereinander (- - -).", "Eine unbetonte Silbe zwischen zwei betonten Silben (- v -)."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Daktylus = betont - unbetont - unbetont ($- v v$, z. B. 'Achterbahn', 'Himmelwärts')."
+    "explanation": "Daktylus = betont - unbetont - unbetont (- v v, z. B. 'Achterbahn', 'Himmelwärts')."
   },
   {
     "id": "k8_de_084",
@@ -1406,16 +1356,11 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Welches Reimschema kennzeichnet einen 'umarmenden Reim'?",
-    "answers": [
-      "Das Schema [a b b a].",
-      "Das Schema [a a b b].",
-      "Das Schema [a b a b].",
-      "Das Schema [a b c a b c]."
-    ],
+    "answers": ["Das Schema [a b b a].", "Das Schema [a a b b].", "Das Schema [a b a b].", "Das Schema [a b c a b c]."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Beim umarmenden Reim umschließen die äußeren Reime (a) den inneren Paarreim (b b) $\\rightarrow$ [a b b a]."
+    "explanation": "Beim umarmenden Reim umschließen die äußeren Reime (a) den inneren Paarreim (b b) → [a b b a]."
   },
   {
     "id": "k8_de_086",
@@ -1442,12 +1387,7 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Was bezeichnet der Begriff 'Kadenz' am Versende in der Lyrik?",
-    "answers": [
-      "Die metrische Ausgestaltung des Versschlusses (männlich/stumpf oder weiblich/klingend).",
-      "Die genaue Reihenfolge der Strophen innerhalb eines Gedichts meistens in der Grammatik.",
-      "Die Anzahl der betonten Silben in der ersten Verszeile wie es oft im Unterricht heisst.",
-      "Die besondere Wortwahl des Dichters in der letzten Strophe dabei nach gängiger Meinung."
-    ],
+    "answers": ["Die metrische Ausgestaltung des Versschlusses.", "Die genaue Reihenfolge der Strophen innerhalb eines Gedichts meistens in der Grammatik.", "Die Anzahl der betonten Silben in der ersten Verszeile wie es oft im Unterricht heisst.", "Die besondere Wortwahl des Dichters in der letzten Strophe dabei nach gängiger Meinung."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1527,7 +1467,7 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Welcher Mängel liegt vor bei einer Aussage wie: 'Das ist der einzigste Grund'?",
-    "answers": ["Ein unzulässiger Steigerungsfehler (Superlativ von nicht steigerbarem Wort).", "Ein Rechtschreibfehler bei der Groß- und Kleinschreibung dort.", "Ein fehlendes Komma vor einem eingeschobenen Nebensatz dort.", "Eine falsche Steigerung eines regelmäßigen Adjektivs im Satz."],
+    "answers": ["Ein unzulässiger Steigerungsfehler.", "Ein Rechtschreibfehler bei der Groß- und Kleinschreibung dort.", "Ein fehlendes Komma vor einem eingeschobenen Nebensatz dort.", "Eine falsche Steigerung eines regelmäßigen Adjektivs im Satz."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1540,7 +1480,7 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Wann wählt man beim Vergleichen die Partikel 'als' und wann 'wie'?",
-    "answers": ["'als' bei Ungleichheit (Komparativ), 'wie' bei Gleichheit (Positiv).", "'wie' bei Ungleichheit, 'als' bei völliger Gleichheit.", "Beide Wörter bedeuten in jedem Satz genau dasselbe immer.", "'als' steht nie vor, 'wie' steht immer nach dem Verb dort."],
+    "answers": ["'als' bei Ungleichheit (Komparativ), 'wie' bei Gleichheit.", "'wie' bei Ungleichheit, 'als' bei völliger Gleichheit.", "Beide Wörter bedeuten in jedem Satz genau dasselbe immer.", "'als' steht nie vor, 'wie' steht immer nach dem Verb dort."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1553,12 +1493,7 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Was versteht man unter dem Begriff 'Pleonasmus'?",
-    "answers": [
-      "Die doppelnde Verknüpfung zweier Wörter gleicher Bedeutung (z. B. 'weißer Schnee').",
-      "Die Abkürzung eines langen zusammengesetzten Wortes im Satz laut vieler Lehrkräfte.",
-      "Das bewusste Weglassen eines wichtigen Satzgliedes im Text dabei nach dieser Regel.",
-      "Die Erfindung völlig neuer Wörter für schon bekannte Dinge dabei nach dieser Regel."
-    ],
+    "answers": ["Die doppelnde Verknüpfung zweier Wörter gleicher Bedeutung.", "Die Abkürzung eines langen zusammengesetzten Wortes im Satz laut vieler Lehrkräfte.", "Das bewusste Weglassen eines wichtigen Satzgliedes im Text dabei nach dieser Regel.", "Die Erfindung völlig neuer Wörter für schon bekannte Dinge dabei nach dieser Regel."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1571,7 +1506,7 @@ const questions_k8_deutsch = [
     "grade": 8,
     "subject": "deutsch",
     "question": "Was beschreibt eine 'Tautologie' als rhetorisches Stilmittel?",
-    "answers": ["Die Wiederholung eines Begriffs durch ein bedeutungsgleiches Wort (z. B. 'voll und ganz').", "Die stufenweise Steigerung mehrerer Adjektive in einer Reihe dabei laut vieler Lehrkräfte.", "Die lautmalerische Nachahmung realer Geräusche durch Wörter.", "Der bewusste Bruch mit der gewohnten normalen Satzstellung meistens nach gängiger Meinung."],
+    "answers": ["Die Wiederholung eines Begriffs durch ein bedeutungsgleiches Wort.", "Die stufenweise Steigerung mehrerer Adjektive in einer Reihe dabei laut vieler Lehrkräfte.", "Die lautmalerische Nachahmung realer Geräusche durch Wörter.", "Der bewusste Bruch mit der gewohnten normalen Satzstellung meistens nach gängiger Meinung."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,

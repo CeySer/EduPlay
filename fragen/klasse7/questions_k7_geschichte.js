@@ -29,12 +29,7 @@ const K7_GESCHICHTE_QUESTIONS = [
     "grade": 7,
     "subject": "geschichte",
     "question": "Welches Ereignis im Jahr 622 n. Chr. markiert den Beginn der islamischen Zeitrechnung?",
-    "answers": [
-      "Auswanderung Medina (Hedschra)",
-      "Eroberung der Stadt Jerusalem",
-      "Niederschrift des heiligen Koran",
-      "Bau der ersten Moschee Mekka"
-    ],
+    "answers": ["Auswanderung Medina", "Eroberung der Stadt Jerusalem", "Niederschrift des heiligen Koran", "Bau der ersten Moschee Mekka"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -933,12 +928,7 @@ const K7_GESCHICHTE_QUESTIONS = [
     "grade": 7,
     "subject": "geschichte",
     "question": "Was besagte das berühmte mittelalterliche Rechtsprinzip 'Stadtluft macht frei nach...'",
-    "answers": [
-      "...fünf Jahren treuer Arbeit",
-      "...zwei Monaten Zeit",
-      "...Jahr und Tag (366 T.)",
-      "...Zahlung von Gold"
-    ],
+    "answers": ["...fünf Jahren treuer Arbeit", "...zwei Monaten Zeit", "...Jahr und Tag (366 T.)", "...Zahlung von Gold"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -1293,12 +1283,7 @@ const K7_GESCHICHTE_QUESTIONS = [
     "grade": 7,
     "subject": "geschichte",
     "question": "Welches wissenschaftliche Instrument nutzte Galileo Galilei zur Himmelsbeobachtung?",
-    "answers": [
-      "Das Barometer für Druck",
-      "Das Fernrohr (Teleskop)",
-      "Den Kompass aus Metall",
-      "Das Mikroskop aus Glas"
-    ],
+    "answers": ["Das Barometer für Druck", "Das Fernrohr", "Den Kompass aus Metall", "Das Mikroskop aus Glas"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,

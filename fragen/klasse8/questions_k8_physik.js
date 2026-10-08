@@ -23,17 +23,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie lautet die Formel zur Berechnung der Geschwindigkeit $v$ bei einer gleichförmigen Bewegung?",
-    "answers": [
-      "Die Formel lautet $v = a \\cdot t^2$.",
-      "Die Formel lautet $v = \\frac{t}{s}$.",
-      "Die Formel lautet $v = \\frac{s}{t}$.",
-      "Die Formel lautet $v = s \\cdot t$."
-    ],
+    "question": "Wie lautet die Formel zur Berechnung der Geschwindigkeit v bei einer gleichförmigen Bewegung?",
+    "answers": ["Die Formel lautet v = a · t².", "Die Formel lautet v = t/s.", "Die Formel lautet v = s/t.", "Die Formel lautet v = s · t."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Geschwindigkeit ist Strecke pro Zeit ($v = \\frac{s}{t}$)."
+    "explanation": "Geschwindigkeit ist Strecke pro Zeit (v = s/t)."
   },
   {
     "id": "k8_phy_003",
@@ -41,17 +36,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie rechnet man eine Geschwindigkeit von $\\text{m/s}$ in $\\text{km/h}$ um?",
-    "answers": [
-      "Man dividiert den Wert in $\\text{m/s}$ einfach durch den Faktor $10$.",
-      "Man addiert zum Wert in $\\text{m/s}$ immer die feste Zahl $3{,}6$ hinzu.",
-      "Man zieht aus dem Wert in $\\text{m/s}$ die Quadratwurzel und multipliziert mit $2$.",
-      "Man multipliziert den Wert in $\\text{m/s}$ mit dem Faktor $3{,}6$."
-    ],
+    "question": "Wie rechnet man eine Geschwindigkeit von m/s in km/h um?",
+    "answers": ["Man dividiert den Wert in m/s einfach durch den Faktor 10.", "Man addiert zum Wert in m/s immer die feste Zahl 3,6 hinzu.", "Man zieht aus dem Wert in m/s die Quadratwurzel und multipliziert mit 2.", "Man multipliziert den Wert in m/s mit dem Faktor 3,6."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Da $1\\text{ km} = 1000\\text{ m}$ und $1\\text{ h} = 3600\\text{ s}$ sind, entspricht $1\\text{ m/s} = 3{,}6\\text{ km/h}$."
+    "explanation": "Da 1 km = 1000 m und 1 h = 3600 s sind, entspricht 1 m/s = 3,6 km/h."
   },
   {
     "id": "k8_phy_004",
@@ -78,16 +68,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie lautet das Fundamentalgesetz der Mechanik (2. Newtonsches Axiom)?",
-    "answers": [
-      "Die Formel lautet $F = m \\cdot v$.",
-      "Die Formel lautet $F = m \\cdot a$.",
-      "Die Formel lautet $F = \\frac{m}{a}$.",
-      "Die Formel lautet $F = \\frac{1}{2} m v^2$."
-    ],
+    "answers": ["Die Formel lautet F = m · v.", "Die Formel lautet F = m · a.", "Die Formel lautet F = m/a.", "Die Formel lautet F = 1/2 m v²."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Kraft ist das Produkt aus Masse und Beschleunigung ($F = m \\cdot a$). Die Einheit ist Newton (N)."
+    "explanation": "Kraft ist das Produkt aus Masse und Beschleunigung (F = m · a). Die Einheit ist Newton (N)."
   },
   {
     "id": "k8_phy_006",
@@ -95,17 +80,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie lautet die Formel zur Berechnung der Gewichtskraft $F_g$ auf der Erde?",
-    "answers": [
-      "Die Formel lautet $F_g = \\frac{g}{m}$.",
-      "Die Formel lautet $F_g = m \\cdot g$.",
-      "Die Formel lautet $F_g = m + g$.",
-      "Die Formel lautet $F_g = \\frac{m}{g}$."
-    ],
+    "question": "Wie lautet die Formel zur Berechnung der Gewichtskraft Fg auf der Erde?",
+    "answers": ["Die Formel lautet Fg = g/m.", "Die Formel lautet Fg = m · g.", "Die Formel lautet Fg = m + g.", "Die Formel lautet Fg = m/g."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Gewichtskraft berechnet sich aus der Masse $m$ multipliziert mit dem Ortsfaktor $g$ (auf der Erde $g \\approx 9{,}81\\text{ N/kg}$)."
+    "explanation": "Die Gewichtskraft berechnet sich aus der Masse m multipliziert mit dem Ortsfaktor g (auf der Erde g ≈ 9,81 N/kg)."
   },
   {
     "id": "k8_phy_007",
@@ -113,17 +93,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie groß ist der durchschnittliche Ortsfaktor $g$ auf der Erdoberfläche?",
-    "answers": [
-      "Er beträgt ungefähr $24{,}79\\text{ N/kg}$ (oder $\\text{m/s}^2$).",
-      "Er beträgt ungefähr $3{,}71\\text{ N/kg}$ (oder $\\text{m/s}^2$).",
-      "Er beträgt ungefähr $9{,}81\\text{ N/kg}$ (oder $\\text{m/s}^2$).",
-      "Er beträgt ungefähr $1{,}62\\text{ N/kg}$ (oder $\\text{m/s}^2$)."
-    ],
+    "question": "Wie groß ist der durchschnittliche Ortsfaktor g auf der Erdoberfläche?",
+    "answers": ["Er beträgt ungefähr 24,79 N/kg (oder m/s²).", "Er beträgt ungefähr 3,71 N/kg (oder m/s²).", "Er beträgt ungefähr 9,81 N/kg (oder m/s²).", "Er beträgt ungefähr 1,62 N/kg (oder m/s²)."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Auf der Erde gilt $g \\approx 9{,}81\\text{ N/kg}$. Auf dem Mond beträgt er z. B. nur ca. $1{,}62\\text{ N/kg}$."
+    "explanation": "Auf der Erde gilt g ≈ 9,81 N/kg. Auf dem Mond beträgt er z. B. nur ca. 1,62 N/kg."
   },
   {
     "id": "k8_phy_008",
@@ -149,17 +124,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie ist der physikalische Druck $p$ definiert?",
-    "answers": [
-      "Als senkrecht auf eine Fläche wirkende Kraft pro Flächeninhalt ($p = \\frac{F}{A}$).",
-      "Als die Masse eines Körpers geteilt durch die Zeit seines freien Falls ($p = \\frac{m}{t}$).",
-      "Als eine Kraft, die parallel zu einer Fläche entlanggleitet ($p = F \\cdot A$).",
-      "Als die Energiemenge, die pro Sekunde auf eine Fläche trifft ($p = \\frac{E}{t}$)."
-    ],
+    "question": "Wie ist der physikalische Druck p definiert?",
+    "answers": ["Als senkrecht auf eine Fläche wirkende Kraft pro Flächeninhalt (p = F/A).", "Als die Masse eines Körpers geteilt durch die Zeit seines freien Falls (p = m/t).", "Als eine Kraft, die parallel zu einer Fläche entlanggleitet (p = F · A).", "Als die Energiemenge, die pro Sekunde auf eine Fläche trifft (p = E/t)."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Druck ist Kraft pro Fläche ($p = \\frac{F}{A}$). Seine SI-Einheit ist Pascal (Pa) bzw. $\\text{N/m}^2$."
+    "explanation": "Druck ist Kraft pro Fläche (p = F/A). Seine SI-Einheit ist Pascal (Pa) bzw. N/m²."
   },
   {
     "id": "k8_phy_010",
@@ -167,17 +137,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "In welcher SI-Einheit wird der Druck $p$ angegeben?",
-    "answers": [
-      "In Joule (J) beziehungsweise $\\text{N} \\cdot \\text{m}$.",
-      "In Newton (N) beziehungsweise $\\text{kg} \\cdot \\text{m/s}$.",
-      "In Watt (W) beziehungsweise $\\text{J/s}$.",
-      "In Pascal (Pa) beziehungsweise $\\text{N/m}^2$."
-    ],
+    "question": "In welcher SI-Einheit wird der Druck p angegeben?",
+    "answers": ["In Joule (J) beziehungsweise N · m.", "In Newton (N) beziehungsweise kg · m/s.", "In Watt (W) beziehungsweise J/s.", "In Pascal (Pa) beziehungsweise N/m²."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "$1\\text{ Pascal (Pa)} = 1\\text{ N/m}^2$. Häufig genutzte Einheiten sind auch Bar ($1\\text{ bar} = 100.000\\text{ Pa}$)."
+    "explanation": "1 Pascal (Pa) = 1 N/m². Häufig genutzte Einheiten sind auch Bar (1 bar = 100.000 Pa)."
   },
   {
     "id": "k8_phy_011",
@@ -186,16 +151,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wovon hängt der Schweredruck (hydrostatische Druck) in einer Flüssigkeit ab?",
-    "answers": [
-      "Von der Dichte der Flüssigkeit, der Fallbeschleunigung und der Tiefe.",
-      "Ausschließlich von der Grundfläche und der Gesamtform des Gefäßes.",
-      "Vom Gesamtvolumen der Flüssigkeit unabhängig von der Eintauchtiefe.",
-      "Nur von der Außentemperatur und der Oberflächenspannung der Flüssigkeit."
-    ],
+    "answers": ["Von der Dichte der Flüssigkeit, der Fallbeschleunigung und der Tiefe.", "Ausschließlich von der Grundfläche und der Gesamtform des Gefäßes.", "Vom Gesamtvolumen der Flüssigkeit unabhängig von der Eintauchtiefe.", "Nur von der Außentemperatur und der Oberflächenspannung der Flüssigkeit."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Der Schweredruck berechnet sich nach der Formel $p = \\rho \\cdot g \\cdot h$ (Dichte $\\rho$, Ortsfaktor $g$, Tiefe $h$)."
+    "explanation": "Der Schweredruck berechnet sich nach der Formel p = ρ · g · h (Dichte ρ, Ortsfaktor g, Tiefe h)."
   },
   {
     "id": "k8_phy_012",
@@ -203,17 +163,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Was besagt das Gesetz von Archimedes über die Auftriebskraft $F_A$?",
-    "answers": [
-      "Die Auftriebskraft entspricht immer genau der halben Gewichtskraft des eingetauchten Körpers.",
-      "Die Auftriebskraft hängt allein von der Farbe der eingetauchten Körperoberfläche ab.",
-      "Die Auftriebskraft entspricht der Gewichtskraft der verdrängten Flüssigkeitsmenge.",
-      "Die Auftriebskraft wächst mit zunehmender Eintauchtiefe bis ins Unendliche an."
-    ],
+    "question": "Was besagt das Gesetz von Archimedes über die Auftriebskraft FA?",
+    "answers": ["Die Auftriebskraft entspricht immer genau der halben Gewichtskraft des eingetauchten Körpers.", "Die Auftriebskraft hängt allein von der Farbe der eingetauchten Körperoberfläche ab.", "Die Auftriebskraft entspricht der Gewichtskraft der verdrängten Flüssigkeitsmenge.", "Die Auftriebskraft wächst mit zunehmender Eintauchtiefe bis ins Unendliche an."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Archimedisches Prinzip: $F_A = m_{\\text{Verdrängt}} \\cdot g = \\rho_{\\text{Medium}} \\cdot V_{\\text{Körper}} \\cdot g$."
+    "explanation": "Archimedisches Prinzip: FA = mVerdrängt · g = ρMedium · VKörper · g."
   },
   {
     "id": "k8_phy_013",
@@ -222,16 +177,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wann schwimmt ein Körper in einer Flüssigkeit?",
-    "answers": [
-      "Wenn seine Gewichtskraft größer als die maximale Auftriebskraft ist.",
-      "Wenn seine mittlere Dichte kleiner als die Dichte der Flüssigkeit ist.",
-      "Wenn der Körper keinerlei Flüssigkeit verdrängen kann.",
-      "Wenn die Dichte des Körpers exakt doppelt so groß wie die der Flüssigkeit ist."
-    ],
+    "answers": ["Wenn seine Gewichtskraft größer als die maximale Auftriebskraft ist.", "Wenn seine mittlere Dichte kleiner als die Dichte der Flüssigkeit ist.", "Wenn der Körper keinerlei Flüssigkeit verdrängen kann.", "Wenn die Dichte des Körpers exakt doppelt so groß wie die der Flüssigkeit ist."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ist $\\rho_{\\text{Körper}} < \\rho_{\\text{Flüssigkeit}}$, steigt der Körper auf und schwimmt an der Oberfläche (Gewichtskraft = Auftriebskraft im Teilvolumen)."
+    "explanation": "Ist ρKörper < ρFlüssigkeit, steigt der Körper auf und schwimmt an der Oberfläche (Gewichtskraft = Auftriebskraft im Teilvolumen)."
   },
   {
     "id": "k8_phy_014",
@@ -240,16 +190,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie lautet das Ohmsche Gesetz zur Beschreibung von Stromkreisen?",
-    "answers": [
-      "Die Stromstärke ist proportional zum Quadrat des Widerstands ($I = R^2$).",
-      "Die Leistung ist der Quotient aus Widerstand und Spannung ($P = \\frac{R}{U}$).",
-      "Die Spannung berechnet sich aus Stromstärke mal Widerstand ($U = R \\cdot I$).",
-      "Der Widerstand berechnet sich aus Spannung mal Stromstärke ($R = U \\cdot I$)."
-    ],
+    "answers": ["Die Stromstärke ist proportional zum Quadrat des Widerstands (I = R²).", "Die Leistung ist der Quotient aus Widerstand und Spannung (P = R/U).", "Die Spannung berechnet sich aus Stromstärke mal Widerstand (U = R · I).", "Der Widerstand berechnet sich aus Spannung mal Stromstärke (R = U · I)."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Das Ohmsche Gesetz lautet $U = R \\cdot I$ bzw. $R = \\frac{U}{I}$."
+    "explanation": "Das Ohmsche Gesetz lautet U = R · I bzw. R = U/I."
   },
   {
     "id": "k8_phy_015",
@@ -257,17 +202,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "In welcher SI-Einheit wird der elektrische Widerstand $R$ angegeben?",
-    "answers": [
-      "In Farad (F).",
-      "In Ampere (A).",
-      "In Ohm (Ω).",
-      "In Coulomb (C)."
-    ],
+    "question": "In welcher SI-Einheit wird der elektrische Widerstand R angegeben?",
+    "answers": ["In Farad (F).", "In Ampere (A).", "In Ohm (Ω).", "In Coulomb (C)."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der elektrische Widerstand hemmt den Stromfluss. Die Einheit ist Ohm ($\\Omega = \\text{V/A}$)."
+    "explanation": "Der elektrische Widerstand hemmt den Stromfluss. Die Einheit ist Ohm (Ω = V/A)."
   },
   {
     "id": "k8_phy_016",
@@ -275,17 +215,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie verhält sich die Gesamtstromstärke $I_{\\text{ges}}$ in einer Reihenschaltung (Serienschaltung)?",
-    "answers": [
-      "Die Stromstärke halbiert sich mit jedem zusätzlich eingebauten Widerstand.",
-      "Die Stromstärke ist an jeder Stelle der Reihenschaltung gleich groß.",
-      "Die Stromstärke ist am Pluspol doppelt so hoch wie am Minuspol.",
-      "Die Gesamtstromstärke ist die Summe der Einzelstromstärken durch alle Bauteile."
-    ],
+    "question": "Wie verhält sich die Gesamtstromstärke Iges in einer Reihenschaltung (Serienschaltung)?",
+    "answers": ["Die Stromstärke halbiert sich mit jedem zusätzlich eingebauten Widerstand.", "Die Stromstärke ist an jeder Stelle der Reihenschaltung gleich groß.", "Die Stromstärke ist am Pluspol doppelt so hoch wie am Minuspol.", "Die Gesamtstromstärke ist die Summe der Einzelstromstärken durch alle Bauteile."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "In unverzweigten Stromkreisen (Reihenschaltung) fließt überall derselbe Strom: $I_{\\text{ges}} = I_1 = I_2 = \\dots$."
+    "explanation": "In unverzweigten Stromkreisen (Reihenschaltung) fließt überall derselbe Strom: Iges = I₁ = I₂ = …."
   },
   {
     "id": "k8_phy_017",
@@ -293,17 +228,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie verhalten sich die Teilspannungen $U_1, U_2$ in einer Parallelschaltung?",
-    "answers": [
-      "An allen parallelen Zweigen addieren sich die Teilspannungen stets zur vollen Gesamtspannung auf.",
-      "Die Spannung ist an dem Zweig mit dem größten Widerstand stets am kleinsten.",
-      "An allen parallelen Zweigen liegt dieselbe Spannung an ($U_{\\text{ges}} = U_1 = U_2$).",
-      "Die Teilspannungen verhalten sich stets umgekehrt proportional zu den Widerständen."
-    ],
+    "question": "Wie verhalten sich die Teilspannungen U₁, U₂ in einer Parallelschaltung?",
+    "answers": ["An allen parallelen Zweigen addieren sich die Teilspannungen stets zur vollen Gesamtspannung auf.", "Die Spannung ist an dem Zweig mit dem größten Widerstand stets am kleinsten.", "An allen parallelen Zweigen liegt dieselbe Spannung an (Uges = U₁ = U₂).", "Die Teilspannungen verhalten sich stets umgekehrt proportional zu den Widerständen."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "In einer Parallelschaltung liegt an jedem Bauteil die volle Quellspannung an ($U_{\\text{ges}} = U_1 = U_2$)."
+    "explanation": "In einer Parallelschaltung liegt an jedem Bauteil die volle Quellspannung an (Uges = U₁ = U₂)."
   },
   {
     "id": "k8_phy_018",
@@ -311,17 +241,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie berechnet sich der Gesamtwiderstand $R_{\\text{ges}}$ zweier in Reihe geschalteter Widerstände $R_1$ und $R_2$?",
-    "answers": [
-      "Durch Subtraktion des kleineren vom größeren Widerstand.",
-      "Durch Produktbildung der Einzelwiderstände ($R_{\\text{ges}} = R_1 \\cdot R_2$).",
-      "Durch einfache Addition der Einzelwiderstände ($R_{\\text{ges}} = R_1 + R_2$).",
-      "Durch Kehrwertbildung ($R_{\\text{ges}} = \\frac{1}{R_1} + \\frac{1}{R_2}$)."
-    ],
+    "question": "Wie berechnet sich der Gesamtwiderstand Rges zweier in Reihe geschalteter Widerstände R₁ und R₂?",
+    "answers": ["Durch Subtraktion des kleineren vom größeren Widerstand.", "Durch Produktbildung der Einzelwiderstände (Rges = R₁ · R₂).", "Durch einfache Addition der Einzelwiderstände (Rges = R₁ + R₂).", "Durch Kehrwertbildung (Rges = 1/R₁ + 1/R₂)."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Bei der Reihenschaltung addieren sich die Widerstände: $R_{\\text{ges}} = R_1 + R_2 + \\dots$."
+    "explanation": "Bei der Reihenschaltung addieren sich die Widerstände: Rges = R₁ + R₂ + …."
   },
   {
     "id": "k8_phy_019",
@@ -330,16 +255,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Was passiert mit dem Gesamtwiderstand einer Parallelschaltung, wenn man einen weiteren Widerstand parallel hinzufügt?",
-    "answers": [
-      "Der Gesamtwiderstand steigt an und wird größer als der größte Einzelwiderstand.",
-      "Der Gesamtwiderstand sinkt und ist kleiner als der kleinste Einzelwiderstand.",
-      "Der Gesamtwiderstand bleibt gleich dem Durchschnittswert aller Einzelwiderstände.",
-      "Der Gesamtwiderstand entspricht genau der Summe aller einzelnen Widerstände."
-    ],
+    "answers": ["Der Gesamtwiderstand steigt an und wird größer als der größte Einzelwiderstand.", "Der Gesamtwiderstand sinkt und ist kleiner als der kleinste Einzelwiderstand.", "Der Gesamtwiderstand bleibt gleich dem Durchschnittswert aller Einzelwiderstände.", "Der Gesamtwiderstand entspricht genau der Summe aller einzelnen Widerstände."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Ein zusätzlicher paralleler Pfad öffnet eine neue 'Leitungsschneise'. Der Gesamtwiderstand sinkt dadurch (Kehrwertzusammenhang: $\\frac{1}{R_{\\text{ges}}} = \\frac{1}{R_1} + \\frac{1}{R_2}$). "
+    "explanation": "Ein zusätzlicher paralleler Pfad öffnet eine neue 'Leitungsschneise'. Der Gesamtwiderstand sinkt dadurch (Kehrwertzusammenhang: 1/Rges = 1/R₁ + 1/R₂). "
   },
   {
     "id": "k8_phy_020",
@@ -347,17 +267,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie berechnet sich die elektrische Leistung $P$ eines elektrischen Verbrauchers?",
-    "answers": [
-      "Aus Stromstärke mal Zeit ($P = I \\cdot t$).",
-      "Aus Spannung mal Widerstand ($P = U \\cdot R$).",
-      "Aus Spannung durch Widerstand ($P = \\frac{U}{R}$).",
-      "Aus Spannung mal Stromstärke ($P = U \\cdot I$)."
-    ],
+    "question": "Wie berechnet sich die elektrische Leistung P eines elektrischen Verbrauchers?",
+    "answers": ["Aus Stromstärke mal Zeit (P = I · t).", "Aus Spannung mal Widerstand (P = U · R).", "Aus Spannung durch Widerstand (P = U/R).", "Aus Spannung mal Stromstärke (P = U · I)."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die elektrische Leistung berechnet sich nach $P = U \\cdot I$. Die Einheit ist Watt (W)."
+    "explanation": "Die elektrische Leistung berechnet sich nach P = U · I. Die Einheit ist Watt (W)."
   },
   {
     "id": "k8_phy_021",
@@ -366,16 +281,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie lautet die Einheit für die elektrische Energie im Alltag (z. B. auf Stromrechnungen)?",
-    "answers": [
-      "Kilowattstunde (kWh).",
-      "Kilowatt pro Stunde (kW/h).",
-      "Ampere pro Volt (A/V).",
-      "Newtonmeter pro Sekunde (Nm/s)."
-    ],
+    "answers": ["Kilowattstunde (kWh).", "Kilowatt pro Stunde (kW/h).", "Ampere pro Volt (A/V).", "Newtonmeter pro Sekunde (Nm/s)."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Elektrische Energie $E = P \\cdot t$ wird im Alltag in Kilowattstunden ($1\\text{ kWh} = 3{,}6 \\cdot 10^6\\text{ J}$) gemessen."
+    "explanation": "Elektrische Energie E = P · t wird im Alltag in Kilowattstunden (1 kWh = 3,6 · 10⁶ J) gemessen."
   },
   {
     "id": "k8_phy_022",
@@ -383,17 +293,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Was beschreibt die spezifische Wärmekapazität $c$ eines Stoffes?",
-    "answers": [
-      "Die Energie, die nötig ist, um $1\\text{ kg}$ eines Stoffes um $1\\text{ K}$ (oder $1^\\circ\\text{C}$) zu erwärmen.",
-      "Die Zeitspanne, die $1\\text{ kg}$ eines Stoffes braucht, um vollständig zu schmelzen und ganz flüssig zu werden.",
-      "Die Kraft, die nötig ist, um $1\\text{ kg}$ eines Stoffes anzuheben und dabei um $1\\text{ K}$ zu drehen.",
-      "Die Masse, die ein Stoff bei einer Temperaturänderung von $1\\text{ K}$ durch Verdampfung verliert."
-    ],
+    "question": "Was beschreibt die spezifische Wärmekapazität c eines Stoffes?",
+    "answers": ["Die Energie, die nötig ist, um 1 kg eines Stoffes um 1 K (oder 1°C) zu erwärmen.", "Die Zeitspanne, die 1 kg eines Stoffes braucht, um vollständig zu schmelzen und ganz flüssig zu werden.", "Die Kraft, die nötig ist, um 1 kg eines Stoffes anzuheben und dabei um 1 K zu drehen.", "Die Masse, die ein Stoff bei einer Temperaturänderung von 1 K durch Verdampfung verliert."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Die spezifische Wärmekapazität $c$ gibt an, wie viel Wärme $Q$ zugeführt werden muss: $Q = c \\cdot m \\cdot \\Delta T$."
+    "explanation": "Die spezifische Wärmekapazität c gibt an, wie viel Wärme Q zugeführt werden muss: Q = c · m · ΔT."
   },
   {
     "id": "k8_phy_023",
@@ -401,17 +306,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie lautet die Grundgleichung der Wärmelehre zur Berechnung der aufgenommenen Wärme $Q$?",
-    "answers": [
-      "Die Formel lautet $Q = m \\cdot g \\cdot h$.",
-      "Die Formel lautet $Q = c \\cdot m \\cdot \\Delta T$.",
-      "Die Formel lautet $Q = \\frac{1}{2} c \\cdot m^2$.",
-      "Die Formel lautet $Q = \\frac{c \\cdot m}{\\Delta T}$."
-    ],
+    "question": "Wie lautet die Grundgleichung der Wärmelehre zur Berechnung der aufgenommenen Wärme Q?",
+    "answers": ["Die Formel lautet Q = m · g · h.", "Die Formel lautet Q = c · m · ΔT.", "Die Formel lautet Q = 1/2 c · m².", "Die Formel lautet Q = (c · m)/(ΔT)."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Wärmemenge $Q$ hängt ab von Stoffkonstante $c$, Masse $m$ und Temperaturdifferenz $\\Delta T$."
+    "explanation": "Die Wärmemenge Q hängt ab von Stoffkonstante c, Masse m und Temperaturdifferenz ΔT."
   },
   {
     "id": "k8_phy_024",
@@ -420,16 +320,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Welche der folgenden Stoffe besitzt eine außergewöhnlich hohe spezifische Wärmekapazität?",
-    "answers": [
-      "Festes Kupfer ($c \\approx 0{,}38\\text{ kJ/(kg}\\cdot\\text{K)}$).",
-      "Reines Eisenmetall ($c \\approx 0{,}45\\text{ kJ/(kg}\\cdot\\text{K)}$).",
-      "Flüssiges Wasser ($c \\approx 4{,}18\\text{ kJ/(kg}\\cdot\\text{K)}$).",
-      "Flüssiges Quecksilber ($c \\approx 0{,}14\\text{ kJ/(kg}\\cdot\\text{K)}$)."
-    ],
+    "answers": ["Festes Kupfer (c ≈ 0,38 kJ/(kg·K)).", "Reines Eisenmetall (c ≈ 0,45 kJ/(kg·K)).", "Flüssiges Wasser (c ≈ 4,18 kJ/(kg·K)).", "Flüssiges Quecksilber (c ≈ 0,14 kJ/(kg·K))."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Wasser speichert Wärme hervorragend ($c \\approx 4180\\text{ J/(kg}\\cdot\\text{K)}$), weshalb es als Kühlmittel und Wärmespeicher dient."
+    "explanation": "Wasser speichert Wärme hervorragend (c ≈ 4180 J/(kg·K)), weshalb es als Kühlmittel und Wärmespeicher dient."
   },
   {
     "id": "k8_phy_025",
@@ -456,12 +351,7 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Auf welchem Mechanismus beruht der Energietransport der Sonne zur Erde durch das Weltall?",
-    "answers": [
-      "Auf Wärmeleitung durch die dünnen Gasteilchen zwischen Sonne und Erde.",
-      "Ausschließlich auf Wärmestrahlung (elektromagnetische Wellen).",
-      "Auf Konvektionsströmungen im nahezu luftleeren Raum zwischen den Planeten.",
-      "Auf Schallwellen, die sich durch das Vakuum des Weltalls ausbreiten."
-    ],
+    "answers": ["Auf Wärmeleitung durch die dünnen Gasteilchen zwischen Sonne und Erde.", "Ausschließlich auf Wärmestrahlung.", "Auf Konvektionsströmungen im nahezu luftleeren Raum zwischen den Planeten.", "Auf Schallwellen, die sich durch das Vakuum des Weltalls ausbreiten."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -474,16 +364,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie lautet der 1. Hauptsatz der Thermodynamik?",
-    "answers": [
-      "Energie kann weder erzeugt noch vernichtet, sondern nur umgewandelt werden (Energieerhaltung).",
-      "Wärme fließt von selbst stets nur vom kälteren hin zum wärmeren Körper über und niemals zurück.",
-      "Die Entropie eines geschlossenen physikalischen Systems nimmt mit der Zeit immer weiter ab.",
-      "Der absolute Nullpunkt der Temperaturskala liegt genau bei $0^\\circ\\text{C}$ Celsius."
-    ],
+    "answers": ["Energie kann weder erzeugt noch vernichtet, sondern nur umgewandelt werden.", "Wärme fließt von selbst stets nur vom kälteren hin zum wärmeren Körper über und niemals zurück.", "Die Entropie eines geschlossenen physikalischen Systems nimmt mit der Zeit immer weiter ab.", "Der absolute Nullpunkt der Temperaturskala liegt genau bei 0°C Celsius."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Der 1. Hauptsatz ist der Energieerhaltungssatz: Die Änderung der inneren Energie entspricht der zugeführten Wärme plus verrichteter Arbeit ($\\Delta U = Q + W$)."
+    "explanation": "Der 1. Hauptsatz ist der Energieerhaltungssatz: Die Änderung der inneren Energie entspricht der zugeführten Wärme plus verrichteter Arbeit (ΔU = Q + W)."
   },
   {
     "id": "k8_phy_028",
@@ -492,16 +377,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Welche Temperatur entspricht dem absoluten Nullpunkt der Kelvin-Skala in Celsius?",
-    "answers": [
-      "Exakt $0{,}00^\\circ\\text{C}$.",
-      "Exakt $-273{,}15^\\circ\\text{C}$.",
-      "Exakt $-100{,}00^\\circ\\text{C}$.",
-      "Exakt $-459{,}67^\\circ\\text{C}$."
-    ],
+    "answers": ["Exakt 0,00°C.", "Exakt -273,15°C.", "Exakt -100,00°C.", "Exakt -459,67°C."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "$0\\text{ K} = -273{,}15^\\circ\\text{C}$. Bei dieser Temperatur steht jegliche Molekularbewegung theoretisch still."
+    "explanation": "0 K = -273,15°C. Bei dieser Temperatur steht jegliche Molekularbewegung theoretisch still."
   },
   {
     "id": "k8_phy_029",
@@ -509,17 +389,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Was beschreibt die Schmelzwärme $q_s$ eines festen Stoffes?",
-    "answers": [
-      "Die Temperatur, bei der ein fester Stoff spontan seine Farbe vollständig ändert und dabei schmilzt.",
-      "Die Wärmemenge, die beim Gefrieren einer Flüssigkeit pro Sekunde wieder abgegeben wird.",
-      "Der Druckanstieg, der beim Erhitzen eines Metallblocks bis zum Siedepunkt entsteht.",
-      "Die Energie, die benötigt wird, um $1\\text{ kg}$ eines Stoffes am Schmelzpunkt zu verflüssigen."
-    ],
+    "question": "Was beschreibt die Schmelzwärme qs eines festen Stoffes?",
+    "answers": ["Die Temperatur, bei der ein fester Stoff spontan seine Farbe vollständig ändert und dabei schmilzt.", "Die Wärmemenge, die beim Gefrieren einer Flüssigkeit pro Sekunde wieder abgegeben wird.", "Der Druckanstieg, der beim Erhitzen eines Metallblocks bis zum Siedepunkt entsteht.", "Die Energie, die benötigt wird, um 1 kg eines Stoffes am Schmelzpunkt zu verflüssigen."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Die spezifische Schmelzwärme $q_s$ beschreibt die Energie für den Phasenübergang fest $\\rightarrow$ flüssig ohne Temperaturerhöhung ($Q = m \\cdot q_s$)."
+    "explanation": "Die spezifische Schmelzwärme qs beschreibt die Energie für den Phasenübergang fest → flüssig ohne Temperaturerhöhung (Q = m · qs)."
   },
   {
     "id": "k8_phy_030",
@@ -528,12 +403,7 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Was geschieht mit der Temperatur eines Stoffes während des reinen Phasenübergangs (z. B. beim Sieden von Wasser)?",
-    "answers": [
-      "Die Temperatur schwankt unregelmäßig zwischen $0^\\circ\\text{C}$ und $100^\\circ\\text{C}$.",
-      "Die Temperatur fällt schlagartig auf den gefrierpunkt ab.",
-      "Die Temperatur bleibt konstant, bis der Phasenübergang abgeschlossen ist.",
-      "Die Temperatur steigt doppelt so schnell wie vor dem Übergang an."
-    ],
+    "answers": ["Die Temperatur schwankt unregelmäßig zwischen 0°C und 100°C.", "Die Temperatur fällt schlagartig auf den gefrierpunkt ab.", "Die Temperatur bleibt konstant, bis der Phasenübergang abgeschlossen ist.", "Die Temperatur steigt doppelt so schnell wie vor dem Übergang an."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
@@ -546,16 +416,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie verändert sich die Dichte der meisten festen und flüssigen Stoffe bei Erwärmung?",
-    "answers": [
-      "Die Dichte verdoppelt sich pro $10^\\circ\\text{C}$ Erwärmung.",
-      "Die Dichte bleibt bei allen Temperaturen exakt unverändert.",
-      "Die Dichte nimmt ab, da sich der Stoff ausdehnt.",
-      "Die Dichte nimmt stark zu, da die Teilchen schwerer werden."
-    ],
+    "answers": ["Die Dichte verdoppelt sich pro 10°C Erwärmung.", "Die Dichte bleibt bei allen Temperaturen exakt unverändert.", "Die Dichte nimmt ab, da sich der Stoff ausdehnt.", "Die Dichte nimmt stark zu, da die Teilchen schwerer werden."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Erwärmung führt zu größerem Raumbedarf der Teilchen (Volumenzunahme). Da die Masse konstant bleibt, sinkt die Dichte ($\\rho = \\frac{m}{V}$)."
+    "explanation": "Erwärmung führt zu größerem Raumbedarf der Teilchen (Volumenzunahme). Da die Masse konstant bleibt, sinkt die Dichte (ρ = m/V)."
   },
   {
     "id": "k8_phy_032",
@@ -564,16 +429,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Was versteht man unter der sogenannten 'Dichteanomalie des Wassers'?",
-    "answers": [
-      "Wasser zieht sich beim Sieden schlagartig zusammen.",
-      "Wasser erreicht seine höchste Dichte im gefrorenen Zustand bei $-20^\\circ\\text{C}$.",
-      "Wasser besitzt seine höchste Dichte bei etwa $+4^\\circ\\text{C}$.",
-      "Wasser dehnt sich beim Erwärmen von $0^\\circ\\text{C}$ auf $4^\\circ\\text{C}$ stärker aus als alle Metalle."
-    ],
+    "answers": ["Wasser zieht sich beim Sieden schlagartig zusammen.", "Wasser erreicht seine höchste Dichte im gefrorenen Zustand bei -20°C.", "Wasser besitzt seine höchste Dichte bei etwa +4°C.", "Wasser dehnt sich beim Erwärmen von 0°C auf 4°C stärker aus als alle Metalle."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Flüssiges Wasser hat bei $+4^\\circ\\text{C}$ seine größte Dichte ($1\\text{ g/cm}^3$). Eis hat eine geringere Dichte und schwimmt deshalb oben."
+    "explanation": "Flüssiges Wasser hat bei +4°C seine größte Dichte (1 g/cm³). Eis hat eine geringere Dichte und schwimmt deshalb oben."
   },
   {
     "id": "k8_phy_033",
@@ -599,17 +459,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Was versteht man unter der mechanischen Arbeit $W$ in der Physik?",
-    "answers": [
-      "Das Produkt aus Masse und verrichteter Geschwindigkeit ($W = m \\cdot v$).",
-      "Das Produkt aus Kraft und Weg in Kraftrichtung ($W = F \\cdot s$).",
-      "Die Summe aus potenzieller und kinetischer Leistung.",
-      "Den Quotienten aus Kraft und verstrichener Zeit ($W = \\frac{F}{t}$)."
-    ],
+    "question": "Was versteht man unter der mechanischen Arbeit W in der Physik?",
+    "answers": ["Das Produkt aus Masse und verrichteter Geschwindigkeit (W = m · v).", "Das Produkt aus Kraft und Weg in Kraftrichtung (W = F · s).", "Die Summe aus potenzieller und kinetischer Leistung.", "Den Quotienten aus Kraft und verstrichener Zeit (W = F/t)."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Arbeit ist Kraft mal Weg ($W = F \\cdot s$). Die SI-Einheit ist Joule (J) bzw. Newtonmeter (Nm)."
+    "explanation": "Arbeit ist Kraft mal Weg (W = F · s). Die SI-Einheit ist Joule (J) bzw. Newtonmeter (Nm)."
   },
   {
     "id": "k8_phy_035",
@@ -618,16 +473,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie lautet die Goldene Regel der Mechanik für einfache Maschinen (z. B. Hebel, Flaschenzug)?",
-    "answers": [
-      "Die verrichtete Arbeit halbiert sich bei jeder Rolle.",
-      "Die Eingangsleistung ist immer größer als die zugeführte Kraft.",
-      "Was man an Kraft spart, muss man an Weg zusetzen.",
-      "Kräfte können vervielfacht werden, ohne dass sich der Weg verlängert."
-    ],
+    "answers": ["Die verrichtete Arbeit halbiert sich bei jeder Rolle.", "Die Eingangsleistung ist immer größer als die zugeführte Kraft.", "Was man an Kraft spart, muss man an Weg zusetzen.", "Kräfte können vervielfacht werden, ohne dass sich der Weg verlängert."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Goldene Regel der Mechanik besagt: $W = F_1 \\cdot s_1 = F_2 \\cdot s_2$. Man kann zwar Kraft sparen, nicht aber physikalische Arbeit."
+    "explanation": "Die Goldene Regel der Mechanik besagt: W = F₁ · s₁ = F₂ · s₂. Man kann zwar Kraft sparen, nicht aber physikalische Arbeit."
   },
 
 
@@ -710,12 +560,7 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie heißen die Linsen, die in der Mitte dünner sind als am Rand und parallel einfallendes Licht streuen?",
-    "answers": [
-      "Sammellinsen, auch Konvexlinsen genannt.",
-      "Zerstreuungslinsen (Konkavlinsen).",
-      "Bikonvexe Streulinsen mit Rand.",
-      "Planlinsen ohne jede Wölbung."
-    ],
+    "answers": ["Sammellinsen, auch Konvexlinsen genannt.", "Zerstreuungslinsen.", "Bikonvexe Streulinsen mit Rand.", "Planlinsen ohne jede Wölbung."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -728,16 +573,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Was versteht man unter dem 'Brennpunkt' (Fokus) einer Sammellinse?",
-    "answers": [
-      "Der Punkt, in dem sich parallel zur optischen Achse einfallende Lichtstrahlen nach der Brechung schneiden.",
-      "Der Ort, an dem sich zwei benachbarte Sammellinsen exakt berühren und dabei Wärme freisetzen.",
-      "Der Mittelpunkt der Linse, in dem sich angeblich alle Farben des einfallenden Sonnenlichts vollständig vermischen.",
-      "Der äußere Rand der Linse, an dem einfallendes Licht stets vollständig reflektiert wird."
-    ],
+    "answers": ["Der Punkt, in dem sich parallel zur optischen Achse einfallende Lichtstrahlen nach der Brechung schneiden.", "Der Ort, an dem sich zwei benachbarte Sammellinsen exakt berühren und dabei Wärme freisetzen.", "Der Mittelpunkt der Linse, in dem sich angeblich alle Farben des einfallenden Sonnenlichts vollständig vermischen.", "Der äußere Rand der Linse, an dem einfallendes Licht stets vollständig reflektiert wird."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Parallel einfallende Lichtstrahlen werden von einer Sammellinse so gebrochen, dass sie sich hinter der Linse im Brennpunkt $F$ vereinigen."
+    "explanation": "Parallel einfallende Lichtstrahlen werden von einer Sammellinse so gebrochen, dass sie sich hinter der Linse im Brennpunkt F vereinigen."
   },
   {
     "id": "k8_ph_042",
@@ -745,17 +585,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "In welcher Einheit wird die Brechwert (Dioptrie) einer Linse gemessen und wie hängt er mit der Brennweite $f$ zusammen?",
-    "answers": [
-      "In Volt ($V$); der Brechwert gibt die Spannung der Lichtteilchen an.",
-      "In Dioptrien ($dpt = \\frac{1}{m}$); der Brechwert ist der Kehrwert der Brennweite.",
-      "In Newton ($N$); der Brechwert beschreibt die Masse der Linse pro Meter.",
-      "In Watt ($W$); der Brechwert entsteht durch Multiplikation von Brennweite und Linsendurchmesser."
-    ],
+    "question": "In welcher Einheit wird die Brechwert (Dioptrie) einer Linse gemessen und wie hängt er mit der Brennweite f zusammen?",
+    "answers": ["In Volt (V); der Brechwert gibt die Spannung der Lichtteilchen an.", "In Dioptrien (dpt = 1/m); der Brechwert ist der Kehrwert der Brennweite.", "In Newton (N); der Brechwert beschreibt die Masse der Linse pro Meter.", "In Watt (W); der Brechwert entsteht durch Multiplikation von Brennweite und Linsendurchmesser."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Der Brechwert $D$ berechnet sich als Kehrwert der Brennweite in Metern: $D = \\frac{1}{f}$. Je kürzer die Brennweite, desto höher der Brechwert in Dioptrien ($1/m$)."
+    "explanation": "Der Brechwert D berechnet sich als Kehrwert der Brennweite in Metern: D = 1/f. Je kürzer die Brennweite, desto höher der Brechwert in Dioptrien (1/m)."
   },
   {
     "id": "k8_ph_043",
@@ -782,12 +617,7 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Was beschreibt der Begriff 'Spektrum' des weißen Lichts beim Durchgang durch ein Glasprisma?",
-    "answers": [
-      "Die Aufspaltung des weißen Lichts in seine Spektralfarben (Regenbogenfarben).",
-      "Die vollständige Auslöschung des weißen Lichts beim Durchgang durch das Prisma.",
-      "Die Umwandlung des weißen Lichts in unsichtbare Infrarotstrahlung im Prisma.",
-      "Die Verdopplung der Helligkeit des Lichts beim Durchgang durch das Glasprisma."
-    ],
+    "answers": ["Die Aufspaltung des weißen Lichts in seine Spektralfarben.", "Die vollständige Auslöschung des weißen Lichts beim Durchgang durch das Prisma.", "Die Umwandlung des weißen Lichts in unsichtbare Infrarotstrahlung im Prisma.", "Die Verdopplung der Helligkeit des Lichts beim Durchgang durch das Glasprisma."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -800,16 +630,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Welche physikalische Größe gibt an, wie viele Ladungen pro Sekunde durch den Querschnitt eines Leiters fließen?",
-    "answers": [
-      "Der elektrische Widerstand $R$ im Draht.",
-      "Die elektrische Stromstärke $I$.",
-      "Die elektrische Leistung $P$ im Kabel.",
-      "Die elektrische Spannung $U$ am Pol."
-    ],
+    "answers": ["Der elektrische Widerstand R im Draht.", "Die elektrische Stromstärke I.", "Die elektrische Leistung P im Kabel.", "Die elektrische Spannung U am Pol."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Stromstärke $I$ beschreibt die Ladungsmenge $Q$, die pro Zeitspanne $t$ durch eine Leitung fließt ($I = \\frac{Q}{t}$). Einheiten: Ampere ($A$)."
+    "explanation": "Die Stromstärke I beschreibt die Ladungsmenge Q, die pro Zeitspanne t durch eine Leitung fließt (I = Q/t). Einheiten: Ampere (A)."
   },
   {
     "id": "k8_ph_046",
@@ -818,12 +643,7 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Welches Messgerät verwendet man zur Messung der elektrischen Stromstärke und wie wird es in den Stromkreis geschaltet?",
-    "answers": [
-      "Ein Voltmeter, geschaltet parallel zum Verbraucher.",
-      "Ein Ohmmeter, geschaltet direkt an die Spannungsquelle.",
-      "Ein Amperemeter, geschaltet in Reihe (in Serie).",
-      "Ein Barometer, frei im Raum aufgestellt."
-    ],
+    "answers": ["Ein Voltmeter, geschaltet parallel zum Verbraucher.", "Ein Ohmmeter, geschaltet direkt an die Spannungsquelle.", "Ein Amperemeter, geschaltet in Reihe.", "Ein Barometer, frei im Raum aufgestellt."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
@@ -835,17 +655,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Was gibt die elektrische Spannung $U$ an?",
-    "answers": [
-      "Die Anzahl der Elektronen, die insgesamt im gesamten Kabel vorhanden sind.",
-      "Die Wärme, die ein Kabel jede Minute an die umgebende Luft abgibt.",
-      "Die Kraft, mit der Protonen im Leiter gegeneinander stoßen und reiben.",
-      "Der 'Druck' bzw. Antrieb des elektrischen Stroms zwischen zwei Punkten."
-    ],
+    "question": "Was gibt die elektrische Spannung U an?",
+    "answers": ["Die Anzahl der Elektronen, die insgesamt im gesamten Kabel vorhanden sind.", "Die Wärme, die ein Kabel jede Minute an die umgebende Luft abgibt.", "Die Kraft, mit der Protonen im Leiter gegeneinander stoßen und reiben.", "Der 'Druck' bzw. Antrieb des elektrischen Stroms zwischen zwei Punkten."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Spannung $U$ (Einheit Volt, $V$) gibt das Potenzialgefälle an und beschreibt, wie stark die Elektronen im Stromkreis angetrieben werden."
+    "explanation": "Die Spannung U (Einheit Volt, V) gibt das Potenzialgefälle an und beschreibt, wie stark die Elektronen im Stromkreis angetrieben werden."
   },
   {
     "id": "k8_ph_048",
@@ -872,16 +687,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie lautet das Ohmsche Gesetz in Formelform?",
-    "answers": [
-      "$U = \\frac{I}{R}$",
-      "$U = R \\cdot I$",
-      "$I = U \\cdot R$",
-      "$R = U \\cdot I$"
-    ],
+    "answers": ["U = I/R", "U = R · I", "I = U · R", "R = U · I"],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Das Ohmsche Gesetz besagt, dass die Spannung $U$ proportional zur Stromstärke $I$ ist: $U = R \\cdot I$ bzw. $R = \\frac{U}{I}$."
+    "explanation": "Das Ohmsche Gesetz besagt, dass die Spannung U proportional zur Stromstärke I ist: U = R · I bzw. R = U/I."
   },
   {
     "id": "k8_ph_050",
@@ -889,17 +699,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Durch einen Widerstand von $20\\,\\Omega$ fließt ein Strom von $0{,}5\\,\\text{A}$. Wie groß ist die anliegende Spannung?",
-    "answers": [
-      "$2{,}5\\,\\text{Volt}$.",
-      "$100\\,\\text{Volt}$.",
-      "$10\\,\\text{Volt}$.",
-      "$40\\,\\text{Volt}$."
-    ],
+    "question": "Durch einen Widerstand von 20 Ω fließt ein Strom von 0,5 A. Wie groß ist die anliegende Spannung?",
+    "answers": ["2,5 Volt.", "100 Volt.", "10 Volt.", "40 Volt."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Nach dem Ohmschen Gesetz rechnet man: $U = R \\cdot I = 20\\,\\Omega \\cdot 0{,}5\\,\\text{A} = 10\\,\\text{V}$."
+    "explanation": "Nach dem Ohmschen Gesetz rechnet man: U = R · I = 20 Ω · 0,5 A = 10 V."
   },
   {
     "id": "k8_ph_051",
@@ -907,17 +712,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie verhält sich die Gesamtspannung $U_{\\text{gesamt}}$ in einer Reihenschaltung von zwei Verbrauchern?",
-    "answers": [
-      "Die Gesamtspannung ist an allen Bauteilen identisch groß: $U_{\\text{gesamt}} = U_1 = U_2$.",
-      "Die Gesamtspannung berechnet sich über das Produkt der Widerstände.",
-      "Die Gesamtspannung halbiert sich mit jedem zusätzlichen Kabel.",
-      "Die Gesamtspannung ist die Summe der Teilspannungen: $U_{\\text{gesamt}} = U_1 + U_2$."
-    ],
+    "question": "Wie verhält sich die Gesamtspannung Ugesamt in einer Reihenschaltung von zwei Verbrauchern?",
+    "answers": ["Die Gesamtspannung ist an allen Bauteilen identisch groß: Ugesamt = U₁ = U₂.", "Die Gesamtspannung berechnet sich über das Produkt der Widerstände.", "Die Gesamtspannung halbiert sich mit jedem zusätzlichen Kabel.", "Die Gesamtspannung ist die Summe der Teilspannungen: Ugesamt = U₁ + U₂."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "In einer Reihenschaltung teilt sich die Quellspannung auf die einzelnen Verbraucher auf: $U_{\\text{gesamt}} = U_1 + U_2 + ...$."
+    "explanation": "In einer Reihenschaltung teilt sich die Quellspannung auf die einzelnen Verbraucher auf: Ugesamt = U₁ + U₂ + ...."
   },
   {
     "id": "k8_ph_052",
@@ -925,17 +725,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie verhält sich die Stromstärke $I$ in allen Bauteilen einer Reihenschaltung?",
-    "answers": [
-      "Die Stromstärke nimmt vom Pluspol zum Minuspol hin stetig immer weiter ab.",
-      "Die Stromstärke ist am Widerstand mit dem größten Wert stets am kleinsten.",
-      "Die Stromstärke teilt sich an jedem einzelnen Bauteil stets zu gleichen Teilen genau auf.",
-      "Die Stromstärke ist an jeder Stelle im unverzweigten Stromkreis exakt gleich groß."
-    ],
+    "question": "Wie verhält sich die Stromstärke I in allen Bauteilen einer Reihenschaltung?",
+    "answers": ["Die Stromstärke nimmt vom Pluspol zum Minuspol hin stetig immer weiter ab.", "Die Stromstärke ist am Widerstand mit dem größten Wert stets am kleinsten.", "Die Stromstärke teilt sich an jedem einzelnen Bauteil stets zu gleichen Teilen genau auf.", "Die Stromstärke ist an jeder Stelle im unverzweigten Stromkreis exakt gleich groß."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Da in einem unverzweigten Stromkreis (Reihenschaltung) keine Ladungen verloren gehen, ist die Stromstärke $I$ überall gleich: $I_1 = I_2 = I_{\\text{gesamt}}$."
+    "explanation": "Da in einem unverzweigten Stromkreis (Reihenschaltung) keine Ladungen verloren gehen, ist die Stromstärke I überall gleich: I₁ = I₂ = Igesamt."
   },
   {
     "id": "k8_ph_053",
@@ -943,13 +738,8 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Welche Aussage gilt für die elektrische Spannung $U$ an parallel geschalteten Verbrauchern?",
-    "answers": [
-      "An allen parallelen Zweigen liegt dieselbe Spannung an: $U_{\\text{gesamt}} = U_1 = U_2$.",
-      "Die Spannung teilt sich an jedem Zweig proportional zum jeweiligen Widerstand genau auf.",
-      "Die Spannung sinkt in dem Zweig mit dem dünnsten Draht sofort auf null Volt.",
-      "Die Spannung verdoppelt sich bei jedem zusätzlich hinzugefügten parallelen Zweig."
-    ],
+    "question": "Welche Aussage gilt für die elektrische Spannung U an parallel geschalteten Verbrauchern?",
+    "answers": ["An allen parallelen Zweigen liegt dieselbe Spannung an: Ugesamt = U₁ = U₂.", "Die Spannung teilt sich an jedem Zweig proportional zum jeweiligen Widerstand genau auf.", "Die Spannung sinkt in dem Zweig mit dem dünnsten Draht sofort auf null Volt.", "Die Spannung verdoppelt sich bei jedem zusätzlich hinzugefügten parallelen Zweig."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -962,16 +752,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Was besagt die 1. Kirchhoffsche Regel (Knotenpunktregel) für elektrische Stromkreise?",
-    "answers": [
-      "An jedem Knotenpunkt im Stromkreis geht genau die Hälfte des Stroms als Wärme dauerhaft verloren.",
-      "Die Spannung an einem Knotenpunkt verdoppelt sich mit jedem zusätzlichen Zweig sofort.",
-      "Der elektrische Widerstand sinkt an jedem Knotenpunkt automatisch schlagartig auf null.",
-      "Die Summe aller zufließenden Stromstärken ist gleich der Summe aller abfließenden Stromstärken."
-    ],
+    "answers": ["An jedem Knotenpunkt im Stromkreis geht genau die Hälfte des Stroms als Wärme dauerhaft verloren.", "Die Spannung an einem Knotenpunkt verdoppelt sich mit jedem zusätzlichen Zweig sofort.", "Der elektrische Widerstand sinkt an jedem Knotenpunkt automatisch schlagartig auf null.", "Die Summe aller zufließenden Stromstärken ist gleich der Summe aller abfließenden Stromstärken."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Ladungen können sich nicht anstauen oder auflösen: Am Verzweigungsknoten gilt $\\sum I_{\\text{zu}} = \\sum I_{\\text{ab}}$."
+    "explanation": "Ladungen können sich nicht anstauen oder auflösen: Am Verzweigungsknoten gilt Σ Izu = Σ Iab."
   },
   {
     "id": "k8_ph_055",
@@ -979,13 +764,8 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie verändert sich der Gesamtwiderstand $R_{\\text{gesamt}}$, wenn man zu einem Verbraucher einen weiteren Widerstand in Reihe schaltet?",
-    "answers": [
-      "Der Gesamtwiderstand bleibt trotz der Erweiterung völlig unverändert und gleich.",
-      "Der Gesamtwiderstand fällt durch die zusätzliche Reihenschaltung auf null Ohm.",
-      "Der Gesamtwiderstand vergrößert sich ($R_{\\text{gesamt}} = R_1 + R_2$).",
-      "Der Gesamtwiderstand verringert sich um den Wert des neuen Widerstands."
-    ],
+    "question": "Wie verändert sich der Gesamtwiderstand Rgesamt, wenn man zu einem Verbraucher einen weiteren Widerstand in Reihe schaltet?",
+    "answers": ["Der Gesamtwiderstand bleibt trotz der Erweiterung völlig unverändert und gleich.", "Der Gesamtwiderstand fällt durch die zusätzliche Reihenschaltung auf null Ohm.", "Der Gesamtwiderstand vergrößert sich (Rgesamt = R₁ + R₂).", "Der Gesamtwiderstand verringert sich um den Wert des neuen Widerstands."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
@@ -998,12 +778,7 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie verändert sich der Gesamtwiderstand einer Schaltung, wenn man weitere Verbraucher parallel hinzufügt?",
-    "answers": [
-      "Der Gesamtwiderstand steigt mit jedem zusätzlich hinzugeschalteten parallelen Zweig an.",
-      "Der Gesamtwiderstand verdoppelt sich automatisch bei jedem neu hinzugefügten Verbraucher.",
-      "Der Gesamtwiderstand hängt ausschließlich von der Farbe der Kabelisolierung ab.",
-      "Der Gesamtwiderstand sinkt (er ist kleiner als der kleinste Einzelwiderstand)."
-    ],
+    "answers": ["Der Gesamtwiderstand steigt mit jedem zusätzlich hinzugeschalteten parallelen Zweig an.", "Der Gesamtwiderstand verdoppelt sich automatisch bei jedem neu hinzugefügten Verbraucher.", "Der Gesamtwiderstand hängt ausschließlich von der Farbe der Kabelisolierung ab.", "Der Gesamtwiderstand sinkt."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
@@ -1015,17 +790,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Von welchen Materialeigenschaften hängt der elektrische Widerstand $R$ eines metallischen Drahtes ab?",
-    "answers": [
-      "Vom Werkstoff (spezifischer Widerstand), der Drahtlänge und der Querschnittsfläche.",
-      "Nur vom Hersteller des Drahtes und der Farbe seiner äußeren Verpackung im Baumarktladen.",
-      "Ausschließlich von der genauen Uhrzeit, zu der der Draht gerade verwendet wird.",
-      "Nur von der Entfernung des Drahtes zum nächsten Fenster im selben Raum."
-    ],
+    "question": "Von welchen Materialeigenschaften hängt der elektrische Widerstand R eines metallischen Drahtes ab?",
+    "answers": ["Vom Werkstoff (spezifischer Widerstand), der Drahtlänge und der Querschnittsfläche.", "Nur vom Hersteller des Drahtes und der Farbe seiner äußeren Verpackung im Baumarktladen.", "Ausschließlich von der genauen Uhrzeit, zu der der Draht gerade verwendet wird.", "Nur von der Entfernung des Drahtes zum nächsten Fenster im selben Raum."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Es gilt $R = \\rho \\cdot \\frac{l}{A}$. Der Widerstand wächst mit der Länge $l$ und sinkt mit größerer Querschnittsfläche $A$."
+    "explanation": "Es gilt R = ρ · l/A. Der Widerstand wächst mit der Länge l und sinkt mit größerer Querschnittsfläche A."
   },
   {
     "id": "k8_ph_058",
@@ -1033,17 +803,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie berechnet man die elektrische Leistung $P$ eines elektrischen Geräts aus Spannung $U$ und Stromstärke $I$?",
-    "answers": [
-      "$P = U + I$",
-      "$P = \\frac{I}{U^2}$",
-      "$P = U \\cdot I$",
-      "$P = \\frac{U}{I}$"
-    ],
+    "question": "Wie berechnet man die elektrische Leistung P eines elektrischen Geräts aus Spannung U und Stromstärke I?",
+    "answers": ["P = U + I", "P = I/(U²)", "P = U · I", "P = U/I"],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die elektrische Leistung $P$ ist das Produkt aus Spannung $U$ und Stromstärke $I$ ($P = U \\cdot I$). Einheit: Watt ($W$)."
+    "explanation": "Die elektrische Leistung P ist das Produkt aus Spannung U und Stromstärke I (P = U · I). Einheit: Watt (W)."
   },
   {
     "id": "k8_ph_059",
@@ -1051,17 +816,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Ein Wasserkocher wird an das Haushaltsnetz ($230\\,\\text{V}$) angeschlossen. Es fließt ein Strom von $10\\,\\text{A}$. Welche elektrische Leistung erbringt das Gerät?",
-    "answers": [
-      "$2300\\,\\text{Watt}$ ($2{,}3\\,\\text{kW}$).",
-      "$230\\,\\text{Watt}$ (ein Zehntel des Werts).",
-      "$4600\\,\\text{Watt}$ (das Doppelte).",
-      "$100\\,\\text{Watt}$ (viel zu wenig)."
-    ],
+    "question": "Ein Wasserkocher wird an das Haushaltsnetz (230 V) angeschlossen. Es fließt ein Strom von 10 A. Welche elektrische Leistung erbringt das Gerät?",
+    "answers": ["2300 Watt", "230 Watt", "4600 Watt", "100 Watt"],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Über $P = U \\cdot I$ rechnet man: $P = 230\\,\\text{V} \\cdot 10\\,\\text{A} = 2300\\,\\text{W} = 2{,}3\\,\\text{kW}$."
+    "explanation": "Über P = U · I rechnet man: P = 230 V · 10 A = 2300 W = 2,3 kW."
   },
   {
     "id": "k8_ph_060",
@@ -1069,17 +829,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "In welcher Maßeinheit wird die verbrauchte elektrische Energie $E$ auf der Stromabrechnung für Haushalte üblicherweise angegeben?",
-    "answers": [
-      "In Voltampere pro Minute (VAm).",
-      "In Ampere pro Stunde (A/h).",
-      "In Kilowattstunden (kWh).",
-      "In Newtonmeter (Nm)."
-    ],
+    "question": "In welcher Maßeinheit wird die verbrauchte elektrische Energie E auf der Stromabrechnung für Haushalte üblicherweise angegeben?",
+    "answers": ["In Voltampere pro Minute (VAm).", "In Ampere pro Stunde (A/h).", "In Kilowattstunden (kWh).", "In Newtonmeter (Nm)."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die elektrische Energie berechnet sich über $E = P \\cdot t$. Neben der SI-Einheit Joule ($J = Ws$) nutzt man im Haushalt Kilowattstunden ($kWh$)."
+    "explanation": "Die elektrische Energie berechnet sich über E = P · t. Neben der SI-Einheit Joule (J = Ws) nutzt man im Haushalt Kilowattstunden (kWh)."
   },
   {
     "id": "k8_ph_061",
@@ -1088,12 +843,7 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Welche Schutzvorrichtung im Sicherungskasten schützt Haushaltsstromkreise vor Überlastung und Kurzschlüssen?",
-    "answers": [
-      "Ein kleiner Spannungswandler im Sicherungskasten.",
-      "Ein zusätzlicher Generator im Sicherungskasten.",
-      "Der Leitungsschutzschalter (Sicherung).",
-      "Ein einfacher Transformator im Sicherungskasten."
-    ],
+    "answers": ["Ein kleiner Spannungswandler im Sicherungskasten.", "Ein zusätzlicher Generator im Sicherungskasten.", "Der Leitungsschutzschalter.", "Ein einfacher Transformator im Sicherungskasten."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
@@ -1124,16 +874,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Was geschieht bei einem 'Kurzschluss' in einem elektrischen Stromkreis?",
-    "answers": [
-      "Der Widerstand steigt plötzlich sehr stark an und der ganze Stromkreis erkaltet dabei völlig.",
-      "Die Spannung der angeschlossenen Batterie sinkt langsam auf einen negativen Wert ab und bleibt so.",
-      "Die Ladungen fließen für einen kurzen Moment plötzlich rückwärts durch sämtliche Messgeräte im gesamten Stromkreis und darüber hinaus.",
-      "Hin- und Rückleiter berühren sich direkt, wodurch der Widerstand extrem fällt und die Stromstärke gefährlich ansteigt."
-    ],
+    "answers": ["Der Widerstand steigt plötzlich sehr stark an und der ganze Stromkreis erkaltet dabei völlig.", "Die Spannung der angeschlossenen Batterie sinkt langsam auf einen negativen Wert ab und bleibt so.", "Die Ladungen fließen für einen kurzen Moment plötzlich rückwärts durch sämtliche Messgeräte im gesamten Stromkreis und darüber hinaus.", "Hin- und Rückleiter berühren sich direkt, wodurch der Widerstand extrem fällt und die Stromstärke gefährlich ansteigt."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Wird der Verbraucher überbrückt ($R \\to 0$), wächst die Stromstärke nach $I = \\frac{U}{R}$ drastisch an, was zur Überhitzung der Leitungen führt."
+    "explanation": "Wird der Verbraucher überbrückt (R → 0), wächst die Stromstärke nach I = U/R drastisch an, was zur Überhitzung der Leitungen führt."
   },
   {
     "id": "k8_ph_064",
@@ -1142,12 +887,7 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Welche Wirkung zeigt der elektrische Strom beim Durchfließen einer Spule mit Eisenkern?",
-    "answers": [
-      "Das Eisen verliert dauerhaft jegliche Masse.",
-      "Die Spule wandelt sich vollständig in rein optisches Licht um.",
-      "Es bildet sich ein Vakuum im Umkreis der Spule.",
-      "Es entsteht ein steuerbares Magnetfeld (Elektromagnet)."
-    ],
+    "answers": ["Das Eisen verliert dauerhaft jegliche Masse.", "Die Spule wandelt sich vollständig in rein optisches Licht um.", "Es bildet sich ein Vakuum im Umkreis der Spule.", "Es entsteht ein steuerbares Magnetfeld."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -1160,12 +900,7 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Auf welchem physikalischen Prinzip basiert die Funktion eines Elektromotors?",
-    "answers": [
-      "Die Kraftwirkung auf einen stromdurchflossenen Leiter im Magnetfeld (Lorentzkraft).",
-      "Die Wärmeausdehnung eines stromdurchflossenen Metallstabs innerhalb eines Magnetfeldes.",
-      "Die chemische Reaktion zweier verschiedener Elektrolytlösungen in einer Batteriezelle.",
-      "Die Lichtbrechung an einer stromdurchflossenen Glasoberfläche im elektrischen Feld."
-    ],
+    "answers": ["Die Kraftwirkung auf einen stromdurchflossenen Leiter im Magnetfeld.", "Die Wärmeausdehnung eines stromdurchflossenen Metallstabs innerhalb eines Magnetfeldes.", "Die chemische Reaktion zweier verschiedener Elektrolytlösungen in einer Batteriezelle.", "Die Lichtbrechung an einer stromdurchflossenen Glasoberfläche im elektrischen Feld."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1196,12 +931,7 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Welches Gerät wandelt mechanische Bewegungsenergie mithilfe von Induktion in elektrische Energie um?",
-    "answers": [
-      "Ein Generator (z. B. Fahrrad-Dynamo).",
-      "Ein gewöhnlicher elektrischer Tauchsieder.",
-      "Ein simpler Bimetallschalter zweier Metalle.",
-      "Ein einfacher Elektromotor mit Magnet."
-    ],
+    "answers": ["Ein Generator.", "Ein gewöhnlicher elektrischer Tauchsieder.", "Ein simpler Bimetallschalter zweier Metalle.", "Ein einfacher Elektromotor mit Magnet."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -1231,17 +961,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie verhalten sich die Spannungen $U_1$ und $U_2$ an den Spulen eines idealen Transformators zu den Windungszahlen $N_1$ und $N_2$?",
-    "answers": [
-      "Die Spannungen verhalten sich genau wie die Windungszahlen: $\\frac{U_1}{U_2} = \\frac{N_1}{N_2}$.",
-      "Die Spannung verhält sich stets genau umgekehrt proportional zu den beiden Windungszahlen der Spulen.",
-      "Die Windungszahlen der beiden Spulen haben keinerlei Einfluss auf die Ausgangsspannung.",
-      "Die Spannung an der Sekundärspule ist stets exakt doppelt so hoch wie an der Primärspule."
-    ],
+    "question": "Wie verhalten sich die Spannungen U₁ und U₂ an den Spulen eines idealen Transformators zu den Windungszahlen N₁ und N₂?",
+    "answers": ["Die Spannungen verhalten sich genau wie die Windungszahlen: U₁/U₂ = N₁/N₂.", "Die Spannung verhält sich stets genau umgekehrt proportional zu den beiden Windungszahlen der Spulen.", "Die Windungszahlen der beiden Spulen haben keinerlei Einfluss auf die Ausgangsspannung.", "Die Spannung an der Sekundärspule ist stets exakt doppelt so hoch wie an der Primärspule."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Beim Transformator gilt das Übersetzungsverhältnis der Spannungen gleich dem Verhältnis der Windungszahlen: $\\frac{U_1}{U_2} = \\frac{N_1}{N_2}$."
+    "explanation": "Beim Transformator gilt das Übersetzungsverhältnis der Spannungen gleich dem Verhältnis der Windungszahlen: U₁/U₂ = N₁/N₂."
   },
   {
     "id": "k8_ph_070",
@@ -1249,17 +974,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Ein Transformator hat primär $N_1 = 500$ Windungen und sekundär $N_2 = 1000$ Windungen. An der Primärspule liegen $230\\,\\text{V}$ Wechselspannung an. Wie hoch ist die Ausgangsspannung $U_2$?",
-    "answers": [
-      "$920\\,\\text{Volt}$.",
-      "$230\\,\\text{Volt}$.",
-      "$115\\,\\text{Volt}$.",
-      "$460\\,\\text{Volt}$."
-    ],
+    "question": "Ein Transformator hat primär N₁ = 500 Windungen und sekundär N₂ = 1000 Windungen. An der Primärspule liegen 230 V Wechselspannung an. Wie hoch ist die Ausgangsspannung U₂?",
+    "answers": ["920 Volt.", "230 Volt.", "115 Volt.", "460 Volt."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Da die Sekundärspule doppelt so viele Windungszahlen hat ($1000 : 500 = 2$), verdoppelt sich auch die Spannung auf $230\\,\\text{V} \\cdot 2 = 460\\,\\text{V}$."
+    "explanation": "Da die Sekundärspule doppelt so viele Windungszahlen hat (1000 : 500 = 2), verdoppelt sich auch die Spannung auf 230 V · 2 = 460 V."
   },
 
   {
@@ -1269,16 +989,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Warum wird elektrischer Strom über weite Strecken (Hochspannungsleitungen) mit sehr hohen Spannungen (z. B. 380 kV) transportiert?",
-    "answers": [
-      "Damit die Elektronen in den langen Leitungen deutlich schneller fließen können als sonst üblich.",
-      "Um die Stromstärke gering zu halten und dadurch Wärmeverluste in den Leitungen zu minimieren.",
-      "Weil Hochspannung in der Luft einen geringeren Luftwiderstand erfährt als Niederspannung.",
-      "Weil die großen Generatoren im Kraftwerk nur sehr hohe Wechselspannungen erzeugen können."
-    ],
+    "answers": ["Damit die Elektronen in den langen Leitungen deutlich schneller fließen können als sonst üblich.", "Um die Stromstärke gering zu halten und dadurch Wärmeverluste in den Leitungen zu minimieren.", "Weil Hochspannung in der Luft einen geringeren Luftwiderstand erfährt als Niederspannung.", "Weil die großen Generatoren im Kraftwerk nur sehr hohe Wechselspannungen erzeugen können."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Da die Verlustleistung im Leitungswiderstand quadratisch von der Stromstärke abhängt ($P_{\\text{Verlust}} = I^2 \\cdot R$), wird bei hoher Spannung die Stromstärke $I$ für dieselbe Leistung klein gehalten."
+    "explanation": "Da die Verlustleistung im Leitungswiderstand quadratisch von der Stromstärke abhängt (PVerlust = I² · R), wird bei hoher Spannung die Stromstärke I für dieselbe Leistung klein gehalten."
   },
   {
     "id": "k8_ph_072",
@@ -1286,17 +1001,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Was versteht man unter dem Wirkungsgrad $\\eta$ einer Maschine oder einer Lampe?",
-    "answers": [
-      "Das Verhältnis von nutzbarer abgegebener Energie zur zugeführten Gesamtenergie.",
-      "Die Summe aus der zugeführten Energie und der dabei entstehenden Reibungswärme.",
-      "Die Zeitspanne, die ein Gerät ohne jede Unterbrechung betrieben werden kann.",
-      "Die höchste Geschwindigkeit, mit der eine Maschine arbeiten kann, ohne zu überhitzen."
-    ],
+    "question": "Was versteht man unter dem Wirkungsgrad η einer Maschine oder einer Lampe?",
+    "answers": ["Das Verhältnis von nutzbarer abgegebener Energie zur zugeführten Gesamtenergie.", "Die Summe aus der zugeführten Energie und der dabei entstehenden Reibungswärme.", "Die Zeitspanne, die ein Gerät ohne jede Unterbrechung betrieben werden kann.", "Die höchste Geschwindigkeit, mit der eine Maschine arbeiten kann, ohne zu überhitzen."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der Wirkungsgrad $\\eta = \\frac{E_{\\text{nutz}}}{E_{\\text{zu}}}$ gibt an, welcher Anteil der eingesetzten Energie tatsächlich für den gewünschten Zweck genutzt wird."
+    "explanation": "Der Wirkungsgrad η = Enutz/Ezu gibt an, welcher Anteil der eingesetzten Energie tatsächlich für den gewünschten Zweck genutzt wird."
   },
   {
     "id": "k8_ph_073",
@@ -1305,16 +1015,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Eine Glühlampe nimmt 60 Watt elektrische Leistung auf, strahlt aber nur 3 Watt als sichtbares Licht ab. Wie hoch ist ihr Wirkungsgrad?",
-    "answers": [
-      "50 %",
-      "5 %",
-      "95 %",
-      "20 %"
-    ],
+    "answers": ["50 %", "5 %", "95 %", "20 %"],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "$\\eta = \\frac{P_{\\text{nutz}}}{P_{\\text{zu}}} = \\frac{3\\,\\text{W}}{60\\,\\text{W}} = 0{,}05 = 5\\%$. Der Rest geht als unerwünschte Wärme verloren."
+    "explanation": "η = Pnutz/Pzu = (3 W)/(60 W) = 0,05 = 5%. Der Rest geht als unerwünschte Wärme verloren."
   },
   {
     "id": "k8_ph_074",
@@ -1341,16 +1046,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Welche Energieform besitzt ein Buch, das auf einem 2 Meter hohen Regal liegt?",
-    "answers": [
-      "Kinetische Energie (Bewegungsenergie).",
-      "Thermische Strahlungsenergie.",
-      "Elektrische Energie.",
-      "Potenzielle Energie (Lageenergie)."
-    ],
+    "answers": ["Kinetische Energie (Bewegungsenergie).", "Thermische Strahlungsenergie.", "Elektrische Energie.", "Potenzielle Energie (Lageenergie)."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Körper, die sich in einer bestimmten Höhe im Schwerefeld der Erde befinden, besitzen Lageenergie (potenzielle Energie $E_{\\text{pot}} = m \\cdot g \\cdot h$)."
+    "explanation": "Körper, die sich in einer bestimmten Höhe im Schwerefeld der Erde befinden, besitzen Lageenergie (potenzielle Energie Epot = m · g · h)."
   },
   {
     "id": "k8_ph_076",
@@ -1358,17 +1058,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie berechnet man die kinetische Energie (Bewegungsenergie) $E_{\\text{kin}}$ eines Körpers der Masse $m$ mit der Geschwindigkeit $v$?",
-    "answers": [
-      "$E_{\\text{kin}} = m \\cdot g \\cdot h$",
-      "$E_{\\text{kin}} = \\frac{m \\cdot v}{2}$",
-      "$E_{\\text{kin}} = \\frac{1}{2} \\cdot m \\cdot v^2$",
-      "$E_{\\text{kin}} = m \\cdot v \\cdot 2$ (ohne das Quadrat)"
-    ],
+    "question": "Wie berechnet man die kinetische Energie (Bewegungsenergie) Ekin eines Körpers der Masse m mit der Geschwindigkeit v?",
+    "answers": ["Ekin = m · g · h", "Ekin = (m · v)/2", "Ekin = 1/2 · m · v²", "Ekin = m · v · 2 (ohne das Quadrat)"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Die kinetische Energie hängt quadratisch von der Geschwindigkeit ab: $E_{\\text{kin}} = \\frac{1}{2} m v^2$."
+    "explanation": "Die kinetische Energie hängt quadratisch von der Geschwindigkeit ab: Ekin = 1/2 m v²."
   },
   {
     "id": "k8_ph_077",
@@ -1377,16 +1072,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Was passiert mit der kinetischen Energie eines Autos, wenn sich seine Geschwindigkeit verdoppelt (z. B. von 30 km/h auf 60 km/h)?",
-    "answers": [
-      "Die kinetische Energie vervierfacht sich.",
-      "Die kinetische Energie verdoppelt sich ebenfalls.",
-      "Die kinetische Energie bleibt exakt unverändert.",
-      "Die kinetische Energie steigt um das Achtfache an."
-    ],
+    "answers": ["Die kinetische Energie vervierfacht sich.", "Die kinetische Energie verdoppelt sich ebenfalls.", "Die kinetische Energie bleibt exakt unverändert.", "Die kinetische Energie steigt um das Achtfache an."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Da $v$ quadratisch in $E_{\\text{kin}} = \\frac{1}{2} m v^2$ eingeht, führt eine Verdopplung der Geschwindigkeit ($(2v)^2 = 4v^2$) zur vervierfachten Energie (und damit vervierfachtem Bremsweg!)."
+    "explanation": "Da v quadratisch in Ekin = 1/2 m v² eingeht, führt eine Verdopplung der Geschwindigkeit ((2v)² = 4v²) zur vervierfachten Energie (und damit vervierfachtem Bremsweg!)."
   },
   {
     "id": "k8_ph_078",
@@ -1394,17 +1084,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie ist die physikalische Arbeit $W$ definiert, wenn eine Kraft $F$ entlang eines Weges $s$ in Kraftrichtung wirkt?",
-    "answers": [
-      "$W = F \\cdot s$",
-      "$W = \\frac{F}{s}$",
-      "$W = F + s$",
-      "$W = m \\cdot a \\cdot s^2$"
-    ],
+    "question": "Wie ist die physikalische Arbeit W definiert, wenn eine Kraft F entlang eines Weges s in Kraftrichtung wirkt?",
+    "answers": ["W = F · s", "W = F/s", "W = F + s", "W = m · a · s²"],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Arbeit ist Kraft mal Weg ($W = F \\cdot s$). Die Einheit der Arbeit ist Newtonmeter ($Nm$) bzw. Joule ($J$)."
+    "explanation": "Arbeit ist Kraft mal Weg (W = F · s). Die Einheit der Arbeit ist Newtonmeter (Nm) bzw. Joule (J)."
   },
   {
     "id": "k8_ph_079",
@@ -1412,17 +1097,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Ein Beutel mit der Gewichtskraft $F = 50\\,\\text{N}$ wird vertikal um $2\\,\\text{m}$ angehoben. Welche Hubarbeit wird dabei verrichtet?",
-    "answers": [
-      "$100\\,\\text{Joule}$ ($100\\,\\text{Nm}$).",
-      "$25\\,\\text{Joule}$ (nur ein Viertel davon).",
-      "$200\\,\\text{Joule}$ (das Doppelte).",
-      "$52\\,\\text{Joule}$ (falsch addiert)."
-    ],
+    "question": "Ein Beutel mit der Gewichtskraft F = 50 N wird vertikal um 2 m angehoben. Welche Hubarbeit wird dabei verrichtet?",
+    "answers": ["100 Joule", "25 Joule", "200 Joule", "52 Joule"],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Hubarbeit $W = F \\cdot s = 50\\,\\text{N} \\cdot 2\\,\\text{m} = 100\\,\\text{J}$."
+    "explanation": "Hubarbeit W = F · s = 50 N · 2 m = 100 J."
   },
   {
     "id": "k8_ph_080",
@@ -1430,17 +1110,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie ist die physikalische Leistung $P$ allgemein definiert?",
-    "answers": [
-      "Leistung ist verrichtete Arbeit pro Zeitspanne ($P = \\frac{W}{t}$).",
-      "Leistung ist die Dauer, die ein Körper für eine bestimmte Strecke benötigt.",
-      "Leistung ist das Produkt aus Masse und Weg ($P = m \\cdot s$) eines Körpers.",
-      "Leistung ist Kraft mal Beschleunigung ($P = F \\cdot a$) bei jeder Bewegung."
-    ],
+    "question": "Wie ist die physikalische Leistung P allgemein definiert?",
+    "answers": ["Leistung ist verrichtete Arbeit pro Zeitspanne (P = W/t).", "Leistung ist die Dauer, die ein Körper für eine bestimmte Strecke benötigt.", "Leistung ist das Produkt aus Masse und Weg (P = m · s) eines Körpers.", "Leistung ist Kraft mal Beschleunigung (P = F · a) bei jeder Bewegung."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Leistung $P$ gibt an, wie schnell eine Arbeit $W$ verrichtet wird: $P = \\frac{W}{t}$. Einheit: Watt ($W = J/s$)."
+    "explanation": "Die Leistung P gibt an, wie schnell eine Arbeit W verrichtet wird: P = W/t. Einheit: Watt (W = J/s)."
   },
   {
     "id": "k8_ph_081",
@@ -1449,16 +1124,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Was besagt die 'Goldene Regel der Mechanik'?",
-    "answers": [
-      "Kräfte addieren sich immer vektoriell nach der Parallelogrammregel.",
-      "Was man an Kraft spart, muss man an Weg zulegen.",
-      "Die Reibungskraft ist stets größer als die Hubkraft.",
-      "Die Leistung einer Maschine steigt mit der Länge des Hebels."
-    ],
+    "answers": ["Kräfte addieren sich immer vektoriell nach der Parallelogrammregel.", "Was man an Kraft spart, muss man an Weg zulegen.", "Die Reibungskraft ist stets größer als die Hubkraft.", "Die Leistung einer Maschine steigt mit der Länge des Hebels."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Goldene Regel der Mechanik (z. B. bei Hebeln, Flaschenzügen, geneigten Ebenen) besagt: $W = F \\cdot s = \\text{konstant}$. Erspart ein Gerät Kraft, verlängert sich der Weg."
+    "explanation": "Die Goldene Regel der Mechanik (z. B. bei Hebeln, Flaschenzügen, geneigten Ebenen) besagt: W = F · s = konstant. Erspart ein Gerät Kraft, verlängert sich der Weg."
   },
   {
     "id": "k8_ph_082",
@@ -1467,16 +1137,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie verändert sich die benötigte Zugkraft beim Heben einer Last mit einer festen Rolle?",
-    "answers": [
-      "Die Zugkraft verringert sich bei einer festen Rolle deutlich auf ein Drittel des Wertes.",
-      "Die Zugkraft steigt bei einer festen Rolle stark auf das Doppelte des Ausgangswerts an.",
-      "Die Betrag der Zugkraft bleibt gleich, nur die Richtung der Kraft wird umgelenkt.",
-      "Die benötigte Zugkraft sinkt dabei, während sich der zurückgelegte Kraftweg verdoppelt."
-    ],
+    "answers": ["Die Zugkraft verringert sich bei einer festen Rolle deutlich auf ein Drittel des Wertes.", "Die Zugkraft steigt bei einer festen Rolle stark auf das Doppelte des Ausgangswerts an.", "Die Betrag der Zugkraft bleibt gleich, nur die Richtung der Kraft wird umgelenkt.", "Die benötigte Zugkraft sinkt dabei, während sich der zurückgelegte Kraftweg verdoppelt."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Eine feste Rolle spart keine Kraft ($F_{\\text{Zug}} = F_{\\text{Last}}$), sondern dient lediglich als Umlenkrolle für die Kraftrichtung."
+    "explanation": "Eine feste Rolle spart keine Kraft (FZug = FLast), sondern dient lediglich als Umlenkrolle für die Kraftrichtung."
   },
   {
     "id": "k8_ph_083",
@@ -1485,12 +1150,7 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Um welchen Faktor verringert sich die erforderliche Zugkraft bei Verwendung einer losen Rolle (vernachlässigbare Eigengewichte)?",
-    "answers": [
-      "Die Zugkraft steigt bei Verwendung einer losen Rolle auf das Doppelte des Wertes an.",
-      "Die Zugkraft halbiert sich auf $F_{\\text{Zug}} = \\frac{F_{\\text{Last}}}{2}$.",
-      "Die Zugkraft bleibt bei einer losen Rolle völlig unverändert wie ohne jede Rolle.",
-      "Die Zugkraft sinkt bei der losen Rolle auf ein Viertel des ursprünglichen Wertes ab."
-    ],
+    "answers": ["Die Zugkraft steigt bei Verwendung einer losen Rolle auf das Doppelte des Wertes an.", "Die Zugkraft halbiert sich auf FZug = FLast/2.", "Die Zugkraft bleibt bei einer losen Rolle völlig unverändert wie ohne jede Rolle.", "Die Zugkraft sinkt bei der losen Rolle auf ein Viertel des ursprünglichen Wertes ab."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -1502,17 +1162,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie berechnet man das Drehmoment $M$ an einem Hebel?",
-    "answers": [
-      "$M = \\frac{r}{F}$ (Kraftarm durch Kraft)",
-      "$M = F - r$ (Kraft minus Kraftarm)",
-      "$M = F : r$ (Kraft durch Kraftarm)",
-      "$M = F \\cdot r$ (Kraft mal Kraftarm)"
-    ],
+    "question": "Wie berechnet man das Drehmoment M an einem Hebel?",
+    "answers": ["M = r/F (Kraftarm durch Kraft)", "M = F - r (Kraft minus Kraftarm)", "M = F : r (Kraft durch Kraftarm)", "M = F · r (Kraft mal Kraftarm)"],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Das Drehmoment $M$ ist das Produkt aus Kraft $F$ und dem senkrechten Abstand $r$ (Hebelarm) zum Drehpunkt. Einheit: Newtonmeter ($Nm$)."
+    "explanation": "Das Drehmoment M ist das Produkt aus Kraft F und dem senkrechten Abstand r (Hebelarm) zum Drehpunkt. Einheit: Newtonmeter (Nm)."
   },
   {
     "id": "k8_ph_085",
@@ -1521,16 +1176,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie lautet das Hebelgesetz im Gleichgewichtsfall für einen zweiseitigen Hebel?",
-    "answers": [
-      "$F_1 - r_1 = F_2 - r_2$ (Differenz von Kraft und Kraftarm ist gleich)",
-      "$\\frac{F_1}{F_2} = r_1 \\cdot r_2$ (Kraftverhältnis gleich Produkt der Kraftarme)",
-      "$F_1 \\cdot r_1 = F_2 \\cdot r_2$ (Kraft mal Kraftarm ist gleich Last mal Lastarm)",
-      "$F_1 \\cdot r_2 = F_2 \\cdot r_1 \\cdot 2$ (mit doppeltem zweiten Kraftarm)"
-    ],
+    "answers": ["F₁ - r₁ = F₂ - r₂ (Differenz von Kraft und Kraftarm ist gleich)", "F₁/F₂ = r₁ · r₂ (Kraftverhältnis gleich Produkt der Kraftarme)", "F₁ · r₁ = F₂ · r₂ (Kraft mal Kraftarm ist gleich Last mal Lastarm)", "F₁ · r₂ = F₂ · r₁ · 2 (mit doppeltem zweiten Kraftarm)"],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ein Hebel befindet sich im Gleichgewicht, wenn die Drehmomente links und rechts gleich groß sind: $F_1 \\cdot r_1 = F_2 \\cdot r_2$."
+    "explanation": "Ein Hebel befindet sich im Gleichgewicht, wenn die Drehmomente links und rechts gleich groß sind: F₁ · r₁ = F₂ · r₂."
   },
   {
     "id": "k8_ph_086",
@@ -1538,17 +1188,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "An einem Wipp-Hebel sitzt ein Kind mit $F_1 = 300\\,\\text{N}$ in einem Abstand von $r_1 = 2\\,\\text{m}$ zum Drehpunkt. In welchem Abstand $r_2$ muss ein Kind mit $F_2 = 400\\,\\text{N}$ sitzen, damit Gleichgewicht herrscht?",
-    "answers": [
-      "$2{,}67\\,\\text{Meter}$.",
-      "$3{,}0\\,\\text{Meter}$.",
-      "$1{,}0\\,\\text{Meter}$.",
-      "$1{,}5\\,\\text{Meter}$."
-    ],
+    "question": "An einem Wipp-Hebel sitzt ein Kind mit F₁ = 300 N in einem Abstand von r₁ = 2 m zum Drehpunkt. In welchem Abstand r₂ muss ein Kind mit F₂ = 400 N sitzen, damit Gleichgewicht herrscht?",
+    "answers": ["2,67 Meter.", "3,0 Meter.", "1,0 Meter.", "1,5 Meter."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Nach $F_1 \\cdot r_1 = F_2 \\cdot r_2$ gilt: $300\\,\\text{N} \\cdot 2\\,\\text{m} = 400\\,\\text{N} \\cdot r_2 \\Rightarrow 600 = 400 \\cdot r_2 \\Rightarrow r_2 = 1{,}5\\,\\text{m}$."
+    "explanation": "Nach F₁ · r₁ = F₂ · r₂ gilt: 300 N · 2 m = 400 N · r₂ ⇒ 600 = 400 · r₂ ⇒ r₂ = 1,5 m."
   },
   {
     "id": "k8_ph_087",
@@ -1556,17 +1201,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Was beschreibt der physikalische Begriff 'Druck' $p$?",
-    "answers": [
-      "Die Geschwindigkeit eines frei fallenden Körpers zu einem Zeitpunkt ($v = g \\cdot t$).",
-      "Das Verhältnis von senkrecht wirkender Kraft $F$ zur Fläche $A$ ($p = \\frac{F}{A}$).",
-      "Die Anzahl aller einzelnen Gasteilchen in einem vollständig geschlossenen Behälter.",
-      "Das Produkt aus der Masse und dem Volumen eines beliebigen festen Stoffs."
-    ],
+    "question": "Was beschreibt der physikalische Begriff 'Druck' p?",
+    "answers": ["Die Geschwindigkeit eines frei fallenden Körpers zu einem Zeitpunkt (v = g · t).", "Das Verhältnis von senkrecht wirkender Kraft F zur Fläche A (p = F/A).", "Die Anzahl aller einzelnen Gasteilchen in einem vollständig geschlossenen Behälter.", "Das Produkt aus der Masse und dem Volumen eines beliebigen festen Stoffs."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Druck ist Kraft pro Fläche ($p = \\frac{F}{A}$). Die SI-Einheit ist Pascal ($Pa = N/m^2$) oder Bar ($bar$)."
+    "explanation": "Druck ist Kraft pro Fläche (p = F/A). Die SI-Einheit ist Pascal (Pa = N/m²) oder Bar (bar)."
   },
   {
     "id": "k8_ph_088",
@@ -1575,16 +1215,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Warum sinkt eine Person mit Schneeschuhen im tiefen Schnee viel weniger tief ein als mit normalen Stiefeln?",
-    "answers": [
-      "Der Schnee unter den Schneeschuhen schmilzt sofort und wird dadurch schlagartig hart und fest wie festes Eis.",
-      "Die Schneeschuhe vergrößern die Auflagefläche $A$, wodurch sich der Druck $p$ auf den Schnee verringert.",
-      "Die Schneeschuhe erzeugen ein aufwärts gerichtetes Magnetfeld, das die Person leicht trägt.",
-      "Schneeschuhe verringern durch ihr geringes Gewicht direkt die Masse der tragenden Person."
-    ],
+    "answers": ["Der Schnee unter den Schneeschuhen schmilzt sofort und wird dadurch schlagartig hart und fest wie festes Eis.", "Die Schneeschuhe vergrößern die Auflagefläche A, wodurch sich der Druck p auf den Schnee verringert.", "Die Schneeschuhe erzeugen ein aufwärts gerichtetes Magnetfeld, das die Person leicht trägt.", "Schneeschuhe verringern durch ihr geringes Gewicht direkt die Masse der tragenden Person."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Bei gleicher Kraft $F$ führt eine größere Fläche $A$ nach $p = \\frac{F}{A}$ zu einem wesentlich kleineren Druck."
+    "explanation": "Bei gleicher Kraft F führt eine größere Fläche A nach p = F/A zu einem wesentlich kleineren Druck."
   },
   {
     "id": "k8_ph_089",
@@ -1592,17 +1227,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie lautet die Umrechnung zwischen der Druckeinheit Bar ($bar$) und Pascal ($Pa$)?",
-    "answers": [
-      "$1\\,\\text{bar} = 1.000\\,\\text{Pa}$ ($10^3\\,\\text{Pa}$).",
-      "$1\\,\\text{bar} = 100.000\\,\\text{Pa}$ ($10^5\\,\\text{Pa}$).",
-      "$1\\,\\text{bar} = 10.000\\,\\text{Pa}$ ($10^4\\,\\text{Pa}$).",
-      "$1\\,\\text{bar} = 100\\,\\text{Pa}$ ($10^2\\,\\text{Pa}$), viel zu wenig."
-    ],
+    "question": "Wie lautet die Umrechnung zwischen der Druckeinheit Bar (bar) und Pascal (Pa)?",
+    "answers": ["1 bar = 1.000 Pa (10³ Pa).", "1 bar = 100.000 Pa (10⁵ Pa).", "1 bar = 10.000 Pa (10⁴ Pa).", "1 bar = 100 Pa (10² Pa), viel zu wenig."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ein Bar entspricht genau $100.000\\,\\text{Pascal}$ bzw. $100\\,\\text{kPa}$."
+    "explanation": "Ein Bar entspricht genau 100.000 Pascal bzw. 100 kPa."
   },
   {
     "id": "k8_ph_090",
@@ -1629,16 +1259,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Auf welchem Prinzip basiert die Wirkung einer hydraulischen Presse?",
-    "answers": [
-      "Auf dem Pascalschen Prinzip: Gleicher Druck auf unterschiedlich große Kolbenflächen erzeugt Kraftübersetzung.",
-      "Auf der Reibung zwischen dem strömenden Öl und den Innenwänden der engen Rohre selbst.",
-      "Auf der thermischen Ausdehnung von speziellem Hydrauliköl beim sehr starken Erwärmen der ganzen hydraulischen Presse.",
-      "Auf der magnetischen Abstoßung zweier sich gegenüberliegender massiver Eisenkerne im Gehäuse."
-    ],
+    "answers": ["Auf dem Pascalschen Prinzip: Gleicher Druck auf unterschiedlich große Kolbenflächen erzeugt Kraftübersetzung.", "Auf der Reibung zwischen dem strömenden Öl und den Innenwänden der engen Rohre selbst.", "Auf der thermischen Ausdehnung von speziellem Hydrauliköl beim sehr starken Erwärmen der ganzen hydraulischen Presse.", "Auf der magnetischen Abstoßung zweier sich gegenüberliegender massiver Eisenkerne im Gehäuse."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Da $p = \\frac{F_1}{A_1} = \\frac{F_2}{A_2}$ gilt, erzeugt eine kleine Kraft auf einem kleinen Kolben an einem großen Kolben eine um das Flächenverhältnis vergrößerte Kraft $F_2 = F_1 \\cdot \\frac{A_2}{A_1}$."
+    "explanation": "Da p = F₁/A₁ = F₂/A₂ gilt, erzeugt eine kleine Kraft auf einem kleinen Kolben an einem großen Kolben eine um das Flächenverhältnis vergrößerte Kraft F₂ = F₁ · A₂/A₁."
   },
   {
     "id": "k8_ph_092",
@@ -1647,16 +1272,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Was beschreibt der 'Schweredruck' (hydrostatische Druck) in einer Flüssigkeit?",
-    "answers": [
-      "Der Druck, der durch das Eigengewicht der darüber stehenden Flüssigkeitssäule entsteht.",
-      "Die Reibungskraft, die beim Vorbeiströmen des Wassers an Schiffsrümpfen stets entsteht.",
-      "Der Druck der Erdatmosphäre, der von oben ständig auf die Meeresoberfläche wirkt.",
-      "Der Druck, der beim Kochen von Wasser durch die starke Dampfentwicklung entsteht."
-    ],
+    "answers": ["Der Druck, der durch das Eigengewicht der darüber stehenden Flüssigkeitssäule entsteht.", "Die Reibungskraft, die beim Vorbeiströmen des Wassers an Schiffsrümpfen stets entsteht.", "Der Druck der Erdatmosphäre, der von oben ständig auf die Meeresoberfläche wirkt.", "Der Druck, der beim Kochen von Wasser durch die starke Dampfentwicklung entsteht."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der Schweredruck wächst linear mit der Tiefe $h$ und der Dichte $\\rho$ der Flüssigkeit: $p_{\\text{hydr}} = \\rho \\cdot g \\cdot h$."
+    "explanation": "Der Schweredruck wächst linear mit der Tiefe h und der Dichte ρ der Flüssigkeit: phydr = ρ · g · h."
   },
   {
     "id": "k8_ph_093",
@@ -1665,16 +1285,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wie hoch ist der durchschnittliche Luftdruck der Erdatmosphäre auf Meereshöhe?",
-    "answers": [
-      "Ca. 100.000 bar auf Meereshöhe.",
-      "Ca. 10 hPa auf Meereshöhe.",
-      "Ca. 50 bar auf Meereshöhe.",
-      "Ca. 1013 hPa (1,013 bar)."
-    ],
+    "answers": ["Ca. 100.000 bar auf Meereshöhe.", "Ca. 10 hPa auf Meereshöhe.", "Ca. 50 bar auf Meereshöhe.", "Ca. 1013 hPa."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der mittlere Luftdruck auf Meereshöhe beträgt $1013{,}25\\,\\text{hPa} \\approx 1\\,\\text{bar}$."
+    "explanation": "Der mittlere Luftdruck auf Meereshöhe beträgt 1013,25 hPa ≈ 1 bar."
   },
   {
     "id": "k8_ph_094",
@@ -1683,16 +1298,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Was besagt das Archimedische Prinzip für einen in eine Flüssigkeit eingetauchten Körper?",
-    "answers": [
-      "Die Auftriebskraft ist stets exakt gleich groß wie die Masse des eingetauchten Körpers.",
-      "Die Auftriebskraft entspricht der Gewichtskraft der vom Körper verdrängten Flüssigkeitsmenge.",
-      "Ein Körper erfährt unter Wasser nur dann Auftrieb, wenn er ganz und gar aus Holz besteht.",
-      "Die Auftriebskraft nimmt mit zunehmender Eintauchtiefe stets unendlich stark weiter zu und zu."
-    ],
+    "answers": ["Die Auftriebskraft ist stets exakt gleich groß wie die Masse des eingetauchten Körpers.", "Die Auftriebskraft entspricht der Gewichtskraft der vom Körper verdrängten Flüssigkeitsmenge.", "Ein Körper erfährt unter Wasser nur dann Auftrieb, wenn er ganz und gar aus Holz besteht.", "Die Auftriebskraft nimmt mit zunehmender Eintauchtiefe stets unendlich stark weiter zu und zu."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Das Archimedische Prinzip besagt: $F_{\\text{Auftrieb}} = F_{\\text{G, verdrängte Flüssigkeit}} = \\rho_{\\text{Flüssigkeit}} \\cdot V_{\\text{verdrängt}} \\cdot g$."
+    "explanation": "Das Archimedische Prinzip: Die Auftriebskraft ist so groß wie die Gewichtskraft der verdrängten Flüssigkeit (F = ρ · V · g)."
   },
   {
     "id": "k8_ph_095",
@@ -1701,16 +1311,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wann schwimmt ein Körper auf einer Flüssigkeit?",
-    "answers": [
-      "Wenn seine mittlere Dichte kleiner ist als die Dichte der Flüssigkeit.",
-      "Wenn seine Dichte genau doppelt so groß ist wie die Dichte der Flüssigkeit.",
-      "Wenn seine Form vollkommen rund und glatt ohne jede Ecke geformt ist.",
-      "Wenn seine Masse insgesamt mehr als hundert Kilogramm beträgt."
-    ],
+    "answers": ["Wenn seine mittlere Dichte kleiner ist als die Dichte der Flüssigkeit.", "Wenn seine Dichte genau doppelt so groß ist wie die Dichte der Flüssigkeit.", "Wenn seine Form vollkommen rund und glatt ohne jede Ecke geformt ist.", "Wenn seine Masse insgesamt mehr als hundert Kilogramm beträgt."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ein Körper schwimmt, wenn seine mittlere Dichte geringer ist als die der Flüssigkeit ($\\rho_{\\text{Körper}} < \\rho_{\\text{Flüssigkeit}}$), sodass er nur teilweise eintaucht."
+    "explanation": "Ein Körper schwimmt, wenn seine mittlere Dichte geringer ist als die der Flüssigkeit (ρKörper < ρFlüssigkeit), sodass er nur teilweise eintaucht."
   },
   {
     "id": "k8_ph_096",
@@ -1719,16 +1324,11 @@ const questions_k8_physik = [
     "grade": 8,
     "subject": "physik",
     "question": "Wann schwebt ein Körper vollständig untergetaucht in einer Flüssigkeit?",
-    "answers": [
-      "Wenn die umgebende Flüssigkeit vollständig frei von jeglicher Reibung ist.",
-      "Wenn die Dichte des Körpers exakt gleich der Dichte der Flüssigkeit ist.",
-      "Wenn die Temperatur der Flüssigkeit am Gefäßboden deutlich am höchsten ist.",
-      "Wenn die Auftriebskraft insgesamt kleiner ist als die wirkende Gewichtskraft."
-    ],
+    "answers": ["Wenn die umgebende Flüssigkeit vollständig frei von jeglicher Reibung ist.", "Wenn die Dichte des Körpers exakt gleich der Dichte der Flüssigkeit ist.", "Wenn die Temperatur der Flüssigkeit am Gefäßboden deutlich am höchsten ist.", "Wenn die Auftriebskraft insgesamt kleiner ist als die wirkende Gewichtskraft."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Gilt $\\rho_{\\text{Körper}} = \\rho_{\\text{Flüssigkeit}}$, halten sich Gewichtskraft und Auftriebskraft die Waage: Der Körper schwebt im Wasser."
+    "explanation": "Gilt ρKörper = ρFlüssigkeit, halten sich Gewichtskraft und Auftriebskraft die Waage: Der Körper schwebt im Wasser."
   },
   {
     "id": "k8_ph_097",
@@ -1754,17 +1354,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Was versteht man unter der 'Dichte' $\\rho$ eines Stoffes?",
-    "answers": [
-      "Das Gewicht eines Körpers geteilt durch seine gesamte Länge in Metern.",
-      "Das Verhältnis von Masse $m$ zum Volumen $V$ ($ \\rho = \\frac{m}{V} $).",
-      "Das Produkt aus der Gewichtskraft und der Härte eines beliebigen Stoffes.",
-      "Die höchste Temperatur, bei der ein fester Stoff überhaupt schmelzen kann."
-    ],
+    "question": "Was versteht man unter der 'Dichte' ρ eines Stoffes?",
+    "answers": ["Das Gewicht eines Körpers geteilt durch seine gesamte Länge in Metern.", "Das Verhältnis von Masse m zum Volumen V (ρ = m/V).", "Das Produkt aus der Gewichtskraft und der Härte eines beliebigen Stoffes.", "Die höchste Temperatur, bei der ein fester Stoff überhaupt schmelzen kann."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Dichte ist Masse pro Volumen ($ \\rho = \\frac{m}{V} $). Einheiten sind $\\frac{\\text{g}}{\\text{cm}^3}$ oder $\\frac{\\text{kg}}{\\text{m}^3}$."
+    "explanation": "Dichte ist Masse pro Volumen (ρ = m/V). Einheiten sind g/(cm³) oder kg/(m³)."
   },
   {
     "id": "k8_ph_099",
@@ -1772,17 +1367,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Ein Würfel mit dem Volumen $V = 100\\,\\text{cm}^3$ hat eine Masse von $m = 780\\,\\text{g}$. Wie groß ist seine Dichte?",
-    "answers": [
-      "$0{,}78\\,\\frac{\\text{g}}{\\text{cm}^3}$ (verschoben).",
-      "$78\\,\\frac{\\text{g}}{\\text{cm}^3}$ (hundertfach zu groß).",
-      "$1{,}2\\,\\frac{\\text{g}}{\\text{cm}^3}$ (Dichte von Wasser).",
-      "$7{,}8\\,\\frac{\\text{g}}{\\text{cm}^3}$ (Eisen)."
-    ],
+    "question": "Ein Würfel mit dem Volumen V = 100 cm³ hat eine Masse von m = 780 g. Wie groß ist seine Dichte?",
+    "answers": ["0,78 g/(cm³) (verschoben).", "78 g/(cm³) (hundertfach zu groß).", "1,2 g/(cm³) (Dichte von Wasser).", "7,8 g/(cm³) (Eisen)."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "$\\rho = \\frac{m}{V} = \\frac{780\\,\\text{g}}{100\\,\\text{cm}^3} = 7{,}8\\,\\frac{\\text{g}}{\\text{cm}^3}$."
+    "explanation": "ρ = m/V = (780 g)/(100 cm³) = 7,8 g/(cm³)."
   },
   {
     "id": "k8_ph_100",
@@ -1790,17 +1380,12 @@ const questions_k8_physik = [
     "area": "schule",
     "grade": 8,
     "subject": "physik",
-    "question": "Wie lautet die SI-Einheit für die elektrische Ladung $Q$?",
-    "answers": [
-      "Ohm ($\\Omega$), der Widerstand.",
-      "Ampere ($A$), der Strom.",
-      "Volt ($V$), Einheit der Spannung.",
-      "Coulomb ($C = A \\cdot s$)."
-    ],
+    "question": "Wie lautet die SI-Einheit für die elektrische Ladung Q?",
+    "answers": ["Ohm (Ω), der Widerstand.", "Ampere (A), der Strom.", "Volt (V), Einheit der Spannung.", "Coulomb (C = A · s)."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Die elektrische Ladung $Q$ wird in Coulomb ($C$) angegeben. 1 Coulomb entspricht der Ladung von etwa $6{,}24 \\cdot 10^{18}$ Elektronen."
+    "explanation": "Die elektrische Ladung Q wird in Coulomb (C) angegeben. 1 Coulomb entspricht der Ladung von etwa 6,24 · 10¹⁸ Elektronen."
   }
 
 

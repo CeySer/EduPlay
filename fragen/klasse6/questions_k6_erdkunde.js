@@ -47,12 +47,7 @@ const K6_ERDKUNDE_QUESTIONS = [
     "grade": 6,
     "subject": "erdkunde",
     "question": "Durch welchen Ort verläuft international der Nullmeridian?",
-    "answers": [
-      "Berlin in Deutschland",
-      "Paris in Frankreich",
-      "Rom in Italien Stadt",
-      "Greenwich (London)"
-    ],
+    "answers": ["Berlin in Deutschland", "Paris in Frankreich", "Rom in Italien Stadt", "Greenwich"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -1567,12 +1562,7 @@ const K6_ERDKUNDE_QUESTIONS = [
     "grade": 6,
     "subject": "erdkunde",
     "question": "Wie heißen die regelmäßig wiederkehrenden Meeresbewegungen?",
-    "answers": [
-      "Die Fluss-Strömungen",
-      "Die Seebeben-Wellen",
-      "Die Monsun-Winde",
-      "Die Gezeiten (Tiden)"
-    ],
+    "answers": ["Die Fluss-Strömungen", "Die Seebeben-Wellen", "Die Monsun-Winde", "Die Gezeiten"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -1639,12 +1629,7 @@ const K6_ERDKUNDE_QUESTIONS = [
     "grade": 6,
     "subject": "erdkunde",
     "question": "Was baut der Mensch an Küsten zum Schutz vor Sturmfluten?",
-    "answers": [
-      "Erddämme (Deiche)",
-      "Breite Sandburgen",
-      "Flache Holzbrücken",
-      "Lange Stege Holz"
-    ],
+    "answers": ["Erddämme", "Breite Sandburgen", "Flache Holzbrücken", "Lange Stege Holz"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

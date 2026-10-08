@@ -42,12 +42,7 @@ const questions_k8_religion = [
     "grade": 8,
     "subject": "religion",
     "question": "Wie heißt die heilige Schrift des Judentums, die den ersten Teil der christlichen Bibel bildet?",
-    "answers": [
-      "Das Neue Testament der Christen als.",
-      "Die Tanach (enthält u. a. die Tora).",
-      "Das Buch Mormon der Kirche der Mormonen.",
-      "Das Rigveda, eine heilige Schrift des."
-    ],
+    "answers": ["Das Neue Testament der Christen als.", "Die Tanach.", "Das Buch Mormon der Kirche der Mormonen.", "Das Rigveda, eine heilige Schrift des."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -600,12 +595,7 @@ const questions_k8_religion = [
     "grade": 8,
     "subject": "religion",
     "question": "Wie nennt man im Judentum das Fest der Religionsmündigkeit für 13-jährige Jungen (bzw. 12/13-jährige Mädchen)?",
-    "answers": [
-      "Beschneidungsfest, und ist bis heute unumstritten.",
-      "Firmung, im frühen Mittelalter Europas.",
-      "Bar Mizwa (Jungen) bzw. Bat Mizwa (Mädchen).",
-      "Konfirmation, was so aber nicht überliefert ist."
-    ],
+    "answers": ["Beschneidungsfest, und ist bis heute unumstritten.", "Firmung, im frühen Mittelalter Europas.", "Bar Mizwa (Jungen) bzw. Bat Mizwa.", "Konfirmation, was so aber nicht überliefert ist."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
@@ -691,12 +681,7 @@ const questions_k8_religion = [
     "grade": 8,
     "subject": "religion",
     "question": "Wie nennt man das Fest des Fastenbrechens am Ende des Monats Ramadan?",
-    "answers": [
-      "Der Schawwal-Monat danach.",
-      "Mawlid an-Nabi-Feier.",
-      "Eid al-Fitr (Zuckerfest).",
-      "Eid al-Adha, das Opferfest."
-    ],
+    "answers": ["Der Schawwal-Monat danach.", "Mawlid an-Nabi-Feier.", "Eid al-Fitr.", "Eid al-Adha, das Opferfest."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
@@ -817,12 +802,7 @@ const questions_k8_religion = [
     "grade": 8,
     "subject": "religion",
     "question": "Welches Buch enthält die Sprüche, Gleichnisse und Weisheitslehren im Alten Testament?",
-    "answers": [
-      "Der Brief an die Römer, wie es in mancher Populärliteratur steht.",
-      "Das Buch der Psalmen und das Buch der Sprüche (Proverbien).",
-      "Das Buch der Offenbarung, im frühen Mittelalter Europas.",
-      "Das Buch Levitikus, wie es angeblich in alten Schriften steht."
-    ],
+    "answers": ["Der Brief an die Römer, wie es in mancher Populärliteratur steht.", "Das Buch der Psalmen und das Buch der Sprüche.", "Das Buch der Offenbarung, im frühen Mittelalter Europas.", "Das Buch Levitikus, wie es angeblich in alten Schriften steht."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
@@ -1304,12 +1284,7 @@ const questions_k8_religion = [
     "grade": 8,
     "subject": "religion",
     "question": "Was beschreibt der Begriff 'Eschatologie' in der Religionslehre?",
-    "answers": [
-      "Die Lehre von den letzten Dingen (Zukunft der Welt, Tod, Auferstehung, Vollendung).",
-      "Die Lehre von der kunstvollen Gestaltung von Kirchenfenstern, im frühen Mittelalter Europas.",
-      "Die historische Erforschung der Stammbäume im Alten Testament.",
-      "Das Studium der altgriechischen Grammatik für Bibelübersetzungen."
-    ],
+    "answers": ["Die Lehre von den letzten Dingen.", "Die Lehre von der kunstvollen Gestaltung von Kirchenfenstern, im frühen Mittelalter Europas.", "Die historische Erforschung der Stammbäume im Alten Testament.", "Das Studium der altgriechischen Grammatik für Bibelübersetzungen."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
@@ -1376,12 +1351,7 @@ const questions_k8_religion = [
     "grade": 8,
     "subject": "religion",
     "question": "Wer war Siddhartha Gautama?",
-    "answers": [
-      "Ein indischer König, der das Christentum als Erster nach Asien brachte.",
-      "Ein chinesischer Philosoph und der Begründer des alten Daoismus.",
-      "Der oberste Gott der hinduistischen göttlichen Dreiheit Trimurti.",
-      "Der historische Begründer des Buddhismus (der 'Erleuchtete')."
-    ],
+    "answers": ["Ein indischer König, der das Christentum als Erster nach Asien brachte.", "Ein chinesischer Philosoph und der Begründer des alten Daoismus.", "Der oberste Gott der hinduistischen göttlichen Dreiheit Trimurti.", "Der historische Begründer des Buddhismus."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -1430,12 +1400,7 @@ const questions_k8_religion = [
     "grade": 8,
     "subject": "religion",
     "question": "Welche heilige Silbe gilt im Hinduismus als Ursound und Symbol für das umfassende Göttliche?",
-    "answers": [
-      "Schalom.",
-      "Amen.",
-      "Salamualaikum.",
-      "Om (Aum)."
-    ],
+    "answers": ["Schalom.", "Amen.", "Salamualaikum.", "Om."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -1448,12 +1413,7 @@ const questions_k8_religion = [
     "grade": 8,
     "subject": "religion",
     "question": "Welche drei Hauptgötter bilden die 'Trimurti' (göttliche Dreiheit) im Hinduismus?",
-    "answers": [
-      "Zeus, Poseidon und Hades, was viele Menschen bis heute fälschlich glauben.",
-      "Buddha, Mahavira und Guru Nanak, im frühen Mittelalter Europas.",
-      "Odin, Thor und Freya, was viele Menschen bis heute fälschlich glauben.",
-      "Brahma (Schöpfer), Vishnu (Bewahrer) und Shiva (Zerstörer/Erneuerer)."
-    ],
+    "answers": ["Zeus, Poseidon und Hades, was viele Menschen bis heute fälschlich glauben.", "Buddha, Mahavira und Guru Nanak, im frühen Mittelalter Europas.", "Odin, Thor und Freya, was viele Menschen bis heute fälschlich glauben.", "Brahma (Schöpfer), Vishnu (Bewahrer) und Shiva."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
@@ -1466,12 +1426,7 @@ const questions_k8_religion = [
     "grade": 8,
     "subject": "religion",
     "question": "Welcher Fluss in Indien gilt für Hindus als besonders heilig und reinigend?",
-    "answers": [
-      "Der Nil, der längste.",
-      "Der Ganges (Ganga).",
-      "Der Jordan, ein Fluss im.",
-      "Der Euphrat, ein."
-    ],
+    "answers": ["Der Nil, der längste.", "Der Ganges.", "Der Jordan, ein Fluss im.", "Der Euphrat, ein."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -1736,12 +1691,7 @@ const questions_k8_religion = [
     "grade": 8,
     "subject": "religion",
     "question": "Was bezeichnet der Begriff 'Bioethik'?",
-    "answers": [
-      "Die Herstellung von rein biologischen Düngemitteln in der Landwirtschaft, im frühen Mittelalter Europas.",
-      "Die Lehre von der Entstehung der fossilen Energieträger, was so aber nicht überliefert ist.",
-      "Die biologische Untersuchung der Zellstruktur von Pflanzen, wie es in mancher Populärliteratur steht.",
-      "Die ethische Reflexion über den Umgang des Menschen mit dem Leben (Medizin, Gentechnik, Tierwohl)."
-    ],
+    "answers": ["Die Herstellung von rein biologischen Düngemitteln in der Landwirtschaft, im frühen Mittelalter Europas.", "Die Lehre von der Entstehung der fossilen Energieträger, was so aber nicht überliefert ist.", "Die biologische Untersuchung der Zellstruktur von Pflanzen, wie es in mancher Populärliteratur steht.", "Die ethische Reflexion über den Umgang des Menschen mit dem Leben."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,

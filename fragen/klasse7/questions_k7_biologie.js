@@ -499,16 +499,11 @@ const K7_BIOLOGIE_QUESTIONS = [
     "grade": 7,
     "subject": "biologie",
     "question": "Welche beiden Stoffe benötigt eine Pflanze als Ausgangsstoffe für Fotosynthese?",
-    "answers": [
-      "Ozon u. Mineralien",
-      "Wasser u. CO2 Gas",
-      "Sauerstoff u. Zucker",
-      "Stickstoff u. Wasser"
-    ],
+    "answers": ["Ozon u. Mineralien", "Wasser u. CO₂ Gas", "Sauerstoff u. Zucker", "Stickstoff u. Wasser"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Wasser ($H_2O$) u. Kohlenstoffdioxid ($CO_2$) werden unter Licht umgesetzt."
+    "explanation": "Wasser (H₂O) u. Kohlenstoffdioxid (CO₂) werden unter Licht umgesetzt."
   },
   {
     "id": "k7_bio_029",
@@ -517,16 +512,11 @@ const K7_BIOLOGIE_QUESTIONS = [
     "grade": 7,
     "subject": "biologie",
     "question": "Welche beiden Endprodukte entstehen bei der Fotosynthese?",
-    "answers": [
-      "Glucose u. Sauerstoff",
-      "Stickstoff u. Stärke",
-      "Methan u. Sauerstoff",
-      "Wasser u. Kohlenstoff"
-    ],
+    "answers": ["Glucose u. Sauerstoff", "Stickstoff u. Stärke", "Methan u. Sauerstoff", "Wasser u. Kohlenstoff"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Es entstehen Traubenzucker (Glucose) u. gasförmiger Sauerstoff ($O_2$)."
+    "explanation": "Es entstehen Traubenzucker (Glucose) u. gasförmiger Sauerstoff (O₂)."
   },
   {
     "id": "k7_bio_030",
@@ -643,16 +633,11 @@ const K7_BIOLOGIE_QUESTIONS = [
     "grade": 7,
     "subject": "biologie",
     "question": "Welche Endprodukte entstehen bei der vollständigen Zellatmung?",
-    "answers": [
-      "Glucose u. Sauerstoff",
-      "CO2, Wasser u. Energie",
-      "Stärke, Fett u. Eiweiß",
-      "Stärke u. Stickstoff"
-    ],
+    "answers": ["Glucose u. Sauerstoff", "CO₂, Wasser u. Energie", "Stärke, Fett u. Eiweiß", "Stärke u. Stickstoff"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Glucose + Sauerstoff werden zu $CO_2$, $H_2O$ u. Energie (ATP) abgebaut."
+    "explanation": "Glucose + Sauerstoff werden zu CO₂, H₂O u. Energie (ATP) abgebaut."
   },
   {
     "id": "k7_bio_037",
@@ -715,16 +700,11 @@ const K7_BIOLOGIE_QUESTIONS = [
     "grade": 7,
     "subject": "biologie",
     "question": "Welches Gas entnehmen Pflanzen der Luft bei der Fotosynthese?",
-    "answers": [
-      "Edelgas Helium",
-      "Stickstoffgas",
-      "Reinen Sauerstoff",
-      "Kohlenstoffdioxid"
-    ],
+    "answers": ["Edelgas Helium", "Stickstoffgas", "Reinen Sauerstoff", "Kohlenstoffdioxid"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Kohlenstoffdioxid ($CO_2$) liefert den Kohlenstoffbaustein für Glucose."
+    "explanation": "Kohlenstoffdioxid (CO₂) liefert den Kohlenstoffbaustein für Glucose."
   },
   {
     "id": "k7_bio_041",
@@ -877,16 +857,11 @@ const K7_BIOLOGIE_QUESTIONS = [
     "grade": 7,
     "subject": "biologie",
     "question": "Welches Gas gilt als Hauptverursacher des menschlich verstärkten Treibhauseffekts?",
-    "answers": [
-      "Reiner Stickstoff",
-      "Sauerstoffgas",
-      "Kohlenstoffdioxid",
-      "Edelgas Argon"
-    ],
+    "answers": ["Reiner Stickstoff", "Sauerstoffgas", "Kohlenstoffdioxid", "Edelgas Argon"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$CO_2$-Emissionen durch Verbrennung fossiler Stoffe verstärken die Erwärmung."
+    "explanation": "CO₂-Emissionen durch Verbrennung fossiler Stoffe verstärken die Erwärmung."
   },
   {
     "id": "k7_bio_050",
@@ -895,16 +870,11 @@ const K7_BIOLOGIE_QUESTIONS = [
     "grade": 7,
     "subject": "biologie",
     "question": "Warum sind Wälder für das Weltklima als Kohlenstoffspeicher von großer Bedeutung?",
-    "answers": [
-      "Kühlen Ozeanwasser",
-      "Stoppen Erdbeben",
-      "Binden CO2 im Holz",
-      "Erzeugen Methangas"
-    ],
+    "answers": ["Kühlen Ozeanwasser", "Stoppen Erdbeben", "Binden CO₂ im Holz", "Erzeugen Methangas"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bäume entziehen der Atmosphäre $CO_2$ u. speichern Kohlenstoff dauerhaft in Holz u. Humus."
+    "explanation": "Bäume entziehen der Atmosphäre CO₂ u. speichern Kohlenstoff dauerhaft in Holz u. Humus."
   },
 
   // --- NAHRUNGSKETTEN, NAHRUNGSNETZE & ÖKOLOGISCHE NISCHEN (051 - 075) ---

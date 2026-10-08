@@ -854,12 +854,7 @@ const questions_k8_politik = [
     "grade": 8,
     "subject": "politik",
     "question": "Wer wählt den Bundespräsidenten in Deutschland?",
-    "answers": [
-      "Das gesamte Bundesvolk in einer direkten bundesweiten Wahl aller Bürgerinnen.",
-      "Die Bundesversammlung (bestehend aus Bundestagsabgeordneten und Ländervertretern).",
-      "Der Bundesrat im Rahmen einer geheimen und feierlichen Jahrestagung im Herbst.",
-      "Die Gesamtheit aller Richterinnen und Richter des Bundesverfassungsgerichts allein."
-    ],
+    "answers": ["Das gesamte Bundesvolk in einer direkten bundesweiten Wahl aller Bürgerinnen.", "Die Bundesversammlung.", "Der Bundesrat im Rahmen einer geheimen und feierlichen Jahrestagung im Herbst.", "Die Gesamtheit aller Richterinnen und Richter des Bundesverfassungsgerichts allein."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
@@ -1414,12 +1409,7 @@ const questions_k8_politik = [
     "grade": 8,
     "subject": "politik",
     "question": "Was versteht man unter dem Begriff 'Greenwashing' bei Unternehmen?",
-    "answers": [
-      "Die spürbare Senkung der CO2-Emissionen in der gesamten industriellen Fertigungskette.",
-      "Der Bau von großen Solaranlagen auf den Dächern sämtlicher Firmengebäude im Land.",
-      "Die gründliche Reinigung von Industrieanlagen mit rein biologischen Putzmitteln.",
-      "Das gezielte Vermarkten eines Produkts als ökologisch, ohne dass dies zutrifft."
-    ],
+    "answers": ["Die spürbare Senkung der CO₂-Emissionen in der gesamten industriellen Fertigungskette.", "Der Bau von großen Solaranlagen auf den Dächern sämtlicher Firmengebäude im Land.", "Die gründliche Reinigung von Industrieanlagen mit rein biologischen Putzmitteln.", "Das gezielte Vermarkten eines Produkts als ökologisch, ohne dass dies zutrifft."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -1612,12 +1602,7 @@ const questions_k8_politik = [
     "grade": 8,
     "subject": "politik",
     "question": "Was versteht man unter dem Begriff der 'Freien Berufe'?",
-    "answers": [
-      "Berufe, die vollständig von der Pflicht zur Abgabe von Einkommensteuern befreit sind.",
-      "Selbstständige Tätigkeiten auf Basis von höherer Bildung (z. B. Ärzte, Anwälte).",
-      "Arbeitsplätze, bei denen Arbeitnehmer ihre Arbeitszeiten jeden Tag frei wählen können.",
-      "Tätigkeiten, die ohne jegliche Berufsausbildung ausgeführt werden dürfen."
-    ],
+    "answers": ["Berufe, die vollständig von der Pflicht zur Abgabe von Einkommensteuern befreit sind.", "Selbstständige Tätigkeiten auf Basis von höherer Bildung.", "Arbeitsplätze, bei denen Arbeitnehmer ihre Arbeitszeiten jeden Tag frei wählen können.", "Tätigkeiten, die ohne jegliche Berufsausbildung ausgeführt werden dürfen."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,

@@ -517,16 +517,11 @@ const K6_PHYSIK_QUESTIONS = [
     "grade": 6,
     "subject": "physik",
     "question": "Wie lautet das Reflexionsgesetz am ebenen Spiegel?",
-    "answers": [
-      "Licht wird komplett aufgesaugt",
-      "Einfallswinkel = Ausfallswinkel",
-      "Einfallswinkel ist doppelt so groß",
-      "Ausfallswinkel ist immer 90°"
-    ],
+    "answers": ["Licht wird komplett aufgesaugt", "Einfallswinkel = Ausfallswinkel", "Einfallswinkel ist doppelt so groß", "Ausfallswinkel ist immer 90°"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Einfallswinkel $\\alpha$ ist stets gleich dem Reflexionswinkel $\\beta$."
+    "explanation": "Einfallswinkel α ist stets gleich dem Reflexionswinkel β."
   },
   {
     "id": "k6_ph_030",
@@ -753,12 +748,7 @@ const K6_PHYSIK_QUESTIONS = [
     "grade": 6,
     "subject": "physik",
     "question": "Worin kann sich Schall NICHT ausbreiten?",
-    "answers": [
-      "Im Vakuum (Luftleer)",
-      "In frischer Luftraum",
-      "In festem Metallstab",
-      "In kaltem Wasserraum"
-    ],
+    "answers": ["Im Vakuum", "In frischer Luftraum", "In festem Metallstab", "In kaltem Wasserraum"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -807,12 +797,7 @@ const K6_PHYSIK_QUESTIONS = [
     "grade": 6,
     "subject": "physik",
     "question": "Wovon hängt die Lautstärke eines Tones ab?",
-    "answers": [
-      "Anzahl der Töne pro Sekunde",
-      "Schwingungsweite (Amplitude)",
-      "Länge der Schallwelle in Meter",
-      "Farbe des Schallerzeugers"
-    ],
+    "answers": ["Anzahl der Töne pro Sekunde", "Schwingungsweite", "Länge der Schallwelle in Meter", "Farbe des Schallerzeugers"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1059,16 +1044,11 @@ const K6_PHYSIK_QUESTIONS = [
     "grade": 6,
     "subject": "physik",
     "question": "Warum sieht man den Blitz vor dem Donner?",
-    "answers": [
-      "Licht ist viel schneller",
-      "Blitz ist viel näher",
-      "Schall ist viel schneller",
-      "Donner entsteht später"
-    ],
+    "answers": ["Licht ist viel schneller", "Blitz ist viel näher", "Schall ist viel schneller", "Donner entsteht später"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Licht ($300.000\\text{ km/s}$) breitet sich fast instantan aus, Schall ($340\\text{ m/s}$) braucht Zeit."
+    "explanation": "Licht (300.000 km/s) breitet sich fast instantan aus, Schall (340 m/s) braucht Zeit."
   },
   {
     "id": "k6_ph_060",
@@ -1077,16 +1057,11 @@ const K6_PHYSIK_QUESTIONS = [
     "grade": 6,
     "subject": "physik",
     "question": "Das Gewitter ist 3 Sekunden nach dem Blitz zu hören. Wie weit ist es weg?",
-    "answers": [
-      "Etwa 10 Kilometer",
-      "Etwa 100 Meter weit",
-      "Etwa 3 Kilometer",
-      "Etwa 1 Kilometer"
-    ],
+    "answers": ["Etwa 10 Kilometer", "Etwa 100 Meter weit", "Etwa 3 Kilometer", "Etwa 1 Kilometer"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Schall legt in 3 Sekunden etwa 1.000 m ($3\\times 340\\text{ m}$) zurück."
+    "explanation": "Schall legt in 3 Sekunden etwa 1.000 m (3× 340 m) zurück."
   },
 
   // --- WÄRME & THERMOPHYSIK (061 - 080) ---

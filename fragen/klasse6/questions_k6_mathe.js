@@ -52,7 +52,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 0,
     difficulty: "leicht",
     points: 5,
-    explanation: "20 : 4 = 5; 5 * 3 = 15."
+    explanation: "20 : 4 = 5; 5 · 3 = 15."
   },
   {
     id: "q6_m_004",
@@ -94,7 +94,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 2,
     difficulty: "leicht",
     points: 5,
-    explanation: "3 * 2 + 1 = 7, also 7/2."
+    explanation: "3 · 2 + 1 = 7, also 7/2."
   },
   {
     id: "q6_m_007",
@@ -127,7 +127,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 0,
     difficulty: "leicht",
     points: 5,
-    explanation: "2 * 3 = 6 und 5 * 3 = 15, also 6/15."
+    explanation: "2 · 3 = 6 und 5 · 3 = 15, also 6/15."
   },
   {
     id: "q6_m_009",
@@ -198,11 +198,11 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Berechne: 5/9 - 2/9",
-    answers: ["7/9 (falsch gerechnet)", "3/0 (nicht erlaubt)", "3/9 (gekürtzt 1/3)", "3/18 (falsch gekürzt)"],
+    answers: ["7/9", "2/9", "1/3", "3/18"],
     correct: 2,
     difficulty: "leicht",
     points: 5,
-    explanation: "5 - 2 = 3. Das ergibt 3/9, gekürzt 1/3."
+    explanation: "5/9 − 2/9 = 3/9, gekürzt 1/3."
   },
   {
     id: "q6_m_014",
@@ -254,16 +254,11 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie multipliziert man einen Bruch mit einer ganzen Zahl?",
-    answers: [
-      "Man multipliziert Zähler und Nenner mit der Zahl",
-      "Man multipliziert nur den Zähler mit der Zahl",
-      "Man dividiert den Nenner durch die Zahl",
-      "Man addiert die Zahl zum Zähler"
-    ],
+    answers: ["Man multipliziert Zähler und Nenner mit der Zahl", "Man multipliziert nur den Zähler mit der Zahl", "Man dividiert den Nenner durch die Zahl", "Man addiert die Zahl zum Zähler"],
     correct: 1,
     difficulty: "leicht",
     points: 5,
-    explanation: "Bruch mal ganze Zahl = (Zähler * Zahl) / Nenner."
+    explanation: "Bruch mal ganze Zahl = (Zähler · Zahl) / Nenner."
   },
   {
     id: "q6_m_018",
@@ -272,12 +267,12 @@ const K6_MATHE_QUESTIONS = [
     area: "schule",
     grade: 6,
     subject: "mathematik",
-    question: "Berechne: 2/5 * 3",
-    answers: ["6/5 (1 1/5)", "2/15 (falsch)", "5/5 (falsch)", "6/15 (falsch)"],
+    question: "Berechne: 2/5 · 3",
+    answers: ["6/5", "2/15", "5/5", "6/15"],
     correct: 0,
     difficulty: "leicht",
     points: 5,
-    explanation: "2 * 3 = 6, also 6/5 = 1 1/5."
+    explanation: "2 · 3 = 6, also 6/5 = 1 1/5."
   },
   {
     id: "q6_m_019",
@@ -319,12 +314,12 @@ const K6_MATHE_QUESTIONS = [
     area: "schule",
     grade: 6,
     subject: "mathematik",
-    question: "Berechne: 2/3 * 3/4",
-    answers: ["1/4 (falsch)", "6/7 (falsch)", "1/2 (6/12)", "5/7 (falsch)"],
+    question: "Berechne: 2/3 · 3/4",
+    answers: ["1/4", "6/7", "1/2", "5/7"],
     correct: 2,
     difficulty: "mittel",
     points: 5,
-    explanation: "(2 * 3) / (3 * 4) = 6/12 = 1/2."
+    explanation: "(2 · 3)/(3 · 4) = 6/12 = 1/2."
   },
   {
     id: "q6_m_022",
@@ -371,7 +366,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 0,
     difficulty: "mittel",
     points: 5,
-    explanation: "1/2 * 4/1 = 4/2 = 2."
+    explanation: "1/2 · 4/1 = 4/2 = 2."
   },
   {
     id: "q6_m_025",
@@ -524,7 +519,7 @@ const K6_MATHE_QUESTIONS = [
     area: "schule",
     grade: 6,
     subject: "mathematik",
-    question: "Berechne: 0,4 * 100",
+    question: "Berechne: 0,4 · 100",
     answers: ["4", "400", "0,04", "40"],
     correct: 3,
     difficulty: "leicht",
@@ -538,12 +533,12 @@ const K6_MATHE_QUESTIONS = [
     area: "schule",
     grade: 6,
     subject: "mathematik",
-    question: "Berechne: 3,5 * 0,2",
+    question: "Berechne: 3,5 · 0,2",
     answers: ["0,35", "7", "0,07", "0,7"],
     correct: 3,
     difficulty: "mittel",
     points: 5,
-    explanation: "35 * 2 = 70. Zusammen 2 Nachkommastellen -> 0,70 = 0,7."
+    explanation: "35 · 2 = 70. Zusammen 2 Nachkommastellen -> 0,70 = 0,7."
   },
   {
     id: "q6_m_037",
@@ -670,7 +665,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 0,
     difficulty: "leicht",
     points: 5,
-    explanation: "1 kg = 1000 g; 2,5 * 1000 = 2500 g."
+    explanation: "1 kg = 1000 g; 2,5 · 1000 = 2500 g."
   },
   {
     id: "q6_m_045",
@@ -693,12 +688,12 @@ const K6_MATHE_QUESTIONS = [
     area: "schule",
     grade: 6,
     subject: "mathematik",
-    question: "Berechne: 0,05 * 0,04",
+    question: "Berechne: 0,05 · 0,04",
     answers: ["0,002", "0,02", "0,0002", "0,2"],
     correct: 0,
     difficulty: "schwer",
     points: 5,
-    explanation: "5 * 4 = 20. Insgesamt 4 Nachkommastellen -> 0,0020 = 0,002."
+    explanation: "5 · 4 = 20. Insgesamt 4 Nachkommastellen -> 0,0020 = 0,002."
   },
   {
     id: "q6_m_047",
@@ -838,7 +833,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie hängen Radius r und Durchmesser d eines Kreises zusammen?",
-    answers: ["d = 2 * r", "d = r + 2", "r = 2 * d", "d = r * r"],
+    answers: ["d = 2 · r", "d = r + 2", "r = 2 · d", "d = r · r"],
     correct: 0,
     difficulty: "leicht",
     points: 5,
@@ -856,7 +851,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 3,
     difficulty: "leicht",
     points: 5,
-    explanation: "d = 2 * 4 cm = 8 cm."
+    explanation: "d = 2 · 4 cm = 8 cm."
   },
   {
     id: "q6_m_058",
@@ -898,7 +893,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 2,
     difficulty: "leicht",
     points: 5,
-    explanation: "Jedes Viereck lässt sich in zwei Dreiecke zerlegen: 2 * 180° = 360°."
+    explanation: "Jedes Viereck lässt sich in zwei Dreiecke zerlegen: 2 · 180° = 360°."
   },
   {
     id: "q6_m_061",
@@ -908,16 +903,11 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie berechnet man den Flächeninhalt A eines Parallelogramms?",
-    answers: [
-      "A = Grundseite g * Höhe h",
-      "A = (g mal h) geteilt durch 2",
-      "A = Seite a plus Seite b",
-      "A = 2 mal g plus 2 mal h"
-    ],
+    answers: ["A = Grundseite g · Höhe h", "A = (g mal h) geteilt durch 2", "A = Seite a plus Seite b", "A = 2 mal g plus 2 mal h"],
     correct: 0,
     difficulty: "mittel",
     points: 5,
-    explanation: "A = g * h."
+    explanation: "A = g · h."
   },
   {
     id: "q6_m_062",
@@ -927,16 +917,11 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie berechnet man den Flächeninhalt A eines Dreiecks?",
-    answers: [
-      "A = / 2",
-      "A = Grundseite g * Höhe h",
-      "A = a + b + c",
-      "A = g * h * 2"
-    ],
+    answers: ["A = g · h : 2", "A = g · h", "A = a + b + c", "A = g · h · 2"],
     correct: 0,
     difficulty: "mittel",
     points: 5,
-    explanation: "Ein Dreieck ist halb so groß wie ein Parallelogramm mit gleicher Grundseite und Höhe."
+    explanation: "Ein Dreieck ist halb so groß wie ein Parallelogramm mit gleicher Grundseite und Höhe: A = g · h : 2."
   },
   {
     id: "q6_m_063",
@@ -950,7 +935,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 0,
     difficulty: "mittel",
     points: 5,
-    explanation: "A = (6 * 4) / 2 = 24 / 2 = 12 cm²."
+    explanation: "A = (6 · 4) / 2 = 24 / 2 = 12 cm²."
   },
   {
     id: "q6_m_064",
@@ -964,7 +949,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 0,
     difficulty: "leicht",
     points: 5,
-    explanation: "A = 8 * 5 = 40 cm²."
+    explanation: "A = 8 · 5 = 40 cm²."
   },
   {
     id: "q6_m_065",
@@ -974,16 +959,11 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie berechnet man das Volumen V (Rauminhalt) eines Quaders?",
-    answers: [
-      "V = a mal b plus c gerechnet",
-      "V = sechsmal die Fläche a mal a",
-      "V = 2 mal a plus 2 mal b plus 2 mal c",
-      "V = Länge a * Breite b * Höhe c"
-    ],
+    answers: ["V = a mal b plus c gerechnet", "V = sechsmal die Fläche a mal a", "V = 2 mal a plus 2 mal b plus 2 mal c", "V = Länge a · Breite b · Höhe c"],
     correct: 3,
     difficulty: "leicht",
     points: 5,
-    explanation: "V = a * b * c."
+    explanation: "V = a · b · c."
   },
   {
     id: "q6_m_066",
@@ -997,7 +977,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 0,
     difficulty: "leicht",
     points: 5,
-    explanation: "V = 3 * 3 * 3 = 27 cm³."
+    explanation: "V = 3 · 3 · 3 = 27 cm³."
   },
   {
     id: "q6_m_067",
@@ -1007,7 +987,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie berechnet man die Oberfläche O eines Würfels mit Kantenlänge a?",
-    answers: ["O = 4 * a²", "O = 6 * a²", "O = 12 * a", "O = a³"],
+    answers: ["O = 4 · a²", "O = 6 · a²", "O = 12 · a", "O = a³"],
     correct: 1,
     difficulty: "mittel",
     points: 5,
@@ -1025,7 +1005,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 3,
     difficulty: "mittel",
     points: 5,
-    explanation: "Eine Fläche = 2 * 2 = 4 cm². Sechs Flächen = 6 * 4 = 24 cm²."
+    explanation: "Eine Fläche = 2 · 2 = 4 cm². Sechs Flächen = 6 · 4 = 24 cm²."
   },
   {
     id: "q6_m_069",
@@ -1095,7 +1075,7 @@ const K6_MATHE_QUESTIONS = [
     correct: 0,
     difficulty: "leicht",
     points: 5,
-    explanation: "V = 4 * 3 * 5 = 60 cm³."
+    explanation: "V = 4 · 3 · 5 = 60 cm³."
   },
   {
     id: "q6_m_074",
@@ -1428,11 +1408,11 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Wie groß ist die Wahrscheinlichkeit, bei einem Würfel eine gerade Zahl (2, 4 oder 6) zu würfeln?",
-    answers: ["3/6 (gekürtzt 1/2)", "2/6 (falsch gerechnet)", "5/6 (falsch)", "1/6 (falsch)"],
+    answers: ["1/2", "1/3", "5/6", "1/6"],
     correct: 0,
     difficulty: "leicht",
     points: 5,
-    explanation: "3 günstige Ergebnisse (2, 4, 6) von 6 möglichen -> 3/6 = 1/2."
+    explanation: "3 günstige Ergebnisse (2, 4, 6) von 6 möglichen: 3/6 = 1/2."
   },
   {
     id: "q6_m_096",
@@ -1484,7 +1464,7 @@ const K6_MATHE_QUESTIONS = [
     grade: 6,
     subject: "mathematik",
     question: "Bei 20 Würfen wurde 5-mal eine '6' gewürfelt. Wie hoch ist die relative Häufigkeit?",
-    answers: ["6/20 als falsches Ergebnis", "5/6 (falsch gerechnet)", "5/20 (gekürtzt 1/4 bzw. 25%)", "20/5 (Zähler und Nenner vertauscht)"],
+    answers: ["6/20", "5/6", "1/4", "20/5"],
     correct: 2,
     difficulty: "mittel",
     points: 5,
@@ -1517,13 +1497,8 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was gibt der Zähler in einem Bruch wie $\\frac{3}{4}$ an?",
-    "answers": [
-      "Anzahl ausgewählter Teile",
-      "Den Wert des Ganzen",
-      "Das Ergebnis der Summe",
-      "Gesamtzahl aller Abschnitte"
-    ],
+    "question": "Was gibt der Zähler in einem Bruch wie 3/4 an?",
+    "answers": ["Anzahl ausgewählter Teile", "Den Wert des Ganzen", "Das Ergebnis der Summe", "Gesamtzahl aller Abschnitte"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1535,13 +1510,8 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was gibt der Nenner in einem Bruch wie $\\frac{3}{4}$ an?",
-    "answers": [
-      "Gesamtzahl aller Teile",
-      "Anzahl gewählter Stücke",
-      "Das Produkt der Summe",
-      "Den Wert des Zählers"
-    ],
+    "question": "Was gibt der Nenner in einem Bruch wie 3/4 an?",
+    "answers": ["Gesamtzahl aller Teile", "Anzahl gewählter Stücke", "Das Produkt der Summe", "Den Wert des Zählers"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1553,17 +1523,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie erweitert man den Bruch $\\frac{1}{2}$ mit der Zahl $3$?",
-    "answers": [
-      "Ergibt den Bruch $\\frac{3}{2}$",
-      "Ergibt den Bruch $\\frac{1}{6}$",
-      "Ergibt den Bruch $\\frac{3}{6}$",
-      "Ergibt den Bruch $\\frac{4}{5}$"
-    ],
+    "question": "Wie erweitert man den Bruch 1/2 mit der Zahl 3?",
+    "answers": ["Ergibt den Bruch 3/2", "Ergibt den Bruch 1/6", "Ergibt den Bruch 3/6", "Ergibt den Bruch 4/5"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Beim Erweitern multipliziert man Zähler und Nenner mit derselben Zahl ($1 \\cdot 3 = 3$, $2 \\cdot 3 = 6$)."
+    "explanation": "Beim Erweitern multipliziert man Zähler und Nenner mit derselben Zahl (1 · 3 = 3, 2 · 3 = 6)."
   },
   {
     "id": "k6_ma_004",
@@ -1571,17 +1536,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie kürzt man den Bruch $\\frac{4}{8}$ vollständig?",
-    "answers": [
-      "Ergibt den Bruch $\\frac{1}{2}$",
-      "Ergibt den Bruch $\\frac{1}{4}$",
-      "Ergibt den Bruch $\\frac{2}{3}$",
-      "Ergibt den Bruch $\\frac{3}{4}$"
-    ],
+    "question": "Wie kürzt man den Bruch 4/8 vollständig?",
+    "answers": ["Ergibt den Bruch 1/2", "Ergibt den Bruch 1/4", "Ergibt den Bruch 2/3", "Ergibt den Bruch 3/4"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Zähler und Nenner werden durch $4$ dividiert: $\\frac{4 : 4}{8 : 4} = \\frac{1}{2}$."
+    "explanation": "Zähler und Nenner werden durch 4 dividiert: (4 : 4)/(8 : 4) = 1/2."
   },
   {
     "id": "k6_ma_005",
@@ -1590,16 +1550,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie nennt man einen Bruch, bei dem der Zähler größer als der Nenner ist?",
-    "answers": [
-      "Dezimaler Bruchraum",
-      "Echter Bruchanteil",
-      "Unechter Bruchwert",
-      "Gemischter Zehner"
-    ],
+    "answers": ["Dezimaler Bruchraum", "Echter Bruchanteil", "Unechter Bruchwert", "Gemischter Zehner"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ist der Zähler größer oder gleich dem Nenner (z. B. $\\frac{5}{3}$), ist es ein unechter Bruch."
+    "explanation": "Ist der Zähler größer oder gleich dem Nenner (z. B. 5/3), ist es ein unechter Bruch."
   },
   {
     "id": "k6_ma_006",
@@ -1607,17 +1562,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie schreibt man den unechten Bruch $\\frac{7}{3}$ als gemischte Zahl?",
-    "answers": [
-      "Ergibt die Zahl $1\\frac{4}{3}$",
-      "Ergibt die Zahl $2\\frac{2}{3}$",
-      "Ergibt die Zahl $2\\frac{1}{3}$",
-      "Ergibt die Zahl $3\\frac{1}{3}$"
-    ],
+    "question": "Wie schreibt man den unechten Bruch 7/3 als gemischte Zahl?",
+    "answers": ["Ergibt die Zahl 14/3", "Ergibt die Zahl 22/3", "Ergibt die Zahl 21/3", "Ergibt die Zahl 31/3"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$7 : 3 = 2$ Rest $1$, also $2\\frac{1}{3}$."
+    "explanation": "7 : 3 = 2 Rest 1, also 21/3."
   },
   {
     "id": "k6_ma_007",
@@ -1625,13 +1575,8 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was berechnet man: $\\frac{1}{5} + \\frac{2}{5}$?",
-    "answers": [
-      "Ergibt den Bruch $\\frac{3}{5}$",
-      "Ergibt den Bruch $\\frac{1}{5}$",
-      "Ergibt den Bruch $\\frac{2}{25}$",
-      "Ergibt den Bruch $\\frac{3}{10}$"
-    ],
+    "question": "Was berechnet man: 1/5 + 2/5?",
+    "answers": ["Ergibt den Bruch 3/5", "Ergibt den Bruch 1/5", "Ergibt den Bruch 2/25", "Ergibt den Bruch 3/10"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1643,17 +1588,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was berechnet man: $\\frac{5}{7} - \\frac{2}{7}$?",
-    "answers": [
-      "Ergibt den Bruch $\\frac{7}{7}$",
-      "Ergibt den Bruch $\\frac{2}{7}$",
-      "Ergibt den Bruch $\\frac{3}{7}$",
-      "Ergibt den Bruch $\\frac{3}{0}$"
-    ],
+    "question": "Was berechnet man: 5/7 - 2/7?",
+    "answers": ["Ergibt den Bruch 7/7", "Ergibt den Bruch 2/7", "Ergibt den Bruch 3/7", "Ergibt den Bruch 3/0"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\frac{5 - 2}{7} = \\frac{3}{7}$."
+    "explanation": "(5 - 2)/7 = 3/7."
   },
   {
     "id": "k6_ma_009",
@@ -1679,17 +1619,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was ist der Hauptnenner (kleinstes gemeinsames Vielfaches) von $\\frac{1}{3}$ und $\\frac{1}{4}$?",
-    "answers": [
-      "Der Hauptnenner ist $7$",
-      "Der Hauptnenner ist $12$",
-      "Der Hauptnenner ist $24$",
-      "Der Hauptnenner ist $6$"
-    ],
+    "question": "Was ist der Hauptnenner (kleinstes gemeinsames Vielfaches) von 1/3 und 1/4?",
+    "answers": ["Der Hauptnenner ist 7", "Der Hauptnenner ist 12", "Der Hauptnenner ist 24", "Der Hauptnenner ist 6"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das kleinste gemeinsame Vielfache von $3$ und $4$ ist $12$."
+    "explanation": "Das kleinste gemeinsame Vielfache von 3 und 4 ist 12."
   },
   {
     "id": "k6_ma_011",
@@ -1697,17 +1632,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was berechnet man: $\\frac{1}{2} + \\frac{1}{4}$?",
-    "answers": [
-      "Ergibt den Bruch $\\frac{3}{4}$",
-      "Ergibt den Bruch $\\frac{2}{6}$",
-      "Ergibt den Bruch $\\frac{2}{4}$",
-      "Ergibt den Bruch $\\frac{1}{8}$"
-    ],
+    "question": "Was berechnet man: 1/2 + 1/4?",
+    "answers": ["Ergibt den Bruch 3/4", "Ergibt den Bruch 2/6", "Ergibt den Bruch 2/4", "Ergibt den Bruch 1/8"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\frac{1}{2} = \\frac{2}{4}$. Dann: $\\frac{2}{4} + \\frac{1}{4} = \\frac{3}{4}$."
+    "explanation": "1/2 = 2/4. Dann: 2/4 + 1/4 = 3/4."
   },
   {
     "id": "k6_ma_012",
@@ -1716,12 +1646,7 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie multipliziert man zwei Brüche miteinander?",
-    "answers": [
-      "Nur die beiden Zähler addieren",
-      "Zähler $\\cdot$ Nenner / Nenner $\\cdot$ Zähler",
-      "Zähler $\\cdot$ Zähler / Nenner $\\cdot$ Nenner",
-      "Umberkreuz das Ganze kreuzen"
-    ],
+    "answers": ["Nur die beiden Zähler addieren", "Zähler · Nenner / Nenner · Zähler", "Zähler · Zähler / Nenner · Nenner", "Umberkreuz das Ganze kreuzen"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -1733,17 +1658,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was berechnet man: $\\frac{2}{3} \\cdot \\frac{3}{4}$?",
-    "answers": [
-      "Ergibt den Bruch $\\frac{6}{7}$",
-      "Ergibt den Bruch $\\frac{5}{7}$",
-      "Ergibt den Bruch $\\frac{2}{4}$",
-      "Ergibt den Bruch $\\frac{1}{2}$"
-    ],
+    "question": "Was berechnet man: 2/3 · 3/4?",
+    "answers": ["Ergibt den Bruch 6/7", "Ergibt den Bruch 5/7", "Ergibt den Bruch 2/4", "Ergibt den Bruch 1/2"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\frac{2 \\cdot 3}{3 \\cdot 4} = \\frac{6}{12} = \\frac{1}{2}$."
+    "explanation": "(2 · 3)/(3 · 4) = 6/12 = 1/2."
   },
   {
     "id": "k6_ma_014",
@@ -1751,13 +1671,8 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was ist der Kehrwert des Bruches $\\frac{4}{5}$?",
-    "answers": [
-      "Der Kehrwert ist $\\frac{5}{4}$",
-      "Der Kehrwert ist $\\frac{4}{1}$",
-      "Der Kehrwert ist $-\\frac{4}{5}$",
-      "Der Kehrwert ist $\\frac{1}{5}$"
-    ],
+    "question": "Was ist der Kehrwert des Bruches 4/5?",
+    "answers": ["Der Kehrwert ist 5/4", "Der Kehrwert ist 4/1", "Der Kehrwert ist -4/5", "Der Kehrwert ist 1/5"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1787,17 +1702,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was berechnet man: $\\frac{1}{2} : \\frac{1}{4}$?",
-    "answers": [
-      "Das Ergebnis ist $\\frac{1}{8}$",
-      "Das Ergebnis ist $2$",
-      "Das Ergebnis ist $\\frac{1}{2}$",
-      "Das Ergebnis ist $4$"
-    ],
+    "question": "Was berechnet man: 1/2 : 1/4?",
+    "answers": ["Das Ergebnis ist 1/8", "Das Ergebnis ist 2", "Das Ergebnis ist 1/2", "Das Ergebnis ist 4"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\frac{1}{2} \\cdot \\frac{4}{1} = \\frac{4}{2} = 2$."
+    "explanation": "1/2 · 4/1 = 4/2 = 2."
   },
   {
     "id": "k6_ma_017",
@@ -1805,13 +1715,8 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Welcher Bruch ist größer: $\\frac{1}{3}$ oder $\\frac{1}{4}$?",
-    "answers": [
-      "Beide Brüche sind gleich",
-      "Der Bruch $\\frac{1}{4}$ ist größer",
-      "Der Bruch $\\frac{1}{3}$ ist größer",
-      "Kann man nicht vergleichen"
-    ],
+    "question": "Welcher Bruch ist größer: 1/3 oder 1/4?",
+    "answers": ["Beide Brüche sind gleich", "Der Bruch 1/4 ist größer", "Der Bruch 1/3 ist größer", "Kann man nicht vergleichen"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -1823,17 +1728,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viel ist $\\frac{3}{4}$ von $20$ Euro?",
-    "answers": [
-      "Das sind $15$ Euro",
-      "Das sind $12$ Euro",
-      "Das sind $10$ Euro",
-      "Das sind $16$ Euro"
-    ],
+    "question": "Wie viel ist 3/4 von 20 Euro?",
+    "answers": ["Das sind 15 Euro", "Das sind 12 Euro", "Das sind 10 Euro", "Das sind 16 Euro"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$20 : 4 = 5$, dann $5 \\cdot 3 = 15$ Euro."
+    "explanation": "20 : 4 = 5, dann 5 · 3 = 15 Euro."
   },
   {
     "id": "k6_ma_019",
@@ -1841,17 +1741,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie lautet $\\frac{1}{10}$ als Dezimalzahl?",
-    "answers": [
-      "Die Dezimalzahl $0{,}1$",
-      "Die Dezimalzahl $0{,}100$",
-      "Die Dezimalzahl $1{,}0$",
-      "Die Dezimalzahl $0{,}01$"
-    ],
+    "question": "Wie lautet 1/10 als Dezimalzahl?",
+    "answers": ["Die Dezimalzahl 0,1", "Die Dezimalzahl 0,100", "Die Dezimalzahl 1,0", "Die Dezimalzahl 0,01"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Zehntel entspricht $0{,}1$."
+    "explanation": "Ein Zehntel entspricht 0,1."
   },
   {
     "id": "k6_ma_020",
@@ -1859,17 +1754,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Welche Zahl fehlt beim Erweitern: $\\frac{2}{5} = \\frac{?}{20}$?",
-    "answers": [
-      "Die gesuchte Zahl $12$",
-      "Die gesuchte Zahl $10$",
-      "Die gesuchte Zahl $6$",
-      "Die gesuchte Zahl $8$"
-    ],
+    "question": "Welche Zahl fehlt beim Erweitern: 2/5 = (?)/20?",
+    "answers": ["Die gesuchte Zahl 12", "Die gesuchte Zahl 10", "Die gesuchte Zahl 6", "Die gesuchte Zahl 8"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Nenner mit $4$ erweitert ($5 \\cdot 4 = 20$), also Zähler: $2 \\cdot 4 = 8$."
+    "explanation": "Nenner mit 4 erweitert (5 · 4 = 20), also Zähler: 2 · 4 = 8."
   },
 
   // --- DEZIMALZAHLEN / KOMMAZAHLEN (021 - 040) ---
@@ -1880,16 +1770,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Welcher Stellenwert folgt direkt nach dem Komma rechts?",
-    "answers": [
-      "Die Hundertstelstelle",
-      "Die Tausendstelstelle",
-      "Die Einerstelle",
-      "Die Zehntelstelle"
-    ],
+    "answers": ["Die Hundertstelstelle", "Die Tausendstelstelle", "Die Einerstelle", "Die Zehntelstelle"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die erste Stelle rechts nach dem Komma ist die Zehntelstelle ($z$)."
+    "explanation": "Die erste Stelle rechts nach dem Komma ist die Zehntelstelle (z)."
   },
   {
     "id": "k6_ma_022",
@@ -1897,17 +1782,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie lautet der Bruch $\\frac{3}{100}$ als Kommazahl?",
-    "answers": [
-      "Die Kommazahl $3{,}00$",
-      "Die Kommazahl $0{,}3$",
-      "Die Kommazahl $0{,}03$",
-      "Die Kommazahl $0{,}003$"
-    ],
+    "question": "Wie lautet der Bruch 3/100 als Kommazahl?",
+    "answers": ["Die Kommazahl 3,00", "Die Kommazahl 0,3", "Die Kommazahl 0,03", "Die Kommazahl 0,003"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Drei Hundertstel werden als $0{,}03$ geschrieben."
+    "explanation": "Drei Hundertstel werden als 0,03 geschrieben."
   },
   {
     "id": "k6_ma_023",
@@ -1915,17 +1795,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was ergibt die Addition: $2{,}4 + 3{,}5$?",
-    "answers": [
-      "Ergibt das Ergebnis $6{,}1$",
-      "Ergibt das Ergebnis $5{,}8$",
-      "Ergibt das Ergebnis $5{,}10$",
-      "Ergibt das Ergebnis $5{,}9$"
-    ],
+    "question": "Was ergibt die Addition: 2,4 + 3,5?",
+    "answers": ["Ergibt das Ergebnis 6,1", "Ergibt das Ergebnis 5,8", "Ergibt das Ergebnis 5,10", "Ergibt das Ergebnis 5,9"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Einer addieren ($2+3=5$), Zehntel addiert ($0{,}4+0{,}5=0{,}9$) $\\rightarrow 5{,}9$."
+    "explanation": "Einer addieren (2+3=5), Zehntel addiert (0,4+0,5=0,9) → 5,9."
   },
   {
     "id": "k6_ma_024",
@@ -1933,17 +1808,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was ergibt die Subtraktion: $7{,}8 - 2{,}3$?",
-    "answers": [
-      "Ergibt das Ergebnis $4{,}5$",
-      "Ergibt das Ergebnis $5{,}6$",
-      "Ergibt das Ergebnis $5{,}3$",
-      "Ergibt das Ergebnis $5{,}5$"
-    ],
+    "question": "Was ergibt die Subtraktion: 7,8 - 2,3?",
+    "answers": ["Ergibt das Ergebnis 4,5", "Ergibt das Ergebnis 5,6", "Ergibt das Ergebnis 5,3", "Ergibt das Ergebnis 5,5"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$7{,}8 - 2{,}3 = 5{,}5$."
+    "explanation": "7,8 - 2,3 = 5,5."
   },
   {
     "id": "k6_ma_025",
@@ -1969,17 +1839,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie verschiebt sich das Komma bei Multiplikation mit $10$?",
-    "answers": [
-      "Eine Stelle nach links",
-      "Das Komma bleibt gleich",
-      "Eine Stelle nach rechts",
-      "Zwei Stellen nach rechts"
-    ],
+    "question": "Wie verschiebt sich das Komma bei Multiplikation mit 10?",
+    "answers": ["Eine Stelle nach links", "Das Komma bleibt gleich", "Eine Stelle nach rechts", "Zwei Stellen nach rechts"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Multiplikation mit $10$ macht die Zahl zehnmal größer $\\rightarrow$ Komma $1$ Stelle nach rechts."
+    "explanation": "Multiplikation mit 10 macht die Zahl zehnmal größer → Komma 1 Stelle nach rechts."
   },
   {
     "id": "k6_ma_027",
@@ -1987,17 +1852,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was ergibt die Rechnung: $0{,}4 \\cdot 100$?",
-    "answers": [
-      "Das Ergebnis ist $4$",
-      "Das Ergebnis ist $40$",
-      "Das Ergebnis ist $400$",
-      "Das Ergebnis ist $0{,}04$"
-    ],
+    "question": "Was ergibt die Rechnung: 0,4 · 100?",
+    "answers": ["Das Ergebnis ist 4", "Das Ergebnis ist 40", "Das Ergebnis ist 400", "Das Ergebnis ist 0,04"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das Komma wird um zwei Stellen nach rechts verschoben: $0{,}4 \\rightarrow 40$."
+    "explanation": "Das Komma wird um zwei Stellen nach rechts verschoben: 0,4 → 40."
   },
   {
     "id": "k6_ma_028",
@@ -2005,17 +1865,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie verschiebt sich das Komma bei Division durch $100$?",
-    "answers": [
-      "Es verschiebt sich nie",
-      "Zwei Stellen nach links",
-      "Eine Stelle nach links",
-      "Zwei Stellen nach rechts"
-    ],
+    "question": "Wie verschiebt sich das Komma bei Division durch 100?",
+    "answers": ["Es verschiebt sich nie", "Zwei Stellen nach links", "Eine Stelle nach links", "Zwei Stellen nach rechts"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Division durch $100$ macht die Zahl hundertmal kleiner $\\rightarrow$ Komma $2$ Stellen nach links."
+    "explanation": "Division durch 100 macht die Zahl hundertmal kleiner → Komma 2 Stellen nach links."
   },
   {
     "id": "k6_ma_029",
@@ -2023,17 +1878,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was berechnet man: $3{,}5 : 10$?",
-    "answers": [
-      "Das Ergebnis ist $0{,}35$",
-      "Das Ergebnis ist $0{,}035$",
-      "Das Ergebnis ist $35$",
-      "Das Ergebnis ist $3{,}50$"
-    ],
+    "question": "Was berechnet man: 3,5 : 10?",
+    "answers": ["Das Ergebnis ist 0,35", "Das Ergebnis ist 0,035", "Das Ergebnis ist 35", "Das Ergebnis ist 3,50"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Komma eine Stelle nach links verschieben $\\rightarrow 0{,}35$."
+    "explanation": "Komma eine Stelle nach links verschieben → 0,35."
   },
   {
     "id": "k6_ma_030",
@@ -2059,17 +1909,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was berechnet man: $0{,}2 \\cdot 0{,}3$?",
-    "answers": [
-      "Ergibt den Wert $0{,}06$",
-      "Ergibt den Wert $0{,}006$",
-      "Ergibt den Wert $6{,}0$",
-      "Ergibt den Wert $0{,}6$"
-    ],
+    "question": "Was berechnet man: 0,2 · 0,3?",
+    "answers": ["Ergibt den Wert 0,06", "Ergibt den Wert 0,006", "Ergibt den Wert 6,0", "Ergibt den Wert 0,6"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$2 \\cdot 3 = 6$. Zusammen 2 Nachkommastellen $\\rightarrow 0{,}06$."
+    "explanation": "2 · 3 = 6. Zusammen 2 Nachkommastellen → 0,06."
   },
   {
     "id": "k6_ma_032",
@@ -2077,17 +1922,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Runde die Zahl $4{,}37$ auf eine Nachkommastelle (Zehntel):",
-    "answers": [
-      "Gerundet auf $5{,}0$",
-      "Gerundet auf $4{,}3$",
-      "Gerundet auf $4{,}0$",
-      "Gerundet auf $4{,}4$"
-    ],
+    "question": "Runde die Zahl 4,37 auf eine Nachkommastelle (Zehntel):",
+    "answers": ["Gerundet auf 5,0", "Gerundet auf 4,3", "Gerundet auf 4,0", "Gerundet auf 4,4"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Hundertstelstelle ist $7$ (aufrunden) $\\rightarrow 4{,}4$."
+    "explanation": "Die Hundertstelstelle ist 7 (aufrunden) → 4,4."
   },
   {
     "id": "k6_ma_033",
@@ -2096,16 +1936,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Bei welchen Ziffern wird aufgerundet?",
-    "answers": [
-      "Bei $0, 1, 2, 3, 4$",
-      "Ausschließlich bei $5$",
-      "Nur bei $8$ und $9$",
-      "Bei $5, 6, 7, 8, 9$"
-    ],
+    "answers": ["Bei 0, 1, 2, 3, 4", "Ausschließlich bei 5", "Nur bei 8 und 9", "Bei 5, 6, 7, 8, 9"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei den Ziffern $0$ bis $4$ wird abgerundet, bei $5$ bis $9$ wird aufgerundet."
+    "explanation": "Bei den Ziffern 0 bis 4 wird abgerundet, bei 5 bis 9 wird aufgerundet."
   },
   {
     "id": "k6_ma_034",
@@ -2113,17 +1948,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Welche Kommazahl ist größer: $0{,}5$ oder $0{,}49$?",
-    "answers": [
-      "Die Zahl $0{,}49$ ist größer",
-      "Beide Zahlen sind gleich",
-      "Lässt sich nicht vergleichen",
-      "Die Zahl $0{,}5$ ist größer"
-    ],
+    "question": "Welche Kommazahl ist größer: 0,5 oder 0,49?",
+    "answers": ["Die Zahl 0,49 ist größer", "Beide Zahlen sind gleich", "Lässt sich nicht vergleichen", "Die Zahl 0,5 ist größer"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$0{,}5 = 0{,}50$. $50$ Hundertstel sind mehr als $49$ Hundertstel."
+    "explanation": "0,5 = 0,50. 50 Hundertstel sind mehr als 49 Hundertstel."
   },
   {
     "id": "k6_ma_035",
@@ -2132,16 +1962,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie nennt man eine Kommazahl, bei der sich Ziffern unendlich wiederholen?",
-    "answers": [
-      "Abgerundete Dezimalzahl",
-      "Unechte Kommazahl mit Rest",
-      "Periodische Kommazahl",
-      "Endliche Kommazahl"
-    ],
+    "answers": ["Abgerundete Dezimalzahl", "Unechte Kommazahl mit Rest", "Periodische Kommazahl", "Endliche Kommazahl"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Beispiel: $\\frac{1}{3} = 0{,}333... = 0{,}\\bar{3}$ (periodische Dezimalzahl)."
+    "explanation": "Beispiel: 1/3 = 0,333... = 0,3 (periodische Dezimalzahl)."
   },
   {
     "id": "k6_ma_036",
@@ -2149,17 +1974,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was berechnet man: $1{,}2 : 0{,}3$?",
-    "answers": [
-      "Das Ergebnis ist $4$",
-      "Das Ergebnis ist $0{,}4$",
-      "Das Ergebnis ist $40$",
-      "Das Ergebnis ist $0{,}04$"
-    ],
+    "question": "Was berechnet man: 1,2 : 0,3?",
+    "answers": ["Das Ergebnis ist 4", "Das Ergebnis ist 0,4", "Das Ergebnis ist 40", "Das Ergebnis ist 0,04"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Komma bei beiden um eine Stelle verschieben: $12 : 3 = 4$."
+    "explanation": "Komma bei beiden um eine Stelle verschieben: 12 : 3 = 4."
   },
   {
     "id": "k6_ma_037",
@@ -2167,17 +1987,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie lautet der Bruch $\\frac{1}{4}$ als Dezimalzahl?",
-    "answers": [
-      "Dezimalzahl $0{,}14$",
-      "Dezimalzahl $0{,}5$",
-      "Dezimalzahl $0{,}25$",
-      "Dezimalzahl $0{,}4$"
-    ],
+    "question": "Wie lautet der Bruch 1/4 als Dezimalzahl?",
+    "answers": ["Dezimalzahl 0,14", "Dezimalzahl 0,5", "Dezimalzahl 0,25", "Dezimalzahl 0,4"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\frac{1}{4} = \\frac{25}{100} = 0{,}25$."
+    "explanation": "1/4 = 25/100 = 0,25."
   },
   {
     "id": "k6_ma_038",
@@ -2185,17 +2000,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie lautet der Bruch $\\frac{3}{4}$ als Dezimalzahl?",
-    "answers": [
-      "Dezimalzahl $0{,}34$",
-      "Dezimalzahl $0{,}75$",
-      "Dezimalzahl $0{,}6$",
-      "Dezimalzahl $0{,}8$"
-    ],
+    "question": "Wie lautet der Bruch 3/4 als Dezimalzahl?",
+    "answers": ["Dezimalzahl 0,34", "Dezimalzahl 0,75", "Dezimalzahl 0,6", "Dezimalzahl 0,8"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\frac{3}{4} = \\frac{75}{100} = 0{,}75$."
+    "explanation": "3/4 = 75/100 = 0,75."
   },
   {
     "id": "k6_ma_039",
@@ -2203,17 +2013,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was ist das Ergebnis von $5 - 1{,}2$?",
-    "answers": [
-      "Das Ergebnis ist $4{,}2$",
-      "Das Ergebnis ist $3{,}8$",
-      "Das Ergebnis ist $3{,}2$",
-      "Das Ergebnis ist $4{,}8$"
-    ],
+    "question": "Was ist das Ergebnis von 5 - 1,2?",
+    "answers": ["Das Ergebnis ist 4,2", "Das Ergebnis ist 3,8", "Das Ergebnis ist 3,2", "Das Ergebnis ist 4,8"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$5{,}0 - 1{,}2 = 3{,}8$."
+    "explanation": "5,0 - 1,2 = 3,8."
   },
   {
     "id": "k6_ma_040",
@@ -2221,17 +2026,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Welche Zahl liegt exakt in der Mitte von $1{,}2$ und $1{,}4$?",
-    "answers": [
-      "Mitten liegt $1{,}35$",
-      "Mitten liegt $1{,}3$",
-      "Mitten liegt $1{,}25$",
-      "Mitten liegt $1{,}31$"
-    ],
+    "question": "Welche Zahl liegt exakt in der Mitte von 1,2 und 1,4?",
+    "answers": ["Mitten liegt 1,35", "Mitten liegt 1,3", "Mitten liegt 1,25", "Mitten liegt 1,31"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Mittelwert aus $1{,}2$ und $1{,}4$ ist $1{,}3$."
+    "explanation": "Der Mittelwert aus 1,2 und 1,4 ist 1,3."
   },
 
   // --- GEOMETRIE, FLÄCHEN & RAUMINHALTE (041 - 060) ---
@@ -2241,17 +2041,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie berechnet man den Umfang $U$ eines Rechtecks mit Seiten $a$ und $b$?",
-    "answers": [
-      "Formel: $U = 2a + 2b$",
-      "Formel: $U = a \\cdot b$",
-      "Formel: $U = a + b$",
-      "Formel: $U = 4a \\cdot b$"
-    ],
+    "question": "Wie berechnet man den Umfang U eines Rechtecks mit Seiten a und b?",
+    "answers": ["Formel: U = 2a + 2b", "Formel: U = a · b", "Formel: U = a + b", "Formel: U = 4a · b"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Umfang ist die Summe aller Seitenkanten: $a + b + a + b = 2a + 2b$."
+    "explanation": "Umfang ist die Summe aller Seitenkanten: a + b + a + b = 2a + 2b."
   },
   {
     "id": "k6_ma_042",
@@ -2259,17 +2054,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie berechnet man den Flächeninhalt $A$ eines Rechtecks?",
-    "answers": [
-      "Formel: $A = a : b$ geteilt",
-      "Formel: $A = a + b$ addiert",
-      "Formel: $A = a \\cdot b$",
-      "Formel: $A = 2a + 2b$ Umfang"
-    ],
+    "question": "Wie berechnet man den Flächeninhalt A eines Rechtecks?",
+    "answers": ["Formel: A = a : b geteilt", "Formel: A = a + b addiert", "Formel: A = a · b", "Formel: A = 2a + 2b Umfang"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Flächeninhalt Rechteck = Länge mal Breite ($a \\cdot b$)."
+    "explanation": "Flächeninhalt Rechteck = Länge mal Breite (a · b)."
   },
   {
     "id": "k6_ma_043",
@@ -2277,17 +2067,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Welcher Flächeninhalt $A$ hat ein Quadrat mit Seitenlänge $a = 6\\text{ cm}$?",
-    "answers": [
-      "Fläche $18\\text{ cm}^2$",
-      "Fläche $12\\text{ cm}^2$",
-      "Fläche $36\\text{ cm}^2$",
-      "Fläche $24\\text{ cm}^2$"
-    ],
+    "question": "Welcher Flächeninhalt A hat ein Quadrat mit Seitenlänge a = 6 cm?",
+    "answers": ["Fläche 18 cm²", "Fläche 12 cm²", "Fläche 36 cm²", "Fläche 24 cm²"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$A = a \\cdot a = 6 \\cdot 6 = 36\\text{ cm}^2$."
+    "explanation": "A = a · a = 6 · 6 = 36 cm²."
   },
   {
     "id": "k6_ma_044",
@@ -2295,17 +2080,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viele Quadratmeter ($\\text{m}^2$) entsprechen einem Ar (a)?",
-    "answers": [
-      "Genau $100\\text{ m}^2$",
-      "Genau $1.000\\text{ m}^2$",
-      "Genau $10\\text{ m}^2$",
-      "Genau $10.000\\text{ m}^2$"
-    ],
+    "question": "Wie viele Quadratmeter (m²) entsprechen einem Ar (a)?",
+    "answers": ["Genau 100 m²", "Genau 1.000 m²", "Genau 10 m²", "Genau 10.000 m²"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$1\\text{ a} = 100\\text{ m}^2$ (Umrechnungszahl bei Flächen ist $100$)."
+    "explanation": "1 a = 100 m² (Umrechnungszahl bei Flächen ist 100)."
   },
   {
     "id": "k6_ma_045",
@@ -2313,17 +2093,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viele Hektar (ha) entsprechen einem Quadratkilometer ($\\text{km}^2$)?",
-    "answers": [
-      "Genau $100\\text{ ha}$",
-      "Genau $10\\text{ ha}$",
-      "Genau $10.000\\text{ ha}$",
-      "Genau $1.000\\text{ ha}$"
-    ],
+    "question": "Wie viele Hektar (ha) entsprechen einem Quadratkilometer (km²)?",
+    "answers": ["Genau 100 ha", "Genau 10 ha", "Genau 10.000 ha", "Genau 1.000 ha"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$1\\text{ km}^2 = 100\\text{ ha}$."
+    "explanation": "1 km² = 100 ha."
   },
   {
     "id": "k6_ma_046",
@@ -2332,16 +2107,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie viele Begrenzungsflächen hat ein Quader?",
-    "answers": [
-      "Genau $12$ Flächen",
-      "Genau $8$ Flächen",
-      "Genau $6$ Flächen",
-      "Genau $4$ Flächen"
-    ],
+    "answers": ["Genau 12 Flächen", "Genau 8 Flächen", "Genau 6 Flächen", "Genau 4 Flächen"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Quader besitzt $6$ rechteckige Seitenflächen."
+    "explanation": "Ein Quader besitzt 6 rechteckige Seitenflächen."
   },
   {
     "id": "k6_ma_047",
@@ -2350,16 +2120,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie viele Ecken hat ein geometrischer Würfel?",
-    "answers": [
-      "Genau $8$ Ecken",
-      "Genau $16$ Ecken",
-      "Genau $12$ Ecken",
-      "Genau $6$ Ecken"
-    ],
+    "answers": ["Genau 8 Ecken", "Genau 16 Ecken", "Genau 12 Ecken", "Genau 6 Ecken"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Würfel hat $8$ Eckpunkte."
+    "explanation": "Ein Würfel hat 8 Eckpunkte."
   },
   {
     "id": "k6_ma_048",
@@ -2368,16 +2133,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie viele Kanten besitzt ein Quader insgesamt?",
-    "answers": [
-      "Genau $12$ Kanten",
-      "Genau $10$ Kanten",
-      "Genau $6$ Kanten",
-      "Genau $8$ Kanten"
-    ],
+    "answers": ["Genau 12 Kanten", "Genau 10 Kanten", "Genau 6 Kanten", "Genau 8 Kanten"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Quader besitzt $12$ Kanten."
+    "explanation": "Ein Quader besitzt 12 Kanten."
   },
   {
     "id": "k6_ma_049",
@@ -2385,17 +2145,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie berechnet man das Volumen $V$ eines Quaders mit Kanten $a, b, c$?",
-    "answers": [
-      "Formel: $V = a \\cdot b \\cdot c$",
-      "Formel: $V = (a \\cdot b) + c$ falsch",
-      "Formel: $V = a + b + c$ addiert",
-      "Formel: $V = 2a + 2b + 2c$ Kanten"
-    ],
+    "question": "Wie berechnet man das Volumen V eines Quaders mit Kanten a, b, c?",
+    "answers": ["Formel: V = a · b · c", "Formel: V = (a · b) + c falsch", "Formel: V = a + b + c addiert", "Formel: V = 2a + 2b + 2c Kanten"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Volumen = Länge $\\cdot$ Breite $\\cdot$ Höhe ($a \\cdot b \\cdot c$)."
+    "explanation": "Volumen = Länge · Breite · Höhe (a · b · c)."
   },
   {
     "id": "k6_ma_050",
@@ -2403,17 +2158,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Berechne das Volumen eines Quaders mit $a=2\\text{ cm}, b=3\\text{ cm}, c=4\\text{ cm}$:",
-    "answers": [
-      "Volumen $24\\text{ cm}^3$",
-      "Volumen $9\\text{ cm}^3$",
-      "Volumen $48\\text{ cm}^3$",
-      "Volumen $14\\text{ cm}^3$"
-    ],
+    "question": "Berechne das Volumen eines Quaders mit a=2 cm, b=3 cm, c=4 cm:",
+    "answers": ["Volumen 24 cm³", "Volumen 9 cm³", "Volumen 48 cm³", "Volumen 14 cm³"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$V = 2 \\cdot 3 \\cdot 4 = 24\\text{ cm}^3$."
+    "explanation": "V = 2 · 3 · 4 = 24 cm³."
   },
   {
     "id": "k6_ma_051",
@@ -2421,17 +2171,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Welches Volumen $V$ hat ein Würfel mit Kantenlänge $a = 3\\text{ cm}$?",
-    "answers": [
-      "Volumen $9\\text{ cm}^3$",
-      "Volumen $18\\text{ cm}^3$",
-      "Volumen $36\\text{ cm}^3$",
-      "Volumen $27\\text{ cm}^3$"
-    ],
+    "question": "Welches Volumen V hat ein Würfel mit Kantenlänge a = 3 cm?",
+    "answers": ["Volumen 9 cm³", "Volumen 18 cm³", "Volumen 36 cm³", "Volumen 27 cm³"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$V = a \\cdot a \\cdot a = 3 \\cdot 3 \\cdot 3 = 27\\text{ cm}^3$."
+    "explanation": "V = a · a · a = 3 · 3 · 3 = 27 cm³."
   },
   {
     "id": "k6_ma_052",
@@ -2439,17 +2184,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viele Kubikzentimeter ($\\text{cm}^3$) sind ein Kubikdezimeter ($\\text{dm}^3$)?",
-    "answers": [
-      "Genau $100\\text{ cm}^3$",
-      "Genau $10\\text{ cm}^3$",
-      "Genau $10.000\\text{ cm}^3$",
-      "Genau $1.000\\text{ cm}^3$"
-    ],
+    "question": "Wie viele Kubikzentimeter (cm³) sind ein Kubikdezimeter (dm³)?",
+    "answers": ["Genau 100 cm³", "Genau 10 cm³", "Genau 10.000 cm³", "Genau 1.000 cm³"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Umrechnungszahl für Volumeneinheiten beträgt $1.000$."
+    "explanation": "Die Umrechnungszahl für Volumeneinheiten beträgt 1.000."
   },
   {
     "id": "k6_ma_053",
@@ -2457,17 +2197,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Welcher Rauminhalt entspricht genau $1$ Liter ($1\\text{ l}$)?",
-    "answers": [
-      "Genau $1\\text{ dm}^3$",
-      "Genau $1\\text{ cm}^3$",
-      "Genau $1\\text{ m}^3$",
-      "Genau $10\\text{ cm}^3$"
-    ],
+    "question": "Welcher Rauminhalt entspricht genau 1 Liter (1 l)?",
+    "answers": ["Genau 1 dm³", "Genau 1 cm³", "Genau 1 m³", "Genau 10 cm³"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Liter entspricht dem Rauminhalt eines Würfels von $1\\text{ dm} \\times 1\\text{ dm} \\times 1\\text{ dm}$."
+    "explanation": "Ein Liter entspricht dem Rauminhalt eines Würfels von 1 dm × 1 dm × 1 dm."
   },
   {
     "id": "k6_ma_054",
@@ -2475,17 +2210,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viele Milliliter ($\\text{ml}$) sind in $1$ Liter enthalten?",
-    "answers": [
-      "Genau $100\\text{ ml}$",
-      "Genau $10.000\\text{ ml}$",
-      "Genau $1.000\\text{ ml}$",
-      "Genau $10\\text{ ml}$"
-    ],
+    "question": "Wie viele Milliliter (ml) sind in 1 Liter enthalten?",
+    "answers": ["Genau 100 ml", "Genau 10.000 ml", "Genau 1.000 ml", "Genau 10 ml"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$1\\text{ l} = 1.000\\text{ ml}$ ($1\\text{ ml} = 1\\text{ cm}^3$)."
+    "explanation": "1 l = 1.000 ml (1 ml = 1 cm³)."
   },
   {
     "id": "k6_ma_055",
@@ -2494,16 +2224,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Was beschreibt die 'Oberfläche' eines Quaders?",
-    "answers": [
-      "Fläche der Grundseite",
-      "Inhalt des leeren Innenraums",
-      "Summe aller $6$ Flächen",
-      "Länge der Kantensumme"
-    ],
+    "answers": ["Fläche der Grundseite", "Inhalt des leeren Innenraums", "Summe aller 6 Flächen", "Länge der Kantensumme"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Oberfläche ist die Summe der Flächeninhalte aller $6$ Begrenzungsflächen."
+    "explanation": "Die Oberfläche ist die Summe der Flächeninhalte aller 6 Begrenzungsflächen."
   },
   {
     "id": "k6_ma_056",
@@ -2548,16 +2273,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie zeichnet man nach hinten verlaufende Kanten im Schrägbild meist?",
-    "answers": [
-      "Verkürzt im $45^\\circ$-Winkel",
-      "Immer waagerecht gerade",
-      "Verdoppelt nach oben hin gezeichnet",
-      "Doppelt so lang senkrecht gezeichnet"
-    ],
+    "answers": ["Verkürzt im 45°-Winkel", "Immer waagerecht gerade", "Verdoppelt nach oben hin gezeichnet", "Doppelt so lang senkrecht gezeichnet"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Tiefenkanten zeichnet man schräg ($45^\\circ$) u. auf die Hälfte verkürzt."
+    "explanation": "Tiefenkanten zeichnet man schräg (45°) u. auf die Hälfte verkürzt."
   },
   {
     "id": "k6_ma_059",
@@ -2583,17 +2303,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Berechne die Gesamtkantenlänge eines Würfels mit Kante $a = 5\\text{ cm}$:",
-    "answers": [
-      "Länge beträgt $40\\text{ cm}$",
-      "Länge beträgt $60\\text{ cm}$",
-      "Länge beträgt $30\\text{ cm}$",
-      "Länge beträgt $20\\text{ cm}$"
-    ],
+    "question": "Berechne die Gesamtkantenlänge eines Würfels mit Kante a = 5 cm:",
+    "answers": ["Länge beträgt 40 cm", "Länge beträgt 60 cm", "Länge beträgt 30 cm", "Länge beträgt 20 cm"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Würfel hat $12$ Kanten: $12 \\cdot 5\\text{ cm} = 60\\text{ cm}$."
+    "explanation": "Ein Würfel hat 12 Kanten: 12 · 5 cm = 60 cm."
   },
 
   // --- RELATIVE HÄUFIGKEIT & PROZENTRECHNUNG (061 - 080) ---
@@ -2622,12 +2337,7 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie berechnet man die 'relative Häufigkeit'?",
-    "answers": [
-      "Gesamtzahl : Absolutes",
-      "Absolute Zahl $\\cdot$ Gesamtzahl",
-      "Absolute Zahl : Gesamtzahl",
-      "Gesamtzahl - Absolutes"
-    ],
+    "answers": ["Gesamtzahl : Absolutes", "Absolute Zahl · Gesamtzahl", "Absolute Zahl : Gesamtzahl", "Gesamtzahl - Absolutes"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -2639,17 +2349,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Bei $20$ Würfen fällt $5$-mal die Sechs. Wie hoch ist die relative Häufigkeit?",
-    "answers": [
-      "Ergibt $\\frac{1}{6}$ als Anteil",
-      "Ergibt $\\frac{5}{6}$ als Anteil",
-      "Ergibt $\\frac{6}{20}$ als falscher Anteil",
-      "Ergibt $\\frac{5}{20} = \\frac{1}{4}$"
-    ],
+    "question": "Bei 20 Würfen fällt 5-mal die Sechs. Wie hoch ist die relative Häufigkeit?",
+    "answers": ["Ergibt 1/6 als Anteil", "Ergibt 5/6 als Anteil", "Ergibt 6/20 als falscher Anteil", "Ergibt 5/20 = 1/4"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Relative Häufigkeit: $\\frac{5}{20} = \\frac{1}{4} = 0{,}25$."
+    "explanation": "Relative Häufigkeit: 5/20 = 1/4 = 0,25."
   },
   {
     "id": "k6_ma_064",
@@ -2657,13 +2362,8 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Was bedeutet das Prozentzeichen ($\\%$ ) übersetzt?",
-    "answers": [
-      "Von Tausend Teilen gerechnet",
-      "Aus Zehn gleichen Einheiten",
-      "Mal Hundert einfach gerechnet",
-      "Von Hundert (Pro Hundert)"
-    ],
+    "question": "Was bedeutet das Prozentzeichen (% ) übersetzt?",
+    "answers": ["Von Tausend Teilen gerechnet", "Aus Zehn gleichen Einheiten", "Mal Hundert einfach gerechnet", "Von Hundert"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -2675,17 +2375,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viel Prozent entspricht dem Bruch $\\frac{1}{2}$?",
-    "answers": [
-      "Entspricht genau $50\\%$",
-      "Entspricht genau $10\\%$",
-      "Entspricht genau $25\\%$",
-      "Entspricht genau $20\\%$"
-    ],
+    "question": "Wie viel Prozent entspricht dem Bruch 1/2?",
+    "answers": ["Entspricht genau 50%", "Entspricht genau 10%", "Entspricht genau 25%", "Entspricht genau 20%"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\frac{1}{2} = \\frac{50}{100} = 50\\%$."
+    "explanation": "1/2 = 50/100 = 50%."
   },
   {
     "id": "k6_ma_066",
@@ -2693,17 +2388,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viel Prozent entspricht dem Bruch $\\frac{1}{4}$?",
-    "answers": [
-      "Entspricht genau $15\\%$",
-      "Entspricht genau $25\\%$",
-      "Entspricht genau $75\\%$",
-      "Entspricht genau $40\\%$"
-    ],
+    "question": "Wie viel Prozent entspricht dem Bruch 1/4?",
+    "answers": ["Entspricht genau 15%", "Entspricht genau 25%", "Entspricht genau 75%", "Entspricht genau 40%"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\frac{1}{4} = \\frac{25}{100} = 25\\%$."
+    "explanation": "1/4 = 25/100 = 25%."
   },
   {
     "id": "k6_ma_067",
@@ -2711,17 +2401,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viel Prozent entspricht dem Bruch $\\frac{3}{4}$?",
-    "answers": [
-      "Entspricht genau $75\\%$",
-      "Entspricht genau $34\\%$",
-      "Entspricht genau $60\\%$",
-      "Entspricht genau $80\\%$"
-    ],
+    "question": "Wie viel Prozent entspricht dem Bruch 3/4?",
+    "answers": ["Entspricht genau 75%", "Entspricht genau 34%", "Entspricht genau 60%", "Entspricht genau 80%"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\frac{3}{4} = \\frac{75}{100} = 75\\%$."
+    "explanation": "3/4 = 75/100 = 75%."
   },
   {
     "id": "k6_ma_068",
@@ -2729,17 +2414,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie schreibt man $20\\%$ als vereinfachten Bruch?",
-    "answers": [
-      "Als Bruch $\\frac{2}{5}$",
-      "Als Bruch $\\frac{1}{2}$",
-      "Als Bruch $\\frac{1}{20}$",
-      "Als Bruch $\\frac{1}{5}$"
-    ],
+    "question": "Wie schreibt man 20% als vereinfachten Bruch?",
+    "answers": ["Als Bruch 2/5", "Als Bruch 1/2", "Als Bruch 1/20", "Als Bruch 1/5"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$20\\% = \\frac{20}{100} = \\frac{1}{5}$."
+    "explanation": "20% = 20/100 = 1/5."
   },
   {
     "id": "k6_ma_069",
@@ -2747,17 +2427,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viel sind $10\\%$ von $80$ Euro?",
-    "answers": [
-      "Das sind $4$ Euro",
-      "Das sind $8$ Euro",
-      "Das sind $10$ Euro",
-      "Das sind $18$ Euro"
-    ],
+    "question": "Wie viel sind 10% von 80 Euro?",
+    "answers": ["Das sind 4 Euro", "Das sind 8 Euro", "Das sind 10 Euro", "Das sind 18 Euro"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$10\\% = \\frac{1}{10}$. $80 : 10 = 8$ Euro."
+    "explanation": "10% = 1/10. 80 : 10 = 8 Euro."
   },
   {
     "id": "k6_ma_070",
@@ -2765,17 +2440,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viel sind $25\\%$ von $400$ Gramm?",
-    "answers": [
-      "Das sind $25$ Gramm",
-      "Das sind $100$ Gramm",
-      "Das sind $50$ Gramm",
-      "Das sind $200$ Gramm"
-    ],
+    "question": "Wie viel sind 25% von 400 Gramm?",
+    "answers": ["Das sind 25 Gramm", "Das sind 100 Gramm", "Das sind 50 Gramm", "Das sind 200 Gramm"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$25\\% = \\frac{1}{4}$. $400 : 4 = 100$ Gramm."
+    "explanation": "25% = 1/4. 400 : 4 = 100 Gramm."
   },
   {
     "id": "k6_ma_071",
@@ -2783,17 +2453,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie schreibt man die Zahl $0{,}05$ in Prozent?",
-    "answers": [
-      "Entspricht genau $5\\%$",
-      "Entspricht genau $0{,}5\\%$",
-      "Entspricht genau $500\\%$",
-      "Entspricht genau $50\\%$"
-    ],
+    "question": "Wie schreibt man die Zahl 0,05 in Prozent?",
+    "answers": ["Entspricht genau 5%", "Entspricht genau 0,5%", "Entspricht genau 500%", "Entspricht genau 50%"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$0{,}05 = \\frac{5}{100} = 5\\%$."
+    "explanation": "0,05 = 5/100 = 5%."
   },
   {
     "id": "k6_ma_072",
@@ -2801,17 +2466,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie schreibt man $100\\%$ als ganze Zahl?",
-    "answers": [
-      "Die ganze Zahl $10$",
-      "Die ganze Zahl $0$",
-      "Die ganze Zahl $100$",
-      "Die ganze Zahl $1$"
-    ],
+    "question": "Wie schreibt man 100% als ganze Zahl?",
+    "answers": ["Die ganze Zahl 10", "Die ganze Zahl 0", "Die ganze Zahl 100", "Die ganze Zahl 1"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$100\\% = \\frac{100}{100} = 1$ (das Ganze)."
+    "explanation": "100% = 100/100 = 1 (das Ganze)."
   },
   {
     "id": "k6_ma_073",
@@ -2819,17 +2479,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "In einer Klasse von $25$ Kindern tragen $5$ eine Brille. Wie viel $\\%$ sind das?",
-    "answers": [
-      "Das sind genau $25\\%$",
-      "Das sind genau $5\\%$",
-      "Das sind genau $20\\%$",
-      "Das sind genau $10\\%$"
-    ],
+    "question": "In einer Klasse von 25 Kindern tragen 5 eine Brille. Wie viel % sind das?",
+    "answers": ["Das sind genau 25%", "Das sind genau 5%", "Das sind genau 20%", "Das sind genau 10%"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\frac{5}{25} = \\frac{1}{5} = \\frac{20}{100} = 20\\%$."
+    "explanation": "5/25 = 1/5 = 20/100 = 20%."
   },
   {
     "id": "k6_ma_074",
@@ -2837,17 +2492,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Ein Pullover kostet $50$ Euro. Er wird um $10\\%$ reduziert. Wie viel spart man?",
-    "answers": [
-      "Man spart $5$ Euro",
-      "Man spart $2{,}50$ Euro",
-      "Man spart $1$ Euro",
-      "Man spart $10$ Euro"
-    ],
+    "question": "Ein Pullover kostet 50 Euro. Er wird um 10% reduziert. Wie viel spart man?",
+    "answers": ["Man spart 5 Euro", "Man spart 2,50 Euro", "Man spart 1 Euro", "Man spart 10 Euro"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$10\\%$ von $50$ Euro $= 50 : 10 = 5$ Euro Rabatt."
+    "explanation": "10% von 50 Euro = 50 : 10 = 5 Euro Rabatt."
   },
   {
     "id": "k6_ma_075",
@@ -2856,16 +2506,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Was ist die Summe aller relativen Häufigkeiten eines Zufallsexperiments?",
-    "answers": [
-      "Immer genau $0$, nie erfüllt",
-      "Abhängig von der Anzahl",
-      "Immer genau $10$ Prozent",
-      "Immer genau $1$ ($100\\%$)"
-    ],
+    "answers": ["Immer genau 0, nie erfüllt", "Abhängig von der Anzahl", "Immer genau 10 Prozent", "Immer genau 1 (100%)"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Summe aller Anteile ergibt zusammen stets das Ganze ($1$ bzw. $100\\%$)."
+    "explanation": "Die Summe aller Anteile ergibt zusammen stets das Ganze (1 bzw. 100%)."
   },
   {
     "id": "k6_ma_076",
@@ -2873,17 +2518,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viel sind $50\\%$ von $120$ Kilometern?",
-    "answers": [
-      "Das sind $50\\text{ km}$",
-      "Das sind $24\\text{ km}$",
-      "Das sind $60\\text{ km}$",
-      "Das sind $30\\text{ km}$"
-    ],
+    "question": "Wie viel sind 50% von 120 Kilometern?",
+    "answers": ["Das sind 50 km", "Das sind 24 km", "Das sind 60 km", "Das sind 30 km"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$50\\%$ ist die Hälfte $\\rightarrow 120 : 2 = 60\\text{ km}$."
+    "explanation": "50% ist die Hälfte → 120 : 2 = 60 km."
   },
   {
     "id": "k6_ma_077",
@@ -2891,17 +2531,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Welcher Prozentwert entspricht der Kommazahl $0{,}12$?",
-    "answers": [
-      "Entspricht $12\\%$",
-      "Entspricht $0{,}12\\%$",
-      "Entspricht $1{,}2\\%$",
-      "Entspricht $120\\%$"
-    ],
+    "question": "Welcher Prozentwert entspricht der Kommazahl 0,12?",
+    "answers": ["Entspricht 12%", "Entspricht 0,12%", "Entspricht 1,2%", "Entspricht 120%"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$0{,}12 = \\frac{12}{100} = 12\\%$."
+    "explanation": "0,12 = 12/100 = 12%."
   },
   {
     "id": "k6_ma_078",
@@ -2909,17 +2544,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viel sind $1\\%$ von $500$ Metern?",
-    "answers": [
-      "Das sind $5$ Meter",
-      "Das sind $0{,}5$ Meter",
-      "Das sind $50$ Meter",
-      "Das sind $1$ Meter"
-    ],
+    "question": "Wie viel sind 1% von 500 Metern?",
+    "answers": ["Das sind 5 Meter", "Das sind 0,5 Meter", "Das sind 50 Meter", "Das sind 1 Meter"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$1\\% = \\frac{1}{100}$. $500 : 100 = 5$ Meter."
+    "explanation": "1% = 1/100. 500 : 100 = 5 Meter."
   },
   {
     "id": "k6_ma_079",
@@ -2927,17 +2557,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Ergänze zu $100\\%$: Wenn $35\\%$ Jungen sind, wie viel $\\%$ Mädels sind es?",
-    "answers": [
-      "Das sind $55\\%$",
-      "Das sind $65\\%$",
-      "Das sind $75\\%$",
-      "Das sind $60\\%$"
-    ],
+    "question": "Ergänze zu 100%: Wenn 35% Jungen sind, wie viel % Mädels sind es?",
+    "answers": ["Das sind 55%", "Das sind 65%", "Das sind 75%", "Das sind 60%"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$100\\% - 35\\% = 65\\%$."
+    "explanation": "100% - 35% = 65%."
   },
   {
     "id": "k6_ma_080",
@@ -2946,16 +2571,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Was bedeutet ein 'Prozentwert' in der Mathematik?",
-    "answers": [
-      "Die berechnete Menge",
-      "Der Nenner des Bruchs",
-      "Das ganze Ganze $G$",
-      "Der Prozentsatz $p\\%$"
-    ],
+    "answers": ["Die berechnete Menge", "Der Nenner des Bruchs", "Das ganze Ganze G", "Der Prozentsatz p%"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Prozentwert $W$ gibt die konkrete Menge an, die dem Prozentsatz entspricht."
+    "explanation": "Der Prozentwert W gibt die konkrete Menge an, die dem Prozentsatz entspricht."
   },
 
   // --- KOORDINATENSYSTEM, DIAGRAMME & STATISTIK (081 - 100) ---
@@ -2966,16 +2586,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie heißt die waagerechte Achse im Koordinatensystem?",
-    "answers": [
-      "Die Hoch-Achse",
-      "Die $x$-Achse",
-      "Die $y$-Achse",
-      "Die $z$-Achse"
-    ],
+    "answers": ["Die Hoch-Achse", "Die x-Achse", "Die y-Achse", "Die z-Achse"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die waagerechte Achse wird als $x$-Achse (Rechtsachse) bezeichnet."
+    "explanation": "Die waagerechte Achse wird als x-Achse (Rechtsachse) bezeichnet."
   },
   {
     "id": "k6_ma_082",
@@ -2984,16 +2599,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie heißt die senkrechte Achse im Koordinatensystem?",
-    "answers": [
-      "Die Breiteachse",
-      "Die $y$-Achse",
-      "Die Null-Achse",
-      "Die $x$-Achse"
-    ],
+    "answers": ["Die Breiteachse", "Die y-Achse", "Die Null-Achse", "Die x-Achse"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die senkrechte Achse wird als $y$-Achse (Hochachse) bezeichnet."
+    "explanation": "Die senkrechte Achse wird als y-Achse (Hochachse) bezeichnet."
   },
   {
     "id": "k6_ma_083",
@@ -3002,16 +2612,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie lauten die Koordinaten des Ursprungs (Nullpunkts)?",
-    "answers": [
-      "Koordinaten $(1|0)$",
-      "Koordinaten $(1|1)$",
-      "Koordinaten $(0|1)$",
-      "Koordinaten $(0|0)$"
-    ],
+    "answers": ["Koordinaten (1|0)", "Koordinaten (1|1)", "Koordinaten (0|1)", "Koordinaten (0|0)"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Schnittpunkt der Achsen liegt bei $(0|0)$."
+    "explanation": "Der Schnittpunkt der Achsen liegt bei (0|0)."
   },
   {
     "id": "k6_ma_084",
@@ -3019,17 +2624,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "In welcher Reihenfolge liest man Punkte $P(x|y)$ ab?",
-    "answers": [
-      "Der höchste Wert zuerst",
-      "Erst $y$, dann $x$",
-      "Erst $x$, dann $y$",
-      "Nach Belieben wählen"
-    ],
+    "question": "In welcher Reihenfolge liest man Punkte P(x|y) ab?",
+    "answers": ["Der höchste Wert zuerst", "Erst y, dann x", "Erst x, dann y", "Nach Belieben wählen"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Merkregel: Erst gehen wir nach rechts ($x$), dann nach oben ($y$)."
+    "explanation": "Merkregel: Erst gehen wir nach rechts (x), dann nach oben (y)."
   },
   {
     "id": "k6_ma_085",
@@ -3037,17 +2637,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wo liegt der Punkt $P(4|0)$ im Koordinatensystem?",
-    "answers": [
-      "Im freien Feld oben",
-      "Im Nullpunkt selbst",
-      "Auf der $y$-Achse",
-      "Auf der $x$-Achse"
-    ],
+    "question": "Wo liegt der Punkt P(4|0) im Koordinatensystem?",
+    "answers": ["Im freien Feld oben", "Im Nullpunkt selbst", "Auf der y-Achse", "Auf der x-Achse"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Da der $y$-Wert $0$ ist, liegt der Punkt direkt auf der $x$-Achse bei $4$."
+    "explanation": "Da der y-Wert 0 ist, liegt der Punkt direkt auf der x-Achse bei 4."
   },
   {
     "id": "k6_ma_086",
@@ -3056,16 +2651,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Welches Diagramm eignet sich besonders gut für Anteile am Ganzen?",
-    "answers": [
-      "Das Säulendiagramm",
-      "Das Kreisdiagramm",
-      "Das Punkt-Diagramm",
-      "Das Liniendiagramm"
-    ],
+    "answers": ["Das Säulendiagramm", "Das Kreisdiagramm", "Das Punkt-Diagramm", "Das Liniendiagramm"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Kreisdiagramm ($360^\\circ$) stellt Prozentanteile anschaulich als Tortenstücke dar."
+    "explanation": "Ein Kreisdiagramm (360°) stellt Prozentanteile anschaulich als Tortenstücke dar."
   },
   {
     "id": "k6_ma_087",
@@ -3073,17 +2663,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viel Grad im Kreisdiagramm entsprechen $50\\%$?",
-    "answers": [
-      "Genau $45^\\circ$ Winkel",
-      "Genau $180^\\circ$ Winkel",
-      "Genau $90^\\circ$ Winkel",
-      "Genau $360^\\circ$ Winkel"
-    ],
+    "question": "Wie viel Grad im Kreisdiagramm entsprechen 50%?",
+    "answers": ["Genau 45° Winkel", "Genau 180° Winkel", "Genau 90° Winkel", "Genau 360° Winkel"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$50\\%$ entspricht der Hälfte des Vollkreises ($360^\\circ : 2 = 180^\\circ$)."
+    "explanation": "50% entspricht der Hälfte des Vollkreises (360° : 2 = 180°)."
   },
   {
     "id": "k6_ma_088",
@@ -3091,17 +2676,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Wie viel Grad im Kreisdiagramm entsprechen $25\\%$?",
-    "answers": [
-      "Genau $45^\\circ$ Winkel",
-      "Genau $90^\\circ$ Winkel",
-      "Genau $60^\\circ$ Winkel",
-      "Genau $180^\\circ$ Winkel"
-    ],
+    "question": "Wie viel Grad im Kreisdiagramm entsprechen 25%?",
+    "answers": ["Genau 45° Winkel", "Genau 90° Winkel", "Genau 60° Winkel", "Genau 180° Winkel"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$25\\%$ entspricht einem Viertelkreis ($360^\\circ : 4 = 90^\\circ$)."
+    "explanation": "25% entspricht einem Viertelkreis (360° : 4 = 90°)."
   },
   {
     "id": "k6_ma_089",
@@ -3145,17 +2725,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Berechne den Mittelwert der Zahlen $2, 4, 6, 8$:",
-    "answers": [
-      "Der Mittelwert ist $4$",
-      "Der Mittelwert ist $5$",
-      "Der Mittelwert ist $20$",
-      "Der Mittelwert ist $6$"
-    ],
+    "question": "Berechne den Mittelwert der Zahlen 2, 4, 6, 8:",
+    "answers": ["Der Mittelwert ist 4", "Der Mittelwert ist 5", "Der Mittelwert ist 20", "Der Mittelwert ist 6"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Summe: $2+4+6+8 = 20$. Durch $4$ Werte teilen: $20 : 4 = 5$."
+    "explanation": "Summe: 2+4+6+8 = 20. Durch 4 Werte teilen: 20 : 4 = 5."
   },
   {
     "id": "k6_ma_092",
@@ -3181,17 +2756,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Bestimme die Spannweite der Noten: $1, 2, 2, 3, 5$:",
-    "answers": [
-      "Die Spannweite ist $4$",
-      "Die Spannweite ist $3$",
-      "Die Spannweite ist $2$",
-      "Die Spannweite ist $5$"
-    ],
+    "question": "Bestimme die Spannweite der Noten: 1, 2, 2, 3, 5:",
+    "answers": ["Die Spannweite ist 4", "Die Spannweite ist 3", "Die Spannweite ist 2", "Die Spannweite ist 5"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Maximum ($5$) minus Minimum ($1$) = $5 - 1 = 4$."
+    "explanation": "Maximum (5) minus Minimum (1) = 5 - 1 = 4."
   },
   {
     "id": "k6_ma_094",
@@ -3217,17 +2787,12 @@ const K6_MATHE_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "mathematik",
-    "question": "Bestimme den Median der sortierten Reihe: $3, 5, 7, 9, 11$:",
-    "answers": [
-      "Der Median ist $9$",
-      "Der Median ist $35$",
-      "Der Median ist $7$",
-      "Der Median ist $5$"
-    ],
+    "question": "Bestimme den Median der sortierten Reihe: 3, 5, 7, 9, 11:",
+    "answers": ["Der Median ist 9", "Der Median ist 35", "Der Median ist 7", "Der Median ist 5"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Zahl $7$ steht genau an der $3$. Stelle von $5$ Werten."
+    "explanation": "Die Zahl 7 steht genau an der 3. Stelle von 5 Werten."
   },
   {
     "id": "k6_ma_096",
@@ -3236,16 +2801,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Wie stellt man Strichlisten bei Datenerhebungen bündelnd dar?",
-    "answers": [
-      "In $3$er-Gruppen",
-      "In $5$er-Päckchen",
-      "In $10$er-Blöcken",
-      "In $2$er-Paaren"
-    ],
+    "answers": ["In 3er-Gruppen", "In 5er-Päckchen", "In 10er-Blöcken", "In 2er-Paaren"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Jeder 5. Strich wird quer gelegt, um $5$er-Blöcke schnell zu zählen."
+    "explanation": "Jeder 5. Strich wird quer gelegt, um 5er-Blöcke schnell zu zählen."
   },
   {
     "id": "k6_ma_097",
@@ -3290,16 +2850,11 @@ const K6_MATHE_QUESTIONS = [
     "grade": 6,
     "subject": "mathematik",
     "question": "Welchen Gesamtwinkel hat ein vollständiges Kreisdiagramm?",
-    "answers": [
-      "Winkel von $90^\\circ$",
-      "Winkel von $180^\\circ$",
-      "Winkel von $360^\\circ$",
-      "Winkel von $100^\\circ$"
-    ],
+    "answers": ["Winkel von 90°", "Winkel von 180°", "Winkel von 360°", "Winkel von 100°"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein voller Kreis hat immer $360^\\circ$."
+    "explanation": "Ein voller Kreis hat immer 360°."
   },
   {
     "id": "k6_ma_100",

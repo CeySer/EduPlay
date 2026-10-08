@@ -1059,12 +1059,7 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "grade": 7,
     "subject": "franzoesisch",
     "question": "Wie bildet man den Teilungsartikel vor einem männlichen Wort im Singular (z. B. pain)?",
-    "answers": [
-      "Artikel: des, Plural von",
-      "Artikel: du (de + le)",
-      "Artikel: de la, weiblich",
-      "Artikel: de l', vor Vokal"
-    ],
+    "answers": ["Artikel: des, Plural von", "Artikel: du (de + le)", "Artikel: de la, weiblich", "Artikel: de l', vor Vokal"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1439,12 +1434,7 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "grade": 7,
     "subject": "franzoesisch",
     "question": "Wie übersetzt man die Frage 'Wie viel(e)' ins Französische?",
-    "answers": [
-      "Fragewort: combien (de)",
-      "Fragewort: quoi, informell",
-      "Fragewort: comment, wie",
-      "Fragewort: quel, welcher"
-    ],
+    "answers": ["Fragewort: combien (de)", "Fragewort: quoi, informell", "Fragewort: comment, wie", "Fragewort: quel, welcher"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1619,12 +1609,7 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "grade": 7,
     "subject": "franzoesisch",
     "question": "An welchem Datum feiern die Franzosen ihren Nationalfeiertag (Fête nationale)?",
-    "answers": [
-      "Am 3. Oktober jeden Jahres",
-      "Am 14. Juli (14 juillet)",
-      "Am 1. Mai (1er mai) auch",
-      "Am 11. November jeweils"
-    ],
+    "answers": ["Am 3. Oktober jeden Jahres", "Am 14. Juli", "Am 1. Mai (1er mai) auch", "Am 11. November jeweils"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1709,12 +1694,7 @@ const K7_FRANZOESISCH_QUESTIONS = [
     "grade": 7,
     "subject": "franzoesisch",
     "question": "Welche große französische Insel liegt im Mittelmeer nördlich von Sardinien?",
-    "answers": [
-      "La Guadeloupe Insel",
-      "La Réunion Insel",
-      "La Corse (Korsika)",
-      "La Martinique Insel"
-    ],
+    "answers": ["La Guadeloupe Insel", "La Réunion Insel", "La Corse", "La Martinique Insel"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,

@@ -390,17 +390,12 @@ const K7_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "chemie",
-    "question": "Wie lautet die mathematische Formel zur Berechnung der Dichte $\\rho$ eines Körpers?",
-    "answers": [
-      "Formel: Rho = m / V",
-      "Formel: Rho = V / m",
-      "Formel: Rho = m * V",
-      "Formel: Rho = m + V"
-    ],
+    "question": "Wie lautet die mathematische Formel zur Berechnung der Dichte ρ eines Körpers?",
+    "answers": ["Formel: Rho = m / V", "Formel: Rho = V / m", "Formel: Rho = m · V", "Formel: Rho = m + V"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Dichte ist der Quotient aus Masse $m$ u. Volumen $V$ ($\\rho = m / V$)."
+    "explanation": "Die Dichte ist der Quotient aus Masse m u. Volumen V (ρ = m / V)."
   },
   {
     "id": "k7_ch_023",
@@ -409,16 +404,11 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "In welcher Standardeinheit wird die Dichte fester Stoffe in der Chemie üblicherweise angegeben?",
-    "answers": [
-      "Einheit: mg / l²",
-      "Einheit: g / cm³",
-      "Einheit: g * cm³",
-      "Einheit: kg / m²"
-    ],
+    "answers": ["Einheit: mg / l²", "Einheit: g / cm³", "Einheit: g · cm³", "Einheit: kg / m²"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Gramm pro Kubikzentimeter ($\\text{g/cm}^3$) ist die gebräuchliche Einheit in der Chemie."
+    "explanation": "Gramm pro Kubikzentimeter (g/cm³) ist die gebräuchliche Einheit in der Chemie."
   },
   {
     "id": "k7_ch_024",
@@ -625,16 +615,11 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Bei welcher Temperatur besitzt reines Wasser seine höchste Dichte (Anomalie des Wassers)?",
-    "answers": [
-      "Bei exakt 100 °C Temp.",
-      "Bei exakt 4 °C Temp.",
-      "Bei exakt -4 °C Temp.",
-      "Bei exakt 0 °C Temp."
-    ],
+    "answers": ["Bei exakt 100 °C Temp.", "Bei exakt 4 °C Temp.", "Bei exakt -4 °C Temp.", "Bei exakt 0 °C Temp."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Wasser hat bei 4 °C seine maximale Dichte ($1{,}0\\text{ g/cm}^3$), weshalb Eis oben schwimmt."
+    "explanation": "Wasser hat bei 4 °C seine maximale Dichte (1,0 g/cm³), weshalb Eis oben schwimmt."
   },
   {
     "id": "k7_ch_036",
@@ -679,16 +664,11 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Wie nennt man Reinstoffe, die aus Atomen verschiedener Elemente in festem Zahlenverhältnis aufgebaut sind?",
-    "answers": [
-      "Chemisches Element",
-      "Legierung der Metalle",
-      "Heterogenes Gemenge",
-      "Chemische Verbindung"
-    ],
+    "answers": ["Chemisches Element", "Legierung der Metalle", "Heterogenes Gemenge", "Chemische Verbindung"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Verbindungen (z. B. Wasser $H_2O$) bestehen aus mindestens zwei verschiedenen Elementen."
+    "explanation": "Verbindungen (z. B. Wasser H₂O) bestehen aus mindestens zwei verschiedenen Elementen."
   },
   {
     "id": "k7_ch_039",
@@ -1295,16 +1275,11 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Wie lautet das chemische Symbol für elementaren Sauerstoff als Gasmolekül?",
-    "answers": [
-      "Symbol: S2",
-      "Symbol: O2",
-      "Symbol: O3",
-      "Symbol: SO"
-    ],
+    "answers": ["Symbol: S2", "Symbol: O₂", "Symbol: O₃", "Symbol: SO"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Sauerstoff kommt in der Luft als zweiatomiges Molekül $O_2$ vor."
+    "explanation": "Sauerstoff kommt in der Luft als zweiatomiges Molekül O₂ vor."
   },
   {
     "id": "k7_ch_073",
@@ -1313,16 +1288,11 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Wie lautet das chemische Symbol für elementaren Wasserstoff als Gasmolekül?",
-    "answers": [
-      "Symbol: Wa",
-      "Symbol: H2",
-      "Symbol: HO",
-      "Symbol: W2"
-    ],
+    "answers": ["Symbol: Wa", "Symbol: H₂", "Symbol: HO", "Symbol: W₂"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Wasserstoffgas liegt als zweiatomiges Molekül $H_2$ (Hydrogenium) vor."
+    "explanation": "Wasserstoffgas liegt als zweiatomiges Molekül H₂ (Hydrogenium) vor."
   },
   {
     "id": "k7_ch_074",
@@ -1402,13 +1372,8 @@ const K7_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "chemie",
-    "question": "Welche Nachweisreaktion dient der eindeutigen Identifikation von reinem Sauerstoffgas ($O_2$)?",
-    "answers": [
-      "Die Beilsteinprobe",
-      "Die Knallgasprobe",
-      "Die Kalkwasserprobe",
-      "Die Glimmspanprobe"
-    ],
+    "question": "Welche Nachweisreaktion dient der eindeutigen Identifikation von reinem Sauerstoffgas (O₂)?",
+    "answers": ["Die Beilsteinprobe", "Die Knallgasprobe", "Die Kalkwasserprobe", "Die Glimmspanprobe"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -1439,16 +1404,11 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Welches weiße Pulver bildet sich als Reaktionsprodukt bei der Verbrennung von Magnesium an der Luft?",
-    "answers": [
-      "Das Magnesiumoxid",
-      "Das Magnesiumchlorid",
-      "Magnesiumcarbonat",
-      "Das Magnesiumsulfid"
-    ],
+    "answers": ["Das Magnesiumoxid", "Das Magnesiumchlorid", "Magnesiumcarbonat", "Das Magnesiumsulfid"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$2\\text{Mg} + \\text{O}_2 \\rightarrow 2\\text{MgO}$ (sprödes, weißes Magnesiumoxid)."
+    "explanation": "2Mg + O₂ → 2MgO (sprödes, weißes Magnesiumoxid)."
   },
 
   // --- LUFT, SAUERSTOFF, VERBRENNUNG & REDOXREAKTIONEN (081 - 100) ---
@@ -1459,12 +1419,7 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Welches Gas bildet mit ca. 78 Vol.-% den Hauptbestandteil der Erdatmosphäre?",
-    "answers": [
-      "Gas: Kohlenstoffdioxid",
-      "Gas: Stickstoff N2",
-      "Gas: Argon Ar",
-      "Gas: Sauerstoff O2"
-    ],
+    "answers": ["Gas: Kohlenstoffdioxid", "Gas: Stickstoff N₂", "Gas: Argon Ar", "Gas: Sauerstoff O₂"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1476,13 +1431,8 @@ const K7_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "chemie",
-    "question": "Wie hoch ist der prozentuale Anteil von Sauerstoff ($O_2$) in der natürlichen Atemluft etwa?",
-    "answers": [
-      "Anteil ca. 78 Vol.-%",
-      "Anteil ca. 21 Vol.-%",
-      "Anteil ca. 1 Vol.-%",
-      "Anteil ca. 50 Vol.-%"
-    ],
+    "question": "Wie hoch ist der prozentuale Anteil von Sauerstoff (O₂) in der natürlichen Atemluft etwa?",
+    "answers": ["Anteil ca. 78 Vol.-%", "Anteil ca. 21 Vol.-%", "Anteil ca. 1 Vol.-%", "Anteil ca. 50 Vol.-%"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1512,17 +1462,12 @@ const K7_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "chemie",
-    "question": "Wie hoch ist der Kohlenstoffdioxid-Gehalt ($CO_2$) in der unveränderten Atemluft ungefähr?",
-    "answers": [
-      "Anteil ca. 4,00 %",
-      "Anteil ca. 1,00 %",
-      "Anteil ca. 0,40 %",
-      "Anteil ca. 0,04 %"
-    ],
+    "question": "Wie hoch ist der Kohlenstoffdioxid-Gehalt (CO₂) in der unveränderten Atemluft ungefähr?",
+    "answers": ["Anteil ca. 4,00 %", "Anteil ca. 1,00 %", "Anteil ca. 0,40 %", "Anteil ca. 0,04 %"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der $CO_2$-Gehalt der reinen Luft liegt bei etwa 0,04 Vol.-% (ca. 420 ppm)."
+    "explanation": "Der CO₂-Gehalt der reinen Luft liegt bei etwa 0,04 Vol.-% (ca. 420 ppm)."
   },
   {
     "id": "k7_ch_085",
@@ -1531,12 +1476,7 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Welche drei Voraussetzungen müssen im 'Verbrennungsdreieck' zeitgleich für ein Feuer erfüllt sein?",
-    "answers": [
-      "Brennstoff, CO2, Hitze",
-      "Holz, Funke, Wasser",
-      "Gas, Druck, Katalys.",
-      "Brennstoff, O2, Zündt."
-    ],
+    "answers": ["Brennstoff, CO₂, Hitze", "Holz, Funke, Wasser", "Gas, Druck, Katalys.", "Brennstoff, O₂, Zündt."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -1548,13 +1488,8 @@ const K7_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "chemie",
-    "question": "Welche Nachweisreaktion nutzt man zur eindeutigen Identifikation von Wasserstoffgas ($H_2$)?",
-    "answers": [
-      "Die Kalkwasserprobe",
-      "Die Glimmspanprobe",
-      "Die Jodprobe Stärke",
-      "Die Knallgasprobe"
-    ],
+    "question": "Welche Nachweisreaktion nutzt man zur eindeutigen Identifikation von Wasserstoffgas (H₂)?",
+    "answers": ["Die Kalkwasserprobe", "Die Glimmspanprobe", "Die Jodprobe Stärke", "Die Knallgasprobe"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -1566,17 +1501,12 @@ const K7_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "chemie",
-    "question": "Wie weist man das Gas Kohlenstoffdioxid ($CO_2$) chemisch im Labor nach?",
-    "answers": [
-      "Blaufärbung Papier",
-      "Trübung Kalkwasser",
-      "Pfeifender Knall",
-      "Glimmspan entzündet"
-    ],
+    "question": "Wie weist man das Gas Kohlenstoffdioxid (CO₂) chemisch im Labor nach?",
+    "answers": ["Blaufärbung Papier", "Trübung Kalkwasser", "Pfeifender Knall", "Glimmspan entzündet"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Leitet man $CO_2$ in klares Kalkwasser, entsteht eine milchig-weiße Trübung aus Calciumcarbonat."
+    "explanation": "Leitet man CO₂ in klares Kalkwasser, entsteht eine milchig-weiße Trübung aus Calciumcarbonat."
   },
   {
     "id": "k7_ch_088",
@@ -1584,13 +1514,8 @@ const K7_CHEMIE_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "chemie",
-    "question": "Mit welchem Reagenz weist man Spuren von Wasser ($H_2O$) durch Farbwechsel von weiß nach blau nach?",
-    "answers": [
-      "Kupfersulfat wasserfrei",
-      "Konzentrierte Salzsäure",
-      "Universalindikator",
-      "Kalkwasser lösung"
-    ],
+    "question": "Mit welchem Reagenz weist man Spuren von Wasser (H₂O) durch Farbwechsel von weiß nach blau nach?",
+    "answers": ["Kupfersulfat wasserfrei", "Konzentrierte Salzsäure", "Universalindikator", "Kalkwasser lösung"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1675,12 +1600,7 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Was versteht man unter einem 'Reduktionsmittel' in einer Redoxreaktion?",
-    "answers": [
-      "Stoff kühlt Gemisch",
-      "Stoff gibt O2 ab",
-      "Stoff verhindert O2",
-      "Stoff zieht O2 an"
-    ],
+    "answers": ["Stoff kühlt Gemisch", "Stoff gibt O₂ ab", "Stoff verhindert O₂", "Stoff zieht O₂ an"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -1693,12 +1613,7 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Was versteht man unter einem 'Oxidationsmittel' in einer Redoxreaktion?",
-    "answers": [
-      "Stoff schützt Eisen",
-      "Stoff nimmt O2 auf",
-      "Stoff gibt O2 ab",
-      "Stoff stoppt Wärme"
-    ],
+    "answers": ["Stoff schützt Eisen", "Stoff nimmt O₂ auf", "Stoff gibt O₂ ab", "Stoff stoppt Wärme"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -1711,16 +1626,11 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Was passiert bei der Gewaltsamen Trennung von Wasser durch elektrischen Strom (Elektrolyse)?",
-    "answers": [
-      "Zerfall N2 u. O2 (4:1)",
-      "Reines Schmelzen Eis",
-      "Zerfall H2 u. O2 (2:1)",
-      "Verdampfen zu Dampf"
-    ],
+    "answers": ["Zerfall N₂ u. O₂ (4:1)", "Reines Schmelzen Eis", "Zerfall H₂ u. O₂ (2:1)", "Verdampfen zu Dampf"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Wasser zerfällt elektrochemisch im Volumenverhältnis 2:1 in Wasserstoff ($H_2$) u. Sauerstoff ($O_2$)."
+    "explanation": "Wasser zerfällt elektrochemisch im Volumenverhältnis 2:1 in Wasserstoff (H₂) u. Sauerstoff (O₂)."
   },
   {
     "id": "k7_ch_096",
@@ -1747,12 +1657,7 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Was zeichnet ein 'edles Metall' wie Gold oder Platin chemisch aus?",
-    "answers": [
-      "Brennt bei Raumtemp.",
-      "Reagiert stark Wasser",
-      "Reagiert kaum mit O2",
-      "Rostet extrem rasch"
-    ],
+    "answers": ["Brennt bei Raumtemp.", "Reagiert stark Wasser", "Reagiert kaum mit O₂", "Rostet extrem rasch"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -1783,16 +1688,11 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Welches Gas entsteht bei der unvollständigen Verbrennung von kohlenstoffhaltigen Brennstoffen bei Sauerstoffmangel?",
-    "answers": [
-      "Kohlenstoffmonoxid",
-      "Reiner Stickstoff",
-      "Kohlenstoffdioxid",
-      "Reines Wasserstoffgas"
-    ],
+    "answers": ["Kohlenstoffmonoxid", "Reiner Stickstoff", "Kohlenstoffdioxid", "Reines Wasserstoffgas"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei O2-Mangel entsteht das hochgiftige, geruchlose Gas Kohlenstoffmonoxid ($CO$)."
+    "explanation": "Bei O₂-Mangel entsteht das hochgiftige, geruchlose Gas Kohlenstoffmonoxid (CO)."
   },
   {
     "id": "k7_ch_100",
@@ -1801,16 +1701,11 @@ const K7_CHEMIE_QUESTIONS = [
     "grade": 7,
     "subject": "chemie",
     "question": "Welche Hauptgase aus Abgasen reagieren mit Regenwasser zu saurem Regen?",
-    "answers": [
-      "Helium u. Neon Gas",
-      "Sauerstoff u. Argon",
-      "Kohlenmonoxid pur",
-      "SO2 u. Stickoxide"
-    ],
+    "answers": ["Helium u. Neon Gas", "Sauerstoff u. Argon", "Kohlenmonoxid pur", "SO₂ u. Stickoxide"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Schwefeldioxid ($SO_2$) u. Stickstoffoxide ($NO_x$) bilden in der Atmosphäre Säuren (schweflige Säure, Salpetersäure)."
+    "explanation": "Schwefeldioxid (SO₂) u. Stickstoffoxide (NOx) bilden in der Atmosphäre Säuren (schweflige Säure, Salpetersäure)."
   }
 ];
 

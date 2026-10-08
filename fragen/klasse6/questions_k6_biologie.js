@@ -427,16 +427,11 @@ const K6_BIOLOGIE_QUESTIONS = [
     "grade": 6,
     "subject": "biologie",
     "question": "Welche Stoffe benötigt die Pflanze für die Fotosynthese?",
-    "answers": [
-      "Sauerstoff und reiner Stickstoff",
-      "Wasser + Kohlenstoffdioxid",
-      "Wasserstoffgas und Ozonluft",
-      "Traubenzucker und Kohlensäure"
-    ],
+    "answers": ["Sauerstoff und reiner Stickstoff", "Wasser + Kohlenstoffdioxid", "Wasserstoffgas und Ozonluft", "Traubenzucker und Kohlensäure"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Aus $H_2O$ und $CO_2$ entsteht mit Lichtenergie Traubenzucker."
+    "explanation": "Aus H₂O und CO₂ entsteht mit Lichtenergie Traubenzucker."
   },
   {
     "id": "k6_bio_025",
@@ -679,12 +674,7 @@ const K6_BIOLOGIE_QUESTIONS = [
     "grade": 6,
     "subject": "biologie",
     "question": "Was braucht ein Samen zwingend zum Keimen?",
-    "answers": [
-      "Viel Licht, Erde, Stickstoff",
-      "Wasser, Wärme, Sauerstoff",
-      "Dünger, Licht und starke Kälte",
-      "Schatten, Eis und viel CO2"
-    ],
+    "answers": ["Viel Licht, Erde, Stickstoff", "Wasser, Wärme, Sauerstoff", "Dünger, Licht und starke Kälte", "Schatten, Eis und viel CO₂"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1025,12 +1015,7 @@ const K6_BIOLOGIE_QUESTIONS = [
     "grade": 6,
     "subject": "biologie",
     "question": "Welcher Nährstoff ist für den Muskelaufbau nötig?",
-    "answers": [
-      "Gesunde Pflanzenfette",
-      "Süßer Traubenzucker",
-      "Eiweiße (Proteine)",
-      "Wichtige Ballaststoffe"
-    ],
+    "answers": ["Gesunde Pflanzenfette", "Süßer Traubenzucker", "Eiweiße", "Wichtige Ballaststoffe"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,

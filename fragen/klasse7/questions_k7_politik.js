@@ -1691,12 +1691,7 @@ const K7_POLITIK_QUESTIONS = [
     "grade": 7,
     "subject": "politik",
     "question": "Welchen Vorteil bietet das Recycling von Rohstoffen (z. B. Papier, Glas, Metalle)?",
-    "answers": [
-      "Schonung von Ressourcen",
-      "Erhöhung des Müllbergs",
-      "Verstärkung von CO2-Abgas",
-      "Verdoppelter Energiebedarf"
-    ],
+    "answers": ["Schonung von Ressourcen", "Erhöhung des Müllbergs", "Verstärkung von CO₂-Abgas", "Verdoppelter Energiebedarf"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,

@@ -1205,12 +1205,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "grade": 7,
     "subject": "deutsch",
     "question": "Was versteht man unter der Substantivierung von Verben oder Adjektiven?",
-    "answers": [
-      "Verwendung als Adverbiale",
-      "Nutzung als Nomen (Groß)",
-      "Beugen in allen Zeiten stets",
-      "Kürzen von einzelnen Silben"
-    ],
+    "answers": ["Verwendung als Adverbiale", "Nutzung als Nomen", "Beugen in allen Zeiten stets", "Kürzen von einzelnen Silben"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1583,12 +1578,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "grade": 7,
     "subject": "deutsch",
     "question": "Wie nennt man die Grundannahme oder den Streitpunkt in einer Argumentation?",
-    "answers": [
-      "Das Beispiel als Beweis",
-      "Die These (Behauptung)",
-      "Das Argument als Grund",
-      "Das Fazit am Ende des Textes"
-    ],
+    "answers": ["Das Beispiel als Beweis", "Die These", "Das Argument als Grund", "Das Fazit am Ende des Textes"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1763,12 +1753,7 @@ const K7_DEUTSCH_QUESTIONS = [
     "grade": 7,
     "subject": "deutsch",
     "question": "Wie nennt man den Wendepunkt oder Höhepunkt in einem Drama/Ballade?",
-    "answers": [
-      "Die Exposition am Start",
-      "Der Klimax (Höhepunkt)",
-      "Das genaue Reime-Schema",
-      "Die Lösung ganz am Ende"
-    ],
+    "answers": ["Die Exposition am Start", "Der Klimax", "Das genaue Reime-Schema", "Die Lösung ganz am Ende"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,

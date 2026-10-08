@@ -29,16 +29,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie hoch ist die Lichtgeschwindigkeit im luftleeren Raum (Vakuum) etwa?",
-    "answers": [
-      "Ca. 30.000 km pro Sekunde",
-      "Ca. 300.000 km pro Sekunde",
-      "Ca. 500.000 km pro Sekunde",
-      "Ca. 150.000 km pro Sekunde"
-    ],
+    "answers": ["Ca. 30.000 km pro Sekunde", "Ca. 300.000 km pro Sekunde", "Ca. 500.000 km pro Sekunde", "Ca. 150.000 km pro Sekunde"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Vakuum-Lichtgeschwindigkeit beträgt rund $300.000\\text{ km/s}$ ($3 \\cdot 10^8\\text{ m/s}$)."
+    "explanation": "Die Vakuum-Lichtgeschwindigkeit beträgt rund 300.000 km/s (3 · 10⁸ m/s)."
   },
   {
     "id": "k7_ph_003",
@@ -101,16 +96,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Was besagt das optische Reflexionsgesetz an ebenen Spiegeln?",
-    "answers": [
-      "Einfallswinkel + Reflexion = 90°",
-      "Einfallswinkel = Reflexionswinkel",
-      "Einfallswinkel > Reflexionswinkel",
-      "Einfallswinkel < Reflexionswinkel"
-    ],
+    "answers": ["Einfallswinkel + Reflexion = 90°", "Einfallswinkel = Reflexionswinkel", "Einfallswinkel > Reflexionswinkel", "Einfallswinkel < Reflexionswinkel"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Einfallswinkel $\\alpha$ ist stets exakt gleich dem Reflexionswinkel $\\beta$ ($\\alpha = \\beta$)."
+    "explanation": "Der Einfallswinkel α ist stets exakt gleich dem Reflexionswinkel β (α = β)."
   },
   {
     "id": "k7_ph_007",
@@ -227,16 +217,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie nennt man den Punkt, in dem eine Sammellinse parallele Lichtstrahlen vereint?",
-    "answers": [
-      "Der Mittelpunkt der Linse",
-      "Der Schnittpunkt am Rand",
-      "Der Reflexionspunkt F",
-      "Der Brennpunkt (Fokus)"
-    ],
+    "answers": ["Der Mittelpunkt der Linse", "Der Schnittpunkt am Rand", "Der Reflexionspunkt F", "Der Brennpunkt"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Im Brennpunkt $F$ schneiden sich alle parallel zur optischen Achse einfallenden Lichtstrahlen."
+    "explanation": "Im Brennpunkt F schneiden sich alle parallel zur optischen Achse einfallenden Lichtstrahlen."
   },
   {
     "id": "k7_ph_014",
@@ -244,17 +229,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Was beschreibt die Brennweite $f$ einer Linsenkonstruktion?",
-    "answers": [
-      "Winkel der Lichtbrechung",
-      "Durchmesser der Linsenfläche",
-      "Abstand Linse bis Brennpunkt",
-      "Dicke der Linse in der Mitte"
-    ],
+    "question": "Was beschreibt die Brennweite f einer Linsenkonstruktion?",
+    "answers": ["Winkel der Lichtbrechung", "Durchmesser der Linsenfläche", "Abstand Linse bis Brennpunkt", "Dicke der Linse in der Mitte"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Brennweite $f$ misst die Distanz zwischen der Linsenmitte u. dem Brennpunkt $F$."
+    "explanation": "Die Brennweite f misst die Distanz zwischen der Linsenmitte u. dem Brennpunkt F."
   },
   {
     "id": "k7_ph_015",
@@ -317,12 +297,7 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Auf welcher Struktur des Auges entsteht bei gesunder Sicht ein scharfes Bild?",
-    "answers": [
-      "Auf dem gelben Blindenfleck",
-      "Auf der bunten Regenbogenhaut",
-      "Auf der Netzhaut (Retina)",
-      "Auf der vorderen Hornhaut"
-    ],
+    "answers": ["Auf dem gelben Blindenfleck", "Auf der bunten Regenbogenhaut", "Auf der Netzhaut", "Auf der vorderen Hornhaut"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -371,12 +346,7 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie nennt man die Aufspaltung von weißem Licht in Spektralfarben am Glasprisma?",
-    "answers": [
-      "Die Absorption der Lichtfarbe",
-      "Die Totalreflexion des Lichts",
-      "Die Polarisation der Lichtwelle",
-      "Die Dispersion (Streuung)"
-    ],
+    "answers": ["Die Absorption der Lichtfarbe", "Die Totalreflexion des Lichts", "Die Polarisation der Lichtwelle", "Die Dispersion"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -462,17 +432,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie lautet die physikalische Formel zur Berechnung der Dichte $\\rho$?",
-    "answers": [
-      "Formel: Dichte = Volumen / Masse",
-      "Formel: Dichte = Masse / Volumen",
-      "Formel: Dichte = Kraft / Fläche",
-      "Formel: Dichte = Masse * Volumen"
-    ],
+    "question": "Wie lautet die physikalische Formel zur Berechnung der Dichte ρ?",
+    "answers": ["Formel: Dichte = Volumen / Masse", "Formel: Dichte = Masse / Volumen", "Formel: Dichte = Kraft / Fläche", "Formel: Dichte = Masse · Volumen"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\rho = m / V$ (Dichte = Masse geteilt durch Volumen)."
+    "explanation": "ρ = m / V (Dichte = Masse geteilt durch Volumen)."
   },
   {
     "id": "k7_ph_027",
@@ -499,16 +464,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie groß ist die Dichte von reinem flüssigen Wasser bei 4 °C exakt?",
-    "answers": [
-      "Dichte: 2,0 g/cm³",
-      "Dichte: 1,0 g/cm³",
-      "Dichte: 0,8 g/cm³",
-      "Dichte: 1,5 g/cm³"
-    ],
+    "answers": ["Dichte: 2,0 g/cm³", "Dichte: 1,0 g/cm³", "Dichte: 0,8 g/cm³", "Dichte: 1,5 g/cm³"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Wasser besitzt bei 4 °C seine höchste Dichte von exakt $1{,}0\\text{ g/cm}^3$ ($1000\\text{ kg/m}^3$)."
+    "explanation": "Wasser besitzt bei 4 °C seine höchste Dichte von exakt 1,0 g/cm³ (1000 kg/m³)."
   },
   {
     "id": "k7_ph_029",
@@ -534,17 +494,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Was unterscheidet die Masse $m$ grundsätzlich von der Gewichtskraft $F_g$?",
-    "answers": [
-      "Masse ändert sich Mond",
-      "Gewicht misst in Gramm",
-      "Masse überall konstant",
-      "Gewichtskraft ist starr"
-    ],
+    "question": "Was unterscheidet die Masse m grundsätzlich von der Gewichtskraft Fg?",
+    "answers": ["Masse ändert sich Mond", "Gewicht misst in Gramm", "Masse überall konstant", "Gewichtskraft ist starr"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Masse $m$ bleibt überall gleich, die Gewichtskraft $F_g$ hängt vom örtlichen Schwerefeld ab."
+    "explanation": "Die Masse m bleibt überall gleich, die Gewichtskraft Fg hängt vom örtlichen Schwerefeld ab."
   },
   {
     "id": "k7_ph_031",
@@ -552,17 +507,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie berechnet man die Gewichtskraft $F_g$ eines Körpers?",
-    "answers": [
-      "Formel: Fg = m / g",
-      "Formel: Fg = m * g",
-      "Formel: Fg = g / m",
-      "Formel: Fg = m + g"
-    ],
+    "question": "Wie berechnet man die Gewichtskraft Fg eines Körpers?",
+    "answers": ["Formel: Fg = m / g", "Formel: Fg = m · g", "Formel: Fg = g / m", "Formel: Fg = m + g"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Gewichtskraft = Masse mal Ortsfaktor ($F_g = m \\cdot g$)."
+    "explanation": "Gewichtskraft = Masse mal Ortsfaktor (Fg = m · g)."
   },
   {
     "id": "k7_ph_032",
@@ -570,17 +520,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie groß ist der Ortsfaktor $g$ auf der Erdoberfläche im Durchschnitt?",
-    "answers": [
-      "Ortsfaktor: ca. 5,00 N/kg",
-      "Ortsfaktor: ca. 15,0 N/kg",
-      "Ortsfaktor: ca. 9,81 N/kg",
-      "Ortsfaktor: ca. 1,62 N/kg"
-    ],
+    "question": "Wie groß ist der Ortsfaktor g auf der Erdoberfläche im Durchschnitt?",
+    "answers": ["Ortsfaktor: ca. 5,00 N/kg", "Ortsfaktor: ca. 15,0 N/kg", "Ortsfaktor: ca. 9,81 N/kg", "Ortsfaktor: ca. 1,62 N/kg"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Auf der Erde beträgt die Schwerefeldstärke im Schnitt $g \\approx 9{,}81\\text{ N/kg}$ (oft gerundet $10\\text{ N/kg}$)."
+    "explanation": "Auf der Erde beträgt die Schwerefeldstärke im Schnitt g ≈ 9,81 N/kg (oft gerundet 10 N/kg)."
   },
   {
     "id": "k7_ph_033",
@@ -625,16 +570,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Was besagt das Hookesche Gesetz für elastische Federn?",
-    "answers": [
-      "Kraft proportional Masse",
-      "Kraft quadratisch Weg",
-      "Kraft unabhängig Weg",
-      "Kraft proportional Weg"
-    ],
+    "answers": ["Kraft proportional Masse", "Kraft quadratisch Weg", "Kraft unabhängig Weg", "Kraft proportional Weg"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Auslenkung $s$ einer Feder ist direkt proportional zur angreifenden Kraft $F$ ($F = D \\cdot s$)."
+    "explanation": "Die Auslenkung s einer Feder ist direkt proportional zur angreifenden Kraft F (F = D · s)."
   },
   {
     "id": "k7_ph_036",
@@ -642,17 +582,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Was kennzeichnet eine Feder mit einer sehr hohen Federkonstante $D$?",
-    "answers": [
-      "Sehr steife, harte Feder",
-      "Sehr weiche, dünne Feder",
-      "Sehr leichte Drahtfeder",
-      "Sehr lange, biegsame Feder"
-    ],
+    "question": "Was kennzeichnet eine Feder mit einer sehr hohen Federkonstante D?",
+    "answers": ["Sehr steife, harte Feder", "Sehr weiche, dünne Feder", "Sehr leichte Drahtfeder", "Sehr lange, biegsame Feder"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein hohes $D$ bedeutet, dass viel Kraft pro Zentimeter Auslenkung nötig ist (harte Feder)."
+    "explanation": "Ein hohes D bedeutet, dass viel Kraft pro Zentimeter Auslenkung nötig ist (harte Feder)."
   },
   {
     "id": "k7_ph_037",
@@ -732,17 +667,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie lautet die physikalische Formel zur Berechnung des Drucks $p$?",
-    "answers": [
-      "Formel: Druck = Kraft / Fläche",
-      "Formel: Druck = Masse * Fläche",
-      "Formel: Druck = Fläche / Kraft",
-      "Formel: Druck = Kraft * Fläche"
-    ],
+    "question": "Wie lautet die physikalische Formel zur Berechnung des Drucks p?",
+    "answers": ["Formel: Druck = Kraft / Fläche", "Formel: Druck = Masse · Fläche", "Formel: Druck = Fläche / Kraft", "Formel: Druck = Kraft · Fläche"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$p = F / A$ (Druck ist senkrecht angreifende Kraft pro Flächeneinheit)."
+    "explanation": "p = F / A (Druck ist senkrecht angreifende Kraft pro Flächeneinheit)."
   },
   {
     "id": "k7_ph_042",
@@ -751,16 +681,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Welche SI-Einheit wird für den physikalischen Druck genutzt?",
-    "answers": [
-      "Das Joule (1 J = 1 N x m)",
-      "Das Watt (1 W = 1 J pro s)",
-      "Das Newton (1 N = 1 kg m/s²)",
-      "Das Pascal (1 Pa = 1 N/m²)"
-    ],
+    "answers": ["Das Joule (1 J = 1 N x m)", "Das Watt (1 W = 1 J pro s)", "Das Newton (1 N = 1 kg m/s²)", "Das Pascal (1 Pa = 1 N/m²)"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die SI-Einheit des Drucks ist das Pascal ($1\\text{ Pa} = 1\\text{ N/m}^2$)."
+    "explanation": "Die SI-Einheit des Drucks ist das Pascal (1 Pa = 1 N/m²)."
   },
   {
     "id": "k7_ph_043",
@@ -769,16 +694,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie verhält sich der Schweredruck in einer Flüssigkeit mit der Tiefe?",
-    "answers": [
-      "Er nimmt proportional ab",
-      "Er nimmt proportional zu",
-      "Er bleibt völlig gleich",
-      "Er sinkt sprunghaft ab"
-    ],
+    "answers": ["Er nimmt proportional ab", "Er nimmt proportional zu", "Er bleibt völlig gleich", "Er sinkt sprunghaft ab"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Je tiefer man taucht, desto höher ist die Last der darüber liegenden Flüssigkeitssäule ($p = \\rho \\cdot g \\cdot h$)."
+    "explanation": "Je tiefer man taucht, desto höher ist die Last der darüber liegenden Flüssigkeitssäule (p = ρ · g · h)."
   },
   {
     "id": "k7_ph_044",
@@ -787,16 +707,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie hoch ist der mittlere Luftdruck der Atmosphäre auf Meereshöhe etwa?",
-    "answers": [
-      "Ca. 2000 hPa (2,000 bar)",
-      "Ca. 100 hPa (0,100 bar)",
-      "Ca. 500 hPa (0,500 bar)",
-      "Ca. 1013 hPa (1,013 bar)"
-    ],
+    "answers": ["Ca. 2000 hPa (2,000 bar)", "Ca. 100 hPa (0,100 bar)", "Ca. 500 hPa (0,500 bar)", "Ca. 1013 hPa (1,013 bar)"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Normalluftdruck beträgt auf Meereshöhe etwa $1013\\text{ hPa} = 1{,}013\\text{ bar}$."
+    "explanation": "Der Normalluftdruck beträgt auf Meereshöhe etwa 1013 hPa = 1,013 bar."
   },
   {
     "id": "k7_ph_045",
@@ -805,16 +720,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Warum sinkt man mit Schneeschuhen im tiefen Schnee viel weniger ein?",
-    "answers": [
-      "Große Fläche senkt Druck",
-      "Kleine Fläche hebt Druck",
-      "Schneeschuh hebt Schwerkraft",
-      "Schneeschuh mindert Masse"
-    ],
+    "answers": ["Große Fläche senkt Druck", "Kleine Fläche hebt Druck", "Schneeschuh hebt Schwerkraft", "Schneeschuh mindert Masse"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Durch Vergrößerung der Auftrittsfläche $A$ verteilt sich das Gewicht, der Druck $p$ sinkt."
+    "explanation": "Durch Vergrößerung der Auftrittsfläche A verteilt sich das Gewicht, der Druck p sinkt."
   },
   {
     "id": "k7_ph_046",
@@ -915,16 +825,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Was besagt die 'Goldene Regel der Mechanik'?",
-    "answers": [
-      "Weg sparen kostet Kraft",
-      "Arbeit wird dabei verringert",
-      "Kraft sparen spart auch Weg",
-      "Kraft sparen kostet Weg"
-    ],
+    "answers": ["Weg sparen kostet Kraft", "Arbeit wird dabei verringert", "Kraft sparen spart auch Weg", "Kraft sparen kostet Weg"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Was man an Kraft spart, muss man an Weg zusetzen; die Arbeit $W$ bleibt idealerweise gleich."
+    "explanation": "Was man an Kraft spart, muss man an Weg zusetzen; die Arbeit W bleibt idealerweise gleich."
   },
   {
     "id": "k7_ph_052",
@@ -932,17 +837,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie lautet die physikalische Formel für die mechanische Arbeit $W$?",
-    "answers": [
-      "Formel: Arbeit = Masse * Zeit",
-      "Formel: Arbeit = Kraft / Weg",
-      "Formel: Arbeit = Kraft * Weg",
-      "Formel: Arbeit = Kraft * Zeit"
-    ],
+    "question": "Wie lautet die physikalische Formel für die mechanische Arbeit W?",
+    "answers": ["Formel: Arbeit = Masse · Zeit", "Formel: Arbeit = Kraft / Weg", "Formel: Arbeit = Kraft · Weg", "Formel: Arbeit = Kraft · Zeit"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$W = F \\cdot s$ (Arbeit = Kraft mal Weg in Richtung der Kraft)."
+    "explanation": "W = F · s (Arbeit = Kraft mal Weg in Richtung der Kraft)."
   },
   {
     "id": "k7_ph_053",
@@ -951,16 +851,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Welche SI-Einheit nutzt man für die mechanische Arbeit?",
-    "answers": [
-      "Das Pascal (1 Pa = 1 N/m)",
-      "Das Watt (1 W = 1 J * s)",
-      "Das Newton (1 N = 1 kg/m)",
-      "Das Joule (1 J = 1 Nm)"
-    ],
+    "answers": ["Das Pascal (1 Pa = 1 N/m)", "Das Watt (1 W = 1 J · s)", "Das Newton (1 N = 1 kg/m)", "Das Joule (1 J = 1 Nm)"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Arbeit u. Energie werden in der Einheit Joule ($J$) angegeben ($1\\text{ J} = 1\\text{ N} \\cdot \\text{m}$)."
+    "explanation": "Arbeit u. Energie werden in der Einheit Joule (J) angegeben (1 J = 1 N · m)."
   },
   {
     "id": "k7_ph_054",
@@ -968,17 +863,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie lautet die Formel zur Berechnung der mechanischen Leistung $P$?",
-    "answers": [
-      "Formel: Leistung = Zeit / Arbeit",
-      "Formel: Leistung = Arbeit / Zeit",
-      "Formel: Leistung = Arbeit * Zeit",
-      "Formel: Leistung = Kraft / Weg"
-    ],
+    "question": "Wie lautet die Formel zur Berechnung der mechanischen Leistung P?",
+    "answers": ["Formel: Leistung = Zeit / Arbeit", "Formel: Leistung = Arbeit / Zeit", "Formel: Leistung = Arbeit · Zeit", "Formel: Leistung = Kraft / Weg"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$P = W / t$ (Leistung ist Arbeit pro Zeitspanne)."
+    "explanation": "P = W / t (Leistung ist Arbeit pro Zeitspanne)."
   },
   {
     "id": "k7_ph_055",
@@ -987,16 +877,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Welche SI-Einheit verwendet man für die mechanische u. elektrische Leistung?",
-    "answers": [
-      "Das Joule (1 J = 1 W * s)",
-      "Das Watt (1 W = 1 J/s)",
-      "Das Newton (1 N = 1 W/m)",
-      "Das Pascal (1 Pa = 1 J/m²)"
-    ],
+    "answers": ["Das Joule (1 J = 1 W · s)", "Das Watt (1 W = 1 J/s)", "Das Newton (1 N = 1 W/m)", "Das Pascal (1 Pa = 1 J/m²)"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Leistung misst man in Watt ($W$) ($1\\text{ W} = 1\\text{ Joule pro Sekunde}$)."
+    "explanation": "Leistung misst man in Watt (W) (1 W = 1 Joule pro Sekunde)."
   },
   {
     "id": "k7_ph_056",
@@ -1005,16 +890,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie lautet das zweiseitige Hebelgesetz im Gleichgewichtszustand?",
-    "answers": [
-      "Formel: F1 / l1 = F2 / l2",
-      "Formel: F1 * F2 = l1 * l2",
-      "Formel: F1 + l1 = F2 + l2",
-      "Formel: F1 * l1 = F2 * l2"
-    ],
+    "answers": ["Formel: F₁ / l₁ = F₂ / l₂", "Formel: F₁ · F₂ = l₁ · l₂", "Formel: F₁ + l₁ = F₂ + l₂", "Formel: F₁ · l₁ = F₂ · l₂"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Kraft mal Kraftarm = Last mal Lastarm ($F_1 \\cdot l_1 = F_2 \\cdot l_2$)."
+    "explanation": "Kraft mal Kraftarm = Last mal Lastarm (F₁ · l₁ = F₂ · l₂)."
   },
   {
     "id": "k7_ph_057",
@@ -1130,13 +1010,8 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Flaschenzug mit 2 tragenden Seilen: Wie verhält sich Zugkraft $F$ u. Seilweg $s$?",
-    "answers": [
-      "Halbe Kraft, doppelter Weg",
-      "Viertel Kraft, viertel Weg",
-      "Halbe Kraft, halber Weg",
-      "Doppelte Kraft, doppelter Weg"
-    ],
+    "question": "Flaschenzug mit 2 tragenden Seilen: Wie verhält sich Zugkraft F u. Seilweg s?",
+    "answers": ["Halbe Kraft, doppelter Weg", "Viertel Kraft, viertel Weg", "Halbe Kraft, halber Weg", "Doppelte Kraft, doppelter Weg"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1148,17 +1023,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Flaschenzug mit 4 tragenden Seilen: Wie groß ist die nötige Zugkraft $F$?",
-    "answers": [
-      "Ein Halb der Lastkraft",
-      "Ein Viertel der Lastkraft",
-      "Gleich der vollen Lastkraft",
-      "Ein Achtel der Lastkraft"
-    ],
+    "question": "Flaschenzug mit 4 tragenden Seilen: Wie groß ist die nötige Zugkraft F?",
+    "answers": ["Ein Halb der Lastkraft", "Ein Viertel der Lastkraft", "Gleich der vollen Lastkraft", "Ein Achtel der Lastkraft"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei 4 tragenden Seilsträngen beträgt die Zugkraft $F = F_{\\text{Last}} / 4$."
+    "explanation": "Bei 4 tragenden Seilsträngen beträgt die Zugkraft F = FLast / 4."
   },
   {
     "id": "k7_ph_065",
@@ -1184,17 +1054,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie ist der mechanische Wirkungsgrad $\\eta$ einer Maschine definiert?",
-    "answers": [
-      "Reibungsarbeit / Gesamt Weg",
-      "Nutzarbeit / Zugeführte Ar.",
-      "Zugeführte Ar. / Nutzarbeit",
-      "Nutzarbeit * Zugeführte Ar."
-    ],
+    "question": "Wie ist der mechanische Wirkungsgrad η einer Maschine definiert?",
+    "answers": ["Reibungsarbeit / Gesamt Weg", "Nutzarbeit / Zugeführte Ar.", "Zugeführte Ar. / Nutzarbeit", "Nutzarbeit · Zugeführte Ar."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$\\eta = W_{\\text{nutz}} / W_{\\text{zu}}$ (stets kleiner als $1{,}0$ bzw. 100 %, da Reibungsverluste auftreten)."
+    "explanation": "η = Wnutz / Wzu (stets kleiner als 1,0 bzw. 100 %, da Reibungsverluste auftreten)."
   },
   {
     "id": "k7_ph_067",
@@ -1202,17 +1067,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie lautet die Formel zur Berechnung der Hubarbeit $W_{\\text{hub}}$?",
-    "answers": [
-      "Formel: Whub = F * h * g",
-      "Formel: Whub = m * g / h",
-      "Formel: Whub = m * g * h",
-      "Formel: Whub = m * h / g"
-    ],
+    "question": "Wie lautet die Formel zur Berechnung der Hubarbeit Whub?",
+    "answers": ["Formel: Whub = F · h · g", "Formel: Whub = m · g / h", "Formel: Whub = m · g · h", "Formel: Whub = m · h / g"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$W_{\\text{hub}} = F_g \\cdot h = m \\cdot g \\cdot h$."
+    "explanation": "Whub = Fg · h = m · g · h."
   },
   {
     "id": "k7_ph_068",
@@ -1221,16 +1081,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wann wird im physikalischen Sinne KEINE mechanische Arbeit verrichtet?",
-    "answers": [
-      "Tragen Kiste über Treppe",
-      "Anheben Kiste vom Boden",
-      "Schieben Kiste auf Boden",
-      "Halten Kiste im Stehen"
-    ],
+    "answers": ["Tragen Kiste über Treppe", "Anheben Kiste vom Boden", "Schieben Kiste auf Boden", "Halten Kiste im Stehen"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Wer eine Kiste nur ruhend hält, legt keinen Weg zurück ($s = 0$), somit $W = 0$."
+    "explanation": "Wer eine Kiste nur ruhend hält, legt keinen Weg zurück (s = 0), somit W = 0."
   },
   {
     "id": "k7_ph_069",
@@ -1238,17 +1093,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Ein Elektromotor verrichtet 200 J Arbeit in 4 Sekunden. Wie groß ist seine Leistung $P$?",
-    "answers": [
-      "Leistung: 200 Watt",
-      "Leistung: 100 Watt",
-      "Leistung: 800 Watt",
-      "Leistung: 50 Watt"
-    ],
+    "question": "Ein Elektromotor verrichtet 200 J Arbeit in 4 Sekunden. Wie groß ist seine Leistung P?",
+    "answers": ["Leistung: 200 Watt", "Leistung: 100 Watt", "Leistung: 800 Watt", "Leistung: 50 Watt"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$P = W / t = 200\\text{ J} / 4\\text{ s} = 50\\text{ Watt}$."
+    "explanation": "P = W / t = 200 J / 4 s = 50 Watt."
   },
   {
     "id": "k7_ph_070",
@@ -1256,17 +1106,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Eine Masse von 5 kg wird um 2 m angehoben ($g = 10\\text{ N/kg}$). Wie viel Hubarbeit fällt an?",
-    "answers": [
-      "Arbeit beträgt: 50 Joule",
-      "Arbeit beträgt: 200 Joule",
-      "Arbeit beträgt: 100 Joule",
-      "Arbeit beträgt: 10 Joule"
-    ],
+    "question": "Eine Masse von 5 kg wird um 2 m angehoben (g = 10 N/kg). Wie viel Hubarbeit fällt an?",
+    "answers": ["Arbeit beträgt: 50 Joule", "Arbeit beträgt: 200 Joule", "Arbeit beträgt: 100 Joule", "Arbeit beträgt: 10 Joule"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "$W = m \\cdot g \\cdot h = 5\\text{ kg} \\cdot 10\\text{ N/kg} \\cdot 2\\text{ m} = 100\\text{ J}$."
+    "explanation": "W = m · g · h = 5 kg · 10 N/kg · 2 m = 100 J."
   },
   {
     "id": "k7_ph_071",
@@ -1366,17 +1211,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Was versteht man unter der elektrischen Stromstärke $I$?",
-    "answers": [
-      "Gesamte Energie im Kabel",
-      "Hemmung des Flusses",
-      "Druck der Elektronen",
-      "Ladung pro Zeitspanne"
-    ],
+    "question": "Was versteht man unter der elektrischen Stromstärke I?",
+    "answers": ["Gesamte Energie im Kabel", "Hemmung des Flusses", "Druck der Elektronen", "Ladung pro Zeitspanne"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Stromstärke $I$ gibt an, wie viel elektrische Ladung $Q$ pro Sekunde durch den Querschnitt fließt."
+    "explanation": "Die Stromstärke I gibt an, wie viel elektrische Ladung Q pro Sekunde durch den Querschnitt fließt."
   },
   {
     "id": "k7_ph_077",
@@ -1385,16 +1225,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Welche SI-Einheit wird für die elektrische Stromstärke genutzt?",
-    "answers": [
-      "Das Volt (Symbol: V)",
-      "Das Ampere (Symbol: A)",
-      "Das Ohm (Symbol: $\\Omega$)",
-      "Das Watt (Symbol: W)"
-    ],
+    "answers": ["Das Volt (Symbol: V)", "Das Ampere (Symbol: A)", "Das Ohm (Symbol: Ω)", "Das Watt (Symbol: W)"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Stromstärke misst man in Ampere ($A$)."
+    "explanation": "Die Stromstärke misst man in Ampere (A)."
   },
   {
     "id": "k7_ph_078",
@@ -1402,17 +1237,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Was beschreibt die elektrische Spannung $U$ in einem Stromkreis?",
-    "answers": [
-      "Bremse im Stromfluss",
-      "Antrieb der Ladungen",
-      "Menge der Elektronen",
-      "Dicke der Kupferkabel"
-    ],
+    "question": "Was beschreibt die elektrische Spannung U in einem Stromkreis?",
+    "answers": ["Bremse im Stromfluss", "Antrieb der Ladungen", "Menge der Elektronen", "Dicke der Kupferkabel"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Spannung $U$ ist das Maß für den Druck bzw. den Antrieb der freien Elektronen durch die Quelle."
+    "explanation": "Die Spannung U ist das Maß für den Druck bzw. den Antrieb der freien Elektronen durch die Quelle."
   },
   {
     "id": "k7_ph_079",
@@ -1421,16 +1251,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Welche SI-Einheit wird für die elektrische Spannung verwendet?",
-    "answers": [
-      "Das Ampere (Symbol: A)",
-      "Das Volt (Symbol: V)",
-      "Das Joule (Symbol: J)",
-      "Das Ohm (Symbol: $\\Omega$)"
-    ],
+    "answers": ["Das Ampere (Symbol: A)", "Das Volt (Symbol: V)", "Das Joule (Symbol: J)", "Das Ohm (Symbol: Ω)"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die elektrische Spannung wird in Volt ($V$) angegeben."
+    "explanation": "Die elektrische Spannung wird in Volt (V) angegeben."
   },
   {
     "id": "k7_ph_080",
@@ -1438,17 +1263,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Was beschreibt der elektrische Widerstand $R$ eines Bauteils?",
-    "answers": [
-      "Antrieb der Ladung im Draht",
-      "Geschwindigkeit des Lichts",
-      "Kapazität des Akkumulators",
-      "Hemmung des Stromflusses"
-    ],
+    "question": "Was beschreibt der elektrische Widerstand R eines Bauteils?",
+    "answers": ["Antrieb der Ladung im Draht", "Geschwindigkeit des Lichts", "Kapazität des Akkumulators", "Hemmung des Stromflusses"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Widerstand $R$ gibt an, wie stark der Fluss der Elektronen im Leiter behindert wird."
+    "explanation": "Der Widerstand R gibt an, wie stark der Fluss der Elektronen im Leiter behindert wird."
   },
   {
     "id": "k7_ph_081",
@@ -1457,16 +1277,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Welche SI-Einheit nutzt man für den elektrischen Widerstand?",
-    "answers": [
-      "Das Volt (Symbol: V) genutzt",
-      "Das Ampere (Symbol: A) genutzt",
-      "Das Ohm (Symbol: $\\Omega$)",
-      "Das Watt (Symbol: W) genutzt"
-    ],
+    "answers": ["Das Volt (Symbol: V) genutzt", "Das Ampere (Symbol: A) genutzt", "Das Ohm", "Das Watt (Symbol: W) genutzt"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der elektrische Widerstand wird in Ohm ($\\Omega$) gemessen."
+    "explanation": "Der elektrische Widerstand wird in Ohm (Ω) gemessen."
   },
   {
     "id": "k7_ph_082",
@@ -1475,16 +1290,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie lautet das Ohmsche Gesetz für ohmsche Widerstände?",
-    "answers": [
-      "Formel: U = R + I",
-      "Formel: U = R * I",
-      "Formel: U = I / R",
-      "Formel: U = R / I"
-    ],
+    "answers": ["Formel: U = R + I", "Formel: U = R · I", "Formel: U = I / R", "Formel: U = R / I"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Spannung = Widerstand mal Stromstärke ($U = R \\cdot I$ bzw. $R = U / I$)."
+    "explanation": "Spannung = Widerstand mal Stromstärke (U = R · I bzw. R = U / I)."
   },
   {
     "id": "k7_ph_083",
@@ -1528,17 +1338,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Was gilt für die Stromstärke $I$ an jeder Stelle einer einfachen Reihenschaltung?",
-    "answers": [
-      "Nimmt mit jedem Lamp ab",
-      "Teilt sich an Verzweigung",
-      "Wird nach Verbraucher 0",
-      "Überall exakt gleich groß"
-    ],
+    "question": "Was gilt für die Stromstärke I an jeder Stelle einer einfachen Reihenschaltung?",
+    "answers": ["Nimmt mit jedem Lamp ab", "Teilt sich an Verzweigung", "Wird nach Verbraucher 0", "Überall exakt gleich groß"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "In einer unverzweigten Reihenschaltung ist die Stromstärke in jedem Abschnitt identisch ($I_{\\text{ges}} = I_1 = I_2$)."
+    "explanation": "In einer unverzweigten Reihenschaltung ist die Stromstärke in jedem Abschnitt identisch (Iges = I₁ = I₂)."
   },
   {
     "id": "k7_ph_086",
@@ -1546,17 +1351,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Was gilt für die elektrische Spannung $U$ an allen Zweigen einer Parallelschaltung?",
-    "answers": [
-      "Teilt sich auf Zweige auf",
-      "Überall exakt gleich groß",
-      "Ist im Hauptzweig Null",
-      "Hängt ab von der Länge"
-    ],
+    "question": "Was gilt für die elektrische Spannung U an allen Zweigen einer Parallelschaltung?",
+    "answers": ["Teilt sich auf Zweige auf", "Überall exakt gleich groß", "Ist im Hauptzweig Null", "Hängt ab von der Länge"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "In einer Parallelschaltung liegt an jedem einzelnen Zweig die volle Quellenspannung an ($U_{\\text{ges}} = U_1 = U_2$)."
+    "explanation": "In einer Parallelschaltung liegt an jedem einzelnen Zweig die volle Quellenspannung an (Uges = U₁ = U₂)."
   },
   {
     "id": "k7_ph_087",
@@ -1564,17 +1364,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie berechnet man den Gesamtwiderstand $R_{\\text{ges}}$ zweier hintereinander geschalteter Widerstände?",
-    "answers": [
-      "Formel: 1/Rges = R1 + R2",
-      "Formel: Rges = R1 * R2",
-      "Formel: Rges = R1 + R2",
-      "Formel: Rges = R1 / R2"
-    ],
+    "question": "Wie berechnet man den Gesamtwiderstand Rges zweier hintereinander geschalteter Widerstände?",
+    "answers": ["Formel: 1/Rges = R₁ + R₂", "Formel: Rges = R₁ · R₂", "Formel: Rges = R₁ + R₂", "Formel: Rges = R₁ / R₂"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "In Reihenschaltung addieren sich die Einzelwiderstände ($R_{\\text{ges}} = R_1 + R_2$)."
+    "explanation": "In Reihenschaltung addieren sich die Einzelwiderstände (Rges = R₁ + R₂)."
   },
   {
     "id": "k7_ph_088",
@@ -1582,13 +1377,8 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Was passiert mit dem Gesamtwiderstand $R_{\\text{ges}}$, wenn man Widerstände parallel schaltet?",
-    "answers": [
-      "Er wird kleiner als kleinst",
-      "Er entspricht der reinen Summe",
-      "Er bleibt dabei völlig gleich",
-      "Er wird größer als der größte"
-    ],
+    "question": "Was passiert mit dem Gesamtwiderstand Rges, wenn man Widerstände parallel schaltet?",
+    "answers": ["Er wird kleiner als kleinst", "Er entspricht der reinen Summe", "Er bleibt dabei völlig gleich", "Er wird größer als der größte"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1636,17 +1426,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie lautet die Formel zur Berechnung der elektrischen Leistung $P$?",
-    "answers": [
-      "Formel: P = U / I",
-      "Formel: P = U * I",
-      "Formel: P = U + I",
-      "Formel: P = I / U"
-    ],
+    "question": "Wie lautet die Formel zur Berechnung der elektrischen Leistung P?",
+    "answers": ["Formel: P = U / I", "Formel: P = U · I", "Formel: P = U + I", "Formel: P = I / U"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Elektrische Leistung = Spannung mal Stromstärke ($P = U \\cdot I$)."
+    "explanation": "Elektrische Leistung = Spannung mal Stromstärke (P = U · I)."
   },
   {
     "id": "k7_ph_092",
@@ -1654,17 +1439,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie berechnet man die verbrauchte elektrische Energie $E$ über die Zeit $t$?",
-    "answers": [
-      "Formel: E = P / t = U * I / t",
-      "Formel: E = U * t / I",
-      "Formel: E = P * t = U * I * t",
-      "Formel: E = P + t"
-    ],
+    "question": "Wie berechnet man die verbrauchte elektrische Energie E über die Zeit t?",
+    "answers": ["Formel: E = P / t = U · I / t", "Formel: E = U · t / I", "Formel: E = P · t = U · I · t", "Formel: E = P + t"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Elektrische Energie ist Leistung mal Zeitspanne ($E = P \\cdot t$)."
+    "explanation": "Elektrische Energie ist Leistung mal Zeitspanne (E = P · t)."
   },
   {
     "id": "k7_ph_093",
@@ -1799,16 +1579,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie hoch ist die effektiv anliegende Netzspannung an Steckdosen im deutschen Haushalt?",
-    "answers": [
-      "Spannung: 110 Volt AC",
-      "Spannung: 230 Volt AC",
-      "Spannung: 12 Volt DC",
-      "Spannung: 400 Volt AC"
-    ],
+    "answers": ["Spannung: 110 Volt AC", "Spannung: 230 Volt AC", "Spannung: 12 Volt DC", "Spannung: 400 Volt AC"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Standardmäßige Haushaltssteckdosen in Deutschland liefern $230\\text{ Volt}$ Wechselspannung."
+    "explanation": "Standardmäßige Haushaltssteckdosen in Deutschland liefern 230 Volt Wechselspannung."
   },
 
 
@@ -1878,17 +1653,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie lautet die mathematische Formel zur Berechnung der Dichte $\\rho$ eines Körpers?",
-    "answers": [
-      "Dichte = Masse * Volumen",
-      "Dichte = Volumen / Masse",
-      "Dichte = Masse / Volumen",
-      "Dichte = Kraft * Masse"
-    ],
+    "question": "Wie lautet die mathematische Formel zur Berechnung der Dichte ρ eines Körpers?",
+    "answers": ["Dichte = Masse · Volumen", "Dichte = Volumen / Masse", "Dichte = Masse / Volumen", "Dichte = Kraft · Masse"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Dichte beschreibt den Quotient aus Masse m und Volumen V ($\\rho = m / V$)."
+    "explanation": "Die Dichte beschreibt den Quotient aus Masse m und Volumen V (ρ = m / V)."
   },
   {
     "id": "k7_phy_005",
@@ -1897,16 +1667,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Welche Standardeinheit wird für die Dichte fest fester Stoffe häufig genutzt?",
-    "answers": [
-      "Kilogramm mal Meter",
-      "Gramm pro $cm^3$",
-      "Newton pro $m^2$",
-      "Joule pro Sekunde"
-    ],
+    "answers": ["Kilogramm mal Meter", "Gramm pro cm³", "Newton pro m²", "Joule pro Sekunde"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Dichte wird oft in $g/cm^3$ oder $kg/m^3$ angegeben."
+    "explanation": "Dichte wird oft in g/cm³ oder kg/m³ angegeben."
   },
   {
     "id": "k7_phy_006",
@@ -1932,17 +1697,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie groß ist der durchschnittliche Ortsfaktor $g$ auf der Erdoberfläche?",
-    "answers": [
-      "Ca. 9.81 N/kg",
-      "Ca. 24.79 N/kg",
-      "Ca. 1.62 N/kg",
-      "Ca. 0.00 N/kg"
-    ],
+    "question": "Wie groß ist der durchschnittliche Ortsfaktor g auf der Erdoberfläche?",
+    "answers": ["Ca. 9.81 N/kg", "Ca. 24.79 N/kg", "Ca. 1.62 N/kg", "Ca. 0.00 N/kg"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Erdbeschleunigungs- bzw. Ortsfaktor beträgt etwa $9,81\\,N/kg$ (oft gerundet auf $10\\,N/kg$)."
+    "explanation": "Der Erdbeschleunigungs- bzw. Ortsfaktor beträgt etwa 9,81 N/kg (oft gerundet auf 10 N/kg)."
   },
   {
     "id": "k7_phy_008",
@@ -2023,16 +1783,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie lautet die allgemeine Formel für das Hebelgesetz im Gleichgewicht?",
-    "answers": [
-      "Kraft / Kraftarm = Last / Lastarm",
-      "Kraft x Last = Kraftarm x Lastarm",
-      "Kraft x Kraftarm = Last x Lastarm",
-      "Kraft + Kraftarm = Last + Lastarm"
-    ],
+    "answers": ["Kraft / Kraftarm = Last / Lastarm", "Kraft x Last = Kraftarm x Lastarm", "Kraft x Kraftarm = Last x Lastarm", "Kraft + Kraftarm = Last + Lastarm"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Am Hebel herrscht Gleichgewicht, wenn das Drehmoment links gleich dem Drehmoment rechts ist ($F_1 \\cdot l_1 = F_2 \\cdot l_2$)."
+    "explanation": "Am Hebel herrscht Gleichgewicht, wenn das Drehmoment links gleich dem Drehmoment rechts ist (F₁ · l₁ = F₂ · l₂)."
   },
   {
     "id": "k7_phy_013",
@@ -2113,16 +1868,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie lautet die 'Goldene Regel der Mechanik'?",
-    "answers": [
-      "Weniger Kraft spart immer Arbeit",
-      "Kraft mal Weg ist immer gleich Null",
-      "Kraftersparnis fordert Wegzuwachs",
-      "Mehr Weg bedeutet immer mehr Kraft"
-    ],
+    "answers": ["Weniger Kraft spart immer Arbeit", "Kraft mal Weg ist immer gleich Null", "Kraftersparnis fordert Wegzuwachs", "Mehr Weg bedeutet immer mehr Kraft"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Goldene Regel besagt: Was man an Kraft spart, muss man an Weg zusetzen ($W = F \\cdot s$ bleibt konstant)."
+    "explanation": "Die Goldene Regel besagt: Was man an Kraft spart, muss man an Weg zusetzen (W = F · s bleibt konstant)."
   },
   {
     "id": "k7_phy_018",
@@ -2131,16 +1881,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie lautet die internationale Einheit des physikalischen Drucks?",
-    "answers": [
-      "Das Newton (N)",
-      "Das Watt (Symbol W)",
-      "Das Pascal (Pa)",
-      "Das Kelvin (K)"
-    ],
+    "answers": ["Das Newton (N)", "Das Watt (Symbol W)", "Das Pascal (Pa)", "Das Kelvin (K)"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Druck wird in Pascal (Pa) gemessen, wobei $1\\,Pa = 1\\,N/m^2$ entspricht."
+    "explanation": "Druck wird in Pascal (Pa) gemessen, wobei 1 Pa = 1 N/m² entspricht."
   },
   {
     "id": "k7_phy_019",
@@ -2148,17 +1893,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie berechnet man den Druck $p$, der auf eine Fläche $A$ wirkt?",
-    "answers": [
-      "Druck = Kraft * Fläche",
-      "Druck = Masse * Fläche",
-      "Druck = Kraft / Fläche",
-      "Druck = Fläche / Kraft"
-    ],
+    "question": "Wie berechnet man den Druck p, der auf eine Fläche A wirkt?",
+    "answers": ["Druck = Kraft · Fläche", "Druck = Masse · Fläche", "Druck = Kraft / Fläche", "Druck = Fläche / Kraft"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Druck ergibt sich aus der senkrecht wirkenden Kraft geteilt durch die Fläche ($p = F / A$)."
+    "explanation": "Der Druck ergibt sich aus der senkrecht wirkenden Kraft geteilt durch die Fläche (p = F / A)."
   },
   {
     "id": "k7_phy_020",
@@ -2184,17 +1924,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie berechnet man die mechanische Hubarbeit $W$?",
-    "answers": [
-      "Arbeit = Kraft x Weg",
-      "Arbeit = Kraft / Weg",
-      "Arbeit = Masse / Zeit",
-      "Arbeit = Druck x Masse"
-    ],
+    "question": "Wie berechnet man die mechanische Hubarbeit W?",
+    "answers": ["Arbeit = Kraft x Weg", "Arbeit = Kraft / Weg", "Arbeit = Masse / Zeit", "Arbeit = Druck x Masse"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Mechanische Arbeit wird verrichtet, wenn ein Körper durch eine Kraft F entlang eines Weges s bewegt wird ($W = F \\cdot s$)."
+    "explanation": "Mechanische Arbeit wird verrichtet, wenn ein Körper durch eine Kraft F entlang eines Weges s bewegt wird (W = F · s)."
   },
   {
     "id": "k7_phy_022",
@@ -2220,17 +1955,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie lautet die SI-Einheit für die physikalische Leistung $P$?",
-    "answers": [
-      "Das Volt (V)",
-      "Das Watt (W)",
-      "Das Joule (J)",
-      "Das Ohm ($\\Omega$)"
-    ],
+    "question": "Wie lautet die SI-Einheit für die physikalische Leistung P?",
+    "answers": ["Das Volt (V)", "Das Watt (W)", "Das Joule (J)", "Das Ohm (Ω)"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Leistung misst verrichtete Arbeit pro Zeit und wird in Watt ($W = J/s$) angegeben."
+    "explanation": "Leistung misst verrichtete Arbeit pro Zeit und wird in Watt (W = J/s) angegeben."
   },
   {
     "id": "k7_phy_024",
@@ -2239,16 +1969,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie lautet die mathematische Formel der physikalischen Leistung?",
-    "answers": [
-      "Leistung = Zeit / Weg",
-      "Leistung = Arbeit / Zeit",
-      "Leistung = Kraft x Masse",
-      "Leistung = Arbeit x Zeit"
-    ],
+    "answers": ["Leistung = Zeit / Weg", "Leistung = Arbeit / Zeit", "Leistung = Kraft x Masse", "Leistung = Arbeit x Zeit"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Leistung $P$ ist der Quotient aus Arbeit $W$ und dafür benötigter Zeit $t$ ($P = W / t$)."
+    "explanation": "Leistung P ist der Quotient aus Arbeit W und dafür benötigter Zeit t (P = W / t)."
   },
   {
     "id": "k7_phy_025",
@@ -2277,16 +2002,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie hoch ist die Lichtgeschwindigkeit im luftleeren Raum (Vakuum) etwa?",
-    "answers": [
-      "Ca. 340 m je Sek.",
-      "Ca. 300.000 m/s",
-      "Ca. 3.000 km/h",
-      "Ca. 300.000 km/s"
-    ],
+    "answers": ["Ca. 340 m je Sek.", "Ca. 300.000 m/s", "Ca. 3.000 km/h", "Ca. 300.000 km/s"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Licht breitet sich im Vakuum mit fast $300.000\\,km/s$ (exakt $299.792.458\\,m/s$) aus."
+    "explanation": "Licht breitet sich im Vakuum mit fast 300.000 km/s (exakt 299.792.458 m/s) aus."
   },
   {
     "id": "k7_phy_027",
@@ -2349,16 +2069,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie lautet das grundlegende Reflexionsgesetz an ebenen Spiegeln?",
-    "answers": [
-      "Einfallswinkel = doppelte Reflexion",
-      "Einfallswinkel + Reflexionswinkel = 90°",
-      "Einfallswinkel = Reflexionswinkel",
-      "Einfallswinkel > Reflexionswinkel"
-    ],
+    "answers": ["Einfallswinkel = doppelte Reflexion", "Einfallswinkel + Reflexionswinkel = 90°", "Einfallswinkel = Reflexionswinkel", "Einfallswinkel > Reflexionswinkel"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Einfallswinkel $\\alpha$ ist stets genauso groß wie der Reflexionswinkel $\\beta$ ($\\alpha = \\beta$)."
+    "explanation": "Der Einfallswinkel α ist stets genauso groß wie der Reflexionswinkel β (α = β)."
   },
   {
     "id": "k7_phy_031",
@@ -2512,16 +2227,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie bezeichnet man den Abstand zwischen der Linsenmitte und dem Brennpunkt?",
-    "answers": [
-      "Die Brennweite f",
-      "Die Optikweite o",
-      "Die Bildweite b",
-      "Die Gegenstandsweite g"
-    ],
+    "answers": ["Die Brennweite f", "Die Optikweite o", "Die Bildweite b", "Die Gegenstandsweite g"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Brennweite $f$ misst die Distanz von der Linsenebene bis zum Fokus."
+    "explanation": "Die Brennweite f misst die Distanz von der Linsenebene bis zum Fokus."
   },
   {
     "id": "k7_phy_040",
@@ -2729,13 +2439,8 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie lautet die internationale Einheit der elektrischen Stromstärke $I$?",
-    "answers": [
-      "Das Ampere (A)",
-      "Das Ohm ($\\Omega$)",
-      "Das Watt (W)",
-      "Das Volt (V)"
-    ],
+    "question": "Wie lautet die internationale Einheit der elektrischen Stromstärke I?",
+    "answers": ["Das Ampere (A)", "Das Ohm (Ω)", "Das Watt (W)", "Das Volt (V)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2747,13 +2452,8 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie lautet die internationale Einheit der elektrischen Spannung $U$?",
-    "answers": [
-      "Das Volt (V)",
-      "Das Joule (J)",
-      "Das Ampere (A)",
-      "Das Ohm ($\\Omega$)"
-    ],
+    "question": "Wie lautet die internationale Einheit der elektrischen Spannung U?",
+    "answers": ["Das Volt (V)", "Das Joule (J)", "Das Ampere (A)", "Das Ohm (Ω)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2765,17 +2465,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Wie lautet die internationale Einheit des elektrischen Widerstands $R$?",
-    "answers": [
-      "Das Ohm ($\\Omega$)",
-      "Das Hertz (Hz) benutzt",
-      "Das Ampere (A) benutzt",
-      "Das Volt (V) benutzt"
-    ],
+    "question": "Wie lautet die internationale Einheit des elektrischen Widerstands R?",
+    "answers": ["Das Ohm (Ω)", "Das Hertz (Hz) benutzt", "Das Ampere (A) benutzt", "Das Volt (V) benutzt"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der elektrische Widerstand wird nach Georg Simon Ohm in Ohm (Symbol $\\Omega$) gemessen."
+    "explanation": "Der elektrische Widerstand wird nach Georg Simon Ohm in Ohm (Symbol Ω) gemessen."
   },
   {
     "id": "k7_phy_054",
@@ -2820,16 +2515,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie lautet das bekannte Ohmsche Gesetz als mathematische Formel?",
-    "answers": [
-      "Spannung = Widerstand / Strom",
-      "Spannung = Widerstand x Strom",
-      "Widerstand = Spannung x Strom",
-      "Strom = Spannung x Widerstand"
-    ],
+    "answers": ["Spannung = Widerstand / Strom", "Spannung = Widerstand x Strom", "Widerstand = Spannung x Strom", "Strom = Spannung x Widerstand"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das Ohmsche Gesetz lautet $U = R \\cdot I$ beziehungsweise $R = U / I$."
+    "explanation": "Das Ohmsche Gesetz lautet U = R · I beziehungsweise R = U / I."
   },
   {
     "id": "k7_phy_057",
@@ -3162,16 +2852,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Welche physikalische Größe beschreibt den Stromverbrauch eines elektrischen Geräts pro Sekunde?",
-    "answers": [
-      "Die elektrische Spannung $U$",
-      "Die Kapazität $C$",
-      "Die elektrische Leistung $P$",
-      "Der Widerstand $R$"
-    ],
+    "answers": ["Die elektrische Spannung U", "Die Kapazität C", "Die elektrische Leistung P", "Der Widerstand R"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die elektrische Leistung $P = U \\cdot I$ (in Watt) gibt an, wie viel Energie pro Zeit umgewandelt wird."
+    "explanation": "Die elektrische Leistung P = U · I (in Watt) gibt an, wie viel Energie pro Zeit umgewandelt wird."
   },
 
   // --- WÄRMELEHRE & ENERGIE (076 - 100) ---
@@ -3182,16 +2867,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Bei welcher Temperatur liegt der absolute Nullpunkt der Physik?",
-    "answers": [
-      "-273.15 °C (0 Kelvin)",
-      "0 °C (273 Kelvin)",
-      "-100 °C (173 Kelvin)",
-      "-500 °C (-227 Kelvin)"
-    ],
+    "answers": ["-273.15 °C (0 Kelvin)", "0 °C (273 Kelvin)", "-100 °C (173 Kelvin)", "-500 °C (-227 Kelvin)"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Bei 0 Kelvin (ca. $-273,15\\,^\\circ C$) kommt jede Teilchenbewegung vollständig zum Stillstand."
+    "explanation": "Bei 0 Kelvin (ca. -273,15 ° C) kommt jede Teilchenbewegung vollständig zum Stillstand."
   },
   {
     "id": "k7_phy_077",
@@ -3236,16 +2916,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Was beschreibt die physikalische 'Anomalie des Wassers'?",
-    "answers": [
-      "Größte Dichte bei +4 °C",
-      "Dehnt sich beim Heizen nie aus",
-      "Siedet bereits bei 50 °C",
-      "Gefriert bei genau +10 °C"
-    ],
+    "answers": ["Größte Dichte bei +4 °C", "Dehnt sich beim Heizen nie aus", "Siedet bereits bei 50 °C", "Gefriert bei genau +10 °C"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Wasser besitzt seine höchste Dichte bei $+4\\,^\\circ C$. Daher sinkt $+4\\,^\\circ C$ kühles Wasser am Seegrund nach unten."
+    "explanation": "Wasser besitzt seine höchste Dichte bei +4 ° C. Daher sinkt +4 ° C kühles Wasser am Seegrund nach unten."
   },
   {
     "id": "k7_phy_080",
@@ -3272,12 +2947,7 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Welche Art der Wärmeübertragung transportiert Wärme durch aufsteigende warme Luftschichten?",
-    "answers": [
-      "Die Wärmeströmung (Konvektion)",
-      "Die feste Sublimation der Luft",
-      "Die reine Wärmestrahlung allein",
-      "Die direkte Wärmeleitung im Stoff"
-    ],
+    "answers": ["Die Wärmeströmung", "Die feste Sublimation der Luft", "Die reine Wärmestrahlung allein", "Die direkte Wärmeleitung im Stoff"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -3452,16 +3122,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Welche Energieform besitzt ein fahrendes Motorrad auf ebenem Weg?",
-    "answers": [
-      "Potenzielle Lageenergie",
-      "Kinetische Energie",
-      "Elastische Spannenergie",
-      "Chemische Kernenergie"
-    ],
+    "answers": ["Potenzielle Lageenergie", "Kinetische Energie", "Elastische Spannenergie", "Chemische Kernenergie"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Körper in Bewegung besitzen kinetische Energie ($E_{kin} = \\frac{1}{2} m v^2$)."
+    "explanation": "Körper in Bewegung besitzen kinetische Energie (Ekin = 1/2 m v²)."
   },
   {
     "id": "k7_phy_092",
@@ -3470,16 +3135,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Welche Energieform besitzt ein auf einen Kran hochgezogener Betonblock?",
-    "answers": [
-      "Strahlungsenergie der Sonne",
-      "Potenzielle Lageenergie",
-      "Kinetische Bewegungsenergie",
-      "Thermische Energie im Block"
-    ],
+    "answers": ["Strahlungsenergie der Sonne", "Potenzielle Lageenergie", "Kinetische Bewegungsenergie", "Thermische Energie im Block"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Durch Anheben in die Höhe $h$ erhält ein Körper potenzielle Lageenergie ($E_{pot} = m \\cdot g \\cdot h$)."
+    "explanation": "Durch Anheben in die Höhe h erhält ein Körper potenzielle Lageenergie (Epot = m · g · h)."
   },
   {
     "id": "k7_phy_093",
@@ -3488,16 +3148,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie lautet die mathematische Formel zur Berechnung der potenziellen Lageenergie?",
-    "answers": [
-      "Lageenergie = 0.5 x m x v^2",
-      "Lageenergie = m x g x h",
-      "Lageenergie = F / s",
-      "Lageenergie = m / V"
-    ],
+    "answers": ["Lageenergie = 0.5 x m x v²", "Lageenergie = m x g x h", "Lageenergie = F / s", "Lageenergie = m / V"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die potenzielle Lageenergie berechnet sich aus Masse $m$, Ortsfaktor $g$ u. Höhe $h$ ($E_{pot} = m \\cdot g \\cdot h$)."
+    "explanation": "Die potenzielle Lageenergie berechnet sich aus Masse m, Ortsfaktor g u. Höhe h (Epot = m · g · h)."
   },
   {
     "id": "k7_phy_094",
@@ -3506,16 +3161,11 @@ const K7_PHYSIK_QUESTIONS = [
     "grade": 7,
     "subject": "physik",
     "question": "Wie lautet die mathematische Formel zur Berechnung der kinetischen Bewegungsenergie?",
-    "answers": [
-      "Bewegungsenergie = F x s genau",
-      "Bewegungsenergie = P x t immer",
-      "Bewegungsenergie = m x g x h stets",
-      "Bewegungsenergie = 0.5 x m x v^2"
-    ],
+    "answers": ["Bewegungsenergie = F x s genau", "Bewegungsenergie = P x t immer", "Bewegungsenergie = m x g x h stets", "Bewegungsenergie = 0.5 x m x v²"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die kinetische Energie berechnet sich aus der halben Masse mal Quadrat der Geschwindigkeit ($E_{kin} = \\frac{1}{2} m v^2$)."
+    "explanation": "Die kinetische Energie berechnet sich aus der halben Masse mal Quadrat der Geschwindigkeit (Ekin = 1/2 m v²)."
   },
   {
     "id": "k7_phy_095",
@@ -3577,17 +3227,12 @@ const K7_PHYSIK_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "physik",
-    "question": "Was beschreibt der Begriff des 'Wirkungsgrades' $\\eta$ einer Maschine?",
-    "answers": [
-      "Verhältnis Nutz- zu Zuenergie",
-      "Verhältnis von Druck zu Kraft",
-      "Verhältnis von Masse zu Volumen",
-      "Verhältnis von Arbeit zu Weg"
-    ],
+    "question": "Was beschreibt der Begriff des 'Wirkungsgrades' η einer Maschine?",
+    "answers": ["Verhältnis Nutz- zu Zuenergie", "Verhältnis von Druck zu Kraft", "Verhältnis von Masse zu Volumen", "Verhältnis von Arbeit zu Weg"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Wirkungsgrad $\\eta = E_{nutz} / E_{zugefuehrt}$ gibt an, welcher Anteil der zugeführten Energie tatsächlich genutzt wird."
+    "explanation": "Der Wirkungsgrad η = Enutz / Ezugefuehrt gibt an, welcher Anteil der zugeführten Energie tatsächlich genutzt wird."
   },
   {
     "id": "k7_phy_099",

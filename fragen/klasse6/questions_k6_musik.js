@@ -10,17 +10,12 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "musik_kunst",
-    "question": "Wie viele Viertelnoten passen exakt in einen $4/4$-Takt?",
-    "answers": [
-      "Genau acht Noten",
-      "Genau drei Noten",
-      "Genau zwei Noten",
-      "Genau vier Noten"
-    ],
+    "question": "Wie viele Viertelnoten passen exakt in einen 4/4-Takt?",
+    "answers": ["Genau acht Noten", "Genau drei Noten", "Genau zwei Noten", "Genau vier Noten"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein $4/4$-Takt besteht aus vier Viertelschlägen."
+    "explanation": "Ein 4/4-Takt besteht aus vier Viertelschlägen."
   },
   {
     "id": "k6_mk_002",
@@ -82,17 +77,12 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "musik_kunst",
-    "question": "Was bewirkt ein Kreuz-Vorzeichen ($\\sharp$) vor einer Note?",
-    "answers": [
-      "Verdoppelt die Note",
-      "Macht die Note stumm",
-      "Erhöht um Halbton",
-      "Erniedrigt Halbton"
-    ],
+    "question": "Was bewirkt ein Kreuz-Vorzeichen (♯) vor einer Note?",
+    "answers": ["Verdoppelt die Note", "Macht die Note stumm", "Erhöht um Halbton", "Erniedrigt Halbton"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Kreuz-Vorzeichen ($\\sharp$) erhöht den Ton um einen Halbtonschritt (z. B. C zu C#)."
+    "explanation": "Ein Kreuz-Vorzeichen (♯) erhöht den Ton um einen Halbtonschritt (z. B. C zu C#)."
   },
   {
     "id": "k6_mk_006",
@@ -100,17 +90,12 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "musik_kunst",
-    "question": "Was bewirkt ein B-Vorzeichen ($\\flat$) vor einer Note?",
-    "answers": [
-      "Erhöht um Halbton",
-      "Erniedrigt Halbton",
-      "Kürzt den Notenwert",
-      "Verlängert den Ton"
-    ],
+    "question": "Was bewirkt ein B-Vorzeichen (♭) vor einer Note?",
+    "answers": ["Erhöht um Halbton", "Erniedrigt Halbton", "Kürzt den Notenwert", "Verlängert den Ton"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein B-Vorzeichen ($\\flat$) erniedrigt den Ton um einen Halbtonschritt (z. B. H zu B)."
+    "explanation": "Ein B-Vorzeichen (♭) erniedrigt den Ton um einen Halbtonschritt (z. B. H zu B)."
   },
   {
     "id": "k6_mk_007",
@@ -118,13 +103,8 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "musik_kunst",
-    "question": "Welches Zeichen hebt ein vorheriges Vorzeichen ($\\sharp$ oder $\\flat$) wieder auf?",
-    "answers": [
-      "Das Staccatozeichen",
-      "Das Haltebogenzeichen",
-      "Das Auflösungszeichen",
-      "Das Wiederholungszeichen"
-    ],
+    "question": "Welches Zeichen hebt ein vorheriges Vorzeichen (♯ oder ♭) wieder auf?",
+    "answers": ["Das Staccatozeichen", "Das Haltebogenzeichen", "Das Auflösungszeichen", "Das Wiederholungszeichen"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -209,16 +189,11 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "grade": 6,
     "subject": "musik_kunst",
     "question": "Welcher Takt ist ein typischer Walzertakt?",
-    "answers": [
-      "Der 2/4-Takt",
-      "Der 4/4-Takt",
-      "Der 6/8-Takt",
-      "Der 3/4-Takt"
-    ],
+    "answers": ["Der 2/4-Takt", "Der 4/4-Takt", "Der 6/8-Takt", "Der 3/4-Takt"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Walzer tanzt klassisch im beschwingten $3/4$-Takt."
+    "explanation": "Der Walzer tanzt klassisch im beschwingten 3/4-Takt."
   },
   {
     "id": "k6_mk_013",
@@ -554,17 +529,12 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "musik_kunst",
-    "question": "Was bedeutet das Dynamikzeichen $p$ (piano) in Noten?",
-    "answers": [
-      "Sehr laut spielen",
-      "Laut spielen",
-      "Mäßig laut spielen",
-      "Leise spielen"
-    ],
+    "question": "Was bedeutet das Dynamikzeichen p (piano) in Noten?",
+    "answers": ["Sehr laut spielen", "Laut spielen", "Mäßig laut spielen", "Leise spielen"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Piano ($p$) steht für eine leise Lautstärke."
+    "explanation": "Piano (p) steht für eine leise Lautstärke."
   },
   {
     "id": "k6_mk_032",
@@ -572,17 +542,12 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "musik_kunst",
-    "question": "Was bedeutet das Dynamikzeichen $f$ (forte) in Noten?",
-    "answers": [
-      "Laut spielen",
-      "Langsam werden",
-      "Sehr leise spielen",
-      "Leise spielen"
-    ],
+    "question": "Was bedeutet das Dynamikzeichen f (forte) in Noten?",
+    "answers": ["Laut spielen", "Langsam werden", "Sehr leise spielen", "Leise spielen"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Forte ($f$) bedeutet kräftig u. laut zu musizieren."
+    "explanation": "Forte (f) bedeutet kräftig u. laut zu musizieren."
   },
   {
     "id": "k6_mk_033",
@@ -716,13 +681,8 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "musik_kunst",
-    "question": "Was bedeutet die Abkürzung $mf$ (mezzoforte)?",
-    "answers": [
-      "Sehr laut spielen",
-      "Mäßig laut spielen",
-      "Sehr leise spielen",
-      "Mäßig leise spielen"
-    ],
+    "question": "Was bedeutet die Abkürzung mf (mezzoforte)?",
+    "answers": ["Sehr laut spielen", "Mäßig laut spielen", "Sehr leise spielen", "Mäßig leise spielen"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1171,12 +1131,7 @@ const K6_MUSIK_KUNST_QUESTIONS = [
     "grade": 6,
     "subject": "musik_kunst",
     "question": "Welche Mischeigenschaft besitzen Deckfarben aus dem Malkasten?",
-    "answers": [
-      "Glänzend metallisch",
-      "Deckend (Deckkraft)",
-      "Vollständig wasserfest",
-      "Transparent klar"
-    ],
+    "answers": ["Glänzend metallisch", "Deckend", "Vollständig wasserfest", "Transparent klar"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,

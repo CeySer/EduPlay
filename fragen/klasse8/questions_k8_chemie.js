@@ -294,16 +294,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Wie lautet die chemische Formel für Kochsalz (Natriumchlorid)?",
-    "answers": [
-      "Die chemische Formel lautet $\\text{NaCl}$.",
-      "Die chemische Formel lautet $\\text{HCl}$.",
-      "Die chemische Formel lautet $\\text{NaOH}$.",
-      "Die chemische Formel lautet $\\text{Na}_2\\text{CO}_3$."
-    ],
+    "answers": ["Die chemische Formel lautet NaCl.", "Die chemische Formel lautet HCl.", "Die chemische Formel lautet NaOH.", "Die chemische Formel lautet Na₂CO₃."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Natriumchlorid setzt sich aus Natrium-Ionen ($\text{Na}^+$) und Chlorid-Ionen ($\text{Cl}^-$) im Verhältnis 1:1 zusammen und hat die Formel $\text{NaCl}$."
+    "explanation": "Natriumchlorid setzt sich aus Natrium-Ionen (Na⁺) und Chlorid-Ionen (Cl⁻) im Verhältnis 1:1 zusammen und hat die Formel NaCl."
   },
   {
     "id": "k8_ch_018",
@@ -330,12 +325,7 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Was versteht man unter den Halogenen im Periodensystem?",
-    "answers": [
-      "Die Gase der achten Hauptgruppe im Periodensystem.",
-      "Die seltenen Erden am unteren Rand der Tabelle.",
-      "Die Metalle der ersten beiden Hauptgruppen.",
-      "Die Elemente der VII. Hauptgruppe (Salzbildner)."
-    ],
+    "answers": ["Die Gase der achten Hauptgruppe im Periodensystem.", "Die seltenen Erden am unteren Rand der Tabelle.", "Die Metalle der ersten beiden Hauptgruppen.", "Die Elemente der VII. Hauptgruppe."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -348,16 +338,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Wie lautet die Summenformel für Magnesiumoxid?",
-    "answers": [
-      "Die Summenformel lautet $\\text{MgO}_2$.",
-      "Die Summenformel lautet $\\text{MgSO}_4$.",
-      "Die Summenformel lautet $\\text{Mg}_2\\text{O}$.",
-      "Die Summenformel lautet $\\text{MgO}$."
-    ],
+    "answers": ["Die Summenformel lautet MgO₂.", "Die Summenformel lautet MgSO₄.", "Die Summenformel lautet Mg₂O.", "Die Summenformel lautet MgO."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Magnesium-Ionen sind zweifach positiv geladen ($\text{Mg}^{2+}$), Oxid-Ionen zweifach negativ ($\text{O}^{2-}$). Das Verhältnis beträgt 1:1, also $\text{MgO}$."
+    "explanation": "Magnesium-Ionen sind zweifach positiv geladen (Mg²⁺), Oxid-Ionen zweifach negativ (O²⁻). Das Verhältnis beträgt 1:1, also MgO."
   },
   {
     "id": "k8_ch_021",
@@ -366,16 +351,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Gas lässt eine glimmende Spanprobe wieder aufflammen?",
-    "answers": [
-      "Kohlenstoffdioxid erstickt die Flamme sofort vollständig.",
-      "Wasserstoff erzeugt bei der Probe ein leises Knallen.",
-      "Sauerstoff lässt den glimmenden Holzspan aufleuchten.",
-      "Stickstoff verändert das Glimmen des Spans überhaupt nicht."
-    ],
+    "answers": ["Kohlenstoffdioxid erstickt die Flamme sofort vollständig.", "Wasserstoff erzeugt bei der Probe ein leises Knallen.", "Sauerstoff lässt den glimmenden Holzspan aufleuchten.", "Stickstoff verändert das Glimmen des Spans überhaupt nicht."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Glimmspanprobe ist der Nachweis für Sauerstoff ($\text{O}_2$): Ein erloschener, aber noch glimmender Holzspan flammt in reinem Sauerstoff wieder auf."
+    "explanation": "Die Glimmspanprobe ist der Nachweis für Sauerstoff (O₂): Ein erloschener, aber noch glimmender Holzspan flammt in reinem Sauerstoff wieder auf."
   },
   {
     "id": "k8_ch_022",
@@ -401,17 +381,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Wie kann man Kohlenstoffdioxid ($\text{CO}_2$) chemisch nachweisen?",
-    "answers": [
-      "Durch das Entzünden mit einem brennenden Span.",
-      "Durch die Braunfärbung von Iod-Kaliumiodidlösung.",
-      "Durch die Trübung von klarem Kalkwasser.",
-      "Durch das Bleichen von feuchtem Indikatorpapier."
-    ],
+    "question": "Wie kann man Kohlenstoffdioxid (CO₂) chemisch nachweisen?",
+    "answers": ["Durch das Entzünden mit einem brennenden Span.", "Durch die Braunfärbung von Iod-Kaliumiodidlösung.", "Durch die Trübung von klarem Kalkwasser.", "Durch das Bleichen von feuchtem Indikatorpapier."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Leitet man $\text{CO}_2$ in klares Kalkwasser (Calciumhydroxid-Lösung), bildet sich schwerlösliches Calciumcarbonat und die Lösung trübt sich milchig."
+    "explanation": "Leitet man CO₂ in klares Kalkwasser (Calciumhydroxid-Lösung), bildet sich schwerlösliches Calciumcarbonat und die Lösung trübt sich milchig."
   },
   {
     "id": "k8_ch_024",
@@ -474,16 +449,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Was passiert bei der Thermit-Reaktion zwischen Aluminiumpulver und Eisenoxid?",
-    "answers": [
-      "Es entsteht dabei ausschließlich reines Kohlendioxid und festes Aluminiumhydroxid.",
-      "Aluminium und Eisen verbinden sich hierbei zu einer neuen, festen Legierung.",
-      "Aluminium entzieht dem Eisenoxid den Sauerstoff; flüssiges Eisen entsteht.",
-      "Eisen entzieht dem Aluminiumoxid den Sauerstoff unter starker Abkühlung."
-    ],
+    "answers": ["Es entsteht dabei ausschließlich reines Kohlendioxid und festes Aluminiumhydroxid.", "Aluminium und Eisen verbinden sich hierbei zu einer neuen, festen Legierung.", "Aluminium entzieht dem Eisenoxid den Sauerstoff; flüssiges Eisen entsteht.", "Eisen entzieht dem Aluminiumoxid den Sauerstoff unter starker Abkühlung."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Aluminium hat eine höhere Sauerstoffaffinität als Eisen. Es reduziert Eisenoxid stark exotherm zu flüssigem Eisen ($\text{Fe}_2\text{O}_3 + 2\text{Al} \rightarrow \text{Al}_2\text{O}_3 + 2\text{Fe}$)."
+    "explanation": "Aluminium hat eine höhere Sauerstoffaffinität als Eisen. Es reduziert Eisenoxid stark exotherm zu flüssigem Eisen (Fe₂O₃ + 2Al → Al₂O₃ + 2Fe)."
   },
   {
     "id": "k8_ch_028",
@@ -492,16 +462,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Ladung besitzen Chlorid-Ionen in einem Salzgitter?",
-    "answers": [
-      "Chlorid-Ionen tragen eine einfach positive Ladung ($\text{Cl}^+$).",
-      "Chlorid-Ionen sind elektrisch vollkommen ungeladen.",
-      "Chlorid-Ionen tragen eine einfach negative Ladung ($\text{Cl}^-$).",
-      "Chlorid-Ionen tragen eine zweifach negative Ladung ($\text{Cl}^{2-}$)."
-    ],
+    "answers": ["Chlorid-Ionen tragen eine einfach positive Ladung (Cl⁺).", "Chlorid-Ionen sind elektrisch vollkommen ungeladen.", "Chlorid-Ionen tragen eine einfach negative Ladung (Cl⁻).", "Chlorid-Ionen tragen eine zweifach negative Ladung (Cl²⁻)."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Chlor steht in der VII. Hauptgruppe, nimmt ein Elektron auf, um die Edelgaskonfiguration zu erreichen, und bildet einfach negativ geladene Chlorid-Ionen ($\text{Cl}^-$)."
+    "explanation": "Chlor steht in der VII. Hauptgruppe, nimmt ein Elektron auf, um die Edelgaskonfiguration zu erreichen, und bildet einfach negativ geladene Chlorid-Ionen (Cl⁻)."
   },
   {
     "id": "k8_ch_029",
@@ -582,16 +547,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Ladung und welche Masse hat ein Proton näherungsweise?",
-    "answers": [
-      "Einfach positiv geladen mit einer Masse von ca. 1 u.",
-      "Elektrisch neutral mit einer Masse von ca. 1 u.",
-      "Einfach positiv geladen mit einer Masse von ca. 0 u.",
-      "Einfach negativ geladen mit einer Masse von ca. 1 u."
-    ],
+    "answers": ["Einfach positiv geladen mit einer Masse von ca. 1 u.", "Elektrisch neutral mit einer Masse von ca. 1 u.", "Einfach positiv geladen mit einer Masse von ca. 0 u.", "Einfach negativ geladen mit einer Masse von ca. 1 u."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Protonen tragen eine positive Elementarladung ($+1$) und besitzen eine Masse von ca. $1\text{ u}$ (Atomare Masseneinheit)."
+    "explanation": "Protonen tragen eine positive Elementarladung (+1) und besitzen eine Masse von ca. 1 u (Atomare Masseneinheit)."
   },
   {
     "id": "k8_ch_034",
@@ -600,16 +560,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Wie lautet die maximale Anzahl an Elektronen auf der 1. Schale (K-Schale) im Schalenmodell?",
-    "answers": [
-      "Auf der 1. Schale finden höchstens 18 Elektronen Platz.",
-      "Auf der 1. Schale finden höchstens 2 Elektronen Platz.",
-      "Auf der 1. Schale finden höchstens 32 Elektronen Platz.",
-      "Auf der 1. Schale finden höchstens 8 Elektronen Platz."
-    ],
+    "answers": ["Auf der 1. Schale finden höchstens 18 Elektronen Platz.", "Auf der 1. Schale finden höchstens 2 Elektronen Platz.", "Auf der 1. Schale finden höchstens 32 Elektronen Platz.", "Auf der 1. Schale finden höchstens 8 Elektronen Platz."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die K-Schale (innerste Schale) kann maximal mit 2 Elektronen besetzt werden (Formel $2n^2$, für $n=1$ ergibt sich 2)."
+    "explanation": "Die K-Schale (innerste Schale) kann maximal mit 2 Elektronen besetzt werden (Formel 2n², für n=1 ergibt sich 2)."
   },
   {
     "id": "k8_ch_035",
@@ -656,16 +611,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Was passiert bei der chemischen Reaktion von Natrium mit reinem Wasser?",
-    "answers": [
-      "Es entsteht Natronlauge und es entweicht Wasserstoffgas.",
-      "Es entsteht Salzsäure und es entweicht Sauerstoffgas.",
-      "Es findet keine Reaktion statt, Natrium geht langsam unter.",
-      "Es entsteht Kochsalz und es bildet sich Kohlendioxid."
-    ],
+    "answers": ["Es entsteht Natronlauge und es entweicht Wasserstoffgas.", "Es entsteht Salzsäure und es entweicht Sauerstoffgas.", "Es findet keine Reaktion statt, Natrium geht langsam unter.", "Es entsteht Kochsalz und es bildet sich Kohlendioxid."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Alkalimetalle reagieren heftig exotherm mit Wasser unter Bildung von alkalischen Lösungen (Laugen) und Freisetzung von Wasserstoff ($2\\text{Na} + 2\\text{H}_2\\text{O} \\rightarrow 2\\text{NaOH} + \\text{H}_2$)."
+    "explanation": "Alkalimetalle reagieren heftig exotherm mit Wasser unter Bildung von alkalischen Lösungen (Laugen) und Freisetzung von Wasserstoff (2Na + 2H₂O → 2NaOH + H₂)."
   },
   {
     "id": "k8_ch_038",
@@ -674,16 +624,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Ladung besitzt ein Oxid-Ion in der Chemie?",
-    "answers": [
-      "Oxid-Ionen tragen eine zweifach negative Ladung ($\\text{O}^{2-}$).",
-      "Oxid-Ionen tragen eine einfach negative Ladung ($\\text{O}^-$).",
-      "Oxid-Ionen tragen eine zweifach positive Ladung ($\\text{O}^{2+}$).",
-      "Oxid-Ionen tragen eine einfach positive Ladung ($\\text{O}^+$)."
-    ],
+    "answers": ["Oxid-Ionen tragen eine zweifach negative Ladung (O²⁻).", "Oxid-Ionen tragen eine einfach negative Ladung (O⁻).", "Oxid-Ionen tragen eine zweifach positive Ladung (O²⁺).", "Oxid-Ionen tragen eine einfach positive Ladung (O⁺)."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Sauerstoff steht in der VI. Hauptgruppe und nimmt 2 Elektronen auf, um eine volle Außenschale zu erreichen (Oktettregel). Dadurch entsteht das zweifach negativ geladene Anion $\\text{O}^{2-}$."
+    "explanation": "Sauerstoff steht in der VI. Hauptgruppe und nimmt 2 Elektronen auf, um eine volle Außenschale zu erreichen (Oktettregel). Dadurch entsteht das zweifach negativ geladene Anion O²⁻."
   },
   {
     "id": "k8_ch_039",
@@ -692,16 +637,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Wie ist das Massenverhältnis der Bausteine bei der Bildung von Wasser aus Wasserstoff und Sauerstoff?",
-    "answers": [
-      "Das Massenverhältnis von Wasserstoff zu Sauerstoff beträgt 1 : 8.",
-      "Das Massenverhältnis von Wasserstoff zu Sauerstoff beträgt 1 : 16.",
-      "Das Massenverhältnis von Wasserstoff zu Sauerstoff beträgt 2 : 1.",
-      "Das Massenverhältnis von Wasserstoff zu Sauerstoff beträgt 1 : 2."
-    ],
+    "answers": ["Das Massenverhältnis von Wasserstoff zu Sauerstoff beträgt 1 : 8.", "Das Massenverhältnis von Wasserstoff zu Sauerstoff beträgt 1 : 16.", "Das Massenverhältnis von Wasserstoff zu Sauerstoff beträgt 2 : 1.", "Das Massenverhältnis von Wasserstoff zu Sauerstoff beträgt 1 : 2."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Im Wassermolekül $\\text{H}_2\\text{O}$ verbinden sich 2 Wasserstoffatome (Masse je $1\\text{ u} \\Rightarrow 2\\text{ u}$) mit 1 Sauerstoffatom (Masse $16\\text{ u}$). Das Massenverhältnis ist $2 : 16 = 1 : 8$."
+    "explanation": "Im Wassermolekül H₂O verbinden sich 2 Wasserstoffatome (Masse je 1 u ⇒ 2 u) mit 1 Sauerstoffatom (Masse 16 u). Das Massenverhältnis ist 2 : 16 = 1 : 8."
   },
   {
     "id": "k8_ch_040",
@@ -727,17 +667,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Welche allgemeine Formel beschreibt die maximale Elektronenanzahl einer Schale $n$ im Schalenmodell?",
-    "answers": [
-      "Die maximale Besetzung berechnet sich nach der Formel $2n + 8$.",
-      "Die maximale Besetzung berechnet sich nach der Formel $8n$.",
-      "Die maximale Besetzung berechnet sich nach der Formel $2n^2$.",
-      "Die maximale Besetzung berechnet sich nach der Formel $n^2 + 2$."
-    ],
+    "question": "Welche allgemeine Formel beschreibt die maximale Elektronenanzahl einer Schale n im Schalenmodell?",
+    "answers": ["Die maximale Besetzung berechnet sich nach der Formel 2n + 8.", "Die maximale Besetzung berechnet sich nach der Formel 8n.", "Die maximale Besetzung berechnet sich nach der Formel 2n².", "Die maximale Besetzung berechnet sich nach der Formel n² + 2."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Über die Formel $2n^2$ lässt sich die Kapazität der Schalen berechnen (z. B. für Schale $n=1 \\Rightarrow 2$, $n=2 \\Rightarrow 8$, $n=3 \\Rightarrow 18$)."
+    "explanation": "Über die Formel 2n² lässt sich die Kapazität der Schalen berechnen (z. B. für Schale n=1 ⇒ 2, n=2 ⇒ 8, n=3 ⇒ 18)."
   },
   {
     "id": "k8_ch_042",
@@ -746,16 +681,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Wie reagiert das Halogen Chlor mit dem Metall Natrium?",
-    "answers": [
-      "Natrium löst sich in gasförmigem Chlor unter starker Kältebildung auf.",
-      "Es findet gar keine Reaktion statt, da beide Stoffe edel sind.",
-      "Unter stark endothermer Reaktion bildet sich flüssige Salzsäure.",
-      "Unter stark exothermer Reaktion bildet sich weißes Natriumchlorid."
-    ],
+    "answers": ["Natrium löst sich in gasförmigem Chlor unter starker Kältebildung auf.", "Es findet gar keine Reaktion statt, da beide Stoffe edel sind.", "Unter stark endothermer Reaktion bildet sich flüssige Salzsäure.", "Unter stark exothermer Reaktion bildet sich weißes Natriumchlorid."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Reaktion von Natrium mit Chlorgas verläuft stark exotherm mit hellem Leuchten; es entsteht das Salz Natriumchlorid ($\\text{NaCl}$)."
+    "explanation": "Die Reaktion von Natrium mit Chlorgas verläuft stark exotherm mit hellem Leuchten; es entsteht das Salz Natriumchlorid (NaCl)."
   },
   {
     "id": "k8_ch_043",
@@ -764,16 +694,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Warum ist das Halogen Fluor bei Raumtemperatur ein Gas?",
-    "answers": [
-      "Weil sich Fluor-Atome bei Raumtemperatur einfach vollständig in Ionen auflösen.",
-      "Weil es aus zweiatomigen Molekülen mit schwachen Wechselwirkungen besteht.",
-      "Weil Fluor keine Außenelektronen zur chemischen Bindung besitzt.",
-      "Weil Fluor angeblich überhaupt keine Außenelektronen zur Bindung besitzt."
-    ],
+    "answers": ["Weil sich Fluor-Atome bei Raumtemperatur einfach vollständig in Ionen auflösen.", "Weil es aus zweiatomigen Molekülen mit schwachen Wechselwirkungen besteht.", "Weil Fluor keine Außenelektronen zur chemischen Bindung besitzt.", "Weil Fluor angeblich überhaupt keine Außenelektronen zur Bindung besitzt."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Halogene bilden zweiatomige Moleküle ($\\text{F}_2$). Zwischen den unpolaren Molekülen wirken nur schwache Van-der-Waals-Kräfte, weshalb Fluor und Chlor gasförmig vorliegen."
+    "explanation": "Halogene bilden zweiatomige Moleküle (F₂). Zwischen den unpolaren Molekülen wirken nur schwache Van-der-Waals-Kräfte, weshalb Fluor und Chlor gasförmig vorliegen."
   },
   {
     "id": "k8_ch_044",
@@ -836,16 +761,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Ionen sind für die saure Wirkung einer Lösung verantwortlich?",
-    "answers": [
-      "Für die saure Wirkung sind eigentlich Hydroxid-Ionen ($\\text{OH}^-$) verantwortlich.",
-      "Für die saure Wirkung sind Chlorid-Ionen ($\\text{Cl}^-$) hier verantwortlich.",
-      "Für die saure Wirkung sind Sulfat-Ionen ($\\text{SO}_4^{2-}$) verantwortlich.",
-      "Für die saure Wirkung sind Oxonium-Ionen ($\\text{H}_3\\text{O}^+$) verantwortlich."
-    ],
+    "answers": ["Für die saure Wirkung sind eigentlich Hydroxid-Ionen (OH⁻) verantwortlich.", "Für die saure Wirkung sind Chlorid-Ionen (Cl⁻) hier verantwortlich.", "Für die saure Wirkung sind Sulfat-Ionen (SO₄²⁻) verantwortlich.", "Für die saure Wirkung sind Oxonium-Ionen (H₃O⁺) verantwortlich."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Säuren geben in wässriger Lösung Protonen ($\\text{H}^+$) an Wassermoleküle ab; es entstehen Oxonium-Ionen ($\\text{H}_3\\text{O}^+$), die für den sauren Charakter verantwortlich sind."
+    "explanation": "Säuren geben in wässriger Lösung Protonen (H⁺) an Wassermoleküle ab; es entstehen Oxonium-Ionen (H₃O⁺), die für den sauren Charakter verantwortlich sind."
   },
   {
     "id": "k8_ch_048",
@@ -854,16 +774,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Ionen sind für die alkalische Wirkung einer Lauge verantwortlich?",
-    "answers": [
-      "Für die alkalische Wirkung sind Oxonium-Ionen ($\\text{H}_3\\text{O}^+$) verantwortlich.",
-      "Für die alkalische Wirkung sind Carbonat-Ionen ($\\text{CO}_3^{2-}$) verantwortlich.",
-      "Für die alkalische Wirkung sind Natrium-Ionen ($\\text{Na}^+$) verantwortlich.",
-      "Für die alkalische Wirkung sind Hydroxid-Ionen ($\\text{OH}^-$) verantwortlich."
-    ],
+    "answers": ["Für die alkalische Wirkung sind Oxonium-Ionen (H₃O⁺) verantwortlich.", "Für die alkalische Wirkung sind Carbonat-Ionen (CO₃²⁻) verantwortlich.", "Für die alkalische Wirkung sind Natrium-Ionen (Na⁺) verantwortlich.", "Für die alkalische Wirkung sind Hydroxid-Ionen (OH⁻) verantwortlich."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Alkalische Lösungen (Laugen) enthalten freie Hydroxid-Ionen ($\\text{OH}^-$), welche Indikatoren blau färben und für die Laugenwirkung verantwortlich sind."
+    "explanation": "Alkalische Lösungen (Laugen) enthalten freie Hydroxid-Ionen (OH⁻), welche Indikatoren blau färben und für die Laugenwirkung verantwortlich sind."
   },
   {
     "id": "k8_ch_049",
@@ -872,16 +787,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Was versteht man unter dem Begriff der 'Neutralisation' in der Chemie?",
-    "answers": [
-      "Das vollständige Verbrennen von Holz unter Sauerstoffmangel.",
-      "Die Trennung von Stoffgemischen durch Erhitzen im Kessel.",
-      "Das Ausfällen von Schwermetallen aus verunreinigtem Wasser.",
-      "Die Reaktion von Säure und Lauge zu Wasser und einem Salz."
-    ],
+    "answers": ["Das vollständige Verbrennen von Holz unter Sauerstoffmangel.", "Die Trennung von Stoffgemischen durch Erhitzen im Kessel.", "Das Ausfällen von Schwermetallen aus verunreinigtem Wasser.", "Die Reaktion von Säure und Lauge zu Wasser und einem Salz."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Mischt man eine saure und eine alkalische Lösung im passenden Verhältnis, reagieren Hydroxid- und Oxonium-Ionen zu Wasser ($\\text{H}_3\\text{O}^+ + \\text{OH}^- \\rightarrow 2\\text{H}_2\\text{O}$). Die verbleibenden Ionen bilden ein Salz."
+    "explanation": "Mischt man eine saure und eine alkalische Lösung im passenden Verhältnis, reagieren Hydroxid- und Oxonium-Ionen zu Wasser (H₃O⁺ + OH⁻ → 2H₂O). Die verbleibenden Ionen bilden ein Salz."
   },
   {
     "id": "k8_ch_050",
@@ -944,16 +854,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Was passiert bei der Oxidation eines Zinkatoms nach dem erweiterten Redoxbegriff?",
-    "answers": [
-      "Das Zinkatom nimmt dabei 2 Elektronen auf und wird so zum Zink-Anion umgewandelt.",
-      "Das Zinkatom verbindet sich dabei ohne jede Ladungsänderung fest mit Wasser.",
-      "Das Zinkatom nimmt 2 Protonen aus dem Kern auf und wird geladen.",
-      "Das Zinkatom gibt 2 Elektronen ab und wird zum Zink-Ion ($\\text{Zn}^{2+}$)."
-    ],
+    "answers": ["Das Zinkatom nimmt dabei 2 Elektronen auf und wird so zum Zink-Anion umgewandelt.", "Das Zinkatom verbindet sich dabei ohne jede Ladungsänderung fest mit Wasser.", "Das Zinkatom nimmt 2 Protonen aus dem Kern auf und wird geladen.", "Das Zinkatom gibt 2 Elektronen ab und wird zum Zink-Ion (Zn²⁺)."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Oxidation bedeutet Elektronenabgabe: $\\text{Zn} \\rightarrow \\text{Zn}^{2+} + 2\\text{e}^-$."
+    "explanation": "Oxidation bedeutet Elektronenabgabe: Zn → Zn²⁺ + 2e⁻."
   },
   {
     "id": "k8_ch_054",
@@ -1016,16 +921,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Rolle spielt Koks (aufbereitete Kohle) im Hochofen?",
-    "answers": [
-      "Koks dient als Brennstoff und liefert das Reduktionsmittel Kohlenstoffmonoxid.",
-      "Koks kühlt dabei den gesamten Hochofen ab, damit die Eisenrohre nicht schmelzen.",
-      "Koks dient ausschließlich dazu, die Schlacke an der Oberfläche zu binden.",
-      "Koks gibt Sauerstoff an das Eisenerz ab, um die Oxidation zu starten."
-    ],
+    "answers": ["Koks dient als Brennstoff und liefert das Reduktionsmittel Kohlenstoffmonoxid.", "Koks kühlt dabei den gesamten Hochofen ab, damit die Eisenrohre nicht schmelzen.", "Koks dient ausschließlich dazu, die Schlacke an der Oberfläche zu binden.", "Koks gibt Sauerstoff an das Eisenerz ab, um die Oxidation zu starten."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Koks verbrennt zu $\\text{CO}_2$ und reagiert weiter zu $\\text{CO}$ (Kohlenstoffmonoxid). $\\text{CO}$ wirkt als starkes Reduktionsmittel und entzieht dem Eisenerz den Sauerstoff."
+    "explanation": "Koks verbrennt zu CO₂ und reagiert weiter zu CO (Kohlenstoffmonoxid). CO wirkt als starkes Reduktionsmittel und entzieht dem Eisenerz den Sauerstoff."
   },
   {
     "id": "k8_ch_058",
@@ -1034,12 +934,7 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Was unterscheidet Stahl von sprödem Roheisen?",
-    "answers": [
-      "Stahl ist bereits bei Raumtemperatur im Gegensatz zu Roheisen flüssig.",
-      "Stahl besitzt einen deutlich höheren Kohlenstoffgehalt als Roheisen.",
-      "Stahl enthält überhaupt keine Eisenatome mehr, sondern nur reines Chrom.",
-      "Stahl hat einen deutlich geringeren Kohlenstoffgehalt (unter 2 %)."
-    ],
+    "answers": ["Stahl ist bereits bei Raumtemperatur im Gegensatz zu Roheisen flüssig.", "Stahl besitzt einen deutlich höheren Kohlenstoffgehalt als Roheisen.", "Stahl enthält überhaupt keine Eisenatome mehr, sondern nur reines Chrom.", "Stahl hat einen deutlich geringeren Kohlenstoffgehalt."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -1052,16 +947,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Wie lautet die chemische Summenformel für Salzsäure in wässriger Lösung?",
-    "answers": [
-      "Die Formel lautet eigentlich $\\text{H}_2\\text{CO}_{3\\text{(aq)}}$, die gelöste Kohlensäure.",
-      "Die Formel lautet $\\text{HCl}_{\\text{(aq)}}$ bzw. $\\text{H}_3\\text{O}^+ + \\text{Cl}^-$.",
-      "Die Formel lautet eigentlich $\\text{HNO}_{3\\text{(aq)}}$, konzentrierte Salpetersäure.",
-      "Die Formel lautet $\\text{H}_2\\text{SO}_{4\\text{(aq)}}$, verdünnte Schwefelsäure."
-    ],
+    "answers": ["Die Formel lautet eigentlich H₂CO₃(aq), die gelöste Kohlensäure.", "Die Formel lautet HCl(aq) bzw. H₃O⁺ + Cl⁻.", "Die Formel lautet eigentlich HNO₃(aq), konzentrierte Salpetersäure.", "Die Formel lautet H₂SO₄(aq), verdünnte Schwefelsäure."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Salzsäure ist die wässrige Lösung des Gases Chlorwasserstoff ($\\text{HCl}$). In Wasser dissoziiert $\\text{HCl}$ vollständig in Oxonium- und Chlorid-Ionen."
+    "explanation": "Salzsäure ist die wässrige Lösung des Gases Chlorwasserstoff (HCl). In Wasser dissoziiert HCl vollständig in Oxonium- und Chlorid-Ionen."
   },
   {
     "id": "k8_ch_060",
@@ -1070,16 +960,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Säure ist im Magen des Menschen natürlicherweise enthalten, um Nahrung zu zersetzen?",
-    "answers": [
-      "Im Magen befindet sich reine Essigsäure.",
-      "Im Magen befindet sich konzentrierte Schwefelsäure.",
-      "Im Magen befindet sich verdünnte Salzsäure.",
-      "Im Magen befindet sich schwache Kohlensäure."
-    ],
+    "answers": ["Im Magen befindet sich reine Essigsäure.", "Im Magen befindet sich konzentrierte Schwefelsäure.", "Im Magen befindet sich verdünnte Salzsäure.", "Im Magen befindet sich schwache Kohlensäure."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der Magensaft enthält etwa 0,5 %ige Salzsäure ($\\text{HCl}$), die Bakterien abtötet und Proteine für die Verdauung denaturiert."
+    "explanation": "Der Magensaft enthält etwa 0,5 %ige Salzsäure (HCl), die Bakterien abtötet und Proteine für die Verdauung denaturiert."
   },
   {
     "id": "k8_ch_061",
@@ -1087,17 +972,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Wie nennt man die Salze der Schwefelsäure ($\\text{H}_2\\text{SO}_4$)?",
-    "answers": [
-      "Die Salze der Schwefelsäure heißen Carbonate.",
-      "Die Salze der Schwefelsäure heißen Chloride.",
-      "Die Salze der Schwefelsäure heißen Nitrate.",
-      "Die Salze der Schwefelsäure heißen Sulfate."
-    ],
+    "question": "Wie nennt man die Salze der Schwefelsäure (H₂SO₄)?",
+    "answers": ["Die Salze der Schwefelsäure heißen Carbonate.", "Die Salze der Schwefelsäure heißen Chloride.", "Die Salze der Schwefelsäure heißen Nitrate.", "Die Salze der Schwefelsäure heißen Sulfate."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Schwefelsäure bildet Sulfat-Ionen ($\\text{SO}_4^{2-}$). Ihre Salze werden folglich als Sulfate bezeichnet (z. B. Calciumsulfat = Gips)."
+    "explanation": "Schwefelsäure bildet Sulfat-Ionen (SO₄²⁻). Ihre Salze werden folglich als Sulfate bezeichnet (z. B. Calciumsulfat = Gips)."
   },
   {
     "id": "k8_ch_062",
@@ -1105,17 +985,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Wie nennt man die Salze der Salpetersäure ($\\text{HNO}_3$)?",
-    "answers": [
-      "Die Salze der Salpetersäure heißen Fluoride.",
-      "Die Salze der Salpetersäure heißen Phosphate.",
-      "Die Salze der Salpetersäure heißen Nitrate.",
-      "Die Salze der Salpetersäure heißen Sulfite."
-    ],
+    "question": "Wie nennt man die Salze der Salpetersäure (HNO₃)?",
+    "answers": ["Die Salze der Salpetersäure heißen Fluoride.", "Die Salze der Salpetersäure heißen Phosphate.", "Die Salze der Salpetersäure heißen Nitrate.", "Die Salze der Salpetersäure heißen Sulfite."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Salpetersäure bildet Nitrat-Ionen ($\\text{NO}_3^-$). Ihre Salze heißen Nitrate und werden u. a. als Düngemittel verwendet."
+    "explanation": "Salpetersäure bildet Nitrat-Ionen (NO₃⁻). Ihre Salze heißen Nitrate und werden u. a. als Düngemittel verwendet."
   },
   {
     "id": "k8_ch_063",
@@ -1124,16 +999,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welches Gas entsteht, wenn unedle Metalle wie Magnesium mit Säuren reagieren?",
-    "answers": [
-      "Es entsteht brennbares Wasserstoffgas ($\\text{H}_2$).",
-      "Es entsteht erstickendes Kohlenstoffdioxid ($\\text{CO}_2$).",
-      "Es entsteht brandförderndes Sauerstoffgas ($\\text{O}_2$).",
-      "Es entsteht stechend riechendes Chlorgas ($\\text{Cl}_2$)."
-    ],
+    "answers": ["Es entsteht brennbares Wasserstoffgas (H₂).", "Es entsteht erstickendes Kohlenstoffdioxid (CO₂).", "Es entsteht brandförderndes Sauerstoffgas (O₂).", "Es entsteht stechend riechendes Chlorgas (Cl₂)."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Unedle Metalle lösen sich in Säuren unter Abgabe von Elektronen an die Protonen auf; dabei bildet sich Wasserstoffgas ($\\text{Mg} + 2\\text{HCl} \\rightarrow \\text{MgCl}_2 + \\text{H}_2$)."
+    "explanation": "Unedle Metalle lösen sich in Säuren unter Abgabe von Elektronen an die Protonen auf; dabei bildet sich Wasserstoffgas (Mg + 2HCl → MgCl₂ + H₂)."
   },
   {
     "id": "k8_ch_064",
@@ -1160,16 +1030,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Was bildet sich, wenn man Kohlenstoffdioxid in Wasser einleitet?",
-    "answers": [
-      "Es bildet sich eine schwache Säure lösung (Kohlensäure).",
-      "Es bildet sich durch Reaktion eine hochkonzentrierte Salzsäure.",
-      "Es bildet sich sofort eine stark ätzende Natronlauge.",
-      "Es bildet sich eine unlösliche Suspension aus reinem Kohlenstoff."
-    ],
+    "answers": ["Es bildet sich eine schwache Säure lösung.", "Es bildet sich durch Reaktion eine hochkonzentrierte Salzsäure.", "Es bildet sich sofort eine stark ätzende Natronlauge.", "Es bildet sich eine unlösliche Suspension aus reinem Kohlenstoff."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ein kleiner Teil des eingeleiteten $\\text{CO}_2$ reagiert reversibel mit Wassermolekülen zu Kohlensäure ($\\text{CO}_2 + \\text{H}_2\\text{O} \\rightleftharpoons \\text{H}_2\\text{CO}_3$)."
+    "explanation": "Ein kleiner Teil des eingeleiteten CO₂ reagiert reversibel mit Wassermolekülen zu Kohlensäure (CO₂ + H₂O ⇌ H₂CO₃)."
   },
   {
     "id": "k8_ch_066",
@@ -1178,16 +1043,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Wie nennt man die Verbindungen aus Metall-Ionen und Hydroxid-Ionen im festen Zustand?",
-    "answers": [
-      "Diese Stoffe werden oft als Metallnitrate bezeichnet.",
-      "Diese Stoffe werden oft als Metallsulfate bezeichnet.",
-      "Diese Stoffe werden oft als Metalloxide bezeichnet.",
-      "Diese Stoffe werden als Metallhydroxide bezeichnet."
-    ],
+    "answers": ["Diese Stoffe werden oft als Metallnitrate bezeichnet.", "Diese Stoffe werden oft als Metallsulfate bezeichnet.", "Diese Stoffe werden oft als Metalloxide bezeichnet.", "Diese Stoffe werden als Metallhydroxide bezeichnet."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Feste Stoffe aus Metall-Kationen und Hydroxid-Anionen ($\\text{OH}^-$) heißen Metallhydroxide (z. B. Natriumhydroxid $\\text{NaOH}$). In Wasser gelöst bilden sie Laugen."
+    "explanation": "Feste Stoffe aus Metall-Kationen und Hydroxid-Anionen (OH⁻) heißen Metallhydroxide (z. B. Natriumhydroxid NaOH). In Wasser gelöst bilden sie Laugen."
   },
   {
     "id": "k8_ch_067",
@@ -1196,16 +1056,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Summenformel besitzt die chemische Verbindung Calciumhydroxid?",
-    "answers": [
-      "Die Summenformel lautet $\\text{Ca(OH)}_2$.",
-      "Die Summenformel lautet $\\text{CaOH}$.",
-      "Die Summenformel lautet $\\text{Ca}_2\\text{OH}$.",
-      "Die Summenformel lautet $\\text{CaO}_2\\text{H}$."
-    ],
+    "answers": ["Die Summenformel lautet Ca(OH)₂.", "Die Summenformel lautet CaOH.", "Die Summenformel lautet Ca₂OH.", "Die Summenformel lautet CaO₂H."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Calcium steht in der II. Hauptgruppe ($\\text{Ca}^{2+}$). Da das Hydroxid-Ion einfach negativ geladen ist ($\\text{OH}^-$), braucht man zwei Hydroxid-Ionen zum Ladungsausgleich: $\\text{Ca(OH)}_2$."
+    "explanation": "Calcium steht in der II. Hauptgruppe (Ca²⁺). Da das Hydroxid-Ion einfach negativ geladen ist (OH⁻), braucht man zwei Hydroxid-Ionen zum Ladungsausgleich: Ca(OH)₂."
   },
   {
     "id": "k8_ch_068",
@@ -1214,16 +1069,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Was entsteht bei der thermischen Zersetzung von Kalkstein (Calciumcarbonat) im Kalkofen?",
-    "answers": [
-      "Es entsteht reines Calciummetall und gasförmiger, reiner Sauerstoff.",
-      "Es entsteht gebrannter Kalk (Calciumoxid) und Kohlenstoffdioxid.",
-      "Es entsteht gelöschter Kalk (Calciumhydroxid) und Wasserstoffgas.",
-      "Es entsteht Gips (Calciumsulfat) unter starker Erwärmung des Ofens."
-    ],
+    "answers": ["Es entsteht reines Calciummetall und gasförmiger, reiner Sauerstoff.", "Es entsteht gebrannter Kalk (Calciumoxid) und Kohlenstoffdioxid.", "Es entsteht gelöschter Kalk (Calciumhydroxid) und Wasserstoffgas.", "Es entsteht Gips (Calciumsulfat) unter starker Erwärmung des Ofens."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Beim Kalkbrennen wird $\\text{CaCO}_3$ bei ca. 1000 °C endotherm zersetzt: $\\text{CaCO}_3 \\rightarrow \\text{CaO} + \\text{CO}_2$."
+    "explanation": "Beim Kalkbrennen wird CaCO₃ bei ca. 1000 °C endotherm zersetzt: CaCO₃ → CaO + CO₂."
   },
   {
     "id": "k8_ch_069",
@@ -1232,16 +1082,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Wie nennt man den Vorgang, bei dem gebrannter Kalk (Calciumoxid) mit Wasser versetzt wird?",
-    "answers": [
-      "Dieser Vorgang wird als Kalklöschen bezeichnet.",
-      "Dieser Vorgang wird als Kalksteinhärtung bezeichnet.",
-      "Dieser Vorgang wird als Kalkbrennen bezeichnet.",
-      "Dieser Vorgang wird als Kalkfällen bezeichnet."
-    ],
+    "answers": ["Dieser Vorgang wird als Kalklöschen bezeichnet.", "Dieser Vorgang wird als Kalksteinhärtung bezeichnet.", "Dieser Vorgang wird als Kalkbrennen bezeichnet.", "Dieser Vorgang wird als Kalkfällen bezeichnet."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Gießt man Wasser auf gebrannten Kalk ($\\text{CaO}$), reagiert dieser stark exotherm zu gelöschtem Kalk (Calciumhydroxid, $\\text{Ca(OH)}_2$). Das nennt man Kalklöschen."
+    "explanation": "Gießt man Wasser auf gebrannten Kalk (CaO), reagiert dieser stark exotherm zu gelöschtem Kalk (Calciumhydroxid, Ca(OH)₂). Das nennt man Kalklöschen."
   },
   {
     "id": "k8_ch_070",
@@ -1250,16 +1095,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welcher Stoff ist für das Abbinden von kalkhaltigem Mörtel an der Luft verantwortlich?",
-    "answers": [
-      "Das Kohlenstoffdioxid aus der Umgebungsluft.",
-      "Der seltene Edelgasanteil Argon in der Umgebungsluft.",
-      "Das reine Sauerstoffgas beim täglichen Lüften.",
-      "Der freie Stickstoff aus der umgebenden Atmosphäre."
-    ],
+    "answers": ["Das Kohlenstoffdioxid aus der Umgebungsluft.", "Der seltene Edelgasanteil Argon in der Umgebungsluft.", "Das reine Sauerstoffgas beim täglichen Lüften.", "Der freie Stickstoff aus der umgebenden Atmosphäre."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Gelöschter Kalk $\\text{Ca(OH)}_2$ reagiert beim Trocknen mit dem $\\text{CO}_2$ der Luft wieder zu festem Calciumcarbonat $\\text{CaCO}_3$ und Wasser (technischer Kalkkreislauf)."
+    "explanation": "Gelöschter Kalk Ca(OH)₂ reagiert beim Trocknen mit dem CO₂ der Luft wieder zu festem Calciumcarbonat CaCO₃ und Wasser (technischer Kalkkreislauf)."
   },
 
   {
@@ -1269,16 +1109,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Summenformel besitzt die Säure Kohlensäure?",
-    "answers": [
-      "Die Summenformel lautet $\\text{H}_2\\text{CO}_3$.",
-      "Die Summenformel lautet $\\text{HCO}_3$.",
-      "Die Summenformel lautet $\\text{H}_3\\text{PO}_4$.",
-      "Die Summenformel lautet $\\text{H}_2\\text{SO}_3$."
-    ],
+    "answers": ["Die Summenformel lautet H₂CO₃.", "Die Summenformel lautet HCO₃.", "Die Summenformel lautet H₃PO₄.", "Die Summenformel lautet H₂SO₃."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Kohlensäure entsteht bei der Reaktion von Kohlenstoffdioxid mit Wasser und besitzt die Summenformel $\\text{H}_2\\text{CO}_3$."
+    "explanation": "Kohlensäure entsteht bei der Reaktion von Kohlenstoffdioxid mit Wasser und besitzt die Summenformel H₂CO₃."
   },
   {
     "id": "k8_ch_072",
@@ -1287,16 +1122,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Wie lauten die Namen der Salze der Kohlensäure?",
-    "answers": [
-      "Die Salze der Kohlensäure heißen fälschlich Chlorate.",
-      "Die Salze der Kohlensäure heißen Carbonate.",
-      "Die Salze der Kohlensäure heißen fälschlich Chromate.",
-      "Die Salze der Kohlensäure heißen fälschlich Carbide."
-    ],
+    "answers": ["Die Salze der Kohlensäure heißen fälschlich Chlorate.", "Die Salze der Kohlensäure heißen Carbonate.", "Die Salze der Kohlensäure heißen fälschlich Chromate.", "Die Salze der Kohlensäure heißen fälschlich Carbide."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Anionen der Kohlensäure sind Carbonat-Ionen ($\\text{CO}_3^{2-}$). Ihre Verbindungen heißen Carbonate (z. B. Calciumcarbonat)."
+    "explanation": "Die Anionen der Kohlensäure sind Carbonat-Ionen (CO₃²⁻). Ihre Verbindungen heißen Carbonate (z. B. Calciumcarbonat)."
   },
   {
     "id": "k8_ch_073",
@@ -1322,17 +1152,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Welche Ionen entstehen bei der vollständigen Dissoziation von Schwefelsäure ($\\text{H}_2\\text{SO}_4$) in Wasser?",
-    "answers": [
-      "Zwei Oxonium-Ionen ($\\text{H}_3\\text{O}^+$) und ein Sulfat-Ion ($\\text{SO}_4^{2-}$).",
-      "Zwei Wasserstoffmoleküle ($\\text{H}_2$) und ein Schwefeldioxidmolekül ($\\text{SO}_2$).",
-      "Ein Oxonium-Ion ($\\text{H}_3\\text{O}^+$) und zwei Sulfit-Ionen ($\\text{SO}_3^-$).",
-      "Zwei Hydroxid-Ionen ($\\text{OH}^-$) und ein Sulfid-Ion ($\\text{S}^{2-}$)."
-    ],
+    "question": "Welche Ionen entstehen bei der vollständigen Dissoziation von Schwefelsäure (H₂SO₄) in Wasser?",
+    "answers": ["Zwei Oxonium-Ionen (H₃O⁺) und ein Sulfat-Ion (SO₄²⁻).", "Zwei Wasserstoffmoleküle (H₂) und ein Schwefeldioxidmolekül (SO₂).", "Ein Oxonium-Ion (H₃O⁺) und zwei Sulfit-Ionen (SO₃⁻).", "Zwei Hydroxid-Ionen (OH⁻) und ein Sulfid-Ion (S²⁻)."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Schwefelsäure gibt zwei Protonen an Wasser ab: $\\text{H}_2\\text{SO}_4 + 2\\text{H}_2\\text{O} \\rightarrow 2\\text{H}_3\\text{O}^+ + \\text{SO}_4^{2-}$."
+    "explanation": "Schwefelsäure gibt zwei Protonen an Wasser ab: H₂SO₄ + 2H₂O → 2H₃O⁺ + SO₄²⁻."
   },
   {
     "id": "k8_ch_075",
@@ -1395,12 +1220,7 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Bindungsart liegt vor, wenn sich zwei Nichtmetallatome mit gleicher oder ähnlicher Elektronegativität verbinden?",
-    "answers": [
-      "Eine klassische Ionenbindung mit einem festen, starren Ionengitter.",
-      "Eine Van-der-Waals-Verbindung ganz ohne echte Valenzelektronen.",
-      "Eine Metallbindung mit einem frei beweglichen Elektronengas.",
-      "Eine Elektronenpaarbindung (Atombindung / kovalente Bindung)."
-    ],
+    "answers": ["Eine klassische Ionenbindung mit einem festen, starren Ionengitter.", "Eine Van-der-Waals-Verbindung ganz ohne echte Valenzelektronen.", "Eine Metallbindung mit einem frei beweglichen Elektronengas.", "Eine Elektronenpaarbindung."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -1412,17 +1232,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Warum ist das Wassermolekül ($\\text{H}_2\\text{O}$) ein gewinkeltes Dipol-Molekül?",
-    "answers": [
-      "Wegen des Bindungswinkels und der unterschiedlichen Elektronegativitäten von H und O.",
-      "Weil die einzelnen H-Atome im Wassermolekül dauerhaft alle ihre Elektronen an den Kern abgeben.",
-      "Weil Wasserstoff eine höhere Elektronegativität als Sauerstoff aufweist.",
-      "Weil Sauerstoff und Wasserstoff positiv geladene Kationen im Molekül bilden."
-    ],
+    "question": "Warum ist das Wassermolekül (H₂O) ein gewinkeltes Dipol-Molekül?",
+    "answers": ["Wegen des Bindungswinkels und der unterschiedlichen Elektronegativitäten von H und O.", "Weil die einzelnen H-Atome im Wassermolekül dauerhaft alle ihre Elektronen an den Kern abgeben.", "Weil Wasserstoff eine höhere Elektronegativität als Sauerstoff aufweist.", "Weil Sauerstoff und Wasserstoff positiv geladene Kationen im Molekül bilden."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Sauerstoff zieht die Bindungselektronen stärker an (polare Bindung). Durch den gewinkelten Bau fallen der positive und negative Ladungsschwerpunkt nicht zusammen $\\Rightarrow$ Dipol."
+    "explanation": "Sauerstoff zieht die Bindungselektronen stärker an (polare Bindung). Durch den gewinkelten Bau fallen der positive und negative Ladungsschwerpunkt nicht zusammen ⇒ Dipol."
   },
   {
     "id": "k8_ch_080",
@@ -1538,17 +1353,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Welcher Stoff entsteht bei der Reaktion von Ammoniakgas ($\\text{NH}_3$) mit Chlorwasserstoffgas ($\\text{HCl}$)?",
-    "answers": [
-      "Es bildet sich dabei eine leuchtend gelbe Flüssigkeit aus stark konzentrierter Salpetersäure.",
-      "Es entsteht ein brennbares Gasgemisch aus Wasserstoff und Stickstoff.",
-      "Es fällt festes Natriumchlorid als weißes Salz sofort nieder.",
-      "Es bildet sich ein weißer Rauch aus Ammoniumchlorid ($\\text{NH}_4\\text{Cl}$)."
-    ],
+    "question": "Welcher Stoff entsteht bei der Reaktion von Ammoniakgas (NH₃) mit Chlorwasserstoffgas (HCl)?",
+    "answers": ["Es bildet sich dabei eine leuchtend gelbe Flüssigkeit aus stark konzentrierter Salpetersäure.", "Es entsteht ein brennbares Gasgemisch aus Wasserstoff und Stickstoff.", "Es fällt festes Natriumchlorid als weißes Salz sofort nieder.", "Es bildet sich ein weißer Rauch aus Ammoniumchlorid (NH₄Cl)."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Ammoniak nimmt von $\\text{HCl}$ ein Proton auf (Säure-Base-Reaktion). Es entsteht der weiße Feststoff Ammoniumchlorid: $\\text{NH}_3 + \\text{HCl} \\rightarrow \\text{NH}_4\\text{Cl}$."
+    "explanation": "Ammoniak nimmt von HCl ein Proton auf (Säure-Base-Reaktion). Es entsteht der weiße Feststoff Ammoniumchlorid: NH₃ + HCl → NH₄Cl."
   },
   {
     "id": "k8_ch_087",
@@ -1556,17 +1366,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Wie nennt man die positiv geladenen Ionen $\\text{NH}_4^+$?",
-    "answers": [
-      "Amin-Ionen.",
-      "Ammoniak-Ionen.",
-      "Nitrit-Ionen.",
-      "Ammonium-Ionen."
-    ],
+    "question": "Wie nennt man die positiv geladenen Ionen NH₄⁺?",
+    "answers": ["Amin-Ionen.", "Ammoniak-Ionen.", "Nitrit-Ionen.", "Ammonium-Ionen."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ammoniak ($\\text{NH}_3$) bildet durch Protonenaufnahme das Ammonium-Ion ($\\text{NH}_4^+$)."
+    "explanation": "Ammoniak (NH₃) bildet durch Protonenaufnahme das Ammonium-Ion (NH₄⁺)."
   },
   {
     "id": "k8_ch_088",
@@ -1575,16 +1380,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welches Gas entweicht, wenn man Ammoniumsalze mit einer starken Lauge erhitzt?",
-    "answers": [
-      "Es entweicht braunes, giftiges Stickstoffdioxid ($\\text{NO}_2$).",
-      "Es entweicht stechend riechendes Ammoniakgas ($\\text{NH}_3$).",
-      "Es entweicht brennbares Methangas ($\\text{CH}_4$).",
-      "Es entweicht geruchloses Stickstoffgas ($\\text{N}_2$)."
-    ],
+    "answers": ["Es entweicht braunes, giftiges Stickstoffdioxid (NO₂).", "Es entweicht stechend riechendes Ammoniakgas (NH₃).", "Es entweicht brennbares Methangas (CH₄).", "Es entweicht geruchloses Stickstoffgas (N₂)."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Laugen entziehen dem Ammonium-Ion das Proton: $\\text{NH}_4^+ + \\text{OH}^- \\rightarrow \\text{NH}_3\\uparrow + \\text{H}_2\\text{O}$. Das charakteristisch riechende Ammoniak wird frei."
+    "explanation": "Laugen entziehen dem Ammonium-Ion das Proton: NH₄⁺ + OH⁻ → NH₃↑ + H₂O. Das charakteristisch riechende Ammoniak wird frei."
   },
   {
     "id": "k8_ch_089",
@@ -1593,16 +1393,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Was beschreibt der Begriff 'Molekülgitter' bei Reinstoffen?",
-    "answers": [
-      "Ein Metallgitter mit vielen frei beweglichen, sehr riesigen Molekülen darin.",
-      "Ein Gitter, das ausschließlich im gasförmigen Zustand vorkommt.",
-      "Ein Kristallgitter, dessen Bausteine abgeschlossene Moleküle sind.",
-      "Ein Salzgitter aus abwechselnd positiven und negativen Ionen."
-    ],
+    "answers": ["Ein Metallgitter mit vielen frei beweglichen, sehr riesigen Molekülen darin.", "Ein Gitter, das ausschließlich im gasförmigen Zustand vorkommt.", "Ein Kristallgitter, dessen Bausteine abgeschlossene Moleküle sind.", "Ein Salzgitter aus abwechselnd positiven und negativen Ionen."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Stoffe wie Iod, Eis (Wasser) oder Trockeneis ($\\text{CO}_2$) bilden im festen Zustand ein Molekülgitter, das durch schwache Zwischenmolekulare Kräfte zusammengehalten wird."
+    "explanation": "Stoffe wie Iod, Eis (Wasser) oder Trockeneis (CO₂) bilden im festen Zustand ein Molekülgitter, das durch schwache Zwischenmolekulare Kräfte zusammengehalten wird."
   },
   {
     "id": "k8_ch_090",
@@ -1628,17 +1423,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Welches Anion weisen alle Salze der Phosphorsäure ($\\text{H}_3\\text{PO}_4$) auf?",
-    "answers": [
-      "Sie enthalten Phosphid-Ionen ($\\text{P}^{3-}$).",
-      "Sie enthalten Phosphat-Ionen ($\\text{PO}_4^{3-}$).",
-      "Sie enthalten Pyrophosphat-Ionen ($\\text{P}_2\\text{O}_7^{4-}$).",
-      "Sie enthalten Phosphit-Ionen ($\\text{PO}_3^{3-}$)."
-    ],
+    "question": "Welches Anion weisen alle Salze der Phosphorsäure (H₃PO₄) auf?",
+    "answers": ["Sie enthalten Phosphid-Ionen (P³⁻).", "Sie enthalten Phosphat-Ionen (PO₄³⁻).", "Sie enthalten Pyrophosphat-Ionen (P₂O₇⁴⁻).", "Sie enthalten Phosphit-Ionen (PO₃³⁻)."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Phosphorsäure ist eine dreiprotonige Säure und bildet Phosphat-Ionen ($\\text{PO}_4^{3-}$)."
+    "explanation": "Phosphorsäure ist eine dreiprotonige Säure und bildet Phosphat-Ionen (PO₄³⁻)."
   },
   {
     "id": "k8_ch_092",
@@ -1646,17 +1436,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Wie reagieren Oxide von Nichtmetallen (z. B. $\\text{SO}_2$, $\\text{CO}_2$) meist mit Wasser?",
-    "answers": [
-      "Sie reagieren mit Wasser zu sauren Lösungen.",
-      "Sie lösen sich völlig ohne jegliche chemische Reaktion auf.",
-      "Sie bilden unverändert schwere Metalllegierungen.",
-      "Sie reagieren mit Wasser zu stark alkalischen Laugen."
-    ],
+    "question": "Wie reagieren Oxide von Nichtmetallen (z. B. SO₂, CO₂) meist mit Wasser?",
+    "answers": ["Sie reagieren mit Wasser zu sauren Lösungen.", "Sie lösen sich völlig ohne jegliche chemische Reaktion auf.", "Sie bilden unverändert schwere Metalllegierungen.", "Sie reagieren mit Wasser zu stark alkalischen Laugen."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Nichtmetalloxide sind Säureanhydride. Bei Reaktion mit Wasser entstehen Säuren (z. B. $\\text{SO}_2 + \\text{H}_2\\text{O} \\rightarrow \\text{H}_2\\text{SO}_3$ Schweflige Säure)."
+    "explanation": "Nichtmetalloxide sind Säureanhydride. Bei Reaktion mit Wasser entstehen Säuren (z. B. SO₂ + H₂O → H₂SO₃ Schweflige Säure)."
   },
   {
     "id": "k8_ch_093",
@@ -1664,17 +1449,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Wie reagieren Oxide von Metallen der I. und II. Hauptgruppe (z. B. $\\text{Na}_2\\text{O}$, $\\text{CaO}$) mit Wasser?",
-    "answers": [
-      "Sie reagieren mit Wasser unter Bildung von Laugen (alkalisch).",
-      "Sie reagieren mit Wasser unter Bildung recht harter Säuren.",
-      "Sie bilden dabei brennbare Gase wie zum Beispiel reines Methan.",
-      "Sie verhalten sich vollkommen neutral und bleiben unlöslich."
-    ],
+    "question": "Wie reagieren Oxide von Metallen der I. und II. Hauptgruppe (z. B. Na₂O, CaO) mit Wasser?",
+    "answers": ["Sie reagieren mit Wasser unter Bildung von Laugen.", "Sie reagieren mit Wasser unter Bildung recht harter Säuren.", "Sie bilden dabei brennbare Gase wie zum Beispiel reines Methan.", "Sie verhalten sich vollkommen neutral und bleiben unlöslich."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Metalloxide enthalten Oxid-Ionen ($\\text{O}^{2-}$), die mit Wasser zu Hydroxid-Ionen ($\\text{OH}^-$) reagieren $\\Rightarrow$ basische/alkalische Lösung."
+    "explanation": "Metalloxide enthalten Oxid-Ionen (O²⁻), die mit Wasser zu Hydroxid-Ionen (OH⁻) reagieren ⇒ basische/alkalische Lösung."
   },
   {
     "id": "k8_ch_094",
@@ -1683,16 +1463,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Summenformel besitzt Methan, der Hauptbestandteil von Erdgas?",
-    "answers": [
-      "Die Summenformel lautet $\\text{CH}_2\\text{O}$.",
-      "Die Summenformel lautet $\\text{C}_2\\text{H}_6$.",
-      "Die Summenformel lautet $\\text{CH}_4$.",
-      "Die Summenformel lautet $\\text{CO}_2$."
-    ],
+    "answers": ["Die Summenformel lautet CH₂O.", "Die Summenformel lautet C₂H₆.", "Die Summenformel lautet CH₄.", "Die Summenformel lautet CO₂."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Methan ist der einfachste Kohlenwasserstoff und hat die Formel $\\text{CH}_4$."
+    "explanation": "Methan ist der einfachste Kohlenwasserstoff und hat die Formel CH₄."
   },
   {
     "id": "k8_ch_095",
@@ -1701,16 +1476,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Welche Reaktionsprodukte entstehen bei der vollständigen Verbrennung von Kohlenwasserstoffen wie Methan mit ausreichend Sauerstoff?",
-    "answers": [
-      "Kohlenstoffmonoxid ($\\text{CO}$) und Wasserstoffgas ($\\text{H}_2$) entstehen.",
-      "Kohlenstoffdioxid ($\\text{CO}_2$) und Wasser ($\\text{H}_2\\text{O}$).",
-      "Methanolsäure und freier Stickstoff bilden sich hierbei.",
-      "Reiner Kohlenstoff (Ruß) und Sauerstoffgas ($\\text{O}_2$) entstehen."
-    ],
+    "answers": ["Kohlenstoffmonoxid (CO) und Wasserstoffgas (H₂) entstehen.", "Kohlenstoffdioxid (CO₂) und Wasser (H₂O).", "Methanolsäure und freier Stickstoff bilden sich hierbei.", "Reiner Kohlenstoff (Ruß) und Sauerstoffgas (O₂) entstehen."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Bei vollständiger Oxidation von Kohlenwasserstoffen verbrennt der Kohlenstoff zu $\\text{CO}_2$ und der Wasserstoff zu $\\text{H}_2\\text{O}$."
+    "explanation": "Bei vollständiger Oxidation von Kohlenwasserstoffen verbrennt der Kohlenstoff zu CO₂ und der Wasserstoff zu H₂O."
   },
   {
     "id": "k8_ch_096",
@@ -1719,16 +1489,11 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Was bildet sich bei einer unvollständigen Verbrennung von Kohlenwasserstoffen unter Sauerstoffmangel?",
-    "answers": [
-      "Große Mengen an Ozon und verschiedenen Stickstoffoxiden entstehen.",
-      "Das giftige Gas Kohlenstoffmonoxid ($\\text{CO}$) und Ruß (Kohlenstoff).",
-      "Salzsäure und brennbares Wasserstoffgas bilden sich dabei.",
-      "Ausschließlich ungiftiges Kohlendioxid und reiner Sauerstoff entstehen."
-    ],
+    "answers": ["Große Mengen an Ozon und verschiedenen Stickstoffoxiden entstehen.", "Das giftige Gas Kohlenstoffmonoxid (CO) und Ruß.", "Salzsäure und brennbares Wasserstoffgas bilden sich dabei.", "Ausschließlich ungiftiges Kohlendioxid und reiner Sauerstoff entstehen."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Herrscht Sauerstoffmangel, wird der Kohlenstoff nicht vollständig zu $\\text{CO}_2$ oxidiert; es entsteht giftiges $\\text{CO}$ sowie elemental er Kohlenstoff (Ruß)."
+    "explanation": "Herrscht Sauerstoffmangel, wird der Kohlenstoff nicht vollständig zu CO₂ oxidiert; es entsteht giftiges CO sowie elemental er Kohlenstoff (Ruß)."
   },
   {
     "id": "k8_ch_097",
@@ -1736,17 +1501,12 @@ const questions_k8_chemie = [
     "area": "schule",
     "grade": 8,
     "subject": "chemie",
-    "question": "Welche Eigenschaft zeichnet Kohlenstoffmonoxid ($\\text{CO}$) als Atemgift aus?",
-    "answers": [
-      "Es riecht extrem stark faulig und reizt sofort alle Atemwege sehr stark zum Husten und Würgen.",
-      "Es ist ein stechend blaues, sehr ätzendes Gas, das die Haut stark verätzt.",
-      "Es ist geruchlos, geschmacklos und bindet viel stärkere an Hämoglobin als Sauerstoff.",
-      "Es lagert sich als feiner fester Staub in den Lungenbläschen ab."
-    ],
+    "question": "Welche Eigenschaft zeichnet Kohlenstoffmonoxid (CO) als Atemgift aus?",
+    "answers": ["Es riecht extrem stark faulig und reizt sofort alle Atemwege sehr stark zum Husten und Würgen.", "Es ist ein stechend blaues, sehr ätzendes Gas, das die Haut stark verätzt.", "Es ist geruchlos, geschmacklos und bindet viel stärkere an Hämoglobin als Sauerstoff.", "Es lagert sich als feiner fester Staub in den Lungenbläschen ab."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "$\\text{CO}$ ist heimtückisch, da man es nicht wahrnimmt. Es blockiert den Sauerstofftransport im Blut (Hämoglobin) und führt zum Erstickungstod."
+    "explanation": "CO ist heimtückisch, da man es nicht wahrnimmt. Es blockiert den Sauerstofftransport im Blut (Hämoglobin) und führt zum Erstickungstod."
   },
   {
     "id": "k8_ch_098",
@@ -1755,12 +1515,7 @@ const questions_k8_chemie = [
     "grade": 8,
     "subject": "chemie",
     "question": "Was versteht man unter dem Begriff 'Allotropie' am Beispiel des Kohlenstoffs?",
-    "answers": [
-      "Das Vorkommen desselben Elements in verschiedenen Erscheinungsformen (z. B. Diamant, Graphit).",
-      "Die Fähigkeit des Kohlenstoffs, sich beliebig vollständig in reinem Wasser aufzulösen.",
-      "Die vollständige Umwandlung von einzelnen Kohlenstoffatomen in Sauerstoffatome unter sehr starker Hitze.",
-      "Die Bildung von recht sauren Lösungen beim Mischen von Graphit mit starken Laugen."
-    ],
+    "answers": ["Das Vorkommen desselben Elements in verschiedenen Erscheinungsformen.", "Die Fähigkeit des Kohlenstoffs, sich beliebig vollständig in reinem Wasser aufzulösen.", "Die vollständige Umwandlung von einzelnen Kohlenstoffatomen in Sauerstoffatome unter sehr starker Hitze.", "Die Bildung von recht sauren Lösungen beim Mischen von Graphit mit starken Laugen."],
     "correct": 0,
     "difficulty": "schwer",
     "points": 20,

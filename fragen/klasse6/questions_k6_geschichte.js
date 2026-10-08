@@ -155,12 +155,7 @@ const K6_GESCHICHTE_QUESTIONS = [
     "grade": 6,
     "subject": "geschichte",
     "question": "Welches war das erste vom Menschen gezähmte Haustier?",
-    "answers": [
-      "Der Wolf (Hund)",
-      "Das Waldrind",
-      "Das Wildpferd",
-      "Das Wildschwein"
-    ],
+    "answers": ["Der Wolf", "Das Waldrind", "Das Wildpferd", "Das Wildschwein"],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -698,12 +693,7 @@ const K6_GESCHICHTE_QUESTIONS = [
     "grade": 6,
     "subject": "geschichte",
     "question": "Wer war der oberste ägyptische Sonnengott?",
-    "answers": [
-      "Gott Seth Wüste",
-      "Gott Osiris Toten",
-      "Gott Re (Amun-Re)",
-      "Gott Horus Falke"
-    ],
+    "answers": ["Gott Seth Wüste", "Gott Osiris Toten", "Gott Re", "Gott Horus Falke"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -1514,12 +1504,7 @@ const K6_GESCHICHTE_QUESTIONS = [
     "grade": 6,
     "subject": "geschichte",
     "question": "Wer vereinte die germanischen Stämme in der Varusschlacht?",
-    "answers": [
-      "Chlodwig der König",
-      "Arminius (Hermann)",
-      "Alarich der König",
-      "Karl der Große"
-    ],
+    "answers": ["Chlodwig der König", "Arminius", "Alarich der König", "Karl der Große"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,

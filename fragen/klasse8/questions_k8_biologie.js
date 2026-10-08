@@ -327,12 +327,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Wie nennt man den langen Fortsatz einer Nervenzelle, der elektrische Signale weiterleitet?",
-    "answers": [
-      "Dieser Fortsatz nennt man den Synapsenspalt.",
-      "Dieser Fortsatz heißt Axon (oder Neurit).",
-      "Dieser Fortsatz heißt der Zellkern.",
-      "Dieser Fortsatz heißt kurzer Dendrit."
-    ],
+    "answers": ["Dieser Fortsatz nennt man den Synapsenspalt.", "Dieser Fortsatz heißt Axon.", "Dieser Fortsatz heißt der Zellkern.", "Dieser Fortsatz heißt kurzer Dendrit."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -435,12 +430,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Welches Drüsenorgan im Gehirn gilt als übergeordnete Steuerdrüse und regelt viele andere Hormondrüsen im Körper?",
-    "answers": [
-      "Die Zirbeldrüse im Gehirn.",
-      "Die Ohrspeicheldrüse am Kieferknochen.",
-      "Die Hypophyse (Hirnanhangdrüse).",
-      "Die kleine Thymusdrüse im Brustkorb."
-    ],
+    "answers": ["Die Zirbeldrüse im Gehirn.", "Die Ohrspeicheldrüse am Kieferknochen.", "Die Hypophyse.", "Die kleine Thymusdrüse im Brustkorb."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
@@ -471,12 +461,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Welche Wirkung hat der Sympathikus als Teil des vegetativen Nervensystems?",
-    "answers": [
-      "Er stoppt sofort und vollständig alle Botenstoffe im gesamten Rückenmark selbst.",
-      "Er fördert Ruhe, Verdauung und die Erholung des ganzen Körpers.",
-      "Er steuert ausschließlich die bewussten Bewegungen der Muskeln.",
-      "Er versetzt den Körper in Leistungs- und Fluchtbereitschaft (Fight or Flight)."
-    ],
+    "answers": ["Er stoppt sofort und vollständig alle Botenstoffe im gesamten Rückenmark selbst.", "Er fördert Ruhe, Verdauung und die Erholung des ganzen Körpers.", "Er steuert ausschließlich die bewussten Bewegungen der Muskeln.", "Er versetzt den Körper in Leistungs- und Fluchtbereitschaft."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
@@ -543,12 +528,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Was versteht man unter einer 'Allergie' in der Immunbiologie?",
-    "answers": [
-      "Eine angeborene Schwäche der roten Blutkörperchen beim Sauerstofftransport im Blut.",
-      "Eine bakterielle Infektion im Bereich der oberen Atemwege.",
-      "Eine überschießende Immunreaktion des Körpers auf harmlose Stoffe (Allergene).",
-      "Eine chronische Entzündung der Magenschleimhaut durch Säuremangel."
-    ],
+    "answers": ["Eine angeborene Schwäche der roten Blutkörperchen beim Sauerstofftransport im Blut.", "Eine bakterielle Infektion im Bereich der oberen Atemwege.", "Eine überschießende Immunreaktion des Körpers auf harmlose Stoffe.", "Eine chronische Entzündung der Magenschleimhaut durch Säuremangel."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
@@ -561,12 +541,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Welches Gas wird beim Prozess der Fotosynthese von grünen Pflanzen an die Umwelt abgegeben?",
-    "answers": [
-      "Methan ($CH_4$).",
-      "Stickstoff ($N_2$).",
-      "Kohlenstoffdioxid ($CO_2$).",
-      "Sauerstoff ($O_2$)."
-    ],
+    "answers": ["Methan (CH₄).", "Stickstoff (N₂).", "Kohlenstoffdioxid (CO₂).", "Sauerstoff (O₂)."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -597,12 +572,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Was versteht man unter einer Mutation in der Biologie?",
-    "answers": [
-      "Die Bildung von Antikörpern nach einer bereits durchgemachten Erkrankung im Körper.",
-      "Die regelmäßige Teilung einer Körperzelle beim normalen Wachstum.",
-      "Eine spontane oder durch Einflüsse verursachte Veränderung der Erbanlage (DNA).",
-      "Die Ausdehnung von Muskelgewebe bei sehr starker Beanspruchung."
-    ],
+    "answers": ["Die Bildung von Antikörpern nach einer bereits durchgemachten Erkrankung im Körper.", "Die regelmäßige Teilung einer Körperzelle beim normalen Wachstum.", "Eine spontane oder durch Einflüsse verursachte Veränderung der Erbanlage.", "Die Ausdehnung von Muskelgewebe bei sehr starker Beanspruchung."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
@@ -761,12 +731,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Wie vermehren sich Bakterien unter günstigen Umweltbedingungen?",
-    "answers": [
-      "Durch die Bildung von pﬂanzlichen Sporen im Zellkern.",
-      "Durch ungeschlechtliche Zelleilung (Asexuelle Verdopplung).",
-      "Ausschließend durch die Verschmelzung von zwei Keimzellen.",
-      "Durch die Aufnahme von fremden Virenpartikeln aus der Luft."
-    ],
+    "answers": ["Durch die Bildung von pﬂanzlichen Sporen im Zellkern.", "Durch ungeschlechtliche Zelleilung.", "Ausschließend durch die Verschmelzung von zwei Keimzellen.", "Durch die Aufnahme von fremden Virenpartikeln aus der Luft."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -851,12 +816,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Welche Aufgabe erfüllen die sogenannten 'Riesenfresszellen' (Makrophagen) im Immunsystem?",
-    "answers": [
-      "Sie stellen hochspezifische Antikörper direkt für die Blutbahn her.",
-      "Sie nehmen Erreger ungerichtet auf und verdauen sie (Phagozytose).",
-      "Sie leiten elektrische Reize vom Hirnstamm zu den Muskeln.",
-      "Sie transportieren Sauerstoff von der Lunge ins Gewebe."
-    ],
+    "answers": ["Sie stellen hochspezifische Antikörper direkt für die Blutbahn her.", "Sie nehmen Erreger ungerichtet auf und verdauen sie.", "Sie leiten elektrische Reize vom Hirnstamm zu den Muskeln.", "Sie transportieren Sauerstoff von der Lunge ins Gewebe."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -959,12 +919,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Wo im Innenohr befinden sich die eigentlichen Sinneszellen für das Hören?",
-    "answers": [
-      "Im Bogengangsystem.",
-      "In der Schnecke (Cochlea).",
-      "Auf dem Trommelfell.",
-      "In der Gehörknöchelchenkette."
-    ],
+    "answers": ["Im Bogengangsystem.", "In der Schnecke.", "Auf dem Trommelfell.", "In der Gehörknöchelchenkette."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -1013,12 +968,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Was versteht man unter 'Eigenreflexen' im Unterschied zu Fremdreflexen?",
-    "answers": [
-      "Der Reflex wird dabei ausschließlich durch akustische Reize ausgelöst.",
-      "Reiz und Reaktion liegen dabei in völlig verschiedenen Körperregionen.",
-      "Reizaufnahme und Antwortreaktion finden im selben Organ statt (z. B. Kniescheibenreflex).",
-      "Der Reflex muss im Laufe des gesamten Lebens erst mühsam erlernt und ständig geübt werden."
-    ],
+    "answers": ["Der Reflex wird dabei ausschließlich durch akustische Reize ausgelöst.", "Reiz und Reaktion liegen dabei in völlig verschiedenen Körperregionen.", "Reizaufnahme und Antwortreaktion finden im selben Organ statt.", "Der Reflex muss im Laufe des gesamten Lebens erst mühsam erlernt und ständig geübt werden."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
@@ -1103,12 +1053,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Welche Drüse im Halsbereich reguliert mit ihren Hormonen den Grundumsatz des Stoffwechsels?",
-    "answers": [
-      "Die Hirnanhangdrüse im Gehirn.",
-      "Die Nebennierenrinde am Nierenpol.",
-      "Die Schilddrüse (produziert Thyroxin).",
-      "Die Bauchspeicheldrüse tief im Bauchraum."
-    ],
+    "answers": ["Die Hirnanhangdrüse im Gehirn.", "Die Nebennierenrinde am Nierenpol.", "Die Schilddrüse.", "Die Bauchspeicheldrüse tief im Bauchraum."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
@@ -1121,12 +1066,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Welche Mangelerscheinung kann bei einer Unterfunktion der Schilddrüse durch fehlendes Jod entstehen?",
-    "answers": [
-      "Die Zerstörung von B-Lymphozyten.",
-      "Ein plötzlicher Anstieg des Blutdrucks.",
-      "Der Verlust des Farbsehens auf der Netzhaut.",
-      "Die Bildung eines Kropfes (Struma)."
-    ],
+    "answers": ["Die Zerstörung von B-Lymphozyten.", "Ein plötzlicher Anstieg des Blutdrucks.", "Der Verlust des Farbsehens auf der Netzhaut.", "Die Bildung eines Kropfes."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
@@ -1267,16 +1207,11 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Was beschreibt der Begriff 'Zellatmung' in den Mitochondrien menschlicher und pflanzlicher Zellen?",
-    "answers": [
-      "Die Wandlung von Sonnenlicht in Traubenzucker in den Chloroplasten.",
-      "Die Verfestigung von Eiweißen im gesamten Körpergewebe durch besonders hohe Temperaturen.",
-      "Die Umwandlung von Glukose und Sauerstoff in Kohlenstoffdioxid, Wasser und Energie (ATP).",
-      "Die reine Aufnahme von Sauerstoff über die Lungenbläschen ins Blut."
-    ],
+    "answers": ["Die Wandlung von Sonnenlicht in Traubenzucker in den Chloroplasten.", "Die Verfestigung von Eiweißen im gesamten Körpergewebe durch besonders hohe Temperaturen.", "Die Umwandlung von Glukose und Sauerstoff in Kohlenstoffdioxid, Wasser und Energie.", "Die reine Aufnahme von Sauerstoff über die Lungenbläschen ins Blut."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "In den Mitochondrien wird Traubenzucker unter Sauerstoffverbrauch zu $CO_2$ und $H_2O$ abgebaut, um universelle Zellenergie (ATP) zu gewinnen."
+    "explanation": "In den Mitochondrien wird Traubenzucker unter Sauerstoffverbrauch zu CO₂ und H₂O abgebaut, um universelle Zellenergie (ATP) zu gewinnen."
   },
   {
     "id": "k8_bio_072",
@@ -1429,12 +1364,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Welche Umweltfaktoren fallen unter die Kategorie der 'biotischen Faktoren'?",
-    "answers": [
-      "Klimatische Bedingungen wie starker Niederschlag, Windstärke und die tägliche Sonnenstrahlung.",
-      "Der genaue pH-Wert des Wassers in einem größeren heimischen Süßwassersee.",
-      "Der Gehalt an Sauerstoff in ganz unterschiedlichen Höhenlagen der Berge.",
-      "Einflüsse, die von anderen Lebewesen ausgehen (z. B. Beute, Krankheitserreger, Konkurrenten)."
-    ],
+    "answers": ["Klimatische Bedingungen wie starker Niederschlag, Windstärke und die tägliche Sonnenstrahlung.", "Der genaue pH-Wert des Wassers in einem größeren heimischen Süßwassersee.", "Der Gehalt an Sauerstoff in ganz unterschiedlichen Höhenlagen der Berge.", "Einflüsse, die von anderen Lebewesen ausgehen."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -1519,12 +1449,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Welcher Prozess findet in den Ribosomen einer Zelle statt?",
-    "answers": [
-      "Die schnelle Vervielfältigung sämtlicher Zellwände einer einzelnen Pflanzenzelle.",
-      "Die Verdauung von aufgenommenen kleinen Fetttröpfchen.",
-      "Die Fotosynthese zur Gewinnung von reinem Sauerstoff.",
-      "Die Proteinbiosynthese (Herstellung von Eiweißen nach der DNA-Vorlage)."
-    ],
+    "answers": ["Die schnelle Vervielfältigung sämtlicher Zellwände einer einzelnen Pflanzenzelle.", "Die Verdauung von aufgenommenen kleinen Fetttröpfchen.", "Die Fotosynthese zur Gewinnung von reinem Sauerstoff.", "Die Proteinbiosynthese."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
@@ -1591,12 +1516,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Was passiert mit Enzymen bei extrem hohen Temperaturen (z. B. über 60 °C)?",
-    "answers": [
-      "Sie arbeiten unendlich schnell weiter, ohne jemals zu pausieren.",
-      "Sie verwandeln sich vollständig in reine Stärkezucker.",
-      "Sie denaturieren (ihre Raumstruktur wird irreversibel zerstört).",
-      "Sie vermehren sich durch einfache Teilung im Blutkreislauf."
-    ],
+    "answers": ["Sie arbeiten unendlich schnell weiter, ohne jemals zu pausieren.", "Sie verwandeln sich vollständig in reine Stärkezucker.", "Sie denaturieren.", "Sie vermehren sich durch einfache Teilung im Blutkreislauf."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
@@ -1663,12 +1583,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Welche Funktion erfüllt die Tränenflüssigkeit des menschlichen Auges?",
-    "answers": [
-      "Sie färbt die Regenbogenhaut je nach Helligkeit leicht um.",
-      "Sie reguliert ganz allein die Krümmung der Augenlinse beim genauen Scharfstellen.",
-      "Sie versorgt die Lichtsinneszellen direkt mit Sauerstoff.",
-      "Sie hält die Hornhaut feucht und enthält keimtötende Stoffe (z. B. Lysozym)."
-    ],
+    "answers": ["Sie färbt die Regenbogenhaut je nach Helligkeit leicht um.", "Sie reguliert ganz allein die Krümmung der Augenlinse beim genauen Scharfstellen.", "Sie versorgt die Lichtsinneszellen direkt mit Sauerstoff.", "Sie hält die Hornhaut feucht und enthält keimtötende Stoffe."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -1681,12 +1596,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Welche Aufgabe erfüllt die Pupille im Auge?",
-    "answers": [
-      "Sie stützt von innen her die runde Kugelform des gesamten Augapfels.",
-      "Sie regelt als Sehloch die Menge des einfallenden Lichts (Pupillenreflex).",
-      "Sie verwandelt das Bild in elektrische Signale für den Sehnerv.",
-      "Sie bündelt die einfallenden Lichtstrahlen direkt auf der äußeren Hornhaut."
-    ],
+    "answers": ["Sie stützt von innen her die runde Kugelform des gesamten Augapfels.", "Sie regelt als Sehloch die Menge des einfallenden Lichts.", "Sie verwandelt das Bild in elektrische Signale für den Sehnerv.", "Sie bündelt die einfallenden Lichtstrahlen direkt auf der äußeren Hornhaut."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -1735,12 +1645,7 @@ const questions_k8_biologie = [
     "grade": 8,
     "subject": "biologie",
     "question": "Welches Gas gelangt beim Gasaustausch in den Lungenbläschen (Alveolen) ins Blut?",
-    "answers": [
-      "Sauerstoff ($O_2$).",
-      "Kohlenstoffdioxid ($CO_2$).",
-      "Wasserstoff ($H_2$).",
-      "Stickstoff ($N_2$)."
-    ],
+    "answers": ["Sauerstoff (O₂).", "Kohlenstoffdioxid (CO₂).", "Wasserstoff (H₂).", "Stickstoff (N₂)."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,

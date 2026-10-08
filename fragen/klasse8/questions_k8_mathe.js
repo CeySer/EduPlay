@@ -8,17 +8,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welche Steigung $m$ hat die lineare Funktion mit der Funktionsgleichung $y = -4x + 9$?",
-    "answers": [
-      "Die Steigung der Funktion beträgt $m = 4$.",
-      "Die Steigung der Funktion beträgt $m = 9$.",
-      "Die Steigung der Funktion beträgt $m = -9$.",
-      "Die Steigung der Funktion beträgt $m = -4$."
-    ],
+    "question": "Welche Steigung m hat die lineare Funktion mit der Funktionsgleichung y = -4x + 9?",
+    "answers": ["Die Steigung der Funktion beträgt m = 4.", "Die Steigung der Funktion beträgt m = 9.", "Die Steigung der Funktion beträgt m = -9.", "Die Steigung der Funktion beträgt m = -4."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "In der allgemeinen Form $y = mx + b$ steht der Faktor $m$ vor dem $x$ für die Steigung. Im Term $y = -4x + 9$ ist das $m = -4$."
+    "explanation": "In der allgemeinen Form y = mx + b steht der Faktor m vor dem x für die Steigung. Im Term y = -4x + 9 ist das m = -4."
   },
   {
     "id": "k8_ma_002",
@@ -26,17 +21,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "An welchem Punkt schneidet der Graph der Funktion $y = 2x - 6$ die y-Achse?",
-    "answers": [
-      "Der Schnittpunkt liegt an den Koordinaten $S_y(0 | -6)$.",
-      "Der Schnittpunkt liegt an den Koordinaten $S_y(-6 | 0)$.",
-      "Der Schnittpunkt liegt an den Koordinaten $S_y(0 | 6)$.",
-      "Der Schnittpunkt liegt an den Koordinaten $S_y(3 | 0)$."
-    ],
+    "question": "An welchem Punkt schneidet der Graph der Funktion y = 2x - 6 die y-Achse?",
+    "answers": ["Der Schnittpunkt liegt an den Koordinaten Sy(0 | -6).", "Der Schnittpunkt liegt an den Koordinaten Sy(-6 | 0).", "Der Schnittpunkt liegt an den Koordinaten Sy(0 | 6).", "Der Schnittpunkt liegt an den Koordinaten Sy(3 | 0)."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der y-Achsenabschnitt $b$ lässt sich direkt aus $y = mx + b$ ablesen. Für $x = 0$ ergibt sich $y = -6$, woraus der Punkt $S_y(0 | -6)$ folgt."
+    "explanation": "Der y-Achsenabschnitt b lässt sich direkt aus y = mx + b ablesen. Für x = 0 ergibt sich y = -6, woraus der Punkt Sy(0 | -6) folgt."
   },
   {
     "id": "k8_ma_003",
@@ -44,17 +34,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Wert ergibt sich beim Ausmultiplizieren des Terms $3 \\cdot (2x - 5)$?",
-    "answers": [
-      "Der ausmultiplizierte Term lautet $5x - 15$.",
-      "Der ausmultiplizierte Term lautet $6x - 15$.",
-      "Der ausmultiplizierte Term lautet $6x - 5$.",
-      "Der ausmultiplizierte Term lautet $6x + 15$."
-    ],
+    "question": "Welcher Wert ergibt sich beim Ausmultiplizieren des Terms 3 · (2x - 5)?",
+    "answers": ["Der ausmultiplizierte Term lautet 5x - 15.", "Der ausmultiplizierte Term lautet 6x - 15.", "Der ausmultiplizierte Term lautet 6x - 5.", "Der ausmultiplizierte Term lautet 6x + 15."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Nach dem Distributivgesetz muss der Faktor vor der Klammer mit jedem Glied multipliziert werden: $3 \\cdot 2x - 3 \\cdot 5 = 6x - 15$."
+    "explanation": "Nach dem Distributivgesetz muss der Faktor vor der Klammer mit jedem Glied multipliziert werden: 3 · 2x - 3 · 5 = 6x - 15."
   },
   {
     "id": "k8_ma_004",
@@ -62,17 +47,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie berechnet man das Volumen $V$ eines beliebigen geraden Prismas?",
-    "answers": [
-      "Man multipliziert die Grundfläche mit der Höhe: $V = G \\cdot h$.",
-      "Man multipliziert den Umfang mit der Grundfläche: $V = u \\cdot G$.",
-      "Man quadriert die Grundfläche und teilt durch zwei: $V = \\frac{G^2}{2}$.",
-      "Man addiert alle Seitenlängen der Grundfläche: $V = a + b + c$."
-    ],
+    "question": "Wie berechnet man das Volumen V eines beliebigen geraden Prismas?",
+    "answers": ["Man multipliziert die Grundfläche mit der Höhe: V = G · h.", "Man multipliziert den Umfang mit der Grundfläche: V = u · G.", "Man quadriert die Grundfläche und teilt durch zwei: V = (G²)/2.", "Man addiert alle Seitenlängen der Grundfläche: V = a + b + c."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Das Volumen eines geraden Prismas berechnet sich nach der Grundformel $V = G \\cdot h$, wobei $G$ die Grundfläche und $h$ die Körperhöhe ist."
+    "explanation": "Das Volumen eines geraden Prismas berechnet sich nach der Grundformel V = G · h, wobei G die Grundfläche und h die Körperhöhe ist."
   },
   {
     "id": "k8_ma_005",
@@ -81,16 +61,11 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "Ein fairer Sechsseitenwürfel wird einmal geworfen. Wie hoch ist die Wahrscheinlichkeit für eine gerade Zahl?",
-    "answers": [
-      "Die Wahrscheinlichkeit beträgt exakt 33,3 %.",
-      "Die Wahrscheinlichkeit beträgt exakt 50,0 %.",
-      "Die Wahrscheinlichkeit beträgt exakt 66,7 %.",
-      "Die Wahrscheinlichkeit beträgt exakt 16,7 %."
-    ],
+    "answers": ["Die Wahrscheinlichkeit beträgt exakt 33,3 %.", "Die Wahrscheinlichkeit beträgt exakt 50,0 %.", "Die Wahrscheinlichkeit beträgt exakt 66,7 %.", "Die Wahrscheinlichkeit beträgt exakt 16,7 %."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Günstige Ergebnisse sind {2, 4, 6}, also 3 Fälle. Mögliche Ergebnisse gibt es 6. Die Wahrscheinlichkeit ist $P = \\frac{3}{6} = 0{,}5 = 50\\% $."
+    "explanation": "Günstige Ergebnisse sind {2, 4, 6}, also 3 Fälle. Mögliche Ergebnisse gibt es 6. Die Wahrscheinlichkeit ist P = 3/6 = 0,5 = 50%."
   },
   {
     "id": "k8_ma_006",
@@ -98,17 +73,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet die vereinfachte Form des Terms $4x + 7 - 2x + 3$?",
-    "answers": [
-      "Der vereinfachte Term lautet $6x + 4$.",
-      "Der vereinfachte Term lautet $2x + 4$.",
-      "Der vereinfachte Term lautet $6x + 10$.",
-      "Der vereinfachte Term lautet $2x + 10$."
-    ],
+    "question": "Wie lautet die vereinfachte Form des Terms 4x + 7 - 2x + 3?",
+    "answers": ["Der vereinfachte Term lautet 6x + 4.", "Der vereinfachte Term lautet 2x + 4.", "Der vereinfachte Term lautet 6x + 10.", "Der vereinfachte Term lautet 2x + 10."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Gleichartige Glieder werden zusammengefasst: $4x - 2x = 2x$ und $7 + 3 = 10$. Daraus ergibt sich $2x + 10$."
+    "explanation": "Gleichartige Glieder werden zusammengefasst: 4x - 2x = 2x und 7 + 3 = 10. Daraus ergibt sich 2x + 10."
   },
   {
     "id": "k8_ma_007",
@@ -117,16 +87,11 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "Welches Verfahren eignet sich gut für ein LGS, wenn eine der Gleichungen bereits nach einer Variablen aufgelöst ist?",
-    "answers": [
-      "In diesem Fall eignet sich primär das Einsetzungsverfahren.",
-      "In diesem Fall eignet sich primär das Determinantenverfahren.",
-      "In diesem Fall eignet sich primär das Additionsverfahren.",
-      "In diesem Fall eignet sich primär das Gleichsetzungsverfahren."
-    ],
+    "answers": ["In diesem Fall eignet sich primär das Einsetzungsverfahren.", "In diesem Fall eignet sich primär das Determinantenverfahren.", "In diesem Fall eignet sich primär das Additionsverfahren.", "In diesem Fall eignet sich primär das Gleichsetzungsverfahren."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ist eine Gleichung nach einer Variablen (z. B. $y = ...$) umgeformt, kann dieser Term in die andere Gleichung direkt eingesetzt werden."
+    "explanation": "Ist eine Gleichung nach einer Variablen (z. B. y = ...) umgeformt, kann dieser Term in die andere Gleichung direkt eingesetzt werden."
   },
   {
     "id": "k8_ma_008",
@@ -134,13 +99,8 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie verhalten sich die Graphen zweier linearer Funktionen zueinander, wenn ihre Steigungen identisch sind ($m_1 = m_2$), aber $b_1 \\neq b_2$ gilt?",
-    "answers": [
-      "Die beiden Funktionsgraphen schneiden sich im rechten Winkel.",
-      "Die beiden Funktionsgraphen verlaufen echt parallel zueinander.",
-      "Die beiden Funktionsgraphen schneiden sich genau im Ursprung.",
-      "Die beiden Funktionsgraphen sind vollständig identisch miteinander."
-    ],
+    "question": "Wie verhalten sich die Graphen zweier linearer Funktionen zueinander, wenn ihre Steigungen identisch sind (m₁ = m₂), aber b₁ ≠ b₂ gilt?",
+    "answers": ["Die beiden Funktionsgraphen schneiden sich im rechten Winkel.", "Die beiden Funktionsgraphen verlaufen echt parallel zueinander.", "Die beiden Funktionsgraphen schneiden sich genau im Ursprung.", "Die beiden Funktionsgraphen sind vollständig identisch miteinander."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -152,17 +112,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie berechnet man die Mantelfläche $M$ eines geraden Kreiszylinders mit dem Radius $r$ und der Höhe $h$?",
-    "answers": [
-      "Die Mantelfläche berechnet sich über die Formel $M = 2 \\cdot \\pi \\cdot r^2$.",
-      "Die Mantelfläche berechnet sich über die Formel $M = \\pi \\cdot r \\cdot h^2$.",
-      "Die Mantelfläche eines Zylinders berechnet sich über die Formel $M = \\pi \\cdot r^2 \\cdot h$.",
-      "Die Mantelfläche berechnet sich über die Formel $M = 2 \\cdot \\pi \\cdot r \\cdot h$."
-    ],
+    "question": "Wie berechnet man die Mantelfläche M eines geraden Kreiszylinders mit dem Radius r und der Höhe h?",
+    "answers": ["Die Mantelfläche berechnet sich über die Formel M = 2 · π · r².", "Die Mantelfläche berechnet sich über die Formel M = π · r · h².", "Die Mantelfläche eines Zylinders berechnet sich über die Formel M = π · r² · h.", "Die Mantelfläche berechnet sich über die Formel M = 2 · π · r · h."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Abgewickelt entspricht die Mantelfläche eines Zylinders einem Rechteck mit den Seitenlängen Umfang $u = 2\\pi r$ und Höhe $h$."
+    "explanation": "Abgewickelt entspricht die Mantelfläche eines Zylinders einem Rechteck mit den Seitenlängen Umfang u = 2π r und Höhe h."
   },
   {
     "id": "k8_ma_010",
@@ -170,17 +125,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welche Lösung besitzt die lineare Gleichung $3x - 9 = 15$?",
-    "answers": [
-      "Die Lösung der linearen Gleichung lautet $x = 8$.",
-      "Die Lösung der linearen Gleichung lautet $x = 2$.",
-      "Die Lösung der linearen Gleichung lautet $x = 6$.",
-      "Die Lösung der linearen Gleichung lautet $x = 12$."
-    ],
+    "question": "Welche Lösung besitzt die lineare Gleichung 3x - 9 = 15?",
+    "answers": ["Die Lösung der linearen Gleichung lautet x = 8.", "Die Lösung der linearen Gleichung lautet x = 2.", "Die Lösung der linearen Gleichung lautet x = 6.", "Die Lösung der linearen Gleichung lautet x = 12."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Man addiert zuerst 9 auf beiden Seiten ($3x = 24$) und dividiert anschließend durch 3, was zu $x = 8$ führt."
+    "explanation": "Man addiert zuerst 9 auf beiden Seiten (3x = 24) und dividiert anschließend durch 3, was zu x = 8 führt."
   },
   {
     "id": "k8_ma_011",
@@ -189,16 +139,11 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "In einer Urne befinden sich 4 rote und 6 blaue Kugeln. Es wird eine Kugel gezogen. Wie groß ist die Wahrscheinlichkeit für eine rote Kugel?",
-    "answers": [
-      "Die Wahrscheinlichkeit beträgt exakt 25 %.",
-      "Die Wahrscheinlichkeit beträgt exakt 40 %.",
-      "Die Wahrscheinlichkeit beträgt exakt 50 %.",
-      "Die Wahrscheinlichkeit beträgt exakt 60 %."
-    ],
+    "answers": ["Die Wahrscheinlichkeit beträgt exakt 25 %.", "Die Wahrscheinlichkeit beträgt exakt 40 %.", "Die Wahrscheinlichkeit beträgt exakt 50 %.", "Die Wahrscheinlichkeit beträgt exakt 60 %."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Es gibt 4 günstige (rote) und insgesamt 10 Kugeln in der Urne. Es gilt $P(\\text{rot}) = \\frac{4}{10} = 0{,}4 = 40\\%$."
+    "explanation": "Es gibt 4 günstige (rote) und insgesamt 10 Kugeln in der Urne. Es gilt P(rot) = 4/10 = 0,4 = 40%."
   },
   {
     "id": "k8_ma_012",
@@ -224,13 +169,8 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Gesetzmäßigkeit folgt das Ausklammern eines gemeinsamen Faktors im Term $5x + 10y = 5(x + 2y)$?",
-    "answers": [
-      "Dieses Verfahren basiert auf der Anwendung des Distributivgesetzes.",
-      "Dieses Verfahren basiert auf der Anwendung des Binomischen Gesetzes.",
-      "Dieses Verfahren basiert auf der Anwendung des Kommutativgesetzes.",
-      "Dieses Verfahren basiert auf der Anwendung des Assoziativgesetzes."
-    ],
+    "question": "Welcher Gesetzmäßigkeit folgt das Ausklammern eines gemeinsamen Faktors im Term 5x + 10y = 5(x + 2y)?",
+    "answers": ["Dieses Verfahren basiert auf der Anwendung des Distributivgesetzes.", "Dieses Verfahren basiert auf der Anwendung des Binomischen Gesetzes.", "Dieses Verfahren basiert auf der Anwendung des Kommutativgesetzes.", "Dieses Verfahren basiert auf der Anwendung des Assoziativgesetzes."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
@@ -242,17 +182,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie berechnet man die Steigung $m$ einer Geraden durch zwei Punkte $P_1(x_1 | y_1)$ und $P_2(x_2 | y_2)$?",
-    "answers": [
-      "Man nutzt die Steigungsformel $m = \\frac{x_2 - x_1}{y_2 - y_1}$.",
-      "Man nutzt die Steigungsformel $m = (y_2 - y_1) \\cdot (x_2 - x_1)$.",
-      "Man nutzt die Steigungsformel $m = \\frac{y_2 + y_1}{x_2 + x_1}$.",
-      "Man nutzt die Steigungsformel $m = \\frac{y_2 - y_1}{x_2 - x_1}$."
-    ],
+    "question": "Wie berechnet man die Steigung m einer Geraden durch zwei Punkte P₁(x₁ | y₁) und P₂(x₂ | y₂)?",
+    "answers": ["Man nutzt die Steigungsformel m = (x₂ - x₁)/(y₂ - y₁).", "Man nutzt die Steigungsformel m = (y₂ - y₁) · (x₂ - x₁).", "Man nutzt die Steigungsformel m = (y₂ + y₁)/(x₂ + x₁).", "Man nutzt die Steigungsformel m = (y₂ - y₁)/(x₂ - x₁)."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Die Steigung ist definiert als Veränderung der y-Werte dividiert durch die Veränderung der x-Werte im Steigungsdreieck ($m = \\frac{\\Delta y}{\\Delta x}$)."
+    "explanation": "Die Steigung ist definiert als Veränderung der y-Werte dividiert durch die Veränderung der x-Werte im Steigungsdreieck (m = (Δy)/(Δx))."
   },
   {
     "id": "k8_ma_015",
@@ -260,17 +195,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Ein gerades Prisma hat als Grundfläche ein rechtwinkliges Dreieck mit den Katheten $a = 3\\text{ cm}$ und $b = 4\\text{ cm}$. Wie groß ist die Grundfläche $G$?",
-    "answers": [
-      "Die Grundfläche des Prismas beträgt $G = 7\\text{ cm}^2$.",
-      "Die Grundfläche des Prismas beträgt $G = 6\\text{ cm}^2$.",
-      "Die Grundfläche des Prismas beträgt $G = 12\\text{ cm}^2$.",
-      "Die Grundfläche des Prismas beträgt $G = 24\\text{ cm}^2$."
-    ],
+    "question": "Ein gerades Prisma hat als Grundfläche ein rechtwinkliges Dreieck mit den Katheten a = 3 cm und b = 4 cm. Wie groß ist die Grundfläche G?",
+    "answers": ["Die Grundfläche des Prismas beträgt G = 7 cm².", "Die Grundfläche des Prismas beträgt G = 6 cm².", "Die Grundfläche des Prismas beträgt G = 12 cm².", "Die Grundfläche des Prismas beträgt G = 24 cm²."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Die Flächeninhaltsformel für ein rechtwinkliges Dreieck lautet $G = \\frac{1}{2} \\cdot a \\cdot b = \\frac{1}{2} \\cdot 3 \\cdot 4 = 6\\text{ cm}^2$."
+    "explanation": "Die Flächeninhaltsformel für ein rechtwinkliges Dreieck lautet G = 1/2 · a · b = 1/2 · 3 · 4 = 6 cm²."
   },
   {
     "id": "k8_ma_016",
@@ -296,17 +226,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welche Lösung besitzt das Gleichungssystem $x + y = 10$ und $x - y = 2$?",
-    "answers": [
-      "Die Lösung lautet $x = 8$ und $y = 2$.",
-      "Die Lösung lautet $x = 5$ und $y = 5$.",
-      "Die Lösung lautet $x = 6$ und $y = 4$.",
-      "Die Lösung lautet $x = 7$ und $y = 3$."
-    ],
+    "question": "Welche Lösung besitzt das Gleichungssystem x + y = 10 und x - y = 2?",
+    "answers": ["Die Lösung lautet x = 8 und y = 2.", "Die Lösung lautet x = 5 und y = 5.", "Die Lösung lautet x = 6 und y = 4.", "Die Lösung lautet x = 7 und y = 3."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Die Addition beider Gleichungen liefert $2x = 12$, also $x = 6$. Einsetzen in $6 + y = 10$ ergibt $y = 4$."
+    "explanation": "Die Addition beider Gleichungen liefert 2x = 12, also x = 6. Einsetzen in 6 + y = 10 ergibt y = 4."
   },
   {
     "id": "k8_ma_018",
@@ -314,17 +239,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Was bedeutet es für den Graphen einer linearen Funktion $y = mx + b$, wenn der Steigungswert $m < 0$ ist?",
-    "answers": [
-      "Der Graph steigt von links unten nach rechts oben.",
-      "Der Graph fällt von links oben nach rechts unten.",
-      "Der Graph verläuft waagerecht parallel zur x-Achse.",
-      "Der Graph verläuft senkrecht parallel zur y-Achse."
-    ],
+    "question": "Was bedeutet es für den Graphen einer linearen Funktion y = mx + b, wenn der Steigungswert m < 0 ist?",
+    "answers": ["Der Graph steigt von links unten nach rechts oben.", "Der Graph fällt von links oben nach rechts unten.", "Der Graph verläuft waagerecht parallel zur x-Achse.", "Der Graph verläuft senkrecht parallel zur y-Achse."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ein negativer Steigungswert ($m < 0$) bedeutet, dass die y-Werte mit wachsenden x-Werten kleiner werden; der Graph fällt."
+    "explanation": "Ein negativer Steigungswert (m < 0) bedeutet, dass die y-Werte mit wachsenden x-Werten kleiner werden; der Graph fällt."
   },
   {
     "id": "k8_ma_019",
@@ -332,17 +252,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Ein Zylinder hat eine Grundfläche von $G = 25\\text{ cm}^2$ und eine Höhe von $h = 10\\text{ cm}$. Wie groß ist sein Volumen $V$?",
-    "answers": [
-      "Das Volumen des Zylinders beträgt $V = 500\\text{ cm}^3$.",
-      "Das Volumen des Zylinders beträgt $V = 250\\text{ cm}^3$.",
-      "Das Volumen des Zylinders beträgt $V = 35\\text{ cm}^3$.",
-      "Das Volumen des Zylinders beträgt $V = 125\\text{ cm}^3$."
-    ],
+    "question": "Ein Zylinder hat eine Grundfläche von G = 25 cm² und eine Höhe von h = 10 cm. Wie groß ist sein Volumen V?",
+    "answers": ["Das Volumen des Zylinders beträgt V = 500 cm³.", "Das Volumen des Zylinders beträgt V = 250 cm³.", "Das Volumen des Zylinders beträgt V = 35 cm³.", "Das Volumen des Zylinders beträgt V = 125 cm³."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Für das Zylindervolumen gilt $V = G \\cdot h$. Somit rechnet man $25\\text{ cm}^2 \\cdot 10\\text{ cm} = 250\\text{ cm}^3$."
+    "explanation": "Für das Zylindervolumen gilt V = G · h. Somit rechnet man 25 cm² · 10 cm = 250 cm³."
   },
   {
     "id": "k8_ma_020",
@@ -350,13 +265,8 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie löst man die Ungleichung $-2x < 6$ nach der Variable $x$ auf?",
-    "answers": [
-      "Man dividiert durch $2$ und behält das Relationszeichen bei zu $x < 3$.",
-      "Man dividiert durch $-2$ und behält das Relationszeichen bei zu $x < -3$.",
-      "Man subtrahiert $-2$ und dreht das Relationszeichen um zu $x > 8$.",
-      "Man dividiert durch $-2$ und dreht das Relationszeichen um zu $x > -3$."
-    ],
+    "question": "Wie löst man die Ungleichung -2x < 6 nach der Variable x auf?",
+    "answers": ["Man dividiert durch 2 und behält das Relationszeichen bei zu x < 3.", "Man dividiert durch -2 und behält das Relationszeichen bei zu x < -3.", "Man subtrahiert -2 und dreht das Relationszeichen um zu x > 8.", "Man dividiert durch -2 und dreht das Relationszeichen um zu x > -3."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
@@ -387,16 +297,11 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "Welches Lösungsverfahren beruht darauf, zwei nach derselben Variable aufgelöste Gleichungen gleichzusetzen?",
-    "answers": [
-      "Dieses Verfahren wird als Gleichsetzungsverfahren bezeichnet.",
-      "Dieses Verfahren wird als Additionsverfahren bezeichnet.",
-      "Dieses Verfahren wird üblicherweise als Eliminationsverfahren bezeichnet.",
-      "Dieses Verfahren wird als Einsetzungsverfahren bezeichnet."
-    ],
+    "answers": ["Dieses Verfahren wird als Gleichsetzungsverfahren bezeichnet.", "Dieses Verfahren wird als Additionsverfahren bezeichnet.", "Dieses Verfahren wird üblicherweise als Eliminationsverfahren bezeichnet.", "Dieses Verfahren wird als Einsetzungsverfahren bezeichnet."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Liegen zwei Gleichungen der Form $y = ...$ vor, setzt man die beiden rechenrechten Seiten einfach gleich. Das ist das Gleichsetzungsverfahren."
+    "explanation": "Liegen zwei Gleichungen der Form y = ... vor, setzt man die beiden rechenrechten Seiten einfach gleich. Das ist das Gleichsetzungsverfahren."
   },
   {
     "id": "k8_ma_023",
@@ -404,17 +309,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Aus welchen Komponenten setzt sich die Gesamtoberfläche $O$ eines geraden Prismas zusammen?",
-    "answers": [
-      "Sie besteht ausschließlich aus den seitlichen Rechtecksflächen des Mantels.",
-      "Sie besteht aus zwei kongruenten Grundflächen und der Mantelfläche.",
-      "Sie besteht aus einer Grundfläche, einer Deckfläche und zwei Mantelflächen.",
-      "Sie besteht aus vier kongruenten Dreiecken und einer quadratischen Basis."
-    ],
+    "question": "Aus welchen Komponenten setzt sich die Gesamtoberfläche O eines geraden Prismas zusammen?",
+    "answers": ["Sie besteht ausschließlich aus den seitlichen Rechtecksflächen des Mantels.", "Sie besteht aus zwei kongruenten Grundflächen und der Mantelfläche.", "Sie besteht aus einer Grundfläche, einer Deckfläche und zwei Mantelflächen.", "Sie besteht aus vier kongruenten Dreiecken und einer quadratischen Basis."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Oberfläche eines Prismas setzt sich zusammen aus Grundfläche $G$, deckungsgleicher Deckfläche ($D = G$) und dem Mantel $M$, also $O = 2G + M$."
+    "explanation": "Die Oberfläche eines Prismas setzt sich zusammen aus Grundfläche G, deckungsgleicher Deckfläche (D = G) und dem Mantel M, also O = 2G + M."
   },
   {
     "id": "k8_ma_024",
@@ -422,17 +322,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Punkt liegt auf dem Graphen der linearen Funktion $f(x) = 3x - 2$?",
-    "answers": [
-      "Der Punkt $P(2 | 2)$ liegt auf dem Graphen der Funktion.",
-      "Der Punkt $P(2 | 8)$ liegt auf dem Graphen der Funktion.",
-      "Der Punkt $P(2 | 6)$ liegt auf dem Graphen der Funktion.",
-      "Der Punkt $P(2 | 4)$ liegt auf dem Graphen der Funktion."
-    ],
+    "question": "Welcher Punkt liegt auf dem Graphen der linearen Funktion f(x) = 3x - 2?",
+    "answers": ["Der Punkt P(2 | 2) liegt auf dem Graphen der Funktion.", "Der Punkt P(2 | 8) liegt auf dem Graphen der Funktion.", "Der Punkt P(2 | 6) liegt auf dem Graphen der Funktion.", "Der Punkt P(2 | 4) liegt auf dem Graphen der Funktion."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Setzt man $x = 2$ in die Gleichung ein, erhält man $f(2) = 3 \\cdot 2 - 2 = 6 - 2 = 4$. Der Punkt lautet folglich $P(2 | 4)$."
+    "explanation": "Setzt man x = 2 in die Gleichung ein, erhält man f(2) = 3 · 2 - 2 = 6 - 2 = 4. Der Punkt lautet folglich P(2 | 4)."
   },
   {
     "id": "k8_ma_025",
@@ -440,17 +335,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet das Ergebnis der binomischen Formel für den Ausdruck $(x + 4)^2$?",
-    "answers": [
-      "Das ausmultiplizierte Ergebnis lautet $x^2 + 16x + 16$.",
-      "Das ausmultiplizierte Ergebnis lautet $x^2 + 8x + 8$.",
-      "Das ausmultiplizierte Ergebnis lautet $x^2 + 4x + 16$.",
-      "Das ausmultiplizierte Ergebnis lautet $x^2 + 8x + 16$."
-    ],
+    "question": "Wie lautet das Ergebnis der binomischen Formel für den Ausdruck (x + 4)²?",
+    "answers": ["Das ausmultiplizierte Ergebnis lautet x² + 16x + 16.", "Das ausmultiplizierte Ergebnis lautet x² + 8x + 8.", "Das ausmultiplizierte Ergebnis lautet x² + 4x + 16.", "Das ausmultiplizierte Ergebnis lautet x² + 8x + 16."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Nach der 1. Binomischen Formel $(a+b)^2 = a^2 + 2ab + b^2$ ergibt sich hier $x^2 + 2 \\cdot x \\cdot 4 + 4^2 = x^2 + 8x + 16$."
+    "explanation": "Nach der 1. Binomischen Formel (a+b)² = a² + 2ab + b² ergibt sich hier x² + 2 · x · 4 + 4² = x² + 8x + 16."
   },
 
   {
@@ -459,17 +349,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet die 2. Binomische Formel für den Ausdruck $(a - b)^2$?",
-    "answers": [
-      "Der ausmultiplizierte Term lautet $a^2 + 2ab + b^2$.",
-      "Der ausmultiplizierte Term lautet $a^2 - b^2$.",
-      "Der ausmultiplizierte Term lautet $a^2 - 2ab - b^2$.",
-      "Der ausmultiplizierte Term lautet $a^2 - 2ab + b^2$."
-    ],
+    "question": "Wie lautet die 2. Binomische Formel für den Ausdruck (a - b)²?",
+    "answers": ["Der ausmultiplizierte Term lautet a² + 2ab + b².", "Der ausmultiplizierte Term lautet a² - b².", "Der ausmultiplizierte Term lautet a² - 2ab - b².", "Der ausmultiplizierte Term lautet a² - 2ab + b²."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die 2. Binomische Formel lautet $(a - b)^2 = a^2 - 2ab + b^2$."
+    "explanation": "Die 2. Binomische Formel lautet (a - b)² = a² - 2ab + b²."
   },
   {
     "id": "k8_ma_027",
@@ -477,17 +362,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welches Ergebnis liefert die 3. Binomische Formel $(x + 5)(x - 5)$?",
-    "answers": [
-      "Das Ergebnis der Berechnung lautet $x^2 - 5x$.",
-      "Das Ergebnis der Berechnung lautet $x^2 + 25$.",
-      "Das Ergebnis der Berechnung lautet $x^2 - 10$.",
-      "Das Ergebnis der Berechnung lautet $x^2 - 25$."
-    ],
+    "question": "Welches Ergebnis liefert die 3. Binomische Formel (x + 5)(x - 5)?",
+    "answers": ["Das Ergebnis der Berechnung lautet x² - 5x.", "Das Ergebnis der Berechnung lautet x² + 25.", "Das Ergebnis der Berechnung lautet x² - 10.", "Das Ergebnis der Berechnung lautet x² - 25."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Nach der 3. Binomischen Formel $(a+b)(a-b) = a^2 - b^2$ ergibt sich $x^2 - 5^2 = x^2 - 25$."
+    "explanation": "Nach der 3. Binomischen Formel (a+b)(a-b) = a² - b² ergibt sich x² - 5² = x² - 25."
   },
   {
     "id": "k8_ma_028",
@@ -495,17 +375,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Wert für $x$ löst das lineare Gleichungssystem $y = 2x$ und $y = x + 4$?",
-    "answers": [
-      "Der gesuchte Wert beträgt $x = 6$.",
-      "Der gesuchte Wert beträgt $x = 2$.",
-      "Der gesuchte Wert beträgt $x = 4$.",
-      "Der gesuchte Wert beträgt $x = 8$."
-    ],
+    "question": "Welcher Wert für x löst das lineare Gleichungssystem y = 2x und y = x + 4?",
+    "answers": ["Der gesuchte Wert beträgt x = 6.", "Der gesuchte Wert beträgt x = 2.", "Der gesuchte Wert beträgt x = 4.", "Der gesuchte Wert beträgt x = 8."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Gleichsetzen der beiden Terme ergibt $2x = x + 4$. Subtrahiert man $x$, folgt direkt $x = 4$."
+    "explanation": "Gleichsetzen der beiden Terme ergibt 2x = x + 4. Subtrahiert man x, folgt direkt x = 4."
   },
   {
     "id": "k8_ma_029",
@@ -513,17 +388,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie berechnet man das Volumen $V$ eines Kreiszylinders mit Radius $r$ und Höhe $h$?",
-    "answers": [
-      "Das Volumen berechnet sich über $V = 2 \\cdot \\pi \\cdot r \\cdot h$.",
-      "Das Volumen berechnet sich über $V = \\pi \\cdot r^2 \\cdot h$.",
-      "Das Volumen berechnet sich über $V = \\frac{1}{3} \\cdot \\pi \\cdot r^2 \\cdot h$.",
-      "Das Volumen berechnet sich über $V = \\pi \\cdot r \\cdot h^2$."
-    ],
+    "question": "Wie berechnet man das Volumen V eines Kreiszylinders mit Radius r und Höhe h?",
+    "answers": ["Das Volumen berechnet sich über V = 2 · π · r · h.", "Das Volumen berechnet sich über V = π · r² · h.", "Das Volumen berechnet sich über V = 1/3 · π · r² · h.", "Das Volumen berechnet sich über V = π · r · h²."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Das Zylindervolumen ergibt sich aus Grundfläche mal Höhe: $V = G \\cdot h = \\pi r^2 \\cdot h$."
+    "explanation": "Das Zylindervolumen ergibt sich aus Grundfläche mal Höhe: V = G · h = π r² · h."
   },
   {
     "id": "k8_ma_030",
@@ -549,17 +419,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie verändert sich der Graph der linearen Funktion $y = 3x + b$, wenn der Parameter $b$ vergrößert wird?",
-    "answers": [
-      "Der Graph wird steiler in Richtung y-Achse.",
-      "Der Graph wird parallel nach oben verschoben.",
-      "Der Graph wird parallel nach unten verschoben.",
-      "Der Graph wird flacher in Richtung x-Achse."
-    ],
+    "question": "Wie verändert sich der Graph der linearen Funktion y = 3x + b, wenn der Parameter b vergrößert wird?",
+    "answers": ["Der Graph wird steiler in Richtung y-Achse.", "Der Graph wird parallel nach oben verschoben.", "Der Graph wird parallel nach unten verschoben.", "Der Graph wird flacher in Richtung x-Achse."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der Parameter $b$ steht für den y-Achsenabschnitt. Eine Vergrößerung von $b$ verschiebt die Gerade parallel nach oben."
+    "explanation": "Der Parameter b steht für den y-Achsenabschnitt. Eine Vergrößerung von b verschiebt die Gerade parallel nach oben."
   },
   {
     "id": "k8_ma_032",
@@ -567,17 +432,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Term entsteht durch das Ausklammern von $4x$ aus $12x^2 - 8x$?",
-    "answers": [
-      "Der umgeformte Term lautet $4x(3x - 4)$.",
-      "Der umgeformte Term lautet $4x(3x^2 - 2)$.",
-      "Der umgeformte Term lautet $4x(4x - 2)$.",
-      "Der umgeformte Term lautet $4x(3x - 2)$."
-    ],
+    "question": "Welcher Term entsteht durch das Ausklammern von 4x aus 12x² - 8x?",
+    "answers": ["Der umgeformte Term lautet 4x(3x - 4).", "Der umgeformte Term lautet 4x(3x² - 2).", "Der umgeformte Term lautet 4x(4x - 2).", "Der umgeformte Term lautet 4x(3x - 2)."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Teilt man beide Summanden durch $4x$, erhält man $12x^2 / (4x) = 3x$ und $-8x / (4x) = -2$, also $4x(3x - 2)$."
+    "explanation": "Teilt man beide Summanden durch 4x, erhält man 12x² / (4x) = 3x und -8x / (4x) = -2, also 4x(3x - 2)."
   },
   {
     "id": "k8_ma_033",
@@ -585,17 +445,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet die Steigung $m$ einer waagerechten Geraden im Koordinatensystem?",
-    "answers": [
-      "Die Steigung der Geraden beträgt $m = 1$.",
-      "Die Steigung der Geraden beträgt $m = 0$.",
-      "Die Steigung der Geraden beträgt $m = -1$.",
-      "Die Steigung der Geraden ist nicht definiert."
-    ],
+    "question": "Wie lautet die Steigung m einer waagerechten Geraden im Koordinatensystem?",
+    "answers": ["Die Steigung der Geraden beträgt m = 1.", "Die Steigung der Geraden beträgt m = 0.", "Die Steigung der Geraden beträgt m = -1.", "Die Steigung der Geraden ist nicht definiert."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Eine waagerechte Gerade weist keine Änderung des y-Wertes auf ($\Delta y = 0$), womit die Steigung $m = 0$ beträgt."
+    "explanation": "Eine waagerechte Gerade weist keine Änderung des y-Wertes auf (Δy = 0), womit die Steigung m = 0 beträgt."
   },
   {
     "id": "k8_ma_034",
@@ -603,17 +458,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Ein Zylinder hat den Durchmesser $d = 10\\text{ cm}$. Wie groß ist sein Radius $r$?",
-    "answers": [
-      "Der Radius des Zylinders beträgt $r = 5\\text{ cm}$.",
-      "Der Radius des Zylinders beträgt $r = 20\\text{ cm}$.",
-      "Der Radius des Zylinders beträgt $r = 2{,}5\\text{ cm}$.",
-      "Der Radius des Zylinders beträgt $r = 10\\text{ cm}$."
-    ],
+    "question": "Ein Zylinder hat den Durchmesser d = 10 cm. Wie groß ist sein Radius r?",
+    "answers": ["Der Radius des Zylinders beträgt r = 5 cm.", "Der Radius des Zylinders beträgt r = 20 cm.", "Der Radius des Zylinders beträgt r = 2,5 cm.", "Der Radius des Zylinders beträgt r = 10 cm."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der Radius ist genau die Hälfte des Durchmessers: $r = \\frac{d}{2} = \\frac{10}{2} = 5\\text{ cm}$."
+    "explanation": "Der Radius ist genau die Hälfte des Durchmessers: r = d/2 = 10/2 = 5 cm."
   },
   {
     "id": "k8_ma_035",
@@ -639,17 +489,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie löst man das lineare Gleichungssystem $x + 2y = 8$ und $x = 2$?",
-    "answers": [
-      "Durch Einsetzen von $x = 2$ erhält man $y = 6$.",
-      "Durch Einsetzen von $x = 2$ erhält man $y = 4$.",
-      "Durch Einsetzen von $x = 2$ erhält man $y = 3$.",
-      "Durch Einsetzen von $x = 2$ erhält man $y = 2$."
-    ],
+    "question": "Wie löst man das lineare Gleichungssystem x + 2y = 8 und x = 2?",
+    "answers": ["Durch Einsetzen von x = 2 erhält man y = 6.", "Durch Einsetzen von x = 2 erhält man y = 4.", "Durch Einsetzen von x = 2 erhält man y = 3.", "Durch Einsetzen von x = 2 erhält man y = 2."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Einsetzen von $x=2$ in die erste Gleichung ergibt $2 + 2y = 8 \\Rightarrow 2y = 6 \\Rightarrow y = 3$."
+    "explanation": "Einsetzen von x=2 in die erste Gleichung ergibt 2 + 2y = 8 ⇒ 2y = 6 ⇒ y = 3."
   },
   {
     "id": "k8_ma_037",
@@ -657,17 +502,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Wert entspricht der Potenz $2^4$?",
-    "answers": [
-      "Der Berechnungswert der Potenz lautet 32.",
-      "Der Berechnungswert der Potenz lautet 12.",
-      "Der Berechnungswert der Potenz lautet 16.",
-      "Der Berechnungswert der Potenz lautet 8."
-    ],
+    "question": "Welcher Wert entspricht der Potenz 2⁴?",
+    "answers": ["Der Berechnungswert der Potenz lautet 32.", "Der Berechnungswert der Potenz lautet 12.", "Der Berechnungswert der Potenz lautet 16.", "Der Berechnungswert der Potenz lautet 8."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Potenz berechnet sich als $2^4 = 2 \\cdot 2 \\cdot 2 \\cdot 2 = 16$."
+    "explanation": "Die Potenz berechnet sich als 2⁴ = 2 · 2 · 2 · 2 = 16."
   },
   {
     "id": "k8_ma_038",
@@ -675,17 +515,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie berechnet man den Oberflächeninhalt $O$ eines Prismas mit Grundfläche $G$ und Mantel $M$?",
-    "answers": [
-      "Die Formel zur Berechnung lautet $O = 2G + M$.",
-      "Die Formel zur Berechnung lautet $O = G + M$.",
-      "Die Formel zur Berechnung lautet $O = 2G \\cdot M$.",
-      "Die Formel zur Berechnung lautet $O = G + 2M$."
-    ],
+    "question": "Wie berechnet man den Oberflächeninhalt O eines Prismas mit Grundfläche G und Mantel M?",
+    "answers": ["Die Formel zur Berechnung lautet O = 2G + M.", "Die Formel zur Berechnung lautet O = G + M.", "Die Formel zur Berechnung lautet O = 2G · M.", "Die Formel zur Berechnung lautet O = G + 2M."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ein Prisma besitzt Grund- und Deckfläche (beide flächengleich $G$) plus die Mantelfläche $M$, also $O = 2G + M$."
+    "explanation": "Ein Prisma besitzt Grund- und Deckfläche (beide flächengleich G) plus die Mantelfläche M, also O = 2G + M."
   },
   {
     "id": "k8_ma_039",
@@ -693,13 +528,8 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Was passiert mit dem Zeichen einer Ungleichung, wenn man beide Seiten mit $-3$ multipliziert?",
-    "answers": [
-      "Das Vergleichszeichen wird durch ein Gleichheitszeichen ersetzt.",
-      "Das Vergleichszeichen bleibt unverändert bestehen.",
-      "Das Vergleichszeichen entfällt in der Rechnung vollständig.",
-      "Das Vergleichszeichen kehrt seine Richtung um."
-    ],
+    "question": "Was passiert mit dem Zeichen einer Ungleichung, wenn man beide Seiten mit -3 multipliziert?",
+    "answers": ["Das Vergleichszeichen wird durch ein Gleichheitszeichen ersetzt.", "Das Vergleichszeichen bleibt unverändert bestehen.", "Das Vergleichszeichen entfällt in der Rechnung vollständig.", "Das Vergleichszeichen kehrt seine Richtung um."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
@@ -729,17 +559,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welche Steigung $m$ besitzt die Gerade $y = \frac{1}{2}x - 3$?",
-    "answers": [
-      "Die Steigung der Geraden lautet $m = -0{,}5$.",
-      "Die Steigung der Geraden lautet $m = -3$.",
-      "Die Steigung der Geraden lautet $m = 2$.",
-      "Die Steigung der Geraden lautet $m = 0{,}5$."
-    ],
+    "question": "Welche Steigung m besitzt die Gerade y = 1/2x - 3?",
+    "answers": ["Die Steigung der Geraden lautet m = -0,5.", "Die Steigung der Geraden lautet m = -3.", "Die Steigung der Geraden lautet m = 2.", "Die Steigung der Geraden lautet m = 0,5."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der Koeffizient vor dem $x$ ist $\\frac{1}{2} = 0{,}5$, was der Steigung $m$ entspricht."
+    "explanation": "Der Koeffizient vor dem x ist 1/2 = 0,5, was der Steigung m entspricht."
   },
   {
     "id": "k8_ma_042",
@@ -748,16 +573,11 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "Wie lautet die allgemeine Scheitelpunktform einer verschobenen Normalparabel?",
-    "answers": [
-      "Die Formel lautet $y = (x - d)^2 + e$.",
-      "Die Formel lautet $y = ax + b$.",
-      "Die Formel lautet $y = m(x - e) + d$.",
-      "Die Formel lautet hier $y = x^2 + px + q$."
-    ],
+    "answers": ["Die Formel lautet y = (x - d)² + e.", "Die Formel lautet y = ax + b.", "Die Formel lautet y = m(x - e) + d.", "Die Formel lautet hier y = x² + px + q."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Die Scheitelpunktform lautet $y = (x - d)^2 + e$, wobei $S(d|e)$ der Scheitelpunkt ist."
+    "explanation": "Die Scheitelpunktform lautet y = (x - d)² + e, wobei S(d|e) der Scheitelpunkt ist."
   },
   {
     "id": "k8_ma_043",
@@ -765,17 +585,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Punkt $P(x|y)$ ist die Nullstelle der Funktion $y = 2x - 4$?",
-    "answers": [
-      "Die Nullstelle liegt am Punkt $N(2 | 0)$.",
-      "Die Nullstelle liegt am Punkt $N(-2 | 0)$.",
-      "Die Nullstelle liegt am Punkt $N(4 | 0)$.",
-      "Die Nullstelle liegt am Punkt $N(0 | -4)$."
-    ],
+    "question": "Welcher Punkt P(x|y) ist die Nullstelle der Funktion y = 2x - 4?",
+    "answers": ["Die Nullstelle liegt am Punkt N(2 | 0).", "Die Nullstelle liegt am Punkt N(-2 | 0).", "Die Nullstelle liegt am Punkt N(4 | 0).", "Die Nullstelle liegt am Punkt N(0 | -4)."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Setzt man $y = 0$, folgt $0 = 2x - 4 \\Rightarrow 2x = 4 \\Rightarrow x = 2$. Der Punkt lautet $N(2 | 0)$."
+    "explanation": "Setzt man y = 0, folgt 0 = 2x - 4 ⇒ 2x = 4 ⇒ x = 2. Der Punkt lautet N(2 | 0)."
   },
   {
     "id": "k8_ma_044",
@@ -783,17 +598,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet die Vereinfachung des Potenzausdrucks $a^3 \\cdot a^4$?",
-    "answers": [
-      "Der vereinfachte Potenzausdruck lautet $a^1$.",
-      "Der vereinfachte Potenzausdruck lautet $2a^7$.",
-      "Der vereinfachte Potenzausdruck lautet $a^{12}$.",
-      "Der vereinfachte Potenzausdruck lautet $a^7$."
-    ],
+    "question": "Wie lautet die Vereinfachung des Potenzausdrucks a³ · a⁴?",
+    "answers": ["Der vereinfachte Potenzausdruck lautet a¹.", "Der vereinfachte Potenzausdruck lautet 2a⁷.", "Der vereinfachte Potenzausdruck lautet a¹².", "Der vereinfachte Potenzausdruck lautet a⁷."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Bei der Multiplikation von Potenzen mit gleicher Basis werden die Exponenten addiert: $a^3 \\cdot a^4 = a^{3+4} = a^7$."
+    "explanation": "Bei der Multiplikation von Potenzen mit gleicher Basis werden die Exponenten addiert: a³ · a⁴ = a³⁺⁴ = a⁷."
   },
   {
     "id": "k8_ma_045",
@@ -801,17 +611,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welche Gesamthöhe $h$ besitzt ein Zylinder mit Volumen $V = 100\\pi\\text{ cm}^3$ und Grundfläche $G = 10\\pi\\text{ cm}^2$?",
-    "answers": [
-      "Die Höhe des Zylinders beträgt $h = 1\\text{ cm}$.",
-      "Die Höhe des Zylinders beträgt $h = 5\\text{ cm}$.",
-      "Die Höhe des Zylinders beträgt $h = 10\\text{ cm}$.",
-      "Die Höhe des Zylinders beträgt $h = 100\\text{ cm}$."
-    ],
+    "question": "Welche Gesamthöhe h besitzt ein Zylinder mit Volumen V = 100π cm³ und Grundfläche G = 10π cm²?",
+    "answers": ["Die Höhe des Zylinders beträgt h = 1 cm.", "Die Höhe des Zylinders beträgt h = 5 cm.", "Die Höhe des Zylinders beträgt h = 10 cm.", "Die Höhe des Zylinders beträgt h = 100 cm."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Aus $V = G \\cdot h$ folgt $h = \\frac{V}{G} = \\frac{100\\pi}{10\\pi} = 10\\text{ cm}$."
+    "explanation": "Aus V = G · h folgt h = V/G = (100π)/(10π) = 10 cm."
   },
   {
     "id": "k8_ma_046",
@@ -837,17 +642,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Ausdruck entsteht beim Ausmultiplizieren von $(2x + 3)^2$?",
-    "answers": [
-      "Der ausmultiplizierte Term lautet $4x^2 + 12x + 9$.",
-      "Der ausmultiplizierte Term lautet $2x^2 + 12x + 9$.",
-      "Der ausmultiplizierte Term lautet $4x^2 + 6x + 9$.",
-      "Der ausmultiplizierte Term lautet $4x^2 + 9$."
-    ],
+    "question": "Welcher Ausdruck entsteht beim Ausmultiplizieren von (2x + 3)²?",
+    "answers": ["Der ausmultiplizierte Term lautet 4x² + 12x + 9.", "Der ausmultiplizierte Term lautet 2x² + 12x + 9.", "Der ausmultiplizierte Term lautet 4x² + 6x + 9.", "Der ausmultiplizierte Term lautet 4x² + 9."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Nach der 1. Binomischen Formel: $(2x)^2 + 2 \\cdot 2x \\cdot 3 + 3^2 = 4x^2 + 12x + 9$."
+    "explanation": "Nach der 1. Binomischen Formel: (2x)² + 2 · 2x · 3 + 3² = 4x² + 12x + 9."
   },
   {
     "id": "k8_ma_048",
@@ -855,17 +655,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welche Lösung besitzt das Gleichungssystem $2x + y = 7$ und $y = 3$?",
-    "answers": [
-      "Die Lösung lautet $x = 5$ und $y = 3$.",
-      "Die Lösung lautet $x = 2$ und $y = 3$.",
-      "Die Lösung lautet $x = 1$ und $y = 3$.",
-      "Die Lösung lautet $x = 4$ und $y = 3$."
-    ],
+    "question": "Welche Lösung besitzt das Gleichungssystem 2x + y = 7 und y = 3?",
+    "answers": ["Die Lösung lautet x = 5 und y = 3.", "Die Lösung lautet x = 2 und y = 3.", "Die Lösung lautet x = 1 und y = 3.", "Die Lösung lautet x = 4 und y = 3."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Einsetzen von $y=3$: $2x + 3 = 7 \\Rightarrow 2x = 4 \\Rightarrow x = 2$."
+    "explanation": "Einsetzen von y=3: 2x + 3 = 7 ⇒ 2x = 4 ⇒ x = 2."
   },
   {
     "id": "k8_ma_049",
@@ -873,17 +668,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Wert ergibt sich für den Term $\\frac{a^6}{a^2}$ bei $a \\neq 0$?",
-    "answers": [
-      "Der gekürzte Potenzausdruck lautet $a^4$.",
-      "Der gekürzte Potenzausdruck lautet $a^8$.",
-      "Der gekürzte Potenzausdruck lautet $a^3$.",
-      "Der gekürzte Potenzausdruck lautet $a^{12}$."
-    ],
+    "question": "Welcher Wert ergibt sich für den Term a⁶/(a²) bei a ≠ 0?",
+    "answers": ["Der gekürzte Potenzausdruck lautet a⁴.", "Der gekürzte Potenzausdruck lautet a⁸.", "Der gekürzte Potenzausdruck lautet a³.", "Der gekürzte Potenzausdruck lautet a¹²."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Bei der Division von Potenzen gleicher Basis werden die Exponenten subtrahiert: $a^{6-2} = a^4$."
+    "explanation": "Bei der Division von Potenzen gleicher Basis werden die Exponenten subtrahiert: a⁶⁻² = a⁴."
   },
   {
     "id": "k8_ma_050",
@@ -891,17 +681,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie viel Liter Wasser passen in ein Prisma mit dem Volumen $V = 1000\\text{ cm}^3$?",
-    "answers": [
-      "Das Volumen entspricht exakt 1,0 Litern.",
-      "Das Volumen entspricht exakt 0,1 Litern.",
-      "Das Volumen entspricht exakt 10,0 Litern.",
-      "Das Volumen entspricht exakt 100,0 Litern."
-    ],
+    "question": "Wie viel Liter Wasser passen in ein Prisma mit dem Volumen V = 1000 cm³?",
+    "answers": ["Das Volumen entspricht exakt 1,0 Litern.", "Das Volumen entspricht exakt 0,1 Litern.", "Das Volumen entspricht exakt 10,0 Litern.", "Das Volumen entspricht exakt 100,0 Litern."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "$1\\text{ Liter} = 1\\text{ dm}^3 = 1000\\text{ cm}^3$."
+    "explanation": "1 Liter = 1 dm³ = 1000 cm³."
   },
   {
     "id": "k8_ma_051",
@@ -928,16 +713,11 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "Wie verändert sich die Steigung einer Geraden, wenn man sie an der x-Achse spiegelt?",
-    "answers": [
-      "Die Steigung bleibt vollkommen unverändert.",
-      "Die Steigung wird Kehrwert der ursprünglichen Steigung.",
-      "Das Vorzeichen der Steigung dreht sich um.",
-      "Die Steigung verdoppelt ihren ursprünglichen Betrag."
-    ],
+    "answers": ["Die Steigung bleibt vollkommen unverändert.", "Die Steigung wird Kehrwert der ursprünglichen Steigung.", "Das Vorzeichen der Steigung dreht sich um.", "Die Steigung verdoppelt ihren ursprünglichen Betrag."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Bei Spiegelung an der x-Achse wird aus $y = mx + b$ die Funktion $y = -(mx + b) = -mx - b$. Die Steigung $m$ wechselt das Vorzeichen."
+    "explanation": "Bei Spiegelung an der x-Achse wird aus y = mx + b die Funktion y = -(mx + b) = -mx - b. Die Steigung m wechselt das Vorzeichen."
   },
   {
     "id": "k8_ma_053",
@@ -945,17 +725,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welches Ergebnis hat die Potenz $(3^2)^3$?",
-    "answers": [
-      "Das Ergebnis der Potenzrechnung lautet $3^5 = 243$.",
-      "Das Ergebnis der Potenzrechnung lautet $3^6 = 729$.",
-      "Das Ergebnis der Potenzrechnung lautet $3^9 = 19683$.",
-      "Das Ergebnis der Potenzrechnung lautet $3^8 = 6561$."
-    ],
+    "question": "Welches Ergebnis hat die Potenz (3²)³?",
+    "answers": ["Das Ergebnis der Potenzrechnung lautet 3⁵ = 243.", "Das Ergebnis der Potenzrechnung lautet 3⁶ = 729.", "Das Ergebnis der Potenzrechnung lautet 3⁹ = 19683.", "Das Ergebnis der Potenzrechnung lautet 3⁸ = 6561."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Potenzen werden potenziert, indem man die Exponenten multipliziert: $(3^2)^3 = 3^{2 \\cdot 3} = 3^6 = 729$."
+    "explanation": "Potenzen werden potenziert, indem man die Exponenten multipliziert: (3²)³ = 3²·³ = 3⁶ = 729."
   },
   {
     "id": "k8_ma_054",
@@ -963,17 +738,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie berechnet man die Gegenwahrscheinlichkeit $P(\\bar{A})$ eines Ereignisses $A$?",
-    "answers": [
-      "Sie berechnet sich über die Formel $P(\\bar{A}) = 1 - P(A)$.",
-      "Sie berechnet sich über die Formel $P(\\bar{A}) = P(A) - 1$.",
-      "Sie berechnet sich über die Formel $P(\\bar{A}) = 1 + P(A)$.",
-      "Sie berechnet sich über die Formel $P(\\bar{A}) = \\frac{1}{P(A)}$."
-    ],
+    "question": "Wie berechnet man die Gegenwahrscheinlichkeit P(A) eines Ereignisses A?",
+    "answers": ["Sie berechnet sich über die Formel P(A) = 1 - P(A).", "Sie berechnet sich über die Formel P(A) = P(A) - 1.", "Sie berechnet sich über die Formel P(A) = 1 + P(A).", "Sie berechnet sich über die Formel P(A) = 1/P(A)."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ereignis und Gegenereignis ergänzen sich zusammen zu 1 (100 %). Daher gilt $P(\\bar{A}) = 1 - P(A)$."
+    "explanation": "Ereignis und Gegenereignis ergänzen sich zusammen zu 1 (100 %). Daher gilt P(A) = 1 - P(A)."
   },
   {
     "id": "k8_ma_055",
@@ -981,17 +751,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet der Scheitelpunkt der Parabel mit der Funktionsgleichung $y = (x - 3)^2 + 5$?",
-    "answers": [
-      "Der Scheitelpunkt liegt bei $S(3 | -5)$.",
-      "Der Scheitelpunkt liegt bei $S(-3 | 5)$.",
-      "Der Scheitelpunkt liegt bei $S(-3 | -5)$.",
-      "Der Scheitelpunkt liegt bei $S(3 | 5)$."
-    ],
+    "question": "Wie lautet der Scheitelpunkt der Parabel mit der Funktionsgleichung y = (x - 3)² + 5?",
+    "answers": ["Der Scheitelpunkt liegt bei S(3 | -5).", "Der Scheitelpunkt liegt bei S(-3 | 5).", "Der Scheitelpunkt liegt bei S(-3 | -5).", "Der Scheitelpunkt liegt bei S(3 | 5)."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "In $y = (x - d)^2 + e$ liest man den Scheitelpunkt direkt ab: $d = 3$ und $e = 5$, also $S(3 | 5)$."
+    "explanation": "In y = (x - d)² + e liest man den Scheitelpunkt direkt ab: d = 3 und e = 5, also S(3 | 5)."
   },
 
   {
@@ -1000,17 +765,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Wert für $x$ entspricht der Nullstelle der linearen Funktion $y = -3x + 12$?",
-    "answers": [
-      "Der Wert der Nullstelle lautet $x = 4$.",
-      "Der Wert der Nullstelle lautet $x = 3$.",
-      "Der Wert der Nullstelle lautet $x = 12$.",
-      "Der Wert der Nullstelle lautet $x = -4$."
-    ],
+    "question": "Welcher Wert für x entspricht der Nullstelle der linearen Funktion y = -3x + 12?",
+    "answers": ["Der Wert der Nullstelle lautet x = 4.", "Der Wert der Nullstelle lautet x = 3.", "Der Wert der Nullstelle lautet x = 12.", "Der Wert der Nullstelle lautet x = -4."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Setzt man $y = 0$, folgt $0 = -3x + 12 \\Rightarrow 3x = 12 \\Rightarrow x = 4$."
+    "explanation": "Setzt man y = 0, folgt 0 = -3x + 12 ⇒ 3x = 12 ⇒ x = 4."
   },
   {
     "id": "k8_ma_057",
@@ -1036,17 +796,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet die faktorisierte Form des Ausdrucks $x^2 - 16$?",
-    "answers": [
-      "Die faktorisierte Form lautet $(x - 4)(x - 4)$.",
-      "Die faktorisierte Form lautet $(x + 8)(x - 8)$.",
-      "Die faktorisierte Form lautet $(x + 4)(x + 4)$.",
-      "Die faktorisierte Form lautet $(x + 4)(x - 4)$."
-    ],
+    "question": "Wie lautet die faktorisierte Form des Ausdrucks x² - 16?",
+    "answers": ["Die faktorisierte Form lautet (x - 4)(x - 4).", "Die faktorisierte Form lautet (x + 8)(x - 8).", "Die faktorisierte Form lautet (x + 4)(x + 4).", "Die faktorisierte Form lautet (x + 4)(x - 4)."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Nach der 3. Binomischen Formel $a^2 - b^2 = (a+b)(a-b)$ ergibt sich hier $(x+4)(x-4)$."
+    "explanation": "Nach der 3. Binomischen Formel a² - b² = (a+b)(a-b) ergibt sich hier (x+4)(x-4)."
   },
   {
     "id": "k8_ma_059",
@@ -1054,17 +809,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet die mathematische Formel für den Oberflächeninhalt $O$ eines Zylinders?",
-    "answers": [
-      "Die Formel zur Berechnung lautet $O = 2\\pi r + 2\\pi rh$.",
-      "Die Formel zur Berechnung lautet $O = 2\\pi r^2 + 2\\pi rh$.",
-      "Die Formel zur Berechnung lautet $O = 2\\pi r^2 + \\pi rh$.",
-      "Die Formel zur Berechnung lautet insgesamt $O = \\pi r^2 + 2\\pi rh$."
-    ],
+    "question": "Wie lautet die mathematische Formel für den Oberflächeninhalt O eines Zylinders?",
+    "answers": ["Die Formel zur Berechnung lautet O = 2π r + 2π rh.", "Die Formel zur Berechnung lautet O = 2π r² + 2π rh.", "Die Formel zur Berechnung lautet O = 2π r² + π rh.", "Die Formel zur Berechnung lautet insgesamt O = π r² + 2π rh."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Die Oberfläche besteht aus zwei Kreisflächen ($2 \\cdot \\pi r^2$) und der Mantelfläche ($2\\pi r \\cdot h$)."
+    "explanation": "Die Oberfläche besteht aus zwei Kreisflächen (2 · π r²) und der Mantelfläche (2π r · h)."
   },
   {
     "id": "k8_ma_060",
@@ -1090,13 +840,8 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie löst man das Minuszeichen vor einer Klammer beim Term $10 - (3x - 5)$ korrekt auf?",
-    "answers": [
-      "Man behält alle Vorzeichen in der Klammer bei zu $10 - 3x - 5$.",
-      "Man dreht alle Vorzeichen in der Klammer um zu $10 - 3x + 5$.",
-      "Man verwandelt alle Rechenzeichen in ein Plus um zu $10 + 3x + 5$.",
-      "Man multipliziert nur das erste Glied mit Minus zu $10 - 3x - 5$."
-    ],
+    "question": "Wie löst man das Minuszeichen vor einer Klammer beim Term 10 - (3x - 5) korrekt auf?",
+    "answers": ["Man behält alle Vorzeichen in der Klammer bei zu 10 - 3x - 5.", "Man dreht alle Vorzeichen in der Klammer um zu 10 - 3x + 5.", "Man verwandelt alle Rechenzeichen in ein Plus um zu 10 + 3x + 5.", "Man multipliziert nur das erste Glied mit Minus zu 10 - 3x - 5."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
@@ -1108,17 +853,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie überprüft man mathematisch, ob ein Punkt $P(x|y)$ auf dem Graphen einer Funktion liegt?",
-    "answers": [
-      "Man berechnet zunächst den Steigungswinkel der Geraden mit der x-Achse.",
-      "Man setzt die Koordinaten des Punktes in die Funktionsgleichung ein.",
-      "Man verdoppelt den x-Wert und vergleicht ihn mit dem y-Wert.",
-      "Man bestimmt den Schnittpunkt der Funktion mit der y-Achse."
-    ],
+    "question": "Wie überprüft man mathematisch, ob ein Punkt P(x|y) auf dem Graphen einer Funktion liegt?",
+    "answers": ["Man berechnet zunächst den Steigungswinkel der Geraden mit der x-Achse.", "Man setzt die Koordinaten des Punktes in die Funktionsgleichung ein.", "Man verdoppelt den x-Wert und vergleicht ihn mit dem y-Wert.", "Man bestimmt den Schnittpunkt der Funktion mit der y-Achse."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Bei der Punktprobe werden $x$ und $y$ des Punktes eingesetzt. Entsteht eine wahre Aussage, liegt der Punkt auf dem Graphen."
+    "explanation": "Bei der Punktprobe werden x und y des Punktes eingesetzt. Entsteht eine wahre Aussage, liegt der Punkt auf dem Graphen."
   },
   {
     "id": "k8_ma_063",
@@ -1126,17 +866,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Ein Prisma hat eine Dreiecksfläche mit $g = 6\\text{ cm}$ und $h_g = 4\\text{ cm}$. Das Prisma ist $10\\text{ cm}$ hoch. Wie groß ist sein Volumen $V$?",
-    "answers": [
-      "Das Volumen des Prismas beträgt $V = 100\\text{ cm}^3$.",
-      "Das Volumen des Prismas beträgt $V = 120\\text{ cm}^3$.",
-      "Das Volumen des Prismas beträgt $V = 240\\text{ cm}^3$.",
-      "Das Volumen des Prismas beträgt $V = 60\\text{ cm}^3$."
-    ],
+    "question": "Ein Prisma hat eine Dreiecksfläche mit g = 6 cm und hg = 4 cm. Das Prisma ist 10 cm hoch. Wie groß ist sein Volumen V?",
+    "answers": ["Das Volumen des Prismas beträgt V = 100 cm³.", "Das Volumen des Prismas beträgt V = 120 cm³.", "Das Volumen des Prismas beträgt V = 240 cm³.", "Das Volumen des Prismas beträgt V = 60 cm³."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Grundfläche $G = \\frac{1}{2} \\cdot 6 \\cdot 4 = 12\\text{ cm}^2$. Das Volumen lautet $V = G \\cdot h = 12 \\cdot 10 = 120\\text{ cm}^3$."
+    "explanation": "Grundfläche G = 1/2 · 6 · 4 = 12 cm². Das Volumen lautet V = G · h = 12 · 10 = 120 cm³."
   },
   {
     "id": "k8_ma_064",
@@ -1180,17 +915,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welchen Wert besitzt eine beliebige reelle Zahl $a \\neq 0$ hoch Null ($a^0$)?",
-    "answers": [
-      "Der Funktionswert der Potenz ist unendlich groß definiert.",
-      "Der Funktionswert der Potenz ist identisch mit der Basis $a$.",
-      "Der Funktionswert der Potenz beträgt immer genau 1.",
-      "Der Funktionswert der Potenz beträgt immer genau 0."
-    ],
+    "question": "Welchen Wert besitzt eine beliebige reelle Zahl a ≠ 0 hoch Null (a⁰)?",
+    "answers": ["Der Funktionswert der Potenz ist unendlich groß definiert.", "Der Funktionswert der Potenz ist identisch mit der Basis a.", "Der Funktionswert der Potenz beträgt immer genau 1.", "Der Funktionswert der Potenz beträgt immer genau 0."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Per Definition der Potenzgesetze gilt für jede Basis $a \\neq 0$ stets $a^0 = 1$."
+    "explanation": "Per Definition der Potenzgesetze gilt für jede Basis a ≠ 0 stets a⁰ = 1."
   },
   {
     "id": "k8_ma_067",
@@ -1198,17 +928,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet die Lösung $x$ der Gleichung $2(x + 4) = 18$?",
-    "answers": [
-      "Die Lösung der Gleichung lautet $x = 9$.",
-      "Die Lösung der Gleichung lautet $x = 7$.",
-      "Die Lösung der Gleichung lautet $x = 3$.",
-      "Die Lösung der Gleichung lautet $x = 5$."
-    ],
+    "question": "Wie lautet die Lösung x der Gleichung 2(x + 4) = 18?",
+    "answers": ["Die Lösung der Gleichung lautet x = 9.", "Die Lösung der Gleichung lautet x = 7.", "Die Lösung der Gleichung lautet x = 3.", "Die Lösung der Gleichung lautet x = 5."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ausmultiplizieren: $2x + 8 = 18 \\Rightarrow 2x = 10 \\Rightarrow x = 5$."
+    "explanation": "Ausmultiplizieren: 2x + 8 = 18 ⇒ 2x = 10 ⇒ x = 5."
   },
   {
     "id": "k8_ma_068",
@@ -1216,17 +941,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet der y-Achsenabschnitt $b$ der linearen Funktion $y = 5x - 3$?",
-    "answers": [
-      "Der y-Achsenabschnitt lautet $b = 5$.",
-      "Der y-Achsenabschnitt lautet $b = -3$.",
-      "Der y-Achsenabschnitt lautet $b = 0$.",
-      "Der y-Achsenabschnitt lautet hier $b = 3$."
-    ],
+    "question": "Wie lautet der y-Achsenabschnitt b der linearen Funktion y = 5x - 3?",
+    "answers": ["Der y-Achsenabschnitt lautet b = 5.", "Der y-Achsenabschnitt lautet b = -3.", "Der y-Achsenabschnitt lautet b = 0.", "Der y-Achsenabschnitt lautet hier b = 3."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Aus der Form $y = mx + b$ wird das Absolutglied $b = -3$ direkt als y-Achsenabschnitt abgelesen."
+    "explanation": "Aus der Form y = mx + b wird das Absolutglied b = -3 direkt als y-Achsenabschnitt abgelesen."
   },
   {
     "id": "k8_ma_069",
@@ -1253,16 +973,11 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "Welche mathematische Bedingung führt bei einem LGS zu unendlich vielen Lösungen?",
-    "answers": [
-      "Beide Gleichungen lassen sich in dieselbe Identität umformen.",
-      "Die Geraden schneiden sich genau im Koordinatenursprung $O(0|0)$.",
-      "Die beiden Gleichungen widersprechen sich nach der Umformung.",
-      "Eine der beiden Variablen nimmt in der Rechnung den Wert Null an."
-    ],
+    "answers": ["Beide Gleichungen lassen sich in dieselbe Identität umformen.", "Die Geraden schneiden sich genau im Koordinatenursprung O(0|0).", "Die beiden Gleichungen widersprechen sich nach der Umformung.", "Eine der beiden Variablen nimmt in der Rechnung den Wert Null an."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Führt das Gleichungssystem auf eine allgemeingültige Aussage wie $0 = 0$, sind die Gleichungen identisch und es gibt unendlich viele Lösungen."
+    "explanation": "Führt das Gleichungssystem auf eine allgemeingültige Aussage wie 0 = 0, sind die Gleichungen identisch und es gibt unendlich viele Lösungen."
   },
   {
     "id": "k8_ma_071",
@@ -1271,16 +986,11 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "Eine faire Münze wird dreimal geworfen. Wie viele Pfade besitzt das zugehörige Baumdiagramm insgesamt?",
-    "answers": [
-      "Das Baumdiagramm besitzt insgesamt 4 verschiedene Pfade.",
-      "Das Baumdiagramm besitzt insgesamt 8 verschiedene Pfade.",
-      "Das Baumdiagramm besitzt insgesamt 9 verschiedene Pfade.",
-      "Das Baumdiagramm besitzt insgesamt 6 verschiedene Pfade."
-    ],
+    "answers": ["Das Baumdiagramm besitzt insgesamt 4 verschiedene Pfade.", "Das Baumdiagramm besitzt insgesamt 8 verschiedene Pfade.", "Das Baumdiagramm besitzt insgesamt 9 verschiedene Pfade.", "Das Baumdiagramm besitzt insgesamt 6 verschiedene Pfade."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Mit 2 Ausgängen je Stufe ergeben sich nach 3 Stufen insgesamt $2^3 = 2 \\cdot 2 \\cdot 2 = 8$ mögliche Pfade."
+    "explanation": "Mit 2 Ausgängen je Stufe ergeben sich nach 3 Stufen insgesamt 2³ = 2 · 2 · 2 = 8 mögliche Pfade."
   },
   {
     "id": "k8_ma_072",
@@ -1288,17 +998,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Term entsteht beim Ausmultiplizieren von $(x + 2)(x + 3)$?",
-    "answers": [
-      "Der ausmultiplizierte Term lautet $x^2 + 5x + 5$.",
-      "Der ausmultiplizierte Term lautet $x^2 + 5x + 6$.",
-      "Der ausmultiplizierte Term lautet $x^2 + 6x + 6$.",
-      "Der ausmultiplizierte Term lautet $x^2 + 6x + 5$."
-    ],
+    "question": "Welcher Term entsteht beim Ausmultiplizieren von (x + 2)(x + 3)?",
+    "answers": ["Der ausmultiplizierte Term lautet x² + 5x + 5.", "Der ausmultiplizierte Term lautet x² + 5x + 6.", "Der ausmultiplizierte Term lautet x² + 6x + 6.", "Der ausmultiplizierte Term lautet x² + 6x + 5."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "$(x+2)(x+3) = x \\cdot x + x \\cdot 3 + 2 \\cdot x + 2 \\cdot 3 = x^2 + 3x + 2x + 6 = x^2 + 5x + 6$."
+    "explanation": "(x+2)(x+3) = x · x + x · 3 + 2 · x + 2 · 3 = x² + 3x + 2x + 6 = x² + 5x + 6."
   },
   {
     "id": "k8_ma_073",
@@ -1306,17 +1011,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welche besondere Eigenschaft besitzt der Graph einer proportionalen Funktion $y = mx$?",
-    "answers": [
-      "Er verläuft immer direkt durch den Koordinatenursprung $(0|0)$.",
-      "Er besitzt immer eine negative Steigung von genau $m = -1$.",
-      "Er schneidet die y-Achse immer oberhalb des Nullpunkts.",
-      "Er verläuft dabei immer vollkommen waagerecht parallel zur x-Achse."
-    ],
+    "question": "Welche besondere Eigenschaft besitzt der Graph einer proportionalen Funktion y = mx?",
+    "answers": ["Er verläuft immer direkt durch den Koordinatenursprung (0|0).", "Er besitzt immer eine negative Steigung von genau m = -1.", "Er schneidet die y-Achse immer oberhalb des Nullpunkts.", "Er verläuft dabei immer vollkommen waagerecht parallel zur x-Achse."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Da der y-Achsenabschnitt $b = 0$ ist, führen proportionale Zuordnungen immer als Ursprungsgerade durch den Punkt $(0|0)$."
+    "explanation": "Da der y-Achsenabschnitt b = 0 ist, führen proportionale Zuordnungen immer als Ursprungsgerade durch den Punkt (0|0)."
   },
   {
     "id": "k8_ma_074",
@@ -1325,16 +1025,11 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "Wie verändert sich das Volumen eines Zylinders, wenn sein Radius bei gleichbleibender Höhe verdoppelt wird?",
-    "answers": [
-      "Das Volumen des Zylinders verachtfacht sich dadurch.",
-      "Das Volumen des Zylinders verdoppelt sich dadurch.",
-      "Das Volumen des Zylinders bleibt vollkommen unverändert.",
-      "Das Volumen des Zylinders vervierfacht sich dadurch."
-    ],
+    "answers": ["Das Volumen des Zylinders verachtfacht sich dadurch.", "Das Volumen des Zylinders verdoppelt sich dadurch.", "Das Volumen des Zylinders bleibt vollkommen unverändert.", "Das Volumen des Zylinders vervierfacht sich dadurch."],
     "correct": 3,
     "difficulty": "schwer",
     "points": 20,
-    "explanation": "Da der Radius quadriert in die Volumenformel eingeht ($V = \\pi r^2 h$), führt ein doppelter Radius $(2r)^2 = 4r^2$ zum vierfachen Volumen."
+    "explanation": "Da der Radius quadriert in die Volumenformel eingeht (V = π r² h), führt ein doppelter Radius (2r)² = 4r² zum vierfachen Volumen."
   },
   {
     "id": "k8_ma_075",
@@ -1342,17 +1037,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lässt sich die Potenz $x^{-2}$ als Bruch ausdrücken?",
-    "answers": [
-      "Die Potenz entspricht dem Bruch $-\\frac{x}{2}$.",
-      "Die Potenz entspricht dem Bruch $-\\frac{1}{x^2}$.",
-      "Die Potenz entspricht dem Bruch $\\frac{2}{x}$.",
-      "Die Potenz entspricht dem Bruch $\\frac{1}{x^2}$."
-    ],
+    "question": "Wie lässt sich die Potenz x⁻² als Bruch ausdrücken?",
+    "answers": ["Die Potenz entspricht dem Bruch -x/2.", "Die Potenz entspricht dem Bruch -1/(x²).", "Die Potenz entspricht dem Bruch 2/x.", "Die Potenz entspricht dem Bruch 1/(x²)."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Nach den Potenzgesetzen gilt für negative Exponenten allgemein $a^{-n} = \\frac{1}{a^n}$."
+    "explanation": "Nach den Potenzgesetzen gilt für negative Exponenten allgemein a⁻ⁿ = 1/aⁿ."
   },
   {
     "id": "k8_ma_076",
@@ -1360,17 +1050,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Wert ergibt sich stets, wenn man die Wahrscheinlichkeiten von Ereignis $A$ und Gegenereignis $\\bar{A}$ addiert?",
-    "answers": [
-      "Die Summe der Wahrscheinlichkeiten beträgt immer genau 0.",
-      "Die Summe der Wahrscheinlichkeiten hängt vom Experiment ab.",
-      "Die Summe der Wahrscheinlichkeiten beträgt immer genau 0,5.",
-      "Die Summe der Wahrscheinlichkeiten beträgt immer genau 1."
-    ],
+    "question": "Welcher Wert ergibt sich stets, wenn man die Wahrscheinlichkeiten von Ereignis A und Gegenereignis A addiert?",
+    "answers": ["Die Summe der Wahrscheinlichkeiten beträgt immer genau 0.", "Die Summe der Wahrscheinlichkeiten hängt vom Experiment ab.", "Die Summe der Wahrscheinlichkeiten beträgt immer genau 0,5.", "Die Summe der Wahrscheinlichkeiten beträgt immer genau 1."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Ein Ereignis tritt entweder ein oder nicht. Daher decken $A$ und $\\bar{A}$ alle Möglichkeiten ab: $P(A) + P(\\bar{A}) = 1$."
+    "explanation": "Ein Ereignis tritt entweder ein oder nicht. Daher decken A und A alle Möglichkeiten ab: P(A) + P(A) = 1."
   },
   {
     "id": "k8_ma_077",
@@ -1378,17 +1063,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Die Summe zweier Zahlen $x$ und $y$ ist 20, ihre Differenz ist 4. Wie lautet das zugehörige LGS?",
-    "answers": [
-      "Das LGS lautet $x + y = 4$ und $x - y = 20$.",
-      "Das LGS lautet $2x + y = 20$ und $x - 2y = 4$.",
-      "Das LGS lautet $x + y = 20$ und $x - y = 4$.",
-      "Das LGS lautet $x \\cdot y = 20$ und $x : y = 4$."
-    ],
+    "question": "Die Summe zweier Zahlen x und y ist 20, ihre Differenz ist 4. Wie lautet das zugehörige LGS?",
+    "answers": ["Das LGS lautet x + y = 4 und x - y = 20.", "Das LGS lautet 2x + y = 20 und x - 2y = 4.", "Das LGS lautet x + y = 20 und x - y = 4.", "Das LGS lautet x · y = 20 und x : y = 4."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Summe bedeutet Addition ($x + y = 20$), Differenz bedeutet Subtraktion ($x - y = 4$)."
+    "explanation": "Summe bedeutet Addition (x + y = 20), Differenz bedeutet Subtraktion (x - y = 4)."
   },
   {
     "id": "k8_ma_078",
@@ -1396,17 +1076,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welche Steigung $m_2$ hat eine Gerade $g_2$, die parallel zur Geraden $g_1: y = -2x + 7$ verläuft?",
-    "answers": [
-      "Die Steigung der parallelen Geraden beträgt $m_2 = 7$.",
-      "Die Steigung der parallelen Geraden beträgt $m_2 = 2$.",
-      "Die Steigung der parallelen Geraden beträgt $m_2 = -2$.",
-      "Die Steigung der parallelen Geraden beträgt $m_2 = 0{,}5$."
-    ],
+    "question": "Welche Steigung m₂ hat eine Gerade g₂, die parallel zur Geraden g₁: y = -2x + 7 verläuft?",
+    "answers": ["Die Steigung der parallelen Geraden beträgt m₂ = 7.", "Die Steigung der parallelen Geraden beträgt m₂ = 2.", "Die Steigung der parallelen Geraden beträgt m₂ = -2.", "Die Steigung der parallelen Geraden beträgt m₂ = 0,5."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Parallele Geraden besitzen exakt dieselbe Steigung. Daher gilt $m_2 = m_1 = -2$."
+    "explanation": "Parallele Geraden besitzen exakt dieselbe Steigung. Daher gilt m₂ = m₁ = -2."
   },
   {
     "id": "k8_ma_079",
@@ -1432,17 +1107,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Wert ergibt sich für den Term $99^2$ mithilfe der 2. Binomischen Formel $(100 - 1)^2$?",
-    "answers": [
-      "Das Berechnungsergebnis des Terms lautet 9800.",
-      "Das Berechnungsergebnis des Terms lautet 9701.",
-      "Das Berechnungsergebnis des Terms lautet 9901.",
-      "Das Berechnungsergebnis des Terms lautet 9801."
-    ],
+    "question": "Welcher Wert ergibt sich für den Term 99² mithilfe der 2. Binomischen Formel (100 - 1)²?",
+    "answers": ["Das Berechnungsergebnis des Terms lautet 9800.", "Das Berechnungsergebnis des Terms lautet 9701.", "Das Berechnungsergebnis des Terms lautet 9901.", "Das Berechnungsergebnis des Terms lautet 9801."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "$(100 - 1)^2 = 100^2 - 2 \\cdot 100 \\cdot 1 + 1^2 = 10000 - 200 + 1 = 9801$."
+    "explanation": "(100 - 1)² = 100² - 2 · 100 · 1 + 1² = 10000 - 200 + 1 = 9801."
   },
   {
     "id": "k8_ma_081",
@@ -1451,16 +1121,11 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "Ein Experiment hat 3 Stufen mit jeweils 2 Handlungsmöglichkeiten. Wie viele Pfade hat das Baumdiagramm?",
-    "answers": [
-      "Das Baumdiagramm weist insgesamt 6 Pfade auf.",
-      "Das Baumdiagramm weist insgesamt 5 Pfade auf.",
-      "Das Baumdiagramm weist insgesamt 8 Pfade auf.",
-      "Das Baumdiagramm weist insgesamt 9 Pfade auf."
-    ],
+    "answers": ["Das Baumdiagramm weist insgesamt 6 Pfade auf.", "Das Baumdiagramm weist insgesamt 5 Pfade auf.", "Das Baumdiagramm weist insgesamt 8 Pfade auf.", "Das Baumdiagramm weist insgesamt 9 Pfade auf."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Anzahl der Pfade berechnet sich über $2 \\cdot 2 \\cdot 2 = 2^3 = 8$."
+    "explanation": "Die Anzahl der Pfade berechnet sich über 2 · 2 · 2 = 2³ = 8."
   },
   {
     "id": "k8_ma_082",
@@ -1469,12 +1134,7 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "Welches Ergebnis zeigt an, dass eine lineare Gleichung keine Lösung besitzt?",
-    "answers": [
-      "Man erhält die finale Gleichung mit dem Ergebnis $x = 0$.",
-      "Man erhält eine allgemeingültige Aussage wie $3 = 3$.",
-      "Man erhält als finale Lösung zwei verschiedene x-Werte.",
-      "Man erhält einen mathematischen Widerspruch wie $0 = 5$."
-    ],
+    "answers": ["Man erhält die finale Gleichung mit dem Ergebnis x = 0.", "Man erhält eine allgemeingültige Aussage wie 3 = 3.", "Man erhält als finale Lösung zwei verschiedene x-Werte.", "Man erhält einen mathematischen Widerspruch wie 0 = 5."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -1486,17 +1146,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie berechnet man den Flächeninhalt $G$ einer kreisförmigen Grundfläche mit Radius $r$?",
-    "answers": [
-      "Die Grundfläche berechnet sich über die Formel $G = \\pi \\cdot d^2$.",
-      "Die Grundfläche berechnet sich über die Formel $G = 2 \\cdot \\pi \\cdot r$.",
-      "Die Grundfläche berechnet sich über die Formel $G = 2 \\cdot \\pi \\cdot r^2$.",
-      "Die Grundfläche berechnet sich über die Formel $G = \\pi \\cdot r^2$."
-    ],
+    "question": "Wie berechnet man den Flächeninhalt G einer kreisförmigen Grundfläche mit Radius r?",
+    "answers": ["Die Grundfläche berechnet sich über die Formel G = π · d².", "Die Grundfläche berechnet sich über die Formel G = 2 · π · r.", "Die Grundfläche berechnet sich über die Formel G = 2 · π · r².", "Die Grundfläche berechnet sich über die Formel G = π · r²."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der Flächeninhalt eines Kreises lautet $A = \\pi r^2$, was beim Zylinder der Grundfläche $G$ entspricht."
+    "explanation": "Der Flächeninhalt eines Kreises lautet A = π r², was beim Zylinder der Grundfläche G entspricht."
   },
   {
     "id": "k8_ma_084",
@@ -1504,17 +1159,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher y-Achsenabschnitt $b$ gehört zu einer Ursprungsgeraden?",
-    "answers": [
-      "Der y-Achsenabschnitt beträgt stets $b = 0$.",
-      "Der y-Achsenabschnitt beträgt stets $b = 1$.",
-      "Der y-Achsenabschnitt hängt von der Steigung $m$ ab.",
-      "Der y-Achsenabschnitt ist bei Ursprungsgeraden nicht definiert."
-    ],
+    "question": "Welcher y-Achsenabschnitt b gehört zu einer Ursprungsgeraden?",
+    "answers": ["Der y-Achsenabschnitt beträgt stets b = 0.", "Der y-Achsenabschnitt beträgt stets b = 1.", "Der y-Achsenabschnitt hängt von der Steigung m ab.", "Der y-Achsenabschnitt ist bei Ursprungsgeraden nicht definiert."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Eine Ursprungsgerade geht durch den Punkt $(0|0)$, somit schneidet sie die y-Achse bei $b = 0$."
+    "explanation": "Eine Ursprungsgerade geht durch den Punkt (0|0), somit schneidet sie die y-Achse bei b = 0."
   },
   {
     "id": "k8_ma_085",
@@ -1522,17 +1172,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Was ergibt das Ausmultiplizieren des Terms $-4(2x - 3)$?",
-    "answers": [
-      "Der ausmultiplizierte Term lautet $-8x + 12$.",
-      "Der ausmultiplizierte Term lautet $8x - 12$.",
-      "Der ausmultiplizierte Term lautet $-8x + 3$.",
-      "Der ausmultiplizierte Term lautet $-8x - 12$."
-    ],
+    "question": "Was ergibt das Ausmultiplizieren des Terms -4(2x - 3)?",
+    "answers": ["Der ausmultiplizierte Term lautet -8x + 12.", "Der ausmultiplizierte Term lautet 8x - 12.", "Der ausmultiplizierte Term lautet -8x + 3.", "Der ausmultiplizierte Term lautet -8x - 12."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Beide Glieder in der Klammer werden mit $-4$ multipliziert: $-4 \\cdot 2x = -8x$ und $-4 \\cdot (-3) = +12$."
+    "explanation": "Beide Glieder in der Klammer werden mit -4 multipliziert: -4 · 2x = -8x und -4 · (-3) = +12."
   },
 
   {
@@ -1541,17 +1186,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Ein Graph verläuft durch die Punkte $P_1(0 | 2)$ und $P_2(2 | 6)$. Wie lautet die Steigung $m$ dieser Geraden?",
-    "answers": [
-      "Die Steigung der Geraden beträgt $m = 2$.",
-      "Die Steigung der Geraden beträgt $m = 4$.",
-      "Die Steigung der Geraden beträgt $m = -2$.",
-      "Die Steigung der Geraden beträgt $m = 0{,}5$."
-    ],
+    "question": "Ein Graph verläuft durch die Punkte P₁(0 | 2) und P₂(2 | 6). Wie lautet die Steigung m dieser Geraden?",
+    "answers": ["Die Steigung der Geraden beträgt m = 2.", "Die Steigung der Geraden beträgt m = 4.", "Die Steigung der Geraden beträgt m = -2.", "Die Steigung der Geraden beträgt m = 0,5."],
     "correct": 0,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Über die Steigungsformel rechnet man $m = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{6 - 2}{2 - 0} = \\frac{4}{2} = 2$."
+    "explanation": "Über die Steigungsformel rechnet man m = (y₂ - y₁)/(x₂ - x₁) = (6 - 2)/(2 - 0) = 4/2 = 2."
   },
   {
     "id": "k8_ma_087",
@@ -1559,17 +1199,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet die vereinfachte Form des Terms $(x - 6)^2$?",
-    "answers": [
-      "Der ausmultiplizierte Term lautet $x^2 - 12x - 36$.",
-      "Der ausmultiplizierte Term lautet $x^2 - 6x + 36$.",
-      "Der ausmultiplizierte Term lautet $x^2 - 36$.",
-      "Der ausmultiplizierte Term lautet $x^2 - 12x + 36$."
-    ],
+    "question": "Wie lautet die vereinfachte Form des Terms (x - 6)²?",
+    "answers": ["Der ausmultiplizierte Term lautet x² - 12x - 36.", "Der ausmultiplizierte Term lautet x² - 6x + 36.", "Der ausmultiplizierte Term lautet x² - 36.", "Der ausmultiplizierte Term lautet x² - 12x + 36."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Nach der 2. Binomischen Formel $(a-b)^2 = a^2 - 2ab + b^2$ ergibt sich $x^2 - 2 \\cdot x \\cdot 6 + 6^2 = x^2 - 12x + 36$."
+    "explanation": "Nach der 2. Binomischen Formel (a-b)² = a² - 2ab + b² ergibt sich x² - 2 · x · 6 + 6² = x² - 12x + 36."
   },
   {
     "id": "k8_ma_088",
@@ -1577,17 +1212,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Ein Zylinder hat einen Radius von $r = 3\\text{ cm}$ und eine Höhe von $h = 5\\text{ cm}$. Wie groß ist sein exaktes Volumen $V$?",
-    "answers": [
-      "Das genaue Volumen beträgt $V = 15\\pi\\text{ cm}^3$.",
-      "Das genaue Volumen beträgt $V = 45\\pi\\text{ cm}^3$.",
-      "Das genaue Volumen beträgt $V = 30\\pi\\text{ cm}^3$.",
-      "Das genaue Volumen beträgt $V = 90\\pi\\text{ cm}^3$."
-    ],
+    "question": "Ein Zylinder hat einen Radius von r = 3 cm und eine Höhe von h = 5 cm. Wie groß ist sein exaktes Volumen V?",
+    "answers": ["Das genaue Volumen beträgt V = 15π cm³.", "Das genaue Volumen beträgt V = 45π cm³.", "Das genaue Volumen beträgt V = 30π cm³.", "Das genaue Volumen beträgt V = 90π cm³."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Mit $V = \\pi \\cdot r^2 \\cdot h$ folgt $V = \\pi \\cdot 3^2 \\cdot 5 = \\pi \\cdot 9 \\cdot 5 = 45\\pi\\text{ cm}^3$."
+    "explanation": "Mit V = π · r² · h folgt V = π · 3² · 5 = π · 9 · 5 = 45π cm³."
   },
   {
     "id": "k8_ma_089",
@@ -1613,17 +1243,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welche Umformung beschreibt das Potenzgesetz für die Division gleicher Basen $\\frac{a^n}{a^m}$ korrekt?",
-    "answers": [
-      "Bei der Division gleicher Basen wird gerechnet: $a^{n+m}$.",
-      "Bei der Division gleicher Basen wird gerechnet: $a^{n:m}$.",
-      "Bei der Division gleicher Basen wird gerechnet: $a^{n-m}$.",
-      "Bei der Division gleicher Basen wird gerechnet: $a^{n \\cdot m}$."
-    ],
+    "question": "Welche Umformung beschreibt das Potenzgesetz für die Division gleicher Basen aⁿ/aᵐ korrekt?",
+    "answers": ["Bei der Division gleicher Basen wird gerechnet: aⁿ⁺ᵐ.", "Bei der Division gleicher Basen wird gerechnet: a^(n:m).", "Bei der Division gleicher Basen wird gerechnet: aⁿ⁻ᵐ.", "Bei der Division gleicher Basen wird gerechnet: aⁿ·ᵐ."],
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Potenzen mit gleicher Basis werden dividiert, indem man die Exponenten subtrahiert: $\\frac{a^n}{a^m} = a^{n-m}$."
+    "explanation": "Potenzen mit gleicher Basis werden dividiert, indem man die Exponenten subtrahiert: aⁿ/aᵐ = aⁿ⁻ᵐ."
   },
   {
     "id": "k8_ma_091",
@@ -1631,17 +1256,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "An einer Verzweigung im Baumdiagramm beträgt eine Pfadwahrscheinlichkeit $\\frac{1}{3}$. Wie hoch ist die Wahrscheinlichkeit des anderen Pfades?",
-    "answers": [
-      "Die Wahrscheinlichkeit des anderen Pfades beträgt $\\frac{1}{2}$.",
-      "Die Wahrscheinlichkeit des anderen Pfades beträgt $\\frac{3}{3}$.",
-      "Die Wahrscheinlichkeit des anderen Pfades beträgt $\\frac{1}{3}$.",
-      "Die Wahrscheinlichkeit des anderen Pfades beträgt $\\frac{2}{3}$."
-    ],
+    "question": "An einer Verzweigung im Baumdiagramm beträgt eine Pfadwahrscheinlichkeit 1/3. Wie hoch ist die Wahrscheinlichkeit des anderen Pfades?",
+    "answers": ["Die Wahrscheinlichkeit des anderen Pfades beträgt 1/2.", "Die Wahrscheinlichkeit des anderen Pfades beträgt 3/3.", "Die Wahrscheinlichkeit des anderen Pfades beträgt 1/3.", "Die Wahrscheinlichkeit des anderen Pfades beträgt 2/3."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Da die Summe aller Pfade an einem Knotenpunkt stets 1 (bzw. $\\frac{3}{3}$) ergibt, gilt $1 - \\frac{1}{3} = \\frac{2}{3}$."
+    "explanation": "Da die Summe aller Pfade an einem Knotenpunkt stets 1 (bzw. 3/3) ergibt, gilt 1 - 1/3 = 2/3."
   },
   {
     "id": "k8_ma_092",
@@ -1649,17 +1269,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "An welchem Punkt schneidet die Gerade $y = 4x - 8$ die x-Achse?",
-    "answers": [
-      "Der Schnittpunkt mit der x-Achse lautet $N(0 | -8)$.",
-      "Der Schnittpunkt mit der x-Achse lautet $N(2 | 0)$.",
-      "Der Schnittpunkt mit der x-Achse lautet $N(-2 | 0)$.",
-      "Der Schnittpunkt mit der x-Achse lautet $N(8 | 0)$."
-    ],
+    "question": "An welchem Punkt schneidet die Gerade y = 4x - 8 die x-Achse?",
+    "answers": ["Der Schnittpunkt mit der x-Achse lautet N(0 | -8).", "Der Schnittpunkt mit der x-Achse lautet N(2 | 0).", "Der Schnittpunkt mit der x-Achse lautet N(-2 | 0).", "Der Schnittpunkt mit der x-Achse lautet N(8 | 0)."],
     "correct": 1,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Setzt man $y = 0$, folgt $0 = 4x - 8 \\Rightarrow 4x = 8 \\Rightarrow x = 2$. Der Punkt heißt $N(2|0)$."
+    "explanation": "Setzt man y = 0, folgt 0 = 4x - 8 ⇒ 4x = 8 ⇒ x = 2. Der Punkt heißt N(2|0)."
   },
   {
     "id": "k8_ma_093",
@@ -1667,17 +1282,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Ein dreiseitiges Prisma besitzt einen Umfang der Grundfläche von $u = 15\\text{ cm}$ und eine Körperhöhe von $h = 8\\text{ cm}$. Wie groß ist seine Mantelfläche $M$?",
-    "answers": [
-      "Die Mantelfläche des Prismas beträgt $M = 100\\text{ cm}^2$.",
-      "Die Mantelfläche des Prismas beträgt $M = 240\\text{ cm}^2$.",
-      "Die Mantelfläche des Prismas beträgt $M = 60\\text{ cm}^2$.",
-      "Die Mantelfläche des Prismas beträgt $M = 120\\text{ cm}^2$."
-    ],
+    "question": "Ein dreiseitiges Prisma besitzt einen Umfang der Grundfläche von u = 15 cm und eine Körperhöhe von h = 8 cm. Wie groß ist seine Mantelfläche M?",
+    "answers": ["Die Mantelfläche des Prismas beträgt M = 100 cm².", "Die Mantelfläche des Prismas beträgt M = 240 cm².", "Die Mantelfläche des Prismas beträgt M = 60 cm².", "Die Mantelfläche des Prismas beträgt M = 120 cm²."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Die Mantelfläche berechnet sich allgemein über die Formel $M = u \\cdot h = 15\\text{ cm} \\cdot 8\\text{ cm} = 120\\text{ cm}^2$."
+    "explanation": "Die Mantelfläche berechnet sich allgemein über die Formel M = u · h = 15 cm · 8 cm = 120 cm²."
   },
   {
     "id": "k8_ma_094",
@@ -1685,17 +1295,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welche Operation stellt eine korrekte Äquivalenzumformung der Gleichung $5x + 3 = 18$ dar?",
-    "answers": [
-      "Addition von 3 auf beiden Seiten der Gleichung ergibt $5x = 21$.",
-      "Division durch 5 ohne Berücksichtigung der 3 ergibt $x + 3 = 3{,}6$.",
-      "Subtraktion von 3 nur auf der linken Seite ergibt $5x = 18$.",
-      "Subtraktion von 3 auf beiden Seiten ergibt $5x = 15$."
-    ],
+    "question": "Welche Operation stellt eine korrekte Äquivalenzumformung der Gleichung 5x + 3 = 18 dar?",
+    "answers": ["Addition von 3 auf beiden Seiten der Gleichung ergibt 5x = 21.", "Division durch 5 ohne Berücksichtigung der 3 ergibt x + 3 = 3,6.", "Subtraktion von 3 nur auf der linken Seite ergibt 5x = 18.", "Subtraktion von 3 auf beiden Seiten ergibt 5x = 15."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Um die Variable zu isolieren, wird im ersten Schritt auf beiden Seiten der Gleichung die Zahl 3 subtrahiert ($5x = 15$)."
+    "explanation": "Um die Variable zu isolieren, wird im ersten Schritt auf beiden Seiten der Gleichung die Zahl 3 subtrahiert (5x = 15)."
   },
   {
     "id": "k8_ma_095",
@@ -1703,17 +1308,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Gegeben ist $y = x + 1$ und $2x + y = 7$. Welcher Term entsteht nach dem Einsetzen der ersten Gleichung in die zweite?",
-    "answers": [
-      "Nach dem Einsetzen entsteht die Gleichung $2x - (x + 1) = 7$.",
-      "Nach dem Einsetzen entsteht die Gleichung $2x + x = 7$.",
-      "Nach dem Einsetzen entsteht die Gleichung $2x + (x + 1) = 7$.",
-      "Nach dem Einsetzen entsteht die Gleichung $2(x + 1) + y = 7$."
-    ],
+    "question": "Gegeben ist y = x + 1 und 2x + y = 7. Welcher Term entsteht nach dem Einsetzen der ersten Gleichung in die zweite?",
+    "answers": ["Nach dem Einsetzen entsteht die Gleichung 2x - (x + 1) = 7.", "Nach dem Einsetzen entsteht die Gleichung 2x + x = 7.", "Nach dem Einsetzen entsteht die Gleichung 2x + (x + 1) = 7.", "Nach dem Einsetzen entsteht die Gleichung 2(x + 1) + y = 7."],
     "correct": 2,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Da $y = x + 1$ gilt, wird der Ausdruck $(x + 1)$ anstelle der Variable $y$ in die zweite Gleichung $2x + y = 7$ eingesetzt."
+    "explanation": "Da y = x + 1 gilt, wird der Ausdruck (x + 1) anstelle der Variable y in die zweite Gleichung 2x + y = 7 eingesetzt."
   },
   {
     "id": "k8_ma_096",
@@ -1721,17 +1321,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lautet die wissenschaftliche Schreibweise der Zahl $450000$ mithilfe einer Zehnerpotenz?",
-    "answers": [
-      "Die wissenschaftliche Schreibweise lautet $0{,}45 \\cdot 10^6$.",
-      "Die wissenschaftliche Schreibweise lautet $4{,}5 \\cdot 10^5$.",
-      "Die wissenschaftliche Schreibweise lautet $45 \\cdot 10^4$.",
-      "Die wissenschaftliche Schreibweise lautet $4{,}5 \\cdot 10^4$."
-    ],
+    "question": "Wie lautet die wissenschaftliche Schreibweise der Zahl 450000 mithilfe einer Zehnerpotenz?",
+    "answers": ["Die wissenschaftliche Schreibweise lautet 0,45 · 10⁶.", "Die wissenschaftliche Schreibweise lautet 4,5 · 10⁵.", "Die wissenschaftliche Schreibweise lautet 45 · 10⁴.", "Die wissenschaftliche Schreibweise lautet 4,5 · 10⁴."],
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "In der wissenschaftlichen Schreibweise steht vor dem Komma genau eine Ziffer ungleich Null. Das Komma wird um 5 Stellen nach links verschoben: $4{,}5 \\cdot 10^5$."
+    "explanation": "In der wissenschaftlichen Schreibweise steht vor dem Komma genau eine Ziffer ungleich Null. Das Komma wird um 5 Stellen nach links verschoben: 4,5 · 10⁵."
   },
   {
     "id": "k8_ma_097",
@@ -1740,16 +1335,11 @@ const questions_k8_mathematik = [
     "grade": 8,
     "subject": "mathematik",
     "question": "Ein fairer Wurf mit einem 10-seitigen Würfel (Zahlen 1 bis 10) wird durchgeführt. Wie groß ist die Wahrscheinlichkeit für eine Zahl größer als 7?",
-    "answers": [
-      "Die Wahrscheinlichkeit beträgt exakt 40 %.",
-      "Die Wahrscheinlichkeit beträgt exakt 70 %.",
-      "Die Wahrscheinlichkeit beträgt exakt 20 %.",
-      "Die Wahrscheinlichkeit beträgt exakt 30 %."
-    ],
+    "answers": ["Die Wahrscheinlichkeit beträgt exakt 40 %.", "Die Wahrscheinlichkeit beträgt exakt 70 %.", "Die Wahrscheinlichkeit beträgt exakt 20 %.", "Die Wahrscheinlichkeit beträgt exakt 30 %."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Günstige Ergebnisse sind {8, 9, 10}, also 3 Fälle von insgesamt 10 möglichen Ergebnissen: $P = \\frac{3}{10} = 0{,}3 = 30\\%$."
+    "explanation": "Günstige Ergebnisse sind {8, 9, 10}, also 3 Fälle von insgesamt 10 möglichen Ergebnissen: P = 3/10 = 0,3 = 30%."
   },
   {
     "id": "k8_ma_098",
@@ -1757,17 +1347,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Wie lässt sich die Formel für den Zylindermantel $M = 2\\pi rh$ nach dem Radius $r$ umformen?",
-    "answers": [
-      "Die umgeformte Formel lautet $r = \\frac{2\\pi h}{M}$.",
-      "Die umgeformte Formel lautet $r = M - 2\\pi h$.",
-      "Die umgeformte Formel lautet $r = \\frac{M \\cdot h}{2\\pi}$.",
-      "Die umgeformte Formel lautet $r = \\frac{M}{2\\pi h}$."
-    ],
+    "question": "Wie lässt sich die Formel für den Zylindermantel M = 2π rh nach dem Radius r umformen?",
+    "answers": ["Die umgeformte Formel lautet r = (2π h)/M.", "Die umgeformte Formel lautet r = M - 2π h.", "Die umgeformte Formel lautet r = (M · h)/(2π).", "Die umgeformte Formel lautet r = M/(2π h)."],
     "correct": 3,
     "difficulty": "mittel",
     "points": 15,
-    "explanation": "Teilt man die Formel $M = 2\\pi rh$ auf beiden Seiten durch das Produkt $(2\\pi h)$, erhält man isoliert $r = \\frac{M}{2\\pi h}$."
+    "explanation": "Teilt man die Formel M = 2π rh auf beiden Seiten durch das Produkt (2π h), erhält man isoliert r = M/(2π h)."
   },
   {
     "id": "k8_ma_099",
@@ -1775,17 +1360,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Eine Gerade hat die Steigung $m = 3$ und verläuft durch den Punkt $P(0 | -5)$. Wie lautet ihre Funktionsgleichung?",
-    "answers": [
-      "Die Funktionsgleichung lautet $y = 3x - 5$.",
-      "Die Funktionsgleichung lautet $y = 3x + 5$.",
-      "Die Funktionsgleichung lautet $y = -3x - 5$.",
-      "Die Funktionsgleichung lautet $y = -5x + 3$."
-    ],
+    "question": "Eine Gerade hat die Steigung m = 3 und verläuft durch den Punkt P(0 | -5). Wie lautet ihre Funktionsgleichung?",
+    "answers": ["Die Funktionsgleichung lautet y = 3x - 5.", "Die Funktionsgleichung lautet y = 3x + 5.", "Die Funktionsgleichung lautet y = -3x - 5.", "Die Funktionsgleichung lautet y = -5x + 3."],
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Der Schnittpunkt $(0 | -5)$ liefert direkt den y-Achsenabschnitt $b = -5$. Zusammen mit der Steigung $m = 3$ folgt $y = 3x - 5$."
+    "explanation": "Der Schnittpunkt (0 | -5) liefert direkt den y-Achsenabschnitt b = -5. Zusammen mit der Steigung m = 3 folgt y = 3x - 5."
   },
   {
     "id": "k8_ma_100",
@@ -1793,17 +1373,12 @@ const questions_k8_mathematik = [
     "area": "schule",
     "grade": 8,
     "subject": "mathematik",
-    "question": "Welcher Term ergibt sich nach dem Ausmultiplizieren und Vereinfachen von $(x + 3)^2 - (x^2 + 9)$?",
-    "answers": [
-      "Der vollständig vereinfachte Term lautet $6x$.",
-      "Der vollständig vereinfachte Term lautet $2x^2 + 6x$.",
-      "Der vollständig vereinfachte Term lautet $6x + 18$.",
-      "Der vollständig vereinfachte Term lautet $0$."
-    ],
+    "question": "Welcher Term ergibt sich nach dem Ausmultiplizieren und Vereinfachen von (x + 3)² - (x² + 9)?",
+    "answers": ["Der vollständig vereinfachte Term lautet 6x.", "Der vollständig vereinfachte Term lautet 2x² + 6x.", "Der vollständig vereinfachte Term lautet 6x + 18.", "Der vollständig vereinfachte Term lautet 0."],
     "correct": 0,
     "difficulty": "schwer",
     "points": 20,
-    "explanation": "$(x + 3)^2 - (x^2 + 9) = (x^2 + 6x + 9) - x^2 - 9 = 6x$."
+    "explanation": "(x + 3)² - (x² + 9) = (x² + 6x + 9) - x² - 9 = 6x."
   }
 ];
 

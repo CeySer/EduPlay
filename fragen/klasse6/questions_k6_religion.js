@@ -944,12 +944,7 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "grade": 6,
     "subject": "philosophie_religion",
     "question": "Wie heißt die heilige Schriftensammlung im Judentum?",
-    "answers": [
-      "Der heilige Koran",
-      "Die Veden Bücher",
-      "Das Dhammapada",
-      "Die Tanach (Tora)"
-    ],
+    "answers": ["Der heilige Koran", "Die Veden Bücher", "Das Dhammapada", "Die Tanach"],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -1486,12 +1481,7 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "grade": 6,
     "subject": "philosophie_religion",
     "question": "Welches Symbol findet man häufig auf den Kuppeln von Moscheen?",
-    "answers": [
-      "Das runde Rad des Lebens",
-      "Der Sichelmond (Halbmond)",
-      "Das schwere goldene Kreuz",
-      "Der große sechsstrahlige Stern"
-    ],
+    "answers": ["Das runde Rad des Lebens", "Der Sichelmond", "Das schwere goldene Kreuz", "Der große sechsstrahlige Stern"],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1720,12 +1710,7 @@ const K6_PHILOSOPHIE_RELIGION_QUESTIONS = [
     "grade": 6,
     "subject": "philosophie_religion",
     "question": "Welches Symbol steht für die Lehre des Buddha?",
-    "answers": [
-      "Der kleine weiße Fisch",
-      "Der goldene runde Kelch",
-      "Rad der Lehre (Dharma)",
-      "Der frische grüne Zweig"
-    ],
+    "answers": ["Der kleine weiße Fisch", "Der goldene runde Kelch", "Rad der Lehre", "Der frische grüne Zweig"],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,

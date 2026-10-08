@@ -12,7 +12,7 @@
 //  würde ihn nur stören.
 // ============================================================
 
-const CACHE = 'eduplay-v87';
+const CACHE = 'eduplay-v90';
 
 // Alles, was die App zum Starten braucht. Die Fragen-Dateien landen
 // beim ersten Laden automatisch im Cache (siehe unten), damit diese
@@ -88,6 +88,10 @@ self.addEventListener('fetch', function (event) {
 
     // Firestore, Anmeldung, QR-Bilder, Wörterbuch-Prüfung: nie abfangen.
     if (istFirebaseVerkehr(url)) return;
+
+    // Lernvideos: nicht abfangen. Der Browser lädt MP4 in Stücken
+    // (Range-Anfragen, Antwort 206) – die kann der Cache nicht speichern.
+    if (url.indexOf('/videos/') !== -1 && url.indexOf('.mp4') !== -1) return;
 
     // Fragen-, Vokabel- und Wörterdateien: sofort aus dem Cache antworten
     // (schnell, spart Datenvolumen), aber im Hintergrund IMMER neu holen und

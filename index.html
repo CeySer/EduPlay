@@ -1776,6 +1776,16 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </span>
                 </button>
 
+                <button onclick="showVideos()"
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
+                    style="background:linear-gradient(140deg,#ec4899,#f43f5e);">
+                    <span class="text-3xl shrink-0">🎬</span>
+                    <span>
+                        <span class="block text-base font-black">Videos <span class="text-[10px] bg-white/20 rounded-full px-2 py-0.5 align-middle">NEU</span></span>
+                        <span class="block text-xs font-bold text-rose-100/80">Kurze Erklärvideos</span>
+                    </span>
+                </button>
+
                 <button onclick="switchView('vokabeln')"
                     class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
                     style="background:linear-gradient(140deg,#6366f1,#8b5cf6);">
@@ -2295,6 +2305,44 @@ VIEW: QUIZ SETUP
     </div>
 
     <!-- ==========================================================
+            VIEW: LERNVIDEOS (Liste)
+            ========================================================== -->
+    <div id="view-videos" class="view hidden space-y-3">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('lernen')">Zurück</button>
+            <span class="text-sm font-bold text-gray-400">🎬 Videos</span>
+            <span class="w-16"></span>
+        </div>
+        <p id="videos-anzahl" class="text-xs text-gray-400 text-center -mt-1"></p>
+        <div id="videos-klassen" class="flex gap-2 overflow-x-auto pb-1"></div>
+        <div id="videos-liste" class="space-y-3"></div>
+    </div>
+
+    <!-- ==========================================================
+            VIEW: LERNVIDEO (Player)
+            ========================================================== -->
+    <div id="view-video" class="view hidden space-y-3">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="videoZurueck()">Zurück</button>
+            <span class="text-sm font-bold text-gray-400">🎬 Video</span>
+            <span class="w-16"></span>
+        </div>
+        <div style="border-radius:18px;overflow:hidden;background:#000;">
+            <video id="video-player" controls playsinline preload="metadata" controlslist="nodownload noplaybackrate"
+                disablepictureinpicture style="width:100%;aspect-ratio:16/9;display:block;background:#fff8ec;"></video>
+        </div>
+        <div>
+            <div id="video-titel" class="text-base font-black text-white"></div>
+            <div id="video-info" class="text-xs text-gray-400"></div>
+        </div>
+        <button type="button" id="video-kurs-btn" onclick="videoZumKurs()"
+            class="w-full py-3 rounded-xl text-sm font-black text-white"
+            style="background:linear-gradient(140deg,#f59e0b,#ef4444);">📘 Jetzt im Kurs üben</button>
+        <button type="button" id="video-next-btn" onclick="videoNaechstes()"
+            class="w-full py-3 rounded-xl text-sm font-black text-white bg-white/5 border border-white/10"></button>
+    </div>
+
+    <!-- ==========================================================
             VIEW: KURSE EINES FACHS
             ========================================================== -->
     <div id="view-kurs-fach" class="view hidden space-y-3">
@@ -2754,6 +2802,7 @@ VIEW: QUIZ SETUP
          spaetestens beim ersten Antippen von "Kurse". Die Dateiliste und die
          ?v=-Nummern stehen jetzt in lektionen-loader.js. -->
     <script src="lektionen-loader.js?v=1.10"></script>
+    <script src="videos.js?v=1"></script>
     <script src="vocab.js?v=9.1"></script>
     <script src="suchsel.js?v=1.3"></script>
     <script src="duel-scrabble.js?v=9.5"></script>

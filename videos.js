@@ -45,6 +45,11 @@
         { id: "wochentage_en_k3", titel: "Die Wochentage auf Englisch", klasse: 3, fach: "englisch", dauer: 34, kurs: "wetter_en_k3" },
         { id: "umfang_flaeche_k4", titel: "Umfang und Fläche", klasse: 4, fach: "mathe", dauer: 47, kurs: "umfang_flaeche_k4" },
         { id: "koerper_en_k4", titel: "Körperteile auf Englisch", klasse: 4, fach: "englisch", dauer: 32, kurs: "koerper_kleidung_en_k4" },
+        { id: "zahlen_million_k4", titel: "Zahlen bis zur Million", klasse: 4, fach: "mathe", dauer: 54, kurs: "zahlen1mio_k4" },
+        { id: "brueche_alltag_k4", titel: "Brüche im Alltag", klasse: 4, fach: "mathe", dauer: 50, kurs: "brueche_k4" },
+        { id: "satzglieder_k4", titel: "Objekte und adverbiale Bestimmungen", klasse: 4, fach: "deutsch", dauer: 49, kurs: "satzglieder_k4" },
+        { id: "bundeslaender_k4", titel: "Die 16 Bundesländer", klasse: 4, fach: "sachunterricht", dauer: 47, kurs: "bundeslaender_k4" },
+        { id: "uhrzeit_en_k4", titel: "What time is it? Die Uhrzeit auf Englisch", klasse: 4, fach: "englisch", dauer: 37, kurs: "schule_stadt_en_k4" },
         // Klasse 5
         { id: "bruchteile_k5", titel: "Bruchteile von Mengen", klasse: 5, fach: "mathe", dauer: 41, kurs: "bruchrechnen_k5" },
         { id: "brueche_addieren_k5", titel: "Gleichnamige Brüche addieren", klasse: 5, fach: "mathe", dauer: 45, kurs: "brueche_addieren_k5" },
@@ -71,7 +76,62 @@
         { id: "perfekt_plusquamperfekt_k6", titel: "Perfekt und Plusquamperfekt", klasse: 6, fach: "deutsch", dauer: 47, kurs: "zeitformen_k6" },
         { id: "present_perfect_k6", titel: "Present Perfect bilden", klasse: 6, fach: "englisch", dauer: 51, kurs: "present_perfect_k6" },
         { id: "comparison_k6", titel: "Comparison: bigger, more beautiful", klasse: 6, fach: "englisch", dauer: 45, kurs: "comparison_k6" },
-        { id: "adverbs_k6", titel: "Adverbs: slow oder slowly?", klasse: 6, fach: "englisch", dauer: 47, kurs: "adverbs_k6" }
+        { id: "adverbs_k6", titel: "Adverbs: slow oder slowly?", klasse: 6, fach: "englisch", dauer: 47, kurs: "adverbs_k6" },
+        // Klasse 7
+        { id: "prozentrechnung_k7", titel: "Prozentrechnung", klasse: 7, fach: "mathe", dauer: 42, kurs: "prozentrechnung_k7" },
+        { id: "zinsrechnung_k7", titel: "Zinsen berechnen", klasse: 7, fach: "mathe", dauer: 56, kurs: "zinsrechnung_k7" },
+        { id: "gleichungen_waage_k7", titel: "Gleichungen lösen wie eine Waage", klasse: 7, fach: "mathe", dauer: 38, kurs: "terme_gleichungen_k7" },
+        { id: "dreisatz_k7", titel: "Der Dreisatz", klasse: 7, fach: "mathe", dauer: 54, kurs: "zuordnungen_k7" },
+        { id: "dreieck_trapez_k7", titel: "Fläche von Dreieck und Trapez", klasse: 7, fach: "mathe", dauer: 57, kurs: "flaechen_k7" },
+        { id: "winkelsaetze_k7", titel: "Winkelsätze", klasse: 7, fach: "mathe", dauer: 46, kurs: "winkelsaetze_k7" },
+        { id: "aktiv_passiv_k7", titel: "Aktiv und Passiv", klasse: 7, fach: "deutsch", dauer: 42, kurs: "aktiv_passiv_k7" },
+        { id: "nebensatzarten_k7", titel: "Nebensatzarten", klasse: 7, fach: "deutsch", dauer: 44, kurs: "nebensatzarten_k7" },
+        { id: "praepositionalobjekt_k7", titel: "Präpositionalobjekt oder adverbiale Bestimmung?", klasse: 7, fach: "deutsch", dauer: 52, kurs: "satzglieder_vertiefend_k7" },
+        { id: "prepositions_k7", titel: "in, on, at – Prepositions of time and place", klasse: 7, fach: "englisch", dauer: 45, kurs: "prepositions_k7" },
+        { id: "will_going_to_k7", titel: "will oder going to?", klasse: 7, fach: "englisch", dauer: 51, kurs: "future_k7" },
+        { id: "past_present_perfect_k7", titel: "Simple Past oder Present Perfect?", klasse: 7, fach: "englisch", dauer: 56, kurs: "perfect_past_k7" },
+        // Klasse 8
+        { id: "lineare_funktionen_k8", titel: "Lineare Funktionen", klasse: 8, fach: "mathe", dauer: 40, kurs: "lineare_funktionen_k8" },
+        { id: "binomische_formeln_k8", titel: "Die binomischen Formeln", klasse: 8, fach: "mathe", dauer: 53, kurs: "binomische_formeln_k8" },
+        { id: "gleichungssysteme_k8", titel: "Lineare Gleichungssysteme lösen", klasse: 8, fach: "mathe", dauer: 50, kurs: "gleichungssysteme_k8" },
+        { id: "wahrscheinlichkeit_k8", titel: "Wahrscheinlichkeit und Baumdiagramm", klasse: 8, fach: "mathe", dauer: 42, kurs: "wahrscheinlichkeit_k8" },
+        { id: "pythagoras_k8", titel: "Der Satz des Pythagoras", klasse: 8, fach: "mathe", dauer: 43, kurs: "pythagoras_k8" },
+        { id: "kreis_k8", titel: "Kreis: Umfang und Fläche", klasse: 8, fach: "mathe", dauer: 51, kurs: "kreis_k8" },
+        { id: "indirekte_rede_k8", titel: "Indirekte Rede mit Konjunktiv I", klasse: 8, fach: "deutsch", dauer: 44, kurs: "konjunktiv_k8" },
+        { id: "sprachliche_mittel_k8", titel: "Sprachliche Mittel erkennen", klasse: 8, fach: "deutsch", dauer: 45, kurs: "sprachmittel_k8" },
+        { id: "argumentieren_k8", titel: "Ein gutes Argument bauen", klasse: 8, fach: "deutsch", dauer: 43, kurs: "argumentieren_k8" },
+        { id: "if_clauses_k8", titel: "if-clauses Typ 1 und 2", klasse: 8, fach: "englisch", dauer: 48, kurs: "conditionals_k8" },
+        { id: "passive_en_k8", titel: "The Passive", klasse: 8, fach: "englisch", dauer: 45, kurs: "passive_k8" },
+        { id: "reported_speech_k8", titel: "Reported Speech", klasse: 8, fach: "englisch", dauer: 46, kurs: "reported_speech_k8" },
+        // Klasse 9
+        { id: "quadratische_funktionen_k9", titel: "Quadratische Funktionen und Scheitelpunkt", klasse: 9, fach: "mathe", dauer: 48, kurs: "quad_funktionen_k9" },
+        { id: "pq_formel_k9", titel: "Quadratische Gleichungen mit der pq-Formel", klasse: 9, fach: "mathe", dauer: 56, kurs: "quad_gleichungen_k9" },
+        { id: "strahlensatz_k9", titel: "Der Strahlensatz", klasse: 9, fach: "mathe", dauer: 47, kurs: "aehnlichkeit_k9" },
+        { id: "trigonometrie_k9", titel: "Sinus, Kosinus und Tangens", klasse: 9, fach: "mathe", dauer: 50, kurs: "trigonometrie_k9" },
+        { id: "wurzeln_k9", titel: "Quadratwurzeln", klasse: 9, fach: "mathe", dauer: 47, kurs: "wurzeln_k9" },
+        { id: "potenzen_k9", titel: "Potenzgesetze und Zehnerpotenzen", klasse: 9, fach: "mathe", dauer: 44, kurs: "potenzen_k9" },
+        { id: "relativsaetze_k9", titel: "Relativsätze und Relativpronomen", klasse: 9, fach: "deutsch", dauer: 43, kurs: "relativsaetze_k9" },
+        { id: "eroerterung_k9", titel: "Die Erörterung", klasse: 9, fach: "deutsch", dauer: 44, kurs: "eroerterung_k9" },
+        { id: "kurzgeschichte_k9", titel: "Merkmale der Kurzgeschichte", klasse: 9, fach: "deutsch", dauer: 39, kurs: "kurzgeschichte_k9" },
+        { id: "bewerbung_k9", titel: "Bewerbung: Anschreiben und Lebenslauf", klasse: 9, fach: "deutsch", dauer: 46, kurs: "bewerbung_k9" },
+        { id: "relative_clauses_k9", titel: "Relative clauses: who, which, whose", klasse: 9, fach: "englisch", dauer: 48, kurs: "relative_clauses_k9" },
+        { id: "conditional_3_k9", titel: "Conditional Type III", klasse: 9, fach: "englisch", dauer: 43, kurs: "conditional_3_k9" },
+        { id: "wish_k9", titel: "I wish … und if only …", klasse: 9, fach: "englisch", dauer: 40, kurs: "wish_k9" },
+        // Klasse 10
+        { id: "exponentialfunktionen_k10", titel: "Exponentielles Wachstum", klasse: 10, fach: "mathe", dauer: 54, kurs: "exponential_k10" },
+        { id: "statistik_k10", titel: "Mittelwert, Median und Spannweite", klasse: 10, fach: "mathe", dauer: 46, kurs: "statistik_k10" },
+        { id: "sinus_kosinussatz_k10", titel: "Sinussatz und Kosinussatz", klasse: 10, fach: "mathe", dauer: 57, kurs: "sinus_kosinussatz_k10" },
+        { id: "kugel_k10", titel: "Volumen und Oberfläche der Kugel", klasse: 10, fach: "mathe", dauer: 41, kurs: "kugel_k10" },
+        { id: "pyramide_kegel_k10", titel: "Volumen von Pyramide und Kegel", klasse: 10, fach: "mathe", dauer: 48, kurs: "pyramide_kegel_k10" },
+        { id: "gedichte_k10", titel: "Gedichte analysieren", klasse: 10, fach: "deutsch", dauer: 43, kurs: "lyrik_k10" },
+        { id: "charakterisierung_k10", titel: "Eine Figur charakterisieren", klasse: 10, fach: "deutsch", dauer: 43, kurs: "charakterisierung_k10" },
+        { id: "erzaehlperspektive_k10", titel: "Die Erzählperspektive", klasse: 10, fach: "deutsch", dauer: 43, kurs: "prosatexte_k10" },
+        { id: "sachtexte_k10", titel: "Sachtexte unterscheiden", klasse: 10, fach: "deutsch", dauer: 42, kurs: "sachtexte_k10" },
+        { id: "vorstellungsgespraech_k10", titel: "Das Vorstellungsgespräch", klasse: 10, fach: "deutsch", dauer: 46, kurs: "bewerbung_k10" },
+        { id: "comment_k10", titel: "Writing a comment", klasse: 10, fach: "englisch", dauer: 49, kurs: "comment_k10" },
+        { id: "phrasal_verbs_k10", titel: "Phrasal verbs", klasse: 10, fach: "englisch", dauer: 50, kurs: "phrasal_verbs_k10" },
+        { id: "modals_deduction_k10", titel: "must, might, can't – Vermutungen", klasse: 10, fach: "englisch", dauer: 49, kurs: "modals_deduction_k10" },
+        { id: "present_perfect_progressive_k10", titel: "Present perfect progressive", klasse: 10, fach: "englisch", dauer: 45, kurs: "present_perfect_prog_k10" }
     ];
     const FACH = {
         mathe: { icon: "🧮", label: "Mathematik" },
@@ -171,6 +231,9 @@
             el.poster = "videos/" + v.id + ".jpg";
             el.src = "videos/" + v.id + ".mp4";
             el.load();
+            // Autostart: openVideo läuft im Tipp-Handler, daher erlauben Browser den Ton
+            const p = el.play();
+            if (p && p.catch) p.catch(function () { /* blockiert: Nutzer tippt selbst auf Play */ });
         }
         const kursBtn = document.getElementById("video-kurs-btn");
         if (kursBtn) kursBtn.classList.toggle("hidden", !v.kurs);
@@ -223,12 +286,17 @@
             if (aktuellesVideo && el.duration && el.currentTime / el.duration > 0.8) merkeGesehen(aktuellesVideo.id);
         });
         el.addEventListener("ended", function () { if (aktuellesVideo) merkeGesehen(aktuellesVideo.id); });
+        // Hintergrundmusik pausieren, solange ein Video läuft
+        el.addEventListener("play", function () { if (typeof stopBackgroundMusic === "function") stopBackgroundMusic(); });
         el.addEventListener("error", function () {
             if (el.getAttribute("src") && typeof showToast === "function") showToast("Video konnte nicht geladen werden. Bitte Internet prüfen.", "error");
         });
         // Video anhalten, sobald die Ansicht verlassen wird – egal auf welchem Weg
         new MutationObserver(function () {
-            if (view.classList.contains("hidden") && !el.paused) el.pause();
+            if (view.classList.contains("hidden")) {
+                if (!el.paused) el.pause();
+                if (typeof startBackgroundMusic === "function") startBackgroundMusic();
+            }
         }).observe(view, { attributes: true, attributeFilter: ["class"] });
     }
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", verbindePlayer);

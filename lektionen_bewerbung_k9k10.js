@@ -2,7 +2,7 @@
 (function () {
     const extraKurse = [
         { id: "bewerbung_k9", title: "Bewerbung schreiben", icon: "✉️", grade: 9, subject: "deutsch", beschreibung: "Anschreiben und tabellarischer Lebenslauf – der Aufbau." },
-        { id: "bewerbung_k10", title: "Bewerbung schreiben", icon: "📎", grade: 10, subject: "deutsch", beschreibung: "Überzeugen, Anlagen, PDF und formeller Stil." }
+        { id: "bewerbung_k10", title: "Bewerbung schreiben", icon: "📎", grade: 10, subject: "deutsch", beschreibung: "Überzeugen, Anlagen, PDF und Vorstellungsgespräch." }
     ];
     const extraLektionen = [
     {

@@ -57,7 +57,21 @@
         { id: "pronomen_praepositionen_k5", titel: "Pronomen und Präpositionen", klasse: 5, fach: "deutsch", dauer: 47, kurs: "wortarten_vertiefend_k5" },
         { id: "simple_present_k5", titel: "Simple Present – he, she, it", klasse: 5, fach: "englisch", dauer: 48, kurs: "simple_present_k5" },
         { id: "simple_past_k5", titel: "Simple Past – played, went, saw", klasse: 5, fach: "englisch", dauer: 47, kurs: "simple_past_k5" },
-        { id: "plural_en_k5", titel: "Plural auf Englisch", klasse: 5, fach: "englisch", dauer: 48, kurs: "plural_regeln_k5" }
+        { id: "plural_en_k5", titel: "Plural auf Englisch", klasse: 5, fach: "englisch", dauer: 48, kurs: "plural_regeln_k5" },
+        { id: "brueche_erweitern_kuerzen_k5", titel: "Brüche erweitern und kürzen", klasse: 5, fach: "mathe", dauer: 40, kurs: "bruchrechnen_k5" },
+        // Klasse 6
+        { id: "dezimalzahlen_k6", titel: "Dezimalzahlen verstehen", klasse: 6, fach: "mathe", dauer: 48, kurs: "dezimalzahlen_k6" },
+        { id: "dezimal_addieren_k6", titel: "Dezimalzahlen addieren", klasse: 6, fach: "mathe", dauer: 51, kurs: "dezimal_rechnen_k6" },
+        { id: "dezimal_multiplizieren_k6", titel: "Dezimalzahlen multiplizieren", klasse: 6, fach: "mathe", dauer: 49, kurs: "dezimal_rechnen_k6" },
+        { id: "brueche_multiplizieren_k6", titel: "Brüche multiplizieren", klasse: 6, fach: "mathe", dauer: 50, kurs: "bruchrechnen_k6" },
+        { id: "negative_zahlen_k6", titel: "Negative Zahlen", klasse: 6, fach: "mathe", dauer: 39, kurs: "negative_zahlen_k6" },
+        { id: "volumen_quader_k6", titel: "Volumen des Quaders", klasse: 6, fach: "mathe", dauer: 50, kurs: "koerper_volumen_k6" },
+        { id: "adjektive_steigern_k6", titel: "Adjektive steigern", klasse: 6, fach: "deutsch", dauer: 43, kurs: "adjektive_steigern_k6" },
+        { id: "nominalisierung_k6", titel: "Verben und Adjektive werden groß", klasse: 6, fach: "deutsch", dauer: 42, kurs: "grossschreibung_k6" },
+        { id: "perfekt_plusquamperfekt_k6", titel: "Perfekt und Plusquamperfekt", klasse: 6, fach: "deutsch", dauer: 47, kurs: "zeitformen_k6" },
+        { id: "present_perfect_k6", titel: "Present Perfect bilden", klasse: 6, fach: "englisch", dauer: 51, kurs: "present_perfect_k6" },
+        { id: "comparison_k6", titel: "Comparison: bigger, more beautiful", klasse: 6, fach: "englisch", dauer: 45, kurs: "comparison_k6" },
+        { id: "adverbs_k6", titel: "Adverbs: slow oder slowly?", klasse: 6, fach: "englisch", dauer: 47, kurs: "adverbs_k6" }
     ];
     const FACH = {
         mathe: { icon: "🧮", label: "Mathematik" },

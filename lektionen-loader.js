@@ -51,7 +51,8 @@
         "lektionen_deutsch_k4.js?v=1",
         "lektionen_sachunterricht_k4.js?v=1",
         "lektionen_umfang_flaeche_k4.js?v=1",
-        "lektionen_deutsch_k5_l2.js?v=1"
+        "lektionen_deutsch_k5_l2.js?v=1",
+        "lektionen_k6_l2.js?v=1"
     ];
 
     var laufend = null;

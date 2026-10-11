@@ -5,22 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
     <meta name="theme-color" content="#080c18">
-    <title>EduPlay Hub - Familien Edition v2.30</title>
+    <title>EduPlay Hub - Familien Edition v2.39</title>
 
     <!-- Build-Stempel fürs Entwickler-Modus-Panel: bei jeder gelieferten
          Änderung hier Datum/Uhrzeit aktualisieren. So erkennt man beim Testen
          (Einstellungen -> Entwickler-Modus -> "Build"), ob der Cache/die
          installierte App wirklich den neuesten Stand geladen hat. -->
-    <script>window.EDUPLAY_BUILD = "23.08.2026 · 19:40";</script>
+    <script>window.EDUPLAY_BUILD = "24.08.2026 · 11:55";</script>
 
-    <link rel="stylesheet" href="styles.css?v=11.5">
+    <link rel="stylesheet" href="styles.css?v=12.9">
     <link rel="stylesheet" href="tailwind-build.css?v=1">
+
+    <!-- ==========================================================
+    SCHALTER: Bereiche, die vorerst nicht gezeigt werden.
+    Auf true setzen, um sie wieder einzublenden – sonst nichts zu tun.
+    ========================================================== -->
+    <script>
+        window.ZEIGE_SOUNDPACK = false;   // Einstellungen: Soft / Klar / Arcade
+        window.ZEIGE_KI_COACH = false;    // KI-Lerncoach: Key-Feld + Knopf im Quiz
+    </script>
 
     <script src="vendor/firebase-10.12.3/firebase-app-compat.js"></script>
     <script src="vendor/firebase-10.12.3/firebase-auth-compat.js"></script>
     <script src="vendor/firebase-10.12.3/firebase-firestore-compat.js"></script>
 
-    <script src="datenbanken_loader.js?v=9.2"></script>
+    <script src="datenbanken_loader.js?v=9.6"></script>
 
     <link rel="icon" type="image/png" href="icons/favicon-64.png">
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -42,33 +51,6 @@
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
-    </div>
-
-    <!-- ============================================================
-    FERNSEHER-STEUERUNG
-    ============================================================ -->
-    <div id="castControlPanel" class="hidden fixed bottom-0 left-0 right-0 z-50 p-3"
-        style="background:rgba(14,22,40,0.95);backdrop-filter:blur(12px);border-top:1px solid rgba(99,102,241,0.2);">
-        <div class="max-w-md mx-auto">
-            <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-indigo-300">📺 Fernseher-Steuerung</span>
-                <span id="castPanelStatus" class="text-xs text-gray-400">Lobby – bereit</span>
-            </div>
-            <div class="grid grid-cols-4 gap-2">
-                <button onclick="castStartQuiz()"
-                    class="py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all shadow-lg shadow-emerald-600/20">🚀
-                    Start</button>
-                <button onclick="castReveal()"
-                    class="py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-sm transition-all shadow-lg shadow-amber-500/20">💡
-                    Lösung</button>
-                <button onclick="castNext()"
-                    class="py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm transition-all shadow-lg shadow-indigo-600/20">➔
-                    Nächste</button>
-                <button onclick="castRestart()"
-                    class="py-2.5 rounded-xl bg-gray-700 hover:bg-gray-600 text-white font-bold text-sm transition-all shadow-lg shadow-gray-700/20">🔄
-                    Neu</button>
-            </div>
-        </div>
     </div>
 
     <!-- ============================================================
@@ -113,7 +95,7 @@ HEADER FÜR FAMILY HUB
         <header id="header-familyhub" class="app-header">
             <div class="title-area">
                 <span class="logo">EduPlay</span>
-                <span class="version">v2.31</span>
+                <span class="version">v2.39</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -128,7 +110,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         <header id="header-menu" class="app-header hidden">
             <div class="title-area">
                 <span class="logo" onclick="logoutParent()" style="cursor: pointer;"
-                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.31</span>
+                    title="Zur Anmeldung">EduPlay</span> <span class="version">v2.39</span>
             </div>
             <div class="header-actions">
                 <button onclick="openDrawer()" title="Menü" aria-label="Menü öffnen">
@@ -138,7 +120,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
         </header>
 
 
-        <main class="flex-grow p-4">
+        <main class="flex-grow p-4" style="padding-bottom:112px;">
 
             <!-- ==========================================================
             VIEW: AUTH
@@ -150,7 +132,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
-                    <p class="text-[10px] text-gray-500 mt-1">Version 2.30</p>
+                    <p class="text-[10px] text-gray-500 mt-1">Version 2.39</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
                     <p class="text-xs text-gray-400 text-center mb-1">Bitte mit dem Eltern-Account anmelden oder einen
@@ -397,6 +379,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <button id="dash-sub-woerter" onclick="switchDashboardSubTab('woerter')">
                             🔤 <span id="dash-word-count">0</span>
                         </button>
+                        <button id="dash-sub-kurse" onclick="switchDashboardSubTab('kurse')">
+                            🎓 <span id="dash-kurs-count">0</span>
+                        </button>
                     </div>
 
                     <!-- FILTER-LEISTE – kompakt -->
@@ -419,6 +404,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <!-- Wörter-View (Kinder-Themen) -->
                     <div id="dash-sub-woerter-view" class="hidden space-y-3">
                         <div id="dash-word-list" class="max-h-[400px] overflow-y-auto flex flex-wrap gap-1.5"></div>
+                    </div>
+                    <div id="dash-sub-kurse-view" class="hidden space-y-3">
+                        <div id="dash-kurs-list" class="max-h-[400px] overflow-y-auto space-y-1.5"></div>
                     </div>
 
 
@@ -526,6 +514,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <p class="text-[11px] text-gray-500">Für das Kind im Fokus.</p>
 
                             <div id="dash-test-results" class="space-y-3"></div>
+                            <div id="dash-test-notices" class="space-y-2"></div>
 
                             <div>
                                 <label class="text-xs text-gray-400 font-bold block mb-1.5">Themen (nach Klasse)</label>
@@ -550,6 +539,10 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <input type="number" id="dash-test-time" value="10" min="1" max="90"
                                     class="input-modern">
                             </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-bold block mb-1.5">Fällig bis (optional)</label>
+                                <input type="date" id="dash-test-deadline" class="input-modern">
+                            </div>
                             <button onclick="assignTestFromDashboard()" class="btn-primary w-full text-center">Test
                                 zuweisen 🚀</button>
 
@@ -560,6 +553,42 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                                 <button onclick="saveTestTemplate()" class="btn-secondary w-full text-sm">Aktuelle
                                     Auswahl als Vorlage speichern</button>
                             </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card overflow-hidden">
+                            <button type="button" onclick="toggleDashSection('lesson')"
+                                class="w-full px-4 py-4 flex items-center justify-between hover:bg-white/5 transition">
+                                <span class="text-base font-black text-amber-300">📚 Lektion zuweisen</span>
+                                <span id="dash-lesson-arrow" class="text-gray-400 transition-transform">▼</span>
+                            </button>
+                            <div id="dash-lesson-body" class="hidden px-4 pb-4 space-y-2">
+                                <p class="text-[11px] text-gray-500">Eine oder mehrere Lektionen für das Kind im Fokus. Erscheinen auf dem Startscreen.</p>
+                                <select id="dash-lesson-grade" class="input-modern text-sm" onchange="fillDashLessonSelect()"></select>
+                                <input type="hidden" id="dash-lesson-id" value="">
+                                <div id="dash-lesson-list" class="flex flex-col gap-1.5 max-h-72 overflow-y-auto pr-1"></div>
+                                <label class="text-[11px] text-gray-500 font-bold block mb-1">Fällig bis (optional)</label>
+                                <input type="date" id="dash-lesson-deadline" class="input-modern text-sm">
+                                <button type="button" id="dash-lesson-assign-btn" onclick="assignLessonFromDashboard()" class="btn-primary w-full text-center">Lektion zuweisen 📚</button>
+                                <div id="dash-lesson-notices" class="space-y-2"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card overflow-hidden">
+                            <button type="button" onclick="toggleDashSection('kurszuw')"
+                                class="w-full px-4 py-4 flex items-center justify-between hover:bg-white/5 transition">
+                                <span class="text-base font-black text-amber-300">🎓 Kurs zuweisen</span>
+                                <span id="dash-kurszuw-arrow" class="text-gray-400 transition-transform">▼</span>
+                            </button>
+                            <div id="dash-kurszuw-body" class="hidden px-4 pb-4 space-y-2">
+                                <p class="text-[11px] text-gray-500">Ein oder mehrere ganze Kurse (alle Lektionen darin) für das Kind im Fokus. Erscheinen auf dem Startscreen.</p>
+                                <select id="dash-kurszuw-grade" class="input-modern text-sm" onchange="fillDashKursSelect()"></select>
+                                <input type="hidden" id="dash-kurszuw-id" value="">
+                                <div id="dash-kurszuw-list" class="flex flex-col gap-1.5 max-h-72 overflow-y-auto pr-1"></div>
+                                <label class="text-[11px] text-gray-500 font-bold block mb-1">Fällig bis (optional)</label>
+                                <input type="date" id="dash-kurs-deadline" class="input-modern text-sm">
+                                <button type="button" id="dash-kurs-assign-btn" onclick="assignKursFromDashboard()" class="btn-primary w-full text-center">Kurs zuweisen 🎓</button>
+                                <div id="dash-kurs-notices" class="space-y-2"></div>
                             </div>
                         </div>
                     </div>
@@ -620,9 +649,16 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <div class="flex gap-2">
                                 <input type="text" id="dash-reward-name" placeholder="Belohnung (z.B. Extra-TV)"
                                     class="input-modern flex-1 text-sm">
-                                <input type="number" id="dash-reward-cost" placeholder="Coins"
-                                    class="input-modern w-24 text-sm">
+                                <input type="number" id="dash-reward-cost" placeholder="Betrag"
+                                    class="input-modern w-20 text-sm">
+                                <select id="dash-reward-currency" class="input-modern w-28 text-sm">
+                                    <option value="coins">🪙 Coins</option>
+                                    <option value="zeit">⏳ Minuten</option>
+                                </select>
                             </div>
+                            <select id="dash-reward-child" class="input-modern text-sm w-full">
+                                <option value="">Alle Kinder</option>
+                            </select>
                             <button onclick="addRewardFromDashboard()" class="btn-primary w-full text-center">Belohnung
                                 hinzufügen</button>
                             <div id="dash-reward-list" class="space-y-1.5"></div>
@@ -685,6 +721,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 </div>
                 <div id="duel-question-area" class="hidden glass-card p-5 text-center space-y-4 shadow-lg">
                     <div id="duel-progress" class="text-xs text-gray-400 font-bold">Frage 1/8</div>
+                    <div id="duel-question-grafik" class="hidden mx-auto max-w-xs"></div>
                     <h2 id="duel-question-text" class="text-lg font-bold text-pink-400 leading-snug">...</h2>
                     <div id="duel-options-container" class="flex flex-col gap-2.5"></div>
                 </div>
@@ -809,7 +846,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div id="scrabble-word-preview"
                             class="input-modern text-xl font-black text-center uppercase tracking-widest text-gray-500">
                             …</div>
-                        <div id="scrabble-live-feedback" class="text-center text-sm font-bold text-gray-400 h-5"></div>
+                        <div id="scrabble-live-feedback" class="text-center text-sm font-bold text-gray-400 wort-hinweis"></div>
                         <div class="grid grid-cols-2 gap-2">
                             <button id="scrabble-undo-btn" onclick="srUndoTile()" disabled
                                 class="btn-secondary w-full text-center disabled:opacity-30">⌫ Entfernen</button>
@@ -933,7 +970,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </div>
                     <div id="wortraten-figure" class="w-44 h-48 mx-auto"></div>
                     <div id="wortraten-word-tiles" class="flex flex-wrap justify-center gap-1.5"></div>
-                    <div id="wortraten-turn-banner" class="text-center text-sm font-bold text-sky-300 h-5"></div>
+                    <div id="wortraten-turn-banner" class="text-center text-sm font-bold text-sky-300 wort-hinweis"></div>
                     <div id="wortraten-scores" class="flex gap-2 overflow-x-auto pb-1"></div>
                     <div id="wortraten-keyboard" class="grid grid-cols-6 sm:grid-cols-7 gap-1.5"></div>
                     <button type="button" onclick="wrPromptSolveWord()"
@@ -1508,7 +1545,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-2 mt-4">
+                    <div class="grid grid-cols-4 gap-2 mt-4">
                         <div class="bg-white/5 rounded-xl py-2 text-center">
                             <div id="menu-streak" class="text-sm font-black text-orange-400">🔥 0 Tage</div>
                             <div class="text-[10px] font-bold text-gray-500">Lernserie</div>
@@ -1516,6 +1553,10 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <div class="bg-white/5 rounded-xl py-2 text-center">
                             <div class="text-sm font-black text-amber-400">🪙 <span id="menu-coins">0</span></div>
                             <div class="text-[10px] font-bold text-gray-500">Coins</div>
+                        </div>
+                        <div class="bg-white/5 rounded-xl py-2 text-center">
+                            <div class="text-sm font-black text-indigo-300">⏳ <span id="menu-zeit">0</span></div>
+                            <div class="text-[10px] font-bold text-gray-500">Minuten</div>
                         </div>
                         <div class="bg-white/5 rounded-xl py-2 text-center">
                             <div class="text-sm font-black text-emerald-400">🏅 <span id="menu-badge-count">0</span>
@@ -1548,6 +1589,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div id="weakness-card" class="hidden"></div>
                 <div id="study-goal-card" class="hidden"></div>
                 <div id="pending-test-card" class="hidden"></div>
+                <div id="pending-lesson-card" class="hidden"></div>
+                <div id="pending-kurs-card" class="hidden"></div>
                 <div id="open-duels-list" class="space-y-2"></div>
                 <div id="open-tv-list" class="space-y-2"></div>
 
@@ -1597,9 +1640,6 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div class="flex items-center justify-between gap-2">
                     <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('menu')">Zurück</button>
                     <span class="text-sm font-bold text-gray-400">⚔️ Gegeneinander</span>
-                    <button onclick="toggleCast()" id="castButton" title="TV-Anzeige (später)"
-                        aria-label="Mit Fernseher verbinden"
-                        class="w-11 h-11 rounded-xl bg-white/5 border border-white/5 text-lg shrink-0 text-gray-400 hover:text-white transition-all">🖥️</button>
                 </div>
 
                 <div class="flex items-center gap-2 px-1">
@@ -1736,6 +1776,16 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </span>
                 </button>
 
+                <button onclick="showVideos()"
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
+                    style="background:linear-gradient(140deg,#ec4899,#f43f5e);">
+                    <span class="text-3xl shrink-0">🎬</span>
+                    <span>
+                        <span class="block text-base font-black">Videos <span class="text-[10px] bg-white/20 rounded-full px-2 py-0.5 align-middle">NEU</span></span>
+                        <span class="block text-xs font-bold text-rose-100/80">Kurze Erklärvideos</span>
+                    </span>
+                </button>
+
                 <button onclick="switchView('vokabeln')"
                     class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
                     style="background:linear-gradient(140deg,#6366f1,#8b5cf6);">
@@ -1777,7 +1827,8 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                 <div class="glass-card p-5">
                     <h3 class="text-xl font-black text-purple-400 mb-1">🎁 Belohnungen</h3>
                     <p class="text-xs text-gray-400 mb-4">Du hast <span id="rewards-coin-balance"
-                            class="text-yellow-400 font-bold">0</span> Coins.</p>
+                            class="text-yellow-400 font-bold">0</span> Coins und <span id="rewards-zeit-balance"
+                            class="text-indigo-300 font-bold">0</span> Bonus-Minuten.</p>
                     <div id="rewards-list" class="space-y-3"></div>
                 </div>
             </div>
@@ -1798,11 +1849,11 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
 
                         <!-- Buttons zum Ändern der Farbe -->
                         <div class="flex gap-3 mt-4">
-                            <button type="button" onclick="changeShirtColor('#f43f5e')"
+                            <button type="button" aria-label="T-Shirt rot" onclick="changeShirtColor('#f43f5e')"
                                 class="w-8 h-8 rounded-full bg-rose-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
-                            <button type="button" onclick="changeShirtColor('#3b82f6')"
+                            <button type="button" aria-label="T-Shirt blau" onclick="changeShirtColor('#3b82f6')"
                                 class="w-8 h-8 rounded-full bg-blue-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
-                            <button type="button" onclick="changeShirtColor('#10b981')"
+                            <button type="button" aria-label="T-Shirt grün" onclick="changeShirtColor('#10b981')"
                                 class="w-8 h-8 rounded-full bg-emerald-500 shadow-md border-2 border-white/20 hover:scale-110 transition-transform"></button>
                         </div>
                     </div>
@@ -1970,14 +2021,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     onclick="switchView(currentPlayer ? 'menu' : 'family-hub')">Zurück</button>
                 <div class="glass-card p-5 space-y-4">
                     <h2 class="text-xl font-black text-indigo-400">⚙️ Einstellungen</h2>
-                    <div class="py-2 border-b border-white/5 space-y-2">
+                    <div id="block-soundpack" class="py-2 border-b border-white/5 space-y-2">
                         <span class="font-bold text-white block">🎧 Sound-Pack</span>
                         <div class="dash-sub-nav">
                             <button type="button" data-sound-pack="soft" class="active" onclick="setSoundPack('soft')">Soft</button>
                             <button type="button" data-sound-pack="crisp" onclick="setSoundPack('crisp')">Klar</button>
                             <button type="button" data-sound-pack="arcade" onclick="setSoundPack('arcade')">Arcade</button>
                         </div>
-                        <p class="text-[11px] text-gray-500">Soft · Klar · Arcade. Stumm über Leise-Modus im Menü.</p>
+                        <p class="text-[11px] text-gray-500">Soft · Klar · Arcade. Ganz aus über „Musik &amp; Töne" im Menü.</p>
                     </div>
                     <div class="py-2 border-b border-white/5 space-y-2">
                         <div class="flex items-center justify-between gap-3">
@@ -1986,6 +2037,26 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         </div>
                         <input type="range" id="music-volume-slider" min="0" max="100" value="25"
                             oninput="setMusicVolume(this.value)" class="w-full accent-indigo-500">
+                    </div>
+                    <div class="py-2 border-b border-white/5 space-y-2">
+                        <div class="flex items-center justify-between gap-3">
+                            <span class="font-bold text-white">🔊 Vorlesen</span>
+                            <span id="vorlesen-status" class="text-xs text-gray-400 font-bold">automatisch</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-1.5" role="group" aria-label="Vorlesen">
+                            <button type="button" id="vorlese-modus-aus" onclick="setVorleseModus('aus')"
+                                class="rounded-lg px-2 py-2.5 text-[11px] font-black bg-white/5 text-gray-400 transition">Aus</button>
+                            <button type="button" id="vorlese-modus-knopf" onclick="setVorleseModus('knopf')"
+                                class="rounded-lg px-2 py-2.5 text-[11px] font-black bg-white/5 text-gray-400 transition">Nur auf Knopf</button>
+                            <button type="button" id="vorlese-modus-auto" onclick="setVorleseModus('auto')"
+                                class="rounded-lg px-2 py-2.5 text-[11px] font-black bg-white/5 text-gray-400 transition">Automatisch</button>
+                        </div>
+                        <p class="text-[11px] text-gray-500">Gilt nur für Klasse 1 und 2. Vorgelesen wird nur die
+                            <strong class="text-gray-400">Frage</strong> – die Antworten nicht, sonst wäre die Lösung
+                            mitgesprochen. Jede Antwort hat ihr eigenes 🔊 zum Nachhören.
+                            „Automatisch" liest jede neue Frage von allein vor, „Nur auf Knopf" erst beim Tippen auf 🔊.
+                            Ab Klasse 3 bleibt der Bildschirm ohne Vorlesen.
+                            Die Stimme kommt vom Gerät und läuft weiter, auch wenn „Musik &amp; Töne" aus ist.</p>
                     </div>
                     <div class="pt-2 space-y-3">
                         <h3 class="text-sm font-black text-amber-400">🔑 Eltern-PIN</h3>
@@ -2017,7 +2088,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             </div>
                         </div>
                     </div>
-                    <div class="pt-3 border-t border-white/5 space-y-2">
+                    <div id="block-ki-coach" class="pt-3 border-t border-white/5 space-y-2">
                         <h3 class="text-sm font-black text-violet-400">🤖 KI-Lerncoach</h3>
                         <p class="text-xs text-gray-400">Gemini-API-Key (Google AI Studio, optional). Ohne Key: Offline-Erklärung.</p>
                         <input id="settings-gemini-key" type="password" autocomplete="off" placeholder="API-Key einfügen…"
@@ -2049,7 +2120,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     <div id="dev-admin-entry" class="hidden pt-3 border-t border-white/5">
                         <button type="button" onclick="openDevAdmin()" class="btn-secondary w-full text-sm text-cyan-300">🛠 Entwickler-Seite</button>
                     </div>
-                    <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.31
+                    <div class="pt-3 border-t border-white/5 text-center text-xs text-gray-500">EduPlay Hub · v2.39
                     </div>
                 </div>
             </div>
@@ -2200,9 +2271,11 @@ VIEW: QUIZ SETUP
             <div id="question-image-wrap" class="hidden mx-auto max-w-sm">
                 <img id="question-image" alt="Rätselbild" class="w-full rounded-xl border border-white/10 bg-black/20 object-contain max-h-56" />
             </div>
+            <div id="question-grafik" class="hidden mx-auto max-w-xs"></div>
             <h2 id="question-text" class="text-lg font-bold text-pink-400 leading-snug">Lade Frage...</h2>
-            <button id="question-speak-btn" class="hidden btn-secondary text-sm py-2 px-4 mx-auto"
-                onclick="speakCurrentQuestion()" title="Frage vorlesen">🔊 Vorlesen</button>
+            <button id="question-speak-btn" type="button" onclick="speakCurrentQuestion()"
+                class="hidden mx-auto flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-bold text-indigo-300 transition"
+                aria-label="Frage und Antworten vorlesen">🔊 Vorlesen</button>
             <div id="options-container" class="flex flex-col gap-2.5"></div>
             <div id="explanation-box" class="hidden"></div>
             <button id="next-question-btn" class="btn-primary w-full hidden text-center"
@@ -2232,11 +2305,49 @@ VIEW: QUIZ SETUP
     </div>
 
     <!-- ==========================================================
+            VIEW: LERNVIDEOS (Liste)
+            ========================================================== -->
+    <div id="view-videos" class="view hidden space-y-3">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('lernen')">Zurück</button>
+            <span class="text-sm font-bold text-gray-400">🎬 Videos</span>
+            <span class="w-16"></span>
+        </div>
+        <p id="videos-anzahl" class="text-xs text-gray-400 text-center -mt-1"></p>
+        <div id="videos-klassen" class="flex gap-2 overflow-x-auto pb-1"></div>
+        <div id="videos-liste" class="space-y-3"></div>
+    </div>
+
+    <!-- ==========================================================
+            VIEW: LERNVIDEO (Player)
+            ========================================================== -->
+    <div id="view-video" class="view hidden space-y-3">
+        <div class="flex items-center justify-between gap-2">
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="videoZurueck()">Zurück</button>
+            <span class="text-sm font-bold text-gray-400">🎬 Video</span>
+            <span class="w-16"></span>
+        </div>
+        <div style="border-radius:18px;overflow:hidden;background:#000;">
+            <video id="video-player" controls playsinline preload="metadata" controlslist="nodownload noplaybackrate"
+                disablepictureinpicture style="width:100%;aspect-ratio:16/9;display:block;background:#fff8ec;"></video>
+        </div>
+        <div>
+            <div id="video-titel" class="text-base font-black text-white"></div>
+            <div id="video-info" class="text-xs text-gray-400"></div>
+        </div>
+        <button type="button" id="video-kurs-btn" onclick="videoZumKurs()"
+            class="w-full py-3 rounded-xl text-sm font-black text-white"
+            style="background:linear-gradient(140deg,#f59e0b,#ef4444);">📘 Jetzt im Kurs üben</button>
+        <button type="button" id="video-next-btn" onclick="videoNaechstes()"
+            class="w-full py-3 rounded-xl text-sm font-black text-white bg-white/5 border border-white/10"></button>
+    </div>
+
+    <!-- ==========================================================
             VIEW: KURSE EINES FACHS
             ========================================================== -->
     <div id="view-kurs-fach" class="view hidden space-y-3">
         <div class="flex items-center justify-between gap-2">
-            <button class="btn-secondary text-sm py-2.5 px-4" onclick="switchView('kurse')">Zurück</button>
+            <button class="btn-secondary text-sm py-2.5 px-4" onclick="backFromKursFach()">Zurück</button>
             <span id="kurs-fach-title" class="text-sm font-bold text-gray-400">Fach</span>
             <span class="w-16"></span>
         </div>
@@ -2298,6 +2409,8 @@ VIEW: QUIZ SETUP
             <p id="lektion-ergebnis-hinweis" class="text-sm text-gray-400"></p>
             <button id="lektion-ergebnis-review-btn" type="button" onclick="startLektionWiederholung()"
                 class="hidden w-full p-3 rounded-xl font-bold text-white bg-amber-600 hover:bg-amber-500">🔁 3 Fehler wiederholen</button>
+            <button id="lektion-ergebnis-wissen-btn" type="button"
+                class="hidden w-full p-3 rounded-xl font-bold text-white" style="background:linear-gradient(140deg,#6366f1,#10b981);">🧠 Im Wissen-Modus üben</button>
             <div class="flex gap-3 mt-4">
                 <button id="lektion-ergebnis-retry-btn" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Nochmal</button>
                 <button onclick="showKurse()" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Zu den Kursen</button>
@@ -2326,6 +2439,10 @@ VIEW: QUIZ SETUP
             </div>
             <select id="category-dropdown" class="input-modern text-sm font-bold"
                 onchange="selectCategory(this.value)"></select>
+            <select id="vocab-topic-filter" class="input-modern text-sm font-bold mt-2"
+                onchange="selectVocabTopic(this.value)">
+                <option value="">Alle Themen der Klasse</option>
+            </select>
             <div class="vocab-progress-track">
                 <div id="vocab-progress-bar" class="vocab-progress-fill"></div>
             </div>
@@ -2641,7 +2758,7 @@ VIEW: QUIZ SETUP
                         <select id="dev-filter-cat" class="input-modern text-sm"></select>
                     </div>
                     <button type="button" onclick="runDevBrowser()" class="btn-primary w-full">Durchsuchen</button>
-                    <div id="dev-browser-out" class="space-y-2 max-h-80 overflow-y-auto"></div>
+                    <div id="dev-browser-out" class="space-y-2 max-h-[70vh] overflow-y-auto"></div>
                 </div>
 
                 <div class="glass-card p-4 space-y-3">
@@ -2672,26 +2789,47 @@ VIEW: QUIZ SETUP
     <!-- ============================================================
     JAVASCRIPT MODULE
     ============================================================ -->
-    <script src="app-config.js?v=11.7"></script>
-    <script src="app-ui.js?v=9.4"></script>
-    <script src="family-dashboard.js?v=11.21"></script>
-    <script src="dev-admin.js?v=1.6"></script>
-    <script src="ui-common.js?v=9.1"></script>
+    <script src="confetti.js?v=1"></script>
+    <script src="app-config.js?v=13.22"></script>
+    <script src="app-ui.js?v=9.5"></script>
+    <script src="family-dashboard.js?v=11.42"></script>
+    <script src="dev-admin.js?v=1.7"></script>
+    <script src="ui-common.js?v=9.3"></script>
     <script src="ki-coach.js?v=1.1"></script>
-    <script src="quiz-core.js?v=9.9"></script>
-    <script src="lektionen.js?v=1.1"></script>
-    <script src="vocab.js?v=9.0"></script>
+    <script src="quiz-core.js?v=10.14"></script>
+    <!-- Die neun Kurs-Dateien (zusammen rund 2 MB) werden nicht mehr hier
+         geladen, sondern von lektionen-loader.js im Leerlauf nachgeholt bzw.
+         spaetestens beim ersten Antippen von "Kurse". Die Dateiliste und die
+         ?v=-Nummern stehen jetzt in lektionen-loader.js. -->
+    <script src="lektionen-loader.js?v=1.14"></script>
+    <script src="videos.js?v=7"></script>
+    <script src="vocab.js?v=9.1"></script>
     <script src="suchsel.js?v=1.3"></script>
-    <script src="duel-scrabble.js?v=9.1"></script>
-    <script src="wortraten.js?v=9.5"></script>
-    <script src="tv-cast.js?v=12.9"></script>
-    <script src="live-duel.js?v=10.5"></script>
-    <script src="app-misc.js?v=8.8"></script>
-    <script src="lobby-avatar.js?v=9.9"></script>
+    <script src="duel-scrabble.js?v=9.5"></script>
+    <script src="wortraten.js?v=9.6"></script>
+    <script src="tv-cast.js?v=14.6"></script>
+    <script src="live-duel.js?v=10.16"></script>
+    <script src="app-misc.js?v=8.9"></script>
+    <script src="lobby-avatar.js?v=10.3"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
     <script src="email-bestaetigung.js?v=8.8"></script>
     <script src="fragen-vorladen.js?v=8.8"></script>
     <script src="zurueck-knopf.js?v=9.0"></script>
+
+    <!-- Schalter anwenden: die Bereiche werden aus dem Dokument genommen,
+         nicht nur versteckt – so bleibt kein Eingabefeld im Hintergrund. -->
+    <script>
+        (function () {
+            if (!window.ZEIGE_SOUNDPACK) {
+                var sp = document.getElementById("block-soundpack");
+                if (sp) sp.remove();
+            }
+            if (!window.ZEIGE_KI_COACH) {
+                var ki = document.getElementById("block-ki-coach");
+                if (ki) ki.remove();
+            }
+        })();
+    </script>
 
 
     <script>
@@ -2730,8 +2868,8 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             <button class="close-btn" onclick="closeDrawer()" aria-label="Menü schließen">✕</button>
         </div>
         <div class="flex flex-col gap-1 drawer-items-container">
-            <button onclick="closeDrawer(); toggleQuietMode()" class="drawer-menu-item">
-                <span class="icon">🤫</span> <span>Leise-Modus <span class="quiet-toggle-label">aus</span></span>
+            <button onclick="toggleQuietMode(); closeDrawer()" class="drawer-menu-item">
+                <span class="icon sound-toggle-icon">🔊</span> <span>Musik &amp; Töne <span class="quiet-toggle-label">an</span></span>
             </button>
             <button onclick="closeDrawer(); togglePushNotifications()" class="drawer-menu-item">
                 <span class="icon">🔔</span> <span>Duell-Benachr. <span class="push-toggle-label">aus</span></span>
@@ -2759,7 +2897,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.31<br>
+            EduPlay Hub · v2.39<br>
             © 2026 · Familien Edition
         </div>
     </div>
@@ -2779,8 +2917,8 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             <button onclick="closeDrawer(); switchView('dashboard')" class="drawer-menu-item">
                 <span class="icon">🎛️</span> Kontrollzentrum
             </button>
-            <button onclick="closeDrawer(); toggleQuietMode()" class="drawer-menu-item">
-                <span class="icon">🤫</span> <span>Leise-Modus <span class="quiet-toggle-label">aus</span></span>
+            <button onclick="toggleQuietMode(); closeDrawer()" class="drawer-menu-item">
+                <span class="icon sound-toggle-icon">🔊</span> <span>Musik &amp; Töne <span class="quiet-toggle-label">an</span></span>
             </button>
             <button onclick="closeDrawer(); togglePushNotifications()" class="drawer-menu-item">
                 <span class="icon">🔔</span> <span>Duell-Benachr. <span class="push-toggle-label">aus</span></span>
@@ -2808,7 +2946,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
             </button>
         </div>
         <div class="drawer-footer">
-            EduPlay Hub · v2.30<br>
+            EduPlay Hub · v2.39<br>
             © 2026 · Familien Edition
         </div>
     </div>

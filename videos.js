@@ -191,7 +191,7 @@
         const wrap = document.getElementById("videos-liste");
         const chips = document.getElementById("videos-klassen");
         if (!wrap || !chips) return;
-        const klassen = Array.from(new Set(VIDEOS.map(function (v) { return v.klasse; }))).sort();
+        const klassen = Array.from(new Set(VIDEOS.map(function (v) { return v.klasse; }))).sort(function (a, b) { return a - b; });
         chips.innerHTML = chip(0, "Alle") + klassen.map(function (k) { return chip(k, "Klasse " + k); }).join("");
         const g = gesehen();
         const liste = VIDEOS.filter(function (v) { return !filterKlasse || v.klasse === filterKlasse; });

@@ -454,7 +454,7 @@
 
             const expBox = document.getElementById("explanation-box");
             if (sel === cor) {
-                addXP(10);
+                addXP((typeof quizBelohnung === "function") ? quizBelohnung(q) : 10);
                 SFX.correct();
                 expBox.innerHTML =
                     `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`;

@@ -447,6 +447,7 @@ auth.createUserWithEmailAndPassword(e, p)
 
             if (preview) previewKeys.forEach(key => preview.appendChild(buildPlayerCard(key, colorMap[key])));
             if (grid) profileKeys.forEach(key => grid.appendChild(buildPlayerCard(key, colorMap[key])));
+            if (window._pendingAufgabe && profileKeys.length) setTimeout(aufgabeLinkProfilWaehlen, 300);
 
             const badge = document.getElementById("profile-count-badge");
             if (badge) badge.innerText = profileKeys.length === 1 ? "1 Spieler" : `${profileKeys.length} Spieler`;
@@ -508,7 +509,7 @@ auth.createUserWithEmailAndPassword(e, p)
                     const dw = weekStudySeconds(b) - weekStudySeconds(a);
                     if (dw !== 0) return dw;
                 }
-                return (b.coins || 0) - (a.coins || 0);
+                return (b.xp || 0) - (a.xp || 0);
             });
             if (leaderBadge) {
                 leaderBadge.innerText = sorted[0]
@@ -522,7 +523,7 @@ auth.createUserWithEmailAndPassword(e, p)
             const medals = ["🥇", "🥈", "🥉"];
             let lbHTML = `<div class="flex gap-2 mb-2">
                 <button type="button" onclick="setLeaderboardMode('week')" class="flex-1 text-[11px] font-bold py-1.5 rounded-lg ${mode === "week" ? "bg-amber-500/20 text-amber-300 border border-amber-400/30" : "bg-white/5 text-gray-400"}">Diese Woche</button>
-                <button type="button" onclick="setLeaderboardMode('all')" class="flex-1 text-[11px] font-bold py-1.5 rounded-lg ${mode === "all" ? "bg-amber-500/20 text-amber-300 border border-amber-400/30" : "bg-white/5 text-gray-400"}">Gesamt (Coins)</button>
+                <button type="button" onclick="setLeaderboardMode('all')" class="flex-1 text-[11px] font-bold py-1.5 rounded-lg ${mode === "all" ? "bg-amber-500/20 text-amber-300 border border-amber-400/30" : "bg-white/5 text-gray-400"}">Gesamt (XP)</button>
                 <button type="button" onclick="setLeaderboardHidden(true)" class="text-[11px] font-bold py-1.5 px-2 rounded-lg bg-white/5 text-gray-500" title="Ausblenden">✕</button>
             </div>`;
             sorted.forEach((p, index) => {
@@ -530,7 +531,7 @@ auth.createUserWithEmailAndPassword(e, p)
                     `<span class="text-gray-500 font-bold w-6 inline-block text-center">${index + 1}.</span>`;
                 const right = mode === "week"
                     ? (`⏱ ${Math.floor(weekStudySeconds(p) / 60)} Min.`)
-                    : (`🪙 ${p.coins || 0}`);
+                    : (`⭐ ${p.xp || 0} XP`);
                 lbHTML += `
                         <div class="flex items-center justify-between bg-white/5 border border-white/5 p-3 rounded-xl shadow-sm">
                             <div class="flex items-center gap-3">
@@ -636,6 +637,7 @@ auth.createUserWithEmailAndPassword(e, p)
             if (typeof versucheTVDeepLinkJoin === "function") versucheTVDeepLinkJoin();
             if (typeof loadOpenChallenges === "function") loadOpenChallenges();
             if (typeof watchChallengesList === "function") watchChallengesList();
+            if (typeof versucheAufgabenLink === "function") versucheAufgabenLink();
         }
 
         function challengesRef() {
@@ -2817,7 +2819,7 @@ auth.createUserWithEmailAndPassword(e, p)
             const rewards = p.redeemedRewards || [];
             const rewardHtml = rewards.length > 0 ?
                 rewards.slice(0, 3).map(r =>
-                    `<div class="dash-stat-card flex justify-between items-center"><span class="text-white text-sm">${esc(r.name)}</span><span class="text-yellow-400 text-xs">🪙 ${r.cost}</span></div>`
+                    `<div class="dash-stat-card flex justify-between items-center"><span class="text-white text-sm">${esc(r.name)}</span><span class="text-yellow-400 text-xs">${r.currency === "zeit" ? "⏳" : "🪙"} ${r.cost}</span></div>`
                 ).join('') :
                 '<div class="text-gray-500 text-sm">Noch keine Belohnungen eingelöst</div>';
 
@@ -3110,6 +3112,7 @@ auth.createUserWithEmailAndPassword(e, p)
             if (tab === 'rewards') {
                 renderDashAdminProgress();
                 renderDashRewards();
+                if (typeof renderDashRewardRequests === "function") renderDashRewardRequests(false);
             }
             if (!scroll) return;
             const target = document.getElementById('dash-admin-' + tab + '-view');
@@ -3123,6 +3126,7 @@ auth.createUserWithEmailAndPassword(e, p)
             renderDashAdminProgress();
             renderDashAdminTest();
             renderDashRewards();
+            if (typeof renderDashRewardRequests === "function") renderDashRewardRequests(true);
             maybeShowParentWeeklyReport();
         }
 
@@ -3629,6 +3633,8 @@ auth.createUserWithEmailAndPassword(e, p)
             b.innerText = (anzahl <= 1 ? ein : anzahl + " " + mehr) + " zuweisen " + icon;
             b.disabled = anzahl === 0;
             b.classList.toggle("opacity-40", anzahl === 0);
+            const t = document.getElementById(btnId + "-teilen");
+            if (t) { t.disabled = anzahl === 0; t.classList.toggle("opacity-40", anzahl === 0); }
         }
 
         /** Aufklappbare Kurs-Gruppen statt einer langen Auswahlliste.
@@ -3848,6 +3854,97 @@ auth.createUserWithEmailAndPassword(e, p)
             if (typeof fillDashKursSelect === "function") fillDashKursSelect();
             if (typeof renderOpenTasksBanner === "function") renderOpenTasksBanner();
         }
+
+        // ============================================================
+        //  AUFGABE TEILEN (WhatsApp & Co.)
+        //  Weist zu wie gewohnt und schickt danach einen Link. Im Link stehen
+        //  nur Lektions-/Kurs-IDs - kein Name, kein Konto. Wer ihn öffnet,
+        //  landet nach der Anmeldung direkt in der Aufgabe.
+        // ============================================================
+        function zuweisenUndTeilen(typ) {
+            const istL = typ === "L";
+            const ids = dashAuswahlIds(istL ? "dash-lesson-id" : "dash-kurszuw-id");
+            const profileKey = (document.getElementById("dash-test-profile") || {}).value || activePlayerKey;
+            const profil = ALL_PROFILES[profileKey];
+            if (!ids.length || !profil) {
+                if (istL) assignLessonFromDashboard(); else assignKursFromDashboard();
+                return;
+            }
+            const faellig = (document.getElementById(istL ? "dash-lesson-deadline" : "dash-kurs-deadline") || {}).value || "";
+            if (istL) assignLessonFromDashboard(); else assignKursFromDashboard();
+
+            const titel = ids.map(id => {
+                if (istL) {
+                    const l = (typeof LEKTIONEN !== "undefined") ? LEKTIONEN.find(x => x.id === id) : null;
+                    return l ? l.title : id;
+                }
+                const k = (typeof KURSE !== "undefined") ? KURSE.find(x => x.id === id) : null;
+                return k ? k.title : id;
+            });
+            const link = location.origin + location.pathname + "?aufgabe=" + ids.map(id => typ + "." + id).join(",");
+            let frist = "";
+            if (faellig) {
+                try { frist = " – bis " + new Date(faellig + "T12:00").toLocaleDateString("de-DE", { weekday: "long", day: "numeric", month: "numeric" }); } catch (e) { }
+            }
+            const text = `📚 Neue Aufgabe für ${profil.name || "dich"}${frist}:\n`
+                + titel.map(t => "• " + t).join("\n")
+                + `\n\nHier geht's direkt los 👉 ${link}`;
+            if (navigator.share) {
+                navigator.share({ text: text }).catch(() => { });
+            } else {
+                window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
+            }
+        }
+        window.zuweisenUndTeilen = zuweisenUndTeilen;
+
+        // Link geöffnet (?aufgabe=...): passendes Kind automatisch wählen,
+        // wenn genau eines diese Aufgabe offen hat.
+        let _aufgabeAutoGewaehlt = false;
+        function aufgabeLinkProfilWaehlen() {
+            const a = window._pendingAufgabe;
+            if (!a || !a.length || _aufgabeAutoGewaehlt || activePlayerKey) return;
+            const passend = Object.keys(ALL_PROFILES || {}).filter(k => {
+                const p = ALL_PROFILES[k];
+                if (!p || p.isGuest) return false;
+                return a.some(x => x.typ === "L"
+                    ? offeneLektionen(p).some(o => o.lektionId === x.id)
+                    : offeneKurse(p).some(o => o.kursId === x.id));
+            });
+            if (passend.length === 1) {
+                _aufgabeAutoGewaehlt = true;
+                selectProfile(passend[0]);
+            } else if (typeof showToast === "function") {
+                _aufgabeAutoGewaehlt = true;
+                showToast("📚 Aufgabe-Link: Tippe auf dein Profil, dann geht's los.", "info");
+            }
+        }
+
+        async function versucheAufgabenLink() {
+            const a = window._pendingAufgabe;
+            if (!a || !a.length || !currentPlayer) return;
+            window._pendingAufgabe = null;
+            try { if (typeof ladeLektionen === "function") await ladeLektionen(); } catch (e) { }
+            if (typeof LEKTIONEN === "undefined" || typeof KURSE === "undefined") return;
+            if (a.length > 1) {
+                showToast("📚 Deine neuen Aufgaben stehen unter „Aufgaben für dich“.", "success");
+                return;
+            }
+            const x = a[0];
+            if (x.typ === "K") {
+                if (KURSE.some(k => k.id === x.id) && typeof openKurs === "function") openKurs(x.id);
+                return;
+            }
+            const l = LEKTIONEN.find(z => z.id === x.id);
+            if (!l) return;
+            const liste = (typeof getLektionenForKurs === "function") ? getLektionenForKurs(l.kurs) : [];
+            if (typeof istLektionFreigeschaltet === "function" && !istLektionFreigeschaltet(l, liste)) {
+                if (typeof openKurs === "function") openKurs(l.kurs);
+                showToast("Mach zuerst die Lektionen davor – dann ist diese dran.", "info");
+                return;
+            }
+            if (typeof openLektion === "function") openLektion(l.id);
+        }
+        window.versucheAufgabenLink = versucheAufgabenLink;
 
         // ============================================================
         //  SAMMELKARTE "AUFGABEN FUER DICH"

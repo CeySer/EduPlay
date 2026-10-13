@@ -1235,15 +1235,43 @@ const geladen = _questionCounts[key] || 0;
             applyStreakDay(currentPlayer);
         }
 
+        function feiereLevelUp(vorher, nachher) {
+            if (nachher <= vorher) return;
+            const l = LEVELS[nachher];
+            setTimeout(function () {
+                showToast(`⬆️ Level aufgestiegen: ${l.icon} ${l.name}!`, "success");
+                if (typeof confetti === 'function') confetti();
+                if (typeof SFX !== "undefined" && SFX.levelUp) SFX.levelUp();
+            }, 400);
+        }
+
         function addXP(amount) {
             if (!currentPlayer) return;
+            const lvVorher = getLevelInfo(currentPlayer.xp || 0).index;
             currentPlayer.coins = (currentPlayer.coins || 0) + amount;
             currentPlayer.xp = (currentPlayer.xp || 0) + amount;
             registerStreak();
             checkAndAwardBadges();
             savePlayerProgress();
             updateMenuGamification();
+            feiereLevelUp(lvVorher, getLevelInfo(currentPlayer.xp || 0).index);
         }
+
+        // Quiz: dieselbe Frage bringt am selben Tag weniger (10 -> 3 -> 1),
+        // damit sich leichte Fragen nicht endlos abfarmen lassen.
+        function quizBelohnung(q) {
+            if (!currentPlayer || !q) return 10;
+            const heute = new Date().toISOString().slice(0, 10);
+            if (!currentPlayer.quizTag || currentPlayer.quizTag.tag !== heute) currentPlayer.quizTag = { tag: heute, n: {} };
+            const t = String(q.category || "") + "|" + String(q.question || "");
+            let h = 0;
+            for (let i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) | 0;
+            const k = (h >>> 0).toString(36);
+            const n = currentPlayer.quizTag.n[k] || 0;
+            currentPlayer.quizTag.n[k] = n + 1;
+            return n === 0 ? 10 : (n === 1 ? 3 : 1);
+        }
+        window.quizBelohnung = quizBelohnung;
 
         // Zweite Waehrung neben Coins: "Zeit" (Minuten), die Kinder fuer
         // bestandene Lektionen/Kurse/Tests und einen erledigten Lernauftrag
@@ -1258,6 +1286,7 @@ const geladen = _questionCounts[key] || 0;
         function awardXPToProfile(key, amount) {
             const p = ALL_PROFILES[key];
             if (!p) return;
+            const lvVorher = getLevelInfo(p.xp || 0).index;
             p.coins = (p.coins || 0) + amount;
             p.xp = (p.xp || 0) + amount;
             const today = new Date().toISOString().slice(0, 10);
@@ -1274,11 +1303,13 @@ const geladen = _questionCounts[key] || 0;
             if (activePlayerKey === key) {
                 currentPlayer = p;
                 updateMenuGamification();
+                feiereLevelUp(lvVorher, getLevelInfo(p.xp || 0).index);
             }
         }
 
         function updateMenuGamification() {
             if (!currentPlayer) return;
+            if (typeof pruefeBelohnungsAnfragen === "function") pruefeBelohnungsAnfragen(false);
             const lvl = getLevelInfo(currentPlayer.xp || 0);
             const lblEl = document.getElementById("menu-level-label");
             if (!lblEl) return;
@@ -1370,6 +1401,63 @@ const geladen = _questionCounts[key] || 0;
                     </div>`;
                 }).join('');
         }
+
+        // ---------- Belohnungs-Anfragen (Kind fragt an, Eltern geben frei) ----------
+        function belohnungsAnfragenRef() {
+            return db.collection("parents").doc(currentParentUser.uid).collection("rewardRequests");
+        }
+
+        async function renderDashRewardRequests(mitHinweis) {
+            const box = document.getElementById("dash-reward-requests");
+            if (!box || !currentParentUser || isAnonGuest) return;
+            let liste = [];
+            try {
+                const snap = await belohnungsAnfragenRef().orderBy("at", "desc").limit(30).get();
+                snap.forEach(d => liste.push(Object.assign({ id: d.id }, d.data())));
+            } catch (e) {
+                console.warn("Anfragen laden:", e);
+                box.innerHTML = '<div class="text-gray-500 text-xs">Anfragen konnten nicht geladen werden.</div>';
+                return;
+            }
+            const offen = liste.filter(a => a.status === "offen");
+            const erledigt = liste.filter(a => a.status !== "offen").slice(0, 8);
+            const zeile = a => {
+                const icon = a.currency === "zeit" ? "⏳" : "🪙";
+                const wer = esc((ALL_PROFILES[a.profileKey] && ALL_PROFILES[a.profileKey].name) || a.playerName || "");
+                const datum = new Date(a.at).toLocaleDateString("de-DE");
+                const rechts = a.status === "offen"
+                    ? `<button onclick="entscheideBelohnung('${a.id}', true)" class="shrink-0 text-xs font-bold px-2.5 py-1.5 rounded-lg bg-emerald-600/80 text-white">✓ Ja</button>
+                       <button onclick="entscheideBelohnung('${a.id}', false)" class="shrink-0 text-xs font-bold px-2.5 py-1.5 rounded-lg bg-rose-600/70 text-white">✕ Nein</button>`
+                    : `<span class="shrink-0 text-xs">${a.status === "genehmigt" ? "✅" : "❌"}</span>`;
+                return `<div class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-xl px-3 py-2">
+                        <div class="min-w-0 flex-1">
+                            <div class="text-white text-sm truncate">${esc(a.rewardName)}</div>
+                            <div class="text-[10px] text-gray-500">${wer} · ${datum} · ${icon} ${a.cost}</div>
+                        </div>${rechts}</div>`;
+            };
+            box.innerHTML = `<div class="glass-card p-4 space-y-2">
+                    <div class="font-black text-amber-300 text-sm">📬 Anfragen ${offen.length ? `<span class="ml-1 px-2 py-0.5 rounded-full bg-rose-500 text-white text-[11px]">${offen.length}</span>` : ""}</div>
+                    ${offen.length ? offen.map(zeile).join("") : '<div class="text-gray-500 text-xs">Keine offenen Anfragen.</div>'}
+                    ${erledigt.length ? `<div class="text-[11px] text-gray-500 font-bold pt-1">Zuletzt entschieden</div>${erledigt.map(zeile).join("")}` : ""}
+                </div>`;
+            if (mitHinweis && offen.length) {
+                showToast(`🎁 ${offen.length} Belohnungs-Anfrage${offen.length === 1 ? "" : "n"} wartet auf dich (Tab Belohnungen)`, "info");
+            }
+        }
+
+        async function entscheideBelohnung(id, ja) {
+            if (!currentParentUser) return;
+            try {
+                await belohnungsAnfragenRef().doc(id).update({ status: ja ? "genehmigt" : "abgelehnt", entschiedenAt: Date.now() });
+                showToast(ja ? "Belohnung genehmigt ✅" : "Abgelehnt – der Betrag geht zurück ans Kind.", ja ? "success" : "info");
+            } catch (e) {
+                return showToast("Konnte nicht gespeichert werden.", "error");
+            }
+            renderDashRewardRequests(false);
+            if (typeof pruefeBelohnungsAnfragen === "function") pruefeBelohnungsAnfragen(true);
+        }
+        window.entscheideBelohnung = entscheideBelohnung;
+        window.renderDashRewardRequests = renderDashRewardRequests;
 
         function deleteReward(id) {
             familyRewards = familyRewards.filter(r => r.id !== id);

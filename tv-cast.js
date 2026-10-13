@@ -2417,8 +2417,8 @@
                             const _coinKey = tvGameRef.id + ":" + activePlayerKey;
                             if (!myData.coinsClaimed && !tvCoinsClaimedLocal.has(_coinKey)) {
                                 tvCoinsClaimedLocal.add(_coinKey);
-                                currentPlayer.coins += (myData.score || 0);
-                                savePlayerProgress();
+                                if (typeof addXP === "function") addXP(myData.score || 0);
+                                else { currentPlayer.coins += (myData.score || 0); savePlayerProgress(); }
                                 tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true }).catch(() => { });
                             }
                             setTVPlayerPlayHTML(`<div class="glass-card-glow p-10 text-center mt-12" style="border-color:rgba(14,165,233,0.15);"><div class="text-7xl mb-4">🧩</div><h2 class="text-3xl font-black text-sky-400 mb-3">Wort-Rätsel beendet!</h2><p class="text-xl text-white font-bold bg-white/5 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins</p><div class="mt-8 p-4 bg-white/5 border border-indigo-800/30 rounded-2xl"><p class="text-indigo-300 font-black">Du bleibst dabei!</p></div><button onclick="leaveTVGame()" class="mt-6 btn-secondary w-full text-center text-sm">Zurück ins Menü</button></div>`);
@@ -2490,8 +2490,8 @@
                             const _coinKey = tvGameRef.id + ":" + activePlayerKey;
                             if (!myData.coinsClaimed && !tvCoinsClaimedLocal.has(_coinKey)) {
                                 tvCoinsClaimedLocal.add(_coinKey);
-                                currentPlayer.coins += (myData.score || 0);
-                                savePlayerProgress();
+                                if (typeof addXP === "function") addXP(myData.score || 0);
+                                else { currentPlayer.coins += (myData.score || 0); savePlayerProgress(); }
                                 tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true }).catch(() => { });
                             }
                             setTVPlayerPlayHTML(`<div class="glass-card-glow p-10 text-center mt-12" style="border-color:rgba(245,158,11,0.15);"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-white/5 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><div class="mt-8 p-4 bg-white/5 border border-indigo-800/30 rounded-2xl"><div class="text-4xl mb-2 animate-pulse">⏳</div><p class="text-indigo-300 font-black">Du bleibst dabei!</p><p class="text-xs text-gray-400 mt-1">Sobald am Fernseher eine neue Runde startet, geht es hier automatisch weiter.</p></div><button onclick="leaveTVGame()" class="mt-6 btn-secondary w-full text-center text-sm">Doch beenden & zurück ins Menü</button></div>`);
@@ -2540,8 +2540,8 @@
                         const _coinKey = tvGameRef.id + ":" + activePlayerKey;
                         if (!myData.coinsClaimed && !tvCoinsClaimedLocal.has(_coinKey)) {
                             tvCoinsClaimedLocal.add(_coinKey);
-                            currentPlayer.coins += (myData.score || 0);
-                            savePlayerProgress();
+                            if (typeof addXP === "function") addXP(myData.score || 0);
+                            else { currentPlayer.coins += (myData.score || 0); savePlayerProgress(); }
                             tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true }).catch(() => { });
                         }
                         setTVPlayerPlayHTML(`<div class="glass-card-glow p-10 text-center mt-12" style="border-color:rgba(245,158,11,0.15);"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-white/5 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><div class="mt-8 p-4 bg-white/5 border border-indigo-800/30 rounded-2xl"><div class="text-4xl mb-2 animate-pulse">⏳</div><p class="text-indigo-300 font-black">Du bleibst dabei!</p><p class="text-xs text-gray-400 mt-1">Sobald am Fernseher eine neue Runde startet, geht es hier automatisch weiter.</p></div><button onclick="leaveTVGame()" class="mt-6 btn-secondary w-full text-center text-sm">Doch beenden & zurück ins Menü</button></div>`);

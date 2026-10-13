@@ -17571,11 +17571,13 @@ function finishLektion(pct) {
     if (currentPlayer) {
         if (!currentPlayer.lektionen) currentPlayer.lektionen = {};
         const bisher = currentPlayer.lektionen[daten.id];
+        const schonBestanden = !!(bisher && bisher.bestanden);
         if (!bisher || !bisher.bestanden || pct > bisher.pct) {
             currentPlayer.lektionen[daten.id] = { bestanden, pct, datum: Date.now() };
         }
-        if (bestanden && typeof addXP === "function") addXP(50);
-        if (bestanden && typeof addZeit === "function") addZeit(5);
+        // Wiederholen lohnt sich, aber Bonus-Minuten gibt es nur beim ersten Bestehen.
+        if (bestanden && typeof addXP === "function") addXP(schonBestanden ? 10 : 50);
+        if (bestanden && !schonBestanden && typeof addZeit === "function") addZeit(5);
         if (bestanden) {
             const notice = {
                 id: daten.id,

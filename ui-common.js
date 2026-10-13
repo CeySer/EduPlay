@@ -201,6 +201,7 @@
             const list = document.getElementById("rewards-list");
             if (!list) return;
             const rewards = (familyRewards || []).filter(r => !r.forChild || r.forChild === activePlayerKey);
+            pruefeBelohnungsAnfragen(true);
             list.innerHTML = rewards.length === 0 ?
                 `<p class="text-xs text-gray-500">Deine Eltern haben noch keine Belohnungen eingerichtet.</p>` :
                 rewards.map(r => {
@@ -219,8 +220,64 @@
                                 </button>
                             </div>
                         `;
-                }).join('');
+                }).join('') + `<div id="rewards-anfragen" class="pt-2"></div>`;
         }
+
+        function anfragenSammlung() {
+            return db.collection("parents").doc(currentParentUser.uid).collection("rewardRequests");
+        }
+
+        // Liest die Anfragen des aktiven Kindes: abgelehnte -> Betrag zurück,
+        // genehmigte -> in den Verlauf. Läuft auf dem Gerät, auf dem das Kind
+        // aktiv ist, damit der RAM-Stand nichts überschreibt.
+        let _anfragenGeprueftAm = 0;
+        async function pruefeBelohnungsAnfragen(sofort) {
+            if (!currentPlayer || !activePlayerKey || isAnonGuest || !currentParentUser) return;
+            if (!sofort && Date.now() - _anfragenGeprueftAm < 60000) return;
+            _anfragenGeprueftAm = Date.now();
+            const key = activePlayerKey;
+            let liste = [];
+            try {
+                const snap = await anfragenSammlung().where("profileKey", "==", key).get();
+                snap.forEach(d => liste.push(Object.assign({ id: d.id }, d.data())));
+            } catch (e) { return; }
+            if (activePlayerKey !== key || !currentPlayer) return;
+            let geaendert = false;
+            for (const a of liste) {
+                if (a.verbucht || a.status === "offen") continue;
+                try { await anfragenSammlung().doc(a.id).update({ verbucht: true }); } catch (e) { continue; }
+                if (a.status === "abgelehnt") {
+                    if (a.currency === "zeit") currentPlayer.zeit = (currentPlayer.zeit || 0) + a.cost;
+                    else currentPlayer.coins = (currentPlayer.coins || 0) + a.cost;
+                    showToast(`„${esc(a.rewardName)}" wurde abgelehnt – ${a.cost} ${a.currency === "zeit" ? "Minuten" : "Coins"} zurück.`, "info");
+                } else if (a.status === "genehmigt") {
+                    if (!currentPlayer.redeemedRewards) currentPlayer.redeemedRewards = [];
+                    currentPlayer.redeemedRewards.unshift({ name: a.rewardName, cost: a.cost, currency: a.currency || "coins", date: new Date(a.entschiedenAt || Date.now()).toISOString() });
+                    currentPlayer.redeemedRewards = currentPlayer.redeemedRewards.slice(0, 20);
+                    showToast(`🎉 „${esc(a.rewardName)}" wurde genehmigt!`, "success");
+                }
+                a.verbucht = true;
+                geaendert = true;
+            }
+            if (geaendert) {
+                savePlayerProgress();
+                const c = document.getElementById("rewards-coin-balance");
+                if (c) c.innerText = currentPlayer.coins || 0;
+                const z = document.getElementById("rewards-zeit-balance");
+                if (z) z.innerText = currentPlayer.zeit || 0;
+            }
+            const box = document.getElementById("rewards-anfragen");
+            if (box) {
+                const neueste = liste.sort((a, b) => (b.at || 0) - (a.at || 0)).slice(0, 5);
+                box.innerHTML = neueste.length === 0 ? "" :
+                    `<div class="text-xs font-bold text-gray-400 mb-1.5">Deine Anfragen</div>` + neueste.map(a => {
+                        const st = a.status === "offen" ? "⏳ wartet" : (a.status === "genehmigt" ? "✅ genehmigt" : "❌ abgelehnt");
+                        return `<div class="flex justify-between items-center bg-white/5 rounded-lg px-3 py-1.5 mb-1 text-xs">
+                            <span class="text-white truncate">${esc(a.rewardName)}</span><span class="text-gray-400 shrink-0 ml-2">${st}</span></div>`;
+                    }).join("");
+            }
+        }
+        window.pruefeBelohnungsAnfragen = pruefeBelohnungsAnfragen;
 
         async function redeemReward(id) {
             const r = familyRewards.find(x => x.id === id);
@@ -229,9 +286,30 @@
             const guthaben = istZeit ? (currentPlayer.zeit || 0) : (currentPlayer.coins || 0);
             if (guthaben < r.cost) return;
             const einheit = istZeit ? "Minuten" : "Coins";
-            if (!(await appConfirm(`"${r.name}" kostet ${r.cost} ${einheit}. Jetzt einlösen?`, {
-                titel: "Belohnung einlösen", icon: "🎁", okText: "Einlösen"
+            const mitFreigabe = !!(currentParentUser && !isAnonGuest);
+            if (!(await appConfirm(mitFreigabe
+                ? `"${r.name}" kostet ${r.cost} ${einheit}. Deine Eltern müssen zustimmen – sagen sie Nein, bekommst du alles zurück. Jetzt anfragen?`
+                : `"${r.name}" kostet ${r.cost} ${einheit}. Jetzt einlösen?`, {
+                titel: "Belohnung einlösen", icon: "🎁", okText: mitFreigabe ? "Anfragen" : "Einlösen"
             }))) return;
+            if (mitFreigabe) {
+                try {
+                    await anfragenSammlung().add({
+                        profileKey: activePlayerKey, playerName: currentPlayer.name || "",
+                        rewardId: r.id, rewardName: r.name, cost: r.cost, currency: r.currency || "coins",
+                        status: "offen", at: Date.now()
+                    });
+                } catch (e) {
+                    return showToast("Anfrage konnte nicht gesendet werden. Bist du online?", "error");
+                }
+                if (istZeit) currentPlayer.zeit -= r.cost; else currentPlayer.coins -= r.cost;
+                savePlayerProgress();
+                updateMenuGamification();
+                SFX.coin();
+                showToast(`📬 Anfrage für "${esc(r.name)}" gesendet – deine Eltern entscheiden.`, "success");
+                renderRewardsShop();
+                return;
+            }
             if (istZeit) currentPlayer.zeit -= r.cost; else currentPlayer.coins -= r.cost;
             if (!currentPlayer.redeemedRewards) currentPlayer.redeemedRewards = [];
             currentPlayer.redeemedRewards.unshift({ name: r.name, cost: r.cost, currency: r.currency || "coins", date: new Date().toISOString() });
@@ -345,10 +423,17 @@
                     focusTimerInterval = null;
                     focusPausedByHide = false;
                     if (typeof SFX !== "undefined") SFX.timeUp();
-                    let coins = focusRewardCoins(focusDurationMin);
-                    let malus = "";
+                    const _heute = new Date().toISOString().slice(0, 10);
+                    let _belohnbar = focusDurationMin;
+                    if (currentPlayer) {
+                        if (!currentPlayer.fokusTag || currentPlayer.fokusTag.tag !== _heute) currentPlayer.fokusTag = { tag: _heute, min: 0 };
+                        _belohnbar = Math.max(0, Math.min(focusDurationMin, 60 - currentPlayer.fokusTag.min));
+                        currentPlayer.fokusTag.min += _belohnbar;
+                    }
+                    let coins = _belohnbar > 0 ? focusRewardCoins(_belohnbar) : 0;
+                    let malus = _belohnbar < focusDurationMin ? " (Tageslimit: 60 Fokus-Minuten werden belohnt)" : "";
                     // Anti-Schummel: mehr als 2× die App verlassen -> nur halbe Belohnung.
-                    if (focusPauseCount > 2) {
+                    if (focusPauseCount > 2 && coins > 0) {
                         coins = Math.max(1, Math.round(coins / 2));
                         malus = " (App zu oft verlassen – nur halbe Belohnung)";
                     }

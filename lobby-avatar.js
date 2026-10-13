@@ -840,6 +840,17 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 let tv = (params.get("tv") || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
                 if (join.length === 4) window._pendingJoinCode = join;
                 if (tv.length === 4) window._pendingTVCode = tv;
+                const aufgabe = (params.get("aufgabe") || "").split(",").map(s => s.trim())
+                    .filter(s => /^[LK]\.[A-Za-z0-9_-]{1,80}$/.test(s)).slice(0, 10)
+                    .map(s => ({ typ: s[0], id: s.slice(2) }));
+                if (aufgabe.length) window._pendingAufgabe = aufgabe;
+                if (params.has("aufgabe")) {
+                    try {
+                        const u = new URL(window.location.href);
+                        u.searchParams.delete("aufgabe");
+                        window.history.replaceState({}, "", u.pathname + u.search + u.hash);
+                    } catch (e3) { }
+                }
                 if (join.length === 4 || tv.length === 4) {
                     try {
                         const u = new URL(window.location.href);
